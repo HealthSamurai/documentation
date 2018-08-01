@@ -130,6 +130,25 @@ References Integrity check failed
 }
 ```
 {% endapi-method-response-example %}
+
+{% api-method-response-example httpCode=422 %}
+{% api-method-response-example-description %}
+Schema validation failed
+{% endapi-method-response-example-description %}
+
+```javascript
+{
+  "resourceType": "OperationOutcome",
+  "errors": [
+    {
+     "path": ["race"],
+     "message": "extra property"
+    }
+  ],
+  "warnings": []
+}
+```
+{% endapi-method-response-example %}
 {% endapi-method-response %}
 {% endapi-method-spec %}
 {% endapi-method %}
