@@ -1,7 +1,3 @@
----
-description: Basic concepts in aidbox
----
-
 # Architecture Overview
 
 Aidbox is a metadata driven platform. What does it mean? It means, that we are making almost everything to be represented as data \(resources\). For example in aidbox REST endpoints \(Operations\), Resources Structure Definitions, Profiles, Access Policies, Periodic Jobs etc are represented as Resources - we call it Meta-Resources. Meta-Resources are play by same rules as other resources  - you can request and manipulate Meta-Resources through unified REST API. 

@@ -1,7 +1,3 @@
----
-description: The Easiest way to define custom resources
----
-
 # Custom Metadata
 
 As it was said earlier Aidbox is a metadata driven platform, therefore when you want to define new ResourceType, or Attribute you need to create a couple of resources, such as Entity and Attribute. And  sometimes this way is not convenient. For this reason we support special endpoint that provide to you more simply way to define custom Metadata.

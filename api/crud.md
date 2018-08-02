@@ -77,9 +77,7 @@ Create Resource
 {% endapi-method-summary %}
 
 {% api-method-description %}
-The create endpoint creates a new resource in a server-assigned location.   
-  
-The request body should contain a valid FHIR resource. If resource contains an `id` or `meta` attributes, they will be ignored.
+The create endpoint creates a new resource in a server-assigned location.The request body should contain a valid FHIR resource. If resource contains an `id` or `meta` attributes, they will be ignored.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -92,6 +90,25 @@ Type of resource being created
 {% endapi-method-request %}
 
 {% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+Schema validation failed
+{% endapi-method-response-example-description %}
+
+```javascript
+{
+  "resourceType": "OperationOutcome",
+  "errors": [
+    {
+     "path": ["race"],
+     "message": "extra property"
+    }
+  ],
+  "warnings": []
+}
+```
+{% endapi-method-response-example %}
+
 {% api-method-response-example httpCode=201 %}
 {% api-method-response-example-description %}
 Resource was successfully created
@@ -130,25 +147,6 @@ References Integrity check failed
 }
 ```
 {% endapi-method-response-example %}
-
-{% api-method-response-example httpCode=422 %}
-{% api-method-response-example-description %}
-Schema validation failed
-{% endapi-method-response-example-description %}
-
-```javascript
-{
-  "resourceType": "OperationOutcome",
-  "errors": [
-    {
-     "path": ["race"],
-     "message": "extra property"
-    }
-  ],
-  "warnings": []
-}
-```
-{% endapi-method-response-example %}
 {% endapi-method-response %}
 {% endapi-method-spec %}
 {% endapi-method %}
@@ -160,4 +158,42 @@ Server will validate resource body against FHIR schema and in case of errors wil
 {% hint style="info" %}
 If the client wishes to have control over the ID of a newly submitted resource, it should use the Update Endpoint instead.
 {% endhint %}
+
+{% api-method method="put" host="<base-url>" path="/fhir/:resourceType/:id" %}
+{% api-method-summary %}
+Update Resource
+{% endapi-method-summary %}
+
+{% api-method-description %}
+The update endpoint creates a new version for an existing resource or creates an initial version if no resource already exists for the given id.  
+  
+The request body should contain valid resource with an `id` element that has an identical value to the `:id` in the URL. If no `id` element is provided or value is wrong, server will respond with `400 Bad Request`.
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-path-parameters %}
+{% api-method-parameter name="id" type="string" required=true %}
+ID of resource
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="resourceType" type="string" required=true %}
+Type of resource being updated
+{% endapi-method-parameter %}
+{% endapi-method-path-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
 
