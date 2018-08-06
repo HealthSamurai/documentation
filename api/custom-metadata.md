@@ -49,7 +49,23 @@ Metadata
 {% endapi-method-description %}
 
 {% api-method-spec %}
-{% api-method-request %}
+
+{% api-method-body %}
+
+Body
+
+```yaml
+{
+    "name": "Cake's name",
+    "recipe": "Cake's recipe name",
+    "cake": "Binary cake"
+}
+```
+
+{% endapi-method-body %}
+
+
+
 {% api-method-body-parameters %}
 {% api-method-parameter name="definitions" type="object" required=true %}
 Metadata  
