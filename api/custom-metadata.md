@@ -4,6 +4,8 @@ As it was said earlier Aidbox is a metadata driven platform, therefore when you 
 
 For example, lets try to define two custom resources: **City** and **Country**. ****Country will consists of name, population and flag**.** City consists of name, phoneCode, reference to country and date of foundation. Also we want that Country.name, City.name and City.country attributes should be required. And we are want to search Country by name and population, City by name and country  in which it is located
 
+{% api-method method="post" host="\[base\]" path="/$metadata" %}
+
 {% tabs %}
 {% tab title="First Tab" %}
 ```yaml
