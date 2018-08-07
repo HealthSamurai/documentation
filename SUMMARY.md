@@ -42,5 +42,7 @@
 * [Integrations](integrations/README.md)
   * [Subscriptions](integrations/subscriptions.md)
   * [Transaction Log](integrations/transaction-log.md)
+* [DevBox](devbox/README.md)
+  * [Untitled](devbox/untitled.md)
 * [FAQ](faq.md)
 
