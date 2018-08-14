@@ -1,12 +1,31 @@
-# Untitled
+# Install
 
-## Can I become who I want to be?
+helm repo add aidbox https://aidbox.github.io/devbox  
 
-That's a tough question but thankfully, our team is on it. Please bear with us while we're investigating.
 
-## Have you had a chance to answer the previous question?
+helm upgrade --namespace {{target\_ns}} -i myapp -f values.yaml aidbox/devbox
 
-Yes, after a few months we finally found the answer. Sadly, Mike is on vacations right now so I'm afraid we are not able to provide the answer at this point.
+GitRepo  [https://github.com/Aidbox/devbox](https://github.com/Aidbox/devbox)
+
+**Technical requirement**
+
+docker , docker-compose, git, 2Gb ram
+
+```text
+git clone https://github.com/Aidbox/devbox
+```
+
+Аor access to DevBox please contact at **hello@health-samurai.io**
+
+```text
+docker login
+```
+
+restart.sh opts [https://docs.docker.com/compose/reference/up/](https://docs.docker.com/compose/reference/up/)
+
+```text
+restart.sh -d
+```
 
 
 

@@ -43,6 +43,9 @@
   * [Subscriptions](integrations/subscriptions.md)
   * [Transaction Log](integrations/transaction-log.md)
 * [DevBox](devbox/README.md)
-  * [Untitled](devbox/untitled.md)
+  * [Install](devbox/untitled.md)
+  * [Configure](devbox/configure/README.md)
+    * [Static](devbox/configure/static.md)
+    * [Bootstrap](devbox/configure/bootstrap.md)
 * [FAQ](faq.md)
 

@@ -1,23 +1,10 @@
+---
+description: Local development with Aidbox
+---
+
 # DevBox
 
-## Getting Super Powers
-
-Becoming a super hero is a fairly straight forward process:
-
-```
-$ give me super-powers
-```
-
-{% hint style="info" %}
- Super-powers are granted randomly so please submit an issue if you're not happy with yours.
-{% endhint %}
-
-Once you're strong enough, save the world:
-
-```
-// Ain't no code for that yet, sorry
-echo 'You got to trust me on this, I saved the world'
-```
+We are provide lightweight version of Aidbox named **Devbox** - special version aimed at local development on development computers and in your private cloud. To access of devbox please contact us hello@health-samurai.io
 
 
 
