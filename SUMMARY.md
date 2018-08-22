@@ -45,7 +45,7 @@
 * [DevBox](devbox/README.md)
   * [Install](devbox/untitled.md)
   * [Configure](devbox/configure/README.md)
-    * [Static](devbox/configure/static.md)
+    * [Serve static files](devbox/configure/static.md)
     * [Bootstrap](devbox/configure/bootstrap.md)
 * [FAQ](faq.md)
 

@@ -1,10 +1,8 @@
-# Static
+# Serve static files
 
-FILE\_ROOT - absolute path  on system
+DevBox supports serving of static files. This feature works only in docker-compose environment, should not be accessed from outside.
 
-### Read
-
-
+Files will be saved in folder that is set in [FILE\_ROOT environment variable](https://github.com/Aidbox/devbox/search?l=YAML&q=FILE_ROOT).It should be absolute absolute path to writable folder.
 
 ### Upload
 
@@ -17,9 +15,7 @@ curl -X POST \
   -F test=@PATH_TO_FILE
 ```
 
-
-
-return fhir attachment 
+Request will return [FHIR Attachment](https://www.hl7.org/fhir/datatypes.html#attachment) which will include file URL. Now file with duplicate name will overwrite earlier version. 
 
 
 
