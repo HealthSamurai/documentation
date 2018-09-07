@@ -44,8 +44,7 @@
   * [Transaction Log](integrations/transaction-log.md)
 * [DevBox](devbox/README.md)
   * [Install](devbox/untitled.md)
-  * [Configure](devbox/configure/README.md)
-    * [Serve static files](devbox/configure/static.md)
-    * [Bootstrap](devbox/configure/bootstrap.md)
+  * [Configure](devbox/configure.md)
+  * [Serve static files](devbox/static.md)
 * [FAQ](faq.md)
 

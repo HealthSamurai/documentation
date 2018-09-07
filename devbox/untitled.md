@@ -1,31 +1,28 @@
 # Install
 
-helm repo add aidbox https://aidbox.github.io/devbox  
+Devbox can be used on local machine via docker compose or deployed to kubernetes cluster via helm
 
+You must obtain developer token in our [License server](https://license-ui.aidbox.app/)
 
-helm upgrade --namespace {{target\_ns}} -i myapp -f values.yaml aidbox/devbox
+## docker compose
 
-GitRepo  [https://github.com/Aidbox/devbox](https://github.com/Aidbox/devbox)
+See details in [https://github.com/Aidbox/devbox/blob/master/README.md](https://github.com/Aidbox/devbox/blob/master/README.md)
 
-**Technical requirement**
+## Kubernetes cluster
 
-docker , docker-compose, git, 2Gb ram
+Installation managed by [https://helm.sh](https://helm.sh/) See installation instructions [https://github.com/helm/helm\#install](https://github.com/helm/helm#install)
 
-```text
-git clone https://github.com/Aidbox/devbox
-```
-
-Аor access to DevBox please contact at **hello@health-samurai.io**
+After installation you should add devbox repository to your local machine
 
 ```text
-docker login
+helm repo add aidbox https://aidbox.github.io/devbox
 ```
 
-restart.sh opts [https://docs.docker.com/compose/reference/up/](https://docs.docker.com/compose/reference/up/)
+After that you are ready to install devbox. You can provide different values to release using -f option/ Example values file - [https://github.com/Aidbox/devbox/blob/master/helm/devbox/values.yaml](https://github.com/Aidbox/devbox/blob/master/helm/devbox/values.yaml)
 
 ```text
-restart.sh -d
+helm upgrade --namespace {{target_ns}} -i {{installation_name}} -f values.yaml aidbox/devbox
 ```
 
-
+After that devbox can be accessed as service {{installation\_name}}-devbox or via kubectl port-forward.
 

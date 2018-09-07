@@ -1,6 +1,6 @@
 # Serve static files
 
-DevBox supports serving of static files. This feature works only in docker-compose environment, should not be accessed from outside.
+DevBox supports serving of static files. This feature works only in docker-compose environment.
 
 Files will be saved in folder that is set in [FILE\_ROOT environment variable](https://github.com/Aidbox/devbox/search?l=YAML&q=FILE_ROOT).It should be absolute absolute path to writable folder.
 
