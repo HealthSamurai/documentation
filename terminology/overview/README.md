@@ -18,6 +18,6 @@ In aidbox all terminology services are built around non-FHIR  **Concept** resour
 
 Terminology service can be logically spit into two parts:
 
-* terminology service
-* terminology management
+* terminology service for your app to lookup and validate existing codes
+* terminology management - to upload new code systems and create new value sets
 
