@@ -12,7 +12,7 @@ system: http://loinc.org
 code: 17861-6
 display: Calcium [Mass/​volume] in Serum or Plasma	 
 definition: <Definition string>
-subsume:
+hierarchy:
   - parent-code-1
   - parent-code-2
 designation:
@@ -24,7 +24,7 @@ designation:
     ge: der Calcium
     es: el calcium
 // ids of valuesets wich contains this concept
-valuset:
+valueset:
   - valueset-id-1
   - valueset-id-2
 property:
