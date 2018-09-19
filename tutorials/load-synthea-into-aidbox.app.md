@@ -87,3 +87,27 @@ It can be done with postman or aidbox ui:
 
 This is a brief description about how to work with transactions and batches in aidbox. More interesting info coming soon, stay tuned!
 
+### Generating transaction bundle with synthea \(advanced topic\)
+
+Here how we can install synthea.
+
+```text
+git clone https://github.com/synthetichealth/synthea.git
+cd synthea
+./gradlew build check test
+```
+
+Edit `src\main\resources\synthea.properties` to get output in transaction bundle format:
+
+```text
+exporter.fhir.transaction_bundle = true
+```
+
+Generating the population one at a time...
+
+```text
+./run_synthea -s 1000
+```
+
+Read more about synthea generator - [https://github.com/synthetichealth/synthea](https://github.com/synthetichealth/synthea)
+
