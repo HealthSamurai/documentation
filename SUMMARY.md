@@ -12,6 +12,7 @@
     * [Manifest](basic-concepts/meta-model/manifest.md)
 * [Tutorials](tutorials/README.md)
   * [Getting Started](tutorials/getting-started.md)
+  * [Load synthea into aidbox.app](tutorials/load-synthea-into-aidbox.app.md)
 * [Deployment](deployment.md)
 * [API](api/README.md)
   * [CRUD](api/crud.md)
