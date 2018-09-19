@@ -13,7 +13,7 @@
 * [Tutorials](tutorials/README.md)
   * [Getting Started](tutorials/getting-started.md)
   * [Create and Configure Box](tutorials/create-and-configure-box.md)
-  * [Fill Box with data](tutorials/load-synthea-into-aidbox.app.md)
+  * [Load bundle into aidbox.app](tutorials/load-synthea-into-aidbox.app.md)
 * [Deployment](deployment.md)
 * [API](api/README.md)
   * [CRUD](api/crud.md)

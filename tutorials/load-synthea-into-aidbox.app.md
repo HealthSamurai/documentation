@@ -1,24 +1,26 @@
 ---
-description: How to get synthea data in cloud aidbox
+description: How to upload data in cloud aidbox
 ---
 
-# Fill Box with data
+# Load bundle into aidbox.app
 
 ### Create your box
 
-Read how to register and create box in this [tutorial](create-and-configure-box.md).
+Register on https://aidbox.app using your github or google account.
 
 ### Setup Access Policy
 
-We need to configure access policies to enable access to REST API from outside of the world.
+Read how to register and create box in this [tutorial](create-and-configure-box.md).
+
+Let's configure simple policy to access API using basic auth \(login/password\)
 
 Let's configure simple policy to access API by secret key:
 
 
 
-### Generate data
+### Access data by REST API
 
-To generate data we will use open source synthetic dataset generator - [Synthea](https://github.com/synthetichealth/synthea).
+Open section **Auth clients**, click button **new** to create auth client and type following body for resource:
 
 Here how we can install synthea.
 
@@ -42,11 +44,72 @@ Generating the population one at a time...
 
 Read more about synthea generator - [https://github.com/synthetichealth/synthea](https://github.com/synthetichealth/synthea)
 
-### Load data into aidbox
+```text
+resourceType: Client
+id: USERNAME
+secret: PASSWORD
+```
 
  Using transaction Operation
 
-### Access data by REST API
+Click `save`, open **Access Control** section, create new access policy using **new** button:  
 
 
+```text
+engine: json-schema
+schema:
+  required:
+    - client
+  properties:
+    client:
+      required:
+        - id
+      properties:
+        id:
+          constant: USERNAME
+id: client1-access
+resourceType: AccessPolicy
+```
+
+Now USERNAME/PASSWORD can be used to access the box via basic auth.
+
+Let's check that everything working fine. Create new `GET` request, fill all required fields \(url, username, password\) in postman or other http client and run the query. Result should look like that picture:
+
+![](../.gitbook/assets/2018-09-19-201623_1211x651_scrot.png)
+
+### Bundle example
+
+According to [fhir specification](https://www.hl7.org/fhir/http.html#transaction) bundle resource should look like:
+
+```text
+{"resourceType" : "bundle",
+ "type": "transaction",
+ "entry": [{"request": {"method": "GET", "url": "/Patient"}}]}
+```
+
+Every transaction bundle MUST have **type** field, which value can be **transaction** or **batch**, every entry inside MUST have **method** and **url** fields inside request map.
+
+The bundle must be sentvia POST method to BASE\_URL, which is basically the url of your box from previous section
+
+### Load data into aidbox using transaction Operation
+
+The example below demonstrates how to create two patients using one transaction request.
+
+```text
+{"resourceType" : "bundle", 
+ "type": "transaction", 
+ "entry": 
+ [{"request": {"method": "POST", "url": "/Patient"},
+   "resource": {"name": [{"given": ["Bob"]}]}},
+   {"request": {"method": "POST", "url": "/Patient"},
+   "resource": {"name": [{"given": ["Peter"]}]}}]}
+```
+
+It can be done with postman or aidbox ui:
+
+![](../.gitbook/assets/2018-09-19-204419_1198x727_scrot.png)
+
+![](../.gitbook/assets/2018-09-19-204203_1284x813_scrot.png)
+
+This is a brief description about how to work with transactions and batches in aidbox. More interesting info coming soon, stay tuned!
 
