@@ -8,41 +8,13 @@ description: How to upload data in cloud aidbox
 
 Register on https://aidbox.app using your github or google account.
 
-### Setup Access Policy
-
 Read how to register and create box in this [tutorial](create-and-configure-box.md).
 
-Let's configure simple policy to access API using basic auth \(login/password\)
+### Setup Access Policy
 
-Let's configure simple policy to access API by secret key:
-
-
-
-### Access data by REST API
+Let's configure simple policy to access API using basic auth \(login/password\):
 
 Open section **Auth clients**, click button **new** to create auth client and type following body for resource:
-
-Here how we can install synthea.
-
-```text
-git clone https://github.com/synthetichealth/synthea.git
-cd synthea
-./gradlew build check test
-```
-
-Edit `src\main\resources\synthea.properties` to get output in transaction bundle format:
-
-```text
-exporter.fhir.transaction_bundle = true
-```
-
-Generating the population one at a time...
-
-```text
-./run_synthea -s 1000
-```
-
-Read more about synthea generator - [https://github.com/synthetichealth/synthea](https://github.com/synthetichealth/synthea)
 
 ```text
 resourceType: Client
@@ -72,6 +44,8 @@ resourceType: AccessPolicy
 ```
 
 Now USERNAME/PASSWORD can be used to access the box via basic auth.
+
+### Access data by REST API
 
 Let's check that everything working fine. Create new `GET` request, fill all required fields \(url, username, password\) in postman or other http client and run the query. Result should look like that picture:
 
