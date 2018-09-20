@@ -113,7 +113,7 @@ hospitalInformation1537450368636.json
 Mckinley734_Johnston597_f25b9177-3c01-4d76-a48f-0a83affa5a56.json
 ```
 
-Copy content of first file to postman, use `BASE_URL/fhir`as url to upload fhir transaction bundle. Everything else is the same as in the previous step. After that upload the content of the second file into aidbox. That's all, you are awesome!
+Copy content of first file to postman, use `BASE_URL/fhir` \(`https://testbox1.aidbox.app/fhir` for example\) as url to upload fhir transaction bundle. Everything else is the same as in the previous step. After that, upload the content of the second file into aidbox. That's all, you are awesome!
 
 Read more about synthea generator - [https://github.com/synthetichealth/synthea](https://github.com/synthetichealth/synthea)
 
