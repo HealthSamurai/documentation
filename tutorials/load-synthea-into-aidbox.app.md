@@ -93,7 +93,7 @@ cd synthea
 ./gradlew build check test
 ```
 
-Edit `src\main\resources\synthea.properties` to get output in transaction bundle format:
+Edit `src/main/resources/synthea.properties` to get output in transaction bundle format:
 
 ```text
 exporter.fhir.transaction_bundle = true
@@ -103,7 +103,17 @@ Generating the population one at a time...
 
 ```text
 ./run_synthea -s 1000
+ls output/fhir
 ```
+
+You should see two files with names similar to those:
+
+```text
+hospitalInformation1537450368636.json 
+Mckinley734_Johnston597_f25b9177-3c01-4d76-a48f-0a83affa5a56.json
+```
+
+Copy content of first file to postman, use `BASE_URL/fhir`as url to upload fhir transaction bundle. Everything else is the same as in the previous step. After that upload the content of the second file into aidbox. That's all, you are awesome!
 
 Read more about synthea generator - [https://github.com/synthetichealth/synthea](https://github.com/synthetichealth/synthea)
 
