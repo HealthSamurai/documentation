@@ -1,7 +1,3 @@
----
-description: How to upload data in cloud aidbox
----
-
 # Load bundle into aidbox.app
 
 ### Create your box
