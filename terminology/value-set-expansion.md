@@ -12,5 +12,69 @@ means
 GET [base]/Concept?valueset=23&filter=abdo
 ```
 
-The only difference is output format.
+### Api
+
+Official documentation [FHIR Terminology ValueSet Expansion](https://www.hl7.org/fhir/valueset-operations.html#expand)
+
+```text
+URL: [base]/ValueSet/$expand
+```
+
+```text
+URL: [base]/ValueSet/[id]/$expand
+```
+
+Example
+
+```text
+GET [base]/ValueSet/administrative-gender/$expand
+```
+
+| Parameter | Type | Status | Example |
+| :--- | :--- | :--- | :--- |
+| url | [uri](https://www.hl7.org/fhir/datatypes.html#uri) | `supported` | [url](value-set-expansion.md#url) |
+| valueSet | [ValueSet](https://www.hl7.org/fhir/valueset.html) | `supported` | [valueSet](value-set-expansion.md#valueset) |
+| context | [uri](https://www.hl7.org/fhir/datatypes.html#uri) | `not supported` |  |
+| filter | [string](https://www.hl7.org/fhir/datatypes.html#string) | `supported` | [filter](value-set-expansion.md#filter) |
+| profile |  |  |  |
+| date |  |  |  |
+| offset |  | + |  |
+| count |  | + |  |
+| includeDesignations |  |  |  |
+| includeDefinition |  |  |  |
+| activeOnly |  | + |  |
+| excludeNested |  |  |  |
+| excludeNotForUI |  |  |  |
+| excludePostCoordinated |  |  |  |
+| displayLanguage |  |  |  |
+| limitedExpansion |  |  |  |
+
+#### url
+
+```text
+GET [base]/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/administrative-gender
+```
+
+```text
+POST [base]/ValueSet/$expand
+
+{ "resourceType" : "Parameters",
+  "parameter" : [
+     {"name" : "url",
+      "valueUri" : "http://hl7.org/fhir/ValueSet/administrative-gender"
+     }
+   }
+ ]
+}
+```
+
+#### valueSet
+
+```text
+
+```
+
+#### filter
+
+
 
