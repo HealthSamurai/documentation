@@ -17,18 +17,20 @@ GET [base]/Concept?valueset=23&filter=abdo
 Official documentation [FHIR Terminology ValueSet Expansion](https://www.hl7.org/fhir/valueset-operations.html#expand)
 
 ```text
-URL: [base]/ValueSet/$expand
+GET/POST URL: [base]/ValueSet/$expand
 ```
 
 ```text
-URL: [base]/ValueSet/[id]/$expand
+GET/POST URL: [base]/ValueSet/[id]/$expand
 ```
 
-Example
+Example for expand default AdministrativeGender ValueSet. [List of default ValueSets.](https://www.hl7.org/fhir/terminologies-valuesets.html)
 
 ```text
 GET [base]/ValueSet/administrative-gender/$expand
 ```
+
+Parameters
 
 | Parameter | Type | Status | Example |
 | :--- | :--- | :--- | :--- |
