@@ -36,47 +36,157 @@ Parameters
 | :--- | :--- | :--- | :--- |
 | url | [uri](https://www.hl7.org/fhir/datatypes.html#uri) | `supported` | [url](value-set-expansion.md#url) |
 | valueSet | [ValueSet](https://www.hl7.org/fhir/valueset.html) | `supported` | [valueSet](value-set-expansion.md#valueset) |
-| context | [uri](https://www.hl7.org/fhir/datatypes.html#uri) | `not supported` |  |
+| context | [uri](https://www.hl7.org/fhir/datatypes.html#uri) | `not supported` | - |
 | filter | [string](https://www.hl7.org/fhir/datatypes.html#string) | `supported` | [filter](value-set-expansion.md#filter) |
-| profile |  |  |  |
-| date |  |  |  |
-| offset |  | + |  |
-| count |  | + |  |
-| includeDesignations |  |  |  |
-| includeDefinition |  |  |  |
-| activeOnly |  | + |  |
-| excludeNested |  |  |  |
-| excludeNotForUI |  |  |  |
-| excludePostCoordinated |  |  |  |
-| displayLanguage |  |  |  |
-| limitedExpansion |  |  |  |
+| profile | [uri](https://www.hl7.org/fhir/datatypes.html#uri) | `not supported` | - |
+| date | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | `not supported` | - |
+| offset | [integer](https://www.hl7.org/fhir/datatypes.html#integer) | `supported` | [offset](value-set-expansion.md#offset) |
+| count | [integer](https://www.hl7.org/fhir/datatypes.html#integer) | `supported` | [count](value-set-expansion.md#count) |
+| includeDesignations | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean) | `not supported` | - |
+| includeDefinition | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean) | `not supported` | - |
+| activeOnly | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean) | `supported` | [activeOnly](value-set-expansion.md#activeonly) |
+| excludeNested | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean) | `not supported` | - |
+| excludeNotForUI | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean) | `not supported` | - |
+| excludePostCoordinated | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean) | `not supported` | - |
+| displayLanguage | [code](https://www.hl7.org/fhir/datatypes.html#code) | `not supported` | - |
+| limitedExpansion | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean) | `not supported` | - |
 
 #### url
 
-```text
+{% tabs %}
+{% tab title="Request" %}
+```http
 GET [base]/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/administrative-gender
 ```
 
-```text
-POST [base]/ValueSet/$expand
+Or
 
-{ "resourceType" : "Parameters",
+```javascript
+POST [base]/ValueSet/$expand
+{ 
+  "resourceType" : "Parameters",
   "parameter" : [
-     {"name" : "url",
+     {
+      "name" : "url",
       "valueUri" : "http://hl7.org/fhir/ValueSet/administrative-gender"
      }
-   }
- ]
+  ]
 }
 ```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+{
+    "id": "administrative-gender",
+    "resourceType": "ValueSet",
+    "url": "http://hl7.org/fhir/ValueSet/administrative-gender",
+    "description": "The gender of a person used for administrative purposes.",
+    "compose": {
+        "include": [
+            {
+                "system": "http://hl7.org/fhir/administrative-gender"
+            }
+        ]
+    },
+    "name": "AdministrativeGender",
+    "expansion": {
+        "timestamp": "2018-09-25T16:24:55Z",
+        "identifier": "http://hl7.org/fhir/ValueSet/administrative-gender",
+        "contains": [
+            {
+                "code": "male",
+                "module": "fhir-3.3.0",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "display": "Male",
+                "definition": "Male"
+            },
+            {
+                "code": "female",
+                "module": "fhir-3.3.0",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "display": "Female",
+                "definition": "Female"
+            },
+            {
+                "code": "other",
+                "module": "fhir-3.3.0",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "display": "Other",
+                "definition": "Other"
+            },
+            {
+                "code": "unknown",
+                "module": "fhir-3.3.0",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "display": "Unknown",
+                "definition": "Unknown"
+            }
+        ]
+    },
+    ......
+}
+```
+{% endtab %}
+{% endtabs %}
 
 #### valueSet
 
-```text
+{% tabs %}
+{% tab title="Request" %}
 
-```
+{% endtab %}
+
+{% tab title="Response" %}
+
+{% endtab %}
+{% endtabs %}
 
 #### filter
 
+{% tabs %}
+{% tab title="First Tab" %}
 
+{% endtab %}
+
+{% tab title="Second Tab" %}
+
+{% endtab %}
+{% endtabs %}
+
+#### offset
+
+{% tabs %}
+{% tab title="First Tab" %}
+
+{% endtab %}
+
+{% tab title="Second Tab" %}
+
+{% endtab %}
+{% endtabs %}
+
+#### count
+
+{% tabs %}
+{% tab title="First Tab" %}
+
+{% endtab %}
+
+{% tab title="Second Tab" %}
+
+{% endtab %}
+{% endtabs %}
+
+#### activeOnly
+
+{% tabs %}
+{% tab title="First Tab" %}
+
+{% endtab %}
+
+{% tab title="Second Tab" %}
+
+{% endtab %}
+{% endtabs %}
 
