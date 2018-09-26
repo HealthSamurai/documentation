@@ -404,6 +404,8 @@ POST [base]/ValueSet/administrative-gender/$expand
     ......
 }
 ```
+{% endtab %}
+{% endtabs %}
 
 #### activeOnly
 
@@ -414,6 +416,8 @@ one deprecated concept provided directly as part of the request.
 
 {% tabs %}
 {% tab title="Request" %}
+
+Get all concepts
 
 ```javascript
 POST [base]/ValueSet/administrative-gender/$expand
@@ -486,10 +490,15 @@ POST [base]/ValueSet/administrative-gender/$expand
     }
 }
 ```
+{% endtab %}
+{% endtabs %}
 
 
 {% tabs %}
 {% tab title="Request" %}
+
+
+Get only active concepts 
 
 ```javascript
 POST [base]/ValueSet/administrative-gender/$expand
@@ -555,3 +564,5 @@ POST [base]/ValueSet/administrative-gender/$expand
     }
 }
 ```
+{% endtab %}
+{% endtabs %}
