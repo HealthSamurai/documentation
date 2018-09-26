@@ -53,6 +53,8 @@ Parameters
 
 #### url
 
+A canonical url for a value set.
+
 {% tabs %}
 {% tab title="Request" %}
 ```http
@@ -132,22 +134,28 @@ POST [base]/ValueSet/$expand
 
 #### valueSet
 
+The value set is provided directly as part of the request.
+
 {% tabs %}
 {% tab title="Request" %}
-```text
-GET [base]/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/administrative-gender
-```
-
-Or
-
 ```javascript
 POST [base]/ValueSet/$expand
 { 
   "resourceType" : "Parameters",
   "parameter" : [
      {
-      "name" : "url",
-      "valueUri" : "http://hl7.org/fhir/ValueSet/administrative-gender"
+      "name" : "valueSet",
+      "resource" : {
+        "resourceType": "ValueSet",
+        "url": "http://custom/administrative-gender",
+        "compose": {
+           "include": [
+              {
+                "valueSet": ["http://hl7.org/fhir/ValueSet/administrative-gender"]
+              }
+          ]
+        } 
+       }
      }
   ]
 }
@@ -155,7 +163,55 @@ POST [base]/ValueSet/$expand
 {% endtab %}
 
 {% tab title="Response" %}
-
+```javascript
+{
+    "resourceType": "ValueSet",
+    "url": "http://custom/administrative-gender",
+    "compose": {
+        "include": [
+            {
+                "valueSet": [
+                    "http://hl7.org/fhir/ValueSet/administrative-gender"
+                ]
+            }
+        ]
+    },
+    "expansion": {
+        "timestamp": "2018-09-26T08:51:30Z",
+        "identifier": "http://custom/administrative-gender",
+        "contains": [
+            {
+                "code": "male",
+                "module": "fhir-3.3.0",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "display": "Male",
+                "definition": "Male"
+            },
+            {
+                "code": "female",
+                "module": "fhir-3.3.0",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "display": "Female",
+                "definition": "Female"
+            },
+            {
+                "code": "other",
+                "module": "fhir-3.3.0",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "display": "Other",
+                "definition": "Other"
+            },
+            {
+                "code": "unknown",
+                "module": "fhir-3.3.0",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "display": "Unknown",
+                "definition": "Unknown"
+            }
+        ]
+    }
+}
+```
 {% endtab %}
 {% endtabs %}
 
