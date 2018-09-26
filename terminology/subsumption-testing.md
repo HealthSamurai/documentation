@@ -49,8 +49,7 @@ The subsumption relationship between code/Coding "A" and code/Coding "B". There 
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-GET [base]/CodeSystem/$subsumes?system=http://hl7.org/fhir/goal-status
-&codeA=accepted&codeB=accepted
+GET [base]/CodeSystem/$subsumes?system=http://hl7.org/fhir/goal-status&codeA=accepted&codeB=accepted
 ```
 
 `or:`
