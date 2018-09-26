@@ -282,6 +282,8 @@ POST [base]/ValueSet/administrative-gender/$expand
 
 #### offset
 
+Paging support - where to start if a subset is desired (default = 0).
+
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
@@ -347,6 +349,8 @@ POST [base]/ValueSet/administrative-gender/$expand
 
 #### count
 
+Paging support - how many codes should be provided in a partial page view. 
+
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
@@ -403,63 +407,151 @@ POST [base]/ValueSet/administrative-gender/$expand
 
 #### activeOnly
 
+Controls whether inactive concepts are included or excluded in value set expansions.
+
+For example we are create testing ValueSet with one cuurent active concept and
+one deprecated concept provided directly as part of the request.
+
 {% tabs %}
 {% tab title="Request" %}
-```javascript
-GET [base]/ValueSet/administrative-gender/$expand?filter=male
-```
-
-Or
 
 ```javascript
 POST [base]/ValueSet/administrative-gender/$expand
+
+
 { 
   "resourceType" : "Parameters",
   "parameter" : [
+  	 {
+  	 	"name" : "activeOnly",
+  	 	"valueBoolean": false
+  	 },
      {
-      "name" : "filter",
-      "valueString" : "male"
+      "name" : "valueSet",
+      "resource" : {
+        "resourceType": "ValueSet",
+        "url": "http://custom/testing",
+        "compose": {
+           "include": [
+              {"system": "http://testing",
+               "concept": [{"code": "active"},
+                           {"code": "inactive",
+                           	"deprecated": true}]
+              }
+          ]
+        } 
+       }
      }
   ]
 }
+
 ```
 {% endtab %}
 
 {% tab title="Response" %}
 ```javascript
 {
-    "id": "administrative-gender",
     "resourceType": "ValueSet",
-    "url": "http://hl7.org/fhir/ValueSet/administrative-gender",
-    "description": "The gender of a person used for administrative purposes.",
+    "url": "http://custom/testing",
     "compose": {
         "include": [
             {
-                "system": "http://hl7.org/fhir/administrative-gender"
+                "system": "http://testing",
+                "concept": [
+                    {
+                        "code": "active"
+                    },
+                    {
+                        "code": "inactive",
+                        "deprecated": true
+                    }
+                ]
             }
         ]
     },
-    "name": "AdministrativeGender",
     "expansion": {
-        "timestamp": "2018-09-25T16:24:55Z",
-        "identifier": "http://hl7.org/fhir/ValueSet/administrative-gender",
+        "timestamp": "2018-09-26T09:19:03Z",
+        "identifier": "http://custom/testing",
         "contains": [
             {
-                "code": "male",
-                "module": "fhir-3.3.0",
-                "system": "http://hl7.org/fhir/administrative-gender",
-                "display": "Male",
-                "definition": "Male"
+                "code": "active",
+                "system": "http://testing"
             },
             {
-                "code": "female",
-                "module": "fhir-3.3.0",
-                "system": "http://hl7.org/fhir/administrative-gender",
-                "display": "Female",
-                "definition": "Female"
+                "code": "inactive",
+                "system": "http://testing",
+                "deprecated": true
+            }
+        ]
+    }
+}
+```
+
+
+{% tabs %}
+{% tab title="Request" %}
+
+```javascript
+POST [base]/ValueSet/administrative-gender/$expand
+{ 
+  "resourceType" : "Parameters",
+  "parameter" : [
+  	 {
+  	 	"name" : "activeOnly",
+  	 	"valueBoolean": true
+  	 },
+     {
+      "name" : "valueSet",
+      "resource" : {
+        "resourceType": "ValueSet",
+        "url": "http://custom/testing",
+        "compose": {
+           "include": [
+              {"system": "http://testing",
+               "concept": [{"code": "active"},
+                           {"code": "inactive",
+                           	"deprecated": true}]
+              }
+          ]
+        } 
+       }
+     }
+  ]
+}
+
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+{
+    "resourceType": "ValueSet",
+    "url": "http://custom/testing",
+    "compose": {
+        "include": [
+            {
+                "system": "http://testing",
+                "concept": [
+                    {
+                        "code": "active"
+                    },
+                    {
+                        "code": "inactive",
+                        "deprecated": true
+                    }
+                ]
             }
         ]
     },
-    ......
+    "expansion": {
+        "timestamp": "2018-09-26T09:19:03Z",
+        "identifier": "http://custom/testing",
+        "contains": [
+            {
+                "code": "active",
+                "system": "http://testing"
+            }
+        ]
+    }
 }
 ```
