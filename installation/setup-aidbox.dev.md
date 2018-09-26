@@ -40,5 +40,11 @@ DEVBOX_LICENSE_KEY=1e53e71ed0e2430c8807fd9b85751894
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-.......
+After that run DevBox
+
+```bash
+$ docker-compose up
+```
+
+That's it! Devbox is running and you can point your browser to [http://localhost:8888/](http://localhost:8888/) to see fancy welcome page.
 
