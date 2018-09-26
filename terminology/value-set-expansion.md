@@ -134,7 +134,24 @@ POST [base]/ValueSet/$expand
 
 {% tabs %}
 {% tab title="Request" %}
+```text
+GET [base]/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/administrative-gender
+```
 
+Or
+
+```javascript
+POST [base]/ValueSet/$expand
+{ 
+  "resourceType" : "Parameters",
+  "parameter" : [
+     {
+      "name" : "url",
+      "valueUri" : "http://hl7.org/fhir/ValueSet/administrative-gender"
+     }
+  ]
+}
+```
 {% endtab %}
 
 {% tab title="Response" %}
