@@ -1,7 +1,3 @@
----
-description: Overview
----
-
 # Aidbox
 
 We built Aidbox with the [FHIR](http://www.hl7.org/fhir/) standard. FHIR \(Fast Healthcare Interoperability Resources\) is an open HL7 standard and specification for storing and exchanging healthcare data by leveraging modern web technologies.

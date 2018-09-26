@@ -1,6 +1,6 @@
 # Value Set Expansion
 
-Aidbox use de-normalized  approach to ValueSets. That means we pre-calculate valuesets in design time and store valueset id's into _Concept.valuset_ element \(see /Concept article\). That's why ValueSet expansion in aidbox is just a special case of Concept Search:
+Aidbox use de-normalized approach to ValueSets. That means we pre-calculate valuesets in design time and store valueset id's into _Concept.valuset_ element \(see /Concept article\). That's why ValueSet expansion in aidbox is just a special case of Concept Search:
 
 ```http
 GET [base]/fhir/ValueSet/23/$expand?filter=abdo
@@ -12,7 +12,7 @@ means
 GET [base]/Concept?valueset=23&filter=abdo
 ```
 
-### Api
+## Api
 
 Official documentation [FHIR Terminology ValueSet Expansion](https://www.hl7.org/fhir/valueset-operations.html#expand)
 
@@ -51,7 +51,7 @@ Parameters
 | displayLanguage | [code](https://www.hl7.org/fhir/datatypes.html#code) | `not supported` | - |
 | limitedExpansion | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean) | `not supported` | - |
 
-#### url
+### url
 
 A canonical url for a value set.
 
@@ -132,7 +132,7 @@ POST [base]/ValueSet/$expand
 {% endtab %}
 {% endtabs %}
 
-#### valueSet
+### valueSet
 
 The value set is provided directly as part of the request.
 
@@ -215,7 +215,7 @@ POST [base]/ValueSet/$expand
 {% endtab %}
 {% endtabs %}
 
-#### filter
+### filter
 
 {% tabs %}
 {% tab title="Request" %}
@@ -280,9 +280,9 @@ POST [base]/ValueSet/administrative-gender/$expand
 {% endtab %}
 {% endtabs %}
 
-#### offset
+### offset
 
-Paging support - where to start if a subset is desired (default = 0).
+Paging support - where to start if a subset is desired \(default = 0\).
 
 {% tabs %}
 {% tab title="Request" %}
@@ -347,9 +347,9 @@ POST [base]/ValueSet/administrative-gender/$expand
 {% endtab %}
 {% endtabs %}
 
-#### count
+### count
 
-Paging support - how many codes should be provided in a partial page view. 
+Paging support - how many codes should be provided in a partial page view.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -407,29 +407,26 @@ POST [base]/ValueSet/administrative-gender/$expand
 {% endtab %}
 {% endtabs %}
 
-#### activeOnly
+### activeOnly
 
 Controls whether inactive concepts are included or excluded in value set expansions.
 
-For example we are create testing ValueSet with one cuurent active concept and
-one deprecated concept provided directly as part of the request.
+For example we are create testing ValueSet with one cuurent active concept and one deprecated concept provided directly as part of the request.  
 
-{% tabs %}
-{% tab title="Request" %}
 
 Get all concepts
 
+{% tabs %}
+{% tab title="Request" %}
 ```javascript
-POST [base]/ValueSet/administrative-gender/$expand
-
-
+POST [base]/ValueSet/$expand
 { 
   "resourceType" : "Parameters",
   "parameter" : [
-  	 {
-  	 	"name" : "activeOnly",
-  	 	"valueBoolean": false
-  	 },
+       {
+           "name" : "activeOnly",
+           "valueBoolean": false
+       },
      {
       "name" : "valueSet",
       "resource" : {
@@ -440,15 +437,14 @@ POST [base]/ValueSet/administrative-gender/$expand
               {"system": "http://testing",
                "concept": [{"code": "active"},
                            {"code": "inactive",
-                           	"deprecated": true}]
+                            "deprecated": true}]
               }
-          ]
-        } 
+            ]
+          } 
        }
      }
   ]
 }
-
 ```
 {% endtab %}
 
@@ -493,22 +489,22 @@ POST [base]/ValueSet/administrative-gender/$expand
 {% endtab %}
 {% endtabs %}
 
+  
+Get only active concepts
 
 {% tabs %}
 {% tab title="Request" %}
-
-
-Get only active concepts 
+Get only active concepts
 
 ```javascript
-POST [base]/ValueSet/administrative-gender/$expand
+POST [base]/ValueSet/$expand
 { 
   "resourceType" : "Parameters",
   "parameter" : [
-  	 {
-  	 	"name" : "activeOnly",
-  	 	"valueBoolean": true
-  	 },
+       {
+           "name" : "activeOnly",
+           "valueBoolean": true
+       },
      {
       "name" : "valueSet",
       "resource" : {
@@ -519,15 +515,14 @@ POST [base]/ValueSet/administrative-gender/$expand
               {"system": "http://testing",
                "concept": [{"code": "active"},
                            {"code": "inactive",
-                           	"deprecated": true}]
+                            "deprecated": true}]
               }
-          ]
-        } 
-       }
+            ]
+          } 
+        }
      }
   ]
 }
-
 ```
 {% endtab %}
 
@@ -566,3 +561,4 @@ POST [base]/ValueSet/administrative-gender/$expand
 ```
 {% endtab %}
 {% endtabs %}
+
