@@ -218,12 +218,65 @@ POST [base]/ValueSet/$expand
 #### filter
 
 {% tabs %}
-{% tab title="First Tab" %}
+{% tab title="Request" %}
+```javascript
+GET [base]/ValueSet/administrative-gender/$expand?filter=male
+```
 
+Or
+
+```javascript
+POST [base]/ValueSet/administrative-gender/$expand
+{ 
+  "resourceType" : "Parameters",
+  "parameter" : [
+     {
+      "name" : "filter",
+      "valueString" : "male"
+     }
+  ]
+}
+```
 {% endtab %}
 
-{% tab title="Second Tab" %}
-
+{% tab title="Response" %}
+```javascript
+{
+    "id": "administrative-gender",
+    "resourceType": "ValueSet",
+    "url": "http://hl7.org/fhir/ValueSet/administrative-gender",
+    "description": "The gender of a person used for administrative purposes.",
+    "compose": {
+        "include": [
+            {
+                "system": "http://hl7.org/fhir/administrative-gender"
+            }
+        ]
+    },
+    "name": "AdministrativeGender",
+    "expansion": {
+        "timestamp": "2018-09-25T16:24:55Z",
+        "identifier": "http://hl7.org/fhir/ValueSet/administrative-gender",
+        "contains": [
+            {
+                "code": "male",
+                "module": "fhir-3.3.0",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "display": "Male",
+                "definition": "Male"
+            },
+            {
+                "code": "female",
+                "module": "fhir-3.3.0",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "display": "Female",
+                "definition": "Female"
+            }
+        ]
+    },
+    ......
+}
+```
 {% endtab %}
 {% endtabs %}
 
