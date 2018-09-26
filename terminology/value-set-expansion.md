@@ -1,5 +1,7 @@
 # Value Set Expansion
 
+## Overview
+
 Aidbox use de-normalized approach to ValueSets. That means we pre-calculate valuesets in design time and store valueset id's into _Concept.valuset_ element \(see /Concept article\). That's why ValueSet expansion in aidbox is just a special case of Concept Search:
 
 ```http
@@ -30,7 +32,7 @@ Example for expand default AdministrativeGender ValueSet. [List of default Value
 GET [base]/ValueSet/administrative-gender/$expand
 ```
 
-Parameters
+## Parameters
 
 | Parameter | Type | Status | Example |
 | :--- | :--- | :--- | :--- |
