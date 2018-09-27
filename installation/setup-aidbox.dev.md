@@ -7,17 +7,17 @@
 
 ### License obtaining
 
-1. Visit and register on [License server ](https://license-ui.aidbox.app), and press "Get a license"
+1. Visit and register on [License server ](https://license-ui.aidbox.app), and press "Get a license".
 
 ![](../.gitbook/assets/screen-shot-2018-09-26-at-19.01.45.png)
 
-2. Enter short description of license key and choice "DevBox"  
+2. Enter short description of license key and choice "DevBox"  product.
 
-![](../.gitbook/assets/screen-shot-2018-09-26-at-19.02.33.png)
+![](../.gitbook/assets/screen-shot-2018-09-27-at-13.23.04.png)
 
-3. Congratulation, now you have license key
+3. Congratulation, now you have license key.
 
-![](../.gitbook/assets/screen-shot-2018-09-26-at-19.02.48.png)
+![](../.gitbook/assets/screen-shot-2018-09-27-at-13.23.20.png)
 
 ### Start DevBox
 
@@ -33,13 +33,13 @@ Go to cloned directory
 $ cd devbox
 ```
 
-Open `license.env` and insert into file your `License ID` and `License KEY`
+Open `license.env` and insert into file your `License ID` and `License KEY` . Or download and move you `license.env` file in to devbox root folder
 
 {% code-tabs %}
 {% code-tabs-item title="license.env" %}
 ```text
-DEVBOX_LICENSE_ID=3fea917d53df476
-DEVBOX_LICENSE_KEY=1e53e71ed0e2430c8807fd9b85751894
+DEVBOX_LICENSE_ID=1c676f43c9404a7
+DEVBOX_LICENSE_KEY=14491be9087c498ea64b94077f18bab3
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
