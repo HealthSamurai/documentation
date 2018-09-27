@@ -32,7 +32,7 @@ GET [base]/ValueSet/administrative-gender/$validate-code?code=female
 | :--- | :--- | :--- | :--- |
 | url | [uri](https://www.hl7.org/fhir/datatypes.html#uri) | `supported` | [url](value-set-validation.md#url-code-system-version-display) |
 | context | [uri](https://www.hl7.org/fhir/datatypes.html#uri) | `not supported` |  |
-| valueSet | [ValueSet](https://www.hl7.org/fhir/valueset.html) | `supported` | valueSet |
+| valueSet | [ValueSet](https://www.hl7.org/fhir/valueset.html) | `supported` | [valueSet](value-set-validation.md#valueset) |
 | code | [code](https://www.hl7.org/fhir/datatypes.html#code) | `supported` | [code](value-set-validation.md#url-code-system-version-display) |
 | system | [uri](https://www.hl7.org/fhir/datatypes.html#uri) | `supported` | [system](value-set-validation.md#url-code-system-version-display) |
 | version | [string](https://www.hl7.org/fhir/datatypes.html#string) | `supported` | [version](value-set-validation.md#url-code-system-version-display) |
@@ -94,5 +94,54 @@ POST [base]/ValueSet/$validate-code
 {% endtab %}
 {% endtabs %}
 
+### valueSet
 
+{% tabs %}
+{% tab title="Request" %}
+```javascript
+POST [base]/ValueSet/$validate-code
+{ 
+  "resourceType" : "Parameters",
+  "parameter" : [
+     {
+      "name" : "code",
+      "valueCode" : "male"
+     },
+     {
+      "name" : "system",
+      "valueUri" : "http://hl7.org/fhir/administrative-gender"
+     },
+     {
+      "name" : "valueSet",
+      "resource" : {
+        "resourceType": "ValueSet",
+        "url": "http://custom/administrative-gender",
+        "compose": {
+           "include": [
+              {
+                "valueSet": ["http://hl7.org/fhir/ValueSet/administrative-gender"]
+              }
+          ]
+        } 
+       }
+     }
+  ]
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+{
+    "resourceType": "Parameters",
+    "parameter": [
+        {
+            "name": "result",
+            "valueBoolean": true
+        }
+    ]
+}
+```
+{% endtab %}
+{% endtabs %}
 
