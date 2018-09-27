@@ -38,7 +38,7 @@ GET [base]/ValueSet/administrative-gender/$validate-code?code=female
 | version | [string](https://www.hl7.org/fhir/datatypes.html#string) | `supported` | [version](value-set-validation.md#url-code-system-version-display) |
 | display | [string](https://www.hl7.org/fhir/datatypes.html#string) | `supported` | [display](value-set-validation.md#url-code-system-version-display) |
 | coding | [Coding](https://www.hl7.org/fhir/datatypes.html#Coding) | `supported` | [coding](value-set-validation.md#coding) |
-| codeableConcept | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | `supported` | codeableConcept |
+| codeableConcept | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | `supported` | [codeableConcept](value-set-validation.md#codeableconcept) |
 | date | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | `not supported` |  |
 | abstract | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean) | `not supported` |  |
 | displayLanguage | [code](https://www.hl7.org/fhir/datatypes.html#code) | `not supported` |  |
@@ -172,6 +172,56 @@ POST [base]/ValueSet/$validate-code
 {% endtab %}
 
 {% tab title="Rsponse" %}
+```javascript
+{
+    "resourceType": "Parameters",
+    "parameter": [
+        {
+            "name": "result",
+            "valueBoolean": true
+        }
+    ]
+}
+```
+{% endtab %}
+{% endtabs %}
+
+### codeableConcept
+
+{% tabs %}
+{% tab title="Request" %}
+```javascript
+POST [base]/ValueSet/$validate-code
+{
+  "resourceType" : "Parameters",
+  "parameter" : [
+     {
+      "name" : "codeableConcept",
+      "valueCodeableConcept" : 
+        {
+          "coding": 
+          [
+          {
+            "system": "http://hl7.org/fhir/administrative-gender",
+            "code": "male_wrong"
+          },
+          {
+            "system": "http://hl7.org/fhir/administrative-gender",
+            "code": "male"
+          }
+          ]
+        }
+     },
+     {
+      "name" : "url",
+      "valueUri" : "http://hl7.org/fhir/ValueSet/administrative-gender"
+     }
+  ]
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
 ```javascript
 {
     "resourceType": "Parameters",
