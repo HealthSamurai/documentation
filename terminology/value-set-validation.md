@@ -30,18 +30,18 @@ GET [base]/ValueSet/administrative-gender/$validate-code?code=femalex
 
 | Parameter | Type | Status | Example |
 | :--- | :--- | :--- | :--- |
-| url | [uri](https://www.hl7.org/fhir/datatypes.html#uri) |  |  |
-| context | [uri](https://www.hl7.org/fhir/datatypes.html#uri) |  |  |
-| valueSet | [ValueSet](https://www.hl7.org/fhir/valueset.html) |  |  |
-| code | [code](https://www.hl7.org/fhir/datatypes.html#code) |  |  |
-| system | [uri](https://www.hl7.org/fhir/datatypes.html#uri) |  |  |
-| version | [string](https://www.hl7.org/fhir/datatypes.html#string) |  |  |
-| display | [string](https://www.hl7.org/fhir/datatypes.html#string) |  |  |
-| coding | [Coding](https://www.hl7.org/fhir/datatypes.html#Coding) |  |  |
-| codeableConcept | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) |  |  |
-| date | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |  |  |
-| abstract | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean) |  |  |
-| displayLanguage | [code](https://www.hl7.org/fhir/datatypes.html#code) |  |  |
+| url | [uri](https://www.hl7.org/fhir/datatypes.html#uri) | `supported` | url |
+| context | [uri](https://www.hl7.org/fhir/datatypes.html#uri) | `not supported` |  |
+| valueSet | [ValueSet](https://www.hl7.org/fhir/valueset.html) | `supported` | valueSet |
+| code | [code](https://www.hl7.org/fhir/datatypes.html#code) | `supported` | code |
+| system | [uri](https://www.hl7.org/fhir/datatypes.html#uri) | `supported` | system |
+| version | [string](https://www.hl7.org/fhir/datatypes.html#string) | `supported` | version |
+| display | [string](https://www.hl7.org/fhir/datatypes.html#string) | `supported` | display |
+| coding | [Coding](https://www.hl7.org/fhir/datatypes.html#Coding) | `supported` | coding |
+| codeableConcept | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | `supported` | codeableConcept |
+| date | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | `not supported` |  |
+| abstract | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean) | `not supported` |  |
+| displayLanguage | [code](https://www.hl7.org/fhir/datatypes.html#code) | `not supported` |  |
 
 
 
