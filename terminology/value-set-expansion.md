@@ -2,21 +2,9 @@
 
 ## Overview
 
-Aidbox use de-normalized approach to ValueSets. That means we pre-calculate valuesets in design time and store valueset id's into _Concept.valuset_ element \(see /Concept article\). That's why ValueSet expansion in aidbox is just a special case of Concept Search:
-
-```http
-GET [base]/fhir/ValueSet/23/$expand?filter=abdo
-```
-
-means
-
-```http
-GET [base]/Concept?valueset=23&filter=abdo
-```
+$expand operation expand given ValueSet in to set of concepts. For more information see official documentation [FHIR Terminology ValueSet Expansion](https://www.hl7.org/fhir/valueset-operations.html#expand)
 
 ## Api
-
-Official documentation [FHIR Terminology ValueSet Expansion](https://www.hl7.org/fhir/valueset-operations.html#expand)
 
 ```text
 GET/POST URL: [base]/ValueSet/$expand
@@ -219,6 +207,8 @@ POST [base]/ValueSet/$expand
 
 ### filter
 
+A text filter that is applied to restrict the codes
+
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
@@ -413,8 +403,7 @@ POST [base]/ValueSet/administrative-gender/$expand
 
 Controls whether inactive concepts are included or excluded in value set expansions.
 
-For example we are create testing ValueSet with one cuurent active concept and one deprecated concept provided directly as part of the request.  
-
+For example we are create testing ValueSet with one current active concept and one deprecated concept provided directly as part of the request.
 
 Get all concepts
 

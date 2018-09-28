@@ -6,11 +6,9 @@ description: 'See https://www.hl7.org/fhir/terminology-service.html#4.6.5'
 
 ## Overview
 
-Value set code validation provide ability to validate that a coded value is in the set of codes allowed by a value set.
+Value set code validation provide ability to validate that a coded value is in the set of codes allowed by a value set. For more details see official documentation [FHIR Terminology Value Set based Validation](https://www.hl7.org/fhir/valueset-operations.html#validate-code)
 
 ## Api
-
-Official documentation [FHIR Terminology Value Set based Validation](https://www.hl7.org/fhir/valueset-operations.html#validate-code)
 
 ```text
 GET/POST URL: [base]/ValueSet/$validate-code
@@ -44,6 +42,8 @@ GET [base]/ValueSet/administrative-gender/$validate-code?code=female
 | displayLanguage | [code](https://www.hl7.org/fhir/datatypes.html#code) | `not supported` |  |
 
 ### url code system version display
+
+One of concept property
 
 {% tabs %}
 {% tab title="Request" %}
@@ -96,6 +96,8 @@ POST [base]/ValueSet/$validate-code
 
 ### valueSet
 
+The value set is provided directly as part of the request.
+
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
@@ -147,6 +149,8 @@ POST [base]/ValueSet/$validate-code
 
 ### coding
 
+A coding to validate
+
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
@@ -187,6 +191,8 @@ POST [base]/ValueSet/$validate-code
 {% endtabs %}
 
 ### codeableConcept
+
+A full codeableConcept to validate.
 
 {% tabs %}
 {% tab title="Request" %}

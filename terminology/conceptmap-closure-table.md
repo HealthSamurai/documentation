@@ -2,7 +2,5 @@
 description: Coming soon
 ---
 
-# ConceptMap Translations
-
-
+# ConceptMap Closure Table
 

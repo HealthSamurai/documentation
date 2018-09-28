@@ -86,3 +86,5 @@ designation:
 
 Property element is polymorphic element, which contains additional properties for concept like axis of classification etc. In aidbox we use more database oriented encoding instead of FHIR generic property constructor.
 
+
+
