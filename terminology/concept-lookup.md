@@ -18,3 +18,110 @@ The only difference is response format.
 
 With Concept Search you can do even more, than just getting one concept. For example search and filter by any concept elements. 
 
+```text
+POST [base]/CodeSystem/$lookup
+```
+
+### Examples
+
+{% tabs %}
+{% tab title="Request" %}
+```javascript
+POST [base]/CodeSystem/$lookup
+{
+	"resourceType" : "Parameters",  
+	"parameter" : [     
+		{      
+			"name" : "system",      
+			"valueUri" : "http://hl7.org/fhir/goal-status"     
+			
+		},
+		{
+			"name": "coding",
+			"valueCoding": {     		
+				"code": "accepted"
+			}
+		}
+	]
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+{
+    "resourceType": "Parameters",
+    "parameter": [
+        {
+            "name": "display",
+            "valueString": "Accepted"
+        },
+        {
+            "name": "name",
+            "valueString": "GoalStatus"
+        }
+    ]
+}
+```
+{% endtab %}
+{% endtabs %}
+
+{% tabs %}
+{% tab title="Request" %}
+```javascript
+POST [base]/CodeSystem/$lookup
+{
+	"resourceType" : "Parameters",  
+	"parameter" : [     
+		{      
+			"name" : "system",      
+			"valueUri" : "http://hl7.org/fhir/v2/0003"     
+			
+		},
+		{
+			"name": "coding",
+			"valueCoding": {     		
+				"code": "RAR"
+			}
+		}
+	]	
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+{
+    "resourceType": "Parameters",
+    "parameter": [
+        {
+            "name": "display",
+            "valueString": "RAR - Pharmacy administration information query response"
+        },
+        {
+            "name": "designation",
+            "value": {
+                "display": {
+                    "de": "Antwort bzgl. der Behandlungs-/Darreichungsform",
+                    "nl": "RAR - Medicatietoediening-informatie query antwoord"
+                }
+            }
+        },
+        {
+            "name": "property",
+            "value": {
+                "v2-0003": {
+                    "deprecationDate": "2000-11"
+                }
+            }
+        },
+        {
+            "name": "name",
+            "valueString": "v2 Event Type"
+        }
+    ]
+}
+```
+{% endtab %}
+{% endtabs %}
+
