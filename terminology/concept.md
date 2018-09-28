@@ -1,5 +1,7 @@
 # Concept
 
+## Overview
+
 Concept resource has similar structure as Coding and [CodeSystem.concept](https://www.hl7.org/fhir/codesystem-definitions.html#CodeSystem.concept) element. When you upload code system into aidbox, we split CodeSystem resource into concepts. But for your convenience CRUD operations are allowed as well on Concept resource directly. To create and manage simple  dictionary/terminology you can create set of Concepts using Create operation.
 
 ```yaml
@@ -23,23 +25,17 @@ designation:
   definition:
     ge: der Calcium
     es: el calcium
-// ids of valuesets wich contains this concept
-valueset:
-  - valueset-id-1
-  - valueset-id-2
 property:
    LOINC:
      long_common_name: ...
      relatednames2: ...
 ```
 
+## Structure
+
 ### deprecated
 
 This is boolean flag, which can be used to deactivate \(but not delete\) concept. This is a best-practice for terminology management - _never delete concepts, but deprecate_
-
-### valueset
-
-This element is a collection of ValueSet.id's, which contains this specific concept. This field can be managed manually, but you can do this more declarative by  creating ValueSet resource.
 
 ### hierarchy
 
