@@ -1,20 +1,31 @@
----
-description: >-
-  Test the subsumption relationship between code/Coding A and code/Coding B
-  given the semantics of subsumption in the underlying code system.
----
-
 # CodeSystem Subsumption testing
 
-### Request structure
+## Overview
 
-`URL: [base]/CodeSystem/$subsumes`
+Test the subsumption relationship between code/Coding A and code/Coding B given the semantics of subsumption in the underlying code system. For more details see official documentation [FHIR CodeSystem $subsumes](%20https://www.hl7.org/fhir/codesystem-operations.html#subsumes) 
 
-or:
+## Api
 
-`URL: [base]/CodeSystem/[id]/$subsumes`
+```text
+URL: [base]/CodeSystem/$subsumes
+```
 
-### For example
+```text
+URL: [base]/CodeSystem/[id]/$subsumes
+```
+
+## Parameters
+
+| Parameter | Type | Status | Example |
+| :--- | :--- | :--- | :--- |
+| codeA | [code](https://www.hl7.org/fhir/datatypes.html#code) | `supported` | [code](subsumption-testing.md#with-code) |
+| codeB | [code](https://www.hl7.org/fhir/datatypes.html#code) | `supported` | [code](subsumption-testing.md#with-code) |
+| system | [uri](https://www.hl7.org/fhir/datatypes.html#uri) | `supported` | [system](subsumption-testing.md#with-code) |
+| codingA | [Coding](https://www.hl7.org/fhir/datatypes.html#Coding) | `supported` | [coding](subsumption-testing.md#with-coding) |
+| codingB | [Coding](https://www.hl7.org/fhir/datatypes.html#Coding) | `supported` | [coding](subsumption-testing.md#with-coding) |
+| version | [string](https://www.hl7.org/fhir/datatypes.html#string) | `not supported` | - |
+
+### Examples
 
 We will use [goal-status CodeSystem](https://www.hl7.org/fhir/codesystem-goal-status.html), which consists of :
 
