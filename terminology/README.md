@@ -48,8 +48,8 @@ Terminology service can be logically spit into two parts:
 
 | Operation | Status | Documentation |
 | :--- | :--- | :--- |
-| [$translate](https://www.hl7.org/fhir/conceptmap-operations.html#translate) | `not supported` | [Concept Lookup](concept-lookup.md) |
-| [$closure](https://www.hl7.org/fhir/conceptmap-operations.html#closure) | `not supported` | [Subsumption testing](subsumption-testing.md) |
+| [$translate](https://www.hl7.org/fhir/conceptmap-operations.html#translate) | `not supported` | - |
+| [$closure](https://www.hl7.org/fhir/conceptmap-operations.html#closure) | `not supported` | - |
 
 
 
