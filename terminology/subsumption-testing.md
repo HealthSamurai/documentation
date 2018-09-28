@@ -4,7 +4,7 @@ description: >-
   given the semantics of subsumption in the underlying code system.
 ---
 
-# Subsumption testing
+# CodeSystem Subsumption testing
 
 ### Request structure
 

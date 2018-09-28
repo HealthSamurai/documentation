@@ -1,4 +1,4 @@
-# Concept Lookup
+# CodeSystem Concept Lookup
 
 > Given a code/system, or a Coding, get additional details about the concept, including definition, status, designations, and properties. One of the products of this operation is a full decomposition of a code from a structure terminology
 

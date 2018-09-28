@@ -31,22 +31,22 @@ Terminology service can be logically spit into two parts:
 
 #### CodeSystem
 
-| Operation | Status | Documentation |
+| FHIR specification | Status | Documentation and samples |
 | :--- | :--- | :--- |
-| [$lookup](https://www.hl7.org/fhir/codesystem-operations.html#lookup) | `supported` | [Concept Lookup](concept-lookup.md) |
-| [$subsumes](https://www.hl7.org/fhir/codesystem-operations.html#subsumes) | `supported` | [Subsumption testing](subsumption-testing.md) |
-| [$compose](https://www.hl7.org/fhir/codesystem-operations.html#compose) | `supported` | Code composition |
+| [$lookup](https://www.hl7.org/fhir/codesystem-operations.html#lookup) | `supported` | [CodeSystem Concept Lookup](concept-lookup.md) |
+| [$subsumes](https://www.hl7.org/fhir/codesystem-operations.html#subsumes) | `supported` | [CodeSystem Subsumption testing](subsumption-testing.md) |
+| [$compose](https://www.hl7.org/fhir/codesystem-operations.html#compose) | `supported` | [CodeSystem Code composition](codesystem-code-composition.md) |
 
 #### ValueSet
 
-| Operation | Status | Documentation |
+| FHIR specification | Status | Documentation and samples |
 | :--- | :--- | :--- |
-| [$expand](https://www.hl7.org/fhir/valueset-operations.html#expand) | `supported` | [Value Set Expansion](value-set-expansion.md) |
-| [$validate-code](https://www.hl7.org/fhir/valueset-operations.html#validate-code) | `supported` | [Value Set Code validation](value-set-validation.md) |
+| [$expand](https://www.hl7.org/fhir/valueset-operations.html#expand) | `supported` | [ValueSet Expansion](value-set-expansion.md) |
+| [$validate-code](https://www.hl7.org/fhir/valueset-operations.html#validate-code) | `supported` | [ValueSet Code validation](value-set-validation.md) |
 
 #### ConceptMap
 
-| Operation | Status | Documentation |
+| FHIR specification | Status | Documentation and samples |
 | :--- | :--- | :--- |
 | [$translate](https://www.hl7.org/fhir/conceptmap-operations.html#translate) | `not supported` | - |
 | [$closure](https://www.hl7.org/fhir/conceptmap-operations.html#closure) | `not supported` | - |

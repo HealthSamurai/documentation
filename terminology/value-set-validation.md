@@ -2,7 +2,7 @@
 description: 'See https://www.hl7.org/fhir/terminology-service.html#4.6.5'
 ---
 
-# Value Set Code Validation
+# ValueSet Code Validation
 
 ## Overview
 
