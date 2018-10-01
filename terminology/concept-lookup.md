@@ -22,7 +22,23 @@ With Concept Search you can do even more, than just getting one concept. For exa
 POST [base]/CodeSystem/$lookup
 ```
 
+More info in [official doc](https://www.hl7.org/fhir/codesystem-operations.html#lookup).
+
+### Parameters
+
+| Parameter | Type | Status |
+| :--- | :--- | :--- |
+| code | [code](https://www.hl7.org/fhir/datatypes.html#code) | `supported` |
+| system | [uri](https://www.hl7.org/fhir/datatypes.html#uri) | `supported` |
+| version | [string](https://www.hl7.org/fhir/datatypes.html#string) | `supported` |
+| coding | [Coding](https://www.hl7.org/fhir/datatypes.html#Coding) | `supported` |
+| date | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | `not supported` |
+| displayLanguage | [code](https://www.hl7.org/fhir/datatypes.html#code) | `not supported` |
+| property | [code](https://www.hl7.org/fhir/datatypes.html#code) | `not supported` |
+
 ### Examples
+
+Available output parameters: `name`, `display`, `version`, `designation`, `property`
 
 {% tabs %}
 {% tab title="Request" %}
@@ -37,7 +53,6 @@ POST [base]/CodeSystem/$lookup
 			
 		},
 		{
-			"name": "coding",
 			"valueCoding": {     		
 				"code": "accepted"
 			}
@@ -69,6 +84,12 @@ POST [base]/CodeSystem/$lookup
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
+GET [base]/CodeSystem/$lookup?system=http://hl7.org/fhir/v2/0003&code=RAR
+```
+
+`or:`
+
+```javascript
 POST [base]/CodeSystem/$lookup
 {
 	"resourceType" : "Parameters",  
@@ -79,12 +100,10 @@ POST [base]/CodeSystem/$lookup
 			
 		},
 		{
-			"name": "coding",
-			"valueCoding": {     		
-				"code": "RAR"
-			}
+			"name": "code",
+			"valueCode": "RAR"
 		}
-	]	
+	]
 }
 ```
 {% endtab %}
