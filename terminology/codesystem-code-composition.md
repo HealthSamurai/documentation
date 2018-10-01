@@ -4,7 +4,15 @@
 
 Given a set of properties, return one or more possible matching codes. For more details see official FHIR terminology documentation [CodeSystem Code Composition](https://www.hl7.org/fhir/codesystem-operations.html#compose)
 
-## Api
+$compose may return  3 possible types of match
+
+* complete match - a code that represents all the provided properties correctly
+* partial match - a code that represents some of the provided properties correctly, and not others
+* possible match - code that may represent the provided properties closely,
+
+When send `exact` parameter is `true` - $compose operation return only complete and partial matches. When exact is `false` - $compose include in to response possible matches. Default value is true, that means, that by default returning only complete and partial matches.
+
+##  Api
 
 ```text
 GET/POST URL: [base]/ValueSet/$compose
@@ -32,4 +40,24 @@ GET/POST URL: [base]/ValueSet/[id]/$compose
 ## Example
 
 
+
+{% tabs %}
+{% tab title="Request" %}
+
+{% endtab %}
+
+{% tab title="Response" %}
+
+{% endtab %}
+{% endtabs %}
+
+{% tabs %}
+{% tab title="Request" %}
+
+{% endtab %}
+
+{% tab title="Response" %}
+
+{% endtab %}
+{% endtabs %}
 
