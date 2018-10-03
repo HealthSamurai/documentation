@@ -1,4 +1,4 @@
-# Setup aidbox.dev
+# Setup Aidbox.Dev
 
 ### Requirements
 
@@ -9,17 +9,17 @@
 
 1. Visit and register on [License server ](https://license-ui.aidbox.app), and press "Get a license".
 
-![](../.gitbook/assets/screen-shot-2018-09-26-at-19.01.45.png)
+![](../.gitbook/assets/screen-shot-2018-10-02-at-17.31.50.png)
 
-2. Enter short description of license key and choice "DevBox"  product.
+2. Enter short description of license key and choice "Aidbox.Dev"  product.
 
-![](../.gitbook/assets/screen-shot-2018-09-27-at-13.23.04.png)
+![](../.gitbook/assets/screen-shot-2018-10-02-at-17.28.09.png)
 
 3. Congratulation, now you have license key.
 
-![](../.gitbook/assets/screen-shot-2018-09-27-at-13.23.20.png)
+![](../.gitbook/assets/screen-shot-2018-10-02-at-17.34.31.png)
 
-### Start DevBox
+### Start Aidbox.Dev
 
 Clone our official documentation repository with applications samples and installation instructions
 
@@ -38,8 +38,8 @@ Open `license.env` and insert into file your `License ID` and `License KEY` . Or
 {% code-tabs %}
 {% code-tabs-item title="license.env" %}
 ```text
-DEVBOX_LICENSE_ID=1c676f43c9404a7
-DEVBOX_LICENSE_KEY=14491be9087c498ea64b94077f18bab3
+DEVBOX_LICENSE_ID=856421ad5e57430
+DEVBOX_LICENSE_KEY=35b0bb5b403a4bfdbc86d3ce23a5a75a
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
@@ -50,5 +50,5 @@ After that run DevBox
 $ docker-compose up
 ```
 
-That's it! Devbox is running and you can point your browser to [http://localhost:8888/](http://localhost:8888/) to see fancy welcome page.
+That's it! Aidbox.Dev is running and you can point your browser to [http://localhost:8888/](http://localhost:8888/) to see fancy welcome page.
 

@@ -2,7 +2,7 @@
 
 * [Aidbox](README.md)
 * [Installation](installation/README.md)
-  * [Setup aidbox.dev](installation/setup-aidbox.dev.md)
+  * [Setup Aidbox.Dev](installation/setup-aidbox.dev.md)
 * [Architecture Overview](basic-concepts/README.md)
   * [Boxes](basic-concepts/boxes.md)
   * [API Overview](basic-concepts/api-overview.md)
