@@ -81,6 +81,43 @@ PUT [base]/CodeSystem/[id]
 {% endtab %}
 {% endtabs %}
 
+#### Раздельное создание CodeSystem и привязка Concepts
+
+{% tabs %}
+{% tab title="Request" %}
+`Creating empty CodeSystem`
+
+```javascript
+POST [base]/CodeSystem
+{
+	"resourceType" : "CodeSystem",
+	"status": "draft",
+	"url": "http://example/code/system",
+	"content": "example"
+}
+```
+
+`Creating and upload Concept`
+
+```javascript
+POST [base]/Concept
+{
+	"resourceType": "Concept",
+	"id": "476398",
+	"system": "http://example/code/system",
+	"code": "17861-6",
+	"display": "Example"
+}
+```
+
+`As you can see CodeSystem.url === Concept.system`
+{% endtab %}
+
+{% tab title="Second Tab" %}
+
+{% endtab %}
+{% endtabs %}
+
 ### Read
 
 Отдавать только мета информацию  **ИЛИ**  в clojure собирать все concepts ????
