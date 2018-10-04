@@ -6,9 +6,9 @@ description: 'See https://www.hl7.org/fhir/terminology-service.html#4.6.5'
 
 ## Overview
 
-Value set code validation provide ability to validate that a coded value is in the set of codes allowed by a value set. For more details see official documentation [FHIR Terminology Value Set based Validation](https://www.hl7.org/fhir/valueset-operations.html#validate-code)
+Value set code validation provides the ability to validate that a coded value is in the set of codes allowed by a value set. For more details, see the official documentation [FHIR Terminology Value Set based Validation](https://www.hl7.org/fhir/valueset-operations.html#validate-code).
 
-## Api
+## API
 
 ```text
 GET/POST URL: [base]/ValueSet/$validate-code
