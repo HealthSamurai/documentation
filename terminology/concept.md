@@ -37,6 +37,10 @@ property:
 
 This is boolean flag, which can be used to deactivate \(but not delete\) concept. This is a best-practice for terminology management - _never delete concepts, but deprecate_
 
+### system
+
+It's symbolic link on CodeSystem
+
 ### hierarchy
 
 Hierarchy element contains codes of parent concepts for hierarchical terminologies from top to bottom. This element is used for Subsumption Operation - where you test that some code **isA** another code.
