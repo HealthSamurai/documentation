@@ -1,8 +1,8 @@
 # Entity & Attributes
 
-In aidbox structure of all resources  is defined by two meta-resources Entity and Attribute. Entity can be of 3 types - primitive, type or resource. Primitive is built-in primitive type, you are not allowed to create your primitives, so if you have missed one - please contact us. Repeating combinations of primitive types are composed into types \(complex types like Address, HumanName etc\). Entity with type "resource" composed a set of primitive and complex type Attributes. When resource is described - tables to storage data and REST API for this resource is generated on fly based on definition. 
+In Aidbox, structure of all resources is defined by two meta-resources Entity and Attribute. Entity can be of 3 types - primitive, type, or resource. Primitive is a built-in primitive type. You are not allowed to create your primitives so if you have missed one - please contact us. Repeating combinations of primitive types are composed into types \(complex types like Address, HumanName, etc\). Entity with the type "resource" composes a set of primitive and complex type Attributes. When resource is described - tables to storage data and REST API for this resource are generated on the fly based on the definition. 
 
-Let's take a look at definition of Entity and Attribute Resources. If you have access to you box you can get this metadata by  REST endpoint `GET /Entity?_id=Entity,Attribute`.
+Let's take a look at the definition of Entity and Attribute Resources. If you have access to your box you can get this metadata by the REST endpoint `GET /Entity?_id=Entity,Attribute`.
 
 ```yaml
 - resourceType: Entity
@@ -17,7 +17,7 @@ Let's take a look at definition of Entity and Attribute Resources. If you have a
   module: proto
 ```
 
-We see they both defined as **Entity** with type **resource**, with id matching **resourceType** and coming from module **proto** \(see more about Modules in aidbox\).
+As seen, they are both defined as **Entity** with type **resource** with id matching **resourceType** and coming from module **proto** \(see more about Modules in Aidbox\).
 
 Let's see what attributes are defined for Entity \( `GET /Attribute?_resource=Entity`\):
 
@@ -60,7 +60,7 @@ Let's see what attributes are defined for Entity \( `GET /Attribute?_resource=En
 * **isOpen** - if this flag is set resource can be arbitrary json document without fixed schema
 * **schema** - if resource can not be described as list of attributes, you can describe it directly by attaching JSON schema
 
-Now let inspect attributes of attribute meta-resource  \(`GET /Attribute?_resource=Attribute`\):
+Now, let's inspect attributes of the Attribute meta-resource  \(`GET /Attribute?_resource=Attribute`\):
 
 ```yaml
 # repeating attributes are skiped
@@ -121,5 +121,5 @@ Now let inspect attributes of attribute meta-resource  \(`GET /Attribute?_resour
   type: { id: boolean }
 ```
 
-You are allowed define new Entities, add new attributes to existing entities. We do not recommend to override or delete existing Entities and Attributes.
+You are allowed to define new Entities, add new attributes to existing entities. We do not recommend to override or delete existing Entities and Attributes.
 

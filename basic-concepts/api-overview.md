@@ -1,6 +1,6 @@
 # API Overview
 
-There are many API's for aidbox:
+There are several API's for Aidbox:
 
 * REST API
 * SQL API 
