@@ -18,6 +18,8 @@
   * [Load bundle into aidbox.app](tutorials/load-synthea-into-aidbox.app.md)
   * [Working with Aidbox from .NET](tutorials/working-with-aidbox-from-.net.md)
 * [Deployment](deployment.md)
+* [Aidbox SDK](aidbox-sdk/README.md)
+  * [NodeJs SDK](aidbox-sdk/untitled.md)
 * [API](api/README.md)
   * [CRUD](api/crud.md)
   * [Patch](api/patch.md)
