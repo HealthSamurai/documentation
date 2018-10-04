@@ -79,6 +79,8 @@ It can be done with postman or aidbox ui:
 
 ![](../.gitbook/assets/2018-09-19-204419_1198x727_scrot.png)
 
+Make sure that you choose **raw** **JSON \(application/json\)** content-type.
+
 ![](../.gitbook/assets/2018-09-19-204203_1284x813_scrot.png)
 
 This is a brief description about how to work with transactions and batches in aidbox. More interesting info coming soon, stay tuned!
