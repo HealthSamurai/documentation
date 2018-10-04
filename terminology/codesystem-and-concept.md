@@ -14,6 +14,73 @@ Aidbox подразумевает раздельное создание ресу
 
 Разбить CodeSystem на его описание и список концептов. Сохранить CodeSystem и сами концепты
 
+#### Создание ресурса со списком концептов
+
+{% tabs %}
+{% tab title="Request" %}
+```javascript
+POST [base]/CodeSystem
+```
+
+`or`
+
+```javascript
+PUT [base]/CodeSystem/[id]
+
+{
+	"resourceType" : "CodeSystem",
+	"status": "draft",
+	"url": "code.system/eyes.color",
+	"content": "example",
+	"concept" : [     
+		{
+			"code": "ec-bn",
+			"display": "brown"
+		},
+		{
+			"code": "ec-be",
+			"display": "blue"
+		},
+		{
+			"code": "ec-gn",
+			"display": "green"
+		},
+		{
+			"code": "ec-hl",
+			"display": "hazel"
+		},
+		{
+			"code": "ec-h",
+			"display": "heterochromia"
+		}
+	]	
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+{
+    "url": "code.system/eyes.color",
+    "status": "draft",
+    "content": "example",
+    "id": "724ba412-a422-4181-bddf-b3e9c4e3b0d3",
+    "resourceType": "CodeSystem",
+    "meta": {
+        "lastUpdated": "2018-10-04T16:00:29.240Z",
+        "versionId": "12",
+        "tag": [
+            {
+                "system": "https://aidbox.io",
+                "code": "created"
+            }
+        ]
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
 ### Read
 
 Отдавать только мета информацию  **ИЛИ**  в clojure собирать все concepts ????
