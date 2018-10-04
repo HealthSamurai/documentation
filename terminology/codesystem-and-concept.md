@@ -112,10 +112,6 @@ POST [base]/Concept
 
 `As you can see CodeSystem.url === Concept.system`
 {% endtab %}
-
-{% tab title="Second Tab" %}
-
-{% endtab %}
 {% endtabs %}
 
 ### Read
