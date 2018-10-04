@@ -2,7 +2,7 @@
 
 ## Overview
 
-Concept resource has similar structure as Coding and [CodeSystem.concept](https://www.hl7.org/fhir/codesystem-definitions.html#CodeSystem.concept) element. When you upload code system into aidbox, we split CodeSystem resource into concepts. But for your convenience CRUD operations are allowed as well on Concept resource directly. To create and manage simple  dictionary/terminology you can create set of Concepts using Create operation.
+Concept resource has similar structure as Coding and [CodeSystem.concept](https://www.hl7.org/fhir/codesystem-definitions.html#CodeSystem.concept) element. When you upload code system into Aidbox, we split CodeSystem resource into concepts. But for your convenience CRUD operations are allowed as well on Concept resource directly. To create and manage simple  dictionary/terminology you can create set of Concepts using Create operation.
 
 ```yaml
 resourceType: Concept
@@ -43,7 +43,7 @@ Hierarchy element contains codes of parent concepts for hierarchical terminologi
 
 ### designation
 
-Designation element is copy semantic of [CodeSystem.concept.designation](https://www.hl7.org/fhir/codesystem-definitions.html#CodeSystem.concept.designation) - Additional representations for the concept - other languages, aliases, specialised purposes, used for particular purposes, etc. In aidbox it is represented in more database friendly format. 
+Designation element is copy semantic of [CodeSystem.concept.designation](https://www.hl7.org/fhir/codesystem-definitions.html#CodeSystem.concept.designation) - Additional representations for the concept - other languages, aliases, specialised purposes, used for particular purposes, etc. In Aidbox it is represented in more database friendly format. 
 
 In  [CodeSystem.concept.designation](https://www.hl7.org/fhir/codesystem-definitions.html#CodeSystem.concept.designation) is a collection of complex elements:
 
@@ -63,7 +63,7 @@ designation:
 // designation.where(use='display' and language='ge').value
 ```
 
-In aidbox it's grouped by _use.code_ and after that by l_anguage_ attributes:
+In Aidbox it's grouped by _use.code_ and after that by l_anguage_ attributes:
 
 ```yaml
 designation:
@@ -80,7 +80,7 @@ designation:
 
 ### property
 
-Property element is polymorphic element, which contains additional properties for concept like axis of classification etc. In aidbox we use more database oriented encoding instead of FHIR generic property constructor.
+Property element is polymorphic element, which contains additional properties for concept like axis of classification etc. In Aidbox we use more database oriented encoding instead of FHIR generic property constructor.
 
 
 
