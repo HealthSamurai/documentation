@@ -4,17 +4,18 @@
 
 A [CodeSystem](https://www.hl7.org/fhir/codesystem.html) resource specifies a set of Concepts included in this code system. 
 
-Aidbox подразумевает раздельное создание ресурса CodeSystem и составляющего его набора концептов. Это означает что ресурс CodeSystem описывает только мета информацию кодовой системы: url, name, publisher.... . В то время как сами Concept ресурсы описывают содержимое этой кодовой системы, и связываются с кодовой системой через Concept.system атрибут который равен CodeSystem.url.
+Aidbox assumes a separate creation of the CodeSystem resource and a set of Concepts composing it. This means that the CodeSystem resource describes only meta information of the code system: url, name, publisher, etc. Whereas Concept resources describe the content of the code system and are associated with the code system by the Concept.system attribute with the same value as the CodeSystem.url element.
 
-При этом, для поддержания совместимости с FHIR, мы разрешаем запись CodeSystem ресурса в включенным в него списком концептов. В момент сохранения CodeSystem, если в нем перечислены Concept, Aidbox сохраняет переданные Concepts в виде отдельных ресурсов, а сам ресурс CodeSystem сохраняется без concept атрибута. Данный способ создания CodeSystem  может использоваться при создании небольших справочников \(как правило, не более 100 концептов \). В случае если ваша кодовая система большая, Aidbox настоятельно рекомендует отдельно создать CodeSystem ресурс и по частям загружать Concept.
+For FHIR conformance, we allow to record the CodeSystem resource with a list of included concepts. In the moment of saving a CodeSystem, if it contains listed Concepts, then Aidbox saves submitted Concepts as separate resources, and the CodeSystem resource itself is saved without the concept attribute. This method of the CodeSystem creation may be used for small dictionaries \(generally, not more than 100 concepts\). In case when your code system is big, Aidbox strongly recommends to create the CodeSystem resource separately and upload Concepts in parts.
 
 ## CRUD
 
 ### Create
 
-Разбить CodeSystem на его описание и список концептов. Сохранить CodeSystem и сами концепты
+Divide the CodeSystem into its description and a list of its concepts.   
+Save the CodeSystem and Concepts.
 
-#### Создание ресурса со списком концептов
+#### Creation of the CodeSystem resource containing a list of concepts
 
 {% tabs %}
 {% tab title="Request" %}
@@ -81,11 +82,11 @@ PUT [base]/CodeSystem/[id]
 {% endtab %}
 {% endtabs %}
 
-#### Раздельное создание CodeSystem и привязка Concepts
+#### Separate creation of the CodeSystem resource and association of its Concepts
 
 {% tabs %}
 {% tab title="Request" %}
-`Creating empty CodeSystem`
+`Creating an empty CodeSystem resource`
 
 ```javascript
 POST [base]/CodeSystem
@@ -97,7 +98,7 @@ POST [base]/CodeSystem
 }
 ```
 
-`Creating and upload Concept`
+`Creating and uploading Concept`
 
 ```javascript
 POST [base]/Concept
@@ -110,21 +111,21 @@ POST [base]/Concept
 }
 ```
 
-`As you can see CodeSystem.url === Concept.system`
+`As you can see, CodeSystem.url === Concept.system`
 {% endtab %}
 {% endtabs %}
 
 ### Read
 
-Отдавать только мета информацию  **ИЛИ**  в clojure собирать все concepts ????
+Only code system meta information will be displayed. In the future,  associated concepts will be gathered by means of Clojure and shown as well.
 
 ### Update
 
-Обновляем сам CodeSystem,  помечаем все старые Concept как deprecated = true, вставляем новые concept с статусом deprecated = false
+The CodeSystem resource itself will be updated, all old Concepts will be marked with `deprecated = true`, and new concepts will be inserted with the status `deprecated = false`.
 
 ### Delete
 
-Удаление самого CodeSystem и Concepts where system = CodeSystem.url ......
+On delete, will be removed the CodeSystem resource itself and all Concepts where `system = CodeSystem.url`.
 
 
 
