@@ -12,7 +12,7 @@ Let's configure simple policy to access API using basic auth \(login/password\):
 
 Open section **Auth clients**, click button **new** to create auth client and type following body for resource:
 
-```text
+```yaml
 resourceType: Client
 id: USERNAME
 secret: PASSWORD
@@ -23,7 +23,7 @@ secret: PASSWORD
 Click `save`, open **Access Control** section, create new access policy using **new** button:  
 
 
-```text
+```yaml
 engine: json-schema
 schema:
   required:
@@ -51,7 +51,7 @@ Let's check that everything working fine. Create new `GET` request, fill all req
 
 According to [fhir specification](https://www.hl7.org/fhir/http.html#transaction) bundle resource should look like:
 
-```text
+```javascript
 {"resourceType" : "bundle",
  "type": "transaction",
  "entry": [{"request": {"method": "GET", "url": "/Patient"}}]}
@@ -65,7 +65,7 @@ The bundle must be sentvia POST method to BASE\_URL, which is basically the url 
 
 The example below demonstrates how to create two patients using one transaction request.
 
-```text
+```javascript
 {"resourceType" : "bundle", 
  "type": "transaction", 
  "entry": 
@@ -89,7 +89,7 @@ This is a brief description about how to work with transactions and batches in a
 
 Here how we can install synthea.
 
-```text
+```bash
 git clone https://github.com/synthetichealth/synthea.git
 cd synthea
 ./gradlew build check test
@@ -97,20 +97,20 @@ cd synthea
 
 Edit `src/main/resources/synthea.properties` to get output in transaction bundle format:
 
-```text
+```groovy
 exporter.fhir.transaction_bundle = true
 ```
 
 Generating the population one at a time...
 
-```text
+```bash
 ./run_synthea -s 1000
 ls output/fhir
 ```
 
 You should see two files with names similar to those:
 
-```text
+```bash
 hospitalInformation1537450368636.json 
 Mckinley734_Johnston597_f25b9177-3c01-4d76-a48f-0a83affa5a56.json
 ```
