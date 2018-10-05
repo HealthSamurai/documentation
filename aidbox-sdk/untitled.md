@@ -1,7 +1,7 @@
 # NodeJs SDK
 
 ```javascript
-// npm install --add aidbox
+kjj// npm install --add aidbox
 const aidbox = require('aidbox');
 
 const report = (ctx, request) => {
@@ -20,9 +20,10 @@ const on_change = (ctx, payment) => {
 };
 
 aidbox.manifest({
-  name: 'payments.mydomain.app',
-  version: 2,
-  Resources: {
+  app: 
+    {name: 'payments.mydomain.app',
+     version: 2},
+  resources: {
     Payment: {
       props: {
         amount: {type: 'number'},
@@ -30,16 +31,15 @@ aidbox.manifest({
       }
     }
   },
-  Operations: {
-    payment_list: {
-      path: ['get', 'Payment', '$report'] ,
-      handler: report
+  operations: {
+    PaymentList: {
+      request: ['get', 'Payment', '$report']
     }
   },
-  Validators: {
+  validators: {
     Payment: validate
   },
-  Subscription: {
+  subscriptions: {
     Payment: {
       handler: on_change
     }
