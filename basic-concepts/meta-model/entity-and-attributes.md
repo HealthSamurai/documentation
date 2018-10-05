@@ -1,4 +1,4 @@
-# Entity & Attributes
+# Entity & Attribute
 
 In Aidbox, structure of all resources is defined by two meta-resources Entity and Attribute. Entity can be of 3 types - primitive, type, or resource. Primitive is a built-in primitive type. You are not allowed to create your primitives so if you have missed one - please contact us. Repeating combinations of primitive types are composed into types \(complex types like Address, HumanName, etc\). Entity with the type "resource" composes a set of primitive and complex type Attributes. When resource is described - tables to storage data and REST API for this resource are generated on the fly based on the definition. 
 

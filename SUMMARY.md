@@ -9,7 +9,7 @@
   * [Boxes](basic-concepts/boxes.md)
   * [API Overview](basic-concepts/api-overview.md)
   * [Meta Model](basic-concepts/meta-model/README.md)
-    * [Entity & Attributes](basic-concepts/meta-model/entity-and-attributes.md)
+    * [Entity & Attribute](basic-concepts/meta-model/entity-and-attributes.md)
     * [Operation](basic-concepts/meta-model/operation.md)
     * [SearchParameter](basic-concepts/meta-model/searchparameter.md)
     * [Modules](basic-concepts/meta-model/modules.md)
