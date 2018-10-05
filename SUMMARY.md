@@ -27,6 +27,7 @@
   * [Patch](api/patch.md)
   * [Transaction](api/transaction.md)
   * [Validation](api/validation.md)
+  * [Profiling](api/profiling.md)
   * [History](api/history-1.md)
   * [Search](api/history.md)
   * [Custom Operations](api/operational-model.md)
