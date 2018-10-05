@@ -61,7 +61,7 @@ schema:
 
 ## Example
 
-Required `name` and `gender` attribute for `Patient` resource
+Create `AidboxProfile` resource that required `name` and `gender` attribute for `Patient` resource
 
 ```yaml
 resourceType: AidboxProfile
@@ -74,6 +74,12 @@ schema:
     - name
     - gender
 ```
+
+{% hint style="info" %}
+If you use Aidbox.Dev, after creating `AidboxProfile` resource, you need restart you Aidbox.Dev
+
+$ docker-compose down && docker-compose up -d
+{% endhint %}
 
 When trying to create Patient without `name` and/or `gender`  you will receive error.
 
