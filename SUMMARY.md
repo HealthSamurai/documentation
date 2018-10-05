@@ -21,6 +21,7 @@
   * [Working with Aidbox from .NET](tutorials/working-with-aidbox-from-.net.md)
 * [Aidbox SDK](aidbox-sdk/README.md)
   * [NodeJs SDK](aidbox-sdk/untitled.md)
+  * [SDK internals](aidbox-sdk/sdk-internals.md)
 * [API](api/README.md)
   * [CRUD](api/crud.md)
   * [Patch](api/patch.md)
