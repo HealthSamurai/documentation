@@ -1307,6 +1307,8 @@ This parameter is not supported in Aidbox.
 
 The specified property of the code has at least one value \(if the specified value is true; if the specified value is false, then matches when the specified property of the code has no values\).
 
+Let's display concepts where property `hierarchy` exists. The result will include 8 concepts for which `hierarchy` is not an empty array: `achieved`, `ahead-of-target`, `behind-target`, `in-progress`, `on-hold`, `on-target`, `planned`, and `sustaining`.
+
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
@@ -1336,6 +1338,97 @@ POST {{base}}/ValueSet/$expand
     }
   ]
 }
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+{
+  "expansion": {
+    "timestamp": "2018-10-08T15:14:18Z",
+    "identifier": "http://hl7.org/fhir/ValueSet/valueset-filter-exists",
+    "contains": [{
+        "code": "planned",
+        "module": "fhir-3.3.0",
+        "system": "http://hl7.org/fhir/goal-status",
+        "display": "Planned",
+        "hierarchy": [
+          "accepted"
+        ],
+        "definition": "A goal is planned for this patient"
+      }, {
+        "code": "in-progress",
+        "module": "fhir-3.3.0",
+        "system": "http://hl7.org/fhir/goal-status",
+        "display": "In Progress",
+        "hierarchy": [
+          "accepted"
+        ],
+        "definition": "The goal is being sought but has not yet been reached.  (Also applies if goal was reached in the past but there has been regression and goal is being sought again)"
+      }, {
+        "code": "on-target",
+        "module": "fhir-3.3.0",
+        "system": "http://hl7.org/fhir/goal-status",
+        "display": "On Target",
+        "hierarchy": [
+          "accepted",
+          "in-progress"
+        ],
+        "definition": "The goal is on schedule for the planned timelines"
+      }, {
+        "code": "ahead-of-target",
+        "module": "fhir-3.3.0",
+        "system": "http://hl7.org/fhir/goal-status",
+        "display": "Ahead of Target",
+        "hierarchy": [
+          "accepted",
+          "in-progress"
+        ],
+        "definition": "The goal is ahead of the planned timelines"
+      }, {
+        "code": "behind-target",
+        "module": "fhir-3.3.0",
+        "system": "http://hl7.org/fhir/goal-status",
+        "display": "Behind Target",
+        "hierarchy": [
+          "accepted",
+          "in-progress"
+        ],
+        "definition": "The goal is behind the planned timelines"
+      }, {
+        "code": "sustaining",
+        "module": "fhir-3.3.0",
+        "system": "http://hl7.org/fhir/goal-status",
+        "display": "Sustaining",
+        "hierarchy": [
+          "accepted",
+          "in-progress"
+        ],
+        "definition": "The goal has been met, but ongoing activity is needed to sustain the goal objective"
+      }, {
+        "code": "achieved",
+        "module": "fhir-3.3.0",
+        "system": "http://hl7.org/fhir/goal-status",
+        "display": "Achieved",
+        "hierarchy": [
+          "accepted"
+        ],
+        "definition": "The goal has been met and no further action is needed"
+      }, {
+        "code": "on-hold",
+        "module": "fhir-3.3.0",
+        "system": "http://hl7.org/fhir/goal-status",
+        "display": "On Hold",
+        "hierarchy": [
+          "accepted"
+        ],
+        "definition": "The goal remains a long term objective but is no longer being actively pursued for a temporary period of time."
+      }
+    ]
+  },
+  ...
+}
+
 ```
 {% endtab %}
 {% endtabs %}
