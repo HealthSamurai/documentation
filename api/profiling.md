@@ -13,6 +13,7 @@ bind:
   id: Patient
   resourceType: Entity
 schema:
+  type: object
   required:
     - name
     - gender
@@ -28,7 +29,7 @@ Type -  [Reference](https://www.hl7.org/fhir/references.html). Specify resource 
 
 ```yaml
 bind:
-  id: Practitioner # Target resource type
+  id: Practitioner # Target resource type "Practitoner"
   resourceType: Entity
 ```
 
@@ -70,6 +71,7 @@ bind:
   id: Patient
   resourceType: Entity
 schema:
+  type: object
   required:
     - name
     - gender
