@@ -1,6 +1,8 @@
 # Table of contents
 
 * [Aidbox](README.md)
+* [Release Notes](release-notes/README.md)
+  * [8 oct 2018](release-notes/8-oct.-2018.md)
 * [Installation](installation/README.md)
   * [Setup Aidbox.Dev](installation/setup-aidbox.dev.md)
   * [Use Aidbox.Cloud](installation/use-aidbox.cloud.md)
@@ -19,6 +21,7 @@
   * [Create and Configure Box](tutorials/create-and-configure-box.md)
   * [Load bundle into aidbox.app](tutorials/load-synthea-into-aidbox.app.md)
   * [Working with Aidbox from .NET](tutorials/working-with-aidbox-from-.net.md)
+  * [Profiling and Validation](tutorials/profiling-and-validation.md)
 * [Aidbox SDK](aidbox-sdk/README.md)
   * [NodeJs SDK](aidbox-sdk/untitled.md)
   * [SDK internals](aidbox-sdk/sdk-internals.md)
