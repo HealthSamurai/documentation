@@ -864,7 +864,7 @@ POST {{base}}/ValueSet/$expand
 ```
 {% endtab %}
 
-{% tab title="" %}
+{% tab title="Response" %}
 ```javascript
 {
   "expansion": {

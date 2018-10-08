@@ -1,12 +1,12 @@
-# Serve static files
+# Serve Static Files
 
-DevBox supports serving of static files. This feature works only in docker-compose environment.
+Aidbox.Dev supports serving of static files. This feature works only in a docker-compose environment.
 
-Files will be saved in folder that is set in [FILE\_ROOT environment variable](https://github.com/Aidbox/devbox/search?l=YAML&q=FILE_ROOT).It should be absolute absolute path to writable folder.
+Files will be saved in a folder that is set in the [FILE\_ROOT environment variable](https://github.com/Aidbox/devbox/search?l=YAML&q=FILE_ROOT). It should be an absolute path to a writable folder.
 
 ### Upload
 
-$upload form param request
+$upload form param request:
 
 ```text
 curl -X POST \
@@ -15,7 +15,7 @@ curl -X POST \
   -F test=@PATH_TO_FILE
 ```
 
-Request will return [FHIR Attachment](https://www.hl7.org/fhir/datatypes.html#attachment) which will include file URL. Now file with duplicate name will overwrite earlier version. 
+The request will return a [FHIR Attachment](https://www.hl7.org/fhir/datatypes.html#attachment) which will include a file URL. Now a file with a duplicate name will overwrite its earlier version. 
 
 
 

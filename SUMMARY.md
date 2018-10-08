@@ -64,9 +64,9 @@
 * [Integrations](integrations/README.md)
   * [Subscriptions](integrations/subscriptions.md)
   * [Transaction Log](integrations/transaction-log.md)
-* [DevBox](devbox/README.md)
+* [Aidbox.Dev](devbox/README.md)
   * [Install](devbox/untitled.md)
   * [Configure](devbox/configure.md)
-  * [Serve static files](devbox/static.md)
+  * [Serve Static Files](devbox/static.md)
 * [FAQ](faq.md)
 

@@ -2,7 +2,7 @@
 
 ## Overview
 
-A [CodeSystem](https://www.hl7.org/fhir/codesystem.html) resource specifies a set of Concepts included in this code system. 
+The [CodeSystem](https://www.hl7.org/fhir/codesystem.html) resource specifies a set of Concepts included in this code system. 
 
 Aidbox assumes a separate creation of the CodeSystem resource and a set of Concepts composing it. This means that the CodeSystem resource describes only meta information of the code system: url, name, publisher, etc. Whereas Concept resources describe the content of the code system and are associated with the code system by the Concept.system attribute with the same value as the CodeSystem.url element.
 
@@ -117,7 +117,7 @@ POST [base]/Concept
 
 ### Read
 
-Only code system meta information will be displayed. In the future,  associated concepts will be gathered by means of Clojure and shown as well.
+At the moment, only code system meta information will be displayed. In the future,  associated concepts will be gathered by means of Clojure and shown as well.
 
 ### Update
 

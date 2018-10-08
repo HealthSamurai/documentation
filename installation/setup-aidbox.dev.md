@@ -7,11 +7,11 @@
 
 ### License obtaining
 
-1. Visit and register on [License server ](https://license-ui.aidbox.app), and click the "Get a license" button.
+1. Visit and register on [License server](https://license-ui.aidbox.app) then click the `Get a license` button.
 
-![](../.gitbook/assets/screen-shot-2018-10-02-at-17.31.50.png)
+![](../.gitbook/assets/scr-2018-10-08_17-53-52.png)
 
-2. Enter a short description of your application and select the "Aidbox.Dev"  product.
+2. Enter a short description of your application and select the `Aidbox.Dev` product.
 
 ![](../.gitbook/assets/screen-shot-2018-10-02-at-17.28.09.png)
 
@@ -44,7 +44,7 @@ DEVBOX_LICENSE_KEY=35b0bb5b403a4bfdbc86d3ce23a5a75a
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-After that, run DevBox.
+After that, run Aidbox.Dev.
 
 ```bash
 $ docker-compose up
