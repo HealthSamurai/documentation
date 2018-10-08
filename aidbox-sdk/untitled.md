@@ -20,7 +20,7 @@ const on_change = (ctx, payment) => {
 };
 
 aidbox.manifest({
-  app: 
+  addon: 
     {name: 'payments.mydomain.app',
      version: 2},
   resources: {
