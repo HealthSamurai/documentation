@@ -143,61 +143,58 @@ GET {{base}}/ValueSet/administrative-gender2
 {% tab title="Response" %}
 ```javascript
 {
-    "description": "The gender of a person used for administrative purposes. 2",
-    "compose": {
-        "include": [
-            {
-                "filter": [
-                    {
-                        "op": "=",
-                        "value": "female",
-                        "property": "code"
-                    }
-                ],
-                "system": "http://hl7.org/fhir/administrative-gender"
-            }
+  "description": "The gender of a person used for administrative purposes. 2",
+  "compose": {
+    "exclude": [{
+        "system": "http://hl7.org/fhir/administrative-gender",
+        "concept": [{
+            "code": "other"
+          }, {
+            "code": "unknown"
+          }
         ]
-    },
-    "date": "2018-04-03T12:05:46+10:00",
-    "meta": {
-        "lastUpdated": "2018-10-05T08:09:30.427Z",
-        "versionId": "24",
-        "tag": [
-            {
-                "system": "https://aidbox.io",
-                "code": "updated"
-            }
-        ]
-    },
-    "publisher": "HL7 (FHIR Project)",
-    "name": "AdministrativeGender2",
-    "experimental": true,
-    "resourceType": "ValueSet",
-    "status": "draft",
-    "id": "administrative-gender2",
-    "url": "http://hl7.org/fhir/ValueSet/administrative-gender2",
-    "identifier": [
-        {
-            "value": "urn:oid:2.16.840.1.113883.4.642.3.1",
-            "system": "urn:ietf:rfc:3986"
-        }
+      }
     ],
-    "immutable": true,
-    "version": "3.3.2",
-    "contact": [
-        {
-            "telecom": [
-                {
-                    "value": "http://hl7.org/fhir",
-                    "system": "url"
-                },
-                {
-                    "value": "fhir@lists.hl7.org",
-                    "system": "email"
-                }
-            ]
-        }
+    "include": [{
+        "system": "http://hl7.org/fhir/administrative-gender"
+      }
     ]
+  },
+  "date": "2018-04-03T12:05:46+10:00",
+  "meta": {
+    "lastUpdated": "2018-10-09T12:09:31.018Z",
+    "versionId": "78",
+    "tag": [{
+        "system": "https://aidbox.io",
+        "code": "updated"
+      }
+    ]
+  },
+  "publisher": "HL7 (FHIR Project)",
+  "name": "AdministrativeGender2",
+  "experimental": true,
+  "resourceType": "ValueSet",
+  "status": "draft",
+  "id": "administrative-gender2",
+  "url": "http://localhost:8888/ValueSet/administrative-gender2",
+  "identifier": [{
+      "value": "urn:oid:2.16.840.1.113883.4.642.3.1",
+      "system": "urn:ietf:rfc:3986"
+    }
+  ],
+  "immutable": true,
+  "version": "3.3.2",
+  "contact": [{
+      "telecom": [{
+          "value": "http://hl7.org/fhir",
+          "system": "url"
+        }, {
+          "value": "fhir@lists.hl7.org",
+          "system": "email"
+        }
+      ]
+    }
+  ]
 }
 ```
 {% endtab %}
@@ -211,7 +208,7 @@ DELETE {{base}}/ValueSet/administrative-gender2
 
 ## ValueSet Compose Parameters
 
-We will show examples of using the compose element by expanding different value sets.
+We will show examples of using the compose element by expanding different value sets. All examples you can run in Postman.
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/63adc3e748810862fddd)
 
@@ -496,6 +493,142 @@ POST {{base}}/ValueSet/$expand
   ...
 }
 
+```
+{% endtab %}
+{% endtabs %}
+
+### include.valueSet
+
+Selects concepts found in this value set. This is an absolute URI that is a reference to `ValueSet.url`.
+
+`concept` and `filter` don't apply to `valueSet`.
+
+N/B:  `ValueSet.compose.include.valueSet` ****should be an array not a string.
+
+Let's include the `administrative-gender` valueset. The result will be 4 concepts: `male`, `female`, `unknown`, and `other`.
+
+{% tabs %}
+{% tab title="Request" %}
+```javascript
+POST {{base}}/ValueSet/$expand
+{
+  "resourceType": "Parameters",
+  "parameter": [{
+      "name": "valueSet",
+      "resource": {
+        "resourceType": "ValueSet",
+        "id": "valueset-from-valueset",
+        "url": "http://hl7.org/fhir/ValueSet/valueset-from-valueset",
+        "status": "draft",
+        "compose": {
+          "include": [{
+              "valueSet": ["http://hl7.org/fhir/ValueSet/administrative-gender"]
+            }
+          ]          
+        }
+      }
+    }
+  ]
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+{
+  "expansion": {
+    "timestamp": "2018-10-09T11:34:26Z",
+    "identifier": "http://hl7.org/fhir/ValueSet/valueset-from-valueset",
+    "contains": [{
+        "code": "male",
+        "module": "fhir-3.3.0",
+        "system": "http://hl7.org/fhir/administrative-gender",
+        "display": "Male",
+        "definition": "Male"
+      }, {
+        "code": "female",
+        "module": "fhir-3.3.0",
+        "system": "http://hl7.org/fhir/administrative-gender",
+        "display": "Female",
+        "definition": "Female"
+      }, {
+        "code": "other",
+        "module": "fhir-3.3.0",
+        "system": "http://hl7.org/fhir/administrative-gender",
+        "display": "Other",
+        "definition": "Other"
+      }, {
+        "code": "unknown",
+        "module": "fhir-3.3.0",
+        "system": "http://hl7.org/fhir/administrative-gender",
+        "display": "Unknown",
+        "definition": "Unknown"
+      }
+    ]
+  },
+  ...
+}
+```
+{% endtab %}
+{% endtabs %}
+
+### exclude.valueSet
+
+Let's exclude administrative-gender2 which consists of `male` and `female` from administrative-gender code system. The result will be 2 values: `other` and `unknown`.
+
+{% tabs %}
+{% tab title="Request" %}
+```javascript
+POST {{base}}/ValueSet/$expand
+{
+  "resourceType": "Parameters",
+  "parameter": [{
+      "name": "valueSet",
+      "resource": {
+        "resourceType": "ValueSet",
+        "id": "valueset-exclude-valueset",
+        "url": "http://hl7.org/fhir/ValueSet/valueset-exclude-valueset",
+        "status": "draft",
+        "compose": {
+          "include": [{
+              "system": "http://hl7.org/fhir/administrative-gender"
+            }
+          ],
+          "exclude": [{
+              "valueSet": ["{{base}}/ValueSet/administrative-gender2"]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+```
+{% endtab %}
+
+{% tab title="" %}
+```javascript
+{
+  "expansion": {
+    "timestamp": "2018-10-09T13:20:38Z",
+    "identifier": "http://hl7.org/fhir/ValueSet/valueset-exclude-valueset",
+    "contains": [{
+        "code": "other",
+        "module": "fhir-3.3.0",
+        "system": "http://hl7.org/fhir/administrative-gender",
+        "display": "Other",
+        "definition": "Other"
+      }, {
+        "code": "unknown",
+        "module": "fhir-3.3.0",
+        "system": "http://hl7.org/fhir/administrative-gender",
+        "display": "Unknown",
+        "definition": "Unknown"
+      }
+    ]
+  },
+  ...
+}
 ```
 {% endtab %}
 {% endtabs %}
