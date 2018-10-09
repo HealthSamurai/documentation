@@ -210,7 +210,7 @@ DELETE {{base}}/ValueSet/administrative-gender2
 
 We will show examples of using the compose element by expanding different value sets. All examples you can run in Postman.
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/63adc3e748810862fddd)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/63adc3e748810862fddd#?env[Aidbox]=W3sia2V5IjoiYmFzZSIsInZhbHVlIjoiaHR0cDovL2xvY2FsaG9zdDo4ODg4IiwiZGVzY3JpcHRpb24iOiIiLCJ0eXBlIjoidGV4dCIsImVuYWJsZWQiOnRydWV9XQ==)
 
 ### include.concept
 
