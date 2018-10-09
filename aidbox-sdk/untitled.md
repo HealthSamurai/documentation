@@ -1,7 +1,7 @@
 # NodeJs SDK
 
 ```javascript
-kjj// npm install --add aidbox
+// npm install --add aidbox
 const aidbox = require('aidbox');
 
 const report = (ctx, request) => {
