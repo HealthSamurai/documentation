@@ -12,8 +12,7 @@ For FHIR conformance, we allow to record the CodeSystem resource with a list of 
 
 ### Create
 
-Divide the CodeSystem into its description and a list of its concepts.   
-Save the CodeSystem and Concepts.
+Divide the CodeSystem into its description and a list of its concepts. Save the CodeSystem and Concepts.
 
 #### Creation of the CodeSystem resource containing a list of concepts
 
@@ -21,38 +20,33 @@ Save the CodeSystem and Concepts.
 {% tab title="Request" %}
 ```javascript
 POST [base]/CodeSystem
-```
-
-`or`
-
-```javascript
-PUT [base]/CodeSystem/[id]
 
 {
 	"resourceType" : "CodeSystem",
+	"id": "custom-eye-color",
 	"status": "draft",
-	"url": "code.system/eyes.color",
+	"url": "http://code.system/eyes.color",
 	"content": "example",
 	"concept" : [     
 		{
 			"code": "ec-bn",
-			"display": "brown"
+			"display": "Brown"
 		},
 		{
 			"code": "ec-be",
-			"display": "blue"
+			"display": "Blue"
 		},
 		{
 			"code": "ec-gn",
-			"display": "green"
+			"display": "Green"
 		},
 		{
 			"code": "ec-hl",
-			"display": "hazel"
+			"display": "Hazel"
 		},
 		{
 			"code": "ec-h",
-			"display": "heterochromia"
+			"display": "Heterochromia"
 		}
 	]	
 }
@@ -61,34 +55,42 @@ PUT [base]/CodeSystem/[id]
 
 {% tab title="Response" %}
 ```javascript
+Status: 201
 {
-    "url": "code.system/eyes.color",
-    "status": "draft",
-    "content": "example",
-    "id": "724ba412-a422-4181-bddf-b3e9c4e3b0d3",
     "resourceType": "CodeSystem",
-    "meta": {
-        "lastUpdated": "2018-10-04T16:00:29.240Z",
-        "versionId": "12",
-        "tag": [
-            {
-                "system": "https://aidbox.io",
-                "code": "created"
-            }
-        ]
-    }
+    "id": "custom-eye-color"
+    "url": "http://code.system/eyes.color",
+    "status": "draft",
+    "content": "example"
 }
+```
+
+And if we get `Concept` with `system` =  `http://code.system/eyes.color`
+
+```javascript
+GET [base]/CodeSystem?system=http://code.system/eyes.color&deprecated:not=true
+```
+
+Response
+
+```text
+
 ```
 {% endtab %}
 {% endtabs %}
+
+#### 
+
+#### 
 
 #### Separate creation of the CodeSystem resource and association of its Concepts
 
 {% tabs %}
 {% tab title="Request" %}
-`Creating an empty CodeSystem resource`
+Creating an empty `CodeSystem` resource with `url = http://example/code/system`
 
 ```javascript
+
 POST [base]/CodeSystem
 {
 	"resourceType" : "CodeSystem",
@@ -98,20 +100,46 @@ POST [base]/CodeSystem
 }
 ```
 
-`Creating and uploading Concept`
+And create concepts where `Concept.system` equal `CodeSystem.url`
 
 ```javascript
+// Creating  Concepts
 POST [base]/Concept
 {
 	"resourceType": "Concept",
-	"id": "476398",
 	"system": "http://example/code/system",
-	"code": "17861-6",
-	"display": "Example"
+	"code": "ec-bn",
+	"display": "Brown"
+}
+POST [base]/Concept
+{
+	"resourceType": "Concept",
+	"system": "http://example/code/system",
+	"code": "ec-be",
+	"display": "Blue"
+}
+POST [base]/Concept
+{
+	"resourceType": "Concept",
+	"system": "http://example/code/system",
+	"code": "ec-gn",
+	"display": "Green"
+}
+POST [base]/Concept
+{
+	"resourceType": "Concept",
+	"system": "http://example/code/system",
+	"code": "ec-hl",
+	"display": "Hazel"
+}
+POST [base]/Concept
+{
+	"resourceType": "Concept",
+	"system": "http://example/code/system",
+	"code": "ec-h",
+	"display": "Heterochromia"
 }
 ```
-
-`As you can see, CodeSystem.url === Concept.system`
 {% endtab %}
 {% endtabs %}
 
