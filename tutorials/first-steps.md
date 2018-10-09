@@ -1,4 +1,6 @@
-# First steps
+# Authentication and Authorization
+
+### Basic auth
 
 {% api-method method="get" host="https://testbox1.aidbox.app" path="/Patient" %}
 {% api-method-summary %}
@@ -21,26 +23,35 @@ String which contains word \`Basic\`, space and USERNAME:PASSWORD base64 encoded
 {% api-method-response %}
 {% api-method-response-example httpCode=200 %}
 {% api-method-response-example-description %}
-Cake successfully retrieved.
+Patients successfully retrieved.
 {% endapi-method-response-example-description %}
 
 ```javascript
 {
-    "name": "Cake's name",
-    "recipe": "Cake's recipe name",
-    "cake": "Binary cake"
+  "resourceType": "Bundle",
+  "type": "searchset",
+  "params": [],
+  "query-sql": [
+    "SELECT \"patient\".* FROM \"patient\" LIMIT ? OFFSET ?",
+    100,
+    0
+  ],
+  "query-time": 2,
+  "entry": [],
+  "total": "_undefined",
+  "link": []
 }
 ```
 {% endapi-method-response-example %}
 
-{% api-method-response-example httpCode=404 %}
+{% api-method-response-example httpCode=403 %}
 {% api-method-response-example-description %}
-Could not find a cake matching this query.
+Could appear in case wrong credentials was provided.
 {% endapi-method-response-example-description %}
 
 ```javascript
 {
-    "message": "Ain't no cake like that."
+    "message": "Access denied"
 }
 ```
 {% endapi-method-response-example %}
