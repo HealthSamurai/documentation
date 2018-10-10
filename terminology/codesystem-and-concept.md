@@ -12,9 +12,9 @@ For FHIR conformance, we allow to record the CodeSystem resource with a list of 
 
 ### Create
 
-Divide the CodeSystem into its description and a list of its concepts. Save the CodeSystem and Concepts.
+[`CodeSystem`](https://www.hl7.org/fhir/codesystem.html) resource can be created as a FHIR resource with embedded concepts itself.
 
-#### Creation of the CodeSystem resource containing a list of concepts
+For example, we will create `CodeSystem` for eye color, contained `Brown`, `Blue`, `Green`, `Hazel`,  `Heterochromia` coded concepts.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -55,7 +55,8 @@ POST [base]/CodeSystem
 
 {% tab title="Response" %}
 ```javascript
-Status: 201
+STATUS: 201
+
 {
     "resourceType": "CodeSystem",
     "id": "custom-eye-color"
@@ -64,24 +65,86 @@ Status: 201
     "content": "example"
 }
 ```
+{% endtab %}
+{% endtabs %}
 
-And if we get `Concept` with `system` =  `http://code.system/eyes.color`
+As you can see request return only `CodeSystem` meta information \(`url`, `status`, `content`....\), and do not return `concept` listed in then request. It is was because `Aidbox` divide `CodeSystem` to `CodeSystem` body and contained concepts list, and create all concepts as a independent `Concept` resources.
 
+And if we get `Concept` with `system` = `http://code.system/eyes.color`
+
+{% tabs %}
+{% tab title="Request" %}
 ```javascript
-GET [base]/CodeSystem?system=http://code.system/eyes.color&deprecated:not=true
+GET [base]/CodeSystem?system=http://code.system/eyes.color
 ```
+{% endtab %}
 
-Response
+{% tab title="Response" %}
+```javascript
+STATUS: 200
 
-```text
-
+{
+    "resourceType": "Bundle",
+    "type": "searchset",
+    "entry": [
+        {
+            "resource": {
+                "id": "custom-eye-color-ec-bn",
+                "code": "ec-bn",
+                "system": "http://code.system/eyes.color",
+                "display": "Brown",
+                "resourceType": "Concept"
+            }
+        },
+        {
+            "resource": {
+                "id": "custom-eye-color-ec-be",
+                "code": "ec-be",
+                "system": "http://code.system/eyes.color",
+                "display": "Blue",
+                "resourceType": "Concept"
+            }
+        },
+        {
+            "resource": {
+                "id": "custom-eye-color-ec-gn",
+                "code": "ec-gn",
+                "system": "http://code.system/eyes.color",
+                "display": "Green",
+                "resourceType": "Concept"
+            }
+        },
+        {
+            "resource": {
+                "id": "custom-eye-color-ec-hl",
+                "code": "ec-hl",
+                "system": "http://code.system/eyes.color",
+                "display": "Hazel",
+                "resourceType": "Concept"
+            }
+        },
+        {
+            "resource": {
+                "id": "custom-eye-color-ec-h",
+                "code": "ec-h",
+                "system": "http://code.system/eyes.color",
+                "display": "Heterochromia",
+                "resourceType": "Concept"
+            }
+        }
+    ],
+    "total": 5,
+    ......
+}
 ```
 {% endtab %}
 {% endtabs %}
 
-#### 
 
-#### 
+
+
+
+
 
 #### Separate creation of the CodeSystem resource and association of its Concepts
 
@@ -142,6 +205,8 @@ POST [base]/Concept
 ```
 {% endtab %}
 {% endtabs %}
+
+### Create using transaction
 
 ### Read
 
