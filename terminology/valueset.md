@@ -919,7 +919,7 @@ POST {{base}}/ValueSet/$expand
 
 ### Not \(Is A\) \(by subsumption\)
 
-Let's include all codes where the specified property of the code does not have an is-a relationship with the provided value `accepted`. The result will include 5 values whose parent is not `accepted`: `proposed`, `accepted`, `cancelled`, `rejected`, and `entered-in-error`.
+Let's include all codes where the specified property of the code does not have an is-a relationship with the provided value `accepted`. The result will include 4 values whose parent is not `accepted`: `proposed`,  `cancelled`, `rejected`, and `entered-in-error`.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -954,7 +954,41 @@ POST {{base}}/ValueSet/$expand
 {% endtab %}
 
 {% tab title="Response" %}
-TODO: add response after fix.
+```javascript
+ {
+  "expansion": {
+    "timestamp": "2018-10-10T13:44:22Z",
+    "identifier": "http://localhost:8888/ValueSet/valueset-filter-is-not-a",
+    "contains": [{
+        "code": "proposed",
+        "module": "fhir-3.3.0",
+        "system": "http://hl7.org/fhir/goal-status",
+        "display": "Proposed",
+        "definition": "A goal is proposed for this patient"
+      }, {
+        "code": "cancelled",
+        "module": "fhir-3.3.0",
+        "system": "http://hl7.org/fhir/goal-status",
+        "display": "Cancelled",
+        "definition": "The previously accepted goal is no longer being sought"
+      }, {
+        "code": "entered-in-error",
+        "module": "fhir-3.3.0",
+        "system": "http://hl7.org/fhir/goal-status",
+        "display": "Entered In Error",
+        "definition": "The goal was entered in error and voided."
+      }, {
+        "code": "rejected",
+        "module": "fhir-3.3.0",
+        "system": "http://hl7.org/fhir/goal-status",
+        "display": "Rejected",
+        "definition": "A proposed goal was rejected"
+      }
+    ]
+  },
+  ...
+}
+```
 {% endtab %}
 {% endtabs %}
 
