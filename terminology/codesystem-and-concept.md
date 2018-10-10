@@ -6,6 +6,8 @@ The [`CodeSystem`](https://www.hl7.org/fhir/codesystem.html) resource specifies 
 
 Aidbox assumes a separate creation of the `CodeSystem` resource and a set of `Concepts` composing it. This means that the CodeSystem resource describes only meta information of the code system: url, name, publisher, etc. Whereas Concept resources describe the content of the code system and are associated with the code system by the Concept.system attribute with the same value as the CodeSystem.url element.
 
+
+
 For FHIR conformance, we allow to create the CodeSystem resource with a list of included concepts. In the moment of saving a CodeSystem, if it contains listed Concepts, then Aidbox saves submitted Concepts as separate resources, and the CodeSystem resource itself is saved without the concept attribute. This method of the CodeSystem creation may be used for small dictionaries \(generally, not more than 100 concepts\). In case when your code system is big, Aidbox strongly recommends to create the CodeSystem resource separately and upload Concepts in parts.
 
 ## CRUD
@@ -311,74 +313,6 @@ POST [base]
 {% endtabs %}
 
 
-
-
-
-
-
-
-
-#### Separate creation of the CodeSystem resource and association of its Concepts
-
-{% tabs %}
-{% tab title="Request" %}
-Creating an empty `CodeSystem` resource with `url = http://example/code/system`
-
-```javascript
-
-POST [base]/CodeSystem
-{
-	"resourceType" : "CodeSystem",
-	"status": "draft",
-	"url": "http://example/code/system",
-	"content": "example"
-}
-```
-
-And create concepts where `Concept.system` equal `CodeSystem.url`
-
-```javascript
-// Creating  Concepts
-POST [base]/Concept
-{
-	"resourceType": "Concept",
-	"system": "http://example/code/system",
-	"code": "ec-bn",
-	"display": "Brown"
-}
-POST [base]/Concept
-{
-	"resourceType": "Concept",
-	"system": "http://example/code/system",
-	"code": "ec-be",
-	"display": "Blue"
-}
-POST [base]/Concept
-{
-	"resourceType": "Concept",
-	"system": "http://example/code/system",
-	"code": "ec-gn",
-	"display": "Green"
-}
-POST [base]/Concept
-{
-	"resourceType": "Concept",
-	"system": "http://example/code/system",
-	"code": "ec-hl",
-	"display": "Hazel"
-}
-POST [base]/Concept
-{
-	"resourceType": "Concept",
-	"system": "http://example/code/system",
-	"code": "ec-h",
-	"display": "Heterochromia"
-}
-```
-{% endtab %}
-{% endtabs %}
-
-### Create using transaction
 
 ### Read
 
