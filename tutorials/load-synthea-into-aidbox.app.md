@@ -12,11 +12,25 @@ Let's configure simple policy to access API using basic auth \(login/password\):
 
 Open section **Auth clients**, click button **new** to create auth client and type following body for resource:
 
+{% tabs %}
+{% tab title="YAML" %}
 ```yaml
 resourceType: Client
 id: USERNAME
 secret: PASSWORD
 ```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{ 
+  "resourceType": "Client",
+  "id": "USERNAME",
+  "secret": "PASSWORD"
+}
+```
+{% endtab %}
+{% endtabs %}
 
  Using transaction Operation
 
@@ -24,19 +38,17 @@ Click `save`, open **Access Control** section, create new access policy using **
 
 
 ```yaml
+resourceType: AccessPolicy
+id: client1-access
 engine: json-schema
 schema:
-  required:
-    - client
+  required: ['client']
   properties:
     client:
-      required:
-        - id
+      required: ['id']
       properties:
-        id:
-          constant: USERNAME
-id: client1-access
-resourceType: AccessPolicy
+        id: { constant: USERNAME }
+
 ```
 
 Now USERNAME/PASSWORD can be used to access the box via basic auth.
