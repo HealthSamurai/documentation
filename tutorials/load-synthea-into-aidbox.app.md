@@ -34,9 +34,10 @@ secret: PASSWORD
 
  Using transaction Operation
 
-Click `save`, open **Access Control** section, create new access policy using **new** button:  
+Click `save`, open **Access Control** section, create new access policy using **new** button:
 
-
+{% tabs %}
+{% tab title="YAML" %}
 ```yaml
 resourceType: AccessPolicy
 id: client1-access
@@ -49,6 +50,35 @@ schema:
       properties:
         id: { constant: USERNAME }
 ```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+  "resourceType": "AccessPolicy",
+  "id": "client1-access",
+  "engine": "json-schema",
+  "schema": {
+    "required": [
+      "client"
+    ],
+    "properties": {
+      "client": {
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "constant": "USERNAME"
+          }
+        }
+      }
+    }
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
 
 Now USERNAME/PASSWORD can be used to access the box via basic auth.
 
