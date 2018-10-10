@@ -6,7 +6,7 @@ The [`CodeSystem`](https://www.hl7.org/fhir/codesystem.html) resource specifies 
 
 Aidbox assumes a separate creation of the `CodeSystem` resource and a set of `Concepts` composing it. This means that the CodeSystem resource describes only meta information of the code system: url, name, publisher, etc. Whereas Concept resources describe the content of the code system and are associated with the code system by the Concept.system attribute with the same value as the CodeSystem.url element.
 
-
+\[IMAGE\]
 
 For FHIR conformance, we allow to create the CodeSystem resource with a list of included concepts. In the moment of saving a CodeSystem, if it contains listed Concepts, then Aidbox saves submitted Concepts as separate resources, and the CodeSystem resource itself is saved without the concept attribute. This method of the CodeSystem creation may be used for small dictionaries \(generally, not more than 100 concepts\). In case when your code system is big, Aidbox strongly recommends to create the CodeSystem resource separately and upload Concepts in parts.
 
@@ -328,19 +328,111 @@ GET \[base\]/CodeSystem/\[id\]
 
 GET \[base\]/Concept?system=CS.url
 
+
+
 ### Update
 
 Updating `CodeSystem` resource works the same as FHIR update.  But when Aidbox separate `CodeSystem` and concepts list compose the code system, Aidbox firstly update all previously created concepts for current CodeSystem and marks them as `deprecated = true`. After that Aidbox upsert \(update or insert\) all new concepts from request with mark `deprecated = false`. In this way if you delete any concept from `CodeSystem`, this concepts will be marked as `deprecated = true` , that mean that this concept was deleted.
 
+For example, lets update our  `custom-eye-color` . We will remove `Hazel` color and add `Silver` and `Amber` color.
+
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-custom-eye-color
+PUT [base]/CodeSystem/custom-eye-color
+
+{
+	"resourceType" : "CodeSystem",
+	"id": "custom-eye-color",
+	"status": "draft",
+	"url": "http://code.system/eyes.color",
+	"content": "example",
+	"concept" : [     
+		{
+			"code": "ec-bn",
+			"display": "Brown"
+		},
+		{
+			"code": "ec-be",
+			"display": "Blue"
+		},
+		{
+			"code": "ec-gn",
+			"display": "Green"
+		},
+		{
+			"code": "ec-sl",
+			"display": "Silver"
+		},
+		{
+			"code": "ec-am",
+			"display": "Amber"
+		},		
+		{
+			"code": "ec-h",
+			"display": "Heterochromia"
+		}
+	]	
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+STATUS: 200
+
+{
+    "resourceType": "CodeSystem",
+    "id": "custom-eye-color"
+    "url": "http://code.system/eyes.color",
+    "status": "draft",
+    "content": "example"
+}
 ```
 {% endtab %}
 {% endtabs %}
 
-The CodeSystem resource itself will be updated, all old Concepts will be marked with `deprecated = true`, and new concepts will be inserted with the status `deprecated = false`.
+And now lets read all `Concept` for `custom-eye-color` `CodeSystem`.
+
+{% tabs %}
+{% tab title="Request" %}
+```javascript
+GET [base]/CodeSystem?system=http://code.system/eyes.color
+```
+{% endtab %}
+
+{% tab title="Response" %}
+
+{% endtab %}
+{% endtabs %}
+
+Show only active concepts.
+
+{% tabs %}
+{% tab title="Request" %}
+```javascript
+GET [base]/CodeSystem?system=http://code.system/eyes.color&deprecated:not=true
+```
+{% endtab %}
+
+{% tab title="Response" %}
+
+{% endtab %}
+{% endtabs %}
+
+Show only deleted concept.
+
+{% tabs %}
+{% tab title="Request" %}
+```javascript
+GET [base]/CodeSystem?system=http://code.system/eyes.color&deprecated=true
+```
+{% endtab %}
+
+{% tab title="Response" %}
+
+{% endtab %}
+{% endtabs %}
 
 ### Delete
 
