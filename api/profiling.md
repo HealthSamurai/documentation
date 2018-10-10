@@ -2,9 +2,9 @@
 
 ## Overview
 
-For custom profiling Aidbox provide additional resource `AidboxProfile`. This resource specify resource type and [JSON Schema](https://json-schema.org/) which will validate specified resource type.
+For custom profiling, Aidbox provides additional resource `AidboxProfile`. This resource specifies resource type and [JSON Schema](https://json-schema.org/) which will validate the specified resource type.
 
-**Example:** validate `Patient` resource, we are specify that `name` and `gender` property is required
+**Example:** let's validate a `Patient` resource by specifying that `name` and `gender` properties are required.
 
 ```yaml
 resourceType: AidboxProfile
@@ -19,13 +19,13 @@ schema:
     - gender
 ```
 
-## AidboxProfile resource structure
+## AidboxProfile Resource Structure
 
 ### bind 
 
-Type -  [Reference](https://www.hl7.org/fhir/references.html). Specify resource type for what profile will be applied. 
+Element is of type [Reference](https://www.hl7.org/fhir/references.html). Specifies resource type for which the profile will be applied. 
 
-**Example:** Binding to `Practitioner` resource.
+**Example:** Binding to a `Practitioner` resource.
 
 ```yaml
 bind:
@@ -35,9 +35,9 @@ bind:
 
 ### schema
 
-Type -  [JSON Schema ](https://json-schema.org/) object which will validate resource.
+Element is of type [JSON Schema ](https://json-schema.org/)object which will validate a resource.
 
-**Example:**  We are expect that `name`  attribute , type of [HumanName](https://www.hl7.org/fhir/datatypes.html#HumanName), contains `given` and `family`.
+**Example:**  In this case, we are expecting that `name` attribute of the type [HumanName](https://www.hl7.org/fhir/datatypes.html#HumanName) will contain elements `given` and `family`.
 
 ```yaml
 schema:
@@ -62,7 +62,7 @@ schema:
 
 ## Example
 
-Create `AidboxProfile` resource that required `name` and `gender` attribute for `Patient` resource
+Let's create an `AidboxProfile` resource that requires `name` and `gender` attributes for `Patient` resource.
 
 ```yaml
 resourceType: AidboxProfile
@@ -78,12 +78,12 @@ schema:
 ```
 
 {% hint style="info" %}
-If you use Aidbox.Dev, after creating `AidboxProfile` resource, you need restart you Aidbox.Dev
+If you are using Aidbox.Dev, after creating an`AidboxProfile`resource you need to restart your Aidbox.Dev server.
 
-$ docker-compose down && docker-compose up -d
+`docker-compose down && docker-compose up -d`
 {% endhint %}
 
-When trying to create Patient without `name` and/or `gender`  you will receive error.
+When trying to create a Patient resource without `name` and/or `gender`  you will receive the error.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -116,4 +116,6 @@ warnings: []
 ```
 {% endtab %}
 {% endtabs %}
+
+
 
