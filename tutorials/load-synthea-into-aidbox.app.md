@@ -48,7 +48,6 @@ schema:
       required: ['id']
       properties:
         id: { constant: USERNAME }
-
 ```
 
 Now USERNAME/PASSWORD can be used to access the box via basic auth.
