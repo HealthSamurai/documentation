@@ -261,6 +261,8 @@ POST [base]/Concept
 {% endtab %}
 
 {% tab title="Transaction request" %}
+Full transaction bundle in the single file.json !!!!
+
 ```javascript
 POST [base]
 
@@ -270,7 +272,7 @@ POST [base]
     {
       "request": {
         "method": "POST",
-        "uri": "/Concept"
+        "url": "/Concept"
       },
       "resource": {
         "resourceType": "Concept",
@@ -283,7 +285,7 @@ POST [base]
     {
       "request": {
         "method": "POST",
-        "uri": "/Concept"
+        "url": "/Concept"
       },
       "resource": {
         "resourceType": "Concept",
@@ -296,7 +298,7 @@ POST [base]
     {
       "request": {
         "method": "POST",
-        "uri": "/Concept"
+        "url": "/Concept"
       },
       "resource": {
         "resourceType": "Concept",
@@ -318,7 +320,25 @@ POST [base]
 
 At the moment, only code system meta information will be displayed. In the future,  associated concepts will be gathered by means of Clojure and shown as well.
 
+Just Fhir Read 
+
+Давать ли возможность читать CS с включенным в него списком концептов????
+
+GET \[base\]/CodeSystem/\[id\]
+
+GET \[base\]/Concept?system=CS.url
+
 ### Update
+
+Updating `CodeSystem` resource works the same as FHIR update.  But when Aidbox separate `CodeSystem` and concepts list compose the code system, Aidbox firstly update all previously created concepts for current CodeSystem and marks them as `deprecated = true`. After that Aidbox upsert \(update or insert\) all new concepts from request with mark `deprecated = false`. In this way if you delete any concept from `CodeSystem`, this concepts will be marked as `deprecated = true` , that mean that this concept was deleted.
+
+{% tabs %}
+{% tab title="Request" %}
+```javascript
+custom-eye-color
+```
+{% endtab %}
+{% endtabs %}
 
 The CodeSystem resource itself will be updated, all old Concepts will be marked with `deprecated = true`, and new concepts will be inserted with the status `deprecated = false`.
 
