@@ -2,11 +2,11 @@
 
 ## Overview
 
-The [CodeSystem](https://www.hl7.org/fhir/codesystem.html) resource specifies a set of Concepts included in this code system. 
+The [`CodeSystem`](https://www.hl7.org/fhir/codesystem.html) resource specifies a set of Concepts included in this code system. 
 
-Aidbox assumes a separate creation of the CodeSystem resource and a set of Concepts composing it. This means that the CodeSystem resource describes only meta information of the code system: url, name, publisher, etc. Whereas Concept resources describe the content of the code system and are associated with the code system by the Concept.system attribute with the same value as the CodeSystem.url element.
+Aidbox assumes a separate creation of the `CodeSystem` resource and a set of `Concepts` composing it. This means that the CodeSystem resource describes only meta information of the code system: url, name, publisher, etc. Whereas Concept resources describe the content of the code system and are associated with the code system by the Concept.system attribute with the same value as the CodeSystem.url element.
 
-For FHIR conformance, we allow to record the CodeSystem resource with a list of included concepts. In the moment of saving a CodeSystem, if it contains listed Concepts, then Aidbox saves submitted Concepts as separate resources, and the CodeSystem resource itself is saved without the concept attribute. This method of the CodeSystem creation may be used for small dictionaries \(generally, not more than 100 concepts\). In case when your code system is big, Aidbox strongly recommends to create the CodeSystem resource separately and upload Concepts in parts.
+For FHIR conformance, we allow to create the CodeSystem resource with a list of included concepts. In the moment of saving a CodeSystem, if it contains listed Concepts, then Aidbox saves submitted Concepts as separate resources, and the CodeSystem resource itself is saved without the concept attribute. This method of the CodeSystem creation may be used for small dictionaries \(generally, not more than 100 concepts\). In case when your code system is big, Aidbox strongly recommends to create the CodeSystem resource separately and upload Concepts in parts.
 
 ## CRUD
 
@@ -68,9 +68,9 @@ STATUS: 201
 {% endtab %}
 {% endtabs %}
 
-As you can see request return only `CodeSystem` meta information \(`url`, `status`, `content`....\), and do not return `concept` listed in then request. It is was because `Aidbox` divide `CodeSystem` to `CodeSystem` body and contained concepts list, and create all concepts as a independent `Concept` resources.
+As you can see request return only `CodeSystem` meta information \(url, status, content....\), and do not return `concept` listed in then request. It is was because `Aidbox` divide `CodeSystem` to `CodeSystem` body and contained concepts list, and create all concepts as a independent `Concept` resources.
 
-And if we get `Concept` with `system` = `http://code.system/eyes.color`
+And if we get `Concept` with `system` = `http://code.system/eyes.color`, we are receive all concepts for this CodeSystem.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -140,7 +140,179 @@ STATUS: 200
 {% endtab %}
 {% endtabs %}
 
-The another way how you can 
+
+
+The another way to create `CodeSystem` is separate creation CodeSystem body and Concepts.
+
+For example, lets create CodeSystem with custom subset of Units of measurement \(aka [UCUM](http://unitsofmeasure.org/trac)\). This CodeSystem we are compose with most common healthcare units.
+
+| Code | Descriptive Name | Display  |
+| :--- | :--- | :--- |
+| % | Persent | % |
+| /uL | PerMicroLiter | /uL |
+| \[iU\]/L | InternationalUnitsPerLiter | IU/L |
+| 10\*3/uL | ThousandsPerMicroLiter | K/uL, x10^3/mm^3 |
+| 10\*6/uL | MillionsPerMicroLiter | M/uL, x10^6/mm^3 |
+| fL | FemtoLiter | fL |
+| g/dL | GramsPerDeciLiter | g/dL |
+| g/L | GramsPerLiter | g/L |
+| g/mL | GramsPerMilliLiter | g/mL |
+| kPa | KiloPascal | kPa |
+| m\[iU\]/mL | MilliInternationalUnitsPerMilliLiter | mIU/mL |
+| meq/L | MilliEquivalentsPerLiter | mEq/L |
+| mg/dL | MilliGramsPerDeciLiter | mg/dL |
+| mm\[Hg\] | MilliMetersOfMercury | mm Hg |
+| mmol/kg | MilliMolesPerKiloGram | mmol/kg |
+| mmol/L | MilliMolesPerLiter | mmol/L |
+| mosm/kg | MilliOsmolesPerKiloGram | mOsm/kg |
+| ng/mL | NanoGramsPerMilliLiter | ng/mL |
+| nmol/L | NanoMolesPerLiter | nmol/L |
+| pg | PicoGrams | pg |
+| pg/mL | PicoGramsPerMilliLiter | pg/mL |
+| pmol/L | PicoMolesPerLiter | pmol/L |
+| U/L | UnitsPerLiter | U/L |
+| u\[iU\]/mL | MicroInternationalUnitsPerMilliLiter | uIU/mL |
+| ug/dL | MicroGramsPerDeciLiter | ug/dL |
+| ug/L | MicroGramsPerLiter | ug/L |
+| ug/mL | MicroGramsPerMilliLiter | ug/mL |
+| umol/L | MicroMolesPerLiter | umol/L |
+
+For this subset lets create `CodeSystem` resource.
+
+{% tabs %}
+{% tab title="Request" %}
+```javascript
+POST [base]/CodeSystem
+
+{
+    "resourceType": "CodeSystem",
+    "id": "custom-ucum-subset",
+    "url": "http://code.system/ucum.subset",
+    "status": "active",
+    "content": "complete"
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+STATUS: 201
+
+{
+    "id": "custom-ucum-subset",
+    "resourceType": "CodeSystem"
+    "url": "http://code.system/ucum.subset",
+    "status": "active",
+    "content": "complete"
+}
+```
+{% endtab %}
+{% endtabs %}
+
+And then, create all of listed concepts. We can create a set of concepts via multiple `POST` requests or via one [`Transaction`](https://www.hl7.org/fhir/http.html#transaction) request.
+
+{% tabs %}
+{% tab title="Multiple requests" %}
+```javascript
+POST [base]/Concept
+
+{
+ "resourceType": "Concept",
+ "system": "http://code.system/ucum.subset",
+ "code": "%",
+ "display": "%",
+ "definition": "Persent"
+}
+
+POST [base]/Concept
+
+{
+ "resourceType": "Concept",
+ "system": "http://code.system/ucum.subset",
+ "code": "/uL",
+ "display": "/uL",
+ "definition": "PerMicroLiter"
+}
+
+POST [base]/Concept
+
+{
+ "resourceType": "Concept",
+ "system": "http://code.system/ucum.subset",
+ "code": "[iU]/L",
+ "display": "IU/L",
+ "definition": "InternationalUnitsPerLiter"
+}
+
+......
+
+POST [base]/Concept
+
+{
+ "resourceType": "Concept",
+ "system": "http://code.system/ucum.subset",
+ "code": "umol/L",
+ "display": "umol/L",
+ "definition": "MicroMolesPerLiter"
+}
+```
+{% endtab %}
+
+{% tab title="Transaction request" %}
+```javascript
+POST [base]
+
+{
+  "type": "transaction",
+  "entry": [
+    {
+      "request": {
+        "method": "POST",
+        "uri": "/Concept"
+      },
+      "resource": {
+        "resourceType": "Concept",
+        "system": "http://code.system/ucum.subset",
+        "code": "%",
+        "display": "%",
+        "definition": "Persent"
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "uri": "/Concept"
+      },
+      "resource": {
+        "resourceType": "Concept",
+        "system": "http://code.system/ucum.subset",
+        "code": "/uL",
+        "display": "/uL",
+        "definition": "PerMicroLiter"
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "uri": "/Concept"
+      },
+      "resource": {
+        "resourceType": "Concept",
+        "system": "http://code.system/ucum.subset",
+        "code": "umol/L",
+        "display": "umol/L",
+        "definition": "MicroMolesPerLiter"
+      }
+    }
+  ]
+}
+```
+{% endtab %}
+{% endtabs %}
+
+
+
+
 
 
 
