@@ -19,7 +19,7 @@
 * [Tutorials](tutorials/README.md)
   * [Getting Started](tutorials/getting-started.md)
   * [Create and Configure Box](tutorials/create-and-configure-box.md)
-  * [Authentication and Authorization](tutorials/first-steps.md)
+  * [Authentication and Authorization](tutorials/authentication-and-authorization.md)
   * [Load bundle into aidbox.app](tutorials/load-synthea-into-aidbox.app.md)
   * [Working with Aidbox from .NET](tutorials/working-with-aidbox-from-.net.md)
   * [Profiling and Validation](tutorials/profiling-and-validation.md)
