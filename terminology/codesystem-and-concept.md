@@ -12,7 +12,7 @@ For FHIR conformance, we allow to record the CodeSystem resource with a list of 
 
 ### Create
 
-[`CodeSystem`](https://www.hl7.org/fhir/codesystem.html) resource can be created as a FHIR resource with embedded concepts itself.
+[`CodeSystem`](https://www.hl7.org/fhir/codesystem.html) resource can be created as a FHIR resource with embedded concepts itself. This approach is applicable for those cases if your code system contains a small number of concepts, usually no more than 100. 
 
 For example, we will create `CodeSystem` for eye color, contained `Brown`, `Blue`, `Green`, `Hazel`,  `Heterochromia` coded concepts.
 
@@ -140,7 +140,7 @@ STATUS: 200
 {% endtab %}
 {% endtabs %}
 
-
+The another way how you can 
 
 
 
