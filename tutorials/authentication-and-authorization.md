@@ -130,7 +130,7 @@ echo "USERNAME:PASSWORD" | base64
 # VVNFUk5BTUU6UEFTU1dPUkQK
 ```
 
-Basic authentication scheme described in [rfc](https://tools.ietf.org/html/rfc2617#page-5) and requires `Authorization` header value in the following format: `Basic VVNFUk5BTUU6UEFTU1dPUkQK`.
+Basic authentication scheme described in  [RFC 2617](https://tools.ietf.org/html/rfc2617#page-5) and requires `Authorization` header value in the following format: `Basic VVNFUk5BTUU6UEFTU1dPUkQK`.
 
 {% api-method method="get" host="https://<your-box>.aidbox.app" path="/fhir/Patient" %}
 {% api-method-summary %}
