@@ -297,15 +297,29 @@ POST [base]
 
 ### Read
 
-At the moment, only code system meta information will be displayed. In the future,  associated concepts will be gathered by means of Clojure and shown as well.
+Read operation work as the same as FHIR read.
 
-Just Fhir Read 
+{% tabs %}
+{% tab title="Request" %}
+```javascript
+GET [base]/CodeSystem/custom-eye-color
+```
+{% endtab %}
 
-Давать ли возможность читать CS с включенным в него списком концептов????
+{% tab title="Response" %}
+```javascript
+STATUS: 201
 
-GET \[base\]/CodeSystem/\[id\]
-
-GET \[base\]/Concept?system=CS.url
+{
+    "resourceType": "CodeSystem",
+    "id": "custom-eye-color"
+    "url": "http://code.system/eyes.color",
+    "status": "draft",
+    "content": "example"
+}
+```
+{% endtab %}
+{% endtabs %}
 
 
 
@@ -419,6 +433,8 @@ STATUS: 200
 {% endtabs %}
 
 ## Operations
+
+Aidbox support all standard [FHIR terminology](https://www.hl7.org/fhir/terminology-module.html) CodeSystem operations.
 
 | FHIR specification | Status | Documentation and samples |
 | :--- | :--- | :--- |
