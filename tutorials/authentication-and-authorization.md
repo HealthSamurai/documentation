@@ -1,10 +1,8 @@
 # Authentication and Authorization
 
+We have many options for authentication, but let's start from the simplest one: basic authentication. It's widely supported and easy to use.
 
-
-For this topic you have many options, but let's start from simplest one, basic auth.
-
-## Basic auth
+## Basic authentication
 
 When box created \(\`testbox1\` for example\) you already have a fully-functional fhir server and can make requests to [https://testbox1.aidbox.app/fhir](https://testbox1.aidbox.app/fhir). Make sure that you use proper name of your new box instead of \`testbox1\`. Lets obtain a patient list for example. 
 
