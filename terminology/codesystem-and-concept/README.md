@@ -6,8 +6,6 @@ The [`CodeSystem`](https://www.hl7.org/fhir/codesystem.html) resource specifies 
 
 Aidbox assumes a separate creation of the `CodeSystem` resource and a set of `Concepts` composing it. This means that the CodeSystem resource describes only meta information of the code system: url, name, publisher, etc. Whereas Concept resources describe the content of the code system and are associated with the code system by the Concept.system attribute with the same value as the CodeSystem.url element.
 
-\[IMAGE\]
-
 For FHIR conformance, we allow to create the CodeSystem resource with a list of included concepts. In the moment of saving a CodeSystem, if it contains listed Concepts, then Aidbox saves submitted Concepts as separate resources, and the CodeSystem resource itself is saved without the concept attribute. This method of the CodeSystem creation may be used for small dictionaries \(generally, not more than 100 concepts\). In case when your code system is big, Aidbox strongly recommends to create the CodeSystem resource separately and upload Concepts in parts.
 
 ## CRUD
@@ -153,25 +151,8 @@ For example, lets create CodeSystem with custom subset of Units of measurement \
 | % | Persent | % |
 | /uL | PerMicroLiter | /uL |
 | \[iU\]/L | InternationalUnitsPerLiter | IU/L |
-| 10\*3/uL | ThousandsPerMicroLiter | K/uL, x10^3/mm^3 |
-| 10\*6/uL | MillionsPerMicroLiter | M/uL, x10^6/mm^3 |
-| fL | FemtoLiter | fL |
-| g/dL | GramsPerDeciLiter | g/dL |
-| g/L | GramsPerLiter | g/L |
-| g/mL | GramsPerMilliLiter | g/mL |
 | kPa | KiloPascal | kPa |
-| m\[iU\]/mL | MilliInternationalUnitsPerMilliLiter | mIU/mL |
-| meq/L | MilliEquivalentsPerLiter | mEq/L |
-| mg/dL | MilliGramsPerDeciLiter | mg/dL |
-| mm\[Hg\] | MilliMetersOfMercury | mm Hg |
-| mmol/kg | MilliMolesPerKiloGram | mmol/kg |
-| mmol/L | MilliMolesPerLiter | mmol/L |
-| mosm/kg | MilliOsmolesPerKiloGram | mOsm/kg |
 | ng/mL | NanoGramsPerMilliLiter | ng/mL |
-| nmol/L | NanoMolesPerLiter | nmol/L |
-| pg | PicoGrams | pg |
-| pg/mL | PicoGramsPerMilliLiter | pg/mL |
-| pmol/L | PicoMolesPerLiter | pmol/L |
 | U/L | UnitsPerLiter | U/L |
 | u\[iU\]/mL | MicroInternationalUnitsPerMilliLiter | uIU/mL |
 | ug/dL | MicroGramsPerDeciLiter | ug/dL |
@@ -261,8 +242,6 @@ POST [base]/Concept
 {% endtab %}
 
 {% tab title="Transaction request" %}
-Full transaction bundle in the single file.json !!!!
-
 ```javascript
 POST [base]
 
@@ -332,48 +311,44 @@ GET \[base\]/Concept?system=CS.url
 
 ### Update
 
-Updating `CodeSystem` resource works the same as FHIR update.  But when Aidbox separate `CodeSystem` and concepts list compose the code system, Aidbox firstly update all previously created concepts for current CodeSystem and marks them as `deprecated = true`. After that Aidbox upsert \(update or insert\) all new concepts from request with mark `deprecated = false`. In this way if you delete any concept from `CodeSystem`, this concepts will be marked as `deprecated = true` , that mean that this concept was deleted.
+{% hint style="warning" %}
+We are not supported updating CodeSystem
+{% endhint %}
 
-For example, lets update our  `custom-eye-color` . We will remove `Hazel` color and add `Silver` and `Amber` color.
+In the terminology is better practice is not update existing Coded Systems. Aidbox is follow this principe. If you need update any existing CodeSystem resource, you need explicitly delete this CodeSystem and re create it again with your changes.
+
+### Delete
+
+On delete `CodeSystem`,  Aidbox delete `CodeSystem` resource, and notes all of them `Concept` as `deprecated` = `true`.
 
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-PUT [base]/CodeSystem/custom-eye-color
+DELETE [base]/CodeSystem/custom-eye-color
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+STATUS: 201
 
 {
-	"resourceType" : "CodeSystem",
-	"id": "custom-eye-color",
-	"status": "draft",
-	"url": "http://code.system/eyes.color",
-	"content": "example",
-	"concept" : [     
-		{
-			"code": "ec-bn",
-			"display": "Brown"
-		},
-		{
-			"code": "ec-be",
-			"display": "Blue"
-		},
-		{
-			"code": "ec-gn",
-			"display": "Green"
-		},
-		{
-			"code": "ec-sl",
-			"display": "Silver"
-		},
-		{
-			"code": "ec-am",
-			"display": "Amber"
-		},		
-		{
-			"code": "ec-h",
-			"display": "Heterochromia"
-		}
-	]	
+    "url": "http://code.system/eyes.color",
+    "status": "draft",
+    "content": "example",
+    "id": "custom-eye-color",
+    "resourceType": "CodeSystem"
 }
+```
+{% endtab %}
+{% endtabs %}
+
+And check all concepts for 
+
+{% tabs %}
+{% tab title="Request" %}
+```javascript
+GET [base]/Concept/?system=http://code.system/eyes.color
 ```
 {% endtab %}
 
@@ -382,61 +357,72 @@ PUT [base]/CodeSystem/custom-eye-color
 STATUS: 200
 
 {
-    "resourceType": "CodeSystem",
-    "id": "custom-eye-color"
-    "url": "http://code.system/eyes.color",
-    "status": "draft",
-    "content": "example"
+    "resourceType": "Bundle",
+    "type": "searchset",
+    "entry": [
+        {
+            "resource": {
+                "id": "custom-eye-color-ec-bn",
+                "deprecated": true,
+                "code": "ec-bn",
+                "system": "http://code.system/eyes.color",
+                "display": "Brown",
+                "resourceType": "Concept"
+            }
+        },
+        {
+            "resource": {
+                "id": "custom-eye-color-ec-be",
+                "deprecated": true,
+                "code": "ec-be",
+                "system": "http://code.system/eyes.color",
+                "display": "Blue",
+                "resourceType": "Concept"
+            }
+        },
+        {
+            "resource": {
+                "id": "custom-eye-color-ec-gn",
+                "deprecated": true,
+                "code": "ec-gn",
+                "system": "http://code.system/eyes.color",
+                "display": "Green",
+                "resourceType": "Concept"
+            }
+        },
+        {
+            "resource": {
+                "id": "custom-eye-color-ec-hl",
+                "deprecated": true,
+                "code": "ec-hl",
+                "system": "http://code.system/eyes.color",
+                "display": "Hazel",
+                "resourceType": "Concept"
+            }
+        },
+        {
+            "resource": {
+                "id": "custom-eye-color-ec-h",
+                "deprecated": true,
+                "code": "ec-h",
+                "system": "http://code.system/eyes.color",
+                "display": "Heterochromia",
+                "resourceType": "Concept"
+            }
+        }
+    ],
+    "total": 5,
+    ......
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-And now lets read all `Concept` for `custom-eye-color` `CodeSystem`.
+## Operations
 
-{% tabs %}
-{% tab title="Request" %}
-```javascript
-GET [base]/CodeSystem?system=http://code.system/eyes.color
-```
-{% endtab %}
-
-{% tab title="Response" %}
-
-{% endtab %}
-{% endtabs %}
-
-Show only active concepts.
-
-{% tabs %}
-{% tab title="Request" %}
-```javascript
-GET [base]/CodeSystem?system=http://code.system/eyes.color&deprecated:not=true
-```
-{% endtab %}
-
-{% tab title="Response" %}
-
-{% endtab %}
-{% endtabs %}
-
-Show only deleted concept.
-
-{% tabs %}
-{% tab title="Request" %}
-```javascript
-GET [base]/CodeSystem?system=http://code.system/eyes.color&deprecated=true
-```
-{% endtab %}
-
-{% tab title="Response" %}
-
-{% endtab %}
-{% endtabs %}
-
-### Delete
-
-On delete, will be removed the CodeSystem resource itself and all Concepts where `system = CodeSystem.url`.
-
-
+| FHIR specification | Status | Documentation and samples |
+| :--- | :--- | :--- |
+| [$lookup](https://www.hl7.org/fhir/codesystem-operations.html#lookup) | `supported` | [CodeSystem Concept Lookup](concept-lookup.md) |
+| [$subsumes](https://www.hl7.org/fhir/codesystem-operations.html#subsumes) | `supported` | [CodeSystem Subsumption testing](subsumption-testing.md) |
+| [$compose](https://www.hl7.org/fhir/codesystem-operations.html#compose) | `supported` | [CodeSystem Code composition](codesystem-code-composition.md) |
 

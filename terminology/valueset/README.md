@@ -1363,3 +1363,10 @@ POST {{base}}/ValueSet/$expand
 {% endtab %}
 {% endtabs %}
 
+## Operations
+
+| FHIR specification | Status | Documentation and samples |
+| :--- | :--- | :--- |
+| [$expand](https://www.hl7.org/fhir/valueset-operations.html#expand) | `supported` | [ValueSet Expansion](value-set-expansion.md) |
+| [$validate-code](https://www.hl7.org/fhir/valueset-operations.html#validate-code) | `supported` | [ValueSet Code validation](value-set-validation.md) |
+
