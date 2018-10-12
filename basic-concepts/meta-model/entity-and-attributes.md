@@ -19,7 +19,7 @@ Let's take a look at the definition of Entity and Attribute Resources. If you ha
 
 As seen, they are both defined as **Entity** with type **resource** with id matching **resourceType** and coming from module **proto** \(see more about Modules in Aidbox\).
 
-Let's see what attributes are defined for Entity \( `GET /Attribute?_resource=Entity`\):
+Let's see what attributes are defined for Entity \( `GET /Attribute?entity=Entity`\):
 
 ```yaml
 - resourceType: Attribute
@@ -60,7 +60,7 @@ Let's see what attributes are defined for Entity \( `GET /Attribute?_resource=En
 * **isOpen** - if this flag is set resource can be arbitrary json document without fixed schema
 * **schema** - if resource can not be described as list of attributes, you can describe it directly by attaching JSON schema
 
-Now, let's inspect attributes of the Attribute meta-resource  \(`GET /Attribute?_resource=Attribute`\):
+Now, let's inspect attributes of the Attribute meta-resource  \(`GET /Attribute?entity=Attribute`\):
 
 ```yaml
 # repeating attributes are skiped
