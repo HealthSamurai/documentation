@@ -22,7 +22,7 @@ bind:
 
 Element is of type [JSON Schema ](https://json-schema.org/)object which will validate a resource.
 
-## **Example 1**
+## **Example: require properties**
 
 Let's validate newly created `Patient` resources by specifying that `name` and `gender` properties are required. First, we need to create the appropriate AidboxProfile resource.
 
@@ -130,9 +130,9 @@ Status: 422 Unprocessable Entity
 {% endtab %}
 {% endtabs %}
 
-## **Example 2**
+## **Example: require minimum number of elements**
 
-In this case, we are expecting that `name` attribute of the type [HumanName](https://www.hl7.org/fhir/datatypes.html#HumanName) will contain elements `given` and `family`.
+In this case, we are expecting that `name` attribute of the type [HumanName](https://www.hl7.org/fhir/datatypes.html#HumanName) will contain elements `given` and `family`. Let's create the AidboxProfile resource with the code below. Then you will need to restart server if you're on Aidbox.Dev. Now, on Patient resource creation we will be receiving the validation error.
 
 {% tabs %}
 {% tab title="Request" %}
