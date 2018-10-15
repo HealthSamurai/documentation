@@ -17,7 +17,6 @@
     * [Modules](basic-concepts/meta-model/modules.md)
     * [Manifest](basic-concepts/meta-model/manifest.md)
 * [Tutorials](tutorials/README.md)
-  * [Getting Started](tutorials/getting-started.md)
   * [Create and Configure Box](tutorials/create-and-configure-box.md)
   * [Authentication and Authorization](tutorials/authentication-and-authorization.md)
   * [Load bundle into FHIR server](tutorials/load-bundle-into-fhir-server.md)

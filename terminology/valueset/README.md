@@ -4,9 +4,9 @@
 
 The ValueSet resource documentation can be found here: [https://www.hl7.org/fhir/valueset.html](https://www.hl7.org/fhir/valueset.html).
 
- All examples you can run in Postman having Aibox.Dev running locally, or by setting up a box in Aidbox.Cloud. Download the Aidbox collection and open it in Postman.
+ All examples you can run in Postman having Aibox.Dev running locally, or by setting up a box in Aidbox.Cloud. Download the Aidbox collection and open it in Postman. Set up the proper environment value for the `base` variable which should be the base url for your FHIR server.
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/63adc3e748810862fddd#?env[Aidbox.Dev]=W3sia2V5IjoiYmFzZSIsInZhbHVlIjoiaHR0cDovL2xvY2FsaG9zdDo4ODg4IiwiZGVzY3JpcHRpb24iOiIiLCJlbmFibGVkIjp0cnVlfV0=)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/view-collection/63adc3e748810862fddd?referrer=https%3A%2F%2Fapp.getpostman.com%2Frun-collection%2F63adc3e748810862fddd%23%3Fenv[Aidbox.Dev]%3DW3sia2V5IjoiYmFzZSIsInZhbHVlIjoiaHR0cDovL2xvY2FsaG9zdDo4ODg4IiwiZGVzY3JpcHRpb24iOiIiLCJlbmFibGVkIjp0cnVlfV0%3D&_ga=2.64469999.1592054488.1539615553-1595564802.1538573158)
 
 CRUD is fully supported for the ValueSet resource.
 
