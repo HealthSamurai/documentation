@@ -1,7 +1,3 @@
----
-description: Getting started with Aidbox.Cloud.
----
-
 # Use Aidbox.Cloud
 
 On the [www.health-samurai.io](www.health-samurai.io) site, select PRODUCTS/AIDBOX.

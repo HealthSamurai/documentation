@@ -1,7 +1,3 @@
----
-description: Aidbox Terminology Service
----
-
 # Terminology
 
 ### Overview

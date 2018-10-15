@@ -1,7 +1,3 @@
----
-description: In this tutorial we will see how to define and use Custom Resources
----
-
 # Custom Resources
 
 If you data does not fit existing  FHIR resources - in aidbox you can define your Custom Resources.
