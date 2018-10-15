@@ -6,6 +6,8 @@ For this tutorial you will need git, node js and any version of Aidbox as a back
 
 ## Introduction
 
+This repository on GitHub [https://github.com/HealthSamurai/Aidbox-angular-sample](https://github.com/HealthSamurai/Aidbox-angular-sample)
+
 In this guide we will locally launch FHIR application based on  [Angular framework](https://angular.io) and Aidbox.Dev as a backend fo this SPA. This simple application will realize basic patient list an CRUD.
 
 ## Install
