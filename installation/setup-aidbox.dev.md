@@ -52,3 +52,11 @@ $ docker-compose up
 
 That's it! Aidbox.Dev is running and you can point your browser to [http://localhost:8888/](http://localhost:8888/) to see a fancy welcome page.
 
+### Getting Started
+
+Learn how to start up with simple Single Page Application with Patient list and Patient CRUD in our tutorial.
+
+{% page-ref page="../tutorials/run-local-demo.md" %}
+
+
+
