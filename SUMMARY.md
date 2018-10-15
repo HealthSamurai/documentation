@@ -24,7 +24,7 @@
   * [Working with Aidbox from .NET](tutorials/working-with-aidbox-from-.net.md)
   * [Profiling and Validation](tutorials/profiling-and-validation.md)
   * [Custom Resources](tutorials/getting-started-with-custom-resources.md)
-  * [Run local demo \(draft\)](tutorials/run-local-demo.md)
+  * [Patient CRUD SPA](tutorials/run-local-demo.md)
 * [Aidbox SDK](aidbox-sdk/README.md)
   * [NodeJs SDK](aidbox-sdk/untitled.md)
   * [SDK internals](aidbox-sdk/sdk-internals.md)
