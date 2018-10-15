@@ -4,7 +4,7 @@
 
 For custom profiling, Aidbox provides additional resource `AidboxProfile`. This resource specifies resource type and [JSON Schema](https://json-schema.org/) which will validate the specified resource type.
 
-## AidboxProfile Resource Structure
+## AidboxProfile resource structure
 
 ### bind 
 
@@ -12,46 +12,62 @@ Element is of type [Reference](https://www.hl7.org/fhir/references.html). Specif
 
 **Example:** Binding to a `Practitioner` resource.
 
-```yaml
-bind:
-  id: Practitioner # Target resource type "Practitoner"
-  resourceType: Entity
+```javascript
+{
+  "bind": {
+    "id": "Practitioner",    // Target resource type "Practitoner"
+    "resourceType": "Entity"
+  }
+}
 ```
 
 ### schema
 
-Element is of type [JSON Schema ](https://json-schema.org/)object which will validate a resource.
+Plain [JSON Schema ](https://json-schema.org/)object which will validate a resource.
 
-## **Example: require properties**
+**Example:** Require name attribute
 
-Let's validate newly created `Patient` resources by specifying that `name` and `gender` properties are required. First, we need to create the appropriate AidboxProfile resource.
+```javascript
+{
+  "schema": {
+    "type": "object",
+    "required": ["name"]
+  }
+}
+```
+
+## **Examples**
+
+### **Require properties**
+
+Let's validate newly created `Patient` resources by specifying that `name` and `gender` properties are required. First, we need to create the appropriate `AidboxProfile` resource.
 
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-POST {{base}}/AidboxProfile
-```
+POST [base]/AidboxProfile
 
-```javascript
-Content-Type = application/yaml
-```
-
-```yaml
-resourceType: AidboxProfile
-id: custom-patient-constraint
-bind:
-  id: Patient
-  resourceType: Entity
-schema:
-  type: object
-  required:
-    - name
-    - gender
+{
+	"resourceType": "AidboxProfile",
+	"id": "custom-patient-constraint",
+	"bind": {
+		"id": "Patient",
+		"resourceType": "Entity"
+	},
+	"schema": {
+		"type": "object",
+		"required": [
+			"name",
+			"gender"
+		]
+	}
+}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
 ```javascript
+STATUS: 201
 {
   "bind": {
     "id": "Patient",
@@ -80,9 +96,9 @@ schema:
 {% endtabs %}
 
 {% hint style="info" %}
-If you are using Aidbox.Dev, after creating an`AidboxProfile`resource you need to restart your Aidbox.Dev server.
+If you are using Aidbox.Dev, after creating an AidboxProfile resource you need to restart your Aidbox.Dev server.
 
-`docker-compose down && docker-compose up -d`
+`$ docker-compose down && docker-compose up -d`
 {% endhint %}
 
 Now, let's try to create a Patient resource without `name` and/or `gender` . You will receive the error.
@@ -90,21 +106,18 @@ Now, let's try to create a Patient resource without `name` and/or `gender` . You
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-POST /Patient
-```
+POST [base]/Patient
 
-```http
-Content-Type = application/yaml
-```
-
-```yaml
-birthDate: "1985-01-11"
+{
+ "resourceType": "Patient",
+ "birthDate": "1985-01-11"
+}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
 ```javascript
-Status: 422 Unprocessable Entity
+STATUS: 422 
 
 {
   "resourceType": "OperationOutcome",
@@ -130,49 +143,61 @@ Status: 422 Unprocessable Entity
 {% endtab %}
 {% endtabs %}
 
-## **Example: require minimum number of elements**
+###  **Require given and family in name**
 
-In this case, we are expecting that `name` attribute of the type [HumanName](https://www.hl7.org/fhir/datatypes.html#HumanName) will contain elements `given` and `family`. Let's create the AidboxProfile resource with the code below. Then you will need to restart server if you're on Aidbox.Dev. Now, on Patient resource creation we will be receiving the validation error.
+In this case, we are expecting that `name` attribute of the type [`HumanName`](https://www.hl7.org/fhir/datatypes.html#HumanName) will contain elements `given` and `family`. Let's create the `AidboxProfile` resource with the code below. Then you will need to restart server if you're on Aidbox.Dev. Now, on Patient resource creation we will be receiving the validation error.
 
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-POST {{base}}/AidboxProfile
-```
+POST [base]/AidboxProfile
 
-```javascript
-Content-Type = application/yaml
-```
-
-```yaml
-resourceType: AidboxProfile
-id: custom-patient-constraint
-bind:
-  id: Patient
-  resourceType: Entity
-schema:
-  type: object
-  required: ["name"]
-  properties:
-    name:
-      type: array
-      minItems: 1
-      items:
-        type: object
-        required: ["given", "family"]
-        properties:
-          given:
-            type: array
-            minItems: 1
-            items:
-              type: string
-          family:
-            type: string
+{
+	"resourceType": "AidboxProfile",
+	"id": "custom-patient-constraint",
+	"bind": {
+		"id": "Patient",
+		"resourceType": "Entity"
+	},
+	"schema": {
+		"type": "object",
+		"required": [
+			"name"
+		],
+		"properties": {
+			"name": {
+				"type": "array",
+				"minItems": 1,
+				"items": {
+					"type": "object",
+					"required": [
+						"given",
+						"family"
+					],
+					"properties": {
+						"given": {
+							"type": "array",
+							"minItems": 1,
+							"items": {
+								"type": "string"
+							}
+						},
+						"family": {
+							"type": "string"
+						}
+					}
+				}
+			}
+		}
+	}
+}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
 ```javascript
+STATUS: 201
+
 {
   "bind": {
     "id": "Patient",
@@ -223,25 +248,24 @@ schema:
 }
 ```
 {% endtab %}
+{% endtabs %}
 
-{% tab title="Create Resource" %}
+Now, let's try to create a Patient resource without `name` and/or `gender` . You will receive the error.
+
+{% tabs %}
+{% tab title="Request" %}
 ```javascript
-POST /Patient
-```
+POST [base]/Patient
 
-```http
-Content-Type = application/yaml
-```
-
-```yaml
-name:     
-  [{text: "John Malcovich"}]
+{
+ "name": [{"text": "John Malcovich"}]
+}
 ```
 {% endtab %}
 
-{% tab title="Validation" %}
-```yaml
-Status: 422 Unprocessable Entity
+{% tab title="Response" %}
+```javascript
+STATUS: 422
 
 {
   "resourceType": "OperationOutcome",
@@ -272,8 +296,6 @@ Status: 422 Unprocessable Entity
 ```
 {% endtab %}
 {% endtabs %}
-
-
 
 
 

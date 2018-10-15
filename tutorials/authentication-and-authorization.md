@@ -120,6 +120,14 @@ Now USERNAME:PASSWORD can be used to access the box via basic auth.
 
 ### Checking authorization
 
+Вот как это делается в постмане. 
+
+Первый вариант. Вводишь логин/пароль и делаешь запрос к этим эндпоинтам, выбрать бейсик ауф.
+
+Второй вариант через постман, только сгенерировав хедер руками через Эко бейс 64 и подставив в Headers/Authorization = Basic VVNFUk5BTUU6UEFTU1dPUkQK. 
+
+Добавить скриншоты.
+
 This endpoint `https://<your-box>.aidbox.app/fhir/Patient` allows you to get list of patients, but requires authentication in most cases. Let's prepare an authorization header to help server authenticate our client and authorize request to `/fhir/Patient`.
 
 ```bash
