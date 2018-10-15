@@ -20,7 +20,7 @@
   * [Getting Started](tutorials/getting-started.md)
   * [Create and Configure Box](tutorials/create-and-configure-box.md)
   * [Authentication and Authorization](tutorials/authentication-and-authorization.md)
-  * [Load bundle into aidbox.app](tutorials/load-synthea-into-aidbox.app.md)
+  * [Load bundle into FHIR server](tutorials/load-bundle-into-fhir-server.md)
   * [Working with Aidbox from .NET](tutorials/working-with-aidbox-from-.net.md)
   * [Profiling and Validation](tutorials/profiling-and-validation.md)
   * [Custom Resources](tutorials/getting-started-with-custom-resources.md)

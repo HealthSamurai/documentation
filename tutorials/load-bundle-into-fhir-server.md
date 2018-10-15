@@ -1,8 +1,8 @@
-# Load bundle into aidbox.app
+# Load bundle into FHIR server
 
 ### Create your box
 
-Register on https://aidbox.app using your github or google account.
+Register on [https://aidbox.app](https://ui.aidbox.app/) using your github or google account.
 
 Read how to register and create box in this [tutorial](create-and-configure-box.md).
 
