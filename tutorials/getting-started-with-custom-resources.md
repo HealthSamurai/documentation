@@ -1,12 +1,12 @@
 # Custom Resources
 
-Sometimes your data does not fit any existing FHIR resources. It is not always obvious, that your data can not be translated to FHIR \(because of some FHIR generalisations\). The "right" first step is to go to [FHIR community chat](http://health-samurai.info/a-cusres-to-zulip) and ask your specific question or contact health-samurai modelling team with your concern. If after this adventure you are sure - there is no such resource in FHIR or it will take to much time to wait for it - in aidbox you can define your own **Custom Resources.**
+Sometimes your data does not fit any existing FHIR resources. It is not always obvious that your data can not be translated to FHIR \(because of some FHIR generalizations\). The "right" first step is to go to [FHIR community chat](http://health-samurai.info/a-cusres-to-zulip) and ask your specific question or contact Health Samurai modelling team with your concern. If after this adventure you are sure - there is no such resource in FHIR or it will take too much time to wait for it - in Aidbox you can define your own **Custom Resources.**
 
-**Custom Resources** are defined exactly the same way as core FHIR resources, can refer existing resources, have uniform REST API for CRUD and Search and participate in transactions.
+**Custom Resources** are defined exactly the same way as core FHIR resources, they can refer existing resources, have uniform REST API for CRUD and Search, and participate in transactions.
 
-Let's imagine in our app we want to save User preferences like UI configuration or personalised Patient List filters. We expect you  already created your box in [Aidbox.Cloud](https://docs.aidbox.app/~/drafts/-LOrgfiiMwbxfp70_ZP0/primary/v/master/installation/use-aidbox.cloud). First of all we have to define new resource type by creating **Entity** resource.
+Let's imagine in our app we want to save user preferences like UI configuration or personalized Patient List filters. We expect you have already created your box in [Aidbox.Cloud](https://docs.aidbox.app/~/drafts/-LOrgfiiMwbxfp70_ZP0/primary/v/master/installation/use-aidbox.cloud). First of all, we have to define new resource type by creating **Entity** resource.
 
-​Go to REST console and paste following request:
+​Access the REST console and paste the following request:
 
 ```yaml
 POST /Entity​
@@ -16,7 +16,7 @@ type: resource
 isOpen: true
 ```
 
-You should see response like:
+You should see the response:
 
 ```yaml
 resourceType: Entity
@@ -28,11 +28,11 @@ type: resource
 isOpen: true
 ```
 
-This mean that resource of type Entity was successfully created.  When you create Entity resources with type `resource`, aidbox on fly will initialise storage for your new resources and generate CRUD & Search REST API.
+This means that resource of type Entity was successfully created.  When you create Entity resources with type `resource`, Aidbox will on the fly initialize a storage for your new resources and generate CRUD & Search REST API.
 
-When ew set `isOpen: true` flag - this means resource does not have specific structure and you can store arbitrary JSON document. This is useful when you do not know exact resource structure while working on prototype. Later we will make it's schema more strict and add validations.
+When you set `isOpen: true` flag this means that this resource does not have any specific structure and you can store arbitrary JSON document. This is useful when you do not know exact resource structure while working on a prototype. Later we will make it's schema more strict and add validations.
 
-Let's checkout API for our custom resource - UserSettings. You can list UserSettings resources by standard FHIR uri template - `GET /{resourceType}` - i.e. `GET /UserSetting`. But at that moment this list is empty. You can test it using same rest console:
+Let's checkout API for our custom resource UserSettings. You can list UserSettings resources by standard FHIR URI template - `GET /{resourceType}` - i.e. `GET /UserSetting`. But at that moment this list is empty. You can test it using the same rest console:
 
 ```yaml
 GET /UserSetting
@@ -48,7 +48,7 @@ total: _undefined
 link: []
 ```
 
-In query-sql we see, what query is executed by aidbox to get this resources and can see table "usersettings" was created to store resources. You can test it using DB Console using following query:
+In the query-sql we see what query is executed by Aidbox to get these resources and can see the table "usersettings" was created to store resources. You can test it with the DB Console using the following query:
 
 ```sql
 SELECT * FROM "usersetting";
@@ -103,7 +103,7 @@ SELECT id, resource->>'theme' as theme FROM "usersetting";
 | :--- | :--- |
 | user-1 | dark |
 
-As well you can read, update and delete UserSettings resource with:
+As well you can read, update, and delete UserSettings resource with:
 
 ```yaml
 GET /UserSetting/user-1
@@ -193,7 +193,7 @@ entry:
   request: {method: POST, url: UserSetting}
 ```
 
-Awesome we've got nice API by just providing couple of lines of metadata. But the schema of our custom resource now is too open and API users can put any data into UserSetting resource. For example create such resource:
+Awesome! We've got a nice API by just providing a couple of lines of metadata. But the schema of our custom resource is now too open and API users can put any data into UserSetting resource. For example create such resource:
 
 ```yaml
 POST /UserSetting
@@ -204,7 +204,7 @@ theme:
   - name: black
 ```
 
-Now let's put some restrictions and define our Custom Resource structure/schema. To describe structure of resource we should use Attribute meta-resource. For example we want to restrict theme attribute to be string from specific enum:
+Now let's put some restrictions and define our Custom Resource structure/schema. To describe structure of resource, we should use Attribute meta-resource. For example we want to restrict theme attribute to be a string from specific enumeration:
 
 ```yaml
 POST /Attribute
@@ -216,7 +216,7 @@ enum: ['dark', 'white']
 resource: {id: UserSetting, resourceType: Entity}
 ```
 
-To validate incoming resources aidbox uses json-schema, which generated from Entity & Attribute meta-resources. We can expect what schema will be applied to UserSetting resources:
+To validate incoming resources, Aidbox uses json-schema which is generated from Entity & Attribute meta-resources. We can specify which schema will be applied to UserSetting resources:
 
 ```yaml
 GET /$json-schema?path=definitions.UserSetting
@@ -242,9 +242,9 @@ schema:
       enum: [dark, white]
 ```
 
-As we see on line 19, `theme` property now has type string and restricted by enum. 
+As we see on line 19, `theme` property now has type string and is restricted by enum. 
 
-Let's try to create invalid resource now:
+Let's try to create an invalid resource now:
 
 ```yaml
 POST /UserSetting
@@ -276,7 +276,7 @@ errors:
 warnings: []
 ```
 
-We constrained only one attribute and because our Entity.isOpen = true -  this resource  can have any additional attributes without schema. We can turn of this by setting Entity.isOpen to false:
+We constrained only one attribute and because our Entity.isOpen = true, this resource  can have any additional attributes without a schema. We can turn this off by setting Entity.isOpen to false:
 
 ```yaml
 PATCH /Entity/UserSetting?_type=json-merge-patch
@@ -284,7 +284,7 @@ PATCH /Entity/UserSetting?_type=json-merge-patch
 isOpen: false
 ```
 
-Now let inspect the schema:
+Now let's inspect the schema:
 
 ```yaml
 GET /$json-schema?path=definitions.UserSetting
@@ -312,7 +312,7 @@ schema:
   additionalProperties: false
 ```
 
-And we see schema keyword `additionalProperties: false,` which means now our schema is closed. Let's test it:
+And we see schema keyword `additionalProperties: false` which means that now our schema is closed. Let's test it:
 
 ```yaml
 POST /UserSetting
