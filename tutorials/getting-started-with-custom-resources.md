@@ -1,6 +1,6 @@
 # Custom Resources
 
-Sometimes your data does not fit any existing FHIR resources. It is not always obvious that your data can not be translated to FHIR \(because of some FHIR generalizations\). The "right" first step is to go to [FHIR community chat](http://health-samurai.info/a-cusres-to-zulip) and ask your specific question or contact Health Samurai modelling team with your concern. If after this adventure you are sure - there is no such resource in FHIR or it will take too much time to wait for it - in Aidbox you can define your own **Custom Resources.**
+Sometimes your data does not fit any existing FHIR resources. It is not always obvious that your data can not be translated to FHIR \(because of some FHIR generalizations\). The "right" first step is to go to [FHIR community chat](http://health-samurai.info/a-cusres-to-zulip) and ask your specific question or contact Health Samurai modelling team with your concern. If after this adventure you are sure — there is no such resource in FHIR or it will take too much time to wait for it — in Aidbox you can define your own **Custom Resources.**
 
 **Custom Resources** are defined exactly the same way as core FHIR resources, they can refer existing resources, have uniform REST API for CRUD and Search, and participate in transactions.
 
@@ -28,11 +28,11 @@ type: resource
 isOpen: true
 ```
 
-This means that resource of type Entity was successfully created.  When you create Entity resources with type `resource`, Aidbox will on the fly initialize a storage for your new resources and generate CRUD & Search REST API.
+This means that resource of type Entity was successfully created. When you create Entity resources with type `resource`, Aidbox will on the fly initialize a storage for your new resources and generate CRUD & Search REST API.
 
 When you set `isOpen: true` flag this means that this resource does not have any specific structure and you can store arbitrary JSON document. This is useful when you do not know exact resource structure while working on a prototype. Later we will make it's schema more strict and add validations.
 
-Let's checkout API for our custom resource UserSettings. You can list UserSettings resources by standard FHIR URI template - `GET /{resourceType}` - i.e. `GET /UserSetting`. But at that moment this list is empty. You can test it using the same rest console:
+Let's checkout API for our custom resource UserSettings. You can list UserSettings resources by the standard FHIR URI template `GET /{resourceType}`, i.e. `GET /UserSetting`. But at that moment this list is empty. You can test it using the same REST Console:
 
 ```yaml
 GET /UserSetting
@@ -54,7 +54,7 @@ In the query-sql we see what query is executed by Aidbox to get these resources 
 SELECT * FROM "usersetting";
 ```
 
-Cool! Now let's create first UserSetting resource using REST console:
+Cool! Now, let's create first UserSetting resource using REST Console:
 
 ```yaml
 POST /UserSetting
@@ -93,7 +93,7 @@ total: 1
 link: []
 ```
 
-Or execute sql query:
+Or execute the SQL query:
 
 ```sql
 SELECT id, resource->>'theme' as theme FROM "usersetting";
@@ -204,7 +204,7 @@ theme:
   - name: black
 ```
 
-Now let's put some restrictions and define our Custom Resource structure/schema. To describe structure of resource, we should use Attribute meta-resource. For example we want to restrict theme attribute to be a string from specific enumeration:
+Now, let's put some restrictions and define our Custom Resource structure/schema. To describe structure of resource, we should use Attribute meta-resource. For example we want to restrict theme attribute to be a string from specific enumeration:
 
 ```yaml
 POST /Attribute
@@ -276,7 +276,7 @@ errors:
 warnings: []
 ```
 
-We constrained only one attribute and because our Entity.isOpen = true, this resource  can have any additional attributes without a schema. We can turn this off by setting Entity.isOpen to false:
+We constrained only one attribute and because our `Entity.isOpen = true`, this resource  can have any additional attributes without a schema. We can turn this off by setting Entity.isOpen to false:
 
 ```yaml
 PATCH /Entity/UserSetting?_type=json-merge-patch
@@ -284,7 +284,7 @@ PATCH /Entity/UserSetting?_type=json-merge-patch
 isOpen: false
 ```
 
-Now let's inspect the schema:
+Now, let's inspect the schema:
 
 ```yaml
 GET /$json-schema?path=definitions.UserSetting
@@ -312,7 +312,7 @@ schema:
   additionalProperties: false
 ```
 
-And we see schema keyword `additionalProperties: false` which means that now our schema is closed. Let's test it:
+And we see the schema keyword `additionalProperties: false` which means that now our schema is closed. Let's test it:
 
 ```yaml
 POST /UserSetting
