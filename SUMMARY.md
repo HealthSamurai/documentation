@@ -36,6 +36,7 @@
   * [Profiling](api/profiling.md)
   * [History](api/history-1.md)
   * [Search](api/history.md)
+  * [$json-schema](api/usdjson-schema.md)
   * [Custom Operations](api/operational-model.md)
   * [Custom Metadata](api/custom-metadata.md)
 * [Security](security/README.md)
