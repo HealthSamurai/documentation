@@ -1,22 +1,19 @@
 # Custom Resources
 
-If you data does not fit existing  FHIR resources - in aidbox you can define your Custom Resources.
+Sometimes your data does not fit any existing FHIR resources.  It is not always obvious, that your data can not be translated to FHIR \(because of some FHIR generalisations\). The "right" first step is to go to [FHIR community chat](http://health-samurai.info/a-cusres-to-zulip) and ask your specific question or contact health-samurai modelling team with your concern. If after this adventure you are sure -  there is no such resource in FHIR or it will take to much time to wait for it - in aidbox you can define your own **Custom Resources.**
 
-You can create meta-resources one by one or use  manifest 
+**Custom Resources**  are defined exactly the same way as core FHIR resources, can refer existing resources, have uniform REST API for CRUD and Search and participate in transactions.
+
+Let's imagine in our app we want to save User preferences like UI configuration or personalised Patient List filters.  We expect you have [installed Aidbox.Dev](../installation/setup-aidbox.dev.md) or already created your box in [Aidbox.Cloud](../installation/use-aidbox.cloud.md). First of all we have to define new resource type by creating **Entity** resource.
+
+
 
 ```yaml
-resourceType: 'Manifest'
-id: payments
-resources: 
-  Payment:
-      properties:
-          amount:  {type: 'numeric'}
-          patient: {type: 'Reference'}
-          datetime: {type: 'dateTime'}
-          lines:
-             collection: true
-             properties:
-                 item: {type: 'string'}
+POST /Entity
+
+id: UserSetting
+type: resource
+isOpen: true
 ```
 
 
