@@ -209,12 +209,123 @@ Now let's put some restrictions and define our Custom Resource structure/schema.
 ```yaml
 POST /Attribute
 
-id: UserSetting.id
-path: ['id']
+id: UserSetting.theme
+path: ['theme']
 type: {id: string, resourceType: Entity}
 enum: ['dark', 'white']
 resource: {id: UserSetting, resourceType: Entity}
 ```
 
+To validate incoming resources aidbox uses json-schema, which generated from Entity & Attribute meta-resources. We can expect what schema will be applied to UserSetting resources:
 
+```yaml
+GET /$json-schema?path=definitions.UserSetting
+
+path: [definitions, UserSetting]
+schema:
+  type: object
+  minProperties: 1
+  patternProperties:
+    ^(_.*|fhir_.*): {}
+  properties:
+    id: {type: string}
+    extension:
+      type: array
+      items: {$ref: '#/definitions/Extension'}
+    modifierExtension:
+      type: array
+      items: {$ref: '#/definitions/Extension'}
+    meta: {$ref: '#/definitions/Meta'}
+    resourceType: {type: string, constant: UserSetting}
+    theme:
+      type: string
+      enum: [dark, white]
+```
+
+As we see on line 19, `theme` property now has type string and restricted by enum. 
+
+Let's try to create invalid resource now:
+
+```yaml
+POST /UserSetting
+
+id: user-1
+theme: 2
+
+# response status 422:
+
+resourceType: OperationOutcome
+errors:
+- path: [theme]
+  message: expected type of string
+- path: [theme]
+  message: expeceted one of dark, white
+warnings: []
+
+# or
+POST /UserSetting
+
+id: user-1
+theme: unexisting
+
+# response status 422:
+resourceType: OperationOutcome
+errors:
+- path: [theme]
+  message: expeceted one of dark, white
+warnings: []
+```
+
+We constrained only one attribute and because our Entity.isOpen = true -  this resource  can have any additional attributes without schema. We can turn of this by setting Entity.isOpen to false:
+
+```yaml
+PATCH /Entity/UserSetting?_type=json-merge-patch
+
+isOpen: false
+```
+
+Now let inspect the schema:
+
+```yaml
+GET /$json-schema?path=definitions.UserSetting
+
+# response:
+path: [definitions, UserSetting]
+schema:
+  type: object
+  minProperties: 1
+  patternProperties:
+    ^(_.*|fhir_.*): {}
+  properties:
+    id: {type: string}
+    extension:
+      type: array
+      items: {$ref: '#/definitions/Extension'}
+    modifierExtension:
+      type: array
+      items: {$ref: '#/definitions/Extension'}
+    meta: {$ref: '#/definitions/Meta'}
+    resourceType: {type: string, constant: UserSetting}
+    theme:
+      type: string
+      enum: [dark, white]
+  additionalProperties: false
+```
+
+And we see schema keyword `additionalProperties: false,` which means now our schema is closed. Let's test it:
+
+```yaml
+POST /UserSetting
+
+theme: dark
+menu: collapsed
+
+# response 422:
+
+resourceType: OperationOutcome
+errors:
+- path: [menu]
+  message: extra property
+warnings: []
+```
 
