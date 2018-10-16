@@ -216,7 +216,7 @@ enum: ['dark', 'white']
 resource: {id: UserSetting, resourceType: Entity}
 ```
 
-To validate incoming resources, Aidbox uses json-schema which is generated from Entity & Attribute meta-resources. We can specify which schema will be applied to UserSetting resources:
+To validate incoming resources, Aidbox uses json-schema, which is generated from Entity & Attribute meta-resources \(read more in [Validation Section](../basic-concepts/validation.md)\). Using [$json-schema](../api/usdjson-schema.md) operation we can inspect which schema will be applied to UserSetting resources:
 
 ```yaml
 GET /$json-schema?path=definitions.UserSetting
