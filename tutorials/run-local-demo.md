@@ -8,7 +8,7 @@ For this tutorial you will need git, node js and any version of Aidbox as a back
 
 This repository on GitHub [https://github.com/HealthSamurai/Aidbox-angular-sample](https://github.com/HealthSamurai/Aidbox-angular-sample)
 
-In this guide we will locally launch FHIR application based on  [Angular framework](https://angular.io) and Aidbox.Dev as a backend fo this SPA. This simple application will realize basic patient list an CRUD.
+In this guide we will locally launch FHIR application based on  [Angular framework](https://angular.io) and Aidbox.Dev as a backend for this SPA. This simple application will realize basic CRUD operations on patient list.
 
 ## Install
 
@@ -37,6 +37,8 @@ export const environment = {
 
 When you want run this sample application with **Aidbox.Cloud** you need specify `AIDBOX_URL` as `https://<YOUR_BOX_NAME>.aidbox.app`
 
+DOESN'T WORK
+
 {% code-tabs %}
 {% code-tabs-item title="environment.ts" %}
 ```typescript
@@ -47,7 +49,7 @@ export const environment = {
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-### Installation ans start
+### Installation and start
 
 This sample application required minimal [Node JS version 8.9](https://nodejs.org/en/)
 
@@ -55,7 +57,7 @@ Install all packages and angular cli:
 
 ```bash
  $ npm install
- $ npm install -g @angular/cli 
+ $ npm install -g @angular/cli
 ```
 
 And launch application:
