@@ -28,11 +28,11 @@ type: resource
 isOpen: true
 ```
 
-This means that resource of type Entity was successfully created. When you create Entity resources with type `resource`, Aidbox will on the fly initialize a storage for your new resources and generate CRUD & Search REST API.
+This means that resource of type Entity was successfully created. When you create Entity resources with type `resource`, Aidbox will on the fly initialize a storage for  new resource type and generate CRUD & Search REST API.
 
-When you set `isOpen: true` flag this means that this resource does not have any specific structure and you can store arbitrary JSON document. This is useful when you do not know exact resource structure while working on a prototype. Later we will make it's schema more strict and add validations.
+When you set `isOpen: true` flag this means, that resource does not have any specific structure and you can store arbitrary data. This is useful when you do not know exact resource structure, for example while working on a prototype. Later we will make it's schema more strict and will constraint with additional validations.
 
-Let's checkout API for our custom resource UserSettings. You can list UserSettings resources by the standard FHIR URI template `GET /{resourceType}`, i.e. `GET /UserSetting`. But at that moment this list is empty. You can test it using the same REST Console:
+Let's checkout API for our custom resource UserSettings. You can list UserSettings resources by the standard FHIR URI template `GET /{resourceType}` :
 
 ```yaml
 GET /UserSetting
@@ -48,7 +48,7 @@ total: _undefined
 link: []
 ```
 
-In the query-sql we see what query is executed by Aidbox to get these resources and can see the table "usersettings" was created to store resources. You can test it with the DB Console using the following query:
+In the query-sql we see what query is executed by Aidbox to get these resources and can see - that the table "usersettings" was created. You can test it with the DB Console using the following query:
 
 ```sql
 SELECT * FROM "usersetting";
@@ -193,7 +193,7 @@ entry:
   request: {method: POST, url: UserSetting}
 ```
 
-Awesome! We've got a nice API by just providing a couple of lines of metadata. But the schema of our custom resource is now too open and API users can put any data into UserSetting resource. For example create such resource:
+Awesome! We've got a nice API by just providing a couple of lines of metadata. But the schema of our custom resource is currently too open and users can put any data into UserSetting resource. For example we can do this:
 
 ```yaml
 POST /UserSetting
@@ -204,7 +204,7 @@ theme:
   - name: black
 ```
 
-Now, let's put some restrictions and define our Custom Resource structure/schema. To describe structure of resource, we should use Attribute meta-resource. For example we want to restrict theme attribute to be a string from specific enumeration:
+Now, let's put some restrictions and define our Custom Resource structure. To describe structure of resource, we will use [Attribute](../basic-concepts/meta-model/entity-and-attributes.md) meta-resource. For example we want to restrict `theme` attribute to be a `string` from specific enumeration:
 
 ```yaml
 POST /Attribute

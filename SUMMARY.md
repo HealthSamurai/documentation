@@ -16,6 +16,7 @@
     * [SearchParameter](basic-concepts/meta-model/searchparameter.md)
     * [Modules](basic-concepts/meta-model/modules.md)
     * [Manifest](basic-concepts/meta-model/manifest.md)
+  * [Validation](basic-concepts/validation.md)
 * [oauth 2.0](oauth-2.0.md)
 * [Tutorials](tutorials/README.md)
   * [Create and Configure Box](tutorials/create-and-configure-box.md)
