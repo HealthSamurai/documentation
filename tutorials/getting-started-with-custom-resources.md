@@ -1,6 +1,6 @@
 # Custom Resources
 
-Sometimes your data does not fit any existing FHIR resources. It is not always obvious that your data can not be translated to FHIR \(because of some FHIR generalizations\). The "right" first step is to go to [FHIR community chat](http://health-samurai.info/a-cusres-to-zulip) and ask your specific question or contact Health Samurai modelling team with your concern. If after this adventure you are sure — there is no such resource in FHIR or it will take too much time to wait for it — in Aidbox you can define your own **Custom Resources.**
+Sometimes your data does not fit any existing FHIR resources. It is not always obvious that your data _can not_ be translated to FHIR - because of some FHIR generalisations. The "right" first step is to go to [FHIR community chat](http://health-samurai.info/a-cusres-to-zulip) and ask your specific question or contact Health Samurai modelling team with your concern. If after this adventure you are sure — there is no such resource in FHIR or it will take too much time to wait for it — in Aidbox you can define your own **Custom Resources.**
 
 **Custom Resources** are defined exactly the same way as core FHIR resources, they can refer existing resources, have uniform REST API for CRUD and Search, and participate in transactions.
 
@@ -328,4 +328,6 @@ errors:
   message: extra property
 warnings: []
 ```
+
+In this tutorial you've seen how to define and use Custom Resources in aidbox. In future series we will show you how you can add more advanced validations on Custom Resources and create custom endpoints to define your business logic. If you have any questions or suggestions please provide us with your feedback!
 
