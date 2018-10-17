@@ -42,7 +42,7 @@ Obviously results to failure
 {% endapi-method-spec %}
 {% endapi-method %}
 
-### Create a client \(user\)
+### Create a client
 
 Error message and response code give us a tip that server requires authentication. To make it possible we need to create a subject for authentication \(a client\).
 
