@@ -6,7 +6,9 @@ There are several options for authentication but let's start from the simplest o
 
 When an Aidbox box is created \( `<your-box>` for example\) you get a fully functional FHIR server and can make requests to it by the URL like`https://<your-box>.aidbox.app`. Make sure that you use the proper name of your new box instead of `<your-box>`. Let's try to obtain a patient list for example. 
 
-{% api-method method="get" host="https://<your-box>.aidbox.app" path="/Patient" %}
+![](../.gitbook/assets/scr-2018-10-17_11-08-38.png)
+
+{% api-method method="get" host="https://<your-box>.aidbox.app" path="/fhir/Patient" %}
 {% api-method-summary %}
 Get 403
 {% endapi-method-summary %}
@@ -41,8 +43,6 @@ Obviously results to failure
 {% endapi-method %}
 
 ### Create a client \(user\)
-
-![](../.gitbook/assets/scr-2018-10-15_22-59-42.png)
 
 Error message and response code give us a tip that server requires authentication. To make it possible we need to create a subject for authentication \(a client\).
 
@@ -130,13 +130,9 @@ Option 1. Basic Auth
 
  In Postman, create a new request, switch to **Authorization** tab, select **Basic Auth**.
 
-![](../.gitbook/assets/scr-2018-10-15_19-40-40.png)
-
 Enter Username and Password. It should be same values as you entered in the resources Client and AccessPolicy in your instance of Aidbox.Cloud. Now the request will be executed successfully.
 
-In a command console, encode your username and password to base64 encoding with the following command: 
-
-![](../.gitbook/assets/scr-2018-10-15_19-40-51.png)
+![](../.gitbook/assets/scr-2018-10-17_11-11-59.png)
 
 {% hint style="info" %}
 Option 2. Manually generated value in Headers/Authorization
@@ -144,15 +140,21 @@ Option 2. Manually generated value in Headers/Authorization
 
 Basic authentication scheme is described in [RFC 2617](https://tools.ietf.org/html/rfc2617#page-5) and requires an `Authorization` header value in the following format: `Basic VVNFUk5BTUU6UEFTU1dPUkQK`.
 
+In a command console, encode your username and password to base64 encoding with the following command: 
+
 ```bash
-echo "USERNAME:PASSWORD" | base64
+echo -n "USERNAME:PASSWORD" | base64
 
 # The output will be:
 
 # VVNFUk5BTUU6UEFTU1dPUkQK
 ```
 
-{% api-method method="get" host="https://<your-box>.aidbox.app" path="/Patient" %}
+In Postman, create a new request, access the Headers tab,  select the Authorization key, and enter the generated value with appended word `Basic`: `Basic VVNFUk5BTUU6UEFTU1dPUkQK`. 
+
+![](../.gitbook/assets/scr-2018-10-17_11-09-28.png)
+
+{% api-method method="get" host="https://<your-box>.aidbox.app" path="/fhir/Patient" %}
 {% api-method-summary %}
 Get patient list
 {% endapi-method-summary %}
@@ -190,7 +192,7 @@ Patients successfully retrieved.
   "entry": [],
   "total": "_undefined",
   "link": []
-}
+}The endpoint https://<your-box>.aidbox.app/Patient allows you to get a list of patients but requires an authentication in most cases. Let's prepare an authorization header to help the server to authenticate our client and authorize the request to /Patient.
 ```
 {% endapi-method-response-example %}
 {% endapi-method-response %}
@@ -198,10 +200,4 @@ Patients successfully retrieved.
 {% endapi-method %}
 
 It works! You are awesome!
-
-In Postman, create a new request, access the Headers tab,  select the Authorization key, and enter the generated value with appended word `Basic`: `Basic VVNFUk5BTUU6UEFTU1dPUkQK`. 
-
-![](../.gitbook/assets/scr-2018-10-15_22-46-58.png)
-
-The endpoint `https://<your-box>.aidbox.app/Patient` allows you to get a list of patients but requires an authentication in most cases. Let's prepare an authorization header to help the server to authenticate our client and authorize the request to `/Patient`.
 
