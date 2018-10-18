@@ -37,8 +37,6 @@ export const environment = {
 
 When you want run this sample application with **Aidbox.Cloud** you need specify `AIDBOX_URL` as `https://<YOUR_BOX_NAME>.aidbox.app`
 
-DOESN'T WORK
-
 {% code-tabs %}
 {% code-tabs-item title="environment.ts" %}
 ```typescript
