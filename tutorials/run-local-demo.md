@@ -66,7 +66,7 @@ $ ng serve
 
 After start - open your browser and go to [`http://localhost:4200`](http://localhost:4200) - we will see Angular simple app.
 
-![](../.gitbook/assets/screen-shot-2018-10-15-at-16.02.07.png)
+![](../.gitbook/assets/screenshot-2018-10-18-17.16.29%20%281%29.png)
 
 It is a list of patients and information about them. Patient - it's a [FHIR resource](https://www.hl7.org/fhir/resourcelist.html). We can create, view, edit, and delete patient data — standard set of CRUD operations. Also in this demo, we have the ability to search by last/first name and paginated output of patients list.
 
