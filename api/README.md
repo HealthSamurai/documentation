@@ -1,4 +1,4 @@
-# API
+# REST API
 
 This API reference describes basic FHIR endpoints for resources management and retrieval, as well as some custom Aidbox extensions.
 
