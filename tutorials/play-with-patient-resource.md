@@ -6,7 +6,7 @@ description: In this guide we will learn how interact with REST console
 
 ### REST console
 
-Last time, we stopped at using our REST console. Let's see how to use it.
+Last time, we started at using our REST console. Let's see what can we do here.
 
 ![REST console](../.gitbook/assets/screenshot-2018-10-18-18.54.58.png)
 
