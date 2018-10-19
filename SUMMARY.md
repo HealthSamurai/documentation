@@ -79,5 +79,7 @@
   * [Install](devbox/untitled.md)
   * [Configure](devbox/configure.md)
   * [Serve Static Files](devbox/static.md)
+* [Aidbox UI](aidbox-ui/README.md)
+  * [REST Console](aidbox-ui/rest-console.md)
 * [FAQ](faq.md)
 
