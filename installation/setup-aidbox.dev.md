@@ -58,9 +58,9 @@ That's it! Aidbox.Dev is running and you can point your browser to [http://local
 
 ### Getting Started
 
-Learn how to start up with simple Single Page Application with Patient list and Patient CRUD in our tutorial.
+Learn how to obtain access to the [REST Api](../tutorials/how-to-use-rest-api.md) by link below
 
-{% page-ref page="../tutorials/run-local-demo.md" %}
+{% page-ref page="../tutorials/how-to-use-rest-api.md" %}
 
 
 
