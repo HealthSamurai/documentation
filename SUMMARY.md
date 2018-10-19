@@ -24,6 +24,7 @@
   * [Resource Owner Credentials](oauth-2.0/resource-owner-credentials.md)
   * [Client Credentials](oauth-2.0/client-credentials.md)
 * [Tutorials](tutorials/README.md)
+  * [How to use REST Api](tutorials/how-to-use-rest-api.md)
   * [Create and Configure Box](tutorials/create-and-configure-box.md)
   * [Play with REST console and Patient resource](tutorials/play-with-patient-resource.md)
   * [Custom Resources](tutorials/getting-started-with-custom-resources.md)
