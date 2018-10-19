@@ -18,6 +18,7 @@
     * [Manifest](basic-concepts/meta-model/manifest.md)
   * [Validation](basic-concepts/validation.md)
 * [OAuth 2.0](oauth-2.0/README.md)
+  * [Getting Started](oauth-2.0/getting-started.md)
   * [Authorization Code](oauth-2.0/authorization-code.md)
   * [Implicit](oauth-2.0/implicit.md)
   * [Resource Owner Credentials](oauth-2.0/resource-owner-credentials.md)

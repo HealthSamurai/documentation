@@ -1,10 +1,14 @@
 # OAuth 2.0
 
+## Prerequisite
+
+Before reading this documentation checkout  [Get Started tutorial](getting-started.md) how to obtain direct access to the Aidbox.
+
+{% page-ref page="getting-started.md" %}
+
 ## OAuth 2.0
 
 The OAuth 2.0 authorization framework enables a third-party application to obtain limited access to an HTTP service, either on behalf of a resource owner by orchestrating an approval interaction between the resource owner and the HTTP service, or by allowing the third-party application to obtain access on its own behalf. More detailed information can be found in the [OAuth 2.0 Authorization Framework RFC](https://tools.ietf.org/html/rfc6749).
-
-Aidbox support all of 4 OAuth 2.0 authorization flows. 
 
 ### Authorization Code Grant
 
