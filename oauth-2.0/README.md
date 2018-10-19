@@ -1,8 +1,10 @@
 # OAuth 2.0
 
+## OAuth 2.0
+
 The OAuth 2.0 authorization framework enables a third-party application to obtain limited access to an HTTP service, either on behalf of a resource owner by orchestrating an approval interaction between the resource owner and the HTTP service, or by allowing the third-party application to obtain access on its own behalf. More detailed information can be found in the [OAuth 2.0 Authorization Framework RFC](https://tools.ietf.org/html/rfc6749).
 
-Aidbox support all of 4 OAuth 2.0 authorization flows
+Aidbox support all of 4 OAuth 2.0 authorization flows. 
 
 ### Authorization Code Grant
 
@@ -27,4 +29,6 @@ The resource owner password credentials grant type is suitable in cases where th
 {% page-ref page="client-credentials.md" %}
 
 The client can request an access token using only its client credentials \(or other supported means of authentication\) when the client is requesting access to the protected resources under its control, or those of another resource owner that have been previously arranged with the authorization server \(the method of which is beyond the scope of this specification\).
+
+ 
 
