@@ -58,9 +58,9 @@ Postman automatically added `Authorization` header with token.
 
 ![Automatic build Authorization header](../.gitbook/assets/screen-shot-2018-10-22-at-12.36.52.png)
 
-### Play with Patient
+### Create and read Patient resource
 
-Now you have full REST Api access to the Aidbox.Dev. For example let's play with `Patient` resource.
+Now you have full REST Api access to the Aidbox.Dev. For example let's play with `Patient` resource. 
 
 **Create test Patient**
 
@@ -94,7 +94,38 @@ STATUS: 201
 {% endtab %}
 {% endtabs %}
 
+**Read Patients list**
 
+{% tabs %}
+{% tab title="Request" %}
+```bash
+$ curl  -u root:secret http://localhost:8888/Patient
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+{
+    "resourceType": "Bundle",
+    "type": "searchset",
+    "entry": [
+      {"resource" : {
+         "resourceType": "Patient",
+         "name": [
+         {
+            "given": [
+                "Test"
+            ],
+            "family": "Patient"
+        }
+       ]
+       ....
+      }}
+    ]
+}
+```
+{% endtab %}
+{% endtabs %}
 
 ## What next?
 
