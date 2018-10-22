@@ -16,8 +16,8 @@ Besides OAut2.0 authorization, Aidbox support simply basic auth which use the sa
 
 | Attribute | Type | Description |
 | :--- | :--- | :--- |
-| id | [string](../api/aidbox-data-types.md#string) | Client id. |
-| secret | [password](../api/aidbox-data-types.md#password) | Client secret, stored in encrypted format. |
+| id | [string](../api/aidbox-data-types.md#string) | Client id |
+| secret | [password](../api/aidbox-data-types.md#password) | Client secret |
 | redirect\_uri | [string](../api/aidbox-data-types.md#string) | Set of available redirect uri separated by comma |
 
 ### Samples
@@ -80,7 +80,7 @@ The owner of the resource or `User` is the user who authorizes the application t
       <td style="text-align:left">password</td>
       <td style="text-align:left"><a href="../api/aidbox-data-types.md#password">password</a>
       </td>
-      <td style="text-align:left">User password in the encrypted format</td>
+      <td style="text-align:left">User password</td>
     </tr>
     <tr>
       <td style="text-align:left">data</td>
