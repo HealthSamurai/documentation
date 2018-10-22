@@ -56,6 +56,8 @@ $ docker-compose up
 
 That's it! Aidbox.Dev is running and you can point your browser to [http://localhost:8888/](http://localhost:8888/) to see a fancy welcome page.
 
+![Aidbox.Dev welcome page](../.gitbook/assets/screen-shot-2018-10-22-at-13.37.09.png)
+
 ### Getting Started
 
 Learn how to obtain access to the [REST Api](../tutorials/how-to-use-rest-api.md) by link below
