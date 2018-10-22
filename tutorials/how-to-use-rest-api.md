@@ -4,9 +4,29 @@ description: In this tutorial we will show you how to use REST Api with Aidbox.D
 
 # How to use REST Api in Aidbox.dev
 
-## Basic Authorization
+## Aidbox.Dev Access 
 
-After installation `Aidbox.Dev` create one default [`Client`](../oauth-2.0/users-and-clients.md#client) resource. This resource used in OAuth 2.0 functionality. Also this resource may be used for `basic authorization`. In this tutorial we will use this [`Client`](../oauth-2.0/users-and-clients.md#client) for basic authorization in to Aidbox.Dev .
+By default Aidbox.Dev distributed with the public access. This is make to simplify the use of Aidbox.dev for first time. But the other side this mean than any one who known address of your service can get full access to REST Api. We are strongly don't recommend use public access in production mode.
+
+If you don't want restrict access to Aidbox.Dev you can skip this step and go to [Patient CRUD SPA](run-local-demo.md)
+
+{% page-ref page="run-local-demo.md" %}
+
+### Restrict Access
+
+If you want enable Access Policy in your installation you need setup `DEVBOX_PASSWORD` environment variable to the `Aidbox.Dev` container. You can do this by uncommenting the appropriate line in the `docker-compose.yaml` file.
+
+```yaml
+version: '3.1'
+services:
+  devbox:
+    ......
+    environment:
+      # DEVBOX_PASSOWRD: "${DEVBOX_PASSOWRD:-secret}"  # < Uncomment this string
+    ......
+```
+
+After installation `Aidbox.Dev` create one default [`Client`](../oauth-2.0/users-and-clients.md#client) resource. This resource used in OAuth 2.0 functionality. Also this resource may be used for `Basic Authorization`. In this tutorial we will use this [`Client`](../oauth-2.0/users-and-clients.md#client) for basic authorization in to Aidbox.Dev .
 
 Default `Client` will create  with `password` described in `DEVBOX_PASSWORD` environment variable sent to the container in the `docker-compose.yaml` . If you do not explicitly specify `DEVBOX_PASSWORD` by default if was set as `secret`. We are strongly recommending to change default password in your installation. [`Client.id`](../oauth-2.0/users-and-clients.md#client) of this client is constantly `root`.
 
@@ -16,12 +36,15 @@ Default `Client` will create  with `password` described in `DEVBOX_PASSWORD` env
 version: '3.1'
 services:
   devbox:
+    ......
     environment:
       DEVBOX_PASSOWRD: "${DEVBOX_PASSOWRD:-secret}"
-...
+    ......
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
+
+## Basic Authorization
 
 ### Authorization header
 
