@@ -27,7 +27,7 @@
   * [Access Policy](tutorials/access-policy.md)
   * [Create and Configure Box](tutorials/create-and-configure-box.md)
   * [Play with REST console and Patient resource](tutorials/play-with-patient-resource.md)
-  * [How to use REST Api in Aidbox.dev](tutorials/how-to-use-rest-api.md)
+  * [REST Api access in Aidbox.dev](tutorials/how-to-use-rest-api.md)
   * [Load bundle into FHIR server](tutorials/load-bundle-into-fhir-server.md)
   * [Custom Resources](tutorials/getting-started-with-custom-resources.md)
   * [Authentication and Authorization](tutorials/authentication-and-authorization.md)

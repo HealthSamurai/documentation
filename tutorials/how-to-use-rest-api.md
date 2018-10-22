@@ -2,13 +2,13 @@
 description: In this tutorial we will show you how to use REST Api with Aidbox.Dev
 ---
 
-# How to use REST Api in Aidbox.dev
+# REST Api access in Aidbox.dev
 
 ## Aidbox.Dev Access 
 
-By default Aidbox.Dev distributed with the public access. This is make to simplify the use of Aidbox.dev for first time. But the other side this mean than any one who known address of your service can get full access to REST Api. We are strongly don't recommend use public access in production mode.
+By default `Aidbox.Dev` distributed with the public access. This is make to simplify the use of `Aidbox.dev` for first time. But the other side this mean than any one who known address of your service can get full access to REST Api. We are strongly don't recommend use public access in production mode.
 
-If you don't want restrict access to Aidbox.Dev you can skip this step and go to [Patient CRUD SPA](run-local-demo.md)
+If you don't want restrict access to Aidbox.Dev and keep it public you can skip this step and go to [Patient CRUD SPA](run-local-demo.md)
 
 {% page-ref page="run-local-demo.md" %}
 
@@ -16,15 +16,20 @@ If you don't want restrict access to Aidbox.Dev you can skip this step and go to
 
 If you want enable Access Policy in your installation you need setup `DEVBOX_PASSWORD` environment variable to the `Aidbox.Dev` container. You can do this by uncommenting the appropriate line in the `docker-compose.yaml` file.
 
+{% code-tabs %}
+{% code-tabs-item title="docker-compose.yaml" %}
 ```yaml
 version: '3.1'
 services:
+
   devbox:
     ......
     environment:
       # DEVBOX_PASSOWRD: "${DEVBOX_PASSOWRD:-secret}"  # < Uncomment this string
     ......
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 After installation `Aidbox.Dev` create one default [`Client`](../oauth-2.0/users-and-clients.md#client) resource. This resource used in OAuth 2.0 functionality. Also this resource may be used for `Basic Authorization`. In this tutorial we will use this [`Client`](../oauth-2.0/users-and-clients.md#client) for basic authorization in to Aidbox.Dev .
 
@@ -52,7 +57,7 @@ By [The 'Basic' HTTP Authentication Scheme](https://tools.ietf.org/html/rfc7617)
 
 #### Bash
 
-Build your authrozation token by getting base64 encode from "`root`:`secret`" string.
+Build your authorization token by getting base64 encode from "`root`:`secret`" string.
 
 ```bash
 $ echo -n "root:sercret" | base64
