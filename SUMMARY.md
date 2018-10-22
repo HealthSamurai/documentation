@@ -34,6 +34,7 @@
   * [Profiling and Validation](tutorials/profiling-and-validation.md)
   * [Patient CRUD SPA](tutorials/run-local-demo.md)
 * [REST API](api/README.md)
+  * [metadata](api/metadata.md)
   * [CRUD](api/crud.md)
   * [Patch](api/patch.md)
   * [Transaction](api/transaction.md)
