@@ -24,6 +24,7 @@
   * [Resource Owner Credentials](oauth-2.0/resource-owner-credentials.md)
   * [Client Credentials](oauth-2.0/client-credentials.md)
 * [Tutorials](tutorials/README.md)
+  * [Access Policy](tutorials/access-policy.md)
   * [Create and Configure Box](tutorials/create-and-configure-box.md)
   * [Play with REST console and Patient resource](tutorials/play-with-patient-resource.md)
   * [How to use REST Api in Aidbox.dev](tutorials/how-to-use-rest-api.md)
