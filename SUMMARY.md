@@ -36,6 +36,7 @@
   * [Patient CRUD SPA](tutorials/run-local-demo.md)
 * [REST API](api/README.md)
   * [metadata](api/metadata.md)
+  * [Aidbox Data Types](api/aidbox-data-types.md)
   * [CRUD](api/crud.md)
   * [Patch](api/patch.md)
   * [Transaction](api/transaction.md)

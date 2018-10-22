@@ -16,9 +16,9 @@ Besides OAut2.0 authorization, Aidbox support simply basic auth which use the sa
 
 | Attribute | Type | Description |
 | :--- | :--- | :--- |
-| id | string | Client id. |
-| secret | password | Client secret, stored in encrypted format. |
-| redirect\_uri | string | Set of available redirect uri separated by comma |
+| id | [string](../api/aidbox-data-types.md#string) | Client id. |
+| secret | [password](../api/aidbox-data-types.md#password) | Client secret, stored in encrypted format. |
+| redirect\_uri | [string](../api/aidbox-data-types.md#string) | Set of available redirect uri separated by comma |
 
 ### Samples
 
@@ -66,22 +66,26 @@ The owner of the resource or `User` is the user who authorizes the application t
   <tbody>
     <tr>
       <td style="text-align:left">id</td>
-      <td style="text-align:left">string</td>
+      <td style="text-align:left"><a href="../api/aidbox-data-types.md#string">string</a>
+      </td>
       <td style="text-align:left">Unique user Id</td>
     </tr>
     <tr>
       <td style="text-align:left">email</td>
-      <td style="text-align:left">email</td>
+      <td style="text-align:left"><a href="../api/aidbox-data-types.md#email">email</a>
+      </td>
       <td style="text-align:left">User email</td>
     </tr>
     <tr>
       <td style="text-align:left">password</td>
-      <td style="text-align:left">password</td>
+      <td style="text-align:left"><a href="../api/aidbox-data-types.md#password">password</a>
+      </td>
       <td style="text-align:left">User password in the encrypted format</td>
     </tr>
     <tr>
       <td style="text-align:left">data</td>
-      <td style="text-align:left">object</td>
+      <td style="text-align:left"><a href="../api/aidbox-data-types.md#object">Object</a>
+      </td>
       <td style="text-align:left">
         <p>Free object with any user data.</p>
         <p>Aidbox recommend use standard <a href="https://openid.net/specs/openid-connect-core-1_0.html#Claims">OpenId claims</a>
