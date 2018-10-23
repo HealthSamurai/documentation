@@ -49,6 +49,7 @@
   * [$json-schema](api/usdjson-schema.md)
   * [Custom Operations](api/operational-model.md)
   * [Custom Metadata](api/custom-metadata.md)
+  * [Misc](api/misc.md)
 * [Security](security/README.md)
   * [Access Control](security/access-control/README.md)
     * [Users & Group Tags](security/access-control/users-and-group-tags.md)
