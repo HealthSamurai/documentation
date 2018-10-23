@@ -2,7 +2,7 @@
 description: In this guide we will learn how interact with REST console
 ---
 
-# Play with REST console and Patient resource
+# REST console
 
 ### REST console
 
@@ -14,7 +14,7 @@ REST console is designed to work with resources on your `Box` by sending HTTP re
 
 ### Create Patient
 
-Last time we try to get a list of our patients \(by requesting them through the `GET /Patient`\) and response was empty. Let's add a couple of new patients -  for this we type in our console `POST /Patient` and in the body of the request wherein we will send the data of our new patient:
+Last time \(in [Create and Configure Box](create-and-configure-box.md) tutorial\) we try to get a list of our patients \(by requesting them through the `GET /Patient`\) and response was empty. Let's add a couple of new patients -  for this we type in our console `POST /Patient` and in the body of the request wherein we will send the data of our new patient:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -88,7 +88,7 @@ Status: 201
 {% endtab %}
 {% endtabs %}
 
-This is example, you can change values as you want, but better check full [Patient resource](https://www.hl7.org/fhir/patient.html) description and [official example](https://www.hl7.org/fhir/patient-example.json.html). The `id` field in the request body is not required, if you do not send it to the server, it will be generated 
+This is example, you can change values as you want, but better check full [Patient resource](https://www.hl7.org/fhir/patient.html) description and [official example](https://www.hl7.org/fhir/patient-example.json.html). The `id` field in the request body is not required, if you do not send it to the server, it will be generated.  
 
 ![POST /Patient](../.gitbook/assets/screenshot-2018-10-18-19.41.22.png)
 
@@ -464,9 +464,9 @@ Status: 204
 {% endtab %}
 {% endtabs %}
 
-Upon successful deletion we receive empty body and `status - 204`
+Upon successful deletion we receive empty body and `status - 200`
 
-If we try to get deleted patient  `GET /Patient/example` we will receive `resourceType - OperationOutcome` и `status 410`. 
+If we try to get deleted patient  `GET /Patient/example` we will receive `resourceType - OperationOutcome` and `status 410`. 
 
 {% tabs %}
 {% tab title="Request" %}
