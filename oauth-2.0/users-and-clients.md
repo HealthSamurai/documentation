@@ -104,6 +104,7 @@ POST [base]/User
 
 {"resourceType": "User",
  "id": "admin",
+ "email": "admin@example.com",
  "password": "long-user-password",
  "data": {"given_name" : "Main", "family_name": "Administrator"}}
 ```
