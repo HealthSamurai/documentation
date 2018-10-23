@@ -23,7 +23,6 @@ POST /Patient
 
 {
   "resourceType": "Patient",
-  "id": "example",
   "name": [
     {
       "given": ["Max"]
@@ -88,18 +87,18 @@ Status: 201
 {% endtab %}
 {% endtabs %}
 
-This is example, you can change values as you want, but better check full [Patient resource](https://www.hl7.org/fhir/patient.html) description and [official example](https://www.hl7.org/fhir/patient-example.json.html). The `id` field in the request body is not required, if you do not send it to the server, it will be generated.  
+This is example, you can change values as you want, but better check full [Patient resource](https://www.hl7.org/fhir/patient.html) description and [official example](https://www.hl7.org/fhir/patient-example.json.html). The `id` field in the request body is not required, if you do not send it to the server, it will be generated. A description of the difference in `create` operation behavior between FHIR and Aidbox endpoints can be found [here](../basic-concepts/difference-between-aidbox-and-fhir.md).
 
 ![POST /Patient](../.gitbook/assets/screenshot-2018-10-18-19.41.22.png)
 
 ### Get Patient
 
-After sending the request - we receive a response with `Status - 201` and the sent data - our patient is created. We can make sure of this by sending request  `GET /Patient/<id>`  and receive created patient data,  or we can check a complete list of patients - `GET /Patient` 
+After sending the request - we receive a response with `Status - 201` and the sent data - our patient is created. We can make sure of this by sending request  `GET /Patient/<id>` and receive created patient data \(in our case id is `14dc3340-2ac1-4595-bbb7-3803b08c8f6f`\),  or we can check a complete list of patients - `GET /Patient` 
 
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-GET /Patient/example
+GET /Patient/14dc3340-2ac1-4595-bbb7-3803b08c8f6f
 ```
 {% endtab %}
 
@@ -139,7 +138,7 @@ Status: 200
   }
  ],
  "birthDate": "1990-10-10",
- "id": "example2",
+ "id": "14dc3340-2ac1-4595-bbb7-3803b08c8f6f",
  "resourceType": "Patient",
  "meta": {
   "lastUpdated": "2018-10-19T17:09:58.078Z",
@@ -156,9 +155,9 @@ Status: 200
 {% endtab %}
 {% endtabs %}
 
-### Update Patient
+### Patch Patient
 
-Next step  - update our patient info. For partial update we can use `PATCH /Patient/<id>` , in our case id is `example`,  in body we need send only changed data. For example - let's change our patient name.
+Next step  - update our patient info. For partial update we can use `PATCH /Patient/<id>`,  in body we need send only changed data. For example - let's change our patient name.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -212,6 +211,8 @@ Status: 200
 {% endtab %}
 {% endtabs %}
 
+### Update patient
+
 For full resource update we use`PUT /Patient/<id>`
 
 {% tabs %}
@@ -248,7 +249,7 @@ Status: 200
  ],
  "gender": "male",
  "birthDate": "1991-01-02",
- "id": "example",
+ "id": "14dc3340-2ac1-4595-bbb7-3803b08c8f6f",
  "resourceType": "Patient",
  "meta": {
   "lastUpdated": "2018-10-19T17:18:37.976Z",
@@ -278,7 +279,7 @@ Let's do it for our patient
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-GET /Patient/example/_history
+GET /Patient/14dc3340-2ac1-4595-bbb7-3803b08c8f6f/_history
 ```
 {% endtab %}
 
@@ -289,7 +290,7 @@ Status: 200
 {
  "resourceType": "Bundle",
  "type": "history",
- "total": 2,
+ "total": 3,
  "entry": [
   {
    "resource": {
@@ -308,7 +309,7 @@ Status: 200
      {/.../}
     ],
     "birthDate": "1990-10-10",
-    "id": "example",
+    "id": "14dc3340-2ac1-4595-bbb7-3803b08c8f6f",
     "resourceType": "Patient",
     "meta": {
      "lastUpdated": "2018-10-19T10:12:35.006Z",
@@ -343,7 +344,7 @@ Status: 200
      {/.../}
     ],
     "birthDate": "1990-10-10",
-    "id": "example",
+    "id": "14dc3340-2ac1-4595-bbb7-3803b08c8f6f",
     "resourceType": "Patient",
     "meta": {
      "lastUpdated": "2018-10-18T16:32:53.038Z",
@@ -361,6 +362,7 @@ Status: 200
     "url": "Patient"
    }
   }
+  /.../
  ]
 }
 ```
