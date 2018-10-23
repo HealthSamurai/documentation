@@ -1,10 +1,8 @@
 # SDK internals
 
-### Simplified manifest syntax
+{% hint style="warning" %}
+This page is for SDK developers
+{% endhint %}
 
-SDK clients uses simplified manifest syntax, which will be transformed and merged in aidbox mainfest. 
-
-The example of simplified manifest can be found on NodeJs SDK [page](untitled.md).
-
-Main keys is `addon`, `resources` and `operations`. `addon` is information about aidbox addon \(name and version\), `resources` is a map of resource name and definition of resource attributes, operations is a map of operation name and definition of request pattern \(http verb and path segments\).
+Here will be technical details how about SDK internals to implement & support your Aidbox SDK
 
