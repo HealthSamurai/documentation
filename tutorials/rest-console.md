@@ -69,12 +69,34 @@ Status: 201
   }
  ],
  "gender": "male",
- /.../
- "id": "14dc3340-2ac1-4595-bbb7-3803b08c8f6f",
+ "address": [
+  {
+   "city": "Hello",
+   "line": [
+    "123 Oxygen St"
+   ],
+   "state": "NY",
+   "district": "World",
+   "postalCode": "3212"
+  }
+ ],
+ "telecom": [
+  {
+   "use": "home"
+  },
+  {
+   "use": "work",
+   "rank": 1,
+   "value": "(32) 8934 1234",
+   "system": "phone"
+  }
+ ],
+ "birthDate": "1990-10-10",
+ "id": "f8fe69db-c01c-4a3b-bf0c-0a806ea22577",
  "resourceType": "Patient",
  "meta": {
-  "lastUpdated": "2018-10-18T16:32:53.038Z",
-  "versionId": "5",
+  "lastUpdated": "2018-10-23T09:47:36.555Z",
+  "versionId": "222",
   "tag": [
    {
     "system": "https://aidbox.io",
@@ -93,12 +115,12 @@ This is example, you can change values as you want, but better check full [Patie
 
 ### Get Patient
 
-After sending the request - we receive a response with `Status - 201` and the sent data - our patient is created. We can make sure of this by sending request  `GET /Patient/<id>` and receive created patient data \(in our case id is `14dc3340-2ac1-4595-bbb7-3803b08c8f6f`\),  or we can check a complete list of patients - `GET /Patient` 
+After sending the request - we receive a response with `Status - 201` and the sent data - our patient is created. We can make sure of this by sending request  `GET /Patient/<id>` and receive created patient data \(in our case id is `f8fe69db-c01c-4a3b-bf0c-0a806ea22577`\),  or we can check a complete list of patients - `GET /Patient` 
 
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-GET /Patient/14dc3340-2ac1-4595-bbb7-3803b08c8f6f
+GET /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577
 ```
 {% endtab %}
 
@@ -138,11 +160,11 @@ Status: 200
   }
  ],
  "birthDate": "1990-10-10",
- "id": "14dc3340-2ac1-4595-bbb7-3803b08c8f6f",
+ "id": "f8fe69db-c01c-4a3b-bf0c-0a806ea22577",
  "resourceType": "Patient",
  "meta": {
-  "lastUpdated": "2018-10-19T17:09:58.078Z",
-  "versionId": "19",
+  "lastUpdated": "2018-10-23T09:47:36.555Z",
+  "versionId": "222",
   "tag": [
    {
     "system": "https://aidbox.io",
@@ -162,7 +184,7 @@ Next step  - update our patient info. For partial update we can use `PATCH /Pati
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-PATCH /Patient/example
+PATCH /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577
 
 {
   "name": [
@@ -188,17 +210,33 @@ Status: 200
  ],
  "gender": "male",
  "address": [
-  {/...../}
+  {
+   "city": "Hello",
+   "line": [
+    "123 Oxygen St"
+   ],
+   "state": "NY",
+   "district": "World",
+   "postalCode": "3212"
+  }
  ],
  "telecom": [
-  {/...../}
+  {
+   "use": "home"
+  },
+  {
+   "use": "work",
+   "rank": 1,
+   "value": "(32) 8934 1234",
+   "system": "phone"
+  }
  ],
  "birthDate": "1990-10-10",
- "id": "14dc3340-2ac1-4595-bbb7-3803b08c8f6f",
+ "id": "f8fe69db-c01c-4a3b-bf0c-0a806ea22577",
  "resourceType": "Patient",
  "meta": {
-  "lastUpdated": "2018-10-19T10:12:35.006Z",
-  "versionId": "6",
+  "lastUpdated": "2018-10-23T09:49:24.927Z",
+  "versionId": "223",
   "tag": [
    {
     "system": "https://aidbox.io",
@@ -218,7 +256,7 @@ For full resource update we use`PUT /Patient/<id>`
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-PUT /Patient/example
+PUT /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577
 
 {
   "resourceType": "Patient",
@@ -249,11 +287,11 @@ Status: 200
  ],
  "gender": "male",
  "birthDate": "1991-01-02",
- "id": "14dc3340-2ac1-4595-bbb7-3803b08c8f6f",
+ "id": "f8fe69db-c01c-4a3b-bf0c-0a806ea22577",
  "resourceType": "Patient",
  "meta": {
-  "lastUpdated": "2018-10-19T17:18:37.976Z",
-  "versionId": "22",
+  "lastUpdated": "2018-10-23T09:50:13.639Z",
+  "versionId": "224",
   "tag": [
    {
     "system": "https://aidbox.io",
@@ -279,7 +317,7 @@ Let's do it for our patient
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-GET /Patient/14dc3340-2ac1-4595-bbb7-3803b08c8f6f/_history
+GET /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577/_history
 ```
 {% endtab %}
 
@@ -297,23 +335,69 @@ Status: 200
     "name": [
      {
       "given": [
+       "Max",
+       "Pain"
+      ]
+     }
+    ],
+    "gender": "male",
+    "birthDate": "1991-01-02",
+    "id": "f8fe69db-c01c-4a3b-bf0c-0a806ea22577",
+    "resourceType": "Patient",
+    "meta": {
+     "lastUpdated": "2018-10-23T09:50:13.639Z",
+     "versionId": "224",
+     "tag": [
+      {
+       "system": "https://aidbox.io",
+       "code": "updated"
+      }
+     ]
+    }
+   },
+   "request": {
+    "method": "PUT",
+    "url": "Patient"
+   }
+  },
+  {
+   "resource": {
+    "name": [
+     {
+      "given": [
        "Maximilian"
       ]
      }
     ],
     "gender": "male",
     "address": [
-     {/.../}
+     {
+      "city": "Hello",
+      "line": [
+       "123 Oxygen St"
+      ],
+      "state": "NY",
+      "district": "World",
+      "postalCode": "3212"
+     }
     ],
     "telecom": [
-     {/.../}
+     {
+      "use": "home"
+     },
+     {
+      "use": "work",
+      "rank": 1,
+      "value": "(32) 8934 1234",
+      "system": "phone"
+     }
     ],
     "birthDate": "1990-10-10",
-    "id": "14dc3340-2ac1-4595-bbb7-3803b08c8f6f",
+    "id": "f8fe69db-c01c-4a3b-bf0c-0a806ea22577",
     "resourceType": "Patient",
     "meta": {
-     "lastUpdated": "2018-10-19T10:12:35.006Z",
-     "versionId": "6",
+     "lastUpdated": "2018-10-23T09:49:24.927Z",
+     "versionId": "223",
      "tag": [
       {
        "system": "https://aidbox.io",
@@ -338,17 +422,33 @@ Status: 200
     ],
     "gender": "male",
     "address": [
-     {/.../}
+     {
+      "city": "Hello",
+      "line": [
+       "123 Oxygen St"
+      ],
+      "state": "NY",
+      "district": "World",
+      "postalCode": "3212"
+     }
     ],
     "telecom": [
-     {/.../}
+     {
+      "use": "home"
+     },
+     {
+      "use": "work",
+      "rank": 1,
+      "value": "(32) 8934 1234",
+      "system": "phone"
+     }
     ],
     "birthDate": "1990-10-10",
-    "id": "14dc3340-2ac1-4595-bbb7-3803b08c8f6f",
+    "id": "f8fe69db-c01c-4a3b-bf0c-0a806ea22577",
     "resourceType": "Patient",
     "meta": {
-     "lastUpdated": "2018-10-18T16:32:53.038Z",
-     "versionId": "5",
+     "lastUpdated": "2018-10-23T09:47:36.555Z",
+     "versionId": "222",
      "tag": [
       {
        "system": "https://aidbox.io",
@@ -362,7 +462,6 @@ Status: 200
     "url": "Patient"
    }
   }
-  /.../
  ]
 }
 ```
@@ -404,8 +503,39 @@ Status: 200
      "value": "max"
     }
    ],
+   "search-param": {
+    "module": "fhir-3.0.1",
+    "name": "name",
+    "id": "Patient.name",
+    "type": "string",
+    "resourceType": "SearchParameter",
+    "resource": {
+     "resourceType": "Entity",
+     "id": "Patient"
+    },
+    "expression": [
+     [
+      "name"
+     ]
+    ],
+    "typedExpression": [
+     {
+      "path": [
+       "name"
+      ],
+      "type": "HumanName"
+     }
+    ]
+   }
+  }
  ],
- /.../
+ "query-sql": [
+  "SELECT \"patient\".* FROM \"patient\" WHERE aidbox_text_search(knife_extract_text(\"patient\".resource, $JSON$[[\"name\",\"family\"],[\"name\",\"given\"],[\"name\",\"middle\"],[\"name\",\"text\"]]$JSON$)) ilike unaccent(?) LIMIT ? OFFSET ?",
+  "% max%",
+  100,
+  0
+ ],
+ "query-time": 13,
  "entry": [
   {
    "resource": {
@@ -419,11 +549,11 @@ Status: 200
     ],
     "gender": "male",
     "birthDate": "1991-01-02",
-    "id": "example",
+    "id": "f8fe69db-c01c-4a3b-bf0c-0a806ea22577",
     "resourceType": "Patient",
     "meta": {
-     "lastUpdated": "2018-10-19T17:26:33.883Z",
-     "versionId": "4",
+     "lastUpdated": "2018-10-23T09:50:13.639Z",
+     "versionId": "224",
      "tag": [
       {
        "system": "https://aidbox.io",
@@ -455,25 +585,50 @@ And another standard operation - deletion - `DELETE /Patient/<id>`
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-DELETE /Patient/example
+DELETE /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577
 ```
 {% endtab %}
 
 {% tab title="Response" %}
 ```javascript
-Status: 204
+Status: 200
+
+{
+ "name": [
+  {
+   "given": [
+    "Max",
+    "Pain"
+   ]
+  }
+ ],
+ "gender": "male",
+ "birthDate": "1991-01-02",
+ "id": "f8fe69db-c01c-4a3b-bf0c-0a806ea22577",
+ "resourceType": "Patient",
+ "meta": {
+  "lastUpdated": "2018-10-23T09:54:16.979Z",
+  "versionId": "225",
+  "tag": [
+   {
+    "system": "https://aidbox.io",
+    "code": "deleted"
+   }
+  ]
+ }
+}
 ```
 {% endtab %}
 {% endtabs %}
 
-Upon successful deletion we receive empty body and `status - 200`
+Upon successful deletion we receive last version of resource and `status - 200`
 
-If we try to get deleted patient  `GET /Patient/example` we will receive `resourceType - OperationOutcome` and `status 410`. 
+If we try to get deleted patient  `GET /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577` we will receive `resourceType - OperationOutcome` and `status 410`. 
 
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-GET /Patient/example
+GET /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577
 ```
 {% endtab %}
 
@@ -495,11 +650,11 @@ Status: 410
   ],
   "gender": "male",
   "birthDate": "1991-01-02",
-  "id": "example",
+  "id": "f8fe69db-c01c-4a3b-bf0c-0a806ea22577",
   "resourceType": "Patient",
   "meta": {
-   "lastUpdated": "2018-10-19T17:33:47.108Z",
-   "versionId": "5",
+   "lastUpdated": "2018-10-23T09:54:16.979Z",
+   "versionId": "225",
    "tag": [
     {
      "system": "https://aidbox.io",
