@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Aidbox](README.md)
+* [StyleGuide](styleguide.md)
 * [Release Notes](release-notes/README.md)
   * [8 oct 2018](release-notes/8-oct.-2018.md)
 * [Installation](installation/README.md)
@@ -10,7 +11,7 @@
 * [Architecture Overview](basic-concepts/README.md)
   * [Boxes](basic-concepts/boxes.md)
   * [API Overview](basic-concepts/api-overview.md)
-  * [Difference between Aidbox and FHIR](basic-concepts/difference-between-aidbox-and-fhir.md)
+  * [Aidbox vs FHIR](basic-concepts/difference-between-aidbox-and-fhir.md)
   * [Meta Model](basic-concepts/meta-model/README.md)
     * [Aidbox Data Types](basic-concepts/meta-model/aidbox-data-types.md)
     * [Entity & Attribute](basic-concepts/meta-model/entity-and-attributes.md)
