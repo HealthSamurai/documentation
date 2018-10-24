@@ -4,12 +4,12 @@ description: Difference between Aidbox and FHIR
 
 # Aidbox vs FHIR
 
-There are some decisions in [FHIR RESTful API specification](https://www.hl7.org/fhir/http.html) that HealthSamurai team found not intuitive and logical. That's why Aidbox provides to ways to access resources:
+There are some decisions in [FHIR RESTful API specification](https://www.hl7.org/fhir/http.html) that HealthSamurai team found not intuitive and logical. That's why Aidbox provides two ways to access resources:
 
 via `https://<your-box>.aidbox.app` and`https://<your-box>.aidbox.app/fhir` endpoints
 
-They are mostly the same, but first one is opinionated by HealthSamurai engineers Aidbox version of FHIR API, the second one is FHIR compatible version of API.  
-We assume that `[base]` is `https://<your-box>.aidbox.app`, but if you need full FHIR compatibility use `/fhir`.  
+They are mostly the same, but first one is opinionated by HealthSamurai engineers Aidbox version of FHIR API, the second one is FHIR compatible version.  
+We assume that `[base]` is `https://<your-box>.aidbox.app`, but if you need full FHIR compatibility use `https://<your-box>.aidbox.app/fhir`.  
 
 
 The two types of differences: related to data format and operation behavior are described below.
@@ -22,7 +22,7 @@ The two types of differences: related to data format and operation behavior are 
 POST [base]/[type] {?_format=[mime-type]}
 ```
 
-FHIR API [ignores](https://www.hl7.org/fhir/http.html#create) `id` in `POST` requests, but Aidbox API respect `id` inside request body and creates resource with specific `id`. This decision was made because we didn't find any reasons to ignore it and to make Aidbox API be closer to sql `INSERT` query. As a result new response code appeared:
+FHIR API [ignores](https://www.hl7.org/fhir/http.html#create) `id` in `POST` requests, but Aidbox API respect `id` inside request body and creates resource with specific `id`. This decision was made because we didn't find any reasons to ignore it and to make Aidbox API be closer to sql `INSERT` query. As a result new response code `409 Conflict` appeared:\`
 
 * **`201` Created** - resource successfully created
 * **`400` Bad Request** - resource could not be parsed or failed basic FHIR validation rules
@@ -35,7 +35,7 @@ FHIR API [ignores](https://www.hl7.org/fhir/http.html#create) `id` in `POST` req
 PUT [base]/[type]/[id]{?_format=[mime-type]}
 ```
 
-Aidbox doesn't have atomic update yet. It also allows to omit `id` in resource body, but there is no important reason behind it.
+Aidbox doesn't have atomic update yet. It also allows to omit `id` in resource body, ~~_but there is no important reason behind it_~~.
 
 * **`200` OK** - resource successfully updated
 * **`201` Created** - resource successfully created
@@ -75,7 +75,7 @@ Instead of using `If-None-Exist` header, Aidbox uses query parameters as in ordi
 PUT [base]/[type]?[search parameters]
 ```
 
-In contrast to FHIR, Aidbox conditional update allows to create a resource with specific `id`. `Conditional update` also ignores id coming in request body, that mean that resource `id` can't be changed by any `update` operation.
+In contrast to FHIR, Aidbox conditional update allows to create a resource with specific `id`. `Conditional update` in case of one match ignores id coming in request body, that mean that resource `id` can't be changed by any `update` operation.
 
 * **No matches**: The server performs a `create` interaction \(Aidbox version of create\)
 * **One Match**: The server performs the update against the matching resource
