@@ -10,7 +10,7 @@ Last time, we started at using our REST console. Let's see what can we do here.
 
 ![REST console](../.gitbook/assets/screenshot-2018-10-18-18.54.58.png)
 
-REST console is designed to work with resources on your `Box` by sending HTTP requests in accordance with [FHIR RESTful API](http://hl7.org/fhir/http.html). To do this, we need to type - a HTTP verb \(`GET`, `POST`, `PUT`, `PATCH`, `DELETE`\) and the address of the resource \(for example `/Patient` - _pay attention to the resource name with a capital letter_\), in cases when you need to send the request body \(e.g -  `POST` request\), it passed in indented one line below, in YAML or JSON format.
+REST console is designed to work with resources on your `Box` by sending HTTP requests in accordance with [FHIR RESTful API](http://hl7.org/fhir/http.html). To do this, we need to type - a HTTP verb \(`GET`, `POST`, `PUT`, `PATCH`, `DELETE`\) and the address of the resource \(for example `/Patient` - _pay attention to the resource name with a capital letter_\), in cases when you need to send the request body \(e.g -  `POST` request\), it passed separated by empty line, in YAML or JSON format - you can choose both \(request and response\) content type by **YAML** \| JSON switcher.
 
 ### Create Patient
 
@@ -196,7 +196,7 @@ PATCH /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577
 ```
 {% endtab %}
 
-{% tab title="Responce" %}
+{% tab title="Response" %}
 ```javascript
 Status: 200
 
@@ -321,7 +321,7 @@ GET /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577/_history
 ```
 {% endtab %}
 
-{% tab title="Responce" %}
+{% tab title="Response" %}
 ```javascript
 Status: 200
 
@@ -469,6 +469,68 @@ Status: 200
 {% endtabs %}
 
 At the response we receive all versions \(in this case 3\) of our patient. First version - when resource created and second - with changed name and the third - full updated resource.
+
+And now we can do operation called [vread](http://hl7.org/fhir/http.html#vread) to get a specific version of resource with following request`GET /Patient/<id>/_history/<versionId>`
+
+{% tabs %}
+{% tab title="Request" %}
+```javascript
+GET /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577/_history/223
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+Status: 200
+
+{
+ "name": [
+  {
+   "given": [
+    "Maximilian"
+   ]
+  }
+ ],
+ "gender": "male",
+ "address": [
+  {
+   "city": "Hello",
+   "line": [
+    "123 Oxygen St"
+   ],
+   "state": "NY",
+   "district": "World",
+   "postalCode": "3212"
+  }
+ ],
+ "telecom": [
+  {
+   "use": "home"
+  },
+  {
+   "use": "work",
+   "rank": 1,
+   "value": "(32) 8934 1234",
+   "system": "phone"
+  }
+ ],
+ "birthDate": "1990-10-10",
+ "id": "f8fe69db-c01c-4a3b-bf0c-0a806ea22577",
+ "resourceType": "Patient",
+ "meta": {
+  "lastUpdated": "2018-10-23T09:49:24.927Z",
+  "versionId": "223",
+  "tag": [
+   {
+    "system": "https://aidbox.io",
+    "code": "updated"
+   }
+  ]
+ }
+}
+```
+{% endtab %}
+{% endtabs %}
 
 ### Search Patient
 
