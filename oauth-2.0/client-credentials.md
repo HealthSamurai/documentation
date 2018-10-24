@@ -2,7 +2,7 @@
 
 Aidbox OAuth module support Client Credentials Grant flow in two formats. First- Strict adherence to specifications for better compatibility. Second - JSON request as a more modern and simple way.
 
-**JSON Request**
+### **JSON Request**
 
 In JSON Request you need specify `client_id`, `client_secret` and `grant_type`. All parameters is required.
 
