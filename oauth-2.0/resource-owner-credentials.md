@@ -2,17 +2,62 @@
 
 Aidbox OAuth module support Resource Owner Credentials flow in two formats. First- Strict adherence to specifications for better compatibility. Second - JSON request as a more modern and simple way. Read official [OAuth2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.3) for more details.
 
-### JSON Request
+## JSON Request
 
 In JSON Request you need specify `client_id`, `client_secret` ,  `grant_type` ,  `username` and `password` .  All parameters is required.
 
-| Parameter | Description |
-| :--- | :--- |
-| username | User identification email |
-| password | User password |
-| client\_id | Id of Client |
-| client\_secret | Client secret |
-| grant\_type | Value MUST be set to  `password` |
+{% api-method method="post" host="\[base\]" path="/oauth2/token" %}
+{% api-method-summary %}
+Token Endpoint
+{% endapi-method-summary %}
+
+{% api-method-description %}
+Get `access_access` token via Resource Owner Credentials Grant.
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-body-parameters %}
+{% api-method-parameter name="grant\_type" type="string" required=true %}
+Value MUST be set to `password`
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="client\_secret" type="string" required=true %}
+Client secret
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="client\_id" type="string" required=true %}
+Client Id
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="password" type="string" required=true %}
+User password
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="username" type="string" required=true %}
+User identification email
+{% endapi-method-parameter %}
+{% endapi-method-body-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+Return access\_token
+{% endapi-method-response-example-description %}
+
+```javascript
+{
+    "access_token": "cd97340505f2-42c4-4267-a472-cd97340505f2",
+    "token_type": "bearer"
+}
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+#### Example:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -37,9 +82,64 @@ STATUS: 200
 {% endtab %}
 {% endtabs %}
 
-### OAuth2.0 RFC Specification
+## OAuth2.0 RFC Specification
 
 As described in [OAuth2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.4) client credentials  should be presented via Authorization Basic header, and `body` should be in `application/x-www-form-urlencoded` format  and `grant_type` , `username` and `password` parameter. `grant_type` parameter value MUST be set to `password`.
+
+{% api-method method="post" host="\[base\]" path="/oauth2/token" %}
+{% api-method-summary %}
+Token Endpoint
+{% endapi-method-summary %}
+
+{% api-method-description %}
+Get `access_token` via Resource Owner Credentials Grant
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-headers %}
+{% api-method-parameter name="Content-Type" type="string" required=true %}
+application/x-www-form-urlencoded
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="Authorization" type="string" required=true %}
+Basic credentials of client
+{% endapi-method-parameter %}
+{% endapi-method-headers %}
+
+{% api-method-form-data-parameters %}
+{% api-method-parameter name="grant\_type" type="string" required=true %}
+Value MUST be set to `password`
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="username" type="string" required=true %}
+User Identification email
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="password" type="string" required=true %}
+User password
+{% endapi-method-parameter %}
+{% endapi-method-form-data-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+Return `access_token`
+{% endapi-method-response-example-description %}
+
+```javascript
+{
+    "access_token": "f2a3c18c-42c4-4267-a472-cd97340505f2",
+    "token_type": "bearer"
+}
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+#### Example:
 
 {% tabs %}
 {% tab title="Request" %}
