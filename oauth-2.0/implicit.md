@@ -1,6 +1,6 @@
 # Implicit Grant
 
-The **Implicit Grant** is an OAuth 2.0 flow that client-side apps use in order to access an API, typically as Web SPA applications. For more detailed information read [OAuth2.0 specifcation](https://tools.ietf.org/html/rfc6749#section-4.2).
+The Implicit Grant ****is an OAuth 2.0 flow that client-side apps use in order to access an API, typically as Web SPA applications. For more detailed information read [OAuth2.0 specifcation](https://tools.ietf.org/html/rfc6749#section-4.2).
 
 ## Authorization Request
 
