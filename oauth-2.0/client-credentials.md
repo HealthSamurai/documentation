@@ -16,7 +16,7 @@ In JSON Request you need specify `client_id`, `client_secret` and `grant_type`. 
 {% tab title="Request" %}
 ```bash
 curl -X POST \
-  http://localhost:7777/oauth2/token \
+  http://localhost:8888/oauth2/token \
   -H 'content-type: application/json' \
   -d '{"client_id":"web-app","client_secret":"client-secret", "grant_type":"client_credentials"}'
 ```
@@ -41,10 +41,10 @@ As described in [OAuth2.0 specification](https://tools.ietf.org/html/rfc6749#sec
 {% tab title="Request" %}
 ```bash
 curl -X POST \
-  http://localhost:7777/oauth2/token \
+  http://localhost:8888/oauth2/token \
   -H 'Authorization: Basic d2ViLWFwcDpjbGllbnQtc2VjcmV0' \
   -H 'Content-Type: application/x-www-form-urlencoded' \
-  -d grant_type=client_credentials
+  -d 'grant_type=client_credentials'
 ```
 {% endtab %}
 
