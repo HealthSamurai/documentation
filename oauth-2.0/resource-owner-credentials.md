@@ -57,7 +57,7 @@ Return access\_token
 {% endapi-method-spec %}
 {% endapi-method %}
 
-#### Example:
+### Example
 
 {% tabs %}
 {% tab title="Request" %}
@@ -139,7 +139,7 @@ Return `access_token`
 {% endapi-method-spec %}
 {% endapi-method %}
 
-#### Example:
+### Example
 
 {% tabs %}
 {% tab title="Request" %}
