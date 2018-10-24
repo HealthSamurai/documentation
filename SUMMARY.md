@@ -25,7 +25,7 @@
   * [Authorization Code](oauth-2.0/authorization-code.md)
   * [Implicit](oauth-2.0/implicit.md)
   * [Resource Owner Credentials](oauth-2.0/resource-owner-credentials.md)
-  * [Client Credentials](oauth-2.0/client-credentials.md)
+  * [Client Credentials Grant](oauth-2.0/client-credentials.md)
 * [Tutorials](tutorials/README.md)
   * [Create and Configure Box](tutorials/create-and-configure-box.md)
   * [REST console](tutorials/rest-console.md)
