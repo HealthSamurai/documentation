@@ -4,13 +4,17 @@ description: How to add custom resources
 
 # Custom Resources
 
+## Defining a Custom Resource
+
 Sometimes your data does not fit any existing FHIR resources. It is not always obvious that your data _cannot_ be translated to FHIR — because of some FHIR  generalizations. The "right" first step is to go to [FHIR community chat](http://health-samurai.info/a-cusres-to-zulip) and ask your specific question about mapping to FHIR, or contact Health Samurai modelling team about your concern. If after this adventure you are still sure that there is no appropriate resource in FHIR or it will take too much time to wait for it — in Aidbox you can define your own **Custom Resources.**
 
 **Custom Resources** are defined exactly the same way as core FHIR resources, they can refer existing resources, have uniform REST API for CRUD and Search, and participate in transactions.
 
 Let's imagine that in our application we want to store user preferences such as UI configuration or personalized Patient List filters. It is expected that you have already created a box in [Aidbox.Cloud](https://docs.aidbox.app/~/drafts/-LOrgfiiMwbxfp70_ZP0/primary/v/master/installation/use-aidbox.cloud). First of all, we have to define a new resource type by creating an **Entity** resource.
 
-​Access the REST console and paste the following request. You should see the response:
+### Create Definition​
+
+Access the REST console and paste the following request. You should see the response: 
 
 {% tabs %}
 {% tab title="Request" %}
@@ -41,6 +45,8 @@ isOpen: true
 This means that resource of the type `Entity` was successfully created. When you create `Entity` resources with type `resource`, Aidbox will on the fly initialize a storage for new resource type and generate CRUD & Search REST API.
 
 When you set the `isOpen: true` flag this means that resource does not have any specific structure and you can store arbitrary data. This is useful when you do not know exact resource structure, for example while working on a prototype. Later we will make its schema more strict and will constraint it with additional validations.
+
+### API of a Custom Resource
 
 Let's checkout API for our custom resource `UserSetting`. You can list `UserSetting` resources by the standard FHIR URI template `GET /{resourceType}` :
 
@@ -137,6 +143,8 @@ SELECT id, resource->>'theme' as theme FROM "usersetting";
 | :--- | :--- |
 | user-1 | dark |
 
+### CRUD Operations with a Custom Resource
+
 As well you can read, update, and delete `UserSetting` resource with:
 
 {% tabs %}
@@ -157,7 +165,7 @@ theme: white
 {% tabs %}
 {% tab title="UPDATE Request" %}
 ```javascript
-PUT /UserSetting/user-1
+PUT {{base}}/UserSetting/user-1
 ```
 
 ```yaml
@@ -271,6 +279,8 @@ entry:
 {% endtab %}
 {% endtabs %}
 
+## Refining the Structure of a Custom Resource
+
 Awesome! We've got a nice API by just providing a couple of lines of metadata. But the schema of our custom resource is currently too open and users can put any data into `UserSetting` resource. For example we can do this:
 
 {% tabs %}
@@ -289,11 +299,16 @@ theme:
 
 {% tab title="Response" %}
 ```yaml
-???
-???
+resourceType: UserSetting
+id: user-1
+theme:
+- name: white
+- name: black
 ```
 {% endtab %}
 {% endtabs %}
+
+### Describe Structure of Custom Resource
 
 Now, let's put some restrictions and define our Custom Resource structure. To describe structure of a resource, we will use [Attribute](../basic-concepts/meta-model/entity-and-attributes.md) meta-resource. For example we want to restrict the `theme` attribute to be a `string` value from the specific enumeration:
 
@@ -314,11 +329,24 @@ resource: {id: UserSetting, resourceType: Entity}
 
 {% tab title="Response" %}
 ```yaml
-???
-???
+resource:
+  id: UserSetting
+  resourceType: Entity
+id: UserSetting.theme
+resourceType: Attribute
+path:
+- theme
+type:
+  id: string
+  resourceType: Entity
+enum:
+- dark
+- white
 ```
 {% endtab %}
 {% endtabs %}
+
+### Validation of Incoming Resources
 
 To validate incoming resources, Aidbox uses json-schema which is generated from Entity & Attribute meta-resources \(read more in [Validation Section](../basic-concepts/validation.md)\). Using [$json-schema](../api/usdjson-schema.md) operation we can inspect which schema will be applied to `UserSetting` resources:
 
@@ -372,7 +400,7 @@ theme: 2
 
 {% tab title="Response" %}
 ```yaml
-# response status 422:
+# Response status: 422 Unprocessable Entity
 
 resourceType: OperationOutcome
 errors:
@@ -397,7 +425,7 @@ theme: unexisting
 
 {% tab title="Response 2" %}
 ```yaml
-# response status 422:
+# Response status: 422 Unprocessable Entity
 resourceType: OperationOutcome
 errors:
 - path: [theme]
@@ -406,6 +434,8 @@ warnings: []
 ```
 {% endtab %}
 {% endtabs %}
+
+### Restriction of Extra Attributes
 
 We constrained only one attribute and because our `Entity.isOpen = true`, this resource can have any additional attributes without a schema. We can turn this off by setting `Entity.isOpen` to `false`:
 
@@ -422,8 +452,10 @@ isOpen: false
 
 {% tab title="Response" %}
 ```yaml
-???
-???
+resourceType: Entity
+type: resource
+id: UserSetting
+isOpen: false
 ```
 {% endtab %}
 {% endtabs %}
@@ -463,7 +495,7 @@ schema:
 {% endtab %}
 {% endtabs %}
 
-And we see the schema keyword `additionalProperties: false` which means that now our schema is closed. Let's test it:
+And we see the schema keyword `additionalProperties: false` \(line 20 in the response above\) which means that now our schema is closed. Let's test it by the request with additional property `menu`:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -479,7 +511,7 @@ menu: collapsed
 
 {% tab title="Response" %}
 ```yaml
-# response 422:
+# Response status: 422 Unprocessable Entity
 
 resourceType: OperationOutcome
 errors:
