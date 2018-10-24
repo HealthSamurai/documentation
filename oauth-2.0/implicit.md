@@ -1,4 +1,4 @@
-# Implicit
+# Implicit Grant
 
 ### Authentication request
 

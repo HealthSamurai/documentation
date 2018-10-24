@@ -1,4 +1,4 @@
-# Authorization Code
+# Authorization Code Grant
 
 [https://tools.ietf.org/html/rfc6749\#section-4.1](https://tools.ietf.org/html/rfc6749#section-4.1)
 
