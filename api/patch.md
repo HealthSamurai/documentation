@@ -1,33 +1,37 @@
 ---
-description: With patch operation you can update only part of FHIR resource.
+description: With patch operation you can update a part of FHIR resource.
 ---
 
 # Patch
 
-For most of Operations in FHIR you manipulate by resource as a whole \(create, update etc\). But sometimes you want to update specific data elements in resource and do not care about others. I.e. you  need element/attribute level operation. 
+All examples can be run in Postman. Here's [web view](https://documenter.getpostman.com/view/5552124/RWgxtEs8) of these examples.
 
-With `Patch` operation you can update part of resource by sending declarative description of operations, which should be performed on existing resource. To describe this operations in aidbox you can use different notations \(methods\):
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/view-collection/f6bc1ce7c9eeb0c2baa0?referrer=https%3A%2F%2Fapp.getpostman.com%2Frun-collection%2Ff6bc1ce7c9eeb0c2baa0%23%3Fenv%5BAidbox.Cloud%5D%3DW3sia2V5IjoiYmFzZSIsInZhbHVlIjoiaHR0cHM6Ly9tZXJlZGl0aC5haWRib3guYXBwIiwiZGVzY3JpcHRpb24iOiIiLCJlbmFibGVkIjp0cnVlfV0%3D&_ga=2.109779141.1133756186.1540376522-1595564802.1538573158)
 
-* merge-patch  - the simple merge semantic \([read more in RFC](https://tools.ietf.org/html/rfc7386)\)
-* json-patch - advanced json transformation \([read more in RFC](https://tools.ietf.org/html/rfc6902)\)
+For most of Operations in FHIR you manipulate a resource as a whole \(create, update, delete operations\). But sometimes you want to update specific data elements in a resource and do not care about the rest. In other words, you need an element/attribute level operation. 
 
-FHIR and aidbox team also working on brand new FHIR patch method - [https://www.hl7.org/fhir/fhirpatch.html](https://www.hl7.org/fhir/fhirpatch.html) - which is currently in it's early draft.
+With the `patch` operation you can update a part of resource by sending a declarative description of operations which should be performed on an existing resource. To describe this operations in Aidbox you can use different notations \(methods\):
 
-### Patch method
+* merge-patch — simple merge semantics \([read more in RFC](https://tools.ietf.org/html/rfc7386)\);
+* json-patch — advanced JSON transformation \([read more in RFC](https://tools.ietf.org/html/rfc6902)\).
 
-You can specify patch method by `content-type` header or by `_method` parameter.
+FHIR and Aidbox team is also working on a brand new FHIR patch method — [https://www.hl7.org/fhir/fhirpatch.html](https://www.hl7.org/fhir/fhirpatch.html), which is currently in its early draft stage.
+
+### Patch Method
+
+You can specify a `patch` method by the `content-type` header or by the `_method` parameter.
 
 | method | parameter | header |
 | :--- | :--- | :--- |
-| **json-patch** | json-patch | application/json-patch+json |
-| **merge-patch** | merge-patch | application/merge-patch+json |
-| **fhir-patch** | fhir-patch | application/fhir-patch+json |
+| **json-patch** | `json-patch` | application/json-patch+json |
+| **merge-patch** | `merge-patch` | application/merge-patch+json |
+| **fhir-patch** | `fhir-patch` | application/fhir-patch+json |
 
-If method is not specified, aidbox will try to guess it by following algorithm: 
+If method is not specified, Aidbox will try to guess it by the following algorithm: 
 
-* if payload is array - `json-merge`
-* if payload is object with `resourceType = 'Parameter'` - `fhir-patch` 
-* else  `merge-patch`
+* if the payload is an array — `json-merge`
+* if the payload is an object with `resourceType = 'Parameter'`— `fhir-patch` 
+* else `merge-patch`
 
 ### Operation Description
 
@@ -44,19 +48,19 @@ Patch Operation
 {% api-method-request %}
 {% api-method-path-parameters %}
 {% api-method-parameter name="\_method" type="string" required=false %}
-can be json-patch, merge-patch \(and fhir-patch in a future\)
+Can be `json-patch`, `merge-patch` \(and `fhir-patch` in the future\)
 {% endapi-method-parameter %}
 {% endapi-method-path-parameters %}
 
 {% api-method-headers %}
 {% api-method-parameter name="content-type" type="string" required=false %}
-see content-type header in table above.
+See the `content-type` header in the table above
 {% endapi-method-parameter %}
 {% endapi-method-headers %}
 
 {% api-method-body-parameters %}
 {% api-method-parameter name="" type="string" required=false %}
-JSON or YAML representation of transformation rules in accordance with \_method
+JSON or YAML representation of transformation rules in accordance with `_method`
 {% endapi-method-parameter %}
 {% endapi-method-body-parameters %}
 {% endapi-method-request %}
@@ -78,11 +82,13 @@ Updated resource
 ### Example
 
 {% hint style="info" %}
-You can exercise this tutorial using [REST Console](../aidbox-ui/rest-console.md) - just copy paste queries into console!
+You can exercise this tutorial using [REST Console](../aidbox-ui/rest-console.md) — just copy/paste queries into console!
 {% endhint %}
 
-Let's suppose we've created Patient resource with id `pt-1`
+Let's suppose we've created a Patient resource with the id `pt-1`
 
+{% tabs %}
+{% tab title="Request" %}
 ```yaml
 POST /Patient
 
@@ -102,41 +108,75 @@ telecom:
      rank: 1
 birthDate: '1979-01-01'
 ```
+{% endtab %}
+
+{% tab title="Response" %}
+```yaml
+id: pt-1
+resourceType: Patient
+name:
+- use: official
+  given:
+  - John
+  family: Doe
+- given:
+  - Johny
+  family: Doe
+active: true
+telecom:
+- use: work
+  rank: 1
+  value: "(03) 5555 6473"
+  system: phone
+birthDate: '1979-01-01'
+```
+{% endtab %}
+{% endtabs %}
 
 {% hint style="info" %}
-You can copy paste this request into REST console of Aidbox.Cloud
+You can copy/paste this request into REST Console of Aidbox.Cloud.
 {% endhint %}
 
-### Merge patch
+### Merge Patch
 
-Let's say, we want to switch active flag to false and remove telecom:
+Let's say we want to switch `active` flag to false and remove `telecom`:
 
+{% tabs %}
+{% tab title="Request" %}
 ```yaml
 PATCH /Patient/pt-1?_method=merge-patch
 
 active: false
 telecom: null
 ```
+{% endtab %}
 
+{% tab title="Response" %}
 ```yaml
 # response 200
-resourceType: Patient
+
 id: pt-1
-active: false
+resourceType: Patient
 name:
-  - given: ['John']
-    family: Doe
-    use: official
-  - given: ['Johny']
-    family: Doe
+- use: official
+  given:
+  - John
+  family: Doe
+- given:
+  - Johny
+  family: Doe
+active: false
 birthDate: '1979-01-01'
-
 ```
+{% endtab %}
+{% endtabs %}
 
-### JSON patch
+### JSON Patch
 
-With JSON patch we can do more sophisticated transformations - change family name in first name and delete second name:
+With JSON patch, we can do more sophisticated transformations — change first `given` name, delete second `name`, and change the `active` attribute value to `true`:
 
+{% tabs %}
+{% tab title="Request" %}
 ```yaml
 PATCH /Patient/pt-1
 
@@ -149,25 +189,32 @@ PATCH /Patient/pt-1
   path: '/active'
   value: true
 ```
+{% endtab %}
 
+{% tab title="Response" %}
 ```yaml
 # response 200
-resourceType: Patient
+
 id: pt-1
+resourceType: Patient
 name:
 - use: official
-  given: [John]
-  family: Jackson
+  given:
+  - Nikolai
+  family: Doe
 active: true
 birthDate: '1979-01-01'
-
 ```
+{% endtab %}
+{% endtabs %}
 
-### FHIR patch
+### FHIR Patch
 
-We are working on FHIR path specification and implementation.
+We are working on the FHIR path specification and implementation.
 
 {% hint style="warning" %}
-In development...
+Under development yet.
 {% endhint %}
+
+
 
