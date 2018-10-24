@@ -23,7 +23,7 @@ Access the REST console and paste the following request. You should see the resp
 {% tabs %}
 {% tab title="Request" %}
 ```yaml
-PUT /Entity
+POST /Entity
 
 id: UserSetting
 type: resource
@@ -84,7 +84,7 @@ Cool! Now, let's create first `UserSetting` resource using the REST Console:
 {% tabs %}
 {% tab title="Request" %}
 ```yaml
-PUT /UserSetting
+POST /UserSetting
 
 id: user-1
 theme: dark
@@ -286,7 +286,7 @@ Awesome! We've got a nice API by just providing a couple of lines of metadata. B
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-PUT /UserSetting
+POST /UserSetting
 ```
 
 ```yaml
@@ -315,7 +315,7 @@ Now, let's put some restrictions and define our Custom Resource structure. To de
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-PUT /Attribute
+POST /Attribute
 ```
 
 ```yaml
@@ -389,7 +389,7 @@ Let's try to create an invalid resource now:
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-PUT /UserSetting
+POST /UserSetting
 ```
 
 ```yaml
