@@ -4,6 +4,10 @@ description: How to add custom resources
 
 # Custom Resources
 
+All examples from this tutorial you can run in Postman. Here's the [web view](https://documenter.getpostman.com/view/5552124/RWgxsu5Y) of these examples in Postman.
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/view-collection/946aa4df5535c073ce00?referrer=https%3A%2F%2Fapp.getpostman.com%2Frun-collection%2F946aa4df5535c073ce00%23%3Fenv%5BAidbox.Cloud%5D%3DW3sia2V5IjoiYmFzZSIsInZhbHVlIjoiaHR0cHM6Ly9uZXdlaHIuYWlkYm94LmFwcCIsImRlc2NyaXB0aW9uIjoiIiwiZW5hYmxlZCI6dHJ1ZX1d&_ga=2.116593734.1133756186.1540376522-1595564802.1538573158)
+
 ## Defining a Custom Resource
 
 Sometimes your data does not fit any existing FHIR resources. It is not always obvious that your data _cannot_ be translated to FHIR — because of some FHIR  generalizations. The "right" first step is to go to [FHIR community chat](http://health-samurai.info/a-cusres-to-zulip) and ask your specific question about mapping to FHIR, or contact Health Samurai modelling team about your concern. If after this adventure you are still sure that there is no appropriate resource in FHIR or it will take too much time to wait for it — in Aidbox you can define your own **Custom Resources.**
@@ -18,11 +22,9 @@ Access the REST console and paste the following request. You should see the resp
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
-POST {{base}}/Entity
-```
-
 ```yaml
+PUT /Entity
+
 id: UserSetting
 type: resource
 isOpen: true
@@ -53,7 +55,7 @@ Let's checkout API for our custom resource `UserSetting`. You can list `UserSett
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-GET {{base}}/UserSetting
+GET /UserSetting
 ```
 {% endtab %}
 
@@ -81,11 +83,9 @@ Cool! Now, let's create first `UserSetting` resource using the REST Console:
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
-POST {{base}}/UserSetting
-```
-
 ```yaml
+PUT /UserSetting
+
 id: user-1
 theme: dark
 ```
@@ -108,7 +108,7 @@ Try to get all user settings now:
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-GET {{base}}/UserSetting
+GET /UserSetting
 ```
 {% endtab %}
 
@@ -150,7 +150,7 @@ As well you can read, update, and delete `UserSetting` resource with:
 {% tabs %}
 {% tab title="READ Request" %}
 ```javascript
-GET {{base}}/UserSetting/user-1
+GET /UserSetting/user-1
 ```
 {% endtab %}
 
@@ -165,7 +165,7 @@ theme: white
 {% tabs %}
 {% tab title="UPDATE Request" %}
 ```javascript
-PUT {{base}}/UserSetting/user-1
+PUT /UserSetting/user-1
 ```
 
 ```yaml
@@ -189,7 +189,7 @@ patientsFilters:
 {% tabs %}
 {% tab title="READ HISTORY Request" %}
 ```javascript
-GET {{base}}/UserSetting/user-1/_history
+GET /UserSetting/user-1/_history
 ```
 {% endtab %}
 
@@ -224,7 +224,7 @@ entry:
 {% tabs %}
 {% tab title="DELETE Request" %}
 ```javascript
-DELETE {{base}}/UserSetting/user-1
+DELETE /UserSetting/user-1
 ```
 {% endtab %}
 
@@ -286,11 +286,11 @@ Awesome! We've got a nice API by just providing a couple of lines of metadata. B
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-POST {{base}}/UserSetting
+PUT /UserSetting
 ```
 
 ```yaml
-id: user-1
+id: user-2
 theme:
   - name: white
   - name: black
@@ -300,7 +300,7 @@ theme:
 {% tab title="Response" %}
 ```yaml
 resourceType: UserSetting
-id: user-1
+id: user-2
 theme:
 - name: white
 - name: black
@@ -315,7 +315,7 @@ Now, let's put some restrictions and define our Custom Resource structure. To de
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-POST {{base}}/Attribute
+PUT /Attribute
 ```
 
 ```yaml
@@ -353,7 +353,7 @@ To validate incoming resources, Aidbox uses json-schema which is generated from 
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-GET {{base}}/$json-schema?path=definitions.UserSetting
+GET /$json-schema?path=definitions.UserSetting
 ```
 {% endtab %}
 
@@ -389,11 +389,11 @@ Let's try to create an invalid resource now:
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-POST {{base}}/UserSetting
+PUT /UserSetting
 ```
 
 ```yaml
-id: user-1
+id: user-3
 theme: 2
 ```
 {% endtab %}
@@ -414,11 +414,11 @@ warnings: []
 
 {% tab title="Request 2" %}
 ```javascript
-POST {{base}}/UserSetting
+PUT /UserSetting
 ```
 
 ```yaml
-id: user-1
+id: user-4
 theme: unexisting
 ```
 {% endtab %}
@@ -426,6 +426,7 @@ theme: unexisting
 {% tab title="Response 2" %}
 ```yaml
 # Response status: 422 Unprocessable Entity
+
 resourceType: OperationOutcome
 errors:
 - path: [theme]
@@ -442,7 +443,7 @@ We constrained only one attribute and because our `Entity.isOpen = true`, this r
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-PATCH {{base}}/Entity/UserSetting?_type=json-merge-patch
+PATCH /Entity/UserSetting?_type=json-merge-patch
 ```
 
 ```yaml
@@ -465,7 +466,7 @@ Now, let's inspect the schema:
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-GET {{base}}/$json-schema?path=definitions.UserSetting
+GET /$json-schema?path=definitions.UserSetting
 ```
 {% endtab %}
 
@@ -500,7 +501,7 @@ And we see the schema keyword `additionalProperties: false` \(line 20 in the res
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-POST {{base}}/UserSetting
+POST /UserSetting
 ```
 
 ```yaml
