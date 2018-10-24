@@ -96,7 +96,7 @@ STATUS: 201
 {% endtabs %}
 
 {% hint style="info" %}
-If you are using Aidbox.Dev, after creating an AidboxProfile resource you need to restart your Aidbox.Dev server.
+If you are using Aidbox.Dev below 0.3.1 version - after creating an AidboxProfile resource you need to restart your Aidbox.Dev server.
 
 `$ docker-compose down && docker-compose up -d`
 {% endhint %}

@@ -18,7 +18,7 @@ In JSON Request you need specify `client_id`, `client_secret` and `grant_type`. 
 curl -X POST \
   http://localhost:7777/oauth2/token \
   -H 'content-type: application/json' \
-  -d '{"client_id":"web-app","client_secret":"client-secret", grant_type":"client_credentials"}'
+  -d '{"client_id":"web-app","client_secret":"client-secret", "grant_type":"client_credentials"}'
 ```
 {% endtab %}
 
