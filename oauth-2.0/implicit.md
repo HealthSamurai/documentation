@@ -64,7 +64,7 @@ Html page with ResourceOwner authorization form
 Example of authorization URL for client `web-app`, and use OpenID.
 
 ```bash
-GET [base]/oauth2/authorize?
+GET http://localhost:8888/oauth2/authorize?
     response_type=token id_token
     &client_id=web-app
     &redirect_uri=http://localhost:4200
@@ -80,7 +80,7 @@ After entering Resource Owner credentials, Authorization server will redirect us
 
 #### Response Fragment parameters
 
-| Parameter | Desription |
+| Parameter | Description |
 | :--- | :--- |
 | access\_token | Access token |
 | state | Initial state what send in authorization request |
