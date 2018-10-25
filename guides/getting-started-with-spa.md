@@ -26,7 +26,7 @@ In this guide we will be using Aidbox.Cloud for simplicity of Box creation, but 
 
 ## Create a box
 
-Choose how you would like to authoraize [Aidbox](https://ui.aidbox.app). It can be done via your Github or Google account.
+Choose how you would like to authorize [Aidbox](https://ui.aidbox.app). It can be done via your Github or Google account.
 
 ![](../.gitbook/assets/scr-2018-10-11_10-49-57.png)
 
