@@ -8,7 +8,7 @@ You can extend Aidbox with custom Apps. App can define custom resources, custom 
 
 You define App using Aidbox SDK for your language and should not reverse engenier internal API, because it can be subject of change.
 
-{% page-ref page="untitled.md" %}
+{% page-ref page="nodejs.md" %}
 
 {% page-ref page="clojure-sdk.md" %}
 
@@ -29,7 +29,7 @@ endpoint:        # communication protocol between aidbox and app
    schema: https          # app service schema for http protocols - default = https
    port: 8080             # app service port - default = 80
    secret: <yoursercret>  # will be used to secure aidbox - app communication
-resources: <Resources Definitions, Profiles & Hooks>
+entities: <Resources Definitions, Profiles & Hooks>
 operations: <COperations Definition>
 subscriptions: <Subscriptions to changes>
 ```
@@ -46,13 +46,13 @@ In `endpoint` section you describe how aidbox will communicate with your service
 | **port** | integer |  |  | 80 | Port of service for http |
 | **secret** | string |  |  |  | Secret key used for communication |
 
-### resources
+### entities
 
-In `resources` section of App manifest you can extend existing resources, define custom profiles or hook into lifecycle:
+In `entities` section of App manifest you can extend existing resources, define custom profiles or hook into lifecycle:
 
 ```yaml
 Patient: # existing resource type
-  properties:
+  attrs:
      # here we devine extension `race` for patient
      race: { extensionUrl: 'https://myapp/race', type: 'code' }
   hooks: # resource life cycle hooks
@@ -65,13 +65,13 @@ As well define custom resources:
 
 ```yaml
 User: # custom resource type
-  properties:
+  attrs:
      email:    { type: 'email', isRequred: true }
      password: { type: 'password' }
      active:   { type: 'boolean' }
      patient:  { type: 'Reference', refers: ['Patient'] }
      settings:  
-        properties:
+        attrs:
            theme: { type: 'string', enum: ['black', 'white'] }
   hooks:
      before_create:
@@ -85,21 +85,21 @@ User: # custom resource type
        message: Email is already taken
 ```
 
-In resources section you define resources as a map `<resourceType> : <resourceStructure>` :
+In entities section you define resources as a map `<resourceType> : <resourceStructure>` :
 
 ```yaml
-resources:
+entities:
   Patient: <structure>
   User: <structure>
   Payment: <structure>
 ```
 
-Resource structure is defined by keyword **properties**`{ <element-name>: <element-definition> ... }`
+Resource structure is defined by keyword **attrs**`{ <element-name>: <element-definition> ... }`
 
 ```yaml
-resources:
+entities:
   User:
-    properties:
+    attrs:
        email: <element-definition>
        password: <element-definition>
     profiles: <profiles-definition>

@@ -2,6 +2,7 @@
 
 * [Aidbox](README.md)
 * [Release Notes](release-notes/README.md)
+  * [25 oct 2018](release-notes/25-oct-2018.md)
   * [8 oct 2018](release-notes/8-oct.-2018.md)
 * [Installation](installation/README.md)
   * [Setup Aidbox.Dev](installation/setup-aidbox.dev.md)
@@ -73,7 +74,7 @@
     * [ConceptMap Closure Table](terminology/conceptmap/conceptmap-closure-table.md)
 * [Aidbox SDK](aidbox-sdk/README.md)
   * [Apps](aidbox-sdk/aidbox-apps.md)
-  * [NodeJs SDK](aidbox-sdk/untitled.md)
+  * [NodeJs SDK](aidbox-sdk/nodejs.md)
   * [Clojure SDK](aidbox-sdk/clojure-sdk.md)
   * [Python SDK](aidbox-sdk/python-sdk.md)
   * [SDK internals](aidbox-sdk/sdk-internals.md)
