@@ -1,6 +1,8 @@
 # Table of contents
 
 * [Aidbox](README.md)
+* [Guides](guides/README.md)
+  * [Getting Started with SPA](guides/getting-started-with-spa.md)
 * [Installation](installation/README.md)
   * [Setup Aidbox.Dev](installation/setup-aidbox.dev.md)
   * [Use Aidbox.Cloud](installation/use-aidbox.cloud.md)
