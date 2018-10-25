@@ -18,6 +18,10 @@ All Aidbox products uses OAuth 2.0 authorization framework to provide secure acc
   
 The OAuth 2.0 authorization framework enables a third-party application to obtain limited access to an HTTP service, either on behalf of a resource owner by orchestrating an approval interaction between the resource owner and the HTTP service, or by allowing the third-party application to obtain access on its own behalf. More detailed information can be found in the [OAuth 2.0 Authorization Framework RFC](https://tools.ietf.org/html/rfc6749).
 
+### Users and Clients
+
+{% page-ref page="users-and-clients.md" %}
+
 ### Web Application with backend
 
 {% page-ref page="authorization-code.md" %}
