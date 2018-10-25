@@ -49,11 +49,12 @@ Aidbox doesn't have atomic update yet. It also allows to omit `id` in resource b
 DELETE [base]/[type]/[id]
 ```
 
-Respond with `200 OK` on successful delete, but on deletion of already deleted resource respond with `404 Not found` instead of `200 OK` \(proposed by FHIR specification\). This feature added to make delete work in the same way as conditional delete.
+Respond with `200 OK` on successful delete, but on deletion of already deleted resource respond with `204 No Content` \(conforming FHIR specification\). This feature added to make delete work in the same way as SQL `DELETE RETURNING *`.
 
 To get `204 No Content` instead of `200 OK` use `_no-content=true` query parameter. 
 
 * **`200` OK** - resource successfully delete
+* **`204` No Content** - resource already deleted
 * **`404` Not Found** - resource not found
 * **`422` Unprocessable Entity** - the proposed resource violated applicable FHIR profiles or server business rules
 
