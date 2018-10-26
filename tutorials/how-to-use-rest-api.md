@@ -1,20 +1,20 @@
 ---
-description: In this tutorial we will show you how to use REST Api with Aidbox.Dev
+description: In this tutorial we will show you how to use REST API with Aidbox.Dev.
 ---
 
-# REST API access in Aidbox.dev
+# REST API Access in Aidbox.Dev
 
 ## Aidbox.Dev Access 
 
-By default `Aidbox.Dev` distributed with the public access. This is make to simplify the use of `Aidbox.dev` for first time. But the other side this mean than any one who known address of your service can get full access to REST Api. We are strongly don't recommend use public access in production mode.
+By default, `Aidbox.Dev` is distributed with public access. This is made to simplify the use of `Aidbox.dev` for first time. But the other side this mean than anyone who knows an address of your service can get full access to your REST API. We are strongly not recommending to keep public access in production mode.
 
-If you don't want restrict access to Aidbox.Dev and keep it public you can skip this step and go to [Patient CRUD SPA](run-local-demo.md)
+If you don't want to restrict an access to your Aidbox.Dev instance and wish to keep it public, you can skip this step and go to the [Patient CRUD SPA](run-local-demo.md).
 
 {% page-ref page="run-local-demo.md" %}
 
 ### Restrict Access
 
-If you want enable Access Policy in your installation you need setup `DEVBOX_PASSWORD` environment variable to the `Aidbox.Dev` container. You can do this by uncommenting the appropriate line in the `docker-compose.yaml` file.
+If you want to enable Access Policy in your installation, you need to setup `DEVBOX_PASSWORD` environment variable in the `Aidbox.Dev` container. You can do this by uncommenting the appropriate line in the `docker-compose.yaml` file.
 
 {% code-tabs %}
 {% code-tabs-item title="docker-compose.yaml" %}
@@ -31,9 +31,9 @@ services:
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-After installation `Aidbox.Dev` create one default [`Client`](../oauth-2.0/users-and-clients.md#client) resource. This resource used in OAuth 2.0 functionality. Also this resource may be used for `Basic Authorization`. In this tutorial we will use this [`Client`](../oauth-2.0/users-and-clients.md#client) for basic authorization in to Aidbox.Dev .
+After installation of `Aidbox.Dev` you get one default [`Client`](../oauth-2.0/users-and-clients.md#client) resource. This resource is used in OAuth 2.0 functionality. Also, this resource may be used for `Basic Authorization`. In this tutorial we will use this [`Client`](../oauth-2.0/users-and-clients.md#client) for basic authorization in Aidbox.Dev .
 
-Default `Client` will create  with `password` described in `DEVBOX_PASSWORD` environment variable sent to the container in the `docker-compose.yaml` . If you do not explicitly specify `DEVBOX_PASSWORD` by default if was set as `secret`. We are strongly recommending to change default password in your installation. [`Client.id`](../oauth-2.0/users-and-clients.md#client) of this client is constantly `root`.
+Default `Client` will be created with `password` described in `DEVBOX_PASSWORD` environment variable sent to the container in the `docker-compose.yaml` . If you did not explicitly specify `DEVBOX_PASSWORD` by default it was set to `secret`. We are strongly recommending to change the default password in your installation. [`Client.id`](../oauth-2.0/users-and-clients.md#client) of this client is constantly `root`.
 
 {% code-tabs %}
 {% code-tabs-item title="docker-compose.yaml" %}

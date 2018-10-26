@@ -1,23 +1,53 @@
 ---
-description: In this guide we will learn how interact with REST console
+description: >-
+  In this guide we will learn how to interact with the Aidbox.Cloud REST
+  Console.
 ---
 
-# REST console
+# REST Console
 
-### REST console
+### REST Console
 
-Last time, we started at using our REST console. Let's see what can we do here.
+Last time we ended up at using our REST Console. Let's see what we can do here.
 
-![REST console](../.gitbook/assets/screenshot-2018-10-18-18.54.58.png)
+![REST Console](../.gitbook/assets/screenshot-2018-10-18-18.54.58.png)
 
-REST console is designed to work with resources on your `Box` by sending HTTP requests in accordance with [FHIR RESTful API](http://hl7.org/fhir/http.html). To do this, we need to type - a HTTP verb \(`GET`, `POST`, `PUT`, `PATCH`, `DELETE`\) and the address of the resource \(for example `/Patient` - _pay attention to the resource name with a capital letter_\), in cases when you need to send the request body \(e.g -  `POST` request\), it passed separated by empty line, in YAML or JSON format - you can choose both \(request and response\) content type by **YAML** \| JSON switcher.
+REST Console is designed to work with resources in your `Box` by sending HTTP requests in accordance to [FHIR RESTful API](http://hl7.org/fhir/http.html). To do this, we need to type an HTTP verb \(`GET`, `POST`, `PUT`, `PATCH`, `DELETE`\) and the address of the resource \(for example `/Patient` — _please pay attention to the resource name with a capital letter_\).
+
+In cases when you need to send a request body \(e.g., `POST` requests\), the request body content is passed below the resource address, separated by an empty line, in YAML or JSON format — you can choose both request and response content type by **YAML/JSON** switch.
 
 ### Create Patient
 
-Last time \(in [Create and Configure Box](create-and-configure-box.md) tutorial\) we try to get a list of our patients \(by requesting them through the `GET /Patient`\) and response was empty. Let's add a couple of new patients -  for this we type in our console `POST /Patient` and in the body of the request wherein we will send the data of our new patient:
+Last time \(in [Create and Configure Box](create-and-configure-box.md) tutorial\) we tried to get a list of our patients \(by requesting them through the `GET /Patient`\), and the response was empty. Let's add a couple of new patients. To do it, we type in our console `POST /Patient` and in the body of the request wherein we will send the data of our new patient:
 
 {% tabs %}
-{% tab title="Request" %}
+{% tab title="Request YAML" %}
+```yaml
+POST /Patient
+
+resourceType: Patient
+name:
+- given:
+  - Max
+gender: male
+birthDate: '1990-10-10'
+address:
+- line:
+  - 123 Oxygen St
+  city: Hello
+  district: World
+  state: NY
+  postalCode: '3212'
+telecom:
+- use: home
+- system: phone
+  value: "(32) 8934 1234"
+  use: work
+  rank: 1
+```
+{% endtab %}
+
+{% tab title="Request JSON" %}
 ```javascript
 POST /Patient
 
@@ -56,7 +86,13 @@ POST /Patient
 ```
 {% endtab %}
 
-{% tab title="Response" %}
+{% tab title="Response YAML" %}
+```yaml
+
+```
+{% endtab %}
+
+{% tab title="Response JSON" %}
 ```javascript
 Status: 201
 
@@ -109,13 +145,13 @@ Status: 201
 {% endtab %}
 {% endtabs %}
 
-This is example, you can change values as you want, but better check full [Patient resource](https://www.hl7.org/fhir/patient.html) description and [official example](https://www.hl7.org/fhir/patient-example.json.html). The `id` field in the request body is not required, if you do not send it to the server, it will be generated. A description of the difference in `create` operation behavior between FHIR and Aidbox endpoints can be found [here](../basic-concepts/aidbox-vs-fhir.md).
+This is only an example, you can change the values as you want but it would be good to check the full [Patient resource](https://www.hl7.org/fhir/patient.html) description and [official example](https://www.hl7.org/fhir/patient-example.json.html). The `id` field in the request body is not required: if you do not send it to a server, it will be generated. Description of the difference in `create` operation behavior between FHIR and Aidbox endpoints can be found [here](../basic-concepts/aidbox-vs-fhir.md).
 
 ![POST /Patient](../.gitbook/assets/screenshot-2018-10-18-19.41.22.png)
 
 ### Get Patient
 
-After sending the request - we receive a response with `Status - 201` and the sent data - our patient is created. We can make sure of this by sending request  `GET /Patient/<id>` and receive created patient data \(in our case id is `f8fe69db-c01c-4a3b-bf0c-0a806ea22577`\),  or we can check a complete list of patients - `GET /Patient` 
+After sending the request, we receive a response with `Status - 201` and the sent data — our patient is created. We can make sure of this by sending the request  `GET /Patient/<id>` and receiving created patient data \(in our case the `id` is `f8fe69db-c01c-4a3b-bf0c-0a806ea22577`\), or we can check a complete list of patients — `GET /Patient` 
 
 {% tabs %}
 {% tab title="Request" %}
@@ -179,7 +215,7 @@ Status: 200
 
 ### Patch Patient
 
-Next step  - update our patient info. For partial update we can use `PATCH /Patient/<id>`,  in body we need send only changed data. For example - let's change our patient name.
+Next step is to update our patient information. For partial update we can use `PATCH /Patient/<id>`, in the request body we need to send only changed data. For example, let's change our patient name.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -249,9 +285,9 @@ Status: 200
 {% endtab %}
 {% endtabs %}
 
-### Update patient
+### Update Patient
 
-For full resource update we use`PUT /Patient/<id>`
+For a full resource update we use`PUT /Patient/<id>`
 
 {% tabs %}
 {% tab title="Request" %}
@@ -305,14 +341,14 @@ Status: 200
 {% endtabs %}
 
 {% hint style="info" %}
-We completely update the data, what was there before but did not fall into the request body - will be deleted
+In this case, we're completely updating the data: what was there before but did not get into the request body — will be deleted.
 {% endhint %}
 
-### Patient history
+### Patient History
 
-We have ability to receive history of our patient changes, just need to send request like this -  `GET /Patient/<id>/_history` 
+We have the ability to receive history of our patient changes, we just need to send a request like this —  `GET /Patient/<id>/_history`.
 
-Let's do it for our patient
+Let's do it for our patient.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -468,9 +504,9 @@ Status: 200
 {% endtab %}
 {% endtabs %}
 
-At the response we receive all versions \(in this case 3\) of our patient. First version - when resource created and second - with changed name and the third - full updated resource.
+In the response we receive all versions \(in this case 3\) of our patient resource. First version — when the resource was created, second one — with the changed name, and the third — wholly updated resource.
 
-And now we can do operation called [vread](http://hl7.org/fhir/http.html#vread) to get a specific version of resource with following request`GET /Patient/<id>/_history/<versionId>`
+And now we can do the operation called [vread](http://hl7.org/fhir/http.html#vread) to get a specific version of a resource with following request`GET /Patient/<id>/_history/<versionId>`
 
 {% tabs %}
 {% tab title="Request" %}
@@ -534,7 +570,7 @@ Status: 200
 
 ### Search Patient
 
-Another interesting thing - we can find patient e.g by name - `GET /Patient?name=<Patient_name>`
+Another interesting thing — we can find a patient by some criteria, e.g by name — `GET /Patient?name=<Patient_name>`
 
 {% hint style="info" %}
 Before this step, it is better to create other patients for different search results. You already know how to do it ;\)
@@ -642,7 +678,7 @@ Great! Now we can find patients.
 
 ### Delete Patient
 
-And another standard operation - deletion - `DELETE /Patient/<id>`
+And another standard operation — deletion — `DELETE /Patient/<id>`
 
 {% tabs %}
 {% tab title="Request" %}
@@ -685,7 +721,7 @@ Status: 200
 
 Upon successful deletion we receive last version of resource and `status - 200`
 
-If we try to get deleted patient  `GET /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577` we will receive `resourceType - OperationOutcome` and `status 410`. 
+If we try to get a deleted patient `GET /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577` we will receive `resourceType - OperationOutcome` and `status 410`. 
 
 {% tabs %}
 {% tab title="Request" %}
@@ -730,5 +766,5 @@ Status: 410
 {% endtab %}
 {% endtabs %}
 
-Now we have learned how to search, create, receive, update, delete patients and get a history of their changes.
+Now we have learned how to search, create, receive, update, and delete patients, and get a history of their changes.
 

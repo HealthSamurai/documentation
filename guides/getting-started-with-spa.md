@@ -240,7 +240,7 @@ type: transaction
 entry:
 - resource:
     id: SPA
-    redirect_uri: http://localhost:4200/
+    redirect_uri: http://localhost:4200
   request:
     method: POST
     url: "/Client"
@@ -275,7 +275,7 @@ resourceType: Bundle
 entry:
 - resource:
     secret: null
-    redirect_uri: http://localhost:4200/
+    redirect_uri: http://localhost:4200
     id: SPA
     resourceType: Client
     meta:
@@ -349,5 +349,7 @@ npm install -g @angular/cli
 ng serve
 ```
 
+Open http://localhost:4200 
 
+It works! You are awesome!
 
