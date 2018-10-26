@@ -24,6 +24,8 @@ This guide assumes that you already have installed git, npm, postman and have te
 
 In this guide we will be using Aidbox.Cloud for simplicity of Box creation, but any other Aidbox product will also work.
 
+You will set proper values instead of placeholders like this: `<YOUR-BOX>`
+
 ## Create a box
 
 Choose how you would like to authorize [Aidbox](https://ui.aidbox.app). It can be done via your Github or Google account.
@@ -227,11 +229,125 @@ To implement this flow we need to create 3 entities:
 * **Client** - our single-page application, which will interact with FHIR server
 * **AccessPolicy** - set of rules, which describes, who and how can access FHIR server
 
-We will create all three entities with one request:
+We will create all three entities with one request \(don't forget to change admin password\):
 
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+POST /
 
+type: transaction
+entry:
+- resource:
+    id: SPA
+    redirect_uri: http://localhost:4200/
+  request:
+    method: POST
+    url: "/Client"
+    
+- resource:
+    id: admin
+    email: admin@mail.com
+    password: password # Change this value
+  request:
+    method: POST
+    url: "/User"
+    
+- resource:
+    engine: json-schema
+    schema:
+      type: object
+      required:
+      - user
+  request:
+    method: POST
+    url: "/AccessPolicy"
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```yaml
+Status: 200
+
+id: '15'
+type: transaction-response
+resourceType: Bundle
+entry:
+- resource:
+    secret: null
+    redirect_uri: http://localhost:4200/
+    id: SPA
+    resourceType: Client
+    meta:
+      lastUpdated: '2018-10-26T10:06:47.614Z'
+      versionId: '15'
+      tag:
+      - {system: 'https://aidbox.io', code: created}
+  status: 201
+- resource:
+    email: admin@mail.com
+    password: $s0$f0801$Pc1z+JwonWUqNdpiIbHmkw==$V90luPjihU+QT38nXE26SvFMm+x1EnMrb+NMUAlli/w=
+    id: admin
+    resourceType: User
+    meta:
+      lastUpdated: '2018-10-26T10:06:47.614Z'
+      versionId: '15'
+      tag:
+      - {system: 'https://aidbox.io', code: created}
+  status: 201
+- resource:
+    engine: json-schema
+    schema:
+      type: object
+      required: [user]
+    id: all-registered-users
+    resourceType: AccessPolicy
+    meta:
+      lastUpdated: '2018-10-26T10:06:47.614Z'
+      versionId: '15'
+      tag:
+      - {system: 'https://aidbox.io', code: created}
+  status: 201
+```
+{% endtab %}
+{% endtabs %}
+
+We created a Client resource with redirect uri equal to our SPA address, admin User with password `password` and AccessPolicy, which tells to authorize any registered user.
+
+Now we request a token from our box using OAuth2.0 implicit grant flow.
+
+Change &lt;your-box&gt; to name of your box and open following url in your browser.
+
+`https://<your-box>.aidbox.app/oauth2/authorize?response_type=token&client_id=SPA&redirect_uri=http://localhost:4200/`
+
+![box10 is a box name in my case](../.gitbook/assets/2018-10-26-131804_1164x709_scrot.png)
+
+Enter email and password of the User, click 'Sign In' and you will be redirected to localhost:4200 \(redirect\_uri of SPA client\).
+
+![](../.gitbook/assets/2018-10-26-132119_874x590_scrot.png)
+
+Copy access\_token value, we will use it to obtain Patient resource with external http client.
+
+Open [Postman](https://www.getpostman.com/) or any other http client, create new `GET` request, enter following url: `https://<your-box>.aidbox.app/Patient` and add `Authorization` header with value equal `Bearer <you-access-token-here>`.
+
+![](../.gitbook/assets/2018-10-26-134351_1179x664_scrot.png)
+
+  
+You should get a bundle with Patient resources. Yay! It seems working
 
 ## Create FHIR SPA
+
+On the final step we will configure and start our SPA. Make sure that you have [git](https://git-scm.com/downloads) and [npm](https://www.npmjs.com/get-npm) installed.
+
+```bash
+git clone https://github.com/HealthSamurai/aidbox-angular-sample.git
+cd aidbox-angular-sample
+vim environment.ts # or use any other editor of your choice
+# set proper url to your box
+npm install
+npm install -g @angular/cli
+ng serve
+```
 
 
 
