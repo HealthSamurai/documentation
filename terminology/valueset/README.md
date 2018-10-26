@@ -2,210 +2,140 @@
 
 ## Overview
 
-The ValueSet resource documentation can be found here: [https://www.hl7.org/fhir/valueset.html](https://www.hl7.org/fhir/valueset.html).
+The ValueSet resource official FHIR documentation can be found here: [https://www.hl7.org/fhir/valueset.html](https://www.hl7.org/fhir/valueset.html).
 
- All examples you can run in Postman having Aibox.Dev running locally, or by setting up a box in Aidbox.Cloud. Download the Aidbox collection and open it in Postman. Set up the proper environment value for the `base` variable which should be the base url for your FHIR server.
+All examples can be executed in the REST Console of your Box in Aidbox.Cloud. Just copy/paste a sample into the REST Console and click the EXECUTE button or press Ctrl+Enter.
+
+Also, you can run all examples in [Postman](https://www.getpostman.com/) having Aibox.Dev running locally, or by setting up a box in Aidbox.Cloud. Download the Aidbox collection and open it in Postman. Setup the proper environment value for the `base` variable which should be the base URL of your FHIR server. Setup authorization if you are using Aidbox.Cloud.
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/view-collection/63adc3e748810862fddd?referrer=https%3A%2F%2Fapp.getpostman.com%2Frun-collection%2F63adc3e748810862fddd%23%3Fenv[Aidbox.Dev]%3DW3sia2V5IjoiYmFzZSIsInZhbHVlIjoiaHR0cDovL2xvY2FsaG9zdDo4ODg4IiwiZGVzY3JpcHRpb24iOiIiLCJlbmFibGVkIjp0cnVlfV0%3D&_ga=2.64469999.1592054488.1539615553-1595564802.1538573158)
+
+### CRUD
 
 CRUD is fully supported for the ValueSet resource.
 
 {% tabs %}
-{% tab title="Create/Update" %}
-```javascript
-PUT {{base}}/ValueSet/administrative-gender2
-{
-  "description": "The gender of a person used for administrative purposes. 2",
-  "compose": {
-    "include": [{
-        "system": "http://hl7.org/fhir/administrative-gender"
-      }
-    ],
-    "exclude": [{
-        "system": "http://hl7.org/fhir/administrative-gender",
-        "concept":[{
-        "code":"other"},
-        {
-        "code":"unknown"}]
-      }
-    ]
-  },
-  "date": "2018-04-03T12:05:46+10:00",
-  "meta": {
-    "lastUpdated": "2018-10-03T13:19:57.503Z",
-    "versionId": "0",
-    "tag": [{
-        "system": "https://aidbox.io",
-        "code": "created"
-      }
-    ]
-  },
-  "publisher": "HL7 (FHIR Project)",
-  "name": "AdministrativeGender2",
-  "experimental": true,
-  "resourceType": "ValueSet",
-  
-  "status": "draft",
-  "id": "administrative-gender2",
-  "url": "http://hl7.org/fhir/ValueSet/administrative-gender2",
-  "identifier": [{
-      "value": "urn:oid:2.16.840.1.113883.4.642.3.1",
-      "system": "urn:ietf:rfc:3986"
-    }
-  ],
-  "immutable": true,
-  "version": "3.3.2",
-  "contact": [{
-      "telecom": [{
-          "value": "http://hl7.org/fhir",
-          "system": "url"
-        }, {
-          "value": "fhir@lists.hl7.org",
-          "system": "email"
-        }
-      ]
-    }
-  ]
-}
+{% tab title="Create" %}
+```yaml
+POST /ValueSet
+
+description: The gender of a person used for administrative purposes. 2
+compose:
+  include:
+  - system: http://hl7.org/fhir/administrative-gender
+  exclude:
+  - system: http://hl7.org/fhir/administrative-gender
+    concept:
+    - code: other
+    - code: unknown
+name: AdministrativeGender2
+experimental: true
+resourceType: ValueSet
+status: draft
+id: administrative-gender2
+url: http://hl7.org/fhir/ValueSet/administrative-gender2
+immutable: true
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-    "description": "The gender of a person used for administrative purposes. 2",
-    "compose": {
-        "exclude": [
-            {
-                "system": "http://hl7.org/fhir/administrative-gender",
-                "concept": [
-                    {
-                        "code": "other"
-                    },
-                    {
-                        "code": "unknown"
-                    }
-                ]
-            }
-        ],
-        "include": [
-            {
-                "system": "http://hl7.org/fhir/administrative-gender"
-            }
-        ]
-    },
-    "date": "2018-04-03T12:05:46+10:00",
-    "meta": {
-        "lastUpdated": "2018-10-04T14:23:23.548Z",
-        "versionId": "15",
-        "tag": [
-            {
-                "system": "https://aidbox.io",
-                "code": "created"
-            }
-        ]
-    },
-    "publisher": "HL7 (FHIR Project)",
-    "name": "AdministrativeGender2",
-    "experimental": true,
-    "resourceType": "ValueSet",
-    "status": "draft",
-    "id": "administrative-gender2",
-    "url": "http://hl7.org/fhir/ValueSet/administrative-gender2",
-    "identifier": [
-        {
-            "value": "urn:oid:2.16.840.1.113883.4.642.3.1",
-            "system": "urn:ietf:rfc:3986"
-        }
-    ],
-    "immutable": true,
-    "version": "3.3.2",
-    "contact": [
-        {
-            "telecom": [
-                {
-                    "value": "http://hl7.org/fhir",
-                    "system": "url"
-                },
-                {
-                    "value": "fhir@lists.hl7.org",
-                    "system": "email"
-                }
-            ]
-        }
-    ]
-}
+```yaml
+description: The gender of a person used for administrative purposes. 2
+compose:
+  exclude:
+  - system: http://hl7.org/fhir/administrative-gender
+    concept:
+    - code: other
+    - code: unknown
+  include:
+  - system: http://hl7.org/fhir/administrative-gender
+name: AdministrativeGender2
+experimental: true
+resourceType: ValueSet
+status: draft
+id: administrative-gender2
+url: http://hl7.org/fhir/ValueSet/administrative-gender2
+immutable: true
+```
+{% endtab %}
+
+{% tab title="Update" %}
+```yaml
+PUT /ValueSet/administrative-gender2
+
+description: The gender of a person used for administrative purposes. 2
+compose:
+  include:
+  - system: http://hl7.org/fhir/administrative-gender
+  exclude:
+  - system: http://hl7.org/fhir/administrative-gender
+    concept:
+    - code: other
+    - code: unknown
+name: AdministrativeGender2
+experimental: true
+resourceType: ValueSet
+status: draft
+id: administrative-gender2
+url: http://hl7.org/fhir/ValueSet/administrative-gender2
+immutable: true
+version: 3.3.2
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```yaml
+description: The gender of a person used for administrative purposes. 2
+compose:
+  exclude:
+  - system: http://hl7.org/fhir/administrative-gender
+    concept:
+    - code: other
+    - code: unknown
+  include:
+  - system: http://hl7.org/fhir/administrative-gender
+name: AdministrativeGender2
+experimental: true
+resourceType: ValueSet
+status: draft
+id: administrative-gender2
+url: http://hl7.org/fhir/ValueSet/administrative-gender2
+immutable: true
+version: 3.3.2
 ```
 {% endtab %}
 
 {% tab title="Read" %}
 ```javascript
-GET {{base}}/ValueSet/administrative-gender2
+GET /ValueSet/administrative-gender2
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-  "description": "The gender of a person used for administrative purposes. 2",
-  "compose": {
-    "exclude": [{
-        "system": "http://hl7.org/fhir/administrative-gender",
-        "concept": [{
-            "code": "other"
-          }, {
-            "code": "unknown"
-          }
-        ]
-      }
-    ],
-    "include": [{
-        "system": "http://hl7.org/fhir/administrative-gender"
-      }
-    ]
-  },
-  "date": "2018-04-03T12:05:46+10:00",
-  "meta": {
-    "lastUpdated": "2018-10-09T12:09:31.018Z",
-    "versionId": "78",
-    "tag": [{
-        "system": "https://aidbox.io",
-        "code": "updated"
-      }
-    ]
-  },
-  "publisher": "HL7 (FHIR Project)",
-  "name": "AdministrativeGender2",
-  "experimental": true,
-  "resourceType": "ValueSet",
-  "status": "draft",
-  "id": "administrative-gender2",
-  "url": "http://localhost:8888/ValueSet/administrative-gender2",
-  "identifier": [{
-      "value": "urn:oid:2.16.840.1.113883.4.642.3.1",
-      "system": "urn:ietf:rfc:3986"
-    }
-  ],
-  "immutable": true,
-  "version": "3.3.2",
-  "contact": [{
-      "telecom": [{
-          "value": "http://hl7.org/fhir",
-          "system": "url"
-        }, {
-          "value": "fhir@lists.hl7.org",
-          "system": "email"
-        }
-      ]
-    }
-  ]
-}
+```yaml
+description: The gender of a person used for administrative purposes. 2
+compose:
+  exclude:
+  - system: http://hl7.org/fhir/administrative-gender
+    concept:
+    - code: other
+    - code: unknown
+  include:
+  - system: http://hl7.org/fhir/administrative-gender
+name: AdministrativeGender2
+experimental: true
+resourceType: ValueSet
+status: draft
+id: administrative-gender2
+url: http://hl7.org/fhir/ValueSet/administrative-gender2
+immutable: true
+version: 3.3.2
 ```
 {% endtab %}
 
 {% tab title="Delete" %}
 ```javascript
-DELETE {{base}}/ValueSet/administrative-gender2
+DELETE /ValueSet/administrative-gender2
 ```
 {% endtab %}
 {% endtabs %}
@@ -216,60 +146,54 @@ We will show examples of using the compose element by expanding different value 
 
 ### include.concept
 
-Create a ValueSet using the `include.concept` element.
+Create a ValueSet using the `include.concept` element. The result will include only listed concepts: `kg` and `m`.
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
-POST {{base}}/ValueSet/$expand
-{
-  "resourceType": "Parameters",
-  "parameter": [{
-      "name": "valueSet",
-      "resource": {
-        "resourceType": "ValueSet",
-        "id": "sample-valueset-include-concept",
-        "status": "draft",
-        "compose": {
-          "include": [{
-              "system": "http://unitsofmeasure.org",
-              "concept": [{
-                  "code": "kg",
-                  "display": "kilogram"
-                }, {
-                  "code": "m",
-                  "display": "meter"
-                }
-              ]
-            }
-          ]
-        }
-      }
-    }
-  ]
-}
+```yaml
+POST /ValueSet/$expand
+
+resourceType: Parameters
+parameter:
+- name: valueSet
+  resource:
+    resourceType: ValueSet
+    id: sample-valueset-include-concept
+    status: draft
+    compose:
+      include:
+      - system: http://unitsofmeasure.org
+        concept:
+        - code: kg
+          display: kilogram
+        - code: m
+          display: meter
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-  "expansion": {
-    "timestamp": "2018-10-05T09:07:06Z",
-    "identifier": "http://hl7.org/fhir/ValueSet/sample-valueset-include-concept",
-    "contains": [{
-        "code": "kg",
-        "system": "http://unitsofmeasure.org",
-        "display": "kilogram"
-      }, {
-        "code": "m",
-        "system": "http://unitsofmeasure.org",
-        "display": "meter"
-      }
-    ]
-  },
-  ...
-}
+```yaml
+resourceType: ValueSet
+id: sample-valueset-include-concept
+status: draft
+compose:
+  include:
+  - system: http://unitsofmeasure.org
+    concept:
+    - code: kg
+      display: kilogram
+    - code: m
+      display: meter
+expansion:
+  timestamp: '2018-10-25T14:40:09Z'
+  identifier: 
+  contains:
+  - code: kg
+    system: http://unitsofmeasure.org
+    display: kilogram
+  - code: m
+    system: http://unitsofmeasure.org
+    display: meter
 ```
 {% endtab %}
 {% endtabs %}
