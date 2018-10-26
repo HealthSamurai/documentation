@@ -349,7 +349,7 @@ npm install -g @angular/cli
 ng serve
 ```
 
-Open http://localhost:4200 
+Open [http://localhost:4200](http://localhost:4200)
 
 It works! You are awesome!
 
