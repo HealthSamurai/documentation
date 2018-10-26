@@ -20,20 +20,19 @@ Exposes OIDC discovery documents
 
 ```javascript
 {
-    grant_types_supported: [
+    "grant_types_supported": [
         "authorization_code",
         "implicit",
         "password",
         "client_credentials"
     ],
-    //userinfo_endpoint: "http://localhost:8888/oauth2/userinfo",
-    //token_endpoint_auth_methods_supported: [
-    //    "client_secret_post",
-    //   "client_secret_basic",
-    //    "client_secret_jwt",
-    //    "private_key_jwt"
-    //],
-    claims_supported: [
+    "jwks_uri": "http://localhost:7777/.well-known/jwks.json"
+    "userinfo_endpoint": "http://localhost:8888/oauth2/userinfo",
+    "token_endpoint_auth_methods_supported": [
+        "client_secret_post",
+        "client_secret_basic"
+    ],
+    "claims_supported": [
         "profile",
         "openid",
         "exp",
@@ -46,25 +45,25 @@ Exposes OIDC discovery documents
         "picture",
         "sub"
     ],
-    subject_types_supported: [
+    "subject_types_supported": [
         "public"
     ],
-    authorization_endpoint: "http://localhost:8888/oauth2/authoraize",
-    scopes_supported: [
+    "uthorization_endpoint": "http://localhost:8888/oauth2/authoraize",
+    "scopes_supported": [
         "openid",
         "profile",
         "email",
         "groups"
     ],
-    issuer: "http://localhost:8888",
-    response_types_supported: [
+    "issuer": "http://localhost:8888",
+    "response_types_supported": [
         "code",
         "token",
         "token id_token",
         "code id_token"
     ],
-    token_endpoint: "http://localhost:8888/oauth2/token",
-    id_token_signing_alg_values_supported: [
+    "token_endpoint": "http://localhost:8888/oauth2/token",
+    "id_token_signing_alg_values_supported": [
         "RS256"
     ]
 }
