@@ -4,7 +4,7 @@ description: >-
   Console.
 ---
 
-# REST Console
+# Working with REST Console
 
 ### REST Console
 
