@@ -59,6 +59,10 @@ REST console is designed to work with resources on your `Box` by sending HTTP re
 
 Let's add a couple of new patients -  for this we type in our console `POST /Patient` and in the body of the request wherein we will send the data of our new patient \(Aidbox supports JSON and few other formats, but we will use YAML for [compactness and readability](../faq/why-yaml.md)\):
 
+{% hint style="info" %}
+Use copy button in top right corner of code snippet to avoid copying of unnecessary white space characters.
+{% endhint %}
+
 {% tabs %}
 {% tab title="Request" %}
 ```yaml
@@ -170,10 +174,6 @@ To implement this flow we need to create 3 entities:
 * **AccessPolicy** - set of rules, which describes, who and how can access FHIR server
 
 We will create all three entities with one request \(don't forget to **change** admin password!\):
-
-{% hint style="info" %}
-Use copy button in top right corner of code snippet to avoid copying of unnecessary white space characters.
-{% endhint %}
 
 {% tabs %}
 {% tab title="Request" %}
