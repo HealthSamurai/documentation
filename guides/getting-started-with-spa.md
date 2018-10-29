@@ -32,11 +32,11 @@ Choose how you would like to authorize [Aidbox](https://ui.aidbox.app). It can b
 
 ![](../.gitbook/assets/scr-2018-10-11_10-49-57.png)
 
-After you have been successfully authorized in [Aidbox.Cloud](https://ui.aidbox.app), click the 'New Box' button to start.
+After you have been successfully authorized in [Aidbox.Cloud](https://ui.aidbox.app), click the `New Box` button to start.
 
 ![](../.gitbook/assets/scr-2018-10-11_10-51-55%20%281%29.png)
 
-In the displayed form, enter your future box name. It can be a name of your application you are going to build, choose your plan and click 'Create' button.
+In the displayed form, enter your future box name. It can be a name of your application you are going to build, choose your plan and click `Create` button.
 
 ![](../.gitbook/assets/2018-10-25-131455_633x702_scrot.png)
 
@@ -46,7 +46,7 @@ Your new box was successfully created. Click the box name to proceed.
 
 ## Check the CRUD
 
-Let's see what can we do here.
+Now go to `REST console` section and let's see what can we do here.
 
 ![REST console](../.gitbook/assets/screenshot-2018-10-18-18.54.58.png)
 
@@ -247,7 +247,7 @@ entry:
     
 - resource:
     id: admin
-    email: admin@mail.com
+    email: admin@mail.com # Change this value
     password: password # Change this value
   request:
     method: POST
