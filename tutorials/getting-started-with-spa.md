@@ -1,5 +1,5 @@
 ---
-description: Working FHIR application in 20 minutes
+description: Working FHIR application in 25 minutes
 ---
 
 # Getting Started with SPA
@@ -165,7 +165,7 @@ There are much more operations that can be done with server using [RESTful API](
 
 ## Give access to external clients
 
-Aidbox products support [OAuth2.0](../security/oauth-2.0/) authorization framework and [Access Control ]()mechanism to provide ability for developers to create applications, which can interact securely with Boxes \(Aidbox FHIR server instances\). For single-page application it's a common practice to use OAuth2.0 [Implicit Grant flow](../security/oauth-2.0/implicit.md).
+Aidbox products support [OAuth2.0](../security/oauth-2.0/) authorization framework and [Access Control](../security/access-control.md) mechanism to provide ability for developers to create applications, which can interact securely with Boxes \(Aidbox FHIR server instances\). For single-page application it's a common practice to use OAuth2.0 [Implicit Grant flow](../security/oauth-2.0/implicit.md).
 
 To implement this flow we need to create 3 entities:
 
@@ -272,7 +272,7 @@ Enter email and password of the User, click 'Sign In' and you will be redirected
 
 Copy access\_token value, we will use it to obtain Patient resource with external http client.
 
-Open [Postman](https://www.getpostman.com/apps) or any other http client, create new `GET` request, enter following url: `https://<YOUR-BOX>.aidbox.app/Patient` and add `Authorization` header with value equal `Bearer <YOUR-ACCESS-TOKEN-HERE>`.
+Open [Postman](https://www.getpostman.com/apps) or any other http client, create new `GET` request, enter following url: `https://<YOUR-BOX>.aidbox.app/Patient` and add `Authorization` header with value equal to `Bearer <YOUR-ACCESS-TOKEN-HERE>`.
 
 ![](../.gitbook/assets/2018-10-26-134351_1179x664_scrot.png)
 
@@ -301,7 +301,7 @@ npm install -g @angular/cli # install angular utilities
 ng serve # start a web server for our SPA
 ```
 
-Open [http://localhost:4200](http://localhost:4200), you automatically will be redirected to your box OAuth2.0 login page. Login with email and password you set for User previously.
+Open [http://localhost:4200](http://localhost:4200), you automatically will be redirected to your box OAuth2.0 login page. Log ;in with email and password you set for User previously.
 
 ![](../.gitbook/assets/2018-10-29-160043_1371x764_scrot.png)
 

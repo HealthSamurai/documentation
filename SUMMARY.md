@@ -25,7 +25,6 @@
     * [Modules](basic-concepts/meta-model/modules.md)
     * [Manifest](basic-concepts/meta-model/manifest.md)
   * [Validation](basic-concepts/validation.md)
-* [Release Notes](release-notes.md)
 * [Installation](installation/README.md)
   * [Setup Aidbox.Dev](installation/setup-aidbox.dev.md)
   * [Use Aidbox.Cloud](installation/use-aidbox.cloud.md)
@@ -54,6 +53,7 @@
     * [Resource Owner Credentials Grant](security/oauth-2.0/resource-owner-credentials.md)
     * [Client Credentials Grant](security/oauth-2.0/client-credentials.md)
     * [External Auth Providers](security/oauth-2.0/external-auth-providers.md)
+  * [Access Control \(TODO\)](security/access-control.md)
 * [Terminology](terminology/README.md)
   * [Concept](terminology/concept.md)
   * [CodeSystem](terminology/codesystem-and-concept/README.md)
@@ -75,4 +75,5 @@
 * [FAQ](faq/README.md)
   * [Why YAML?](faq/why-yaml.md)
   * [StyleGuide](faq/styleguide.md)
+* [Release Notes](release-notes.md)
 
