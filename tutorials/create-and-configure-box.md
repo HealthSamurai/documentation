@@ -2,7 +2,7 @@
 description: Getting started with new box
 ---
 
-# Create and Configure Box
+# Creating and Configuring Box
 
 After you have been successfully authorized in [Aidbox.Cloud](https://ui.aidbox.app), click the 'New Box' button to start.
 

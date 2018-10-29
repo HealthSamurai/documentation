@@ -2,7 +2,7 @@
 description: How to operate bundles in Aidbox
 ---
 
-# Uploading Bundles
+# Uploading sample data
 
 ## Endpoint for Bundles
 
