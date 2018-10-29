@@ -13,9 +13,7 @@ For most of Operations in FHIR you manipulate a resource as a whole \(create, up
 With the `patch` operation you can update a part of resource by sending a declarative description of operations which should be performed on an existing resource. To describe this operations in Aidbox you can use different notations \(methods\):
 
 * merge-patch — simple merge semantics \([read more in RFC](https://tools.ietf.org/html/rfc7386)\);
-* json-patch — advanced JSON transformation \([read more in RFC](https://tools.ietf.org/html/rfc6902)\).
-
-FHIR and Aidbox team is also working on a brand new FHIR patch method — [https://www.hl7.org/fhir/fhirpatch.html](https://www.hl7.org/fhir/fhirpatch.html), which is currently in its early draft stage.
+* json-patch — advanced JSON transformation \([read more in RFC](https://tools.ietf.org/html/rfc6902)\);
 
 ### Patch Method
 
@@ -25,12 +23,10 @@ You can specify a `patch` method by the `content-type` header or by the `_method
 | :--- | :--- | :--- |
 | **json-patch** | `json-patch` | application/json-patch+json |
 | **merge-patch** | `merge-patch` | application/merge-patch+json |
-| **fhir-patch** | `fhir-patch` | application/fhir-patch+json |
 
 If method is not specified, Aidbox will try to guess it by the following algorithm: 
 
 * if the payload is an array — `json-merge`
-* if the payload is an object with `resourceType = 'Parameter'`— `fhir-patch` 
 * else `merge-patch`
 
 ### Operation Description
@@ -82,7 +78,7 @@ Updated resource
 ### Example
 
 {% hint style="info" %}
-You can exercise this tutorial using [REST Console]() — just copy/paste queries into console!
+You can exercise this tutorial using [REST Console](../tutorials/rest-console.md) — just copy/paste queries into console!
 {% endhint %}
 
 Let's suppose we've created a Patient resource with the id `pt-1`
@@ -207,14 +203,6 @@ birthDate: '1979-01-01'
 ```
 {% endtab %}
 {% endtabs %}
-
-### FHIR Patch
-
-We are working on the FHIR path specification and implementation.
-
-{% hint style="warning" %}
-Under development yet.
-{% endhint %}
 
 
 

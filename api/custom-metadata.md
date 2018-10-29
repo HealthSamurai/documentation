@@ -1,8 +1,6 @@
-# Custom Metadata
+# Metadata
 
-As it was said earlier Aidbox is a metadata driven platform, therefore when you want to define new ResourceType, or Attribute you need to create a couple of resources, such as Entity and Attribute etc. And sometimes this way is not convenient. For this reason we support special endpoint that provide to you more simply way to define custom Metadata resources.
-
-For example, lets try to define two custom resources: **City** and **Country**. Country will consists of name, population and flag. City consists of name, phoneCode, reference to country and date of foundation. Also we want that Country.name, City.name and City.country attributes should be required. And we are want to search Country by name and population, City by name and country in which it is located
+Aidbox is a metadata driven platform, therefore when you want to define new ResourceType, or Attribute you need to create a couple of resources, such as Entity and Attribute etc. And sometimes this way is not convenient. For this reason we support special endpoint that provide to you more simply way to define custom Metadata resources.
 
 {% api-method method="post" host="\[base\]" path="/$metadata" %}
 {% api-method-summary %}
@@ -46,7 +44,9 @@ Explain of errors
 {% endapi-method-spec %}
 {% endapi-method %}
 
-Example
+### Example
+
+For example, lets try to define two custom resources: **City** and **Country**. Country will consists of name, population and flag. City consists of name, phoneCode, reference to country and date of foundation. Also we want that Country.name, City.name and City.country attributes should be required. And we are want to search Country by name and population, City by name and country in which it is located
 
 {% tabs %}
 {% tab title="Request" %}
