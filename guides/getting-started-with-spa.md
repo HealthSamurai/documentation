@@ -1,13 +1,16 @@
+---
+description: Working FHIR application in 10 minutes
+---
+
 # Getting Started with SPA
 
 After reading this guide, you will know:
 
 * What is FHIR and SPA
 * How to create an instance of FHIR server
-* Create a new SPA, and connect your application to a FHIR server
 * Basics of FHIR RESTful API
 * How to make secure requests to FHIR server
-* How to quickly generate the starting pieces of a FHIR SPA application
+* How to create a new SPA, and connect it to a FHIR server
 
 ## Introduction
 
@@ -20,11 +23,11 @@ After reading this guide, you will know:
 
 #### Guide assumptions
 
-This guide assumes that you already have installed git, npm, postman and have terminal application.
+This guide assumes that you already have installed [git](https://git-scm.com/downloads), [npm](https://www.npmjs.com/get-npm), [postman](https://www.getpostman.com/apps) and have a terminal application.
 
 In this guide we will be using Aidbox.Cloud for simplicity of Box creation, but any other Aidbox product will also work.
 
-You will set proper values instead of placeholders like this: `<YOUR-BOX>`
+This guide assumes that you will set proper values instead of placeholders like this: `<YOUR-BOX>`
 
 ## Create a box
 
@@ -54,165 +57,102 @@ REST console is designed to work with resources on your `Box` by sending HTTP re
 
 ### Create Patient
 
-Let's add a couple of new patients -  for this we type in our console `POST /Patient` and in the body of the request wherein we will send the data of our new patient:
+Let's add a couple of new patients -  for this we type in our console `POST /Patient` and in the body of the request wherein we will send the data of our new patient \(Aidbox supports JSON and few other formats, but we will use YAML for [compactness and readability](../faq/why-yaml.md)\):
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 POST /Patient
 
-{
-  "resourceType": "Patient",
-  "name": [
-    {
-      "given": ["Max"]
-    }
-  ],
-  "gender": "male",
-  "birthDate": "1990-10-10",
-  "address": [
-    {
-      "line": [
-        "123 Oxygen St"
-      ],
-      "city": "Hello",
-      "district": "World",
-      "state": "NY",
-      "postalCode": "3212"
-    }
-  ],
-  "telecom": [
-    {
-      "use": "home"
-    },
-    {
-      "system": "phone",
-      "value": "(32) 8934 1234",
-      "use": "work",
-      "rank": 1
-    }
-  ]
-}
+resourceType: Patient
+name:
+- given:
+  - Max
+gender: male
+birthDate: '1990-10-10'
+address:
+- line:
+  - 123 Oxygen St
+  city: Hello
+  district: World
+  state: NY
+  postalCode: '3212'
+telecom:
+- use: home
+- system: phone
+  value: "(32) 8934 1234"
+  use: work
+  rank: 1
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
+```yaml
 Status: 201
 
-{
- "name": [
-  {
-   "given": [
-    "Max"
-   ]
-  }
- ],
- "gender": "male",
- "address": [
-  {
-   "city": "Hello",
-   "line": [
-    "123 Oxygen St"
-   ],
-   "state": "NY",
-   "district": "World",
-   "postalCode": "3212"
-  }
- ],
- "telecom": [
-  {
-   "use": "home"
-  },
-  {
-   "use": "work",
-   "rank": 1,
-   "value": "(32) 8934 1234",
-   "system": "phone"
-  }
- ],
- "birthDate": "1990-10-10",
- "id": "f8fe69db-c01c-4a3b-bf0c-0a806ea22577",
- "resourceType": "Patient",
- "meta": {
-  "lastUpdated": "2018-10-23T09:47:36.555Z",
-  "versionId": "222",
-  "tag": [
-   {
-    "system": "https://aidbox.io",
-    "code": "created"
-   }
-  ]
- }
-}
+name:
+- given: [Max]
+gender: male
+address:
+- city: Hello
+  line: [123 Oxygen St]
+  state: NY
+  district: World
+  postalCode: '3212'
+telecom:
+- {use: home}
+- {use: work, rank: 1, value: (32) 8934 1234, system: phone}
+birthDate: '1990-10-10'
+id: 957d782d-3e40-4978-968c-63a1ef7d2473
+resourceType: Patient
+meta:
+  lastUpdated: '2018-10-29T09:09:16.604Z'
+  versionId: '118'
+  tag:
+  - {system: 'https://aidbox.io', code: created}
 ```
 {% endtab %}
 {% endtabs %}
 
-This is example, you can change values as you want, but better check full [Patient resource](https://www.hl7.org/fhir/patient.html) description and [official example](https://www.hl7.org/fhir/patient-example.json.html). The `id` field in the request body is not required, if you do not send it to the server, it will be generated. A description of the difference in `create` operation behavior between FHIR and Aidbox endpoints can be found [here](../basic-concepts/aidbox-vs-fhir.md).
+This is example, you can change values as you want, but for more information check full [Patient resource](https://www.hl7.org/fhir/patient.html) description and [official example](https://www.hl7.org/fhir/patient-example.json.html). The `id` field in the request body is not required, if you do not send it to the server, it will be generated. A description of the difference in `create` operation behavior between FHIR and Aidbox endpoints can be found [here](../basic-concepts/aidbox-vs-fhir.md).
 
-![POST /Patient](../.gitbook/assets/screenshot-2018-10-18-19.41.22.png)
+![](../.gitbook/assets/2018-10-29-121415_1311x754_scrot.png)
 
 ### Get Patient
 
-After sending the request - we receive a response with `Status: 201` and the sent data - our patient is created. We can make sure of this by sending request  `GET /Patient/<id>` and receive created patient data \(in our case id is `f8fe69db-c01c-4a3b-bf0c-0a806ea22577`\),  or we can check a complete list of patients - `GET /Patient` 
+After sending the request - we receive a response with `Status: 201` and the sent data - our patient is created. We can make sure of this by sending request  `GET /Patient/<id>` and receive created patient data \(in our case id is `957d782d-3e40-4978-968c-63a1ef7d2473`, we got id from response\),  or we can check a complete list of patients - `GET /Patient` 
 
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-GET /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577
+GET /Patient/957d782d-3e40-4978-968c-63a1ef7d2473
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
+```yaml
 Status: 200
 
-{
- "name": [
-  {
-   "given": [
-    "Max"
-   ]
-  }
- ],
- "gender": "male",
- "address": [
-  {
-   "city": "Hello",
-   "line": [
-    "123 Oxygen St"
-   ],
-   "state": "NY",
-   "district": "World",
-   "postalCode": "3212"
-  }
- ],
- "telecom": [
-  {
-   "use": "home"
-  },
-  {
-   "use": "work",
-   "rank": 1,
-   "value": "(32) 8934 1234",
-   "system": "phone"
-  }
- ],
- "birthDate": "1990-10-10",
- "id": "f8fe69db-c01c-4a3b-bf0c-0a806ea22577",
- "resourceType": "Patient",
- "meta": {
-  "lastUpdated": "2018-10-23T09:47:36.555Z",
-  "versionId": "222",
-  "tag": [
-   {
-    "system": "https://aidbox.io",
-    "code": "created"
-   }
-  ]
- }
-}
+name:
+- given: [Max]
+gender: male
+address:
+- city: Hello
+  line: [123 Oxygen St]
+  state: NY
+  district: World
+  postalCode: '3212'
+telecom:
+- {use: home}
+- {use: work, rank: 1, value: (32) 8934 1234, system: phone}
+birthDate: '1990-10-10'
+id: 957d782d-3e40-4978-968c-63a1ef7d2473
+resourceType: Patient
+meta:
+  lastUpdated: '2018-10-29T09:09:16.604Z'
+  versionId: '118'
+  tag:
+  - {system: 'https://aidbox.io', code: created}
 ```
 {% endtab %}
 {% endtabs %}
@@ -221,7 +161,7 @@ There are much more operations that can be done with server using [RESTful API](
 
 ## Give access to external clients
 
-Aidbox products support [OAuth2.0](../oauth-2.0/) authorization framework to provide ability for developers to create applications, which can interact securely with Boxes \(Aidbox FHIR server instances\). For single-page application it's a common practice to use OAuth2.0 [Implicit Grant flow](../oauth-2.0/implicit.md).
+Aidbox products support [OAuth2.0](../oauth-2.0/) authorization framework and [Access Control ](../security/access-control/)mechanism to provide ability for developers to create applications, which can interact securely with Boxes \(Aidbox FHIR server instances\). For single-page application it's a common practice to use OAuth2.0 [Implicit Grant flow](../oauth-2.0/implicit.md).
 
 To implement this flow we need to create 3 entities:
 
@@ -229,7 +169,11 @@ To implement this flow we need to create 3 entities:
 * **Client** - our single-page application, which will interact with FHIR server
 * **AccessPolicy** - set of rules, which describes, who and how can access FHIR server
 
-We will create all three entities with one request \(don't forget to change admin password\):
+We will create all three entities with one request \(don't forget to **change** admin password!\):
+
+{% hint style="info" %}
+Use copy button in top right corner of code snippet to avoid copying of unnecessary white space characters.
+{% endhint %}
 
 {% tabs %}
 {% tab title="Request" %}
@@ -269,7 +213,7 @@ entry:
 ```yaml
 Status: 200
 
-id: '15'
+id: '119'
 type: transaction-response
 resourceType: Bundle
 entry:
@@ -279,19 +223,19 @@ entry:
     id: SPA
     resourceType: Client
     meta:
-      lastUpdated: '2018-10-26T10:06:47.614Z'
-      versionId: '15'
+      lastUpdated: '2018-10-29T09:23:59.396Z'
+      versionId: '119'
       tag:
       - {system: 'https://aidbox.io', code: created}
   status: 201
 - resource:
     email: admin@mail.com
-    password: $s0$f0801$Pc1z+JwonWUqNdpiIbHmkw==$V90luPjihU+QT38nXE26SvFMm+x1EnMrb+NMUAlli/w=
+    password: $s0$f0801$JH/e5UHpObbWXY/UnnDX+A==$5czycStbfIx2MF4SX7jQpkCxBKtwxPU7QkJQHizUGiE=
     id: admin
     resourceType: User
     meta:
-      lastUpdated: '2018-10-26T10:06:47.614Z'
-      versionId: '15'
+      lastUpdated: '2018-10-29T09:23:59.396Z'
+      versionId: '119'
       tag:
       - {system: 'https://aidbox.io', code: created}
   status: 201
@@ -300,11 +244,11 @@ entry:
     schema:
       type: object
       required: [user]
-    id: all-registered-users
+    id: 85d32690-77b6-45ba-be73-0dab60b1212a
     resourceType: AccessPolicy
     meta:
-      lastUpdated: '2018-10-26T10:06:47.614Z'
-      versionId: '15'
+      lastUpdated: '2018-10-29T09:23:59.396Z'
+      versionId: '119'
       tag:
       - {system: 'https://aidbox.io', code: created}
   status: 201

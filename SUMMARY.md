@@ -90,6 +90,7 @@
   * [Subscriptions](integrations/subscriptions.md)
   * [Transaction Log](integrations/transaction-log.md)
 * [FAQ](faq/README.md)
+  * [Why YAML?](faq/why-yaml.md)
   * [StyleGuide](faq/styleguide.md)
 * [Release Notes](release-notes/README.md)
   * [25 oct 2018](release-notes/25-oct-2018.md)
