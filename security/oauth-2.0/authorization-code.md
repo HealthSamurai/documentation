@@ -72,7 +72,7 @@ GET http://localhost:8888/oauth2/authorize?
 
 Should return authentication page
 
-![Resource Owner authentication page](../.gitbook/assets/screen-shot-2018-10-24-at-16.50.32.png)
+![Resource Owner authentication page](../../.gitbook/assets/screen-shot-2018-10-24-at-16.50.32.png)
 
 ### Response
 

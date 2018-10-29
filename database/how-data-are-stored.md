@@ -1,4 +1,0 @@
-# How data are stored?
-
-
-

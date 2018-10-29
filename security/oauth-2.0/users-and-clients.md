@@ -9,16 +9,16 @@ description: What is a user? What is a client?
 The `Сlient` is the application that must access the user account or user data. Before performing access, it must be authorized by the user, and authorization must be approved by the Authorization Server.
 
 {% hint style="info" %}
-Besides OAut2.0 authorization, Aidbox support simply basic auth which use the same client credentials as OAuth. For more information read documentation [Authentication and Authorization](https://docs.aidbox.app/tutorials/authentication-and-authorization) and [REST Api Access Aidbox.Dev](../tutorials/how-to-use-rest-api.md).
+Besides OAut2.0 authorization, Aidbox support simply basic auth which use the same client credentials as OAuth. For more information read documentation [Authentication and Authorization](https://docs.aidbox.app/tutorials/authentication-and-authorization) and [REST Api Access Aidbox.Dev](../../tutorials/how-to-use-rest-api.md).
 {% endhint %}
 
 ### Structure
 
 | Attribute | Type | Description |
 | :--- | :--- | :--- |
-| id | [string](../basic-concepts/meta-model/aidbox-data-types.md#string) | Client id |
-| secret | [password](../basic-concepts/meta-model/aidbox-data-types.md#password) | Client secret |
-| redirect\_uri | [string](../basic-concepts/meta-model/aidbox-data-types.md#string) | Set of available redirect uri separated by comma |
+| id | [string](../../basic-concepts/meta-model/aidbox-data-types.md#string) | Client id |
+| secret | [password](../../basic-concepts/meta-model/aidbox-data-types.md#password) | Client secret |
+| redirect\_uri | [string](../../basic-concepts/meta-model/aidbox-data-types.md#string) | Set of available redirect uri separated by comma |
 
 ### Samples
 
@@ -66,25 +66,25 @@ The owner of the resource or `User` is the user who authorizes the application t
   <tbody>
     <tr>
       <td style="text-align:left">id</td>
-      <td style="text-align:left"><a href="../basic-concepts/meta-model/aidbox-data-types.md#string">string</a>
+      <td style="text-align:left"><a href="../../basic-concepts/meta-model/aidbox-data-types.md#string">string</a>
       </td>
       <td style="text-align:left">Unique user Id</td>
     </tr>
     <tr>
       <td style="text-align:left">email</td>
-      <td style="text-align:left"><a href="../basic-concepts/meta-model/aidbox-data-types.md#email">email</a>
+      <td style="text-align:left"><a href="../../basic-concepts/meta-model/aidbox-data-types.md#email">email</a>
       </td>
       <td style="text-align:left">User email</td>
     </tr>
     <tr>
       <td style="text-align:left">password</td>
-      <td style="text-align:left"><a href="../basic-concepts/meta-model/aidbox-data-types.md#password">password</a>
+      <td style="text-align:left"><a href="../../basic-concepts/meta-model/aidbox-data-types.md#password">password</a>
       </td>
       <td style="text-align:left">User password</td>
     </tr>
     <tr>
       <td style="text-align:left">data</td>
-      <td style="text-align:left"><a href="../basic-concepts/meta-model/aidbox-data-types.md#object">Object</a>
+      <td style="text-align:left"><a href="../../basic-concepts/meta-model/aidbox-data-types.md#object">Object</a>
       </td>
       <td style="text-align:left">
         <p>Free object with any user data.</p>

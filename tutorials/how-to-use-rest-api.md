@@ -31,9 +31,9 @@ services:
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-After installation of `Aidbox.Dev` you get one default [`Client`](../oauth-2.0/users-and-clients.md#client) resource. This resource is used in OAuth 2.0 functionality. Also, this resource may be used for `Basic Authorization`. In this tutorial we will use this [`Client`](../oauth-2.0/users-and-clients.md#client) for basic authorization in Aidbox.Dev .
+After installation of `Aidbox.Dev` you get one default [`Client`](../security/oauth-2.0/users-and-clients.md#client) resource. This resource is used in OAuth 2.0 functionality. Also, this resource may be used for `Basic Authorization`. In this tutorial we will use this [`Client`](../security/oauth-2.0/users-and-clients.md#client) for basic authorization in Aidbox.Dev .
 
-Default `Client` will be created with `password` described in `DEVBOX_PASSWORD` environment variable sent to the container in the `docker-compose.yaml` . If you did not explicitly specify `DEVBOX_PASSWORD` by default it was set to `secret`. We are strongly recommending to change the default password in your installation. [`Client.id`](../oauth-2.0/users-and-clients.md#client) of this client is constantly `root`.
+Default `Client` will be created with `password` described in `DEVBOX_PASSWORD` environment variable sent to the container in the `docker-compose.yaml` . If you did not explicitly specify `DEVBOX_PASSWORD` by default it was set to `secret`. We are strongly recommending to change the default password in your installation. [`Client.id`](../security/oauth-2.0/users-and-clients.md#client) of this client is constantly `root`.
 
 {% code-tabs %}
 {% code-tabs-item title="docker-compose.yaml" %}

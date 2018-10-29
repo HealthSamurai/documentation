@@ -33,31 +33,31 @@ This guide assumes that you will set proper values instead of placeholders like 
 
 Choose how you would like to authorize [Aidbox](https://ui.aidbox.app). It can be done via your Github or Google account.
 
-![](../.gitbook/assets/scr-2018-10-11_10-49-57.png)
+![](../../.gitbook/assets/scr-2018-10-11_10-49-57.png)
 
 After you have been successfully authorized in [Aidbox.Cloud](https://ui.aidbox.app), click the 'New Box' button to start.
 
-![](../.gitbook/assets/scr-2018-10-11_10-51-55%20%281%29.png)
+![](../../.gitbook/assets/scr-2018-10-11_10-51-55%20%281%29.png)
 
 In the displayed form, enter your future box name. It can be a name of your application you are going to build, choose your plan and click 'Create' button.
 
-![](../.gitbook/assets/2018-10-25-131455_633x702_scrot.png)
+![](../../.gitbook/assets/2018-10-25-131455_633x702_scrot.png)
 
 Your new box was successfully created. Click the box name to proceed.
 
-![](../.gitbook/assets/scr-2018-10-11_10-54-04%20%281%29.png)
+![](../../.gitbook/assets/scr-2018-10-11_10-54-04%20%281%29.png)
 
 ## Check the CRUD
 
 Now go to `REST console` section and let's see what can we do here.
 
-![REST console](../.gitbook/assets/screenshot-2018-10-18-18.54.58.png)
+![REST console](../../.gitbook/assets/screenshot-2018-10-18-18.54.58.png)
 
 REST console is designed to work with resources on your `Box` by sending HTTP requests in accordance with [FHIR RESTful API](http://hl7.org/fhir/http.html). To do this, we need to type - a HTTP verb \(`GET`, `POST`, `PUT`, `PATCH`, `DELETE`\) and the address of the resource \(for example `/Patient` - _pay attention to the resource name with a capital letter_\), in cases when you need to send the request body \(e.g -  `POST` request\), it passed separated by empty line, in YAML or JSON format - you can choose both \(request and response\) content type by **YAML** \| JSON switcher.
 
 ### Create Patient
 
-Let's add a couple of new patients -  for this we type in our console `POST /Patient` and in the body of the request wherein we will send the data of our new patient \(Aidbox supports JSON and few other formats, but we will use YAML for [compactness and readability](../faq/why-yaml.md)\):
+Let's add a couple of new patients -  for this we type in our console `POST /Patient` and in the body of the request wherein we will send the data of our new patient \(Aidbox supports JSON and few other formats, but we will use YAML for [compactness and readability](../../faq/why-yaml.md)\):
 
 {% hint style="danger" %}
 Use copy button in top right corner of code snippet to avoid copying of unnecessary white space characters.
@@ -118,9 +118,9 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-This is example, you can change values as you want, but for more information check full [Patient resource](https://www.hl7.org/fhir/patient.html) description and [official example](https://www.hl7.org/fhir/patient-example.json.html). The `id` field in the request body is not required, if you do not send it to the server, it will be generated. A description of the difference in `create` operation behavior between FHIR and Aidbox endpoints can be found [here](../basic-concepts/aidbox-vs-fhir.md).
+This is example, you can change values as you want, but for more information check full [Patient resource](https://www.hl7.org/fhir/patient.html) description and [official example](https://www.hl7.org/fhir/patient-example.json.html). The `id` field in the request body is not required, if you do not send it to the server, it will be generated. A description of the difference in `create` operation behavior between FHIR and Aidbox endpoints can be found [here](../../basic-concepts/aidbox-vs-fhir.md).
 
-![](../.gitbook/assets/2018-10-29-121415_1311x754_scrot.png)
+![](../../.gitbook/assets/2018-10-29-121415_1311x754_scrot.png)
 
 ### Get Patient
 
@@ -161,11 +161,11 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-There are much more operations that can be done with server using [RESTful API](../api/), but for our case to check if everything set up properly and to get basic understanding of FHIR RESTful API  `POST` and `GET` requests are enough.
+There are much more operations that can be done with server using [RESTful API](../../api/), but for our case to check if everything set up properly and to get basic understanding of FHIR RESTful API  `POST` and `GET` requests are enough.
 
 ## Give access to external clients
 
-Aidbox products support [OAuth2.0](../oauth-2.0/) authorization framework and [Access Control ](../security/access-control/)mechanism to provide ability for developers to create applications, which can interact securely with Boxes \(Aidbox FHIR server instances\). For single-page application it's a common practice to use OAuth2.0 [Implicit Grant flow](../oauth-2.0/implicit.md).
+Aidbox products support [OAuth2.0](../../security/oauth-2.0/) authorization framework and [Access Control ]()mechanism to provide ability for developers to create applications, which can interact securely with Boxes \(Aidbox FHIR server instances\). For single-page application it's a common practice to use OAuth2.0 [Implicit Grant flow](../../security/oauth-2.0/implicit.md).
 
 To implement this flow we need to create 3 entities:
 
@@ -264,17 +264,17 @@ Change `<YOUR-BOX>` to name of your box and open following url in your browser.
 
 `https://<YOUR-BOX>.aidbox.app/oauth2/authorize?response_type=token&client_id=SPA&redirect_uri=http://localhost:4200/`
 
-![box10 is a box name in my case](../.gitbook/assets/2018-10-26-131804_1164x709_scrot.png)
+![box10 is a box name in my case](../../.gitbook/assets/2018-10-26-131804_1164x709_scrot.png)
 
 Enter email and password of the User, click 'Sign In' and you will be redirected to localhost:4200 \(redirect\_uri of SPA client\).
 
-![](../.gitbook/assets/2018-10-26-132119_874x590_scrot.png)
+![](../../.gitbook/assets/2018-10-26-132119_874x590_scrot.png)
 
 Copy access\_token value, we will use it to obtain Patient resource with external http client.
 
 Open [Postman](https://www.getpostman.com/apps) or any other http client, create new `GET` request, enter following url: `https://<YOUR-BOX>.aidbox.app/Patient` and add `Authorization` header with value equal `Bearer <YOUR-ACCESS-TOKEN-HERE>`.
 
-![](../.gitbook/assets/2018-10-26-134351_1179x664_scrot.png)
+![](../../.gitbook/assets/2018-10-26-134351_1179x664_scrot.png)
 
   
 You should get a bundle with Patient resources. Yay! It seems working
@@ -303,7 +303,7 @@ ng serve # start a web server for our SPA
 
 Open [http://localhost:4200](http://localhost:4200), you automatically will be redirected to your box OAuth2.0 login page. Login with email and password you set for User previously.
 
-![](../.gitbook/assets/2018-10-29-160043_1371x764_scrot.png)
+![](../../.gitbook/assets/2018-10-29-160043_1371x764_scrot.png)
 
 It works! You are awesome!
 
