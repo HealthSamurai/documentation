@@ -35,11 +35,11 @@ Choose how you would like to authorize [Aidbox](https://ui.aidbox.app). It can b
 
 ![](../.gitbook/assets/scr-2018-10-11_10-49-57.png)
 
-After you have been successfully authorized in [Aidbox.Cloud](https://ui.aidbox.app), click the `New Box` button to start.
+After you have been successfully authorized in [Aidbox.Cloud](https://ui.aidbox.app), click the 'New Box' button to start.
 
 ![](../.gitbook/assets/scr-2018-10-11_10-51-55%20%281%29.png)
 
-In the displayed form, enter your future box name. It can be a name of your application you are going to build, choose your plan and click `Create` button.
+In the displayed form, enter your future box name. It can be a name of your application you are going to build, choose your plan and click 'Create' button.
 
 ![](../.gitbook/assets/2018-10-25-131455_633x702_scrot.png)
 
@@ -260,9 +260,9 @@ We created a Client resource with redirect uri equal to our SPA address, admin U
 
 Now we request a token from our box using OAuth2.0 implicit grant flow.
 
-Change &lt;your-box&gt; to name of your box and open following url in your browser.
+Change `<YOUR-BOX>` to name of your box and open following url in your browser.
 
-`https://<your-box>.aidbox.app/oauth2/authorize?response_type=token&client_id=SPA&redirect_uri=http://localhost:4200/`
+`https://<YOUR-BOX>.aidbox.app/oauth2/authorize?response_type=token&client_id=SPA&redirect_uri=http://localhost:4200/`
 
 ![box10 is a box name in my case](../.gitbook/assets/2018-10-26-131804_1164x709_scrot.png)
 
@@ -272,7 +272,7 @@ Enter email and password of the User, click 'Sign In' and you will be redirected
 
 Copy access\_token value, we will use it to obtain Patient resource with external http client.
 
-Open [Postman](https://www.getpostman.com/apps) or any other http client, create new `GET` request, enter following url: `https://<your-box>.aidbox.app/Patient` and add `Authorization` header with value equal `Bearer <you-access-token-here>`.
+Open [Postman](https://www.getpostman.com/apps) or any other http client, create new `GET` request, enter following url: `https://<YOUR-BOX>.aidbox.app/Patient` and add `Authorization` header with value equal `Bearer <YOUR-ACCESS-TOKEN-HERE>`.
 
 ![](../.gitbook/assets/2018-10-26-134351_1179x664_scrot.png)
 
@@ -281,27 +281,29 @@ You should get a bundle with Patient resources. Yay! It seems working
 
 ## Create FHIR SPA
 
-On the final step we will configure and start our SPA. Make sure that you have [git](https://git-scm.com/downloads) and [npm](https://www.npmjs.com/get-npm) installed.
+On the final step we will configure and start our SPA. Make sure that you have [Git](https://git-scm.com/downloads) and [Node.js](https://nodejs.org/en/download/) installed.
 
 ```bash
-git --version # checks if git installed
+git --version # checks if git and other packages installed
 # git version 2.15.2                                                        │
 node --version
 # v8.9.4
-npm --version 
+npm --version # node package manager
 # 5.6.0
 
 git clone https://github.com/HealthSamurai/aidbox-angular-sample.git
 cd aidbox-angular-sample
 vim environment.ts # or use any other editor of your choice
-# to set AIDBOX_URL var to https://<your-box>.aidbox.app
+# to set AIDBOX_URL var to https://<YOUR-BOX>.aidbox.app
 
 npm install # install all project dependencies
 npm install -g @angular/cli # install angular utilities
-ng serve
+ng serve # start a web server for our SPA
 ```
 
-Open [http://localhost:4200](http://localhost:4200), you automatically will be redirected to your box OAuth2.0 login page.
+Open [http://localhost:4200](http://localhost:4200), you automatically will be redirected to your box OAuth2.0 login page. Login with email and password you set for User previously.
+
+![](../.gitbook/assets/2018-10-29-160043_1371x764_scrot.png)
 
 It works! You are awesome!
 
