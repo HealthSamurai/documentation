@@ -15,7 +15,7 @@
   * [Create and Configure Box](tutorials/create-and-configure-box.md)
   * [REST Console](tutorials/rest-console.md)
   * [REST API Access in Aidbox.Dev](tutorials/how-to-use-rest-api.md)
-  * [Load bundle into FHIR server](tutorials/load-bundle-into-fhir-server.md)
+  * [Uploading Bundles](tutorials/load-bundle-into-fhir-server.md)
   * [Access Policy](tutorials/access-policy.md)
   * [Custom Resources](tutorials/getting-started-with-custom-resources.md)
   * [Authentication and Authorization](tutorials/authentication-and-authorization.md)

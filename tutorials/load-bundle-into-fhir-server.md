@@ -1,60 +1,229 @@
-# Load bundle into FHIR server
+---
+description: How to operate bundles in Aidbox
+---
 
-### Create your box
+# Uploading Bundles
 
-Register on [https://aidbox.app](https://ui.aidbox.app/) using your Github or Google account.
+## Endpoint for Bundles
 
-Read how to register and create box in this [tutorial](create-and-configure-box.md).
+Aidbox endpoint for bundles will be the base URL of your Box: `/` in Aidbox REST Console and `{{base}}` in Postman collections. 
 
-Read how to setup access policies in this [tutorial](authentication-and-authorization.md).
+## Bundle Example
 
-### Access Data by REST API
+According to the [FHIR specification](https://www.hl7.org/fhir/http.html#transaction), bundle is a container for a collection of resources for transport and persistence purposes. Below is an example of how to create two patients using one transaction request.
 
-Let's check that everything is working fine. Create new `GET` request, fill all required fields \(url, username, password\) in Postman or another HTTP-client, and run the query. Result should look like that picture:
+{% tabs %}
+{% tab title="Request YAML" %}
+```yaml
+POST /
 
-![](../.gitbook/assets/2018-09-19-201623_1211x651_scrot.png)
+resourceType: bundle
+type: transaction
+entry:
+- request:
+    method: POST
+    url: "/Patient"
+  resource:
+    name:
+    - given:
+      - Bob
+- request:
+    method: POST
+    url: "/Patient"
+  resource:
+    name:
+    - given:
+      - Peter
+```
+{% endtab %}
 
-### Bundle example
+{% tab title="Request JSON" %}
+```javascript
+POST /
 
-According to [fhir specification](https://www.hl7.org/fhir/http.html#transaction) bundle resource should look like:
+{
+  "resourceType": "bundle",
+  "type": "transaction",
+  "entry":
+  [{
+      "request": {
+        "method": "POST",
+        "url": "/Patient"
+      },
+      "resource": {
+        "name": [{
+            "given": ["Bob"]
+          }
+        ]
+      }
+    }, {
+      "request": {
+        "method": "POST",
+        "url": "/Patient"
+      },
+      "resource": {
+        "name": [{
+            "given": ["Peter"]
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+{
+    "id": "64",
+    "type": "transaction-response",
+    "resourceType": "Bundle",
+    "entry": [
+        {
+            "resource": {
+                "name": [
+                    {
+                        "given": [
+                            "Bob"
+                        ]
+                    }
+                ],
+                "id": "d1f48e05-220c-4d27-9d30-22df21f1b86b",
+                "resourceType": "Patient",
+                "meta": {
+                    "lastUpdated": "2018-10-29T12:47:45.769Z",
+                    "versionId": "64",
+                    "tag": [
+                        {
+                            "system": "https://aidbox.io",
+                            "code": "created"
+                        }
+                    ]
+                }
+            },
+            "status": 201
+        },
+        {
+            "resource": {
+                "name": [
+                    {
+                        "given": [
+                            "Peter"
+                        ]
+                    }
+                ],
+                "id": "49bcfa88-9915-4832-a763-1d60cb561cc3",
+                "resourceType": "Patient",
+                "meta": {
+                    "lastUpdated": "2018-10-29T12:47:45.769Z",
+                    "versionId": "64",
+                    "tag": [
+                        {
+                            "system": "https://aidbox.io",
+                            "code": "created"
+                        }
+                    ]
+                }
+            },
+            "status": 201
+        }
+    ]
+}
+```
+{% endtab %}
+{% endtabs %}
+
+According to the [FHIR specification](https://www.hl7.org/fhir/http.html#transaction), bundle is a container for a collection of resources for transport and persistence purposes, and a bundle should look like:
 
 ```javascript
-{"resourceType" : "bundle",
- "type": "transaction",
- "entry": [{"request": {"method": "GET", "url": "/Patient"}}]}
+{
+  "resourceType": "bundle",
+  "type": "transaction",
+  "entry": [{
+      "request": {
+        "method": "GET",
+        "url": "/Patient"
+      }
+    }
+  ]
+}
+
 ```
 
-Every transaction bundle MUST have **type** field, which value can be **transaction** or **batch**, every entry inside MUST have **method** and **url** fields inside request map.
+Every transaction bundle MUST have the **type** field which value can be **transaction** or **batch**, each `entry` MUST have **method** and **url** fields in the `request` element.
 
-The bundle must be sentvia POST method to BASE\_URL, which is basically the url of your box from previous section
+Bundles must be sent via POST method to BASE\_URL which is basically the URL of your Box.
 
-### Load data into Aidbox using the transaction operation
+## Transaction Operation
 
-The example below demonstrates how to create two patients using one transaction request.
+It is possible to upload data to Aidbox using the transaction operation. The example below demonstrates how to create two patients using one transaction request.
 
 ```javascript
-{"resourceType" : "bundle", 
- "type": "transaction", 
- "entry": 
- [{"request": {"method": "POST", "url": "/Patient"},
-   "resource": {"name": [{"given": ["Bob"]}]}},
-   {"request": {"method": "POST", "url": "/Patient"},
-   "resource": {"name": [{"given": ["Peter"]}]}}]}
+POST /
+
+{
+  "resourceType": "bundle",
+  "type": "transaction",
+  "entry":
+  [{
+      "request": {
+        "method": "POST",
+        "url": "/Patient"
+      },
+      "resource": {
+        "name": [{
+            "given": ["Bob"]
+          }
+        ]
+      }
+    }, {
+      "request": {
+        "method": "POST",
+        "url": "/Patient"
+      },
+      "resource": {
+        "name": [{
+            "given": ["Peter"]
+          }
+        ]
+      }
+    }
+  ]
+}
 ```
 
-It can be done with Postman or Aidbox user interface:
+It can be done with Postman or Aidbox.Cloud user interface.
 
-![](../.gitbook/assets/2018-09-19-204419_1198x727_scrot.png)
+### Aidbox REST Console
 
-Make sure that you choose **raw** **JSON \(application/json\)** content-type.
+1. Access your Box in Aidbox.Cloud.
+2. Open REST Console.
+3. Type in `POST /`.
+4. Leave next line empty.
+5. Paste your bundle.
+6. Press Ctrl+Enter or click the **Send** button.
 
-![](../.gitbook/assets/2018-09-19-204203_1284x813_scrot.png)
+![Bundle in Aidbox.Cloud REST Console](../.gitbook/assets/scr-2018-10-29_16-24-11.png)
+
+### Postman
+
+1. Create new request.
+2. Select the POST action.
+3. Type in base URL of your Box \(we're using `base` variable in the example on the screenshot below\).
+4. On the Body tab, select raw option and paste your bundle in YAML or JSON format.
+5. For YAML format, add the `Content-Type` `application/yaml` header in Headers tab.
+6. For JSON, select `JSON` in the drop down.
+7. On the Auth tab, select Basic Auth value and enter Username and Password \(see [Authentication and Authorization](authentication-and-authorization.md)\).
+8. Now, click the **Send** button to execute the request.
+
+![](../.gitbook/assets/scr-2018-10-29_16-57-50.png)
 
 This is a brief description about how to work with transactions and batches in Aidbox. More interesting information coming soon, stay tuned!
 
-### Generating transaction bundle with synthea \(advanced topic\)
+## Generating transaction bundle with Synthea \(advanced topic\)
 
-Here's how we can install Synthea.
+Here's how we can install Synthea — [Synthetic Patient Population Simulator](https://github.com/synthetichealth/synthea).
 
 ```bash
 git clone https://github.com/synthetichealth/synthea.git
