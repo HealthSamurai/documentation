@@ -59,7 +59,7 @@ REST console is designed to work with resources on your `Box` by sending HTTP re
 
 Let's add a couple of new patients -  for this we type in our console `POST /Patient` and in the body of the request wherein we will send the data of our new patient \(Aidbox supports JSON and few other formats, but we will use YAML for [compactness and readability](../faq/why-yaml.md)\):
 
-{% hint style="info" %}
+{% hint style="danger" %}
 Use copy button in top right corner of code snippet to avoid copying of unnecessary white space characters.
 {% endhint %}
 
@@ -183,19 +183,19 @@ POST /
 type: transaction
 entry:
 - resource:
+    id: admin
+    email: "admin@mail.com" # Change this value
+    password: "password" # Change this value
+  request:
+    method: POST
+    url: "/User"
+
+- resource:
     id: SPA
     redirect_uri: http://localhost:4200
   request:
     method: POST
     url: "/Client"
-    
-- resource:
-    id: admin
-    email: admin@mail.com # Change this value
-    password: password # Change this value
-  request:
-    method: POST
-    url: "/User"
     
 - resource:
     engine: json-schema
@@ -272,7 +272,7 @@ Enter email and password of the User, click 'Sign In' and you will be redirected
 
 Copy access\_token value, we will use it to obtain Patient resource with external http client.
 
-Open [Postman](https://www.getpostman.com/) or any other http client, create new `GET` request, enter following url: `https://<your-box>.aidbox.app/Patient` and add `Authorization` header with value equal `Bearer <you-access-token-here>`.
+Open [Postman](https://www.getpostman.com/apps) or any other http client, create new `GET` request, enter following url: `https://<your-box>.aidbox.app/Patient` and add `Authorization` header with value equal `Bearer <you-access-token-here>`.
 
 ![](../.gitbook/assets/2018-10-26-134351_1179x664_scrot.png)
 
@@ -287,7 +287,8 @@ On the final step we will configure and start our SPA. Make sure that you have [
 git clone https://github.com/HealthSamurai/aidbox-angular-sample.git
 cd aidbox-angular-sample
 vim environment.ts # or use any other editor of your choice
-# set proper url to your box
+# set AIDBOX_URL var to https://<your-box>.aidbox.app
+
 npm install
 npm install -g @angular/cli
 ng serve
