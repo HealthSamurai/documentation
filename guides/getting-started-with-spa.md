@@ -1,5 +1,5 @@
 ---
-description: Working FHIR application in 10 minutes
+description: Working FHIR application in 20 minutes
 ---
 
 # Getting Started with SPA
@@ -70,8 +70,8 @@ POST /Patient
 
 resourceType: Patient
 name:
-- given:
-  - Max
+- given: [Max]
+  family: Turikov
 gender: male
 birthDate: '1990-10-10'
 address:
@@ -284,17 +284,24 @@ You should get a bundle with Patient resources. Yay! It seems working
 On the final step we will configure and start our SPA. Make sure that you have [git](https://git-scm.com/downloads) and [npm](https://www.npmjs.com/get-npm) installed.
 
 ```bash
+git --version # checks if git installed
+# git version 2.15.2                                                        │
+node --version
+# v8.9.4
+npm --version 
+# 5.6.0
+
 git clone https://github.com/HealthSamurai/aidbox-angular-sample.git
 cd aidbox-angular-sample
 vim environment.ts # or use any other editor of your choice
-# set AIDBOX_URL var to https://<your-box>.aidbox.app
+# to set AIDBOX_URL var to https://<your-box>.aidbox.app
 
-npm install
-npm install -g @angular/cli
+npm install # install all project dependencies
+npm install -g @angular/cli # install angular utilities
 ng serve
 ```
 
-Open [http://localhost:4200](http://localhost:4200)
+Open [http://localhost:4200](http://localhost:4200), you automatically will be redirected to your box OAuth2.0 login page.
 
 It works! You are awesome!
 

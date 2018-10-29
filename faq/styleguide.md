@@ -48,5 +48,13 @@ POST [base]/[type] {?_format=[mime-type]}
 
 
 
+'Button' names should be single-quoted.
+
+
+
+Placeholders `<YOUR-BOX>` should be in SCREAMING-CAMEL-CASE.
+
+
+
  
 
