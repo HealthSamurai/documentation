@@ -58,7 +58,7 @@ query-string: __debug=policy
 # Client's IP address
 remote-addr: 10.128.0.6
 
-# AuthClient resource (if any)
+# Client resource (if any)
 client: null
 
 # Request scheme (http or https)

@@ -1,6 +1,6 @@
 ---
 description: >-
-  This page explains how to make Aidbox verify access tokens with external
+  This page explains how to make Aidbox to verify access tokens with external
   provider's secrets and keys.
 ---
 
