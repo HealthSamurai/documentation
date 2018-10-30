@@ -23,8 +23,6 @@ description: Getting started with Aidbox.Dev.
 
 3. Congratulations, now you have a license key.
 
-`sddfsdf`
-
 ![](../.gitbook/assets/screen-shot-2018-10-02-at-17.34.31.png)
 
 ### Start Aidbox.Dev
