@@ -36,7 +36,7 @@ Aidbox evaluates AccessPolicy against a **request object**, a data structure rep
 # Request body (for PUT or POST)
 body: null
 
-# Parsed query-string params merged with params extracted by routing engine
+# Parsed query-string params merged with URL params extracted by routing engine
 params: {__debug: policy, type: Patient}
 
 # Request method (get/post/put/delete)
@@ -98,6 +98,16 @@ There is a special query-string parameter `__debug=policy` you can pass to every
 ### JSON Schema Engine
 
 JSON Schema engine allows to put JSON Schema under `AccessPolicy.schema` element and this schema will be used to validate request object. Currently supported JSON Schema version is **draft-07**.
+
+#### Example
+
+```yaml
+resourceType: AccessPolicy
+description: Allow
+engine: json-schema
+schema:
+  todo: true
+```
 
 ### SQL Engine
 
