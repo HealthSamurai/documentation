@@ -10,7 +10,7 @@ After reading this guide, you will know:
 * How to create an instance of FHIR server
 * Basics of FHIR RESTful API
 * How to make secure requests to FHIR server
-* How to create a new SPA, and connect it to a FHIR server
+* How to create a new SPA and connect it to a FHIR server
 
 ## Introduction
 
@@ -277,7 +277,7 @@ Open [Postman](https://www.getpostman.com/apps) or any other http client, create
 ![](../.gitbook/assets/2018-10-26-134351_1179x664_scrot.png)
 
   
-You should get a bundle with Patient resources. Yay! It seems working
+You should get a bundle with Patient resources. Yay! It seems to work.
 
 ## Create FHIR SPA
 
@@ -301,7 +301,7 @@ npm install -g @angular/cli # install angular utilities
 ng serve # start a web server for our SPA
 ```
 
-Open [http://localhost:4200](http://localhost:4200), you automatically will be redirected to your box OAuth2.0 login page. Log ;in with email and password you set for User previously.
+Open [http://localhost:4200](http://localhost:4200), you automatically will be redirected to your box OAuth2.0 login page. Log in with email and password you set for User previously.
 
 ![](../.gitbook/assets/2018-10-29-160043_1371x764_scrot.png)
 
