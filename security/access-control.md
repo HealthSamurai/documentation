@@ -46,7 +46,19 @@ request-method: get
 uri: /fhir/Patient
 
 # Object containing current User resource (if any)
-user: null
+user:
+  data:
+    patient_id: 42
+  email: foo@foo.com
+  id: b66bc7c5-1a56-422f-8cf8-e64469135ce2
+  meta:
+    lastUpdated: '2018-10-31T13:43:18.566Z'
+    tag:
+    - code: updated
+      system: https://aidbox.io
+    versionId: '6'
+  phone: 123-123-123
+  resourceType: User
 
 # Parsed JWT claims (if any)
 jwt: {sub: xxxxxxx, jti: xxxxxxx, iss: aidbox,
@@ -59,7 +71,15 @@ query-string: __debug=policy
 remote-addr: 10.128.0.6
 
 # Client resource (if any)
-client: null
+client:
+  id: b4930671-410c-462b-8b12-23cdef91af0c
+  meta:
+    lastUpdated: '2018-10-31T13:38:08.982Z'
+    tag:
+    - code: created
+      system: https://aidbox.io
+    versionId: '4'
+  resourceType: Client
 
 # Request scheme (http or https)
 scheme: http
