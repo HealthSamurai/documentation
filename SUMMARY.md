@@ -43,6 +43,7 @@
   * [$json-schema](api/usdjson-schema.md)
   * [Metadata](api/metadata.md)
   * [Metadata](api/custom-metadata.md)
+  * [SQL endpoints](api/usdpsql.md)
   * [Misc](api/misc.md)
 * [Access Control](security/README.md)
   * [OAuth 2.0](security/oauth-2.0/README.md)
