@@ -173,6 +173,8 @@ To implement this flow we need to create 3 entities:
 * **Client** - our single-page application, which will interact with FHIR server
 * **AccessPolicy** - set of rules, which describes, who and how can access FHIR server
 
+Why so much moves needed to simply access FHIR resource using external client? Ask Aidbox developers and people in our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).
+
 We will create all three entities with one request \(don't forget to **change** admin password!\):
 
 {% tabs %}
@@ -306,4 +308,6 @@ Open [http://localhost:4200](http://localhost:4200), you automatically will be r
 ![](../.gitbook/assets/2018-10-29-160043_1371x764_scrot.png)
 
 It works! You are awesome!
+
+Want to know more about Aidbox, FHIR or FHIR applications? Join our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).
 
