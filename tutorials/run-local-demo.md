@@ -2,7 +2,7 @@
 
 ## Before
 
-For this tutorial you will need git, node js and any version of Aidbox as a backend. We recommend use Aidbox.Dev as more easiest way. Visit to [Aidbox.Dev installation guide](../installation/devbox/) for detailed information and instruction how to install Aidbox backend for development.
+For this tutorial you will need git, node js and any version of Aidbox as a backend. We recommend use Aidbox.Dev as more easiest way. Visit to [Aidbox.Dev installation guide]() for detailed information and instruction how to install Aidbox backend for development.
 
 ## Introduction
 
