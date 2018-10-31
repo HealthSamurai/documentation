@@ -17,11 +17,11 @@ We are providing a lightweight version of Aidbox named **Aidbox.Dev** — a spec
 
 ### License obtaining
 
-1. Visit and register on [License server](https://license-ui.aidbox.app) then click the `Get a license` button.
+1. Visit and register on the [License server](https://license-ui.aidbox.app) then click the `GET LICENSE KEY` button.
 
-![](../.gitbook/assets/scr-2018-10-08_17-53-52.png)
+![](../.gitbook/assets/scr-2018-10-31_15-08-05.png)
 
-2. Enter a short description of your application and select the `Aidbox.Dev` product.
+2. Enter a short description of your project and select the `Aidbox.Dev` option.
 
 ![](../.gitbook/assets/screen-shot-2018-10-02-at-17.28.09.png)
 
@@ -60,13 +60,13 @@ After that, run Aidbox.Dev.
 $ docker-compose up
 ```
 
-That's it! Aidbox.Dev is running and you can point your browser to [http://localhost:8888/](http://localhost:8888/) to see a fancy welcome page.
+That's it! Aidbox.Dev is running and you can point your browser to [http://localhost:8888](http://localhost:8888/) to see a fancy welcome page.
 
 ![Aidbox.Dev welcome page](../.gitbook/assets/screen-shot-2018-10-22-at-13.37.09.png)
 
 ### Getting Started
 
-Learn how to obtain access to the [REST Api](../tutorials/how-to-use-rest-api.md) by link below
+Learn how to obtain access to the [REST API](../tutorials/how-to-use-rest-api.md) by the link below.
 
 {% page-ref page="../tutorials/how-to-use-rest-api.md" %}
 
@@ -109,7 +109,7 @@ For example, up to 3.3.0 version:
 Change  Aidbox.dev container tag in the  `docker-compose.yaml` file to `edge` tag
 
 {% hint style="warning" %}
-Be careful, edge version may be broken or unstable 
+Be careful, edge version may be broken or unstable.
 {% endhint %}
 
 {% code-tabs %}
