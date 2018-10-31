@@ -26,7 +26,7 @@ type: app        # type of app - app | addon
 endpoint:        # communication protocol between aidbox and app
    type: http-rpc         # type of protocol - http-rpc | ws-rpc
    host: app.mydomain.com # app service host for http protocols 
-   schema: https          # app service schema for http protocols - default = https
+   scheme: https          # app service schema for http protocols - default = https
    port: 8080             # app service port - default = 80
    secret: <yoursercret>  # will be used to secure aidbox - app communication
 entities: <Resources Definitions, Profiles & Hooks>
