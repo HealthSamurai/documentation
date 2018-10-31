@@ -19,7 +19,8 @@ engine: allow | sql | json-schema
 schema: {}
 
 # SQL string for `sql` engine
-sql: "SELECT true FROM ..."
+sql:
+  query: "SELECT true FROM ..."
 
 # References to either Client, User or Operation resources
 link:
@@ -138,6 +139,26 @@ SELECT true FROM patient WHERE id = {{jwt.patient_id}} LIMIT 1;
 ```
 
 SQL statement can include interpolations in double curly braces, like in example above. String inside curly braces will be used as a path to get value from the request object.
+
+#### Example
+
+Assuming that User has a reference to Practitioner resource through `User.data.practitioner_id` element, the following policy allow requests only to `/fhir/Patient/<patient_id>` URLs, and only for those patients, who has `Patient.generalPractitioner` element referencing same practitioner as a current User. In other words, User as a Practitioner is only allowed to see patients who referencing him with `Patient.generalPractitioner`.
+
+```yaml
+sql:
+  query: |
+    SELECT
+      {{user}} IS NOT NULL
+      AND {{user.data.practitioner_id}} IS NOT NULL
+      AND {{uri}} LIKE '/fhir/Patient/%'
+      AND resource->'generalPractitioner' @>
+    jsonb_build_array(jsonb_build_object('resourceType',
+        'Practitioner', 'id', {{user.data.practitioner_id}}::text))
+      FROM patient WHERE id = {{params.resource/id}};
+engine: sql
+id: practitioner-only-allowed-to-see-his-patients
+resourceType: AccessPolicy
+```
 
 ### Allow Engine
 
