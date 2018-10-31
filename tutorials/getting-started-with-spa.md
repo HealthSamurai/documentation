@@ -4,7 +4,7 @@ description: Working FHIR application in 25 minutes
 
 # Getting Started with SPA
 
-After reading this guide, you will know:
+After reading this guide and performing all steps, you will learn:
 
 * What is FHIR and SPA
 * How to create an instance of FHIR server
