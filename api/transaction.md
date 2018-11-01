@@ -2,7 +2,7 @@
 
 ### Introduction
 
-Transaction interaction allows to perform few interaction using one http request. There are two types of transaction interaction: batch and transaction, the first one just executes request one by one, the second one doing the same, but rollback all changes if any request failed. Type is specified by field `type`.
+Transaction interaction allows to perform few interaction using one http request. There are two types of transaction interaction \(type is specified by field `type`\): batch and transaction, the first one just executes requests one by one, the second one doing the same, but rollback all changes if any request failed. 
 
 ```
 POST [base]
@@ -41,11 +41,12 @@ entry:
     url: "/AccessPolicy"
 ```
 
-Each element of entry array contains resource field \(body of request\) and request field \(request line\).
+Each element of entry array contains resource field \(body of request\) and request field \(request line in terms of HTTP request\).
 
 ```yaml
 resource: # not needed for DELETE and GET
   # resource here
+
 fullUrl: "something-here" # needed if you want to refer
                           # the resource inside bundle
 request:
@@ -55,9 +56,11 @@ request:
 
 ### Processing rules and Conditional refs
 
-Transaction interaction processed in the order provided in bundle, each operation executed one by one. It differs from FHIR transaction [processing rules](https://www.hl7.org/fhir/http.html#2.21.0.17.2).
+Transaction interaction processed in the order provided in a bundle, each interaction executed one by one. It differs from FHIR transaction [processing rules](https://www.hl7.org/fhir/http.html#2.21.0.17.2).
 
-For `type: transaction` before processing operation, all references in resource will be attempted to resolve. In this example ProcedureRequest will refer to newly created patient:
+For `type: batch` references to resources inside bundle won't be resolved.
+
+For `type: transaction` before processing interactions, all references in resource will be attempted to resolve. In this example ProcedureRequest will refer to newly created patient:
 
 ```yaml
 - resource:
@@ -68,16 +71,13 @@ For `type: transaction` before processing operation, all references in resource 
     url: "/Patient?_identifier=mrn:123"
     
 - resource:
-    id: uuid1
     resourceType: ProcedureRequest
-    subject: {uri: "urn:uuid"} # will be changed before
-                               # processing to 
-                               # {id: <id-of-patient>,
-                               #  resourceType: Patient}
+    subject: {reference: "urn:uuid"} 
+    # will be changed before processing to 
+    # {id: <id-of-patient>, resourceType: Patient}
   request:
     method: POST
     url: "/ProcedureRequest"
-    
     
 ```
 
