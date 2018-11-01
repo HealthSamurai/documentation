@@ -72,7 +72,7 @@ For `type: transaction` before processing interactions, all references in resour
     
 - resource:
     resourceType: ProcedureRequest
-    subject: {reference: "urn:uuid"} 
+    subject: {uri: "urn:uuid"} 
     # will be changed before processing to 
     # {id: <id-of-patient>, resourceType: Patient}
   request:
@@ -80,6 +80,8 @@ For `type: transaction` before processing interactions, all references in resour
     url: "/ProcedureRequest"
     
 ```
+
+You can provide a fullUrl with value like `"urn:<uuid-here>"` and reference to the resource created by such interaction using ref: `{uri: "urn:<uuid-here>"}`. Those references are temporary and will be translated to valid Aidbox references, when interaction entry will be processed.
 
 {% hint style="danger" %}
 You SHALL NOT refer resource, which will be created later using conditional operations!
