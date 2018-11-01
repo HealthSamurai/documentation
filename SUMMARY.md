@@ -32,7 +32,7 @@
 * [REST API](api/README.md)
   * [CRUD](api/crud.md)
   * [Patch](api/patch.md)
-  * [Transaction \(TODO\)](api/transaction.md)
+  * [Transaction/Batch](api/transaction.md)
   * [Profiling](api/profiling.md)
   * [History \(TODO\)](api/history-1.md)
   * [Search \(TODO\)](api/history.md)

@@ -19,7 +19,7 @@ The two types of differences: related to data format and operation behavior are 
 ### create
 
 ```http
-POST [base]/[type] {?_format=[mime-type]}
+POST [base]/[type]
 ```
 
 FHIR API [ignores](https://www.hl7.org/fhir/http.html#create) `id` in `POST` requests, but Aidbox API respect `id` inside request body and creates resource with specific `id`. This decision was made because we didn't find any reasons to ignore it and to make Aidbox API be closer to sql `INSERT` query. As a result new response code `409 Conflict` appeared:\`
@@ -32,7 +32,7 @@ FHIR API [ignores](https://www.hl7.org/fhir/http.html#create) `id` in `POST` req
 ### update
 
 ```http
-PUT [base]/[type]/[id]{?_format=[mime-type]}
+PUT [base]/[type]/[id]
 ```
 
 Aidbox doesn't have atomic update yet. It also allows to omit `id` in resource body, ~~_but there is no important reason behind it_~~.
@@ -85,7 +85,7 @@ In contrast to FHIR, Aidbox conditional update allows to create a resource with 
 ### conditional delete
 
 ```text
-DELETE [base]/[type]/?[search parameters]
+DELETE [base]/[type]?[search parameters]
 ```
 
 It's not clear how to perform an ordinary `delete` on no matches, that's why `404 Not Found` will be returned in this case.
