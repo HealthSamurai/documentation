@@ -63,22 +63,25 @@ For `type: batch` references to resources inside bundle won't be resolved.
 For `type: transaction` before processing interactions, all references in resource will be attempted to resolve. In this example ProcedureRequest will refer to newly created patient:
 
 ```yaml
+POST /
+
+type: transaction
+entry:
 - resource:
     resourceType: Patient
-  fullUrl: "urn:uuid"
-  request: 
-    method: POST
-    url: "/Patient?_identifier=mrn:123"
-    
-- resource:
-    resourceType: ProcedureRequest
-    subject: {uri: "urn:uuid"} 
-    # will be changed before processing to 
-    # {id: <id-of-patient>, resourceType: Patient}
+  fullUrl: urn:uuid
   request:
     method: POST
-    url: "/ProcedureRequest"
-    
+    url: "/Patient?_identifier=mrn:123"
+- resource:
+    resourceType: Encounter
+    status: proposal
+    subject:
+      uri: urn:uuid
+  request:
+    method: POST
+    url: "/Encounter"
+
 ```
 
 You can provide a fullUrl with value like `"urn:<uuid-here>"` and reference to the resource created by such interaction using ref: `{uri: "urn:<uuid-here>"}`. Those references are temporary and will be translated to valid Aidbox references, when interaction entry will be processed.
