@@ -69,22 +69,23 @@ type: transaction
 entry:
 - resource:
     resourceType: Patient
-  fullUrl: urn:uuid
+  fullUrl: urn:<uuid-here>
   request:
     method: POST
     url: "/Patient?_identifier=mrn:123"
+    
 - resource:
     resourceType: Encounter
     status: proposal
     subject:
-      uri: urn:uuid
+      uri: urn:<uuid-here>
   request:
     method: POST
     url: "/Encounter"
 
 ```
 
-You can provide a fullUrl with value like `"urn:<uuid-here>"` and reference to the resource created by such interaction using ref: `{uri: "urn:<uuid-here>"}`. Those references are temporary and will be translated to valid Aidbox references, when interaction entry will be processed.
+You can provide a fullUrl with value like `"urn:<uuid-here>"` and reference to the resource created by such interaction using ref: `{uri: "urn:<uuid-here>"}`. Those references are temporary and will be translated to valid Aidbox references, when interaction entry will be processed by a server.
 
 {% hint style="danger" %}
 You SHALL NOT refer resource, which will be created later using conditional operations!
