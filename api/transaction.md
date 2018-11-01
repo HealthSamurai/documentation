@@ -85,3 +85,5 @@ For `type: transaction` before processing operation, all references in resource 
 You SHALL NOT refer resource, which will be created later using conditional operations!
 {% endhint %}
 
+Happy transacting!
+
