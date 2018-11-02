@@ -13,7 +13,7 @@ resourceType: AccessPolicy
 description: policy description text
 
 # type of evaluation engine
-engine: allow | sql | json-schema
+engine: allow | sql | json-schema | complex
 
 # JSON Schema for `json-schema` engine
 schema: {}
@@ -163,4 +163,60 @@ resourceType: AccessPolicy
 ### Allow Engine
 
 Allow Engine constantly evaluates to `true` regardless the content of the request object.
+
+### Complex
+
+Complex engine provides ability to include several checks into a single policy and apply  "AND" / "OR" operator on results. It's allowed to use any policy engine to define a check, you can even use "complex" engine to get sub-expression:
+
+```yaml
+and:
+  - { engine: "sql", sql: { query: "select true" } }       # Check 1
+  - engine: complex
+    or:
+      - { engine: "sql", sql: { query: "select false" } }  # Check 2
+      - { engine: "sql", sql: { query: "select false" } }  # Check 3
+
+engine: complex
+id: complex-example-1
+resourceType: AccessPolicy
+```
+
+Policy in the example above represents following logical expression: `check 1 AND (check 2 OR check 3)`. It's forbidden to have both `and` and `or` keys on the same level.
+
+#### Example
+
+Let's split SQL Policy example into two separate checks and combine them with AND operator:
+
+```yaml
+and:
+  # Check: request.user && request.user.data.practitioner_id are required
+  - engine: json-schema
+    schema:
+      type: object
+      required: ["user"]
+      properties:
+        user:
+          type: object
+          required: ["data"]
+          properties:
+            data:
+              type: object
+              required: ["practitioner_id"]
+
+  # Check: Current practitioner is patient's generalPractitioner
+  - engine: sql
+    sql:
+      query: |
+        SELECT
+          {{uri}} LIKE '/fhir/Patient/%'
+          AND resource->'generalPractitioner' @>
+        jsonb_build_array(jsonb_build_object('resourceType',
+            'Practitioner', 'id', {{user.data.practitioner_id}}::text))
+          FROM patient WHERE id = {{params.resource/id}};
+engine: complex
+id: complex-example-2
+resourceType: AccessPolicy
+```
+
+
 
