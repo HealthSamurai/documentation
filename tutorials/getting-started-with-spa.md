@@ -55,7 +55,7 @@ Now go to `REST console` section and let's see what can we do here.
 
 REST console is designed to work with resources on your `Box` by sending HTTP requests in accordance with [FHIR RESTful API](http://hl7.org/fhir/http.html). To do this, we need to type - a HTTP verb \(`GET`, `POST`, `PUT`, `PATCH`, `DELETE`\) and the address of the resource \(for example `/Patient` - _pay attention to the resource name with a capital letter_\), in cases when you need to send the request body \(e.g -  `POST` request\), it passed separated by empty line, in YAML or JSON format - you can choose both \(request and response\) content type by **YAML** \| JSON switcher.
 
-### Create Patient
+### Create a Patient
 
 Let's add a couple of new patients -  for this we type in our console `POST /Patient` and in the body of the request wherein we will send the data of our new patient \(Aidbox supports JSON and few other formats, but we will use YAML for [compactness and readability](../faq/why-yaml.md)\):
 
@@ -122,7 +122,7 @@ This is example, you can change values as you want, but for more information che
 
 ![](../.gitbook/assets/2018-10-29-121415_1311x754_scrot.png)
 
-### Get Patient
+### Get a Patient
 
 After sending the request - we receive a response with `Status: 201` and the sent data - our patient is created. We can make sure of this by sending request  `GET /Patient/<id>` and receive created patient data \(in our case id is `957d782d-3e40-4978-968c-63a1ef7d2473`, we got id from response\),  or we can check a complete list of patients - `GET /Patient` 
 
@@ -262,7 +262,9 @@ entry:
 
 We created a Client resource with redirect uri equal to our SPA address, admin User with password `password` and AccessPolicy, which tells to authorize any registered user.
 
-Now we request a token from our box using OAuth2.0 implicit grant flow.
+### Get an access token
+
+Now we can request a token from our box using OAuth2.0 implicit grant flow.
 
 Change `<YOUR-BOX>` to name of your box and open following url in your browser.
 
@@ -275,6 +277,8 @@ Enter email and password of the User, click 'Sign In' and you will be redirected
 ![](../.gitbook/assets/2018-10-26-132119_874x590_scrot.png)
 
 Copy access\_token value, we will use it to obtain Patient resource with external http client.
+
+### Check the access
 
 Open [Postman](https://www.getpostman.com/apps) or any other http client, create new `GET` request, enter following url: `https://<YOUR-BOX>.aidbox.app/Patient` and add `Authorization` header with value equal to `Bearer <YOUR-ACCESS-TOKEN-HERE>`.
 
