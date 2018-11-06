@@ -17,6 +17,7 @@
   * [Working with Aidbox from .NET](tutorials/working-with-aidbox-from-.net.md)
   * [Profiling and Validation](tutorials/profiling-and-validation.md)
   * [Patient CRUD SPA](tutorials/run-local-demo.md)
+  * [Patient Encounter notification Application](tutorials/patient-encounter-notification-application.md)
 * [Architecture Overview](basic-concepts/README.md)
   * [Boxes](basic-concepts/boxes.md)
   * [API Overview](basic-concepts/api-overview.md)
