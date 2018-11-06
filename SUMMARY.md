@@ -9,7 +9,7 @@
   * [Getting Started with SPA](tutorials/getting-started-with-spa.md)
   * [Creating and Configuring Box](tutorials/create-and-configure-box.md)
   * [Working with REST Console](tutorials/rest-console.md)
-  * [Uploading sample data](tutorials/load-bundle-into-fhir-server.md)
+  * [Uploading Sample Data](tutorials/load-bundle-into-fhir-server.md)
   * [REST API Access in Aidbox.Dev](tutorials/how-to-use-rest-api.md)
   * [Access Policy](tutorials/access-policy.md)
   * [Custom Resources](tutorials/getting-started-with-custom-resources.md)
