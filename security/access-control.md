@@ -122,12 +122,15 @@ JSON Schema engine allows to put JSON Schema under `AccessPolicy.schema` element
 
 #### Example
 
+The following policy requires presence of `request.user` attribute \(only authenticated requests are allowed\):
+
 ```yaml
 resourceType: AccessPolicy
 description: Allow
 engine: json-schema
 schema:
-  todo: true
+  type: object
+  required: ["user"]
 ```
 
 ### SQL Engine
@@ -164,7 +167,7 @@ resourceType: AccessPolicy
 
 Allow Engine constantly evaluates to `true` regardless the content of the request object.
 
-### Complex
+### Complex Engine
 
 Complex engine provides ability to include several checks into a single policy and apply  "AND" / "OR" operator on results. It's allowed to use any policy engine to define a check, you can even use "complex" engine to get sub-expression:
 
