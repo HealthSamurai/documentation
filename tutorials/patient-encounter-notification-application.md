@@ -20,6 +20,12 @@ For sending Emails we will use [MailGun](https://www.mailgun.com/) service as a 
 
 ![Architecture of Aidbox based Application](../.gitbook/assets/untitled-2.png)
 
+### Get started
+
+In the first you need install local Aidbox.dev. See full instruction how to [install Aidbox.dev](../installation/setup-aidbox.dev.md) and [how to use Rest API](how-to-use-rest-api.md)
+
+In this sample application we use Clojure CLI. See [Getting Started](https://clojure.org/guides/getting_started) for details on how to install the tools.
+
 ### Enable Aidbox SDK
 
 In this sample app we will use Clojure Cli - command line tools for running REPL and Clojure apps. In `deps.end` file need specify `aidbox-sdk` as reference to git.
