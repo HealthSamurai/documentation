@@ -2,6 +2,8 @@
 
 In this tutorial we will create simple application written on [Clojure](https://clojure.org/) programming language using [Aidbox Clojure SDK](https://github.com/Aidbox/aidbox-clojure-sdk) and Aidbox.cloud or Aidbox.dev as a backend.
 
+All source code available on [Github Aidbox/app-mailgun-clj](https://github.com/Aidbox/app-mailgun-clj)
+
 ### Problem statement
 
 We have a Encounter included Patient, date and location of visit.
@@ -16,7 +18,7 @@ Clojure application with Aidbox Clojure SDK as connector between our application
 
 For sending Emails we will use [MailGun](https://www.mailgun.com/) service as a most easiest way to send emails instead SMPT.
 
-
+![Architecture of Aidbox based Application](../.gitbook/assets/untitled-2.png)
 
 
 
