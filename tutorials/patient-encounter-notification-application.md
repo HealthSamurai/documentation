@@ -20,5 +20,58 @@ For sending Emails we will use [MailGun](https://www.mailgun.com/) service as a 
 
 ![Architecture of Aidbox based Application](../.gitbook/assets/untitled-2.png)
 
+### Enable Aidbox SDK
+
+In this sample app we will use Clojure Cli - command line tools for running REPL and Clojure apps. In `deps.end` file need specify `aidbox-sdk` as reference to git.
+
+{% code-tabs %}
+{% code-tabs-item title="deps.edn" %}
+```java
+{:deps 
+  {aidbox-sdk {:git/url "https://github.com/Aidbox/aidbox-clojure-sdk" 
+               :sha "057ebd1a542bb17c7a910283ae942f56a89167f1"}}}
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+And then require `aidbox-sdk` in  the main `mailgun.core` file
+
+{% code-tabs %}
+{% code-tabs-item title="mailgun.core" %}
+```java
+(ns mailgun.core
+  (:require [aidbox.sdk.core :as aidbox]))
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+### Connect your app with Aidbox
+
+For connecting your application with Aidbox, you need call `aidbox/call` method send them information about location of Aidbox and your application.
+
+{% code-tabs %}
+{% code-tabs-item title="src/mailgun/core.clj" %}
+```java
+(def manifest
+  {:id "mailgun-app"
+   :type "app"
+   :env {:box {;; host and port of Aidbox instance
+               :host "localhost"
+               :scheme "http"
+               :port 8888}
+         :app {;; host, port and client creds of your application
+               ;;:host "docker.for.mac.localhost"  ;; for Mac Os
+               :host "localhost"
+               :scheme "http"
+               :port 8989
+               :id "root"
+               :secret "secret"}}})
+
+(defn -main [] (aidbox/start manifest))
+
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
 
 
