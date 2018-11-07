@@ -36,10 +36,11 @@ aidbox, devbox, cloud version of aidbox, enterprise aidbox, fhirebase
 
 ### Requests
 
-\[base\] tralalala
+* `[ ]` some name, which should be substituted with something meaningful
+* `{ }` mean optional
 
 ```
-POST [base]/[type] {?_format=[mime-type]}
+POST [base]/[type]{?_format=[mime-type]}
 ```
 
 `200 OK` inside text
