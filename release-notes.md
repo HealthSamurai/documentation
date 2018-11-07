@@ -7,6 +7,7 @@
 * Support `__debug=policy` parameter to inspect and debug request authorization layer;
 * `CapabilityStatement` metadata endpoint;
 * Added `If-Match` header support for atomic updates;
+* Fix metadata migration bug \(fixes issues \#16 and \#6\)
 * Added `complex` engine for AccessPolicy resource.
 
 ## 0.0.3
