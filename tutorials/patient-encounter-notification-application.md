@@ -83,3 +83,11 @@ For connecting your application with Aidbox, you need call `aidbox/call` method 
 
 When you call `aidbox/start` method, `aidbox-sdk` try to connect to `Aidbox` with given `env.box.host` , `env.app.id` and `env.app.secret` credentials and then, if connection success, register your app in Aidbox. After that, `aidbox/sdk` create local web server running on `env.app.port` port, in our case is `8989`. 
 
+### Email templating
+
+### Sending email
+
+### Aidbox Jobs
+
+
+
