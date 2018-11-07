@@ -6,7 +6,7 @@ description: How to operate bundles in Aidbox
 
 ## Endpoint for Bundles
 
-Aidbox endpoint for bundles will be the base URL of your Box: `/` in Aidbox REST Console and `[base]` in Postman requests. 
+Aidbox endpoint for bundles will be the base URL of your Box: `/` in Aidbox REST Console and `[base]` \(`https://<YOUR-BOX>.aidbox.app`\) in any other external client \(Postman for example\). Alternatively `/fhir` and `[base]/fhir` can be used, read more about [/fhir](../basic-concepts/aidbox-vs-fhir.md) endpoints. 
 
 ## Bundle Example
 
@@ -131,7 +131,7 @@ Status: 200
 
 Every transaction bundle MUST have the **type** field which value can be **transaction** or **batch**, each element of`entry` field MUST has **method** and **url** fields in the `request`.
 
-Bundles must be sent via POST method to BASE\_URL which is basically the URL of your Box.
+Bundles must be sent via POST method to BASE\_URL which is basically the URL of your Box for external clients and `/` or `/fhir` for REST Console \(actually hostname exists in REST Console, but it hidden\).
 
 ### Aidbox REST Console
 
