@@ -1,6 +1,6 @@
 # Release Notes
 
-## Unreleased
+## 0.3.3
 
 * Introduced refresh tokens into `oauth` module;
 * Implemented `/Observation/$lastn` and `/fhir/Observation/$lastn` endpoints;
