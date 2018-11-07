@@ -1,5 +1,9 @@
 # Release Notes
 
+## Unreleased
+
+* Nothing
+
 ## 0.3.3
 
 * Introduced refresh tokens into `oauth` module;
