@@ -133,7 +133,7 @@ Every transaction bundle MUST have the **type** field which value can be **trans
 
 Bundles must be sent via POST method to BASE\_URL which is basically the URL of your Box for external clients and `/` or `/fhir` for REST Console \(actually hostname exists in REST Console, but it hidden\).
 
-### Aidbox REST Console
+## Aidbox REST Console
 
 1. Access your Box in Aidbox.Cloud.
 2. Open REST Console.
@@ -163,7 +163,7 @@ Generating the population one at a time...
 ls output/fhir
 ```
 
-...you should see two files with names similar to those:
+...you should see few files with names similar to those:
 
 ```bash
 hospitalInformation1537450368636.json 
