@@ -184,18 +184,34 @@ $ curl -u $AIDBOX_CLIENT_ID:$AIDBOX_CLIENT_SECRET \
 Be careful with **$** sign in url paths \(aka **/$metadata**\) in shell  - you have to escape it \( **/\$metadata**\) otherwise shell will try to interpret it as variables ;\)
 {% endhint %}
 
+#### Run multiple instances
+
 To run multiple instances you can use `docker-compose up` command with `-p` argument to provide prefix for created containers, i.e.:
 
-```text
+```bash
 $ docker-compose up -d -p devbox1
 $ docker-compose up -d -p devbox2
 ```
 
-To stop devbox, just invoke:
+#### Stop Aidbox.Dev
 
-```text
+```bash
+$ docker-compose stop
+```
+
+#### Destroy Aidbox.Dev
+
+```bash
 $ docker-compose down
 ```
 
 By default docker-compose file mount folder `./pgdata` as persistent volume for PostgreSQL, so it will survive restarts and destroy of containers. If you want to completely cleanup previous installation just `rm -rf ./pgdata`
+
+#### Upgrade Aidbox.Dev
+
+```
+$ docker-compose down
+$ docker-composd pull
+$ docker-composd up -d
+```
 
