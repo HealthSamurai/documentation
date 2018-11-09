@@ -135,7 +135,7 @@ schema:
 
 ### SQL Engine
 
-SQL Engine executes SQL statement and uses it's result as an evaluation result. The SQL statement should return single row with just one column, i.e.:
+SQL Engine executes SQL statement and uses its result as an evaluation result. The SQL statement should return single row with just one column, i.e.:
 
 ```sql
 SELECT true FROM patient WHERE id = {{jwt.patient_id}} LIMIT 1;
