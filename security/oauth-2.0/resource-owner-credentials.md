@@ -1,10 +1,10 @@
 # Resource Owner Credentials Grant
 
-Aidbox OAuth module support Resource Owner Credentials flow in two formats. First- Strict adherence to specifications for better compatibility. Second - JSON request as a more modern and simple way. Read official [OAuth2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.3) for more details.
+Aidbox OAuth module supports Resource Owner Credentials flow in two formats. First — strict adherence to specifications for better compatibility. Second — JSON request as a more modern and simple way. Read official [OAuth2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.3) for more details.
 
 ## JSON Request
 
-In JSON Request you need specify `client_id`, `client_secret` ,  `grant_type` ,  `username` and `password` .  All parameters is required.
+In JSON Request, you need to specify `client_id`, `client_secret` ,  `grant_type` ,  `username,` and `password` .  All parameters are required.
 
 {% api-method method="post" host="\[base\]" path="/oauth2/token" %}
 {% api-method-summary %}
