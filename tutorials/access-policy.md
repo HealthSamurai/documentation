@@ -21,7 +21,7 @@ secret: secret
 Access the Access Control tab and create new access policy with the code below.  Let's consider the work of this policy. In this schema, two constraints are introduced:
 
 1. it is allowed to use only the GET method;
-2. it is allowed to use only request URIs starting with "/fhir".
+2. it is allowed to use only request URIs starting with "/fhir/".
 
 ```yaml
 engine: json-schema
