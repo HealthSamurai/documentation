@@ -37,6 +37,7 @@
   * [Profiling](api/profiling.md)
   * [History \(TODO\)](api/history-1.md)
   * [Search \(TODO\)](api/history.md)
+  * [Subscriptions](api/subscriptions.md)
   * [Capabilities Statement](api/metadata.md)
   * [$metadata](api/custom-metadata.md)
   * [$json-schema](api/usdjson-schema.md)
