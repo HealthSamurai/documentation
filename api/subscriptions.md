@@ -18,9 +18,56 @@ To be able to call `$poll` operation, Subscription resource should be already cr
 
 Example request to the `$poll` operation:
 
+{% tabs %}
+{% tab title="Request" %}
 ```text
 GET /fhir/Subscription/test/$poll?from=0
+Content-Type: application/json
 ```
+{% endtab %}
 
- 
+{% tab title="Response" %}
+```text
+{
+ "resourceType": "Bundle",
+ "type": "collection",
+ "entry": [
+  {
+   "resource": {
+    "name": [
+     {
+      "given": [
+       "mike"
+      ],
+      "family": "lapshin"
+     }
+    ],
+    "id": "a90d5dc3-f4fa-49d7-a045-2f4caf8349a5",
+    "resourceType": "Patient"
+   },
+   "txid": 90,
+   "event": "created"
+  },
+  {
+   "resource": {
+    "name": [
+     {
+      "given": [
+       "mike"
+      ],
+      "family": "lapshin"
+     }
+    ],
+    "id": "b7e7dbf2-f30b-4fca-9051-b3ea37fe49b6",
+    "resourceType": "Patient"
+   },
+   "txid": 91,
+   "event": "created"
+  },
+  ...
+ ]
+}
+```
+{% endtab %}
+{% endtabs %}
 
