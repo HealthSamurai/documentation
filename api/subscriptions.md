@@ -16,7 +16,7 @@ There is a guarantee that client won't miss a notification because of time spans
 
 To be able to call `$poll` operation, Subscription resource should be already created, it should has `Subscription.status` equal to `active` and `Subscription.criteria` should specify a resource type \(i.e. `Observation` or `Observation?code=xxxx`\). If Subscription resource does not meet those requirements, `$poll` operation will return`403 Invalid Request` response with OperationOutcome resource containing error message.
 
-Example request to the `$poll` operation:
+Example request to the `$poll` operation to get all notifications ever happened:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -70,4 +70,11 @@ Content-Type: application/json
 ```
 {% endtab %}
 {% endtabs %}
+
+Example request to the `$poll` operation to get most recent notification \(no `from` parameter\):
+
+```text
+GET /fhir/Subscription/test/$poll
+Content-Type: application/json
+```
 
