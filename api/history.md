@@ -208,11 +208,45 @@ GET <base-url>/Patient?.name.0.given=Nikolai&.birthDate::timestamptz$lt=2011
 
 ### \_total \( \_countMethod \) 
 
-By default for all search requests Aidbox return total number in result, which represent how many resources match criteria. But to do this we run second query for count, which takes some time and eats resources. To get response faster on big amount of data you can change this behaviour using **\_total** parameter. **\_total** parameter can have following values:
+By default for all search requests Aidbox return total number in result, which represent how many resources match criteria. But to do this we run second query for count, which takes some time and eats resources. To get response faster on big amount of data you can change this behavior using **\_total** parameter. **\_total** parameter can have following values:
 
 * `none` - do not run count query 
 * `estimated` - roughly estimate number of results
 * `accurate` - run accurate count
+
+### Paging
+
+Search results can contain many records, for more convenient work we can use pagination. Available parameters - **\_count** - total records on the page \(default value - 100\), **page** - specific page, output Bundle includes link section with **first**, **self**, **next**, **previous** and **last** page constructed URLs.
+
+{% tabs %}
+{% tab title="Request" %}
+```javascript
+GET /Patient?_count=10&page=3
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```yaml
+resourceType: Bundle
+type: searchset
+params:
+- {type: count, value: 10}
+- {type: page, value: 3}
+query-sql: ['SELECT "patient".* FROM "patient" LIMIT ? OFFSET ?', 10, 20]
+query-time: 9
+entry:
+- resource:
+    ...
+total: 206
+link:
+- {relation: first, url: '/Patient?_count=10&page=1'}
+- {relation: self, url: '/Patient?_count=10&page=3'}
+- {relation: next, url: '/Patient?_count=10&page=4'}
+- {relation: previous, url: '/Patient?_count=10&page=2'}
+- {relation: last, url: '/Patient?_count=10&page=21'}
+```
+{% endtab %}
+{% endtabs %}
 
 See discussion in zulip - [https://chat.fhir.org/\#narrow/stream/4-implementers/topic/Gender.20discrimination](https://chat.fhir.org/#narrow/stream/4-implementers/topic/Gender.20discrimination)
 
