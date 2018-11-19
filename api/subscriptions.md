@@ -124,6 +124,7 @@ Subscription with channel type `rest-hook` should be created. All `headers` prov
 {% tab title="Request" %}
 ```text
 POST /fhir/Subscription
+Content-Type: application/json
 
 {
   "criteria": "Patient?name=subscription",
@@ -141,7 +142,6 @@ POST /fhir/Subscription
   "status": "active"
 }
 
-Content-Type: application/json
 ```
 {% endtab %}
 
@@ -177,7 +177,7 @@ Content-Type: application/json
 {% endtab %}
 {% endtabs %}
 
-If subscription saved and is `active` each resource that satisfies `criteria` will trigger hook.
+If subscription saved and is `active` each resource that satisfies `criteria` will trigger the hook.
 
 {% tabs %}
 {% tab title="Request" %}
