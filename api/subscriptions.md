@@ -123,7 +123,7 @@ Subscription with channel type `rest-hook` should be created. All `headers` prov
 {% tabs %}
 {% tab title="Request" %}
 ```text
-PUT /Subscription
+POST /fhir/Subscription
 
 {
   "criteria": "Patient?name=subscription",
@@ -182,11 +182,10 @@ If subscription saved and is `active` each resource that satisfies `criteria` wi
 {% tabs %}
 {% tab title="Request" %}
 ```text
-PUT /Patient
+POST /fhir/Patient
 
 {
   "resourceType": "Patient",
-  "id": 1,
   "name": [
     {
       "family": "subscription"
