@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-* Nothing
+* Subscriptions `$poll` operation and `webhook` channel: [Subscriptions](api/subscriptions.md).
 
 ## 0.3.3
 

@@ -114,3 +114,151 @@ Content-Type: application/json
 {% endtab %}
 {% endtabs %}
 
+### REST Hook
+
+Configuration of Subscription with REST hook described in [FHIR documentation](https://www.hl7.org/fhir/subscription.html#2.46.6.1).
+
+Subscription with channel type `rest-hook` should be created. All `headers` provided with channel will be attached to request to `endpoint`. If `payload` field is omitted request will not contain  body.
+
+{% tabs %}
+{% tab title="Request" %}
+```text
+PUT /Subscription
+
+{
+  "criteria": "Patient?name=subscription",
+  "reason": "test",
+  "channel": {
+    "payload": "application/fhir+json",
+    "type": "rest-hook",
+    "header": [
+      "DEMO: DEMO",
+      "Authorization: Basic YWxhZGRpbjpvcGVuc2VzYW1l"
+    ],
+    "endpoint": "https://aidbox.requestcatcher.com/subscription"
+  },
+  "resourceType": "Subscription",
+  "status": "active"
+}
+
+Content-Type: application/json
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```text
+{
+  "reason": "test",
+  "status": "active",
+  "channel": {
+    "type": "rest-hook",
+    "header": [
+      "DEMO: DEMO",
+      "Authorization: Basic YWxhZGRpbjpvcGVuc2VzYW1l"
+    ],
+    "payload": "application/fhir+json",
+    "endpoint": "https://aidbox.requestcatcher.com/subscription"
+  },
+  "criteria": "Patient?name=subscription",
+  "id": "69c7c227-c3fd-491a-a42a-59a2d7a50509",
+  "resourceType": "Subscription",
+  "meta": {
+    "lastUpdated": "2018-11-16T17:25:15.804Z",
+    "versionId": "1",
+    "tag": [
+      {
+        "system": "https://aidbox.app",
+        "code": "created"
+      }
+    ]
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+If subscription saved and is `active` each resource that satisfies `criteria` will trigger hook.
+
+{% tabs %}
+{% tab title="Request" %}
+```text
+PUT /Patient
+
+{
+  "resourceType": "Patient",
+  "id": 1,
+  "name": [
+    {
+      "family": "subscription"
+    }
+  ]
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```text
+{
+  "name": [
+    {
+      "family": "subscription"
+    }
+  ],
+  "id": "d2831faf-c15d-428a-8256-beeb8e679af6",
+  "resourceType": "Patient",
+  "meta": {
+    "lastUpdated": "2018-11-16T18:50:34.255Z",
+    "versionId": "1",
+    "tag": [
+      {
+        "system": "https://aidbox.app",
+        "code": "created"
+      }
+    ]
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+For example our Subscription use aidbox.requestcatcher.com as `endpoint`. If you open this url and PUT new resource you will see result of hook execution:
+
+{% tabs %}
+{% tab title="Request" %}
+Open [https://aidbox.requestcatcher.com](https://aidbox.requestcatcher.com) than perform PUT of Patient
+{% endtab %}
+
+{% tab title="Response" %}
+```text
+POST /subscription HTTP/1.1
+Host: aidbox.requestcatcher.com
+Accept-Encoding: gzip, deflate
+Authorization: Basic YWxhZGRpbjpvcGVuc2VzYW1l
+Content-Length: 225
+Content-Type: application/fhir+json
+Demo: DEMO
+User-Agent: http-kit/2.0
+
+{
+  "name": [
+    {
+      "family": "subscription"
+    }
+  ],
+  "id": "d2831faf-c15d-428a-8256-beeb8e679af6",
+  "resourceType": "Patient",
+  "meta": {
+    "lastUpdated": "2018-11-16T18:50:34.255Z",
+    "versionId": "1",
+    "tag": [
+      {
+        "system": "https://aidbox.app",
+        "code": "created"
+      }
+    ]
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
