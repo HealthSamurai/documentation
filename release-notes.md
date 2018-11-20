@@ -13,6 +13,8 @@
 * Added `If-Match` header support for atomic updates;
 * Fix metadata migration bug \(fixes issues \#16 and \#6\)
 * Added `complex` engine for AccessPolicy resource.
+* Support [`_total`](https://build.fhir.org/search.html#total) search parameter \(\_totalMethod=count also works\)
+* Support `page` search parameter \(\_page - also works\)
 
 ## 0.0.3
 
