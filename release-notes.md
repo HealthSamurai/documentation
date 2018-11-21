@@ -2,7 +2,8 @@
 
 ## Unreleased
 
-* Subscriptions `$poll` operation and `webhook` channel: [Subscriptions](api/subscriptions.md).
+* Subscriptions `$poll` operation and `webhook` channel: [Subscriptions](api/subscriptions.md);
+* Fixed Aidbox to FHIR data transformation bug when polymorphic attributes wasn't properly handled in recursive elements such as `QuestionnaireResponse.item`;
 
 ## 0.3.3
 
