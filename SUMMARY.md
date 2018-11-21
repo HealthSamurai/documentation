@@ -34,7 +34,7 @@
   * [CRUD](api/crud.md)
   * [Patch](api/patch.md)
   * [Transaction/Batch](api/transaction.md)
-  * [History \(TODO\)](api/history-1.md)
+  * [History](api/history-1.md)
   * [Search \(TODO\)](api/history.md)
   * [Subscriptions](api/subscriptions.md)
   * [Capabilities Statement](api/metadata.md)
