@@ -50,6 +50,10 @@ data:
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
+{% hint style="info" %}
+PostgreSQL supports Special Date/Time Inputs like **now**, **today**, **tomorrow** etc
+{% endhint %}
+
 ### Parameters in Query
 
 ### Extend FHIR search with AidboxQuery \(\_query\)
