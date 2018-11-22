@@ -1,7 +1,3 @@
----
-description: Section describes how to declare access rules with AccessPolicy resource.
----
-
 # Access Policies
 
 Aidbox provides a flexible model to customize request authorization rules. User is allowed to declare a set of checks for all incoming requests. If incoming request satisfies those checks, it's considered authorized and being processed further. Otherwise the request is denied and client gets `403 Unauthorized`. Such checks are declared with AccessPolicy resource.

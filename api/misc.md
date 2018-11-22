@@ -1,7 +1,3 @@
----
-description: Miscellaneous endpoints which does not fit in other categories
----
-
 # Misc
 
 ### Observation/$lastn

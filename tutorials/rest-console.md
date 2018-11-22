@@ -1,9 +1,3 @@
----
-description: >-
-  In this guide we will learn how to interact with the Aidbox.Cloud REST
-  Console.
----
-
 # Working with REST Console
 
 ### REST Console

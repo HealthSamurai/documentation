@@ -39,9 +39,69 @@ aidbox, devbox, cloud version of aidbox, enterprise aidbox, fhirebase
 * `[ ]` some name, which should be substituted with something meaningful
 * `{ }` mean optional
 
+{% api-method method="get" host="\[base\]" path="/\[type\]/\[id\]" %}
+{% api-method-summary %}
+Example request
+{% endapi-method-summary %}
+
+{% api-method-description %}
+
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-path-parameters %}
+{% api-method-parameter name="\[base\]" type="string" required=true %}
+
+{% endapi-method-parameter %}
+{% endapi-method-path-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
 ```
-POST [base]/[type]{?_format=[mime-type]}
+
 ```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+POST /Patient
+
+resourceType: Patient
+name:
+- given: [Max]
+  family: Turikov
+gender: male
+birthDate: '1990-10-10'
+address:
+- line:
+  - 123 Oxygen St
+  city: Hello
+  district: World
+  state: NY
+  postalCode: '3212'
+telecom:
+- use: home
+- system: phone
+  value: "(32) 8934 1234"
+  use: work
+  rank: 1
+```
+{% endtab %}
+
+{% tab title="Response" %}
+
+{% endtab %}
+{% endtabs %}
 
 `200 OK` inside text
 

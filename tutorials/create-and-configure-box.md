@@ -1,5 +1,5 @@
 ---
-description: Getting started with new box
+description: This is tutorial how to create and configure your boxes in aidbox
 ---
 
 # Creating and Configuring Box

@@ -1,9 +1,3 @@
----
-description: >-
-  Aidbox support all standard primitive and complex FHIR data types. Also Aidbox
-  provide a set of custom data types such as password and free object.
----
-
 # Aidbox Data Types
 
 ## Primitive Types

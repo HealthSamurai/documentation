@@ -1,7 +1,3 @@
----
-description: In this tutorial we will show you how to use REST API with Aidbox.Dev.
----
-
 # REST API Access in Aidbox.Dev
 
 ## Aidbox.Dev Access 

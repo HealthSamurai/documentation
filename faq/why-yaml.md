@@ -1,7 +1,3 @@
----
-description: 'compact, human-readable, good'
----
-
 # Why YAML?
 
 Aidbox supports following content-types, which not presented in fhir spec yet:

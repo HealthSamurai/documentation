@@ -1,7 +1,3 @@
----
-description: Working FHIR application in 25 minutes
----
-
 # Getting Started with SPA
 
 After reading this guide and performing all steps, you will learn:

@@ -1,7 +1,3 @@
----
-description: Getting started with Aidbox.Dev.
----
-
 # Setup Aidbox.Dev
 
 ## Overview

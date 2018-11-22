@@ -1,9 +1,3 @@
----
-description: >-
-  Page describes FHIR Subscriptions API and additional long-polling endpoint
-  provided by Aidbox.
----
-
 # Subscriptions
 
 Aidbox implements [FHIR Subscriptions API](https://www.hl7.org/fhir/subscription.html) to notify interested 3rd parties about newly created/updated resources which meet certain criteria. Additionally to Subscription's standard push-based delivery mechanism to the endpoint specified in `Subscription.channel`, Aidbox provides long-polling endpoint as a `$poll` operation on Subscription resource.
@@ -15,7 +9,7 @@ Long-Polling is a robust and easy-to-implement mechanism to get instant notifica
 As a response, `$poll` endpoint returns a FHIR Bundle containing matched resources. Every resource has a `meta` element with `versionId` and `lastUpdated` keys. The `versionId` element is quite important in context of polling because it contains a transaction ID of operation which caused the event. It's an integer and it's always increasing which means if event B happened after event A, then B's `versionId` will be greater than A's `versionId`. Client can specify last `versionId` it received with the `from` parameter in the request's query string. In this case, the `$poll` endpoint will return only notifications which have `versionId` greater than number provided in the `from` parameter. This approach guarantees that client will never miss a notification because of time spans between requests to the `$poll` endpoint. If a client polls with `from=0`, Aidbox will return all the notifications ever happened.
 
 {% hint style="warning" %}
-To be able to call the `$poll` operation, the Subscription resource should be already created, it should have `Subscription.status` equal to `active` and `Subscription.criteria` should specify a resource type \(i.e. `Observation` or `Observation?code=xxxx`\). If Subscription resource does not meet those requirements,  the`$poll` operation will return`403 Invalid Request` response with OperationOutcome resource containing error message.
+To be able to call the `$poll` operation, the Subscription resource should be already created, it should have `Subscription.status` equal to `active` and `Subscription.criteria` should specify a resource type \(i.e. `Observation` or `Observation?code=xxxx`\). If Subscription resource does not meet those requirements, the`$poll` operation will return`403 Invalid Request` response with OperationOutcome resource containing error message.
 {% endhint %}
 
 To summarize the polling logic, here is the JavaScript-like client-side pseudo-code:
@@ -116,7 +110,7 @@ Content-Type: application/json
 
 ### REST Hook
 
-Configuration of Subscription with REST hook  is described in the [FHIR documentation](https://www.hl7.org/fhir/subscription.html#2.46.6.1).
+Configuration of Subscription with REST hook is described in the [FHIR documentation](https://www.hl7.org/fhir/subscription.html#2.46.6.1).
 
 Subscription with channel type `rest-hook` should be created. All `headers` provided with channel will be attached to the request to `endpoint`. If the `payload` field is omitted, the request will not contain body.
 

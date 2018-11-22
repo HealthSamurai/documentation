@@ -1,9 +1,3 @@
----
-description: >-
-  This page explains how to make Aidbox to verify access tokens with external
-  provider's secrets and keys.
----
-
 # External Auth Providers
 
 Aidbox can verify access tokens agains 3rd-party identity provider's secrets and keys. To achieve this you need to declare external authentication provider's settings with ExternalAuthProvider resource:

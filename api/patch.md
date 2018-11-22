@@ -1,7 +1,3 @@
----
-description: With patch operation you can update a part of FHIR resource.
----
-
 # Patch
 
 All examples can be run in Postman. Here's [web view](https://documenter.getpostman.com/view/5552124/RWgxtEs8) of these examples.

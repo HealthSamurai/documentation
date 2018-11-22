@@ -1,7 +1,3 @@
----
-description: FHIR Capability Statement Endpoint
----
-
 # Capabilities Statement
 
 **Base URL** for FHIR compatible API is   `<server-domain>/fhir/`

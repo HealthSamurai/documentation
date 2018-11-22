@@ -1,7 +1,3 @@
----
-description: How to add custom resources
----
-
 # Custom Resources
 
 All examples from this tutorial you can run in Postman. Here's the [web view](https://documenter.getpostman.com/view/5552124/RWgxsu5Y) of these examples in Postman.

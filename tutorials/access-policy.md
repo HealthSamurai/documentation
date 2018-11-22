@@ -1,9 +1,3 @@
----
-description: >-
-  Access Policy is a JSON schema filtering REST requests. A request succeeds if
-  at least one of the policies is valid for it.
----
-
 # Access Control
 
 ## Simple Access Policy

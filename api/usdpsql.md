@@ -1,7 +1,3 @@
----
-description: Endpoint to run sql
----
-
 # SQL endpoints
 
 {% api-method method="get" host="<base-url>/$sql" path="" %}

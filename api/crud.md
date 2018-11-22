@@ -4,7 +4,7 @@ description: Basic endpoints to manage resources
 
 # CRUD
 
-{% api-method method="get" host="<base-url>" path="/fhir/:resourceType/:id" %}
+{% api-method method="get" host="\[base\]" path="/<resourceType>/<id>" %}
 {% api-method-summary %}
 Read Resource
 {% endapi-method-summary %}
@@ -71,7 +71,7 @@ Aidbox will return an `ETag` header with the current version ID of the resource 
 Deleted and never existed resources are treated differently on reading. Reading deleted resource will return `410 - Gone` response, when reading never existed resource will end up with `404 - Not found`.
 {% endhint %}
 
-{% api-method method="post" host="<base-url>" path="/fhir/:resourceType" %}
+{% api-method method="post" host="\[base\]" path="/<resourceType>" %}
 {% api-method-summary %}
 Create Resource
 {% endapi-method-summary %}
@@ -159,7 +159,7 @@ Server will validate resource body against FHIR schema and in case of errors wil
 If the client wishes to have control over the ID of a newly submitted resource, it should use the Update Endpoint instead.
 {% endhint %}
 
-{% api-method method="put" host="<base-url>" path="/fhir/:resourceType/:id" %}
+{% api-method method="put" host="\[base\]" path="/<resourceType>/<id>" %}
 {% api-method-summary %}
 Update Resource
 {% endapi-method-summary %}

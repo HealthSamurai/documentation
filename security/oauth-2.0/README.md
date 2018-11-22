@@ -1,9 +1,3 @@
----
-description: >-
-  This guide describes how to obtain an access token for specific type of an
-  application
----
-
 # OAuth 2.0
 
 ## Prerequisite
