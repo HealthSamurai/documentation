@@ -41,6 +41,7 @@
   * [$metadata](api/custom-metadata.md)
   * [$json-schema](api/usdjson-schema.md)
   * [SQL endpoints](api/usdpsql.md)
+  * [$query](api/usdquery.md)
   * [Misc](api/misc.md)
 * [Access Control](security/README.md)
   * [OAuth 2.0](security/oauth-2.0/README.md)
