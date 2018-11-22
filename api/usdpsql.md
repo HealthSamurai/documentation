@@ -36,6 +36,26 @@ JSON: SQL string or jdbc freendly array  \[SQL, param, param\]
 {% endapi-method-spec %}
 {% endapi-method %}
 
+Example request:
+
+{% code-tabs %}
+{% code-tabs-item title="request" %}
+```yaml
+POST /$sql?_format=yaml
+
+SELECT count(*) FROM patient
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+{% code-tabs %}
+{% code-tabs-item title="response" %}
+```yaml
+- {count: 7}
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
 {% api-method method="get" host="<base-url>/$psql" path="" %}
 {% api-method-summary %}
 $psql
@@ -67,4 +87,28 @@ TBD
 {% endapi-method-response %}
 {% endapi-method-spec %}
 {% endapi-method %}
+
+Example
+
+{% code-tabs %}
+{% code-tabs-item title="request" %}
+```yaml
+POST /$psql?_format=yaml
+
+query: SELECT count(*) FROM patient
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+{% code-tabs %}
+{% code-tabs-item title="response" %}
+```text
+- result:
+  - {count: 7}
+  duration: 82.0
+  status: success
+  query: SELECT count(*) FROM patient
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
