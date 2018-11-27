@@ -271,7 +271,7 @@ GROUP BY p.id;
 | `patient1` | `[{"id":"enc1","status":"draft","subject":{"id":"patient1","resourceType":"Patient"},"resource_type":"Encounter"},{"id":"enc2","status":"draft","subject":{"id":"patient1","resourceType":"Patient"},"resource_type":"Encounter"}]` |
 | `patient2` | `[{"id":"enc3","status":"draft","subject":{"id":"patient2","resourceType":"Patient"},"resource_type":"Encounter"}]` |
 
-Additionally we added resourceType and id to patient resource, but don't use it yet, let's put encounters to patient resource and take only one patient by specified id!
+Additionally we added resourceType and id to patient resource, but don't use it yet, let's put encounters to patient resource and take only one patient by specified id
 
 {% code-tabs %}
 {% code-tabs-item title="patients-with-encounters-and-ids.sql" %}
@@ -329,7 +329,7 @@ The result should look like following table \(but without pretty printing\):
   </tbody>
 </table>### $query
 
-Now let's make the results of this query accessible via REST API. For that we need to create AidboxQuery resource:
+Now let's make the results of this query accessible via REST API. For that we need to create `AidboxQuery` resource:
 
 {% tabs %}
 {% tab title="Request" %}
