@@ -12,7 +12,7 @@
   * [Uploading Sample Data](tutorials/load-bundle-into-fhir-server.md)
   * [REST API Access in Aidbox.Dev](tutorials/how-to-use-rest-api.md)
   * [Access Control](tutorials/access-policy.md)
-  * [Custom search](tutorials/custom-search.md)
+  * [Custom Search](tutorials/custom-search.md)
   * [Custom Resources](tutorials/getting-started-with-custom-resources.md)
   * [Authentication and Authorization](tutorials/authentication-and-authorization.md)
   * [Working with Aidbox from .NET](tutorials/working-with-aidbox-from-.net.md)

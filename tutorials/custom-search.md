@@ -1,4 +1,4 @@
-# Custom search
+# Custom Search
 
 ### Intro
 
@@ -171,7 +171,7 @@ SELECT
 id, resource_type, 
 	jsonb_set( 
       jsonb_set(resource, '{id}', to_jsonb(id)),
-      '{resource_type}', 
+      '{resourceType}', 
       to_jsonb(resource_type))
 FROM 
 patient;
@@ -232,7 +232,7 @@ GROUP BY p.id;
 Looks good, but didn't see information about encounters id
 
 {% code-tabs %}
-{% code-tabs-item title="patients-encounters.sql" %}
+{% code-tabs-item title="patients-encounters-with-ids.sql" %}
 ```sql
 SELECT
 p.id AS patient_id,
@@ -241,7 +241,7 @@ FROM (SELECT id,
       resource_type,
       jsonb_set(
         jsonb_set(resource, '{id}', to_jsonb(id)),
-        '{resource_type}', 
+        '{resourceType}', 
         to_jsonb(resource_type)) 
       AS resource 
       FROM patient) AS p
@@ -249,7 +249,7 @@ JOIN (SELECT id,
       resource_type, 
       jsonb_set(
         jsonb_set(resource, '{id}', to_jsonb(id)), 
-        '{resource_type}', 
+        '{resourceType}', 
         to_jsonb(resource_type)) 
       AS resource 
       FROM encounter) AS e
@@ -264,9 +264,187 @@ GROUP BY p.id;
 | `patient1` | `[{"id":"enc1","status":"draft","subject":{"id":"patient1","resourceType":"Patient"},"resource_type":"Encounter"},{"id":"enc2","status":"draft","subject":{"id":"patient1","resourceType":"Patient"},"resource_type":"Encounter"}]` |
 | `patient2` | `[{"id":"enc3","status":"draft","subject":{"id":"patient2","resourceType":"Patient"},"resource_type":"Encounter"}]` |
 
-### $query
+Additionally we added resourceType and id to patient resource, but don't use it yet, let's put encounters to patient resource and take only one patient by specified id!
 
-profit!!!
+{% code-tabs %}
+{% code-tabs-item title="patients-with-encounters-and-ids.sql" %}
+```sql
+SELECT
+p.id AS id,
+jsonb_set(p.resource, '{encounters}', json_agg(e.resource::jsonb)::jsonb) AS resource
+FROM (SELECT id, 
+      resource_type,
+      jsonb_set(
+        jsonb_set(resource, '{id}', to_jsonb(id)),
+        '{resourceType}', 
+        to_jsonb(resource_type)) 
+      AS resource 
+      FROM patient) AS p
+JOIN (SELECT id, 
+      resource_type, 
+      jsonb_set(
+        jsonb_set(resource, '{id}', to_jsonb(id)), 
+        '{resourceType}', 
+        to_jsonb(resource_type)) 
+      AS resource 
+      FROM encounter) AS e
+ON p.id = e.resource->'subject'->>'id'
+GROUP BY p.id, p.resource
+HAVING p.id = 'patient1';
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
+The result should look like following table \(but without pretty printing\):
 
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">id</th>
+      <th style="text-align:left">resource</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>patient1</code>
+      </td>
+      <td style="text-align:left">
+        <p><code>{&quot;id&quot;:&quot;patient1&quot;,</code>
+        </p>
+        <p><code> &quot;name&quot;:[{&quot;given&quot;:[&quot;Max&quot;],&quot;family&quot;:&quot;Turikov&quot;}],</code>
+        </p>
+        <p><code> &quot;encounters&quot;:[</code>
+        </p>
+        <p><code>    {&quot;id&quot;:&quot;enc1&quot;,<br />     &quot;status&quot;:&quot;draft&quot;,<br />     &quot;subject&quot;:{&quot;id&quot;:&quot;patient1&quot;,&quot;resourceType&quot;:&quot;Patient&quot;},<br />     &quot;resourceType&quot;:&quot;Encounter&quot;},<br />    {&quot;id&quot;:&quot;enc2&quot;,<br />     &quot;status&quot;:&quot;draft&quot;,<br />     &quot;subject&quot;:{&quot;id&quot;:&quot;patient1&quot;,&quot;resourceType&quot;:&quot;Patient&quot;},<br />     &quot;resourceType&quot;:&quot;Encounter&quot;}],<br /> &quot;resourceType&quot;:&quot;Patient&quot;}</code>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>### $query
+
+Now let's make the results of this query accessible via REST API. For that we need to create AidboxQuery resource:
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+POST /AidboxQuery
+
+id: patient-with-encounters
+params:
+  patient-id: {isRequired: true}
+query: |
+  SELECT
+  jsonb_set(p.resource, '{encounters}', json_agg(e.resource::jsonb)::jsonb) AS resource
+  FROM (SELECT id, 
+        resource_type,
+        jsonb_set(
+          jsonb_set(resource, '{id}', to_jsonb(id)),
+          '{resourceType}', 
+          to_jsonb(resource_type)) 
+        AS resource 
+        FROM patient) AS p
+  JOIN (SELECT id, 
+        resource_type, 
+        jsonb_set(
+          jsonb_set(resource, '{id}', to_jsonb(id)), 
+          '{resourceType}', 
+          to_jsonb(resource_type)) 
+        AS resource 
+        FROM encounter) AS e
+  ON p.id = e.resource->'subject'->>'id'
+  GROUP BY p.id, p.resource
+  HAVING p.id = {{params.patient-id}};
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```yaml
+# Status: 201
+
+query: "SELECT\njsonb_set(p.resource, '{encounters}', json_agg(e.resource::jsonb)::jsonb)\
+  \ AS resource\nFROM (SELECT id, \n      resource_type,\n      jsonb_set(\n     \
+  \   jsonb_set(resource, '{id}', to_jsonb(id)),\n        '{resourceType}', \n   \
+  \     to_jsonb(resource_type)) \n      AS resource \n      FROM patient) AS p\n\
+  JOIN (SELECT id, \n      resource_type, \n      jsonb_set(\n        jsonb_set(resource,\
+  \ '{id}', to_jsonb(id)), \n        '{resourceType}', \n        to_jsonb(resource_type))\
+  \ \n      AS resource \n      FROM encounter) AS e\nON p.id = e.resource->'subject'->>'id'\n\
+  GROUP BY p.id, p.resource\nHAVING p.id = 'patient1';"
+params:
+  patient-id: {isRequired: true}
+id: patient-with-encounters
+resourceType: AidboxQuery
+meta:
+  lastUpdated: '2018-11-27T13:30:45.670Z'
+  versionId: '37'
+  tag:
+  - {system: 'https://aidbox.app', code: created}
+```
+{% endtab %}
+{% endtabs %}
+
+Pay attention to the end of the query, we used `{{params.patient.id}}`, which takes the value from request and passes it to the query securely \(using PostgreSQL `PREPARE` statement\). That mean that the user of our custom search can change some parameters of the query and get different results.
+
+Let's try it in action!
+
+{% tabs %}
+{% tab title="Request" %}
+```text
+GET /$query/patient-with-encounters?patient-id=patient1
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```yaml
+# Status: 200
+
+data:
+- resource:
+    id: patient1
+    name:
+    - given: [Max]
+      family: Turikov
+    encounters:
+    - id: enc1
+      status: draft
+      subject: {id: patient1, resourceType: Patient}
+      resourceType: Encounter
+    - id: enc2
+      status: draft
+      subject: {id: patient1, resourceType: Patient}
+      resourceType: Encounter
+    resourceType: Patient
+# ...
+```
+{% endtab %}
+{% endtabs %}
+
+{% tabs %}
+{% tab title="Request" %}
+```text
+GET /$query/patient-with-encounters?patient-id=patient2
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```yaml
+# Status: 200
+
+data:
+- resource:
+    id: patient2
+    name:
+    - given: [Alex]
+      family: Antonov
+    encounters:
+    - id: enc3
+      status: draft
+      subject: {id: patient2, resourceType: Patient}
+      resourceType: Encounter
+    resourceType: Patient
+# ...
+```
+{% endtab %}
+{% endtabs %}
+
+Hell ye! We got all needed date in exact shape we wanted. Additional information about custom queries can be found in REST API [$query](../api/usdquery.md) doc.
 
