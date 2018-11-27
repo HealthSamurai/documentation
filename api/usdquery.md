@@ -1,8 +1,8 @@
 # $query
 
-With AidboxQuery resource you can turn your SQL query into REST Endpoint.
+With `AidboxQuery` resource you can turn your SQL query into REST Endpoint.
 
-For example lets create a simple aggregation report for encounters parameterized by date. Create an AidboxQuery resource:
+For example lets create a simple aggregation report for encounters parameterized by date. Create an `AidboxQuery` resource:
 
 {% code-tabs %}
 {% code-tabs-item title="request" %}
@@ -30,7 +30,7 @@ When you created AidboxQuery, you can use it:
 {% tabs %}
 {% tab title="request" %}
 ```
-GET /$query/daily-report?date=today&_format=yaml
+GET /$query/daily-report?date=today
 ```
 {% endtab %}
 
@@ -61,11 +61,17 @@ All parameters passed in query string will be available under `{{params.PARAMETE
 
 Also `{{user.id}}` will be available, for example `user-info` custom query can be implemented like this:
 
+{% code-tabs %}
+{% code-tabs-item title="request" %}
 ```yaml
+POST /AidboxQuery
+
 query: 'select * from public.User where id = {{user.id}}'
 id: user-info
 resourceType: AidboxQuery
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 Sample query will be:
 
@@ -99,4 +105,8 @@ query: ['select * from public.User where id = ?', testuser]
 {% hint style="warning" %}
 It's not possible to do such request from REST Console, because in REST console there are no user credentials. It can be done only by request with access token provided. Check [OAuth2.0](../security/oauth-2.0/) doc for additional information.
 {% endhint %}
+
+See also our tutorial:
+
+{% page-ref page="../tutorials/custom-search.md" %}
 
