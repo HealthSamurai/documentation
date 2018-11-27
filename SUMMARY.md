@@ -6,6 +6,7 @@
   * [Use Aidbox.Cloud](installation/use-aidbox.cloud.md)
   * [Deploy Aidbox.One](installation/deploy-aidbox.one.md)
 * [Tutorials](tutorials/README.md)
+  * [Custom search](tutorials/custom-search.md)
   * [Getting Started with SPA](tutorials/getting-started-with-spa.md)
   * [Creating and Configuring Box](tutorials/create-and-configure-box.md)
   * [Working with REST Console](tutorials/rest-console.md)
