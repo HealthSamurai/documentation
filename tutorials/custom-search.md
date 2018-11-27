@@ -450,7 +450,7 @@ data:
 {% endtab %}
 {% endtabs %}
 
-Hell ye! We got all needed date in exact shape we wanted. Additional information about custom queries can be found in REST API [$query](../api/usdquery.md) doc.
+Hell ye! We got all needed data in exact shape we wanted. Additional information about custom queries can be found in REST API [$query](../api/usdquery.md) doc.
 
 {% hint style="info" %}
 Want to know more about Aidbox, FHIR and custom searches? Join our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).
