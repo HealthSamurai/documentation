@@ -184,6 +184,10 @@ patient;
 | `patient1` | `Patient` | `{"id":"patient1","name":[{"given":["Max"],"family":"Turikov"}],"resource_type":"Patient"}` |
 | `patient2` | `Patient` | `{"id":"patient2","name":[{"given":["Alex"],"family":"Antonov"}],"resource_type":"Patient"}` |
 
+{% hint style="info" %}
+Curious how to work with JSON in PostgreSQL? Join our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).
+{% endhint %}
+
 Also we can obtain list of encounters for each patient
 
 {% code-tabs %}
@@ -447,4 +451,8 @@ data:
 {% endtabs %}
 
 Hell ye! We got all needed date in exact shape we wanted. Additional information about custom queries can be found in REST API [$query](../api/usdquery.md) doc.
+
+{% hint style="info" %}
+Want to know more about Aidbox, FHIR and custom searches? Join our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).
+{% endhint %}
 
