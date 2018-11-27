@@ -38,6 +38,7 @@
   * [Create \(TODO\)](api/create-todo.md)
   * [Update \(TODO\)](api/update-todo.md)
   * [Delete \(TODO\)](api/delete-todo.md)
+  * [History](api/history-2.md)
   * [History](api/history-1.md)
   * [Patch](api/patch.md)
   * [Transaction/Batch](api/transaction.md)
