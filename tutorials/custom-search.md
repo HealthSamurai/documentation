@@ -7,7 +7,7 @@
 ### Prepare data
 
 We need some sample data to see results of our queries. Let's create it.   
-Copy following snippet to REST Console.
+Copy following snippet to `REST Console`
 
 {% hint style="info" %}
 Use Copy button near the top right corner of snippet to avoid copying trailing spaces
@@ -145,7 +145,7 @@ We created 2 patients and 3 encounters, which linked to those patients.
 
 Aidbox uses PostgreSQL \(super advanced open-source DBMS\), which allows to express very complex queries. Let's try to implement our task in SQL queries.
 
-First of all let's try to obtain a list of patients. Go to DB Console of our box and run following code snippets
+First of all let's try to obtain a list of patients. Go to `DB Console` of our box and run following code snippets
 
 ![DB Console](../.gitbook/assets/screenshot-2018-11-27-19.41.13.png)
 
@@ -159,8 +159,6 @@ patient;
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
-
-![](../.gitbook/assets/screenshot-2018-11-27-19.41.13%20%281%29.png)
 
 | id | resource\_type | resource |
 | :--- | :--- | :--- |
