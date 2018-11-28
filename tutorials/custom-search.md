@@ -2,15 +2,15 @@
 
 ### Intro
 
-[FHIR search](https://www.hl7.org/fhir/search.html) has a lot of capabilities but some cases couldn't be express in terms of it. For example we want to get a patient resource with additional field encounters, which contains all encounters of that patient, but it's not possible to implement it with FHIR search. Aidbox has a solution for such complex task and this tutorial about how to solve this kind of problem.
+[FHIR search](https://www.hl7.org/fhir/search.html) has a lot of capabilities. However, some cases can't be expressed in terms of it. For example, we want to get a patient resource with additional field 'encounters' which contains all encounters of that patient but it's not possible to implement with FHIR search API. Aidbox has a solution for such complex tasks, and this tutorial is about how to solve this kind of problem.
 
-### Prepare data
+### Prepare Data
 
 We need some sample data to see results of our queries. Let's create it.   
-Copy following snippet to `REST Console`
+Copy the following snippet to the Aidbox.Cloud `REST Console`.
 
 {% hint style="info" %}
-Use Copy button near the top right corner of snippet to avoid copying trailing spaces
+You can use the Copy button near the top right corner of a snippet to avoid copying trailing spaces.
 {% endhint %}
 
 {% tabs %}
@@ -139,13 +139,13 @@ entry:
 {% endtab %}
 {% endtabs %}
 
-We created 2 patients and 3 encounters, which linked to those patients.
+We created 2 patients and 3 encounters that are linked to those patients.
 
 ### SQL
 
-Aidbox uses PostgreSQL \(super advanced open-source DBMS\), which allows to express very complex queries. Let's try to implement our task in SQL queries.
+Aidbox uses PostgreSQL \(super advanced open-source DBMS\) which allows to express very complex queries. Let's try to implement our task in SQL queries.
 
-First of all let's try to obtain a list of patients. Go to `DB Console` of our box and run following code snippets
+First of all, let's try to obtain a list of patients. Access the `DB Console` of our box and run the following code snippets:
 
 ![DB Console](../.gitbook/assets/screenshot-2018-11-27-19.41.13.png)
 
@@ -165,7 +165,7 @@ patient;
 | `patient1` | `Patient` | `{"name":[{"given":["Max"],"family":"Turikov"}]}` |
 | `patient2` | `Patient` | `{"name":[{"given":["Alex"],"family":"Antonov"}]}` |
 
-Next, we want add patient **id** and **resource\_type** into **resource**
+Next, we want to add patient **id** and **resource\_type** into **resource**.
 
 {% code-tabs %}
 {% code-tabs-item title="patients.sql" %}
@@ -188,10 +188,10 @@ patient;
 | `patient2` | `Patient` | `{"id":"patient2","name":[{"given":["Alex"],"family":"Antonov"}],"resource_type":"Patient"}` |
 
 {% hint style="info" %}
-Curious how to work with JSON in PostgreSQL? Join our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).
+Curious, how to work with JSON in PostgreSQL? Join our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).
 {% endhint %}
 
-Also we can obtain list of encounters for each patient
+Also, we can obtain a list of encounters for each patient:
 
 {% code-tabs %}
 {% code-tabs-item title="patients-encounters.sql" %}
@@ -214,7 +214,7 @@ ON p.id = e.resource->'subject'->>'id';
 | `patient1` | `enc2` | `{"status":"draft","subject":{"id":"patient1","resourceType":"Patient"}}` |
 | `patient2` | `enc3` | `{"status":"draft","subject":{"id":"patient2","resourceType":"Patient"}}` |
 
-Our next step is obtaining aggregated data by patients
+Our next step will be obtaining aggregated data by patients.
 
 {% code-tabs %}
 {% code-tabs-item title="patient-encounters.sql" %}
@@ -236,7 +236,7 @@ GROUP BY p.id;
 | `patient1` | `[{"status":"draft","subject":{"id":"patient1","resourceType":"Patient"}}, {"status":"draft","subject":{"id":"patient1","resourceType":"Patient"}}]` |
 | `patient2` | `[{"status":"draft","subject":{"id":"patient2","resourceType":"Patient"}}]` |
 
-Looks good, but didn't see information about encounters id
+Looks good but don't have information about encounter id's.
 
 {% code-tabs %}
 {% code-tabs-item title="patients-encounters-with-ids.sql" %}
@@ -271,7 +271,7 @@ GROUP BY p.id;
 | `patient1` | `[{"id":"enc1","status":"draft","subject":{"id":"patient1","resourceType":"Patient"},"resource_type":"Encounter"},{"id":"enc2","status":"draft","subject":{"id":"patient1","resourceType":"Patient"},"resource_type":"Encounter"}]` |
 | `patient2` | `[{"id":"enc3","status":"draft","subject":{"id":"patient2","resourceType":"Patient"},"resource_type":"Encounter"}]` |
 
-Additionally we added resourceType and id to patient resource, but don't use it yet, let's put encounters to patient resource and take only one patient by specified id
+Additionally, we added resourceType and id to patient resource but didn't use it yet. Let's put encounters to patient resource and take only one patient by specified id.
 
 {% code-tabs %}
 {% code-tabs-item title="patients-with-encounters-and-ids.sql" %}
@@ -302,7 +302,7 @@ HAVING p.id = 'patient1';
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-The result should look like following table \(but without pretty printing\):
+The result should look like the following table \(but without pretty printing\):
 
 <table>
   <thead>
@@ -329,7 +329,7 @@ The result should look like following table \(but without pretty printing\):
   </tbody>
 </table>### $query
 
-Now let's make the results of this query accessible via REST API. For that we need to create `AidboxQuery` resource:
+Now, let's make the results of this query accessible via REST API. To do that, we need to create `AidboxQuery` resource:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -389,7 +389,7 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-Pay attention to the end of the query, we used `{{params.patient.id}}`, which takes the value from request and passes it to the query securely \(using PostgreSQL `PREPARE` statement\). That mean that the user of our custom search can change some parameters of the query and get different results.
+Pay attention to the end of the query: we used `{{params.patient.id}}` which takes the value from request and passes it to the query securely \(using PostgreSQL `PREPARE` statement\). This means that the user of our custom search can change some parameters of the query and get different results.
 
 Let's try it in action!
 
@@ -453,9 +453,9 @@ data:
 {% endtab %}
 {% endtabs %}
 
-Hell ye! We got all needed data in exact shape we wanted. Additional information about custom queries can be found in REST API [$query](../api/usdquery.md) doc.
+Hell ye! We got all needed data in exact shape we wanted. Additional information about custom queries can be found in REST API [$query](../api/usdquery.md) documentation.
 
 {% hint style="info" %}
-Want to know more about Aidbox, FHIR and custom searches? Join our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).
+Want to know more about Aidbox, FHIR, and custom search? Join our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).
 {% endhint %}
 
