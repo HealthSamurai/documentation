@@ -36,7 +36,7 @@ GET /$query/daily-report?date=today
 
 {% tab title="response" %}
 ```yaml
-Status: 200
+# Status: 200
 
 query: "SELECT ...."
 duration: 2
@@ -86,8 +86,8 @@ Accept: text/yaml
 {% endtab %}
 
 {% tab title="response" %}
-```text
-Status: 200
+```yaml
+# Status: 200
 
 data:
 - id: testuser
@@ -103,7 +103,89 @@ query: ['select * from public.User where id = ?', testuser]
 {% endtabs %}
 
 {% hint style="warning" %}
-It's not possible to do such request from REST Console, because in REST console there are no user credentials. It can be done only by request with access token provided. Check [OAuth2.0](../security/oauth-2.0/) doc for additional information.
+It's not possible to call such AidboxQuery from REST Console, because in REST console there are no user claims. It can be done only by request with access token provided. Check [OAuth2.0](../security/oauth-2.0/) doc for additional information.
+{% endhint %}
+
+### \_query
+
+There are another option for calling AidboxQuery:
+
+```
+GET /Patient?_query=get-by-id&rid=patient1
+```
+
+Main difference is that such query can use additional variable available in context `{{resourceType}}`.
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+POST /AidboxQuery
+
+resourceType: AidboxQuery
+query: 'select * from {{resourceType}} where id = {{params.rid}}'
+params:
+  rid: {isRequired: true}
+id: get-by-id
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```yaml
+# Status: 201
+
+query: select * from {{resourceType}} where id = {{params.rid}}
+params:
+  rid: {isRequired: true}
+id: get-by-id
+resourceType: AidboxQuery
+meta:
+  lastUpdated: '2018-11-28T15:33:03.073Z'
+  versionId: '11'
+  tag:
+  - {system: 'https://aidbox.app', code: created}
+```
+{% endtab %}
+{% endtabs %}
+
+Example usage:
+
+{% tabs %}
+{% tab title="Request" %}
+```text
+GET /Attribute?_query=get-by-id&rid=Encounter.status
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```yaml
+# Status: 200
+
+data:
+- id: Encounter.status
+  txid: 0
+  ts: '2018-11-07T10:10:41.051Z'
+  resource_type: Attribute
+  status: updated
+  resource:
+    resource: {id: Encounter, resourceType: Entity}
+    valueSet: {id: encounter-status, resourceType: ValueSet}
+    path: [status]
+    module: fhir-3.0.1
+    order: 10
+    source: code
+    type: {id: code, resourceType: Entity}
+    isSummary: true
+    resourceType: Attribute
+    description: planned | arrived | triaged | in-progress | onleave | finished | cancelled +
+    isModifier: true
+    isRequired: true
+query: ['select * from Attribute where id = ?', Encounter.status]
+```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="info" %}
+Pay attention that only `{{resourceType}}` can be used in place of table name, because this variable is secure and will be inserted directly into query. Other variables will be escaped and can't be used in such parts of query.
 {% endhint %}
 
 See also our tutorial:
