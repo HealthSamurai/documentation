@@ -19,7 +19,7 @@ query: |
      resource->>'class' as class, 
      count(*) as count
   FROM encounter 
-  WHERE resource#>>'{period,start}'::date = {{params.date}}
+  WHERE (resource#>>'{period,start}')::date = {{params.date}}
   GROUP BY resource->>'class'
 ```
 {% endcode-tabs-item %}
