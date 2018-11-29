@@ -304,16 +304,18 @@ HAVING p.id = 'patient1';
 
 The result should look like the following table \(but without pretty printing\):
 
-| id | resource |
-| :--- | :--- |
-
-
 <table>
   <thead>
     <tr>
-      <th style="text-align:left"><code>patient1</code>
-      </th>
-      <th style="text-align:left">
+      <th style="text-align:left">id</th>
+      <th style="text-align:left">resource</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>patient1</code>
+      </td>
+      <td style="text-align:left">
         <p><code>{&quot;id&quot;:&quot;patient1&quot;,</code>
         </p>
         <p> <code>&quot;name&quot;:[{&quot;given&quot;:[&quot;Max&quot;],&quot;family&quot;:&quot;Turikov&quot;}],</code>
@@ -322,10 +324,9 @@ The result should look like the following table \(but without pretty printing\):
         </p>
         <p> <code>{&quot;id&quot;:&quot;enc1&quot;,<br /> &quot;status&quot;:&quot;draft&quot;,<br /> &quot;subject&quot;:{&quot;id&quot;:&quot;patient1&quot;,&quot;resourceType&quot;:&quot;Patient&quot;},<br /> &quot;resourceType&quot;:&quot;Encounter&quot;},<br /> {&quot;id&quot;:&quot;enc2&quot;,<br /> &quot;status&quot;:&quot;draft&quot;,<br /> &quot;subject&quot;:{&quot;id&quot;:&quot;patient1&quot;,&quot;resourceType&quot;:&quot;Patient&quot;},<br /> &quot;resourceType&quot;:&quot;Encounter&quot;}],<br /> &quot;resourceType&quot;:&quot;Patient&quot;}</code>
         </p>
-      </th>
+      </td>
     </tr>
-  </thead>
-  <tbody></tbody>
+  </tbody>
 </table>Now, let's make the results of this query accessible via REST API. To do that, we need to create `AidboxQuery` resource:
 
 {% tabs %}
