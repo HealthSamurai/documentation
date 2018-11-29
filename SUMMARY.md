@@ -33,8 +33,6 @@
   * [Validation](basic-concepts/validation.md)
 * [REST API](api/README.md)
   * [CRUD](api/crud/README.md)
-    * [Create \(TODO\)](api/crud/create-todo.md)
-    * [Read \(TODO\)](api/crud/read-todo.md)
     * [Update \(TODO\)](api/crud/update-todo.md)
     * [Delete \(TODO\)](api/crud/delete-todo.md)
   * [History](api/history-1.md)

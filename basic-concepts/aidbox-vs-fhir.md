@@ -35,8 +35,6 @@ Aidbox doesn't have atomic update yet. It also allows to omit `id` in resource b
 
 * **`200` OK** - resource successfully updated
 * **`201` Created** - resource successfully created
-* **`400` Bad Request** - resource could not be parsed or failed basic FHIR validation rules
-* **`404` Not Found** - resource not found
 * **`422` Unprocessable Entity** - the proposed resource violated applicable FHIR profiles or server business rules
 
 ### delete
@@ -52,7 +50,6 @@ To get `204 No Content` instead of `200 OK` use `_no-content=true` query paramet
 * **`200` OK** - resource successfully delete
 * **`204` No Content** - resource already deleted
 * **`404` Not Found** - resource not found
-* **`422` Unprocessable Entity** - the proposed resource violated applicable FHIR profiles or server business rules
 
 ### conditional create
 

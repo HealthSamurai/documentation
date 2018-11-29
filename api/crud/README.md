@@ -33,10 +33,12 @@ One of the most basic interactions, which gives an ability to create a resource.
 * **`409`** **Conflict** - resource with such id already exists
 * **`422`** **Unprocessable Entity** - the proposed resource violated applicable FHIR profiles or server business rules
 
-Successful response `2xx` also contains a created resource as a body and additional header `Location`, which contains full path to resource \(base url, resource type and id of newly created resource\) and additionally information about version of that resource \(vid\).
+Successful response `2xx` also contains a created resource as a body and additional headers `Location`, `ETag`, `Last-Modified`, which contains full path to resource \(base url, resource type and id of newly created resource\) and additionally information about version \(vid\) and modification time of that resource.
 
 ```text
 Location: [base]/[type]/[id]/_history/[vid]
+ETag: [vid]
+Last-Modified: [modification-datetime]
 ```
 
 Unsuccessful response  `4xx` contains `OperationOutcome` resource, which describes issues server faced creating this resource.
@@ -148,7 +150,7 @@ Patient not created, existing patient was returned.
 GET [base]/[type]/[id]
 ```
 
-One of the most basic operations, used to obtain a resource by a given `id`. For more advanced options for getting resources check out [Search](../history.md).
+One of the most basic interactions, used to obtain a resource by a given `id`. For more advanced options for getting resources check out [Search](../history.md).
 
 * **`200`** **OK** - resource successfully found and returned
 * **`404`** **Not Found** - resource with a given `id` doesn't exist on the server
@@ -240,116 +242,221 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-{% api-method method="get" host="\[base\]" path="/<resourceType>/<id>" %}
-{% api-method-summary %}
+## update
 
-{% endapi-method-summary %}
-
-{% api-method-description %}
-This endpoint accesses the current version of a resource.
-{% endapi-method-description %}
-
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-path-parameters %}
-{% api-method-parameter name="id" type="string" required=true %}
-ID of resource
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="resourceType" type="string" required=true %}
-Type of resource being read
-{% endapi-method-parameter %}
-{% endapi-method-path-parameters %}
-
-{% api-method-query-parameters %}
-{% api-method-parameter name="\_format" type="string" required=false %}
-Specifies response serialization format, possible values are "json" \(default\) or "yaml"
-{% endapi-method-parameter %}
-{% endapi-method-query-parameters %}
-{% endapi-method-request %}
-
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-Successful read, returns full resource content
-{% endapi-method-response-example-description %}
-
-```javascript
-{
-  "id": "example-resource",
-  "resourceType": "Patient",
-  "name": [{"given": ["Alex"]}]
-}
+```text
+PUT [base]/[type]/[id]
 ```
-{% endapi-method-response-example %}
 
-{% api-method-response-example httpCode=410 %}
-{% api-method-response-example-description %}
-Reading already deleted resource
-{% endapi-method-response-example-description %}
+Interaction, which allows to modify existing resource \(create new version of it\). After performing this interaction resource will be replaced with new version of resource provided in the body of request. `id` of a resource can't be changed \(at least cause of versioning\) and `id` in the body of the resource is ignored in update interaction \(it's done to make conditional update possible without knowing logical id of the resource\). If a resource with `id` \(provided in the url\) doesn't exist new resource will be created. Following codes can be returned by the server:
 
-```javascript
-{
-  "resourceType": "OperationOutcome",
-  "status": 410
-}
+* **`200`** **OK** - resource successfully updated
+* **`201`** **Created** - resource successfully created
+* **`422`** **Unprocessable Entity** - the proposed resource violated applicable FHIR profiles or server business rules
+
+### **`200`** OK
+
+Update patient by given id:
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+PUT /Patient/17b69d79-3d9b-45f8-af79-75f958502763
+
+name: [{given: ["Bob"]}]
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+{% endtab %}
+
+{% tab title="Response" %}
+**Status:** `200`
+
+```yaml
+name:
+- given: [Bob]
+id: 17b69d79-3d9b-45f8-af79-75f958502763
+resourceType: Patient
+meta:
+  lastUpdated: '2018-11-29T13:58:03.875Z'
+  versionId: '38'
+  tag:
+  - {system: 'https://aidbox.app', code: updated}
+```
+{% endtab %}
+{% endtabs %}
+
+### `201` Created
+
+Create a patient with specified id:
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+PUT /Patient/tom-id
+
+name: [{given: ["Tom"]}]
+```
+{% endtab %}
+
+{% tab title="Response" %}
+**Status:** `201`
+
+```yaml
+name:
+- given: [Tom]
+id: tom-id
+resourceType: Patient
+meta:
+  lastUpdated: '2018-11-29T14:01:09.336Z'
+  versionId: '40'
+  tag:
+  - {system: 'https://aidbox.app', code: created}
+```
+{% endtab %}
+{% endtabs %}
+
+## conditional update
+
+```text
+PUT [base]/[type]?[search parameters]
+```
+
+More complex way to update a resource, but gives more power, it gives ability to update a resource without knowing `id`, but requires knowledge of [Search](../history.md). Different response codes will be returned \(based on the number of search results\):
+
+* **No matches**: The server performs a `create` interaction \(Aidbox version of create\)
+* **One Match**: The server performs the update against the matching resource
+* **Multiple matches**: The server returns a `412 Precondition Failed` error indicating the client's criteria were not selective enough
+
+### `200` OK
+
+Update patient by name.
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+PUT /Patient?name=Tom
+
+name: [{given: ["Tom"]}]
+gender: male
+```
+{% endtab %}
+
+{% tab title="Response" %}
+**Status:** `200`
+
+```yaml
+name:
+- given: [Tom]
+gender: male
+id: tom-id
+resourceType: Patient
+meta:
+  lastUpdated: '2018-11-29T14:10:31.885Z'
+  versionId: '42'
+  tag:
+  - {system: 'https://aidbox.app', code: updated}
+```
+{% endtab %}
+{% endtabs %}
+
+### `201` Created
+
+ Create a patient with a name Julie and specified id if no other patient with the same name exists:
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+PUT /Patient?name=Julie
+
+id: julie-id
+name: [{given: ["Julie"]}]
+gender: female
+```
+{% endtab %}
+
+{% tab title="Response" %}
+**Status:** `201`
+
+```yaml
+name:
+- given: [Julie]
+gender: female
+id: julie-id
+resourceType: Patient
+meta:
+  lastUpdated: '2018-11-29T14:13:03.416Z'
+  versionId: '43'
+  tag:
+  - {system: 'https://aidbox.app', code: created}
+```
+{% endtab %}
+{% endtabs %}
 
 {% hint style="info" %}
-Aidbox will return an `ETag` header with the current version ID of the resource and a `Last-Modified` header.
+If patient with name Julie already exists `update` interaction will be performed and `id` will be ignored.
 {% endhint %}
 
-{% hint style="warning" %}
-Deleted and never existed resources are treated differently on reading. Reading deleted resource will return `410 - Gone` response, when reading never existed resource will end up with `404 - Not found`.
-{% endhint %}
+## delete
 
-{% hint style="info" %}
-Server will validate resource body against FHIR schema and in case of errors will respond with `422 Unprocessable Entity` error code and OperationOutcome resource containing information about validation errors. All references contained within resource will be checked for existence as well.
-{% endhint %}
-
-{% hint style="info" %}
-If the client wishes to have control over the ID of a newly submitted resource, it should use the Update Endpoint instead.
-{% endhint %}
-
-{% api-method method="put" host="\[base\]" path="/<resourceType>/<id>" %}
-{% api-method-summary %}
-Update Resource
-{% endapi-method-summary %}
-
-{% api-method-description %}
-The update endpoint creates a new version for an existing resource or creates an initial version if no resource already exists for the given id.  
-  
-The request body should contain valid resource with an `id` element that has an identical value to the `:id` in the URL. If no `id` element is provided or value is wrong, server will respond with `400 Bad Request`.
-{% endapi-method-description %}
-
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-path-parameters %}
-{% api-method-parameter name="id" type="string" required=true %}
-ID of resource
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="resourceType" type="string" required=true %}
-Type of resource being updated
-{% endapi-method-parameter %}
-{% endapi-method-path-parameters %}
-{% endapi-method-request %}
-
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
+```text
+DELETE [base]/[type]/[id]
 ```
 
+Interaction deletes a resource, respond with `200 OK` on successful delete, but on deletion of already deleted resource respond with `204 No Content`. 
+
+To get `204 No Content` always instead of `200 OK` use `_no-content=true` query parameter.
+
+* **`200`** **OK** - resource successfully delete
+* **`204`** **No Content** - resource already deleted
+* **`404`** **Not Found** - resource not found
+
+### `200` OK
+
+Basic case for delete:
+
+{% tabs %}
+{% tab title="Request" %}
+```text
+DELETE /Patient/tom-id
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+{% endtab %}
+
+{% tab title="Response" %}
+**Status:** `200`
+
+```yaml
+name:
+- given: [Tom]
+gender: male
+id: tom-id
+resourceType: Patient
+meta:
+  lastUpdated: '2018-11-29T14:33:17.429Z'
+  versionId: '44'
+  tag:
+  - {system: 'https://aidbox.app', code: deleted}
+```
+{% endtab %}
+{% endtabs %}
+
+### `204` No Content
+
+Attempt to delete already deleted resource:
+
+{% tabs %}
+{% tab title="Request" %}
+```text
+DELETE /Patient/tom-id
+```
+{% endtab %}
+
+{% tab title="Response" %}
+**Status:** `204`
+
+```text
+
+```
+{% endtab %}
+{% endtabs %}
+
+## conditional delete
 
