@@ -6,7 +6,7 @@
 * Fixed Aidbox to FHIR data transformation bug when polymorphic attributes wasn't properly handled in recursive elements such as `QuestionnaireResponse.item`
 * Support [`_total`](https://build.fhir.org/search.html#total) search parameter \(\_totalMethod=count also works\)
 * Support `page` search parameter \(\_page - also works\)
-* Added [$query](api/usdquery.md) - SQL query into REST Endpoint
+* Added [$query](api/custom-search.md) - SQL query into REST Endpoint
 
 ## 0.3.3
 

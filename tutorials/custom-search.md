@@ -1,12 +1,12 @@
 # Custom Search
 
-### Intro
+## Intro
 
 [FHIR search](https://www.hl7.org/fhir/search.html) has a lot of capabilities. However, some cases can't be expressed in terms of it. For example, we want to get a patient resource with additional field 'encounters' which contains all encounters of that patient but it's not possible to implement with FHIR search API. Aidbox has a solution for such complex tasks, and this tutorial is about how to solve this kind of problem.
 
-### Prepare Data
+## Prepare Data
 
-We need some sample data to see results of our queries. Let's create it.   
+We need some sample data to see results of our queries. Let's create it.  
 Copy the following snippet to the Aidbox.Cloud `REST Console`.
 
 {% hint style="info" %}
@@ -47,7 +47,7 @@ entry:
   request:
     method: POST
     url: "/Encounter"
-    
+
 - resource:
     id: enc2
     status: draft
@@ -141,7 +141,7 @@ entry:
 
 We created 2 patients and 3 encounters that are linked to those patients.
 
-### SQL
+## SQL
 
 Aidbox uses PostgreSQL \(super advanced open-source DBMS\) which allows to express very complex queries. Let's try to implement our task in SQL queries.
 
@@ -172,7 +172,7 @@ Next, we want to add patient **id** and **resource\_type** into **resource**.
 ```sql
 SELECT
 id, resource_type, 
-	jsonb_set( 
+    jsonb_set( 
       jsonb_set(resource, '{id}', to_jsonb(id)),
       '{resourceType}', 
       to_jsonb(resource_type))
@@ -304,32 +304,29 @@ HAVING p.id = 'patient1';
 
 The result should look like the following table \(but without pretty printing\):
 
+| id | resource |
+| :--- | :--- |
+
+
 <table>
   <thead>
     <tr>
-      <th style="text-align:left">id</th>
-      <th style="text-align:left">resource</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left"><code>patient1</code>
-      </td>
-      <td style="text-align:left">
+      <th style="text-align:left"><code>patient1</code>
+      </th>
+      <th style="text-align:left">
         <p><code>{&quot;id&quot;:&quot;patient1&quot;,</code>
         </p>
-        <p><code> &quot;name&quot;:[{&quot;given&quot;:[&quot;Max&quot;],&quot;family&quot;:&quot;Turikov&quot;}],</code>
+        <p> <code>&quot;name&quot;:[{&quot;given&quot;:[&quot;Max&quot;],&quot;family&quot;:&quot;Turikov&quot;}],</code>
         </p>
-        <p><code> &quot;encounters&quot;:[</code>
+        <p> <code>&quot;encounters&quot;:[</code>
         </p>
-        <p><code>    {&quot;id&quot;:&quot;enc1&quot;,<br />     &quot;status&quot;:&quot;draft&quot;,<br />     &quot;subject&quot;:{&quot;id&quot;:&quot;patient1&quot;,&quot;resourceType&quot;:&quot;Patient&quot;},<br />     &quot;resourceType&quot;:&quot;Encounter&quot;},<br />    {&quot;id&quot;:&quot;enc2&quot;,<br />     &quot;status&quot;:&quot;draft&quot;,<br />     &quot;subject&quot;:{&quot;id&quot;:&quot;patient1&quot;,&quot;resourceType&quot;:&quot;Patient&quot;},<br />     &quot;resourceType&quot;:&quot;Encounter&quot;}],<br /> &quot;resourceType&quot;:&quot;Patient&quot;}</code>
+        <p> <code>{&quot;id&quot;:&quot;enc1&quot;,<br /> &quot;status&quot;:&quot;draft&quot;,<br /> &quot;subject&quot;:{&quot;id&quot;:&quot;patient1&quot;,&quot;resourceType&quot;:&quot;Patient&quot;},<br /> &quot;resourceType&quot;:&quot;Encounter&quot;},<br /> {&quot;id&quot;:&quot;enc2&quot;,<br /> &quot;status&quot;:&quot;draft&quot;,<br /> &quot;subject&quot;:{&quot;id&quot;:&quot;patient1&quot;,&quot;resourceType&quot;:&quot;Patient&quot;},<br /> &quot;resourceType&quot;:&quot;Encounter&quot;}],<br /> &quot;resourceType&quot;:&quot;Patient&quot;}</code>
         </p>
-      </td>
+      </th>
     </tr>
-  </tbody>
-</table>### $query
-
-Now, let's make the results of this query accessible via REST API. To do that, we need to create `AidboxQuery` resource:
+  </thead>
+  <tbody></tbody>
+</table>Now, let's make the results of this query accessible via REST API. To do that, we need to create `AidboxQuery` resource:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -453,7 +450,7 @@ data:
 {% endtab %}
 {% endtabs %}
 
-Hell ye! We got all needed data in exact shape we wanted. Additional information about custom queries can be found in REST API [$query](../api/usdquery.md) documentation.
+Hell ye! We got all needed data in exact shape we wanted. Additional information about custom queries can be found in REST API [$query](../api/custom-search.md) documentation.
 
 {% hint style="info" %}
 Want to know more about Aidbox, FHIR, and custom search? Join our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).
