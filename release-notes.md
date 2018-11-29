@@ -7,6 +7,7 @@
 * Support [`_total`](https://build.fhir.org/search.html#total) search parameter \(\_totalMethod=count also works\)
 * Support `page` search parameter \(\_page - also works\)
 * Added [$query](api/custom-search.md) - SQL query into REST Endpoint
+* [\_query](api/custom-search.md) - custom search related to resourceType
 
 ## 0.3.3
 
