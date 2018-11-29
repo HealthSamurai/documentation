@@ -19,8 +19,64 @@ query: |
      resource->>'class' as class, 
      count(*) as count
   FROM encounter 
-  WHERE (resource#>>'{period,start}')::date = {{params.date}}
+  WHERE {{params.date}}
+  BETWEEN (resource#>>'{period,start}')::date 
+  AND (resource#>>'{period,end}')::date
   GROUP BY resource->>'class'
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+{% code-tabs %}
+{% code-tabs-item title="sample-data-bundle" %}
+```yaml
+POST /
+
+type: transaction
+entry:
+- resource:
+    status: draft
+    class: 
+      code: IMP
+    period:
+      start: "2013-06-08T10:57:34"
+      end: "2013-06-08T12:00:00"
+  request:
+    method: POST
+    url: "/Encounter"
+
+- resource:
+    status: draft
+    class: 
+      code: IMP
+    period:
+      start: "2013-06-07T11:00:05"
+      end: "2013-06-07T11:30:00"
+  request:
+    method: POST
+    url: "/Encounter"
+
+- resource:
+    status: draft
+    class: 
+      code: AMB
+    period:
+      start: "2013-06-08T10:21:01"
+      end: "2013-06-08T11:42:11"
+  request:
+    method: POST
+    url: "/Encounter"
+
+- resource:
+    status: draft
+    class: 
+      code: IMP
+    period:
+      start: "2013-06-07T09:02:01"
+      end: "2013-06-07T15:10:09"
+  request:
+    method: POST
+    url: "/Encounter"
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
@@ -30,7 +86,7 @@ When you created AidboxQuery, you can use it:
 {% tabs %}
 {% tab title="request" %}
 ```
-GET /$query/daily-report?date=today
+GET /$query/daily-report?date=2013-06-08
 ```
 {% endtab %}
 
