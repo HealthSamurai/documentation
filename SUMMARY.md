@@ -38,7 +38,7 @@
   * [Transaction/Batch](api/transaction.md)
   * [Search \(TODO\)](api/history.md)
   * [Subscriptions](api/subscriptions.md)
-  * [Capabilities Statement](api/metadata.md)
+  * [Capability Statement](api/metadata.md)
   * [$metadata](api/custom-metadata.md)
   * [$json-schema](api/usdjson-schema.md)
   * [SQL endpoints](api/usdpsql.md)

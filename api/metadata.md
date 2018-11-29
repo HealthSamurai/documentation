@@ -1,18 +1,32 @@
-# Capabilities Statement
+---
+description: >-
+  The CapabilityStatement resource is a statement of the kinds of resources and
+  operations provided and/or consumed by an application.
+---
 
-**Base URL** for FHIR compatible API is   `<server-domain>/fhir/`
+# Capability Statement
 
-The `capabilities` interaction retrieves the server's Capability Statement that defines how it supports resources. The interaction is performed by an HTTP `GET` command as shown:
+## Overview
 
-```text
-  GET [base]/metadata {?_format=[mime-type]}
+Read more about conformance rules [http://build.fhir.org/conformance-rules.html](http://build.fhir.org/conformance-rules.html) and the CapabilityStatement resource itself [http://build.fhir.org/capabilitystatement.html](http://build.fhir.org/capabilitystatement.html).
+
+Base URL for FHIR compatible API is `<server-domain>/fhir/`.
+
+The `capabilities` interaction returns a capability statement describing the server's current operational functionality. The interaction is performed by the HTTP `GET` command as shown:
+
+```javascript
+GET [base]/metadata{?mode=[mode]}{&_format=[mime-type]}
 ```
 
-You can get [Capability Statement](https://www.hl7.org/fhir/capabilitystatement.html)  of your aidbox with `GET <server-domain>/fhir/metadata`
+You can get [Capability Statement](https://www.hl7.org/fhir/capabilitystatement.html) of your Aidbox with the command:
+
+```javascript
+GET <server-domain>/fhir/metadata
+```
 
 {% api-method method="get" host="<your-domain>/fhir/metadata" path="" %}
 {% api-method-summary %}
- get metadata
+ Get metadata
 {% endapi-method-summary %}
 
 {% api-method-description %}
@@ -22,8 +36,12 @@ You can get [Capability Statement](https://www.hl7.org/fhir/capabilitystatement.
 {% api-method-spec %}
 {% api-method-request %}
 {% api-method-path-parameters %}
+{% api-method-parameter name="mode" type="string" required=false %}
+full \| normative \| terminology
+{% endapi-method-parameter %}
+
 {% api-method-parameter name="\_format" type="string" required=false %}
-json \| yaml \| edn
+json \| yaml \| edn \| xml
 {% endapi-method-parameter %}
 {% endapi-method-path-parameters %}
 {% endapi-method-request %}
@@ -102,11 +120,21 @@ rest:
 {% endapi-method-spec %}
 {% endapi-method %}
 
-To get metadata in internal aidbox format use [`/$metadata?_format=yaml`](http://localhost:7777/$metadata?_format=yaml)
+The information returned depends on the value of the `mode` parameter:
+
+| `Value` | Description |
+| :--- | :--- |
+| `full` \(or mode not present\) | A [Capability Statement](http://hl7.org/fhir/2018Sep/capabilitystatement.html) that specifies which resource types and interactions are supported |
+| `normative` | As above, but only the normative portions of the Capability Statement |
+| `terminology` | A [TerminologyCapabilities](http://hl7.org/fhir/2018Sep/terminologycapabilities.html) resource that provides further information about terminologies are supported by the server |
+
+Servers MAY ignore the mode parameter and return a CapabilityStatement resource. 
+
+To get metadata in the internal Aidbox format, use [`/$metadata?_format=yaml`](http://localhost:7777/$metadata?_format=yaml)
 
 {% api-method method="get" host="<your-domain>/$metadata" path="" %}
 {% api-method-summary %}
-Get aidbox native metadata
+Get Aidbox native metadata
 {% endapi-method-summary %}
 
 {% api-method-description %}
@@ -141,4 +169,6 @@ Path to specific part of metadata \(for example Entity.Patient\)
 {% endapi-method-response %}
 {% endapi-method-spec %}
 {% endapi-method %}
+
+ Capability statements can become quite large; servers are encouraged to support the [`_summary`](http://hl7.org/fhir/2018Sep/search.html#summary) and [`_elements`](http://hl7.org/fhir/2018Sep/search.html#elements) parameters on the capabilities interaction, though this is not required. In addition, servers are encouraged to implement the [$subset](http://hl7.org/fhir/2018Sep/capabilitystatement-operation-subset.html) and [$implements](http://hl7.org/fhir/2018Sep/capabilitystatement-operation-implements.html) operations to make it easy for a client to check conformance.
 
