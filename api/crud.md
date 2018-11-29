@@ -8,11 +8,11 @@ This part of documentation describes how to create, read, update and delete reso
 
 ## Terms
 
-A **resource** is an object with a type, associated data, relationships to other resources \(all that information can be found in FHIR [specification](https://www.hl7.org/fhir/resourcelist.html) or through Aidbox [metadata](custom-metadata.md)\), and a set of methods that operate on it. In most cases a resource represented as a JSON/XML/YAML document.
+A **resource** is an object with a type, associated data, relationships to other resources, and a set of methods that operate on it \(information about it can be found in FHIR [specification](https://www.hl7.org/fhir/resourcelist.html) or through Aidbox [metadata](custom-metadata.md)\). In most cases a resource represented as a JSON/XML/YAML document.
 
 Each resource has its own resource **type**, this type define set of data, which can be stored with this resource and possible relationships with other resources.
 
-Attribute is a part of resource definition, which describe what fields can or must be present in resource document, type of such field and cardinality.
+**Attribute** is a part of the resource definition, which describe what fields can or must be present in the resource document, type of such fields and their cardinality.
 
 Every resource type has the same set of **interactions** available. Those interactions are described below. 
 
@@ -26,14 +26,14 @@ Each interaction can fail with:
 POST [base]/[type]
 ```
 
-One of the most basic interactions, which gives an ability to create a resource. It uses `POST` HTTP method, accepts resource type via path params and resource as a body of request. Response of this interaction may be one of the following:
+One of the most basic interactions, which gives an ability to create a resource. It uses `POST` HTTP method, accepts a resource type via path parameters and resource as a body of a request. A response of this interaction may be one of the following:
 
 * **`201`** **Created** - resource successfully created
 * **`400`** **Bad Request** - resource could not be parsed or failed basic FHIR validation rules
 * **`409`** **Conflict** - resource with such id already exists
 * **`422`** **Unprocessable Entity** - the proposed resource violated applicable FHIR profiles or server business rules
 
-Successful response `2xx` also contains a created resource as a body and additional headers `Location`, `ETag`, `Last-Modified`, which contains full path to resource \(base url, resource type and id of newly created resource\) and additionally information about version \(vid\) and modification time of that resource.
+A successful response \(`2xx`\) also contains a created resource as a body and additional headers `Location`, `ETag`, `Last-Modified`, which contains full path to resource \(base url, resource type and id of newly created resource\), additionally information about version \(vid\) and modification time of that resource.
 
 ```text
 Location: [base]/[type]/[id]/_history/[vid]
@@ -41,7 +41,7 @@ ETag: [vid]
 Last-Modified: [modification-datetime]
 ```
 
-Unsuccessful response  `4xx` contains `OperationOutcome` resource, which describes issues server faced creating this resource.
+An unsuccessful response  \(`4xx`\) contains `OperationOutcome` resource, which describes issues server faced during creation of this resource.
 
 ### `201` Created
 
@@ -108,12 +108,12 @@ POST [base]/[type]?[search parameters]
 Much more complex way to create a resource \(it requires knowledge of [search](history.md)\), but it gives some additional flexibility. If you provide search parameters `create` becomes `conditional create` and works in following way \(depending on the number of search results\): 
 
 * **No matches**: The server performs a `create` interaction
-* **One Match**: The server ignore the post and returns `200 OK`
+* **One Match**: The server returns the found resource and `200 OK`
 * **Multiple matches**: The server returns a `412 Precondition Failed` error indicating the client's criteria were not selective enough
 
 ### `200` OK
 
-Create patient if there is no patient with name Bob.
+Create a patient if there is no patient with name Bob.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -142,7 +142,7 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-Patient not created, existing patient was returned.
+A patient not created, an existing patient was returned.
 
 ## read
 
@@ -158,7 +158,7 @@ One of the most basic interactions, used to obtain a resource by a given `id`. F
 
 ### `200` OK
 
-Get existing patient:
+Get an existing patient:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -186,7 +186,7 @@ meta:
 
 ### `404` Not Found
 
-Attempt to get not-existing patient:
+Attempt to get a non-existing patient:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -212,11 +212,11 @@ text: Resource Patient/some-not-existing-id not found
 GET [base]/[type]/[id]/_history/[vid]
 ```
 
-Another operation, which returns a specific version resource. Similar to read, but additionally requires to specify version id.
+Another read interaction, but it returns a specific version resource. Similar to read, but additionally requires to specify version id.
 
 ### `200` OK
 
-Version id `13` was extracted from response of `create` interaction.
+Version id `13` was extracted from the response of a `create` interaction.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -248,7 +248,7 @@ meta:
 PUT [base]/[type]/[id]
 ```
 
-Interaction, which allows to modify existing resource \(create new version of it\). After performing this interaction resource will be replaced with new version of resource provided in the body of request. `id` of a resource can't be changed \(at least cause of versioning\) and `id` in the body of the resource is ignored in update interaction \(it's done to make conditional update possible without knowing logical id of the resource\). If a resource with `id` \(provided in the url\) doesn't exist new resource will be created. Following codes can be returned by the server:
+Interaction, which allows to modify existing resource \(create a new version of it\). After performing this interaction the resource will be replaced with a new version of resource provided in the body of the request. `id` of a resource can't be changed \(at least cause of versioning\) and `id` in the body of the resource is ignored in update interaction \(it's done to make a `conditional update` possible without knowing logical id of the resource\). If a resource with `id` \(provided in the url\) doesn't exist new resource will be created. Following codes can be returned by the server:
 
 * **`200`** **OK** - resource successfully updated
 * **`201`** **Created** - resource successfully created
@@ -256,7 +256,7 @@ Interaction, which allows to modify existing resource \(create new version of it
 
 ### **`200`** OK
 
-Update patient by given id:
+Update a patient by given id:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -322,13 +322,13 @@ PUT [base]/[type]?[search parameters]
 
 More complex way to update a resource, but gives more power, it gives ability to update a resource without knowing `id`, but requires knowledge of [Search](history.md). Different response codes will be returned \(based on the number of search results\):
 
-* **No matches**: The server performs a `create` interaction \(Aidbox version of create\)
+* **No matches**: The server performs a `create` interaction
 * **One Match**: The server performs the update against the matching resource
 * **Multiple matches**: The server returns a `412 Precondition Failed` error indicating the client's criteria were not selective enough
 
 ### `200` OK
 
-Update patient by name.
+Update the patient by name.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -401,7 +401,7 @@ If patient with name Julie already exists `update` interaction will be performed
 DELETE [base]/[type]/[id]
 ```
 
-Interaction deletes a resource, respond with `200 OK` on successful delete, but on deletion of already deleted resource respond with `204 No Content`. 
+Interaction deletes a resource, respond with `200 OK` on a successful delete, but on deletion of an already deleted resource respond with `204 No Content`. 
 
 To get `204 No Content` always instead of `200 OK` use `_no-content=true` query parameter.
 
@@ -411,7 +411,7 @@ To get `204 No Content` always instead of `200 OK` use `_no-content=true` query 
 
 ### `200` OK
 
-Basic case for delete:
+Delete a patient by id:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -440,7 +440,7 @@ meta:
 
 ### `204` No Content
 
-Attempt to delete already deleted resource:
+Attempt to delete an already deleted resource:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -464,7 +464,7 @@ DELETE /Patient/tom-id
 DELETE [base]/[type]?[search parameters]
 ```
 
-Depending on the number of resources conforming search criteria different actions will be performed and response codes will be returned:
+Depending on the number of resources meeting the search criteria different actions will be performed and response codes will be returned:
 
 * **No matches:** Respond with `404 Not Found`
 * **One Match**: The server performs an ordinary `delete` on the matching resource

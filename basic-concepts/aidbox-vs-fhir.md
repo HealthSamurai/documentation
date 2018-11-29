@@ -60,7 +60,7 @@ POST [base]/[type]?[search parameters]
 Instead of using `If-None-Exist` header, Aidbox uses query parameters as in ordinary `read` operation. This done to make all conditional operations to look the same \(use search query parameters\). 
 
 * **No matches**: The server performs a `create` interaction \(Aidbox version of create\)
-* **One Match**: The server ignore the post and returns `200 OK`
+* **One Match**: The server returns the found resource and `200 OK`
 * **Multiple matches**: The server returns a `412 Precondition Failed` error indicating the client's criteria were not selective enough
 
 ### conditional update
