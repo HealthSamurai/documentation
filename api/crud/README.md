@@ -4,6 +4,8 @@ description: Basic endpoints to manage resources
 
 # CRUD
 
+This part of documentation describes how to create, read, update and delete resources. Also, it covers some advanced topic like conditional create, update and delete. Aidbox REST API slightly different from canonical FHIR REST API. There is an [article](../../basic-concepts/aidbox-vs-fhir.md), which describes those differences.
+
 {% api-method method="get" host="\[base\]" path="/<resourceType>/<id>" %}
 {% api-method-summary %}
 Read Resource
