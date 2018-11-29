@@ -4,8 +4,8 @@ With `AidboxQuery` resource you can turn your SQL query into REST Endpoint.
 
 For example lets create a simple aggregation report for encounters parameterized by date. Create an `AidboxQuery` resource:
 
-{% code-tabs %}
-{% code-tabs-item title="request" %}
+{% tabs %}
+{% tab title="Request" %}
 ```yaml
 POST /AidboxQuery
 
@@ -24,11 +24,28 @@ query: |
   AND (resource#>>'{period,end}')::date
   GROUP BY resource->>'class'
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
 
-{% code-tabs %}
-{% code-tabs-item title="sample-data-bundle" %}
+{% tab title="Response" %}
+```yaml
+query: "SELECT \n   resource->>'class' as class, \n   count(*) as count\nFROM encounter\
+  \ \nWHERE {{params.date}}\nBETWEEN (resource#>>'{period,start}')::date \nAND (resource#>>'{period,end}')::date\n\
+  GROUP BY resource->>'class'"
+params:
+  date: {isRequired: true}
+id: daily-report
+resourceType: AidboxQuery
+meta:
+  lastUpdated: '2018-11-29T09:51:55.166Z'
+  versionId: '2'
+  tag:
+  - {system: 'https://aidbox.app', code: created}
+```
+{% endtab %}
+{% endtabs %}
+
+{% tabs %}
+{% tab title="Request" %}
 ```yaml
 POST /
 
@@ -36,71 +53,95 @@ type: transaction
 entry:
 - resource:
     status: draft
-    class: 
-      code: IMP
-    period:
-      start: "2013-06-08T10:57:34"
-      end: "2013-06-08T12:00:00"
+    class: {code: IMP}
+    period: {start: "2013-06-08T10:57:34", end: "2013-06-08T12:00:00"}
   request:
     method: POST
     url: "/Encounter"
 
 - resource:
     status: draft
-    class: 
-      code: IMP
-    period:
-      start: "2013-06-07T11:00:05"
-      end: "2013-06-07T11:30:00"
+    class: {code: IMP}
+    period: {start: "2013-06-08T11:00:05", end: "2013-06-08T11:30:00"}
   request:
     method: POST
     url: "/Encounter"
 
 - resource:
     status: draft
-    class: 
-      code: AMB
-    period:
-      start: "2013-06-08T10:21:01"
-      end: "2013-06-08T11:42:11"
+    class: {code: AMB}
+    period: {start: "2013-06-08T10:21:01", end: "2013-06-08T11:42:11"}
   request:
     method: POST
     url: "/Encounter"
 
 - resource:
     status: draft
-    class: 
-      code: IMP
-    period:
-      start: "2013-06-07T09:02:01"
-      end: "2013-06-07T15:10:09"
+    class: {code: IMP}
+    period: {start: "2013-06-07T09:02:01", end: "2013-06-07T15:10:09"}
   request:
     method: POST
     url: "/Encounter"
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+
+{% tab title="Response" %}
+```yaml
+id: '3'
+type: transaction-response
+resourceType: Bundle
+entry:
+- resource:
+    class: {code: IMP}
+    period: {end: '2013-06-08T12:00:00', start: '2013-06-08T10:57:34'}
+    status: draft
+    id: e38c8817-4009-45c6-9490-f7c4af900756
+    resourceType: Encounter
+  status: 201
+- resource:
+    class: {code: IMP}
+    period: {end: '2013-06-08T11:30:00', start: '2013-06-08T11:00:05'}
+    status: draft
+    id: 996627c0-3b98-4c12-8b4c-651f714977a9
+    resourceType: Encounter
+  status: 201
+- resource:
+    class: {code: AMB}
+    period: {end: '2013-06-08T11:42:11', start: '2013-06-08T10:21:01'}
+    status: draft
+    id: 8ba15fdb-3885-4bd5-99dc-79c142e5daf0
+    resourceType: Encounter
+  status: 201
+- resource:
+    class: {code: IMP}
+    period: {end: '2013-06-07T15:10:09', start: '2013-06-07T09:02:01'}
+    status: draft
+    id: 68dc1ca4-f4f8-4961-8aff-c19b09ba712a
+    resourceType: Encounter
+  status: 201
+```
+{% endtab %}
+{% endtabs %}
 
 When you created AidboxQuery, you can use it:
 
 {% tabs %}
-{% tab title="request" %}
+{% tab title="Request" %}
 ```
 GET /$query/daily-report?date=2013-06-08
 ```
 {% endtab %}
 
-{% tab title="response" %}
+{% tab title="Response" %}
 ```yaml
 # Status: 200
 
-query: "SELECT ...."
-duration: 2
 data:
-  - class: { .... }
-    count: 100
-  - class: { .... }
-    count: 5
+- {class: '{"code": "IMP"}', count: 2}
+- {class: '{"code": "AMB"}', count: 1}
+query: ["SELECT \n   resource->>'class' as class, \n   count(*) as count\nFROM encounter\
+    \ \nWHERE ?\nBETWEEN (resource#>>'{period,start}')::date \nAND (resource#>>'{period,end}')::date\n\
+    GROUP BY resource->>'class'", '2013-06-08']
 ```
 {% endtab %}
 {% endtabs %}
@@ -132,7 +173,7 @@ resourceType: AidboxQuery
 Sample query will be:
 
 {% tabs %}
-{% tab title="request" %}
+{% tab title="Request" %}
 ```http
 GET /$query/user-info HTTP/1.1
 Host: <YOUR-BOX>.aidbox.app
@@ -141,7 +182,7 @@ Accept: text/yaml
 ```
 {% endtab %}
 
-{% tab title="response" %}
+{% tab title="Response" %}
 ```yaml
 # Status: 200
 
@@ -164,7 +205,7 @@ It's not possible to call such AidboxQuery from REST Console, because in REST co
 
 ### \_query
 
-There are another option for calling AidboxQuery:
+There are another option for calling `AidboxQuery`:
 
 ```
 GET /Patient?_query=get-by-id&rid=patient1
