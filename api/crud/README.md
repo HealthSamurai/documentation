@@ -4,11 +4,245 @@ description: Basic endpoints to manage resources
 
 # CRUD
 
-This part of documentation describes how to create, read, update and delete resources. Also, it covers some advanced topic like conditional create, update and delete. Aidbox REST API slightly different from canonical FHIR REST API. There is an [article](../../basic-concepts/aidbox-vs-fhir.md), which describes those differences.
+This part of documentation describes how to create, read, update and delete resources. Also, it covers some advanced topic like conditional create, update and delete. Aidbox REST API slightly differs from canonical FHIR REST API. There is an [article](../../basic-concepts/aidbox-vs-fhir.md), which describes those differences.
+
+## Terms
+
+A **resource** is an object with a type, associated data, relationships to other resources \(all that information can be found in FHIR [specification](https://www.hl7.org/fhir/resourcelist.html) or through Aidbox [metadata](../custom-metadata.md)\), and a set of methods that operate on it. In most cases a resource represented as a JSON/XML/YAML document.
+
+Each resource has its own resource **type**, this type define set of data, which can be stored with this resource and possible relationships with other resources.
+
+Attribute is a part of resource definition, which describe what fields can or must be present in resource document, type of such field and cardinality.
+
+Every resource type has the same set of **interactions** available. Those interactions are described below. 
+
+Each interaction can fail with:
+
+* **`403`** **Forbidden** - client are not authorized to perform the interaction
+
+## create
+
+```text
+POST [base]/[type]
+```
+
+One of the most basic interactions, which gives an ability to create a resource. It uses `POST` HTTP method, accepts resource type via path params and resource as a body of request. Response of this interaction may be one of the following:
+
+* **`201`** **Created** - resource successfully created
+* **`400`** **Bad Request** - resource could not be parsed or failed basic FHIR validation rules
+* **`409`** **Conflict** - resource with such id already exists
+* **`422`** **Unprocessable Entity** - the proposed resource violated applicable FHIR profiles or server business rules
+
+Successful response `2xx` also contains a created resource as a body and additional header `Location`, which contains full path to resource \(base url, resource type and id of newly created resource\) and additionally information about version of that resource \(vid\).
+
+```text
+Location: [base]/[type]/[id]/_history/[vid]
+```
+
+Unsuccessful response  `4xx` contains `OperationOutcome` resource, which describes issues server faced creating this resource.
+
+### `201` Created
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+POST /Patient
+
+name: [{given: ["Bob"]}]
+```
+{% endtab %}
+
+{% tab title="Response" %}
+**Status:** `201`
+
+```yaml
+name:
+- given: [Bob]
+id: 17b69d79-3d9b-45f8-af79-75f958502763
+resourceType: Patient
+meta:
+  lastUpdated: '2018-11-29T10:44:10.588Z'
+  versionId: '13'
+  tag:
+  - {system: 'https://aidbox.app', code: created}
+```
+{% endtab %}
+{% endtabs %}
+
+### `422` Unprocessable entity
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+POST /Patient
+
+name: "Bob"
+```
+{% endtab %}
+
+{% tab title="Response" %}
+**Status:** `422`
+
+```yaml
+resourceType: OperationOutcome
+errors:
+- path: [name]
+  message: expected array
+warnings: []
+```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="info" %}
+Aidbox REST API doesn't ignore `id` and treat it as all other attributes in contrast to FHIR API. Read more about differences [here](../../basic-concepts/aidbox-vs-fhir.md).
+{% endhint %}
+
+## conditional create
+
+```text
+POST [base]/[type]?[search parameters]
+```
+
+Much more complex way to create a resource \(it requires knowledge of [search](../history.md)\), but it gives some additional flexibility. If you provide search parameters `create` becomes `conditional create` and works in following way \(depending on the number of search results\): 
+
+* **No matches**: The server performs a `create` interaction
+* **One Match**: The server ignore the post and returns `200 OK`
+* **Multiple matches**: The server returns a `412 Precondition Failed` error indicating the client's criteria were not selective enough
+
+### `200` OK
+
+Create patient if there is no patient with name Bob.
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+POST /Patient?name=Bob
+
+name: [{given: ["Bob"]}]
+gender: male
+```
+{% endtab %}
+
+{% tab title="Response" %}
+**Status:** `200`
+
+```yaml
+name:
+- given: [Bob]
+id: 17b69d79-3d9b-45f8-af79-75f958502763
+resourceType: Patient
+meta:
+  lastUpdated: '2018-11-29T10:44:10.588Z'
+  versionId: '13'
+  tag:
+  - {system: 'https://aidbox.app', code: created}
+```
+{% endtab %}
+{% endtabs %}
+
+Patient not created, existing patient was returned.
+
+## read
+
+```text
+GET [base]/[type]/[id]
+```
+
+One of the most basic operations, used to obtain a resource by a given `id`. For more advanced options for getting resources check out [Search](../history.md).
+
+* **`200`** **OK** - resource successfully found and returned
+* **`404`** **Not Found** - resource with a given `id` doesn't exist on the server
+* **`410`** **Gone** - resource was deleted
+
+### `200` OK
+
+Get existing patient:
+
+{% tabs %}
+{% tab title="Request" %}
+```text
+GET /Patient/17b69d79-3d9b-45f8-af79-75f958502763
+```
+{% endtab %}
+
+{% tab title="Response" %}
+**Status:** `200`
+
+```yaml
+name:
+- given: [Bob]
+id: 17b69d79-3d9b-45f8-af79-75f958502763
+resourceType: Patient
+meta:
+  lastUpdated: '2018-11-29T10:44:10.588Z'
+  versionId: '13'
+  tag:
+  - {system: 'https://aidbox.app', code: created}
+```
+{% endtab %}
+{% endtabs %}
+
+### `404` Not Found
+
+Attempt to get not-existing patient:
+
+{% tabs %}
+{% tab title="Request" %}
+```text
+GET /Patient/some-not-existing-id
+```
+{% endtab %}
+
+{% tab title="Response" %}
+**Status:** `404`
+
+```yaml
+resourceType: OperationOutcome
+status: 404
+text: Resource Patient/some-not-existing-id not found
+```
+{% endtab %}
+{% endtabs %}
+
+## vread
+
+```text
+GET [base]/[type]/[id]/_history/[vid]
+```
+
+Another operation, which returns a specific version resource. Similar to read, but additionally requires to specify version id.
+
+### `200` OK
+
+Version id `13` was extracted from response of `create` interaction.
+
+{% tabs %}
+{% tab title="Request" %}
+```text
+GET /Patient/17b69d79-3d9b-45f8-af79-75f958502763/_history/13
+```
+{% endtab %}
+
+{% tab title="Response" %}
+**Status:** `200`
+
+```yaml
+name:
+- given: [Bob]
+id: 17b69d79-3d9b-45f8-af79-75f958502763
+resourceType: Patient
+meta:
+  lastUpdated: '2018-11-29T10:44:10.588Z'
+  versionId: '13'
+  tag:
+  - {system: 'https://aidbox.app', code: created}
+```
+{% endtab %}
+{% endtabs %}
 
 {% api-method method="get" host="\[base\]" path="/<resourceType>/<id>" %}
 {% api-method-summary %}
-Read Resource
+
 {% endapi-method-summary %}
 
 {% api-method-description %}
@@ -72,86 +306,6 @@ Aidbox will return an `ETag` header with the current version ID of the resource 
 {% hint style="warning" %}
 Deleted and never existed resources are treated differently on reading. Reading deleted resource will return `410 - Gone` response, when reading never existed resource will end up with `404 - Not found`.
 {% endhint %}
-
-{% api-method method="post" host="\[base\]" path="/<resourceType>" %}
-{% api-method-summary %}
-Create Resource
-{% endapi-method-summary %}
-
-{% api-method-description %}
-The create endpoint creates a new resource in a server-assigned location.The request body should contain a valid FHIR resource. If resource contains an `id` or `meta` attributes, they will be ignored.
-{% endapi-method-description %}
-
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-path-parameters %}
-{% api-method-parameter name="resourceType" type="string" required=true %}
-Type of resource being created
-{% endapi-method-parameter %}
-{% endapi-method-path-parameters %}
-{% endapi-method-request %}
-
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-Schema validation failed
-{% endapi-method-response-example-description %}
-
-```javascript
-{
-  "resourceType": "OperationOutcome",
-  "errors": [
-    {
-     "path": ["race"],
-     "message": "extra property"
-    }
-  ],
-  "warnings": []
-}
-```
-{% endapi-method-response-example %}
-
-{% api-method-response-example httpCode=201 %}
-{% api-method-response-example-description %}
-Resource was successfully created
-{% endapi-method-response-example-description %}
-
-```http
-HTTP/1.1 201 Created
-Content-Type: application/json
-Location: /fhir/SomeResource/62be2832-94b0-11e8-9eb6-529269fb1459/_history/692738da-94b0-11e8-9eb6-529269fb1459
-
-{
-  "resourceType": "SomeReason",
-  "someAttribute": "some-value",
-  "id": "62be2832-94b0-11e8-9eb6-529269fb1459"
-}
-```
-{% endapi-method-response-example %}
-
-{% api-method-response-example httpCode=422 %}
-{% api-method-response-example-description %}
-References Integrity check failed
-{% endapi-method-response-example-description %}
-
-```javascript
-{
-  "resourceType": "OperationOutcome",
-  "errors": [
-    {
-      "path": ["managingOrganization"],
-      "value": { "id": "1", "resourceType": "Organization" },
-      "deferred": "reference",
-      "message": "Referenced resource Organization/1 does not exist"
-    }
-  ],
-  "warnings": []
-}
-```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
 
 {% hint style="info" %}
 Server will validate resource body against FHIR schema and in case of errors will respond with `422 Unprocessable Entity` error code and OperationOutcome resource containing information about validation errors. All references contained within resource will be checked for existence as well.
