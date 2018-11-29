@@ -4,11 +4,11 @@ description: Basic endpoints to manage resources
 
 # CRUD
 
-This part of documentation describes how to create, read, update and delete resources. Also, it covers some advanced topic like conditional create, update and delete. Aidbox REST API slightly differs from canonical FHIR REST API. There is an [article](../../basic-concepts/aidbox-vs-fhir.md), which describes those differences.
+This part of documentation describes how to create, read, update and delete resources. Also, it covers some advanced topic like conditional create, update and delete. Aidbox REST API slightly differs from canonical FHIR REST API. There is an [article](../basic-concepts/aidbox-vs-fhir.md), which describes those differences.
 
 ## Terms
 
-A **resource** is an object with a type, associated data, relationships to other resources \(all that information can be found in FHIR [specification](https://www.hl7.org/fhir/resourcelist.html) or through Aidbox [metadata](../custom-metadata.md)\), and a set of methods that operate on it. In most cases a resource represented as a JSON/XML/YAML document.
+A **resource** is an object with a type, associated data, relationships to other resources \(all that information can be found in FHIR [specification](https://www.hl7.org/fhir/resourcelist.html) or through Aidbox [metadata](custom-metadata.md)\), and a set of methods that operate on it. In most cases a resource represented as a JSON/XML/YAML document.
 
 Each resource has its own resource **type**, this type define set of data, which can be stored with this resource and possible relationships with other resources.
 
@@ -96,7 +96,7 @@ warnings: []
 {% endtabs %}
 
 {% hint style="info" %}
-Aidbox REST API doesn't ignore `id` and treat it as all other attributes in contrast to FHIR API. Read more about differences [here](../../basic-concepts/aidbox-vs-fhir.md).
+Aidbox REST API doesn't ignore `id` and treat it as all other attributes in contrast to FHIR API. Read more about differences [here](../basic-concepts/aidbox-vs-fhir.md).
 {% endhint %}
 
 ## conditional create
@@ -105,7 +105,7 @@ Aidbox REST API doesn't ignore `id` and treat it as all other attributes in cont
 POST [base]/[type]?[search parameters]
 ```
 
-Much more complex way to create a resource \(it requires knowledge of [search](../history.md)\), but it gives some additional flexibility. If you provide search parameters `create` becomes `conditional create` and works in following way \(depending on the number of search results\): 
+Much more complex way to create a resource \(it requires knowledge of [search](history.md)\), but it gives some additional flexibility. If you provide search parameters `create` becomes `conditional create` and works in following way \(depending on the number of search results\): 
 
 * **No matches**: The server performs a `create` interaction
 * **One Match**: The server ignore the post and returns `200 OK`
@@ -150,7 +150,7 @@ Patient not created, existing patient was returned.
 GET [base]/[type]/[id]
 ```
 
-One of the most basic interactions, used to obtain a resource by a given `id`. For more advanced options for getting resources check out [Search](../history.md).
+One of the most basic interactions, used to obtain a resource by a given `id`. For more advanced options for getting resources check out [Search](history.md).
 
 * **`200`** **OK** - resource successfully found and returned
 * **`404`** **Not Found** - resource with a given `id` doesn't exist on the server
@@ -320,7 +320,7 @@ meta:
 PUT [base]/[type]?[search parameters]
 ```
 
-More complex way to update a resource, but gives more power, it gives ability to update a resource without knowing `id`, but requires knowledge of [Search](../history.md). Different response codes will be returned \(based on the number of search results\):
+More complex way to update a resource, but gives more power, it gives ability to update a resource without knowing `id`, but requires knowledge of [Search](history.md). Different response codes will be returned \(based on the number of search results\):
 
 * **No matches**: The server performs a `create` interaction \(Aidbox version of create\)
 * **One Match**: The server performs the update against the matching resource
@@ -459,4 +459,14 @@ DELETE /Patient/tom-id
 {% endtabs %}
 
 ## conditional delete
+
+```text
+DELETE [base]/[type]?[search parameters]
+```
+
+Depending on the number of resources conforming search criteria different actions will be performed and response codes will be returned:
+
+* **No matches:** Respond with `404 Not Found`
+* **One Match**: The server performs an ordinary `delete` on the matching resource
+* **Multiple matches**: Servers respond with `412 Precondition Failed` error indicating the client's criteria were not selective enough
 
