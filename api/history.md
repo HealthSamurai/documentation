@@ -206,6 +206,92 @@ GET <base-url>/Patient?.name.0.given=Nikolai&.birthDate::timestamptz$lt=2011
 
 ### \_sort
 
+We can define order in result bundle by selected parameters
+
+```javascript
+GET /Organization?_sort=name
+```
+
+Ascending order uses by default, but we can change it behavior. For sort by descending add`-` before parameter or specify `:asc/:desc` after search parameter
+
+```javascript
+GET /Organization?_sort=-name
+```
+
+```javascript
+GET /Organization?_sort:desc=name
+```
+
+As we know not all attributes can be used as search parameters of resource but in **\_sort** we have an ability use them via `.` notation
+
+For example with following request we receive an error:
+
+{% tabs %}
+{% tab title="Request" %}
+```javascript
+GET /Encounter?_sort=-id
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```yaml
+# Status: 500
+
+resourceType: OperationOutcome
+...
+No search parameter for Encounter.id
+```
+{% endtab %}
+{% endtabs %}
+
+We can avoid it with such type of request
+
+{% tabs %}
+{% tab title="Request" %}
+```javascript
+GET /Encounter?_sort=-.id
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```yaml
+# Status 200
+
+resourceType: Bundle
+entry:
+...
+```
+{% endtab %}
+{% endtabs %}
+
+Also supported `_param` definition
+
+{% tabs %}
+{% tab title="Request" %}
+```javascript
+GET /Encounter?_sort=_lastUpdated
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```yaml
+# Status 200
+
+resourceType: Bundle
+entry:
+...
+```
+{% endtab %}
+{% endtabs %}
+
+Also we can use several fields for sorting, for this we need add them through `,` . Priority will be determined from left to right.
+
+```text
+GET /Encounter?_sort=status,-.id
+```
+
+In the example above, we search for all encounters and sort them by the status parameter in cases of equality them  sorting will occur by the id field in the reverse order
+
 ### \_total \( \_countMethod \) 
 
 By default for all search requests Aidbox return total number in result, which represent how many resources match criteria. But to do this we run second query for count, which takes some time and eats resources. To get response faster on big amount of data you can change this behavior using **\_total** parameter. **\_total** parameter can have following values:
