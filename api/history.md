@@ -264,7 +264,7 @@ entry:
 {% endtab %}
 {% endtabs %}
 
-Also supported `_param` definition
+Also supported underscored form for parameters
 
 {% tabs %}
 {% tab title="Request" %}
