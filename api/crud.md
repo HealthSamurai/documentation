@@ -1,24 +1,24 @@
 ---
-description: Basic endpoints to manage resources
+description: 'Common operations create, read, update, and delete.'
 ---
 
 # CRUD
 
-This part of documentation describes how to create, read, update and delete resources. Also, it covers some advanced topic like conditional create, update and delete. Aidbox REST API slightly differs from canonical FHIR REST API. There is an [article](../basic-concepts/aidbox-vs-fhir.md), which describes those differences.
+This part of documentation describes how to create, read, update, and delete resources. Also, it covers some advanced topics like conditional create, update, and delete. Aidbox REST API slightly differs from canonical FHIR REST API. There is the [article](../basic-concepts/aidbox-vs-fhir.md) which describes those differences.
 
 ## Terms
 
 A **resource** is an object with a type, associated data, relationships to other resources, and a set of methods that operate on it \(information about it can be found in FHIR [specification](https://www.hl7.org/fhir/resourcelist.html) or through Aidbox [metadata](custom-metadata.md)\). In most cases a resource represented as a JSON/XML/YAML document.
 
-Each resource has its own resource **type**, this type define set of data, which can be stored with this resource and possible relationships with other resources.
+Each resource has its own resource **type**, this type defines a set of data which can be stored with this resource, and possible relationships with other resources.
 
-**Attribute** is a part of the resource definition, which describe what fields can or must be present in the resource document, type of such fields and their cardinality.
+**Attribute** is a part of the resource definition which describes what fields can or must be present in the resource document, type of such fields, and their cardinality.
 
-Every resource type has the same set of **interactions** available. Those interactions are described below. 
+Every resource type has the same set of **interactions** available. These interactions are described below. 
 
 Each interaction can fail with:
 
-* **`403`** **Forbidden** - client are not authorized to perform the interaction
+* **`403`** **Forbidden** — client is not authorized to perform the interaction
 
 ## create
 
@@ -26,14 +26,14 @@ Each interaction can fail with:
 POST [base]/[type]
 ```
 
-One of the most basic interactions, which gives an ability to create a resource. It uses `POST` HTTP method, accepts a resource type via path parameters and resource as a body of a request. A response of this interaction may be one of the following:
+This is one of the most basic interactions which gives an ability to create resources. It uses `POST` HTTP method, accepts a resource type via path parameters, and resource as a body of the request. A response to this interaction may be one of the following:
 
-* **`201`** **Created** - resource successfully created
-* **`400`** **Bad Request** - resource could not be parsed or failed basic FHIR validation rules
-* **`409`** **Conflict** - resource with such id already exists
-* **`422`** **Unprocessable Entity** - the proposed resource violated applicable FHIR profiles or server business rules
+* **`201`** **Created** — resource successfully created
+* **`400`** **Bad Request** — resource could not be parsed or failed basic FHIR validation rules
+* **`409`** **Conflict** — resource with such id already exists
+* **`422`** **Unprocessable Entity** — the proposed resource violated applicable FHIR profiles or server business rules
 
-A successful response \(`2xx`\) also contains a created resource as a body and additional headers `Location`, `ETag`, `Last-Modified`, which contains full path to resource \(base url, resource type and id of newly created resource\), additionally information about version \(vid\) and modification time of that resource.
+A successful response \(`2xx`\) also contains a created resource as a body and additional headers `Location`, `ETag`, `Last-Modified` which contain full path to resource \(base url, resource type and id of newly created resource\), additionally information about version \(vid\) and modification time of that resource.
 
 ```text
 Location: [base]/[type]/[id]/_history/[vid]
@@ -41,7 +41,7 @@ ETag: [vid]
 Last-Modified: [modification-datetime]
 ```
 
-An unsuccessful response  \(`4xx`\) contains `OperationOutcome` resource, which describes issues server faced during creation of this resource.
+An unsuccessful response  \(`4xx`\) contains `OperationOutcome` resource which describes issues server faced during creation of this resource.
 
 ### `201` Created
 
@@ -96,7 +96,7 @@ warnings: []
 {% endtabs %}
 
 {% hint style="info" %}
-Aidbox REST API doesn't ignore `id` and treat it as all other attributes in contrast to FHIR API. Read more about differences [here](../basic-concepts/aidbox-vs-fhir.md).
+Aidbox REST API doesn't ignore`id` and treat it as all other attributes in contrast to FHIR API. Read more about differences [here](../basic-concepts/aidbox-vs-fhir.md).
 {% endhint %}
 
 ## conditional create
@@ -105,7 +105,7 @@ Aidbox REST API doesn't ignore `id` and treat it as all other attributes in cont
 POST [base]/[type]?[search parameters]
 ```
 
-Much more complex way to create a resource \(it requires knowledge of [search](history.md)\), but it gives some additional flexibility. If you provide search parameters `create` becomes `conditional create` and works in following way \(depending on the number of search results\): 
+Much more complex way to create a resource \(it requires knowledge of [search](history.md)\) but it gives some additional flexibility. If you provide search parameters, `create` becomes `conditional create` and works in the following way \(depending on the number of search results\): 
 
 * **No matches**: The server performs a `create` interaction
 * **One Match**: The server returns the found resource and `200 OK`
@@ -142,7 +142,7 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-A patient not created, an existing patient was returned.
+A patient was not created, an existing patient was returned.
 
 ## read
 
@@ -150,11 +150,11 @@ A patient not created, an existing patient was returned.
 GET [base]/[type]/[id]
 ```
 
-One of the most basic interactions, used to obtain a resource by a given `id`. For more advanced options for getting resources check out [Search](history.md).
+One of the most basic interactions used to obtain a resource by a given `id`. For more advanced options for getting resources check out [Search](history.md).
 
-* **`200`** **OK** - resource successfully found and returned
-* **`404`** **Not Found** - resource with a given `id` doesn't exist on the server
-* **`410`** **Gone** - resource was deleted
+* **`200`** **OK** — resource successfully found and returned
+* **`404`** **Not Found —** resource with a given `id` doesn't exist on the server
+* **`410`** **Gone —** resource was deleted
 
 ### `200` OK
 
@@ -212,7 +212,7 @@ text: Resource Patient/some-not-existing-id not found
 GET [base]/[type]/[id]/_history/[vid]
 ```
 
-Another read interaction, but it returns a specific version resource. Similar to read, but additionally requires to specify version id.
+This is another read interaction but it returns a specific version resource. Similar to read but additionally requires to specify version id.
 
 ### `200` OK
 
@@ -248,11 +248,11 @@ meta:
 PUT [base]/[type]/[id]
 ```
 
-Interaction, which allows to modify existing resource \(create a new version of it\). After performing this interaction the resource will be replaced with a new version of resource provided in the body of the request. `id` of a resource can't be changed \(at least cause of versioning\) and `id` in the body of the resource is ignored in update interaction \(it's done to make a `conditional update` possible without knowing logical id of the resource\). If a resource with `id` \(provided in the url\) doesn't exist new resource will be created. Following codes can be returned by the server:
+This is interaction which allows to modify existing resource \(create a new version of it\). After performing this interaction, the resource will be replaced with a new version of resource provided in the body of the request. `id` of a resource can't be changed \(at least cause of versioning\) and `id` in the body of the resource is ignored in `update` interaction \(it's done to make a `conditional update` possible without knowing logical id of the resource\). If a resource with `id` \(provided in the url\) doesn't exist, new resource will be created. Following codes can be returned by the server:
 
-* **`200`** **OK** - resource successfully updated
-* **`201`** **Created** - resource successfully created
-* **`422`** **Unprocessable Entity** - the proposed resource violated applicable FHIR profiles or server business rules
+* **`200`** **OK** — resource successfully updated
+* **`201`** **Created** — resource successfully created
+* **`422`** **Unprocessable Entity** — the proposed resource violated applicable FHIR profiles or server business rules
 
 ### **`200`** OK
 
@@ -320,7 +320,7 @@ meta:
 PUT [base]/[type]?[search parameters]
 ```
 
-More complex way to update a resource, but gives more power, it gives ability to update a resource without knowing `id`, but requires knowledge of [Search](history.md). Different response codes will be returned \(based on the number of search results\):
+This is more complex way to update a resource but it gives more power. It gives the ability to update a resource without knowing `id` but requires knowledge of [Search](history.md). Different response codes will be returned \(based on the number of search results\):
 
 * **No matches**: The server performs a `create` interaction
 * **One Match**: The server performs the update against the matching resource
@@ -360,7 +360,7 @@ meta:
 
 ### `201` Created
 
- Create a patient with a name Julie and specified id if no other patient with the same name exists:
+ Create a patient with the name Julie and specified id if no other patients with the same name exist:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -392,7 +392,7 @@ meta:
 {% endtabs %}
 
 {% hint style="info" %}
-If patient with name Julie already exists `update` interaction will be performed and `id` will be ignored.
+If a patient with name Julie already exists, `update` interaction will be performed and `id` will be ignored.
 {% endhint %}
 
 ## delete
@@ -401,13 +401,13 @@ If patient with name Julie already exists `update` interaction will be performed
 DELETE [base]/[type]/[id]
 ```
 
-Interaction deletes a resource, respond with `200 OK` on a successful delete, but on deletion of an already deleted resource respond with `204 No Content`. 
+This interaction deletes a resource, responds with `200 OK` on a successful delete, but on deletion of an already deleted resource it responds with `204 No Content`. 
 
-To get `204 No Content` always instead of `200 OK` use `_no-content=true` query parameter.
+To get `204 No Content` always instead of `200 OK`, use `_no-content=true` query parameter.
 
-* **`200`** **OK** - resource successfully delete
-* **`204`** **No Content** - resource already deleted
-* **`404`** **Not Found** - resource not found
+* **`200`** **OK** — resource successfully delete
+* **`204`** **No Content** — resource already deleted
+* **`404`** **Not Found** — resource not found
 
 ### `200` OK
 
@@ -464,7 +464,7 @@ DELETE /Patient/tom-id
 DELETE [base]/[type]?[search parameters]
 ```
 
-Depending on the number of resources meeting the search criteria different actions will be performed and response codes will be returned:
+Depending on the number of resources meeting the search criteria, different actions will be performed and response codes will be returned:
 
 * **No matches:** Respond with `404 Not Found`
 * **One Match**: The server performs an ordinary `delete` on the matching resource
