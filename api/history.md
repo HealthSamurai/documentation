@@ -264,29 +264,9 @@ entry:
 {% endtab %}
 {% endtabs %}
 
-Also supported underscored form for parameters
-
-{% tabs %}
-{% tab title="Request" %}
-```javascript
-GET /Encounter?_sort=_lastUpdated
-```
-{% endtab %}
-
-{% tab title="Response" %}
-```yaml
-# Status 200
-
-resourceType: Bundle
-entry:
-...
-```
-{% endtab %}
-{% endtabs %}
-
 Also we can use several fields for sorting, for this we need add them through `,` . Priority will be determined from left to right.
 
-```text
+```javascript
 GET /Encounter?_sort=status,-.id
 ```
 
