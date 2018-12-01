@@ -175,9 +175,35 @@ TODO/FIXME
 
 #### Reference
 
-TODO/FIXME
+Reference describes the relationship between resources. We can announce link with three ways
 
-* `:[type]`
+```text
+[parameter]=[id]
+```
+
+```text
+[parameter]=[type]/[id]
+```
+
+```text
+[parameter]=[url]
+```
+
+For example let's find all encounters related to specified patient 
+
+```javascript
+GET /Encounter?subject=patientid
+```
+
+```text
+GET /Encounter?subject=Patient/patientid
+```
+
+```javascript
+???
+```
+
+
 
 #### Prefixes
 
