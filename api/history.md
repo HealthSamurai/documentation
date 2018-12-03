@@ -165,13 +165,9 @@ Default behavior - case insensitive, partial match at start
 
 #### Token
 
-TODO/FIXME
-
-* `:text`
-* `:above`
-* `:below`
-* `:in`
-* `:not-in`
+```javascript
+GET /Patient?gender=female
+```
 
 #### Reference
 
@@ -185,22 +181,14 @@ Reference describes the relationship between resources. We can announce link wit
 [parameter]=[type]/[id]
 ```
 
-```text
-[parameter]=[url]
-```
-
 For example let's find all encounters related to specified patient 
 
 ```javascript
 GET /Encounter?subject=patientid
 ```
 
-```text
-GET /Encounter?subject=Patient/patientid
-```
-
 ```javascript
-???
+GET /Encounter?subject=Patient/patientid
 ```
 
 
@@ -223,6 +211,28 @@ GET /Patient?birthdate=gt1986-04-28
 ### Chained Parameters
 
 ### \_include & \_revinclude
+
+We have an ability to include into result linked entities. For example we want get all encounters and patients related to them. Structure of request: `include=<joined search-parameter> or _include=<joined Resource>:<joined search-parameter>`
+
+```javascript
+GET /Encounter?_include=subject
+```
+
+```javascript
+GET /Encounter?_include=Encounter:subject
+```
+
+Or for specific **id**
+
+```javascript
+GET /Encounter?_id=enc1&_include=Encounter:subject
+```
+
+Reverse include  is specified as a `_revinclude`
+
+```javascript
+GET /Patient?_id=patient1&_revinclude=Encounter:subject
+```
 
 ### Dot parameters extension 
 
