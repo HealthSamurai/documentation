@@ -165,6 +165,8 @@ Default behavior - case insensitive, partial match at start
 
 #### Token
 
+Сoded element or identifier
+
 ```javascript
 GET /Patient?gender=female
 ```
@@ -209,6 +211,20 @@ GET /Patient?birthdate=gt1986-04-28
 ```
 
 ### Chained Parameters
+
+For a more accurate search we can filter by nested fields of related entities. Reference parameters may be "chained" through `.` 
+
+Obtain all **encounters** with patients \(**subject** - link to patient\) with name Alex
+
+```javascript
+GET /Encounter?subject:Patient.name=Alex
+```
+
+You can use several chained parameters by base resource
+
+```javascript
+GET /Encounter?part-of:Encounter._id=enc1&subject:Patient._id=patient1
+```
 
 ### \_include & \_revinclude
 
