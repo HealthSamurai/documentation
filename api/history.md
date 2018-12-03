@@ -28,7 +28,7 @@ Some search parameters available for all resources:
 
 * `_id` logical id of entity
 * `_lastUpdated` last modification time
-* `_text` full text search
+* `_text` filter on resource content
 
 List of available search parameters for specific resource can be obtained via following request:
 
@@ -173,7 +173,7 @@ GET /Patient?gender=female
 
 #### Reference
 
-Reference describes the relationship between resources. We can announce link with three ways
+Reference describes the relationship between resources. Following options are available for filtering by reference:
 
 ```text
 [parameter]=[id]
@@ -228,7 +228,7 @@ GET /Encounter?part-of:Encounter._id=enc1&subject:Patient._id=patient1
 
 ### \_include & \_revinclude
 
-We have an ability to include into result linked entities. For example we want get all encounters and patients related to them. Structure of request: `include=<joined search-parameter> or _include=<joined Resource>:<joined search-parameter>`
+We have an ability to include into result linked entities. For example we want get all encounters and patients related to them. Structure of request: `_include=<reference search parameter> or _include=<Resource>:<reference search parameter>`
 
 ```javascript
 GET /Encounter?_include=subject
@@ -326,7 +326,7 @@ In the example above, we search for all encounters and sort them by the status p
 
 ### \_total \( \_countMethod \) 
 
-By default for all search requests Aidbox return total number in result, which represent how many resources match criteria. But to do this we run second query for count, which takes some time and eats resources. To get response faster on big amount of data you can change this behavior using **\_total** parameter. **\_total** parameter can have following values:
+By default for all search requests Aidbox return total number in result, which represent how many resources match criteria. But to do this we run second query for count, which takes some additional CPU time. To get response faster on big amount of data you can change this behavior using **\_total** parameter. **\_total** parameter can have following values:
 
 * `none` - do not run count query 
 * `estimated` - roughly estimate number of results
@@ -366,5 +366,9 @@ link:
 {% endtab %}
 {% endtabs %}
 
-See discussion in zulip - [https://chat.fhir.org/\#narrow/stream/4-implementers/topic/Gender.20discrimination](https://chat.fhir.org/#narrow/stream/4-implementers/topic/Gender.20discrimination)
+{% hint style="info" %}
+Want to know more about Aidbox, FHIR, and search? Join our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).
+{% endhint %}
+
+
 
