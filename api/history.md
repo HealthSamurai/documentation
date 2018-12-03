@@ -163,6 +163,10 @@ For `gender:missing=true` server will return all the resources that don't have a
 
 Default behavior - case insensitive, partial match at start
 
+```javascript
+GET /Patient?name:exact=Alex
+```
+
 #### Token
 
 Сoded element or identifier
@@ -226,6 +230,16 @@ You can use several chained parameters by base resource
 GET /Encounter?part-of:Encounter._id=enc1&subject:Patient._id=patient1
 ```
 
+### \_has
+
+"Reversed chaining", selecting resources based on the properties of resources that refer to them.
+
+Obtain patient resources, where encounter have id = enc1 and refer on patient through subject field:
+
+```javascript
+GET /Patient?_has:Encounter:subject:_id=enc1
+```
+
 ### \_include & \_revinclude
 
 We have an ability to include into result linked entities. For example we want get all encounters and patients related to them. Structure of request: `_include=<reference search parameter> or _include=<Resource>:<reference search parameter>`
@@ -250,10 +264,28 @@ Reverse include  is specified as a `_revinclude`
 GET /Patient?_id=patient1&_revinclude=Encounter:subject
 ```
 
+We have additional modifier \(for \_include __and __\_revinclude\) `:logical` for search by identifier:
+
+```javascript
+GET /Patient?_id=patient1&_revinclude:logical=Encounter:subject
+```
+
 ### Dot parameters extension 
 
-```http
-GET <base-url>/Patient?.name.0.given=Nikolai&.birthDate::timestamptz$lt=2011
+We have an access to attributes of resource through `.` 
+
+```javascript
+GET /Patient?.name.0.given=Nikolai&.birthDate$lt=2011
+```
+
+It better described by resulting SQL:
+
+```sql
+SELECT "patient".* 
+FROM "patient" 
+WHERE (("patient".resource#>>''{name,0,given}''
+    in (?)) AND "patient".resource#>>''{birthDate}'' < ?)
+    LIMIT ? OFFSET ?', Nikolai,'2011', 100, 0
 ```
 
 ### \_sort
