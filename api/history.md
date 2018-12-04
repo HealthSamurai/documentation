@@ -1,22 +1,22 @@
-# Search \(TODO\)
+# Search
 
 ### Overview
 
-Search is a base [FHIR operation](https://www.hl7.org/fhir/search.html). Search uses for filter and receive linked entities.
+Search is a base [FHIR operation](https://www.hl7.org/fhir/search.html). Search is used to filter and receive linked entities.
 
-Base search structure looks like this
+Base search structure looks like this:
 
 ```javascript
 GET [base]/[type]?name=value&...{&_format=[mime-type]}}
 ```
 
-Simple search by patient name
+Simple search by patient name:
 
 ```javascript
 GET /Patient?name=Max
 ```
 
-For optimization search results we can specify fields in output bundle
+For optimization of search results, we can specify fields of the output bundle:
 
 ```javascript
 GET /Patient?_elements=id,birthDate
@@ -24,13 +24,13 @@ GET /Patient?_elements=id,birthDate
 
 ### Search Parameters
 
-Some search parameters available for all resources:
+Some search parameters are available for all resources:
 
 * `_id` logical id of entity
 * `_lastUpdated` last modification time
 * `_text` filter on resource content
 
-List of available search parameters for specific resource can be obtained via following request:
+A list of available search parameters for specific resource can be obtained via the following request:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -125,13 +125,13 @@ link:
 {% endtab %}
 {% endtabs %}
 
-We got a list of all search parameters for resourceType `Patient` \(given, address-state etc\)
+With this command above, we can get a list of all search parameters for resourceType `Patient` \(given, address-state, etc.\)
 
 #### Modifiers
 
-We also can do more complex search requests through modifiers, which depends of search field type
+We also can do more complex search requests through modifiers that depend on search field type.
 
-Each  search parameter value can be one of the following type: 
+Each search parameter value can be one of the following types: 
 
 | Type | Description |
 | :--- | :--- |
@@ -144,7 +144,7 @@ Each  search parameter value can be one of the following type:
 | [quantity](https://www.hl7.org/fhir/search.html#quantity) | A search parameter that searches on a quantity. |
 | [uri](https://www.hl7.org/fhir/search.html#uri) | A search parameter that searches on a URI \(RFC 3986\). |
 
-Depending on the value type different modifiers can be applied
+Depending on the value type, different modifiers can be applied.
 
 #### Common
 
@@ -154,14 +154,14 @@ Depending on the value type different modifiers can be applied
 GET /Entity?description:missing=true
 ```
 
-For `gender:missing=true` server will return all the resources that don't have a value for the gender parameter.
+For `gender:missing=true`, server will return all resources that don't have a value for the gender parameter.
 
 #### Strings
 
-* `:exact` - no partial matches, case sensitive
-* `:contains` - case insensitive, partial match at start or end
+* `:exact` — no partial matches, case sensitive;
+* `:contains` — case insensitive, partial match at start or end.
 
-Default behavior - case insensitive, partial match at start
+Default behavior is case insensitive, partial match at start.
 
 ```javascript
 GET /Patient?name:exact=Alex
@@ -169,15 +169,15 @@ GET /Patient?name:exact=Alex
 
 #### Token
 
+#### Reference
+
+Reference describes the relationship between resources. Following options are available for filtering by reference:
+
 Сoded element or identifier
 
 ```javascript
 GET /Patient?gender=female
 ```
-
-#### Reference
-
-Reference describes the relationship between resources. Following options are available for filtering by reference:
 
 ```text
 [parameter]=[id]
@@ -187,7 +187,7 @@ Reference describes the relationship between resources. Following options are av
 [parameter]=[type]/[id]
 ```
 
-For example let's find all encounters related to specified patient 
+For example, let's find all encounters related to a specified patient:
 
 ```javascript
 GET /Encounter?subject=patientid
@@ -196,8 +196,6 @@ GET /Encounter?subject=patientid
 ```javascript
 GET /Encounter?subject=Patient/patientid
 ```
-
-
 
 #### Prefixes
 
@@ -216,6 +214,18 @@ GET /Patient?birthdate=gt1986-04-28
 
 ### Chained Parameters
 
+### \_has
+
+### Dot parameters extension 
+
+```javascript
+GET /Patient?.name.0.given=Nikolai
+```
+
+### \_sort
+
+We can define order in result bundle by selected parameters
+
 For a more accurate search we can filter by nested fields of related entities. Reference parameters may be "chained" through `.` 
 
 Obtain all **encounters** with patients \(**subject** - link to patient\) with name Alex
@@ -230,7 +240,9 @@ You can use several chained parameters by base resource
 GET /Encounter?part-of:Encounter._id=enc1&subject:Patient._id=patient1
 ```
 
-### \_has
+```javascript
+GET /Organization?_sort=name
+```
 
 "Reversed chaining", selecting resources based on the properties of resources that refer to them.
 
@@ -270,12 +282,12 @@ We have additional modifier \(for \_include __and __\_revinclude\) `:logical` fo
 GET /Patient?_id=patient1&_revinclude:logical=Encounter:subject
 ```
 
-### Dot parameters extension 
+Ascending order uses by default, but we can change it behavior. For sort by descending add`-` before parameter or specify `:asc/:desc` after search parameter
 
 We have an access to attributes of resource through `.` 
 
 ```javascript
-GET /Patient?.name.0.given=Nikolai
+GET /Organization?_sort=-name
 ```
 
 It better described by resulting SQL:
@@ -287,27 +299,13 @@ WHERE ("patient".resource#>>''{name,0,given}''in (?))
 LIMIT ? OFFSET ? Nikolai, 100, 0
 ```
 
-### \_sort
-
-We can define order in result bundle by selected parameters
-
-```javascript
-GET /Organization?_sort=name
-```
-
-Ascending order uses by default, but we can change it behavior. For sort by descending add`-` before parameter or specify `:asc/:desc` after search parameter
-
-```javascript
-GET /Organization?_sort=-name
-```
-
 ```javascript
 GET /Organization?_sort:desc=name
 ```
 
-As we know not all attributes can be used as search parameters of resource but in **\_sort** we have an ability use them via `.` notation
+As we know, not all attributes can be used as search parameters of a resource but in **\_sort** we have an ability to use them via `.` notation.
 
-For example with following request we receive an error:
+For example, with the following request we will receive an error:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -327,7 +325,7 @@ No search parameter for Encounter.id
 {% endtab %}
 {% endtabs %}
 
-We can avoid it with such type of request
+We can avoid it with such type of request:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -347,17 +345,17 @@ entry:
 {% endtab %}
 {% endtabs %}
 
-Also we can use several fields for sorting, for this we need add them through `,` . Priority will be determined from left to right.
+Also, we can use several fields for sorting, for this we need to add them through `,` . Priority will be determined from left to right.
 
 ```javascript
 GET /Encounter?_sort=status,-.id
 ```
 
-In the example above, we search for all encounters and sort them by the status parameter in cases of equality them  sorting will occur by the id field in the reverse order
+In the example above, we search for all encounters and sort them by the status parameter in cases of equality, the sorting will occur by the id field in the reverse order.
 
 ### \_total \( \_countMethod \) 
 
-By default for all search requests Aidbox return total number in result, which represent how many resources match criteria. But to do this we run second query for count, which takes some additional CPU time. To get response faster on big amount of data you can change this behavior using **\_total** parameter. **\_total** parameter can have following values:
+By default, for all search requests Aidbox returns total number in result which represents how many resources matched the criteria. But to do this, we run second query for count which takes some additional CPU time. To get a response faster, especially on big amounts of data, you can change this behavior using the **\_total** parameter. The **\_total** parameter can have following values:
 
 * `none` - do not run count query 
 * `estimated` - roughly estimate number of results
@@ -365,7 +363,7 @@ By default for all search requests Aidbox return total number in result, which r
 
 ### Paging
 
-Search results can contain many records, for more convenient work we can use pagination. Available parameters - **\_count** - total records on the page \(default value - 100\), **page** - specific page, output Bundle includes link section with **first**, **self**, **next**, **previous** and **last** page constructed URLs.
+Search results can contain many records, for more convenient work we can use pagination. Available parameters are: **\_count** — total records on the page \(default value — 100\), **page** — specific page, output Bundle includes link section with **first**, **self**, **next**, **previous,** and **last** page constructed URLs.
 
 {% tabs %}
 {% tab title="Request" %}
