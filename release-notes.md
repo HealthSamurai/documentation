@@ -8,6 +8,10 @@
 * Support `page` search parameter \(\_page - also works\)
 * Added [$query](api/custom-search.md) - SQL query into REST Endpoint
 * [\_query](api/custom-search.md) - custom search related to resourceType
+* Implemented Compartments for requests like `/fhir/Patient/xxx/Observation`; Compartments are defined with CompartmentDefinition resource
+* `Observation/$lastn` is accessible as a part of Patient's compartment: `/fhir/Patient/ID/Observation/$lastn`
+* Implemented `:iterate` modifier for `_include` search parameter
+* Refactored FHIR search engine internals to leverage PostgreSQL's GIN index
 
 ## 0.3.3
 
