@@ -275,7 +275,7 @@ GET /Patient?_id=patient1&_revinclude:logical=Encounter:subject
 We have an access to attributes of resource through `.` 
 
 ```javascript
-GET /Patient?.name.0.given=Nikolai&.birthDate$lt=2011
+GET /Patient?.name.0.given=Nikolai
 ```
 
 It better described by resulting SQL:
@@ -283,9 +283,8 @@ It better described by resulting SQL:
 ```sql
 SELECT "patient".* 
 FROM "patient" 
-WHERE (("patient".resource#>>''{name,0,given}''
-    in (?)) AND "patient".resource#>>''{birthDate}'' < ?)
-    LIMIT ? OFFSET ?', Nikolai,'2011', 100, 0
+WHERE ("patient".resource#>>''{name,0,given}''in (?))
+LIMIT ? OFFSET ? Nikolai, 100, 0
 ```
 
 ### \_sort
