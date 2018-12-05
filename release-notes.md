@@ -12,6 +12,7 @@
 * `Observation/$lastn` is accessible as a part of Patient's compartment: `/fhir/Patient/ID/Observation/$lastn`
 * Implemented `:iterate` modifier for `_include` search parameter
 * Refactored FHIR search engine internals to leverage PostgreSQL's GIN index
+* Add `Box-Name` headers \(allows to specify box, without changing the url\)
 
 ## 0.3.3
 

@@ -24,6 +24,14 @@ But it still presented implicitly and full url will be something like `https://<
 
 You may think that base url is equal to value of [Host http header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Host). 
 
+Also, it is possible to access specified box using `Box-Name` header, for example:
+
+```text
+GET /Patient
+Host: aidbox.app
+Box-Name: <YOUR-BOX>
+```
+
 ### Errors
 
 Aidbox uses semantic HTTP response codes, which generally means that all `4xx` responses indicates error on client side and all `5xx` responses means server-side error.
