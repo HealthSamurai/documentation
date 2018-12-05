@@ -9,9 +9,686 @@ Each resource may belong to one or more logical compartments. A compartment is a
 
 Read more about compartments in FHIR documentation [http://build.fhir.org/compartmentdefinition.html](http://build.fhir.org/compartmentdefinition.html).
 
+## Creation of Compartments on Server
+
+In order to use compartments, you will need to create CompartmentDefinition resources on your server.
+
+Visit [http://hl7.org/fhir/compartmentdefinition-examples.html](http://hl7.org/fhir/compartmentdefinition-examples.html) for CompartmentDefinition examples.
+
 {% hint style="warning" %}
 At present, compartment definitions can only be defined by HL7 International. This is because their existence creates significant impact on the behavior of servers.
 {% endhint %}
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+PUT   /fhir/CompartmentDefinition/Patient
+
+resourceType: CompartmentDefinition
+id: Patient
+text:
+  status: generated
+  div: "<div>CompartmentDefinition for Patient</div>"
+url: http://hl7.org/fhir/CompartmentDefinition/patient
+name: Base FHIR compartment definition for Patient
+status: draft
+experimental: true
+date: '2018-12-04T09:28:36.308Z'
+publisher: FHIR Project Team
+contact:
+- telecom:
+  - system: url
+    value: http://hl7.org/fhir
+description: There is an instance of the patient compartment for each patient resource,
+  and the identity of the compartment is the same as the patient. When a patient is
+  linked to another patient, all the records associated with the linked patient are
+  in the compartment associated with the target of the link.. The set of resources
+  associated with a particular patient
+code: Patient
+search: true
+resource:
+- code: Account
+  param:
+  - subject
+- code: ActivityDefinition
+- code: AdverseEvent
+  param:
+  - subject
+- code: AllergyIntolerance
+  param:
+  - patient
+  - recorder
+  - asserter
+- code: Appointment
+  param:
+  - actor
+...
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+{
+    "description": "There is an instance of the patient compartment for each patient resource, and the identity of the compartment is the same as the patient. When a patient is linked to another patient, all the records associated with the linked patient are in the compartment associated with the target of the link.. The set of resources associated with a particular patient",
+    "date": "2018-12-04T09:28:36.308Z",
+    "meta": {
+        "lastUpdated": "2018-12-04T09:29:15.999Z",
+        "versionId": "12",
+        "tag": [
+            {
+                "system": "https://aidbox.app",
+                "code": "updated"
+            }
+        ]
+    },
+    "publisher": "FHIR Project Team",
+    "name": "Base FHIR compartment definition for Patient",
+    "experimental": true,
+    "resourceType": "CompartmentDefinition",
+    "search": true,
+    "status": "draft",
+    "id": "Patient",
+    "resource": [
+        {
+            "code": "Account",
+            "param": [
+                "subject"
+            ]
+        },
+        {
+            "code": "ActivityDefinition"
+        },
+        {
+            "code": "AdverseEvent",
+            "param": [
+                "subject"
+            ]
+        },
+        {
+            "code": "AllergyIntolerance",
+            "param": [
+                "patient",
+                "recorder",
+                "asserter"
+            ]
+        },
+        {
+            "code": "Appointment",
+            "param": [
+                "actor"
+            ]
+        },
+        {
+            "code": "AppointmentResponse",
+            "param": [
+                "actor"
+            ]
+        },
+        {
+            "code": "AuditEvent",
+            "param": [
+                "patient",
+                "agent.patient",
+                "entity.patient"
+            ]
+        },
+        {
+            "code": "Basic",
+            "param": [
+                "patient",
+                "author"
+            ]
+        },
+        {
+            "code": "Binary"
+        },
+        {
+            "code": "BodySite",
+            "param": [
+                "patient"
+            ]
+        },
+        {
+            "code": "Bundle"
+        },
+        {
+            "code": "CapabilityStatement"
+        },
+        {
+            "code": "CarePlan",
+            "param": [
+                "patient",
+                "performer"
+            ]
+        },
+        {
+            "code": "CareTeam",
+            "param": [
+                "patient",
+                "participant"
+            ]
+        },
+        {
+            "code": "ChargeItem",
+            "param": [
+                "subject"
+            ]
+        },
+        {
+            "code": "Claim",
+            "param": [
+                "patient",
+                "payee"
+            ]
+        },
+        {
+            "code": "ClaimResponse",
+            "param": [
+                "patient"
+            ]
+        },
+        {
+            "code": "ClinicalImpression",
+            "param": [
+                "subject"
+            ]
+        },
+        {
+            "code": "CodeSystem"
+        },
+        {
+            "code": "Communication",
+            "param": [
+                "subject",
+                "sender",
+                "recipient"
+            ]
+        },
+        {
+            "code": "CommunicationRequest",
+            "param": [
+                "subject",
+                "sender",
+                "recipient",
+                "requester"
+            ]
+        },
+        {
+            "code": "CompartmentDefinition"
+        },
+        {
+            "code": "Composition",
+            "param": [
+                "subject",
+                "author",
+                "attester"
+            ]
+        },
+        {
+            "code": "ConceptMap"
+        },
+        {
+            "code": "Condition",
+            "param": [
+                "patient",
+                "asserter"
+            ]
+        },
+        {
+            "code": "Consent",
+            "param": [
+                "patient"
+            ]
+        },
+        {
+            "code": "Contract"
+        },
+        {
+            "code": "Coverage",
+            "param": [
+                "policy-holder",
+                "subscriber",
+                "beneficiary",
+                "payor"
+            ]
+        },
+        {
+            "code": "DataElement"
+        },
+        {
+            "code": "DetectedIssue",
+            "param": [
+                "patient"
+            ]
+        },
+        {
+            "code": "Device"
+        },
+        {
+            "code": "DeviceComponent"
+        },
+        {
+            "code": "DeviceMetric"
+        },
+        {
+            "code": "DeviceRequest",
+            "param": [
+                "subject",
+                "requester",
+                "performer"
+            ]
+        },
+        {
+            "code": "DeviceUseStatement",
+            "param": [
+                "subject"
+            ]
+        },
+        {
+            "code": "DiagnosticReport",
+            "param": [
+                "subject"
+            ]
+        },
+        {
+            "code": "DocumentManifest",
+            "param": [
+                "subject",
+                "author",
+                "recipient"
+            ]
+        },
+        {
+            "code": "DocumentReference",
+            "param": [
+                "subject",
+                "author"
+            ]
+        },
+        {
+            "code": "EligibilityRequest",
+            "param": [
+                "patient"
+            ]
+        },
+        {
+            "code": "EligibilityResponse"
+        },
+        {
+            "code": "Encounter",
+            "param": [
+                "patient"
+            ]
+        },
+        {
+            "code": "Endpoint"
+        },
+        {
+            "code": "EnrollmentRequest",
+            "param": [
+                "subject"
+            ]
+        },
+        {
+            "code": "EnrollmentResponse"
+        },
+        {
+            "code": "EpisodeOfCare",
+            "param": [
+                "patient"
+            ]
+        },
+        {
+            "code": "ExpansionProfile"
+        },
+        {
+            "code": "ExplanationOfBenefit",
+            "param": [
+                "patient",
+                "payee"
+            ]
+        },
+        {
+            "code": "FamilyMemberHistory",
+            "param": [
+                "patient"
+            ]
+        },
+        {
+            "code": "Flag",
+            "param": [
+                "patient"
+            ]
+        },
+        {
+            "code": "Goal",
+            "param": [
+                "patient"
+            ]
+        },
+        {
+            "code": "GraphDefinition"
+        },
+        {
+            "code": "Group",
+            "param": [
+                "member"
+            ]
+        },
+        {
+            "code": "GuidanceResponse"
+        },
+        {
+            "code": "HealthcareService"
+        },
+        {
+            "code": "ImagingManifest",
+            "param": [
+                "patient",
+                "author"
+            ]
+        },
+        {
+            "code": "ImagingStudy",
+            "param": [
+                "patient"
+            ]
+        },
+        {
+            "code": "Immunization",
+            "param": [
+                "patient"
+            ]
+        },
+        {
+            "code": "ImmunizationRecommendation",
+            "param": [
+                "patient"
+            ]
+        },
+        {
+            "code": "ImplementationGuide"
+        },
+        {
+            "code": "Library"
+        },
+        {
+            "code": "Linkage"
+        },
+        {
+            "code": "List",
+            "param": [
+                "subject",
+                "source"
+            ]
+        },
+        {
+            "code": "Location"
+        },
+        {
+            "code": "Measure"
+        },
+        {
+            "code": "MeasureReport",
+            "param": [
+                "patient"
+            ]
+        },
+        {
+            "code": "Media",
+            "param": [
+                "subject"
+            ]
+        },
+        {
+            "code": "Medication"
+        },
+        {
+            "code": "MedicationAdministration",
+            "param": [
+                "patient",
+                "performer",
+                "subject"
+            ]
+        },
+        {
+            "code": "MedicationDispense",
+            "param": [
+                "subject",
+                "patient",
+                "receiver"
+            ]
+        },
+        {
+            "code": "MedicationRequest",
+            "param": [
+                "subject"
+            ]
+        },
+        {
+            "code": "MedicationStatement",
+            "param": [
+                "subject"
+            ]
+        },
+        {
+            "code": "MessageDefinition"
+        },
+        {
+            "code": "MessageHeader"
+        },
+        {
+            "code": "NamingSystem"
+        },
+        {
+            "code": "NutritionOrder",
+            "param": [
+                "patient"
+            ]
+        },
+        {
+            "code": "Observation",
+            "param": [
+                "subject",
+                "performer"
+            ]
+        },
+        {
+            "code": "OperationDefinition"
+        },
+        {
+            "code": "OperationOutcome"
+        },
+        {
+            "code": "Organization"
+        },
+        {
+            "code": "Patient",
+            "param": [
+                "link"
+            ]
+        },
+        {
+            "code": "PaymentNotice"
+        },
+        {
+            "code": "PaymentReconciliation"
+        },
+        {
+            "code": "Person",
+            "param": [
+                "patient"
+            ]
+        },
+        {
+            "code": "PlanDefinition"
+        },
+        {
+            "code": "Practitioner"
+        },
+        {
+            "code": "PractitionerRole"
+        },
+        {
+            "code": "Procedure",
+            "param": [
+                "patient",
+                "performer"
+            ]
+        },
+        {
+            "code": "ProcedureRequest",
+            "param": [
+                "subject",
+                "performer"
+            ]
+        },
+        {
+            "code": "ProcessRequest"
+        },
+        {
+            "code": "ProcessResponse"
+        },
+        {
+            "code": "Provenance",
+            "param": [
+                "target.subject",
+                "target.patient",
+                "patient"
+            ]
+        },
+        {
+            "code": "Questionnaire"
+        },
+        {
+            "code": "QuestionnaireResponse",
+            "param": [
+                "subject",
+                "author"
+            ]
+        },
+        {
+            "code": "ReferralRequest",
+            "param": [
+                "patient",
+                "requester"
+            ]
+        },
+        {
+            "code": "RelatedPerson",
+            "param": [
+                "patient"
+            ]
+        },
+        {
+            "code": "RequestGroup",
+            "param": [
+                "subject",
+                "participant"
+            ]
+        },
+        {
+            "code": "ResearchStudy"
+        },
+        {
+            "code": "ResearchSubject",
+            "param": [
+                "individual"
+            ]
+        },
+        {
+            "code": "RiskAssessment",
+            "param": [
+                "subject"
+            ]
+        },
+        {
+            "code": "Schedule",
+            "param": [
+                "actor"
+            ]
+        },
+        {
+            "code": "SearchParameter"
+        },
+        {
+            "code": "Sequence"
+        },
+        {
+            "code": "ServiceDefinition"
+        },
+        {
+            "code": "Slot"
+        },
+        {
+            "code": "Specimen",
+            "param": [
+                "subject"
+            ]
+        },
+        {
+            "code": "StructureDefinition"
+        },
+        {
+            "code": "StructureMap"
+        },
+        {
+            "code": "Subscription"
+        },
+        {
+            "code": "Substance"
+        },
+        {
+            "code": "SupplyDelivery",
+            "param": [
+                "patient"
+            ]
+        },
+        {
+            "code": "SupplyRequest",
+            "param": [
+                "requester"
+            ]
+        },
+        {
+            "code": "Task"
+        },
+        {
+            "code": "TestReport"
+        },
+        {
+            "code": "TestScript"
+        },
+        {
+            "code": "ValueSet"
+        },
+        {
+            "code": "VisionPrescription",
+            "param": [
+                "patient"
+            ]
+        }
+    ],
+    "url": "http://hl7.org/fhir/CompartmentDefinition/patient",
+    "code": "Patient",
+    "contact": [
+        {
+            "telecom": [
+                {
+                    "value": "http://hl7.org/fhir",
+                    "system": "url"
+                }
+            ]
+        }
+    ],
+    "text": {
+        "div": "<div>CompartmentDefinition for Patient</div>",
+        "status": "generated"
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
 
 ## List of Compartments
 

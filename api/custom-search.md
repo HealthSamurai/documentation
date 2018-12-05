@@ -1,8 +1,8 @@
 # Custom Search
 
-With `AidboxQuery` resource you can turn your SQL query into REST Endpoint.
+With `AidboxQuery` resource, you can turn your SQL query into REST Endpoint.
 
-For example lets create a simple aggregation report for encounters parameterized by date. Create an `AidboxQuery` resource:
+For example, let's create a simple aggregation report for encounters parameterized by date. Create an `AidboxQuery` resource:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -43,6 +43,8 @@ meta:
 ```
 {% endtab %}
 {% endtabs %}
+
+Let's upload some sample data to use in our query:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -123,7 +125,7 @@ entry:
 {% endtab %}
 {% endtabs %}
 
-When you created AidboxQuery, you can use it:
+After you created AidboxQuery, you can use it:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -147,7 +149,7 @@ query: ["SELECT \n   resource->>'class' as class, \n   count(*) as count\nFROM e
 {% endtabs %}
 
 {% hint style="info" %}
-PostgreSQL supports Special Date/Time Inputs like **now**, **today**, **tomorrow** etc
+PostgreSQL supports Special Date/Time inputs like **now**, **today**, **tomorrow** etc.
 {% endhint %}
 
 ### Parameters in Query
@@ -156,7 +158,7 @@ Query can be parameterized by special template language `{{path.to.parameter}}`
 
 All parameters passed in query string will be available under `{{params.PARAMETER-NAME}}`
 
-Also `{{user.id}}` will be available, for example `user-info` custom query can be implemented like this:
+Also, `{{user.id}}` will be available, for example `user-info` custom query can be implemented like this:
 
 {% code-tabs %}
 {% code-tabs-item title="request" %}
@@ -205,13 +207,13 @@ It's not possible to call such AidboxQuery from REST Console, because in REST co
 
 ### \_query
 
-There are another option for calling `AidboxQuery`:
+There is another option for calling `AidboxQuery`:
 
 ```
 GET /Patient?_query=get-by-id&rid=patient1
 ```
 
-Main difference is that such query can use additional variable available in context `{{resourceType}}`.
+Main difference is that such query can use additional variable available in context of `{{resourceType}}`.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -282,7 +284,7 @@ query: ['select * from Attribute where id = ?', Encounter.status]
 {% endtabs %}
 
 {% hint style="info" %}
-Pay attention that only `{{resourceType}}` can be used in place of table name, because this variable is secure and will be inserted directly into query. Other variables will be escaped and can't be used in such parts of query.
+Pay attention that only`{{resourceType}}`can be used in place of table name, because this variable is secure and will be inserted directly into query. Other variables will be escaped and can't be used in such parts of query.
 {% endhint %}
 
 See also our tutorial:
