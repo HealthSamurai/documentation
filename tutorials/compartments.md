@@ -1269,6 +1269,8 @@ For example, to retrieve all the observation resources for a particular LOINC co
 
 ## Example Requests
 
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/df3fd79a5fb37f26f6e2#?env[Aidbox.Cloud]=W3sia2V5IjoiYmFzZTEiLCJ2YWx1ZSI6Imh0dHBzOi8vbWVyZWRpdGguYWlkYm94LmFwcCIsImRlc2NyaXB0aW9uIjoiIiwiZW5hYmxlZCI6ZmFsc2V9LHsia2V5IjoiYmFzZSIsInZhbHVlIjoiaHR0cHM6Ly9wYXZseXNoaW5hMjAxODExMDkuYWlkYm94LmFwcCIsImRlc2NyaXB0aW9uIjoiIiwiZW5hYmxlZCI6dHJ1ZX1d)
+
 As an example of compartment usage, to retrieve a list of a patient's conditions, use the URL:
 
 ```text
