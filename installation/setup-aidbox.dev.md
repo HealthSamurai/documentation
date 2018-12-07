@@ -182,11 +182,11 @@ Be careful with **$** sign in url paths \(aka **/$metadata**\) in shell  - you h
 
 #### Run multiple instances
 
-To run multiple instances you can use `docker-compose up` command with `-p` argument to provide prefix for created containers, i.e.:
+To run multiple instances you can use `docker-compose up` command with `-p` argument to provide prefix for created containers, i.e. \(don't forget change ports for avoiding duplicates\):
 
 ```bash
-$ docker-compose up -d -p devbox1
-$ docker-compose up -d -p devbox2
+$ docker-compose -p devbox1 up -d
+$ docker-compose -p devbox2 up -d
 ```
 
 #### Stop Aidbox.Dev
