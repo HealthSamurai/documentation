@@ -295,8 +295,7 @@ It better described by resulting SQL:
 ```sql
 SELECT "patient".* 
 FROM "patient" 
-WHERE ("patient".resource#>>''{name,0,given}''in (?))
-LIMIT ? OFFSET ? Nikolai, 100, 0
+WHERE ("patient".resource#>>'{name,0,given}'in ('Nikolai'))
 ```
 
 ```javascript
