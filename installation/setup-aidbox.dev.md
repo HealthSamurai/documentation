@@ -207,7 +207,7 @@ By default docker-compose file mount folder `./pgdata` as persistent volume for 
 
 ```
 $ docker-compose down
-$ docker-composd pull
-$ docker-composd up -d
+$ docker-compose pull
+$ docker-compose up -d
 ```
 
