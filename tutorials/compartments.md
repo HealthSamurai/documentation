@@ -9,7 +9,7 @@ Each resource may belong to one or more logical compartments. A compartment is a
 
 Read more about compartments in the FHIR documentation [http://build.fhir.org/compartmentdefinition.html](http://build.fhir.org/compartmentdefinition.html).
 
-## Creation of Compartments on a Server
+## Defining Compartments
 
 In order to use compartments, you will need to create CompartmentDefinition resources on your server. Visit the [http://hl7.org/fhir/compartmentdefinition-examples.html](http://hl7.org/fhir/compartmentdefinition-examples.html) for CompartmentDefinition examples.
 
@@ -1252,19 +1252,23 @@ resource:
 
 Now you can search compartments on the server.
 
+{% hint style="warning" %}
+Although FHIR specification says that compartment definitions can only be defined by HL7 International, this restriction does not apply to Aidbox. You can define any compartments in your box so long as they are valid.
+{% endhint %}
+
 ## Compartment Search
 
 To search a [compartment](http://hl7.org/fhir/compartmentdefinition.html), for either all possible resources or for a particular resource type, respectively:
 
 ```text
-  GET [base]/[Compartment]/[id]/{*?[parameters]{&_format=[mime-type]}}
-  GET [base]/[Compartment]/[id]/[type]{?[parameters]{&_format=[mime-type]}}
+GET [base]/[Compartment]/[id]/{*?[parameters]{&_format=[mime-type]}}
+GET [base]/[Compartment]/[id]/[type]{?[parameters]{&_format=[mime-type]}}
 ```
 
 For example, to retrieve all the observation resources for a particular LOINC code associated with a particular encounter:
 
 ```text
-  GET [base]/Encounter/23423445/Observation?code=2951-2  {&_format=[mime-type]}
+GET [base]/Encounter/23423445/Observation?code=2951-2  {&_format=[mime-type]}
 ```
 
 ## Example Requests
@@ -1274,27 +1278,27 @@ For example, to retrieve all the observation resources for a particular LOINC co
 As an example of compartment usage, to retrieve a list of a patient's conditions, use the URL:
 
 ```text
-  GET [base]/Patient/[id]/Condition
+GET [base]/Patient/[id]/Condition
 ```
 
 Additional search parameters can be defined, such as this hypothetical search for acute conditions:
 
 ```text
-  GET [base]/Patient/[id]/Condition?code:in=http://hspc.org/ValueSet/acute-concerns
+GET [base]/Patient/[id]/Condition?code:in=http://hspc.org/ValueSet/acute-concerns
 ```
 
 Note that as searches, these are syntactic variations on these two search URLs respectively:
 
 ```text
-  GET [base]/Condition?patient=[id]
-  GET [base]/Condition?patient=[id]&code:in=http://hspc.org/ValueSet/acute-concerns
+GET [base]/Condition?patient=[id]
+GET [base]/Condition?patient=[id]&code:in=http://hspc.org/ValueSet/acute-concerns
 ```
 
 The outcome of a compartment search is the same as the equivalent normal search. For example, both these searches return the same outcome if there is no patient 333:
 
 ```text
-  GET [base]/Patient/333/Condition
-  GET [base]/Condition?patient=333
+GET [base]/Patient/333/Condition
+GET [base]/Condition?patient=333
 ```
 
 Whether the patient doesn't exist, or the user has no access to the patient, both these searches return an empty bundle with no matches. Some systems will include an operation outcome warning that there is no matching patient.
@@ -1302,21 +1306,21 @@ Whether the patient doesn't exist, or the user has no access to the patient, bot
 However, there is a key difference in functionality between compartment based searches and direct searches with parameters. Consider this search:
 
 ```text
-  GET [base]/Patient/[id]/Communication
+GET [base]/Patient/[id]/Communication
 ```
 
 Because the definition of the [patient compartment](http://build.fhir.org/compartmentdefinition-patient.html) for [Communication ](http://build.fhir.org/communication.html)says that a Communication resource is in the patient compartment if the subject, sender, or recipient is the patient, the compartment search is actually the same as the union of these 3 searches:
 
 ```text
-  GET [base]/Communication?subject=[id]
-  GET [base]/Communication?sender=[id]
-  GET [base]/Communication?recipient=[id]
+GET [base]/Communication?subject=[id]
+GET [base]/Communication?sender=[id]
+GET [base]/Communication?recipient=[id]
 ```
 
 There is no way to do this as a single search, except by using the [\_filter](http://build.fhir.org/search_filter.html):
 
 ```text
-  GET [base]/Communication?_filter=subject re [id] or sender re [id] or recipient re [id]
+GET [base]/Communication?_filter=subject re [id] or sender re [id] or recipient re [id]
 ```
 
 ## List of Available Compartments
@@ -1328,8 +1332,4 @@ There is no way to do this as a single search, except by using the [\_filter](ht
 | [RelatedPerson](http://build.fhir.org/compartmentdefinition-relatedperson.html) | The set of resources associated with a particular 'related person' | There is an instance of the relatedPerson compartment for each relatedPerson resource, and the identity of the compartment is the same as the relatedPerson | The relatedPerson compartment includes any resources where the resource is explicitly linked to relatedPerson \(usually as author\) |
 | [Practitioner](http://build.fhir.org/compartmentdefinition-practitioner.html) | The set of resources associated with a particular practitioner | There is an instance of the practitioner compartment for each Practitioner resource, and the identity of the compartment is the same as the Practitioner | The practitioner compartment includes any resources where the resource is explicitly linked to a Practitioner \(usually as author, but other kinds of linkage exist\) |
 | [Device](http://build.fhir.org/compartmentdefinition-device.html) | The set of resources associated with a particular device | There is an instance of the device compartment for each Device resource, and the identity of the compartment is the same as the Device | The device compartment includes any resources where the resource is explicitly linked to a Device \(mostly subject or performer\) |
-
-{% hint style="warning" %}
-At present, compartment definitions can only be defined by HL7 International. This is because their existence creates significant impact on the behavior of servers.
-{% endhint %}
 
