@@ -22,6 +22,8 @@ For optimization of search results, we can specify fields of the output bundle:
 GET /Patient?_elements=id,birthDate
 ```
 
+All sample requests can be run in Postman:[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/7dc2f250801cc6b71709#?env[Aidbox.Cloud]=W3sia2V5IjoiYmFzZTEiLCJ2YWx1ZSI6Imh0dHBzOi8vbWVyZWRpdGguYWlkYm94LmFwcCIsImRlc2NyaXB0aW9uIjoiIiwiZW5hYmxlZCI6ZmFsc2V9LHsia2V5IjoiYmFzZSIsInZhbHVlIjoiaHR0cHM6Ly9wYXZseXNoaW5hMjAxODExMDkuYWlkYm94LmFwcCIsImRlc2NyaXB0aW9uIjoiIiwiZW5hYmxlZCI6dHJ1ZX1d)
+
 ### Search Parameters
 
 Some search parameters are available for all resources:
