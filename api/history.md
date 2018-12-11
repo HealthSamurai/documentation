@@ -199,7 +199,7 @@ GET /Encounter?subject=Patient/patientid
 
 #### Prefixes
 
-For Numbers, Dates and Quantities\(will be supported\) we can this conditionals in search:
+For Numbers, Dates and Quantities \(will be supported\), we can use the following conditionals in search:
 
 * `eq` - equal \(default\)
 * `ne` - non-equal
@@ -224,17 +224,17 @@ GET /Patient?.name.0.given=Nikolai
 
 ### \_sort
 
-We can define order in result bundle by selected parameters
+We can define order in result bundle by selected parameters.
 
-For a more accurate search we can filter by nested fields of related entities. Reference parameters may be "chained" through `.` 
+For a more accurate search, we can filter by nested fields of related entities. Reference parameters may be "chained" through `.` 
 
-Obtain all **encounters** with patients \(**subject** - link to patient\) with name Alex
+Obtain all **encounters** with patients \(**subject** — link to the patient\) with name Alex:
 
 ```javascript
 GET /Encounter?subject:Patient.name=Alex
 ```
 
-You can use several chained parameters by base resource
+You can use several chained parameters by base resource:
 
 ```javascript
 GET /Encounter?part-of:Encounter._id=enc1&subject:Patient._id=patient1
@@ -244,9 +244,9 @@ GET /Encounter?part-of:Encounter._id=enc1&subject:Patient._id=patient1
 GET /Organization?_sort=name
 ```
 
-"Reversed chaining", selecting resources based on the properties of resources that refer to them.
+"Reversed chaining" is selection of resources based on the properties of resources that refer to them.
 
-Obtain patient resources, where encounter have id = enc1 and refer on patient through subject field:
+Obtain patient resources where encounter has id = enc1 and refer to the patient through subject field:
 
 ```javascript
 GET /Patient?_has:Encounter:subject:_id=enc1
@@ -254,7 +254,7 @@ GET /Patient?_has:Encounter:subject:_id=enc1
 
 ### \_include & \_revinclude
 
-We have an ability to include into result linked entities. For example we want get all encounters and patients related to them. Structure of request: `_include=<reference search parameter> or _include=<Resource>:<reference search parameter>`
+We have an ability to include linked entities into result. For example, we want to get all encounters and patients related to them. Structure of the request will be: `_include=<reference search parameter> or _include=<Resource>:<reference search parameter>`
 
 ```javascript
 GET /Encounter?_include=subject
@@ -264,7 +264,7 @@ GET /Encounter?_include=subject
 GET /Encounter?_include=Encounter:subject
 ```
 
-Or for specific **id**
+Or for specific **id:**
 
 ```javascript
 GET /Encounter?_id=enc1&_include=Encounter:subject
@@ -282,15 +282,15 @@ We have additional modifier \(for \_include __and __\_revinclude\) `:logical` fo
 GET /Patient?_id=patient1&_revinclude:logical=Encounter:subject
 ```
 
-Ascending order uses by default, but we can change it behavior. For sort by descending add`-` before parameter or specify `:asc/:desc` after search parameter
+Ascending order is used by default but we can change this behavior. To sort by descending order, add`-` before a parameter or specify `:asc/:desc` after search parameter.
 
-We have an access to attributes of resource through `.` 
+We have an access to attributes of a resource through `.` 
 
 ```javascript
 GET /Organization?_sort=-name
 ```
 
-It better described by resulting SQL:
+It is better described by resulting SQL:
 
 ```sql
 SELECT "patient".* 
