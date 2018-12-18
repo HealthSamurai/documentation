@@ -45,6 +45,7 @@
   * [SQL endpoints](api/usdpsql.md)
   * [Misc](api/misc.md)
   * [Custom Search](api/custom-search.md)
+* [Auth \(betta\)](auth-betta.md)
 * [Access Control](security/README.md)
   * [OAuth 2.0](security/oauth-2.0/README.md)
     * [Users and Clients](security/oauth-2.0/users-and-clients.md)
