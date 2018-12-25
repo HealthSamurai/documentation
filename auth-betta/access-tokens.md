@@ -8,7 +8,7 @@ Access Tokens should be used as a **Bearer** credential and transmitted in an HT
 
 ## Set the Access Token Format
 
-Aidbox generates Access Tokens in two formats:
+[Aidbox](https://www.health-samurai.io/aidbox) generates Access Tokens in two formats:
 
 * Opaque strings: When not using a custom API
 * JSON Web Tokens \(JWTs\): When using a custom API

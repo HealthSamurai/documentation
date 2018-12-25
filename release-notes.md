@@ -3,7 +3,7 @@
 ## Unreleased
 
 * Subscriptions `$poll` operation and `webhook` channel: [Subscriptions](api/subscriptions.md);
-* Fixed Aidbox to FHIR data transformation bug when polymorphic attributes wasn't properly handled in recursive elements such as `QuestionnaireResponse.item`
+* Fixed [Aidbox](https://www.health-samurai.io/aidbox) to FHIR data transformation bug when polymorphic attributes wasn't properly handled in recursive elements such as `QuestionnaireResponse.item`
 * Support [`_total`](https://build.fhir.org/search.html#total) search parameter \(\_totalMethod=count also works\)
 * Support `page` search parameter \(\_page - also works\)
 * Added [$query](api/custom-search.md) - SQL query into REST Endpoint

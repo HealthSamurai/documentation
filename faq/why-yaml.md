@@ -1,6 +1,6 @@
 # Why YAML?
 
-Aidbox supports following content-types, which not presented in fhir spec yet:
+[Aidbox](https://www.health-samurai.io/aidbox) supports following content-types, which not presented in fhir spec yet:
 
 * application/fhir+yaml
 * appliaction/yaml

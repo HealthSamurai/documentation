@@ -8,7 +8,7 @@ Aidbox is a FHIR backend as a service with useful additions.
 
 With Aidbox, you can focus on your business ideas validation, and leave the backend technical details to us.
 
-Aidbox provides you with everything you need to start building your healthcare application:
+[Aidbox](https://www.health-samurai.io/aidbox) provides you with everything you need to start building your healthcare application:
 
 * A scalable and powerful PostgreSQL database \([fhirbase](http://fhirbase.github.io/)\) to store and query your data
 * [FHIR](http://www.hl7.org/fhir/) compliant REST API to access and manipulate this data
@@ -16,7 +16,7 @@ Aidbox provides you with everything you need to start building your healthcare a
 * API to manage application users, with optional registration module
 * Terminology server with popular medical coding systems \(LOINC, SNOMED, ICD10, RxNorm\) and custom dictionaries \(ValueSets\)
 * Hosting for Single Page Applications written in HTML and JavaScript
-* Extension and customization aidbox with Aidbox SDK
+* Extension and customization Aidbox with Aidbox SDK
 
 With Aidbox, you can easily develop Mobile, Single Page, and classic Web Applications.
 

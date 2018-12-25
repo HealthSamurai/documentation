@@ -1,6 +1,6 @@
 # $json-schema
 
-Aidbox does validation using JSON-schema, which is generated automatically from Entity & Attribute meta-resources. Operation $json-schema provides access to this JSON-schema to debug and inspect:
+[Aidbox](https://www.health-samurai.io/aidbox) does validation using JSON-schema, which is generated automatically from Entity & Attribute meta-resources. Operation $json-schema provides access to this JSON-schema to debug and inspect:
 
 {% api-method method="get" host="" path="" %}
 {% api-method-summary %}

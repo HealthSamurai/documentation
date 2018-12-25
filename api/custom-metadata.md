@@ -1,6 +1,6 @@
 # $metadata
 
-Aidbox is a metadata driven platform, therefore when you want to define new ResourceType, or Attribute you need to create a couple of resources, such as Entity and Attribute etc. And sometimes this way is not convenient. For this reason we support special endpoint that provide to you more simply way to define custom Metadata resources.
+[Aidbox](https://www.health-samurai.io/aidbox) is a metadata driven platform, therefore when you want to define new ResourceType, or Attribute you need to create a couple of resources, such as Entity and Attribute etc. And sometimes this way is not convenient. For this reason we support special endpoint that provide to you more simply way to define custom Metadata resources.
 
 {% api-method method="post" host="\[base\]" path="/$metadata" %}
 {% api-method-summary %}

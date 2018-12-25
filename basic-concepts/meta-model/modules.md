@@ -1,6 +1,6 @@
 # Modules
 
-Aidbox is split into modules. We have core module proto, modules for each FHIR version, and additional modules like OpenID Connect, Chat, etc.
+[Aidbox](https://www.health-samurai.io/aidbox) is split into modules. We have core module proto, modules for each FHIR version, and additional modules like OpenID Connect, Chat, etc.
 
 Each module can consist of definitions  of:
 

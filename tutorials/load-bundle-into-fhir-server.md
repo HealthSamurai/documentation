@@ -140,7 +140,7 @@ Bundles must be sent via POST method to BASE\_URL which is basically the URL of 
 
 ![Bundle in Aidbox.Cloud REST Console](../.gitbook/assets/scr-2018-10-29_16-24-11.png)
 
-This is a brief description about how to work with transactions and batches in Aidbox. More interesting information coming soon, stay tuned!
+This is a brief description about how to work with transactions and batches in [Aidbox](https://www.health-samurai.io/aidbox). More interesting information coming soon, stay tuned!
 
 ## Generating transaction bundle with Synthea \(advanced topic\)
 

@@ -2,7 +2,7 @@
 
 ## Intro
 
-[FHIR search](https://www.hl7.org/fhir/search.html) has a lot of capabilities. However, some cases can't be expressed in terms of it. For example, we want to get a patient resource with additional field 'encounters' which contains all encounters of that patient but it's not possible to implement with FHIR search API. Aidbox has a solution for such complex tasks, and this tutorial is about how to solve this kind of problem.
+[FHIR search](https://www.hl7.org/fhir/search.html) has a lot of capabilities. However, some cases can't be expressed in terms of it. For example, we want to get a patient resource with additional field 'encounters' which contains all encounters of that patient but it's not possible to implement with FHIR search API. [Aidbox](https://www.health-samurai.io/aidbox) has a solution for such complex tasks, and this tutorial is about how to solve this kind of problem.
 
 ## Prepare Data
 

@@ -6,7 +6,7 @@ $sql
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Execute SQL in aidbox
+Execute SQL in Aidbox
 {% endapi-method-description %}
 
 {% api-method-spec %}

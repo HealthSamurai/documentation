@@ -4,7 +4,7 @@
 This page is for SDK developers
 {% endhint %}
 
-You can extend aidbox with Apps.  App can work with one box or many boxes. App is a REST service, which talks with aidbox through simple REST protocol. App can work with one box or many boxes. Protocol details are abstracted by SDK.
+You can extend aidbox with Apps.  App can work with one box or many boxes. App is a REST service, which talks with [Aidbox](https://www.health-samurai.io/aidbox) through simple REST protocol. App can work with one box or many boxes. Protocol details are abstracted by SDK.
 
 ### Initialisation workflow
 

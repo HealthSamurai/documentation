@@ -5,7 +5,7 @@
 The `Сlient` is the application that must access the user account or user data. Before performing access, it must be authorized by the user, and authorization must be approved by the Authorization Server.
 
 {% hint style="info" %}
-Besides OAut2.0 authorization, Aidbox support simply basic auth which use the same client credentials as OAuth. For more information read documentation [Authentication and Authorization](https://docs.aidbox.app/tutorials/authentication-and-authorization) and [REST Api Access Aidbox.Dev](../../tutorials/how-to-use-rest-api.md).
+Besides OAut2.0 authorization, [Aidbox](https://www.health-samurai.io/aidbox) support simply basic auth which use the same client credentials as OAuth. For more information read documentation [Authentication and Authorization](https://docs.aidbox.app/tutorials/authentication-and-authorization) and [REST Api Access Aidbox.Dev](../../tutorials/how-to-use-rest-api.md).
 {% endhint %}
 
 ### Structure

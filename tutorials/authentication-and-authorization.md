@@ -4,7 +4,7 @@ There are several options for authentication but let's start from the simplest o
 
 ## Basic Authentication
 
-When an Aidbox box is created \( `<your-box>` for example\) you get a fully functional FHIR server and can make requests to it by the URL like`https://<your-box>.aidbox.app`. Make sure that you use the proper name of your new box instead of `<your-box>`. Let's try to obtain a patient list for example. 
+When an [Aidbox](https://www.health-samurai.io/aidbox) box is created \( `<your-box>` for example\) you get a fully functional FHIR server and can make requests to it by the URL like`https://<your-box>.aidbox.app`. Make sure that you use the proper name of your new box instead of `<your-box>`. Let's try to obtain a patient list for example. 
 
 ![](../.gitbook/assets/scr-2018-10-17_11-08-38.png)
 

@@ -1,6 +1,6 @@
 # Apps
 
-You can extend Aidbox with custom Apps. App can define custom resources, custom endpoints and subscribe to hooks or subscriptions. App is a standalone service, which will work with Aidbox to implement your specific app or Aidbox Addon. App should be registered in Aidbox.
+You can extend [Aidbox](https://www.health-samurai.io/aidbox) with custom Apps. App can define custom resources, custom endpoints and subscribe to hooks or subscriptions. App is a standalone service, which will work with Aidbox to implement your specific app or Aidbox Addon. App should be registered in Aidbox.
 
 You define App using Aidbox SDK for your language and should not reverse engenier internal API, because it can be subject of change.
 

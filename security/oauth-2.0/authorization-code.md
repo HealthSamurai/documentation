@@ -95,7 +95,7 @@ http://localhost:4200/?code=ebf396a8-1c00-47ec-acdf-dd5771edcb3d
 
 The `client` requests an access token from the authorization server's token endpoint by including the authorization `code` received in the previous step. When making the request, the client authenticates with the authorization server. The client includes the redirection URI used to obtain the authorization code for verification.
 
-Aidbox OAuth module support Authorization Code flow Access Token Request in two formats. First- Strict adherence to OAuth2.0 specifications for better compatibility. Second - JSON request as a more modern and simple way. Read official [OAuth2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.1.3) for more details.
+[Aidbox](https://www.health-samurai.io/aidbox) OAuth module support Authorization Code flow Access Token Request in two formats. First- Strict adherence to OAuth2.0 specifications for better compatibility. Second - JSON request as a more modern and simple way. Read official [OAuth2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.1.3) for more details.
 
 ## JSON Request
 

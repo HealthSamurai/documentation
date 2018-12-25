@@ -397,7 +397,7 @@ link:
 {% endtabs %}
 
 {% hint style="info" %}
-Want to know more about Aidbox, FHIR, and search? Join our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).
+Want to know more about [Aidbox](https://www.health-samurai.io/aidbox), FHIR, and search? Join our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).
 {% endhint %}
 
 

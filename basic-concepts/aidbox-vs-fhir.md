@@ -1,6 +1,6 @@
 # Aidbox vs FHIR
 
-There are some decisions in [FHIR RESTful API specification](https://www.hl7.org/fhir/http.html) that HealthSamurai team found not intuitive and logical. That's why Aidbox provides two ways to access resources:
+There are some decisions in [FHIR RESTful API specification](https://www.hl7.org/fhir/http.html) that HealthSamurai team found not intuitive and logical. That's why [Aidbox](https://www.health-samurai.io/aidbox) provides two ways to access resources:
 
 via `https://<your-box>.aidbox.app` and`https://<your-box>.aidbox.app/fhir` endpoints
 

@@ -2,7 +2,7 @@
 
 ## Before
 
-For this tutorial you will need git, node js and any version of Aidbox as a backend. We recommend to use Aidbox.Dev as the most easiest way. Visit the [Aidbox.Dev installation guide](../installation/setup-aidbox.dev.md) for detailed information and instructions how to install Aidbox backend for development.
+For this tutorial you will need git, node js and any version of [Aidbox](https://www.health-samurai.io/aidbox) as a backend. We recommend to use Aidbox.Dev as the most easiest way. Visit the [Aidbox.Dev installation guide](../installation/setup-aidbox.dev.md) for detailed information and instructions how to install Aidbox backend for development.
 
 ## Introduction
 

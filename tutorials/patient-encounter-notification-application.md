@@ -1,6 +1,6 @@
 # Patient Encounter notification Application
 
-In this tutorial we will create simple application written on [Clojure](https://clojure.org/) programming language using [Aidbox Clojure SDK](https://github.com/Aidbox/aidbox-clojure-sdk) and Aidbox.cloud or Aidbox.dev as a backend.
+In this tutorial we will create simple application written on [Clojure](https://clojure.org/) programming language using [Aidbox Clojure SDK](https://github.com/Aidbox/aidbox-clojure-sdk) and Aidbox.cloud or [Aidbox.dev](https://www.health-samurai.io/aidbox) as a backend.
 
 All source code available on [Github Aidbox/app-mailgun-clj](https://github.com/Aidbox/app-mailgun-clj)
 

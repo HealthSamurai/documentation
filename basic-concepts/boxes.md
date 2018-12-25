@@ -1,6 +1,6 @@
 # Boxes
 
-If you already have an Aidbox account, then you can create your own boxes. Each box is an instance of FHIR server with a separate database and base URL.
+If you already have an [Aidbox](https://www.health-samurai.io/aidbox) account, then you can create your own boxes. Each box is an instance of FHIR server with a separate database and base URL.
 
 For example, you can create several boxes for development, one box for staging, and another for production.
 

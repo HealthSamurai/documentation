@@ -312,6 +312,6 @@ Open [http://localhost:4200](http://localhost:4200), you automatically will be r
 It works! You are awesome!
 
 {% hint style="info" %}
-Want to know more about Aidbox, FHIR or FHIR applications? Join our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).
+Want to know more about [Aidbox](https://www.health-samurai.io/aidbox), FHIR or FHIR applications? Join our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).
 {% endhint %}
 

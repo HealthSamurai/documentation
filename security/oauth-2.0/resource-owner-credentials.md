@@ -1,6 +1,6 @@
 # Resource Owner Credentials Grant
 
-Aidbox OAuth module supports Resource Owner Credentials flow in two formats. First — strict adherence to specifications for better compatibility. Second — JSON request as a more modern and simple way. Read official [OAuth2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.3) for more details.
+[Aidbox](https://www.health-samurai.io/aidbox) OAuth module supports Resource Owner Credentials flow in two formats. First — strict adherence to specifications for better compatibility. Second — JSON request as a more modern and simple way. Read official [OAuth2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.3) for more details.
 
 ## JSON Request
 

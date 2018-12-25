@@ -1,6 +1,6 @@
 # Auth \(betta\)
 
-Aidbox is coming with built-in auth module, which allows you easy implement
+[Aidbox](https://www.health-samurai.io/aidbox) is coming with built-in auth module, which allows you easy implement
 
 * SignUp/SignIn workflows with email or phone number
 * Universal SignUp/SignIn page - you do not need to implement it from scratch again and again

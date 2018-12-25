@@ -6,7 +6,7 @@ All examples from this tutorial you can run in Postman. Here's the [web view](ht
 
 ## Defining a Custom Resource
 
-Sometimes your data does not fit any existing FHIR resources. It is not always obvious that your data _cannot_ be translated to FHIR — because of some FHIR  generalizations. The "right" first step is to go to [FHIR community chat](http://health-samurai.info/a-cusres-to-zulip) and ask your specific question about mapping to FHIR, or contact Health Samurai modelling team about your concern. If after this adventure you are still sure that there is no appropriate resource in FHIR or it will take too much time to wait for it — in Aidbox you can define your own **Custom Resources.**
+Sometimes your data does not fit any existing FHIR resources. It is not always obvious that your data _cannot_ be translated to FHIR — because of some FHIR  generalizations. The "right" first step is to go to [FHIR community chat](http://health-samurai.info/a-cusres-to-zulip) and ask your specific question about mapping to FHIR, or contact Health Samurai modelling team about your concern. If after this adventure you are still sure that there is no appropriate resource in FHIR or it will take too much time to wait for it — in [Aidbox](https://www.health-samurai.io/aidbox) you can define your own **Custom Resources.**
 
 **Custom Resources** are defined exactly the same way as core FHIR resources, they can refer existing resources, have uniform REST API for CRUD and Search, and participate in transactions.
 

@@ -31,7 +31,7 @@
 
 ### Sample project
 
-In this [project](https://github.com/Aidbox/AidboxDemo) we create patient in the box in aidbox via [.NET API for HL7 FHIR](https://github.com/ewoutkramer/fhir-net-api). Next we read newly created patient from the demo box. Important to remember that currently Aidbox doesn't support XML format and we need explicitly set it to JSON.
+In this [project](https://github.com/Aidbox/AidboxDemo) we create patient in the box in aidbox via [.NET API for HL7 FHIR](https://github.com/ewoutkramer/fhir-net-api). Next we read newly created patient from the demo box. Important to remember that currently [Aidbox](https://www.health-samurai.io/aidbox) doesn't support XML format and we need explicitly set it to JSON.
 
 If you build and run application, you can see something like this:  
 
