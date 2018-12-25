@@ -1,6 +1,6 @@
 # Aidbox
 
-We built Aidbox with the [FHIR](http://www.hl7.org/fhir/) standard. FHIR \(Fast Healthcare Interoperability Resources\) is an open HL7 standard and specification for storing and exchanging healthcare data by leveraging modern web technologies.
+We built [Aidbox](https://www.health-samurai.io/aidbox) with the [FHIR](http://www.hl7.org/fhir/) standard. FHIR \(Fast Healthcare Interoperability Resources\) is an open HL7 standard and specification for storing and exchanging healthcare data by leveraging modern web technologies.
 
 The FHIR standard currently describes about 116 models for storing health data, and these units are called [Resources](http://www.hl7.org/fhir/resourcelist.html) \(such as Patient, Encounter, Observation etc.\). FHIR uses a [REST API](https://hello.aidbox.io/docs/rest-api) to access and manipulate the data \(Create, Update, Search, etc\).
 
