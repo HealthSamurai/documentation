@@ -20,6 +20,7 @@
   * [Profiling and Validation](tutorials/profiling.md)
   * [Patient CRUD SPA](tutorials/run-local-demo.md)
   * [Patient Encounter notification Application](tutorials/patient-encounter-notification-application.md)
+  * [Working with Extensions](tutorials/working-with-extensions.md)
 * [Architecture Overview](basic-concepts/README.md)
   * [Boxes](basic-concepts/boxes.md)
   * [API Overview](basic-concepts/api-overview.md)
