@@ -30,7 +30,8 @@ Some search parameters are available for all resources:
 
 * `_id` logical id of entity
 * `_lastUpdated` last modification time
-* `_text` filter on resource content
+* `_text` filter on resource narrative
+* `_content`  filter on resource content
 
 A list of available search parameters for specific resource can be obtained via the following request:
 
@@ -214,6 +215,42 @@ For Numbers, Dates and Quantities \(will be supported\), we can use the followin
 GET /Patient?birthdate=gt1986-04-28
 ```
 
+### Full text search
+
+Also at your disposal [full-text-search](https://en.wikipedia.org/wiki/Full-text_search) by resources. It presents with \_**text** _-_ search by narrative and _**\_**_**content** - search by remaining resource content.
+
+```javascript
+GET /Patient?_text=Foo
+```
+
+```javascript
+GET /Patient?_content=bar
+```
+
+Search results can be sort by rank with **\_score** search-parameter value. More relevant results will be on top but reversed order also supported through `-` prefix.
+
+```javascript
+GET /Patient?_content=baz&_sort=-_score
+```
+
+#### Expressions
+
+Full-text search requests supports grouping and logical operations
+
+```javascript
+GET /Patient?_content=(NOT bar OR baz) AND foo
+```
+
+If you wanna search by the phrase - just quote it
+
+```javascript
+GET /Patient?_content="Mad Max"
+```
+
+{% hint style="info" %}
+Full-text search - a difficult query for the system. To improve performance you can omit the number of entries in the results - use **\_total=none**. More information in [\_total \( \_countMethod \)](history.md#_total-_countmethod).
+{% endhint %}
+
 ### Chained Parameters
 
 ### \_has
@@ -297,7 +334,7 @@ It is better described by resulting SQL:
 ```sql
 SELECT "patient".* 
 FROM "patient" 
-WHERE ("patient".resource#>>'{name,0,given}'in ('Nikolai'))
+WHERE ("patient".resource#>>'{name,0,given}'in ('Nikolai'));
 ```
 
 ```javascript
