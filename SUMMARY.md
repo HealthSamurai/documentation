@@ -48,6 +48,8 @@
   * [Custom Search](api/custom-search.md)
 * [Auth \(betta\)](auth-betta/README.md)
   * [Access Tokens](auth-betta/access-tokens.md)
+  * [Scenarios](auth-betta/scenarios/README.md)
+    * [API Consumer](auth-betta/scenarios/api-consumer.md)
 * [Access Control](security/README.md)
   * [OAuth 2.0](security/oauth-2.0/README.md)
     * [Users and Clients](security/oauth-2.0/users-and-clients.md)
