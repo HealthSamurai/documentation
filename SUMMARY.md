@@ -42,6 +42,7 @@
   * [Subscriptions](api/subscriptions.md)
   * [Capability Statement](api/metadata.md)
   * [$metadata](api/custom-metadata.md)
+  * [$validate](api/usdvalidate.md)
   * [$json-schema](api/usdjson-schema.md)
   * [SQL endpoints](api/usdpsql.md)
   * [Misc](api/misc.md)
