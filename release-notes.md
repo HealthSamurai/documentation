@@ -13,7 +13,8 @@
 * Implemented `:iterate` modifier for `_include` search parameter
 * Refactored FHIR search engine internals to leverage PostgreSQL's GIN index
 * Add `Box-Name` headers \(allows to specify box, without changing the url\)
-* Implemented [full-text search](https://docs.aidbox.app/api/history#full-text-search) with rum indices
+* Implement [full-text search](https://docs.aidbox.app/api/history#full-text-search) with RUM indices \(requires PostgreSQL 11 with the `rum` extension\)
+* Experimental support for FHIR 4 resources and search parameters
 
 ## 0.3.3
 

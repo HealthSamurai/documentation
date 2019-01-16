@@ -62,6 +62,7 @@
     * [Authorization Code](auth-betta/oauth-2.0-flows/authorization-code.md)
     * [Implicit](auth-betta/oauth-2.0-flows/implicit.md)
     * [Refresh Token](auth-betta/oauth-2.0-flows/refresh-token.md)
+  * [Scenarios](auth-betta/scenarios-1.md)
   * [Access Tokens](auth-betta/access-tokens.md)
 * [Access Control](security/README.md)
   * [OAuth 2.0](security/oauth-2.0/README.md)
