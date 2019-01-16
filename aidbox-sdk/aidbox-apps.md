@@ -25,9 +25,9 @@ endpoint:        # communication protocol between aidbox and app
    scheme: https          # app service schema for http protocols - default = https
    port: 8080             # app service port - default = 80
    secret: <yoursercret>  # will be used to secure aidbox - app communication
-entities: <Resources Definitions, Profiles & Hooks>
-operations: <COperations Definition>
-subscriptions: <Subscriptions to changes>
+entities: <Resource's Definitions, Profiles & Hooks>
+operations: <Operation's Definitions>
+subscriptions: <Subscriptions>
 ```
 
 ### endpoint

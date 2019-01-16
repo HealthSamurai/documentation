@@ -59,7 +59,8 @@ grant_types:
   - client_credentials
 auth:
   client_credentials:
-    expiration: 3600 # in seconds
+    access_token_expiration: 3600 # in seconds
+    access_token_format: jwt
 ```
 
  Get access\_token

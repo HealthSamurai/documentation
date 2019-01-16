@@ -27,7 +27,7 @@ If you want to use Aidbox Access Tokens to access external \(non-Aidbox\) API. Y
 * **Claims**: The set of claims contains verifiable security statements such as the identity of the user and the permissions they are allowed.
 * **Signature**: The signature is used to validate that the token is trustworthy and has not been tampered with.
 
-Set the **audience** to your API Base URL to make the Access Token a JWT.
+Configure Client to make Access Token a JWT.
 
 When the **audience** is set to a custom API and the **scope** parameter includes the `openid` value, then the generated Access Token will be a JWT valid for both retrieving the user's profile and for accessing the custom API.
 
