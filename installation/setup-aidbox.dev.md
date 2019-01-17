@@ -44,7 +44,7 @@ services:
   devbox-db:
     image: "${PGIMAGE}"
     ports:
-      - "${PGPORT}:${PGHOSTPORT}"
+      - "${PGHOSTPORT}:${PGPORT}"
     volumes:
     - "./pgdata:/data"
     environment:
@@ -69,14 +69,13 @@ AIDBOX_CLIENT_SECRET=secret
 AIDBOX_PORT=8888
 AIDBOX_FHIR_VERSION=3.0.1
 
-
 PGPORT=5432
 PGHOSTPORT=5437
 PGUSER=postgres
 PGPASSWORD=postgres
 PGDATABASE=devbox
 
-PGIMAGE=aidbox/aidboxdb:0.0.1-alpha6
+PGIMAGE=aidbox/db:11.1.0
 AIDBOX_IMAGE=healthsamurai/devbox:edge
 ```
 {% endcode-tabs-item %}
@@ -144,7 +143,7 @@ You can access you PostgreSQL  on localhost using $PGUSER and $PGPASSWORD from e
 $ set -o allexport && source .env && set +o allexport
 # run psql
 $ psql -h localhost -p $PGHOSTPORT
-psql (10.3, server 9.6.3)
+psql (10.3, server 11.1)
 Type "help" for help.
 
 devbox=# \dt
@@ -154,7 +153,7 @@ Or you can do it in db container:
 
 ```bash
 $ docker-compose exec devbox-db psql devbox
-psql (9.6.3)
+psql (11.1)
 Type "help" for help.
 
 devbox=#
@@ -169,25 +168,16 @@ $ docker-compose logs -f devbox
 Use curl to access API 
 
 ```bash
-$ curl localhost:7777/\$metadata?_format=yaml
+$ curl localhost:$AIDBOX_PORT/\$metadata?_format=yaml
 {message: Access Denied}
 # ups box is secured
 $ curl -u $AIDBOX_CLIENT_ID:$AIDBOX_CLIENT_SECRET \
-  localhost:8888/\$metadata?_format=yaml | less
+  localhost:$AIDBOX_PORT/\$metadata?_format=yaml | less
 ```
 
 {% hint style="info" %}
 Be careful with **$** sign in url paths \(aka **/$metadata**\) in shell  - you have to escape it \( **/\$metadata**\) otherwise shell will try to interpret it as variables ;\)
 {% endhint %}
-
-#### Run multiple instances
-
-To run multiple instances you can use `docker-compose up` command with `-p` argument to provide prefix for created containers, i.e. \(don't forget change ports for avoiding duplicates\):
-
-```bash
-$ docker-compose -p devbox1 up -d
-$ docker-compose -p devbox2 up -d
-```
 
 #### Stop Aidbox.Dev
 
