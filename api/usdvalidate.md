@@ -2,24 +2,24 @@
 
 ## Introduction
 
-The tool introduced by FHIR to provide a separate validation mechanism for 2 step commit workflow or for development needs. It works for create, update and delete operations, calls using `?mode=` query parameter with values `create`, `update`, `delete`, but changes won't be committed, instead a requester will get an `OperationOutcome` with information about validation results. 
+The tool introduced by FHIR to provide a separate validation mechanism for 2-steps commit workflow or for development needs. It works for create, update and delete operations, is called using `?mode=` query parameter with values `create`, `update`, `delete` but changes won't be committed, instead a requester will get an `OperationOutcome` with information about validation results. See [http://hl7.org/fhir/resource-operation-validate.html](http://hl7.org/fhir/resource-operation-validate.html) for the official documentation. 
 
 ```text
 POST [base]/[type]/$validate
 POST [base]/[type]/[id]/$validate
 ```
 
-Such requests check resource structure, internal business rules and returns a list of problems if some exist.
+Such requests check resource structure, internal business rules and return a list of problems if some exist.
 
-* **`200`** **OK** — those request always returns status 200
+* **`200`** **OK** — those requests always return status 200
 
-Success and failure of validation request is determined by `id` of `OperationOutcome` resource. `allok` and `validationfail` is self-descriptive.
+Success and failure of a validation request is determined by `id` of `OperationOutcome` resource. `allok` and `validationfail` are self-descriptive.
 
 ## Examples
 
-### Validation success
+### Validation Success
 
-Request contains valid `Patient` resource inside body.
+Request contains valid `Patient` resource inside the body.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -40,9 +40,9 @@ resourceType: OperationOutcome
 {% endtab %}
 {% endtabs %}
 
-### Validation failure
+### Validation Failure
 
-Patient name must be an array, `test` is non-existing field.
+Patient name must be an array, `test` is a non-existing field.
 
 {% tabs %}
 {% tab title="Request" %}
