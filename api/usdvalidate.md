@@ -70,3 +70,7 @@ warnings: []
 {% endtab %}
 {% endtabs %}
 
+{% hint style="info" %}
+Validation against profiles has not been supported yet.
+{% endhint %}
+
