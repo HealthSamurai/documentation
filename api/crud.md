@@ -409,7 +409,6 @@ To get `204 No Content` always instead of `200 OK`, use `_no-content=true` query
 
 * **`200`** **OK** — resource successfully delete
 * **`204`** **No Content** — resource already deleted
-* **`404`** **Not Found** — resource not found
 
 ### `200` OK
 
