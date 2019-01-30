@@ -15,6 +15,7 @@
 * Add `Box-Name` headers \(allows to specify box, without changing the url\)
 * Implement [full-text search](https://docs.aidbox.app/api/history#full-text-search) with RUM indices \(requires PostgreSQL 11 with the `rum` extension\)
 * Experimental support for FHIR 4 resources and search parameters
+* Experimental XML support for endpoints starting with `/fhir/` prefix
 
 ## 0.3.3
 
