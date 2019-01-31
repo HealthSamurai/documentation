@@ -14,7 +14,7 @@ For FHIR conformance, we allow to create the CodeSystem resource with a list of 
 
 [`CodeSystem`](https://www.hl7.org/fhir/codesystem.html) resource can be created as a FHIR resource with embedded concepts itself. This approach is applicable for those cases if your code system contains a small number of concepts, usually no more than 100. 
 
-For example, we will create `CodeSystem` for eye color, contained `Brown`, `Blue`, `Green`, `Hazel`,  `Heterochromia` coded concepts.
+For example, we will create a `CodeSystem` for eye color containing `Brown`, `Blue`, `Green`, `Hazel`,  `Heterochromia` coded concepts.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -68,9 +68,9 @@ STATUS: 201
 {% endtab %}
 {% endtabs %}
 
-As you can see request return only `CodeSystem` meta information \(url, status, content....\), and do not return `concept` listed in then request. It is was because `Aidbox` divide `CodeSystem` to `CodeSystem` body and contained concepts list, and create all concepts as a independent `Concept` resources.
+As you can see, the request returns only `CodeSystem` meta information \(url, status, content....\), and does not return `concept` listed in then request. It is because `Aidbox` divides `CodeSystem` to `CodeSystem` body and contained concepts list, and creates all concepts as independent `Concept` resources.
 
-And if we get `Concept` with `system` = `http://code.system/eyes.color`, we are receive all concepts for this CodeSystem.
+And if we get `Concept` with `system` = `http://code.system/eyes.color`, we will receive all concepts for this CodeSystem.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -140,11 +140,9 @@ STATUS: 200
 {% endtab %}
 {% endtabs %}
 
+Another way to create `CodeSystem` is a separate creation of the CodeSystem body and Concepts.
 
-
-The another way to create `CodeSystem` is separate creation CodeSystem body and Concepts.
-
-For example, lets create CodeSystem with custom subset of Units of measurement \(aka [UCUM](http://unitsofmeasure.org/trac)\). This CodeSystem we are compose with most common healthcare units.
+For example, lets create CodeSystem with custom subset of Units of measurement \(aka [UCUM](http://unitsofmeasure.org/trac)\). We will compose this CodeSystem from the most common healthcare units of measure.
 
 | Code | Descriptive Name | Display  |
 | :--- | :--- | :--- |
@@ -160,7 +158,7 @@ For example, lets create CodeSystem with custom subset of Units of measurement \
 | ug/mL | MicroGramsPerMilliLiter | ug/mL |
 | umol/L | MicroMolesPerLiter | umol/L |
 
-For this subset lets create `CodeSystem` resource.
+For this subset, let's create the `CodeSystem` resource.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -192,7 +190,7 @@ STATUS: 201
 {% endtab %}
 {% endtabs %}
 
-And then, create all of listed concepts. We can create a set of concepts via multiple `POST` requests or via one [`Transaction`](https://www.hl7.org/fhir/http.html#transaction) request.
+And then, create all listed concepts. We can create a set of concepts via multiple `POST` requests or via one [`Transaction`](https://www.hl7.org/fhir/http.html#transaction) request.
 
 {% tabs %}
 {% tab title="Multiple requests" %}
@@ -293,11 +291,9 @@ POST [base]
 {% endtab %}
 {% endtabs %}
 
-
-
 ### Read
 
-Read operation work as the same as FHIR read.
+The `read` operation works same as the FHIR `read` interaction.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -321,19 +317,17 @@ STATUS: 201
 {% endtab %}
 {% endtabs %}
 
-
-
 ### Update
 
 {% hint style="warning" %}
-We are not supported updating CodeSystem
+Aidbox does not support update for the CodeSystem resource.
 {% endhint %}
 
-In the terminology is better practice is not update existing Coded Systems. Aidbox is follow this principe. If you need update any existing CodeSystem resource, you need explicitly delete this CodeSystem and re create it again with your changes.
+In the terminology, it is a good practice not to update existing Coded Systems. Aidbox follows this principle. If you need to update any existing CodeSystem resource, you will have to explicitly delete this CodeSystem and re-create it again with your changes.
 
 ### Delete
 
-On delete `CodeSystem`,  Aidbox delete `CodeSystem` resource, and notes all of them `Concept` as `deprecated` = `true`.
+On delete `CodeSystem`,  Aidbox deletes `CodeSystem` resource, and marks each `Concept` with the `deprecated` = `true`.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -357,7 +351,7 @@ STATUS: 201
 {% endtab %}
 {% endtabs %}
 
-And check all concepts for 
+Let's check all concepts of the system.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -434,7 +428,7 @@ STATUS: 200
 
 ## Operations
 
-Aidbox support all standard [FHIR terminology](https://www.hl7.org/fhir/terminology-module.html) CodeSystem operations.
+Aidbox supports all standard [FHIR terminology](https://www.hl7.org/fhir/terminology-module.html) CodeSystem operations.
 
 | FHIR specification | Status | Documentation and samples |
 | :--- | :--- | :--- |
