@@ -34,8 +34,12 @@ client credentials base64 encoded
 {% endapi-method-headers %}
 
 {% api-method-form-data-parameters %}
+{% api-method-parameter name="scope" type="string" required=false %}
+requested scope
+{% endapi-method-parameter %}
+
 {% api-method-parameter name="grant\_type" type="string" required=true %}
-mast be set as `client_credentials`
+value must be set of `client_credentials`
 {% endapi-method-parameter %}
 {% endapi-method-form-data-parameters %}
 {% endapi-method-request %}
@@ -104,16 +108,20 @@ application/json
 {% endapi-method-headers %}
 
 {% api-method-body-parameters %}
+{% api-method-parameter name="scope" type="string" required=false %}
+requested scope
+{% endapi-method-parameter %}
+
 {% api-method-parameter name="grant\_type" type="string" required=true %}
-client\_credentials
+value must be set of `client_credentials`
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="client\_secret" type="string" required=true %}
-client secret
+client secret key
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="client\_id" type="string" required=true %}
-client id
+client ID
 {% endapi-method-parameter %}
 {% endapi-method-body-parameters %}
 {% endapi-method-request %}
@@ -182,16 +190,20 @@ Obtaining `access_token`
 {% api-method-spec %}
 {% api-method-request %}
 {% api-method-body-parameters %}
+{% api-method-parameter name="scope" type="string" required=false %}
+requested scope
+{% endapi-method-parameter %}
+
 {% api-method-parameter name="grant\_type" type="string" required=true %}
-client\_credentials
+value must be set for `client_credentials`
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="client\_secret" type="string" required=true %}
-client secret
+client secret key
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="client\_id" type="string" required=true %}
-client id
+client ID
 {% endapi-method-parameter %}
 {% endapi-method-body-parameters %}
 {% endapi-method-request %}
