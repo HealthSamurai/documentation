@@ -161,7 +161,7 @@ Get `access_token` token via Resource Owner Credentials Grant.
 {% api-method-request %}
 {% api-method-body-parameters %}
 {% api-method-parameter name="client\_secret" type="string" required=true %}
-
+Client secret
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="grant\_type" type="string" required=true %}
@@ -213,15 +213,15 @@ curl -X POST \
 
 ### Secure code flow
 
-This flow consists of few steps. At first you need obtain `code`with redirect flow. Redirect URI is previously set in client registration.
+For more security we can receive secret code and exchange it for an access token. This flow consists of few steps. At first you need obtain `code`with redirect flow. Redirect URI must  previously set in client registration.
 
-{% api-method method="get" host="\[base\]/auth/authorize" path="" %}
+{% api-method method="get" host="\[base\]/auth/authorize" path="/" %}
 {% api-method-summary %}
 Authorization code endpoint
 {% endapi-method-summary %}
 
 {% api-method-description %}
-
+Obtaining secure code
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -256,15 +256,81 @@ Obtain code and state in uri fragment
 {% endapi-method-spec %}
 {% endapi-method %}
 
+`code` will be provided in fragment of URI after redirect. 
+
+Next step - exchanging `code` and client credentials for `access_token`
+
+{% api-method method="post" host="\[base\]" path="/auth/token" %}
+{% api-method-summary %}
+Token Endpoint
+{% endapi-method-summary %}
+
+{% api-method-description %}
+Get `access_token` token via Resource Owner Credentials Grant. All parameters packed in JSON.
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-body-parameters %}
+{% api-method-parameter name="code" type="string" required=true %}
+Obtained previously code
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="grant\_type" type="string" required=true %}
+Value MUST be set to `password`
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="client\_id" type="string" required=true %}
+Client Id
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="password" type="string" required=true %}
+User password
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="username" type="string" required=true %}
+User identification email
+{% endapi-method-parameter %}
+{% endapi-method-body-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
 #### Example
 
 {% tabs %}
 {% tab title="Request" %}
-
+```javascript
+curl -X POST \
+  http://localhost:8081/auth/token \
+  -H 'Content-Type: application/json' \
+  -d '{"code":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJyby1kZWZhdWx0LWNsaWVudCIsImV4cCI6MTU0OTg4MzA2MCwianRpIjoiT0RCaU5tTXhOalF0WVRSa1l5MDBNV1V6TFdJM1pETXRaakE0TlRabFpHTmlaRGRtIn0.Oib74zmGjj3_pUkSCPejAalRzguebdLEppJcGitD1bE",
+ "client_id":"ro-default-client",
+ "grant_type":"password",
+ "username":"user@mail.com",
+ "password":"password"}'
+```
 {% endtab %}
 
-{% tab title="Second Tab" %}
-
+{% tab title="Response" %}
+```javascript
+{
+    "token_type": "Bearer",
+    "access_token": "NTNmOTM4ODYtOGIyZi00MDZkLTkzM2MtMDgxNWE3Yzg2OGJk"
+}
+```
 {% endtab %}
 {% endtabs %}
 
