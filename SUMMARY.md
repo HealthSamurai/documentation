@@ -59,7 +59,7 @@
   * [OAuth 2.0 Flows](auth-betta/oauth-2.0-flows/README.md)
     * [Client Credentials Grant](auth-betta/oauth-2.0-flows/client-credentials.md)
     * [Resource Owner Credentials Grant](auth-betta/oauth-2.0-flows/resource-owner-password.md)
-    * [Authorization Code](auth-betta/oauth-2.0-flows/authorization-code.md)
+    * [Authorization Code Grant](auth-betta/oauth-2.0-flows/authorization-code.md)
     * [Implicit](auth-betta/oauth-2.0-flows/implicit.md)
     * [Refresh Token](auth-betta/oauth-2.0-flows/refresh-token.md)
   * [Scenarios](auth-betta/scenarios-1.md)
