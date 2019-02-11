@@ -8,15 +8,15 @@ All extensions used in resources require a formal published definition which can
 
 Every extension in a resource refers directly to its definition, which is made available as a [StructureDefinition](http://hl7.org/fhir/STU3/structuredefinition.html). A resource can be [profiled](http://hl7.org/fhir/STU3/profiling.html) to specify where particular extensions are used.
 
-Before defining a new extension, attempt to reuse existing extensions defined in one of the [shared registries described below](http://hl7.org/fhir/STU3/defining-extensions.html#registration).
+Before defining a new extension, attempt to reuse existing extensions defined in one of the shared registries described below.
 
-Read more about FHIR extensions here: [http://hl7.org/fhir/STU3/extensibility.html](http://build.fhir.org/extensibility.html) and [http://build.fhir.org/defining-extensions.html](http://build.fhir.org/defining-extensions.html).
+Read more about FHIR extensions here: [http://hl7.org/fhir/STU3/extensibility.html](http://build.fhir.org/extensibility.html) and [http://hl7.org/fhir/STU3/defining-extensions.html](http://hl7.org/fhir/STU3/defining-extensions.html).
 
 ## Extension Registries
 
 There are two places where you can search for existing extensions:
 
-* official extensions that are part of the FHIR standard: [http://build.fhir.org/extensibility-registry.html](http://build.fhir.org/extensibility-registry.html),
+* official extensions that are part of the FHIR standard: [http://hl7.org/fhir/STU3/extensibility-registry.html](http://hl7.org/fhir/STU3/extensibility-registry.html),
 * user defined extensions published in the FHIR registry: [https://registry.fhir.org](https://registry.fhir.org).
 
 ## How to Create an Extension
@@ -38,8 +38,7 @@ PUT /fhir/StructureDefinition/observation-heartRateMotionContext
   "title": "heartRateMotionContext",
   "status": "active",
   "date": "2018-12-21",
-  "publisher": "Health Samurai",
-  
+  "publisher": "Health Samurai",  
   "description": "HeartRateMotionContext when the observation was done, e.g. 0: 'notSet', 1: 'sedentary', 2: 'active'",
   "fhirVersion": "3.0.1",
   "kind": "complex-type",
@@ -66,8 +65,7 @@ PUT /fhir/StructureDefinition/observation-heartRateMotionContext
   "title": "heartRateMotionContext",
   "status": "active",
   "date": "2018-12-21",
-  "publisher": "Health Samurai",
-  
+  "publisher": "Health Samurai",  
   "description": "HeartRateMotionContext when the observation was done, e.g. 0: 'notSet', 1: 'sedentary', 2: 'active'",
   "fhirVersion": "3.0.1",
   "kind": "complex-type",

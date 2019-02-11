@@ -1,4 +1,4 @@
-# Auth \(betta\)
+# Auth \(beta\)
 
 [Aidbox](https://www.health-samurai.io/aidbox) is coming with built-in auth module, which allows you easy implement
 
