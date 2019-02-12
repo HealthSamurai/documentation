@@ -86,9 +86,9 @@ Will be here after implementation
 {% endtab %}
 {% endtabs %}
 
-### JSON Request way
+### JSON/Body parameters request  way
 
-In JSON Request you need specify `client_id`, `client_secret` and `grant_type` value MUST be set to `client_credentials` .  All parameters is required.
+ You need specify `client_id`, `client_secret` and `grant_type` value MUST be set to `client_credentials` .  All parameters is required.
 
 {% api-method method="post" host="\[base\]/auth/" path="token" %}
 {% api-method-summary %}
@@ -148,10 +148,12 @@ Pragma: no-cache
 {% endapi-method-spec %}
 {% endapi-method %}
 
+Also you have an ability pass all parameters in form-data
+
 #### Example
 
 {% tabs %}
-{% tab title="Request" %}
+{% tab title="JSON request" %}
 ```javascript
 curl -X POST \
   http://localhost:8081/auth/token \
@@ -164,77 +166,7 @@ curl -X POST \
 ```
 {% endtab %}
 
-{% tab title="Response" %}
-```javascript
-{
-    "token_type": "Bearer",
-    "access_token": "NDE0ZGIyYjQtMzNjZi00ZWQwLWFiNDYtNDMyNjI5NzhlODQ0"
-}
-```
-{% endtab %}
-{% endtabs %}
-
-### POST Body parameters way
-
-All parameters sends in request body
-
-{% api-method method="post" host="\[base\]/auth/" path="token" %}
-{% api-method-summary %}
-Access token endpoint
-{% endapi-method-summary %}
-
-{% api-method-description %}
-Obtaining `access_token`
-{% endapi-method-description %}
-
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-body-parameters %}
-{% api-method-parameter name="scope" type="string" required=false %}
-requested scope
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="grant\_type" type="string" required=true %}
-value must be set for `client_credentials`
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="client\_secret" type="string" required=true %}
-client secret key
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="client\_id" type="string" required=true %}
-client ID
-{% endapi-method-parameter %}
-{% endapi-method-body-parameters %}
-{% endapi-method-request %}
-
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
-```http
-Content-Type: application/json;charset=UTF-8
-Cache-Control: no-store
-Pragma: no-cache
-
-{
-       "access_token":"2YotnFZFEjr1zCsicMWpAA",
-       "token_type":"example",
-       "expires_in":3600,
-       "example_parameter":"example_value"
-}
-```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
-
-#### Example
-
-{% tabs %}
-{% tab title="Request" %}
+{% tab title="Form-data request" %}
 ```javascript
 curl -X POST \
   http://localhost:8081/auth/token \
@@ -246,7 +178,7 @@ curl -X POST \
 ```javascript
 {
     "token_type": "Bearer",
-    "access_token": "OGY1MjkwZmUtYWNlMS00ZDczLWFkMGUtYmFlMTRlZDRiYWE0"
+    "access_token": "NDE0ZGIyYjQtMzNjZi00ZWQwLWFiNDYtNDMyNjI5NzhlODQ0"
 }
 ```
 {% endtab %}
