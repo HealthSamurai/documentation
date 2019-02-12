@@ -4,11 +4,13 @@
 
 The resource owner password credentials grant type is suitable in cases where the resource owner has a trust relationship with the client, such as the device operating system or a highly privileged. The application acts on behalf of the user.
 
-[Aidbox](https://www.health-samurai.io/aidbox) OAuth module support this flow in different formats. First- Strict adherence to specifications for better compatibility. Second - JSON request as a more modern and simple way. Also we have  availability send all data in POST Body. Read official [OAuth2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.3) for more details.
+![Basic scheme](../../.gitbook/assets/untitled-diagram-page-2.svg)
+
+[Aidbox](https://www.health-samurai.io/aidbox) OAuth module support this flow in different formats. First- Strict adherence to specifications for better compatibility. Second - JSON request as a more modern and simple way. Also we have availability send all data in POST Body form parameters. Read official [OAuth2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.3) for more details.
 
 ## JSON Request
 
-In JSON Request, you need to specify `client_id`, `client_secret` ,  `grant_type` ,  `username,` and `password` .  All parameters are required.
+You need to specify `client_id`, `client_secret` ,  `grant_type` ,  `username,` and `password` .  All parameters are required.
 
 {% api-method method="post" host="\[base\]" path="/auth/token" %}
 {% api-method-summary %}
@@ -16,13 +18,13 @@ Token Endpoint
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Get `access_token` token via Resource Owner Credentials Grant. Body parameters packed in JSON format.
+Get `access_token` token via Resource Owner Credentials Grant.
 {% endapi-method-description %}
 
 {% api-method-spec %}
 {% api-method-request %}
 {% api-method-headers %}
-{% api-method-parameter name="Content-Type" type="string" required=false %}
+{% api-method-parameter name="Content-Type" type="string" required=true %}
 application/json
 {% endapi-method-parameter %}
 {% endapi-method-headers %}
