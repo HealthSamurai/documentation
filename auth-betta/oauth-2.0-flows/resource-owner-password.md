@@ -36,7 +36,7 @@ application/json
 client secret key \(REQUIRED if was issued by client\)
 {% endapi-method-parameter %}
 
-{% api-method-parameter name="Scope" type="string" required=false %}
+{% api-method-parameter name="scope" type="string" required=false %}
 requested scope
 {% endapi-method-parameter %}
 
