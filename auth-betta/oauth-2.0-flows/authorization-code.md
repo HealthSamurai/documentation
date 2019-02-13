@@ -36,7 +36,7 @@ If provided it must match with registered redirect URI
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="response\_type" type="string" required=true %}
-value MUST set for `code`
+value MUST set to `code`
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="client\_id" type="string" required=true %}

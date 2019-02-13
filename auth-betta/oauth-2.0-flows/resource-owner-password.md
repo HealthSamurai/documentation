@@ -136,7 +136,7 @@ some data that will be provided in redirected response
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="grant\_type" type="string" required=true %}
-value must set for `password`
+value must set to `password`
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="client\_id" type="string" required=true %}
@@ -185,7 +185,7 @@ obtained previously code
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="grant\_type" type="string" required=true %}
-value MUST be set for `password`
+value MUST be set to `password`
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="client\_id" type="string" required=true %}

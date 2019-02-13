@@ -2,7 +2,7 @@
 
 #### Description
 
-Implicit Flow it's alternative for Authorization Code flow without `client_secret`. This flow instead of obtaining secure`code` just receives `access_token` in query string fragment.
+Implicit Grant flow it's alternative for Authorization Code flow without `client_secret`. This flow instead of obtaining secure`code` just receives `access_token` in query string fragment. It's for  client-side apps use in order to access an API, typically as Web SPA applications. For more detailed information read [OAuth2.0 specifcation](https://tools.ietf.org/html/rfc6749#section-4.2).
 
 ![Basic scheme](../../.gitbook/assets/untitled-diagram-page-4.svg)
 
@@ -19,23 +19,23 @@ Obtaining access token
 {% api-method-request %}
 {% api-method-query-parameters %}
 {% api-method-parameter name="state" type="string" required=false %}
-A value used by the client  to maintain state between the request and callback
+a value used by the client  to maintain state between the request and callback
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="scope" type="string" required=false %}
-Scope of the access request
+scope of the access request
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="redirect\_uri" type="string" required=false %}
-Client redirect URI
+client redirect URI
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="client\_id" type="string" required=true %}
-Client ID
+client ID
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="response\_type" type="string" required=true %}
-Value MUST be set to `token`
+value MUST be set to `token`
 {% endapi-method-parameter %}
 {% endapi-method-query-parameters %}
 {% endapi-method-request %}
@@ -68,7 +68,7 @@ After allowing you will redirect to your application with `access_token` in quer
 
 {% tabs %}
 {% tab title="Request" %}
-```text
+```bash
 curl -X GET \
   'http://localhost:8081/auth/authorize?
         state=example
