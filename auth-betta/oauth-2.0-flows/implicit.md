@@ -4,6 +4,8 @@
 
 Implicit Flow it's alternative for Authorization Code flow without `client_secret`. This flow instead of obtaining secure`code` just receives `access_token` in query string fragment.
 
+![Basic scheme](../../.gitbook/assets/untitled-diagram-page-4.svg)
+
 {% api-method method="get" host="\[base\]/" path="auth/authorize" %}
 {% api-method-summary %}
 Authorization Endpoint
