@@ -77,7 +77,7 @@ After this request you will be redirected to Log-in/Sign-up page
 
 Next step - user authentication and granting access.
 
-![Example](../../.gitbook/assets/screenshot-2019-02-11-18.19.49.png)
+![Example](../../.gitbook/assets/screenshot-2019-02-11-19.47.39.png)
 
   
 Assuming the resource owner grants access, the authorization server redirects the user-agent back to the client using the redirection URI provided earlier \(in the request or during client registration\). The redirection URI includes an authorization code and any local state provided by the client earlier.
