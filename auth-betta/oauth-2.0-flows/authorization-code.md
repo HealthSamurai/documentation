@@ -2,7 +2,9 @@
 
 #### Description
 
-The Authorization Code Grant ****is an OAuth 2.0 flow that regular web apps use in order to access an API, typically as Web applications with backend and frontend. For more detailed information read [OAuth2.0 specifcation](https://tools.ietf.org/html/rfc6749#section-4.1). This flow is applied for a browser-based application \(SPA\) and it didn't use `client-secret`, because the source code is available in a browser - it isn't secure. Instead of this user authorizes the application, they are redirected back to the application with a temporary code in the URL. The application exchanges that code for the access token. 
+The Authorization Code Grant ****is an OAuth 2.0 flow that regular web apps use in order to access an API, typically as Web applications with backend and frontend. For more detailed information read [OAuth2.0 specifcation](https://tools.ietf.org/html/rfc6749#section-4.1). This flow is also applied for a browser-based application \(SPA\) and it didn't use `client-secret`, because the source code is available in a browser - it isn't secure. Instead of this user authorizes the application and  redirected back to the application with a temporary code in the URL. The application exchanges that code for the access token. 
+
+![Basic scheme](../../.gitbook/assets/untitled-diagram-page-3.svg)
 
 ## Authorization Request
 
@@ -21,36 +23,37 @@ Obtaining `code`
 {% api-method-request %}
 {% api-method-query-parameters %}
 {% api-method-parameter name="scope" type="string" required=false %}
-The scope of the access request
+requested scope
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="state" type="string" required=false %}
-A value used by the client to maintain state between the request and callback
+value used by the client to maintain state between the request and callback
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="redirect\_uri" type="string" required=false %}
-Client `redirect_uri`
+client `redirect_uri`     
+If provided it must match with registered redirect URI
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="response\_type" type="string" required=true %}
-Value MUST set to  
-`code`
+value MUST set for `code`
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="client\_id" type="string" required=true %}
-Client ID
+client ID
 {% endapi-method-parameter %}
 {% endapi-method-query-parameters %}
 {% endapi-method-request %}
 
 {% api-method-response %}
-{% api-method-response-example httpCode=200 %}
+{% api-method-response-example httpCode=302 %}
 {% api-method-response-example-description %}
 
 {% endapi-method-response-example-description %}
 
 ```
-
+     Location: [redirect_url]?code=SplxlOBeZQQYbYS6WxSbIA
+               &state=xyz
 ```
 {% endapi-method-response-example %}
 {% endapi-method-response %}
@@ -61,9 +64,9 @@ Client ID
 
 {% tabs %}
 {% tab title="Request" %}
-```http
+```bash
 curl -X GET \
-  'http://localhost:8081/auth/authorize?client_id=ac-client&state=example&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3449%2Fauth.html'
+  'http://localhost:8081/auth/authorize?client_id=ac-client&state=example&response_type=code'
 ```
 {% endtab %}
 {% endtabs %}
@@ -95,20 +98,24 @@ Obtaining `access_token`
 {% api-method-spec %}
 {% api-method-request %}
 {% api-method-body-parameters %}
+{% api-method-parameter name="client\_secret" type="string" required=false %}
+required for confidential clients
+{% endapi-method-parameter %}
+
 {% api-method-parameter name="client\_id" type="string" required=true %}
-Client ID
+client ID
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="redirect\_uri" type="string" required=false %}
-REQUIRED, if it provided in authorization code request
+required if it provided in authorization code request
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="code" type="string" required=true %}
-Authorization code received early
+authorization code received early
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="grant\_type" type="string" required=true %}
-Value MUST set of `authorization_code`
+value MUST set of `authorization_code`
 {% endapi-method-parameter %}
 {% endapi-method-body-parameters %}
 {% endapi-method-request %}
@@ -133,23 +140,23 @@ Value MUST set of `authorization_code`
 #### Example
 
 {% tabs %}
-{% tab title="Request JSON" %}
+{% tab title="JSON request" %}
 ```javascript
 curl -X POST \
   http://localhost:8081/auth/token \
   -H 'Content-Type: application/json' \
   -d '{"code":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyIiwiY2xpIjoiYWMtY2xpZW50IiwiZXhwIjoxNTQ5ODk2NzA1LCJqdGkiOiJPRGMzT1RWa016WXRORGMyTkMwMFl6bG1MV0ZoTXpJdE5ESTBZbVJtTnpZNE1qUXgifQ.1lC4EJlwZJcxLW_WMgAALDM8OAuUcaSsjkhMI9RxERM",
       "client_id":"ac-client",
-      "grant_type":"code"}'
+      "grant_type":"authorization_code"}'
 ```
 {% endtab %}
 
-{% tab title="Request Form Data" %}
+{% tab title="Form parameters request" %}
 ```javascript
 curl -X POST \
   http://localhost:8081/auth/token \
   -H 'Content-Type: application/x-www-form-urlencoded' \
-  -d 'grant_type=code
+  -d 'grant_type=authorization_code
       &code=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyIiwiY2xpIjoiYWMtY2xpZW50IiwiZXhwIjoxNTQ5ODk3MDM4LCJqdGkiOiJNakpoTVRNNVpqY3RaRGcwT0MwME1qZzRMVGxrTkRRdFpESTRORGcwTldSaU9EVXoifQ.-W-QMB1oT_1iQoJXW0A59WfcZ0WHnOOy21-SLaOr9j0
       &client_id=ac-client'
 ```
@@ -165,5 +172,30 @@ curl -X POST \
 {% endtab %}
 {% endtabs %}
 
+Confidential clients or clients for which was issued `client_id` must be authenticated by server. Identifier can be provided as parameter like the others in body or we can use authorization header with encoded client credentials.
 
+{% tabs %}
+{% tab title="JSON requst" %}
+```bash
+curl -X POST \
+  http://localhost:8081/auth/token \
+  -H 'Authorization: Basic Y2MtY2xpZW50OnZlcnlzZWNyZXRzZWNyZXQ=' \
+  -H 'Content-Type: application/json' \
+  -d '{
+	"grant_type": "authorization_code",
+	"client_id": "ac-client"
+}'
+```
+{% endtab %}
+
+{% tab title="Form parameters request" %}
+```bash
+curl -X POST \
+  http://localhost:8081/auth/token \
+  -H 'Authorization: Basic Y2MtY2xpZW50OnZlcnlzZWNyZXRzZWNyZXQ=' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'grant_type=authorization_code&client_id=ac-client'
+```
+{% endtab %}
+{% endtabs %}
 
