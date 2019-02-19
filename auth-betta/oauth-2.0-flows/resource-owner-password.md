@@ -8,6 +8,90 @@ The resource owner password credentials grant type is suitable in cases where th
 
 [Aidbox](https://www.health-samurai.io/aidbox) OAuth module support this flow in different formats. First- Strict adherence to specifications for better compatibility. Second - JSON request as a more modern and simple way. Also we have availability send all data in POST Body form parameters. Read official [OAuth2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.3) for more details.
 
+### OAuth2.0 RFC Specification way
+
+Basic header, and `body` should be in `application/x-www-form-urlencoded` format  and `grant_type` parameter value MUST be set to `password`
+
+{% api-method method="post" host="\[base\]/auth/" path="token" %}
+{% api-method-summary %}
+Access token endpoint
+{% endapi-method-summary %}
+
+{% api-method-description %}
+Obtaining `access_token`
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-headers %}
+{% api-method-parameter name="Content-Type" type="string" required=true %}
+application/x-www-form-urlencoded
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="Authorization" type="string" required=true %}
+client credentials base64 encoded
+{% endapi-method-parameter %}
+{% endapi-method-headers %}
+
+{% api-method-form-data-parameters %}
+{% api-method-parameter name="scope" type="string" required=false %}
+requested scope
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="grant\_type" type="string" required=true %}
+value must be set of `password`
+{% endapi-method-parameter %}
+{% endapi-method-form-data-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```http
+Content-Type: application/json;charset=UTF-8
+Cache-Control: no-store
+Pragma: no-cache
+
+{
+       "access_token": "2YotnFZFEjr1zCsicMWpAA" (required),
+       "token_type":"example" (required),
+       "expires_in":3600 (optional),
+       "refresh_token": "2YotnFZFEjr1zCsiaasdasdaqe" (optional)
+}
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+#### Example
+
+{% tabs %}
+{% tab title="Request" %}
+```bash
+curl -X POST \
+  http://localhost:8081/auth/token \
+  -H 'Authorization: Y2MtY2xpZW50OnZlcnlzZWNyZXRzZWNyZXQ=' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'grant_type=password'
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+{
+    "token_type": "Bearer",
+    "expires_in": 3600,
+    "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODEiLCJzdWIiOiJtb2Rlcm5hcHAiLCJqdGkiOiJjMTYxMTZjZS1iNGVhLTQwMjctYWI4OC0zNmJkZmE0YjQzM2QiLCJleHAiOjE1NDk5NzEzNDd9.QsaPNzS6DaA-6TgtrVZFVfg0Os45GJ3l4tQW92o4xq7aqultAwRi_E-NTOCqLO21l0QgNfr5HfAre-0o3O6Bg7nEuiyt4iO5au80YwQIS_L41OwMzNgtGORb3EHfafLa2Al5bzh7gmRIFuxCG7m8P4SypfsAGhWfILvOdAFqpamLoNAUOZGGyJLv_MRvyFKgSQgRGnb_F-e874hzgoNIrHXRnX1FaThHldoc9yE8E5wuLjLLXTKI23hCNOBzscNf1toAOnuJOdlTQSBScpX6yNQYBYIGAIbq_Qz6x7wfcbU2yBFzZpIv8OKRRb0tful_oFhkpry1LH8nM6J1XLfSpA",
+    "refresh_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODEiLCJzdWIiOiJtb2Rlcm5hcHAiLCJqdGkiOiJjMTYxMTZjZS1iNGVhLTQwMjctYWI4OC0zNmJkZmE0YjQzM2QiLCJ0eXAiOiJyZWZyZXNoIn0.cBn5Mm8yHAX4wABsqhD6EohiHJRCRDMbJruHaObPJ7WYglkMjRQ2JuEmPTqBRjMJQvsx-eLlnGPmDLIGhoPi0du_V0UrXVBrbZrA8V4kELMGmJlnR-eNptpJIzrQVhLxyh6AhvxPEqZMI5xqKFEF6ealbnbEcazc8x2BHIaQZPeTjHouZkB5AHKsZyAjByVLz_7nGSG0ziW5iBNSyMNE-Tn6fS2lmhk0_IIetJYT_10TWAIRNXxiBnYJeFO18yBhzqupQYBvXWKTn84WsJNMGq7qiUxWQwV8E6a_SsgCuvk04oTzXDG8_mV4MiEYd16wz52u9DyHP_2JSeHICaSefg"
+}
+```
+{% endtab %}
+{% endtabs %}
+
 ## JSON/Form parameters request
 
 You need to specify required params `client_id` ,  `grant_type` ,  `username,` and `password` .

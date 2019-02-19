@@ -86,6 +86,90 @@ Assuming the resource owner grants access, the authorization server redirects th
 
 The `client` requests an access token from the authorization server's token endpoint by including the authorization `code` received in the previous step. When making the request, the client authenticates with the authorization server. The client includes the redirection URI used to obtain the authorization code for verification.
 
+### OAuth2.0 RFC Specification way
+
+Basic header, and `body` should be in `application/x-www-form-urlencoded` format  and `grant_type` parameter value MUST be set to `authorization_code`
+
+{% api-method method="post" host="\[base\]/auth/" path="token" %}
+{% api-method-summary %}
+Access token endpoint
+{% endapi-method-summary %}
+
+{% api-method-description %}
+Obtaining `access_token`
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-headers %}
+{% api-method-parameter name="Content-Type" type="string" required=true %}
+application/x-www-form-urlencoded
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="Authorization" type="string" required=true %}
+client credentials base64 encoded
+{% endapi-method-parameter %}
+{% endapi-method-headers %}
+
+{% api-method-form-data-parameters %}
+{% api-method-parameter name="scope" type="string" required=false %}
+requested scope
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="grant\_type" type="string" required=true %}
+value must be set of `authorization_code`
+{% endapi-method-parameter %}
+{% endapi-method-form-data-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```http
+Content-Type: application/json;charset=UTF-8
+Cache-Control: no-store
+Pragma: no-cache
+
+{
+       "access_token": "2YotnFZFEjr1zCsicMWpAA" (required),
+       "token_type":"example" (required),
+       "expires_in":3600 (optional),
+       "refresh_token": "2YotnFZFEjr1zCsiaasdasdaqe" (optional)
+}
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+#### Example
+
+{% tabs %}
+{% tab title="Request" %}
+```bash
+curl -X POST \
+  http://localhost:8081/auth/token \
+  -H 'Authorization: Y2MtY2xpZW50OnZlcnlzZWNyZXRzZWNyZXQ=' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'grant_type=authorization_code'
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+{
+ "token_type": "Bearer",
+ "access_token": "OTJhNDdiOTgtNGYxMS00ZDdhLTg1NWQtOGRiN2Y2ZTNlNzJm"
+}
+```
+{% endtab %}
+{% endtabs %}
+
+## JSON/Form parameters request
+
 {% api-method method="post" host="\[base\]/" path="auth/token" %}
 {% api-method-summary %}
 Token Endpoint

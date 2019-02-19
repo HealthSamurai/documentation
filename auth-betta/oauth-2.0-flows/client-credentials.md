@@ -8,9 +8,9 @@ The Client Credentials grant is used when applications request an access token t
 
 [Aidbox](https://www.health-samurai.io/aidbox) OAuth module support Client Credentials Grant flow in different formats. First- Strict adherence to specifications for better compatibility. Second - JSON request as a more modern and simple way. Also we have  availability send all data in POST Body. Read official [OAuth2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.4) for more details.
 
-### OAuth2.0 RFC Specification way \(Not implemented\)
+### OAuth2.0 RFC Specification way
 
-As described in [OAuth2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.4) client credentials  should be presented via Authorization Basic header, and `body` should be in `application/x-www-form-urlencoded` format  and `grant_type` parameter value MUST be set to `client_credentials`
+As described in [OAuth2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.4) client credentials should be presented via Authorization Basic header, and `body` should be in `application/x-www-form-urlencoded` format  and `grant_type` parameter value MUST be set to `client_credentials`
 
 {% api-method method="post" host="\[base\]/auth/" path="token" %}
 {% api-method-summary %}
