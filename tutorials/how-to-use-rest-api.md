@@ -60,7 +60,8 @@ $ echo -n "root:sercret" | base64
 # cm9vdDpzZWNyZXQ=
 ```
 
-Now you can request Patient list with `Aiuthorization` header equal "`Basic cm9vdDpzZWNyZXQ=`"
+Now you can request Patient list with `Authorization` header equal -   
+"`Basic cm9vdDpzZWNyZXQ=`"
 
 ```bash
 $ curl -H "Authorization: Basic cm9vdDpzZWNyZXQ=" http://localhost:8888/Patient
