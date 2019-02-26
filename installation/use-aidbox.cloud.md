@@ -26,7 +26,7 @@ And now you are successfully authorized in Aidbox.Cloud. Click the 'New Box' but
 
 In the displayed form, enter your future box name. It can be a name of your application you are going to build. It will be the base URL of your FHIR server.
 
-![](../.gitbook/assets/scr-2018-10-11_10-52-23.png)
+![](../.gitbook/assets/scr-2019-02-26_18-29-25.png)
 
 Choose the desired FHIR version, billing method, and click the 'Create' button.
 
