@@ -1,6 +1,18 @@
 # Release Notes
 
-## Unreleased
+## Unreleased \(0.4.0\)
+
+### Features
+
+* New [AUTH module](auth-betta/)
+* Web UI for Aidbox.Dev 
+
+### Bug fixes
+
+* \# ...
+* \# ...
+
+## 0.3.4
 
 * Subscriptions `$poll` operation and `webhook` channel: [Subscriptions](api/subscriptions.md);
 * Fixed [Aidbox](https://www.health-samurai.io/aidbox) to FHIR data transformation bug when polymorphic attributes wasn't properly handled in recursive elements such as `QuestionnaireResponse.item`
