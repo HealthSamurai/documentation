@@ -9,9 +9,7 @@
 
 ### Bug fixes
 
-* \# ...
-* \# ...
-
+* 
 ## 0.3.4
 
 * Subscriptions `$poll` operation and `webhook` channel: [Subscriptions](api/subscriptions.md);
