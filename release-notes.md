@@ -4,12 +4,14 @@
 
 ### Features
 
-* New [AUTH module](auth-betta/)
-* Web UI for Aidbox.Dev 
+* New [Auth module](auth-betta/) \(OAuth2 implementation\)
+* Web UI for Aidbox.Dev
 
 ### Bug fixes
 
-* 
+* Fix search by reference with `:identifier` modifier
+* Fix `Bundle.total` value when performing search inside Compartment
+
 ## 0.3.4
 
 * Subscriptions `$poll` operation and `webhook` channel: [Subscriptions](api/subscriptions.md);
