@@ -2,6 +2,10 @@
 
 ## Unreleased \(0.4.0\)
 
+### **Planned**
+
+Terminology onder `fhir` prefix \(issues \#51 \#50 \#38\)
+
 ### Features
 
 * New [Auth module](auth-betta/) \(OAuth2 implementation\)
