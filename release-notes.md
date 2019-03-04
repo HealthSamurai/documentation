@@ -6,6 +6,7 @@
 
 * New [Auth module](auth-betta/) \(OAuth2 implementation\)
 * Web UI for Aidbox.Dev
+* Migrate to Java 11
 
 ### Bug fixes
 
