@@ -17,6 +17,7 @@ Terminology under `fhir` prefix \(issues \#51 \#50 \#38\)
 * Fix search by reference with `:identifier` modifier
 * Fix `Bundle.total` value when performing search inside Compartment
 * [\#51](https://github.com/Aidbox/Issues/issues/51) Fix CodeSystem create on `/fhir` api
+* [\#49](https://github.com/Aidbox/Issues/issues/49) Fix \_sort with dashes in parameter name
 
 ## 0.3.5  Hotfix
 
