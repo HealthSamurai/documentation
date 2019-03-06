@@ -148,5 +148,36 @@ After this application runs authorization code flow with additional parameter - 
 {% endtab %}
 {% endtabs %}
 
+### Launch real app
 
+We will launch [Growth Chart](https://github.com/smart-on-fhir/growth-chart-app) - application which displays statistical data for the patient. See information in repo about how run it locally.
+
+Then create `Client` resource for this app
+
+{% tabs %}
+{% tab title="Client" %}
+```javascript
+{"resourceType": "Client",
+ "id": "growth_chart",
+ "grant_types":  ["authorization_code"],
+ "smart": {"launch_uri":   "http://localhost:9000/launch.html"}
+ "auth": {"authorization_code":
+           {"redirect_uri": "http://localhost:9000/"}}}
+```
+{% endtab %}
+{% endtabs %}
+
+Load base dataset
+
+{% tabs %}
+{% tab title="Dataset" %}
+```text
+
+```
+{% endtab %}
+
+{% tab title="Second Tab" %}
+
+{% endtab %}
+{% endtabs %}
 
