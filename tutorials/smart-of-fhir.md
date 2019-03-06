@@ -7,7 +7,7 @@ SMART apps it is third-party applications which interact with medical data provi
 | Parameter | Description |
 | :--- | :--- |
 | launch\_uri | required, the base URL of the application, usually starts the authorization process |
-| redirect\_uri | required |
+| redirect\_uri | required, app will redirected here with authorization code |
 
 ### Base **patient** flow
 
