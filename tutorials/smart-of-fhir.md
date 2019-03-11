@@ -156,15 +156,18 @@ Then create `Client` and `User` resources for this app
 
 {% tabs %}
 {% tab title="Client" %}
-```javascript
+```yaml
 POST /Client
 
-{"resourceType": "Client",
- "id": "growth_chart",
- "grant_types":  ["authorization_code"],
- "smart": {"launch_uri":   "http://localhost:9000/launch.html"},
- "auth": {"authorization_code":
-           {"redirect_uri": "http://localhost:9000/"}}}
+resourceType: Client
+id: growth_chart
+grant_types:
+- authorization_code
+smart:
+  launch_uri: http://localhost:9000/launch.html
+auth:
+  authorization_code:
+    redirect_uri: http://localhost:9000/
 ```
 {% endtab %}
 
@@ -172,8 +175,8 @@ POST /Client
 ```javascript
 POST /User
 
-{"email": "user@test.com",
- "password": "123456"}
+email: user@test.com
+password: '123456'
  
  // don't forget to change credentials
 ```
@@ -216,7 +219,8 @@ entry:
       start: '2003-11-28'
       end: '2003-11-28'
     subject:
-      uri: 'Patient/patient-1'
+      resourceType: Patient
+      id: patient-1
   fullUrl: 'Encounter/enc-1'
 
   request:
@@ -243,7 +247,8 @@ entry:
         display: height
       text: height
     subject:
-      uri: 'Patient/patient-1'
+      resourceType: Patient
+      id: patient-1
   fullUrl: 'Observation/height-1'
 
   request:
@@ -271,7 +276,8 @@ entry:
         display: weight
       text: weight
     subject:
-      uri: 'Patient/patient-1'
+      resourceType: Patient
+      id: patient-1
   fullUrl: 'Observation/weight-1'
 
   request:
@@ -299,7 +305,8 @@ entry:
         display: bmi
       text: bmi
     subject:
-      uri: 'Patient/patient-1'
+      resourceType: Patient
+      id: patient-1
   fullUrl: 'Observation/bmi-1'
 
   request:
@@ -318,7 +325,8 @@ entry:
       start: '2004-11-28'
       end: '2004-11-28'
     subject:
-      uri: 'Patient/patient-1'
+      resourceType: Patient
+      id: patient-1
   fullUrl: 'Encounter/enc-2'
 
   request:
@@ -346,7 +354,8 @@ entry:
         display: height
       text: height
     subject:
-      uri: 'Patient/patient-1'
+      resourceType: Patient
+      id: patient-1
   fullUrl: 'Observation/height-2'
 
   request:
@@ -374,7 +383,8 @@ entry:
         display: weight
       text: weight
     subject:
-      uri: 'Patient/patient-1'
+      resourceType: Patient
+      id: patient-1
   fullUrl: 'Observation/weight-2'
 
   request:
@@ -402,7 +412,8 @@ entry:
         display: bmi
       text: bmi
     subject:
-      uri: 'Patient/patient-1'
+      resourceType: Patient
+      id: patient-1
   fullUrl: 'Observation/bmi-2'
 
   request:
