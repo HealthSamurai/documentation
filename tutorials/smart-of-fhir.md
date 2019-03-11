@@ -152,32 +152,268 @@ After this application runs authorization code flow with additional parameter - 
 
 We will launch [Growth Chart](https://github.com/smart-on-fhir/growth-chart-app) - application which displays statistical data for the patient. See information in repo about how run it locally.
 
-Then create `Client` resource for this app
+Then create `Client` and `User` resources for this app
 
 {% tabs %}
 {% tab title="Client" %}
 ```javascript
+POST /Client
+
 {"resourceType": "Client",
  "id": "growth_chart",
  "grant_types":  ["authorization_code"],
- "smart": {"launch_uri":   "http://localhost:9000/launch.html"}
+ "smart": {"launch_uri":   "http://localhost:9000/launch.html"},
  "auth": {"authorization_code":
            {"redirect_uri": "http://localhost:9000/"}}}
 ```
 {% endtab %}
+
+{% tab title="User" %}
+```javascript
+POST /User
+
+{"email": "user@test.com",
+ "password": "123456"}
+ 
+ // don't forget to change credentials
+```
+{% endtab %}
 {% endtabs %}
 
-Load base dataset
+And load base dataset with `Patient` , `Observations` and `Encounters`
 
 {% tabs %}
 {% tab title="Dataset" %}
-```text
+```javascript
+POST /
+
+type: transaction
+entry:
+- resource:
+    id: patient-1
+    name:
+    - given:
+      - Marcus
+      family: Berg
+      use: usual
+    birthDate: '2000-12-27'
+    active: true 
+    gender: male
+  fullUrl: '/Patient/patient-1'
+
+  request:
+    method: POST
+    url: "/Patient"
+
+- resource:
+    id: enc-1
+    status: finished
+    class:
+      system: http://terminology.hl7.org/CodeSystem/v3-ActCode
+      code: AMB
+      display: ambulatory
+    period:
+      start: '2003-11-28'
+      end: '2003-11-28'
+    subject:
+      uri: 'Patient/patient-1'
+  fullUrl: 'Encounter/enc-1'
+
+  request:
+    method: POST
+    url: "/Encounter"
+
+- resource:
+    id: height-1
+    encounter:
+      uri: 'Encounter/enc-1'
+    value:
+      Quantity:
+        system: http://unitsofmeasure.org
+        unit: cm
+        value: 115.316
+        code: cm
+    status: final
+    effective:
+      dateTime: '2003-11-28'    
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 8302-2
+        display: height
+      text: height
+    subject:
+      uri: 'Patient/patient-1'
+  fullUrl: 'Observation/height-1'
+
+  request:
+    method: POST
+    url: "/Observation"
+
+- resource:
+    id: weight-1
+    encounter:
+      uri: 'Encounter/enc-1'
+    value:
+      Quantity:
+        system: http://unitsofmeasure.org
+        unit: kg
+        value: 18.55193
+        code: kg
+    resourceType: Observation
+    status: final
+    effective:
+      dateTime: '2003-11-28'
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 3141-9
+        display: weight
+      text: weight
+    subject:
+      uri: 'Patient/patient-1'
+  fullUrl: 'Observation/weight-1'
+
+  request:
+    method: POST
+    url: "/Observation"
+
+- resource:
+    id: bmi-1
+    encounter:
+      uri: 'Encounter/enc-1'
+    value:
+      Quantity:
+        system: http://unitsofmeasure.org
+        unit: kg/m2
+        value: 13.9
+        code: kg/m2
+    resourceType: Observation
+    status: final
+    effective:
+      dateTime: '2003-11-28'
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 39156-5
+        display: bmi
+      text: bmi
+    subject:
+      uri: 'Patient/patient-1'
+  fullUrl: 'Observation/bmi-1'
+
+  request:
+    method: POST
+    url: "/Observation"
+
+
+- resource:
+    status: finished
+    id: enc-2
+    class:
+      system: http://terminology.hl7.org/CodeSystem/v3-ActCode
+      code: AMB
+      display: ambulatory
+    period:
+      start: '2004-11-28'
+      end: '2004-11-28'
+    subject:
+      uri: 'Patient/patient-1'
+  fullUrl: 'Encounter/enc-2'
+
+  request:
+    method: POST
+    url: "/Encounter"
+
+- resource:
+    encounter:
+      uri: 'Encounter/enc-2'
+    value:
+      Quantity:
+        system: http://unitsofmeasure.org
+        unit: cm
+        value: 125.316
+        code: cm
+    resourceType: Observation
+    status: final
+    effective:
+      dateTime: '2004-11-28'
+    id: height-2
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 8302-2
+        display: height
+      text: height
+    subject:
+      uri: 'Patient/patient-1'
+  fullUrl: 'Observation/height-2'
+
+  request:
+    method: POST
+    url: "/Observation"
+
+- resource:
+    encounter:
+      uri: 'Encounter/enc-2'
+    value:
+      Quantity:
+        system: http://unitsofmeasure.org
+        unit: kg
+        value: 22.55193
+        code: kg
+    resourceType: Observation
+    status: final
+    effective:
+      dateTime: '2004-11-28'
+    id: weight-2
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 3141-9
+        display: weight
+      text: weight
+    subject:
+      uri: 'Patient/patient-1'
+  fullUrl: 'Observation/weight-2'
+
+  request:
+    method: POST
+    url: "/Observation"
+
+- resource:
+    encounter:
+      uri: 'Encounter/enc-2'
+    value:
+      Quantity:
+        system: http://unitsofmeasure.org
+        unit: kg/m2
+        value: 17.6
+        code: kg/m2
+    resourceType: Observation
+    status: final
+    effective:
+      dateTime: '2004-11-28'
+    id: bmi-2
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 39156-5
+        display: bmi
+      text: bmi
+    subject:
+      uri: 'Patient/patient-1'
+  fullUrl: 'Observation/bmi-2'
+
+  request:
+    method: POST
+    url: "/Observation"
 
 ```
 {% endtab %}
-
-{% tab title="Second Tab" %}
-
-{% endtab %}
 {% endtabs %}
+
+Then find created patient in **resources** section and click the application launch button, you will be redirected to new tab with started app.
+
+![Growth charts](../.gitbook/assets/screenshot-2019-03-11-12.09.53.png)
 
