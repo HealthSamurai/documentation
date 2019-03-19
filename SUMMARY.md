@@ -5,6 +5,7 @@
   * [Setup Aidbox.Dev](installation/setup-aidbox.dev.md)
   * [Use Aidbox.Cloud](installation/use-aidbox.cloud.md)
   * [Deploy Aidbox.One](installation/deploy-aidbox.one.md)
+  * [Versioning](installation/versioning.md)
 * [Tutorials](tutorials/README.md)
   * [Getting Started with SPA](tutorials/getting-started-with-spa.md)
   * [Creating and Configuring Box](tutorials/create-and-configure-box.md)
