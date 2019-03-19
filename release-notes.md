@@ -14,16 +14,16 @@ Terminology under `fhir` prefix \(issues \#51 \#50 \#38\)
 
 ### Features
 
-* New [Auth module](auth-betta/) \(OAuth2 implementation\)
+* New [Auth module](auth-betta/) \(OAuth2, OpenID Connect and SCIM implementations\)
 * Web UI for Aidbox.Dev
 * Migrate to Java 11
 * Clusters in Cloud
 
 #### Breaking Changes
 
-* Auth module endpoint's changed
+* Auth module endpoint's changed `oauth => auth`
 * Structure of Auth Client and User changed
-* Turn-off insecure Aidbox.Dev start - now you have to provide AIDBOX\_CLIENT\_ID nad \_SECRET
+* Turn-off insecure Aidbox.Dev start - now you have to provide AIDBOX\_CLIENT\_ID and AIDBOX\_CLIENT\_SECRET
 
 ### Bug fixes
 
