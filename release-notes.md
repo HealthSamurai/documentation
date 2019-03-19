@@ -1,5 +1,11 @@
 # Release Notes
 
+Aidbox release cycle is about 1-2 weeks. Stable releases are labeled with version  - like `0.4.0`See the list of versions on [docker-hub](https://hub.docker.com/r/healthsamurai/devbox/tags)
+
+Version under development published with `-SNAPSHOT` and `-RC[x]` postfix. For example if latest release was `0.3.0`, you will see in registry `0.4.0-SNAPSHOT` version during development and `0.4.0-RC1`in stabilisation period.
+
+Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in different  geo regions and run different Aidbox versions. Clusters labeled _**stable**_ have latest stable version \(i.e. `max(version)`\). As well clusters with **edge** label run latest development version \(snapshot or release candidates\).
+
 ## Unreleased \(0.4.0\)
 
 ### **Planned**

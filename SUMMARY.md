@@ -2,7 +2,6 @@
 
 * [Aidbox](README.md)
 * [Release Notes](release-notes.md)
-* [Versioning](versioning.md)
 * [Installation](installation/README.md)
   * [Setup Aidbox.Dev](installation/setup-aidbox.dev.md)
   * [Use Aidbox.Cloud](installation/use-aidbox.cloud.md)
