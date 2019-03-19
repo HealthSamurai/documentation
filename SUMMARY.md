@@ -1,11 +1,12 @@
 # Table of contents
 
 * [Aidbox](README.md)
+* [Release Notes](release-notes.md)
+* [Versioning](versioning.md)
 * [Installation](installation/README.md)
   * [Setup Aidbox.Dev](installation/setup-aidbox.dev.md)
   * [Use Aidbox.Cloud](installation/use-aidbox.cloud.md)
   * [Deploy Aidbox.One](installation/deploy-aidbox.one.md)
-  * [Versioning](installation/versioning.md)
 * [Tutorials](tutorials/README.md)
   * [Getting Started with SPA](tutorials/getting-started-with-spa.md)
   * [Creating and Configuring Box](tutorials/create-and-configure-box.md)
@@ -103,6 +104,5 @@
 * [FAQ](faq/README.md)
   * [Why YAML?](faq/why-yaml.md)
   * [StyleGuide](faq/styleguide.md)
-* [Release Notes](release-notes.md)
 * [Road Map](road-map.md)
 

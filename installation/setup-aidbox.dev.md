@@ -66,6 +66,9 @@ AIDBOX_LICENSE_KEY=<your-license-key>
 AIDBOX_CLIENT_ID=root
 AIDBOX_CLIENT_SECRET=secret
 
+AIDBOX_ADMIN_ID=admin
+AIDBOX_ADMIN_PASSWORD=password
+
 AIDBOX_PORT=8888
 AIDBOX_FHIR_VERSION=3.0.1
 
@@ -85,19 +88,23 @@ AIDBOX_IMAGE=healthsamurai/devbox:edge
 | :--- | :--- | :--- |
 | AIDBOX\_LICENSE\_ID | true | Your license ID |
 | AIDBOX\_LICENSE\_ID | true | Your license key |
-| AIDBOX\_CLIENT\_ID | false | Root Client ID \* |
+| AIDBOX\_CLIENT\_ID | false | Root Client ID \* \(default: root\) |
 | AIDBOX\_CLIENT\_SECRET | false | Root Client Secret \* |
 | AIDBOX\_FHIR\_VERSION | true | Version of FHIR - 1.0.2, 1.4.0, 1.8.0, 3.01, 3.2.0, 3.3.0; Currently 3.0.1 is recommended version. |
 | AIDBOX\_IMAGE | true | can be specific image tag or one of :edge or :latest |
+| AIDBOX\_ADMIN\_ID | false | Id for admin user \(default: admin\) |
+| AIDBOX\_ADMIN\_PASSWORD | false | Password for admin user |
 
 {% hint style="info" %}
 If **AIDBOX\_CLIENT\_ID** & **AIDBOX\_CLIENT\_SECRET** are provided - Aidbox will start in secured mode with access control turned on; API Client with provided ID and secret will be created as well Access Policy, which grants root privileges to this Client. In a simplest way you can access Aidbox API using basic auth and this client credentials.
+{% endhint %}
 
-If  **AIDBOX\_CLIENT\_SECRET** variable is not set, Aidbox will run in open mode and API will not be secured at all \(technically Access Policy, which allows access to any endpoint by everyone will be created at start\)
+{% hint style="warning" %}
+Starting Aidbox in open mode without AIDBOX\_CLIENT\_SECRET is disabled! 
 {% endhint %}
 
 {% hint style="info" %}
-**AIDBOX\_IMAGE** specify one of image from **healthsamurai/devbox** repository. You can use tag **:latest** to point to stable channel or use **:edge** for latest development version. Edge version can be unstable!
+**AIDBOX\_IMAGE** specify one of image from **healthsamurai/devbox** repository. Take a look at available versions at [docker hub](https://hub.docker.com/r/healthsamurai/devbox/tags).
 {% endhint %}
 
 ### Minimal steps to run Aidbox.Dev
