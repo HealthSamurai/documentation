@@ -12,7 +12,7 @@ Token Endpoint
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Get `access_access` token via Resource Owner Credentials Grant.
+Get `access_token` via Resource Owner Credentials Grant.
 {% endapi-method-description %}
 
 {% api-method-spec %}

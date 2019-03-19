@@ -10,7 +10,12 @@ Terminology under `fhir` prefix \(issues \#51 \#50 \#38\)
 
 * New [Auth module](auth-betta/) \(OAuth2 implementation\)
 * Web UI for Aidbox.Dev
-* Migrate to Java 11
+* * Migrate to Java 11
+
+#### Breaking Changes
+
+* Auth module endpoint's changed
+* Structure of Auth Client and User changed
 
 ### Bug fixes
 
