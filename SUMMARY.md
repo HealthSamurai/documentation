@@ -35,6 +35,7 @@
     * [Modules](basic-concepts/meta-model/modules.md)
     * [Manifest](basic-concepts/meta-model/manifest.md)
   * [Validation](basic-concepts/validation.md)
+  * [Indices](basic-concepts/indices.md)
 * [REST API](api/README.md)
   * [CRUD](api/crud.md)
   * [History](api/history-1.md)
