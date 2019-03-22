@@ -14,6 +14,7 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * Managing Indexes by **AidboxIndex** meta-resource
 * Audit/Logging UI and API
 * Merge Aidbox.Cloud with License Server
+* Sign Up API
 
 ### Bug Fixes
 
