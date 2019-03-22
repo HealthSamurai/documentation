@@ -6,11 +6,20 @@ Version under development published with `-SNAPSHOT` and `-RC[x]` postfix. For e
 
 Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in different  geo regions and run different Aidbox versions. Clusters labeled _**stable**_ have latest stable version \(i.e. `max(version)`\). As well clusters with **edge** label run latest development version \(snapshot or release candidates\).
 
-## Unreleased \(0.4.0\)
+## 0.4.1-SNAPSHOT
 
-### **Planned**
+### Planned
 
-Terminology under `fhir` prefix \(issues \#51 \#50 \#38\)
+* Terminology under `fhir` prefix \(issues \#51 \#50 \#38\)
+* Managing Indexes by **AidboxIndex** meta-resource
+* Audit/Logging UI and API
+* Merge Aidbox.Cloud with License Server
+
+### Bug Fixes
+
+* Reference search with \`:identifier\`  - [\#47](https://github.com/Aidbox/Issues/issues/47)
+
+## 0.4.0 _\[22 March 2019\]_
 
 ### Features
 
