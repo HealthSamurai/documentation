@@ -1,8 +1,8 @@
 # Implicit Grant
 
-#### Description
+## Description
 
-Implicit Grant flow it's alternative for Authorization Code flow without `client_secret`. This flow instead of obtaining secure`code` just receives `access_token` in query string fragment. It's for  client-side apps use in order to access an API, typically as Web SPA applications. For more detailed information read [OAuth2.0 specifcation](https://tools.ietf.org/html/rfc6749#section-4.2).
+Implicit Grant flow it's alternative for Authorization Code flow without `client_secret`. This flow instead of obtaining secure`code` just receives `access_token` in query string fragment. It's for client-side apps use in order to access an API, typically as Web SPA applications. For more detailed information read [OAuth2.0 specifcation](https://tools.ietf.org/html/rfc6749#section-4.2).
 
 ![Basic scheme](../../.gitbook/assets/untitled-diagram-page-4.svg)
 
@@ -19,7 +19,7 @@ Obtaining access token
 {% api-method-request %}
 {% api-method-query-parameters %}
 {% api-method-parameter name="state" type="string" required=false %}
-a value used by the client  to maintain state between the request and callback
+a value used by the client to maintain state between the request and callback
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="scope" type="string" required=false %}
@@ -46,7 +46,7 @@ value MUST be set to `token`
 Redirect
 {% endapi-method-response-example-description %}
 
-```
+```text
 [redirect_uri]#access_token=YzI3ZjQ1M2MtYzFlYi00ZjI3LWI2MzgtOTQ0MWI0ZmIzZjBi&state=eyJoYXNoIjoiIy9pbXBsaWNpdC9iYXNpYyIsImZvcm0tZGF0YSI6eyJ0eXBlIjoiYmFzaWMiLCJiYXNpYyI6eyJjbGllbnQtaWQiOiJpbXAtY2xpZW50In19LCJmb3JtLXBhdGgiOiJpbXBsaWNpdC1wYWdlIn0%3D
 ```
 {% endapi-method-response-example %}
@@ -64,7 +64,7 @@ Next step is granting access
 
 After allowing you will redirect to your application with `access_token` in query string fragment.
 
-#### Example
+## Example
 
 {% tabs %}
 {% tab title="Request" %}

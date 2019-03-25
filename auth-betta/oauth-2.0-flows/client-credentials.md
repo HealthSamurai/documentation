@@ -1,16 +1,16 @@
 # Client Credentials Grant
 
-#### Description
+### Description
 
-The Client Credentials grant is used when applications request an access token to access their own resources, not on behalf of a user \(for example, background services and daemons\). It must  be used only by confidential clients.
+The Client Credentials grant is used when applications request an access token to access their own resources, not on behalf of a user \(for example, background services and daemons\). It must be used only by confidential clients.
 
 ![Basic scheme](../../.gitbook/assets/untitled-diagram.svg)
 
-[Aidbox](https://www.health-samurai.io/aidbox) OAuth module support Client Credentials Grant flow in different formats. First- Strict adherence to specifications for better compatibility. Second - JSON request as a more modern and simple way. Also we have  availability send all data in POST Body. Read official [OAuth2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.4) for more details.
+[Aidbox](https://www.health-samurai.io/aidbox) OAuth module support Client Credentials Grant flow in different formats. First- Strict adherence to specifications for better compatibility. Second - JSON request as a more modern and simple way. Also we have availability send all data in POST Body. Read official [OAuth2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.4) for more details.
 
-### OAuth2.0 RFC Specification way
+## OAuth2.0 RFC Specification way
 
-As described in [OAuth2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.4) client credentials should be presented via Authorization Basic header, and `body` should be in `application/x-www-form-urlencoded` format  and `grant_type` parameter value MUST be set to `client_credentials`
+As described in [OAuth2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.4) client credentials should be presented via Authorization Basic header, and `body` should be in `application/x-www-form-urlencoded` format and `grant_type` parameter value MUST be set to `client_credentials`
 
 {% api-method method="post" host="\[base\]/auth/" path="token" %}
 {% api-method-summary %}
@@ -66,7 +66,7 @@ Pragma: no-cache
 {% endapi-method-spec %}
 {% endapi-method %}
 
-#### Example
+### Example
 
 {% tabs %}
 {% tab title="Request" %}
@@ -86,9 +86,9 @@ Will be here after implementation
 {% endtab %}
 {% endtabs %}
 
-### JSON/Body parameters request  way
+## JSON/Body parameters request  way
 
- You need specify `client_id`, `client_secret` and `grant_type` value MUST be set to `client_credentials` .  All parameters is required.
+You need specify `client_id`, `client_secret` and `grant_type` value MUST be set to `client_credentials` . All parameters is required.
 
 {% api-method method="post" host="\[base\]/auth/" path="token" %}
 {% api-method-summary %}
@@ -150,7 +150,7 @@ Pragma: no-cache
 
 Also you have an ability pass all parameters in form-data
 
-#### Example
+### Example
 
 {% tabs %}
 {% tab title="JSON request" %}
@@ -159,9 +159,9 @@ curl -X POST \
   http://localhost:8081/auth/token \
   -H 'Content-Type: application/json' \
   -d '{
-	"grant_type": "client_credentials",
-	"client_secret": "verysecretsecret",
-	"client_id": "cc-client"
+    "grant_type": "client_credentials",
+    "client_secret": "verysecretsecret",
+    "client_id": "cc-client"
 }'
 ```
 {% endtab %}

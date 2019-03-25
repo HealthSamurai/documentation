@@ -2,7 +2,7 @@
 
 #### Description
 
-The Authorization Code Grant ****is an OAuth 2.0 flow that regular web apps use in order to access an API, typically as Web applications with backend and frontend. For more detailed information read [OAuth2.0 specifcation](https://tools.ietf.org/html/rfc6749#section-4.1). This flow is also applied for a browser-based application \(SPA\) and it didn't use `client-secret`, because the source code is available in a browser - it isn't secure. Instead of this user authorizes the application and  redirected back to the application with a temporary code in the URL. The application exchanges that code for the access token. 
+The Authorization Code Grant _\*\*_is an OAuth 2.0 flow that regular web apps use in order to access an API, typically as Web applications with backend and frontend. For more detailed information read [OAuth2.0 specifcation](https://tools.ietf.org/html/rfc6749#section-4.1). This flow is also applied for a browser-based application \(SPA\) and it didn't use `client-secret`, because the source code is available in a browser - it isn't secure. Instead of this user authorizes the application and redirected back to the application with a temporary code in the URL. The application exchanges that code for the access token.
 
 ![Basic scheme](../../.gitbook/assets/untitled-diagram-page-3.svg)
 
@@ -31,7 +31,7 @@ value used by the client to maintain state between the request and callback
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="redirect\_uri" type="string" required=false %}
-client `redirect_uri`     
+client `redirect_uri`  
 If provided it must match with registered redirect URI
 {% endapi-method-parameter %}
 
@@ -51,7 +51,7 @@ client ID
 
 {% endapi-method-response-example-description %}
 
-```
+```text
      Location: [redirect_url]?code=SplxlOBeZQQYbYS6WxSbIA
                &state=xyz
 ```
@@ -79,7 +79,6 @@ Next step - user authentication and granting access.
 
 ![Example](../../.gitbook/assets/screenshot-2019-02-11-19.47.39.png)
 
-  
 Assuming the resource owner grants access, the authorization server redirects the user-agent back to the client using the redirection URI provided earlier \(in the request or during client registration\). The redirection URI includes an authorization code and any local state provided by the client earlier.
 
 ### Access Token Request
@@ -88,7 +87,7 @@ The `client` requests an access token from the authorization server's token endp
 
 ### OAuth2.0 RFC Specification way
 
-Basic header, and `body` should be in `application/x-www-form-urlencoded` format  and `grant_type` parameter value MUST be set to `authorization_code`
+Basic header, and `body` should be in `application/x-www-form-urlencoded` format and `grant_type` parameter value MUST be set to `authorization_code`
 
 {% api-method method="post" host="\[base\]/auth/" path="token" %}
 {% api-method-summary %}
@@ -266,8 +265,8 @@ curl -X POST \
   -H 'Authorization: Basic Y2MtY2xpZW50OnZlcnlzZWNyZXRzZWNyZXQ=' \
   -H 'Content-Type: application/json' \
   -d '{
-	"grant_type": "authorization_code",
-	"client_id": "ac-client"
+    "grant_type": "authorization_code",
+    "client_id": "ac-client"
 }'
 ```
 {% endtab %}

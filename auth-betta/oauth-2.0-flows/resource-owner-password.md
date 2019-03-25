@@ -10,7 +10,7 @@ The resource owner password credentials grant type is suitable in cases where th
 
 ### OAuth2.0 RFC Specification way
 
-Basic header, and `body` should be in `application/x-www-form-urlencoded` format  and `grant_type` parameter value MUST be set to `password`
+Basic header, and `body` should be in `application/x-www-form-urlencoded` format and `grant_type` parameter value MUST be set to `password`
 
 {% api-method method="post" host="\[base\]/auth/" path="token" %}
 {% api-method-summary %}
@@ -94,7 +94,7 @@ curl -X POST \
 
 ## JSON/Form parameters request
 
-You need to specify required params `client_id` ,  `grant_type` ,  `username,` and `password` .
+You need to specify required params `client_id` , `grant_type` , `username,` and `password` .
 
 If the client type is confidential or the client was issued client credentials than `client_secret` is required.
 
@@ -159,7 +159,7 @@ Return access\_token
 {% endapi-method-spec %}
 {% endapi-method %}
 
-Instead of sending parameters in JSON you can sent it in form parameters 
+Instead of sending parameters in JSON you can sent it in form parameters
 
 ### Example
 
@@ -201,7 +201,7 @@ curl -X POST \
 
 ### Secure code flow
 
-For more protection we have an addition flow which can receive secret code and exchange it for an access token. This flow consists of few steps. At first you need obtain `code`with redirect flow. Redirect URI must  previously set in client registration.
+For more protection we have an addition flow which can receive secret code and exchange it for an access token. This flow consists of few steps. At first you need obtain `code`with redirect flow. Redirect URI must previously set in client registration.
 
 {% api-method method="get" host="\[base\]/auth/authorize" path="/" %}
 {% api-method-summary %}
@@ -244,7 +244,7 @@ Obtain code and state in uri fragment
 {% endapi-method-spec %}
 {% endapi-method %}
 
-`code` will be provided in fragment of URI after redirect. 
+`code` will be provided in fragment of URI after redirect.
 
 Next step - exchanging `code` and client credentials for `access_token`
 
@@ -305,7 +305,7 @@ user identification email
 {% endapi-method-spec %}
 {% endapi-method %}
 
-As well as it described previously - data can be sent as JSON or form parameters. 
+As well as it described previously - data can be sent as JSON or form parameters.
 
 #### Example
 
