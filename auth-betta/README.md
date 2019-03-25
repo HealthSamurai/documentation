@@ -1,12 +1,11 @@
 # Auth
 
-[Aidbox](https://www.health-samurai.io/aidbox) is coming with built-in auth module, which allows you easy implement
+[Aidbox](https://www.health-samurai.io/aidbox) is coming with built-in auth module, which supports
 
-* SignUp/SignIn workflows with email or phone number
-* Universal SignUp/SignIn page - you do not need to implement it from scratch again and again
-* SignIn using user password or external Auth Providers \(like Google, Facebook, Auth0 etc\)
 * OAuth 2.0 and OpenID Connect server implementation
-* User and Client management module
+* SignUp/SignIn workflows with email or phone number
+* Auth by External Identity Providers \(like Google, Facebook, Auth0 etc\)
+* SCIM compatible Users and Groups management
 
 
 
