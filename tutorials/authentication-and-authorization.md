@@ -54,6 +54,7 @@ Open [https://ui.aidbox.app](https://ui.aidbox.app), choose your box, open secti
 resourceType: Client
 id: USERNAME
 secret: PASSWORD
+grant_type: ['basic']
 ```
 {% endtab %}
 

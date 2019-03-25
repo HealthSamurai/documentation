@@ -10,6 +10,7 @@ Access the Auth Clients tab and create new client.
 resourceType: Client
 id: postman
 secret: secret
+grant_types: ['basic']
 ```
 
 Access the Access Control tab and create new access policy with the code below.  Let's consider the work of this policy. In this schema, two constraints are introduced:
@@ -223,7 +224,7 @@ This line `grant_type: password` should not be changed.
 {% endhint %}
 
 ```yaml
-POST {{base}}/oauth2/token
+POST {{base}}/auth/token
 
 client_id: postman
 client_secret: <your-client-password>
