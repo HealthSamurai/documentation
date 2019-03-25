@@ -161,7 +161,7 @@ There are much more operations that can be done with a server using [RESTful API
 
 ## Give Access to External Clients
 
-Aidbox products support [OAuth2.0](../auth-betta/oauth-2.0/) authorization framework and [Access Control](../security/access-control.md) mechanism to provide ability for developers to create applications which can interact securely with Boxes \(Aidbox FHIR server instances\). For a single-page application, it's a common practice to use OAuth2.0 [Implicit Grant flow]().
+Aidbox products support [OAuth2.0](../auth-betta/oauth-2.0/) authorization framework and [Access Control](../security/access-control.md) mechanism to provide ability for developers to create applications which can interact securely with Boxes \(Aidbox FHIR server instances\). For a single-page application, it's a common practice to use OAuth2.0 [Implicit Grant flow](../auth-betta/oauth-2.0-flows/implicit.md).
 
 To implement this flow, we need to create 3 entities:
 
