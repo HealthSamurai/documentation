@@ -120,7 +120,7 @@ This is only an example, you can change values as you want. For more information
 
 ### Get a Patient
 
-After sending the request, we receive a response with `Status: 201` and the sent data which means that our patient has been created. We can make sure of this by sending the request  `GET /Patient/<id>` and receive created patient data \(in our case id is `957d782d-3e40-4978-968c-63a1ef7d2473`, we got the id from the response\),  or we can check a complete list of patients — `GET /Patient` 
+After sending the request, we receive a response with `Status: 201` and the sent data which means that our patient has been created. We can make sure of this by sending the request `GET /Patient/<id>` and receive created patient data \(in our case id is `957d782d-3e40-4978-968c-63a1ef7d2473`, we got the id from the response\), or we can check a complete list of patients — `GET /Patient`
 
 {% tabs %}
 {% tab title="Request" %}
@@ -157,11 +157,11 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-There are much more operations that can be done with a server using [RESTful API](../api/) but for our case to check if everything is set up properly and to get basic understanding of FHIR RESTful API,  `POST` and `GET` requests are enough.
+There are much more operations that can be done with a server using [RESTful API](../api/) but for our case to check if everything is set up properly and to get basic understanding of FHIR RESTful API, `POST` and `GET` requests are enough.
 
 ## Give Access to External Clients
 
-Aidbox products support [OAuth2.0](../auth-betta/oauth-2.0/) authorization framework and [Access Control](../security/access-control.md) mechanism to provide ability for developers to create applications which can interact securely with Boxes \(Aidbox FHIR server instances\). For a single-page application, it's a common practice to use OAuth2.0 [Implicit Grant flow](../auth-betta/oauth-2.0-flows/implicit.md).
+Aidbox products support [OAuth2.0](https://github.com/Aidbox/documentation/tree/9abc14b1b7fe0effba27642c5386f6d561786814/auth-betta/oauth-2.0) authorization framework and [Access Control](../security/access-control.md) mechanism to provide ability for developers to create applications which can interact securely with Boxes \(Aidbox FHIR server instances\). For a single-page application, it's a common practice to use OAuth2.0 [Implicit Grant flow](../auth-betta/scenarios/single-page-application/implicit.md).
 
 To implement this flow, we need to create 3 entities:
 
@@ -199,7 +199,7 @@ entry:
   request:
     method: POST
     url: "/Client"
-    
+
 - resource:
     engine: json-schema
     schema:
@@ -285,7 +285,7 @@ ng serve # start a web server for our SPA on the 4200 port
 ng serve --port 4242 # start a web server for our SPA on the specified port
 ```
 
-Open [http://localhost:4200](http://localhost:4200), you automatically will be redirected to your box OAuth2.0 login page. Log in with email and password you set for your admin User previously. 
+Open [http://localhost:4200](http://localhost:4200), you automatically will be redirected to your box OAuth2.0 login page. Log in with email and password you set for your admin User previously.
 
 ![](../.gitbook/assets/screenshot-2019-03-25-13.40.59.png)
 
