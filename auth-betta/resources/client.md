@@ -6,22 +6,27 @@ description: >-
 
 # Client
 
+Here is a list of key attributes for Client:
+
 | Attribute | Description |
 | :--- | :--- |
-| **id** | Unique name of client |
-| **secret** |  |
-| **grant\_types** |  |
+| **id** | Unique id of client |
+| **secret** | Secret used to confirm client identity in Basic Auth or Authorization Code Flows for example |
+| **grant\_types** | List of allowed ways to get access to API: basic, code, implicit, password, client\_credentials |
 
 ### First Party
 
+Sometimes there is one major application on top of your API. 
 
+Clients with attribute`.first_party = true` 
 
 ### Basic Auth 
 
 {% code-tabs %}
 {% code-tabs-item title="basic-client.yaml" %}
-```text
-
+```yaml
+resourceType: Client
+grant_types: ['basic']
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
@@ -30,8 +35,9 @@ description: >-
 
 {% code-tabs %}
 {% code-tabs-item title="client-credentials" %}
-```text
-
+```yaml
+resourceType: Client
+grant_types: ['basic']
 
 ```
 {% endcode-tabs-item %}
@@ -41,8 +47,10 @@ description: >-
 
 {% code-tabs %}
 {% code-tabs-item title="user-password" %}
-```text
-
+```yaml
+resourceType: Client
+id: password-client
+grant_types: ['basic']
 
 ```
 {% endcode-tabs-item %}
@@ -52,9 +60,10 @@ description: >-
 
 {% code-tabs %}
 {% code-tabs-item title="auth-code-client" %}
-```text
-
-
+```yaml
+resourceType: Client
+id: code-client
+grant_types: ['code']
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
@@ -63,8 +72,10 @@ description: >-
 
 {% code-tabs %}
 {% code-tabs-item title="implicit-client" %}
-```text
-
+```yaml
+resourceType: Client
+id: implicit-client
+grant_types: ['implicit']
 
 ```
 {% endcode-tabs-item %}
@@ -74,8 +85,10 @@ description: >-
 
 {% code-tabs %}
 {% code-tabs-item title="smart-client" %}
-```text
-
+```yaml
+resourceType: Client
+id: smart-client
+grant_types: ['basic']
 
 ```
 {% endcode-tabs-item %}
