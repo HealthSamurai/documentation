@@ -192,7 +192,10 @@ entry:
 
 - resource:
     id: SPA
-    redirect_uri: http://localhost:4200
+    grant_types: ["implicit"]
+    auth:
+     implicit:
+      redirect_uri: http://localhost:4200
   request:
     method: POST
     url: "/Client"
@@ -258,31 +261,6 @@ entry:
 
 We created the Client resource with redirect URI equal to our SPA address, the admin User with the password `password`, and AccessPolicy that tells to authorize any registered user.
 
-### Get an Access Token
-
-Now we can request a token from our box using OAuth2.0 implicit grant flow.
-
-Change the `<YOUR-BOX>` placeholder to the name of your box, and open the following URL in your browser.
-
-`https://<YOUR-BOX>.aidbox.app/oauth2/authorize?response_type=token&client_id=SPA&redirect_uri=http://localhost:4200/`
-
-![box10 is a box name in my case](../.gitbook/assets/2018-10-26-131804_1164x709_scrot.png)
-
-Enter email and password of the User, click 'Sign In', and you will be redirected to localhost:4200 \(redirect\_uri of SPA client\).
-
-![](../.gitbook/assets/2018-10-26-132119_874x590_scrot.png)
-
-Copy access\_token value, we will use it to obtain Patient resource with external http client.
-
-### Check the access
-
-Open [Postman](https://www.getpostman.com/apps) or any other http client, create new `GET` request, enter following url: `https://<YOUR-BOX>.aidbox.app/Patient` and add `Authorization` header with value equal to `Bearer <YOUR-ACCESS-TOKEN-HERE>`.
-
-![](../.gitbook/assets/2018-10-26-134351_1179x664_scrot.png)
-
-  
-You should get a bundle with Patient resources. Yay! It seems to work.
-
 ## Create FHIR SPA
 
 On the final step we will configure and start our SPA. Make sure that you have [Git](https://git-scm.com/downloads) and [Node.js](https://nodejs.org/en/download/) installed.
@@ -307,7 +285,15 @@ ng serve # start a web server for our SPA on the 4200 port
 ng serve --port 4242 # start a web server for our SPA on the specified port
 ```
 
-Open [http://localhost:4200](http://localhost:4200), you automatically will be redirected to your box OAuth2.0 login page. Log in with email and password you set for your admin User previously.
+Open [http://localhost:4200](http://localhost:4200), you automatically will be redirected to your box OAuth2.0 login page. Log in with email and password you set for your admin User previously. 
+
+![](../.gitbook/assets/screenshot-2019-03-25-13.40.59.png)
+
+{% hint style="info" %}
+Note! Redirect URI in link must completely match with registered
+{% endhint %}
+
+After granting access you will be redirected back to application.
 
 ![](../.gitbook/assets/2018-10-29-160043_1371x764_scrot.png)
 
