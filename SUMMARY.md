@@ -71,7 +71,7 @@
     * [Access Tokens](auth-betta/resources/access-tokens.md)
     * [Session & Grant](auth-betta/resources/session-and-grant.md)
   * [Auth API](auth-betta/auth-api/README.md)
-    * [Well Known endpoint](auth-betta/auth-api/well-known-endpoint.md)
+    * [Discovery & Well Known endpoint](auth-betta/auth-api/well-known-endpoint.md)
     * [Refresh Token](auth-betta/auth-api/refresh-token.md)
   * [OAuth 2.0 \(old\)](auth-betta/oauth-2.0/README.md)
     * [Users and Clients](auth-betta/oauth-2.0/users-and-clients.md)
