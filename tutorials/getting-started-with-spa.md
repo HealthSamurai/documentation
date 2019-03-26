@@ -1,12 +1,11 @@
-# Getting Started with SPA
+# Getting Started
 
 After reading this guide and performing all steps, you will learn:
 
-* What is FHIR and SPA
+* What is FHIR 
 * How to create an instance of FHIR server
 * Basics of FHIR RESTful API
 * How to make secure requests to a FHIR server
-* How to create a new SPA and connect it to a FHIR server
 
 ## Introduction
 
@@ -14,12 +13,9 @@ After reading this guide and performing all steps, you will learn:
 
 * [FHIR](https://www.hl7.org/fhir/index.html) is a platform specification that defines a set of [entities](https://www.hl7.org/fhir/resourcelist.html) and [operations](https://www.hl7.org/fhir/http.html) on those entities for interoperability between healthcare systems and applications
 * [FHIR server](https://aidbox.app) is a web application implementing FHIR specification and providing RESTful API
-* [SPA](https://en.wikipedia.org/wiki/Single-page_application) is a single-page application that runs in a user web browser, in our case it will be a project on [Angular](https://angular.io/)
 * Box is an instance of a FHIR server provided by any Aidbox product
 
 #### Guide Assumptions
-
-This guide assumes that you have already installed [git](https://git-scm.com/downloads), [npm](https://www.npmjs.com/get-npm), [postman](https://www.getpostman.com/apps), and have a terminal application.
 
 In this guide, we will be using Aidbox.Cloud for simplicity of Box creation, however any other Aidbox product will also work.
 
@@ -158,146 +154,6 @@ meta:
 {% endtabs %}
 
 There are much more operations that can be done with a server using [RESTful API](../api/) but for our case to check if everything is set up properly and to get basic understanding of FHIR RESTful API, `POST` and `GET` requests are enough.
-
-## Give Access to External Clients
-
-Aidbox products support [OAuth2.0](https://github.com/Aidbox/documentation/tree/9abc14b1b7fe0effba27642c5386f6d561786814/auth-betta/oauth-2.0) authorization framework and [Access Control](../security/access-control.md) mechanism to provide ability for developers to create applications which can interact securely with Boxes \(Aidbox FHIR server instances\). For a single-page application, it's a common practice to use OAuth2.0 [Implicit Grant flow](../auth-betta/single-page-application/implicit.md).
-
-To implement this flow, we need to create 3 entities:
-
-* **User** — the person who will log in and use application
-* **Client** — our single-page application which will interact with a FHIR server
-* **AccessPolicy** — set of rules which describes who and how can access FHIR server
-
-{% hint style="info" %}
-Why so much moves needed to simply access a FHIR resource using an external client? Ask Aidbox developers and people in our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).
-{% endhint %}
-
-We will create all three entities with one request \(don't forget to **change** admin password!\):
-
-{% tabs %}
-{% tab title="Request" %}
-```yaml
-POST /
-
-type: transaction
-entry:
-- resource:
-    id: admin
-    email: "admin@mail.com" # Change this value
-    password: "password" # Change this value
-  request:
-    method: POST
-    url: "/User"
-
-- resource:
-    id: SPA
-    grant_types: ["implicit"]
-    auth:
-     implicit:
-      redirect_uri: http://localhost:4200
-  request:
-    method: POST
-    url: "/Client"
-
-- resource:
-    engine: json-schema
-    schema:
-      type: object
-      required:
-      - user
-  request:
-    method: POST
-    url: "/AccessPolicy"
-```
-{% endtab %}
-
-{% tab title="Response" %}
-```yaml
-Status: 200
-
-id: '119'
-type: transaction-response
-resourceType: Bundle
-entry:
-- resource:
-    secret: null
-    redirect_uri: http://localhost:4200
-    id: SPA
-    resourceType: Client
-    meta:
-      lastUpdated: '2018-10-29T09:23:59.396Z'
-      versionId: '119'
-      tag:
-      - {system: 'https://aidbox.io', code: created}
-  status: 201
-- resource:
-    email: admin@mail.com
-    password: $s0$f0801$JH/e5UHpObbWXY/UnnDX+A==$5czycStbfIx2MF4SX7jQpkCxBKtwxPU7QkJQHizUGiE=
-    id: admin
-    resourceType: User
-    meta:
-      lastUpdated: '2018-10-29T09:23:59.396Z'
-      versionId: '119'
-      tag:
-      - {system: 'https://aidbox.io', code: created}
-  status: 201
-- resource:
-    engine: json-schema
-    schema:
-      type: object
-      required: [user]
-    id: 85d32690-77b6-45ba-be73-0dab60b1212a
-    resourceType: AccessPolicy
-    meta:
-      lastUpdated: '2018-10-29T09:23:59.396Z'
-      versionId: '119'
-      tag:
-      - {system: 'https://aidbox.io', code: created}
-  status: 201
-```
-{% endtab %}
-{% endtabs %}
-
-We created the Client resource with redirect URI equal to our SPA address, the admin User with the password `password`, and AccessPolicy that tells to authorize any registered user.
-
-## Create FHIR SPA
-
-On the final step we will configure and start our SPA. Make sure that you have [Git](https://git-scm.com/downloads) and [Node.js](https://nodejs.org/en/download/) installed.
-
-```bash
-git --version # checks if git and other packages installed
-# git version 2.15.2                                                        │
-node --version
-# v8.9.4
-npm --version # node package manager
-# 5.6.0
-
-git clone https://github.com/HealthSamurai/aidbox-angular-sample.git
-cd aidbox-angular-sample
-vim environment.ts # or use any other editor of your choice
-# to set AIDBOX_URL var to https://<YOUR-BOX>.aidbox.app
-
-npm install # install all project dependencies
-npm install -g @angular/cli # install angular utilities
-ng serve # start a web server for our SPA on the 4200 port
-# or
-ng serve --port 4242 # start a web server for our SPA on the specified port
-```
-
-Open [http://localhost:4200](http://localhost:4200), you automatically will be redirected to your box OAuth2.0 login page. Log in with email and password you set for your admin User previously.
-
-![](../.gitbook/assets/screenshot-2019-03-25-13.40.59.png)
-
-{% hint style="info" %}
-Note! Redirect URI in link must completely match with registered
-{% endhint %}
-
-After granting access you will be redirected back to application.
-
-![](../.gitbook/assets/2018-10-29-160043_1371x764_scrot.png)
-
-It works! You are awesome!
 
 {% hint style="info" %}
 Want to know more about [Aidbox](https://www.health-samurai.io/aidbox), FHIR or FHIR applications? Join our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).
