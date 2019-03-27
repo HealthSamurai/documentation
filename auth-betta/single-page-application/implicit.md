@@ -88,3 +88,23 @@ Location: http://localhost:3449/auth.html#access_token=ZGE0ZmQzZTYtOGU0OC00MDJhL
 {% endtab %}
 {% endtabs %}
 
+{% tabs %}
+{% tab title="Client" %}
+```yaml
+POST /Client
+
+id: imp-client
+resourceType: Client
+grant_types:
+- implicit
+auth:
+  implicit:
+    redirect_uri: http://localhost:3449/auth.html
+```
+{% endtab %}
+
+{% tab title="Second Tab" %}
+
+{% endtab %}
+{% endtabs %}
+

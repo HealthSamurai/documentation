@@ -282,3 +282,70 @@ curl -X POST \
 {% endtab %}
 {% endtabs %}
 
+### Client examples
+
+{% tabs %}
+{% tab title="Basic client" %}
+```yaml
+POST /Client
+
+id: ac-client
+resourceType: Client
+grant_types:
+- authorization_code
+auth:
+  authorization_code:
+    redirect_uri: http://localhost:3449/auth.html
+```
+{% endtab %}
+
+{% tab title="Client with secret" %}
+```yaml
+POST /Client
+
+id: ac-basic-client
+secret: verysecretsecret
+resourceType: Client
+grant_types:
+- authorization_code
+auth:
+  authorization_code:
+    secret_required: true
+    redirect_uri: http://localhost:3449/auth.html
+```
+{% endtab %}
+
+{% tab title="Client with JWT" %}
+```yaml
+POST /Client
+
+id: ac-jwt-client
+resourceType: Client
+grant_types:
+- authorization_code
+auth:
+  authorization_code:
+    token_format: jwt
+    refresh_token: true
+    access_token_expiration: 3600
+    redirect_uri: http://localhost:3449/auth.html
+
+```
+{% endtab %}
+
+{% tab title="First party client" %}
+```yaml
+POST /Client
+
+id: fp-ac-client
+resourceType: Client
+first_party: true
+grant_types:
+- authorization_code
+auth:
+  authorization_code:
+    redirect_uri: http://localhost:3449/auth.html
+```
+{% endtab %}
+{% endtabs %}
+
