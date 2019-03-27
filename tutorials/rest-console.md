@@ -12,7 +12,7 @@ In cases when you need to send a request body \(e.g., `POST` requests\), the req
 
 ### Create Patient
 
-Last time \(in [Create and Configure Box](create-and-configure-box.md) tutorial\) we tried to get a list of our patients \(by requesting them through the `GET /Patient`\), and the response was empty. Let's add a couple of new patients. To do it, we type in our console `POST /Patient` and in the body of the request wherein we will send the data of our new patient:
+Last time \(in [Create and Configure Box]() tutorial\) we tried to get a list of our patients \(by requesting them through the `GET /Patient`\), and the response was empty. Let's add a couple of new patients. To do it, we type in our console `POST /Patient` and in the body of the request wherein we will send the data of our new patient:
 
 {% tabs %}
 {% tab title="Request YAML" %}

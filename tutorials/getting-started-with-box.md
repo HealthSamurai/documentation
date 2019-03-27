@@ -1,4 +1,4 @@
-# Getting Started
+# Getting Started with Box
 
 After reading this guide and performing all steps, you will learn:
 
@@ -154,6 +154,12 @@ meta:
 {% endtabs %}
 
 There are much more operations that can be done with a server using [RESTful API](../api/) but for our case to check if everything is set up properly and to get basic understanding of FHIR RESTful API, `POST` and `GET` requests are enough.
+
+What's next?
+
+{% page-ref page="rest-console.md" %}
+
+{% page-ref page="run-local-demo.md" %}
 
 {% hint style="info" %}
 Want to know more about [Aidbox](https://www.health-samurai.io/aidbox), FHIR or FHIR applications? Join our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).
