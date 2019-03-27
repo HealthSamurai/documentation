@@ -345,3 +345,63 @@ curl -X POST \
 {% endtab %}
 {% endtabs %}
 
+### Client  examples
+
+{% tabs %}
+{% tab title="Basic client" %}
+```yaml
+POST /Client
+
+id: ro-basic-client
+resourceType: Client
+grant_types:
+- password
+```
+{% endtab %}
+
+{% tab title="Client with redirect" %}
+```yaml
+POST /Client
+
+id: ro-default-client
+resourceType: Client
+grant_types:
+- password
+auth:
+  password:
+    redirect_uri: http://localhost:3449/auth.html
+```
+{% endtab %}
+
+{% tab title="Client with secret" %}
+```yaml
+POST /Client
+
+id: ro-secret-client
+secret: verysecretsecret
+resourceType: Client
+grant_types:
+- password
+auth:
+  password:
+    secret_required: true
+```
+{% endtab %}
+
+{% tab title="Client with JWT" %}
+```yaml
+POST /Client
+
+id: ro-jwt-client
+grant_types:
+- password
+resourceType: Client
+auth:
+  password:
+    token_format: jwt
+    refresh_token: true
+    access_token_expiration: 3600
+```
+{% endtab %}
+{% endtabs %}
+
