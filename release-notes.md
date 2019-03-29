@@ -19,6 +19,9 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 ### Bug Fixes
 
 * Reference search with \`:identifier\`  - [\#47](https://github.com/Aidbox/Issues/issues/47)
+* Support for isOpen for applications - \#69
+* Failure of search with invalid search param - \#65
+* FHIR transaction endpoint urls without / - \#62
 
 ## 0.4.0 _\[22 March 2019\]_
 
