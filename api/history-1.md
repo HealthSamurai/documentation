@@ -142,10 +142,11 @@ entry:
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
-| `_count` : [`integer`](http://hl7.org/fhir/datatypes.html#integer) | single | Number of return records requested. The server is not bound to return the number requested, but cannot return more. |
-| `_since` : [`instant`](http://hl7.org/fhir/datatypes.html#integer) | single | Only include resource versions that were created at or after the given instant in time. |
-| `_at` : [`dateTime`](http://hl7.org/fhir/datatypes.html#integer) | single | Only include resource versions that were current at some point during the time period specified in the date time value \(may be more than one\). |
-|  `_format` | single | Result format. E.g. JSON, XML, etc. |
+| \_count | integer | Number of return records requested. The server is not bound to return the number requested, but cannot return more. |
+| \_txid | integer | Logical transaction id \(aidbox logical clock\) |
+| \_since  | instant | Only include resource versions that were created at or after the given instant in time. |
+| \_at  | date | Only include resource versions that were current at some point during the time period specified in the date time value \(may be more than one\). |
+|  \_format | enum | Result format: yaml, json, xml, edn, transit |
 
 ### Examples of the history requests with parameters:
 

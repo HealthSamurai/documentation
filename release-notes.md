@@ -6,15 +6,20 @@ Version under development published with `-SNAPSHOT` and `-RC[x]` postfix. For e
 
 Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in different  geo regions and run different Aidbox versions. Clusters labeled _**stable**_ have latest stable version \(i.e. `max(version)`\). As well clusters with **edge** label run latest development version \(snapshot or release candidates\).
 
-## 0.4.1-SNAPSHOT
+## Road Map
 
-### Planned
-
-* Terminology under `fhir` prefix \(issues \#51 \#50 \#38\)
 * Managing Indexes by **AidboxIndex** meta-resource
 * Audit/Logging UI and API
 * Merge Aidbox.Cloud with License Server
-* Sign Up API
+* Bulk API \(export, import\)
+
+## 0.4.1-SNAPSHOT
+
+### Features
+
+* Terminology under `fhir` prefix \(issues \#51 \#50 \#38\)
+* Support for **\_txid** parameter and **ETAG** header for history pooling
+* Support for **X-HTTP-Method-Override** header for inflexible http clients
 
 ### Bug Fixes
 
