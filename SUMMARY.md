@@ -22,6 +22,7 @@
   * [Patient Encounter notification Application](tutorials/patient-encounter-notification-application.md)
   * [Working with Extensions](tutorials/working-with-extensions.md)
   * [SMART on FHIR](tutorials/smart-of-fhir.md)
+  * [Sync Data From Aidbox](tutorials/sync-data-from-aidbox.md)
 * [Architecture Overview](basic-concepts/README.md)
   * [Boxes](basic-concepts/boxes.md)
   * [API Overview](basic-concepts/api-overview.md)
