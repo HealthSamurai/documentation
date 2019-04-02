@@ -13,7 +13,7 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * Merge Aidbox.Cloud with License Server
 * Bulk API \(export, import\)
 
-## 0.4.1-SNAPSHOT
+## 0.4.1-RC1
 
 ### Features
 
