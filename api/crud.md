@@ -316,6 +316,64 @@ meta:
 {% endtab %}
 {% endtabs %}
 
+## **versioned update**
+
+While you do update there is a risk of  override latest changes done by another operation. To escape this situation you can use versioned update by sending with update `If-Match` header with `versionId` of resource you want to update. If server has same version of resources update will be successful, if versions do not match - you will get OperationOutcome with conflict code.
+
+#### Example
+
+Let say we created patient:
+
+{% code-tabs %}
+{% code-tabs-item title="create-patient-request" %}
+```yaml
+POST /Patient
+
+id: pt-1
+name: [{family: ['Wrong']}]
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+```yaml
+status: 201
+
+resourceType: Patient
+id: pt-1
+meta: {lastUpdated: '2019-04-04T09:15:25.210Z', versionId: '30'}
+name:
+- {family: Wrong}
+```
+
+Now to fix family for this patient without risk override someone else changes - we use versioned update request: 
+
+{% code-tabs %}
+{% code-tabs-item title="versioned-update-request" %}
+```yaml
+PUT /Patient/pt-id
+If-Match: 30
+
+name: [{family: ['Smith']}]
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+If someone already touched same patient, his version id was changed and we get OperationOutcome.
+
+{% code-tabs %}
+{% code-tabs-item title="conflict-response" %}
+```yaml
+status: 409
+
+resourceType: OperationOutcome
+id: conflict
+text: {status: generated, div: Version Id mismatch}
+issue:
+- {severity: fatal, code: conflict, diagnostics: Version Id mismatch}
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
 ## conditional update
 
 ```text
