@@ -2,47 +2,31 @@
 
 #### Description
 
-The resource owner password credentials grant type is suitable in cases where the resource owner has a trust relationship with the client, such as the device operating system or a highly privileged application. The application acts on behalf of the user.
+The Password grant type is used by first-party clients to exchange a user's credentials for an access token. Since this involves the client asking the user for their password, it should not be used by third party clients. In this flow, the user's username and password are exchanged directly for an access token. The application acts on behalf of the user.
 
 ![Basic scheme](../.gitbook/assets/untitled-diagram-page-2.svg)
 
-[Aidbox](https://www.health-samurai.io/aidbox) OAuth module support this flow in different formats. 
+### Configure Client
 
+Fist step is configure Client for Resource Owner Grant with secret and password grant type:
 
+{% code-tabs %}
+{% code-tabs-item title="client" %}
+```yaml
+PUT Client/myapp
 
-{% tabs %}
-{% tab title="JSON request" %}
-```bash
-curl -X POST \
-  http://localhost:8081/auth/token \
-  -H 'Content-Type: application/json' \
-  -d '{"grant_type": "password",
- "client_id": "modernapp",
- "client_secret": "thesecret",
- "username": "admin@admin.io",
- "password": "secret"}'
+secret: verysecret
+grant_types:
+  - password
 ```
-{% endtab %}
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
-{% tab title="Form parameters request" %}
-```bash
-curl -X POST \
-  http://localhost:8081/auth/token \
-  -d 'grant_type=password&client_id=modernapp&client_secret=thesecret&username=admin%40admin.io&password=secret'
-```
-{% endtab %}
+Client will act on behalf of the user,  which mean Access Policies should be configured for User, not for Client.
 
-{% tab title="Response" %}
-```javascript
-{
-    "token_type": "Bearer",
-    "expires_in": 3600,
-    "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODEiLCJzdWIiOiJtb2Rlcm5hcHAiLCJqdGkiOiJjMTYxMTZjZS1iNGVhLTQwMjctYWI4OC0zNmJkZmE0YjQzM2QiLCJleHAiOjE1NDk5NzEzNDd9.QsaPNzS6DaA-6TgtrVZFVfg0Os45GJ3l4tQW92o4xq7aqultAwRi_E-NTOCqLO21l0QgNfr5HfAre-0o3O6Bg7nEuiyt4iO5au80YwQIS_L41OwMzNgtGORb3EHfafLa2Al5bzh7gmRIFuxCG7m8P4SypfsAGhWfILvOdAFqpamLoNAUOZGGyJLv_MRvyFKgSQgRGnb_F-e874hzgoNIrHXRnX1FaThHldoc9yE8E5wuLjLLXTKI23hCNOBzscNf1toAOnuJOdlTQSBScpX6yNQYBYIGAIbq_Qz6x7wfcbU2yBFzZpIv8OKRRb0tful_oFhkpry1LH8nM6J1XLfSpA",
-    "refresh_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODEiLCJzdWIiOiJtb2Rlcm5hcHAiLCJqdGkiOiJjMTYxMTZjZS1iNGVhLTQwMjctYWI4OC0zNmJkZmE0YjQzM2QiLCJ0eXAiOiJyZWZyZXNoIn0.cBn5Mm8yHAX4wABsqhD6EohiHJRCRDMbJruHaObPJ7WYglkMjRQ2JuEmPTqBRjMJQvsx-eLlnGPmDLIGhoPi0du_V0UrXVBrbZrA8V4kELMGmJlnR-eNptpJIzrQVhLxyh6AhvxPEqZMI5xqKFEF6ealbnbEcazc8x2BHIaQZPeTjHouZkB5AHKsZyAjByVLz_7nGSG0ziW5iBNSyMNE-Tn6fS2lmhk0_IIetJYT_10TWAIRNXxiBnYJeFO18yBhzqupQYBvXWKTn84WsJNMGq7qiUxWQwV8E6a_SsgCuvk04oTzXDG8_mV4MiEYd16wz52u9DyHP_2JSeHICaSefg"
-}
-```
-{% endtab %}
-{% endtabs %}
+You can configure Client for JWT tokens,  set token expiration and enable refresh token:
+
+
 
 ## Additional flows
 
