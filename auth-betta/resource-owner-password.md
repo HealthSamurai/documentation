@@ -1,4 +1,4 @@
-# Resource Owner
+# Resource Owner Grant
 
 #### Description
 
