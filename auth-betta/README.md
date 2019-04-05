@@ -12,7 +12,7 @@
 
 #### Api Consumer
 
-If you have backend service or periodical job, which wants to interact with Aidbox API - you can use session-less [Basic Auth](api-consumer.md), [Client Credentials Grant](client-credentials.md) \(OAuth\) or [Access by JWT](access-by-jwt.md).
+If you have backend service or periodical job, which wants to interact with Aidbox API - you can use session-less [Basic Auth](basic-auth.md), [Client Credentials Grant](client-credentials.md) \(OAuth\) or [Access by JWT](access-by-jwt.md).
 
 #### Web Application
 

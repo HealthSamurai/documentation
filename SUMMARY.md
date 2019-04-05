@@ -52,7 +52,7 @@
   * [Misc](api/misc.md)
   * [Custom Search](api/custom-search.md)
 * [Auth](auth-betta/README.md)
-  * [Basic Auth](auth-betta/api-consumer.md)
+  * [Basic Auth](auth-betta/basic-auth.md)
   * [Client Credentials Grant](auth-betta/client-credentials.md)
   * [Resource Owner Grant](auth-betta/resource-owner-password.md)
   * [Authorization Code Grant](auth-betta/authorization-code.md)
