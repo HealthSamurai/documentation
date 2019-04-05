@@ -26,213 +26,69 @@ Client will act on behalf of the user,  which mean Access Policies should be con
 
 You can configure Client for JWT tokens,  set token expiration and enable refresh token:
 
+| attribute | options | desc |
+| :--- | :--- | :--- |
+| _auth.password_**.token\_format** | jwt | use access token in jwt format |
+| _auth.password_**.token\_expiration** | int \(seconds\) | token expiration time from issued at |
+| _auth.password_**.refresh\_token** | true/false | enable refresh\_token |
+| _auth.password_**.secret\_required** | true/false | require secret for token |
 
+## Get Access Token
 
-## Additional flows
+Next step is collect username & password and exchange username, password, client id and secret \(if required\) for  Access Token.
 
-### Secure code flow
+ Using Basic & form-url-encode:
 
-For more protection we have an addition flow which can receive secret code and exchange it for an access token. This flow consists of few steps. At first you need obtain `code`with redirect flow. Redirect URI must previously set in client registration.
+{% code-tabs %}
+{% code-tabs-item title="using-basic" %}
+```yaml
+POST /auth/token
+Authorization: Basic base64(client.id, client.secret)
+Content-Type: application/x-www-form-urlencoded
 
-{% api-method method="get" host="\[base\]/auth/authorize" path="/" %}
-{% api-method-summary %}
-Authorization code endpoint
-{% endapi-method-summary %}
-
-{% api-method-description %}
-Obtaining secure code
-{% endapi-method-description %}
-
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-query-parameters %}
-{% api-method-parameter name="state" type="string" required=false %}
-some data that will be provided in redirected response
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="grant\_type" type="string" required=true %}
-value must set to `password`
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="client\_id" type="string" required=true %}
-client ID
-{% endapi-method-parameter %}
-{% endapi-method-query-parameters %}
-{% endapi-method-request %}
-
-{% api-method-response %}
-{% api-method-response-example httpCode=302 %}
-{% api-method-response-example-description %}
-Obtain code and state in uri fragment
-{% endapi-method-response-example-description %}
-
-```javascript
-[redirect_uri]#code=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJyby1kZWZhdWx0LWNsaWVudCIsImV4cCI6MTU0OTY0MjA2MCwianRpIjoiTnpVeU9XSTJPVFl0TVRCallTMDBOVEUyTFdGa09UZ3RaRFk1T0RNNE1HRTNPV05oIn0.XWfXJI67zAkvGVRthPPrkFVvHXOqur3N-Jhiarmeloo
-&state=example
+grant_type=password&username=user&password=password
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
-`code` will be provided in fragment of URI after redirect.
+Or by JSON request:
 
-Next step - exchanging `code` and client credentials for `access_token`
+{% code-tabs %}
+{% code-tabs-item title="json-request" %}
+```yaml
+POST /auth/token
+Content-Type: application/json
 
-{% hint style="info" %}
-**code** can be exchanged for the **access\_token** only once, for another try needs to obtain new
-{% endhint %}
-
-{% api-method method="post" host="\[base\]" path="/auth/token" %}
-{% api-method-summary %}
-Token Endpoint
-{% endapi-method-summary %}
-
-{% api-method-description %}
-Get `access_token` token via Resource Owner Credentials Grant. All parameters packed in JSON.
-{% endapi-method-description %}
-
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-body-parameters %}
-{% api-method-parameter name="code" type="string" required=true %}
-obtained previously code
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="grant\_type" type="string" required=true %}
-value MUST be set to `password`
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="client\_id" type="string" required=true %}
-client ID
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="password" type="string" required=true %}
-user password
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="username" type="string" required=true %}
-user identification email
-{% endapi-method-parameter %}
-{% endapi-method-body-parameters %}
-{% endapi-method-request %}
-
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
-```javascript
 {
-    "token_type": "Bearer", (required)
-    "access_token": "YjFhMTU3NWEtNDUzYi00ZDIxLWI2YTAtOTEzNjRiMDhj", (required)
-    "expires_in":3600, (optional)
-    "refresh_token":"tGzv3JOkF0XG5Qx2TlKWIA" (optional)
+  "grant_type": "password",
+  "client_id": "myapp",
+  "client_secret": "verysecret",
+  "username": "user",
+  "password": "password"
 }
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
-As well as it described previously - data can be sent as JSON or form parameters.
+When everything is accurate, you will get response with access token, user information and refresh token \(if enabled\):
 
-#### Example
+{% code-tabs %}
+{% code-tabs-item title="token-response" %}
+```yaml
+status: 200
 
-{% tabs %}
-{% tab title="JSON request" %}
-```javascript
-curl -X POST \
-  http://localhost:8081/auth/token \
-  -H 'Content-Type: application/json' \
-  -d '{"code":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJyby1kZWZhdWx0LWNsaWVudCIsImV4cCI6MTU0OTg4MzA2MCwianRpIjoiT0RCaU5tTXhOalF0WVRSa1l5MDBNV1V6TFdJM1pETXRaakE0TlRabFpHTmlaRGRtIn0.Oib74zmGjj3_pUkSCPejAalRzguebdLEppJcGitD1bE",
- "client_id":"ro-default-client",
- "grant_type":"password",
- "username":"user@mail.com",
- "password":"password"}'
-```
-{% endtab %}
-
-{% tab title="Form parameters request" %}
-```bash
-curl -X POST \
-  http://localhost:8081/auth/token \
-  -d 'grant_type=password
-     &client_id=ro-default-client
-     &username=user%40mail.com
-     &password=password
-     &code=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJyby1kZWZhdWx0LWNsaWVudCIsImV4cCI6MTU0OTk4NTkwOSwianRpIjoiWVRObFlqUmpORFF0Tmpnek1pMDBZamRpTFRsbU9UTXRNR0k0WlRZNE1UVXdOV1l6In0.8DQ0OYiePgrfXpFAMN37-CNObfUVchSArAZvJx0oX10'
-```
-{% endtab %}
-
-{% tab title="Response" %}
-```javascript
 {
-    "token_type": "Bearer",
-    "access_token": "NTNmOTM4ODYtOGIyZi00MDZkLTkzM2MtMDgxNWE3Yzg2OGJk"
+ "token_type": "Bearer",
+ "expires_in": 3600,
+ "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODEiLCJzdWIiOiJ1c2VyIiwiaWF0IjoxNTU0NDczOTk3LCJqdGkiOiI0ZWUwZDY2MS0wZjEyLTRlZmItOTBiOS1jY2RmMzhlMDhkM2QiLCJhdWQiOiJodHRwOi8vcmVzb3VyY2Uuc2VydmVyLmNvbSIsImV4cCI6MTU1NDQ3NzU5N30.lCdwkqzFWOe4IcXPC1dIB8v7aoZdJ0fBoIKlzCRFBgv4YndSJxGoJOvIPq2rGMQl7KG8uxGU0jkUVlKxOtD8YA",
+ "refresh_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODEiLCJzdWIiOiJwYXNzd29yZC1jbGllbnQiLCJqdGkiOiI0ZWUwZDY2MS0wZjEyLTRlZmItOTBiOS1jY2RmMzhlMDhkM2QiLCJ0eXAiOiJyZWZyZXNoIn0.XWHYpw0DysrqQqMNhqTPSdNamBM4ZDUAgh_VupSa7rkzdJ3uZXqesoAo_5y1naJZ31S92-DjPKtPEAyD_8PloA"
+ "userinfo": {
+  "email": "user@mail.com",
+  "id": "user",
+  "resourceType": "User",
+ },
 }
 ```
-{% endtab %}
-{% endtabs %}
-
-### Client  examples
-
-{% tabs %}
-{% tab title="Basic client" %}
-```yaml
-POST /Client
-
-id: ro-basic-client
-resourceType: Client
-grant_types:
-- password
-```
-{% endtab %}
-
-{% tab title="Client with redirect" %}
-```yaml
-POST /Client
-
-id: ro-default-client
-resourceType: Client
-grant_types:
-- password
-auth:
-  password:
-    redirect_uri: http://localhost:3449/auth.html
-```
-{% endtab %}
-
-{% tab title="Client with secret" %}
-```yaml
-POST /Client
-
-id: ro-secret-client
-secret: verysecretsecret
-resourceType: Client
-grant_types:
-- password
-auth:
-  password:
-    secret_required: true
-```
-{% endtab %}
-
-{% tab title="Client with JWT" %}
-```yaml
-POST /Client
-
-id: ro-jwt-client
-grant_types:
-- password
-resourceType: Client
-auth:
-  password:
-    token_format: jwt
-    refresh_token: true
-    access_token_expiration: 3600
-```
-{% endtab %}
-{% endtabs %}
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
