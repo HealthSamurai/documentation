@@ -14,7 +14,7 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * Bulk API \(export, import\)
 * Uni-version FHIR server \(i.e. support all FHIR versions, probably not all resources\)
 
-## 0.4.1-RC2
+## 0.4.1-RC2 _\[will be published on Monday :\)_
 
 This release is mostly dedicated to stabilisation of new auth module. Check-out it's [documentation](auth-betta/)!
 
