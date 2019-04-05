@@ -215,6 +215,12 @@ For Numbers, Dates and Quantities \(will be supported\), we can use the followin
 GET /Patient?birthdate=gt1986-04-28
 ```
 
+### \_ilike search \(non-FHIR\)
+
+```text
+GET /Patient?_ilike=john+smith,jessi+parke
+```
+
 ### Full text search
 
 Also at your disposal [full-text-search](https://en.wikipedia.org/wiki/Full-text_search) by resources. It presents with \_**text** _-_ search by narrative and _**\_**_**content** - search by remaining resource content.
@@ -432,6 +438,12 @@ link:
 ```
 {% endtab %}
 {% endtabs %}
+
+### Dot Search \(non-FHIR\)
+
+```text
+GET /Patient?.name.0.family=Johnson
+```
 
 {% hint style="info" %}
 Want to know more about [Aidbox](https://www.health-samurai.io/aidbox), FHIR, and search? Join our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).
