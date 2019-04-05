@@ -270,7 +270,5 @@ The results of schema validation should be the following:
 | GET | True | True |
 | POST | True | False |
 
-See the full documentation [Resource Owner Credentials Grant](../auth-betta/oauth-2.0/resource-owner-credentials.md).
-
-{% page-ref page="../auth-betta/oauth-2.0/resource-owner-credentials.md" %}
+See the full documentation [Resource Owner Credentials Grant]().
 

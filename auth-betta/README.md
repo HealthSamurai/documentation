@@ -16,7 +16,7 @@ If you have backend service or periodical job, which wants to interact with Aidb
 
 #### Web Application
 
-If you want to work with Aidbox from web application or implement Single Sign On using Aidbox as Identity Server consider [Authorization Code Grant](oauth-2.0/authorization-code.md) or [Access by JWT](access-by-jwt.md)
+If you want to work with Aidbox from web application or implement Single Sign On using Aidbox as Identity Server consider [Authorization Code Grant]() or [Access by JWT](access-by-jwt.md)
 
 #### Single Page Application
 
@@ -24,7 +24,7 @@ For SPA you can use [Implicit Grant](implicit.md), [Authorization Code Grant](au
 
 #### Mobile and Desktop Application
 
-For mobile and desktop application simplest option is [Resource Owner Credentials](oauth-2.0/resource-owner-credentials.md)
+For mobile and desktop application simplest option is [Resource Owner Credentials]()
 
 ### Auth Sandbox
 

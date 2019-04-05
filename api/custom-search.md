@@ -202,7 +202,7 @@ query: ['select * from public.User where id = ?', testuser]
 {% endtabs %}
 
 {% hint style="warning" %}
-It's not possible to call such AidboxQuery from REST Console, because in REST console there are no user claims. It can be done only by request with access token provided. Check [OAuth2.0](../auth-betta/oauth-2.0/) doc for additional information.
+It's not possible to call such AidboxQuery from REST Console, because in REST console there are no user claims. It can be done only by request with access token provided. Check [OAuth2.0]() doc for additional information.
 {% endhint %}
 
 ### \_query
