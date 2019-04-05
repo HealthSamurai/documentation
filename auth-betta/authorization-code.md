@@ -148,3 +148,7 @@ Session is just Resource and you can inspect and manipulate with sessions by sta
 
 ## Auth Sandbox Demo
 
+{% embed url="https://youtu.be/2FErZeK65l0" %}
+
+
+
