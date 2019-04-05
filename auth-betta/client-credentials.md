@@ -99,7 +99,7 @@ Content-Type: application/json
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-For simple client configuration case you will get JSON with access\_token in response:
+For simple client configuration you will get JSON with access\_token in response:
 
 {% code-tabs %}
 {% code-tabs-item title="token-response" %}
@@ -160,4 +160,8 @@ Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
 Session is just Resource and you can inspect and manipulate with sessions by standard Search & CRUD API for example get all sessions - `GET /Session`
 
 ### Auth Sandbox
+
+{% embed url="https://youtu.be/jaPPyF-H-zk" %}
+
+
 
