@@ -1,5 +1,5 @@
 ---
-description: Serce to service integration
+description: Access Aidbox API from your Service
 ---
 
 # Basic Auth
