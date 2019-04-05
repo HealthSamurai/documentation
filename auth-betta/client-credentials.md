@@ -64,15 +64,15 @@ link:
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-### 
-
 ### Get Access Token
 
-Next step is to get Access Token using Basic & form-url-encode:
+Next step is exchange client id and secret for  Access Token.
+
+ Using Basic & form-url-encode:
 
 {% code-tabs %}
 {% code-tabs-item title="using-basic" %}
-```text
+```yaml
 POST /auth/token
 Authorization: Basic base64(client.id, client.secret)
 Content-Type: application/x-www-form-urlencoded
@@ -82,11 +82,11 @@ grant_type=client_credentials
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-or passing all params in  JSON request body:
+Or by JSON request:
 
 {% code-tabs %}
 {% code-tabs-item title="json-request" %}
-```text
+```yaml
 POST /auth/token
 Content-Type: application/json
 
@@ -99,129 +99,65 @@ Content-Type: application/json
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-## OAuth2.0 RFC Specification way
+For simple client configuration case you will get JSON with access\_token in response:
 
-As described in [OAuth2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.4) client credentials should be presented via Authorization Basic header, and `body` should be in `application/x-www-form-urlencoded` format and `grant_type` parameter value MUST be set to `client_credentials`
-
-```text
-
-```
-
-### Example
-
-{% tabs %}
-{% tab title="Request" %}
-```javascript
-curl -X POST \
-  http://localhost:8081/auth/token \
-  -H 'Authorization: Y2MtY2xpZW50OnZlcnlzZWNyZXRzZWNyZXQ=' \
-  -H 'Content-Type: application/x-www-form-urlencoded' \
-  -d 'grant_type=client_credentials'
-```
-{% endtab %}
-
-{% tab title="Response" %}
-```text
-Will be here after implementation
-```
-{% endtab %}
-{% endtabs %}
-
-## JSON/Body parameters request  way
-
-You need specify `client_id`, `client_secret` and `grant_type` value MUST be set to `client_credentials` . All parameters is required.
-
-{% api-method method="post" host="\[base\]/auth/" path="token" %}
-{% api-method-summary %}
-Access token endpoint
-{% endapi-method-summary %}
-
-{% api-method-description %}
-Obtaining `access_token`, all described parameters packed into JSON
-{% endapi-method-description %}
-
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-headers %}
-{% api-method-parameter name="Content-Type" type="string" required=true %}
-application/json
-{% endapi-method-parameter %}
-{% endapi-method-headers %}
-
-{% api-method-body-parameters %}
-{% api-method-parameter name="scope" type="string" required=false %}
-requested scope
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="grant\_type" type="string" required=true %}
-value must be set of `client_credentials`
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="client\_secret" type="string" required=true %}
-client secret key
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="client\_id" type="string" required=true %}
-client ID
-{% endapi-method-parameter %}
-{% endapi-method-body-parameters %}
-{% endapi-method-request %}
-
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
-```javascript
-Content-Type: application/json;charset=UTF-8
-Cache-Control: no-store
-Pragma: no-cache
+{% code-tabs %}
+{% code-tabs-item title="token-response" %}
+```yaml
+status: 200
 
 {
-       "access_token":"2YotnFZFEjr1zCsicMWpAA" (required),
-       "token_type":"example" (required),
-       "expires_in":3600 (optional)
+ "token_type": "Bearer",
+ "access_token": "ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi"
 }
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
-Also you have an ability pass all parameters in form-data
+For JWT with refresh token you will get something like this:
 
-### Example
+```yaml
+status: 200
 
-{% tabs %}
-{% tab title="JSON request" %}
-```javascript
-curl -X POST \
-  http://localhost:8081/auth/token \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "grant_type": "client_credentials",
-    "client_secret": "verysecretsecret",
-    "client_id": "cc-client"
-}'
-```
-{% endtab %}
-
-{% tab title="Form-data request" %}
-```javascript
-curl -X POST \
-  http://localhost:8081/auth/token \
-  -d 'grant_type=client_credentials&client_secret=verysecretsecret&client_id=cc-client'
-```
-{% endtab %}
-
-{% tab title="Response" %}
-```javascript
 {
-    "token_type": "Bearer",
-    "access_token": "NDE0ZGIyYjQtMzNjZi00ZWQwLWFiNDYtNDMyNjI5NzhlODQ0"
+ "token_type": "Bearer",
+ "expires_in": 3000,
+ "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODEiLCJzdWIiOiJhdXRoLWNsaWVudCIsImlhdCI6MTU1NDQ3MDA3NCwianRpIjoiOWJlMTY1YzMtOTQzZS00NGU0LTkxMWEtYzk1OGY3MWRhMTdkIiwiYXVkIjoiaHR0cDovL3Jlc291cmNlLnNlcnZlci5jb20iLCJleHAiOjE1NTQ0NzMwNzR9.cR9N1Z-pKidENTrtYu5aVADRzAigZM6RvoFAzbeLkBecRcY03j4VVXnqRG1yJo744FvJ0qfetHQ2JTSQFxLrtQ",
+ "refresh_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODEiLCJzdWIiOiJhdXRoLWNsaWVudCIsImp0aSI6IjliZTE2NWMzLTk0M2UtNDRlNC05MTFhLWM5NThmNzFkYTE3ZCIsInR5cCI6InJlZnJlc2gifQ.lsxtjkW0MVku4lh1W-vOEz-4wJjRN-Dkmbt2NpjezPAGj-z7FBGVyKVfH8Q0nY0smuvUnkXEAxajIb_zZdXQtw"
 }
 ```
-{% endtab %}
-{% endtabs %}
+
+### Using Access Token
+
+You can use access token in Authorization header for Aidbox API calls:
+
+{% code-tabs %}
+{% code-tabs-item title="authorized-request" %}
+```yaml
+GET /Patient
+Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+```text
+curl -H 'Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi' /Patient
+```
+
+### Revoke Access Token \(Close Session\)
+
+Aidbox create  Session \(resource\) for each Access Token, which can be closed with special endpoint `DELETE /Session` with token in Authorization header:
+
+{% code-tabs %}
+{% code-tabs-item title="close-session" %}
+```yaml
+DELETE /Session
+Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+Session is just Resource and you can inspect and manipulate with sessions by standard Search & CRUD API for example get all sessions - `GET /Session`
+
+### Auth Sandbox
 
