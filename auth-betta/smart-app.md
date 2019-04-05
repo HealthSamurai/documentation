@@ -1,2 +1,2 @@
-# SMART app
+# SMART on FHIR
 

@@ -10,7 +10,7 @@ This repository on GitHub [https://github.com/HealthSamurai/Aidbox-angular-sampl
 
 In this guide we will locally launch FHIR application based on [Angular framework](https://angular.io) and Aidbox.Dev as a backend for this SPA. This simple application will implement basic CRUD operations on patient list.
 
-Aidbox products support [OAuth2.0](https://github.com/Aidbox/documentation/tree/9abc14b1b7fe0effba27642c5386f6d561786814/auth-betta/oauth-2.0) authorization framework and [Access Control](../security/access-control.md) mechanism to provide ability for developers to create applications which can interact securely with Boxes \(Aidbox FHIR server instances\). For a single-page application, it's a common practice to use OAuth2.0 [Implicit Grant flow](../auth-betta/single-page-application/implicit.md).
+Aidbox products support [OAuth2.0](https://github.com/Aidbox/documentation/tree/9abc14b1b7fe0effba27642c5386f6d561786814/auth-betta/oauth-2.0) authorization framework and [Access Control](../security/access-control.md) mechanism to provide ability for developers to create applications which can interact securely with Boxes \(Aidbox FHIR server instances\). For a single-page application, it's a common practice to use OAuth2.0 [Implicit Grant flow](../auth-betta/implicit.md).
 
 ## Install
 

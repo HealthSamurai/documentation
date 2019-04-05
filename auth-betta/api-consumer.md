@@ -2,7 +2,7 @@
 description: Serce to service integration
 ---
 
-# API Consumer
+# Basic Auth
 
 ## Basic Auth
 
@@ -46,7 +46,7 @@ curl -u $client_id:$client_secret https://yourbox/Patient
 
 If you need more granular control over client session you can use [ OAuth 2.0 Client Credentials Flow](https://tools.ietf.org/html/rfc6749#section-1.3.4) to get access token by Client.id and secret and use it for API calls.
 
-![](../../.gitbook/assets/auth-sequence-m2m-flow.png)
+![](../.gitbook/assets/auth-sequence-m2m-flow.png)
 
 Register client with client\_credentials enabled:
 

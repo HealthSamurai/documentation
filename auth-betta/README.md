@@ -6,6 +6,7 @@
 * SignUp/SignIn workflows with email or phone number
 * SignIn using user password or external Auth Providers \(like Google, Facebook, Auth0 etc\)
 * SCIM User and Group management module
+* Aidbox as Resource Server - access by JWT 
 
 
 

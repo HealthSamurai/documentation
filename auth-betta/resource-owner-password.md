@@ -1,10 +1,10 @@
-# Resource Owner Credentials Grant
+# Resource Owner
 
 #### Description
 
 The resource owner password credentials grant type is suitable in cases where the resource owner has a trust relationship with the client, such as the device operating system or a highly privileged application. The application acts on behalf of the user.
 
-![Basic scheme](../../.gitbook/assets/untitled-diagram-page-2.svg)
+![Basic scheme](../.gitbook/assets/untitled-diagram-page-2.svg)
 
 [Aidbox](https://www.health-samurai.io/aidbox) OAuth module support this flow in different formats. First- Strict adherence to specifications for better compatibility. Second - JSON request as a more modern and simple way. Also we have availability send all data in POST Body form parameters. Read official [OAuth2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.3) for more details.
 

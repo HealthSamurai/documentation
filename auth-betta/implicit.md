@@ -4,7 +4,7 @@
 
 Implicit Grant flow it's alternative for Authorization Code flow without `client_secret`. This flow instead of obtaining secure`code` just receives `access_token` in query string fragment. It's for client-side apps use in order to access an API, typically as Web SPA applications. For more detailed information read [OAuth2.0 specifcation](https://tools.ietf.org/html/rfc6749#section-4.2).
 
-![Basic scheme](../../.gitbook/assets/untitled-diagram-page-4.svg)
+![Basic scheme](../.gitbook/assets/untitled-diagram-page-4.svg)
 
 {% api-method method="get" host="\[base\]/" path="auth/authorize" %}
 {% api-method-summary %}
@@ -56,11 +56,11 @@ Redirect
 
 After this request you will be redirected to Log-in/Sign-up page
 
-![Example](../../.gitbook/assets/screenshot-2019-02-11-18.15.41.png)
+![Example](../.gitbook/assets/screenshot-2019-02-11-18.15.41.png)
 
 Next step is granting access
 
-![Example](../../.gitbook/assets/screenshot-2019-02-11-19.47.39.png)
+![Example](../.gitbook/assets/screenshot-2019-02-11-19.47.39.png)
 
 After allowing you will redirect to your application with `access_token` in query string fragment.
 
