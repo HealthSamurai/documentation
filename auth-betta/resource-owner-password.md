@@ -92,3 +92,39 @@ status: 200
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
+### Use Access Token
+
+You can use access token in Authorization header for Aidbox API calls:
+
+{% code-tabs %}
+{% code-tabs-item title="authorized-request" %}
+```yaml
+GET /Patient
+Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+```text
+curl -H 'Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi' /Patient
+```
+
+### Revoke Access Token \(Close Session\)
+
+Aidbox create  Session \(resource\) for each Access Token, which can be closed with special endpoint `DELETE /Session` with token in Authorization header:
+
+{% code-tabs %}
+{% code-tabs-item title="close-session" %}
+```yaml
+DELETE /Session
+Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+Session is just Resource and you can inspect and manipulate with sessions by standard Search & CRUD API for example get all sessions - `GET /Session`
+
+### Auth Sandbox Demo
+
+
+
