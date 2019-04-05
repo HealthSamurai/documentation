@@ -14,20 +14,24 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * Bulk API \(export, import\)
 * Uni-version FHIR server \(i.e. support all FHIR versions, probably not all resources\)
 
-## 0.4.1-RC1
+## 0.4.1-RC2
+
+This release is mostly dedicated to stabilisation of new auth module. Check-out it's [documentation](auth-betta/)!
 
 ### Features
 
 * Terminology under `fhir` prefix \(issues \#51 \#50 \#38\)
-* Support for **\_txid** parameter and **ETAG** header for history pooling
-* Support for **X-HTTP-Method-Override** header for inflexible http clients
+* Support for `_txid` parameter and `ETAG` header for history pooling
+* Support for `X-HTTP-Method-Override` header for inflexible http clients
+* Support `X-Correlation-Id` and `X-Request-Id` headers
 
 ### Bug Fixes
 
-* Reference search with \`:identifier\`  - [\#47](https://github.com/Aidbox/Issues/issues/47)
-* Support for isOpen for applications - \#69
+* Reference search with `:identifier`  - \#47
+* Support for `isOpen` for applications - \#69
 * Failure of search with invalid search param - \#65
-* FHIR transaction endpoint urls without / - \#62
+* FHIR transaction endpoint urls without `/` - \#62
+* Search: multiple `_sort` parameters - \#73
 
 ## 0.4.0 _\[22 March 2019\]_
 

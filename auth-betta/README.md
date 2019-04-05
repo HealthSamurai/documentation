@@ -6,7 +6,19 @@
 * SignUp/SignIn workflows with email or phone number
 * SignIn using user password or external Auth Providers \(like Google, Facebook, Auth0 etc\)
 * SCIM User and Group management module
-* Aidbox as Resource Server - access by JWT 
+* Aidbox as Resource Server - access by JWT
+
+### How to choose your flow?
+
+#### Api Consumer
+
+#### Web Application
+
+#### Single Page Application
+
+#### Mobile Application
+
+
 
 
 
