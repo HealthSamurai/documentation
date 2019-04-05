@@ -11,81 +11,43 @@ The simplest way to programmatically access your box API is to use [Basic Authen
 ```yaml
 POST /Client
 
-id: api-consumer
-secret: verysecretstring
+id: basic
+secret: secret
 grant_types:
   - basic
 ```
 
-Next step is to configure access policy for this client. In a simple scenario you can create dedicated AccessPolicy for this client \(read more about Access Policies\). Let's create policy for our client to only allow read patients and encounters:
+Next step is to configure access policy for this client. In a simple scenario you can create dedicated AccessPolicy for this client \(read more about [Access Policies\)](../security/access-control.md). 
 
 ```yaml
 POST /AccessPolicy
 
-id: for-api-consumer
+id: for-basic
 link:
   - resourceType: Client
-    id: api-consumer
-engine: json-schema
-schema:
-  type: object
-  properties:
-    request-method: { constant: 'get' }
-    uri: { enum: ['/Patient', 'Encounter'] }
+    id: basic
+engine: allow
 ```
 
-Now you can make HTTP requests with Authorization header set to `base64("${client.id}:$(client.secret)")`
-
-or use http client built-in support for Basic Auth:
-
-```bash
-curl -u $client_id:$client_secret https://yourbox/Patient
-```
-
-## OAuth 2.0 Client Credentials
-
-If you need more granular control over client session you can use [ OAuth 2.0 Client Credentials Flow](https://tools.ietf.org/html/rfc6749#section-1.3.4) to get access token by Client.id and secret and use it for API calls.
-
-![](../.gitbook/assets/auth-sequence-m2m-flow.png)
-
-Register client with client\_credentials enabled:
-
-```yaml
-POST /Client
-
-id: api-consumer
-secret: verysecretstring
-grant_types:
-  - client_credentials
-auth:
-  client_credentials:
-    access_token_expiration: 3600 # in seconds
-    access_token_format: jwt
-```
-
-Get access\_token
-
-```yaml
-POST /auth/token
-
-client_id: api-consumer
-client_secret: verysecretstring
-grant_type: client_credentials
-# optional
-audience: https://another-service
-```
-
-Parameters can be send in body in any format supported by Aidbox or `application/x-www-form-urlencoded`
+Now you can make HTTP requests with Authorization header set to `base64("${client.id}:$(client.secret)"):`
 
 {% code-tabs %}
-{% code-tabs-item title="response" %}
+{% code-tabs-item title="basic-request" %}
 ```yaml
-access_token: 
-token_type: bearer
-expires_in: 3600
+GET /Patient
+Authorization: Basic Basic YmFzaWM6c2VjcmV0Cg==
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-Access Token is always JWT with session id, client id, expiration time \(if enabled\) and optional audience.
+or use http client built-in support for Basic Auth:
+
+```bash
+curl -u basic:secret https://yourbox/Patient
+curl -H 'Authorization: Basic YmFzaWM6c2VjcmV0Cg==' https://yourbox/Patient
+```
+
+### Test Basic in Auth Sandbox
+
+![](../.gitbook/assets/image%20%282%29.png)
 
