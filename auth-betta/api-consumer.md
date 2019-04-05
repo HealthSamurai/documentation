@@ -49,5 +49,7 @@ curl -H 'Authorization: Basic YmFzaWM6c2VjcmV0Cg==' https://yourbox/Patient
 
 ### Test Basic in Auth Sandbox
 
-![](../.gitbook/assets/image%20%282%29.png)
+{% embed url="https://www.youtube.com/watch?v=xWtNNi\_Q-dU" %}
+
+
 
