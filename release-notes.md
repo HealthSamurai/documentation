@@ -13,6 +13,7 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * Merge Aidbox.Cloud with License Server
 * Bulk API \(export, import\)
 * Uni-version FHIR server \(i.e. support all FHIR versions, probably not all resources\)
+* Structured Data Capture with Custom Resources
 
 ## 0.4.1-RC2 _\[will be published on Monday :\)_
 
