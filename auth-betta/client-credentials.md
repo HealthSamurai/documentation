@@ -54,7 +54,7 @@ Probably you want to configure AccessPolicy for this specific client:
 {% code-tabs %}
 {% code-tabs-item title="policy" %}
 ```yaml
-PUT AccessPolicy/api-client
+PUT /AccessPolicy/api-client
 
 engine: allow
 link:
@@ -93,7 +93,7 @@ Content-Type: application/json
 {
   "grant_type": "client_credentials",
   "client_id": "api-client",
-  "client_secret": "secret"
+  "client_secret": "verysecret"
 }
 ```
 {% endcode-tabs-item %}
