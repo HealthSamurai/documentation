@@ -13,7 +13,7 @@ Fist step is configure Client for Resource Owner Grant with secret and password 
 {% code-tabs %}
 {% code-tabs-item title="client" %}
 ```yaml
-PUT Client/myapp
+PUT /Client/myapp
 
 secret: verysecret
 grant_types:
