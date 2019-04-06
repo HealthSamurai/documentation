@@ -2,7 +2,7 @@
 
 #### Description
 
-The Authorization Code Grant s an OAuth 2.0 flow that regular web apps use in order to access an API, typically as Web applications with backend and frontend. For more detailed information read [OAuth2.0 specifcation](https://tools.ietf.org/html/rfc6749#section-4.1). This flow is also applied for a browser-based application \(SPA\) and it didn't use `client-secret`, because the source code is available in a browser - it isn't secure. Instead of this user authorizes the application and redirected back to the application with a temporary code in the URL. The application exchanges that code for the access token.
+The Authorization Code Grant is an OAuth 2.0 flow that regular web apps use in order to access an API, typically as Web applications with backend and frontend. For more detailed information read [OAuth2.0 specifcation](https://tools.ietf.org/html/rfc6749#section-4.1). This flow is also applied to a browser-based application \(SPA\) and it doesn't use `client-secret`, because the source code is available in a browser - it isn't secure. Instead of this user authorizes the application and redirected back to the application with a temporary code in the URL. The application exchanges that code for the access token.
 
 ![Basic scheme](../.gitbook/assets/untitled-diagram-page-3.svg)
 
@@ -13,7 +13,7 @@ Fist step is configure Client for Authorization Grant with `secret` and `redirec
 {% code-tabs %}
 {% code-tabs-item title="client" %}
 ```yaml
-PUT Client/webapp
+PUT /Client/webapp
 
 secret: verysecret
 first_party: true
