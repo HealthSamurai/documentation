@@ -42,7 +42,7 @@ link:
 
 ### Making Requests with Basic Auth
 
-Now you can make HTTP requests with Authorization header set to `Basic base64(client.id +":" + client.secret):`
+Now you can make HTTP requests with `Authorization` header set to `'Basic ' + base64(client.id +':' + client.secret):`
 
 {% code-tabs %}
 {% code-tabs-item title="basic-request" %}
@@ -53,14 +53,37 @@ Authorization: Basic Basic YmFzaWM6c2VjcmV0Cg==
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-or use http client built-in support for Basic Auth:
+Example with curl:
 
 ```bash
 curl -u basic:secret https://yourbox/Patient
 curl -H 'Authorization: Basic YmFzaWM6c2VjcmV0Cg==' https://yourbox/Patient
 ```
 
-### 
+Most of HTTP clients will do `Authorization` header construction for you:
+
+{% code-tabs %}
+{% code-tabs-item title="js-example" %}
+```javascript
+axios.get('<box>/Patient', {
+  auth: {
+    username: client.id,
+    password: client.secret
+  }
+}).then(function(response) {
+   console.log('Authenticated');
+}).catch(function(error) {
+   console.log('Error on Authentication');
+});
+
+// or you can always do it by manualy set headers
+fetch('<box>/Patient', {
+   headers: {"Authorization": 'Basic ' + btoa(client.id + ':' + client.secret)}
+}).then(resp) { ... }
+
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 ### Test Basic in Auth Sandbox
 
