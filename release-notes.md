@@ -8,21 +8,30 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 
 ## Road Map
 
-* Managing Indexes by **AidboxIndex** meta-resource
-* Audit/Logging UI and API
+* * Audit/Logging UI and API
 * Merge Aidbox.Cloud with License Server
 * Bulk API \(export, import\)
 * Uni-version FHIR server \(i.e. support all FHIR versions, probably not all resources\)
-* Structured Data Capture with Custom Resources
 
-## 0.4.1-RC2 _\[will be published on Monday :\)_
+## 0.4.2-SNAPSHOT _\[22 April 2019\]_
+
+### Features
+
+* Terminology under `fhir` prefix \(issues \#51 \#50 \#38\)
+* Managing Indexes by **AidboxIndex** meta-resource
+* User Level Logs
+* Structured Data Capture with Custom Resources
+* Search & History Replication
+
+### Bug Fixes
+
+## 0.4.1 _\[8 April 8 2019\]_
 
 This release is mostly dedicated to stabilisation of new auth module. Check-out it's [documentation](auth-betta/)!
 
 ### Features
 
-* Terminology under `fhir` prefix \(issues \#51 \#50 \#38\)
-* Support for `_txid` parameter and `ETAG` header for history pooling
+* * Support for `_txid` parameter and `ETAG` header for history pooling
 * Support for `X-HTTP-Method-Override` header for inflexible http clients
 * Support `X-Correlation-Id` and `X-Request-Id` headers
 
