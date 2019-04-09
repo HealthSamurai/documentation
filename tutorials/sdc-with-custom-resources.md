@@ -82,6 +82,51 @@ GET /Vitals?.patient.id=pt-1
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
+### Debugging Extraction
+
+Now we want to transform Vitals into set of FHIR Observations. We will use template extracting. You can play and debug extraction  using `/AlphaSDC/$debug`
+
+{% code-tabs %}
+{% code-tabs-item title="debug.yaml" %}
+```yaml
+POST /AlphaSDC/$debug
+
+source:
+ id: src-1
+ temp: 36.6
+template:
+  Observation:
+     temp: 
+       value: { $path!: [temp] }
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+{% code-tabs %}
+{% code-tabs-item title="response.yaml" %}
+```yaml
+source: {id: src-1, temp: 36.6}
+template:
+  Observation:
+    temp:
+      value:
+        $path!: [temp]
+extracted:
+  Observation:
+    temp:
+      value: 36.6
+      id: temp-src-1
+      meta: {sourceId: src-1}
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+**template** it structured as `{ [resourceType] : { [id-prefix] : <resource-template> }}`, for example to generate Observation with prefix tmp you do `{Observation: {tmp: <resource-template>}}`
+
+**&lt;resource-template&gt;** is a template/prototype of resulting FHIR resource, where some attributes are contains substitution rules like `{ $path!: ["attr", "attr"]}`, this rules will be replaced with value from Custom resource, indicated by this path.
+
+### Create SDC resource
+
 Now let's define how FHIR Observations will be extracted from Vitals. We have to create AlphaSDC resource for that:
 
 ```yaml
@@ -134,9 +179,7 @@ template:
 
 **.id** of AlphaSDC resource should be exactly the same as name of Custom Resource - i.e. `Vitals`
 
-.**template** field of it structured as `{ [resourceType] : { [id-prefix] : <resource-template> }}`, for example to generate Observation with prefix tmp you do `{Observation: {tmp: <resource-template>}}`
-
-**&lt;resource-template&gt;** is a template/prototype of resulting FHIR resource, where some attributes are contains substitution rules like `{ $path!: ["attr", "attr"]}`, this rules will be replaced with value from Custom resource, indicated by this path.
+.**template** is a template described in  section above.
 
 Now you can test how data are extracted using  `POST /AlphaSDC/<id>/$extract` endpoint:
 
@@ -210,7 +253,6 @@ Please provide your feedback and use cases for SDC using [github](https://github
 
 * alternative template languages - JUTE; FHIRPath etc
 * support for Update & Delete
-* $debug operation to debug extraction
 * template validation
 * $pre-populate Operation with SQL engine
 
