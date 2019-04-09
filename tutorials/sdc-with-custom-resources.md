@@ -211,5 +211,6 @@ Please provide your feedback and use cases for SDC using [github](https://github
 * alternative template languages - JUTE; FHIRPath etc
 * support for Update & Delete
 * $debug operation to debug extraction
+* template validation
 * $pre-populate Operation with SQL engine
 
