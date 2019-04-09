@@ -46,7 +46,7 @@ If you want to use _Authorizatin Code Grant_ for **Single Page Application** you
 {% endhint %}
 
 {% hint style="info" %}
-If your application is major consumer of Aidbox API you can set **first\_party** attribute into **true.** This mean, that same User Session will be shared between Aidbox by client,  otherwise new session will be created for client & user.
+If your application is major consumer of Aidbox API you can set **first\_party** attribute into **true.** This means, that same User Session will be shared between Aidbox and client, so if you close client session Aidbox User Session will be closed too.
 {% endhint %}
 
 ## Get Code
