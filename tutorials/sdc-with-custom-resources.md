@@ -5,7 +5,7 @@ description: Structured Data Capturing with Aidbox Custom Resources
 # SDC with Custom Resources
 
 {% hint style="warning" %}
-This is ALPHA \(pre-view\) feature of Aidbox, which is published to collect users feedback. It's available now on 0.4.2-SNAPSHOT Aidbox.Dev and in edge cluster in cloud.
+This is ALPHA \(pre-view\) feature of Aidbox, which is published to collect users feedback. It's available now on 0.4.2-SNAPSHOT Aidbox.Dev and on edge cluster in cloud.
 {% endhint %}
 
 Sometimes FHIR granularity is too small to collect patient data from user interfaces! For example when Physician or Nurse record vital signs in terms of FHIR this will produce bundle of observations. How to save this data into FHIR server? How to keep track that this data was collected from Vitals Form?
@@ -202,5 +202,14 @@ GET /Vitals?.patient.id=pt-1
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
+{% hint style="info" %}
+Please provide your feedback and use cases for SDC using [github](https://github.com/Aidbox/Issues/issues)
+{% endhint %}
 
+## TBD
+
+* alternative template languages - JUTE; FHIRPath etc
+* support for Update & Delete
+* $debug operation to debug extraction
+* $pre-populate Operation with SQL engine
 
