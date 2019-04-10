@@ -11,6 +11,7 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * Merge Aidbox.Cloud with License Server
 * Bulk API \(export, import\)
 * Uni-version FHIR server \(i.e. support all FHIR versions, probably not all resources\)
+* Async validation
 
 ## 0.4.2-SNAPSHOT _\[22 April 2019\]_
 
@@ -24,13 +25,16 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 
 ### Bug Fixes
 
+* Auth first\_party JWT session
+* html sanitise in Narrative
+
 ## 0.4.1 _\[8 April 8 2019\]_
 
 This release is mostly dedicated to stabilisation of new auth module. Check-out it's [documentation](auth-betta/)!
 
 ### Features
 
-* * Support for `_txid` parameter and `ETAG` header for history pooling
+* Support for `_txid` parameter and `ETAG` header for history pooling
 * Support for `X-HTTP-Method-Override` header for inflexible http clients
 * Support `X-Correlation-Id` and `X-Request-Id` headers
 
