@@ -92,7 +92,7 @@
   * [Python SDK](aidbox-sdk/python-sdk.md)
   * [SDK internals](aidbox-sdk/sdk-internals.md)
 * [Administration](administration/README.md)
-  * [Logging & audit](administration/logging-and-audit.md)
+  * [Logging & Audit](administration/logging-and-audit.md)
 * [FAQ](faq/README.md)
   * [Why YAML?](faq/why-yaml.md)
   * [StyleGuide](faq/styleguide.md)
