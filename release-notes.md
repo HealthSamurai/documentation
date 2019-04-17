@@ -12,21 +12,24 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * Bulk API \(export, import\)
 * Uni-version FHIR server \(i.e. support all FHIR versions, probably not all resources\)
 * Async validation
+* Terminology under `fhir` prefix \(issues \#51 \#50 \#38\)
+* Managing Indexes by **AidboxIndex** meta-resource
 
 ## 0.4.2-SNAPSHOT _\[22 April 2019\]_
 
 ### Features
 
-* Terminology under `fhir` prefix \(issues \#51 \#50 \#38\)
-* Managing Indexes by **AidboxIndex** meta-resource
-* User Level Logs
-* Structured Data Capture with Custom Resources
-* Search & History Replication
+* [User Level Logs](administration/logging-and-audit.md)
+* [Structured Data Capture](tutorials/sdc-with-custom-resources.md) with Custom Resources \(Alpha\)
+* [Search & History Replication](tutorials/sync-data-from-aidbox.md)
+* [\_ilike](api/history.md#_ilike-search-non-fhir) search attribute
 
 ### Bug Fixes
 
 * Auth first\_party JWT session
 * html sanitise in Narrative
+* Fix date validation
+* Better validation error reporting
 
 ## 0.4.1 _\[8 April 8 2019\]_
 
