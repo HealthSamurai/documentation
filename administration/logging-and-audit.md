@@ -8,6 +8,8 @@ This is early draft and subject of change
 
 Aidbox generate structured logs in json format into ndjson files. Aidbox logger does manage files rotation.
 
+
+
 ### Logs Schema
 
 #### General attributes
