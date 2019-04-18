@@ -23,6 +23,7 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * [Structured Data Capture](tutorials/sdc-with-custom-resources.md) with Custom Resources \(Alpha\)
 * [Search & History Replication](tutorials/sync-data-from-aidbox.md)
 * [\_ilike](api/history.md#_ilike-search-non-fhir) search attribute
+* [Health-Check](administration/health-check.md) endpoint
 
 ### Bug Fixes
 
