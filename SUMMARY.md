@@ -93,6 +93,7 @@
   * [SDK internals](aidbox-sdk/sdk-internals.md)
 * [Administration](administration/README.md)
   * [Logging & Audit](administration/logging-and-audit.md)
+  * [Health Check](administration/health-check.md)
 * [FAQ](faq/README.md)
   * [Why YAML?](faq/why-yaml.md)
   * [StyleGuide](faq/styleguide.md)
