@@ -325,7 +325,7 @@ GET /Patient?_has:Encounter:subject:_id=enc1
 
 ### \_include & \_revinclude
 
-We have an ability to include linked entities into result. For example, we want to get all encounters and patients related to them. Structure of the request will be: `_include=<reference search parameter> or _include=<Resource>:<reference search parameter>`
+We have an ability to include linked entities into result. For example, we want to get all encounters and patients related to them. Structure of the request will be: `_include=<reference search parameter> or _include=<Resource>:<referencesearch parameter> or _include=*`
 
 ```javascript
 GET /Encounter?_include=subject
@@ -339,6 +339,12 @@ Or for specific **id:**
 
 ```javascript
 GET /Encounter?_id=enc1&_include=Encounter:subject
+```
+
+You can get all resources referenced from result of your search using `*` as parameter value:
+
+```javascript
+GET /Encounter?_include=*
 ```
 
 Reverse include  is specified as a `_revinclude`

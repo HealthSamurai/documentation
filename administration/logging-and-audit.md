@@ -1,16 +1,18 @@
 # Logging & Audit
 
 {% hint style="warning" %}
-This is early draft and subject of change
+This feature is a beta version which is still undergoing final testing before its official release
 {% endhint %}
+
+This feature is a beta version which is still undergoing final testing before its official release
 
 ### Aidbox Logging
 
-Aidbox generate structured logs in new-line separate json format \(ndjson\). 
+Aidbox generate structured logs in Newline Delimited JSON format \(ndjson\). 
 
-Logs format are friendly to load into PostgreSQL, ElasticSearch and other database. Aidbox.CLI util can do it for you.
+Logs format are friendly to load into PostgreSQL, ElasticSearch and other database. Upcoming Aidbox.CLI util will help you with that.
 
-Aidbox logger can be configured to log into file system with rotation or into stdout.
+Aidbox logger can be configured to log into file system with built-in rotation or to stdout.
 
 
 
@@ -79,9 +81,11 @@ GET /_logs
 
 ### Demos:
 
-Watch server logs in browser console:
+#### Watch server logs in browser console:
 
 {% embed url="https://www.youtube.com/watch?v=sLfUHQHT5CU" %}
 
+#### Server logs with Aidbox.CLI
 
+#### Configure logging
 
