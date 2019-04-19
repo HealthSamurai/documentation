@@ -24,7 +24,11 @@ Transfer-Encoding: chunked
 .........
 ```
 
-#### Examples
+#### Demo
+
+{% embed url="https://www.youtube.com/watch?v=BtLxICcQNWw&feature=youtu.be" %}
+
+
 
 Let's create an Client & AccessPolicy for curl
 
