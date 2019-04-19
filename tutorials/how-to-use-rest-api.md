@@ -10,7 +10,7 @@ If you don't want to restrict an access to your Aidbox.Dev instance and wish to 
 
 ### Restrict Access
 
-If you want to enable Access Policy in your installation, you need to setup `DEVBOX_PASSWORD` environment variable in the `Aidbox.Dev` container. You can do this by uncommenting the appropriate line in the `docker-compose.yaml` file.
+If you want to enable Access Policy in your installation, you need to setup `AIDBOX_CLIENT_SECRET` environment variable in the `Aidbox.Dev` container. You can do this by uncommenting the appropriate line in the `docker-compose.yaml` file.
 
 {% code-tabs %}
 {% code-tabs-item title="docker-compose.yaml" %}
@@ -21,7 +21,7 @@ services:
   devbox:
     ......
     environment:
-      # DEVBOX_PASSOWRD: "${DEVBOX_PASSOWRD:-secret}"  # < Uncomment this string
+      # AIDBOX_CLIENT_SECRET: "${AIDBOX_CLIENT_SECRET:-secret}"  # < Uncomment this string
     ......
 ```
 {% endcode-tabs-item %}
@@ -39,7 +39,7 @@ services:
   devbox:
     ......
     environment:
-      DEVBOX_PASSOWRD: "${DEVBOX_PASSOWRD:-secret}"
+      AIDBOX_CLIENT_SECRET: "${AIDBOX_CLIENT_SECRET:-secret}"
     ......
 ```
 {% endcode-tabs-item %}
