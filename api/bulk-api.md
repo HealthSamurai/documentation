@@ -24,7 +24,25 @@ Transfer-Encoding: chunked
 .........
 ```
 
-#### Demo
+## $dump-sql
+
+Take sql query and stream as Chunked Encoded stream in CSV format. Useful to export data for analytics.
+
+```yaml
+POST /$dump-sql
+
+query:  select id, resource#>>'{name,0,family}'
+
+HTTP/1.1 200 OK
+Content-Type: application/CSV
+Transfer-Encoding: chunked
+
+pt-1    Doe    John
+pt-2    Smith    Mike
+................
+```
+
+## Demo
 
 {% embed url="https://www.youtube.com/watch?v=BtLxICcQNWw&feature=youtu.be" %}
 
