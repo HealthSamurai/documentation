@@ -81,7 +81,7 @@ curl -u bulk-client:secret /Patient/\$dump > /tmp/pt.ndjson
 >                                 Dload  Upload   Total   Spent    Left  Speed
 > 100 12.0M    0 12.0M    0     0  9527k      0 --:--:--  0:00:01 --:--:-- 9523k
 
-less /tmp/pg.ndjson
+less /tmp/pt.ndjson
 ```
 
 We've got 100K  patients in less then a second!
