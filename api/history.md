@@ -473,8 +473,21 @@ link:
 
 ### Dot Search \(non-FHIR\)
 
-```text
+With parameters started with `.` you can provide exact path for element, optionally provide coercing after `::` using PostgreSQL types and operator after `$`.
+
+```yaml
 GET /Patient?.name.0.family=Johnson
+=> WHERE resource#>>'{name,0,family}' = 'Jonhnson'
+
+GET /Patient?.name.0.family$contains=Joh
+=> WHERE resource#>>'{name,0,family}' ilike '%John%'
+
+GET /Encounter?.start::timestamptz$gt=2015
+=> WHERE resource#>>'{start}')::timestamptz > '2015'
+
+GET /Patient?.contact$isnull=true
+=> WHERE resource#>>'{contact}' IS NULL
+
 ```
 
 {% hint style="info" %}
