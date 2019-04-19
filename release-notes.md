@@ -15,6 +15,7 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 
 * Merge Aidbox.Cloud with License Server
 * Bulk API \(export, import\)
+* $upload
 * Uni-version FHIR server \(i.e. support all FHIR versions, probably not all resources\)
 * Async validation
 * Terminology under `fhir` prefix \(issues \#51 \#50 \#38\)
