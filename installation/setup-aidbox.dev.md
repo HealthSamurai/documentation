@@ -22,7 +22,7 @@ The recommended way to work with Aidbox.Dev is docker-compose. So you need  [doc
 
 ![](../.gitbook/assets/screen-shot-2018-10-02-at-17.34.31.png)
 
-Minimal installation consists of two containers - one with Aidbox.Dev and second with our PostgreSQL build. You can copy docker-compose.yaml content below or clone it from example repo - [https://github.com/Aidbox/devbox.git](https://github.com/Aidbox/devbox.git)
+Minimal installation consists of two containers - one with Aidbox.Dev and second with our PostgreSQL build. You can copy docker-compose.yaml content below or clone it from example repo — [https://github.com/Aidbox/devbox.git](https://github.com/Aidbox/devbox.git)
 
 {% code-tabs %}
 {% code-tabs-item title="docker-compose.yaml" %}
