@@ -30,7 +30,8 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * [Search & History Replication](tutorials/sync-data-from-aidbox.md)
 * [\_ilike](api/history.md#_ilike-search-non-fhir) search attribute
 * [Health-Check](administration/health-check.md) endpoint by [RFC](https://inadarei.github.io/rfc-healthcheck/)
-* [\_include=\*](api/history.md#_include-and-_revinclude) support
+* [\_include=\*](api/history.md#_include-and-_revinclude) - include \* support
+* [$dump](api/bulk-api.md#usddump) - Bulk Export Operation
 
 ### Bug Fixes
 
