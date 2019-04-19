@@ -26,7 +26,7 @@ Transfer-Encoding: chunked
 
 ## $dump-sql
 
-Take sql query and stream as Chunked Encoded stream in CSV format. Useful to export data for analytics.
+Take sql query and responds with Chunked Encoded stream in CSV format. Useful to export data for analytics.
 
 ```yaml
 POST /$dump-sql
