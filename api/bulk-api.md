@@ -32,6 +32,7 @@ Take sql query and responds with Chunked Encoded stream in CSV format. Useful to
 POST /$dump-sql
 
 query:  select id, resource#>>'{name,0,family}'
+format: csv # ndjson; sql; elastic-bulk?
 
 HTTP/1.1 200 OK
 Content-Type: application/CSV
@@ -48,7 +49,7 @@ pt-2    Smith    Mike
 
 
 
-Let's create Client & AccessPolicy for API agent - in our case curl
+Create Client & AccessPolicy for your API agent - in our case curl
 
 ```yaml
 PUT /
