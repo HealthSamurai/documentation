@@ -48,7 +48,7 @@ pt-2    Smith    Mike
 
 
 
-Let's create an Client & AccessPolicy for curl
+Let's create Client & AccessPolicy for API agent - in our case curl
 
 ```yaml
 PUT /
@@ -64,15 +64,17 @@ PUT /
   - {id: 'bulk-client', resourceType: 'Client'}
 ```
 
-Generate some number of patients from DB Console:
+Generate some number of patients using SQL - in DB Console:
 
 ```sql
 INSERT INTO patient (id,txid, status, resource) 
 SELECT g.id, g.id, 'created', '{"name": [{"family": "John"}]}' 
 FROM generate_series(1, 100000) AS g (id);
+--
+SELECT count(*) FROM Patient;
 ```
 
-Load all patients:
+Now we can test bulk export using $dump operation with curl program:
 
 ```bash
 curl -u bulk-client:secret /Patient/\$dump > /tmp/pt.ndjson
@@ -86,10 +88,9 @@ less /tmp/pt.ndjson
 
 We've got 100K  patients in less then a second!
 
-Let's clean up:
+Do not forget to clean up the database:
 
 ```sql
-SELECT count(*) FROM Patient;
 TRUNCATE Patient;
 ```
 
