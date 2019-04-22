@@ -107,7 +107,7 @@ PGDATABASE=devbox
 
 PGIMAGE=aidbox/db:11.1.0
 
-AIDBOX_IMAGE=healthsamurai/devbox:0.4.0
+AIDBOX_IMAGE=healthsamurai/devbox:0.4.1
 # uncomment next line to work with edge channel
 # AIDBOX_IMAGE=healthsamurai/devbox:edge
 ```
