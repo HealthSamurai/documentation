@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Aidbox](README.md)
+* [Overview of Aidbox editions](README.md)
 * [Release Notes](release-notes.md)
 * [Installation](installation/README.md)
   * [Setup Aidbox.Dev](installation/setup-aidbox.dev.md)
