@@ -26,11 +26,67 @@ All sample requests can be run in Postman:[![Run in Postman](https://run.pstmn.i
 
 ### \_elements
 
-TBD
+A client can request a specific set of elements to be returned as part of a resource in the search results using the `_elements` parameter:
+
+```yaml
+GET [base]/Patient?_elements=birthDate,name.given,address.city
+
+# resp
+
+resourceType: Bundle
+type: searchset
+entry:
+- resource:
+    birthDate: '1991-11-08'
+    name: [{ given: [Marat] }]
+    address: [{city: 'Tokio'}]
+    resourceType: Patient
+- resource:
+    name: [{given: [Abram]}]
+    resourceType: Patient
+- resource:
+    birthDate: '1965-03-29'
+    name: [{ given: [John] }]
+    address: [{city: 'Los Angeles'}]
+    resourceType: Patient
+```
+
+The `_elements` parameter consists of a comma-separated list of  element paths such as. Only element paths that are listed are to be returned. The list of elements does not apply to included resources.
+
+If you want to exclude specific elements you can prefix it with `-` sign: 
+
+```javascript
+GET /Patient?_elements=-text,-identifier
+```
 
 ### \_summary
 
-TBD
+The client can request the server to return only a portion of the resources by using the parameter `_summary`
+
+```yaml
+GET /Patient?_summary=true
+```
+
+Which elements will be returned for specific resource as \_summary  can be inspected using following request to Attribute Meta-Resource:
+
+```yaml
+GET /Attribute?entity=Patient&.isSummary=true&_elements=id,isSummary&_sort=_id
+
+# resp
+
+resourceType: Bundle
+type: searchset
+entry:
+- resource: {id: Patient.active, isSummary: true, resourceType: Attribute}
+  fullUrl: /Attribute/Patient.active
+- resource: {id: Patient.address, isSummary: true, resourceType: Attribute}
+  fullUrl: /Attribute/Patient.address
+- resource: {id: Patient.animal, isSummary: true, resourceType: Attribute}
+  fullUrl: /Attribute/Patient.animal
+- resource: {id: Patient.animal.breed, isSummary: true, resourceType: Attribute}
+  fullUrl: /Attribute/Patient.animal.breed
+.....
+```
 
 ### Search Parameters
 
