@@ -95,3 +95,28 @@ Do not forget to clean up the database:
 TRUNCATE Patient;
 ```
 
+### Load data into BigQuery
+
+```bash
+# load tsv data
+curl -v -X POST -u bulk-client:secret -H 'content-type:application/json' \
+   https://<YOURBOX>/\$dump-sql \
+   -d '{"query": "select id, ts, resource#>>'"'"'{module}'"'"' from entity"}' \
+   > data.tsv
+
+# create dataset
+bq mk test
+bq ls
+
+# load datast
+bq load --source_format=CSV \
+  --field_delimiter=tab \
+  test.entities ./data.tsv res,ts,mod
+
+# list ids
+bq query 'select id from test.entities'
+
+# remove dataset
+bq rm -r test
+```
+
