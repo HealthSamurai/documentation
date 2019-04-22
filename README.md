@@ -10,7 +10,7 @@ Aidbox is an FHIR Backend-as-a-Service \(BaaS\) platform that enables deploy and
 With Aidbox, you can easily develop Mobile, Single Page, and classic Web Applications.
 {% endhint %}
 
-The FHIR standard currently describes 116 models for storing health data, and these units are called [Resources](http://www.hl7.org/fhir/resourcelist.html) \(such as Patient, Encounter, Observation etc.\). FHIR uses a [REST API](https://hello.aidbox.io/docs/rest-api) to access and manipulate the data \(Create, Update, Search, etc\).
+The FHIR standard currently describes 116 models for storing health data, and these units are called [Resources](http://www.hl7.org/fhir/resourcelist.html) \(such as Patient, Encounter, Observation, etc.\). FHIR uses a [REST API](https://hello.aidbox.io/docs/rest-api) to access and manipulate the data \(Create, Update, Search, etc\).
 
 Aidbox is available in the following editions:
 
@@ -19,14 +19,23 @@ Aidbox is available in the following editions:
 * Aidbox One
 * Aidbox Enterprise  
 
-**Aidbox.Dev** is a free development environment.  It is good for developers starting new healthcare projects. You can download Aidbox Dev and set up your development environment in no time.
+{% tabs %}
+{% tab title="Aidbox.Dev" %}
+Aidbox.Dev is a free development environment. It is good for developers starting new healthcare projects. You can download Aidbox.Dev and set up your development environment in no time.
+{% endtab %}
 
-**Aidbox.One** is a one-server installation. It is good for small production installations. You can upgrade your Aidbox Dev to Aidbox One and move your solution into production.
+{% tab title="Aidbox.One" %}
+Aidbox.One is a one-server installation. It is good for small production installations. You can upgrade your Aidbox**.**Dev to Aidbox.One and move your solution into production.
+{% endtab %}
 
-**Aidbox.Enterprise** is a highly-available multi-tenant installation with 24/7 support. It is good for large enterprise installations and SaaS products.
+{% tab title="Aidbox.Enterprise" %}
+Aidbox.Enterprise is a highly-available multi-tenant installation with 24/7 support. It is good for large enterprise installations and SaaS products.
+{% endtab %}
 
-**Aidbox.Cloud** is  Aidbox.Enterprise in the Health Samurai cloud. It is good for everyone! Use what you need and pay for what you use.  
-
+{% tab title="Aidbox.Cloud" %}
+Aidbox.Cloud is Aidbox.Enterprise in the Health Samurai cloud. It is good for everyone! Use what you need and pay for what you use.
+{% endtab %}
+{% endtabs %}
 
 ![](.gitbook/assets/line.png)
 
