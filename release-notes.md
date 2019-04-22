@@ -41,7 +41,7 @@ This release is dedicated to Aidbox Search
 * [History based replication](tutorials/sync-data-from-aidbox.md)
 * Search: new [\_ilike](api/history.md#_ilike-search-non-fhir) search parameter
 * Search: [\_include=\*](api/history.md#_include-and-_revinclude)  support
-* Search: \_list parameter support
+* Search: [\_list](api/history.md#_list) parameter support
 * [$dump](api/bulk-api.md#usddump) - Bulk Export Operation
 * [Health-Check](administration/health-check.md) endpoint by [RFC](https://inadarei.github.io/rfc-healthcheck/)
 
