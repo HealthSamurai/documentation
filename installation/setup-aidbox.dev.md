@@ -1,5 +1,7 @@
 ---
-description: 'Estimated reading time: 7 min'
+description: >-
+  Step by step how to install Aidbox.Dev on-premises. Estimated reading time: 7
+  min
 ---
 
 # Setup Aidbox.Dev
