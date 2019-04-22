@@ -1,16 +1,18 @@
+---
+description: 'Estimated reading time: 7 min'
+---
+
 # Setup Aidbox.Dev
 
-## Overview
+### Overview
+
+You can run Aidbox.Dev on macOS, Linux and Windows 10 Pro
 
 We are providing a lightweight version of [Aidbox](https://www.health-samurai.io/aidbox) named **Aidbox.Dev** — a special version aimed at local development and in your CI. To obtain access to Aidbox.Dev, please use our [License server](https://license-ui.aidbox.app/).
 
-## Installation
-
-The recommended way to work with Aidbox.Dev is docker-compose. So you need  [docker](https://docs.docker.com/install/) and [docker-compose](https://docs.docker.com/compose/install/) installed. Before you start you have to get free development license keys.
-
 ### License obtaining
 
-1. Visit and register on the [License server](https://license-ui.aidbox.app) then click the `GET LICENSE KEY` button.
+1.  Visit and register on the [License server](https://license-ui.aidbox.app) then click the `GET LICENSE KEY` button.
 
 ![](../.gitbook/assets/scr-2018-10-31_15-08-05.png)
 
@@ -18,11 +20,34 @@ The recommended way to work with Aidbox.Dev is docker-compose. So you need  [doc
 
 ![](../.gitbook/assets/screen-shot-2018-10-02-at-17.28.09.png)
 
-3. Congratulations, now you have a license key.
+3. Congratulations! Now you have a license key.
 
 ![](../.gitbook/assets/screen-shot-2018-10-02-at-17.34.31.png)
 
-Minimal installation consists of two containers - one with Aidbox.Dev and second with our PostgreSQL build. You can copy docker-compose.yaml content below or clone it from example repo — [https://github.com/Aidbox/devbox.git](https://github.com/Aidbox/devbox.git)
+### Aidbox.Dev Installation
+
+#### Step 1. Install Docker Compose
+
+The recommended way to work with **Aidbox.Dev** is Docker Compose.  
+Install the Docker for your OS following the [Get Docker page](https://docs.docker.com/install/), then go to instructions on the [installing Compose](https://docs.docker.com/v17.09/compose/install/#install-compose) page. 
+
+#### Step 2. Create docker-compose.yaml
+
+Clone our[ official repository](https://github.com/Aidbox/devbox) with the sample configuration.
+
+```bash
+$ git clone https://github.com/Aidbox/devbox.git
+```
+
+Create the .env file with your Aidbox.Dev parameters.
+
+```text
+$ cd devbox && cp .env.tpl .env
+```
+
+{% hint style="info" %}
+docker-compose.yaml file is parameterized with environment variables that can be stored by convention in the .env file \(read more about [env & docker-compose](https://docs.docker.com/compose/environment-variables/)\).
+{% endhint %}
 
 {% code-tabs %}
 {% code-tabs-item title="docker-compose.yaml" %}
@@ -55,7 +80,9 @@ services:
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-`docker-compose.yaml` file is parametrised with environment variables, which can be stored by convention in `.env` file \( read more about[ env & docker-compose](https://docs.docker.com/compose/environment-variables/)\).
+#### Step 3. **Fill in the .env file with the following parameters**
+
+Open the `.env` file and insert your `License ID` and `License KEY,`specify FHIR version and decide about box security and distribution channel \( latest vs edge\).
 
 {% code-tabs %}
 {% code-tabs-item title=".env" %}
@@ -79,7 +106,10 @@ PGPASSWORD=postgres
 PGDATABASE=devbox
 
 PGIMAGE=aidbox/db:11.1.0
-AIDBOX_IMAGE=healthsamurai/devbox:edge
+
+AIDBOX_IMAGE=healthsamurai/devbox:0.4.0
+# uncomment next line to work with edge channel
+# AIDBOX_IMAGE=healthsamurai/devbox:edge
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
@@ -107,27 +137,23 @@ Starting Aidbox in open mode without AIDBOX\_CLIENT\_SECRET is disabled!
 **AIDBOX\_IMAGE** specify one of image from **healthsamurai/devbox** repository. Take a look at available versions at [docker hub](https://hub.docker.com/r/healthsamurai/devbox/tags).
 {% endhint %}
 
-### Minimal steps to run Aidbox.Dev
+### Run Aidbox.Dev.
 
-Clone our [official repository](https://github.com/Aidbox/devbox) with sample configuration .
-
-```text
-$ git clone https://github.com/Aidbox/devbox.git
-$ cd devbox
-$ cp .env.tpl .env
-```
-
-Open the `.env` file and insert your `License ID` and `License KEY,`specify FHIR version and decide about box security and distribution channel \( latest vs edge\).
-
-Now you can run Aidbox.Dev.
+#### **Run Docker Compose**
 
 ```bash
-$ docker-compose up
+$ docker-compose up -d
 ```
 
-That's it! Aidbox.Dev is running and you can point your browser to [http://localhost:8888](http://localhost:8888/) to see a fancy welcome page.
+That's it! Aidbox.Dev is running and you can point your browser to [http://localhost:8888](http://localhost:8888/) to see a fancy welcome page.   
+  
+****Insert your ADMIN\_ID and ADMIN\_PASSWORD and you will see your development environment. This is the beginning of the way to create your best healthcare products.
 
-![Aidbox.Dev welcome page](../.gitbook/assets/screen-shot-2018-10-22-at-13.37.09.png)
+![](../.gitbook/assets/ezgif.com-gif-maker-1.gif)
+
+{% hint style="info" %}
+We welcome your questions and comments about our products. Have an idea/question you'd like to share with our community? [Submit it here](https://community.aidbox.app/)
+{% endhint %}
 
 ### What next?
 
