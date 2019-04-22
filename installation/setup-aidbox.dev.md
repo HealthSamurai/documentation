@@ -137,7 +137,7 @@ Starting Aidbox in open mode without AIDBOX\_CLIENT\_SECRET is disabled!
 **AIDBOX\_IMAGE** specify one of image from **healthsamurai/devbox** repository. Take a look at available versions at [docker hub](https://hub.docker.com/r/healthsamurai/devbox/tags).
 {% endhint %}
 
-### Run Aidbox.Dev.
+### Run Aidbox.Dev
 
 #### **Run Docker Compose**
 
