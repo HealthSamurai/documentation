@@ -10,7 +10,9 @@ Aidbox is an FHIR Backend-as-a-Service \(BaaS\) platform that enables deploy and
 With Aidbox, you can easily develop Mobile, Single Page, and classic Web Applications.
 {% endhint %}
 
+{% hint style="info" %}
 The FHIR standard currently describes 116 models for storing health data, and these units are called [Resources](http://www.hl7.org/fhir/resourcelist.html) \(such as Patient, Encounter, Observation, etc.\). FHIR uses a [REST API](https://hello.aidbox.io/docs/rest-api) to access and manipulate the data \(Create, Update, Search, etc\).
+{% endhint %}
 
 Aidbox is available in the following editions:
 
