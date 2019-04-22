@@ -1,5 +1,7 @@
 ---
-description: 'Estimated reading time: 5 min'
+description: >-
+  Aidbox is the backend development platform for your modern healthcare
+  application on FHIR. Estimated reading time: 5 min
 ---
 
 # Overview of Aidbox editions
