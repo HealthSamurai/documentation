@@ -7,8 +7,8 @@ Version under development published with `-SNAPSHOT` and `-RC[x]` postfix. For e
 Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in different  geo regions and run different Aidbox versions. Clusters labeled _**stable**_ have latest stable version \(i.e. `max(version)`\). As well clusters with **edge** label run latest development version \(snapshot or release candidates\).
 
 {% hint style="info" %}
-* Current stable version: **0.4.1**
-* Next release 22 April:   **0.4.2**  
+* Current stable version: **0.4.2**
+* Next release 6 May:   **0.4.3**
 {% endhint %}
 
 ## Road Map
@@ -19,9 +19,20 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * Uni-version FHIR server \(i.e. support all FHIR versions, probably not all resources\)
 * Async validation
 * Terminology under `fhir` prefix \(issues \#51 \#50 \#38\)
-* Managing Indexes by **AidboxIndex** meta-resource
 
-## 0.4.2-SNAPSHOT _\[22 April 2019\]_
+## 0.4.3-SNAPSHOT _\[6 May 2019\]_
+
+This release is dedicated to Aidbox Search
+
+### Features
+
+* \_filter parameter support
+* Managing Indexes by **AidboxIndex** meta-resource
+* Async implementation
+* Bulk Import: 
+* * terminology import packages
+
+## 0.4.2 _\[22 April 2019\]_
 
 ### Features
 
@@ -41,7 +52,7 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * Fix date validation
 * Better validation error reporting
 
-## 0.4.1 _\[8 April 8 2019\]_
+## 0.4.1 _\[8 April 2019\]_
 
 This release is mostly dedicated to stabilisation of new auth module. Check-out it's [documentation](auth-betta/)!
 
