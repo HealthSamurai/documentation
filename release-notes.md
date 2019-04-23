@@ -39,9 +39,9 @@ This release is dedicated to Aidbox Search
 * [User Level Logs](administration/logging-and-audit.md)
 * [Structured Data Capture](tutorials/sdc-with-custom-resources.md) with Custom Resources \(Alpha\)
 * [History based replication](tutorials/sync-data-from-aidbox.md)
-* Search: new [\_ilike](api/history.md#_ilike-search-non-fhir) search parameter
-* Search: [\_include=\*](api/history.md#_include-and-_revinclude)  support
-* Search: [\_list](api/history.md#_list) parameter support
+* Search: new [\_ilike](api/search.md#_ilike-search-non-fhir) search parameter
+* Search: [\_include=\*](api/search.md#_include-and-_revinclude)  support
+* Search: [\_list](api/search.md#_list) parameter support
 * [$dump](api/bulk-api.md#usddump) - Bulk Export Operation
 * [Health-Check](administration/health-check.md) endpoint by [RFC](https://inadarei.github.io/rfc-healthcheck/)
 

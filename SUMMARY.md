@@ -43,7 +43,7 @@
   * [History](api/history-1.md)
   * [Patch](api/patch.md)
   * [Transaction/Batch](api/transaction.md)
-  * [Search](api/history.md)
+  * [Search](api/search.md)
   * [Bulk API](api/bulk-api.md)
   * [Subscriptions](api/subscriptions.md)
   * [$metadata](api/custom-metadata.md)

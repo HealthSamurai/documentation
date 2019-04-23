@@ -107,7 +107,7 @@ Aidbox REST API doesn't ignore`id` and treat it as all other attributes in contr
 POST [base]/[type]?[search parameters]
 ```
 
-Much more complex way to create a resource \(it requires knowledge of [search](history.md)\) but it gives some additional flexibility. If you provide search parameters, `create` becomes `conditional create` and works in the following way \(depending on the number of search results\): 
+Much more complex way to create a resource \(it requires knowledge of [search](search.md)\) but it gives some additional flexibility. If you provide search parameters, `create` becomes `conditional create` and works in the following way \(depending on the number of search results\): 
 
 * **No matches**: The server performs a `create` interaction
 * **One Match**: The server returns the found resource and `200 OK`
@@ -152,7 +152,7 @@ A patient was not created, an existing patient was returned.
 GET [base]/[type]/[id]
 ```
 
-One of the most basic interactions used to obtain a resource by a given `id`. For more advanced options for getting resources check out [Search](history.md).
+One of the most basic interactions used to obtain a resource by a given `id`. For more advanced options for getting resources check out [Search](search.md).
 
 * **`200`** **OK** — resource successfully found and returned
 * **`404`** **Not Found —** resource with a given `id` doesn't exist on the server
@@ -380,7 +380,7 @@ issue:
 PUT [base]/[type]?[search parameters]
 ```
 
-This is more complex way to update a resource but it gives more power. It gives the ability to update a resource without knowing `id` but requires knowledge of [Search](history.md). Different response codes will be returned \(based on the number of search results\):
+This is more complex way to update a resource but it gives more power. It gives the ability to update a resource without knowing `id` but requires knowledge of [Search](search.md). Different response codes will be returned \(based on the number of search results\):
 
 * **No matches**: The server performs a `create` interaction
 * **One Match**: The server performs the update against the matching resource
