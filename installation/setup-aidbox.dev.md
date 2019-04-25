@@ -151,7 +151,7 @@ That's it! Aidbox.Dev is running and you can point your browser to [http://local
   
 ****Insert your ADMIN\_ID and ADMIN\_PASSWORD and you will see your development environment. This is the beginning of the way to create your best healthcare products.
 
-![](../.gitbook/assets/ezgif.com-gif-maker-1.gif)
+![](../.gitbook/assets/login-aidbox.gif)
 
 {% hint style="info" %}
 We welcome your questions and comments about our products. Have an idea/question you'd like to share with our community? [Submit it here](https://community.aidbox.app/)
