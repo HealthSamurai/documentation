@@ -50,6 +50,7 @@
   * [$validate](api/usdvalidate.md)
   * [$json-schema](api/usdjson-schema.md)
   * [SQL endpoints](api/usdpsql.md)
+  * [Sequence API](api/sequence-api.md)
   * [Misc](api/misc.md)
   * [Custom Search](api/custom-search.md)
 * [Auth](auth-betta/README.md)
