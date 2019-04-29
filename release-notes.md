@@ -19,18 +19,26 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * Uni-version FHIR server \(i.e. support all FHIR versions, probably not all resources\)
 * Async validation
 * Terminology under `fhir` prefix \(issues \#51 \#50 \#38\)
+* \_filter parameter support
+* Managing Indexes by **AidboxIndex** meta-resource
 
 ## 0.4.3-SNAPSHOT _\[6 May 2019\]_
 
 This release is dedicated to Aidbox Search
 
-### Features
 
-* \_filter parameter support
-* Managing Indexes by **AidboxIndex** meta-resource
+
+### Planed Features
+
 * Async implementation
 * Bulk Import: 
 * * terminology import packages
+
+### Features
+
+* [Sequence API](api/sequence-api.md) - use PostgreSQL sequences through REST API
+
+### 
 
 ## 0.4.2 _\[22 April 2019\]_
 
