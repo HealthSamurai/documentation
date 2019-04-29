@@ -1,6 +1,10 @@
+---
+description: Aidbox provides access to PostgreSQL sequences through REST API.
+---
+
 # Sequence API
 
-Aidbox provides access to[ PostgreSQL sequences](https://postgrespro.ru/docs/postgrespro/11/sql-createsequence) through REST API.
+In some situations you want to enumerate your resources with increasing counter or use global sequences for your app needs. Aidbox provides handy access to [PostgreSQL sequences](https://www.postgresql.org/docs/current/sql-createsequence.html) through REST API.
 
 ## Create Sequence
 
@@ -15,6 +19,16 @@ id: pt_seq
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
+
+Other PGSequence attributes you can specify:
+
+| attr | type | desc |
+| :--- | :--- | :--- |
+| **start** | integer | initial sequence value \(default 1\) |
+| **cycle** | boolean | cycle after reaching sequence max/min value |
+| **increment** | integer | sequence step \(default 1\) |
+| **maxval** | integer | max value to cycle |
+| **minval** | integer | min value to cycle |
 
 ## Get next value
 
