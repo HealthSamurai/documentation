@@ -18,7 +18,7 @@ id: pt_seq
 
 ## Get next value
 
-Now you can transactionally move sequence forward:
+Now you can transactionally move sequence forward and reserve next value:
 
 ```yaml
 POST /PGSequence/pt_seq
@@ -29,7 +29,20 @@ id: pt_seq
 value: 1
 ```
 
-Each call will increment sequence
+Each call will increment sequence.
+
+You can get range of values by providing **count** parameter in body.
+
+```yaml
+POST /PGSequence/pt_seq
+
+count: 5
+
+# response 200
+
+id: pt_seq
+values: [2,3,4,5,6]
+```
 
 ## Read current value
 
