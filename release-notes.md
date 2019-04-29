@@ -24,10 +24,6 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 
 ## 0.4.3-SNAPSHOT _\[6 May 2019\]_
 
-This release is dedicated to Aidbox Search
-
-
-
 ### Planed Features
 
 * Async implementation
@@ -37,8 +33,6 @@ This release is dedicated to Aidbox Search
 ### Features
 
 * [Sequence API](api/sequence-api.md) - use PostgreSQL sequences through REST API
-
-### 
 
 ## 0.4.2 _\[22 April 2019\]_
 
