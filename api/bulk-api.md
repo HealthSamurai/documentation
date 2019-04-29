@@ -24,6 +24,21 @@ Transfer-Encoding: chunked
 .........
 ```
 
+## $load
+
+You can efficiently load data into Aidbox  in ndjson format from external service with:
+
+```yaml
+POST /$load
+
+source: 'https://storage.googleapis.com/aidbox-public/icd10cm.ndjson.gz'
+temp_table: _icd10cm
+validation: 
+  enable: off # | async | on
+  checks: struct # | refs | all
+method: copy # | insert
+```
+
 ## $dump-sql
 
 Take sql query and responds with Chunked Encoded stream in CSV format. Useful to export data for analytics.
