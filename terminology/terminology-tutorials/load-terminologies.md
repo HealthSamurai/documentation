@@ -24,6 +24,10 @@ GET /CodeSystem
 GET /ValueSet
 ```
 
+You can inspect concepts in Aidbox Console - got to Concepts button:
+
+![](../../.gitbook/assets/screen-shot-2019-05-14-at-17.23.53.png)
+
 ```sql
 truncate concept;
 truncate codesystem;
