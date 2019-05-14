@@ -8,7 +8,7 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 
 {% hint style="info" %}
 * Current stable version: **0.4.2**
-* Next release 6 May:   **0.4.3**
+* Next release 16 May:   **0.4.3**
 {% endhint %}
 
 ## Road Map
@@ -22,7 +22,7 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * \_filter parameter support
 * Managing Indexes by **AidboxIndex** meta-resource
 
-## 0.4.3-SNAPSHOT _\[6 May 2019\]_
+## 0.4.3-SNAPSHOT _\[16 May 2019\]_
 
 ### Planed Features
 
@@ -33,6 +33,14 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 ### Features
 
 * [Sequence API](api/sequence-api.md) - use PostgreSQL sequences through REST API
+* Operation bound policy in App manifest
+* Clear resources deleted in App manifest \([\#70](https://github.com/Aidbox/Issues/issues/70)\)
+
+### Bug Fixes
+
+* Sort by polymorphic elements \([\#90](https://github.com/Aidbox/Issues/issues/90)\)
+* Fix `ge` and `le` operators for date search \([\#85](https://github.com/Aidbox/Issues/issues/85)\)
+* Search \_has and param name with dash \([\#95](https://github.com/Aidbox/Issues/issues/95)\)
 
 ## 0.4.2 _\[22 April 2019\]_
 
