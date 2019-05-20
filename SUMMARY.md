@@ -37,6 +37,7 @@
     * [Modules](basic-concepts/meta-model/modules.md)
     * [Manifest](basic-concepts/meta-model/manifest.md)
   * [Validation](basic-concepts/validation.md)
+  * [FHIR Search](basic-concepts/fhir-search.md)
   * [Indices](basic-concepts/indices.md)
 * [REST API](api/README.md)
   * [Capability Statement](api/metadata.md)
