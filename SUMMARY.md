@@ -89,7 +89,7 @@
     * [ConceptMap Translations](terminology/conceptmap/translations.md)
     * [ConceptMap Closure Table](terminology/conceptmap/conceptmap-closure-table.md)
   * [Terminology Tutorials](terminology/terminology-tutorials/README.md)
-    * [Load Terminologies](terminology/terminology-tutorials/load-terminologies.md)
+    * [Load ICD-10 terminology into Aidbox](terminology/terminology-tutorials/load-terminologies.md)
 * [Aidbox SDK](aidbox-sdk/README.md)
   * [Apps](aidbox-sdk/aidbox-apps.md)
   * [NodeJs SDK](aidbox-sdk/nodejs.md)

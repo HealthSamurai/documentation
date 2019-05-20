@@ -2,13 +2,13 @@
 description: In this post we will see how load popular terminologies into aidbox.
 ---
 
-# Load Terminologies
+# Load ICD-10 terminology into Aidbox
 
 With a next version of Aidbox we provide you with set of terminology packages like ICD-10 and LOINC and special bulk operation to import this code systems into your box.
 
-You can read more about how Aidbox terminology service designed in  a post of our CTO - [Two-phase terminology](https://medium.com/@niquola/two-phase-fhir-terminology-e52e1b105f6d). 
+You can read more about how Aidbox terminology service designed in a our CTO blog post - [Two-phase terminology](https://medium.com/@niquola/two-phase-fhir-terminology-e52e1b105f6d). 
 
-In this tutorial we will load ICD-10 deceases codes into Aidbox and see how we can lookup codes.
+In this tutorial we will load ICD-10 deceases codes into Aidbox and see how we can lookup codes using Concept resource Search API.
 
 Aidbox team prepared terminology packages with popular code systems for your. This packages are essentially ndjson files with set of concept resources and they are available by public url in our cloud.
 
@@ -49,7 +49,7 @@ Let's go to REST console and see what do we have:
 ```yaml
 GET /CodeSystem
 
-# response
+# response 200
 
 resourceType: Bundle
 type: searchset
@@ -69,6 +69,7 @@ entry:
 ```yaml
 GET /ValueSet
 
+# response 200
 
 resourceType: Bundle
 type: searchset
@@ -87,7 +88,7 @@ entry:
     description: This value set includes all ICD-10 codes.
 ```
 
-Now we can search diagnoses with:
+Now we can search diagnoses with for example [\_ilike](../../api/search.md#_ilike-search-non-fhir) parameter:
 
 ```yaml
 GET /Concept?system=ICD-10&_ilike=flue
@@ -116,7 +117,7 @@ entry:
 ...
 ```
 
-Or  inspect concepts in Aidbox Console - go to Concepts button:
+Or  inspect concepts in Aidbox Console UI:
 
 ![](../../.gitbook/assets/screen-shot-2019-05-14-at-17.23.53.png)
 
