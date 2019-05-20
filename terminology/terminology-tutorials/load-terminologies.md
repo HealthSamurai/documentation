@@ -4,28 +4,50 @@ description: In this post we will see how load popular terminologies into aidbox
 
 # Load Terminologies
 
-### Load terminology packs
+With a next version of Aidbox we provide you with set of terminology packages like ICD-10 and LOINC and special bulk operation to import this code systems into your box.
 
-Aidbox provide  `terminology/$import` operation to load terminology packages prepared by Aidbox team.
+You can read more about how Aidbox terminology service designed in  a post of our CTO - [Two-phase terminology](https://medium.com/@niquola/two-phase-fhir-terminology-e52e1b105f6d). 
 
-For example to load ICD-10 \(Classification of Deceases\) codes you can:
+In this tutorial we will load ICD-10 deceases codes into Aidbox and see how we can lookup codes.
 
+Aidbox team prepared terminology packages with popular code systems for your. This packages are essentially ndjson files with set of concept resources and they are available by public url in our cloud.
+
+Here is the few packages you can start with:
+
+* ICD-10 - [https://storage.googleapis.com/aidbox-public/icd10/icd10cm.ndjson.gz](https://storage.googleapis.com/aidbox-public/icd10/icd10cm.ndjson.gz)
+* LOINC - [https://storage.googleapis.com/aidbox-public/loinc/loinc-concepts-2.65.ndjson.gz](https://storage.googleapis.com/aidbox-public/loinc/loinc-concepts-2.65.ndjson.gz)
+
+Rx-Norm, SNOMED-CT and basic FHIR CodeSystems/ValueSets packages are in progress. If you need something specific - ping us in a [Aidbox Community Chat](https://community.aidbox.app).
+
+To load this terminology packs you can use  `terminology/$import` operation. Let's load ICD-10 \(Classification of Deceases\) - just copy-paste following snippet into REST console in Aidbox UI:
+
+{% code-tabs %}
+{% code-tabs-item title="request.yalm" %}
 ```yaml
 POST /terminology/$import
 
 url: 'https://storage.googleapis.com/aidbox-public/icd10/icd10cm.ndjson.gz'
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
-# response 200
+You will get response with numbers of resources loaded:
 
+{% code-tabs %}
+{% code-tabs-item title="response.yaml" %}
+```yaml
+status: 200
 result: {CodeSystem: 1, ValueSet: 1, Concept: 44487}
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
-You see one CodeSystem and ValueSet were loaded and about 40K concepts.
+As you can see package consists of one CodeSystem, one ValueSet and about 40K concepts with decease codes.
 
 Let's go to REST console and see what do we have:
 
 ```yaml
-GET /Concept
+GET /CodeSystem
 
 # response
 
@@ -45,6 +67,9 @@ entry:
 ```
 
 ```yaml
+GET /ValueSet
+
+
 resourceType: Bundle
 type: searchset
 entry:
