@@ -22,19 +22,19 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * \_filter parameter support
 * Managing Indexes by **AidboxIndex** meta-resource
 
-## 0.4.3-SNAPSHOT _\[16 May 2019\]_
+## 0.4.4_-_SNAPSHOT _\[3 June 2019\]_
 
-### Planed Features
+Focus on Search & Performance
 
-* Async implementation
-* Bulk Import: 
-* * terminology import packages
+## 0.4.3 _\[20 May 2019\]_
 
 ### Features
 
 * [Sequence API](api/sequence-api.md) - use PostgreSQL sequences through REST API
 * Operation bound policy in App manifest
 * Clear resources deleted in App manifest \([\#70](https://github.com/Aidbox/Issues/issues/70)\)
+* Bulk load terminologies - [tutorial](https://docs.aidbox.app/terminology/terminology-tutorials/load-terminologies)
+* Logs from Aidbox to ElasticSearch - tutorial
 
 ### Bug Fixes
 

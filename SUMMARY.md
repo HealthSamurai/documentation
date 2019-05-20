@@ -99,6 +99,7 @@
 * [Administration](administration/README.md)
   * [Logging & Audit](administration/logging-and-audit.md)
   * [Health Check](administration/health-check.md)
+  * [Export logs to ElasticSearch/Kibana](administration/export-logs-to-elasticsearch-kibana.md)
 * [FAQ](faq/README.md)
   * [Why YAML?](faq/why-yaml.md)
   * [StyleGuide](faq/styleguide.md)
