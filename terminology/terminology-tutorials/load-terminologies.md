@@ -1,14 +1,12 @@
 ---
-description: In this post we will see how load popular terminologies into aidbox.
+description: In this post we will see how load ICD-10 terminology into aidbox.
 ---
 
 # Load ICD-10 terminology into Aidbox
 
-With a next version of Aidbox we provide you with set of terminology packages like ICD-10 and LOINC and special bulk operation to import this code systems into your box.
+With a new version of Aidbox we provide you with set of terminology packages like ICD-10 and LOINC and a special bulk operation to import this code sets.
 
-You can read more about how Aidbox terminology service designed in a our CTO blog post - [Two-phase terminology](https://medium.com/@niquola/two-phase-fhir-terminology-e52e1b105f6d). 
-
-In this tutorial we will load ICD-10 deceases codes into Aidbox and see how we can lookup codes using Concept resource Search API.
+You can read more about how terminology service designed in a our CTO blog post - [Two-phase terminology](https://medium.com/@niquola/two-phase-fhir-terminology-e52e1b105f6d). 
 
 Aidbox team prepared terminology packages with popular code systems for your. This packages are essentially ndjson files with set of concept resources and they are available by public url in our cloud.
 
@@ -19,7 +17,9 @@ Here is the few packages you can start with:
 
 Rx-Norm, SNOMED-CT and basic FHIR CodeSystems/ValueSets packages are in progress. If you need something specific - ping us in a [Aidbox Community Chat](https://community.aidbox.app).
 
-To load this terminology packs you can use  `terminology/$import` operation. Let's load ICD-10 \(Classification of Deceases\) - just copy-paste following snippet into REST console in Aidbox UI:
+In this tutorial we will load ICD-10 deceases codes into Aidbox and see how we can lookup codes using Concept resource Search API.
+
+To import this terminology packs you can use  `terminology/$import` operation. Let's load ICD-10 \(Classification of Deceases\) - just copy-paste following snippet into REST console in Aidbox UI:
 
 {% code-tabs %}
 {% code-tabs-item title="request.yalm" %}
