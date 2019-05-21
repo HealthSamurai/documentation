@@ -4,6 +4,10 @@ description: In this post we will see how load ICD-10 terminology into aidbox.
 
 # Load ICD-10 terminology into Aidbox
 
+{% embed url="https://youtu.be/zXzy-is20e8" %}
+
+
+
 With a new version of Aidbox we provide you with set of terminology packages like ICD-10 and LOINC and a special bulk operation to import this code sets.
 
 You can read more about how terminology service designed in a our CTO blog post - [Two-phase terminology](https://medium.com/@niquola/two-phase-fhir-terminology-e52e1b105f6d). 
