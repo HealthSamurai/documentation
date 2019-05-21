@@ -79,6 +79,7 @@
   * [Access Policies](security/access-control.md)
 * [Terminology](terminology/README.md)
   * [Concept](terminology/concept.md)
+  * [Terminology API](terminology/terminology-api.md)
   * [CodeSystem](terminology/codesystem-and-concept/README.md)
     * [CodeSystem Concept Lookup](terminology/codesystem-and-concept/concept-lookup.md)
     * [CodeSystem Subsumption testing](terminology/codesystem-and-concept/subsumption-testing.md)
