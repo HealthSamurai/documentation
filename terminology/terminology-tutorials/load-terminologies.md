@@ -121,6 +121,21 @@ Or  inspect concepts in Aidbox Console UI:
 
 ![](../../.gitbook/assets/screen-shot-2019-05-14-at-17.23.53.png)
 
+### Indexing \_like search
+
+Health Samurai Team is working on declarative search indexing in future release. For now let's create trigram index to make `_ilike` search faster. Go to SQL Console and execute following statement:
+
+```sql
+CREATE INDEX concept_trgm_idx  on concept
+USING gin (
+  (id || ' ' || resource::text) gin_trgm_ops
+);
+
+VACUUM ANALYZE concept;
+```
+
+Try `_ilike` search again - is it faster?
+
 ### Clean up
 
 To clean up all terminology you can truncate all related tables from db console:
