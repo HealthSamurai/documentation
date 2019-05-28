@@ -26,6 +26,10 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 
 Focus on Search & Performance
 
+### Features
+
+* Support for [RFC-7662 Token Introspection](https://tools.ietf.org/html/rfc7662) with TokenIntrospector resource. JwtAuthenticator is now TokenIntrospector as well with `type=jwt`
+
 ## 0.4.3 _\[20 May 2019\]_
 
 ### Features
