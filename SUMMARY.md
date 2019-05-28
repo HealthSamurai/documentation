@@ -62,7 +62,7 @@
   * [Authorization Code Grant](auth-betta/authorization-code.md)
   * [Implicit Grant](auth-betta/implicit.md)
   * [OpenId Connect](auth-betta/openid-connect.md)
-  * [Access by JWT](auth-betta/access-by-jwt.md)
+  * [Validating Foreing Access Tokens](auth-betta/access-token-introspection.md)
   * [External Identity Providers](auth-betta/external-identity-providers.md)
   * [SMART on FHIR](auth-betta/smart-app.md)
   * [Discovery API](auth-betta/well-known-endpoint.md)
@@ -105,5 +105,4 @@
 * [FAQ](faq/README.md)
   * [Why YAML?](faq/why-yaml.md)
   * [StyleGuide](faq/styleguide.md)
-* [Untitled](untitled.md)
 
