@@ -37,76 +37,63 @@ while (true) {
 }
 ```
 
-Example request to the `$poll` operation to get all notifications since transaction 137:
+### Long-polling example
 
-{% tabs %}
-{% tab title="Request" %}
-```javascript
-GET /fhir/Subscription/test/$poll?from=137
-Content-Type: application/json
-```
-{% endtab %}
+Create subscription  for all patients:
 
-{% tab title="Response" %}
-```javascript
-{
- "resourceType": "Bundle",
- "entry": [
-  {
-   "resource": {
-    "name": [
-     {
-      "given": [
-       "mike"
-      ],
-      "family": "lapshin"
-     }
-    ],
-    "id": "75790d70-4889-4485-a67e-f40bbcb94ae2",
-    "meta": {
-     "lastUpdated": "2018-11-09T16:14:15.640Z",
-     "versionId": "141",
-     "tag": [
-      {
-       "system": "https://aidbox.app",
-       "code": "created"
-      }
-     ]
-    },
-    "resourceType": "Patient"
-   }
-  },
-  {
-   "resource": {
-    "name": [
-     {
-      "given": [
-       "mike"
-      ],
-      "family": "lapshin"
-     }
-    ],
-    "id": "22bc8414-4b10-4d04-a237-4e7e6ea7d55e",
-    "meta": {
-     "lastUpdated": "2018-11-12T15:58:34.401Z",
-     "versionId": "142",
-     "tag": [
-      {
-       "system": "https://aidbox.app",
-       "code": "created"
-      }
-     ]
-    },
-    "deceasedBoolean": false,
-    "resourceType": "Patient"
-   }
-  }
- ],
- "type": "collection"
-}
+```yaml
+PUT /fhir/Subscription/all-pt
+
+criteria: Patient?
+status: active
+reason: test
+channel: 
+  type: poll
 ```
-{% endtab %}
-{% endtabs %}
+
+Create test patient:
+
+```yaml
+PUT /Patient/pt-1
+
+name:
+- family: Doe
+  given: ['John']
+```
+
+Get current patients:
+
+```yaml
+GET /Subscription/all-pt/$poll?from=0&_format=yaml
+
+resourceType: Bundle
+entry:
+- resource:
+    name:
+    - given: [John]
+      family: Doe
+    id: pt-1
+    resourceType: Patient
+    meta: {lastUpdated: '2019-05-08T20:00:37.262Z', versionId: '28'}
+```
+
+To subscribe to changes set `from` to max `versionId`  and in browser enter url:
+
+```yaml
+<your-box-url>/Subscription/all-pt/$poll?from=28&_format=yaml
+```
+
+Browser will hang awaiting for response from server. In another tab in REST console create another patient:
+
+```yaml
+PUT /Patient/pt-2
+
+name:
+- family: Smith
+  given: ['Mike']
+```
+
+Take a look into tab with poll request!
 
 ### REST Hook Example
 
