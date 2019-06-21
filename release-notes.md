@@ -7,13 +7,12 @@ Version under development published with `-SNAPSHOT` and `-RC[x]` postfix. For e
 Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in different  geo regions and run different Aidbox versions. Clusters labeled _**stable**_ have latest stable version \(i.e. `max(version)`\). As well clusters with **edge** label run latest development version \(snapshot or release candidates\).
 
 {% hint style="info" %}
-* Current stable version: **0.4.3**
-* Next release 3 June:   **0.4.4**
+* Current stable version: **0.4.4**
+* Next release 28 June:   **0.4.5**
 {% endhint %}
 
 ## Road Map
 
-* Merge Aidbox.Cloud with License Server
 * Bulk API \(export, import\)
 * $upload
 * Uni-version FHIR server \(i.e. support all FHIR versions, probably not all resources\)
@@ -22,13 +21,19 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * \_filter parameter support
 * Managing Indexes by **AidboxIndex** meta-resource
 
-## 0.4.4_-_SNAPSHOT _\[3 June 2019\]_
+## 0.4.5-SNAPSHOT \[28 June 2019\]
 
-Focus on Search & Performance
+### Features
+
+* `/auth/test-policy` operation for[ policy debug](security/access-control.md#debugging)
+* Support for [ident interpolation](security/access-control.md#sql-engine) in SQL policy - `SELECT * FROM {{!params.resource/type}}`
+
+## 0.4.4 _\[17 June 2019\]_
 
 ### Features
 
 * Support for [RFC-7662 Token Introspection](https://tools.ietf.org/html/rfc7662) with TokenIntrospector resource. JwtAuthenticator is now TokenIntrospector as well with `type=jwt`
+*  GraphQL Alpha - see GraphQL in Aidbox user interface
 
 ## 0.4.3 _\[20 May 2019\]_
 
