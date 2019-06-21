@@ -106,11 +106,63 @@ If no AccessPolicy instances exist for a box, all requests will be denied.
 
 ### Debugging
 
+#### Using \_\_debug parameter
+
 There is a special query-string parameter `__debug=policy` you can pass to every Aidbox request. It will toggle debug mode for Request Authorization Layer, and in this mode instead of actual response client will get a object containing:
 
 * full request object;
 * an array of existing AccessPolicies;
 * evaluation result for every AccessPolicy \(under `AccessPolicy.evalResult`\).
+
+#### Using /auth/test-policy Operation
+
+You can use special operation  `POST /auth/test-policy` to design policy without creating AccessPolicy resource and for different users and clients. Do post on `/auth/test-policy` with simulated **request** attribute \(you can provide existing `user-id` and `client-id`  - aidbox will find and populate request\) and  temporal policy in **policy** attribute. Response contains result of evaluated  policy.
+
+```yaml
+POST /auth/test-policy
+
+-- simulate request document
+request:
+  uri: '/Patient'
+  request-method: get
+  user:
+    data: {role: 'admin'}
+  -- or 
+  -- user-id: 'user-1' -- aidbox will find user in database
+  client:
+    id: basic
+    grant_types: ['basic']
+  -- or 
+  -- client-id: 'client-1' -- aidbox will find client in database
+    
+policy:
+  engine: sql
+  sql:
+    query: 'SELECT {{user.role}} FROM {{!params.resource/type}}'
+
+-- response
+
+request:
+  uri: /Patient
+  request-method: get
+  user: {role: admin}
+  params: {resource/type: Patient}
+operation:
+  request:
+  - get
+  - {name: resource/type}
+  action: proto.operations/search
+  module: proto
+  id: Search
+-- original policy
+policy:
+  engine: sql
+  sql: {query: 'SELECT {{user.role}} FROM {{!params.resource/type}}'}
+-- result of policy evaluation
+result:
+  eval-result: false
+  query: ['SELECT ? FROM "patient"', admin]
+```
 
 ### JSON Schema Engine
 
@@ -158,6 +210,10 @@ engine: sql
 id: practitioner-only-allowed-to-see-his-patients
 resourceType: AccessPolicy
 ```
+
+#### Interpolation rules
+
+In your SQL query you can parametrise with attributes from request object using  `{{path}}` syntax. For example to get role from user `{data: {role: 'admin'}}` you can  write `{{user.data.role}}`. Parameter expressions are escaped by default to protect from SQL injection. If you want to make dynamical queries \(parametrise table name for example\) you have to use `{{!path}}` syntax. For example expression `SELECT true from {{!params.resource/type}} limit 1` with params = `{resource/type: "Patient"}` will be transformed into `SELECT true from "patient".` Such identifier names are double quoted with and lowercased by default.
 
 ### Allow Engine
 
