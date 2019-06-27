@@ -6,34 +6,34 @@ description: >-
 
 # Setup Aidbox.Dev
 
-### Overview
+## Overview
 
 You can run Aidbox.Dev on macOS, Linux and Windows 10 Pro
 
 We are providing a lightweight version of [Aidbox](https://www.health-samurai.io/aidbox) named **Aidbox.Dev** — a special version aimed at local development and in your CI. To obtain access to Aidbox.Dev, please use our [License server](https://license-ui.aidbox.app/).
 
-### License obtaining
+## License obtaining
 
-1.  Visit and register on the [License server](https://license-ui.aidbox.app) then click the `GET LICENSE KEY` button.
+1. Visit and register on the [License server](https://license-ui.aidbox.app) then click the `GET LICENSE KEY` button.
 
 ![](../.gitbook/assets/scr-2018-10-31_15-08-05.png)
 
-2. Enter a short description of your project and select the `Aidbox.Dev` option.
+1. Enter a short description of your project and select the `Aidbox.Dev` option.
 
 ![](../.gitbook/assets/screen-shot-2018-10-02-at-17.28.09.png)
 
-3. Congratulations! Now you have a license key.
+1. Congratulations! Now you have a license key.
 
 ![](../.gitbook/assets/screen-shot-2018-10-02-at-17.34.31.png)
 
-### Aidbox.Dev Installation
+## Aidbox.Dev Installation
 
-#### Step 1. Install Docker Compose
+### Step 1. Install Docker Compose
 
 The recommended way to work with **Aidbox.Dev** is Docker Compose.  
-Install the Docker for your OS following the [Get Docker page](https://docs.docker.com/install/), then go to instructions on the [installing Compose](https://docs.docker.com/v17.09/compose/install/#install-compose) page. 
+Install the Docker for your OS following the [Get Docker page](https://docs.docker.com/install/), then go to instructions on the [installing Compose](https://docs.docker.com/v17.09/compose/install/#install-compose) page.
 
-#### Step 2. Create docker-compose.yaml
+### Step 2. Create docker-compose.yaml
 
 Clone our[ official repository](https://github.com/Aidbox/devbox) with the sample configuration.
 
@@ -82,7 +82,7 @@ services:
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-#### Step 3. **Fill in the .env file with the following parameters**
+### Step 3. **Fill in the .env file with the following parameters**
 
 Open the `.env` file and insert your `License ID` and `License KEY,`specify FHIR version and decide about box security and distribution channel \( latest vs edge\).
 
@@ -132,24 +132,24 @@ If **AIDBOX\_CLIENT\_ID** & **AIDBOX\_CLIENT\_SECRET** are provided - Aidbox wil
 {% endhint %}
 
 {% hint style="warning" %}
-Starting Aidbox in open mode without AIDBOX\_CLIENT\_SECRET is disabled! 
+Starting Aidbox in open mode without AIDBOX\_CLIENT\_SECRET is disabled!
 {% endhint %}
 
 {% hint style="info" %}
 **AIDBOX\_IMAGE** specify one of image from **healthsamurai/devbox** repository. Take a look at available versions at [docker hub](https://hub.docker.com/r/healthsamurai/devbox/tags).
 {% endhint %}
 
-### Run Aidbox.Dev
+## Run Aidbox.Dev
 
-#### **Run Docker Compose**
+### **Run Docker Compose**
 
 ```bash
 $ docker-compose up -d
 ```
 
-That's it! Aidbox.Dev is running and you can point your browser to [http://localhost:8888](http://localhost:8888/) to see a fancy welcome page.   
-  
-****Insert your ADMIN\_ID and ADMIN\_PASSWORD and you will see your development environment. This is the beginning of the way to create your best healthcare products.
+That's it! Aidbox.Dev is running and you can point your browser to [http://localhost:8888](http://localhost:8888/) to see a fancy welcome page.
+
+_\*\*_Insert your ADMIN\_ID and ADMIN\_PASSWORD and you will see your development environment. This is the beginning of the way to create your best healthcare products.
 
 ![](../.gitbook/assets/login-aidbox.gif)
 
@@ -157,13 +157,13 @@ That's it! Aidbox.Dev is running and you can point your browser to [http://local
 We welcome your questions and comments about our products. Have an idea/question you'd like to share with our community? [Submit it here](https://community.aidbox.app/)
 {% endhint %}
 
-### What next?
+## What next?
 
 Learn how to obtain access to the [REST API](../tutorials/how-to-use-rest-api.md) by the link below.
 
 {% page-ref page="../tutorials/how-to-use-rest-api.md" %}
 
-### Advanced tips
+## Advanced tips
 
 You can test your docker-compose.yaml with
 
@@ -171,7 +171,7 @@ You can test your docker-compose.yaml with
 docker-compose config # to inspect your configuration
 ```
 
-You can access you PostgreSQL  on localhost using $PGUSER and $PGPASSWORD from env variables on $PGHOSTPORT .
+You can access you PostgreSQL on localhost using $PGUSER and $PGPASSWORD from env variables on $PGHOSTPORT .
 
 ```bash
 # source variables
@@ -200,7 +200,7 @@ Inspect Aidbox logs:
 $ docker-compose logs -f devbox
 ```
 
-Use curl to access API 
+Use curl to access API
 
 ```bash
 $ curl localhost:$AIDBOX_PORT/\$metadata?_format=yaml
@@ -211,16 +211,16 @@ $ curl -u $AIDBOX_CLIENT_ID:$AIDBOX_CLIENT_SECRET \
 ```
 
 {% hint style="info" %}
-Be careful with **$** sign in url paths \(aka **/$metadata**\) in shell  - you have to escape it \( **/\$metadata**\) otherwise shell will try to interpret it as variables ;\)
+Be careful with **$** sign in url paths \(aka **/$metadata**\) in shell - you have to escape it \( **/$metadata**\) otherwise shell will try to interpret it as variables ;\)
 {% endhint %}
 
-#### Stop Aidbox.Dev
+### Stop Aidbox.Dev
 
 ```bash
 $ docker-compose stop
 ```
 
-#### Destroy Aidbox.Dev
+### Destroy Aidbox.Dev
 
 ```bash
 $ docker-compose down
@@ -228,9 +228,9 @@ $ docker-compose down
 
 By default docker-compose file mount folder `./pgdata` as persistent volume for PostgreSQL, so it will survive restarts and destroy of containers. If you want to completely cleanup previous installation just `rm -rf ./pgdata`
 
-#### Upgrade Aidbox.Dev
+### Upgrade Aidbox.Dev
 
-```
+```text
 $ docker-compose down
 $ docker-compose pull
 $ docker-compose up -d

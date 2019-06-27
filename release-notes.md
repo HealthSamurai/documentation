@@ -28,6 +28,7 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * `/auth/test-policy` operation for[ policy debug](security/access-control.md#debugging)
 * Support for [ident interpolation](security/access-control.md#sql-engine) in SQL policy - `SELECT * FROM {{!params.resource/type}}`
 * [SQL Migrations](api/usdpsql.md#sql-migrations)
+* New [\_explain](api/search.md#_explain) parameter for Search API
 
 ## 0.4.4 _\[17 June 2019\]_
 
