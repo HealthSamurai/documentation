@@ -301,6 +301,15 @@ resource::text ilike '%jes%' AND ... '%park%'
 
 ILIKE search can be efficiently indexed with trigram PostgreSQL extension and GIN Index, providing response in tens of miliseconds responses on milions of records.
 
+```sql
+CREATE INDEX patient_trgm_idx  on patient
+USING gin (
+  (id || ' ' || resource::text) gin_trgm_ops
+);
+
+VACUUM ANALYZE patient;
+```
+
 TBD: Video Example
 
 ### Full text search
