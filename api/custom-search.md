@@ -2,15 +2,11 @@
 
 With `AidboxQuery` resource, you can turn your SQL query into REST Endpoint.
 
-For example, let's create a simple aggregation report for encounters parameterized by date. Create an `AidboxQuery` resource:
+For example, let's create a simple aggregation report for encounters parameterised by date. Create an `AidboxQuery` resource:
 
-{% tabs %}
-{% tab title="Request" %}
 ```yaml
-POST /AidboxQuery
+PUT /AidboxQuery/daily-report
 
-resourceType: AidboxQuery
-id: daily-report
 params:
   date:
      isRequired: true
@@ -24,137 +20,82 @@ query: |
   AND (resource#>>'{period,end}')::date
   GROUP BY resource->>'class'
 ```
-{% endtab %}
 
-{% tab title="Response" %}
+Let's upload some sample data using [Bulk Upsert](transaction.md#bulk-upsert):
+
 ```yaml
-query: "SELECT \n   resource->>'class' as class, \n   count(*) as count\nFROM encounter\
-  \ \nWHERE {{params.date}}\nBETWEEN (resource#>>'{period,start}')::date \nAND (resource#>>'{period,end}')::date\n\
-  GROUP BY resource->>'class'"
-params:
-  date: {isRequired: true}
-id: daily-report
-resourceType: AidboxQuery
-meta:
-  lastUpdated: '2018-11-29T09:51:55.166Z'
-  versionId: '2'
-  tag:
-  - {system: 'https://aidbox.app', code: created}
+PUT /
+
+- status: draft
+  class: {code: IMP}
+  period: {start: "2013-06-08T10:57:34", end: "2013-06-08T12:00:00"}
+  resourceType: Encounter
+  id: enc-1
+
+- status: draft
+  class: {code: IMP}
+  period: {start: "2013-06-08T11:00:05", end: "2013-06-08T11:30:00"}
+  resourceType: Encounter
+  id: enc-2
+
+- status: draft
+  class: {code: AMB}
+  period: {start: "2013-06-08T10:21:01", end: "2013-06-08T11:42:11"}
+  resourceType: Encounter
+  id: enc-3
+
+- status: draft
+  class: {code: IMP}
+  period: {start: "2013-06-07T09:02:01", end: "2013-06-07T15:10:09"}
+  resourceType: Encounter
+  id: enc-3
 ```
-{% endtab %}
-{% endtabs %}
-
-Let's upload some sample data to use in our query:
-
-{% tabs %}
-{% tab title="Request" %}
-```yaml
-POST /
-
-type: transaction
-entry:
-- resource:
-    status: draft
-    class: {code: IMP}
-    period: {start: "2013-06-08T10:57:34", end: "2013-06-08T12:00:00"}
-  request:
-    method: POST
-    url: "/Encounter"
-
-- resource:
-    status: draft
-    class: {code: IMP}
-    period: {start: "2013-06-08T11:00:05", end: "2013-06-08T11:30:00"}
-  request:
-    method: POST
-    url: "/Encounter"
-
-- resource:
-    status: draft
-    class: {code: AMB}
-    period: {start: "2013-06-08T10:21:01", end: "2013-06-08T11:42:11"}
-  request:
-    method: POST
-    url: "/Encounter"
-
-- resource:
-    status: draft
-    class: {code: IMP}
-    period: {start: "2013-06-07T09:02:01", end: "2013-06-07T15:10:09"}
-  request:
-    method: POST
-    url: "/Encounter"
-```
-{% endtab %}
-
-{% tab title="Response" %}
-```yaml
-id: '3'
-type: transaction-response
-resourceType: Bundle
-entry:
-- resource:
-    class: {code: IMP}
-    period: {end: '2013-06-08T12:00:00', start: '2013-06-08T10:57:34'}
-    status: draft
-    id: e38c8817-4009-45c6-9490-f7c4af900756
-    resourceType: Encounter
-  status: 201
-- resource:
-    class: {code: IMP}
-    period: {end: '2013-06-08T11:30:00', start: '2013-06-08T11:00:05'}
-    status: draft
-    id: 996627c0-3b98-4c12-8b4c-651f714977a9
-    resourceType: Encounter
-  status: 201
-- resource:
-    class: {code: AMB}
-    period: {end: '2013-06-08T11:42:11', start: '2013-06-08T10:21:01'}
-    status: draft
-    id: 8ba15fdb-3885-4bd5-99dc-79c142e5daf0
-    resourceType: Encounter
-  status: 201
-- resource:
-    class: {code: IMP}
-    period: {end: '2013-06-07T15:10:09', start: '2013-06-07T09:02:01'}
-    status: draft
-    id: 68dc1ca4-f4f8-4961-8aff-c19b09ba712a
-    resourceType: Encounter
-  status: 201
-```
-{% endtab %}
-{% endtabs %}
 
 After you created AidboxQuery, you can use it:
 
-{% tabs %}
-{% tab title="Request" %}
-```
-GET /$query/daily-report?date=2013-06-08
-```
-{% endtab %}
-
-{% tab title="Response" %}
 ```yaml
+GET /$query/daily-report?date=2013-06-08
+
 # Status: 200
 
 data:
 - {class: '{"code": "IMP"}', count: 2}
 - {class: '{"code": "AMB"}', count: 1}
-query: ["SELECT \n   resource->>'class' as class, \n   count(*) as count\nFROM encounter\
-    \ \nWHERE ?\nBETWEEN (resource#>>'{period,start}')::date \nAND (resource#>>'{period,end}')::date\n\
-    GROUP BY resource->>'class'", '2013-06-08']
+query: [...]
 ```
-{% endtab %}
-{% endtabs %}
 
 {% hint style="info" %}
 PostgreSQL supports Special Date/Time inputs like **now**, **today**, **tomorrow** etc.
 {% endhint %}
 
+You can debug AidboxQuery with `_explain=true` parameter:
+
+```yaml
+GET /$query/daily-report?date=2013-06-08&_explain=true
+
+# Status: 200
+
+plan: |-
+  HashAggregate  (cost=27.27..27.97 rows=56 width=40) (actual time=0.443..0.459 rows=1 loops=1)
+    Group Key: (resource ->> 'class'::text)
+    ->  Seq Scan on encounter  (cost=0.00..26.96 rows=62 width=32) (actual time=0.398..0.420 rows=2 loops=1)
+          Filter: (('2013-06-08'::date >= ((resource #>> '{period,start}'::text[]))::date) AND ('2013-06-08'::date <= ((resource #>> '{period,end}'::text[]))::date))
+          Rows Removed by Filter: 1
+  Planning Time: 3.222 ms
+  Execution Time: 0.600 ms
+ctx:
+  params: {date: '2013-06-08', _explain: 'true'}
+  resourceType: null
+  safe-paths:
+  - [resourceType]
+query:
+- "SELECT \n   resource->>'class' as class, \n   count(*) as count\nFROM encounter \nWHERE ?\nBETWEEN (resource#>>'{period,start}')::date \nAND (resource#>>'{period,end}')::date\nGROUP BY resource->>'class'"
+- '2013-06-08'
+```
+
 ### Parameters in Query
 
-Query can be parameterized by special template language `{{path.to.parameter}}`
+Query can be parameterised by special template language `{{path.to.parameter}}`
 
 All parameters passed in query string will be available under `{{params.PARAMETER-NAME}}`
 
