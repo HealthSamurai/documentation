@@ -55,7 +55,7 @@ resource:
    inputSource: "source" #ignored
    inputs:
       - 
-        type: "Patient" #ressource type
+        type: "Patient" #resource type
         url:  "/path/to/Patient.ndjson.gz" | "https://your-domain/Patient.ndjson.gz"
         storageDetail:
                type: "resource-file" | "url"
