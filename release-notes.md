@@ -21,7 +21,7 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * \_filter parameter support
 * Managing Indexes by **AidboxIndex** meta-resource
 
-## 0.4.5-SNAPSHOT \[28 June 2019\]
+## 0.4.5-SNAPSHOT \[2 July 2019\]
 
 ### Features
 
@@ -30,6 +30,7 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * [SQL Migrations](api/usdpsql.md#sql-migrations)
 * New [\_explain](api/search.md#_explain) parameter for Search API
 * Beta version of bulk [import operation](api/bulk-api.md#usdimport) 
+* History & Snippets in Aidbox UI
 
 ## 0.4.4 _\[17 June 2019\]_
 
