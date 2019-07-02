@@ -30,7 +30,7 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * [SQL Migrations](api/usdpsql.md#sql-migrations)
 * New [\_explain](api/search.md#_explain) parameter for Search API
 * Beta version of bulk [import operation](api/bulk-api.md#usdimport) 
-* History & Snippets in Aidbox UI
+* History & Snippets for REST & DB Console
 
 ## 0.4.4 _\[17 June 2019\]_
 
