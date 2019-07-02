@@ -61,11 +61,11 @@ To keep you client stateless you can send **state** parameter with arbitrary con
 
 If user is not logged in - she will see login screen.
 
-![](../.gitbook/assets/image%20%282%29.png)
+![](../.gitbook/assets/image%20%283%29.png)
 
 If client is not first\_party or user not yet granted permissions to client, user will see grant page:
 
-![](../.gitbook/assets/image%20%281%29.png)
+![](../.gitbook/assets/image%20%282%29.png)
 
 If client granted permissions user agent will be redirected to url configured in **Client.auth.authorization\_code.redirect\_uri** with authorization code parameter.
 
