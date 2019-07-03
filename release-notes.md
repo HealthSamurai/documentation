@@ -21,7 +21,11 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * \_filter parameter support
 * Managing Indexes by **AidboxIndex** meta-resource
 
-## 0.4.5-SNAPSHOT \[2 July 2019\]
+## 0.4.6-SNAPSHOT \[17 July 2019\]
+
+Focus on Search and Performance
+
+## 0.4.5 \[3 July 2019\]
 
 ### Features
 
