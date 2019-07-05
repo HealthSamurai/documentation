@@ -7,8 +7,8 @@ Version under development published with `-SNAPSHOT` and `-RC[x]` postfix. For e
 Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in different  geo regions and run different Aidbox versions. Clusters labeled _**stable**_ have latest stable version \(i.e. `max(version)`\). As well clusters with **edge** label run latest development version \(snapshot or release candidates\).
 
 {% hint style="info" %}
-* Current stable version: **0.4.4**
-* Next release 28 June:   **0.4.5**
+* Current stable version: **0.4.5**
+* Next release 17 July:   **0.4.6**
 {% endhint %}
 
 ## Road Map
