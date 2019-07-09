@@ -61,7 +61,7 @@
   * [Resource Owner Grant](auth-betta/resource-owner-password.md)
   * [Authorization Code Grant](auth-betta/authorization-code.md)
   * [Implicit Grant](auth-betta/implicit.md)
-  * [Validating Foreing Access Tokens](auth-betta/access-token-introspection.md)
+  * [Validating Foreign Access Tokens](auth-betta/access-token-introspection.md)
   * [SMART on FHIR](auth-betta/smart-app.md)
   * [Discovery API](auth-betta/well-known-endpoint.md)
   * [Refresh Token](auth-betta/refresh-token.md)

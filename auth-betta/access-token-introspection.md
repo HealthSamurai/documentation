@@ -4,7 +4,7 @@ description: >-
   acts as a Resource Server and leaves Identity management to a separate server.
 ---
 
-# Validating Foreing Access Tokens
+# Validating Foreign Access Tokens
 
 To configure Aidbox as a Resource Server, you need to create one or more instances of TokenIntrospector resource. TokenIntrospector resources defines how access token validation will be performed. There are two different algorithms to validate tokens: JWT validation according to [RFC-7519](https://tools.ietf.org/html/rfc7519) and opaque token introspection according to [RFC-7662](https://tools.ietf.org/html/rfc7662). 
 
