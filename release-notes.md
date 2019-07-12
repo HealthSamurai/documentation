@@ -25,6 +25,11 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 
 Focus on Search and Performance
 
+### Features
+
+* In REST Console support for multiline URL line using `\`
+* New GET /&lt;resourceType&gt;/$lookup  operation for efficient lookup search in millions of records - [read more](api/search/usdlookup.md)
+
 ## 0.4.5 \[3 July 2019\]
 
 ### Features
@@ -32,7 +37,7 @@ Focus on Search and Performance
 * `/auth/test-policy` operation for[ policy debug](security/access-control.md#debugging)
 * Support for [ident interpolation](security/access-control.md#sql-engine) in SQL policy - `SELECT * FROM {{!params.resource/type}}`
 * [SQL Migrations](api/usdpsql.md#sql-migrations)
-* New [\_explain](api/search.md#_explain) parameter for Search API
+* New [\_explain](api/search/#_explain) parameter for Search API
 * Beta version of bulk [import operation](api/bulk-api.md#usdimport) 
 * History & Snippets for REST & DB Console
 
@@ -66,9 +71,9 @@ Focus on Search and Performance
 * [User Level Logs](administration/logging-and-audit.md)
 * [Structured Data Capture](tutorials/sdc-with-custom-resources.md) with Custom Resources \(Alpha\)
 * [History based replication](tutorials/sync-data-from-aidbox.md)
-* Search: new [\_ilike](api/search.md#_ilike-search-non-fhir) search parameter
-* Search: [\_include=\*](api/search.md#_include-and-_revinclude)  support
-* Search: [\_list](api/search.md#_list) parameter support
+* Search: new [\_ilike](api/search/#_ilike-search-non-fhir) search parameter
+* Search: [\_include=\*](api/search/#_include-and-_revinclude)  support
+* Search: [\_list](api/search/#_list) parameter support
 * [$dump](api/bulk-api.md#usddump) - Bulk Export Operation
 * [Health-Check](administration/health-check.md) endpoint by [RFC](https://inadarei.github.io/rfc-healthcheck/)
 

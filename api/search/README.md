@@ -345,7 +345,7 @@ GET /Patient?_content="Mad Max"
 ```
 
 {% hint style="info" %}
-Full-text search - a difficult query for the system. To improve performance you can omit the number of entries in the results - use **\_total=none**. More information in [\_total \( \_countMethod \)](search.md#_total-_countmethod).
+Full-text search - a difficult query for the system. To improve performance you can omit the number of entries in the results - use **\_total=none**. More information in [\_total \( \_countMethod \)](./#_total-_countmethod).
 {% endhint %}
 
 ### \_list
