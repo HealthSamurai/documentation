@@ -116,9 +116,9 @@ There is a special query-string parameter `__debug=policy` you can pass to every
 
 #### Using /auth/test-policy Operation
 
-You can use special operation  `POST /auth/test-policy` to design policy without creating AccessPolicy resource and for different users and clients. Do post on `/auth/test-policy` with simulated **request** attribute \(you can provide existing `user-id` and `client-id`  - aidbox will find and populate request\) and  temporal policy in **policy** attribute. If you want to test JWT auth, put your token in `headers.authorization` with `Bearer` prefix - token will be parsed and it's claims appear in `request.jwt`
+You can use special operation  `POST /auth/test-policy` to design policy without creating AccessPolicy resource and for different users and clients. Do post on `/auth/test-policy` with simulated **request** attribute \(you can provide existing `user-id` and `client-id`  - aidbox will find and populate request\) and  temporal policy in **policy** attribute. If you want to test JWT auth, put your token in `headers.authorization` with `Bearer` prefix - token will be parsed and it's claims appear in `request.jwt`. JWT in header is parsed,  but not validated. This allows you test JWT policy without **TokenIntrospector** registration. 
 
-Response will contain result of evaluated  policy.
+Response contains result of evaluated  policy.
 
 ```yaml
 POST /auth/test-policy
