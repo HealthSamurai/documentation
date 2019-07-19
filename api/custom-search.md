@@ -27,6 +27,42 @@ query: 'SELECT * from patient where id ilike = {{params.filter}} limit {{params.
 count-query: 'SELECT count(*) from patient where id ilike = {{params.filter}}
 ```
 
+Here is self-debugging AidboxQuery to start play with:
+
+```yaml
+PUT /AidboxQuery/debug
+
+params:
+  filter:
+    isRequired: true
+    type: string
+    format: '%% %s%%'
+  count:
+    type: integer
+    default: 10
+  data:
+    type: object
+    default: {resourceType: 'Nop'}
+  flag:
+    default: true
+    type: boolean
+query: |
+  SELECT 
+   {{params.filter}}::text as filter,
+   {{params.flag}} as flag,
+   {{params.data}}::jsonb as data,
+   {{params}}::jsonb as params,
+   {{params.count}} as count,
+   {{}} as ctx
+count-query: |
+  SELECT {{params.count}}
+
+GET /$query/debug?filter=ups&data=%7B%22a%22%3A%201%7D
+                            ^ url encoded {"a": 1}
+```
+
+### Example
+
 For example, let's create a simple aggregation report for encounters parameterised by date. Create an `AidboxQuery` resource:
 
 ```yaml
