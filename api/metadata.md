@@ -128,7 +128,36 @@ The information returned depends on the value of the `mode` parameter:
 | `normative` | As above, but only the normative portions of the Capability Statement |
 | `terminology` | A [TerminologyCapabilities](http://hl7.org/fhir/2018Sep/terminologycapabilities.html) resource that provides further information about terminologies are supported by the server |
 
-Servers MAY ignore the mode parameter and return a CapabilityStatement resource. 
+Servers MAY ignore the mode parameter and return a CapabilityStatement resource.  
+
+#### Configure CapabilityStatement
+
+You can reconfigure specific parts of CapabilityStatement by creating `AidboxConfig/box` resource:
+
+```yaml
+PUT /AidboxConfig/box
+
+metadata:
+  # override name and title of CapabilityStatement
+  name: MyFHIRServer
+  title: My FHIR server
+  # override CapabilityStatement.rest.service
+  service:
+  - coding:
+    - {system: 'http://hl7.org/fhir/restful-security-service', code: SMART-on-FHIR}
+    text: Very smart!!!
+  # override CapabilityStatement.rest.security
+  security:
+    extension:
+    - url: http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris
+      extension:
+      - {url: token, valueUri: 'https://myserver.com/connect/token'}
+      - {url: authorize, valueUri: 'https://myserver.com/connect/token'}
+```
+
+{% hint style="info" %}
+If you want more control over CapabilityStatement please contact us in community chat!
+{% endhint %}
 
 To get metadata in the internal Aidbox format, use [`/$metadata?_format=yaml`](http://localhost:7777/$metadata?_format=yaml)
 
