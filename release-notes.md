@@ -8,7 +8,7 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 
 {% hint style="info" %}
 * Current stable version: **0.4.5**
-* Next release 17 July:   **0.4.6**
+* Next release 23 July:   **0.4.6**
 {% endhint %}
 
 ## Road Map
@@ -21,7 +21,7 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * \_filter parameter support
 * Managing Indexes by **AidboxIndex** meta-resource
 
-## 0.4.6-SNAPSHOT \[17 July 2019\]
+## 0.4.6-SNAPSHOT \[23 July 2019\]
 
 Focus on Search and Performance
 
