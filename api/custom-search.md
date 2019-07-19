@@ -2,6 +2,31 @@
 
 With `AidboxQuery` resource, you can turn your SQL query into REST Endpoint.
 
+```yaml
+PUT /AidboxQuery/<query-name>
+
+params:
+  # define filter parameter
+  filter:
+    # make it required
+    isRequired: true
+    # it's type is string (can be integer, number, object, boolean)
+    type: string
+    # format is java format string, which will be applied to value
+    # this useful to get for example ilike query  expr ilike '% value%'
+    # do not forget to escape % with one more %
+    format: '%% %s%%'
+    # you can set default value
+    default: 'ups'
+  count:
+    type: integer
+    default: 10
+# sql query with parameters {{path.to.ctx.elements}}
+query: 'SELECT * from patient where id ilike = {{params.filter}} limit {{params.count}}
+# if count-query is present - it will be evaluated for total property in response
+count-query: 'SELECT count(*) from patient where id ilike = {{params.filter}}
+```
+
 For example, let's create a simple aggregation report for encounters parameterised by date. Create an `AidboxQuery` resource:
 
 ```yaml
@@ -67,6 +92,8 @@ query: [...]
 {% hint style="info" %}
 PostgreSQL supports Special Date/Time inputs like **now**, **today**, **tomorrow** etc.
 {% endhint %}
+
+### Debug AidboxQuery
 
 You can debug AidboxQuery with `_explain=true` parameter:
 
@@ -152,12 +179,18 @@ There is another option for calling `AidboxQuery`:
 
 ```
 GET /Patient?_query=get-by-id&rid=patient1
+
+#or 
+
+GET /fhir/Patient?_query=get-by-id&rid=patient1
 ```
+
+Result will be represented as  Search Bundle. If you call it from `fhir/` base-url - resulting resources will be transformed to FHIR compliant representation.
+
+
 
 Main difference is that such query can use additional variable available in context of `{{resourceType}}`.
 
-{% tabs %}
-{% tab title="Request" %}
 ```yaml
 POST /AidboxQuery
 
@@ -166,12 +199,8 @@ query: 'select * from {{resourceType}} where id = {{params.rid}}'
 params:
   rid: {isRequired: true}
 id: get-by-id
-```
-{% endtab %}
 
-{% tab title="Response" %}
-```yaml
-# Status: 201
+# resp
 
 query: select * from {{resourceType}} where id = {{params.rid}}
 params:
@@ -184,21 +213,13 @@ meta:
   tag:
   - {system: 'https://aidbox.app', code: created}
 ```
-{% endtab %}
-{% endtabs %}
 
 Example usage:
 
-{% tabs %}
-{% tab title="Request" %}
-```text
-GET /Attribute?_query=get-by-id&rid=Encounter.status
-```
-{% endtab %}
-
-{% tab title="Response" %}
 ```yaml
-# Status: 200
+GET /Attribute?_query=get-by-id&rid=Encounter.status
+
+# resp
 
 data:
 - id: Encounter.status
@@ -220,6 +241,12 @@ data:
     isModifier: true
     isRequired: true
 query: ['select * from Attribute where id = ?', Encounter.status]
+```
+
+{% tabs %}
+{% tab title="Request" %}
+```text
+GET /Attribute?_query=get-by-id&rid=Encounter.status
 ```
 {% endtab %}
 {% endtabs %}
