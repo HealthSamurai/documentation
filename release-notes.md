@@ -29,6 +29,10 @@ Focus on Search and Performance
 
 * In REST Console support for multiline URL line using `\`
 * New GET /&lt;resourceType&gt;/$lookup  operation for efficient lookup search in millions of records - [read more](api/search/usdlookup.md)
+* [AidboxQuery](tutorials/custom-search.md) extended with count-query and params types and defaults
+* New `/<RT>/$load` and `/$load` [bulk operations](api/bulk-api.md#usdload) were added
+* aidbox/db upgrade to 11.4 + fixed in json\_knife \(deep patterns, indexes\) - TBD instructions for update
+* Colored logs for humans in [Aidbox.Dev](installation/setup-aidbox.dev.md) by default: docker logs -f &lt;your-box-container&gt;
 
 ## 0.4.5 \[3 July 2019\]
 
