@@ -82,7 +82,7 @@ query: |
   GROUP BY resource->>'class'
 ```
 
-Let's upload some sample data using [Bulk Upsert](transaction.md#bulk-upsert):
+Let's upload some sample data using [Bulk Upsert](../transaction.md#bulk-upsert):
 
 ```yaml
 PUT /
@@ -293,5 +293,5 @@ Pay attention that only`{{resourceType}}`can be used in place of table name, bec
 
 See also our tutorial:
 
-{% page-ref page="../tutorials/custom-search.md" %}
+{% page-ref page="../../tutorials/custom-search.md" %}
 

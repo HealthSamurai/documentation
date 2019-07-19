@@ -134,8 +134,8 @@ This release is mostly dedicated to stabilisation of new auth module. Check-out 
 * Fixed [Aidbox](https://www.health-samurai.io/aidbox) to FHIR data transformation bug when polymorphic attributes wasn't properly handled in recursive elements such as `QuestionnaireResponse.item`
 * Support [`_total`](https://build.fhir.org/search.html#total) search parameter \(\_totalMethod=count also works\)
 * Support `page` search parameter \(\_page - also works\)
-* Added [$query](api/custom-search.md) - SQL query into REST Endpoint
-* [\_query](api/custom-search.md) - custom search related to resourceType
+* Added [$query](api/search/custom-search.md) - SQL query into REST Endpoint
+* [\_query](api/search/custom-search.md) - custom search related to resourceType
 * Implemented Compartments for requests like `/fhir/Patient/xxx/Observation`; Compartments are defined with CompartmentDefinition resource
 * `Observation/$lastn` is accessible as a part of Patient's compartment: `/fhir/Patient/ID/Observation/$lastn`
 * Implemented `:iterate` modifier for `_include` search parameter
