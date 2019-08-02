@@ -80,7 +80,7 @@ VACUUM ANALYZE "patient";
 
 ### US NPI by Aidbox
 
-Here is demo of US NPI ~10M practitioners in Aidbox using $lookup operation - [https://search-resource.netlify.com/](https://search-resource.netlify.com/)
+Here is demo of US NPI ~10M practitioners in Aidbox Cloud using **$lookup** operation - [https://search-resource.netlify.com/](https://search-resource.netlify.com/)
 
-Source code of this app you can find in - [https://github.com/Aidbox/usnpi-ui](https://github.com/Aidbox/usnpi-ui)
+Source code of this app you can find on [github](https://github.com/Aidbox/usnpi-ui).
 
