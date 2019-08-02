@@ -104,7 +104,6 @@ data:
     - Administrator
     - Doctor
 email: user1@health-samurai.io
-phone: '+79212158745'
 password: password1
 id: user1
 resourceType: User
@@ -118,7 +117,6 @@ data:
   roles:
     - Patient
 email: user2@health-samurai.io
-phone: '+79212154789'
 password: password2
 id: user2
 resourceType: User
