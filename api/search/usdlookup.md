@@ -37,13 +37,44 @@ GET /Patient/$lookup?\
 
 ### Parameters
 
-#### by
+{% hint style="info" %}
+Each **path expression** should point to primitive element!
+{% endhint %}
 
-#### sort
+* **by:** `;-separated` list of priority groups. Each group is `,-separated` list of **path expressions**.
+* **sort**:  `,-separated` list of **path expressions** to sort by
+* **q:** is `+` or space separated term \(prefixes\) to search
+* **limit**: is internal search limit \(default 200\)
+* **count**: number results to return \(default 50\)
+* **mode:** if mode= `index` Aidbox returns index DDL for specific search
 
-#### q
+### Create Indexes
 
-#### count & limit
+To create indexes you have to make request with mode=index and execute DDL returned by Aidbox:
 
-#### mode
+```yaml
+GET /Patient/$lookup?\
+  by=name.family,name.given,birthDate,identifier.value;address.city,address.line&\
+  sort=name.family,name.given&\
+  q=Joh+Do+1980&\
+  count=50&\
+  limit=200
+```
+
+{% code-tabs %}
+{% code-tabs-item title="response" %}
+```sql
+DROP INDEX IF EXISTS lookup_patient_g_1;
+CREATE INDEX lookup_patient_g_1 ON "patient" USING GIN 
+ ( regexp_replace ( /*text*/ aidbox_text_search ( /*texts*/ knife_extract_text ( /*doc*/ resource , /*expr*/ $$[["name","family"],["name","given"],["birthDate"],["identifier","value"]]$$ ) ) , /*regexp*/ '[ -.,";:'']+' , /*repl*/ ' ' , /*flag*/ 'g' ) 
+ gin_trgm_ops );
+
+DROP INDEX IF EXISTS lookup_patient_g_2;
+CREATE INDEX lookup_patient_g_2 ON "patient" USING GIN 
+ ( regexp_replace ( /*text*/ aidbox_text_search ( /*texts*/ knife_extract_text ( /*doc*/ resource , /*expr*/ $$[["name","family"],["name","given"],["birthDate"],["identifier","value"],["address","city"],["address","line"]]$$ ) ) , /*regexp*/ '[ -.,";:'']+' , /*repl*/ ' ' , /*flag*/ 'g' ) 
+ gin_trgm_ops );
+VACUUM ANALYZE "patient";
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
