@@ -7,8 +7,8 @@ Version under development published with `-SNAPSHOT` and `-RC[x]` postfix. For e
 Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in different  geo regions and run different Aidbox versions. Clusters labeled _**stable**_ have latest stable version \(i.e. `max(version)`\). As well clusters with **edge** label run latest development version \(snapshot or release candidates\).
 
 {% hint style="info" %}
-* Current stable version: **0.4.5**
-* Next release 23 July:   **0.4.6**
+* Current stable version: **0.4.6**
+* Next release 20 August:   **0.4.7**
 {% endhint %}
 
 ## Road Map
@@ -21,18 +21,27 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * \_filter parameter support
 * Managing Indexes by **AidboxIndex** meta-resource
 
-## 0.4.6-SNAPSHOT \[23 July 2019\]
 
-Focus on Search and Performance
+
+## 0.4.7-SNAPSHOT \[2 August 2019\]
+
+### Features
+
+## 0.4.6 \[2 August 2019\]
+
+{% hint style="info" %}
+It's time to upgrade your database - please stop your container and change image to **aidbox/db:11.4.0 !**
+{% endhint %}
 
 ### Features
 
 * In REST Console support for multiline URL line using `\`
 * New  `/<RT>/$lookup`  operation for efficient lookup search in millions of records - [read more](api/search/usdlookup.md)
 * [AidboxQuery](tutorials/custom-search.md) extended with count-query and params types and defaults
-* New `/<RT>/$load` and `/$load` [bulk operations](api/bulk-api.md#usdload) were added
-* aidbox/db upgrade to 11.4 + fixes in json\_knife pg extension - \(deep patterns, indexes\) - TBD instructions for update
-* Colored logs for humans in [Aidbox.Dev](installation/setup-aidbox.dev.md) by default: docker logs -f &lt;your-box-container&gt;
+* New `/<RT>/$load` and `/$load` [bulk operations](api/bulk-api.md#usdload) were added and [$import](api/bulk-api.md#usdimport) was upgraded
+* aidbox/db upgrade to 11.4 + fixes in json\_knife pg extension - \(deep patterns, indexes\) 
+* Highlighted logs for humans in [Aidbox.Dev](installation/setup-aidbox.dev.md) by default: docker logs -f &lt;your-box-container&gt;
+* New [Aidbox.Enterprise](installation/aidbox.enterprise.md)
 
 ## 0.4.5 \[3 July 2019\]
 

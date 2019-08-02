@@ -6,6 +6,7 @@
   * [Setup Aidbox.Dev](installation/setup-aidbox.dev.md)
   * [Use Aidbox.Cloud](installation/use-aidbox.cloud.md)
   * [Deploy Aidbox.One](installation/deploy-aidbox.one.md)
+  * [Aidbox.Enterprise](installation/aidbox.enterprise.md)
 * [Tutorials](tutorials/README.md)
   * [Restricting Access to Patient Data](tutorials/restricting-access-to-patient-data.md)
   * [Getting Started with Box](tutorials/getting-started-with-box.md)
