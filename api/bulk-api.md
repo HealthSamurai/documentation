@@ -39,12 +39,12 @@ validation:
 method: copy # | insert
 ```
 
-## $import
+## $import & /fhir/$import
 
-To asynchronically import a big portion of data you cant use $import operation. It is now in beta state. The $import request format is
+To asynchronously import a big portion of data you cant use $import operation. It is now in beta state. The $import request format is
 
 ```yaml
-POST /$import
+POST /fhir/$import
 resource:
    id: "imp-testing-1" | nil #can be omitted
    action: "start" | "pause" | "abort" | "resume" | "force-resume"
@@ -58,12 +58,12 @@ resource:
         type: "Patient" #resource type
         url:  "/path/to/Patient.ndjson.gz" | "https://your-domain/Patient.ndjson.gz"
         storageDetail:
-               type: "resource-file" | "url"
+        type: "resource-file" | "url"
       -
         type: "Encounter"
         url: "/path/to/Encounter.ndjson.gz" | "https://your-domain/Encounter.ndjson.gz" 
         storageDetail: 
-               type: "resource-file" | "url"
+        type: "resource-file" | "url"
 ```
 
 Currently for beta version authorization is not supported, so the operation can be aborted by anyone who knows it's **id**. 
