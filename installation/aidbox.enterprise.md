@@ -4,11 +4,11 @@ description: Installation instructions for Aidbox.Enterprise
 
 # Aidbox.Enterprise
 
-If you are happy  owner of  Aidbox.Enterprise and want to deploy it to kubernetes cluster follow this steps.
+If you are a happy owner of Aidbox.Enterprise and want to deploy it to kubernetes cluster, follow these steps.
 
 ### Create credentials for db
 
-Let's create a Secret resource with credentials for database. First step is create `env-file` like this:
+Let's create a Secret resource with credentials for database. First step is to create an `env-file` like this:
 
 {% code-tabs %}
 {% code-tabs-item title="aidboxdb" %}
@@ -19,14 +19,14 @@ POSTGRES_PASSWORD=yoursecretpasswrod
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-Now let's generate Secret resource:
+Now, let's generate Secret resource:
 
 ```bash
 kubectl create secret generic --dry-run -o yaml aidboxdb \
   --from-env-file=aidboxdb > aidboxdb-secret.yaml
 ```
 
-You will get file like this, which you can put under source control.
+You will get a file like this which you can put under source control.
 
 {% code-tabs %}
 {% code-tabs-item title="db.yaml" %}
@@ -130,7 +130,7 @@ spec:
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-Test that database is up and running:
+Check that database is up and running:
 
 ```bash
 kubectl apply -f aidboxdb.yaml
@@ -143,7 +143,7 @@ psql:> \q
 
 ### Deploy Aidbox.Enterprise
 
-You have to have access to Aidbox.Enterprise docker image - **AIDBOX\_IMAGE** - something like `us.gcr.io/aidbox2-205511/aidbox-enterprise:0.4.6`
+You have to have access to Aidbox.Enterprise docker image - **AIDBOX\_IMAGE** — something like `us.gcr.io/aidbox2-205511/aidbox-enterprise:0.4.6`
 
 {% code-tabs %}
 {% code-tabs-item title="aidbox.yaml" %}
