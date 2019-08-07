@@ -38,7 +38,7 @@ It's time to upgrade your database - please stop your container and change image
 * In REST Console support for multiline URL line using `\`
 * New  `/<RT>/$lookup`  operation for efficient lookup search in millions of records - [read more](api/search/usdlookup.md)
 * [AidboxQuery](tutorials/custom-search.md) extended with count-query and params types and defaults
-* New `/<RT>/$load` and `/$load` [bulk operations](api/bulk-api.md#usdload) were added and [$import](api/bulk-api.md#usdimport) was upgraded
+* New `/<RT>/$load` and `/$load` [bulk operations](api/bulk-api/#usdload) were added and [$import](api/bulk-api/#usdimport) was upgraded
 * aidbox/db upgrade to 11.4 + fixes in json\_knife pg extension - \(deep patterns, indexes\) 
 * Highlighted logs for humans in [Aidbox.Dev](installation/setup-aidbox.dev.md) by default: docker logs -f &lt;your-box-container&gt;
 * New [Aidbox.Enterprise](installation/aidbox.enterprise.md)
@@ -51,7 +51,7 @@ It's time to upgrade your database - please stop your container and change image
 * Support for [ident interpolation](security/access-control.md#sql-engine) in SQL policy - `SELECT * FROM {{!params.resource/type}}`
 * [SQL Migrations](api/usdpsql.md#sql-migrations)
 * New [\_explain](api/search/#_explain) parameter for Search API
-* Beta version of bulk [import operation](api/bulk-api.md#usdimport) 
+* Beta version of bulk [import operation](api/bulk-api/#usdimport) 
 * History & Snippets for REST & DB Console
 
 ## 0.4.4 _\[17 June 2019\]_
@@ -87,7 +87,7 @@ It's time to upgrade your database - please stop your container and change image
 * Search: new [\_ilike](api/search/#_ilike-search-non-fhir) search parameter
 * Search: [\_include=\*](api/search/#_include-and-_revinclude)  support
 * Search: [\_list](api/search/#_list) parameter support
-* [$dump](api/bulk-api.md#usddump) - Bulk Export Operation
+* [$dump](api/bulk-api/#usddump) - Bulk Export Operation
 * [Health-Check](administration/health-check.md) endpoint by [RFC](https://inadarei.github.io/rfc-healthcheck/)
 
 ### Bug Fixes
