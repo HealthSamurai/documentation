@@ -31,20 +31,6 @@ curl -u client:secret -H 'content-type:application/json' \
   https://<box-url>/Patient/\$dump | gzip > patients.ndjson.gz
 ```
 
-## $load
-
-You can efficiently load data into Aidbox  in _ndjson_ _gz_ format from external web service or bucket:
-
-```yaml
-POST /$load
-
-source: 'https://storage.googleapis.com/synthea/100.ndjson.gz'
-```
-
-## $import & /fhir/$import
-
-
-
 ## $dump-sql
 
 Take sql query and responds with Chunked Encoded stream in CSV format. Useful to export data for analytics.
@@ -64,80 +50,63 @@ pt-2    Smith    Mike
 ................
 ```
 
-## Demo
+## $load
 
-{% embed url="https://www.youtube.com/watch?v=BtLxICcQNWw&feature=youtu.be" %}
+You can efficiently load data into Aidbox  in _ndjson_ _gz_ format from external web service or bucket. There are two version of $load - `/$load` and `/[resourceType]/$load`.  Both operations accept body with **source** element, which should be publicly  available url. If you want to secure your import use Signed URLs by Amazon S3 or Google Storage. As well there are two version of each operation - prefixed with `/fhir` - accepts data in FHIR format, and without prefix - works with Aidbox Format.
 
+First can load multiple resource types from one ndjson file, second is more efficient, but load only for specific resource type.
 
-
-Create Client & AccessPolicy for your API agent - in our case curl
+Here how you can load 100 synthea Patients \(see [tutorial](synthea-by-bulk-api.md)\):
 
 ```yaml
-PUT /
+POST /fhir/Patient/$load
 
-- resourceType: Client
-  id: bulk-client
-  secret: secret
-  grant_types: ['basic']
-- resourceType: AccessPolicy
-  id: bulk-client
-  engine: allow
-  link:
-  - {id: 'bulk-client', resourceType: 'Client'}
+source: 'https://storage.googleapis.com/aidbox-public/synthea/100/Patient.ndjson.gz'
+
+#resp
+{total: 124}
 ```
 
-Generate some number of patients using SQL - in DB Console:
+Or load the whole synthea package:
 
-```sql
-INSERT INTO patient (id,txid, status, resource) 
-SELECT g.id, g.id, 'created', '{"name": [{"family": "John"}]}' 
-FROM generate_series(1, 100000) AS g (id);
---
-SELECT count(*) FROM Patient;
+```yaml
+POST /$load
+
+source: 'https://storage.googleapis.com/aidbox-public/synthea/100/all.ndjson.gz'
+
+# resp
+
+{CarePlan: 356, Observation: 20382, MedicationAdministration: 150, .... }
 ```
 
-Now we can test bulk export using $dump operation with curl program:
+## $import & /fhir/$import
 
-```bash
-curl -u bulk-client:secret /Patient/\$dump > /tmp/pt.ndjson
+$import is implementation of upcoming FHIR Bulk Import API. This is async Operation, which returns url to monitor progress. Here is self descriptive example:
 
->  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
->                                 Dload  Upload   Total   Spent    Left  Speed
-> 100 12.0M    0 12.0M    0     0  9527k      0 --:--:--  0:00:01 --:--:-- 9523k
+```yaml
+POST /fhir/$import
 
-less /tmp/pt.ndjson
+id: synthea
+inputFormat: application/fhir+ndjson
+contentEncoding: gzip
+mode: bulk
+inputs:
+- resourceType: Encounter
+  url: https://storage.googleapis.com/aidbox-public/synthea/100/Encounter.ndjson.gz
+- resourceType: Organization
+  url: https://storage.googleapis.com/aidbox-public/synthea/100/Organization.ndjson.gz
+- resourceType: Patient
+  url: https://storage.googleapis.com/aidbox-public/synthea/100/Patient.ndjson.gz
 ```
 
-We've got 100K  patients in less then a second!
+You post import body with id and can monitor progress of import using:
 
-Do not forget to clean up the database:
-
-```sql
-TRUNCATE Patient;
+```yaml
+GET /BulkImportStatus/[id]
 ```
 
-### Load data into BigQuery
+## Read more
 
-```bash
-# load tsv data
-curl -v -X POST -u bulk-client:secret -H 'content-type:application/json' \
-   https://<YOURBOX>/\$dump-sql \
-   -d '{"query": "select id, ts, resource#>>'"'"'{module}'"'"' from entity"}' \
-   > data.tsv
-
-# create dataset
-bq mk test
-bq ls
-
-# load datast
-bq load --source_format=CSV \
-  --field_delimiter=tab \
-  test.entities ./data.tsv res,ts,mod
-
-# list ids
-bq query 'select id from test.entities'
-
-# remove dataset
-bq rm -r test
-```
+* Load Synthea with Bulk API [tutorial](synthea-by-bulk-api.md)
+* $dump-sql for analytics [tutorial](usddump-sql-tutorial.md)
 

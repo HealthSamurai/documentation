@@ -51,6 +51,7 @@
     * [$lookup](api/search/usdlookup.md)
   * [Bulk API](api/bulk-api/README.md)
     * [Synthea by Bulk APi](api/bulk-api/synthea-by-bulk-api.md)
+    * [$dump-sql tutorial](api/bulk-api/usddump-sql-tutorial.md)
   * [Subscriptions](api/subscriptions.md)
   * [$metadata](api/custom-metadata.md)
   * [$validate](api/usdvalidate.md)
