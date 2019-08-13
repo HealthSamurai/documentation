@@ -91,6 +91,23 @@ POST /PGSequence/pt_seq
 value: 31
 ```
 
+You can use this endpoint If you want to "update or create" sequence:
+
+```yaml
+PUT /PGSequence/pt_seq
+
+start: 300
+
+# response 201 - created
+
+--- 
+PUT /PGSequence/pt_seq
+
+start: 300
+
+# response 200 - untouched
+```
+
 ## Destroy Sequence
 
 You can drop sequence with `DELETE /PGSequence/[id]`
