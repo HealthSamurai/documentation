@@ -23,7 +23,7 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 
 
 
-## 0.4.7-SNAPSHOT \[2 August 2019\]
+## 0.4.7-SNAPSHOT \[10 September 2019\]
 
 ### Features
 
