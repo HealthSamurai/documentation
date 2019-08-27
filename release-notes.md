@@ -27,6 +27,8 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 
 ### Features
 
+* aidbox-cli elastic search logger now creates new index for each day
+
 ## 0.4.6 \[2 August 2019\]
 
 {% hint style="info" %}

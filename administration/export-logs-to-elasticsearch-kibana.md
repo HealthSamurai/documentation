@@ -63,13 +63,15 @@ services:
   logexp:
     links:
       - "elasticsearch:elasticsearch"
-    image: 'aidbox/aidbox-cli:0.0.1-alpha'
-    command: ["/aidbox", "es", "logs", "-l", "http://elasticsearch:9200/logs/logs", "-f", "/logs/devbox"]
+    image: 'aidbox/aidbox-cli:0.0.1-RC1'
+    command: ["/aidbox", "es", "logs", "-l", "http://elasticsearch:9200/logs", "-f", "/logs/devbox"]
     volumes:
     - "./logs:/logs"
 ```
 
 In volumes section we mount logs directory as volume to devbox \(Aidbox.Dev\)  service and do the same for aidbox-cli \(logexp\) service. Aidbox.Dev will log into `/logs/devbox` file and aidbox-cli will read this file and send logs into elasticsearch service.
+
+Logger use elastic url prefix  `http://elasticsearch:9200/logs` and send logs into index like this`http://lasticsearch:9200/logs-2019-08-01/logs` , i.e. index **prefix-&lt;date&gt;** will be used as index name**.**  You can use pattern `logs-*` to search in indexes in kibana.
 
 Resulting docker-compose file should similar to  [docker-compose.yaml](https://gist.github.com/niquola/463561e25ea0b6a5c12cd0407a0fd7bf). Do not forget to replace LICENSE\_ID & KEY with your license information.
 
