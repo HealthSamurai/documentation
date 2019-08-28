@@ -115,7 +115,7 @@ User:
 
 At root of resource definition you can also define **hooks** and **profiles** for this resource.
 
-Element definition will be translated into [Attribute Meta-Resource](../basic-concepts/meta-model/entity-and-attributes.md) and can have following properties:
+Element definition will be translated into [Attribute Meta-Resource]() and can have following properties:
 
 | name | type | Description |
 | :--- | :--- | :--- |

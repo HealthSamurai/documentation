@@ -4,7 +4,7 @@ description: 'Common operations create, read, update, and delete.'
 
 # CRUD
 
-This part of documentation describes how to create, read, update, and delete resources. Also, it covers some advanced topics like conditional create, update, and delete. Aidbox REST API slightly differs from canonical FHIR REST API. There is the [article](../basic-concepts/aidbox-vs-fhir.md) which describes those differences.
+This part of documentation describes how to create, read, update, and delete resources. Also, it covers some advanced topics like conditional create, update, and delete. Aidbox REST API slightly differs from canonical FHIR REST API. There is the [article]() which describes those differences.
 
 All sample requests can be run from the Postman collection:[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/view-collection/cd401dd93c5efab171ac?referrer=https%3A%2F%2Fapp.getpostman.com%2Frun-collection%2Fcd401dd93c5efab171ac%23%3Fenv[Aidbox.Cloud]%3DW3sia2V5IjoiYmFzZTEiLCJ2YWx1ZSI6Imh0dHBzOi8vbWVyZWRpdGguYWlkYm94LmFwcCIsImRlc2NyaXB0aW9uIjoiIiwiZW5hYmxlZCI6ZmFsc2V9LHsia2V5IjoiYmFzZSIsInZhbHVlIjoiaHR0cHM6Ly9wYXZseXNoaW5hMjAxODExMDkuYWlkYm94LmFwcCIsImRlc2NyaXB0aW9uIjoiIiwiZW5hYmxlZCI6dHJ1ZX1d&_ga=2.141573233.23745025.1543592968-654445837.1543359065)
 
@@ -98,7 +98,7 @@ warnings: []
 {% endtabs %}
 
 {% hint style="info" %}
-Aidbox REST API doesn't ignore`id` and treat it as all other attributes in contrast to FHIR API. Read more about differences [here](../basic-concepts/aidbox-vs-fhir.md).
+Aidbox REST API doesn't ignore`id` and treat it as all other attributes in contrast to FHIR API. Read more about differences [here]().
 {% endhint %}
 
 ## conditional create

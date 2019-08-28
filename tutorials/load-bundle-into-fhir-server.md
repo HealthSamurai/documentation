@@ -2,7 +2,7 @@
 
 ## Endpoint for Bundles
 
-Aidbox endpoint for bundles will be the base URL of your Box: `/` in Aidbox REST Console and `[base]` \(`https://<YOUR-BOX>.aidbox.app`\) in any other external client \(Postman for example\). Alternatively `/fhir` and `[base]/fhir` can be used, read more about [/fhir](../basic-concepts/aidbox-vs-fhir.md) endpoints. 
+Aidbox endpoint for bundles will be the base URL of your Box: `/` in Aidbox REST Console and `[base]` \(`https://<YOUR-BOX>.aidbox.app`\) in any other external client \(Postman for example\). Alternatively `/fhir` and `[base]/fhir` can be used, read more about [/fhir]() endpoints. 
 
 ## Bundle Example
 
@@ -133,7 +133,7 @@ Bundles must be sent via POST method to BASE\_URL which is basically the URL of 
 
 1. Access your Box in Aidbox.Cloud.
 2. Open REST Console.
-3. Type in `POST /` or `POST /fhir`. \(read about [difference](../basic-concepts/aidbox-vs-fhir.md) between Aidbox and FHIR\)
+3. Type in `POST /` or `POST /fhir`. \(read about [difference]() between Aidbox and FHIR\)
 4. Leave next line empty.
 5. Paste your bundle.
 6. Press Ctrl+Enter or click the **Send** button.

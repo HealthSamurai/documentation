@@ -28,6 +28,9 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 ### Features
 
 * aidbox-cli elastic search logger now creates new index for each day
+* default timeout for Search Operations with \_timeout param for hight load
+* Parse references in extensions
+* Ordered search in $lookup
 
 ## 0.4.6 \[2 August 2019\]
 
