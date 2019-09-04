@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Overview of Aidbox editions](README.md)
+* [Aidbox Editions](README.md)
 * [Overview](basic-concepts.md)
 * [Release Notes](release-notes.md)
 * [Installation](installation/README.md)

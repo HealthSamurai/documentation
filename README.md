@@ -4,7 +4,7 @@ description: >-
   application on FHIR. Estimated reading time: 5 min
 ---
 
-# Overview of Aidbox editions
+# Aidbox Editions
 
 Aidbox is an FHIR Backend-as-a-Service \(BaaS\) platform that enables deploy and integrates high available healthcare applications both on-premises and in the cloud on top of [HL7 FHIR](https://www.hl7.org/fhir/) standard. 
 
