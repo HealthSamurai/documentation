@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Overview of Aidbox editions](README.md)
+* [Overview](basic-concepts.md)
 * [Release Notes](release-notes.md)
 * [Installation](installation/README.md)
   * [Setup Aidbox.Dev](installation/setup-aidbox.dev.md)
@@ -26,7 +27,6 @@
   * [SMART on FHIR](tutorials/smart-of-fhir.md)
   * [Sync Data From Aidbox](tutorials/sync-data-from-aidbox.md)
   * [SDC with Custom Resources](tutorials/sdc-with-custom-resources.md)
-* [Overview](basic-concepts.md)
 * [REST API](api/README.md)
   * [Capability Statement](api/metadata.md)
   * [CRUD](api/crud.md)
