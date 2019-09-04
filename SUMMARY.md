@@ -26,7 +26,7 @@
   * [SMART on FHIR](tutorials/smart-of-fhir.md)
   * [Sync Data From Aidbox](tutorials/sync-data-from-aidbox.md)
   * [SDC with Custom Resources](tutorials/sdc-with-custom-resources.md)
-* [Architecture Overview](basic-concepts.md)
+* [Overview](basic-concepts.md)
 * [REST API](api/README.md)
   * [Capability Statement](api/metadata.md)
   * [CRUD](api/crud.md)

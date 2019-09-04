@@ -1,48 +1,118 @@
-# Architecture Overview
+# Overview
 
-[Aidbox](https://www.health-samurai.io/aidbox) is a metadata driven platform. What does it mean? It means that we are making almost everything to be represented as data \(resources\). For example in Aidbox, REST endpoints \(Operations\), Resources Structure Definitions, Profiles, Access Policies, Periodic Jobs, etc are represented as Resources - we call it Meta-Resources. Meta-Resources play by same rules as other resources  - you can request and manipulate Meta-Resources through unified REST API. 
+Aidbox is a backend for Health Care applications,  which provides you with 80% of typical needs:
+
+* FHIR Informational Model
+* Transactional PostgreSQL Storage \(based on best practices of our open source [fhirbase](https://www.health-samurai.io/fhirbase)  project\)
+* Flexible schema and dynamic validation
+* REST API for CRUD and Search
+* OAuth 2.0 Server and Access Control
+* Terminology Service
+
+[Aidbox](https://www.health-samurai.io/aidbox) is a metadata driven platform.  It means that almost everything is represented as data \(resources\). For example in Aidbox, REST endpoints \(Operations\), Resources Definitions, Profiles, Access Policies, etc are represented as Resources - we call it Meta-Resources. Meta-Resources play by same rules as other resources  - you can request and manipulate Meta-Resources through unified REST API. 
 
 ### Box
 
-If you already have an [Aidbox](https://www.health-samurai.io/aidbox) account, then you can create your own boxes. Each box is an instance of a FHIR server with a separate database and URL.
+Register in  [Aidbox.Cloud](https://www.health-samurai.io/aidbox) and create your personal boxes. Each box is an instance of a FHIR server with a separate database and domain. You can create multiple boxes for development, staging and  production. For local development you can run [Aidbox.Dev](installation/setup-aidbox.dev.md) in docker. For production you can buy [Aidbox.One](installation/deploy-aidbox.one.md) or [Aidbox.Enterprise](installation/aidbox.enterprise.md) editions.
 
-For example, you can create several boxes for development, one box for staging, and another for production.
+### FHIR & Aidbox
 
-If you already have an [Aidbox](https://www.health-samurai.io/aidbox) account, then you can create your own boxes. Each box is an instance of FHIR server with a separate database and base URL.
+Aidbox implements most of [FHIR specification](https://www.hl7.org/fhir/) and supports all official versions of this standard. In addition Aidbox has a lot of useful in "real-life" extensions. Aidbox is designed to be **FHIR** compatible, but uses its own framework, which is a "superset" of **FHIR**.  The key differences are listed below:
 
-For example, you can create several boxes for development, one box for staging, and another for production.
-
-Boxes can be created from the Dashboard using REST API, or aidbox-cli utility.
-
-We take care of all the maintaining, scaling, and updating of your boxes.
-
-Box management is done on the 'Dashboard' page. 
-
-The 'Dashboard' is a place where you can see all your existing boxes and create, manage, share and destroy boxes. Each box in the Dashboard has a name, an URL where it will be deployed, a list of users the box is shared with, a destroy option, and a payment plan indicator.
+* Resources are stored in [Aidbox Format](basic-concepts.md#aidbox-and-fhir-formats), which is isomorphic to FHIR, but not the same.
+* Aidbox serves two API    from `/` - **Aidbox API** and `/fhir` - **FHIR API**. Aidbox API work with Aidbox Format, so FHIR work with FHIR one. When you interact with FHIR endpoints Aidbox does on-fly conversion between this two formats.
+* Aidbox supports **First-Class Extensions** and **Custom Resources**, which are prohibited in FHIR, but very handy in "real" systems.
+* Aidbox use its own Entity/Attribute, SearchParameter and AidboxProfile framework instead of FHIR Structure Definitions. FHIR Profiles can be converted into Aidbox meta-resources.
 
 ### Resources
 
-In [Aidbox](https://www.health-samurai.io/aidbox), you define a resource by describing its metadata then Aidbox will generate storage schema on the fly in PostgreSQL to save instances of your resource, generate REST routing for CRUD, History, and Search Operations, generate JSON-schema to validate resources.
+In Aidbox everything is a **Resource**! Each resource type is described with special **Entity** and **Attribute** meta-resources. **Entity** describes resources and types. **Attributes** describe structure of resources and complex types. For each **Entity** Aidbox generates database schema in PostgreSQL,  REST endpoints for CRUD, History, Search and other operations and JSON-schema for validation. 
 
-### Operations
+### Aidbox & FHIR formats
 
-### Aidbox vs FHIR
+Aidbox stores FHIR resources almost as is with 3 types of isomorphic transformations:
 
+* References
+* Union \(Choice Types\)
+* First-Class Extensions
 
+#### References:
 
-There are some decisions in [FHIR RESTful API specification](https://www.hl7.org/fhir/http.html) that HealthSamurai team found not intuitive and logical. That's why [Aidbox](https://www.health-samurai.io/aidbox) provides two ways to access resources:
+In FHIR references are represented as URI string. In most of  cases you interested in discrete parts of references like resource id and type.  For performance and accuracy reason Aidbox parses reference and store its parts in discrete fields. There are three types of references - absolute, relative and local.  Aidbox parse them into different attributes.
 
-via `https://<your-box>.aidbox.app` and`https://<your-box>.aidbox.app/fhir` endpoints
+**Relative** \( interpreted as reference to resource on same server; trigger referential consistency check\) :
 
-They are mostly the same, but first one is opinionated by HealthSamurai engineers Aidbox version of FHIR API, the second one is FHIR compatible version.  
-We assume that `[base]` is `https://<your-box>.aidbox.app`, but if you need full FHIR compatibility use `https://<your-box>.aidbox.app/fhir`.  
+```yaml
+# FHIR
+subject:
+  reference: "Patient/pt-1" 
 
+# Aidbox
+subject:
+  resourceType: "Patient"
+  id: "pt-1"
+```
 
-The two types of differences: related to data format and operation behavior are described below.
+**reference** is parsed into pair of **`{id,resourceType}`** attributes
 
-## Operations
+**Absolute** \(interpreted as reference to external resource;  no ref validation\)
 
-### create
+```yaml
+# FHIR
+subject:
+  reference: "http://external/fhir/Patient/pt-1" 
+
+# Aidbox
+subject:
+  uri: "http://external/fhir/Patient/pt-1"
+```
+
+reference is parsed into **uri** attribute
+
+**Local** \(interpreted as local ref to contained resources \)
+
+```yaml
+# FHIR
+subject:
+  reference: "#pt" 
+
+# Aidbox
+subject:
+  ref: "pt"
+```
+
+reference is parsed into **ref** attribute
+
+#### Union \(Choice\) Types:
+
+Some elements can have multiple types. Such elements in FHIR spec prefixed with `[x]` like `Observatin.value[x]` and represented in JSON in a _wrong_ \(postfixed\) way like`Observatin.valueString` . The simple logical check "why it's wrong" is "you could not have a collection of union elements in FHIR JSON!". Aidbox fixes this moving type as key inside nested object - `valueString:... => value: {string: ...}`
+
+```yaml
+#FHIR
+resourceType: Observation
+valueQuantity:
+  unit: ...
+  value: ...
+
+# becomes Aidbox
+resourceType: Observation
+value:
+  Quantity:
+    unit: ...
+    value: ...
+```
+
+#### First-Class Extensions
+
+Aidbox 
+
+```yaml
+
+```
+
+### CRUD Operations Differences
+
+#### create
 
 ```http
 POST [base]/[type]
@@ -55,7 +125,7 @@ FHIR API [ignores](https://www.hl7.org/fhir/http.html#create) `id` in `POST` req
 * **`409`** **Conflict** - resource with such id already exists
 * **`422` Unprocessable Entity** - the proposed resource violated applicable FHIR profiles or server business rules
 
-### update
+#### update
 
 ```http
 PUT [base]/[type]/[id]
@@ -67,7 +137,7 @@ Aidbox doesn't have atomic update yet. It also allows to omit `id` in resource b
 * **`201` Created** - resource successfully created
 * **`422` Unprocessable Entity** - the proposed resource violated applicable FHIR profiles or server business rules
 
-### delete
+#### delete
 
 ```
 DELETE [base]/[type]/[id]
@@ -81,7 +151,7 @@ To get `204 No Content` instead of `200 OK` use `_no-content=true` query paramet
 * **`204` No Content** - resource already deleted
 * **`404` Not Found** - resource not found
 
-### conditional create
+#### conditional create
 
 ```
 POST [base]/[type]?[search parameters]
@@ -93,7 +163,7 @@ Instead of using `If-None-Exist` header, Aidbox uses query parameters as in ordi
 * **One Match**: The server returns the found resource and `200 OK`
 * **Multiple matches**: The server returns a `412 Precondition Failed` error indicating the client's criteria were not selective enough
 
-### conditional update
+#### conditional update
 
 ```
 PUT [base]/[type]?[search parameters]
@@ -105,7 +175,7 @@ In contrast to FHIR, Aidbox conditional update allows to create a resource with 
 * **One Match**: The server performs the update against the matching resource
 * **Multiple matches**: The server returns a `412 Precondition Failed` error indicating the client's criteria were not selective enough
 
-### conditional delete
+#### conditional delete
 
 ```text
 DELETE [base]/[type]?[search parameters]
@@ -117,206 +187,11 @@ It's not clear how to perform an ordinary `delete` on no matches, that's why `40
 * **One Match**: The server performs an ordinary `delete` on the matching resource
 * **Multiple matches**: Servers respond with `412 Precondition Failed` error indicating the client's criteria were not selective enough
 
-## Query parameters
+### Query parameters
 
-### \_no-content
+`?_no-content=true` make any mutating operation omit response body and return `204 No Content`
 
-`?_no-content=true` make any mutating operation omit response body and return `204 No Content`.
 
-## Data format
-
-Differences between FHIR and Aidbox resource structure.
-
-Aidbox uses a slightly adjusted FHIR resource format to make queries simpler and faster. It adopted some ideas originated in [FHIR Fuel project](https://github.com/fhir-fuel/fhir-fuel.github.io/issues%E2%80%8B).
-
-There are 2 major differences of resource structure between Aidbox and FHIR: polymorphic elements and references representation.
-
-### Polymorphic elements <a id="polymorphic-elements"></a>
-
-Some resource’s elements can have variable types, in the FHIR specification such elements have `[x]` postfix \(i.e. `Observation.value[x]`\). In YAML representation such elements of FHIR resources are encoded by substitution of postfix with specific title-cased type name:
-
-```yaml
-- resourceType: Observation
-  component:
-  - valueString: "string value"
-  
-- resourceType: Observation
-  component:
-  - valueQuantity:
-      value: 42
-      unit: mg/day
-```
-
-1. This approach to the representation forces an unnecessary constraint: polymorphic elements cannot repeat, i.e. they must have a maximum cardinality of 1. There is no absolute reason to force this besides format representation.
-2. On the other side, most of object-oriented FHIR implementations of usually provide convenient accessors for polymorphic elements like `observation.getValue()`. But when you handle JSON representation without any wrapper, you have to iterate through the object keys to find exact key name holding the value.
-3. JSON schema is quite popular way to specify the shape of JSON object. But it's impossible to constraint JSON object with it to have only one `value[x]` element or force `value[x]` element to be required.
-4. Implementation of FHIR search for missing elements, like `Observation?value:missing=true` is tricky \(see 2\)
-
-To mitigate those difficulties and limitations in Aidbox we represent polymorphic elements with nested object:
-
-```yaml
-# FHIR
-valueString: "...."
-# Aidbox
-value:
-  string: "...."
-
-# FHIR
-valueNumber: 42
-# Aidbox
-value:
-  number: 42
-
-```
-
-### References <a id="references"></a>
-
-References as URI strings are not very useful in most cases, and usually you want them to be splitted into discrete parts to operate with. Aidbox parses references on Create or Update operations and stores ID and Resource Type separately:
-
-```yaml
-# FHIR
-subject:
-  reference: "Patient/pt-1"
-  
-# Aidbox
-subject:
-  resourceType: "Patient"
-  id: "pt-1"
-  
-## Contained resource reference
-subject:
-  id: "#pt-1"
-
-## Remote reference
-subject:
-  uri: "http://otherserver/fhir/Patient/pt-1"
-
-```
-
-### Entities & Attributes
-
-In [Aidbox](https://www.health-samurai.io/aidbox), structure of all resources is defined by two meta-resources Entity and Attribute. Entity can be of 3 types - primitive, type, or resource. Primitive is a built-in primitive type. You are not allowed to create your primitives so if you have missed one - please contact us. Repeating combinations of primitive types are composed into types \(complex types like Address, HumanName, etc\). Entity with the type "resource" composes a set of primitive and complex type Attributes. When resource is described - tables to storage data and REST API for this resource are generated on the fly based on the definition. 
-
-Let's take a look at the definition of Entity and Attribute Resources. If you have access to your box you can get this metadata by the REST endpoint `GET /Entity?_id=Entity,Attribute`.
-
-```yaml
-- resourceType: Entity
-  id: Entity
-  text: Entity metadata
-  type: resource
-  module: proto
-- resourceType: Entity
-  id: Attribute
-  text: Entity attribute metadata
-  type: resource
-  module: proto
-```
-
-As seen, they are both defined as **Entity** with type **resource** with id matching **resourceType** and coming from module **proto** \(see more about Modules in Aidbox\).
-
-Let's see what attributes are defined for Entity \( `GET /Attribute?entity=Entity`\):
-
-```yaml
-- resourceType: Attribute
-    module: proto
-    id: Entity.id
-    path: [id]
-    type: { id: keyword, resourceType: Entity }
-    resource: { id: Entity, resourceType: Entity }
-  - resourceType: Attribute
-    module: proto
-    id: Entity.module
-    path: [module]
-    type: { id: keyword, resourceType: Entity }
-    resource: { id: Entity, resourceType: Entity }
-  # skip repeating attributes
-  - path: [type]
-    isRequired: true
-    enum:
-      - abstract
-      - resource
-      - type
-      - primitive
-    type: { id: keyword}
-  - path: [description]
-    isRequired: true
-    type: { id: string}
-  - path: [isOpen]
-    type: { id: boolean}
-  - path: [schema]
-    isOpen: true
-    type: { id: boolean}
-```
-
-* **id**  - attribute is common for all resources, 
-* **module** - all meta-resources has module attribute \(in which module this resource is defined - see more about modules\)
-* **type** -  is enum of resource, type and primitive
-* **description** - is text about entity
-* **isOpen** - if this flag is set resource can be arbitrary json document without fixed schema
-* **schema** - if resource can not be described as list of attributes, you can describe it directly by attaching JSON schema
-
-Now, let's inspect attributes of the Attribute meta-resource  \(`GET /Attribute?entity=Attribute`\):
-
-```yaml
-# repeating attributes are skiped
-- path: [ isCollection ]
-  text: Define element as collection
-  type: { id: boolean }
-- path: [ isUnique ]
-  text: Unique constraint on element
-  type: { id: boolean }
-- path: [ path ]
-  type: { id: keyword }
-  isRequired: true
-  isCollection: true
-- path: [ description ]
-  type: { id: string }
-- path: [ type ]
-  type: { id: Reference }
-- path: - resource
-  type: { id: Reference }
-  isRequired: true
-- path: - isOpen
-  text: Do not validate extra keys
-  type: id: boolean
-- path: - isRequired
-  type: id: boolean
-- path: [ schema ]
-  isOpen: true
-- path: [ module ]
-  type: id: keyword
-- path: - enum
-  text: For simple cases enumerate values
-  type: id: string
-  isCollection: true
-- path: [ isModifier ]
-  type: id: boolean
-- path: [ union ]
-  text: List of polymorphic types
-  type: { id: Reference }
-  isCollection: true
-- path: [ text ]
-  type: { id: string }
-- path: [ valueSet ]
-  module: fhir-3.0.1
-- id: Attrubute.valueSet.id
-  path: [ valueSet,  id]
-  type: id: keyword
-- path: [ valueSet,  uri ]
-  type: { id: string }
-- path: [ refers ]
-  type: { id: string }
-  isCollection: true
-- path: [ order ]
-  type: { id: integer }
-  description: Order of elements for xml or humans
-- path: [ valueSet,  resourceType ]
-  type: { id: keyword }
-- path: [ isSummary ]
-  type: { id: boolean }
-```
-
-You are allowed to define new Entities, add new attributes to existing entities. We do not recommend to override or delete existing Entities and Attributes.
 
 ### Modules
 
