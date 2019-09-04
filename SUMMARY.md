@@ -2,6 +2,8 @@
 
 * [Aidbox Editions](README.md)
 * [Overview](basic-concepts/README.md)
+  * [Editions & Pricing](basic-concepts/editions-and-pricing.md)
+  * [Entities & Attributes](basic-concepts/entities-and-attributes.md)
   * [Aidbox & FHIR formats](basic-concepts/aidbox-and-fhir-formats.md)
   * [FHIR & Aidbox CRUD](basic-concepts/fhir-and-aidbox-crud.md)
 * [Release Notes](release-notes.md)
