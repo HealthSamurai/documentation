@@ -1,16 +1,12 @@
 ---
 description: >-
   Aidbox is the backend development platform for your modern healthcare
-  application on FHIR. Estimated reading time: 5 min
+  application on FHIR.
 ---
 
 # Aidbox
 
-Aidbox is an FHIR Backend-as-a-Service \(BaaS\) platform that enables deploy and integrates high available healthcare applications both on-premises and in the cloud on top of [HL7 FHIR](https://www.hl7.org/fhir/) standard. 
-
-With Aidbox you can easily develop new healthcare products and services.  On top of the platform, you capable to build Mobile and Web Applications or integrations for existing electronic health record systems.
-
-Aidbox is a backend for Health Care applications,  which provides you with 80% of typical needs:
+Aidbox is a Backend for Health Care applications,  which provides you with 80% of typical needs:
 
 * FHIR Informational Model
 * Transactional PostgreSQL Storage \(based on best practices of our open source [fhirbase](https://www.health-samurai.io/fhirbase)  project\)
@@ -18,6 +14,10 @@ Aidbox is a backend for Health Care applications,  which provides you with 80% o
 * REST API for CRUD and Search
 * OAuth 2.0 Server and Access Control
 * Terminology Service
+
+[Read Features Overview](basic-concepts/features.md)
+
+With Aidbox you can easily develop new healthcare products and services.  On top of the platform, you capable to build Mobile and Web Applications or integrations for existing electronic health record systems.
 
 [Aidbox](https://www.health-samurai.io/aidbox) is a metadata driven platform.  It means that almost everything is represented as data \(resources\). For example in Aidbox, REST endpoints \(Operations\), Resources Definitions, Profiles, Access Policies, etc are represented as Resources - we call it Meta-Resources. Meta-Resources play by same rules as other resources  - you can request and manipulate Meta-Resources through unified REST API. 
 
