@@ -1,8 +1,9 @@
 # Table of contents
 
-* [Aidbox Editions](README.md)
+* [Aidbox](README.md)
 * [Overview](basic-concepts/README.md)
   * [Editions & Pricing](basic-concepts/editions-and-pricing.md)
+  * [Features](basic-concepts/features.md)
   * [Entities & Attributes](basic-concepts/entities-and-attributes.md)
   * [Aidbox & FHIR formats](basic-concepts/aidbox-and-fhir-formats.md)
   * [FHIR & Aidbox CRUD](basic-concepts/fhir-and-aidbox-crud.md)
@@ -49,7 +50,7 @@
   * [$json-schema](api/usdjson-schema.md)
   * [SQL endpoints](api/usdpsql.md)
   * [Sequence API](api/sequence-api.md)
-  * [$to-format/\[fhir/aidbox\]](api/usdto-format-fhir-aidbox.md)
+  * [$to-format](api/usdto-format-fhir-aidbox.md)
   * [Misc](api/misc.md)
 * [Auth](auth-betta/README.md)
   * [Basic Auth](auth-betta/basic-auth.md)
