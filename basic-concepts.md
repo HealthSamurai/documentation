@@ -11,18 +11,18 @@ Aidbox is a backend for Health Care applications,  which provides you with 80% o
 
 [Aidbox](https://www.health-samurai.io/aidbox) is a metadata driven platform.  It means that almost everything is represented as data \(resources\). For example in Aidbox, REST endpoints \(Operations\), Resources Definitions, Profiles, Access Policies, etc are represented as Resources - we call it Meta-Resources. Meta-Resources play by same rules as other resources  - you can request and manipulate Meta-Resources through unified REST API. 
 
-### Box
+### Get your Box
 
 Register in  [Aidbox.Cloud](https://www.health-samurai.io/aidbox) and create your personal boxes. Each box is an instance of a FHIR server with a separate database and domain. You can create multiple boxes for development, staging and  production. For local development you can run [Aidbox.Dev](installation/setup-aidbox.dev.md) in docker. For production you can buy [Aidbox.One](installation/deploy-aidbox.one.md) or [Aidbox.Enterprise](installation/aidbox.enterprise.md) editions.
 
 ### FHIR & Aidbox
 
-Aidbox implements most of [FHIR specification](https://www.hl7.org/fhir/) and supports all official versions of this standard. In addition Aidbox has a lot of useful in "real-life" extensions. Aidbox is designed to be **FHIR** compatible, but uses its own framework, which is a "superset" of **FHIR**.  The key differences are listed below:
+Aidbox implements most of [FHIR specification](https://www.hl7.org/fhir/) and supports all official versions of this standard. In addition Aidbox has a lot of useful in "real-life" extensions. Aidbox is designed to be **FHIR** compatible, but uses its own framework.  The key differences are listed below:
 
 * Resources are stored in [Aidbox Format](basic-concepts.md#aidbox-and-fhir-formats), which is isomorphic to FHIR, but not the same.
-* Aidbox serves two API    from `/` - **Aidbox API** and `/fhir` - **FHIR API**. Aidbox API work with Aidbox Format, so FHIR work with FHIR one. When you interact with FHIR endpoints Aidbox does on-fly conversion between this two formats.
+* Aidbox serves two API    from `/` - **Aidbox API** and `/fhir` - **FHIR API**. Aidbox API work with Aidbox Format and FHIR work with FHIR format. When you interact with FHIR endpoints Aidbox does on-fly conversion between this two formats.
 * Aidbox supports **First-Class Extensions** and **Custom Resources**, which are prohibited in FHIR, but very handy in "real" systems.
-* Aidbox use its own Entity/Attribute, SearchParameter and AidboxProfile framework instead of FHIR Structure Definitions. FHIR Profiles can be converted into Aidbox meta-resources.
+* Aidbox use its own Entity/Attribute, SearchParameter and AidboxProfile framework instead of FHIR Structure Definitions. FHIR Profiles should be converted into Aidbox meta-resources.
 
 ### Resources
 
@@ -32,9 +32,9 @@ In Aidbox everything is a **Resource**! Each resource type is described with spe
 
 Aidbox stores FHIR resources almost as is with 3 types of isomorphic transformations:
 
-* References
-* Union \(Choice Types\)
-* First-Class Extensions
+* [References](basic-concepts.md#references)
+* [Union \(Choice Types\)](basic-concepts.md#union-choice-types)
+* [First-Class Extensions](basic-concepts.md#first-class-extensions)
 
 #### References:
 
@@ -78,7 +78,7 @@ subject:
 
 # Aidbox
 subject:
-  ref: "pt"
+  localRef: "pt"
 ```
 
 reference is parsed into **ref** attribute
@@ -104,10 +104,93 @@ value:
 
 #### First-Class Extensions
 
-Aidbox 
+While FHIR uses two different ways to define **core elements** and **extensions**, Aidbox provide unified framework to describe both. Aidbox supports user defined attributes or "first-class extensions". In Aidbox you can define new attributes \(elements\) for existing \(FHIR\) resources.  Let's illustrate this on race complex attribute for Patient from US-Core FHIR Profile.
+
+This how patient with race looks in FHIR format:
 
 ```yaml
+resourceType: Patient
+id: sample-pt
+extension:
+- url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-race
+  extension:
+  - url: text
+    valueString: Asian Indian
+  - url: ombCategory
+    valueCoding:
+       system: urn:oid:2.16.840.1.113883.6.238
+       code: 2028-9
+       display: Asian
+  - url: detailed
+    valueCoding:
+       system:
+       code: 2029-7	
+       display: Asian Indian
+```
 
+If you will try save this resource in "default" Aidbox it will keep this extensions "as is". But if you define attributes for this extensions - Aidbox will store it in more friendly format.
+
+```yaml
+PUT /
+
+- resourceType: Attribute
+  id: Patient.race
+  path: ['race']
+  resource: {id: 'Patient', resourceType: 'Entity'}
+  extensionUrl: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-race'
+- resourceType: Attribute
+  id: Patient.race.text
+  path: ['race', 'text']
+  resource: {id: 'Patient', resourceType: 'Entity'}
+  type: {id: 'string', resourceType: 'Entity'}
+  extensionUrl: text
+- resourceType: Attribute
+  id: Patient.race.category
+  path: ['race', 'category']
+  resource: {id: 'Patient', resourceType: 'Entity'}
+  type: {id: 'Coding', resourceType: 'Entity'}
+  extensionUrl: ombCategory
+- resourceType: Attribute
+  id: Patient.race.detailed
+  path: ['race', 'detailed']
+  resource: {id: 'Patient', resourceType: 'Entity'}
+  type: {id: 'Coding', resourceType: 'Entity'}
+  extensionUrl: detailed
+```
+
+Now you can test how resource will be stored in Aidbox with:
+
+```yaml
+POST /to-format/aidbox
+
+resourceType: Patient
+id: sample-pt
+extension:
+- url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-race
+  extension:
+  - url: text
+    valueString: Asian Indian
+  - url: ombCategory
+    valueCoding:
+       system: urn:oid:2.16.840.1.113883.6.238
+       code: 2028-9
+       display: Asian
+  - url: detailed
+    valueCoding:
+       system:
+       code: 2029-7	
+       display: Asian Indian
+```
+
+The response should be:
+
+```yaml
+resourceType: Patient
+  id: sample-pt
+  race:
+    text: Asian Indian
+    category: {system: 'urn:oid:2.16.840.1.113883.6.238', code: 2028-9, display: Asian}
+    detailed: {system: 'urn:oid:2.16.840.1.113883.6.238', code: 2029-7, display: Asian Indian}
 ```
 
 ### CRUD Operations Differences
@@ -131,7 +214,7 @@ FHIR API [ignores](https://www.hl7.org/fhir/http.html#create) `id` in `POST` req
 PUT [base]/[type]/[id]
 ```
 
-Aidbox doesn't have atomic update yet. It also allows to omit `id` in resource body, ~~_but there is no important reason behind it_~~.
+Aidbox doesn't have atomic update yet. It also allows to omit `id` in resource body
 
 * **`200` OK** - resource successfully updated
 * **`201` Created** - resource successfully created
@@ -186,22 +269,4 @@ It's not clear how to perform an ordinary `delete` on no matches, that's why `40
 * **No matches:** The respond with `404 Not Found`
 * **One Match**: The server performs an ordinary `delete` on the matching resource
 * **Multiple matches**: Servers respond with `412 Precondition Failed` error indicating the client's criteria were not selective enough
-
-### Query parameters
-
-`?_no-content=true` make any mutating operation omit response body and return `204 No Content`
-
-
-
-### Modules
-
-[Aidbox](https://www.health-samurai.io/aidbox) is split into modules. We have core module proto, modules for each FHIR version, and additional modules like OpenID Connect, Chat, etc.
-
-Each module can consist of definitions  of:
-
-* Entities and Attributes  - i.e. defines a set of new Resources and/or extensions for existing ones
-* Operations - REST endpoints
-* SearchParameters
-
-For example, core module **proto** introduces core meta-resources like Entity, Attributes, and basic CRUD & Search Operations. FHIR modules are definitions of FHIR resources by Entity, Attributes which are imported from FHIR metadata.
 
