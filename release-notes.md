@@ -31,6 +31,7 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * default timeout for Search Operations with \_timeout param for hight load
 * Parse references in extensions
 * Ordered search in $lookup
+* microseconds precision for timestamps \(Resource.meta.lastUpdated\) 
 
 ## 0.4.6 \[2 August 2019\]
 
