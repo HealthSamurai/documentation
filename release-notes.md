@@ -20,7 +20,7 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * Terminology under `fhir` prefix \(issues \#51 \#50 \#38\)
 * \_filter parameter support
 * Managing Indexes by **AidboxIndex** meta-resource
-
+* 
 
 
 ## 0.4.7-SNAPSHOT \[10 September 2019\]
@@ -29,9 +29,9 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 
 * aidbox-cli elastic search logger now creates new index for each day
 * default timeout for Search Operations with \_timeout param for hight load
-* Parse references in extensions
-* Ordered search in $lookup
+* Ordered search in [$lookup](api/search/usdlookup.md)
 * microseconds precision for timestamps \(Resource.meta.lastUpdated\) 
+* Now references to contained resources are represented as `localRef` attribute in Reference type
 
 ## 0.4.6 \[2 August 2019\]
 

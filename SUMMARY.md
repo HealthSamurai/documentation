@@ -1,7 +1,7 @@
 # Table of contents
 
 * [Aidbox](README.md)
-* [Overview](basic-concepts/README.md)
+* [Basics](basic-concepts/README.md)
   * [Editions & Pricing](basic-concepts/editions-and-pricing.md)
   * [Features](basic-concepts/features.md)
   * [Entities & Attributes](basic-concepts/entities-and-attributes.md)
