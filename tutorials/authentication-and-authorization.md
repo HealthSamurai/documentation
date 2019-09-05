@@ -46,7 +46,7 @@ Obviously results to failure
 
 Error message and response code give us a tip that server requires authentication. To make it possible we need to create a subject for authentication \(a client\).
 
-Open [https://ui.aidbox.app](https://ui.aidbox.app), choose your box, open section **Auth clients**, click button **New** to create an auth client, and type the following body for resource:
+Open [https://aidbox.app](https://aidbox.app), choose your box, open section **Auth clients**, click button **New** to create an auth client, and type the following body for resource:
 
 {% tabs %}
 {% tab title="YAML" %}
@@ -54,7 +54,7 @@ Open [https://ui.aidbox.app](https://ui.aidbox.app), choose your box, open secti
 resourceType: Client
 id: USERNAME
 secret: PASSWORD
-grant_type: ['basic']
+grant_types: ['basic']
 ```
 {% endtab %}
 
