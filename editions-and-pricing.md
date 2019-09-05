@@ -11,7 +11,7 @@ Aidbox is available in the following editions:
 * **Aidbox.One** is a one-server installation. It is good for small production installations. You can upgrade your Aidbox**.**Dev to Aidbox.One and move your solution into production.
 * **Aidbox.Enterprise**  is a highly-available multi-tenant installation with 24/7 support. It is good for large enterprise installations and SaaS products.
 
-![](../.gitbook/assets/line.png)
+![](.gitbook/assets/line.png)
 
 
 

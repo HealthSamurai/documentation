@@ -1,8 +1,8 @@
 # Table of contents
 
 * [Aidbox](README.md)
+* [Editions & Pricing](editions-and-pricing.md)
 * [Basics](basic-concepts/README.md)
-  * [Editions & Pricing](basic-concepts/editions-and-pricing.md)
   * [Features](basic-concepts/features.md)
   * [Entities & Attributes](basic-concepts/entities-and-attributes.md)
   * [Aidbox & FHIR formats](basic-concepts/aidbox-and-fhir-formats.md)
