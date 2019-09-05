@@ -2,7 +2,7 @@
 description: In this tutorial you will see how to use $dump-sql to export data for analytic
 ---
 
-# $dump-sql tutorial
+# 🎓 $dump-sql tutorial
 
 {% embed url="https://www.youtube.com/watch?v=BtLxICcQNWw&feature=youtu.be" %}
 

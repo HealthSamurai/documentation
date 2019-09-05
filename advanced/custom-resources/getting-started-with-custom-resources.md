@@ -1,4 +1,4 @@
-# Custom Resources
+# 🎓 Custom Resources
 
 All examples from this tutorial you can run in Postman. Here's the [web view](https://documenter.getpostman.com/view/5552124/RWgxsu5Y) of these examples in Postman.
 
@@ -344,7 +344,7 @@ enum:
 
 ### Validation of Incoming Resources
 
-To validate incoming resources, Aidbox uses json-schema which is generated from Entity & Attribute meta-resources \(read more in [Validation Section]()\). Using [$json-schema](../basic-concepts/introspection/usdjson-schema.md) operation we can inspect which schema will be applied to `UserSetting` resources:
+To validate incoming resources, Aidbox uses json-schema which is generated from Entity & Attribute meta-resources \(read more in [Validation Section]()\). Using [$json-schema](../../basic-concepts/introspection/usdjson-schema.md) operation we can inspect which schema will be applied to `UserSetting` resources:
 
 {% tabs %}
 {% tab title="Request" %}

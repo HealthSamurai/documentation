@@ -15,7 +15,7 @@ Aidbox is a Backend for Health Care applications,  which provides you with 80% o
 * OAuth 2.0 Server and Access Control
 * Terminology Service
 
-[Read Features Overview](basic-concepts/features.md)
+[Read Features Overview](features.md)
 
 With Aidbox you can easily develop new healthcare products and services.  On top of the platform, you capable to build Mobile and Web Applications or integrations for existing electronic health record systems.
 

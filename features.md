@@ -10,7 +10,7 @@ FHIR-compliant RESTful API that allows secure access and manipulation of clinica
 
 ### **PostgreSQL storage**
 
-Aidbox uses exclusively PostgreSQL, but squeeze everything from this technology.  Most of aidbox flexibility and performance coming from advanced PostgreSQL features like binary json, rich indexing system etc. SQL is Second Aidbox API, which gives you extra power on your structured data. Read more about [our database internals](database.md).
+Aidbox uses exclusively PostgreSQL, but squeeze everything from this technology.  Most of aidbox flexibility and performance coming from advanced PostgreSQL features like binary json, rich indexing system etc. SQL is Second Aidbox API, which gives you extra power on your structured data. Read more about [our database internals](basic-concepts/database.md).
 
 ### **Custom resources** 
 
