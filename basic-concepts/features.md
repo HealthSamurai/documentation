@@ -8,9 +8,9 @@ description: Overview of Aidbox features
 
 FHIR-compliant RESTful API that allows secure access and manipulation of clinical, financial and administrative healthcare data. Aidbox supports all major versions of FHIR: DSTU2, STU3, and R4. Strict validation ensures data consistency and integrity for all FHIR resources. A lot of valuable extensions  to FHIR API. 
 
-### **PostgreSQL storage** 
+### **PostgreSQL storage**
 
-FHIR database schema on top of PostgreSQL that enables the use of SQL for FHIR data. 
+Aidbox uses exclusively PostgreSQL, but squeeze everything from this technology.  Most of aidbox flexibility and performance coming from advanced PostgreSQL features like binary json, rich indexing system etc. SQL is Second Aidbox API, which gives you extra power on your structured data. Read more about [our database internals](database.md).
 
 ### **Custom resources** 
 

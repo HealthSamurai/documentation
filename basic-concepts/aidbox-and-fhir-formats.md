@@ -156,7 +156,7 @@ extension:
        display: Asian Indian
 ```
 
-Read more about [/$to-format Operation](../api/usdto-format-fhir-aidbox.md).
+Read more about [/$to-format Operation](development/usdto-format-fhir-aidbox.md).
 
 The response should be:
 

@@ -29,7 +29,7 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 
 * aidbox-cli elastic search logger now creates new index for each day
 * default timeout for Search Operations with \_timeout param for hight load
-* Ordered search in [$lookup](api/search/usdlookup.md)
+* Ordered search in [$lookup](basic-concepts/search-1/usdlookup.md)
 * microseconds precision for timestamps \(Resource.meta.lastUpdated\) 
 * Now references to contained resources are represented as `localRef` attribute in Reference type
 
@@ -42,9 +42,9 @@ It's time to upgrade your database - please stop your container and change image
 ### Features
 
 * In REST Console support for multiline URL line using `\`
-* New  `/<RT>/$lookup`  operation for efficient lookup search in millions of records - [read more](api/search/usdlookup.md)
+* New  `/<RT>/$lookup`  operation for efficient lookup search in millions of records - [read more](basic-concepts/search-1/usdlookup.md)
 * [AidboxQuery](tutorials/custom-search.md) extended with count-query and params types and defaults
-* New `/<RT>/$load` and `/$load` [bulk operations](api/bulk-api/#usdload) were added and [$import](api/bulk-api/#usdimport) was upgraded
+* New `/<RT>/$load` and `/$load` [bulk operations](basic-concepts/bulk-api-1/#usdload) were added and [$import](basic-concepts/bulk-api-1/#usdimport) was upgraded
 * aidbox/db upgrade to 11.4 + fixes in json\_knife pg extension - \(deep patterns, indexes\) 
 * Highlighted logs for humans in [Aidbox.Dev](installation/setup-aidbox.dev.md) by default: docker logs -f &lt;your-box-container&gt;
 * New [Aidbox.Enterprise](installation/aidbox.enterprise.md)
@@ -55,9 +55,9 @@ It's time to upgrade your database - please stop your container and change image
 
 * `/auth/test-policy` operation for[ policy debug](security/access-control.md#debugging)
 * Support for [ident interpolation](security/access-control.md#sql-engine) in SQL policy - `SELECT * FROM {{!params.resource/type}}`
-* [SQL Migrations](api/usdpsql.md#sql-migrations)
-* New [\_explain](api/search/#_explain) parameter for Search API
-* Beta version of bulk [import operation](api/bulk-api/#usdimport) 
+* [SQL Migrations](advanced/usdpsql.md#sql-migrations)
+* New [\_explain](basic-concepts/search-1/#_explain) parameter for Search API
+* Beta version of bulk [import operation](basic-concepts/bulk-api-1/#usdimport) 
 * History & Snippets for REST & DB Console
 
 ## 0.4.4 _\[17 June 2019\]_
@@ -71,7 +71,7 @@ It's time to upgrade your database - please stop your container and change image
 
 ### Features
 
-* [Sequence API](api/sequence-api.md) - use PostgreSQL sequences through REST API
+* [Sequence API](advanced/sequence-api.md) - use PostgreSQL sequences through REST API
 * Operation bound policy in App manifest
 * Clear resources deleted in App manifest \([\#70](https://github.com/Aidbox/Issues/issues/70)\)
 * Bulk load terminologies - [tutorial](https://docs.aidbox.app/terminology/terminology-tutorials/load-terminologies)
@@ -90,10 +90,10 @@ It's time to upgrade your database - please stop your container and change image
 * [User Level Logs](administration/logging-and-audit.md)
 * [Structured Data Capture](tutorials/sdc-with-custom-resources.md) with Custom Resources \(Alpha\)
 * [History based replication](tutorials/sync-data-from-aidbox.md)
-* Search: new [\_ilike](api/search/#_ilike-search-non-fhir) search parameter
-* Search: [\_include=\*](api/search/#_include-and-_revinclude)  support
-* Search: [\_list](api/search/#_list) parameter support
-* [$dump](api/bulk-api/#usddump) - Bulk Export Operation
+* Search: new [\_ilike](basic-concepts/search-1/#_ilike-search-non-fhir) search parameter
+* Search: [\_include=\*](basic-concepts/search-1/#_include-and-_revinclude)  support
+* Search: [\_list](basic-concepts/search-1/#_list) parameter support
+* [$dump](basic-concepts/bulk-api-1/#usddump) - Bulk Export Operation
 * [Health-Check](administration/health-check.md) endpoint by [RFC](https://inadarei.github.io/rfc-healthcheck/)
 
 ### Bug Fixes
@@ -149,12 +149,12 @@ This release is mostly dedicated to stabilisation of new auth module. Check-out 
 
 ## 0.3.4
 
-* Subscriptions `$poll` operation and `webhook` channel: [Subscriptions](api/subscriptions.md);
+* Subscriptions `$poll` operation and `webhook` channel: [Subscriptions](advanced/subscriptions.md);
 * Fixed [Aidbox](https://www.health-samurai.io/aidbox) to FHIR data transformation bug when polymorphic attributes wasn't properly handled in recursive elements such as `QuestionnaireResponse.item`
 * Support [`_total`](https://build.fhir.org/search.html#total) search parameter \(\_totalMethod=count also works\)
 * Support `page` search parameter \(\_page - also works\)
-* Added [$query](api/search/custom-search.md) - SQL query into REST Endpoint
-* [\_query](api/search/custom-search.md) - custom search related to resourceType
+* Added [$query](basic-concepts/search-1/custom-search.md) - SQL query into REST Endpoint
+* [\_query](basic-concepts/search-1/custom-search.md) - custom search related to resourceType
 * Implemented Compartments for requests like `/fhir/Patient/xxx/Observation`; Compartments are defined with CompartmentDefinition resource
 * `Observation/$lastn` is accessible as a part of Patient's compartment: `/fhir/Patient/ID/Observation/$lastn`
 * Implemented `:iterate` modifier for `_include` search parameter

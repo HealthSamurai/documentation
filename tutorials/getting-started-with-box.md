@@ -49,7 +49,7 @@ REST console is designed to work with resources on your `Box` by sending HTTP re
 
 ### Create a Patient
 
-Let's add a couple of new patients. For this, we type in our console `POST /Patient` and in the body of the request wherein we will send the data of our new patient \(Aidbox supports JSON and few other formats but we will use YAML for [compactness and readability](../faq/why-yaml.md)\):
+Let's add a couple of new patients. For this, we type in our console `POST /Patient` and in the body of the request wherein we will send the data of our new patient \(Aidbox supports JSON and few other formats but we will use YAML for [compactness and readability]()\):
 
 {% hint style="danger" %}
 Use the copy button in the top right corner of a code snippet to avoid copying of unnecessary white space characters.
@@ -153,7 +153,7 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-There are much more operations that can be done with a server using [RESTful API](../api/) but for our case to check if everything is set up properly and to get basic understanding of FHIR RESTful API, `POST` and `GET` requests are enough.
+There are much more operations that can be done with a server using [RESTful API](../basic-concepts/api.md) but for our case to check if everything is set up properly and to get basic understanding of FHIR RESTful API, `POST` and `GET` requests are enough.
 
 What's next?
 

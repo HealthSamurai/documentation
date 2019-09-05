@@ -4,7 +4,7 @@ description: Debug conversion between Aidbox and FHIR formats
 
 # $to-format
 
-Aidbox do on fly conversion between [FHIR and AIdbox formats](../basic-concepts/aidbox-and-fhir-formats.md). To debug this transformation you can use `POST /$to-format/fhir` and  `POST /$to-format/aidbox` endpoints. Which will show you result of transformation with additional info:
+Aidbox do on fly conversion between [FHIR and AIdbox formats](../aidbox-and-fhir-formats.md). To debug this transformation you can use `POST /$to-format/fhir` and  `POST /$to-format/aidbox` endpoints. Which will show you result of transformation with additional info:
 
 ```yaml
 POST /$to-format/aidbox

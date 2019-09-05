@@ -451,7 +451,7 @@ data:
 {% endtab %}
 {% endtabs %}
 
-Hell ye! We got all needed data in exact shape we wanted. Additional information about custom queries can be found in REST API [$query](../api/search/custom-search.md) documentation.
+Hell ye! We got all needed data in exact shape we wanted. Additional information about custom queries can be found in REST API [$query](../basic-concepts/search-1/custom-search.md) documentation.
 
 {% hint style="info" %}
 Want to know more about Aidbox, FHIR, and custom search? Join our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).

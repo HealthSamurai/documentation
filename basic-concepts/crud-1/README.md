@@ -10,7 +10,7 @@ All sample requests can be run from the Postman collection:[![Run in Postman](ht
 
 ## Introduction
 
-A **resource** is an object with a type, associated data, relationships to other resources, and a set of methods that operate on it \(information about it can be found in FHIR [specification](https://www.hl7.org/fhir/resourcelist.html) or through Aidbox [metadata](custom-metadata.md)\). In most cases a resource represented as a JSON/XML/YAML document.
+A **resource** is an object with a type, associated data, relationships to other resources, and a set of methods that operate on it \(information about it can be found in FHIR [specification](https://www.hl7.org/fhir/resourcelist.html) or through Aidbox [metadata](../introspection/custom-metadata.md)\). In most cases a resource represented as a JSON/XML/YAML document.
 
 Each resource has its own resource **type**, this type defines a set of data which can be stored with this resource, and possible relationships with other resources.
 
@@ -107,7 +107,7 @@ Aidbox REST API doesn't ignore`id` and treat it as all other attributes in contr
 POST [base]/[type]?[search parameters]
 ```
 
-Much more complex way to create a resource \(it requires knowledge of [search](search/)\) but it gives some additional flexibility. If you provide search parameters, `create` becomes `conditional create` and works in the following way \(depending on the number of search results\): 
+Much more complex way to create a resource \(it requires knowledge of [search](../search-1/)\) but it gives some additional flexibility. If you provide search parameters, `create` becomes `conditional create` and works in the following way \(depending on the number of search results\): 
 
 * **No matches**: The server performs a `create` interaction
 * **One Match**: The server returns the found resource and `200 OK`
@@ -152,7 +152,7 @@ A patient was not created, an existing patient was returned.
 GET [base]/[type]/[id]
 ```
 
-One of the most basic interactions used to obtain a resource by a given `id`. For more advanced options for getting resources check out [Search](search/).
+One of the most basic interactions used to obtain a resource by a given `id`. For more advanced options for getting resources check out [Search](../search-1/).
 
 * **`200`** **OK** — resource successfully found and returned
 * **`404`** **Not Found —** resource with a given `id` doesn't exist on the server
@@ -380,7 +380,7 @@ issue:
 PUT [base]/[type]?[search parameters]
 ```
 
-This is more complex way to update a resource but it gives more power. It gives the ability to update a resource without knowing `id` but requires knowledge of [Search](search/). Different response codes will be returned \(based on the number of search results\):
+This is more complex way to update a resource but it gives more power. It gives the ability to update a resource without knowing `id` but requires knowledge of [Search](../search-1/). Different response codes will be returned \(based on the number of search results\):
 
 * **No matches**: The server performs a `create` interaction
 * **One Match**: The server performs the update against the matching resource
