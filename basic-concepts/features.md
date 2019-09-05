@@ -4,25 +4,25 @@ description: Overview of Aidbox features
 
 # Features
 
-### **FHIR storage** 
+### REST \(**FHIR\) API** 
 
-FHIR database schema on top of PostgreSQL that enables the use of SQL for FHIR data. Aidbox supports all major versions of FHIR: DSTU2, STU3, and R4.
+FHIR-compliant RESTful API that allows secure access and manipulation of clinical, financial and administrative healthcare data. Aidbox supports all major versions of FHIR: DSTU2, STU3, and R4. Strict validation ensures data consistency and integrity for all FHIR resources. A lot of valuable extensions  to FHIR API. 
 
-### **Custom resources and attributes** 
+### **PostgreSQL storage** 
+
+FHIR database schema on top of PostgreSQL that enables the use of SQL for FHIR data. 
+
+### **Custom resources** 
 
 Not all healthcare data fits the FHIR data models. Aidbox allows adding custom resources and attributes by an easy update of metadata over RESTful API.
 
-### **FHIR API** 
-
-FHIR-compliant RESTful API that allows secure access and manipulation of clinical, financial and administrative healthcare data.
-
 ### **Terminology server** 
 
-Included popular medical coding systems \(such as FHIR, ICD10, SNOMED, RxNorm, NPI\) and custom dictionaries \(ValueSets\).
+Aidbox has efficient built-in Terminology Service. Included popular medical coding systems \(such as FHIR, ICD10, SNOMED, RxNorm, NPI\) and custom dictionaries \(ValueSets\).
 
-### **Security & Access Control** 
+### **Authentication & Access Control** 
 
-Comprises OAuth 2.0, OpenID Connect and flexible security rules to control user access to healthcare application data.
+Aidbox has built-in OAuth 2.0  OpenID Connect server or can work as Resource Server. Flexible security rules allow granular access control to healthcare application data.
 
 ### **Subscriptions** 
 
