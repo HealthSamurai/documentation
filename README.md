@@ -8,8 +8,8 @@ description: >-
 
 Aidbox is a Backend for Health Care applications,  which provides you with 80% of typical needs:
 
-* FHIR Informational Model
-* Transactional PostgreSQL Storage \(based on best practices of our open source [fhirbase](https://www.health-samurai.io/fhirbase)  project\)
+* Ready to use FHIR Informational Model. Aidbox supports all major FHIR versions
+* Transactional PostgreSQL Storage, based on best practices of our open source [fhirbase](https://www.health-samurai.io/fhirbase)  project
 * Flexible schema and dynamic validation
 * REST API for CRUD and Search
 * OAuth 2.0 Server and Access Control
@@ -23,7 +23,7 @@ With Aidbox you can easily develop new healthcare products and services.  On top
 
 ### Get your Box
 
-Register in  [Aidbox.Cloud](https://www.health-samurai.io/aidbox) and create your personal boxes. Each box is an instance of a FHIR server with a separate database and domain. You can create multiple boxes for development, staging and  production. For local development you can run [Aidbox.Dev](installation/setup-aidbox.dev.md) in docker. For production you can buy [Aidbox.One](installation/deploy-aidbox.one.md) or [Aidbox.Enterprise](installation/aidbox.enterprise.md) editions.
+Register in  [Aidbox.Cloud](https://www.health-samurai.io/aidbox) and create your personal boxes. Each box is an instance of a FHIR server with a separate database and domain. You can create multiple boxes for development, staging and  production. For local development you can run [Aidbox.Dev](installation/setup-aidbox.dev.md) in docker. For production you can buy [Aidbox.One](installation/deploy-aidbox.one.md) or [Aidbox.Enterprise](installation/aidbox.enterprise.md) editions. Take a look at our [Aidbox Editions & Pricing](editions-and-pricing.md).
 
 ### FHIR & Aidbox
 

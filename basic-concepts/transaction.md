@@ -1,4 +1,4 @@
-# Transaction/Batch
+# Batch/Transaction
 
 ### Introduction
 
@@ -8,7 +8,7 @@ Transaction interaction allows to perform few interaction using one http request
 POST [base]
 ```
 
-Body of such request contains one resource of type Bundle, which contains field entry with an array of interactions, for example \(taken from [Getting Started with SPA ](../../tutorials/getting-started-with-box.md)tutorial\):
+Body of such request contains one resource of type Bundle, which contains field entry with an array of interactions, for example \(taken from [Getting Started with SPA ](../tutorials/getting-started-with-box.md)tutorial\):
 
 ```yaml
 POST /
@@ -91,35 +91,5 @@ You can provide a fullUrl with value like `"urn:<uuid-here>"` and reference to t
 You SHALL NOT refer resource, which will be created later using conditional operations!
 {% endhint %}
 
-### Bulk Upsert
-
-This  custom operation \(lightweight alternative to transaction\) simplifies  **upsert**  \(update or create\) resources into FHIR server. Just put array of resources \(with id's\)  on `/`
-
-```yaml
-PUT /
-
-- status: draft
-  class: {code: IMP}
-  period: {start: "2013-06-08T10:57:34", end: "2013-06-08T12:00:00"}
-  resourceType: Encounter
-  id: enc-1
-
-- status: draft
-  class: {code: IMP}
-  period: {start: "2013-06-08T11:00:05", end: "2013-06-08T11:30:00"}
-  resourceType: Encounter
-  id: enc-2
-
-- status: draft
-  class: {code: AMB}
-  period: {start: "2013-06-08T10:21:01", end: "2013-06-08T11:42:11"}
-  resourceType: Encounter
-  id: enc-3
-
-- status: draft
-  class: {code: IMP}
-  period: {start: "2013-06-07T09:02:01", end: "2013-06-07T15:10:09"}
-  resourceType: Encounter
-  id: enc-3
-```
+### 
 

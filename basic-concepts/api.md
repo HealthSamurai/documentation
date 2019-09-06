@@ -1,54 +1,30 @@
+---
+description: Overview Aidbox REST API
+---
+
 # REST API
 
-This API reference describes basic FHIR endpoints for resources management and retrieval, as well as some custom [Aidbox](https://www.health-samurai.io/aidbox) extensions.
+{% hint style="info" %}
+Aidbox provides two REST APIs - FHIR and Aidbox. The  main difference is [a format of resources](aidbox-and-fhir-formats.md).  Base URL for FHIR API is **/fhir** and for Aidbox **/**
+{% endhint %}
 
-### Base URL
-
-In documentation you can find mention of base url or `[base]`. Sometimes it appears in examples:
-
-```
-GET [base]/[type]/[id]{?_format=[mime-type]}
-```
-
-Basically, it's an address of the box \(an instance of a FHIR server\), but sometimes it's not presented \(for example in REST Console\):
-
-{% tabs %}
-{% tab title="Request" %}
-```text
-GET /Patient
-```
-{% endtab %}
-{% endtabs %}
-
-But it still presented implicitly and full url will be something like `https://<YOUR-BOX>.aidbox.app/Patient`
-
-You may think that base url is equal to value of [Host http header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Host). 
-
-Also, it is possible to access specified box using `Box-Name` header, for example:
-
-```text
-GET /Patient
-Host: aidbox.app
-Box-Name: <YOUR-BOX>
-```
-
-### Errors
-
-Aidbox uses semantic HTTP response codes, which generally means that all `4xx` responses indicates error on client side and all `5xx` responses means server-side error.
-
-Among with HTTP status code you'll get an [OperationOutcome](https://www.hl7.org/fhir/operationoutcome.html) resource in the response with additional error information, such as error message:
-
-```javascript
-{
-  "resourceType": "OperationOutcome",
-  "status": 404,
-  "text": "Resource Patient/42 not found"
-}
-```
-
-### Cross Origin Resource Sharing \(CORS\)
-
-CORS is enabled by default for all Aidbox API endpoints.
-
-
+|  |  |  |
+| :--- | :--- | :--- |
+| **Instance Level Interactions** |  |  |
+| [read](crud-1/read.md) | Read the current state of the resource | both |
+| [vread](crud-1/read.md#vread) | Read the state of a specific version of the resource | both |
+| [update](crud-1/update.md) | Update an existing resource by its id \(or create it if it is new\) | both |
+| [patch](crud-1/patch.md) | Update an existing resource by posting a set of changes to it | both |
+| [delete](crud-1/delete.md) | Delete a resource | both |
+| [history](history-1.md) | Retrieve the change history for a particular resource | both |
+| **Type Level Interactions** |  |  |
+| [create](crud-1/fhir-and-aidbox-crud.md) | Create a new resource | both |
+| [search](search-1/) | Search the resource type based on some filter criteria | both |
+| [history](history-1.md) | Retrieve the change history for a particular resource type | both |
+| **Whole System Interactions** |  |  |
+| [capabilities](introspection/metadata.md) | Get a capability statement for the system | FHIR |
+| [batch/transaction](transaction.md) | Update, create or delete a set of resources in a single interaction | both |
+| [batch upsert](batch-upsert.md) | Batch create or update interaction | AIdbox |
+| history | Not supported for performance reason |  |
+| search | Not supported for performance reason |  |
 

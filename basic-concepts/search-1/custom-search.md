@@ -82,7 +82,7 @@ query: |
   GROUP BY resource->>'class'
 ```
 
-Let's upload some sample data using [Bulk Upsert](../bulk-api/transaction.md#bulk-upsert):
+Let's upload some sample data using [Bulk Upsert](../transaction.md#bulk-upsert):
 
 ```yaml
 PUT /
