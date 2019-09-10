@@ -2,25 +2,130 @@
 
 ### Overview
 
-Search is a base [FHIR operation](https://www.hl7.org/fhir/search.html). Search is used to filter and receive linked entities.
+Aidbox provides a Search API for all stored resources. Aidbox Search API is superset of [FHIR Search API](https://www.hl7.org/fhir/search.html).  
 
-Base search structure looks like this:
+{% hint style="info" %}
+There are two versions of API, which differ by [resources format](../aidbox-and-fhir-formats.md):
+
+* search by `/[resourceType]` returns results in [Aidbox Format](../aidbox-and-fhir-formats.md)
+* search by `/fhir/[resourceType]` returns data in FHIR Format
+{% endhint %}
+
+Base search request is composed of list of pairs **param** = **value**:
 
 ```javascript
-GET [base]/[type]?name=value&...{&_format=[mime-type]}}
+GET [base]/[type]?param=value&param=value
 ```
+
+Where **param** can be one of:
+
+* [Underscored parameter](./#special-parameters) started with underscore, like **`_sort`**
+* Name of [search parameter](./#search-parameters)
+* [Chained parameter](./#chained-parameters) expression
+* [Dotted expression](./#dot-parameters-extension) - started with **`.`**
 
 Simple search by patient name:
 
 ```javascript
-GET /Patient?name=Max
+GET /Patient?name=Max&_elements=id, birthDAte
 ```
 
-For optimization of search results, we can specify fields of the output bundle:
+## Underscored Parameters
+
+### \_id
+
+Search by resource id
+
+```yaml
+GET /Patient?_id=pt-1
+```
+
+You can search by multiple ids separated with comma:
+
+```text
+GET /Patient?_id=pt-1,pt-2,pt-3
+```
+
+### \_lastUpdated
+
+Search by last modification time of resource   `meta.lastUpdated`\(note: `ts` column in database\)
+
+```http
+GET /Patient?_lastUpdated=2019-01-01
+```
+
+Value can be partial ISO date:
+
+* only year  - `2019`
+* year and month - `2019-03`
+* date - `2019-03-05`
+* hours - `2019-03-05T12`
+* mins - `2019-03-05T12:30`
+* secs - `2019-03-05T12:30:30`
+* micro-secs - `2019-03-05T12:30:30.333444`
+* with timezone -  `2019-03-05T12:30:30Z or 2019-03-05T12:30:30+03`
+
+{% hint style="warning" %}
+Do not forget url encode value of expression in your code!  Browser and Aidbox REST console will do some of encoding for you.
+
+`2019-03-05T12:30:30+03 =>2019-03-05T12%3A30%3A30%2B03`
+{% endhint %}
+
+If you use `=` operator, Aidbox round query date to max and min value and search in between this range:
+
+```sql
+ts <= max_date_bound('2019-01-01') AND ts >= min_date_bound('2019-01-01')
+```
+
+You can use operators `lt,le,gt,ge` as prefix of **value**, to make Aidbox generate inequality queries:
+
+```text
+_lastUpdated=lt2019-01  => ts < max_date_bound('2019-01')
+_lastUpdated=ge2019-01  => ts >= min_date_bound('2019-01')
+
+```
+
+{% hint style="info" %}
+Aidbox use PostgreSQL precision for **lastUpdated/ts** - it's usually micro-seconds
+{% endhint %}
+
+### \_text & \_content
+
+Also at your disposal [full-text-search](https://en.wikipedia.org/wiki/Full-text_search) by resources. It presents with \_**text** _-_ search by narrative and _**\_**_**content** - search by remaining resource content.
 
 ```javascript
-GET /Patient?_elements=id,birthDate
+GET /Patient?_text=John
 ```
+
+```javascript
+GET /Patient?_content=New-York
+```
+
+Search results can be sort by rank with **\_score** search-parameter value. More relevant results will be on top but reversed order also supported through `-` prefix.
+
+```javascript
+GET /Patient?_content=baz&_sort=-_score
+```
+
+#### Expressions
+
+Full-text search requests supports grouping and logical operations
+
+```javascript
+GET /Patient?_content=(NOT bar OR baz) AND foo
+```
+
+If you wanna search by the phrase - just quote it
+
+```javascript
+GET /Patient?_content="Mad Max"
+```
+
+{% hint style="info" %}
+Full-text search - a difficult query for the system. To improve performance you can omit the number of entries in the results - use **\_total=none**. More information in [\_total \( \_countMethod \)](./#_total-_countmethod).
+{% endhint %}
+
+### Search Parameters
 
 All sample requests can be run in Postman:[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/7dc2f250801cc6b71709#?env[Aidbox.Cloud]=W3sia2V5IjoiYmFzZTEiLCJ2YWx1ZSI6Imh0dHBzOi8vbWVyZWRpdGguYWlkYm94LmFwcCIsImRlc2NyaXB0aW9uIjoiIiwiZW5hYmxlZCI6ZmFsc2V9LHsia2V5IjoiYmFzZSIsInZhbHVlIjoiaHR0cHM6Ly9wYXZseXNoaW5hMjAxODExMDkuYWlkYm94LmFwcCIsImRlc2NyaXB0aW9uIjoiIiwiZW5hYmxlZCI6dHJ1ZX1d)
 
@@ -314,39 +419,7 @@ TBD: Video Example
 
 ### Full text search
 
-Also at your disposal [full-text-search](https://en.wikipedia.org/wiki/Full-text_search) by resources. It presents with \_**text** _-_ search by narrative and _**\_**_**content** - search by remaining resource content.
 
-```javascript
-GET /Patient?_text=Foo
-```
-
-```javascript
-GET /Patient?_content=bar
-```
-
-Search results can be sort by rank with **\_score** search-parameter value. More relevant results will be on top but reversed order also supported through `-` prefix.
-
-```javascript
-GET /Patient?_content=baz&_sort=-_score
-```
-
-#### Expressions
-
-Full-text search requests supports grouping and logical operations
-
-```javascript
-GET /Patient?_content=(NOT bar OR baz) AND foo
-```
-
-If you wanna search by the phrase - just quote it
-
-```javascript
-GET /Patient?_content="Mad Max"
-```
-
-{% hint style="info" %}
-Full-text search - a difficult query for the system. To improve performance you can omit the number of entries in the results - use **\_total=none**. More information in [\_total \( \_countMethod \)](./#_total-_countmethod).
-{% endhint %}
 
 ### \_list
 
