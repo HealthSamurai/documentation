@@ -22,9 +22,9 @@ GET [base]/[resourceType]?param=value&param=value&...
 Where **param** can be one of:
 
 * [Underscored parameter](./#special-parameters) started with underscore, like **`_sort`**
-* Name of [search parameter](./#search-parameters)
-* [Chained parameter](./#chained-parameters) expression
-* [Dotted expression](./#dot-parameters-extension) - started with **`.`**
+* Name of [search parameter](searchparameter.md)
+* [Chained parameter ](chained-parameters.md)expression
+* [Dotted expression ](.-expressions.md)- started with **`.`**
 
 Simple search by patient name:
 
@@ -32,7 +32,7 @@ Simple search by patient name:
 GET /Patient?name=Max&_elements=id, birthDAte
 ```
 
-## Underscored Parameters
+## Special Parameters
 
 | Parameter |  |  |
 | :--- | :--- | :--- |
@@ -45,18 +45,17 @@ GET /Patient?name=Max&_elements=id, birthDAte
 | [\_summary](_summary.md) | FHIR | Include only summary elements  |
 | [\_list](_list.md) | FHIR | Search resources included into specific List |
 | [\_sort](_sort.md) | FHIR | Sort search results |
-| [\_total](_total-or-_countmethod.md) | FHIR | Turn on/off total count of results |
+| [\_total](_total-or-_countmethod.md) | FHIR | Turn on/off total count |
 | [\_include](_include-and-_revinclude.md) | FHIR | Include referenced resources into result |
 | [\_revinclude](_include-and-_revinclude.md) | FHIR | Include into result resources, which reference searched resources |
 | [\_explain](_explain.md) |  | See query execution plan |
+| [\_result](_result.md) |  | Change result format |
 
 ### Search Parameters
 
-#### Modifiers
+Search defined in terms of "[search parameters](searchparameter.md)". SearchParameter is a meta-resource, which describes which part of resource and how you can make searchable.
 
-We also can do more complex search requests through modifiers that depend on search field type.
-
-Each search parameter value can be one of the following types: 
+Search parameter can be one of the following types: 
 
 | Type | Description |
 | :--- | :--- |
