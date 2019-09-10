@@ -1,3 +1,7 @@
+---
+description: Do multiple operations in one call
+---
+
 # Batch/Transaction
 
 ### Introduction
