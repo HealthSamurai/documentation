@@ -7,14 +7,16 @@ Aidbox provides a Search API for all stored resources. Aidbox Search API is supe
 {% hint style="info" %}
 There are two versions of API, which differ by [resources format](../aidbox-and-fhir-formats.md):
 
-* search by `/[resourceType]` returns results in [Aidbox Format](../aidbox-and-fhir-formats.md)
-* search by `/fhir/[resourceType]` returns data in FHIR Format
+* search by **`/[resourceType]`** returns results in [Aidbox Format](../aidbox-and-fhir-formats.md)
+* search by **`/fhir/[resourceType]`** returns data in FHIR Format
+
+All data stored and searched in Aidbox Format, and converted on fly to FHIR on FHIR endpoints!
 {% endhint %}
 
 Base search request is composed of list of pairs **param** = **value**:
 
 ```javascript
-GET [base]/[type]?param=value&param=value
+GET [base]/[resourceType]?param=value&param=value&...
 ```
 
 Where **param** can be one of:
@@ -414,12 +416,6 @@ USING gin (
 
 VACUUM ANALYZE patient;
 ```
-
-TBD: Video Example
-
-### Full text search
-
-
 
 ### \_list
 
