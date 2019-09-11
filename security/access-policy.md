@@ -1,4 +1,4 @@
-# Access Control
+# 🎓 Access Control
 
 ## Simple Access Policy
 
@@ -83,9 +83,9 @@ POST {{base}}/fhir/Patient
 
 ![](../.gitbook/assets/policy4%20%281%29.png)
 
-See the full documentation [Access Policies](../security/access-control.md).
+See the full documentation [Access Policies](access-control.md).
 
-{% page-ref page="../security/access-control.md" %}
+{% page-ref page="access-control.md" %}
 
 ## Access Policies for Users
 
