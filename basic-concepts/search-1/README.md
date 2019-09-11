@@ -1,6 +1,8 @@
-# Search
+---
+description: Search API for FHIR resources
+---
 
-### Overview
+# Search
 
 Aidbox provides a Search API for all stored resources. Aidbox Search API is superset of [FHIR Search API](https://www.hl7.org/fhir/search.html).  
 

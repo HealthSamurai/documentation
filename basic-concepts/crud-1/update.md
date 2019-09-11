@@ -1,7 +1,5 @@
 # Update
 
-### Update
-
 ```http
 PUT [base]/[type]/[id]
 ```

@@ -1,3 +1,7 @@
+---
+description: Update part of your resource
+---
+
 # Patch
 
 All examples can be run in Postman. Here's [web view](https://documenter.getpostman.com/view/5552124/RWgxtEs8) of these examples.
@@ -79,8 +83,6 @@ You can exercise this tutorial using [REST Console](../../tutorials/rest-console
 
 Let's suppose we've created a Patient resource with the id `pt-1`
 
-{% tabs %}
-{% tab title="Request" %}
 ```yaml
 POST /Patient
 
@@ -99,11 +101,9 @@ telecom:
      use: work
      rank: 1
 birthDate: '1979-01-01'
-```
-{% endtab %}
 
-{% tab title="Response" %}
-```yaml
+# 200
+
 id: pt-1
 resourceType: Patient
 name:
@@ -122,8 +122,6 @@ telecom:
   system: phone
 birthDate: '1979-01-01'
 ```
-{% endtab %}
-{% endtabs %}
 
 {% hint style="info" %}
 You can copy/paste this request into REST Console of Aidbox.Cloud.
@@ -133,19 +131,13 @@ You can copy/paste this request into REST Console of Aidbox.Cloud.
 
 Let's say we want to switch `active` flag to false and remove `telecom`:
 
-{% tabs %}
-{% tab title="Request" %}
 ```yaml
 PATCH /Patient/pt-1?_method=merge-patch
 
 active: false
 telecom: null
-```
-{% endtab %}
 
-{% tab title="Response" %}
-```yaml
-# response 200
+# 200
 
 id: pt-1
 resourceType: Patient
@@ -160,15 +152,11 @@ name:
 active: false
 birthDate: '1979-01-01'
 ```
-{% endtab %}
-{% endtabs %}
 
 ### JSON Patch
 
 With JSON patch, we can do more sophisticated transformations — change first `given` name, delete second `name`, and change the `active` attribute value to `true`:
 
-{% tabs %}
-{% tab title="Request" %}
 ```yaml
 PATCH /Patient/pt-1
 
@@ -180,11 +168,9 @@ PATCH /Patient/pt-1
 - op: replace
   path: '/active'
   value: true
-```
-{% endtab %}
+  
+# 200
 
-{% tab title="Response" %}
-```yaml
 # response 200
 
 id: pt-1
@@ -197,8 +183,6 @@ name:
 active: true
 birthDate: '1979-01-01'
 ```
-{% endtab %}
-{% endtabs %}
 
 
 

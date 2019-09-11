@@ -1,7 +1,5 @@
 # Read
 
-## read
-
 ```text
 GET [base]/[type]/[id]
 ```

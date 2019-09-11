@@ -1,7 +1,5 @@
 # Create
 
-### Create
-
 ```http
 POST [base]/[type]
 ```
