@@ -1,4 +1,8 @@
-# Custom Search
+---
+description: Turn SQL into REST endpoint
+---
+
+# Aidbox Query
 
 With `AidboxQuery` resource, you can turn your SQL query into REST Endpoint.
 
