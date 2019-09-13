@@ -2,7 +2,7 @@
 description: Turn SQL into REST endpoint
 ---
 
-# Aidbox Query
+# AidboxQuery
 
 With `AidboxQuery` resource, you can turn your SQL query into REST Endpoint.
 

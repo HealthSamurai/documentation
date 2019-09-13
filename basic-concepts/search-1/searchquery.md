@@ -119,3 +119,51 @@ query-sql:
 query-timeout: 60000
 ```
 
+### EXPLAIN ANALYZE
+
+With parameter `_explain=analyze` you can inspect execution plan of search query:
+
+```yaml
+GET /alpha/Encounter?query=q-2&pt=joh&_explain=analyze
+
+# 200
+
+query: |-
+  EXPLAIN ANALYZE SELECT *FROM \"encounter\" enc
+  JOIN \"patient\" pt
+    ON enc.resource#>>'{subject,id}' = pt.id
+  WHERE /* pt */ aidbox_text_search(knife_extract_text(pt.resource, $$[[\"name\",\"family\"]]$$)) 
+    ilike ?
+    ORDER BY pt.id desc
+    LIMIT 100"
+params: ['% joh%']
+explain: |-
+  Limit  (cost=1382.90..1382.97 rows=28 width=882) (actual time=4.274..4.274 rows=0 loops=1)
+    ->  Sort  (cost=1382.90..1382.97 rows=28 width=882) (actual time=4.272..4.272 rows=0 loops=1)
+          Sort Key: pt.id DESC
+          Sort Method: quicksort  Memory: 25kB
+          ->  Hash Join  (cost=951.07..1382.23 rows=28 width=882) (actual time=4.247..4.248 rows=0 loops=1)
+                Hash Cond: ((enc.resource #>> '{subject,id}'::text[]) = pt.id)
+                ->  Seq Scan on encounter enc  (cost=0.00..421.60 rows=3460 width=839) (actual time=0.779..1.544 rows=3460 loops=1)
+                ->  Hash  (cost=950.95..950.95 rows=10 width=38) (actual time=1.375..1.375 rows=1 loops=1)
+                      Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                      ->  Seq Scan on patient pt  (cost=0.00..950.95 rows=10 width=38) (actual time=1.370..1.371 rows=1 loops=1)
+                            Filter: (immutable_wrap_ws(immutable_unaccent(immutable_array_to_string(knife_extract_text(resource, '[["name", "family"]]'::jsonb), ' '::text))) ~~* '% joh%'::text)
+                            Rows Removed by Filter: 1
+  Planning Time: 9.345 ms
+  Execution Time: 4.564 ms
+total-query: "EXPLAIN ANALYZE SELECT count(*)\nFROM \"encounter\" enc\nJOIN \"patient\" pt\n  ON enc.resource#>>'{subject,id}' = pt.id\nWHERE /* pt */ aidbox_text_search(knife_extract_text(pt.resource, $$[[\"name\",\"family\"]]$$)) \nilike ?"
+total-explain: |-
+  Aggregate  (cost=1382.30..1382.31 rows=1 width=8) (actual time=3.257..3.257 rows=1 loops=1)
+    ->  Hash Join  (cost=951.07..1382.23 rows=28 width=0) (actual time=3.254..3.254 rows=0 loops=1)
+          Hash Cond: ((enc.resource #>> '{subject,id}'::text[]) = pt.id)
+          ->  Seq Scan on encounter enc  (cost=0.00..421.60 rows=3460 width=772) (actual time=0.286..0.910 rows=3460 loops=1)
+          ->  Hash  (cost=950.95..950.95 rows=10 width=5) (actual time=1.198..1.199 rows=1 loops=1)
+                Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                ->  Seq Scan on patient pt  (cost=0.00..950.95 rows=10 width=5) (actual time=1.195..1.195 rows=1 loops=1)
+                      Filter: (immutable_wrap_ws(immutable_unaccent(immutable_array_to_string(knife_extract_text(resource, '[["name", "family"]]'::jsonb), ' '::text))) ~~* '% joh%'::text)
+                      Rows Removed by Filter: 1
+  Planning Time: 6.716 ms
+  Execution Time: 3.543 ms
+```
+

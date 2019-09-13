@@ -38,7 +38,7 @@
     * [. expressions](basic-concepts/search-1/.-expressions.md)
     * [\_result](basic-concepts/search-1/_result.md)
     * [\_explain](basic-concepts/search-1/_explain.md)
-    * [Aidbox Query](basic-concepts/search-1/custom-search.md)
+    * [AidboxQuery](basic-concepts/search-1/custom-search.md)
     * [SearchQuery](basic-concepts/search-1/searchquery.md)
     * [$lookup](basic-concepts/search-1/usdlookup.md)
   * [History](basic-concepts/history-1.md)
