@@ -1,5 +1,5 @@
 ---
-description: Control query SQL for Search API
+description: Managed SQL for Search API
 ---
 
 # SearchQuery
