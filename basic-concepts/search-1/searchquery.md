@@ -119,6 +119,33 @@ query-sql:
 query-timeout: 60000
 ```
 
+### Include related resources
+
+You can predefine included resources for SearchQuery with **includes** property:
+
+```yaml
+resourceType: SearchQuery
+resource: {id: Encounter, resourceType: Entity}
+as: enc
+total: true
+includes:
+  # name for include
+  subject:
+    # path to reference
+    path: [subject]
+    # ref to resource
+    resource: {id: Patient, resourceType: Entity}
+    # nested includes
+    includes:
+      organization:
+        path: [managingOrganization]
+        resource: {id: Organization, resourceType: Entity}
+query: {order-by: enc.id}
+limit: 40
+```
+
+
+
 ### EXPLAIN ANALYZE
 
 With parameter `_explain=analyze` you can inspect execution plan of search query:
@@ -165,5 +192,93 @@ total-explain: |-
                       Rows Removed by Filter: 1
   Planning Time: 6.716 ms
   Execution Time: 3.543 ms
+```
+
+### Debug SearchQuery
+
+You can debug SearchQuery with multiple parameters combinations without saving resource by `POST /SearchQuery/$debug`. You can simulate requests with different parameters by  **tests** attribute. Aidbox will return results and explanation for each test:
+
+```yaml
+POST /SearchQuery/$debug
+
+# explain all queryes
+explain: true
+# timeout for query in ms
+timeout: 2000
+# test with requests
+tests: 
+  # name of request
+  only-pid:
+    # params for request
+    params: {pid: 'pt-1'}
+  only-ts:
+    params: {ts: '2019-01-01'}
+  both:
+    params: {pid: 'pt-1', ts: 'ups'}
+# SearchQuery defnition
+query:
+  resource: {id: Patient, resourceType: Entity}
+  as: pt
+  params:
+    pid: {type: string, isRequired: true, where: 'pt.id = {{params.pid}}'}
+    ts: {type: date, where: 'pt.tis >= {{params.date}}'}
+  query: {order-by: pt.ts desc}
+  limit: 40
+  
+  
+  # 200
+  
+only-pid:
+  params: {pid: pt-1, _timeout: 2000}
+  result:
+    resourceType: Bundle
+    type: searchset
+    entry:
+    - resource:
+        name:
+        - given: [Andrew]
+          family: John
+        id: pt-1
+        resourceType: Patient
+        meta: {lastUpdated: '2019-09-10T11:24:00.481090Z', versionId: '1494'}
+  explain:
+    query: |-
+      EXPLAIN ANALYZE SELECT * FROM "patient" pt
+      WHERE /* pid */ pt.id = ?
+      ORDER BY pt.ts desc
+      LIMIT 40
+    params: [pt-1]
+    explain: |-
+      Limit  (cost=8.18..8.19 rows=1 width=38) (actual time=0.032..0.033 rows=1 loops=1)
+        ->  Sort  (cost=8.18..8.19 rows=1 width=38) (actual time=0.032..0.032 rows=1 loops=1)
+              Sort Key: ts DESC
+              Sort Method: quicksort  Memory: 25kB
+              ->  Index Scan using patient_pkey on patient pt  (cost=0.15..8.17 rows=1 width=38) (actual time=0.024..0.025 rows=1 loops=1)
+                    Index Cond: (id = 'pt-1'::text)
+      Planning Time: 1.556 ms
+      Execution Time: 0.057 ms
+only-ts:
+  status: error
+  params: {ts: '2019-01-01', _timeout: 2000}
+  errors:
+  - {details: Parameter pid is required}
+both:
+  params: {pid: pt-1, ts: ups, _timeout: 2000}
+  result:
+    status: error
+    query:
+    - |-
+      SELECT pt.*
+      FROM "patient" pt
+      WHERE /* pid */ pt.id = ?
+        AND /* ts */ pt.tis >= ?
+      ORDER BY pt.ts desc
+      LIMIT 40
+    - pt-1
+    - null
+    error: |-
+      ERROR: column pt.tis does not exist
+        Hint: Perhaps you meant to reference the column "pt.ts".
+        Position: 73
 ```
 
