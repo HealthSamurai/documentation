@@ -199,7 +199,7 @@ You can debug SearchQuery with multiple parameters combinations without saving r
 ```yaml
 POST /SearchQuery/$debug
 
-# explain all queryes
+# explain all queries
 explain: true
 # timeout for query in ms
 timeout: 2000
