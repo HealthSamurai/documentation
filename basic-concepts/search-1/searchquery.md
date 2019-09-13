@@ -19,7 +19,7 @@ as: pt
 total: true 
 # basic query
 query:
-  where: "(pt.resource->>'birthDate')::date < '1980'"
+  where: "(pt.resource->>'birthDate')::date < '1980-01-01'"
   order-by: pt.id desc
 params:
    gender:
@@ -53,7 +53,7 @@ query-timeout: 60000
 
 You can use **count** and **page** parameters for paging and control total query \(if enabled\) with **total** parameter. Use **\_timeout** parameter to set query timeout.
 
-Or with parameter:
+If parameter is provided - another query will be generated on fly:
 
 ```yaml
 GET /alpha/Patient?query=q-1&family=joh
@@ -62,7 +62,7 @@ GET /alpha/Patient?query=q-1&family=joh
 
 resourceType: Bundle
 type: searchset
-entry: []
+entry: [...]
 query-sql:
 - | 
   SELECT *
@@ -72,7 +72,6 @@ query-sql:
     ilike ?\nORDER BY pt.id desc
     LIMIT 100"
 - '% joh%'
-query-timeout: 60000
 ```
 
 ### Add JOIN
@@ -116,7 +115,6 @@ query-sql:
    ilike ?
   ORDER BY pt.id desc\nLIMIT 100"
 - '% joh%'
-query-timeout: 60000
 ```
 
 ### Include related resources
