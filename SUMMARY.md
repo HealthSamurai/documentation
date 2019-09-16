@@ -32,6 +32,7 @@
     * [\_list](basic-concepts/search-1/_list.md)
     * [\_count & \_page](basic-concepts/search-1/_count-and-_page.md)
     * [\_total or \_countMethod](basic-concepts/search-1/_total-or-_countmethod.md)
+    * [\_timeout](basic-concepts/search-1/_timeout.md)
     * [\_sort](basic-concepts/search-1/_sort.md)
     * [\_include & \_revinclude](basic-concepts/search-1/_include-and-_revinclude.md)
     * [Chained Parameters](basic-concepts/search-1/chained-parameters.md)

@@ -27,11 +27,19 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 
 ### Features
 
-* aidbox-cli elastic search logger now creates new index for each day
-* default timeout for Search Operations with \_timeout param for hight load
+{% hint style="warning" %}
+Now references to contained resources are represented as `localRef` attribute in Reference type
+{% endhint %}
+
+* Managed SQL for FHIR search by [SearchQuery](basic-concepts/search-1/searchquery.md)
+* default timeout for Search Operations with [\_timeout](basic-concepts/search-1/_timeout.md) param for hight load
 * Ordered search in [$lookup](basic-concepts/search-1/usdlookup.md)
 * microseconds precision for timestamps \(Resource.meta.lastUpdated\) 
-* Now references to contained resources are represented as `localRef` attribute in Reference type
+* Better Aidbox &lt;=&gt; FHIR conversion of first class extensions
+* Add JWT sub & iss and client ip address to logs
+* aidbox-cli elastic search logger now creates new index for each day
+
+### Bug Fixes
 
 ## 0.4.6 \[2 August 2019\]
 
