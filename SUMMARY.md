@@ -62,6 +62,7 @@
     * [🎓 Custom Resources](advanced/custom-resources/getting-started-with-custom-resources.md)
   * [SQL endpoints](advanced/usdpsql.md)
   * [Sequence API](advanced/sequence-api.md)
+  * [Mappings](advanced/mappings.md)
 * [Auth](auth-betta/README.md)
   * [Basic Auth](auth-betta/basic-auth.md)
   * [Client Credentials Grant](auth-betta/client-credentials.md)
