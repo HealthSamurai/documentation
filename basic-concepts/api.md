@@ -21,10 +21,15 @@ Aidbox provides two REST APIs - FHIR and Aidbox. The  main difference is [a form
 | [create](crud-1/fhir-and-aidbox-crud.md) | Create a new resource | both |
 | [search](search-1/) | Search the resource type based on some filter criteria | both |
 | [history](history-1.md) | Retrieve the change history for a particular resource type | both |
+| [$dump](bulk-api-1/#usddump) | Dump all resources of specific type | Aidbox |
+| [$load](bulk-api-1/#usdload) | Load resources of specific type | Aidbox |
 | **Whole System Interactions** |  |  |
 | [capabilities](introspection/metadata.md) | Get a capability statement for the system | FHIR |
 | [batch/transaction](transaction.md) | Update, create or delete a set of resources in a single interaction | both |
 | [batch upsert](batch-upsert.md) | Batch create or update interaction | AIdbox |
+| [$import](bulk-api-1/#usdimport-and-fhir-usdimport) | Bulk Import async operation | both |
+| [$load](bulk-api-1/#usdload) | Bulk load ndjson file with resources | Aidbox |
+| [$dump-sql](bulk-api-1/#usddump-sql) | Bulk load result of SQL Query  | Aidbox |
 | history | Not supported for performance reason |  |
 | search | Not supported for performance reason |  |
 

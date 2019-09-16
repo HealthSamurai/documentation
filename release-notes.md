@@ -28,7 +28,7 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 ### Features
 
 {% hint style="warning" %}
-Now references to contained resources are represented as `localRef` attribute in Reference type
+Now references to contained resources are represented as `localRef` attribute in [Aidbox Format](basic-concepts/aidbox-and-fhir-formats.md)
 {% endhint %}
 
 * Managed SQL for FHIR search by [SearchQuery](basic-concepts/search-1/searchquery.md)
