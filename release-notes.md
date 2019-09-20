@@ -38,6 +38,7 @@ Now references to contained resources are represented as `localRef` attribute in
 * Better Aidbox &lt;=&gt; FHIR conversion of first class extensions
 * Add JWT sub & iss and client ip address to logs
 * aidbox-cli elastic search logger now creates new index for each day
+* Upgrade/Fix [PATCH](basic-concepts/crud-1/patch.md) to be fully RFC conformant
 
 ### Bug Fixes
 
