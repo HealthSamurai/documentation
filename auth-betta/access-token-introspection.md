@@ -41,5 +41,22 @@ introspection_endpoint:
 
 According to [RFC-7662](https://tools.ietf.org/html/rfc7662), the only required attribute in token introspection's response is `active`. Aidbox uses this attribute to consider if token is valid or not. If token is valid, entire token introspection's response will be put into the request's object under `token` key, so you'll be able to use it in AccessPolicy checks. If token isn't valid, Aidbox will try to validate access token against currently active local sessions.
 
+### X-Client-Auth
+
+In some situation \(like micro-services\) you want to add middle-ware client authentication. You can use **X-Client-Auth** header with basic auth value for client id and secret to add client authentication to JWT workflow.
+
+```yaml
+GET /Patient?_debug=query
+Authorization: Bearer <your-jwt>
+X-Client-Auth: Basic <basicEncode(Client.id, Client,secret)>
+
+# 200
+
+request:
+  client: .....
+  jwt: ....
+
+```
+
 
 
