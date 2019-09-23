@@ -41,6 +41,7 @@ Now references to contained resources are represented as `localRef` attribute in
 * Upgrade/Fix [PATCH](../basic-concepts/crud-1/patch.md) to be fully RFC conformant
 * Add [X-Client-Auth](https://app.gitbook.com/@aidbox/s/project/auth-betta/access-token-introspection#x-client-auth) header
 * Add **cts** column \(createdAt\) to resources \([read more](0.4.7-addendum.md)\).
+* Entity.history='none' for custom resources to turn-off history
 
 ### Bug Fixes
 
