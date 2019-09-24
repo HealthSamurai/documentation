@@ -59,7 +59,7 @@ reference is parsed into **ref** attribute
 
 ### Union \(Choice\) Types:
 
-Some elements can have multiple types. Such elements in FHIR spec prefixed with `[x]` like `Observatin.value[x]` and represented in JSON in a _wrong_ \(postfixed\) way like`Observatin.valueString` . The simple logical check "why it's wrong" is "you could not have a collection of union elements in FHIR JSON!". Aidbox fixes this moving type as key inside nested object - `valueString:... => value: {string: ...}`
+Some elements can have multiple types. Such elements in FHIR spec prefixed with `[x]` like `Observation.value[x]` and represented in JSON in a _wrong_ \(postfixed\) way like`Observation.valueString` . The simple logical check "why it's wrong" is "you could not have a collection of union elements in FHIR JSON!". Aidbox fixes this moving type as key inside nested object - `valueString:... => value: {string: ...}`
 
 ```yaml
 #FHIR
