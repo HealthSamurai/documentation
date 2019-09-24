@@ -142,7 +142,21 @@ query: {order-by: enc.id}
 limit: 40
 ```
 
+To include resources, which refers resources from you query you can add **reverse**: true attribute:
 
+```yaml
+resourceType: SearchQuery
+resource: {id: Patient, resourceType: Entity}
+as: pt
+total: true
+includes:
+  encounters:
+    # means reference going from Encounter to patient
+    reverse: true
+    path: [subject]
+    resource: {id: Encounter, resourceType: Entity}
+limit: 40
+```
 
 ### EXPLAIN ANALYZE
 
