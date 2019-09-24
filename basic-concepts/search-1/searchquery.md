@@ -142,6 +142,8 @@ query: {order-by: enc.id}
 limit: 40
 ```
 
+#### Reverse includes
+
 To include resources, which refers resources from you query you can add **reverse**: true attribute:
 
 ```yaml
@@ -156,6 +158,33 @@ includes:
     path: [subject]
     resource: {id: Encounter, resourceType: Entity}
 limit: 40
+```
+
+#### Path in includes
+
+Path expression in includes is `json_knife` extension path, it consists of strings, integers and objects. If item in path string - it means get key in object \(arrays are implicitly flattened\). If key is integer - it is interpreted as index in array. If key is object - it is pattern to filter values in array with inclusion semantic \(like PostgreSQL JSONB operator `@>`\). 
+
+Here is an example - how to extract patient \(code: PART\) from appointment:
+
+`["participant", {"type": [{"coding": [{"code": "PART"}]}, "actor"] => pt-2`
+
+```yaml
+resourceType: Appointment
+status: active
+participant:
+- type:
+  - text: Patient
+    coding:
+    - {code: PART}
+  actor: {id: pt-2, resourceType: Patient}
+  status: active
+- type:
+  - text: Admit
+    coding:
+    - {code: ADM}
+   actor: {id: pr-2, resourceType: Practitioner}
+   status: active
+
 ```
 
 ### EXPLAIN ANALYZE
