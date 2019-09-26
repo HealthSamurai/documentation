@@ -20,10 +20,12 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * Terminology under `fhir` prefix \(issues \#51 \#50 \#38\)
 * \_filter parameter support
 * Managing Indexes by **AidboxIndex** meta-resource
-* 
 
+## 0.4.8-SNAPSHOT
 
-## 0.4.7-SNAPSHOT \[17 September 2019\]
+### TBD
+
+## 0.4.7 \[26 September 2019\]
 
 ### Features
 
@@ -42,8 +44,8 @@ Now references to contained resources are represented as `localRef` attribute in
 * Add [X-Client-Auth](https://app.gitbook.com/@aidbox/s/project/auth-betta/access-token-introspection#x-client-auth) header
 * Add **cts** column \(createdAt\) to resources \([read more](0.4.7-addendum.md)\).
 * Entity.history='none' for custom resources to turn-off history
-
-### Bug Fixes
+* Unique validation by `isUnique=true` in Attribute
+* New Test toolkit [stresty](https://github.com/Aidbox/stresty) to report bugs and test regression \(see [samples](https://github.com/Aidbox/aidbox-tests/tree/master/test)\).
 
 ## 0.4.6 \[2 August 2019\]
 
