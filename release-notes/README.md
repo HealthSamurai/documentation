@@ -44,8 +44,8 @@ Now references to contained resources are represented as `localRef` attribute in
 * Add [X-Client-Auth](https://app.gitbook.com/@aidbox/s/project/auth-betta/access-token-introspection#x-client-auth) header
 * Add **cts** column \(createdAt\) to resources \([read more](0.4.7-addendum.md)\).
 * Entity.history='none' for custom resources to turn-off history
-* Unique validation by `isUnique=true` in Attribute
-* New Test toolkit [stresty](https://github.com/Aidbox/stresty) to report bugs and test regression \(see [samples](https://github.com/Aidbox/aidbox-tests/tree/master/test)\).
+
+### Bug Fixes
 
 ## 0.4.6 \[2 August 2019\]
 
