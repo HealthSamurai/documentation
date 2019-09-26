@@ -7,8 +7,8 @@ Version under development published with `-SNAPSHOT` and `-RC[x]` postfix. For e
 Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in different  geo regions and run different Aidbox versions. Clusters labeled _**stable**_ have latest stable version \(i.e. `max(version)`\). As well clusters with **edge** label run latest development version \(snapshot or release candidates\).
 
 {% hint style="info" %}
-* Current stable version: **0.4.6**
-* Next release17 September:   **0.4.7**
+* Current stable version: **0.4.7**
+* Next release October:   **0.4.8**
 {% endhint %}
 
 ## Road Map
@@ -44,8 +44,8 @@ Now references to contained resources are represented as `localRef` attribute in
 * Add [X-Client-Auth](https://app.gitbook.com/@aidbox/s/project/auth-betta/access-token-introspection#x-client-auth) header
 * Add **cts** column \(createdAt\) to resources \([read more](0.4.7-addendum.md)\).
 * Entity.history='none' for custom resources to turn-off history
-
-### Bug Fixes
+* Unique validation by `isUnique=true` in Attribute
+* New Test toolkit [stresty](https://github.com/Aidbox/stresty) to report bugs and test regression \(see [samples](https://github.com/Aidbox/aidbox-tests/tree/master/test)\).
 
 ## 0.4.6 \[2 August 2019\]
 
