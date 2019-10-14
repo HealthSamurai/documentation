@@ -23,7 +23,9 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 
 ## 0.4.8-SNAPSHOT
 
-### TBD
+### Features
+
+* New [Encryption API](../advanced/encryption-api.md)
 
 ### Bug Fixes
 
