@@ -25,6 +25,10 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 
 ### TBD
 
+### Bug Fixes
+
+* Read and History read for modified tables \([\#183](https://github.com/Aidbox/Issues/issues/183)\)
+
 ## 0.4.7 \[26 September 2019\]
 
 ### Features
