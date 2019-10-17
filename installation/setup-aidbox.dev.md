@@ -122,7 +122,7 @@ AIDBOX_IMAGE=healthsamurai/devbox:0.4.1
 | AIDBOX\_LICENSE\_ID | true | Your license key |
 | AIDBOX\_CLIENT\_ID | false | Root Client ID \* \(default: root\) |
 | AIDBOX\_CLIENT\_SECRET | false | Root Client Secret \* |
-| AIDBOX\_FHIR\_VERSION | true | Version of FHIR - 1.0.2, 1.4.0, 1.8.0, 3.01, 3.2.0, 3.3.0; Currently 3.0.1 is recommended version. |
+| AIDBOX\_FHIR\_VERSION | true | Version of FHIR - 1.0.2, 1.4.0, 1.8.0, 3.01, 3.2.0, 3.3.0, 4.0.0; Currently 4.0.0 is recommended version. |
 | AIDBOX\_IMAGE | true | can be specific image tag or one of :edge or :latest |
 | AIDBOX\_ADMIN\_ID | false | Id for admin user \(default: admin\) |
 | AIDBOX\_ADMIN\_PASSWORD | false | Password for admin user |
