@@ -47,7 +47,7 @@ Now references to contained resources are represented as `localRef` attribute in
 * Add JWT sub & iss and client ip address to logs
 * aidbox-cli elastic search logger now creates new index for each day
 * Upgrade/Fix [PATCH](../basic-concepts/crud-1/patch.md) to be fully RFC conformant
-* Add [X-Client-Auth](https://app.gitbook.com/@aidbox/s/project/auth-betta/access-token-introspection#x-client-auth) header
+* Add [X-Client-Auth](https://docs.aidbox.app/auth-betta/access-token-introspection#x-client-auth) header
 * Add **cts** column \(createdAt\) to resources \([read more](0.4.7-addendum.md)\).
 * Entity.history='none' for custom resources to turn-off history
 * Unique validation by `isUnique=true` in Attribute
