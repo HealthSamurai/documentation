@@ -64,6 +64,7 @@
   * [SQL endpoints](advanced/usdpsql.md)
   * [Sequence API](advanced/sequence-api.md)
   * [Encryption API](advanced/encryption-api.md)
+  * [HL7 v2 Integration](advanced/hl7-v2-integration.md)
   * [Mappings](advanced/mappings.md)
 * [Auth](auth-betta/README.md)
   * [Basic Auth](auth-betta/basic-auth.md)
