@@ -87,12 +87,37 @@ src: |-
 status: received
 config:
   resourceType: Hl7v2Config
-  id: test
+  id: default
 ```
 
 {% hint style="warning" %}
 Newly created messages should have `received` status, otherwise they won't be processed.
 {% endhint %}
 
+`201 Created` response indicates that message was created and processed. Response body will contain additional processing details such as:
 
+**status** - `processed` when message was successfully parsed and mapping was applied or `error` when there were an error/exception in one of those steps
+
+**parsed** - structured representation of the message
+
+**outcome** - Transaction Bundle returned by mapping or error information if status is `error`.
+
+You can try to submit malformed message \(truncated\)  to see what's the result will be:
+
+```yaml
+POST /Hl7v2Message
+Content-Type: text/yaml
+
+resourceType: Hl7v2Message
+src: |-
+  MSH|^~
+status: received
+config:
+  resourceType: Hl7v2Config
+  id: default
+```
+
+### Using hl7proxy
+
+To be written.
 
