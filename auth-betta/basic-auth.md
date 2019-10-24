@@ -48,7 +48,7 @@ Now you can make HTTP requests with `Authorization` header set to `'Basic ' + ba
 {% code-tabs-item title="basic-request" %}
 ```yaml
 GET /Patient
-Authorization: Basic Basic YmFzaWM6c2VjcmV0Cg==
+Authorization: Basic YmFzaWM6c2VjcmV0Cg==
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
