@@ -119,5 +119,11 @@ config:
 
 ### Using hl7proxy
 
-To be written.
+Usually HL7 messages are transmitted using [MLLP protocol](https://www.hl7.org/implement/standards/product_brief.cfm?product_id=55). To convert MLLP traffic to HTTP requests there is an open-source `hl7proxy` utility by Health Samurai. It's [available on GitHub](https://github.com/HealthSamurai/hl7proxy) and there are [pre-compiled binaries](https://github.com/HealthSamurai/hl7proxy/releases) for major operating systems and architectures.
+
+Follow `hl7proxy`'s [README](https://github.com/HealthSamurai/hl7proxy) for installation and usage instructions.
+
+### Using HAPI TestPanel to send test messages
+
+Once `hl7proxy` is up and running, you can use [HAPI TestPanel](https://hapifhir.github.io/hapi-hl7v2/hapi-testpanel/) to send sample HL7 v2 messages. TestPanel shouldn't report any errors on message delivery. `hl7proxy` output should contain information about received message and `Sent to Aidbox: 201 Created` line which indicates successful delivery.
 
