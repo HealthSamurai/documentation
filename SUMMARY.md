@@ -55,6 +55,7 @@
     * [$to-format](basic-concepts/development/usdto-format-fhir-aidbox.md)
     * [$validate](basic-concepts/development/usdvalidate.md)
 * [Advanced](advanced/README.md)
+  * [X-Audit header](advanced/x-audit-header.md)
   * [Entities & Attributes](advanced/entities-and-attributes.md)
   * [Subscriptions](advanced/subscriptions.md)
   * [Observation/$lastn](advanced/misc.md)
