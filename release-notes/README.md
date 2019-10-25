@@ -13,6 +13,10 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 
 ## Road Map
 
+* Aidbox production supervisor
+* Brand new profiling 
+* V2 & x12 integration modules 
+* New performant and flexible search engine \(friendly indexing system\)
 * Bulk API \(export, import\)
 * $upload
 * Uni-version FHIR server \(i.e. support all FHIR versions, probably not all resources\)
