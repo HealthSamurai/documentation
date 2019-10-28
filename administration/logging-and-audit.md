@@ -45,7 +45,7 @@ Aidbox logger can be configured to log into file system with built-in rotation o
 | **w\_qs** | string | request query string |
 | **w\_addr** | string | Comma separated client and middleware IPs |
 | **w\_corr\_id** | string | X-Correlation-Id header of original request |
-| **w\_audit** | json | [X-Audit header](../advanced/x-audit-header.md) |
+| **w\_audit** | json | [X-Audit header](x-audit-header.md) |
 | **d** | int | Request duration in ms |
 
 #### SQL logs

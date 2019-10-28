@@ -55,7 +55,6 @@
     * [$to-format](basic-concepts/development/usdto-format-fhir-aidbox.md)
     * [$validate](basic-concepts/development/usdvalidate.md)
 * [Advanced](advanced/README.md)
-  * [X-Audit header](advanced/x-audit-header.md)
   * [Entities & Attributes](advanced/entities-and-attributes.md)
   * [Subscriptions](advanced/subscriptions.md)
   * [Observation/$lastn](advanced/misc.md)
@@ -126,6 +125,7 @@
   * [SDC with Custom Resources](tutorials/sdc-with-custom-resources.md)
 * [Administration](administration/README.md)
   * [Logging & Audit](administration/logging-and-audit.md)
+  * [X-Audit header](administration/x-audit-header.md)
   * [Health Check](administration/health-check.md)
   * [Export logs to ElasticSearch/Kibana](administration/export-logs-to-elasticsearch-kibana.md)
 
