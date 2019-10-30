@@ -31,7 +31,7 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 
 * New [Encryption API](../advanced/encryption-api.md)
 * New [Mapping module](../advanced/mappings.md)
-* New Hl7v2 module
+* New [Hl7v2 module](../advanced/hl7-v2-integration.md)
 * [X-Audit header](../administration/x-audit-header.md)
 
 ### Bug Fixes
