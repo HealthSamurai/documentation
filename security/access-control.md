@@ -114,6 +114,19 @@ There is a special query-string parameter `__debug=policy` you can pass to every
 * an array of existing AccessPolicies;
 * evaluation result for every AccessPolicy \(under `AccessPolicy.evalResult`\).
 
+#### Using x-debug: policy header
+
+For requests with `x-debug: policy` header details of access policy evaluation will be logged.
+
+```yaml
+GET /Patient
+x-debug: policy
+
+# in aidbox logs
+:auth/trace-policy {:access-policy-id :policy-1, :policy-type "sql", ...
+:auth/trace-policy {:access-policy-id :policy-2, :policy-type "json-schema",...
+```
+
 #### Using /auth/test-policy Operation
 
 You can use special operation  `POST /auth/test-policy` to design policy without creating AccessPolicy resource and for different users and clients. Do post on `/auth/test-policy` with simulated **request** attribute \(you can provide existing `user-id` and `client-id`  - aidbox will find and populate request\) and  temporal policy in **policy** attribute. If you want to test JWT auth, put your token in `headers.authorization` with `Bearer` prefix - token will be parsed and it's claims appear in `request.jwt`. JWT in header is parsed,  but not validated. This allows you test JWT policy without **TokenIntrospector** registration. 

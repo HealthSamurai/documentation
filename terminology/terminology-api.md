@@ -70,3 +70,54 @@ entry:
       method: POST
 ```
 
+### SNOMEDCT
+
+```yaml
+POST /
+Content-Type: text/yaml
+
+resourceType: Bundle
+type: transaction
+entry:
+  - resource:
+      resourceType: CodeSystem
+      id: snomedct
+      url: http://snomed.info/sct
+      date: '2019-09-01'
+      description: SNOMED CT is a standardized, multilingual vocabulary of clinical terminology
+        that is used by physicians and other health care providers for the electronic exchange
+        of clinical health information
+      content: complete
+      status: active
+      version: snomed-version
+    request:
+      url: /CodeSystem/snomedct
+      method: PUT
+
+  - resource:
+      resourceType: ValueSet
+      id: snomedct
+      description: This value set includes all RxNorm codes.
+      version: snomed-version
+      compose:
+        include:
+        - system: http://snomed.info/sct
+      url: snomedct
+      status: active
+    request:
+      url: /ValueSet/snomedct
+      method: PUT
+
+  - resource:
+      id: snomedct
+      inputFormat: application/fhir+ndjson
+      contentEncoding: gzip
+      mode: bulk
+      inputs:
+        - resourceType: Concept
+          url: https://storage.googleapis.com/aidbox-public/fhir-terminology/snomedct-20190901.ndjson.gz
+    request:
+      url: /$import
+      method: POST
+```
+
