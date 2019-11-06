@@ -28,10 +28,10 @@ body:
   type: transaction
   entry:
     - resource:
-      resourceType: Patient
-      name:
-        - given: ["$ msg.PID.name.0.given"]
-          family: "$ msg.PID.name.0.family.surname"
+        resourceType: Patient
+        name:
+          - given: ["$ msg.PID.name.0.given"]
+            family: "$ msg.PID.name.0.family.surname"
       request:
         method: POST
         url: "/fhir/Patient"
