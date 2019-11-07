@@ -304,7 +304,7 @@ match:
     role: admin
     # user.data.practitioner_id should be present
     data: {practitioner_id: present?}
-  # uri match regexp /Patient/.*
+  # uri match regexp /Encounter/.*
   uri: '#/Encounter.*'
   # request method should be one of get or post
   request-method: {$enum: ['get', 'post']}
@@ -315,19 +315,23 @@ match:
 
 Match DSL definition:
 
-* If **pattern** \(match\) is object  search for inclusion of this object into subject. For example: `{x: 1}` matches `{x: 1, y: 2 ....}`. Object match is recursive - `{a: {b: 5}}` matches `{a: {b: 5, ...}...}`
-* Objects with one **$enum, $one-of** or **$contains** keys are interpreted as special cases
-  * **$enum** -  test subject is equal to one of item in collection. `{a: {$enum: [1,2,3]}}` matches `{a: 2}`
-  * **$contains** - ****if subject is a collection then search at least one match. `{a: {$contains: {b: present?}}` matches `{a: [{x: 5}, {b: 6}]}`
+* If **pattern** \(match\) is object  search for inclusion of this object into subject. For example: `{x: 1}` matches `{x: 1, y: 2 ....}`. This algorithm is recursive - `{a: {b: 5}}` matches `{a: {b: 5, ...}...}`
+* Objects with one **$enum, $one-of** or **$contains** keys are special cases
+  * **$enum** -  test subject is equal to one of item in a enumeration. `{request-method: {$enum: ['get','post']}}` matches `{request-method: 'post'}`
+  * **$contains** - ****if subject is a collection then search at least one match. `{type: {$contains: {system: 'loinc'}}` matches `{type: [{system: 'snomed'}, {system: 'loinc'}]}`
   * **$one-of -** try to match on of patterns. `{a: {$one-of: [{b: present?}, {c: present?}]} matches {a: {c: 5}}`
 * For **array** match first item in pattern with first item in subject. `[1,2]` matches `[1,2,3...]`
 * Primitive values \(string, numbers and booleans\) are compared by value
-* If string starts with '\#'  - it will be transformed into regexp and matched as regexp. `{a: '\\d+'}` matches `{a: '2345'}`
-* If string starts with '.' - it's interpreted as  pointer to another path in subject to compare. For example: `{a: '.b.c'}` matches `{a: 1, b: {c: 1}}`
-* There are several special string literals endings with ?
+* If string starts with `'#'`  - it will be transformed into regexp and matched as regexp. `{a: '#\\d+'}` matches `{a: '2345'}`
+* If string starts with `'.'` - it's interpreted as  pointer to another path in subject to compare. For example: `{params: {user: '.user.id'}}` matches `{user: {id: 1}, params: {user: 1}}`
+* There are several special string literals postfixed with `?`
   * **present?** - matches  subject if it is not null, i.e. `{a: 'present?'}` matches `{a: 5}` or `{a: {b: 6}}`
-  * **nil?**  - matches if nil/null - {a: nil?} matches {b: 6}
+  * **nil?**  - matches if nil/null - `{a: nil?}` matches `{b: 6}`
   * **not-blank?** - matches not blank string
+
+{% hint style="info" %}
+Need more rules? Contact us on a [telegram chat](https://t.me/aidbox)!
+{% endhint %}
 
 Here are more examples:
 
