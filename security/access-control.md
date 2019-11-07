@@ -322,8 +322,8 @@ Match DSL definition:
   * **$one-of -** try to match on of patterns. `{a: {$one-of: [{b: present?}, {c: present?}]} matches {a: {c: 5}}`
 * For **array** match first item in pattern with first item in subject. `[1,2]` matches `[1,2,3...]`
 * Primitive values \(string, numbers and booleans\) are compared by value
-* If string starts with `'#'`  - it will be transformed into regexp and matched as regexp. `{a: '#\\d+'}` matches `{a: '2345'}`
-* If string starts with `'.'` - it's interpreted as  pointer to another path in subject to compare. For example: `{params: {user: '.user.id'}}` matches `{user: {id: 1}, params: {user: 1}}`
+* If string starts with `'#'`  - it will be transformed into regex and matched as regex. `{a: '#\\d+'}` matches `{a: '2345'}`
+* If string starts with `'.'` - it's interpreted as  pointer to another path in subject to compare. For example: `{params: {user_id: '.user.id'}}` matches `{user: {id: 1}, params: {user_id: 1}},` i.e. `user.id == param.user_id`
 * There are several special string literals postfixed with `?`
   * **present?** - matches  subject if it is not null, i.e. `{a: 'present?'}` matches `{a: 5}` or `{a: {b: 6}}`
   * **nil?**  - matches if nil/null - `{a: nil?}` matches `{b: 6}`
