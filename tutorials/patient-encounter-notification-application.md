@@ -30,33 +30,33 @@ In this sample application we use Clojure CLI. See [Getting Started](https://clo
 
 In this sample app we will use Clojure Cli - command line tools for running REPL and Clojure apps. In `deps.end` file need specify `aidbox-sdk` as reference to git.
 
-{% code-tabs %}
-{% code-tabs-item title="deps.edn" %}
+{% tabs %}
+{% tab title="deps.edn" %}
 ```java
 {:deps 
   {aidbox-sdk {:git/url "https://github.com/Aidbox/aidbox-clojure-sdk" 
                :sha "057ebd1a542bb17c7a910283ae942f56a89167f1"}}}
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 And then require `aidbox-sdk` in  the main `mailgun.core` file
 
-{% code-tabs %}
-{% code-tabs-item title="mailgun.core" %}
+{% tabs %}
+{% tab title="mailgun.core" %}
 ```java
 (ns mailgun.core
   (:require [aidbox.sdk.core :as aidbox]))
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 ### Connect your app with Aidbox
 
 For connecting your application with Aidbox, you need call `aidbox/call` method send them information about location of Aidbox and your application.
 
-{% code-tabs %}
-{% code-tabs-item title="src/mailgun/core.clj" %}
+{% tabs %}
+{% tab title="src/mailgun/core.clj" %}
 ```java
 (def manifest
   {:id "mailgun-app"
@@ -76,8 +76,8 @@ For connecting your application with Aidbox, you need call `aidbox/call` method 
 (defn -main [] (aidbox/start manifest))
 
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 #### How it works?
 

@@ -46,8 +46,8 @@ In `endpoint` section you describe how aidbox will communicate with your service
 
 In `entities` section of App manifest you can extend existing resources, define custom profiles or hook into lifecycle:
 
-{% code-tabs %}
-{% code-tabs-item title="entities:" %}
+{% tabs %}
+{% tab title="entities:" %}
 ```yaml
 Patient: # existing resource type
   attrs:
@@ -58,13 +58,13 @@ Patient: # existing resource type
        notify_on_patient: { emails: ['admin@hs.io'] }
 
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 As well define custom resources:
 
-{% code-tabs %}
-{% code-tabs-item title="entities:" %}
+{% tabs %}
+{% tab title="entities:" %}
 ```yaml
 User: # custom resource type
   attrs:
@@ -86,8 +86,8 @@ User: # custom resource type
        query: SELECT true FROM "User" WHERE resource->>'email' == {{ .email }}
        message: Email is already taken
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 In entities section you define resources as a map `<resourceType> : <resourceStructure>` :
 
@@ -100,8 +100,8 @@ entities:
 
 Resource structure is defined by keyword **attrs**`{ <element-name>: <element-definition> ... }`
 
-{% code-tabs %}
-{% code-tabs-item title="entities:" %}
+{% tabs %}
+{% tab title="entities:" %}
 ```yaml
 User:
   attrs:
@@ -110,8 +110,8 @@ User:
   profiles: <profiles-definition>
   hooks: <hooks-definition>
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 At root of resource definition you can also define **hooks** and **profiles** for this resource.
 
@@ -125,8 +125,8 @@ Element definition will be translated into [Attribute Meta-Resource]() and can h
 
 In operation section you define Custom REST operations as a map  &lt;operation-id&gt;: &lt;operation-definition&gt; and access policy \(which will be bound to this operation\):
 
-{% code-tabs %}
-{% code-tabs-item title="operations:" %}
+{% tabs %}
+{% tab title="operations:" %}
 ```yaml
 daily-patient-report:
   method: GET
@@ -137,15 +137,15 @@ register-user:
   policies: 
      register-user: {  engine: allow }
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 ### resources
 
 In resources section you can provide other meta-resources for Aidbox in form `{resourceType: {id: resource}}`
 
-{% code-tabs %}
-{% code-tabs-item title="resources:" %}
+{% tabs %}
+{% tab title="resources:" %}
 ```yaml
 # resource type
 AccessPolicy:
@@ -156,8 +156,8 @@ AccessPolicy:
       link:
         - {id: 'opname', resourceType: 'Operation'}
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 ### hooks
 

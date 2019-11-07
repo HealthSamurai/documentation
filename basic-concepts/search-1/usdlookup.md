@@ -61,8 +61,8 @@ GET /Patient/$lookup?\
   limit=200
 ```
 
-{% code-tabs %}
-{% code-tabs-item title="response" %}
+{% tabs %}
+{% tab title="response" %}
 ```sql
 DROP INDEX IF EXISTS lookup_patient_g_1;
 CREATE INDEX lookup_patient_g_1 ON "patient" USING GIN 
@@ -75,8 +75,8 @@ CREATE INDEX lookup_patient_g_2 ON "patient" USING GIN
  gin_trgm_ops );
 VACUUM ANALYZE "patient";
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 ### US NPI by Aidbox
 

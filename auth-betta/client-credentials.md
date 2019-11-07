@@ -12,8 +12,8 @@ The Client Credentials grant is used when applications request an access token t
 
 To start use this flow you have to create  and configure Client. Minimal required parameters is `secret` and you have to enable this flow for client by `grant_types: ['client_credentials']`
 
-{% code-tabs %}
-{% code-tabs-item title="create-client-request" %}
+{% tabs %}
+{% tab title="create-client-request" %}
 ```yaml
 PUT /Client/api-client
 
@@ -21,8 +21,8 @@ secret: verysecret
 grant_types:
   - client_credentials
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 You also can configure token format and expiration, as well refresh token:
 
@@ -32,8 +32,8 @@ You also can configure token format and expiration, as well refresh token:
 | _auth.client\_credentials_**.token\_expiration** | int \(seconds\) | token expiration time from issued at |
 | _auth.client\_credentials_**.refresh\_token** | true/false | enable refresh\_token |
 
-{% code-tabs %}
-{% code-tabs-item title="jwt-token-client" %}
+{% tabs %}
+{% tab title="jwt-token-client" %}
 ```yaml
 PUT /Client/api-client
 
@@ -46,13 +46,13 @@ auth:
     token_format: jwt
     refresh_token: true
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 Probably you want to configure AccessPolicy for this specific client:
 
-{% code-tabs %}
-{% code-tabs-item title="policy" %}
+{% tabs %}
+{% tab title="policy" %}
 ```yaml
 PUT /AccessPolicy/api-client
 
@@ -61,8 +61,8 @@ link:
   - id: api-client
     resourceType: Client
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 ### Get Access Token
 
@@ -70,8 +70,8 @@ Next step is exchange client id and secret for  Access Token.
 
  Using Basic & form-url-encode:
 
-{% code-tabs %}
-{% code-tabs-item title="using-basic" %}
+{% tabs %}
+{% tab title="using-basic" %}
 ```yaml
 POST /auth/token
 Authorization: Basic base64(client.id, client.secret)
@@ -79,13 +79,13 @@ Content-Type: application/x-www-form-urlencoded
 
 grant_type=client_credentials
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 Or by JSON request:
 
-{% code-tabs %}
-{% code-tabs-item title="json-request" %}
+{% tabs %}
+{% tab title="json-request" %}
 ```yaml
 POST /auth/token
 Content-Type: application/json
@@ -96,13 +96,13 @@ Content-Type: application/json
   "client_secret": "verysecret"
 }
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 For simple client configuration you will get JSON with access\_token in response:
 
-{% code-tabs %}
-{% code-tabs-item title="token-response" %}
+{% tabs %}
+{% tab title="token-response" %}
 ```yaml
 status: 200
 
@@ -111,8 +111,8 @@ status: 200
  "access_token": "ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi"
 }
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 For JWT with refresh token you will get something like this:
 
@@ -148,14 +148,14 @@ If you use JWT token format and provide in token request additional parameter `a
 
 You can use access token in Authorization header for Aidbox API calls:
 
-{% code-tabs %}
-{% code-tabs-item title="authorized-request" %}
+{% tabs %}
+{% tab title="authorized-request" %}
 ```yaml
 GET /Patient
 Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 ```text
 curl -H 'Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi' /Patient
@@ -165,14 +165,14 @@ curl -H 'Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi'
 
 Aidbox create  Session \(resource\) for each Access Token, which can be closed with special endpoint `DELETE /Session` with token in Authorization header:
 
-{% code-tabs %}
-{% code-tabs-item title="close-session" %}
+{% tabs %}
+{% tab title="close-session" %}
 ```yaml
 DELETE /Session
 Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 Session is just Resource and you can inspect and manipulate with sessions by standard Search & CRUD API for example get all sessions - `GET /Session`
 

@@ -10,8 +10,8 @@ The Password grant type is used by first-party clients to exchange a user's cred
 
 Fist step is configure Client for Resource Owner Grant with secret and password grant type:
 
-{% code-tabs %}
-{% code-tabs-item title="client" %}
+{% tabs %}
+{% tab title="client" %}
 ```yaml
 PUT /Client/myapp
 
@@ -19,8 +19,8 @@ secret: verysecret
 grant_types:
   - password
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 Client will act on behalf of the user,  which mean Access Policies should be configured for User, not for Client.
 
@@ -39,8 +39,8 @@ Next step is collect username & password and exchange username, password, client
 
  Using Basic & form-url-encode:
 
-{% code-tabs %}
-{% code-tabs-item title="using-basic" %}
+{% tabs %}
+{% tab title="using-basic" %}
 ```yaml
 POST /auth/token
 Authorization: Basic base64(client.id, client.secret)
@@ -48,13 +48,13 @@ Content-Type: application/x-www-form-urlencoded
 
 grant_type=password&username=user&password=password
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 Or by JSON request:
 
-{% code-tabs %}
-{% code-tabs-item title="json-request" %}
+{% tabs %}
+{% tab title="json-request" %}
 ```yaml
 POST /auth/token
 Content-Type: application/json
@@ -67,13 +67,13 @@ Content-Type: application/json
   "password": "password"
 }
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 When everything is accurate, you will get response with access token, user information and refresh token \(if enabled\):
 
-{% code-tabs %}
-{% code-tabs-item title="token-response" %}
+{% tabs %}
+{% tab title="token-response" %}
 ```yaml
 status: 200
 
@@ -89,21 +89,21 @@ status: 200
  },
 }
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 ### Use Access Token
 
 You can use access token in Authorization header for Aidbox API calls:
 
-{% code-tabs %}
-{% code-tabs-item title="authorized-request" %}
+{% tabs %}
+{% tab title="authorized-request" %}
 ```yaml
 GET /Patient
 Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 ```text
 curl -H 'Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi' /Patient
@@ -113,14 +113,14 @@ curl -H 'Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi'
 
 Aidbox create  Session \(resource\) for each Access Token, which can be closed with special endpoint `DELETE /Session` with token in Authorization header:
 
-{% code-tabs %}
-{% code-tabs-item title="close-session" %}
+{% tabs %}
+{% tab title="close-session" %}
 ```yaml
 DELETE /Session
 Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 Session is just Resource and you can inspect and manipulate with sessions by standard Search & CRUD API for example get all sessions - `GET /Session`
 

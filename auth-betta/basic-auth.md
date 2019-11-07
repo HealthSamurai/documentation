@@ -44,14 +44,14 @@ link:
 
 Now you can make HTTP requests with `Authorization` header set to `'Basic ' + base64(client.id +':' + client.secret):`
 
-{% code-tabs %}
-{% code-tabs-item title="basic-request" %}
+{% tabs %}
+{% tab title="basic-request" %}
 ```yaml
 GET /Patient
 Authorization: Basic YmFzaWM6c2VjcmV0Cg==
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 Example with curl:
 
@@ -62,8 +62,8 @@ curl -H 'Authorization: Basic YmFzaWM6c2VjcmV0Cg==' https://yourbox/Patient
 
 Most of HTTP clients will do `Authorization` header construction for you:
 
-{% code-tabs %}
-{% code-tabs-item title="js-example" %}
+{% tabs %}
+{% tab title="js-example" %}
 ```javascript
 axios.get('<box>/Patient', {
   auth: {
@@ -82,8 +82,8 @@ fetch('<box>/Patient', {
 }).then(resp) { ... }
 
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 ### Test Basic in Auth Sandbox
 

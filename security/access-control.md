@@ -291,5 +291,62 @@ id: complex-example-2
 resourceType: AccessPolicy
 ```
 
+### Matcho Engine
 
+This custom DSL engine with limited expressiveness, but very compact and declarative. The general idea is pattern matching with few extensions. 
+
+```yaml
+resourceType: AccessPolicy
+type: matcho
+match:
+  user: 
+    # user.role should be equal to admin
+    role: admin
+    # user.data.practitiner_id should be present
+    data: {practitiner_id: present?}
+  # uri match regexp /Patient/.*
+  uri: '#/Encounter.*'
+  # request method should be one of get or post
+  request-method: {$enum: ['get', 'post']}
+  params:
+    # parameter practitioner should be equal to user.data.practitioner_id
+    practitiner: .user.data.practitiner_id
+```
+
+Match DSL definition:
+
+* If **pattern** \(match\) is object  search for inclusion of this object into subject. For example: `{x: 1}` matches `{x: 1, y: 2 ....}`. Object match is recursive - `{a: {b: 5}}` matches `{a: {b: 5, ...}...}`
+* Objects with one **$enum, $one-of** or **$contains** keys are interpreted as special cases
+  * **$enum** -  test subject is equal to one of item in collection. `{a: {$enum: [1,2,3]}}` matches `{a: 2}`
+  * **$contains** - ****if subject is a collection then search at least one match. `{a: {$contains: {b: present?}}` matches `{a: [{x: 5}, {b: 6}]}`
+  * **$one-of -** try to match on of patterns. `{a: {$one-of: [{b: present?}, {c: present?}]} matches {a: {c: 5}}`
+* For **array** match first item in pattern with first item in subject. `[1,2]` matches `[1,2,3...]`
+* Primitive values \(string, numbers and booleans\) are compared by value
+* If string starts with '\#'  - it will be transformed into regexp and matched as regexp. `{a: '\\d+'}` matches `{a: '2345'}`
+* If string starts with '.' - it's interpreted as  pointer to another path in subject to compare. For example: `{a: '.b.c'}` matches `{a: 1, b: {c: 1}}`
+* There are several special string literals endings with ?
+  * **present?** - matches  subject if it is not null, i.e. `{a: 'present?'}` matches `{a: 5}` or `{a: {b: 6}}`
+  * **nil?**  - matches if nil/null - {a: nil?} matches {b: 6}
+  * **not-blank?** - matches not blank string
+
+Here is more examples:
+
+```yaml
+# only authorized users get patients or encountres
+
+user: present?
+request-method: get
+params:
+  'resource/type': {$enum: ['Patient', 'Encounter'}
+
+# search encounter with required parameter practitioner, 
+# wich should be equal to user.data.pract_id
+
+user: {data: {pract_id: present?}}
+uri: '/Encounter'
+params: 
+  practitioner: '.user.data.pract_id'
+
+
+```
 

@@ -51,8 +51,8 @@ $ cd devbox && cp .env.tpl .env
 docker-compose.yaml file is parameterized with environment variables that can be stored by convention in the .env file \(read more about [env & docker-compose](https://docs.docker.com/compose/environment-variables/)\).
 {% endhint %}
 
-{% code-tabs %}
-{% code-tabs-item title="docker-compose.yaml" %}
+{% tabs %}
+{% tab title="docker-compose.yaml" %}
 ```yaml
 version: '3.1'
 services:
@@ -79,15 +79,15 @@ services:
       POSTGRES_PASSWORD: "${PGPASSWORD}"
       POSTGRES_DB:       "${PGDATABASE}"
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 ### Step 3. **Fill in the .env file with the following parameters**
 
 Open the `.env` file and insert your `License ID` and `License KEY,`specify FHIR version and decide about box security and distribution channel \( latest vs edge\).
 
-{% code-tabs %}
-{% code-tabs-item title=".env" %}
+{% tabs %}
+{% tab title=".env" %}
 ```bash
 AIDBOX_LICENSE_ID=<your-license-id>
 AIDBOX_LICENSE_KEY=<your-license-key>
@@ -113,8 +113,8 @@ AIDBOX_IMAGE=healthsamurai/devbox:0.4.1
 # uncomment next line to work with edge channel
 # AIDBOX_IMAGE=healthsamurai/devbox:edge
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 | Variable | required | Desc |
 | :--- | :--- | :--- |

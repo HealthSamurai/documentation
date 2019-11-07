@@ -10,8 +10,8 @@ The Authorization Code Grant is an OAuth 2.0 flow that regular web apps use in o
 
 Fist step is configure Client for Authorization Grant with `secret` and `redirect_uri`, as well `code` grant type:
 
-{% code-tabs %}
-{% code-tabs-item title="client" %}
+{% tabs %}
+{% tab title="client" %}
 ```yaml
 PUT /Client/webapp
 
@@ -27,8 +27,8 @@ auth:
     secret_required: true
     refresh_token: true
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 Client will act on behalf of the user,  which mean Access Policies should be configured for User, not for Client. 
 
@@ -77,8 +77,8 @@ If client granted permissions user agent will be redirected to url configured in
 
 With this code and client secret you can request for  Access Token with `grant_type: authorization_code`.
 
-{% code-tabs %}
-{% code-tabs-item title="json-request" %}
+{% tabs %}
+{% tab title="json-request" %}
 ```yaml
 POST /auth/tokenGet Access Token
 Content-Type: application/json
@@ -89,13 +89,13 @@ Content-Type: application/json
  "grant_type": "authorization_code"
 }
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 When everything is accurate, you will get response with access token, user information and refresh token \(if enabled\):
 
-{% code-tabs %}
-{% code-tabs-item title="token-response" %}
+{% tabs %}
+{% tab title="token-response" %}
 ```yaml
 status: 200
 
@@ -111,21 +111,21 @@ status: 200
  }
 }
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 ### Use Access Token
 
 You can use access token in Authorization header for Aidbox API calls:
 
-{% code-tabs %}
-{% code-tabs-item title="authorized-request" %}
+{% tabs %}
+{% tab title="authorized-request" %}
 ```yaml
 GET /Patient
 Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 ```text
 curl -H 'Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi' /Patient
@@ -135,14 +135,14 @@ curl -H 'Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi'
 
 Aidbox create  Session \(resource\) for each Access Token, which can be closed with special endpoint `DELETE /Session` with token in Authorization header:
 
-{% code-tabs %}
-{% code-tabs-item title="close-session" %}
+{% tabs %}
+{% tab title="close-session" %}
 ```yaml
 DELETE /Session
 Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 Session is just Resource and you can inspect and manipulate with sessions by standard Search & CRUD API for example get all sessions - `GET /Session`
 

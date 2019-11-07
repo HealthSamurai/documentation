@@ -10,15 +10,15 @@ In some situations you want to enumerate your resources with increasing counter 
 
 You can create named sequence by posting PGSequence resource. We use explicit naming for sequences, so **id** element is required!
 
-{% code-tabs %}
-{% code-tabs-item title="create-sequence.yaml" %}
+{% tabs %}
+{% tab title="create-sequence.yaml" %}
 ```yaml
 POST /PGSequence
 
 id: pt_seq
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 Other PGSequence attributes you can specify:
 

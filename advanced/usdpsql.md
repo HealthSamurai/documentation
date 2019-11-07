@@ -34,23 +34,23 @@ JSON: SQL string or jdbc friendly array  \[SQL, param, param\]
 
 Example request:
 
-{% code-tabs %}
-{% code-tabs-item title="request" %}
+{% tabs %}
+{% tab title="request" %}
 ```yaml
 POST /$sql?_format=yaml
 
 SELECT count(*) FROM patient
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
-{% code-tabs %}
-{% code-tabs-item title="response" %}
+{% tabs %}
+{% tab title="response" %}
 ```yaml
 - {count: 7}
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 ### SQL migrations
 
