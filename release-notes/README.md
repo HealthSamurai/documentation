@@ -34,6 +34,7 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * New [Hl7v2 module](../advanced/hl7-v2-integration.md)
 * [X-Audit header](../administration/x-audit-header.md) to add custom data to Aidbox logs
 * [X-Debug: policy](../security/access-control.md#using-x-debug-policy-header) header to trace policy evaluation
+* New engine for AccessPolicy - [matcho](../security/access-control.md#matcho-engine)
 
 ### Bug Fixes
 
