@@ -333,9 +333,13 @@ Match DSL definition:
 Need more rules? Contact us on a [telegram chat](https://t.me/aidbox)!
 {% endhint %}
 
-Here are more examples:
+Here are some examples:
 
 ```yaml
+# only users with role admin
+
+user: {role: {$contains: 'admin'}}
+
 # only authorized users get patients or encountres
 
 user: present?
@@ -350,5 +354,8 @@ user: {data: {pract_id: present?}}
 uri: '/Encounter'
 params: 
   practitioner: '.user.data.pract_id'
+  
+
+
 ```
 
