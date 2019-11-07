@@ -302,15 +302,15 @@ match:
   user: 
     # user.role should be equal to admin
     role: admin
-    # user.data.practitiner_id should be present
-    data: {practitiner_id: present?}
+    # user.data.practitioner_id should be present
+    data: {practitioner_id: present?}
   # uri match regexp /Patient/.*
   uri: '#/Encounter.*'
   # request method should be one of get or post
   request-method: {$enum: ['get', 'post']}
   params:
     # parameter practitioner should be equal to user.data.practitioner_id
-    practitiner: .user.data.practitiner_id
+    practitioner: .user.data.practitioner_id
 ```
 
 Match DSL definition:
