@@ -329,7 +329,7 @@ Match DSL definition:
   * **nil?**  - matches if nil/null - {a: nil?} matches {b: 6}
   * **not-blank?** - matches not blank string
 
-Here is more examples:
+Here are more examples:
 
 ```yaml
 # only authorized users get patients or encountres
@@ -346,7 +346,5 @@ user: {data: {pract_id: present?}}
 uri: '/Encounter'
 params: 
   practitioner: '.user.data.pract_id'
-
-
 ```
 
