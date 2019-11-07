@@ -19,6 +19,8 @@ Here is list of available packages:
 * ICD-10 - [https://storage.googleapis.com/aidbox-public/icd10/icd10cm.ndjson.gz](https://storage.googleapis.com/aidbox-public/icd10/icd10cm.ndjson.gz)
 * LOINC - [https://storage.googleapis.com/aidbox-public/loinc/loinc-2.65.ndjson.gz](https://storage.googleapis.com/aidbox-public/loinc/loinc-2.65.ndjson.gz)
 * FHIR 4.0.0 - [https://storage.googleapis.com/aidbox-public/fhir-terminology/fhir-4.0.0-concepts.ndjson.gz](https://storage.googleapis.com/aidbox-public/fhir-terminology/fhir-4.0.0-concepts.ndjson.gz)
+* RxNorm 10072019 - [https://storage.googleapis.com/aidbox-public/fhir-terminology/rxnorm-10072019.ndjson.gz](https://storage.googleapis.com/aidbox-public/fhir-terminology/rxnorm-10072019.ndjson.gz)
+* SNOMED CT US Edition 20190901 - [https://storage.googleapis.com/aidbox-public/fhir-terminology/snomedct-20190901.ndjson.gz](https://storage.googleapis.com/aidbox-public/fhir-terminology/snomedct-20190901.ndjson.gz)
 
 ### RxNorm
 

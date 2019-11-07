@@ -19,6 +19,8 @@ Access the Access Control tab and create new access policy with the code below. 
 2. it is allowed to use only request URIs starting with "/fhir/".
 
 ```yaml
+resourceType: AccessPolicy
+id: policy-for-postman
 engine: json-schema
 schema:
   required:
@@ -37,8 +39,15 @@ schema:
           const: postman
     request-method:
       const: get
-resourceType: AccessPolicy
-id: policy-for-postman
+```
+
+```yaml
+# or matcho engine version
+engine: matcho
+matcho:
+  client: { id: postman }
+  uri: '^./fhir/.*'
+  request-method: get
 ```
 
 Now, let's execute requests in Postman.
@@ -127,6 +136,20 @@ resourceType: User
 Now, let's define read-only access for the 'Patient' role. Create an access policy with the code below.
 
 ```yaml
+# matcho version
+resourceType: AccessPolicy
+id: policy-for-postman-users-role-patient
+engine: matcho
+matcho:
+  user:
+    data: { roles: {$contains: Patient} }
+  client: { id: postman }
+  request-method: get
+```
+
+```yaml
+resourceType: AccessPolicy
+id: policy-for-postman-users-role-patient
 engine: json-schema
 schema:
   required:
@@ -158,13 +181,22 @@ schema:
     request-method:
       const: get
 description: Read-only access for users with role Patient from client Postman
-id: policy-for-postman-users-role-patient
-resourceType: AccessPolicy
+
 ```
 
 ### Full Access for Administrator Role
 
 Let's set access rights for administrators.
+
+```yaml
+# matcho version
+engine: matcho
+matcho:
+  request-method: {$enum: ['get','post','put','delete','patch']}
+  user:
+    data: {roles: {$contains: 'Administrator'}}
+  client: { id: postman }
+```
 
 ```yaml
 engine: json-schema
