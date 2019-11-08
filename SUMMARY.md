@@ -84,6 +84,7 @@
     * [Session & Grant](auth-betta/resources/session-and-grant.md)
 * [Access Control](security/README.md)
   * [Access Policies](security/access-control.md)
+  * [Role-Based Access Policies](security/role-based-access-policies.md)
   * [🎓 Access Control](security/access-policy.md)
 * [Terminology](terminology/README.md)
   * [Concept](terminology/concept.md)
