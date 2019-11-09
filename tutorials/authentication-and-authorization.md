@@ -54,7 +54,7 @@ Open [https://ui.aidbox.app](https://ui.aidbox.app), choose your box, open secti
 resourceType: Client
 id: USERNAME
 secret: PASSWORD
-grant_type: ['basic']
+grant_types: ['basic']
 ```
 {% endtab %}
 
@@ -63,7 +63,8 @@ grant_type: ['basic']
 { 
   "resourceType": "Client",
   "id": "USERNAME",
-  "secret": "PASSWORD"
+  "secret": "PASSWORD",
+  "grant_types": ['basic']
 }
 ```
 {% endtab %}
