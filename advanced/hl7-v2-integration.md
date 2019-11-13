@@ -21,6 +21,9 @@ Most likely when new HL7 v2 message is received, you want to make changes in the
 Here is an example of a mapping which creates a new Patient resource with name taken from `PID.5` field every time new message is received:
 
 ```yaml
+PUT /Mapping/test
+Content-Type: text/yaml
+
 resourceType: Mapping
 id: test
 body:
