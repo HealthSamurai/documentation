@@ -56,27 +56,23 @@ Now you need to configure your FHIR server base URL.
 
 If you are using **Aidbox.Dev** as a backend, you need to specify `AIDBOX_URL` as `http://localhost:8888` in the `environment.ts` file.
 
-{% tabs %}
-{% tab title="environment.ts" %}
+{% code title="environment.ts" %}
 ```typescript
 export const environment = {
   AIDBOX_URL : "http://localhost:8888"
 }
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 When you want to run this sample application with **Aidbox.Cloud,** you need to specify `AIDBOX_URL` as `https://<YOUR_BOX_NAME>.aidbox.app`.
 
-{% tabs %}
-{% tab title="environment.ts" %}
+{% code title="environment.ts" %}
 ```typescript
 export const environment = {
   AIDBOX_URL : "https://<YOUR_BOX_NAME>.aidbox.app"
 }
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 ### Installation and start
 

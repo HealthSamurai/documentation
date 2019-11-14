@@ -12,8 +12,7 @@ If you don't want to restrict an access to your Aidbox.Dev instance and wish to 
 
 If you want to enable Access Policy in your installation, you need to setup `AIDBOX_CLIENT_SECRET` environment variable in the `Aidbox.Dev` container. You can do this by uncommenting the appropriate line in the `docker-compose.yaml` file.
 
-{% tabs %}
-{% tab title="docker-compose.yaml" %}
+{% code title="docker-compose.yaml" %}
 ```yaml
 version: '3.1'
 services:
@@ -24,15 +23,13 @@ services:
       # AIDBOX_CLIENT_SECRET: "${AIDBOX_CLIENT_SECRET:-secret}"  # < Uncomment this string
     ......
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 After installation of `Aidbox.Dev` you get one default [`Client`]() resource. This resource is used in OAuth 2.0 functionality. Also, this resource may be used for `Basic Authorization`. In this tutorial we will use this [`Client`]() for basic authorization in Aidbox.Dev .
 
 Default `Client` will be created with `password` described in `DEVBOX_PASSWORD` environment variable sent to the container in the `docker-compose.yaml` . If you did not explicitly specify `DEVBOX_PASSWORD` by default it was set to `secret`. We are strongly recommending to change the default password in your installation. [`Client.id`]() of this client is constantly `root`.
 
-{% tabs %}
-{% tab title="docker-compose.yaml" %}
+{% code title="docker-compose.yaml" %}
 ```yaml
 version: '3.1'
 services:
@@ -42,8 +39,7 @@ services:
       AIDBOX_CLIENT_SECRET: "${AIDBOX_CLIENT_SECRET:-secret}"
     ......
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 ## Basic Authorization
 

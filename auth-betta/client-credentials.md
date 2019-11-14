@@ -12,8 +12,7 @@ The Client Credentials grant is used when applications request an access token t
 
 To start use this flow you have to create  and configure Client. Minimal required parameters is `secret` and you have to enable this flow for client by `grant_types: ['client_credentials']`
 
-{% tabs %}
-{% tab title="create-client-request" %}
+{% code title="create-client-request" %}
 ```yaml
 PUT /Client/api-client
 
@@ -21,8 +20,7 @@ secret: verysecret
 grant_types:
   - client_credentials
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 You also can configure token format and expiration, as well refresh token:
 
@@ -32,8 +30,7 @@ You also can configure token format and expiration, as well refresh token:
 | _auth.client\_credentials_**.token\_expiration** | int \(seconds\) | token expiration time from issued at |
 | _auth.client\_credentials_**.refresh\_token** | true/false | enable refresh\_token |
 
-{% tabs %}
-{% tab title="jwt-token-client" %}
+{% code title="jwt-token-client" %}
 ```yaml
 PUT /Client/api-client
 
@@ -46,13 +43,11 @@ auth:
     token_format: jwt
     refresh_token: true
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 Probably you want to configure AccessPolicy for this specific client:
 
-{% tabs %}
-{% tab title="policy" %}
+{% code title="policy" %}
 ```yaml
 PUT /AccessPolicy/api-client
 
@@ -61,8 +56,7 @@ link:
   - id: api-client
     resourceType: Client
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 ### Get Access Token
 
@@ -70,8 +64,7 @@ Next step is exchange client id and secret for  Access Token.
 
  Using Basic & form-url-encode:
 
-{% tabs %}
-{% tab title="using-basic" %}
+{% code title="using-basic" %}
 ```yaml
 POST /auth/token
 Authorization: Basic base64(client.id, client.secret)
@@ -79,13 +72,11 @@ Content-Type: application/x-www-form-urlencoded
 
 grant_type=client_credentials
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 Or by JSON request:
 
-{% tabs %}
-{% tab title="json-request" %}
+{% code title="json-request" %}
 ```yaml
 POST /auth/token
 Content-Type: application/json
@@ -96,13 +87,11 @@ Content-Type: application/json
   "client_secret": "verysecret"
 }
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 For simple client configuration you will get JSON with access\_token in response:
 
-{% tabs %}
-{% tab title="token-response" %}
+{% code title="token-response" %}
 ```yaml
 status: 200
 
@@ -111,8 +100,7 @@ status: 200
  "access_token": "ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi"
 }
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 For JWT with refresh token you will get something like this:
 
@@ -148,14 +136,12 @@ If you use JWT token format and provide in token request additional parameter `a
 
 You can use access token in Authorization header for Aidbox API calls:
 
-{% tabs %}
-{% tab title="authorized-request" %}
+{% code title="authorized-request" %}
 ```yaml
 GET /Patient
 Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 ```text
 curl -H 'Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi' /Patient
@@ -165,14 +151,12 @@ curl -H 'Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi'
 
 Aidbox create  Session \(resource\) for each Access Token, which can be closed with special endpoint `DELETE /Session` with token in Authorization header:
 
-{% tabs %}
-{% tab title="close-session" %}
+{% code title="close-session" %}
 ```yaml
 DELETE /Session
 Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 Session is just Resource and you can inspect and manipulate with sessions by standard Search & CRUD API for example get all sessions - `GET /Session`
 

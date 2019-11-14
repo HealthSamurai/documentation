@@ -168,8 +168,7 @@ All parameters passed in query string will be available under `{{params.PARAMETE
 
 Also, `{{user.id}}` will be available, for example `user-info` custom query can be implemented like this:
 
-{% tabs %}
-{% tab title="request" %}
+{% code title="request" %}
 ```yaml
 POST /AidboxQuery
 
@@ -177,8 +176,7 @@ query: 'select * from public.User where id = {{user.id}}'
 id: user-info
 resourceType: AidboxQuery
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 Sample query will be:
 

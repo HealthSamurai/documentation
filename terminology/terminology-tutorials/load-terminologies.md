@@ -25,26 +25,22 @@ In this tutorial we will load ICD-10 deceases codes into Aidbox and see how we c
 
 To import this terminology packs you can use  `terminology/$import` operation. Let's load ICD-10 \(Classification of Deceases\) - just copy-paste following snippet into REST console in Aidbox UI:
 
-{% tabs %}
-{% tab title="request.yalm" %}
+{% code title="request.yalm" %}
 ```yaml
 POST /terminology/$import
 
 url: 'https://storage.googleapis.com/aidbox-public/icd10/icd10cm.ndjson.gz'
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 You will get response with numbers of resources loaded:
 
-{% tabs %}
-{% tab title="response.yaml" %}
+{% code title="response.yaml" %}
 ```yaml
 status: 200
 result: {CodeSystem: 1, ValueSet: 1, Concept: 44487}
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 As you can see package consists of one CodeSystem, one ValueSet and about 40K concepts with decease codes.
 

@@ -32,16 +32,14 @@ While you do update there is a risk of  override latest changes done by another 
 
 Let say we created patient:
 
-{% tabs %}
-{% tab title="create-patient-request" %}
+{% code title="create-patient-request" %}
 ```yaml
 POST /Patient
 
 id: pt-1
 name: [{family: ['Wrong']}]
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 ```yaml
 status: 201
@@ -55,21 +53,18 @@ name:
 
 Now to fix family for this patient without risk override someone else changes - we use versioned update request: 
 
-{% tabs %}
-{% tab title="versioned-update-request" %}
+{% code title="versioned-update-request" %}
 ```yaml
 PUT /Patient/pt-id
 If-Match: 30
 
 name: [{family: ['Smith']}]
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 If someone already touched same patient, his version id was changed and we get OperationOutcome.
 
-{% tabs %}
-{% tab title="conflict-response" %}
+{% code title="conflict-response" %}
 ```yaml
 status: 409
 
@@ -79,8 +74,7 @@ text: {status: generated, div: Version Id mismatch}
 issue:
 - {severity: fatal, code: conflict, diagnostics: Version Id mismatch}
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 ## conditional update
 

@@ -20,8 +20,7 @@ Aidbox supports Custom Resources, which cover all Questionnaire functionality an
 
 The first step is to define your custom resource. We recommend using **sugar** App API. As an example we are defining resource Vitals with temperature, heart\_rate, and patient reference:
 
-{% tabs %}
-{% tab title="custom-resource.yaml" %}
+{% code title="custom-resource.yaml" %}
 ```yaml
 POST /App
 
@@ -39,15 +38,13 @@ entities:
         type: Reference
         refers: [Patient]
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 Now we can check that  Vitals works properly.
 
 Create new vitals record:
 
-{% tabs %}
-{% tab title="patient" %}
+{% code title="patient" %}
 ```yaml
 PUT /Patient/pt-1
 
@@ -55,11 +52,9 @@ name:
 - family: Jackson
   given: ['John']
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
-{% tabs %}
-{% tab title="create-vitals" %}
+{% code title="create-vitals" %}
 ```yaml
 POST /Vitals
 
@@ -69,25 +64,21 @@ heart_rate: 102
 patient: {id: 'pt-1', resourceType: 'Patient'}
 ts: '2019-04-09T12:00:00Z'
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 Get all vitals records for the patient `pt-1`:
 
-{% tabs %}
-{% tab title="get-vitals" %}
+{% code title="get-vitals" %}
 ```yaml
 GET /Vitals?.patient.id=pt-1
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 ### Debugging Extraction
 
 Now we want to transform Vitals to a set of FHIR Observations. We are using template extraction. You can play and debug extraction using `/AlphaSDC/$debug`
 
-{% tabs %}
-{% tab title="debug.yaml" %}
+{% code title="debug.yaml" %}
 ```yaml
 POST /AlphaSDC/$debug
 
@@ -99,11 +90,9 @@ template:
      temp: 
        value: { $path!: [temp] }
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
-{% tabs %}
-{% tab title="response.yaml" %}
+{% code title="response.yaml" %}
 ```yaml
 source: {id: src-1, temp: 36.6}
 template:
@@ -118,8 +107,7 @@ extracted:
       id: temp-src-1
       meta: {sourceId: src-1}
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 **template** it structured as `{ [resourceType] : { [id-prefix] : <resource-template> }}`, for example to generate Observation with prefix tmp you write `{Observation: {tmp: <resource-template>}}`
 
@@ -183,8 +171,7 @@ template:
 
 Now you can test how data is extracted using  `POST /AlphaSDC/<id>/$extract` endpoint:
 
-{% tabs %}
-{% tab title="request" %}
+{% code title="request" %}
 ```yaml
 POST /AlphaSDC/Vitals/$extract
 
@@ -194,8 +181,7 @@ heart_rate: 102
 patient: {id: 'pt-1', resourceType: 'Patient'}
 ts: '2019-04-09T12:00:00Z'
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 You should to see the following response:
 
@@ -218,8 +204,7 @@ action: sdc/create
 
 **sdc/create** action will do extraction and save original custom resource and extracted FHIR resources:
 
-{% tabs %}
-{% tab title="create-vitals" %}
+{% code title="create-vitals" %}
 ```yaml
 POST /Vitals
 
@@ -230,20 +215,17 @@ heart_rate: 102
 patient: {id: 'pt-1', resourceType: 'Patient'}
 ts: '2019-04-09T12:00:00Z'
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 Now we can see the Observations that have been created:
 
-{% tabs %}
-{% tab title="get-observations" %}
+{% code title="get-observations" %}
 ```yaml
 GET /Observation?.subject.id=pt-1
 # or
 GET /Vitals?.patient.id=pt-1
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 {% hint style="info" %}
 Please provide your feedback and use cases for SDC using [github](https://github.com/Aidbox/Issues/issues)

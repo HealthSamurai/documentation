@@ -10,14 +10,12 @@ If you are a happy owner of Aidbox.Enterprise and want to deploy it to kubernete
 
 Let's create a Secret resource with credentials for database. First step is to create an `env-file` like this:
 
-{% tabs %}
-{% tab title="aidboxdb" %}
+{% code title="aidboxdb" %}
 ```bash
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=yoursecretpasswrod
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 Now, let's generate Secret resource:
 
@@ -28,8 +26,7 @@ kubectl create secret generic --dry-run -o yaml aidboxdb \
 
 You will get a file like this which you can put under source control.
 
-{% tabs %}
-{% tab title="db.yaml" %}
+{% code title="db.yaml" %}
 ```yaml
 apiVersion: v1
 data:
@@ -40,8 +37,7 @@ metadata:
   creationTimestamp: null
   name: aidboxdb
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 Create resource in cluster:
 
@@ -54,8 +50,7 @@ kubectl get secrets
 
 Now we are ready to deploy database \(custom PostgreSQL build\):
 
-{% tabs %}
-{% tab title="aidboxdb.yaml" %}
+{% code title="aidboxdb.yaml" %}
 ```yaml
 ---
 # create volume for database
@@ -127,8 +122,7 @@ spec:
   clusterIP: None
   type: ClusterIP
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 Check that database is up and running:
 
@@ -145,8 +139,7 @@ psql:> \q
 
 You have to have access to Aidbox.Enterprise docker image - **AIDBOX\_IMAGE** — something like `us.gcr.io/aidbox2-205511/aidbox-enterprise:0.4.6`
 
-{% tabs %}
-{% tab title="aidbox.yaml" %}
+{% code title="aidbox.yaml" %}
 ```yaml
 ---
 apiVersion: extensions/v1beta1
@@ -217,8 +210,7 @@ spec:
           periodSeconds: 10
           failureThreshold: 30
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 Now we can deploy it:
 

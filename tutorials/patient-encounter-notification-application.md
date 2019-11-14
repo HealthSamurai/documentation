@@ -30,33 +30,28 @@ In this sample application we use Clojure CLI. See [Getting Started](https://clo
 
 In this sample app we will use Clojure Cli - command line tools for running REPL and Clojure apps. In `deps.end` file need specify `aidbox-sdk` as reference to git.
 
-{% tabs %}
-{% tab title="deps.edn" %}
+{% code title="deps.edn" %}
 ```java
 {:deps 
   {aidbox-sdk {:git/url "https://github.com/Aidbox/aidbox-clojure-sdk" 
                :sha "057ebd1a542bb17c7a910283ae942f56a89167f1"}}}
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 And then require `aidbox-sdk` in  the main `mailgun.core` file
 
-{% tabs %}
-{% tab title="mailgun.core" %}
+{% code title="mailgun.core" %}
 ```java
 (ns mailgun.core
   (:require [aidbox.sdk.core :as aidbox]))
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 ### Connect your app with Aidbox
 
 For connecting your application with Aidbox, you need call `aidbox/call` method send them information about location of Aidbox and your application.
 
-{% tabs %}
-{% tab title="src/mailgun/core.clj" %}
+{% code title="src/mailgun/core.clj" %}
 ```java
 (def manifest
   {:id "mailgun-app"
@@ -76,8 +71,7 @@ For connecting your application with Aidbox, you need call `aidbox/call` method 
 (defn -main [] (aidbox/start manifest))
 
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 #### How it works?
 

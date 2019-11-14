@@ -22,75 +22,63 @@ Clients with attribute`.first_party = true`
 
 ### Basic Auth 
 
-{% tabs %}
-{% tab title="basic-client.yaml" %}
+{% code title="basic-client.yaml" %}
 ```yaml
 resourceType: Client
 grant_types: ['basic']
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 ### OAuth 2.0: Client Credentials
 
-{% tabs %}
-{% tab title="client-credentials" %}
+{% code title="client-credentials" %}
 ```yaml
 resourceType: Client
 grant_types: ['basic']
 
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 ### OAuth 2.0: User Password
 
-{% tabs %}
-{% tab title="user-password" %}
+{% code title="user-password" %}
 ```yaml
 resourceType: Client
 id: password-client
 grant_types: ['basic']
 
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 ### OAuth 2.0: Authorization Code
 
-{% tabs %}
-{% tab title="auth-code-client" %}
+{% code title="auth-code-client" %}
 ```yaml
 resourceType: Client
 id: code-client
 grant_types: ['code']
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 ### OAuth 2.0: Implicit
 
-{% tabs %}
-{% tab title="implicit-client" %}
+{% code title="implicit-client" %}
 ```yaml
 resourceType: Client
 id: implicit-client
 grant_types: ['implicit']
 
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 ### SMART on FHIR
 
-{% tabs %}
-{% tab title="smart-client" %}
+{% code title="smart-client" %}
 ```yaml
 resourceType: Client
 id: smart-client
 grant_types: ['basic']
 
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 

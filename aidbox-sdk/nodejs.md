@@ -4,8 +4,7 @@ See code example [here](https://github.com/Aidbox/aidbox-node-sdk/blob/master/ex
 
 Main function of SDK  - `start` receives context \(`ctx` below\), which describes environment variables, application info, registered subscriptions and operations. It consists of two main parts - environment section and manifest.
 
-{% tabs %}
-{% tab title="ctx.js" %}
+{% code title="ctx.js" %}
 ```javascript
 var ctx = {
   env: {
@@ -19,23 +18,20 @@ var ctx = {
   }
 };
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 ### Register Operation
 
 Let's describe new operation - called "report", we will obtain count of Aidbox default resource - Attribute. Our handle will looks like this
 
-{% tabs %}
-{% tab title="handler.js" %}
+{% code title="handler.js" %}
 ```javascript
 const report = (ctx, msg) => 
   ctx
     .query('select count(*) FROM Attribute')
     .then(data => Promise.resolve({ count: data[0].count }));
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 Add it into manifest in operations section and specify `method` - http request method,  `path` - array with path request value, `handler` - link to handler 
 
@@ -43,22 +39,19 @@ Add it into manifest in operations section and specify `method` - http request m
 
 We have an ability to subscribe to updates of resources. For example let's subscribe for `User` resource and print to console new entities.
 
-{% tabs %}
-{% tab title="subscription.js" %}
+{% code title="subscription.js" %}
 ```javascript
 const userSub =(ctx, msg) => {
   console.log('my userSub handler\nctx:', ctx, '\nmsg:', msg);
 }
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 Add register it into manifest in subscriptions section specifies entity and subscription handler
 
 Our context variable with operation and subscription will looks like this
 
-{% tabs %}
-{% tab title="ctx.js" %}
+{% code title="ctx.js" %}
 ```javascript
 var ctx = {
   env: {
@@ -82,13 +75,11 @@ var ctx = {
   }
 };
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 Then pass `ctx` into `start` method and have fun!
 
-{% tabs %}
-{% tab title="index.js" %}
+{% code title="index.js" %}
 ```javascript
 const aidbox = require('aidbox-node-sdk');
 const ctx = require('./src/ctx');
@@ -97,6 +88,5 @@ aidbox.start(ctx)
   .then(() => console.log('connected to server and started'))
   .catch(err => console.log(err.body));
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 

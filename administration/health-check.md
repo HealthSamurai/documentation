@@ -6,8 +6,7 @@ description: Standard endpoint for health check
 
 Aidbox serves  REST endpoint `GET /health` for automated health-checks as described by [RFC](https://inadarei.github.io/rfc-healthcheck/) \(Health Check Response Format for HTTP APIs\):
 
-{% tabs %}
-{% tab title="health-check-request" %}
+{% code title="health-check-request" %}
 ```yaml
 GET /health
 
@@ -35,8 +34,7 @@ checks:
      observedValue: 2, 
      observedUnit: ms}
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 
 

@@ -68,7 +68,35 @@ mapping:
 
 Refer to a mapping which will process your messages with `mapping` attribute. Please note that you don't obligated to keep all of your mapping logic inside a single `Mapping` resource - you can have one as an entrypoint and then dispatch execution to other mappings with `$include` directive.
 
-### Submitting a Message
+### Submitting a Message with Aidbox UI
+
+Go to Aidbox UI and navigate to "HL7 v2" tab in the left menu, then click "New" button in the top right corner.
+
+![](../.gitbook/assets/screenshot-2019-11-14-at-18.20.41.png)
+
+Copy-paste a following test message to the "New Message" form:
+
+```yaml
+MSH|^~\&|AccMgr|1|||20151015200643||ADT^A01|599102|P|2.3|foo||
+EVN|A01|20151010045502|||||
+PID|1|010107111^^^MS4^PN^|1609220^^^MS4^MR^001|1609220^^^MS4^MR^001|BARRETT^JEAN^SANDY^^||19440823|F||C|STRAWBERRY AVE^FOUR OAKS LODGE^ALBUKERKA^CA^98765^USA^^||(111)222-3333||ENG|W|CHR|111155555550^^^MS4001^AN^001|123-22-1111||||OKLAHOMA|||||||N
+PV1|1|I|PREOP^101^1^1^^^S|3|||37^REID^TIMOTHY^Q^^^^^^AccMgr^^^^CI|||01||||1|||37^REID^TIMOTHY^Q^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253||||||
+GT1|1|010107127^^^MS4^PN^|BARRETT^JEAN^S^^|BARRETT^LAWRENCE^E^^|2820 SYCAMORE AVE^TWELVE OAKS LODGE^MONTROSE^CA^91214^USA^|(818)111-3361||19301013|F||A|354-22-1840||||RETIRED|^^^^00000^|||||||20130711|||||0000007496|W||||||||Y|||CHR||||||||RETIRED||||||C
+IN1|1|0423|MEDICARE IP|^^^^     |||||||19951001|||MCR|BARRETT^JEAN^S^^|A|19301013|2820 SYCAMORE AVE^TWELVE OAKS LODGE^MONTROSE^CA^91214^USA^^^|||1||||||||||||||354221840A|||||||F|^^^^00000^|N||||010107127
+IN2||354221840|0000007496^RETIRED|||354221840A||||||||||||||||||||||||||||||Y|||CHR||||W|||RETIRED|||||||||||||||||(818)249-3361||||||||C
+IN1|2|0423|2304|AETNA PPO|PO BOX 14079^PO BOX 14079^LEXINGTON^KY^40512|||081140101400020|RETIRED|||20130101|||COM|BARRETT^JEAN^S^^|A|19301013|2820 SYCAMORE AVE^TWELVE OAKS LODGE^MONTROSE^CA^91214^USA^^^|||2||||||||||||||811001556|||||||F|^^^^00000^|N||||010107127
+IN2||354221840|0000007496^RETIRED|||||||||||||||||||||||||||||||||Y|||CHR||||W|||RETIRED|||||||||||||||||(818)249-3361||||||||C
+```
+
+Pick a Hl7v2Config instance using radio button and click a "Send" button:
+
+![](../.gitbook/assets/screenshot-2019-11-14-at-18.26.05.png)
+
+You'll see a newly created message with additional info like status, parsed structure, outcome, etc:
+
+![](../.gitbook/assets/screenshot-2019-11-14-at-18.50.57.png)
+
+### Submitting a Message with REST API
 
 To submit a new HL7 v2 Message, just create it with a REST API:
 

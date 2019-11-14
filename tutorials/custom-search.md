@@ -149,16 +149,14 @@ First of all, let's try to obtain a list of patients. Access the `DB Console` of
 
 ![DB Console](../.gitbook/assets/screenshot-2018-11-27-19.41.13.png)
 
-{% tabs %}
-{% tab title="patients.sql" %}
+{% code title="patients.sql" %}
 ```sql
 SELECT
 id, resource_type, resource
 FROM 
 patient;
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 | id | resource\_type | resource |
 | :--- | :--- | :--- |
@@ -167,8 +165,7 @@ patient;
 
 Next, we want to add patient **id** and **resource\_type** into **resource**.
 
-{% tabs %}
-{% tab title="patients.sql" %}
+{% code title="patients.sql" %}
 ```sql
 SELECT
 id, resource_type, 
@@ -179,8 +176,7 @@ id, resource_type,
 FROM 
 patient;
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 | id | resource\_type | resource |
 | :--- | :--- | :--- |
@@ -193,8 +189,7 @@ Curious, how to work with JSON in PostgreSQL? Join our community [chat](https://
 
 Also, we can obtain a list of encounters for each patient:
 
-{% tabs %}
-{% tab title="patients-encounters.sql" %}
+{% code title="patients-encounters.sql" %}
 ```sql
 SELECT
 p.id AS patient_id,
@@ -205,8 +200,7 @@ patient AS p
 JOIN encounter AS e
 ON p.id = e.resource->'subject'->>'id';
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 | patient\_id | encounter\_id | encounter |
 | :--- | :--- | :--- |
@@ -216,8 +210,7 @@ ON p.id = e.resource->'subject'->>'id';
 
 Our next step will be obtaining aggregated data by patients.
 
-{% tabs %}
-{% tab title="patient-encounters.sql" %}
+{% code title="patient-encounters.sql" %}
 ```sql
 SELECT
 p.id AS patient_id,
@@ -228,8 +221,7 @@ JOIN encounter AS e
 ON p.id = e.resource->'subject'->>'id'
 GROUP BY p.id;
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 | patient\_id | encounters |
 | :--- | :--- |
@@ -238,8 +230,7 @@ GROUP BY p.id;
 
 Looks good but don't have information about encounter id's.
 
-{% tabs %}
-{% tab title="patients-encounters-with-ids.sql" %}
+{% code title="patients-encounters-with-ids.sql" %}
 ```sql
 SELECT
 p.id AS patient_id,
@@ -263,8 +254,7 @@ JOIN (SELECT id,
 ON p.id = e.resource->'subject'->>'id'
 GROUP BY p.id;
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 | patient\_id | encounters |
 | :--- | :--- |
@@ -273,8 +263,7 @@ GROUP BY p.id;
 
 Additionally, we added resourceType and id to patient resource but didn't use it yet. Let's put encounters to patient resource and take only one patient by specified id.
 
-{% tabs %}
-{% tab title="patients-with-encounters-and-ids.sql" %}
+{% code title="patients-with-encounters-and-ids.sql" %}
 ```sql
 SELECT
 p.id AS id,
@@ -299,8 +288,7 @@ ON p.id = e.resource->'subject'->>'id'
 GROUP BY p.id, p.resource
 HAVING p.id = 'patient1';
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 The result should look like the following table \(but without pretty printing\):
 
