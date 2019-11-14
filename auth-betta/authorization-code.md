@@ -80,7 +80,7 @@ With this code and client secret you can request for  Access Token with `grant_t
 {% tabs %}
 {% tab title="json-request" %}
 ```yaml
-POST /auth/tokenGet Access Token
+POST /auth/token
 Content-Type: application/json
 {
  "client_id": "web-app",
