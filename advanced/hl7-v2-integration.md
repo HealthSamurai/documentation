@@ -207,5 +207,5 @@ Replace `xxxxxxxxxx` in the command above with a string returned by this command
 
 ### Using HAPI TestPanel to send messages with MLLP
 
-Once `hl7proxy` is up and running, you can use [HAPI TestPanel](https://hapifhir.github.io/hapi-hl7v2/hapi-testpanel/) to send sample HL7 v2 messages. TestPanel shouldn't report any errors on message delivery. `hl7proxy` output should contain information about received message and `Sent to Aidbox: 201 Created` line which indicates successful delivery.
+Once `hl7proxy` is up and running, you can use [HAPI TestPanel](https://hapifhir.github.io/hapi-hl7v2/hapi-testpanel/) to send sample HL7 v2 messages. Make sure that TestPanel doesn't report any errors on message delivery. `hl7proxy` output should contain information about every received message and log line`Sent to Aidbox: 201 Created` indicates a successful delivery.
 
