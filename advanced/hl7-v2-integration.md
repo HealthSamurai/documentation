@@ -148,11 +148,62 @@ config:
   id: default
 ```
 
-### Using hl7proxy
+### Converting MLLP Traffic
 
 Usually HL7 messages are transmitted using [MLLP protocol](https://www.hl7.org/implement/standards/product_brief.cfm?product_id=55). To convert MLLP traffic to HTTP requests there is an open-source `hl7proxy` utility by Health Samurai. It's [available on GitHub](https://github.com/HealthSamurai/hl7proxy) and there are [pre-compiled binaries](https://github.com/HealthSamurai/hl7proxy/releases) for major operating systems and architectures.
 
 Follow `hl7proxy`'s [README](https://github.com/HealthSamurai/hl7proxy) for installation and usage instructions.
+
+Most likely you'll want to authenticate `hl7proxy` requests with basic auth using Aidbox's Client resource. Also it's a good idea to forbid everything except for POSTing new Hl7Messages. You can do both things by submitting following Bundle. It will create a Client resource and AccessPolicy for it.
+
+```yaml
+POST /
+Content-Type: text/yaml
+
+resourceType: Bundle
+type: transaction
+entry:
+  - resource:
+      resourceType: Client
+      id: hl7proxy
+      grant_types: ["basic"]
+      secret: <PUT SECRET STRING HERE>
+    request:
+      url: /Client/hl7proxy
+      method: PUT
+  - resource:
+      resourceType: AccessPolicy
+      id: allow-hl7proxy-to-create-hl7v2message
+      link:
+        - id: hl7proxy
+          resourceType: Client
+      engine: json-schema
+      schema:
+        type: object
+        required: ["uri", "request-method"]
+        properties:
+          uri:
+            const: "/Hl7v2Message"
+          request-method:
+            const: post
+    request:
+      url: /AccessPolicy/allow-hl7proxy-to-create-hl7v2message
+      method: PUT
+```
+
+To authorise `hl7proxy` requests it needs to pass an `Authorization` header with every request to Aidbox. You can provide a value for this header with `-header` command-line flag:
+
+```yaml
+./hl7proxy -port 5000 -config default -url https://your-box.edge.aidbox.app/ -header "Authorization: Basic xxxxxxxxxxxxx"
+```
+
+To calculate a value for `Authorization` header you need to do `base64encode(clientId + ":" clientSecret)`. You can do it in bash:
+
+```yaml
+echo -n "hl7proxy:<PUT SECRET STRING HERE>" | base64
+```
+
+Replace `xxxxxxxxxx` in the command above with a string returned by this command.
 
 ### Using HAPI TestPanel to send test messages
 
