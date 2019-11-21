@@ -90,9 +90,9 @@ IN1|2|0423|2304|OMNICARE OPP|PO BOX 15033^PO BOX 15033^PARSINGTON^NY^30222|||087
 IN2||353333833|0000003333^RETIRED|||||||||||||||||||||||||||||||||Y|||CHR||||W|||RETIRED|||||||||||||||||(818)333-3333||||||||C
 ```
 
-Pick a Hl7v2Config instance using radio button and click a "Send" button:
+Pick a Hl7v2Config instance using radio button and click a "Create" button:
 
-![](../.gitbook/assets/screenshot-2019-11-14-at-18.26.05.png)
+![](../.gitbook/assets/screenshot-2019-11-21-at-18.04.04.png)
 
 You'll see a newly created message with additional info like status, parsed structure, outcome, etc:
 
