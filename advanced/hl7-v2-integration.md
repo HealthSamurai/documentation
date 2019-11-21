@@ -8,8 +8,6 @@ description: >-
 
 {% embed url="https://www.youtube.com/watch?v=kYQg0K-7RNI" caption="HL7 Integration Screencast" %}
 
-{% embed url="https://www.youtube.com/watch?v=kYQg0K-7RNI" caption="HL7 Integration Screencast" %}
-
 ## Introduction
 
 In 2019 HL7 v2 is still most widely-used standard for healthcare IT systems integration. If you're developing a software which receives information from other systems within a hospital/clinic, most likely it will be HL7 v2 messages.
