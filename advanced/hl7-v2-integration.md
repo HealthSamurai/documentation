@@ -6,7 +6,7 @@ description: >-
 
 # HL7 v2 Integration
 
-{% embed url="https://www.youtube.com/watch?v=kYQg0K-7RNI" caption="HL7 Integration Screencast" %}
+{% embed url="https://www.youtube.com/watch?v=iSDX4UZpYO4" caption="Video version of this tutorial" %}
 
 ## Introduction
 
