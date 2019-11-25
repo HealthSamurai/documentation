@@ -47,3 +47,13 @@ You can select or exclude nested elements using dot separated path to element:
 GET /Patient?_elements=name.given,name.family
 ```
 
+### Elements and \(ref\)includes
+
+ \_elements parameter is not applied to included resources. If you want to filter included resources elements - prefix element path with resourceType. For example:
+
+```yaml
+GET /Encounter?_include=patient&_elements=id,type,Patient.name
+```
+
+Result will contain id and type elements from Encounter and  name from Patient. Prefix with `-` will  exclude elements \(for example `-Patient.identifgier` - will exclude identifier from patients\)
+
