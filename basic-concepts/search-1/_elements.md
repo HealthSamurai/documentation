@@ -55,5 +55,5 @@ GET /Patient?_elements=name.given,name.family
 GET /Encounter?_include=patient&_elements=id,type,Patient.name
 ```
 
-Result will contain id and type elements from Encounter and  name from Patient. Prefix with `-` will  exclude elements \(for example `-Patient.identifgier` - will exclude identifier from patients\)
+Result will contain id and type elements from Encounter and  name from Patient. Prefix with `-` will  exclude elements \(for example `-Patient.identifier` - will exclude identifier from patients\)
 
