@@ -20,8 +20,6 @@ GET /Patient?_revinclude=Condition:patient:Patient
 GET /Patient?_with=Condition.patient
 ```
 
-
-
 We have an ability to include linked entities into result. For example, we want to get all encounters and patients related to them. Structure of the request will be: `_include=<reference search parameter> or _include=<Resource>:<referencesearch parameter> or _include=*`
 
 ```javascript
