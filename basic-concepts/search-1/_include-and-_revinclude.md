@@ -4,6 +4,24 @@ description: Include associated resources
 
 # \_include & \_revinclude
 
+Client can add related resources to search result using **include,** **revinclude**  and **with** parameters.  In ORM frameworks this feature sometimes is called "associations eager loading". This technique can save additional roundtrips from client to server and potential N+1 problem.
+
+For example you may want to get encounters with patients:
+
+```yaml
+GET /Encounter?_include=Encounter:subject:Patient
+GET /Encounter?_with=subject{Patient}
+```
+
+Or patients with conditions:
+
+```yaml
+GET /Patient?_revinclude=Condition:patient:Patient
+GET /Patient?_with=Condition.patient
+```
+
+
+
 We have an ability to include linked entities into result. For example, we want to get all encounters and patients related to them. Structure of the request will be: `_include=<reference search parameter> or _include=<Resource>:<referencesearch parameter> or _include=*`
 
 ```javascript
