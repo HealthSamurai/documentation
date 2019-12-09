@@ -180,5 +180,11 @@ RequestGroup?_include=patient,author
  => Organization?_include:recurse=partof:Organization
 ```
 
+### \(rev\)include and \_elements
 
+You can use extended [elements](_elements.md#elements-and-rev-includes) parameter to control elements of \(rev\)included resources by prefixing element with resource type:
+
+```yaml
+GET /Encounter?_include=patient&_element=id,status,Patient.name,Patient.birthDate
+```
 
