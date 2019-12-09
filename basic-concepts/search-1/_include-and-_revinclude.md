@@ -104,16 +104,16 @@ Here is [discussion](https://chat.fhir.org/#narrow/stream/179166-implementers/to
 
 ### Recursive \(rev\)includes
 
-For self-referencing resources you can specify `:recursive` modifier or `:iterate` modifier with **source-type=target-type** to recursively get all children or parents:
+For self-referencing resources you can specify `:recurse` modifier or `:iterate` modifier with **source-type=target-type** to recursively get all children or parents:
 
 ```yaml
-GET /Observation?_include:recursive=has-component
+GET /Observation?_include:recurse=has-component
 GET /Observation?_include:iterate=Observation:has-component:Observation
 # get all children
-GET /Organization?_revinclude:recursive=partof
+GET /Organization?_revinclude:recurse=partof
 GET /Organization?_revinclude:iterate=Organization:partof:Organization
 # get all parents
-GET /Organization?_include:recursive=partof
+GET /Organization?_include:recurse=partof
 GET /Organization?_include:iterate=Organization:partof:Organization
 ```
 
@@ -149,7 +149,7 @@ Encounter?_with=patient{Patient{organization}}
 Encounter?_with=patient{Patient{organization{Organization{partof:recur}}
 => Encounter?_include=Encounter:patient:Patient&
              _include(:iterate)=Patient:organization
-             _include(:recursive)=Organization:parto-of           
+             _include(:recurse)=Organization:parto-of           
 ---             
 Patient?_with=organization,Condition.patient,MedicationStatement.patient{medication}
 => Patient?_include=Patient:organization&
@@ -177,7 +177,7 @@ RequestGroup?_include=patient,author
     &_revinclude:iterate=AllergyIntolerance:patient
  ---
  Organization?partof:recur{Organization}
- => Organization?_include:recursive=partof:Organization
+ => Organization?_include:recurse=partof:Organization
 ```
 
 
