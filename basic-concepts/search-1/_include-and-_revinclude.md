@@ -4,7 +4,7 @@ description: Include associated resources
 
 # \_include & \_revinclude
 
-Client can add related resources to search result using **include,** **revinclude**  and **with** parameters.  In ORM frameworks this feature sometimes is called "associations eager loading". This technique can save extra roundtrips from client to server and potential N+1 problem.
+Client can add related resources to search result using **\(rev\)include**  and **with** parameters.  In ORM frameworks this feature sometimes is called "associations eager loading". This technique can save extra roundtrips from client to server and potential N+1 problem.
 
 For example you may want to get encounters with patients \(each encounter refers to\):
 
@@ -98,6 +98,10 @@ To save some keystrokes you can group \_\(rev\)include params on same level as a
 GET /RequestGroup?_include=target,patient:Patient,author:PractitionerRole
 ```
 
+{% hint style="warning" %}
+Here is [discussion](https://chat.fhir.org/#narrow/stream/179166-implementers/topic/About.20_include.3Aiterate) in FHIR chat about `:iterate` ambiguity. We appreciate your opinion!
+{% endhint %}
+
 ### Recursive \(rev\)includes
 
 For self-referencing resources you can specify `:recursive` modifier or `:iterate` modifier with **source-type=target-type** to recursively get all children or parents:
@@ -115,9 +119,7 @@ GET /Organization?_include:iterate=Organization:partof:Organization
 
 ### Using \_with parameter
 
-FHIR \(rev\)include syntax is non-DRY and sometimes confusing.
-
-We introduced `_with` parameter - simple \(aka GraphQL\) DSL to describe nested includes.
+FHIR \(rev\)include syntax is non-DRY and sometimes confusing. We introduced `_with` parameter - simple \(aka GraphQL\) DSL to describe includes in a more compact way.
 
 ```javascript
 expr = param-expr (space param-expr)*
@@ -144,7 +146,7 @@ Encounter?_with=patient{Patient{organization}}
 => Encounter?_include=Encounter:patient:Patient&
              _include(:iterate)=Patient:organization
 ---            
-Encounter?_with=patient{Patient{organization{Organization{part-of:recur}}
+Encounter?_with=patient{Patient{organization{Organization{partof:recur}}
 => Encounter?_include=Encounter:patient:Patient&
              _include(:iterate)=Patient:organization
              _include(:recursive)=Organization:parto-of           
@@ -177,4 +179,6 @@ RequestGroup?_include=patient,author
  Organization?partof:recur{Organization}
  => Organization?_include:recursive=partof:Organization
 ```
+
+
 
