@@ -25,19 +25,19 @@ GET /Patient?_with=Encounter.subject
 Syntax for include:
 
 ```text
- _include(:reverse|:iterate)=(source-resource-type)?:search-param:(target-resource-type)?
+ _include(:reverse|:iterate)=(source-type)?:search-param:(target-type)?
 ```
 
-**search-param** is a name of search parameter  with type `reference` defined for **source-resource-type**.
+**search-param** is a name of search parameter  with type `reference` defined for **source-type**.
 
-This query can be interpreted as: for **source-resource-type** resources in result include all **target-resource-type resources,** which are referenced by **search-param**. If you skip **source-resource-type** - it will be set to resource-type you are searching for:
+This query can be interpreted as: for **source-type** resources in result include all **target-type resources,** which are referenced by **search-param**. If you skip **source-type** - it will be set to resource-type you are searching for:
 
 ```yaml
 GET /Encounter?_include=subject:Patient 
 => GET /Encounter?_include=Encounter:subject:Patient
 ```
 
-**target-resource-type** is optional for not chained includes and means all referenced resource-types"
+**target-type** is optional for not chained includes and means all referenced resource-types"
 
 ```yaml
 GET /Encounter?_include=subject 
@@ -45,7 +45,7 @@ GET /Encounter?_include=subject
 ```
 
 {% hint style="warning" %}
-For more explicit interpretation and for performance reason, client has to provide target-resource-type for chained includes!
+For more explicit interpretation and for performance reason, client has to provide target-type for chained includes!
 {% endhint %}
 
 ### **\_revinclude**
@@ -53,7 +53,7 @@ For more explicit interpretation and for performance reason, client has to provi
 Syntax for **revinclude**
 
 ```text
-_revinclude(:reverse|:iterate)=(source-resource-type)?:search-param:(target-resource-type)?
+_revinclude(:reverse|:iterate)=(source-type)?:search-param:(target-type)?
 ```
 
 Interpretation**:**  include all **source-type** resources, which refers **target-type** resources by **search-param** in result set.
@@ -89,7 +89,7 @@ GET /RequestGroup?
 ```
 
 {% hint style="warning" %}
-Client have to always specify **target-resource-type** and **source-resource-type** for intermediate \(rev\)includes, because this explicit and allows Aidbox to prepare dependency graph before query!
+Client have to always specify **target-type** and **source-type** for intermediate \(rev\)includes, because this explicit and allows Aidbox to prepare dependency graph before query!
 {% endhint %}
 
 To save some keystrokes you can group \_\(rev\)include params on same level as a comma separated list:
