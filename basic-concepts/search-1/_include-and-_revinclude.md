@@ -66,9 +66,9 @@ You can include \(but not revinclude\) all referenced resources using **\*.** Th
 GET /Encounter?_include=*
 ```
 
-### Chained includes and revincludes
+### Chained \(rev\)includes
 
-Client can chain \(rev\)includes to load next level of references.  \(Rev\)includes should go in a proper loading order. In FHIR spec for chained includes client have to specify `:iterate` modifier - in Aidbox this modifier is completely optional \(it's better just skip it\).
+Client can chain \(rev\)includes to load next level of references.  \(Rev\)includes should go in a proper loading order. In FHIR spec for chained includes client has to specify `:iterate` modifier - in Aidbox this modifier is  **optional** \(it's better skip it\).
 
 ```yaml
 GET /RequestGroup?
@@ -89,12 +89,92 @@ GET /RequestGroup?
 ```
 
 {% hint style="warning" %}
-Client have to always specify **target-resource-type** and **source-resource-type** for intermediate \(rev\)includes, because this explicit and allow Aidbox to prepare dependency graph before query!
+Client have to always specify **target-resource-type** and **source-resource-type** for intermediate \(rev\)includes, because this explicit and allows Aidbox to prepare dependency graph before query!
 {% endhint %}
 
-### Recursive includes and revincludes
+To save some keystrokes you can group \_\(rev\)include params on same level as a comma separated list:
+
+```yaml
+GET /RequestGroup?_include=target,patient:Patient,author:PractitionerRole
+```
+
+### Recursive \(rev\)includes
+
+For self-referencing resources you can specify `:recursive` modifier or `:iterate` modifier with **source-type=target-type** to recursively get all children or parents:
+
+```yaml
+GET /Observation?_include:recursive=has-component
+GET /Observation?_include:iterate=Observation:has-component:Observation
+# get all children
+GET /Organization?_revinclude:recursive=partof
+GET /Organization?_revinclude:iterate=Organization:partof:Organization
+# get all parents
+GET /Organization?_include:recursive=partof
+GET /Organization?_include:iterate=Organization:partof:Organization
+```
 
 ### Using \_with parameter
 
+FHIR \(rev\)include syntax is non-DRY and sometimes confusing.
 
+We introduced `_with` parameter - simple \(aka GraphQL\) DSL to describe nested includes.
+
+```javascript
+expr = param-expr (space param-expr)*
+param-expr = param ( '{' typed-ref-expr (space typed-ref-expr)* '}')?
+typed-ref-expr = resource-type | resource-type '{' expr '}'
+param = resource-type '.' param-name  | param-name
+space = ',' | ' ' | '\n'
+param-name = ALPAHNUM
+```
+
+Examples:
+
+```yaml
+Encounter?_with=patient
+=> Encounter?_include=Encounter:patient
+---
+Encounter?_with=patient,participant
+=> Encounter?_include=Encounter:patient,Encounter:participant
+---
+Encounter?_with=patient{Patient}
+=> Encounter?_include=Encounter:patient:Patient
+---
+Encounter?_with=patient{Patient{organization}}
+=> Encounter?_include=Encounter:patient:Patient&
+             _include(:iterate)=Patient:organization
+---            
+Encounter?_with=patient{Patient{organization{Organization{part-of:recur}}
+=> Encounter?_include=Encounter:patient:Patient&
+             _include(:iterate)=Patient:organization
+             _include(:recursive)=Organization:parto-of           
+---             
+Patient?_with=organization,Condition.patient,MedicationStatement.patient{medication}
+=> Patient?_include=Patient:organization&
+           _revinclude=Condition:patient:Patient
+           _revinclude=MedicationStatement:patient:Patient
+           _include=MedicationStatement:medication
+---             
+RequestGroup?_with=
+ author
+ patient{Patient{organization,AllergyIntolerance.patient}}
+ target{
+  MedicationRequest{
+    medication
+    intended-performer{Organization}
+    requester{PractitionerRole{practitioner,location}}}}
+=>
+RequestGroup?_include=patient,author
+    &_include:iterate=RequestGroup:target:MedicationRequest
+    &_include:iterate=MedicationRequest:medication
+    &_include:iterate=MedicationRequest:requester:PractitionerRole
+    &_include:iterate=MedicationRequest:intended-performer:Organization
+    &_include:iterate=PractitionerRole:practitioner
+    &_include:iterate=Patient:organization
+    &_include:iterate=PractitionerRole:location
+    &_revinclude:iterate=AllergyIntolerance:patient
+ ---
+ Organization?partof:recur{Organization}
+ => Organization?_include:recursive=partof:Organization
+```
 
