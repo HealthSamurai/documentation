@@ -60,7 +60,11 @@ Interpretation**:**  include all **source-type** resources, which refers **targe
 
 ### **\_include=\***
 
-You can include \(but not revinclude\) all referenced resources using **\*.** This considered _bad practice,_ because it's too implicit. This feature is only implemented because FHIR specification. Please avoid to use it! 
+You can include all resources referenced from search result using **\*.** This considered _bad practice,_ because it's too implicit. This feature is only implemented because FHIR specification. Please avoid to use it! 
+
+{% hint style="warning" %}
+\_include=\* could not be used as part for chained \(rev\)includes!
+{% endhint %}
 
 ```javascript
 GET /Encounter?_include=*
