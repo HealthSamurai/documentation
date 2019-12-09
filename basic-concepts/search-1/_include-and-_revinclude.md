@@ -4,123 +4,97 @@ description: Include associated resources
 
 # \_include & \_revinclude
 
-Client can add related resources to search result using **include,** **revinclude**  and **with** parameters.  In ORM frameworks this feature sometimes is called "associations eager loading". This technique can save additional roundtrips from client to server and potential N+1 problem.
+Client can add related resources to search result using **include,** **revinclude**  and **with** parameters.  In ORM frameworks this feature sometimes is called "associations eager loading". This technique can save extra roundtrips from client to server and potential N+1 problem.
 
-For example you may want to get encounters with patients:
+For example you may want to get encounters with patients \(each encounter refers to\):
 
 ```yaml
 GET /Encounter?_include=Encounter:subject:Patient
 GET /Encounter?_with=subject{Patient}
 ```
 
-Or patients with conditions:
+Or patients with conditions \(i.e. by reverse reference\):
 
 ```yaml
-GET /Patient?_revinclude=Condition:patient:Patient
-GET /Patient?_with=Condition.patient
+GET /Patient?_revinclude=Encounter:subject:Patient
+GET /Patient?_with=Encounter.subject
 ```
 
-We have an ability to include linked entities into result. For example, we want to get all encounters and patients related to them. Structure of the request will be: `_include=<reference search parameter> or _include=<Resource>:<referencesearch parameter> or _include=*`
+### \_include
 
-```javascript
-GET /Encounter?_include=subject
+Syntax for include:
+
+```text
+ _include(:reverse|:iterate)=(source-resource-type)?:search-param:(target-resource-type)?
 ```
 
-```javascript
-GET /Encounter?_include=Encounter:subject
+**search-param** is a name of search parameter  with type `reference` defined for **source-resource-type**.
+
+This query can be interpreted as: for **source-resource-type** resources in result include all **target-resource-type resources,** which are referenced by **search-param**. If you skip **source-resource-type** - it will be set to resource-type you are searching for:
+
+```yaml
+GET /Encounter?_include=subject:Patient 
+=> GET /Encounter?_include=Encounter:subject:Patient
 ```
 
-Or for specific **id:**
+**target-resource-type** is optional for not chained includes and means all referenced resource-types"
 
-```javascript
-GET /Encounter?_id=enc1&_include=Encounter:subject
+```yaml
+GET /Encounter?_include=subject 
+=> GET /Encounter?_include=subject:*
 ```
 
-You can get all resources referenced from result of your search using `*` as parameter value:
+{% hint style="warning" %}
+For more explicit interpretation and for performance reason, client has to provide target-resource-type for chained includes!
+{% endhint %}
+
+### **\_revinclude**
+
+Syntax for **revinclude**
+
+```text
+_revinclude(:reverse|:iterate)=(source-resource-type)?:search-param:(target-resource-type)?
+```
+
+Interpretation**:**  include all **source-type** resources, which refers **target-type** resources by **search-param** in result set.
+
+### **\_include=\***
+
+You can include \(but not revinclude\) all referenced resources using **\*.** This considered _bad practice,_ because it's too implicit. This feature is only implemented because FHIR specification. Please avoid to use it! 
 
 ```javascript
 GET /Encounter?_include=*
 ```
 
-Reverse include  is specified as a `_revinclude`
+### Chained includes and revincludes
 
-```javascript
-GET /Patient?_id=patient1&_revinclude=Encounter:subject
-```
+Client can chain \(rev\)includes to load next level of references.  \(Rev\)includes should go in a proper loading order. In FHIR spec for chained includes client have to specify `:iterate` modifier - in Aidbox this modifier is completely optional \(it's better just skip it\).
 
-We have additional modifier \(for \_include __and __\_revinclude\) `:logical` for search by identifier:
-
-```javascript
-GET /Patient?_id=patient1&_revinclude:logical=Encounter:subject
-```
-
-Ascending order is used by default but we can change this behavior. To sort by descending order, add`-` before a parameter or specify `:asc/:desc` after search parameter.
-
-We have an access to attributes of a resource through `.` 
-
-```javascript
-GET /Organization?_sort=-name
-```
-
-It is better described by resulting SQL:
-
-```sql
-SELECT "patient".* 
-FROM "patient" 
-WHERE ("patient".resource#>>'{name,0,given}'in ('Nikolai'));
-```
-
-```javascript
-GET /Organization?_sort:desc=name
-```
-
-As we know, not all attributes can be used as search parameters of a resource but in **\_sort** we have an ability to use them via `.` notation.
-
-For example, with the following request we will receive an error:
-
-{% tabs %}
-{% tab title="Request" %}
-```javascript
-GET /Encounter?_sort=-id
-```
-{% endtab %}
-
-{% tab title="Response" %}
 ```yaml
-# Status: 500
-
-resourceType: OperationOutcome
-...
-No search parameter for Encounter.id
-```
-{% endtab %}
-{% endtabs %}
-
-We can avoid it with such type of request:
-
-{% tabs %}
-{% tab title="Request" %}
-```javascript
-GET /Encounter?_sort=-.id
-```
-{% endtab %}
-
-{% tab title="Response" %}
-```yaml
-# Status 200
-
-resourceType: Bundle
-entry:
-...
-```
-{% endtab %}
-{% endtabs %}
-
-Also, we can use several fields for sorting, for this we need to add them through `,` . Priority will be determined from left to right.
-
-```javascript
-GET /Encounter?_sort=status,-.id
+GET /RequestGroup?
+  _include=target&
+  _include=patient:Patient&
+    _include=Patient:organization&
+    _revinclude=AllergyIntolerance:patient:Patient&
+    _revinclude=Condition:subject:Patient&
+  _include=author:PractitionerRole&
+    _include=PractitionerRole:practitioner:Pracitioner&
+    _include=PractitionerRole:location&
+    _revinclude=Contract:subject:PractitionerRole&
+  _include=RequestGroup:target:MedicationRequest&
+      _include=MedicationRequest:medication&
+      _include=MedicationRequest:requester:PractitionerRole&
+      _include=MedicationRequest:intended-performer:Organization&
+      _include=MedicationRequest:intended-performer:Organization
 ```
 
-In the example above, we search for all encounters and sort them by the status parameter in cases of equality, the sorting will occur by the id field in the reverse order.
+{% hint style="warning" %}
+Client have to always specify **target-resource-type** and **source-resource-type** for intermediate \(rev\)includes, because this explicit and allow Aidbox to prepare dependency graph before query!
+{% endhint %}
+
+### Recursive includes and revincludes
+
+### Using \_with parameter
+
+
 
