@@ -123,9 +123,9 @@ FHIR \(rev\)include syntax is non-DRY and sometimes confusing. We introduced `_w
 
 ```javascript
 expr = param-expr (space param-expr)*
-param-expr = param ( '{' typed-ref-expr (space typed-ref-expr)* '}')?
+param-expr = param  ( '{' typed-ref-expr (space typed-ref-expr)* '}')?
 typed-ref-expr = resource-type | resource-type '{' expr '}'
-param = resource-type '.' param-name  | param-name
+param = resource-type '.' param-name  ':recur' ? | param-name ':recur' ?
 space = ',' | ' ' | '\n'
 param-name = ALPAHNUM
 ```
