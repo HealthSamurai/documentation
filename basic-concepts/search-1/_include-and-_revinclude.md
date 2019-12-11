@@ -72,7 +72,7 @@ GET /Encounter?_include=*
 
 ### Chained \(rev\)includes
 
-Client can chain \(rev\)includes to load next level of references.  \(Rev\)includes should go in a proper loading order. By the FHIR specification, for chained includes a client has to specify the `:iterate` modifier. However, in Aidbox this modifier is **optional** \(it's better to skip it\).
+Client can chain \(rev\)includes to load next level of references.  \(Rev\)includes should go in a proper loading order. By the FHIR specification, for chained includes a client must specify the `:iterate` modifier. However, in Aidbox this modifier is **optional** \(it's better to skip it\).
 
 ```yaml
 GET /RequestGroup?
@@ -93,7 +93,7 @@ GET /RequestGroup?
 ```
 
 {% hint style="warning" %}
-Client has to always specify **target-type** and **source-type** for intermediate \(rev\)includes because this is explicit and allows Aidbox to prepare dependency graph before query!
+Client must always specify **target-type** and **source-type** for intermediate \(rev\)includes because this is explicit and allows Aidbox to prepare dependency graph before query!
 {% endhint %}
 
 To save some keystrokes, you can group \_\(rev\)include params of the same level as a comma separated list:
