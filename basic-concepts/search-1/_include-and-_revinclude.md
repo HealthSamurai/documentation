@@ -121,6 +121,10 @@ GET /Organization?_include:recurse=partof
 GET /Organization?_include:iterate=Organization:partof:Organization
 ```
 
+### Logical \(rev\)includes
+
+TBD
+
 ### Using the \_with parameter
 
 FHIR \(rev\)include syntax is non-DRY and sometimes confusing. We introduced the `_with` parameter that is a simple \(aka GraphQL\) DSL to describe includes in a more compact way.
@@ -129,7 +133,7 @@ FHIR \(rev\)include syntax is non-DRY and sometimes confusing. We introduced the
 expr = param-expr (space param-expr)*
 param-expr = param  ( '{' typed-ref-expr (space typed-ref-expr)* '}')?
 typed-ref-expr = resource-type | resource-type '{' expr '}'
-param = resource-type '.' param-name  ':recur' ? | param-name ':recur' ?
+param = resource-type '.' param-name  (':recur' | ':logical') ? | param-name (':recur' | ':logical') ?
 space = ',' | ' ' | '\n'
 param-name = ALPAHNUM
 ```
