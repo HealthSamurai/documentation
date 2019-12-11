@@ -4,16 +4,16 @@ description: Include associated resources
 
 # \_include & \_revinclude
 
-Client can add related resources to search result using **\(rev\)include**  and **with** parameters.  In ORM frameworks this feature sometimes is called "associations eager loading". This technique can save extra roundtrips from client to server and potential N+1 problem.
+Client can add related resources to a search result using the **\(rev\)include** and **with** parameters.  In ORM frameworks, such feature is sometimes called an "associations eager loading". This technique can save extra roundtrips from client to server and potential N+1 problem.
 
-For example you may want to get encounters with patients \(each encounter refers to\):
+For example, you may want to get encounters with patients \(each encounter refers to\):
 
 ```yaml
 GET /Encounter?_include=Encounter:subject:Patient
 GET /Encounter?_with=subject{Patient}
 ```
 
-Or patients with conditions \(i.e. by reverse reference\):
+Or patients with conditions \(i.e. by a reverse reference\):
 
 ```yaml
 GET /Patient?_revinclude=Encounter:subject:Patient
@@ -28,16 +28,16 @@ Syntax for include:
  _include(:reverse|:iterate)=(source-type)?:search-param:(target-type)?
 ```
 
-**search-param** is a name of search parameter  with type `reference` defined for **source-type**.
+**search-param** is a name of search parameter with the type `reference` defined for **source-type**.
 
-This query can be interpreted as: for **source-type** resources in result include all **target-type resources,** which are referenced by **search-param**. If you skip **source-type** - it will be set to resource-type you are searching for:
+This query can be interpreted as: for the **source-type** resources in the result include all **target-type resources,** which are referenced by the **search-param**. If you skip the **source-type,** it will be set to the resource-type you are searching for:
 
 ```yaml
 GET /Encounter?_include=subject:Patient 
 => GET /Encounter?_include=Encounter:subject:Patient
 ```
 
-**target-type** is optional for not chained includes and means all referenced resource-types"
+**target-type** is optional for not chained includes and means all referenced resource-types:
 
 ```yaml
 GET /Encounter?_include=subject 
@@ -45,25 +45,25 @@ GET /Encounter?_include=subject
 ```
 
 {% hint style="warning" %}
-For more explicit interpretation and for performance reason, client has to provide target-type for chained includes!
+For more explicit interpretation and for performance reason, client must provide target-type for chained includes!
 {% endhint %}
 
 ### **\_revinclude**
 
-Syntax for **revinclude**
+Syntax for **revinclude:**
 
 ```text
 _revinclude(:reverse|:iterate)=(source-type)?:search-param:(target-type)?
 ```
 
-Interpretation**:**  include all **source-type** resources, which refers **target-type** resources by **search-param** in result set.
+Interpretation**:**  include all **source-type** resources, which refer **target-type** resources by **search-param** in the result set.
 
 ### **\_include=\***
 
-You can include all resources referenced from search result using **\*.** This considered _bad practice,_ because it's too implicit. This feature is only implemented because FHIR specification. Please avoid to use it! 
+You can include all resources referenced from the search result using **\*.** This is considered _bad practice_ because it's too implicit. This feature is only implemented for conformance with the FHIR specification. **Please avoid using it!** 
 
-{% hint style="warning" %}
-\_include=\* could not be used as part for chained \(rev\)includes!
+{% hint style="danger" %}
+\_include=\* could not be used as part of chained \(rev\)includes!
 {% endhint %}
 
 ```javascript
@@ -72,7 +72,7 @@ GET /Encounter?_include=*
 
 ### Chained \(rev\)includes
 
-Client can chain \(rev\)includes to load next level of references.  \(Rev\)includes should go in a proper loading order. In FHIR spec for chained includes client has to specify `:iterate` modifier - in Aidbox this modifier is  **optional** \(it's better skip it\).
+Client can chain \(rev\)includes to load next level of references.  \(Rev\)includes should go in a proper loading order. By the FHIR specification, for chained includes a client has to specify the `:iterate` modifier. However, in Aidbox this modifier is **optional** \(it's better to skip it\).
 
 ```yaml
 GET /RequestGroup?
@@ -93,22 +93,22 @@ GET /RequestGroup?
 ```
 
 {% hint style="warning" %}
-Client have to always specify **target-type** and **source-type** for intermediate \(rev\)includes, because this explicit and allows Aidbox to prepare dependency graph before query!
+Client has to always specify **target-type** and **source-type** for intermediate \(rev\)includes because this is explicit and allows Aidbox to prepare dependency graph before query!
 {% endhint %}
 
-To save some keystrokes you can group \_\(rev\)include params on same level as a comma separated list:
+To save some keystrokes, you can group \_\(rev\)include params of the same level as a comma separated list:
 
 ```yaml
 GET /RequestGroup?_include=target,patient:Patient,author:PractitionerRole
 ```
 
-{% hint style="warning" %}
-Here is [discussion](https://chat.fhir.org/#narrow/stream/179166-implementers/topic/About.20_include.3Aiterate) in FHIR chat about `:iterate` ambiguity. We appreciate your opinion!
+{% hint style="info" %}
+Here is the [discussion](https://chat.fhir.org/#narrow/stream/179166-implementers/topic/About.20_include.3Aiterate) in the FHIR chat about the `:iterate` ambiguity. We appreciate your opinion!
 {% endhint %}
 
 ### Recursive \(rev\)includes
 
-For self-referencing resources you can specify `:recurse` modifier or `:iterate` modifier with **source-type=target-type** to recursively get all children or parents:
+For self-referencing resources you can specify the `:recurse` or `:iterate` modifier with **source-type=target-type** to recursively get all children or parents:
 
 ```yaml
 GET /Observation?_include:recurse=has-component
@@ -121,9 +121,9 @@ GET /Organization?_include:recurse=partof
 GET /Organization?_include:iterate=Organization:partof:Organization
 ```
 
-### Using \_with parameter
+### Using the \_with parameter
 
-FHIR \(rev\)include syntax is non-DRY and sometimes confusing. We introduced `_with` parameter - simple \(aka GraphQL\) DSL to describe includes in a more compact way.
+FHIR \(rev\)include syntax is non-DRY and sometimes confusing. We introduced the `_with` parameter that is a simple \(aka GraphQL\) DSL to describe includes in a more compact way.
 
 ```javascript
 expr = param-expr (space param-expr)*
@@ -186,7 +186,7 @@ RequestGroup?_include=patient,author
 
 ### \(rev\)include and \_elements
 
-You can use extended [elements](_elements.md#elements-and-rev-includes) parameter to control elements of \(rev\)included resources by prefixing element with resource type:
+You can use the extended [elements](_elements.md#elements-and-rev-includes) parameter to control elements of \(rev\)included resources by prefixing desired elements with the resource type:
 
 ```yaml
 GET /Encounter?_include=patient&_element=id,status,Patient.name,Patient.birthDate

@@ -1,6 +1,6 @@
 ---
 description: >-
-  Aidbox is the backend development platform for your modern healthcare
+  Aidbox is a backend development platform for your modern healthcare
   application on FHIR.
 ---
 
