@@ -188,6 +188,64 @@ participant:
 
 ```
 
+#### Parametrised includes
+
+Include query can be parametrised if you define include inside params. You can use `where` key to add additional filter on included resources.
+
+```yaml
+PUT /SearchQuery/cond-incl
+
+resource: {id: 'Patient', resourceType: 'Entity'}
+as: pt
+query:
+  order-by: pt.id desc
+params:
+   obs-cat:
+     type: string
+     includes: 
+        obs:
+          reverse: true
+          path: ["patient"]
+          resource: {id: 'Observation', resourceType: 'Entity'}
+          where: "resource#>>'{category,0,coding,0,code}' = {{params.category}}"
+          
+---
+
+GET /alpha/Patient?query=cond-incl&category=labs
+# will add filtered include
+
+GET /alpha/Patient?query=cond-incl
+# will skip include
+
+```
+
+If you want to provide default include - define include with same key on query level and in parameter. Parameter include will override default in case parameter is provided in request.
+
+```yaml
+PUT /SearchQuery/cond-incl
+
+resource: {id: 'Patient', resourceType: 'Entity'}
+as: pt
+query:
+  order-by: pt.id desc
+includes:
+  # default include with filter
+  obs:
+    reverse: true
+    path: ["patient"]
+    resource: {id: 'Observation', resourceType: 'Entity'}
+    where: "resource#>>'{category,0,coding,0,code}' = 'default"
+
+params:
+   obs-cat:
+     type: string
+     # override default include
+     includes: 
+        obs:
+          where: "resource#>>'{category,0,coding,0,code}' = {{params.category}}"
+          
+```
+
 ### EXPLAIN ANALYZE
 
 With parameter `_explain=analyze` you can inspect execution plan of search query:
