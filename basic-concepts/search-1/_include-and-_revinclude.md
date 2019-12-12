@@ -25,7 +25,7 @@ GET /Patient?_with=Encounter.subject
 Syntax for include:
 
 ```text
- _include(:reverse|:iterate)=(source-type)?:search-param:(target-type)?
+ _include(:reverse|:iterate|:logical)=(source-type)?:search-param:(target-type)?
 ```
 
 **search-param** is a name of search parameter with the type `reference` defined for **source-type**.
@@ -53,10 +53,32 @@ For more explicit interpretation and for performance reason, client must provide
 Syntax for **revinclude:**
 
 ```text
-_revinclude(:reverse|:iterate)=(source-type)?:search-param:(target-type)?
+_revinclude(:reverse|:iterate|:logical)=(source-type)?:search-param:(target-type)?
 ```
 
 Interpretation**:**  include all **source-type** resources, which refer **target-type** resources by **search-param** in the result set.
+
+### :logical modifier
+
+If you provide `:logical` modifier, Aidbox will include logically referenced resources  as well. Logical reference means reference with attribute `type` set to resource-type and `identifier` attribute set to one of identifier of referenced resource. Example:
+
+```yaml
+---
+resourceType: Patient
+identifier:
+- {system: 'ssn', value: '78787878'}
+
+---
+resourceType: Encounter
+subject: 
+  type: Patient
+  identifier: {system: 'ssn', value: '78787878'}
+
+---
+
+GET Encounter?_include:logical=patient
+GET Patient?_revinclude:logical=Encounter:patient
+```
 
 ### **\_include=\***
 
