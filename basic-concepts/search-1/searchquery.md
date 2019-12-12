@@ -157,6 +157,7 @@ includes:
     reverse: true
     path: [subject]
     resource: {id: Encounter, resourceType: Entity}
+    where: "resource->>'status' = 'finished'"
 limit: 40
 ```
 
