@@ -77,7 +77,10 @@ subject:
 ---
 
 GET Encounter?_include:logical=patient
-GET Patient?_revinclude:logical=Encounter:patient
+GET Enocounter?_with=patient:logical
+
+GET Patient?_revinclude:logical=Encounter:patient:Patient
+GET Patient?_with=Encounter.patient:logical
 ```
 
 ### **\_include=\***
