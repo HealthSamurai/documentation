@@ -73,6 +73,10 @@ resourceType: Encounter
 subject: 
   type: Patient
   identifier: {system: 'ssn', value: '78787878'}
+class: {code: 'IMP', 
+  system: 'http://terminology.hl7.org/CodeSystem/v3-ActCode', 
+  display: 'inpatient encounter'}
+status: finished
 
 ---
 
