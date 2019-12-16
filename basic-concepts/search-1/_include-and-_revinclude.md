@@ -80,11 +80,11 @@ status: finished
 
 ---
 
-GET Encounter?_include:logical=patient
-GET Enocounter?_with=patient:logical
+GET /Encounter?_include:logical=patient
+GET /Encounter?_with=patient:logical
 
-GET Patient?_revinclude:logical=Encounter:patient:Patient
-GET Patient?_with=Encounter.patient:logical
+GET /Patient?_revinclude:logical=Encounter:patient:Patient
+GET /Patient?_with=Encounter.patient:logical
 ```
 
 ### **\_include=\***
@@ -103,6 +103,8 @@ GET /Encounter?_include=*
 
 Client can chain \(rev\)includes to load next level of references.  \(Rev\)includes should go in a proper loading order. By the FHIR specification, for chained includes a client must specify the `:iterate` modifier. However, in Aidbox this modifier is **optional** \(it's better to skip it\).
 
+{% tabs %}
+{% tab title="GET" %}
 ```yaml
 GET /RequestGroup?
   _include=target&
@@ -120,6 +122,78 @@ GET /RequestGroup?
       _include=MedicationRequest:intended-performer:Organization&
       _include=MedicationRequest:intended-performer:Organization
 ```
+{% endtab %}
+
+{% tab title="PUT" %}
+```
+PUT /RequestGroup/example
+
+encounter: {id: 02002d06-2d90-4166-b1e6-d5200605f310, resourceType: Encounter}
+reasonCode:
+- {text: Treatment}
+authoredOn: '2017-03-06T17:31:00Z'
+resourceType: RequestGroup
+note:
+- {text: Additional notes about the request group}
+author: {display: Practitioner/1}
+contained:
+- id: medicationrequest-1
+  intent: proposal
+  status: unknown
+  subject: {id: 3eda3ab2-7acb-4f7e-92e1-f2671e46c71c, resourceType: Patient}
+  medication:
+    CodeableConcept: {text: Medication 1}
+  resourceType: MedicationRequest
+- id: medicationrequest-2
+  intent: proposal
+  status: unknown
+  subject: {id: 3eda3ab2-7acb-4f7e-92e1-f2671e46c71c, resourceType: Patient}
+  medication:
+    CodeableConcept: {text: Medication 2}
+  resourceType: MedicationRequest
+priority: routine
+status: draft
+id: example
+groupIdentifier: {value: '00001', system: 'http://example.org/treatment-group'}
+identifier:
+- {value: requestgroup-1}
+intent: plan
+action:
+- description: Administer medications at the appropriate time
+  textEquivalent: Administer medication 1, followed an hour later by medication 2
+  participant:
+  - {display: Practitioner/1}
+  title: Administer Medications
+  prefix: '1'
+  selectionBehavior: all
+  requiredBehavior: must
+  timing: {dateTime: '2017-03-06T19:00:00Z'}
+  groupingBehavior: logical-group
+  action:
+  - id: medication-action-1
+    type:
+      coding:
+      - {code: create}
+    resource: {localRef: medicationrequest-1}
+    description: Administer medication 1
+  - id: medication-action-2
+    type:
+      coding:
+      - {code: create}
+    resource: {localRef: medicationrequest-2}
+    description: Administer medication 2
+    relatedAction:
+    - offset:
+        Duration: {unit: h, value: 1}
+      actionId: medication-action-1
+      relationship: after-end
+  precheckBehavior: 'yes'
+  cardinalityBehavior: single
+subject: {id: 3eda3ab2-7acb-4f7e-92e1-f2671e46c71c, resourceType: Patient}
+text: {div: '<div xmlns="http://www.w3.org/1999/xhtml">Example RequestGroup illustrating related actions to administer medications in sequence with time delay.</div>', status: generated}
+```
+{% endtab %}
+{% endtabs %}
 
 {% hint style="warning" %}
 Client must always specify **target-type** and **source-type** for intermediate \(rev\)includes because this is explicit and allows Aidbox to prepare dependency graph before query!
