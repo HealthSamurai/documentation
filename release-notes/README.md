@@ -25,21 +25,24 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 * \_filter parameter support
 * Managing Indexes by **AidboxIndex** meta-resource
 
-## 0.4.8-SNAPSHOT
+## 0.4.9-SNAPSHOT
+
+Focus on Subscriptions and Reactive API!
+
+## 0.4.8 \[16 december 2019\]
 
 ### Features
 
-* New [Encryption API](../advanced/encryption-api.md)
+* Complete rewrite of [\(rev\)include](../basic-concepts/search-1/_include-and-_revinclude.md) engine
 * New [Mapping module](../advanced/mappings.md)
 * New [Hl7v2 module](../advanced/hl7-v2-integration.md)
+* New engine for AccessPolicy - [matcho](../security/access-control.md#matcho-engine)
+* New [Encryption API](../advanced/encryption-api.md)
 * [X-Audit header](../administration/x-audit-header.md) to add custom data to Aidbox logs
 * [X-Debug: policy](../security/access-control.md#using-x-debug-policy-header) header to trace policy evaluation
-* New engine for AccessPolicy - [matcho](../security/access-control.md#matcho-engine)
 * Support for [\_elements](../basic-concepts/search-1/_elements.md#elements-and-ref-includes) for \(rev\)included resources
 
-### Bug Fixes
-
-* Read and History read for modified tables \([\#183](https://github.com/Aidbox/Issues/issues/183)\)
+Plenty of bug fixes!
 
 ## 0.4.7 \[26 September 2019\]
 
