@@ -6,24 +6,24 @@ description: >-
 
 # Mappings
 
-Most of real-world healthcare applications are integrated with 3rd-party systems to ingest data from them. Using Mapping resource you can describe how 3rd-party data is being converted to the FHIR format. Mappings are written using [JUTE language](https://github.com/HealthSamurai/jute.clj#introduction).
+Most of real-world healthcare applications are integrated with 3rd-party systems to ingest data from them. Using the Mapping resource, you can describe how 3rd-party data is being converted to the FHIR format. Mappings are written using the [JUTE language](https://github.com/HealthSamurai/jute.clj#introduction).
 
-Mapping is an Aidbox resource, so all [CRUD operations](../basic-concepts/crud-1/) are applicable to it. Mapping's schema is pretty straightforward:
+The Mapping is an Aidbox resource, so all [CRUD operations](../basic-concepts/crud-1/) are applicable to it. The Mapping's schema is pretty straightforward:
 
 ```yaml
 resourceType: Mapping
 id: mapping-id-here
 body:
-  # Executable part of the mapping written in JUTE language (required)
+  # Executable part of the mapping written in the JUTE language (required)
 scopeSchema:
-  # JSON schema for the incoming data (optional)
+  # A JSON schema for the incoming data (optional)
 ```
 
-If `scopeSchema` attribute is provided, incoming mapping data \(also called a scope\) will be validated against it first. Then a JUTE template from `body` will be executed. Mapping should return a valid [Transaction Bundle](../basic-concepts/transaction.md), so when it will be applied, it will be able to operate with multiple resources, not just single one.
+If the `scopeSchema` attribute is provided, incoming mapping data \(also called a scope\) will be validated against it first. Then, a JUTE template from the `body` will be executed. Mapping should return a valid [Transaction Bundle](../basic-concepts/transaction.md), so when applied, it will be able to operate with multiple resources not just single one.
 
 ### Example
 
-Let's do a simple mapping which will create a Patient resource from following data structure:
+Let's do a simple mapping which will create a Patient resource from the following data structure:
 
 ```yaml
 firstName: John
@@ -31,10 +31,10 @@ lastName: Smith
 birthDate: 2000-01-02
 ```
 
-Following request will create a mapping resource:
+The following request will create a mapping resource:
 
 {% hint style="info" %}
-If you're not familiar with JUTE, please check out [JUTE Tutorial](https://github.com/HealthSamurai/jute.clj#quickstart-tutorial) to understand basic  concepts.
+If you're not familiar with JUTE, please check out [JUTE Tutorial](https://github.com/HealthSamurai/jute.clj#quickstart-tutorial) to understand basic concepts.
 {% endhint %}
 
 ```http
@@ -73,7 +73,7 @@ body:
 
 ```
 
-When template was created, you can invoke $apply operation on it to generate Patient resource and save it into the database:
+When template was created, you can invoke the $apply operation on it to generate a Patient resource and save it into the database:
 
 ```yaml
 POST /Mapping/example/$apply
@@ -81,12 +81,12 @@ Content-Type: text/yaml
 
 firstName: John
 lastName: Smith
-birthDate: 2010-12-12
+birthDate: '2010-12-12'
 ```
 
 ### $apply Endpoint
 
-To execute Mapping and to store it's result in Aidbox database do a POST request to the $apply endpoint. Request's body will be passed to a JUTE as an incoming data \(scope\):
+To execute Mapping and store its result to the Aidbox database, do a POST request to the $apply endpoint. Request's body will be passed to a JUTE as an incoming data \(scope\):
 
 ```http
 POST /Mapping/<mapping-id>/$apply
@@ -96,12 +96,12 @@ Content-Type: application/json
 ```
 
 {% hint style="warning" %}
-Make sure that your Mapping returns a Transaction Bundle, otherwise it's result won't be persisted in the database.
+Make sure that your Mapping returns a Transaction Bundle, otherwise its result won't be persisted to a database.
 {% endhint %}
 
 ### $debug Endpoint
 
-To check Mapping's result without actually persisting it, you can do a POST request to the $debug endpoint:
+To check Mapping's result without actual persisting, you can do a POST request to the $debug endpoint:
 
 ```http
 POST /Mapping/<mapping-id>/$debug
@@ -144,7 +144,7 @@ You pass both Mapping and incoming data \(scope\) in a request body. Request res
 
 ### Including Mapping inside other Mapping
 
-In Aidbox there is an `$include` directive which allows you to include a Mapping within another one:
+In Aidbox, there is the `$include` directive which allows you to include a Mapping within another one:
 
 ```text
 PUT /Mapping/index
@@ -161,15 +161,15 @@ body:
   $default: null
 ```
 
-This template will pass execution to either `/Mapping/patient` or `/Mapping/practitioner` depending on value of `type` key. Current evaluation scope will be passed to the included Mapping.
+This template will pass execution to either `/Mapping/patient` or `/Mapping/practitioner` depending on the value of the `type` key. Current evaluation scope will be passed to the included Mapping.
 
 {% hint style="warning" %}
-Because potentially there is a way to create infinite recursion using a `$include` directive, there is a inclusion depth limit which equals **5** for now.
+Because potentially there is a way to create an infinite recursion using the`$include` directive, there is an inclusion depth limit which equals to **5** for now.
 {% endhint %}
 
 ### Mapping Editor in the Aidbox UI
 
 ![Mapping Editor UI](../.gitbook/assets/screenshot-2019-09-16-at-17.26.13.png)
 
-There is a Mapping Editor in the Aidbox UI with built-in syntax checker and Debug capabilities. Search for a "Mappings" item in the left menu.
+There is a Mapping Editor in the Aidbox UI with a built-in syntax checker and Debug capabilities. Search for the "Mappings" item in the left navigation menu.
 
