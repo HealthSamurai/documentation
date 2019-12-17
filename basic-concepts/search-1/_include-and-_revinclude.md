@@ -62,7 +62,7 @@ GET /Patient?_with=Encounter.subject
 Syntax for include:
 
 ```text
- _include(:reverse|:iterate|:logical)=(source-type)?:search-param:(target-type)?
+ _include(:reverse|:iterate|:logical)=(source-type:)search-param:(:target-type)
 ```
 
 **search-param** is a name of search parameter with the type `reference` defined for **source-type**.
@@ -90,7 +90,7 @@ For more explicit interpretation and for performance reason, client must provide
 Syntax for **revinclude:**
 
 ```text
-_revinclude(:reverse|:iterate|:logical)=(source-type)?:search-param:(target-type)?
+_revinclude(:reverse|:iterate|:logical)=(source-type:)search-param(:target-type)
 ```
 
 Interpretation**:**  include all **source-type** resources, which refer **target-type** resources by **search-param** in the result set.
