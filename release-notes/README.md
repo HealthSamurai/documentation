@@ -2,13 +2,13 @@
 
 Aidbox release cycle is about 2-4 weeks. Stable releases are labeled with version  - like `0.4.0`See the list of versions on [docker-hub](https://hub.docker.com/r/healthsamurai/devbox/tags)
 
-Version under development published with `-SNAPSHOT` and `-RC[x]` postfix. For example if latest release was `0.3.0`, you will see in registry `0.4.0-SNAPSHOT` version during development and `0.4.0-RC1`in stabilisation period.
+Version under development published with `-SNAPSHOT` and `-RC[x]` postfix. For example if latest release was `0.3.0`,  in registry you will see the `0.4.0-SNAPSHOT` version during development, and `0.4.0-RC1`in a stabilization period.
 
-Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in different  geo regions and run different Aidbox versions. Clusters labeled _**stable**_ have latest stable version \(i.e. `max(version)`\). As well clusters with **edge** label run latest development version \(snapshot or release candidates\).
+Starting from `0.4.0,` Aidbox.Cloud supports clusters which can be located in different  geo regions and run different Aidbox versions. Clusters labeled _**stable**_ have the latest stable version \(i.e. `max(version)`\). As well, clusters with the **edge** label run the latest development version \(snapshot or release candidates\).
 
 {% hint style="info" %}
-* Current stable version: **0.4.7**
-* Next release October:   **0.4.8**
+* Current stable version: **0.4.8**
+* Next release in January:   **0.4.9**
 {% endhint %}
 
 ## Road Map
@@ -29,11 +29,11 @@ Starting from `0.4.0` Aidbox.Cloud support clusters, which can be located in dif
 
 Focus on Subscriptions and Reactive API!
 
-## 0.4.8 \[16 december 2019\]
+## 0.4.8 \[16 December 2019\]
 
 ### Features
 
-* Complete rewrite of [\(rev\)include](../basic-concepts/search-1/_include-and-_revinclude.md) engine
+* Complete rewrite of the [\(rev\)include](../basic-concepts/search-1/_include-and-_revinclude.md) engine
 * New [Mapping module](../advanced/mappings.md)
 * New [Hl7v2 module](../advanced/hl7-v2-integration.md)
 * New engine for AccessPolicy - [matcho](../security/access-control.md#matcho-engine)

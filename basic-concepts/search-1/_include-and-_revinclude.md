@@ -165,21 +165,20 @@ Client can chain \(rev\)includes to load next level of references.  \(Rev\)inclu
 {% tabs %}
 {% tab title="GET" %}
 ```yaml
-GET /RequestGroup?
-  _include=target&
-  _include=patient:Patient&
-    _include=Patient:organization&
-    _revinclude=AllergyIntolerance:patient:Patient&
-    _revinclude=Condition:subject:Patient&
-  _include=author:PractitionerRole&
-    _include=PractitionerRole:practitioner:Pracitioner&
-    _include=PractitionerRole:location&
-    _revinclude=Contract:subject:PractitionerRole&
-  _include=RequestGroup:target:MedicationRequest&
-      _include=MedicationRequest:medication&
-      _include=MedicationRequest:requester:PractitionerRole&
-      _include=MedicationRequest:intended-performer:Organization&
-      _include=MedicationRequest:intended-performer:Organization
+GET /RequestGroup?_include=encounter
+  &_include=patient:Patient
+  &_include=Patient:organization
+  &_revinclude=AllergyIntolerance:patient:Patient
+  &_revinclude=Condition:subject:Patient
+  &_include=author:PractitionerRole
+  &_include=PractitionerRole:practitioner:Pracitioner
+  &_include=PractitionerRole:location
+  &_revinclude=Contract:subject:PractitionerRole
+  &_include=RequestGroup:target:MedicationRequest
+  &_include=MedicationRequest:medication
+  &_include=MedicationRequest:requester:PractitionerRole
+  &_include=MedicationRequest:intended-performer:Organization
+  &_include=MedicationRequest:intended-performer:Organization
 ```
 {% endtab %}
 
