@@ -1,5 +1,5 @@
 ---
-description: include or exclude specific resource attributes in search result
+description: Include or exclude specific resource attributes in search result
 ---
 
 # \_elements
@@ -7,7 +7,7 @@ description: include or exclude specific resource attributes in search result
 A client can request a specific set of elements to be returned as part of a resource in the search results using the `_elements` parameter:
 
 ```yaml
-GET [base]/Patient?_elements=birthDate,name.given,address.city
+GET /Patient?_elements=birthDate,name.given,address.city
 
 # resp
 
@@ -29,19 +29,19 @@ entry:
     resourceType: Patient
 ```
 
-The `_elements` parameter consists of a comma-separated list of  element paths such as. Only element paths that are listed are to be returned. The list of elements does not apply to included resources.
+The `_elements` parameter consists of a comma-separated list of element paths. Only element paths that are listed are to be returned. The list of elements does not apply to included resources.
 
 ### Exclude
 
-If you want to exclude specific elements you can prefix it with `-` sign: 
+If you want to exclude specific elements you can prefix it with the `-` sign: 
 
 ```javascript
 GET /Patient?_elements=-text,-identifier
 ```
 
-### Nested elements
+### Nested Elements
 
-You can select or exclude nested elements using dot separated path to element:
+You can include or exclude nested elements using a dot separated path to an element:
 
 ```javascript
 GET /Patient?_elements=name.given,name.family
@@ -49,11 +49,11 @@ GET /Patient?_elements=name.given,name.family
 
 ### Elements and \(rev\)includes
 
- \_elements parameter is not applied to included resources. If you want to filter included resources elements - prefix element path with resourceType. For example:
+ The \_elements parameter is not applied to included resources. If you want to filter included resources elements — prefix the element path with resourceType. For example:
 
 ```yaml
 GET /Encounter?_include=patient&_elements=id,type,Patient.name
 ```
 
-Result will contain id and type elements from Encounter and  name from Patient. Prefix with `-` will  exclude elements \(for example `-Patient.identifier` - will exclude identifier from patients\)
+Result will contain id and type elements from Encounter and name from Patient. The `-` prefix will  exclude elements \(for example `-Patient.identifier` will exclude identifier from Patient resources\).
 
