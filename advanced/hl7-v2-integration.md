@@ -10,7 +10,7 @@ description: >-
 
 ## Introduction
 
-In 2019 HL7 v2 is still most widely-used standard for healthcare IT systems integration. If you're developing a software which receives information from other systems within a hospital/clinic, most likely it will be HL7 v2 messages.
+In 2019, HL7 v2 is still the most widely-used standard for healthcare IT systems integration. If you're developing a software which receives information from other systems within a hospital/clinic, most likely it will be HL7 v2 messages.
 
 To process those messages, react on them and modify data stored in your Aidbox, there is a Hl7v2-in module. It provides two resources: `Hl7v2Config` and `Hl7v2Message`. `Hl7v2Config`determines how messages will be parsed and processed. `Hl7v2Message` represents a single received HL7 v2 message and contains raw representation, status \(processed/error\), error description in case of error and other useful information.
 
@@ -18,9 +18,9 @@ Both `Hl7v2Config` and `Hl7v2Message` are managed with standard CRUD API.
 
 ### Mapper module
 
-Most likely when new HL7 v2 message is received, you want to make changes in the database - create, update or delete  FHIR resources. It's where the [Mapper module](mappings.md) comes on stage - HL7v2-IN module parses the message and then passes message data to the Mapping resource specified in `Hl7v2Config` instance via the `mapping` reference.
+Most likely when a new HL7 v2 message is received, you want to make changes in the database — create, update or delete  FHIR resources. It's where the [Mapper module](mappings.md) comes on stage — HL7v2-IN module parses the message and then passes message data to the Mapping resource specified in `Hl7v2Config` instance via the `mapping` reference.
 
-Here is an example of a mapping which creates a new Patient resource with name taken from `PID.5` field every time new message is received:
+Here is an example of a mapping which creates a new Patient resource with a name taken from the `PID.5` field each time a new message is received:
 
 ```yaml
 PUT /Mapping/test
@@ -64,15 +64,15 @@ mapping:
 
 #### Strict and Non-strict Parsing
 
-`isStrict` attribute specifies if message parsing will be strict or not. When `isStrict` is true, HL7 v2 parser will fail on any schema error like missing required field or segment. If `isStrict` is false, then parser will try to produce AST of the message even when required fields are missing or segment hierarchy is broken. In this case you have a chance to get `null` values in your mapping for fields which you don't expect to be `null`.
+The `isStrict` attribute specifies if message parsing will be strict or not. When `isStrict` is true, HL7 v2 parser will fail on any schema error like missing required field or segment. If `isStrict` is false, then parser will try to produce AST of the message even when required fields are missing or segment hierarchy is broken. In this case you have a chance to get `null` values in your mapping for fields which you don't expect to be `null`.
 
 #### Mapping Entrypoint
 
-Refer to a mapping which will process your messages with `mapping` attribute. Please note that you don't obligated to keep all of your mapping logic inside a single `Mapping` resource - you can have one as an entrypoint and then dispatch execution to other mappings with `$include` directive.
+Refer to a mapping which will process your messages with the `mapping` attribute. Please note that you aren't obligated to keep all of your mapping logic inside a single `Mapping` resource — you can have one as an entrypoint and then dispatch execution to other mappings with the `$include` directive.
 
 ### Submitting a Message with Aidbox UI
 
-Go to Aidbox UI and navigate to "HL7 v2" tab in the left menu, then click "New" button in the top right corner.
+Access the Aidbox UI and navigate to the "HL7 v2" tab in the left menu, then click the "New" button in the top right corner.
 
 ![](../.gitbook/assets/screenshot-2019-11-14-at-18.20.41.png)
 
@@ -90,17 +90,17 @@ IN1|2|0423|2304|OMNICARE OPP|PO BOX 15033^PO BOX 15033^PARSINGTON^NY^30222|||087
 IN2||353333833|0000003333^RETIRED|||||||||||||||||||||||||||||||||Y|||CHR||||W|||RETIRED|||||||||||||||||(818)333-3333||||||||C
 ```
 
-Pick a Hl7v2Config instance using radio button and click a "Create" button:
+Pick an Hl7v2Config instance using the radio button and click the "Create" button:
 
 ![](../.gitbook/assets/screenshot-2019-11-21-at-18.04.04.png)
 
-You'll see a newly created message with additional info like status, parsed structure, outcome, etc:
+You'll see a newly created message with additional information like status, parsed structure, outcome, etc:
 
 ![](../.gitbook/assets/screenshot-2019-11-14-at-18.50.57.png)
 
-### Submitting a Message with REST API
+### Submitting a Message with the REST API
 
-To submit a new HL7 v2 Message, just create it with a REST API:
+To submit a new HL7 v2 Message, just create it with the REST API:
 
 ```yaml
 POST /Hl7v2Message
@@ -129,11 +129,11 @@ Newly created messages should have `received` status, otherwise they won't be pr
 
 `201 Created` response indicates that message was created and processed. Response body will contain additional processing details such as:
 
-**status** - `processed` when message was successfully parsed and mapping was applied or `error` when there were an error/exception in one of those steps
+**status** — `processed` when message was successfully parsed and mapping was applied or `error` when there was an error/exception in one of those steps;
 
-**parsed** - structured representation of the message
+**parsed** — structured representation of the message;
 
-**outcome** - Transaction Bundle returned by mapping or error information if status is `error`.
+**outcome** — Transaction Bundle returned by the mapping or error information if the status is `error`.
 
 You can try to submit malformed message \(truncated\)  to see what's the result will be:
 
@@ -150,13 +150,13 @@ config:
   id: default
 ```
 
-### Capturing MLLP Traffic
+### Capturing a MLLP Traffic
 
-Usually HL7 messages are transmitted using [MLLP protocol](https://www.hl7.org/implement/standards/product_brief.cfm?product_id=55). To convert MLLP traffic to HTTP requests there is an open-source `hl7proxy` utility by Health Samurai. It's [available on GitHub](https://github.com/HealthSamurai/hl7proxy) and there are [pre-compiled binaries](https://github.com/HealthSamurai/hl7proxy/releases) for major operating systems and architectures.
+Usually HL7 messages are transmitted using the [MLLP protocol](https://www.hl7.org/implement/standards/product_brief.cfm?product_id=55). To convert a MLLP traffic to HTTP requests there is an open-source `hl7proxy` utility provided by Health Samurai. It's [available on GitHub](https://github.com/HealthSamurai/hl7proxy) and there are [pre-compiled binaries](https://github.com/HealthSamurai/hl7proxy/releases) for major operating systems and architectures.
 
-Follow `hl7proxy`'s [README](https://github.com/HealthSamurai/hl7proxy) for installation and usage instructions.
+Follow the `hl7proxy`'s [README](https://github.com/HealthSamurai/hl7proxy) for installation and usage instructions.
 
-Most likely you'll want to authenticate `hl7proxy` requests with basic auth using Aidbox's Client resource. Also it's a good idea to forbid everything except for POSTing new Hl7Messages. You can do both things by submitting following Bundle. It will create a Client resource and AccessPolicy for it.
+Most likely you'll want to authenticate `hl7proxy` requests with basic auth using Aidbox's Client resource. Also it's a good idea to forbid everything except for POSTing new Hl7Messages. You can do both things by submitting the following Bundle. It will create a Client resource and AccessPolicy for it.
 
 ```yaml
 POST /
@@ -193,13 +193,13 @@ entry:
       method: PUT
 ```
 
-To authorise `hl7proxy` requests it needs to pass an `Authorization` header with every request to Aidbox. You can provide a value for this header with `-header` command-line flag:
+To authorize `hl7proxy` requests, one needs to pass an `Authorization` header with every request to Aidbox. You can provide a value for this header with the `-header` command-line flag:
 
 ```yaml
 ./hl7proxy -port 5000 -config default -url https://your-box.edge.aidbox.app/ -header "Authorization: Basic xxxxxxxxxxxxx"
 ```
 
-To calculate a value for `Authorization` header you need to do `base64encode(clientId + ":" clientSecret)`. You can do it in bash:
+To calculate a value for the `Authorization` header, you need to do `base64encode(clientId + ":" clientSecret)`. You can do it in bash:
 
 ```yaml
 echo -n "hl7proxy:<PUT SECRET STRING HERE>" | base64
