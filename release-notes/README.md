@@ -1,3 +1,7 @@
+---
+description: Aidbox versions release notes
+---
+
 # Release Notes
 
 Aidbox release cycle is about 2-4 weeks. Stable releases are labeled with version  - like `0.4.0`See the list of versions on [docker-hub](https://hub.docker.com/r/healthsamurai/devbox/tags)

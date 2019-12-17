@@ -165,19 +165,18 @@ Client can chain \(rev\)includes to load next level of references.  \(Rev\)inclu
 {% tabs %}
 {% tab title="GET" %}
 ```yaml
-GET /RequestGroup?_include=encounter
-  &_include=patient:Patient
-  &_include=Patient:organization
-  &_revinclude=AllergyIntolerance:patient:Patient
-  &_revinclude=Condition:subject:Patient
-  &_include=author:PractitionerRole
-  &_include=PractitionerRole:practitioner:Pracitioner
-  &_include=PractitionerRole:location
-  &_revinclude=Contract:subject:PractitionerRole
-  &_include=RequestGroup:target:MedicationRequest
-  &_include=MedicationRequest:medication
-  &_include=MedicationRequest:requester:PractitionerRole
-  &_include=MedicationRequest:intended-performer:Organization
+GET /RequestGroup?_include=encounter\
+  &_include=patient:Patient\
+  &_include=Patient:organization\
+  &_revinclude=AllergyIntolerance:patient:Patient\
+  &_revinclude=Condition:subject:Patient\
+  &_include=author:PractitionerRole\
+  &_include=PractitionerRole:practitioner:Pracitioner\
+  &_include=PractitionerRole:location\
+  &_revinclude=Contract:subject:PractitionerRole\
+  &_include=MedicationRequest:medication\
+  &_include=MedicationRequest:requester:PractitionerRole\
+  &_include=MedicationRequest:intended-performer:Organization\
   &_include=MedicationRequest:intended-performer:Organization
 ```
 {% endtab %}
@@ -271,18 +270,146 @@ Here is the [discussion](https://chat.fhir.org/#narrow/stream/179166-implementer
 
 For self-referencing resources you can specify the `:recurse` or `:iterate` modifier with **source-type=target-type** to recursively get all children or parents:
 
+{% tabs %}
+{% tab title="GET" %}
 ```yaml
-GET /Observation?_include:recurse=has-component
+GET /Observation?_include:recurse=has-member
 ```
+{% endtab %}
+
+{% tab title="PUT Obs1" %}
+```
+put /Observation/bloodgroup
+
+category:
+- text: Laboratory
+  coding:
+  - {code: laboratory, 
+  system: 'http://terminology.hl7.org/CodeSystem/observation-category', 
+  display: Laboratory}
+value:
+  CodeableConcept:
+    text: A
+    coding:
+    - {code: '112144000', system: 'http://snomed.info/sct', 
+    display: Blood group A (finding)}
+resourceType: Observation
+status: final
+effective: {dateTime: '2018-03-11T16:07:54+00:00'}
+id: bloodgroup
+code:
+  text: Blood Group
+  coding:
+  - {code: 883-9, system: 'http://loinc.org', 
+  display: 'ABO group [Type] in Blood'}
+subject: {id: pat-234, resourceType: Patient}
+```
+{% endtab %}
+
+{% tab title="PUT Obs2" %}
+```
+put /Observation/rhstatus
+
+category:
+- text: Laboratory
+  coding:
+  - {code: laboratory, system: 'http://terminology.hl7.org/CodeSystem/observation-category', display: Laboratory}
+meta: {lastUpdated: '2019-12-17T13:44:27.218564Z', createdAt: '2019-12-17T13:44:27.218564Z', versionId: '99'}
+value:
+  CodeableConcept:
+    text: A
+    coding:
+    - {code: '112144000', system: 'http://snomed.info/sct', display: Blood group A (finding)}
+resourceType: Observation
+status: final
+effective: {dateTime: '2018-03-11T16:07:54+00:00'}
+id: rhstatus
+code:
+  text: Blood Group
+  coding:
+  - {code: 883-9, system: 'http://loinc.org', display: 'ABO group [Type] in Blood'}
+subject: {id: pat-234, resourceType: Patient}
+```
+{% endtab %}
+
+{% tab title="PUT Obs3" %}
+```
+put /Observation/bgpanel
+
+category:
+- text: Laboratory
+  coding:
+  - {code: laboratory, system: 'http://terminology.hl7.org/CodeSystem/observation-category', display: Laboratory}
+hasMember:
+- {id: bloodgroup, resourceType: Observation}
+- {id: rhstatus, resourceType: Observation}
+meta: {lastUpdated: '2019-12-17T13:45:37.780512Z', createdAt: '2019-12-17T13:45:37.780512Z', versionId: '106'}
+resourceType: Observation
+status: final
+effective: {dateTime: '2018-03-11T16:07:54+00:00'}
+id: bgpanel
+code:
+  text: Blood Group Panel
+  coding:
+  - {code: 34532-2, system: 'http://loinc.org', display: ' Blood type and Indirect antibody screen panel - Blood'}
+subject: {id: pat-234, resourceType: Patient}
+```
+{% endtab %}
+{% endtabs %}
 
 ```yaml
-GET /Observation?_include:iterate=Observation:has-component:Observation
+GET /Observation?_include:iterate=Observation:has-member:Observation
 ```
 
+{% tabs %}
+{% tab title="GET" %}
 ```yaml
 # get all children
-GET /Organization?_revinclude:recurse=partof
+GET /Organization?_revinclude:recurse=Organization:partof
 ```
+{% endtab %}
+
+{% tab title="PUT Org1" %}
+```
+put /Organization/org-123
+
+name: Blackwood Hospital
+```
+{% endtab %}
+
+{% tab title="PUT Org2" %}
+```
+put /Organization/org-234
+
+name: Blackwood Hospital Department
+partOf:
+  resourceType: Organization
+  id: org-123
+```
+{% endtab %}
+
+{% tab title="PUT Org3" %}
+```
+put /Organization/org-345
+
+name: Blackwood Hospital Department Facility
+partOf:
+  resourceType: Organization
+  id: org-234
+```
+{% endtab %}
+
+{% tab title="PUT Org4" %}
+```
+put /Organization/org-456
+
+name: Blackwood Hospital Department Facility Room 1
+partOf:
+  resourceType: Organization
+  id: org-345
+```
+{% endtab %}
+{% endtabs %}
 
 ```yaml
 # get all children
@@ -328,7 +455,7 @@ Encounter?_with=patient{Patient{organization}}
 => Encounter?_include=Encounter:patient:Patient&
              _include(:iterate)=Patient:organization
 ---            
-Encounter?_with=patient{Patient{organization{Organization{partof:recur}}
+Encounter?_with=patient{Patient{organization{Organization{partof:recur}}}}
 => Encounter?_include=Encounter:patient:Patient&
              _include(:iterate)=Patient:organization
              _include(:recurse)=Organization:parto-of           
