@@ -1,6 +1,6 @@
 # Encryption API
 
-Aidbox can encrypt attributes with type `secret`.
+Aidbox can encrypt attributes with the type `secret`.
 
 ### Configure Aidbox.Dev
 
@@ -8,11 +8,12 @@ Let's generate a key
 
 ```yaml
 POST /$encrypt-key
+
 # 200
-00055DDDF7BB2A52C21651283F346C048C8470CAE2796A2A2346994A05DA760B
+# 00055DDDF7BB2A52C21651283F346C048C8470CAE2796A2A2346994A05DA760B
 ```
 
-Copy key into box env variables and restart devbox:
+Copy key into the box ENV variables and restart devbox:
 
 ```text
 AIDBOX_ENCRYPT_KEY="00055DDDF7BB2A52C21651283F346C048C8470CAE2796A2A2346994A05DA760B"
@@ -20,7 +21,7 @@ AIDBOX_ENCRYPT_KEY="00055DDDF7BB2A52C21651283F346C048C8470CAE2796A2A2346994A05DA
 
 ### Demo
 
-Register custom resource with secret attribute:
+Register a custom resource with the secret attribute:
 
 ```yaml
 POST /App
@@ -35,7 +36,7 @@ entities:
       number: {type: secret}
 ```
 
-Create an instance of resource:
+Create an instance of the resource:
 
 ```yaml
 POST /MyCard
@@ -50,7 +51,7 @@ name: Nikolai
 number: $58B5........5766D
 ```
 
-Read instance with encrypted attribute:
+Read the instance with an encrypted attribute:
 
 ```yaml
 GET /MyCard/c1
@@ -61,7 +62,7 @@ name: Nikolai
 number: $58B5........5766D
 ```
 
-Decrypt instance:
+Decrypt the instance:
 
 ```yaml
 GET /$decrypt/MyCard/c1
