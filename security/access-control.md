@@ -116,22 +116,22 @@ There is a special query-string parameter `__debug=policy` you can pass to every
 
 #### Using x-debug: policy header
 
-For requests with `x-debug: policy` header details of access policy evaluation will be logged.
+For requests with the `x-debug: policy` header, details of access policy evaluation will be logged.
 
 ```yaml
 GET /Patient
 x-debug: policy
 
 # in aidbox logs
-:auth/trace-policy {:access-policy-id :policy-1, :policy-type "sql", ...
-:auth/trace-policy {:access-policy-id :policy-2, :policy-type "json-schema",...
+# :auth/trace-policy {:access-policy-id :policy-1, :policy-type "sql", ...
+# :auth/trace-policy {:access-policy-id :policy-2, :policy-type "json-schema",...
 ```
 
-#### Using /auth/test-policy Operation
+#### Using the /auth/test-policy Operation
 
-You can use special operation  `POST /auth/test-policy` to design policy without creating AccessPolicy resource and for different users and clients. Do post on `/auth/test-policy` with simulated **request** attribute \(you can provide existing `user-id` and `client-id`  - aidbox will find and populate request\) and  temporal policy in **policy** attribute. If you want to test JWT auth, put your token in `headers.authorization` with `Bearer` prefix - token will be parsed and it's claims appear in `request.jwt`. JWT in header is parsed,  but not validated. This allows you test JWT policy without **TokenIntrospector** registration. 
+You can use special operation  `POST /auth/test-policy` to design policy without creating AccessPolicy resource and for different users and clients. Do post on the `/auth/test-policy` with a simulated **request** attribute \(you can provide existing `user-id` and `client-id`  — Aidbox will find and populate request\) and temporal policy in the **policy** attribute. If you want to test JWT auth, put your token in the `headers.authorization` with the `Bearer` prefix — the token will be parsed and its claims appear in the `request.jwt`. JWT in a header is parsed  but not validated. This allows you to test JWT policy without **TokenIntrospector** registration. 
 
-Response contains result of evaluated  policy.
+Response contains result of evaluated policy.
 
 ```yaml
 POST /auth/test-policy
@@ -184,11 +184,11 @@ result:
 
 ### JSON Schema Engine
 
-JSON Schema engine allows to put JSON Schema under `AccessPolicy.schema` element and this schema will be used to validate request object. Currently supported JSON Schema version is **draft-07**.
+JSON Schema engine allows to put JSON Schema under the `AccessPolicy.schema` element and this schema will be used to validate request object. Currently supported JSON Schema version is **draft-07**.
 
 #### Example
 
-The following policy requires presence of `request.user` attribute \(only authenticated requests are allowed\):
+The following policy requires presence of the `request.user` attribute \(only authenticated requests are allowed\):
 
 ```yaml
 resourceType: AccessPolicy
@@ -207,11 +207,11 @@ SQL Engine executes SQL statement and uses its result as an evaluation result. T
 SELECT true FROM patient WHERE id = {{jwt.patient_id}} LIMIT 1;
 ```
 
-SQL statement can include interpolations in double curly braces, like in example above. String inside curly braces will be used as a path to get value from the request object.
+SQL statement can include interpolations in double curly braces, like in the example above. String inside curly braces will be used as a path to get value from the request object.
 
 #### Example
 
-Assuming that User has a reference to Practitioner resource through `User.data.practitioner_id` element, the following policy allow requests only to `/fhir/Patient/<patient_id>` URLs, and only for those patients, who has `Patient.generalPractitioner` element referencing same practitioner as a current User. In other words, User as a Practitioner is only allowed to see patients who referencing him with `Patient.generalPractitioner`.
+Assuming that User has a reference to Practitioner resource through `User.data.practitioner_id` element, the following policy allows requests only to `/fhir/Patient/<patient_id>` URLs, and only for those patients who have the `Patient.generalPractitioner` element referencing same practitioner as the current User. In other words, User as a Practitioner is only allowed to see patients who are referencing him with the `Patient.generalPractitioner`.
 
 ```yaml
 sql:
@@ -229,9 +229,9 @@ id: practitioner-only-allowed-to-see-his-patients
 resourceType: AccessPolicy
 ```
 
-#### Interpolation rules
+#### Interpolation Rules
 
-In your SQL query you can parametrise with attributes from request object using  `{{path}}` syntax. For example to get role from user `{data: {role: 'admin'}}` you can  write `{{user.data.role}}`. Parameter expressions are escaped by default to protect from SQL injection. If you want to make dynamical queries \(parametrise table name for example\) you have to use `{{!path}}` syntax. For example expression `SELECT true from {{!params.resource/type}} limit 1` with params = `{resource/type: "Patient"}` will be transformed into `SELECT true from "patient".` Such identifier names are double quoted with and lowercased by default.
+In your SQL query, you can parameterize with attributes from request object using  `{{path}}` syntax. For example, to get a role from user `{data: {role: 'admin'}}` you can  write `{{user.data.role}}`. Parameter expressions are escaped by default to protect from SQL injection. If you want to make dynamical queries \(parameterize table name for example\), you have to use `{{!path}}` syntax. For example, the expression `SELECT true from {{!params.resource/type}} limit 1` with params = `{resource/type: "Patient"}` will be transformed into `SELECT true from "patient".` Such identifier names are double quoted and lower-cased by default.
 
 ### Allow Engine
 
@@ -254,11 +254,11 @@ id: complex-example-1
 resourceType: AccessPolicy
 ```
 
-Policy in the example above represents following logical expression: `check 1 AND (check 2 OR check 3)`. It's forbidden to have both `and` and `or` keys on the same level.
+Policy in the example above represents the following logical expression: `check 1 AND (check 2 OR check 3)`. It's forbidden to have both `and` and `or` keys on the same level.
 
 #### Example
 
-Let's split SQL Policy example into two separate checks and combine them with AND operator:
+Let's split SQL Policy example into two separate checks and combine them with the AND operator:
 
 ```yaml
 and:
