@@ -72,6 +72,40 @@ entry:
       method: POST
 ```
 
+#### How to search RxNorm concepts by RxCUI
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+GET /Concept/?system=http://www.nlm.nih.gov/research/umls/rxnorm&code=636671
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```
+resourceType: Bundle
+type: searchset
+entry:
+- resource:
+    code: '636671'
+    system: http://www.nlm.nih.gov/research/umls/rxnorm
+    display: varenicline 0.5 MG Oral Tablet
+    valueset: [rxnorm]
+    id: rxnorm-636671
+    resourceType: Concept
+    meta: {lastUpdated: '2019-12-18T21:18:10.885605Z', createdAt: '2019-12-18T21:18:10.885605Z', versionId: '199'}
+  fullUrl: https://testrevinclude.edge.aidbox.app/Concept/rxnorm-636671
+total: 1
+link:
+- {relation: first, url: '/Concept?system=http://www.nlm.nih.gov/research/umls/rxnorm&code=636671&page=1'}
+- {relation: self, url: '/Concept?system=http://www.nlm.nih.gov/research/umls/rxnorm&code=636671&page=1'}
+query-sql: ['SELECT "concept".* FROM "concept" WHERE (aidbox_text_search(knife_extract_text("concept".resource, $JSON$[["system"]]$JSON$)) ilike unaccent(?) AND aidbox_text_search(knife_extract_text("concept".resource, $JSON$[["code"]]$JSON$)) ilike unaccent(?)) LIMIT ? OFFSET ? ', '% http://www.nlm.nih.gov/research/umls/rxnorm%', '% 636671%', 100, 0]
+query-timeout: 60000
+query-time: 1259
+```
+{% endtab %}
+{% endtabs %}
+
 ### SNOMEDCT
 
 ```yaml
