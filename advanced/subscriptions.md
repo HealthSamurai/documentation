@@ -213,5 +213,5 @@ POST /fhir/Patient
 
 If a subscription is saved and is `active`, each resource that satisfies the `criteria` will trigger the hook.  In our case, you will see the following result of the hook execution:
 
-![](../../.gitbook/assets/scr-2019-03-01_17-52-49.png)
+![](../.gitbook/assets/scr-2019-03-01_17-52-49.png)
 

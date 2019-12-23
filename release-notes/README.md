@@ -29,13 +29,9 @@ Starting from `0.4.0,` Aidbox.Cloud supports clusters which can be located in di
 * \_filter parameter support
 * Managing Indexes by **AidboxIndex** meta-resource
 
-## 0.4.9-SNAPSHOT \[Planned  release in January\]
+## 0.4.9-SNAPSHOT
 
-### Features
-
-* [Reactive API & Subscriptions](../advanced/reactive-api-and-subscriptions/)
-
-
+Focus on Subscriptions and Reactive API!
 
 ## 0.4.8 \[16 December 2019\]
 
@@ -190,7 +186,7 @@ This release is mostly dedicated to stabilisation of new auth module. Check-out 
 
 ## 0.3.4
 
-* Subscriptions `$poll` operation and `webhook` channel: [Subscriptions](../advanced/reactive-api-and-subscriptions/subscriptions.md);
+* Subscriptions `$poll` operation and `webhook` channel: [Subscriptions](../advanced/subscriptions.md);
 * Fixed [Aidbox](https://www.health-samurai.io/aidbox) to FHIR data transformation bug when polymorphic attributes wasn't properly handled in recursive elements such as `QuestionnaireResponse.item`
 * Support [`_total`](https://build.fhir.org/search.html#total) search parameter \(\_totalMethod=count also works\)
 * Support `page` search parameter \(\_page - also works\)
