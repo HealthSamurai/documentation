@@ -38,5 +38,5 @@ body:
 
 ### ETag Cache
 
-All etag values are cached to make etag queries efficient. If you did manually update resources in database or somehow made a cache invalid. You can reset Aidbox etag cache by `DELETE /$etag` or `DELETE /Patient/$etag`.
+All etag values are cached to make etag queries efficient. If you did manually update resources in database or somehow made a cache invalid - you can reset Aidbox etag cache by `DELETE /$etag-cache` or `DELETE /Patient/$etag-cache`.
 
