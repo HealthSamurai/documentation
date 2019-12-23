@@ -56,6 +56,7 @@
     * [$validate](basic-concepts/development/usdvalidate.md)
 * [Advanced](advanced/README.md)
   * [Entities & Attributes](advanced/entities-and-attributes.md)
+  * [Reactive API & Subscriptions](advanced/reactive-api-and-subscriptions.md)
   * [Subscriptions](advanced/subscriptions.md)
   * [Observation/$lastn](advanced/misc.md)
   * [First-Class Extensions](advanced/first-class-extensions.md)

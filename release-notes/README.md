@@ -29,9 +29,13 @@ Starting from `0.4.0,` Aidbox.Cloud supports clusters which can be located in di
 * \_filter parameter support
 * Managing Indexes by **AidboxIndex** meta-resource
 
-## 0.4.9-SNAPSHOT
+## 0.4.9-SNAPSHOT \[Planned  release in January\]
 
-Focus on Subscriptions and Reactive API!
+### Features
+
+* [Reactive API & Subscriptions](../advanced/reactive-api-and-subscriptions.md)
+
+
 
 ## 0.4.8 \[16 December 2019\]
 
