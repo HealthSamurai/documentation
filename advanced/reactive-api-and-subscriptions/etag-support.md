@@ -38,7 +38,7 @@ body:
 
 ### ETag Cache
 
-All etag values are cached to make etag queries efficient. If you somehow made this cache invalid - you can reset Aidbox etag cache by `DELETE /$etag-cache` or `DELETE /Patient/$etag-cache`.
+All etag values are cached to make etag queries efficient. If you somehow made this cache invalid - you can reset Aidbox etag cache by `DELETE /$etags-cache` or `DELETE /Patient/$etags-cache`.
 
 {% hint style="warning" %}
 Aidbox **etags** machine is based on **txid** column in database! If you update resources in database do not forget update **txid** column and reset cache. `UPDATE resource SET txid = nextval('transaction_id_seq')`
