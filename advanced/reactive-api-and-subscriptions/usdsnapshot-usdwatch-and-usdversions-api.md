@@ -18,7 +18,6 @@ GET /Patient/$changes?\
   from=max(versionId)
   \&match={status: 'active'}
   \&response = http | stream
-  \&format= ndjson | json
 
 # stream of changes (ndjson, batch)
 
