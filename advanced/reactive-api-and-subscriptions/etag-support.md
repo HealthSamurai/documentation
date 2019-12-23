@@ -4,7 +4,7 @@ Read more about [How ETAG](https://developer.mozilla.org/ru/docs/Web/HTTP/%D0%97
 
 ### Search API & ETAG
 
-Search response contains **etag** information in  **etag** header and in `meta.versionId`. You can cache result and use `If-None-Match` header or `_etag` parameter to get newest data from server or response with status `304` if nothing changed.
+Search response contains **etag** information in  **etag** header and in `meta.versionId`. You can cache result and use `If-None-Match` header or `_etag` parameter to get newest data from server or response with status `304` if nothing has been changed.
 
 ```yaml
 GET /Patient
