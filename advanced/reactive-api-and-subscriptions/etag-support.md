@@ -1,6 +1,6 @@
 # ETAG support
 
-Read more about [ETAG theory](https://developer.mozilla.org/ru/docs/Web/HTTP/%D0%97%D0%B0%D0%B3%D0%BE%D0%BB%D0%BE%D0%B2%D0%BA%D0%B8/ETag).
+Read more about [How ETAG](https://developer.mozilla.org/ru/docs/Web/HTTP/%D0%97%D0%B0%D0%B3%D0%BE%D0%BB%D0%BE%D0%B2%D0%BA%D0%B8/ETag) works!
 
 ### Search API & ETAG
 
@@ -11,7 +11,8 @@ GET /Patient
 
 # resp
 status: 200
-
+headers:
+  ETag: '999'
 body:
   meta: {versionId: '999'}
   ....
@@ -20,6 +21,7 @@ body:
 
 # get 
 GET /Patient?_etag=999 # laset versionId
+If-None-Match: 999
 
 # resp
 status: 304
