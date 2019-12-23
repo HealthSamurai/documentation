@@ -5,7 +5,7 @@ description: Simple API to react on resource changes
 # $snapshot, $changes & $versions API
 
 {% hint style="info" %}
-Base url for reactive API is `/re-api/v1`
+Base url for reactive API is **`/re-api/v1`**
 {% endhint %}
 
 If you want to **watch** changes \(creations, updates and deletion\) of specific resource type, you can use $snapshot, $changes and $versions API. This APIs are cheap and efficient.
