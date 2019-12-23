@@ -2,9 +2,9 @@
 description: Simple API to react on resource changes
 ---
 
-# $snapshot, $watch & $versions API
+# $snapshot, $changes & $versions API
 
-If you want to **watch** changes \(creations, updates and deletion\) of specific resource type, you can use $snapshot, $watch and $offset API. This APIs are cheap and efficient.
+If you want to **watch** changes \(creations, updates and deletion\) of specific resource type, you can use $snapshot, $changes and $versions API. This APIs are cheap and efficient.
 
 ```yaml
 # get initial snapshot of data
@@ -14,8 +14,8 @@ GET /Patient/$snapshot
 # ....
 
 # get changes
-GET /Patient/$watch?\
-  version=max(versionId)
+GET /Patient/$changes?\
+  from=max(versionId)
   \&match={status: 'active'}
   \&response = http | stream
   \&format= ndjson | json
@@ -23,12 +23,12 @@ GET /Patient/$watch?\
 # stream of changes (ndjson, batch)
 
 # persist latest versionids
-PUT /$offsets/myservice
+PUT /$versions/myservice
 
 { Paitent: max(versionId) }
 
 # get latest versionids
-GET /$offsets/myservice
+GET /$versions/myservice
 
 #response
 200

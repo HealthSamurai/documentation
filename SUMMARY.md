@@ -58,7 +58,7 @@
   * [Entities & Attributes](advanced/entities-and-attributes.md)
   * [Reactive API & Subscriptions](advanced/reactive-api-and-subscriptions/README.md)
     * [ETAG support](advanced/reactive-api-and-subscriptions/etag-support.md)
-    * [$snapshot, $watch & $versions API](advanced/reactive-api-and-subscriptions/usdsnapshot-usdwatch-and-usdversions-api.md)
+    * [$snapshot, $changes & $versions API](advanced/reactive-api-and-subscriptions/usdsnapshot-usdwatch-and-usdversions-api.md)
     * [Subscriptions](advanced/subscriptions.md)
   * [Observation/$lastn](advanced/misc.md)
   * [First-Class Extensions](advanced/first-class-extensions.md)
