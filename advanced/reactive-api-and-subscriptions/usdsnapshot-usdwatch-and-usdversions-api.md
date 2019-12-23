@@ -15,9 +15,9 @@ GET /Patient/$snapshot
 
 # get changes
 GET /Patient/$changes?\
-  from=max(versionId)
-  \&match={status: 'active'}
-  \&response = http | stream | websocket
+  from=max(versionId)&\ 
+  match={status: 'active'}&\
+  response = http # | stream | websocket
 
 # stream of changes (ndjson, batch)
 
