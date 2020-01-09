@@ -8,9 +8,13 @@ description: Simple API to react on resource changes
 Base url for reactive API is **`/react/v1`**
 {% endhint %}
 
+By `GET /[base]/changes/<resource-type>` without `version` parameter you will get latest version, which can be used to poll for changes by `GET /[base]/changes/<resource-type>?version=<version>`
+
+Polling request is cheap! If you want to watch rare changes \(minutes-hours\), this API is very resource efficient  \(no subscriptions, no queues\) and provide you a lot of control. If nothing has been changed - you will get  response with status `302`,  otherwise list of changes and new **version** to poll next time.
+
 ```yaml
 ---
-GET /[base]/versions/Patient
+GET /[base]/changes/Patient
 
 # status 200
 version: 1
@@ -28,6 +32,7 @@ id: pt-1
 ---
 GET /[base]/changes/Patient?version=1
 
+# status 200
 version: 2
 changes:
 - action: created
