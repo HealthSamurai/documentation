@@ -2,41 +2,38 @@
 description: Simple API to react on resource changes
 ---
 
-# $snapshot, $changes & $versions API
+# Changes API
 
 {% hint style="info" %}
-Base url for reactive API is **`/api/reactive/v1`**
+Base url for reactive API is **`/react/v1`**
 {% endhint %}
 
-If you want to **watch** changes \(creations, updates and deletion\) of specific resource type, you can use $snapshot, $changes and $versions API. This APIs are cheap and efficient.
-
 ```yaml
-# get initial snapshot of data
-GET [base]/Patient/$snapshot
+---
+GET /[base]/versions/Patient
 
-# ndjson response
-# ....
+# status 200
+version: 1
 
-# get changes
-GET [base]/Patient/$changes?\
-  from=max(versionId)&\ 
-  match={status: 'active'}&\
-  response = http # | stream | websocket
+---
+GET /[base]/changes/Patient?version=1
 
-# stream of changes (ndjson, batch)
+# status 302 (not changed)
 
-# persist latest versionids
-PUT [base]/$versions/myservice
+---
+POST /Patient
 
-{ Paitent: max(versionId) }
+id: pt-1
 
-# get latest versionids
-GET [base]/$versions/myservice
+---
+GET /[base]/changes/Patient?version=1
 
-#response
-200
-{ Patient: <latest-version> }
-
+version: 2
+changes:
+- action: created
+  resource: {id: pt-1}
 
 ```
+
+
 
