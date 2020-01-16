@@ -1,2 +1,2 @@
-# Reactive API
+# Reactive API & Subscriptions
 

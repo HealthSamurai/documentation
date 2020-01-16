@@ -79,9 +79,61 @@ notification: <notification content>
 response: <response content if present>
 ```
 
-### $re-handshake
+### SubsSubscription/&lt;id&gt;/$handshake
 
-### $re-notify
+You can force handshake notification for specific subscription with:
 
-### $debug-subscription
+```yaml
+POST /SubsSubscription/<sub-id>/$handshake
+
+# response
+
+status: ...
+duration: ...
+notification: ....
+response: ...
+
+```
+
+### SubsSubscription/&lt;id&gt;/$debug
+
+To debug subscription notifications you can send debug messages with:
+
+```yaml
+POST /SubsSubscription/<sub-id>/$debug
+
+id: notif-id
+event: create
+type: notification
+resource: 
+  resourceType: Patient
+
+# response
+```
+
+### SubsNotification/$notify
+
+Or you can send list of notifications by providing list of search params:
+
+```yaml
+POST /SubsNotification/$notify?_id=id-1,id-2,id-3
+```
+
+### SubsNotification/&lt;id&gt;/$notify
+
+You can resend specific notification with
+
+```yaml
+POST /SubsNotification/<notif-id>/$notify
+
+
+# response
+
+status: ...
+duration: ...
+notification: ....
+response: ...
+```
+
+### 
 
