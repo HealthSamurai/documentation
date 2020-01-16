@@ -135,5 +135,22 @@ notification: ....
 response: ...
 ```
 
-### 
+### /subs/webhook
+
+You can subscribe one instance of Aidbox to notifications from another instance and replicate data between boxes by using `/subs/webhook/<source-id>` endpoint:
+
+```yaml
+POST /SubsSubscription
+
+id: box-replication
+status: active
+trigger:
+  Patient: { event: ['all'] }
+channel:
+  type: rest-hook
+  endpoint: <other-box-url>/subs/webhook/box-1
+  headers:
+    Authorization: Bearer <token>
+
+```
 
