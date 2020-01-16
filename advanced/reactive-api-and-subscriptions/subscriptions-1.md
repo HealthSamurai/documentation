@@ -70,8 +70,7 @@ Results of all notifications are logged into **SubsNotification**  resource:
 ```yaml
 GET /SubsNotification
 
-
-
+---
 id: <unique-id>
 subscription: { id: 'myservice-subs', resourceType: SubsSubscription }
 duration: 23 # hook duration in ms
@@ -79,4 +78,10 @@ status: success # fail
 notification: <notification content>
 response: <response content if present>
 ```
+
+### $re-handshake
+
+### $re-notify
+
+### $debug-subscription
 
