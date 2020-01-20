@@ -88,11 +88,15 @@ POST /SubsSubscription/<sub-id>/$handshake
 
 # response
 
-status: ...
-duration: ...
-notification: ....
-response: ...
-
+resourceType: SubsNotification
+notification:
+  type: handshake
+  debug: true
+  subscription: ...
+subscription: {resourceType: SubsSubscription, id: <sub-id>}
+duration: 1
+status: failed
+error: {message: Connection refused}
 ```
 
 ### SubsSubscription/&lt;id&gt;/$debug
@@ -107,8 +111,19 @@ event: create
 type: notification
 resource: 
   resourceType: Patient
+  id: pt-1
 
 # response
+
+resourceType: SubsNotification
+notification:
+  type: notification
+  resource: {id: pt-1, resourceType: Patient}
+  debug: true
+subscription: {resourceType: SubsSubscription, id: <sub-id>}
+duration: 1
+status: failed
+error: {message: Connection refused}
 ```
 
 ### SubsNotification/$notify
