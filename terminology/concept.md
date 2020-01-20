@@ -6,13 +6,16 @@ Concept resource has similar structure as Coding and [CodeSystem.concept](https:
 
 ```yaml
 resourceType: Concept
-// id of concept; usually short name for terminology + code
+# id of concept; usually short name for terminology + code
 id: loinc-17861-6
-// inactivity flag
+# inactivity flag
 deprecated: true
 system: http://loinc.org
 code: 17861-6
 display: Calcium [Mass/​volume] in Serum or Plasma	 
+# pre-expanded list of valueset ids/urls
+valuset:
+- labs
 definition: <Definition string>
 hierarchy:
   - parent-code-1
