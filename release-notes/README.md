@@ -35,6 +35,9 @@ Starting from `0.4.0,` Aidbox.Cloud supports clusters which can be located in di
 
 * [Reactive API & Subscriptions](../advanced/reactive-api-and-subscriptions/)
 * New [design/debug](../basic-concepts/search-1/custom-search.md#design-aidboxquery) endpoint for AidboxQuery
+* Audit customisation hook
+* New clojure engine for AccessPolicy
+* Strip empty values on CRUD
 
 
 
