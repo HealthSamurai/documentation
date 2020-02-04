@@ -241,7 +241,7 @@ PUT /Attribute/ServiceRequest.performerInfo.performedBy
 resourceType: Attribute
 description: 'Information filled in by performer: performed by ["Practitioner" "PractitionerRole" "Organization" "CareTeam" "HealthcareService" "Patient" "Device" "RelatedPerson"]'
 resource: {id: ServiceRequest, resourceType: Entity}
-path: [performerInfo.performedBy]
+path: [performerInfo, performedBy]
 id: ServiceRequest.performerInfo.performedBy
 type: {id: Reference, resourceType: Entity}
 isCollection: true
@@ -265,7 +265,7 @@ PUT /Attribute/ServiceRequest.performerInfo.actualLocationReference
 resourceType: Attribute
 description: 'Information filled in by performer: actual location reference'
 resource: {id: ServiceRequest, resourceType: Entity}
-path: [performerInfo.actualLocationReference]
+path: [performerInfo, actualLocationReference]
 id: ServiceRequest.performerInfo.actualLocationReference
 type: {id: Reference, resourceType: Entity}
 isCollection: true
@@ -282,7 +282,7 @@ PUT /Attribute/ServiceRequest.performerInfo.requestStatus
 resourceType: Attribute
 description: 'Information filled in by performer: request status'
 resource: {id: ServiceRequest, resourceType: Entity}
-path: [performerInfo.requestStatus]
+path: [performerInfo, requestStatus]
 id: ServiceRequest.performerInfo.requestStatus
 type: {id: code, resourceType: Entity}
 enum:
@@ -305,7 +305,7 @@ PUT /Attribute/ServiceRequest.performerInfo.requestActionHistory
 resourceType: Attribute
 description: 'Information filled in by performer: request action history'
 resource: {id: ServiceRequest, resourceType: Entity}
-path: [performerInfo.requestActionHistory]
+path: [performerInfo, requestActionHistory]
 id: ServiceRequest.performerInfo.requestActionHistory
 isCollection: true
 extensionUrl: urn:extension:performerInfo.requestActionHistory
@@ -319,7 +319,7 @@ PUT /Attribute/ServiceRequest.performerInfo.requestActionHistory.action
 resourceType: Attribute
 description: 'Information filled in by performer: request action history - action'
 resource: {id: ServiceRequest, resourceType: Entity}
-path: [performerInfo.requestActionHistory.action]
+path: [performerInfo, requestActionHistory, action]
 id: ServiceRequest.performerInfo.requestActionHistory.action
 type: {id: string, resourceType: Entity}
 extensionUrl: urn:extension:performerInfo.requestActionHistory.action
@@ -333,7 +333,7 @@ PUT /Attribute/ServiceRequest.performerInfo.requestActionHistory.date
 resourceType: Attribute
 description: 'Information filled in by performer: request action history - date'
 resource: {id: ServiceRequest, resourceType: Entity}
-path: [performerInfo.requestActionHistory.date]
+path: [performerInfo, requestActionHistory, date]
 id: ServiceRequest.performerInfo.requestActionHistory.date
 type: {id: dateTime, resourceType: Entity}
 extensionUrl: urn:extension:performerInfo.requestActionHistory.date
@@ -347,7 +347,7 @@ PUT /Attribute/ServiceRequest.performerInfo.requestActionHistory.subject
 resourceType: Attribute
 description: 'Information filled in by performer: request action history - subject'
 resource: {id: ServiceRequest, resourceType: Entity}
-path: [performerInfo.requestActionHistory.subject]
+path: [performerInfo, requestActionHistory, subject]
 id: ServiceRequest.performerInfo.requestActionHistory.subject
 type: {id: Reference, resourceType: Entity}
 extensionUrl: urn:extension:performerInfo.requestActionHistory.subject
@@ -361,7 +361,7 @@ PUT /Attribute/ServiceRequest.performerInfo.requestActionHistory.note
 resourceType: Attribute
 description: 'Information filled in by performer: request action history - note'
 resource: {id: ServiceRequest, resourceType: Entity}
-path: [performerInfo.requestActionHistory.note]
+path: [performerInfo, requestActionHistory, note]
 id: ServiceRequest.performerInfo.requestActionHistory.note
 type: {id: string, resourceType: Entity}
 extensionUrl: urn:extension:performerInfo.requestActionHistory.note
@@ -375,7 +375,7 @@ PUT /Attribute/ServiceRequest.performerInfo.requestActionHistory.author
 resourceType: Attribute
 description: 'Information filled in by performer: request action history - author'
 resource: {id: ServiceRequest, resourceType: Entity}
-path: [performerInfo.requestActionHistory.author]
+path: [performerInfo, requestActionHistory, author]
 id: ServiceRequest.performerInfo.requestActionHistory.author
 type: {id: Reference, resourceType: Entity}
 extensionUrl: urn:extension:performerInfo.requestActionHistory.author
@@ -391,9 +391,9 @@ PUT /ServiceRequest/servicerequest-with-aidbox-native-extensions
 resourceType: ServiceRequest
 performerInfo:
   performedBy:
-  - type: Organization
+  - resourceType: Organization
     display: City Hospital
-  - type: PractitionerRole
+  - resourceType: PractitionerRole
     display: Mark Sloan
   requestStatus: completed
   requestActionHistory:
@@ -411,7 +411,6 @@ performerInfo:
   - date: '2020-01-14T15:05:20'
     action: meeting
     author: {display: Mark Sloan (Dental surgeon), resourceType: PractitionerRole}
-    subject: {display: '2020-01-08'}
   - date: '2020-01-14T15:22:46'
     action: completed
     author: {display: Mark Sloan (Dental surgeon), resourceType: PractitionerRole}    
