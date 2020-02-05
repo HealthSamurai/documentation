@@ -4,8 +4,13 @@
 
 In Aidbox, you can easily define first-class extensions using the custom resource Attribute.
 
-Let's create an extension definition of type `Reference` in the REST Console of Aidbox:
+Let's create an extension definition of type `Reference` in the [REST Console](https://docs.aidbox.app/tutorials/rest-console) of Aidbox:
 
+{% hint style="success" %}
+You can quickly copy sample requests using the icon in the top right corner of code blocks. Block titles won't be copied.
+{% endhint %}
+
+{% code title="Create new extension in the Aidbox format:" %}
 ```yaml
 PUT /Attribute/ServiceRequest.requestedOrganizationDepartment
 
@@ -19,16 +24,17 @@ refers:
   - Organization
 extensionUrl: urn:extension:requestedOrganizationDepartment
 ```
+{% endcode %}
 
 {% hint style="info" %}
- The `extensionUrl`property will allow you later to get the extension in the FHIR compatible way. 
+The `extensionUrl`property allows you to get the extension in the FHIR compatible way. 
 {% endhint %}
 
 ## Use Your Extension
 
 Now, you can create the `ServiceRequest` resource using the new attribute `requestedOrganizationDepartment` in the root of the resource:
 
-{% code title="Create resource:" %}
+{% code title="Create resource in the Aidbox format:" %}
 ```yaml
 PUT /ServiceRequest/servicerequest-with-aidbox-native-extensions
 
@@ -65,15 +71,17 @@ subject:
 
 You can get the resource in the FHIR format where our new attribute is rendered as the `extension` element:
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Note that the URL is different:`GET /fhir/ServiceRequest/`
 {% endhint %}
 
 {% tabs %}
 {% tab title="Request" %}
+{% code title="Get the resource in the FHIR format:" %}
 ```http
 GET /fhir/ServiceRequest/servicerequest-with-aidbox-native-extensions
 ```
+{% endcode %}
 {% endtab %}
 
 {% tab title="Response" %}
@@ -119,6 +127,8 @@ performer:
 
 ## Other Extension Examples
 
+Let's create an extension of type `Reference` and list allowed resource types \(Organization in that case\) in the `refers` property.
+
 {% code title="managingOrganization" %}
 ```yaml
 PUT /Attribute/ServiceRequest.managingOrganization
@@ -134,6 +144,8 @@ refers:
 extensionUrl: urn:extension:requestedOrganization
 ```
 {% endcode %}
+
+Extension of type Coding:
 
 {% code title="paymentType" %}
 ```yaml
@@ -154,7 +166,7 @@ extensionUrl: urn:extension:paymentType
 ```
 {% endcode %}
 
-{% code title="Create resource:" %}
+{% code title="Create resource using these extensions:" %}
 ```yaml
 PUT /ServiceRequest/servicerequest-with-aidbox-native-extensions
 
@@ -181,7 +193,7 @@ subject:
 
 {% tabs %}
 {% tab title="Request" %}
-{% code title="Get resource in FHIR format:" %}
+{% code title="Get resource in the FHIR format:" %}
 ```yaml
 GET /fhir/ServiceRequest/servicerequest-with-aidbox-native-extensions
 ```
@@ -384,7 +396,7 @@ extensionUrl: urn:extension:performerInfo.requestActionHistory.author
 
 Let's add a resource using created extensions:
 
-{% code title="Create resource:" %}
+{% code title="Create resource in the Aidbox format:" %}
 ```yaml
 PUT /ServiceRequest/servicerequest-with-aidbox-native-extensions
 
@@ -429,7 +441,7 @@ subject:
 
 {% tabs %}
 {% tab title="Request" %}
-{% code title="Get resource in FHIR format:" %}
+{% code title="Get resource in the FHIR format:" %}
 ```yaml
 GET /fhir/ServiceRequest/servicerequest-with-aidbox-native-extensions
 ```
@@ -518,9 +530,9 @@ isCollection: true
 extensionUrl: "http://hl7.org/fhir/StructureDefinition/servicerequest-precondition"
 ```
 
-Let's create resource in FHIR format:
+Let's create resource in the FHIR format:
 
-{% code title="Create resource:" %}
+{% code title="Create resource in the FHIR format:" %}
 ```yaml
 PUT /fhir/ServiceRequest/servicerequest-with-aidbox-native-extensions
 
@@ -548,11 +560,11 @@ extension:
 ```
 {% endcode %}
 
-Let's get the resource in Aidbox format:
+Let's get the resource in the Aidbox format:
 
 {% tabs %}
 {% tab title="Request" %}
-{% code title="Get resource in Aidbox format:" %}
+{% code title="Get resource in the Aidbox format:" %}
 ```yaml
 GET /ServiceRequest/servicerequest-with-aidbox-native-extensions
 ```
@@ -580,4 +592,11 @@ precondition:
 ```
 {% endtab %}
 {% endtabs %}
+
+## Request Headers
+
+| Header | Value |
+| :--- | :--- |
+| Authorization | Bearer MGVkYTk0ODItOTI5MC00NjAzLWEyNmEtNGZiMDhkN2EyMjhq |
+| Content-Type | text/yaml |
 
