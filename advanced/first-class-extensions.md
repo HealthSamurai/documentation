@@ -50,18 +50,18 @@ category:
 authoredOn: '2020-01-18T15:08:00'
 resourceType: ServiceRequest
 requester:
-  type: PractitionerRole
+  resourceType: PractitionerRole
   display: Din Morgan
   identifier: {value: "1760", system: 'urn:oid:1.2.3.4.5.6.7.6'}
 priority: routine
 status: active
 intent: original-order
 performer:
-- type: Organization
+- resourceType: Organization
   display: Aga Khan University Hospital Laboratory
   identifier: {value: "1514", system: 'urn:oid:1.2.3.4.5.6.7.8'}
 subject:
-  type: Patient
+  resourceType: Patient
   display: Jack Black, 10.12.1941
   identifier: {value: '2155800871000065', system: 'urn:oid:1.2.3.4.5.6.7.9'}
 ```
@@ -171,11 +171,11 @@ extensionUrl: urn:extension:paymentType
 PUT /ServiceRequest/servicerequest-with-aidbox-native-extensions
 
 managingOrganization:
-  type: Organization
+  resourceType: Organization
   display: City Hospital
   identifier: {value: "123", system: 'urn:oid:1.2.3.4.5.6.7.8'}
 requestedOrganizationDepartment:
-  type: Organization
+  resourceType: Organization
   display: City Hospital Neurology Department
   identifier: {system: 'urn:oid:1.2.3.4.5.6.7.8', value: '456'}
 paymentType: {system: 'urn:CodeSystem:paymentType', 
@@ -185,7 +185,7 @@ resourceType: ServiceRequest
 status: active
 intent: original-order
 subject:
-  type: Patient
+  resourceType: Patient
   display: Jack Black, 10.12.1941
   identifier: {value: '2155800871000065', system: 'urn:oid:1.2.3.4.5.6.7.9'}
 ```
@@ -433,7 +433,7 @@ category:
   coding:
   - {code: "TMC", system: 'urn:CodeSystem:servicerequest-category', display: "Telemedicine consultation"}
 subject:
-  type: Patient
+  resourceType: Patient
   display: Jack Black, 10.12.1941
   identifier: {value: '2155800871000065', system: 'urn:oid:1.2.3.4.5.6.7.9'}
 ```
@@ -595,8 +595,10 @@ precondition:
 
 ## Request Headers
 
+If you are using some HTTP-client like Postman, you will need to specify some headers.
+
 | Header | Value |
 | :--- | :--- |
-| Authorization | Bearer MGVkYTk0ODItOTI5MC00NjAzLWEyNmEtNGZiMDhkN2EyMjhq |
+| Authorization | Bearer &lt;your value&gt; |
 | Content-Type | text/yaml |
 
