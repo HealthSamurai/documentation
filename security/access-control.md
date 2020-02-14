@@ -297,8 +297,8 @@ This custom DSL engine with limited expressiveness, but very compact and declara
 
 ```yaml
 resourceType: AccessPolicy
-type: matcho
-match:
+engine: matcho
+matcho:
   user: 
     # user.role should be equal to admin
     role: admin
