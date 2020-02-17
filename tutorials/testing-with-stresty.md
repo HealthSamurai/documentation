@@ -186,3 +186,5 @@ query-sql: ['SELECT "patient".* FROM "patient" LIMIT ? OFFSET ? ', 100, 0]
 {% endtab %}
 {% endtabs %}
 
+Read more about stresty, predicates and regexps [here](https://github.com/Aidbox/stresty).
+
