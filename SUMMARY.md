@@ -130,6 +130,7 @@
   * [SMART on FHIR](tutorials/smart-of-fhir.md)
   * [Sync Data From Aidbox](tutorials/sync-data-from-aidbox.md)
   * [SDC with Custom Resources](tutorials/sdc-with-custom-resources.md)
+  * [Testing with Stresty](tutorials/testing-with-stresty.md)
 * [Administration](administration/README.md)
   * [Logging & Audit](administration/logging-and-audit.md)
   * [X-Audit header](administration/x-audit-header.md)
