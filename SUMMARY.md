@@ -68,6 +68,7 @@
     * [R5/Subscriptions](advanced/reactive-api-and-subscriptions/r5-subscriptions.md)
   * [Sequence API](advanced/sequence-api.md)
   * [Encryption API](advanced/encryption-api.md)
+  * [$matcho](advanced/usdmatcho.md)
   * [Observation/$lastn](advanced/misc.md)
 * [Auth](auth-betta/README.md)
   * [Basic Auth](auth-betta/basic-auth.md)
