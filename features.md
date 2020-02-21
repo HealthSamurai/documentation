@@ -1,3 +1,7 @@
+---
+description: Overview of Aidbox features
+---
+
 # Features
 
 ### REST API - FHIR, Aidbox, GraphQL, Reactive API & Subscriptions
