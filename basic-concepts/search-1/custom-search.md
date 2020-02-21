@@ -133,6 +133,45 @@ query: [...]
 PostgreSQL supports Special Date/Time inputs like **now**, **today**, **tomorrow** etc.
 {% endhint %}
 
+### Design AidboxQuery 
+
+To design aidbox query you can use `POST /$query/$debug`  endpoint without need to create AidboxQuery resource:
+
+```yaml
+POST /$query/$debug
+
+query:
+  # AidboxQuery resource content
+  query: 'SELECT {{params.id}} as params_id'
+  params:
+    id: {isRequired: true}
+# test params
+params: 
+  id: 'ups'
+  
+---
+# actual result
+data:
+- {params_id: ups}
+# sql query
+query: ['SELECT ? as params_id', ups]
+# execution plan
+plan: |-
+  Result  (cost=0.00..0.01 rows=1 width=32) (actual time=0.009..0.022 rows=1 loops=1)
+  Planning Time: 0.025 ms
+  Execution Time: 0.067 ms
+# templating context
+ctx:
+  remote-addr: 0:0:0:0:0:0:0:1
+  client: { ... }
+  params: {id: ups}
+  headers: {...}
+  uri: /$query/$debug
+  user: {...}
+  scheme: http
+  request-method: post
+```
+
 ### Debug AidboxQuery
 
 You can debug AidboxQuery with `_explain=true` parameter:
