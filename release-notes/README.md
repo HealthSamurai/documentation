@@ -1,18 +1,18 @@
 ---
-description: Aidbox versions release notes
+description: Aidbox release notes
 ---
 
 # Release Notes
 
-Aidbox release cycle is about 2-4 weeks. Stable releases are labeled with version  - like `0.4.0`See the list of versions on [docker-hub](https://hub.docker.com/r/healthsamurai/devbox/tags)
+Aidbox release cycle is about 2-4 weeks. Stable releases are labeled with the version number like `0.4.0`See the list of versions on [docker-hub](https://hub.docker.com/r/healthsamurai/devbox/tags).
 
-Version under development published with `-SNAPSHOT` and `-RC[x]` postfix. For example if latest release was `0.3.0`,  in registry you will see the `0.4.0-SNAPSHOT` version during development, and `0.4.0-RC1`in a stabilization period.
+The version under development is published with `-SNAPSHOT` and `-RC[x]` postfixes. For example, if the latest release was `0.3.0`,  you will see the `0.4.0-SNAPSHOT` version during the development, and `0.4.0-RC1` during a stabilization period in the registry.
 
-Starting from `0.4.0,` Aidbox.Cloud supports clusters which can be located in different  geo regions and run different Aidbox versions. Clusters labeled _**stable**_ have the latest stable version \(i.e. `max(version)`\). As well, clusters with the **edge** label run the latest development version \(snapshot or release candidates\).
+Starting from `0.4.0,` Aidbox.Cloud supports clusters that can be located in different  geographic regions and run different Aidbox versions. Clusters that are labeled _**stable**_ have the latest stable version \(i.e., `max(version)`\). As well, clusters with the **edge** label run the latest development version \(snapshot or release candidates\).
 
 {% hint style="info" %}
 * Current stable version: **0.4.8**
-* Next release in January:   **0.4.9**
+* Next release in February:   **0.4.9**
 {% endhint %}
 
 ## Road Map
@@ -23,21 +23,21 @@ Starting from `0.4.0,` Aidbox.Cloud supports clusters which can be located in di
 * New performant and flexible search engine \(friendly indexing system\)
 * Bulk API \(export, import\)
 * $upload
-* Uni-version FHIR server \(i.e. support all FHIR versions, probably not all resources\)
+* Uni-version FHIR server \(i.e., support all FHIR versions, probably not all resources\)
 * Async validation
 * Terminology under `fhir` prefix \(issues \#51 \#50 \#38\)
 * \_filter parameter support
 * Managing Indexes by **AidboxIndex** meta-resource
 
-## 0.4.9-SNAPSHOT \[Planned  release in January\]
+## 0.4.9-SNAPSHOT \[Planned  release in February\]
 
 ### Features
 
 * [Reactive API & Subscriptions](../advanced/reactive-api-and-subscriptions/)
 * New [design/debug](../basic-concepts/search-1/custom-search.md#design-aidboxquery) endpoint for AidboxQuery
-* Audit customisation hook
-* New clojure engine for AccessPolicy
-* Strip empty values on CRUD
+* Audit customization hook
+* New Clojure engine for AccessPolicy
+* Strip empty values in CRUD
 
 
 
@@ -65,15 +65,15 @@ Now references to contained resources are represented as `localRef` attribute in
 {% endhint %}
 
 * Managed SQL for FHIR search by [SearchQuery](../basic-concepts/search-1/searchquery.md)
-* default timeout for Search Operations with [\_timeout](../basic-concepts/search-1/_timeout.md) param for hight load
+* A default timeout for Search Operations with [\_timeout](../basic-concepts/search-1/_timeout.md) param for high-load
 * Ordered search in [$lookup](../basic-concepts/search-1/usdlookup.md)
 * microseconds precision for timestamps \(Resource.meta.lastUpdated\) 
-* Better Aidbox &lt;=&gt; FHIR conversion of first class extensions
-* Add JWT sub & iss and client ip address to logs
-* aidbox-cli elastic search logger now creates new index for each day
+* Better Aidbox &lt;=&gt; FHIR conversion for first-class extensions
+* Added JWT sub & iss and client IP address to logs
+* aidbox-cli elastic search logger now creates a new index for each day
 * Upgrade/Fix [PATCH](../basic-concepts/crud-1/patch.md) to be fully RFC conformant
-* Add [X-Client-Auth](https://docs.aidbox.app/auth-betta/access-token-introspection#x-client-auth) header
-* Add **cts** column \(createdAt\) to resources \([read more](0.4.7-addendum.md)\).
+* Added [X-Client-Auth](https://docs.aidbox.app/auth-betta/access-token-introspection#x-client-auth) header
+* Added **cts** column \(createdAt\) to resources \([read more](0.4.7-addendum.md)\).
 * Entity.history='none' for custom resources to turn-off history
 * Unique validation by `isUnique=true` in Attribute
 * New Test toolkit [stresty](https://github.com/Aidbox/stresty) to report bugs and test regression \(see [samples](https://github.com/Aidbox/aidbox-tests/tree/master/test)\).
