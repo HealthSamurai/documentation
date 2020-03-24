@@ -31,7 +31,7 @@ We are providing a lightweight version of [Aidbox](https://www.health-samurai.io
 ### Step 1. Install Docker Compose
 
 The recommended way to work with **Aidbox.Dev** is Docker Compose.  
-Install the Docker for your OS following the [Get Docker page](https://docs.docker.com/install/), then go to instructions on the [installing Compose](https://docs.docker.com/v17.09/compose/install/#install-compose) page.
+Install Docker for your OS following the [Get Docker page](https://docs.docker.com/install/), then go to instructions on the [installing Compose](https://docs.docker.com/v17.09/compose/install/#install-compose) page.
 
 ### Step 2. Create docker-compose.yaml
 
@@ -124,7 +124,7 @@ AIDBOX_IMAGE=healthsamurai/devbox:0.4.1
 | AIDBOX\_ADMIN\_PASSWORD | false | Password for admin user |
 
 {% hint style="info" %}
-If **AIDBOX\_CLIENT\_ID** & **AIDBOX\_CLIENT\_SECRET** are provided - Aidbox will start in secured mode with access control turned on; API Client with provided ID and secret will be created as well Access Policy, which grants root privileges to this Client. In a simplest way you can access Aidbox API using basic auth and this client credentials.
+If **AIDBOX\_CLIENT\_ID** & **AIDBOX\_CLIENT\_SECRET** are provided - Aidbox will start in a secure mode with access control turned on; API Client with provided ID and secret will be created as well as Access Policy, which grants root privileges to this Client. In a simplest way you can access Aidbox API using basic auth and this client credentials.
 {% endhint %}
 
 {% hint style="warning" %}
@@ -132,7 +132,7 @@ Starting Aidbox in open mode without AIDBOX\_CLIENT\_SECRET is disabled!
 {% endhint %}
 
 {% hint style="info" %}
-**AIDBOX\_IMAGE** specify one of image from **healthsamurai/devbox** repository. Take a look at available versions at [docker hub](https://hub.docker.com/r/healthsamurai/devbox/tags).
+**AIDBOX\_IMAGE** specify one of the images from **healthsamurai/devbox** repository. Take a look at available versions at [docker hub](https://hub.docker.com/r/healthsamurai/devbox/tags).
 {% endhint %}
 
 ## Run Aidbox.Dev
@@ -150,7 +150,7 @@ _\*\*_Insert your ADMIN\_ID and ADMIN\_PASSWORD and you will see your developmen
 ![](../.gitbook/assets/login-aidbox.gif)
 
 {% hint style="info" %}
-We welcome your questions and comments about our products. Have an idea/question you'd like to share with our community? [Submit it here](https://community.aidbox.app/)
+We welcome your questions and comments about our products. Have an idea/question you'd like to share with our community? [Submit it here](https://t.me/aidbox)
 {% endhint %}
 
 ## What next?
@@ -167,7 +167,7 @@ You can test your docker-compose.yaml with
 docker-compose config # to inspect your configuration
 ```
 
-You can access you PostgreSQL on localhost using $PGUSER and $PGPASSWORD from env variables on $PGHOSTPORT .
+You can access your PostgreSQL on localhost using $PGUSER and $PGPASSWORD from env variables on $PGHOSTPORT .
 
 ```bash
 # source variables
@@ -222,7 +222,7 @@ $ docker-compose stop
 $ docker-compose down
 ```
 
-By default docker-compose file mount folder `./pgdata` as persistent volume for PostgreSQL, so it will survive restarts and destroy of containers. If you want to completely cleanup previous installation just `rm -rf ./pgdata`
+By default docker-compose file mount folder `./pgdata` as a persistent volume for PostgreSQL, so that it survives restarts and destroying of containers. If you want to completely cleanup previous installation just `rm -rf ./pgdata`
 
 ### Upgrade Aidbox.Dev
 
