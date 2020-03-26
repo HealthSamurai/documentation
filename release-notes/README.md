@@ -15,12 +15,6 @@ Starting from `0.4.0,` Aidbox.Cloud supports clusters that can be located in dif
 * Next release in February:   **0.4.9**
 {% endhint %}
 
-## 0.5.0-SNAPSHOT
-
-### Features
-
-* Search and sort by [\_createdAt parameter](../basic-concepts/search-1/_lastupdated.md)
-
 ## Road Map
 
 * Aidbox production supervisor
@@ -34,6 +28,12 @@ Starting from `0.4.0,` Aidbox.Cloud supports clusters that can be located in dif
 * Terminology under `fhir` prefix \(issues \#51 \#50 \#38\)
 * \_filter parameter support
 * Managing Indexes by **AidboxIndex** meta-resource
+
+## .5.0-SNAPSHOT
+
+### Features
+
+* Search and sort by [\_createdAt](../basic-concepts/search-1/_lastupdated.md) parameter
 
 ## 0.4.9-SNAPSHOT \[Planned  release in February\]
 
