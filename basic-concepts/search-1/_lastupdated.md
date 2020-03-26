@@ -2,12 +2,16 @@
 description: Filter by modification date
 ---
 
-# \_lastUpdated
+# \_lastUpdated & \_createdAt
 
-Search by last modification time of resource   `meta.lastUpdated`\(note: `ts` column in database\)
+Search by last modification time of resource   `meta.lastUpdated`\(note: `ts` column in database\) or by creation time `meta.createdAt`\(note: `cts` column in database\) 
 
 ```http
 GET /Patient?_lastUpdated=2019-01-01
+```
+
+```text
+GET /Patient?_createdAt=2019-01-01
 ```
 
 Value can be partial ISO date:
@@ -42,6 +46,6 @@ _lastUpdated=ge2019-01  => ts >= min_date_bound('2019-01')
 ```
 
 {% hint style="info" %}
-Aidbox use PostgreSQL precision for **lastUpdated/ts** - it's usually micro-seconds
+Aidbox use PostgreSQL precision for **lastUpdated/ts** and **createdAt/cts** - it's usually micro-seconds
 {% endhint %}
 

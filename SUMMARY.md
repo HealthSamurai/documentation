@@ -25,7 +25,7 @@
   * [Search](basic-concepts/search-1/README.md)
     * [SearchParameter](basic-concepts/search-1/searchparameter.md)
     * [\_id](basic-concepts/search-1/_id.md)
-    * [\_lastUpdated](basic-concepts/search-1/_lastupdated.md)
+    * [\_lastUpdated & \_createdAt](basic-concepts/search-1/_lastupdated.md)
     * [\_text & \_content](basic-concepts/search-1/_text-and-_content.md)
     * [\_ilike](basic-concepts/search-1/_ilike.md)
     * [\_elements](basic-concepts/search-1/_elements.md)
