@@ -15,6 +15,12 @@ Starting from `0.4.0,` Aidbox.Cloud supports clusters that can be located in dif
 * Next release in February:   **0.4.9**
 {% endhint %}
 
+## 0.5.0-SNAPSHOT
+
+### Features
+
+* Search and sort by [\_createdAt parameter](../basic-concepts/search-1/_lastupdated.md)
+
 ## Road Map
 
 * Aidbox production supervisor
