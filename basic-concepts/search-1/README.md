@@ -99,6 +99,33 @@ GET /Patient?name:exact=Alex
 * `:text` — case insensitive, partial match of text associated with token or token itself.
 * `:in` — the search parameter is a URI \(relative or absolute\) that identifies a value set, and the search parameter tests whether the coding is in the specified value set.
 
+```
+//Search for any patient with a gender that does not have the code "male"
+//Note that for :not, the search does not return any resources that have a gen
+GET /Patient?gender:not=male
+```
+
+```
+//Search for any patient with johndoe@mail.com email
+GET /Patient?email:text=JoHnDoE@mail.com
+```
+
+```
+//Search for any patient with gmail or icloud email
+GET /Patient?email:text=GMail.com,ICloud.com
+```
+
+```
+//Search for any patient which have "fhir" in any of their contact info
+GET /Patient?telecom:text=fhir
+```
+
+```
+//Search for any condition that is in the institutions list of cardiac conditions
+//Note: you must have Concept with valueset defined
+GET /Condition?code:in=http://acme.org/fhir/ValueSet/cardiac-conditions
+```
+
 ### Reference
 
 Reference describes the relationship between resources. Following options are available for filtering by reference:
