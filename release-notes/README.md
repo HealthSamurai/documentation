@@ -29,11 +29,12 @@ Starting from `0.4.0,` Aidbox.Cloud supports clusters that can be located in dif
 * \_filter parameter support
 * Managing Indexes by **AidboxIndex** meta-resource
 
-## .5.0-SNAPSHOT
+## 0.5.0-SNAPSHOT
 
 ### Features
 
 * Search and sort by [\_createdAt](../basic-concepts/search-1/_lastupdated.md) parameter
+* Search by tokens with [:text modifier](../basic-concepts/search-1/#token)
 
 ## 0.4.9-SNAPSHOT \[Planned  release in February\]
 

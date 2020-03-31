@@ -53,7 +53,7 @@ GET /Patient?name=Max&_elements=id, birthDAte
 | [\_explain](_explain.md) |  | See query execution plan |
 | [\_result](_result.md) |  | Change result format |
 
-### Search Parameters
+## Search Parameters
 
 Search defined in terms of "[search parameters](searchparameter.md)". SearchParameter is a meta-resource, which describes which part of resource and how you can make searchable.
 
@@ -72,7 +72,7 @@ Search parameter can be one of the following types:
 
 Depending on the value type, different modifiers can be applied.
 
-#### Common
+### Common
 
 * `:missing`
 
@@ -82,7 +82,7 @@ GET /Entity?description:missing=true
 
 For `gender:missing=true`, server will return all resources that don't have a value for the gender parameter.
 
-#### Strings
+### Strings
 
 * `:exact` — no partial matches, case sensitive;
 * `:contains` — case insensitive, partial match at start or end.
@@ -93,9 +93,13 @@ Default behavior is case insensitive, partial match at start.
 GET /Patient?name:exact=Alex
 ```
 
-#### Token
+### Token
 
-#### Reference
+* `:not` — reverse the code matching: return all resources that do not have a matching item.
+* `:text` — case insensitive, partial match of text associated with token or token itself.
+* `:in` — the search parameter is a URI \(relative or absolute\) that identifies a value set, and the search parameter tests whether the coding is in the specified value set.
+
+### Reference
 
 Reference describes the relationship between resources. Following options are available for filtering by reference:
 
@@ -123,7 +127,7 @@ GET /Encounter?subject=patientid
 GET /Encounter?subject=Patient/patientid
 ```
 
-#### Prefixes
+### Prefixes
 
 For Numbers, Dates and Quantities \(will be supported\), we can use the following conditionals in search:
 
