@@ -97,6 +97,7 @@ GET /Patient?name:exact=Alex
 
 * `:not` — reverse the code matching: return all resources that do not have a matching item.
 * `:text` — case insensitive, partial match of text associated with token or token itself.
+* `:i` — case insensitive, exact match of text associated with token or token itself.
 * `:in` — the search parameter is a URI \(relative or absolute\) that identifies a value set, and the search parameter tests whether the coding is in the specified value set.
 
 ```
