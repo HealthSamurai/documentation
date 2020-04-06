@@ -75,12 +75,27 @@ Depending on the value type, different modifiers can be applied.
 ### Common
 
 * `:missing`
+* `:text` — case insensitive, partial match of text & data associated with search parameter.
 
 ```javascript
 GET /Entity?description:missing=true
+// For gender:missing=true,
+// server will return all resources that
+// don't have a value for the gender parameter.
 ```
 
-For `gender:missing=true`, server will return all resources that don't have a value for the gender parameter.
+```markup
+// Search for any patient with johndoe@mail.com email
+GET /Patient?email:text=JoHnDoE@mail.com
+
+// Search for any patient with gmail or icloud email
+GET /Patient?email:text=GMail.com,ICloud.com
+
+// Search for any patient which have "fhir" in any of their contact info
+GET /Patient?telecom:text=fhir
+```
+
+
 
 ### Strings
 
@@ -96,7 +111,6 @@ GET /Patient?name:exact=Alex
 ### Token
 
 * `:not` — reverse the code matching: return all resources that do not have a matching item.
-* `:text` — case insensitive, partial match of text associated with token or token itself.
 * `:i` — case insensitive, exact match of text associated with token or token itself.
 * `:in` — the search parameter is a URI \(relative or absolute\) that identifies a value set, and the search parameter tests whether the coding is in the specified value set.
 
@@ -107,18 +121,11 @@ GET /Patient?gender:not=male
 ```
 
 ```
-//Search for any patient with johndoe@mail.com email
-GET /Patient?email:text=JoHnDoE@mail.com
-```
-
-```
-//Search for any patient with gmail or icloud email
-GET /Patient?email:text=GMail.com,ICloud.com
-```
-
-```
-//Search for any patient which have "fhir" in any of their contact info
-GET /Patient?telecom:text=fhir
+// Search for patient with email which is Foo@Bar.BAZ
+GET /Patient?email:i=foo@bar.baz
+// Note: this search won't find patient with emails like:
+// ffoo@bar.baz
+// foo@bar.bazz
 ```
 
 ```
