@@ -34,7 +34,7 @@ Starting from `0.4.0,` Aidbox.Cloud supports clusters that can be located in dif
 ### Features
 
 * Search and sort by [\_createdAt](../basic-concepts/search-1/_lastupdated.md) parameter
-* Search by tokens with [:text modifier](../basic-concepts/search-1/#token)
+* Search by tokens with [:text modifier](../basic-concepts/search-1/#common)
 
 ## 0.4.9-SNAPSHOT \[Planned  release in February\]
 
