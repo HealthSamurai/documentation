@@ -112,6 +112,7 @@
   * [Python SDK](aidbox-sdk/python-sdk.md)
   * [SDK internals](aidbox-sdk/sdk-internals.md)
 * [Integrations](integrations/README.md)
+  * [Azure](integrations/azure.md)
   * [HL7 v2 Integration](integrations/hl7-v2-integration.md)
   * [Mappings](integrations/mappings.md)
 * [Tutorials](tutorials/README.md)

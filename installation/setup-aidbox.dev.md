@@ -20,7 +20,7 @@ We are providing a lightweight version of [Aidbox](https://www.health-samurai.io
 
 1. Enter a short description of your project and select the `Aidbox.Dev` option.
 
-![](../.gitbook/assets/image%20%286%29.png)
+![](../.gitbook/assets/image%20%289%29.png)
 
 1. Congratulations! Now you have a license key.
 
