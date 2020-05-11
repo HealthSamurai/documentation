@@ -39,7 +39,7 @@ You can provide blob name or just extension \(name will be generated\).
 POST /azure/storage/avatars
 
 blob: pt-1.png
-# ext: png
+# extension: png
 
 ---
 status: 200
