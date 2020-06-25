@@ -11,8 +11,8 @@ The version under development is published with `-SNAPSHOT` and `-RC[x]` postfix
 Starting from `0.4.0,` Aidbox.Cloud supports clusters that can be located in different  geographic regions and run different Aidbox versions. Clusters that are labeled _**stable**_ have the latest stable version \(i.e., `max(version)`\). As well, clusters with the **edge** label run the latest development version \(snapshot or release candidates\).
 
 {% hint style="info" %}
-* Current stable version: **0.4.8**
-* Next release in February:   **0.4.9**
+* Current stable version: **0.4.9**
+* Next release in February:   **0.5.0**
 {% endhint %}
 
 ## Road Map
@@ -37,7 +37,7 @@ Starting from `0.4.0,` Aidbox.Cloud supports clusters that can be located in dif
 * Search by tokens with [:text modifier](../basic-concepts/search-1/#common)
 * Filters in [Change API](../advanced/reactive-api-and-subscriptions/usdsnapshot-usdwatch-and-usdversions-api.md)
 
-## 0.4.9-SNAPSHOT \[Planned  release in February\]
+## 0.4.9 \[9 March 2020\]
 
 ### Features
 
