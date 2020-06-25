@@ -8,7 +8,7 @@ By `GET /<resource-type>/$changes` without `version` parameter you will get late
 
 Polling request is cheap! If you want to watch rare changes \(minutes-hours\), this API is very resource efficient  \(no subscriptions, no queues\) and provide you a lots of control. If nothing has been changed - you will get  response with status `304`,  otherwise list of changes and new **version** to poll next time.
 
-You can filter resources by equality. It's provided by params started with dot e.g. .name.0.family.
+You can filter resources by equality. It's provided by params started with dot, e.g. `.name.0.family`.
 
 ```yaml
 ---
