@@ -58,5 +58,56 @@ request:
 
 ```
 
+### Examples
+
+Access control with Validating JWT Access Tokens and AccessPolicy
+
+Create `TokenInspector`
+
+```yaml
+resourceType: TokenIntrospector
+type: jwt
+jwks_uri: https://.../.well-known/jwks.json
+jwt:
+  iss: https://my-provider.example # shoud be equal to `iss` claim of the JWT
+  secret: "xxxxxxxx"               # pre-shared key if JWT alg = HS256
+```
+
+Your JWT token should contain `sub` attribute that equal `User.id` on your box.
+
+```yaml
+# JWT sample
+...
+claims:
+  ...
+  sub: box-user-id
+  
+```
+
+Also you can put box user id in to `box_user` claim attribute. This case make sense when you use external oauth provider or another identity system that managed `sub` attribute itself. In this case you can put `box_user` in to user.
+
+```yaml
+# JWT sample
+...
+claims:
+  ...
+  sub: some-user-id-on-external-system
+  box_user: box-user-id
+  
+```
+
+When Aidbox receive request with JWT and `sub` attribute, Aidbox inject this user and his roles to the request. Now we can create some AccessPolicy.
+
+```yaml
+# AccessPolicy example
+resourceType: AccessPolicy
+engine: allow
+link:
+  - resourceType: User
+    id: box-user-id
+```
+
+ 
+
 
 
