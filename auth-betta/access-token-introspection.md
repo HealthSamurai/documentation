@@ -84,7 +84,7 @@ claims:
   
 ```
 
-Also you can put box user id in to `box_user` claim attribute. This case make sense when you use external oauth provider or another identity system that managed `sub` attribute itself. In this case you can put `box_user` in to user.
+Also you can put box user id in to `box_user` claim attribute. This case make sense when you use external oauth provider or another identity system that managed `sub` attribute itself. In this case you can put box user id in to `box_user` .
 
 ```yaml
 # JWT sample
@@ -96,7 +96,7 @@ claims:
   
 ```
 
-When Aidbox receive request with JWT and `sub` attribute, Aidbox inject this user and his roles to the request. Now we can create some AccessPolicy.
+When Aidbox receive request with JWT and `box_user` or `sub` attribute, Aidbox inject this user and his roles to the request. Now we can create some AccessPolicy.
 
 ```yaml
 # AccessPolicy example
