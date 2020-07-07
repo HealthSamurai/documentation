@@ -4,9 +4,16 @@ description: Efficient lookup for resources by key attributes
 
 # $lookup
 
-There are scenarios when you want to quickly lookup patients or practitioners with prefix search by multiple key elements like family name, date of birth and identifier. Prefix search means you want to say in query string `jo do 79` and find `John Doe with 1979` birthdate. Sometimes there are millions of patients in your database and you want to do it efficiently to show type-ahead dropdown choices in your UI.
+### Overview
+
+There are scenarios when you want to quickly lookup patients or practitioners with prefix search by multiple key elements like family name, date of birth and identifier. Prefix search means you want to say in query string `jo do 79` and find `John Doe with 1979 birthdate`. Sometimes there are millions of patients in your database and you want to do it efficiently to show type-ahead dropdown choices in your UI.
 
 $lookup operations is especially designed to be efficient implementation for this case.
+
+> **Demo. US NPI by Aidbox**
+>
+> [https://search-resource.netlify.com/](https://search-resource.netlify.com/)  
+> Here is demo of US NPI ~10M practitioners in Aidbox Cloud using **$lookup** operation. You can source code of this app on [github](https://github.com/Aidbox/usnpi-ui).
 
 There is no way to implement efficient multidimensional prefix search with ranking and sorting in  relational database. $lookup based on specific assumptions to find the right trade-off: if search returns more then `count` \(by default 50\) results, we consider that search failed and result can have some anomalies - for example not complete sorting.
 
@@ -76,9 +83,5 @@ VACUUM ANALYZE "patient";
 ```
 {% endcode %}
 
-### US NPI by Aidbox
-
-Here is demo of US NPI ~10M practitioners in Aidbox Cloud using **$lookup** operation - [https://search-resource.netlify.com/](https://search-resource.netlify.com/)
-
-Source code of this app you can find on [github](https://github.com/Aidbox/usnpi-ui).
+### 
 
