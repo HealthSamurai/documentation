@@ -36,6 +36,8 @@ Starting from `0.4.0,` Aidbox.Cloud supports clusters that can be located in dif
 * Search and sort by [\_createdAt](../basic-concepts/search-1/_lastupdated.md) parameter
 * Search by tokens with [:text modifier](../basic-concepts/search-1/#common)
 * Filters in [Change API](../advanced/reactive-api-and-subscriptions/usdsnapshot-usdwatch-and-usdversions-api.md)
+* [Azure API](../integrations/azure.md)
+* [SQL Parameters](../basic-concepts/search-1/search-resource.md)
 
 ## 0.4.9 \[9 March 2020\]
 
