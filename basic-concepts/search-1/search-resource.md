@@ -11,8 +11,8 @@ resourceType: Search
 id: Patient.name # id of resource
 name: name # name of search parameter
 resource: {id: Patient, resourceType: Entity} # link to resource type
-where: '{{table}}.resource->'name' ilike {{param}}' # sql string for search
-order-by: "{{table}}.resoource#>>'{name,0,family}'" # sql string for search
+where: {{table}}.resource->'name' ilike {{param}} # sql string for search
+order-by: {{table}}.resoource#>>'{name,0,family}' # sql string for search
 format: '%?%' # format parameter value
 # multi: array # coerce params to array
 ```
@@ -35,8 +35,8 @@ If you set multi = 'array' parameters will be coerced as PostgreSQL array
 resourceType: Search
 id: Patient.name # id of resource
 resource: {id: Patient, resourceType: Entity}
-where: '{{table}}.resource->'name' ilike {{param}}'
-order-by: "{{table}}.resoource#>>'{name,0,family}'"
+where: {{table}}.resource->'name' ilike {{param}}
+order-by: {{table}}.resoource#>>'{name,0,family}'
 format: '%?%'
 
 GET /Patient?name=joh
@@ -50,7 +50,7 @@ GET /Patient?_sort=name
 resourceType: Search
 id: Patient.identifier # id of resource
 resource: {id: Patient, resourceType: Entity}
-where: 'knife_extract_text({{table}}.resource, '[["identifier","value"]]') && {{param}}'
+where: knife_extract_text({{table}}.resource, '[["identifier","value"]]') && {{param}}
 multi: array
 
 GET /Patient?identifier=id1,id2,id3
