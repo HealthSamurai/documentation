@@ -42,6 +42,7 @@
     * [\_explain](basic-concepts/search-1/_explain.md)
     * [AidboxQuery](basic-concepts/search-1/custom-search.md)
     * [SearchQuery](basic-concepts/search-1/searchquery.md)
+    * [Search Resource](basic-concepts/search-1/search-resource.md)
     * [$lookup](basic-concepts/search-1/usdlookup.md)
   * [History](basic-concepts/history-1.md)
   * [Bulk API](basic-concepts/bulk-api-1/README.md)
