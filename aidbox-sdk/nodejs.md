@@ -8,8 +8,14 @@ Main function of SDK  - `start` receives context \(`ctx` below\), which describe
 ```javascript
 var ctx = {
   env: {
-    init_url: process.env.APP_INIT_URL,
-    ....
+    initUrl: process.env.APP_INIT_URL,
+    initClientID: process.env.APP_INIT_CLIENT_ID,
+    initClientSecret: process.env.APP_INIT_CLIENT_SECRET,
+
+    appID: APP_ID,
+    appUrl: process.env.APP_URL,
+    appPort: process.env.APP_PORT,
+    appSecret: process.env.APP_SECRET,
   },
   manifest: {
     id: APP_ID,
@@ -22,14 +28,36 @@ var ctx = {
 
 ### Register Operation
 
-Let's describe new operation - called "report", we will obtain count of Aidbox default resource - Attribute. Our handle will looks like this
+
+
+Operation response must return an object containing at least a resource property. The status and headers fields are optional. Let's describe new operation - called "report", we will obtain count of Aidbox default resource - Attribute. Our handle will looks like this
 
 {% code title="handler.js" %}
 ```javascript
 const report = (ctx, msg) => 
   ctx
     .query('select count(*) FROM Attribute')
-    .then(data => Promise.resolve({ count: data[0].count }));
+    .then(data => Promise.resolve({
+                            resource: {
+                              count: data[0].result[0].count 
+                            }}));
+                            
+                            
+const reportExtended = (ctx, msg) => 
+  ctx
+    .query('select count(*) FROM Attribute')
+    .then(data => {
+      return Promise.resolve({
+        resource: {
+          count: data[0].result[0].count,
+        },
+        status: 200,
+        headers: {
+          "x-additional": "attribute counr",
+          "x-extend": "extended report"
+        },
+      });
+  });
 ```
 {% endcode %}
 
@@ -70,6 +98,11 @@ var ctx = {
         method: 'GET',
         path: ["_report"],
         handler: report
+      }
+      reportExtended: {
+        method: 'GET',
+        path: ["_report-extended"],
+        handler: reportExtended
       }
     }
   }
