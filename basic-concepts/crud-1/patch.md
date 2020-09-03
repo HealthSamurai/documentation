@@ -26,7 +26,7 @@ You can specify a `patch` method by the `content-type` header or by the `_method
 
 If method is not specified, Aidbox will try to guess it by the following algorithm: 
 
-* if the payload is an array — `json-merge`
+* if the payload is an array — `json-patch`
 * else `merge-patch`
 
 ### Operation Description
