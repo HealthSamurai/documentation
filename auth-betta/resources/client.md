@@ -34,7 +34,7 @@ grant_types: ['basic']
 {% code title="client-credentials" %}
 ```yaml
 resourceType: Client
-grant_types: ['basic']
+grant_types: ['client_credentials']
 
 ```
 {% endcode %}
@@ -45,7 +45,7 @@ grant_types: ['basic']
 ```yaml
 resourceType: Client
 id: password-client
-grant_types: ['basic']
+grant_types: ['password']
 
 ```
 {% endcode %}
