@@ -20,6 +20,8 @@ Aidbox uses [FHIR](https://www.hl7.org/fhir/overview.html) as a foundation and p
 * Bulk API and analytics tools integrations that include Tableau, Power BI, and Jupyter
 * Automated cloud infrastructure built on Kubernetes for AWS, Azure & GCP
 
+![](.gitbook/assets/1-aidbox.jpg)
+
 ​[Read Features Overview](https://docs.aidbox.app/features)​
 
 ​[Aidbox](https://www.health-samurai.io/aidbox) is a metadata-driven platform. It means that almost everything in Aidbox is represented as data \(resources\). For example, REST endpoints \(operations\), resource definitions, profiles, and access policies are resources in Aidbox. We call them meta-resources. Meta-resources play by same rules as other resources - you can request and manipulate meta-resources with the use of the unified REST API.

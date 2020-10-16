@@ -315,7 +315,9 @@ The result should look like the following table \(but without pretty printing\):
       </td>
     </tr>
   </tbody>
-</table>Now, let's make the results of this query accessible via REST API. To do that, we need to create `AidboxQuery` resource:
+</table>
+
+Now, let's make the results of this query accessible via REST API. To do that, we need to create `AidboxQuery` resource:
 
 {% tabs %}
 {% tab title="Request" %}

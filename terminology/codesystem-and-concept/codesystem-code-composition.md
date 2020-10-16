@@ -120,7 +120,9 @@ GET/POST URL: [base]/ValueSet/[id]/$compose
       <td style="text-align:left"></td>
     </tr>
   </tbody>
-</table>### property
+</table>
+
+### property
 
 One or more properties that contain information to be composed into the code.
 

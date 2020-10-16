@@ -91,7 +91,9 @@ Health Samurai is offering four support tiers: Basic, Professional, Enterprise, 
       <td style="text-align:left">$$$$</td>
     </tr>
   </tbody>
-</table>\*\* - during the next three releases
+</table>
+
+\*\* - during the next three releases
 
 \*\*\* - feature or its substitute is added to the roadmap
 
