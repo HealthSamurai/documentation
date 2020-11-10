@@ -2,9 +2,9 @@
 
 ## Prerequisites
 
-To complete this tutorial you should install Postman and get access to Aidbox Console \(see [here](../installation/) how to install your Aidbox instance\) .
+To complete this tutorial you should install Postman and get access to the Aidbox Console \(see [here](../installation/) how to install your Aidbox instance\) .
 
-As soon as you access Aidbox REST Console, load resources that you will need to work with policies:
+Once you access the Aidbox REST Console, load resources that you will need to work with policies:
 
 ```text
 POST /$import
@@ -29,7 +29,7 @@ inputs:
 
 ### Structure of imported resources
 
-On previous step we have imported a client that will authenticate users, and two users with corresponding sets of related resources shown on the picture below. Overlapping outlines means that enclosed resources are related. Similar diagram is applied to User-2
+On previous step we have imported a client that will authenticate users, and two users with corresponding sets of related resources shown on the picture below. Overlapping outlines means that enclosed resources are related. Similar diagram is applied to User-2.
 
 ![](../.gitbook/assets/image%20%2813%29.png)
 
