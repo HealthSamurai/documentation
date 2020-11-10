@@ -28,7 +28,7 @@ inputs:
 
 ### Structure of imported resources
 
-On previous step we have imported a client that will authenticate users, and two users with corresponding sets of related resources shown on the picture below. Overlapping outlines means that enclosed resources are related. A similar diagram applies to User-2.
+On previous step we have imported a client that will authenticate users, and two users with corresponding sets of related resources shown on the picture below. Overlapping outlines means relation between enclosed resources. A similar diagram applies to User-2.
 
 ![](../.gitbook/assets/image%20%2813%29.png)
 
