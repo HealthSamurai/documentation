@@ -34,7 +34,7 @@ On previous step we have imported a client that will authenticate users, and two
 
 ## User Login‌ <a id="user-login"></a>
 
-Now you can use Postman to login as a user.
+Now you can use Postman to login as a user. In this example we login as User-1.
 
 {% tabs %}
 {% tab title="Request" %}
