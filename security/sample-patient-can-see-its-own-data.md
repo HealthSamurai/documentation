@@ -29,13 +29,9 @@ inputs:
   
 ```
 
+**\#TODO** Describe the structure of loaded resources.‌
 
-
-\#TODO Describe structure of loaded resources.‌
-
-## User Login <a id="user-login"></a>
-
-‌
+## User Login‌ <a id="user-login"></a>
 
 Now you can use Postman to login as a user.
 
@@ -54,7 +50,7 @@ POST /auth/token
 ```
 {% endtab %}
 
-{% tab title="Responce" %}
+{% tab title="Response" %}
 ```javascript
 {
   "token_type": "Bearer",
@@ -101,38 +97,110 @@ engine: matcho
 matcho:
   uri: '#/Patient/.*'
   params:
-    resource/id: .user.data.patient_id
-  request-method: get
+    resource/id: .user.data.patient_id  request-method: get
 
 ```
 {% endtab %}
 
-{% tab title="Responce" %}
+{% tab title="Response" %}
 ```javascript
+engine: matcho
+matcho:
+  uri: '#/Patient/.*'
+  params: 
+    resource/id: .user.data.patient_id
+  request-method: get
+id: patient-access
+resourceType: AccessPolicy
+meta: 
+  lastUpdated: '2020-11-10T15:00:59.497835Z'
+  createdAt: '2020-11-10T15:00:59.497835Z'
+  versionId: '110'
+```
+{% endtab %}
+{% endtabs %}
+
+Here we specified that Access Policy will grant `GET` access to a uri that matches `#/Patient/.*` regex if the request's parameter named `resource/id` matches `data.patient` value of the user that makes the request.‌
+
+So now we can read our patient. The part of the url after `/Patient/` namely `new-patient` is parsed by Access Policy engine as the `resource/id` parameter of the request: 
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+GET /Patient/new-patient
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```yaml
 {
-  "token_type": "Bearer",
-  "userinfo": {
-    "data": {
-      "roles": ["Patient"],
-      "patient_id": "new-patient"
-    },
-    "resourceType": "User",
-    "id": "patient-user",
+    "name": [
+        {
+            "given": ["Luke"]
+        },
+        {
+            "family": "Skywalker"
+        }
+    ],
+    "gender": "male",
+    "birthDate": "2145-08-12",
+    "id": "new-patient",
+    "resourceType": "Patient",
     "meta": {
-      "lastUpdated": "2020-11-06T12:18:19.530001Z",
-      "createdAt": "2020-11-03T14:09:03.010136Z",
-      "versionId": "426"
+        "lastUpdated": "2020-11-10T13:51:16.780576Z",
+        "createdAt": "2020-11-10T11:38:52.402256Z",
+        "versionId": "83"
     }
-  },
-  "access_token": "MjYzOTkyZDEtODg4ZC00NTBlLTgxNDEtNjIzM2Y4NWQ1M2Vk"
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-Here we specified that Access Policy will grant access to a uri that matches `#/Patient/.*` regex if the request's parameter named `resource/id` matches `data.patient` value of the user that makes the request.‌
+You can check that access to any other existing Patient resource, for instance that one with id `new-patient1` will be declined.
 
-So now we can make request‌
+## Access to Encounters
+
+Now let's give our user ability to retrieve all encounters where they mentioned as a subject:
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+POST AccessPolicy/
+
+id: search-patient-encounter
+engine: matcho
+matcho:
+  uri: /Encounter
+  params:
+    patient: .user.data.patient_id
+
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```yaml
+engine: matcho
+matcho:
+  uri: /Encounter
+  params:
+    patient: .user.data.patient_id
+resourceType: AccessPolicy
+id: search-patient-encounter
+meta:
+  lastUpdated: '2020-11-05T15:28:58.054136Z'
+  createdAt: '2020-11-05T15:28:58.054136Z'
+  versionId: '0'
+```
+{% endtab %}
+{% endtabs %}
+
+And here is a tricky moment about how this policy works. The allowed uri is `/Encounter` and id doesn't contain any additional parts that could be identified as request parameters as in previous case. So, to provide Access Policy matching engine with required request parameter `patient` we have to specify it as a query parameter of our request. And after Access Policy engine allows such request, the Search Engine comes into play. It filters out encounters do not match condition of `patient = our-patient-id`. To know more about how AidBox Search Engine works please refer to the [Search section](../basic-concepts/search-1/). To know more about available search parameters refer to the [Search Parameters section](%20https://www.hl7.org/fhir/encounter.html#search) of the FHIR resource documentation of interest.
+
+So finally we are able to make a request for a list of patient's encounters.
+
+
+
+
 
 
 
