@@ -29,7 +29,11 @@ inputs:
   
 ```
 
-**\#TODO** Describe the structure of loaded resources.‌
+### Structure of imported resources
+
+On previous step we have imported a client that will authenticate users, and two users with corresponding sets of related resources shown on the picture below. Overlapping outlines means that enclosed resources are related
+
+![](../.gitbook/assets/image%20%2812%29.png)
 
 ## User Login‌ <a id="user-login"></a>
 
@@ -73,15 +77,13 @@ POST /auth/token
 {% endtab %}
 {% endtabs %}
 
-‌
+Notice the `patient_id` field of `userinfo` . This is the id of a Patient resource associated with our user. It will be used further in Access Policies to decide if access should be granted or not. In general you need to specify `data.patinet_id: some_patient_id` in your User resource to establish a relation with a Patient resource.‌
 
-Notice the `patient_id` field of `userinfo` . This is the id of a Patient resource associated with our user. It will be used further in Access Policies to decide on granting access or not. In general you need to specify `data.patinet_id: some_patient_id` in your User resource to establish a relation with a Patient resource.‌
-
-The `access-token` filed of `user-info` will be needed to perform requests on behalf of our User
+The `access-token` field of `user-info` will be needed to perform requests on behalf of our User. To know 
 
 ![](../.gitbook/assets/image%20%2810%29.png)
 
-At this moment there are no Access Policies that allow User to access any resources. So all attempts to make requests for Resources will be declined.
+At this point there are no access policies that allow the user to access any resources. So all attempts to make requests for Resources will be declined.
 
 ## Access to a Patient Resource <a id="access-to-patient-resource"></a>
 
@@ -194,13 +196,88 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-And here is a tricky moment about how this policy works. The allowed uri is `/Encounter` and id doesn't contain any additional parts that could be identified as request parameters as in previous case. So, to provide Access Policy matching engine with required request parameter `patient` we have to specify it as a query parameter of our request. And after Access Policy engine allows such request, the Search Engine comes into play. It filters out encounters do not match condition of `patient = our-patient-id`. To know more about how AidBox Search Engine works please refer to the [Search section](../basic-concepts/search-1/). To know more about available search parameters refer to the [Search Parameters section](%20https://www.hl7.org/fhir/encounter.html#search) of the FHIR resource documentation of interest.
+And here is a tricky moment about how this policy works. The allowed uri is `/Encounter` and it doesn't contain any additional parts that could be identified as request parameters as in previous case. So, to provide Access Policy matching engine with required request parameter `patient` we have to specify it as a query parameter of our request. And after Access Policy engine allows such request, the Search Engine comes into play. It filters out encounters do not match condition of `patient = our-patient-id`. To know more about how AidBox Search Engine works please refer to the [Search section](../basic-concepts/search-1/). To know more about available search parameters refer to the [Search Parameters section](%20https://www.hl7.org/fhir/encounter.html#search) of the FHIR resource documentation of interest.
 
-So finally we are able to make a request for a list of patient's encounters.
+Finally, we can make a request for a list of patient's encounters.
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+GET Encounter?patient=new-patient
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```yaml
+{
+  "query-time": 7,
+  "meta": {
+    "versionId": "155"
+  },
+  "type": "searchset",
+  "resourceType": "Bundle",
+  "total": 1,
+  "link": [
+    {
+      "relation": "first",
+      "url": "/Encounter?patient=new-patient&page=1"
+    },
+    {
+      "relation": "self",
+      "url": "/Encounter?patient=new-patient&page=1"
+    }
+  ],
+  "query-timeout": 60000,
+  "entry": [
+    {
+      "resource": {
+         "class": {
+            "code": "AMB"
+          },
+         "status": "planned",
+         "subject": {
+            "id": "new-patient",
+            "resourceType": "Patient"
+          },
+         "participant": [
+           {
+             "individual": {
+               "id": "practitioner-1",
+               "resourceType": "Practitioner"
+             }
+           }
+         ],
+         "id": "enc1",
+               "resourceType": "Encounter",
+               "meta": {
+                    "lastUpdated": "2020-11-10T11:11:39.464261Z",
+                    "createdAt": "2020-11-06T19:14:46.247628Z",
+                    "versionId": "150"
+               }
+      },
+      "fullUrl": "/Encounter/enc1",
+      "link": [
+        {
+          "relation": "self",
+          "url": "/Encounter/enc1"
+        }
+      ]
+    }
+  ],
+  "query-sql": [
+    "SELECT \"encounter\".* FROM \"encounter\" WHERE \"encounter\".resource @> ? LIMIT ? OFFSET ? ",
+    "{\"subject\":{\"id\":\"new-patient\",\"resourceType\":\"Patient\"}}",
+    100,
+    0
+  ]
+}
+```
+{% endtab %}
+{% endtabs %}
 
 
 
-
+![](https://lh4.googleusercontent.com/EaY4y_DhDfpjxiIlRq-MLwXjhUfqbJX1p4X9uq1BS80XzQnJBZ76bB0jDbmZ7GuWAzKxCnG8GvdZBM78__Fpm-3uY_CNh2bYUYogyM0WkWSavjHL8C8hw6Ge4eP1zmSYfe0hj1Qf)
 
 
 
