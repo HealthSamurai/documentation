@@ -148,7 +148,7 @@ status: failed
 error: {message: Connection refused}
 ```
 
-### SubsNotification/$notify
+### SubsNotification/$notify \(not implemented yet\)
 
 Or you can send list of notifications by providing list of search params:
 
@@ -172,7 +172,7 @@ notification: ....
 response: ...
 ```
 
-### /subs/webhook
+### /subs/webhook \(not implemented yet\)
 
 You can subscribe one instance of Aidbox to notifications from another instance and replicate data between boxes by using `/subs/webhook/<source-id>` endpoint:
 
