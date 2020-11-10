@@ -270,7 +270,5 @@ GET /Encounter?patient=new-patient
 {% endtab %}
 {% endtabs %}
 
-![](https://lh4.googleusercontent.com/EaY4y_DhDfpjxiIlRq-MLwXjhUfqbJX1p4X9uq1BS80XzQnJBZ76bB0jDbmZ7GuWAzKxCnG8GvdZBM78__Fpm-3uY_CNh2bYUYogyM0WkWSavjHL8C8hw6Ge4eP1zmSYfe0hj1Qf)
-
 Coming soon.
 
