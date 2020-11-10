@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-To complete this tutorial you should install Postman and get access to Aidbox Console \(see [here](../installation/) how to set up your Aidbox instance\) .
+To complete this tutorial you should install Postman and get access to Aidbox Console \(see [here](../installation/) how to install your Aidbox instance\) .
 
 As soon as you access Aidbox REST Console, load resources that you will need to work with policies:
 
@@ -194,7 +194,7 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-And this policy works a bit trickier. The allowed uri is `/Encounter` and it doesn't contain any additional parts that could be identified as request parameters as in the previous case. So, to provide Access Policy matching engine with a required request parameter `patient` we have to specify it as a query parameter of our request. And after Access Policy engine allows such request, the Search Engine comes into play. It filters out encounters do not match condition of `patient = our-patient-id`. To know more about how AidBox Search works refer to the [Search section](../basic-concepts/search-1/). To know more about available search parameters refer to the [Search Parameters section](%20https://www.hl7.org/fhir/encounter.html#search) of the FHIR documentation for the resource of interest.
+And this policy works a bit trickier. The allowed uri is `/Encounter` and it doesn't contain any additional parts that could be identified as request parameters as in the previous case. So, in order to provide the required request parameter `patient` to the Access Policy matching engine, we have to specify it as the query parameter of our request. And after the Access Policy engine allows such a request, the Search Engine comes into play. It filters out encounters that do not match the condition of `patient = our-patient-id`. To know more about how the AidBox Search works, see the [Search section](../basic-concepts/search-1/). To know more about the available search parameters, refer to the [Search Parameters section](%20https://www.hl7.org/fhir/encounter.html#search) of the FHIR documentation for the resource of interest.
 
 Finally, we can make a request for a list of patient's encounters.
 
