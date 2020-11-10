@@ -4,8 +4,6 @@
 
 To complete this tutorial you should install Postman and get access to Aidbox Console \(see [here](../installation/) how to set up your Aidbox instance\) .
 
-The `access-token` filed of `user-info` will be needed to perform requests on behalf of our User
-
 As soon as you access Aidbox REST Console, load resources that you will need to work with policies:
 
 ```text
@@ -79,7 +77,7 @@ POST /auth/token
 
 Notice the `patient_id` field of `userinfo` . This is the id of a Patient resource associated with our user. It will be used further in Access Policies to decide if access should be granted or not. In general you need to specify `data.patinet_id: some_patient_id` in your User resource to establish a relation with a Patient resource.‌
 
-The `access-token` field of `user-info` will be needed to perform requests on behalf of our User. To know 
+The `access-token` field of `user-info` will be needed to perform requests on behalf of our User. 
 
 ![](../.gitbook/assets/image%20%2810%29.png)
 
