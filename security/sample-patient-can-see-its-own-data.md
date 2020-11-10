@@ -1,4 +1,4 @@
-# Sample: Patient can see it’s own data
+# 🎓 Sample: Patient can see it’s own data
 
 ## Prerequisites
 

@@ -91,7 +91,7 @@
   * [Access Policies](security/access-control.md)
   * [Role-Based Access Policies](security/role-based-access-policies.md)
   * [🎓 Access Control](security/access-policy.md)
-  * [Sample: Patient can see it’s own data](security/sample-patient-can-see-its-own-data.md)
+  * [🎓 Sample: Patient can see it’s own data](security/sample-patient-can-see-its-own-data.md)
 * [Terminology](terminology/README.md)
   * [Concept](terminology/concept.md)
   * [Terminology API](terminology/terminology-api.md)
