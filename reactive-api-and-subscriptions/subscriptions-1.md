@@ -43,7 +43,7 @@ channel:
 
 ### Trigger format
 
-Subscription.trigger is a key-value object, where key is resource type. Each value can contain collection of events \(values can be 'all', 'create', 'update', 'delete'\) and .filter collection. For now filter support [**matcho**](../usdmatcho.md) engine \(FHIRPath and FHIR Search filters are coming soon\):
+Subscription.trigger is a key-value object, where key is resource type. Each value can contain collection of events \(values can be 'all', 'create', 'update', 'delete'\) and .filter collection. For now filter support [**matcho**](../advanced/usdmatcho.md) engine \(FHIRPath and FHIR Search filters are coming soon\):
 
 ```yaml
 trigger:
@@ -53,7 +53,7 @@ trigger:
      - matcho: { type: { coding: [{code: 'Sometype'}]}
 ```
 
-Read more about `matcho` DSL and how debug it [here](../usdmatcho.md).
+Read more about `matcho` DSL and how debug it [here](../advanced/usdmatcho.md).
 
 Filter matches if at least one of item in collection matches, i.e. collection has `or` semantic.
 

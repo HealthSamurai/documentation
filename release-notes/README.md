@@ -35,7 +35,7 @@ Starting from `0.4.0,` Aidbox.Cloud supports clusters that can be located in dif
 
 * Search and sort by [\_createdAt](../basic-concepts/search-1/_lastupdated.md) parameter
 * Search by tokens with [:text modifier](../basic-concepts/search-1/#common)
-* Filters in [Change API](../advanced/reactive-api-and-subscriptions/usdsnapshot-usdwatch-and-usdversions-api.md)
+* Filters in [Change API](../reactive-api-and-subscriptions/usdsnapshot-usdwatch-and-usdversions-api.md)
 * [Azure API](../integrations/azure.md)
 * [SQL Parameters](../basic-concepts/search-1/search-resource.md)
 
@@ -43,7 +43,7 @@ Starting from `0.4.0,` Aidbox.Cloud supports clusters that can be located in dif
 
 ### Features
 
-* [Reactive API & Subscriptions](../advanced/reactive-api-and-subscriptions/)
+* [Reactive API & Subscriptions](../reactive-api-and-subscriptions/)
 * New [design/debug](../basic-concepts/search-1/custom-search.md#design-aidboxquery) endpoint for AidboxQuery
 * Audit customization hook
 * New Clojure engine for AccessPolicy
@@ -204,7 +204,7 @@ This release is mostly dedicated to stabilisation of new auth module. Check-out 
 
 ## 0.3.4
 
-* Subscriptions `$poll` operation and `webhook` channel: [Subscriptions](../advanced/reactive-api-and-subscriptions/subscriptions.md);
+* Subscriptions `$poll` operation and `webhook` channel: [Subscriptions](../reactive-api-and-subscriptions/subscriptions.md);
 * Fixed [Aidbox](https://www.health-samurai.io/aidbox) to FHIR data transformation bug when polymorphic attributes wasn't properly handled in recursive elements such as `QuestionnaireResponse.item`
 * Support [`_total`](https://build.fhir.org/search.html#total) search parameter \(\_totalMethod=count also works\)
 * Support `page` search parameter \(\_page - also works\)
