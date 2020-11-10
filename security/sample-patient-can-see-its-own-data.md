@@ -81,7 +81,7 @@ The `access-token` field of `user-info` will be needed to perform requests on be
 
 ![](../.gitbook/assets/image%20%2810%29.png)
 
-At this point there are no access policies that allow the user to access any resources. So all attempts to make requests for Resources will be declined.
+At this point there are no access policies that allow the user to access any resources. So all attempts to make requests for Resources will be denied.
 
 ## Access to a Patient Resource <a id="access-to-patient-resource"></a>
 
@@ -156,11 +156,11 @@ GET /Patient/new-patient
 {% endtab %}
 {% endtabs %}
 
-You can check that access to any other existing Patient resource, for instance that one with id `new-patient1` will be declined.
+You can check that access to any other existing Patient resource, for instance that one with id `new-patient1`, will be denied.
 
 ## Access to Encounters
 
-Now let's give our user ability to retrieve all encounters where they mentioned as a subject:
+Now let's give our user ability to retrieve all encounters where they are referred to as a subject:
 
 {% tabs %}
 {% tab title="Request" %}
