@@ -24,7 +24,6 @@ inputs:
   url: https://storage.googleapis.com/aidbox-public/enc.ndjson.gz
 - resourceType: Observation
   url: https://storage.googleapis.com/aidbox-public/observ.ndjson.gz
-  
 ```
 
 ### Structure of imported resources
@@ -77,7 +76,7 @@ POST /auth/token
 
 Notice the `patient_id` field of `userinfo` . This is the id of the Patient resource associated with our user. It will be used further in Access Policies to decide if access should be granted or not. In general you need to specify `data.patinet_id: some_patient_id` in your User resource to establish a relation with a Patient resource.‌
 
-The `access-token` field of `user-info` will be needed to perform requests on behalf of our User. 
+The `access-token` field of `user-info` will be needed to perform requests on behalf of our User. See [here](../auth-betta/resource-owner-password.md#use-access-token) how to perform user request with a token.
 
 ![](../.gitbook/assets/image%20%2810%29.png)
 
@@ -98,7 +97,6 @@ matcho:
   uri: '#/Patient/.*'
   params:
     resource/id: .user.data.patient_id  request-method: get
-
 ```
 {% endtab %}
 
@@ -122,7 +120,7 @@ meta:
 
 Here we specified that Access Policy will grant `GET` access to a uri that matches `#/Patient/.*` regex if the request parameter named `resource/id` matches `data.patient` value of the user that makes the request.‌
 
-So now we can read our patient. The part of the url after `/Patient/` namely `new-patient` is parsed by Access Policy engine as the `resource/id` parameter of the request: 
+So now we can read our patient. The part of the url after `/Patient/` namely `new-patient` is parsed by Access Policy engine as the `resource/id` parameter of the request:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -173,7 +171,6 @@ matcho:
   uri: /Encounter
   params:
     patient: .user.data.patient_id
-
 ```
 {% endtab %}
 
@@ -194,7 +191,7 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-And this policy works a bit trickier. The allowed uri is `/Encounter` and it doesn't contain any additional parts that could be identified as request parameters as in the previous case. So, in order to provide the required request parameter `patient` to the Access Policy matching engine, we have to specify it as the query parameter of our request. And after the Access Policy engine allows such a request, the Search Engine comes into play. It filters out encounters that do not match the condition of `patient = our-patient-id`. To know more about how the AidBox Search works, see the [Search section](../basic-concepts/search-1/). To know more about the available search parameters, refer to the [Search Parameters section](%20https://www.hl7.org/fhir/encounter.html#search) of the FHIR documentation for the resource of interest.
+And this policy works a bit trickier. The allowed uri is `/Encounter` and it doesn't contain any additional parts that could be identified as request parameters as in the previous case. So, in order to provide the required request parameter `patient` to the Access Policy matching engine, we have to specify it as the query parameter of our request. And after the Access Policy engine allows such a request, the Search Engine comes into play. It filters out encounters that do not match the condition of `patient = our-patient-id`. To know more about how the AidBox Search works, see the [Search section](../basic-concepts/search-1/). To know more about the available search parameters, refer to the [Search Parameters section](https://github.com/Aidbox/documentation/tree/6018e5a1eeeab93c9d70814b1d9a565274ed14bc/fhir/encounter.html#search) of the FHIR documentation for the resource of interest.
 
 Finally, we can make a request for a list of patient's encounters.
 
@@ -273,11 +270,7 @@ GET /Encounter?patient=new-patient
 {% endtab %}
 {% endtabs %}
 
-
-
 ![](https://lh4.googleusercontent.com/EaY4y_DhDfpjxiIlRq-MLwXjhUfqbJX1p4X9uq1BS80XzQnJBZ76bB0jDbmZ7GuWAzKxCnG8GvdZBM78__Fpm-3uY_CNh2bYUYogyM0WkWSavjHL8C8hw6Ge4eP1zmSYfe0hj1Qf)
-
-
 
 Coming soon.
 
