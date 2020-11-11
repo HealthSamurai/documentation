@@ -26,7 +26,7 @@ inputs:
   url: https://storage.googleapis.com/aidbox-public/observ.ndjson.gz
 ```
 
-### Structure of imported resources
+#### Structure of imported resources
 
 On previous step we have imported a client that will authenticate users, and two users with corresponding sets of related resources shown on the picture below. Overlapping outlines means relation between enclosed resources. A similar diagram applies to User-2.
 
