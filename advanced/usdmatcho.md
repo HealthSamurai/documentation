@@ -4,16 +4,16 @@ description: Dev endpoint to test matcho engine
 
 # $matcho
 
-Macho DSL is used as engine in [AccessPolicy](../security/access-control.md#matcho-engine) and [Subscription](../reactive-api-and-subscriptions/subscriptions-1.md#trigger-format)
+Macho DSL is used as engine in [AccessPolicy](../security/access-control.md#matcho-engine) and [Subscription](reactive-api-and-subscriptions/subscriptions-1.md#trigger-format)
 
-### Definition
+## Definition
 
 Matcho DSL definition:
 
 * If **pattern** \(match\) is object, search for inclusion of this object into subject. For example: `{x: 1}` matches `{x: 1, y: 2 ....}`. This algorithm is recursive — `{a: {b: 5}}` matches `{a: {b: 5, ...}...}`
 * Objects with one **$enum, $one-of** or **$contains** keys are special cases:
   * **$enum** —  test subject is equal to one of items in the enumeration. `{request-method: {$enum: ['get','post']}}` matches `{request-method: 'post'}`
-  * **$contains** — ****if a subject is a collection then search at least one match. `{type: {$contains: {system: 'loinc'}}` matches `{type: [{system: 'snomed'}, {system: 'loinc'}]}`
+  * **$contains** — _\*\*_if a subject is a collection then search at least one match. `{type: {$contains: {system: 'loinc'}}` matches `{type: [{system: 'snomed'}, {system: 'loinc'}]}`
   * **$one-of —** try to match one of patterns. `{a: {$one-of: [{b: present?}, {c: present?}]} matches {a: {c: 5}}`
 * For **array,** match first item in the pattern with first item in the subject. `[1,2]` matches `[1,2,3...]`
 * Primitive values \(strings, numbers and booleans\) are compared by value
@@ -24,9 +24,9 @@ Matcho DSL definition:
   * **nil?**  — matches if nil/null — `{a: nil?}` matches `{b: 6}`
   * **not-blank?** — matches not blank string.
 
-### Debug endpoint
+## Debug endpoint
 
-`POST /$matcho` is a REST endpoint to test matcho engine, which is used in AccessPolicy and Subscriptions. 
+`POST /$matcho` is a REST endpoint to test matcho engine, which is used in AccessPolicy and Subscriptions.
 
 ```yaml
 POST /$matcho
@@ -44,8 +44,4 @@ result:
   but: 2
   path: [a]
 ```
-
-
-
-
 

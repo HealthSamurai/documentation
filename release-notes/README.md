@@ -6,9 +6,9 @@ description: Aidbox release notes
 
 Aidbox release cycle is about 2-4 weeks. Stable releases are labeled with the version number like `0.4.0`See the list of versions on [docker-hub](https://hub.docker.com/r/healthsamurai/devbox/tags).
 
-The version under development is published with `-SNAPSHOT` and `-RC[x]` postfixes. For example, if the latest release was `0.3.0`,  you will see the `0.4.0-SNAPSHOT` version during the development, and `0.4.0-RC1` during a stabilization period in the registry.
+The version under development is published with `-SNAPSHOT` and `-RC[x]` postfixes. For example, if the latest release was `0.3.0`, you will see the `0.4.0-SNAPSHOT` version during the development, and `0.4.0-RC1` during a stabilization period in the registry.
 
-Starting from `0.4.0,` Aidbox.Cloud supports clusters that can be located in different  geographic regions and run different Aidbox versions. Clusters that are labeled _**stable**_ have the latest stable version \(i.e., `max(version)`\). As well, clusters with the **edge** label run the latest development version \(snapshot or release candidates\).
+Starting from `0.4.0,` Aidbox.Cloud supports clusters that can be located in different geographic regions and run different Aidbox versions. Clusters that are labeled _**stable**_ have the latest stable version \(i.e., `max(version)`\). As well, clusters with the **edge** label run the latest development version \(snapshot or release candidates\).
 
 {% hint style="info" %}
 * Current stable version: **0.4.9**
@@ -35,7 +35,7 @@ Starting from `0.4.0,` Aidbox.Cloud supports clusters that can be located in dif
 
 * Search and sort by [\_createdAt](../basic-concepts/search-1/_lastupdated.md) parameter
 * Search by tokens with [:text modifier](../basic-concepts/search-1/#common)
-* Filters in [Change API](../reactive-api-and-subscriptions/usdsnapshot-usdwatch-and-usdversions-api.md)
+* Filters in [Change API](../advanced/reactive-api-and-subscriptions/usdsnapshot-usdwatch-and-usdversions-api.md)
 * [Azure API](../integrations/azure.md)
 * [SQL Parameters](../basic-concepts/search-1/search-resource.md)
 
@@ -43,13 +43,11 @@ Starting from `0.4.0,` Aidbox.Cloud supports clusters that can be located in dif
 
 ### Features
 
-* [Reactive API & Subscriptions](../reactive-api-and-subscriptions/)
+* [Reactive API & Subscriptions](../advanced/reactive-api-and-subscriptions/)
 * New [design/debug](../basic-concepts/search-1/custom-search.md#design-aidboxquery) endpoint for AidboxQuery
 * Audit customization hook
 * New Clojure engine for AccessPolicy
 * Strip empty values in CRUD
-
-
 
 ## 0.4.8 \[16 December 2019\]
 
@@ -120,7 +118,7 @@ It's time to upgrade your database - please stop your container and change image
 ### Features
 
 * Support for [RFC-7662 Token Introspection](https://tools.ietf.org/html/rfc7662) with TokenIntrospector resource. JwtAuthenticator is now TokenIntrospector as well with `type=jwt`
-*  GraphQL Alpha - see GraphQL in Aidbox user interface
+* GraphQL Alpha - see GraphQL in Aidbox user interface
 
 ## 0.4.3 _\[20 May 2019\]_
 
@@ -204,7 +202,7 @@ This release is mostly dedicated to stabilisation of new auth module. Check-out 
 
 ## 0.3.4
 
-* Subscriptions `$poll` operation and `webhook` channel: [Subscriptions](../reactive-api-and-subscriptions/subscriptions.md);
+* Subscriptions `$poll` operation and `webhook` channel: [Subscriptions](../advanced/reactive-api-and-subscriptions/subscriptions.md);
 * Fixed [Aidbox](https://www.health-samurai.io/aidbox) to FHIR data transformation bug when polymorphic attributes wasn't properly handled in recursive elements such as `QuestionnaireResponse.item`
 * Support [`_total`](https://build.fhir.org/search.html#total) search parameter \(\_totalMethod=count also works\)
 * Support `page` search parameter \(\_page - also works\)
