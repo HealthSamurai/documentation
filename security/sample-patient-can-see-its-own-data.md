@@ -156,21 +156,16 @@ GET /Patient/new-patient
 
 You can check that access to any other existing Patient resource, for instance that one with id `new-patient1`, will be denied.
 
-## Encounters access
+## Encounter access
 
-Now let's give our user ability to retrieve all encounters where they are referred to as a subject:
+#### Search access
+
+Now let's give our user the ability to retrieve all encounters where they are referred to as a subject:
 
 {% tabs %}
 {% tab title="Request" %}
 ```yaml
-POST /AccessPolicy
 
-id: search-patient-encounter
-engine: matcho
-matcho:
-  uri: /Encounter
-  params:
-    patient: .user.data.patient_id
 ```
 {% endtab %}
 
@@ -193,7 +188,7 @@ meta:
 
 And this policy works a bit trickier. The allowed uri is `/Encounter` and it doesn't contain any additional parts that could be identified as request parameters as in the previous case. So, in order to provide the required request parameter `patient` to the Access Policy matching engine, we have to specify it as the query parameter of our request. And after the Access Policy engine allows such a request, the Search Engine comes into play. It filters out encounters that do not match the condition of `patient = our-patient-id`. To know more about how the AidBox Search works, see the [Search section](../basic-concepts/search-1/). To know more about the available search parameters, refer to the [Search Parameters section](https://github.com/Aidbox/documentation/tree/6018e5a1eeeab93c9d70814b1d9a565274ed14bc/fhir/encounter.html#search) of the FHIR documentation for the resource of interest.
 
-Finally, we can make a request for a list of patient's encounters.
+Finally, we can make a request for a list of patient encounters.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -269,6 +264,102 @@ GET /Encounter?patient=new-patient
 ```
 {% endtab %}
 {% endtabs %}
+
+#### Read access
+
+What if we want to refer to an encounter by its id? The previous policy does not grant us this access, so we have to add a new one. Matcho engine is no longer enough to make a rule for this kind of a request because it relies only on the request and the user parameters. Now we need to peek in the requested resource to understand if it is related to our user and could be returned in response. We can achieve it using sql 
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+POST /AccessPolicy
+
+id: search-patient-encounter
+engine: matcho
+matcho:
+  uri: /Encounter
+  params:
+    patient: .user.data.patient_id
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```yaml
+{
+  "query-time": 7,
+  "meta": {
+    "versionId": "155"
+  },
+  "type": "searchset",
+  "resourceType": "Bundle",
+  "total": 1,
+  "link": [
+    {
+      "relation": "first",
+      "url": "/Encounter?patient=new-patient&page=1"
+    },
+    {
+      "relation": "self",
+      "url": "/Encounter?patient=new-patient&page=1"
+    }
+  ],
+  "query-timeout": 60000,
+  "entry": [
+    {
+      "resource": {
+         "class": {
+            "code": "AMB"
+          },
+         "status": "planned",
+         "subject": {
+            "id": "new-patient",
+            "resourceType": "Patient"
+          },
+         "participant": [
+           {
+             "individual": {
+               "id": "practitioner-1",
+               "resourceType": "Practitioner"
+             }
+           }
+         ],
+         "id": "enc1",
+               "resourceType": "Encounter",
+               "meta": {
+                    "lastUpdated": "2020-11-10T11:11:39.464261Z",
+                    "createdAt": "2020-11-06T19:14:46.247628Z",
+                    "versionId": "150"
+               }
+      },
+      "fullUrl": "/Encounter/enc1",
+      "link": [
+        {
+          "relation": "self",
+          "url": "/Encounter/enc1"
+        }
+      ]
+    }
+  ],
+  "query-sql": [
+    "SELECT \"encounter\".* FROM \"encounter\" WHERE \"encounter\".resource @> ? LIMIT ? OFFSET ? ",
+    "{\"subject\":{\"id\":\"new-patient\",\"resourceType\":\"Patient\"}}",
+    100,
+    0
+  ]
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### 
+
+
+
+
+
+## Observation access
+
+
 
 Coming soon.
 
