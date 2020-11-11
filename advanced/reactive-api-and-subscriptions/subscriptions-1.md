@@ -1,6 +1,19 @@
 # Subscriptions
 
-Aidbox subscriptions module is a way to subscribe and get notifications about changes on server. It is common denominator of FHIR R4/R5 subscriptions specification with some extensions.
+Aidbox subscriptions module is a way to subscribe and get notifications about updating resources on server. It is common denominator of FHIR R4/R5 subscriptions specification with some extensions.
+
+This module introduce two new resourceTypes into Aidbox:
+
+* SubsSubscription — meta-resource, which binds events \(create/update/delete resource\) with communication channel though which subscriber will be notified about.
+* SubsNotification — resource, which represents notification with its status \(sent or not\).
+
+{% hint style="warning" %}
+Aidbox doesn't delete **SubsNotification** resources by itself. Simple way to implement retention policy is creating a cron job. [Let us know](https://t.me/aidbox) if there is more clear way.
+{% endhint %}
+
+{% hint style="info" %}
+See tutorial ["Subscribe to new Patient resource"](../../tutorials/subscribe-to-new-patient-resource.md)
+{% endhint %}
 
 Your service can register subscription by POST **SubsSubscription** resource:
 
@@ -34,9 +47,9 @@ channel:
   timeout:  1000
   payload:
     # this is default value, you can use id-only
-    content: full-resource 
+    content: full-resource # full-resource | id-only
     # means aidbox format, or fhir+json to get resource in FHIR format
-    contentType: json 
+    contentType: json # json | fhir+json
    
 
 ```
@@ -52,8 +65,6 @@ trigger:
      - matcho: { class: {code: 'inpatient'} }
      - matcho: { type: { coding: [{code: 'Sometype'}]}
 ```
-
-Read more about `matcho` DSL and how debug it [here](../usdmatcho.md).
 
 Filter matches if at least one of item in collection matches, i.e. collection has `or` semantic.
 

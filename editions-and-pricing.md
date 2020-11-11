@@ -2,7 +2,7 @@
 description: This page covers types of Aidbox licenses and describes Aidbox Support tiers.
 ---
 
-# Aidbox Licensing and Support
+# Licensing and Support
 
 Aidbox offers developers a smooth path from a tiny digital health app prototype to a country-wide deployment of a global healthcare solution. [Health Samurai](https://www.health-samurai.io/) is always around to make sure that developers get all the necessary support.
 

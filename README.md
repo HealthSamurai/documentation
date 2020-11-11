@@ -4,7 +4,7 @@ description: >-
   FHIR.
 ---
 
-# Aidbox
+# Getting started
 
 [Aidbox](https://www.health-samurai.io/aidbox) is a backend development platform for modern healthcare applications. Aidbox users have already built cloud EHR systems, patient-facing mobile applications, data-analytics products, and integration platforms.
 

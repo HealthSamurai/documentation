@@ -1,2 +1,2 @@
-# Data synchronization
+# Reactive API
 
