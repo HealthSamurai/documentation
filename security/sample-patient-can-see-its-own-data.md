@@ -82,7 +82,7 @@ The `access-token` field of `user-info` will be needed to perform requests on be
 
 At this point there are no access policies that allow the user to access any resources. So all attempts to make requests for Resources will be denied.
 
-## Access to a Patient Resource <a id="access-to-patient-resource"></a>
+## Patient Resource access <a id="access-to-patient-resource"></a>
 
 Let's add out first policy that will grant us access to the Patient resource, associated with our user.
 
@@ -156,7 +156,7 @@ GET /Patient/new-patient
 
 You can check that access to any other existing Patient resource, for instance that one with id `new-patient1`, will be denied.
 
-## Access to Encounters
+## Encounters access
 
 Now let's give our user ability to retrieve all encounters where they are referred to as a subject:
 
