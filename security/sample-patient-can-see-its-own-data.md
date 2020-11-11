@@ -158,13 +158,19 @@ You can check that access to any other existing Patient resource, for instance t
 
 ## Encounter access
 
-#### Search access
-
 Now let's give our user the ability to retrieve all encounters where they are referred to as a subject:
 
 {% tabs %}
 {% tab title="Request" %}
 ```yaml
+POST AccessPolicy/
+
+id: search-patient-encounter
+engine: matcho
+matcho:
+  uri: /Encounter
+  params:
+    patient: .user.data.patient_id
 
 ```
 {% endtab %}
@@ -188,7 +194,7 @@ meta:
 
 And this policy works a bit trickier. The allowed uri is `/Encounter` and it doesn't contain any additional parts that could be identified as request parameters as in the previous case. So, in order to provide the required request parameter `patient` to the Access Policy matching engine, we have to specify it as the query parameter of our request. And after the Access Policy engine allows such a request, the Search Engine comes into play. It filters out encounters that do not match the condition of `patient = our-patient-id`. To know more about how the AidBox Search works, see the [Search section](../basic-concepts/search-1/). To know more about the available search parameters, refer to the [Search Parameters section](https://github.com/Aidbox/documentation/tree/6018e5a1eeeab93c9d70814b1d9a565274ed14bc/fhir/encounter.html#search) of the FHIR documentation for the resource of interest.
 
-Finally, we can make a request for a list of patient encounters.
+Finally, we can make a request for the list of patient encounters.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -265,9 +271,13 @@ GET /Encounter?patient=new-patient
 {% endtab %}
 {% endtabs %}
 
+## Observation access
+
+Granting access to observations is similar to previous case. It so similar, that we should stop here and think a bit
+
 #### Read access
 
-What if we want to refer to an encounter by its id? The previous policy does not grant us this access, so we have to add a new one. Matcho engine is no longer enough to make a rule for this kind of a request because it relies only on the request and the user parameters. Now we need to peek in the requested resource to understand if it is related to our user and could be returned in response. We can achieve it using sql 
+What if we want to refer to an encounter by its id? The previous policy does not grant us this access, so we have to add a new one. Matcho engine is no longer enough to make a rule for this kind of request since it only relies on the request and the user parameters. Now we need to peek in the requested resource to understand if it is related to our user and could be returned in response. We can achieve it by creating an Access Policy with SQL engine and an appropriate query : 
 
 {% tabs %}
 {% tab title="Request" %}
