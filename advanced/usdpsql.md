@@ -12,7 +12,7 @@ Execute SQL in Aidbox
 {% api-method-spec %}
 {% api-method-request %}
 {% api-method-body-parameters %}
-{% api-method-parameter name="body" type="string" required=false %}
+{% api-method-parameter name="body" type="array" required=false %}
 JSON: SQL string or jdbc friendly array  \[SQL, param, param\]
 {% endapi-method-parameter %}
 {% endapi-method-body-parameters %}
@@ -34,19 +34,31 @@ JSON: SQL string or jdbc friendly array  \[SQL, param, param\]
 
 Example request:
 
-{% code title="request" %}
+{% tabs %}
+{% tab title="Without jdbc params" %}
 ```yaml
 POST /$sql?_format=yaml
 
 SELECT count(*) FROM patient
-```
-{% endcode %}
 
-{% code title="response" %}
-```yaml
-- {count: 7}
+# Response 
+#
+# - {count: 7}
 ```
-{% endcode %}
+{% endtab %}
+
+{% tab title="With jdbc params" %}
+```
+POST /$sql?_format=yaml
+
+["SELECT count(*) FROM patient where resource->'status' = ?", true]
+
+# Response 
+#
+# - {count: 2}
+```
+{% endtab %}
+{% endtabs %}
 
 ### SQL migrations
 
