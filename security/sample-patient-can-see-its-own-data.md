@@ -36,7 +36,7 @@ inputs:
 
 On previous step we have imported a client that will authenticate users, and two users with corresponding sets of related resources shown on the picture below. Overlapping outlines means relation between enclosed resources. A similar diagram applies to User-2.
 
-![](../.gitbook/assets/image%20%2813%29.png)
+![](../.gitbook/assets/image%20%2814%29.png)
 
 ## User Login‌ <a id="user-login"></a>
 
@@ -449,10 +449,11 @@ resourceType: AccessPolicy
 id: create-patient-observation
 engine: matcho
 matcho:
-  uri: '#/Observation.*'
+  uri: '/Observation'
   body:
     subject:
       id: .user.data.patient_id
+      resourceType: Patient
     performer:
       $contains:
         id: .user.data.patient.id
@@ -462,7 +463,54 @@ matcho:
 {% endtab %}
 {% endtabs %}
 
-With this policy we can only create observations where subject and performer bust be the user's patient.
+With this policy we can only create observations where subject and performer must be the user's patient.
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+POST /Observation
+
+resourceType: Observation
+id: observation-3
+class:
+  coding:
+    - code: 11557-6
+status: registered
+subject:
+  id: new-patient
+  resourceType: Patient
+performer:
+  - id: new-patient
+    resourceType: Patient
+
+```
+{% endtab %}
+{% endtabs %}
+
+Now it's time to make an important note. In general It is not possible to use some kind of `CompartmentDefinition` approach to grant write access to many resources at once, as we did it previously for read access. That's because  resources may require sophisticated logic to define which part of a resource could have write access and which not. Such logic may even lie beyond the abilities of the Access Control mechanism and in this case custom API is the only resort. But in quite simple scenario like the creation of observation  Access Policies are helpful. 
+
+Let's create some new policies that would allow our user to update his observations. First we allow to update an observation through the `PATCH` method. 
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+POST AccessPolicy/
+
+id: patch-delete-patient-observationtest
+sql:
+  query: > 
+    select true from observation 
+    where resource#>>'{subject,id}' = {{user.data.patient_id}} 
+    and id = {{params.resource/id}}
+    and resource->'performer' @> jsonb_build_array(jsonb_build_object('resourceType', 'Patient', 'id', {{user.data.patient_id}}::text))
+    and {{request-method}} = 'patch'
+engine: sql
+
+
+
+```
+{% endtab %}
+{% endtabs %}
 
 
 
