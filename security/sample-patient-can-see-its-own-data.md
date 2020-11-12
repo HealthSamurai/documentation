@@ -1,4 +1,8 @@
-# 🎓 Sample: Patient can see it’s own data
+# 🎓 Sample: Patient can see their own data
+
+## What is this tutorial about
+
+In this tutorial you will know how to manage user access to patient's resources.
 
 ## Prerequisites
 
@@ -15,15 +19,17 @@ contentEncoding: gzip
 mode: bulk
 inputs:
 - resourceType: Client
-  url: https://storage.googleapis.com/aidbox-public/client.ndjson.gz
+  url: https://storage.googleapis.com/aidbox-public/demo/client.ndjson.gz
 - resourceType: User
-  url: https://storage.googleapis.com/aidbox-public/usr.ndjson.gz
+  url: https://storage.googleapis.com/aidbox-public/demo/user.ndjson.gz
 - resourceType: Patient
-  url: https://storage.googleapis.com/aidbox-public/pt.ndjson.gz
+  url: https://storage.googleapis.com/aidbox-public/demo/patient.ndjson.gz
 - resourceType: Encounter
-  url: https://storage.googleapis.com/aidbox-public/enc.ndjson.gz
+  url: https://storage.googleapis.com/aidbox-public/demo/encounter.ndjson.gz
 - resourceType: Observation
-  url: https://storage.googleapis.com/aidbox-public/observ.ndjson.gz
+  url: https://storage.googleapis.com/aidbox-public/demo/observation.ndjson.gz
+- resourceType: Practitioner
+  url: https://storage.googleapis.com/aidbox-public/demo/practitioner.ndjson.gz
 ```
 
 #### Structure of imported resources
@@ -118,9 +124,9 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-Here we specified that Access Policy will grant `GET` access to a uri that matches `#/Patient/.*` regex if the request parameter named `resource/id` matches `data.patient` value of the user that makes the request.‌
+Here we specified that Access Policy will grant `GET` access to a URI that matches `#/Patient/.*` regex if the request parameter named `resource/id` matches `data.patient` value of the user that makes the request.‌
 
-So now we can read our patient. The part of the url after `/Patient/` namely `new-patient` is parsed by Access Policy engine as the `resource/id` parameter of the request:
+So now we can read our patient. The part of the URL after `/Patient/` namely `new-patient` is parsed by Access Policy engine as the `resource/id` parameter of the request:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -192,7 +198,7 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-And this policy works a bit trickier. The allowed uri is `/Encounter` and it doesn't contain any additional parts that could be identified as request parameters as in the previous case. So, in order to provide the required request parameter `patient` to the Access Policy matching engine, we have to specify it as the query parameter of our request. And after the Access Policy engine allows such a request, the Search Engine comes into play. It filters out encounters that do not match the condition of `patient = our-patient-id`. To know more about how the AidBox Search works, see the [Search section](../basic-concepts/search-1/). To know more about the available search parameters, refer to the [Search Parameters section](https://github.com/Aidbox/documentation/tree/6018e5a1eeeab93c9d70814b1d9a565274ed14bc/fhir/encounter.html#search) of the FHIR documentation for the resource of interest.
+And this policy works a bit trickier. The allowed URI is `/Encounter` and it doesn't contain any additional parts that could be identified as request parameters as in the previous case. So, in order to provide the required request parameter `patient` to the Access Policy matching engine, we have to specify it as the query parameter of our request. And after the Access Policy engine allows such a request, the Search Engine comes into play. It filters out encounters that do not match the condition of `patient = our-patient-id`. To know more about how the AidBox Search works, see the [Search section](../basic-concepts/search-1/). To know more about the available search parameters, refer to the [Search Parameters section](https://github.com/Aidbox/documentation/tree/6018e5a1eeeab93c9d70814b1d9a565274ed14bc/fhir/encounter.html#search) of the FHIR documentation for the resource of interest.
 
 Finally, we can make a request for the list of patient encounters.
 
@@ -273,11 +279,198 @@ GET /Encounter?patient=new-patient
 
 ## Observation access
 
-Granting access to observations is similar to previous case. It so similar, that we should stop here and think a bit
+#### Read access
+
+Granting access to observations is similar to the previous case. We just add another policy, that looks just like the previous one, but matches against another URI. It is so similar, that we should stop there and think a little what happens if we want to grant read access to more resources — we end up with a bunch of almost indistinguishable policies. A better approach in this case is to use the `CompartmentDefinition` resource. 
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+POST /fhir/CompartmentDefinition
+
+{
+    "resourceType": "CompartmentDefinition",
+    "id": "patient",
+    "url": "http://hl7.org/fhir/CompartmentDefinition/patient",
+    "name": "Base FHIR compartment definition for Patient",
+    "status": "draft",
+    "code": "Patient",
+    "search": true,
+    "resource": [
+        {
+            "code": "Encounter",
+            "param": [
+                "patient"
+            ]
+        },
+        {
+            "code": "Observation",
+            "param": [
+                "subject",
+                "performer"
+            ]
+        }
+    ]
+}
+```
+{% endtab %}
+{% endtabs %}
+
+Now, when we've created `CompartmentDefinition` resource, we can access patient related resources with such requests: `GET /Patient/{patient-id}/{resource}`. To know in detail about how compartments work see the [Compartments tutorial](../tutorials/compartments.md). 
+
+And that's it! We don't even need to add more policies, since we already have the policy that allows user to access URIs that match `/Patient/.*` regex. 
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+GET /Patient/new-patient/Observation
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```
+{
+ "query-time": 7,
+ "meta": {
+  "versionId": "171"
+ },
+ "type": "searchset",
+ "resourceType": "Bundle",
+ "total": 2,
+ "link": [
+  {
+   "relation": "first",
+   "url": "/Observation?_filter=subject eq 'new-patient' or performer eq 'new-patient'&page=1"
+  },
+  {
+   "relation": "self",
+   "url": "/Observation?_filter=subject eq 'new-patient' or performer eq 'new-patient'&page=1"
+  }
+ ],
+ "query-timeout": 60000,
+ "entry": [
+  {
+   "resource": {
+    "class": {
+     "coding": [
+      {
+       "code": "11557-6"
+      }
+     ]
+    },
+    "status": "registered",
+    "subject": {
+     "id": "new-patient",
+     "resourceType": "Patient"
+    },
+    "performer": [
+     {
+      "id": "practitioner-1",
+      "resourceType": "Practitioner"
+     }
+    ],
+    "resourceType": "Observation",
+    "id": "observation-1",
+    "meta": {
+     "lastUpdated": "2020-11-06T19:14:46.078643Z",
+     "createdAt": "2020-11-06T19:14:46.078643Z",
+     "versionId": "0"
+    }
+   },
+   "fullUrl": "/Observation/observation-1",
+   "link": [
+    {
+     "relation": "self",
+     "url": "/Observation/observation-1"
+    }
+   ]
+  },
+  {
+   "resource": {
+    "class": {
+     "coding": [
+      {
+       "code": "11557-6"
+      }
+     ]
+    },
+    "status": "registered",
+    "subject": {
+     "id": "new-patient",
+     "resourceType": "Patient"
+    },
+    "performer": [
+     {
+      "id": "new-patient",
+      "resourceType": "Patient"
+     }
+    ],
+    "resourceType": "Observation",
+    "id": "observation-3",
+    "meta": {
+     "lastUpdated": "2020-11-06T19:14:46.078643Z",
+     "createdAt": "2020-11-06T19:14:46.078643Z",
+     "versionId": "0"
+    }
+   },
+   "fullUrl": "/Observation/observation-3",
+   "link": [
+    {
+     "relation": "self",
+     "url": "/Observation/observation-3"
+    }
+   ]
+  }
+ ],
+ "query-sql": [
+  "SELECT \"observation\".* FROM \"observation\" WHERE (\"observation\".resource @> ? OR \"observation\".resource @> ?) LIMIT ? OFFSET ? ",
+  "{\"subject\":{\"id\":\"new-patient\"}}",
+  "{\"performer\":[{\"id\":\"new-patient\"}]}",
+  100,
+  0
+ ]
+}
+```
+{% endtab %}
+{% endtabs %}
+
+If we want to grant access to some other resource we just need to add it to the `CompartmentDefinition` resource that we've created. See [FHIR documentation](https://www.hl7.org/fhir/compartmentdefinition-patient.html) to know what resources can be added to a patient compartment. And we can get rid of the Access Policy that was previously created for encounters.
+
+#### Write access
+
+User should be able to create his own observation, e.g. for reporting his blood sugar level. The following policy manages this case:
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+POST AccessPolicy/
+
+resourceType: AccessPolicy
+id: create-patient-observation
+engine: matcho
+matcho:
+  uri: '#/Observation.*'
+  body:
+    subject:
+      id: .user.data.patient_id
+    performer:
+      $contains:
+        id: .user.data.patient.id
+        resourceType: Patient
+  request-method: post
+```
+{% endtab %}
+{% endtabs %}
+
+With this policy we can only create observations where subject and performer bust be the user's patient.
+
+
+
+
 
 #### Read access
 
-What if we want to refer to an encounter by its id? The previous policy does not grant us this access, so we have to add a new one. Matcho engine is no longer enough to make a rule for this kind of request since it only relies on the request and the user parameters. Now we need to peek in the requested resource to understand if it is related to our user and could be returned in response. We can achieve it by creating an Access Policy with SQL engine and an appropriate query : 
+What if we want to refer to an observation by its id? The previous policy does not grant us this access, so we have to add a new one. Matcho engine is no longer enough to make a rule for this kind of request since it only relies on the request and the user parameters. Now we need to peek into the requested resource to understand if it is related to our user and could be returned in response. We can achieve it by creating an Access Policy with SQL engine and an appropriate query : 
 
 {% tabs %}
 {% tab title="Request" %}
@@ -366,8 +559,6 @@ matcho:
 
 
 
-
-## Observation access
 
 
 
