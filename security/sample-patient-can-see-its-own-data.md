@@ -178,6 +178,7 @@ matcho:
   uri: /Encounter
   params:
     patient: .user.data.patient_id
+  request-method: getcompartment definition c
 ```
 {% endtab %}
 
@@ -459,7 +460,7 @@ With this policy we can only create observations where subject and performer mus
 POST /Observation
 
 id: observation-3
-class:
+code:
   coding:
     - code: 11557-6
 status: registered
