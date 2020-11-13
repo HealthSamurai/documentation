@@ -103,7 +103,7 @@ matcho:
   uri: '#/Patient/.*'
   params:
     resource/id: .user.data.patient_id  
-    request-method: get
+  request-method: get
 ```
 {% endtab %}
 
@@ -178,7 +178,6 @@ matcho:
   uri: /Encounter
   params:
     patient: .user.data.patient_id
-
 ```
 {% endtab %}
 
@@ -282,7 +281,7 @@ GET /Encounter?patient=new-patient
 
 #### Read access
 
-Granting access to observations is similar to the previous case. We just add another policy, that looks just like the previous one, but matches against another URI. It is so similar, that we should stop there and think a little what happens if we want to grant read access to more resources — we end up with a bunch of almost indistinguishable policies. A better approach in this case is to use the `CompartmentDefinition` resource. 
+Granting access to observations is similar to the previous case. We just add another policy, that looks just like the previous one, but matches against another URI. It is so similar, that we should stop there and think a little what happens if we want to grant read access to more resources — we end up with a bunch of almost indistinguishable policies. A better approach in this case is to use the `CompartmentDefinition` resource.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -302,14 +301,13 @@ resource:
     param: 
       - subject
       - performer
-
 ```
 {% endtab %}
 {% endtabs %}
 
-Now, when we've created `CompartmentDefinition` resource, we can access patient related resources with such requests: `GET /Patient/{patient-id}/{resource}`. To know in detail about how compartments work see the [Compartments tutorial](../tutorials/compartments.md). 
+Now, when we've created `CompartmentDefinition` resource, we can access patient related resources with such requests: `GET /Patient/{patient-id}/{resource}`. To know in detail about how compartments work see the [Compartments tutorial](../tutorials/compartments.md).
 
-And that's it! We don't even need to add more policies, since we already have the policy that allows user to access URIs that match `/Patient/.*` regex. 
+And that's it! We don't even need to add more policies, since we already have the policy that allows user to access URIs that match `/Patient/.*` regex.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -319,7 +317,7 @@ GET /Patient/new-patient/Observation
 {% endtab %}
 
 {% tab title="Response" %}
-```
+```text
 {
  "query-time": 7,
  "meta": {
@@ -471,12 +469,11 @@ subject:
 performer:
   - id: new-patient
     resourceType: Patient
-
 ```
 {% endtab %}
 {% endtabs %}
 
-Now it's time to make an important note. In general It is not possible to use some kind of `CompartmentDefinition` approach to grant write access to many resources at once, as we did it previously for read access. That's because  resources may require sophisticated logic to define which part of a resource could have write access and which not. Such logic may even lie beyond the abilities of the Access Control mechanism and in this case custom API is the only resort. But in quite simple scenario like the creation of observation  Access Policies are helpful. 
+Now it's time to make an important note. In general It is not possible to use some kind of `CompartmentDefinition` approach to grant write access to many resources at once, as we did it previously for read access. That's because resources may require sophisticated logic to define which part of a resource could have write access and which not. Such logic may even lie beyond the abilities of the Access Control mechanism and in this case custom API is the only resort. But in quite simple scenario like the creation of observation Access Policies are helpful.
 
 Let's create a new policy that allows our user to update his observations through the `PATCH` method. Matcho engine is no longer enough to make a rule for this kind of request since it only relies on the request and the user parameters. Now we need to peek into the requested resource to understand if it is related to our user and could be patched.
 
@@ -511,16 +508,15 @@ and:
                 id:
                   constant:
                     $data: '#/user/data/patient_id’
-
 ```
 {% endtab %}
 {% endtabs %}
 
-Now we can try to update our patient and the patient related to the User-2 and observe the difference in the responses. 
+Now we can try to update our patient and the patient related to the User-2 and observe the difference in the responses.
 
 ### Access to the next of kin records
 
-Access policies depend a lot on how we model our resources. FHIR doesn't provide convenient facilities to make relations between patients. The easiest way to add such relations is  to enhance a `User` resource with the list of related patients. Let's define that `Patient-2` is related to `User-1`.
+Access policies depend a lot on how we model our resources. FHIR doesn't provide convenient facilities to make relations between patients. The easiest way to add such relations is to enhance a `User` resource with the list of related patients. Let's define that `Patient-2` is related to `User-1`.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -554,8 +550,4 @@ matcho:
 ```
 {% endtab %}
 {% endtabs %}
-
-
-
-
 
