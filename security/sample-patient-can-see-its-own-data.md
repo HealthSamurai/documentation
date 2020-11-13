@@ -429,7 +429,7 @@ If we want to grant access to some other resource we just need to add it to the 
 
 #### Write access
 
-User should be able to create his own observation, e.g. for reporting his blood sugar level. The following policy manages this case:
+User should be able to create his own observation, e.g. to report his blood sugar level. The following policy manages this case:
 
 {% tabs %}
 {% tab title="Request" %}
