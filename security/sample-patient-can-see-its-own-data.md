@@ -480,6 +480,8 @@ Now it's time to make an important note. In general It is not possible to use so
 
 Let's create a new policy that allows our user to update his observations through the `PATCH` method. Matcho engine is no longer enough to make a rule for this kind of request since it only relies on the request and the user parameters. Now we need to peek into the requested resource to understand if it is related to our user and could be patched.
 
+**TODO:** describe necessity of json-schema engine.
+
 {% tabs %}
 {% tab title="Request" %}
 ```yaml
@@ -498,14 +500,17 @@ and:
         where resource#>>'{subject,id}' = {{user.data.patient_id}} 
         and id = {{params.resource/id}}
         and resource->'performer' @> jsonb_build_array(jsonb_build_object('resourceType', 'Patient', 'id', {{user.data.patient_id}}::text))
-  - engine: matcho
-    matcho:
-      body:
-        performer:
-          $contains:
-            id: .user.data.patient_id
-            resourceType: Patient
-
+  - engine: json-schema
+    schema:
+      properties:
+        body:
+          properties:
+            subject:
+              optional: true
+              properties:
+                id:
+                  constant:
+                    $data: '#/user/data/patient_id’
 
 ```
 {% endtab %}
