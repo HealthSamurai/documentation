@@ -102,7 +102,8 @@ engine: matcho
 matcho:
   uri: '#/Patient/.*'
   params:
-    resource/id: .user.data.patient_id  request-method: get
+    resource/id: .user.data.patient_id  
+    request-method: get
 ```
 {% endtab %}
 
@@ -456,7 +457,7 @@ matcho:
       resourceType: Patient
     performer:
       $contains:
-        id: .user.data.patient.id
+        id: .user.data.patient_id
         resourceType: Patient
   request-method: post
 ```
@@ -489,24 +490,34 @@ performer:
 
 Now it's time to make an important note. In general It is not possible to use some kind of `CompartmentDefinition` approach to grant write access to many resources at once, as we did it previously for read access. That's because  resources may require sophisticated logic to define which part of a resource could have write access and which not. Such logic may even lie beyond the abilities of the Access Control mechanism and in this case custom API is the only resort. But in quite simple scenario like the creation of observation  Access Policies are helpful. 
 
-Let's create some new policies that would allow our user to update his observations. First we allow to update an observation through the `PATCH` method. 
+Let's create some new policies that would allow our user to update his observations. First we allow to update an observation through the `PATCH` method. Matcho engine is no longer enough to make a rule for this kind of request since it only relies on the request and the user parameters. Now we need to peek into the requested resource to understand if it is related to our user and could be patched.
 
 {% tabs %}
 {% tab title="Request" %}
 ```yaml
 POST AccessPolicy/
 
-id: patch-delete-patient-observationtest
-sql:
-  query: > 
-    select true from observation 
-    where resource#>>'{subject,id}' = {{user.data.patient_id}} 
-    and id = {{params.resource/id}}
-    and resource->'performer' @> jsonb_build_array(jsonb_build_object('resourceType', 'Patient', 'id', {{user.data.patient_id}}::text))
-    and {{request-method}} = 'patch'
-engine: sql
-
-
+id: patch-observation
+link:
+  - id: Patch
+    resourceType: Operation
+engine: complex
+and:
+  - engine: sql
+    sql:
+      query: > 
+        select true from observation 
+        where resource#>>'{subject,id}' = {{user.data.patient_id}} 
+        and id = {{params.resource/id}}
+        and resource->'performer' @> jsonb_build_array(jsonb_build_object('resourceType', 'Patient', 'id', {{user.data.patient_id}}::text))
+        and {{request-method}} = 'patch'
+  - engine: matcho
+    matcho:
+      body:
+        performer:
+          $contains:
+            id: .user.data.patient_id
+            resourceType: Patient
 
 ```
 {% endtab %}
@@ -518,7 +529,7 @@ engine: sql
 
 #### Read access
 
-What if we want to refer to an observation by its id? The previous policy does not grant us this access, so we have to add a new one. Matcho engine is no longer enough to make a rule for this kind of request since it only relies on the request and the user parameters. Now we need to peek into the requested resource to understand if it is related to our user and could be returned in response. We can achieve it by creating an Access Policy with SQL engine and an appropriate query : 
+What if we want to refer to an observation by its id? The previous policy does not grant us this access, so we have to add a new one.  We can achieve it by creating an Access Policy with SQL engine and an appropriate query : 
 
 {% tabs %}
 {% tab title="Request" %}
