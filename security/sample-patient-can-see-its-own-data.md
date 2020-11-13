@@ -2,7 +2,7 @@
 
 ## What is this tutorial about
 
-In this tutorial you will know how to manage user access to patient's resources.
+In this tutorial you will know how to manage user access to patient resources.
 
 ## Prerequisites
 
