@@ -480,7 +480,7 @@ Now it's time to make an important note. In general It is not possible to use so
 
 Let's create a new policy that allows our user to update his observations through the `PATCH` method. Matcho engine is no longer enough to make a rule for this kind of request since it only relies on the request and the user parameters. Now we need to peek into the requested resource to understand if it is related to our user and could be patched.
 
-**TODO:** describe necessity of json-schema engine.
+**TODO:** describe the necessity of json-schema engine.
 
 {% tabs %}
 {% tab title="Request" %}
