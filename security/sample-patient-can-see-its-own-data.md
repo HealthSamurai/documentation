@@ -95,7 +95,7 @@ Let's add out first policy that will grant us access to the Patient resource, as
 {% tabs %}
 {% tab title="Request" %}
 ```yaml
-POST AccessPolicy/
+POST /AccessPolicy
 
 id: patient-access
 engine: matcho
@@ -170,7 +170,7 @@ Now let's give our user the ability to retrieve all encounters where they are re
 {% tabs %}
 {% tab title="Request" %}
 ```yaml
-POST AccessPolicy/
+POST /AccessPolicy
 
 id: search-patient-encounter
 engine: matcho
@@ -289,30 +289,20 @@ Granting access to observations is similar to the previous case. We just add ano
 ```yaml
 POST /fhir/CompartmentDefinition
 
-{
-    "resourceType": "CompartmentDefinition",
-    "id": "patient",
-    "url": "http://hl7.org/fhir/CompartmentDefinition/patient",
-    "name": "Base FHIR compartment definition for Patient",
-    "status": "draft",
-    "code": "Patient",
-    "search": true,
-    "resource": [
-        {
-            "code": "Encounter",
-            "param": [
-                "patient"
-            ]
-        },
-        {
-            "code": "Observation",
-            "param": [
-                "subject",
-                "performer"
-            ]
-        }
-    ]
-}
+id: patient
+url: http://hl7.org/fhir/CompartmentDefinition/patient
+code: Patient
+search: true
+status: draft
+resource:
+  - code: Encounter
+    param: 
+      - patient
+  - code: Observation
+    param: 
+      - subject
+      - performer
+
 ```
 {% endtab %}
 {% endtabs %}
@@ -444,9 +434,8 @@ User should be able to create his own observation, e.g. for reporting his blood 
 {% tabs %}
 {% tab title="Request" %}
 ```yaml
-POST AccessPolicy/
+POST /AccessPolicy
 
-resourceType: AccessPolicy
 id: create-patient-observation
 engine: matcho
 matcho:
@@ -471,7 +460,6 @@ With this policy we can only create observations where subject and performer mus
 ```yaml
 POST /Observation
 
-resourceType: Observation
 id: observation-3
 class:
   coding:
@@ -490,12 +478,12 @@ performer:
 
 Now it's time to make an important note. In general It is not possible to use some kind of `CompartmentDefinition` approach to grant write access to many resources at once, as we did it previously for read access. That's because  resources may require sophisticated logic to define which part of a resource could have write access and which not. Such logic may even lie beyond the abilities of the Access Control mechanism and in this case custom API is the only resort. But in quite simple scenario like the creation of observation  Access Policies are helpful. 
 
-Let's create some new policies that would allow our user to update his observations. First we allow to update an observation through the `PATCH` method. Matcho engine is no longer enough to make a rule for this kind of request since it only relies on the request and the user parameters. Now we need to peek into the requested resource to understand if it is related to our user and could be patched.
+Let's create a new policy that allows our user to update his observations through the `PATCH` method. Matcho engine is no longer enough to make a rule for this kind of request since it only relies on the request and the user parameters. Now we need to peek into the requested resource to understand if it is related to our user and could be patched.
 
 {% tabs %}
 {% tab title="Request" %}
 ```yaml
-POST AccessPolicy/
+POST /AccessPolicy
 
 id: patch-observation
 link:
@@ -510,7 +498,6 @@ and:
         where resource#>>'{subject,id}' = {{user.data.patient_id}} 
         and id = {{params.resource/id}}
         and resource->'performer' @> jsonb_build_array(jsonb_build_object('resourceType', 'Patient', 'id', {{user.data.patient_id}}::text))
-        and {{request-method}} = 'patch'
   - engine: matcho
     matcho:
       body:
@@ -519,107 +506,51 @@ and:
             id: .user.data.patient_id
             resourceType: Patient
 
+
 ```
 {% endtab %}
 {% endtabs %}
 
+Now we can try to update our patient and the patient related to the User-2 and observe the difference in the responses. 
 
+### Access to the next of kin records
 
-
-
-#### Read access
-
-What if we want to refer to an observation by its id? The previous policy does not grant us this access, so we have to add a new one.  We can achieve it by creating an Access Policy with SQL engine and an appropriate query : 
+Access policies depend a lot on how we model our resources. FHIR doesn't provide convenient facilities to make relations between patients. The easiest way to add such relations is  to enhance a `User` resource with the list of related patients. Let's use AidBox console to define that `Patient-2` is related to `User-1`.
 
 {% tabs %}
 {% tab title="Request" %}
 ```yaml
-POST /AccessPolicy
+PATCH /User/patient-user
 
-id: search-patient-encounter
-engine: matcho
-matcho:
-  uri: /Encounter
-  params:
-    patient: .user.data.patient_id
-```
-{% endtab %}
-
-{% tab title="Response" %}
-```yaml
-{
-  "query-time": 7,
-  "meta": {
-    "versionId": "155"
-  },
-  "type": "searchset",
-  "resourceType": "Bundle",
-  "total": 1,
-  "link": [
-    {
-      "relation": "first",
-      "url": "/Encounter?patient=new-patient&page=1"
-    },
-    {
-      "relation": "self",
-      "url": "/Encounter?patient=new-patient&page=1"
-    }
-  ],
-  "query-timeout": 60000,
-  "entry": [
-    {
-      "resource": {
-         "class": {
-            "code": "AMB"
-          },
-         "status": "planned",
-         "subject": {
-            "id": "new-patient",
-            "resourceType": "Patient"
-          },
-         "participant": [
-           {
-             "individual": {
-               "id": "practitioner-1",
-               "resourceType": "Practitioner"
-             }
-           }
-         ],
-         "id": "enc1",
-               "resourceType": "Encounter",
-               "meta": {
-                    "lastUpdated": "2020-11-10T11:11:39.464261Z",
-                    "createdAt": "2020-11-06T19:14:46.247628Z",
-                    "versionId": "150"
-               }
-      },
-      "fullUrl": "/Encounter/enc1",
-      "link": [
-        {
-          "relation": "self",
-          "url": "/Encounter/enc1"
-        }
-      ]
-    }
-  ],
-  "query-sql": [
-    "SELECT \"encounter\".* FROM \"encounter\" WHERE \"encounter\".resource @> ? LIMIT ? OFFSET ? ",
-    "{\"subject\":{\"id\":\"new-patient\",\"resourceType\":\"Patient\"}}",
-    100,
-    0
-  ]
-}
+data:
+  related_patients:
+    - new-patient1
 ```
 {% endtab %}
 {% endtabs %}
 
-#### 
+To grant `User-1` access to related patients we should simply update `patient-access` policy.
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+PUT /AccessPolicy/patient-access
+
+engine: matcho
+matcho:
+  uri: '#/Patient/.*'
+  user:
+    data:
+      $one-of:
+        - related_patient_id:
+            $contains: .params.resource/id
+        - patient_id: .params.resource/id
+  request-method: get
+```
+{% endtab %}
+{% endtabs %}
 
 
 
 
-
-
-
-Coming soon.
 
