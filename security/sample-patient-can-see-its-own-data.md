@@ -515,7 +515,7 @@ Now we can try to update our patient and the patient related to the User-2 and o
 
 ### Access to the next of kin records
 
-Access policies depend a lot on how we model our resources. FHIR doesn't provide convenient facilities to make relations between patients. The easiest way to add such relations is  to enhance a `User` resource with the list of related patients. Let's use AidBox console to define that `Patient-2` is related to `User-1`.
+Access policies depend a lot on how we model our resources. FHIR doesn't provide convenient facilities to make relations between patients. The easiest way to add such relations is  to enhance a `User` resource with the list of related patients. Let's define that `Patient-2` is related to `User-1`.
 
 {% tabs %}
 {% tab title="Request" %}
