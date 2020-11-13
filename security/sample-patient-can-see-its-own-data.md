@@ -544,7 +544,7 @@ matcho:
   user:
     data:
       $one-of:
-        - related_patient_id:
+        - related_patients:
             $contains: .params.resource/id
         - patient_id: .params.resource/id
   request-method: get
