@@ -428,7 +428,7 @@ If we want to grant access to some other resource we just need to add it to the 
 
 #### Write access
 
-User should be able to create his own observation, e.g. to report his blood sugar level. The following policy manages this case:
+User should be able to create their own observation, e.g. to report blood sugar level. The following policy manages this case:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -486,7 +486,7 @@ POST /Observation
 
 Now it's time to make an important note. In general It is not possible to use some kind of `CompartmentDefinition` approach to grant write access to many resources at once, as we did it previously for read access. That's because resources may require sophisticated logic to define which part of a resource could have write access and which not. Such logic may even lie beyond the abilities of the Access Control mechanism and in this case custom API is the only resort. But in quite simple scenario like the creation of observation Access Policies are helpful.
 
-Let's create a new policy that allows our user to update his observations through the `PATCH` method. Matcho engine is no longer enough to make a rule for this kind of request since it only relies on the request and the user parameters. Now we need to peek into the requested resource to understand if it is related to our user and could be patched.
+Let's create a new policy that allows our user to update their observations through the `PATCH` method. Matcho engine is no longer enough to make a rule for this kind of request since it only relies on the request and the user parameters. Now we need to peek into the requested resource to understand if it is related to our user and could be patched.
 
 **TODO:** describe the necessity and benefits of the json-schema engine.
 
