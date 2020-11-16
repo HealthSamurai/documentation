@@ -459,17 +459,27 @@ With this policy we can only create observations where subject and performer mus
 ```yaml
 POST /Observation
 
-id: observation-3
-code:
-  coding:
-    - code: 11557-6
-status: registered
-subject:
-  id: new-patient
-  resourceType: Patient
-performer:
-  - id: new-patient
-    resourceType: Patient
+{
+  "id": "observation-3",
+  "code": {
+    "coding": [
+      {
+        "code": "11557-6"
+      }
+    ]
+  },
+  "status": "registered",
+  "subject": {
+    "id": "new-patient",
+    "resourceType": "Patient"
+  },
+  "performer": [
+    {
+      "id": "new-patient",
+      "resourceType": "Patient"
+    }
+  ]
+}
 ```
 {% endtab %}
 {% endtabs %}
@@ -478,7 +488,7 @@ Now it's time to make an important note. In general It is not possible to use so
 
 Let's create a new policy that allows our user to update his observations through the `PATCH` method. Matcho engine is no longer enough to make a rule for this kind of request since it only relies on the request and the user parameters. Now we need to peek into the requested resource to understand if it is related to our user and could be patched.
 
-**TODO:** describe the necessity of json-schema engine.
+**TODO:** describe the necessity and benefits of the json-schema engine.
 
 {% tabs %}
 {% tab title="Request" %}
