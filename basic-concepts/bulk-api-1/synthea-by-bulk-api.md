@@ -60,12 +60,12 @@ Let see we have data in aidbox:
 GET /Patient?_ilike=John&_revinclude=Observation:patient
 ```
 
-### Load all at once with /$load
+### Load all at once with $load
 
-Using /$load you can load ndjson file with multiple resource types in one step:
+Using /fhir/$load you can load ndjson file with multiple resource types in one step:
 
 ```yaml
-POST /$load
+POST /fhir/$load
 
 source: 'https://storage.googleapis.com/aidbox-public/synthea/100/all.ndjson.gz'
 
