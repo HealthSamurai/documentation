@@ -43,7 +43,7 @@ Aidbox implements most of the [FHIR specification](https://www.hl7.org/fhir/) an
 * Aidbox stores Resources in [Aidbox format](https://docs.aidbox.app/basic-concepts/aidbox-and-fhir-formats), which is isomorphic to FHIR, but not the same.
 * Aidbox serves two sets of API: **Aidbox API** from "/" and **FHIR API** from "/fhir**"**. Aidbox API works with Aidbox format, and FHIR API works with FHIR format. When you interact with FHIR endpoints, Aidbox does on-the-fly conversion between these two formats.
 * Aidbox offers **First-Class Extensions** and **Custom Resources**, which FHIR doesn't support, but these additions are very handy for designing real-world systems.
-* Aidbox use its own Entity/Attribute, SearchParameter and AidboxProfile framework instead of FHIR Structure Definitions. FHIR Profiles should be converted to Aidbox meta-resources.
+* Aidbox uses its own Entity/Attribute, SearchParameter and AidboxProfile framework instead of FHIR Structure Definitions. FHIR Profiles should be converted to Aidbox meta-resources.
 
 ### Resources
 

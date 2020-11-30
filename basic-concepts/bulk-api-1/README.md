@@ -33,7 +33,7 @@ curl -u client:secret -H 'content-type:application/json' \
 
 ## $dump-sql
 
-Take sql query and responds with Chunked Encoded stream in CSV format. Useful to export data for analytics.
+Takes sql query and responds with Chunked Encoded stream in CSV format. Useful to export data for analytics.
 
 ```yaml
 POST /$dump-sql
@@ -52,9 +52,13 @@ pt-2    Smith    Mike
 
 ## $load 
 
-You can efficiently load data into Aidbox  in _ndjson_ _gz_ format from external web service or bucket. There are two version of $load - `/$load` and `/[resourceType]/$load`.  Both operations accept body with **source** element, which should be publicly  available url. If you want to secure your import use Signed URLs by Amazon S3 or Google Storage. As well there are two versions of each operation - prefixed with `/fhir` - accepts data in FHIR format, and without prefix - works with Aidbox Format.
+You can efficiently load data into Aidbox  in _ndjson_ _gz_ format from external web service or bucket. There are two versions of $load - `/$load` and `/[resourceType]/$load`.  First can load multiple resource types from one ndjson file, second is more efficient, but loads only for a specific resource type. Both operations accept body with **source** element, which should be publicly available url. If you want to secure your import use Signed URLs by Amazon S3 or Google Storage. 
 
-First can load multiple resource types from one ndjson file, second is more efficient, but load only for specific resource type.
+There are two versions of this operation - `/fhir/$load` accepts data in FHIR format,  `/$load` works with Aidbox format.
+
+{% hint style="danger" %}
+Keep in mind that $load does not validate inserted resources for the sake of performance. Be mindful about data you insert and use correct URL for your data format.
+{% endhint %}
 
 Here how you can load 100 synthea Patients \(see [tutorial](synthea-by-bulk-api.md)\):
 
