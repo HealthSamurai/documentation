@@ -7,14 +7,17 @@ description: New Search resource provides fine-grained control over search param
 You can define search parameters or override the existing one with Search meta-resource. Search resource takes precedence over [SearchParameter](searchparameter.md). This may be useful for performance optimization of built-in FHIR SearchParameters or for the implementation of complicated custom searches.
 
 ```yaml
+PUT /Search/Patient.name
+
 resourceType: Search
-id: Patient.name # id of resource
-name: name # name of search parameter
-resource: {id: Patient, resourceType: Entity} # link to resource type
-where: {{table}}.resource->'name' ilike {{param}} # sql string for search
-order-by: {{table}}.resoource#>>'{name,0,family}' # sql string for search
-format: '%?%' # format parameter value
-# multi: array # coerce params to array
+id: Patient.name # id of Search resource
+name: name # name of the new search parameter
+resource: # link to the Patient resource
+  id: Patient
+  resourceType: Entity
+where: "{{table}}.resource->>'name' ilike {{param}}" # sql for search
+format: "%?%" # parameter format for ilike 
+order-by: "{{table}}.resource#>>'{name,0,family}'" # sql for ordering
 ```
 
 #### SQL Templating
@@ -29,34 +32,78 @@ You can provide format string for value where `?` will be replaced with value of
 
 If you set multi = 'array' parameters will be coerced as PostgreSQL array
 
-#### Examples
+#### Examples \(executable in REST console\)
+
+Search patient name with SQL ilike:
 
 ```yaml
-resourceType: Search
-id: Patient.name # id of resource
-resource: {id: Patient, resourceType: Entity}
-where: {{table}}.resource->'name' ilike {{param}}
-order-by: {{table}}.resoource#>>'{name,0,family}'
-format: '%?%'
+# create patient resource
 
-GET /Patient?name=joh
-=> select * from patient where patient.resource->'name' ilike '%joh%'
+PUT /Patient/my-patient
+
+resourceType: Patient
+id: my-patient
+name:
+ - family: johnson
+ 
+ 
+# create search resource
+
+PUT /Search/Patient.name
+
+resourceType: Search
+id: Patient.name 
+name: name 
+resource: 
+  id: Patient
+  resourceType: Entity
+where: "{{table}}.resource->>'name' ilike {{param}}" 
+format: "%?%" 
+order-by: "{{table}}.resource#>>'{name,0,family}'" 
+
+# execute search for new parameter
+# check query-sql field in response bundle
+
+GET /Patient?name=john
 
 GET /Patient?_sort=name
-=> select * from patient where patient.resource->'name' ilike '%joh%'
 ```
 
+Search patient identifiers with array search parameter:
+
 ```yaml
+# create patient resources
+
+PUT /Patient/my-patient
+
+resourceType: Patient
+id: my-patient
+identifier:
+ - value: id1
+ 
+ 
+PUT /Patient/my-patient-1
+
+resourceType: Patient
+id: my-patient-1
+identifier:
+ - value: id2
+ 
+# create search resource 
+
+PUT /Search/Patient.identifier
+
 resourceType: Search
-id: Patient.identifier # id of resource
-resource: {id: Patient, resourceType: Entity}
+id: Patient.identifier 
+resource: 
+ resourceType: Entity
+ id: Patient
 where: knife_extract_text({{table}}.resource, '[["identifier","value"]]') && {{param}}
 multi: array
 
-GET /Patient?identifier=id1,id2,id3
+# execute searches and retrieve two patients
+# check query-sql field in response bundle
 
-=> select * from patient 
-  where knife_extract_text({{table}}.resource, '[["identifier","value"]]') 
-      && ARRAY['id1', 'id2', 'id3']
+GET /Patient?identifier=id1,id2,id3
 ```
 
