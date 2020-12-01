@@ -61,6 +61,7 @@ where: "{{table}}.resource->>'name' ilike {{param}}"
 format: "%?%" 
 order-by: "{{table}}.resource#>>'{name,0,family}'" 
 
+
 # execute search for new parameter
 # check query-sql field in response bundle
 
@@ -72,7 +73,7 @@ GET /Patient?_sort=name
 Search patient identifiers with array search parameter:
 
 ```yaml
-# create patient resources
+# create patient resources (one query at a time)
 
 PUT /Patient/my-patient
 
@@ -81,13 +82,15 @@ id: my-patient
 identifier:
  - value: id1
  
- 
+###
+
 PUT /Patient/my-patient-1
 
 resourceType: Patient
 id: my-patient-1
 identifier:
  - value: id2
+ 
  
 # create search resource 
 
@@ -100,6 +103,7 @@ resource:
  id: Patient
 where: knife_extract_text({{table}}.resource, '[["identifier","value"]]') && {{param}}
 multi: array
+
 
 # execute searches and retrieve two patients
 # check query-sql field in response bundle
