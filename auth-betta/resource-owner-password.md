@@ -2,13 +2,13 @@
 
 #### Description
 
-The Password grant type is used by first-party clients to exchange a user's credentials for an access token. Since this involves the client asking the user for their password, it should not be used by third party clients. In this flow, the user's username and password are exchanged directly for an access token. The application acts on behalf of the user. Refer to [OAuth 2.0 spec](https://tools.ietf.org/html/rfc6749#section-4.3) for more details.
+The Password grant type is used by first-party clients to exchange a user's credentials for an access token. Since this involves the client asking the user for their password, it should not be used by third party clients. In this flow, the user's username and password are exchanged directly for an access token. The application acts on behalf of the user.
 
 ![Basic scheme](../.gitbook/assets/untitled-diagram-page-2.svg)
 
 ### Configure Client
 
-Fist step is to configure Client for Resource Owner Grant with secret and password grant type:
+Fist step is configure Client for Resource Owner Grant with secret and password grant type:
 
 {% code title="client" %}
 ```yaml
@@ -20,22 +20,22 @@ grant_types:
 ```
 {% endcode %}
 
-Client will act on behalf of the user, which means Access Policies should be configured for User, not for Client.
+Client will act on behalf of the user,  which mean Access Policies should be configured for User, not for Client.
 
-You can configure Client for JWT tokens, set token expiration and enable refresh token:
+You can configure Client for JWT tokens,  set token expiration and enable refresh token:
 
 | attribute | options | desc |
 | :--- | :--- | :--- |
 | _auth.password_**.token\_format** | jwt | use access token in jwt format |
 | _auth.password_**.token\_expiration** | int \(seconds\) | token expiration time from issued at |
 | _auth.password_**.refresh\_token** | true/false | enable refresh\_token |
-| _auth.password_**.secret\_required** | true/false | require client secret for token |
+| _auth.password_**.secret\_required** | true/false | require secret for token |
 
 ## Get Access Token
 
-Next step is to collect username & password and exchange username, password, client id and secret \(if required\) for Access Token.
+Next step is collect username & password and exchange username, password, client id and secret \(if required\) for  Access Token.
 
-Using Basic & form-url-encoded:
+ Using Basic & form-url-encode:
 
 {% code title="using-basic" %}
 ```yaml
@@ -64,7 +64,7 @@ Content-Type: application/json
 ```
 {% endcode %}
 
-If provided credentials are correct, you get response with access token, user information and refresh token \(if enabled\):
+When everything is accurate, you will get response with access token, user information and refresh token \(if enabled\):
 
 {% code title="token-response" %}
 ```yaml
@@ -101,7 +101,7 @@ curl -H 'Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi'
 
 ### Revoke Access Token \(Close Session\)
 
-Aidbox creates Session resource for each Access Token, which can be closed with special endpoint `DELETE /Session` with token in Authorization header:
+Aidbox create  Session \(resource\) for each Access Token, which can be closed with special endpoint `DELETE /Session` with token in Authorization header:
 
 {% code title="close-session" %}
 ```yaml
