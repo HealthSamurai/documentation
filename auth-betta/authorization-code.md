@@ -2,13 +2,13 @@
 
 #### Description
 
-The Authorization Code Grant is an OAuth 2.0 flow that regular web apps use in order to access an API, typically as Web applications with backend and frontend. For more detailed information read [OAuth2.0 specifcation](https://tools.ietf.org/html/rfc6749#section-4.1). This flow is also applied to a browser-based application \(SPA\) and it doesn't use `client-secret`, because the source code is available in a browser - it isn't secure. Instead of this user authorizes the application and redirected back to the application with a temporary code in the URL. The application exchanges that code for the access token.
+The Authorization Code Grant is an OAuth 2.0 flow that regular web apps use in order to access an API, typically as web applications with backend and frontend \(browser-based SPA, for example\). This flow doesn't use `client-secret` due to security considerations - frontend application source code is available in a browser. Instead, user authorises the application and gets redirected back to it with a temporary access code in the URL. Application exchanges that code for the access token. For more detailed information read [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.1). 
 
 ![Basic scheme](../.gitbook/assets/untitled-diagram-page-3.svg)
 
 ## Configure Client
 
-Fist step is configure Client for Authorization Grant with `secret` and `redirect_uri`, as well `code` grant type:
+First step is to configure Client for Authorization Grant with `secret` and `redirect_uri`, as well `code` grant type:
 
 {% tabs %}
 {% tab title="client" %}
@@ -30,11 +30,11 @@ auth:
 {% endtab %}
 {% endtabs %}
 
-Client will act on behalf of the user,  which mean Access Policies should be configured for User, not for Client. 
+Client will act on behalf of the user, which means Access Policies should be configured for User, not for Client. 
 
 You can configure Client for JWT tokens,  set token expiration and enable refresh token:
 
-| _auth._authorization\_code. | options | desc |
+| auth_._authorization\_code. | options | desc |
 | :--- | :--- | :--- |
 | **token\_format** | jwt | use access token in jwt format |
 | **token\_expiration** | int \(seconds\) | token expiration time from issued at |
@@ -42,16 +42,16 @@ You can configure Client for JWT tokens,  set token expiration and enable refres
 | **secret\_required** | true/false | require secret for token |
 
 {% hint style="info" %}
-If you want to use _Authorizatin Code Grant_ for **Single Page Application** you do not need `secret` attribute to be set!
+If you want to use Authorization Code Grant for **Single Page Application** you do not need `secret` attribute to be set!
 {% endhint %}
 
 {% hint style="info" %}
-If your application is major consumer of Aidbox API you can set **first\_party** attribute into **true.** This means, that same User Session will be shared between Aidbox and client, so if you close client session Aidbox User Session will be closed too.
+If your application is a major consumer of Aidbox API you can set **first\_party** attribute into **true.** This means that the same User Session will be shared between Aidbox and client, so if you close client session Aidbox User Session will be closed too.
 {% endhint %}
 
 ## Get Code
 
-Next step is to redirect user from your application to Aidbox **authorize** endpoint with **client\_id** and **response\_type** - code:
+Next step is to redirect user from your application to **authorize** endpoint with **client\_id** and **response\_type** - code:
 
 ```text
 https://<box>.aidbox.app/auth/authorize?client_id=webapp&response_type=code&state=...
@@ -59,7 +59,7 @@ https://<box>.aidbox.app/auth/authorize?client_id=webapp&response_type=code&stat
 
 To keep you client stateless you can send **state** parameter with arbitrary content, which will be send you back on redirect.
 
-If user is not logged in - she will see login screen.
+If user is not logged in then she will see the login screen.
 
 ![](../.gitbook/assets/image%20%284%29.png)
 
@@ -67,7 +67,7 @@ If client is not first\_party or user not yet granted permissions to client, use
 
 ![](../.gitbook/assets/image%20%282%29.png)
 
-If client granted permissions user agent will be redirected to url configured in **Client.auth.authorization\_code.redirect\_uri** with authorization code parameter.
+If client granted permissions, user agent will be redirected to url configured in **Client.auth.authorization\_code.redirect\_uri** with authorization code parameter.
 
 ```text
 <redirect_uri>?code=****&state=***
@@ -75,7 +75,7 @@ If client granted permissions user agent will be redirected to url configured in
 
 ## Get Access Token
 
-With this code and client secret you can request for  Access Token with `grant_type: authorization_code`.
+With this code and client secret you can request for Access Token with`grant_type: authorization_code`.
 
 {% tabs %}
 {% tab title="json-request" %}
@@ -92,7 +92,7 @@ Content-Type: application/json
 {% endtab %}
 {% endtabs %}
 
-When everything is accurate, you will get response with access token, user information and refresh token \(if enabled\):
+If provided code is accurate, you get access token, user information and refresh token \(if enabled\):
 
 {% tabs %}
 {% tab title="token-response" %}
@@ -133,7 +133,7 @@ curl -H 'Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi'
 
 ### Revoke Access Token \(Close Session\)
 
-Aidbox create  Session \(resource\) for each Access Token, which can be closed with special endpoint `DELETE /Session` with token in Authorization header:
+Aidbox creates Session resource for each Access Token which can be closed with special endpoint `DELETE /Session` with token in Authorization header:
 
 {% tabs %}
 {% tab title="close-session" %}
@@ -144,7 +144,7 @@ Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
 {% endtab %}
 {% endtabs %}
 
-Session is just Resource and you can inspect and manipulate with sessions by standard Search & CRUD API for example get all sessions - `GET /Session`
+Session is just a resource and you can inspect and manipulate sessions with standard Search & CRUD API. For example, to get all sessions initiate `GET /Session`
 
 ## Auth Sandbox Demo
 

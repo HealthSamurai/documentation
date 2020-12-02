@@ -8,7 +8,7 @@ The Password grant type is used by first-party clients to exchange a user's cred
 
 ### Configure Client
 
-Fist step is configure Client for Resource Owner Grant with secret and password grant type:
+Fist step is to configure Client for Resource Owner Grant with secret and password grant type:
 
 {% code title="client" %}
 ```yaml
@@ -20,7 +20,7 @@ grant_types:
 ```
 {% endcode %}
 
-Client will act on behalf of the user, which mean Access Policies should be configured for User, not for Client.
+Client will act on behalf of the user, which means Access Policies should be configured for User, not for Client.
 
 You can configure Client for JWT tokens, set token expiration and enable refresh token:
 
@@ -33,9 +33,9 @@ You can configure Client for JWT tokens, set token expiration and enable refresh
 
 ## Get Access Token
 
-Next step is collect username & password and exchange username, password, client id and secret \(if required\) for  Access Token.
+Next step is to collect username & password and exchange username, password, client id and secret \(if required\) for Access Token.
 
-Using Basic & form-url-encode:
+Using Basic & form-url-encoded:
 
 {% code title="using-basic" %}
 ```yaml
