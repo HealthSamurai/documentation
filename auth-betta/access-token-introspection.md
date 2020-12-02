@@ -96,7 +96,7 @@ claims:
   
 ```
 
-When Aidbox receive request with JWT and `box_user` or `sub` attribute, Aidbox inject this user and his roles to the request. Now we can create some AccessPolicy.
+When Aidbox receives request with JWT and `box_user` or `sub` attribute, Aidbox injects this user and his roles to the request. Now we can create some AccessPolicy.
 
 ```yaml
 # AccessPolicy example
