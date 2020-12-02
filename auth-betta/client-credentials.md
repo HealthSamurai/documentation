@@ -6,13 +6,13 @@ The Client Credentials grant is used when applications request an access token t
 
 ![Basic scheme](../.gitbook/assets/untitled-diagram.svg)
 
-[Aidbox](https://www.health-samurai.io/aidbox) OAuth module support Client Credentials Grant flow in different formats. First- Strict adherence to specifications for better compatibility. Second - JSON request as a more modern and simple way. Also we have availability send all data in POST Body. Read official [OAuth2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.4) for more details.
+Aidbox OAuth module support Client Credentials Grant flow in different formats. First one is in strict adherence to [specification](https://tools.ietf.org/html/rfc6749#section-4.4.2) for better compatibility. Second one uses JSON request as a more modern and simple way. Read official [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.4) for more details.
 
 ### Configure Client
 
-To start use this flow you have to create  and configure Client. Minimal required parameters is `secret` and you have to enable this flow for client by `grant_types: ['client_credentials']`
+To start using this flow you have to create and configure Client. The only required parameters is `secret` and you also have to enable this flow for client by `grant_types: ['client_credentials']`
 
-{% code title="create-client-request" %}
+{% code title="create new api client" %}
 ```yaml
 PUT /Client/api-client
 
@@ -22,7 +22,7 @@ grant_types:
 ```
 {% endcode %}
 
-You also can configure token format and expiration, as well refresh token:
+You can also configure token format and expiration, as well refresh token:
 
 | attribute | options | desc |
 | :--- | :--- | :--- |
@@ -30,7 +30,7 @@ You also can configure token format and expiration, as well refresh token:
 | _auth.client\_credentials_**.token\_expiration** | int \(seconds\) | token expiration time from issued at |
 | _auth.client\_credentials_**.refresh\_token** | true/false | enable refresh\_token |
 
-{% code title="jwt-token-client" %}
+{% code title="create new api client" %}
 ```yaml
 PUT /Client/api-client
 
@@ -45,9 +45,9 @@ auth:
 ```
 {% endcode %}
 
-Probably you want to configure AccessPolicy for this specific client:
+Since by default new client has no access to any resources, you probably want to configure AccessPolicy for this specific client:
 
-{% code title="policy" %}
+{% code title="create policy" %}
 ```yaml
 PUT /AccessPolicy/api-client
 
@@ -62,7 +62,7 @@ link:
 
 Next step is exchange client id and secret for  Access Token.
 
- Using Basic & form-url-encode:
+Using Basic & form-url-encoded:
 
 {% code title="using-basic" %}
 ```yaml

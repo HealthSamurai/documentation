@@ -15,7 +15,7 @@ Authorization: Basic {base64(Client.id + ':' + Client.secret)}
 
 ### Register Client
 
-The first step is to create resource [Client](resources/client.md) with id & secret and add `'basic'` to it's `grant_types` collection:
+The first step is to create resource [Client]() with id & secret and add `'basic'` to it's `grant_types` collection:
 
 ```yaml
 POST /Client
