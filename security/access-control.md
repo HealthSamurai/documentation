@@ -231,7 +231,7 @@ resourceType: AccessPolicy
 
 #### Interpolation Rules
 
-In your SQL query, you can parameterize with attributes from request object using  `{{path}}` syntax. For example, to get a role from user `{data: {role: 'admin'}}` you can  write `{{user.data.role}}`. Parameter expressions are escaped by default to protect from SQL injection. If you want to make dynamical queries \(parameterize table name for example\), you have to use `{{!path}}` syntax. For example, the expression `SELECT true from {{!params.resource/type}} limit 1` with params = `{resource/type: "Patient"}` will be transformed into `SELECT true from "patient".` Such identifier names are double quoted and lower-cased by default.
+In your SQL query, you can parameterize with attributes from request object using  `{{path}}` syntax. For example, to get a role from user `{data: {role: 'admin'}}` you can  write `{{user.data.role}}`. Parameter expressions are escaped by default to protect from SQL injection. If you want to make dynamic queries \(parameterize table name for example\), you have to use `{{!path}}` syntax. For example, the expression `SELECT true from {{!params.resource/type}} limit 1` with params = `{resource/type: "Patient"}` will be transformed into `SELECT true from "patient".` Such identifier names are double quoted and lower-cased by default.
 
 ### Allow Engine
 
@@ -316,10 +316,17 @@ matcho:
 Match DSL definition:
 
 * If **pattern** \(match\) is object, search for inclusion of this object into subject. For example: `{x: 1}` matches `{x: 1, y: 2 ....}`. This algorithm is recursive — `{a: {b: 5}}` matches `{a: {b: 5, ...}...}`
-* Objects with one **$enum, $one-of** or **$contains** keys are special cases:
+* Objects with special keys: 
   * **$enum** —  test subject is equal to one of items in the enumeration. `{request-method: {$enum: ['get','post']}}` matches `{request-method: 'post'}`
   * **$contains** — ****if a subject is a collection then search at least one match. `{type: {$contains: {system: 'loinc'}}` matches `{type: [{system: 'snomed'}, {system: 'loinc'}]}`
-  * **$one-of —** try to match one of patterns. `{a: {$one-of: [{b: present?}, {c: present?}]} matches {a: {c: 5}}`
+  * **$one-of —** try to match one of patterns. `{a: {$one-of: [{b: present?}, {c: present?}]} matches {a: {c: 5}}` 
+  * **$reference** -  parse Reference  or string into [aidbox format](../basic-concepts/aidbox-and-fhir-formats.md#references). Examples:
+    * Parse Reference elemelents 
+      * `parser: {reference: "Patient/pid"} => {id: "pid", resourceType: "Patient"}`
+      * `{resource: {patient: {$reference: {id: '.user.data.patient_id'}}}` 
+    * Parse reference string  
+      * `"Patient/pid" =>  {id: "pid", resourceType: "Patient"}`
+      * `{params: {subject: {$reference: {id: '.user.data.patient_id'}}}`
 * For **array,** match first item in the pattern with first item in the subject. `[1,2]` matches `[1,2,3...]`
 * Primitive values \(strings, numbers and booleans\) are compared by value
 * If a string starts with `'#'`  — it will be transformed into regex and matched as regex. `{a: '#\\d+'}` matches `{a: '2345'}`
