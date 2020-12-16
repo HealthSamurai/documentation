@@ -1,11 +1,11 @@
 # Subscriptions
 
-Aidbox subscriptions module is a way to subscribe and get notifications about updating resources on server. It is common denominator of FHIR R4/R5 subscriptions specification with some extensions.
+Aidbox subscriptions module is a way to subscribe and get notifications about updating resources on server. It is a common denominator of FHIR R4/R5 subscriptions specification with some extensions.
 
-This module introduce two new resourceTypes into Aidbox:
+This module introduces two new resources into Aidbox:
 
-* SubsSubscription — meta-resource, which binds events \(create/update/delete resource\) with communication channel though which subscriber will be notified about.
-* SubsNotification — resource, which represents notification with its status \(sent or not\).
+* SubsSubscription — meta-resource which binds events \(create/update/delete resource\) with communication channel through which subscriber will be notified about changes.
+* SubsNotification — resource which represents notification with its status \(sent or not\).
 
 {% hint style="warning" %}
 Aidbox doesn't delete **SubsNotification** resources by itself. Simple way to implement retention policy is creating a cron job. [Let us know](https://t.me/aidbox) if there is more clear way.
@@ -37,7 +37,7 @@ trigger:
 
 # how to deliver notifications
 channel:
-  type: rest-hook # more types are comming
+  type: rest-hook 
   # url to send hook
   endpoint: https://myservice/subs/patient
   # headers to add to request (for consistency use lowercase names)
@@ -56,7 +56,7 @@ channel:
 
 ### Trigger format
 
-Subscription.trigger is a key-value object, where key is resource type. Each value can contain collection of events \(values can be 'all', 'create', 'update', 'delete'\) and .filter collection. For now filter support [**matcho**](../usdmatcho.md) engine \(FHIRPath and FHIR Search filters are coming soon\):
+Subscription.trigger is a key-value object, where key is resource type and each value can contain collection of events \(values can be 'all', 'create', 'update', 'delete'\) and .filter collection. For now filter support [**matcho**](../usdmatcho.md) engine \(FHIRPath and FHIR Search filters are coming soon\):
 
 ```yaml
 trigger:
@@ -70,12 +70,12 @@ Filter matches if at least one of item in collection matches, i.e. collection ha
 
 ### Protocol
 
-After you registered subscription aidbox sends on channel.endpoint `handshake` notification in json format. It's good if your service will respond with `status: 200`
+After you registered subscription, Aidbox sends on channel.endpoint `handshake` notification in json format. It's good if your service responds with `status: 200`
 
 ```yaml
 POST https://myservice/subs/patient
 Content-Type: application/json
-... channe.headers ...
+... channel.headers ...
 
 {
    "type": "handshake",
@@ -83,12 +83,12 @@ Content-Type: application/json
 }
 ```
 
-On every trigger event aidbox will send notification to your service endpoint. Your service has to respond with `status: 200` and optional json body.
+On every trigger event Aidbox will send notification to your service endpoint. Your service has to respond with `status: 200` and optional json body.
 
 ```yaml
 POST https://myservice/subs/patient
 Content-Type: application/json
-... channe.headers ...
+... channel.headers ...
 
 {
    "id": <unique-id>,
@@ -98,7 +98,7 @@ Content-Type: application/json
 }
 ```
 
-Results of all notifications are logged into **SubsNotification**  resource:
+Results of all notifications are logged into **SubsNotification** resource:
 
 ```yaml
 GET /SubsNotification
@@ -173,7 +173,6 @@ You can resend specific notification with
 
 ```yaml
 POST /SubsNotification/<notif-id>/$notify
-
 
 # response
 
