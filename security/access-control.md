@@ -1,6 +1,6 @@
 # Access Policies
 
-[Aidbox](https://www.health-samurai.io/aidbox) provides a flexible model to customize request authorization rules. User is allowed to declare a set of checks for all incoming requests. If incoming request satisfies those checks, it's considered authorized and being processed further. Otherwise the request is denied and client gets `403 Unauthorized`. Such checks are declared with AccessPolicy resource.
+[Aidbox](https://www.health-samurai.io/aidbox) provides a flexible model to customise request authorization rules. User is allowed to declare a set of checks for all incoming requests. If incoming request satisfies those checks, it's considered authorised and being processed further. Otherwise the request is denied and client gets `403 Unauthorized`. Such checks are declared with AccessPolicy resource.
 
 AccessPolicy resource has following structure:
 
@@ -25,7 +25,9 @@ link:
 - { resourceType: Client, id: client-1 }
 ```
 
-It supports three evaluation modes \(engines\): SQL, JSON Schema and Allow. Evaluation engine specifies how checks are expressed: with a SQL statement, with a [JSON Schema](https://json-schema.org/), or as a list of allowed endpoints.
+It supports five evaluation modes \(engines\): SQL, JSON Schema, Allow, Matcho and Complex Engine. Evaluation engine specifies how checks are expressed: with a SQL statement, with a [JSON Schema](https://json-schema.org/), or as a list of allowed endpoints.
+
+### Request Object Structure
 
 Aidbox evaluates AccessPolicy against a **request object**, a data structure representing incoming HTTP request. It has following structure:
 

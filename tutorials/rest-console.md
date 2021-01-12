@@ -2,17 +2,17 @@
 
 ### REST Console
 
-Last time we ended up at using our REST Console. Let's see what we can do here.
+In our previous article, we started working in our REST Console. Let's see what we can do here.
 
 ![REST Console](../.gitbook/assets/screenshot-2018-10-18-18.54.58.png)
 
-REST Console is designed to work with resources in your `Box` by sending HTTP requests in accordance to [FHIR RESTful API](http://hl7.org/fhir/http.html). To do this, we need to type an HTTP verb \(`GET`, `POST`, `PUT`, `PATCH`, `DELETE`\) and the address of the resource \(for example `/Patient` — _please pay attention to the resource name with a capital letter_\).
+REST Console is designed to work with resources in your `Box` by sending HTTP requests in accordance with [FHIR RESTful API](http://hl7.org/fhir/http.html). To do this, we need to type an HTTP verb \(`GET`, `POST`, `PUT`, `PATCH`, `DELETE`\) and the resource address \(for example `/Patient` — _please pay attention to the resource name with a capital letter_\).
 
 In cases when you need to send a request body \(e.g., `POST` requests\), the request body content is passed below the resource address, separated by an empty line, in YAML or JSON format — you can choose both request and response content type by **YAML/JSON** switch.
 
 ### Create Patient
 
-Last time \(in [Create and Configure Box]() tutorial\) we tried to get a list of our patients \(by requesting them through the `GET /Patient`\), and the response was empty. Let's add a couple of new patients. To do it, we type in our console `POST /Patient` and in the body of the request wherein we will send the data of our new patient:
+Last time \(in [Create and Configure Box]() tutorial\) we tried to get a list of our patients \(by requesting them through the `GET /Patient`\), and the response was empty. Let's add a couple of new patients. To do that, we type  `POST /Patient` in our console and the body of the request, wherein we will send the data of our new patient:
 
 {% tabs %}
 {% tab title="Request YAML" %}
@@ -145,7 +145,7 @@ This is only an example, you can change the values as you want but it would be g
 
 ### Get Patient
 
-After sending the request, we receive a response with `Status - 201` and the sent data — our patient is created. We can make sure of this by sending the request  `GET /Patient/<id>` and receiving created patient data \(in our case the `id` is `f8fe69db-c01c-4a3b-bf0c-0a806ea22577`\), or we can check a complete list of patients — `GET /Patient` 
+After sending the request, we receive a response with `Status - 201` and the sent data, which means that our patient has been created. We can check this by sending the request  `GET /Patient/<id>` and receiving created patient data \(in our case the `id` is `f8fe69db-c01c-4a3b-bf0c-0a806ea22577`\), or we can check a complete list of patients — `GET /Patient` 
 
 {% tabs %}
 {% tab title="Request" %}
@@ -209,7 +209,7 @@ Status: 200
 
 ### Patch Patient
 
-Next step is to update our patient information. For partial update we can use `PATCH /Patient/<id>`, in the request body we need to send only changed data. For example, let's change our patient name.
+Next step is to update our patient information. In a partial update, we can use `PATCH /Patient/<id>` in the request body in order to send changed data only. For example, let's change our patient name.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -335,14 +335,14 @@ Status: 200
 {% endtabs %}
 
 {% hint style="info" %}
-In this case, we're completely updating the data: what was there before but did not get into the request body — will be deleted.
+In this case, we're updating the data entirely: data that did not get into the request body will be deleted.
 {% endhint %}
 
 ### Patient History
 
-We have the ability to receive history of our patient changes, we just need to send a request like this —  `GET /Patient/<id>/_history`.
+We can receive history of our patient changes, we just need to send a request like this —  `GET /Patient/<id>/_history`.
 
-Let's do it for our patient.
+Let's do try this for our patient.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -498,9 +498,9 @@ Status: 200
 {% endtab %}
 {% endtabs %}
 
-In the response we receive all versions \(in this case 3\) of our patient resource. First version — when the resource was created, second one — with the changed name, and the third — wholly updated resource.
+In the response, we receive all versions \(in this case 3\) of our patient resource. The first version is when the resource was created, the second one is with the changed name, and the third is an entirely updated resource. 
 
-And now we can do the operation called [vread](http://hl7.org/fhir/http.html#vread) to get a specific version of a resource with following request`GET /Patient/<id>/_history/<versionId>`
+And now we can do the operation called [vread](http://hl7.org/fhir/http.html#vread) to get a specific version of a resource with the following request`GET /Patient/<id>/_history/<versionId>`
 
 {% tabs %}
 {% tab title="Request" %}
@@ -564,10 +564,10 @@ Status: 200
 
 ### Search Patient
 
-Another interesting thing — we can find a patient by some criteria, e.g by name — `GET /Patient?name=<Patient_name>`
+Another interesting thing is that we can find a patient by some criteria, e.g. by name — `GET /Patient?name=<Patient_name>`
 
 {% hint style="info" %}
-Before this step, it is better to create other patients for different search results. You already know how to do it ;\)
+Before this step, it is recommended to create other patients for different search results. You already know how to do it ;\)
 {% endhint %}
 
 {% tabs %}
@@ -713,9 +713,9 @@ Status: 200
 {% endtab %}
 {% endtabs %}
 
-Upon successful deletion we receive last version of resource and `status - 200`
+After successful deletion we receive last version of resource and `status - 200`
 
-If we try to get a deleted patient `GET /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577` we will receive `resourceType - OperationOutcome` and `status 410`. 
+If we try to get a deleted patient`GET /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577` we will receive `resourceType - OperationOutcome` and `status 410`. 
 
 {% tabs %}
 {% tab title="Request" %}

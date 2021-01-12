@@ -1,6 +1,6 @@
 # Getting Started with Box
 
-After reading this guide and performing all steps, you will learn:
+In this article, you will learn about the FHIR standard essentials, including:
 
 * What is FHIR 
 * How to create an instance of FHIR server
@@ -27,11 +27,11 @@ Choose how you would like to authorize [Aidbox](https://ui.aidbox.app). It can b
 
 ![](../.gitbook/assets/scr-2018-10-11_10-49-57.png)
 
-After you have been successfully authorized in [Aidbox.Cloud](https://ui.aidbox.app), click the 'New Box' button to start.
+After you have been successfully authorized in [Aidbox.Cloud](https://ui.aidbox.app), click on the 'New Box' button to start.
 
 ![](../.gitbook/assets/scr-2018-10-11_10-51-55%20%281%29.png)
 
-In the displayed form, enter your future box name. It can be a name of your application you are going to build. Then choose your plan and click the 'Create' button.
+In the displayed form, enter your future box name. It can be the name of your application you are going to build. Then choose your plan and click the 'Create' button.
 
 ![](../.gitbook/assets/2018-10-25-131455_633x702_scrot.png)
 
@@ -110,13 +110,13 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-This is only an example, you can change values as you want. For more information check the full [Patient resource](https://www.hl7.org/fhir/patient.html) description and [official example](https://www.hl7.org/fhir/patient-example.json.html). The `id` field in the request body is not required. and if you do not send it to the server, it will be generated. Description of the difference in the `create` operation behavior between FHIR and Aidbox endpoints can be found [here]().
+This is only an example, and you can change values as you want. For more information, check the full [Patient resource](https://www.hl7.org/fhir/patient.html) description and [official example](https://www.hl7.org/fhir/patient-example.json.html). The `id` field in the request body is not required. and if you do not send it to the server, it will be generated. Description of the difference in the `create` operation behavior between FHIR and Aidbox endpoints can be found [here]().
 
 ![](../.gitbook/assets/2018-10-29-121415_1311x754_scrot.png)
 
 ### Get a Patient
 
-After sending the request, we receive a response with `Status: 201` and the sent data which means that our patient has been created. We can make sure of this by sending the request `GET /Patient/<id>` and receive created patient data \(in our case id is `957d782d-3e40-4978-968c-63a1ef7d2473`, we got the id from the response\), or we can check a complete list of patients — `GET /Patient`
+After sending the request, we receive a response with `Status: 201` and the sent data, which means that our patient has been created. We can check this by sending the request `GET /Patient/<id>` and receive created patient data \(in our case id is `957d782d-3e40-4978-968c-63a1ef7d2473`, we got the id from the response\), or we can check a complete list of patients — `GET /Patient`
 
 {% tabs %}
 {% tab title="Request" %}
@@ -153,7 +153,7 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-There are much more operations that can be done with a server using [RESTful API](../basic-concepts/api.md) but for our case to check if everything is set up properly and to get basic understanding of FHIR RESTful API, `POST` and `GET` requests are enough.
+There are many more operations you can execute using RESTful API but it’s enough to use POST and GET requests to check if everything is set up right.
 
 What's next?
 
