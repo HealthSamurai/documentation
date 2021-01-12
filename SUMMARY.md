@@ -119,7 +119,6 @@
   * [Getting Started with Box](tutorials/getting-started-with-box.md)
   * [Working with REST Console](tutorials/rest-console.md)
   * [Uploading Sample Data](tutorials/load-bundle-into-fhir-server.md)
-  * [REST API Access in Aidbox.Dev](tutorials/how-to-use-rest-api.md)
   * [Custom Search](tutorials/custom-search.md)
   * [Authentication and Authorization](tutorials/authentication-and-authorization.md)
   * [Working with Aidbox from .NET](tutorials/working-with-aidbox-from-.net.md)

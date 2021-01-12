@@ -155,9 +155,7 @@ We welcome your questions and comments about our products. Have an idea/question
 
 ## What next?
 
-Learn how to obtain access to the [REST API](../tutorials/how-to-use-rest-api.md) by the link below.
-
-{% page-ref page="../tutorials/how-to-use-rest-api.md" %}
+Learn how to obtain access to the [REST API]() by the link below.
 
 ## Advanced tips
 
