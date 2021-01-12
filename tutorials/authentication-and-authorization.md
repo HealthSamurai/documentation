@@ -4,7 +4,8 @@ There are several options for authentication but let's start from the simplest o
 
 ## Basic Authentication
 
-When an [Aidbox](https://www.health-samurai.io/aidbox) box is created \( `<your-box>` for example\) you get a fully functional FHIR server and can make requests to it by the URL like`https://<your-box>.aidbox.app`. Make sure that you use the proper name of your new box instead of `<your-box>`. Let's try to obtain a patient list for example. 
+When an [Aidbox](https://www.health-samurai.io/aidbox) box is created \(for example, `<your-box>`\), you get a fully functional FHIR server and can make requests to it by the URL like`https://<your-box>.aidbox.app`. Make sure that you use the proper name of your new box instead of `<your-box>`.   
+To give an example, let's try to obtain a patient list. 
 
 ![](../.gitbook/assets/scr-2018-10-17_11-08-38.png)
 
@@ -14,7 +15,7 @@ Get 403
 {% endapi-method-summary %}
 
 {% api-method-description %}
-The attempt to obtain patient list from a secure FHIR server.
+The attempt to obtain the patient list from a secure FHIR server.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -44,9 +45,9 @@ Obviously results to failure
 
 ### Create a client
 
-Error message and response code give us a tip that server requires authentication. To make it possible we need to create a subject for authentication \(a client\).
+Error message and response code give us a tip that the server requires authentication. To make it possible, we need to create a subject for authentication \(a client\).
 
-Open [https://ui.aidbox.app](https://ui.aidbox.app), choose your box, open section **Auth clients**, click button **New** to create an auth client, and type the following body for resource:
+Open [https://ui.aidbox.app](https://ui.aidbox.app), choose your box, open section **Auth clients**, click button **New** to create an auth client, and type the following body for the resource:
 
 {% tabs %}
 {% tab title="YAML" %}
@@ -74,7 +75,7 @@ Place proper values instead of `USERNAME` and `PASSWORD`, click **Save**.
 
 ### Create an access policy
 
-After that, we need to create a policy which will authorize created client to read and edit all resources. Open **Access Control** section, create new access policy using the **New** button:
+After that, we need to create a policy that authorizes the created client to read and edit all resources. Open the **Access Control** section, create a new access policy using the **New** button:
 
 {% tabs %}
 {% tab title="YAML" %}
@@ -132,7 +133,7 @@ Option 1. Basic Auth
 
  In Postman, create a new request, switch to **Authorization** tab, select **Basic Auth**.
 
-Enter Username and Password. It should be same values as you entered in the resources Client and AccessPolicy in your instance of Aidbox.Cloud. Now the request will be executed successfully.
+Enter Username and Password. It should be the same values as you entered in the resources Client and AccessPolicy in your instance of Aidbox.Cloud. Now the request will be executed successfully.
 
 ![](../.gitbook/assets/scr-2018-10-17_11-11-59.png)
 

@@ -2,7 +2,7 @@
 
 ## Intro
 
-[FHIR search](https://www.hl7.org/fhir/search.html) has a lot of capabilities. However, some cases can't be expressed in terms of it. For example, we want to get a patient resource with additional field 'encounters' which contains all encounters of that patient but it's not possible to implement with FHIR search API. [Aidbox](https://www.health-samurai.io/aidbox) has a solution for such complex tasks, and this tutorial is about how to solve this kind of problem.
+[FHIR search](https://www.hl7.org/fhir/search.html) has a lot of capabilities, but in some cases, there aren't enough. For example, we want to get a patient resource with an additional field 'encounters' that contains all encounters of that patient, but it's not possible to implement it with FHIR search API. [Aidbox](https://www.health-samurai.io/aidbox) has a solution for such complex tasks, and this tutorial is about how to solve this kind of problem.
 
 ## Prepare Data
 
@@ -143,7 +143,7 @@ We created 2 patients and 3 encounters that are linked to those patients.
 
 ## SQL
 
-Aidbox uses PostgreSQL \(super advanced open-source DBMS\) which allows to express very complex queries. Let's try to implement our task in SQL queries.
+Aidbox uses PostgreSQL \(super advanced open-source DBMS\), which allows expressing very complex queries. Let's try to implement our task in SQL queries.
 
 First of all, let's try to obtain a list of patients. Access the `DB Console` of our box and run the following code snippets:
 
@@ -163,7 +163,7 @@ patient;
 | `patient1` | `Patient` | `{"name":[{"given":["Max"],"family":"Turikov"}]}` |
 | `patient2` | `Patient` | `{"name":[{"given":["Alex"],"family":"Antonov"}]}` |
 
-Next, we want to add patient **id** and **resource\_type** into **resource**.
+Next, we want to add the patient **id** and **resource\_type** into **resource**.
 
 {% code title="patients.sql" %}
 ```sql
@@ -184,7 +184,7 @@ patient;
 | `patient2` | `Patient` | `{"id":"patient2","name":[{"given":["Alex"],"family":"Antonov"}],"resource_type":"Patient"}` |
 
 {% hint style="info" %}
-Curious, how to work with JSON in PostgreSQL? Join our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).
+Curious how to work with JSON in PostgreSQL? Join our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).
 {% endhint %}
 
 Also, we can obtain a list of encounters for each patient:
@@ -208,7 +208,7 @@ ON p.id = e.resource->'subject'->>'id';
 | `patient1` | `enc2` | `{"status":"draft","subject":{"id":"patient1","resourceType":"Patient"}}` |
 | `patient2` | `enc3` | `{"status":"draft","subject":{"id":"patient2","resourceType":"Patient"}}` |
 
-Our next step will be obtaining aggregated data by patients.
+Our next step is obtaining aggregated data by patients.
 
 {% code title="patient-encounters.sql" %}
 ```sql
@@ -228,7 +228,7 @@ GROUP BY p.id;
 | `patient1` | `[{"status":"draft","subject":{"id":"patient1","resourceType":"Patient"}}, {"status":"draft","subject":{"id":"patient1","resourceType":"Patient"}}]` |
 | `patient2` | `[{"status":"draft","subject":{"id":"patient2","resourceType":"Patient"}}]` |
 
-Looks good but don't have information about encounter id's.
+Looks good but there's no information about encounter id's.
 
 {% code title="patients-encounters-with-ids.sql" %}
 ```sql
@@ -261,7 +261,7 @@ GROUP BY p.id;
 | `patient1` | `[{"id":"enc1","status":"draft","subject":{"id":"patient1","resourceType":"Patient"},"resource_type":"Encounter"},{"id":"enc2","status":"draft","subject":{"id":"patient1","resourceType":"Patient"},"resource_type":"Encounter"}]` |
 | `patient2` | `[{"id":"enc3","status":"draft","subject":{"id":"patient2","resourceType":"Patient"},"resource_type":"Encounter"}]` |
 
-Additionally, we added resourceType and id to patient resource but didn't use it yet. Let's put encounters to patient resource and take only one patient by specified id.
+Additionally, we added resourceType and id to the patient resource but didn't use it yet. Let's put encounters to the patient resource and take only one patient by specified id.
 
 {% code title="patients-with-encounters-and-ids.sql" %}
 ```sql
@@ -317,7 +317,7 @@ The result should look like the following table \(but without pretty printing\):
   </tbody>
 </table>
 
-Now, let's make the results of this query accessible via REST API. To do that, we need to create `AidboxQuery` resource:
+Now let's make the results of this query accessible via REST API. To do that, we need to create `AidboxQuery` resource:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -377,7 +377,7 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-Pay attention to the end of the query: we used `{{params.patient.id}}` which takes the value from request and passes it to the query securely \(using PostgreSQL `PREPARE` statement\). This means that the user of our custom search can change some parameters of the query and get different results.
+Pay attention to the end of the query: we used `{{params.patient.id}}` which takes the value from the request and passes it to the query securely \(using PostgreSQL `PREPARE` statement\). This means that the user of our custom search can change some parameters of the query and get different results.
 
 Let's try it in action!
 
@@ -441,7 +441,7 @@ data:
 {% endtab %}
 {% endtabs %}
 
-Hell ye! We got all needed data in exact shape we wanted. Additional information about custom queries can be found in REST API [$query](../basic-concepts/search-1/custom-search.md) documentation.
+We got all the needed data in the exact shape we wanted. Additional information about custom queries can be found in REST API [$query](../basic-concepts/search-1/custom-search.md) documentation.
 
 {% hint style="info" %}
 Want to know more about Aidbox, FHIR, and custom search? Join our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).
