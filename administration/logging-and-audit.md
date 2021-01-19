@@ -80,7 +80,7 @@ GET /_logs
 
 
 
-### Demos
+### Demos:
 
 #### Watch server logs in browser console:
 
@@ -89,8 +89,4 @@ GET /_logs
 #### Server logs with Aidbox.CLI
 
 #### Configure logging
-
-
-
-
 

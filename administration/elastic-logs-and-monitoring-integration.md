@@ -6,17 +6,18 @@ A list of environment variables that we need to declare in order to enable Aidbo
 
 ```yaml
 AIDBOX_ES_URL = <url>
-# Required. Elsaticsearch url
+# Required. Elasticsearch url
 
 AIDBOX_ES_AUTH = <user>: <password>
-# Optional. Basic auth credentials if there is protecion
+# Optional. Basic auth credentials if there is protection
 
 AIDBOX_ES_BATCH_SIZE = <uint>
-# Optional. Size of elastic search post batch, default is 200
+# Optional. Size of elastic search post batch, default value 
+# is 200
 
 AIDBOX_ES_BATCH_TIMEOUT = <millis>
 # Optional. Timeout when to post batch if there not enough 
-# messages to post a full batch. Default is 1 hour
+# messages to post a full batch. Default time is 1 hour
 
 AIDBOX_LOGS = <fallback logs file path>
 # Optional. Path to file where to write logs if error while 
