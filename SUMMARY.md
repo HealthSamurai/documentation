@@ -136,5 +136,6 @@
   * [Logging & Audit](administration/logging-and-audit.md)
   * [X-Audit header](administration/x-audit-header.md)
   * [Health Check](administration/health-check.md)
+  * [Elastic Logs and Monitoring Integration](administration/elastic-logs-and-monitoring-integration.md)
   * [Export logs to ElasticSearch/Kibana](administration/export-logs-to-elasticsearch-kibana.md)
 

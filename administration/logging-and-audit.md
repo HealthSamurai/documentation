@@ -80,7 +80,7 @@ GET /_logs
 
 
 
-### Demos:
+### Demos
 
 #### Watch server logs in browser console:
 
