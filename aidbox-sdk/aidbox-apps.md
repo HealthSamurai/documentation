@@ -1,8 +1,8 @@
 # Apps
 
-You can extend [Aidbox](https://www.health-samurai.io/aidbox) with custom Apps. App can define custom resources, custom endpoints and subscribe to hooks or subscriptions. App is a standalone service, which will work with Aidbox to implement your specific app or Aidbox Addon. App should be registered in Aidbox.
+You can extend [Aidbox](https://www.health-samurai.io/aidbox) with custom Apps. The app can define custom resources, custom endpoints, and subscribe to hooks or subscriptions. The app is a standalone service, which will work with Aidbox to implement your specific app or Aidbox Add-on. App should be registered in Aidbox.
 
-You define App using Aidbox SDK for your language and should not reverse engenier internal API, because it can be subject of change.
+You define the App using Aidbox SDK for your language and should not reverse engineer internal API, because it can be subject to change.
 
 {% page-ref page="nodejs.md" %}
 
@@ -12,7 +12,7 @@ You define App using Aidbox SDK for your language and should not reverse engenie
 
 ## App Resource
 
-To define App we should provide app manifest:
+To define the App, we should provide the app manifest:
 
 ```yaml
 resourceType: App
@@ -32,7 +32,7 @@ subscriptions: <Subscriptions>
 
 ### endpoint
 
-In `endpoint` section you describe how aidbox will communicate with your service. 
+In the `endpoint` section, you describe how Aidbox will communicate with your service. 
 
 | Key | type | required | Options | default | description |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -44,7 +44,7 @@ In `endpoint` section you describe how aidbox will communicate with your service
 
 ### entities
 
-In `entities` section of App manifest you can extend existing resources, define custom profiles or hook into lifecycle:
+In the `entities` section of the App manifest, you can extend existing resources, define custom profiles, or hook into lifecycle:
 
 {% code title="entities:" %}
 ```yaml
@@ -59,7 +59,7 @@ Patient: # existing resource type
 ```
 {% endcode %}
 
-As well define custom resources:
+As well as define custom resources:
 
 {% code title="entities:" %}
 ```yaml
@@ -85,7 +85,7 @@ User: # custom resource type
 ```
 {% endcode %}
 
-In entities section you define resources as a map `<resourceType> : <resourceStructure>` :
+In the entities section, you define resources as a map `<resourceType> : <resourceStructure>` :
 
 ```yaml
 entities:
@@ -107,9 +107,9 @@ User:
 ```
 {% endcode %}
 
-At root of resource definition you can also define **hooks** and **profiles** for this resource.
+At the root of resource definition, you can also define **hooks** and **profiles** for this resource.
 
-Element definition will be translated into [Attribute Meta-Resource]() and can have following properties:
+Element definition will be translated into [Attribute Meta-Resource]() and have following properties:
 
 | name | type | Description |
 | :--- | :--- | :--- |
@@ -117,7 +117,7 @@ Element definition will be translated into [Attribute Meta-Resource]() and can h
 
 ### operations
 
-In operation section you define Custom REST operations as a map  &lt;operation-id&gt;: &lt;operation-definition&gt; and access policy \(which will be bound to this operation\):
+In the operation section, you define Custom REST operations as a map  &lt;operation-id&gt;: &lt;operation-definition&gt; and access policy \(which will be bound to this operation\):
 
 {% code title="operations:" %}
 ```yaml
@@ -134,7 +134,7 @@ register-user:
 
 ### resources
 
-In resources section you can provide other meta-resources for Aidbox in form `{resourceType: {id: resource}}`
+In the resources section, you can provide other meta-resources for Aidbox in the form `{resourceType: {id: resource}}`
 
 {% code title="resources:" %}
 ```yaml
@@ -151,13 +151,13 @@ AccessPolicy:
 
 ### hooks
 
-Aidbox will provide set of hooks you can hook-in to customise it's behaviour:
+Aidbox will provide a set of hooks you can hook-in to customize it's behavior:
 
 TBD
 
 ### subscriptions
 
-In subscription section you can define subscriptions \(special type of hooks, which do not need to provide response\). You can subscribe to specific life-cycle events of resources filtered by criteria or to changes in search queries.
+In the subscription section, you can define subscriptions \(a special type of hooks, which do not need a response\). You can subscribe to specific life-cycle events of resources filtered by criteria or to changes in search queries.
 
 TBD
 
