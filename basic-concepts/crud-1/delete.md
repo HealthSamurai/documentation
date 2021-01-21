@@ -4,7 +4,7 @@
 DELETE [base]/[type]/[id]
 ```
 
-Respond with `200 OK` on the successful deletion, but when removing a resource deleted earlier, respond with `204 No Content` \(conforming FHIR specification\). This feature was added to make deletion work the same way as in SQL `DELETE RETURNING *`.
+Responds with `200 OK` on the successful deletion, but when removing a resource deleted earlier, responds with `204 No Content` \(conforming FHIR specification\). This feature was added to make deletion work the same way as in SQL `DELETE RETURNING *`.
 
 To get `204 No Content` instead of `200 OK`, use the `_no-content=true` query parameter. 
 

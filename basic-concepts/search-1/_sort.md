@@ -24,7 +24,7 @@ You can change the sorting direction by prefixing parameter with `-` sign
 GET /Organization?_sort=-name
 ```
 
-### \_id & \_lastUpdat
+### \_id & \_lastUpdated
 
 You can use `_id and _lastUpdated` parameters:
 

@@ -4,7 +4,7 @@ description: Define and use SearchParameter resource
 
 # SearchParameter
 
-SearchParameter is a special meta-resource, which describes which part of resource and how you want to make searchable. Aidbox is coming with the predefined set of search params for different resource types, but you can define new search params on the fly.
+SearchParameter is a special meta-resource, which describes part of resource you want to make searchable. Aidbox is coming with the predefined set of search params for different resource types, but you can define new search params on the fly.
 
 {% hint style="warning" %}
 Aidbox SearchParameter has its own structure, which is not the same as FHIR SearchParameters. To import FHIR SearchParams, you have to convert it into Aidbox representation!
@@ -21,8 +21,6 @@ type: string
 resource: {id: Patient, resourceType: Entity}
 expression:
 - [name]
-
-
 ```
 
 #### Structure
@@ -55,7 +53,7 @@ Depending on the value type, different modifiers can be applied.
 
 #### Expression
 
-Expression is a set of elements, by which we want to search. Expression is logically very simple subset of FHIRPath \(which can be efficiently implemented in database\) expressed as data. Expression is an array of PathArrays; PathArray is an array of strings, integers or objects, where each type has a special meaning:
+Expression is a set of elements by which we want to search. Expression is logically very simple subset of FHIRPath \(which can be efficiently implemented in database\) expressed as data. Expression is an array of PathArrays; PathArray is an array of strings, integers or objects, where each type has a special meaning:
 
 * string - name of element
 * integer - index in collection
