@@ -1,10 +1,10 @@
 ---
-description: Simple way to insert or update collection of resources
+description: A simple way to insert or update a collection of resources
 ---
 
 # Batch Upsert
 
-This  custom operation \(lightweight alternative to transaction\) simplifies  **upsert**  \(update or create\) resources into FHIR server. Just put array of resources \(with id's\)  on `/`
+This custom operation \(a lightweight alternative to transaction\) simplifies  **upsert**  \(update or create\) resources into FHIR server. Just put an array of resources \(with id's\)  on `/`
 
 ```yaml
 PUT /

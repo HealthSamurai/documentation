@@ -4,7 +4,7 @@ description: Include associated resources
 
 # \_include & \_revinclude
 
-Client can add related resources to a search result using the **\(rev\)include** and **with** parameters.  In ORM frameworks, such feature is sometimes called an "associations eager loading". This technique can save extra roundtrips from client to server and potential N+1 problem.
+Client can add related resources to a search result using the **\(rev\)include** and **with** parameters. In ORM frameworks, such feature is sometimes called an "associations eager loading". This technique can save extra roundtrips from client to server and potential N+1 problem.
 
 For example, you may want to get encounters with patients \(each encounter refers to\):
 
@@ -65,7 +65,7 @@ Syntax for include:
  _include(:reverse|:iterate|:logical)=(source-type:)search-param:(:target-type)
 ```
 
-**search-param** is a name of search parameter with the type `reference` defined for **source-type**.
+**search-param** is a name of the search parameter with the type `reference` defined for **source-type**.
 
 This query can be interpreted as: for the **source-type** resources in the result include all **target-type resources,** which are referenced by the **search-param**. If you skip the **source-type,** it will be set to the resource-type you are searching for:
 

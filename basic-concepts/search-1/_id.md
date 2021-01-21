@@ -1,22 +1,22 @@
 ---
-description: Search by resource id
+description: Search by the resource id
 ---
 
 # \_id
 
-Search by resource id
+Search by the resource id
 
 ```yaml
 GET /Patient?_id=pt-1
 ```
 
-You can search by multiple ids separated with comma:
+You can search by multiple ids separated by comma:
 
 ```text
 GET /Patient?_id=pt-1,pt-2,pt-3
 ```
 
-You can use \_id parameter in a sort expressions:
+You can an use \_id parameter in a sort expressions:
 
 ```yaml
 GET /Entity?_sort=_id

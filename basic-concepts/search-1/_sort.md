@@ -18,7 +18,7 @@ GET /Organization?_sort=name,id
 
 ### Sorting direction
 
-You can change sorting direction by prefixing parameter with `-` sign
+You can change the sorting direction by prefixing parameter with `-` sign
 
 ```javascript
 GET /Organization?_sort=-name

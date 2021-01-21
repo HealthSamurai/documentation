@@ -1,7 +1,7 @@
 ---
 description: >-
-  Step by step how to install Aidbox.Dev on-premises. Estimated reading time: 7
-  min
+  Step by step instructions for installing Aidbox.Dev on-premises. Estimated
+  reading time: 7 min
 ---
 
 # Setup Aidbox.Dev
@@ -14,7 +14,7 @@ We are providing a lightweight version of [Aidbox](https://www.health-samurai.io
 
 ## License obtaining
 
-1. Visit and register on the [License server](https://license-ui.aidbox.app) then click the `GET LICENSE KEY` button.
+1. Visit and register on the [License server](https://license-ui.aidbox.app), then click the `GET LICENSE KEY` button.
 
 ![](../.gitbook/assets/scr-2018-10-31_15-08-05.png)
 
@@ -82,7 +82,7 @@ services:
 
 ### Step 3. **Fill in the .env file with the following parameters**
 
-Open the `.env` file and insert your `License ID` and `License KEY,`specify FHIR version and decide about box security and distribution channel \( latest vs edge\).
+Open the `.env` file and insert your `License ID` and `License KEY,` specify FHIR version and decide on box security and distribution channel \( latest vs edge\).
 
 {% code title=".env" %}
 ```bash
@@ -124,7 +124,7 @@ AIDBOX_IMAGE=healthsamurai/devbox:0.4.1
 | AIDBOX\_ADMIN\_PASSWORD | false | Password for admin user |
 
 {% hint style="info" %}
-If **AIDBOX\_CLIENT\_ID** & **AIDBOX\_CLIENT\_SECRET** are provided - Aidbox will start in a secure mode with access control turned on; API Client with provided ID and secret will be created as well as Access Policy, which grants root privileges to this Client. In a simplest way you can access Aidbox API using basic auth and this client credentials.
+If **AIDBOX\_CLIENT\_ID** & **AIDBOX\_CLIENT\_SECRET** are provided - Aidbox will start in a secure mode with access control turned on; API Client with provided ID and secret will be created, as well as Access Policy, which grants root privileges to this Client. In a simplest way, you can access Aidbox API using basic auth and this client credentials.
 {% endhint %}
 
 {% hint style="warning" %}
@@ -145,7 +145,7 @@ $ docker-compose up -d
 
 That's it! Aidbox.Dev is running and you can point your browser to [http://localhost:8888](http://localhost:8888/) to see a fancy welcome page.
 
-_\*\*_Insert your ADMIN\_ID and ADMIN\_PASSWORD and you will see your development environment. This is the beginning of the way to create your best healthcare products.
+_\*\*_Insert your ADMIN\_ID and ADMIN\_PASSWORD and you will see your development environment. This is the way to create your best healthcare products.
 
 ![](../.gitbook/assets/login-aidbox.gif)
 
@@ -155,9 +155,7 @@ We welcome your questions and comments about our products. Have an idea/question
 
 ## What next?
 
-Learn how to obtain access to the [REST API](../tutorials/how-to-use-rest-api.md) by the link below.
-
-{% page-ref page="../tutorials/how-to-use-rest-api.md" %}
+Learn how to obtain access to the [REST API]() by the link below.
 
 ## Advanced tips
 
@@ -207,7 +205,7 @@ $ curl -u $AIDBOX_CLIENT_ID:$AIDBOX_CLIENT_SECRET \
 ```
 
 {% hint style="info" %}
-Be careful with **$** sign in url paths \(aka **/$metadata**\) in shell - you have to escape it \( **/$metadata**\) otherwise shell will try to interpret it as variables ;\)
+Be careful with the **$** sign in url paths \(aka **/$metadata**\) in the shell - you have to escape it \( **/$metadata**\); otherwise, the shell will try to interpret it as variables ;\)
 {% endhint %}
 
 ### Stop Aidbox.Dev
@@ -222,7 +220,7 @@ $ docker-compose stop
 $ docker-compose down
 ```
 
-By default docker-compose file mount folder `./pgdata` as a persistent volume for PostgreSQL, so that it survives restarts and destroying of containers. If you want to completely cleanup previous installation just `rm -rf ./pgdata`
+By default, docker-compose file mount folder `./pgdata` as a persistent volume for PostgreSQL so that it survives restarts and destruction of containers. To clean up the previous installation completely: `rm -rf ./pgdata`
 
 ### Upgrade Aidbox.Dev
 

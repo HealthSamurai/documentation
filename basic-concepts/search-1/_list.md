@@ -16,13 +16,13 @@ This request returns all Patient resources that are referenced from the list fou
  GET /Patient?_list=42&gender=female
 ```
 
-This request will return all female patients in the list. The server can return the list referred to in the search parameter as an included resource, but is not required to do so. In addition, a system can support searching by lists by their logical function. For example:
+This request will return all female patients on the list. The server can return the list referred to in the search parameter as an included resource but is not required to do so. In addition, a system can support searching by lists by their logical function. For example:
 
 ```java
 GET /AllergyIntolerance?patient=42&_list=$current-allergies
 ```
 
-This request will return all allergies in patient 42's "Current Allergy List". The server returns all relevant AllergyIntolerance resources, and can also choose to return the list. 
+This request will return all allergies in the patient 42's "Current Allergy List". The server returns all relevant AllergyIntolerance resources, and can also choose to return the list. 
 
 TBD: test script
 

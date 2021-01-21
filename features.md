@@ -16,7 +16,7 @@ Aidbox uses PostgreSQL exclusively but squeezes everything out of this database 
 
 ### OAuth & OIDC; User Management \(SCIM\)
 
-Aidbox has built-in [OAuth 2.0](https://docs.aidbox.app/auth-betta) OpenID Connect server or can work as Resource Server.
+Aidbox has built-in [OAuth 2.0](https://docs.aidbox.app/auth-betta) OpenID Connect server and can work as Resource Server.
 
 ### Flexible Access Control & Audit Log
 
@@ -32,7 +32,7 @@ Not all healthcare data fits the FHIR data models. Aidbox allows adding [custom 
 
 ### Integration adapters
 
-Aidbox comes with [HL7 v.2](https://docs.aidbox.app/integrations/hl7-v2-integration) and X12 integration modules. Not all the systems that interact with your modern healthcare application speak FHIR yet. Support of other interoperability standards takes much burden from developers.
+Aidbox comes with [HL7 v.2](https://docs.aidbox.app/integrations/hl7-v2-integration) and X12 integration modules. Not all the systems that interact with your modern healthcare application speak FHIR yet. Support of other interoperability standards takes a lot of burden from developers.
 
 ### Bulk API and analytics tools integrations
 

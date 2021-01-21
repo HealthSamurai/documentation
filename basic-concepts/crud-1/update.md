@@ -4,7 +4,7 @@
 PUT [base]/[type]/[id]
 ```
 
-Aidbox doesn't have atomic update yet. It also allows to omit `id` in resource body
+Aidbox doesn't have an atomic update yet. It also allows omitting `id` in the resource body.
 
 * **`200` OK** - resource successfully updated
 * **`201` Created** - resource successfully created
@@ -18,7 +18,7 @@ Aidbox doesn't have atomic update yet. It also allows to omit `id` in resource b
 PUT [base]/[type]?[search parameters]
 ```
 
-In contrast to FHIR, Aidbox conditional update allows to create a resource with specific `id`. `Conditional update` in case of one match ignores id coming in request body, that mean that resource `id` can't be changed by any `update` operation.
+In contrast to FHIR, Aidbox conditional update allows creating a resource with a specific `id`. In case of one match, `conditional update`  ignores the id coming in the request body. That means that resource `id` can't be changed by any `update` operation.
 
 * **No matches**: The server performs a `create` interaction \(Aidbox version of create\)
 * **One Match**: The server performs the update against the matching resource
@@ -26,11 +26,11 @@ In contrast to FHIR, Aidbox conditional update allows to create a resource with 
 
 ## **versioned update**
 
-While you do update there is a risk of  override latest changes done by another operation. To escape this situation you can use versioned update by sending with update `If-Match` header with `versionId` of resource you want to update. If server has same version of resources update will be successful, if versions do not match - you will get OperationOutcome with conflict code.
+While you update, there is a risk of overriding the latest changes done by another operation. To escape this situation, you can use a versioned update by sending with update `If-Match` header with `versionId` of resource you want to update. If the server has the same version of resources, the update will be successful. If versions do not match, you will get OperationOutcome with conflict code.
 
 #### Example
 
-Let say we created patient:
+Let say we created a patient:
 
 {% code title="create-patient-request" %}
 ```yaml
@@ -51,7 +51,7 @@ name:
 - {family: Wrong}
 ```
 
-Now to fix family for this patient without risk override someone else changes - we use versioned update request: 
+To fix the family for this patient without the risk of overriding someone else's changes, we can use a versioned update request:
 
 {% code title="versioned-update-request" %}
 ```yaml
@@ -62,7 +62,7 @@ name: [{family: ['Smith']}]
 ```
 {% endcode %}
 
-If someone already touched same patient, his version id was changed and we get OperationOutcome.
+If someone has already edited the same patient, his version id was changed, and we got OperationOutcome.
 
 {% code title="conflict-response" %}
 ```yaml
@@ -82,7 +82,7 @@ issue:
 PUT [base]/[type]?[search parameters]
 ```
 
-This is more complex way to update a resource but it gives more power. It gives the ability to update a resource without knowing `id` but requires knowledge of [Search](../search-1/). Different response codes will be returned \(based on the number of search results\):
+This is a more complex way to update a resource, but it gives more power. You can update a resource without knowing the `id` , but it requires the knowledge of [Search](../search-1/). Different response codes will be returned \(based on the number of search results\):
 
 * **No matches**: The server performs a `create` interaction
 * **One Match**: The server performs the update against the matching resource
@@ -122,7 +122,7 @@ meta:
 
 ### `201` Created
 
- Create a patient with the name Julie and specified id if no other patients with the same name exist:
+Create a patient with the name Julie and specified id if no other patients with the same name exist:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -154,7 +154,7 @@ meta:
 {% endtabs %}
 
 {% hint style="info" %}
-If a patient with name Julie already exists, `update` interaction will be performed and `id` will be ignored.
+If a patient with a name Julie already exists, `update` interaction will be performed and `id` will be ignored.
 {% endhint %}
 
 ## update
@@ -163,7 +163,7 @@ If a patient with name Julie already exists, `update` interaction will be perfor
 PUT [base]/[type]/[id]
 ```
 
-This is interaction which allows to modify existing resource \(create a new version of it\). After performing this interaction, the resource will be replaced with a new version of resource provided in the body of the request. `id` of a resource can't be changed \(at least cause of versioning\) and `id` in the body of the resource is ignored in `update` interaction \(it's done to make a `conditional update` possible without knowing logical id of the resource\). If a resource with `id` \(provided in the url\) doesn't exist, new resource will be created. Following codes can be returned by the server:
+This interaction allows modifying an existing resource \(creating a new version of it\). After performing this interaction, the resource will be replaced with a new version of the resource provided in the body of the request. `id` of a resource can't be changed \(at least cause of versioning\) and `id` in the body of the resource is ignored in `update` interaction \(in order to make a `conditional update` possible without knowing the logical id of the resource\). If a resource with `id` \(provided in the url\) doesn't exist, a new resource will be created. Following codes can be returned by the server:
 
 * **`200`** **OK** — resource successfully updated
 * **`201`** **Created** — resource successfully created
@@ -171,7 +171,7 @@ This is interaction which allows to modify existing resource \(create a new vers
 
 ### **`200`** OK
 
-Update a patient by given id:
+Update a patient by a given id:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -201,7 +201,7 @@ meta:
 
 ### `201` Created
 
-Create a patient with specified id:
+Create a patient with a specified id:
 
 {% tabs %}
 {% tab title="Request" %}

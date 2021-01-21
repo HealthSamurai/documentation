@@ -82,7 +82,7 @@ POST /auth/token
 
 Notice the `patient_id` field of `userinfo` . This is the id of the Patient resource associated with our user. It will be used further in Access Policies to decide if access should be granted or not. In general you need to specify `data.patient_id: some_patient_id` in your User resource to establish a relation with a Patient resource.‌
 
-The `access-token` field of `user-info` will be needed to perform requests on behalf of our User. See [here](../auth-betta/resource-owner-password.md#use-access-token) how to perform user request with a token.
+The `access-token` field of `user-info` will be needed to perform requests on behalf of our User. See [here](../auth/resource-owner-password.md#use-access-token) how to perform user request with a token.
 
 ![](../.gitbook/assets/image%20%2810%29.png)
 

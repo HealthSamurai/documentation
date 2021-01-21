@@ -6,13 +6,13 @@ description: Do multiple operations in one call
 
 ### Introduction
 
-Transaction interaction allows to perform few interaction using one http request. There are two types of transaction interaction \(type is specified by field `type`\): batch and transaction, the first one just executes requests one by one, the second one doing the same, but rollback all changes if any request failed. 
+Transaction interaction allows performing several interactions using one http request. There are two types of transaction interaction \(type is specified by field `type`\): batch and transaction. The first one just executes requests one by one, the second one does the same, but roll backs all changes if any request fails. 
 
 ```
 POST [base]
 ```
 
-Body of such request contains one resource of type Bundle, which contains field entry with an array of interactions, for example \(taken from [Getting Started with SPA ](../tutorials/getting-started-with-box.md)tutorial\):
+The body of such request contains one resource of type Bundle, which contains field entry with an array of interactions, for example \(taken from [Getting Started with SPA ](../tutorials/getting-started-with-box.md)tutorial\):
 
 ```yaml
 POST /
@@ -45,7 +45,7 @@ entry:
     url: "/AccessPolicy"
 ```
 
-Each element of entry array contains resource field \(body of request\) and request field \(request line in terms of HTTP request\).
+Each element of the entry array contains a resource field \(body of the request\) and a request field \(request line in terms of HTTP request\).
 
 ```yaml
 resource: # not needed for DELETE and GET
@@ -60,11 +60,11 @@ request:
 
 ### Processing rules and Conditional refs
 
-Transaction interaction processed in the order provided in a bundle, each interaction executed one by one. It differs from FHIR transaction [processing rules](https://www.hl7.org/fhir/http.html#2.21.0.17.2).
+Transaction interaction is processed in the order provided in a bundle, each interaction is executed one by one. It differs from the FHIR transaction [processing rules](https://www.hl7.org/fhir/http.html#2.21.0.17.2).
 
-For `type: batch` references to resources inside bundle won't be resolved.
+For `type: batch` references to resources inside a bundle won't be resolved.
 
-For `type: transaction` before processing interactions, all references in resource will be attempted to resolve. In this example ProcedureRequest will refer to newly created patient:
+For `type: transaction` before processing interactions, all references in a resource will attempt to resolve. In this example ProcedureRequest will refer to ф newly created patient:
 
 ```yaml
 POST /
@@ -89,10 +89,10 @@ entry:
 
 ```
 
-You can provide a fullUrl with value like `"urn:<uuid-here>"` and reference to the resource created by such interaction using ref: `{uri: "urn:<uuid-here>"}`. Those references are temporary and will be translated to valid Aidbox references, when interaction entry will be processed by a server.
+You can provide a full Url with value like `"urn:<uuid-here>"` and reference to the resource created by such interaction using ref: `{uri: "urn:<uuid-here>"}`. Those references are temporary and will be translated to valid Aidbox references, when interaction entry is processed by a server.
 
 {% hint style="danger" %}
-You SHALL NOT refer resource, which will be created later using conditional operations!
+You SHALL NOT refer resource, which is created later using conditional operations!
 {% endhint %}
 
 ### 

@@ -4,7 +4,7 @@
 GET [base]/[type]/[id]
 ```
 
-One of the most basic interactions used to obtain a resource by a given `id`. For more advanced options for getting resources check out [Search](../search-1/).
+One of the most basic interactions is used to obtain a resource by a given `id`. For more advanced options for getting resources, check out [Search](../search-1/).
 
 * **`200`** **OK** — resource successfully found and returned
 * **`404`** **Not Found —** resource with a given `id` doesn't exist on the server
@@ -66,7 +66,7 @@ text: Resource Patient/some-not-existing-id not found
 GET [base]/[type]/[id]/_history/[vid]
 ```
 
-This is another read interaction but it returns a specific version resource. Similar to read but additionally requires to specify version id.
+This one is another read interaction, but it returns a specific version resource. Similar to read, but it additionally requires to specify version id.
 
 ### `200` OK
 

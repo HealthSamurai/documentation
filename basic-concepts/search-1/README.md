@@ -4,18 +4,18 @@ description: Search API for FHIR resources
 
 # Search
 
-Aidbox provides a Search API for all stored resources. Aidbox Search API is superset of [FHIR Search API](https://www.hl7.org/fhir/search.html).  
+Aidbox provides a Search API for all stored resources. Aidbox Search API is a superset of the [FHIR Search API](https://www.hl7.org/fhir/search.html).  
 
 {% hint style="info" %}
-There are two versions of API, which differ by [resources format](../aidbox-and-fhir-formats.md):
+There are two versions of API, which differ by the [resources format](../aidbox-and-fhir-formats.md):
 
 * search by **`/[resourceType]`** returns results in [Aidbox Format](../aidbox-and-fhir-formats.md)
 * search by **`/fhir/[resourceType]`** returns data in FHIR Format
 
-All data stored and searched in Aidbox Format, and converted on fly to FHIR on FHIR endpoints!
+All data is stored and searched in Aidbox Format and converted on the fly to FHIR on FHIR endpoints!
 {% endhint %}
 
-Base search request is composed of list of pairs **param** = **value**:
+Base search request is composed of the list of pairs **param** = **value**:
 
 ```javascript
 GET [base]/[resourceType]?param=value&param=value&...
@@ -55,7 +55,7 @@ GET /Patient?name=Max&_elements=id, birthDAte
 
 ## Search Parameters
 
-Search defined in terms of "[search parameters](searchparameter.md)". SearchParameter is a meta-resource, which describes which part of resource and how you can make searchable.
+Search defined in terms of "[search parameters](searchparameter.md)". SearchParameter is a meta-resource, which describes which part of the resource it is and how you can make it searchable.
 
 Search parameter can be one of the following types: 
 
@@ -110,7 +110,7 @@ GET /Patient?name:exact=Alex
 
 ### Token
 
-* `:not` — reverse the code matching: return all resources that do not have a matching item.
+* `:not` — reverses the code matching: returns all resources that do not have a matching item.
 * `:i` — case insensitive, exact match of text associated with token or token itself.
 * `:in` — the search parameter is a URI \(relative or absolute\) that identifies a value set, and the search parameter tests whether the coding is in the specified value set.
 
@@ -164,7 +164,7 @@ GET /Encounter?subject=Patient/patientid
 
 ### Prefixes
 
-For Numbers, Dates and Quantities \(will be supported\), we can use the following conditionals in search:
+For Numbers, Dates and Quantities \(will be supported\), we can use the following conditionals in a search:
 
 * `eq` - equal \(default\)
 * `ne` - non-equal

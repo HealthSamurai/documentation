@@ -8,7 +8,7 @@ Click the 'TRY IN CLOUD' button.
 
 ![](../.gitbook/assets/scr-2019-02-26_18-15-46.png)
 
-Choose how you would like to authoraize [Aidbox](https://www.health-samurai.io/aidbox). It can be done via your Github or Google account.
+Choose how you would like to authorize [Aidbox](https://www.health-samurai.io/aidbox). It can be done via your Github or Google account.
 
 ![](../.gitbook/assets/scr-2019-02-26_18-17-38.png)
 

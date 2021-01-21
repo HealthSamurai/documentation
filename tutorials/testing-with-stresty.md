@@ -4,7 +4,7 @@
 
 Create a box here [https://aidbox.app/static/aidbox.html](https://aidbox.app/static/aidbox.html). See the [tutorial](../installation/use-aidbox.cloud.md) on how to create a new box.
 
-Access the [REST Console](rest-console.md) of the created box. Execute the following requests. Their meaning you can read in the [tutorial](../auth-betta/basic-auth.md#register-client).
+Access the [REST Console](rest-console.md) of the created box. Execute the following requests. Their meaning you can read in the [tutorial](../auth/basic-auth.md#register-client).
 
 {% code title="Create a client:" %}
 ```yaml

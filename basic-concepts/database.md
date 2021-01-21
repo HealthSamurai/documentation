@@ -1,10 +1,10 @@
 ---
-description: Schema of Adbox database
+description: Aidbox database schema
 ---
 
 # Database
 
-All resource types in aidbox are stored in different tables, named with lowercased resource type name. All this tables have similar schema:
+All resource types in Aidbox are stored in different tables, named with a lowercased resource type name. All these tables have a similar schema:
 
 ```text
 CREATE TABLE "patient" (
@@ -17,16 +17,16 @@ CREATE TABLE "patient" (
 );
 ```
 
-You use DB Console to explore database:
+You use the DB Console to explore the database:
 
 ```sql
 select * from "entity" limit 10
 ```
 
-As you see resources are stored as JSONB documents in **resource** column.
+As you can see, resources are stored as JSONB documents in the **resource** column.
 
 {% hint style="info" %}
-Resources are stored in [Aidbox JSON format](aidbox-and-fhir-formats.md), which is more friendly for storage and converted on-fly into FHIR in REST API!
+Resources are stored in [Aidbox JSON format](aidbox-and-fhir-formats.md), which is more friendly for storage, and converted into FHIR in REST API on the fly!
 {% endhint %}
 
  You can access attributes of resources using [PostgreSQL JSON functions](https://www.postgresql.org/docs/11/functions-json.html):
@@ -46,7 +46,7 @@ You can define and expose over REST API sophisticated queries in SQL on FHIR dat
 
 ### Tutorials
 
-Checkout our video tutorial about SQL on FHIR in PostgreSQL:
+Check out our video tutorial about SQL on FHIR in PostgreSQL:
 
 {% embed url="https://www.youtube.com/watch?v=zgU5c3RwjD4" %}
 

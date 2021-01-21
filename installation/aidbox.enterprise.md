@@ -8,7 +8,7 @@ If you are a happy owner of Aidbox.Enterprise and want to deploy it to kubernete
 
 ### Create credentials for db
 
-Let's create a Secret resource with credentials for database. First step is to create an `env-file` like this:
+Let's create a Secret resource with credentials for the database. The first step is to create an `env-file` like this:
 
 {% code title="aidboxdb" %}
 ```bash
@@ -17,7 +17,7 @@ POSTGRES_PASSWORD=yoursecretpasswrod
 ```
 {% endcode %}
 
-Now, let's generate Secret resource:
+Now, let's generate a Secret resource:
 
 ```bash
 kubectl create secret generic --dry-run -o yaml aidboxdb \
@@ -39,7 +39,7 @@ metadata:
 ```
 {% endcode %}
 
-Create resource in cluster:
+Create a resource in cluster:
 
 ```bash
 kubectl apply -f aidboxdb-secre.yaml
@@ -48,7 +48,7 @@ kubectl get secrets
 
 ### Deploy aidbox/db
 
-Now we are ready to deploy database \(custom PostgreSQL build\):
+Now we are ready to deploy the database \(custom PostgreSQL build\):
 
 {% code title="aidboxdb.yaml" %}
 ```yaml
@@ -137,7 +137,7 @@ psql:> \q
 
 ### Deploy Aidbox.Enterprise
 
-You have to have access to Aidbox.Enterprise docker image - **AIDBOX\_IMAGE** — something like `us.gcr.io/aidbox2-205511/aidbox-enterprise:0.4.6`
+You need to have access to Aidbox.Enterprise docker image - **AIDBOX\_IMAGE** — something like `us.gcr.io/aidbox2-205511/aidbox-enterprise:0.4.6`
 
 {% code title="aidbox.yaml" %}
 ```yaml
