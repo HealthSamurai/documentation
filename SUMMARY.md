@@ -80,6 +80,7 @@
   * [Implicit Grant](auth/implicit.md)
   * [Validating Foreign Access Tokens](auth/access-token-introspection.md)
   * [External Oauth 2.0 Providers](auth/external-oauth-2.0-providers.md)
+  * [Two Factor Authentication](auth/two-factor-authentication.md)
   * [SMART on FHIR](auth/smart-app.md)
   * [Configuration options](auth/configuration-options.md)
   * [Discovery API](auth/well-known-endpoint.md)
