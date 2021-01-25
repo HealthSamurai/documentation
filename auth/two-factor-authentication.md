@@ -67,7 +67,7 @@ password: password
 | twoFactor.webhook.endpoint | Endpoint to send the TOTP token to during login. Used to support scenarios when it's not possible to use the mobile authenticator. For instance, a service integrated with twilio may listen on this address.  |
 | twoFactor.webhook.timeout | Timeout for webhook in milliseconds |
 | twoFactor.webhook.headers | Key-value headers for webhook |
-| theme.styleUrl | URL to external stylesheet to customise how authentication form looks like |
+| theme.styleUrl | URL to external stylesheet to customise how the authentication form looks like |
 | theme.title | Title to use on the authentication form |
 | theme.brand | Application name to display on the authentication page |
 
