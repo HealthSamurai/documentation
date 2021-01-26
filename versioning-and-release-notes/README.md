@@ -1,0 +1,8 @@
+# Versioning & Release Notes
+
+Aidbox is released as two docker containers - Aidbox backend and PostgreSQL custom build. 
+
+Aidbox backend is distributed using two [channels](https://hub.docker.com/u/healthsamurai) - stable and edge. Newly released features become available on the edge tag, the edge becomes stable once in a while. Note that edge may have issues in newly added features and regressions. You can see the planned release date and its status in [Aidbox/Issues ](https://github.com/Aidbox/Issues/projects)github repository. Once release has made it to the stable, a special release tag is created that shows the release timestamp. This tag can only be changed before the next stable release if any hotfixes are needed. After the next stable release, the previous tag becomes immutable. We actively encourage developers to use either stable or edge tags in their applications. Release tag can be used to set specific Aidbox version if application development is frozen and development team does not want to receive updates any longer. Keep in mind that Aidbox Development Team maintains backwards compatibility in its releases, however, we can not guarantee a trivial update from the old release tag.
+
+[Aidbox DB](https://hub.docker.com/r/aidbox/db) container is a custom build of open source RDBMS PostgreSQL. It contains a number of C-extensions that are needed to increase search performance. It follows PostgreSQL versioning and is built for each major database release. Different types of aidbox/db containers are available for each version: for master DB installation as well as replica and hot standby replica installations.
+
