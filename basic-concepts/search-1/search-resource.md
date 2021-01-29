@@ -20,15 +20,15 @@ format: "%?%" # parameter format for ilike
 order-by: "{{table}}.resource#>>'{name,0,family}'" # sql for ordering
 ```
 
-#### SQL Templating
+### SQL Templating
 
 In "where" and "order-by" expressions you can use `{{table}}` for table name and `{{param}}` for  parameter.
 
-#### format
+### format
 
 You can provide format string for value where `?` will be replaced with value of parameter. This feature may be useful for `ilike` expressions 
 
-**token search**
+### **token search**
 
 You can define search parameters for different token syntax forms and `:text` modifier \(other modifiers may be implemented in future\).   
 To refer to system and code in SQL query use `{{param.system}}` and `{{param.code}}` accordingly.  
@@ -51,14 +51,14 @@ token:
   text-format: <format string {{param.text}}>
 ```
 
-#### multi: array
+### multi: array
 
 If you set multi = 'array' parameters will be coerced as PostgreSQL array  
 Currently it `does not` support `param-parser: token`
 
-#### Examples \(executable in REST console\)
+### Examples \(executable in REST console\)
 
-Search patient name with SQL ilike:
+#### Search patient name with SQL ilike:
 
 ```yaml
 # create patient resource
@@ -94,7 +94,7 @@ GET /Patient?name=john
 GET /Patient?_sort=name
 ```
 
-Search patient identifiers with array search parameter:
+#### Search patient identifiers with array search parameter:
 
 ```yaml
 # create patient resources (one query at a time)
@@ -135,7 +135,7 @@ multi: array
 GET /Patient?identifier=id1,id2,id3
 ```
 
-token search:
+#### token search:
 
 ```yaml
 PUT /
