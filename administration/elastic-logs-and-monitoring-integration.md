@@ -8,7 +8,7 @@ In order to enable Aidbox logging to ElasticSearch you need to define `AIDBOX_ES
 AIDBOX_ES_URL = <url>
 # Required. Elasticsearch url
 
-AIDBOX_ES_AUTH = <user>: <password>
+AIDBOX_ES_AUTH = <user>:<password>
 # Optional. Basic auth credentials if there is protection
 
 AIDBOX_ES_BATCH_SIZE = <uint>
