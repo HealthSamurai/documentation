@@ -6,27 +6,39 @@ In order to enable Aidbox logging to ElasticSearch you need to define `AIDBOX_ES
 
 ```yaml
 AIDBOX_ES_URL = <url>
-# Required. Elasticsearch url
+# Required
+# Elasticsearch url
 
 AIDBOX_ES_AUTH = <user>:<password>
-# Optional. Basic auth credentials if there is protection
+# Optional
+# Basic auth credentials if there is protection
 
 AIDBOX_ES_BATCH_SIZE = <uint>
-# Optional. Size of elastic search post batch, default value 
-# is 200
+# Optional. Default value is 200
+# Size of elastic search post batch
 
 AIDBOX_ES_BATCH_TIMEOUT = <millis>
-# Optional. Timeout when to post batch if there not enough 
-# messages to post a full batch. Default time is 1 hour
+# Optional. Default value is 3600000 (1 hour)
+# Timeout when to post batch if there not enough 
+# messages to post a full batch.
 
 AIDBOX_LOGS = <fallback logs file path>
-# Optional. Path to file where to write logs if error while 
+# Optional.
+# Path to file where to write logs if error while 
 # posting to elastic has occurred
 # If not provided, aidbox will just print logs to stdout 
 # in case of an errors.
+
+AIDBOX_ES_INDEX_PAT = <format string>
+# Optional. Default value is 'aidbox-logs'-yyyy-MM-dd
+# Сustom index name format string.
+# By changing date precision you can control how often 
+# new indixes should be created. Example:
+# 'aidbox-logs'-yyyy-MM will create new index monthly
+# 'aidbox-logs'-yyyy-MM-W will create new index weekly
 ```
 
-#### 
+`AIDBOX_ES_INDEX_PAT`  formatter syntax documentation is [here](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html)
 
 ### Elastic APM Monitoring
 
