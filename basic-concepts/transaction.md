@@ -64,7 +64,7 @@ Transaction interaction is processed in the order provided in a bundle, each int
 
 For `type: batch` references to resources inside a bundle won't be resolved.
 
-For `type: transaction` before processing interactions, all references in a resource will attempt to resolve. In this example ProcedureRequest will refer to ф newly created patient:
+For `type: transaction` before processing interactions, all references in a resource will attempt to resolve. In this example ProcedureRequest will refer to a newly created patient:
 
 ```yaml
 POST /
@@ -95,5 +95,39 @@ You can provide a full Url with value like `"urn:<uuid-here>"` and reference to 
 You SHALL NOT refer resource, which is created later using conditional operations!
 {% endhint %}
 
-### 
+### Multiple resources with the same id
+
+If you have multiple entries with the same resource id, aidbox will execute them one by one and thus you able to create resource with a history in within a single transaction:
+
+```yaml
+POST /
+
+resourceType: Bundle
+type: transaction
+entry:
+- request: {method: PUT, url: 'Patient/pt-1'}
+  resource: {birthDate: '2021-01-01'}
+- request: {method: PUT, url: 'Patient/pt-1'}
+  resource: {birthDate: '2021-01-02'}
+- request: {method: PUT, url: 'Patient/pt-1'}
+  resource: {birthDate: '2021-01-03'}
+```
+
+```yaml
+GET /Patient/pt-1
+
+{birthDate: '2021-01-03', id: pt-1, resourceType: Patient}
+```
+
+```yaml
+GET /Patient/pt-1/_history
+
+resourceType: Bundle
+type: history
+total: 3
+entry:
+- resource: {birthDate: '2021-01-03', id: pt-1, resourceType: Patient}
+- resource: {birthDate: '2021-01-02', id: pt-1, resourceType: Patient}
+- resource: {birthDate: '2021-01-01', id: pt-1, resourceType: Patient}
+```
 
