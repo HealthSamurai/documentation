@@ -97,7 +97,7 @@ You SHALL NOT refer resource, which is created later using conditional operation
 
 ### Multiple resources with the same id
 
-If you have multiple entries with the same resource id, aidbox will execute them one by one and thus you able to create resource with a history in within a single transaction:
+If you have multiple entries with the same resource id, aidbox will execute them one by one and thus you are able to create a resource with a history in within a single transaction:
 
 ```yaml
 POST /
