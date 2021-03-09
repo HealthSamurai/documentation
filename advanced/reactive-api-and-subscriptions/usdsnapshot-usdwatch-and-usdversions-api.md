@@ -81,17 +81,39 @@ version: 3
 changes:
 - event: created
   resource:
+    id: pt-2
+    name:
+    - family: Wood
+      given: [Amanda]
+      
+---
+GET /Patient/$changes?version=1,2
+
+# status 200
+version: 2
+changes:
+- event: created
+  resource:
+    id: pt-1
+    name:
+    - family: Smith
+      given: [John]
+---
+GET /Patient/pt-1/$changes
+
+# status 200
+version: 2
+---
+GET /Patient/pt-1/$changes?version=1
+
+# status 200
+version: 2
+changes:
+- event: created
+  resource:
     id: pt-1
     name:
     - family: Smith
       given: [John]
 ```
-
-
-
-
-
-
-
-
 
