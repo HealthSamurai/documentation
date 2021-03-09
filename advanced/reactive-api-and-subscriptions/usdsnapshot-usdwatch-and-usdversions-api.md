@@ -4,7 +4,9 @@ description: Simple API to react on resource changes
 
 # Changes API
 
-By `GET /<resource-type>/$changes` without `version` parameter you will get latest version, which can be used to poll for changes by `GET /<resource-type>/$changes?version=<version>`
+`GET /<resource-type>/$changes` without `version` parameter you will get latest version, which can be used to poll for changes with `GET /<resource-type>/$changes?version=<version>`  
+With `GET /<resource-type>/<id>/$changes` you can get changes for a specific resource  
+`fhir=true` parameter will convert resources to FHIR format. Note, since this is not /fhir/ endpoint, rest of the body isn't FHIR compliant
 
 Polling request is cheap! If you want to watch rare changes \(minutes-hours\), this API is very resource efficient  \(no subscriptions, no queues\) and provide you a lots of control. If nothing has been changed - you will get  response with status `304`,  otherwise list of changes and new **version** to poll next time.
 
