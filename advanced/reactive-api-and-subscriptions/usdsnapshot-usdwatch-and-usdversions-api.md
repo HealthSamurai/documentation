@@ -4,13 +4,27 @@ description: Simple API to react on resource changes
 
 # Changes API
 
-`GET /<resource-type>/$changes` without `version` parameter you will get latest version, which can be used to poll for changes with `GET /<resource-type>/$changes?version=<version>`  
-With `GET /<resource-type>/<id>/$changes` you can get changes for a specific resource  
-`fhir=true` parameter will convert resources to FHIR format. Note, since this is not /fhir/ endpoint, rest of the body isn't FHIR compliant
+### Endpoints
+
+`GET /<resourceType>/$changes` returns the latest version for the `resourceType`  
+`GET /<resourceType>/<id>/$changes` returns latest version of a specific resource  
+Returned version value can be used with the version query-string parameter
+
+### Query-string parameters
+
+`version=<version>` returns changes since the specified version  
+`version=<lower-version>,<upper-version>` returns changes after the `lower-version` \(exclusive\) up to the`upper-version` \(inclusive\)  
+  
+`fhir=<boolean>` if set to `true` converts `changes.*.resource` to the FHIR format  
+_\(note, since Changes API is not `/fhir/` endpoint, the rest of the body isn't FHIR compliant\)_
+
+With parameters which start with dot you can filter resources by equality, e.g. `.name.0.family=<string>`
+
+### Notes
 
 Polling request is cheap! If you want to watch rare changes \(minutes-hours\), this API is very resource efficient  \(no subscriptions, no queues\) and provide you a lots of control. If nothing has been changed - you will get  response with status `304`,  otherwise list of changes and new **version** to poll next time.
 
-You can filter resources by equality. It's provided by params started with dot, e.g. `.name.0.family`.
+### Examples
 
 ```yaml
 ---
