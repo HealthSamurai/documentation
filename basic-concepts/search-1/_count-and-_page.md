@@ -17,10 +17,10 @@ entry:
     ...
 total: 206
 link:
-- {relation: first, url: '/Patient?_count=10&page=1'}
-- {relation: self, url: '/Patient?_count=10&page=3'}
-- {relation: next, url: '/Patient?_count=10&page=4'}
-- {relation: previous, url: '/Patient?_count=10&page=2'}
-- {relation: last, url: '/Patient?_count=10&page=21'}
+- {relation: first, url: '/Patient?_count=10&_page=1'}
+- {relation: self, url: '/Patient?_count=10&_page=3'}
+- {relation: next, url: '/Patient?_count=10&_page=4'}
+- {relation: previous, url: '/Patient?_count=10&_page=2'}
+- {relation: last, url: '/Patient?_count=10&_page=21'}
 ```
 
