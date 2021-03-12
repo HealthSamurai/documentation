@@ -22,6 +22,10 @@ _\(note, since Changes API is not `/fhir/` endpoint, the rest of the body isn't 
 
 With parameters which start with dot you can filter resources by equality, e.g. `.name.0.family=<string>`
 
+`_count` & `_page` work as described [here](https://docs.aidbox.app/basic-concepts/search-1/_count-and-_page)
+
+`_totalMethod` & `total` work as described [here](https://docs.aidbox.app/basic-concepts/search-1/_total-or-_countmethod)
+
 `_count` & `_page` work as described [here](https://docs.aidbox.app/basic-concepts/search-1/_count-and-_page)  
 `_total` & `_totalMethod` work as described [here](https://docs.aidbox.app/basic-concepts/search-1/_total-or-_countmethod)
 
