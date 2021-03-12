@@ -32,8 +32,8 @@ AIDBOX_LOGS = <fallback logs file path>
 AIDBOX_ES_INDEX_PAT = <format string>
 # Optional. Default value is 'aidbox-logs'-yyyy-MM-dd
 # Сustom index name format string.
-# By changing date precision you can control how often 
-# new indixes should be created. Example:
+# By changing the date precision you can control
+# how often new indixes should be created. Example:
 # 'aidbox-logs'-yyyy-MM will create new index monthly
 # 'aidbox-logs'-yyyy-MM-W will create new index weekly
 ```
