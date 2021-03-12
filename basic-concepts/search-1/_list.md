@@ -1,5 +1,5 @@
 ---
-description: Search resources included into specific List
+description: Search resources included into the specific List
 ---
 
 # \_list
