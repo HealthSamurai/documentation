@@ -17,7 +17,7 @@ In this article, you will learn about the FHIR standard essentials, including:
 
 #### Guide Assumptions
 
-In this guide, we will be using Aidbox.Cloud for simplicity of Box creation, however any other Aidbox product will also work.
+In this guide, we will be using Aidbox.Cloud for simplicity of the Box creation, however any other Aidbox product will also work.
 
 This guide assumes that you will set proper values instead of placeholders like this: `<YOUR-BOX>`
 
@@ -49,10 +49,10 @@ REST console is designed to work with resources on your `Box` by sending HTTP re
 
 ### Create a Patient
 
-Let's add a couple of new patients. For this, we type in our console `POST /Patient` and in the body of the request wherein we will send the data of our new patient \(Aidbox supports JSON and few other formats but we will use YAML for [compactness and readability]()\):
+Let's add a couple of new patients. For this, we type in our console `POST /Patient` and in the body of the request wherein we will send the data of our new patient \(Aidbox supports JSON and a few other formats but we will use YAML for [compactness and readability]()\):
 
 {% hint style="danger" %}
-Use the copy button in the top right corner of a code snippet to avoid copying of unnecessary white space characters.
+Use the copy button in the top right corner of a code snippet to avoid copying unnecessary white space characters.
 {% endhint %}
 
 {% tabs %}
@@ -110,7 +110,7 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-This is only an example, and you can change values as you want. For more information, check the full [Patient resource](https://www.hl7.org/fhir/patient.html) description and [official example](https://www.hl7.org/fhir/patient-example.json.html). The `id` field in the request body is not required. and if you do not send it to the server, it will be generated. Description of the difference in the `create` operation behavior between FHIR and Aidbox endpoints can be found [here]().
+This is only an example, and you can change values as you want. For more information, check the full [Patient resource](https://www.hl7.org/fhir/patient.html) description and [official example](https://www.hl7.org/fhir/patient-example.json.html). The `id` field in the request body is not required, and if you do not send it to the server, it will be generated. Description of the difference in the `create` operation behavior between FHIR and Aidbox endpoints can be found [here]().
 
 ![](../.gitbook/assets/2018-10-29-121415_1311x754_scrot.png)
 

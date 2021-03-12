@@ -2,13 +2,13 @@
 
 ## Before
 
-For this tutorial you will need git, node js and any version of [Aidbox](https://www.health-samurai.io/aidbox) as a backend. We recommend to use Aidbox.Dev as the most easiest way. Visit the [Aidbox.Dev installation guide](../installation/setup-aidbox.dev.md) for detailed information and instructions how to install Aidbox backend for development.
+For this tutorial you will need git, node js and any version of [Aidbox](https://www.health-samurai.io/aidbox) as a backend. We recommend to use Aidbox.Dev as the easiest way. Visit the [Aidbox.Dev installation guide](../installation/setup-aidbox.dev.md) for detailed information and instructions how to install Aidbox backend for development.
 
 ## Introduction
 
 This repository on GitHub [https://github.com/HealthSamurai/Aidbox-angular-sample](https://github.com/HealthSamurai/Aidbox-angular-sample).
 
-In this guide we will locally launch FHIR application based on [Angular framework](https://angular.io) and Aidbox.Dev as a backend for this SPA. This simple application will implement basic CRUD operations on patient list.
+In this guide, we will locally launch the FHIR application based on [Angular framework](https://angular.io) and Aidbox.Dev as a backend for this SPA. This simple application will implement basic CRUD operations on the patient list.
 
 Aidbox products support [OAuth2.0](https://github.com/Aidbox/documentation/tree/9abc14b1b7fe0effba27642c5386f6d561786814/auth-betta/oauth-2.0) authorization framework and [Access Control](../security/access-control.md) mechanism to provide ability for developers to create applications which can interact securely with Boxes \(Aidbox FHIR server instances\). For a single-page application, it's a common practice to use OAuth2.0 [Implicit Grant flow](../auth/implicit.md).
 
@@ -21,9 +21,9 @@ Aidbox products support [OAuth2.0](https://github.com/Aidbox/documentation/tree/
  $ cd aidbox-angular-sample
 ```
 
-### Pre-configure your box with client and patients
+### Pre-configure your box with the client and patients
 
-To enable implicit OAuth 2.0 flow we have to create Client in your box - go to REST Console and create:
+To enable implicit OAuth 2.0 flow, we have to create Client in your box. Go to REST Console and create:
 
 ```yaml
 POST /Client
@@ -85,7 +85,7 @@ Install all packages and angular cli:
  $ npm install -g @angular/cli
 ```
 
-And launch application:
+And launch the application:
 
 ```bash
 $ ng serve
@@ -97,5 +97,5 @@ After server starts, open your browser and go to [`http://localhost:4200`](http:
 
 ![](../.gitbook/assets/screen-shot-2019-03-25-at-14.03.49.png)
 
-It is a list of patients and information about them. Patient is a [FHIR resource](https://www.hl7.org/fhir/resourcelist.html). You can create, view, edit, and delete patient data — this is a standard set of CRUD operations. Also in this demo, we have the ability to search by last/first name and get a paginated output of patient list.
+It is a list of patients and information about them. Patient is a [FHIR resource](https://www.hl7.org/fhir/resourcelist.html). You can create, view, edit, and delete patient data — this is a standard set of CRUD operations. Also in this demo, we have the ability to search by last/first name and get a paginated output of the patient list.
 

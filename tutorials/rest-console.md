@@ -12,7 +12,7 @@ In cases when you need to send a request body \(e.g., `POST` requests\), the req
 
 ### Create Patient
 
-Last time \(in [Create and Configure Box]() tutorial\) we tried to get a list of our patients \(by requesting them through the `GET /Patient`\), and the response was empty. Let's add a couple of new patients. To do that, we type  `POST /Patient` in our console and the body of the request, wherein we will send the data of our new patient:
+Last time \(in [Create and Configure Box]() tutorial\) we tried to get a list of our patients \(by requesting them through the `GET /Patient`\), and the response was empty. Let's add a couple of new patients. To do that, we type  `POST /Patient` in our console and the body of the request, wherein we send the data of our new patient:
 
 {% tabs %}
 {% tab title="Request YAML" %}
@@ -342,7 +342,7 @@ In this case, we're updating the data entirely: data that did not get into the r
 
 We can receive history of our patient changes, we just need to send a request like this —  `GET /Patient/<id>/_history`.
 
-Let's do try this for our patient.
+Let's try this for our patient.
 
 {% tabs %}
 {% tab title="Request" %}

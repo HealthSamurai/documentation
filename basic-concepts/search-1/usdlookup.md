@@ -31,7 +31,7 @@ where expr ilike ' % joh' AND  expr ilike '% 1979'
 limit 50
 ```
 
-If this query returns 50 records, aidbox will respond with this records. In case query returns less than 
+If this query returns  50 records, aidbox will respond with this records.
 
 ```yaml
 GET /Patient/$lookup?\

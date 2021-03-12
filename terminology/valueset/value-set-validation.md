@@ -18,7 +18,7 @@ GET/POST URL: [base]/ValueSet/$validate-code
 GET/POST URL: [base]/ValueSet/[id]/$validate-code
 ```
 
-Example for validate that `female` code allowed by a default AdministrativeGender ValueSet. 
+Example: for validation that `female` code allowed by a default AdministrativeGender ValueSet. 
 
 ```text
 GET [base]/ValueSet/administrative-gender/$validate-code?code=female
@@ -43,7 +43,7 @@ GET [base]/ValueSet/administrative-gender/$validate-code?code=female
 
 ### url code system version display
 
-One of concept property
+One of the concept property
 
 {% tabs %}
 {% tab title="Request" %}
@@ -96,7 +96,7 @@ POST [base]/ValueSet/$validate-code
 
 ### valueSet
 
-The value set is provided directly as part of the request.
+The value set is provided directly as a part of the request.
 
 {% tabs %}
 {% tab title="Request" %}

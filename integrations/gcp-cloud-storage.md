@@ -16,7 +16,7 @@ private-key: "..."
 
 #### Get URL for file upload
 
-In order to get URL for file upload you should provide GcpServiceAccount id, bucket name to upload to and a filename. To upload data to the bucket use PUT request with signed URL and provide file content in request body.
+In order to get URL for file upload you should provide GcpServiceAccount id, bucket name to upload to and a filename. To upload data to the bucket, use PUT request with signed URL and provide file content in the request body.
 
 ```text
 POST /gcp/storage/my-account/my-bucket
@@ -40,5 +40,5 @@ GET /gcp/storage/my-account/my-bucket/sample.txt
 
 #### Configuration options
 
-You can provide "expiration" query param for both POST & GET queries. It corresponds to X-Goog-Expires query param which sets URL expiration time in seconds.
+You can provide "expiration" query param for both POST & GET queries. It corresponds to a X-Goog-Expires query param which sets URL expiration time in seconds.
 

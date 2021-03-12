@@ -6,7 +6,7 @@ description: >-
 
 # Sync Data From Aidbox
 
-It's common use case to watch changes from one service to another. For example you want to add new patients or users to CRM or send notifications for upcoming data like lab results etc.
+It's a common use case to watch changes from one service to another. For example, you want to add new patients or users to CRM or send notifications for upcoming data like lab results etc.
 
 
 

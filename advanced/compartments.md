@@ -472,7 +472,7 @@ Although FHIR specification states that compartment definitions can only be defi
 
 ## Compartment Search
 
-To search a [compartment](http://hl7.org/fhir/compartmentdefinition.html) for either all possible resources or for a particular resource type respectively:
+To search a [compartment](http://hl7.org/fhir/compartmentdefinition.html) for either all possible resources or for a particular resource, type respectively:
 
 ```text
 GET [base]/[Compartment]/[id]/{*?[parameters]{&_format=[mime-type]}}
@@ -515,7 +515,7 @@ GET [base]/Condition?patient=333
 
 If the patient doesn't exist or the user has no access to the patient, both these searches return an empty bundle with no matches. 
 
-However, there is a key difference in functionality between compartment based searches and direct searches with parameters. Consider this search:
+However, there is a key difference in functionality between compartment-based searches and direct searches with parameters. Consider this search:
 
 ```text
 GET [base]/Patient/[id]/Communication

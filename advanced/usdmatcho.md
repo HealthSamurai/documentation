@@ -13,9 +13,9 @@ Matcho DSL definition:
 * If **pattern** \(match\) is object, search for inclusion of this object into subject. For example: `{x: 1}` matches `{x: 1, y: 2 ....}`. This algorithm is recursive — `{a: {b: 5}}` matches `{a: {b: 5, ...}...}`
 * Objects with one **$enum, $one-of** or **$contains** keys are special cases:
   * **$enum** —  test subject is equal to one of items in the enumeration. `{request-method: {$enum: ['get','post']}}` matches `{request-method: 'post'}`
-  * **$contains** — _\*\*_if a subject is a collection then search at least one match. `{type: {$contains: {system: 'loinc'}}` matches `{type: [{system: 'snomed'}, {system: 'loinc'}]}`
+  * **$contains** — _\*\*_if a subject is a collection, then search at least one match. `{type: {$contains: {system: 'loinc'}}` matches `{type: [{system: 'snomed'}, {system: 'loinc'}]}`
   * **$one-of —** try to match one of patterns. `{a: {$one-of: [{b: present?}, {c: present?}]} matches {a: {c: 5}}`
-* For **array,** match first item in the pattern with first item in the subject. `[1,2]` matches `[1,2,3...]`
+* For **array,** match the first item in the pattern with the first item in the subject. `[1,2]` matches `[1,2,3...]`
 * Primitive values \(strings, numbers and booleans\) are compared by value
 * If a string starts with `'#'`  — it will be transformed into regex and matched as regex. `{a: '#\\d+'}` matches `{a: '2345'}`
 * If a string starts with `'.'` — it's interpreted as a pointer to another path in the subject to compare. For example: `{params: {user_id: '.user.id'}}` matches `{user: {id: 1}, params: {user_id: 1}},` i.e. `user.id == param.user_id`

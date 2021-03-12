@@ -1,6 +1,6 @@
 # Role-Based Access Policies
 
-User can interact with system in some context. For example as a Patient. You need resource to store this context information \(i.e. patient\_id or practitioner\_id for example\). The simplest approach store this info in User resource, by extending it or using generic User.data element. This information will be available for AccessPolicies, because user resource is a part of request context. Here is example access policy for patient/user:
+Users can interact with the system in some context. For example, as a Patient. You need a resource to store this context information \(i.e. patient\_id or practitioner\_id, for example\). The simplest approach is to store this info in User resource, by extending it or using generic User.data element. This information will be available for AccessPolicies, because the user resource is a part of request context. Here is an example access policy for the patient/user:
 
 ```yaml
 ---
@@ -20,9 +20,9 @@ matcho:
     resource/id: .user.data.patient_id
 ```
 
-The problem with this approach can appear, if you want to allow user update his User resource. Or for multi-tenant systems, where users can be part of multiple organisations or departments,  he/she can potentially interact with a system in different roles. You can imagine Outpatient EHR with multiple locations and physicians, who can work in some of this locations. Aidbox provides you with Role resource, which can keep this context information and integrated with Access Control engine in a sophisticated way. Let's say we have multi-organisation system with users, who can play different roles in different organisations.
+The problem with this approach can appear, if you want to allow the user update his User resource. Or for multi-tenant systems, where users can be a part of multiple organisations or departments,  they can potentially interact with a system in different roles. You can imagine Outpatient EHR with multiple locations and physicians, who can work in some of these locations. Aidbox provides you with the Role resource, which can keep this context information and integrated it with the Access Control engine in a sophisticated way. Let's say we have multi-organisation system with users, who can play different roles in different organisations.
 
-With new Role resource is intended to help solve such problems. 
+A new Role resource is intended to help solve such problems. 
 
 ```yaml
 ---
@@ -63,7 +63,7 @@ attrs:
 
 ```
 
-Role  links User and AccessPolicy with `roleName = Role.name`:
+Role links User and AccessPolicy with `roleName = Role.name`:
 
 ```yaml
 ---
@@ -88,5 +88,5 @@ links:
   practitioner: {id: pr-1, resourceType: 'Practitioner'}
 ```
 
-AccessPolicies with **.roleName** attribute evaluated only if User has roles such as `Role.name=policy.roleName` . Such AccessPolicy can access user role resource as `.role` for macho engine or `{{role...}}` for SQL and JSON engines. 
+AccessPolicies with **.roleName** attribute evaluated only if a User has roles such as `Role.name=policy.roleName` . Such AccessPolicy can access user role resource as `.role` for macho engine or `{{role...}}` for SQL and JSON engines. 
 

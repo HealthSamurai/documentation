@@ -12,16 +12,16 @@ In FHIR, many resource elements are represented as coded values. For example, to
 
 * [**code**](https://www.hl7.org/fhir/datatypes.html#code) — code as string strictly bound to predefined ValueSet \(usually used for fixed codes defined by standard such as Encounter.status or Patient.gender\)
 * [**Coding**](https://www.hl7.org/fhir/datatypes.html#Coding) — complex type with system & code attributes; system refers to specific Code System
-* [**CodeableConcept**](https://www.hl7.org/fhir/datatypes.html#codeableconcept) — complex type which may contain many Codings — so it can be coded using multiple Code Systems \(for example, Lab Tests can be coded by proprietary internal code system and by LOINC\).
+* [**CodeableConcept**](https://www.hl7.org/fhir/datatypes.html#codeableconcept) — complex type which may contain many Codings, so it can be coded using multiple Code Systems \(for example, Lab Tests can be coded by proprietary internal code system and by LOINC\).
 
 To specify what codes can be assigned to specific element, FHIR defines **binding** of element definition to **ValueSet**. **ValueSet** selects a set of codes from those defined by one or more code systems. 
 
-In Aidbox, all terminology services are built around non-FHIR **Concept** resource type. Concept resource behaves like other FHIR resources — you can CRUD & Search it. Concept structure essentially follows structure of Coding data type with some additional attributes.
+In Aidbox, all terminology services are built around non-FHIR **Concept** resource type. Concept resource behaves like other FHIR resources: you can CRUD & Search it. Concept structure essentially follows the structure of Coding data type with some additional attributes.
 
 Terminology service can be logically split into two parts:
 
-* terminology service for your app to lookup and validate existing codes;
-* terminology management — to upload new code systems and create new value sets.
+* terminology service for your app to look up and validate existing codes;
+* terminology management to upload new code systems and create new value sets.
 
 ### Operations
 

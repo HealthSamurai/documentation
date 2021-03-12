@@ -4,7 +4,7 @@
 
 You can test access policies with Postman.
 
-Access the Auth Clients tab and create new client.
+Access the Auth Clients tab and create a new client.
 
 ```yaml
 resourceType: Client
@@ -247,7 +247,7 @@ resourceType: AccessPolicy
 
 Now, let's test the policies in Postman.
 
-First, we need to get bearer token for our user and client.
+First, we need to get bearer token for a user and a client.
 
 {% hint style="info" %}
 This line `grant_type: password` should not be changed.
@@ -293,7 +293,7 @@ Test user request with POST
 POST {{base}}/fhir/Patient?__debug=policy
 ```
 
-The results of schema validation should be the following:
+The results of the schema validation should be the following:
 
 | Request/User | User 1 \(Administrator\) | User 2 \(Patient\) |
 | :--- | :--- | :--- |

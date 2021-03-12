@@ -10,7 +10,7 @@ description: >-
 
 ## Introduction
 
-In 2019, HL7 v2 is still the most widely-used standard for healthcare IT systems integration. If you're developing a software which receives information from other systems within a hospital/clinic, most likely it will be HL7 v2 messages.
+In 2019, HL7 v2 is still the most widely-used standard for healthcare IT systems integration. If you're developing software which receives information from other systems within a hospital/clinic, most likely it will be HL7 v2 messages.
 
 To process those messages, react on them and modify data stored in your Aidbox, there is a Hl7v2-in module. It provides two resources: `Hl7v2Config` and `Hl7v2Message`. `Hl7v2Config`determines how messages will be parsed and processed. `Hl7v2Message` represents a single received HL7 v2 message and contains raw representation, status \(processed/error\), error description in case of error and other useful information.
 
@@ -64,7 +64,7 @@ mapping:
 
 #### Strict and Non-strict Parsing
 
-The `isStrict` attribute specifies if message parsing will be strict or not. When `isStrict` is true, HL7 v2 parser will fail on any schema error like missing required field or segment. If `isStrict` is false, then parser will try to produce AST of the message even when required fields are missing or segment hierarchy is broken. In this case you have a chance to get `null` values in your mapping for fields which you don't expect to be `null`.
+The `isStrict` attribute specifies if message parsing will be strict or not. When `isStrict` is true, HL7 v2 parser will fail on any schema error like missing required field or segment. If `isStrict` is false, then parser will try to produce AST of the message even when required fields are missing or segment hierarchy is broken. In this case, you have a chance to get `null` values in your mapping for fields which you don't expect to be `null`.
 
 #### Mapping Entrypoint
 
@@ -94,7 +94,7 @@ Pick an Hl7v2Config instance using the radio button and click the "Create" butto
 
 ![](../.gitbook/assets/screenshot-2019-11-21-at-18.04.04.png)
 
-You'll see a newly created message with additional information like status, parsed structure, outcome, etc:
+You'll see a newly created message with additional information like status, parsed structure, outcome, etc.:
 
 ![](../.gitbook/assets/screenshot-2019-11-14-at-18.50.57.png)
 
@@ -135,7 +135,7 @@ Newly created messages should have `received` status, otherwise they won't be pr
 
 **outcome** — Transaction Bundle returned by the mapping or error information if the status is `error`.
 
-You can try to submit malformed message \(truncated\)  to see what's the result will be:
+You can try to submit malformed message \(truncated\) to see what the result will be:
 
 ```yaml
 POST /Hl7v2Message
@@ -152,7 +152,7 @@ config:
 
 ### Capturing a MLLP Traffic
 
-Usually HL7 messages are transmitted using the [MLLP protocol](https://www.hl7.org/implement/standards/product_brief.cfm?product_id=55). To convert a MLLP traffic to HTTP requests there is an open-source `hl7proxy` utility provided by Health Samurai. It's [available on GitHub](https://github.com/HealthSamurai/hl7proxy) and there are [pre-compiled binaries](https://github.com/HealthSamurai/hl7proxy/releases) for major operating systems and architectures.
+Usually HL7 messages are transmitted using the [MLLP protocol](https://www.hl7.org/implement/standards/product_brief.cfm?product_id=55). To convert a MLLP traffic to HTTP requests, there is an open-source `hl7proxy` utility provided by Health Samurai. It's [available on GitHub](https://github.com/HealthSamurai/hl7proxy) and there are [pre-compiled binaries](https://github.com/HealthSamurai/hl7proxy/releases) for major operating systems and architectures.
 
 Follow the `hl7proxy`'s [README](https://github.com/HealthSamurai/hl7proxy) for installation and usage instructions.
 

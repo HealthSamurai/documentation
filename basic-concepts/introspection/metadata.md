@@ -156,7 +156,7 @@ metadata:
 ```
 
 {% hint style="info" %}
-If you want more control over CapabilityStatement please contact us in community chat!
+If you want more control over CapabilityStatement, please contact us in the community chat!
 {% endhint %}
 
 To get metadata in the internal Aidbox format, use [`/$metadata?_format=yaml`](http://localhost:7777/$metadata?_format=yaml)

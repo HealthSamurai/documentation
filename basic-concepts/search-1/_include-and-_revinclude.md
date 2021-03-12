@@ -67,7 +67,7 @@ Syntax for include:
 
 **search-param** is a name of the search parameter with the type `reference` defined for **source-type**.
 
-This query can be interpreted as: for the **source-type** resources in the result include all **target-type resources,** which are referenced by the **search-param**. If you skip the **source-type,** it will be set to the resource-type you are searching for:
+This query can be interpreted in the following manner. For the **source-type** resources in the result include all **target-type resources,** which are referenced by the **search-param**. If you skip the **source-type,** it will be set to the resource-type you are searching for:
 
 ```yaml
 GET /Encounter?_include=subject:Patient 

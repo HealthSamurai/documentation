@@ -1,14 +1,14 @@
 # 🎓 Sample: Patient can see their own data
 
-## What is this tutorial about
+## About this tutorial
 
-In this tutorial you will know how to manage user access to patient resources.
+In this tutorial, you will learn how to manage user access to patient resources.
 
 ## Prerequisites
 
-To complete this tutorial you should install Postman and get access to the Aidbox Console \(see [here](../installation/) how to install your Aidbox instance\) .
+To complete this tutorial, you should install Postman and get access to the Aidbox Console \(see [here](../installation/) how to install your Aidbox instance\) .
 
-Once you access the Aidbox REST Console, load resources that you will need to work with policies:
+Once you access the Aidbox REST Console, load resources that you need to work with policies:
 
 ```text
 POST /$import
@@ -34,13 +34,13 @@ inputs:
 
 #### Structure of imported resources
 
-On previous step we have imported a client that will authenticate users, and two users with corresponding sets of related resources shown on the picture below. Overlapping outlines means relation between enclosed resources. A similar diagram applies to User-2.
+In the previous step, we have imported a client that will authenticate users and two users with corresponding sets of related resources shown on the picture below. Overlapping outlines indicates the relation between enclosed resources. A similar diagram applies to User-2.
 
 ![](../.gitbook/assets/image%20%2814%29.png)
 
 ## User Login‌ <a id="user-login"></a>
 
-Now you can use Postman to login as a user. In this example we login as User-1.
+Now you can use Postman to log in as a user. In this example, we log in as User-1.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -80,7 +80,7 @@ POST /auth/token
 {% endtab %}
 {% endtabs %}
 
-Notice the `patient_id` field of `userinfo` . This is the id of the Patient resource associated with our user. It will be used further in Access Policies to decide if access should be granted or not. In general you need to specify `data.patient_id: some_patient_id` in your User resource to establish a relation with a Patient resource.‌
+Notice the `patient_id` field of `userinfo` . This is the id of the Patient resource associated with our user. It will be used further in Access Policies to decide if access should be granted or not. In general, you need to specify `data.patient_id: some_patient_id` in your User resource to establish a relation to a Patient resource.‌
 
 The `access-token` field of `user-info` will be needed to perform requests on behalf of our User. See [here](../auth/resource-owner-password.md#use-access-token) how to perform user request with a token.
 
@@ -90,7 +90,7 @@ At this point there are no access policies that allow the user to access any res
 
 ## Patient Resource access <a id="access-to-patient-resource"></a>
 
-Let's add out first policy that will grant us access to the Patient resource, associated with our user.
+Let's add our first policy that will grant us access to the Patient resource associated with our user.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -125,9 +125,9 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-Here we specified that Access Policy will grant `GET` access to a URI that matches `#/Patient/.*` regex if the request parameter named `resource/id` matches `data.patient` value of the user that makes the request.‌
+Here we specified that Access Policy would grant `GET` access to a URI that matches `#/Patient/.*` regex if the request parameter named `resource/id` matches `data.patient` value of the user that makes the request.‌
 
-So now we can read our patient. The part of the URL after `/Patient/` namely `new-patient` is parsed by Access Policy engine as the `resource/id` parameter of the request:
+So now we can read our patient. The part of the URL after `/Patient/`, namely `new-patient`, is parsed by Access Policy engine as the `resource/id` parameter of the request:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -161,7 +161,7 @@ GET /Patient/new-patient
 {% endtab %}
 {% endtabs %}
 
-You can check that access to any other existing Patient resource, for instance that one with id `new-patient1`, will be denied.
+You can check that access to any other existing Patient resource, for instance, that one with id `new-patient1`, will be denied.
 
 ## Encounter access
 
@@ -199,7 +199,7 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-And this policy works a bit trickier. The allowed URI is `/Encounter` and it doesn't contain any additional parts that could be identified as request parameters as in the previous case. So, in order to provide the required request parameter `patient` to the Access Policy matching engine, we have to specify it as the query parameter of our request. And after the Access Policy engine allows such a request, the Search Engine comes into play. It filters out encounters that do not match the condition of `patient = our-patient-id`. To know more about how the AidBox Search works, see the [Search section](../basic-concepts/search-1/). To know more about the available search parameters, refer to the [Search Parameters section](https://github.com/Aidbox/documentation/tree/6018e5a1eeeab93c9d70814b1d9a565274ed14bc/fhir/encounter.html#search) of the FHIR documentation for the resource of interest.
+And this policy is a bit tricky. The allowed URI is `/Encounter` and it doesn't contain any additional parts that could be identified as request parameters as in the previous case. So, in order to provide the required request parameter `patient` to the Access Policy matching engine, we have to specify it as the query parameter of our request. And after the Access Policy engine allows such a request, the Search Engine comes into play. It filters out encounters that do not match the condition of `patient = our-patient-id`. To know more about how the AidBox Search works, see the [Search section](../basic-concepts/search-1/). To know more about the available search parameters, refer to the [Search Parameters section](https://github.com/Aidbox/documentation/tree/6018e5a1eeeab93c9d70814b1d9a565274ed14bc/fhir/encounter.html#search) of the FHIR documentation for the resource of interest.
 
 Finally, we can make a request for the list of patient encounters.
 
@@ -282,7 +282,7 @@ GET /Encounter?patient=new-patient
 
 #### Read access
 
-Granting access to observations is similar to the previous case. We just add another policy, that looks just like the previous one, but matches against another URI. It is so similar, that we should stop there and think a little what happens if we want to grant read access to more resources — we end up with a bunch of almost indistinguishable policies. A better approach in this case is to use the `CompartmentDefinition` resource.
+Granting access to observations is similar to the previous case. We just add another policy that looks just like the previous one, but matches against another URI. It is so similar that we should stop there and think a little about what happens if we want to grant read access to more resources — we will end up with a bunch of almost indistinguishable policies. A better approach, in this case, is to use the `CompartmentDefinition` resource.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -306,9 +306,9 @@ resource:
 {% endtab %}
 {% endtabs %}
 
-Now, when we've created `CompartmentDefinition` resource, we can access patient related resources with such requests: `GET /Patient/{patient-id}/{resource}`. To know in detail about how compartments work see the [Compartments tutorial](../advanced/compartments.md).
+Now, when we've created a `CompartmentDefinition` resource, we can access patient-related resources with such requests: `GET /Patient/{patient-id}/{resource}`. To know in detail about how compartments work, see the [Compartments tutorial](../advanced/compartments.md).
 
-And that's it! We don't even need to add more policies, since we already have the policy that allows user to access URIs that match `/Patient/.*` regex.
+And that's it! We don't even need to add more policies, since we already have the policy that allows the user to access URIs that match `/Patient/.*` regex.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -424,11 +424,11 @@ GET /Patient/new-patient/Observation
 {% endtab %}
 {% endtabs %}
 
-If we want to grant access to some other resource we just need to add it to the `CompartmentDefinition` resource that we've created. See [FHIR documentation](https://www.hl7.org/fhir/compartmentdefinition-patient.html) to know what resources can be added to a patient compartment. And we can get rid of the Access Policy that was previously created for encounters.
+If we want to grant access to some other resource, we just need to add it to the `CompartmentDefinition` resource that we've created earlier. See [FHIR documentation](https://www.hl7.org/fhir/compartmentdefinition-patient.html) to know what resources can be added to a patient compartment. And we can get rid of the Access Policy that was previously created for encounters.
 
 #### Write access
 
-User should be able to create their own observation, e.g. to report blood sugar level. The following policy manages this case:
+The user should be able to create their own observation, e.g., to report blood sugar level. The following policy manages this case:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -452,7 +452,7 @@ matcho:
 {% endtab %}
 {% endtabs %}
 
-With this policy we can only create observations where subject and performer must be the user's patient.
+With this policy, we can only create observations where the subject and performer must be the user's patient.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -484,7 +484,7 @@ POST /Observation
 {% endtab %}
 {% endtabs %}
 
-Now it's time to make an important note. In general It is not possible to use some kind of `CompartmentDefinition` approach to grant write access to many resources at once, as we did it previously for read access. That's because resources may require sophisticated logic to define which part of a resource could have write access and which not. Such logic may even lie beyond the abilities of the Access Control mechanism and in this case custom API is the only resort. But in quite simple scenario like the creation of observation Access Policies are helpful.
+Now it's time to make an important note. In general, it is not possible to use some kind of `CompartmentDefinition` approach to grant write access to many resources at once, as we did previously for read access. That's because resources may require sophisticated logic to define which part of a resource could have write access and which not. Such logic may even lie beyond the abilities of the Access Control mechanism and in this case custom API is the only resort. But in a quite simple scenario like the creation of observation, Access Policies are helpful.
 
 Let's create a new policy that allows our user to update their observations through the `PATCH` method. Matcho engine is no longer enough to make a rule for this kind of request since it only relies on the request and the user parameters. Now we need to peek into the requested resource to understand if it is related to our user and could be patched.
 
@@ -541,7 +541,7 @@ data:
 {% endtab %}
 {% endtabs %}
 
-To grant `User-1` access to related patients we should simply update `patient-access` policy.
+To grant `User-1` access to related patients, we should simply update `patient-access` policy.
 
 {% tabs %}
 {% tab title="Request" %}

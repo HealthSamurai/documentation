@@ -6,7 +6,7 @@ description: Access Aidbox API from your Service
 
 ## Basic Auth
 
-The simplest way to programmatically interact with  Aidbox API is to use [Basic Access Authentication](https://tools.ietf.org/html/rfc7617). In this scheme you provide client credentials with every HTTP request in special header  - `Authorization: Basic <credentials>`,  where `<credentials>` is the base64 encoding of Client.id and Client.secret joined by a colon:
+The simplest way to programmatically interact with  Aidbox API is to use [Basic Access Authentication](https://tools.ietf.org/html/rfc7617). In this scheme you provide client credentials with every HTTP request in the special header  - `Authorization: Basic <credentials>`,  where `<credentials>` is the base64 encoding of Client.id and Client.secret joined by a colon:
 
 ```yaml
 GET /Patient
@@ -25,7 +25,7 @@ secret: secret
 grant_types: ['basic']
 ```
 
-By default your client does not have any permissions to access Aidbox REST API. So you probably want to configure some using Aidbox Access Policy. Access Policy can be _linked_ to specific client, by providing reference to clients in `link` collection. For more sophisticated configuration see [Access Policies](../security/access-control.md) documentation. 
+By default, your client does not have any permissions to access Aidbox REST API. So you probably want to configure some using Aidbox Access Policy. Access Policy can be _linked_ to the specific client by providing the reference to clients in `link` collection. For more sophisticated configuration, see [Access Policies](../security/access-control.md) documentation. 
 
 ```yaml
 POST /AccessPolicy

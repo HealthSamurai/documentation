@@ -4,7 +4,7 @@ Azure Blob Storage is used to store arbitrary unstructured data like images, fil
 
 ### Set up Azure storage account
 
-First of all we have to create AzureAccount resource with **id** = account name and **key** = secret key of your account. Your account name and keys can be found under "Access keys" section in Azure Storage account settings.
+First of all, we have to create AzureAccount resource with **id** = account name and **key** = secret key of your account. Your account name and keys can be found under "Access keys" section in Azure Storage account settings.
 
 ```yaml
 POST /AzureAccount
@@ -28,7 +28,7 @@ container: avatars
 
 ### Get Shared Access Signature \(SAS\) to upload file
 
-When configuration is complete, you can request temporary URL to upload blobs. By default, such URL expires in 30 minutes. You can provide blob name or just the extension \(name will be generated\).
+When configuration is complete, you can request a temporary URL to upload blobs. By default, such URL expires in 30 minutes. You can provide a blob name or just the extension \(name will be generated\).
 
 ```yaml
 POST /azure/storage/avatars
@@ -78,7 +78,7 @@ headers:
   Locaiton: <read-signed-url>
 ```
 
-For example you can use trick with redirect to render image:
+For example, you can use a trick with redirect to render image:
 
 ```markup
 <img src="/azure/storage/avatar/pt-1.png?redirect=true"/>

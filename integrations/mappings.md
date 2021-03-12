@@ -73,7 +73,7 @@ body:
 
 ```
 
-When template was created, you can invoke the $apply operation on it to generate a Patient resource and save it into the database:
+When a template is created, you can invoke the $apply operation on it to generate a Patient resource and save it into the database:
 
 ```yaml
 POST /Mapping/example/$apply
@@ -115,7 +115,7 @@ Response will contain a mapping result or an error if evaluation failed for some
 
 ### Global $debug Endpoint
 
-There is a way to check mapping result without persisting it as a resource:
+There is a way to check a mapping result without persisting it as a resource:
 
 ```http
 POST /Mapping/$debug
@@ -140,7 +140,7 @@ scope:
   name: "Bob"
 ```
 
-You pass both Mapping and incoming data \(scope\) in a request body. Request response will contain mapping result or an error information.
+You pass both Mapping and incoming data \(scope\) in a request body. Request response will contain the mapping result or an error information.
 
 ### Including Mapping inside other Mapping
 

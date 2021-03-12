@@ -8,7 +8,7 @@ The Authorization Code Grant is an OAuth 2.0 flow that regular web apps use in o
 
 ## Configure Client
 
-First step is to configure Client for Authorization Grant with `secret` and `redirect_uri`, as well `code` grant type:
+The first step is to configure Client for Authorization Grant with `secret` and `redirect_uri`, as well `code` grant type:
 
 {% tabs %}
 {% tab title="client" %}
@@ -32,7 +32,7 @@ auth:
 
 Client will act on behalf of the user, which means Access Policies should be configured for User, not for Client. 
 
-You can configure Client for JWT tokens,  set token expiration and enable refresh token:
+You can configure Client for JWT tokens, set token expiration and enable refresh token:
 
 | auth_._authorization\_code. | options | desc |
 | :--- | :--- | :--- |
@@ -42,32 +42,32 @@ You can configure Client for JWT tokens,  set token expiration and enable refres
 | **secret\_required** | true/false | require secret for token |
 
 {% hint style="info" %}
-If you want to use Authorization Code Grant for **Single Page Application** you do not need `secret` attribute to be set!
+If you want to use Authorization Code Grant for **Single Page Application** you do not need to set the `secret` attribute!
 {% endhint %}
 
 {% hint style="info" %}
-If your application is a major consumer of Aidbox API you can set **first\_party** attribute into **true.** This means that the same User Session will be shared between Aidbox and client, so if you close client session Aidbox User Session will be closed too.
+If your application is a major consumer of Aidbox API, you can set **first\_party** attribute as **true.** This means that the same User Session will be shared between Aidbox and client, so if you close the client session, Aidbox User Session will be closed too.
 {% endhint %}
 
 ## Get Code
 
-Next step is to redirect user from your application to **authorize** endpoint with **client\_id** and **response\_type** - code:
+Next step is to redirect a user from your application to **authorize** the endpoint with **client\_id** and **response\_type** - code:
 
 ```text
 https://<box>.aidbox.app/auth/authorize?client_id=webapp&response_type=code&state=...
 ```
 
-To keep you client stateless you can send **state** parameter with arbitrary content, which will be send you back on redirect.
+To keep you client stateless, you can send a **state** parameter with arbitrary content, which will be send you back on redirect.
 
-If user is not logged in then she will see the login screen.
+If user is not logged in, then they will see the login screen.
 
 ![](../.gitbook/assets/image%20%284%29.png)
 
-If client is not first\_party or user not yet granted permissions to client, user will see grant page:
+If a client is not first\_party or user not yet granted permissions to client, a user will see the grant page:
 
 ![](../.gitbook/assets/image%20%282%29.png)
 
-If client granted permissions, user agent will be redirected to url configured in **Client.auth.authorization\_code.redirect\_uri** with authorization code parameter.
+If a client granted permissions, a user agent will be redirected to url configured in **Client.auth.authorization\_code.redirect\_uri** with the authorization code parameter.
 
 ```text
 <redirect_uri>?code=****&state=***
@@ -75,7 +75,7 @@ If client granted permissions, user agent will be redirected to url configured i
 
 ## Get Access Token
 
-With this code and client secret you can request for Access Token with`grant_type: authorization_code`.
+With this code and client secret, you can request for Access Token with`grant_type: authorization_code`.
 
 {% tabs %}
 {% tab title="json-request" %}
@@ -92,7 +92,7 @@ Content-Type: application/json
 {% endtab %}
 {% endtabs %}
 
-If provided code is accurate, you get access token, user information and refresh token \(if enabled\):
+If provided code is accurate, you will get access token, user information and refresh token \(if enabled\):
 
 {% tabs %}
 {% tab title="token-response" %}
@@ -116,7 +116,7 @@ status: 200
 
 ### Use Access Token
 
-You can use access token in Authorization header for Aidbox API calls:
+You can use access token in the Authorization header for Aidbox API calls:
 
 {% tabs %}
 {% tab title="authorized-request" %}
@@ -133,7 +133,7 @@ curl -H 'Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi'
 
 ### Revoke Access Token \(Close Session\)
 
-Aidbox creates Session resource for each Access Token which can be closed with special endpoint `DELETE /Session` with token in Authorization header:
+Aidbox creates a Session resource for each Access Token which can be closed with a special endpoint `DELETE /Session` with the token in Authorization header:
 
 {% tabs %}
 {% tab title="close-session" %}

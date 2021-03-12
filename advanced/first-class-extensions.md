@@ -530,7 +530,7 @@ isCollection: true
 extensionUrl: "http://hl7.org/fhir/StructureDefinition/servicerequest-precondition"
 ```
 
-Let's create resource in the FHIR format:
+Let's create a resource in the FHIR format:
 
 {% code title="Create resource in the FHIR format:" %}
 ```yaml

@@ -8,7 +8,7 @@ The Password grant type is used by first-party clients to exchange a user's cred
 
 ### Configure Client
 
-Fist step is to configure Client for Resource Owner Grant with secret and password grant type:
+The first step is to configure Client for Resource Owner Grant with secret and password grant type:
 
 {% code title="client" %}
 ```yaml
@@ -64,7 +64,7 @@ Content-Type: application/json
 ```
 {% endcode %}
 
-If provided credentials are correct, you get response with access token, user information and refresh token \(if enabled\):
+If provided credentials are correct, you will get a response with the access token, user information and refresh token \(if enabled\):
 
 {% code title="token-response" %}
 ```yaml
@@ -86,7 +86,7 @@ status: 200
 
 ### Use Access Token
 
-You can use access token in Authorization header for Aidbox API calls:
+You can use the access token in Authorization header for Aidbox API calls:
 
 {% code title="authorized-request" %}
 ```yaml
@@ -101,7 +101,7 @@ curl -H 'Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi'
 
 ### Revoke Access Token \(Close Session\)
 
-Aidbox creates Session resource for each Access Token, which can be closed with special endpoint `DELETE /Session` with token in Authorization header:
+Aidbox creates a Session resource for each Access Token, which can be closed with a special endpoint `DELETE /Session` with the token in the Authorization header:
 
 {% code title="close-session" %}
 ```yaml
@@ -110,7 +110,7 @@ Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
 ```
 {% endcode %}
 
-Session is just Resource and you can inspect and manipulate with sessions by standard Search & CRUD API for example get all sessions - `GET /Session`
+Session is just a Resource and you can inspect and manipulate sessions by a standard Search & CRUD API. For example, to get all sessions: `GET /Session`
 
 ### Auth Sandbox Demo
 

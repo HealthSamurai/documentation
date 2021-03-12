@@ -6,9 +6,9 @@ All examples from this tutorial you can run in Postman. Here's the [web view](ht
 
 ## Defining a Custom Resource
 
-Sometimes your data does not fit any existing FHIR resources. It is not always obvious that your data _cannot_ be translated to FHIR — because of some FHIR  generalizations. The "right" first step is to go to [FHIR community chat](http://health-samurai.info/a-cusres-to-zulip) and ask your specific question about mapping to FHIR, or contact Health Samurai modelling team about your concern. If after this adventure you are still sure that there is no appropriate resource in FHIR or it will take too much time to wait for it — in [Aidbox](https://www.health-samurai.io/aidbox) you can define your own **Custom Resources.**
+Sometimes your data does not fit any existing FHIR resources. It is not always obvious that your data _cannot_ be translated to FHIR because of some FHIR  generalizations. The right first step is to go to [FHIR community chat](http://health-samurai.info/a-cusres-to-zulip) and ask your specific question about mapping to FHIR, or contact Health Samurai modelling team about your concern. If you are still sure that there is no appropriate resource in FHIR or it takes too much time to wait for it, you can define your own **Custom Resources** in [Aidbox](https://www.health-samurai.io/aidbox)**.**
 
-**Custom Resources** are defined exactly the same way as core FHIR resources, they can refer existing resources, have uniform REST API for CRUD and Search, and participate in transactions.
+**Custom Resources** are defined exactly the same way as core FHIR resources. They can refer existing resources, have uniform REST API for CRUD and Search, and participate in transactions.
 
 Let's imagine that in our application we want to store user preferences such as UI configuration or personalized Patient List filters. It is expected that you have already created a box in [Aidbox.Cloud](https://docs.aidbox.app/~/drafts/-LOrgfiiMwbxfp70_ZP0/primary/v/master/installation/use-aidbox.cloud). First of all, we have to define a new resource type by creating an **Entity** resource.
 
@@ -40,13 +40,13 @@ isOpen: true
 {% endtab %}
 {% endtabs %}
 
-This means that resource of the type `Entity` was successfully created. When you create `Entity` resources with type `resource`, Aidbox will on the fly initialize a storage for new resource type and generate CRUD & Search REST API.
+This means that the resource of the type `Entity` was successfully created. When you create `Entity` resources with type `resource`, Aidbox will on the fly initialize a storage for new resource type and generate CRUD & Search REST API.
 
-When you set the `isOpen: true` flag this means that resource does not have any specific structure and you can store arbitrary data. This is useful when you do not know exact resource structure, for example while working on a prototype. Later we will make its schema more strict and will constraint it with additional validations.
+When you set the `isOpen: true` flag, this means that the resource does not have any specific structure and that you can store arbitrary data. This is useful when you do not know the exact resource structure, for example, while working on a prototype. Later we will make its schema more strict and will constraint it with additional validations.
 
 ### API of a Custom Resource
 
-Let's checkout API for our custom resource `UserSetting`. You can list `UserSetting` resources by the standard FHIR URI template `GET /{resourceType}` :
+Let's check API for our custom resource `UserSetting`. You can list `UserSetting` resources by the standard FHIR URI template `GET /{resourceType}` :
 
 {% tabs %}
 {% tab title="Request" %}
@@ -141,7 +141,7 @@ SELECT id, resource->>'theme' as theme FROM "usersetting";
 
 ### CRUD Operations with a Custom Resource
 
-As well you can read, update, and delete `UserSetting` resource with:
+Also you can read, update, and delete `UserSetting` resource with:
 
 {% tabs %}
 {% tab title="READ Request" %}
@@ -277,7 +277,7 @@ entry:
 
 ## Refining the Structure of a Custom Resource
 
-Awesome! We've got a nice API by just providing a couple of lines of metadata. But the schema of our custom resource is currently too open and users can put any data into `UserSetting` resource. For example we can do this:
+Awesome! We've got a nice API by providing a couple of lines of metadata. But the schema of our custom resource is currently too open and users can put any data into `UserSetting` resource. For example, we can do this:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -306,7 +306,7 @@ theme:
 
 ### Describe Structure of Custom Resource
 
-Now, let's put some restrictions and define our Custom Resource structure. To describe structure of a resource, we will use [Attribute]() meta-resource. For example we want to restrict the `theme` attribute to be a `string` value from the specific enumeration:
+Now, let's put some restrictions and define our Custom Resource structure. To describe structure of a resource, we will use [Attribute]() meta-resource. For example, we want to restrict the `theme` attribute to be a `string` value from the specific enumeration:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -519,5 +519,5 @@ warnings: []
 {% endtab %}
 {% endtabs %}
 
-In this tutorial you've seen how to define and use Custom Resources in Aidbox. In future series we will show you how to add more advanced validations on Custom Resources and create custom endpoints to define your business logic. If you have any questions or suggestions please provide us with your feedback!
+In this tutorial you learned how to define and use Custom Resources in Aidbox. In future series we will show you how to add more advanced validations on Custom Resources and create custom endpoints to define your business logic. If you have any questions or suggestions, please provide us with your feedback!
 

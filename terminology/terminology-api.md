@@ -14,7 +14,7 @@ POST /terminology/$import
 url: <terminology-package-url>
 ```
 
-Here is list of available packages:
+Here is a list of available packages:
 
 * ICD-10 - [https://storage.googleapis.com/aidbox-public/icd10/icd10cm.ndjson.gz](https://storage.googleapis.com/aidbox-public/icd10/icd10cm.ndjson.gz)
 * LOINC - [https://storage.googleapis.com/aidbox-public/loinc/loinc-2.65.ndjson.gz](https://storage.googleapis.com/aidbox-public/loinc/loinc-2.65.ndjson.gz)
@@ -24,7 +24,7 @@ Here is list of available packages:
 
 ### RxNorm
 
-To import RxNorm concepts execute following request:
+To import RxNorm concepts, execute the following request:
 
 ```yaml
 POST /

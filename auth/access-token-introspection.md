@@ -21,9 +21,9 @@ jwt:
   secret: "xxxxxxxx"               # pre-shared key if JWT alg = HS256
 ```
 
-When Aidbox validates JWT token, it tries to find matching TokenIntrospector using `jwt.iss` and `type` attributes. If suitable TokenIntrospector found, token is being validated with either JWK obtained from `jwks_uri` or with `jwt.secret`, depending on signing algorithm. Token expiration \(`exp` claim\) is also being checked.
+When Aidbox validates the JWT token, it tries to find a matching TokenIntrospector using `jwt.iss` and `type` attributes. If suitable TokenIntrospector is found, token is being validated with either JWK obtained from `jwks_uri` or with `jwt.secret`, depending on the signing algorithm. Token expiration \(`exp` claim\) is also being checked.
 
-If JWT is valid, Aidbox will put it's claims into the request object under `jwt` key, so you'll be able to access them with [AccessPolicy checks](../security/access-control.md). If token failed validation \(it's expired or signature isn't correct\) then client will get an 401 "Unauthorised" response.
+If JWT is valid, Aidbox will put it's claims into the request object under `jwt` key, so you'll be able to access them with [AccessPolicy checks](../security/access-control.md). If the token failed validation \(it's expired or signature isn't correct\) then the client will get a 401 "Unauthorised" response.
 
 ### Validating Opaque \(non-JWT\) Tokens
 
@@ -43,7 +43,7 @@ According to [RFC-7662](https://tools.ietf.org/html/rfc7662), the only required 
 
 ### X-Client-Auth
 
-In some situation \(like micro-services\) you want to add middle-ware client authentication. You can use **X-Client-Auth** header with basic auth value for client id and secret to add client authentication to JWT workflow.
+In some situations \(like micro-services\), you want to add middle-ware client authentication. You can use the **X-Client-Auth** header with basic auth value for client id and secret to add client authentication to the JWT workflow.
 
 ```yaml
 GET /Patient?_debug=query
@@ -84,7 +84,7 @@ claims:
   
 ```
 
-Also you can put box user id in to `box_user` claim attribute. This case make sense when you use external oauth provider or another identity system that managed `sub` attribute itself. In this case you can put box user id in to `box_user` .
+Also you can put box user id in to `box_user` claim attribute. This makes sense when you use external oauth provider or any other identity system that manages `sub` attribute itself. In this case, you can put the box user id in to `box_user` .
 
 ```yaml
 # JWT sample
@@ -96,7 +96,7 @@ claims:
   
 ```
 
-When Aidbox receives request with JWT and `box_user` or `sub` attribute, Aidbox injects this user and his roles to the request. Now we can create some AccessPolicy.
+When Aidbox receives request with JWT and `box_user` or `sub` attribute, Aidbox injects this user and their roles to the request. Now we can create some AccessPolicy.
 
 ```yaml
 # AccessPolicy example

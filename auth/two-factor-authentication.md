@@ -83,7 +83,7 @@ When the user scans the QR code and enters the token, they will get redirected t
 
 #### Login into Aidbox
 
-Next time when the user logins into the system, the TOTP authentication page will be shown. Using the mobile authenticator \(or any other transport\) the user enters the code and gets redirected to your application. You can configure which OAuth 2.0 flow to use by changing Client configuration and login endpoint query parameters. Refer to the specific OAuth flow article if you need further explanation.
+Next time when the user log ins into the system, the TOTP authentication page will be shown. Using the mobile authenticator \(or any other transport\) the user enters the code and gets redirected to your application. You can configure which OAuth 2.0 flow to use by changing Client configuration and login endpoint query parameters. Refer to the specific OAuth flow article if you need further explanation.
 
 ```text
 GET /auth/login?client_id=mywebapp&response_type=code

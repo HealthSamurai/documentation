@@ -2,15 +2,15 @@
 
 ## Overview
 
-Given a set of properties, return one or more possible matching codes. For more details see official FHIR terminology documentation [CodeSystem Code Composition](https://www.hl7.org/fhir/codesystem-operations.html#compose)
+Given a set of properties, return one or more possible matching codes. For more details, see the official FHIR terminology documentation [CodeSystem Code Composition](https://www.hl7.org/fhir/codesystem-operations.html#compose)
 
 $compose may return  3 possible types of match
 
 * complete match - a code that represents all the provided properties correctly
-* partial match - a code that represents some of the provided properties correctly, and not others
-* possible match - code that may represent the provided properties closely,
+* partial match - a code that represents some of the provided properties correctly and not others
+* possible match - code that may represent the provided properties closely
 
-When send `exact` parameter is `true` - $compose operation return only complete and partial matches. When exact is `false` - $compose include in to response possible matches. Default value is true, that means, that by default returning only complete and partial matches.
+When send `exact` parameter is `true` - $compose operation only returns complete and partial matches. When exact is `false` - $compose include possible matches to a response. Default value is true; that means that by default returning only complete and partial matches.
 
 ##  Api
 
@@ -363,7 +363,7 @@ POST [BASE]/CodeSystem/$compose
 
 Whether the operation is being used by a human, or a machine. When `false` include to response possible matches.
 
-**Example:** lets try to compose code system from concepts where code contains `on-`
+**Example:** lets try to compose code system from concepts where the code contains `on-`
 
 {% tabs %}
 {% tab title="Request" %}

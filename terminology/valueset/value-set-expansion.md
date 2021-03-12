@@ -2,7 +2,7 @@
 
 ## Overview
 
-$expand operation expand given ValueSet in to set of concepts. For more information see official documentation [FHIR Terminology ValueSet Expansion](https://www.hl7.org/fhir/valueset-operations.html#expand)
+$expand operation expand given ValueSet in to set of concepts. For more information, see the official documentation [FHIR Terminology ValueSet Expansion](https://www.hl7.org/fhir/valueset-operations.html#expand)
 
 ## Api
 
@@ -124,7 +124,7 @@ POST [base]/ValueSet/$expand
 
 ### valueSet
 
-The value set is provided directly as part of the request.
+The value set is provided directly as a part of the request.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -403,7 +403,7 @@ POST [base]/ValueSet/administrative-gender/$expand
 
 Controls whether inactive concepts are included or excluded in value set expansions.
 
-For example we are create testing ValueSet with one current active concept and one deprecated concept provided directly as part of the request.
+For example, we create a testing ValueSet with one current active concept and one deprecated concept provided directly as a part of the request.
 
 Get all concepts
 

@@ -2,7 +2,7 @@
 
 Welcome to the Aidbox tutorials. These guides provide step-by-step instructions on how to use Aidbox. 
 
-[Aidbox Product Line](https://www.health-samurai.io/aidbox) has a wide variety of solutions to fit for different requirements. For the development purposes it is recommended to use Aidbox.Cloud or Aidbox.Dev. 
+[Aidbox Product Line](https://www.health-samurai.io/aidbox) has a wide variety of solutions to fit for different requirements. For the development purposes, it is recommended to use Aidbox.Cloud or Aidbox.Dev. 
 
 Let’s see what their features are.
 

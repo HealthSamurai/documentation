@@ -1,6 +1,6 @@
 # External Oauth 2.0 Providers
 
-In order to add external OAuth 2.0 Provider integration, you have to create a resource called IdentityProvider. It will be used by auth module to generate redirect links and make API calls to provider to retrieve access token, user data, etc. All examples in this tutorial are executable in Aidbox REST Console.
+In order to add external OAuth 2.0 Provider integration, you have to create a resource called IdentityProvider. It will be used by the auth module to generate redirect links and make API calls to the provider to retrieve access token, user data, etc. All examples in this tutorial are executable in Aidbox REST Console.
 
 ```text
 POST /IdentityProvider
@@ -68,7 +68,7 @@ client:
   </tbody>
 </table>
 
-Next, we have to create Client resource which will receive access token from Aidbox backend later on and use Aidbox API on behalf of the user. We enable authorization\_code flow for the application and provide redirect\_uri. 
+Next, we have to create Client resource which will receive access token from Aidbox backend later on and use Aidbox API on behalf of the user. We enable the authorization\_code flow for the application and provide the redirect\_uri. 
 
 ```text
 POST /Client
@@ -83,7 +83,7 @@ auth:
 
 You will also need to register /auth/callback/&lt;provider-id&gt; as callback URI in your OAuth provider client application configuration. 
 
-To initiate authorization, redirect user to the endpoint /auth/redirect/&lt;provider-id&gt;. You should provide at least two query parameters client\_id and response\_type. The following API interactions happen as a result:
+To initiate authorization, redirect the user to the endpoint /auth/redirect/&lt;provider-id&gt;. You should provide at least two query parameters client\_id and response\_type. The following API interactions happen as a result:
 
 ```text
 GET /auth/redirect/google?client_id=my-client&response_type=code

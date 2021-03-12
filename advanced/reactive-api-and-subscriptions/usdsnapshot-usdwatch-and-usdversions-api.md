@@ -4,6 +4,8 @@ description: Simple API to react on resource changes
 
 # Changes API
 
+By `GET /<resource-type>/$changes` without the `version` parameter you will get latest version, which can be used to poll for changes by `GET /<resource-type>/$changes?version=<version>`
+
 ### Endpoints
 
 `GET /<resourceType>/$changes` returns the latest version for the `resourceType`  
@@ -25,7 +27,7 @@ With parameters which start with dot you can filter resources by equality, e.g. 
 
 ### Notes
 
-Polling request is cheap! If you want to watch rare changes \(minutes-hours\), this API is very resource efficient  \(no subscriptions, no queues\) and provide you a lots of control. If nothing has been changed - you will get  response with status `304`,  otherwise list of changes and new **version** to poll next time.
+Polling request is cheap! If you want to watch rare changes \(minutes-hours\), this API is very resource efficient  \(no subscriptions, no queues\) and provides you lots of control. If nothing has been changed, you will get a response with status `304`,  otherwise a list of changes and a new **version** to poll next time.
 
 ### Examples
 

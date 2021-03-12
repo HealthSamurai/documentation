@@ -6,7 +6,7 @@ The Client Credentials grant is used when applications request an access token t
 
 ![Basic scheme](../.gitbook/assets/untitled-diagram.svg)
 
-Aidbox OAuth module support Client Credentials Grant flow in different formats. First one is in strict adherence to [specification](https://tools.ietf.org/html/rfc6749#section-4.4.2) for better compatibility. Second one uses JSON request as a more modern and simple way. Read official [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.4) for more details.
+Aidbox OAuth module supports Client Credentials Grant flow in different formats. The first one is in strict adherence to [specification](https://tools.ietf.org/html/rfc6749#section-4.4.2) for better compatibility. The second one uses JSON request as a more modern and simple way. Read the official [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.4) for more details.
 
 ### Configure Client
 
@@ -22,7 +22,7 @@ grant_types:
 ```
 {% endcode %}
 
-You can also configure token format and expiration, as well refresh token:
+You can also configure token's format and expiration, as well refresh the token:
 
 | attribute | options | desc |
 | :--- | :--- | :--- |
@@ -60,7 +60,7 @@ link:
 
 ### Get Access Token
 
-Next step is exchange client id and secret for  Access Token.
+Next step is to exchange client id and secret for Access Token.
 
 Using Basic & form-url-encoded:
 
@@ -149,7 +149,7 @@ curl -H 'Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi'
 
 ### Revoke Access Token \(Close Session\)
 
-Aidbox create  Session \(resource\) for each Access Token, which can be closed with special endpoint `DELETE /Session` with token in Authorization header:
+Aidbox create  Session \(resource\) for each Access Token that can be closed with the special endpoint `DELETE /Session` with the token in the Authorization header:
 
 {% code title="close-session" %}
 ```yaml

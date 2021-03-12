@@ -4,15 +4,15 @@ description: Aidbox Core Engine Overview
 
 # Entities & Attributes
 
-In Aidbox almost everything is a **Resource**. Resource has a type, which is placed in **resourceType** attribute. All resource types are described with "meta-resources"  - **Entity** and **Attribute**. **Entity** defines resource or complex type and set of **Attributes** describe its structure.
+In Aidbox, almost everything is a **Resource**. Resource has a type, which is placed in **resourceType** attribute. All resource types are described with "meta-resources"  - **Entity** and **Attribute**. **Entity** defines the resource or complex type and set of **Attributes** describe its structure.
 
 ### Entity
 
-Entity is meta-resource, which describe all resources in aidbox. There are  three types of Entities - resource, type and primitive. 
+Entity is meta-resource, which describe all resources in aidbox. There are three types of Entities: resource, type and primitive. 
 
 #### Primitives:
 
-Aidbox has a set of built-in primitive types. You can get list of primitive types by this request :
+Aidbox has a set of built-in primitive types. You can get a list of primitive types by this request :
 
 ```yaml
 GET /Entity?type=primitive\
@@ -37,11 +37,11 @@ GET /Entity?type=primitive\
 ...
 ```
 
-For now there is no way to define custom primitive type - contact us if you need it!
+For now there is no way to define custom primitive type. Contact us if you need it.
 
 #### Complex Types:
 
-Complex types are built from primitive types and re-used to define repeating complex elements in resources. Here is request to inspect complex types in your box.
+Complex types are built from primitive types and re-used to define repeating complex elements in resources. Here is the request to inspect complex types in your box.
 
 ```yaml
 GET /Entity?type=type\
@@ -90,7 +90,7 @@ GET /Attribute?entity=Address\
 
 #### Resources
 
-Entities with type **resource** represent Aidbox resources. Aidbox generates on-fly database schema to store resources, REST endpoints to Create/Read/Update/Patch/Delete/Search, validation schema etc.
+Entities with the type **resource** represent Aidbox resources. Aidbox generates the database schema to store resources on the fly, REST endpoints to Create/Read/Update/Patch/Delete/Search, validation schema etc.
 
 You can list resources in your box with:
 
@@ -116,7 +116,7 @@ GET /Entity?type=resource\
 - {id: AllergyIntolerance, module: fhir-4.0.0, description: 'Allergy or Intolerance (generally: Risk of adverse reaction to a substance)'}
 ```
 
-And see attributes of specific resource:
+And see attributes of the specific resource:
 
 ```yaml
 GET /Attribute?entity=Patient\

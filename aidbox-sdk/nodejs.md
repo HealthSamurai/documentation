@@ -30,7 +30,7 @@ var ctx = {
 
 
 
-Operation response must return an object containing at least a resource property. The status and headers fields are optional. Let's describe new operation - called "report", we will obtain count of Aidbox default resource - Attribute. Our handle will looks like this
+Operation response must return an object containing at least a resource property. The status and header fields are optional. Let's describe a new operation called "report". We will obtain the count of Aidbox default resource - Attribute. Our handle will look like this
 
 {% code title="handler.js" %}
 ```javascript
@@ -61,11 +61,11 @@ const reportExtended = (ctx, msg) =>
 ```
 {% endcode %}
 
-Add it into manifest in operations section and specify `method` - http request method,  `path` - array with path request value, `handler` - link to handler 
+Add it into the manifest in operations section and specify `method` - http request method,  `path` - array with path request value, `handler` - link to handler 
 
 ### Register Subscription
 
-We have an ability to subscribe to updates of resources. For example let's subscribe for `User` resource and print to console new entities.
+We have an ability to subscribe to resources updates. For example, let's subscribe for `User` resource and print new entities to console.
 
 {% code title="subscription.js" %}
 ```javascript
@@ -75,9 +75,9 @@ const userSub =(ctx, msg) => {
 ```
 {% endcode %}
 
-Add register it into manifest in subscriptions section specifies entity and subscription handler
+Add register it into manifest in subscriptions section specifies entity and subscription handler.
 
-Our context variable with operation and subscription will looks like this
+Our context variable with operation and subscription will look like this:
 
 {% code title="ctx.js" %}
 ```javascript

@@ -1,5 +1,5 @@
 ---
-description: In this post we will see how load ICD-10 terminology into aidbox.
+description: 'In this post, you will learn how to load ICD-10 terminology into aidbox.'
 ---
 
 # Load ICD-10 terminology into Aidbox
@@ -8,22 +8,22 @@ description: In this post we will see how load ICD-10 terminology into aidbox.
 
 
 
-With a new version of Aidbox we provide you with set of terminology packages like ICD-10 and LOINC and a special bulk operation to import this code sets.
+With a new version of Aidbox we provide you with a set of terminology packages like ICD-10 and LOINC and a special bulk operation to import these code sets.
 
-You can read more about how terminology service designed in a our CTO blog post - [Two-phase terminology](https://medium.com/@niquola/two-phase-fhir-terminology-e52e1b105f6d). 
+You can read more about how terminology service is designed in a our CTO blog post - [Two-phase terminology](https://medium.com/@niquola/two-phase-fhir-terminology-e52e1b105f6d). 
 
-Aidbox team prepared terminology packages with popular code systems for your. This packages are essentially ndjson files with set of concept resources and they are available by public url in our cloud.
+Aidbox team prepared terminology packages with popular code systems. These packages are essentially ndjson files with a set of concept resources and they are available by public url in our cloud.
 
-Here is the few packages you can start with:
+Here are a few packages you can start with:
 
 * ICD-10 - [https://storage.googleapis.com/aidbox-public/icd10/icd10cm.ndjson.gz](https://storage.googleapis.com/aidbox-public/icd10/icd10cm.ndjson.gz)
 * LOINC - [https://storage.googleapis.com/aidbox-public/loinc/loinc-concepts-2.65.ndjson.gz](https://storage.googleapis.com/aidbox-public/loinc/loinc-concepts-2.65.ndjson.gz)
 
-Rx-Norm, SNOMED-CT and basic FHIR CodeSystems/ValueSets packages are in progress. If you need something specific - ping us in a [Aidbox Community Chat](https://community.aidbox.app).
+Rx-Norm, SNOMED-CT and basic FHIR CodeSystems/ValueSets packages are in progress. If you need something specific, ping us in a [Aidbox Community Chat](https://community.aidbox.app).
 
-In this tutorial we will load ICD-10 deceases codes into Aidbox and see how we can lookup codes using Concept resource Search API.
+In this tutorial, we will load ICD-10 deceases codes into Aidbox and see how we can look up codes using Concept resource Search API.
 
-To import this terminology packs you can use  `terminology/$import` operation. Let's load ICD-10 \(Classification of Deceases\) - just copy-paste following snippet into REST console in Aidbox UI:
+To import these terminology packs, you can use  `terminology/$import` operation. Let's load ICD-10 \(Classification of Deceases\): just copy-paste the following snippet into REST console in Aidbox UI:
 
 {% code title="request.yalm" %}
 ```yaml
@@ -33,7 +33,7 @@ url: 'https://storage.googleapis.com/aidbox-public/icd10/icd10cm.ndjson.gz'
 ```
 {% endcode %}
 
-You will get response with numbers of resources loaded:
+You will get a response with numbers of resources loaded:
 
 {% code title="response.yaml" %}
 ```yaml
@@ -42,9 +42,9 @@ result: {CodeSystem: 1, ValueSet: 1, Concept: 44487}
 ```
 {% endcode %}
 
-As you can see package consists of one CodeSystem, one ValueSet and about 40K concepts with decease codes.
+As you can see, a package consists of one CodeSystem, one ValueSet and about 40K concepts with decease codes.
 
-Let's go to REST console and see what do we have:
+Let's go to REST console and see what we have:
 
 ```yaml
 GET /CodeSystem
@@ -88,7 +88,7 @@ entry:
     description: This value set includes all ICD-10 codes.
 ```
 
-Now we can search diagnoses with for example [\_ilike](../../basic-concepts/search-1/#_ilike-search-non-fhir) parameter:
+Now we can search diagnoses with, for example, [\_ilike](../../basic-concepts/search-1/#_ilike-search-non-fhir) parameter:
 
 ```yaml
 GET /Concept?system=ICD-10&_ilike=flue
@@ -117,13 +117,13 @@ entry:
 ...
 ```
 
-Or  inspect concepts in Aidbox Console UI:
+Or inspect concepts in Aidbox Console UI:
 
 ![](../../.gitbook/assets/screen-shot-2019-05-14-at-17.23.53.png)
 
 ### Indexing \_like search
 
-Health Samurai Team is working on declarative search indexing in future release. For now let's create trigram index to make `_ilike` search faster. Go to SQL Console and execute following statement:
+Health Samurai Team is working on declarative search indexing in the future release. For now, let's create a trigram index to make `_ilike` search faster. Go to SQL Console and execute the following statement:
 
 ```sql
 CREATE INDEX concept_trgm_idx  on concept
@@ -138,7 +138,7 @@ Try `_ilike` search again - is it faster?
 
 ### Clean up
 
-To clean up all terminology you can truncate all related tables from db console:
+To clean up all terminology, you can truncate all related tables from db console:
 
 ```sql
 truncate concept;

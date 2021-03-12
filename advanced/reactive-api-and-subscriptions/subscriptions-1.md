@@ -1,10 +1,10 @@
 # Subscriptions
 
-Aidbox subscriptions module is a way to subscribe and get notifications about updating resources on server. It is a common denominator of FHIR R4/R5 subscriptions specification with some extensions.
+Aidbox subscriptions module is a way to subscribe and get notifications about updating resources on the server. It is a common denominator of FHIR R4/R5 subscriptions specification with some extensions.
 
 This module introduces two new resources into Aidbox:
 
-* SubsSubscription — meta-resource which binds events \(create/update/delete resource\) with communication channel through which subscriber will be notified about changes.
+* SubsSubscription — meta-resource which binds events \(create/update/delete resource\) with a communication channel through which subscriber is notified about changes.
 * SubsNotification — resource which represents notification with its status \(sent or not\).
 
 {% hint style="warning" %}
@@ -56,7 +56,7 @@ channel:
 
 ### Trigger format
 
-Subscription.trigger is a key-value object, where key is resource type and each value can contain collection of events \(values can be 'all', 'create', 'update', 'delete'\) and .filter collection. For now filter support [**matcho**](../usdmatcho.md) engine \(FHIRPath and FHIR Search filters are coming soon\):
+Subscription.trigger is a key-value object, where key is resource type and each value can contain a collection of events \(values can be 'all', 'create', 'update', 'delete'\) and .filter collection. For now filter support [**matcho**](../usdmatcho.md) engine \(FHIRPath and FHIR Search filters are coming soon\):
 
 ```yaml
 trigger:
@@ -66,7 +66,7 @@ trigger:
      - matcho: { type: { coding: [{code: 'Sometype'}]}
 ```
 
-Filter matches if at least one of item in collection matches, i.e. collection has `or` semantic.
+Filter matches if at least one of item in the collection matches, i.e. collection has `or` semantic.
 
 ### Protocol
 
@@ -83,7 +83,7 @@ Content-Type: application/json
 }
 ```
 
-On every trigger event Aidbox will send notification to your service endpoint. Your service has to respond with `status: 200` and optional json body.
+On every trigger event Aidbox will send a notification to your service endpoint. Your service has to respond with `status: 200` and optional json body.
 
 ```yaml
 POST https://myservice/subs/patient
@@ -114,7 +114,7 @@ response: <response content if present>
 
 ### SubsSubscription/&lt;id&gt;/$handshake
 
-You can force handshake notification for specific subscription with:
+You can force a handshake notification for the specific subscription with:
 
 ```yaml
 POST /SubsSubscription/<sub-id>/$handshake
@@ -134,7 +134,7 @@ error: {message: Connection refused}
 
 ### SubsSubscription/&lt;id&gt;/$debug
 
-To debug subscription notifications you can send debug messages with:
+To debug subscription notifications, you can send debug messages with:
 
 ```yaml
 POST /SubsSubscription/<sub-id>/$debug
@@ -161,7 +161,7 @@ error: {message: Connection refused}
 
 ### SubsNotification/$notify \(not implemented yet\)
 
-Or you can send list of notifications by providing list of search params:
+Or you can send a list of notifications by providing a list of search params:
 
 ```yaml
 POST /SubsNotification/$notify?_id=id-1,id-2,id-3
@@ -169,7 +169,7 @@ POST /SubsNotification/$notify?_id=id-1,id-2,id-3
 
 ### SubsNotification/&lt;id&gt;/$notify
 
-You can resend specific notification with
+You can resend the specific notification with
 
 ```yaml
 POST /SubsNotification/<notif-id>/$notify

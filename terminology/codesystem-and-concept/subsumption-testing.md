@@ -2,7 +2,7 @@
 
 ## Overview
 
-Test the subsumption relationship between code/Coding A and code/Coding B given the semantics of subsumption in the underlying code system. For more details see official documentation [FHIR CodeSystem $subsumes](%20https://www.hl7.org/fhir/codesystem-operations.html#subsumes) 
+Test the subsumption relationship between code/Coding A and code/Coding B given the semantics of subsumption in the underlying code system. For more details, see the official documentation [FHIR CodeSystem $subsumes](%20https://www.hl7.org/fhir/codesystem-operations.html#subsumes) 
 
 ## Api
 
@@ -27,7 +27,7 @@ URL: [base]/CodeSystem/[id]/$subsumes
 
 ### Examples
 
-We will use [goal-status CodeSystem](https://www.hl7.org/fhir/codesystem-goal-status.html), which consists of :
+We will use [goal-status CodeSystem](https://www.hl7.org/fhir/codesystem-goal-status.html) which consists of :
 
 | Code | Parent codes |
 | :--- | :--- |

@@ -6,7 +6,7 @@ description: In this guide we will generate synthea data and load it into aidbox
 
 ### Generate synthea data
 
-We gonna generate synthetic data with [synthea](https://github.com/synthetichealth/synthea) project:
+We are going to generate synthetic data with [synthea](https://github.com/synthetichealth/synthea) project:
 
 ```bash
 # brew install gradle
@@ -54,7 +54,7 @@ source: 'https://storage.googleapis.com/aidbox-public/synthea/100/Observation.nd
 {total: 20382}
 ```
 
-Let see we have data in aidbox:
+Let see the data in aidbox:
 
 ```yaml
 GET /Patient?_ilike=John&_revinclude=Observation:patient

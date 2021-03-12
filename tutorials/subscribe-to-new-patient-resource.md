@@ -1,19 +1,19 @@
 ---
 description: >-
   From this tutorial you will learn how to make Aidbox notify your service when
-  new Patient resource is created using Subscription module.
+  a new Patient resource is created using Subscription module.
 ---
 
 # Subscribe to new Patient resource
 
 Aidbox [subscriptions module](../advanced/reactive-api-and-subscriptions/subscriptions-1.md) is a way to subscribe and get notifications about updating resources on server. It introduces two new resourceTypes into Aidbox:
 
-* SubsSubscription — meta-resource, which binds events \(create/update/delete resource\) with communication channel through which subscriber will be notified about.
-* SubsNotification — resource, which represents notification with its status \(sent or not\).
+* SubsSubscription — a meta-resource, which binds events \(create/update/delete resource\) with communication channel through which a subscriber will be notified about.
+* SubsNotification — a resource, which represents the notification with its status \(sent or not\).
 
-In order to start receive notifications, you have to register your services as a subscriber in Aidbox by creating **SubsSubscription** resource.
+In order to start receive notifications, you have to register your services as a subscriber in Aidbox by creating a **SubsSubscription** resource.
 
-As external service to integrate Aidbox with we will you [RequestCatcher](https://requestcatcher.com/). We will use aidbox name, so the final name of our service will be [https://aidbox.requestcatcher.com/](https://aidbox.requestcatcher.com/). You can use your own name, doesn't matter.
+As external service to integrate Aidbox with, we will use [RequestCatcher](https://requestcatcher.com/). We will use aidbox name, so the final name of our service will be [https://aidbox.requestcatcher.com/](https://aidbox.requestcatcher.com/). You can use your own name.
 
 Open [https://aidbox.requestcatcher.com/](https://aidbox.requestcatcher.com/) in new tab, then create next **SubsSubsription** resource in your Aidbox instance:
 
@@ -34,11 +34,11 @@ channel:
     contentType: json
 ```
 
-After you did it aidbox sends on channel.endpoint handshake notification, which you can see on your opened tab with RequestCatcher.
+After that, aidbox sends a handshake notification on channel.endpoint, which you can see on your opened tab with RequestCatcher.
 
 ![](../.gitbook/assets/screenshot-2020-11-11-at-20.06.20.png)
 
-Let's create new patient then.
+Let's create a new patient then.
 
 ```yaml
 POST /Patient
@@ -51,7 +51,7 @@ name:
 # Response: 201 Created
 ```
 
-Then you can back to RequestCatcher service and see new notification.
+Then you can back to RequestCatcher service and see a new notification.
 
 ![](../.gitbook/assets/screenshot-2020-11-11-at-20.06.57.png)
 
@@ -84,7 +84,7 @@ entry:
 # ... other notification
 ```
 
-If you will update your patient, then notification will not be created, because we subscribed only for creation of Patient resource.
+If you will update your patient, then the notification will not be created, because we subscribed only for the creation of a Patient resource.
 
 ```yaml
 PUT /Patient/john-smith
@@ -97,5 +97,5 @@ gender: male
 # Response: 200 OK
 ```
 
-Check RequestCatcher and SubsNotification. You will not find new notification there.
+Check RequestCatcher and SubsNotification. You will not find new notifications there.
 

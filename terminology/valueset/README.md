@@ -6,7 +6,7 @@ The ValueSet resource official FHIR documentation can be found here: [https://ww
 
 All examples below can be executed in the REST Console of your Box in Aidbox.Cloud. Just copy/paste a sample into the REST Console and click the EXECUTE button or press Ctrl+Enter.
 
-Also, you can run all examples in [Postman](https://www.getpostman.com/) having [Aibox.Dev](https://www.health-samurai.io/aidbox) running locally, or by setting up a box in Aidbox.Cloud. Download the Aidbox collection and open it in Postman. Setup the proper environment value for the `base` variable which should be the base URL of your FHIR server. Setup authorization if you are using Aidbox.Cloud.
+Also, you can run all examples in [Postman](https://www.getpostman.com/) having [Aibox.Dev](https://www.health-samurai.io/aidbox) running locally, or by setting up a box in Aidbox.Cloud. Download the Aidbox collection and open it in Postman. Set up the proper environment value for the `base` variable which should be the base URL of your FHIR server. Setup authorization if you are using Aidbox.Cloud.
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/view-collection/63adc3e748810862fddd?referrer=https%3A%2F%2Fapp.getpostman.com%2Frun-collection%2F63adc3e748810862fddd%23%3Fenv[Aidbox.Dev]%3DW3sia2V5IjoiYmFzZSIsInZhbHVlIjoiaHR0cDovL2xvY2FsaG9zdDo4ODg4IiwiZGVzY3JpcHRpb24iOiIiLCJlbmFibGVkIjp0cnVlfV0%3D&_ga=2.64469999.1592054488.1539615553-1595564802.1538573158)
 
@@ -261,7 +261,7 @@ POST {{base}}/ValueSet/$expand
 
 Create a ValueSet using the `exclude.concept` element.
 
-Include all concepts from the [http://hl7.org/fhir/contact-point-system](http://hl7.org/fhir/contact-point-system) system and exclude concepts pager, url, and other. Now, the value set should include only values phone, fax, email, and sms.
+Include all concepts from the [http://hl7.org/fhir/contact-point-system](http://hl7.org/fhir/contact-point-system) system and exclude concepts pager, url, and other. Now the value set should include only values phone, fax, email, and sms.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -345,7 +345,7 @@ POST {{base}}/ValueSet/$expand
 
 Create a ValueSet using the `exclude.filter` element.
 
-Include all concepts from the [http://hl7.org/fhir/contact-point-system](http://hl7.org/fhir/contact-point-system) code system and exclude concepts by the filter: exclude all concepts with length of code = 3 \(sms, fax, url\). So that the value set should include only values: phone, email, pager, and other.
+Include all concepts from the [http://hl7.org/fhir/contact-point-system](http://hl7.org/fhir/contact-point-system) code system and exclude concepts by the filter: exclude all concepts with the length of code = 3 \(sms, fax, url\). So the value set should include only values: phone, email, pager, and other.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -431,7 +431,7 @@ Selects concepts found in this value set. This is an absolute URI that is a refe
 
 N/B:  `ValueSet.compose.include.valueSet` ****should be an array not a string.
 
-Let's include the `administrative-gender` valueset. The result will be 4 concepts: `male`, `female`, `unknown`, and `other`.
+Let's include the `administrative-gender` value set. There will be 4 concepts: `male`, `female`, `unknown`, and `other`.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -575,7 +575,7 @@ The `filter.op` element defines the kind of operation to perform as a part of th
 |  generalizes |  Generalizes \(by Subsumption\) | `Not supported` |
 |  exists |  Exists | `Supported` |
 
-In the examples below, we will use the [goal-status](https://www.hl7.org/fhir/codesystem-goal-status.html) code system which consists of :
+In the examples below we will use the [goal-status](https://www.hl7.org/fhir/codesystem-goal-status.html) code system which consists of :
 
 | Code | Parent codes |
 | :--- | :--- |
@@ -920,11 +920,11 @@ POST {{base}}/ValueSet/$expand
 
 ### Regular Expression
 
-Aidbox supports filter opearion `regex` and implements Postgresql regular expressions.  See the documentation here: [https://www.postgresql.org/docs/9.3/static/functions-matching.html\#FUNCTIONS-SIMILARTO-REGEXP](https://www.postgresql.org/docs/9.3/static/functions-matching.html#FUNCTIONS-SIMILARTO-REGEXP).
+Aidbox supports filter operation `regex` and implements Postgresql regular expressions. See the documentation here: [https://www.postgresql.org/docs/9.3/static/functions-matching.html\#FUNCTIONS-SIMILARTO-REGEXP](https://www.postgresql.org/docs/9.3/static/functions-matching.html#FUNCTIONS-SIMILARTO-REGEXP).
 
-Please notice that regular expressions require additional character escaping in JSON.
+Please notice that regular expressions require an additional character escaping in JSON.
 
-Let's include codes where the specified property of the code matches the regex specified in the provided value `\\w{8}`. The result will include 4 values which length is 8 symbols: `proposed`, `accepted`, `achieved`, and `rejected`. 
+Let's include codes where the specified property of the code matches the regex specified in the provided value `\\w{8}`. The result will include 4 values that have 8 symbols in length: `proposed`, `accepted`, `achieved`, and `rejected`. 
 
 {% tabs %}
 {% tab title="Request" %}

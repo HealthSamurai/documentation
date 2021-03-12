@@ -2,7 +2,7 @@
 
 ## Overview
 
-Concept resource has similar structure as Coding and [CodeSystem.concept](https://www.hl7.org/fhir/codesystem-definitions.html#CodeSystem.concept) element. When you upload code system into [Aidbox](https://www.health-samurai.io/aidbox), we split CodeSystem resource into concepts. But for your convenience CRUD operations are allowed as well on Concept resource directly. To create and manage simple  dictionary/terminology you can create set of Concepts using Create operation.
+Concept resource has a similar structure as Coding and [CodeSystem.concept](https://www.hl7.org/fhir/codesystem-definitions.html#CodeSystem.concept) element. When you upload code system into [Aidbox](https://www.health-samurai.io/aidbox), we split CodeSystem resource into concepts. But for your convenience CRUD operations are allowed as well on the Concept resource. To create and manage simple  dictionary/terminology, you can create a set of Concepts using Create operation.
 
 ```yaml
 resourceType: Concept
@@ -38,21 +38,21 @@ property:
 
 ### deprecated
 
-This is boolean flag, which can be used to deactivate \(but not delete\) concept. This is a best-practice for terminology management - _never delete concepts, but deprecate_
+This is a boolean flag, which can be used to deactivate \(but not delete\) a concept. This is the best-practice for terminology management - _never delete concepts, but deprecate_
 
 ### system
 
-It's symbolic link on CodeSystem
+It's a symbolic link on CodeSystem
 
 ### hierarchy
 
-Hierarchy element contains codes of parent concepts for hierarchical terminologies from top to bottom. This element is used for Subsumption Operation - where you test that some code **isA** another code.
+A hierarchy element contains codes of parent concepts for hierarchical terminologies from top to bottom. This element is used for Subsumption Operation where you test that some code **isA** another code.
 
 ### designation
 
-Designation element is copy semantic of [CodeSystem.concept.designation](https://www.hl7.org/fhir/codesystem-definitions.html#CodeSystem.concept.designation) - Additional representations for the concept - other languages, aliases, specialised purposes, used for particular purposes, etc. In Aidbox it is represented in more database friendly format. 
+Designation element is copy semantic of [CodeSystem.concept.designation](https://www.hl7.org/fhir/codesystem-definitions.html#CodeSystem.concept.designation) - Additional representations for the concept - other languages, aliases, specialised purposes, used for particular purposes, etc. In Aidbox, it is represented in a more database friendly format. 
 
-In  [CodeSystem.concept.designation](https://www.hl7.org/fhir/codesystem-definitions.html#CodeSystem.concept.designation) is a collection of complex elements:
+In [CodeSystem.concept.designation](https://www.hl7.org/fhir/codesystem-definitions.html#CodeSystem.concept.designation) is a collection of complex elements:
 
 ```yaml
 designation:
@@ -70,7 +70,7 @@ designation:
 // designation.where(use='display' and language='ge').value
 ```
 
-In Aidbox it's grouped by _use.code_ and after that by l_anguage_ attributes:
+In Aidbox, it's grouped by _use.code_ and after that by l_anguage_ attributes:
 
 ```yaml
 designation:
@@ -87,7 +87,7 @@ designation:
 
 ### property
 
-Property element is polymorphic element, which contains additional properties for concept like axis of classification etc. In Aidbox we use more database oriented encoding instead of FHIR generic property constructor.
+Property element is a polymorphic element, which contains additional properties for a concept like axis of classification, etc. In Aidbox, we use a more database oriented encoding instead of FHIR generic property constructor.
 
 
 

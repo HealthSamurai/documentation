@@ -8,11 +8,11 @@ description: Structured Data Capturing with Aidbox Custom Resources
 This is an ALPHA \(preview\) feature of Aidbox, which was published to collect users feedback. It's available now on 0.4.2-SNAPSHOT Aidbox.Dev and on edge cluster in the cloud.
 {% endhint %}
 
-Sometimes FHIR granularity is too small to collect patient data from user interfaces. For example, when a physician or a nurse record vital signs in terms of FHIR, they produce a bundle of observations. How to save this data to a FHIR server? How to keep track that this data was collected on the Vitals Form?
+Sometimes FHIR granularity is too small to collect patient data from user interfaces. For example, when a physician or a nurse records vital signs in terms of FHIR, they produce a bundle of observations. How to save this data to a FHIR server? How to keep track that this data was collected on the Vitals Form?
 
 One option is to build a transaction bundle with provenance on the client side and send it to the transaction endpoint. But with this approach it is rather problematic to track data back; update or delete it as a whole.
 
-There is a [Structured Data Capture Implementation Guide](http://hl7.org/fhir/us/sdc/index.html) \(SDC IG\) which describes how to collect data using Questionnaire and QuestionnaireResponse resources. It is a good idea and a work in progress. One problem we see with it is that QuestionnaireResponse table is stuffed with all sorts of things and managing this table, doing searches and updates is problematic. Another problem is that Questionnaire/QuestionnaireResponse are too generic and verbose which makes working with them inconvenient.
+There is a [Structured Data Capture Implementation Guide](http://hl7.org/fhir/us/sdc/index.html) \(SDC IG\) which describes how to collect data using Questionnaire and QuestionnaireResponse resources. It is a good idea and a work in progress. One problem we see with it is that the QuestionnaireResponse table is stuffed with all sorts of things and managing this table, doing searches and updates is problematic. Another problem is that Questionnaire/QuestionnaireResponse is too generic and verbose which makes working with them inconvenient.
 
 Aidbox supports Custom Resources, which cover all Questionnaire functionality and flexibility while providing many more features - validation, separate storage, search, references to other FHIR resources, etc. We applied key ideas from the [SDC IG](http://hl7.org/fhir/us/sdc/index.html) to Custom Resources to give you the best of both worlds.
 
@@ -40,9 +40,9 @@ entities:
 ```
 {% endcode %}
 
-Now we can check that  Vitals works properly.
+Now we can check that Vitals work properly.
 
-Create new vitals record:
+Create a new vitals record:
 
 {% code title="patient" %}
 ```yaml
@@ -111,7 +111,7 @@ extracted:
 
 **template** it structured as `{ [resourceType] : { [id-prefix] : <resource-template> }}`, for example to generate Observation with prefix tmp you write `{Observation: {tmp: <resource-template>}}`
 
-**&lt;resource-template&gt;** is a template/prototype of a resulting FHIR resource, where some attributes  contain substitution rules like `{ $path!: ["attr", "attr"]}`. These rules will be replaced with values from Custom resource, indicated by this path.
+**&lt;resource-template&gt;** is a template/prototype of a resulting FHIR resource, where some attributes contain substitution rules like `{ $path!: ["attr", "attr"]}`. These rules will be replaced with values from Custom resource, indicated by this path.
 
 ### Create SDC resource
 
@@ -183,7 +183,7 @@ ts: '2019-04-09T12:00:00Z'
 ```
 {% endcode %}
 
-You should to see the following response:
+You should see the following response:
 
 ```yaml
 source: <original resource>

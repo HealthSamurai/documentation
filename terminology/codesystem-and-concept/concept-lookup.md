@@ -2,7 +2,7 @@
 
 > Given a code/system, or a Coding, get additional details about the concept, including definition, status, designations, and properties. One of the products of this operation is a full decomposition of a code from a structure terminology
 
-In [Aidbox](https://www.health-samurai.io/aidbox) this is essentially the same as search Concept by system and code
+In [Aidbox](https://www.health-samurai.io/aidbox), this is essentially the same as search Concept by system and code
 
 ```http
 GET [base]/fhir/CodeSystem/$lookup?system=http://loinc.org&code=1963-8
@@ -14,15 +14,15 @@ equals to
 GET [base]/Concept?system=http://loinc.org&code=1963-8
 ```
 
-The only difference is response format.
+The only difference is the response format.
 
-With Concept Search you can do even more, than just getting one concept. For example search and filter by any concept elements. 
+With Concept Search you can do even more than just getting one concept. For example, you can search and filter by any concept elements. 
 
 ```text
 POST [base]/CodeSystem/$lookup
 ```
 
-More info in [official doc](https://www.hl7.org/fhir/codesystem-operations.html#lookup).
+More info can be found in the [official doc](https://www.hl7.org/fhir/codesystem-operations.html#lookup).
 
 ### Parameters
 

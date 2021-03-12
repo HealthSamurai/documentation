@@ -2,14 +2,14 @@
 
 ## Introduction
 
-The tool introduced by FHIR to provide a separate validation mechanism for 2-steps commit workflow or for development needs. It works for create, update and delete operations, is called using `?mode=` query parameter with values `create`, `update`, `delete` but changes won't be committed, instead a requester will get an `OperationOutcome` with information about validation results. See [http://hl7.org/fhir/resource-operation-validate.html](http://hl7.org/fhir/resource-operation-validate.html) for the official documentation. 
+The tool introduced by FHIR to provide a separate validation mechanism for 2-steps commit workflow or for development needs. It works for create, update and delete operations, is called using `?mode=` query parameter with values `create`, `update`, `delete` but changes won't be committed. Instead a requester will get an `OperationOutcome` with information about validation results. See [http://hl7.org/fhir/resource-operation-validate.html](http://hl7.org/fhir/resource-operation-validate.html) for the official documentation. 
 
 ```text
 POST [base]/[type]/$validate
 POST [base]/[type]/[id]/$validate
 ```
 
-Such requests check resource structure, internal business rules and return a list of problems if some exist.
+Such requests check the resource structure, internal business rules and return a list of problems if some exist.
 
 * **`200`** **OK** — those requests always return status 200
 

@@ -12,7 +12,7 @@ Aidbox generate structured logs in Newline Delimited JSON format \(ndjson\).
 
 Logs format are friendly to load into PostgreSQL, ElasticSearch and other database. Upcoming Aidbox.CLI util will help you with that.
 
-Aidbox logger can be configured to log into file system with built-in rotation or to stdout.
+Aidbox logger can be configured to log into the file system with built-in rotation or to stdout.
 
 
 
@@ -82,7 +82,7 @@ GET /_logs
 
 ### Demos
 
-#### Watch server logs in browser console:
+#### Watch server logs in the browser console:
 
 {% embed url="https://www.youtube.com/watch?v=sLfUHQHT5CU" %}
 

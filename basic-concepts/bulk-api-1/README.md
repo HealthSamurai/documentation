@@ -6,7 +6,7 @@ description: Bulk export & import operations
 
 ## $dump 
 
-You can dump all resources of specific type with $dump operation - `GET [resource-type]/$dump` - Aidbox will respond with [Chunked Transfer Encoding](https://en.wikipedia.org/wiki/Chunked_transfer_encoding) [ndjson](http://ndjson.org/) stream. This is memory efficient operation - Aidbox just stream database cursor to socket. If your HTTP Client support processing of Chunked Encoding  you can process resources in stream one by one without waiting for end of response.
+You can dump all resources of a specific type with $dump operation - `GET [resource-type]/$dump` - Aidbox will respond with [Chunked Transfer Encoding](https://en.wikipedia.org/wiki/Chunked_transfer_encoding) [ndjson](http://ndjson.org/) stream. This is a memory efficient operation - Aidbox just streams database cursor to socket. If your HTTP Client supports processing of Chunked Encoding, you can process resources in stream one by one without waiting for end of the response.
 
 ```yaml
 GET /Patient/$dump
@@ -24,7 +24,7 @@ Transfer-Encoding: chunked
 .........
 ```
 
-Here is example how you can dump all patients from your box \(assuming you have a client with access policy\):
+Here is an example of how you can dump all patients from your box \(assuming you have a client with access policy\):
 
 ```bash
 curl -u client:secret -H 'content-type:application/json' \
@@ -33,7 +33,7 @@ curl -u client:secret -H 'content-type:application/json' \
 
 ## $dump-sql
 
-Takes sql query and responds with Chunked Encoded stream in CSV format. Useful to export data for analytics.
+Takes the sql query and responds with the Chunked Encoded stream in CSV format. Useful to export data for analytics.
 
 ```yaml
 POST /$dump-sql
@@ -57,7 +57,7 @@ You can efficiently load data into Aidbox  in _ndjson_ _gz_ format from external
 There are two versions of this operation - `/fhir/$load` accepts data in FHIR format,  `/$load` works with Aidbox format.
 
 {% hint style="danger" %}
-Keep in mind that $load does not validate inserted resources for the sake of performance. Be mindful about data you insert and use correct URL for your data format.
+Keep in mind that $load does not validate inserted resources for the sake of performance. Be mindful of the data you insert and use correct URL for your data format.
 {% endhint %}
 
 Here how you can load 100 synthea Patients \(see [tutorial](synthea-by-bulk-api.md)\):

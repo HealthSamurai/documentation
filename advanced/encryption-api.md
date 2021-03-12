@@ -13,7 +13,7 @@ POST /$encrypt-key
 # 00055DDDF7BB2A52C21651283F346C048C8470CAE2796A2A2346994A05DA760B
 ```
 
-Copy key into the box ENV variables and restart devbox:
+Copy this key into the box ENV variables and restart devbox:
 
 ```text
 AIDBOX_ENCRYPT_KEY="00055DDDF7BB2A52C21651283F346C048C8470CAE2796A2A2346994A05DA760B"

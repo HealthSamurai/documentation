@@ -16,7 +16,7 @@ All sample requests are available in the Postman collection:[![Run in Postman](h
 | Resource Type | `GET /<RESOURCE_TYPE>/_history{?[parameters]&_format=[mime-type]}` | `Supported` |
 | All Resources | `GET /_history{?[parameters]&_format=[mime-type]}` | `Not Supported` |
 
-The result of history operation is a Bundle with type `history` containing the specified version history, sorted with newest versions first, and including deleted resources.
+The result of the history operation is a Bundle with type `history` containing the specified version history, sorted with newest versions first, and including deleted resources.
 
 The `request` element provides information about the interaction that occurred and caused the new version of the resource.
 

@@ -2,7 +2,7 @@
 
 ### Observation/$lastn
 
-Implementation of [standard FHIR endpoint](https://www.hl7.org/fhir/observation-operations.html#10.1.20.2) to fetch last N observations of every available type. NB this endpoint accepts Obervations's search parameters in query string, so you can specify search criterias for Observations:
+Implementation of [standard FHIR endpoint](https://www.hl7.org/fhir/observation-operations.html#10.1.20.2) to fetch last N observations of every available type. NB this endpoint accepts Obervations's search parameters in query string, so you can specify search criteria for Observations:
 
 ```text
 GET /fhir/Observation/$lastn?subject=Patient/123&max=5

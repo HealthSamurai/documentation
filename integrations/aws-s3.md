@@ -17,7 +17,7 @@ region: us-east-1
 
 #### Get signed URL to upload the data
 
-Provide AwsAccount id as well as the bucket name and get back the signed URL that you can use to upload the data. By default the link is valid for 24 hours.
+Provide AwsAccount id as well as the bucket name and get back the signed URL that you can use to upload the data. By default, the link is valid for 24 hours.
 
 ```text
 POST /aws/storage/my-account/aidboxtestbucket
@@ -29,7 +29,7 @@ filename: example.txt
 #  url: <signed-url>  
 ```
 
-You should use PUT request method with signed URL and provide content data in request body.
+You should use PUT request method with signed URL and provide content data in the request body.
 
 ```text
 PUT <signed-url>
@@ -39,7 +39,7 @@ mysimplefilecontent
 # status: 200
 ```
 
-#### Get signed URL to retrieve the data
+#### Get a signed URL to retrieve the data
 
 ```text
 GET /aws/storage/my-account/aidboxtestbucket/example.txt
@@ -57,7 +57,7 @@ GET <signed-url>
 
 #### Configuration options
 
-You can provide expiration query parameter which sets X-Amz-Expires query param of signed URL. Expiration time is measured in seconds, e.g. for 12 hours expiration you should provide 43200.
+You can provide an expiration query parameter which sets X-Amz-Expires query param of signed URL. Expiration time is measured in seconds, e.g. for 12 hours expiration you should provide 43200.
 
 ```text
 GET /aws/storage/my-account/aidboxtestbucket/example.txt?expiration=43200

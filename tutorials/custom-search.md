@@ -228,7 +228,7 @@ GROUP BY p.id;
 | `patient1` | `[{"status":"draft","subject":{"id":"patient1","resourceType":"Patient"}}, {"status":"draft","subject":{"id":"patient1","resourceType":"Patient"}}]` |
 | `patient2` | `[{"status":"draft","subject":{"id":"patient2","resourceType":"Patient"}}]` |
 
-Looks good but there's no information about encounter id's.
+Looks good but there's no information about the encounter id.
 
 {% code title="patients-encounters-with-ids.sql" %}
 ```sql
@@ -261,7 +261,7 @@ GROUP BY p.id;
 | `patient1` | `[{"id":"enc1","status":"draft","subject":{"id":"patient1","resourceType":"Patient"},"resource_type":"Encounter"},{"id":"enc2","status":"draft","subject":{"id":"patient1","resourceType":"Patient"},"resource_type":"Encounter"}]` |
 | `patient2` | `[{"id":"enc3","status":"draft","subject":{"id":"patient2","resourceType":"Patient"},"resource_type":"Encounter"}]` |
 
-Additionally, we added resourceType and id to the patient resource but didn't use it yet. Let's put encounters to the patient resource and take only one patient by specified id.
+Additionally, we added resourceType and id to the patient resource but didn't use it yet. Let's put encounters to the patient resource and take only one patient by the specified id.
 
 {% code title="patients-with-encounters-and-ids.sql" %}
 ```sql
@@ -317,7 +317,7 @@ The result should look like the following table \(but without pretty printing\):
   </tbody>
 </table>
 
-Now let's make the results of this query accessible via REST API. To do that, we need to create `AidboxQuery` resource:
+Now let's make the results of this query accessible via REST API. To do that, we need to create the `AidboxQuery` resource:
 
 {% tabs %}
 {% tab title="Request" %}

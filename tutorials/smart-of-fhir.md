@@ -1,6 +1,6 @@
 # SMART on FHIR
 
-SMART apps it is third-party applications which interact with medical data provided FHIR server. They usually run on behalf of a patient or clinician. For more information - see [spec](http://www.hl7.org/fhir/smart-app-launch/).
+SMART apps are third-party applications which interact with the medical data provided by the FHIR server. They are usually run on behalf of a patient or clinician. For more information, see the [spec](http://www.hl7.org/fhir/smart-app-launch/).
 
 ### Application registration
 
@@ -136,7 +136,7 @@ Obtaining configuration metadata
 {% endapi-method-spec %}
 {% endapi-method %}
 
-After this application runs authorization code flow with additional parameter - `launch` - encoded data bonded  with current application session. When application successfully authorize it will requests token and expects the response will contain context \(e.g. patient id\).
+After this application runs the authorization code flow with an additional parameter - `launch` - encoded data bonded with the current application session. When the application successfully authorizes, it will request the token and expect the response which contains the context \(e.g. patient id\).
 
 {% tabs %}
 {% tab title="Token response" %}
@@ -150,7 +150,7 @@ After this application runs authorization code flow with additional parameter - 
 
 ### Launch real app
 
-We will launch [Growth Chart](https://github.com/smart-on-fhir/growth-chart-app) - application which displays statistical data for the patient. See information in repo about how run it locally.
+We will launch [Growth Chart](https://github.com/smart-on-fhir/growth-chart-app) - application which displays statistical data for the patient. See the information in repo about how to run it locally.
 
 Then create `Client` and `User` resources for this app
 
@@ -424,7 +424,7 @@ entry:
 {% endtab %}
 {% endtabs %}
 
-Then find created patient in **resources** section and click the application launch button, you will be redirected to new tab with started app.
+Then find the created patient in the **resources** section and click the application launch button, you will be redirected to new tab with started app.
 
 ![Growth charts](../.gitbook/assets/screenshot-2019-03-11-12.09.53.png)
 

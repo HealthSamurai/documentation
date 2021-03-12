@@ -6,13 +6,13 @@ The [`CodeSystem`](https://www.hl7.org/fhir/codesystem.html) resource specifies 
 
 [Aidbox](https://www.health-samurai.io/aidbox) assumes a separate creation of the `CodeSystem` resource and a set of `Concepts` composing it. This means that the CodeSystem resource describes only meta information of the code system: url, name, publisher, etc. Whereas Concept resources describe the content of the code system and are associated with the code system by the Concept.system attribute with the same value as the CodeSystem.url element.
 
-For FHIR conformance, we allow to create the CodeSystem resource with a list of included concepts. In the moment of saving a CodeSystem, if it contains listed Concepts, then Aidbox saves submitted Concepts as separate resources, and the CodeSystem resource itself is saved without the concept attribute. This method of the CodeSystem creation may be used for small dictionaries \(generally, not more than 100 concepts\). In case when your code system is big, Aidbox strongly recommends to create the CodeSystem resource separately and upload Concepts in parts.
+For FHIR conformance, we allow to create the CodeSystem resource with a list of included concepts. If it contains listed Concepts at the moment of saving a CodeSystem, then Aidbox saves submitted Concepts as separate resources. The CodeSystem resource itself is saved without the concept attribute. This method of the CodeSystem creation may be used for small dictionaries \(generally, not more than 100 concepts\). In the case when your code system is big, Aidbox strongly recommends to create the CodeSystem resource separately and upload Concepts in parts.
 
 ## CRUD
 
 ### Create
 
-[`CodeSystem`](https://www.hl7.org/fhir/codesystem.html) resource can be created as a FHIR resource with embedded concepts itself. This approach is applicable for those cases if your code system contains a small number of concepts, usually no more than 100. 
+[`CodeSystem`](https://www.hl7.org/fhir/codesystem.html) resource can be created as a FHIR resource with embedded concepts itself. This approach is applicable for those cases when your code system contains a small number of concepts, usually no more than 100. 
 
 For example, we will create a `CodeSystem` for eye color containing `Brown`, `Blue`, `Green`, `Hazel`,  `Heterochromia` coded concepts.
 
@@ -68,7 +68,7 @@ STATUS: 201
 {% endtab %}
 {% endtabs %}
 
-As you can see, the request returns only `CodeSystem` meta information \(url, status, content....\), and does not return `concept` listed in then request. It is because `Aidbox` divides `CodeSystem` to `CodeSystem` body and contained concepts list, and creates all concepts as independent `Concept` resources.
+As you can see, the request returns only `CodeSystem` meta information \(url, status, content....\), and does not return `concept` listed in that request. It is because `Aidbox` divides `CodeSystem` to `CodeSystem` body and contained concepts list, and creates all concepts as independent `Concept` resources.
 
 And if we get `Concept` with `system` = `http://code.system/eyes.color`, we will receive all concepts for this CodeSystem.
 
@@ -142,7 +142,7 @@ STATUS: 200
 
 Another way to create `CodeSystem` is a separate creation of the CodeSystem body and Concepts.
 
-For example, lets create CodeSystem with custom subset of Units of measurement \(aka [UCUM](http://unitsofmeasure.org/trac)\). We will compose this CodeSystem from the most common healthcare units of measure.
+For example, lets create a CodeSystem with a custom subset of Units of measurement \(aka [UCUM](http://unitsofmeasure.org/trac)\). We will compose this CodeSystem from the most common healthcare units of measure.
 
 | Code | Descriptive Name | Display  |
 | :--- | :--- | :--- |

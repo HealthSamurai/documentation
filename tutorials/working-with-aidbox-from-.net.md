@@ -1,9 +1,9 @@
 # Working with Aidbox from .NET
 
-### Prepare project
+### Prepare the project
 
 1. Start VisualStudio.
-2. Create project appropriate type \(for example, “Console App”\):
+2. Create the project appropriate type \(for example, “Console App”\):
 
 ![](../.gitbook/assets/1.PNG)
 
@@ -31,7 +31,7 @@
 
 ### Sample project
 
-In this [project](https://github.com/Aidbox/AidboxDemo) we create patient in the box in aidbox via [.NET API for HL7 FHIR](https://github.com/ewoutkramer/fhir-net-api). Next we read newly created patient from the demo box. Important to remember that currently [Aidbox](https://www.health-samurai.io/aidbox) doesn't support XML format and we need explicitly set it to JSON.
+In this [project](https://github.com/Aidbox/AidboxDemo) we create a patient in the box in aidbox via [.NET API for HL7 FHIR](https://github.com/ewoutkramer/fhir-net-api). Next we read a newly created patient from the demo box. It's important to remember that currently [Aidbox](https://www.health-samurai.io/aidbox) doesn't support XML format and we need explicitly set it to JSON.
 
 If you build and run application, you can see something like this:  
 

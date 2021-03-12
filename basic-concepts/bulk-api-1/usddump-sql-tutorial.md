@@ -1,5 +1,7 @@
 ---
-description: In this tutorial you will see how to use $dump-sql to export data for analytic
+description: >-
+  In this tutorial, you will see how to use $dump-sql to export data for
+  analytics
 ---
 
 # 🎓 $dump-sql tutorial
@@ -46,7 +48,7 @@ curl -u bulk-client:secret /Patient/\$dump > /tmp/pt.ndjson
 less /tmp/pt.ndjson
 ```
 
-We've got 100K  patients in less then a second!
+We got 100K patients in less than a second!
 
 Do not forget to clean up the database:
 

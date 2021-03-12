@@ -2,7 +2,7 @@
 
 ## Overview
 
-FHIR resources are very loose in requirements which gives FHIR its flexibility. For example, all elements are optional in the Patient resource, and it's possible to create a Patient resource without any data which does not make much sense. So, sometimes there is a need to constraint resources. In FHIR, you need to create a StructureDefinition resource and describe the requirements for a resource you want to restrict. And it is definitely not an easy task. There are special tools developed specifically for this. And there is an alternative — custom profiling in [Aidbox](https://www.health-samurai.io/aidbox) which is in fact a well-known JSON Schema.
+FHIR resources are very loose in requirements which gives FHIR its flexibility. For example, all elements are optional in the Patient resource, and it's possible to create a Patient resource without any data which does not make much sense. So, sometimes there is a need to constraint resources. In FHIR, you need to create a StructureDefinition resource and describe the requirements for a resource you want to restrict. And it is definitely not an easy task. There are special tools developed specifically for this. And there is an alternative — custom profiling in [Aidbox](https://www.health-samurai.io/aidbox) which is, in fact, a well-known JSON Schema.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -23,13 +23,13 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-For custom profiling, Aidbox provides additional resource `AidboxProfile`. This resource specifies resource type and [JSON Schema](https://json-schema.org/) which will validate the specified resource type.
+For custom profiling, Aidbox provides additional resource `AidboxProfile`. This resource specifies resource type and [JSON Schema](https://json-schema.org/) which validates the specified resource type.
 
 ## AidboxProfile Resource Structure
 
 ### bind 
 
-The `bind` element is of type [Reference](https://www.hl7.org/fhir/references.html). It specifies resource type which the profile will be applied to. 
+The `bind` element is of the type [Reference](https://www.hl7.org/fhir/references.html). It specifies the resource type which the profile will be applied to. 
 
 **Example:** Binding to `Practitioner` resource.
 
@@ -56,7 +56,7 @@ bind:
 
 ### schema
 
-It's a plain [JSON Schema ](https://json-schema.org/)object which will validate a resource.
+It's a plain [JSON Schema ](https://json-schema.org/)object which validates a resource.
 
 **Example:** Require the `name` attribute
 
@@ -159,7 +159,7 @@ STATUS: 201
 {% endtabs %}
 
 {% hint style="warning" %}
-If you are using Aidbox.Dev below 0.3.1 version, then after creating an AidboxProfile resource you will need to restart your Aidbox.Dev server.
+If you are using Aidbox.Dev below 0.3.1 version, then after creating an AidboxProfile resource, you will need to restart your Aidbox.Dev server.
 
 `$ docker-compose down && docker-compose up -d`
 {% endhint %}
@@ -355,7 +355,7 @@ STATUS: 201
 {% endtab %}
 {% endtabs %}
 
-Now, on Patient resource creation we will be receiving the validation error. Let's try to create a Patient resource without a `family` name. You will receive the error.
+Now, on the Patient resource creation we will be receiving the validation error. Let's try to create a Patient resource without a `family` name. You will receive the error.
 
 {% tabs %}
 {% tab title="Request YAML" %}
