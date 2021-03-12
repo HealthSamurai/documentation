@@ -4,9 +4,9 @@ description: Managed SQL for Search API
 
 # SearchQuery
 
-With **SearchQuery** resource you can define "managed"  SQL for Search API with parameters, paging, sorting and includes.
+With **SearchQuery** resource, you can define "managed"  SQL for Search API with parameters, paging, sorting and includes.
 
-Let's start from simple example - you want so search old patients by partial match of family name with filter by gender:
+Let's start from a simple example. You want to search old patients by the partial match of the family name with filter by gender:
 
 ```yaml
 PUT /SearchQuery/q-1
@@ -53,7 +53,7 @@ query-timeout: 60000
 
 You can use **count** and **page** parameters for paging and control total query \(if enabled\) with **total** parameter. Use **\_timeout** parameter to set query timeout.
 
-If parameter is provided - another query will be generated on fly:
+If parameter is provided, another query will be generated on the fly:
 
 ```yaml
 GET /alpha/Patient?query=q-1&family=joh
@@ -144,7 +144,7 @@ limit: 40
 
 #### Reverse includes
 
-To include resources, which refers resources from you query you can add **reverse**: true attribute:
+To include resources that refer resources from your query, you can add **reverse**: true attribute:
 
 ```yaml
 resourceType: SearchQuery
@@ -163,9 +163,9 @@ limit: 40
 
 #### Path in includes
 
-Path expression in includes is `json_knife` extension path, it consists of strings, integers and objects. If item in path string - it means get key in object \(arrays are implicitly flattened\). If key is integer - it is interpreted as index in array. If key is object - it is pattern to filter values in array with inclusion semantic \(like PostgreSQL JSONB operator `@>`\). 
+Path expression in includes is `json_knife` extension path, it consists of strings, integers, and objects. If the item is path string, it means get key in object \(arrays are implicitly flattened\). If key is integer, it is interpreted as index in array. If key is object, it is pattern to filter values in array with inclusion semantic \(like PostgreSQL JSONB operator `@>`\). 
 
-Here is an example - how to extract patient \(code: PART\) from appointment:
+Here is an example of how to extract a patient \(code: PART\) from the appointment:
 
 `["participant", {"type": [{"coding": [{"code": "PART"}]}, "actor"] => pt-2`
 
@@ -219,7 +219,7 @@ GET /alpha/Patient?query=cond-incl
 
 ```
 
-If you want to provide default include - define include with same key on query level and in parameter. Parameter include will override default in case parameter is provided in request.
+If you want to provide default include, define include with the same key on query level and in parameter. Parameter include will override default in case parameter is provided in request.
 
 ```yaml
 PUT /SearchQuery/cond-incl
@@ -248,7 +248,7 @@ params:
 
 ### EXPLAIN ANALYZE
 
-With parameter `_explain=analyze` you can inspect execution plan of search query:
+With the parameter `_explain=analyze` , you can inspect the execution plan of a search query:
 
 ```yaml
 GET /alpha/Encounter?query=q-2&pt=joh&_explain=analyze

@@ -4,7 +4,7 @@ description: Turn SQL into REST endpoint
 
 # AidboxQuery
 
-With `AidboxQuery` resource, you can turn your SQL query into REST Endpoint.
+With the `AidboxQuery` resource, you can turn your SQL query into REST Endpoint.
 
 ```yaml
 PUT /AidboxQuery/<query-name>
@@ -31,7 +31,7 @@ query: 'SELECT * from patient where id ilike = {{params.filter}} limit {{params.
 count-query: 'SELECT count(*) from patient where id ilike = {{params.filter}}
 ```
 
-Here is self-debugging AidboxQuery to start play with:
+Here is a self-debugging AidboxQuery to start with:
 
 ```yaml
 PUT /AidboxQuery/debug
@@ -135,7 +135,7 @@ PostgreSQL supports Special Date/Time inputs like **now**, **today**, **tomorrow
 
 ### Design AidboxQuery 
 
-To design aidbox query you can use `POST /$query/$debug`  endpoint without need to create AidboxQuery resource:
+To design the aidbox query, you can use `POST /$query/$debug`  endpoint without the need to create an AidboxQuery resource:
 
 ```yaml
 POST /$query/$debug
@@ -201,7 +201,7 @@ query:
 
 ### Parameters in Query
 
-Query can be parameterised by special template language `{{path.to.parameter}}`
+Query can be parameterised by the special template language `{{path.to.parameter}}`
 
 All parameters passed in query string will be available under `{{params.PARAMETER-NAME}}`
 
@@ -247,7 +247,7 @@ query: ['select * from public.User where id = ?', testuser]
 {% endtabs %}
 
 {% hint style="warning" %}
-It's not possible to call such AidboxQuery from REST Console, because in REST console there are no user claims. It can be done only by request with access token provided. Check [OAuth2.0]() doc for additional information.
+It's not possible to call such AidboxQuery from REST Console, because in REST console there are no user claims. It can be done only by request with the access token provided. Check [OAuth2.0]() doc for additional information.
 {% endhint %}
 
 ### \_query
@@ -262,11 +262,11 @@ GET /Patient?_query=get-by-id&rid=patient1
 GET /fhir/Patient?_query=get-by-id&rid=patient1
 ```
 
-Result will be represented as  Search Bundle. If you call it from `fhir/` base-url - resulting resources will be transformed to FHIR compliant representation.
+The result will be represented as the Search Bundle. If you call it from `fhir/` base-url, resulting resources will be transformed to the FHIR compliant representation.
 
 
 
-Main difference is that such query can use additional variable available in context of `{{resourceType}}`.
+The main difference is that such a query can use an additional variable available in context of `{{resourceType}}`.
 
 ```yaml
 POST /AidboxQuery
@@ -329,10 +329,10 @@ GET /Attribute?_query=get-by-id&rid=Encounter.status
 {% endtabs %}
 
 {% hint style="info" %}
-Pay attention that only`{{resourceType}}`can be used in place of table name, because this variable is secure and will be inserted directly into query. Other variables will be escaped and can't be used in such parts of query.
+Pay attention that only`{{resourceType}}`can be used in place of table name, because this variable is secure and will be inserted directly into the query. Other variables will be escaped and can't be used in such parts of a query.
 {% endhint %}
 
-See also our tutorial:
+See another tutorial:
 
 {% page-ref page="../../tutorials/custom-search.md" %}
 

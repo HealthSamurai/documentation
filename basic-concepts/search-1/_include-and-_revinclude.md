@@ -4,7 +4,7 @@ description: Include associated resources
 
 # \_include & \_revinclude
 
-Client can add related resources to a search result using the **\(rev\)include** and **with** parameters. In ORM frameworks, such feature is sometimes called an "associations eager loading". This technique can save extra roundtrips from client to server and potential N+1 problem.
+A client can add related resources to a search result using **\(rev\)include** and **with** parameters. In ORM frameworks, such feature is sometimes called an "associations eager loading". This technique can save extra roundtrips from the client to the server and potential N+1 problem.
 
 For example, you may want to get encounters with patients \(each encounter refers to\):
 
@@ -160,7 +160,7 @@ GET /Encounter?_include=*
 
 ### Chained \(rev\)includes
 
-Client can chain \(rev\)includes to load next level of references.  \(Rev\)includes should go in a proper loading order. By the FHIR specification, for chained includes a client must specify the `:iterate` modifier. However, in Aidbox this modifier is **optional** \(it's better to skip it\).
+Client can chain \(rev\)includes to load next level of references.  \(Rev\)includes should go in a proper loading order. According to the FHIR specification, for chained includes a client must specify the `:iterate` modifier. However, in Aidbox this modifier is **optional** \(it's better to skip it\).
 
 {% tabs %}
 {% tab title="GET" %}
@@ -268,7 +268,7 @@ Here is the [discussion](https://chat.fhir.org/#narrow/stream/179166-implementer
 
 ### Recursive \(rev\)includes
 
-For self-referencing resources you can specify the `:recurse` or `:iterate` modifier with **source-type=target-type** to recursively get all children or parents:
+For self-referencing resources, you can specify the `:recurse` or `:iterate` modifier with **source-type=target-type** to recursively get all children or parents:
 
 {% tabs %}
 {% tab title="GET" %}

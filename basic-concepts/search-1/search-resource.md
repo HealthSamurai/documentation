@@ -26,7 +26,7 @@ In "where" and "order-by" expressions you can use `{{table}}` for table name and
 
 ### format
 
-You can provide format string for value where `?` will be replaced with value of parameter. This feature may be useful for `ilike` expressions 
+You can provide the format string for value where `?` will be replaced with the value of parameter. This feature may be useful for `ilike` expressions 
 
 ### **token search**
 
@@ -53,8 +53,7 @@ token:
 
 ### multi: array
 
-If you set multi = 'array' parameters will be coerced as PostgreSQL array  
-Currently it `does not` support `param-parser: token`
+If you set multi = 'array', parameters will be coerced as PostgreSQL array.
 
 ### Examples \(executable in REST console\)
 
