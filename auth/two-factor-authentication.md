@@ -21,7 +21,7 @@ We have to create three resources to implement 2FA: User, Client, and AuthConfig
 {% tabs %}
 {% tab title="Example AuthConfig" %}
 ```
-PUT AuthConfig/myconfig
+PUT /AuthConfig/myconfig
 
 twoFactor:
  issuerName: my-app 
