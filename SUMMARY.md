@@ -7,6 +7,7 @@
   * [Release Notes](versioning-and-release-notes/release-notes.md)
   * [Releases Archive](versioning-and-release-notes/release-notes-1/README.md)
     * [0.4.7 addendum](versioning-and-release-notes/release-notes-1/0.4.7-addendum.md)
+* [FAQ](faq.md)
 * [Installation](installation/README.md)
   * [Setup Aidbox.Dev](installation/setup-aidbox.dev.md)
   * [Use Aidbox.Cloud](installation/use-aidbox.cloud.md)

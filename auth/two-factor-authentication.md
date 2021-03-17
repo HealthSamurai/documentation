@@ -12,50 +12,112 @@ This feature is in beta right now. If you have any feedback or comments, reach o
 Two Factor Authentication is not supported for external OAuth 2.0 providers
 {% endhint %}
 
-Aidbox supports Two Factor Authentication with TOTP \(time-based one-time passwords\). This article explains how to enable 2FA for a user, login with one-time password, and get an access token for your application. Familiarity with [OAuth 2.0](https://tools.ietf.org/html/rfc6749) and [TOTP](https://tools.ietf.org/html/rfc6238) is suggested. All examples are executable in Aidbox REST console.
+Aidbox supports Two Factor Authentication with TOTP \(time-based one-time passwords\). This article explains how to enable 2FA for a user, login with one-time password, and get an access token for your application. Familiarity with [OAuth 2.0](https://tools.ietf.org/html/rfc6749) and [TOTP](https://tools.ietf.org/html/rfc6238) is suggested. 
 
-#### Create configuration resources
+### Try demo app with 2FA implementation
 
-We have to create three resources to implement 2FA: User, Client, and AuthConfig. Client is needed to enable desired OAuth 2.0 flow for your application and AuthConfig stores 2FA settings. Refer to the specific OAuth flow article to understand how to create Client resource suitable for your use case.
+{% embed url="https://youtu.be/iJTKeKlJm7g" %}
 
-{% tabs %}
-{% tab title="Example AuthConfig" %}
-```
-PUT /AuthConfig/myconfig
+We've prepared the demo Python/JS/TypeScript app with Aidbox.Dev, so you can run everything on your local environment.
 
-twoFactor:
- issuerName: my-app 
- validPastTokensCount: 3 
- webhook:
-  endpoint: https://my-app.com
-  timeout: 500
-```
-{% endtab %}
+Clone the open-source application [repository](https://github.com/Aidbox/two-factor-auth-template). Follow the instructions to see how does 2FA works
 
-{% tab title="Example Client" %}
+The implemented scenario includes signup and login user flows.
+
+#### Signup
+
+1. The Client sends /auth/signup?client\_id=\[client name\]&response\_type=code to Aidbox
+2. The signup form is displayed, the only email field is required for signup.
+3. When the form with the email data is submitted, Aidbox generates a registration request, which needs to be confirmed by using a specific confirmation link. 
+4. Aidbox generates the link and sends it with a Registration Confirmation email via the defined smtp provider. For demo purposes, the email is sent to the Console output instead of sending a real email.
+5. The generated link leads the user to the Signup Set Password form.
+6. When the form is submitted with the new password, the user registration is completed. Aidbox responds with generated /auth/token and authorizes the user in the system.
+
+#### Login
+
+The user logs into the system. 2FA is not enabled.
+
+1. The Client sends the following request to Aidbox
+
 ```text
-PUT /Client/mywebapp
+GET /auth/login?client_id=web&response_type=token
+```
 
-secret: verysecret
+    2. The login form is displayed
+
+    3. The user enters the email/password used in signup flow
+
+    4. Aidbox creates a session for the user. The is logged into Aidbox.
+
+    5. If  2FA is not enabled, the user is redirected to the following URL to establish TOTP authentication. 
+
+```text
+GET /auth/two-factor/enable
+```
+
+   6. The user clicks on "Enable using Authentificator app" button
+
+   7. The Client sends the following request to Aidbox 
+
+```text
+GET /app/auth/two-factor/request
+```
+
+   8. Aidbox responds with 2FA form
+
+![](../.gitbook/assets/2fa-form.png)
+
+   9. When the user scans the QR code and enters the token, he is redirected to the 2FA settings page. Aidbox saves that 2FA is enabled for this user into the User.twoFactor attribute.
+
+   10. Next time when the user logs into the system, the TOTP authentication page will be shown. Using the mobile authenticator \(or any other transport\) the user enters the code and gets redirected to the application. You can configure which OAuth 2.0 flow by changing Client configuration and login endpoint query parameters. 
+
+#### Disable 2FA
+
+To disable 2FA for a particular user, redirect the user to the following URL. When the user enters a token, they get redirected to the 2FA settings page. Aidbox sets User.twoFactor.enabled to false.
+
+```text
+GET /auth/two-factor/disable
+```
+
+#### 
+
+#### Configuration
+
+In the demo app, we defined all configurable resources in the /backend/app/manifest.py file.
+
+#### Client resource
+
+Client resource is required for 2FA process. In our demo app we've generated the following Client resource with the name "app"
+
+```text
+auth:
+  implicit:
+    redirect_uri: 'http://localhost:3000/auth'
 first_party: true
 grant_types:
-  - code
-auth:
-  authorization_code:
-    redirect_uri: 'http://localhost:3001'
-    access_token_expiration: 360
-    token_format: jwt
-    secret_required: true
-    refresh_token: true
+  - implicit
+id: web
+resourceType: Client
 ```
-{% endtab %}
 
-{% tab title="Example User" %}
+Read more about Client resource configuration [here](https://app.gitbook.com/@aidbox/s/project/~/drafts/-MVyOIaYZI6lD2jaf35C/auth/implicit)
+
+#### AuthConfig resource
+
+AuthConfig resource is required for 2FA process. In our demo app we've generated the following AuthConfig with the name "app"
+
+{% tabs %}
+{% tab title="AuthConfig app" %}
 ```
-PUT /User/my-user
-
-id: my-user
-password: password
+twoFactor:
+  webhook:
+    headers:
+      Authorization: Basic dHdvLWZhY3Rvci13ZWJob29rOnR3by1mYWN0b3Itd2ViaG9vaw==
+    endpoint: 'http://devbox:8080/webhook/two-factor-confirmation'
+  issuerName: Demo
+  validPastTokensCount: 5
+id: app
+resourceType: AuthConfig
 ```
 {% endtab %}
 {% endtabs %}
@@ -71,29 +133,5 @@ password: password
 | theme.title | Title to use on the authentication form |
 | theme.brand | Application name to display on the authentication page |
 
-#### Enable 2FA
 
-Redirect the user to the following URL to establish TOTP authentication. The user should already be logged into Aidbox.
-
-```text
-GET /auth/two-factor/enable
-```
-
-When the user scans the QR code and enters the token, they will get redirected to the 2FA settings page. Aidbox saves that 2Fa is enabled for this user into the User.twoFactor attribute.
-
-#### Login into Aidbox
-
-Next time when the user log ins into the system, the TOTP authentication page will be shown. Using the mobile authenticator \(or any other transport\) the user enters the code and gets redirected to your application. You can configure which OAuth 2.0 flow to use by changing Client configuration and login endpoint query parameters. Refer to the specific OAuth flow article if you need further explanation.
-
-```text
-GET /auth/login?client_id=mywebapp&response_type=code
-```
-
-#### Disable 2FA
-
-Redirect the user to the following URL to disable 2FA. When the user enters a token, they get redirected to 2FA settings page. Aidbox sets User.twoFactor.enabled to false.
-
-```text
-GET /auth/two-factor/disable
-```
 

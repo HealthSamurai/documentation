@@ -57,11 +57,13 @@ Next step is to redirect a user from your application to **authorize** the endpo
 https://<box>.aidbox.app/auth/authorize?client_id=webapp&response_type=code&state=...
 ```
 
-To keep you client stateless, you can send a **state** parameter with arbitrary content, which will be send you back on redirect.
+To keep your client stateless, you can send a **state** parameter with arbitrary content, which will be sent you back on redirect.
 
-If user is not logged in, then they will see the login screen.
+If the user is not logged in, then they will see the login screen.
 
-![](../.gitbook/assets/image%20%284%29.png)
+![](../.gitbook/assets/login-screen-with-id-field.png)
+
+Make sure you use id field, not the email on the login form.
 
 If a client is not first\_party or user not yet granted permissions to client, a user will see the grant page:
 
