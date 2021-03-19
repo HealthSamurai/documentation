@@ -89,43 +89,13 @@ resourceType: AidboxConfig
 
 ![](../.gitbook/assets/signup-schema.png)
 
-#### Login flow
+![](../.gitbook/assets/login-enabling-2fa.png)
 
-The user logs into the system. 2FA is not enabled.
+![2FA Form](../.gitbook/assets/2fa-form.png)
 
-1. The Client sends the following request to Aidbox
+   When the user scans the QR code and enters the token, he is redirected to the 2FA settings page. Aidbox saves that 2FA is enabled for this user into the User.twoFactor attribute.
 
-```text
-GET /auth/login?client_id=web&response_type=token
-```
-
-    2. The login form is displayed
-
-    3. The user enters the email/password used in signup flow
-
-    4. Aidbox creates a session for the user. The is logged into Aidbox.
-
-    5. If  2FA is not enabled, the user is redirected to the following URL to establish TOTP authentication. 
-
-```text
-GET /auth/two-factor/enable
-```
-
-   6. The user clicks on "Enable using Authentificator app" button
-
-   7. The Client sends the following request to Aidbox 
-
-```text
-GET /app/auth/two-factor/request
-```
-
-   8. Aidbox responds with 2FA form
-
-![](../.gitbook/assets/2fa-form.png)
-
-   9. When the user scans the QR code and enters the token, he is redirected to the 2FA settings page. Aidbox saves that 2FA is enabled for this user into the User.twoFactor attribute.
-
-   10. Next time when the user logs into the system, the TOTP authentication page will be shown. Using the mobile authenticator \(or any other transport\) the user enters the code and gets redirected to the application. You can configure which OAuth 2.0 flow by changing Client configuration and login endpoint query parameters. 
+   Next time when the user logs into the system, the TOTP authentication page will be shown. Using the mobile authenticator \(or any other transport\) the user enters the code and gets redirected to the application. You can configure which OAuth 2.0 flow by changing Client configuration and login endpoint query parameters. 
 
 #### Disable 2FA
 
