@@ -18,22 +18,78 @@ Aidbox supports Two Factor Authentication with TOTP \(time-based one-time passwo
 
 {% embed url="https://youtu.be/iJTKeKlJm7g" %}
 
-We've prepared the demo Python/JS/TypeScript app with Aidbox.Dev, so you can run everything on your local environment.
+We've prepared the demo Python/TypeScript app with Aidbox.Dev, so you can run everything in your local environment. The implemented scenario includes signup and login user flows.
 
-Clone the open-source application [repository](https://github.com/Aidbox/two-factor-auth-template). Follow the instructions to see how does 2FA works
+Clone the open-source application [repository](https://github.com/Aidbox/two-factor-auth-template). Follow the instructions to see how does 2FA work.
 
-The implemented scenario includes signup and login user flows.
+First of all, you need to define 3 resources in the [manifest.py file](https://github.com/Aidbox/two-factor-auth-template/blob/58a951dd21778488ec00eb7b6ca085f40bd829d6/backend/app/manifest.py)
 
-#### Signup
+#### 1. AuthConfig
 
-1. The Client sends /auth/signup?client\_id=\[client name\]&response\_type=code to Aidbox
-2. The signup form is displayed, the only email field is required for signup.
-3. When the form with the email data is submitted, Aidbox generates a registration request, which needs to be confirmed by using a specific confirmation link. 
-4. Aidbox generates the link and sends it with a Registration Confirmation email via the defined smtp provider. For demo purposes, the email is sent to the Console output instead of sending a real email.
-5. The generated link leads the user to the Signup Set Password form.
-6. When the form is submitted with the new password, the user registration is completed. Aidbox responds with generated /auth/token and authorizes the user in the system.
+AuthConfig resource is required for 2FA process. In the demo app, we've generated the following AuthConfig with the name "app"
 
-#### Login
+{% tabs %}
+{% tab title="AuthConfig app" %}
+```
+twoFactor:
+  webhook:
+    headers:
+      Authorization: Basic dHdvLWZhY3Rvci13ZWJob29rOnR3by1mYWN0b3Itd2ViaG9vaw==
+    endpoint: 'http://devbox:8080/webhook/two-factor-confirmation'
+  issuerName: Demo
+  validPastTokensCount: 5
+id: app
+resourceType: AuthConfig
+```
+{% endtab %}
+{% endtabs %}
+
+| AuthConfig attribute | meaning |
+| :--- | :--- |
+| twoFactor.issuerName | Name of the TOTP token issuer that is shown in authenticator |
+| twoFactor.validPastTokensCount | Number of previous tokens that are considered valid. Used to improve user experience if standard 30 seconds token lifetime is not enough. |
+| twoFactor.webhook.endpoint | Endpoint to send the TOTP token to during login. Used to support scenarios when it's not possible to use the mobile authenticator. For instance, a service integrated with twilio may listen on this address.  |
+| twoFactor.webhook.timeout | Timeout for webhook in milliseconds |
+| twoFactor.webhook.headers | Key-value headers for webhook |
+| theme.styleUrl | URL to external stylesheet to customise how the authentication form looks like |
+| theme.title | Title to use on the authentication form |
+| theme.brand | Application name to display on the authentication page |
+
+#### 2. Client
+
+Client resource is required for 2FA process. In the demo app we've generated the following Client resource with the name "web"
+
+```text
+auth:
+  implicit:
+    redirect_uri: 'http://localhost:3000/auth'
+first_party: true
+grant_types:
+  - implicit
+id: web
+resourceType: Client
+```
+
+Read more about Client resource configuration [here](https://app.gitbook.com/@aidbox/s/project/~/drafts/-MVyOIaYZI6lD2jaf35C/auth/implicit)
+
+#### 3. Provider
+
+Provider resource belongs to the AidboxConfig. It defines the transport for sending email notifications, which is part of the signup flow. Since we do not want to send real emails in the demo app, we'll send notifications to the Console output stream. You can find the generated Provider resource below
+
+```text
+provider:
+  console:
+    type: console
+  default: console
+id: provider
+resourceType: AidboxConfig
+```
+
+
+
+![](../.gitbook/assets/signup-schema.png)
+
+#### Login flow
 
 The user logs into the system. 2FA is not enabled.
 
@@ -78,60 +134,6 @@ To disable 2FA for a particular user, redirect the user to the following URL. Wh
 ```text
 GET /auth/two-factor/disable
 ```
-
-#### 
-
-#### Configuration
-
-In the demo app, we defined all configurable resources in the /backend/app/manifest.py file.
-
-#### Client resource
-
-Client resource is required for 2FA process. In our demo app we've generated the following Client resource with the name "app"
-
-```text
-auth:
-  implicit:
-    redirect_uri: 'http://localhost:3000/auth'
-first_party: true
-grant_types:
-  - implicit
-id: web
-resourceType: Client
-```
-
-Read more about Client resource configuration [here](https://app.gitbook.com/@aidbox/s/project/~/drafts/-MVyOIaYZI6lD2jaf35C/auth/implicit)
-
-#### AuthConfig resource
-
-AuthConfig resource is required for 2FA process. In our demo app we've generated the following AuthConfig with the name "app"
-
-{% tabs %}
-{% tab title="AuthConfig app" %}
-```
-twoFactor:
-  webhook:
-    headers:
-      Authorization: Basic dHdvLWZhY3Rvci13ZWJob29rOnR3by1mYWN0b3Itd2ViaG9vaw==
-    endpoint: 'http://devbox:8080/webhook/two-factor-confirmation'
-  issuerName: Demo
-  validPastTokensCount: 5
-id: app
-resourceType: AuthConfig
-```
-{% endtab %}
-{% endtabs %}
-
-| AuthConfig attribute | meaning |
-| :--- | :--- |
-| twoFactor.issuerName | Name of the TOTP token issuer that is shown in authenticator |
-| twoFactor.validPastTokensCount | Number of previous tokens that are considered valid. Used to improve user experience if standard 30 seconds token lifetime is not enough. |
-| twoFactor.webhook.endpoint | Endpoint to send the TOTP token to during login. Used to support scenarios when it's not possible to use the mobile authenticator. For instance, a service integrated with twilio may listen on this address.  |
-| twoFactor.webhook.timeout | Timeout for webhook in milliseconds |
-| twoFactor.webhook.headers | Key-value headers for webhook |
-| theme.styleUrl | URL to external stylesheet to customise how the authentication form looks like |
-| theme.title | Title to use on the authentication form |
-| theme.brand | Application name to display on the authentication page |
 
 
 
