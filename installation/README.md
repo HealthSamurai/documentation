@@ -1,14 +1,20 @@
-# Installation
+# Installation & Configuration
 
-Start developing your healthcare solution for free with [Aidbox.Dev](https://www.health-samurai.io/aidbox#aidbox-dev), move to production fast with [Aidbox.One](https://www.health-samurai.io/aidbox#aidbox-one), and scale with no limits in any public or private cloud of your choice with [Aidbox.Cloud](https://www.health-samurai.io/aidbox#aidbox-cloud) and [Aidbox.Enterprise](https://www.health-samurai.io/aidbox#aidbox-enterprise).
+Basic Aidbox installation consists of two components - the backend and the database. Both are released as docker images and can be pulled from HealthSamurai [docker hub](https://hub.docker.com/u/healthsamurai). For each type of Aidbox license an individual backend image is available - either [devbox](https://hub.docker.com/r/healthsamurai/devbox), [aidbox](https://hub.docker.com/r/healthsamurai/aidboxone) or [multibox](https://hub.docker.com/r/healthsamurai/multibox). 
 
+[The database image](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1&ordering=last_updated) is our custom build of the open source PostgreSQL database. It contains a number of extensions that are primarily used to optimise search performance. aidboxdb officially supports latest minor releases of all major PosgreSQL versions starting from 11. Note that the database image is the same for all Aidbox backend license types.
 
+Refer to the following pages for the specific image description and the list of available configuration options.
+
+{% page-ref page="aidboxdb-image.md" %}
+
+Check out the tutorials if you are looking for a step-by-step guide on how to setup and run an image of your choice.
 
 {% page-ref page="setup-aidbox.dev.md" %}
 
 {% page-ref page="use-aidbox.cloud.md" %}
 
-{% page-ref page="deploy-aidbox.one.md" %}
+If you are looking for the latest versions of the docker images or general release cycle explanation go to Versioning & Release Notes page.
 
-
+{% page-ref page="../versioning-and-release-notes/" %}
 

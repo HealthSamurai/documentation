@@ -1,4 +1,4 @@
-# Use Aidbox.Cloud
+# 🎓 Use Aidbox.Cloud
 
 On the [www.health-samurai.io](https://www.health-samurai.io) site, select PRODUCTS/AIDBOX.
 

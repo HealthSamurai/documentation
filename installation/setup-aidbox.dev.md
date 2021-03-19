@@ -4,7 +4,7 @@ description: >-
   reading time: 7 min
 ---
 
-# Setup Aidbox.Dev
+# 🎓 Setup Aidbox.Dev
 
 ## Overview
 

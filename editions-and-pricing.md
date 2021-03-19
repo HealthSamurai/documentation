@@ -12,7 +12,7 @@ Aidbox offers developers a smooth path from a tiny digital health app prototype 
 
 If you need Aidbox for a staging or production environment, it is time to move to the paid Aidbox version. Moving to the paid **Aidbox** is easy. [Log in](https://license-ui.aidbox.app/) to the license server and request a paid Aidbox license. Health Samurai will take care of the rest.
 
-If you need more than one Aidbox license, you will pay less even for the second Aidbox license that you are purchasing. If you are building a SaaS solution that would benefit from having a separate FHIR server for each client, you can get a **multi-tenant version of Aidbox**.
+If you need more than one Aidbox license, you will pay even less for the second Aidbox license that you are purchasing. If you are building a SaaS solution that would benefit from having a separate FHIR server for each client, you can get a **multi-tenant version of Aidbox**.
 
 Do not forget that you can host Aidbox yourself, or Health Samurai can host Aidbox for you in their cloud.
 

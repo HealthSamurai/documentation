@@ -1,8 +1,33 @@
+---
+description: >-
+  This page introduces release cycle and versioning approach used in Aidbox
+  development
+---
+
 # Versioning & Release Notes
 
-For each license type Aidbox is released as two docker containers - Aidbox backend and PostgreSQL custom build. 
+### aidbox release cycle
 
-Aidbox backend is distributed using two [channels](https://hub.docker.com/u/healthsamurai) - stable and edge. Newly released features become available on the edge tag, the edge becomes stable once in a while. Note that edge may have issues in newly added features and regressions. You can see the planned release date and its status in [Aidbox/Issues ](https://github.com/Aidbox/Issues/projects)github repository. Once release has made it to the stable, a special release tag is created that shows the release timestamp. This tag can only be changed before the next stable release if any hotfixes are needed. After the next stable release, the previous tag becomes immutable. We actively encourage developers to use either stable or edge tags in their applications. Release tag can be used to set specific Aidbox version if application development is frozen and development team does not want to receive updates any longer. Keep in mind that Aidbox Development Team maintains backwards compatibility in its releases, however, we can not guarantee a trivial update from the old release tag.
+For each license type of Aidbox an individual image of the backend is available in the [HealthSamurai docker hub](https://hub.docker.com/u/healthsamurai). All these images are labeled with **stable** and **edge** tags, so called channels. HealthSamurai release cycle is the following: 
 
-[Aidbox DB](https://hub.docker.com/r/aidbox/db) container is a custom build of open source RDBMS PostgreSQL. It contains a number of C-extensions that are needed to increase search performance. It follows PostgreSQL versioning and is built for each major database release. Different types of aidbox/db containers are available for each version: for master DB installation as well as replica and hot standby replica installations.
+* during the development sprint new features become available on the **edge** channel
+* when the release is made the current **edge** image becomes new **stable** image 
+
+{% hint style="warning" %}
+Note that edge channel may have issues in newly added features and regressions and is not suitable for production environment.
+{% endhint %}
+
+For every release we also publish a **timestamped image.** Timestamp has the format of "DDMMYYYY", so for the release that is made on 25th of January, 2021 it is "25012021". **Timestamped image** can only be updated before the next release to apply a hotfix. After the next release the previous release **timestamped image** becomes immutable.
+
+We actively encourage developers to use images with either **stable** or **edge** tags in their applications. **Timestamped image** can be used to set a specific Aidbox version if application development is frozen and development team does not want to receive updates any longer. Keep in mind that the HealthSamurai team maintains backwards compatibility in its releases, however, we can not guarantee a trivial update from an old **timestamped image**.
+
+You can see the next planned release date and release status in [Aidbox/Issues ](https://github.com/Aidbox/Issues/projects)github repository.
+
+### aidboxdb release cycle
+
+[aidboxdb](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1&ordering=last_updated) image is a custom build of open source PostgreSQL database. It contains a number of extensions that are needed to increase search performance.
+
+aidboxdb image follows PostgreSQL versioning. For instance if you want to use PostgreSQL 11.11 pull healthsamurai/aidboxdb:11.11
+
+HealthSamurai team officially supports latest minor releases of every major version of PosgreSQL starting from 11. Currently supported versions of PostgreSQL are 11.11, 12.6 and 13.2.
 

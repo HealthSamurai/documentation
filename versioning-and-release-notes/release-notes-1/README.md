@@ -75,7 +75,7 @@ It's time to upgrade your database - please stop your container and change image
 * New `/<RT>/$load` and `/$load` [bulk operations](../../basic-concepts/bulk-api-1/#usdload) were added and [$import](../../basic-concepts/bulk-api-1/#usdimport) was upgraded
 * aidbox/db upgrade to 11.4 + fixes in json\_knife pg extension - \(deep patterns, indexes\) 
 * Highlighted logs for humans in [Aidbox.Dev](../../installation/setup-aidbox.dev.md) by default: docker logs -f &lt;your-box-container&gt;
-* New [Aidbox.Enterprise](../../installation/aidbox.enterprise.md)
+* New [Aidbox.Enterprise]()
 
 ## 0.4.5 \[3 July 2019\]
 
