@@ -6,28 +6,28 @@ description: >-
 
 # Versioning & Release Notes
 
-### aidbox release cycle
+### Aidbox release cycle
 
-For each license type of Aidbox an individual image of the backend is available in the [HealthSamurai docker hub](https://hub.docker.com/u/healthsamurai). All these images are labeled with **stable** and **edge** tags, so called channels. HealthSamurai release cycle is the following: 
+For each license type of Aidbox an individual backend image is available on the [HealthSamurai docker hub](https://hub.docker.com/u/healthsamurai). The images are labeled with **stable** and **edge** tags, also called channels. Aidbox release cycle is the following: 
 
-* during the development sprint new features become available on the **edge** channel
-* when the release is made the current **edge** image becomes new **stable** image 
+* during the development sprint, new features become available on the **edge** channel
+* when the release is made, the current **edge** image becomes a new **stable** image 
 
 {% hint style="warning" %}
-Note that edge channel may have issues in newly added features and regressions and is not suitable for production environment.
+Note that the edge channel may have issues in newly added features and regressions and is not suitable for the production environment.
 {% endhint %}
 
-For every release we also publish a **timestamped image.** Timestamp has the format of "DDMMYYYY", so for the release that is made on 25th of January, 2021 it is "25012021". **Timestamped image** can only be updated before the next release to apply a hotfix. After the next release the previous release **timestamped image** becomes immutable.
+For every release, we also publish a **timestamped image.**  The timestamp has the format of "DDMMYYYY", so for the release that is made on 25th of January, 2021 it is "25012021". **Timestamped image** can only be updated before the next release to apply a hotfix. After the next release, the previous release **timestamped image** becomes immutable.
 
-We actively encourage developers to use images with either **stable** or **edge** tags in their applications. **Timestamped image** can be used to set a specific Aidbox version if application development is frozen and development team does not want to receive updates any longer. Keep in mind that the HealthSamurai team maintains backwards compatibility in its releases, however, we can not guarantee a trivial update from an old **timestamped image**.
+We actively encourage developers to use images with either **stable** or **edge** tags in their applications. The t**imestamped image** can be used to set a specific Aidbox version if the application development is frozen and the development team does not want to receive updates any longer. Keep in mind that the HealthSamurai team maintains backward compatibility in its releases, however, we can not guarantee a trivial update from an old **timestamped image**.
 
-You can see the next planned release date and release status in [Aidbox/Issues ](https://github.com/Aidbox/Issues/projects)github repository.
+You can see the next planned release date and the release status in the [Aidbox/Issues ](https://github.com/Aidbox/Issues/projects)Github repository.
 
-### aidboxdb release cycle
+### Aidboxdb release cycle
 
 [aidboxdb](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1&ordering=last_updated) image is a custom build of open source PostgreSQL database. It contains a number of extensions that are needed to increase search performance.
 
-aidboxdb image follows PostgreSQL versioning. For instance if you want to use PostgreSQL 11.11 pull healthsamurai/aidboxdb:11.11
+aidboxdb image follows PostgreSQL versioning. For an instance, if you want to use PostgreSQL 11.11, pull healthsamurai/aidboxdb:11.11
 
-HealthSamurai team officially supports latest minor releases of every major version of PosgreSQL starting from 11. Currently supported versions of PostgreSQL are 11.11, 12.6 and 13.2.
+HealthSamurai team officially supports the latest minor releases of every major version of PosgreSQL starting from 11. Currently supported versions of PostgreSQL are 11.11, 12.6, and 13.2.
 
