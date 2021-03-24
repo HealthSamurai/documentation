@@ -17,15 +17,15 @@ For each license type of Aidbox an individual backend image is available on the 
 Note that the edge channel may have issues in newly added features and regressions and is not suitable for the production environment.
 {% endhint %}
 
-For every release, we also publish a **timestamped image.**  The timestamp has the format of "DDMMYYYY", so for the release that is made on 25th of January, 2021 it is "25012021". **Timestamped image** can only be updated before the next release to apply a hotfix. After the next release, the previous release **timestamped image** becomes immutable.
+For every release, we also publish a **timestamped image.**  The timestamp has the format of "DDMMYYYY", so for the release that is made on the 25th of January, 2021 is "25012021". The **timestamped image** can only be updated before the next release. After the next release, the previous release **timestamped image** becomes immutable.
 
-We actively encourage developers to use images with either **stable** or **edge** tags in their applications. The t**imestamped image** can be used to set a specific Aidbox version if the application development is frozen and the development team does not want to receive updates any longer. Keep in mind that the HealthSamurai team maintains backward compatibility in its releases, however, we can not guarantee a trivial update from an old **timestamped image**.
+We actively encourage developers to use images with either **stable** or **edge** tags in their applications. The **timestamped image** can be used to set a specific Aidbox version if the application development is frozen and the development team does not want to receive updates any longer. Keep in mind that the HealthSamurai team maintains backward compatibility in its releases, however, we can not guarantee a trivial update from an old **timestamped image**.
 
 You can see the next planned release date and the release status in the [Aidbox/Issues ](https://github.com/Aidbox/Issues/projects)Github repository.
 
 ### Aidboxdb release cycle
 
-[aidboxdb](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1&ordering=last_updated) image is a custom build of open source PostgreSQL database. It contains a number of extensions that are needed to increase search performance.
+[aidboxdb](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1&ordering=last_updated) image is a custom build of an open-source PostgreSQL database. It contains a number of extensions that are needed to increase search performance.
 
 aidboxdb image follows PostgreSQL versioning. For an instance, if you want to use PostgreSQL 11.11, pull healthsamurai/aidboxdb:11.11
 
