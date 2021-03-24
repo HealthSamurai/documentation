@@ -1,125 +1,142 @@
 # NodeJs SDK
 
-See code example [here](https://github.com/Aidbox/aidbox-node-sdk/blob/master/example/example.js) 
+Source code with detailed examples can be found [here](https://github.com/Aidbox/node-server-sdk).
 
-Main function of SDK  - `start` receives context \(`ctx` below\), which describes environment variables, application info, registered subscriptions and operations. It consists of two main parts - environment section and manifest.
+### Installation
 
-{% code title="ctx.js" %}
-```javascript
-var ctx = {
-  env: {
-    initUrl: process.env.APP_INIT_URL,
-    initClientID: process.env.APP_INIT_CLIENT_ID,
-    initClientSecret: process.env.APP_INIT_CLIENT_SECRET,
+We have first-class TypeScript support, but this library can also be used in a javascript project. We provide a useful function to prevent errors in input config variables.
 
-    appID: APP_ID,
-    appUrl: process.env.APP_URL,
-    appPort: process.env.APP_PORT,
-    appSecret: process.env.APP_SECRET,
+**npm**
+
+```text
+npm install @aidbox/node-server-sdk
+```
+
+**yarn**
+
+```text
+yarn add @aidbox/node-server-sdk
+```
+
+### Requirements
+
+To start working with the backend application you should enter the required env variables:
+
+Client id with basic auth grant type to work with aidbox:
+
+> AIDBOX\_CLIENT\_ID=
+
+Client secret:
+
+> AIDBOX\_CLIENT\_SECRET=secret
+
+Your aidbox url:
+
+> AIDBOX\_URL=[http://0.0.0.0:8085](http://0.0.0.0:8085)
+
+Toggle debug mode:
+
+> APP\_DEBUG=false
+
+App name to identify the application in aidbox:
+
+> APP\_ID=you-business-app
+
+Secret for use application \(aidbox will use it\):
+
+> APP\_SECRET=secret
+
+Backend application url \(aidbox will send a request to this base url\):
+
+> APP\_URL=[http://0.0.0.0:8090](http://0.0.0.0:8090)
+
+Port for your backend application:
+
+> APP\_PORT=8090
+
+### App example
+
+#### Typescript usage
+
+Firstly, you should create a config object. By default, we use env variables but you can optionally enter **process.env** as an input parameter.
+
+```typescript
+import { createConfig } from '@aidbox/node-server-sdk/lib/config';
+
+const config = createConfig();
+```
+
+\(optional\) Add your specific context helpers
+
+```typescript
+type TContextHelpers = {
+  greet(name: string): void;
+};
+
+const contextHelpers: TContextHelpers = {
+  greet: (name: string) => {
+    console.log(`Hello, ${name}`);
   },
-  manifest: {
-    id: APP_ID,
-    type: 'app'
-    ...
-  }
 };
 ```
-{% endcode %}
 
-### Register Operation
+Next step is defining the manifest object. For example:
 
+```typescript
+import { TRawManifest } from '../src/types';
 
-
-Operation response must return an object containing at least a resource property. The status and header fields are optional. Let's describe a new operation called "report". We will obtain the count of Aidbox default resource - Attribute. Our handle will look like this
-
-{% code title="handler.js" %}
-```javascript
-const report = (ctx, msg) => 
-  ctx
-    .query('select count(*) FROM Attribute')
-    .then(data => Promise.resolve({
-                            resource: {
-                              count: data[0].result[0].count 
-                            }}));
-                            
-                            
-const reportExtended = (ctx, msg) => 
-  ctx
-    .query('select count(*) FROM Attribute')
-    .then(data => {
-      return Promise.resolve({
-        resource: {
-          count: data[0].result[0].count,
-        },
-        status: 200,
-        headers: {
-          "x-additional": "attribute counr",
-          "x-extend": "extended report"
-        },
-      });
-  });
-```
-{% endcode %}
-
-Add it into the manifest in operations section and specify `method` - http request method,  `path` - array with path request value, `handler` - link to handler 
-
-### Register Subscription
-
-We have an ability to subscribe to resources updates. For example, let's subscribe for `User` resource and print new entities to console.
-
-{% code title="subscription.js" %}
-```javascript
-const userSub =(ctx, msg) => {
-  console.log('my userSub handler\nctx:', ctx, '\nmsg:', msg);
-}
-```
-{% endcode %}
-
-Add register it into manifest in subscriptions section specifies entity and subscription handler.
-
-Our context variable with operation and subscription will look like this:
-
-{% code title="ctx.js" %}
-```javascript
-var ctx = {
-  env: {
-    ...
+// pass type if your define your specific context helpers
+const manifest: TRawManifest<TContextHelpers> = {
+  resources: {
+    AccessPolicy: {},
   },
-  manifest: {
-    id: APP_ID,
-    type: 'app',
-    subscriptions: {
-      User: {
-        handler: userSub
-      }
+  entities: {},
+  operations: {
+    test: {
+      method: 'GET',
+      path: ['$test-operation'],
+      handler: async (context) => {
+        context.greet('Alice'); // your specific context helper
+        return { resource: { work: true } };
+      },
     },
-    operations: {
-      report: {
-        method: 'GET',
-        path: ["_report"],
-        handler: report
-      }
-      reportExtended: {
-        method: 'GET',
-        path: ["_report-extended"],
-        handler: reportExtended
-      }
-    }
-  }
+  },
+  subscriptions: {
+    Patient: {
+      handler: () => {
+        console.log('qwerty');
+        return true;
+      },
+    },
+  },
 };
 ```
-{% endcode %}
 
-Then pass `ctx` into `start` method and have fun!
+After you prepare the config object and define the manifest, you can run your backend application. Typescript won't let you miss any required config keys. There are additional check input parameters before the app is created:
 
-{% code title="index.js" %}
-```javascript
-const aidbox = require('aidbox-node-sdk');
-const ctx = require('./src/ctx');
+```typescript
+import { createApp, startApp } from '@aidbox/node-server-sdk';
 
-aidbox.start(ctx)
-  .then(() => console.log('connected to server and started'))
-  .catch(err => console.log(err.body));
+const app = createApp<TContextHelpers>(config, manifest, contextHelpers);
+if (!app) {
+  console.error(`Unable to create app. Check config/manifest errors.`);
+  process.exit(1);
+}
+
+await startApp(app);
 ```
-{% endcode %}
+
+Then you can go to your Aidbox. There you will find your new application in the Apps menu. To test the app, run this request in the Aidbox Rest Console:
+
+**Request**
+
+```http
+GET /$test-operation
+```
+
+**Response**
+
+```yaml
+work: true
+```
 
