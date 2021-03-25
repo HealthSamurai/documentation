@@ -10,9 +10,9 @@ description: >-
 ### Input params
 
 * **type**: string - It is a special keyword for your logs like "ui", "ui-error", "backend-crush"
-* **message**: any JSON -  which should contain information which you want to log. It should be noted that we record your log data only from the message property
+* **message**: any JSON -  which should contain information that you want to log. It should be noted that we record your log data only from the message property
 * **v**: string - it means your app version. This parameter is optional
-* **fx**: string - fx or event from you want log data or error. This parameter is optional
+* **fx**: string - fx or event on your side from which you want to log data or error. This parameter is optional
 
 ### Example
 
