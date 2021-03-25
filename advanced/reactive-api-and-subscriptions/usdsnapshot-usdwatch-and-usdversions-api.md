@@ -22,9 +22,7 @@ _\(note, since Changes API is not `/fhir/` endpoint, the rest of the body isn't 
 
 With parameters which start with dot you can filter resources by equality, e.g. `.name.0.family=<string>`
 
-`_count` & `_page` work as described [here](https://docs.aidbox.app/basic-concepts/search-1/_count-and-_page)
-
-`_totalMethod` & `total` work as described [here](https://docs.aidbox.app/basic-concepts/search-1/_total-or-_countmethod)
+`omit-resources=<boolean>` if set to `true` omits resources leaving only `id` & `resourceType` fields
 
 `_count` & `_page` work as described [here](https://docs.aidbox.app/basic-concepts/search-1/_count-and-_page)  
 `_total` & `_totalMethod` work as described [here](https://docs.aidbox.app/basic-concepts/search-1/_total-or-_countmethod)
@@ -124,5 +122,15 @@ changes:
     name:
     - family: Smith
       given: [John]
+---
+GET /Patient/$changes?version=1&omit-resources=true
+
+# status 200
+version: 3
+changes:
+- event: created
+  resource: {id: pt-1, resourceType: Patient}
+- event: created
+  resource: {id: pt-2, resourceType: Patient}
 ```
 
