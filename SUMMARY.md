@@ -4,7 +4,7 @@
 * [Features](features.md)
 * [Licensing and Support](editions-and-pricing.md)
 * [Installation & Configuration](installation/README.md)
-  * [🎓 Use aidboxdb image](installation/aidboxdb-image.md)
+  * [Use aidboxdb image](installation/aidboxdb-image.md)
   * [🎓 Setup Aidbox.Dev](installation/setup-aidbox.dev.md)
   * [🎓 Use Aidbox.Cloud](installation/use-aidbox.cloud.md)
 * [Versioning & Release Notes](versioning-and-release-notes/README.md)

@@ -2,7 +2,7 @@
 description: this topic explains the configuration and internals of aidboxdb image
 ---
 
-# 🎓 Use aidboxdb image
+# Use aidboxdb image
 
 ### Introduction
 
