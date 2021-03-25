@@ -1,6 +1,6 @@
 ---
 description: >-
-  Step by step instructions for installing Aidbox.Dev on-premises. Estimated
+  Step-by-step instruction for Aidbox.Dev on-premises installation. Estimated
   reading time: 7 min
 ---
 
@@ -8,9 +8,9 @@ description: >-
 
 ## Overview
 
-You can run Aidbox.Dev on macOS, Linux and Windows 10 Pro
+Aidbox.Dev is compatible with macOS, Linux, and Windows 10 Pro.
 
-We are providing a lightweight version of [Aidbox](https://www.health-samurai.io/aidbox) named **Aidbox.Dev** — a special version aimed at local development and in your CI. To obtain access to Aidbox.Dev, please use our [License server](https://license-ui.aidbox.app/).
+**Aidbox.Dev** is a lightweight version of [Aidbox](https://www.health-samurai.io/aidbox). It is a special version aimed at local development and in your CI. To obtain Aidbox.Dev license, please use our [License server](https://license-ui.aidbox.app/).
 
 ## License obtaining
 
@@ -30,12 +30,12 @@ We are providing a lightweight version of [Aidbox](https://www.health-samurai.io
 
 ### Step 1. Install Docker Compose
 
-The recommended way to work with **Aidbox.Dev** is Docker Compose.  
-Install Docker for your OS following the [Get Docker page](https://docs.docker.com/install/), then go to instructions on the [installing Compose](https://docs.docker.com/v17.09/compose/install/#install-compose) page.
+The recommended way to work with **Aidbox.Dev** is [Docker Compose](https://docs.docker.com/compose/).  
+Install Docker for your OS following the [Get Docker page](https://docs.docker.com/install/), then follow the instructions on the [installing Compose](https://docs.docker.com/compose/install/#install-compose) page.
 
 ### Step 2. Create docker-compose.yaml
 
-Clone our[ official repository](https://github.com/Aidbox/devbox) with the sample configuration.
+Clone the[ official repository](https://github.com/Aidbox/devbox) with the sample configuration.
 
 ```bash
 $ git clone https://github.com/Aidbox/devbox.git
@@ -82,7 +82,7 @@ services:
 
 ### Step 3. **Fill in the .env file with the following parameters**
 
-Open the `.env` file and insert your `License ID` and `License KEY,` specify FHIR version and decide on box security and distribution channel \( latest vs edge\).
+Open the `.env` file and insert your `License ID` and `License KEY,` specify FHIR version and decide on the box security and distribution channel \( latest vs edge\).
 
 {% code title=".env" %}
 ```bash
@@ -106,7 +106,7 @@ PGDATABASE=devbox
 
 PGIMAGE=aidbox/db:11.1.0
 
-AIDBOX_IMAGE=healthsamurai/devbox:0.4.1
+AIDBOX_IMAGE=healthsamurai/devbox:latest
 # uncomment next line to work with edge channel
 # AIDBOX_IMAGE=healthsamurai/devbox:edge
 ```
@@ -124,15 +124,15 @@ AIDBOX_IMAGE=healthsamurai/devbox:0.4.1
 | AIDBOX\_ADMIN\_PASSWORD | false | Password for admin user |
 
 {% hint style="info" %}
-If **AIDBOX\_CLIENT\_ID** & **AIDBOX\_CLIENT\_SECRET** are provided - Aidbox will start in a secure mode with access control turned on; API Client with provided ID and secret will be created, as well as Access Policy, which grants root privileges to this Client. In a simplest way, you can access Aidbox API using basic auth and this client credentials.
+If **AIDBOX\_CLIENT\_ID** & **AIDBOX\_CLIENT\_SECRET** are provided - Aidbox will start in a secure mode with access control turned on; API Client with provided ID and secret will be created, as well as the Access Policy, which grants root privileges to this Client. In the simpliest way, you can access Aidbox API using basic auth and this client credentials.
 {% endhint %}
 
 {% hint style="warning" %}
-Starting Aidbox in open mode without AIDBOX\_CLIENT\_SECRET is disabled!
+Starting Aidbox in an open mode without AIDBOX\_CLIENT\_SECRET is disabled!
 {% endhint %}
 
 {% hint style="info" %}
-**AIDBOX\_IMAGE** specify one of the images from **healthsamurai/devbox** repository. Take a look at available versions at [docker hub](https://hub.docker.com/r/healthsamurai/devbox/tags).
+**AIDBOX\_IMAGE** specifies one of the images from **healthsamurai/devbox** repository. Take a look at available versions at [docker hub](https://hub.docker.com/r/healthsamurai/devbox/tags).
 {% endhint %}
 
 ## Run Aidbox.Dev
@@ -145,7 +145,7 @@ $ docker-compose up -d
 
 That's it! Aidbox.Dev is running and you can point your browser to [http://localhost:8888](http://localhost:8888/) to see a fancy welcome page.
 
-_\*\*_Insert your ADMIN\_ID and ADMIN\_PASSWORD and you will see your development environment. This is the way to create your best healthcare products.
+_\*\*_Input your ADMIN\_ID and ADMIN\_PASSWORD and you will see your development environment. This is the way to create your best healthcare products.
 
 ![](../.gitbook/assets/login-aidbox.gif)
 
@@ -155,7 +155,7 @@ We welcome your questions and comments about our products. Have an idea/question
 
 ## What next?
 
-Learn how to obtain access to the [REST API]() by the link below.
+Learn how to obtain access to the [REST API](https://docs.aidbox.app/basic-concepts/api) by the link below.
 
 ## Advanced tips
 
@@ -178,7 +178,7 @@ Type "help" for help.
 devbox=# \dt
 ```
 
-Or you can do it in db container:
+Or you can do it in the db container:
 
 ```bash
 $ docker-compose exec devbox-db psql devbox
@@ -232,8 +232,8 @@ $ docker-compose up -d
 
 ### PGIMAGE
 
-[aidbox/db](https://hub.docker.com/r/aidbox/db) is a custom compiled Postgres which is bundled with extensions necessary for the Aidbox  
-One of these extensions is the [jsonknife](https://github.com/niquola/jsonknife), it provides set of functions used in FHIR search API implementation. If your Postgres image is missing the jsonknife extension, then Aidbox will try to use other tools to implement jsonknife functionality. Fallback will happen in such order: jsonpath, plv8, pure PostgreSQL. Keep in mind that alternative implementations have lower performance
+[aidbox/db](https://hub.docker.com/r/aidbox/db/tags?page=1&ordering=last_updated) is a custom compiled Postgres which is bundled with extensions necessary for the Aidbox.  
+One of these extensions is the [jsonknife](https://github.com/niquola/jsonknife), it provides a set of functions used in FHIR search API implementation. If your Postgres image is missing the jsonknife extension, then Aidbox will try to use other tools to implement jsonknife functionality. Fallback will happen in such order: jsonpath, plv8, pure PostgreSQL. Keep in mind that alternative implementations have lower performance
 
 
 
