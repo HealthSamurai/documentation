@@ -138,6 +138,7 @@
 * [Administration](administration/README.md)
   * [Logging & Audit](administration/logging-and-audit.md)
   * [X-Audit header](administration/x-audit-header.md)
+  * [Receive logs from your app](administration/receive-logs-from-your-app.md)
   * [Health Check](administration/health-check.md)
   * [Elastic Logs and Monitoring Integration](administration/elastic-logs-and-monitoring-integration.md)
   * [Export logs to ElasticSearch/Kibana](administration/export-logs-to-elasticsearch-kibana.md)
