@@ -104,7 +104,7 @@ PGUSER=postgres
 PGPASSWORD=postgres
 PGDATABASE=devbox
 
-PGIMAGE=aidbox/db:11.1.0
+PGIMAGE=healthsamurai/aidboxdb:13.2
 
 AIDBOX_IMAGE=healthsamurai/devbox:latest
 # uncomment next line to work with edge channel
@@ -118,6 +118,7 @@ AIDBOX_IMAGE=healthsamurai/devbox:latest
 | AIDBOX\_LICENSE\_ID | true | Your license key |
 | AIDBOX\_CLIENT\_ID | false | Root Client ID \* \(default: root\) |
 | AIDBOX\_CLIENT\_SECRET | false | Root Client Secret \* |
+| AIDBOX\_PORT | true | Port number to access Aidbox backend |
 | AIDBOX\_FHIR\_VERSION | true | Version of FHIR - 1.0.2, 1.4.0, 1.8.0, 3.01, 3.2.0, 3.3.0, 4.0.0; Currently 4.0.0 is recommended version. |
 | AIDBOX\_IMAGE | true | can be specific image tag or one of :edge or :latest |
 | AIDBOX\_ADMIN\_ID | false | Id for admin user \(default: admin\) |
@@ -232,7 +233,7 @@ $ docker-compose up -d
 
 ### PGIMAGE
 
-[aidbox/db](https://hub.docker.com/r/aidbox/db/tags?page=1&ordering=last_updated) is a custom compiled Postgres which is bundled with extensions necessary for the Aidbox.  
+[aidbox/db](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1&ordering=last_updated) is a custom compiled Postgres which is bundled with extensions necessary for the Aidbox.  
 One of these extensions is the [jsonknife](https://github.com/niquola/jsonknife), it provides a set of functions used in FHIR search API implementation. If your Postgres image is missing the jsonknife extension, then Aidbox will try to use other tools to implement jsonknife functionality. Fallback will happen in such order: jsonpath, plv8, pure PostgreSQL. Keep in mind that alternative implementations have lower performance
 
 
