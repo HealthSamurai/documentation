@@ -1,16 +1,14 @@
 # 🎓 Use Aidbox.Cloud
 
-On the [www.health-samurai.io](https://www.health-samurai.io) site, select PRODUCTS/AIDBOX.
+Aidbox.Could is a sandbox version of Aidbox in HealthSamurai cloud. Each Box is a private instance of a FHIR server with a separate database and domain. You can create multiple boxes for testing and evaluation.
 
-![](../.gitbook/assets/scr-2019-02-26_18-15-37.png)
+Please, pay attention, that the sandbox environment doesn't fit for any kind of production usage. The service availability and data integrity are not guaranteed. Do not put any PHI data there.
 
-Click the 'TRY IN CLOUD' button.
+To try out Aidbox.Cloud, open [https://aidbox.app/](https://aidbox.app/) 
 
-![](../.gitbook/assets/scr-2019-02-26_18-15-46.png)
+Choose how you would like to authorize Aidbox. It can be done via your Github or Google account.
 
-Choose how you would like to authorize [Aidbox](https://www.health-samurai.io/aidbox). It can be done via your Github or Google account.
-
-![](../.gitbook/assets/scr-2019-02-26_18-17-38.png)
+![](../.gitbook/assets/signup.-aidboxcloud.png)
 
 If you chose Github authorization, click the 'Authorize HealthSamurai' button.
 
@@ -26,11 +24,11 @@ And now you are successfully authorized in Aidbox.Cloud. Click the 'New Box' but
 
 In the displayed form, enter your future box name. It can be a name of your application you are going to build. It will be the base URL of your FHIR server.
 
-![](../.gitbook/assets/scr-2019-02-26_18-29-25.png)
+![](../.gitbook/assets/create-box.png)
 
-Choose the desired FHIR version, billing method, and click the 'Create' button.
+Choose the desired FHIR version, and click the 'Create' button.
 
-![](../.gitbook/assets/scr-2019-02-26_18-18-49.png)
+![](../.gitbook/assets/choose-fhir-version.png)
 
 Your new box will be successfully created. Click the box name to proceed.
 
