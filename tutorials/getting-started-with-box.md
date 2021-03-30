@@ -23,23 +23,41 @@ This guide assumes that you will set proper values instead of placeholders like 
 
 ## Create a Box
 
-Choose how you would like to authorize [Aidbox](https://ui.aidbox.app). It can be done via your GitHub or Google account.
+Aidbox.Cloud is a sandbox version of Aidbox in HealthSamurai cloud. Each Box is a private instance of a FHIR server with a separate database and domain. You can create multiple boxes for testing and evaluation.
 
-![](../.gitbook/assets/scr-2018-10-11_10-49-57.png)
+Please, pay attention, that the sandbox environment doesn't fit for any kind of production usage. The service availability and data integrity are not guaranteed. Do not put any PHI data there.
 
-After you have been successfully authorized in [Aidbox.Cloud](https://ui.aidbox.app), click on the 'New Box' button to start.
+To try out Aidbox.Cloud, open [https://aidbox.app/](https://aidbox.app/)
 
-![](../.gitbook/assets/scr-2018-10-11_10-51-55%20%281%29.png)
+Choose how you would like to authorize Aidbox. It can be done via your Github or Google account.
 
-In the displayed form, enter your future box name. It can be the name of your application you are going to build. Then choose your plan and click the 'Create' button.
+![](https://gblobscdn.gitbook.com/assets%2F-LHqtKiuedlcKJLm337_%2F-MWwm5sF9vMRG5G1viJr%2F-MWwn94fBVJGYhIUhh9k%2Fsignup.%20AidboxCloud.png?alt=media&token=1b4586f0-8602-4e29-9739-0b4a173271be)
 
-![](../.gitbook/assets/2018-10-25-131455_633x702_scrot.png)
+If you chose Github authorization, click the 'Authorize HealthSamurai' button.
+
+![](https://gblobscdn.gitbook.com/assets%2F-LHqtKiuedlcKJLm337_%2F-LOb0LZIYGlRkqfwxeJa%2F-LOb1wmxwllYQ-Exm5Xt%2Fscr-2018-10-11_10-50-33.png?alt=media&token=3cea3d7e-33d4-4a87-b9d5-52f02dd19806)
+
+Github will ask you to confirm your password to continue.![](https://gblobscdn.gitbook.com/assets%2F-LHqtKiuedlcKJLm337_%2F-LOb0LZIYGlRkqfwxeJa%2F-LOb22CZIKmFtWVF7j0q%2Fscr-2018-10-11_10-51-32.png?alt=media&token=be612835-61ae-4744-b4fe-194c3c9a407a)
+
+And now you are successfully authorized in Aidbox.Cloud. Click the 'New Box' button to start.
+
+![](https://gblobscdn.gitbook.com/assets%2F-LHqtKiuedlcKJLm337_%2F-LOb0LZIYGlRkqfwxeJa%2F-LOb2hXQ8ieZapJmqj9K%2Fscr-2018-10-11_10-51-55.png?alt=media&token=b2a45825-a7cf-4c1f-bbf9-29de357f32d1)
+
+In the displayed form, enter your future box name. It can be the name of your application you are going to build. It will be the base URL of your FHIR server.
+
+![](https://gblobscdn.gitbook.com/assets%2F-LHqtKiuedlcKJLm337_%2F-MWwm5sF9vMRG5G1viJr%2F-MWwrcjr6CUIPLa7hgA2%2FCreate%20Box.png?alt=media&token=6efaba1c-2c8f-4811-8d8d-ea27afc5d406)
+
+Choose the desired FHIR version, and click the 'Create' button.
+
+![](https://gblobscdn.gitbook.com/assets%2F-LHqtKiuedlcKJLm337_%2F-MWwm5sF9vMRG5G1viJr%2F-MWwrw99aCMtk_RoLM3z%2FChoose%20FHIR%20version.png?alt=media&token=e3fa7a4b-2bc4-471e-8b2a-62e7c33748eb)
 
 Your new box will be successfully created. Click the box name to proceed.
 
-![](../.gitbook/assets/scr-2018-10-11_10-54-04%20%281%29.png)
+![](https://gblobscdn.gitbook.com/assets%2F-LHqtKiuedlcKJLm337_%2F-LOb0LZIYGlRkqfwxeJa%2F-LOb2rXqD2j5J7ZbZdo0%2Fscr-2018-10-11_10-54-04.png?alt=media&token=4f784b1b-1deb-4a0c-a5b8-0720d20b0a49)
 
-## Check the CRUD
+
+
+### Check the CRUD
 
 Now go to the `REST Console` section and let's see what we can do here.
 
@@ -110,7 +128,7 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-This is only an example, and you can change values as you want. For more information, check the full [Patient resource](https://www.hl7.org/fhir/patient.html) description and [official example](https://www.hl7.org/fhir/patient-example.json.html). The `id` field in the request body is not required, and if you do not send it to the server, it will be generated. Description of the difference in the `create` operation behavior between FHIR and Aidbox endpoints can be found [here]().
+This is only an example, and you can change values as you want. For more information, check the full [Patient resource](https://www.hl7.org/fhir/patient.html) description and [official example](https://www.hl7.org/fhir/patient-example.json.html). The `id` field in the request body is not required, and if you do not send it to the server, it will be generated. A description of the difference in the `create` operation behavior between FHIR and Aidbox endpoints can be found [here](https://docs.aidbox.app/basic-concepts/aidbox-and-fhir-formats).
 
 ![](../.gitbook/assets/2018-10-29-121415_1311x754_scrot.png)
 
@@ -162,6 +180,6 @@ What's next?
 {% page-ref page="run-local-demo.md" %}
 
 {% hint style="info" %}
-Want to know more about [Aidbox](https://www.health-samurai.io/aidbox), FHIR or FHIR applications? Join our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).
+Want to know more about [Aidbox](https://www.health-samurai.io/aidbox), FHIR or FHIR applications? Join our community [chat](https://t.me/aidbox).
 {% endhint %}
 
