@@ -31,29 +31,31 @@ To try out Aidbox.Cloud, open [https://aidbox.app/](https://aidbox.app/)
 
 Choose how you would like to authorize Aidbox. It can be done via your Github or Google account.
 
-![](https://gblobscdn.gitbook.com/assets%2F-LHqtKiuedlcKJLm337_%2F-MWwm5sF9vMRG5G1viJr%2F-MWwn94fBVJGYhIUhh9k%2Fsignup.%20AidboxCloud.png?alt=media&token=1b4586f0-8602-4e29-9739-0b4a173271be)
+![](../.gitbook/assets/signup.-aidboxcloud.png)
 
 If you chose Github authorization, click the 'Authorize HealthSamurai' button.
 
-![](https://gblobscdn.gitbook.com/assets%2F-LHqtKiuedlcKJLm337_%2F-LOb0LZIYGlRkqfwxeJa%2F-LOb1wmxwllYQ-Exm5Xt%2Fscr-2018-10-11_10-50-33.png?alt=media&token=3cea3d7e-33d4-4a87-b9d5-52f02dd19806)
+![](../.gitbook/assets/scr-2018-10-11_10-50-33.png)
 
-Github will ask you to confirm your password to continue.![](https://gblobscdn.gitbook.com/assets%2F-LHqtKiuedlcKJLm337_%2F-LOb0LZIYGlRkqfwxeJa%2F-LOb22CZIKmFtWVF7j0q%2Fscr-2018-10-11_10-51-32.png?alt=media&token=be612835-61ae-4744-b4fe-194c3c9a407a)
+Github will ask you to confirm your password to continue.
+
+![](../.gitbook/assets/scr-2018-10-11_10-51-32.png)
 
 And now you are successfully authorized in Aidbox.Cloud. Click the 'New Box' button to start.
 
-![](https://gblobscdn.gitbook.com/assets%2F-LHqtKiuedlcKJLm337_%2F-LOb0LZIYGlRkqfwxeJa%2F-LOb2hXQ8ieZapJmqj9K%2Fscr-2018-10-11_10-51-55.png?alt=media&token=b2a45825-a7cf-4c1f-bbf9-29de357f32d1)
+![](../.gitbook/assets/scr-2018-10-11_10-51-55.png)
 
-In the displayed form, enter your future box name. It can be the name of your application you are going to build. It will be the base URL of your FHIR server.
+In the displayed form, enter your future box name. It can be a name of your application you are going to build. It will be the base URL of your FHIR server.
 
-![](https://gblobscdn.gitbook.com/assets%2F-LHqtKiuedlcKJLm337_%2F-MWwm5sF9vMRG5G1viJr%2F-MWwrcjr6CUIPLa7hgA2%2FCreate%20Box.png?alt=media&token=6efaba1c-2c8f-4811-8d8d-ea27afc5d406)
+![](../.gitbook/assets/create-box.png)
 
 Choose the desired FHIR version, and click the 'Create' button.
 
-![](https://gblobscdn.gitbook.com/assets%2F-LHqtKiuedlcKJLm337_%2F-MWwm5sF9vMRG5G1viJr%2F-MWwrw99aCMtk_RoLM3z%2FChoose%20FHIR%20version.png?alt=media&token=e3fa7a4b-2bc4-471e-8b2a-62e7c33748eb)
+![](../.gitbook/assets/choose-fhir-version.png)
 
 Your new box will be successfully created. Click the box name to proceed.
 
-![](https://gblobscdn.gitbook.com/assets%2F-LHqtKiuedlcKJLm337_%2F-LOb0LZIYGlRkqfwxeJa%2F-LOb2rXqD2j5J7ZbZdo0%2Fscr-2018-10-11_10-54-04.png?alt=media&token=4f784b1b-1deb-4a0c-a5b8-0720d20b0a49)
+![](../.gitbook/assets/scr-2018-10-11_10-54-04.png)
 
 
 
