@@ -12,8 +12,6 @@ Check out the tutorials if you are looking for a step-by-step guide on how to se
 
 {% page-ref page="setup-aidbox.dev.md" %}
 
-{% page-ref page="use-aidbox.cloud.md" %}
-
 If you are looking for the latest versions of the docker images or general release cycle explanation go to the Versioning & Release Notes page.
 
 {% page-ref page="../versioning-and-release-notes/" %}

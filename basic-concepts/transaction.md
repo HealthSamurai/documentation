@@ -12,7 +12,7 @@ Transaction interaction allows performing several interactions using one http re
 POST [base]
 ```
 
-The body of such request contains one resource of type Bundle, which contains field entry with an array of interactions, for example \(taken from [Getting Started with SPA ](../tutorials/getting-started-with-box.md)tutorial\):
+The body of such request contains one resource of type Bundle, which contains field entry with an array of interactions, for example \(taken from [Getting Started with SPA ](../installation/getting-started-with-box.md)tutorial\):
 
 ```yaml
 POST /

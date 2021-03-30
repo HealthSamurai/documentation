@@ -1,4 +1,4 @@
-# Getting Started with Box
+# 🎓 Getting Started with Aidbox.Cloud
 
 In this article, you will learn about the FHIR standard essentials, including:
 
@@ -58,6 +58,20 @@ Your new box will be successfully created. Click the box name to proceed.
 ![](../.gitbook/assets/scr-2018-10-11_10-54-04.png)
 
 
+
+Now you can browse the left navigation menu and work with your box and its database. What you can do here: 
+
+* Settings — view your box settings, base URL, manage your collaborators.
+* Resources — view the list of available resources.
+* Operations — view the list of available operations.
+* Database — work with your database.
+* REST console — execute REST requests to your box.
+* Auth clients — manage your auth clients.
+* Users — manage your box users.
+* Access Control — manage access to your box.
+* Concepts — view the list of available concepts.
+* Documentation — redirects you to the [docs.aidbox.app](https://docs.aidbox.app) site with documentation.
+* Support — this is a modal form to send a feedback.
 
 ### Check the CRUD
 
@@ -177,9 +191,9 @@ There are many more operations you can execute using RESTful API but it’s enou
 
 What's next?
 
-{% page-ref page="rest-console.md" %}
+{% page-ref page="../tutorials/rest-console.md" %}
 
-{% page-ref page="run-local-demo.md" %}
+{% page-ref page="../tutorials/run-local-demo.md" %}
 
 {% hint style="info" %}
 Want to know more about [Aidbox](https://www.health-samurai.io/aidbox), FHIR or FHIR applications? Join our community [chat](https://t.me/aidbox).
