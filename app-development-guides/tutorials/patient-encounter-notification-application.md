@@ -22,9 +22,9 @@ For sending Emails we will use [MailGun](https://www.mailgun.com/) service as th
 
 ### Get started
 
-Firstly, you need to install local Aidbox.dev. See the full instruction how to [install Aidbox.dev](../../getting-started/installation/setup-aidbox.dev.md) and [how to use Rest API]()
+Firstly, you need to install local Devbox. See the full instruction on how to [install Devbox](../../getting-started/installation/setup-aidbox.dev.md) and [how to use Rest API](https://docs.aidbox.app/basic-concepts/api)
 
-In this sample application we use Clojure CLI. See [Getting Started](https://clojure.org/guides/getting_started) for details on how to install the tools.
+In this sample application, we use Clojure CLI. See [Getting Started](https://clojure.org/guides/getting_started) for details on how to install the tools.
 
 ### Enable Aidbox SDK
 

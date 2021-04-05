@@ -2,15 +2,15 @@
 
 ## Before
 
-For this tutorial you will need git, node js and any version of [Aidbox](https://www.health-samurai.io/aidbox) as a backend. We recommend to use Aidbox.Dev as the easiest way. Visit the [Aidbox.Dev installation guide](../../getting-started/installation/setup-aidbox.dev.md) for detailed information and instructions how to install Aidbox backend for development.
+For this tutorial, you will need git, node js and any version of [Aidbox](https://www.health-samurai.io/aidbox) as a backend. We recommend using Devbox as the easiest way. Visit the [Devbox installation guide](../../getting-started/installation/setup-aidbox.dev.md) for detailed information and instructions on how to install Aidbox backend for development.
 
 ## Introduction
 
 This repository on GitHub [https://github.com/HealthSamurai/Aidbox-angular-sample](https://github.com/HealthSamurai/Aidbox-angular-sample).
 
-In this guide, we will locally launch the FHIR application based on [Angular framework](https://angular.io) and Aidbox.Dev as a backend for this SPA. This simple application will implement basic CRUD operations on the patient list.
+In this guide, we will locally launch the FHIR application based on [Angular framework](https://angular.io) and Devbox as a backend for this SPA. This simple application will implement basic CRUD operations on the patient list.
 
-Aidbox products support [OAuth2.0](https://github.com/Aidbox/documentation/tree/9abc14b1b7fe0effba27642c5386f6d561786814/auth-betta/oauth-2.0) authorization framework and [Access Control](../../security-and-access-control-1/security/access-control.md) mechanism to provide ability for developers to create applications which can interact securely with Boxes \(Aidbox FHIR server instances\). For a single-page application, it's a common practice to use OAuth2.0 [Implicit Grant flow](../../user-management-1/auth/implicit.md).
+Aidbox products support [OAuth2.0](https://github.com/Aidbox/documentation/tree/9abc14b1b7fe0effba27642c5386f6d561786814/auth-betta/oauth-2.0) authorization framework and [Access Control](../../security-and-access-control-1/security/access-control.md) mechanism to provide the ability for developers to create applications that can interact securely with Boxes \(Aidbox FHIR server instances\). For a single-page application, it's a common practice to use OAuth2.0 [Implicit Grant flow](../../user-management-1/auth/implicit.md).
 
 ## Install
 
@@ -54,7 +54,7 @@ birthDate: '1971-02-03'
 
 Now you need to configure your FHIR server base URL.
 
-If you are using **Aidbox.Dev** as a backend, you need to specify `AIDBOX_URL` as `http://localhost:8888` in the `environment.ts` file.
+If you are using **Devbox** as a backend, you need to specify `AIDBOX_URL` as `http://localhost:8888` in the `environment.ts` file.
 
 {% code title="environment.ts" %}
 ```typescript

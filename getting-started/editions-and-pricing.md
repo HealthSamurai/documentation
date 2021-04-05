@@ -8,22 +8,19 @@ Aidbox offers developers a smooth path from a tiny digital health app prototype 
 
 ## Aidbox Licenses
 
-[Start](https://docs.aidbox.app/installation/setup-aidbox.dev) with a free Aidbox version called **Aidbox.Dev**. You can only use Aidbox.Dev at your local computer and can't use it with real healthcare data or PHI \(Protected Health Information\). But other than that, Aidbox.Dev has all the features of the paid Aidbox version, and it is enough for proper Aidbox evaluation and the beginning of your healthcare app development.
+[Start](https://docs.aidbox.app/installation/setup-aidbox.dev) with a free Aidbox version called **Devbox**. You can only use Devbox at your local computer and can't use it with real healthcare data or PHI \(Protected Health Information\). But other than that, Devbox has all the features of the paid Aidbox version, and it is enough for proper Aidbox evaluation and the beginning of your healthcare app development.
 
 If you need Aidbox for a staging or production environment, it is time to move to the paid Aidbox version. Moving to the paid **Aidbox** is easy. [Log in](https://license-ui.aidbox.app/) to the license server and request a paid Aidbox license. Health Samurai will take care of the rest.
 
-If you need more than one Aidbox license, you will pay even less for the second Aidbox license that you are purchasing. If you are building a SaaS solution that would benefit from having a separate FHIR server for each client, you can get a **multi-tenant version of Aidbox**.
+If you need more than one Aidbox license, you will pay even less for the second Aidbox license that you are purchasing. If you are building a SaaS solution that would benefit from having a separate FHIR server for each client, you can get a **multi-tenant version of Aidbox \(Multibox\)**.
 
 Do not forget that you can host Aidbox yourself, or Health Samurai can host Aidbox for you in their cloud.
 
 | **Aidbox Edition** | **Price** |
 | :--- | :--- |
-| Aidbox Dev | free |
+| Devbox | free |
 | Aidbox\* | $ |
-| Multi-tenant Aidbox \(Multi-box\) | $$ |
-| Aidbox.Cloud | $-$$$$ |
-
-\*Wholesale discounts start with the 2nd Aidbox license
+| Multi-tenant Aidbox \(Multibox\) | $$ |
 
 ## Aidbox Support
 

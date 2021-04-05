@@ -1,16 +1,16 @@
 ---
 description: >-
-  Step-by-step instruction for Aidbox.Dev on-premises installation. Estimated
+  Step-by-step instruction for Devbox on-premises installation. Estimated
   reading time: 7 min
 ---
 
-# 🎓 Setup Aidbox.Dev
+# 🎓 Setup Devbox
 
 ## Overview
 
-Aidbox.Dev is compatible with macOS, Linux, and Windows 10 Pro.
+Devbox is compatible with macOS, Linux, and Windows 10 Pro.
 
-**Aidbox.Dev** is a lightweight version of [Aidbox](https://www.health-samurai.io/aidbox). It is a special version aimed at local development and in your CI. To obtain Aidbox.Dev license, please use our [License server](https://license-ui.aidbox.app/).
+**Devbox** is a lightweight version of [Aidbox](https://www.health-samurai.io/aidbox). It is a special version aimed at local development and in your CI. To obtain Devbox license, please use our [License server](https://license-ui.aidbox.app/).
 
 ## License obtaining
 
@@ -18,7 +18,7 @@ Aidbox.Dev is compatible with macOS, Linux, and Windows 10 Pro.
 
 ![](../../.gitbook/assets/scr-2018-10-31_15-08-05.png)
 
-1. Enter a short description of your project and select the `Aidbox.Dev` option.
+1. Enter a short description of your project and select the `Devbox` option.
 
 ![](../../.gitbook/assets/image%20%289%29.png)
 
@@ -26,11 +26,11 @@ Aidbox.Dev is compatible with macOS, Linux, and Windows 10 Pro.
 
 ![](../../.gitbook/assets/screen-shot-2018-10-02-at-17.34.31.png)
 
-## Aidbox.Dev Installation
+## Devbox Installation
 
 ### Step 1. Install Docker Compose
 
-The recommended way to work with **Aidbox.Dev** is [Docker Compose](https://docs.docker.com/compose/).  
+The recommended way to work with **Devbox** is [Docker Compose](https://docs.docker.com/compose/).  
 Install Docker for your OS following the [Get Docker page](https://docs.docker.com/install/), then follow the instructions on the [installing Compose](https://docs.docker.com/compose/install/#install-compose) page.
 
 ### Step 2. Create docker-compose.yaml
@@ -41,7 +41,7 @@ Clone the[ official repository](https://github.com/Aidbox/devbox) with the sampl
 $ git clone https://github.com/Aidbox/devbox.git
 ```
 
-Create the .env file with your Aidbox.Dev parameters.
+Create the .env file with your Devbox parameters.
 
 ```text
 $ cd devbox && cp .env.tpl .env
@@ -137,7 +137,7 @@ Starting Aidbox in an open mode without AIDBOX\_CLIENT\_SECRET is disabled!
 **AIDBOX\_IMAGE** specifies one of the images from **healthsamurai/devbox** repository. Take a look at available versions at [docker hub](https://hub.docker.com/r/healthsamurai/devbox/tags).
 {% endhint %}
 
-## Run Aidbox.Dev
+## Run Devbox
 
 ### **Run Docker Compose**
 
@@ -145,7 +145,7 @@ Starting Aidbox in an open mode without AIDBOX\_CLIENT\_SECRET is disabled!
 $ docker-compose up -d
 ```
 
-That's it! Aidbox.Dev is running and you can point your browser to [http://localhost:8888](http://localhost:8888/) to see a fancy welcome page.
+That's it! Devbox is running and you can point your browser to [http://localhost:8888](http://localhost:8888/) to see a fancy welcome page.
 
 _\*\*_Input your ADMIN\_ID and ADMIN\_PASSWORD and you will see your development environment. This is the way to create your best healthcare products.
 
@@ -210,13 +210,13 @@ $ curl -u $AIDBOX_CLIENT_ID:$AIDBOX_CLIENT_SECRET \
 Be careful with the **$** sign in url paths \(aka **/$metadata**\) in the shell - you have to escape it \( **/$metadata**\); otherwise, the shell will try to interpret it as variables ;\)
 {% endhint %}
 
-### Stop Aidbox.Dev
+### Stop Devbox
 
 ```bash
 $ docker-compose stop
 ```
 
-### Destroy Aidbox.Dev
+### Destroy Devbox
 
 ```bash
 $ docker-compose down
@@ -224,7 +224,7 @@ $ docker-compose down
 
 By default, docker-compose file mount folder `./pgdata` as a persistent volume for PostgreSQL so that it survives restarts and destruction of containers. To clean up the previous installation completely: `rm -rf ./pgdata`
 
-### Upgrade Aidbox.Dev
+### Upgrade Devbox
 
 ```text
 $ docker-compose down

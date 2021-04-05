@@ -5,12 +5,12 @@ description: Structured Data Capturing with Aidbox Custom Resources
 # SDC with Custom Resources
 
 {% hint style="warning" %}
-This is an ALPHA \(preview\) feature of Aidbox, which was published to collect users feedback. It's available now on 0.4.2-SNAPSHOT Aidbox.Dev and on edge cluster in the cloud.
+This is an ALPHA \(preview\) feature of Aidbox, which was published to collect users feedback. It's available now on 0.4.2-SNAPSHOT Devbox and on edge cluster in the cloud.
 {% endhint %}
 
 Sometimes FHIR granularity is too small to collect patient data from user interfaces. For example, when a physician or a nurse records vital signs in terms of FHIR, they produce a bundle of observations. How to save this data to a FHIR server? How to keep track that this data was collected on the Vitals Form?
 
-One option is to build a transaction bundle with provenance on the client side and send it to the transaction endpoint. But with this approach it is rather problematic to track data back; update or delete it as a whole.
+One option is to build a transaction bundle with a provenance on the client side and send it to the transaction endpoint. But with this approach it is rather problematic to track data back; update or delete it as a whole.
 
 There is a [Structured Data Capture Implementation Guide](http://hl7.org/fhir/us/sdc/index.html) \(SDC IG\) which describes how to collect data using Questionnaire and QuestionnaireResponse resources. It is a good idea and a work in progress. One problem we see with it is that the QuestionnaireResponse table is stuffed with all sorts of things and managing this table, doing searches and updates is problematic. Another problem is that Questionnaire/QuestionnaireResponse is too generic and verbose which makes working with them inconvenient.
 

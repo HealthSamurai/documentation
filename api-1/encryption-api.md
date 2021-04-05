@@ -2,7 +2,7 @@
 
 Aidbox can encrypt attributes with the type `secret`.
 
-### Configure Aidbox.Dev
+### Configure Devbox
 
 Let's generate a key
 

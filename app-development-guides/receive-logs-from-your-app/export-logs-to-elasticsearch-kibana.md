@@ -4,11 +4,11 @@ description: 'In this tutorial, you will learn how to export logs to ElasticSear
 
 # Export logs to ElasticSearch/Kibana
 
-In this tutorial, you will learn how to export Aidbox.Dev logs into ElasticSearch/Kibana stack using aidbox-cli.
+In this tutorial, you will learn how to export Devbox logs into ElasticSearch/Kibana stack using aidbox-cli.
 
 ### Configure ElasticSearch & Kibana
 
-So first of all, let's add to Aidbox.Dev docker-compose file Elastic & Kibana:
+So first of all, let's add to Devbox docker-compose file Elastic & Kibana:
 
 ```yaml
 services:
@@ -41,7 +41,7 @@ services:
 
 ### Configure Aidbox & aidbox-cli 
 
-Next step is to configure Aidbox.Dev logging into the file system. We have to mount logs volume and provide AIDBOX\_LOGS env variable set to path to logs file:
+Next step is to configure Devbox logging into the file system. We have to mount logs volume and provide AIDBOX\_LOGS env variable set to path to logs file:
 
 ```yaml
 services:
@@ -69,13 +69,13 @@ services:
     - "./logs:/logs"
 ```
 
-In volumes section we mount logs directory as volume to devbox \(Aidbox.Dev\)  service and do the same for aidbox-cli \(logexp\) service. Aidbox.Dev will log into `/logs/devbox` file and aidbox-cli will read this file and send logs into elasticsearch service.
+In the volumes section we mount logs directory as a volume to devbox \(Devbox\)  service and do the same for aidbox-cli \(logexp\) service. Devbox will log into `/logs/devbox` file and aidbox-cli will read this file and send logs into elasticsearch service.
 
 Logger use elastic url prefix  `http://elasticsearch:9200/logs` and send logs into index like this`http://lasticsearch:9200/logs-2019-08-01/logs` , i.e. index **prefix-&lt;date&gt;** will be used as an index name**.**  You can use pattern `logs-*` to search in indexes in kibana.
 
 Resulting docker-compose file should similar to  [docker-compose.yaml](https://gist.github.com/niquola/463561e25ea0b6a5c12cd0407a0fd7bf). Do not forget to replace LICENSE\_ID & KEY with your license information.
 
-## Start Aidbox.Dev and all services
+## Start Devbox and all services
 
 Now it's time to start your services:
 

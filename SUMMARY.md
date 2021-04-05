@@ -6,14 +6,14 @@
 
 * [Features](getting-started/features.md)
 * [Licensing and Support](getting-started/editions-and-pricing.md)
-* [🎓 Getting Started with Aidbox.Cloud](getting-started/getting-started-with-box.md)
 * [Versioning & Release Notes](getting-started/versioning-and-release-notes/README.md)
   * [Release Notes](getting-started/versioning-and-release-notes/release-notes.md)
   * [Releases Archive](getting-started/versioning-and-release-notes/release-notes-1/README.md)
     * [0.4.7 addendum](getting-started/versioning-and-release-notes/release-notes-1/0.4.7-addendum.md)
 * [Installation & Configuration](getting-started/installation/README.md)
   * [Use aidboxdb image](getting-started/installation/aidboxdb-image.md)
-  * [🎓 Setup Aidbox.Dev](getting-started/installation/setup-aidbox.dev.md)
+  * [🎓 Setup Devbox](getting-started/installation/setup-aidbox.dev.md)
+  * [🎓 Getting Started with Devbox in Cloud](getting-started/installation/getting-started-with-box.md)
 
 ---
 
