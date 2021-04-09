@@ -117,6 +117,50 @@ query-sql:
 - '% joh%'
 ```
 
+### Add order-by into parameters
+
+Both `query` and `params` support `order-by`. `order-by` in query has the least precedence. `order-by` in params are added in top-down order. e.g. `order-by` in first search parameter has the most precedence.
+
+Example: create search query
+
+```yaml
+PUT /SearchQuery/sq
+
+as: ap
+query:
+  order-by: "ap.resource->>'start' ASC"
+resource:
+  id: 'Appointment'
+  resourceType: 'Entity'
+params:
+  ord-dir:
+    type: string
+    format: '?'
+    order-by: |
+      CASE WHEN {{params.ord-dir}} = 'asc' THEN ap.resource->>'start' END ASC,
+      CASE WHEN {{params.ord-dir}} = 'desc' THEN ap.resource->>'start' END DESC
+```
+
+Example: use this search query
+
+```yaml
+# GET /alpha/Appointment?query=sq&ord-dir=desc
+
+resourceType: Bundle
+type: searchset
+entry:
+  - resource:
+      start: '2021-04-02T16:02:50.996+03:00'
+      # omitted
+  - resource:
+      start: '2021-02-02T16:02:50.997+03:00'
+      # omitted
+  - resource:
+      start: '2020-02-02T16:02:50.997+03:00'
+      # omitted
+# omitted
+```
+
 ### Include related resources
 
 You can predefine included resources for SearchQuery with **includes** property:
