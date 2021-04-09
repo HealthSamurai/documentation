@@ -14,7 +14,7 @@ Logs format are friendly to load into PostgreSQL, ElasticSearch and other databa
 
 Aidbox logger can be configured to log into the file system with built-in rotation or to stdout.
 
-
+You can enable request body logging via passing `x-audit-req-body = true` header with your request
 
 ### Logs Schema
 
