@@ -411,5 +411,44 @@ STATUS: 422
 {% endtab %}
 {% endtabs %}
 
+## Validation with zen
 
+Aidbox provides validation with the [Zen language](https://github.com/zen-lang/zen). To use it you need to provide zen libraries in the `AIDBOX_ZEN_DEPS` environment variable.  
+Aidbox validates resources of every resourceType with `aidbox/profile` tagged zen schema
+
+The value of the `AIDBOX_ZEN_DEPS` variable must be a comma-separated list of @-separated pairs of core-zen-project-ns@zen-project-zip-archive-url.  
+For example: `AIDBOX_ZEN_DEPS=foo@https://.../foo.zip,bar@https://.../bar.zip`.
+
+core-zen-project-ns should include a zen schema with an `aidbox/profile` tag specified. Schemas tagged `aidbox/profile` should conform this schema:
+
+```text
+{:zen/tags #{zen/tag zen/schema}
+ :type     zen/map
+ :require  #{:resourceType :severity}
+ :keys     {:resourceType {:type zen/string}
+            :profile-definition {:type zen/string}
+            :severity {:type zen/string
+                       :enum [{:value "required"}
+                              {:value "supported"}]}}}
+```
+
+For example:
+
+```text
+{ns zen-test-ns
+ import #{aidbox}
+
+ patient
+ {:zen/tags     #{zen/schema aidbox/profile}
+  :confirms     #{my-test-ns/resource}
+  :severity     "required"
+  :resourceType "MyPatient"
+  :type         zen/map
+  :keys         {:name   {:type zen/string}
+                 :gender {:type zen/string
+                          :enum [{:value "male"}
+                                 {:value "female"}
+                                 {:value "other"}
+                                 {:value "unknown"}]}}}}
+```
 
