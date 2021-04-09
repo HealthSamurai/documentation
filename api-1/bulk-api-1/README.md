@@ -31,6 +31,58 @@ curl -u client:secret -H 'content-type:application/json' \
   https://<box-url>/Patient/\$dump | gzip > patients.ndjson.gz
 ```
 
+{% api-method method="get" host="\[base\]/:resourceType/$dump" path="" %}
+{% api-method-summary %}
+Dump data
+{% endapi-method-summary %}
+
+{% api-method-description %}
+Dumps data as NDJSON, optionally in FHIR format or GZIPped
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-path-parameters %}
+{% api-method-parameter name="resourceType" type="string" required=true %}
+name of the resource type to be exported
+{% endapi-method-parameter %}
+{% endapi-method-path-parameters %}
+
+{% api-method-query-parameters %}
+{% api-method-parameter name="\_since" type="string" required=false %}
+Date in ISO format; if present, exported data will contain only the resources created after the date.
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="fhir" type="boolean" required=false %}
+Convert data to the FHIR format. If disabled, the data is exported in the Aidbox format.
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="gzip" type="boolean" required=false %}
+GZIP the result. If enabled, HTTP headers for gzip encoding are also set.
+{% endapi-method-parameter %}
+{% endapi-method-query-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+NDJSON representing the resource  
+  
+Example request:  
+  
+`GET /Appointment/$dump?fhir=true`
+{% endapi-method-response-example-description %}
+
+```
+{"id":"ap-1","meta":{"versionId":15,"lastUpdated":"2021-04-02T16:03:31.057462+03:00","extension":[{"url":"ex:createdAt","valueInstant":"2021-04-02T16:03:09.419823+03:00"}]},"start":"2021-02-02T16:02:50.997+03:00","status":"fullfilled","participant":[{"status":"accepted"}],"resourceType":"Appointment"}
+{"id":"ap-2","meta":{"versionId":26,"lastUpdated":"2021-04-02T16:04:24.695862+03:00","extension":[{"url":"ex:createdAt","valueInstant":"2021-04-02T16:03:38.168497+03:00"}]},"start":"2020-02-02T16:02:50.997+03:00","status":"fullfilled","participant":[{"status":"accepted"}],"resourceType":"Appointment"}
+{"id":"ap-3","meta":{"versionId":40,"lastUpdated":"2021-04-02T16:08:41.198887+03:00","extension":[{"url":"ex:createdAt","valueInstant":"2021-04-02T16:03:55.869199+03:00"}]},"start":"2021-04-02T16:02:50.996+03:00","status":"fullfilled","participant":[{"status":"accepted"}],"resourceType":"Appointment"}
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
 ## $dump-sql
 
 Takes the sql query and responds with the Chunked Encoded stream in CSV format. Useful to export data for analytics.
