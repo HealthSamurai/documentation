@@ -235,7 +235,8 @@ $ docker-compose up -d
 ### PGIMAGE
 
 [aidbox/db](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1&ordering=last_updated) is a custom compiled Postgres which is bundled with extensions necessary for the Aidbox.  
-One of these extensions is the [jsonknife](https://github.com/niquola/jsonknife), it provides a set of functions used in FHIR search API implementation. If your Postgres image is missing the jsonknife extension, then Aidbox will try to use other tools to implement jsonknife functionality. Fallback will happen in such order: jsonpath, plv8, pure PostgreSQL. Keep in mind that alternative implementations have lower performance
+One of these extensions is the [jsonknife](https://github.com/niquola/jsonknife), it provides a set of functions used in FHIR search API implementation. If your Postgres image is missing the jsonknife extension, then Aidbox will try to use other tools to implement jsonknife functionality. Fallback will happen in such order: jsonpath, ~~plv8~~, pure PostgreSQL. Keep in mind that alternative implementations have lower performance  
+_2021-04-09: plv8 jsonknife engine has been deprecated_
 
 
 
