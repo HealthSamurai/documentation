@@ -1,6 +1,6 @@
 # Apps
 
-You can extend [Aidbox](https://www.health-samurai.io/aidbox) with custom Apps. The app can define custom resources, custom endpoints, and subscribe to hooks or subscriptions. The app is a standalone service which will work with Aidbox to implement your specific app or Aidbox Add-on. App should be registered in Aidbox.
+You can extend [Aidbox](https://www.health-samurai.io/aidbox) with custom Apps. The app can define custom resources, custom endpoints, and subscribe to hooks or subscriptions. The app is a standalone service which will work with Aidbox to implement your specific app. App should be registered in Aidbox.
 
 You define the App using Aidbox SDK for your language and should not reverse engineer internal API, because it can be subject to change.
 
@@ -18,7 +18,7 @@ To define the App, we should provide the app manifest:
 resourceType: App
 id: myorg.myapp  # id of your application
 apiVersion: 1    # App API version
-type: app        # type of app - app | addon
+type: app
 endpoint:        # communication protocol between aidbox and app
    type: http-rpc         # type of protocol - http-rpc | ws-rpc
    host: app.mydomain.com # app service host for http protocols 
