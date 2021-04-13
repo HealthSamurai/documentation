@@ -16,7 +16,7 @@
 * Fix SearchQuery [revinclude for array references](https://github.com/Aidbox/Issues/issues/365)
 * And other various bug fixes.
 
-### [2021.02 \(19th of March\)](https://github.com/Aidbox/Issues/projects/4), 19032021
+### [2021.02 \(19th of March\)](https://github.com/Aidbox/Issues/projects/4), 20210319
 
 * Builds of [aidboxdb](../installation/aidboxdb-image.md) for PostgreSQL 11.11, 12.6, 13.2 are [released](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1&ordering=last_updated). 
 * Aidbox now supports deployment on top of Azure PostgreSQL.
