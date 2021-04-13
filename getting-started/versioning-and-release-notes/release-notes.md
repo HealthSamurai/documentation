@@ -1,6 +1,6 @@
 # Release Notes
 
-### [2021.03 \(12th of April\)](https://github.com/Aidbox/Issues/projects/5), 20210412 \(pending release\)
+### [2021.03 \(12th of April\)](https://github.com/Aidbox/Issues/projects/5), 20210412
 
 * Change release name format from `DDMMYYYY` to `YYYYMMDD`
 * Add zen lang [validation engine](https://docs.aidbox.app/app-development-guides/tutorials/profiling#validation-with-zen)
