@@ -4,9 +4,21 @@ description: Managed SQL for Search API
 
 # SearchQuery
 
-With **SearchQuery** resource, you can define "managed"  SQL for Search API with parameters, paging, sorting and includes.
+With **SearchQuery** resource, you can define "managed"  SQL for Search API with parameters, paging, sorting, and includes.
 
-Let's start from a simple example. You want to search old patients by the partial match of the family name with filter by gender:
+| Parameter name | Description |
+| :--- | :--- |
+| **count** | A number of records returned per page |
+| **page** | Controls pagination |
+| **total** | The maximum number of results returned by a search result |
+| **\_timeout** | Defines query timeout |
+| **join** | Allows you to join related resources for search |
+| **order-by** | Defines the ordering of the search results |
+| **includes** | Allows you to predefine included resources |
+| **reverse** | Includes resources that refer resources from your query |
+| **\_explain=analyze** | Helps to inspect the execution plan of a search query |
+
+Let's start with a simple example. You want to search old patients by the partial match of the family name with filter by gender:
 
 ```yaml
 PUT /SearchQuery/q-1
@@ -53,7 +65,7 @@ query-timeout: 60000
 
 You can use **count** and **page** parameters for paging and control total query \(if enabled\) with **total** parameter. Use **\_timeout** parameter to set query timeout.
 
-If parameter is provided, another query will be generated on the fly:
+If the parameter is provided, another query will be generated on the fly:
 
 ```yaml
 GET /alpha/Patient?query=q-1&family=joh
@@ -76,7 +88,7 @@ query-sql:
 
 ### Add JOIN
 
-You parameters and basic query can use join attribute to join related resources for search:
+Your parameters and basic query can use join attribute to join related resources for search:
 
 ```yaml
 PUT /SearchQuery/q-2
