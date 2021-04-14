@@ -9,10 +9,12 @@ description: >-
 
 ### Input params
 
-* **type**: string - It is a special keyword for your logs like "ui", "ui-error", "backend-crush"
-* **message**: any JSON -  which should contain information that you want to log. It should be noted that we record your log data only from the message property
-* **v**: string - it means your app version. This parameter is optional
-* **fx**: string - fx or event on your side from which you want to log data or error. This parameter is optional
+| Param name | Required | Type | Description |
+| :--- | :--- | :--- | :--- |
+| **type** | Yes | string | It is a special keyword for your logs like "ui", "ui-error", "backend-crush" |
+| **message** | Yes | JSON | It contains information that you want to log. It should be noted that we record your log data only from the message property |
+| **v** | No | string | It means your app version.  |
+| **fx** | No | string | fx or event on your side from which you want to log data or error.  |
 
 ### Example
 
@@ -41,4 +43,6 @@ w_cid: box-ui
 w_app_fx: fetchUsers
 w_m: post
 ```
+
+Aidbox logs structure is described [here](https://docs.aidbox.app/core-modules/logging-and-audit)
 
