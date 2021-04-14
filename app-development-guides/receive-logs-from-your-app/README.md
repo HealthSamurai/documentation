@@ -1,8 +1,8 @@
 ---
 description: >-
-  We provide a special endpoint that accepts logs from your application in a
-  special structure. This log will be applied to the elastic log. You can find
-  examples below.
+  Aidbox provides /$loggy endpoint that accepts logs with the defined structure
+  from your application. These logs are ingested into the elastic log. You can
+  find examples below.
 ---
 
 # Receive logs from your app
