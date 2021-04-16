@@ -78,7 +78,9 @@ GET /_logs
 ....
 ```
 
-
+{% hint style="info" %}
+Please, pay attention, that you will not see the response for `GET /_logs` request in the Aidbox REST console. Use the terminal, or the browser console instead.
+{% endhint %}
 
 ### Demos
 
