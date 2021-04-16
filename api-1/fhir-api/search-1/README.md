@@ -15,11 +15,21 @@ There are two versions of API, which differ by the [resources format](../../../m
 All data is stored and searched in Aidbox Format and converted on the fly to FHIR on FHIR endpoints!
 {% endhint %}
 
-Base search request is composed of the list of pairs **param** = **value**:
+A base search request is composed of the list of pairs **param** = **value**:
 
+{% tabs %}
+{% tab title="FHIR format" %}
+```
+GET [base]/fhir/[resourceType]?param=value&param=value&...
+```
+{% endtab %}
+
+{% tab title="Aidbox format" %}
 ```javascript
 GET [base]/[resourceType]?param=value&param=value&...
 ```
+{% endtab %}
+{% endtabs %}
 
 Where **param** can be one of:
 
@@ -30,13 +40,23 @@ Where **param** can be one of:
 
 Simple search by patient name:
 
+{% tabs %}
+{% tab title="FHIR format" %}
+```
+GET /fhir/Patient?name=Max&_elements=id, birthDAte
+```
+{% endtab %}
+
+{% tab title="Aidbox format" %}
 ```javascript
 GET /Patient?name=Max&_elements=id, birthDAte
 ```
+{% endtab %}
+{% endtabs %}
 
 ## Special Parameters
 
-| Parameter |  |  |
+| Parameter | Type | Description |
 | :--- | :--- | :--- |
 | [\_id](_id.md) | FHIR | Search and sort by resource id |
 | [\_lastUpdated](_lastupdated.md) | FHIR | Search and sort by resource last modification date |
@@ -77,14 +97,42 @@ Depending on the value type, different modifiers can be applied.
 * `:missing`
 * `:text` — case insensitive, partial match of text & data associated with search parameter.
 
+{% tabs %}
+{% tab title="FHIR format" %}
+```javascript
+GET /fhir/Entity?description:missing=true
+// For gender:missing=true,
+// server will return all resources that
+// don't have a value for the gender parameter. 
+```
+{% endtab %}
+
+{% tab title="Aidbox format" %}
 ```javascript
 GET /Entity?description:missing=true
 // For gender:missing=true,
 // server will return all resources that
 // don't have a value for the gender parameter.
 ```
+{% endtab %}
+{% endtabs %}
 
-```markup
+{% tabs %}
+{% tab title="FHIR format" %}
+```javascript
+// Search for any patient with johndoe@mail.com email
+GET /fhir/Patient?email:text=JoHnDoE@mail.com
+
+// Search for any patient with gmail or icloud email
+GET /fhir/Patient?email:text=GMail.com,ICloud.com
+
+// Search for any patient which have "fhir" in any of their contact info
+GET /fhir/Patient?telecom:text=fhir
+```
+{% endtab %}
+
+{% tab title="Aidbox format" %}
+```javascript
 // Search for any patient with johndoe@mail.com email
 GET /Patient?email:text=JoHnDoE@mail.com
 
@@ -94,8 +142,8 @@ GET /Patient?email:text=GMail.com,ICloud.com
 // Search for any patient which have "fhir" in any of their contact info
 GET /Patient?telecom:text=fhir
 ```
-
-
+{% endtab %}
+{% endtabs %}
 
 ### Strings
 
@@ -104,9 +152,19 @@ GET /Patient?telecom:text=fhir
 
 Default behavior is case insensitive, partial match at start.
 
+{% tabs %}
+{% tab title="FHIR format" %}
+```javascript
+GET /fhir/Patient?name:exact=Alex
+```
+{% endtab %}
+
+{% tab title="Aidbox format" %}
 ```javascript
 GET /Patient?name:exact=Alex
 ```
+{% endtab %}
+{% endtabs %}
 
 ### Token
 
@@ -114,25 +172,65 @@ GET /Patient?name:exact=Alex
 * `:i` — case insensitive, exact match of text associated with token or token itself.
 * `:in` — the search parameter is a URI \(relative or absolute\) that identifies a value set, and the search parameter tests whether the coding is in the specified value set.
 
+{% tabs %}
+{% tab title="FHIR format" %}
+```javascript
+//Search for any patient with a gender that does not have the code "male"
+//Note that for :not, the search does not return any resources that have a gen
+GET /fhir/Patient?gender:not=male
 ```
+{% endtab %}
+
+{% tab title="Aidbox format" %}
+```javascript
 //Search for any patient with a gender that does not have the code "male"
 //Note that for :not, the search does not return any resources that have a gen
 GET /Patient?gender:not=male
 ```
+{% endtab %}
+{% endtabs %}
 
+{% tabs %}
+{% tab title="FHIR format" %}
+```javascript
+// Search for patient with email which is Foo@Bar.BAZ
+GET /fhir/Patient?email:i=foo@bar.baz
+// Note: this search won't find patient with emails like:
+// ffoo@bar.baz
+// foo@bar.bazz
 ```
+{% endtab %}
+
+{% tab title="Aidbox format" %}
+```javascript
 // Search for patient with email which is Foo@Bar.BAZ
 GET /Patient?email:i=foo@bar.baz
 // Note: this search won't find patient with emails like:
 // ffoo@bar.baz
 // foo@bar.bazz
 ```
+{% endtab %}
+{% endtabs %}
 
-```
+{% tabs %}
+{% tab title="FHIR format" %}
+```javascript
 //Search for any condition that is in the institutions list of cardiac conditions
 //Note: you must have Concept with valueset defined
-GET /Condition?code:in=http://acme.org/fhir/ValueSet/cardiac-conditions
+
+GET /fhir/Condition?code:in=/ValueSet/cardiac-conditions
 ```
+{% endtab %}
+
+{% tab title="Aidbox format" %}
+```javascript
+//Search for any condition that is in the institutions list of cardiac conditions
+//Note: you must have Concept with valueset defined
+
+GET /Condition?code:in=/ValueSet/cardiac-conditions
+```
+{% endtab %}
+{% endtabs %}
 
 ### Reference
 
@@ -140,31 +238,61 @@ Reference describes the relationship between resources. Following options are av
 
 Сoded element or identifier
 
+{% tabs %}
+{% tab title="FHIR format" %}
+```javascript
+GET /fhir/Patient?gender=female
+```
+{% endtab %}
+
+{% tab title="Aidbox format" %}
 ```javascript
 GET /Patient?gender=female
 ```
+{% endtab %}
+{% endtabs %}
 
-```text
+```javascript
 [parameter]=[id]
 ```
 
-```text
+```javascript
 [parameter]=[type]/[id]
 ```
 
 For example, let's find all encounters related to a specified patient:
 
+{% tabs %}
+{% tab title="FHIR format" %}
+```javascript
+GET /fhir/Encounter?subject=patientid
+```
+{% endtab %}
+
+{% tab title="Aidbox format" %}
 ```javascript
 GET /Encounter?subject=patientid
 ```
+{% endtab %}
+{% endtabs %}
 
+{% tabs %}
+{% tab title="FHIR format" %}
+```javascript
+GET /fhir/Encounter?subject=Patient/patientid
+```
+{% endtab %}
+
+{% tab title="Aidbox format" %}
 ```javascript
 GET /Encounter?subject=Patient/patientid
 ```
+{% endtab %}
+{% endtabs %}
 
 ### Prefixes
 
-For Numbers, Dates and Quantities \(will be supported\), we can use the following conditionals in a search:
+For Numbers, Dates, and Quantities \(will be supported\), we can use the following conditionals in a search:
 
 * `eq` - equal \(default\)
 * `ne` - non-equal
@@ -173,13 +301,21 @@ For Numbers, Dates and Quantities \(will be supported\), we can use the followin
 * `gt` - greater than
 * `ge` - greater or equal
 
+{% tabs %}
+{% tab title="FHIR format" %}
+```javascript
+GET /fhir/Patient?birthdate=gt1986-04-28
+```
+{% endtab %}
+
+{% tab title="Aidbox format" %}
 ```javascript
 GET /Patient?birthdate=gt1986-04-28
 ```
+{% endtab %}
+{% endtabs %}
 
 {% hint style="info" %}
-Want to know more about [Aidbox](https://www.health-samurai.io/aidbox), FHIR, and search? Join our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).
+Want to know more about [Aidbox](https://www.health-samurai.io/aidbox), FHIR, and search? Join our community [chat](https://t.me/aidbox) .
 {% endhint %}
-
-
 

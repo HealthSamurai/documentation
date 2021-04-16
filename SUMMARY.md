@@ -86,13 +86,6 @@
 
 ## API <a id="api-1"></a>
 
-* [REST API](api-1/api/README.md)
-  * [CRUD](api-1/api/crud-1/README.md)
-    * [Create](api-1/api/crud-1/fhir-and-aidbox-crud.md)
-    * [Read](api-1/api/crud-1/read.md)
-    * [Update](api-1/api/crud-1/update.md)
-    * [Patch](api-1/api/crud-1/patch.md)
-    * [Delete](api-1/api/crud-1/delete.md)
 * [FHIR API](api-1/fhir-api/README.md)
   * [$validate](api-1/fhir-api/usdvalidate.md)
   * [Search](api-1/fhir-api/search-1/README.md)
@@ -120,6 +113,13 @@
     * [$lookup](api-1/fhir-api/search-1/usdlookup.md)
   * [Observation/$lastn](api-1/fhir-api/misc.md)
   * [History](api-1/fhir-api/history-1.md)
+* [REST API](api-1/api/README.md)
+  * [CRUD](api-1/api/crud-1/README.md)
+    * [Create](api-1/api/crud-1/fhir-and-aidbox-crud.md)
+    * [Read](api-1/api/crud-1/read.md)
+    * [Update](api-1/api/crud-1/update.md)
+    * [Patch](api-1/api/crud-1/patch.md)
+    * [Delete](api-1/api/crud-1/delete.md)
 * [Bulk API](api-1/bulk-api-1/README.md)
   * [🎓 Synthea by Bulk APi](api-1/bulk-api-1/synthea-by-bulk-api.md)
   * [🎓 $dump-sql tutorial](api-1/bulk-api-1/usddump-sql-tutorial.md)
