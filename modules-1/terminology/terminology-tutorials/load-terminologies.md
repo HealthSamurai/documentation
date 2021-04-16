@@ -19,7 +19,7 @@ Here are a few packages you can start with:
 * ICD-10 - [https://storage.googleapis.com/aidbox-public/icd10/icd10cm.ndjson.gz](https://storage.googleapis.com/aidbox-public/icd10/icd10cm.ndjson.gz)
 * LOINC - [https://storage.googleapis.com/aidbox-public/loinc/loinc-concepts-2.65.ndjson.gz](https://storage.googleapis.com/aidbox-public/loinc/loinc-concepts-2.65.ndjson.gz)
 
-Rx-Norm, SNOMED-CT and basic FHIR CodeSystems/ValueSets packages are in progress. If you need something specific, ping us in a [Aidbox Community Chat](https://community.aidbox.app).
+Rx-Norm, SNOMED-CT and basic FHIR CodeSystems/ValueSets packages are in progress. If you need something specific, ping us in a [Aidbox Community Chat](https://t.me/aidbox).
 
 In this tutorial, we will load ICD-10 deceases codes into Aidbox and see how we can look up codes using Concept resource Search API.
 

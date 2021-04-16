@@ -184,7 +184,7 @@ patient;
 | `patient2` | `Patient` | `{"id":"patient2","name":[{"given":["Alex"],"family":"Antonov"}],"resource_type":"Patient"}` |
 
 {% hint style="info" %}
-Curious how to work with JSON in PostgreSQL? Join our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).
+Curious how to work with JSON in PostgreSQL? Join our community [chat](https://t.me/aidbox).
 {% endhint %}
 
 Also, we can obtain a list of encounters for each patient:
