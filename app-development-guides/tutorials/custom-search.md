@@ -444,6 +444,6 @@ data:
 We got all the needed data in the exact shape we wanted. Additional information about custom queries can be found in REST API [$query](../../api-1/fhir-api/search-1/custom-search.md) documentation.
 
 {% hint style="info" %}
-Want to know more about Aidbox, FHIR, and custom search? Join our community [chat](https://community.aidbox.app/) \([\#aidbox](https://community.aidbox.app/) channel\).
+Want to know more about Aidbox, FHIR, and custom search? Join our community [chat](https://t.me/aidbox).
 {% endhint %}
 
