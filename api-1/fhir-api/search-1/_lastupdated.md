@@ -6,15 +6,35 @@ description: Filter by the modification date
 
 Search by the last modification time of the resource   `meta.lastUpdated`\(note: `ts` column in database\) or by the creation time `meta.createdAt`\(note: `cts` column in the database\) 
 
-```http
+{% tabs %}
+{% tab title="FHIR format" %}
+```javascript
+GET /fhir/Patient?_lastUpdated=2019-01-01
+```
+{% endtab %}
+
+{% tab title="Aidbox format" %}
+```javascript
 GET /Patient?_lastUpdated=2019-01-01
 ```
+{% endtab %}
+{% endtabs %}
 
-```text
+{% tabs %}
+{% tab title="FHIR format" %}
+```javascript
+GET /fhir/Patient?_createdAt=2019-01-01
+```
+{% endtab %}
+
+{% tab title="Aidbox format" %}
+```javascript
 GET /Patient?_createdAt=2019-01-01
 ```
+{% endtab %}
+{% endtabs %}
 
-Value can be partial ISO date:
+Value can be a part of ISO date:
 
 * only year  - `2019`
 * year and month - `2019-03`
@@ -39,7 +59,7 @@ ts <= max_date_bound('2019-01-01') AND ts >= min_date_bound('2019-01-01')
 
 You can use operators `lt,le,gt,ge` as the prefix of **value** to make Aidbox generate inequality queries:
 
-```text
+```javascript
 _lastUpdated=lt2019-01  => ts < max_date_bound('2019-01')
 _lastUpdated=ge2019-01  => ts >= min_date_bound('2019-01')
 
