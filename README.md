@@ -40,7 +40,7 @@ Health Samurai provides all kinds of support for Aidbox; you can learn more abou
 
 Aidbox implements most of the [FHIR specification](https://www.hl7.org/fhir/) and supports all official versions of the standard. We designed Aidbox to be FHIR-compatible, but it uses its own framework. Besides FHIR, Aidbox offers many useful additions. The key differences are listed below:
 
-* Aidbox stores Resources in [Aidbox format](https://docs.aidbox.app/basic-concepts/aidbox-and-fhir-formats), which is isomorphic to FHIR, but not the same.
+* Aidbox stores Resources in [Aidbox format](https://docs.aidbox.app/modules-1/fhir-resources/aidbox-and-fhir-formats), which is isomorphic to FHIR, but not the same.
 * Aidbox serves two sets of API: **Aidbox API** from "/" and **FHIR API** from "/fhir**"**. Aidbox API works with Aidbox format, and FHIR API works with FHIR format. When you interact with FHIR endpoints, Aidbox does on-the-fly conversion between these two formats.
 * Aidbox offers **First-Class Extensions** and **Custom Resources**, which FHIR doesn't support, but these additions are very handy for designing real-world systems.
 * Aidbox uses its own Entity/Attribute, SearchParameter and AidboxProfile framework instead of FHIR Structure Definitions. FHIR Profiles should be converted to Aidbox meta-resources.
@@ -57,5 +57,5 @@ Aidbox stores FHIR resources almost as is with 3 types of isomorphic transformat
 * Union \(Choice Types\)
 * First-Class Extensions
 
-[Read more](https://docs.aidbox.app/basic-concepts/aidbox-and-fhir-formats)
+[Read more](https://docs.aidbox.app/modules-1/fhir-resources/aidbox-and-fhir-formats)
 
