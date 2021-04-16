@@ -6,11 +6,11 @@ All examples from this tutorial you can run in Postman. Here's the [web view](ht
 
 ## Defining a Custom Resource
 
-Sometimes your data does not fit any existing FHIR resources. It is not always obvious that your data _cannot_ be translated to FHIR because of some FHIR  generalizations. The right first step is to go to [FHIR community chat](http://health-samurai.info/a-cusres-to-zulip) and ask your specific question about mapping to FHIR, or contact Health Samurai modelling team about your concern. If you are still sure that there is no appropriate resource in FHIR or it takes too much time to wait for it, you can define your own **Custom Resources** in [Aidbox](https://www.health-samurai.io/aidbox)**.**
+Sometimes your data does not fit any existing FHIR resources. It is not always obvious that your data _cannot_ be translated to FHIR because of some FHIR  generalizations. The right first step is to go to [FHIR com](https://t.me/aidbox)[unity chat](https://t.me/aidbox) and ask your specific question about mapping to FHIR, or contact Health Samurai modeling team about your concern. If you are still sure that there is no appropriate resource in FHIR or it takes too much time to wait for it, you can define your own **Custom Resources** in [Aidbox](https://www.health-samurai.io/aidbox)**.**
 
-**Custom Resources** are defined exactly the same way as core FHIR resources. They can refer existing resources, have uniform REST API for CRUD and Search, and participate in transactions.
+**Custom Resources** are defined exactly the same way as core FHIR resources. They can refer to existing resources, have uniform REST API for CRUD and Search, and participate in transactions.
 
-Let's imagine that in our application we want to store user preferences such as UI configuration or personalized Patient List filters. It is expected that you have already created a box in [Aidbox.Cloud](https://docs.aidbox.app/~/drafts/-LOrgfiiMwbxfp70_ZP0/primary/v/master/installation/use-aidbox.cloud). First of all, we have to define a new resource type by creating an **Entity** resource.
+Let's imagine that in our application we want to store user preferences such as UI configuration or personalized Patient List filters. It is expected that you have already created a box in [Aidbox.Cloud](https://docs.aidbox.app/getting-started/installation/getting-started-with-box). First of all, we have to define a new resource type by creating an **Entity** resource.
 
 ### Create Definition​
 
