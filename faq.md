@@ -2,23 +2,23 @@
 
 ## **How can I load lots of data at a time with Aidbox API?**
 
-You can use [`Bulk API`](https://docs.aidbox.app/basic-concepts/bulk-api-1) for that 
+You can use [`Bulk API`](https://docs.aidbox.app/api-1/bulk-api-1) for that 
 
 ## **How to increase speed/performance for requests with complex parameters?**
 
-Create [indexes](https://docs.aidbox.app/basic-concepts/search-1/usdlookup#create-indexes%20) for that
+Create [indexes](https://docs.aidbox.app/api-1/fhir-api/search-1/usdlookup#create-indexes) for that
 
 ## **Does Aidbox support 2-factor authentication?**
 
-Yes, please, check out [the documentation](https://docs.aidbox.app/auth/two-factor-authentication)
+Yes, please, check out [the documentation](https://docs.aidbox.app/user-management-1/auth/two-factor-authentication)
 
 ## **How to create a SearchParameter for extensions on a property in a resource?**
 
-You can create [custom search parameter](https://docs.aidbox.app/basic-concepts/search-1/searchparameter#define-custom-searchparameter%20) for extensions ****and to made SearchParameter easier to write you also can [define attribute](https://docs.aidbox.app/advanced/first-class-extensions)
+You can create [custom search parameter](https://docs.aidbox.app/user-management-1/auth/two-factor-authentication) for extensions ****and to made SearchParameter easier to write you also can [define attribute](https://docs.aidbox.app/modules-1/first-class-extensions)
 
 ## **I’m building a request with revinclude. Is it possible to also apply a search for the include resource in that request?**
 
-In the FHIR Search API this is called chained-parameters. Read the details [here](https://docs.aidbox.app/basic-concepts/search-1/chained-parameters) and [here](https://www.hl7.org/fhir/search.html#chaining)
+In the FHIR Search API this is called chained-parameters. Read the details [here](https://docs.aidbox.app/api-1/fhir-api/search-1/chained-parameters) and [here](https://www.hl7.org/fhir/search.html#chaining)
 
 ## Aidbox appears to have a POST size limit of 20 MB by default. Is this configurable?
 
