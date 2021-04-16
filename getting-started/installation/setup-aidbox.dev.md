@@ -125,6 +125,8 @@ AIDBOX_IMAGE=healthsamurai/devbox:latest
 | AIDBOX\_ADMIN\_ID | false | Id for admin user \(default: admin\) |
 | AIDBOX\_ADMIN\_PASSWORD | false | Password for admin user |
 
+Please, find the full list of available environment variables [here](https://docs.aidbox.app/getting-started/installation/use-devbox-aidbox). 
+
 {% hint style="info" %}
 If **AIDBOX\_CLIENT\_ID** & **AIDBOX\_CLIENT\_SECRET** are provided - Aidbox will start in a secure mode with access control turned on; API Client with provided ID and secret will be created, as well as the Access Policy, which grants root privileges to this Client. In the simpliest way, you can access Aidbox API using basic auth and this client credentials.
 {% endhint %}
