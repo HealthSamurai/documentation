@@ -863,29 +863,52 @@ Path expression in includes is `json_knife` extension path, it consists of strin
 
 Here is an example of how to extract a patient \(code: PART\) from the appointment:
 
-```text
-["participant", {"type": [{"coding": [{"code": "PART"}]}, "actor"] => pt-2
-```
+{% hint style="info" %}
+The following example is prepared to be executed in the DB Console
+{% endhint %}
 
 {% tabs %}
-{% tab title="Aidbox format" %}
+{% tab title="Aidbox DB Console Request" %}
 ```yaml
-resourceType: Appointment
-status: active
-participant:
-- type:
-  - text: Patient
-    coding:
-    - {code: PART}
-  actor: {id: pt-2, resourceType: Patient}
-  status: active
-- type:
-  - text: Admit
-    coding:
-    - {code: ADM}
-   actor: {id: pr-2, resourceType: Practitioner}
-   status: active
+select knife_extract(
+  '{
+     "resourceType" : "Appointment",
+     "status" : "active",
+     "participant" : [ {
+       "type" : [ {
+         "text" : "Patient",
+         "coding" : [ {
+           "code" : "PART"
+         } ]
+       } ],
+       "actor" : {
+         "id" : "patient2",
+         "resourceType" : "Patient"
+       },
+       "status" : "active"
+     }, {
+       "type" : [ {
+         "text" : "Admit",
+         "coding" : [ {
+           "code" : "ADM"
+         } ]
+       } ],
+       "actor" : {
+         "id" : "pr-2",
+         "resourceType" : "Practitioner"
+       },
+       "status" : "active"
+     } ]
+   }',
+   '[["participant", {"type": [{"coding": [{"code": "PART"}]}]}, "actor"]]'
+)
+```
+{% endtab %}
 
+{% tab title="Aidbox DB Console Response" %}
+```
+knife_extract
+- '{"id": "patient2", "resourceType": "Patient"}'
 ```
 {% endtab %}
 {% endtabs %}
@@ -1026,11 +1049,11 @@ tests:
   # name of request
   only-pid:
     # params for request
-    params: {pid: 'pt-1'}
+    params: {pid: 'patient1'}
   only-ts:
     params: {ts: '2019-01-01'}
   both:
-    params: {pid: 'pt-1', ts: 'ups'}
+    params: {pid: 'patient1', ts: 'ups'}
 # SearchQuery defnition
 query:
   resource: {id: Patient, resourceType: Entity}
@@ -1045,53 +1068,82 @@ query:
   # 200
   
 only-pid:
-  params: {pid: pt-1, _timeout: 2000}
+  params:
+    pid: patient1
+    _timeout: 2000
   result:
     resourceType: Bundle
     type: searchset
     entry:
-    - resource:
-        name:
-        - given: [Andrew]
-          family: John
-        id: pt-1
-        resourceType: Patient
-        meta: {lastUpdated: '2019-09-10T11:24:00.481090Z', versionId: '1494'}
+      - resource:
+          name:
+            - given:
+                - Max
+              family: Johnson
+          gender: male
+          birthDate: '1960-10-10'
+          managingOrganization:
+            id: org1
+            display: Test hospital1
+            resourceType: Organization
+          id: patient1
+          resourceType: Patient
+          meta:
+            lastUpdated: '2021-04-19T12:18:14.183626Z'
+            createdAt: '2021-04-19T12:18:14.183626Z'
+            versionId: '244'
+    query-timeout: 2000000
   explain:
     query: |-
       EXPLAIN ANALYZE SELECT * FROM "patient" pt
       WHERE /* pid */ pt.id = ?
       ORDER BY pt.ts desc
       LIMIT 40
-    params: [pt-1]
-    explain: |-
-      Limit  (cost=8.18..8.19 rows=1 width=38) (actual time=0.032..0.033 rows=1 loops=1)
-        ->  Sort  (cost=8.18..8.19 rows=1 width=38) (actual time=0.032..0.032 rows=1 loops=1)
+    params:
+      - patient1
+    explain: >-
+      Limit  (cost=8.18..8.18 rows=1 width=124) (actual time=0.089..0.236 rows=1
+      loops=1)
+
+        ->  Sort  (cost=8.18..8.18 rows=1 width=124) (actual time=0.074..0.101
+      rows=1 loops=1)
+
               Sort Key: ts DESC
+
               Sort Method: quicksort  Memory: 25kB
-              ->  Index Scan using patient_pkey on patient pt  (cost=0.15..8.17 rows=1 width=38) (actual time=0.024..0.025 rows=1 loops=1)
-                    Index Cond: (id = 'pt-1'::text)
-      Planning Time: 1.556 ms
-      Execution Time: 0.057 ms
+
+              ->  Index Scan using patient_pkey on patient pt  (cost=0.15..8.17
+      rows=1 width=124) (actual time=0.037..0.053 rows=1 loops=1)
+
+                    Index Cond: (id = 'patient1'::text)
+
+      Planning Time: 0.185 ms
+
+      Execution Time: 0.302 ms
 only-ts:
   status: error
-  params: {ts: '2019-01-01', _timeout: 2000}
+  params:
+    ts: '2019-01-01'
+    _timeout: 2000
   errors:
-  - {details: Parameter pid is required}
+    - details: Parameter pid is required
 both:
-  params: {pid: pt-1, ts: ups, _timeout: 2000}
+  params:
+    pid: patient1
+    ts: ups
+    _timeout: 2000
   result:
     status: error
     query:
-    - |-
-      SELECT pt.*
-      FROM "patient" pt
-      WHERE /* pid */ pt.id = ?
-        AND /* ts */ pt.tis >= ?
-      ORDER BY pt.ts desc
-      LIMIT 40
-    - pt-1
-    - null
+      - |-
+        SELECT pt.*
+        FROM "patient" pt
+        WHERE /* pid */ pt.id = ?
+          AND /* ts */ pt.tis >= ?
+        ORDER BY pt.ts desc
+        LIMIT 40
+      - patient1
+      - null
     error: |-
       ERROR: column pt.tis does not exist
         Hint: Perhaps you meant to reference the column "pt.ts".
