@@ -18,8 +18,384 @@ With **SearchQuery** resource, you can define "managed"  SQL for Search API with
 | **reverse** | Includes resources that refer resources from your query |
 | **\_explain=analyze** | Helps to inspect the execution plan of a search query |
 
-Let's start with a simple example. You want to search old patients by the partial match of the family name with filter by gender:
+### Prepare example data
 
+We need some sample data to see the results of example queries. Let's create it.  
+Copy the following snippet to the Aidbox `REST Console`.
+
+{% hint style="info" %}
+You can use the Copy button near the top right corner of a snippet to avoid copying trailing spaces.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Request \(Aidbox format\)" %}
+```yaml
+POST /
+
+type: transaction
+entry:
+- resource:
+    id: pr-1
+    name:
+    - given: [Ted]
+      family: 'Scott'
+  request:
+    method: POST
+    url: "/Practitioner"
+
+- resource:
+    id: pr-2
+    name:
+    - given: [Tommy]
+      family: 'Peterson'
+  request:
+    method: POST
+    url: "/Practitioner"
+
+- resource:
+    id: org1
+    name: 'Test hospital1'
+  request:
+    method: POST
+    url: "/Organization"
+
+- resource:
+    id: org2
+    name: 'Test hospital2'
+  request:
+    method: POST
+    url: "/Organization"
+
+- resource:
+    id: patient1
+    name:
+    - given: [Max]
+      family: Johnson
+    gender: male
+    managingOrganization: {resourceType: Organization, id: org1, display: 'Test hospital1'}
+    birthDate: '1960-10-10'
+  request:
+    method: POST
+    url: "/Patient"
+
+- resource:
+    id: patient2
+    name:
+    - given: [Alex]
+      family: Smith
+    gender: male
+    managingOrganization: {resourceType: Organization, id: org2, display: 'Test hospital2'}
+    birthDate: '1990-01-01'
+  request:
+    method: POST
+    url: "/Patient"
+
+- resource:
+    id: enc1
+    status: planned
+    subject:
+      resourceType: Patient
+      id: patient1
+  request:
+    method: POST
+    url: "/Encounter"
+
+- resource:
+    id: enc2
+    status: finished
+    subject:
+      resourceType: Patient
+      id: patient1
+  request:
+    method: POST
+    url: "/Encounter"
+
+- resource:
+    id: enc3
+    status: planned
+    subject:
+      resourceType: Patient
+      id: patient2
+  request:
+    method: POST
+    url: "/Encounter"
+
+- resource:
+    id: apt1
+    description: "Test appointment 1"
+    start: 2020-12-10T09:00:00Z
+    end: 2020-12-10T11:00:00Z
+    status: booked
+    participant: [{ actor: { resourceType: Patient, id: patient1}, status: accepted},{ actor: { resourceType: Practitioner, id: pr-1}, status: accepted}]
+  request:
+    method: POST
+    url: "/Appointment"
+
+- resource:
+    id: apt2
+    description: "Test appointment 2"
+    start: 2021-04-10T09:00:00Z
+    end: 2021-04-10T11:00:00Z
+    status: booked
+    participant: [{ actor: { resourceType: Patient, id: patient2}, status: accepted}, { actor: { resourceType: Practitioner, id: pr-2}, status: accepted}]
+  request:
+    method: POST
+    url: "/Appointment"
+```
+{% endtab %}
+
+{% tab title="Response \(Aidbox format\)" %}
+```yaml
+# Status: 200
+resourceType: Bundle
+type: transaction-response
+id: '244'
+entry:
+  - resource:
+      name:
+        - given:
+            - Ted
+          family: Scott
+      id: pr-1
+      resourceType: Practitioner
+      meta:
+        lastUpdated: '2021-04-19T12:18:14.183626Z'
+        createdAt: '2021-04-19T12:18:14.183626Z'
+        versionId: '244'
+    response:
+      etag: '244'
+      cache-control: no-cache
+      last-modified: 'Mon, 19 Apr 2021 12:18:14 GMT'
+      location: /Practitioner/pr-1/_history/244
+      x-duration: 54
+      x-request-id: c9481d21-a93e-4bbd-940e-d7221ad45110
+      status: '201'
+  - resource:
+      name:
+        - given:
+            - Tommy
+          family: Peterson
+      id: pr-2
+      resourceType: Practitioner
+      meta:
+        lastUpdated: '2021-04-19T12:18:14.183626Z'
+        createdAt: '2021-04-19T12:18:14.183626Z'
+        versionId: '244'
+    response:
+      etag: '244'
+      cache-control: no-cache
+      last-modified: 'Mon, 19 Apr 2021 12:18:14 GMT'
+      location: /Practitioner/pr-2/_history/244
+      x-duration: 14
+      x-request-id: c9481d21-a93e-4bbd-940e-d7221ad45110
+      status: '201'
+  - resource:
+      name: Test hospital1
+      id: org1
+      resourceType: Organization
+      meta:
+        lastUpdated: '2021-04-19T12:18:14.183626Z'
+        createdAt: '2021-04-19T12:18:14.183626Z'
+        versionId: '244'
+    response:
+      etag: '244'
+      cache-control: no-cache
+      last-modified: 'Mon, 19 Apr 2021 12:18:14 GMT'
+      location: /Organization/org1/_history/244
+      x-duration: 16
+      x-request-id: c9481d21-a93e-4bbd-940e-d7221ad45110
+      status: '201'
+  - resource:
+      name: Test hospital2
+      id: org2
+      resourceType: Organization
+      meta:
+        lastUpdated: '2021-04-19T12:18:14.183626Z'
+        createdAt: '2021-04-19T12:18:14.183626Z'
+        versionId: '244'
+    response:
+      etag: '244'
+      cache-control: no-cache
+      last-modified: 'Mon, 19 Apr 2021 12:18:14 GMT'
+      location: /Organization/org2/_history/244
+      x-duration: 11
+      x-request-id: c9481d21-a93e-4bbd-940e-d7221ad45110
+      status: '201'
+  - resource:
+      name:
+        - given:
+            - Max
+          family: Johnson
+      gender: male
+      birthDate: '1960-10-10'
+      managingOrganization:
+        id: org1
+        display: Test hospital1
+        resourceType: Organization
+      id: patient1
+      resourceType: Patient
+      meta:
+        lastUpdated: '2021-04-19T12:18:14.183626Z'
+        createdAt: '2021-04-19T12:18:14.183626Z'
+        versionId: '244'
+    response:
+      etag: '244'
+      cache-control: no-cache
+      last-modified: 'Mon, 19 Apr 2021 12:18:14 GMT'
+      location: /Patient/patient1/_history/244
+      x-duration: 24
+      x-request-id: c9481d21-a93e-4bbd-940e-d7221ad45110
+      status: '201'
+  - resource:
+      name:
+        - given:
+            - Alex
+          family: Smith
+      gender: male
+      birthDate: '1990-01-01'
+      managingOrganization:
+        id: org2
+        display: Test hospital2
+        resourceType: Organization
+      id: patient2
+      resourceType: Patient
+      meta:
+        lastUpdated: '2021-04-19T12:18:14.183626Z'
+        createdAt: '2021-04-19T12:18:14.183626Z'
+        versionId: '244'
+    response:
+      etag: '244'
+      cache-control: no-cache
+      last-modified: 'Mon, 19 Apr 2021 12:18:14 GMT'
+      location: /Patient/patient2/_history/244
+      x-duration: 11
+      x-request-id: c9481d21-a93e-4bbd-940e-d7221ad45110
+      status: '201'
+  - resource:
+      status: planned
+      subject:
+        id: patient1
+        resourceType: Patient
+      id: enc1
+      resourceType: Encounter
+      meta:
+        lastUpdated: '2021-04-19T12:18:14.183626Z'
+        createdAt: '2021-04-19T12:18:14.183626Z'
+        versionId: '244'
+    response:
+      etag: '244'
+      cache-control: no-cache
+      last-modified: 'Mon, 19 Apr 2021 12:18:14 GMT'
+      location: /Encounter/enc1/_history/244
+      x-duration: 14
+      x-request-id: c9481d21-a93e-4bbd-940e-d7221ad45110
+      status: '201'
+  - resource:
+      status: finished
+      subject:
+        id: patient1
+        resourceType: Patient
+      id: enc2
+      resourceType: Encounter
+      meta:
+        lastUpdated: '2021-04-19T12:18:14.183626Z'
+        createdAt: '2021-04-19T12:18:14.183626Z'
+        versionId: '244'
+    response:
+      etag: '244'
+      cache-control: no-cache
+      last-modified: 'Mon, 19 Apr 2021 12:18:14 GMT'
+      location: /Encounter/enc2/_history/244
+      x-duration: 9
+      x-request-id: c9481d21-a93e-4bbd-940e-d7221ad45110
+      status: '201'
+  - resource:
+      status: planned
+      subject:
+        id: patient2
+        resourceType: Patient
+      id: enc3
+      resourceType: Encounter
+      meta:
+        lastUpdated: '2021-04-19T12:18:14.183626Z'
+        createdAt: '2021-04-19T12:18:14.183626Z'
+        versionId: '244'
+    response:
+      etag: '244'
+      cache-control: no-cache
+      last-modified: 'Mon, 19 Apr 2021 12:18:14 GMT'
+      location: /Encounter/enc3/_history/244
+      x-duration: 10
+      x-request-id: c9481d21-a93e-4bbd-940e-d7221ad45110
+      status: '201'
+  - resource:
+      end: '2020-12-10T11:00:00.000Z'
+      start: '2020-12-10T09:00:00.000Z'
+      status: booked
+      description: Test appointment 1
+      participant:
+        - actor:
+            id: patient1
+            resourceType: Patient
+          status: accepted
+        - actor:
+            id: pr-1
+            resourceType: Practitioner
+          status: accepted
+      id: apt1
+      resourceType: Appointment
+      meta:
+        lastUpdated: '2021-04-19T12:18:14.183626Z'
+        createdAt: '2021-04-19T12:18:14.183626Z'
+        versionId: '244'
+    response:
+      etag: '244'
+      cache-control: no-cache
+      last-modified: 'Mon, 19 Apr 2021 12:18:14 GMT'
+      location: /Appointment/apt1/_history/244
+      x-duration: 20
+      x-request-id: c9481d21-a93e-4bbd-940e-d7221ad45110
+      status: '201'
+  - resource:
+      end: '2021-04-10T11:00:00.000Z'
+      start: '2021-04-10T09:00:00.000Z'
+      status: booked
+      description: Test appointment 2
+      participant:
+        - actor:
+            id: patient2
+            resourceType: Patient
+          status: accepted
+        - actor:
+            id: pr-2
+            resourceType: Practitioner
+          status: accepted
+      id: apt2
+      resourceType: Appointment
+      meta:
+        lastUpdated: '2021-04-19T12:18:14.183626Z'
+        createdAt: '2021-04-19T12:18:14.183626Z'
+        versionId: '244'
+    response:
+      etag: '244'
+      cache-control: no-cache
+      last-modified: 'Mon, 19 Apr 2021 12:18:14 GMT'
+      location: /Appointment/apt2/_history/244
+      x-duration: 21
+      x-request-id: c9481d21-a93e-4bbd-940e-d7221ad45110
+      status: '201'
+      
+We created 2 patients, 2 practitioners, 3 encounters, 2 appointments, 2 Managing organizations that are linked to each other.
+```
+{% endtab %}
+{% endtabs %}
+
+### Define search query with filtering 
+
+Let's define the search query to search old patients by the partial match of the family name with the filtering by gender:
+
+{% tabs %}
+{% tab title="Aidbox format" %}
 ```yaml
 PUT /SearchQuery/q-1
 
@@ -44,11 +420,15 @@ params:
        aidbox_text_search(knife_extract_text(pt.resource, $$[["name","family"]]$$)) 
        ilike {{params.family}}
 ```
+{% endtab %}
+{% endtabs %}
 
 Now we can call this query with `/alpha/<resourceType>?query=<query-name>&params....`:
 
+{% tabs %}
+{% tab title="Aidbox format" %}
 ```yaml
-GET /alpha/Patient?query=q-1&_page=2&_count=3&_total=none
+GET /alpha/Patient?query=q-1&_page=1&_count=3&_total=none
 
 # 200
 resourceType: Bundle
@@ -62,11 +442,15 @@ query-sql: |
   LIMIT 100
 query-timeout: 60000
 ```
+{% endtab %}
+{% endtabs %}
 
 You can use **count** and **page** parameters for paging and control total query \(if enabled\) with **total** parameter. Use **\_timeout** parameter to set query timeout.
 
 If the parameter is provided, another query will be generated on the fly:
 
+{% tabs %}
+{% tab title="Aidbox format" %}
 ```yaml
 GET /alpha/Patient?query=q-1&family=joh
 
@@ -85,11 +469,15 @@ query-sql:
     LIMIT 100"
 - '% joh%'
 ```
+{% endtab %}
+{% endtabs %}
 
-### Add JOIN
+### Define search query with JOIN
 
 Your parameters and basic query can use join attribute to join related resources for search:
 
+{% tabs %}
+{% tab title="Aidbox format" %}
 ```yaml
 PUT /SearchQuery/q-2
 
@@ -109,7 +497,11 @@ params:
         aidbox_text_search(knife_extract_text(pt.resource, $$[["name","family"]]$$)) 
         ilike {{params.pt}}
 ```
+{% endtab %}
+{% endtabs %}
 
+{% tabs %}
+{% tab title="Aidbox format" %}
 ```yaml
 GET /alpha/Encounter?query=q-2&pt=joh
 
@@ -128,6 +520,8 @@ query-sql:
   ORDER BY pt.id desc\nLIMIT 100"
 - '% joh%'
 ```
+{% endtab %}
+{% endtabs %}
 
 ### Add order-by into parameters
 
@@ -135,6 +529,8 @@ Both `query` and `params` support `order-by`. `order-by` in query has the least 
 
 Example: create search query
 
+{% tabs %}
+{% tab title="Aidbox format" %}
 ```yaml
 PUT /SearchQuery/sq
 
@@ -152,11 +548,17 @@ params:
       CASE WHEN {{params.ord-dir}} = 'asc' THEN ap.resource->>'start' END ASC,
       CASE WHEN {{params.ord-dir}} = 'desc' THEN ap.resource->>'start' END DESC
 ```
+{% endtab %}
+{% endtabs %}
 
 Example: use this search query
 
+{% tabs %}
+{% tab title="Aidbox format" %}
 ```yaml
-# GET /alpha/Appointment?query=sq&ord-dir=desc
+GET /alpha/Appointment?query=sq&ord-dir=desc
+
+#200
 
 resourceType: Bundle
 type: searchset
@@ -172,12 +574,18 @@ entry:
       # omitted
 # omitted
 ```
+{% endtab %}
+{% endtabs %}
 
 ### Include related resources
 
 You can predefine included resources for SearchQuery with **includes** property:
 
+{% tabs %}
+{% tab title="Aidbox format" %}
 ```yaml
+PUT /SearchQuery/inc
+
 resourceType: SearchQuery
 resource: {id: Encounter, resourceType: Entity}
 as: enc
@@ -197,12 +605,129 @@ includes:
 query: {order-by: enc.id}
 limit: 40
 ```
+{% endtab %}
+{% endtabs %}
+
+Use the created query:
+
+{% tabs %}
+{% tab title="Aidbox format" %}
+```yaml
+GET /alpha/Encounter?query=inc
+
+#200
+
+resourceType: Bundle
+type: searchset
+entry:
+  - resource:
+      status: planned
+      subject:
+        id: patient1
+        resourceType: Patient
+      id: enc1
+      resourceType: Encounter
+      meta:
+        lastUpdated: '2021-04-19T12:18:14.183626Z'
+        createdAt: '2021-04-19T12:18:14.183626Z'
+        versionId: '244'
+  - resource:
+      status: finished
+      subject:
+        id: patient1
+        resourceType: Patient
+      id: enc2
+      resourceType: Encounter
+      meta:
+        lastUpdated: '2021-04-19T12:18:14.183626Z'
+        createdAt: '2021-04-19T12:18:14.183626Z'
+        versionId: '244'
+  - resource:
+      status: planned
+      subject:
+        id: patient2
+        resourceType: Patient
+      id: enc3
+      resourceType: Encounter
+      meta:
+        lastUpdated: '2021-04-19T12:18:14.183626Z'
+        createdAt: '2021-04-19T12:18:14.183626Z'
+        versionId: '244'
+  - resource:
+      name:
+        - given:
+            - Max
+          family: Johnson
+      gender: male
+      birthDate: '1960-10-10'
+      managingOrganization:
+        id: org1
+        display: Test hospital1
+        resourceType: Organization
+      id: patient1
+      resourceType: Patient
+      meta:
+        lastUpdated: '2021-04-19T12:18:14.183626Z'
+        createdAt: '2021-04-19T12:18:14.183626Z'
+        versionId: '244'
+  - resource:
+      name:
+        - given:
+            - Alex
+          family: Smith
+      gender: male
+      birthDate: '1990-01-01'
+      managingOrganization:
+        id: org2
+        display: Test hospital2
+        resourceType: Organization
+      id: patient2
+      resourceType: Patient
+      meta:
+        lastUpdated: '2021-04-19T12:18:14.183626Z'
+        createdAt: '2021-04-19T12:18:14.183626Z'
+        versionId: '244'
+  - resource:
+      name: Test hospital1
+      id: org1
+      resourceType: Organization
+      meta:
+        lastUpdated: '2021-04-19T12:18:14.183626Z'
+        createdAt: '2021-04-19T12:18:14.183626Z'
+        versionId: '244'
+  - resource:
+      name: Test hospital2
+      id: org2
+      resourceType: Organization
+      meta:
+        lastUpdated: '2021-04-19T12:18:14.183626Z'
+        createdAt: '2021-04-19T12:18:14.183626Z'
+        versionId: '244'
+query-sql:
+  - |-
+    SELECT enc.*
+    FROM "encounter" enc
+    ORDER BY enc.id
+    LIMIT 40
+query-timeout: 60000
+total: 3
+total-query:
+  - |-
+    SELECT count(*)
+    FROM "encounter" enc
+```
+{% endtab %}
+{% endtabs %}
 
 #### Reverse includes
 
 To include resources that refer resources from your query, you can add **reverse**: true attribute:
 
+{% tabs %}
+{% tab title="Aidbox format" %}
 ```yaml
+PUT /SearchQuery/revinc
+
 resourceType: SearchQuery
 resource: {id: Patient, resourceType: Entity}
 as: pt
@@ -216,6 +741,121 @@ includes:
     where: "resource->>'status' = 'finished'"
 limit: 40
 ```
+{% endtab %}
+{% endtabs %}
+
+Execute the created query
+
+{% tabs %}
+{% tab title="Aidbox format" %}
+```yaml
+GET /alpha/Encounter?query=revinc
+
+#200
+
+resourceType: Bundle
+type: searchset
+entry:
+  - resource:
+      name:
+        - text: Alex
+      gender: male
+      address:
+        - city: New-York
+      telecom:
+        - value: fhir
+      birthDate: '1988-04-16'
+      id: b0cab43b-ba3e-4192-9ee6-851fb15ebc5f
+      resourceType: Patient
+      meta:
+        lastUpdated: '2021-04-16T14:01:51.973363Z'
+        createdAt: '2021-04-16T11:43:36.524830Z'
+        versionId: '143'
+  - resource:
+      name:
+        - given:
+            - Max
+        - family: Smith
+      gender: male
+      address:
+        - city: Hello
+          line:
+            - 123 Oxygen St
+          state: NY
+          district: World
+          postalCode: '3212'
+      telecom:
+        - use: home
+        - use: work
+          rank: 1
+          value: (32) 8934 1234
+          system: phone
+      birthDate: '1960-10-10'
+      id: 6e690b70-c55d-4efc-89d4-38257d37a774
+      resourceType: Patient
+      meta:
+        lastUpdated: '2021-04-19T09:35:48.183189Z'
+        createdAt: '2021-04-19T09:35:48.183189Z'
+        versionId: '163'
+  - resource:
+      name:
+        - given:
+            - Max
+          family: Johnson
+      gender: male
+      birthDate: '1960-10-10'
+      managingOrganization:
+        id: org1
+        display: Test hospital1
+        resourceType: Organization
+      id: patient1
+      resourceType: Patient
+      meta:
+        lastUpdated: '2021-04-19T12:18:14.183626Z'
+        createdAt: '2021-04-19T12:18:14.183626Z'
+        versionId: '244'
+  - resource:
+      name:
+        - given:
+            - Alex
+          family: Smith
+      gender: male
+      birthDate: '1990-01-01'
+      managingOrganization:
+        id: org2
+        display: Test hospital2
+        resourceType: Organization
+      id: patient2
+      resourceType: Patient
+      meta:
+        lastUpdated: '2021-04-19T12:18:14.183626Z'
+        createdAt: '2021-04-19T12:18:14.183626Z'
+        versionId: '244'
+  - resource:
+      status: finished
+      subject:
+        id: patient1
+        resourceType: Patient
+      id: enc2
+      resourceType: Encounter
+      meta:
+        lastUpdated: '2021-04-19T12:18:14.183626Z'
+        createdAt: '2021-04-19T12:18:14.183626Z'
+        versionId: '244'
+query-sql:
+  - |-
+    SELECT pt.*
+    FROM "patient" pt
+    LIMIT 40
+query-timeout: 60000
+total: 4
+total-query:
+  - |-
+    SELECT count(*)
+    FROM "patient" pt
+```
+{% endtab %}
+{% endtabs %}
 
 #### Path in includes
 
@@ -223,8 +863,12 @@ Path expression in includes is `json_knife` extension path, it consists of strin
 
 Here is an example of how to extract a patient \(code: PART\) from the appointment:
 
-`["participant", {"type": [{"coding": [{"code": "PART"}]}, "actor"] => pt-2`
+```text
+["participant", {"type": [{"coding": [{"code": "PART"}]}, "actor"] => pt-2
+```
 
+{% tabs %}
+{% tab title="Aidbox format" %}
 ```yaml
 resourceType: Appointment
 status: active
@@ -243,11 +887,15 @@ participant:
    status: active
 
 ```
+{% endtab %}
+{% endtabs %}
 
 #### Parametrised includes
 
 Include query can be parametrised if you define include inside params. You can use `where` key to add additional filter on included resources.
 
+{% tabs %}
+{% tab title="Aidbox format" %}
 ```yaml
 PUT /SearchQuery/cond-incl
 
@@ -274,9 +922,13 @@ GET /alpha/Patient?query=cond-incl
 # will skip include
 
 ```
+{% endtab %}
+{% endtabs %}
 
-If you want to provide default include, define include with the same key on query level and in parameter. Parameter include will override default in case parameter is provided in request.
+If you want to provide default include, define include with the same key on query level and in parameter. Parameter include will override the default in case parameter is provided in the request.
 
+{% tabs %}
+{% tab title="Aidbox format" %}
 ```yaml
 PUT /SearchQuery/cond-incl
 
@@ -301,11 +953,15 @@ params:
           where: "resource#>>'{category,0,coding,0,code}' = {{params.category}}"
           
 ```
+{% endtab %}
+{% endtabs %}
 
 ### EXPLAIN ANALYZE
 
 With the parameter `_explain=analyze` , you can inspect the execution plan of a search query:
 
+{% tabs %}
+{% tab title="Aidbox fromat" %}
 ```yaml
 GET /alpha/Encounter?query=q-2&pt=joh&_explain=analyze
 
@@ -349,11 +1005,15 @@ total-explain: |-
   Planning Time: 6.716 ms
   Execution Time: 3.543 ms
 ```
+{% endtab %}
+{% endtabs %}
 
 ### Debug SearchQuery
 
 You can debug SearchQuery with multiple parameters combinations without saving resource by `POST /SearchQuery/$debug`. You can simulate requests with different parameters by  **tests** attribute. Aidbox will return results and explanation for each test:
 
+{% tabs %}
+{% tab title="Aidbox format" %}
 ```yaml
 POST /SearchQuery/$debug
 
@@ -437,4 +1097,6 @@ both:
         Hint: Perhaps you meant to reference the column "pt.ts".
         Position: 73
 ```
+{% endtab %}
+{% endtabs %}
 
