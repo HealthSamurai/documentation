@@ -419,18 +419,26 @@ Aidbox validates resources of every resourceType with `aidbox/profile` tagged ze
 The value of the `AIDBOX_ZEN_DEPS` variable must be a comma-separated list of @-separated pairs of core-zen-project-ns@zen-project-zip-archive-url.  
 For example: `AIDBOX_ZEN_DEPS=foo@https://.../foo.zip,bar@https://.../bar.zip`.
 
-core-zen-project-ns should include a zen schema with an `aidbox/profile` tag specified. Schemas tagged `aidbox/profile` should conform this schema:
+`core-zen-project-ns` should include a zen schema with an `aidbox/profile` tag specified. Schemas tagged `aidbox/profile` should conform this schema:
 
 ```text
 {:zen/tags #{zen/tag zen/schema}
  :type     zen/map
  :require  #{:resourceType :severity}
- :keys     {:resourceType {:type zen/string}
+ :keys     {:resourceType       {:type zen/string}
             :profile-definition {:type zen/string}
-            :severity {:type zen/string
-                       :enum [{:value "required"}
-                              {:value "supported"}]}}}
+            :severity           {:type zen/string
+                                 :enum [{:value "required"}
+                                        {:value "supported"}]}}}
 ```
+
+`resourceType` - profile is applied for resources of this type 
+
+`:severity "required"` - profile is applied to validate all resources of such type  
+`:severity "supported"` - profile is applied only when referenced in `Resource.meta.profile[]`  
+`severity` is related to [FHIR profile uses](http://hl7.org/fhir/profiling.html#profile-uses)
+
+`profile-definition` - is the string which should be referenced in the [`Resource.meta.profile[]`](https://www.hl7.org/fhir/resource.html#Meta) for `supported` profiles validation
 
 For example:
 
@@ -439,17 +447,16 @@ For example:
  import #{aidbox}
 
  patient
- {:zen/tags     #{zen/schema aidbox/profile}
-  :confirms     #{my-test-ns/resource}
-  :severity     "required"
-  :resourceType "MyPatient"
-  :type         zen/map
-  :keys         {:name   {:type zen/string}
-                 :gender {:type zen/string
-                          :enum [{:value "male"}
-                                 {:value "female"}
-                                 {:value "other"}
-                                 {:value "unknown"}]}}}}
+ {:zen/tags        #{zen/schema aidbox/profile}
+  :type            zen/map
+  :resourceType    "Patient"
+  :severity        "required"
+  :validation-type :open
+  :keys            {:gender {:type zen/string
+                             :enum [{:value "male"}
+                                    {:value "female"}
+                                    {:value "other"}
+                                    {:value "unknown"}]}}}}
 ```
 
 ### API
