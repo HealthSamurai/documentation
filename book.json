@@ -1,14 +1,9 @@
 {
     "gitbook": "2.x.x",
-    "links": {
-        "sidebar": {
-            "Contact us / Support": "https://www.gitbook.com/contact"
-        }
-    },
-    "plugins": ["disqus"],
+    "plugins": ["sitemap"],
     "pluginsConfig": {
-        "disqus": {
-            "shortName": "XXXXXXX"
+        "sitemap": {
+            "hostname": "https://docs.aidbox.app/"
         }
     }
 }
