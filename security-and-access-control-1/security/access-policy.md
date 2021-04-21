@@ -62,7 +62,7 @@ Now, let's execute requests in Postman.
 GET {{base}}/fhir/Patient
 ```
 
-![](../../.gitbook/assets/policy1%20%281%29.png)
+![](../../.gitbook/assets/policy1%20%281%29%20%281%29.png)
 
 ### Negative Test
 
@@ -70,7 +70,7 @@ GET {{base}}/fhir/Patient
 POST {{base}}/fhir/Patient
 ```
 
-![](../../.gitbook/assets/policy2%20%281%29.png)
+![](../../.gitbook/assets/policy2%20%281%29%20%281%29.png)
 
 ## Policy Debugging
 

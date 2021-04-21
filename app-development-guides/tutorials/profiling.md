@@ -452,3 +452,11 @@ For example:
                                  {:value "unknown"}]}}}}
 ```
 
+### API
+
+| Method | Description |
+| :--- | :--- |
+| `GET /$zen-ctx` | Returns zen ctx. Useful for debug |
+| `GET /$zen-errors` | Returns :errors key of zen ctx |
+| `GET /$reload-zen-deps` | Reloads deps specified in `AIDBOX_ZEN_DEPS` variable |
+
