@@ -1,9 +1,3 @@
 {
-    "gitbook": "2.x.x",
-    "plugins": ["sitemap"],
-    "pluginsConfig": {
-        "sitemap": {
-            "hostname": "https://docs.aidbox.app/"
-        }
-    }
+    "gitbook": "2.x.x"
 }
