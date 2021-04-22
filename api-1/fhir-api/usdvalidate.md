@@ -72,7 +72,7 @@ POST /fhir/Patient/$validate?mode=create
 name: [{given: [John]}]
 
 # Response
-HTTP/1.1 200 OK
+HTTP 200 OK
 
 id: allok
 resourceType: OperationOutcome
@@ -95,7 +95,7 @@ parameter:
 
 
 # Response
-HTTP/1.1 200 OK
+HTTP 200 OK
 
 id: allok
 resourceType: OperationOutcome
@@ -115,7 +115,7 @@ name: "Bob"
 test: "foo"
 
 # Response
-HTTP/1.1 200 OK
+HTTP 200 OK
 
 id: validationfail
 resourceType: OperationOutcome
@@ -142,7 +142,7 @@ name: "Bob"
 test: "foo"
 
 # Response
-HTTP/1.1 200 OK
+HTTP 200 OK
 
 resourceType: Parameters
 parameter:
