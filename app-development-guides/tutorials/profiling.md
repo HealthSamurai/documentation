@@ -413,13 +413,17 @@ STATUS: 422
 
 ## Validation with zen
 
-Aidbox provides validation with the [Zen language](https://github.com/zen-lang/zen). To use it you need to provide zen libraries in the `AIDBOX_ZEN_DEPS` environment variable.  
-Aidbox validates resources of every resourceType with `aidbox/profile` tagged zen schema
+Aidbox supports an alternative yet very powerful profile validation mechanism powered by  [Zen language](https://github.com/zen-lang/zen).  You can just define a set \(or multiple sets\) of validation profiles in [EDN](https://github.com/edn-format/edn) format and let your Aidbox server know its location.
+
+### Configuration
+
+To enable zen powered validation, you need to specify zen libraries in the `AIDBOX_ZEN_DEPS` environment variable.  
+Aidbox validates resources of every resourceType with `aidbox/profile` tagged zen schema.
 
 The value of the `AIDBOX_ZEN_DEPS` variable must be a comma-separated list of @-separated pairs of core-zen-project-ns@zen-project-zip-archive-url.  
 For example: `AIDBOX_ZEN_DEPS=foo@https://.../foo.zip,bar@https://.../bar.zip`.
 
-`core-zen-project-ns` should include a zen schema with an `aidbox/profile` tag specified. Schemas tagged `aidbox/profile` should conform this schema:
+`core-zen-project-ns` should include a zen schema with an `aidbox/profile` tag specified. Schemas tagged with `aidbox/profile` should conform this schema:
 
 ```text
 {:zen/tags #{zen/tag zen/schema}
@@ -432,17 +436,33 @@ For example: `AIDBOX_ZEN_DEPS=foo@https://.../foo.zip,bar@https://.../bar.zip`.
                                         {:value "supported"}]}}}
 ```
 
-`resourceType` - profile is applied for resources of this type 
+| Keyword | Explanation |
+| :--- | :--- |
+| **:type** | The full list of zen supported types is [here](https://zen-lang.github.io/tags/zen/schema.html) |
+| **resourceType** | The profile is applied for resources of this type |
+| **severity** | Is related to [FHIR profile usage](http://hl7.org/fhir/profiling.html#profile-uses) |
+| **:severity "required"** | The profile is applied to validate all resources of such type |
+| **:severity "supported"** | The profile is applied only when referenced in `Resource.meta.profile[]` |
+| **profile-definition** | Is the string which should be referenced in the [`Resource.meta.profile[]`](https://www.hl7.org/fhir/resource.html#Meta) for `supported` profiles validation |
+| **:validation-type :open** | Optional.  |
 
-`:severity "required"` - profile is applied to validate all resources of such type  
-`:severity "supported"` - profile is applied only when referenced in `Resource.meta.profile[]`  
-`severity` is related to [FHIR profile uses](http://hl7.org/fhir/profiling.html#profile-uses)
+### API
 
-`profile-definition` - is the string which should be referenced in the [`Resource.meta.profile[]`](https://www.hl7.org/fhir/resource.html#Meta) for `supported` profiles validation
+| Method | Description |
+| :--- | :--- |
+| `GET /$zen-ctx` | Returns zen ctx. Useful for debug |
+| `GET /$zen-errors` | Returns :errors key of zen ctx |
+| `GET /$reload-zen-deps` | Reloads deps specified in `AIDBOX_ZEN_DEPS` variable |
 
-For example:
+### A basic step by step guide
 
-```text
+Let's define your own basic profile for the Devbox.
+
+For an instance, for any Patient in the system, the gender property is allowed to be male, female, other or unknown. All other values are not valid.
+
+* Create a file called zen-test-ns.edn with the following content
+
+```typescript
 {ns zen-test-ns
  import #{aidbox}
 
@@ -459,11 +479,79 @@ For example:
                                     {:value "unknown"}]}}}}
 ```
 
-### API
+* Create a zip archive with that file, with the name zen-test-ns.zip
+* Make the file available for downloading by a public URL \(without some authentication   required\). For example, upload it to some cloud storage. 
+* Update your .env with `AIDBOX_ZEN_DEPS`
+* If you have already running Devbox container, you can just reload Aidbox deps by executing a request `GET /$reload-zen-deps` in the Aidbox Rest Console. Otherwise, just run your Aidbox container as usual.
 
-| Method | Description |
-| :--- | :--- |
-| `GET /$zen-ctx` | Returns zen ctx. Useful for debug |
-| `GET /$zen-errors` | Returns :errors key of zen ctx |
-| `GET /$reload-zen-deps` | Reloads deps specified in `AIDBOX_ZEN_DEPS` variable |
+Let's see how does the defined profile work.
+
+Open the Aidbox Rest Console. Try to create a patient with gender "foo".
+
+{% tabs %}
+{% tab title="Request" %}
+```javascript
+POST /Patient
+
+gender: foo
+meta: 
+  profile: ["myprofile-definition-url"]
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+#Status: 422
+
+resourceType: OperationOutcome
+text:
+  status: generated
+  div: Invalid resource
+issue:
+  - severity: fatal
+    code: invalid
+    expression:
+      - Patient.gender
+    diagnostics: "Expected 'foo' in #{\"male\" \"female\" \"unknown\" \"other\"}"
+```
+{% endtab %}
+{% endtabs %}
+
+As you can see, the patient is not created and there is an explanation, that the expected value should be among the defined list of values.
+
+Now try to create a patient with gender "male".
+
+{% tabs %}
+{% tab title="Request" %}
+```javascript
+POST /Patient
+
+gender: male
+meta: 
+  profile: ["myprofile-definition-url"]
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+#Status: 201
+
+meta:
+  profile:
+    - myprofile-definition-url
+  lastUpdated: '2021-04-22T09:31:33.483398Z'
+  createdAt: '2021-04-22T09:31:33.483398Z'
+  versionId: '286'
+gender: male
+id: bdaa680f-2a07-49dd-9131-0882c753bd16
+resourceType: Patient
+```
+{% endtab %}
+{% endtabs %}
+
+Finally, the validation passed and the patient is created.
+
+
+
+### 
 
