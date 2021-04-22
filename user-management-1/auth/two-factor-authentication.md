@@ -16,7 +16,7 @@ Aidbox supports Two Factor Authentication with TOTP \(time-based one-time passwo
 
 ### Try demo app with 2FA implementation
 
-{% embed url="https://youtu.be/iJTKeKlJm7g" %}
+{% embed url="https://youtu.be/N\_ZkebvqM24" %}
 
 We've prepared the demo Python/TypeScript app with Devbox, so you can run everything in your local environment. The implemented scenario includes signup and login user flows.
 
