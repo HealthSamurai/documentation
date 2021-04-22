@@ -53,12 +53,54 @@ POST .../$validate?mode=<mode>&profile=<StructureDefinition.url>
 | `mode` | Optional. Default is `create`. Possible values are `create, update, delete, patch` |
 | `profile` | Optional. Can be passed multiple times. Used to validate with specific profiles. Value should be `StructureDefinition.url` of the profile defined as [zen schema](../../app-development-guides/tutorials/profiling.md#validation-with-zen) |
 
-| `mode` | Description |
-| :--- | :--- |
-| `create` | Ignores errors about attributes`id` & `lastUpdated` being required |
-| `update` | Validates without ignoring errors about attributes`id` & `lastUpdated` |
-| `delete` | Checks if resource with such `id` exists in Aidbox |
-| `patch` | Merges the existing resource to the received resource and then validates as `update`.  Merge is performed as simple, not nested, top level merge.  Merge strategies`json-patch`/`merge-patch` will be available in the future releases |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left"><code>mode</code>
+      </th>
+      <th style="text-align:left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>create</code>
+      </td>
+      <td style="text-align:left">Ignores errors about attributes<code>id</code> &amp; <code>lastUpdated</code> being
+        required</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>update</code>
+      </td>
+      <td style="text-align:left">Validates without ignoring errors about attributes<code>id</code> &amp; <code>lastUpdated</code>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>delete</code>
+      </td>
+      <td style="text-align:left">Checks if resource with such <code>id</code> exists in Aidbox</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>patch</code>
+      </td>
+      <td style="text-align:left">
+        <p>Merges the existing resource to the received resource and then validates
+          as <code>update</code>.</p>
+        <p>Patching strategy will be determined as <a href="../api/crud-1/patch.md#patch-method">described here</a>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>merge-patch</code>
+      </td>
+      <td style="text-align:left">simple deep merge semantics (<a href="https://tools.ietf.org/html/rfc7386">read more in RFC</a>)</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>json-patch</code>
+      </td>
+      <td style="text-align:left">advanced JSON transformation (<a href="https://tools.ietf.org/html/rfc6902">read more in RFC</a>)</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Examples
 
