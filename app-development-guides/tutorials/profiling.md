@@ -413,6 +413,10 @@ STATUS: 422
 
 ## Validation with zen
 
+{% hint style="info" %}
+Zen validation is currently available in the EDGE version of Aidbox
+{% endhint %}
+
 Aidbox supports an alternative yet very powerful profile validation mechanism powered by  [Zen language](https://github.com/zen-lang/zen).  You can just define a set \(or multiple sets\) of validation profiles in [EDN](https://github.com/edn-format/edn) format and let your Aidbox server know its location.
 
 ### Configuration
