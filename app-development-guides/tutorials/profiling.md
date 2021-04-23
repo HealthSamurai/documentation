@@ -432,9 +432,11 @@ For example: `AIDBOX_ZEN_DEPS=foo@https://.../foo.zip,bar@https://.../bar.zip`.
 ```text
 {:zen/tags #{zen/tag zen/schema}
  :type     zen/map
- :require  #{:resourceType :severity}
  :keys     {:resourceType       {:type zen/string}
             :profile-definition {:type zen/string}
+            :format             {:type zen/keyword
+                                 :enum [{:value :aidbox}
+                                        {:value :fhir}]}
             :severity           {:type zen/string
                                  :enum [{:value "required"}
                                         {:value "supported"}]}}}
@@ -442,13 +444,16 @@ For example: `AIDBOX_ZEN_DEPS=foo@https://.../foo.zip,bar@https://.../bar.zip`.
 
 | Keyword | Explanation |
 | :--- | :--- |
-| **:type** | The full list of zen supported types is [here](https://zen-lang.github.io/tags/zen/schema.html) |
-| **resourceType** | The profile is applied for resources of this type |
-| **severity** | Is related to [FHIR profile usage](http://hl7.org/fhir/profiling.html#profile-uses) |
-| **:severity "required"** | The profile is applied to validate all resources of such type |
-| **:severity "supported"** | The profile is applied only when referenced in `Resource.meta.profile[]` |
-| **profile-definition** | Is the string which should be referenced in the [`Resource.meta.profile[]`](https://www.hl7.org/fhir/resource.html#Meta) for `supported` profiles validation |
-| **:validation-type :open** | Optional.  |
+| **`:type`** | The full list of zen supported types is [here](https://zen-lang.github.io/tags/zen/schema.html) |
+| **`:resourceType`** | The profile is applied for resources of this type |
+| **`:profile-definition`** | Is the string which should be referenced in the [`Resource.meta.profile[]`](https://www.hl7.org/fhir/resource.html#Meta) for `supported` profiles validation |
+| **`:format`** |  [format](../../modules-1/fhir-resources/aidbox-and-fhir-formats.md) of the data. Default is `:aidbox` |
+| **`:format :aidbox`** | schema is designed to validate data in the aidbox format |
+| **`:format :fhir`** | schema is designed to validate data in the FHIR format |
+| **`:severity`** | Is related to [FHIR profile usage](http://hl7.org/fhir/profiling.html#profile-uses) |
+| **`:severity "required"`** | The profile is applied to validate all resources of such type |
+| **`:severity "supported"`** | The profile is applied only when referenced in `Resource.meta.profile[]` |
+| **`:validation-type :open`** | Optional.  |
 
 ### API
 
