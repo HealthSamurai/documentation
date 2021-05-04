@@ -428,7 +428,7 @@ GET /Organization?_include:iterate=Organization:partof:Organization
 
 ### Using the \_with parameter
 
-FHIR \(rev\)include syntax is non-DRY and sometimes confusing. We introduced the `_with` parameter that is a simple \(aka GraphQL\) DSL to describe includes in a more compact way.
+FHIR \(rev\)include syntax is non-DRY and sometimes confusing. We introduced the `_with` parameter that is a simple \(like GraphQL\) DSL to describe includes in a more compact way.
 
 ```javascript
 expr = param-expr (space param-expr)*
