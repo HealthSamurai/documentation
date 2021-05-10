@@ -138,7 +138,15 @@ meta:
 ### `422` Unprocessable entity
 
 {% tabs %}
-{% tab title="Request" %}
+{% tab title="Request \(FHIR format\)" %}
+```yaml
+POST /fhir/Patient
+
+name: "Bob"
+```
+{% endtab %}
+
+{% tab title="Request \(Aidbox format\)" %}
 ```yaml
 POST /Patient
 
@@ -146,15 +154,35 @@ name: "Bob"
 ```
 {% endtab %}
 
-{% tab title="Response" %}
+{% tab title="Response \(FHIR format\)" %}
 **Status:** `422`
 
 ```yaml
 resourceType: OperationOutcome
-errors:
-- path: [name]
-  message: expected array
-warnings: []
+text:
+  status: generated
+  div: Invalid resource
+issue:
+  - severity: fatal
+    code: invalid
+    expression:
+      - Patient.name
+    diagnostics: expected array
+```
+{% endtab %}
+
+{% tab title="Response \(Aidbox format\)" %}
+```yaml
+resourceType: OperationOutcome
+text:
+  status: generated
+  div: Invalid resource
+issue:
+  - severity: fatal
+    code: invalid
+    expression:
+      - Patient.name
+    diagnostics: expected array
 ```
 {% endtab %}
 {% endtabs %}
@@ -163,11 +191,21 @@ warnings: []
 Aidbox REST API doesn't ignore`id` and treats it as all other attributes in contrast to FHIR API. Read more about differences [here]().
 {% endhint %}
 
-## conditional create
+## Conditional Create
 
+{% tabs %}
+{% tab title="FHIR format" %}
 ```text
+POST [base]/fhir/[type]?[search parameters]
+```
+{% endtab %}
+
+{% tab title="Aidbox format" %}
+```
 POST [base]/[type]?[search parameters]
 ```
+{% endtab %}
+{% endtabs %}
 
 A more complex way to create a resource \(it requires the knowledge of [search](../../fhir-api/search-1/)\) but it gives some additional flexibility. If you provide search parameters, `create` becomes `conditional create` and works in the following way \(depending on the number of search results\): 
 
