@@ -144,7 +144,7 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-This is only an example, and you can change values as you want. For more information, check the full [Patient resource](https://www.hl7.org/fhir/patient.html) description and [official example](https://www.hl7.org/fhir/patient-example.json.html). The `id` field in the request body is not required, and if you do not send it to the server, it will be generated. A description of the difference in the `create` operation behavior between FHIR and Aidbox endpoints can be found [here](https://docs.aidbox.app/basic-concepts/aidbox-and-fhir-formats).
+This is only an example, and you can change values as you want. For more information, check the full [Patient resource](https://www.hl7.org/fhir/patient.html) description and [official example](https://www.hl7.org/fhir/patient-example.json.html). The `id` field in the request body is not required, and if you do not send it to the server, it will be generated. A description of the difference in the `create` operation behavior between FHIR and Aidbox endpoints can be found [here](https://docs.aidbox.app/modules-1/fhir-resources/aidbox-and-fhir-formats).
 
 ![](../../.gitbook/assets/2018-10-29-121415_1311x754_scrot.png)
 
