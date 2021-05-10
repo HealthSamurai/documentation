@@ -1,23 +1,45 @@
 # Create
 
-```http
+{% tabs %}
+{% tab title="FHIR format" %}
+```javascript
+POST [base]/fhir/[type]
+```
+{% endtab %}
+
+{% tab title="Aidbox format" %}
+```javascript
 POST [base]/[type]
 ```
+{% endtab %}
+{% endtabs %}
 
-FHIR API [ignores](https://www.hl7.org/fhir/http.html#create) `id` in `POST` requests, but Aidbox API respects `id` inside the request body and creates a resource with a specific `id`. This decision was made because we didn't find any reasons to ignore it and to make Aidbox API be closer to the SQL `INSERT` query. As a result, a new response code `409 Conflict` appeared:\`
+FHIR API [ignores](https://www.hl7.org/fhir/http.html#create) `id` in `POST` requests, but Aidbox API respects `id` inside the request body and creates a resource with a specific `id`. This decision was made because we didn't find any reasons to ignore it and to make Aidbox API be closer to the SQL `INSERT` query. As a result, a new response code `409 Conflict` appeared.
 
-* **`201` Created** - resource successfully created
-* **`400` Bad Request** - resource could not be parsed or fail basic FHIR validation rules
-* **`409`** **Conflict** - resource with such id already exists
-* **`422` Unprocessable Entity** - the proposed resource violated applicable FHIR profiles or server business rules
+| Response code | Text | Description |
+| :--- | :--- | :--- |
+| **`201`** | **Created** | Resource successfully created |
+| **`400`** | **Bad Request** | Resource could not be parsed or fail basic FHIR validation rules |
+| **`409`** | **Conflict** | Resource with such id already exists |
+| **`422`** | **Unprocessable** | The proposed resource violated applicable FHIR profiles or server business rules |
 
 
 
 ### Conditional create
 
+{% tabs %}
+{% tab title="FHIR format" %}
+```javascript
+POST [base]/fhir/[type]?[search parameters]
 ```
+{% endtab %}
+
+{% tab title="Aidbox format" %}
+```javascript
 POST [base]/[type]?[search parameters]
 ```
+{% endtab %}
+{% endtabs %}
 
 Instead of using the `If-None-Exist` header, Aidbox uses query parameters as in ordinary `read` operation. This is done to make all conditional operations to look the same \(use search query parameters\). 
 
@@ -27,20 +49,32 @@ Instead of using the `If-None-Exist` header, Aidbox uses query parameters as in 
 
 ## create
 
-```text
+{% tabs %}
+{% tab title="FHIR format" %}
+```javascript
+POST [base]/fhir/[type]
+```
+{% endtab %}
+
+{% tab title="Aidbox format" %}
+```javascript
 POST [base]/[type]
 ```
+{% endtab %}
+{% endtabs %}
 
 This is one of the most basic interactions which gives an ability to create resources. It uses the `POST` HTTP method accepting a resource type via path parameters and the resource as a body of the request. A response to this interaction may be one of the following:
 
-* **`201`** **Created** — resource successfully created
-* **`400`** **Bad Request** — resource could not be parsed or fail basic FHIR validation rules
-* **`409`** **Conflict** — resource with such id already exists
-* **`422`** **Unprocessable Entity** — the proposed resource violated applicable FHIR profiles or server business rules
+| Response code | Text | Description |
+| :--- | :--- | :--- |
+| **`201`** | **Created** | Resource successfully created |
+| **`400`** | **Bad Request** | Resource could not be parsed or fail basic FHIR validation rules |
+| **`409`** | **Conflict** | Resource with such id already exists |
+| **`422`** | **Unprocessable** | The proposed resource violated applicable FHIR profiles or server business rules |
 
 A successful response \(`2xx`\) also contains a created resource as a body and additional headers `Location`, `ETag`, `Last-Modified` which contain the full path to a resource \(base url, resource type and id of a newly created resource\), additionally information about version \(vid\) and modification time of that resource.
 
-```text
+```yaml
 Location: [base]/[type]/[id]/_history/[vid]
 ETag: [vid]
 Last-Modified: [modification-datetime]
@@ -51,7 +85,15 @@ An unsuccessful response  \(`4xx`\) contains `OperationOutcome` resource which d
 ### `201` Created
 
 {% tabs %}
-{% tab title="Request" %}
+{% tab title="Request \(FHIR format\)" %}
+```yaml
+POST /fhir/Patient
+
+name: [{given: ["Bob"]}]
+```
+{% endtab %}
+
+{% tab title="Request \(Aidbox format\)" %}
 ```yaml
 POST /Patient
 
@@ -59,7 +101,25 @@ name: [{given: ["Bob"]}]
 ```
 {% endtab %}
 
-{% tab title="Response" %}
+{% tab title="Response \(FHIR format\)" %}
+**Status:** `201`
+
+```yaml
+name:
+  - given:
+      - Bob
+id: '17b69d79-3d9b-45f8-af79-75f958502763'
+resourceType: Patient
+meta:
+  lastUpdated: '2018-11-29T10:44:10.588Z'
+  versionId: '13'
+  extension:
+    - url: 'ex:createdAt'
+      valueInstant: '2018-11-29T10:44:10.588Z'
+```
+{% endtab %}
+
+{% tab title="Response \(Aidbox format\)" %}
 **Status:** `201`
 
 ```yaml
@@ -69,9 +129,8 @@ id: 17b69d79-3d9b-45f8-af79-75f958502763
 resourceType: Patient
 meta:
   lastUpdated: '2018-11-29T10:44:10.588Z'
+  createdAt: '2018-11-29T10:44:10.588Z'
   versionId: '13'
-  tag:
-  - {system: 'https://aidbox.app', code: created}
 ```
 {% endtab %}
 {% endtabs %}
