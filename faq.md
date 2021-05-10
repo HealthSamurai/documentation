@@ -22,7 +22,7 @@ In the FHIR Search API this is called chained-parameters. Read the details [here
 
 ## Aidbox appears to have a POST size limit of 20 MB by default. Is this configurable?
 
-For sizable data, we recommend using [Bulk API](https://docs.aidbox.app/basic-concepts/bulk-api-1)
+For sizable data, we recommend using [Bulk API](https://docs.aidbox.app/api-1/bulk-api-1)
 
 ## I don't want to use BASIC authentication for security reasons. What can I use instead?
 
