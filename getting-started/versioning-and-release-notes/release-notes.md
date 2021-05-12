@@ -1,5 +1,14 @@
 # Release Notes
 
+### [2021.04 \(12th of May\)](https://github.com/Aidbox/Issues/projects/6), 20210512
+
+* Add support for the [Prefer](https://www.hl7.org/fhir/http.html#ops) header per FHIR spec
+* Add [issue](https://github.com/Aidbox/Issues/issues/371) field for conditional update error
+* Add proper [error message ](https://github.com/Aidbox/Issues/issues/59)for sign up with existing email
+* Add support for [If-Match](https://github.com/Aidbox/Issues/issues/296) header for PATCH request
+* Add FHIR support for [$validate](https://docs.aidbox.app/api-1/fhir-api/usdvalidate) operation
+* Fixes for [\#363](https://github.com/Aidbox/Issues/issues/363), [\#376](https://github.com/Aidbox/Issues/issues/376), [\#58](https://github.com/Aidbox/Issues/issues/58)
+
 ### [2021.03 \(12th of April\)](https://github.com/Aidbox/Issues/projects/5), 20210412
 
 * Change release name format from `DDMMYYYY` to `YYYYMMDD`
