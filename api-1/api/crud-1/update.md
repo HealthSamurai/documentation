@@ -173,7 +173,16 @@ This is a more complex way to update a resource, but it gives more power. You ca
 Update the patient by name.
 
 {% tabs %}
-{% tab title="Request" %}
+{% tab title="Request \(FHIR\)" %}
+```yaml
+PUT /fhir/Patient?name=Tom
+
+name: [{given: ["Tom"]}]
+gender: male
+```
+{% endtab %}
+
+{% tab title="Request \(Aidbox\)" %}
 ```yaml
 PUT /Patient?name=Tom
 
@@ -182,7 +191,7 @@ gender: male
 ```
 {% endtab %}
 
-{% tab title="Response" %}
+{% tab title="Response \(FHIR\)" %}
 **Status:** `200`
 
 ```yaml
@@ -198,6 +207,10 @@ meta:
   - {system: 'https://aidbox.app', code: updated}
 ```
 {% endtab %}
+
+{% tab title="Response \(Aidbox\)" %}
+
+{% endtab %}
 {% endtabs %}
 
 ### `201` Created
@@ -205,7 +218,17 @@ meta:
 Create a patient with the name Julie and specified id if no other patients with the same name exist:
 
 {% tabs %}
-{% tab title="Request" %}
+{% tab title="Request \(FHIR\)" %}
+```yaml
+PUT /fhir/Patient?name=Julie
+
+id: julie-id
+name: [{given: ["Julie"]}]
+gender: female
+```
+{% endtab %}
+
+{% tab title="Request \(Aidbox\)" %}
 ```yaml
 PUT /Patient?name=Julie
 
@@ -215,29 +238,47 @@ gender: female
 ```
 {% endtab %}
 
-{% tab title="Response" %}
+{% tab title="Response \(FHIR\)" %}
 **Status:** `201`
 
 ```yaml
 name:
-- given: [Julie]
+- given: Julie
 gender: female
 id: julie-id
 resourceType: Patient
 meta:
   lastUpdated: '2018-11-29T14:13:03.416Z'
   versionId: '43'
-  tag:
-  - {system: 'https://aidbox.app', code: created}
+  extension:
+    - url: 'ex:createdAt'
+      valueInstant: '2018-11-29T14:13:03.416Z'
+```
+{% endtab %}
+
+{% tab title="Response \(Aidbox\)" %}
+**Status:** `201`
+
+```yaml
+name:
+  - given:
+      - Julie
+gender: female
+id: 'julie-id'
+resourceType: Patient
+meta:
+  lastUpdated: '2018-11-29T14:13:03.416Z'
+  createdAt: '2018-11-29T14:13:03.416Z'
+  versionId: '43'
 ```
 {% endtab %}
 {% endtabs %}
 
 {% hint style="info" %}
-If a patient with a name Julie already exists, `update` interaction will be performed and `id` will be ignored.
+If a patient with the name Julie already exists, `update` interaction will be performed and `id` will be ignored.
 {% endhint %}
 
-## update
+## Update
 
 ```text
 PUT [base]/[type]/[id]
@@ -245,16 +286,26 @@ PUT [base]/[type]/[id]
 
 This interaction allows modifying an existing resource \(creating a new version of it\). After performing this interaction, the resource will be replaced with a new version of the resource provided in the body of the request. `id` of a resource can't be changed \(at least cause of versioning\) and `id` in the body of the resource is ignored in `update` interaction \(in order to make a `conditional update` possible without knowing the logical id of the resource\). If a resource with `id` \(provided in the url\) doesn't exist, a new resource will be created. Following codes can be returned by the server:
 
-* **`200`** **OK** — resource successfully updated
-* **`201`** **Created** — resource successfully created
-* **`422`** **Unprocessable Entity** — the proposed resource violated applicable FHIR profiles or server business rules
+| Response code | Text | Description |
+| :--- | :--- | :--- |
+| **`200`** | **OK** | Resource successfully updated |
+| **`201`** | **Created** | Resource successfully created |
+| **`422`** | **Unprocessable Entity** | The proposed resource violated applicable FHIR profiles or server business rules |
 
 ### **`200`** OK
 
 Update a patient by a given id:
 
 {% tabs %}
-{% tab title="Request" %}
+{% tab title="Request \(FHIR\)" %}
+```yaml
+PUT /fhir/Patient/17b69d79-3d9b-45f8-af79-75f958502763
+
+name: [{given: ["Bob"]}]
+```
+{% endtab %}
+
+{% tab title="Request \(Aidbox\)" %}
 ```yaml
 PUT /Patient/17b69d79-3d9b-45f8-af79-75f958502763
 
@@ -262,19 +313,35 @@ name: [{given: ["Bob"]}]
 ```
 {% endtab %}
 
-{% tab title="Response" %}
+{% tab title="Response \(FHIR\)" %}
 **Status:** `200`
 
 ```yaml
 name:
-- given: [Bob]
+  - given:
+      - Bob
 id: 17b69d79-3d9b-45f8-af79-75f958502763
 resourceType: Patient
 meta:
   lastUpdated: '2018-11-29T13:58:03.875Z'
   versionId: '38'
-  tag:
-  - {system: 'https://aidbox.app', code: updated}
+  extension:
+    - url: 'ex:createdAt'
+      valueInstant: '2018-11-29T13:58:03.875Z'
+```
+{% endtab %}
+
+{% tab title="Response \(Aidbox\)" %}
+**Status:** `200`
+
+```yaml
+name:
+- given: Bob
+id: 17b69d79-3d9b-45f8-af79-75f958502763
+resourceType: Patient
+meta:
+  lastUpdated: '2018-11-29T13:58:03.875Z'
+  createdAt: '2018-11-29T13:58:03.875Z'
 ```
 {% endtab %}
 {% endtabs %}
@@ -284,7 +351,15 @@ meta:
 Create a patient with a specified id:
 
 {% tabs %}
-{% tab title="Request" %}
+{% tab title="Request \(FHIR\)" %}
+```yaml
+PUT /fhir/Patient/tom-id
+
+name: [{given: ["Tom"]}]
+```
+{% endtab %}
+
+{% tab title="Request \(Aidbox\)" %}
 ```yaml
 PUT /Patient/tom-id
 
@@ -292,19 +367,37 @@ name: [{given: ["Tom"]}]
 ```
 {% endtab %}
 
-{% tab title="Response" %}
+{% tab title="Response \(FHIR\)" %}
 **Status:** `201`
 
 ```yaml
 name:
-- given: [Tom]
-id: tom-id
+  - given:
+      - Tom
+id: 'tom-id'
 resourceType: Patient
 meta:
   lastUpdated: '2018-11-29T14:01:09.336Z'
   versionId: '40'
-  tag:
-  - {system: 'https://aidbox.app', code: created}
+  extension:
+    - url: 'ex:createdAt'
+      valueInstant: '2018-11-29T14:01:09.336Z'
+```
+{% endtab %}
+
+{% tab title="Response \(Aidbox\)" %}
+**Status:** `201`
+
+```yaml
+name:
+  - given:
+      - Tom
+id: 'tom-id'
+resourceType: Patient
+meta:
+  lastUpdated: '2018-11-29T14:01:09.336Z'
+  createdAt: '2018-11-29T14:01:09.336Z'
+  versionId: '40'
 ```
 {% endtab %}
 {% endtabs %}
