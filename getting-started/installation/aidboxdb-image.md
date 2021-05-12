@@ -17,7 +17,7 @@ An open source tool [wal-g](https://github.com/wal-g/wal-g) is used by aidboxdb 
 
 aidboxdb image is tagged by PostgreSQL version from which it is built. For example, if you want to use 11.11 PostgreSQL version you should pull healthsamurai/aidboxdb:11.11 image.
 
-The image is configured by supplying environment variables and command line arguments on startup.
+The image is configured by supplying environment variables and command line arguments on startup. Keep in mind that you should not change the environment variables once you have initialised the database. The image expects them to be immutable.
 
 ### Required environment variables
 
