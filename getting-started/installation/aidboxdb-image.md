@@ -34,7 +34,6 @@ The image is configured by supplying environment variables and command line argu
 | :--- | :--- |
 | PGDATA | Path to the postgresql cluster directory in the filesystem. /data by default. |
 | PG\_ROLE | When set to "replica" image proceeds to the streaming replica mode |
-| NODE\_NAME | Name of the replication slot to be created in master database |
+| PG\_REPLICA | Name of the replication slot to be created in master database. Should only contain lower case letters, numbers, and the underscore character. |
 | PG\_MASTER\_HOST | Master database host for streaming replica |
-| NUM\_ATTEMPTS | Number of attempts to connect to the master before the image exits with error |
 
