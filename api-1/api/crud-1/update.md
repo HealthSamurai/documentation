@@ -6,11 +6,11 @@ PUT [base]/[type]/[id]
 
 Aidbox doesn't have an atomic update yet. It also allows omitting `id` in the resource body.
 
-* **`200` OK** - resource successfully updated
-* **`201` Created** - resource successfully created
-* **`422` Unprocessable Entity** - the proposed resource violated applicable FHIR profiles or server business rules
-
-
+| Response code | Text | Description |
+| :--- | :--- | :--- |
+| **`200`** | **OK** | Resource successfully updated |
+| **`201`** | **Created** | Resource successfully created |
+| **`422`** | **Unprocessable Entity** | The proposed resource violated applicable FHIR profiles or server business rules |
 
 ### Conditional Update
 
@@ -24,7 +24,7 @@ In contrast to FHIR, Aidbox conditional update allows creating a resource with a
 * **One Match**: The server performs the update against the matching resource
 * **Multiple matches**: The server returns a `412 Precondition Failed` error indicating the client's criteria were not selective enough
 
-## **versioned update**
+## **Versioned Update**
 
 While you update, there is a risk of overriding the latest changes done by another operation. To escape this situation, you can use a versioned update by sending with update `If-Match` header with `versionId` of resource you want to update. If the server has the same version of resources, the update will be successful. If versions do not match, you will get OperationOutcome with conflict code.
 
@@ -32,51 +32,131 @@ While you update, there is a risk of overriding the latest changes done by anoth
 
 Let say we created a patient:
 
+{% tabs %}
+{% tab title="Request \(FHIR\)" %}
 {% code title="create-patient-request" %}
 ```yaml
+POST /fhir/Patient
+
+id: pt-1
+name: [{family: 'Wrong'}]
+```
+{% endcode %}
+{% endtab %}
+
+{% tab title="Request \(Aidbox\)" %}
+```yaml
+create-patient-request
+
 POST /Patient
 
 id: pt-1
-name: [{family: ['Wrong']}]
+name: [{family: 'Wrong'}]
 ```
-{% endcode %}
+{% endtab %}
+
+{% tab title="Response \(FHIR\)" %}
+**Status:** `201`
 
 ```yaml
-status: 201
-
-resourceType: Patient
-id: pt-1
-meta: {lastUpdated: '2019-04-04T09:15:25.210Z', versionId: '30'}
 name:
-- {family: Wrong}
+  - family: Wrong
+id: 'pt-1'
+resourceType: Patient
+meta:
+  lastUpdated: '2019-04-04T09:15:25.210Z'
+  versionId: '471'
+  extension:
+    - url: 'ex:createdAt'
+      valueInstant: '2019-04-04T09:15:25.210Z'
 ```
+{% endtab %}
+
+{% tab title="Response \(Aidbox\)" %}
+**Status:** `201`
+
+```yaml
+name:
+  - family: Wrong
+id: 'pt-1'
+resourceType: Patient
+meta:
+  lastUpdated: '2019-04-04T09:15:25.210Z'
+  createdAt: '2019-04-04T09:15:25.210Z'
+  versionId: '471'
+```
+{% endtab %}
+{% endtabs %}
 
 To fix the family for this patient without the risk of overriding someone else's changes, we can use a versioned update request:
 
+{% tabs %}
+{% tab title="Request \(FHIR\)" %}
 {% code title="versioned-update-request" %}
 ```yaml
-PUT /Patient/pt-id
+PUT /fhir/Patient/pt-id
 If-Match: 30
 
 name: [{family: ['Smith']}]
 ```
 {% endcode %}
+{% endtab %}
+
+{% tab title="Request \(Aidbox\)" %}
+```yaml
+versioned-update-request
+
+PUT /Patient/pt-id
+If-Match: 30
+
+name: [{family: ['Smith']}]
+```
+{% endtab %}
+{% endtabs %}
 
 If someone has already edited the same patient, his version id was changed, and we got OperationOutcome.
 
+{% tabs %}
+{% tab title="Response \(FHIR\)" %}
 {% code title="conflict-response" %}
 ```yaml
 status: 409
 
 resourceType: OperationOutcome
-id: conflict
-text: {status: generated, div: Version Id mismatch}
+id: 'conflict'
+text:
+  status: generated
+  div: Version Id mismatch
 issue:
-- {severity: fatal, code: conflict, diagnostics: Version Id mismatch}
+  - severity: fatal
+    code: conflict
+    diagnostics: Version Id mismatch
 ```
 {% endcode %}
+{% endtab %}
 
-## conditional update
+{% tab title="Response \(Aidbox\)" %}
+```yaml
+conflict-response
+
+status: 409
+
+resourceType: OperationOutcome
+id: 'conflict'
+text:
+  status: generated
+  div: Version Id mismatch
+issue:
+  - severity: fatal
+    code: conflict
+    diagnostics: Version Id mismatch
+
+
+```
+{% endtab %}
+{% endtabs %}
+
+## Conditional Update
 
 ```text
 PUT [base]/[type]?[search parameters]
