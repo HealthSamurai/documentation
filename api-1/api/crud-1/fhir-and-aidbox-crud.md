@@ -218,7 +218,16 @@ A more complex way to create a resource \(it requires the knowledge of [search](
 Create a patient if there is no patient with the name Bob.
 
 {% tabs %}
-{% tab title="Request" %}
+{% tab title="Request \(FHIR format\)" %}
+```yaml
+POST /fhir/Patient?name=Bob
+
+name: [{given: ["Bob"]}]
+gender: male
+```
+{% endtab %}
+
+{% tab title="Request \(Aidbox format\)" %}
 ```yaml
 POST /Patient?name=Bob
 
@@ -227,19 +236,37 @@ gender: male
 ```
 {% endtab %}
 
-{% tab title="Response" %}
+{% tab title="Response \(FHIR format\)" %}
 **Status:** `200`
 
 ```yaml
 name:
 - given: [Bob]
+gender: male
 id: 17b69d79-3d9b-45f8-af79-75f958502763
 resourceType: Patient
 meta:
   lastUpdated: '2018-11-29T10:44:10.588Z'
   versionId: '13'
-  tag:
-  - {system: 'https://aidbox.app', code: created}
+  extension:
+    - url: 'ex:createdAt'
+      valueInstant: '2018-11-29T10:44:10.588Z'
+```
+{% endtab %}
+
+{% tab title="Response \(Aidbox format\)" %}
+**Status:** `200`
+
+```yaml
+name:
+- given: Bob
+gender: male
+id: 17b69d79-3d9b-45f8-af79-75f958502763
+resourceType: Patient
+meta:
+  lastUpdated: '2018-11-29T10:44:10.588Z'
+  createdAt: '2018-11-29T10:44:10.588Z'
+  versionId: '13'
 ```
 {% endtab %}
 {% endtabs %}
