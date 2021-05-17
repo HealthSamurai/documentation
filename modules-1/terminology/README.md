@@ -44,8 +44,8 @@ Terminology service can be logically split into two parts:
 
 | FHIR specification | Status | Documentation and samples |
 | :--- | :--- | :--- |
-| [$translate](https://www.hl7.org/fhir/conceptmap-operations.html#translate) | `not supported` | [WIP ConceptMap Translation](conceptmap/translations.md) |
-| [$closure](https://www.hl7.org/fhir/conceptmap-operations.html#closure) | `not supported` | [WIP ConceptMap Closure Table](conceptmap/conceptmap-closure-table.md) |
+| [$translate](https://www.hl7.org/fhir/conceptmap-operations.html#translate) | `not supported` | [WIP ConceptMap Translation]() |
+| [$closure](https://www.hl7.org/fhir/conceptmap-operations.html#closure) | `not supported` | [WIP ConceptMap Closure Table]() |
 
 
 
