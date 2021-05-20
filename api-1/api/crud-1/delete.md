@@ -6,11 +6,14 @@ DELETE [base]/[type]/[id]
 
 Responds with `200 OK` on the successful deletion, but when removing a resource deleted earlier, responds with `204 No Content` \(conforming FHIR specification\). This feature was added to make deletion work the same way as in SQL `DELETE RETURNING *`.
 
+Supports `If-Match` header, with `versionId` as ETAG.
+
 To get `204 No Content` instead of `200 OK`, use the `_no-content=true` query parameter. 
 
 * **`200` OK** - resource successfully deleted
 * **`204` No Content** - resource already deleted
 * **`404` Not Found** - resource not found
+* **`412`** **Precondition Failed** - requested ETAG doesn't match actual
 
 
 
