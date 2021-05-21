@@ -161,6 +161,7 @@
   * [Subscribe to new Patient resource](app-development-guides/tutorials/subscribe-to-new-patient-resource.md)
 * [Administration](app-development-guides/administration.md)
 * [Receive logs from your app](app-development-guides/receive-logs-from-your-app/README.md)
+  * [Aidbox Logs and Datadog integration](app-development-guides/receive-logs-from-your-app/aidbox-logs-and-datadog-integration.md)
   * [X-Audit header](app-development-guides/receive-logs-from-your-app/x-audit-header.md)
   * [Health Check](app-development-guides/receive-logs-from-your-app/health-check.md)
   * [Elastic Logs and Monitoring Integration](app-development-guides/receive-logs-from-your-app/elastic-logs-and-monitoring-integration.md)
