@@ -193,8 +193,6 @@ What's next?
 
 {% page-ref page="../../app-development-guides/tutorials/rest-console.md" %}
 
-{% page-ref page="../../app-development-guides/tutorials/run-local-demo.md" %}
-
 {% hint style="info" %}
 Want to know more about [Aidbox](https://www.health-samurai.io/aidbox), FHIR or FHIR applications? Join our community [chat](https://t.me/aidbox).
 {% endhint %}

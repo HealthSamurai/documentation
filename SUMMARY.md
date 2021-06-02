@@ -151,7 +151,6 @@
   * [Authentication and Authorization](app-development-guides/tutorials/authentication-and-authorization.md)
   * [Working with Aidbox from .NET](app-development-guides/tutorials/working-with-aidbox-from-.net.md)
   * [Profiling and Validation](app-development-guides/tutorials/profiling.md)
-  * [Patient CRUD SPA](app-development-guides/tutorials/run-local-demo.md)
   * [Patient Encounter notification Application](app-development-guides/tutorials/patient-encounter-notification-application.md)
   * [Working with Extensions](app-development-guides/tutorials/working-with-extensions.md)
   * [SMART on FHIR](app-development-guides/tutorials/smart-of-fhir.md)
