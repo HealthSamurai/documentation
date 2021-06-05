@@ -73,7 +73,7 @@ type: transaction
 entry:
 - resource:
     resourceType: Patient
-  fullUrl: urn:<uuid-here>
+  fullUrl: urn:uuid:<uuid-here>
   request:
     method: POST
     url: "/Patient?_identifier=mrn:123"
@@ -82,7 +82,7 @@ entry:
     resourceType: Encounter
     status: proposal
     subject:
-      uri: urn:<uuid-here>
+      uri: urn:uuid:<uuid-here>
   request:
     method: POST
     url: "/Encounter"
