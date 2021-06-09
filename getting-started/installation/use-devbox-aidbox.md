@@ -48,4 +48,8 @@ All distributions require license details to be provided. Alongside with online 
 | AIDBOX\_LOGS\_MAX\_LINES | Sets the limit of log records to push into the file. When the limit is reached, the current log file is renamed with ".old" postfix and a new log file is created. The default value is "10000". |
 | AIDBOX\_STDOUT\_JSON | If provided, enables mode to write logs as json into stdout. |
 | AIDBOX\_DEVLOGS | If provided, pushes logs into \_logs table of aidboxdb. Can be useful for testing and debugging. |
+| AIDBOX\_DD\_API\_KEY | If provided, enables mode to push logs to DataDog |
+| AIDBOX\_DD\_BATCH\_SIZE | Size of log batch, used to optimize performance of log shipping. The default value is 200. |
+| AIDBOX\_DD\_BATCH\_TIMEOUT | Timeout \(in ms\) to post a batch to DataDog if there are not enough records to reach full batch size. Default value: 3600000 \(1 hour\) |
+| AIDBOX\_DD\_LOGS | Fallback file to write logs in if uploading to DataDog fails |
 
