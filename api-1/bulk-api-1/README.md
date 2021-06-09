@@ -6,7 +6,7 @@ description: Bulk export & import operations
 
 ## Access policies
 
-Let's create a new client and access policy which allows the client to use only bulk API
+Let's create a new client and an access policy that allows the client to use only bulk API
 
 ```yaml
 PUT /
@@ -41,14 +41,22 @@ PUT /
   - {id: 'bulk-client', resourceType: 'Client'}
 ```
 
-## Create sample data
+## Generate sample data for Bulk API
 
-We will use this query to prepare sample data for the examples below. It will create:
+You can use sample data for executing Bulk API endpoints from this documentation section.
+
+Sample data contains:
 
 * FHIR citizenship extension
 * 3 patients one of which uses the citizenship extension
 * 3 appointments with references to patients
 
+{% hint style="success" %}
+You can quickly copy sample requests using the icon in the top right corner of code blocks and execute them in the Aidbox REST console. 
+{% endhint %}
+
+{% tabs %}
+{% tab title="Create Sample data" %}
 ```yaml
 POST /
 
@@ -141,16 +149,30 @@ entry:
           resourceType: Patient
           id: pt-2
 ```
+{% endtab %}
+{% endtabs %}
 
 ## $dump 
 
-You can dump all resources of a specific type with $dump operation - `GET [resource-type]/$dump` - Aidbox will respond with [Chunked Transfer Encoding](https://en.wikipedia.org/wiki/Chunked_transfer_encoding) [ndjson](http://ndjson.org/) stream. This is a memory efficient operation - Aidbox just streams database cursor to socket. If your HTTP Client supports processing of Chunked Encoding, you can process resources in stream one by one without waiting for end of the response.
+You can dump all resources of a specified type. Aidbox will respond with [Chunked Transfer Encoding](https://en.wikipedia.org/wiki/Chunked_transfer_encoding) [ndjson](http://ndjson.org/) stream, optionally you can get the output in FHIR format or GZIPped.
 
-```yaml
+This is a memory-efficient operation. Aidbox just streams the database cursor to a socket. If your HTTP Client supports processing of Chunked Encoding, you can process resources in stream one by one without waiting for the end of the response.
+
+{% tabs %}
+{% tab title="Request format" %}
+```typescript
+GET [base]/:resourceType:/$dump
+```
+{% endtab %}
+
+{% tab title="Request" %}
+```typescript
 GET /Patient/$dump
+```
+{% endtab %}
 
-#response
-
+{% tab title="Response" %}
+```yaml
 HTTP/1.1 200 OK
 Content-Type: application/ndjson
 Transfer-Encoding: chunked
@@ -161,121 +183,111 @@ Transfer-Encoding: chunked
 {"resourceType": "Patient", "id": .............}
 .........
 ```
+{% endtab %}
+{% endtabs %}
 
-Here is an example of how you can dump all patients from your box \(assuming you have a client with access policy\):
+| Parameter | Required? | Type | Description |
+| :--- | :--- | :--- | :--- |
+| Path Parameters |  |  |  |
+| **resourceType** | true | String | name of the resource type to be exported |
+| Query Parameters |  |  |  |
+| **\_since** | false | String | Date in ISO format; if present, exported data will contain only the resources created after the date. |
+| **fhir** | false | Boolean | Convert data to the FHIR format. If disabled, the data is exported in the Aidbox format. |
+| **gzip** | optional | Boolean | GZIP the result. If enabled, HTTP headers for gzip encoding are also set. |
 
+### Example
+
+Here is an example of how you can dump all patients from your box \(assuming you have a client with an access policy\):
+
+{% tabs %}
+{% tab title="Request format" %}
 ```bash
 curl -u client:secret -H 'content-type:application/json' \
   https://<box-url>/Patient/\$dump | gzip > patients.ndjson.gz
 ```
+{% endtab %}
 
-{% api-method method="get" host="\[base\]/" path=":resourceType:/$dump" %}
-{% api-method-summary %}
-Dump data
-{% endapi-method-summary %}
-
-{% api-method-description %}
-Dumps data as NDJSON, optionally in FHIR format or GZIPped
-{% endapi-method-description %}
-
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-path-parameters %}
-{% api-method-parameter name="resourceType" type="string" required=true %}
-name of the resource type to be exported
-{% endapi-method-parameter %}
-{% endapi-method-path-parameters %}
-
-{% api-method-query-parameters %}
-{% api-method-parameter name="\_since" type="string" required=false %}
-Date in ISO format; if present, exported data will contain only the resources created after the date.
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="fhir" type="boolean" required=false %}
-Convert data to the FHIR format. If disabled, the data is exported in the Aidbox format.
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="gzip" type="boolean" required=false %}
-GZIP the result. If enabled, HTTP headers for gzip encoding are also set.
-{% endapi-method-parameter %}
-{% endapi-method-query-parameters %}
-{% endapi-method-request %}
-
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-NDJSON representing the resource  
-  
-Example request:  
-  
-`GET /Appointment/$dump?fhir=true`
-{% endapi-method-response-example-description %}
-
+{% tab title="Request example" %}
+```typescript
+GET /Appointment/$dump?fhir=true
 ```
-{"id": "pt-1", "meta": {"createdAt": "2021-06-09T11:07:23.022196Z", "versionId": 388, "lastUpdated": "2021-06-09T11:07:23.022196Z"}, "name": [{"given": ["alice"]}], "resourceType": "Patient"}
-{"id": "pt-2", "meta": {"createdAt": "2021-06-09T11:07:23.022196Z", "versionId": 390, "lastUpdated": "2021-06-09T11:07:23.022196Z"}, "name": [{"given": ["bob"]}], "resourceType": "Patient"}
-{"id": "pt-3", "meta": {"createdAt": "2021-06-09T13:33:02.903654Z", "versionId": 433, "lastUpdated": "2021-06-09T13:33:41.192117Z"}, "name": [{"given": ["Charles"]}], "citizenship": [{"code": {"text": "ru"}}], "resourceType": "Patient"}
-```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+{% endtab %}
 
+{% tab title="Response" %}
 ```yaml
 # if fhir enabled
 {"id":"pt-1","meta":{"versionId":388,"lastUpdated":"2021-06-09T11:07:23.022196Z","extension":[{"url":"ex:createdAt","valueInstant":"2021-06-09T11:07:23.022196Z"}]},"name":[{"given":["alice"]}],"resourceType":"Patient"}
 {"id":"pt-2","meta":{"versionId":390,"lastUpdated":"2021-06-09T11:07:23.022196Z","extension":[{"url":"ex:createdAt","valueInstant":"2021-06-09T11:07:23.022196Z"}]},"name":[{"given":["bob"]}],"resourceType":"Patient"}
 {"id":"pt-3","meta":{"versionId":433,"lastUpdated":"2021-06-09T13:33:41.192117Z","extension":[{"url":"ex:createdAt","valueInstant":"2021-06-09T13:33:02.903654Z"}]},"name":[{"given":["Charles"]}],"resourceType":"Patient","extension":[{"url":"http://hl7.org/fhir/StructureDefinition/patient-citizenship","extension":[{"url":"code","valueCodeableConcept":{"text":"ru"}}]}]}
 ```
+{% endtab %}
+{% endtabs %}
 
 ## $dump-sql: Dump results of the sql query
 
 Takes the sql query and responds with the Chunked Encoded stream in CSV format or in NDJSON format. Useful to export data for analytics.
 
-{% api-method method="post" host="\[base\]/" path="$dump-sql" %}
-{% api-method-summary %}
-Dump the result of the SQL query
-{% endapi-method-summary %}
-
-{% api-method-description %}
-
-{% endapi-method-description %}
-
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-headers %}
-{% api-method-parameter name="content-type" type="string" required=true %}
-Content-type of the query body
-{% endapi-method-parameter %}
-{% endapi-method-headers %}
-
-{% api-method-query-parameters %}
-{% api-method-parameter name="\_format" type="string" required=false %}
-- json/ndjson: return output as ndjosn  
-- otherwise: return output as TSV
-{% endapi-method-parameter %}
-{% endapi-method-query-parameters %}
-
-{% api-method-body-parameters %}
-{% api-method-parameter name="query" type="string" required=true %}
-SQL query to execute
-{% endapi-method-parameter %}
-{% endapi-method-body-parameters %}
-{% endapi-method-request %}
-
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
- The data returned by SQL query in either NDJSON format or TSV format
-{% endapi-method-response-example-description %}
-
+```typescript
+POST [base]/$dump-sql
 ```
 
-```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Parameter</th>
+      <th style="text-align:left">Required?</th>
+      <th style="text-align:left">Type</th>
+      <th style="text-align:left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">Headers</td>
+      <td style="text-align:left"></td>
+      <td style="text-align:left"></td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><b>content-type</b>
+      </td>
+      <td style="text-align:left">true</td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Content-type of the query body</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Query parameters</td>
+      <td style="text-align:left"></td>
+      <td style="text-align:left"></td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><b>_format</b>
+      </td>
+      <td style="text-align:left">false</td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">
+        <p></p>
+        <ul>
+          <li>json/ndjson: return output as ndjosn</li>
+          <li>otherwise: return output as TSV</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Body parameters</td>
+      <td style="text-align:left"></td>
+      <td style="text-align:left"></td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><b>query</b>
+      </td>
+      <td style="text-align:left">true</td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Sql query to execute</td>
+    </tr>
+  </tbody>
+</table>
 
 ### Example
 
