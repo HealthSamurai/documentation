@@ -320,6 +320,73 @@ pt-3	Charles
 {% endtab %}
 {% endtabs %}
 
+## `$dump-csv`: Dump resource in CSV format
+
+Dumps resource data in Aidbox format as CSV \([RFC4180](https://datatracker.ietf.org/doc/html/rfc4180)\). In this format columns are paths to JSON values and Rows are values. It includes the header.
+
+Neither the specific order of columns nor the order of rows is not guaranteed.
+
+### Url Structure
+
+`[base]/<resourceType>/$dump-csv`
+
+### Parameters
+
+#### Url parameters
+
+| Parameter | Description |
+| :--- | :--- |
+| `resourceType` | Type of the resource to dump |
+
+### Examples
+
+{% tabs %}
+{% tab title="Request" %}
+#### Rest Console
+
+```yaml
+GET /Patient/$dump-csv
+```
+
+#### Curl
+
+```yaml
+$ curl "$AIDBOX_BASE/\$dump-csv" \
+    -H 'authorization: Basic YnVsay1jbGllbnQ6c2VjcmV0'
+```
+{% endtab %}
+
+{% tab title="Response" %}
+#### Status
+
+200 OK
+
+#### Headers
+
+| Header | Value |
+| :--- | :--- |
+| `Content-Type` | `text/csv` |
+| `Transfer-Encoding` | `chunked` |
+
+#### Body
+
+```yaml
+citizenship.0.code.text,id,name.0.given.0,resourceType
+,pt-1,alice,Patient
+,pt-2,bob,Patient
+ru,pt-3,Charles,Patient
+```
+
+#### Body as table
+
+| `citizenship.0.code.text` | `id` | `name.0.given.0` | `resourceType` |
+| :--- | :--- | :--- | :--- |
+|  | pt-1 | Alice | Patient |
+|  | pt-2 | Bob | Patient |
+| ru | pt-3 | Charles | Patient |
+{% endtab %}
+{% endtabs %}
+
 ## $load 
 
 You can efficiently load data into Aidbox  in _ndjson_ _gz_ format from external web service or bucket. There are two versions of $load - `/$load` and `/[resourceType]/$load`.  First can load multiple resource types from one ndjson file, second is more efficient, but loads only for a specific resource type. Both operations accept body with **source** element, which should be publicly available url. If you want to secure your import use Signed URLs by Amazon S3 or Google Storage. 
