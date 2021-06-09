@@ -322,19 +322,19 @@ pt-3	Charles
 
 ## `$dump-csv`: Dump resource in CSV format
 
-Dumps resource data in Aidbox format as CSV \([RFC4180](https://datatracker.ietf.org/doc/html/rfc4180)\). In this format columns are paths to JSON values and Rows are values. It includes the header.
+Dumps resource data in Aidbox format as CSV \([RFC4180](https://datatracker.ietf.org/doc/html/rfc4180)\). In this formatб columns are paths to JSON values and Rows are values. It includes the header.
 
-Neither the specific order of columns nor the order of rows is not guaranteed.
+Neither the specific order of columns nor the order of rows is guaranteed.
 
-### Url Structure
+{% tabs %}
+{% tab title="Request format" %}
+```yaml
+GET [base]/<resourceType>/$dump-csv
+```
+{% endtab %}
+{% endtabs %}
 
-`[base]/<resourceType>/$dump-csv`
-
-### Parameters
-
-#### Url parameters
-
-| Parameter | Description |
+| URL Parameter | Description |
 | :--- | :--- |
 | `resourceType` | Type of the resource to dump |
 
@@ -344,13 +344,13 @@ Neither the specific order of columns nor the order of rows is not guaranteed.
 {% tab title="Request" %}
 #### Rest Console
 
-```yaml
+```typescript
 GET /Patient/$dump-csv
 ```
 
 #### Curl
 
-```yaml
+```bash
 $ curl "$AIDBOX_BASE/\$dump-csv" \
     -H 'authorization: Basic YnVsay1jbGllbnQ6c2VjcmV0'
 ```
