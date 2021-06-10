@@ -4,7 +4,7 @@ description: >-
   Datadog (https://www.datadoghq.com/) logs management platform.
 ---
 
-# 🎓 Datadog guide
+# 🎓 Export logs to Datadog
 
 ## Set up Datadog API Key
 

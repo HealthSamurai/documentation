@@ -4,7 +4,7 @@ description: >-
   (https://www.datadoghq.com/) logs management platform.
 ---
 
-# Aidbox Logs and Datadog integration
+# Datadog Logs management integration
 
 ### Datadog logging
 
