@@ -54,3 +54,18 @@ All distributions require license details to be provided. Alongside with online 
 | `AIDBOX_DD_BATCH_TIMEOUT` | Timeout \(in ms\) to post a batch to DataDog if there are not enough records to reach full batch size. Default value: 3600000 \(1 hour\) |
 | `AIDBOX_DD_LOGS` | Fallback file to write logs in if uploading to DataDog fails |
 
+### Configuring SSL connection with PostgreSQL
+
+Parameters prefixed with AIDBOX_DB\_PARAM_ is passed to JDBC PostgreSQL connection string.   
+  
+For an instance:
+
+AIDBOX\_DB\_PARAM\_SSL=true   
+AIDBOX\_DB\_PARAM\_SSLMODE=verify-ca   
+  
+will add ssl=true&sslmode=verify-ca params to connection string.  
+  
+These parameters will enable SSL connection from Aidbox to postgresql Docs on JDBC PostgreSQL connection string are here: [https://jdbc.postgresql.org/documentation/80/connect.html](https://jdbc.postgresql.org/documentation/80/connect.html) [https://jdbc.postgresql.org/documentation/head/ssl-client.html](https://jdbc.postgresql.org/documentation/head/ssl-client.html)
+
+The next step is to configure your database to accept SSL connections. You can do that by passing your own postgresql.conf with argument -c config\_file  passed into the db containter and probably you want to set up postgres to receive only SSL connections, you can do that by passing your own pg\_hba.conf file with -c hba\_file 
+
