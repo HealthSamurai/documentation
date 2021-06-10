@@ -15,6 +15,7 @@
   This is an easy way to leverage HIPAA-compliant log management SaaS platform to unify logs, metrics, and traces in a single view.  
 
 * Logs that are published on Aidbox startup are cleaned up from useless data. 
+* SSL connection between Aidbox and PostgreSQL is now supported.  Please, read the [configuration instructions](https://docs.aidbox.app/getting-started/installation/use-devbox-aidbox#configuring-ssl-connection-with-postgresql) for more details.  
 * Fixed a bug with race condition occurring during CRUD operations with If-Match header.   Transaction rollback is implemented for the case when concurrent change happens to the resource. 
 * Fixed a bug in the user management module when a second registration for a deleted user resulted in an error.
 
