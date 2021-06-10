@@ -6,8 +6,8 @@ This is a memory-efficient operation. Aidbox just streams the database cursor to
 
 {% tabs %}
 {% tab title="Request format" %}
-```typescript
-GET [base]/:resourceType:/$dump
+```text
+GET [base]/<resourceType>/$dump
 ```
 {% endtab %}
 
