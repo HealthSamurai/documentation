@@ -2,7 +2,7 @@
 
 Dump resource in CSV format
 
-`$dump-csv` operation dumps resource data in Aidbox format as CSV \([RFC4180](https://datatracker.ietf.org/doc/html/rfc4180)\). In this formatб columns are paths to JSON values and Rows are values. It includes the header.
+`$dump-csv` operation dumps resource data in Aidbox format as CSV \([RFC4180](https://datatracker.ietf.org/doc/html/rfc4180)\). In this format, columns are paths to JSON values and Rows are values. It includes the header.
 
 Neither the specific order of columns nor the order of rows is guaranteed.
 
