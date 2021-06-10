@@ -1,8 +1,14 @@
-# DataDog guide
+---
+description: >-
+  This section is a step-by-step guide for working with your Aidbox logs with
+  Datadog (https://www.datadoghq.com/) logs management platform.
+---
+
+# 🎓 Datadog guide
 
 ## Set up Datadog API Key
 
-You need to enable DataDog Logs API and create an API Key
+You need to enable Datadog Logs API and create an API Key
 
 To create a new API key go to [https://app.datadog.hq/](https://app.datadog.hq/) then go to Integrations -&gt; APIs:
 
@@ -24,7 +30,7 @@ Copy the newly generated key
 
 Set the `AIDBOX_DD_API_KEY`  environment variable to the Datadog API Key.
 
-For example if you are using Docker Compose, add the variable to the environment section:
+For example, if you are using Docker Compose, add the variable to the environment section:
 
 ```yaml
 devbox:
@@ -66,7 +72,7 @@ Use `@ev` path for the new facet
 
 ![](../../.gitbook/assets/image%20%2822%29.png)
 
-In this guide we will add metric for authorization failures
+In this guide, we will add a metric for authorization failures
 
 Go to Logs -&gt; Generate Metrics
 
@@ -108,19 +114,19 @@ Now we can see our monitor on the Monitor page
 
 ![](../../.gitbook/assets/image%20%2830%29.png)
 
-It takes some time for Datadog to set up the monitor, after a while it will become green
+It takes some time for Datadog to set up the monitor. After a while, it will become green
 
 ![](../../.gitbook/assets/image%20%2826%29.png)
 
-And when there are too many authorization failures in short time it changes status to warning
+And when there are too many authorization failures in a short period of time, it changes the status to warning
 
 ![](../../.gitbook/assets/image%20%2835%29.png)
 
-Then when it hits the treshold it alerts
+Then when it hits the threshold, the alert is created
 
 ![](../../.gitbook/assets/image%20%2821%29.png)
 
-On the Monitor page you can see statistics
+On the Monitor page, you can see statistics
 
 ![](../../.gitbook/assets/image%20%2818%29.png)
 

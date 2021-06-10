@@ -1,10 +1,20 @@
+---
+description: >-
+  This section describes how to integrate your Aidbox with Datadog
+  (https://www.datadoghq.com/) logs management platform.
+---
+
 # Aidbox Logs and Datadog integration
 
 ### Datadog logging
 
-To enable Aidbox logs upload to Datadog, you need to set `AIDBOX_DD_API_KEY` environment variable.
+{% hint style="info" %}
+Please, do not use these settings with`AIDBOX_ES_URL` \(Elastic Logs and Monitoring\) enabled. These are two alternative approaches for logs management.
+{% endhint %}
 
-```text
+To enable Aidbox logs uploading into Datadog, you need to set `AIDBOX_DD_API_KEY` environment variable.
+
+```yaml
 AIDBOX_DD_API_KEY = <Datadog API Key>
 # Required.
 # Datadog API Key.
