@@ -8,6 +8,14 @@
 POST [base]/$dump-sql
 ```
 
+### Headers
+
+| Parameter | Required? | Type | Description |
+| :--- | :--- | :--- | :--- |
+| **content-type** | true | String | Content-type of the query body |
+
+### Query parameters
+
 <table>
   <thead>
     <tr>
@@ -18,25 +26,6 @@ POST [base]/$dump-sql
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td style="text-align:left">Headers</td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>content-type</b>
-      </td>
-      <td style="text-align:left">true</td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">Content-type of the query body</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Query parameters</td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"></td>
-    </tr>
     <tr>
       <td style="text-align:left"><b>_format</b>
       </td>
@@ -50,23 +39,16 @@ POST [base]/$dump-sql
         </ul>
       </td>
     </tr>
-    <tr>
-      <td style="text-align:left">Body parameters</td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>query</b>
-      </td>
-      <td style="text-align:left">true</td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">Sql query to execute</td>
-    </tr>
   </tbody>
 </table>
 
-### Example
+### Body parameters
+
+| Parameter | Required? | Type | Description |
+| :--- | :--- | :--- | :--- |
+| **query** | true | String | Sql query to execute |
+
+## Example
 
 Get id and name of each patient
 

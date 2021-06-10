@@ -32,16 +32,21 @@ Transfer-Encoding: chunked
 {% endtab %}
 {% endtabs %}
 
+### **Path Parameters**
+
 | Parameter | Required? | Type | Description |
 | :--- | :--- | :--- | :--- |
-| Path Parameters |  |  |  |
 | **resourceType** | true | String | name of the resource type to be exported |
-| Query Parameters |  |  |  |
+
+### **Query Parameters**
+
+| Parameter | Required? | Type | Description |
+| :--- | :--- | :--- | :--- |
 | **\_since** | false | String | Date in ISO format; if present, exported data will contain only the resources created after the date. |
 | **fhir** | false | Boolean | Convert data to the FHIR format. If disabled, the data is exported in the Aidbox format. |
 | **gzip** | optional | Boolean | GZIP the result. If enabled, HTTP headers for gzip encoding are also set. |
 
-### Examples
+## Examples
 
 Here is an example of how you can dump all patients from your box \(assuming you have a client with an access policy\):
 
