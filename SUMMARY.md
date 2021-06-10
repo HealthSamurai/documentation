@@ -171,7 +171,7 @@
   * [Health Check](app-development-guides/receive-logs-from-your-app/health-check.md)
   * [Elastic Logs and Monitoring Integration](app-development-guides/receive-logs-from-your-app/elastic-logs-and-monitoring-integration.md)
   * [🎓 Export logs to ElasticSearch/Kibana](app-development-guides/receive-logs-from-your-app/export-logs-to-elasticsearch-kibana.md)
-  * [Datadog Logs management integration](app-development-guides/receive-logs-from-your-app/aidbox-logs-and-datadog-integration.md)
+  * [Datadog Log management integration](app-development-guides/receive-logs-from-your-app/aidbox-logs-and-datadog-integration.md)
   * [🎓 Export logs to Datadog](app-development-guides/receive-logs-from-your-app/datadog-guide.md)
 * [$matcho](app-development-guides/usdmatcho.md)
 * [$to-format](app-development-guides/usdto-format-fhir-aidbox.md)

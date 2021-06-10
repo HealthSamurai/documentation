@@ -4,9 +4,9 @@ description: The topic explains configuration options of Devbox and Aidbox distr
 
 # Configure Devbox/Aidbox distribution
 
-### Introduction
+## Introduction
 
-\*\*\*\*[**Devbox**](https://hub.docker.com/r/healthsamurai/devbox) ****is a lightweight version of Aidbox. It is a free version aimed at local development and can not be used to store real healthcare data or PHI.  
+\*\*\*\*[**Devbox**](https://hub.docker.com/r/healthsamurai/devbox) _\*\*_is a lightweight version of Aidbox. It is a free version aimed at local development and can not be used to store real healthcare data or PHI.
 
 [**Aidbox**](https://hub.docker.com/r/healthsamurai/aidboxone) is a full-featured single instance of the Aidbox FHIR server. If you are interested in multi-tenant Aidbox, consider using [**Multibox**](https://hub.docker.com/r/healthsamurai/multibox) distribution.
 
@@ -14,7 +14,7 @@ All distributions are intended to be used with [healthsamurai/aidboxdb](https://
 
 All distributions require license details to be provided. Alongside with online license server, we offer a special license server distribution for the deployment environments that do not have access to the internet. Contact your support team for the details.
 
-### Required environment variables
+## Required environment variables
 
 | Env variable name | Meaning |
 | :--- | :--- |
@@ -24,7 +24,7 @@ All distributions require license details to be provided. Alongside with online 
 | `PGPORT` | Aidboxdb port |
 | `PGDATABASE` | Name of the database that is used to store resources |
 | `PGUSER` | Database role name to use |
-| `PGPASSWORD` |  A password of that role |
+| `PGPASSWORD` | A password of that role |
 | `AIDBOX_CLIENT_ID` | Root Client resource id to create on startup |
 | `AIDBOX_CLIENT_SECRET` | A secret for that Client |
 | `AIDBOX_ADMIN_ID` | Root User resource id to create on startup |
@@ -32,11 +32,11 @@ All distributions require license details to be provided. Alongside with online 
 | `AIDBOX_LICENSE_ID` | License id obtained from the license server |
 | `AIDBOX_LICENSE_KEY` | Key for that license |
 
-### Optional environment variables
+## Optional environment variables
 
 | Env variable name | Meaning |
 | :--- | :--- |
-| `AIDBOX_BASE_URL` | URL to use in links between resources. Defaults to http://localhost:\[AIDBOX\_PORT\] |
+| `AIDBOX_BASE_URL` | URL to use in links between resources. Defaults to [http://localhost:\[AIDBOX\_PORT\](http://localhost:[AIDBOX_PORT\)\] |
 | `AIDBOX_OFFLINE_LICENSE` | If set to anything license is validated in offline mode. |
 | `AIDBOX_LICENSE_SERVER_URL` | URL of the offline license server. |
 | `AIDBOX_DB_PARAM_*` | Parameters prefixed with `AIDBOX_DB_PARAM_` will be passed to [JDBC PostgreSQL connection string](https://jdbc.postgresql.org/documentation/80/connect.html). For example, parameters: `AIDBOX_DB_PARAM_SSL=true`  `AIDBOX_DB_PARAM_SSLMODE=verify-ca` will add `ssl=true&sslmode=verify-ca` params to connection string |

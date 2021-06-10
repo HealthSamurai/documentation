@@ -1,10 +1,10 @@
 ---
 description: >-
   This section describes how to integrate your Aidbox with Datadog
-  (https://www.datadoghq.com/) logs management platform.
+  (https://www.datadoghq.com/) log management platform.
 ---
 
-# Datadog Logs management integration
+# Datadog Log management integration
 
 ### Datadog logging
 
