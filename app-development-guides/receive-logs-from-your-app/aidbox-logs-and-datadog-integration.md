@@ -6,6 +6,8 @@ description: >-
 
 # Datadog Log management integration
 
+Datadog offers cloud-based monitoring and analytics platform which integrates and automates infrastructure monitoring, application performance monitoring, and log management for real-time observability of customers.
+
 ### Datadog logging
 
 {% hint style="info" %}
