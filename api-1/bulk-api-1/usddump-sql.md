@@ -68,34 +68,56 @@ POST [base]/$dump-sql
 
 ### Example
 
+Get id and name of each patient
+
 {% tabs %}
 {% tab title="Request" %}
+#### REST Console
+
 ```yaml
 POST /$dump-sql
-# Headers
-Content-Type: application/yaml
-# In the example we use basic authorization for our newly created client
-# It's pair of id:password will be bulk-client:secret
-# Which in base64 encoding is YnVsay1jbGllbnQ6c2VjcmV0
-Authorization: Basic YnVsay1jbGllbnQ6c2VjcmV0
 
-# Body
 query: select id, resource#>>'{name,0,given,0}' from patient
+```
+
+#### Curl
+
+```bash
+curl -u bulk-client:secret $AIDBOX_BASE_URL/\$dump-sql \
+    -H 'Content-Type: application/yaml' -d@- <<EOF
+query: select id, resource#>>'{name,0,given,0}' from patient
+EOF
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```yaml
-# Headers
-Content-Type: text/tab-separated-values
+#### Status
 
-# Body
+200 OK
+
+#### Headers
+
+| Header | Value |
+| :--- | :--- |
+| Content-Type | text/tab-separated-values |
+| Transfer-Encoding | Chunked |
+
+#### Body
+
+```yaml
 pt-1	Alice
 pt-2	Bob
 pt-3	Charles
 ```
+
+#### Body as table
+
+|  |  |
+| :--- | :--- |
+| pt-1 | Alice |
+| pt-2 | Bob |
 {% endtab %}
 {% endtabs %}
 
-## \`\`
+
 
