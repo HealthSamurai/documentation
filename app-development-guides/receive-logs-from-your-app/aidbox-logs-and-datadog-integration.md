@@ -8,7 +8,7 @@ description: >-
 
 Datadog offers cloud-based monitoring and analytics platform which integrates and automates infrastructure monitoring, application performance monitoring, and log management for real-time observability of customers.
 
-### Datadog logging
+## Datadog logging
 
 {% hint style="info" %}
 Please, do not use these settings with`AIDBOX_ES_URL` \(Elastic Logs and Monitoring\) enabled. These are two alternative approaches for logs management.

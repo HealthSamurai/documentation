@@ -6,7 +6,7 @@ description: The topic explains configuration options of Devbox and Aidbox distr
 
 ## Introduction
 
-\*\*\*\*[**Devbox**](https://hub.docker.com/r/healthsamurai/devbox) _\*\*_is a lightweight version of Aidbox. It is a free version aimed at local development and can not be used to store real healthcare data or PHI.
+\*\*\*\*[**Devbox**](https://hub.docker.com/r/healthsamurai/devbox) \_\*\*\_is a lightweight version of Aidbox. It is a free version aimed at local development and can not be used to store real healthcare data or PHI.
 
 [**Aidbox**](https://hub.docker.com/r/healthsamurai/aidboxone) is a full-featured single instance of the Aidbox FHIR server. If you are interested in multi-tenant Aidbox, consider using [**Multibox**](https://hub.docker.com/r/healthsamurai/multibox) distribution.
 
@@ -36,7 +36,7 @@ All distributions require license details to be provided. Alongside with online 
 
 | Env variable name | Meaning |
 | :--- | :--- |
-| `AIDBOX_BASE_URL` | URL to use in links between resources. Defaults to [http://localhost:\[AIDBOX\_PORT\](http://localhost:[AIDBOX_PORT\)\] |
+| `AIDBOX_BASE_URL` | URL to use in links between resources. Defaults to \[[http://localhost:\[AIDBOX\_PORT\]\(http://localhost:\[AIDBOX\_PORT\)\](http://localhost:[AIDBOX_PORT]%28http://localhost:[AIDBOX_PORT%29\)\] |
 | `AIDBOX_OFFLINE_LICENSE` | If set to anything license is validated in offline mode. |
 | `AIDBOX_LICENSE_SERVER_URL` | URL of the offline license server. |
 | `AIDBOX_DB_PARAM_*` | Parameters prefixed with `AIDBOX_DB_PARAM_` will be passed to [JDBC PostgreSQL connection string](https://jdbc.postgresql.org/documentation/80/connect.html). For example, parameters: `AIDBOX_DB_PARAM_SSL=true`  `AIDBOX_DB_PARAM_SSLMODE=verify-ca` will add `ssl=true&sslmode=verify-ca` params to connection string |
@@ -56,16 +56,16 @@ All distributions require license details to be provided. Alongside with online 
 
 ### Configuring SSL connection with PostgreSQL
 
-Parameters prefixed with AIDBOX_DB\_PARAM_ is passed to JDBC PostgreSQL connection string.   
-  
+Parameters prefixed with AIDBOX_DB\_PARAM_ is passed to JDBC PostgreSQL connection string.
+
 For an instance:
 
-AIDBOX\_DB\_PARAM\_SSL=true   
-AIDBOX\_DB\_PARAM\_SSLMODE=verify-ca   
-  
-will add ssl=true&sslmode=verify-ca params to connection string.  
-  
+AIDBOX\_DB\_PARAM\_SSL=true  
+AIDBOX\_DB\_PARAM\_SSLMODE=verify-ca
+
+will add ssl=true&sslmode=verify-ca params to connection string.
+
 These parameters will enable SSL connection from Aidbox to postgresql Docs on JDBC PostgreSQL connection string are here: [https://jdbc.postgresql.org/documentation/80/connect.html](https://jdbc.postgresql.org/documentation/80/connect.html) [https://jdbc.postgresql.org/documentation/head/ssl-client.html](https://jdbc.postgresql.org/documentation/head/ssl-client.html)
 
-The next step is to configure your database to accept SSL connections. You can do that by passing your own postgresql.conf with argument -c config\_file  passed into the db containter and probably you want to set up postgres to receive only SSL connections, you can do that by passing your own pg\_hba.conf file with -c hba\_file 
+The next step is to configure your database to accept SSL connections. You can do that by passing your own postgresql.conf with argument -c config\_file passed into the db containter and probably you want to set up postgres to receive only SSL connections, you can do that by passing your own pg\_hba.conf file with -c hba\_file
 
