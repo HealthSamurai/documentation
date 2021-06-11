@@ -6,9 +6,9 @@ description: The topic explains configuration options of Devbox and Aidbox distr
 
 ## Introduction
 
-\*\*\*\*[**Devbox**](https://hub.docker.com/r/healthsamurai/devbox) \_\*\*\_is a lightweight version of Aidbox. It is a free version aimed at local development and can not be used to store real healthcare data or PHI.
+[Devbox](https://hub.docker.com/r/healthsamurai/devbox) is a lightweight version of Aidbox. It is a free version aimed at local development and can not be used to store real healthcare data or PHI.
 
-[**Aidbox**](https://hub.docker.com/r/healthsamurai/aidboxone) is a full-featured single instance of the Aidbox FHIR server. If you are interested in multi-tenant Aidbox, consider using [**Multibox**](https://hub.docker.com/r/healthsamurai/multibox) distribution.
+[Aidbox](https://hub.docker.com/r/healthsamurai/aidboxone) is a full-featured single instance of the Aidbox FHIR server. If you are interested in multi-tenant Aidbox, consider using [Multibox ](https://docs.aidbox.app/getting-started/installation/use-devbox-aidbox)distribution.
 
 All distributions are intended to be used with [healthsamurai/aidboxdb](https://hub.docker.com/r/healthsamurai/aidboxdb) postgres distribution. If you want to use DBaaS solution for storage, contact your support team to check if it is implemented.
 
@@ -36,7 +36,7 @@ All distributions require license details to be provided. Alongside with online 
 
 | Env variable name | Meaning |
 | :--- | :--- |
-| `AIDBOX_BASE_URL` | URL to use in links between resources. Defaults to \[[http://localhost:\[AIDBOX\_PORT\]\(http://localhost:\[AIDBOX\_PORT\)\](http://localhost:[AIDBOX_PORT]%28http://localhost:[AIDBOX_PORT%29\)\] |
+| `AIDBOX_BASE_URL` | URL to use in links between resources. Defaults to [http://localhost:\[AIDBOX\_PORT\]](http://localhost:[AIDBOX_PORT]%28http://localhost:[AIDBOX_PORT%29\) |
 | `AIDBOX_OFFLINE_LICENSE` | If set to anything license is validated in offline mode. |
 | `AIDBOX_LICENSE_SERVER_URL` | URL of the offline license server. |
 | `AIDBOX_DB_PARAM_*` | Parameters prefixed with `AIDBOX_DB_PARAM_` will be passed to [JDBC PostgreSQL connection string](https://jdbc.postgresql.org/documentation/80/connect.html). For example, parameters: `AIDBOX_DB_PARAM_SSL=true`  `AIDBOX_DB_PARAM_SSLMODE=verify-ca` will add `ssl=true&sslmode=verify-ca` params to connection string |
@@ -56,7 +56,7 @@ All distributions require license details to be provided. Alongside with online 
 
 ### Configuring SSL connection with PostgreSQL
 
-Parameters prefixed with AIDBOX_DB\_PARAM_ is passed to JDBC PostgreSQL connection string.
+Parameters prefixed with AIDBOX\_DB\_PARAM is passed to JDBC PostgreSQL connection string.
 
 For an instance:
 
