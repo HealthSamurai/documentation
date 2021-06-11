@@ -424,8 +424,11 @@ Aidbox supports an alternative yet very powerful profile validation mechanism po
 To enable zen powered validation, you need to specify zen libraries in the `AIDBOX_ZEN_DEPS` environment variable.  
 Aidbox validates resources of every resourceType with `aidbox/profile` tagged zen schema.
 
-The value of the `AIDBOX_ZEN_DEPS` variable must be a comma-separated list of @-separated pairs of core-zen-project-ns@zen-project-zip-archive-url.  
-For example: `AIDBOX_ZEN_DEPS=foo@https://.../foo.zip,bar@https://.../bar.zip`.
+The value of the `AIDBOX_ZEN_DEPS` variable must be a comma-separated list of @-separated pairs of core-zen-project-ns@zen-project-zip-archive-url or just core-zen-project-ns without url, if url is not specified, Aidbox will search this zen ns in its classpath.  
+For example: `AIDBOX_ZEN_DEPS=foo@https://.../foo.zip,bar@https://.../bar.zip,quux`.  
+Zen ns `foo` will be downloaded from `https://.../foo.zip`  
+Zen ns `bar` will be downloaded from `https://.../bar.zip`  
+Zen ns `quux` will be read from classpath
 
 `core-zen-project-ns` should include a zen schema with an `aidbox/profile` tag specified. Schemas tagged with `aidbox/profile` should conform this schema:
 
