@@ -598,7 +598,9 @@ Finally, the validation passed and the patient is created.
 
 ### IG Profiling step by step guide
 
-[Here is a zip archive](https://storage.googleapis.com/aidbox-public/zen-profiles/us-core.zip) with a Zen project generated from the US Core IG \(repository with other generated Zen projects for popular IGs will be available later, as well as tools for Zen projects generation from any StructureDefinition\)
+[Here is a zip archive](https://storage.googleapis.com/aidbox-public/zen-profiles/us-core.zip) with a Zen project generated from the US Core IG  
+Repository with some generated Zen projects for popular IGs [is here](https://github.com/HealthSamurai/Zen-Profiles)  
+Tools for Zen projects generation from any StructureDefinition will be available later. You can write to us if you want to generate Zen project from some IG
 
 You can load this zip archive into Aidbox using that link or by mounting folder with unarchived zen project into Aidbox classpath
 
