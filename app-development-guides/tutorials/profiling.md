@@ -596,7 +596,170 @@ resourceType: Patient
 
 Finally, the validation passed and the patient is created.
 
+### IG Profiling step by step guide
 
+[Here is a zip archive](https://storage.googleapis.com/aidbox-public/zen-profiles/us-core.zip) with a Zen project generated from the US Core IG \(repository with other generated Zen projects for popular IGs will be available later, as well as tools for Zen projects generation from any StructureDefinition\)
+
+You can load this zip archive into Aidbox using that link or by mounting folder with unarchived zen project into Aidbox classpath
+
+#### Zip URL example
+
+1. Declare this env variable in your Aidbox:`AIDBOX_ZEN_DEPS=us-core.v1@https://storage.googleapis.com/aidbox-public/zen-profiles/us-core.zip`
+
+2. Start Aidbox
+
+3. Import terminology bundle
+
+```typescript
+POST /$import
+
+{"source": "https://storage.googleapis.com/aidbox-public/zen-profiles/us-core-terminology-bundle.ndjson.gz"}
+```
+
+4. Diagnostics
+
+{% code title="You can check which profiles are currently loaded into your Aidbox" %}
+```typescript
+GET /$zen-get?tag=aidbox/profile
+
+// response
+[
+  "us-core.v1.us-core-diagnosticreport-lab/DiagnosticReport",
+  "us-core.v1.us-core-ethnicity/Extension",
+  ...
+  "us-core.v1.us-core-smokingstatus/Observation",
+  "us-core.v1.pediatric-bmi-for-age/Observation"
+]
+```
+{% endcode %}
+
+{% code title="You can check if there are any errors" %}
+```typescript
+GET /$zen-errors
+
+// response if everything is ok
+{
+  "errors": null
+}
+
+// response if Aidbox couldn't find zen project
+{
+ "errors": [
+  {
+   "message": "No file for ns 'us-core.v1"
+  }
+ ]
+}
+```
+{% endcode %}
+
+5. If eveything is ok, now you have validation enabled.   
+You can test it by creating resource which references profile URL in the `meta.profile` attribute
+
+{% tabs %}
+{% tab title="POST /Patient" %}
+{% code title="Empty us-core-patient resource POST should return validation errors" %}
+```typescript
+POST /fhir/Patient
+
+{
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
+    ]
+  }
+}
+
+// response
+{
+  "resourceType": "OperationOutcome",
+  "text": {
+    "status": "generated",
+    "div": "Invalid resource"
+  },
+  "issue": [
+    {
+      "severity": "fatal",
+      "code": "invalid",
+      "expression": [
+        "Patient.name"
+      ],
+      "diagnostics": ":name is required (http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient)"
+    },
+    {
+      "severity": "fatal",
+      "code": "invalid",
+      "expression": [
+        "Patient.identifier"
+      ],
+      "diagnostics": ":identifier is required (http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient)"
+    },
+    {
+      "severity": "fatal",
+      "code": "invalid",
+      "expression": [
+        "Patient.gender"
+      ],
+      "diagnostics": ":gender is required (http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient)"
+    }
+  ]
+}
+```
+{% endcode %}
+{% endtab %}
+
+{% tab title="POST /Patient/$validate" %}
+{% code title="You can use validation without inserting resource into the database" %}
+```typescript
+POST /fhir/Patient/$validate
+
+{
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
+    ]
+  }
+}
+
+// response
+{
+  "resourceType": "OperationOutcome",
+  "text": {
+    "status": "generated",
+    "div": "Invalid resource"
+  },
+  "issue": [
+    {
+      "severity": "fatal",
+      "code": "invalid",
+      "expression": [
+        "Patient.name"
+      ],
+      "diagnostics": ":name is required (http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient)"
+    },
+    {
+      "severity": "fatal",
+      "code": "invalid",
+      "expression": [
+        "Patient.identifier"
+      ],
+      "diagnostics": ":identifier is required (http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient)"
+    },
+    {
+      "severity": "fatal",
+      "code": "invalid",
+      "expression": [
+        "Patient.gender"
+      ],
+      "diagnostics": ":gender is required (http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient)"
+    }
+  ],
+  "id": "validationfail"
+}
+```
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 
 ### 
 
