@@ -457,11 +457,44 @@ For example: `AIDBOX_ZEN_DEPS=foo@https://.../foo.zip,bar@https://.../bar.zip`.
 
 ### API
 
-| Method | Description |
-| :--- | :--- |
-| `GET /$zen-ctx` | Returns zen ctx. Useful for debug |
-| `GET /$zen-errors` | Returns :errors key of zen ctx |
-| `GET /$reload-zen-deps` | Reloads deps specified in `AIDBOX_ZEN_DEPS` variable |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Method</th>
+      <th style="text-align:left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>GET /$zen-ctx</code>
+      </td>
+      <td style="text-align:left">Returns zen ctx. Useful for debug</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>GET /$zen-errors</code>
+      </td>
+      <td style="text-align:left">Returns :errors key of zen ctx</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>GET /$reload-zen-deps</code>
+      </td>
+      <td style="text-align:left">Reloads deps specified in <code>AIDBOX_ZEN_DEPS</code> variable</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>GET /$zen-get</code>
+      </td>
+      <td style="text-align:left">
+        <p>Search parameters:</p>
+        <p><code>tag</code> returns symbols tagged with this tag</p>
+        <p><code>symbol</code> returns symbol definition
+          <br />Required to have either <code>tag</code> or <code>symbol</code> parameter
+          (not both)</p>
+        <p><code>inline</code> when <code>true</code> substitutes symbols with their
+          definition</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ### A basic step by step guide
 
