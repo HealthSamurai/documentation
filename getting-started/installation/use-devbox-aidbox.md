@@ -34,25 +34,118 @@ All distributions require license details to be provided. Alongside with online 
 
 ## Optional environment variables
 
-| Env variable name | Meaning |
-| :--- | :--- |
-| `AIDBOX_BASE_URL` | URL to use in links between resources. Defaults to [http://localhost:\[AIDBOX\_PORT\]](http://localhost:[AIDBOX_PORT]%28http://localhost:[AIDBOX_PORT%29\) |
-| `AIDBOX_OFFLINE_LICENSE` | If set to anything license is validated in offline mode. |
-| `AIDBOX_LICENSE_SERVER_URL` | URL of the offline license server. |
-| `AIDBOX_DB_PARAM_*` | Parameters prefixed with `AIDBOX_DB_PARAM_` will be passed to [JDBC PostgreSQL connection string](https://jdbc.postgresql.org/documentation/80/connect.html). For example, parameters: `AIDBOX_DB_PARAM_SSL=true`  `AIDBOX_DB_PARAM_SSLMODE=verify-ca` will add `ssl=true&sslmode=verify-ca` params to connection string |
-| `AIDBOX_ES_URL` | If provided, enables mode to push logs to ElasticSearch. |
-| `AIDBOX_ES_AUTH` | Basic auth credentials for ElasticSearch in the format of "user:password". |
-| `AIDBOX_ES_BATCH_SIZE` | Size of log batch, used to optimize performance of log shipping. The default value is 200. |
-| `AIDBOX_ES_BATCH_TIMEOUT` | Timeout to post a batch to ElasticSearch if there are not enough records to reach full batch size. |
-| `AIDBOX_ES_INDEX_PAT` | Custom index format string. The default value is 'aidbox-logs'-yyyy-MM-dd. By changing this setting you can control how often new indices should be created. |
-| `AIDBOX_LOGS` | If provided, enables mode to pipe logs as json into the file by specified path. If ElasticSearch URL is provided then the file is used as a fallback in case if ElasticSearch is not available. |
-| `AIDBOX_LOGS_MAX_LINES` | Sets the limit of log records to push into the file. When the limit is reached, the current log file is renamed with ".old" postfix and a new log file is created. The default value is "10000". |
-| `AIDBOX_STDOUT_JSON` | If provided, enables mode to write logs as json into stdout. |
-| `AIDBOX_DEVLOGS` | If provided, pushes logs into \_logs table of aidboxdb. Can be useful for testing and debugging. |
-| `AIDBOX_DD_API_KEY` | If provided, enables mode to push logs to DataDog |
-| `AIDBOX_DD_BATCH_SIZE` | Size of log batch, used to optimize performance of log shipping. The default value is 200. |
-| `AIDBOX_DD_BATCH_TIMEOUT` | Timeout \(in ms\) to post a batch to DataDog if there are not enough records to reach full batch size. Default value: 3600000 \(1 hour\) |
-| `AIDBOX_DD_LOGS` | Fallback file to write logs in if uploading to DataDog fails |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Env variable name</th>
+      <th style="text-align:left">Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>AIDBOX_BASE_URL</code>
+      </td>
+      <td style="text-align:left">
+        <p>URL to use in links between resources.</p>
+        <p>Defaults to http://localhost:[AIDBOX_PORT]</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>AIDBOX_OFFLINE_LICENSE</code>
+      </td>
+      <td style="text-align:left">If set to anything license is validated in offline mode.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>AIDBOX_LICENSE_SERVER_URL</code>
+      </td>
+      <td style="text-align:left">URL of the offline license server.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>AIDBOX_DB_PARAM_*</code>
+      </td>
+      <td style="text-align:left">Parameters prefixed with <code>AIDBOX_DB_PARAM_</code> will be passed to
+        <a
+        href="https://jdbc.postgresql.org/documentation/80/connect.html">JDBC PostgreSQL connection string</a>. For example, parameters: <code>AIDBOX_DB_PARAM_SSL=true</code>  <code>AIDBOX_DB_PARAM_SSLMODE=verify-ca</code> will
+          add <code>ssl=true&amp;sslmode=verify-ca</code> params to connection string</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>AIDBOX_ES_URL</code>
+      </td>
+      <td style="text-align:left">If provided, enables mode to push logs to ElasticSearch.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>AIDBOX_ES_AUTH</code>
+      </td>
+      <td style="text-align:left">Basic auth credentials for ElasticSearch in the format of &quot;user:password&quot;.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>AIDBOX_ES_BATCH_SIZE</code>
+      </td>
+      <td style="text-align:left">Size of log batch, used to optimize performance of log shipping. The default
+        value is 200.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>AIDBOX_ES_BATCH_TIMEOUT</code>
+      </td>
+      <td style="text-align:left">Timeout to post a batch to ElasticSearch if there are not enough records
+        to reach full batch size.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>AIDBOX_ES_INDEX_PAT</code>
+      </td>
+      <td style="text-align:left">Custom index format string. The default value is &apos;aidbox-logs&apos;-yyyy-MM-dd.
+        By changing this setting you can control how often new indices should be
+        created.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>AIDBOX_LOGS</code>
+      </td>
+      <td style="text-align:left">If provided, enables mode to pipe logs as json into the file by specified
+        path. If ElasticSearch URL is provided then the file is used as a fallback
+        in case if ElasticSearch is not available.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>AIDBOX_LOGS_MAX_LINES</code>
+      </td>
+      <td style="text-align:left">Sets the limit of log records to push into the file. When the limit is
+        reached, the current log file is renamed with &quot;.old&quot; postfix
+        and a new log file is created. The default value is &quot;10000&quot;.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>AIDBOX_STDOUT_JSON</code>
+      </td>
+      <td style="text-align:left">If provided, enables mode to write logs as json into stdout.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>AIDBOX_DEVLOGS</code>
+      </td>
+      <td style="text-align:left">If provided, pushes logs into _logs table of aidboxdb. Can be useful for
+        testing and debugging.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>AIDBOX_DD_API_KEY</code>
+      </td>
+      <td style="text-align:left">If provided, enables mode to push logs to DataDog</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>AIDBOX_DD_BATCH_SIZE</code>
+      </td>
+      <td style="text-align:left">Size of log batch, used to optimize performance of log shipping. The default
+        value is 200.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>AIDBOX_DD_BATCH_TIMEOUT</code>
+      </td>
+      <td style="text-align:left">Timeout (in ms) to post a batch to DataDog if there are not enough records
+        to reach full batch size. Default value: 3600000 (1 hour)</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>AIDBOX_DD_LOGS</code>
+      </td>
+      <td style="text-align:left">Fallback file to write logs in if uploading to DataDog fails</td>
+    </tr>
+  </tbody>
+</table>
 
 ### Configuring SSL connection with PostgreSQL
 
