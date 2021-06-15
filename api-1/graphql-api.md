@@ -3,7 +3,7 @@
 Aidbox supports default GraphQL implementation without any extensions \(spec located [here](http://spec.graphql.org/June2018/)\)  
 Queries are supported, but mutations are not \(yet\)
 
-In Aidbox UI we have GraphiQL interface, you can try your queries there.  
+In Aidbox UI there is GraphiQL interface, you can try your queries there.  
 GraphQL console sends all your requests to `$graphql` endpoint which you can use from your application too
 
 {% api-method method="post" host="" path="/$graphql" %}
