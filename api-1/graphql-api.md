@@ -48,32 +48,29 @@ Aidbox generates different GraphQL scalars, objects, queries, queries args and u
 
 For each ResourceType two queries are generated:
 
-* `<resourceType>`  e.g.: `Patient`.  
-  Receives single parameter `id` and returns the resource with the requested `id`.  
-  For example: `Patient (id: "pat-1")`
-
-* `<resourceType>List`e.g.: `PatientList`.   Receives FHIR search parameters for that resourceType.  SearchParameters have instead of dashes and referenced later in this doc as `search_parameter`. For each SearchParameter there are two args generated:
+* `<resourceType>` e.g.: `Patient`. Receives single parameter `id` and returns the resource with the requested `id`. For example: `Patient (id: "pat-1")`
+* `<resourceType>List`e.g.: `PatientList`. Receives FHIR search parameters for that resourceType. SearchParameters have instead of dashes and referenced later in this doc as `search_parameter`. For each SearchParameter there are two args generated:
   * `<search_parameter>` e.g.: `PatientList(address_state: "CA")` Accepts a string. Is an equivalent of using FHIR search parameter
   * `<search_parameter>_list` e.g.: `PatientList(language_list: ["en", "de"])` Accepts a list of strings. Is an equivalent of repeating search parameters in FHIR search. _`<search_parameter>_list` arg is needed because args can't be repeated in the query._
 
 ### Examples
 
-* `PatientList(language_list: ["en", "de"])` will return same set of Patients as `GET /Patient?language=en&language=de`  and those will be patients which have `en` **AND** `de` as their communication language specified 
-* `PatientList(language: "en,de")` will return same set of Patients as `GET /Patient?language=en,de`  and those will be patients which have `en` **OR** `de` as their communication language specified 
-* `PatientList(language_list: ["en", "de,fr"])` will return same set of Patients as `GET /Patient?language=en&language=de,fr`  and those will be patients which have `en` **AND** \(`de` **OR** `fr`\) as their communication language specified 
-* `PatientList(language: "en", language: "de")` is an **error**, it will ignore all `language` arg repetitions except of the last and will return same set of Patients as
+* `PatientList(language_list: ["en", "de"])` will return a set of Patients the same as `GET /Patient?language=en&language=de`  and those will be patients with `en` **AND** `de` as their communication language specified 
+* `PatientList(language: "en,de")` will return a set of Patients the same as `GET /Patient?language=en,de`  and those will be patients with `en` **OR** `de` as their communication language specified 
+* `PatientList(language_list: ["en", "de,fr"])` will return a set of Patients the same as `GET /Patient?language=en&language=de,fr`  and those will be patients with `en` **AND** \(`de` **OR** `fr`\) as their communication language specified 
+* `PatientList(language: "en", language: "de")` is an **error**, it will ignore all `language` arg repetitions except of the last and will return a set of Patients the same as
 
-  `GET /Patient?language=de` 
+  `GET /Patient?language=de`
 
 ## Objects
 
 For each ResourceType object with fields is generated.  
 For every FHIR resource attribute field is created.  
 Also for attributes with Reference type unions are created for direct and reverse includes  
-Reverse include fields have such format: `<revIncludeResourceType>s_as_<includedResourceReferenceSearchParameter>` e.g.:    
+Reverse include fields have such format: `<revIncludeResourceType>s_as_<includedResourceReferenceSearchParameter>` e.g.:  
 `observations_as_subject` for Patient will be equivalent of `_revinclude=Observation:subject`
 
-##  Example
+## Example
 
 {% tabs %}
 {% tab title="Request" %}
