@@ -149,8 +149,8 @@ fragment PractitionerRoleWithPractitioner on PractitionerRole {
           "code" : [ {
             "coding" : [ {
               "code" : "therapist",
-              "system" : null,
-              "display" : null
+              "system" : "sys",
+              "display" : "Therapist"
             } ]
           } ],
           "practitioner" : {
@@ -169,7 +169,7 @@ fragment PractitionerRoleWithPractitioner on PractitionerRole {
           "coding" : [ {
             "code" : "15074-8",
             "system" : "http://loinc.org",
-            "display" : null
+            "display" : "Glucose"
           } ]
         },
         "performer" : [ {
@@ -178,8 +178,8 @@ fragment PractitionerRoleWithPractitioner on PractitionerRole {
             "code" : [ {
               "coding" : [ {
                 "code" : "therapist",
-                "system" : null,
-                "display" : null
+                "system" : "sys",
+                "display" : "Therapist"
               } ]
             } ],
             "practitioner" : {
