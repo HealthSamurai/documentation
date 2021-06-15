@@ -137,6 +137,7 @@
 * [Sequence API](api-1/sequence-api.md)
 * [Encryption API](api-1/encryption-api.md)
 * [Compartments API](api-1/compartments.md)
+* [GraphQL API](api-1/graphql-api.md)
 
 ## Tools
 
