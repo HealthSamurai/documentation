@@ -200,3 +200,5 @@ fragment PractitionerRoleWithPractitioner on PractitionerRole {
 {% endtab %}
 {% endtabs %}
 
+If you have any questions feel free to reach us at [Aidbox users chat](https://t.me/aidbox).
+
