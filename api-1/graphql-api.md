@@ -42,16 +42,16 @@ Query successfully executed.
 {% endapi-method-spec %}
 {% endapi-method %}
 
-Aidbox generates different GraphQL scalars, objects, queries, queries args and unions from FHIR metadata.
+Aidbox generates different GraphQL scalars, objects, queries with args and unions from FHIR metadata.
 
 ## Queries
 
 For each ResourceType two queries are generated:
 
-* `<resourceType>` e.g.: `Patient`. Receives single parameter `id` and returns the resource with the requested `id`. For example: `Patient (id: "pat-1")` 
+* `<resourceType>` e.g.: `Patient`. Receives a single parameter `id` and returns a resource with the requested `id`. For example: `Patient (id: "pat-1")` 
 * `<resourceType>List`e.g.: `PatientList`. Receives FHIR search parameters for that resourceType. SearchParameters have underscores instead of dashes and referenced later in this doc as `search_parameter`. For each SearchParameter there are two args generated:
   * `<search_parameter>` e.g.: `PatientList(address_state: "CA")` Accepts a string. Is an equivalent of using FHIR search parameter
-  * `<search_parameter>_list` e.g.: `PatientList(language_list: ["en", "de"])` Accepts a list of strings. Is an equivalent of repeating search parameters in FHIR search. _`<search_parameter>_list` arg is needed because args can't be repeated in the query._
+  * `<search_parameter>_list` e.g.: `PatientList(language_list: ["en", "de"])` Accepts a list of strings. It is an equivalent of repeating search parameters in FHIR search. _`<search_parameter>_list` arg is needed because args can't be repeated in the GraphQL query._
 
 ### Examples
 
