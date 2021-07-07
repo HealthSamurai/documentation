@@ -162,3 +162,9 @@ These parameters will enable SSL connection from Aidbox to postgresql Docs on JD
 
 The next step is to configure your database to accept SSL connections. You can do that by passing your own postgresql.conf with argument -c config\_file passed into the db containter and probably you want to set up postgres to receive only SSL connections, you can do that by passing your own pg\_hba.conf file with -c hba\_file
 
+### Usage on Apple M1 \(ARM architecture\)
+
+We are aware of performance issues with the aidbox and aidboxdb images on the recently released M1 processors. As a workaround we offer you to use static builds of aidbox and aidboxdb precompiled specifically for the ARM architecture. 
+
+Please check the status updates [here](https://github.com/Aidbox/Issues/issues/393).
+
