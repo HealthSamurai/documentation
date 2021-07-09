@@ -43,10 +43,12 @@ You can enable request body logging via passing `x-audit-req-body = true` header
 | **w\_url** | url | request URL |
 | **w\_m** | string | HTTP method in lower-case |
 | **w\_qs** | string | request query string |
+| **w\_st** | int | HTTP response status |
 | **w\_addr** | string | Comma separated client and middleware IPs |
 | **w\_corr\_id** | string | X-Correlation-Id header of original request |
 | **w\_audit** | json | [X-Audit header](../app-development-guides/receive-logs-from-your-app/x-audit-header.md) |
 | **d** | int | Request duration in ms |
+| **uid** | string | User id |
 
 #### SQL logs
 
