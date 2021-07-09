@@ -48,7 +48,8 @@ You can enable request body logging via passing `x-audit-req-body = true` header
 | **w\_corr\_id** | string | X-Correlation-Id header of original request |
 | **w\_audit** | json | [X-Audit header](../app-development-guides/receive-logs-from-your-app/x-audit-header.md) |
 | **d** | int | Request duration in ms |
-| **uid** | string | User id |
+| **w\_uid** | string | User id |
+| **w\_cid** | string | Client id |
 
 #### SQL logs
 
