@@ -41,6 +41,7 @@ You can enable request body logging via passing `x-audit-req-body = true` header
 | **ev** | string | **w/req** - start request, **w/resp** - end of request |
 | **ctx** | string | request id |
 | **w\_url** | url | request URL |
+| **w\_r** | string | request URL template \(i.e. GET /Patient/?\) |
 | **w\_m** | string | HTTP method in lower-case |
 | **w\_qs** | string | request query string |
 | **w\_st** | int | HTTP response status |
