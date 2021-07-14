@@ -139,6 +139,10 @@
 * [Compartments API](api-1/compartments.md)
 * [GraphQL API](api-1/graphql-api.md)
 
+## Plan API
+
+* [Plan API Overview](plan-api/plan-api-overview.md)
+
 ## Tools
 
 * [Mappings](tools/mappings.md)
