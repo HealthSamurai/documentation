@@ -30,16 +30,76 @@ The image is configured by supplying environment variables and command line argu
 
 ### Optional environment variables
 
-| Env variable name | Default | Meaning |
-| :--- | :--- | :--- |
-| `PGDATA` |  | Path to the postgresql cluster directory in the filesystem. /data by default. |
-| `PG_ROLE` |  | When set to "replica" image proceeds to the streaming replica mode |
-| `PG_REPLICA` |  | Name of the replication slot to be created in master database. Should only contain lower case letters, numbers, and the underscore character. |
-| `PG_MASTER_HOST` |  | Master database host for streaming replica |
-| `ENABLE_PGAGENT` |  | When present and `PG_ROLE` is not set to "replica" starts `pgagent` daemon on `aidboxdb` start. |
-| `PGAGENT_DB` | _Value of`POSTGRES_DB` variable_ | Database where `pgagent` data is stored. If value is set, then **database must exist** on container start up. |
-| `PGAGENT_LOG_FILE_PATH` | _`"/tmp/pgagent.logs"`_ | Path to file where `pgagent` messages are logged |
-| `PGAGENT_LOG_LEVEL` | _`0`_ | `0` error, `1` warning, `2` debug. |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Env variable name</th>
+      <th style="text-align:left">Default</th>
+      <th style="text-align:left">Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>PGDATA</code>
+      </td>
+      <td style="text-align:left"></td>
+      <td style="text-align:left">Path to the postgresql cluster directory in the filesystem. /data by default.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>PG_ROLE</code>
+      </td>
+      <td style="text-align:left"></td>
+      <td style="text-align:left">When set to &quot;replica&quot; image proceeds to the streaming replica
+        mode</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>PG_REPLICA</code>
+      </td>
+      <td style="text-align:left"></td>
+      <td style="text-align:left">Name of the replication slot to be created in master database. Should
+        only contain lower case letters, numbers, and the underscore character.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>PG_MASTER_HOST</code>
+      </td>
+      <td style="text-align:left"></td>
+      <td style="text-align:left">Master database host for streaming replica</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>ENABLE_PGAGENT</code>
+      </td>
+      <td style="text-align:left"></td>
+      <td style="text-align:left">
+        <p>When present and <code>PG_ROLE</code> is not set to &quot;replica&quot;
+          starts <code>pgagent</code> daemon on <code>aidboxdb</code> start.</p>
+        <p><a href="../../app-development-guides/tutorials/working-wih-pgagent.md">pgAgent tutorial</a>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>PGAGENT_DB</code>
+      </td>
+      <td style="text-align:left"><em>Value of<code>POSTGRES_DB </code>variable</em>
+      </td>
+      <td style="text-align:left">Database where <code>pgagent</code> data is stored. If value is set, then <b>database must exist</b> on
+        container start up.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>PGAGENT_LOG_FILE_PATH</code>
+      </td>
+      <td style="text-align:left"><em><code>&quot;/tmp/pgagent.logs&quot;</code></em>
+      </td>
+      <td style="text-align:left">Path to file where <code>pgagent</code> messages are logged</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>PGAGENT_LOG_LEVEL</code>
+      </td>
+      <td style="text-align:left"><em><code>0</code></em>
+      </td>
+      <td style="text-align:left"><code>0</code> error, <code>1</code> warning, <code>2</code> debug.</td>
+    </tr>
+  </tbody>
+</table>
 
 
 
