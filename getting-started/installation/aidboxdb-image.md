@@ -23,17 +23,23 @@ The image is configured by supplying environment variables and command line argu
 
 | Env variable name | Meaning |
 | :--- | :--- |
-| POSTGRES\_USER | Name of the user that will be created during db initialization |
-| POSTGRES\_PASSWORD | Password for that user |
-| POSTGRES\_DB | Name of the database to be created on startup |
-| WALG\_ variables | Credentials for storage and bucket name for wal-g to use. Refer to the [official docs](https://github.com/wal-g/wal-g#configuration) for the details. |
+| `POSTGRES_USER` | Name of the user that will be created during db initialization |
+| `POSTGRES_PASSWORD` | Password for that user |
+| `POSTGRES_DB` | Name of the database to be created on startup |
+| `WALG_` variables | Credentials for storage and bucket name for wal-g to use. Refer to the [official docs](https://github.com/wal-g/wal-g#configuration) for the details. |
 
 ### Optional environment variables
 
-| Env variable name | Meaning |
-| :--- | :--- |
-| PGDATA | Path to the postgresql cluster directory in the filesystem. /data by default. |
-| PG\_ROLE | When set to "replica" image proceeds to the streaming replica mode |
-| PG\_REPLICA | Name of the replication slot to be created in master database. Should only contain lower case letters, numbers, and the underscore character. |
-| PG\_MASTER\_HOST | Master database host for streaming replica |
+| Env variable name | Default | Meaning |
+| :--- | :--- | :--- |
+| `PGDATA` |  | Path to the postgresql cluster directory in the filesystem. /data by default. |
+| `PG_ROLE` |  | When set to "replica" image proceeds to the streaming replica mode |
+| `PG_REPLICA` |  | Name of the replication slot to be created in master database. Should only contain lower case letters, numbers, and the underscore character. |
+| `PG_MASTER_HOST` |  | Master database host for streaming replica |
+| `ENABLE_PGAGENT` |  | When present and `PG_ROLE` is not set to "replica" starts `pgagent` daemon on `aidboxdb` start. |
+| `PGAGENT_DB` | _Value of`POSTGRES_DB` variable_ | Database where `pgagent` data is stored. If value is set, then **database must exist** on container start up. |
+| `PGAGENT_LOG_FILE_PATH` | _`"/tmp/pgagent.logs"`_ | Path to file where `pgagent` messages are logged |
+| `PGAGENT_LOG_LEVEL` | _`0`_ | `0` error, `1` warning, `2` debug. |
+
+
 
