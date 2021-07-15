@@ -164,6 +164,7 @@
   * [Working with Aidbox from .NET](app-development-guides/tutorials/working-with-aidbox-from-.net.md)
   * [Profiling and Validation](app-development-guides/tutorials/profiling.md)
   * [Patient Encounter notification Application](app-development-guides/tutorials/patient-encounter-notification-application.md)
+  * [Working with pgAgent](app-development-guides/tutorials/working-wih-pgagent.md)
   * [Working with Extensions](app-development-guides/tutorials/working-with-extensions.md)
   * [SMART on FHIR](app-development-guides/tutorials/smart-of-fhir.md)
   * [Sync Data From Aidbox](app-development-guides/tutorials/sync-data-from-aidbox.md)
