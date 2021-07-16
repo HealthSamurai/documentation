@@ -87,7 +87,24 @@ designation:
 
 ### property
 
-Property element is a polymorphic element, which contains additional properties for a concept like axis of classification, etc. In Aidbox, we use a more database oriented encoding instead of FHIR generic property constructor.
+{% hint style="warning" %}
+Be careful, `Concept.property` is different from a FHIR `CodeSystem.concept.property`! Concept.property is just an arbitrary JSON object with custom properties. It is good practice to put these props under the unique CodeSystem key.
+{% endhint %}
+
+A property element is a polymorphic element, which contains additional properties for a concept like an axis of classification, etc. In Aidbox, we use a more database-oriented encoding with Object instead of the FHIR generic property array.
+
+Example Concept with property:
+
+```yaml
+resourceType: Concept
+system: http://loinc.org
+code: 17861-6
+...
+property:
+   LOINC:
+     long_common_name: ...
+     relatednames2: ...
+```
 
 
 

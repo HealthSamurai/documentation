@@ -1,5 +1,13 @@
 # Release Notes
 
+## 2021.06 \(July ??, 2021\), 20210610
+
+* Improve logging. Take a look at the new [screencast and tutorial](../../core-modules/logging-and-audit/monitoring-and-audit-tutorial.md)!
+  * Review log event schemas
+  * Add w\_r - templated request URL for better aggregation. For example requests like `GET /Patient/pt-1` will become  `GET /Patient/?` , this allows aggregate all read requests for monitoring
+  * Log additional information about box resources such as the size of database and tables for monitoring
+* Aidbox.Cloud and Aidbox.Multibox superuser login by JWT. We added a new auth mechanism for authorization cloud and multibox users by JWT...
+
 ## 2021.05 \(June 10, 2021\), 20210610
 
 * Added support for [Bulk API export in CSV](https://docs.aidbox.app/api-1/bulk-api-1/usddump-csv).     You can use **/\[resourceType\]/$dump-csv** endpoint to generate CSV file in which JSON resource structure is flattened into comma-separated format.  Such an option for data export is useful for integrations with external EHR systems.  

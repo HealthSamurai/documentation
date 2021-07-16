@@ -54,7 +54,8 @@
 
 * [Entities & Attributes](core-modules/entities-and-attributes.md)
 * [$json-schema](core-modules/usdjson-schema.md)
-* [Logging & Audit](core-modules/logging-and-audit.md)
+* [Logging & Audit](core-modules/logging-and-audit/README.md)
+  * [🎓 Monitoring & Audit Tutorial](core-modules/logging-and-audit/monitoring-and-audit-tutorial.md)
 
 ## Modules <a id="modules-1"></a>
 

@@ -47,7 +47,7 @@ You can enable request body logging via passing `x-audit-req-body = true` header
 | **w\_st** | int | HTTP response status |
 | **w\_addr** | string | Comma separated client and middleware IPs |
 | **w\_corr\_id** | string | X-Correlation-Id header of original request |
-| **w\_audit** | json | [X-Audit header](../app-development-guides/receive-logs-from-your-app/x-audit-header.md) |
+| **w\_audit** | json | [X-Audit header](../../app-development-guides/receive-logs-from-your-app/x-audit-header.md) |
 | **d** | int | Request duration in ms |
 | **w\_uid** | string | User id |
 | **w\_cid** | string | Client id |
