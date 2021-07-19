@@ -52,5 +52,5 @@ Table containing response time view:
 
 You can build your own custom views on Grafana dashboard. Please read [Grafana](https://grafana.com/tutorials/grafana-fundamentals/?pg=docs) docs for more info.
 
-If you have any questions, requests or problems, contact us via Aidbox user chat.
+If you have any questions, requests or problems, contact us via [Aidbox user chat.](https://t.me/aidbox)
 
