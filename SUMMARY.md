@@ -56,7 +56,6 @@
 * [$json-schema](core-modules/usdjson-schema.md)
 * [Logging & Audit](core-modules/logging-and-audit/README.md)
   * [🎓 Monitoring & Audit Tutorial](core-modules/logging-and-audit/monitoring-and-audit-tutorial.md)
-* [How to track logs in Devbox?](core-modules/log.md)
 
 ## Modules <a id="modules-1"></a>
 
@@ -158,6 +157,7 @@
 ## App development guides
 
 * [Tutorials](app-development-guides/tutorials/README.md)
+  * [How to track logs in Devbox](app-development-guides/tutorials/log.md)
   * [Restricting Access to Patient Data](app-development-guides/tutorials/restricting-access-to-patient-data.md)
   * [Working with REST Console](app-development-guides/tutorials/rest-console.md)
   * [Uploading Sample Data](app-development-guides/tutorials/load-bundle-into-fhir-server.md)

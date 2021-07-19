@@ -2,7 +2,7 @@
 description: This tutorial is designed to help you learn logging in DevBox
 ---
 
-# How to track logs in Devbox?
+# How to track logs in Devbox
 
 ## **Install** 
 
