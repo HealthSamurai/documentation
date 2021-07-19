@@ -52,6 +52,8 @@ Table containing response time view:
 
 ![Response Time logging](../../.gitbook/assets/image%20%2846%29.png)
 
-Please read [Grafanas’s documentation](https://grafana.com/tutorials/grafana-fundamentals/?pg=docs) to be comfortable with its interface and operate freely. Message us if you have any troubles.  
+Please read [Grafanas’s documentation](https://grafana.com/tutorials/grafana-fundamentals/?pg=docs) to be comfortable with its interface and operate freely. Message us if you have any troubles.
+
+You can build your own custom views.  
 
 
