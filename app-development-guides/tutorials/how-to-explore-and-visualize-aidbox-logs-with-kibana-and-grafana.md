@@ -8,7 +8,7 @@ description: >-
 
 ## Update Docker Image
 
-To begin using pre-congigured Kibana and Grafana please [pull this repository](https://github.com/Aidbox/devbox/blob/master/docker-compose.yaml) and execute `make up` operation in your shell.
+To begin using pre-configured Kibana and Grafana please [pull this repository](https://github.com/Aidbox/devbox/blob/master/docker-compose.yaml) and execute `make up` operation in your shell.
 
 ## **Explore logs with Kibana**
 
