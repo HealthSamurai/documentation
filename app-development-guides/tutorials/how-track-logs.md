@@ -34,9 +34,9 @@ Check [Kibana's documentation](https://www.elastic.co/guide/en/kibana/current/di
 
 _Query, visualize, alert on, and understand your data no matter where it’s stored. With Grafana you can create, explore and share all of your data through beautiful, flexible dashboards._©
 
-We build custom dashboards that can be avalible default. This dashboard contains view that help you visualize logs. 
+We build custom dashboards that can be avalible default. This dashboard contains view that help you visualize logs. Heatmap illustrates buckets with color grading correlating with request number.
 
-![Grafana UI logging. Heatmap illustrates buckets with color grading correlating with request number.](../../.gitbook/assets/image%20%2851%29.png)
+![Grafana UI logging](../../.gitbook/assets/image%20%2851%29.png)
 
 This dashboard aggregate Response Time on different user operations
 
