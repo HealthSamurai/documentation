@@ -30,6 +30,8 @@ Go to [Kibana's documentation](https://www.elastic.co/guide/en/kibana/current/di
 
 ## **Visualize with Grafana**
 
+_Query, visualize, alert on, and understand your data no matter where it’s stored. With Grafana you can create, explore and share all of your data through beautiful, flexible dashboards._
+
 This dashboard aggregate Response Time on different user operations
 
 ![](https://lh5.googleusercontent.com/SFFHXVdIj6WP3afHK5sHtDaWmFSVC15Mez7gWxYde1_ozuOWluL47gsaCgiUK8ia6wiVVyM3vEU8JUFOM2NDAx5n-BaHc0pGZpUjL2M0jWXV5Y1Z6-HLEPfMZgHojX-NVLEDn3bn)
@@ -42,6 +44,6 @@ To review slow requests:
 
 ![Response Time logging](../../.gitbook/assets/image%20%2846%29.png)
 
-Please read Grafanas’s documentation to be comfortable with its interface and operate freely. Message us if you have any troubles or watch a video.  
+Please read [Grafanas’s documentation](https://grafana.com/tutorials/grafana-fundamentals/?pg=docs) to be comfortable with its interface and operate freely. Message us if you have any troubles or watch a video.  
 
 
