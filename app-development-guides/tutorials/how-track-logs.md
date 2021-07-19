@@ -28,7 +28,7 @@ Please choose `Time`, `w_m`, `w_r`_,_`w_url`, `d`, `w_st`, `w_uid` parameters to
 
 _Kibana's **Discover** enables you to quickly search and filter your data, get information about the structure of the fields, and visualize your data with **Lens** and **Maps**. You can customize and save your searches and place them on a dashboard._ 
 
-Go to [Kibana's documentation](https://www.elastic.co/guide/en/kibana/current/discover.html) to gain more insight into wide functionality of Kibana.
+Check [Kibana's documentation](https://www.elastic.co/guide/en/kibana/current/discover.html) for further info.
 
 ## **Visualize with Grafana**
 
