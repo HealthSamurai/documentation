@@ -32,15 +32,15 @@ Check [Kibana's documentation](https://www.elastic.co/guide/en/kibana/current/di
 
 ## **Visualize with Grafana**
 
-_Query, visualize, alert on, and understand your data no matter where it’s stored. With Grafana you can create, explore and share all of your data through beautiful, flexible dashboards._
+_Query, visualize, alert on, and understand your data no matter where it’s stored. With Grafana you can create, explore and share all of your data through beautiful, flexible dashboards._©
+
+We build custom dashboards that can be avalible default. This dashboard contains view that help you visualize logs. 
+
+![Grafana UI logging. Heatmap illustrates buckets with color grading correlating with request number.](../../.gitbook/assets/image%20%2851%29.png)
 
 This dashboard aggregate Response Time on different user operations
 
 ![](https://lh5.googleusercontent.com/SFFHXVdIj6WP3afHK5sHtDaWmFSVC15Mez7gWxYde1_ozuOWluL47gsaCgiUK8ia6wiVVyM3vEU8JUFOM2NDAx5n-BaHc0pGZpUjL2M0jWXV5Y1Z6-HLEPfMZgHojX-NVLEDn3bn)
-
-This dashboard heatmap illustrates buckets with color grading correlating with request number.
-
-![Grafana UI logging](../../.gitbook/assets/image%20%2843%29.png)
 
 To review slow requests:
 
