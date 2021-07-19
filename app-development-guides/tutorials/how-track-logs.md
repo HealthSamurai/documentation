@@ -6,17 +6,15 @@ description: >-
 
 # Log analysis and visualization
 
-## **Install** 
+## **Install**
 
-You may want to track logs in AidBox with Kibana, and Grafana. You can do anything from tracking query load to understanding the way requests flow through your apps.   
+You may want to track logs in AidBox with Kibana, and Grafana. You can do anything from tracking query load to understanding the way requests flow through your apps.
 
-
-We prepared for you docker-compose.yaml file with Elastic search, Kibana and Grafana pre-configured. For log tracking, you only have to [pull this repository](https://github.com/Aidbox/devbox/blob/master/docker-compose.yaml) and execute `make up` operation in your shell.   
-
+We prepared for you docker-compose.yaml file with Elastic search, Kibana and Grafana pre-configured. For log tracking, you only have to [pull this repository](https://github.com/Aidbox/devbox/blob/master/docker-compose.yaml) and execute `make up` operation in your shell.
 
 Subsequently, please open the localhost address in the browser. You can look up the address in docker-compose.
 
-## **Explore with Kibana**
+## **Explore logs with Kibana**
 
 To start with Kibana please go to Aidbox log documentation \([Logging & Audit](https://docs.aidbox.app/core-modules/logging-and-audit)\) and explore logs schema available here with brief attribute description.
 
@@ -26,11 +24,11 @@ Please choose `Time`, `w_m`, `w_r`_,_`w_url`, `d`, `w_st`, `w_uid` parameters to
 
 ![Elastic Search REST logging](../../.gitbook/assets/image%20%287%29.png)
 
-_Kibana's **Discover** enables you to quickly search and filter your data, get information about the structure of the fields, and visualize your data with **Lens** and **Maps**. You can customize and save your searches and place them on a dashboard._ 
+_Kibana's **Discover** enables you to quickly search and filter your data, get information about the structure of the fields, and visualize your data with **Lens** and **Maps**. You can customize and save your searches and place them on a dashboard._
 
 Check [Kibana's documentation](https://www.elastic.co/guide/en/kibana/current/discover.html) for further info.
 
-## **Visualize with Grafana**
+## **Visualize logs with Grafana**
 
 _Query, visualize, alert on, and understand your data no matter where it’s stored. With Grafana you can create, explore and share all of your data through beautiful, flexible dashboards._©
 
@@ -54,6 +52,5 @@ Table containing response time view:
 
 Please read [Grafanas’s documentation](https://grafana.com/tutorials/grafana-fundamentals/?pg=docs) to be comfortable with its interface and operate freely. Message us if you have any troubles.
 
-You can build your own custom views.  
-
+You can build your own custom views.
 
