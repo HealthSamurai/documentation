@@ -22,11 +22,13 @@ To start with Kibana please go to Aidbox log documentation \([Logging & Audit](h
 
 Using the listed attributes helps you to read REST logs in Elastic search filtering them type by type.
 
+Please choose `Time`, `w_m`, `w_r`_,_`w_url`, `d`, `w_st`, `w_uid` parameters to filter view REST logs in Elastic:
+
 ![Elastic Search REST logging](../../.gitbook/assets/image%20%287%29.png)
 
 _Kibana's **Discover** enables you to quickly search and filter your data, get information about the structure of the fields, and visualize your data with **Lens** and **Maps**. You can customize and save your searches and place them on a dashboard._ 
 
-Go to [Kibana's documentation](https://www.elastic.co/guide/en/kibana/current/discover.html) if you have any troubles.
+Go to [Kibana's documentation](https://www.elastic.co/guide/en/kibana/current/discover.html) to gain more insight into wide functionality of Kibana.
 
 ## **Visualize with Grafana**
 
