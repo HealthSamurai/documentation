@@ -56,6 +56,7 @@
 * [$json-schema](core-modules/usdjson-schema.md)
 * [Logging & Audit](core-modules/logging-and-audit/README.md)
   * [🎓 Monitoring & Audit Tutorial](core-modules/logging-and-audit/monitoring-and-audit-tutorial.md)
+* [How to track logs in Devbox?](core-modules/log.md)
 
 ## Modules <a id="modules-1"></a>
 
