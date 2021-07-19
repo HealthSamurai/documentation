@@ -6,51 +6,42 @@ description: >-
 
 # Log analysis and visualization
 
-## Update Devbox
+## Update Docker Image
 
-You may want to track logs in AidBox with Kibana. You can do anything from tracking query load to understanding the way requests flow through your apps.
-
-We prepared for you docker-compose.yaml file with Elastic search, Kibana and Grafana pre-configured. For log tracking, you only have to [pull this repository](https://github.com/Aidbox/devbox/blob/master/docker-compose.yaml) and execute `make up` operation in your shell.
-
-Subsequently, please open the localhost address in the browser. You can look up the address in docker-compose.
+To begin using pre-congigured Kibana and Grafana please [pull this repository](https://github.com/Aidbox/devbox/blob/master/docker-compose.yaml) and execute `make up` operation in your shell.
 
 ## **Explore logs with Kibana**
 
-To start with Kibana please go to Aidbox log documentation \([Logging & Audit](https://docs.aidbox.app/core-modules/logging-and-audit)\) and explore logs schema available here with brief attribute description.
+To get deeper understanging of Aidbox logs please go to Aidbox [log documentation](https://docs.aidbox.app/core-modules/logging-and-audit) and explore logs schema available there.
 
-Using the listed attributes helps you to read REST logs in Elastic search filtering them type by type.
+For example, using the listed attributes will help you read REST API logs.
 
-Please choose `Time`, `w_m`, `w_r`_,_`w_url`, `d`, `w_st`, `w_uid` parameters to filter view REST logs in Elastic:
+Please put + to toggle `Time`, `w_m`, `w_r`_,_`w_url`, `d`, `w_st`, `w_uid` fields into the document table:
 
-![Elastic Search REST logging](../../.gitbook/assets/image%20%287%29.png)
+![](../../.gitbook/assets/image%20%287%29.png)
 
 _Kibana's **Discover** enables you to quickly search and filter your data, get information about the structure of the fields, and visualize your data with **Lens** and **Maps**. You can customize and save your searches and place them on a dashboard._
 
-Check [Kibana's documentation](https://www.elastic.co/guide/en/kibana/current/discover.html) for further info.
+Check [Kibana documentation](https://www.elastic.co/guide/en/kibana/current/discover.html) for additional info or let us know if you need help.
 
 ## **Visualize logs with Grafana**
 
-_Query, visualize, alert on, and understand your data no matter where it’s stored. With Grafana you can create, explore and share all of your data through beautiful, flexible dashboards._©
+We've built a custom Grafana dashboard that can be available by default. So now you can see basic metrics out of the box. 
 
-We've build custom Grafana dashboard that can be avalible by default. You can interact with:
+The pre-configured views are the following:
 
-1. View of request per minute.
-2. Heatmap illustrates buckets with color grading correlating with request number. 
-3. Heatmap illustrates buckets with color grading correlating with request number. 
-4. Three view containers are to demonstrate Request Per Day, DB and Errors. 
-5. Response time table and Quires table.
+1. Requests per minute.
+2. Request duration heatmap.
+3. Number of requests per day.
+4. Clients/users online.
+5. DB size.
+6. Number of errors. 
+7. Response time.  
+8. Slow quires.
 
-![Grafana UI logging](../../.gitbook/assets/image%20%2851%29.png)
+![Aidbox Grafana dashboard](../../.gitbook/assets/image%20%2851%29.png)
 
-This dashboard aggregate Response Time on different user operations.
+You can update the default dashboard with your own custom views. Please read [Grafana documentaton](https://grafana.com/tutorials/grafana-fundamentals/) for more info.
 
-![](https://lh5.googleusercontent.com/SFFHXVdIj6WP3afHK5sHtDaWmFSVC15Mez7gWxYde1_ozuOWluL47gsaCgiUK8ia6wiVVyM3vEU8JUFOM2NDAx5n-BaHc0pGZpUjL2M0jWXV5Y1Z6-HLEPfMZgHojX-NVLEDn3bn)
-
-Table containing response time view:
-
-![Response Time logging](../../.gitbook/assets/image%20%2846%29.png)
-
-You can build your own custom views on Grafana dashboard. Please read [Grafana](https://grafana.com/tutorials/grafana-fundamentals/?pg=docs) docs for more info.
-
-If you have any questions, requests or problems, contact us via [Aidbox user chat.](https://t.me/aidbox)
+If you have any questions, requests, or want to share your best practices using Kibana and Grafana feel free to contact us via [Aidbox user chat.](https://t.me/aidbox)
 
