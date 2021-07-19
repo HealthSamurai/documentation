@@ -33,11 +33,11 @@ This dashboard aggregate Response Time on different user operations
 
 This dashboard hitmap illustrates buckets with color grading correlating with request number.
 
-![Grafana UI logging](../../.gitbook/assets/image%20%2842%29.png)
+![Grafana UI logging](../../.gitbook/assets/image%20%2843%29.png)
 
 To review slow requests:
 
-![](https://lh3.googleusercontent.com/Iqs6Z1YYLwgMEiVwTQ0ZR7aMLf0TSER05uEQwqzOOBC2ya8bXzlPrXgSpFl6sLvPyt_fdWiaTr8OrFldJmv3TkvZRqVl3b5PGO5O3B70ZsKacRJB_Epwyoj__5LMBFrGIhm4ebXV)
+![Response Time logging](../../.gitbook/assets/image%20%2846%29.png)
 
 Please read Grafanas’s documentation to be comfortable with its interface and operate freely. Message us if you have any troubles or watch a video.  
 
