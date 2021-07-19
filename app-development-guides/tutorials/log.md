@@ -9,7 +9,7 @@ description: This tutorial is designed to help you learn logging in DevBox
 You may want to track logs in AidBox with Kibana, and Grafana. You can do anything from tracking query load to understanding the way requests flow through your apps.   
 
 
-We prepared for you docker-compose.yaml file with Elastic search, Kibana and Grafana pre-configured. For log tracking, you only have to pull this repository and execute \`make up\` operation.  
+We prepared for you docker-compose.yaml file with Elastic search, Kibana and Grafana pre-configured. For log tracking, you only have to [pull this repository](https://github.com/Aidbox/devbox/blob/master/docker-compose.yaml) and execute \`make up\` operation in your shell.   
 
 
 Subsequently, please open the localhost address in the browser. You can look up the address in docker-compose.
