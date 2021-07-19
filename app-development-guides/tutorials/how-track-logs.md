@@ -34,18 +34,24 @@ Check [Kibana's documentation](https://www.elastic.co/guide/en/kibana/current/di
 
 _Query, visualize, alert on, and understand your data no matter where it’s stored. With Grafana you can create, explore and share all of your data through beautiful, flexible dashboards._©
 
-We build custom dashboards that can be avalible default. This dashboard visualizes logs. Heatmap illustrates buckets with color grading correlating with request number.
+We've build custom Grafana dashboard that can be avalible by default. You can interact with:
+
+1. View of request per minute.
+2. Heatmap illustrates buckets with color grading correlating with request number. 
+3. Heatmap illustrates buckets with color grading correlating with request number. 
+4. Three view containers are to demonstrate Request Per Day, DB and Errors. 
+5. Response time table and Quires table.
 
 ![Grafana UI logging](../../.gitbook/assets/image%20%2851%29.png)
 
-This dashboard aggregate Response Time on different user operations
+This dashboard aggregate Response Time on different user operations.
 
 ![](https://lh5.googleusercontent.com/SFFHXVdIj6WP3afHK5sHtDaWmFSVC15Mez7gWxYde1_ozuOWluL47gsaCgiUK8ia6wiVVyM3vEU8JUFOM2NDAx5n-BaHc0pGZpUjL2M0jWXV5Y1Z6-HLEPfMZgHojX-NVLEDn3bn)
 
-To review slow requests:
+Table containing response time view:
 
 ![Response Time logging](../../.gitbook/assets/image%20%2846%29.png)
 
-Please read [Grafanas’s documentation](https://grafana.com/tutorials/grafana-fundamentals/?pg=docs) to be comfortable with its interface and operate freely. Message us if you have any troubles or watch a video.  
+Please read [Grafanas’s documentation](https://grafana.com/tutorials/grafana-fundamentals/?pg=docs) to be comfortable with its interface and operate freely. Message us if you have any troubles.  
 
 
