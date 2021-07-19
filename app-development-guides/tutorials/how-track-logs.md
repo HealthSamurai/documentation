@@ -18,16 +18,15 @@ Subsequently, please open the localhost address in the browser. You can look up 
 
 ## **Explore with Kibana**
 
-Go to Aidbox log documentation \([Logging & Audit](https://docs.aidbox.app/core-modules/logging-and-audit)\). 
-
-Logs schema available here with brief attribute description.
+To start with Kibana please go to Aidbox log documentation \([Logging & Audit](https://docs.aidbox.app/core-modules/logging-and-audit)\) and explore logs schema available here with brief attribute description.
 
 Using the listed attributes helps you to read REST logs in Elastic search filtering them type by type.
 
 ![Elastic Search REST logging](../../.gitbook/assets/image%20%287%29.png)
 
-Precompiled log dashboard for Grafana is available freely and intuitive to read.  
+_Kibana's **Discover** enables you to quickly search and filter your data, get information about the structure of the fields, and visualize your data with **Lens** and **Maps**. You can customize and save your searches and place them on a dashboard._ 
 
+Go to [Kibana's documentation](https://www.elastic.co/guide/en/kibana/current/discover.html) if you have any troubles.
 
 ## **Visualize with Grafana**
 
