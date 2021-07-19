@@ -22,7 +22,7 @@ Logs schema available here with brief attribute description.
 
 Using the listed attributes helps you to read REST logs in Elastic search filtering them type by type.
 
-![](https://lh6.googleusercontent.com/1_PUH_bkKReTpwovwgyrLHIJe44x4RK4tZDIwRqSPeSbAwONsGiDqA7HDA8cV-JhH4nN8kFEzD5DarDOfDGsTGCHUFxjWi9_LlX8XIzjjuAwq7uv9uEXQ5DZ7BKF7JRODu7pX5lh)
+![Elastic Search REST logging](../../.gitbook/assets/image%20%287%29.png)
 
 Precompiled log dashboard for Grafana is available freely and intuitive to read.  
 
@@ -31,9 +31,9 @@ This dashboard aggregate Response Time on different user operations
 
 ![](https://lh5.googleusercontent.com/SFFHXVdIj6WP3afHK5sHtDaWmFSVC15Mez7gWxYde1_ozuOWluL47gsaCgiUK8ia6wiVVyM3vEU8JUFOM2NDAx5n-BaHc0pGZpUjL2M0jWXV5Y1Z6-HLEPfMZgHojX-NVLEDn3bn)
 
-This dashboard hitmap illustrates buckets with color grading correlating with request number
+This dashboard hitmap illustrates buckets with color grading correlating with request number.
 
-![](https://lh4.googleusercontent.com/HJ3REI80wduTt7AeKYO_tQ4Ge7l1CBgTr5lLLBY4C-ydJhlZNu6RQKtoZCoSp-rlubzBXpt1kwCRm9XBD_zehSyAuYgZHrR1IIDj4TBnwALjzao7Smv7GuKoUty1PyRc4O_KSD_o)
+![Grafana logging UI](../../.gitbook/assets/image%20%2843%29.png)
 
 To review slow requests:
 
