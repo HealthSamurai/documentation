@@ -1,8 +1,10 @@
 ---
-description: This tutorial is designed to help you learn logging in DevBox
+description: >-
+  This tutorial will help you explore logs in Kibana and visualize logs in
+  Grafana
 ---
 
-# How to track logs in Devbox
+# Log analysis and visualization
 
 ## **Install** 
 
@@ -14,7 +16,7 @@ We prepared for you docker-compose.yaml file with Elastic search, Kibana and Gra
 
 Subsequently, please open the localhost address in the browser. You can look up the address in docker-compose.
 
-## **Read Aidbox logs**
+## **Explore with Kibana**
 
 Go to Aidbox log documentation \([Logging & Audit](https://docs.aidbox.app/core-modules/logging-and-audit)\). 
 
@@ -27,11 +29,13 @@ Using the listed attributes helps you to read REST logs in Elastic search filter
 Precompiled log dashboard for Grafana is available freely and intuitive to read.  
 
 
+## **Visualize with Grafana**
+
 This dashboard aggregate Response Time on different user operations
 
 ![](https://lh5.googleusercontent.com/SFFHXVdIj6WP3afHK5sHtDaWmFSVC15Mez7gWxYde1_ozuOWluL47gsaCgiUK8ia6wiVVyM3vEU8JUFOM2NDAx5n-BaHc0pGZpUjL2M0jWXV5Y1Z6-HLEPfMZgHojX-NVLEDn3bn)
 
-This dashboard hitmap illustrates buckets with color grading correlating with request number.
+This dashboard heatmap illustrates buckets with color grading correlating with request number.
 
 ![Grafana UI logging](../../.gitbook/assets/image%20%2843%29.png)
 

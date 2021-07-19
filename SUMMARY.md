@@ -157,7 +157,7 @@
 ## App development guides
 
 * [Tutorials](app-development-guides/tutorials/README.md)
-  * [How to track logs in Devbox](app-development-guides/tutorials/how-track-logs.md)
+  * [Log analysis and visualization](app-development-guides/tutorials/how-track-logs.md)
   * [Restricting Access to Patient Data](app-development-guides/tutorials/restricting-access-to-patient-data.md)
   * [Working with REST Console](app-development-guides/tutorials/rest-console.md)
   * [Uploading Sample Data](app-development-guides/tutorials/load-bundle-into-fhir-server.md)
