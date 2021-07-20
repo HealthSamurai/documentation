@@ -20,6 +20,18 @@ make up
 
 To get deeper understanding of Aidbox logs please go to the [log documentation](https://docs.aidbox.app/core-modules/logging-and-audit) and explore logs schema available there.
 
+{% hint style="info" %}
+Aidbox Elastic appender sends logs as bundles of multiple records so if there's not enough data **you won't see any logs in Kibana**. For testing purposes reduce bundle size to 1 record by setting environment variable:
+
+```yaml
+AIDBOX_ES_BATCH_SIZE=1
+```
+
+Aidbox Elastic appender documentation is available [here](../receive-logs-from-your-app/elastic-logs-and-monitoring-integration.md#elasticsearch-logging).
+{% endhint %}
+
+
+
 Example below will help you read REST API logs:
 
 Please put + to toggle `Time`, `w_m`, `w_r`_,_`w_url`, `d`, `w_st`, `w_uid` fields into the document table:
