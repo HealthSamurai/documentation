@@ -8,15 +8,25 @@ description: >-
 
 ## Update Docker Image
 
-To begin using pre-configured Kibana and Grafana please [pull this repository](https://github.com/Aidbox/devbox/blob/master/docker-compose.yaml) and execute `make up` operation in your shell.
+To begin using pre-configured Kibana and Grafana please clone[ this repository](https://github.com/Aidbox/devbox) and execute `make up` operation in your shell:
+
+```bash
+git clone https://github.com/Aidbox/devbox.git
+cd devbox
+make up
+```
 
 ## **Explore logs with Kibana**
 
-To get deeper understanging of Aidbox logs please go to Aidbox [log documentation](https://docs.aidbox.app/core-modules/logging-and-audit) and explore logs schema available there.
+To get deeper understanding of Aidbox logs please go to the [log documentation](https://docs.aidbox.app/core-modules/logging-and-audit) and explore logs schema available there.
 
-For example, using the listed attributes will help you read REST API logs.
+Example below will help you read REST API logs:
 
 Please put + to toggle `Time`, `w_m`, `w_r`_,_`w_url`, `d`, `w_st`, `w_uid` fields into the document table:
+
+![](../../.gitbook/assets/image%20%2840%29.png)
+
+Now you can browse and explore REST API logs
 
 ![](../../.gitbook/assets/image%20%287%29.png)
 
@@ -26,7 +36,7 @@ Check [Kibana documentation](https://www.elastic.co/guide/en/kibana/current/disc
 
 ## **Visualize logs with Grafana**
 
-We've built a custom Grafana dashboard that can be available by default. So now you can see basic metrics out of the box. 
+We've built a custom Grafana dashboard available by default where you can see basic metrics. 
 
 The pre-configured views are the following:
 
@@ -37,11 +47,11 @@ The pre-configured views are the following:
 5. DB size.
 6. Number of errors. 
 7. Response time.  
-8. Slow quires.
+8. Slow queries.
 
 ![Aidbox Grafana dashboard](../../.gitbook/assets/image%20%2851%29.png)
 
-You can update the default dashboard with your own custom views. Please read [Grafana documentaton](https://grafana.com/tutorials/grafana-fundamentals/) for more info.
+You can update the default dashboard with your own custom views. For more info please refer to [Grafana documentation](https://grafana.com/tutorials/grafana-fundamentals/).
 
 If you have any questions, requests, or want to share your best practices using Kibana and Grafana feel free to contact us via [Aidbox user chat.](https://t.me/aidbox)
 
