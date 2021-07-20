@@ -86,19 +86,11 @@ GET /_logs
 Please, pay attention, that you will not see the response for `GET /_logs` request in the Aidbox REST console. Use the terminal, or the browser console instead.
 {% endhint %}
 
-### Demos
+### Configure logging
 
-#### Watch server logs in the browser console:
+By default, Aidbox sends logs into stdout.
 
-{% embed url="https://www.youtube.com/watch?v=sLfUHQHT5CU" %}
-
-#### Server logs with Aidbox.CLI
-
-#### Configure logging
-
-By default, Aidbox writes logs into stdout.
-
-If you prefer to write logs into the file system,  in the .env file specify AIDBOX\_LOGS environment variable with a relative path to the desired location.
+If you prefer to write logs into the file system,  in the .env file specify `AIDBOX_LOGS` environment variable with a relative path to the desired location.
 
 ```yaml
 AIDBOX_LOGS: '/logs/devbox'
