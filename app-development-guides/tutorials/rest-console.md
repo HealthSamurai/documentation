@@ -8,7 +8,7 @@ description: REST Console tutorial
 
 ![REST Console](../../.gitbook/assets/image%20%2852%29.png)
 
-REST Console is designed to work with resources in your `Box` by sending HTTP requests in accordance with [FHIR RESTful API](http://hl7.org/fhir/http.html). To do this, we need to type an HTTP verb \(`GET`, `POST`, `PUT`, `PATCH`, `DELETE`\) and the resource address \(for example `/Patient` — _please pay attention to the resource name with a capital letter_\).
+REST Console is designed to work with resources in your `Box` by sending HTTP requests in accordance with [FHIR RESTful API](http://hl7.org/fhir/http.html). To do this, we need to type an HTTP request \(`GET`, `POST`, `PUT`, `PATCH`, `DELETE`\) and the resource address \(for example `/Patient` — _please pay attention to the resource name with a capital letter_\).
 
 In cases when you need to send a request body \(e.g., `POST` requests\), the request body content is passed below the resource address, separated by an empty line, in YAML or JSON format — you can choose both request and response content type by **YAML/JSON** switch.
 
