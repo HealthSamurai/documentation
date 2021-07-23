@@ -8,18 +8,26 @@ description: REST Console tutorial
 
 ![REST Console](../../.gitbook/assets/image%20%2852%29.png)
 
-REST Console is designed to work with resources in your `Box` by sending HTTP requests in accordance with [FHIR RESTful API](http://hl7.org/fhir/http.html). To do this, we need to type an HTTP request \(`GET`, `POST`, `PUT`, `PATCH`, `DELETE`\) and the resource address \(for example `/Patient` — _please pay attention to the resource name with a capital letter_\).
+REST Console is designed to work with your Aidbox via REST API. [FHIR RESTful API](http://hl7.org/fhir/http.html). To make a request type an HTTP method \(`GET`, `POST`, `PUT`, `PATCH`, `DELETE`\) and an operation endpoint \(for example`/Patient` — _please pay attention to the capital letter in the resource name_\).
 
-In cases when you need to send a request body \(e.g., `POST` requests\), the request body content is passed below the resource address, separated by an empty line, in YAML or JSON format — you can choose both request and response content type by **YAML/JSON** switch.
+Right after the first line you can put HTTP headers. E.g. to use YAML format you can put the following header:
+
+```text
+Content-type: text/yaml
+```
+
+In case you need to send a request body \(e.g., `POST` requests\), the request body content is passed below the resource address, separated by an empty line.
 
 ### Create Patient
 
-To create patient we would type  `POST /Patient` in our console, where we send the data of our new patient:
+Here is an example of creating patient:
 
 {% tabs %}
 {% tab title="Request YAML" %}
 ```yaml
-POST /Patient
+POST /Patient?_pretty=true
+Content-Type: text/yaml
+Accept: text/yaml
 
 resourceType: Patient
 name:
@@ -45,7 +53,8 @@ telecom:
 
 {% tab title="Request JSON" %}
 ```javascript
-POST /Patient
+POST /Patient?_pretty=true
+Content-Type: application/json
 
 {
   "resourceType": "Patient",
@@ -84,14 +93,35 @@ POST /Patient
 
 {% tab title="Response YAML" %}
 ```yaml
-
+name:
+  - given:
+      - Max
+gender: male
+address:
+  - city: Hello
+    line:
+      - 123 Oxygen St
+    state: NY
+    district: World
+    postalCode: '3212'
+telecom:
+  - use: home
+  - use: work
+    rank: 1
+    value: (32) 8934 1234
+    system: phone
+birthDate: '1990-10-10'
+id: '8885ce03-154e-4458-bbb7-09305d86c402'
+resourceType: Patient
+meta:
+  lastUpdated: '2021-07-23T14:36:12.392914Z'
+  createdAt: '2021-07-23T14:36:12.392914Z'
+  versionId: '13'
 ```
 {% endtab %}
 
 {% tab title="Response JSON" %}
 ```javascript
-Status: 201
-
 {
  "name": [
   {
@@ -124,37 +154,34 @@ Status: 201
   }
  ],
  "birthDate": "1990-10-10",
- "id": "f8fe69db-c01c-4a3b-bf0c-0a806ea22577",
+ "id": "7544300e-8bfa-4929-a7b5-5e1403d0da2d",
  "resourceType": "Patient",
  "meta": {
-  "lastUpdated": "2018-10-23T09:47:36.555Z",
-  "versionId": "222",
-  "tag": [
-   {
-    "system": "https://aidbox.io",
-    "code": "created"
-   }
-  ]
+  "lastUpdated": "2021-07-23T14:37:03.904617Z",
+  "createdAt": "2021-07-23T14:37:03.904617Z",
+  "versionId": "16"
  }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-This is only an example. You can change the values as you want but it would be good to check the full [Patient resource](https://www.hl7.org/fhir/patient.html) description and [official example](https://www.hl7.org/fhir/patient-example.json.html). The `id` field in the request body is not required: if you do not send it to a server, it will be generated.
-
 ![POST /patient](../../.gitbook/assets/image%20%2850%29.png)
+
+To get pretty-formatted response add `_pretty=true` query string parameter:
+
+
 
 ### Get Patient
 
-After sending the request, we receive a response with `Status - 201` and the sent data, which means that our patient has been created. We can check this by sending the request  `GET /Patient/<id>` and receiving created patient data \(in our case the `id` is `f8fe69db-c01c-4a3b-bf0c-0a806ea22577`\), or we can check a complete list of patients — `GET /Patient` 
+After sending the request, we receive a response with `Status - 201` and the sent data, which means that our patient has been created. Use the request `GET /Patient/<id>` to see the newly created patient. Also the request `GET /Patient` could be used to get the complete list of patients. 
 
 ![GET /Patient](../../.gitbook/assets/image%20%2848%29.png)
 
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-GET /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577
+GET /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577?_pretty=true
 ```
 {% endtab %}
 
@@ -213,12 +240,12 @@ Status: 200
 
 ### Patch Patient
 
-Next step is to update our patient information. In a partial update, we can use `PATCH /Patient/<id>` in the request body in order to send changed data only. For example, let's change our patient name.
+Next step is to update the patient information. For a partial update use `PATCH /Patient/<id>` in the request body in order to send changed data only. For example, let's change the patient name.
 
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-PATCH /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577
+PATCH /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577?_pretty=true
 
 {
   "name": [
@@ -285,7 +312,7 @@ Status: 200
 
 ### Update Patient
 
-For a full resource update we use`PUT /Patient/<id>`
+Use`PUT /Patient/<id>` to replace the resource.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -344,14 +371,14 @@ In this case, we're updating the data entirely: data that did not get into the r
 
 ### Patient History
 
-We can receive history of our patient changes, we just need to send a request like this —  `GET /Patient/<id>/_history`.
+Use `GET /Patient/<id>/_history` to receive the version history of the patient resource.
 
-Let's try this for our patient.
+Let's try this for the example patient.
 
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-GET /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577/_history
+GET /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577/_history?_pretty=true
 ```
 {% endtab %}
 
@@ -502,9 +529,9 @@ Status: 200
 {% endtab %}
 {% endtabs %}
 
-In the response, we receive all versions \(in this case 3\) of our patient resource. The first version is when the resource was created, the second one is with the changed name, and the third is an entirely updated resource. 
+The response contains all versions \(in this case 3\) of the patient resource. The first is the initial state of the resource, the second one has the name changed, and the third is an entirely updated resource. 
 
-And now we can do the operation called [vread](http://hl7.org/fhir/http.html#vread) to get a specific version of a resource with the following request`GET /Patient/<id>/_history/<versionId>`
+To get a specific version of a resource use `GET /Patient/<id>/_history/<versionId>`. It performs the [vread](http://hl7.org/fhir/http.html#vread) operation.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -568,16 +595,12 @@ Status: 200
 
 ### Search Patient
 
-Another interesting thing is that we can find a patient by some criteria, e.g. by name — `GET /Patient?name=<Patient_name>`
-
-{% hint style="info" %}
-It is recommended to create other patients for different search results before proceeding further.
-{% endhint %}
+As an example of using FHIR Search API use `GET /Patient?name=<Patient_name>` to get all patient with matching names:
 
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-GET /Patient?name=max
+GET /Patient?name=max&_pretty=true
 ```
 {% endtab %}
 
@@ -672,16 +695,18 @@ Status: 200
 {% endtab %}
 {% endtabs %}
 
-
+{% hint style="info" %}
+Please check [Search API](../../api-1/fhir-api/search-1/) for more details.
+{% endhint %}
 
 ### Delete Patient
 
-And another standard operation — deletion — `DELETE /Patient/<id>`
+Use `DELETE /Patient/<id>`to delete the patient resource.
 
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-DELETE /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577
+DELETE /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577?_pretty=true
 ```
 {% endtab %}
 
@@ -717,7 +742,7 @@ Status: 200
 {% endtab %}
 {% endtabs %}
 
-After successful deletion we receive last version of resource and `status - 200`
+After successful deletion, the server sends the response with the status `200 OK` and the body containing the last version of the resource.
 
 If we try to get a deleted patient`GET /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577` we will receive `resourceType - OperationOutcome` and `status 410`. 
 
@@ -763,6 +788,4 @@ Status: 410
 ```
 {% endtab %}
 {% endtabs %}
-
-We have learned how to search, create, receive, update, and delete patients, and get a history of their changes.
 
