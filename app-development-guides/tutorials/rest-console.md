@@ -8,7 +8,7 @@ description: Learn how to use REST Console to work with your Aidbox via REST API
 
 ![REST Console](../../.gitbook/assets/image%20%2852%29.png)
 
-REST Console is designed to work with your Aidbox via REST API. [FHIR RESTful API](http://hl7.org/fhir/http.html). To make a request type an HTTP method \(`GET`, `POST`, `PUT`, `PATCH`, `DELETE`\) and an operation endpoint \(for example`/Patient` — _please pay attention to the capital letter in the resource name_\).
+REST Console is designed to work with your Aidbox via [REST API](../../api-1/api/). To make a request type an HTTP method \(`GET`, `POST`, `PUT`, `PATCH`, `DELETE`\) and an operation endpoint \(for example`/Patient` — _please pay attention to the capital letter in the resource name_\).
 
 Right after the first line you can put HTTP headers. E.g. to use YAML format you can put the following header:
 
