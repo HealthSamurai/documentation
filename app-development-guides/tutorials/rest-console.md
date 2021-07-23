@@ -4,15 +4,15 @@
 
 In our previous article, we started working in our REST Console. Let's see what we can do here.
 
-![REST Console](../../.gitbook/assets/screenshot-2018-10-18-18.54.58.png)
+![REST Console](../../.gitbook/assets/image%20%2852%29.png)
 
-REST Console is designed to work with resources in your `Box` by sending HTTP requests in accordance with [FHIR RESTful API](http://hl7.org/fhir/http.html). To do this, we need to type an HTTP verb \(`GET`, `POST`, `PUT`, `PATCH`, `DELETE`\) and the resource address \(for example `/Patient` — _please pay attention to the resource name with a capital letter_\).
+REST Console is designed to work with resources in your `Box` by sending HTTP requests in accordance with [FHIR RESTful API](http://hl7.org/fhir/http.html). To do this, we need to type an HTTP verb \(`GET`, `POST`, `PUT`, `PATCH`, `DELETE`\) and the resource address \(for example `/Patient` — _please pay attention to the resource name with a Capital letter_\).
 
 In cases when you need to send a request body \(e.g., `POST` requests\), the request body content is passed below the resource address, separated by an empty line, in YAML or JSON format — you can choose both request and response content type by **YAML/JSON** switch.
 
 ### Create Patient
 
-Last time \(in [Create and Configure Box]() tutorial\) we tried to get a list of our patients \(by requesting them through the `GET /Patient`\), and the response was empty. Let's add a couple of new patients. To do that, we type  `POST /Patient` in our console and the body of the request, wherein we send the data of our new patient:
+Last time we tried to get a list of our patients \(by requesting them through the `GET /Patient`\), and the response was empty. Let's add a couple of new patients. To do that, we would type  `POST /Patient` in our console and the body of the request, where we send the data of our new patient:
 
 {% tabs %}
 {% tab title="Request YAML" %}
@@ -139,13 +139,15 @@ Status: 201
 {% endtab %}
 {% endtabs %}
 
-This is only an example, you can change the values as you want but it would be good to check the full [Patient resource](https://www.hl7.org/fhir/patient.html) description and [official example](https://www.hl7.org/fhir/patient-example.json.html). The `id` field in the request body is not required: if you do not send it to a server, it will be generated. Description of the difference in `create` operation behavior between FHIR and [Aidbox](https://www.health-samurai.io/aidbox) endpoints can be found [here]().
+This is only an example. You can change the values as you want but it would be good to check the full [Patient resource](https://www.hl7.org/fhir/patient.html) description and [official example](https://www.hl7.org/fhir/patient-example.json.html). The `id` field in the request body is not required: if you do not send it to a server, it will be generated. Description of the difference in `create` operation behavior between FHIR and [Aidbox](https://www.health-samurai.io/aidbox) endpoints can be found [here]().
 
-![POST /Patient](../../.gitbook/assets/screenshot-2018-10-18-19.41.22.png)
+![POST /patient](../../.gitbook/assets/image%20%2850%29.png)
 
 ### Get Patient
 
 After sending the request, we receive a response with `Status - 201` and the sent data, which means that our patient has been created. We can check this by sending the request  `GET /Patient/<id>` and receiving created patient data \(in our case the `id` is `f8fe69db-c01c-4a3b-bf0c-0a806ea22577`\), or we can check a complete list of patients — `GET /Patient` 
+
+![GET /Patient](../../.gitbook/assets/image%20%2848%29.png)
 
 {% tabs %}
 {% tab title="Request" %}
@@ -567,7 +569,7 @@ Status: 200
 Another interesting thing is that we can find a patient by some criteria, e.g. by name — `GET /Patient?name=<Patient_name>`
 
 {% hint style="info" %}
-Before this step, it is recommended to create other patients for different search results. You already know how to do it ;\)
+It is recommended to create other patients for different search results before proceeding further.
 {% endhint %}
 
 {% tabs %}
@@ -668,7 +670,7 @@ Status: 200
 {% endtab %}
 {% endtabs %}
 
-Great! Now we can find patients.
+
 
 ### Delete Patient
 
