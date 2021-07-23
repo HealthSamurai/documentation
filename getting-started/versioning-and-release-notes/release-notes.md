@@ -1,12 +1,14 @@
 # Release Notes
 
-## 2021.06 \(July ??, 2021\), 20210610
+## 2021.06 \(July, 2021\), 20210610. Pre-release available [here](https://hub.docker.com/r/healthsamurai/devbox/tags?page=1&ordering=last_updated&name=alpha).
 
-* Improve logging. Take a look at the new [screencast and tutorial](../../core-modules/logging-and-audit/monitoring-and-audit-tutorial.md)!
-  * Review log event schemas
-  * Add w\_r - templated request URL for better aggregation. For example requests like `GET /Patient/pt-1` will become  `GET /Patient/?` , this allows aggregate all read requests for monitoring
-  * Log additional information about box resources such as the size of database and tables for monitoring
-* Aidbox.Cloud and Aidbox.Multibox superuser login by JWT. We added a new auth mechanism for authorization cloud and multibox users by JWT...
+* Major Aidbox UI upgrade.
+* Improved logging. Take a look at the new [screencast and tutorial](../../core-modules/logging-and-audit/monitoring-and-audit-tutorial.md)!
+  * Reviewed and updated log event schemas
+  * Add w\_r - templated request URL for better aggregation. For example requests like `GET /Patient/pt-1` will become  `GET /Patient/?` thus allowing aggregate all read requests for monitoring.
+  * Started logging additional information about Aidbox.Dev resources such as database and tables size.  
+* Aidbox.Cloud and Aidbox.Multibox superuser login by JWT. We added a new auth mechanism for authorization cloud and Multibox users by JWT.
+* Added OKTA as an external Oauth 2.0 provider. 
 
 ## 2021.05 \(June 10, 2021\), 20210610
 
