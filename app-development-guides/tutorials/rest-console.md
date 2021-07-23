@@ -1,5 +1,5 @@
 ---
-description: REST Console tutorial
+description: Learn how to use REST Console to work with your Aidbox via REST API.
 ---
 
 # Working with REST Console
