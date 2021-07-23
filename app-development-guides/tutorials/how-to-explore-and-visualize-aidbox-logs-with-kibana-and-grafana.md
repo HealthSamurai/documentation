@@ -6,9 +6,16 @@ description: >-
 
 # Log analysis and visualization
 
+## Update devbox
+
 ## Update Docker Image
 
+You may want to track logs in AidBox with Kibana. You can do anything from tracking query load to understanding the way requests flow through your apps.   
+
+
 To begin using pre-configured Kibana and Grafana please clone[ this repository](https://github.com/Aidbox/devbox) and execute `make up` operation in your shell:
+
+## **Explore logs with Kibana**
 
 ```bash
 git clone https://github.com/Aidbox/devbox.git
@@ -48,6 +55,8 @@ Check [Kibana documentation](https://www.elastic.co/guide/en/kibana/current/disc
 
 ## **Visualize logs with Grafana**
 
+## **Visualize logs with Grafana**
+
 We've built a custom Grafana dashboard available by default where you can see basic metrics. 
 
 The pre-configured views are the following:
@@ -66,4 +75,8 @@ The pre-configured views are the following:
 You can update the default dashboard with your own custom views. For more info please refer to [Grafana documentation](https://grafana.com/tutorials/grafana-fundamentals/).
 
 If you have any questions, requests, or want to share your best practices using Kibana and Grafana feel free to contact us via [Aidbox user chat.](https://t.me/aidbox)
+
+You can easily add your own custom views on your dashboards using Grafana. For more info please go to Grafana documentation. 
+
+If you have any questions, requests or problems regarding Aidbox log monitoring, **please contact us via Aidbox user chat.**
 
