@@ -168,7 +168,7 @@ meta:
 
 To get pretty-formatted response add `_pretty=true` query string parameter:
 
-![POST /patient](../../.gitbook/assets/image%20%2856%29.png)
+![POST /patient](../../.gitbook/assets/image%20%2857%29.png)
 
 
 
@@ -176,7 +176,7 @@ To get pretty-formatted response add `_pretty=true` query string parameter:
 
 After sending the request, we receive a response with `Status - 201` and the sent data, which means that our patient has been created. Use the request `GET /Patient/<id>` to see the newly created patient. Also the request `GET /Patient` could be used to get the complete list of patients. 
 
-![GET /Patient](../../.gitbook/assets/image%20%2848%29.png)
+![GET /Patient](../../.gitbook/assets/image%20%2856%29.png)
 
 {% tabs %}
 {% tab title="Request" %}
