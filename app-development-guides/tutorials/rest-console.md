@@ -1,18 +1,20 @@
+---
+description: REST Console tutorial
+---
+
 # Working with REST Console
 
 ### REST Console
 
-In our previous article, we started working in our REST Console. Let's see what we can do here.
-
 ![REST Console](../../.gitbook/assets/image%20%2852%29.png)
 
-REST Console is designed to work with resources in your `Box` by sending HTTP requests in accordance with [FHIR RESTful API](http://hl7.org/fhir/http.html). To do this, we need to type an HTTP verb \(`GET`, `POST`, `PUT`, `PATCH`, `DELETE`\) and the resource address \(for example `/Patient` — _please pay attention to the resource name with a Capital letter_\).
+REST Console is designed to work with resources in your `Box` by sending HTTP requests in accordance with [FHIR RESTful API](http://hl7.org/fhir/http.html). To do this, we need to type an HTTP verb \(`GET`, `POST`, `PUT`, `PATCH`, `DELETE`\) and the resource address \(for example `/Patient` — _please pay attention to the resource name with a capital letter_\).
 
 In cases when you need to send a request body \(e.g., `POST` requests\), the request body content is passed below the resource address, separated by an empty line, in YAML or JSON format — you can choose both request and response content type by **YAML/JSON** switch.
 
 ### Create Patient
 
-Last time we tried to get a list of our patients \(by requesting them through the `GET /Patient`\), and the response was empty. Let's add a couple of new patients. To do that, we would type  `POST /Patient` in our console and the body of the request, where we send the data of our new patient:
+To create patient we would type  `POST /Patient` in our console, where we send the data of our new patient:
 
 {% tabs %}
 {% tab title="Request YAML" %}
@@ -139,7 +141,7 @@ Status: 201
 {% endtab %}
 {% endtabs %}
 
-This is only an example. You can change the values as you want but it would be good to check the full [Patient resource](https://www.hl7.org/fhir/patient.html) description and [official example](https://www.hl7.org/fhir/patient-example.json.html). The `id` field in the request body is not required: if you do not send it to a server, it will be generated. Description of the difference in `create` operation behavior between FHIR and [Aidbox](https://www.health-samurai.io/aidbox) endpoints can be found [here]().
+This is only an example. You can change the values as you want but it would be good to check the full [Patient resource](https://www.hl7.org/fhir/patient.html) description and [official example](https://www.hl7.org/fhir/patient-example.json.html). The `id` field in the request body is not required: if you do not send it to a server, it will be generated.
 
 ![POST /patient](../../.gitbook/assets/image%20%2850%29.png)
 
@@ -762,5 +764,5 @@ Status: 410
 {% endtab %}
 {% endtabs %}
 
-Now we have learned how to search, create, receive, update, and delete patients, and get a history of their changes.
+We have learned how to search, create, receive, update, and delete patients, and get a history of their changes.
 
