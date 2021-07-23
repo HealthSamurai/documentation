@@ -17,6 +17,8 @@ To begin using pre-configured Kibana and Grafana please clone[ this repository](
 
 ## **Explore logs with Kibana**
 
+To use Kibana you need to understand Aidbox log formatting first. Go to Aidbox log documentation \([Logging & Audit](https://docs.aidbox.app/core-modules/logging-and-audit)\) to find logs schema available here with brief attribute description.
+
 ```bash
 git clone https://github.com/Aidbox/devbox.git
 cd devbox
@@ -38,6 +40,8 @@ Aidbox Elastic appender documentation is available [here](../receive-logs-from-y
 {% endhint %}
 
 
+
+Using the listed attributes helps you to read REST logs in Elastic search filtering them type by type.
 
 Example below will help you read REST API logs:
 
