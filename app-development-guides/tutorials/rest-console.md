@@ -166,9 +166,9 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-![POST /patient](../../.gitbook/assets/image%20%2850%29.png)
-
 To get pretty-formatted response add `_pretty=true` query string parameter:
+
+![POST /patient](../../.gitbook/assets/image%20%2856%29.png)
 
 
 
