@@ -16,7 +16,7 @@ If you have backend service or periodical job that wants to interact with Aidbox
 
 ### Web Application
 
-If you want to work with Aidbox from a web application or implement Single Sign On using Aidbox as Identity Server, consider [Authorization Code Grant](authorization-code.md) or [Access by JWT](access-token-introspection.md)
+If you want to work with Aidbox from a web application or implement Single Sign-On using Aidbox as Identity Server, consider [Authorization Code Grant](authorization-code.md) or [Access by JWT](access-token-introspection.md)
 
 ### Single Page Application
 
@@ -32,5 +32,5 @@ Aidbox is coming with Auth Sandbox - a small app that helps you configure and te
 
 ![](../../.gitbook/assets/image%20%281%29.png)
 
-
+Check our additional documentation.
 
