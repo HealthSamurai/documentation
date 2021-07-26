@@ -164,7 +164,6 @@
   * [Working with REST Console](app-development-guides/tutorials/rest-console.md)
   * [Uploading Sample Data](app-development-guides/tutorials/load-bundle-into-fhir-server.md)
   * [Custom Search](app-development-guides/tutorials/custom-search.md)
-  * [Authentication and Authorization](app-development-guides/tutorials/authentication-and-authorization.md)
   * [Working with Aidbox from .NET](app-development-guides/tutorials/working-with-aidbox-from-.net.md)
   * [Profiling and Validation](app-development-guides/tutorials/profiling.md)
   * [Patient Encounter notification Application](app-development-guides/tutorials/patient-encounter-notification-application.md)
