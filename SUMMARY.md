@@ -158,6 +158,7 @@
 ## App development guides
 
 * [Tutorials](app-development-guides/tutorials/README.md)
+  * [Authentication Tutorial](app-development-guides/tutorials/basic-auth-tutorial.md)
   * [Log analysis and visualization](app-development-guides/tutorials/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana.md)
   * [Restricting Access to Patient Data](app-development-guides/tutorials/restricting-access-to-patient-data.md)
   * [Working with REST Console](app-development-guides/tutorials/rest-console.md)
