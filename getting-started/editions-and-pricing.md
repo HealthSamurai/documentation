@@ -47,7 +47,6 @@ Health Samurai offers four support tiers: Basic, Professional, Enterprise, and U
         <ul>
           <li>Account manager</li>
           <li>Basic Aidbox consulting</li>
-          <li>Blocking issues resolution time up to 1 business day</li>
         </ul>
       </td>
       <td style="text-align:left">$</td>
