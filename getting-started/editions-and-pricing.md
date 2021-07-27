@@ -26,7 +26,7 @@ Do not forget that you can host Aidbox yourself, or Health Samurai can host Aidb
 
 We know that starting with new technology is a challenge. That's why we are inviting Aidbox users to subscribe to one of Aidbox Support tiers from your first days with Aidbox. It might be the time when you need Aidbox Support the most.
 
-Health Samurai is offering four support tiers: Basic, Professional, Enterprise, and Ultimate. Below is what you need to know about each of them:  
+Health Samurai offers four support tiers: Basic, Professional, Enterprise, and Ultimate. Below is what you need to know about each of them:  
 
 
 <table>
@@ -57,7 +57,7 @@ Health Samurai is offering four support tiers: Basic, Professional, Enterprise, 
       <td style="text-align:left">
         <ul>
           <li>Chat with Aidbox engineers</li>
-          <li>1 video conference with Aidbox engineers per month</li>
+          <li>Monthly video conferences with Aidbox engineers</li>
           <li>Priority fixing of non-blocking issues**</li>
           <li>Priority release of new Aidbox features**</li>
           <li>Aidbox performance optimization consulting</li>
@@ -71,7 +71,7 @@ Health Samurai is offering four support tiers: Basic, Professional, Enterprise, 
         <ul>
           <li>Chat with Aidbox engineers</li>
           <li>Weekly conferences with Aidbox engineers</li>
-          <li>Aidbox product enhancement or feature release within the next quarter.</li>
+          <li>Aidbox product enhancement or feature release**</li>
           <li>FHIR and Aidbox consultative review and guidance</li>
         </ul>
       </td>
