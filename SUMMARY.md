@@ -113,6 +113,7 @@
   * [Observation/$lastn](api-1/fhir-api/misc.md)
   * [History](api-1/fhir-api/history-1.md)
 * [REST API](api-1/api/README.md)
+  * [Search Parameters](api-1/api/search-parameters.md)
   * [CRUD](api-1/api/crud-1/README.md)
     * [Create](api-1/api/crud-1/fhir-and-aidbox-crud.md)
     * [Read](api-1/api/crud-1/read.md)
