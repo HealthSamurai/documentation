@@ -13,7 +13,7 @@ description: >-
 You may want to track logs in AidBox with Kibana. You can do anything from tracking query load to understanding the way requests flow through your apps.   
 
 
-To begin using pre-configured Kibana and Grafana please clone[ this repository](https://github.com/Aidbox/devbox) and execute `make up` operation in your shell:
+To begin using pre-configured Kibana and Grafana please clone[ this repository](https://github.com/Aidbox/devbox) and execute `make up` operation in your shell.
 
 ## **Explore logs with Kibana**
 
