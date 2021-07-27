@@ -45,9 +45,9 @@ Health Samurai is offering four support tiers: Basic, Professional, Enterprise, 
       <td style="text-align:left">Basic Support</td>
       <td style="text-align:left">
         <ul>
-          <li>Private chat</li>
-          <li>Blocking issues fixing</li>
+          <li>Account manager</li>
           <li>Basic Aidbox consulting</li>
+          <li>Blocking issues resolution time up to 1 business day</li>
         </ul>
       </td>
       <td style="text-align:left">$</td>
@@ -56,6 +56,8 @@ Health Samurai is offering four support tiers: Basic, Professional, Enterprise, 
       <td style="text-align:left">Professional Support</td>
       <td style="text-align:left">
         <ul>
+          <li>Chat with Aidbox engineers</li>
+          <li>1 video conference with Aidbox engineers per month</li>
           <li>Priority fixing of non-blocking issues**</li>
           <li>Priority release of new Aidbox features**</li>
           <li>Aidbox performance optimization consulting</li>
@@ -67,10 +69,10 @@ Health Samurai is offering four support tiers: Basic, Professional, Enterprise, 
       <td style="text-align:left">Enterprise Support</td>
       <td style="text-align:left">
         <ul>
-          <li>New feature requests***</li>
-          <li>Collaborative problem solving over a video conference</li>
-          <li>Aidbox best practice and architecture guidance</li>
-          <li>HL7 FHIR best practice guidance</li>
+          <li>Chat with Aidbox engineers</li>
+          <li>Weekly conferences with Aidbox engineers</li>
+          <li>Aidbox product enhancement or feature release within the next quarter.</li>
+          <li>FHIR and Aidbox consultative review and guidance</li>
         </ul>
       </td>
       <td style="text-align:left">$$$</td>
@@ -92,9 +94,15 @@ Health Samurai is offering four support tiers: Basic, Professional, Enterprise, 
 
 \*\* - during the next three releases
 
-\*\*\* - feature or its substitute is added to the roadmap
+Besides Aidbox product and Aidbox Support, Health Samurai offers Professional services around Aidbox:
 
-Besides Aidbox product and Aidbox Support, Health Samurai is offering services around Aidbox. Read about services that Health Samurai is offering here.
+* Infrastructure deployment as a project
+* Migration from another FHIR server/platform to Aidbox
+* Project bootstrapping
+* Performance optimization
+* Aidbox quick start training for engineers
+
+  
 
 ## Aidbox Trial
 
