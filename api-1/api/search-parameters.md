@@ -14,5 +14,5 @@ To search by Encounter.serviceProvider as it's stated in FHIR Encounter specific
 
 ![](../../.gitbook/assets/image%20%2890%29.png)
 
-![Search Parameters in Aidbox UI](../../.gitbook/assets/image%20%2840%29.png)
+![Search Parameters in Aidbox UI](../../.gitbook/assets/image%20%2846%29%20%281%29.png)
 
