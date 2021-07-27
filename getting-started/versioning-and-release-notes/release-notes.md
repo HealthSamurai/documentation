@@ -8,7 +8,7 @@
 
 * Updated REST Console. The tutorial is available [here](https://docs.aidbox.app/app-development-guides/tutorials/rest-console).
 * Added user.email, user.name to the User grid so now it's more convenient to work with the Aidbox UI. [\#397](https://github.com/Aidbox/Issues/issues/397).
-* Updated Authentification  
+* Updated Authentification Sandbox. 
 * Improved logging. 
 
   * Reviewed and updated log event schema. The updated schema is available [here](https://docs.aidbox.app/core-modules/logging-and-audit#logs-schema).
