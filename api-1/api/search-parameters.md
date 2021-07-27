@@ -6,7 +6,7 @@ FHIR Search Parameters are used to search resources by elements values.
 
 You can see in [FHIR](https://www.hl7.org/fhir/searchparameter.html) specification Search Parameters and their according attributes. You can look up attached to see where search parameters can be found in the Aidbox interface Aidbox also can return search parameters for specific resouce by REST API. Here's an example for Encounter: GET /SearchParameter?resource=Encounter
 
-As it's said in FHIR Encounter spec to search by Encounter.serviceProvider you should use service-provider search parameter: http:///fhir/Encounter?patient=&\_include=Encounter:service-provider:Organization
+To search by Encounter.serviceProvider as it's stated in FHIR Encounter specification you should use service-provider search parameter: http:///fhir/Encounter?patient=&\_include=Encounter:service-provider:Organization
 
 ![](../../.gitbook/assets/image%20%2890%29.png)
 
