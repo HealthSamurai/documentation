@@ -16,8 +16,6 @@ To search by Encounter.serviceProvider as it's stated in FHIR Encounter specific
 
 ![Search Parameters in Aidbox UI](../../.gitbook/assets/image%20%2846%29%20%281%29.png)
 
-
-
 ## Using
 
 Here is an example of the **Patient.name** search parameter:
@@ -62,8 +60,8 @@ All these attributes are required.
 | :--- | :--- | :--- |
 | .**name** | [keyword](http://localhost:8765/static/console.html#/entities/Attribute?entity=keyword) | Name of search parameter, will be used in search query string |
 | .**resource** | [Reference](http://localhost:8765/static/console.html#/entities/Attribute?entity=Reference) | Reference to resource, i.e. {id: Patient, resourceType: Reference} |
-| .**type** | [keyword](http://localhost:8765/static/console.html#/entities/Attribute?entity=keyword) | Type of search parameter \(see [Types]()\) |
-| .**expression** | [expression](http://localhost:8765/static/console.html#/entities/Attribute?entity=SearchParameterExpression) | expression for elements to search \(see [Expression]()\) |
+| .**type** | [keyword](http://localhost:8765/static/console.html#/entities/Attribute?entity=keyword) | Type of search parameter \(see [Types](search-parameters.md)\) |
+| .**expression** | [expression](http://localhost:8765/static/console.html#/entities/Attribute?entity=SearchParameterExpression) | expression for elements to search \(see [Expression](search-parameters.md)\) |
 
 #### Search parameter types
 
@@ -71,7 +69,7 @@ All these attributes are required.
 | :--- | :--- |
 | [number](https://www.hl7.org/fhir/search.html#number) | Search parameter SHALL be a number \(a whole number or a decimal\). |
 | [date](https://www.hl7.org/fhir/search.html#date) | Search parameter is on a date/time. The date format is the standard XML format, though other formats may be supported. |
-| [string](https://www.hl7.org/fhir/search.html#string) | Search parameter is a simple string, like a name part. Search is case-insensitive and accent-insensitive. May match just the start of a string.  |
+| [string](https://www.hl7.org/fhir/search.html#string) | Search parameter is a simple string, like a name part. Search is case-insensitive and accent-insensitive. May match just the start of a string. |
 | [token](https://www.hl7.org/fhir/search.html#token) | Search parameter on a coded element or identifier. May be used to search through the text, displayname, code and code/codesystem \(for codes\) and label, system and key \(for identifier\). Its value is either a string or a pair of namespace and value, separated by a "\|", depending on the modifier used. |
 | [reference](https://www.hl7.org/fhir/search.html#reference) | A reference to another resource. |
 | [composite](https://www.hl7.org/fhir/search.html#composite) | A composite search parameter that combines a search on two values together. |

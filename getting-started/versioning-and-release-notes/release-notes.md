@@ -1,10 +1,10 @@
 # Release Notes
 
-## 2021.06 \(July, 2021\), 20210610. Pre-release available [here](https://hub.docker.com/r/healthsamurai/devbox/tags?page=1&ordering=last_updated&name=alpha).
+##  July, 2021 - v:2107 _edge_
 
 * We've released a major Aidbox UI upgrade
 
-![New Aidbox UI](../../.gitbook/assets/image%20%2849%29%20%281%29.png)
+![New Aidbox UI](../../.gitbook/assets/image%20%2849%29%20%287%29%20%281%29.png)
 
 * Updated REST Console. The tutorial is available [here](https://docs.aidbox.app/app-development-guides/tutorials/rest-console).
 * Added user.email, user.name to the User grid so now it's more convenient to work with the Aidbox UI. [\#397](https://github.com/Aidbox/Issues/issues/397).
@@ -19,7 +19,7 @@
 * Aidbox.Cloud and Aidbox.Multibox superuser login by JWT. We added a new auth mechanism for authorization cloud and Multibox users by JWT. 
 * Added OKTA as an external Oauth 2.0 provider.  Check our tutorial on how to configure Okta IdentityProvider with Aidbox [here](https://docs.aidbox.app/user-management-1/auth/external-oauth-2.0-providers/configure-okta#login-into-aidbox-with-okta).
 
-## 2021.05 \(June 10, 2021\), 20210610
+## June, 2021 - v:20210610 _stable_
 
 * Added support for [Bulk API export in CSV](https://docs.aidbox.app/api-1/bulk-api-1/usddump-csv).     You can use **/\[resourceType\]/$dump-csv** endpoint to generate CSV file in which JSON resource structure is flattened into comma-separated format.  Such an option for data export is useful for integrations with external EHR systems.  
 * Added support for [If-Match header](https://docs.aidbox.app/api-1/api/crud-1/delete) in DELETE operation of FHIR REST API.    If-Match is most often used to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource \(i.e., to prevent the "lost update" problem\).  
