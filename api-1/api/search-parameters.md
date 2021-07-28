@@ -142,9 +142,6 @@ total: 10
 
 ## Optimization of Search Parameters
 
-1. в запросе sql мы можем сделать индекс и вставить ссылочку индекс в постгрюсе
-2. когда индекс не помог: a. search resource ссылочку скинуть и aidobx queary resource link on it
-
 ### Getting search SQL query
 
 If you perform a search query at the root route, you will get a SQL query in the response in the attribute `query-sql`:
