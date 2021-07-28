@@ -154,7 +154,7 @@ FHIR API does not have `query-sql`attribute, if you search with `/fhir/`prefix y
 
 ### Ways to optimize
 
-* You can try to speed up your search query by creating an index. [Here's postgres documentation on indexes](https://www.postgresql.org/docs/13/indexes.html). 
-* You can use [Search](../fhir-api/search-1/) resource to define your own SQL for some search parameter
+* You can try to speed up your search query by creating an index. [Here's Postgres documentation on indexes](https://www.postgresql.org/docs/13/indexes.html). 
+* You can use [Search](../fhir-api/search-1/) resource to define your own SQL for a search parameter
 * You can use entirely custom SQL query with [AidboxQuery](../fhir-api/search-1/custom-search.md) resource
 
