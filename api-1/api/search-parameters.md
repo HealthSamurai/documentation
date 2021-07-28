@@ -142,3 +142,22 @@ total: 10
 
 ## Optimization of Search Parameters
 
+1. в запросе sql мы можем сделать индекс и вставить ссылочку индекс в постгрюсе
+2. когда индекс не помог: a. search resource ссылочку скинуть и aidobx queary resource link on it
+
+### Getting search SQL query
+
+If you perform a search query at the root route, you will get a SQL query in the response in the attribute `query-sql`:
+
+![query-sql in the response](../../.gitbook/assets/image%20%2846%29.png)
+
+{% hint style="info" %}
+FHIR API does not have `query-sql`attribute, if you search with `/fhir/`prefix you won't see SQL query in the response
+{% endhint %}
+
+### Ways to optimize
+
+* You can try to speed up your search query by creating an index. [Here's postgres documentation on indexes](https://www.postgresql.org/docs/13/indexes.html). 
+* You can use [Search](../fhir-api/search-1/) resource to define your own SQL for some search parameter
+* You can use entirely custom SQL query with [AidboxQuery](../fhir-api/search-1/custom-search.md) resource
+
