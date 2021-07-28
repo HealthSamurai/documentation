@@ -47,7 +47,7 @@ Example below will help you read REST API logs:
 
 Please put + to toggle `Time`, `w_m`, `w_r`_,_`w_url`, `d`, `w_st`, `w_uid` fields into the document table:
 
-![](../../.gitbook/assets/image%20%2841%29%20%281%29.png)
+![](../../.gitbook/assets/image%20%2841%29%20%281%29%20%281%29.png)
 
 Now you can browse and explore REST API logs
 

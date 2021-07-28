@@ -4,7 +4,7 @@
 
 * We've released a major Aidbox UI upgrade
 
-![New Aidbox UI](../../.gitbook/assets/image%20%2841%29.png)
+![New Aidbox UI](../../.gitbook/assets/image%20%2849%29%20%281%29.png)
 
 * Updated REST Console. The tutorial is available [here](https://docs.aidbox.app/app-development-guides/tutorials/rest-console).
 * Added user.email, user.name to the User grid so now it's more convenient to work with the Aidbox UI. [\#397](https://github.com/Aidbox/Issues/issues/397).
