@@ -34,6 +34,24 @@ You can enable request body logging via passing `x-audit-req-body = true` header
 | **ctx** | string | context id |
 | **ctx\_end** | bool | flag last item in  context, used to help aggregate log entries for one context |
 
+#### Event types
+
+| event name \(ev\) | description |
+| :--- | :--- |
+| **w/req** | HTTP request |
+| **w/resp** | HTTP response |
+| **db/q** | DB query |
+| **auth/authorized-access-policy** | Access Policy Evaluation |
+| **resource/create** | Resource created |
+| **resource/update** | Resource updated |
+| **resource/delete** | Resource deleted |
+| **resource/create-dup** | Create duplicate |
+| **resource/update-dup** | Cpdate duplicate |
+| **auth/login** | Succesful user login |
+| **auth/authorize-failed** | Failed login attempt |
+| **db/db-size** | Size of database |
+| **db/rel-size** | Size of table |
+
 #### REST logs
 
 | Attribute | type | Description |
