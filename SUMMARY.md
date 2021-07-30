@@ -10,6 +10,7 @@
   * [Release Notes](getting-started/versioning-and-release-notes/release-notes.md)
   * [Releases Archive](getting-started/versioning-and-release-notes/release-notes-1/README.md)
     * [0.4.7 addendum](getting-started/versioning-and-release-notes/release-notes-1/0.4.7-addendum.md)
+* [AWS Multibox Tutorial](getting-started/multibox-aws-run.md)
 * [Installation & Configuration](getting-started/installation/README.md)
   * [🎓 Setup Devbox](getting-started/installation/setup-aidbox.dev.md)
   * [Configure Devbox/Aidbox distribution](getting-started/installation/use-devbox-aidbox.md)
