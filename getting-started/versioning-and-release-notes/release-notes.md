@@ -15,14 +15,14 @@ Available on **Aidbox.Cloud** & Docker Hub: `healthsamurai/devbox:edge`
   * Show raw response
   * Syntax highlight
 * Upgrade Aidbox Java version to 16
-* Added `user.email`, `user.name` to the User grid , for your convenience. [\#397](https://github.com/Aidbox/Issues/issues/397).
+* Added `user.email`, `user.name` to the User grid, for your convenience. [\#397](https://github.com/Aidbox/Issues/issues/397).
 * Improved logging. 
   * Reviewed and updated log event schema. The updated schema is available [here](https://docs.aidbox.app/core-modules/logging-and-audit#logs-schema).
   * Add w\_r - templated request URL for better aggregation. For example, requests like `GET /Patient/pt-1` will become  `GET /Patient/?` thus allowing aggregate all read requests for monitoring.
   * Log additional db metrics from Aidbox.Dev.  
   * Added ELK, Kibana, and Grafana to Aidbox image. So now you can start exploring and analyzing logs from scratch. Check our tutorial on exploring and visualizing logs [here](https://docs.aidbox.app/app-development-guides/tutorials/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana).
 * We added a new auth mechanism for authorization Aidbox.Cloud and Aidbox.Multibox users by JWT.
-* Support for [OKTA](https://www.okta.com/) as an external OAuth 2.0 provider.  Check out the tutorial.
+* Support for [OKTA](https://www.okta.com/) as an external OAuth 2.0 provider.  Check out [the tutorial](https://bit.ly/okta_tutorial).
 
 ## June, 2021 - v:20210610 _stable_
 
