@@ -41,7 +41,3 @@ It’s called an absolute reference. Aidbox doesn't work with absolute reference
 
 Use relative references instead: GET /DocumentReference?patient=Patient/1234
 
-## Is there a Python fhirpath implementation to create and execute data requests with Python dicts?
-
-Yes, please check out [here](https://github.com/beda-software/fhirpath-py)
-
