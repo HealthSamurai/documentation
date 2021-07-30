@@ -19,10 +19,10 @@ Available on **Aidbox.Cloud** & Docker Hub: `healthsamurai/devbox:edge`
 * Improved logging. 
   * Reviewed and updated log event schema. The updated schema is available [here](https://docs.aidbox.app/core-modules/logging-and-audit#logs-schema).
   * Add w\_r - templated request URL for better aggregation. For example, requests like `GET /Patient/pt-1` will become  `GET /Patient/?` thus allowing aggregate all read requests for monitoring.
-  * Log additional information about Aidbox.Dev resources such as size of the database and tables.  
-  * Added ELK, Kibana and Grafana to Aidbox image. So now you can start exploring and analyzing logs from scratch. Check our tutorial on exploring and visualizing logs [here](https://docs.aidbox.app/app-development-guides/tutorials/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana).
+  * Log additional db metrics from Aidbox.Dev.  
+  * Added ELK, Kibana, and Grafana to Aidbox image. So now you can start exploring and analyzing logs from scratch. Check our tutorial on exploring and visualizing logs [here](https://docs.aidbox.app/app-development-guides/tutorials/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana).
 * We added a new auth mechanism for authorization Aidbox.Cloud and Aidbox.Multibox users by JWT.
-* Added OKTA as an external Oauth 2.0 provider.  Check our tutorial on how to configure Okta IdentityProvider with Aidbox [here](https://docs.aidbox.app/user-management-1/auth/external-oauth-2.0-providers/configure-okta#login-into-aidbox-with-okta).
+* Support for [OKTA](https://www.okta.com/) as an external OAuth 2.0 provider.  Check out the tutorial.
 
 ## June, 2021 - v:20210610 _stable_
 
