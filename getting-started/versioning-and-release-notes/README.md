@@ -8,15 +8,13 @@ description: >-
 
 ### Aidbox release cycle
 
-Aidbox Docker Images are available on [Docker Hub](https://hub.docker.com/u/healthsamurai). The latest stable images are tagged with **stable.** For ****every release, we create an immutable tag ****in the ****format `YYMM` \(for example for the 2021 July release it will be **2107**\). If you are interested in the next release features/bug-fixes or want to test your project with an upcomming version of Aidbox - you can use tag **edge**. Every commit into Aidbox code base after successful CI is published into **edge** channel.
+Aidbox Docker Images are available on [Docker Hub](https://hub.docker.com/u/healthsamurai). The latest stable images are tagged with **stable.** For ****every release, we create an immutable tag ****in the ****format `YYMM` \(for example for the 2021 July release it will be **2107**\). If you are interested in the next release features/bug fixes or want to test your project with an upcoming version of Aidbox - you can use tag **edge**. Every commit into Aidbox code base after successful CI is published into **edge** channel.
 
 {% hint style="warning" %}
-Note that the edge channel may have issues and regressions and is risky to use in production. But very recomended to use it in staging and dev environments, to detect potential issues as soon as possible.
+Note that the edge channel may have issues and regressions and is risky to use in production. But very recommended to use it in staging and dev environments, to detect potential issues as soon as possible.
 {% endhint %}
 
 We actively encourage developers to use channels either **stable** or **edge** tags in their setup. The **release images** can be used to set a specific Aidbox version if the application development is frozen and the development team does not want to receive updates any longer. Keep in mind that the HealthSamurai team maintains backward compatibility in its releases, however, we can not guarantee a trivial update from old **versions**.
-
-You can see the next planned release date and the release status in the [Aidbox/Issues ](https://github.com/Aidbox/Issues/projects)Github repository.
 
 ### Aidboxdb release cycle
 
