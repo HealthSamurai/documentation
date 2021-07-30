@@ -1,14 +1,20 @@
 # Release Notes
 
-##  July, 2021 - v:2107 _edge_
+##  July, 2021 - v:2107 
+
+{% hint style="info" %}
+Available on **Aidbox.Cloud** & Docker Hub: `healthsamurai/devbox:edge`
+{% endhint %}
 
 * We've released a major Aidbox UI upgrade
 
 ![New Aidbox UI](../../.gitbook/assets/image%20%2849%29%20%287%29%20%281%29.png)
 
-* Updated REST Console. The tutorial is available [here](https://docs.aidbox.app/app-development-guides/tutorials/rest-console).
-* Added user.email, user.name to the User grid so now it's more convenient to work with the Aidbox UI. [\#397](https://github.com/Aidbox/Issues/issues/397).
-* Updated Authentification Sandbox. 
+* Updated REST Console \( check out[ the tutorial](https://bit.ly/rest_console_tutorial) \)
+  * Explicit request headers `content-type, accept` etc
+  * Show raw response
+  * Syntax highlight
+*  We added `user.email`, `user.name` to the User grid , for your convenience. [\#397](https://github.com/Aidbox/Issues/issues/397).
 * Improved logging. 
 
   * Reviewed and updated log event schema. The updated schema is available [here](https://docs.aidbox.app/core-modules/logging-and-audit#logs-schema).
