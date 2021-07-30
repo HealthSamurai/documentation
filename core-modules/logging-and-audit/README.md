@@ -36,6 +36,8 @@ You can enable request body logging via passing `x-audit-req-body = true` header
 
 #### Event types
 
+In table below you can see most popular log events:
+
 | event name \(ev\) | description |
 | :--- | :--- |
 | **w/req** | HTTP request |
