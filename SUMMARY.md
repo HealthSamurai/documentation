@@ -21,69 +21,6 @@
 
 * [FAQ](faq.md)
 
-## Storage <a id="storage-1"></a>
-
-* [Database](storage-1/database.md)
-* [AWS S3](storage-1/aws-s3.md)
-* [GCP Cloud Storage](storage-1/gcp-cloud-storage.md)
-* [Azure Blob Storage](storage-1/azure.md)
-
-## User Management <a id="user-management-1"></a>
-
-* [Auth](user-management-1/auth/README.md)
-  * [Basic Auth](user-management-1/auth/basic-auth.md)
-  * [Client Credentials Grant](user-management-1/auth/client-credentials.md)
-  * [Resource Owner Grant](user-management-1/auth/resource-owner-password.md)
-  * [Authorization Code Grant](user-management-1/auth/authorization-code.md)
-  * [Implicit Grant](user-management-1/auth/implicit.md)
-  * [Validating Foreign Access Tokens](user-management-1/auth/access-token-introspection.md)
-  * [External Oauth 2.0 Providers](user-management-1/auth/external-oauth-2.0-providers/README.md)
-    * [Configure Okta](user-management-1/auth/external-oauth-2.0-providers/configure-okta.md)
-  * [Two Factor Authentication](user-management-1/auth/two-factor-authentication.md)
-  * [SMART on FHIR](user-management-1/auth/smart-app.md)
-  * [Configuration options](user-management-1/auth/configuration-options.md)
-  * [Discovery API](user-management-1/auth/well-known-endpoint.md)
-
-## Security & Access Control <a id="security-and-access-control-1"></a>
-
-* [Access Control](security-and-access-control-1/security/README.md)
-  * [Access Policies](security-and-access-control-1/security/access-control.md)
-  * [Role-Based Access Policies](security-and-access-control-1/security/role-based-access-policies.md)
-  * [🎓 Access Control](security-and-access-control-1/security/access-policy.md)
-  * [🎓 Sample: Patient can see their own data](security-and-access-control-1/security/sample-patient-can-see-its-own-data.md)
-
-## Core Modules
-
-* [Entities & Attributes](core-modules/entities-and-attributes.md)
-* [$json-schema](core-modules/usdjson-schema.md)
-* [Logging & Audit](core-modules/logging-and-audit/README.md)
-  * [🎓 Monitoring & Audit Tutorial](core-modules/logging-and-audit/monitoring-and-audit-tutorial.md)
-
-## Modules <a id="modules-1"></a>
-
-* [Terminology](modules-1/terminology/README.md)
-  * [Concept](modules-1/terminology/concept.md)
-  * [Terminology API](modules-1/terminology/terminology-api.md)
-  * [CodeSystem](modules-1/terminology/codesystem-and-concept/README.md)
-    * [CodeSystem Concept Lookup](modules-1/terminology/codesystem-and-concept/concept-lookup.md)
-    * [CodeSystem Subsumption testing](modules-1/terminology/codesystem-and-concept/subsumption-testing.md)
-    * [CodeSystem Code Composition](modules-1/terminology/codesystem-and-concept/codesystem-code-composition.md)
-  * [ValueSet](modules-1/terminology/valueset/README.md)
-    * [ValueSet Expansion](modules-1/terminology/valueset/value-set-expansion.md)
-    * [ValueSet Code Validation](modules-1/terminology/valueset/value-set-validation.md)
-  * [Terminology Tutorials](modules-1/terminology/terminology-tutorials/README.md)
-    * [Load ICD-10 terminology into Aidbox](modules-1/terminology/terminology-tutorials/load-terminologies.md)
-* [HL7 v2 Integration](modules-1/hl7-v2-integration.md)
-* [FHIR Resources](modules-1/fhir-resources/README.md)
-  * [Capability Statement](modules-1/fhir-resources/metadata.md)
-  * [Aidbox & FHIR formats](modules-1/fhir-resources/aidbox-and-fhir-formats.md)
-* [Custom Resources](modules-1/custom-resources/README.md)
-  * [$metadata](modules-1/custom-resources/custom-metadata.md)
-  * [🎓 Custom Resources](modules-1/custom-resources/getting-started-with-custom-resources.md)
-* [Aidbox Search](modules-1/aidbox-search/README.md)
-  * [SQL endpoints](modules-1/aidbox-search/usdpsql.md)
-* [First-Class Extensions](modules-1/first-class-extensions.md)
-
 ## API <a id="api-1"></a>
 
 * [FHIR API](api-1/fhir-api/README.md)
@@ -142,20 +79,6 @@
 * [Compartments API](api-1/compartments.md)
 * [GraphQL API](api-1/graphql-api.md)
 
-## Plan API
-
-* [Plan API Overview](plan-api/plan-api-overview.md)
-
-## Tools
-
-* [Mappings](tools/mappings.md)
-* [Aidbox SDK](tools/aidbox-sdk/README.md)
-  * [Apps](tools/aidbox-sdk/aidbox-apps.md)
-  * [NodeJs SDK](tools/aidbox-sdk/nodejs.md)
-  * [Clojure SDK](tools/aidbox-sdk/clojure-sdk.md)
-  * [Python SDK](tools/aidbox-sdk/python-sdk.md)
-  * [SDK internals](tools/aidbox-sdk/sdk-internals.md)
-
 ## App development guides
 
 * [Tutorials](app-development-guides/tutorials/README.md)
@@ -185,6 +108,83 @@
   * [🎓 Export logs to Datadog](app-development-guides/receive-logs-from-your-app/datadog-guide.md)
 * [$matcho](app-development-guides/usdmatcho.md)
 * [$to-format](app-development-guides/usdto-format-fhir-aidbox.md)
+
+## User Management <a id="user-management-1"></a>
+
+* [Auth](user-management-1/auth/README.md)
+  * [Basic Auth](user-management-1/auth/basic-auth.md)
+  * [Client Credentials Grant](user-management-1/auth/client-credentials.md)
+  * [Resource Owner Grant](user-management-1/auth/resource-owner-password.md)
+  * [Authorization Code Grant](user-management-1/auth/authorization-code.md)
+  * [Implicit Grant](user-management-1/auth/implicit.md)
+  * [Validating Foreign Access Tokens](user-management-1/auth/access-token-introspection.md)
+  * [External Oauth 2.0 Providers](user-management-1/auth/external-oauth-2.0-providers/README.md)
+    * [Configure Okta](user-management-1/auth/external-oauth-2.0-providers/configure-okta.md)
+  * [Two Factor Authentication](user-management-1/auth/two-factor-authentication.md)
+  * [SMART on FHIR](user-management-1/auth/smart-app.md)
+  * [Configuration options](user-management-1/auth/configuration-options.md)
+  * [Discovery API](user-management-1/auth/well-known-endpoint.md)
+
+## Security & Access Control <a id="security-and-access-control-1"></a>
+
+* [Access Control](security-and-access-control-1/security/README.md)
+  * [Access Policies](security-and-access-control-1/security/access-control.md)
+  * [Role-Based Access Policies](security-and-access-control-1/security/role-based-access-policies.md)
+  * [🎓 Access Control](security-and-access-control-1/security/access-policy.md)
+  * [🎓 Sample: Patient can see their own data](security-and-access-control-1/security/sample-patient-can-see-its-own-data.md)
+
+## Storage <a id="storage-1"></a>
+
+* [Database](storage-1/database.md)
+* [AWS S3](storage-1/aws-s3.md)
+* [GCP Cloud Storage](storage-1/gcp-cloud-storage.md)
+* [Azure Blob Storage](storage-1/azure.md)
+
+## Core Modules
+
+* [Entities & Attributes](core-modules/entities-and-attributes.md)
+* [$json-schema](core-modules/usdjson-schema.md)
+* [Logging & Audit](core-modules/logging-and-audit/README.md)
+  * [🎓 Monitoring & Audit Tutorial](core-modules/logging-and-audit/monitoring-and-audit-tutorial.md)
+
+## Modules <a id="modules-1"></a>
+
+* [Terminology](modules-1/terminology/README.md)
+  * [Concept](modules-1/terminology/concept.md)
+  * [Terminology API](modules-1/terminology/terminology-api.md)
+  * [CodeSystem](modules-1/terminology/codesystem-and-concept/README.md)
+    * [CodeSystem Concept Lookup](modules-1/terminology/codesystem-and-concept/concept-lookup.md)
+    * [CodeSystem Subsumption testing](modules-1/terminology/codesystem-and-concept/subsumption-testing.md)
+    * [CodeSystem Code Composition](modules-1/terminology/codesystem-and-concept/codesystem-code-composition.md)
+  * [ValueSet](modules-1/terminology/valueset/README.md)
+    * [ValueSet Expansion](modules-1/terminology/valueset/value-set-expansion.md)
+    * [ValueSet Code Validation](modules-1/terminology/valueset/value-set-validation.md)
+  * [Terminology Tutorials](modules-1/terminology/terminology-tutorials/README.md)
+    * [Load ICD-10 terminology into Aidbox](modules-1/terminology/terminology-tutorials/load-terminologies.md)
+* [HL7 v2 Integration](modules-1/hl7-v2-integration.md)
+* [FHIR Resources](modules-1/fhir-resources/README.md)
+  * [Capability Statement](modules-1/fhir-resources/metadata.md)
+  * [Aidbox & FHIR formats](modules-1/fhir-resources/aidbox-and-fhir-formats.md)
+* [Custom Resources](modules-1/custom-resources/README.md)
+  * [$metadata](modules-1/custom-resources/custom-metadata.md)
+  * [🎓 Custom Resources](modules-1/custom-resources/getting-started-with-custom-resources.md)
+* [Aidbox Search](modules-1/aidbox-search/README.md)
+  * [SQL endpoints](modules-1/aidbox-search/usdpsql.md)
+* [First-Class Extensions](modules-1/first-class-extensions.md)
+
+## Plan API
+
+* [Plan API Overview](plan-api/plan-api-overview.md)
+
+## Tools
+
+* [Mappings](tools/mappings.md)
+* [Aidbox SDK](tools/aidbox-sdk/README.md)
+  * [Apps](tools/aidbox-sdk/aidbox-apps.md)
+  * [NodeJs SDK](tools/aidbox-sdk/nodejs.md)
+  * [Clojure SDK](tools/aidbox-sdk/clojure-sdk.md)
+  * [Python SDK](tools/aidbox-sdk/python-sdk.md)
+  * [SDK internals](tools/aidbox-sdk/sdk-internals.md)
 
 ---
 
