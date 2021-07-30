@@ -14,15 +14,14 @@ Available on **Aidbox.Cloud** & Docker Hub: `healthsamurai/devbox:edge`
   * Explicit request headers `content-type, accept` etc
   * Show raw response
   * Syntax highlight
-*  We added `user.email`, `user.name` to the User grid , for your convenience. [\#397](https://github.com/Aidbox/Issues/issues/397).
+* Upgrade Aidbox Java version to 16
+* Added `user.email`, `user.name` to the User grid , for your convenience. [\#397](https://github.com/Aidbox/Issues/issues/397).
 * Improved logging. 
-
   * Reviewed and updated log event schema. The updated schema is available [here](https://docs.aidbox.app/core-modules/logging-and-audit#logs-schema).
   * Add w\_r - templated request URL for better aggregation. For example, requests like `GET /Patient/pt-1` will become  `GET /Patient/?` thus allowing aggregate all read requests for monitoring.
-  * Started logging additional information about Aidbox.Dev resources such as size of the database and tables.  
+  * Log additional information about Aidbox.Dev resources such as size of the database and tables.  
   * Added ELK, Kibana and Grafana to Aidbox image. So now you can start exploring and analyzing logs from scratch. Check our tutorial on exploring and visualizing logs [here](https://docs.aidbox.app/app-development-guides/tutorials/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana).
-
-* Aidbox.Cloud and Aidbox.Multibox superuser login by JWT. We added a new auth mechanism for authorization cloud and Multibox users by JWT. 
+* We added a new auth mechanism for authorization Aidbox.Cloud and Aidbox.Multibox users by JWT.
 * Added OKTA as an external Oauth 2.0 provider.  Check our tutorial on how to configure Okta IdentityProvider with Aidbox [here](https://docs.aidbox.app/user-management-1/auth/external-oauth-2.0-providers/configure-okta#login-into-aidbox-with-okta).
 
 ## June, 2021 - v:20210610 _stable_
