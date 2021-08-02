@@ -75,7 +75,7 @@
 * [Enhancement of Search resource](../../api-1/fhir-api/search-1/search-resource.md#token-search-1) that for token search allows fallback to default modifier implementation; \(last example in the linked article\)
 * Fixed issue with $dump and $dump-sql not allowing CORS requests
 
-## [2021.01 \(25th of January\)](https://github.com/Aidbox/Issues/projects/3), 25012021
+## January 2021 - v:25012021
 
 * [Elastic APM](https://www.elastic.co/apm) support for advanced performance monitoring
 * [Two Factor Authentication](https://docs.aidbox.app/auth/two-factor-authentication) with TOTP implementation
