@@ -450,7 +450,7 @@ Zen ns `quux` will be read from classpath
 | **`:type`** | The full list of zen supported types is [here](https://zen-lang.github.io/tags/zen/schema.html) |
 | **`:resourceType`** | The profile is applied for resources of this type |
 | **`:profile-definition`** | Is the string which should be referenced in the [`Resource.meta.profile[]`](https://www.hl7.org/fhir/resource.html#Meta) for `supported` profiles validation |
-| **`:format`** |  [format](../../modules-1/fhir-resources/aidbox-and-fhir-formats.md) of the data. Default is `:aidbox` |
+| **`:format`** |  [format](../modules-1/fhir-resources/aidbox-and-fhir-formats.md) of the data. Default is `:aidbox` |
 | **`:format :aidbox`** | schema is designed to validate data in the aidbox format |
 | **`:format :fhir`** | schema is designed to validate data in the FHIR format |
 | **`:severity`** | Is related to [FHIR profile usage](http://hl7.org/fhir/profiling.html#profile-uses) |

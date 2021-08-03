@@ -79,6 +79,11 @@
 * [Compartments API](api-1/compartments.md)
 * [GraphQL API](api-1/graphql-api.md)
 
+---
+
+* [Profiling and Validation](profiling/README.md)
+  * [Draft: Profiling with zen-lang](profiling/draft-profiling-with-zen-lang.md)
+
 ## App development guides
 
 * [Tutorials](app-development-guides/tutorials/README.md)
@@ -89,7 +94,6 @@
   * [Uploading Sample Data](app-development-guides/tutorials/load-bundle-into-fhir-server.md)
   * [Custom Search](app-development-guides/tutorials/custom-search.md)
   * [Working with Aidbox from .NET](app-development-guides/tutorials/working-with-aidbox-from-.net.md)
-  * [Profiling and Validation](app-development-guides/tutorials/profiling.md)
   * [Patient Encounter notification Application](app-development-guides/tutorials/patient-encounter-notification-application.md)
   * [Working with pgAgent](app-development-guides/tutorials/working-wih-pgagent.md)
   * [Working with Extensions](app-development-guides/tutorials/working-with-extensions.md)
