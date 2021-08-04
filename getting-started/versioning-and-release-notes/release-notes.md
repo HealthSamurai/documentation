@@ -4,6 +4,8 @@
 
 * Aidbox Notebooks - interactive notebooks for REST, SQL, and more
 * zen profiling - advanced profiling with zen-lang
+* We are introducing [Aidbox RPC API](../../api-1/rpc-api.md)
+* [Asynchronous Batch Validation](../../profiling/validation-api.md#asynchronous-batch-validation) - validate data in Aidbox against new profiles
 
 \_\_
 
