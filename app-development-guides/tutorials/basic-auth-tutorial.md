@@ -18,7 +18,7 @@ Let's create AccessPolicy for this Client
 
 ## Client Credentials Flow
 
-Client get get access by OAuth 2.0 Client Credentials flow
+Client get access by OAuth 2.0 Client Credentials flow
 
 To start you have to register in Aidbox OAuth Client with secret and client\_credentials flow enabled
 
