@@ -16,7 +16,9 @@ The body of such request contains one resource of type Bundle, which contains fi
 
 ```yaml
 POST /
-​
+​Accept: text/yaml
+Content-Type: text/yaml
+
 type: transaction
 entry:
 - resource:
@@ -45,7 +47,7 @@ entry:
     url: "/AccessPolicy"
 ```
 
-Each element of the entry array contains a resource field \(body of the request\) and a request field \(request line in terms of HTTP request\).
+Each element of the entry array contains a resource field \(body of the request\) and a request field \(request line in terms of the HTTP request\).
 
 ```yaml
 resource: # not needed for DELETE and GET
@@ -68,6 +70,8 @@ For `type: transaction` before processing interactions, all references in a reso
 
 ```yaml
 POST /
+Accept: text/yaml
+Content-Type: text/yaml
 
 type: transaction
 entry:
@@ -89,7 +93,7 @@ entry:
 
 ```
 
-You can provide a full Url with value like `"urn:<uuid-here>"` and reference to the resource created by such interaction using ref: `{uri: "urn:<uuid-here>"}`. Those references are temporary and will be translated to valid Aidbox references, when interaction entry is processed by a server.
+You can provide a full Url with value like `"urn:<uuid-here>"` and reference to the resource created by such interaction using ref: `{uri: "urn:<uuid-here>"}`. Those references are temporary and will be translated to valid Aidbox references when interaction entry is processed by a server.
 
 {% hint style="danger" %}
 You SHALL NOT refer resource, which is created later using conditional operations!
@@ -101,6 +105,8 @@ If you have multiple entries with the same resource id, aidbox will execute them
 
 ```yaml
 POST /
+Accept: text/yaml
+Content-Type: text/yaml
 
 resourceType: Bundle
 type: transaction
@@ -113,14 +119,25 @@ entry:
   resource: {birthDate: '2021-01-03'}
 ```
 
+{% tabs %}
+{% tab title="Request" %}
 ```yaml
 GET /Patient/pt-1
+Accept: text/yaml
+```
+{% endtab %}
 
+{% tab title="Response" %}
+```yaml
 {birthDate: '2021-01-03', id: pt-1, resourceType: Patient}
 ```
+{% endtab %}
+{% endtabs %}
 
 ```yaml
 GET /Patient/pt-1/_history
+Accept: text/yaml
+Content-Type: text/yaml
 
 resourceType: Bundle
 type: history

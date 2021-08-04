@@ -14,6 +14,8 @@ Create Client & AccessPolicy for your API agent - in our case curl
 
 ```yaml
 PUT /
+Accept: text/yaml
+Content-Type: text/yaml
 
 - resourceType: Client
   id: bulk-client

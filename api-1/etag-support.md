@@ -4,10 +4,11 @@ Read more about [How ETAG](https://developer.mozilla.org/ru/docs/Web/HTTP/%D0%97
 
 ### Search API & ETAG
 
-Search response contains **etag** information in the **etag** header and in `meta.versionId`. You can cache result and use `If-None-Match` header or `_etag` parameter to get newest data from the server or a response with the status `304` if nothing has been changed.
+Search response contains **etag** information in the **etag** header and in `meta.versionId`. You can cache result and use `If-None-Match` header or `_etag` parameter to get the latest data from the server or a response with `304` if nothing has been changed.
 
 ```yaml
 GET /Patient
+Accept: text/yaml
 
 # resp
 status: 200
@@ -21,6 +22,7 @@ body:
 
 # get 
 GET /Patient?_etag=999 # laset versionId
+Accept: text/yaml
 If-None-Match: 999
 
 # resp
@@ -28,6 +30,7 @@ status: 304
 
 # if etag is old you will get result
 GET /Patient?_etag=99
+Accept: text/yaml
 
 # resp
 status: 200
@@ -38,9 +41,9 @@ body:
 
 ### ETag Cache
 
-All etag values are cached to make etag queries efficient. If you somehow made this cache invalid, you can reset Aidbox etag cache by `DELETE /$etags-cache` or `DELETE /Patient/$etags-cache`.
+All ETag values are cached to make ETag queries efficient. If you somehow made this cache invalid, you can reset Aidbox ETag cache by `DELETE /$etags-cache` or `DELETE /Patient/$etags-cache`.
 
 {% hint style="warning" %}
-Aidbox **etags** machine is based on **txid** column in database! If you update resources in database, don't forget to update the **txid** column and reset cache. `UPDATE resource SET txid = nextval('transaction_id_seq')`
+Aidbox **ETags** machine is based on **txid** column in database! If you update resources in database, don't forget to update the **txid** column and reset cache. `UPDATE resource SET txid = nextval('transaction_id_seq')`
 {% endhint %}
 
