@@ -1,9 +1,13 @@
 # $import & /fhir/$import
 
-`$import` is an implementation of the upcoming FHIR Bulk Import API. This is an async Operation, which returns url to monitor progress. Here is self descriptive example:
+`$import` is an implementation of the upcoming FHIR Bulk Import API. This is an async Operation, which returns url to monitor progress. Here is an example:
 
+{% tabs %}
+{% tab title="Request" %}
 ```yaml
 POST /fhir/$import
+Accept: text/yaml
+Content-Type: text/yaml
 
 id: synthea
 inputFormat: application/fhir+ndjson
@@ -17,8 +21,17 @@ inputs:
 - resourceType: Patient
   url: https://storage.googleapis.com/aidbox-public/synthea/100/Patient.ndjson.gz
 ```
+{% endtab %}
 
-You post import body with id and can monitor progress of import using:
+{% tab title="Response" %}
+```
+200
+content-location: /BulkImportStatus/synthea
+```
+{% endtab %}
+{% endtabs %}
+
+You can monitor progress using:
 
 ```yaml
 GET /BulkImportStatus/[id]

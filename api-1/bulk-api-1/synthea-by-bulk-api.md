@@ -38,6 +38,8 @@ Now we can load for example Patients and Observations into your box:
 
 ```yaml
 POST /fhir/Patient/$load
+Accept: text/yaml
+Content-Type: text/yaml
 
 source: 'https://storage.googleapis.com/aidbox-public/synthea/100/Patient.ndjson.gz'
 
@@ -47,6 +49,8 @@ source: 'https://storage.googleapis.com/aidbox-public/synthea/100/Patient.ndjson
 
 ```yaml
 POST /fhir/Observation/$load
+Accept: text/yaml
+Content-Type: text/yaml
 
 source: 'https://storage.googleapis.com/aidbox-public/synthea/100/Observation.ndjson.gz'
 
@@ -54,7 +58,7 @@ source: 'https://storage.googleapis.com/aidbox-public/synthea/100/Observation.nd
 {total: 20382}
 ```
 
-Let see the data in aidbox:
+Let see the data in Aidbox:
 
 ```yaml
 GET /Patient?_ilike=John&_revinclude=Observation:patient
@@ -66,6 +70,8 @@ Using /fhir/$load you can load ndjson file with multiple resource types in one s
 
 ```yaml
 POST /fhir/$load
+Accept: text/yaml
+Content-Type: text/yaml
 
 source: 'https://storage.googleapis.com/aidbox-public/synthea/100/all.ndjson.gz'
 
@@ -123,6 +129,8 @@ To load data in a async way using new FHIR Bulk $import:
 
 ```yaml
 POST /fhir/$import
+Accept: text/yaml
+Content-Type: text/yaml
 
 id: synthea
 inputFormat: application/fhir+ndjson
@@ -165,7 +173,7 @@ inputs:
   url: https://storage.googleapis.com/aidbox-public/synthea/100/Procedure.ndjson.gz
 ```
 
-Operation will return 200  instantly and you can monitor status of import with:
+Operation will return 200  instantly and you can monitor import status with:
 
 ```yaml
 GET /BulkImportStatus/synthea

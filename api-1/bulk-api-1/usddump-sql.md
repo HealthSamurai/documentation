@@ -58,6 +58,7 @@ Get id and name of each patient
 
 ```yaml
 POST /$dump-sql
+Content-Type: text/yaml
 
 query: select id, resource#>>'{name,0,given,0}' from patient
 ```
@@ -66,7 +67,7 @@ query: select id, resource#>>'{name,0,given,0}' from patient
 
 ```bash
 curl -u bulk-client:secret $AIDBOX_BASE_URL/\$dump-sql \
-    -H 'Content-Type: application/yaml' -d@- <<EOF
+    -H 'Content-Type: text/yaml' -d@- <<EOF
 query: select id, resource#>>'{name,0,given,0}' from patient
 EOF
 ```

@@ -154,7 +154,7 @@ Dump appointments
 #### REST Console
 
 ```text
-GET /Appointment
+GET /Appointment/$dump
 ```
 
 #### Curl
@@ -256,7 +256,7 @@ Dump patients in FHIR format
 #### REST Console
 
 ```text
-GET /Patient?fhir=true
+GET /Patient/$dump?fhir=true
 ```
 
 #### Curl

@@ -8,10 +8,11 @@ There are two versions of this operation - `/fhir/$load` accepts data in FHIR fo
 Keep in mind that $load does not validate inserted resources for the sake of performance. Be mindful of the data you insert and use correct URL for your data format.
 {% endhint %}
 
-Here how you can load 100 synthea Patients \(see [tutorial](synthea-by-bulk-api.md)\):
+ Load 100 synthea Patients to Aidbox \(see [tutorial](synthea-by-bulk-api.md)\):
 
 ```yaml
 POST /fhir/Patient/$load
+Content-Type: text/yaml
 
 source: 'https://storage.googleapis.com/aidbox-public/synthea/100/Patient.ndjson.gz'
 
@@ -23,6 +24,7 @@ Or load the whole synthea package:
 
 ```yaml
 POST /fhir/$load
+Content-Type: text/yaml
 
 source: 'https://storage.googleapis.com/aidbox-public/synthea/100/all.ndjson.gz'
 
