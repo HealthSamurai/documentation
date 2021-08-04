@@ -12,6 +12,8 @@ According to the [FHIR specification](https://www.hl7.org/fhir/http.html#transac
 {% tab title="Request" %}
 ```javascript
 POST /fhir
+Accept: application/json
+Content-Type: application/json
 
 {
   "resourceType": "bundle",
