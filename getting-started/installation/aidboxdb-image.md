@@ -98,6 +98,20 @@ The image is configured by supplying environment variables and command line argu
       </td>
       <td style="text-align:left"><code>0</code> error, <code>1</code> warning, <code>2</code> debug.</td>
     </tr>
+    <tr>
+      <td style="text-align:left"><code>PGAGENT_USER</code>
+      </td>
+      <td style="text-align:left">postgres</td>
+      <td style="text-align:left">If you want to use custom user for <code>pgagent</code> you can specify
+        in this variable.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>PGAGENT_PASSWORD</code>
+      </td>
+      <td style="text-align:left"><em>Value of <code>POSTGRES_PASSWORD</code> variable</em>
+      </td>
+      <td style="text-align:left">Password for <b>custom</b>  <code>pgagent</code> user.</td>
+    </tr>
   </tbody>
 </table>
 
