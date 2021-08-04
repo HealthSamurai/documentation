@@ -10,6 +10,7 @@ The simplest way to programmatically interact with  Aidbox API is to use [Basic 
 
 ```yaml
 GET /Patient
+Accept: text/yaml
 Authorization: Basic {base64(Client.id + ':' + Client.secret)}
 ```
 
@@ -19,6 +20,8 @@ The first step is to create resource [Client]() with id & secret and add `'basic
 
 ```yaml
 POST /Client
+Accept: text/yaml
+Content-Type: text/yaml
 
 id: basic
 secret: secret
@@ -29,6 +32,8 @@ By default, your client does not have any permissions to access Aidbox REST API.
 
 ```yaml
 POST /AccessPolicy
+Accept: text/yaml
+Content-Type: text/yaml
 
 id: api-clients
 engine: allow # which means it has permisions for everything
@@ -47,6 +52,7 @@ Now you can make HTTP requests with `Authorization` header set to `'Basic ' + ba
 {% code title="basic-request" %}
 ```yaml
 GET /Patient
+Accept: text/yaml
 Authorization: Basic YmFzaWM6c2VjcmV0Cg==
 ```
 {% endcode %}
@@ -58,7 +64,7 @@ curl -u basic:secret https://yourbox/Patient
 curl -H 'Authorization: Basic YmFzaWM6c2VjcmV0Cg==' https://yourbox/Patient
 ```
 
-Most of HTTP clients will do `Authorization` header construction for you:
+Most HTTP clients will do `Authorization` header construction for you:
 
 {% code title="js-example" %}
 ```javascript

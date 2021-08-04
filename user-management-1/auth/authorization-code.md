@@ -14,6 +14,8 @@ The first step is to configure Client for Authorization Grant with `secret` and 
 {% tab title="client" %}
 ```yaml
 PUT /Client/webapp
+Accept: text/yaml
+Content-Type: text/yaml
 
 secret: verysecret
 first_party: true
@@ -84,6 +86,7 @@ With this code and client secret, you can request for Access Token with`grant_ty
 ```yaml
 POST /auth/token
 Content-Type: application/json
+
 {
  "client_id": "web-app",
  "client_secret": "verysecret",

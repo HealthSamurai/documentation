@@ -4,6 +4,8 @@ In order to add external OAuth 2.0 Provider integration, you have to create a re
 
 ```text
 POST /IdentityProvider
+Accept: text/yaml
+Content-Type: text/yaml
 
 resourceType: IdentityProvider
 system: https://google.com
@@ -72,6 +74,8 @@ Next, we have to create Client resource which will receive access token from Aid
 
 ```text
 POST /Client
+Accept: text/yaml
+Content-Type: text/yaml
 
 id: my-client
 grant_types: ["authorization_code"]
@@ -112,6 +116,8 @@ By default, everything that is returned by provider's userinfo endpoint gets sto
 
 ```text
 PUT /IdentityProvider/<provider-id>
+Accept: text/yaml
+Content-Type: text/yaml
 
 toScim:
  default_email:

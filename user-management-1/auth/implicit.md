@@ -70,6 +70,8 @@ After granting access the user is redirected to the redirect\_uri from the clien
 {% tab title="Create client" %}
 ```yaml
 POST /Client
+Accept: text/yaml
+Content-Type: text/yaml
 
 id: imp-client
 resourceType: Client

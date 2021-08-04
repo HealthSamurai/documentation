@@ -13,6 +13,8 @@ The first step is to configure Client for Resource Owner Grant with secret and p
 {% code title="client" %}
 ```yaml
 PUT /Client/myapp
+Accept: text/yaml
+Content-Type: text/yaml
 
 secret: verysecret
 grant_types:

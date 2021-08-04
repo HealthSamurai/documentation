@@ -15,6 +15,8 @@ To start using this flow you have to create and configure Client. The only requi
 {% code title="create new api client" %}
 ```yaml
 PUT /Client/api-client
+Accept: text/yaml
+Content-Type: text/yaml
 
 secret: verysecret
 grant_types:
@@ -33,6 +35,8 @@ You can also configure token's format and expiration, as well refresh the token:
 {% code title="create new api client" %}
 ```yaml
 PUT /Client/api-client
+Accept: text/yaml
+Content-Type: text/yaml
 
 secret: verysecret
 grant_types:
@@ -50,6 +54,8 @@ Since by default new client has no access to any resources, you probably want to
 {% code title="create policy" %}
 ```yaml
 PUT /AccessPolicy/api-client
+Accept: text/yaml
+Content-Type: text/yaml
 
 engine: allow
 link:
@@ -60,7 +66,7 @@ link:
 
 ### Get Access Token
 
-Next step is to exchange client id and secret for Access Token.
+The next step is to exchange client id and secret for Access Token.
 
 Using Basic & form-url-encoded:
 
