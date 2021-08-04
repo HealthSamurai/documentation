@@ -8,7 +8,7 @@ This module introduces two new resources into Aidbox:
 * SubsNotification — resource which represents notification with its status \(sent or not\).
 
 {% hint style="warning" %}
-Aidbox doesn't delete **SubsNotification** resources by itself. Simple way to implement retention policy is creating a cron job. [Let us know](https://t.me/aidbox) if there is more clear way.
+Aidbox doesn't delete **SubsNotification** resources by itself. The simple way to implement a retention policy is to create a cron job. [Let us know](https://t.me/aidbox) if there is a more clear way.
 {% endhint %}
 
 {% hint style="info" %}
@@ -19,6 +19,8 @@ Your service can register subscription by POST **SubsSubscription** resource:
 
 ```yaml
 POST /SubsSubscription
+Accept: text/yaml
+Content-Type: text/yaml
 
 id: myservice-subs
 
@@ -102,6 +104,7 @@ Results of all notifications are logged into **SubsNotification** resource:
 
 ```yaml
 GET /SubsNotification
+Accept: text/yaml
 
 ---
 id: <unique-id>
@@ -118,6 +121,7 @@ You can force a handshake notification for the specific subscription with:
 
 ```yaml
 POST /SubsSubscription/<sub-id>/$handshake
+Accept: text/yaml
 
 # response
 
@@ -138,6 +142,8 @@ To debug subscription notifications, you can send debug messages with:
 
 ```yaml
 POST /SubsSubscription/<sub-id>/$debug
+Accept: text/yaml
+Content-Type: text/yaml
 
 id: notif-id
 event: create
@@ -173,6 +179,7 @@ You can resend the specific notification with
 
 ```yaml
 POST /SubsNotification/<notif-id>/$notify
+Accept: text/yaml
 
 # response
 
@@ -188,6 +195,8 @@ You can subscribe one instance of Aidbox to notifications from another instance 
 
 ```yaml
 POST /SubsSubscription
+Accept: text/yaml
+Content-Type: text/yaml
 
 id: box-replication
 status: active

@@ -36,17 +36,21 @@ Polling request is cheap! If you want to watch rare changes \(minutes-hours\), t
 ```yaml
 ---
 GET /Patient/$changes
+Accept: text/yaml
 
 # status 200
 version: 1
 
 ---
 GET /Patient/$changes?version=1
+Accept: text/yaml
 
 # status 304 (Not Modified)
 
 ---
 POST /Patient
+Accept: text/yaml
+Content-Type: text/yaml
 
 id: pt-1
 name:
@@ -55,6 +59,8 @@ name:
 
 ---
 POST /Patient
+Accept: text/yaml
+Content-Type: text/yaml
 
 id: pt-2
 name:
@@ -63,6 +69,7 @@ name:
 
 ---
 GET /Patient/$changes?version=1
+Accept: text/yaml
 
 # status 200
 version: 3
@@ -82,6 +89,7 @@ changes:
 
 ---
 GET /Patient/$changes?version=1&.name.0.family=Wood
+Accept: text/yaml
 
 # status 200
 version: 3
@@ -95,6 +103,7 @@ changes:
       
 ---
 GET /Patient/$changes?version=1,2
+Accept: text/yaml
 
 # status 200
 version: 2
@@ -107,11 +116,13 @@ changes:
       given: [John]
 ---
 GET /Patient/pt-1/$changes
+Accept: text/yaml
 
 # status 200
 version: 2
 ---
 GET /Patient/pt-1/$changes?version=1
+Accept: text/yaml
 
 # status 200
 version: 2
@@ -124,6 +135,7 @@ changes:
       given: [John]
 ---
 GET /Patient/$changes?version=1&omit-resources=true
+Accept: text/yaml
 
 # status 200
 version: 3

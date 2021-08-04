@@ -43,6 +43,8 @@ Create subscription for all patients:
 
 ```yaml
 PUT /fhir/Subscription/all-pt
+Accept: text/yaml
+Content-Type: text/yaml
 
 criteria: Patient?
 status: active
@@ -55,6 +57,8 @@ Create test patient:
 
 ```yaml
 PUT /Patient/pt-1
+Accept: text/yaml
+Content-Type: text/yaml
 
 name:
 - family: Doe
@@ -65,6 +69,7 @@ Get current patients:
 
 ```yaml
 GET /Subscription/all-pt/$poll?from=0&_format=yaml
+Accept: text/yaml
 
 resourceType: Bundle
 entry:
@@ -87,6 +92,8 @@ Browser will be awaiting a response from server. In another tab, in the REST con
 
 ```yaml
 PUT /Patient/pt-2
+Accept: text/yaml
+Content-Type: text/yaml
 
 name:
 - family: Smith
@@ -107,6 +114,7 @@ Let's create the following Subscription resource:
 {% tab title="Request" %}
 ```javascript
 POST /fhir/Subscription
+Accept: application/json
 Content-Type: application/json
 
 {
@@ -174,6 +182,8 @@ Now,  let's create a new Patient resource:
 {% tab title="Request" %}
 ```javascript
 POST /fhir/Patient
+Accept: application/json
+Content-Type: application/json
 
 {
   "resourceType": "Patient",
