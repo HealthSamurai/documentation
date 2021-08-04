@@ -78,10 +78,12 @@
 * [Encryption API](api-1/encryption-api.md)
 * [Compartments API](api-1/compartments.md)
 * [GraphQL API](api-1/graphql-api.md)
+* [RPC API](api-1/rpc-api.md)
 
 ---
 
 * [Profiling and Validation](profiling/README.md)
+  * [Validation API](profiling/validation-api.md)
   * [Draft: Profiling with zen-lang](profiling/draft-profiling-with-zen-lang.md)
 
 ## App development guides
