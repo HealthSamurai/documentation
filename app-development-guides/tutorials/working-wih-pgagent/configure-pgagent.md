@@ -1,3 +1,7 @@
+---
+description: В aidobxdb есть возможность запуска pgagent
+---
+
 # Configure pgagent
 
 Для запуска pgagent вы должны указать переменную среды в deploy конфигурации `ENABLE_PGAGENT: "true”` Пример конфигурации k8s
