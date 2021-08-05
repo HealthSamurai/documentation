@@ -4,99 +4,104 @@ description: Aidbox gives you ability to run pgagent
 
 # Configure pgagent
 
+## Intro
+
+In this tutorial, we will learn how to run [pgagent](https://www.pgadmin.org/docs/pgadmin4/development/pgagent.html) in[ aidboxdb](https://app.gitbook.com/@aidbox/s/project/~/drafts/-MgLXlXB3EoFwi0-IE3d/getting-started/installation/aidboxdb-image).
+
 Supported only on `aidboxdb:13.2`
 
-To start [pgagent](https://www.pgadmin.org/docs/pgadmin4/development/pgagent.html) specify [environmental variable](https://app.gitbook.com/@aidbox/s/project/~/drafts/-MgL2PuDexdL_3OW-Bpq/getting-started/installation/aidboxdb-image#optional-environment-variables) in deploy configuration `ENABLE_PGAGENT: "true”` Here's an example of k8s configuration:
+To start [pgagent](https://www.pgadmin.org/docs/pgadmin4/development/pgagent.html) specify [environmental variable](https://app.gitbook.com/@aidbox/s/project/~/drafts/-MgL2PuDexdL_3OW-Bpq/getting-started/installation/aidboxdb-image#optional-environment-variables) in deploy configuration `ENABLE_PGAGENT: "true”` Here's an example of [docker compose configuration](https://docs.docker.com/compose/environment-variables/):
 
 ```text
-kind: Deployment
 ...
+services:
+  db:
+    image: "healthsamurai/aidboxdb"
+    environment:
+      ENABLE_PGAGENT:    "true"
+...
+
+```
+
+Pgagent runs with aidboxdb container and will restart after container restarting. By default pgagent runs as the standard user `postgres`. in order to run pgagent as a different user you need.
+
+## Run as a different user
+
+1. [Create new user in db](https://www.postgresql.org/docs/8.0/sql-createuser.html)
+2. [Give the postgres user all the necessary permissions](https://www.postgresql.org/docs/9.1/sql-grant.html). 
+3. Provide user password by [environment variables](https://docs.aidbox.app/getting-started/installation/aidboxdb-image#optional-environment-variables) `PGAGENT_USER` and `PGAGENT_PASSWORD`
+
+### Example configurations
+
+* Docker compose
+
+```text
+...
+services:
+  db:
+    image: "healthsamurai/aidboxdb"
+    environment:
+      ENABLE_PGAGENT:    "true"
+      PGAGENT_USER:      "postgres"
+      PGAGENT_PASSWORD:  "postgres"
+
+...
+
+```
+
+* Kubernetes deployment
+
+```text
+...
+kind: Deployment
 spec:
   containers:
     - name: db
-      image: healthsamurai/aidboxdb:13.2
+      image: "healthsamurai/aidboxdb"
       env:
         # Define the environment variable
         - name: ENABLE_PGAGENT 
-          value: true
-...
-```
-
-Pgagent runs with aidbox-master container and will restart after pod restarting.
-
-When starting pod in k8s, pgagent runs as the standard user `postgres`. In order to start pgagent as a different user, you need to specify additional environment variables
-
-> You need to create new user if user doesn't exist
-
-```text
-PGAGENT_USER:      "another user"
-PGAGENT_PASSWORD:  "password"
-```
-
-An example of k8s config
-
-```text
-kind: Deployment
-...
-spec:
-  containers:
-    - name: db
-      image: healthsamurai/aidboxdb:13.2
-      env:
-        # Define the environment variable
-        - name: ENABLE_PGAGENT 
-          value: true
+          value: "true"
         - name: PGAGENT_USER 
-          value: "another user" 
+          value: "postgres"
         - name: PGAGENT_PASSWORD 
-          value: "password" #use secret
+          value: "postgres"
+                                     
 ```
 
-Now pgagent running as different user role in container. 
+> If your configuration in configmap and you don't change deployment, don't forget restart pod to apply new configuration
 
-We can verify this by connecting to the postgres-master container. If you are using k8 the command will look like this
+Now pgagent running as different user role in container!
 
-```text
-kubectl exec -it <pod-name>  --namespace prod -- bash 
-```
+## Debug
 
-And check processes
+How to check that pgagent is working? We can verify this by connecting to the aidbox container. You can connect to container by[ docker CLI](https://docs.docker.com/engine/reference/commandline/exec/) or [kubectl if use use kubernetes](https://kubernetes.io/docs/tasks/debug-application-cluster/get-shell-running-container/).
 
-```text
-ps aux
-```
+By default the logs can be viewed in the file `/tmp/pgagent.log`
 
-You will see pgagent process and connection string with user, dbname, password
-
-Also you can view the pgagent logs
+> You can override the path for logging and the level of logs using [environment variables](https://docs.aidbox.app/getting-started/installation/aidboxdb-image#optional-environment-variables)
 
 ```text
 cat /tmp/pgagent.log
 ```
 
-If you use devbox, specify env variables in docker compose file
+Check processes
 
 ```text
-version: '3.1'
-services:
-  db:
-    image: "healthsamurai/aidboxdb"
-    ports:
-      - "5432:5432"
-    volumes:
-    - "./pgdata:/data"
-    environment:
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "postgres"
-      POSTGRES_DB: "postgres"
-      ENABLE_PGAGENT: "true"
+ps aux
 ```
 
-Troubleshooting
+You will see pgagent process and connection string with user, dbname, password.
 
-> If job pgagent running on different user, please don't forget to grant access to new user to required tables.
->
-> if your environment variables are described in configmap and you have not changed deployment do not forget to restart deployment after changing environment variables for the change to take effect
+{% page-ref page="working-wih-pgagent.md" %}
+
+
+
+
+
+
+
+
 
 
 
