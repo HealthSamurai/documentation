@@ -18,9 +18,9 @@ spec:
 ...
 ```
 
-Pgagent process will reboot after prod rebooting.
+Pgagent process will restart after pod restarting.
 
-When starting pod in k8s, pgagent runs under the standard user postgres. In order to start pgagent under a different user, you need to specify additional environment variables
+When starting pod in k8s, pgagent runs as the standard user `postgres`. In order to start pgagent as a different user, you need to specify additional environment variables
 
 ```text
 PGAGENT_USER:      "another user"
@@ -45,9 +45,9 @@ spec:
 ...
 ```
 
-Now pgagent running under different user role in container.
+Now pgagent running as different user role in container.
 
 Troubleshoot
 
-> If  job pgagent running on different user, please don't forget to grant access to new user to required tables.
+> If job pgagent running on different user, please don't forget to grant access to new user to required tables.
 
