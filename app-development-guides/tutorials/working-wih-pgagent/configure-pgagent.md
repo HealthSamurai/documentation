@@ -20,7 +20,7 @@ spec:
 
 Pgagent process will reboot after prod rebooting.
 
-When starting pod in k8s, pgagent runs under the standard user postgres.In order to start pgagent as a different user, you need to specify additional environment variables
+When starting pod in k8s, pgagent runs under the standard user postgres. In order to start pgagent under a different user, you need to specify additional environment variables
 
 ```text
 PGAGENT_USER:      "another user"
