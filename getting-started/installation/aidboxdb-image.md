@@ -72,7 +72,7 @@ The image is configured by supplying environment variables and command line argu
       <td style="text-align:left">
         <p>When present and <code>PG_ROLE</code> is not set to &quot;replica&quot;
           starts <code>pgagent</code> daemon on <code>aidboxdb</code> start.</p>
-        <p><a href="../../app-development-guides/tutorials/working-wih-pgagent/">pgAgent tutorial</a>
+        <p><a href="../../app-development-guides/tutorials/working-wih-pgagent.md">pgAgent tutorial</a>
         </p>
       </td>
     </tr>
