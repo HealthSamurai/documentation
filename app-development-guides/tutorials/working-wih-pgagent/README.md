@@ -8,11 +8,13 @@ description: >-
 
 ## Enabling `pgagent`
 
+\`\`
+
 {% hint style="warning" %}
 Supported only on `aidboxdb:13.2`
 {% endhint %}
 
-{% page-ref page="../../getting-started/installation/aidboxdb-image.md" %}
+{% page-ref page="../../../getting-started/installation/aidboxdb-image.md" %}
 
 Create `docker-compose.yaml` file with the following content:
 
@@ -35,8 +37,8 @@ services:
 {% endcode %}
 
 {% hint style="info" %}
-**pgAgent** options are described [here](../../getting-started/installation/aidboxdb-image.md#optional-environment-variables).  
-You can find more information about **aidboxdb** setup [here](../../getting-started/installation/aidboxdb-image.md).
+**pgAgent** options are described [here](../../../getting-started/installation/aidboxdb-image.md#optional-environment-variables).  
+You can find more information about **aidboxdb** setup [here](../../../getting-started/installation/aidboxdb-image.md).
 {% endhint %}
 
 Start docker container:
@@ -76,14 +78,14 @@ Refer to [https://www.pgadmin.org/](https://www.pgadmin.org/) for pgAdmin and pg
 
 Create server connection  
 
-![](../../.gitbook/assets/screen-shot-2021-07-15-at-18.06.35.png)
+![](../../../.gitbook/assets/screen-shot-2021-07-15-at-18.06.35.png)
 
 {% hint style="warning" %}
 It's important that **Maintenance database** is the database `pgagent` connected to.  
-By default it's `postgres` database, you can control it with env variables, more info at [aidboxdb image docs](../../getting-started/installation/aidboxdb-image.md#optional-environment-variables).
+By default it's `postgres` database, you can control it with env variables, more info at [aidboxdb image docs](../../../getting-started/installation/aidboxdb-image.md#optional-environment-variables).
 {% endhint %}
 
 Now you can schedule a job as described at [pgAgent docs](https://www.pgadmin.org/docs/pgadmin4/development/pgagent_jobs.html).
 
-![](../../.gitbook/assets/screen-shot-2021-07-15-at-18.10.18.png)
+![](../../../.gitbook/assets/screen-shot-2021-07-15-at-18.10.18.png)
 
