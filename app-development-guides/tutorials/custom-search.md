@@ -17,6 +17,8 @@ You can use the Copy button near the top right corner of a snippet to avoid copy
 {% tab title="Request" %}
 ```yaml
 POST /
+Accept: text/yaml
+Content-Type: text/yaml
 
 type: transaction
 entry:
@@ -323,6 +325,8 @@ Now let's make the results of this query accessible via REST API. To do that, we
 {% tab title="Request" %}
 ```yaml
 POST /AidboxQuery
+Accept: text/yaml
+Content-Type: text/yaml
 
 id: patient-with-encounters
 params:
