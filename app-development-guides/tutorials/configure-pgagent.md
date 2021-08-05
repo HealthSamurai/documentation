@@ -6,11 +6,11 @@ description: Aidbox gives you ability to run pgagent
 
 ## Intro
 
-In this tutorial, we will learn how to run [pgagent](https://www.pgadmin.org/docs/pgadmin4/development/pgagent.html) in[ aidboxdb](https://app.gitbook.com/@aidbox/s/project/~/drafts/-MgLXlXB3EoFwi0-IE3d/getting-started/installation/aidboxdb-image).
+In this tutorial, we will learn how to run [pgagent](https://www.pgadmin.org/docs/pgadmin4/development/pgagent.html) in[ aidboxdb](https://app.gitbook.com/@aidbox/s/project/~/drafts/-MgLXlXB3EoFwi0-IE3d/getting-started/installation/aidboxdb-image). In order for the pg agent to run together with aidboxdb, you just need to specify an additional environment variable. 
 
-Supported only on `aidboxdb:13.2`
+To start pgagent set environmental variable `ENABLE_PGAGENT` .to `true`
 
-To start [pgagent](https://www.pgadmin.org/docs/pgadmin4/development/pgagent.html) specify [environmental variable](https://app.gitbook.com/@aidbox/s/project/~/drafts/-MgL2PuDexdL_3OW-Bpq/getting-started/installation/aidboxdb-image#optional-environment-variables) in deploy configuration `ENABLE_PGAGENT: "true”` Here's an example of [docker compose configuration](https://docs.docker.com/compose/environment-variables/):
+Here's an example of [how to specify env variables](https://docs.docker.com/compose/environment-variables/) in docker compose file.
 
 ```text
 ...
@@ -23,6 +23,10 @@ services:
 
 ```
 
+{% hint style="info" %}
+[You can see the full list of environment variables for aidboxdb here](https://docs.aidbox.app/getting-started/installation/aidboxdb-image#optional-environment-variables)
+{% endhint %}
+
 Pgagent runs with aidboxdb container and will restart after container restarting. By default pgagent runs as the standard user `postgres`. in order to run pgagent as a different user you need.
 
 ## Run as a different user
@@ -31,9 +35,7 @@ Pgagent runs with aidboxdb container and will restart after container restarting
 2. [Give the postgres user all the necessary permissions](https://www.postgresql.org/docs/9.1/sql-grant.html). 
 3. Provide user password by [environment variables](https://docs.aidbox.app/getting-started/installation/aidboxdb-image#optional-environment-variables) `PGAGENT_USER` and `PGAGENT_PASSWORD`
 
-### Example configurations
-
-* Docker compose
+Example docker compose file with pgagent enabled running from another user.
 
 ```text
 ...
@@ -49,7 +51,7 @@ services:
 
 ```
 
-* Kubernetes deployment
+Example [kubernetes deployment](https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/) file with pgagent enabled running from another user.
 
 ```text
 ...
@@ -75,7 +77,10 @@ Now pgagent running as different user role in container!
 
 ## Debug
 
-How to check that pgagent is working? We can verify this by connecting to the aidbox container. You can connect to container by[ docker CLI](https://docs.docker.com/engine/reference/commandline/exec/) or [kubectl if use use kubernetes](https://kubernetes.io/docs/tasks/debug-application-cluster/get-shell-running-container/).
+How to check that pgagent is working? We can verify this by connecting to the aidbox container. You can connect to container by docker cli or kubectl if use use kubernetes.
+
+* connect by docker cli - [https://docs.docker.com/engine/reference/commandline/exec/](https://docs.docker.com/engine/reference/commandline/exec/)
+* connect by kubectl - [https://kubernetes.io/docs/tasks/debug-application-cluster/get-shell-running-container/](https://kubernetes.io/docs/tasks/debug-application-cluster/get-shell-running-container/)
 
 By default the logs can be viewed in the file `/tmp/pgagent.log`
 
