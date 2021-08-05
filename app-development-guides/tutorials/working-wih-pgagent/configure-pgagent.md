@@ -1,10 +1,10 @@
 ---
-description: В aidobxdb есть возможность запуска pgagent
+description: Aidbox gives you ability to run pgagent
 ---
 
 # Configure pgagent
 
-Для запуска pgagent вы должны указать переменную среды в deploy конфигурации `ENABLE_PGAGENT: "true”` Пример конфигурации k8s
+To start please specify enviromental variable in deploy configuration `ENABLE_PGAGENT: "true”` Here's an example of k8s configuration:
 
 ```text
 kind: Deployment
@@ -18,16 +18,16 @@ spec:
 ...
 ```
 
-После перезапуска pod процесс pgagent тоже перезапустится
+Pgagent process will reboot after prod rebooting.
 
-При старте pod в k8s запутстися pgagent под стандартным пользователем postgres Для того чтобы запустить pgagent от другого пользователя нужно указать допонительные переменные среды
+When starting pod in k8s, run pgagent as the standard user postgres.In order to start pgagent as a different user, you need to specify additional environment variables
 
 ```text
 PGAGENT_USER:      "another user"
 PGAGENT_PASSWORD:  "password"
 ```
 
-Пример конфигурации k8s
+An example of k8s config
 
 ```text
 kind: Deployment
@@ -45,9 +45,9 @@ spec:
 ...
 ```
 
-Теперь в контейнере с базой запущен pgagent запущен под другим пользователем
+Now pgagent running under different user role in container.
 
 Troubleshoot
 
-> Если job pgagent запущен от другого пользователя не забудьте дать новому пользователю права на нужные таблицы
+> If  job pgagent running on different user, please don't forget to grant access to new user to required tables.
 
