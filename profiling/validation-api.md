@@ -6,9 +6,15 @@ description: API to validate resources
 
 ### Batch Validation `draft`
 
+{% hint style="info" %}
+This is a draft API. We appreciate your feedback and ideas discussion
+{% endhint %}
+
+It may happen that you updated your profiles when data is already in your database or you want to do efficiently load a batch of data and validate it later. 
+
 #### aidbox.validation/batch-validation
 
-It may happen that you updated your profiles when data is already in your database or you want to do efficiently load a batch of data and validate it later. You can validate your existing data with our new rpc `aidbox/batch-validation`:
+You can validate your existing data with our new rpc `aidbox/batch-validation`:
 
 ```yaml
 POST /rpc
@@ -39,6 +45,8 @@ result:
   resource: SearchParameter
   id: s2
 ```
+
+#### aidbox.validation/batch-validation-result
 
 #### aidbox.validation/clear-batch-validation
 
