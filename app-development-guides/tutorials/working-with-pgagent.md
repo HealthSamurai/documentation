@@ -1,4 +1,49 @@
+---
+description: >-
+  PgAgent is scheduling agent that can be managed with PgAdmin. This tutorial
+  will show you how to configure PgAgent in aidboxdb.
+---
+
 # Working with pgAgent
+
+## Introduction
+
+{% hint style="warning" %}
+Currently available only in `aidboxdb:13.2 or later.`
+{% endhint %}
+
+PgAgent provides an ability to run user defined jobs on postgres database. It runs as a separate process on a system with postgres databases.
+
+Aidboxdb comes with PgAgent preinstalled.
+
+By default aidboxdb container doesn't start PgAgent daemon. To start the daemon you need to specify `ENABLE_PGAGENT` variable. If variable is specified then daemon will be started on container start up.
+
+{% hint style="warning" %}
+PgAgent wouldn't run if postgres instance is run as replica \(`PG_ROLE` is not equal to `'replica')` because it may lead to unexpected behavior.
+{% endhint %}
+
+{% hint style="warning" %}
+PgAgent will run on **every**  instance of postgres master, which may lead to unexpected behavior.
+{% endhint %}
+
+By default `pgagent` process in `aidboxdb` will use database specified in `POSTGRES_DB` enviromental variable and will run as a user specified in `POSTGRES_USER` variable \(postgres by default\).
+
+If you want to specify **dedicated user** for PgAgent \(for examples to limit PgAgent privileges\) then you need to specify `PGAGENT_USER` and `PGAGENT_PASSWORD` variables.
+
+If you want to use **dedicated database** to store `pgagent` service data then you can specify it  in `PGAGENT_DB` variable. But you have to create the database and extension manualy before starting pgagent.
+
+{% hint style="info" %}
+**Note:** if you want to use dedicated user or database you need to create them manualy before enabling PgAgent in your `aidboxdb` configuration.
+
+Don't forget to create the `pgagent`extension if your choose to use dedicated database.  
+To create the extension run`CREATE EXTENSION pgagent;`
+{% endhint %}
+
+There are some more options availiable to configure pgagent.
+
+You can specify log level with `PGAGENT_LOG_LEVEL` and  you can specify a file where pgagent logs are written in `PGAGENT_LOG_FILE_PATH`.
+
+You can see more info on configuring aidboxdb [here](../../getting-started/installation/aidboxdb-image.md).
 
 ## Step by step example with docker
 
