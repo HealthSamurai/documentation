@@ -107,7 +107,7 @@ GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO pgagent;
 GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO pgagent;
 ```
 
-After you've run commands update he `docker-compose.yaml` file:
+After you've run commands update`docker-compose.yaml` file:
 
 {% code title="docker-compose.yaml" %}
 ```yaml
