@@ -1,0 +1,256 @@
+# Working with pgAgent
+
+## Step by step example with docker
+
+In this example we will setup simple `pgagent` job with dedicated pgagent database and user.
+
+### Configuring pgagent
+
+First we will need to create initial `docker-compose` configuration:
+
+{% code title="docker-compose.yaml" %}
+```yaml
+services:
+  db:
+    container_name: aidboxdb
+    image: healthsamurai/aidboxdb:13.2
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+```
+{% endcode %}
+
+Start container with:
+
+```bash
+docker-compose up -d
+```
+
+Now let's create database, extension, test table and user.
+
+Connect to postgres with:
+
+```bash
+docker exec -it aidboxdb ps
+```
+
+And run following commands:
+
+```sql
+CREATE DATABASE pgagent;
+\c pgagent
+
+CREATE EXTENSION pgagent;
+
+CREATE TABLE test(tx timestamptz default now(), note text);
+
+CREATE USER "pgagent" WITH
+  LOGIN
+  NOSUPERUSER
+  INHERIT
+  NOCREATEDB
+  NOCREATEROLE
+  NOREPLICATION
+  encrypted password 'secret';
+
+GRANT USAGE ON SCHEMA pgagent TO pgagent;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA pgagent TO pgagent;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA pgagent TO pgagent;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO pgagent;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO pgagent;
+```
+
+After you've runned command update the `docker-compose.yaml` file:
+
+{% code title="docker-compose.yaml" %}
+```yaml
+services:
+  db:
+    container_name: aidboxdb
+    image: 'healthsamurai/aidboxdb:13.2'
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+      ENABLE_PGAGENT: 'true' # Must be string
+      PGAGENT_USER: pgagent
+      PGAGENT_PASSWORD: secret
+      PGAGENT_DB: pgagent
+      PGAGENT_LOG_LEVEL: 2
+```
+{% endcode %}
+
+And re-create container
+
+```bash
+docker-compose up -d
+```
+
+Let's connect into the container and see what is going on.
+
+```bash
+docker exec -it aidboxdb bash
+```
+
+Run following commands in the terminal \(`#` denotes response\):
+
+First let's run `pgrep command`:
+
+{% tabs %}
+{% tab title="Bash" %}
+```bash
+pgrep pgagent
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```
+9
+```
+{% endtab %}
+{% endtabs %}
+
+You can `ps aux` command if you want to see more details on `pgagent` arguments:
+
+{% tabs %}
+{% tab title="Bash" %}
+```bash
+ps aux | grep pgagent
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```
+pgagent -s /tmp/pgagent.log -l 1 host=localhost port=5432 dbname=pgagent user=pgagent password=secret
+```
+{% endtab %}
+{% endtabs %}
+
+Let's check `pgagent` logs:
+
+{% tabs %}
+{% tab title="Plain Text" %}
+```text
+cat /tmp/pgagent.logs
+```
+{% endtab %}
+
+{% tab title="Logs" %}
+```
+WARNING: Couldn't create the primary connection [Attempt #2]
+DEBUG: Clearing all connections
+DEBUG: Connection stats: total - 1, free - 0, deleted - 1
+DEBUG: Creating primary connection
+DEBUG: Parsing connection information...
+DEBUG: user: pgagent
+DEBUG: password: *****
+DEBUG: dbname: pgagent
+DEBUG: host: localhost
+DEBUG: port: 5432
+DEBUG: Creating DB connection: user=pgagent password=secret  host=localhost port=5432 dbname=pgagent
+DEBUG: Database sanity check
+DEBUG: Clearing zombies
+DEBUG: Checking for jobs to run
+DEBUG: Sleeping...
+DEBUG: Clearing inactive connections
+DEBUG: Connection stats: total - 1, free - 0, deleted - 0
+DEBUG: Checking for jobs to run
+DEBUG: Sleeping...
+```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="warning" %}
+Don't worry if you see `WARNING: Couldn't create the primary connection [Attempt #2]` – postgres takes some time to start and pgagent will reconnect as soon as postgres is ready to accept connections.
+{% endhint %}
+
+### Defining a job via PgAdmin
+
+{% hint style="info" %}
+Refer to [https://www.pgadmin.org/](https://www.pgadmin.org/) for pgAdmin and pgAgent documentation.
+{% endhint %}
+
+Now when pgagent is up and running we can define some jobs and see if they're actually running.
+
+![Create server connection](../../.gitbook/assets/screen-shot-2021-08-06-at-04.24.22.png)
+
+![It&apos;s important that Maintenance database is the same database where pgagent data is stored.](../../.gitbook/assets/screen-shot-2021-08-06-at-04.25.08.png)
+
+![Create pgAgent job](../../.gitbook/assets/screen-shot-2021-08-06-at-05.27.24.png)
+
+![](../../.gitbook/assets/screen-shot-2021-08-06-at-04.31.00.png)
+
+![](../../.gitbook/assets/screen-shot-2021-08-06-at-04.27.19.png)
+
+![Let&apos;s run our job every minute.](../../.gitbook/assets/screen-shot-2021-08-06-at-04.27.56.png)
+
+#### Test if jobs are running
+
+Let's connect into postgres to see if jobs are actually  running.
+
+```bash
+docker exec -it aidboxdb psql pgagent
+```
+
+We can check scheduled jobs, last and next time their run in `pgagent.pga_job` table.
+
+{% tabs %}
+{% tab title="SQL" %}
+```sql
+--turn on extended view
+\x
+SELECT * FROM pgagent.pga_job;
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```
+-[ RECORD 1 ]+------------------------------
+jobid        | 1
+jobjclid     | 1
+jobname      | Test Job
+jobdesc      |
+jobhostagent |
+jobenabled   | t
+jobcreated   | 2021-08-06 02:05:39.111269+00
+jobchanged   | 2021-08-06 02:05:39.111269+00
+jobagentid   |
+jobnextrun   | 2021-08-06 02:06:00+00
+joblastrun   |
+```
+{% endtab %}
+{% endtabs %}
+
+Let's test if job was run in our `test` table:
+
+{% tabs %}
+{% tab title="Bash" %}
+```sql
+SELECT * FROM test;
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```
+-[ RECORD 1 ]-----------------------
+tx   | 2021-08-06 02:06:03.970728+00
+note | test
+```
+{% endtab %}
+{% endtabs %}
+
+If everything was successfull you will see new records in the table.
+
+## Summary
+
+* `pgagent` is a great tool to run various job on your postgres database.
+* `pgagent` runs only if `ENABLE_PGAGENT` variable is present.
+* You can configure `pgagent` using several variables described [here](../../getting-started/installation/aidboxdb-image.md#optional-environment-variables).
+
+If you have any questions on how to configure `pgagent` feel free to [contact  us](../../contact-us.md).
+
