@@ -16,7 +16,7 @@ PgAgent provides an ability to run user defined jobs on postgres database. It ru
 
 Aidboxdb comes with PgAgent preinstalled.
 
-By default aidboxdb container doesn't start PgAgent daemon. To start the daemon you need to specify `ENABLE_PGAGENT` variable. If variable is specified then daemon will be started on container start up.
+By default aidboxdb container doesn't start PgAgent daemon. To start the daemon you need to specify `PGAGENT_ENABLED` variable. If variable is specified then daemon will be started on container start up.
 
 {% hint style="warning" %}
 PgAgent wouldn't run if postgres instance is run as replica \(`PG_ROLE` is not equal to `'replica')` because it may lead to unexpected behavior.
@@ -122,7 +122,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: postgres
-      ENABLE_PGAGENT: 'true' # Must be string
+      PGAGENT_ENABLED: 'true' # Must be string
       PGAGENT_USER: pgagent
       PGAGENT_PASSWORD: secret
       PGAGENT_DB: pgagent
@@ -294,7 +294,7 @@ If everything was successfull you will see new records in the table.
 ## Summary
 
 * `pgagent` is a great tool to run various job on your postgres database.
-* `pgagent` runs only if `ENABLE_PGAGENT` variable is present.
+* `pgagent` runs only if `PGAGENT_ENABLED` variable is present.
 * You can configure `pgagent` using several variables described [here](../../getting-started/installation/aidboxdb-image.md#optional-environment-variables).
 
 If you have any questions on how to configure `pgagent` feel free to [contact  us](../../contact-us.md).
