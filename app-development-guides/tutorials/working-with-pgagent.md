@@ -28,7 +28,7 @@ PgAgent will run on **every** instance of Postgres master, which may lead to une
 
 By default PgAgent process in aidboxdb will use a database specified in `POSTGRES_DB` environmental variable and will run as a user which is specified in `POSTGRES_USER` variable \(`postgres` by default\).
 
-If you want to specify **a dedicated user** for PgAgent \(for example to limit PgAgent privileges\) then you need to specify `PGAGENT_USER` and `PGAGENT_PASSWORD` variables.
+If you want to specify **a dedicated user** for PgAgent \(for example to limit PgAgent privileges\), you need to specify `PGAGENT_USER` and `PGAGENT_PASSWORD` variables.
 
 If you want to use **a dedicated database** to store PgAgent service data then you can specify it in `PGAGENT_DB` variable. But you have to create the database and extension manually before starting PgAgent.
 
