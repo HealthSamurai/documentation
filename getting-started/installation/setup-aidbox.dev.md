@@ -125,7 +125,7 @@ AIDBOX_IMAGE=healthsamurai/devbox:latest
 | AIDBOX\_ADMIN\_ID | false | Id for admin user \(default: admin\) |
 | AIDBOX\_ADMIN\_PASSWORD | false | Password for admin user |
 
-Please, find the full list of available environment variables [here](https://docs.aidbox.app/getting-started/installation/use-devbox-aidbox). 
+Please, find the full list of available environment variables [here](https://docs.aidbox.app/getting-started/installation/use-devbox-aidbox).
 
 {% hint style="info" %}
 If **AIDBOX\_CLIENT\_ID** & **AIDBOX\_CLIENT\_SECRET** are provided - Aidbox will start in a secure mode with access control turned on; API Client with provided ID and secret will be created, as well as the Access Policy, which grants root privileges to this Client. In the simpliest way, you can access Aidbox API using basic auth and this client credentials.
@@ -149,7 +149,7 @@ $ docker-compose up -d
 
 That's it! Devbox is running and you can point your browser to [http://localhost:8888](http://localhost:8888/) to see a fancy welcome page.
 
-_\*\*_Input your ADMIN\_ID and ADMIN\_PASSWORD and you will see your development environment. This is the way to create your best healthcare products.
+\_\*\*\_Input your ADMIN\_ID and ADMIN\_PASSWORD and you will see your development environment. This is the way to create your best healthcare products.
 
 ![](../../.gitbook/assets/login-aidbox.gif)
 
@@ -242,6 +242,4 @@ $ docker-compose up -d
 [aidbox/db](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1&ordering=last_updated) is a custom compiled Postgres which is bundled with extensions necessary for the Aidbox.  
 One of these extensions is the [jsonknife](https://github.com/niquola/jsonknife), it provides a set of functions used in FHIR search API implementation. If your Postgres image is missing the jsonknife extension, then Aidbox will try to use other tools to implement jsonknife functionality. Fallback will happen in such order: jsonpath, ~~plv8~~, pure PostgreSQL. Keep in mind that alternative implementations have lower performance  
 _2021-04-09: plv8 jsonknife engine has been deprecated_
-
-
 
