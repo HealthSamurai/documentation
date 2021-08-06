@@ -66,13 +66,13 @@ The image is configured by supplying environment variables and command line argu
       <td style="text-align:left">Master database host for streaming replica</td>
     </tr>
     <tr>
-      <td style="text-align:left"><code>ENABLE_PGAGENT</code>
+      <td style="text-align:left"><code>PGAGENT_ENABLED</code>
       </td>
       <td style="text-align:left"></td>
       <td style="text-align:left">
-        <p>When present and <code>PG_ROLE</code> is not set to &quot;replica&quot;
-          starts <code>pgagent</code> daemon on <code>aidboxdb</code> start.</p>
-        <p><a href>pgAgent tutorial</a>
+        <p>When present and <code>PG_ROLE</code> is not set to <code>&quot;replica&quot;</code> starts <code>pgagent</code> daemon
+          on <code>aidboxdb</code> start.</p>
+        <p><a href="../../app-development-guides/tutorials/working-with-pgagent.md">pgAgent tutorial</a>
         </p>
       </td>
     </tr>
