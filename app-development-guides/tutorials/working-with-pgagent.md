@@ -30,7 +30,7 @@ By default PgAgent process in aidboxdb will use a database specified in `POSTGRE
 
 If you want to specify **a dedicated user** for PgAgent \(for example to limit PgAgent privileges\), you need to specify `PGAGENT_USER` and `PGAGENT_PASSWORD` variables.
 
-If you want to use **a dedicated database** to store PgAgent service data then you can specify it in `PGAGENT_DB` variable. But you have to create the database and extension manually before starting PgAgent.
+If you want to use **a dedicated database** to store PgAgent service data, you can specify it in `PGAGENT_DB` variable. But you have to create the database and extension manually before starting PgAgent.
 
 {% hint style="info" %}
 **Note:** if you want to use a dedicated user or database you need to create them manually before enabling PgAgent in your aidboxdb configuration.
