@@ -42,7 +42,7 @@ To create the extension run `CREATE EXTENSION pgagent;`
 There are some more options available to configure PgAgent:  
 You can specify log level with `PGAGENT_LOG_LEVEL` and you can specify a file where PgAagent logs are written in `PGAGENT_LOG_FILE_PATH`.
 
-You can see more info on configuring aidboxdb [here](/getting-started/installation/aidboxdb-image).
+You can see more info on configuring aidboxdb [here](https://github.com/Aidbox/documentation/tree/c05c4e4e503bacc57e207709dddb652a06811206/getting-started/installation/aidboxdb-image/README.md).
 
 ## Step-by-step example with docker
 
@@ -151,7 +151,7 @@ pgrep pgagent
 {% endtab %}
 
 {% tab title="Response" %}
-```
+```text
 9
 ```
 {% endtab %}
@@ -167,7 +167,7 @@ ps aux | grep pgagent
 {% endtab %}
 
 {% tab title="Response" %}
-```
+```text
 pgagent -s /tmp/pgagent.log -l 1 host=localhost port=5432 dbname=pgagent user=pgagent password=secret
 ```
 {% endtab %}
@@ -183,7 +183,7 @@ cat /tmp/pgagent.logs
 {% endtab %}
 
 {% tab title="Logs" %}
-```
+```text
 WARNING: Couldn't create the primary connection [Attempt #2]
 DEBUG: Clearing all connections
 DEBUG: Connection stats: total - 1, free - 0, deleted - 1
@@ -251,7 +251,7 @@ SELECT * FROM pgagent.pga_job;
 {% endtab %}
 
 {% tab title="Response" %}
-```
+```text
 -[ RECORD 1 ]+------------------------------
 jobid        | 1
 jobjclid     | 1
@@ -278,7 +278,7 @@ SELECT * FROM test;
 {% endtab %}
 
 {% tab title="Response" %}
-```
+```text
 -[ RECORD 1 ]-----------------------
 tx   | 2021-08-06 02:06:03.970728+00
 note | test
@@ -294,5 +294,5 @@ If everything was successfull you will see new records in the table.
 * `pgagent` runs only if `PGAGENT_ENABLED` variable is present.
 * You can configure `pgagent` using several variables described [here](../../getting-started/installation/aidboxdb-image.md#optional-environment-variables).
 
-If you have any questions on how to configure `pgagent` feel free to [contact  us](../../contact-us.md).
+If you have any questions on how to configure `pgagent` feel free to [contact us](../../contact-us.md).
 
