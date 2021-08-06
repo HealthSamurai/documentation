@@ -12,38 +12,37 @@ description: >-
 Currently available only in `aidboxdb:13.2 or later.`
 {% endhint %}
 
-PgAgent provides an ability to run user defined jobs on postgres database. It runs as a separate process on a system with postgres databases.
+PgAgent provides an ability to run user-defined jobs on the Postgres database. It runs as a separate process on a system with Postgres databases.
 
 Aidboxdb comes with PgAgent preinstalled.
 
-By default aidboxdb container doesn't start PgAgent daemon. To start the daemon you need to specify `PGAGENT_ENABLED` variable. If variable is specified then daemon will be started on container start up.
+By default, aidboxdb container doesn't start the PgAgent daemon. To start the daemon you need to specify `PGAGENT_ENABLED` variable. If the variable is specified then the daemon will be started on container startup.
 
 {% hint style="warning" %}
-PgAgent wouldn't run if postgres instance is run as replica \(`PG_ROLE` is not equal to `'replica')` because it may lead to unexpected behavior.
+PgAgent wouldn't run if Postgres instance is run as a replica \(`PG_ROLE` is not equal to `'replica'`\) because it may lead to unexpected behavior.
 {% endhint %}
 
 {% hint style="warning" %}
-PgAgent will run on **every**  instance of postgres master, which may lead to unexpected behavior.
+PgAgent will run on **every** instance of Postgres master, which may lead to unexpected behavior.
 {% endhint %}
 
-By default `pgagent` process in `aidboxdb` will use database specified in `POSTGRES_DB` enviromental variable and will run as a user specified in `POSTGRES_USER` variable \(postgres by default\).
+By default PgAgent process in aidboxdb will use a database specified in `POSTGRES_DB` environmental variable and will run as a user which is specified in `POSTGRES_USER` variable \(`postgres` by default\).
 
-If you want to specify **dedicated user** for PgAgent \(for examples to limit PgAgent privileges\) then you need to specify `PGAGENT_USER` and `PGAGENT_PASSWORD` variables.
+If you want to specify **a dedicated user** for PgAgent \(for example to limit PgAgent privileges\) then you need to specify `PGAGENT_USER` and `PGAGENT_PASSWORD` variables.
 
-If you want to use **dedicated database** to store `pgagent` service data then you can specify it  in `PGAGENT_DB` variable. But you have to create the database and extension manualy before starting pgagent.
+If you want to use **a dedicated database** to store PgAgent service data then you can specify it in `PGAGENT_DB` variable. But you have to create the database and extension manually before starting PgAgent.
 
 {% hint style="info" %}
-**Note:** if you want to use dedicated user or database you need to create them manualy before enabling PgAgent in your `aidboxdb` configuration.
+**Note:** if you want to use a dedicated user or database you need to create them manually before enabling PgAgent in your aidboxdb configuration.
 
-Don't forget to create the `pgagent`extension if your choose to use dedicated database.  
-To create the extension run`CREATE EXTENSION pgagent;`
+Don't forget to create the PgAgent extension if your choose to use a dedicated database.  
+To create the extension run `CREATE EXTENSION pgagent;`
 {% endhint %}
 
-There are some more options availiable to configure pgagent.
+There are some more options available to configure PgAgent:  
+You can specify log level with `PGAGENT_LOG_LEVEL` and you can specify a file where PgAagent logs are written in `PGAGENT_LOG_FILE_PATH`.
 
-You can specify log level with `PGAGENT_LOG_LEVEL` and  you can specify a file where pgagent logs are written in `PGAGENT_LOG_FILE_PATH`.
-
-You can see more info on configuring aidboxdb [here](../../getting-started/installation/aidboxdb-image.md).
+You can see more info on configuring aidboxdb [here](/getting-started/installation/aidboxdb-image).
 
 ## Step-by-step example with docker
 
@@ -51,7 +50,7 @@ In this example we will setup simple `pgagent` job with dedicated pgagent databa
 
 ### Configuring pgagent
 
-First we will need to create initial `docker-compose` configuration:
+First, we will need to create an initial `docker-compose` configuration:
 
 {% code title="docker-compose.yaml" %}
 ```yaml
@@ -68,13 +67,13 @@ services:
 ```
 {% endcode %}
 
-Start container with:
+Start container:
 
 ```bash
 docker-compose up -d
 ```
 
-Now let's create database, extension, test table and user.
+Now let's create a database, extension, test table, and user.
 
 Connect to postgres with:
 
@@ -108,7 +107,7 @@ GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO pgagent;
 GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO pgagent;
 ```
 
-After you've runned command update the `docker-compose.yaml` file:
+After you've run commands update he `docker-compose.yaml` file:
 
 {% code title="docker-compose.yaml" %}
 ```yaml
@@ -130,19 +129,17 @@ services:
 ```
 {% endcode %}
 
-And re-create container
+And re-create container:
 
 ```bash
 docker-compose up -d
 ```
 
-Let's connect into the container and see what is going on.
+Let's exec into the container and see what is going on.
 
 ```bash
 docker exec -it aidboxdb bash
 ```
-
-Run following commands in the terminal \(`#` denotes response\):
 
 First let's run `pgrep command`:
 
@@ -160,7 +157,7 @@ pgrep pgagent
 {% endtab %}
 {% endtabs %}
 
-You can `ps aux` command if you want to see more details on `pgagent` arguments:
+You can use `ps aux` command if you want to see more details on `pgagent` arguments:
 
 {% tabs %}
 {% tab title="Bash" %}
@@ -220,7 +217,7 @@ Don't worry if you see `WARNING: Couldn't create the primary connection [Attempt
 Refer to [https://www.pgadmin.org/](https://www.pgadmin.org/) for pgAdmin and pgAgent documentation.
 {% endhint %}
 
-Now when pgagent is up and running we can define some jobs and see if they're actually running.
+Now when pgagent is up and running we can define some jobs and see if they're actually scheduled.
 
 ![Create server connection](../../.gitbook/assets/screen-shot-2021-08-06-at-04.24.22.png)
 
@@ -232,11 +229,11 @@ Now when pgagent is up and running we can define some jobs and see if they're ac
 
 ![](../../.gitbook/assets/screen-shot-2021-08-06-at-04.27.19.png)
 
-![Let&apos;s run our job every minute.](../../.gitbook/assets/screen-shot-2021-08-06-at-04.27.56.png)
+![The job will be run every minute.](../../.gitbook/assets/screen-shot-2021-08-06-at-04.27.56.png)
 
 #### Test if jobs are running
 
-Let's connect into postgres to see if jobs are actually  running.
+Let's connect into postgres to see if jobs are actually running.
 
 ```bash
 docker exec -it aidboxdb psql pgagent
@@ -293,7 +290,7 @@ If everything was successfull you will see new records in the table.
 
 ## Summary
 
-* `pgagent` is a great tool to run various job on your postgres database.
+* `pgagent` is a great tool to run various jobs on your postgres database.
 * `pgagent` runs only if `PGAGENT_ENABLED` variable is present.
 * You can configure `pgagent` using several variables described [here](../../getting-started/installation/aidboxdb-image.md#optional-environment-variables).
 
