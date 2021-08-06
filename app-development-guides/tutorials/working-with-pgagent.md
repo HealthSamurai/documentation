@@ -45,7 +45,7 @@ You can specify log level with `PGAGENT_LOG_LEVEL` and  you can specify a file w
 
 You can see more info on configuring aidboxdb [here](../../getting-started/installation/aidboxdb-image.md).
 
-## Step by step example with docker
+## Step-by-step example with docker
 
 In this example we will setup simple `pgagent` job with dedicated pgagent database and user.
 
