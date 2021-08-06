@@ -191,7 +191,7 @@ There are many more operations you can execute using RESTful API but it’s enou
 
 What's next?
 
-{% page-ref page="../../app-development-guides/tutorials/rest-console.md" %}
+{% page-ref page="../../aidbox-ui/rest-console-1.md" %}
 
 {% hint style="info" %}
 Want to know more about [Aidbox](https://www.health-samurai.io/aidbox), FHIR or FHIR applications? Join our community [chat](https://t.me/aidbox).

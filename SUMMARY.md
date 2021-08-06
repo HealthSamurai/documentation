@@ -86,6 +86,10 @@
 * [Profiling and Validation](profiling/README.md)
   * [Validation API](profiling/validation-api.md)
   * [Draft: Profiling with zen-lang](profiling/draft-profiling-with-zen-lang.md)
+* [Aidbox UI](aidbox-ui/README.md)
+  * [REST Console](aidbox-ui/rest-console-1.md)
+  * [DB Console](aidbox-ui/db-console.md)
+  * [Notebooks](aidbox-ui/notebooks.md)
 
 ## App development guides
 
@@ -93,7 +97,6 @@
   * [Authentication Tutorial](app-development-guides/tutorials/basic-auth-tutorial.md)
   * [Log analysis and visualization](app-development-guides/tutorials/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana.md)
   * [Restricting Access to Patient Data](app-development-guides/tutorials/restricting-access-to-patient-data.md)
-  * [Working with REST Console](app-development-guides/tutorials/rest-console.md)
   * [Uploading Sample Data](app-development-guides/tutorials/load-bundle-into-fhir-server.md)
   * [Custom Search](app-development-guides/tutorials/custom-search.md)
   * [Working with Aidbox from .NET](app-development-guides/tutorials/working-with-aidbox-from-.net.md)
@@ -116,24 +119,21 @@
 * [$matcho](app-development-guides/usdmatcho.md)
 * [$to-format](app-development-guides/usdto-format-fhir-aidbox.md)
 
-## User Management <a id="user-management-1"></a>
-
-* [Auth](user-management-1/auth/README.md)
-  * [Basic Auth](user-management-1/auth/basic-auth.md)
-  * [Client Credentials Grant](user-management-1/auth/client-credentials.md)
-  * [Resource Owner Grant](user-management-1/auth/resource-owner-password.md)
-  * [Authorization Code Grant](user-management-1/auth/authorization-code.md)
-  * [Implicit Grant](user-management-1/auth/implicit.md)
-  * [Validating Foreign Access Tokens](user-management-1/auth/access-token-introspection.md)
-  * [External Oauth 2.0 Providers](user-management-1/auth/external-oauth-2.0-providers/README.md)
-    * [Configure Okta](user-management-1/auth/external-oauth-2.0-providers/configure-okta.md)
-  * [Two Factor Authentication](user-management-1/auth/two-factor-authentication.md)
-  * [SMART on FHIR](user-management-1/auth/smart-app.md)
-  * [Configuration options](user-management-1/auth/configuration-options.md)
-  * [Discovery API](user-management-1/auth/well-known-endpoint.md)
-
 ## Security & Access Control <a id="security-and-access-control-1"></a>
 
+* [Auth](security-and-access-control-1/auth/README.md)
+  * [Basic Auth](security-and-access-control-1/auth/basic-auth.md)
+  * [Client Credentials Grant](security-and-access-control-1/auth/client-credentials.md)
+  * [Resource Owner Grant](security-and-access-control-1/auth/resource-owner-password.md)
+  * [Authorization Code Grant](security-and-access-control-1/auth/authorization-code.md)
+  * [Implicit Grant](security-and-access-control-1/auth/implicit.md)
+  * [Validating Foreign Access Tokens](security-and-access-control-1/auth/access-token-introspection.md)
+  * [External Oauth 2.0 Providers](security-and-access-control-1/auth/external-oauth-2.0-providers/README.md)
+    * [Configure Okta](security-and-access-control-1/auth/external-oauth-2.0-providers/configure-okta.md)
+  * [Two Factor Authentication](security-and-access-control-1/auth/two-factor-authentication.md)
+  * [SMART on FHIR](security-and-access-control-1/auth/smart-app.md)
+  * [Configuration options](security-and-access-control-1/auth/configuration-options.md)
+  * [Discovery API](security-and-access-control-1/auth/well-known-endpoint.md)
 * [Access Control](security-and-access-control-1/security/README.md)
   * [Access Policies](security-and-access-control-1/security/access-control.md)
   * [Role-Based Access Policies](security-and-access-control-1/security/role-based-access-policies.md)

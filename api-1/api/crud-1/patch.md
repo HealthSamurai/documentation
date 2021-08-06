@@ -78,7 +78,7 @@ Updated resource
 ### Example
 
 {% hint style="info" %}
-You can exercise this tutorial using [REST Console](../../../app-development-guides/tutorials/rest-console.md) — just copy/paste queries into your console!
+You can exercise this tutorial using [REST Console](../../../aidbox-ui/rest-console-1.md) — just copy/paste queries into your console!
 {% endhint %}
 
 Let's suppose we've created a Patient resource with the id `pt-1`

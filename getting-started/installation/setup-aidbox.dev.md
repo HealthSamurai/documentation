@@ -161,7 +161,7 @@ We welcome your questions and comments about our products. Have an idea/question
 
 Learn how to obtain access to the [REST API](https://docs.aidbox.app/api-1/api) by the link below.
 
-{% page-ref page="../../user-management-1/auth/" %}
+{% page-ref page="../../security-and-access-control-1/auth/" %}
 
 ## Advanced tips
 

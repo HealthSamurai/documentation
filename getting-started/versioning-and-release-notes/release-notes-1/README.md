@@ -133,7 +133,7 @@ It's time to upgrade your database - please stop your container and change image
 
 ## 0.4.1 _\[8 April 2019\]_
 
-This release is mostly dedicated to stabilisation of new auth module. Check-out it's [documentation](../../../user-management-1/auth/)!
+This release is mostly dedicated to stabilisation of new auth module. Check-out it's [documentation](../../../security-and-access-control-1/auth/)!
 
 ### Features
 
@@ -153,7 +153,7 @@ This release is mostly dedicated to stabilisation of new auth module. Check-out 
 
 ### Features
 
-* New [Auth module](../../../user-management-1/auth/) \(OAuth2, OpenID Connect and SCIM implementations\)
+* New [Auth module](../../../security-and-access-control-1/auth/) \(OAuth2, OpenID Connect and SCIM implementations\)
 * Web UI for Aidbox.Dev
 * Migrate to Java 11
 * Clusters in Cloud

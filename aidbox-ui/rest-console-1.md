@@ -2,13 +2,13 @@
 description: Learn how to use REST Console to work with your Aidbox via REST API.
 ---
 
-# Working with REST Console
+# REST Console
 
 ### REST Console
 
-![REST Console](../../.gitbook/assets/image%20%2849%29%20%287%29%20%281%29%20%284%29.png)
+![REST Console](../.gitbook/assets/image%20%2849%29%20%287%29%20%281%29%20%284%29.png)
 
-REST Console is designed to work with your Aidbox via [REST API](../../api-1/api/). To make a request type an HTTP method \(`GET`, `POST`, `PUT`, `PATCH`, `DELETE`\) and an operation endpoint \(for example`/Patient` — _please pay attention to the capital letter in the resource name_\).
+REST Console is designed to work with your Aidbox via [REST API](../api-1/api/). To make a request type an HTTP method \(`GET`, `POST`, `PUT`, `PATCH`, `DELETE`\) and an operation endpoint \(for example`/Patient` — _please pay attention to the capital letter in the resource name_\).
 
 Right after the first line you can put HTTP headers. E.g. to use YAML format you can put the following header:
 
@@ -168,7 +168,7 @@ meta:
 
 To get pretty-formatted response add `_pretty=true` query string parameter:
 
-![POST /patient](../../.gitbook/assets/image%20%2857%29.png)
+![POST /patient](../.gitbook/assets/image%20%2857%29.png)
 
 
 
@@ -176,7 +176,7 @@ To get pretty-formatted response add `_pretty=true` query string parameter:
 
 After sending the request, we receive a response with `Status - 201` and the sent data, which means that our patient has been created. Use the request `GET /Patient/<id>` to see the newly created patient. Also the request `GET /Patient` could be used to get the complete list of patients. 
 
-![GET /Patient](../../.gitbook/assets/image%20%2856%29.png)
+![GET /Patient](../.gitbook/assets/image%20%2856%29.png)
 
 {% tabs %}
 {% tab title="Request" %}
@@ -696,7 +696,7 @@ Status: 200
 {% endtabs %}
 
 {% hint style="info" %}
-Please check [Search API](../../api-1/fhir-api/search-1/) for more details.
+Please check [Search API](../api-1/fhir-api/search-1/) for more details.
 {% endhint %}
 
 ### Delete Patient
