@@ -233,8 +233,9 @@ By default, docker-compose file mount folder `./pgdata` as a persistent volume f
 `make update` command updates all project services including dependencies.
 
 ```text
-$ docker-compose pull
-$ docker-compose up -d
+update:
+	docker-compose pull
+	docker-compose up -d
 ```
 
 ### PGIMAGE
