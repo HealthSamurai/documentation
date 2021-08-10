@@ -107,6 +107,7 @@
   * [Sync Data From Aidbox](app-development-guides/tutorials/sync-data-from-aidbox.md)
   * [SDC with Custom Resources](app-development-guides/tutorials/sdc-with-custom-resources.md)
   * [Testing with Stresty](app-development-guides/tutorials/testing-with-stresty.md)
+  * [APM Aidbox](app-development-guides/tutorials/apm-aidbox.md)
   * [Subscribe to new Patient resource](app-development-guides/tutorials/subscribe-to-new-patient-resource.md)
 * [Administration](app-development-guides/administration.md)
 * [Receive logs from your app](app-development-guides/receive-logs-from-your-app/README.md)
