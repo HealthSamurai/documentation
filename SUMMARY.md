@@ -16,7 +16,6 @@
   * [Configure Devbox/Aidbox distribution](getting-started/installation/use-devbox-aidbox.md)
   * [Use aidboxdb image](getting-started/installation/aidboxdb-image.md)
   * [🎓 Getting Started with Devbox in Cloud](getting-started/installation/getting-started-with-box.md)
-  * [AWS Multibox Tutorial](getting-started/installation/multibox-aws-run.md)
 
 ---
 
