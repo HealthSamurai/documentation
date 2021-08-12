@@ -15,6 +15,10 @@ To get `204 No Content` instead of `200 OK`, use the `_no-content=true` query pa
 * **`404` Not Found** - resource not found
 * **`412`** **Precondition Failed** - requested ETAG doesn't match actual
 
+{% hint style="info" %}
+Delete of non-existing resource will return 204 status and no body. Read [this thread](https://chat.fhir.org/#narrow/stream/179177-conformance/topic/Delete.20error.20codes) for more details.
+{% endhint %}
+
 
 
 ### Conditional Delete
