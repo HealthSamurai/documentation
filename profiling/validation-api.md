@@ -45,7 +45,7 @@ You can validate your existing data with our new rpc `aidbox/batch-validation`:
 POST /rpc
 content-type: text/yaml
 
-method: aidbox/batch-validation
+method: aidbox.validation/batch-validation
 params:
   # resourceType to validate
   resource: Patient
@@ -95,7 +95,7 @@ If you run validation in async mode, it will respond instantly and run validatio
 POST /rpc?_format=yaml
 content-type: text/yaml
 
-method: aidbox/batch-validation-results
+method: aidbox.validation/batch-validation-results
 params:
   id: pt-validation-run-1
    
@@ -118,7 +118,7 @@ When you do not need results of this validation you can clean up resources with:
 POST /rpc?_format=yaml
 content-type: text/yaml
 
-method: aidbox/clear-batch-validation
+method: aidbox.validation/clear-batch-validation
 params:
   id: pt-validation-run-1
 ```
