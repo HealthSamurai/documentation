@@ -1,4 +1,4 @@
-# Auth
+# Authentication Flows
 
 [Aidbox](https://www.health-samurai.io/aidbox) is coming with the built-in auth module with out of the box:
 
