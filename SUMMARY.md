@@ -31,7 +31,7 @@
     * [\_text & \_content](api-1/fhir-api/search-1/_text-and-_content.md)
     * [\_ilike](api-1/fhir-api/search-1/_ilike.md)
     * [\_elements](api-1/fhir-api/search-1/_elements.md)
-    * [\_summary](api-1/fhir-api/search-1/_summary.md)
+    * [Summary parameter](api-1/fhir-api/search-1/_summary.md)
     * [\_list](api-1/fhir-api/search-1/_list.md)
     * [\_count & \_page](api-1/fhir-api/search-1/_count-and-_page.md)
     * [\_total or \_countMethod](api-1/fhir-api/search-1/_total-or-_countmethod.md)
