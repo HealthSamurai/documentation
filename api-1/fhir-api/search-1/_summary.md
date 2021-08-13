@@ -4,7 +4,7 @@ description: This tutorial designed for summary parameter demonstration purposes
 
 # Summary parameter
 
-### How to
+## How to
 
 The client can request the server to return only **summary** elements of the resources by using the parameter `_summary`
 
@@ -33,7 +33,7 @@ entry:
 .....
 ```
 
-### Values table
+## Values table
 
 | Value | Content |
 | :--- | :--- |
@@ -43,13 +43,13 @@ entry:
 | [count](https://www.hl7.org/fhir/search.html#summary-count) | Search only: just return a count of the matching resources, without returning the actual matches |
 | [false](https://www.hl7.org/fhir/search.html#summary-false) | Return all parts of the resource\(s\) |
 
-### Summary purpose
+## Summary purpose
 
 The intent of the `_summary` parameter is to reduce the total processing load on server, client, and resources between them such as the network. It is most useful for resources that are large, particularly ones that include images or elements that may repeat many times.
 
 The purpose of the summary form is to allow a client **to quickly retrieve a large set of resources**, and let a user pick the appropriate one. The summary for an element is defined to allow a user to quickly sort and filter the resources, and typically omit important content on the basis that the entire resource will be retrieved when the user selects a resource.
 
-### Limitations
+## Limitations
 
 You can't expect only a summary response as requested. There is limited number of summary forms defined for resources in order to allow servers to store the summarized form\(s\) in advance. Servers **SHOULD** mark the resources with the tag [`SUBSETTED`](https://www.hl7.org/fhir/v3/SecurityIntegrityObservationValue/cs.html#SUBSETTED) to ensure that the incomplete resource is not accidentally used to overwrite a complete resource.
 

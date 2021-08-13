@@ -123,6 +123,7 @@
 
 * [User](security-and-access-control-1/user.md)
 * [Session](security-and-access-control-1/session.md)
+* [Client](security-and-access-control-1/client.md)
 * [Auth](security-and-access-control-1/auth/README.md)
   * [Basic Auth](security-and-access-control-1/auth/basic-auth.md)
   * [Client Credentials Grant](security-and-access-control-1/auth/client-credentials.md)
