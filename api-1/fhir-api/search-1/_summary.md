@@ -35,7 +35,7 @@ entry:
 
 ### Values table
 
-![Summary parameter values table](../../../.gitbook/assets/image%20%2855%29.png)
+![Values table of summary parameter](../../../.gitbook/assets/image%20%2854%29.png)
 
 ### Summary purpose
 
