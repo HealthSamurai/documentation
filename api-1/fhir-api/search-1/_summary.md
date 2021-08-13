@@ -31,3 +31,9 @@ entry:
 .....
 ```
 
+`_summary=data` will remove `text` attribute from resource
+
+`_summary=text` will return only `id, meta` and `text` attributes
+
+`_summary=count` will return only `Bundle.total` without resources
+
