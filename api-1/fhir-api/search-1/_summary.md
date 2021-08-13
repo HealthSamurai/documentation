@@ -35,7 +35,7 @@ entry:
 
 ## Values table
 
-| Value | Content |
+| Value | Description |
 | :--- | :--- |
 | [true](https://www.hl7.org/fhir/search.html#summary-true) | Return a limited subset of elements from the resource. This subset SHOULD consist solely of all supported elements that are marked as "summary" in the base definition of the resource\(s\) \(see [ElementDefinition.isSummary](https://www.hl7.org/fhir/elementdefinition-definitions.html#ElementDefinition.isSummary)\) |
 | [text](https://www.hl7.org/fhir/search.html#summary-text) | Return only the "text" element, the 'id' element, the 'meta' element, and only top-level mandatory elements |
