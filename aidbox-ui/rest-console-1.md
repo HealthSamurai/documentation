@@ -168,7 +168,7 @@ meta:
 
 To get pretty-formatted response add `_pretty=true` query string parameter:
 
-![POST /patient](../.gitbook/assets/image%20%2857%29.png)
+![](../.gitbook/assets/image%20%2853%29.png)
 
 
 
