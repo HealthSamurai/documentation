@@ -39,7 +39,7 @@ returning *
 
 #### aidbox.validation/batch-validation
 
-You can validate your existing data with our new rpc `aidbox/batch-validation`:
+You can validate your existing data with our new rpc `aidbox.validation/batch-validation`:
 
 ```yaml
 POST /rpc
