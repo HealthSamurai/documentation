@@ -59,3 +59,11 @@ devbox:
 
 Restart container `docker-compose restart`
 
+In Aidbox UI open new Profiles tab:
+
+![](../.gitbook/assets/image%20%2865%29.png)
+
+You should be able to see zen-ui screen:
+
+![](../.gitbook/assets/image%20%2866%29.png)
+
