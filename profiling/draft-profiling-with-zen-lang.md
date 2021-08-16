@@ -20,6 +20,10 @@ Create **zrc** directory in the same directory as your **docker-compose.yaml.** 
 ```text
 {ns acme
 
+  MySchema
+  {:zen/tags #{zen/schema}
+   :keys {:name {:type zen/string}}}
+
 }
 ```
 {% endcode %}
@@ -50,6 +54,7 @@ devbox:
       AIDBOX_ES_INDEX_PAT: "'aidbox-logs'-yyyy-MM-dd"
       ZEN_PROJECT: '/zrc'
       ZEN_ENTRY: acme
+      ZEN_DEV_MODE: ok
 ```
 
 Restart container `docker-compose restart`
