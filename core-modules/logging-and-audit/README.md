@@ -108,7 +108,7 @@ Please, pay attention, that you will not see the response for `GET /_logs` reque
 
 ### Configure logging
 
-By default, Aidbox sends logs into stdout.
+Aidbox sends logs into stdout if one of these env variables defined: `AIDBOX_STDOUT_JSON`, `AIDBOX_STDOUT_PRETTY`
 
 If you prefer to write logs into the file system,  in the .env file specify `AIDBOX_LOGS` environment variable with a relative path to the desired location.
 
