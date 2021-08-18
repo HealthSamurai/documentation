@@ -148,10 +148,10 @@ Parameters prefixed with AIDBOX\_DB\_PARAM is passed to JDBC PostgreSQL connecti
 
 For an instance:
 
-AIDBOX\_DB\_PARAM\_SSL=true  
-AIDBOX\_DB\_PARAM\_SSLMODE=verify-ca
+`AIDBOX_DB_PARAM_SSL=true`  
+`AIDBOX_DB_PARAM_SSLMODE=verify-ca`
 
-will add ssl=true&sslmode=verify-ca params to connection string.
+will add `ssl=true&sslmode=verify-ca` params to connection string.
 
 These parameters will enable SSL connection from Aidbox to postgresql Docs on JDBC PostgreSQL connection string are here: [https://jdbc.postgresql.org/documentation/80/connect.html](https://jdbc.postgresql.org/documentation/80/connect.html) [https://jdbc.postgresql.org/documentation/head/ssl-client.html](https://jdbc.postgresql.org/documentation/head/ssl-client.html)
 
