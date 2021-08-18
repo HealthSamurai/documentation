@@ -29,7 +29,7 @@ As you can see, resources are stored as JSONB documents in the **resource** colu
 Resources are stored in [Aidbox JSON format](../modules-1/fhir-resources/aidbox-and-fhir-formats.md), which is more friendly for storage, and converted into FHIR in REST API on the fly!
 {% endhint %}
 
- You can access attributes of resources using [PostgreSQL JSON functions](https://www.postgresql.org/docs/11/functions-json.html):
+You can access attributes of resources using [PostgreSQL JSON functions](https://www.postgresql.org/docs/11/functions-json.html):
 
 ```sql
 SELECT
@@ -37,24 +37,22 @@ SELECT
    resource#>>'{name,0,given,0}' as first_name
 FROM "patient"
 LIMIT 10
-   
 ```
 
-### Custom Queries
+## Custom Queries
 
-You can define and expose over REST API sophisticated queries in SQL on FHIR data using [Custom Queries](../api-1/fhir-api/search-1/custom-search.md). 
+You can define and expose over REST API sophisticated queries in SQL on FHIR data using [Custom Queries](../api-1/fhir-api/search-1/custom-search.md).
 
-### Backup and restore
+## Backup and restore
 
 To restore Aidbox it is enough to restore Postgres from backup. There are several options:
 
-* For small databases _\(&lt; 5Gb\)_ you can use Postgres built-in function `pgdump` [https://www.postgresql.org/docs/9.3/app-pgdump.html](https://www.postgresql.org/docs/9.3/app-pgdump.html). After running the command you get the file from which you can restore aidboxdb using command `pgrestore` [https://www.postgresql.org/docs/9.2/app-pgrestore.html](https://www.postgresql.org/docs/9.2/app-pgrestore.html).    This approach assumes downtime.
+* For small databases _\(&lt; 5Gb\)_ you can use Postgres built-in function `pgdump` 
+* After running the command you get the file from which you can restore aidboxdb using `pgrestore`  This approach assumes downtime.
 
-### Tutorials
+## Tutorials
 
 Check out our video tutorial about SQL on FHIR in PostgreSQL:
 
-{% embed url="https://www.youtube.com/watch?v=zgU5c3RwjD4" %}
-
-
+{% embed url="https://www.youtube.com/watch?v=zgU5c3RwjD4" caption="" %}
 
