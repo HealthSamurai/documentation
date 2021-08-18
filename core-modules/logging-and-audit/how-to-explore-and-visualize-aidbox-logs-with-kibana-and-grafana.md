@@ -8,11 +8,15 @@ description: >-
 
 ## Update Docker Image
 
+{% hint style="info" %}
+This feature is available since [July 2021 - v:2107](https://docs.aidbox.app/getting-started/versioning-and-release-notes/release-notes#july-2021-v-2107-stable) Aidbox version 
+{% endhint %}
+
 To begin using pre-configured Kibana and Grafana please clone[ this repository](https://github.com/Aidbox/devbox) and execute `make up` operation in your shell.
 
 ## **Explore logs with Kibana**
 
-To use Kibana you need to understand Aidbox log formatting first. Go to Aidbox log documentation \([Logging & Audit](https://docs.aidbox.app/core-modules/logging-and-audit)\) to find logs schema available here with brief attribute description.
+To use Kibana you need to understand Aidbox log formatting first. Go to Aidbox log documentation \([Logging & Audit](https://docs.aidbox.app/core-modules/logging-and-audit)\) to find logs schema available here with a brief attribute description.
 
 ```bash
 git clone https://github.com/Aidbox/devbox.git
