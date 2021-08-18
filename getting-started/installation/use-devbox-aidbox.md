@@ -59,16 +59,6 @@ All distributions require license details to be provided. Alongside with online 
           add <code>ssl=true&amp;sslmode=verify-ca</code> params to connection string</td>
     </tr>
     <tr>
-      <td style="text-align:left"><code>AIDBOX_STDOUT_JSON</code>
-      </td>
-      <td style="text-align:left">If set to anything, enable logs to stdout in json format</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>AIDBOX_STDOUT_PRETTY</code>
-      </td>
-      <td style="text-align:left">If set to anything, enable logs to stdout in prettified format</td>
-    </tr>
-    <tr>
       <td style="text-align:left"><code>AIDBOX_ES_URL</code>
       </td>
       <td style="text-align:left">If provided, enables mode to push logs to ElasticSearch.</td>
@@ -115,6 +105,11 @@ All distributions require license details to be provided. Alongside with online 
       <td style="text-align:left"><code>AIDBOX_STDOUT_JSON</code>
       </td>
       <td style="text-align:left">If provided, enables mode to write logs as json into stdout.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>AIDBOX_STDOUT_PRETTY</code>
+      </td>
+      <td style="text-align:left">If provided, enables mode to write logs in prettified format into stdout</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>AIDBOX_DEVLOGS</code>
