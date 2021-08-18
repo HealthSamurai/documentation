@@ -51,11 +51,6 @@ All distributions require license details to be provided. Alongside with online 
       </td>
     </tr>
     <tr>
-      <td style="text-align:left"><code>AIDBOX_OFFLINE_LICENSE</code>
-      </td>
-      <td style="text-align:left">If set to anything license is validated in offline mode.</td>
-    </tr>
-    <tr>
       <td style="text-align:left"><code>AIDBOX_DB_PARAM_*</code>
       </td>
       <td style="text-align:left">Parameters prefixed with <code>AIDBOX_DB_PARAM_</code> will be passed to
