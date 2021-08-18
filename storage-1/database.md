@@ -44,6 +44,12 @@ LIMIT 10
 
 You can define and expose over REST API sophisticated queries in SQL on FHIR data using [Custom Queries](../api-1/fhir-api/search-1/custom-search.md). 
 
+### Backup and restore
+
+To restore Aidbox it is enough to restore Postgres from backup. There are several options:
+
+* For small databases _\(&lt; 5Gb\)_ you can use Postgres built-in function `pgdump` [https://www.postgresql.org/docs/9.3/app-pgdump.html](https://www.postgresql.org/docs/9.3/app-pgdump.html). After running the command you get the file from which you can restore aidboxdb using command `pgrestore` [https://www.postgresql.org/docs/9.2/app-pgrestore.html](https://www.postgresql.org/docs/9.2/app-pgrestore.html).    This approach assumes downtime
+
 ### Tutorials
 
 Check out our video tutorial about SQL on FHIR in PostgreSQL:
