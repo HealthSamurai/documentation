@@ -4,7 +4,7 @@ description: >-
   Grafana
 ---
 
-# Log analysis and visualization
+# 🎓 Log analysis and visualization tutorial
 
 ## Update devbox
 
@@ -36,7 +36,7 @@ Aidbox Elastic appender sends logs as bundles of multiple records so if there's 
 AIDBOX_ES_BATCH_SIZE=1
 ```
 
-Aidbox Elastic appender documentation is available [here](../receive-logs-from-your-app/elastic-logs-and-monitoring-integration.md#elasticsearch-logging).
+Aidbox Elastic appender documentation is available [here](../../app-development-guides/receive-logs-from-your-app/elastic-logs-and-monitoring-integration.md#elasticsearch-logging).
 {% endhint %}
 
 

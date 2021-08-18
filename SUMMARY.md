@@ -94,7 +94,6 @@
 
 * [Tutorials](app-development-guides/tutorials/README.md)
   * [Authentication Tutorial](app-development-guides/tutorials/basic-auth-tutorial.md)
-  * [Log analysis and visualization](app-development-guides/tutorials/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana.md)
   * [Restricting Access to Patient Data](app-development-guides/tutorials/restricting-access-to-patient-data.md)
   * [Uploading Sample Data](app-development-guides/tutorials/load-bundle-into-fhir-server.md)
   * [Custom Search](app-development-guides/tutorials/custom-search.md)
@@ -155,7 +154,7 @@
 * [Entities & Attributes](core-modules/entities-and-attributes.md)
 * [$json-schema](core-modules/usdjson-schema.md)
 * [Logging & Audit](core-modules/logging-and-audit/README.md)
-  * [🎓 Monitoring & Audit Tutorial](core-modules/logging-and-audit/monitoring-and-audit-tutorial.md)
+  * [🎓 Log analysis and visualization tutorial](core-modules/logging-and-audit/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana.md)
 
 ## Modules <a id="modules-1"></a>
 
