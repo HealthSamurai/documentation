@@ -56,17 +56,22 @@ All distributions require license details to be provided. Alongside with online 
       <td style="text-align:left">If set to anything license is validated in offline mode.</td>
     </tr>
     <tr>
-      <td style="text-align:left"><code>AIDBOX_LICENSE_SERVER_URL</code>
-      </td>
-      <td style="text-align:left">URL of the offline license server.</td>
-    </tr>
-    <tr>
       <td style="text-align:left"><code>AIDBOX_DB_PARAM_*</code>
       </td>
       <td style="text-align:left">Parameters prefixed with <code>AIDBOX_DB_PARAM_</code> will be passed to
         <a
         href="https://jdbc.postgresql.org/documentation/80/connect.html">JDBC PostgreSQL connection string</a>. For example, parameters: <code>AIDBOX_DB_PARAM_SSL=true</code>  <code>AIDBOX_DB_PARAM_SSLMODE=verify-ca</code> will
           add <code>ssl=true&amp;sslmode=verify-ca</code> params to connection string</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>AIDBOX_STDOUT_JSON</code>
+      </td>
+      <td style="text-align:left">Enable logs to stdout in json format</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>AIDBOX_STDOUT_PRETTY</code>
+      </td>
+      <td style="text-align:left">Enable logs to stdout in prettified format</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>AIDBOX_ES_URL</code>
