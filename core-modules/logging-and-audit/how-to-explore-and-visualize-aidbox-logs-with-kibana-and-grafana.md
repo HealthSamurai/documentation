@@ -6,12 +6,7 @@ description: >-
 
 # 🎓 Log analysis and visualization tutorial
 
-## Update devbox
-
 ## Update Docker Image
-
-You may want to track logs in AidBox with Kibana. You can do anything from tracking query load to understanding the way requests flow through your apps.   
-
 
 To begin using pre-configured Kibana and Grafana please clone[ this repository](https://github.com/Aidbox/devbox) and execute `make up` operation in your shell.
 
@@ -27,7 +22,7 @@ make up
 
 ## **Explore logs with Kibana**
 
-To get deeper understanding of Aidbox logs please go to the [log documentation](https://docs.aidbox.app/core-modules/logging-and-audit) and explore logs schema available there.
+To get a deeper understanding of Aidbox logs please go to the [log documentation](https://docs.aidbox.app/core-modules/logging-and-audit) and explore logs schema available there.
 
 {% hint style="info" %}
 Aidbox Elastic appender sends logs as bundles of multiple records so if there's not enough data **you won't see any logs in Kibana**. For testing purposes reduce bundle size to 1 record by setting environment variable:
@@ -43,7 +38,7 @@ Aidbox Elastic appender documentation is available [here](../../app-development-
 
 Using the listed attributes helps you to read REST logs in Elastic search filtering them type by type.
 
-Example below will help you read REST API logs:
+The example below will help you read REST API logs:
 
 Please put + to toggle `Time`, `w_m`, `w_r`_,_`w_url`, `d`, `w_st`, `w_uid` fields into the document table:
 
@@ -79,8 +74,4 @@ The pre-configured views are the following:
 You can update the default dashboard with your own custom views. For more info please refer to [Grafana documentation](https://grafana.com/tutorials/grafana-fundamentals/).
 
 If you have any questions, requests, or want to share your best practices using Kibana and Grafana feel free to contact us via [Aidbox user chat.](https://t.me/aidbox)
-
-You can easily add your own custom views on your dashboards using Grafana. For more info please go to Grafana documentation. 
-
-If you have any questions, requests or problems regarding Aidbox log monitoring, **please contact us via Aidbox user chat.**
 
