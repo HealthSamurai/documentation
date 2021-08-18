@@ -61,12 +61,12 @@ All distributions require license details to be provided. Alongside with online 
     <tr>
       <td style="text-align:left"><code>AIDBOX_STDOUT_JSON</code>
       </td>
-      <td style="text-align:left">Enable logs to stdout in json format</td>
+      <td style="text-align:left">If set to anything, enable logs to stdout in json format</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>AIDBOX_STDOUT_PRETTY</code>
       </td>
-      <td style="text-align:left">Enable logs to stdout in prettified format</td>
+      <td style="text-align:left">If set to anything, enable logs to stdout in prettified format</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>AIDBOX_ES_URL</code>
