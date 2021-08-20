@@ -40,6 +40,10 @@ AIDBOX_ES_INDEX_PAT = <format string>
 
 `AIDBOX_ES_INDEX_PAT`  formatter syntax documentation is [here](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html)
 
+{% hint style="warning" %}
+Note. If elastic was down and some logs were accumulated in `AIDBOX_LOGS`, Aidbox doesn't resend those logs to elastic
+{% endhint %}
+
 ### Elastic APM Monitoring
 
 You need to define `ELASTIC_APM_SERVER_URLS` environment variable to enable monitoring with Elastic APM:
