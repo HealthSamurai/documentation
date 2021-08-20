@@ -5,7 +5,7 @@ You can efficiently load data into Aidbox  in _ndjson_ _gz_ format from external
 There are two versions of this operation - `/fhir/$load` accepts data in FHIR format,  `/$load` works with Aidbox format.
 
 {% hint style="danger" %}
-Keep in mind that $load does not validate inserted resources for the sake of performance. Be mindful of the data you insert and use correct URL for your data format.
+Keep in mind that $load does not validate inserted resources for the sake of performance. Be mindful of the data you insert and use the correct URL for your data format.
 {% endhint %}
 
  Load 100 synthea Patients to Aidbox \(see [tutorial](synthea-by-bulk-api.md)\):
@@ -19,6 +19,20 @@ source: 'https://storage.googleapis.com/aidbox-public/synthea/100/Patient.ndjson
 #resp
 {total: 124}
 ```
+
+### update: true
+
+By default for performance reasons `$load` does raw upsert into resource table without updating history. If you want to store the previous version of resources in history, you have to set `update = true,` with this flag Aidbox will update history for updated resources.
+
+```yaml
+POST /fhir/Patient/$load
+Content-Type: text/yaml
+
+source: <new-version-of-data>
+update: true
+```
+
+### $load multiple resource types
 
 Or load the whole synthea package:
 
