@@ -38,5 +38,11 @@ AIDBOX_DD_LOGS
 # Path to file in which logs will be written in case of error 
 # in uploading logs to Datadog.
 # If not provided, in case of uploading error logs will be printed to stdout.
+
+AIDBOX_DD_TAGS
+# Optional.
+# Tags associated with your logs.
+# Convenient for transferring the name of the environment.
+# For example "env:staging"
 ```
 
