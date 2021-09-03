@@ -84,7 +84,7 @@
 
 * [Profiling and Validation](profiling/README.md)
   * [Validation API](profiling/validation-api.md)
-  * [Draft: Profiling with zen-lang](profiling/draft-profiling-with-zen-lang.md)
+  * [Profiling with zen-lang](profiling/draft-profiling-with-zen-lang.md)
 * [Aidbox UI](aidbox-ui/README.md)
   * [REST Console](aidbox-ui/rest-console-1.md)
   * [DB Console](aidbox-ui/db-console.md)

@@ -1,10 +1,10 @@
 ---
-description: 'This feature is introduced in August 2021 - v:2108 release'
+description: 'This feature is in beta. Introduced in August 2021 - v:2108 release.'
 ---
 
-# Draft: Profiling with zen-lang
+# Profiling with zen-lang
 
-For a long timeAidbox provided validation with JSON Schema and Basic FHIR Profiles. We're switching to **zen/schema** as the main engine for the validation and configuration of Aidbox.
+We're switching to **zen/schema** as the main engine for the validation and configuration of Aidbox. Previously Aidbox provided validation with JSON Schema and Basic FHIR Profiles.
 
 ### Before start
 

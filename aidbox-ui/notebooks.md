@@ -20,11 +20,10 @@ So now you can easily:
 
 ## **Functionality**
 
+* REST, SQL, RPC Markdown support in cells
 * [Notebook save ](notebooks.md#save-a-notebook)
 * [Notebooks repository](notebooks.md#publish-notebook) - space for public notebook storage.
 * [Notebook export/import ](notebooks.md#export-aidbox-notebook)
-* REST, SQL, Markdown modes
-* Future functionality
 
 ## Notebooks section in Aidbox UI
 

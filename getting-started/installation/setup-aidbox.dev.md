@@ -38,13 +38,13 @@ Install Docker for your OS following the [Get Docker page](https://docs.docker.c
 Clone the[ official repository](https://github.com/Aidbox/devbox) with the sample configuration.
 
 ```bash
-$ git clone https://github.com/Aidbox/devbox.git
+git clone https://github.com/Aidbox/devbox.git
 ```
 
 Create the .env file with your Devbox parameters.
 
 ```text
-$ cd devbox && cp .env.tpl .env
+cd devbox && cp .env.tpl .env
 ```
 
 {% hint style="info" %}
@@ -154,7 +154,7 @@ That's it! Devbox is running and you can point your browser to [http://localhost
 ![](../../.gitbook/assets/login-aidbox.gif)
 
 {% hint style="info" %}
-We welcome your questions and comments about our products. Have an idea/question you'd like to share with our community? [Submit it here](https://t.me/aidbox)
+We welcome your questions and comments about our products. Have an idea/question you'd like to share with our community? [Submit it here](https://t.me/aidbox).
 {% endhint %}
 
 ## What next?
