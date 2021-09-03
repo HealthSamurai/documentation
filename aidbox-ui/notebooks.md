@@ -4,7 +4,7 @@ description: >-
   they can help you on a daily basis.
 ---
 
-# Aidbox notebooks
+# Aidbox Notebooks
 
 {% hint style="warning" %}
 Aidbox notebooks is a beta. Please join [the discussion](https://github.com/Aidbox/Issues/discussions/412) or [contact](../contact-us.md) us if you want to contribute.
@@ -55,4 +55,21 @@ To import the notebook click import and paste the link
 You can also publish a notebook and share it with the Aidbox community. The published notebook will be available in the Community notebooks section.
 
 ![Publish Aidbox notebook](../.gitbook/assets/2021-09-03_10-13-27.png)
+
+## **Functionality**
+
+* Notebook save 
+* Notebooks repository - space for public notebook storage.
+* Notebook export/import 
+* REST, SQL, Markdown modes
+
+## **Future functionality would include:**
+
+* Javascript
+* GraphQL
+* Stresty
+* Visualizations libraries 
+
+Aidbox Notebooks is in constant state of development and refining. We also need your input. For suggestions contact us directly or via chat.   
+
 
