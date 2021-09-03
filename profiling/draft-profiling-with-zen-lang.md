@@ -196,9 +196,22 @@ meta: {profile: ["urn:profile:MyPatientProfile"]}
 {% endtab %}
 
 {% tab title="Response" %}
-```
+```yaml
 # status 201
 
+id: 20fdde9d-ede6-4edb-a16a-278ddfeef952
+resourceType: Patient
+name:
+  - given:
+      - Harry
+    family: Potter
+birthDate: '1980-07-31'
+meta:
+  profile:
+    - urn:profile:MyPatientProfile
+  lastUpdated: '2021-09-03T14:40:11.300957Z'
+  createdAt: '2021-09-03T14:40:11.300957Z'
+  versionId: '57'
 ```
 {% endtab %}
 {% endtabs %}
