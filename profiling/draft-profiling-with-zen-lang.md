@@ -1,10 +1,10 @@
 ---
-description: This feature will be available in 2021 August Release
+description: 'This feature is introduced in August 2021 - v:2108 release'
 ---
 
 # Draft: Profiling with zen-lang
 
-Aidbox provided validation with JSON Schema and Basic FHIR Profiles for a long time. In the nearest future, we are going to switch to **zen/schema** as the main engine for the validation and configuration of Aidbox.
+For a long timeAidbox provided validation with JSON Schema and Basic FHIR Profiles. We're switching to **zen/schema** as the main engine for the validation and configuration of Aidbox.
 
 ### Before start
 
@@ -25,9 +25,9 @@ AIDBOX_IMAGE=healthsamurai/devbox:edge
 ```
 {% endcode %}
 
-### Create zen project
+### Create a zen project
 
-Inside of the cloned devbox directory create zen project directory and open it.   
+Inside of the cloned Devbox directory create a zen project directory and open it.   
 In this example zen project directory is `my-zen-project/`
 
 ```bash
@@ -76,9 +76,9 @@ Import the profiles namespace in the entry namespace
 ```
 {% endcode %}
 
-### Setup devbox to use Zen project
+### Setup Devbox to use Zen project
 
-Go to devbox directory and add configuration variables to the end of `.env` file:
+Go to Devbox directory and add configuration variables to the end of `.env` file:
 
 {% code title=".env" %}
 ```bash
@@ -89,7 +89,7 @@ AIDBOX_ZEN_DEV_MODE=enable # set this variable if you want to have
 ```
 {% endcode %}
 
-To enable your devbox reading the zen project data add zen project directory volume mount. In the `docker-compose.yaml` file find the section `devbox:` and add the following line under the `volumes:` section:
+To enable your Devbox reading the zen project data add zen project directory volume mount. In the `docker-compose.yaml` file find the section `devbox:` and add the following line under the `volumes:` section:
 
 ```yaml
 - "./my-zen-project:/my-zen-project"
@@ -123,11 +123,11 @@ services:
 ```
 {% endcode %}
 
-### Start devbox and check if your profile is loaded
+### Start Devbox and check if your profile is loaded
 
-Start devbox as instructed in [this guide](../getting-started/installation/setup-aidbox.dev.md#run-devbox) \(perform steps from devbox directory, not in zen project dir\)
+Start Devbox using [this guide](../getting-started/installation/setup-aidbox.dev.md#run-devbox) \(perform steps from Devbox directory, not in zen project dir\)
 
-Open devbox in your browser and click `Profiles` tab in the left menu:
+Open Devbox in your browser and click `Profiles` tab in the left menu:
 
 ![](../.gitbook/assets/image%20%2871%29.png)
 
@@ -136,15 +136,14 @@ You should see the list of zen namespaces loaded.
 ![](../.gitbook/assets/image%20%2889%29.png)
 
 {% hint style="info" %}
- On this page there are listed only those namespaces which are explicitly included in the zen project or used by aidbox itself
+ On this page you see the namespaces that are explicitly included in the zen project or used by Aidbox
 {% endhint %}
 
-You can open your profile by clicking its name
+Open your profile by clicking its name
 
 ![](../.gitbook/assets/image%20%2891%29.png)
 
-  
-In validate tab you can test the data against this profile
+Using **validate** tab you can test the data against this profile
 
 ![](../.gitbook/assets/image%20%2880%29.png)
 
