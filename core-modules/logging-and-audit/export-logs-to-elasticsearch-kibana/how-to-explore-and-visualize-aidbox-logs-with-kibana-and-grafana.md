@@ -35,7 +35,7 @@ Aidbox Elastic appender sends logs as bundles of multiple records so if there's 
 AIDBOX_ES_BATCH_SIZE=1
 ```
 
-Aidbox Elastic appender documentation is available [here](../../app-development-guides/receive-logs-from-your-app/elastic-logs-and-monitoring-integration.md#elasticsearch-logging).
+Aidbox Elastic appender documentation is available [here](../elastic-logs-and-monitoring-integration.md#elasticsearch-logging).
 {% endhint %}
 
 
@@ -46,11 +46,11 @@ The example below will help you read REST API logs:
 
 Please put + to toggle `Time`, `w_m`, `w_r`_,_`w_url`, `d`, `w_st`, `w_uid` fields into the document table:
 
-![](../../.gitbook/assets/image%20%2841%29%20%281%29%20%281%29.png)
+![](../../../.gitbook/assets/image%20%2841%29%20%281%29%20%281%29.png)
 
 Now you can browse and explore REST API logs
 
-![](../../.gitbook/assets/image%20%287%29.png)
+![](../../../.gitbook/assets/image%20%287%29.png)
 
 _Kibana's **Discover** enables you to quickly search and filter your data, get information about the structure of the fields, and visualize your data with **Lens** and **Maps**. You can customize and save your searches and place them on a dashboard._
 
@@ -73,7 +73,7 @@ The pre-configured views are the following:
 7. Response time.  
 8. Slow queries.
 
-![Aidbox Grafana dashboard](../../.gitbook/assets/image%20%2849%29%20%285%29%20%283%29%20%281%29%20%288%29.png)
+![Aidbox Grafana dashboard](../../../.gitbook/assets/image%20%2849%29%20%285%29%20%283%29%20%281%29%20%288%29.png)
 
 You can update the default dashboard with your own custom views. For more info please refer to [Grafana documentation](https://grafana.com/tutorials/grafana-fundamentals/).
 

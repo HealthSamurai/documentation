@@ -2,7 +2,7 @@
 description: 'In this tutorial, you will learn how to export logs to ElasticSearch.'
 ---
 
-# 🎓 Export logs to ElasticSearch/Kibana
+# Export logs to ElasticSearch/Kibana
 
 In this tutorial, you will learn how to export Devbox logs into ElasticSearch/Kibana stack using aidbox-cli.
 

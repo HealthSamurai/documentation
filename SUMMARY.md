@@ -111,10 +111,6 @@
 * [Receive logs from your app](app-development-guides/receive-logs-from-your-app/README.md)
   * [X-Audit header](app-development-guides/receive-logs-from-your-app/x-audit-header.md)
   * [Health Check](app-development-guides/receive-logs-from-your-app/health-check.md)
-  * [Elastic Logs and Monitoring Integration](app-development-guides/receive-logs-from-your-app/elastic-logs-and-monitoring-integration.md)
-  * [🎓 Export logs to ElasticSearch/Kibana](app-development-guides/receive-logs-from-your-app/export-logs-to-elasticsearch-kibana.md)
-  * [Datadog Log management integration](app-development-guides/receive-logs-from-your-app/aidbox-logs-and-datadog-integration.md)
-  * [🎓 Export logs to Datadog](app-development-guides/receive-logs-from-your-app/datadog-guide.md)
 * [$matcho](app-development-guides/usdmatcho.md)
 * [$to-format](app-development-guides/usdto-format-fhir-aidbox.md)
 
@@ -154,7 +150,11 @@
 * [Entities & Attributes](core-modules/entities-and-attributes.md)
 * [$json-schema](core-modules/usdjson-schema.md)
 * [Logging & Audit](core-modules/logging-and-audit/README.md)
-  * [🎓 Log analysis and visualization tutorial](core-modules/logging-and-audit/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana.md)
+  * [Elastic Logs and Monitoring Integration](core-modules/logging-and-audit/elastic-logs-and-monitoring-integration.md)
+  * [Export logs to ElasticSearch/Kibana](core-modules/logging-and-audit/export-logs-to-elasticsearch-kibana/README.md)
+    * [🎓 Log analysis and visualization tutorial](core-modules/logging-and-audit/export-logs-to-elasticsearch-kibana/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana.md)
+  * [Datadog Log management integration](core-modules/logging-and-audit/aidbox-logs-and-datadog-integration/README.md)
+    * [🎓 Export logs to Datadog](core-modules/logging-and-audit/aidbox-logs-and-datadog-integration/datadog-guide.md)
 
 ## Modules <a id="modules-1"></a>
 

@@ -71,6 +71,5 @@ You can also publish a notebook and share it with the Aidbox community. The publ
 * Stresty
 * Visualizations libraries 
 
-Aidbox Notebooks is in constant state of development and refining. We also need your input. For suggestions contact us directly or via chat.   
-
+Aidbox Notebooks is in constant state of development and refining. We also need your input. For suggestions contact us directly or via chat.
 
