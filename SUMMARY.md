@@ -88,7 +88,7 @@
 * [Aidbox UI](aidbox-ui/README.md)
   * [REST Console](aidbox-ui/rest-console-1.md)
   * [DB Console](aidbox-ui/db-console.md)
-  * [Notebooks](aidbox-ui/notebooks.md)
+  * [Aidbox notebooks](aidbox-ui/notebooks.md)
 
 ## App development guides
 
