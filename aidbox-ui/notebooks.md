@@ -18,6 +18,16 @@ So now you can easily:
 * share knowledge with your team and Aidbox community
 * raise questions and report issues related to Aidbox
 
+
+
+## **Functionality**
+
+* [Notebook save ](notebooks.md#save-a-notebook)
+* [Notebooks repository](notebooks.md#publish-notebook) - space for public notebook storage.
+* [Notebook export/import ](notebooks.md#export-aidbox-notebook)
+* REST, SQL, Markdown modes
+* Future functionality
+
 ## Notebooks section in Aidbox UI
 
 When clicking the notebooks tab in Aidbox UI you will get to the notebooks page. This page consists of your personal notebooks and the Aidbox community notebooks.
@@ -55,13 +65,6 @@ To import the notebook click import and paste the link
 You can also publish a notebook and share it with the Aidbox community. The published notebook will be available in the Community notebooks section.
 
 ![Publish Aidbox notebook](../.gitbook/assets/2021-09-03_10-13-27.png)
-
-## **Functionality**
-
-* Notebook save 
-* Notebooks repository - space for public notebook storage.
-* Notebook export/import 
-* REST, SQL, Markdown modes
 
 ## **Future functionality would include:**
 
