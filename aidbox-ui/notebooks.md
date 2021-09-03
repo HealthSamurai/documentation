@@ -18,8 +18,6 @@ So now you can easily:
 * share knowledge with your team and Aidbox community
 * raise questions and report issues related to Aidbox
 
-
-
 ## **Functionality**
 
 * [Notebook save ](notebooks.md#save-a-notebook)
