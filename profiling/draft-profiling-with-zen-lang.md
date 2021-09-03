@@ -84,6 +84,8 @@ Go to devbox directory and add configuration variables to the end of `.env` file
 ```bash
 AIDBOX_ZEN_PROJECT=/my-zen-project # mind the / at the beginning of the dir name
 AIDBOX_ZEN_ENTRY=my-zen-devbox
+AIDBOX_ZEN_DEV_MODE=enable # set this variable if you want to have 
+                           # zen reload namespaces on the fly as they change
 ```
 {% endcode %}
 
