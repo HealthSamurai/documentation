@@ -28,7 +28,7 @@ So now you can easily:
 
 ## Notebooks section in Aidbox UI
 
-When clicking the notebooks tab in Aidbox UI you will get to the notebooks page. This page consists of your personal notebooks and the Aidbox community notebooks.
+When clicking the notebooks tab in Aidbox UI you will get to the notebooks page. This page consists of your personal notebooks and Aidbox community notebooks.
 
 ![](../.gitbook/assets/2021-09-03_09-49-41.png)
 
