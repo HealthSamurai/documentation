@@ -24,11 +24,11 @@ When clicking the notebooks tab in Aidbox UI you will get to the notebooks page.
 
 ![](../.gitbook/assets/2021-09-03_09-49-41.png)
 
-## Create a new notebook
+## Create a notebook
 
-You can create a new notebook by clicking **new** in the notebooks menu. Each notebook consists of a title, subtitle, and a block of cells.
+You can create a notebook by clicking **new** in the notebooks menu. Each notebook consists of a title, subtitle, and a block of cells.
 
-![](../.gitbook/assets/2021-09-03_09-47-33.png)
+![New Aidbox notebook](../.gitbook/assets/2021-09-03_09-47-33.png)
 
 After you create your cell click the **play** icon to see the answer.
 
@@ -36,7 +36,7 @@ After you create your cell click the **play** icon to see the answer.
 
 You can save a notebook for later use or share it with your team. The saved notebook will be available in **My notebooks section.**
 
-![](../.gitbook/assets/2021-09-03_09-59-55.png)
+![Aidbox notebooks: personal and community](../.gitbook/assets/2021-09-03_09-59-55.png)
 
 ## Export Aidbox notebook
 
