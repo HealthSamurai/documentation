@@ -6,6 +6,7 @@
 * zen profiling - advanced profiling with zen-lang
 * We are introducing [Aidbox RPC API](../../api-1/rpc-api.md)
 * [Asynchronous Batch Validation](../../profiling/validation-api.md#asynchronous-batch-validation) - validate data in Aidbox against new profiles
+* Conditional patch is supported now \(e.g.: `PATCH /Patient?name=foo`\) 
 
 \_\_
 
