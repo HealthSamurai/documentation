@@ -2,12 +2,15 @@
 
 ## August 2021 - v:2108 _`edge`_
 
-* Aidbox Notebooks - interactive notebooks for REST, SQL, and more
-* zen profiling - advanced profiling with zen-lang
-* We are introducing [Aidbox RPC API](../../api-1/rpc-api.md)
+* Released [Aidbox Notebooks](../../aidbox-ui/notebooks.md).  Interactive notebooks for REST, SQL, RPC and Markdown. So now you can create your own notebooks or import community notebooks.
+* Released beta version of zen profiling. Advanced profiling with zen-lang to configure Aidboxes and validate data.
 * [Asynchronous Batch Validation](../../profiling/validation-api.md#asynchronous-batch-validation) - validate data in Aidbox against new profiles
+* We are introducing [Aidbox RPC API](../../api-1/rpc-api.md)
 * Conditional patch is supported now \(e.g.: `PATCH /Patient?name=foo`\) 
-
+* Added an [environment variable](../../core-modules/logging-and-audit/aidbox-logs-and-datadog-integration/) to pass the environment to Datadog.
+* Added history for [$load](../../api-1/bulk-api-1/usdload.md) and [$import](../../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md) so now when using bulk import you have a source of truth for the history of every resource.
+* Added FHIR version 4.0.1 instead of 4.0.0
+* 
 \_\_
 
 ##  July 2021 - v:2107 _`stable`_
