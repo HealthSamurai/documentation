@@ -3,15 +3,17 @@
 ## August 2021 - v:2108 _`edge`_
 
 * Released [Aidbox Notebooks](../../aidbox-ui/notebooks.md).  Interactive notebooks for REST, SQL, RPC and Markdown. So now you can create your own notebooks or import community notebooks.
-* Released beta version of zen profiling. Advanced profiling with zen-lang to configure Aidboxes and validate data.
-* [Asynchronous Batch Validation](../../profiling/validation-api.md#asynchronous-batch-validation) - validate data in Aidbox against new profiles
-* We are introducing [Aidbox RPC API](../../api-1/rpc-api.md)
-* Conditional patch is supported now \(e.g.: `PATCH /Patient?name=foo`\) 
-* Added an [environment variable](../../core-modules/logging-and-audit/aidbox-logs-and-datadog-integration/) to pass the environment to Datadog.
+
+![Aidbox notebooks](../../.gitbook/assets/2021-09-03_16-53-32.png)
+
+* Released a beta version of [zen profiling](../../profiling/draft-profiling-with-zen-lang.md). Advanced profiling with zen-lang to configure Aidboxes and validate data.
+* Enabled [Asynchronous Batch Validation](../../profiling/validation-api.md#asynchronous-batch-validation) to validate data in Aidbox against new profiles
+* Released [Aidbox RPC API](../../api-1/rpc-api.md)
+* Supported conditional patch \(e.g.: `PATCH /Patient?name=foo`\) 
+* Added an [environment variable](../../core-modules/logging-and-audit/aidbox-logs-and-datadog-integration/) to pass the environment to Datadog \(dev/staging/prod\).
 * Added history for [$load](../../api-1/bulk-api-1/usdload.md) and [$import](../../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md) so now when using bulk import you have a source of truth for the history of every resource.
 * Added FHIR version 4.0.1 instead of 4.0.0
-* 
-\_\_
+* Fixed some bugs submitted by Aidbox users. Check it [here](https://github.com/Aidbox/Issues/milestone/3?closed=1).
 
 ##  July 2021 - v:2107 _`stable`_
 
