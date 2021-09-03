@@ -217,3 +217,5 @@ meta:
 {% endtab %}
 {% endtabs %}
 
+[Here's the example project](https://github.com/Aidbox/devbox/commit/8c716fa9595f64a1abfb7167bf29e516019fd98e) from this page
+
