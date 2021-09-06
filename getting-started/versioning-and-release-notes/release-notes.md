@@ -1,6 +1,6 @@
 # Release Notes
 
-## August 2021 - v:2108 _`edge`_
+## August 2021 - v:2108 _`stable`_
 
 * Released [Aidbox Notebooks](../../aidbox-ui/notebooks.md).  Interactive notebooks for REST, SQL, RPC and Markdown. So now you can create your own notebooks or import community notebooks.
 
