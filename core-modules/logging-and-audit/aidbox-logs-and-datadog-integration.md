@@ -1,17 +1,15 @@
 ---
-description: >-
-  This section describes how to integrate your Aidbox with Datadog
-  (https://www.datadoghq.com/) log management platform.
+description: This section describes how to integrate your Aidbox with Datadog.
 ---
 
 # Datadog Log management integration
 
-Datadog offers cloud-based monitoring and analytics platform which integrates and automates infrastructure monitoring, application performance monitoring, and log management for real-time observability of customers.
+[Datadog](https://www.datadoghq.com/) offers cloud-based monitoring and analytics platform which integrates and automates infrastructure monitoring, application performance monitoring, and log management for real-time observability of customers.
 
 ## Datadog logging
 
 {% hint style="info" %}
-Please, do not use these settings with`AIDBOX_ES_URL` \(Elastic Logs and Monitoring\) enabled. These are two alternative approaches for logs management.
+Please, do not use these settings with`AIDBOX_ES_URL` \([Elastic Logs and Monitoring](elastic-logs-and-monitoring-integration.md)\) enabled. These are two alternative approaches for log management.
 {% endhint %}
 
 To enable Aidbox logs uploading into Datadog, you need to set `AIDBOX_DD_API_KEY` environment variable.
@@ -45,4 +43,10 @@ AIDBOX_DD_TAGS
 # Convenient for transferring the name of the environment.
 # For example "env:staging"
 ```
+
+{% hint style="warning" %}
+By default, Aidbox sends logs as bundles of multiple records so if there's not enough data **you won't see any logs in Datadog**. For testing purposes reduce bundle size to 1 record by setting environment variable:
+
+AIDBOX\_DD\_BATCH\_SIZE=1
+{% endhint %}
 
