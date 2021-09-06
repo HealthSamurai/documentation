@@ -10,7 +10,7 @@
 * Enabled [Asynchronous Batch Validation](../../profiling/validation-api.md#asynchronous-batch-validation) to validate data in Aidbox against new profiles
 * Released [Aidbox RPC API](../../api-1/rpc-api.md)
 * Supported conditional patch \(e.g.: `PATCH /Patient?name=foo`\) 
-* Added an [environment variable](../../core-modules/logging-and-audit/aidbox-logs-and-datadog-integration/) to pass the environment to Datadog \(dev/staging/prod\).
+* Added an [environment variable](../../core-modules/logging-and-audit/aidbox-logs-and-datadog-integration.md) to pass the environment to Datadog \(dev/staging/prod\).
 * Added history for [$load](../../api-1/bulk-api-1/usdload.md) and [$import](../../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md) so now when using bulk import you have a source of truth for the history of every resource.
 * Added FHIR version 4.0.1 instead of 4.0.0
 * Fixed some bugs submitted by Aidbox users. Check it [here](https://github.com/Aidbox/Issues/milestone/3?closed=1).
