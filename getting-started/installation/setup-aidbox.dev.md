@@ -12,7 +12,7 @@ Devbox is compatible with macOS, Linux, and Windows 10 Pro.
 
 **Devbox** is a lightweight version of [Aidbox](https://www.health-samurai.io/aidbox). It is a special version aimed at local development and in your CI. To obtain Devbox license, please use our [License server](https://license-ui.aidbox.app/).
 
-## License obtaining
+## Get your license
 
 1. Visit and register on the [License server](https://license-ui.aidbox.app), then click the `GET LICENSE KEY` button.
 
@@ -26,7 +26,7 @@ Devbox is compatible with macOS, Linux, and Windows 10 Pro.
 
 ![](../../.gitbook/assets/screen-shot-2018-10-02-at-17.34.31.png)
 
-## Devbox Installation
+## Install Devbox
 
 ### Step 1. Install Docker Compose
 

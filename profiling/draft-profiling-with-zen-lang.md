@@ -8,7 +8,7 @@ We're switching to **zen/schema** as the main engine for the validation and conf
 
 ### Before start
 
-Install the devbox sample repo following [this guide](../getting-started/installation/setup-aidbox.dev.md) 
+Install the Devbox sample repo following [this guide](../getting-started/installation/setup-aidbox.dev.md) 
 
 Make sure that you have the latest `devbox:edge` image
 
@@ -16,7 +16,8 @@ Make sure that you have the latest `devbox:edge` image
 docker pull healthsamurai/devbox:edge
 ```
 
-Make sure your devbox is configured to use `devbox:edge` image.  
+Make sure your Devbox is configured to use `devbox:edge` image.  
+  
 In the `.env` file find the line starting with `AIDBOX_IMAGE` and edit it to be like this if it is not:
 
 {% code title=".env" %}
@@ -143,7 +144,11 @@ Open your profile by clicking its name
 
 ![](../.gitbook/assets/image%20%2891%29.png)
 
-Using **validate** tab you can test the data against this profile
+### 
+
+### Start validation
+
+Test the data against this profile using **validate** tab
 
 ![](../.gitbook/assets/image%20%2880%29.png)
 
