@@ -45,19 +45,19 @@ You can save a notebook for later use or share it with your team. The saved note
 
 ![Aidbox notebooks: personal and community](../.gitbook/assets/2021-09-03_09-59-55.png)
 
-## Export Aidbox notebook
+## Export a notebook
 
 You can export your Aidbox notebook and import it to another Aidbox. Just click export in the notebooks menu. Aidbox will generate a link that will look like this:
 
 [https://aidbox.app/ExportedNotebook/fa061348-1851-4962-b39e-ba496eba23bd](https://aidbox.app/ExportedNotebook/fa061348-1851-4962-b39e-ba496eba23bd)
 
-## Import notebook
+## Import a notebook
 
 To import the notebook click import and paste the link
 
 ![Import Aidbox notebok](../.gitbook/assets/2021-09-03_10-05-53.png)
 
-## Publish notebook
+## Publish a notebook
 
 You can also publish a notebook and share it with the Aidbox community. The published notebook will be available in the Community notebooks section.
 
@@ -68,7 +68,5 @@ You can also publish a notebook and share it with the Aidbox community. The publ
 * Javascript
 * GraphQL
 * Stresty
-* Visualizations libraries 
-
-Aidbox Notebooks is in constant state of development and refining. We also need your input. For suggestions contact us directly or via chat.
+* Visualizations
 
