@@ -10,11 +10,9 @@ This feature is a beta version that is still undergoing final testing before its
 
 Aidbox generates structured logs in Newline Delimited JSON format \(ndjson\). 
 
-Logs format is friendly for loading into PostgreSQL, ElasticSearch and other databases. Upcoming Aidbox.CLI util will help you with that.
+Logs format is friendly for loading into PostgreSQL, ElasticSearch and other databases. Aidbox logger can be configured to log into the file system with built-in rotation or to stdout.
 
-Aidbox logger can be configured to log into the file system with built-in rotation or to stdout.
-
-You can enable request body logging via passing `x-audit-req-body = true` header with your request
+Use `x-audit-req-body = true` header to add request body to logs.
 
 ### Logs Schema
 
@@ -36,7 +34,7 @@ You can enable request body logging via passing `x-audit-req-body = true` header
 
 #### Event types
 
-In table below you can see most popular log events:
+In table below you can see the most popular log events:
 
 | event name \(ev\) | description |
 | :--- | :--- |
