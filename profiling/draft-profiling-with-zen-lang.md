@@ -40,7 +40,7 @@ Inside of your zen project directory initialize npm package for your project and
 
 ```bash
 npm init -y
-npm install @zen-lang/fhir-r4 @zen-lang/us-core-v3
+npm install @zen-lang/hl7-fhir-r4-core @zen-lang/hl7-fhir-us-core
 ```
 
 Create zen entry namespace.
@@ -55,12 +55,12 @@ Create namespace with your profiles
 
 {% code title="my-zen-project/my-zen-profiles.edn" %}
 ```text
-{ns my-zen-profiles
- import #{us-core-v3.us-core-patient}
+{ns my-zen-devbox
+ import #{hl7-fhir-us-core.us-core-patient}
 
  MyPatientProfile
  {:zen/tags #{zen/schema zenbox/profile-schema}
-  :confirms #{us-core-v3.us-core-patient/schema}
+  :confirms #{hl7-fhir-us-core.us-core-patient/schema}
   :zenbox/type "Patient"
   :zenbox/profileUri "urn:profile:MyPatientProfile"
   :type zen/map
@@ -222,5 +222,5 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-[Here's the example project](https://github.com/Aidbox/devbox/commit/8c716fa9595f64a1abfb7167bf29e516019fd98e) from this page
+[Here's the example project](https://github.com/Aidbox/devbox/commit/431b14170f867f77f90779d4ff870d74c051c844) from this page
 
