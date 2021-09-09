@@ -7,12 +7,12 @@
 ![Aidbox notebooks](../../.gitbook/assets/2021-09-03_16-53-32.png)
 
 * Released a beta version of [zen profiling](../../profiling/draft-profiling-with-zen-lang.md). Advanced profiling with zen-lang to configure Aidboxes and validate data.
-* Enabled [Asynchronous Batch Validation](../../profiling/validation-api.md#asynchronous-batch-validation) to validate data in Aidbox against new profiles
+* Added [Asynchronous Batch Validation](../../profiling/validation-api.md#asynchronous-batch-validation) mode to validate data in Aidbox against new profiles
 * Released [Aidbox RPC API](../../api-1/rpc-api.md)
 * Supported conditional patch \(e.g.: `PATCH /Patient?name=foo`\) 
 * Added an [environment variable](../../core-modules/logging-and-audit/aidbox-logs-and-datadog-integration.md) to pass the environment to Datadog \(dev/staging/prod\).
 * Added history for [$load](../../api-1/bulk-api-1/usdload.md) and [$import](../../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md) so now when using bulk import you have a source of truth for the history of every resource.
-* Added FHIR version 4.0.1 instead of 4.0.0
+* Added [empty query params remove \#238](https://github.com/Aidbox/Issues/issues/238). Please **pay attention** **when** **using json-schema** **access policy** engine: Fields with empty values, such as `[], {}, "", null`, are removed before passing request into access policy processing. Make sure to add `require` check of the fields that are validated by a json schema
 * Fixed some bugs submitted by Aidbox users. Check it [here](https://github.com/Aidbox/Issues/milestone/3?closed=1).
 
 ##  July 2021 - v:2107 _`stable`_
