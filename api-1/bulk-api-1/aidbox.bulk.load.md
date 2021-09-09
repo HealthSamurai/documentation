@@ -25,6 +25,10 @@ You may want to rollback the whole upload on any errors. The bulk upload will ta
 
 We do not want to eat the whole memory on the server during the upload. This requires some kind of stream processing implementation. If we want to load a huge amount of data every operation \(even just parsing JSON\) may be a performance problem. The current state of HTTP does not support uploading huge files in a stream, most of the implementations \(like AWS S3\) split files into chunks and assemble the resulting file on the server.
 
+#### Errors introspection problem
+
+It may be challenging to investigate errors in bulk. Ideally, users want to see as many errors as possible to fix them in one iteration. There are maybe a lot of errors, so some grouping and introspection tools may simplify debug process.
+
 ### Parts of solution
 
 * Use PostgreSQL copy protocol to stream data into the database
