@@ -188,6 +188,11 @@ result:
 
 JSON Schema engine allows to put JSON Schema under the `AccessPolicy.schema` element and this schema will be used to validate the request object. Currently supported JSON Schema version is **draft-07**.
 
+{% hint style="info" %}
+Fields with empty values, such as `[], {}, "", null`, are removed before passing request into access policy processing.  
+Make sure to add `require` check of the fields that are validated by a json schema
+{% endhint %}
+
 #### Example
 
 The following policy requires presence of the `request.user` attribute \(only authenticated requests are allowed\):
@@ -197,8 +202,13 @@ resourceType: AccessPolicy
 description: Allow
 engine: json-schema
 schema:
-  type: object
-  required: ["user"]
+  properties:
+    params:
+      required: [resource/type]
+    properties:
+      resource/type:
+        constant:
+          Organization
 ```
 
 ### SQL Engine
