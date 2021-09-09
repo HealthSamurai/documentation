@@ -113,4 +113,5 @@ params:
 * Do restrict the **staging resource** to only one per resourceType?
 * How to deal with the race condition?
 * Should this implementation  be applied behind **$import**
+* How to deal with multiple resourceTypes import - stage them all?
 
