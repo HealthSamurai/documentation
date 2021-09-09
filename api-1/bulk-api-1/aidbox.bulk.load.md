@@ -23,7 +23,7 @@ You may want to rollback the whole upload on any errors. The bulk upload will ta
 
 #### Protocol & Performance Problems
 
-We do not want to eat the whole memory on the server during the upload. This requires some kind of stream processing implementation. If we want to load a huge amount of data every operation \(even just parsing JSON\) may be a performance problem. The current state of HTTP does not support uploading huge files in a stream, most of the implementations \(like AWS S3\) split files into chunks and assemble the resulting file on the server.
+We do not want to eat the whole memory on the server during the upload. This requires some kind of stream processing implementation. If we want to load a huge amount of data every operation \(even just parsing JSON\) may be a performance problem. The current state of HTTP does not support uploading huge files in a stream, most of the implementations \(like AWS S3\) split files into chunks and assemble the resulting file on the server. We solve this by inverting upload into streaming-friendly download.
 
 #### Errors introspection problem
 
@@ -41,12 +41,12 @@ Basic steps of bulk upload may be:
 
 1. Create staging table
 2. Stream data into staging table
-3. Run structure validation \(probably in parallel\)
+3. Run structure validation \(optionally in parallel\)
 4. Run bulk references and terminology bindings validations
 5. Copy data into resource table \(overriding or preserving history\)
 6. In case of errors - introspect and analyze the staging table
 7. Fix problems in the staging table and try again
-8. Drop staging table
+8. Truncate/Drop staging table
 
 These atomic steps may be composed into a complex operation like **`aidbox.bulk.import`**, which will consist of load, validate,  if no errors: do merge, drop stage
 
