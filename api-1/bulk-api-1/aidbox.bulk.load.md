@@ -19,7 +19,7 @@ There are two problems with validation during bulk upload:
 
 #### Consistency Problem
 
-You may want to rollback the whole upload on any errors. The bulk upload will take some time during this time the writes & updates may happen, which will be overridden by the bulk dataset, i.e. lost.
+You may want to rollback the whole upload on any errors. The bulk upload will take some time - during this time the writes & updates may happen, which will be overridden by the bulk dataset, i.e. lost.
 
 #### Protocol & Performance Problems
 
