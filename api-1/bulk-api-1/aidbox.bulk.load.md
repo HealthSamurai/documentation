@@ -108,3 +108,8 @@ params:
   on-error: ....
 ```
 
+### Open questions
+
+* Do restrict the **staging resource** to only one per resourceType?
+* How to deal with the race condition?
+
