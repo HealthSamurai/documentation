@@ -114,4 +114,5 @@ params:
 * How to deal with the race condition?
 * Should this implementation  be applied behind **$import**
 * How to deal with multiple resourceTypes import - stage them all?
+* Is there need in upload util - `$aidbox load myfile.ndjson.gzip`
 
