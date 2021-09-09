@@ -1,21 +1,21 @@
 ---
-description: Draft for new load API
+description: DRAFT
 ---
 
-# aidbox.bulk.load
+# aidbox.bulk.\* \[draft\]
 
 {% hint style="warning" %}
 This is a draft design document for the new bulk load API
 {% endhint %}
 
-Bulk load is a challenge - there are many requirements and tradeoffs: performance, validation, transactional consistency. This is a proposal for the new Bulk API to give the user explicit options.
+Bulk load is a challenge - there are many requirements, limitations and tradeoffs: performance, validation, transactional consistency. This is a proposal for the new Bulk API to give the user explicit options.
 
 #### Validation Problem
 
 There are two problems with validation during bulk upload:
 
 * The first is a performance, especially when you want to validate references and terminology, which are transformed into database queries
-* The second is to decide when to fail the upload - on the first error, on nth errors, or try to inspect all errors for your dataset
+* The second is to decide when upload operation should  fail - on the first error, on nth errors, or try to inspect all errors for your dataset
 
 #### Consistency Problem
 
@@ -44,22 +44,24 @@ Basic steps of bulk upload may be:
 7. Fix problems in the staging table and try again
 8. Drop staging table
 
-The general idea is to introduce a Staging Table \(Staging Resource\) explicitly and provide users with useful operations.
+These atomic steps may be composed into a complex operation like **`aidbox.bulk.import`**, which will consist of load, validate,  if no errors: do merge, drop stage
+
+The general idea is to explicitly introduce a Staging Table \(Staging Resource\)  and provide users with useful operations.
 
 ```yaml
 ---
-method: aidbox.bulk.staging/create
+method: aidbox.bulk.stage/create
 params:
   type: Patient
   
 ---
-method: aidbox.bulk.staging/load
+method: aidbox.bulk.stage/load
 params:
   type: Patient
   source: bucket
   
 ---
-method: aidbox.bulk.staging/validate
+method: aidbox.bulk.stage/validate
 params:
   type: Patient
   profiles: ['us-core/Patient']
@@ -67,31 +69,38 @@ params:
   bindings: true
 
 ---
-method: aidbox.bulk.staging/report
+method: aidbox.bulk.stage/report
 params:
   type: Patient
 
 ---
-method: aidbox.bulk.staging/errors
+method: aidbox.bulk.stage/errors
 params:
   type: Patient
   filter: ....
   limit: 100
 
 ---
-method: aidbox.bulk.staging/merge
+method: aidbox.bulk.stage/merge
 params:
   type: Patient
   preserveHistory: true
   
 ---
-method: aidbox.bulk.staging/truncate
+method: aidbox.bulk.stage/truncate
 params:
   type: Patient
 
 ---
-method: aidbox.bulk.staging/drop
+method: aidbox.bulk.stage/drop
 params:
   type: Patient
+  
+# Or complex operatioon
+
+method: aidbox.bulk.import
+params:
+  source: ....
+  on-error: ....
 ```
 
