@@ -139,6 +139,12 @@ All distributions require license details to be provided. Alongside with online 
       </td>
       <td style="text-align:left">Fallback file to write logs in if uploading to DataDog fails</td>
     </tr>
+    <tr>
+      <td style="text-align:left"><code>AIDBOX_CREATED_AT_URL</code>
+      </td>
+      <td style="text-align:left">Overrides createdAt extension url, default is <code>ex:createdAt</code>
+      </td>
+    </tr>
   </tbody>
 </table>
 
