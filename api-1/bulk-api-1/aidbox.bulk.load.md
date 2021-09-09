@@ -5,7 +5,7 @@ description: DRAFT
 # aidbox.bulk.\* \[draft\]
 
 {% hint style="warning" %}
-This is a draft design document for the new bulk load API
+This is a draft design document for the _new_ bulk load API
 {% endhint %}
 
 Bulk load is a challenge - there are many requirements, limitations and tradeoffs: performance, validation, transactional consistency. This is a proposal for the new Bulk API to give the user explicit options.
@@ -42,7 +42,7 @@ Basic steps of bulk upload may be:
 1. Create staging table
 2. Stream data into staging table
 3. Run structure validation \(probably in parallel\)
-4. Run bulk references and valueset bindings validations
+4. Run bulk references and terminology bindings validations
 5. Copy data into resource table \(overriding or preserving history\)
 6. In case of errors - introspect and analyze the staging table
 7. Fix problems in the staging table and try again
@@ -50,7 +50,7 @@ Basic steps of bulk upload may be:
 
 These atomic steps may be composed into a complex operation like **`aidbox.bulk.import`**, which will consist of load, validate,  if no errors: do merge, drop stage
 
-The general idea is to explicitly introduce a Staging Table \(Staging Resource\)  and provide users with useful operations.
+The general idea is to explicitly introduce a Staging Table \(Staging Resource\)  and basic operations on it:
 
 ```yaml
 ---
