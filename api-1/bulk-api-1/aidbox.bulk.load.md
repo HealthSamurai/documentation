@@ -1,0 +1,97 @@
+---
+description: Draft for new load API
+---
+
+# aidbox.bulk.load
+
+{% hint style="warning" %}
+This is a draft design document for the new bulk load API
+{% endhint %}
+
+Bulk load is a challenge - there are many requirements and tradeoffs: performance, validation, transactional consistency. This is a proposal for the new Bulk API to give the user explicit options.
+
+#### Validation Problem
+
+There are two problems with validation during bulk upload:
+
+* The first is a performance, especially when you want to validate references and terminology, which are transformed into database queries
+* The second is to decide when to fail the upload - on the first error, on nth errors, or try to inspect all errors for your dataset
+
+#### Consistency Problem
+
+You may want to rollback the whole upload on any errors. The bulk upload will take some time during this time the writes & updates may happen, which will be overridden by the bulk dataset, i.e. lost.
+
+#### Protocol & Performance Problems
+
+We do not want to eat the whole memory on the server during the upload. This requires some kind of stream processing implementation. If we want to load a huge amount of data every operation \(even just parsing JSON\) may be a performance problem. The current state of HTTP does not support uploading huge files in a stream, most of the implementations \(like AWS S3\) split files into chunks and assemble the resulting file on the server.
+
+### Parts of solution
+
+* Use PostgreSQL copy protocol to stream data into the database
+* Use staging table for initial data upload and transactionally move data from the staging table into the resource table
+* Use PostgreSQL "unlogged table" for staging table to reduce replication load
+* Batch validation of the whole bulk dataset in a stage table: more performant algorithm may be implemented for validation of all references and codes, escaping \(N+1\)\*M queries problem
+* Save errors in the staging table for problems introspection
+
+Basic steps of bulk upload may be:
+
+1. Create staging table
+2. Stream data into staging table
+3. Run structure validation \(probably in parallel\)
+4. Run bulk references and valueset bindings validations
+5. Copy data into resource table \(overriding or preserving history\)
+6. In case of errors - introspect and analyze the staging table
+7. Fix problems in the staging table and try again
+8. Drop staging table
+
+The general idea is to introduce a Staging Table \(Staging Resource\) explicitly and provide users with useful operations.
+
+```yaml
+---
+method: aidbox.bulk.staging/create
+params:
+  type: Patient
+  
+---
+method: aidbox.bulk.staging/load
+params:
+  type: Patient
+  source: bucket
+  
+---
+method: aidbox.bulk.staging/validate
+params:
+  type: Patient
+  profiles: ['us-core/Patient']
+  references: true
+  bindings: true
+
+---
+method: aidbox.bulk.staging/report
+params:
+  type: Patient
+
+---
+method: aidbox.bulk.staging/errors
+params:
+  type: Patient
+  filter: ....
+  limit: 100
+
+---
+method: aidbox.bulk.staging/merge
+params:
+  type: Patient
+  preserveHistory: true
+  
+---
+method: aidbox.bulk.staging/truncate
+params:
+  type: Patient
+
+---
+method: aidbox.bulk.staging/drop
+params:
+  type: Patient
+```
+
