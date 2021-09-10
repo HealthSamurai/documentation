@@ -4,7 +4,7 @@ description: API to validate resources
 
 # Validation API
 
-### Batch Validation `draft`
+### Asynchronous Batch Validation `draft`
 
 {% hint style="info" %}
 This is a draft API. We appreciate your feedback and ideas in [this discussion](https://github.com/Aidbox/Issues/discussions/409)
