@@ -9,6 +9,8 @@ Each resource may belong to one or more compartments. A compartment is a logical
 
 Read more about compartments in the FHIR [documentation](https://www.hl7.org/fhir/compartmentdefinition.html). All examples in this tutorial are executable in Aidbox REST console.
 
+Aidbox supports 5 default FHIR compartments in FHIR versions 1.4.0, 1.8.0, 3.0.1, 3.2.0, 3.3.0, 4.0.0, 4.0.1
+
 ## Defining Compartments \(FHIR R4\)
 
 In order to use compartments, you will need to create CompartmentDefinition resources on your server. Visit FHIR [documentation](https://www.hl7.org/fhir/compartmentdefinition-examples.html) for official CompartmentDefinition examples or use the following REST console snippets to create the resources.
