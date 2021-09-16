@@ -11,7 +11,16 @@ Read more about compartments in the FHIR [documentation](https://www.hl7.org/fhi
 
 ## Defining Compartments \(FHIR R4\)
 
-In order to use compartments, you will need to create CompartmentDefinition resources on your server. Visit FHIR [documentation](https://www.hl7.org/fhir/compartmentdefinition-examples.html) for official CompartmentDefinition examples or use the following REST console snippets to create the resources. Please keep in mind that in current implementation CompartmentDefinition id should be the same as the resource type for which it is defined \(e.g. Patient\)
+In order to use compartments, you will need to create CompartmentDefinition resources on your server. Visit FHIR [documentation](https://www.hl7.org/fhir/compartmentdefinition-examples.html) for official CompartmentDefinition examples or use the following REST console snippets to create the resources.
+
+{% hint style="info" %}
+Which `CompartmentDefinition`is used is determined by its code or id:
+
+1. The compartment with`id` = `target resourceType`is used
+2. Else if not found compartment with`code` = `target resourceType`is used
+
+If multiple compartments with the `code = traget resourceType` are found then it is not determined which one will be used since FHIR spec doesn't specify this case
+{% endhint %}
 
 {% tabs %}
 {% tab title="General Structure" %}
