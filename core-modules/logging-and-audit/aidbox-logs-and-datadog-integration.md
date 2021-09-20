@@ -42,6 +42,11 @@ AIDBOX_DD_TAGS
 # Tags associated with your logs.
 # Convenient for transferring the name of the environment.
 # For example "env:staging"
+
+AIDBOX_DD_SITE
+# Optional; default: datadoghq.com
+The regional site for a Datadog customer. 
+This can only be one of datadoghq.com,us3.datadoghq.com,datadoghq.eu,ddog-gov.com
 ```
 
 {% hint style="warning" %}
