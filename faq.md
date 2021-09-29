@@ -6,11 +6,11 @@ You can use [`Bulk API`](https://docs.aidbox.app/api-1/bulk-api-1) for that
 
 ## **How to increase speed/performance for requests with complex parameters?**
 
-Create [indexes](https://docs.aidbox.app/api-1/fhir-api/search-1/usdlookup#create-indexes) for that
+Create [indexes](https://docs.aidbox.app/api-1/fhir-api/search-1/usdlookup#create-indexes) for that.
 
 ## **Does Aidbox support 2-factor authentication?**
 
-Yes, please, check out [the documentation](https://docs.aidbox.app/user-management-1/auth/two-factor-authentication)
+Yes, please, check out [the documentation](https://docs.aidbox.app/user-management-1/auth/two-factor-authentication).
 
 ## **How to create a SearchParameter for extensions on a property in a resource?**
 

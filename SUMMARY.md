@@ -4,18 +4,18 @@
 
 ## Getting Started
 
-* [Features](getting-started/features.md)
-* [Licensing and Support](getting-started/editions-and-pricing.md)
-* [Versioning & Release Notes](getting-started/versioning-and-release-notes/README.md)
-  * [Release Notes](getting-started/versioning-and-release-notes/release-notes.md)
-  * [Releases Archive](getting-started/versioning-and-release-notes/release-notes-1/README.md)
-    * [0.4.7 addendum](getting-started/versioning-and-release-notes/release-notes-1/0.4.7-addendum.md)
 * [Installation & Configuration](getting-started/installation/README.md)
   * [🎓 Setup Devbox](getting-started/installation/setup-aidbox.dev.md)
   * [🆕 Update Aidbox](getting-started/installation/update-aidbox.md)
   * [Configure Devbox/Aidbox distribution](getting-started/installation/use-devbox-aidbox.md)
   * [Use aidboxdb image](getting-started/installation/aidboxdb-image.md)
   * [🎓 Getting Started with Devbox in Cloud](getting-started/installation/getting-started-with-box.md)
+* [Features](getting-started/features.md)
+* [Licensing and Support](getting-started/editions-and-pricing.md)
+* [Versioning & Release Notes](getting-started/versioning-and-release-notes/README.md)
+  * [Release Notes](getting-started/versioning-and-release-notes/release-notes.md)
+  * [Releases Archive](getting-started/versioning-and-release-notes/release-notes-1/README.md)
+    * [0.4.7 addendum](getting-started/versioning-and-release-notes/release-notes-1/0.4.7-addendum.md)
 
 ---
 
@@ -90,6 +90,7 @@
   * [REST Console](aidbox-ui/rest-console-1.md)
   * [DB Console](aidbox-ui/db-console.md)
   * [Aidbox Notebooks](aidbox-ui/notebooks.md)
+* [HL7 FHIR Da Vinci PDex Plan Net IG](hl7-fhir-da-vinci-pdex-plan-net-ig.md)
 
 ## App development guides
 

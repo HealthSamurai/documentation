@@ -1,5 +1,16 @@
 # Release Notes
 
+## September 2021 - v:2109 _`edge`_
+
+* Aidbox API constructor
+* Aidbox enhanced bulk API
+* Datadog integration URL configuration
+* 5 FHIR compartments are available as default in Aidbox. More details on [Compartments API](https://docs.aidbox.app/api-1/compartments).
+* Added several community notebooks.
+* PDEX 
+* SMART Application Launch Framework Implementation Guide
+* Aidbox patient portal sample
+
 ## August 2021 - v:2108 _`stable`_
 
 * Released [Aidbox Notebooks](../../aidbox-ui/notebooks.md).  Interactive notebooks for REST, SQL, RPC and Markdown. So now you can create your own notebooks or import community notebooks.

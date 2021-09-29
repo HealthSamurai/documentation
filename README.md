@@ -49,7 +49,7 @@ Aidbox implements most of the [FHIR specification](https://www.hl7.org/fhir/) an
 
 In Aidbox, everything is a **Resource.** Each resource type is described with special **Entity** and **Attribute** meta-resources. **Entities** describe resources and types. **Attributes** describe the structure of resources and complex types. For each **Entity**, Aidbox generates database schema in PostgreSQL, REST endpoints for CRUD, history, search and other operations, and JSON-schema for validation.
 
-### Aidbox & FHIR Format
+### Aidbox & FHIR Formats
 
 Aidbox stores FHIR resources almost as is with 3 types of isomorphic transformations:
 
