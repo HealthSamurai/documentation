@@ -21,6 +21,10 @@
 
 * [FAQ](faq.md)
 
+## Aidbox configuration
+
+* [API constructor \(alpha\)](aidbox-configuration/api-constructor-alpha.md)
+
 ## API <a id="api-1"></a>
 
 * [FHIR API](api-1/fhir-api/README.md)
