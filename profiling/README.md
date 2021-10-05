@@ -27,9 +27,9 @@ For custom profiling, Aidbox provides additional resource `AidboxProfile`. This 
 
 ## AidboxProfile Resource Structure
 
-### bind 
+### bind
 
-The `bind` element is of the type [Reference](https://www.hl7.org/fhir/references.html). It specifies the resource type which the profile will be applied to. 
+The `bind` element is of the type [Reference](https://www.hl7.org/fhir/references.html). It specifies the resource type which the profile will be applied to.
 
 **Example:** Binding to `Practitioner` resource.
 
@@ -111,19 +111,19 @@ schema:
 POST [base]/AidboxProfile
 
 {
-	"resourceType": "AidboxProfile",
-	"id": "custom-patient-constraint",
-	"bind": {
-		"id": "Patient",
-		"resourceType": "Entity"
-	},
-	"schema": {
-		"type": "object",
-		"required": [
-			"name",
-			"gender"
-		]
-	}
+    "resourceType": "AidboxProfile",
+    "id": "custom-patient-constraint",
+    "bind": {
+        "id": "Patient",
+        "resourceType": "Entity"
+    },
+    "schema": {
+        "type": "object",
+        "required": [
+            "name",
+            "gender"
+        ]
+    }
 }
 ```
 {% endtab %}
@@ -215,9 +215,9 @@ STATUS: 422
 {% endtab %}
 {% endtabs %}
 
-###  **Require Nested Properties**
+### **Require Nested Properties**
 
-Let's require `given` and `family` elements of the `name` property. In this case, we are expecting that `name` attribute of the type [`HumanName`](https://www.hl7.org/fhir/datatypes.html#HumanName) will contain elements `given` and `family`. Let's create the `AidboxProfile` resource with the code below. Then you will need to restart server if you're on Aidbox.Dev. 
+Let's require `given` and `family` elements of the `name` property. In this case, we are expecting that `name` attribute of the type [`HumanName`](https://www.hl7.org/fhir/datatypes.html#HumanName) will contain elements `given` and `family`. Let's create the `AidboxProfile` resource with the code below. Then you will need to restart server if you're on Aidbox.Dev.
 
 {% tabs %}
 {% tab title="Request YAML" %}
@@ -258,43 +258,43 @@ schema:
 POST [base]/AidboxProfile
 
 {
-	"resourceType": "AidboxProfile",
-	"id": "custom-patient-constraint",
-	"bind": {
-		"id": "Patient",
-		"resourceType": "Entity"
-	},
-	"schema": {
-		"type": "object",
-		"required": [
-			"name"
-		],
-		"properties": {
-			"name": {
-				"type": "array",
-				"minItems": 1,
-				"items": {
-					"type": "object",
-					"required": [
-						"given",
-						"family"
-					],
-					"properties": {
-						"given": {
-							"type": "array",
-							"minItems": 1,
-							"items": {
-								"type": "string"
-							}
-						},
-						"family": {
-							"type": "string"
-						}
-					}
-				}
-			}
-		}
-	}
+    "resourceType": "AidboxProfile",
+    "id": "custom-patient-constraint",
+    "bind": {
+        "id": "Patient",
+        "resourceType": "Entity"
+    },
+    "schema": {
+        "type": "object",
+        "required": [
+            "name"
+        ],
+        "properties": {
+            "name": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                    "type": "object",
+                    "required": [
+                        "given",
+                        "family"
+                    ],
+                    "properties": {
+                        "given": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "family": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 ```
 {% endtab %}
@@ -417,7 +417,7 @@ STATUS: 422
 This version of zen-lang validation is being deprecated. Please use the [new version](../aidbox-configuration/aidbox-zen-lang-project.md)
 {% endhint %}
 
-Aidbox supports an alternative yet very powerful profile validation mechanism powered by  [Zen language](https://github.com/zen-lang/zen).  You can just define a set \(or multiple sets\) of validation profiles in [EDN](https://github.com/edn-format/edn) format and let your Aidbox server know its location.
+Aidbox supports an alternative yet very powerful profile validation mechanism powered by [Zen language](https://github.com/zen-lang/zen). You can just define a set \(or multiple sets\) of validation profiles in [EDN](https://github.com/edn-format/edn) format and let your Aidbox server know its location.
 
 ### Configuration
 
@@ -450,13 +450,13 @@ Zen ns `quux` will be read from classpath
 | **`:type`** | The full list of zen supported types is [here](https://zen-lang.github.io/tags/zen/schema.html) |
 | **`:resourceType`** | The profile is applied for resources of this type |
 | **`:profile-definition`** | Is the string which should be referenced in the [`Resource.meta.profile[]`](https://www.hl7.org/fhir/resource.html#Meta) for `supported` profiles validation |
-| **`:format`** |  [format](../modules-1/fhir-resources/aidbox-and-fhir-formats.md) of the data. Default is `:aidbox` |
+| **`:format`** | [format](../modules-1/fhir-resources/aidbox-and-fhir-formats.md) of the data. Default is `:aidbox` |
 | **`:format :aidbox`** | schema is designed to validate data in the aidbox format |
 | **`:format :fhir`** | schema is designed to validate data in the FHIR format |
 | **`:severity`** | Is related to [FHIR profile usage](http://hl7.org/fhir/profiling.html#profile-uses) |
 | **`:severity "required"`** | The profile is applied to validate all resources of such type |
 | **`:severity "supported"`** | The profile is applied only when referenced in `Resource.meta.profile[]` |
-| **`:validation-type :open`** | Optional.  |
+| **`:validation-type :open`** | Optional. |
 
 ### API
 
@@ -607,9 +607,7 @@ You can load this zip archive into Aidbox using that link or by mounting folder 
 #### Zip URL example
 
 1. Declare this env variable in your Aidbox:`AIDBOX_ZEN_DEPS=us-core.v1@https://storage.googleapis.com/aidbox-public/zen-profiles/us-core.zip`
-
 2. Start Aidbox
-
 3. Import terminology bundle
 
 ```typescript
@@ -618,7 +616,7 @@ POST /$import
 {"source": "https://storage.googleapis.com/aidbox-public/zen-profiles/us-core-terminology-bundle.ndjson.gz"}
 ```
 
-4. Diagnostics
+1. Diagnostics
 
 {% code title="You can check which profiles are currently loaded into your Aidbox" %}
 ```typescript
@@ -655,8 +653,9 @@ GET /$zen-errors
 ```
 {% endcode %}
 
-5. If eveything is ok, now you have validation enabled.   
-You can test it by creating resource which references profile URL in the `meta.profile` attribute
+1. If eveything is ok, now you have validation enabled.   
+
+   You can test it by creating resource which references profile URL in the `meta.profile` attribute
 
 {% tabs %}
 {% tab title="POST /Patient" %}
@@ -762,6 +761,4 @@ POST /fhir/Patient/$validate
 {% endcode %}
 {% endtab %}
 {% endtabs %}
-
-### 
 

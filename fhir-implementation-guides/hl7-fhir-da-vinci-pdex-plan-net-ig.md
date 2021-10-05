@@ -4,7 +4,7 @@ description: Learn how to enable PDex Plan Net IG
 
 # 🎓 HL7 FHIR Da Vinci PDex Plan Net IG
 
-In this tutorial, we'll explain how to configure Aidbox for the [Da Vinci PDex Plan Net Implementation Guide](http://hl7.org/fhir/us/davinci-pdex/toc.html) \(PDex IG\) and pass Touchstone tests. 
+In this tutorial, we'll explain how to configure Aidbox for the [Da Vinci PDex Plan Net Implementation Guide](http://hl7.org/fhir/us/davinci-pdex/toc.html) \(PDex IG\) and pass Touchstone tests.
 
 {% hint style="info" %}
 If you decide to run touchstone test, make sure you run only JSON tests.
@@ -14,7 +14,7 @@ To comply with the implementation guide you need to load PlanNet profiles and cr
 
 To get TouchStone compliant Aidbox you can use configuration from [the Aidbox samples repository](https://github.com/Aidbox/aidbox-project-samples).
 
-#### Using the Aidbox samples repository
+## Using the Aidbox samples repository
 
 Clone the repository:
 
@@ -30,7 +30,7 @@ Set up:
 make plannet-setup
 ```
 
-Now the Aidbox with the implementation guide loaded is started. Internally it loads PlanNet profiles and search parameters, then loads sample data. 
+Now the Aidbox with the implementation guide loaded is started. Internally it loads PlanNet profiles and search parameters, then loads sample data.
 
 Alternatively you can [load profiles, search parameters and the sample data in your existing Aidbox](https://github.com/Aidbox/aidbox-project-samples#load-plannet-data-sets-to-separate-aidbox-instance).
 

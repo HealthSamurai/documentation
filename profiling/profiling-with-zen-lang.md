@@ -8,7 +8,7 @@ description: Validate your resources with zen-lang schemas
 
 ## Zen schemas
 
-For validation \(e.g. in [FHIR CRUD API](../api-1/api/crud-1/)\) Aidbox uses zen schemas tagged with `zenbox/base-schema` or `zenbox/profile-schema` 
+For validation \(e.g. in [FHIR CRUD API](../api-1/api/crud-1/)\) Aidbox uses zen schemas tagged with `zenbox/base-schema` or `zenbox/profile-schema`
 
 Schemas with these tags must have `:zenbox/type` and `:zenbox/profileUri` keys specified
 
@@ -22,5 +22,5 @@ Schemas tagged with `zenbox/profile-schema` are used to validate resources which
 
 ## Examples
 
-You can see example defining base and profile schemas in the [🎓 Profiling with zen-lang](draft-profiling-with-zen-lang.md) tutorial. 
+You can see example defining base and profile schemas in the [🎓 Profiling with zen-lang](draft-profiling-with-zen-lang.md) tutorial.
 

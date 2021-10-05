@@ -28,7 +28,7 @@ Copy the newly generated key
 
 ## Configure Aidbox
 
-Set the `AIDBOX_DD_API_KEY`  environment variable to the Datadog API Key.
+Set the `AIDBOX_DD_API_KEY` environment variable to the Datadog API Key.
 
 For example, if you are using Docker Compose, add the variable to the environment section:
 
@@ -40,7 +40,7 @@ devbox:
     AIDBOX_DD_API_KEY: 64977deeb1fff8e27763028e596a6856
 ```
 
-##  Configure Datadog
+## Configure Datadog
 
 Go to Logs -&gt; Configuration
 
@@ -94,7 +94,7 @@ Now we can see our metric in the Metrics Explorer
 
 ![](../../.gitbook/assets/image%20%2827%29.png)
 
-And we can define monitoring to alert if there are too many authorization failures. To do this navigate to Monitors -&gt; New Monitor 
+And we can define monitoring to alert if there are too many authorization failures. To do this navigate to Monitors -&gt; New Monitor
 
 ![](../../.gitbook/assets/image%20%2829%29.png)
 

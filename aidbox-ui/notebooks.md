@@ -35,7 +35,7 @@ When clicking the notebooks tab in Aidbox UI you will get to the notebooks page.
 
 You can create a notebook by clicking **new** in the notebooks menu. Each notebook consists of a title, subtitle, and a block of cells.
 
-![New Aidbox notebook](../.gitbook/assets/2021-09-03_09-47-33.png)
+![New Aidbox notebook](../.gitbook/assets/2021-09-03_09-47-33%20%281%29%20%282%29%20%282%29.png)
 
 After you create your cell click the **play** icon to see the answer.
 
@@ -55,7 +55,7 @@ You can export your Aidbox notebook and import it to another Aidbox. Just click 
 
 To import the notebook click import and paste the link
 
-![Import Aidbox notebok](../.gitbook/assets/2021-09-03_10-05-53.png)
+![Import Aidbox notebok](../.gitbook/assets/2021-09-03_10-05-53%20%281%29%20%282%29%20%282%29.png)
 
 ## Publish a notebook
 

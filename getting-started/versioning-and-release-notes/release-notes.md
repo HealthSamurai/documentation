@@ -24,7 +24,7 @@
 * Added [empty query params remove \#238](https://github.com/Aidbox/Issues/issues/238). Please **pay attention** **when** **using json-schema** **access policy** engine: Fields with empty values, such as `[], {}, "", null`, are removed before passing request into access policy processing. Make sure to add `require` check of the fields that are validated by a json schema
 * Fixed some bugs submitted by Aidbox users. Check it [here](https://github.com/Aidbox/Issues/milestone/3?closed=1).
 
-##  July 2021 - v:2107 _`stable`_
+## July 2021 - v:2107 _`stable`_
 
 * We've released a major Aidbox UI upgrade
 
@@ -46,7 +46,7 @@
 * Added Intercom so you can get help directly from your Aidbox.Dev or Aidbox.Cloud.
 * Added a guide on search performance optimization to our docs. Check it [here](https://docs.aidbox.app/api-1/api/search-parameters#optimization-of-search-parameters).
 
-## June __2021 - v:20210610 
+## June \_\_2021 - v:20210610
 
 * Added support for [Bulk API export in CSV](https://docs.aidbox.app/api-1/bulk-api-1/usddump-csv).     You can use **/\[resourceType\]/$dump-csv** endpoint to generate CSV file in which JSON resource structure is flattened into comma-separated format.  Such an option for data export is useful for integrations with external EHR systems.  
 * Added support for [If-Match header](https://docs.aidbox.app/api-1/api/crud-1/delete) in DELETE operation of FHIR REST API.    If-Match is most often used to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource \(i.e., to prevent the "lost update" problem\).  

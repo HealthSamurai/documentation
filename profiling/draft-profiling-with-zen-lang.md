@@ -8,9 +8,9 @@ We're switching to **zen/schema** as the main engine for the validation and conf
 
 In this tutorial you will enable the US Core Patient Profile, extend and validate data against this profile.
 
-### Before start
+## Before start
 
-Install the Devbox sample repo following [this guide](../getting-started/installation/setup-aidbox.dev.md) 
+Install the Devbox sample repo following [this guide](../getting-started/installation/setup-aidbox.dev.md)
 
 Make sure that you have the latest `devbox:edge` image
 
@@ -18,8 +18,8 @@ Make sure that you have the latest `devbox:edge` image
 docker pull healthsamurai/devbox:edge
 ```
 
-Make sure your Devbox is configured to use `devbox:edge` image.  
-  
+Make sure your Devbox is configured to use `devbox:edge` image.
+
 In the `.env` file find the line starting with `AIDBOX_IMAGE` and edit it to be like this if it is not:
 
 {% code title=".env" %}
@@ -28,9 +28,9 @@ AIDBOX_IMAGE=healthsamurai/devbox:edge
 ```
 {% endcode %}
 
-### Create a zen project
+## Create a zen project
 
-Inside of the cloned Devbox directory create a zen project directory and open it.   
+Inside of the cloned Devbox directory create a zen project directory and open it.  
 In this example zen project directory is `my-zen-project/`
 
 ```bash
@@ -79,7 +79,7 @@ Import the profiles namespace in the entry namespace
 ```
 {% endcode %}
 
-### Setup Devbox to use Zen project
+## Setup Devbox to use Zen project
 
 Go to Devbox directory and add configuration variables to the end of `.env` file:
 
@@ -126,7 +126,7 @@ services:
 ```
 {% endcode %}
 
-### Start Devbox and check if your profile is loaded
+## Start Devbox and check if your profile is loaded
 
 Start Devbox using [this guide](../getting-started/installation/setup-aidbox.dev.md#run-devbox) \(perform steps from Devbox directory, not in zen project dir\)
 
@@ -139,16 +139,14 @@ You should see the list of zen namespaces loaded.
 ![](../.gitbook/assets/image%20%2889%29.png)
 
 {% hint style="info" %}
- On this page you see the namespaces that are explicitly included in the zen project or used by Aidbox
+On this page you see the namespaces that are explicitly included in the zen project or used by Aidbox
 {% endhint %}
 
 Open your profile by clicking its name
 
 ![](../.gitbook/assets/image%20%2891%29.png)
 
-### 
-
-### Start validation
+## Start validation
 
 Test the data against this profile using **validate** tab
 
@@ -224,7 +222,7 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-### Example project
+## Example project
 
 [The example project](https://github.com/Aidbox/devbox/commit/431b14170f867f77f90779d4ff870d74c051c844) from this page
 
