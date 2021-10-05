@@ -29,7 +29,7 @@
 ## API <a id="api-1"></a>
 
 * [FHIR API](api-1/fhir-api/README.md)
-  * [capabilities](api-1/fhir-api/capabilities.md)
+  * [Capability Statement](api-1/fhir-api/metadata.md)
   * [$validate](api-1/fhir-api/usdvalidate.md)
   * [Search](api-1/fhir-api/search-1/README.md)
     * [\_id](api-1/fhir-api/search-1/_id.md)
@@ -184,7 +184,6 @@
     * [Load ICD-10 terminology into Aidbox](modules-1/terminology/terminology-tutorials/load-terminologies.md)
 * [HL7 v2 Integration](modules-1/hl7-v2-integration.md)
 * [FHIR Resources](modules-1/fhir-resources/README.md)
-  * [Capability Statement](modules-1/fhir-resources/metadata.md)
   * [Aidbox & FHIR formats](modules-1/fhir-resources/aidbox-and-fhir-formats.md)
 * [Custom Resources](modules-1/custom-resources/README.md)
   * [$metadata](modules-1/custom-resources/custom-metadata.md)
