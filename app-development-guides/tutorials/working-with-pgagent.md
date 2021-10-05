@@ -42,13 +42,13 @@ To create the extension run `CREATE EXTENSION pgagent;`
 There are some more options available to configure PgAgent:  
 You can specify log level with `PGAGENT_LOG_LEVEL` and you can specify a file where PgAagent logs are written in `PGAGENT_LOG_FILE_PATH`.
 
-You can see more info on configuring aidboxdb [here](https://github.com/Aidbox/documentation/tree/c05c4e4e503bacc57e207709dddb652a06811206/getting-started/installation/aidboxdb-image/README.md).
+You can see more info on [configuring aidboxdb](../../getting-started/installation/aidboxdb-image.md).
 
 ## Step-by-step example with docker
 
 In this example we will setup simple `pgagent` job with dedicated pgagent database and user.
 
-### Configuring pgagent
+### Configuring PgAgent
 
 First, we will need to create an initial `docker-compose` configuration:
 

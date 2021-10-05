@@ -23,6 +23,7 @@
 
 ## Aidbox configuration
 
+* [Aidbox project](aidbox-configuration/aidbox-zen-lang-project.md)
 * [API constructor \(alpha\)](aidbox-configuration/api-constructor-alpha.md)
 
 ## API <a id="api-1"></a>
@@ -88,13 +89,17 @@
 ---
 
 * [Profiling and Validation](profiling/README.md)
+  * [Profiling with zen-lang](profiling/profiling-with-zen-lang.md)
+  * [🎓 Profiling with zen-lang](profiling/draft-profiling-with-zen-lang.md)
   * [Validation API](profiling/validation-api.md)
-  * [Profiling with zen-lang](profiling/draft-profiling-with-zen-lang.md)
 * [Aidbox UI](aidbox-ui/README.md)
   * [REST Console](aidbox-ui/rest-console-1.md)
   * [DB Console](aidbox-ui/db-console.md)
   * [Aidbox Notebooks](aidbox-ui/notebooks.md)
-* [HL7 FHIR Da Vinci PDex Plan Net IG](hl7-fhir-da-vinci-pdex-plan-net-ig.md)
+
+## FHIR Implementation Guides
+
+* [🎓 HL7 FHIR Da Vinci PDex Plan Net IG](fhir-implementation-guides/hl7-fhir-da-vinci-pdex-plan-net-ig.md)
 
 ## App development guides
 

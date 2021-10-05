@@ -51,7 +51,7 @@ The purpose of the summary form is to allow a client **to quickly retrieve a lar
 
 ## Limitations
 
-You can't expect only a summary response as requested. There is limited number of summary forms defined for resources in order to allow servers to store the summarized form\(s\) in advance. Servers **SHOULD** mark the resources with the tag [`SUBSETTED`](https://www.hl7.org/fhir/v3/SecurityIntegrityObservationValue/cs.html#SUBSETTED) to ensure that the incomplete resource is not accidentally used to overwrite a complete resource.
+You can't expect only a summary response as requested. There is limited number of summary forms defined for resources in order to allow servers to store the summarized form\(s\) in advance. Servers **SHOULD** mark the resources with the tag [`SUBSETTED`](https://terminology.hl7.org/CodeSystem-v3-ObservationValue.html#v3-ObservationValue-SUBSETTED) to ensure that the incomplete resource is not accidentally used to overwrite a complete resource.
 
 {% hint style="info" %}
 `_include` and `_revinclude`cannot be mixed with `_summary=text`.

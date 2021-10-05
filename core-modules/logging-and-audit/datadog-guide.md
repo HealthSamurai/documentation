@@ -10,7 +10,7 @@ description: >-
 
 You need to enable Datadog Logs API and create an API Key
 
-To create a new API key go to [https://app.datadog.hq/](https://app.datadog.hq/) then go to Integrations -&gt; APIs:
+To create a new API key go to [Datadog](https://app.datadoghq.com/) then go to Integrations -&gt; APIs:
 
 ![](../../.gitbook/assets/image%20%286%29.png)
 

@@ -2,14 +2,12 @@
 
 ## September 2021 - v:2109 _`edge`_
 
-* Aidbox enhanced bulk API
-* Datadog integration URL configuration
-* 5 FHIR compartments are available as default in Aidbox. More details on [Compartments API](https://docs.aidbox.app/api-1/compartments).
-* Added several community notebooks.
-* PDEX 
-* SMART Application Launch Framework Implementation Guide: Patient Portal Launch, Patient Standalone Launch, Provider EHR Launch, Provider Standalone Launch.
-* Aidbox patient portal sample
-* [Aidbox API constructor on Zen \(alpha version\)](../../aidbox-configuration/api-constructor-alpha.md)
+* Added [Aidbox projects](../../aidbox-configuration/aidbox-zen-lang-project.md) that can be used to configure Aidboxes and validate data. 
+* Added 5 FHIR compartments are available as default in Aidbox. More details on [Compartments API](https://docs.aidbox.app/api-1/compartments).
+* Added Datadog [integration URL configuration](https://docs.aidbox.app/core-modules/logging-and-audit/aidbox-logs-and-datadog-integration#datadog-logging). So now you can specify if you want to use one of the following domains `datadoghq.com, us3.datadoghq.com, datadoghq.eu, ddog-gov.com` in configuration.
+* Added a tutorial on how to get [HL7 FHIR Da Vinci PDex Plan Net IG](../../fhir-implementation-guides/hl7-fhir-da-vinci-pdex-plan-net-ig.md) on Aidbox for 10 mins.
+* Supported SMART Application Launch Framework Implementation Guide: Patient Portal Launch, Patient Standalone Launch, Provider EHR Launch, Provider Standalone Launch. Check the [sample](https://github.com/Aidbox/aidbox-project-samples#smart-on-fhir-aidbox-installation). 
+* Released [Aidbox API constructor on zen \(alpha version\)](../../aidbox-configuration/api-constructor-alpha.md).
 
 ## August 2021 - v:2108 _`stable`_
 
@@ -41,10 +39,10 @@
 * Improved logging. 
   * Reviewed and updated log event schema. The updated schema is available [here](https://docs.aidbox.app/core-modules/logging-and-audit#logs-schema).
   * Add w\_r - templated request URL for better aggregation. For example, requests like `GET /Patient/pt-1` will become  `GET /Patient/?` thus allowing aggregate all read requests for monitoring.
-  * Log additional db metrics from Aidbox.Dev.  
+  * Log additional DB metrics from Aidbox.Dev.  
   * Added ELK, Kibana, and Grafana to Aidbox image. So now you can start exploring and analyzing logs from scratch. Check our tutorial on exploring and visualizing logs [here](https://docs.aidbox.app/app-development-guides/tutorials/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana).
 * We added a new auth mechanism for authorization Aidbox.Cloud and Aidbox.Multibox users by JWT.
-* Support for [OKTA](https://www.okta.com/) as an external OAuth 2.0 provider.  Check out [the tutorial](https://bit.ly/okta_tutorial).
+* Support for [OKTA](https://www.okta.com/) as an external OAuth 2.0 provider.  Check out [the tutorial](../../security-and-access-control-1/auth/external-oauth-2.0-providers/configure-okta.md).
 * Added Intercom so you can get help directly from your Aidbox.Dev or Aidbox.Cloud.
 * Added a guide on search performance optimization to our docs. Check it [here](https://docs.aidbox.app/api-1/api/search-parameters#optimization-of-search-parameters).
 

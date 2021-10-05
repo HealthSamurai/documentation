@@ -2,9 +2,11 @@
 description: 'This feature is in beta. Introduced in August 2021 - v:2108 release.'
 ---
 
-# Profiling with zen-lang
+# 🎓 Profiling with zen-lang
 
 We're switching to **zen/schema** as the main engine for the validation and configuration of Aidbox. Previously Aidbox provided validation with JSON Schema and Basic FHIR Profiles.
+
+In this tutorial you will enable the US Core Patient Profile, extend and validate data against this profile.
 
 ### Before start
 
@@ -222,5 +224,7 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-[Here's the example project](https://github.com/Aidbox/devbox/commit/431b14170f867f77f90779d4ff870d74c051c844) from this page
+### Example project
+
+[The example project](https://github.com/Aidbox/devbox/commit/431b14170f867f77f90779d4ff870d74c051c844) from this page
 

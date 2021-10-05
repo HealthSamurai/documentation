@@ -1,158 +1,564 @@
+---
+description: Learn how to manage user access to patient resources.
+---
+
 # Search Parameters
 
-A `SearchParameter` resource specifies a search parameter that may be used on the RESTful API to search or filter on a resource. The SearchParameter resource declares:
+## Prerequisites
 
-* how to refer to the search parameter from a client
-* how the search parameter is to be understood by the server
-* where in the source resource the parameter matches
+To complete this tutorial, you should install Postman and get access to the Aidbox Console \(see [here](../../getting-started/installation/) how to install your Aidbox instance\).
 
-**`Note:`** `Search Parameter name is not equal to element name.`
+Once you access the Aidbox REST Console, load resources that you need to work with policies:
 
-You can see in [FHIR](https://www.hl7.org/fhir/searchparameter.html) specification Search Parameters and their according[ attributes](https://github.com/Aidbox/documentation/tree/560cedaf13f66f43be9f122cb8c4e2af0dcc066c/api-1/api/www.hl7.org/fhir/encounter.html#search). You can look up attached to see where search parameters can be found in the Aidbox interface Aidbox also can return search parameters for specific resouce by REST API. Here's an example for Encounter: GET /SearchParameter?resource=Encounter
+```text
+POST /$import
 
-![](../../.gitbook/assets/image%20%2854%29%20%282%29%20%284%29%20%285%29%20%285%29.png)
+id: patient_import
+inputFormat: application/fhir+ndjson
+contentEncoding: gzip
+mode: bulk
+inputs:
+- resourceType: Client
+  url: https://storage.googleapis.com/aidbox-public/demo/client.ndjson.gz
+- resourceType: User
+  url: https://storage.googleapis.com/aidbox-public/demo/user.ndjson.gz
+- resourceType: Patient
+  url: https://storage.googleapis.com/aidbox-public/demo/patient.ndjson.gz
+- resourceType: Encounter
+  url: https://storage.googleapis.com/aidbox-public/demo/encounter.ndjson.gz
+- resourceType: Observation
+  url: https://storage.googleapis.com/aidbox-public/demo/observation.ndjson.gz
+- resourceType: Practitioner
+  url: https://storage.googleapis.com/aidbox-public/demo/practitioner.ndjson.gz
+```
 
-To search by Encounter.serviceProvider as it's stated in FHIR Encounter specification you should use service-provider search parameter.
+#### Structure of imported resources
 
-![Search Parameters in Aidbox UI](../../.gitbook/assets/image%20%2846%29%20%282%29%20%282%29%20%284%29%20%285%29.png)
+In the previous step, we have imported a client that will authenticate users and two users with corresponding sets of related resources shown on the picture below. Overlapping outlines indicates the relation between enclosed resources. A similar diagram applies to User-2.
 
-## Using
+![](../../.gitbook/assets/image%20%2814%29.png)
 
-Here is an example of the **Patient.name** search parameter:
+## User Login‌ <a id="user-login"></a>
+
+Now you can use Postman to log in as a user. In this example, we log in as User-1.
 
 {% tabs %}
-{% tab title="FHIR format" %}
-```yaml
-GET /fhir/SearchParameter/Patient.name
+{% tab title="Request" %}
+```javascript
+POST /auth/token
 
-# 200
-
-id: Patient.name
-type: string
-name: name
-resourceType: SearchParameter
-base:
-  - Patient
-code: name
-expression: Patient.name
+{
+  "client_id": "myapp"
+  "client_secret": "verysecret"
+  "username": "patient-user"
+  "password": "admin" 
+  "grant_type": "password"
+}
 ```
 {% endtab %}
 
-{% tab title="Aidbox format" %}
-```yaml
-GET /SearchParameter/Patient.name
-
-# 200
-name: name
-type: string
-resource: {id: Patient, resourceType: Entity}
-expression:
-- [name]
+{% tab title="Response" %}
+```javascript
+{
+  "token_type": "Bearer",
+  "userinfo": {
+    "data": {
+      "roles": ["Patient"],
+      "patient_id": "new-patient"
+    },
+    "resourceType": "User",
+    "id": "patient-user",
+    "meta": {
+      "lastUpdated": "2020-11-06T12:18:19.530001Z",
+      "createdAt": "2020-11-03T14:09:03.010136Z",
+      "versionId": "426"
+    }
+  },
+  "access_token": "MjYzOTkyZDEtODg4ZC00NTBlLTgxNDEtNjIzM2Y4NWQ1M2Vk"
+}
 ```
 {% endtab %}
 {% endtabs %}
 
-#### Structure
+Notice the `patient_id` field of `userinfo` . This is the id of the Patient resource associated with our user. It will be used further in Access Policies to decide if access should be granted or not. In general, you need to specify `data.patient_id: some_patient_id` in your User resource to establish a relation to a Patient resource.‌
 
-All these attributes are required.
+The `access-token` field of `user-info` will be needed to perform requests on behalf of our User. See [here](../../security-and-access-control-1/auth/resource-owner-password.md#use-access-token) how to perform user request with a token.
 
-| path | type | desc |
-| :--- | :--- | :--- |
-| .**name** | [keyword](http://localhost:8765/static/console.html#/entities/Attribute?entity=keyword) | Name of search parameter, will be used in search query string |
-| .**resource** | [Reference](http://localhost:8765/static/console.html#/entities/Attribute?entity=Reference) | Reference to resource, i.e. {id: Patient, resourceType: Reference} |
-| .**type** | [keyword](http://localhost:8765/static/console.html#/entities/Attribute?entity=keyword) | Type of search parameter \(see [Types](search-parameters.md)\) |
-| .**expression** | [expression](http://localhost:8765/static/console.html#/entities/Attribute?entity=SearchParameterExpression) | expression for elements to search \(see [Expression](search-parameters.md)\) |
+![](../../.gitbook/assets/image%20%2810%29.png)
 
-#### Search parameter types
+At this point there are no access policies that allow the user to access any resources. So all attempts to make requests for Resources will be denied.
 
-| Type | Description |
-| :--- | :--- |
-| [number](https://www.hl7.org/fhir/search.html#number) | Search parameter SHALL be a number \(a whole number or a decimal\). |
-| [date](https://www.hl7.org/fhir/search.html#date) | Search parameter is on a date/time. The date format is the standard XML format, though other formats may be supported. |
-| [string](https://www.hl7.org/fhir/search.html#string) | Search parameter is a simple string, like a name part. Search is case-insensitive and accent-insensitive. May match just the start of a string. |
-| [token](https://www.hl7.org/fhir/search.html#token) | Search parameter on a coded element or identifier. May be used to search through the text, displayname, code and code/codesystem \(for codes\) and label, system and key \(for identifier\). Its value is either a string or a pair of namespace and value, separated by a "\|", depending on the modifier used. |
-| [reference](https://www.hl7.org/fhir/search.html#reference) | A reference to another resource. |
-| [composite](https://www.hl7.org/fhir/search.html#composite) | A composite search parameter that combines a search on two values together. |
-| [quantity](https://www.hl7.org/fhir/search.html#quantity) | A search parameter that searches on quantity. |
-| [uri](https://www.hl7.org/fhir/search.html#uri) | A search parameter that searches on a URI \(RFC 3986\). |
+## Patient Resource access <a id="access-to-patient-resource"></a>
 
-Depending on the value type, different modifiers can be applied.
-
-#### Expression
-
-Expression is a set of elements by which we want to search. Expression is a logically very simple subset of FHIRPath \(which can be efficiently implemented in a database\) expressed as data. Expression is an array of PathArrays; PathArray is an array of strings, integers, or objects, where each type has a special meaning:
-
-* string - a name of the element
-* integer - index in collection
-* object - filter by pattern in the collection
-
-For example, PathArray `["name", "given"]` extracts all given and family names as an array and flattens into one collection. Equivalent FHIRPath expression is `name.given | name.family`.
-
-PathArray `[["name", 0, "given", 0]]` extracts only a first given of first name \(FHIRPath `name.0.given.0`
-
-PathArray `[["telecom", {"system": "phone"}, "value"]]` extracts all values of the telecom collection filtered by `system=phone` \(FHIRPath: `telecom.where(system='phone').value` \)
-
-An expression consists of an array of PathArrays, all results of the PathArray are concatenated into one collection.
-
-### Define custom SearchParameter
-
-You can define custom search params by creating a SearchParameter resource. Let's say you want to search a patient by city:
+Let's add our first policy that will grant us access to the Patient resource associated with our user.
 
 {% tabs %}
-{% tab title="FHIR format" %}
+{% tab title="Request" %}
 ```yaml
-PUT /SearchParameter/Patient.city
+POST /AccessPolicy
 
-name: city
-type: token
-resource: {id: Patient, resourceType: Entity}
-expression: [[address, city]]
+id: patient-access
+engine: matcho
+matcho:
+  uri: '#/Patient/.*'
+  params:
+    resource/id: .user.data.patient_id  
+  request-method: get
 ```
 {% endtab %}
 
-{% tab title="Aidbox format" %}
-```yaml
-PUT /SearchParameter/Patient.city
-
-name: city
-type: token
-resource: {id: Patient, resourceType: Entity}
-expression: [[address, city]]
+{% tab title="Response" %}
+```javascript
+engine: matcho
+matcho:
+  uri: '#/Patient/.*'
+  params: 
+    resource/id: .user.data.patient_id
+  request-method: get
+id: patient-access
+resourceType: AccessPolicy
+meta: 
+  lastUpdated: '2020-11-10T15:00:59.497835Z'
+  createdAt: '2020-11-10T15:00:59.497835Z'
+  versionId: '110'
 ```
 {% endtab %}
 {% endtabs %}
 
-Now let's test the new search parameter
+Here we specified that Access Policy would grant `GET` access to a URI that matches `#/Patient/.*` regex if the request parameter named `resource/id` matches `data.patient` value of the user that makes the request.‌
+
+So now we can read our patient. The part of the URL after `/Patient/`, namely `new-patient`, is parsed by Access Policy engine as the `resource/id` parameter of the request:
 
 {% tabs %}
-{% tab title="FHIR format" %}
+{% tab title="Request" %}
 ```yaml
-GET /fhir/Patient?city=New-York
+GET /Patient/new-patient
+```
+{% endtab %}
 
-resourceType: Bundle
-type: searchset
-entry:
-  [...]
-total: 10
+{% tab title="Response" %}
+```yaml
+{
+    "name": [
+        {
+            "given": ["Luke"]
+        },
+        {
+            "family": "Skywalker"
+        }
+    ],
+    "gender": "male",
+    "birthDate": "2145-08-12",
+    "id": "new-patient",
+    "resourceType": "Patient",
+    "meta": {
+        "lastUpdated": "2020-11-10T13:51:16.780576Z",
+        "createdAt": "2020-11-10T11:38:52.402256Z",
+        "versionId": "83"
+    }
+}
 ```
 {% endtab %}
 {% endtabs %}
 
-## Optimization of Search Parameters
+You can check that access to any other existing Patient resource, for instance, that one with id `new-patient1`, will be denied.
 
-### Getting search SQL query
+## Encounter access
 
-If you perform a search query at the root route, you will get a SQL query in the response in the attribute `query-sql`:
+Now let's give our user the ability to retrieve all encounters where they are referred to as a subject:
 
-![query-sql in the response](../../.gitbook/assets/image%20%2846%29.png)
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+POST /AccessPolicy
 
-{% hint style="info" %}
-FHIR API does not have `query-sql`attribute, if you search with `/fhir/`prefix you won't see SQL query in the response
-{% endhint %}
+id: search-patient-encounter
+engine: matcho
+matcho:
+  uri: /Encounter
+  params:
+    patient: .user.data.patient_id
+  request-method: get
+```
+{% endtab %}
 
-### Ways to optimize
+{% tab title="Response" %}
+```yaml
+engine: matcho
+matcho:
+  uri: /Encounter
+  params:
+    patient: .user.data.patient_id
+resourceType: AccessPolicy
+id: search-patient-encounter
+meta:
+  lastUpdated: '2020-11-05T15:28:58.054136Z'
+  createdAt: '2020-11-05T15:28:58.054136Z'
+  versionId: '0'
+```
+{% endtab %}
+{% endtabs %}
 
-* You can try to speed up your search query by creating an index. [Here's Postgres documentation on indexes](https://www.postgresql.org/docs/13/indexes.html). 
-* You can use [Search](../fhir-api/search-1/) resource to define your own SQL for a search parameter
-* You can use entirely custom SQL query with [AidboxQuery](../fhir-api/search-1/custom-search.md) resource
+And this policy is a bit tricky. The allowed URI is `/Encounter` and it doesn't contain any additional parts that could be identified as request parameters as in the previous case. So, in order to provide the required request parameter `patient` to the Access Policy matching engine, we have to specify it as the query parameter of our request. And after the Access Policy engine allows such a request, the Search Engine comes into play. It filters out encounters that do not match the condition of `patient = our-patient-id`. To know more about how the AidBox Search works, see the [Search section](../fhir-api/search-1/). To know more about the available search parameters, refer to the [Search Parameters section](search-parameters.md) of the FHIR documentation for the resource of interest.
+
+Finally, we can make a request for the list of patient encounters.
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+GET /Encounter?patient=new-patient
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```yaml
+{
+  "query-time": 7,
+  "meta": {
+    "versionId": "155"
+  },
+  "type": "searchset",
+  "resourceType": "Bundle",
+  "total": 1,
+  "link": [
+    {
+      "relation": "first",
+      "url": "/Encounter?patient=new-patient&page=1"
+    },
+    {
+      "relation": "self",
+      "url": "/Encounter?patient=new-patient&page=1"
+    }
+  ],
+  "query-timeout": 60000,
+  "entry": [
+    {
+      "resource": {
+         "class": {
+            "code": "AMB"
+          },
+         "status": "planned",
+         "subject": {
+            "id": "new-patient",
+            "resourceType": "Patient"
+          },
+         "participant": [
+           {
+             "individual": {
+               "id": "practitioner-1",
+               "resourceType": "Practitioner"
+             }
+           }
+         ],
+         "id": "enc1",
+               "resourceType": "Encounter",
+               "meta": {
+                    "lastUpdated": "2020-11-10T11:11:39.464261Z",
+                    "createdAt": "2020-11-06T19:14:46.247628Z",
+                    "versionId": "150"
+               }
+      },
+      "fullUrl": "/Encounter/enc1",
+      "link": [
+        {
+          "relation": "self",
+          "url": "/Encounter/enc1"
+        }
+      ]
+    }
+  ],
+  "query-sql": [
+    "SELECT \"encounter\".* FROM \"encounter\" WHERE \"encounter\".resource @> ? LIMIT ? OFFSET ? ",
+    "{\"subject\":{\"id\":\"new-patient\",\"resourceType\":\"Patient\"}}",
+    100,
+    0
+  ]
+}
+```
+{% endtab %}
+{% endtabs %}
+
+## Observation access
+
+#### Read access
+
+Granting access to observations is similar to the previous case. We just add another policy that looks just like the previous one, but matches against another URI. It is so similar that we should stop there and think a little about what happens if we want to grant read access to more resources — we will end up with a bunch of almost indistinguishable policies. A better approach, in this case, is to use the `CompartmentDefinition` resource.
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+POST /fhir/CompartmentDefinition
+
+id: patient
+url: http://hl7.org/fhir/CompartmentDefinition/patient
+code: Patient
+search: true
+status: draft
+resource:
+  - code: Encounter
+    param: 
+      - patient
+  - code: Observation
+    param: 
+      - subject
+      - performer
+```
+{% endtab %}
+{% endtabs %}
+
+Now, when we've created a `CompartmentDefinition` resource, we can access patient-related resources with such requests: `GET /Patient/{patient-id}/{resource}`. To know in detail about how compartments work, see the [Compartments tutorial](../compartments.md).
+
+And that's it! We don't even need to add more policies, since we already have the policy that allows the user to access URIs that match `/Patient/.*` regex.
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+GET /Patient/new-patient/Observation
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```text
+{
+ "query-time": 7,
+ "meta": {
+  "versionId": "171"
+ },
+ "type": "searchset",
+ "resourceType": "Bundle",
+ "total": 2,
+ "link": [
+  {
+   "relation": "first",
+   "url": "/Observation?_filter=subject eq 'new-patient' or performer eq 'new-patient'&page=1"
+  },
+  {
+   "relation": "self",
+   "url": "/Observation?_filter=subject eq 'new-patient' or performer eq 'new-patient'&page=1"
+  }
+ ],
+ "query-timeout": 60000,
+ "entry": [
+  {
+   "resource": {
+    "class": {
+     "coding": [
+      {
+       "code": "11557-6"
+      }
+     ]
+    },
+    "status": "registered",
+    "subject": {
+     "id": "new-patient",
+     "resourceType": "Patient"
+    },
+    "performer": [
+     {
+      "id": "practitioner-1",
+      "resourceType": "Practitioner"
+     }
+    ],
+    "resourceType": "Observation",
+    "id": "observation-1",
+    "meta": {
+     "lastUpdated": "2020-11-06T19:14:46.078643Z",
+     "createdAt": "2020-11-06T19:14:46.078643Z",
+     "versionId": "0"
+    }
+   },
+   "fullUrl": "/Observation/observation-1",
+   "link": [
+    {
+     "relation": "self",
+     "url": "/Observation/observation-1"
+    }
+   ]
+  },
+  {
+   "resource": {
+    "class": {
+     "coding": [
+      {
+       "code": "11557-6"
+      }
+     ]
+    },
+    "status": "registered",
+    "subject": {
+     "id": "new-patient",
+     "resourceType": "Patient"
+    },
+    "performer": [
+     {
+      "id": "new-patient",
+      "resourceType": "Patient"
+     }
+    ],
+    "resourceType": "Observation",
+    "id": "observation-3",
+    "meta": {
+     "lastUpdated": "2020-11-06T19:14:46.078643Z",
+     "createdAt": "2020-11-06T19:14:46.078643Z",
+     "versionId": "0"
+    }
+   },
+   "fullUrl": "/Observation/observation-3",
+   "link": [
+    {
+     "relation": "self",
+     "url": "/Observation/observation-3"
+    }
+   ]
+  }
+ ],
+ "query-sql": [
+  "SELECT \"observation\".* FROM \"observation\" WHERE (\"observation\".resource @> ? OR \"observation\".resource @> ?) LIMIT ? OFFSET ? ",
+  "{\"subject\":{\"id\":\"new-patient\"}}",
+  "{\"performer\":[{\"id\":\"new-patient\"}]}",
+  100,
+  0
+ ]
+}
+```
+{% endtab %}
+{% endtabs %}
+
+If we want to grant access to some other resource, we just need to add it to the `CompartmentDefinition` resource that we've created earlier. See [FHIR documentation](https://www.hl7.org/fhir/compartmentdefinition-patient.html) to know what resources can be added to a patient compartment. And we can get rid of the Access Policy that was previously created for encounters.
+
+#### Write access
+
+The user should be able to create their own observation, e.g., to report blood sugar level. The following policy manages this case:
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+POST /AccessPolicy
+
+id: create-patient-observation
+engine: matcho
+matcho:
+  uri: '/Observation'
+  body:
+    subject:
+      id: .user.data.patient_id
+      resourceType: Patient
+    performer:
+      $contains:
+        id: .user.data.patient_id
+        resourceType: Patient
+  request-method: post
+```
+{% endtab %}
+{% endtabs %}
+
+With this policy, we can only create observations where the subject and performer must be the user's patient.
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+POST /Observation
+
+{
+  "id": "observation-3",
+  "code": {
+    "coding": [
+      {
+        "code": "11557-6"
+      }
+    ]
+  },
+  "status": "registered",
+  "subject": {
+    "id": "new-patient",
+    "resourceType": "Patient"
+  },
+  "performer": [
+    {
+      "id": "new-patient",
+      "resourceType": "Patient"
+    }
+  ]
+}
+```
+{% endtab %}
+{% endtabs %}
+
+Now it's time to make an important note. In general, it is not possible to use some kind of `CompartmentDefinition` approach to grant write access to many resources at once, as we did previously for read access. That's because resources may require sophisticated logic to define which part of a resource could have write access and which not. Such logic may even lie beyond the abilities of the Access Control mechanism and in this case custom API is the only resort. But in a quite simple scenario like the creation of observation, Access Policies are helpful.
+
+Let's create a new policy that allows our user to update their observations through the `PATCH` method. Matcho engine is no longer enough to make a rule for this kind of request since it only relies on the request and the user parameters. Now we need to peek into the requested resource to understand if it is related to our user and could be patched.
+
+**TODO:** describe the necessity and benefits of the json-schema engine.
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+POST /AccessPolicy
+
+id: patch-observation
+link:
+  - id: Patch
+    resourceType: Operation
+engine: complex
+and:
+  - engine: sql
+    sql:
+      query: > 
+        select true from observation 
+        where resource#>>'{subject,id}' = {{user.data.patient_id}} 
+        and id = {{params.resource/id}}
+        and resource->'performer' @> jsonb_build_array(jsonb_build_object('resourceType', 'Patient', 'id', {{user.data.patient_id}}::text))
+  - engine: json-schema
+    schema:
+      properties:
+        body:
+          properties:
+            subject:
+              optional: true
+              properties:
+                id:
+                  constant:
+                    $data: '#/user/data/patient_id’
+```
+{% endtab %}
+{% endtabs %}
+
+Now we can try to update our patient and the patient related to the User-2 and observe the difference in the responses.
+
+### Access to the next of kin records
+
+Access policies depend a lot on how we model our resources. FHIR doesn't provide convenient facilities to make relations between patients. The easiest way to add such relations is to enhance a `User` resource with the list of related patients. Let's define that `Patient-2` is related to `User-1`.
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+PATCH /User/patient-user
+
+data:
+  related_patients:
+    - new-patient1
+```
+{% endtab %}
+{% endtabs %}
+
+To grant `User-1` access to related patients, we should simply update `patient-access` policy.
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+PUT /AccessPolicy/patient-access
+
+engine: matcho
+matcho:
+  uri: '#/Patient/.*'
+  user:
+    data:
+      $one-of:
+        - related_patients:
+            $contains: .params.resource/id
+        - patient_id: .params.resource/id
+  request-method: get
+```
+{% endtab %}
+{% endtabs %}
 
