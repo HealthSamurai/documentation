@@ -653,7 +653,7 @@ GET /$zen-errors
 ```
 {% endcode %}
 
-1. If eveything is ok, now you have validation enabled.   
+1. If eveything is ok, now you have validation enabled.
 
    You can test it by creating resource which references profile URL in the `meta.profile` attribute
 
