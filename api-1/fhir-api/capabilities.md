@@ -1,7 +1,5 @@
 ---
-description: >-
-  CapabilityStatement of an Aidbox instance. Aidbox support of FHIR capabilities
-  interaction
+description: CapabilityStatement of an Aidbox instance
 ---
 
 # capabilities
