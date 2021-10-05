@@ -24,7 +24,7 @@
 ## Aidbox configuration
 
 * [Aidbox project](aidbox-configuration/aidbox-zen-lang-project.md)
-* [API constructor \(alpha\)](aidbox-configuration/api-constructor-alpha.md)
+* [API constructor \(alpha\)](aidbox-configuration/aidbox-api-constructor.md)
 
 ## API <a id="api-1"></a>
 

@@ -1,13 +1,13 @@
 # Release Notes
 
-## September 2021 - v:2109 _`edge`_
+## September 2021 - v:2109 _`stable`_
 
 * Added [Aidbox projects](../../aidbox-configuration/aidbox-zen-lang-project.md) that can be used to configure Aidboxes and validate data. 
 * Added 5 FHIR compartments are available as default in Aidbox. More details on [Compartments API](https://docs.aidbox.app/api-1/compartments).
-* Added Datadog [integration URL configuration](https://docs.aidbox.app/core-modules/logging-and-audit/aidbox-logs-and-datadog-integration#datadog-logging). So now you can specify if you want to use one of the following domains `datadoghq.com, us3.datadoghq.com, datadoghq.eu, ddog-gov.com` in configuration.
-* Added a tutorial on how to get [HL7 FHIR Da Vinci PDex Plan Net IG](../../fhir-implementation-guides/hl7-fhir-da-vinci-pdex-plan-net-ig.md) on Aidbox for 10 mins.
+* Added Datadog [integration URL configuration](https://docs.aidbox.app/core-modules/logging-and-audit/aidbox-logs-and-datadog-integration#datadog-logging). So now you can specify in configuration if you want to use one of the following domains`datadoghq.com, us3.datadoghq.com, datadoghq.eu, ddog-gov.com`.
+* Added a tutorial on how to configure [HL7 FHIR Da Vinci PDex Plan Net IG](../../fhir-implementation-guides/hl7-fhir-da-vinci-pdex-plan-net-ig.md) on Aidbox.
 * Supported SMART Application Launch Framework Implementation Guide: Patient Portal Launch, Patient Standalone Launch, Provider EHR Launch, Provider Standalone Launch. Check the [sample](https://github.com/Aidbox/aidbox-project-samples#smart-on-fhir-aidbox-installation). 
-* Released [Aidbox API constructor on zen \(alpha version\)](../../aidbox-configuration/api-constructor-alpha.md).
+* Released [Aidbox API constructor on zen \(alpha version\)](../../aidbox-configuration/aidbox-api-constructor.md).
 
 ## August 2021 - v:2108 _`stable`_
 
