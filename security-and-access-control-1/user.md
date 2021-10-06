@@ -24,9 +24,17 @@ To create user you can use CRUD API, e.g. `POST /User` and `PUT /User/`
 
 Human User can use /auth/login to log in with credentials defined in a User resource
 
-System can authenticate a User as it is specified in OAuth 2.0 spec. For example, you can get access token via `POST /auth/token`
+System can authenticate a User as it is specified in OAuth 2.0 spec. For example, you can get access token via 
 
-client\_id: password-client grant\_type: password username: user@mail.com password: password
+`POST /auth/token`
+
+`client_id: password-client` 
+
+`grant_type: password` 
+
+`username: user@mail.com` 
+
+`password: password`
 
 Note for such authentification a Client resource should be created
 
