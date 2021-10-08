@@ -48,7 +48,7 @@ You can define and expose over REST API sophisticated queries in SQL on FHIR dat
 To restore Aidbox it is enough to restore Postgres from backup. There are several options:
 
 * For small databases _\(&lt; 5Gb\)_ you can use Postgres built-in function `pgdump` 
-* After running the command you get the file from which you can restore aidboxdb using `pgrestore`  This approach assumes downtime.
+* After running the command you get the file from which you can restore aidboxdb using [`pg_restore`](https://postgrespro.com/docs/postgrespro/10/app-pgrestore)  This approach assumes downtime.
 
 ## Tutorials
 

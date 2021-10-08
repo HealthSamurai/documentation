@@ -26,7 +26,7 @@ The image is configured by supplying environment variables and command line argu
 | `POSTGRES_USER` | Name of the user that will be created during db initialization |
 | `POSTGRES_PASSWORD` | Password for that user |
 | `POSTGRES_DB` | Name of the database to be created on startup |
-| `WALG_` variables | Credentials for storage and bucket name for wal-g to use. Refer to the [official docs](https://github.com/wal-g/wal-g#configuration) for the details. |
+| `WALG_` variables | Credentials for storage and bucket name for wal-g to use. Refer to the official docs for the details. |
 
 ### Optional environment variables
 
