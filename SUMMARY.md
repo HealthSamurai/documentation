@@ -153,6 +153,7 @@
 
 ## Storage <a href="storage-1" id="storage-1"></a>
 
+* [Archiving](storage-1/archiving.md)
 * [Database](storage-1/database.md)
 * [AWS S3](storage-1/aws-s3.md)
 * [GCP Cloud Storage](storage-1/gcp-cloud-storage.md)
