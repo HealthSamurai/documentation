@@ -20,17 +20,24 @@ The `AIDBOX_ZEN_PATHS` environment variable is used to specify how Aidbox loads 
 
 **Format**:
 
-```text
+```
 AIDBOX_ZEN_PATHS=<source>:<format>:<path>[,<source>:<format>:<path>]*
 ```
 
 Source is either `url` or `path`. `url` is used to download Aidbox project from the remote location; `path` is used to load Aidbox project from the filesystem.
 
-Format is either `zip` or `dir`. Note that `dir` is only applicable to the `path` source.
+Format can be `zip`, `dir` or `edn`. Note that `dir` is only applicable to the `path` source.
+
+Table of source and format compatibility:
+
+| source\format | `zip` | `dir` | `edn` |
+| ------------- | ----- | ----- | ----- |
+| `url`         | ✓     |       | ✓     |
+| `path`        | ✓     | ✓     | ✓     |
 
 Example:
 
-```text
+```
 AIDBOX_ZEN_PATHS=AIDBOX_ZEN_PATHS=url:zip:https://github.com/zen-lang/fhir/releases/download/0.2.13-1/hl7-fhir-us-core.zip
 ```
 
@@ -40,13 +47,13 @@ The `AIDBOX_ZEN_LOAD` environment variable is used to load a single namespace re
 
 **Format:**
 
-```text
+```
 AIDBOX_ZEN_LOAD=<zen-edn>
 ```
 
 **Example:**
 
-```text
+```
 AIDBOX_ZEN_LOAD='{ns my-zen-namespace import #{zen-proj1 zen-proj2 zen-proj3}}'
 ```
 
@@ -58,19 +65,19 @@ The `AIDBOX_ENTRY_POINT` environment variable specifies a zen namespace or a zen
 
 Using a zen namespace as an entry point:
 
-```text
+```
 AIDBOX_ENTRY_POINT=zen.namespace
 ```
 
 Using a zen symbol as an entry point:
 
-```text
+```
 AIDBOX_ENTRY_POINt=zen.namespace/zen-symbol
 ```
 
 **Examples:**
 
-```text
+```
 AIDBOX_ENTRY_POINT=aidbox-project1/dev-server
 AIDBOX_ENTRY_POINT=aidbox-project2
 ```
@@ -85,7 +92,7 @@ The `AIDBOX_ZEN_PROJECT` environment variable is used to load Aidbox project fro
 
 **Format:**
 
-```text
+```
 AIDBOX_ZEN_PROJECT=<path>
 ```
 
@@ -98,4 +105,3 @@ Format: if the variable is defined in the environment then Zen dev mode is enabl
 ## Examples
 
 You can see example using the Aidbox project and hot reload in the [🎓 Profiling with zen-lang](../profiling/draft-profiling-with-zen-lang.md) tutorial.
-
