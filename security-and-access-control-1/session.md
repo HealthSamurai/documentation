@@ -1,3 +1,7 @@
+---
+description: Session resource description
+---
+
 # Session
 
 For each user login Aidbox creates Session resource
@@ -14,4 +18,3 @@ limit 10
 {% endcode %}
 
 ## Clear Sessions
-

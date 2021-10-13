@@ -1,8 +1,10 @@
 ---
-description: TBD
+description: User, Session, Client resources and mechanics explained
 ---
 
-# User
+# Overview
+
+## **User**
 
 Aidbox has a SCIM User Resource.
 
@@ -16,11 +18,11 @@ Attributes:
 | identifier | Identifier\[] |                  |
 | userName   |               |                  |
 
-## Create Users
+### Create Users
 
 To create user you can use CRUD API, e.g. `POST /User` and `PUT /User/`
 
-## User Login
+### User Login
 
 Human User can use /auth/login to log in with credentials defined in a User resource
 
@@ -42,6 +44,40 @@ You can find different authorization flow examples in the Auth Sandbox in the Ai
 
 `GET /auth/userinfo` returns info about current User session
 
-## Activate/Deactivate Users
+### Activate/Deactivate Users
 
 To control User active status you can change `User.inactive` attribute by setting true or false value
+
+
+
+## Sessions
+
+For each user login Aidbox creates Session resource
+
+{% code title="Get last 10 sessions" %}
+```sql
+select cts, resource#>>'{user,id}'
+from session
+order by cts desc
+limit 10
+```
+{% endcode %}
+
+## Client
+
+To provide programmatic access to Aidbox you have to register a client - Client resource.
+
+Client resource must have `grant_types` attribute defining authentification scheme for this Client.
+
+Other required attributes are determined based on the values of this attribute `grant_types` is an array of strings, possible values are:
+
+* basic
+* client_credentials
+* password
+* implicit
+* authorization_code
+* code
+
+{% hint style="info" %}
+You can find different authorization flow examples in the Auth Sandbox in the Aidbox ui
+{% endhint %}

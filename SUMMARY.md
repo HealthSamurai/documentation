@@ -17,41 +17,41 @@
   * [Releases Archive](getting-started/versioning-and-release-notes/release-notes-1/README.md)
     * [0.4.7 addendum](getting-started/versioning-and-release-notes/release-notes-1/0.4.7-addendum.md)
 
----
+***
 
 * [FAQ](faq.md)
 
 ## Aidbox configuration
 
 * [Aidbox project](aidbox-configuration/aidbox-zen-lang-project.md)
-* [API constructor \(alpha\)](aidbox-configuration/aidbox-api-constructor.md)
+* [API constructor (alpha)](aidbox-configuration/aidbox-api-constructor.md)
 
-## API <a id="api-1"></a>
+## API <a href="api-1" id="api-1"></a>
 
 * [FHIR API](api-1/fhir-api/README.md)
   * [Capability Statement](api-1/fhir-api/metadata.md)
   * [$validate](api-1/fhir-api/usdvalidate.md)
   * [Search](api-1/fhir-api/search-1/README.md)
-    * [\_id](api-1/fhir-api/search-1/_id.md)
-    * [\_lastUpdated & \_createdAt](api-1/fhir-api/search-1/_lastupdated.md)
-    * [\_text & \_content](api-1/fhir-api/search-1/_text-and-_content.md)
-    * [\_ilike](api-1/fhir-api/search-1/_ilike.md)
-    * [\_elements](api-1/fhir-api/search-1/_elements.md)
-    * [Summary parameter](api-1/fhir-api/search-1/_summary.md)
-    * [\_list](api-1/fhir-api/search-1/_list.md)
-    * [\_count & \_page](api-1/fhir-api/search-1/_count-and-_page.md)
-    * [\_total or \_countMethod](api-1/fhir-api/search-1/_total-or-_countmethod.md)
-    * [\_timeout](api-1/fhir-api/search-1/_timeout.md)
-    * [\_sort](api-1/fhir-api/search-1/_sort.md)
-    * [\_include & \_revinclude](api-1/fhir-api/search-1/_include-and-_revinclude.md)
+    * [\_id](api-1/fhir-api/search-1/\_id.md)
+    * [\_lastUpdated & \_createdAt](api-1/fhir-api/search-1/\_lastupdated.md)
+    * [\_text & \_content](api-1/fhir-api/search-1/\_text-and-\_content.md)
+    * [\_ilike](api-1/fhir-api/search-1/\_ilike.md)
+    * [\_elements](api-1/fhir-api/search-1/\_elements.md)
+    * [Summary parameter](api-1/fhir-api/search-1/\_summary.md)
+    * [\_list](api-1/fhir-api/search-1/\_list.md)
+    * [\_count & \_page](api-1/fhir-api/search-1/\_count-and-\_page.md)
+    * [\_total or \_countMethod](api-1/fhir-api/search-1/\_total-or-\_countmethod.md)
+    * [\_timeout](api-1/fhir-api/search-1/\_timeout.md)
+    * [\_sort](api-1/fhir-api/search-1/\_sort.md)
+    * [\_include & \_revinclude](api-1/fhir-api/search-1/\_include-and-\_revinclude.md)
     * [Chained Parameters](api-1/fhir-api/search-1/chained-parameters.md)
     * [. expressions](api-1/fhir-api/search-1/.-expressions.md)
-    * [\_result](api-1/fhir-api/search-1/_result.md)
-    * [\_explain](api-1/fhir-api/search-1/_explain.md)
+    * [\_result](api-1/fhir-api/search-1/\_result.md)
+    * [\_explain](api-1/fhir-api/search-1/\_explain.md)
     * [AidboxQuery](api-1/fhir-api/search-1/custom-search.md)
     * [SearchQuery](api-1/fhir-api/search-1/searchquery.md)
     * [Search Resource](api-1/fhir-api/search-1/search-resource.md)
-    * [\_filter](api-1/fhir-api/search-1/_filter.md)
+    * [\_filter](api-1/fhir-api/search-1/\_filter.md)
     * [$lookup](api-1/fhir-api/search-1/usdlookup.md)
   * [Observation/$lastn](api-1/fhir-api/misc.md)
   * [History](api-1/fhir-api/history-1.md)
@@ -87,7 +87,7 @@
 * [GraphQL API](api-1/graphql-api.md)
 * [RPC API](api-1/rpc-api.md)
 
----
+***
 
 * [Profiling and Validation](profiling/README.md)
   * [Profiling with zen-lang](profiling/profiling-with-zen-lang.md)
@@ -126,8 +126,9 @@
 * [$matcho](app-development-guides/usdmatcho.md)
 * [$to-format](app-development-guides/usdto-format-fhir-aidbox.md)
 
-## Security & Access Control <a id="security-and-access-control-1"></a>
+## Security & Access Control <a href="security-and-access-control-1" id="security-and-access-control-1"></a>
 
+* [Overview](security-and-access-control-1/overview.md)
 * [User](security-and-access-control-1/user.md)
 * [Session](security-and-access-control-1/session.md)
 * [Client](security-and-access-control-1/client.md)
@@ -150,7 +151,7 @@
   * [🎓 Access Control](security-and-access-control-1/security/access-policy.md)
   * [🎓 Sample: Patient can see their own data](security-and-access-control-1/security/sample-patient-can-see-its-own-data.md)
 
-## Storage <a id="storage-1"></a>
+## Storage <a href="storage-1" id="storage-1"></a>
 
 * [Database](storage-1/database.md)
 * [AWS S3](storage-1/aws-s3.md)
@@ -168,7 +169,7 @@
   * [Datadog Log management integration](core-modules/logging-and-audit/aidbox-logs-and-datadog-integration.md)
   * [🎓 Export logs to Datadog tutorial](core-modules/logging-and-audit/datadog-guide.md)
 
-## Modules <a id="modules-1"></a>
+## Modules <a href="modules-1" id="modules-1"></a>
 
 * [Terminology](modules-1/terminology/README.md)
   * [Concept](modules-1/terminology/concept.md)
@@ -206,7 +207,6 @@
   * [Python SDK](tools/aidbox-sdk/python-sdk.md)
   * [SDK internals](tools/aidbox-sdk/sdk-internals.md)
 
----
+***
 
 * [Contact us](contact-us.md)
-
