@@ -67,7 +67,11 @@ limit 10
 
 To provide programmatic access to Aidbox you have to register a client - Client resource.
 
-Client resource must have `grant_types` attribute defining authentification scheme for this Client.
+Client resource must have `grant_types` attribute defining authentification scheme for this Client
+
+> [Application grant types](https://auth0.com/docs/configure/applications/application-grant-types#available-grant-types) (or flows) are methods through which applications can gain [Access Tokens](https://auth0.com/docs/security/tokens/access-tokens) and by which you grant limited access to your resources to another entity without exposing credentials. 
+
+Grant types are choosed appropriately based on the `grant_types` property of your Auth0-registered Application. The [OAuth 2.0 protocol](https://auth0.com/docs/authorization/flows/which-oauth-2-0-flow-should-i-use) supports several types of grants, which allow different types of access. **To see available grant types and grant type** mapping refer to the [doc](https://auth0.com/docs/configure/applications/application-grant-types#available-grant-types). 
 
 Other required attributes are determined based on the values of this attribute `grant_types` is an array of strings, possible values are:
 
