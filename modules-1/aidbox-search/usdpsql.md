@@ -1,36 +1,19 @@
 # SQL endpoints
 
-{% api-method method="get" host="<base-url>/$sql" path="" %}
-{% api-method-summary %}
-$sql
-{% endapi-method-summary %}
-
-{% api-method-description %}
+{% swagger baseUrl="<base-url>/$sql" path="" method="get" summary="$sql" %}
+{% swagger-description %}
 Execute SQL in Aidbox
-{% endapi-method-description %}
+{% endswagger-description %}
 
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-body-parameters %}
-{% api-method-parameter name="body" type="array" required=false %}
-JSON: SQL string or jdbc friendly array  \[SQL, param, param\]
-{% endapi-method-parameter %}
-{% endapi-method-body-parameters %}
-{% endapi-method-request %}
+{% swagger-parameter in="body" name="body" type="array" %}
+JSON: SQL string or jdbc friendly array  [SQL, param, param]
+{% endswagger-parameter %}
 
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
+{% swagger-response status="200" description="" %}
 ```
-
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+{% endswagger-response %}
+{% endswagger %}
 
 Example request:
 
@@ -115,4 +98,3 @@ GET /db/migrations
   sql: ...
 
 ```
-

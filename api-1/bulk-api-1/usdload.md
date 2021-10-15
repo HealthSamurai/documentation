@@ -8,7 +8,7 @@ There are two versions of this operation - `/fhir/$load` accepts data in FHIR fo
 Keep in mind that $load does not validate inserted resources for the sake of performance. Be mindful of the data you insert and use the correct URL for your data format.
 {% endhint %}
 
- Load 100 synthea Patients to Aidbox \(see [tutorial](synthea-by-bulk-api.md)\):
+ Load 100 synthea Patients to Aidbox (see [tutorial](synthea-by-bulk-api.md)):
 
 ```yaml
 POST /fhir/Patient/$load
@@ -22,7 +22,7 @@ source: 'https://storage.googleapis.com/aidbox-public/synthea/100/Patient.ndjson
 
 ### update: true
 
-By default for performance reasons `$load` does raw upsert into resource table without updating history. If you want to store the previous version of resources in history, you have to set `update = true,` with this flag Aidbox will update history for updated resources.
+By default for performance reasons `$load` does raw upsert into resource table without updating history. If you want to store the previous version of resources in history, you have to set `update = true, `with this flag Aidbox will update history for updated resources.
 
 ```yaml
 POST /fhir/Patient/$load
@@ -46,4 +46,3 @@ source: 'https://storage.googleapis.com/aidbox-public/synthea/100/all.ndjson.gz'
 
 {CarePlan: 356, Observation: 20382, MedicationAdministration: 150, .... }
 ```
-

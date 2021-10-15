@@ -12,8 +12,8 @@ This is a draft API. We appreciate your feedback and ideas in [this discussion](
 
 It may happen that you updated your profiles when data is already in your database or you want to do efficiently load a batch of data and validate it later.  API consists of 3 procedures and a couple of resources:
 
-* [aidbox.validation/batch-validation](validation-api.md#aidbox-validation-batch-validation) **-** run validation
-* [aidbox.validation/batch-validation-result](validation-api.md#aidbox-validation-batch-validation-result) - inspect results \(useful for async mode\)
+* [aidbox.validation/batch-validation](validation-api.md#aidbox-validation-batch-validation)** - **run validation
+* [aidbox.validation/batch-validation-result](validation-api.md#aidbox-validation-batch-validation-result) - inspect results (useful for async mode)
 * [aidbox.validation/clear-batch-validation](validation-api.md#aidbox-validation-clear-batch-validation) - clear validation results
 
 #### Prepare data
@@ -143,4 +143,3 @@ GET /BatchValidationError?.run.id=pt-validation-run-2&_format=yaml&_result=array
     resourceType: Patient
   id: pt-validation-run-2-Patient-pt1
 ```
-

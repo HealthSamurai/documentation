@@ -16,7 +16,7 @@ Authorization: Basic {base64(Client.id + ':' + Client.secret)}
 
 ### Register Client
 
-The first step is to create resource [Client]() with id & secret and add `'basic'` to it's `grant_types` collection:
+The first step is to create resource [Client](broken-reference) with id & secret and add `'basic'` to it's `grant_types` collection:
 
 ```yaml
 POST /Client
@@ -89,7 +89,5 @@ fetch('<box>/Patient', {
 
 ### Test Basic in Auth Sandbox
 
-{% embed url="https://www.youtube.com/watch?v=xWtNNi\_Q-dU" %}
-
-
+{% embed url="https://www.youtube.com/watch?v=xWtNNi_Q-dU" %}
 

@@ -26,16 +26,16 @@ Client will act on behalf of the user, which means Access Policies should be con
 
 You can configure Client for JWT tokens, set token expiration and enable refresh token:
 
-| attribute | options | desc |
-| :--- | :--- | :--- |
-| _auth.password_**.token\_format** | jwt | use access token in jwt format |
-| _auth.password_**.token\_expiration** | int \(seconds\) | token expiration time from issued at |
-| _auth.password_**.refresh\_token** | true/false | enable refresh\_token |
-| _auth.password_**.secret\_required** | true/false | require client secret for token |
+| attribute                            | options       | desc                                 |
+| ------------------------------------ | ------------- | ------------------------------------ |
+| _auth.password_**.token_format**     | jwt           | use access token in jwt format       |
+| _auth.password_**.token_expiration** | int (seconds) | token expiration time from issued at |
+| _auth.password_**.refresh_token**    | true/false    | enable refresh_token                 |
+| _auth.password_**.secret_required**  | true/false    | require client secret for token      |
 
 ## Get Access Token
 
-Next step is to collect username & password and exchange username, password, client id and secret \(if required\) for Access Token.
+Next step is to collect username & password and exchange username, password, client id and secret (if required) for Access Token.
 
 Using Basic & form-url-encoded:
 
@@ -66,7 +66,7 @@ Content-Type: application/json
 ```
 {% endcode %}
 
-If provided credentials are correct, you will get a response with the access token, user information and refresh token \(if enabled\):
+If provided credentials are correct, you will get a response with the access token, user information and refresh token (if enabled):
 
 {% code title="token-response" %}
 ```yaml
@@ -97,11 +97,11 @@ Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
 ```
 {% endcode %}
 
-```text
+```
 curl -H 'Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi' /Patient
 ```
 
-### Revoke Access Token \(Close Session\)
+### Revoke Access Token (Close Session)
 
 Aidbox creates a Session resource for each Access Token, which can be closed with a special endpoint `DELETE /Session` with the token in the Authorization header:
 
@@ -116,9 +116,7 @@ Session is just a Resource and you can inspect and manipulate sessions by a stan
 
 ### Auth Sandbox Demo
 
-{% embed url="https://www.youtube.com/watch?v=\_joSWjtakmA" %}
-
-
+{% embed url="https://www.youtube.com/watch?v=_joSWjtakmA" %}
 
 
 

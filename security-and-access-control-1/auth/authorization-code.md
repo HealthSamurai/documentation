@@ -2,7 +2,7 @@
 
 #### Description
 
-The Authorization Code Grant is an OAuth 2.0 flow that regular web apps use in order to access an API, typically as web applications with backend and frontend \(browser-based SPA, for example\). This flow doesn't use `client-secret` due to security considerations - frontend application source code is available in a browser. Instead, user authorises the application and gets redirected back to it with a temporary access code in the URL. Application exchanges that code for the access token. For more detailed information read [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.1). 
+The Authorization Code Grant is an OAuth 2.0 flow that regular web apps use in order to access an API, typically as web applications with backend and frontend (browser-based SPA, for example). This flow doesn't use `client-secret` due to security considerations - frontend application source code is available in a browser. Instead, user authorises the application and gets redirected back to it with a temporary access code in the URL. Application exchanges that code for the access token. For more detailed information read [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.1). 
 
 ![Basic scheme](../../.gitbook/assets/untitled-diagram-page-3.svg)
 
@@ -36,26 +36,26 @@ Client will act on behalf of the user, which means Access Policies should be con
 
 You can configure Client for JWT tokens, set token expiration and enable refresh token:
 
-| auth_._authorization\_code. | options | desc |
-| :--- | :--- | :--- |
-| **token\_format** | jwt | use access token in jwt format |
-| **token\_expiration** | int \(seconds\) | token expiration time from issued at |
-| **refresh\_token** | true/false | enable refresh\_token |
-| **secret\_required** | true/false | require secret for token |
+| auth_._authorization_code. | options       | desc                                 |
+| -------------------------- | ------------- | ------------------------------------ |
+| **token_format**           | jwt           | use access token in jwt format       |
+| **token_expiration**       | int (seconds) | token expiration time from issued at |
+| **refresh_token**          | true/false    | enable refresh_token                 |
+| **secret_required**        | true/false    | require secret for token             |
 
 {% hint style="info" %}
-If you want to use Authorization Code Grant for **Single Page Application** you do not need to set the `secret` attribute!
+If you want to use Authorization Code Grant for **Single Page Application **you do not need to set the `secret` attribute!
 {% endhint %}
 
 {% hint style="info" %}
-If your application is a major consumer of Aidbox API, you can set **first\_party** attribute as **true.** This means that the same User Session will be shared between Aidbox and client, so if you close the client session, Aidbox User Session will be closed too.
+If your application is a major consumer of Aidbox API, you can set **first_party** attribute as **true. **This means that the same User Session will be shared between Aidbox and client, so if you close the client session, Aidbox User Session will be closed too.
 {% endhint %}
 
 ## Get Code
 
-Next step is to redirect a user from your application to **authorize** the endpoint with **client\_id** and **response\_type** - code:
+Next step is to redirect a user from your application to **authorize** the endpoint with **client_id** and **response_type** - code:
 
-```text
+```
 https://<box>.aidbox.app/auth/authorize?client_id=webapp&response_type=code&state=...
 ```
 
@@ -67,13 +67,13 @@ If the user is not logged in, then they will see the login screen.
 
 Make sure you use id field, not the email on the login form.
 
-If a client is not first\_party or user not yet granted permissions to client, a user will see the grant page:
+If a client is not first_party or user not yet granted permissions to client, a user will see the grant page:
 
-![](../../.gitbook/assets/image%20%282%29.png)
+![](<../../.gitbook/assets/image (2).png>)
 
-If a client granted permissions, a user agent will be redirected to url configured in **Client.auth.authorization\_code.redirect\_uri** with the authorization code parameter.
+If a client granted permissions, a user agent will be redirected to url configured in **Client.auth.authorization_code.redirect_uri **with the authorization code parameter.
 
-```text
+```
 <redirect_uri>?code=****&state=***
 ```
 
@@ -97,7 +97,7 @@ Content-Type: application/json
 {% endtab %}
 {% endtabs %}
 
-If provided code is accurate, you will get access token, user information and refresh token \(if enabled\):
+If provided code is accurate, you will get access token, user information and refresh token (if enabled):
 
 {% tabs %}
 {% tab title="token-response" %}
@@ -132,11 +132,11 @@ Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
 {% endtab %}
 {% endtabs %}
 
-```text
+```
 curl -H 'Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi' /Patient
 ```
 
-### Revoke Access Token \(Close Session\)
+### Revoke Access Token (Close Session)
 
 Aidbox creates a Session resource for each Access Token which can be closed with a special endpoint `DELETE /Session` with the token in Authorization header:
 
@@ -154,6 +154,4 @@ Session is just a resource and you can inspect and manipulate sessions with stan
 ## Auth Sandbox Demo
 
 {% embed url="https://youtu.be/w8rscpqApMU" %}
-
-
 

@@ -4,11 +4,17 @@ You can extend [Aidbox](https://www.health-samurai.io/aidbox) with custom Apps. 
 
 You define the App using Aidbox SDK for your language and should not reverse engineer internal API, because it can be subject to change.
 
-{% page-ref page="nodejs.md" %}
+{% content-ref url="nodejs.md" %}
+[nodejs.md](nodejs.md)
+{% endcontent-ref %}
 
-{% page-ref page="clojure-sdk.md" %}
+{% content-ref url="clojure-sdk.md" %}
+[clojure-sdk.md](clojure-sdk.md)
+{% endcontent-ref %}
 
-{% page-ref page="python-sdk.md" %}
+{% content-ref url="python-sdk.md" %}
+[python-sdk.md](python-sdk.md)
+{% endcontent-ref %}
 
 ## App Resource
 
@@ -34,13 +40,13 @@ subscriptions: <Subscriptions>
 
 In the `endpoint` section, you describe how Aidbox will communicate with your service. 
 
-| Key | type | required | Options | default | description |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **type** | string | true | http-rpc \| ws-rpc | http-rpc | Protocol of communication |
-| **host** | string  | false  |  |  | Domain of service for http protocols |
-| **schema** |  |  | http \| https | https | Schema of service for http |
-| **port** | integer |  |  | 80 | Port of service for http |
-| **secret** | string |  |  |  | Secret key used for communication |
+| Key        | type    | required | Options            | default  | description                          |
+| ---------- | ------- | -------- | ------------------ | -------- | ------------------------------------ |
+| **type**   | string  | true     | http-rpc \| ws-rpc | http-rpc | Protocol of communication            |
+| **host**   | string  | false    |                    |          | Domain of service for http protocols |
+| **schema** |         |          | http \| https      | https    | Schema of service for http           |
+| **port**   | integer |          |                    | 80       | Port of service for http             |
+| **secret** | string  |          |                    |          | Secret key used for communication    |
 
 ### entities
 
@@ -109,15 +115,15 @@ User:
 
 At the root of resource definition, you can also define **hooks** and **profiles** for this resource.
 
-Element definition will be translated into [Attribute Meta-Resource]() and have the following properties:
+Element definition will be translated into [Attribute Meta-Resource](broken-reference) and have the following properties:
 
-| name | type | Description |
-| :--- | :--- | :--- |
+| name     | type | Description                    |
+| -------- | ---- | ------------------------------ |
 | **type** | code | Primitive or Complex Type name |
 
 ### operations
 
-In the operation section, you define Custom REST operations as a map  &lt;operation-id&gt;: &lt;operation-definition&gt; and access policy \(which will be bound to this operation\):
+In the operation section, you define Custom REST operations as a map  \<operation-id>: \<operation-definition> and access policy (which will be bound to this operation):
 
 {% code title="operations:" %}
 ```yaml
@@ -157,7 +163,6 @@ TBD
 
 ### subscriptions
 
-In the subscription section, you can define subscriptions \(a special type of hooks, which do not need a response\). You can subscribe to specific life-cycle events of resources filtered by criteria or to changes in search queries.
+In the subscription section, you can define subscriptions (a special type of hooks, which do not need a response). You can subscribe to specific life-cycle events of resources filtered by criteria or to changes in search queries.
 
 TBD
-

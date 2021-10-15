@@ -6,55 +6,41 @@ Implicit Grant flow is an alternative for Authorization Code flow. This flow jus
 
 ![Basic scheme](../../.gitbook/assets/untitled-diagram-page-4.svg)
 
-{% api-method method="get" host="\[base\]/" path="auth/authorize" %}
-{% api-method-summary %}
-Authorization Endpoint
-{% endapi-method-summary %}
-
-{% api-method-description %}
+{% swagger baseUrl="[base]/" path="auth/authorize" method="get" summary="Authorization Endpoint" %}
+{% swagger-description %}
 Obtaining access token
-{% endapi-method-description %}
+{% endswagger-description %}
 
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-query-parameters %}
-{% api-method-parameter name="state" type="string" required=false %}
+{% swagger-parameter in="query" name="state" type="string" %}
 a value used by the client to maintain state between the request and callback
-{% endapi-method-parameter %}
+{% endswagger-parameter %}
 
-{% api-method-parameter name="scope" type="string" required=false %}
+{% swagger-parameter in="query" name="scope" type="string" %}
 scope of the access request
-{% endapi-method-parameter %}
+{% endswagger-parameter %}
 
-{% api-method-parameter name="redirect\_uri" type="string" required=false %}
+{% swagger-parameter in="query" name="redirect_uri" type="string" %}
 client redirect URI
-{% endapi-method-parameter %}
+{% endswagger-parameter %}
 
-{% api-method-parameter name="client\_id" type="string" required=true %}
+{% swagger-parameter in="query" name="client_id" type="string" %}
 client ID
-{% endapi-method-parameter %}
+{% endswagger-parameter %}
 
-{% api-method-parameter name="response\_type" type="string" required=true %}
-value MUST be set to `token`
-{% endapi-method-parameter %}
-{% endapi-method-query-parameters %}
-{% endapi-method-request %}
+{% swagger-parameter in="query" name="response_type" type="string" %}
+value MUST be set to 
 
-{% api-method-response %}
-{% api-method-response-example httpCode=302 %}
-{% api-method-response-example-description %}
-Redirect
-{% endapi-method-response-example-description %}
+`token`
+{% endswagger-parameter %}
 
-```text
+{% swagger-response status="302" description="Redirect" %}
+```
 [redirect_uri]#access_token=YzI3ZjQ1M2MtYzFlYi00ZjI3LWI2MzgtOTQ0MWI0ZmIzZjBi&state=eyJoYXNoIjoiIy9pbXBsaWNpdC9iYXNpYyIsImZvcm0tZGF0YSI6eyJ0eXBlIjoiYmFzaWMiLCJiYXNpYyI6eyJjbGllbnQtaWQiOiJpbXAtY2xpZW50In19LCJmb3JtLXBhdGgiOiJpbXBsaWNpdC1wYWdlIn0%3D
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+{% endswagger-response %}
+{% endswagger %}
 
-After this request, the resource owner \(user\) will be redirected to Log-in/Sign-up page.
+After this request, the resource owner (user) will be redirected to Log-in/Sign-up page.
 
 ![Example](../../.gitbook/assets/screenshot-2019-02-11-18.15.41.png)
 
@@ -62,7 +48,7 @@ Next step is granting access to the client:
 
 ![Example](../../.gitbook/assets/screenshot-2019-02-11-19.47.39.png)
 
-After granting access the user is redirected to the redirect\_uri from the client configuration with `access_token` in query string fragment.
+After granting access the user is redirected to the redirect_uri from the client configuration with `access_token` in query string fragment.
 
 ## Example
 
@@ -97,7 +83,7 @@ curl -X GET \
 {% endtab %}
 
 {% tab title="Response" %}
-```text
+```
 HTTP/1.1 302 Found
 
 Location: http://localhost:3449/auth.html#access_token=ZGE0ZmQzZTYtOGU0OC00MDJhLWFkN2ItZTg5ZmViYjdmNTQ2
@@ -105,4 +91,3 @@ Location: http://localhost:3449/auth.html#access_token=ZGE0ZmQzZTYtOGU0OC00MDJhL
 ```
 {% endtab %}
 {% endtabs %}
-

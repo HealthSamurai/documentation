@@ -8,7 +8,7 @@ description: >-
 
 ### Aidbox release cycle
 
-Aidbox Docker Images are available on [Docker Hub](https://hub.docker.com/u/healthsamurai). The latest stable images are tagged with **stable.** For ****every release, we create an immutable tag ****in the ****format `YYMM` \(for example for the 2021 July release it will be **2107**\). If you are interested in the next release features/bug fixes or want to test your project with an upcoming version of Aidbox - you can use tag **edge**. Every commit into Aidbox code base after successful CI is published into **edge** channel.
+Aidbox Docker Images are available on [Docker Hub](https://hub.docker.com/u/healthsamurai). The latest stable images are tagged with **stable. **For** **every release, we create an immutable tag** **in the** **format `YYMM` (for example for the 2021 July release it will be **2107**). If you are interested in the next release features/bug fixes or want to test your project with an upcoming version of Aidbox - you can use tag **edge**. Every commit into Aidbox code base after successful CI is published into **edge** channel.
 
 {% hint style="warning" %}
 Note that the edge channel may have issues and regressions and is risky to use in production. But very recommended to use it in staging and dev environments, to detect potential issues as soon as possible.
@@ -18,9 +18,8 @@ We actively encourage developers to use channels either **stable** or **edge** t
 
 ### Aidboxdb release cycle
 
-[aidboxdb](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1&ordering=last_updated) image is a custom build of an open-source PostgreSQL database. It contains a number of extensions that are needed to increase search performance.
+[aidboxdb](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1\&ordering=last_updated) image is a custom build of an open-source PostgreSQL database. It contains a number of extensions that are needed to increase search performance.
 
 aidboxdb image follows PostgreSQL versioning. For an instance, if you want to use PostgreSQL 11.11, pull healthsamurai/aidboxdb:11.11
 
 HealthSamurai team officially supports the latest minor releases of every major version of PosgreSQL starting from 11. Currently supported versions of PostgreSQL are 11.11, 12.6, and 13.2.
-

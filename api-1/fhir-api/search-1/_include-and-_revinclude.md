@@ -4,9 +4,9 @@ description: Include associated resources
 
 # \_include & \_revinclude
 
-A client can add related resources to a search result using **\(rev\)include** and **with** parameters. In ORM frameworks, such feature is sometimes called an "associations eager loading". This technique can save extra roundtrips from the client to the server and potential N+1 problem.
+A client can add related resources to a search result using **(rev)include** and **with** parameters. In ORM frameworks, such feature is sometimes called an "associations eager loading". This technique can save extra roundtrips from the client to the server and potential N+1 problem.
 
-For example, you may want to get encounters with patients \(each encounter refers to\):
+For example, you may want to get encounters with patients (each encounter refers to):
 
 {% tabs %}
 {% tab title="GET" %}
@@ -47,7 +47,7 @@ status: finished
 {% endtab %}
 {% endtabs %}
 
-Or patients with conditions \(i.e. by a reverse reference\):
+Or patients with conditions (i.e. by a reverse reference):
 
 ```yaml
 GET /Patient?_revinclude=Encounter:subject:Patient
@@ -61,7 +61,7 @@ GET /Patient?_with=Encounter.subject
 
 Syntax for include:
 
-```text
+```
  _include(:reverse|:iterate|:logical)=(source-type:)search-param:(:target-type)
 ```
 
@@ -89,11 +89,11 @@ For more explicit interpretation and for performance reason, client must provide
 
 Syntax for **revinclude:**
 
-```text
+```
 _revinclude(:reverse|:iterate|:logical)=(source-type:)search-param(:target-type)
 ```
 
-Interpretation**:**  include all **source-type** resources, which refer **target-type** resources by **search-param** in the result set.
+Interpretation**:  **include all **source-type** resources, which refer **target-type** resources by **search-param** in the result set.
 
 ### :logical modifier
 
@@ -148,19 +148,19 @@ status: finished
 
 ### **\_include=\***
 
-You can include all resources referenced from the search result using **\*.** This is considered _bad practice_ because it's too implicit. This feature is only implemented for conformance with the FHIR specification. **Please avoid using it!** 
+You can include all resources referenced from the search result using **\*. **This is considered _bad practice_ because it's too implicit. This feature is only implemented for conformance with the FHIR specification. **Please avoid using it! **
 
 {% hint style="danger" %}
-\_include=\* could not be used as part of chained \(rev\)includes!
+\_include=\* could not be used as part of chained (rev)includes!
 {% endhint %}
 
 ```javascript
 GET /Encounter?_include=*
 ```
 
-### Chained \(rev\)includes
+### Chained (rev)includes
 
-Client can chain \(rev\)includes to load next level of references.  \(Rev\)includes should go in a proper loading order. According to the FHIR specification, for chained includes a client must specify the `:iterate` modifier. However, in Aidbox this modifier is **optional** \(it's better to skip it\).
+Client can chain (rev)includes to load next level of references.  (Rev)includes should go in a proper loading order. According to the FHIR specification, for chained includes a client must specify the `:iterate` modifier. However, in Aidbox this modifier is **optional** (it's better to skip it).
 
 {% tabs %}
 {% tab title="GET" %}
@@ -253,22 +253,22 @@ text: {div: '<div xmlns="http://www.w3.org/1999/xhtml">Example RequestGroup illu
 {% endtabs %}
 
 {% hint style="warning" %}
-Client must always specify **target-type** and **source-type** for intermediate \(rev\)includes because this is explicit and allows Aidbox to prepare dependency graph before query!
+Client must always specify **target-type** and **source-type** for intermediate (rev)includes because this is explicit and allows Aidbox to prepare dependency graph before query!
 {% endhint %}
 
-To save some keystrokes, you can group \_\(rev\)include params of the same level as a comma separated list:
+To save some keystrokes, you can group \_(rev)include params of the same level as a comma separated list:
 
 ```yaml
 GET /RequestGroup?_include=encounter,patient:Patient,author:PractitionerRole
 ```
 
 {% hint style="info" %}
-Here is the [discussion](https://chat.fhir.org/#narrow/stream/179166-implementers/topic/About.20_include.3Aiterate) in the FHIR chat about the `:iterate` ambiguity. We appreciate your opinion!
+Here is the [discussion](https://chat.fhir.org/#narrow/stream/179166-implementers/topic/About.20\_include.3Aiterate) in the FHIR chat about the `:iterate` ambiguity. We appreciate your opinion!
 {% endhint %}
 
-### Recursive \(rev\)includes
+### Recursive (rev)includes
 
-For self-referencing resources, you can specify the `:recurse` or `:iterate` modifier with **source-type=target-type** to recursively get all children or parents:
+For self-referencing resources, you can specify the `:recurse` or `:iterate` modifier with **source-type=target-type **to recursively get all children or parents:
 
 {% tabs %}
 {% tab title="GET" %}
@@ -428,7 +428,7 @@ GET /Organization?_include:iterate=Organization:partof:Organization
 
 ### Using the \_with parameter
 
-FHIR \(rev\)include syntax is non-DRY and sometimes confusing. We introduced the `_with` parameter that is a simple \(like GraphQL\) DSL to describe includes in a more compact way.
+FHIR (rev)include syntax is non-DRY and sometimes confusing. We introduced the `_with` parameter that is a simple (like GraphQL) DSL to describe includes in a more compact way.
 
 ```javascript
 expr = param-expr (space param-expr)*
@@ -489,13 +489,11 @@ RequestGroup?_include=patient,author
  => Organization?_include:recurse=partof:Organization
 ```
 
-### \(rev\)include and \_elements
+### (rev)include and \_elements
 
-You can use the extended [elements](_elements.md#elements-and-rev-includes) parameter to control elements of \(rev\)included resources by prefixing desired elements with the resource type:
+You can use the extended [elements](\_elements.md#elements-and-rev-includes) parameter to control elements of (rev)included resources by prefixing desired elements with the resource type:
 
 ```yaml
 GET /Encounter?_include=patient&_elements=id,status,Patient.name,Patient.birthDate
 ```
-
-
 

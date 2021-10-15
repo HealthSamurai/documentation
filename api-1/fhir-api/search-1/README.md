@@ -34,7 +34,7 @@ GET [base]/[resourceType]?param=value&param=value&...
 Where **param** can be one of:
 
 * [Underscored parameter](./#special-parameters) started with underscore, like **`_sort`**
-* Name of [search parameter]()
+* Name of [search parameter](broken-reference)
 * [Chained parameter ](chained-parameters.md)expression
 * [Dotted expression ](.-expressions.md)- started with **`.`**
 
@@ -56,39 +56,39 @@ GET /Patient?name=Max&_elements=id, birthDAte
 
 ## Special Parameters
 
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
-| [\_id](_id.md) | FHIR | Search and sort by resource id |
-| [\_lastUpdated](_lastupdated.md) | FHIR | Search and sort by resource last modification date |
-| [\_text](_text-and-_content.md) | FHIR | Full text search by resource narrative |
-| [\_content](_text-and-_content.md) | FHIR | Full text search by resource content |
-| [\_ilike](_ilike.md) |  | `ILIKE` search by resource content |
-| [\_elements](_elements.md) | FHIR+ | Include or exclude specific resource elements |
-| [\_summary](_summary.md) | FHIR | Include only summary elements  |
-| [\_list](_list.md) | FHIR | Search resources included into specific List |
-| [\_sort](_sort.md) | FHIR | Sort search results |
-| [\_total](_total-or-_countmethod.md) | FHIR | Turn on/off total count |
-| [\_include](_include-and-_revinclude.md) | FHIR | Include referenced resources into result |
-| [\_revinclude](_include-and-_revinclude.md) | FHIR | Include into result resources, which reference searched resources |
-| [\_explain](_explain.md) |  | See query execution plan |
-| [\_result](_result.md) |  | Change result format |
+| Parameter                                     | Type  | Description                                                       |
+| --------------------------------------------- | ----- | ----------------------------------------------------------------- |
+| [\_id](\_id.md)                               | FHIR  | Search and sort by resource id                                    |
+| [\_lastUpdated](\_lastupdated.md)             | FHIR  | Search and sort by resource last modification date                |
+| [\_text](\_text-and-\_content.md)             | FHIR  | Full text search by resource narrative                            |
+| [\_content](\_text-and-\_content.md)          | FHIR  | Full text search by resource content                              |
+| [\_ilike](\_ilike.md)                         |       | `ILIKE` search by resource content                                |
+| [\_elements](\_elements.md)                   | FHIR+ | Include or exclude specific resource elements                     |
+| [\_summary](\_summary.md)                     | FHIR  | Include only summary elements                                     |
+| [\_list](\_list.md)                           | FHIR  | Search resources included into specific List                      |
+| [\_sort](\_sort.md)                           | FHIR  | Sort search results                                               |
+| [\_total](\_total-or-\_countmethod.md)        | FHIR  | Turn on/off total count                                           |
+| [\_include](\_include-and-\_revinclude.md)    | FHIR  | Include referenced resources into result                          |
+| [\_revinclude](\_include-and-\_revinclude.md) | FHIR  | Include into result resources, which reference searched resources |
+| [\_explain](\_explain.md)                     |       | See query execution plan                                          |
+| [\_result](\_result.md)                       |       | Change result format                                              |
 
 ## Search Parameters
 
-Search defined in terms of "[search parameters]()". SearchParameter is a meta-resource, which describes which part of the resource it is and how you can make it searchable.
+Search defined in terms of "[search parameters](broken-reference)". SearchParameter is a meta-resource, which describes which part of the resource it is and how you can make it searchable.
 
 Search parameter can be one of the following types: 
 
-| Type | Description |
-| :--- | :--- |
-| [number](https://www.hl7.org/fhir/search.html#number) | Search parameter SHALL be a number \(a whole number, or a decimal\). |
-| [date](https://www.hl7.org/fhir/search.html#date) | Search parameter is on a date/time. The date format is the standard XML format, though other formats may be supported. |
-| [string](https://www.hl7.org/fhir/search.html#string) | Search parameter is a simple string, like a name part. Search is case-insensitive and accent-insensitive. May match just the start of a string. String parameters may contain spaces. |
-| [token](https://www.hl7.org/fhir/search.html#token) | Search parameter on a coded element or identifier. May be used to search through the text, displayname, code and code/codesystem \(for codes\) and label, system and key \(for identifier\). Its value is either a string or a pair of namespace and value, separated by a "\|", depending on the modifier used. |
-| [reference](https://www.hl7.org/fhir/search.html#reference) | A reference to another resource. |
-| [composite](https://www.hl7.org/fhir/search.html#composite) | A composite search parameter that combines a search on two values together. |
-| [quantity](https://www.hl7.org/fhir/search.html#quantity) | A search parameter that searches on a quantity. |
-| [uri](https://www.hl7.org/fhir/search.html#uri) | A search parameter that searches on a URI \(RFC 3986\). |
+| Type                                                        | Description                                                                                                                                                                                                                                                                                                  |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [number](https://www.hl7.org/fhir/search.html#number)       | Search parameter SHALL be a number (a whole number, or a decimal).                                                                                                                                                                                                                                           |
+| [date](https://www.hl7.org/fhir/search.html#date)           | Search parameter is on a date/time. The date format is the standard XML format, though other formats may be supported.                                                                                                                                                                                       |
+| [string](https://www.hl7.org/fhir/search.html#string)       | Search parameter is a simple string, like a name part. Search is case-insensitive and accent-insensitive. May match just the start of a string. String parameters may contain spaces.                                                                                                                        |
+| [token](https://www.hl7.org/fhir/search.html#token)         | Search parameter on a coded element or identifier. May be used to search through the text, displayname, code and code/codesystem (for codes) and label, system and key (for identifier). Its value is either a string or a pair of namespace and value, separated by a "\|", depending on the modifier used. |
+| [reference](https://www.hl7.org/fhir/search.html#reference) | A reference to another resource.                                                                                                                                                                                                                                                                             |
+| [composite](https://www.hl7.org/fhir/search.html#composite) | A composite search parameter that combines a search on two values together.                                                                                                                                                                                                                                  |
+| [quantity](https://www.hl7.org/fhir/search.html#quantity)   | A search parameter that searches on a quantity.                                                                                                                                                                                                                                                              |
+| [uri](https://www.hl7.org/fhir/search.html#uri)             | A search parameter that searches on a URI (RFC 3986).                                                                                                                                                                                                                                                        |
 
 Depending on the value type, different modifiers can be applied.
 
@@ -170,7 +170,7 @@ GET /Patient?name:exact=Alex
 
 * `:not` — reverses the code matching: returns all resources that do not have a matching item.
 * `:i` — case insensitive, exact match of text associated with token or token itself.
-* `:in` — the search parameter is a URI \(relative or absolute\) that identifies a value set, and the search parameter tests whether the coding is in the specified value set.
+* `:in` — the search parameter is a URI (relative or absolute) that identifies a value set, and the search parameter tests whether the coding is in the specified value set.
 
 {% tabs %}
 {% tab title="FHIR format" %}
@@ -292,9 +292,9 @@ GET /Encounter?subject=Patient/patientid
 
 ### Prefixes
 
-For Numbers, Dates, and Quantities \(will be supported\), we can use the following conditionals in a search:
+For Numbers, Dates, and Quantities (will be supported), we can use the following conditionals in a search:
 
-* `eq` - equal \(default\)
+* `eq` - equal (default)
 * `ne` - non-equal
 * `lt` - less than
 * `le` - less or equal
@@ -318,4 +318,3 @@ GET /Patient?birthdate=gt1986-04-28
 {% hint style="info" %}
 Want to know more about [Aidbox](https://www.health-samurai.io/aidbox), FHIR, and search? Join our community [chat](https://t.me/aidbox) .
 {% endhint %}
-

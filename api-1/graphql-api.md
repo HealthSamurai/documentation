@@ -1,46 +1,30 @@
 # GraphQL API
 
-Aidbox supports default GraphQL implementation without any extensions \(spec located [here](http://spec.graphql.org/June2018/)\)  
-Queries are supported, but mutations are not \(yet\)
+Aidbox supports default GraphQL implementation without any extensions (spec located [here](http://spec.graphql.org/June2018/))\
+Queries are supported, but mutations are not (yet)
 
-In Aidbox UI there is GraphiQL interface, you can try your queries there.  
+In Aidbox UI there is GraphiQL interface, you can try your queries there.\
 GraphQL console sends all your requests to `$graphql` endpoint which you can use from your application too
 
-{% api-method method="post" host="" path="/$graphql" %}
-{% api-method-summary %}
-GraphQL endpoint
-{% endapi-method-summary %}
-
-{% api-method-description %}
+{% swagger baseUrl="" path="/$graphql" method="post" summary="GraphQL endpoint" %}
+{% swagger-description %}
 This endpoint allows you to execute GraphQL queries .
-{% endapi-method-description %}
+{% endswagger-description %}
 
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-body-parameters %}
-{% api-method-parameter name="query" type="string" required=true %}
+{% swagger-parameter in="body" name="query" type="string" %}
 GraphQL query
-{% endapi-method-parameter %}
+{% endswagger-parameter %}
 
-{% api-method-parameter name="variables" type="object" required=false %}
+{% swagger-parameter in="body" name="variables" type="object" %}
 JSON object with variables
-{% endapi-method-parameter %}
-{% endapi-method-body-parameters %}
-{% endapi-method-request %}
+{% endswagger-parameter %}
 
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-Query successfully executed.
-{% endapi-method-response-example-description %}
-
+{% swagger-response status="200" description="Query successfully executed." %}
 ```javascript
 {"data": {<query exectuion result>}
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+{% endswagger-response %}
+{% endswagger %}
 
 Aidbox generates different GraphQL scalars, objects, queries with args and unions from FHIR metadata.
 
@@ -48,26 +32,32 @@ Aidbox generates different GraphQL scalars, objects, queries with args and union
 
 For each ResourceType two queries are generated:
 
-* `<resourceType>` e.g.: `Patient`. Receives a single parameter `id` and returns a resource with the requested `id`. For example: `Patient (id: "pat-1")` 
+* `<resourceType>` e.g.: `Patient`.\
+  Receives a single parameter `id` and returns a resource with the requested `id`.\
+  For example: `Patient (id: "pat-1")`\
+
 * `<resourceType>List`e.g.: `PatientList`. Receives FHIR search parameters for that resourceType. SearchParameters have underscores instead of dashes and referenced later in this doc as `search_parameter`. For each SearchParameter there are two args generated:
   * `<search_parameter>` e.g.: `PatientList(address_state: "CA")` Accepts a string. Is an equivalent of using FHIR search parameter
   * `<search_parameter>_list` e.g.: `PatientList(language_list: ["en", "de"])` Accepts a list of strings. It is an equivalent of repeating search parameters in FHIR search. _`<search_parameter>_list` arg is needed because args can't be repeated in the GraphQL query._
 
 ### Examples
 
-* `PatientList(language_list: ["en", "de"])` will return a set of Patients the same as `GET /Patient?language=en&language=de`  and those will be patients with `en` **AND** `de` as their communication language specified 
-* `PatientList(language: "en,de")` will return a set of Patients the same as `GET /Patient?language=en,de`  and those will be patients with `en` **OR** `de` as their communication language specified 
-* `PatientList(language_list: ["en", "de,fr"])` will return a set of Patients the same as `GET /Patient?language=en&language=de,fr`  and those will be patients with `en` **AND** \(`de` **OR** `fr`\) as their communication language specified 
-* `PatientList(language: "en", language: "de")` is an **error**, it will ignore all `language` arg repetitions except of the last and will return a set of Patients the same as
+* `PatientList(language_list: ["en", "de"])` will return a set of Patients the same as `GET /Patient?language=en&language=de`  and those will be patients with `en` **AND** `de` as their communication language specified\
 
-  `GET /Patient?language=de`
+* `PatientList(language: "en,de")` will return a set of Patients the same as `GET /Patient?language=en,de`  and those will be patients with `en` **OR** `de` as their communication language specified\
+
+* `PatientList(language_list: ["en", "de,fr"])` will return a set of Patients the same as `GET /Patient?language=en&language=de,fr`  and those will be patients with `en` **AND** (`de` **OR** `fr`) as their communication language specified\
+
+*   `PatientList(language: "en", language: "de")` is an **error**, it will ignore all `language` arg repetitions except of the last and will return a set of Patients the same as
+
+    `GET /Patient?language=de`
 
 ## Objects
 
-For each ResourceType object with fields is generated.  
-For every FHIR resource attribute field is created.  
-Also for attributes with Reference type unions are created for direct and reverse includes  
-Reverse include fields have such format: `<revIncludeResourceType>s_as_<includedResourceReferenceSearchParameter>` e.g.:  
+For each ResourceType object with fields is generated.\
+For every FHIR resource attribute field is created.\
+Also for attributes with Reference type unions are created for direct and reverse includes\
+Reverse include fields have such format: `<revIncludeResourceType>s_as_<includedResourceReferenceSearchParameter>` e.g.:\
 `observations_as_subject` for Patient will be equivalent of `_revinclude=Observation:subject`
 
 ## Example
@@ -198,4 +188,3 @@ fragment PractitionerRoleWithPractitioner on PractitionerRole {
 {% endtabs %}
 
 If you have any questions feel free to reach us at [Aidbox users chat](https://t.me/aidbox).
-

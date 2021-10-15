@@ -4,7 +4,7 @@
 DELETE [base]/[type]/[id]
 ```
 
-Responds with `200 OK` on the successful deletion, but when removing a resource deleted earlier, responds with `204 No Content` \(conforming FHIR specification\). This feature was added to make deletion work the same way as in SQL `DELETE RETURNING *`.
+Responds with `200 OK` on the successful deletion, but when removing a resource deleted earlier, responds with `204 No Content` (conforming FHIR specification). This feature was added to make deletion work the same way as in SQL `DELETE RETURNING *`.
 
 Supports `If-Match` header, with `versionId` as ETAG.
 
@@ -13,7 +13,7 @@ To get `204 No Content` instead of `200 OK`, use the `_no-content=true` query pa
 * **`200` OK** - resource successfully deleted
 * **`204` No Content** - resource already deleted
 * **`404` Not Found** - resource not found
-* **`412`** **Precondition Failed** - requested ETAG doesn't match actual
+* **`412`** **Precondition Failed **- requested ETAG doesn't match actual
 
 {% hint style="info" %}
 Delete of non-existing resource will return 204 status and no body. Read [this thread](https://chat.fhir.org/#narrow/stream/179177-conformance/topic/Delete.20error.20codes) for more details.
@@ -23,13 +23,13 @@ Delete of non-existing resource will return 204 status and no body. Read [this t
 
 ### Conditional Delete
 
-```text
+```
 DELETE [base]/[type]?[search parameters]
 ```
 
 It's not clear how to perform an ordinary `delete` on no matches. That's why `404 Not Found` will be returned in this case.
 
-* **No matches:** The respond with `404 Not Found`
+* **No matches: **The respond with `404 Not Found`
 * **One Match**: The server performs an ordinary `delete` on the matching resource
 * **Multiple matches**: Servers respond with `412 Precondition Failed` error indicating the client's criteria were not selective enough
 
@@ -37,7 +37,7 @@ It's not clear how to perform an ordinary `delete` on no matches. That's why `40
 
 ## delete
 
-```text
+```
 DELETE [base]/[type]/[id]
 ```
 
@@ -54,7 +54,7 @@ Delete a patient by id:
 
 {% tabs %}
 {% tab title="Request" %}
-```text
+```
 DELETE /Patient/tom-id
 ```
 {% endtab %}
@@ -83,7 +83,7 @@ Attempt to delete an already deleted resource:
 
 {% tabs %}
 {% tab title="Request" %}
-```text
+```
 DELETE /Patient/tom-id
 ```
 {% endtab %}
@@ -91,15 +91,14 @@ DELETE /Patient/tom-id
 {% tab title="Response" %}
 **Status:** `204`
 
-```text
-
+```
 ```
 {% endtab %}
 {% endtabs %}
 
 ## conditional delete
 
-```text
+```
 DELETE [base]/[type]?[search parameters]
 ```
 
@@ -108,4 +107,3 @@ Depending on the number of resources meeting the search criteria, different acti
 * **No matches:** Respond with `404 Not Found`
 * **One Match**: The server performs an ordinary `delete` on the matching resource
 * **Multiple matches**: Servers respond with `412 Precondition Failed` error indicating the client's criteria were not selective enough
-

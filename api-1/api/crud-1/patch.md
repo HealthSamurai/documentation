@@ -6,22 +6,22 @@ description: Updating a part of your resource
 
 All examples can be run in Postman. Here's a [web view](https://documenter.getpostman.com/view/5552124/RWgxtEs8) of these examples.
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/view-collection/f6bc1ce7c9eeb0c2baa0?referrer=https%3A%2F%2Fapp.getpostman.com%2Frun-collection%2Ff6bc1ce7c9eeb0c2baa0%23%3Fenv%5BAidbox.Cloud%5D%3DW3sia2V5IjoiYmFzZSIsInZhbHVlIjoiaHR0cHM6Ly9tZXJlZGl0aC5haWRib3guYXBwIiwiZGVzY3JpcHRpb24iOiIiLCJlbmFibGVkIjp0cnVlfV0%3D&_ga=2.109779141.1133756186.1540376522-1595564802.1538573158)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/view-collection/f6bc1ce7c9eeb0c2baa0?referrer=https%3A%2F%2Fapp.getpostman.com%2Frun-collection%2Ff6bc1ce7c9eeb0c2baa0%23%3Fenv%5BAidbox.Cloud%5D%3DW3sia2V5IjoiYmFzZSIsInZhbHVlIjoiaHR0cHM6Ly9tZXJlZGl0aC5haWRib3guYXBwIiwiZGVzY3JpcHRpb24iOiIiLCJlbmFibGVkIjp0cnVlfV0%3D&\_ga=2.109779141.1133756186.1540376522-1595564802.1538573158)
 
-In most Operations in FHIR, you manipulate a resource as a whole \(create, update, delete operations\). But sometimes you want to update specific data elements in a resource and do not care about the rest. In other words, you need an element/attribute level operation. 
+In most Operations in FHIR, you manipulate a resource as a whole (create, update, delete operations). But sometimes you want to update specific data elements in a resource and do not care about the rest. In other words, you need an element/attribute level operation. 
 
-With the `patch` operation, you can update a part of a resource by sending a declarative description of operations that should be performed on an existing resource. To describe these operations in Aidbox, you can use different notations \(methods\):
+With the `patch` operation, you can update a part of a resource by sending a declarative description of operations that should be performed on an existing resource. To describe these operations in Aidbox, you can use different notations (methods):
 
-* merge-patch — simple merge semantics \([read more in RFC](https://tools.ietf.org/html/rfc7386)\);
-* json-patch — advanced JSON transformation \([read more in RFC](https://tools.ietf.org/html/rfc6902)\);
+* merge-patch — simple merge semantics ([read more in RFC](https://tools.ietf.org/html/rfc7386));
+* json-patch — advanced JSON transformation ([read more in RFC](https://tools.ietf.org/html/rfc6902));
 
 ### Patch Method
 
 You can specify a `patch` method by the `content-type` header or by the `_method` parameter.
 
-| method | parameter | header |
-| :--- | :--- | :--- |
-| **json-patch** | `json-patch` | application/json-patch+json |
+| method          | parameter     | header                       |
+| --------------- | ------------- | ---------------------------- |
+| **json-patch**  | `json-patch`  | application/json-patch+json  |
 | **merge-patch** | `merge-patch` | application/merge-patch+json |
 
 If the method is not specified, Aidbox will try to guess it by the following algorithm: 
@@ -31,49 +31,47 @@ If the method is not specified, Aidbox will try to guess it by the following alg
 
 ### Operation Description
 
-{% api-method method="patch" host="\[base-url\]/:resourceType/:id" path="" %}
-{% api-method-summary %}
-Patch Operation
-{% endapi-method-summary %}
+{% swagger baseUrl="[base-url]/:resourceType/:id" path="" method="patch" summary="Patch Operation" %}
+{% swagger-description %}
 
-{% api-method-description %}
+{% endswagger-description %}
 
-{% endapi-method-description %}
+{% swagger-parameter in="path" name="_method" type="string" %}
+Can be 
 
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-path-parameters %}
-{% api-method-parameter name="\_method" type="string" required=false %}
-Can be `json-patch`, `merge-patch` \(and `fhir-patch` in the future\)
-{% endapi-method-parameter %}
-{% endapi-method-path-parameters %}
+`json-patch`
 
-{% api-method-headers %}
-{% api-method-parameter name="content-type" type="string" required=false %}
-See the `content-type` header in the table above
-{% endapi-method-parameter %}
-{% endapi-method-headers %}
+, 
 
-{% api-method-body-parameters %}
-{% api-method-parameter name="" type="string" required=false %}
-JSON or YAML representation of transformation rules in accordance with `_method`
-{% endapi-method-parameter %}
-{% endapi-method-body-parameters %}
-{% endapi-method-request %}
+`merge-patch`
 
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
+ (and 
 
-{% endapi-method-response-example-description %}
+`fhir-patch`
 
+ in the future)
+{% endswagger-parameter %}
+
+{% swagger-parameter in="header" name="content-type" type="string" %}
+See the 
+
+`content-type`
+
+ header in the table above
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="" type="string" %}
+JSON or YAML representation of transformation rules in accordance with 
+
+`_method`
+{% endswagger-parameter %}
+
+{% swagger-response status="200" description="" %}
 ```
 Updated resource
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+{% endswagger-response %}
+{% endswagger %}
 
 ### Example
 
@@ -183,6 +181,4 @@ name:
 active: true
 birthDate: '1979-01-01'
 ```
-
-
 

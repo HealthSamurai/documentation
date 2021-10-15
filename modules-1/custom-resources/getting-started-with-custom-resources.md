@@ -2,7 +2,7 @@
 
 All examples from this tutorial you can run in Postman. Here's the [web view](https://documenter.getpostman.com/view/5552124/RWgxsu5Y) of these examples in Postman.
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/view-collection/946aa4df5535c073ce00?referrer=https%3A%2F%2Fapp.getpostman.com%2Frun-collection%2F946aa4df5535c073ce00%23%3Fenv%5BAidbox.Cloud%5D%3DW3sia2V5IjoiYmFzZSIsInZhbHVlIjoiaHR0cHM6Ly9uZXdlaHIuYWlkYm94LmFwcCIsImRlc2NyaXB0aW9uIjoiIiwiZW5hYmxlZCI6dHJ1ZX1d&_ga=2.116593734.1133756186.1540376522-1595564802.1538573158)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/view-collection/946aa4df5535c073ce00?referrer=https%3A%2F%2Fapp.getpostman.com%2Frun-collection%2F946aa4df5535c073ce00%23%3Fenv%5BAidbox.Cloud%5D%3DW3sia2V5IjoiYmFzZSIsInZhbHVlIjoiaHR0cHM6Ly9uZXdlaHIuYWlkYm94LmFwcCIsImRlc2NyaXB0aW9uIjoiIiwiZW5hYmxlZCI6dHJ1ZX1d&\_ga=2.116593734.1133756186.1540376522-1595564802.1538573158)
 
 ## Defining a Custom Resource
 
@@ -135,9 +135,9 @@ Or execute the SQL query in the Aidbox.Cloud DB Console:
 SELECT id, resource->>'theme' as theme FROM "usersetting";
 ```
 
-| id | theme |
-| :--- | :--- |
-| user-1 | dark |
+| id     | theme |
+| ------ | ----- |
+| user-1 | dark  |
 
 ### CRUD Operations with a Custom Resource
 
@@ -306,7 +306,7 @@ theme:
 
 ### Describe Structure of Custom Resource
 
-Now, let's put some restrictions and define our Custom Resource structure. To describe structure of a resource, we will use [Attribute]() meta-resource. For example, we want to restrict the `theme` attribute to be a `string` value from the specific enumeration:
+Now, let's put some restrictions and define our Custom Resource structure. To describe structure of a resource, we will use [Attribute](broken-reference) meta-resource. For example, we want to restrict the `theme` attribute to be a `string` value from the specific enumeration:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -344,7 +344,7 @@ enum:
 
 ### Validation of Incoming Resources
 
-To validate incoming resources, Aidbox uses json-schema which is generated from Entity & Attribute meta-resources \(read more in [Validation Section]()\). Using [$json-schema](../../core-modules/usdjson-schema.md) operation we can inspect which schema will be applied to `UserSetting` resources:
+To validate incoming resources, Aidbox uses json-schema which is generated from Entity & Attribute meta-resources (read more in [Validation Section](broken-reference)). Using [$json-schema](../../core-modules/usdjson-schema.md) operation we can inspect which schema will be applied to `UserSetting` resources:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -492,7 +492,7 @@ schema:
 {% endtab %}
 {% endtabs %}
 
-And we see the schema keyword `additionalProperties: false` \(line 20 in the response above\) which means that now our schema is closed. Let's test it by the request with additional property `menu`:
+And we see the schema keyword `additionalProperties: false` (line 20 in the response above) which means that now our schema is closed. Let's test it by the request with additional property `menu`:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -520,4 +520,3 @@ warnings: []
 {% endtabs %}
 
 In this tutorial you learned how to define and use Custom Resources in Aidbox. In future series we will show you how to add more advanced validations on Custom Resources and create custom endpoints to define your business logic. If you have any questions or suggestions, please provide us with your feedback!
-

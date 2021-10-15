@@ -6,9 +6,9 @@ The ValueSet resource official FHIR documentation can be found here: [https://ww
 
 All examples below can be executed in the REST Console of your Box in Aidbox.Cloud. Just copy/paste a sample into the REST Console and click the EXECUTE button or press Ctrl+Enter.
 
-Also, you can run all examples in [Postman](https://www.getpostman.com/) having [Aibox.Dev](https://www.health-samurai.io/aidbox) running locally, or by setting up a box in Aidbox.Cloud. Download the Aidbox collection and open it in Postman. Set up the proper environment value for the `base` variable which should be the base URL of your FHIR server. Setup authorization if you are using Aidbox.Cloud.
+Also, you can run all examples in [Postman](https://www.getpostman.com) having [Aibox.Dev](https://www.health-samurai.io/aidbox) running locally, or by setting up a box in Aidbox.Cloud. Download the Aidbox collection and open it in Postman. Set up the proper environment value for the `base` variable which should be the base URL of your FHIR server. Setup authorization if you are using Aidbox.Cloud.
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/view-collection/63adc3e748810862fddd?referrer=https%3A%2F%2Fapp.getpostman.com%2Frun-collection%2F63adc3e748810862fddd%23%3Fenv[Aidbox.Dev]%3DW3sia2V5IjoiYmFzZSIsInZhbHVlIjoiaHR0cDovL2xvY2FsaG9zdDo4ODg4IiwiZGVzY3JpcHRpb24iOiIiLCJlbmFibGVkIjp0cnVlfV0%3D&_ga=2.64469999.1592054488.1539615553-1595564802.1538573158)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/view-collection/63adc3e748810862fddd?referrer=https%3A%2F%2Fapp.getpostman.com%2Frun-collection%2F63adc3e748810862fddd%23%3Fenv\[Aidbox.Dev]%3DW3sia2V5IjoiYmFzZSIsInZhbHVlIjoiaHR0cDovL2xvY2FsaG9zdDo4ODg4IiwiZGVzY3JpcHRpb24iOiIiLCJlbmFibGVkIjp0cnVlfV0%3D&\_ga=2.64469999.1592054488.1539615553-1595564802.1538573158)
 
 ### CRUD
 
@@ -345,7 +345,7 @@ POST {{base}}/ValueSet/$expand
 
 Create a ValueSet using the `exclude.filter` element.
 
-Include all concepts from the [http://hl7.org/fhir/contact-point-system](http://hl7.org/fhir/contact-point-system) code system and exclude concepts by the filter: exclude all concepts with the length of code = 3 \(sms, fax, url\). So the value set should include only values: phone, email, pager, and other.
+Include all concepts from the [http://hl7.org/fhir/contact-point-system](http://hl7.org/fhir/contact-point-system) code system and exclude concepts by the filter: exclude all concepts with the length of code = 3 (sms, fax, url). So the value set should include only values: phone, email, pager, and other.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -429,7 +429,7 @@ Selects concepts found in this value set. This is an absolute URI that is a refe
 
 `concept` and `filter` don't apply to `valueSet`.
 
-N/B:  `ValueSet.compose.include.valueSet` ****should be an array not a string.
+N/B:  `ValueSet.compose.include.valueSet`** **should be an array not a string.
 
 Let's include the `administrative-gender` value set. There will be 4 concepts: `male`, `female`, `unknown`, and `other`.
 
@@ -563,35 +563,35 @@ POST {{base}}/ValueSet/$expand
 
 The `filter.op` element defines the kind of operation to perform as a part of the filter criteria. It can take one of the following values:
 
-| Code | Display | Support |
-| :--- | :--- | :--- |
-| = |  Equals | `Supported` |
-|  is-a |  Is A \(by subsumption\) | `Supported` |
-|  descendent-of |  Descendent Of \(by subsumption\) | `Supported` |
-|  is-not-a |  Not \(Is A\) \(by subsumption\) | `Supported` |
-|  regex |  Regular Expression | `Supported` |
-|  in |  In Set | `Supported` |
-|  not-in |  Not in Set | `Supported` |
-|  generalizes |  Generalizes \(by Subsumption\) | `Not supported` |
-|  exists |  Exists | `Supported` |
+| Code           | Display                         | Support         |
+| -------------- | ------------------------------- | --------------- |
+| =              |  Equals                         | `Supported`     |
+|  is-a          |  Is A (by subsumption)          | `Supported`     |
+|  descendent-of |  Descendent Of (by subsumption) | `Supported`     |
+|  is-not-a      |  Not (Is A) (by subsumption)    | `Supported`     |
+|  regex         |  Regular Expression             | `Supported`     |
+|  in            |  In Set                         | `Supported`     |
+|  not-in        |  Not in Set                     | `Supported`     |
+|  generalizes   |  Generalizes (by Subsumption)   | `Not supported` |
+|  exists        |  Exists                         | `Supported`     |
 
 In the examples below we will use the [goal-status](https://www.hl7.org/fhir/codesystem-goal-status.html) code system which consists of :
 
-| Code | Parent codes |
-| :--- | :--- |
-| accepted | `-` |
-| achieved | `["accepted"]` |
-| ahead-of-target | `["accepted", "in-progress"]` |
-| behind-target | `["accepted", "in-progress"]` |
-| cancelled | `-` |
-| entered-in-error | `-` |
-| in-progress | `["accepted"]` |
-| on-hold | `["accepted"]` |
-| on-target | `["accepted", "in-progress"]` |
-| planned | `["accepted"]` |
-| proposed | `-` |
-| rejected | `-` |
-| sustaining | `["accepted", "in-progress"]` |
+| Code             | Parent codes                  |
+| ---------------- | ----------------------------- |
+| accepted         | `-`                           |
+| achieved         | `["accepted"]`                |
+| ahead-of-target  | `["accepted", "in-progress"]` |
+| behind-target    | `["accepted", "in-progress"]` |
+| cancelled        | `-`                           |
+| entered-in-error | `-`                           |
+| in-progress      | `["accepted"]`                |
+| on-hold          | `["accepted"]`                |
+| on-target        | `["accepted", "in-progress"]` |
+| planned          | `["accepted"]`                |
+| proposed         | `-`                           |
+| rejected         | `-`                           |
+| sustaining       | `["accepted", "in-progress"]` |
 
 ### Equals
 
@@ -650,9 +650,9 @@ POST {{base}}/ValueSet/$expand
 {% endtab %}
 {% endtabs %}
 
-### Is A \(by subsumption\)
+### Is A (by subsumption)
 
-Let's include all concepts that have a transitive is-a relationship with the concept code `in-progress` provided as the value including the provided concept itself \(i.e. include self and child codes\). The result will include 5 values: `in-progress`, `on-target`, `ahead-of-target`, `behind-target`, and `sustaining`.
+Let's include all concepts that have a transitive is-a relationship with the concept code `in-progress` provided as the value including the provided concept itself (i.e. include self and child codes). The result will include 5 values: `in-progress`, `on-target`, `ahead-of-target`, `behind-target`, and `sustaining`.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -751,9 +751,9 @@ POST {{base}}/ValueSet/$expand
 {% endtab %}
 {% endtabs %}
 
-### Descendent Of \(by subsumption\)
+### Descendent Of (by subsumption)
 
-Let's include all concepts that have a transitive is-a relationship with the concept code `in-progress` provided as the value excluding the provided concept itself \(i.e. include child codes\). The result will include 4 values:  `on-target`, `ahead-of-target`, `behind-target`, and `sustaining`.
+Let's include all concepts that have a transitive is-a relationship with the concept code `in-progress` provided as the value excluding the provided concept itself (i.e. include child codes). The result will include 4 values:  `on-target`, `ahead-of-target`, `behind-target`, and `sustaining`.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -843,7 +843,7 @@ POST {{base}}/ValueSet/$expand
 {% endtab %}
 {% endtabs %}
 
-### Not \(Is A\) \(by subsumption\)
+### Not (Is A) (by subsumption)
 
 Let's include all codes where the specified property of the code does not have an is-a relationship with the provided value `accepted`. The result will include 4 values whose parent is not `accepted`: `proposed`,  `cancelled`, `rejected`, and `entered-in-error`.
 
@@ -920,7 +920,7 @@ POST {{base}}/ValueSet/$expand
 
 ### Regular Expression
 
-Aidbox supports filter operation `regex` and implements Postgresql regular expressions. See the documentation here: [https://www.postgresql.org/docs/9.3/static/functions-matching.html\#FUNCTIONS-SIMILARTO-REGEXP](https://www.postgresql.org/docs/9.3/static/functions-matching.html#FUNCTIONS-SIMILARTO-REGEXP).
+Aidbox supports filter operation `regex` and implements Postgresql regular expressions. See the documentation here: [https://www.postgresql.org/docs/9.3/static/functions-matching.html#FUNCTIONS-SIMILARTO-REGEXP](https://www.postgresql.org/docs/9.3/static/functions-matching.html#FUNCTIONS-SIMILARTO-REGEXP).
 
 Please notice that regular expressions require an additional character escaping in JSON.
 
@@ -1002,7 +1002,7 @@ POST {{base}}/ValueSet/$expand
 
 ### In Set
 
-Let's include concepts where the specified property of the code is in the set of codes specified in the provided value `on-target,ahead-of-target,behind-target` \(comma separated list\). The result will be 3 values: `on-target`, `ahead-of-target`, and `behind-target`.
+Let's include concepts where the specified property of the code is in the set of codes specified in the provided value `on-target,ahead-of-target,behind-target` (comma separated list). The result will be 3 values: `on-target`, `ahead-of-target`, and `behind-target`.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -1083,7 +1083,7 @@ POST {{base}}/ValueSet/$expand
 
 ### Not in Set
 
-Let's include concepts where the specified property of the code is not in the set of codes specified in the provided value `accepted,achieved,ahead-of-target,behind-target,cancelled,entered-in-error,in-progress,on-hold,on-target,planned` \(comma separated list\). The result will include 3 values: `proposed`, `rejected`, and `sustaining`.
+Let's include concepts where the specified property of the code is not in the set of codes specified in the provided value `accepted,achieved,ahead-of-target,behind-target,cancelled,entered-in-error,in-progress,on-hold,on-target,planned` (comma separated list). The result will include 3 values: `proposed`, `rejected`, and `sustaining`.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -1155,13 +1155,13 @@ POST {{base}}/ValueSet/$expand
 {% endtab %}
 {% endtabs %}
 
-### Generalizes \(by Subsumption\)
+### Generalizes (by Subsumption)
 
 This parameter is not supported in Aidbox.
 
 ### Exists
 
-The specified property of the code has at least one value \(if the specified value is true; if the specified value is false, then matches when the specified property of the code has no values\).
+The specified property of the code has at least one value (if the specified value is true; if the specified value is false, then matches when the specified property of the code has no values).
 
 Let's display concepts where property `hierarchy` exists. The result will include 8 concepts for which `hierarchy` is not an empty array: `achieved`, `ahead-of-target`, `behind-target`, `in-progress`, `on-hold`, `on-target`, `planned`, and `sustaining`.
 
@@ -1291,8 +1291,7 @@ POST {{base}}/ValueSet/$expand
 
 ## Operations
 
-| FHIR specification | Status | Documentation and samples |
-| :--- | :--- | :--- |
-| [$expand](https://www.hl7.org/fhir/valueset-operations.html#expand) | `supported` | [ValueSet Expansion](value-set-expansion.md) |
+| FHIR specification                                                                | Status      | Documentation and samples                           |
+| --------------------------------------------------------------------------------- | ----------- | --------------------------------------------------- |
+| [$expand](https://www.hl7.org/fhir/valueset-operations.html#expand)               | `supported` | [ValueSet Expansion](value-set-expansion.md)        |
 | [$validate-code](https://www.hl7.org/fhir/valueset-operations.html#validate-code) | `supported` | [ValueSet Code validation](value-set-validation.md) |
-

@@ -4,7 +4,7 @@ description: New Search resource provides fine-grained control over search param
 
 # Search Resource
 
-You can define search parameters or override the existing one with Search meta-resource. Search resource takes precedence over [SearchParameter](). This may be useful for performance optimization of built-in FHIR SearchParameters or for the implementation of complicated custom searches.
+You can define search parameters or override the existing one with Search meta-resource. Search resource takes precedence over [SearchParameter](broken-reference). This may be useful for performance optimization of built-in FHIR SearchParameters or for the implementation of complicated custom searches.
 
 ```yaml
 PUT /Search/Patient.name
@@ -30,9 +30,9 @@ You can provide the format string for value where `?` will be replaced with the 
 
 ### **token search**
 
-You can define search parameters for different token syntax forms and `:text` modifier \(other modifiers may be implemented in future\).   
-To refer to system and code in SQL query use `{{param.system}}` and `{{param.code}}` accordingly.  
-To refer to value of param with `:text` modifier use `{{param.text}}`   
+You can define search parameters for different token syntax forms and `:text` modifier (other modifiers may be implemented in future). \
+To refer to system and code in SQL query use `{{param.system}}` and `{{param.code}}` accordingly.\
+To refer to value of param with `:text `modifier use `{{param.text}}` \
 For `:text` modifier you also need to specify `"text-format"`, refer to `{{param.text}}` with `?`. `"text-format"` is a format string which will be applied to`{{param.text}}`  before inserting into SQL query. It is useful for wrapping text with `%` for `like` or `ilike.` For example `text-format: '%?%'`
 
 ```yaml
@@ -55,7 +55,7 @@ token:
 
 If you set multi = 'array', parameters will be coerced as PostgreSQL array.
 
-### Examples \(executable in REST console\)
+### Examples (executable in REST console)
 
 #### Search patient name with SQL ilike:
 
@@ -165,4 +165,3 @@ GET /ServiceRequest?identifier:text=foo
 GET /ServiceRequest?identifier:not=foo
 # will result fallback to default implementation NOT resource @> '{"identifier": [{"value": "foo"}]}'
 ```
-

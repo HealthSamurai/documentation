@@ -130,7 +130,7 @@ query: [...]
 ```
 
 {% hint style="info" %}
-PostgreSQL supports Special Date/Time inputs like **now**, **today**, **tomorrow** etc.
+PostgreSQL supports Special Date/Time inputs like **now**, **today**, **tomorrow **etc.
 {% endhint %}
 
 ### Design AidboxQuery 
@@ -247,7 +247,7 @@ query: ['select * from public.User where id = ?', testuser]
 {% endtabs %}
 
 {% hint style="warning" %}
-It's not possible to call such AidboxQuery from REST Console, because in REST console there are no user claims. It can be done only by request with the access token provided. Check [OAuth2.0]() doc for additional information.
+It's not possible to call such AidboxQuery from REST Console, because in REST console there are no user claims. It can be done only by request with the access token provided. Check [OAuth2.0](broken-reference) doc for additional information.
 {% endhint %}
 
 ### \_query
@@ -322,7 +322,7 @@ query: ['select * from Attribute where id = ?', Encounter.status]
 
 {% tabs %}
 {% tab title="Request" %}
-```text
+```
 GET /Attribute?_query=get-by-id&rid=Encounter.status
 ```
 {% endtab %}
@@ -334,5 +334,6 @@ Pay attention that only`{{resourceType}}`can be used in place of table name, bec
 
 See another tutorial:
 
-{% page-ref page="../../../app-development-guides/tutorials/custom-search.md" %}
-
+{% content-ref url="../../../app-development-guides/tutorials/custom-search.md" %}
+[custom-search.md](../../../app-development-guides/tutorials/custom-search.md)
+{% endcontent-ref %}

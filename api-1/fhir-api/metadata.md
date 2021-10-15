@@ -36,34 +36,20 @@ You can get [Capability Statement](https://www.hl7.org/fhir/capabilitystatement.
 GET <server-domain>/fhir/metadata
 ```
 
-{% api-method method="get" host="<your-domain>/fhir/metadata" path="" %}
-{% api-method-summary %}
- Get metadata
-{% endapi-method-summary %}
+{% swagger baseUrl="<your-domain>/fhir/metadata" path="" method="get" summary=" Get metadata" %}
+{% swagger-description %}
 
-{% api-method-description %}
+{% endswagger-description %}
 
-{% endapi-method-description %}
+{% swagger-parameter in="path" name="mode" type="string" %}
+full | normative | terminology
+{% endswagger-parameter %}
 
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-path-parameters %}
-{% api-method-parameter name="mode" type="string" required=false %}
-full \| normative \| terminology
-{% endapi-method-parameter %}
+{% swagger-parameter in="path" name="_format" type="string" %}
+json | yaml | edn | xml
+{% endswagger-parameter %}
 
-{% api-method-parameter name="\_format" type="string" required=false %}
-json \| yaml \| edn \| xml
-{% endapi-method-parameter %}
-{% endapi-method-path-parameters %}
-{% endapi-method-request %}
-
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
+{% swagger-response status="200" description="" %}
 ```yaml
 patchFormat: [json-patch, merge-patch]
 rest:
@@ -127,18 +113,16 @@ rest:
     - {name: address-postalcode, definition: /SearchParameter/Patient.address-postalcode,
       type: string}
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+{% endswagger-response %}
+{% endswagger %}
 
 The information returned depends on the value of the `mode` parameter:
 
-| `Value` | Description |
-| :--- | :--- |
-| `full` \(or mode not present\) | A [Capability Statement](http://hl7.org/fhir/2018Sep/capabilitystatement.html) that specifies which resource types and interactions are supported |
-| `normative` | As above, but only the normative portions of the Capability Statement |
-| `terminology` | A [TerminologyCapabilities](http://hl7.org/fhir/2018Sep/terminologycapabilities.html) resource that provides further information about terminologies are supported by the server |
+| `Value`                      | Description                                                                                                                                                                      |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `full` (or mode not present) | A [Capability Statement](http://hl7.org/fhir/2018Sep/capabilitystatement.html) that specifies which resource types and interactions are supported                                |
+| `normative`                  | As above, but only the normative portions of the Capability Statement                                                                                                            |
+| `terminology`                | A [TerminologyCapabilities](http://hl7.org/fhir/2018Sep/terminologycapabilities.html) resource that provides further information about terminologies are supported by the server |
 
 Servers MAY ignore the mode parameter and return a CapabilityStatement resource.  
 
@@ -171,45 +155,25 @@ metadata:
 If you want more control over CapabilityStatement, please contact us in the community chat!
 {% endhint %}
 
-To get metadata in the internal Aidbox format, use [`/$metadata?_format=yaml`](http://localhost:7777/$metadata?_format=yaml)
+To get metadata in the internal Aidbox format, use [`/$metadata?_format=yaml`](http://localhost:7777/$metadata?\_format=yaml)
 
-{% api-method method="get" host="<your-domain>/$metadata" path="" %}
-{% api-method-summary %}
-Get Aidbox native metadata
-{% endapi-method-summary %}
+{% swagger baseUrl="<your-domain>/$metadata" path="" method="get" summary="Get Aidbox native metadata" %}
+{% swagger-description %}
 
-{% api-method-description %}
+{% endswagger-description %}
 
-{% endapi-method-description %}
+{% swagger-parameter in="path" name="_format" type="string" %}
+yaml | json | edn
+{% endswagger-parameter %}
 
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-path-parameters %}
-{% api-method-parameter name="\_format" type="string" required=false %}
-yaml \| json \| edn
-{% endapi-method-parameter %}
-{% endapi-method-path-parameters %}
+{% swagger-parameter in="query" name="path" type="string" %}
+Path to specific part of metadata (for example Entity.Patient)
+{% endswagger-parameter %}
 
-{% api-method-query-parameters %}
-{% api-method-parameter name="path" type="string" required=false %}
-Path to specific part of metadata \(for example Entity.Patient\)
-{% endapi-method-parameter %}
-{% endapi-method-query-parameters %}
-{% endapi-method-request %}
-
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
+{% swagger-response status="200" description="" %}
 ```
-
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+{% endswagger-response %}
+{% endswagger %}
 
  Capability statements can become quite large; servers are encouraged to support the [`_summary`](http://hl7.org/fhir/2018Sep/search.html#summary) and [`_elements`](http://hl7.org/fhir/2018Sep/search.html#elements) parameters on the capabilities interaction, though this is not required. In addition, servers are encouraged to implement the [$subset](http://hl7.org/fhir/2018Sep/capabilitystatement-operation-subset.html) and [$implements](http://hl7.org/fhir/2018Sep/capabilitystatement-operation-implements.html) operations to make it easy for a client to check conformance.
-

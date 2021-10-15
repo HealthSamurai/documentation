@@ -2,45 +2,22 @@
 
 [Aidbox](https://www.health-samurai.io/aidbox) is a metadata driven platform, therefore when you want to define new ResourceType, or Attribute you need to create a couple of resources, such as Entity and Attribute etc. But sometimes this way is not convenient. For this reason, we support the special endpoint that provides an easier way to define custom Metadata resources.
 
-{% api-method method="post" host="\[base\]" path="/$metadata" %}
-{% api-method-summary %}
-Metadata
-{% endapi-method-summary %}
+{% swagger baseUrl="[base]" path="/$metadata" method="post" summary="Metadata" %}
+{% swagger-description %}
 
-{% api-method-description %}
+{% endswagger-description %}
 
-{% endapi-method-description %}
-
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-body-parameters %}
-{% api-method-parameter name="definitions" type="object" required=true %}
+{% swagger-parameter in="body" name="definitions" type="object" %}
 Metadata object
-{% endapi-method-parameter %}
-{% endapi-method-body-parameters %}
-{% endapi-method-request %}
+{% endswagger-parameter %}
 
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-Result of metadata expand
-{% endapi-method-response-example-description %}
-
+{% swagger-response status="200" description="Result of metadata expand" %}
 ```
-
 ```
-{% endapi-method-response-example %}
+{% endswagger-response %}
 
-{% api-method-response-example httpCode=422 %}
-{% api-method-response-example-description %}
-Explain of errors
-{% endapi-method-response-example-description %}
-
+{% swagger-response status="422" description="Explain of errors" %}
 ```
-
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
-
+{% endswagger-response %}
+{% endswagger %}

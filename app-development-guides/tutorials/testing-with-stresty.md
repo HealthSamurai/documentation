@@ -2,7 +2,7 @@
 
 ## Configure Your Box
 
-Create a box here [https://aidbox.app/static/aidbox.html](https://aidbox.app/static/aidbox.html). See the [tutorial]() on how to create a new box.
+Create a box here [https://aidbox.app/static/aidbox.html](https://aidbox.app/static/aidbox.html). See the [tutorial](broken-reference) on how to create a new box.
 
 Access the [REST Console](../../aidbox-ui/rest-console-1.md) of the created box. Execute the following requests. Their meaning you can read in the [tutorial](../../security-and-access-control-1/auth/basic-auth.md#register-client).
 
@@ -92,7 +92,7 @@ In the same folder, execute the following commands in the console.
 ### 1
 
 {% hint style="warning" %}
-Replace &lt;your\_box\_name&gt; with the name of your box.
+Replace \<your_box_name> with the name of your box.
 {% endhint %}
 
 ```bash
@@ -101,19 +101,19 @@ export AIDBOX_URL=http://<your_box_name>.aidbox.app
 
 ### 2
 
-```text
+```
 export AIDBOX_AUTH_TYPE=Basic
 ```
 
 ### 3
 
-```text
+```
 export AIDBOX_CLIENT_ID=basic
 ```
 
 ### 4
 
-```text
+```
 export AIDBOX_CLIENT_SECRET=secret
 ```
 
@@ -187,4 +187,3 @@ query-sql: ['SELECT "patient".* FROM "patient" LIMIT ? OFFSET ? ', 100, 0]
 {% endtabs %}
 
 Read more about stresty, predicates and regexps [here](https://github.com/Aidbox/stresty).
-

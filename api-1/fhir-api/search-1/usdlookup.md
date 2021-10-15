@@ -12,20 +12,20 @@ $lookup operations is especially designed to be efficient implementation for thi
 
 > **Demo. US NPI by Aidbox**
 >
-> [https://search-resource.netlify.com/](https://search-resource.netlify.com/)  
-> Here is demo of US NPI ~10M practitioners in Aidbox Cloud using **$lookup** operation. You can source code of this app on [github](https://github.com/Aidbox/usnpi-ui).
+> [https://search-resource.netlify.com/](https://search-resource.netlify.com)\
+> Here is demo of US NPI \~10M practitioners in Aidbox Cloud using **$lookup** operation. You can source code of this app on [github](https://github.com/Aidbox/usnpi-ui).
 
-There is no way to implement the efficient multidimensional prefix search with ranking and sorting in the relational database. $lookup based on specific assumptions to find the right trade-off: if the search returns more than `count` \(by default 50\) results, we consider that the search failed and result can have some anomalies, for example, not complete sorting.
+There is no way to implement the efficient multidimensional prefix search with ranking and sorting in the relational database. $lookup based on specific assumptions to find the right trade-off: if the search returns more than `count` (by default 50) results, we consider that the search failed and result can have some anomalies, for example, not complete sorting.
 
 Here is how it works.
 
-First of all, you have to describe priority groups of attributes with **by** parameter.  Groups are separated by `;` and inside group you specify the list of paths separated by `,`.  Each path expression consists of dot separated elements and indexes \(filters support is coming soon\) and should end with primitive type \(examples: `name.given` or `identifier.value`\).
+First of all, you have to describe priority groups of attributes with **by** parameter.  Groups are separated by `;` and inside group you specify the list of paths separated by `,`.  Each path expression consists of dot separated elements and indexes (filters support is coming soon) and should end with primitive type (examples: `name.given` or `identifier.value`).
 
 Result will be sorted with order of priority groups. For example, if you want to rate first matches of name, identifier and birth of data, and second matches in address and telecom you will use following expression:`name.family,name.given,identifier.value,birthDate;address.state,address.city,address.line,telecom.value`
 
 Let's say you are searching `joh 1979 ny` Aidbox will initially search in first priority group by expression like this: 
 
-```text
+```
 expr = extract_space_separated(resource, paths) 
 where expr ilike ' % joh' AND  expr ilike '% 1979'
 limit 50
@@ -50,10 +50,10 @@ Each **path expression** should point to primitive element!
 
 * **by:** `;-separated` list of priority groups. Each group is `,-separated` list of **path expressions**.
 * **sort**:  `,-separated` list of **path expressions** to sort by
-* **q:** is `+` or space separated term \(prefixes\) to search
-* **limit**: is internal search limit \(default 200\)
-* **count**: number results to return \(default 50\)
-* **mode:** if mode= `index` Aidbox returns index DDL for specific search
+* **q:** is `+` or space separated term (prefixes) to search
+* **limit**: is internal search limit (default 200)
+* **count**: number results to return (default 50)
+* **mode: **if mode= `index` Aidbox returns index DDL for specific search
 
 ### Create Indexes
 
@@ -83,5 +83,4 @@ VACUUM ANALYZE "patient";
 ```
 {% endcode %}
 
-### 
-
+###

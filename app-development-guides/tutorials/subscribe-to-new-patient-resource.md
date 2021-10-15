@@ -8,14 +8,14 @@ description: >-
 
 Aidbox [subscriptions module](../../api-1/reactive-api-and-subscriptions/subscriptions-1.md) is a way to subscribe and get notifications about updating resources on server. It introduces two new resourceTypes into Aidbox:
 
-* SubsSubscription — a meta-resource, which binds events \(create/update/delete resource\) with communication channel through which a subscriber will be notified about.
-* SubsNotification — a resource, which represents the notification with its status \(sent or not\).
+* SubsSubscription — a meta-resource, which binds events (create/update/delete resource) with communication channel through which a subscriber will be notified about.
+* SubsNotification — a resource, which represents the notification with its status (sent or not).
 
 In order to start receive notifications, you have to register your services as a subscriber in Aidbox by creating a **SubsSubscription** resource.
 
-As external service to integrate Aidbox with, we will use [RequestCatcher](https://requestcatcher.com/). We will use aidbox name, so the final name of our service will be [https://aidbox.requestcatcher.com/](https://aidbox.requestcatcher.com/). You can use your own name.
+As external service to integrate Aidbox with, we will use [RequestCatcher](https://requestcatcher.com). We will use aidbox name, so the final name of our service will be [https://aidbox.requestcatcher.com/](https://aidbox.requestcatcher.com). You can use your own name.
 
-Open [https://aidbox.requestcatcher.com/](https://aidbox.requestcatcher.com/) in new tab, then create next **SubsSubsription** resource in your Aidbox instance:
+Open [https://aidbox.requestcatcher.com/](https://aidbox.requestcatcher.com) in new tab, then create next **SubsSubsription** resource in your Aidbox instance:
 
 ```yaml
 POST /SubsSubscription
@@ -55,7 +55,7 @@ Then you can back to RequestCatcher service and see a new notification.
 
 ![](../../.gitbook/assets/screenshot-2020-11-11-at-20.06.57.png)
 
-And next, you can see **SubsNotification** resource created for this notification in Aidbox.
+And next, you can see **SubsNotification **resource created for this notification in Aidbox.
 
 ```yaml
 GET /SubsNotification?_sort=-lastUpdated
@@ -98,4 +98,3 @@ gender: male
 ```
 
 Check RequestCatcher and SubsNotification. You will not find new notifications there.
-

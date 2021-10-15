@@ -14,7 +14,7 @@ Yes, please, check out [the documentation](https://docs.aidbox.app/user-manageme
 
 ## **How to create a SearchParameter for extensions on a property in a resource?**
 
-You can create [custom search parameter](https://docs.aidbox.app/user-management-1/auth/two-factor-authentication) for extensions ****and to made SearchParameter easier to write you also can [define attribute](https://docs.aidbox.app/modules-1/first-class-extensions)
+You can create [custom search parameter](https://docs.aidbox.app/user-management-1/auth/two-factor-authentication) for extensions** **and to made SearchParameter easier to write you also can [define attribute](https://docs.aidbox.app/modules-1/first-class-extensions)
 
 ## **I’m building a request with revinclude. Is it possible to also apply a search for the include resource in that request?**
 
@@ -40,4 +40,3 @@ GET /DocumentReference?patient=[https://my.aidbox.app/Patient/1234](https://my.a
 It’s called an absolute reference. Aidbox doesn't work with absolute references because the logic can become very tricky since these references can point to external servers.
 
 Use relative references instead: GET /DocumentReference?patient=Patient/1234
-

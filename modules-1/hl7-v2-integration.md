@@ -6,13 +6,15 @@ description: >-
 
 # HL7 v2 Integration
 
-{% embed url="https://www.youtube.com/watch?v=iSDX4UZpYO4" caption="Video version of this tutorial" %}
+{% embed url="https://www.youtube.com/watch?v=iSDX4UZpYO4" %}
+Video version of this tutorial
+{% endembed %}
 
 ## Introduction
 
 In 2019, HL7 v2 is still the most widely-used standard for healthcare IT systems integration. If you're developing software which receives information from other systems within a hospital/clinic, most likely it will be HL7 v2 messages.
 
-To process those messages, react on them and modify data stored in your Aidbox, there is a Hl7v2-in module. It provides two resources: `Hl7v2Config` and `Hl7v2Message`. `Hl7v2Config`determines how messages will be parsed and processed. `Hl7v2Message` represents a single received HL7 v2 message and contains raw representation, status \(processed/error\), error description in case of error and other useful information.
+To process those messages, react on them and modify data stored in your Aidbox, there is a Hl7v2-in module. It provides two resources: `Hl7v2Config` and `Hl7v2Message`. `Hl7v2Config`determines how messages will be parsed and processed. `Hl7v2Message` represents a single received HL7 v2 message and contains raw representation, status (processed/error), error description in case of error and other useful information.
 
 Both `Hl7v2Config` and `Hl7v2Message` are managed with standard CRUD API.
 
@@ -43,7 +45,7 @@ body:
 ```
 
 {% hint style="info" %}
-Please note that Mapping returns [FHIR Transaction Bundle](../api-1/transaction.md), so it can produce as many CRUD operations as you need. Any other Aidbox operation/endpoint can be triggered as well \(for instance, [SQL endpoint](../storage-1/database.md)\).
+Please note that Mapping returns [FHIR Transaction Bundle](../api-1/transaction.md), so it can produce as many CRUD operations as you need. Any other Aidbox operation/endpoint can be triggered as well (for instance, [SQL endpoint](../storage-1/database.md)).
 {% endhint %}
 
 ### Creating a Hl7v2Config Resource
@@ -135,7 +137,7 @@ Newly created messages should have `received` status, otherwise they won't be pr
 
 **outcome** — Transaction Bundle returned by the mapping or error information if the status is `error`.
 
-You can try to submit malformed message \(truncated\) to see what the result will be:
+You can try to submit malformed message (truncated) to see what the result will be:
 
 ```yaml
 POST /Hl7v2Message
@@ -210,4 +212,3 @@ Replace `xxxxxxxxxx` in the command above with a string returned by this command
 ### Using HAPI TestPanel to send messages with MLLP
 
 Once `hl7proxy` is up and running, you can use [HAPI TestPanel](https://hapifhir.github.io/hapi-hl7v2/hapi-testpanel/) to send sample HL7 v2 messages. Make sure that TestPanel doesn't report any errors on message delivery. `hl7proxy` output should contain information about every received message and log line`Sent to Aidbox: 201 Created` indicates a successful delivery.
-

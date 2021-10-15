@@ -78,6 +78,10 @@ Other required attributes are determined based on the values of this attribute `
 * authorization_code
 * code
 
+{% hint style="warning" %}
+You can specify `auth.*.access_token_expiration` only for Clients with `auth.*.token_format: jwt`
+{% endhint %}
+
 {% hint style="info" %}
 You can find different authorization flow examples in the Auth Sandbox in the Aidbox ui
 {% endhint %}

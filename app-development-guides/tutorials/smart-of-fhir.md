@@ -4,82 +4,68 @@ SMART apps are third-party applications which interact with the medical data pro
 
 ### Application registration
 
-| Parameter | Description |
-| :--- | :--- |
-| launch\_uri | required, the base URL of the application, usually starts the authorization process |
-| redirect\_uri | required, app will redirected here with authorization code |
+| Parameter    | Description                                                                         |
+| ------------ | ----------------------------------------------------------------------------------- |
+| launch_uri   | required, the base URL of the application, usually starts the authorization process |
+| redirect_uri | required, app will redirected here with authorization code                          |
 
-### Base **patient** flow
+### Base **patient **flow
 
 #### Launch app
 
-{% api-method method="post" host="\[base-url\]/smart/launch/" path=" " %}
-{% api-method-summary %}
-Launch application
-{% endapi-method-summary %}
+{% swagger baseUrl="[base-url]/smart/launch/" path=" " method="post" summary="Launch application" %}
+{% swagger-description %}
+Redirect to application 
 
-{% api-method-description %}
-Redirect to application `launch_uri` with `iss` and `launch` params
-{% endapi-method-description %}
+`launch_uri`
 
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-form-data-parameters %}
-{% api-method-parameter name="patientId" type="string" required=true %}
+ with 
+
+`iss`
+
+ and 
+
+`launch`
+
+ params
+{% endswagger-description %}
+
+{% swagger-parameter in="body" name="patientId" type="string" %}
 patient identifier
-{% endapi-method-parameter %}
+{% endswagger-parameter %}
 
-{% api-method-parameter name="scope" type="string" required=true %}
+{% swagger-parameter in="body" name="scope" type="string" %}
 requested scope
-{% endapi-method-parameter %}
+{% endswagger-parameter %}
 
-{% api-method-parameter name="clientId" type="string" required=true %}
+{% swagger-parameter in="body" name="clientId" type="string" %}
 smart app identifier
-{% endapi-method-parameter %}
-{% endapi-method-form-data-parameters %}
-{% endapi-method-request %}
+{% endswagger-parameter %}
 
-{% api-method-response %}
-{% api-method-response-example httpCode=302 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
+{% swagger-response status="302" description="" %}
 ```
 location [base-url]/launch.html?iss=http%3A%2F%2Flocalhost%3A8081&launch=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODEiLCJzdWIiOiJncm93dGhfY2hhcnQiLCJjdHgiOnsicGF0aWVudCI6InBhdGllbnQxIn0sInNjb3BlIjoibGF1bmNoIn0.l1gsqq6f5svgTg24SlRaIqETEkpcjSFI4Jxk8mZf9oA
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+{% endswagger-response %}
+{% endswagger %}
 
-Now `scope` parameter supports only with value **launch.** 
+Now `scope` parameter supports only with value **launch. **
 
-| Redirect parameter | Description |
-| :--- | :--- |
-| iss | base FHIR endpoint |
-| launch | launch context encoded to JWT |
+| Redirect parameter | Description                   |
+| ------------------ | ----------------------------- |
+| iss                | base FHIR endpoint            |
+| launch             | launch context encoded to JWT |
 
 After launch, SMART app will obtain authorization endpoints - authorize and token. It can be done in two ways - requesting `/metadata/`
 
-{% api-method method="get" host="\[base-url\]/metadata/" path=" " %}
-{% api-method-summary %}
-Metadata
-{% endapi-method-summary %}
+{% swagger baseUrl="[base-url]/metadata/" path=" " method="get" summary="Metadata" %}
+{% swagger-description %}
+Obtaining 
 
-{% api-method-description %}
-Obtaining `CapabilityStatement`
-{% endapi-method-description %}
+`CapabilityStatement`
+{% endswagger-description %}
 
-{% api-method-spec %}
-{% api-method-request %}
-
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
+{% swagger-response status="200" description="" %}
 ```javascript
 "rest": [{
     "security": {
@@ -99,31 +85,17 @@ Obtaining `CapabilityStatement`
    ]
 
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+{% endswagger-response %}
+{% endswagger %}
 
 Or requests `/.well-known/` endpoint.
 
-{% api-method method="get" host="\[base-url\]/.well-known/smart-configuration/" path=" " %}
-{% api-method-summary %}
-Smart-configuration
-{% endapi-method-summary %}
-
-{% api-method-description %}
+{% swagger baseUrl="[base-url]/.well-known/smart-configuration/" path=" " method="get" summary="Smart-configuration" %}
+{% swagger-description %}
 Obtaining configuration metadata
-{% endapi-method-description %}
+{% endswagger-description %}
 
-{% api-method-spec %}
-{% api-method-request %}
-
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
+{% swagger-response status="200" description="" %}
 ```javascript
 {
   "authorization_endpoint": "[base-url]/auth/authorize",
@@ -131,12 +103,10 @@ Obtaining configuration metadata
   ...
 }
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+{% endswagger-response %}
+{% endswagger %}
 
-After this application runs the authorization code flow with an additional parameter - `launch` - encoded data bonded with the current application session. When the application successfully authorizes, it will request the token and expect the response which contains the context \(e.g. patient id\).
+After this application runs the authorization code flow with an additional parameter - `launch` - encoded data bonded with the current application session. When the application successfully authorizes, it will request the token and expect the response which contains the context (e.g. patient id).
 
 {% tabs %}
 {% tab title="Token response" %}
@@ -424,7 +394,6 @@ entry:
 {% endtab %}
 {% endtabs %}
 
-Then find the created patient in the **resources** section and click the application launch button, you will be redirected to new tab with started app.
+Then find the created patient in the **resources **section and click the application launch button, you will be redirected to new tab with started app.
 
 ![Growth charts](../../.gitbook/assets/screenshot-2019-03-11-12.09.53.png)
-

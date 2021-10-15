@@ -129,9 +129,6 @@
 ## Security & Access Control <a href="security-and-access-control-1" id="security-and-access-control-1"></a>
 
 * [Overview](security-and-access-control-1/overview.md)
-* [User](security-and-access-control-1/user.md)
-* [Session](security-and-access-control-1/session.md)
-* [Client](security-and-access-control-1/client.md)
 * [Authentication Flows](security-and-access-control-1/auth/README.md)
   * [Basic Auth](security-and-access-control-1/auth/basic-auth.md)
   * [Client Credentials Grant](security-and-access-control-1/auth/client-credentials.md)

@@ -8,28 +8,28 @@ By `GET /<resource-type>/$changes` without the `version` parameter you will get 
 
 ### Endpoints
 
-`GET /<resourceType>/$changes` returns the latest version for the `resourceType`  
-`GET /<resourceType>/<id>/$changes` returns latest version of a specific resource  
+`GET /<resourceType>/$changes` returns the latest version for the `resourceType`\
+`GET /<resourceType>/<id>/$changes` returns latest version of a specific resource\
 Returned version value can be used with the version query-string parameter
 
 ### Query-string parameters
 
-`version=<version>` returns changes since the specified version  
-`version=<lower-version>,<upper-version>` returns changes after the `lower-version` \(exclusive\) up to the`upper-version` \(inclusive\)  
-  
-`fhir=<boolean>` if set to `true` converts `changes.*.resource` to the FHIR format  
-_\(note, since Changes API is not `/fhir/` endpoint, the rest of the body isn't FHIR compliant\)_
+`version=<version>` returns changes since the specified version\
+`version=<lower-version>,<upper-version>` returns changes after the `lower-version` (exclusive) up to the`upper-version` (inclusive)\
+\
+`fhir=<boolean>` if set to `true` converts `changes.*.resource` to the FHIR format\
+_(note, since Changes API is not `/fhir/` endpoint, the rest of the body isn't FHIR compliant)_
 
 With parameters which start with dot you can filter resources by equality, e.g. `.name.0.family=<string>`
 
 `omit-resources=<boolean>` if set to `true` omits resources leaving only `id` & `resourceType` fields
 
-`_count` & `_page` work as described [here](https://docs.aidbox.app/api-1/fhir-api/search-1/_count-and-_page)  
-`_total` & `_countMethod` work as described [here](https://docs.aidbox.app/api-1/fhir-api/search-1/_total-or-_countmethod)
+`_count` & `_page` work as described [here](https://docs.aidbox.app/api-1/fhir-api/search-1/\_count-and-\_page)\
+`_total` & `_countMethod` work as described [here](https://docs.aidbox.app/api-1/fhir-api/search-1/\_total-or-\_countmethod)
 
 ### Notes
 
-Polling request is cheap! If you want to watch rare changes \(minutes-hours\), this API is very resource efficient  \(no subscriptions, no queues\) and provides you lots of control. If nothing has been changed, you will get a response with status `304`,  otherwise a list of changes and a new **version** to poll next time.
+Polling request is cheap! If you want to watch rare changes (minutes-hours), this API is very resource efficient  (no subscriptions, no queues) and provides you lots of control. If nothing has been changed, you will get a response with status `304`,  otherwise a list of changes and a new **version** to poll next time.
 
 ### Examples
 
@@ -145,4 +145,3 @@ changes:
 - event: created
   resource: {id: pt-2, resourceType: Patient}
 ```
-

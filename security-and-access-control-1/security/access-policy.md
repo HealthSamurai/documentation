@@ -62,7 +62,7 @@ Now, let's execute requests in Postman.
 GET {{base}}/fhir/Patient
 ```
 
-![](../../.gitbook/assets/policy1%20%281%29%20%281%29.png)
+![](<../../.gitbook/assets/policy1 (1) (1).png>)
 
 ### Negative Test
 
@@ -70,11 +70,11 @@ GET {{base}}/fhir/Patient
 POST {{base}}/fhir/Patient
 ```
 
-![](../../.gitbook/assets/policy2%20%281%29%20%281%29.png)
+![](<../../.gitbook/assets/policy2 (1) (1).png>)
 
 ## Policy Debugging
 
-Let's use the parameter  \_\_debug=policy in requests to see which JSON-schema validation returned true/false.
+Let's use the parameter  \__debug=policy in requests to see which JSON-schema validation returned true/false.
 
 ### Positive Test
 
@@ -82,7 +82,7 @@ Let's use the parameter  \_\_debug=policy in requests to see which JSON-schema v
 GET {{base}}/fhir/Patient
 ```
 
-![](../../.gitbook/assets/policy3%20%281%29.png)
+![](<../../.gitbook/assets/policy3 (1).png>)
 
 ### Negative Test
 
@@ -90,11 +90,13 @@ GET {{base}}/fhir/Patient
 POST {{base}}/fhir/Patient
 ```
 
-![](../../.gitbook/assets/policy4%20%281%29.png)
+![](<../../.gitbook/assets/policy4 (1).png>)
 
 See the full documentation [Access Policies](access-control.md).
 
-{% page-ref page="access-control.md" %}
+{% content-ref url="access-control.md" %}
+[access-control.md](access-control.md)
+{% endcontent-ref %}
 
 ## Access Policies for Users
 
@@ -265,7 +267,7 @@ grant_type: password
 
 Execute the request and copy the received `access_token` value. Paste it to your test request in the Authorization header with the word `Bearer` before it.
 
-E.g. you got the access\_token:
+E.g. you got the access_token:
 
 ```javascript
 {
@@ -295,42 +297,28 @@ POST {{base}}/fhir/Patient?__debug=policy
 
 The results of the schema validation should be the following:
 
-| Request/User | User 1 \(Administrator\) | User 2 \(Patient\) |
-| :--- | :--- | :--- |
-| GET | True | True |
-| POST | True | False |
+| Request/User | User 1 (Administrator) | User 2 (Patient) |
+| ------------ | ---------------------- | ---------------- |
+| GET          | True                   | True             |
+| POST         | True                   | False            |
 
-{% api-method method="get" host="POST {{AIDBOX\_URL}}/Patients/tortik" path="" %}
-{% api-method-summary %}
+{% swagger baseUrl="POST {{AIDBOX_URL}}/Patients/tortik" path="" method="get" summary="" %}
+{% swagger-description %}
 
-{% endapi-method-summary %}
+{% endswagger-description %}
 
-{% api-method-description %}
+{% swagger-parameter in="path" name="" type="string" %}
 
-{% endapi-method-description %}
+{% endswagger-parameter %}
 
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-path-parameters %}
-{% api-method-parameter name="" type="string" required=false %}
-
-{% endapi-method-parameter %}
-{% endapi-method-path-parameters %}
-{% endapi-method-request %}
-
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
+{% swagger-response status="200" description="" %}
 ```
-
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+{% endswagger-response %}
+{% endswagger %}
 
-See the full documentation [Resource Owner Credentials Grant]().
+See the full documentation [Resource Owner Credentials Grant](broken-reference).
 
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
+{% endcontent-ref %}
