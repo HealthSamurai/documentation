@@ -67,7 +67,7 @@ limit 10
 
 To provide programmatic access to Aidbox you have to register a client - Client resource.
 
-Client resource must have `grant_types` attribute defining authentification scheme for this Client
+Client resource must have `grant_types` attribute defining authentification scheme for this Client.
 
 > [Application grant types](https://auth0.com/docs/configure/applications/application-grant-types#available-grant-types) (or flows) are methods through which applications can gain [Access Tokens](https://auth0.com/docs/security/tokens/access-tokens) and by which you grant limited access to your resources to another entity without exposing credentials. 
 
