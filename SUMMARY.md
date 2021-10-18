@@ -190,6 +190,8 @@
 * [Aidbox Search](modules-1/aidbox-search/README.md)
   * [SQL endpoints](modules-1/aidbox-search/usdpsql.md)
 * [First-Class Extensions](modules-1/first-class-extensions.md)
+* [Smart on FHIR](modules-1/smart-on-fhir/README.md)
+  * [Patient Access API](modules-1/smart-on-fhir/patient-access-api.md)
 
 ## Plan API
 
