@@ -96,6 +96,10 @@ Now you are ready to run Inferno test.
 Pay attention that FHIR base url for Smart on FHIR is \[hostname]/smart
 {% endhint %}
 
+{% hint style="info" %}
+After running Standalone Patient App test you should open \[host]/auth/grants and revoke the provided access for Inferno client
+{% endhint %}
+
 ![Inferno starting page](<../../.gitbook/assets/Screenshot 2021-10-18 at 12.24.59.png>)
 
 ![Standalone Patient App test](<../../.gitbook/assets/Screenshot 2021-10-18 at 12.22.20.png>)
