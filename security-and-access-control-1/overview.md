@@ -46,7 +46,7 @@ You can find different authorization flow examples in the Auth Sandbox in the Ai
 
 ### Activate/Deactivate Users
 
-To control User active status you can change `User.inactive` attribute by setting true or false value
+To control User active status you can change `User.inactive` attribute by setting true or false value. Deactivating user doesn't affect Session's activation.
 
 
 
