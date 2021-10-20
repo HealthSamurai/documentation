@@ -18,6 +18,8 @@ Access the Access Control tab and create new access policy with the code below. 
 1. it is allowed to use only the GET method;
 2. it is allowed to use only request URIs starting with "/fhir/".
 
+JSON-schema version:
+
 ```yaml
 resourceType: AccessPolicy
 id: policy-for-postman
@@ -41,19 +43,23 @@ schema:
       const: get
 ```
 
+Matcho engine version:
+
 ```yaml
-# or matcho engine version
+resourceType: AccessPolicy
+id: policy-for-postman
 engine: matcho
 matcho:
-  client: { id: postman }
-  uri: '^./fhir/.*'
+  client:
+    id: postman
+  uri: '#^/fhir/.*'
   request-method: get
 ```
 
 Now, let's execute requests in Postman.
 
 {% hint style="info" %}
- A request succeeds if at least one of the policies is valid for it.
+&#x20;A request succeeds if at least one of the policies is valid for it.
 {% endhint %}
 
 ### Positive Test
@@ -74,7 +80,7 @@ POST {{base}}/fhir/Patient
 
 ## Policy Debugging
 
-Let's use the parameter  \__debug=policy in requests to see which JSON-schema validation returned true/false.
+Let's use the parameter  \_\_debug=policy in requests to see which JSON-schema validation returned true/false.
 
 ### Positive Test
 
@@ -267,7 +273,7 @@ grant_type: password
 
 Execute the request and copy the received `access_token` value. Paste it to your test request in the Authorization header with the word `Bearer` before it.
 
-E.g. you got the access_token:
+E.g. you got the access\_token:
 
 ```javascript
 {

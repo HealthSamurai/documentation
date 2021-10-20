@@ -2,7 +2,7 @@
 
 ## Overview
 
-Concept resource has a similar structure as Coding and [CodeSystem.concept](https://www.hl7.org/fhir/codesystem-definitions.html#CodeSystem.concept) element. When you upload code system into [Aidbox](https://www.health-samurai.io/aidbox), we split CodeSystem resource into concepts. But for your convenience CRUD operations are allowed as well on the Concept resource. To create and manage simple dictionary/terminology, you can create a set of Concepts using Create operation.
+Concept resource has a similar structure as Coding and [CodeSystem.concept](https://www.hl7.org/fhir/codesystem-definitions.html#CodeSystem.concept) element. When you upload code system into [Aidbox](https://www.health-samurai.io/aidbox), we split CodeSystem resource into concepts. But for your convenience CRUD operations are allowed as well on the Concept resource. To create and manage simple  dictionary/terminology, you can create a set of Concepts using Create operation.
 
 ```yaml
 resourceType: Concept
@@ -14,7 +14,7 @@ system: http://loinc.org
 code: 17861-6
 display: Calcium [Mass/​volume] in Serum or Plasma	 
 # pre-expanded list of valueset ids/urls
-valueset:
+valuset:
 - labs
 definition: <Definition string>
 hierarchy:
@@ -38,7 +38,7 @@ property:
 
 ### deprecated
 
-This is a boolean flag, which can be used to deactivate (but not delete) a concept. This is the best-practice for terminology management - _never delete concepts, but deprecate_
+This is a boolean flag, which can be used to deactivate \(but not delete\) a concept. This is the best-practice for terminology management - _never delete concepts, but deprecate_
 
 ### system
 
@@ -50,7 +50,7 @@ A hierarchy element contains codes of parent concepts for hierarchical terminolo
 
 ### designation
 
-Designation element is copy semantic of [CodeSystem.concept.designation](https://www.hl7.org/fhir/codesystem-definitions.html#CodeSystem.concept.designation) - Additional representations for the concept - other languages, aliases, specialised purposes, used for particular purposes, etc. In Aidbox, it is represented in a more database-friendly format.&#x20;
+Designation element is copy semantic of [CodeSystem.concept.designation](https://www.hl7.org/fhir/codesystem-definitions.html#CodeSystem.concept.designation) - Additional representations for the concept - other languages, aliases, specialised purposes, used for particular purposes, etc. In Aidbox, it is represented in a more database friendly format. 
 
 In [CodeSystem.concept.designation](https://www.hl7.org/fhir/codesystem-definitions.html#CodeSystem.concept.designation) is a collection of complex elements:
 
@@ -105,4 +105,6 @@ property:
      long_common_name: ...
      relatednames2: ...
 ```
+
+
 
