@@ -24,7 +24,7 @@ In order to set up continuous backup, you need to do the following:&#x20;
 
 1. Configure `wal-g` access to external storage
 2. Download backup `wal-g` `backup-push` `$PGDATA`
-3. Configure the` wal-g wal-fetch` restaurant command&#x20;
+3. Configure the` wal-g wal-fetch` restore command&#x20;
 4. Start pg
 5. After starting the pg, it will automatically pump out the missing logs, read them and be ready for work, i.e. accept read / write requests. If you enable the replica mode, then after reading all the logs, the pg will switch to the “read-only” mode and it will also continue to download the incoming logs. the replica will work lagging behind the master by at least one file shaft (+ network delay for the transfer of the remaining shafts).
 
