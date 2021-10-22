@@ -6,11 +6,11 @@ description: >-
 
 # Validating Foreign Access Tokens
 
-To configure Aidbox as a Resource Server, you need to create one or more instances of TokenIntrospector resource. TokenIntrospector resources defines how access token validation will be performed. There are two different algorithms to validate tokens: JWT validation according to [RFC-7519](https://tools.ietf.org/html/rfc7519) and opaque token introspection according to [RFC-7662](https://tools.ietf.org/html/rfc7662). 
+To configure Aidbox as a Resource Server, you need to create one or more instances of TokenIntrospector resource. TokenIntrospector resources defines how access token validation will be performed. There are two different algorithms to validate tokens: JWT validation according to [RFC-7519](https://tools.ietf.org/html/rfc7519) and opaque token introspection according to [RFC-7662](https://tools.ietf.org/html/rfc7662).&#x20;
 
 ### Validating JWT Access Tokens
 
-For JWT validation, you need to specify either JWKs endpoint URL \([RFC-7517](https://tools.ietf.org/html/rfc7517)\) or a pre-shared secret string if tokens are signed with HS256 algorithm:
+For JWT validation, you need to specify either JWKs endpoint URL ([RFC-7517](https://tools.ietf.org/html/rfc7517)) or a pre-shared secret string if tokens are signed with HS256 algorithm:
 
 ```yaml
 resourceType: TokenIntrospector
@@ -21,13 +21,13 @@ jwt:
   secret: "xxxxxxxx"               # pre-shared key if JWT alg = HS256
 ```
 
-When Aidbox validates the JWT token, it tries to find a matching TokenIntrospector using `jwt.iss` and `type` attributes. If suitable TokenIntrospector is found, token is being validated with either JWK obtained from `jwks_uri` or with `jwt.secret`, depending on the signing algorithm. Token expiration \(`exp` claim\) is also being checked.
+When Aidbox validates the JWT token, it tries to find a matching TokenIntrospector using `jwt.iss` and `type` attributes. If suitable TokenIntrospector is found, token is being validated with either JWK obtained from `jwks_uri` or with `jwt.secret`, depending on the signing algorithm. Token expiration (`exp` claim) is also being checked.
 
-If JWT is valid, Aidbox will put it's claims into the request object under `jwt` key, so you'll be able to access them with [AccessPolicy checks](../security/access-control.md). If the token failed validation \(it's expired or signature isn't correct\) then the client will get a 401 "Unauthorised" response.
+If JWT is valid, Aidbox will put it's claims into the request object under `jwt` key, so you'll be able to access them with [AccessPolicy checks](../security/access-control/). If the token failed validation (it's expired or signature isn't correct) then the client will get a 401 "Unauthorised" response.
 
-### Validating Opaque \(non-JWT\) Tokens
+### Validating Opaque (non-JWT) Tokens
 
-When using old-fashioned \(opaque\) tokens, Aidbox can be configured to call a special endpoint with every new access token it receives. This endpoint, called a token introspection endpoint, returns information about access token - scopes, username and client ID associated with it, expiration time, etc. Most importantly, it tells if access token is active or not.
+When using old-fashioned (opaque) tokens, Aidbox can be configured to call a special endpoint with every new access token it receives. This endpoint, called a token introspection endpoint, returns information about access token - scopes, username and client ID associated with it, expiration time, etc. Most importantly, it tells if access token is active or not.
 
 To configure Aidbox in this way, create TokenIntrospector instance with `opaque` type and `introspection_endpoint` attribute:
 
@@ -43,7 +43,7 @@ According to [RFC-7662](https://tools.ietf.org/html/rfc7662), the only required 
 
 ### X-Client-Auth
 
-In some situations \(like micro-services\), you want to add middle-ware client authentication. You can use the **X-Client-Auth** header with basic auth value for client id and secret to add client authentication to the JWT workflow.
+In some situations (like micro-services), you want to add middle-ware client authentication. You can use the **X-Client-Auth** header with basic auth value for client id and secret to add client authentication to the JWT workflow.
 
 ```yaml
 GET /Patient?_debug=query
@@ -107,7 +107,5 @@ link:
     id: box-user-id
 ```
 
- 
-
-
+&#x20;
 

@@ -96,19 +96,19 @@ headers: {x-original-uri: '/fhir/Patient?__debug=policy', origin: 'https://ui.ai
 
 ### Request Authorization Logic
 
-AccessPolicy instance can be linked to User, Client or Operation resources with `AccessPolicy.link` resource. If AccessPolicy has no links, it's considered as global policy. To authorize a request, Aidbox uses AccessPolicies linked to the current request's User, Client and Operation plus all global policies. 
+AccessPolicy instance can be linked to User, Client or Operation resources with `AccessPolicy.link` resource. If AccessPolicy has no links, it's considered as global policy. To authorize a request, Aidbox uses AccessPolicies linked to the current request's User, Client and Operation plus all global policies.&#x20;
 
 It iterates through them, evaluating each AccessPolicy against current request object. If some policy validates the request (evaluation result is `true`), the request considered authorized and Aidbox stops further policies evaluation. If all policies denied the request (all of them evaluated to `false`), then Aidbox denies such request and responds with `403 Unauthorized`.
 
 {% hint style="info" %}
-Performance consideration: Link you policy to User, Client or Operation to reduce number of checks per request! 
+Performance consideration: Link you policy to User, Client or Operation to reduce number of checks per request!&#x20;
 {% endhint %}
 
 If no AccessPolicy instances exist for a box, all requests will be denied.
 
 ### Debugging
 
-#### Using \__debug parameter
+#### Using \_\_debug parameter
 
 There is a special query-string parameter `__debug=policy` you can pass to every Aidbox request. It will toggle debug mode for Request Authorization Layer, and in this mode instead of actual response client will get an object containing:
 
@@ -131,7 +131,7 @@ x-debug: policy
 
 #### Using the /auth/test-policy Operation
 
-You can use a special operation ` POST /auth/test-policy` to design policy without creating an AccessPolicy resource and for different users and clients. Post on the `/auth/test-policy` with a simulated **request** attribute (you can provide existing `user-id` and `client-id`  — Aidbox will find and populate request) and temporal policy in the **policy **attribute. If you want to test JWT auth, put your token in the `headers.authorization` with the `Bearer` prefix — the token will be parsed and its claims appear in the `request.jwt`. JWT in a header is parsed but not validated. This allows you to test JWT policy without **TokenIntrospector** registration. 
+You can use a special operation ` POST /auth/test-policy` to design policy without creating an AccessPolicy resource and for different users and clients. Post on the `/auth/test-policy` with a simulated **request** attribute (you can provide existing `user-id` and `client-id`  — Aidbox will find and populate request) and temporal policy in the **policy **attribute. If you want to test JWT auth, put your token in the `headers.authorization` with the `Bearer` prefix — the token will be parsed and its claims appear in the `request.jwt`. JWT in a header is parsed but not validated. This allows you to test JWT policy without **TokenIntrospector** registration.&#x20;
 
 The response contains a result of evaluated policy.
 
@@ -305,7 +305,7 @@ resourceType: AccessPolicy
 
 ### Matcho Engine
 
-This custom DSL engine has limited expressiveness, but is very compact and declarative. The general idea is pattern matching with few extensions. 
+This custom DSL engine has limited expressiveness, but is very compact and declarative. The general idea is pattern matching with few extensions.&#x20;
 
 ```yaml
 resourceType: AccessPolicy
@@ -328,15 +328,15 @@ matcho:
 Match DSL definition:
 
 * If **pattern** (match) is object, search for inclusion of this object into subject. For example: `{x: 1}` matches `{x: 1, y: 2 ....}`. This algorithm is recursive — `{a: {b: 5}} `matches `{a: {b: 5, ...}...}`
-* Objects with special keys: 
+* Objects with special keys:&#x20;
   * **$enum** —  test subject is equal to one of items in the enumeration. `{request-method: {$enum: ['get','post']}}` matches `{request-method: 'post'}`
   * **$contains **—** **if a subject is a collection, then search at least one match. `{type: {$contains: {system: 'loinc'}}` matches `{type: [{system: 'snomed'}, {system: 'loinc'}]}`
   * **$one-of — **try to match one of patterns.`  {a: {$one-of: [{b: present?}, {c: present?}]} matches {a: {c: 5}}  `
-  * **$reference **-  parse Reference  or string into [aidbox format](../../modules-1/fhir-resources/aidbox-and-fhir-formats.md#references). Examples:
-    * Parse Reference elements 
+  * **$reference **-  parse Reference  or string into [aidbox format](../../../modules-1/fhir-resources/aidbox-and-fhir-formats.md#references). Examples:
+    * Parse Reference elements&#x20;
       * `parser: {reference: "Patient/pid"} => {id: "pid", resourceType: "Patient"}`
       * `{resource: {patient: {$reference: {id: '.user.data.patient_id'}}} `
-    * Parse reference string  
+    * Parse reference string &#x20;
       * `"Patient/pid" =>  {id: "pid", resourceType: "Patient"}`
       * `{params: {subject: {$reference: {id: '.user.data.patient_id'}}}`
 * For **array, **match the first item in the pattern with the first item in the subject. `[1,2] `matches `[1,2,3...]`

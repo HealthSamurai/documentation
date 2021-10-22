@@ -6,11 +6,11 @@ In this tutorial, you will learn how to manage user access to patient resources.
 
 ## Prerequisites
 
-To complete this tutorial, you should install Postman and get access to the Aidbox Console \(see [here](../../getting-started/installation/) how to install your Aidbox instance\) .
+To complete this tutorial, you should install Postman and get access to the Aidbox Console (see [here](../../getting-started/installation/) how to install your Aidbox instance) .
 
 Once you access the Aidbox REST Console, load resources that you need to work with policies:
 
-```text
+```
 POST /$import
 
 id: patient_import
@@ -36,9 +36,9 @@ inputs:
 
 In the previous step, we have imported a client that will authenticate users and two users with corresponding sets of related resources shown on the picture below. Overlapping outlines indicates the relation between enclosed resources. A similar diagram applies to User-2.
 
-![](../../.gitbook/assets/image%20%2814%29.png)
+![](<../../.gitbook/assets/image (14).png>)
 
-## User Login‌ <a id="user-login"></a>
+## User Login‌ <a href="user-login" id="user-login"></a>
 
 Now you can use Postman to log in as a user. In this example, we log in as User-1.
 
@@ -84,11 +84,11 @@ Notice the `patient_id` field of `userinfo` . This is the id of the Patient reso
 
 The `access-token` field of `user-info` will be needed to perform requests on behalf of our User. See [here](../auth/resource-owner-password.md#use-access-token) how to perform user request with a token.
 
-![](../../.gitbook/assets/image%20%2810%29.png)
+![](<../../.gitbook/assets/image (10).png>)
 
 At this point there are no access policies that allow the user to access any resources. So all attempts to make requests for Resources will be denied.
 
-## Patient Resource access <a id="access-to-patient-resource"></a>
+## Patient Resource access <a href="access-to-patient-resource" id="access-to-patient-resource"></a>
 
 Let's add our first policy that will grant us access to the Patient resource associated with our user.
 
@@ -199,7 +199,7 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-And this policy is a bit tricky. The allowed URI is `/Encounter` and it doesn't contain any additional parts that could be identified as request parameters as in the previous case. So, in order to provide the required request parameter `patient` to the Access Policy matching engine, we have to specify it as the query parameter of our request. And after the Access Policy engine allows such a request, the Search Engine comes into play. It filters out encounters that do not match the condition of `patient = our-patient-id`. To know more about how the AidBox Search works, see the [Search section](../../api-1/fhir-api/search-1/). To know more about the available search parameters, refer to the [Search Parameters section](../../api-1/api/search-parameters.md) of the FHIR documentation for the resource of interest.
+And this policy is a bit tricky. The allowed URI is `/Encounter` and it doesn't contain any additional parts that could be identified as request parameters as in the previous case. So, in order to provide the required request parameter `patient` to the Access Policy matching engine, we have to specify it as the query parameter of our request. And after the Access Policy engine allows such a request, the Search Engine comes into play. It filters out encounters that do not match the condition of `patient = our-patient-id`. To know more about how the AidBox Search works, see the [Search section](../../api-1/fhir-api/search-1/). To know more about the available search parameters, refer to the [Search Parameters section](access-control/search-parameters.md) of the FHIR documentation for the resource of interest.
 
 Finally, we can make a request for the list of patient encounters.
 
@@ -318,7 +318,7 @@ GET /Patient/new-patient/Observation
 {% endtab %}
 
 {% tab title="Response" %}
-```text
+```
 {
  "query-time": 7,
  "meta": {
@@ -561,4 +561,3 @@ matcho:
 ```
 {% endtab %}
 {% endtabs %}
-

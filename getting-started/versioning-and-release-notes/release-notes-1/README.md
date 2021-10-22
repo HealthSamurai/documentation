@@ -31,10 +31,10 @@ description: Release notes for years 2019-2020
 * Complete rewrite of the [(rev)include](../../../api-1/fhir-api/search-1/\_include-and-\_revinclude.md) engine
 * New [Mapping module](../../../tools/mappings.md)
 * New [Hl7v2 module](../../../modules-1/hl7-v2-integration.md)
-* New engine for AccessPolicy - [matcho](../../../security-and-access-control-1/security/access-control.md#matcho-engine)
+* New engine for AccessPolicy - [matcho](../../../security-and-access-control-1/security/access-control/#matcho-engine)
 * New [Encryption API](../../../api-1/encryption-api.md)
 * [X-Audit header](../../../app-development-guides/receive-logs-from-your-app/x-audit-header.md) to add custom data to Aidbox logs
-* [X-Debug: policy](../../../security-and-access-control-1/security/access-control.md#using-x-debug-policy-header) header to trace policy evaluation
+* [X-Debug: policy](../../../security-and-access-control-1/security/access-control/#using-x-debug-policy-header) header to trace policy evaluation
 * Support for [\_elements](../../../api-1/fhir-api/search-1/\_elements.md#elements-and-ref-includes) for (rev)included resources
 
 Plenty of bug fixes!
@@ -50,7 +50,7 @@ Now references to contained resources are represented as `localRef` attribute in
 * Managed SQL for FHIR search by [SearchQuery](../../../api-1/fhir-api/search-1/searchquery.md)
 * A default timeout for Search Operations with [\_timeout](../../../api-1/fhir-api/search-1/\_timeout.md) param for high-load
 * Ordered search in [$lookup](../../../api-1/fhir-api/search-1/usdlookup.md)
-* microseconds precision for timestamps (Resource.meta.lastUpdated) 
+* microseconds precision for timestamps (Resource.meta.lastUpdated)&#x20;
 * Better Aidbox <=> FHIR conversion for first-class extensions
 * Added JWT sub & iss and client IP address to logs
 * aidbox-cli elastic search logger now creates a new index for each day
@@ -73,7 +73,7 @@ It's time to upgrade your database - please stop your container and change image
 * New  `/<RT>/$lookup`  operation for efficient lookup search in millions of records - [read more](../../../api-1/fhir-api/search-1/usdlookup.md)
 * [AidboxQuery](../../../app-development-guides/tutorials/custom-search.md) extended with count-query and params types and defaults
 * New `/<RT>/$load` and `/$load` [bulk operations](../../../api-1/bulk-api-1/#usdload) were added and [$import](../../../api-1/bulk-api-1/#usdimport) was upgraded
-* aidbox/db upgrade to 11.4 + fixes in json_knife pg extension - (deep patterns, indexes) 
+* aidbox/db upgrade to 11.4 + fixes in json\_knife pg extension - (deep patterns, indexes)&#x20;
 * Highlighted logs for humans in [Aidbox.Dev](../../installation/setup-aidbox.dev.md) by default: docker logs -f \<your-box-container>
 * New [Aidbox.Enterprise](broken-reference)
 
@@ -81,11 +81,11 @@ It's time to upgrade your database - please stop your container and change image
 
 ### Features
 
-* `/auth/test-policy` operation for[ policy debug](../../../security-and-access-control-1/security/access-control.md#debugging)
-* Support for [ident interpolation](../../../security-and-access-control-1/security/access-control.md#sql-engine) in SQL policy - `SELECT * FROM {{!params.resource/type}}`
+* `/auth/test-policy` operation for[ policy debug](../../../security-and-access-control-1/security/access-control/#debugging)
+* Support for [ident interpolation](../../../security-and-access-control-1/security/access-control/#sql-engine) in SQL policy - `SELECT * FROM {{!params.resource/type}}`
 * [SQL Migrations](../../../modules-1/aidbox-search/usdpsql.md#sql-migrations)
 * New [\_explain](../../../api-1/fhir-api/search-1/#\_explain) parameter for Search API
-* Beta version of bulk [import operation](../../../api-1/bulk-api-1/#usdimport) 
+* Beta version of bulk [import operation](../../../api-1/bulk-api-1/#usdimport)&#x20;
 * History & Snippets for REST & DB Console
 
 ## 0.4.4 _\[17 June 2019]_
@@ -126,7 +126,7 @@ It's time to upgrade your database - please stop your container and change image
 
 ### Bug Fixes
 
-* Auth first_party JWT session
+* Auth first\_party JWT session
 * html sanitise in Narrative
 * Fix date validation
 * Better validation error reporting
@@ -162,7 +162,7 @@ This release is mostly dedicated to stabilisation of new auth module. Check-out 
 
 * Auth module endpoint's changed `oauth => auth`
 * Structure of Auth Client and User changed
-* Turn-off insecure Aidbox.Dev start - now you have to provide AIDBOX_CLIENT_ID and AIDBOX_CLIENT_SECRET
+* Turn-off insecure Aidbox.Dev start - now you have to provide AIDBOX\_CLIENT\_ID and AIDBOX\_CLIENT\_SECRET
 
 ### Bug fixes
 
