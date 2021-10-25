@@ -78,15 +78,6 @@ If your application is a major consumer of Aidbox API, you can set **first\_part
 
 Next step is to redirect a user from your application to **authorize** the endpoint with **client\_id** and **response\_type** - code:
 
-{% tabs %}
-{% tab title="JSON request with Secret" %}
-```
-// Some codePOST /auth/authorize Content-Type: application/json
-{ "response_type": "code", "client_id": "webapp", "code_challenge": <code_challenge>, "code_challenge_method": "S256", "redirect_uri": "http://myapp.app", "state": "some stateode_challenge_method": "S256", "redirect_uri": "http://myapp.app", "state": "some state" }
-```
-{% endtab %}
-{% endtabs %}
-
 ```
 https://<box>.aidbox.app/auth/authorize?client_id=webapp&response_type=code&state=...
 ```
