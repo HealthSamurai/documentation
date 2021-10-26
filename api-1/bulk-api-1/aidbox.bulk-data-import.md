@@ -60,50 +60,35 @@ Returns input params object with following attributes added:
 {% tab title="Request" %}
 ```yaml
 POST /rpc
-content-type: application/json
-accept: application/json
+content-type: text/yaml
+accept: text/yaml
 
-{
-  "method": "aidbox.bulk/import-start",
-  "params": {
-    "on-conflict": "update",
-    "id_prefix": "app1",
-    "format": "fhir",
-    "meta": {
-      "source": "app1"
-    },
-    "input": [
-      {
-        "url": "https://storage.googleapis.com/aidbox-public/synthea/100/corrupted-patient.ndjson.gz"}]}}
-
+method: aidbox.bulk/import-start
+params:
+  on-conflict: update
+  id_prefix: app1
+  format: fhir
+  meta: {source: app1}
+  input:
+  - {url: 'https://storage.googleapis.com/aidbox-public/synthea/100/corrupted-patient.ndjson.gz'}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```json
-{
- "result": {
-  "on-conflict": "update",
-  "id_prefix": "app1",
-  "format": "fhir",
-  "meta": {
-   "source": "app1"
-  },
-  "input": [
-   {
-    "url": "https://storage.googleapis.com/aidbox-public/synthea/100/corrupted-patient.ndjson.gz",
-    "status": "loaded",
-    "count": 124,
-    "errors": 1,
-    "time": 157
-   }
-  ],
-  "status": "failed",
-  "errors": 1,
-  "time": 241
- }
-}
+{% code title="status: 200" %}
+```yaml
+result:
+  on-conflict: update
+  id_prefix: app1
+  format: fhir
+  meta: {source: app1}
+  input:
+  - {url: 'https://storage.googleapis.com/aidbox-public/synthea/100/corrupted-patient.ndjson.gz', status: loaded, count: 124, errors: 1, time: 157}
+  status: failed
+  errors: 1
+  time: 241
 ```
+{% endcode %}
 {% endtab %}
 {% endtabs %}
 
