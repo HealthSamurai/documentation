@@ -35,13 +35,6 @@ Object with following structure:
   * `url`
 {% endtab %}
 
-{% tab title="Not implemented parameters" %}
-* `error-threshold`
-* `id_prefix`
-* `mode`
-* `skip-validation`
-{% endtab %}
-
 {% tab title="Result" %}
 Returns input params object with following attributes added:
 
@@ -56,7 +49,8 @@ Returns input params object with following attributes added:
 {% endtab %}
 
 {% tab title="Error" %}
-
+* `message` _There is running import - wait until it finish or cancel it with aidbox.bulk/import-cance_l
+* `import` object identical to result object
 {% endtab %}
 {% endtabs %}
 
