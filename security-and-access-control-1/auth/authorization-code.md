@@ -4,7 +4,7 @@
 
 The Authorization Code Grant is an OAuth 2.0 flow that regular web apps use in order to access an API, typically as web applications with backend and frontend (browser-based SPA, for example).&#x20;
 
-This flow doesn't use `client-secret` due to security considerations - frontend application source code is available in a browser. Instead, user authorises the application and gets redirected back to it with a temporary access code in the URL. Application exchanges that code for the access token. For more detailed information read [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.1).&#x20;
+This flow doesn't use `client-secret` due to security considerations - frontend application source code is available in a browser. Instead, user authorizes the application and gets redirected back to it with a temporary access code in the URL. Application exchanges that code for the access token. For more detailed information read [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.1).&#x20;
 
 ![Basic scheme](../../.gitbook/assets/untitled-diagram-page-3.svg)
 
@@ -76,7 +76,7 @@ If your application is a major consumer of Aidbox API, you can set **first\_part
 
 ## Get Code
 
-Next step is to redirect a user from your application to **authorize** the endpoint with **client\_id** and **response\_type** - code:
+The next step is to query an authorize endpoint with **client\_id** and **response\_type** with value `code`:
 
 {% tabs %}
 {% tab title="Secret" %}
@@ -103,23 +103,18 @@ Content-Type: application/json
  "client_id": "webapp",
  "redirect_uri": "http://myapp.app",
  "state": "somestate",     
- "code_challenge":
+ "code_challenge": "code_challenge",
+ "code_challenge_method": "S256"
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-```
-https://<box>.aidbox.app/auth/authorize?client_id=webapp&response_type=code&state=...
-```
+To keep your client stateless, you can send a **state** parameter with arbitrary content, which will be sent back in the redirect response.
 
-To keep your client stateless, you can send a **state** parameter with arbitrary content, which will be sent you back on redirect.
-
-If users are not logged in, they will see the login screen.
+If users are not logged in, they will see the default login screen.
 
 ![](../../.gitbook/assets/login-screen-with-id-field.png)
-
-Make sure you use id field, not the email on the login form.
 
 If a client is not first\_party or user not yet granted permissions to client, a user will see the grant page:
 
@@ -136,7 +131,7 @@ If a client granted permissions, a user agent will be redirected to url configur
 With this code and client secret, you can request for Access Token with`grant_type: authorization_code`.
 
 {% tabs %}
-{% tab title="json request with secret" %}
+{% tab title="Secret" %}
 ```yaml
 POST /auth/token
 Content-Type: application/json
@@ -150,7 +145,7 @@ Content-Type: application/json
 ```
 {% endtab %}
 
-{% tab title="json request with PKCE" %}
+{% tab title="PKCE" %}
 ```yaml
 POST /auth/token
 Content-Type: application/json
@@ -217,7 +212,7 @@ Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
 {% endtab %}
 {% endtabs %}
 
-Session is just a resource and you can inspect and manipulate sessions with standard Search & CRUD API. For example, to get all sessions initiate `GET /Session`
+Session is just a resource and you can inspect and manipulate sessions with standard Search & CRUD API. For example, use `GET /Session` to get all sessions.
 
 ## Auth Sandbox Demo
 
