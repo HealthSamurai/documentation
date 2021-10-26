@@ -60,23 +60,49 @@ Returns input params object with following attributes added:
 {% tab title="Request" %}
 ```yaml
 POST /rpc
-content-type: text/yaml
-accept: text/yaml
+content-type: application/json
+accept: application/json
 
-method: aidbox.bulk/import-start
-params:
-  on-conflict: update
-  id_prefix: app1
-  format: fhir
-  meta: {source: app1}
-  input:
-  - {url: 'https://storage.googleapis.com/aidbox-public/synthea/100/corrupted-patient.ndjson.gz'}
+{
+  "method": "aidbox.bulk/import-start",
+  "params": {
+    "on-conflict": "update",
+    "id_prefix": "app1",
+    "format": "fhir",
+    "meta": {
+      "source": "app1"
+    },
+    "input": [
+      {
+        "url": "https://storage.googleapis.com/aidbox-public/synthea/100/corrupted-patient.ndjson.gz"}]}}
+
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```
-// Some code
+```json
+{
+ "result": {
+  "on-conflict": "update",
+  "id_prefix": "app1",
+  "format": "fhir",
+  "meta": {
+   "source": "app1"
+  },
+  "input": [
+   {
+    "url": "https://storage.googleapis.com/aidbox-public/synthea/100/corrupted-patient.ndjson.gz",
+    "status": "loaded",
+    "count": 124,
+    "errors": 1,
+    "time": 157
+   }
+  ],
+  "status": "failed",
+  "errors": 1,
+  "time": 241
+ }
+}
 ```
 {% endtab %}
 {% endtabs %}
