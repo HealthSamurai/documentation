@@ -28,10 +28,10 @@ Starts `aidbox.bulk` import
 {% tab title="Parameters" %}
 Object with following structure:
 
-* `format`
-* `meta`
-* `on-conflict`
-* `input`
+* `format `input resources format, <mark style="color:orange;">`fhir`</mark> <mark style="color:red;"></mark>or <mark style="color:orange;">`aidbox`</mark> (default: <mark style="color:orange;">`fhir`</mark>)&#x20;
+* `meta `meta data that will be attached to each of the imported resources
+* `on-conflict` action to resolve id uniqueness constraint violation, <mark style="color:orange;">`update`</mark> or <mark style="color:orange;">`override`</mark>
+* `input` array of input sources urls
   * `url`
 {% endtab %}
 
@@ -45,14 +45,14 @@ Object with following structure:
 {% tab title="Result" %}
 Returns input params object with following attributes added:
 
-* `status`
-* `count`
-* `time`
-* `input`
-  * `status`
-  * `count`
-  * `errors`
-  * `time`
+* `status` <mark style="color:orange;">`in-progress`</mark>, <mark style="color:orange;">`finished`</mark>, <mark style="color:orange;">`failed`</mark>
+* `count` overall number of imported resources
+* `time` import execution time
+* `input` the import status of each specific input
+  * `status` <mark style="color:orange;">`loaded`</mark>, <mark style="color:orange;">`validated`</mark>, <mark style="color:orange;">`failed`</mark>
+  * `count` number of loaded resources
+  * `errors` number of validation errors
+  * `time` input execution time
 {% endtab %}
 
 {% tab title="Error" %}
