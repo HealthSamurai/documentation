@@ -2,7 +2,7 @@
 
 ## **How can I load lots of data at a time with Aidbox API?**
 
-You can use [`Bulk API`](https://docs.aidbox.app/api-1/bulk-api-1) for that 
+You can use [`Bulk API`](https://docs.aidbox.app/api-1/bulk-api-1) for that&#x20;
 
 ## **How to increase speed/performance for requests with complex parameters?**
 
@@ -14,7 +14,7 @@ Yes, please, check out [the documentation](https://docs.aidbox.app/user-manageme
 
 ## **How to create a SearchParameter for extensions on a property in a resource?**
 
-You can create [custom search parameter](https://docs.aidbox.app/user-management-1/auth/two-factor-authentication) for extensions** **and to made SearchParameter easier to write you also can [define attribute](https://docs.aidbox.app/modules-1/first-class-extensions)
+You can create [custom search parameter](https://docs.aidbox.app/api-1/fhir-api/search-1/searchparameter) for extensions** **and to made SearchParameter easier to write you also can [define attribute](https://docs.aidbox.app/modules-1/first-class-extensions)
 
 ## **I’m building a request with revinclude. Is it possible to also apply a search for the include resource in that request?**
 
@@ -31,9 +31,9 @@ We suggest OAuth implementation in Client Credentials Grant. You need to use “
 * Create a Client and teach the external system to [receive token](https://docs.aidbox.app/auth/client-credentials).
 * Create an appropriate[ access policy](https://docs.aidbox.app/security/access-control#matcho-engine)
 
-## My search doesn’t work with the full link to the resource included. Why is that? 
+## My search doesn’t work with the full link to the resource included. Why is that?&#x20;
 
-An example of the query that doesn't work: 
+An example of the query that doesn't work:&#x20;
 
 GET /DocumentReference?patient=[https://my.aidbox.app/Patient/1234](https://my.aidbox.app/Patient/1234)
 
