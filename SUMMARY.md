@@ -32,6 +32,7 @@
   * [Capability Statement](api-1/fhir-api/metadata.md)
   * [$validate](api-1/fhir-api/usdvalidate.md)
   * [Search](api-1/fhir-api/search-1/README.md)
+    * [SearchParameter](api-1/fhir-api/search-1/searchparameter.md)
     * [\_id](api-1/fhir-api/search-1/\_id.md)
     * [\_lastUpdated & \_createdAt](api-1/fhir-api/search-1/\_lastupdated.md)
     * [\_text & \_content](api-1/fhir-api/search-1/\_text-and-\_content.md)
