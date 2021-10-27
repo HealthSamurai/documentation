@@ -106,7 +106,7 @@ Same as `aidbox.bulk/import-start` result
 {% endtab %}
 
 {% tab title="Error" %}
-
+`message` _No active imports_
 {% endtab %}
 {% endtabs %}
 
@@ -114,14 +114,34 @@ Same as `aidbox.bulk/import-start` result
 
 {% tabs %}
 {% tab title="Request" %}
-```
-// Some code
+```yaml
+POST /rpc
+content-type: text/yaml
+accept: text/yaml
+
+method: aidbox.bulk/import-status
+params: {}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```
-// Some code
+```yaml
+result:
+  on-conflict: update
+  id_prefix: app1
+  format: fhir
+  meta:
+    source: app1
+  input:
+    - url: >-
+        https://storage.googleapis.com/aidbox-public/synthea/100/Patient.ndjson.gz
+      status: loaded
+      count: 124
+      errors: 0
+      time: 1205
+  status: finished
+  count: 0
+  time: 1452
 ```
 {% endtab %}
 {% endtabs %}
@@ -147,7 +167,7 @@ Result is an array of objects with following structure:
 {% endtab %}
 
 {% tab title="Error" %}
-
+`message`_ No active imports_
 {% endtab %}
 {% endtabs %}
 
@@ -155,14 +175,41 @@ Result is an array of objects with following structure:
 
 {% tabs %}
 {% tab title="Request" %}
-```
-// Some code
+```yaml
+POST /rpc
+content-type: text/yaml
+accept: text/yaml
+
+{
+  "method": "aidbox.bulk/import-errors",
+  "params": {"omit-resources?": true}}
+
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```
-// Some code
+```yaml
+result:
+  - input_no: 0
+    line_no: 1
+    type: Patient
+    id: e9adac47-eb98-4fce-b871-512226086c97
+    errors:
+      - path:
+          - name
+          - 0
+          - given
+        message: expected array
+  - input_no: 0
+    line_no: 20
+    type: Patient
+    id: b2d58f0f-4499-4392-ad3a-1c2141c8a6c1
+    errors:
+      - path:
+          - address
+          - 0
+          - line
+        message: expected array
 ```
 {% endtab %}
 {% endtabs %}
@@ -184,7 +231,7 @@ Returns object with following structure:
 {% endtab %}
 
 {% tab title="Error" %}
-
+`message` _No active imports_
 {% endtab %}
 {% endtabs %}
 
@@ -192,14 +239,20 @@ Returns object with following structure:
 
 {% tabs %}
 {% tab title="Request" %}
-```
-// Some code
+```yaml
+POST /rpc
+content-type: text/yaml
+accept: text/yaml
+
+method: aidbox.bulk/import-cancel
 ```
 {% endtab %}
 
 {% tab title="Response" %}
 ```
-// Some code
+result:
+  message: "Import Canceled"
+  import: <. . .>
 ```
 {% endtab %}
 {% endtabs %}
