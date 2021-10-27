@@ -27,8 +27,8 @@ Object with following structure:
 * `format `input resources format, <mark style="color:orange;">`fhir`</mark> <mark style="color:red;"></mark>or <mark style="color:orange;">`aidbox`</mark> (default: <mark style="color:orange;">`fhir`</mark>)&#x20;
 * `meta `meta data that will be attached to each of the imported resources
 * `on-conflict` action to resolve id uniqueness constraint violation, <mark style="color:orange;">`update`</mark> or <mark style="color:orange;">`override`</mark>
-* `input` array of input sources urls
-  * `url`
+* `input` array of objects
+  * `url` string with input source url
 {% endtab %}
 
 {% tab title="Result" %}
@@ -45,7 +45,7 @@ Returns input params object with following attributes added:
 {% endtab %}
 
 {% tab title="Error" %}
-* `message` _There is running import - wait until it finish or cancel it with aidbox.bulk/import-cance_l
+* `message` _"There is running import - wait until it finish or cancel it with aidbox.bulk/import-cancel"_
 * `import` object identical to result object
 {% endtab %}
 {% endtabs %}
@@ -102,7 +102,7 @@ Same as `aidbox.bulk/import-start` result
 {% endtab %}
 
 {% tab title="Error" %}
-`message` _No active imports_
+`message` _"No active imports"_
 {% endtab %}
 {% endtabs %}
 
@@ -165,7 +165,7 @@ Result is an array of objects with following structure:
 {% endtab %}
 
 {% tab title="Error" %}
-`message`_ No active imports_
+`message`_ "No active imports"_
 {% endtab %}
 {% endtabs %}
 
@@ -178,10 +178,9 @@ POST /rpc
 content-type: text/yaml
 accept: text/yaml
 
-{
-  "method": "aidbox.bulk/import-errors",
-  "params": {"omit-resources?": true}}
-
+method: aidbox.bulk/import-errors
+params:
+  omit-resources?: true
 ```
 {% endtab %}
 
@@ -226,12 +225,12 @@ _Expects no parameters_
 {% tab title="Result" %}
 Returns object with following structure:
 
-* `message`
-* `import`
+* `message` _"Import canceled"_
+* `import` Same as `aidbox.bulk/import-start` result
 {% endtab %}
 
 {% tab title="Error" %}
-`message` _No active imports_
+`message` _"No active imports"_
 {% endtab %}
 {% endtabs %}
 
