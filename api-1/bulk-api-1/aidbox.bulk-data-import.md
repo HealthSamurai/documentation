@@ -4,10 +4,6 @@ description: aidbox.bulk/* RPC operations
 
 # aidbox.bulk data import
 
-{% hint style="warning" %}
-This page is a work in progress
-{% endhint %}
-
 ## Overview
 
 aidbox.bulk API uses Aidbox JSON [RPC API](../rpc-api.md)
@@ -125,6 +121,7 @@ params: {}
 {% endtab %}
 
 {% tab title="Response" %}
+{% code title="Status: 200" %}
 ```yaml
 result:
   on-conflict: update
@@ -143,6 +140,7 @@ result:
   count: 0
   time: 1452
 ```
+{% endcode %}
 {% endtab %}
 {% endtabs %}
 
@@ -188,6 +186,7 @@ accept: text/yaml
 {% endtab %}
 
 {% tab title="Response" %}
+{% code title="Status: 200" %}
 ```yaml
 result:
   - input_no: 0
@@ -211,6 +210,7 @@ result:
           - line
         message: expected array
 ```
+{% endcode %}
 {% endtab %}
 {% endtabs %}
 
@@ -249,11 +249,13 @@ method: aidbox.bulk/import-cancel
 {% endtab %}
 
 {% tab title="Response" %}
+{% code title="Status: 200" %}
 ```
 result:
   message: "Import Canceled"
   import: <. . .>
 ```
+{% endcode %}
 {% endtab %}
 {% endtabs %}
 
