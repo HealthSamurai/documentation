@@ -195,11 +195,10 @@ Make sure to add `require` check of the fields that are validated by a json sche
 
 #### Example
 
-The following policy requires presence of the `request.user` attribute (only authenticated requests are allowed):
+The following policy requires `request.params.resource/type` to be present in a request and have the value "Organization":
 
 ```yaml
 resourceType: AccessPolicy
-description: Allow
 engine: json-schema
 schema:
   properties:
