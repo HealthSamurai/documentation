@@ -7,7 +7,7 @@
 * [Installation & Configuration](getting-started/installation/README.md)
   * [🎓 Setup Devbox](getting-started/installation/setup-aidbox.dev.md)
   * [🆕 Update Aidbox](getting-started/installation/update-aidbox.md)
-  * [Configure Devbox/Aidbox distribution](getting-started/installation/use-devbox-aidbox.md)
+  * [Configure Devbox/Aidbox/Multibox distribution](getting-started/installation/use-devbox-aidbox.md)
   * [Use aidboxdb image](getting-started/installation/aidboxdb-image.md)
   * [🎓 Getting Started with Devbox in Cloud](getting-started/installation/getting-started-with-box.md)
 * [Features](getting-started/features.md)
