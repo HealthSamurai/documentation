@@ -56,15 +56,15 @@ All distributions require license details to be provided. Alongside with online 
 | `AIDBOX_DD_LOGS`               | Fallback file to write logs in if uploading to DataDog fails                                                                                                                                                                                                                                                             |
 | `AIDBOX_CREATED_AT_URL`        | Overrides createdAt extension url, default is `ex:createdAt`                                                                                                                                                                                                                                                             |
 | `AIDBOX_CORRECT_AIDBOX_FORMAT` | <p>If provided, activates transforming unknown polymorphic extensions to the correct Aidbox format avoiding keeping them at FHIR-format.</p><p></p><p>For example,</p><p><code>extension.*.valueString</code> stored as <code>extension.0.value.string</code></p>                                                        |
-| `AIDBOX_DEV_MODE`              | Enables  `__debug=policy` for [access policy debugging](https://docs.aidbox.app/security-and-access-control-1/security/access-policy#policy-debugging)                                                                                                                                                                   |
+| `AIDBOX_DEV_MODE`              | Enables  `_debug=policy` for [access policy debugging](https://docs.aidbox.app/security-and-access-control-1/security/access-policy#policy-debugging)                                                                                                                                                                    |
 
 ### Multibox required environment variables
 
 | Env variable name       | Meaning                                                                                              |
 | ----------------------- | ---------------------------------------------------------------------------------------------------- |
-| AIDBOX\_LICENSE         | Multibox instance license                                                                            |
-| AIDBOX\_CLUSTER\_SECRET | Secret to access cluster                                                                             |
-| AIDBOX\_CLUSTER\_DOMAIN | <p>Used to route users between the Aidbox instances</p><p></p><p>For example: aidbox.example.com</p> |
+| `AIDBOX_LICENSE`        | Multibox instance license                                                                            |
+| `AIDBOX_CLUSTER_SECRET` | Secret to access cluster                                                                             |
+| `AIDBOX_CLUSTER_DOMAIN` | <p>Used to route users between the Aidbox instances</p><p></p><p>For example: aidbox.example.com</p> |
 
 
 
