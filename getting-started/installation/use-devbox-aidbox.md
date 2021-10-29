@@ -61,6 +61,7 @@ All distributions require license details to be provided. Alongside with online 
 
 | Env variable name       | Meaning                                                                                              |
 | ----------------------- | ---------------------------------------------------------------------------------------------------- |
+| AIDBOX\_LICENSE         | The license to your Multibox instance. It is provided by Health Samurai team                         |
 | AIDBOX\_CLUSTER\_SECRET | Secret to access cluster                                                                             |
 | AIDBOX\_CLUSTER\_DOMAIN | <p>Used to route users between the Aidbox instances</p><p></p><p>For example: aidbox.example.com</p> |
 
