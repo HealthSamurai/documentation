@@ -4,13 +4,15 @@
 
 The Authorization Code Grant is an OAuth 2.0 flow that regular web apps use in order to access an API, typically as web applications with backend and frontend (browser-based SPA, for example).&#x20;
 
-This flow doesn't use `client-secret` due to security considerations - frontend application source code is available in a browser. Instead, user authorizes the application and gets redirected back to it with a temporary access code in the URL. Application exchanges that code for the access token. For more detailed information read [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.1).&#x20;
+In this flow the application receives authorization from the user. Once the user has authorized the application, they get redirected back to it with a temporary access code in the URL. The application exchanges that code for an access token. For more detailed information read [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.1).&#x20;
 
 ![Basic scheme](../../.gitbook/assets/untitled-diagram-page-3.svg)
 
+For applications that are able to securely store a secret it is recommended to supply the secret in the token request due to security considerations. Otherwise, if the application is unable to securely store a secret (i.e. a frontend only app), we suggest using [PKCE](https://datatracker.ietf.org/doc/html/rfc7636). Both methods are supported by Aidbox.
+
 ## Configure Client
 
-The first step is to configure Client for Authorization Grant with `secret` and `redirect_uri`, as well `code` grant type:
+The first step is to configure Client for Authorization Grant with `secret` and `redirect_uri`, as well as `code` grant type:
 
 {% tabs %}
 {% tab title="Secret" %}
@@ -39,7 +41,6 @@ PUT /Client/webapp
 Accept: text/yaml
 Content-Type: text/yaml
 
-secret: verysecret
 first_party: true
 grant_types:
   - code
@@ -56,7 +57,7 @@ auth:
 
 Client will act on behalf of the user, which means Access Policies should be configured for User, not for Client.&#x20;
 
-You can configure Client for JWT tokens, set token expiration and enable refresh token:
+You can configure Client for JWT tokens, set token expiration and enable a refresh token:
 
 | auth_._authorization\_code. | options       | desc                                 |
 | --------------------------- | ------------- | ------------------------------------ |
@@ -67,7 +68,7 @@ You can configure Client for JWT tokens, set token expiration and enable refresh
 | **pkce**                    | true/false    | enable PKCE flow                     |
 
 {% hint style="info" %}
-If you want to use Authorization Code Grant for **Single Page Application **you do not need to set the `secret` attribute!
+If you want to use Authorization Code Grant for **Single Page Application **you do not need to set the `secret` attribute, use PKCE instead!
 {% endhint %}
 
 {% hint style="info" %}
@@ -76,7 +77,9 @@ If your application is a major consumer of Aidbox API, you can set **first\_part
 
 ## Get Code
 
-The next step is to query an authorize endpoint with **client\_id** and **response\_type** with value `code`:
+The next step is to query an authorize endpoint with `client_id` and `response_type` with value `code.`&#x20;
+
+For PKCE you will need to additionally supply `code_challenge` and `code_challenge_method`. First create a high-entropy string value with a minimum length of 43 characters and a maximum length of 128 characters, then produce a `code_challenge` using the S256 hashing method.
 
 {% tabs %}
 {% tab title="Secret" %}
@@ -103,24 +106,24 @@ Content-Type: application/json
  "client_id": "webapp",
  "redirect_uri": "http://myapp.app",
  "state": "somestate",     
- "code_challenge": "code_challenge",
+ "code_challenge": "46mfdzfFFfZJtfN8UfAzUQgnq9_Tei33CUVXyeAeiwE",
  "code_challenge_method": "S256"
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-To keep your client stateless, you can send a **state** parameter with arbitrary content, which will be sent back in the redirect response.
+To keep your client stateless, you can send a `state` parameter with arbitrary content, which will be sent back in the redirect response.
 
 If users are not logged in, they will see the default login screen.
 
 ![](../../.gitbook/assets/login-screen-with-id-field.png)
 
-If a client is not first\_party or user not yet granted permissions to client, a user will see the grant page:
+If a client is not **first\_party** or the user has not yet granted permissions to the client, the user will see the grant page:
 
 ![](<../../.gitbook/assets/image (2).png>)
 
-If a client granted permissions, a user agent will be redirected to url configured in **Client.auth.authorization\_code.redirect\_uri **with the authorization code parameter.
+If the client was granted permission, the user agent will be redirected to the url configured in **Client.auth.authorization\_code.redirect\_uri **with the authorization code parameter.
 
 ```
 <redirect_uri>?code=****&state=***
@@ -128,7 +131,7 @@ If a client granted permissions, a user agent will be redirected to url configur
 
 ## Get Access Token
 
-With this code and client secret, you can request for Access Token with`grant_type: authorization_code`.
+With this code and client secret, you can request an Access Token with`grant_type: authorization_code`. If you're using PKCE, you will need to supply `code_verifier` used to produce the `code_challenge`.
 
 {% tabs %}
 {% tab title="Secret" %}
@@ -152,7 +155,7 @@ Content-Type: application/json
 
 {
  "client_id": "webapp",
- "code_verifier": <code_verifier>,
+ "code_verifier": "nzr2UsqTGUgd9wC55Sc4m8OzwbR0Lqu_Bh...",
  "code": <code>,
  "grant_type": "authorization_code"
 }
@@ -160,7 +163,7 @@ Content-Type: application/json
 {% endtab %}
 {% endtabs %}
 
-If provided code is accurate, you will get access token, user information and refresh token (if enabled):
+If the provided code is accurate, you will get access token, user information and refresh token (if enabled):
 
 {% tabs %}
 {% tab title="token-response" %}
