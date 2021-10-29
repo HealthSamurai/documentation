@@ -55,6 +55,7 @@ All distributions require license details to be provided. Alongside with online 
 | `AIDBOX_DD_BATCH_TIMEOUT` | Timeout (in ms) to post a batch to DataDog if there are not enough records to reach full batch size. Default value: 3600000 (1 hour)                                                                                                                                                                                     |
 | `AIDBOX_DD_LOGS`          | Fallback file to write logs in if uploading to DataDog fails                                                                                                                                                                                                                                                             |
 | `AIDBOX_CREATED_AT_URL`   | Overrides createdAt extension url, default is `ex:createdAt`                                                                                                                                                                                                                                                             |
+| `AIDBOX_DEV_MODE`         | Enables  `__debug=policy` for [access policy debugging](https://docs.aidbox.app/security-and-access-control-1/security/access-policy#policy-debugging)                                                                                                                                                                   |
 
 ### Multibox required environment variables
 
