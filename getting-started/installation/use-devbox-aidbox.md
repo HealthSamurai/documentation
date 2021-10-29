@@ -1,5 +1,7 @@
 ---
-description: The topic explains configuration options of Devbox and Aidbox distributions
+description: >-
+  The topic explains configuration options of Devbox, Aidbox and Multibox
+  distributions
 ---
 
 # Configure Devbox/Aidbox/Multibox distribution
@@ -14,7 +16,7 @@ All distributions are intended to be used with [healthsamurai/aidboxdb](https://
 
 All distributions require license details to be provided. Alongside with online license server, we offer a special license server distribution for the deployment environments that do not have access to the internet. Contact your support team for the details.
 
-## Required environment variables
+### Required environment variables
 
 | Env variable name       | Meaning                                                           |
 | ----------------------- | ----------------------------------------------------------------- |
@@ -32,7 +34,7 @@ All distributions require license details to be provided. Alongside with online 
 | `AIDBOX_LICENSE_ID`     | License id obtained from the license server                       |
 | `AIDBOX_LICENSE_KEY`    | Key for that license                                              |
 
-## Optional environment variables
+### Optional environment variables
 
 | Env variable name         | Meaning                                                                                                                                                                                                                                                                                                                  |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -54,12 +56,14 @@ All distributions require license details to be provided. Alongside with online 
 | `AIDBOX_DD_LOGS`          | Fallback file to write logs in if uploading to DataDog fails                                                                                                                                                                                                                                                             |
 | `AIDBOX_CREATED_AT_URL`   | Overrides createdAt extension url, default is `ex:createdAt`                                                                                                                                                                                                                                                             |
 
-## Multibox required environment variables
+### Multibox required environment variables
 
 | Env variable name       | Meaning                                                                                              |
 | ----------------------- | ---------------------------------------------------------------------------------------------------- |
 | AIDBOX\_CLUSTER\_SECRET | Secret to access cluster                                                                             |
 | AIDBOX\_CLUSTER\_DOMAIN | <p>Used to route users between the Aidbox instances</p><p></p><p>For example: aidbox.example.com</p> |
+
+###
 
 ### Configuring SSL connection with PostgreSQL
 
