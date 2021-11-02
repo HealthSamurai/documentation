@@ -1,28 +1,29 @@
-# Setup SMTP-provider
+# Setup SMTP provider
 
 Aidbox allows you to configure SMTP email provider to manage your email communications.
 
-## Adding SMTP-provider
+{% hint style="info" %}
+To enable SMTP please specify optional environment variable`AIDBOX_BASE_URL.`The full list of variables is available [here](https://docs.aidbox.app/getting-started/installation/configure-devbox-aidbox-multibox#optional-environment-variables).
+{% endhint %}
 
-To add new SMTP-provider update your `AidboxConfig` resource with provider credentials.
+## Add SMTP provider
+
+Update your `AidboxConfig` resource with provider credentials to add a new SMTP provider
 
 ```json
 PUT /AidboxConfig/provider
- 
+
 {
     "provider": {
-      "smtp-provider": {
+        "smtp-provider": {
             "type": "smtp",
-            "host": "mail.host.ru",
+            "host": "smtp.example.com",
             "port": 465,
             "ssl": true,
-            "from": "user@host.ru",
-            "username": "user@host.ru",
+            "from": "user@example.com",
+            "username": "user@example.com",
             "password": "password"
-      }
+        }
     }
 }
 ```
-
-
-
