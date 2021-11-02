@@ -73,7 +73,6 @@
   * [$load](api-1/bulk-api-1/usdload.md)
   * [$import & /fhir/$import](api-1/bulk-api-1/usdimport-and-fhir-usdimport.md)
   * [aidbox.bulk data import](api-1/bulk-api-1/aidbox.bulk-data-import.md)
-  * [aidbox.bulk.\* \[draft\]](api-1/bulk-api-1/aidbox.bulk.load.md)
   * [🎓 Synthea by Bulk APi](api-1/bulk-api-1/synthea-by-bulk-api.md)
 * [Batch Upsert](api-1/batch-upsert.md)
 * [Batch/Transaction](api-1/transaction.md)
@@ -192,8 +191,8 @@
 * [Aidbox Search](modules-1/aidbox-search/README.md)
   * [SQL endpoints](modules-1/aidbox-search/usdpsql.md)
 * [First-Class Extensions](modules-1/first-class-extensions.md)
-* [Smart on FHIR](modules-1/smart-on-fhir/README.md)
-  * [Patient Access API](modules-1/smart-on-fhir/patient-access-api.md)
+* [SMART on FHIR auth](modules-1/smart-on-fhir-auth/README.md)
+  * [Patient Access API](modules-1/smart-on-fhir-auth/patient-access-api.md)
 
 ## Plan API
 
