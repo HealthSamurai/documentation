@@ -1,13 +1,17 @@
-# SMART on FHIR
+---
+description: Learn how to launch SMART app on your local Devbox
+---
 
-SMART apps are third-party applications which interact with the medical data provided by the FHIR server. They are usually run on behalf of a patient or clinician. For more information, see the [spec](http://www.hl7.org/fhir/smart-app-launch/).
+# 🎓 SMART App Launch tutorial
+
+SMART apps are third-party applications which interact with the clinical data provided by a FHIR server. They are usually run on behalf of a patient or clinician. For more information, see check the [SMART on FHIR page](./).
 
 ### Application registration
 
-| Parameter    | Description                                                                         |
-| ------------ | ----------------------------------------------------------------------------------- |
-| launch_uri   | required, the base URL of the application, usually starts the authorization process |
-| redirect_uri | required, app will redirected here with authorization code                          |
+| Parameter     | Description                                                                         |
+| ------------- | ----------------------------------------------------------------------------------- |
+| launch\_uri   | required, the base URL of the application, usually starts the authorization process |
+| redirect\_uri | required, app will redirected here with authorization code                          |
 
 ### Base **patient **flow
 
@@ -49,7 +53,7 @@ location [base-url]/launch.html?iss=http%3A%2F%2Flocalhost%3A8081&launch=eyJhbGc
 {% endswagger-response %}
 {% endswagger %}
 
-Now `scope` parameter supports only with value **launch. **
+Now `scope` parameter is supported only with value **launch. **
 
 | Redirect parameter | Description                   |
 | ------------------ | ----------------------------- |
@@ -58,7 +62,7 @@ Now `scope` parameter supports only with value **launch. **
 
 After launch, SMART app will obtain authorization endpoints - authorize and token. It can be done in two ways - requesting `/metadata/`
 
-{% swagger baseUrl="[base-url]/metadata/" path=" " method="get" summary="Metadata" %}
+{% swagger baseUrl="[base-url]/smart/metadata/" path=" " method="get" summary="Metadata" %}
 {% swagger-description %}
 Obtaining 
 
@@ -90,7 +94,7 @@ Obtaining
 
 Or requests `/.well-known/` endpoint.
 
-{% swagger baseUrl="[base-url]/.well-known/smart-configuration/" path=" " method="get" summary="Smart-configuration" %}
+{% swagger baseUrl="[base-url]/smart/.well-known/smart-configuration" path=" " method="get" summary="Smart-configuration" %}
 {% swagger-description %}
 Obtaining configuration metadata
 {% endswagger-description %}
@@ -394,6 +398,6 @@ entry:
 {% endtab %}
 {% endtabs %}
 
-Then find the created patient in the **resources **section and click the application launch button, you will be redirected to new tab with started app.
+Then find the created patient in the **resources **section and click the application launch button, you will be redirected to a new tab with started app.
 
-![Growth charts](../../.gitbook/assets/screenshot-2019-03-11-12.09.53.png)
+![Growth charts](../../../.gitbook/assets/screenshot-2019-03-11-12.09.53.png)

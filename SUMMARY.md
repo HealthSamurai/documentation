@@ -113,7 +113,6 @@
   * [Patient Encounter notification Application](app-development-guides/tutorials/patient-encounter-notification-application.md)
   * [Working with pgAgent](app-development-guides/tutorials/working-with-pgagent.md)
   * [Working with Extensions](app-development-guides/tutorials/working-with-extensions.md)
-  * [SMART on FHIR](app-development-guides/tutorials/smart-of-fhir.md)
   * [Sync Data From Aidbox](app-development-guides/tutorials/sync-data-from-aidbox.md)
   * [SDC with Custom Resources](app-development-guides/tutorials/sdc-with-custom-resources.md)
   * [Testing with Stresty](app-development-guides/tutorials/testing-with-stresty.md)
@@ -139,7 +138,8 @@
   * [External Oauth 2.0 Providers](security-and-access-control-1/auth/external-oauth-2.0-providers/README.md)
     * [Configure Okta](security-and-access-control-1/auth/external-oauth-2.0-providers/configure-okta.md)
   * [Two Factor Authentication](security-and-access-control-1/auth/two-factor-authentication.md)
-  * [SMART on FHIR](security-and-access-control-1/auth/smart-app.md)
+  * [SMART on FHIR](security-and-access-control-1/auth/smart-app/README.md)
+    * [🎓 SMART App Launch tutorial](security-and-access-control-1/auth/smart-app/smart-of-fhir.md)
   * [Configuration options](security-and-access-control-1/auth/configuration-options.md)
   * [Discovery API](security-and-access-control-1/auth/well-known-endpoint.md)
 * [Access Control](security-and-access-control-1/security/README.md)
@@ -191,12 +191,11 @@
 * [Aidbox Search](modules-1/aidbox-search/README.md)
   * [SQL endpoints](modules-1/aidbox-search/usdpsql.md)
 * [First-Class Extensions](modules-1/first-class-extensions.md)
-* [SMART on FHIR auth](modules-1/smart-on-fhir-auth/README.md)
-  * [Patient Access API](modules-1/smart-on-fhir-auth/patient-access-api.md)
 
 ## Plan API
 
 * [Plan API Overview](plan-api/plan-api-overview.md)
+* [Patient Access API](plan-api/patient-access-api.md)
 
 ## Tools
 

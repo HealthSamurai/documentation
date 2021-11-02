@@ -1,8 +1,8 @@
-# SMART on FHIR auth
+# SMART on FHIR
 
 SMART Defines Two Patterns For Client _Authorization_
 
-[**Authorization via SMART App Launch**](http://build.fhir.org/ig/HL7/smart-app-launch/app-launch.html)
+### [**Authorization via SMART App Launch**](http://build.fhir.org/ig/HL7/smart-app-launch/app-launch.html)
 
 Authorizes a user-facing client application (“App”) to connect to a FHIR Server. This pattern allows for “launch context” such as _currently selected patient_ to be shared with the app, based on a user’s session inside an EHR or other health data software, or based on a user’s selection at launch time. Authorization allows for delegation of a user’s permissions to the app itself.
 
@@ -14,28 +14,6 @@ In SMART’s standalone launch flow, a user selects an app from outside the EHR,
 
 In SMART’s EHR launch flow, a user has established an EHR session, and then decides to launch an app. This could be a single-patient app (which runs in the context of a patient record), or a user-level app (like an appointment manager or a population dashboard).
 
-[**Authorization via SMART Backend Services**](http://build.fhir.org/ig/HL7/smart-app-launch/backend-services.html)
-
-Authorizes a headless or automated client application (“Backend Service”) to connect to a FHIR Server. This pattern allows for backend services to connect and interact with an EHR when there is no user directly involved in the launch process.
-
-`.well-known/smart-configuration`
-
-In order to obtain launch context and request authorization to access FHIR resources, the app discovers the EHR FHIR server’s SMART configuration metadata, including OAuth `authorization_endpoint` and `token_endpoint` URLs.
-
-### SMART App Launch: Scopes
-
-#### Patient-specific scope <a href="patient-specific-scopes" id="patient-specific-scopes"></a>
-
-Patient-specific scopes allow access to specific data about a single patient.&#x20;
-
-#### User-level scopes <a href="user-level-scopes" id="user-level-scopes"></a>
-
-User-level scopes allow access to specific data that a user can access.&#x20;
-
-#### Wildcard scopes
-
-###
-
 ### The top-level steps for Smart App Launch are:
 
 1. [Register App with EHR](https://build.fhir.org/ig/HL7/smart-app-launch/app-launch.html#step-1-register) (_one-time step_, can be out-of-band)
@@ -46,5 +24,15 @@ User-level scopes allow access to specific data that a user can access.&#x20;
 6. [Access FHIR API](https://build.fhir.org/ig/HL7/smart-app-launch/app-launch.html#step-6-fhir-api)
 7. [Refresh access token](https://build.fhir.org/ig/HL7/smart-app-launch/app-launch.html#step-7-refresh)
 
+{% hint style="info" %}
+Check[ SMART App launch tutorial](smart-of-fhir.md) to launch Smart App locally
+{% endhint %}
 
+{% hint style="info" %}
+For Inferno compliance test check [Aidbox sample](https://github.com/Aidbox/aidbox-project-samples)
+{% endhint %}
+
+### [**Authorization via SMART Backend Services**](http://build.fhir.org/ig/HL7/smart-app-launch/backend-services.html)
+
+Authorizes a headless or automated client application (“Backend Service”) to connect to a FHIR Server. This pattern allows for backend services to connect and interact with an EHR when there is no user directly involved in the launch process.
 
