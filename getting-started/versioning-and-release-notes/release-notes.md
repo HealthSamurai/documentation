@@ -4,10 +4,8 @@
 
 * Released new API for Bulk Data import. Using [Aidbox.bulk](../../api-1/bulk-api-1/aidbox.bulk-data-import.md) you will be able to import data in both Aidbox and FHIR formats, validate uploaded resources and references asynchronously.
 * Added Smart App Launch sandbox to the [Aidbox sample app](https://github.com/Aidbox/aidbox-react-app#aidbox-react-sample-app).
-* Addded `AIDBOX_DEV_MODE` env that enables  `_debug=policy` for [access policy debugging](https://docs.aidbox.app/security-and-access-control-1/security/access-policy#policy-debugging). We'll add more functionality that will be available for development purposes and can be disabled on production.
-* Updated documentation.
-
-
+* Added `AIDBOX_DEV_MODE` env that enables  `_debug=policy` for [access policy debugging](https://docs.aidbox.app/security-and-access-control-1/security/access-policy#policy-debugging). We'll add more functionality that will be available for development purposes and can be disabled on production.
+* Fixed bugs submitted by Aidbox users and updated documentation.
 
 ## September 2021 - v:2109 _`stable`_
 
