@@ -10,7 +10,7 @@ Patient Access API enables Smart App to get Patient's healthcare data after Pati
 
 In order to enable Patient Access API in your Aidbox instance you have to:
 
-1. Set up [Devbox](../../getting-started/installation/setup-aidbox.dev.md).
+1. Set up [Devbox](../getting-started/installation/setup-aidbox.dev.md).
 2.  Set up patient-access-smart-api sample project. You need to add next env variables and restart your Devbox
 
     ```
@@ -86,7 +86,7 @@ Here you can find steps to pass inferno tests.
 
     You will see something like this:
 
-    ![](<../../.gitbook/assets/image (93).png>)
+    ![](<../.gitbook/assets/image (93) (1).png>)
 
     Then copy forwading https connection and update base url env. In my case it's `AIDBOX_BASE_URL=https://4eb9-178-66-82-76.ngrok.io`
 
@@ -100,11 +100,11 @@ Pay attention that FHIR base url for Smart on FHIR is \[hostname]/smart
 After running Standalone Patient App test you should open \[host]/auth/grants and revoke the provided access for Inferno client
 {% endhint %}
 
-![Inferno starting page](<../../.gitbook/assets/Screenshot 2021-10-18 at 12.24.59.png>)
+![Inferno starting page](<../.gitbook/assets/Screenshot 2021-10-18 at 12.24.59.png>)
 
-![Standalone Patient App test](<../../.gitbook/assets/Screenshot 2021-10-18 at 12.22.20.png>)
+![Standalone Patient App test](<../.gitbook/assets/Screenshot 2021-10-18 at 12.22.20.png>)
 
-![Limited App test](<../../.gitbook/assets/Screenshot 2021-10-18 at 12.22.06.png>)
+![Limited App test](<../.gitbook/assets/Screenshot 2021-10-18 at 12.22.06.png>)
 
 {% hint style="info" %}
 Other Inferno tests are related to Provider Access API. So, it's out of scope of Patient Access API which we are considering in current tutorial.

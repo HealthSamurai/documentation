@@ -102,6 +102,7 @@
 ## FHIR Implementation Guides
 
 * [🎓 HL7 FHIR Da Vinci PDex Plan Net IG](fhir-implementation-guides/hl7-fhir-da-vinci-pdex-plan-net-ig.md)
+* [SMART on FHIR](fhir-implementation-guides/smart-on-fhir.md)
 
 ## App development guides
 
