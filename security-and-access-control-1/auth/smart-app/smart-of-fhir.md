@@ -1,187 +1,228 @@
 ---
-description: Learn how to launch SMART app on your local Devbox
+description: Set up Growth Chart with Aidbox
 ---
 
 # 🎓 SMART App Launch tutorial
 
-SMART apps are third-party applications which interact with the clinical data provided by a FHIR server. They are usually run on behalf of a patient or clinician. For more information, see check the [SMART on FHIR page](./).
+[Growth Chart](https://github.com/smart-on-fhir/growth-chart-app) is a sample SMART App which displays children growth data as plot.
 
-### Application registration
+## Set Up Aidbox Project
 
-| Parameter     | Description                                                                         |
-| ------------- | ----------------------------------------------------------------------------------- |
-| launch\_uri   | required, the base URL of the application, usually starts the authorization process |
-| redirect\_uri | required, app will redirected here with authorization code                          |
+First you need to specify your new SMART API using the [Aidbox API Constructor](../../../aidbox-configuration/aidbox-api-constructor.md).
 
-### Base **patient **flow
+Create the `aidbox-project/single-patient-portal.edn` file with the following content:
 
-#### Launch app
+```clojure
+{ns single-patient-portal
+ import #{zenbox
+          aidbox.auth}
 
-{% swagger baseUrl="[base-url]/smart/launch/" path=" " method="post" summary="Launch application" %}
-{% swagger-description %}
-Redirect to application 
+ root-api
+ {:zen/tags #{zenbox/api}
+  "smart" {:apis #{smart-api}}}
 
-`launch_uri`
+ grant-lookup-method
+ {:zen/tags #{aidbox.auth/grant-lookup}
+  :method aidbox.auth/single-patient-grant-lookup}
 
- with 
+ smart-api
+ {:zen/tags #{zenbox/api}
 
-`iss`
+  :middlewares [:smart.fhir/single-patient-auth-middleware]
 
- and 
+  ".well-known" {"smart-configuration" {:GET {:action :smart.fhir/smart-configuration
+                                              :public true}}}
+  "metadata" {:GET {:action :smart.fhir/capability
+                    :public true}}
+  "style-v1.json" {:GET {:action :smart.fhir/style
+                         :public true}}
 
-`launch`
+  "Patient" {[:id] {:GET {:action :smart.fhir/read
+                          :resource/type "Patient"}}}
 
- params
-{% endswagger-description %}
-
-{% swagger-parameter in="body" name="patientId" type="string" %}
-patient identifier
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="scope" type="string" %}
-requested scope
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="clientId" type="string" %}
-smart app identifier
-{% endswagger-parameter %}
-
-{% swagger-response status="302" description="" %}
+  "Observation" {:GET {:action :smart.fhir/search
+                       :resource/type "Observation"
+                       :params {:_count {}
+                                :code {}
+                                :patient {}}}}}}
 ```
-location [base-url]/launch.html?iss=http%3A%2F%2Flocalhost%3A8081&launch=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODEiLCJzdWIiOiJncm93dGhfY2hhcnQiLCJjdHgiOnsicGF0aWVudCI6InBhdGllbnQxIn0sInNjb3BlIjoibGF1bmNoIn0.l1gsqq6f5svgTg24SlRaIqETEkpcjSFI4Jxk8mZf9oA
+
+## Set Up Growth Chart
+
+You need to create Standalone Patient Launch page for the Growth Chart. Create the `growth-chart/standalone/patient.html` file with the following content (which is just modified example from the Growth Chart repository):
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Growth Chart SMART Application</title>
+    <script src="../node_modules/fhirclient/build/fhir-client.js"></script>
+    <script>
+      FHIR.oauth2.authorize({
+        client_id: "growth-chart",
+        scope: "patient/Observation.read patient/Patient.read fhirUser launch/patient",
+        redirect_uri: "http://localhost:9000",
+        iss: "http://localhost:8888/smart"
+      });
+    </script>
+  </head>
+  <body>Loading...</body>
+</html>
 ```
-{% endswagger-response %}
-{% endswagger %}
 
-Now `scope` parameter is supported only with value **launch. **
+## Set Up Docker Compose
 
-| Redirect parameter | Description                   |
-| ------------------ | ----------------------------- |
-| iss                | base FHIR endpoint            |
-| launch             | launch context encoded to JWT |
+Create the Compose file which starts Aidbox, Growth Chart, and mounts volumes with their configuration.
 
-After launch, SMART app will obtain authorization endpoints - authorize and token. It can be done in two ways - requesting `/metadata/`
+`docker-compose.yml`:
 
-{% swagger baseUrl="[base-url]/smart/metadata/" path=" " method="get" summary="Metadata" %}
-{% swagger-description %}
-Obtaining 
-
-`CapabilityStatement`
-{% endswagger-description %}
-
-{% swagger-response status="200" description="" %}
-```javascript
-"rest": [{
-    "security": {
-        "extension": [{
-            "url": "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris",
-                "extension": [
-                {
-                    "url": "token",
-                    "valueUri": "[base-url]/auth/token"
-                },
-                {
-                    "url": "authorize",
-                    "valueUri": "[base-url]/auth/authorize"
-                }
-            ]
-        }
-   ]
-
-```
-{% endswagger-response %}
-{% endswagger %}
-
-Or requests `/.well-known/` endpoint.
-
-{% swagger baseUrl="[base-url]/smart/.well-known/smart-configuration" path=" " method="get" summary="Smart-configuration" %}
-{% swagger-description %}
-Obtaining configuration metadata
-{% endswagger-description %}
-
-{% swagger-response status="200" description="" %}
-```javascript
-{
-  "authorization_endpoint": "[base-url]/auth/authorize",
-  "token_endpoint": "[base-url]/auth/token",
-  ...
-}
-```
-{% endswagger-response %}
-{% endswagger %}
-
-After this application runs the authorization code flow with an additional parameter - `launch` - encoded data bonded with the current application session. When the application successfully authorizes, it will request the token and expect the response which contains the context (e.g. patient id).
-
-{% tabs %}
-{% tab title="Token response" %}
-```javascript
-{"token_type": "Bearer",
- "access_token": "ODYzZmE4NDAtNTI5OC00NWU4LWIzODctODA3YjE1OGQ0ZDZi",
- "patient": "patient-id-1"}
-```
-{% endtab %}
-{% endtabs %}
-
-### Launch real app
-
-We will launch [Growth Chart](https://github.com/smart-on-fhir/growth-chart-app) - application which displays statistical data for the patient. See the information in repo about how to run it locally.
-
-Then create `Client` and `User` resources for this app
-
-{% tabs %}
-{% tab title="Client" %}
 ```yaml
-POST /Client
+services:
+  aidboxdb:
+    image: "healthsamurai/aidboxdb:13.2"
+    pull_policy: always
+    restart: on-failure:5
+    volumes:
+      - "./pgdata:/data"
+    environment:
+      POSTGRES_USER: "${PGUSER}"
+      POSTGRES_PASSWORD: "${PGPASSWORD}"
+      POSTGRES_DB: "${PGDATABASE}"
+  devbox:
+    image: "healthsamurai/devbox:edge"
+    pull_policy: always
+    depends_on: ["aidboxdb"]
+    restart: on-failure
+    ports:
+      - "8888:8888"
+    env_file:
+      - .env
+    environment:
+      PGHOST: "aidboxdb"
+      PGPORT: "5432"
+      AIDBOX_PORT: "8888"
+      AIDBOX_FHIR_VERSION: "4.0.1"
+      AIDBOX_ZEN_PROJECT: "/aidbox-project"
+      AIDBOX_ZEN_ENTRY: "single-patient-portal"
+      AIDBOX_DEV_MODE: 1
+      AIDBOX_ZEN_DEV_MODE: "ok"
+      AIDBOX_COMPLIANCE: "enabled"
+    volumes:
+      - "./aidbox-project:/aidbox-project"
+  growth-chart:
+    image: thezorkij/growth-chart-app:latest
+    ports:
+      - "9000:9000"
+    volumes:
+      - "./growth-chart/standalone:/app/standalone"
+```
 
-resourceType: Client
-id: growth_chart
-grant_types:
-- authorization_code
-smart:
-  launch_uri: http://localhost:9000/launch.html
+Create the `.env` file and fill in your Devbox License ID and License Key:
+
+```bash
+AIDBOX_LICENSE_ID=
+AIDBOX_LICENSE_KEY=
+
+AIDBOX_BASE_URL=http://localhost:8888
+
+# Client to create on start up
+AIDBOX_CLIENT_ID=root
+AIDBOX_CLIENT_SECRET=secret
+
+# root user to create on start up
+AIDBOX_ADMIN_ID=admin
+AIDBOX_ADMIN_PASSWORD=secret
+
+# db connection params
+PGPORT=5432
+PGUSER=postgres
+PGPASSWORD=postgres
+PGDATABASE=devbox
+```
+
+## Start Containers
+
+run the `docker-compose up` command.
+
+## Configure Aidbox
+
+You need to create Client, User, Patient, Access Policies, and load Observations
+
+### Sign In
+
+Go to `http://localhost:8888` and login as `admin` then use Notebooks to run the following queries.
+
+### Create Client
+
+```yaml
+PUT /Client/growth-chart
+
 auth:
   authorization_code:
+    audience:
+      - http://localhost:8888/smart
     redirect_uri: http://localhost:9000/
+smart:
+  launch_uri: http://localhost:9000/launch.html
+secret: gc
+grant_types:
+  - authorization_code
 ```
-{% endtab %}
 
-{% tab title="User" %}
-```javascript
-POST /User
+### Create Patient
+
+```yaml
+PUT /Patient/patient-1
+
+idyaml: patient-1
+name:
+- given:
+  - Marcus
+  family: Berg
+  use: usual
+birthDate: '2000-12-27'
+active: true 
+gender: male
+```
+
+### Create User
+
+The user needs to be linked with a Patient resource
+
+```yaml
+PUT /User/user
 
 email: user@test.com
+fhirUser:
+  id: patient-1
+  resourceType: Patient
 password: '123456'
- 
- // don't forget to change credentials
 ```
-{% endtab %}
-{% endtabs %}
 
-And load base dataset with `Patient` , `Observations` and `Encounters`
+### Create Role
 
-{% tabs %}
-{% tab title="Dataset" %}
-```javascript
+```yaml
+POST /Role
+
+name: Patient
+user:
+  id: user
+  resourceType: User
+links:
+  patient:
+    id: patient-1
+    resourceType: Patient
+```
+
+### Load Observations and Encounters
+
+```yaml
 POST /
 
 type: transaction
 entry:
-- resource:
-    id: patient-1
-    name:
-    - given:
-      - Marcus
-      family: Berg
-      use: usual
-    birthDate: '2000-12-27'
-    active: true 
-    gender: male
-  fullUrl: '/Patient/patient-1'
-
-  request:
-    method: POST
-    url: "/Patient"
-
 - resource:
     id: enc-1
     status: finished
@@ -395,9 +436,17 @@ entry:
     url: "/Observation"
 
 ```
-{% endtab %}
-{% endtabs %}
 
-Then find the created patient in the **resources **section and click the application launch button, you will be redirected to a new tab with started app.
+## Launch Growth Chart
+
+### Log out
+
+Log out from Aidbox.
+
+### Launch App
+
+Open `http://localhost:9000/standalone/patient.html` it will redirect you to login page. Sign in as `user` and allow access to the data for the Growth Chart App.
+
+Now you should be able to see a plot of Observations
 
 ![Growth charts](../../../.gitbook/assets/screenshot-2019-03-11-12.09.53.png)
