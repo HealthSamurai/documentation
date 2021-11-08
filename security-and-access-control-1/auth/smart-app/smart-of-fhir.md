@@ -216,6 +216,32 @@ links:
     resourceType: Patient
 ```
 
+### Create Access policies
+
+#### Allow Growth Chart to Access Patient Data
+
+```yaml
+PUT /AccessPolicy/smart-read-patient-on-behalf
+
+engine: matcho
+matcho:
+  uri: '#/smart/Patient/.*'
+  params:
+    id: .on-behalf.fhirUser.id
+```
+
+#### Allow Growth Chart to Access Patient Observations
+
+```yaml
+PUT /AccessPolicy/smart-search-on-behalf
+
+engine: matcho
+matcho:
+  uri: '#/smart/Observation'
+  params:
+    patient: .on-behalf.fhirUser.id
+```
+
 ### Load Observations and Encounters
 
 ```yaml
