@@ -102,7 +102,6 @@
 ## FHIR Implementation Guides
 
 * [🎓 HL7 FHIR Da Vinci PDex Plan Net IG](fhir-implementation-guides/hl7-fhir-da-vinci-pdex-plan-net-ig.md)
-* [SMART on FHIR](fhir-implementation-guides/smart-on-fhir.md)
 
 ## App development guides
 
@@ -141,6 +140,7 @@
     * [Configure Okta](security-and-access-control-1/auth/external-oauth-2.0-providers/configure-okta.md)
   * [Two Factor Authentication](security-and-access-control-1/auth/two-factor-authentication.md)
   * [SMART on FHIR](security-and-access-control-1/auth/smart-app/README.md)
+    * [SMART on FHIR App Launch](security-and-access-control-1/auth/smart-app/smart-on-fhir-app-launch.md)
     * [🎓 SMART App Launch tutorial](security-and-access-control-1/auth/smart-app/smart-of-fhir.md)
   * [Configuration options](security-and-access-control-1/auth/configuration-options.md)
   * [Discovery API](security-and-access-control-1/auth/well-known-endpoint.md)
