@@ -5,18 +5,21 @@
 ## October 2021 - v:2110 _`stable`_
 
 * Released new API for Bulk Data import. Using [Aidbox.bulk](../../api-1/bulk-api-1/aidbox.bulk-data-import.md) you will be able to import data in both Aidbox and FHIR formats, validate uploaded resources and references asynchronously.
-* Added Smart App Launch sandbox to the [Aidbox sample app](https://github.com/Aidbox/aidbox-react-app#aidbox-react-sample-app).
-* Added [zen FHIR packages](../../profiling/profiling-with-zen-lang.md#zen-lang-packages) that can be used to configure Aidbox and data validation data:
-  * FHIR R4
-    * `hl7-fhir-us-core` - US Core
-    * `hl7-fhir-us-davinci-pdex` - Payer Data Exchange (PDex)
-    * `hl7-fhir-us-davinci-pdex-plan-net` - PDEX Payer Network
-    * `hl7-fhir-us-davinci-hrex` - The Da Vinci Payer Health Record exchange (HRex)
-    * `hl7-fhir-us-davinci-drug-formulary` - DaVinci Payer Data Exchange US Drug Formulary
-    * `hl7-fhir-us-carin-bb` - CARIN Consumer Directed Payer Data Exchange (CARIN IG for Blue Button®)
-    * `hl7-fhir-us-mcode` - mCODE™ (short for Minimal Common Oncology Data Elements)
-  * FHIR STU 3
-    *   `nictiz-fhir-nl-stu3-zib2017` - Nictiz NL, including MedMij and HL7 NL
+* Added Smart App Launch sandbox to the [Aidbox portal sample app](https://github.com/Aidbox/aidbox-react-app#aidbox-react-sample-app).
+*   Added [zen FHIR packages](../../profiling/profiling-with-zen-lang.md#zen-lang-packages) that can be used to configure Aidbox and data validation:
+
+
+
+    * FHIR R4
+      * `hl7-fhir-us-core` - US Core
+      * `hl7-fhir-us-davinci-pdex` - Payer Data Exchange (PDex)
+      * `hl7-fhir-us-davinci-pdex-plan-net` - PDEX Payer Network
+      * `hl7-fhir-us-davinci-hrex` - The Da Vinci Payer Health Record exchange (HRex)
+      * `hl7-fhir-us-davinci-drug-formulary` - DaVinci Payer Data Exchange US Drug Formulary
+      * `hl7-fhir-us-carin-bb` - CARIN Consumer Directed Payer Data Exchange (CARIN IG for Blue Button®)
+      * `hl7-fhir-us-mcode` - mCODE™ (short for Minimal Common Oncology Data Elements)
+    * FHIR STU 3
+      *   `nictiz-fhir-nl-stu3-zib2017` - Nictiz NL, including MedMij and HL7 NL
 
 
 * Added `AIDBOX_DEV_MODE` env that enables  `_debug=policy` for [access policy debugging](https://docs.aidbox.app/security-and-access-control-1/security/access-policy#policy-debugging). We'll add more functionality that will be available for development purposes and can be disabled on production.
