@@ -18,21 +18,19 @@ Schemas tagged with `zenbox/base-schema` are used to validate every resource of 
 
 ### `zenbox/profile-schema`
 
-Schemas tagged with `zenbox/profile-schema` are used to validate resources which mention their `:zenbox/profileUri` in the `meta.profile` attribute
+Schemas tagged with `zenbox/profile-schema` are used to validate resources that mention their `:zenbox/profileUri` in the `meta.profile` attribute
 
 ## Zen FHIR packages
 
-Aidbox team created a tool to generate Zen-lang schemas from FHIR npm packages
+Aidbox team created a tool to generate Zen FHIR packages from FHIR packages
 
 The tool is open source, distributed as a jar file, it is available here [https://github.com/zen-lang/fhir](https://github.com/zen-lang/fhir)
 
-Zen-lang package is an [Aidbox project](../aidbox-configuration/aidbox-zen-lang-project.md) saved into zip archive
-
-You can get zen-lang packages in two ways:
+Zen FHIR  package is an [Aidbox project](../aidbox-configuration/aidbox-zen-lang-project.md) saved into zip archive
 
 ### Use Zen FHIR packages
 
-You can enable Zen-lang packages that contain FHIR profiles of the following implementation guides:
+You can enable Zen FHIR packages that contain FHIR profiles of the following implementation guides:
 
 * FHIR R4
   * `hl7-fhir-us-core` - US Core
@@ -45,9 +43,9 @@ You can enable Zen-lang packages that contain FHIR profiles of the following imp
 * FHIR STU 3
   * `nictiz-fhir-nl-stu3-zib2017` - Nictiz NL, including MedMij and HL7 NL
 
-Zen-lang packages are distributed as npm packages or as zen-lang standalone Aidbox projects
+Zen FHIR packages are distributed as npm packages or as zen-lang standalone Aidbox projects
 
-Pregenerated Zen-lang packages :
+Existing Zen FHIR packages are available as:
 
 * [npm FHIR R4](https://www.npmjs.com/browse/depended/@zen-lang/hl7-fhir-r4-core)&#x20;
 * [npm FHIR STU 3](https://www.npmjs.com/browse/depended/@zen-lang/hl7-fhir-r3-core)
@@ -55,11 +53,11 @@ Pregenerated Zen-lang packages :
 
 ### Convert custom FHIR profiles to Zen FHIR package
 
-Using this tool you can generate zen-lang schemas (see [zen-lang/fhir/README.md](https://github.com/zen-lang/fhir/blob/main/README.md))
+Using [this tool](https://github.com/zen-lang/fhir/blob/main/README.md) you can generate zen-lang schemas and use them in your [Aidbox projects](../aidbox-configuration/aidbox-zen-lang-project.md).
 
 ### Create custom Zen FHIR package based on existing Zen FHIR packages
 
-You can use existing Zen-lang packages as a foundation for your custom Zen-lang package (check [Profiling with Zen-lang guide](draft-profiling-with-zen-lang.md))
+You can use existing Zen FHIR packages as a foundation for your custom Zen FHIR package. Check out [Profiling with Zen-lang guide](draft-profiling-with-zen-lang.md).
 
 
 
