@@ -20,7 +20,7 @@ Schemas tagged with `zenbox/base-schema` are used to validate every resource of 
 
 Schemas tagged with `zenbox/profile-schema` are used to validate resources which mention their `:zenbox/profileUri` in the `meta.profile` attribute
 
-## Zen-lang packages
+## Zen FHIR packages
 
 Aidbox team created a tool to generate Zen-lang schemas from FHIR npm packages
 
@@ -30,9 +30,9 @@ Zen-lang package is an [Aidbox project](../aidbox-configuration/aidbox-zen-lang-
 
 You can get zen-lang packages in two ways:
 
-#### Pregenerated Zen-lang packages
+### Use Zen FHIR packages
 
-You can enable zen-lang packages of the following implementation guides:
+You can enable Zen-lang packages that contain FHIR profiles of the following implementation guides:
 
 * FHIR R4
   * `hl7-fhir-us-core` - US Core
@@ -53,11 +53,11 @@ Pregenerated Zen-lang packages :
 * [npm FHIR STU 3](https://www.npmjs.com/browse/depended/@zen-lang/hl7-fhir-r3-core)
 * [standalone Aidbox projects](https://github.com/zen-lang/fhir/releases)
 
-#### Convert custom FHIR profiles to Zen-lang package
+### Convert custom FHIR profiles to Zen FHIR package
 
 Using this tool you can generate zen-lang schemas (see [zen-lang/fhir/README.md](https://github.com/zen-lang/fhir/blob/main/README.md))
 
-#### Create custom Zen-lang package using existing Zen-lang packages
+### Create custom Zen FHIR package based on existing Zen FHIR packages
 
 You can use existing Zen-lang packages as a foundation for your custom Zen-lang package (check [Profiling with Zen-lang guide](draft-profiling-with-zen-lang.md))
 
@@ -65,4 +65,4 @@ You can use existing Zen-lang packages as a foundation for your custom Zen-lang 
 
 ## Examples
 
-You can see example defining base and profile schemas in the [🎓 Profiling with zen-lang](draft-profiling-with-zen-lang.md) tutorial.
+You can see example defining base and profile schemas in the [🎓 Profiling with Zen-lang](draft-profiling-with-zen-lang.md) tutorial.
