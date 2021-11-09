@@ -6,7 +6,7 @@
 
 * Released new API for Bulk Data import. Using [Aidbox.bulk](../../api-1/bulk-api-1/aidbox.bulk-data-import.md) you will be able to import data in both Aidbox and FHIR formats, validate uploaded resources and references asynchronously.
 * Added Smart App Launch sandbox to the [Aidbox portal sample app](https://github.com/Aidbox/aidbox-react-app#aidbox-react-sample-app).
-*   Added [zen FHIR packages](../../profiling/profiling-with-zen-lang.md#zen-lang-packages) that can be used to configure Aidbox and data validation:
+*   Added [zen FHIR packages](../../profiling/profiling-with-zen-lang.md#zen-lang-packages) that can be used to configure Aidboxes and validate resources against zen FHIR profiles. You can use your custom profiles, convert FHIR profiles to zen FHIR profiles or use zen FHIR packages by our team:
 
 
 
