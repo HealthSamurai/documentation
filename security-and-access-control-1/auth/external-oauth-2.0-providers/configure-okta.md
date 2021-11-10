@@ -2,7 +2,7 @@
 description: How to configure Okta IdentityProvider with Aidbox
 ---
 
-# Configure Okta
+# 🎓 Okta
 
 ## Create an Account in Okta
 
