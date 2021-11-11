@@ -22,9 +22,9 @@ Schemas tagged with `zenbox/profile-schema` are used to validate resources that 
 
 ## Zen FHIR packages
 
-Aidbox team created a tool to generate Zen FHIR packages from FHIR packages
+Aidbox team created an open-source tool to generate Zen FHIR packages from FHIR packages
 
-The tool is open source, distributed as a jar file, it is available here [https://github.com/zen-lang/fhir](https://github.com/zen-lang/fhir)
+It is distributed as a jar file available here&#x20;
 
 Zen FHIR  package is an [Aidbox project](../aidbox-configuration/aidbox-zen-lang-project.md) saved into zip archive
 
@@ -49,7 +49,7 @@ Existing Zen FHIR packages are available as:
 
 * [npm FHIR R4](https://www.npmjs.com/browse/depended/@zen-lang/hl7-fhir-r4-core)&#x20;
 * [npm FHIR STU 3](https://www.npmjs.com/browse/depended/@zen-lang/hl7-fhir-r3-core)
-* [standalone Aidbox projects](https://github.com/zen-lang/fhir/releases)
+* [standalone Aidbox projects](https://github.com/zen-lang/fhir/releases/latest)
 
 ### Convert custom FHIR profiles to Zen FHIR package
 
