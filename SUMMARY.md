@@ -176,7 +176,7 @@
 * [Terminology](modules-1/terminology/README.md)
   * [Concept](modules-1/terminology/concept.md)
   * [Terminology API](modules-1/terminology/terminology-api.md)
-  * [$translate](modules-1/terminology/usdtranslate.md)
+  * [$translate on ConceptMap](modules-1/terminology/usdtranslate-on-conceptmap.md)
   * [CodeSystem](modules-1/terminology/codesystem-and-concept/README.md)
     * [CodeSystem Concept Lookup](modules-1/terminology/codesystem-and-concept/concept-lookup.md)
     * [CodeSystem Subsumption testing](modules-1/terminology/codesystem-and-concept/subsumption-testing.md)

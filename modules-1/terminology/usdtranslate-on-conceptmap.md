@@ -5,7 +5,7 @@ description: >-
   server.
 ---
 
-# $translate
+# $translate on ConceptMap
 
 {% hint style="info" %}
 All the examples can be found at the` "FHIR ConceptMap Resource and translation"`community notebook which is accessible via your Aidbox Notebooks UI Tab
