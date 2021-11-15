@@ -4,7 +4,7 @@
 
 FHIR defines [terminology service](https://www.hl7.org/fhir/terminology-service.html#4.6) to simplify usage of terminologies.
 
-> A terminology service is a service that lets healthcare applications make use of codes and value sets without having to become experts in the fine details of code system, value set, and concept map resources, and the underlying code systems and terminological principles. 
+> A terminology service is a service that lets healthcare applications make use of codes and value sets without having to become experts in the fine details of code system, value set, and concept map resources, and the underlying code systems and terminological principles.&#x20;
 
 **Code System** is a set of codes with meanings (also known as enumeration, dictionary, terminology, classification, and/or ontology; you probably know ICD-10, RxNorm, SNOMED, LOINC).
 
@@ -14,7 +14,7 @@ In FHIR, many resource elements are represented as coded values. For example, to
 * [**Coding**](https://www.hl7.org/fhir/datatypes.html#Coding) — complex type with system & code attributes; system refers to specific Code System
 * [**CodeableConcept**](https://www.hl7.org/fhir/datatypes.html#codeableconcept) — complex type which may contain many Codings, so it can be coded using multiple Code Systems (for example, Lab Tests can be coded by proprietary internal code system and by LOINC).
 
-To specify what codes can be assigned to specific element, FHIR defines **binding** of element definition to **ValueSet**. **ValueSet** selects a set of codes from those defined by one or more code systems. 
+To specify what codes can be assigned to specific element, FHIR defines **binding** of element definition to **ValueSet**. **ValueSet** selects a set of codes from those defined by one or more code systems.&#x20;
 
 In Aidbox, all terminology services are built around non-FHIR **Concept** resource type. Concept resource behaves like other FHIR resources: you can CRUD & Search it. Concept structure essentially follows the structure of Coding data type with some additional attributes.
 
@@ -42,8 +42,8 @@ Terminology service can be logically split into two parts:
 
 #### ConceptMap
 
-| FHIR specification                                                          | Status          | Documentation and samples                        |
-| --------------------------------------------------------------------------- | --------------- | ------------------------------------------------ |
-| [$translate](https://www.hl7.org/fhir/conceptmap-operations.html#translate) | `not supported` | [WIP ConceptMap Translation](broken-reference)   |
-| [$closure](https://www.hl7.org/fhir/conceptmap-operations.html#closure)     | `not supported` | [WIP ConceptMap Closure Table](broken-reference) |
+| FHIR specification                                                          | Status          | Documentation and samples                                          |
+| --------------------------------------------------------------------------- | --------------- | ------------------------------------------------------------------ |
+| [$translate](https://www.hl7.org/fhir/conceptmap-operations.html#translate) | `supported`     | [WIP ConceptMap Translation](../../api-1/fhir-api/usdtranslate.md) |
+| [$closure](https://www.hl7.org/fhir/conceptmap-operations.html#closure)     | `not supported` | [WIP ConceptMap Closure Table](broken-reference)                   |
 
