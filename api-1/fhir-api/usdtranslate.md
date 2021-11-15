@@ -8,19 +8,19 @@ description: >-
 # $translate
 
 {% hint style="info" %}
-All the examples can be found at the` "FHIR ConceptMap Resource and translation"`community notebook which is accessible inside your Aidbox Console
+All the examples can be found at the` "FHIR ConceptMap Resource and translation"`community notebook which is accessible via your Aidbox Notebooks UI Tab
 {% endhint %}
 
-### Parameters and Usage
+### Parameters and usage
 
-| Parameter | Type     | Description                                                                                  |
-| --------- | -------- | -------------------------------------------------------------------------------------------- |
-| `code`    | required | The code that is to be translated                                                            |
-| `system`  | required | The system for the code that is to be translated                                             |
-| `url`     | optional | <p>A canonical URL for a concept map</p><p></p><p>Ignored when ConceptMap id is provided</p> |
-| `reverse` | optional | If true, the `translate` should return all the codes that might be mapped to the given code  |
+| Parameter | Type     | Description                                                                                   |
+| --------- | -------- | --------------------------------------------------------------------------------------------- |
+| `code`    | required | The code that is to be translated                                                             |
+| `system`  | required | The system for the code that is to be translated                                              |
+| `url`     | optional | <p>A canonical URL for a concept map.</p><p></p><p>Ignored when ConceptMap id is provided</p> |
+| `reverse` | optional | If true, the `translate` should return all the codes that might be mapped to the given code   |
 
-#### Example Request
+#### Example request
 
 {% tabs %}
 {% tab title="Request" %}
@@ -61,16 +61,16 @@ body:
 {% endtab %}
 {% endtabs %}
 
-### Ungrouping ConceptMaps on Create
+### Ungrouping ConceptMaps on create
 
-ConceptMaps are ungrouped on create to have an opportunity to use Search API instead of $tranalate operation. ConceptsMaps are transformed into ConceptMapRule resources.
+ConceptMaps are ungrouped on create to have an opportunity to use Search API instead of $tranalate operation. ConceptMaps are transformed into ConceptMapRule resources.
 
 #### Aidbox Search API for ConceptMapRule
 
 {% tabs %}
 {% tab title="Request" %}
 ```http
-GET GET /fhir/ConceptMapRule?.source=http://hl7.org/fhir/address-use&.target=http://terminology.hl7.org/CodeSystem/v3-AddressUse&.element.code=home&_elements=.element.target
+GET /fhir/ConceptMapRule?.source=http://hl7.org/fhir/address-use&.target=http://terminology.hl7.org/CodeSystem/v3-AddressUse&.element.code=home&_elements=.element.target
 ```
 {% endtab %}
 
@@ -103,14 +103,14 @@ body:
 
 Created ConceptMap does not have `group` property as it is just a meta header resource.
 
-### Convert Given ConceptMap to ndjson Bundle
+### Convert ConceptMap.json to ndjson bundle
 
-In order to convert a huge ConceptMap to ndjson Bundle use this [FHIR converter](https://github.com/zen-lang/fhir).
+In order to convert a huge ConceptMap to ndjson bundle use this [FHIR converter](https://github.com/zen-lang/fhir).
 
 ```bash
 java -jar [JAR_PATH] cmndj -i PATH/TO/CONCEPT_MAP.json -o PATH/TO/OUTPUT_BUNDLE.ndjson
 ```
 
-The output Bundle consists of ConceptMap meta resource and the set of ConceptMapRule resources.
+The output bundle consists of ConceptMap meta resource and the set of ConceptMapRule resources.
 
 Use [Bulk API ](../bulk-api-1/aidbox.bulk-data-import.md)to upload output bundle.
