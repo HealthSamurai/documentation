@@ -30,6 +30,14 @@ In order to set up continuous backups, you need to do the following:&#x20;
 
     This will delete all but 30 latest backups.
 
+### Backups integrity:
+
+WAL-G includes "wal-verify" command that checks backup integrity.&#x20;
+
+You can use cron, Cronjob to schedule "wal-verify"  execution.&#x20;
+
+Pick the JSON output of the command. The format is explained [here](archiving.md#wal-g).
+
 ### ** Aidboxdb recovery:**
 
 1. Configure WAL-G access to external storage
