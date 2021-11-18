@@ -26,6 +26,7 @@
 * [Aidbox project](aidbox-configuration/aidbox-zen-lang-project.md)
 * [API constructor (alpha)](aidbox-configuration/aidbox-api-constructor.md)
 * [Setup SMTP provider](aidbox-configuration/setup-smtp-provider.md)
+* [Zen Configuration](aidbox-configuration/zen-configuration.md)
 
 ## API <a href="api-1" id="api-1"></a>
 
