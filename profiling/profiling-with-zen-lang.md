@@ -6,7 +6,7 @@ description: Validate your resources with zen-lang schemas
 
 Aidbox supports an alternative yet very powerful profile validation mechanism powered by [Zen language](https://github.com/zen-lang/zen). You can just define a set (or multiple sets) of validation profiles in [EDN](https://github.com/edn-format/edn) format and let your Aidbox server know its location. [Zen-lang](https://github.com/zen-lang/zen) allows Aidbox to validate resources against schemas. It can validate individual properties as well as large profiles in a composable way
 
-## Zen-lang schemas
+## Validation modes supported with zen schemas
 
 For validation (e.g. in [FHIR CRUD API](../api-1/api/crud-1/)) Aidbox uses zen schemas tagged with `zenbox/base-schema` or `zenbox/profile-schema`
 
@@ -62,9 +62,3 @@ Using [this tool](https://github.com/zen-lang/fhir/blob/main/README.md) you can 
 ### Create custom Zen FHIR package based on existing Zen FHIR packages
 
 You can use existing Zen FHIR packages as a foundation for your custom Zen FHIR package. Check out [Profiling with Zen-lang guide](draft-profiling-with-zen-lang.md).
-
-
-
-## Examples
-
-You can see example defining base and profile schemas in the [🎓 Profiling with Zen-lang](draft-profiling-with-zen-lang.md) tutorial.

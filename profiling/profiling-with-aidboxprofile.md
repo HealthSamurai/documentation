@@ -1,5 +1,5 @@
 ---
-description: This article explains basics of creating profiles with AidboxProfile resource
+description: Create a profile with AidboxProfile and validate data
 ---
 
 # Profiling with AidboxProfile

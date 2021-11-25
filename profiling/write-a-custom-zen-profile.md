@@ -1,8 +1,8 @@
 ---
-description: This article explains how to create a simple profile with zen
+description: Create a simple profile with zen
 ---
 
-# 🎓 Writing a custom zen profile
+# 🎓 Write a custom zen profile
 
 {% hint style="info" %}
 This article is work-in-progress. Please [contact us](../contact-us.md) if you want to get details on how to create a custom zen profile.

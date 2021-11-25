@@ -1,7 +1,7 @@
 ---
 description: >-
-  In this tutorial you will enable the US Core Implementation Guide, extend and
-  validate data against this profile.
+  Enable the US Core Implementation Guide, extend and validate data against this
+  profile.
 ---
 
 # 🎓 Extend an IG with a custom zen profile

@@ -93,9 +93,9 @@
 
 * [Profiling and Validation](profiling/README.md)
   * [Profiling with zen-lang](profiling/profiling-with-zen-lang.md)
-  * [🎓 Writing a custom zen profile](profiling/writing-a-custom-zen-profile.md)
+  * [🎓 Write a custom zen profile](profiling/write-a-custom-zen-profile.md)
   * [🎓 Extend an IG with a custom zen profile](profiling/draft-profiling-with-zen-lang.md)
-  * [Validation API](profiling/validation-api.md)
+  * [Asynchronous resource validation](profiling/validation-api.md)
   * [Profiling with AidboxProfile](profiling/profiling-with-aidboxprofile.md)
 * [Aidbox UI](aidbox-ui/README.md)
   * [REST Console](aidbox-ui/rest-console-1.md)
