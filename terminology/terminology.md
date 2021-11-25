@@ -1,6 +1,4 @@
-# Terminology
-
-### Overview
+# Aidbox terminology module overview
 
 FHIR defines [terminology service](https://www.hl7.org/fhir/terminology-service.html#4.6) to simplify usage of terminologies.
 

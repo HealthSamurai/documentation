@@ -1,8 +1,8 @@
 ---
-description: Terminology API
+description: Use a pre-packages terminology bundles to import codes into Aidbox
 ---
 
-# Terminology API
+# Import external (not-present) terminologies
 
 ### /terminology/$import
 
@@ -156,4 +156,3 @@ entry:
       url: /$import
       method: POST
 ```
-

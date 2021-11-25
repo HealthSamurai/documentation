@@ -6,7 +6,7 @@
 
 * Released new API for Bulk Data import. Using [Aidbox.bulk](../../api-1/bulk-api-1/aidbox.bulk-data-import.md) you will be able to import data in both Aidbox and FHIR formats, validate uploaded resources and references asynchronously.
 * Added Smart App Launch sandbox to the [Aidbox portal sample app](https://github.com/Aidbox/aidbox-react-app#aidbox-react-sample-app).
-*   Added [zen FHIR packages](../../profiling/profiling-with-zen-lang.md#zen-lang-packages) that can be used to configure Aidboxes and validate resources against zen FHIR profiles. You can use your custom profiles, convert FHIR profiles to zen FHIR profiles or use zen FHIR packages released by our team:
+*   Added [zen FHIR packages](../../profiling-and-validation/profiling-with-zen-lang.md#zen-lang-packages) that can be used to configure Aidboxes and validate resources against zen FHIR profiles. You can use your custom profiles, convert FHIR profiles to zen FHIR profiles or use zen FHIR packages released by our team:
 
 
 
@@ -40,8 +40,8 @@
 
 ![Aidbox notebooks](../../.gitbook/assets/2021-09-03\_16-53-32.png)
 
-* Released a beta version of [zen profiling](../../profiling/draft-profiling-with-zen-lang.md). Advanced profiling with zen-lang to configure Aidboxes and validate data.
-* Added [Asynchronous Batch Validation](../../profiling/validation-api.md#asynchronous-batch-validation) mode to validate data in Aidbox against new profiles
+* Released a beta version of [zen profiling](../../profiling-and-validation/draft-profiling-with-zen-lang.md). Advanced profiling with zen-lang to configure Aidboxes and validate data.
+* Added [Asynchronous Batch Validation](../../profiling-and-validation/validation-api.md#asynchronous-batch-validation) mode to validate data in Aidbox against new profiles
 * Released [Aidbox RPC API](../../api-1/rpc-api.md)
 * Supported conditional patch (e.g.: `PATCH /Patient?name=foo`)&#x20;
 * Added an [environment variable](../../core-modules/logging-and-audit/aidbox-logs-and-datadog-integration.md) to pass the environment to Datadog (dev/staging/prod).

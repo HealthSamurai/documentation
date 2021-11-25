@@ -91,16 +91,35 @@
 
 ***
 
-* [Profiling and Validation](profiling/README.md)
-  * [Profiling with zen-lang](profiling/profiling-with-zen-lang.md)
-  * [🎓 Write a custom zen profile](profiling/writing-a-custom-zen-profile.md)
-  * [🎓 Extend an IG with a custom zen profile](profiling/draft-profiling-with-zen-lang.md)
-  * [Asynchronous resource validation](profiling/validation-api.md)
-  * [Profiling with AidboxProfile](profiling/profiling-with-aidboxprofile.md)
 * [Aidbox UI](aidbox-ui/README.md)
   * [REST Console](aidbox-ui/rest-console-1.md)
   * [DB Console](aidbox-ui/db-console.md)
   * [Aidbox Notebooks](aidbox-ui/notebooks.md)
+
+## Profiling and validation
+
+* [Profiling and validation overview](profiling-and-validation/profiling.md)
+* [Profiling with zen-lang](profiling-and-validation/profiling-with-zen-lang.md)
+* [🎓 Write a custom zen profile](profiling-and-validation/write-a-custom-zen-profile.md)
+* [🎓 Extend an IG with a custom zen profile](profiling-and-validation/draft-profiling-with-zen-lang.md)
+* [Asynchronous resource validation](profiling-and-validation/validation-api.md)
+* [Profiling with AidboxProfile](profiling-and-validation/profiling-with-aidboxprofile.md)
+
+## Terminology
+
+* [Aidbox terminology module overview](terminology/terminology.md)
+* [Import external (not-present) terminologies](terminology/terminology-api.md)
+* [Concept](terminology/concept.md)
+* [CodeSystem](terminology/codesystem-and-concept/README.md)
+  * [CodeSystem Concept Lookup](terminology/codesystem-and-concept/concept-lookup.md)
+  * [CodeSystem Subsumption testing](terminology/codesystem-and-concept/subsumption-testing.md)
+  * [CodeSystem Code Composition](terminology/codesystem-and-concept/codesystem-code-composition.md)
+* [ValueSet](terminology/valueset/README.md)
+  * [ValueSet Expansion](terminology/valueset/value-set-expansion.md)
+  * [ValueSet Code Validation](terminology/valueset/value-set-validation.md)
+* [$translate on ConceptMap](terminology/usdtranslate-on-conceptmap.md)
+* [Terminology Tutorials](terminology/terminology-tutorials/README.md)
+  * [🎓 Load ICD-10 terminology into Aidbox](terminology/terminology-tutorials/load-terminologies.md)
 
 ## FHIR Implementation Guides
 
@@ -176,19 +195,6 @@
 
 ## Modules <a href="modules-1" id="modules-1"></a>
 
-* [Terminology](modules-1/terminology/README.md)
-  * [Concept](modules-1/terminology/concept.md)
-  * [Terminology API](modules-1/terminology/terminology-api.md)
-  * [$translate on ConceptMap](modules-1/terminology/usdtranslate-on-conceptmap.md)
-  * [CodeSystem](modules-1/terminology/codesystem-and-concept/README.md)
-    * [CodeSystem Concept Lookup](modules-1/terminology/codesystem-and-concept/concept-lookup.md)
-    * [CodeSystem Subsumption testing](modules-1/terminology/codesystem-and-concept/subsumption-testing.md)
-    * [CodeSystem Code Composition](modules-1/terminology/codesystem-and-concept/codesystem-code-composition.md)
-  * [ValueSet](modules-1/terminology/valueset/README.md)
-    * [ValueSet Expansion](modules-1/terminology/valueset/value-set-expansion.md)
-    * [ValueSet Code Validation](modules-1/terminology/valueset/value-set-validation.md)
-  * [Terminology Tutorials](modules-1/terminology/terminology-tutorials/README.md)
-    * [Load ICD-10 terminology into Aidbox](modules-1/terminology/terminology-tutorials/load-terminologies.md)
 * [HL7 v2 Integration](modules-1/hl7-v2-integration.md)
 * [FHIR Resources](modules-1/fhir-resources/README.md)
   * [Aidbox & FHIR formats](modules-1/fhir-resources/aidbox-and-fhir-formats.md)

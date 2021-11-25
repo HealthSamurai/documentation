@@ -2,9 +2,7 @@
 description: This chapter explains how Profiling works in Aidbox
 ---
 
-# Profiling and Validation
-
-## Overview
+# Profiling and validation overview
 
 FHIR resources are very loose in requirements which gives FHIR its flexibility. For example, all elements are optional in the Patient resource, and it's possible to create a Patient resource without any data which does not make much sense. So, sometimes there is a need to constraint resources.&#x20;
 

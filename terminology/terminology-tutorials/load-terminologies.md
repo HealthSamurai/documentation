@@ -1,8 +1,8 @@
 ---
-description: 'In this post, you will learn how to load ICD-10 terminology into aidbox.'
+description: In this post, you will learn how to load ICD-10 terminology into aidbox.
 ---
 
-# Load ICD-10 terminology into Aidbox
+# 🎓 Load ICD-10 terminology into Aidbox
 
 {% embed url="https://youtu.be/zXzy-is20e8" %}
 
@@ -10,7 +10,7 @@ description: 'In this post, you will learn how to load ICD-10 terminology into a
 
 With a new version of Aidbox we provide you with a set of terminology packages like ICD-10 and LOINC and a special bulk operation to import these code sets.
 
-You can read more about how terminology service is designed in a our CTO blog post - [Two-phase terminology](https://medium.com/@niquola/two-phase-fhir-terminology-e52e1b105f6d). 
+You can read more about how terminology service is designed in a our CTO blog post - [Two-phase terminology](https://medium.com/@niquola/two-phase-fhir-terminology-e52e1b105f6d).&#x20;
 
 Aidbox team prepared terminology packages with popular code systems. These packages are essentially ndjson files with a set of concept resources and they are available by public url in our cloud.
 
@@ -23,7 +23,7 @@ Rx-Norm, SNOMED-CT and basic FHIR CodeSystems/ValueSets packages are in progress
 
 In this tutorial, we will load ICD-10 deceases codes into Aidbox and see how we can look up codes using Concept resource Search API.
 
-To import these terminology packs, you can use  `terminology/$import` operation. Let's load ICD-10 \(Classification of Deceases\): just copy-paste the following snippet into REST console in Aidbox UI:
+To import these terminology packs, you can use  `terminology/$import` operation. Let's load ICD-10 (Classification of Deceases): just copy-paste the following snippet into REST console in Aidbox UI:
 
 {% code title="request.yalm" %}
 ```yaml
@@ -88,7 +88,7 @@ entry:
     description: This value set includes all ICD-10 codes.
 ```
 
-Now we can search diagnoses with, for example, [\_ilike](../../../api-1/fhir-api/search-1/#_ilike-search-non-fhir) parameter:
+Now we can search diagnoses with, for example, [\_ilike](../../api-1/fhir-api/search-1/#\_ilike-search-non-fhir) parameter:
 
 ```yaml
 GET /Concept?system=ICD-10&_ilike=flue
@@ -119,7 +119,7 @@ entry:
 
 Or inspect concepts in Aidbox Console UI:
 
-![](../../../.gitbook/assets/screen-shot-2019-05-14-at-17.23.53.png)
+![](../../.gitbook/assets/screen-shot-2019-05-14-at-17.23.53.png)
 
 ### Indexing \_like search
 
@@ -145,4 +145,3 @@ truncate concept;
 truncate codesystem;
 truncate valueset;
 ```
-
