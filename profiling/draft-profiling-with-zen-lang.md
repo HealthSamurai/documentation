@@ -1,14 +1,16 @@
 ---
-description: 'This feature is in beta. Introduced in August 2021 - v:2108 release.'
+description: >-
+  In this tutorial you will enable the US Core Implementation Guide, extend and
+  validate data against this profile.
 ---
 
-# 🎓 Profiling with zen-lang
+# 🎓 Extend an IG with a custom zen profile
 
-We're switching to **zen/schema** as the main engine for the validation and configuration of Aidbox. Previously Aidbox provided validation with JSON Schema and Basic FHIR Profiles.
+{% hint style="info" %}
+This feature is in beta and may be changed in future.
+{% endhint %}
 
-In this tutorial you will enable the US Core Patient Profile, extend and validate data against this profile.
-
-## Before start
+## Before you start
 
 Install the Devbox sample repo following [this guide](../getting-started/installation/setup-aidbox.dev.md)
 
@@ -30,7 +32,7 @@ AIDBOX_IMAGE=healthsamurai/devbox:edge
 
 ## Create a zen project
 
-Inside of the cloned Devbox directory create a zen project directory and open it.  
+Inside of the cloned Devbox directory create a zen project directory and open it.\
 In this example zen project directory is `my-zen-project/`
 
 ```bash
@@ -56,7 +58,7 @@ Create zen entry namespace.
 Create namespace with your profiles
 
 {% code title="my-zen-project/my-zen-profiles.edn" %}
-```text
+```
 {ns my-zen-devbox
  import #{hl7-fhir-us-core.us-core-patient}
 
@@ -73,7 +75,7 @@ Create namespace with your profiles
 Import the profiles namespace in the entry namespace
 
 {% code title="my-zen-project/my-zen-devbox.edn" %}
-```text
+```
 {ns my-zen-devbox
  import #{my-zen-profiles}}
 ```
@@ -128,15 +130,15 @@ services:
 
 ## Start Devbox and check if your profile is loaded
 
-Start Devbox using [this guide](../getting-started/installation/setup-aidbox.dev.md#run-devbox) \(perform steps from Devbox directory, not in zen project dir\)
+Start Devbox using [this guide](../getting-started/installation/setup-aidbox.dev.md#run-devbox) (perform steps from Devbox directory, not in zen project dir)
 
 Open Devbox in your browser and click `Profiles` tab in the left menu:
 
-![](../.gitbook/assets/image%20%2871%29.png)
+![](<../.gitbook/assets/image (71).png>)
 
 You should see the list of zen namespaces loaded.
 
-![](../.gitbook/assets/image%20%2889%29.png)
+![](<../.gitbook/assets/image (89).png>)
 
 {% hint style="info" %}
 On this page you see the namespaces that are explicitly included in the zen project or used by Aidbox
@@ -144,20 +146,20 @@ On this page you see the namespaces that are explicitly included in the zen proj
 
 Open your profile by clicking its name
 
-![](../.gitbook/assets/image%20%2891%29.png)
+![](<../.gitbook/assets/image (91).png>)
 
 ## Start validation
 
 Test the data against this profile using **validate** tab
 
-![](../.gitbook/assets/image%20%2880%29.png)
+![](<../.gitbook/assets/image (80).png>)
 
-If your profile is tagged `zenbox/profile-schema` it can be used to validate your data  
+If your profile is tagged `zenbox/profile-schema` it can be used to validate your data\
 On FHIR CRUD API requests a profile will be applied if data includes `:zenbox/profileUri` in the `meta.profile` attribute:
 
 {% tabs %}
 {% tab title="Request" %}
-{% code title="Data is missing \`birthDate\` attribute, required by the profile" %}
+{% code title="Data is missing `birthDate` attribute, required by the profile" %}
 ```http
 POST /Patient
 Content-Type: text/yaml
@@ -189,7 +191,7 @@ issue:
 
 {% tabs %}
 {% tab title="Request" %}
-{% code title="Data contains \`birthDate\` required by profile" %}
+{% code title="Data contains `birthDate` required by profile" %}
 ```http
 POST /Patient
 Content-Type: text/yaml
@@ -225,4 +227,3 @@ meta:
 ## Example project
 
 [The example project](https://github.com/Aidbox/devbox/commit/431b14170f867f77f90779d4ff870d74c051c844) from this page
-
