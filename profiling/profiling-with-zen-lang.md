@@ -28,6 +28,10 @@ It is distributed as a jar file available here&#x20;
 
 Zen FHIR  package is an [Aidbox project](../aidbox-configuration/aidbox-zen-lang-project.md) saved into zip archive
 
+{% hint style="warning" %}
+Zen FHIR Packages require `AIDBOX_CORRECT_AIDBOX_FORMAT` environment variable to be d
+{% endhint %}
+
 ### Use Zen FHIR packages
 
 You can enable Zen FHIR packages that contain FHIR profiles of the following implementation guides:
