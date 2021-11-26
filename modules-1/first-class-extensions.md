@@ -1,24 +1,18 @@
 # First-Class Extensions
 
-## Define New Extension
+## Define new extension
 
-In Aidbox, you can easily define first-class extensions using the custom resource Attribute.
+In Aidbox, you can define first-class extensions using the custom resource Attribute.
 
 Let's create an extension definition of type `Reference` in the [REST Console](https://docs.aidbox.app/tutorials/rest-console) of Aidbox:
-
-{% hint style="success" %}
-You can quickly copy sample requests using the icon in the top right corner of code blocks. Block titles won't be copied.
-{% endhint %}
 
 {% code title="Create new extension in the Aidbox format:" %}
 ```yaml
 PUT /Attribute/ServiceRequest.requestedOrganizationDepartment
 
-resourceType: Attribute
 description: Department in the organization that made the service request
 resource: {id: ServiceRequest, resourceType: Entity}
 path: [requestedOrganizationDepartment]
-id: ServiceRequest.requestedOrganizationDepartment
 type: {id: Reference, resourceType: Entity}
 refers: 
   - Organization
@@ -26,11 +20,17 @@ extensionUrl: urn:extension:requestedOrganizationDepartment
 ```
 {% endcode %}
 
-{% hint style="info" %}
-The `extensionUrl`property allows you to get the extension in the FHIR compatible way. 
-{% endhint %}
+| `description`  |          | string            | Attribute text description                                                                                                                                                                                                                |
+| -------------- | -------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `resource`     | required | Reference(Entity) | Reference to a target resourceType                                                                                                                                                                                                        |
+| `path`         | required | array of strings  | new attribute location in a resource path                                                                                                                                                                                                 |
+| `type`         |          | Reference(Entity) | type of data stored in this attribute. Can be any primitive or complex type. If omitted, treated as `BackboneElement`, i.e. a complex-type object with structure defined via other Attributes relying on this attribute in their \`path\` |
+| `isCollection` |          | boolean           | Whether the attribute is a collection, i.e. if `true` the attribute will have cardinality ..\*                                                                                                                                            |
+| isRequired     |          | boolean           | Whether the attribute is required, i.e. if `true` the attribute will have cardinality 1..                                                                                                                                                 |
+| `refers`       |          | Reference(Entity) | Only for type=Reference. Specifies to which resourceTypes this reference can refer to                                                                                                                                                     |
+| `extensionUrl` |          | string            | url which will be used to create `extension` element in FHIR format. If omitted, Attribute won't be transformed in FHIR format                                                                                                            |
 
-## Use Your Extension
+## Use your extension
 
 Now, you can create the `ServiceRequest` resource using the new attribute `requestedOrganizationDepartment` in the root of the resource:
 
@@ -125,9 +125,9 @@ performer:
 {% endtab %}
 {% endtabs %}
 
-## Other Extension Examples
+## Other extension examples
 
-Let's create an extension of type `Reference` and list allowed resource types \(Organization in that case\) in the `refers` property.
+Let's create an extension of type `Reference` and list allowed resource types (Organization in that case) in the `refers` property.
 
 {% code title="managingOrganization" %}
 ```yaml
@@ -229,7 +229,7 @@ subject:
 {% endtab %}
 {% endtabs %}
 
-## Nested Extensions
+## Nested extensions
 
 Let's create a structure of nested attributes:
 
@@ -508,7 +508,7 @@ subject:
 {% endtab %}
 {% endtabs %}
 
-## Using FHIR Extensions
+## Using FHIR extensions
 
 FHIR extensions defined in the specification can be found in the registry [http://hl7.org/fhir/extensibility-registry.html](http://hl7.org/fhir/extensibility-registry.html).
 
@@ -593,12 +593,11 @@ precondition:
 {% endtab %}
 {% endtabs %}
 
-## Request Headers
+## Request headers
 
 If you are using some HTTP-client like Postman, you will need to specify some headers.
 
-| Header | Value |
-| :--- | :--- |
-| Authorization | Bearer &lt;your value&gt; |
-| Content-Type | text/yaml |
-
+| Header        | Value                |
+| ------------- | -------------------- |
+| Authorization | Bearer \<your value> |
+| Content-Type  | text/yaml            |
