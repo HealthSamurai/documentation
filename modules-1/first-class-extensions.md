@@ -20,14 +20,32 @@ extensionUrl: urn:extension:requestedOrganizationDepartment
 ```
 {% endcode %}
 
-* `description` - _string_. Attribute text description
-* `resource` - **required**, _Reference(Entity)._ Reference to a target resourceType
-* `path` - **required**, _array of strings_. New attribute location in a resource path
-* `type` - _Reference(Entity)_. Type of data stored in this attribute. Can be any primitive or complex type. If omitted, treated as `BackboneElement`, i.e. a complex-type object with structure defined via other Attributes relying on this attribute in their \`path\`
-* `isCollection` - _boolean_. Whether the attribute is a collection, i.e. if `true` the attribute will have cardinality ..\*
-* `isRequired` - _boolean_. Whether the attribute is required, i.e. if `true` the attribute will have cardinality 1..
-* `refers` - _Reference(Entity)_. Only for type=Reference. Specifies to which resourceTypes this reference can refer to
-* `extensionUrl` - _string_. URL which will be used to create `extension` element in FHIR format. **If omitted, Attribute won't be transformed in FHIR format**
+*   `description` - _string_.
+
+    Attribute text description
+*   `resource` - **required**, _Reference(Entity)._
+
+    Reference to a target resource type
+*   `path` - **required**, _array of strings._
+
+    Path to a new attribute location in the target resource type
+*   `type` - _Reference(Entity)_.
+
+    Type of data stored in this attribute. Can be any primitive or complex type.
+
+    If omitted, treated as `BackboneElement`, i.e. a complex-type object with structure defined via other Attributes relying on this attribute in their `path`
+*   `isCollection` - _boolean_.
+
+    Whether the attribute is a collection, i.e. if `true` the attribute will have cardinality ..\*
+*   `isRequired` - _boolean_.
+
+    Whether the attribute is required, i.e. if `true` the attribute will have cardinality 1..
+*   `refers` - _Reference(Entity)_.
+
+    Only for type=Reference. Specifies to which resourceTypes this reference can refer to
+*   `extensionUrl` - _string_.
+
+    URL which will be used to create `extension` element in FHIR format. **If omitted, Attribute won't be transformed in FHIR format**
 
 ## Use your extension
 
