@@ -36,10 +36,10 @@ extensionUrl: urn:extension:requestedOrganizationDepartment
     If omitted, treated as `BackboneElement`, i.e. a complex-type object with structure defined via other Attributes relying on this attribute in their `path`
 *   `isCollection` - _boolean_.
 
-    Whether the attribute is a collection, i.e. if `true` the attribute will have cardinality ..\*
+    Whether the attribute is a collection, i.e. if `true` sets attribute cardinality to `..*`
 *   `isRequired` - _boolean_.
 
-    Whether the attribute is required, i.e. if `true` the attribute will have cardinality 1..
+    Whether the attribute is required, i.e. if `true` sets attribute cardinality to `1..`
 *   `refers` - _Reference(Entity)_.
 
     Only for type=Reference. Specifies to which resourceTypes this reference can refer to
