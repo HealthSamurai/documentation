@@ -12,7 +12,7 @@ This is a draft API. We appreciate your feedback and ideas in [this discussion](
 
 It may happen that you updated your profiles when data is already in your database or you want to do efficiently load a batch of data and validate it later.  API consists of 3 procedures and a couple of resources:
 
-* [aidbox.validation/batch-validation](validation-api.md#aidbox-validation-batch-validation)** - **run validation
+* [aidbox.validation/batch-validation](validation-api.md#aidbox-validation-batch-validation) **-** run validation
 * [aidbox.validation/batch-validation-result](validation-api.md#aidbox-validation-batch-validation-result) - inspect results (useful for async mode)
 * [aidbox.validation/clear-batch-validation](validation-api.md#aidbox-validation-clear-batch-validation) - clear validation results
 
@@ -95,7 +95,7 @@ If you run validation in async mode, it will respond instantly and run validatio
 POST /rpc?_format=yaml
 content-type: text/yaml
 
-method: aidbox.validation/batch-validation-results
+method: aidbox.validation/batch-validation-result
 params:
   id: pt-validation-run-1
    
