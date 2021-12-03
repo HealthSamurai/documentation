@@ -4,7 +4,7 @@ description: Search API for FHIR resources
 
 # Search
 
-Aidbox provides a Search API for all stored resources. Aidbox Search API is a superset of the [FHIR Search API](https://www.hl7.org/fhir/search.html).  
+Aidbox provides a Search API for all stored resources. Aidbox Search API is a superset of the [FHIR Search API](https://www.hl7.org/fhir/search.html). &#x20;
 
 {% hint style="info" %}
 There are two versions of API, which differ by the [resources format](../../../modules-1/fhir-resources/aidbox-and-fhir-formats.md):
@@ -72,12 +72,16 @@ GET /Patient?name=Max&_elements=id, birthDAte
 | [\_revinclude](\_include-and-\_revinclude.md) | FHIR  | Include into result resources, which reference searched resources |
 | [\_explain](\_explain.md)                     |       | See query execution plan                                          |
 | [\_result](\_result.md)                       |       | Change result format                                              |
+| \_security                                    | FHIR  |                                                                   |
+| \_profile                                     | FHIR  |                                                                   |
+| \_has                                         | FHIR  |                                                                   |
+| \_tag                                         | FHIR  |                                                                   |
 
 ## Search Parameters
 
 Search defined in terms of "[search parameters](broken-reference)". SearchParameter is a meta-resource, which describes which part of the resource it is and how you can make it searchable.
 
-Search parameter can be one of the following types: 
+Search parameter can be one of the following types:&#x20;
 
 | Type                                                        | Description                                                                                                                                                                                                                                                                                                  |
 | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
