@@ -63,10 +63,10 @@ Create namespace with your profiles
  import #{hl7-fhir-us-core.us-core-patient}
 
  MyPatientProfile
- {:zen/tags #{zen/schema zen.fhir/profile-schema}
+ {:zen/tags #{zen/schema zenbox/profile-schema}
   :confirms #{hl7-fhir-us-core.us-core-patient/schema}
-  :zen.fhir/type "Patient"
-  :zen.fhir/profileUri "urn:profile:MyPatientProfile"
+  :zenbox/type "Patient"
+  :zenbox/profileUri "urn:profile:MyPatientProfile"
   :type zen/map
   :require #{:birthDate}}}
 ```
@@ -154,8 +154,8 @@ Test the data against this profile using **validate** tab
 
 ![](<../.gitbook/assets/image (80).png>)
 
-If your profile is tagged `zen.fhir/profile-schema` it can be used to validate your data\
-On FHIR CRUD API requests a profile will be applied if data includes `:zen.fhir/profileUri` in the `meta.profile` attribute:
+If your profile is tagged `zenbox/profile-schema` it can be used to validate your data\
+On FHIR CRUD API requests a profile will be applied if data includes `:zenbox/profileUri` in the `meta.profile` attribute:
 
 {% tabs %}
 {% tab title="Request" %}

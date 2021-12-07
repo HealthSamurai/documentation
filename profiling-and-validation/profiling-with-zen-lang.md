@@ -26,21 +26,21 @@ Resource examples and External (not-present) terminologies are not loaded in the
 
 &#x20;3\. Validate resources&#x20;
 
-Use FHIR $validate operation or a CRUD request with profile URL specified in `.meta.profile` or in `.profile` query URL parameter.
+Use FHIR $validate operation or a CRUD request with profile URL specified in `.meta.profile `or in `.profile` query URL parameter.
 
 ## Validation modes supported with zen schemas
 
-For validation (e.g. in [FHIR CRUD API](../api-1/api/crud-1/)) Aidbox uses zen schemas tagged with `zen.fhir/base-schema` or `zen.fhir/profile-schema`
+For validation (e.g. in [FHIR CRUD API](../api-1/api/crud-1/)) Aidbox uses zen schemas tagged with `zenbox/base-schema` or `zenbox/profile-schema`
 
-Schemas with these tags must have `:zen.fhir/type` and `:zen.fhir/profileUri` keys specified
+Schemas with these tags must have `:zenbox/type` and `:zenbox/profileUri` keys specified
 
-### `zen.fhir/base-schema`
+### `zenbox/base-schema`
 
-Schemas tagged with `zen.fhir/base-schema` are used to validate every resource of their type. When loaded into Aidbox such schema will be used instead of default json schema validation
+Schemas tagged with `zenbox/base-schema` are used to validate every resource of their type. When loaded into Aidbox such schema will be used instead of default json schema validation
 
-### `zen.fhir/profile-schema`
+### `zenbox/profile-schema`
 
-Schemas tagged with `zen.fhir/profile-schema` are used to validate resources that mention their `:zen.fhir/profileUri` in the `meta.profile` attribute
+Schemas tagged with `zenbox/profile-schema` are used to validate resources that mention their `:zenbox/profileUri` in the `meta.profile` attribute
 
 ## Zen FHIR packages
 

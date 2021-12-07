@@ -28,7 +28,7 @@
 * [Setup SMTP provider](aidbox-configuration/setup-smtp-provider.md)
 * [Zen Configuration](aidbox-configuration/zen-configuration.md)
 
-## API <a href="api-1" id="api-1"></a>
+## API <a href="#api-1" id="api-1"></a>
 
 * [FHIR API](api-1/fhir-api/README.md)
   * [Capability Statement](api-1/fhir-api/metadata.md)
@@ -100,7 +100,7 @@
 
 * [Profiling and validation overview](profiling-and-validation/profiling.md)
 * [Profiling with zen-lang](profiling-and-validation/profiling-with-zen-lang.md)
-* [🎓 Write a custom zen profile](profiling-and-validation/write-a-custom-zen-profile.md)
+* [Write a custom zen profile](profiling-and-validation/write-a-custom-zen-profile.md)
 * [🎓 Extend an IG with a custom zen profile](profiling-and-validation/draft-profiling-with-zen-lang.md)
 * [Asynchronous resource validation](profiling-and-validation/validation-api.md)
 * [Profiling with AidboxProfile](profiling-and-validation/profiling-with-aidboxprofile.md)
@@ -148,7 +148,7 @@
 * [$matcho](app-development-guides/usdmatcho.md)
 * [$to-format](app-development-guides/usdto-format-fhir-aidbox.md)
 
-## Security & Access Control <a href="security-and-access-control-1" id="security-and-access-control-1"></a>
+## Security & Access Control <a href="#security-and-access-control-1" id="security-and-access-control-1"></a>
 
 * [Overview](security-and-access-control-1/overview.md)
 * [Authentication Flows](security-and-access-control-1/auth/README.md)
@@ -174,7 +174,7 @@
   * [🎓 Access Control](security-and-access-control-1/security/access-policy.md)
   * [🎓 Sample: Patient can see their own data](security-and-access-control-1/security/sample-patient-can-see-its-own-data.md)
 
-## Storage <a href="storage-1" id="storage-1"></a>
+## Storage <a href="#storage-1" id="storage-1"></a>
 
 * [Archiving](storage-1/archiving.md)
 * [Database](storage-1/database.md)
@@ -193,7 +193,7 @@
   * [Datadog Log management integration](core-modules/logging-and-audit/aidbox-logs-and-datadog-integration.md)
   * [🎓 Export logs to Datadog tutorial](core-modules/logging-and-audit/datadog-guide.md)
 
-## Modules <a href="modules-1" id="modules-1"></a>
+## Modules <a href="#modules-1" id="modules-1"></a>
 
 * [HL7 v2 Integration](modules-1/hl7-v2-integration.md)
 * [FHIR Resources](modules-1/fhir-resources/README.md)
