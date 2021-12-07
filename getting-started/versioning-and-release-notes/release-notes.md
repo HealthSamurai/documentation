@@ -7,8 +7,8 @@
 * FHIR bulk export
 * Add Aidbox Prometheus monitoring endpoints &#x20;
 * Zen Profiling packages version check
-* AuthConfig resource customizable forgotPasswordUrl
-* AddMapping JUTE implementation&#x20;
+* AuthConfig resource customizable `forgotPasswordUrl`
+* Add Mapping JUTE `urlencode` function&#x20;
 
 ## October 2021 - v:2110 _`stable`_
 
