@@ -55,7 +55,7 @@ Then you can back to RequestCatcher service and see a new notification.
 
 ![](../../.gitbook/assets/screenshot-2020-11-11-at-20.06.57.png)
 
-And next, you can see **SubsNotification **resource created for this notification in Aidbox.
+And next, you can see **SubsNotification** resource created for this notification in Aidbox.
 
 ```yaml
 GET /SubsNotification?_sort=-lastUpdated

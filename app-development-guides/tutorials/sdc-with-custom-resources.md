@@ -18,7 +18,7 @@ Aidbox supports Custom Resources, which cover all Questionnaire functionality an
 
 ## Demonstration Scenario
 
-The first step is to define your custom resource. We recommend using **sugar** App API. As an example we are defining resource Vitals with temperature, heart_rate, and patient reference:
+The first step is to define your custom resource. We recommend using **sugar** App API. As an example we are defining resource Vitals with temperature, heart\_rate, and patient reference:
 
 {% code title="custom-resource.yaml" %}
 ```yaml
@@ -202,7 +202,7 @@ request: [post, Vitals]
 action: sdc/create
 ```
 
-**sdc/create **action will do extraction and save original custom resource and extracted FHIR resources:
+**sdc/create** action will do extraction and save original custom resource and extracted FHIR resources:
 
 {% code title="create-vitals" %}
 ```yaml

@@ -99,9 +99,9 @@
 ## Profiling and validation
 
 * [Profiling and validation overview](profiling-and-validation/profiling.md)
-* [Profiling with zen-lang](profiling-and-validation/profiling-with-zen-lang.md)
-* [Write a custom zen profile](profiling-and-validation/write-a-custom-zen-profile.md)
-* [🎓 Extend an IG with a custom zen profile](profiling-and-validation/draft-profiling-with-zen-lang.md)
+* [Profiling with zen-lang](profiling-and-validation/profiling-with-zen-lang/README.md)
+  * [Write a custom zen profile](profiling-and-validation/profiling-with-zen-lang/write-a-custom-zen-profile.md)
+  * [🎓 Extend an IG with a custom zen profile](profiling-and-validation/profiling-with-zen-lang/draft-profiling-with-zen-lang.md)
 * [Asynchronous resource validation](profiling-and-validation/validation-api.md)
 * [Profiling with AidboxProfile](profiling-and-validation/profiling-with-aidboxprofile.md)
 

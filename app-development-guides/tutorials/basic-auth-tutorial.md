@@ -20,7 +20,7 @@ Let's create AccessPolicy for this Client
 
 Client get access by OAuth 2.0 Client Credentials flow
 
-To start you have to register in Aidbox OAuth Client with secret and client_credentials flow enabled
+To start you have to register in Aidbox OAuth Client with secret and client\_credentials flow enabled
 
 ![OAuth Client form](<../../.gitbook/assets/image (75).png>)
 
@@ -74,7 +74,7 @@ Before you start - create a Client and User
 
 Now we have to go to authorize endpoint to get code
 
-` `[`/auth/authorize?client_id=web-app&response_type=code`](javascript:void\(0\))``
+&#x20;`` [`/auth/authorize?client_id=web-app&response_type=code`](javascript:void\(0\))``
 
 ![](<../../.gitbook/assets/image (83).png>)
 
@@ -94,7 +94,7 @@ This flow works for single page apps. Before you start - create a Client
 
 Now we have to go to authorize endpoint to get code
 
-` `[`/auth/authorize?client_id=web-app&response_type=code`](javascript:void\(0\))``
+&#x20;`` [`/auth/authorize?client_id=web-app&response_type=code`](javascript:void\(0\))``
 
 #### When you have a token!
 
@@ -108,7 +108,7 @@ Now using this access token we can query Aidbox
 
 If you use external server, which provides you with JWT access token - you can configure Aidbox to trust this JWT token and act as Resource Server
 
- _You can use for example this _[_app to generate test JWT_](http://jwtbuilder.jamiekurtz.com)__
+&#x20;_You can use for example this_ [_app to generate test JWT_](http://jwtbuilder.jamiekurtz.com)__
 
 First of all you have to register TokenIntrospector in Aidbox
 

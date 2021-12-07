@@ -4,7 +4,7 @@ description: Filter by the modification date
 
 # \_lastUpdated & \_createdAt
 
-Search by the last modification time of the resource   `meta.lastUpdated`(note: `ts` column in database) or by the creation time `meta.createdAt`(note: `cts` column in the database) 
+Search by the last modification time of the resource   `meta.lastUpdated`(note: `ts` column in database) or by the creation time `meta.createdAt`(note: `cts` column in the database)&#x20;
 
 {% tabs %}
 {% tab title="FHIR format" %}
@@ -57,7 +57,7 @@ If you use `=` operator, Aidbox rounds the query date to the max and min value a
 ts <= max_date_bound('2019-01-01') AND ts >= min_date_bound('2019-01-01')
 ```
 
-You can use operators `lt,le,gt,ge` as the prefix of **value **to make Aidbox generate inequality queries:
+You can use operators `lt,le,gt,ge` as the prefix of **value** to make Aidbox generate inequality queries:
 
 ```javascript
 _lastUpdated=lt2019-01  => ts < max_date_bound('2019-01')
@@ -66,5 +66,5 @@ _lastUpdated=ge2019-01  => ts >= min_date_bound('2019-01')
 ```
 
 {% hint style="info" %}
-Aidbox uses the PostgreSQL precision for **lastUpdated/ts** and **createdAt/cts **- it's usually micro-seconds
+Aidbox uses the PostgreSQL precision for **lastUpdated/ts** and **createdAt/cts** - it's usually micro-seconds
 {% endhint %}

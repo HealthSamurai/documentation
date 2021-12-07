@@ -390,7 +390,7 @@ We created 2 patients, 2 practitioners, 3 encounters, 2 appointments, 2 Managing
 {% endtab %}
 {% endtabs %}
 
-### Define search query with filtering 
+### Define search query with filtering&#x20;
 
 Let's define the search query to search old patients by the partial match of the family name with the filtering by gender:
 
@@ -445,7 +445,7 @@ query-timeout: 60000
 {% endtab %}
 {% endtabs %}
 
-You can use **count** and **page** parameters for paging and control total query (if enabled) with **total **parameter. Use **\_timeout** parameter to set query timeout.
+You can use **count** and **page** parameters for paging and control total query (if enabled) with **total** parameter. Use **\_timeout** parameter to set query timeout.
 
 If the parameter is provided, another query will be generated on the fly:
 
@@ -859,7 +859,7 @@ total-query:
 
 #### Path in includes
 
-Path expression in includes is `json_knife` extension path, it consists of strings, integers, and objects. If the item is path string, it means get key in object (arrays are implicitly flattened). If key is integer, it is interpreted as index in array. If key is object, it is pattern to filter values in array with inclusion semantic (like PostgreSQL JSONB operator `@>`). 
+Path expression in includes is `json_knife` extension path, it consists of strings, integers, and objects. If the item is path string, it means get key in object (arrays are implicitly flattened). If key is integer, it is interpreted as index in array. If key is object, it is pattern to filter values in array with inclusion semantic (like PostgreSQL JSONB operator `@>`).&#x20;
 
 Here is an example of how to extract a patient (code: PART) from the appointment:
 

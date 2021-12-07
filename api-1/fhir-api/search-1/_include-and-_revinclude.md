@@ -93,7 +93,7 @@ Syntax for **revinclude:**
 _revinclude(:reverse|:iterate|:logical)=(source-type:)search-param(:target-type)
 ```
 
-Interpretation**:  **include all **source-type** resources, which refer **target-type** resources by **search-param** in the result set.
+Interpretation**:**  include all **source-type** resources, which refer **target-type** resources by **search-param** in the result set.
 
 ### :logical modifier
 
@@ -148,7 +148,7 @@ status: finished
 
 ### **\_include=\***
 
-You can include all resources referenced from the search result using **\*. **This is considered _bad practice_ because it's too implicit. This feature is only implemented for conformance with the FHIR specification. **Please avoid using it! **
+You can include all resources referenced from the search result using **\*.** This is considered _bad practice_ because it's too implicit. This feature is only implemented for conformance with the FHIR specification. **Please avoid using it!**&#x20;
 
 {% hint style="danger" %}
 \_include=\* could not be used as part of chained (rev)includes!
@@ -268,7 +268,7 @@ Here is the [discussion](https://chat.fhir.org/#narrow/stream/179166-implementer
 
 ### Recursive (rev)includes
 
-For self-referencing resources, you can specify the `:recurse` or `:iterate` modifier with **source-type=target-type **to recursively get all children or parents:
+For self-referencing resources, you can specify the `:recurse` or `:iterate` modifier with **source-type=target-type** to recursively get all children or parents:
 
 {% tabs %}
 {% tab title="GET" %}

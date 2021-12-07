@@ -44,5 +44,5 @@ body:
 All ETag values are cached to make ETag queries efficient. If you somehow made this cache invalid, you can reset Aidbox ETag cache by `DELETE /$etags-cache` or `DELETE /Patient/$etags-cache`.
 
 {% hint style="warning" %}
-Aidbox **ETags **machine is based on **txid** column in database! If you update resources in database, don't forget to update the **txid** column and reset cache. `UPDATE resource SET txid = nextval('transaction_id_seq')`
+Aidbox **ETags** machine is based on **txid** column in database! If you update resources in database, don't forget to update the **txid** column and reset cache. `UPDATE resource SET txid = nextval('transaction_id_seq')`
 {% endhint %}

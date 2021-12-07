@@ -68,11 +68,11 @@ You can configure Client for JWT tokens, set token expiration and enable a refre
 | **pkce**                    | true/false    | enable PKCE flow                     |
 
 {% hint style="info" %}
-If you want to use Authorization Code Grant for **Single Page Application **you do not need to set the `secret` attribute, use PKCE instead!
+If you want to use Authorization Code Grant for **Single Page Application** you do not need to set the `secret` attribute, use PKCE instead!
 {% endhint %}
 
 {% hint style="info" %}
-If your application is a major consumer of Aidbox API, you can set **first\_party** attribute as **true. **This means that the same User Session will be shared between Aidbox and client, so if you close the client session, Aidbox User Session will be closed too.
+If your application is a major consumer of Aidbox API, you can set **first\_party** attribute as **true.** This means that the same User Session will be shared between Aidbox and client, so if you close the client session, Aidbox User Session will be closed too.
 {% endhint %}
 
 ## Get Code
@@ -123,7 +123,7 @@ If a client is not **first\_party** or the user has not yet granted permissions 
 
 ![](<../../.gitbook/assets/image (2).png>)
 
-If the client was granted permission, the user agent will be redirected to the url configured in **Client.auth.authorization\_code.redirect\_uri **with the authorization code parameter.
+If the client was granted permission, the user agent will be redirected to the url configured in **Client.auth.authorization\_code.redirect\_uri** with the authorization code parameter.
 
 ```
 <redirect_uri>?code=****&state=***

@@ -130,10 +130,10 @@ query: [...]
 ```
 
 {% hint style="info" %}
-PostgreSQL supports Special Date/Time inputs like **now**, **today**, **tomorrow **etc.
+PostgreSQL supports Special Date/Time inputs like **now**, **today**, **tomorrow** etc.
 {% endhint %}
 
-### Design AidboxQuery 
+### Design AidboxQuery&#x20;
 
 To design the aidbox query, you can use `POST /$query/$debug`  endpoint without the need to create an AidboxQuery resource:
 

@@ -24,8 +24,8 @@ Starts `aidbox.bulk` import
 {% tab title="Parameters" %}
 Object with following structure:
 
-* `format `input resources format, <mark style="color:orange;">`fhir`</mark> <mark style="color:red;"></mark>or <mark style="color:orange;">`aidbox`</mark> (default: <mark style="color:orange;">`fhir`</mark>)&#x20;
-* `meta `meta data that will be attached to each of the imported resources
+* `format` input resources format, <mark style="color:orange;">`fhir`</mark> <mark style="color:red;"></mark> or <mark style="color:orange;">`aidbox`</mark> (default: <mark style="color:orange;">`fhir`</mark>)&#x20;
+* `meta` meta data that will be attached to each of the imported resources
 * `on-conflict` action to resolve id uniqueness constraint violation, <mark style="color:orange;">`update`</mark> or <mark style="color:orange;">`override`</mark>
 * `input` array of objects
   * `url` string with input source url
@@ -165,7 +165,7 @@ Result is an array of objects with following structure:
 {% endtab %}
 
 {% tab title="Error" %}
-`message`_ "No active imports"_
+`message` _"No active imports"_
 {% endtab %}
 {% endtabs %}
 

@@ -41,7 +41,7 @@ POST [base]/[type]?[search parameters]
 {% endtab %}
 {% endtabs %}
 
-Instead of using the `If-None-Exist` header, Aidbox uses query parameters as in ordinary `read` operation. This is done to make all conditional operations to look the same (use search query parameters). 
+Instead of using the `If-None-Exist` header, Aidbox uses query parameters as in ordinary `read` operation. This is done to make all conditional operations to look the same (use search query parameters).&#x20;
 
 * **No matches**: The server performs a `create` interaction (Aidbox version of create)
 * **One Match**: The server returns the found resource and `200 OK`
@@ -155,7 +155,7 @@ name: "Bob"
 {% endtab %}
 
 {% tab title="Response (FHIR format)" %}
-**Status: **`422`
+**Status:** `422`
 
 ```yaml
 resourceType: OperationOutcome
@@ -207,7 +207,7 @@ POST [base]/[type]?[search parameters]
 {% endtab %}
 {% endtabs %}
 
-A more complex way to create a resource (it requires the knowledge of [search](../../fhir-api/search-1/)) but it gives some additional flexibility. If you provide search parameters, `create` becomes `conditional create` and works in the following way (depending on the number of search results): 
+A more complex way to create a resource (it requires the knowledge of [search](../../fhir-api/search-1/)) but it gives some additional flexibility. If you provide search parameters, `create` becomes `conditional create` and works in the following way (depending on the number of search results):&#x20;
 
 * **No matches**: The server performs a `create` interaction
 * **One Match**: The server returns the found resource and `200 OK`

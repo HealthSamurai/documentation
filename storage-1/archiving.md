@@ -6,7 +6,7 @@ description: Using WAL-G and pg_dump for archiving and restoration
 
 ## WAL-G
 
-[**WAL-G**](https://github.com/wal-g/wal-g)** **is a simple and efficient archival restoration tool for PostgreSQL that simplifies [Continuous Archiving and Point-in-Time Recovery (PITR)](https://www.postgresql.org/docs/9.1/continuous-archiving.html) and can store backups in S3, Google Cloud Storage, Azure, Swift, remote host (via SSH) or local file system.
+[**WAL-G**](https://github.com/wal-g/wal-g) **** is a simple and efficient archival restoration tool for PostgreSQL that simplifies [Continuous Archiving and Point-in-Time Recovery (PITR)](https://www.postgresql.org/docs/9.1/continuous-archiving.html) and can store backups in S3, Google Cloud Storage, Azure, Swift, remote host (via SSH) or local file system.
 
 {% hint style="info" %}
 `pg_basebackup` can also be used to take base backups of a running PostgreSQL database cluster, but we are using WAL-G.
@@ -17,7 +17,7 @@ In order to set up continuous backups, you need to do the following:&#x20;
 1. Configure `wal-g` access to external storage.
 2.  Enable archiving of logs in Postgres and write the archive command:
 
-    `archive_command = 'wal-g wal-push% p' `
+    `archive_command = 'wal-g wal-push% p'`&#x20;
 3.  Make a base backup&#x20;
 
     `wal-g backup-push $PGDATA`
@@ -38,11 +38,11 @@ You can use cron, Cronjob to schedule "wal-verify"  execution.&#x20;
 
 Pick the JSON output of the command. The format is explained [here](archiving.md#wal-g).
 
-### ** Aidboxdb recovery:**
+### &#x20;**Aidboxdb recovery:**
 
 1. Configure WAL-G access to external storage
 2. Download backup `wal-g` `backup-pull` `$PGDATA`
-3. Configure the` wal-g wal-fetch` restore command&#x20;
+3. Configure the `wal-g wal-fetch` restore command&#x20;
 4. Start Postgres
 
 Postgres downloads all the missing logs and reads them on start.&#x20;
@@ -72,7 +72,7 @@ Dumps can be output in SQL script or archive file formats. Script dumps are plai
 
 To restore a database feed the dump file[ to psql](https://www.postgresql.org/docs/12/app-psql.html).
 
-The alternative archive file formats[ must be used with **pg\_restore**](https://www.postgresql.org/docs/12/app-pgrestore.html)** **to restore the database.&#x20;
+The alternative archive file formats[ must be used with **pg\_restore**](https://www.postgresql.org/docs/12/app-pgrestore.html) **** to restore the database.&#x20;
 
 {% hint style="info" %}
 `pg_dump` works best for small databases (< 5 GB) and assumes downtime.

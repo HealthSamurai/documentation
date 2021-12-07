@@ -49,6 +49,6 @@ transform:
 How to read transform DSL
 
 * **tr/reference** - instruction to transform references
-* **tr/ref **- recursively go to type definition or follow content-ref
+* **tr/ref** - recursively go to type definition or follow content-ref
 * **tr/union** - translate union / choice types
-* **tr/ext **- translate known extensions
+* **tr/ext** - translate known extensions

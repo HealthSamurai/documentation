@@ -26,21 +26,21 @@ Resource examples and External (not-present) terminologies are not loaded in the
 
 &#x20;3\. Validate resources&#x20;
 
-Use FHIR $validate operation or a CRUD request with profile URL specified in `.meta.profile `or in `.profile` query URL parameter.
+Use FHIR $validate operation or a CRUD request with profile URL specified in `.meta.profile` or in `.profile` query URL parameter.
 
 ## Validation modes supported with zen schemas
 
-For validation (e.g. in [FHIR CRUD API](../api-1/api/crud-1/)) Aidbox uses zen schemas tagged with `zenbox/base-schema` or `zenbox/profile-schema`
+For validation (e.g. in [FHIR CRUD API](../../api-1/api/crud-1/)) Aidbox uses zen schemas tagged with `zen.fhir/base-schema` or `zen.fhir/profile-schema`
 
-Schemas with these tags must have `:zenbox/type` and `:zenbox/profileUri` keys specified
+Schemas with these tags must have `:zen.fhir/type` and `:zen.fhir/profileUri` keys specified
 
-### `zenbox/base-schema`
+### `zen.fhir/base-schema`
 
-Schemas tagged with `zenbox/base-schema` are used to validate every resource of their type. When loaded into Aidbox such schema will be used instead of default json schema validation
+Schemas tagged with `zen.fhir/base-schema` are used to validate every resource of their type. When loaded into Aidbox such schema will be used instead of default json schema validation
 
-### `zenbox/profile-schema`
+### `zen.fhir/profile-schema`
 
-Schemas tagged with `zenbox/profile-schema` are used to validate resources that mention their `:zenbox/profileUri` in the `meta.profile` attribute
+Schemas tagged with `zen.fhir/profile-schema` are used to validate resources that mention their `:zen.fhir/profileUri` in the `meta.profile` attribute
 
 ## Zen FHIR packages
 
@@ -48,7 +48,7 @@ Aidbox team created an open-source tool to generate Zen FHIR packages from FHIR 
 
 It is distributed as a jar file available here&#x20;
 
-Zen FHIR  package is an [Aidbox project](../aidbox-configuration/aidbox-zen-lang-project.md) saved into zip archive
+Zen FHIR  package is an [Aidbox project](../../aidbox-configuration/aidbox-zen-lang-project.md) saved into zip archive
 
 {% hint style="warning" %}
 Zen FHIR Packages require `AIDBOX_CORRECT_AIDBOX_FORMAT` environment variable to be declared
@@ -97,7 +97,7 @@ AIDBOX_ZEN_ENTRYPOINT=project
 
 ### Convert custom FHIR profiles to Zen FHIR package
 
-Using [this tool](https://github.com/zen-lang/fhir/blob/main/README.md) you can generate zen-lang schemas and use them in your [Aidbox projects](../aidbox-configuration/aidbox-zen-lang-project.md).
+Using [this tool](https://github.com/zen-lang/fhir/blob/main/README.md) you can generate zen-lang schemas and use them in your [Aidbox projects](../../aidbox-configuration/aidbox-zen-lang-project.md).
 
 ### Create custom Zen FHIR package based on existing Zen FHIR packages
 

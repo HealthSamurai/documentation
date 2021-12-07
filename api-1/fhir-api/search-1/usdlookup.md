@@ -23,7 +23,7 @@ First of all, you have to describe priority groups of attributes with **by** par
 
 Result will be sorted with order of priority groups. For example, if you want to rate first matches of name, identifier and birth of data, and second matches in address and telecom you will use following expression:`name.family,name.given,identifier.value,birthDate;address.state,address.city,address.line,telecom.value`
 
-Let's say you are searching `joh 1979 ny` Aidbox will initially search in first priority group by expression like this: 
+Let's say you are searching `joh 1979 ny` Aidbox will initially search in first priority group by expression like this:&#x20;
 
 ```
 expr = extract_space_separated(resource, paths) 
@@ -53,7 +53,7 @@ Each **path expression** should point to primitive element!
 * **q:** is `+` or space separated term (prefixes) to search
 * **limit**: is internal search limit (default 200)
 * **count**: number results to return (default 50)
-* **mode: **if mode= `index` Aidbox returns index DDL for specific search
+* **mode:** if mode= `index` Aidbox returns index DDL for specific search
 
 ### Create Indexes
 

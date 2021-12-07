@@ -5,10 +5,10 @@ description: Create a simple profile with zen
 # Write a custom zen profile
 
 {% hint style="info" %}
-This article is work-in-progress. Please [contact us](../contact-us.md) if you want to get details on how to create a custom zen profile.
+This article is work-in-progress. Please [contact us](../../contact-us.md) if you want to get details on how to create a custom zen profile.
 {% endhint %}
 
-Zen-lang profile schema must be tagged with `zen.fhir/profile-schema` , describe data structure in the [Aidbox format](../modules-1/fhir-resources/aidbox-and-fhir-formats.md) and conform to the following schema:
+Zen-lang profile schema must be tagged with `zen.fhir/profile-schema` , describe data structure in the [Aidbox format](../../modules-1/fhir-resources/aidbox-and-fhir-formats.md) and conform to the following schema:
 
 {% code title="zen.fhir/profile-schema" %}
 ```

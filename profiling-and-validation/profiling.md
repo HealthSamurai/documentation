@@ -10,8 +10,8 @@ In FHIR, you need to create a StructureDefinition resource and describe the requ
 
 Aidbox implements two ways of working with profiles: using AidboxProfile resource and with zen-lang schemas.&#x20;
 
-{% content-ref url="profiling-with-zen-lang.md" %}
-[profiling-with-zen-lang.md](profiling-with-zen-lang.md)
+{% content-ref url="profiling-with-zen-lang/" %}
+[profiling-with-zen-lang](profiling-with-zen-lang/)
 {% endcontent-ref %}
 
 {% content-ref url="profiling-with-aidboxprofile.md" %}

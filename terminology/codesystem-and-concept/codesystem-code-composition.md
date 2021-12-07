@@ -12,7 +12,7 @@ $compose may return  3 possible types of match
 
 When send `exact` parameter is `true` - $compose operation only returns complete and partial matches. When exact is `false` - $compose include possible matches to a response. Default value is true; that means that by default returning only complete and partial matches.
 
-##  Api
+## &#x20;Api
 
 ```
 GET/POST URL: [base]/ValueSet/$compose
@@ -41,7 +41,7 @@ GET/POST URL: [base]/ValueSet/[id]/$compose
 
 One or more properties that contain information to be composed into the code.
 
-**Example: ** Compose from system `http://hl7.org/fhir/goal-status`  where `code` is `proposed`
+**Example:** Compose from system `http://hl7.org/fhir/goal-status`  where `code` is `proposed`
 
 {% tabs %}
 {% tab title="Request" %}
@@ -101,7 +101,7 @@ POST [BASE]/CodeSystem/$compose
 {% endtab %}
 {% endtabs %}
 
-**Example: ** Compose from system `http://hl7.org/fhir/goal-status`  where `code` is `proposed` or `accepted` 
+**Example:** Compose from system `http://hl7.org/fhir/goal-status`  where `code` is `proposed` or `accepted`&#x20;
 
 {% tabs %}
 {% tab title="Request" %}
@@ -175,7 +175,7 @@ POST [BASE]/CodeSystem/$compose
 {% endtab %}
 {% endtabs %}
 
-**Example: ** Compose from system `http://hl7.org/fhir/goal-status`  where `code` is `proposed` or `accepted` and/or where `definition` is `Planned` 
+**Example:** Compose from system `http://hl7.org/fhir/goal-status`  where `code` is `proposed` or `accepted` and/or where `definition` is `Planned`&#x20;
 
 {% tabs %}
 {% tab title="Request" %}

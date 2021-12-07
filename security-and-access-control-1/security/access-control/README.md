@@ -131,7 +131,7 @@ x-debug: policy
 
 #### Using the /auth/test-policy Operation
 
-You can use a special operation ` POST /auth/test-policy` to design policy without creating an AccessPolicy resource and for different users and clients. Post on the `/auth/test-policy` with a simulated **request** attribute (you can provide existing `user-id` and `client-id`  — Aidbox will find and populate request) and temporal policy in the **policy **attribute. If you want to test JWT auth, put your token in the `headers.authorization` with the `Bearer` prefix — the token will be parsed and its claims appear in the `request.jwt`. JWT in a header is parsed but not validated. This allows you to test JWT policy without **TokenIntrospector** registration.&#x20;
+You can use a special operation `POST /auth/test-policy` to design policy without creating an AccessPolicy resource and for different users and clients. Post on the `/auth/test-policy` with a simulated **request** attribute (you can provide existing `user-id` and `client-id`  — Aidbox will find and populate request) and temporal policy in the **policy** attribute. If you want to test JWT auth, put your token in the `headers.authorization` with the `Bearer` prefix — the token will be parsed and its claims appear in the `request.jwt`. JWT in a header is parsed but not validated. This allows you to test JWT policy without **TokenIntrospector** registration.&#x20;
 
 The response contains a result of evaluated policy.
 
@@ -326,24 +326,24 @@ matcho:
 
 Match DSL definition:
 
-* If **pattern** (match) is object, search for inclusion of this object into subject. For example: `{x: 1}` matches `{x: 1, y: 2 ....}`. This algorithm is recursive — `{a: {b: 5}} `matches `{a: {b: 5, ...}...}`
+* If **pattern** (match) is object, search for inclusion of this object into subject. For example: `{x: 1}` matches `{x: 1, y: 2 ....}`. This algorithm is recursive — `{a: {b: 5}}` matches `{a: {b: 5, ...}...}`
 * Objects with special keys:&#x20;
   * **$enum** —  test subject is equal to one of items in the enumeration. `{request-method: {$enum: ['get','post']}}` matches `{request-method: 'post'}`
-  * **$contains **—** **if a subject is a collection, then search at least one match. `{type: {$contains: {system: 'loinc'}}` matches `{type: [{system: 'snomed'}, {system: 'loinc'}]}`
-  * **$one-of — **try to match one of patterns.`  {a: {$one-of: [{b: present?}, {c: present?}]} matches {a: {c: 5}}  `
-  * **$reference **-  parse Reference  or string into [aidbox format](../../../modules-1/fhir-resources/aidbox-and-fhir-formats.md#references). Examples:
+  * **$contains** — **** if a subject is a collection, then search at least one match. `{type: {$contains: {system: 'loinc'}}` matches `{type: [{system: 'snomed'}, {system: 'loinc'}]}`
+  * **$one-of —** try to match one of patterns. `{a: {$one-of: [{b: present?}, {c: present?}]} matches {a: {c: 5}}`&#x20;
+  * **$reference** -  parse Reference  or string into [aidbox format](../../../modules-1/fhir-resources/aidbox-and-fhir-formats.md#references). Examples:
     * Parse Reference elements&#x20;
       * `parser: {reference: "Patient/pid"} => {id: "pid", resourceType: "Patient"}`
-      * `{resource: {patient: {$reference: {id: '.user.data.patient_id'}}} `
+      * `{resource: {patient: {$reference: {id: '.user.data.patient_id'}}}`&#x20;
     * Parse reference string &#x20;
       * `"Patient/pid" =>  {id: "pid", resourceType: "Patient"}`
       * `{params: {subject: {$reference: {id: '.user.data.patient_id'}}}`
-* For **array, **match the first item in the pattern with the first item in the subject. `[1,2] `matches `[1,2,3...]`
+* For **array,** match the first item in the pattern with the first item in the subject. `[1,2]` matches `[1,2,3...]`
 * Primitive values (strings, numbers and booleans) are compared by value
-* If a string starts with `'#' ` ,  it will be transformed into regex and matched as regex. `{a: '#\\d+'} `matches `{a: '2345'}`
-* If a string starts with `'.'` , it's interpreted as a pointer to another path in the subject to compare. For example: `{params: {user_id: '.user.id'}}` matches `{user: {id: 1}, params: {user_id: 1}}, `i.e. `user.id == param.user_id`
+* If a string starts with `'#'` ,  it will be transformed into regex and matched as regex. `{a: '#\\d+'}` matches `{a: '2345'}`
+* If a string starts with `'.'` , it's interpreted as a pointer to another path in the subject to compare. For example: `{params: {user_id: '.user.id'}}` matches `{user: {id: 1}, params: {user_id: 1}},` i.e. `user.id == param.user_id`
 * There are several special string literals postfixed with the `?`
-  * **present?** — matches the subject if it is not null, i.e. `{a: 'present?'} `matches `{a: 5}` or `{a: {b: 6}}`
+  * **present?** — matches the subject if it is not null, i.e. `{a: 'present?'}` matches `{a: 5}` or `{a: {b: 6}}`
   * **nil?**  — matches if nil/null — `{a: nil?}` matches `{b: 6}`
   * **not-blank?** — matches not blank string.
 

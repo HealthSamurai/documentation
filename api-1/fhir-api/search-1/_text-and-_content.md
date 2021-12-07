@@ -4,7 +4,7 @@ description: Full Text search by Narrative or Resource content
 
 # \_text & \_content
 
-[Full-text-search](https://en.wikipedia.org/wiki/Full-text_search) by resources is also at your disposal. It presents with the \_**text**_ - _search by narrative and_ **\_**_**content **- search by remaining the resource content.
+[Full-text-search](https://en.wikipedia.org/wiki/Full-text\_search) by resources is also at your disposal. It presents with the \_**text** _-_ search by narrative and _ **\_**_**content** - search by remaining the resource content.
 
 ```javascript
 GET /Patient?_text=John

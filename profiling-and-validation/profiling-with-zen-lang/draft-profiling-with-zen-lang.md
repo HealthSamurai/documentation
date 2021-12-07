@@ -12,7 +12,7 @@ This feature is in beta and may be changed in future.
 
 ## Before you start
 
-Install the Devbox sample repo following [this guide](../getting-started/installation/setup-aidbox.dev.md)
+Install the Devbox sample repo following [this guide](../../getting-started/installation/setup-aidbox.dev.md)
 
 Make sure that you have the latest `devbox:edge` image
 
@@ -63,10 +63,10 @@ Create namespace with your profiles
  import #{hl7-fhir-us-core.us-core-patient}
 
  MyPatientProfile
- {:zen/tags #{zen/schema zenbox/profile-schema}
+ {:zen/tags #{zen/schema zen.fhir/profile-schema}
   :confirms #{hl7-fhir-us-core.us-core-patient/schema}
-  :zenbox/type "Patient"
-  :zenbox/profileUri "urn:profile:MyPatientProfile"
+  :zen.fhir/type "Patient"
+  :zen.fhir/profileUri "urn:profile:MyPatientProfile"
   :type zen/map
   :require #{:birthDate}}}
 ```
@@ -130,15 +130,15 @@ services:
 
 ## Start Devbox and check if your profile is loaded
 
-Start Devbox using [this guide](../getting-started/installation/setup-aidbox.dev.md#run-devbox) (perform steps from Devbox directory, not in zen project dir)
+Start Devbox using [this guide](../../getting-started/installation/setup-aidbox.dev.md#run-devbox) (perform steps from Devbox directory, not in zen project dir)
 
 Open Devbox in your browser and click `Profiles` tab in the left menu:
 
-![](<../.gitbook/assets/image (71).png>)
+![](<../../.gitbook/assets/image (71).png>)
 
 You should see the list of zen namespaces loaded.
 
-![](<../.gitbook/assets/image (89).png>)
+![](<../../.gitbook/assets/image (89).png>)
 
 {% hint style="info" %}
 On this page you see the namespaces that are explicitly included in the zen project or used by Aidbox
@@ -146,16 +146,16 @@ On this page you see the namespaces that are explicitly included in the zen proj
 
 Open your profile by clicking its name
 
-![](<../.gitbook/assets/image (91).png>)
+![](<../../.gitbook/assets/image (91).png>)
 
 ## Start validation
 
 Test the data against this profile using **validate** tab
 
-![](<../.gitbook/assets/image (80).png>)
+![](<../../.gitbook/assets/image (80).png>)
 
-If your profile is tagged `zenbox/profile-schema` it can be used to validate your data\
-On FHIR CRUD API requests a profile will be applied if data includes `:zenbox/profileUri` in the `meta.profile` attribute:
+If your profile is tagged `zen.fhir/profile-schema` it can be used to validate your data\
+On FHIR CRUD API requests a profile will be applied if data includes `:zen.fhir/profileUri` in the `meta.profile` attribute:
 
 {% tabs %}
 {% tab title="Request" %}

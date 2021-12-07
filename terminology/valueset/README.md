@@ -429,7 +429,7 @@ Selects concepts found in this value set. This is an absolute URI that is a refe
 
 `concept` and `filter` don't apply to `valueSet`.
 
-N/B:  `ValueSet.compose.include.valueSet`** **should be an array not a string.
+N/B:  `ValueSet.compose.include.valueSet` **** should be an array not a string.
 
 Let's include the `administrative-gender` value set. There will be 4 concepts: `male`, `female`, `unknown`, and `other`.
 
@@ -924,7 +924,7 @@ Aidbox supports filter operation `regex` and implements Postgresql regular expre
 
 Please notice that regular expressions require an additional character escaping in JSON.
 
-Let's include codes where the specified property of the code matches the regex specified in the provided value `\\w{8}`. The result will include 4 values that have 8 symbols in length: `proposed`, `accepted`, `achieved`, and `rejected`. 
+Let's include codes where the specified property of the code matches the regex specified in the provided value `\\w{8}`. The result will include 4 values that have 8 symbols in length: `proposed`, `accepted`, `achieved`, and `rejected`.&#x20;
 
 {% tabs %}
 {% tab title="Request" %}

@@ -8,12 +8,12 @@ Responds with `200 OK` on the successful deletion, but when removing a resource 
 
 Supports `If-Match` header, with `versionId` as ETAG.
 
-To get `204 No Content` instead of `200 OK`, use the `_no-content=true` query parameter. 
+To get `204 No Content` instead of `200 OK`, use the `_no-content=true` query parameter.&#x20;
 
 * **`200` OK** - resource successfully deleted
 * **`204` No Content** - resource already deleted
 * **`404` Not Found** - resource not found
-* **`412`** **Precondition Failed **- requested ETAG doesn't match actual
+* **`412`** **Precondition Failed** - requested ETAG doesn't match actual
 
 {% hint style="info" %}
 Delete of non-existing resource will return 204 status and no body. Read [this thread](https://chat.fhir.org/#narrow/stream/179177-conformance/topic/Delete.20error.20codes) for more details.
@@ -29,7 +29,7 @@ DELETE [base]/[type]?[search parameters]
 
 It's not clear how to perform an ordinary `delete` on no matches. That's why `404 Not Found` will be returned in this case.
 
-* **No matches: **The respond with `404 Not Found`
+* **No matches:** The respond with `404 Not Found`
 * **One Match**: The server performs an ordinary `delete` on the matching resource
 * **Multiple matches**: Servers respond with `412 Precondition Failed` error indicating the client's criteria were not selective enough
 
@@ -41,7 +41,7 @@ It's not clear how to perform an ordinary `delete` on no matches. That's why `40
 DELETE [base]/[type]/[id]
 ```
 
-This interaction deletes a resource, responds with `200 OK` on the successful deletion, but when removing an already deleted resource, it responds with `204 No Content`. 
+This interaction deletes a resource, responds with `200 OK` on the successful deletion, but when removing an already deleted resource, it responds with `204 No Content`.&#x20;
 
 To always get `204 No Content` instead of `200 OK`, use `_no-content=true` query parameter.
 
