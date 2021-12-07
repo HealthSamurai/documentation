@@ -2,6 +2,14 @@
 
 ## November 2021 - v:2111 `edge`
 
+* $ translate on ConceptMap
+* Access Policies on GraphQL
+* FHIR bulk export
+* Add Aidbox Prometheus monitoring endpoints &#x20;
+* Zen Profiling packages version check
+* AuthConfig resource customizable forgotPasswordUrl
+* AddMapping JUTE implementation&#x20;
+
 ## October 2021 - v:2110 _`stable`_
 
 * Released new API for Bulk Data import. Using [Aidbox.bulk](../../api-1/bulk-api-1/aidbox.bulk-data-import.md) you will be able to import data in both Aidbox and FHIR formats, validate uploaded resources and references asynchronously.
