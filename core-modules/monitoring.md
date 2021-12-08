@@ -49,7 +49,7 @@ The `/metrics/hours` response can take some time since it collects a lot of info
 | `pg_database_size` | every hour | database size |
 | `pg_activity_max` | every hour | maximum number of connections |
 
-#### Hikari (Postgres connetction pool)
+#### Hikari (Postgres connection pool)
 
 | Metric | Update | Description |
 | - | - | - |
