@@ -2,9 +2,9 @@
 
 ### Description
 
-The Client Credentials grant is used when applications request an access token to access their own resources, not on behalf of a user \(for example, background services and daemons\). It must be used only by confidential clients.
+The Client Credentials grant is used when applications request an access token to access their own resources, not on behalf of a user (for example, background services and daemons). It must be used only by confidential clients.
 
-![Basic scheme](../../.gitbook/assets/untitled-diagram.svg)
+![Basic scheme](<../../.gitbook/assets/Untitled Diagram.svg>)
 
 Aidbox OAuth module supports Client Credentials Grant flow in different formats. The first one is in strict adherence to [specification](https://tools.ietf.org/html/rfc6749#section-4.4.2) for better compatibility. The second one uses JSON request as a more modern and simple way. Read the official [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.4) for more details.
 
@@ -26,11 +26,11 @@ grant_types:
 
 You can also configure token's format and expiration, as well refresh the token:
 
-| attribute | options | desc |
-| :--- | :--- | :--- |
-| _auth.client\_credentials_**.token\_format** | jwt | use access token in jwt format |
-| _auth.client\_credentials_**.token\_expiration** | int \(seconds\) | token expiration time from issued at |
-| _auth.client\_credentials_**.refresh\_token** | true/false | enable refresh\_token |
+| attribute                                        | options       | desc                                 |
+| ------------------------------------------------ | ------------- | ------------------------------------ |
+| _auth.client\_credentials_**.token\_format**     | jwt           | use access token in jwt format       |
+| _auth.client\_credentials_**.token\_expiration** | int (seconds) | token expiration time from issued at |
+| _auth.client\_credentials_**.refresh\_token**    | true/false    | enable refresh\_token                |
 
 {% code title="create new api client" %}
 ```yaml
@@ -123,9 +123,9 @@ status: 200
 
 #### Audience
 
-If you use JWT token format and provide in token request additional parameter `audience`, resulting token will set `aud` claim into value you've sent. 
+If you use JWT token format and provide in token request additional parameter `audience`, resulting token will set `aud` claim into value you've sent.&#x20;
 
-> ```text
+> ```
 > The "aud" (audience) claim identifies the recipients that the JWT is
 > intended for.  Each principal intended to process the JWT MUST
 > identify itself with a value in the audience claim.  If the principal
@@ -149,13 +149,13 @@ Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
 ```
 {% endcode %}
 
-```text
+```
 curl -H 'Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi' /Patient
 ```
 
-### Revoke Access Token \(Close Session\)
+### Revoke Access Token (Close Session)
 
-Aidbox create  Session \(resource\) for each Access Token that can be closed with the special endpoint `DELETE /Session` with the token in the Authorization header:
+Aidbox create  Session (resource) for each Access Token that can be closed with the special endpoint `DELETE /Session` with the token in the Authorization header:
 
 {% code title="close-session" %}
 ```yaml
@@ -169,6 +169,4 @@ Session is just Resource and you can inspect and manipulate with sessions by sta
 ### Auth Sandbox
 
 {% embed url="https://youtu.be/jaPPyF-H-zk" %}
-
-
 

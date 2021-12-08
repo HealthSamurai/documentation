@@ -107,7 +107,7 @@ This RPC method generates SMART launch URL.
 
 ## Standalone Launch
 
-![Standalone launch sequence](<../../../.gitbook/assets/image (95) (1).png>)
+![Standalone launch sequence](<../../../.gitbook/assets/image (101).png>)
 
 Authorization code flow with SMART on FHIR Standalone Launch:
 
@@ -122,7 +122,7 @@ Authorization code flow with SMART on FHIR Standalone Launch:
 
 ## EHR Launch
 
-![EHR Launch Sequence](<../../../.gitbook/assets/image (94) (1).png>)
+![EHR Launch Sequence](<../../../.gitbook/assets/image (99).png>)
 
 
 

@@ -36,9 +36,9 @@ inputs:
 
 In the previous step, we have imported a client that will authenticate users and two users with corresponding sets of related resources shown on the picture below. Overlapping outlines indicates the relation between enclosed resources. A similar diagram applies to User-2.
 
-![](<../../../.gitbook/assets/image (14).png>)
+![](<../../../.gitbook/assets/image (10).png>)
 
-## User Login‌ <a href="user-login" id="user-login"></a>
+## User Login‌ <a href="#user-login" id="user-login"></a>
 
 Now you can use Postman to log in as a user. In this example, we log in as User-1.
 
@@ -84,11 +84,11 @@ Notice the `patient_id` field of `userinfo` . This is the id of the Patient reso
 
 The `access-token` field of `user-info` will be needed to perform requests on behalf of our User. See [here](../../auth/resource-owner-password.md#use-access-token) how to perform user request with a token.
 
-![](<../../../.gitbook/assets/image (10).png>)
+![](<../../../.gitbook/assets/image (8).png>)
 
 At this point there are no access policies that allow the user to access any resources. So all attempts to make requests for Resources will be denied.
 
-## Patient Resource access <a href="access-to-patient-resource" id="access-to-patient-resource"></a>
+## Patient Resource access <a href="#access-to-patient-resource" id="access-to-patient-resource"></a>
 
 Let's add our first policy that will grant us access to the Patient resource associated with our user.
 

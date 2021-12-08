@@ -6,17 +6,17 @@ description: Learn how to use REST Console to work with your Aidbox via REST API
 
 ### REST Console
 
-![REST Console UI](../.gitbook/assets/image%20%2849%29.png)
+![REST Console UI](<../.gitbook/assets/image (81).png>)
 
-REST Console is designed to work with your Aidbox via [REST API](../api-1/api/). To make a request type an HTTP method \(`GET`, `POST`, `PUT`, `PATCH`, `DELETE`\) and an operation endpoint \(for example`/Patient` — _please pay attention to the capital letter in the resource name_\).
+REST Console is designed to work with your Aidbox via [REST API](../api-1/api/). To make a request type an HTTP method (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`) and an operation endpoint (for example`/Patient` — _please pay attention to the capital letter in the resource name_).
 
 Right after the first line you can put HTTP headers. E.g. to use YAML format you can put the following header:
 
-```text
+```
 Content-type: text/yaml
 ```
 
-In case you need to send a request body \(e.g., `POST` requests\), the request body content is passed below the resource address, separated by an empty line.
+In case you need to send a request body (e.g., `POST` requests), the request body content is passed below the resource address, separated by an empty line.
 
 ### Create Patient
 
@@ -168,15 +168,15 @@ meta:
 
 To get pretty-formatted response add `_pretty=true` query string parameter:
 
-![](../.gitbook/assets/image%20%2853%29.png)
+![](<../.gitbook/assets/image (82).png>)
 
 
 
 ### Get Patient
 
-After sending the request, we receive a response with `Status - 201` and the sent data, which means that our patient has been created. Use the request `GET /Patient/<id>` to see the newly created patient. Also the request `GET /Patient` could be used to get the complete list of patients. 
+After sending the request, we receive a response with `Status - 201` and the sent data, which means that our patient has been created. Use the request `GET /Patient/<id>` to see the newly created patient. Also the request `GET /Patient` could be used to get the complete list of patients.&#x20;
 
-![GET /Patient](../.gitbook/assets/image%20%2856%29.png)
+![GET /Patient](<../.gitbook/assets/image (47).png>)
 
 {% tabs %}
 {% tab title="Request" %}
@@ -529,7 +529,7 @@ Status: 200
 {% endtab %}
 {% endtabs %}
 
-The response contains all versions \(in this case 3\) of the patient resource. The first is the initial state of the resource, the second one has the name changed, and the third is an entirely updated resource. 
+The response contains all versions (in this case 3) of the patient resource. The first is the initial state of the resource, the second one has the name changed, and the third is an entirely updated resource.&#x20;
 
 To get a specific version of a resource use `GET /Patient/<id>/_history/<versionId>`. It performs the [vread](http://hl7.org/fhir/http.html#vread) operation.
 
@@ -744,7 +744,7 @@ Status: 200
 
 After successful deletion, the server sends the response with the status `200 OK` and the body containing the last version of the resource.
 
-If we try to get a deleted patient`GET /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577` we will receive `resourceType - OperationOutcome` and `status 410`. 
+If we try to get a deleted patient`GET /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577` we will receive `resourceType - OperationOutcome` and `status 410`.&#x20;
 
 {% tabs %}
 {% tab title="Request" %}
@@ -788,4 +788,3 @@ Status: 410
 ```
 {% endtab %}
 {% endtabs %}
-

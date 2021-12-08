@@ -1,6 +1,6 @@
 # Patient Encounter notification Application
 
-In this tutorial, we will create a simple application written on [Clojure](https://clojure.org/) programming language using [Aidbox Clojure SDK](https://github.com/Aidbox/aidbox-clojure-sdk) and Aidbox.cloud or [Aidbox.dev](https://www.health-samurai.io/aidbox) as a backend.
+In this tutorial, we will create a simple application written on [Clojure](https://clojure.org) programming language using [Aidbox Clojure SDK](https://github.com/Aidbox/aidbox-clojure-sdk) and Aidbox.cloud or [Aidbox.dev](https://www.health-samurai.io/aidbox) as a backend.
 
 All source code available on [Github Aidbox/app-mailgun-clj](https://github.com/Aidbox/app-mailgun-clj)
 
@@ -16,15 +16,15 @@ Aidbox as backend which will store all Encounters. .....
 
 Clojure application with Aidbox Clojure SDK as a connector between our application and backend.
 
-For sending Emails we will use [MailGun](https://www.mailgun.com/) service as the easiest way to send emails instead SMPT.
+For sending Emails we will use [MailGun](https://www.mailgun.com) service as the easiest way to send emails instead SMPT.
 
-![Architecture of Aidbox based Application](../../.gitbook/assets/untitled-2.png)
+![Architecture of Aidbox based Application](<../../.gitbook/assets/Untitled (2).png>)
 
 ### Get started
 
 Firstly, you need to install local Devbox. See the full instruction on how to [install Devbox](../../getting-started/installation/setup-aidbox.dev.md) and [how to use Rest API](https://docs.aidbox.app/api-1/api)
 
-In this sample application, we use Clojure CLI. See [Getting Started](https://clojure.org/guides/getting_started) for details on how to install the tools.
+In this sample application, we use Clojure CLI. See [Getting Started](https://clojure.org/guides/getting\_started) for details on how to install the tools.
 
 ### Enable Aidbox SDK
 
@@ -75,13 +75,11 @@ For connecting your application with Aidbox, you need call `aidbox/call` method 
 
 #### How it works?
 
-When you call `aidbox/start` method, `aidbox-sdk` try to connect to `Aidbox` with given `env.box.host` , `env.app.id` and `env.app.secret` credentials and then, if the connection is successful, register your app in Aidbox. After that, `aidbox/sdk` create local web server running on `env.app.port` port, in our case is `8989`. 
+When you call `aidbox/start` method, `aidbox-sdk` try to connect to `Aidbox` with given `env.box.host` , `env.app.id` and `env.app.secret` credentials and then, if the connection is successful, register your app in Aidbox. After that, `aidbox/sdk` create local web server running on `env.app.port` port, in our case is `8989`.&#x20;
 
 ### Email templating
 
 ### Sending email
 
 ### Aidbox Jobs
-
-
 

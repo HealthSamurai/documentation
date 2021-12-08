@@ -19,27 +19,27 @@ Aidboxdb comes with PgAgent preinstalled.
 By default, aidboxdb container doesn't start the PgAgent daemon. To start the daemon you need to specify `PGAGENT_ENABLED` variable. If the variable is specified then the daemon will be started on container startup.
 
 {% hint style="warning" %}
-PgAgent wouldn't run if Postgres instance is run as a replica \(`PG_ROLE` is not equal to `'replica'`\) because it may lead to unexpected behavior.
+PgAgent wouldn't run if Postgres instance is run as a replica (`PG_ROLE` is not equal to `'replica'`) because it may lead to unexpected behavior.
 {% endhint %}
 
 {% hint style="warning" %}
 PgAgent will run on **every** instance of Postgres master, which may lead to unexpected behavior.
 {% endhint %}
 
-By default PgAgent process in aidboxdb will use a database specified in `POSTGRES_DB` environmental variable and will run as a user which is specified in `POSTGRES_USER` variable \(`postgres` by default\).
+By default PgAgent process in aidboxdb will use a database specified in `POSTGRES_DB` environmental variable and will run as a user which is specified in `POSTGRES_USER` variable (`postgres` by default).
 
-If you want to specify **a dedicated user** for PgAgent \(for example to limit PgAgent privileges\), you need to specify `PGAGENT_USER` and `PGAGENT_PASSWORD` variables.
+If you want to specify **a dedicated user** for PgAgent (for example to limit PgAgent privileges), you need to specify `PGAGENT_USER` and `PGAGENT_PASSWORD` variables.
 
 If you want to use **a dedicated database** to store PgAgent service data, you can specify it in `PGAGENT_DB` variable. But you have to create the database and extension manually before starting PgAgent.
 
 {% hint style="info" %}
 **Note:** if you want to use a dedicated user or database you need to create them manually before enabling PgAgent in your aidboxdb configuration.
 
-Don't forget to create the PgAgent extension if your choose to use a dedicated database.  
+Don't forget to create the PgAgent extension if your choose to use a dedicated database.\
 To create the extension run `CREATE EXTENSION pgagent;`
 {% endhint %}
 
-There are some more options available to configure PgAgent:  
+There are some more options available to configure PgAgent:\
 You can specify log level with `PGAGENT_LOG_LEVEL` and you can specify a file where PgAagent logs are written in `PGAGENT_LOG_FILE_PATH`.
 
 You can see more info on [configuring aidboxdb](../../getting-started/installation/aidboxdb-image.md).
@@ -151,7 +151,7 @@ pgrep pgagent
 {% endtab %}
 
 {% tab title="Response" %}
-```text
+```
 9
 ```
 {% endtab %}
@@ -167,7 +167,7 @@ ps aux | grep pgagent
 {% endtab %}
 
 {% tab title="Response" %}
-```text
+```
 pgagent -s /tmp/pgagent.log -l 1 host=localhost port=5432 dbname=pgagent user=pgagent password=secret
 ```
 {% endtab %}
@@ -177,13 +177,13 @@ Let's check `pgagent` logs:
 
 {% tabs %}
 {% tab title="Plain Text" %}
-```text
+```
 cat /tmp/pgagent.logs
 ```
 {% endtab %}
 
 {% tab title="Logs" %}
-```text
+```
 WARNING: Couldn't create the primary connection [Attempt #2]
 DEBUG: Clearing all connections
 DEBUG: Connection stats: total - 1, free - 0, deleted - 1
@@ -214,22 +214,22 @@ Don't worry if you see `WARNING: Couldn't create the primary connection [Attempt
 ### Defining a job via PgAdmin
 
 {% hint style="info" %}
-Refer to [https://www.pgadmin.org/](https://www.pgadmin.org/) for pgAdmin and pgAgent documentation.
+Refer to [https://www.pgadmin.org/](https://www.pgadmin.org) for pgAdmin and pgAgent documentation.
 {% endhint %}
 
 Now when pgagent is up and running we can define some jobs and see if they're actually scheduled.
 
-![Create server connection](../../.gitbook/assets/screen-shot-2021-08-06-at-04.24.22.png)
+![Create server connection](<../../.gitbook/assets/Screen Shot 2021-08-06 at 04.24.22.png>)
 
-![It&apos;s important that Maintenance database is the same database where pgagent data is stored.](../../.gitbook/assets/screen-shot-2021-08-06-at-04.25.08.png)
+![It's important that Maintenance database is the same database where pgagent data is stored.](<../../.gitbook/assets/Screen Shot 2021-08-06 at 04.25.08.png>)
 
-![Create pgAgent job](../../.gitbook/assets/screen-shot-2021-08-06-at-05.27.24.png)
+![Create pgAgent job](<../../.gitbook/assets/Screen Shot 2021-08-06 at 05.27.24.png>)
 
-![](../../.gitbook/assets/screen-shot-2021-08-06-at-04.31.00.png)
+![](<../../.gitbook/assets/Screen Shot 2021-08-06 at 04.31.00.png>)
 
-![](../../.gitbook/assets/screen-shot-2021-08-06-at-04.27.19.png)
+![](<../../.gitbook/assets/Screen Shot 2021-08-06 at 04.27.19.png>)
 
-![The job will be run every minute.](../../.gitbook/assets/screen-shot-2021-08-06-at-04.27.56.png)
+![The job will be run every minute.](<../../.gitbook/assets/Screen Shot 2021-08-06 at 04.27.56.png>)
 
 #### Test if jobs are running
 
@@ -251,7 +251,7 @@ SELECT * FROM pgagent.pga_job;
 {% endtab %}
 
 {% tab title="Response" %}
-```text
+```
 -[ RECORD 1 ]+------------------------------
 jobid        | 1
 jobjclid     | 1
@@ -278,7 +278,7 @@ SELECT * FROM test;
 {% endtab %}
 
 {% tab title="Response" %}
-```text
+```
 -[ RECORD 1 ]-----------------------
 tx   | 2021-08-06 02:06:03.970728+00
 note | test
@@ -295,4 +295,3 @@ If everything was successfull you will see new records in the table.
 * You can configure `pgagent` using several variables described [here](../../getting-started/installation/aidboxdb-image.md#optional-environment-variables).
 
 If you have any questions on how to configure `pgagent` feel free to [contact us](../../contact-us.md).
-
