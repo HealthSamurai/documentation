@@ -4,7 +4,7 @@
 
 The Password grant type is used by first-party clients to exchange a user's credentials for an access token. Since this involves the client asking the user for their password, it should not be used by third party clients. In this flow, the user's username and password are exchanged directly for an access token. The application acts on behalf of the user. Refer to [OAuth 2.0 spec](https://tools.ietf.org/html/rfc6749#section-4.3) for more details.
 
-![Basic scheme](../../.gitbook/assets/untitled-diagram-page-2.svg)
+![Basic scheme](<../../.gitbook/assets/Untitled Diagram-Page-2.svg>)
 
 ### Configure Client
 
@@ -26,12 +26,12 @@ Client will act on behalf of the user, which means Access Policies should be con
 
 You can configure Client for JWT tokens, set token expiration and enable refresh token:
 
-| attribute                            | options       | desc                                 |
-| ------------------------------------ | ------------- | ------------------------------------ |
-| _auth.password_**.token_format**     | jwt           | use access token in jwt format       |
-| _auth.password_**.token_expiration** | int (seconds) | token expiration time from issued at |
-| _auth.password_**.refresh_token**    | true/false    | enable refresh_token                 |
-| _auth.password_**.secret_required**  | true/false    | require client secret for token      |
+| attribute                             | options       | desc                                 |
+| ------------------------------------- | ------------- | ------------------------------------ |
+| _auth.password_**.token\_format**     | jwt           | use access token in jwt format       |
+| _auth.password_**.token\_expiration** | int (seconds) | token expiration time from issued at |
+| _auth.password_**.refresh\_token**    | true/false    | enable refresh\_token                |
+| _auth.password_**.secret\_required**  | true/false    | require client secret for token      |
 
 ## Get Access Token
 

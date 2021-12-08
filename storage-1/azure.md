@@ -26,9 +26,9 @@ storage: aidbox
 container: avatars
 ```
 
-### Get Shared Access Signature \(SAS\) to upload file
+### Get Shared Access Signature (SAS) to upload file
 
-When configuration is complete, you can request a temporary URL to upload blobs. By default, such URL expires in 30 minutes. You can provide a blob name or just the extension \(name will be generated\).
+When configuration is complete, you can request a temporary URL to upload blobs. By default, such URL expires in 30 minutes. You can provide a blob name or just the extension (name will be generated).
 
 ```yaml
 POST /azure/storage/avatars
@@ -43,7 +43,7 @@ url:  https://aidbox.blob.core.windows.net/avatars/pt-1.png?sr=............
 
 Configure CORS in azure if you want to send data from browser:
 
-![](../.gitbook/assets/image%20%283%29.png)
+![](<../.gitbook/assets/image (7).png>)
 
 Now you can upload file from your UI using signed URL provided by Aidbox:
 
@@ -83,4 +83,3 @@ For example, you can use a trick with redirect to render image:
 ```markup
 <img src="/azure/storage/avatar/pt-1.png?redirect=true"/>
 ```
-

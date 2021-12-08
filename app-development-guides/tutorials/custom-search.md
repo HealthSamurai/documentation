@@ -6,7 +6,7 @@
 
 ## Prepare Data
 
-We need some sample data to see results of our queries. Let's create it.  
+We need some sample data to see results of our queries. Let's create it.\
 Copy the following snippet to the Aidbox.Cloud `REST Console`.
 
 {% hint style="info" %}
@@ -145,11 +145,11 @@ We created 2 patients and 3 encounters that are linked to those patients.
 
 ## SQL
 
-Aidbox uses PostgreSQL \(super advanced open-source DBMS\), which allows expressing very complex queries. Let's try to implement our task in SQL queries.
+Aidbox uses PostgreSQL (super advanced open-source DBMS), which allows expressing very complex queries. Let's try to implement our task in SQL queries.
 
 First of all, let's try to obtain a list of patients. Access the `DB Console` of our box and run the following code snippets:
 
-![DB Console](../../.gitbook/assets/screenshot-2018-11-27-19.41.13.png)
+![DB Console](<../../.gitbook/assets/Screenshot 2018-11-27 19.41.13.png>)
 
 {% code title="patients.sql" %}
 ```sql
@@ -160,10 +160,10 @@ patient;
 ```
 {% endcode %}
 
-| id | resource\_type | resource |
-| :--- | :--- | :--- |
-| `patient1` | `Patient` | `{"name":[{"given":["Max"],"family":"Turikov"}]}` |
-| `patient2` | `Patient` | `{"name":[{"given":["Alex"],"family":"Antonov"}]}` |
+| id         | resource\_type | resource                                           |
+| ---------- | -------------- | -------------------------------------------------- |
+| `patient1` | `Patient`      | `{"name":[{"given":["Max"],"family":"Turikov"}]}`  |
+| `patient2` | `Patient`      | `{"name":[{"given":["Alex"],"family":"Antonov"}]}` |
 
 Next, we want to add the patient **id** and **resource\_type** into **resource**.
 
@@ -180,10 +180,10 @@ patient;
 ```
 {% endcode %}
 
-| id | resource\_type | resource |
-| :--- | :--- | :--- |
-| `patient1` | `Patient` | `{"id":"patient1","name":[{"given":["Max"],"family":"Turikov"}],"resource_type":"Patient"}` |
-| `patient2` | `Patient` | `{"id":"patient2","name":[{"given":["Alex"],"family":"Antonov"}],"resource_type":"Patient"}` |
+| id         | resource\_type | resource                                                                                     |
+| ---------- | -------------- | -------------------------------------------------------------------------------------------- |
+| `patient1` | `Patient`      | `{"id":"patient1","name":[{"given":["Max"],"family":"Turikov"}],"resource_type":"Patient"}`  |
+| `patient2` | `Patient`      | `{"id":"patient2","name":[{"given":["Alex"],"family":"Antonov"}],"resource_type":"Patient"}` |
 
 {% hint style="info" %}
 Curious how to work with JSON in PostgreSQL? Join our community [chat](https://t.me/aidbox).
@@ -204,11 +204,11 @@ ON p.id = e.resource->'subject'->>'id';
 ```
 {% endcode %}
 
-| patient\_id | encounter\_id | encounter |
-| :--- | :--- | :--- |
-| `patient1` | `enc1` | `{"status":"draft","subject":{"id":"patient1","resourceType":"Patient"}}` |
-| `patient1` | `enc2` | `{"status":"draft","subject":{"id":"patient1","resourceType":"Patient"}}` |
-| `patient2` | `enc3` | `{"status":"draft","subject":{"id":"patient2","resourceType":"Patient"}}` |
+| patient\_id | encounter\_id | encounter                                                                 |
+| ----------- | ------------- | ------------------------------------------------------------------------- |
+| `patient1`  | `enc1`        | `{"status":"draft","subject":{"id":"patient1","resourceType":"Patient"}}` |
+| `patient1`  | `enc2`        | `{"status":"draft","subject":{"id":"patient1","resourceType":"Patient"}}` |
+| `patient2`  | `enc3`        | `{"status":"draft","subject":{"id":"patient2","resourceType":"Patient"}}` |
 
 Our next step is obtaining aggregated data by patients.
 
@@ -225,10 +225,10 @@ GROUP BY p.id;
 ```
 {% endcode %}
 
-| patient\_id | encounters |
-| :--- | :--- |
-| `patient1` | `[{"status":"draft","subject":{"id":"patient1","resourceType":"Patient"}}, {"status":"draft","subject":{"id":"patient1","resourceType":"Patient"}}]` |
-| `patient2` | `[{"status":"draft","subject":{"id":"patient2","resourceType":"Patient"}}]` |
+| patient\_id | encounters                                                                                                                                           |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `patient1`  | `[{"status":"draft","subject":{"id":"patient1","resourceType":"Patient"}}, {"status":"draft","subject":{"id":"patient1","resourceType":"Patient"}}]` |
+| `patient2`  | `[{"status":"draft","subject":{"id":"patient2","resourceType":"Patient"}}]`                                                                          |
 
 Looks good but there's no information about the encounter id.
 
@@ -258,10 +258,10 @@ GROUP BY p.id;
 ```
 {% endcode %}
 
-| patient\_id | encounters |
-| :--- | :--- |
-| `patient1` | `[{"id":"enc1","status":"draft","subject":{"id":"patient1","resourceType":"Patient"},"resource_type":"Encounter"},{"id":"enc2","status":"draft","subject":{"id":"patient1","resourceType":"Patient"},"resource_type":"Encounter"}]` |
-| `patient2` | `[{"id":"enc3","status":"draft","subject":{"id":"patient2","resourceType":"Patient"},"resource_type":"Encounter"}]` |
+| patient\_id | encounters                                                                                                                                                                                                                          |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `patient1`  | `[{"id":"enc1","status":"draft","subject":{"id":"patient1","resourceType":"Patient"},"resource_type":"Encounter"},{"id":"enc2","status":"draft","subject":{"id":"patient1","resourceType":"Patient"},"resource_type":"Encounter"}]` |
+| `patient2`  | `[{"id":"enc3","status":"draft","subject":{"id":"patient2","resourceType":"Patient"},"resource_type":"Encounter"}]`                                                                                                                 |
 
 Additionally, we added resourceType and id to the patient resource but didn't use it yet. Let's put encounters to the patient resource and take only one patient by the specified id.
 
@@ -292,32 +292,11 @@ HAVING p.id = 'patient1';
 ```
 {% endcode %}
 
-The result should look like the following table \(but without pretty printing\):
+The result should look like the following table (but without pretty printing):
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left">id</th>
-      <th style="text-align:left">resource</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left"><code>patient1</code>
-      </td>
-      <td style="text-align:left">
-        <p><code>{&quot;id&quot;:&quot;patient1&quot;,</code>
-        </p>
-        <p> <code>&quot;name&quot;:[{&quot;given&quot;:[&quot;Max&quot;],&quot;family&quot;:&quot;Turikov&quot;}],</code>
-        </p>
-        <p> <code>&quot;encounters&quot;:[</code>
-        </p>
-        <p> <code>{&quot;id&quot;:&quot;enc1&quot;,<br /> &quot;status&quot;:&quot;draft&quot;,<br /> &quot;subject&quot;:{&quot;id&quot;:&quot;patient1&quot;,&quot;resourceType&quot;:&quot;Patient&quot;},<br /> &quot;resourceType&quot;:&quot;Encounter&quot;},<br /> {&quot;id&quot;:&quot;enc2&quot;,<br /> &quot;status&quot;:&quot;draft&quot;,<br /> &quot;subject&quot;:{&quot;id&quot;:&quot;patient1&quot;,&quot;resourceType&quot;:&quot;Patient&quot;},<br /> &quot;resourceType&quot;:&quot;Encounter&quot;}],<br /> &quot;resourceType&quot;:&quot;Patient&quot;}</code>
-        </p>
-      </td>
-    </tr>
-  </tbody>
-</table>
+| id         | resource                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `patient1` | <p><code>{"id":"patient1",</code></p><p> <code>"name":[{"given":["Max"],"family":"Turikov"}],</code></p><p> <code>"encounters":[</code></p><p> <code>{"id":"enc1",</code><br> <code>"status":"draft",</code><br> <code>"subject":{"id":"patient1","resourceType":"Patient"},</code><br> <code>"resourceType":"Encounter"},</code><br> <code>{"id":"enc2",</code><br> <code>"status":"draft",</code><br> <code>"subject":{"id":"patient1","resourceType":"Patient"},</code><br> <code>"resourceType":"Encounter"}],</code><br> <code>"resourceType":"Patient"}</code></p> |
 
 Now let's make the results of this query accessible via REST API. To do that, we need to create the `AidboxQuery` resource:
 
@@ -381,13 +360,13 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-Pay attention to the end of the query: we used `{{params.patient.id}}` which takes the value from the request and passes it to the query securely \(using PostgreSQL `PREPARE` statement\). This means that the user of our custom search can change some parameters of the query and get different results.
+Pay attention to the end of the query: we used `{{params.patient.id}}` which takes the value from the request and passes it to the query securely (using PostgreSQL `PREPARE` statement). This means that the user of our custom search can change some parameters of the query and get different results.
 
 Let's try it in action!
 
 {% tabs %}
 {% tab title="Request" %}
-```text
+```
 GET /$query/patient-with-encounters?patient-id=patient1
 ```
 {% endtab %}
@@ -419,7 +398,7 @@ data:
 
 {% tabs %}
 {% tab title="Request" %}
-```text
+```
 GET /$query/patient-with-encounters?patient-id=patient2
 ```
 {% endtab %}
@@ -450,4 +429,3 @@ We got all the needed data in the exact shape we wanted. Additional information 
 {% hint style="info" %}
 Want to know more about Aidbox, FHIR, and custom search? Join our community [chat](https://t.me/aidbox).
 {% endhint %}
-

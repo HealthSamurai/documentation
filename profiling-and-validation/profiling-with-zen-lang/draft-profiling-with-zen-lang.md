@@ -134,11 +134,11 @@ Start Devbox using [this guide](../../getting-started/installation/setup-aidbox.
 
 Open Devbox in your browser and click `Profiles` tab in the left menu:
 
-![](<../../.gitbook/assets/image (71).png>)
+![](<../../.gitbook/assets/image (88).png>)
 
 You should see the list of zen namespaces loaded.
 
-![](<../../.gitbook/assets/image (89).png>)
+![](<../../.gitbook/assets/image (90).png>)
 
 {% hint style="info" %}
 On this page you see the namespaces that are explicitly included in the zen project or used by Aidbox
@@ -152,7 +152,7 @@ Open your profile by clicking its name
 
 Test the data against this profile using **validate** tab
 
-![](<../../.gitbook/assets/image (80).png>)
+![](<../../.gitbook/assets/image (93).png>)
 
 If your profile is tagged `zen.fhir/profile-schema` it can be used to validate your data\
 On FHIR CRUD API requests a profile will be applied if data includes `:zen.fhir/profileUri` in the `meta.profile` attribute:

@@ -9,14 +9,14 @@ description: >-
 ## Update Docker Image
 
 {% hint style="info" %}
-This feature is available since [July 2021 - v:2107](https://docs.aidbox.app/getting-started/versioning-and-release-notes/release-notes#july-2021-v-2107-stable) Aidbox version 
+This feature is available since [July 2021 - v:2107](https://docs.aidbox.app/getting-started/versioning-and-release-notes/release-notes#july-2021-v-2107-stable) Aidbox version&#x20;
 {% endhint %}
 
 To begin using pre-configured Kibana and Grafana please clone[ this repository](https://github.com/Aidbox/devbox) and execute `make up` operation in your shell.
 
 ## **Explore logs with Kibana**
 
-To use Kibana you need to understand Aidbox log formatting first. Go to Aidbox log documentation \([Logging & Audit](https://docs.aidbox.app/core-modules/logging-and-audit)\) to find logs schema available here with a brief attribute description.
+To use Kibana you need to understand Aidbox log formatting first. Go to Aidbox log documentation ([Logging & Audit](https://docs.aidbox.app/core-modules/logging-and-audit)) to find logs schema available here with a brief attribute description.
 
 ```bash
 git clone https://github.com/Aidbox/devbox.git
@@ -46,11 +46,11 @@ The example below will help you read REST API logs:
 
 Please put + to toggle `Time`, `w_m`, `w_r`_,_`w_url`, `d`, `w_st`, `w_uid` fields into the document table:
 
-![](../../.gitbook/assets/image%20%2841%29%20%281%29%20%281%29.png)
+![](<../../.gitbook/assets/image (41) (1) (1) (1).png>)
 
 Now you can browse and explore REST API logs
 
-![](../../.gitbook/assets/image%20%287%29.png)
+![](<../../.gitbook/assets/image (39).png>)
 
 _Kibana's **Discover** enables you to quickly search and filter your data, get information about the structure of the fields, and visualize your data with **Lens** and **Maps**. You can customize and save your searches and place them on a dashboard._
 
@@ -60,7 +60,7 @@ Check [Kibana documentation](https://www.elastic.co/guide/en/kibana/current/disc
 
 ## **Visualize logs with Grafana**
 
-We've built a custom Grafana dashboard available by default where you can see basic metrics. 
+We've built a custom Grafana dashboard available by default where you can see basic metrics.&#x20;
 
 The pre-configured views are the following:
 
@@ -69,13 +69,12 @@ The pre-configured views are the following:
 3. Number of requests per day.
 4. Clients/users online.
 5. DB size.
-6. Number of errors. 
-7. Response time.  
+6. Number of errors.&#x20;
+7. Response time. &#x20;
 8. Slow queries.
 
-![Aidbox Grafana dashboard](../../.gitbook/assets/image%20%2849%29%20%285%29%20%283%29%20%281%29%20%288%29.png)
+![Aidbox Grafana dashboard](<../../.gitbook/assets/image (49) (5) (3) (1) (8).png>)
 
 You can update the default dashboard with your own custom views. For more info please refer to [Grafana documentation](https://grafana.com/tutorials/grafana-fundamentals/).
 
 If you have any questions, requests, or want to share your best practices using Kibana and Grafana feel free to contact us via [Aidbox user chat.](https://t.me/aidbox)
-

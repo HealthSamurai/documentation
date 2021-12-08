@@ -61,7 +61,7 @@
 
 * We've released a major Aidbox UI upgrade
 
-![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (5).png>)
+![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (10).png>)
 
 * Updated REST Console (check out[ the tutorial](https://bit.ly/rest\_console\_tutorial)):
   * Explicit request headers `content-type, accept` etc

@@ -4,33 +4,33 @@ description: >-
   reading time: 7 min
 ---
 
-# 🎓 Setup Devbox
+# 🎓 Devbox
 
 ## Overview
 
 Devbox is compatible with macOS, Linux, and Windows 10 Pro.
 
-**Devbox** is a lightweight version of [Aidbox](https://www.health-samurai.io/aidbox). It is a special version aimed at local development and in your CI. To obtain Devbox license, please use our [License server](https://license-ui.aidbox.app/).
+**Devbox** is a lightweight version of [Aidbox](https://www.health-samurai.io/aidbox). It is a special version aimed at local development and in your CI. To obtain Devbox license, please use our [License server](https://license-ui.aidbox.app).
 
 ## Get your license
 
 1. Visit and register on the [License server](https://license-ui.aidbox.app), then click the `GET LICENSE KEY` button.
 
-![](../../.gitbook/assets/scr-2018-10-31_15-08-05.png)
+![](../../.gitbook/assets/scr-2018-10-31\_15-08-05.png)
 
 1. Enter a short description of your project and select the `Devbox` option.
 
-![](../../.gitbook/assets/image%20%289%29.png)
+![](<../../.gitbook/assets/image (6).png>)
 
 1. Congratulations! Now you have a license key.
 
-![](../../.gitbook/assets/screen-shot-2018-10-02-at-17.34.31.png)
+![](<../../.gitbook/assets/Screen Shot 2018-10-02 at 17.34.31.png>)
 
 ## Install Devbox
 
 ### Step 1. Install Docker Compose
 
-The recommended way to work with **Devbox** is [Docker Compose](https://docs.docker.com/compose/).  
+The recommended way to work with **Devbox** is [Docker Compose](https://docs.docker.com/compose/).\
 Install Docker for your OS following the [Get Docker page](https://docs.docker.com/install/), then follow the instructions on the [installing Compose](https://docs.docker.com/compose/install/#install-compose) page.
 
 ### Step 2. Create docker-compose.yaml
@@ -43,12 +43,12 @@ git clone https://github.com/Aidbox/devbox.git
 
 Create the .env file with your Devbox parameters.
 
-```text
+```
 cd devbox && cp .env.tpl .env
 ```
 
 {% hint style="info" %}
-docker-compose.yaml file is parameterized with environment variables that can be stored by convention in the .env file \(read more about [env & docker-compose](https://docs.docker.com/compose/environment-variables/)\).
+docker-compose.yaml file is parameterized with environment variables that can be stored by convention in the .env file (read more about [env & docker-compose](https://docs.docker.com/compose/environment-variables/)).
 {% endhint %}
 
 {% code title="docker-compose.yaml" %}
@@ -82,7 +82,7 @@ services:
 
 ### Step 3. **Fill in the .env file with the following parameters**
 
-Open the `.env` file and insert your `License ID` and `License KEY,` specify FHIR version and decide on the box security and distribution channel \( latest vs edge\).
+Open the `.env` file and insert your `License ID` and `License KEY,` specify FHIR version and decide on the box security and distribution channel ( latest vs edge).
 
 {% code title=".env" %}
 ```bash
@@ -110,18 +110,18 @@ AIDBOX_IMAGE=healthsamurai/devbox:edge
 ```
 {% endcode %}
 
-| Variable | required | Desc |
-| :--- | :--- | :--- |
-| AIDBOX\_LICENSE\_ID | true | Your license ID |
-| AIDBOX\_LICENSE\_ID | true | Your license key |
-| AIDBOX\_CLIENT\_ID | false | Root Client ID \* \(default: root\) |
-| AIDBOX\_CLIENT\_SECRET | false | Root Client Secret \* |
-| AIDBOX\_PORT | true | Port number to access Aidbox backend |
-| AIDBOX\_BASE\_URL | false | When specified, all relative links to resources will be replaced with absolute links including the base URL |
-| AIDBOX\_FHIR\_VERSION | true | Version of FHIR - 1.0.2, 1.4.0, 1.8.0, 3.0.1, 3.2.0, 3.3.0, 4.0.0, 4.0.1; Currently 4.0.1 is recommended version. |
-| AIDBOX\_IMAGE | true | can be specific image tag or one of :edge or :stable |
-| AIDBOX\_ADMIN\_ID | false | Id for admin user \(default: admin\) |
-| AIDBOX\_ADMIN\_PASSWORD | false | Password for admin user |
+| Variable                | required | Desc                                                                                                              |
+| ----------------------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
+| AIDBOX\_LICENSE\_ID     | true     | Your license ID                                                                                                   |
+| AIDBOX\_LICENSE\_ID     | true     | Your license key                                                                                                  |
+| AIDBOX\_CLIENT\_ID      | false    | Root Client ID \* (default: root)                                                                                 |
+| AIDBOX\_CLIENT\_SECRET  | false    | Root Client Secret \*                                                                                             |
+| AIDBOX\_PORT            | true     | Port number to access Aidbox backend                                                                              |
+| AIDBOX\_BASE\_URL       | false    | When specified, all relative links to resources will be replaced with absolute links including the base URL       |
+| AIDBOX\_FHIR\_VERSION   | true     | Version of FHIR - 1.0.2, 1.4.0, 1.8.0, 3.0.1, 3.2.0, 3.3.0, 4.0.0, 4.0.1; Currently 4.0.1 is recommended version. |
+| AIDBOX\_IMAGE           | true     | can be specific image tag or one of :edge or :stable                                                              |
+| AIDBOX\_ADMIN\_ID       | false    | Id for admin user (default: admin)                                                                                |
+| AIDBOX\_ADMIN\_PASSWORD | false    | Password for admin user                                                                                           |
 
 Please, find the full list of available environment variables [here](https://docs.aidbox.app/getting-started/installation/use-devbox-aidbox).
 
@@ -145,11 +145,11 @@ Starting Aidbox in an open mode without AIDBOX\_CLIENT\_SECRET is disabled!
 $ docker-compose up -d
 ```
 
-That's it! Devbox is running and you can point your browser to [http://localhost:8888](http://localhost:8888/) to see a fancy welcome page.
+That's it! Devbox is running and you can point your browser to [http://localhost:8888](http://localhost:8888) to see a fancy welcome page.
 
 \_\*\*\_Input your ADMIN\_ID and ADMIN\_PASSWORD and you will see your development environment. This is the way to create your best healthcare products.
 
-![](../../.gitbook/assets/login-aidbox.gif)
+![](<../../.gitbook/assets/login aidbox.gif>)
 
 {% hint style="info" %}
 We welcome your questions and comments about our products. Have an idea/question you'd like to share with our community? [Submit it here](https://t.me/aidbox).
@@ -159,7 +159,9 @@ We welcome your questions and comments about our products. Have an idea/question
 
 Learn how to obtain access to the [REST API](https://docs.aidbox.app/api-1/api) by the link below.
 
-{% page-ref page="../../security-and-access-control-1/auth/" %}
+{% content-ref url="../../security-and-access-control-1/auth/" %}
+[auth](../../security-and-access-control-1/auth/)
+{% endcontent-ref %}
 
 ## Advanced tips
 
@@ -209,7 +211,7 @@ $ curl -u $AIDBOX_CLIENT_ID:$AIDBOX_CLIENT_SECRET \
 ```
 
 {% hint style="info" %}
-Be careful with the **$** sign in url paths \(aka **/$metadata**\) in the shell - you have to escape it \( **/$metadata**\); otherwise, the shell will try to interpret it as variables ;\)
+Be careful with the **$** sign in url paths (aka **/$metadata**) in the shell - you have to escape it ( **/$metadata**); otherwise, the shell will try to interpret it as variables ;)
 {% endhint %}
 
 ### Stop Devbox
@@ -230,7 +232,7 @@ By default, docker-compose file mount folder `./pgdata` as a persistent volume f
 
 `make update` command updates all project services including dependencies.
 
-```text
+```
 update:
 	docker-compose pull
 	docker-compose up -d
@@ -238,7 +240,6 @@ update:
 
 ### PGIMAGE
 
-[aidbox/db](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1&ordering=last_updated) is a custom compiled Postgres which is bundled with extensions necessary for the Aidbox.  
-One of these extensions is the [jsonknife](https://github.com/niquola/jsonknife), it provides a set of functions used in FHIR search API implementation. If your Postgres image is missing the jsonknife extension, then Aidbox will try to use other tools to implement jsonknife functionality. Fallback will happen in such order: jsonpath, ~~plv8~~, pure PostgreSQL. Keep in mind that alternative implementations have lower performance  
+[aidbox/db](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1\&ordering=last\_updated) is a custom compiled Postgres which is bundled with extensions necessary for the Aidbox.\
+One of these extensions is the [jsonknife](https://github.com/niquola/jsonknife), it provides a set of functions used in FHIR search API implementation. If your Postgres image is missing the jsonknife extension, then Aidbox will try to use other tools to implement jsonknife functionality. Fallback will happen in such order: jsonpath, ~~plv8~~, pure PostgreSQL. Keep in mind that alternative implementations have lower performance\
 _2021-04-09: plv8 jsonknife engine has been deprecated_
-

@@ -19,7 +19,7 @@ scopeSchema:
   # A JSON schema for the incoming data (optional)
 ```
 
-If the `scopeSchema` attribute is provided, incoming mapping data \(also called a scope\) will be validated against it first. Then, a JUTE template from the `body` will be executed. Mapping should return a valid [Transaction Bundle](../api-1/transaction.md), so when applied, it will be able to operate with multiple resources not just single one.
+If the `scopeSchema` attribute is provided, incoming mapping data (also called a scope) will be validated against it first. Then, a JUTE template from the `body` will be executed. Mapping should return a valid [Transaction Bundle](../api-1/transaction.md), so when applied, it will be able to operate with multiple resources not just single one.
 
 ### Example
 
@@ -86,7 +86,7 @@ birthDate: '2010-12-12'
 
 ### $apply Endpoint
 
-To execute Mapping and store its result to the Aidbox database, do a POST request to the $apply endpoint. Request's body will be passed to a JUTE as an incoming data \(scope\):
+To execute Mapping and store its result to the Aidbox database, do a POST request to the $apply endpoint. Request's body will be passed to a JUTE as an incoming data (scope):
 
 ```http
 POST /Mapping/<mapping-id>/$apply
@@ -140,13 +140,13 @@ scope:
   name: "Bob"
 ```
 
-You pass both Mapping and incoming data \(scope\) in a request body. Request response will contain the mapping result or an error information.
+You pass both Mapping and incoming data (scope) in a request body. Request response will contain the mapping result or an error information.
 
 ### Including Mapping inside other Mapping
 
 In Aidbox, there is the `$include` directive which allows you to include a Mapping within another one:
 
-```text
+```
 PUT /Mapping/index
 Content-Type: text/yaml
 
@@ -169,7 +169,6 @@ Because potentially there is a way to create an infinite recursion using the`$in
 
 ### Mapping Editor in the Aidbox UI
 
-![Mapping Editor UI](../.gitbook/assets/screenshot-2019-09-16-at-17.26.13.png)
+![Mapping Editor UI](<../.gitbook/assets/Screenshot 2019-09-16 at 17.26.13.png>)
 
 There is a Mapping Editor in the Aidbox UI with a built-in syntax checker and Debug capabilities. Search for the "Mappings" item in the left navigation menu.
-
