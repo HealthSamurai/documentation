@@ -28,25 +28,25 @@ The `/metrics/hours` response can take some time since it collects a lot of info
 
 #### Postgres
 
-* `pg_requests_total` — continuously\
+* `pg_requests_total` — continuous\
   selects requests number
-* `pg_inserts_total` — continuously\
+* `pg_inserts_total` — continuous\
   inserts number
-* `pg_updates_total` — continuously\
+* `pg_updates_total` — continuous\
   updates number
-* `pg_deletes_total` — continuously\
+* `pg_deletes_total` — continuous\
   deletes number
-* `pg_deletes_total` — continuously\
+* `pg_deletes_total` — continuous\
   deletes number
-* `pg_blks_hit` — continuously\
+* `pg_blks_hit` — continuous\
   number of shared block cache hits
-* `pg_blks_read` — continuously\
+* `pg_blks_read` — continuous\
   number of shared blocks read
-* `pg_tup_fetched` — continuously\
+* `pg_tup_fetched` — continuous\
   fetched tuples number
-* `pg_tup_returned` — continuously\
+* `pg_tup_returned` — continuous\
   returned tuples number
-* `pg_errors_total` — continuously\
+* `pg_errors_total` — continuous\
   number of errors
-* `pg_activity_count` — gauge\
+* `pg_activity_count` — continuous\
   number of workers by state
