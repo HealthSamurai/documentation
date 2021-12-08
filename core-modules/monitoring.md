@@ -14,11 +14,11 @@ Define`BOX_METRIC_PORT`environment variable with the monitoring server port numb
 
 There are three types of metrics Aidbox collects and exposes. All endpoints are available on a separate port, e.g. `GET <AIDBOX_BASE_URL>:<BOX_METRICS_PORT>/metrics`.
 
-| Update frequency | Endpoint               |
-| ---------------- | ---------------------- |
-| continious       | `GET /metrics`         |
-| every minute     | `GET /metrics/minutes` |
-| every hour       | `GET /metrics/hours`   |
+| Endpoint               | Update frequency |
+| ---------------------- | ---------------- |
+| `GET /metrics`         | continuous       |
+| `GET /metrics/minutes` | every minute     |
+| `GET /metrics/hours`   | every minute     |
 
 {% hint style="info" %}
 The `/metrics/hours` response can take some time since it collects a lot of information from the database. Make sure your metrics scraper timeout is sufficient.
