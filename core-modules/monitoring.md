@@ -45,3 +45,6 @@ The `/metrics/hours` response can take some time since it collects a lot of info
 | `pg_stat_statements_total_calls` | every minute | number of times executed |
 | `pg_stat_statements_stddev_execution_time` | every minute | statement execution time |
 | `pg_stat_statements_mean_execution_time` | every minute | mean statement execution time |
+| `pg_table_size` | every hour | table size |
+| `pg_database_size` | every hour | database size |
+| `pg_activity_max` | every hour | maximum number of connections |
