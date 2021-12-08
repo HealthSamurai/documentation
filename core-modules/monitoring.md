@@ -28,7 +28,7 @@ The `/metrics/hours` response can take some time since it collects a lot of info
 
 #### Postgres
 
-| Metric | Update | Description |
+| Metric | Update frequency | Description |
 | - | - | - |
 | `pg_requests_total` | continuous | number of executed selects requests |
 | `pg_inserts_total` | continuous | number of executed insert statements |
@@ -51,7 +51,7 @@ The `/metrics/hours` response can take some time since it collects a lot of info
 
 #### Hikari (Postgres connection pool)
 
-| Metric | Update | Description |
+| Metric | Update frequency | Description |
 | - | - | - |
 | `hikari_active_count` | continuous | number of active connections |
 | `hikari_idle_count` | continuous | number of idle connections |
@@ -66,7 +66,7 @@ The `/metrics/hours` response can take some time since it collects a lot of info
 
 #### JVM
 
-| Metric | Update | Description |
+| Metric | Update frequency | Description |
 | - | - | - |
 | `jvm_gc_time` | continuous | garbage collector execution time |
 | `jvm_gc_count` | continuous | garbage collector count of launch |
