@@ -72,6 +72,7 @@
   * [$dump-sql](api-1/bulk-api-1/usddump-sql.md)
   * [🎓 $dump-sql tutorial](api-1/bulk-api-1/usddump-sql-tutorial.md)
   * [$dump-csv](api-1/bulk-api-1/usddump-csv.md)
+  * [$export](api-1/bulk-api-1/usdexport.md)
   * [$load](api-1/bulk-api-1/usdload.md)
   * [$import & /fhir/$import](api-1/bulk-api-1/usdimport-and-fhir-usdimport.md)
   * [aidbox.bulk data import](api-1/bulk-api-1/aidbox.bulk-data-import.md)
