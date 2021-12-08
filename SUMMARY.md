@@ -186,6 +186,7 @@
 
 * [Entities & Attributes](core-modules/entities-and-attributes.md)
 * [$json-schema](core-modules/usdjson-schema.md)
+* [Monitoring](core-modules/monitoring.md)
 * [Logging & Audit](core-modules/logging-and-audit/README.md)
   * [Elastic Logs and Monitoring Integration](core-modules/logging-and-audit/elastic-logs-and-monitoring-integration.md)
   * [Export logs to ElasticSearch/Kibana](core-modules/logging-and-audit/export-logs-to-elasticsearch-kibana.md)
