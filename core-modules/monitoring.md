@@ -4,11 +4,17 @@ description: Basic Aidbox metrics
 
 # Monitoring
 
-Aidbox starts an additional monitoring server on startup.
-
 ### Setup and environment variable
 
-Define`BOX_METRIC_PORT`environment variable with the monitoring server port number.
+Define`BOX_METRIC_PORT`environment variable with monitoring server port number.
+
+### Start monitoring server
+
+Aidbox starts monitoring server on startup automatically.
+
+{% hint style="info" %}
+To check the monitoring server works make `GET <AIDBOX_BASE_URL>:<BOX_METRICS_PORT>` request. The output should be a string "aidbox metrics".
+{% endhint %}
 
 ### Metric server endpoints
 
