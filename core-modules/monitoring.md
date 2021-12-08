@@ -49,6 +49,21 @@ The `/metrics/hours` response can take some time since it collects a lot of info
 | `pg_database_size` | every hour | database size |
 | `pg_activity_max` | every hour | maximum number of connections |
 
+#### Hikari (Postgres connetction pool)
+
+| Metric | Update | Description |
+| - | - | - |
+| `hikari_active_count` | continuous | number of active connections |
+| `hikari_idle_count` | continuous | number of idle connections |
+| `hikari_acquire_created_seconds_bucket` | continuous | time taken to create an actual physical connection |
+| `hikari_acquire_created_seconds_count` | continuous | number of created physical connections |
+| `hikari_acquire_created_seconds_sum` | continuous | total amount of time to create all physical connections |
+| `hikari_acquired_total` | continuous | number of obtained connections |
+| `hikari_acquire_wait_seconds_bucket` | continuous | time taken to obtain a connection |
+| `hikari_acquire_wait_seconds_sum` | continuous | total amount of time to obtain all connections |
+| `hikari_acquire_used_seconds_bucket` | continuous | time consumed by a connection |
+| `hikari_max_size` | every hour | maximum number of connections |
+
 #### JVM
 
 | Metric | Update | Description |
