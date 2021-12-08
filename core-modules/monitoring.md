@@ -40,3 +40,8 @@ The `/metrics/hours` response can take some time since it collects a lot of info
 | `pg_tup_returned` | continuous | returned tuples number |
 | `pg_errors_total` | continuous | number of errors |
 | `pg_activity_count` | continuous | number of PG workers |
+| `pg_idx_scan` | every minute | number of index scans |
+| `pg_seq_scan` | every minute | number of sequential scans |
+| `pg_stat_statements_total_calls` | every minute | number of times executed |
+| `pg_stat_statements_stddev_execution_time` | every minute | statement execution time |
+| `pg_stat_statements_mean_execution_time` | every minute | mean statement execution time |
