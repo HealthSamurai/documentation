@@ -48,3 +48,18 @@ The `/metrics/hours` response can take some time since it collects a lot of info
 | `pg_table_size` | every hour | table size |
 | `pg_database_size` | every hour | database size |
 | `pg_activity_max` | every hour | maximum number of connections |
+
+#### JVM
+
+| Metric | Update | Description |
+| - | - | - |
+| `jvm_gc_time` | continuous | garbage collector execution time |
+| `jvm_gc_count` | continuous | garbage collector count of launch |
+| `jvm_heap_memory` | continuous | heap memory usage |
+| `jvm_non_heap_memory` | continuous | non-heap memory usage |
+| `jvm_thread_count` | continuous | number of live threads including both daemon and non-daemon thread |
+| `jvm_thread_peak_count` | continuous | peak live thread count |
+| `jvm_thread_daemon_count` | continuous | number of daemon thread |
+| `jvm_available_processors_size` | every hour | number of processors available to the JVM |
+| `jvm_max_memory_size` | every hour | maximum amount of memory that JVM will attempt to use |
+| `jvm_total_memory_size` | every hour | total amount of memory in JVM |
