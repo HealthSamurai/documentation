@@ -16,7 +16,7 @@ Aidbox starts monitoring server on startup automatically.
 To check the monitoring server works make `GET <AIDBOX_BASE_URL>:<BOX_METRICS_PORT>` request. The output should be a string "aidbox metrics".
 {% endhint %}
 
-### Metric server endpoints
+### Metrics server endpoints
 
 There are three types of metrics Aidbox collects and exposes. All endpoints are available on a separate port, e.g. `GET <AIDBOX_BASE_URL>:<BOX_METRICS_PORT>/metrics`.
 
