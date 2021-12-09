@@ -2,13 +2,13 @@
 
 ## November 2021 - v:2111 `edge`
 
-* $ translate on ConceptMap
-* Access Policies on GraphQL
-* FHIR bulk export
-* Add Aidbox Prometheus monitoring endpoints &#x20;
-* Zen Profiling packages version check
-* AuthConfig resource customizable `forgotPasswordUrl`
-* Add Mapping JUTE `urlencode` function&#x20;
+* Implemented the [`$translate`](../../terminology/usdtranslate-on-conceptmap.md) operation. So now you can translate code from one value set to another, based on the existing value set and concept maps resources, and/or other additional knowledge available to Aidbox.
+* Released FHIR bulk data export. Using [$export](../../api-1/bulk-api-1/usdexport.md) you can export patient-level, group level or system-level data to GCP, AWS storage in ndjson format.
+* Extended Aidbox Access Policies on GraphQL API.&#x20;
+* Released metrics server as an Aidbox component that implements the new metrics API for PostgreSQL, Hikari and JVM metrics. &#x20;
+* ZenREleProfiling packages version check. Aidbox won't start if you use an outdated zen FHIR package.
+* Extended AuthConfig resource with customizable `forgotPasswordUrl`
+* Added Mapping JUTE `urlencode` function&#x20;
 
 ## October 2021 - v:2110 _`stable`_
 
