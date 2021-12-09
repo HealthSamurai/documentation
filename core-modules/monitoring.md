@@ -8,7 +8,7 @@ description: Basic Aidbox metrics
 
 Define`BOX_METRIC_PORT`environment variable with monitoring server port number.
 
-### Start monitoring server
+### Start metrics server
 
 Aidbox starts monitoring server on startup automatically.
 
