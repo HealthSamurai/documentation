@@ -8,7 +8,7 @@
 * Released [metrics server](../../core-modules/monitoring.md) as an Aidbox component that implements the new metrics API for PostgreSQL, HikariCP and JVM metrics. &#x20;
 * Added zen FHIR packages version check. Aidbox won't start if you use an outdated zen FHIR package.
 * Extended `AuthConfig` resource with `forgotPasswordUrl` attribute.
-* Added Devbox and Aidboxdb multi-arch Images (ARM64 and AMD64).
+* Added Aidbox, Multibox, Devbox and Aidboxdb multi-arch Images (ARM64 and AMD64) to resolve Apple Silicon M1 processors performance issues.&#x20;
 * Added GraphQL access control and Aidbox Terminology community [notebooks](../../aidbox-ui/notebooks.md).
 * Added [`AIDBOX_COMPLIANCE`](https://docs.aidbox.app/getting-started/installation/configure-devbox-aidbox-multibox#aidbox-compliance-mode) mode that changes Aidbox behavior to pass HL7® FHIR Conformance Tests.
 * Fixed bugs submitted by Aidbox users and updated the documentation.
