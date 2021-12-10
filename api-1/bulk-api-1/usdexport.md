@@ -74,7 +74,7 @@ To start export make a request to `/fhir/Patient/$export`:
 {% tab title="Request" %}
 #### Rest console
 
-```
+```http
 GET /fhir/Patient/$export
 Accept: application/fhir+json
 Prefer: respond-async
@@ -160,7 +160,7 @@ To start export make a request to `/fhir/Group/<group-id>/$export`:
 {% tab title="Request" %}
 #### Rest console
 
-```
+```http
 GET /fhir/Group/<group-id>/$export
 Accept: application/fhir+json
 Prefer: respond-async
@@ -224,7 +224,67 @@ Delete request on the export status endpoint cancels export.
 {% tab title="Request" %}
 #### Rest console
 
+```http
+DELETE /fhir/$export-status/<id>
 ```
+{% endtab %}
+
+{% tab title="Response" %}
+#### Status
+
+202 Accepted
+{% endtab %}
+{% endtabs %}
+
+## System-level export
+
+Export data from a FHIR server, whether or not it is associated with a patient. This supports use cases like backing up a server, or exporting terminology data by restricting the resources returned using the `_type` parameter.
+
+{% tabs %}
+{% tab title="Request" %}
+```http
+GET /fhir/$export
+Accept: application/fhir+json
+Prefer: respond-async
+```
+{% endtab %}
+
+{% tab title="Response(completed)" %}
+#### Status
+
+200 OK
+
+#### Body
+
+```jsonp
+{
+  "status": "completed",
+  "transactionTime": "2021-12-08T08:28:06.489Z",
+  "requiresAccessToken": false,
+  "output": [
+    {
+      "type": "Patient",
+      "url": "https://storage/some-url",
+      "count": 2
+    },
+    {
+      "type": "Person",
+      "url": "https://storage/some-other-url",
+      "count": 1
+    }
+  ]
+}
+```
+{% endtab %}
+{% endtabs %}
+
+Delete request on the export status endpoint cancels export.
+
+{% tabs %}
+{% tab title="Request" %}
+#### Rest console
+
+```http
 DELETE /fhir/$export-status/<id>
 ```
 {% endtab %}
