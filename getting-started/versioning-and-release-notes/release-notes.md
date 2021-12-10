@@ -4,14 +4,14 @@
 
 * Implemented the [`$translate`](../../terminology/usdtranslate-on-conceptmap.md) operation. So now you can translate code from one value set to another, based on the existing value set and concept maps resources, and/or other additional knowledge available to Aidbox.
 * Released FHIR bulk data export. Using [$export](../../api-1/bulk-api-1/usdexport.md) you can export patient-level, group level or system-level data to GCP, AWS storage in ndjson format.
-* Extended Aidbox [Access Policies](../../security-and-access-control-1/security/access-control/) on [GraphQL API](../../api-1/graphql-api.md).&#x20;
+* Extended Aidbox [Access Policies](../../security-and-access-control-1/security/access-control/) to [GraphQL API](../../api-1/graphql-api.md).&#x20;
 * Released [metrics server](../../core-modules/monitoring.md) as an Aidbox component that implements the new metrics API for PostgreSQL, HikariCP and JVM metrics. &#x20;
 * Added zen FHIR packages version check. Aidbox won't start if you use an outdated zen FHIR package.
 * Extended `AuthConfig` resource with `forgotPasswordUrl` attribute.
 * Added Devbox and Aidboxdb multi-arch Images (ARM64 and AMD64).
-* Fixed bugs submitted by Aidbox users and updated the documentation.
 * Added GraphQL access control and Aidbox Terminology community [notebooks](../../aidbox-ui/notebooks.md).
-* Added [`AIDBOX_COMPLIANCE`](https://docs.aidbox.app/getting-started/installation/configure-devbox-aidbox-multibox#aidbox-compliance-mode) mode that changes Aidbox behaviour to pass HL7® FHIR Conformance Tests.
+* Added [`AIDBOX_COMPLIANCE`](https://docs.aidbox.app/getting-started/installation/configure-devbox-aidbox-multibox#aidbox-compliance-mode) mode that changes Aidbox behavior to pass HL7® FHIR Conformance Tests.
+* Fixed bugs submitted by Aidbox users and updated the documentation.
 
 ## October 2021 - v:2110 _`stable`_
 
