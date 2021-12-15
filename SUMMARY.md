@@ -58,6 +58,7 @@
     * [$lookup](api-1/fhir-api/search-1/usdlookup.md)
   * [Observation/$lastn](api-1/fhir-api/misc.md)
   * [History](api-1/fhir-api/history-1.md)
+  * [$everything on Patient](api-1/fhir-api/usdeverything-on-patient.md)
 * [REST API](api-1/api/README.md)
   * [CRUD](api-1/api/crud-1/README.md)
     * [Create](api-1/api/crud-1/fhir-and-aidbox-crud.md)
