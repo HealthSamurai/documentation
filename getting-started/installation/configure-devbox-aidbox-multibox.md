@@ -75,7 +75,7 @@ All distributions require license details to be provided. Alongside with online 
 
 \- Adds CapabilityStatement sanitizing (i.e. removes attributes containing `null` values and empty arrays)
 
-\- Adds AIDBOX\_BASE\_URL in `Bunlde.link.url`
+\- Adds AIDBOX\_BASE\_URL in `Bundle.link.url`
 
 \- Adds FHIR date search parameter validation on `lastUpdated` search parameter
 
