@@ -79,7 +79,7 @@ All distributions require license details to be provided. Alongside with online 
 
 \- Adds FHIR date search parameter validation on `lastUpdated` search parameter
 
-\- Add "alg": "RS256" entry for JWKS
+\- Adds "alg": "RS256" entry for JWKS
 
 \- Changes validation error status to 422 (instead of 400)
 
