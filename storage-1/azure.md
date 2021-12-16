@@ -6,16 +6,38 @@ Azure Blob Storage is used to store arbitrary unstructured data like images, fil
 
 First of all, we have to create AzureAccount resource with **id** = account name and **key** = secret key of your account. Your account name and keys can be found under "Access keys" section in Azure Storage account settings.
 
+{% tabs %}
+{% tab title="Request" %}
+#### Parameters
+
+* `id` _(required)_: Azure storage Account name
+* `key` _(required)_: Azure storage Account key
+
+#### Example
+
 ```yaml
 POST /AzureAccount
 
 id: aidbox
-key: <..................>
+key: long-base64-endoded-string
 ```
+{% endtab %}
+{% endtabs %}
 
 ### Register AzureContainer
 
 Go to Azure console and create container, for example, "avatars". Now we can create an **AzureContainer** resource:
+
+{% tabs %}
+{% tab title="Request" %}
+#### Parameters
+
+* `id` _(optional)_: id to reference this container in Aidbox requests
+* `account` _(required)_: reference to `AzureAccount` resource
+* `storage` _(required)_: Azure resource group name
+* `container` _(required)_: Azure container name
+
+#### Example
 
 ```yaml
 POST /AzureContainer
@@ -25,21 +47,41 @@ account: {id: aidbox, resourceType: AzureAccount}
 storage: aidbox
 container: avatars
 ```
+{% endtab %}
+{% endtabs %}
 
 ### Get Shared Access Signature (SAS) to upload file
 
 When configuration is complete, you can request a temporary URL to upload blobs. By default, such URL expires in 30 minutes. You can provide a blob name or just the extension (name will be generated).
 
+{% tabs %}
+{% tab title="Request" %}
+#### Body parameters
+
+* `blob` _(required)_: file name
+* `timeout` _(optional, default: 30)_: timeout in minutes
+
+#### Example
+
 ```yaml
 POST /azure/storage/avatars
 
 blob: pt-1.png
-# extension: png
-
----
-status: 200
-url:  https://aidbox.blob.core.windows.net/avatars/pt-1.png?sr=............
 ```
+{% endtab %}
+
+{% tab title="Response" %}
+#### Body
+
+* `url`: signed url to upload file
+
+#### Example
+
+```yaml
+url:  https://aidbox.blob.core.windows.net/avatars/pt-1.png?sr=signature
+```
+{% endtab %}
+{% endtabs %}
 
 Configure CORS in azure if you want to send data from browser:
 
