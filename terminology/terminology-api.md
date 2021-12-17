@@ -4,8 +4,17 @@ description: Use a pre-packages terminology bundles to import codes into Aidbox
 
 # Import external (not-present) terminologies
 
-### /terminology/$import
+### Import using Aidbox project
+Specify path or url to zen terminology bundle in [`AIDBOX_ZEN_PATHS` environment variable](https://docs.aidbox.app/aidbox-configuration/aidbox-zen-lang-project#load-project-using-environment-variables).
 
+Example:
+```
+AIDBOX_ZEN_PATHS=path:zip:/path/to/my-terminology-bundle.zip
+```
+
+Aidbox will import terminology from the specified path on start.
+
+### /terminology/$import
 Terminology import operation allows you to load prepared terminology concept packages into you server.
 
 ```yaml
