@@ -206,7 +206,7 @@ schema:
       required: [resource/type]
     properties:
       resource/type:
-        constant:
+        const:
           Organization
 ```
 
