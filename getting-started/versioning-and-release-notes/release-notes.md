@@ -1,5 +1,12 @@
 # Release Notes
 
+## December 2022 - v:2112 `stable`
+
+* Added slicing support to zenzen Zen profiling
+* Added new community notebooks
+* Devbox performance testsuite utility
+* Fixed bugs submitted by Aidbox users and updated the documentation.
+
 ## November 2021 - v:2111 `stable`
 
 * Implemented the [`$translate`](../../terminology/usdtranslate-on-conceptmap.md) operation. So now you can translate code from one value set to another, based on the existing value set and concept maps resources, and/or other additional knowledge available to Aidbox.
