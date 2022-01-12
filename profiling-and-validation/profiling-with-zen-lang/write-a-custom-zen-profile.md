@@ -122,7 +122,8 @@ To enable value-set validation in zen [concept resources](../../terminology/conc
 
 #### `:slicing`
 
-`:slicing` is a zen-lang instruction which allows to validate a part of some array with a zen-schema. Such part is called a slice.
+`:slicing` allows to validate a part of some array with a zen-schema. Such part is called a slice.\
+`:slicing` allows to reproduce [FHIR profiling Slicing](https://www.hl7.org/fhir/profiling.html#slicing) operation
 
 Before applying `:schema` to a slice zen needs to determine elements of the array this slice consists of, this logic is described using `:filter` key.\
 \
@@ -168,5 +169,30 @@ Following example describes that in the `code.coding` array there is a slice cal
           :every
           {:type zen/map
            :require #{:system :code}}}}}}}}}}}
+```
+{% endcode %}
+
+Slicing on `Organization.identifier` constraining max one element in both NPI and CLIA slices:
+
+{% code title="hl7-fhir-us-core.us-core-organization" %}
+```clojure
+ schema
+ {#_...
+  :keys
+  {#_...
+   :identifier
+   {:type  zen/vector
+    :every {:confirms #{hl7-fhir-r4-core.Identifier/schema}}
+    :slicing
+    {:slices
+     {"NPI"
+      {:schema {:type zen/vector, :maxItems 1}
+       :filter
+       {:engine :match
+        :match  {:system "http://hl7.org/fhir/sid/us-npi"}}}
+      "CLIA"
+      {:schema {:type zen/vector, :maxItems 1}
+       :filter {:engine :match
+                :match  {:system "urn:oid:2.16.840.1.113883.4.7"}}}}}}}}
 ```
 {% endcode %}
