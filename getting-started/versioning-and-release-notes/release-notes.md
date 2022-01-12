@@ -2,9 +2,9 @@
 
 ## December 2022 - v:2112 `stable`
 
-* Added slicing support to zen FHIR profiles.
+* Added [slicings](release-notes.md#december-2022-v-2112-stable) support to zen FHIR profiles.
 * Released [Devbox performance test](https://github.com/Aidbox/devbox#performance-tests) suite utility.
-* Added new community notebooks that demonstrate Aidbox functionality including Bulk export API, Aidbox terminology, Custom resources, etc. Aidbox users can easily create and share notebooks as community notebooks.
+* Added new community notebooks that demonstrate Aidbox functionality including Bulk export API, Aidbox terminology, Custom resources, etc.&#x20;
 * Fixed bugs submitted by Aidbox users and updated the documentation.
 
 ## November 2021 - v:2111 `stable`
