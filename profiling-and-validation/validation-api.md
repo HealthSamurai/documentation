@@ -143,3 +143,7 @@ GET /BatchValidationError?.run.id=pt-validation-run-2&_format=yaml&_result=array
     resourceType: Patient
   id: pt-validation-run-2-Patient-pt1
 ```
+
+{% hint style="info" %}
+If you restart Aidbox you have to start validation over
+{% endhint %}
