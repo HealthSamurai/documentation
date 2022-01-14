@@ -36,6 +36,7 @@
   * [Search](api-1/fhir-api/search-1/README.md)
     * [\_id](api-1/fhir-api/search-1/\_id.md)
     * [\_lastUpdated & \_createdAt](api-1/fhir-api/search-1/\_lastupdated.md)
+    * [\_profile](api-1/fhir-api/search-1/\_profile.md)
     * [\_text & \_content](api-1/fhir-api/search-1/\_text-and-\_content.md)
     * [\_ilike](api-1/fhir-api/search-1/\_ilike.md)
     * [\_elements](api-1/fhir-api/search-1/\_elements.md)
