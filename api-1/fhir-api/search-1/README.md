@@ -73,7 +73,7 @@ GET /Patient?name=Max&_elements=id, birthDAte
 | [\_explain](\_explain.md)                     |       | See query execution plan                                          |
 | [\_result](\_result.md)                       |       | Change result format                                              |
 | \_security                                    | FHIR  |                                                                   |
-| \_profile                                     | FHIR  |                                                                   |
+| [\_profile](\_profile.md)                     | FHIR  | Search by resource profile                                        |
 | \_has                                         | FHIR  |                                                                   |
 | \_tag                                         | FHIR  |                                                                   |
 
