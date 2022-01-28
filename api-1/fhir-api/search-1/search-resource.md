@@ -38,7 +38,7 @@ For `:text` modifier you also need to specify `"text-format"`, refer to `{{param
 ```yaml
 PUT /Search/<resourceType>.<parameter>
 
-resourceType: Serach
+resourceType: Search
 name: <parameter>
 resource: {id: <resourceType>, resourceType: Entity}
 param-parser: token
@@ -49,6 +49,19 @@ token:
   both: <SQL query for parameter={{param.system}}|{{param.code}}>
   text: <SQL query for parameter:text={{param.text}}>
   text-format: <format string {{param.text}}>
+```
+
+### **reference search**
+
+In "where" expression you can use {{param.resourceType}} for `ResourceType` and {{param.id}} for resource `id`. See example below.
+
+```yaml
+PUT /Search/<resourceType>.<parameter>
+
+resourceType: Search
+name: <parameter>
+resource: {id: <resourceType>, resourceType: Entity}
+param-parser: reference
 ```
 
 ### multi: array
@@ -165,3 +178,23 @@ GET /ServiceRequest?identifier:text=foo
 GET /ServiceRequest?identifier:not=foo
 # will result fallback to default implementation NOT resource @> '{"identifier": [{"value": "foo"}]}'
 ```
+
+#### reference search:
+
+```yaml
+PUT /Patient/generalPractitioner
+
+resourceType: Search
+id: Patient.generalPractitioner
+name: generalPractitioner
+param-parser: reference
+where: '{{table}}.resource->'generalPractitioner' @>  jsonb_build_array(jsonb_build_object('id', {{param.id}}::text, 'resourceType', {{param.resourceType}}::text)) '
+resource: {id: Patient, resourceType: Entity}
+
+# search Patient by Pratitoner referene
+
+GET /Patient?generalPractitioner=Practitioner/pract-1
+```
+
+
+
