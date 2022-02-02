@@ -26,7 +26,7 @@ Aidbox Docker Images are available on [Docker Hub](https://hub.docker.com/u/heal
 
 Starting from January 2022 we introduce Long Term Support releases. Aidbox team will backport security and critical bug fixes to LTS releases throughout 1-year support window.\
 \
-Aidbox LTS releases are scheduled to be published annually in February and July. If you are not interested in getting new features on a monthly basis but want to get critical bug fixes please consider switching to LTS releases.
+Aidbox LTS releases are scheduled to be published annually along with YY02 and YY07 releases. If you are not interested in getting new features on a monthly basis but want to get critical bug fixes please consider switching to LTS releases.
 
 ### Aidboxdb release cycle
 
