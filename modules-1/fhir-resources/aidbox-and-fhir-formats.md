@@ -7,14 +7,14 @@ description: Difference between Aidbox and FHIR formats
 Aidbox stores FHIR resources almost as is with 3 types of isomorphic transformations:
 
 * References
-* Union \(Choice Types\)
+* Union (Choice Types)
 * First-Class Extensions
 
 ### References:
 
 In FHIR, references are represented as URI string. In most cases, you are interested in discrete parts of references like resource id and type. For performance and accuracy reasons Aidbox parses reference and stores its parts in discrete fields. There are three types of references - absolute, relative, and local. Aidbox parses them into different attributes.
 
-**Relative** \(interpreted as a reference to a resource on the same server; trigger referential consistency check\) :
+**Relative** (interpreted as a reference to a resource on the same server; trigger referential consistency check) :
 
 ```yaml
 # FHIR
@@ -29,7 +29,7 @@ subject:
 
 **reference** is parsed into a pair of **`{id,resourceType}`** attributes
 
-**Absolute** \(interpreted as a reference to an external resource;  no ref validation\)
+**Absolute** (interpreted as a reference to an external resource;  no ref validation)
 
 ```yaml
 # FHIR
@@ -43,7 +43,7 @@ subject:
 
 reference is parsed into the **uri** attribute
 
-**Local** \(interpreted as a local ref to contained resources \)
+**Local** (interpreted as a local ref to contained resources )
 
 ```yaml
 # FHIR
@@ -57,9 +57,13 @@ subject:
 
 reference is parsed into a **ref** attribute
 
-### Union \(Choice\) Types:
+{% hint style="info" %}
+To enable referential integrity checks in extensions (`extension.valueReference`) create a [first-class extension](aidbox-and-fhir-formats.md#first-class-extensions).
+{% endhint %}
 
-Some elements can have multiple types. Such elements in FHIR spec prefixed with `[x]` like `Observation.value[x]` and represented in JSON in a _wrong_ \(postfixed\) way like`Observation.valueString` . The simple logical check "why it's wrong" is "you could not have a collection of union elements in FHIR JSON!". Aidbox fixes this moving type as a key inside a nested object - `valueString:... => value: {string: ...}`
+### Union (Choice) Types:
+
+Some elements can have multiple types. Such elements in FHIR spec prefixed with `[x]` like `Observation.value[x]` and represented in JSON in a _wrong_ (postfixed) way like`Observation.valueString` . The simple logical check "why it's wrong" is "you could not have a collection of union elements in FHIR JSON!". Aidbox fixes this moving type as a key inside a nested object - `valueString:... => value: {string: ...}`
 
 ```yaml
 #FHIR
@@ -78,7 +82,7 @@ value:
 
 ### First-Class Extensions
 
-While FHIR uses two different ways to define **core elements** and **extensions**, Aidbox provides unified framework to describe both. Aidbox supports user-defined attributes or "first-class extensions". In Aidbox, you can define new attributes \(elements\) for existing \(FHIR\) resources.  Let's illustrate this on race complex attribute for Patient from US-Core FHIR Profile.
+While FHIR uses two different ways to define **core elements** and **extensions**, Aidbox provides unified framework to describe both. Aidbox supports user-defined attributes or "first-class extensions". In Aidbox, you can define new attributes (elements) for existing (FHIR) resources.  Let's illustrate this on race complex attribute for Patient from US-Core FHIR Profile.
 
 This is how a patient with race looks in FHIR format:
 
@@ -168,4 +172,3 @@ resourceType: Patient
     category: {system: 'urn:oid:2.16.840.1.113883.6.238', code: 2028-9, display: Asian}
     detailed: {system: 'urn:oid:2.16.840.1.113883.6.238', code: 2029-7, display: Asian Indian}
 ```
-

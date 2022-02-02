@@ -1,6 +1,10 @@
 # Release Notes
 
-## December 2022 - v:2112 `stable`
+## January 2022 - v:2201 `stable`
+
+* Added FHIR R4 zen search parameters. So now you can run Aidbox on managed Postgres out of the box.&#x20;
+
+## December 2021 - v:2112 `stable`
 
 * Added [slicings ](https://docs.aidbox.app/profiling-and-validation/profiling-with-zen-lang/write-a-custom-zen-profile#slicing)support to zen FHIR profiles.
 * Released [Devbox performance test suite](https://github.com/Aidbox/devbox#performance-tests).
