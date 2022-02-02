@@ -1,12 +1,16 @@
 # Release Notes
 
-## January 2022 - v:2201 `stable`
+## January 2022 - v:2201 `edge`
 
-* Added FHIR R4 zen search parameters. So now you can run Aidbox on managed Postgres out of the box.&#x20;
-* Added new env `box_compatibility_validation_json__schema_regex="#{:fhir-datetime}` to enable strict date time validation in JSON schema validation engine per [FHIR spec](https://www.hl7.org/fhir/datatypes.html#dateTime).
-*
+* Added FHIR R4 search parameters to [zen FHIR packages](../../profiling-and-validation/profiling-with-zen-lang/#zen-fhir-packages) (alpha) as a part of our roadmap to run Aidbox on managed PostgreSQL.
+* Released loader for huge imports that allows loading data from an AWS bucket directly to the Aidbox database with maximum performance.
+* Added new env `box_compatibility_validation_json__schema_regex="#{:fhir-datetime}` to enable strict date time validation in JSON schema validation engine per [FHIR spec](https://www.hl7.org/fhir/datatypes.html#dateTime)
+* Improved [`$export`](../../api-1/bulk-api-1/usdexport.md) error statuses&#x20;
+* Added Search resource `reference` [support](../../api-1/fhir-api/search-1/search-resource.md#reference-search)
+* Improved [Search parameter](../../api-1/fhir-api/search-1/searchparameter.md#expression) expression error reporting
+* Improved [zen profiles](../../profiling-and-validation/profiling-with-zen-lang/) support in [GraphQL API](../../api-1/graphql-api.md) &#x20;
 
-    \`
+
 
 ## December 2021 - v:2112 `stable`
 
