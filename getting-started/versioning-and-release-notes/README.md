@@ -10,23 +10,23 @@ description: >-
 
 Aidbox Docker Images are available on [Docker Hub](https://hub.docker.com/u/healthsamurai).&#x20;
 
-**edge**\
+**:edge**\
 ****\
-****The most recent Aidbox version. **** We highly recommend using the **edge** channel in staging and dev environments to get access to new functionality and detect potential issues as soon as possible. Every commit into Aidbox code base after successful CI is published into **edge** channel. The **edge** channel may have issues and/or regressions.\
+****The most recent Aidbox build. **** We highly recommend using the **edge** channel in staging and dev environments to get access to new functionality and detect potential issues as soon as possible. Every commit into Aidbox code base after successful CI is published into **edge** channel. The **edge** channel may have issues and/or regressions.\
 \
-**latest**\
+:**latest**\
 ****\
-**Latest** releases are considered to be stable and passed all available QA and review process, but needs real-world testing. You can use them for staging environments.\
+**Latest** releases passed all available QA and review process, but needs real-world testing. These releases are updated monthly.\
 ****\
-**stable**
+**:stable**
 
-**Stable** releases ready for production. For \*\*\*\* every release, we create an immutable tag \*\*\*\* in the \*\*\*\* format `YYMM` (for example for the 2021 July release it will be **2107**).
+**Stable** releases are ready for production. Current **stable** is a previous **latest** release. For \*\*\*\* every release, we create an immutable tag \*\*\*\* in the \*\*\*\* format `YYMM` (for example for the 2021 July release it will be **2107**).
 
 #### Long Term Support releases
 
 Starting from January 2022 we introduce Long Term Support releases. Aidbox team will backport security and critical bug fixes to LTS releases throughout 1-year support window.\
 \
-Aidbox LTS releases are scheduled to be published annually in February and July. If you consider less frequent updates with critical bug fixes but fewer new features, please consider switching to LTS releases available on Docker Hub.
+Aidbox LTS releases are scheduled to be published annually in February and July. If you are not interested in getting new features on a monthly basis but want to get critical bug fixes please consider switching to LTS releases.
 
 ### Aidboxdb release cycle
 
