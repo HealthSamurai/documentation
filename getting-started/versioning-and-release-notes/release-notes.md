@@ -3,6 +3,10 @@
 ## January 2022 - v:2201 `stable`
 
 * Added FHIR R4 zen search parameters. So now you can run Aidbox on managed Postgres out of the box.&#x20;
+* Added new env `box_compatibility_validation_json__schema_regex="#{:fhir-datetime}` to enable strict date time validation in JSON schema validation engine per [FHIR spec](https://www.hl7.org/fhir/datatypes.html#dateTime).
+*
+
+    \`
 
 ## December 2021 - v:2112 `stable`
 
