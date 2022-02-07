@@ -113,6 +113,29 @@ extracted:
 
 **\<resource-template>** is a template/prototype of a resulting FHIR resource, where some attributes contain substitution rules like `{ $path!: ["attr", "attr"]}`. These rules will be replaced with values from Custom resource, indicated by this path.
 
+### Advanced substitution rules examples
+
+{% code title="resource.yaml" %}
+```yaml
+resourceType: QuestionnaireResponse
+id: qr1
+questionnaire: Questionnaire/q1|1
+item:
+- text: What is your height in feet.inches?
+  answer:
+  - valueDecimal: 5.2
+  linkId: ht
+- text: What is your weight in pounds?
+  answer:
+  - valueDecimal: 122
+  linkId: wt
+```
+{% endcode %}
+
+Let's suppose you want to extract the height of a respondent, for this purpose you can use this `$path` expression `["item, {"linkId": ht"}, "answer", 0, "valueDecimal"]`
+
+`{"linkId": ht"}` - this object is used for filtering, you can declare the objects with as many keys as you need to match item in the specified collection.
+
 ### Create SDC resource
 
 Now let's define how FHIR Observations will be extracted from Vitals. We have to create AlphaSDC resource for that:
