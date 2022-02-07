@@ -282,3 +282,32 @@ Returns the string "Upload started"
 Returns error message
 {% endtab %}
 {% endtabs %}
+
+#### Example
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+POST /rpc
+content-type: text/yaml
+accept: text/yaml
+
+method: aidbox.bulk/load-from-bucket
+params:
+  bucket: "aws/your-bucket-id"
+  account:
+    access-key-id: your-key-id
+    secret-access-key: your-secret-access-key
+    region: us-east-1
+```
+{% endtab %}
+
+{% tab title="Response" %}
+{% code title="Status: 200" %}
+```
+result:
+  message: "Upload started"
+```
+{% endcode %}
+{% endtab %}
+{% endtabs %}
