@@ -22,7 +22,7 @@ Starts `aidbox.bulk` import
 
 {% tabs %}
 {% tab title="Parameters" %}
-Object with following structure:
+Object with the following structure:
 
 * `format` input resources format, <mark style="color:orange;">`fhir`</mark> <mark style="color:red;"></mark> or <mark style="color:orange;">`aidbox`</mark> (default: <mark style="color:orange;">`fhir`</mark>)&#x20;
 * `meta` meta data that will be attached to each of the imported resources
@@ -258,3 +258,27 @@ result:
 {% endtab %}
 {% endtabs %}
 
+### `aidbox.bulk/`load-from-bucket
+
+It allows loading data from an AWS bucket directly to the Aidbox database with maximum performance.
+
+{% tabs %}
+{% tab title="Parameters" %}
+Object with the following structure:
+
+* `bucket` defines your bucket connection string
+* `thread-num` defines how many threads will process the import. The default value is 4.
+* `account` object
+  * `access-key-id` AWS key ID
+  * `secret-access-key` AWS secret key
+  * `region` AWS Bucket region
+{% endtab %}
+
+{% tab title="Result" %}
+Returns the string "Upload started"
+{% endtab %}
+
+{% tab title="Error" %}
+Returns error message
+{% endtab %}
+{% endtabs %}
