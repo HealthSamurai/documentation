@@ -258,7 +258,7 @@ result:
 {% endtab %}
 {% endtabs %}
 
-### `aidbox.bulk/`load-from-bucket
+### `aidbox.bulk/load-from-bucket`
 
 It allows loading data from an AWS bucket directly to the Aidbox database with maximum performance.
 
