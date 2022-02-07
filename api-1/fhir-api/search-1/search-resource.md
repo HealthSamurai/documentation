@@ -53,7 +53,12 @@ token:
 
 ### **reference search**
 
-In "where" expression you can use {{param.resourceType}} for `ResourceType` and {{param.id}} for resource `id`. See example below.
+Allows use different reference types in "where" expression. Reference can be defined [in several ways](http://www.hl7.org/fhir/search.html#reference):
+- {{param.resourceType}} for `ResourceType` and {{param.id}} for resource `id`
+- {{param.id}} for resource `id`
+- {{param.url}} for resource `url`
+
+See example below
 
 ```yaml
 PUT /Search/<resourceType>.<parameter>
@@ -179,7 +184,9 @@ GET /ServiceRequest?identifier:not=foo
 # will result fallback to default implementation NOT resource @> '{"identifier": [{"value": "foo"}]}'
 ```
 
-#### reference search:
+#### reference search
+
+##### by type/id
 
 ```yaml
 PUT /Patient/generalPractitioner
@@ -196,5 +203,36 @@ resource: {id: Patient, resourceType: Entity}
 GET /Patient?generalPractitioner=Practitioner/pract-1
 ```
 
+##### by id
 
+```yaml
+PUT /Patient/generalPractitioner
 
+resourceType: Search
+id: Patient.generalPractitioner
+name: generalPractitioner
+param-parser: reference
+where: '{{table}}.resource->'generalPractitioner' @>  jsonb_build_array(jsonb_build_object('id', {{param.id}}::text))  '
+resource: {id: Patient, resourceType: Entity}
+
+# search Patient by Pratitoner referene
+
+GET /Patient?generalPractitioner=pract-1
+```
+
+##### by url
+
+```yaml
+PUT /Patient/myProfile
+
+resourceType: Search
+id: Patient.myProfile
+name: myProfile
+param-parser: reference
+where: '{{table}}.resource#>'{meta,profile}' @>  jsonb_build_array({{param.url}}::text) '
+resource: {id: Patient, resourceType: Entity}
+
+# search Patient by profile
+
+GET /Patient?myProfile=http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+```
