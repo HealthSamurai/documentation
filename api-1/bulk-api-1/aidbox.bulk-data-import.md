@@ -294,7 +294,8 @@ accept: text/yaml
 
 method: aidbox.bulk/load-from-bucket
 params:
-  bucket: "aws/your-bucket-id"
+  bucket: s3://your-bucket-id
+  thread-num: 4
   account:
     access-key-id: your-key-id
     secret-access-key: your-secret-access-key
