@@ -1,6 +1,12 @@
 # $import & /fhir/$import
 
-`$import` is an implementation of the upcoming FHIR Bulk Import API. This is an async Operation, which returns url to monitor progress. Here is an example:
+`$import` is an implementation of the upcoming FHIR Bulk Import API. This is an async Operation, which returns url to monitor progress.&#x20;
+
+{% hint style="warning" %}
+Keep in mind that $import does not validate inserted resources for the sake of performance. Pay attention to the structure of data you insert and use the correct URL for your data format, i.e.: use /fhir prefix for FHIR data.
+{% endhint %}
+
+### Example
 
 {% tabs %}
 {% tab title="Request" %}
@@ -62,5 +68,4 @@ inputs:
   url: https://storage.googleapis.com/aidbox-public/synthea/100/Patient.ndjson.gz
 ```
 
-## 
-
+##
