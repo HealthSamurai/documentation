@@ -8,6 +8,10 @@ There are two versions of this operation - `/fhir/$load` accepts data in FHIR fo
 Keep in mind that $load does not validate inserted resources for the sake of performance. Pay attention to the structure of data you insert and use the correct URL for your data format, i.e.: use /fhir prefix for FHIR data.
 {% endhint %}
 
+{% hint style="info" %}
+Please consider using [Asynchronous validation API](../../profiling-and-validation/validation-api.md#asynchronous-batch-validation-draft) to validate data after $load
+{% endhint %}
+
 &#x20;Load 100 synthea Patients to Aidbox (see [tutorial](synthea-by-bulk-api.md)):
 
 ```yaml
