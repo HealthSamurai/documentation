@@ -4,6 +4,10 @@ description: Multibox box life cycle RPC methods
 
 # Multibox box manager API
 
+{% hint style="info" %}
+Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [contact](../contact-us.md) us if you have a question, feedback or suggestions.
+{% endhint %}
+
 Multibox box manager API uses Aidbox JSON [RPC API](../api-1/rpc-api.md).
 
 {% hint style="info" %}
@@ -18,7 +22,7 @@ List FHIR versions supported by the server. One of these values must be used in 
 
 ### `multibox/create-box`
 
-Create new box for current user.
+Create a new box for the current user.
 
 {% tabs %}
 {% tab title="Parameters" %}
@@ -45,7 +49,7 @@ Get box information.
 
 ### `multibox/delete-box`
 
-Delete a box`.`<mark style="color:red;">**This operation will drop the box database. Can not be undone!**</mark>
+Delete a box. <mark style="color:red;">**This operation will drop the box database. Can not be undone!**</mark>
 
 {% tabs %}
 {% tab title="Parameters" %}
