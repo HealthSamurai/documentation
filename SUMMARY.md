@@ -209,6 +209,10 @@
   * [SQL endpoints](modules-1/aidbox-search/usdpsql.md)
 * [First-Class Extensions](modules-1/first-class-extensions.md)
 
+## Multibox
+
+* [Multibox box manager API](multibox/multibox-box-manager-api.md)
+
 ## Plan API
 
 * [Plan API Overview](plan-api/plan-api-overview.md)
