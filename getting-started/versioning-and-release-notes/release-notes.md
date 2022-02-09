@@ -3,12 +3,12 @@
 ## January 2022 - v:2201 `latest`
 
 {% hint style="info" %}
-Starting from January 2022 we're switching to a new release cycle. We add `:latest and LTS (`long-term support) versions. Check [the updated release cycle](./).
+Starting from January 2022 we're switching to a new release cycle. We added`:latest and LTS` (long-term support) versions. Check [the updated release cycle](./).
 {% endhint %}
 
 * Added FHIR R4 search parameters to [zen FHIR packages](../../profiling-and-validation/profiling-with-zen-lang/#zen-fhir-packages) (alpha) as a part of our roadmap to run Aidbox on managed PostgreSQL databases.
 * Released [load-from-bucket](../../api-1/bulk-api-1/aidbox.bulk-data-import.md#aidbox.bulk-load-from-bucket) import operation for huge imports that allows loading terabytes of data from an AWS bucket directly to the Aidbox database with maximum performance.
-* Added DB Tables and DB Queries to Aidbox UI.
+* Added Aidbox UI new tools: DB Tables and DB Queries to improve database administration and introspection.
 * Added new env `box_compatibility_validation_json__schema_regex="#{:fhir-datetime}` to enable strict date time validation in JSON schema validation engine per [FHIR spec](https://www.hl7.org/fhir/datatypes.html#dateTime).
 * Improved [`$export`](../../api-1/bulk-api-1/usdexport.md) error statuses.
 * Added Search resource `reference` [support](../../api-1/fhir-api/search-1/search-resource.md#reference-search).

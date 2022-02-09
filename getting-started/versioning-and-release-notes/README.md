@@ -12,16 +12,16 @@ Aidbox docker images are available on [Docker Hub](https://hub.docker.com/u/heal
 
 **:edge**\
 ****\
-****The most recent Aidbox build. **** We highly recommend using the **edge** channel in staging and dev environments to get access to new functionality and detect potential issues as soon as possible. Every commit into the Aidbox code base after successful CI is published to the **edge** channel. The **edge** channel may have issues and/or regressions.\
-``\
-``:**latest**\
+****The most recent Aidbox build. **** We highly recommend using the **edge** channel in staging and dev environments to get access to new functionality and detect potential issues as soon as possible. Every commit into the Aidbox code base after successful CI is published to the **edge** channel. The **edge** channel may have issues and/or regressions.
+
+:**latest**\
 ****\
-**Latest** releases contain new functionality, bugfixes, and optimizations and passed all available QA and review processes by the Health Samurai team. If you're actively developing we recommend using **latest**. These releases are updated monthly.\
-****\
+**Latest** releases contain new functionality, bugfixes, and optimizations and passed all available QA and review processes by the Health Samurai team. If you're actively developing we recommend using **latest**. These releases are updated monthly.
+
 **:stable**
 
-**Stable** releases are ready for production. The current **stable** is the previous **latest** release. \
-\
+**Stable** releases are ready for production. The current **stable** is the previous **latest** release. These releases are updated monthly.&#x20;
+
 **Tagged releases**\
 \
 For every \*\*\*\* release, we create an immutable \*\*\*\* tag in the \*\*\*\* format YYMM (for example it will be **2107** for the 2021 July release).

@@ -95,9 +95,12 @@
 ***
 
 * [Aidbox UI](aidbox-ui/README.md)
+  * [Aidbox Notebooks](aidbox-ui/notebooks.md)
   * [REST Console](aidbox-ui/rest-console-1.md)
   * [DB Console](aidbox-ui/db-console.md)
-  * [Aidbox Notebooks](aidbox-ui/notebooks.md)
+  * [Attrs stats](aidbox-ui/attrs-stats.md)
+  * [DB Tables](aidbox-ui/db-tables.md)
+  * [DB Queries](aidbox-ui/db-queries.md)
 
 ## Profiling and validation
 
