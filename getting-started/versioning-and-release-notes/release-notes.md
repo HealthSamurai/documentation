@@ -105,7 +105,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 * Added Intercom so you can get help directly from your Aidbox.Dev or Aidbox.Cloud.
 * Added a guide on search performance optimization to our docs. Check it [here](https://docs.aidbox.app/api-1/api/search-parameters#optimization-of-search-parameters).
 
-## June \_\_2021 - v:20210610
+## June 2021 - v:20210610 _`LTS`_
 
 * Added support for [Bulk API export in CSV](https://docs.aidbox.app/api-1/bulk-api-1/usddump-csv).     You can use **/\[resourceType]/$dump-csv** endpoint to generate CSV file in which JSON resource structure is flattened into comma-separated format.  Such an option for data export is useful for integrations with external EHR systems. &#x20;
 * Added support for [If-Match header](https://docs.aidbox.app/api-1/api/crud-1/delete) in DELETE operation of FHIR REST API.    If-Match is most often used to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource (i.e., to prevent the "lost update" problem). &#x20;
