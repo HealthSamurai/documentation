@@ -8,13 +8,14 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 * Added FHIR R4 search parameters to [zen FHIR packages](../../profiling-and-validation/profiling-with-zen-lang/#zen-fhir-packages) (alpha) as a part of our roadmap to run Aidbox on managed PostgreSQL databases.
 * Released [load-from-bucket](../../api-1/bulk-api-1/aidbox.bulk-data-import.md#aidbox.bulk-load-from-bucket) import operation for huge imports that allows loading terabytes of data from an AWS bucket directly to the Aidbox database with maximum performance.
-* Added Aidbox UI new tools: DB Tables and DB Queries to improve database administration and introspection.
+* Added Aidbox UI new tools: [DB Tables](../../aidbox-ui/db-tables.md) and [DB Queries](../../aidbox-ui/db-queries.md) to improve database administration and introspection.
 * Added new env `box_compatibility_validation_json__schema_regex="#{:fhir-datetime}` to enable strict date time validation in JSON schema validation engine per [FHIR spec](https://www.hl7.org/fhir/datatypes.html#dateTime).
 * Improved [`$export`](../../api-1/bulk-api-1/usdexport.md) error statuses.
 * Added Search resource `reference` [support](../../api-1/fhir-api/search-1/search-resource.md#reference-search).
 * Improved [Search parameter](../../api-1/fhir-api/search-1/searchparameter.md#expression) expression error reporting.
 * Improved [zen profiles](../../profiling-and-validation/profiling-with-zen-lang/) support in [GraphQL API](../../api-1/graphql-api.md).
 * Released [Multibox box manager API](../../multibox/multibox-box-manager-api.md).
+* Added Aidbox UI [Analyze Attributes](../../aidbox-ui/attrs-stats.md) tab description.
 
 
 
