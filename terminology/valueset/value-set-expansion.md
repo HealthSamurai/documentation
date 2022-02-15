@@ -53,71 +53,35 @@ GET [base]/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/administrative-gend
 
 Or
 
-```javascript
+```yaml
 POST [base]/ValueSet/$expand
-{ 
-  "resourceType" : "Parameters",
-  "parameter" : [
-     {
-      "name" : "url",
-      "valueUri" : "http://hl7.org/fhir/ValueSet/administrative-gender"
-     }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- {name: url, valueUri: 'http://hl7.org/fhir/ValueSet/administrative-gender'}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-    "id": "administrative-gender",
-    "resourceType": "ValueSet",
-    "url": "http://hl7.org/fhir/ValueSet/administrative-gender",
-    "description": "The gender of a person used for administrative purposes.",
-    "compose": {
-        "include": [
-            {
-                "system": "http://hl7.org/fhir/administrative-gender"
-            }
-        ]
-    },
-    "name": "AdministrativeGender",
-    "expansion": {
-        "timestamp": "2018-09-25T16:24:55Z",
-        "identifier": "http://hl7.org/fhir/ValueSet/administrative-gender",
-        "contains": [
-            {
-                "code": "male",
-                "module": "fhir-3.3.0",
-                "system": "http://hl7.org/fhir/administrative-gender",
-                "display": "Male",
-                "definition": "Male"
-            },
-            {
-                "code": "female",
-                "module": "fhir-3.3.0",
-                "system": "http://hl7.org/fhir/administrative-gender",
-                "display": "Female",
-                "definition": "Female"
-            },
-            {
-                "code": "other",
-                "module": "fhir-3.3.0",
-                "system": "http://hl7.org/fhir/administrative-gender",
-                "display": "Other",
-                "definition": "Other"
-            },
-            {
-                "code": "unknown",
-                "module": "fhir-3.3.0",
-                "system": "http://hl7.org/fhir/administrative-gender",
-                "display": "Unknown",
-                "definition": "Unknown"
-            }
-        ]
-    },
-    ......
-}
+```yaml
+id: administrative-gender
+resourceType: ValueSet
+url: http://hl7.org/fhir/ValueSet/administrative-gender
+description: The gender of a person used for administrative purposes.
+compose:
+  include:
+  - {system: 'http://hl7.org/fhir/administrative-gender'}
+name: AdministrativeGender
+expansion:
+  timestamp: '2018-09-25T16:24:55Z'
+  identifier: http://hl7.org/fhir/ValueSet/administrative-gender
+  contains:
+  - {code: male, module: fhir-3.3.0, system: 'http://hl7.org/fhir/administrative-gender', display: Male, definition: Male}
+  - {code: female, module: fhir-3.3.0, system: 'http://hl7.org/fhir/administrative-gender', display: Female, definition: Female}
+  - {code: other, module: fhir-3.3.0, system: 'http://hl7.org/fhir/administrative-gender', display: Other, definition: Other}
+  - {code: unknown, module: fhir-3.3.0, system: 'http://hl7.org/fhir/administrative-gender', display: Unknown, definition: Unknown}
+......
 ```
 {% endtab %}
 {% endtabs %}
@@ -128,79 +92,37 @@ The value set is provided directly as a part of the request.
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 POST [base]/ValueSet/$expand
-{ 
-  "resourceType" : "Parameters",
-  "parameter" : [
-     {
-      "name" : "valueSet",
-      "resource" : {
-        "resourceType": "ValueSet",
-        "url": "http://custom/administrative-gender",
-        "compose": {
-           "include": [
-              {
-                "valueSet": ["http://hl7.org/fhir/ValueSet/administrative-gender"]
-              }
-          ]
-        } 
-       }
-     }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- name: valueSet
+  resource:
+    resourceType: ValueSet
+    url: http://custom/administrative-gender
+    compose:
+      include:
+      - valueSet: ['http://hl7.org/fhir/ValueSet/administrative-gender']
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-    "resourceType": "ValueSet",
-    "url": "http://custom/administrative-gender",
-    "compose": {
-        "include": [
-            {
-                "valueSet": [
-                    "http://hl7.org/fhir/ValueSet/administrative-gender"
-                ]
-            }
-        ]
-    },
-    "expansion": {
-        "timestamp": "2018-09-26T08:51:30Z",
-        "identifier": "http://custom/administrative-gender",
-        "contains": [
-            {
-                "code": "male",
-                "module": "fhir-3.3.0",
-                "system": "http://hl7.org/fhir/administrative-gender",
-                "display": "Male",
-                "definition": "Male"
-            },
-            {
-                "code": "female",
-                "module": "fhir-3.3.0",
-                "system": "http://hl7.org/fhir/administrative-gender",
-                "display": "Female",
-                "definition": "Female"
-            },
-            {
-                "code": "other",
-                "module": "fhir-3.3.0",
-                "system": "http://hl7.org/fhir/administrative-gender",
-                "display": "Other",
-                "definition": "Other"
-            },
-            {
-                "code": "unknown",
-                "module": "fhir-3.3.0",
-                "system": "http://hl7.org/fhir/administrative-gender",
-                "display": "Unknown",
-                "definition": "Unknown"
-            }
-        ]
-    }
-}
+```yaml
+resourceType: ValueSet
+url: http://custom/administrative-gender
+compose:
+  include:
+  - valueSet: ['http://hl7.org/fhir/ValueSet/administrative-gender']
+expansion:
+  timestamp: '2018-09-26T08:51:30Z'
+  identifier: http://custom/administrative-gender
+  contains:
+  - {code: male, module: fhir-3.3.0, system: 'http://hl7.org/fhir/administrative-gender', display: Male, definition: Male}
+  - {code: female, module: fhir-3.3.0, system: 'http://hl7.org/fhir/administrative-gender', display: Female, definition: Female}
+  - {code: other, module: fhir-3.3.0, system: 'http://hl7.org/fhir/administrative-gender', display: Other, definition: Other}
+  - {code: unknown, module: fhir-3.3.0, system: 'http://hl7.org/fhir/administrative-gender', display: Unknown, definition: Unknown}
 ```
 {% endtab %}
 {% endtabs %}
@@ -211,63 +133,39 @@ A text filter that is applied to restrict the codes
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 GET [base]/ValueSet/administrative-gender/$expand?filter=male
 ```
 
 Or
 
-```javascript
+```yaml
 POST [base]/ValueSet/administrative-gender/$expand
-{ 
-  "resourceType" : "Parameters",
-  "parameter" : [
-     {
-      "name" : "filter",
-      "valueString" : "male"
-     }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- {name: filter, valueString: male}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-    "id": "administrative-gender",
-    "resourceType": "ValueSet",
-    "url": "http://hl7.org/fhir/ValueSet/administrative-gender",
-    "description": "The gender of a person used for administrative purposes.",
-    "compose": {
-        "include": [
-            {
-                "system": "http://hl7.org/fhir/administrative-gender"
-            }
-        ]
-    },
-    "name": "AdministrativeGender",
-    "expansion": {
-        "timestamp": "2018-09-25T16:24:55Z",
-        "identifier": "http://hl7.org/fhir/ValueSet/administrative-gender",
-        "contains": [
-            {
-                "code": "male",
-                "module": "fhir-3.3.0",
-                "system": "http://hl7.org/fhir/administrative-gender",
-                "display": "Male",
-                "definition": "Male"
-            },
-            {
-                "code": "female",
-                "module": "fhir-3.3.0",
-                "system": "http://hl7.org/fhir/administrative-gender",
-                "display": "Female",
-                "definition": "Female"
-            }
-        ]
-    },
-    ......
-}
+```yaml
+id: administrative-gender
+resourceType: ValueSet
+url: http://hl7.org/fhir/ValueSet/administrative-gender
+description: The gender of a person used for administrative purposes.
+compose:
+  include:
+  - {system: 'http://hl7.org/fhir/administrative-gender'}
+name: AdministrativeGender
+expansion:
+  timestamp: '2018-09-25T16:24:55Z'
+  identifier: http://hl7.org/fhir/ValueSet/administrative-gender
+  contains:
+  - {code: male, module: fhir-3.3.0, system: 'http://hl7.org/fhir/administrative-gender', display: Male, definition: Male}
+  - {code: female, module: fhir-3.3.0, system: 'http://hl7.org/fhir/administrative-gender', display: Female, definition: Female}
+......
 ```
 {% endtab %}
 {% endtabs %}
@@ -278,63 +176,39 @@ Paging support - where to start if a subset is desired (default = 0).
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 GET [base]/ValueSet/administrative-gender/$expand?offset=2
 ```
 
 Or
 
-```javascript
+```yaml
 POST [base]/ValueSet/administrative-gender/$expand
-{ 
-  "resourceType" : "Parameters",
-  "parameter" : [
-     {
-      "name" : "offset",
-      "valueInteger" : 2
-     }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- {name: offset, valueInteger: 2}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-    "id": "administrative-gender",
-    "resourceType": "ValueSet",
-    "url": "http://hl7.org/fhir/ValueSet/administrative-gender",
-    "description": "The gender of a person used for administrative purposes.",
-    "compose": {
-        "include": [
-            {
-                "system": "http://hl7.org/fhir/administrative-gender"
-            }
-        ]
-    },
-    "name": "AdministrativeGender",
-    "expansion": {
-        "timestamp": "2018-09-25T16:24:55Z",
-        "identifier": "http://hl7.org/fhir/ValueSet/administrative-gender",
-        "contains": [
-            {
-                "code": "other",
-                "module": "fhir-3.3.0",
-                "system": "http://hl7.org/fhir/administrative-gender",
-                "display": "Other",
-                "definition": "Other"
-            },
-            {
-                "code": "unknown",
-                "module": "fhir-3.3.0",
-                "system": "http://hl7.org/fhir/administrative-gender",
-                "display": "Unknown",
-                "definition": "Unknown"
-            }
-        ]
-    },
-    ......
-}
+```yaml
+id: administrative-gender
+resourceType: ValueSet
+url: http://hl7.org/fhir/ValueSet/administrative-gender
+description: The gender of a person used for administrative purposes.
+compose:
+  include:
+  - {system: 'http://hl7.org/fhir/administrative-gender'}
+name: AdministrativeGender
+expansion:
+  timestamp: '2018-09-25T16:24:55Z'
+  identifier: http://hl7.org/fhir/ValueSet/administrative-gender
+  contains:
+  - {code: other, module: fhir-3.3.0, system: 'http://hl7.org/fhir/administrative-gender', display: Other, definition: Other}
+  - {code: unknown, module: fhir-3.3.0, system: 'http://hl7.org/fhir/administrative-gender', display: Unknown, definition: Unknown}
+......
 ```
 {% endtab %}
 {% endtabs %}
@@ -345,56 +219,38 @@ Paging support - how many codes should be provided in a partial page view.
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 GET [base]/ValueSet/administrative-gender/$expand?count=1
 ```
 
 Or
 
-```javascript
+```yaml
 POST [base]/ValueSet/administrative-gender/$expand
-{ 
-  "resourceType" : "Parameters",
-  "parameter" : [
-     {
-      "name" : "count",
-      "valueInteger" : 1
-     }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- {name: count, valueInteger: 1}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-    "id": "administrative-gender",
-    "resourceType": "ValueSet",
-    "url": "http://hl7.org/fhir/ValueSet/administrative-gender",
-    "description": "The gender of a person used for administrative purposes.",
-    "compose": {
-        "include": [
-            {
-                "system": "http://hl7.org/fhir/administrative-gender"
-            }
-        ]
-    },
-    "name": "AdministrativeGender",
-    "expansion": {
-        "timestamp": "2018-09-25T16:24:55Z",
-        "identifier": "http://hl7.org/fhir/ValueSet/administrative-gender",
-        "contains": [
-            {
-                "code": "male",
-                "module": "fhir-3.3.0",
-                "system": "http://hl7.org/fhir/administrative-gender",
-                "display": "Male",
-                "definition": "Male"
-            }
-        ]
-    },
-    ......
-}
+```yaml
+id: administrative-gender
+resourceType: ValueSet
+url: http://hl7.org/fhir/ValueSet/administrative-gender
+description: The gender of a person used for administrative purposes.
+compose:
+  include:
+  - {system: 'http://hl7.org/fhir/administrative-gender'}
+name: AdministrativeGender
+expansion:
+  timestamp: '2018-09-25T16:24:55Z'
+  identifier: http://hl7.org/fhir/ValueSet/administrative-gender
+  contains:
+  - {code: male, module: fhir-3.3.0, system: 'http://hl7.org/fhir/administrative-gender', display: Male, definition: Male}
+......
 ```
 {% endtab %}
 {% endtabs %}
@@ -409,73 +265,42 @@ Get all concepts
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 POST [base]/ValueSet/$expand
-{ 
-  "resourceType" : "Parameters",
-  "parameter" : [
-       {
-           "name" : "activeOnly",
-           "valueBoolean": false
-       },
-     {
-      "name" : "valueSet",
-      "resource" : {
-        "resourceType": "ValueSet",
-        "url": "http://custom/testing",
-        "compose": {
-           "include": [
-              {"system": "http://testing",
-               "concept": [{"code": "active"},
-                           {"code": "inactive",
-                            "deprecated": true}]
-              }
-            ]
-          } 
-       }
-     }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- {name: activeOnly, valueBoolean: false}
+- name: valueSet
+  resource:
+    resourceType: ValueSet
+    url: http://custom/testing
+    compose:
+      include:
+      - system: http://testing
+        concept:
+        - {code: active}
+        - {code: inactive, deprecated: true}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-    "resourceType": "ValueSet",
-    "url": "http://custom/testing",
-    "compose": {
-        "include": [
-            {
-                "system": "http://testing",
-                "concept": [
-                    {
-                        "code": "active"
-                    },
-                    {
-                        "code": "inactive",
-                        "deprecated": true
-                    }
-                ]
-            }
-        ]
-    },
-    "expansion": {
-        "timestamp": "2018-09-26T09:19:03Z",
-        "identifier": "http://custom/testing",
-        "contains": [
-            {
-                "code": "active",
-                "system": "http://testing"
-            },
-            {
-                "code": "inactive",
-                "system": "http://testing",
-                "deprecated": true
-            }
-        ]
-    }
-}
+```yaml
+resourceType: ValueSet
+url: http://custom/testing
+compose:
+  include:
+  - system: http://testing
+    concept:
+    - {code: active}
+    - {code: inactive, deprecated: true}
+expansion:
+  timestamp: '2018-09-26T09:19:03Z'
+  identifier: http://custom/testing
+  contains:
+  - {code: active, system: 'http://testing'}
+  - {code: inactive, system: 'http://testing', deprecated: true}
 ```
 {% endtab %}
 {% endtabs %}
@@ -487,68 +312,41 @@ Get only active concepts
 {% tab title="Request" %}
 Get only active concepts
 
-```javascript
+```yaml
 POST [base]/ValueSet/$expand
-{ 
-  "resourceType" : "Parameters",
-  "parameter" : [
-       {
-           "name" : "activeOnly",
-           "valueBoolean": true
-       },
-     {
-      "name" : "valueSet",
-      "resource" : {
-        "resourceType": "ValueSet",
-        "url": "http://custom/testing",
-        "compose": {
-           "include": [
-              {"system": "http://testing",
-               "concept": [{"code": "active"},
-                           {"code": "inactive",
-                            "deprecated": true}]
-              }
-            ]
-          } 
-        }
-     }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- {name: activeOnly, valueBoolean: true}
+- name: valueSet
+  resource:
+    resourceType: ValueSet
+    url: http://custom/testing
+    compose:
+      include:
+      - system: http://testing
+        concept:
+        - {code: active}
+        - {code: inactive, deprecated: true}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-    "resourceType": "ValueSet",
-    "url": "http://custom/testing",
-    "compose": {
-        "include": [
-            {
-                "system": "http://testing",
-                "concept": [
-                    {
-                        "code": "active"
-                    },
-                    {
-                        "code": "inactive",
-                        "deprecated": true
-                    }
-                ]
-            }
-        ]
-    },
-    "expansion": {
-        "timestamp": "2018-09-26T09:19:03Z",
-        "identifier": "http://custom/testing",
-        "contains": [
-            {
-                "code": "active",
-                "system": "http://testing"
-            }
-        ]
-    }
-}
+```yaml
+resourceType: ValueSet
+url: http://custom/testing
+compose:
+  include:
+  - system: http://testing
+    concept:
+    - {code: active}
+    - {code: inactive, deprecated: true}
+expansion:
+  timestamp: '2018-09-26T09:19:03Z'
+  identifier: http://custom/testing
+  contains:
+  - {code: active, system: 'http://testing'}
 ```
 {% endtab %}
 {% endtabs %}

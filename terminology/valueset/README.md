@@ -18,6 +18,7 @@ CRUD is fully supported for the ValueSet resource in Aidbox.
 {% tab title="Create" %}
 ```yaml
 POST /ValueSet
+content-type: text/yaml
 
 description: The gender of a person used for administrative purposes. 2
 compose:
@@ -106,7 +107,7 @@ version: 3.3.2
 {% endtab %}
 
 {% tab title="Read" %}
-```javascript
+```yaml
 GET /ValueSet/administrative-gender2
 ```
 {% endtab %}
@@ -134,7 +135,7 @@ version: 3.3.2
 {% endtab %}
 
 {% tab title="Delete" %}
-```javascript
+```yaml
 DELETE /ValueSet/administrative-gender2
 ```
 {% endtab %}
@@ -152,6 +153,7 @@ Create a ValueSet using the `include.concept` element. The result will include o
 {% tab title="Request" %}
 ```yaml
 POST /ValueSet/$expand
+content-type: text/yaml
 
 resourceType: Parameters
 parameter:
@@ -206,53 +208,34 @@ Include all concepts from the [http://hl7.org/fhir/contact-point-system](http://
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 POST {{base}}/ValueSet/$expand
-{
-  "resourceType": "Parameters",
-  "parameter": [{
-      "name": "valueSet",
-      "resource": {
-        "resourceType": "ValueSet",
-        "id": "sample-valueset-include-filter",
-        "url": "http://hl7.org/fhir/ValueSet/sample-valueset-include-filter",
-        "status": "draft",
-        "compose": {
-          "include": [{
-              "system": "http://hl7.org/fhir/contact-point-system",
-              "filter": [{
-                  "property": "display",
-                  "op": "=",
-                  "value": "SMS"
-                }
-              ]
-            }
-          ]
-        }
-      }
-    }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- name: valueSet
+  resource:
+    resourceType: ValueSet
+    id: sample-valueset-include-filter
+    url: http://hl7.org/fhir/ValueSet/sample-valueset-include-filter
+    status: draft
+    compose:
+      include:
+      - system: http://hl7.org/fhir/contact-point-system
+        filter:
+        - {property: display, op: =, value: SMS}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-  "expansion": {
-    "timestamp": "2018-10-05T11:56:22Z",
-    "identifier": "http://hl7.org/fhir/ValueSet/sample-valueset-include-filter",
-    "contains": [{
-        "code": "sms",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/contact-point-system",
-        "display": "SMS",
-        "definition": "A contact that can be used for sending an sms message (e.g. mobile phones, some landlines)"
-      }
-    ]
-  },
-  ...
-}
+```yaml
+expansion:
+  timestamp: '2018-10-05T11:56:22Z'
+  identifier: http://hl7.org/fhir/ValueSet/sample-valueset-include-filter
+  contains:
+  - {code: sms, module: fhir-3.3.0, system: 'http://hl7.org/fhir/contact-point-system', display: SMS, definition: 'A contact that can be used for sending an sms message (e.g. mobile phones, some landlines)'}
+...
 ```
 {% endtab %}
 {% endtabs %}
@@ -265,77 +248,41 @@ Include all concepts from the [http://hl7.org/fhir/contact-point-system](http://
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 POST {{base}}/ValueSet/$expand
-{
-  "resourceType": "Parameters",
-  "parameter": [{
-      "name": "valueSet",
-      "resource": {
-        "resourceType": "ValueSet",
-        "id": "sample-valueset-exclude-concept",
-        "url": "http://hl7.org/fhir/ValueSet/sample-valueset-exclude-concept",
-        "status": "draft",
-        "compose": {
-          "include": [{
-              "system": "http://hl7.org/fhir/contact-point-system"
-            }
-          ],
-          "exclude": [{
-              "concept": [{
-                  "code": "pager"
-                }, {
-                  "code": "other"
-                }, {
-                  "code": "url"
-                }
-              ],
-              "system": "http://hl7.org/fhir/contact-point-system"
-            }
-          ]
-        }
-      }
-    }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- name: valueSet
+  resource:
+    resourceType: ValueSet
+    id: sample-valueset-exclude-concept
+    url: http://hl7.org/fhir/ValueSet/sample-valueset-exclude-concept
+    status: draft
+    compose:
+      include:
+      - {system: 'http://hl7.org/fhir/contact-point-system'}
+      exclude:
+      - concept:
+        - {code: pager}
+        - {code: other}
+        - {code: url}
+        system: http://hl7.org/fhir/contact-point-system
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-  "expansion": {
-    "timestamp": "2018-10-05T12:13:23Z",
-    "identifier": "http://hl7.org/fhir/ValueSet/sample-valueset-exclude-concept",
-    "contains": [{
-        "code": "phone",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/contact-point-system",
-        "display": "Phone",
-        "definition": "The value is a telephone number used for voice calls. Use of full international numbers starting with + is recommended to enable automatic dialing support but not required."
-      }, {
-        "code": "fax",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/contact-point-system",
-        "display": "Fax",
-        "definition": "The value is a fax machine. Use of full international numbers starting with + is recommended to enable automatic dialing support but not required."
-      }, {
-        "code": "email",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/contact-point-system",
-        "display": "Email",
-        "definition": "The value is an email address."
-      }, {
-        "code": "sms",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/contact-point-system",
-        "display": "SMS",
-        "definition": "A contact that can be used for sending an sms message (e.g. mobile phones, some landlines)"
-      }
-    ]
-  },
-  ...
-}
+```yaml
+expansion:
+  timestamp: '2018-10-05T12:13:23Z'
+  identifier: http://hl7.org/fhir/ValueSet/sample-valueset-exclude-concept
+  contains:
+  - {code: phone, module: fhir-3.3.0, system: 'http://hl7.org/fhir/contact-point-system', display: Phone, definition: The value is a telephone number used for voice calls. Use of full international numbers starting with + is recommended to enable automatic dialing support but not required.}
+  - {code: fax, module: fhir-3.3.0, system: 'http://hl7.org/fhir/contact-point-system', display: Fax, definition: The value is a fax machine. Use of full international numbers starting with + is recommended to enable automatic dialing support but not required.}
+  - {code: email, module: fhir-3.3.0, system: 'http://hl7.org/fhir/contact-point-system', display: Email, definition: The value is an email address.}
+  - {code: sms, module: fhir-3.3.0, system: 'http://hl7.org/fhir/contact-point-system', display: SMS, definition: 'A contact that can be used for sending an sms message (e.g. mobile phones, some landlines)'}
+...
    
 ```
 {% endtab %}
@@ -349,75 +296,39 @@ Include all concepts from the [http://hl7.org/fhir/contact-point-system](http://
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 POST {{base}}/ValueSet/$expand
-{
-  "resourceType": "Parameters",
-  "parameter": [{
-      "name": "valueSet",
-      "resource": {
-        "resourceType": "ValueSet",
-        "id": "sample-valueset-exclude-filter",
-        "url": "http://hl7.org/fhir/ValueSet/sample-valueset-exclude-filter",
-        "status": "draft",
-        "compose": {
-          "include": [{
-              "system": "http://hl7.org/fhir/contact-point-system"
-            }
-          ],
-          "exclude": [{
-              "system": "http://hl7.org/fhir/contact-point-system",
-              "filter": [{
-                  "property": "code",
-                  "op": "=",
-                  "value": "\\w{3}"
-                }
-              ]
-            }
-          ]
-        }
-      }
-    }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- name: valueSet
+  resource:
+    resourceType: ValueSet
+    id: sample-valueset-exclude-filter
+    url: http://hl7.org/fhir/ValueSet/sample-valueset-exclude-filter
+    status: draft
+    compose:
+      include:
+      - {system: 'http://hl7.org/fhir/contact-point-system'}
+      exclude:
+      - system: http://hl7.org/fhir/contact-point-system
+        filter:
+        - {property: code, op: =, value: '\w{3}'}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-  "expansion": {
-    "timestamp": "2018-10-05T14:59:15Z",
-    "identifier": "http://hl7.org/fhir/ValueSet/sample-valueset-exclude-filter",
-    "contains": [{
-        "code": "phone",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/contact-point-system",
-        "display": "Phone",
-        "definition": "The value is a telephone number used for voice calls. Use of full international numbers starting with + is recommended to enable automatic dialing support but not required."
-      }, {
-        "code": "email",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/contact-point-system",
-        "display": "Email",
-        "definition": "The value is an email address."
-      }, {
-        "code": "pager",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/contact-point-system",
-        "display": "Pager",
-        "definition": "The value is a pager number. These may be local pager numbers that are only usable on a particular pager system."
-      }, {
-        "code": "other",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/contact-point-system",
-        "display": "Other",
-        "definition": "A contact that is not a phone, fax, page or email address and is not expressible as a URL.  E.g. Internal mail address.  This SHOULD NOT be used for contacts that are expressible as a URL (e.g. Skype, Twitter, Facebook, etc.)  Extensions may be used to distinguish \"other\" contact types."
-      }
-    ]
-  },
-  ...
-}
+```yaml
+expansion:
+  timestamp: '2018-10-05T14:59:15Z'
+  identifier: http://hl7.org/fhir/ValueSet/sample-valueset-exclude-filter
+  contains:
+  - {code: phone, module: fhir-3.3.0, system: 'http://hl7.org/fhir/contact-point-system', display: Phone, definition: The value is a telephone number used for voice calls. Use of full international numbers starting with + is recommended to enable automatic dialing support but not required.}
+  - {code: email, module: fhir-3.3.0, system: 'http://hl7.org/fhir/contact-point-system', display: Email, definition: The value is an email address.}
+  - {code: pager, module: fhir-3.3.0, system: 'http://hl7.org/fhir/contact-point-system', display: Pager, definition: The value is a pager number. These may be local pager numbers that are only usable on a particular pager system.}
+  - {code: other, module: fhir-3.3.0, system: 'http://hl7.org/fhir/contact-point-system', display: Other, definition: 'A contact that is not a phone, fax, page or email address and is not expressible as a URL.  E.g. Internal mail address.  This SHOULD NOT be used for contacts that are expressible as a URL (e.g. Skype, Twitter, Facebook, etc.)  Extensions may be used to distinguish "other" contact types.'}
+...
 
 ```
 {% endtab %}
@@ -435,65 +346,35 @@ Let's include the `administrative-gender` value set. There will be 4 concepts: `
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 POST {{base}}/ValueSet/$expand
-{
-  "resourceType": "Parameters",
-  "parameter": [{
-      "name": "valueSet",
-      "resource": {
-        "resourceType": "ValueSet",
-        "id": "valueset-from-valueset",
-        "url": "http://hl7.org/fhir/ValueSet/valueset-from-valueset",
-        "status": "draft",
-        "compose": {
-          "include": [{
-              "valueSet": ["http://hl7.org/fhir/ValueSet/administrative-gender"]
-            }
-          ]          
-        }
-      }
-    }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- name: valueSet
+  resource:
+    resourceType: ValueSet
+    id: valueset-from-valueset
+    url: http://hl7.org/fhir/ValueSet/valueset-from-valueset
+    status: draft
+    compose:
+      include:
+      - valueSet: ['http://hl7.org/fhir/ValueSet/administrative-gender']
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-  "expansion": {
-    "timestamp": "2018-10-09T11:34:26Z",
-    "identifier": "http://hl7.org/fhir/ValueSet/valueset-from-valueset",
-    "contains": [{
-        "code": "male",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/administrative-gender",
-        "display": "Male",
-        "definition": "Male"
-      }, {
-        "code": "female",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/administrative-gender",
-        "display": "Female",
-        "definition": "Female"
-      }, {
-        "code": "other",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/administrative-gender",
-        "display": "Other",
-        "definition": "Other"
-      }, {
-        "code": "unknown",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/administrative-gender",
-        "display": "Unknown",
-        "definition": "Unknown"
-      }
-    ]
-  },
-  ...
-}
+```yaml
+expansion:
+  timestamp: '2018-10-09T11:34:26Z'
+  identifier: http://hl7.org/fhir/ValueSet/valueset-from-valueset
+  contains:
+  - {code: male, module: fhir-3.3.0, system: 'http://hl7.org/fhir/administrative-gender', display: Male, definition: Male}
+  - {code: female, module: fhir-3.3.0, system: 'http://hl7.org/fhir/administrative-gender', display: Female, definition: Female}
+  - {code: other, module: fhir-3.3.0, system: 'http://hl7.org/fhir/administrative-gender', display: Other, definition: Other}
+  - {code: unknown, module: fhir-3.3.0, system: 'http://hl7.org/fhir/administrative-gender', display: Unknown, definition: Unknown}
+...
 ```
 {% endtab %}
 {% endtabs %}
@@ -504,57 +385,35 @@ Let's exclude administrative-gender2 which consists of `male` and `female` from 
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 POST {{base}}/ValueSet/$expand
-{
-  "resourceType": "Parameters",
-  "parameter": [{
-      "name": "valueSet",
-      "resource": {
-        "resourceType": "ValueSet",
-        "id": "valueset-exclude-valueset",
-        "url": "http://hl7.org/fhir/ValueSet/valueset-exclude-valueset",
-        "status": "draft",
-        "compose": {
-          "include": [{
-              "system": "http://hl7.org/fhir/administrative-gender"
-            }
-          ],
-          "exclude": [{
-              "valueSet": ["{{base}}/ValueSet/administrative-gender2"]
-            }
-          ]
-        }
-      }
-    }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- name: valueSet
+  resource:
+    resourceType: ValueSet
+    id: valueset-exclude-valueset
+    url: http://hl7.org/fhir/ValueSet/valueset-exclude-valueset
+    status: draft
+    compose:
+      include:
+      - {system: 'http://hl7.org/fhir/administrative-gender'}
+      exclude:
+      - valueSet: ['{{base}}/ValueSet/administrative-gender2']
 ```
 {% endtab %}
 
 {% tab title="" %}
-```javascript
-{
-  "expansion": {
-    "timestamp": "2018-10-09T13:20:38Z",
-    "identifier": "http://hl7.org/fhir/ValueSet/valueset-exclude-valueset",
-    "contains": [{
-        "code": "other",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/administrative-gender",
-        "display": "Other",
-        "definition": "Other"
-      }, {
-        "code": "unknown",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/administrative-gender",
-        "display": "Unknown",
-        "definition": "Unknown"
-      }
-    ]
-  },
-  ...
-}
+```yaml
+expansion:
+  timestamp: '2018-10-09T13:20:38Z'
+  identifier: http://hl7.org/fhir/ValueSet/valueset-exclude-valueset
+  contains:
+  - {code: other, module: fhir-3.3.0, system: 'http://hl7.org/fhir/administrative-gender', display: Other, definition: Other}
+  - {code: unknown, module: fhir-3.3.0, system: 'http://hl7.org/fhir/administrative-gender', display: Unknown, definition: Unknown}
+...
 ```
 {% endtab %}
 {% endtabs %}
@@ -599,53 +458,34 @@ Let's include only concepts with the specified property `code` equals the provid
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 POST {{base}}/ValueSet/$expand
-{
-  "resourceType": "Parameters",
-  "parameter": [{
-      "name": "valueSet",
-      "resource": {
-        "resourceType": "ValueSet",
-        "id": "valueset-filter-equals",
-        "url": "http://hl7.org/fhir/ValueSet/valueset-filter-equals",
-        "status": "draft",
-        "compose": {
-          "include": [{
-              "system": "http://hl7.org/fhir/goal-status",
-              "filter": [{
-                  "property": "code",
-                  "op": "=",
-                  "value": "cancelled"
-                }
-              ]
-            }
-          ]          
-        }
-      }
-    }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- name: valueSet
+  resource:
+    resourceType: ValueSet
+    id: valueset-filter-equals
+    url: http://hl7.org/fhir/ValueSet/valueset-filter-equals
+    status: draft
+    compose:
+      include:
+      - system: http://hl7.org/fhir/goal-status
+        filter:
+        - {property: code, op: =, value: cancelled}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-  "expansion": {
-    "timestamp": "2018-10-08T12:26:56Z",
-    "identifier": "http://hl7.org/fhir/ValueSet/valueset-filter-equals",
-    "contains": [{
-        "code": "cancelled",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "Cancelled",
-        "definition": "The previously accepted goal is no longer being sought"
-      }
-    ]
-  },
-  ...
-}
+```yaml
+expansion:
+  timestamp: '2018-10-08T12:26:56Z'
+  identifier: http://hl7.org/fhir/ValueSet/valueset-filter-equals
+  contains:
+  - {code: cancelled, module: fhir-3.3.0, system: 'http://hl7.org/fhir/goal-status', display: Cancelled, definition: The previously accepted goal is no longer being sought}
+...
 ```
 {% endtab %}
 {% endtabs %}
@@ -656,97 +496,63 @@ Let's include all concepts that have a transitive is-a relationship with the con
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 POST {{base}}/ValueSet/$expand
-{
-  "resourceType": "Parameters",
-  "parameter": [{
-      "name": "valueSet",
-      "resource": {
-        "resourceType": "ValueSet",
-        "id": "valueset-filter-is-a",
-        "url": "http://hl7.org/fhir/ValueSet/valueset-filter-is-a",
-        "status": "draft",
-        "compose": {
-          "include": [{
-              "system": "http://hl7.org/fhir/goal-status",
-              "filter": [{
-                  "property": "code",
-                  "op": "is-a",
-                  "value": "in-progress"
-                }
-              ]
-            }
-          ]          
-        }
-      }
-    }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- name: valueSet
+  resource:
+    resourceType: ValueSet
+    id: valueset-filter-is-a
+    url: http://hl7.org/fhir/ValueSet/valueset-filter-is-a
+    status: draft
+    compose:
+      include:
+      - system: http://hl7.org/fhir/goal-status
+        filter:
+        - {property: code, op: is-a, value: in-progress}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-  "expansion": {
-    "timestamp": "2018-10-08T12:56:36Z",
-    "identifier": "http://hl7.org/fhir/ValueSet/valueset-filter-is-a",
-    "contains": [{
-        "code": "in-progress",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "In Progress",
-        "hierarchy": [
-          "accepted"
-        ],
-        "definition": "The goal is being sought but has not yet been reached.  (Also applies if goal was reached in the past but there has been regression and goal is being sought again)"
-      }, {
-        "code": "on-target",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "On Target",
-        "hierarchy": [
-          "accepted",
-          "in-progress"
-        ],
-        "definition": "The goal is on schedule for the planned timelines"
-      }, {
-        "code": "ahead-of-target",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "Ahead of Target",
-        "hierarchy": [
-          "accepted",
-          "in-progress"
-        ],
-        "definition": "The goal is ahead of the planned timelines"
-      }, {
-        "code": "behind-target",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "Behind Target",
-        "hierarchy": [
-          "accepted",
-          "in-progress"
-        ],
-        "definition": "The goal is behind the planned timelines"
-      }, {
-        "code": "sustaining",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "Sustaining",
-        "hierarchy": [
-          "accepted",
-          "in-progress"
-        ],
-        "definition": "The goal has been met, but ongoing activity is needed to sustain the goal objective"
-      }
-    ]
-  },
-  ...
-}
-
+```yaml
+expansion:
+  timestamp: '2018-10-08T12:56:36Z'
+  identifier: http://hl7.org/fhir/ValueSet/valueset-filter-is-a
+  contains:
+  - code: in-progress
+    module: fhir-3.3.0
+    system: http://hl7.org/fhir/goal-status
+    display: In Progress
+    hierarchy: [accepted]
+    definition: The goal is being sought but has not yet been reached.  (Also applies if goal was reached in the past but there has been regression and goal is being sought again)
+  - code: on-target
+    module: fhir-3.3.0
+    system: http://hl7.org/fhir/goal-status
+    display: On Target
+    hierarchy: [accepted, in-progress]
+    definition: The goal is on schedule for the planned timelines
+  - code: ahead-of-target
+    module: fhir-3.3.0
+    system: http://hl7.org/fhir/goal-status
+    display: Ahead of Target
+    hierarchy: [accepted, in-progress]
+    definition: The goal is ahead of the planned timelines
+  - code: behind-target
+    module: fhir-3.3.0
+    system: http://hl7.org/fhir/goal-status
+    display: Behind Target
+    hierarchy: [accepted, in-progress]
+    definition: The goal is behind the planned timelines
+  - code: sustaining
+    module: fhir-3.3.0
+    system: http://hl7.org/fhir/goal-status
+    display: Sustaining
+    hierarchy: [accepted, in-progress]
+    definition: The goal has been met, but ongoing activity is needed to sustain the goal objective
+...
 ```
 {% endtab %}
 {% endtabs %}
@@ -757,87 +563,57 @@ Let's include all concepts that have a transitive is-a relationship with the con
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 POST {{base}}/ValueSet/$expand
-{
-  "resourceType": "Parameters",
-  "parameter": [{
-      "name": "valueSet",
-      "resource": {
-        "resourceType": "ValueSet",
-        "id": "valueset-filter-descendent-of",
-        "url": "http://hl7.org/fhir/ValueSet/valueset-filter-descendent-of",
-        "status": "draft",
-        "compose": {
-          "include": [{
-              "system": "http://hl7.org/fhir/goal-status",
-              "filter": [{
-                  "property": "code",
-                  "op": "descendent-of",
-                  "value": "in-progress"
-                }
-              ]
-            }
-          ]          
-        }
-      }
-    }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- name: valueSet
+  resource:
+    resourceType: ValueSet
+    id: valueset-filter-descendent-of
+    url: http://hl7.org/fhir/ValueSet/valueset-filter-descendent-of
+    status: draft
+    compose:
+      include:
+      - system: http://hl7.org/fhir/goal-status
+        filter:
+        - {property: code, op: descendent-of, value: in-progress}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-  "expansion": {
-    "timestamp": "2018-10-08T13:02:33Z",
-    "identifier": "http://hl7.org/fhir/ValueSet/valueset-filter-descendent-of",
-    "contains": [{
-        "code": "on-target",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "On Target",
-        "hierarchy": [
-          "accepted",
-          "in-progress"
-        ],
-        "definition": "The goal is on schedule for the planned timelines"
-      }, {
-        "code": "ahead-of-target",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "Ahead of Target",
-        "hierarchy": [
-          "accepted",
-          "in-progress"
-        ],
-        "definition": "The goal is ahead of the planned timelines"
-      }, {
-        "code": "behind-target",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "Behind Target",
-        "hierarchy": [
-          "accepted",
-          "in-progress"
-        ],
-        "definition": "The goal is behind the planned timelines"
-      }, {
-        "code": "sustaining",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "Sustaining",
-        "hierarchy": [
-          "accepted",
-          "in-progress"
-        ],
-        "definition": "The goal has been met, but ongoing activity is needed to sustain the goal objective"
-      }
-    ]
-  },
-  ...
-}
+```yaml
+expansion:
+  timestamp: '2018-10-08T13:02:33Z'
+  identifier: http://hl7.org/fhir/ValueSet/valueset-filter-descendent-of
+  contains:
+  - code: on-target
+    module: fhir-3.3.0
+    system: http://hl7.org/fhir/goal-status
+    display: On Target
+    hierarchy: [accepted, in-progress]
+    definition: The goal is on schedule for the planned timelines
+  - code: ahead-of-target
+    module: fhir-3.3.0
+    system: http://hl7.org/fhir/goal-status
+    display: Ahead of Target
+    hierarchy: [accepted, in-progress]
+    definition: The goal is ahead of the planned timelines
+  - code: behind-target
+    module: fhir-3.3.0
+    system: http://hl7.org/fhir/goal-status
+    display: Behind Target
+    hierarchy: [accepted, in-progress]
+    definition: The goal is behind the planned timelines
+  - code: sustaining
+    module: fhir-3.3.0
+    system: http://hl7.org/fhir/goal-status
+    display: Sustaining
+    hierarchy: [accepted, in-progress]
+    definition: The goal has been met, but ongoing activity is needed to sustain the goal objective
+...
 
 ```
 {% endtab %}
@@ -849,71 +625,37 @@ Let's include all codes where the specified property of the code does not have a
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 POST {{base}}/ValueSet/$expand
-{
-  "resourceType": "Parameters",
-  "parameter": [{
-      "name": "valueSet",
-      "resource": {
-        "resourceType": "ValueSet",
-        "id": "valueset-filter-is-not-a",
-        "url": "http://hl7.org/fhir/ValueSet/valueset-filter-is-not-a",
-        "status": "draft",
-        "compose": {
-          "include": [{
-              "system": "http://hl7.org/fhir/goal-status",
-              "filter": [{
-                  "property": "code",
-                  "op": "is-not-a",
-                  "value": "accepted"
-                }
-              ]
-            }
-          ]          
-        }
-      }
-    }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- name: valueSet
+  resource:
+    resourceType: ValueSet
+    id: valueset-filter-is-not-a
+    url: http://hl7.org/fhir/ValueSet/valueset-filter-is-not-a
+    status: draft
+    compose:
+      include:
+      - system: http://hl7.org/fhir/goal-status
+        filter:
+        - {property: code, op: is-not-a, value: accepted}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
- {
-  "expansion": {
-    "timestamp": "2018-10-10T13:44:22Z",
-    "identifier": "http://localhost:8888/ValueSet/valueset-filter-is-not-a",
-    "contains": [{
-        "code": "proposed",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "Proposed",
-        "definition": "A goal is proposed for this patient"
-      }, {
-        "code": "cancelled",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "Cancelled",
-        "definition": "The previously accepted goal is no longer being sought"
-      }, {
-        "code": "entered-in-error",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "Entered In Error",
-        "definition": "The goal was entered in error and voided."
-      }, {
-        "code": "rejected",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "Rejected",
-        "definition": "A proposed goal was rejected"
-      }
-    ]
-  },
-  ...
-}
+```yaml
+expansion:
+  timestamp: '2018-10-10T13:44:22Z'
+  identifier: http://localhost:8888/ValueSet/valueset-filter-is-not-a
+  contains:
+  - {code: proposed, module: fhir-3.3.0, system: 'http://hl7.org/fhir/goal-status', display: Proposed, definition: A goal is proposed for this patient}
+  - {code: cancelled, module: fhir-3.3.0, system: 'http://hl7.org/fhir/goal-status', display: Cancelled, definition: The previously accepted goal is no longer being sought}
+  - {code: entered-in-error, module: fhir-3.3.0, system: 'http://hl7.org/fhir/goal-status', display: Entered In Error, definition: The goal was entered in error and voided.}
+  - {code: rejected, module: fhir-3.3.0, system: 'http://hl7.org/fhir/goal-status', display: Rejected, definition: A proposed goal was rejected}
+...
 ```
 {% endtab %}
 {% endtabs %}
@@ -928,74 +670,42 @@ Let's include codes where the specified property of the code matches the regex s
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 POST {{base}}/ValueSet/$expand
-{
-  "resourceType": "Parameters",
-  "parameter": [{
-      "name": "valueSet",
-      "resource": {
-        "resourceType": "ValueSet",
-        "id": "valueset-filter-equals",
-        "url": "http://hl7.org/fhir/ValueSet/valueset-filter-equals",
-        "status": "draft",
-        "compose": {
-          "include": [{
-              "system": "http://hl7.org/fhir/goal-status",
-              "filter": [{
-                  "property": "code",
-                  "op": "regex",
-                  "value": "\\w{8}"
-                }
-              ]
-            }
-          ]          
-        }
-      }
-    }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- name: valueSet
+  resource:
+    resourceType: ValueSet
+    id: valueset-filter-equals
+    url: http://hl7.org/fhir/ValueSet/valueset-filter-equals
+    status: draft
+    compose:
+      include:
+      - system: http://hl7.org/fhir/goal-status
+        filter:
+        - {property: code, op: regex, value: '\w{8}'}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-  "expansion": {
-    "timestamp": "2018-10-08T13:32:27Z",
-    "identifier": "http://hl7.org/fhir/ValueSet/valueset-filter-equals",
-    "contains": [{
-        "code": "proposed",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "Proposed",
-        "definition": "A goal is proposed for this patient"
-      }, {
-        "code": "accepted",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "Accepted",
-        "definition": "A proposed goal was accepted or acknowledged"
-      }, {
-        "code": "achieved",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "Achieved",
-        "hierarchy": [
-          "accepted"
-        ],
-        "definition": "The goal has been met and no further action is needed"
-      }, {
-        "code": "rejected",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "Rejected",
-        "definition": "A proposed goal was rejected"
-      }
-    ]
-  },
-  ...
-}
+```yaml
+expansion:
+  timestamp: '2018-10-08T13:32:27Z'
+  identifier: http://hl7.org/fhir/ValueSet/valueset-filter-equals
+  contains:
+  - {code: proposed, module: fhir-3.3.0, system: 'http://hl7.org/fhir/goal-status', display: Proposed, definition: A goal is proposed for this patient}
+  - {code: accepted, module: fhir-3.3.0, system: 'http://hl7.org/fhir/goal-status', display: Accepted, definition: A proposed goal was accepted or acknowledged}
+  - code: achieved
+    module: fhir-3.3.0
+    system: http://hl7.org/fhir/goal-status
+    display: Achieved
+    hierarchy: [accepted]
+    definition: The goal has been met and no further action is needed
+  - {code: rejected, module: fhir-3.3.0, system: 'http://hl7.org/fhir/goal-status', display: Rejected, definition: A proposed goal was rejected}
+...
 ```
 {% endtab %}
 {% endtabs %}
@@ -1006,77 +716,51 @@ Let's include concepts where the specified property of the code is in the set of
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 POST {{base}}/ValueSet/$expand
-{
-  "resourceType": "Parameters",
-  "parameter": [{
-      "name": "valueSet",
-      "resource": {
-        "resourceType": "ValueSet",
-        "id": "valueset-filter-in",
-        "url": "http://hl7.org/fhir/ValueSet/valueset-filter-in",
-        "status": "draft",
-        "compose": {
-          "include": [{
-              "system": "http://hl7.org/fhir/goal-status",
-              "filter": [{
-                  "property": "code",
-                  "op": "in",
-                  "value": "on-target,ahead-of-target,behind-target"
-                }
-              ]
-            }
-          ]          
-        }
-      }
-    }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- name: valueSet
+  resource:
+    resourceType: ValueSet
+    id: valueset-filter-in
+    url: http://hl7.org/fhir/ValueSet/valueset-filter-in
+    status: draft
+    compose:
+      include:
+      - system: http://hl7.org/fhir/goal-status
+        filter:
+        - {property: code, op: in, value: 'on-target,ahead-of-target,behind-target'}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-  "expansion": {
-    "timestamp": "2018-10-08T13:49:22Z",
-    "identifier": "http://hl7.org/fhir/ValueSet/valueset-filter-in",
-    "contains": [{
-        "code": "on-target",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "On Target",
-        "hierarchy": [
-          "accepted",
-          "in-progress"
-        ],
-        "definition": "The goal is on schedule for the planned timelines"
-      }, {
-        "code": "ahead-of-target",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "Ahead of Target",
-        "hierarchy": [
-          "accepted",
-          "in-progress"
-        ],
-        "definition": "The goal is ahead of the planned timelines"
-      }, {
-        "code": "behind-target",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "Behind Target",
-        "hierarchy": [
-          "accepted",
-          "in-progress"
-        ],
-        "definition": "The goal is behind the planned timelines"
-      }
-    ]
-  },
-  ...
-}
+```yaml
+expansion:
+  timestamp: '2018-10-08T13:49:22Z'
+  identifier: http://hl7.org/fhir/ValueSet/valueset-filter-in
+  contains:
+  - code: on-target
+    module: fhir-3.3.0
+    system: http://hl7.org/fhir/goal-status
+    display: On Target
+    hierarchy: [accepted, in-progress]
+    definition: The goal is on schedule for the planned timelines
+  - code: ahead-of-target
+    module: fhir-3.3.0
+    system: http://hl7.org/fhir/goal-status
+    display: Ahead of Target
+    hierarchy: [accepted, in-progress]
+    definition: The goal is ahead of the planned timelines
+  - code: behind-target
+    module: fhir-3.3.0
+    system: http://hl7.org/fhir/goal-status
+    display: Behind Target
+    hierarchy: [accepted, in-progress]
+    definition: The goal is behind the planned timelines
+...
 ```
 {% endtab %}
 {% endtabs %}
@@ -1087,69 +771,41 @@ Let's include concepts where the specified property of the code is not in the se
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 POST {{base}}/ValueSet/$expand
-{
-  "resourceType": "Parameters",
-  "parameter": [{
-      "name": "valueSet",
-      "resource": {
-        "resourceType": "ValueSet",
-        "id": "valueset-filter-not-in",
-        "url": "http://hl7.org/fhir/ValueSet/valueset-filter-not-in",
-        "status": "draft",
-        "compose": {
-          "include": [{
-              "system": "http://hl7.org/fhir/goal-status",
-              "filter": [{
-                  "property": "code",
-                  "op": "not-in",
-                  "value": "accepted,achieved,ahead-of-target,behind-target,cancelled,entered-in-error,in-progress,on-hold,on-target,planned"
-                }
-              ]
-            }
-          ]
-        }
-      }
-    }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- name: valueSet
+  resource:
+    resourceType: ValueSet
+    id: valueset-filter-not-in
+    url: http://hl7.org/fhir/ValueSet/valueset-filter-not-in
+    status: draft
+    compose:
+      include:
+      - system: http://hl7.org/fhir/goal-status
+        filter:
+        - {property: code, op: not-in, value: 'accepted,achieved,ahead-of-target,behind-target,cancelled,entered-in-error,in-progress,on-hold,on-target,planned'}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-  "expansion": {
-    "timestamp": "2018-10-08T14:10:21Z",
-    "identifier": "http://hl7.org/fhir/ValueSet/valueset-filter-not-in",
-    "contains": [{
-        "code": "proposed",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "Proposed",
-        "definition": "A goal is proposed for this patient"
-      }, {
-        "code": "sustaining",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "Sustaining",
-        "hierarchy": [
-          "accepted",
-          "in-progress"
-        ],
-        "definition": "The goal has been met, but ongoing activity is needed to sustain the goal objective"
-      }, {
-        "code": "rejected",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "Rejected",
-        "definition": "A proposed goal was rejected"
-      }
-    ]
-  },
-  ...
-}
+```yaml
+expansion:
+  timestamp: '2018-10-08T14:10:21Z'
+  identifier: http://hl7.org/fhir/ValueSet/valueset-filter-not-in
+  contains:
+  - {code: proposed, module: fhir-3.3.0, system: 'http://hl7.org/fhir/goal-status', display: Proposed, definition: A goal is proposed for this patient}
+  - code: sustaining
+    module: fhir-3.3.0
+    system: http://hl7.org/fhir/goal-status
+    display: Sustaining
+    hierarchy: [accepted, in-progress]
+    definition: The goal has been met, but ongoing activity is needed to sustain the goal objective
+  - {code: rejected, module: fhir-3.3.0, system: 'http://hl7.org/fhir/goal-status', display: Rejected, definition: A proposed goal was rejected}
+...
 
 ```
 {% endtab %}
@@ -1167,124 +823,81 @@ Let's display concepts where property `hierarchy` exists. The result will includ
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 POST {{base}}/ValueSet/$expand
-{
-  "resourceType": "Parameters",
-  "parameter": [{
-      "name": "valueSet",
-      "resource": {
-        "resourceType": "ValueSet",
-        "id": "valueset-filter-exists",
-        "url": "http://hl7.org/fhir/ValueSet/valueset-filter-exists",
-        "status": "draft",
-        "compose": {
-          "include": [{
-              "system": "http://hl7.org/fhir/goal-status",
-              "filter": [{
-                  "property": "hierarchy",
-                  "op": "exists",
-                  "value": true
-                }
-              ]
-            }
-          ]          
-        }
-      }
-    }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- name: valueSet
+  resource:
+    resourceType: ValueSet
+    id: valueset-filter-exists
+    url: http://hl7.org/fhir/ValueSet/valueset-filter-exists
+    status: draft
+    compose:
+      include:
+      - system: http://hl7.org/fhir/goal-status
+        filter:
+        - {property: hierarchy, op: exists, value: true}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-  "expansion": {
-    "timestamp": "2018-10-08T15:14:18Z",
-    "identifier": "http://hl7.org/fhir/ValueSet/valueset-filter-exists",
-    "contains": [{
-        "code": "planned",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "Planned",
-        "hierarchy": [
-          "accepted"
-        ],
-        "definition": "A goal is planned for this patient"
-      }, {
-        "code": "in-progress",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "In Progress",
-        "hierarchy": [
-          "accepted"
-        ],
-        "definition": "The goal is being sought but has not yet been reached.  (Also applies if goal was reached in the past but there has been regression and goal is being sought again)"
-      }, {
-        "code": "on-target",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "On Target",
-        "hierarchy": [
-          "accepted",
-          "in-progress"
-        ],
-        "definition": "The goal is on schedule for the planned timelines"
-      }, {
-        "code": "ahead-of-target",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "Ahead of Target",
-        "hierarchy": [
-          "accepted",
-          "in-progress"
-        ],
-        "definition": "The goal is ahead of the planned timelines"
-      }, {
-        "code": "behind-target",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "Behind Target",
-        "hierarchy": [
-          "accepted",
-          "in-progress"
-        ],
-        "definition": "The goal is behind the planned timelines"
-      }, {
-        "code": "sustaining",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "Sustaining",
-        "hierarchy": [
-          "accepted",
-          "in-progress"
-        ],
-        "definition": "The goal has been met, but ongoing activity is needed to sustain the goal objective"
-      }, {
-        "code": "achieved",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "Achieved",
-        "hierarchy": [
-          "accepted"
-        ],
-        "definition": "The goal has been met and no further action is needed"
-      }, {
-        "code": "on-hold",
-        "module": "fhir-3.3.0",
-        "system": "http://hl7.org/fhir/goal-status",
-        "display": "On Hold",
-        "hierarchy": [
-          "accepted"
-        ],
-        "definition": "The goal remains a long term objective but is no longer being actively pursued for a temporary period of time."
-      }
-    ]
-  },
-  ...
-}
-
+```yaml
+expansion:
+  timestamp: '2018-10-08T15:14:18Z'
+  identifier: http://hl7.org/fhir/ValueSet/valueset-filter-exists
+  contains:
+  - code: planned
+    module: fhir-3.3.0
+    system: http://hl7.org/fhir/goal-status
+    display: Planned
+    hierarchy: [accepted]
+    definition: A goal is planned for this patient
+  - code: in-progress
+    module: fhir-3.3.0
+    system: http://hl7.org/fhir/goal-status
+    display: In Progress
+    hierarchy: [accepted]
+    definition: The goal is being sought but has not yet been reached.  (Also applies if goal was reached in the past but there has been regression and goal is being sought again)
+  - code: on-target
+    module: fhir-3.3.0
+    system: http://hl7.org/fhir/goal-status
+    display: On Target
+    hierarchy: [accepted, in-progress]
+    definition: The goal is on schedule for the planned timelines
+  - code: ahead-of-target
+    module: fhir-3.3.0
+    system: http://hl7.org/fhir/goal-status
+    display: Ahead of Target
+    hierarchy: [accepted, in-progress]
+    definition: The goal is ahead of the planned timelines
+  - code: behind-target
+    module: fhir-3.3.0
+    system: http://hl7.org/fhir/goal-status
+    display: Behind Target
+    hierarchy: [accepted, in-progress]
+    definition: The goal is behind the planned timelines
+  - code: sustaining
+    module: fhir-3.3.0
+    system: http://hl7.org/fhir/goal-status
+    display: Sustaining
+    hierarchy: [accepted, in-progress]
+    definition: The goal has been met, but ongoing activity is needed to sustain the goal objective
+  - code: achieved
+    module: fhir-3.3.0
+    system: http://hl7.org/fhir/goal-status
+    display: Achieved
+    hierarchy: [accepted]
+    definition: The goal has been met and no further action is needed
+  - code: on-hold
+    module: fhir-3.3.0
+    system: http://hl7.org/fhir/goal-status
+    display: On Hold
+    hierarchy: [accepted]
+    definition: The goal remains a long term objective but is no longer being actively pursued for a temporary period of time.
+...
 ```
 {% endtab %}
 {% endtabs %}

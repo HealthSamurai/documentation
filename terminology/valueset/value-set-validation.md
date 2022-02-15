@@ -43,49 +43,30 @@ One of the concept property
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 GET [base]/ValueSet/$validate-code?url=http://hl7.org/fhir/ValueSet/administrative-gender&code=male&display=Male
 ```
 
 Or
 
-```javascript
+```yaml
 POST [base]/ValueSet/$validate-code
-{ 
-  "resourceType" : "Parameters",
-  "parameter" : [
-     {
-      "name" : "url",
-      "valueUri" : "http://hl7.org/fhir/ValueSet/administrative-gender"
-     },
-     {
-      "name" : "code",
-      "valueCode" : "male"
-     },
-     {
-      "name" : "system",
-      "valueUri" : "http://hl7.org/fhir/administrative-gender"
-     },
-     {
-      "name" : "display",
-      "valueString" : "Male"
-     }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- {name: url, valueUri: 'http://hl7.org/fhir/ValueSet/administrative-gender'}
+- {name: code, valueCode: male}
+- {name: system, valueUri: 'http://hl7.org/fhir/administrative-gender'}
+- {name: display, valueString: Male}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-    "resourceType": "Parameters",
-    "parameter": [
-        {
-            "name": "result",
-            "valueBoolean": true
-        }
-    ]
-}
+```yaml
+resourceType: Parameters
+parameter:
+- {name: result, valueBoolean: true}
 ```
 {% endtab %}
 {% endtabs %}
@@ -96,49 +77,29 @@ The value set is provided directly as a part of the request.
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 POST [base]/ValueSet/$validate-code
-{ 
-  "resourceType" : "Parameters",
-  "parameter" : [
-     {
-      "name" : "code",
-      "valueCode" : "male"
-     },
-     {
-      "name" : "system",
-      "valueUri" : "http://hl7.org/fhir/administrative-gender"
-     },
-     {
-      "name" : "valueSet",
-      "resource" : {
-        "resourceType": "ValueSet",
-        "url": "http://custom/administrative-gender",
-        "compose": {
-           "include": [
-              {
-                "valueSet": ["http://hl7.org/fhir/ValueSet/administrative-gender"]
-              }
-          ]
-        } 
-       }
-     }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- {name: code, valueCode: male}
+- {name: system, valueUri: 'http://hl7.org/fhir/administrative-gender'}
+- name: valueSet
+  resource:
+    resourceType: ValueSet
+    url: http://custom/administrative-gender
+    compose:
+      include:
+      - valueSet: ['http://hl7.org/fhir/ValueSet/administrative-gender']
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-    "resourceType": "Parameters",
-    "parameter": [
-        {
-            "name": "result",
-            "valueBoolean": true
-        }
-    ]
-}
+```yaml
+resourceType: Parameters
+parameter:
+- {name: result, valueBoolean: true}
 ```
 {% endtab %}
 {% endtabs %}
@@ -153,39 +114,23 @@ A coding to validate
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 POST [base]/ValueSet/$validate-code
-{
-  "resourceType" : "Parameters",
-  "parameter" : [
-     {
-      "name" : "coding",
-      "valueCoding" : 
-        {
-          "system": "http://hl7.org/fhir/administrative-gender",
-          "code": "male"
-        }
-     },
-     {
-      "name" : "url",
-      "valueUri" : "http://hl7.org/fhir/ValueSet/administrative-gender"
-     }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- name: coding
+  valueCoding: {system: 'http://hl7.org/fhir/administrative-gender', code: male}
+- {name: url, valueUri: 'http://hl7.org/fhir/ValueSet/administrative-gender'}
 ```
 {% endtab %}
 
 {% tab title="Rsponse" %}
-```javascript
-{
-    "resourceType": "Parameters",
-    "parameter": [
-        {
-            "name": "result",
-            "valueBoolean": true
-        }
-    ]
-}
+```yaml
+resourceType: Parameters
+parameter:
+- {name: result, valueBoolean: true}
 ```
 {% endtab %}
 {% endtabs %}
@@ -196,48 +141,26 @@ A full codeableConcept to validate.
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 POST [base]/ValueSet/$validate-code
-{
-  "resourceType" : "Parameters",
-  "parameter" : [
-     {
-      "name" : "codeableConcept",
-      "valueCodeableConcept" : 
-        {
-          "coding": 
-          [
-          {
-            "system": "http://hl7.org/fhir/administrative-gender",
-            "code": "male_wrong"
-          },
-          {
-            "system": "http://hl7.org/fhir/administrative-gender",
-            "code": "male"
-          }
-          ]
-        }
-     },
-     {
-      "name" : "url",
-      "valueUri" : "http://hl7.org/fhir/ValueSet/administrative-gender"
-     }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- name: codeableConcept
+  valueCodeableConcept:
+    coding:
+    - {system: 'http://hl7.org/fhir/administrative-gender', code: male_wrong}
+    - {system: 'http://hl7.org/fhir/administrative-gender', code: male}
+- {name: url, valueUri: 'http://hl7.org/fhir/ValueSet/administrative-gender'}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-    "resourceType": "Parameters",
-    "parameter": [
-        {
-            "name": "result",
-            "valueBoolean": true
-        }
-    ]
-}
+```yaml
+resourceType: Parameters
+parameter:
+- {name: result, valueBoolean: true}
 ```
 {% endtab %}
 {% endtabs %}
