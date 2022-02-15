@@ -147,6 +147,10 @@ POST [base]/ValueSet/$validate-code
 
 A coding to validate
 
+{% hint style="info" %}
+ValueSet needs `url` to work properly
+{% endhint %}
+
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
