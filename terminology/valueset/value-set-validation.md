@@ -148,7 +148,7 @@ POST [base]/ValueSet/$validate-code
 A coding to validate
 
 {% hint style="info" %}
-ValueSet needs `url` to work `coding` properly
+`url` parameter is required for `$validate-code`
 {% endhint %}
 
 {% tabs %}
