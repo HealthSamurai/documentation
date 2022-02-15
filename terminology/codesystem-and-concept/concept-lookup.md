@@ -42,105 +42,70 @@ Available output parameters: `name`, `display`, `version`, `designation`, `prope
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 POST [base]/CodeSystem/$lookup
-{
-	"resourceType" : "Parameters",  
-	"parameter" : [     
-		{      
-			"name" : "system",      
-			"valueUri" : "http://hl7.org/fhir/goal-status"     
-			
-		},
-		{
-			"name": "coding",
-			"valueCoding": {     		
-				"code": "accepted"
-			}
-		}
-	]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- name: system
+  valueUri: 'http://hl7.org/fhir/goal-status'
+- name: coding
+  valueCoding:
+    code: accepted
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-    "resourceType": "Parameters",
-    "parameter": [
-        {
-            "name": "display",
-            "valueString": "Accepted"
-        },
-        {
-            "name": "name",
-            "valueString": "GoalStatus"
-        }
-    ]
-}
+```yaml
+resourceType: Parameters
+parameter:
+- name: display
+  valueString: Accepted
+- name: name
+  valueString: GoalStatus
 ```
 {% endtab %}
 {% endtabs %}
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 GET [base]/CodeSystem/$lookup?system=http://hl7.org/fhir/v2/0003&code=RAR
 ```
 
 `or:`
 
-```javascript
+```yaml
 POST [base]/CodeSystem/$lookup
-{
-	"resourceType" : "Parameters",  
-	"parameter" : [     
-		{      
-			"name" : "system",      
-			"valueUri" : "http://hl7.org/fhir/v2/0003"     
-			
-		},
-		{
-			"name": "code",
-			"valueCode": "RAR"
-		}
-	]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- name: system
+  valueUri: 'http://hl7.org/fhir/v2/0003'
+- name: code
+  valueCode: RAR
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-    "resourceType": "Parameters",
-    "parameter": [
-        {
-            "name": "display",
-            "valueString": "RAR - Pharmacy administration information query response"
-        },
-        {
-            "name": "designation",
-            "value": {
-                "display": {
-                    "de": "Antwort bzgl. der Behandlungs-/Darreichungsform",
-                    "nl": "RAR - Medicatietoediening-informatie query antwoord"
-                }
-            }
-        },
-        {
-            "name": "property",
-            "value": {
-                "v2-0003": {
-                    "deprecationDate": "2000-11"
-                }
-            }
-        },
-        {
-            "name": "name",
-            "valueString": "v2 Event Type"
-        }
-    ]
-}
+```yaml
+resourceType: Parameters
+parameter:
+- name: display
+  valueString: RAR - Pharmacy administration information query response
+- name: designation
+  value:
+    display:
+      de: Antwort bzgl. der Behandlungs-/Darreichungsform
+      nl: RAR - Medicatietoediening-informatie query antwoord
+- name: property
+  value:
+    v2-0003:
+      deprecationDate: 2000-11
+- name: name
+  valueString: v2 Event Type
 ```
 {% endtab %}
 {% endtabs %}

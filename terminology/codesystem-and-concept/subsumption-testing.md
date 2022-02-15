@@ -59,47 +59,30 @@ The subsumption relationship between code/Coding "A" and code/Coding "B". There 
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 GET [base]/CodeSystem/$subsumes?system=http://hl7.org/fhir/goal-status&codeA=accepted&codeB=accepted
 ```
 
 `or:`
 
-```javascript
+```yaml
 POST [base]/CodeSystem/$subsumes
-{ 
-  "resourceType" : "Parameters",
-  "parameter" : [
-     {
-      "name" : "system",
-      "valueUri" : "http://hl7.org/fhir/goal-status"
-     },
-     {
-     	"name": "codeA",
-     	"valueCode": "accepted"
-     },
-     {
-     	"name": "codeB",
-     	"valueCode": "accepted"
-     }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- {name: system, valueUri: 'http://hl7.org/fhir/goal-status'}
+- {name: codeA, valueCode: accepted}
+- {name: codeB, valueCode: accepted}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-    "resourceType": "Parameters",
-    "parameter": [
-        {
-            "name": "outcome",
-            "value": {
-                "code": "equivalent"
-            }
-        }
-    ]
-}
+```yaml
+resourceType: Parameters
+parameter:
+- name: outcome
+  value: {code: equivalent}
 ```
 {% endtab %}
 {% endtabs %}
@@ -110,47 +93,30 @@ POST [base]/CodeSystem/$subsumes
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 GET [base]/CodeSystem/$subsumes?system=http://hl7.org/fhir/goal-status&codeA=accepted&codeB=achieved
 ```
 
 `or:`
 
-```javascript
+```yaml
 POST [base]/CodeSystem/$subsumes
-{ 
-  "resourceType" : "Parameters",
-  "parameter" : [
-     {
-      "name" : "system",
-      "valueUri" : "http://hl7.org/fhir/goal-status"
-     },
-     {
-     	"name": "codeA",
-     	"valueCode": "accepted"
-     },
-     {
-     	"name": "codeB",
-     	"valueCode": "achieved"
-     }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- {name: system, valueUri: 'http://hl7.org/fhir/goal-status'}
+- {name: codeA, valueCode: accepted}
+- {name: codeB, valueCode: achieved}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-    "resourceType": "Parameters",
-    "parameter": [
-        {
-            "name": "outcome",
-            "value": {
-                "code": "subsumed"
-            }
-        }
-    ]
-}
+```yaml
+resourceType: Parameters
+parameter:
+- name: outcome
+  value: {code: subsumed}
 ```
 {% endtab %}
 {% endtabs %}
@@ -161,47 +127,30 @@ POST [base]/CodeSystem/$subsumes
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 GET [base]/CodeSystem/$subsumes?system=http://hl7.org/fhir/goal-status&codeA=achieved&codeB=accepted
 ```
 
 `or:`
 
-```javascript
+```yaml
 POST [base]/CodeSystem/$subsumes
-{ 
-  "resourceType" : "Parameters",
-  "parameter" : [
-     {
-      "name" : "system",
-      "valueUri" : "http://hl7.org/fhir/goal-status"
-     },
-     {
-     	"name": "codeA",
-     	"valueCode": "achieved"
-     },
-     {
-     	"name": "codeB",
-     	"valueCode": "accepted"
-     }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- {name: system, valueUri: 'http://hl7.org/fhir/goal-status'}
+- {name: codeA, valueCode: achieved}
+- {name: codeB, valueCode: accepted}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-    "resourceType": "Parameters",
-    "parameter": [
-        {
-            "name": "outcome",
-            "value": {
-                "code": "subsumed-by"
-            }
-        }
-    ]
-}
+```yaml
+resourceType: Parameters
+parameter:
+- name: outcome
+  value: {code: subsumed-by}
 ```
 {% endtab %}
 {% endtabs %}
@@ -212,47 +161,30 @@ POST [base]/CodeSystem/$subsumes
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 GET [base]/CodeSystem/$subsumes?system=http://hl7.org/fhir/goal-status&codeA=cancelled&codeB=proposed
 ```
 
 `or:`
 
-```javascript
+```yaml
 POST [base]/CodeSystem/$subsumes
-{ 
-  "resourceType" : "Parameters",
-  "parameter" : [
-     {
-      "name" : "system",
-      "valueUri" : "http://hl7.org/fhir/goal-status"
-     },
-     {
-     	"name": "codeA",
-     	"valueCode": "cancelled"
-     },
-     {
-     	"name": "codeB",
-     	"valueCode": "proposed"
-     }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- {name: system, valueUri: 'http://hl7.org/fhir/goal-status'}
+- {name: codeA, valueCode: cancelled}
+- {name: codeB, valueCode: proposed}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-    "resourceType": "Parameters",
-    "parameter": [
-        {
-            "name": "outcome",
-            "value": {
-                "code": "not-subsumed"
-            }
-        }
-    ]
-}
+```yaml
+resourceType: Parameters
+parameter:
+- name: outcome
+  value: {code: not-subsumed}
 ```
 {% endtab %}
 {% endtabs %}
@@ -263,45 +195,27 @@ You will receive same subsumption results
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 POST [base]/CodeSystem/$subsumes
-{ 
-  "resourceType" : "Parameters",
-  "parameter" : [
-     {
-      "name" : "system",
-      "valueUri" : "http://hl7.org/fhir/goal-status"
-     },
-     {
-     	"name": "codingA",
-     	"valueCoding": {
-     		"code": "accepted"
-     	}
-     },
-     {
-     	"name": "codingB",
-     	"valueCoding": {
-     		"code": "achieved"
-     	}
-     }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- name: system
+  valueUri: 'http://hl7.org/fhir/goal-status'
+- name: codingA
+  valueCoding: {code: accepted}
+- name: codingB
+  valueCoding: {code: achieved}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-    "resourceType": "Parameters",
-    "parameter": [
-        {
-            "name": "outcome",
-            "value": {
-                "code": "subsumed"
-            }
-        }
-    ]
-}
+```yaml
+resourceType: Parameters
+parameter:
+- name: outcome
+  value: {code: subsumed}
 ```
 {% endtab %}
 {% endtabs %}
@@ -312,43 +226,27 @@ You can also combine code and Coding
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 POST [base]/CodeSystem/$subsumes
-{ 
-  "resourceType" : "Parameters",
-  "parameter" : [
-     {
-      "name" : "system",
-      "valueUri" : "http://hl7.org/fhir/goal-status"
-     },
-     {
-     	"name": "codingA",
-     	"valueCoding": {
-     		"code": "accepted"
-     	}
-     },
-     {
-     	"name": "codeB",
-     	"valueCode": "achieved"
-     }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- name: system
+  valueUri: 'http://hl7.org/fhir/goal-status'
+- name: codingA
+  valueCoding: {code: accepted}
+- name: codeB
+  valueCode: achieved
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-    "resourceType": "Parameters",
-    "parameter": [
-        {
-            "name": "outcome",
-            "value": {
-                "code": "subsumed"
-            }
-        }
-    ]
-}
+```yaml
+resourceType: Parameters
+parameter:
+- name: outcome
+  value: {code: subsumed}
 ```
 {% endtab %}
 {% endtabs %}

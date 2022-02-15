@@ -45,58 +45,29 @@ One or more properties that contain information to be composed into the code.
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 POST [BASE]/CodeSystem/$compose
-{ 
-  "resourceType" : "Parameters",
-  "parameter" : [
-     {
-      "name" : "system",
-      "valueUri" : "http://hl7.org/fhir/goal-status"
-    },
-    {
-      "name" : "exact",
-      "valueUri" : true
-    },
-    {
-     	"name": "property",
-     	"part": [
-     		{
-     			"name": "code",
-     		    "valueCode": "code"
-            },
-            {
-            	"name": "value",
-            	"valueString": "proposed"
-            }]
-    }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- {name: system, valueUri: 'http://hl7.org/fhir/goal-status'}
+- {name: exact, valueUri: true}
+- name: property
+  part:
+  - {name: code, valueCode: code}
+  - {name: value, valueString: proposed}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-    "resourceType": "Parameters",
-    "parameter": [
-        {
-            "name": "match",
-            "part": [
-                {
-                    "name": "code",
-                    "valueCoding": {
-                        "code": "proposed",
-                        "module": "fhir-3.3.0",
-                        "system": "http://hl7.org/fhir/goal-status",
-                        "display": "Proposed",
-                        "definition": "A goal is proposed for this patient"
-                    }
-                }
-            ]
-        }
-    ]
-}
+```yaml
+resourceType: Parameters
+parameter:
+- name: match
+  part:
+  - name: code
+    valueCoding: {code: proposed, module: fhir-3.3.0, system: 'http://hl7.org/fhir/goal-status', display: Proposed, definition: A goal is proposed for this patient}
 ```
 {% endtab %}
 {% endtabs %}
@@ -105,72 +76,42 @@ POST [BASE]/CodeSystem/$compose
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 POST [BASE]/CodeSystem/$compose
-{ 
-  "resourceType" : "Parameters",
-  "parameter" : [
-     {
-      "name" : "system",
-      "valueUri" : "http://hl7.org/fhir/goal-status"
-    },
-    {
-      "name" : "exact",
-      "valueUri" : true
-    },
-    {
-     	"name": "property",
-     	"part": [
-     		{
-     			"name": "code",
-     		    "valueCode": "code"
-            },
-            {
-            	"name": "value",
-            	"valueString": "proposed"
-            },
-            {
-            	"name": "value",
-            	"valueString": "accepted"
-            }]
-    }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- {name: system, valueUri: 'http://hl7.org/fhir/goal-status'}
+- {name: exact, valueUri: true}
+- name: property
+  part:
+  - {name: code, valueCode: code}
+  - {name: value, valueString: proposed}
+  - {name: value, valueString: accepted}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-    "resourceType": "Parameters",
-    "parameter": [
-        {
-            "name": "match",
-            "part": [
-                {
-                    "name": "code",
-                    "valueCoding": {
-                        "code": "accepted",
-                        "module": "fhir-3.3.0",
-                        "system": "http://hl7.org/fhir/goal-status",
-                        "display": "Accepted",
-                        "definition": "A proposed goal was accepted or acknowledged"
-                    }
-                },
-                {
-                    "name": "code",
-                    "valueCoding": {
-                        "code": "proposed",
-                        "module": "fhir-3.3.0",
-                        "system": "http://hl7.org/fhir/goal-status",
-                        "display": "Proposed",
-                        "definition": "A goal is proposed for this patient"
-                    }
-                }
-            ]
-        }
-    ]
-}
+```yaml
+resourceType: Parameters
+parameter:
+- name: match
+  part:
+  - name: code
+    valueCoding:
+      code: accepted
+      module: fhir-3.3.0
+      system: 'http://hl7.org/fhir/goal-status'
+      display: Accepted
+      definition: A proposed goal was accepted or acknowledged
+  - name: code
+    valueCoding:
+      code: proposed
+      module: fhir-3.3.0
+      system: 'http://hl7.org/fhir/goal-status'
+      display: Proposed
+      definition: A goal is proposed for this patient
 ```
 {% endtab %}
 {% endtabs %}
@@ -179,97 +120,54 @@ POST [BASE]/CodeSystem/$compose
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 POST [BASE]/CodeSystem/$compose
-{ 
-  "resourceType" : "Parameters",
-  "parameter" : [
-     {
-      "name" : "system",
-      "valueUri" : "http://hl7.org/fhir/goal-status"
-    },
-    {
-      "name" : "exact",
-      "valueUri" : true
-    },
-    {
-     	"name": "property",
-     	"part": [
-     		{
-     			"name": "code",
-     		    "valueCode": "code"
-            },
-            {
-            	"name": "value",
-            	"valueString": "proposed"
-            },
-            {
-            	"name": "value",
-            	"valueString": "accepted"
-            }]
-    },
-    {
-     	"name": "property",
-     	"part": [
-     		{
-     			"name": "code",
-     		    "valueCode": "display"
-            },
-            {
-            	"name": "value",
-            	"valueString": "Planned"
-            }]
-    }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- {name: system, valueUri: 'http://hl7.org/fhir/goal-status'}
+- {name: exact, valueUri: true}
+- name: property
+  part:
+  - {name: code, valueCode: code}
+  - {name: value, valueString: proposed}
+  - {name: value, valueString: accepted}
+- name: property
+  part:
+  - {name: code, valueCode: display}
+  - {name: value, valueString: Planned}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-    "resourceType": "Parameters",
-    "parameter": [
-        {
-            "name": "match",
-            "part": [
-                {
-                    "name": "code",
-                    "valueCoding": {
-                        "code": "accepted",
-                        "module": "fhir-3.3.0",
-                        "system": "http://hl7.org/fhir/goal-status",
-                        "display": "Accepted",
-                        "definition": "A proposed goal was accepted or acknowledged"
-                    }
-                },
-                {
-                    "name": "code",
-                    "valueCoding": {
-                        "code": "proposed",
-                        "module": "fhir-3.3.0",
-                        "system": "http://hl7.org/fhir/goal-status",
-                        "display": "Proposed",
-                        "definition": "A goal is proposed for this patient"
-                    }
-                },
-                {
-                    "name": "code",
-                    "valueCoding": {
-                        "code": "planned",
-                        "module": "fhir-3.3.0",
-                        "system": "http://hl7.org/fhir/goal-status",
-                        "display": "Planned",
-                        "hierarchy": [
-                            "accepted"
-                        ],
-                        "definition": "A goal is planned for this patient"
-                    }
-                }
-            ]
-        }
-    ]
-}
+```yaml
+resourceType: Parameters
+parameter:
+- name: match
+  part:
+  - name: code
+    valueCoding:
+      code: accepted
+      module: fhir-3.3.0
+      system: 'http://hl7.org/fhir/goal-status'
+      display: Accepted
+      definition: A proposed goal was accepted or acknowledged
+  - name: code
+    valueCoding:
+      code: proposed
+      module: fhir-3.3.0
+      system: 'http://hl7.org/fhir/goal-status'
+      display: Proposed
+      definition: A goal is proposed for this patient
+  - name: code
+    valueCoding:
+      code: planned
+      module: fhir-3.3.0
+      system: http://hl7.org/fhir/goal-status
+      display: Planned
+      hierarchy: [accepted]
+      definition: A goal is planned for this patient
 ```
 {% endtab %}
 {% endtabs %}
@@ -282,75 +180,43 @@ Whether the operation is being used by a human, or a machine. When `false` inclu
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```yaml
 POST [BASE]/CodeSystem/$compose
-{ 
-  "resourceType" : "Parameters",
-  "parameter" : [
-     {
-      "name" : "system",
-      "valueUri" : "http://hl7.org/fhir/goal-status"
-    },
-    {
-      "name" : "exact",
-      "valueUri" : false
-    },
-    {
-     	"name": "property",
-     	"part": [
-     		{
-     			"name": "code",
-     		    "valueCode": "code"
-            },
-            {
-            	"name": "value",
-            	"valueString": "on-"
-            }]
-    }
-  ]
-}
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- {name: system, valueUri: 'http://hl7.org/fhir/goal-status'}
+- {name: exact, valueUri: false}
+- name: property
+  part:
+  - {name: code, valueCode: code}
+  - {name: value, valueString: on-}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
-{
-    "resourceType": "Parameters",
-    "parameter": [
-        {
-            "name": "match",
-            "part": [
-                {
-                    "name": "code",
-                    "valueCoding": {
-                        "code": "on-target",
-                        "module": "fhir-3.3.0",
-                        "system": "http://hl7.org/fhir/goal-status",
-                        "display": "On Target",
-                        "hierarchy": [
-                            "accepted",
-                            "in-progress"
-                        ],
-                        "definition": "The goal is on schedule for the planned timelines"
-                    }
-                },
-                {
-                    "name": "code",
-                    "valueCoding": {
-                        "code": "on-hold",
-                        "module": "fhir-3.3.0",
-                        "system": "http://hl7.org/fhir/goal-status",
-                        "display": "On Hold",
-                        "hierarchy": [
-                            "accepted"
-                        ],
-                        "definition": "The goal remains a long term objective but is no longer being actively pursued for a temporary period of time."
-                    }
-                }
-            ]
-        }
-    ]
-}
+```yaml
+resourceType: Parameters
+parameter:
+- name: match
+  part:
+  - name: code
+    valueCoding:
+      code: on-target
+      module: fhir-3.3.0
+      system: http://hl7.org/fhir/goal-status
+      display: On Target
+      hierarchy: [accepted, in-progress]
+      definition: The goal is on schedule for the planned timelines
+  - name: code
+    valueCoding:
+      code: on-hold
+      module: fhir-3.3.0
+      system: http://hl7.org/fhir/goal-status
+      display: On Hold
+      hierarchy: [accepted]
+      definition: The goal remains a long term objective but is no longer being actively pursued for a temporary period of time.
 ```
 {% endtab %}
 {% endtabs %}
