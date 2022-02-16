@@ -6,6 +6,11 @@ description: Paging search results
 
 Search results can contain many records, for more convenient work we can use pagination. Available parameters are: **\_count** — total records on the page \(default value — 100\),  **page** — specific page, output Bundle includes link section with **first**, **self**, **next**, **previous,** and **last** page constructed URLs.
 
+## Default `count` values
+
+Configure default value for count search parameter in the `box_search_default__params_count=10`. 100 is the default value.
+The provided value should be <= 1000
+
 ```yaml
 GET /Patient?_count=10&_page=3
 
