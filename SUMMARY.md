@@ -196,6 +196,7 @@
 * [Logging & Audit](core-modules/logging-and-audit/README.md)
   * [Elastic Logs and Monitoring Integration](core-modules/logging-and-audit/elastic-logs-and-monitoring-integration.md)
   * [Export logs to ElasticSearch/Kibana](core-modules/logging-and-audit/export-logs-to-elasticsearch-kibana.md)
+  * [Grafana](core-modules/logging-and-audit/grafana.md)
   * [🎓 Log analysis and visualization tutorial](core-modules/logging-and-audit/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana.md)
   * [Datadog Log management integration](core-modules/logging-and-audit/aidbox-logs-and-datadog-integration.md)
   * [🎓 Export logs to Datadog tutorial](core-modules/logging-and-audit/datadog-guide.md)
