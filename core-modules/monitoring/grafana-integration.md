@@ -51,6 +51,15 @@ _Expects no parameters_
 `"Prometheus"` datasource is required
 {% endhint %}
 
+#### Request example
+
+```http
+POST /rpc
+content-type: applicaton/edn
+
+{:method aidbox.metrics/update-aidbox-dashboard}
+```
+
 ### aidbox.metrics/update-cluster-dashboard
 
 Generates dashboards with cluster-specific metrics
@@ -78,3 +87,12 @@ Required Prometheus exporters:
 * `node-exporter`
 * `cadvisor`
 {% endhint %}
+
+#### Request example
+
+```http
+POST /rpc
+content-type: applicaton/edn
+
+{:method aidbox.metrics/update-cluster-dashboard}
+```
