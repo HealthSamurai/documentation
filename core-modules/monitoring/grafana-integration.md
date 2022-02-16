@@ -4,7 +4,7 @@ description: >-
   upload it to Grafana
 ---
 
-# Grafana
+# Grafana integration
 
 {% hint style="info" %}
 Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [contact](../../contact-us.md) us if you have questions, feedback, or suggestions.
@@ -75,6 +75,6 @@ _Expects no parameters_
 Required Prometheus exporters:
 
 * `kube-state-metrics`
-* node-exporter
+* `node-exporter`
 * `cadvisor`
 {% endhint %}
