@@ -55,7 +55,7 @@ _Expects no parameters_
 
 ```http
 POST /rpc
-content-type: applicaton/edn
+content-type: application/edn
 
 {:method aidbox.metrics/update-aidbox-dashboard}
 ```
@@ -92,7 +92,7 @@ Required Prometheus exporters:
 
 ```http
 POST /rpc
-content-type: applicaton/edn
+content-type: application/edn
 
 {:method aidbox.metrics/update-cluster-dashboard}
 ```
