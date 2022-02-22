@@ -4,6 +4,10 @@ description: How to configure Okta IdentityProvider with Aidbox
 
 # 🎓 Okta
 
+{% hint style="info" %}
+Please make sure you use Aidbox v:2107 _`stable`_ or later Aidbox version
+{% endhint %}
+
 ## Create an Account in Okta
 
 If you do not have an Okta account, create it to get your authorization server. Find your **okta domain**. You can do it in **Security > API**
