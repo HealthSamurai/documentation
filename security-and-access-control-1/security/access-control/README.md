@@ -96,93 +96,19 @@ headers: {x-original-uri: '/fhir/Patient?__debug=policy', origin: 'https://ui.ai
 
 ### Request Authorization Logic
 
-AccessPolicy instance can be linked to User, Client or Operation resources with `AccessPolicy.link` resource. If AccessPolicy has no links, it's considered as global policy. To authorize a request, Aidbox uses AccessPolicies linked to the current request's User, Client and Operation plus all global policies.&#x20;
+AccessPolicy instance can be linked to User, Client or Operation resources with `AccessPolicy.link` resource. If AccessPolicy has no links, it's considered as global policy. To authorize a request, Aidbox uses AccessPolicies linked to the current request's User, Client and Operation plus all global policies.
 
 It iterates through them, evaluating each AccessPolicy against current request object. If some policy validates the request (evaluation result is `true`), the request considered authorized and Aidbox stops further policies evaluation. If all policies denied the request (all of them evaluated to `false`), then Aidbox denies such request and responds with `403 Unauthorized`.
 
 {% hint style="info" %}
-Performance consideration: Link you policy to User, Client or Operation to reduce number of checks per request!&#x20;
+Performance consideration: Link you policy to User, Client or Operation to reduce number of checks per request!
 {% endhint %}
 
 If no AccessPolicy instances exist for a box, all requests will be denied.
 
 ### Debugging
 
-#### Using \_\_debug parameter
-
-There is a special query-string parameter `__debug=policy` you can pass to every Aidbox request. It will toggle debug mode for Request Authorization Layer, and in this mode instead of actual response client will get an object containing:
-
-* full request object;
-* an array of existing AccessPolicies;
-* evaluation result for every AccessPolicy (under `AccessPolicy.evalResult`).
-
-#### Using x-debug: policy header
-
-For requests with the `x-debug: policy` header, details of access policy evaluation will be logged.
-
-```yaml
-GET /Patient
-x-debug: policy
-
-# in aidbox logs
-# :auth/trace-policy {:access-policy-id :policy-1, :policy-type "sql", ...
-# :auth/trace-policy {:access-policy-id :policy-2, :policy-type "json-schema",...
-```
-
-#### Using the /auth/test-policy Operation
-
-You can use a special operation `POST /auth/test-policy` to design policy without creating an AccessPolicy resource and for different users and clients. Post on the `/auth/test-policy` with a simulated **request** attribute (you can provide existing `user-id` and `client-id`  — Aidbox will find and populate request) and temporal policy in the **policy** attribute. If you want to test JWT auth, put your token in the `headers.authorization` with the `Bearer` prefix — the token will be parsed and its claims appear in the `request.jwt`. JWT in a header is parsed but not validated. This allows you to test JWT policy without **TokenIntrospector** registration.&#x20;
-
-The response contains a result of evaluated policy.
-
-```yaml
-POST /auth/test-policy
-
--- simulate request document
-request:
-  uri: '/Patient'
-  request-method: get
-  headers:
-    authorization: Bearer <your-jwt>
-  user:
-    data: {role: 'admin'}
-  -- or 
-  -- user-id: 'user-1' -- aidbox will find user in database
-  client:
-    id: basic
-    grant_types: ['basic']
-  -- or 
-  -- client-id: 'client-1' -- aidbox will find client in database
-    
-policy:
-  engine: sql
-  sql:
-    query: 'SELECT {{user.role}} FROM {{!params.resource/type}}'
-
--- response
-
-request:
-  uri: /Patient
-  request-method: get
-  user: {role: admin}
-  params: {resource/type: Patient}
-  #jwt: ...jwt-claims
-operation:
-  request:
-  - get
-  - {name: resource/type}
-  action: proto.operations/search
-  module: proto
-  id: Search
--- original policy
-policy:
-  engine: sql
-  sql: {query: 'SELECT {{user.role}} FROM {{!params.resource/type}}'}
--- result of policy evaluation
-result:
-  eval-result: false
-  query: ['SELECT ? FROM "patient"', admin]
-```
+See the [Access Control debug page](../debug.md)
 
 ### JSON Schema Engine
 
@@ -242,7 +168,7 @@ resourceType: AccessPolicy
 
 #### Interpolation Rules
 
-In your SQL query, you can parameterize with attributes from the request object using  `{{path}}` syntax. For example, to get a role from user `{data: {role: 'admin'}}` you can write `{{user.data.role}}`. Parameter expressions are escaped by default to protect from SQL injection. If you want to make dynamic queries (parameterize table name, for example), you have to use `{{!path}}` syntax. For example, the expression `SELECT true from {{!params.resource/type}} limit 1` with params = `{resource/type: "Patient"}` will be transformed into `SELECT true from "patient".` Such identifier names are double quoted and lower-cased by default.
+In your SQL query, you can parameterize with attributes from the request object using `{{path}}` syntax. For example, to get a role from user `{data: {role: 'admin'}}` you can write `{{user.data.role}}`. Parameter expressions are escaped by default to protect from SQL injection. If you want to make dynamic queries (parameterize table name, for example), you have to use `{{!path}}` syntax. For example, the expression `SELECT true from {{!params.resource/type}} limit 1` with params = `{resource/type: "Patient"}` will be transformed into `SELECT true from "patient".` Such identifier names are double quoted and lower-cased by default.
 
 ### Allow Engine
 
@@ -250,7 +176,7 @@ Allow Engine constantly evaluates to `true` regardless the content of the reques
 
 ### Complex Engine
 
-Complex engine provides ability to include several checks into a single policy and apply  "AND" / "OR" operator on results. It's allowed to use any policy engine to define a check, you can even use "complex" engine to get sub-expression:
+Complex engine provides ability to include several checks into a single policy and apply "AND" / "OR" operator on results. It's allowed to use any policy engine to define a check, you can even use "complex" engine to get sub-expression:
 
 ```yaml
 and:
@@ -304,7 +230,7 @@ resourceType: AccessPolicy
 
 ### Matcho Engine
 
-This custom DSL engine has limited expressiveness, but is very compact and declarative. The general idea is pattern matching with few extensions.&#x20;
+This custom DSL engine has limited expressiveness, but is very compact and declarative. The general idea is pattern matching with few extensions.
 
 ```yaml
 resourceType: AccessPolicy
@@ -327,24 +253,24 @@ matcho:
 Match DSL definition:
 
 * If **pattern** (match) is object, search for inclusion of this object into subject. For example: `{x: 1}` matches `{x: 1, y: 2 ....}`. This algorithm is recursive — `{a: {b: 5}}` matches `{a: {b: 5, ...}...}`
-* Objects with special keys:&#x20;
-  * **$enum** —  test subject is equal to one of items in the enumeration. `{request-method: {$enum: ['get','post']}}` matches `{request-method: 'post'}`
-  * **$contains** — **** if a subject is a collection, then search at least one match. `{type: {$contains: {system: 'loinc'}}` matches `{type: [{system: 'snomed'}, {system: 'loinc'}]}`
-  * **$one-of —** try to match one of patterns. `{a: {$one-of: [{b: present?}, {c: present?}]} matches {a: {c: 5}}`&#x20;
-  * **$reference** -  parse Reference  or string into [aidbox format](../../../modules-1/fhir-resources/aidbox-and-fhir-formats.md#references). Examples:
-    * Parse Reference elements&#x20;
+* Objects with special keys:
+  * **$enum** — test subject is equal to one of items in the enumeration. `{request-method: {$enum: ['get','post']}}` matches `{request-method: 'post'}`
+  * **$contains** — \*\*\*\* if a subject is a collection, then search at least one match. `{type: {$contains: {system: 'loinc'}}` matches `{type: [{system: 'snomed'}, {system: 'loinc'}]}`
+  * **$one-of —** try to match one of patterns. `{a: {$one-of: [{b: present?}, {c: present?}]} matches {a: {c: 5}}`
+  * **$reference** - parse Reference or string into [aidbox format](../../../modules-1/fhir-resources/aidbox-and-fhir-formats.md#references). Examples:
+    * Parse Reference elements
       * `parser: {reference: "Patient/pid"} => {id: "pid", resourceType: "Patient"}`
-      * `{resource: {patient: {$reference: {id: '.user.data.patient_id'}}}`&#x20;
-    * Parse reference string &#x20;
-      * `"Patient/pid" =>  {id: "pid", resourceType: "Patient"}`
+      * `{resource: {patient: {$reference: {id: '.user.data.patient_id'}}}`
+    * Parse reference string
+      * `"Patient/pid" => {id: "pid", resourceType: "Patient"}`
       * `{params: {subject: {$reference: {id: '.user.data.patient_id'}}}`
 * For **array,** match the first item in the pattern with the first item in the subject. `[1,2]` matches `[1,2,3...]`
 * Primitive values (strings, numbers and booleans) are compared by value
-* If a string starts with `'#'` ,  it will be transformed into regex and matched as regex. `{a: '#\\d+'}` matches `{a: '2345'}`
+* If a string starts with `'#'` , it will be transformed into regex and matched as regex. `{a: '#\\d+'}` matches `{a: '2345'}`
 * If a string starts with `'.'` , it's interpreted as a pointer to another path in the subject to compare. For example: `{params: {user_id: '.user.id'}}` matches `{user: {id: 1}, params: {user_id: 1}},` i.e. `user.id == param.user_id`
 * There are several special string literals postfixed with the `?`
   * **present?** — matches the subject if it is not null, i.e. `{a: 'present?'}` matches `{a: 5}` or `{a: {b: 6}}`
-  * **nil?**  — matches if nil/null — `{a: nil?}` matches `{b: 6}`
+  * **nil?** — matches if nil/null — `{a: nil?}` matches `{b: 6}`
   * **not-blank?** — matches not blank string.
 
 {% hint style="info" %}
