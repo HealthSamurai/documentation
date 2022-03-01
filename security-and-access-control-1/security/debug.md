@@ -29,6 +29,33 @@ x-debug: policy
 # :auth/trace-policy {:access-policy-id :policy-2, :policy-type "json-schema",...
 ```
 
+### `su` request header
+
+`su` header allows to switch user on behalf of whom request is executed. Use `su=<user/client id>` to check how access control works for that user.
+
+{% hint style="info" %}
+`su` header is only available to admin users, who have at least one `AccessPolicy`  with `engine` = `allow` linked to them.&#x20;
+{% endhint %}
+
+#### Example
+
+```http
+# Request as an admin:
+GET /fhir/Patient
+
+# Response:
+Status: 200
+```
+
+```http
+# Request on behalf of `myid` User who has no access to Patient search:
+GET /fhir/Patient
+su: myid
+
+# Response
+Status: 403
+```
+
 ### `/auth/test-policy` Operation
 
 You can use a special operation `POST /auth/test-policy` to design policy without creating an AccessPolicy resource and for different users and clients. Post on the `/auth/test-policy` with a simulated **request** attribute (you can provide existing `user-id` and `client-id` — Aidbox will find and populate request) and temporal policy in the **policy** attribute. If you want to test JWT auth, put your token in the `headers.authorization` with the `Bearer` prefix — the token will be parsed and its claims appear in the `request.jwt`. JWT in a header is parsed but not validated. This allows you to test JWT policy without **TokenIntrospector** registration.
