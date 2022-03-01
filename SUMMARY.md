@@ -7,6 +7,7 @@
 * [Installation & Configuration](getting-started/installation/README.md)
   * [🎓 Devbox](getting-started/installation/setup-aidbox.dev.md)
   * [🎓 Devbox in Cloud](getting-started/installation/getting-started-with-box.md)
+  * [🎓 Devbox with bb](getting-started/installation/devbox-with-bb.md)
   * [Configure Devbox/Aidbox/Multibox](getting-started/installation/configure-devbox-aidbox-multibox.md)
   * [aidboxdb image](getting-started/installation/aidboxdb-image.md)
   * [🆕 Update Aidbox](getting-started/installation/update-aidbox.md)
@@ -24,7 +25,7 @@
 ## Aidbox configuration
 
 * [Aidbox project](aidbox-configuration/aidbox-zen-lang-project.md)
-* [API constructor (alpha)](aidbox-configuration/aidbox-api-constructor.md)
+* [API constructor (beta)](aidbox-configuration/aidbox-api-constructor.md)
 * [Setup SMTP provider](aidbox-configuration/setup-smtp-provider.md)
 * [Zen Configuration](aidbox-configuration/zen-configuration.md)
 
