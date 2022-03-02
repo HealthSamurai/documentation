@@ -38,7 +38,7 @@ Table of source and format compatibility:
 Example:
 
 ```
-AIDBOX_ZEN_PATHS=AIDBOX_ZEN_PATHS=url:zip:https://github.com/zen-lang/fhir/releases/download/0.2.13-1/hl7-fhir-us-core.zip
+AIDBOX_ZEN_PATHS=url:zip:https://github.com/zen-lang/fhir/releases/download/0.2.13-1/hl7-fhir-us-core.zip
 ```
 
 #### `AIDBOX_ZEN_LOAD`
@@ -72,7 +72,7 @@ AIDBOX_ZEN_ENTRYPOINT=zen.namespace
 Using a zen symbol as an entry point:
 
 ```
-AIDBOX_ZEN_ENTRYPOINt=zen.namespace/zen-symbol
+AIDBOX_ZEN_ENTRYPOINT=zen.namespace/zen-symbol
 ```
 
 **Examples:**
