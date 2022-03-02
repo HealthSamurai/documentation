@@ -20,7 +20,7 @@ Use [`bb` Devbox setup](../getting-started/installation/devbox-with-bb.md) to st
 Here's a notebook with routing defined via API constructor demo:&#x20;
 
 ```
-https://aidbox.app/ExportedNotebook/cd4a85b1-fbf2-4f8e-ad73-ee8a18b63f5b 
+https://aidbox.app/ExportedNotebook/df9ac147-daa4-4495-87b5-c4367cd441ef
 ```
 
 You can [import it](https://web.telegram.org/o/-LHqtKitlMYF2y7QBlXS/s/-LHqtKiuedlcKJLm337\_/\~/changes/gsp3ApDuLk8tbTr5YTKj/aidbox-ui/notebooks#import-a-notebook) into the Aidbox you have running with bb and run test REST requests.
