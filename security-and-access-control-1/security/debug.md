@@ -33,6 +33,14 @@ x-debug: policy
 
 `su` header allows to switch user on behalf of whom request is executed. Use `su=<user/client id>` to check how access control works for that user.
 
+`su` header functionality can be enabled with `box_debug_su_enable` env
+
+{% code title="Example" %}
+```
+box_debug_su_enable=true
+```
+{% endcode %}
+
 {% hint style="info" %}
 `su` header is only available to admin users, who have at least one `AccessPolicy`  with `engine` = `allow` linked to them.&#x20;
 {% endhint %}
