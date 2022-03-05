@@ -44,7 +44,7 @@
     * [Summary parameter](api-1/fhir-api/search-1/\_summary.md)
     * [\_list](api-1/fhir-api/search-1/\_list.md)
     * [\_count & \_page](api-1/fhir-api/search-1/\_count-and-\_page.md)
-    * [\_total or \_countMethod](api-1/fhir-api/search-1/\_total-or-\_countmethod.md)
+    * [\_total or \_totalMethod](api-1/fhir-api/search-1/\_total-or-\_countmethod.md)
     * [\_timeout](api-1/fhir-api/search-1/\_timeout.md)
     * [\_sort](api-1/fhir-api/search-1/\_sort.md)
     * [\_include & \_revinclude](api-1/fhir-api/search-1/\_include-and-\_revinclude.md)
