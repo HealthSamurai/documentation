@@ -41,9 +41,9 @@ _Expects no parameters_
 {% endtab %}
 
 {% tab title="Error" %}
-`error` - "Grafana user,password,url doesn't provided"
+`error` - "Provide following environment variables: `BOX_METRICS_GRAFANA_USER`, `BOX_METRICS_GRAFANA_PASSWORD`, `BOX_METRICS_GRAFANA_URL`"
 
-`error` - \<Gfrana internal error>
+`error` - \<Grafana internal error>
 {% endtab %}
 {% endtabs %}
 
@@ -60,9 +60,9 @@ content-type: application/edn
 {:method aidbox.metrics/update-aidbox-dashboard}
 ```
 
-### aidbox.metrics/update-cluster-dashboard
+### aidbox.metrics/get-aidbox-dashboard
 
-Generates dashboards with cluster-specific metrics
+Generates dashboards as a JSON&#x20;
 
 {% tabs %}
 {% tab title="Parameters" %}
@@ -70,13 +70,15 @@ _Expects no parameters_
 {% endtab %}
 
 {% tab title="Result" %}
-`status` - "200 OK"
-{% endtab %}
+Grafana dashboard JSON:
 
-{% tab title="Error" %}
-`error` - "Grafana user,password,url doesn't provided"
-
-`error` - \<Gfrana internal error>
+```
+{
+ "uid": "metrics-dev",
+ "title": "Aidbox metrics dev",
+ // omitted
+}
+```
 {% endtab %}
 {% endtabs %}
 
@@ -92,7 +94,8 @@ Required Prometheus exporters:
 
 ```http
 POST /rpc
-content-type: application/edn
+content-type: application/json
+accept: application/json
 
-{:method aidbox.metrics/update-cluster-dashboard}
+{"method": "aidbox.metrics/get-aidbox-dashboard"}
 ```
