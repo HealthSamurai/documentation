@@ -1,6 +1,17 @@
 # Release Notes
 
-## January 2022 - v:2201 `latest`
+## February 2022 - v:2202 `latest`
+
+* Released a beta version of [Aidbox API constructor ](../../aidbox-configuration/aidbox-api-constructor.md)that allows to define REST API granularly.
+* Added Access Control debug option: [su header](../../security-and-access-control-1/security/debug.md#su-request-header). It allows to do a request on behalf of a certain user.
+* Added [Grafana dashboard RPC](../../core-modules/monitoring/grafana-integration.md) API that allows to get Aidbox metrics dashboards and import it to your Grafana.
+* Added [`_count`](../../api-1/fhir-api/search-1/\_count-and-\_page.md), [`_total`](../../api-1/fhir-api/search-1/\_total-or-\_countmethod.md) and [`_timeout`](../../api-1/fhir-api/search-1/\_timeout.md) environment variables to configure default values.
+* Improved logging for RPC and GraphQL calls.
+* Fixed Aidbox UI pretty view display.
+* Fixed [issues ](https://github.com/Aidbox/Issues/milestone/9?closed=1)submitted by Aidbox users.
+* Deprecated APM and JMX in default build. Please reach out to us if you're using it.
+
+## January 2022 - v:2201 `stable`
 
 {% hint style="info" %}
 Starting from January 2022 we're switching to a new release cycle. We added`:latest and LTS` (long-term support) versions. Check [the updated release cycle](./).
