@@ -60,7 +60,44 @@ content-type: application/edn
 {:method aidbox.metrics/update-aidbox-dashboard}
 ```
 
-### aidbox.metrics/get-aidbox-dashboard
+### `aidbox.metrics/update-cluster-dashboard`
+
+Generates dashboards with cluster-specific metrics
+
+{% tabs %}
+{% tab title="Parameters" %}
+
+{% endtab %}
+
+{% tab title="Result" %}
+`status` - "200 OK"
+{% endtab %}
+
+{% tab title="Error" %}
+`error` - "Provide following environment variables: `BOX_METRICS_GRAFANA_USER`, `BOX_METRICS_GRAFANA_PASSWORD`, `BOX_METRICS_GRAFANA_URL`"
+
+`error` - \<Grafana internal error>
+{% endtab %}
+{% endtabs %}
+
+{% hint style="warning" %}
+Required Prometheus exporters:
+
+* `kube-state-metrics`
+* `node-exporter`
+* `cadvisor`
+{% endhint %}
+
+#### Request example
+
+```http
+POST /rpc
+content-type: application/edn
+
+{:method aidbox.metrics/update-cluster-dashboard}
+```
+
+### `aidbox.metrics/get-aidbox-dashboard`
 
 Generates dashboards as a JSON&#x20;
 
