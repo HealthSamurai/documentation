@@ -47,6 +47,7 @@
     * [\_total or \_totalMethod](api-1/fhir-api/search-1/\_total-or-\_countmethod.md)
     * [\_timeout](api-1/fhir-api/search-1/\_timeout.md)
     * [\_sort](api-1/fhir-api/search-1/\_sort.md)
+    * [Token search](api-1/fhir-api/search-1/token-search.md)
     * [\_include & \_revinclude](api-1/fhir-api/search-1/\_include-and-\_revinclude.md)
     * [Chained Parameters](api-1/fhir-api/search-1/chained-parameters.md)
     * [. expressions](api-1/fhir-api/search-1/.-expressions.md)
