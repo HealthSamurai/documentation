@@ -8,7 +8,7 @@ description: >-
 # $translate on ConceptMap
 
 {% hint style="info" %}
-All the examples can be found at the` "FHIR ConceptMap Resource and translation"`community notebook which is accessible via your Aidbox Notebooks UI Tab
+All the examples can be found at the `"FHIR ConceptMap Resource and translation"`community notebook which is accessible via your Aidbox Notebooks UI Tab
 {% endhint %}
 
 ### Parameters and usage
@@ -65,6 +65,17 @@ body:
 
 ConceptMaps are ungrouped on create to have an opportunity to use Search API instead of $tranalate operation. ConceptMaps are transformed into ConceptMapRule resources.
 
+#### ConceptMapRule resource schema:
+
+* `element` as in ConceptMap
+* `source`: source system where concepts to be mapped are defined
+* `target`: target system that the concepts are to be mapped to
+* `sourceValueSet`: the source value set that contains the concepts that are being mapped
+* `targetValueSet`: the target value set which provides context for the mappings
+* `conceptMapId`: id of the original ConceptMap
+* `conceptmapUrl`: url of the original ConceptMap
+* `unmapped`: as in ConceptMap
+
 #### Aidbox Search API for ConceptMapRule
 
 {% tabs %}
@@ -113,4 +124,16 @@ java -jar [JAR_PATH] cmndj -i PATH/TO/CONCEPT_MAP.json -o PATH/TO/OUTPUT_BUNDLE.
 
 The output bundle consists of ConceptMap meta resource and the set of ConceptMapRule resources.
 
-Use [Bulk API ](../../api-1/bulk-api-1/aidbox.bulk-data-import.md)to upload output bundle.
+Use [Bulk API ](../api-1/bulk-api-1/aidbox.bulk-data-import.md)to upload output bundle.
+
+### How to get full ConceptMap resource
+
+Aidbox doesn't store ConceptMap groups in ConceptMap resource as mentioned above.
+
+To get full ConceptMap resource make a request using `/fhir` prefix.
+
+Example:
+
+```http
+GET /fhir/ConceptMap/my-concept-map
+```
