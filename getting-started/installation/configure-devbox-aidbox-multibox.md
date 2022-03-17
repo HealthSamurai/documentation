@@ -12,7 +12,7 @@ description: >-
 
 [Aidbox](https://hub.docker.com/r/healthsamurai/aidboxone) is a full-featured single instance of the Aidbox FHIR server. If you are interested in multi-tenant Aidbox, consider using [Multibox ](https://docs.aidbox.app/getting-started/installation/use-devbox-aidbox)distribution.
 
-All distributions are intended to be used with [healthsamurai/aidboxdb](https://hub.docker.com/r/healthsamurai/aidboxdb) postgres distribution. If you want to use DBaaS solution for storage, contact your support team to check if it is implemented.
+All distributions can be used both on  [healthsamurai/aidboxdb](https://hub.docker.com/r/healthsamurai/aidboxdb) PostgreSQL distribution or managed PostgreSQLs.
 
 All distributions require license details to be provided. Alongside with online license server, we offer a special license server distribution for the deployment environments that do not have access to the internet. Contact your support team for the details.
 
