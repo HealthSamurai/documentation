@@ -7,7 +7,7 @@ description: >-
 # 🎓 Extend an IG with a custom zen profile
 
 {% hint style="info" %}
-This feature is in beta and may be changed in future.
+Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [contact](../../contact-us.md) us if you have questions, feedback or suggestions.
 {% endhint %}
 
 ## Before you start

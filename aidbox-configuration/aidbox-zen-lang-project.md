@@ -104,4 +104,4 @@ Format: if the variable is defined in the environment then Zen dev mode is enabl
 
 ## Examples
 
-You can see example using the Aidbox project and hot reload in the [🎓 Profiling with zen-lang](../profiling-and-validation/profiling-with-zen-lang/draft-profiling-with-zen-lang.md) tutorial.
+You can see example using the Aidbox project and hot reload in the [🎓 Profiling with zen-lang](../profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile.md) tutorial.

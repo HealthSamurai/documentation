@@ -101,4 +101,4 @@ Using [this tool](https://github.com/zen-lang/fhir/blob/main/README.md) you can 
 
 ### Create custom Zen FHIR package based on existing Zen FHIR packages
 
-You can use existing Zen FHIR packages as a foundation for your custom Zen FHIR package. Check out [Profiling with Zen-lang guide](draft-profiling-with-zen-lang.md).
+You can use existing Zen FHIR packages as a foundation for your custom Zen FHIR package. Check out [Profiling with Zen-lang guide](extend-an-ig-with-a-custom-zen-profile.md).
