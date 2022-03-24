@@ -84,31 +84,22 @@ For PKCE you will need to additionally supply `code_challenge` and `code_challen
 {% tabs %}
 {% tab title="Secret" %}
 ```json
-POST /auth/authorize
-Content-Type: application/json
-
-{
- "response_type": "code",
- "client_id": "webapp",
- "redirect_uri": "http://myapp.app",
- "state": "somestate"
-}
+GET /auth/authorize?\
+response_type=code&\
+client_id=webapp&\
+redirect_uri=http://myapp.app&state=somestate
 ```
 {% endtab %}
 
 {% tab title="PKCE" %}
 ```json
-POST /auth/authorize
-Content-Type: application/json
-
-{
- "response_type": "code",
- "client_id": "webapp",
- "redirect_uri": "http://myapp.app",
- "state": "somestate",     
- "code_challenge": "46mfdzfFFfZJtfN8UfAzUQgnq9_Tei33CUVXyeAeiwE",
- "code_challenge_method": "S256"
-}
+GET /auth/authorize?\
+response_type=code&\
+client_id=webapp&\
+redirect_uri=http://myapp.app&\
+state=somestate&\    
+code_challenge=46mfdzfFFfZJtfN8UfAzUQgnq9_Tei33CUVXyeAeiwE&\
+code_challenge_method=S256
 ```
 {% endtab %}
 {% endtabs %}
