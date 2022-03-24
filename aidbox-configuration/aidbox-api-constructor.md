@@ -15,7 +15,7 @@ Please [contact](../contact-us.md) us if you have questions or need help with AP
 
 ## Example setup
 
-Use [`bb` Devbox setup](../getting-started/installation/devbox-with-bb.md) to start Aidbox, it contains configured API Constructor example. Once Aidbox is running, open `Profiles` tab in the Aidbox UI. If everything is configured properly, page should contain namespace with `BOX_ENTRYPOINT` symbol. View of the symbol should show loaded routing.
+Use [`bb` Devbox setup](../getting-started/installation/devbox-with-bb.md) to start Aidbox, it contains configured API Constructor example. Once Aidbox is running, open `Profiles` tab in the Aidbox UI. If everything is configured properly, page should contain namespace with `AIDBOX_ZEN_ENTRYPOINT` symbol. View of the symbol should show loaded routing.
 
 Here's a notebook with routing defined via API constructor demo:&#x20;
 
@@ -29,7 +29,7 @@ You can [import it](https://web.telegram.org/o/-LHqtKitlMYF2y7QBlXS/s/-LHqtKiued
 
 ### Entrypoint
 
-Define an Aidbox server definition with `BOX_ENTRYPOINT` env, the value must be a `namespace/symbol`, e.g.:
+Define an Aidbox server definition with `AIDBOX_ZEN_ENTRYPOINT` env, the value must be a `namespace/symbol`, e.g.:
 
 ```bash
 AIDBOX_ZEN_ENTRYPOINT=mybox/box
