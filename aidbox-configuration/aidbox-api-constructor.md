@@ -32,11 +32,11 @@ You can [import it](https://web.telegram.org/o/-LHqtKitlMYF2y7QBlXS/s/-LHqtKiued
 Define an Aidbox server definition with `BOX_ENTRYPOINT` env, the value must be a `namespace/symbol`, e.g.:
 
 ```bash
-BOX_ENTRYPOINT=mybox/box
+AIDBOX_ZEN_ENTRYPOINT=mybox/box
 ```
 
 {% hint style="info" %}
-The namespace with entrypoint symbol must be loaded: file containing namespace mentioned in `AIDBOX_ZEN_PATHS` and imported or specified directly in `AIDBOX_ZEN_ENTRY`/`AIDBOX_ZEN_ENTRYPOINT` env.\
+The namespace with entrypoint symbol must be loaded: file containing namespace mentioned in `AIDBOX_ZEN_PATHS` and imported or specified directly in`AIDBOX_ZEN_ENTRYPOINT` env.\
 [More info on loading namespace](aidbox-zen-lang-project.md)
 {% endhint %}
 

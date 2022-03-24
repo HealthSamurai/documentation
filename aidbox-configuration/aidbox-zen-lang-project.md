@@ -82,25 +82,25 @@ AIDBOX_ZEN_ENTRYPOINT=aidbox-project1/dev-server
 AIDBOX_ZEN_ENTRYPOINT=aidbox-project2
 ```
 
-#### `AIDBOX_ZEN_PROJECT`
-
-{% hint style="warning" %}
-This environment variable will be merged with the `AIDBOX_ZEN_PATHS`.
-{% endhint %}
-
-The `AIDBOX_ZEN_PROJECT` environment variable is used to load Aidbox project from the path specified
-
-**Format:**
-
-```
-AIDBOX_ZEN_PROJECT=<path>
-```
-
 #### `AIDBOX_ZEN_DEV_MODE`
 
 The `AIDBOX_ZEN_DEV_MODE` environment variable is used to enable the hot reloading of the aidbox project.
 
-Format: if the variable is defined in the environment then Zen dev mode is enabled
+Format: if the variable is defined in the environment then Zen dev mode is enabled.
+
+{% hint style="info" %}
+Hot reloading works only with directories and files in local file system. I.e. `path:dir` and `path:edn` in `AIDBOX_ZEN_PATHS`.
+{% endhint %}
+
+`AIDBOX_ZEN_ENTRY`, `AIDBOX_ZEN_PROJECT`, `BOX_ENTRYPOINT` are deprecated.&#x20;
+
+#### `AIDBOX_ZEN_PROJECT`
+
+{% hint style="warning" %}
+Deprecated. Use `AIDBOX_ZEN_PATHS` instead.
+{% endhint %}
+
+The `AIDBOX_ZEN_PROJECT` environment variable is used to load Aidbox project from the path specified.
 
 ## Examples
 
