@@ -94,13 +94,17 @@ Hot reloading works only with directories and files in local file system. I.e. `
 
 `AIDBOX_ZEN_ENTRY`, `AIDBOX_ZEN_PROJECT`, `BOX_ENTRYPOINT` are deprecated.&#x20;
 
-#### `AIDBOX_ZEN_PROJECT`
+#### `AIDBOX_ZEN_PROJECT`, `AIDBOX_ZEN_ENTRY`, `BOX_ENTRYPOINT`
 
 {% hint style="warning" %}
-Deprecated. Use `AIDBOX_ZEN_PATHS` instead.
+Deprecated. Use `AIDBOX_ZEN_PATHS` and `AIDBOX_ZEN_ENTRYPOINT` instead.
 {% endhint %}
 
-The `AIDBOX_ZEN_PROJECT` environment variable is used to load Aidbox project from the path specified.
+`AIDBOX_ZEN_PROJECT` environment variable is used to load Aidbox project from the path specified.
+
+&#x20;`AIDBOX_ZEN_ENTRY` environment variable is used to specify zen project entry namespace.
+
+`BOX_ENTRYPOINT` environment variable is used to specify zen entry symbol.
 
 ## Examples
 
