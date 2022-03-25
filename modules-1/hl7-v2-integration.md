@@ -212,3 +212,47 @@ Replace `xxxxxxxxxx` in the command above with a string returned by this command
 ### Using HAPI TestPanel to send messages with MLLP
 
 Once `hl7proxy` is up and running, you can use [HAPI TestPanel](https://hapifhir.github.io/hapi-hl7v2/hapi-testpanel/) to send sample HL7 v2 messages. Make sure that TestPanel doesn't report any errors on message delivery. `hl7proxy` output should contain information about every received message and log line`Sent to Aidbox: 201 Created` indicates a successful delivery.
+
+## User-defined segments (Z-segments)
+
+You can define custom segment using `Hl7v2Config` resource.
+
+`msh` - message structure code
+
+`segment` - custom segment name
+
+Each field:
+
+* `name` - HL7v2 field name
+* `key` -  key under which parsed value is stored
+* `type` - HL7v2 field type
+
+### Example
+
+```yaml
+mapping:
+  id: example
+  resourceType: Mapping
+isStrict: false
+extensions:
+  - msh: ADT_A01
+    fields:
+      - key: id
+        name: ID
+        type: EI
+      - key: startDate
+        name: START_DATE
+        type: TS
+      - key: endDate
+        name: END_DATE
+        type: TS
+      - key: state
+        name: STATE
+        type: ST
+      - key: value
+        name: VALUE
+        type: ST
+    segment: ZBE
+id: cfg-1
+resourceType: Hl7v2Config
+```
