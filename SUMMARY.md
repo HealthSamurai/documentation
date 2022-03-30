@@ -226,6 +226,13 @@
 * [Plan API Overview](plan-api/plan-api-overview.md)
 * [Patient Access API](plan-api/patient-access-api.md)
 
+## Integrations
+
+* [Analytics](integrations/analytics/README.md)
+  * [Power BI](integrations/analytics/power-bi.md)
+* [Audit](integrations/audit.md)
+* [Authentication](integrations/authentication.md)
+
 ## Tools
 
 * [Mappings](tools/mappings.md)
