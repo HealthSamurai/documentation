@@ -256,7 +256,7 @@ Match DSL definition:
 * Objects with special keys:
   * **$enum** — test subject is equal to one of items in the enumeration. `{request-method: {$enum: ['get','post']}}` matches `{request-method: 'post'}`
   * **$contains** — \*\*\*\* if a subject is a collection, then search at least one match. `{type: {$contains: {system: 'loinc'}}` matches `{type: [{system: 'snomed'}, {system: 'loinc'}]}`
-  * **$one-of —** try to match one of patterns. `{a: {$one-of: [{b: present?}, {c: present?}]} matches {a: {c: 5}}`
+  * **$one-of —** try to match one of patterns. `{a: {$one-of: [{b: present?}, {c: present?}]}` matches `{a: {c: 5}}`
   * **$reference** - parse Reference or string into [aidbox format](../../../modules-1/fhir-resources/aidbox-and-fhir-formats.md#references). Examples:
     * Parse Reference elements
       * `parser: {reference: "Patient/pid"} => {id: "pid", resourceType: "Patient"}`
@@ -264,6 +264,8 @@ Match DSL definition:
     * Parse reference string
       * `"Patient/pid" => {id: "pid", resourceType: "Patient"}`
       * `{params: {subject: {$reference: {id: '.user.data.patient_id'}}}`
+  * **$not** - negate nested pattern. Example: `$not: {status: private}` matches `{status: public}` and doesn't match `{status: private}.` **Be careful** using `$not` as it is possible to create **too permissive** policy. See more info below
+  * **$every** - for collection subject check that each item satisfies the specified pattern. Example: `$every: {foo: bar}` matches `[{foo: bar}, {foo: bar, baz: quux}]` and doesn't match `[{foo: bar}, {foo: baz}]`
 * For **array,** match the first item in the pattern with the first item in the subject. `[1,2]` matches `[1,2,3...]`
 * Primitive values (strings, numbers and booleans) are compared by value
 * If a string starts with `'#'` , it will be transformed into regex and matched as regex. `{a: '#\\d+'}` matches `{a: '2345'}`
@@ -272,6 +274,18 @@ Match DSL definition:
   * **present?** — matches the subject if it is not null, i.e. `{a: 'present?'}` matches `{a: 5}` or `{a: {b: 6}}`
   * **nil?** — matches if nil/null — `{a: nil?}` matches `{b: 6}`
   * **not-blank?** — matches not blank string.
+
+{% hint style="warning" %}
+**Be careful** using `$not` as it is possible to create **too permissive** policy, i.e. state that something is not allowed means that everything else is allowed. Example:
+
+```
+user: {data: {role: {$not: guest}}}
+url: '#/Patient.*?'
+request-method: DELETE
+```
+
+This matcho pattern allows to do `DELETE /Patient/<id>` for unauthorized users
+{% endhint %}
 
 {% hint style="info" %}
 Need more rules? Contact us on the [telegram chat](https://t.me/aidbox)!
