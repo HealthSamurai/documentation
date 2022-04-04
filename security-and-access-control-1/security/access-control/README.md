@@ -276,15 +276,20 @@ Match DSL definition:
   * **not-blank?** — matches not blank string.
 
 {% hint style="warning" %}
-**Be careful** using `$not` as it is possible to create **too permissive** policy, i.e. state that something is not allowed means that everything else is allowed. Example:
+**Be careful** using `$not` as it is possible to create **too permissive** policy, i.e. statement that something is not allowed means that everything else is allowed. Example:
 
-```
-user: {data: {role: {$not: guest}}}
-url: '#/Patient.*?'
-request-method: DELETE
+```yaml
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  request-method: delete
+  uri: '#^/Patient.*$'
+  user: {$not: {data: {role: guest}}}
 ```
 
-This matcho pattern allows to do `DELETE /Patient/<id>` for unauthorized users
+While original intent was to forbid guest users to delete Patient resources this AccessPolicy allows to do `DELETE /Patient/<id>` for unauthorized users.
+
+In this case it is better to explicitly list possible roles with `$enum`
 {% endhint %}
 
 {% hint style="info" %}
