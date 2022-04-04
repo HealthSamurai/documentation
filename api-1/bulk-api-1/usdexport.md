@@ -58,11 +58,12 @@ Set the following environment variables:
 
 ## Parameters
 
-| Parameter       | Description                                                                                        |
-| --------------- | -------------------------------------------------------------------------------------------------- |
-| `_outputFormat` | Specifies format in which the server generates files. Only `application/fhir+ndjson` is supported. |
-| `_type`         | Includes only the specified types. This list is comma-separated.                                   |
-| `_since`        | Includes only resources changed after the specified time.                                          |
+| Parameter       | Description                                                                                                                            |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `_outputFormat` | Specifies format in which the server generates files. Only `application/fhir+ndjson` is supported.                                     |
+| `_type`         | Includes only the specified types. This list is comma-separated.                                                                       |
+| `_since`        | Includes only resources changed after the specified time.                                                                              |
+| `patient`       | Export data that belongs only to listed patient. Format: comma-separated list of patient ids. Available only for patient-level export. |
 
 ## Patient-level export
 
