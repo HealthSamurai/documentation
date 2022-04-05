@@ -62,6 +62,8 @@ All distributions require license details to be provided. Alongside with online 
 | `box_search_default__params_count`                                   | Overrides the default count search parameter value. 100 is the default value. The provided value should be <= 1000                                                                                                                                                                                                                                                        |
 | `box_compatibility_validation_json__schema_regex="#{:fhir-datetime}` | Enables strict date time validation in JSON schema validation engine per [FHIR spec](https://www.hl7.org/fhir/datatypes.html#dateTime).                                                                                                                                                                                                                                   |
 | `box_compatibility_auth_pkce_code__challenge_s256_conformant`        | Use conformant S256 code challenge validation scheme.                                                                                                                                                                                                                                                                                                                     |
+| `box_debug_su_enable`        | Enables `su` request header [functionalty](https://docs.aidbox.app/security-and-access-control-1/security/debug#su-request-header) |
+| `box_feature_validation_skip_reference`        | Enables skip resource reference validation [functionality](/profiling-and-validation/profiling#aidbox-validation-skip-request-header) |
 
 
 
