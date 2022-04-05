@@ -40,7 +40,7 @@ Request without `aidbox-validation-skip` request header causes an error.
 PUT /fhir/Observation/f001
 content-type: text/yaml
 
-resourceType: Observsation
+resourceType: Observation
 id: f001
 subject:
   reference: Patient/id-does-not-exist
@@ -73,7 +73,7 @@ PUT /fhir/Observation/f001
 content-type: text/yaml
 aidbox-validation-skip: reference
 
-resourceType: Observsation
+resourceType: Observation
 id: f001
 subject:
   reference: Patient/id-does-not-exist
