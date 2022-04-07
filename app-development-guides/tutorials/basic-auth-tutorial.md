@@ -8,7 +8,7 @@ To start you have to register in Aidbox Auth Client with secret and basic flow e
 
 ![Auth Client form](<../../.gitbook/assets/image (79) (1).png>)
 
-![PUT Client/basic](<../../.gitbook/assets/image (72) (1).png>)
+![PUT Client/basic](<../../.gitbook/assets/image (72).png>)
 
 Let's create AccessPolicy for this Client
 

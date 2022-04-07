@@ -3,7 +3,7 @@
 ## March 2022 - v:2203 `latest`
 
 * Added [`aidbox-validation-skip`](../../profiling-and-validation/profiling.md#aidbox-validation-skip-request-header) header that allows skipping resource reference validation.
-* Standardized [Aidbox projects](../../aidbox-configuration/aidbox-zen-lang-project.md) entrypoints.&#x20;
+* Standardized [Aidbox project](../../aidbox-configuration/aidbox-zen-lang-project.md) entrypoints.&#x20;
 * Added fixes to [zen FHIR packages](../../profiling-and-validation/profiling-with-zen-lang/#zen-fhir-packages) and published [Structured Data Capture IG](https://build.fhir.org/ig/HL7/sdc/) as a zen FHIR package.
 * Supported [`:of-type`](../../api-1/fhir-api/search-1/token-search.md) modifier for token/Identifier search.
 * Enhanced [matcho engine](../../security-and-access-control-1/security/access-control/#matcho-engine) with `$every` and `$not` patterns.

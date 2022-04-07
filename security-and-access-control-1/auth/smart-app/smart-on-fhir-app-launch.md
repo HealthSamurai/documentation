@@ -122,7 +122,7 @@ Authorization code flow with SMART on FHIR Standalone Launch:
 
 ## EHR Launch
 
-![EHR Launch Sequence](<../../../.gitbook/assets/image (94) (1) (1).png>)
+![EHR Launch Sequence](<../../../.gitbook/assets/image (99).png>)
 
 
 
