@@ -1,9 +1,25 @@
 # Release Notes
 
-## February 2022 - v:2202 `latest`
+## March 2022 - v:2203 _`latest`_
+
+* Released a [February 2022 - v:2202 _`LTS`_](release-notes.md#february-2022-v-2202-stable).  __  The Aidbox team will backport security and critical bug fixes to it throughout a one-year support window.
+* Added [`aidbox-validation-skip`](../../profiling-and-validation/profiling.md#aidbox-validation-skip-request-header) header that allows skipping resource reference validation.
+* Standardized [Aidbox project](../../aidbox-configuration/aidbox-zen-lang-project.md) entrypoints.&#x20;
+* Added fixes to [zen FHIR packages](../../profiling-and-validation/profiling-with-zen-lang/#zen-fhir-packages) and published [Structured Data Capture IG](https://build.fhir.org/ig/HL7/sdc/) as a zen FHIR package.
+* Supported [`:of-type`](../../api-1/fhir-api/search-1/token-search.md) modifier for token/Identifier search.
+* Enhanced [matcho engine](../../security-and-access-control-1/security/access-control/#matcho-engine) with `$every` and `$not` patterns.
+* Added `patient` query parameter to the [bulk data export ](../../api-1/bulk-api-1/usdexport.md)operation.
+* Updated [HL7 v2 module](https://docs.aidbox.app/modules-1/hl7-v2-integration) documentation.&#x20;
+* Fixed [issues ](https://github.com/Aidbox/Issues/issues?q=is%3Aissue+milestone%3A%22March+2022+-+v%3A2203%22+is%3Aclosed)submitted by Aidbox users.
+
+## February 2022 - v:2202 _`LTS`_
+
+{% hint style="info" %}
+February 2022 - v:2202 is available as a long-term support version. End of life is April 2023.
+{% endhint %}
 
 * Released a beta version of [Aidbox API constructor ](../../aidbox-configuration/aidbox-api-constructor.md)that allows to define REST API granularly.
-* Added Access Control debug option: [su header](../../security-and-access-control-1/security/debug.md#su-request-header). It allows to do a request on behalf of a certain user.
+* Added Access Control debug option: [su header](../../security-and-access-control-1/security/debug.md#su-request-header). It allows doing a request on behalf of a certain user.
 * Added [Grafana dashboard RPC](../../core-modules/monitoring/grafana-integration.md) API that allows to get Aidbox metrics dashboards and import it to your Grafana.
 * Added [`_count`](../../api-1/fhir-api/search-1/\_count-and-\_page.md), [`_total`](../../api-1/fhir-api/search-1/\_total-or-\_countmethod.md) and [`_timeout`](../../api-1/fhir-api/search-1/\_timeout.md) environment variables to configure default values.
 * Improved logging for RPC and GraphQL calls.
@@ -98,7 +114,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 * We've released a major Aidbox UI upgrade
 
-![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (10).png>)
+![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (10) (9).png>)
 
 * Updated REST Console (check out[ the tutorial](https://bit.ly/rest\_console\_tutorial)):
   * Explicit request headers `content-type, accept` etc
