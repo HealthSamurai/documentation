@@ -36,12 +36,12 @@ Using REST Console create an IdentityProvider config. Replace **\<okta-domain>**
 * replace **\<box-url>** with your box url (like http://localhost:8080)
 * set scopes to `['profile', 'openid']`
 
-```yaml
-PUT /IdentityProvider/okta?_format=yaml&_pretty=true
+```
+PUT /IdentityProvider/octa?_format=yaml&_pretty=true
 content-type: text/yaml
 
-type: okta
-title: MyOkta # this element present only in 202106 version
+type: OAuth
+title: MyOcta # this element present only in 202106 version
 active: true
 system: 'okta'
 scopes:

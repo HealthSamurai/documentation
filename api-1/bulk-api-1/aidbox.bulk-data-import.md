@@ -24,7 +24,7 @@ Starts `aidbox.bulk` import
 {% tab title="Parameters" %}
 Object with the following structure:
 
-* `format` input resources format, <mark style="color:orange;">`fhir`</mark> <mark style="color:red;"></mark> or <mark style="color:orange;">`aidbox`</mark> (default: <mark style="color:orange;">`fhir`</mark>)&#x20;
+* `format` input resources format, <mark style="color:orange;">`fhir`</mark> or <mark style="color:orange;">`aidbox`</mark> (default: <mark style="color:orange;">`fhir`</mark>)
 * `meta` meta data that will be attached to each of the imported resources
 * `on-conflict` action to resolve id uniqueness constraint violation, <mark style="color:orange;">`update`</mark> or <mark style="color:orange;">`override`</mark>
 * `input` array of objects
@@ -312,3 +312,22 @@ result:
 {% endcode %}
 {% endtab %}
 {% endtabs %}
+
+#### Loader File
+
+For each file being imported via `load-from-bucket` method, Aidbox creates `LoaderFile` resource. To find out how many resources were imported from a file, check the `loaded` field.
+
+#### Loader File Example
+
+```json
+{
+  "end": "2022-04-11T14:50:27.893Z",
+  "file": "/tmp/patient.ndjson.gz",
+  "size": 100,
+  "type": "Patient",
+  "bucket": "local",
+  "loaded": 20,
+  "status": "done"
+}
+```
+
