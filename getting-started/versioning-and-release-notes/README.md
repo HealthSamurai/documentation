@@ -35,7 +35,7 @@ Aidbox LTS releases are scheduled to be published twice a year. If you are not i
 | Aidbox version                                                                                                                                                            | Availability starts | End of life |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- | ----------- |
 | [2106-lts](https://hub.docker.com/layers/healthsamurai/aidboxone/2106-lts/images/sha256-4e4566ee3f472cbc4c26ddf253c1bb3c0894cc6a0e307ef7a6b9a15fafba510c?context=explore) | 2021-06             | 2022-06     |
-| 2201-lts                                                                                                                                                                  | 2022-03 (expected)  |             |
+| 2202-lts                                                                                                                                                                  | 2022-04             | 2023-04     |
 
 ### Aidboxdb release cycle
 
