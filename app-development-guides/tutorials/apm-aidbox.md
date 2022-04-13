@@ -12,8 +12,8 @@ After you've successfully installed APM URL, you can see APM in main Kibana menu
 
 
 
-![](<../../.gitbook/assets/Screenshot 2021-08-10 at 17.27.36.png>)
+![](../../.gitbook/assets/screenshot-2021-08-10-at-17.27.36.png)
 
-![](../../.gitbook/assets/screenshot-2021-08-10-at-17.27.44.png)
+![](<../../.gitbook/assets/Screenshot 2021-08-10 at 17.27.44.png>)
 
-![](<../../.gitbook/assets/Screenshot 2021-08-10 at 17.27.14.png>)
+![](<../../.gitbook/assets/screenshot-2021-08-10-at-17.27.14 (1).png>)

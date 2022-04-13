@@ -177,7 +177,7 @@ This release is mostly dedicated to stabilisation of new auth module. Check-out 
 
 ## 0.3.4
 
-* Subscriptions `$poll` operation and `webhook` channel: [Subscriptions](../../../api-1/reactive-api-and-subscriptions/subscriptions.md);
+* Subscriptions `$poll` operation and `webhook` channel: [Subscriptions](broken-reference);
 * Fixed [Aidbox](https://www.health-samurai.io/aidbox) to FHIR data transformation bug when polymorphic attributes wasn't properly handled in recursive elements such as `QuestionnaireResponse.item`
 * Support [`_total`](https://build.fhir.org/search.html#total) search parameter (\_totalMethod=count also works)
 * Support `page` search parameter (\_page - also works)
