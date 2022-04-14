@@ -98,7 +98,7 @@ Hot reloading works only with directories and files in local file system. I.e. `
 Deprecated. Use `AIDBOX_ZEN_PATHS` and `AIDBOX_ZEN_ENTRYPOINT` instead.
 {% endhint %}
 
-`AIDBOX_ZEN_PROJECT` environment variable is used to load Aidbox project from the path specified.
+`AIDBOX_ZEN_PROJECT` environment variable is used to load the Aidbox project from the path specified.
 
 &#x20;`AIDBOX_ZEN_ENTRY` environment variable is used to specify zen project entry namespace.
 
@@ -106,7 +106,7 @@ Deprecated. Use `AIDBOX_ZEN_PATHS` and `AIDBOX_ZEN_ENTRYPOINT` instead.
 
 ### Examples
 
-You can see example using the Aidbox project and hot reload in the [🎓 Profiling with zen-lang](../profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile.md) tutorial.
+You can see an example in the [🎓 Profiling with zen-lang](../profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile.md) tutorial.
 
 ### Configure Aidbox Project via `aidbox/system`
 
@@ -147,5 +147,5 @@ In this example `importbox/importbox` is the system entrypoint defined in the **
 `:resources` - in-place resources definitions that will be imported at system startup.
 
 {% hint style="warning" %}
-`:resources` are imported sequentially, so make sure your are responsible for the referential integrity.
+`:resources` are imported sequentially, so make sure you don't break referential integrity.
 {% endhint %}
