@@ -54,10 +54,8 @@ AIDBOX_ZEN_LOAD=<zen-edn>
 **Example:**
 
 ```
-AIDBOX_ZEN_LOAD='{ns my-zen-namespace import #{zen-proj1 zen-proj2 zen-proj3}}'
+AIDBOX_ZEN_LOAD='{ns my-zen-namespace import #{zen-proj1 zen-proj2 zen-proj3
 ```
-
-#### `AIDBOX_ZEN_ENTRYPOINT`
 
 The `AIDBOX_ZEN_ENTRYPOINT` environment variable specifies a zen namespace or a zen symbol. Aidbox starts reading its configuration from the entry point.
 
@@ -106,6 +104,48 @@ Deprecated. Use `AIDBOX_ZEN_PATHS` and `AIDBOX_ZEN_ENTRYPOINT` instead.
 
 `BOX_ENTRYPOINT` environment variable is used to specify zen entry symbol.
 
-## Examples
+### Examples
 
 You can see example using the Aidbox project and hot reload in the [🎓 Profiling with zen-lang](../profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile.md) tutorial.
+
+### Configure Aidbox Project via `aidbox/system`
+
+{% hint style="info" %}
+This section is still under active development check it out later 🚧
+{% endhint %}
+
+### Seed Import
+
+You can import resources at the start of the system by declaring them in Aidbox project. To do this you need to describe the seed service in the system entry point.
+
+#### Example
+
+```clojure
+{ns     importbox
+ import #{aidbox
+          zenbox}
+
+ seed
+ {:zen/tags  #{aidbox/service}
+  :engine    aidbox/seed
+  :files     ["patients.ndjson.gz"]
+  :resources [{:id "rpt-1" :resourceType "Patient"}
+              {:id "rpt-2" :resourceType "Patient"}]}
+
+ importbox
+ {:zen/tags #{aidbox/system}
+  :zen/desc "Import box for test"
+  :services {:seed seed}}}
+```
+
+In this example `importbox/importbox` is the system entry point defined in the **`AIDBOX_ZEN_ENTRYPOINT`** variable, the files described in the `:files` field are located inside the zen project defined in the variable **`AIDBOX_ZEN_PATHS`**.
+
+#### Seed Service
+
+`:files` - which `ndjson.gz` files will be imported at system startup. These files must be located inside the zen project described in the variable **`AIDBOX_ZEN_PATHS`**.
+
+`:resources` - in-place resources definitions that will be imported at system startup.
+
+{% hint style="warning" %}
+`:resources` are imported sequentially, so you are responsible for the referential integrity.
+{% endhint %}
