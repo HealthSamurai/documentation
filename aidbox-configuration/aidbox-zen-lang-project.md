@@ -57,17 +57,17 @@ AIDBOX_ZEN_LOAD=<zen-edn>
 AIDBOX_ZEN_LOAD='{ns my-zen-namespace import #{zen-proj1 zen-proj2 zen-proj3
 ```
 
-The `AIDBOX_ZEN_ENTRYPOINT` environment variable specifies a zen namespace or a zen symbol. Aidbox starts reading its configuration from the entry point.
+The `AIDBOX_ZEN_ENTRYPOINT` environment variable specifies a zen namespace or a zen symbol. Aidbox starts reading its configuration from the entrypoint.
 
 **Format:**
 
-Using a zen namespace as an entry point:
+Using a zen namespace as an entrypoint:
 
 ```
 AIDBOX_ZEN_ENTRYPOINT=zen.namespace
 ```
 
-Using a zen symbol as an entry point:
+Using a zen symbol as an entrypoint:
 
 ```
 AIDBOX_ZEN_ENTRYPOINT=zen.namespace/zen-symbol
@@ -116,7 +116,7 @@ This section is still under active development check it out later 🚧
 
 ### Seed Import
 
-You can import resources at the start of the system by declaring them in Aidbox project. To do this you need to describe the seed service in the system entry point.
+You can declare a set of resources in Aidbox project and get them loaded in one or many Aidboxes on start. To do this you need to describe the seed service in the system entrypoint.
 
 #### Example
 
@@ -138,7 +138,7 @@ You can import resources at the start of the system by declaring them in Aidbox 
   :services {:seed seed}}}
 ```
 
-In this example `importbox/importbox` is the system entry point defined in the **`AIDBOX_ZEN_ENTRYPOINT`** variable, the files described in the `:files` field are located inside the zen project defined in the variable **`AIDBOX_ZEN_PATHS`**.
+In this example `importbox/importbox` is the system entrypoint defined in the **`AIDBOX_ZEN_ENTRYPOINT`** variable, the files described in the `:files` field are located inside the zen project defined in the variable **`AIDBOX_ZEN_PATHS`**.
 
 #### Seed Service
 
@@ -147,5 +147,5 @@ In this example `importbox/importbox` is the system entry point defined in the *
 `:resources` - in-place resources definitions that will be imported at system startup.
 
 {% hint style="warning" %}
-`:resources` are imported sequentially, so you are responsible for the referential integrity.
+`:resources` are imported sequentially, so make sure your are responsible for the referential integrity.
 {% endhint %}

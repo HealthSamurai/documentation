@@ -5,16 +5,35 @@ description: Use a pre-packages terminology bundles to import codes into Aidbox
 # Import external (not-present) terminologies
 
 ### Import using Aidbox project
-Specify path or url to zen terminology bundle in [`AIDBOX_ZEN_PATHS` environment variable](https://docs.aidbox.app/aidbox-configuration/aidbox-zen-lang-project#load-project-using-environment-variables).
 
-Example:
-```
-AIDBOX_ZEN_PATHS=path:zip:/path/to/my-terminology-bundle.zip
-```
+Specify path or url to zen terminology bundle in [`AIDBOX_ZEN_PATHS` environment variable](https://docs.aidbox.app/aidbox-configuration/aidbox-zen-lang-project#load-project-using-environment-variables). \
+\
+Source is either `url` or `path`. `url` is used to download Aidbox project from a remote location; `path` is used to load Aidbox project from the filesystem.\
+\
+Terminology bundles are .ndjson.gz files with filenames matching \*terminology-bundle.ndjson.gz wildcard.
 
+Aidbox imports terminology bundles found in zen paths.
+
+#### Import terminology bundle from local system
+
+Put terminology bundle in `/my/aidbox/project/my-terminology-bundle.ndjson.gz`
+
+Set `AIDBOX_ZEN_PATHS=path:dir:/my/aidbox/project`\
+\
+Aidbox imports resources from ndjson.gz files \*terminology-bundle.ndjson.gz.
+
+#### Import terminology bundle from a remote location
+
+Zip-archive your terminology bundle that is my-terminology-budnle.ndjson.gz file in my-terminology.zip file.
+
+Upload your my-terminology.zip to a remote server e.g. https://example.com/terminologies/my-terminology.zip
+
+Set AIDBOX\_ZEN\_PATHS=url:zip:https://example.com/terminologies/my-terminology.zip\
+\
 Aidbox will import terminology from the specified path on start.
 
 ### /terminology/$import
+
 Terminology import operation allows you to load prepared terminology concept packages into you server.
 
 ```yaml
