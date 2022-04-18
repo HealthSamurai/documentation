@@ -8,35 +8,35 @@ In order to define first-clas extension as zen profile you should follow the ste
 
 
 2. Define your custom first-class extension
-
-```edn
-{ns my-zen-project
- import #{zen.fhir hl7-fhir-r4-core.boolean}
-
- MyPatientProfile
- {:zen/tags #{zen/schema zen.fhir/profile-schema}
-  :zen.fhir/version "0.5.8" 
-  :confirms #{zen.fhir/Resource}
-  :zen.fhir/type "Patient"
-  :zen.fhir/profileUri "urn:profile:MyPatientProfile"
-  :type zen/map
-  :keys {:noteLocked {:confirms #{hl7-fhir-r4-core.boolean/schema}
-                      :fhir/extensionUri "http://note-locked-extension-url"}}}}
-```
+         
+   ```edn
+   {ns my-zen-project
+    import #{zen.fhir hl7-fhir-r4-core.boolean}
+   
+    MyPatientProfile
+    {:zen/tags #{zen/schema zen.fhir/profile-schema}
+     :zen.fhir/version "0.5.8" 
+     :confirms #{zen.fhir/Resource}
+     :zen.fhir/type "Patient"
+     :zen.fhir/profileUri "urn:profile:MyPatientProfile"
+     :type zen/map
+     :keys {:noteLocked {:confirms #{hl7-fhir-r4-core.boolean/schema}
+                         :fhir/extensionUri "http://note-locked-extension-url"}}}}
+   ```
 
 3. Fix `:zen.fhir/version` errors if needed
 
-In order to fix this error, provide IG bundle with the right zen FHIR version. 
+   In order to fix this error, provide IG bundle with the right zen FHIR version. 
 
-Error message example
-```
-Expected '0.5.8', got '0.4.9'
-path: [:zen.fhir/version]
-```
+   Error message example
+   ```
+   Expected '0.5.8', got '0.4.9'
+   path: [:zen.fhir/version]
+   ```
 
 4. `:fhir/extensionUrl` property value
 
-Note: `:fhir/extensionUri` "http://note-locked-extension-url" it is equivalent of the `extensionUrl` field of the Attribute resource it is used to form FHIR extension. And also it is important to use FHIR type instead of plain zen type, i.e. use `:confirms #{hl7-fhir-r4-core.boolean/schema}` instead of `:type zen/boolean`. 
+   Note: `:fhir/extensionUri` "http://note-locked-extension-url" it is equivalent of the `extensionUrl` field of the Attribute resource it is used to form FHIR extension. And also it is important to use FHIR type instead of plain zen type, i.e. use `:confirms #{hl7-fhir-r4-core.boolean/schema}` instead of `:type zen/boolean`. 
 
 ## Define new extension
 
