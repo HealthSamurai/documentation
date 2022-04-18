@@ -332,11 +332,13 @@ For each file being imported via `load-from-bucket` method, Aidbox creates `Load
 ```
 
 #### How to reload a file one more time
-On launch `aidbox.bulk/load-from-bucket` checks if files from the bucket were planned to import and decides what to do:
 
-- If `ndjson` file has it's related `LoaderFile` resource, the loader skips this file from import
-- If there is no related `LoaderFile` resource, Aidbox puts this file to the queue creating a `LoaderFile` resource
+There are two options to do it:
+1. Delete `LoaderFile` resources related to your bucket and re-launch `aidbox.bulk/load-from-bucket` with current bucket
+2. Create a new bucket, populate it with `ndjson` files and launch `aidbox.bulk/load-from-bucket` with this bucket
 
-In order to import a file one more time you should delete related `LoaderFile` resource and relaunch `aidbox.bulk/load-from-bucket`.
+{% hint style="info" %} 
 
-Files are processed completely. The loader doesn't support partial re-import.
+On launch `aidbox.bulk/load-from-bucket` checks if at least one file from the bucket has related `LoaderFile` resource. If there is such a resource Aidbox does not import anything
+
+{% endhint %}
