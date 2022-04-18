@@ -219,17 +219,17 @@ Refer to [https://www.pgadmin.org/](https://www.pgadmin.org) for pgAdmin and pgA
 
 Now when pgagent is up and running we can define some jobs and see if they're actually scheduled.
 
-![Create server connection](../../.gitbook/assets/screen-shot-2021-08-06-at-04.24.22.png)
+![Create server connection](<../../.gitbook/assets/Screen Shot 2021-08-06 at 04.24.22.png>)
 
-![It's important that Maintenance database is the same database where pgagent data is stored.](../../.gitbook/assets/screen-shot-2021-08-06-at-04.25.08.png)
+![It's important that Maintenance database is the same database where pgagent data is stored.](<../../.gitbook/assets/Screen Shot 2021-08-06 at 04.25.08.png>)
 
-![Create pgAgent job](../../.gitbook/assets/screen-shot-2021-08-06-at-05.27.24.png)
+![Create pgAgent job](<../../.gitbook/assets/Screen Shot 2021-08-06 at 05.27.24.png>)
 
-![](../../.gitbook/assets/screen-shot-2021-08-06-at-04.31.00.png)
+![](<../../.gitbook/assets/Screen Shot 2021-08-06 at 04.31.00.png>)
 
-![](../../.gitbook/assets/screen-shot-2021-08-06-at-04.27.19.png)
+![](<../../.gitbook/assets/Screen Shot 2021-08-06 at 04.27.19.png>)
 
-![The job will be run every minute.](../../.gitbook/assets/screen-shot-2021-08-06-at-04.27.56.png)
+![The job will be run every minute.](<../../.gitbook/assets/Screen Shot 2021-08-06 at 04.27.56.png>)
 
 #### Test if jobs are running
 

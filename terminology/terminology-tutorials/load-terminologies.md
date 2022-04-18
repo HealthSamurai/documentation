@@ -119,7 +119,7 @@ entry:
 
 Or inspect concepts in Aidbox Console UI:
 
-![](../../.gitbook/assets/screen-shot-2019-05-14-at-17.23.53.png)
+![](<../../.gitbook/assets/Screen Shot 2019-05-14 at 17.23.53.png>)
 
 ### Indexing \_like search
 

@@ -4,7 +4,7 @@
 
 Implicit Grant flow is an alternative for Authorization Code flow. This flow just receives `access_token` in query string fragment instead of obtaining secure`code`. It's indented for client-side apps use in order to access an API, typically as Web SPA applications. For more detailed information, read [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.2).
 
-![Basic scheme](../../.gitbook/assets/untitled-diagram-page-4.svg)
+![Basic scheme](<../../.gitbook/assets/Untitled Diagram-Page-4.svg>)
 
 {% swagger baseUrl="[base]/" path="auth/authorize" method="get" summary="Authorization Endpoint" %}
 {% swagger-description %}
@@ -42,11 +42,11 @@ value MUST be set to
 
 After this request, the resource owner (user) will be redirected to Log-in/Sign-up page.
 
-![Example](../../.gitbook/assets/screenshot-2019-02-11-18.15.41.png)
+![Example](<../../.gitbook/assets/Screenshot 2019-02-11 18.15.41.png>)
 
 Next step is granting access to the client:
 
-![Example](../../.gitbook/assets/screenshot-2019-02-11-19.47.39.png)
+![Example](<../../.gitbook/assets/Screenshot 2019-02-11 19.47.39.png>)
 
 After granting access the user is redirected to the redirect\_uri from the client configuration with `access_token` in query string fragment.
 

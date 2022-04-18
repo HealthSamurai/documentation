@@ -83,6 +83,7 @@
   * [🎓 Synthea by Bulk APi](api-1/bulk-api-1/synthea-by-bulk-api.md)
 * [Batch Upsert](api-1/batch-upsert.md)
 * [Batch/Transaction](api-1/transaction.md)
+* [Cache](api-1/cache.md)
 * [ETAG support](api-1/etag-support.md)
 * [Reactive API](api-1/reactive-api-and-subscriptions/README.md)
   * [Changes API](api-1/reactive-api-and-subscriptions/usdsnapshot-usdwatch-and-usdversions-api.md)

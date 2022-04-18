@@ -24,7 +24,7 @@ Devbox is compatible with macOS, Linux, and Windows 10 Pro.
 
 1. Congratulations! Now you have a license key.
 
-![](../../.gitbook/assets/screen-shot-2018-10-02-at-17.34.31.png)
+![](<../../.gitbook/assets/Screen Shot 2018-10-02 at 17.34.31.png>)
 
 ## Install Devbox
 
@@ -149,7 +149,7 @@ That's it! Devbox is running and you can point your browser to [http://localhost
 
 \_\*\*\_Input your ADMIN\_ID and ADMIN\_PASSWORD and you will see your development environment. This is the way to create your best healthcare products.
 
-![](../../.gitbook/assets/login-aidbox.gif)
+![](<../../.gitbook/assets/login aidbox.gif>)
 
 {% hint style="info" %}
 We welcome your questions and comments about our products. Have an idea/question you'd like to share with our community? [Submit it here](https://t.me/aidbox).
