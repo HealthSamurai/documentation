@@ -92,7 +92,8 @@
 * [Encryption API](api-1/encryption-api.md)
 * [Compartments API](api-1/compartments.md)
 * [GraphQL API](api-1/graphql-api.md)
-* [RPC API](api-1/rpc-api.md)
+* [RPC API](api-1/rpc-api/README.md)
+  * [Common methods](api-1/rpc-api/common-methods.md)
 
 ***
 

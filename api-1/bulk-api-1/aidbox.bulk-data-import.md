@@ -6,7 +6,7 @@ description: aidbox.bulk/* RPC operations
 
 ## Overview
 
-aidbox.bulk API uses Aidbox JSON [RPC API](../rpc-api.md)
+aidbox.bulk API uses Aidbox JSON [RPC API](../rpc-api/)
 
 Features of the aidbox.bulk API:
 
@@ -334,11 +334,10 @@ For each file being imported via `load-from-bucket` method, Aidbox creates `Load
 #### How to reload a file one more time
 
 There are two options to do it:
+
 1. Delete `LoaderFile` resources related to your bucket and re-launch `aidbox.bulk/load-from-bucket` with current bucket
 2. Create a new bucket, populate it with `ndjson` files and launch `aidbox.bulk/load-from-bucket` with this bucket
 
-{% hint style="info" %} 
-
+{% hint style="info" %}
 On launch `aidbox.bulk/load-from-bucket` checks if at least one file from the bucket has related `LoaderFile` resource. If there is such a resource Aidbox does not import anything
-
 {% endhint %}

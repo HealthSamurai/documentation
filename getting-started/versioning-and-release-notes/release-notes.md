@@ -103,7 +103,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 * Released a beta version of [zen profiling](../../profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile.md). Advanced profiling with zen-lang to configure Aidboxes and validate data.
 * Added [Asynchronous Batch Validation](../../profiling-and-validation/validation-api.md#asynchronous-batch-validation) mode to validate data in Aidbox against new profiles
-* Released [Aidbox RPC API](../../api-1/rpc-api.md)
+* Released [Aidbox RPC API](../../api-1/rpc-api/)
 * Supported conditional patch (e.g.: `PATCH /Patient?name=foo`)&#x20;
 * Added an [environment variable](../../core-modules/logging-and-audit/aidbox-logs-and-datadog-integration.md) to pass the environment to Datadog (dev/staging/prod).
 * Added history for [$load](../../api-1/bulk-api-1/usdload.md) and [$import](../../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md) so now when using bulk import you have a source of truth for the history of every resource.

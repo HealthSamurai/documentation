@@ -1,10 +1,10 @@
 # RPC API
 
 {% hint style="info" %}
-This is a beta feature. Please join [the discussion](https://github.com/Aidbox/Issues/discussions/430) or [contact](../contact-us.md) us if you want to contribute.
+This is a beta feature. Please join [the discussion](https://github.com/Aidbox/Issues/discussions/430) or [contact](../../contact-us.md) us if you want to contribute.
 {% endhint %}
 
-With release 2108 we introduce RPC API. JSON-RPC is a stateless, light-weight remote procedure call \(RPC\) protocol. Primarily this specification defines several data structures and the rules around their processing. It is transport agnostic in that the concepts can be used within the same process, over sockets, over http, or in many various message passing environments. It uses [JSON](http://www.json.org/) \([RFC 4627](http://www.ietf.org/rfc/rfc4627.txt)\) as data format.
+With release 2108 we introduce RPC API. JSON-RPC is a stateless, light-weight remote procedure call (RPC) protocol. Primarily this specification defines several data structures and the rules around their processing. It is transport agnostic in that the concepts can be used within the same process, over sockets, over http, or in many various message passing environments. It uses [JSON](http://www.json.org) ([RFC 4627](http://www.ietf.org/rfc/rfc4627.txt)) as data format.
 
 ### Request Formatting
 
@@ -30,7 +30,7 @@ curl "$AIDBOX_BASE_URL/rpc" \
 ```
 {% endtab %}
 
-{% tab title="Response \(formatted\)" %}
+{% tab title="Response (formatted)" %}
 ```javascript
 {
   "result": {
@@ -47,4 +47,3 @@ The response output is a JSON object with one of the following fields:
 * `error: <array|number|object|string>`
 
 Requests can be sent in batches by sending an array of JSON-RPC request objects as the data for a single POST.
-

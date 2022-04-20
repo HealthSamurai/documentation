@@ -8,7 +8,7 @@ description: Multibox box life cycle RPC methods
 Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [contact](../contact-us.md) us if you have question, feedback or suggestions.
 {% endhint %}
 
-Multibox box manager API uses Aidbox JSON [RPC API](../api-1/rpc-api.md).
+Multibox box manager API uses Aidbox JSON [RPC API](../api-1/rpc-api/).
 
 {% hint style="info" %}
 Multibox API is accessible on the box manager URL. Please use an external REST client to access your Multibox server.
