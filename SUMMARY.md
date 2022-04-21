@@ -69,6 +69,7 @@
     * [Update](api-1/api/crud-1/update.md)
     * [Patch](api-1/api/crud-1/patch.md)
     * [Delete](api-1/api/crud-1/delete.md)
+  * [Aidbox version](api-1/api/aidbox-version.md)
 * [Bulk API](api-1/bulk-api-1/README.md)
   * [Configure Access Policies for Bulk API](api-1/bulk-api-1/configure-access-policies-for-bulk-api.md)
   * [Generate sample data for Bulk API](api-1/bulk-api-1/generate-sample-data-for-bulk-api.md)
@@ -92,8 +93,7 @@
 * [Encryption API](api-1/encryption-api.md)
 * [Compartments API](api-1/compartments.md)
 * [GraphQL API](api-1/graphql-api.md)
-* [RPC API](api-1/rpc-api/README.md)
-  * [Common methods](api-1/rpc-api/common-methods.md)
+* [RPC API](api-1/rpc-api.md)
 
 ***
 

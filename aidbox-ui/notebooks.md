@@ -10,7 +10,7 @@ description: >-
 Aidbox notebooks is a beta. Please join [the discussion](https://github.com/Aidbox/Issues/discussions/412) or [contact](../contact-us.md) us if you want to contribute.
 {% endhint %}
 
-A notebook is a single page where you can run code ([REST](../api-1/api/), [SQL](../modules-1/aidbox-search/usdpsql.md), [RPC](../api-1/rpc-api/)) check the output, and complement it with text. Using Aidbox notebook you can easily create custom scenarios with your Aidbox data, save it for later use or share it with your colleagues and the Aidbox community.
+A notebook is a single page where you can run code ([REST](../api-1/api/), [SQL](../modules-1/aidbox-search/usdpsql.md), [RPC](../api-1/rpc-api.md)) check the output, and complement it with text. Using Aidbox notebook you can easily create custom scenarios with your Aidbox data, save it for later use or share it with your colleagues and the Aidbox community.
 
 So now you can easily:
 

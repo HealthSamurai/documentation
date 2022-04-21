@@ -6,7 +6,7 @@ description: aidbox.bulk/* RPC operations
 
 ## Overview
 
-aidbox.bulk API uses Aidbox JSON [RPC API](../rpc-api/)
+aidbox.bulk API uses Aidbox JSON [RPC API](../rpc-api.md)
 
 Features of the aidbox.bulk API:
 
