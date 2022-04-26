@@ -86,7 +86,7 @@ Here you can find steps to pass inferno tests.
 
     You will see something like this:
 
-    ![](<../.gitbook/assets/image (100).png>)
+    ![](<../.gitbook/assets/image (93) (1) (1) (1).png>)
 
     Then copy forwading https connection and update base url env. In my case it's `AIDBOX_BASE_URL=https://4eb9-178-66-82-76.ngrok.io`
 

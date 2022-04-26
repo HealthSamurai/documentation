@@ -87,17 +87,17 @@ resourceType: AidboxConfig
 
 
 
-![](<../../.gitbook/assets/Group 4 (1).png>)
+![](../../.gitbook/assets/group-4-1-.png)
 
-![](<../../.gitbook/assets/Group 6.png>)
+![](../../.gitbook/assets/group-6.png)
 
-![2FA Form](<../../.gitbook/assets/2fa form.png>)
+![2FA Form](../../.gitbook/assets/2fa-form.png)
 
 &#x20;  When the user scans the QR code and enters the token, he is redirected to the 2FA settings page. Aidbox saves that 2FA is enabled for this user into the User.twoFactor attribute.
 
 &#x20;  Next time when the user logs into the system, the TOTP authentication page will be shown. Using the mobile authenticator (or any other transport) the user enters the code and gets redirected to the application. You can configure which OAuth 2.0 flow by changing Client configuration and login endpoint query parameters.
 
-![](<../../.gitbook/assets/Group 7.png>)
+![](../../.gitbook/assets/group-7.png)
 
 #### Disable 2FA
 

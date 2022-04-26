@@ -31,7 +31,7 @@ To try out Devbox in Cloud, open [https://aidbox.app/](https://aidbox.app)
 
 Choose how you would like to authorize Aidbox. It can be done via your Github or Google account.
 
-![](<../../.gitbook/assets/signup. AidboxCloud.png>)
+![](../../.gitbook/assets/signup.-aidboxcloud.png)
 
 If you chose Github authorization, click the 'Authorize HealthSamurai' button.
 
@@ -43,19 +43,19 @@ Github will ask you to confirm your password to continue.
 
 And now you are successfully authorized in Devbox in Cloud. Click the 'New Box' button to start.
 
-![](../../.gitbook/assets/scr-2018-10-11\_10-51-55.png)
+![](<../../.gitbook/assets/scr-2018-10-11\_10-51-55 (1).png>)
 
 In the displayed form, enter your future box name. It can be a name of your application you are going to build. It will be the base URL of your FHIR server.
 
-![](<../../.gitbook/assets/Create Box.png>)
+![](../../.gitbook/assets/create-box.png)
 
 Choose the desired FHIR version, and click the 'Create' button.
 
-![](<../../.gitbook/assets/Choose FHIR version.png>)
+![](../../.gitbook/assets/choose-fhir-version.png)
 
 Your new box will be successfully created. Click the box name to proceed.
 
-![](../../.gitbook/assets/scr-2018-10-11\_10-54-04.png)
+![](<../../.gitbook/assets/scr-2018-10-11\_10-54-04 (1).png>)
 
 
 
@@ -77,7 +77,7 @@ Now you can browse the left navigation menu and work with your box and its datab
 
 Now go to the `REST Console` section and let's see what we can do here.
 
-![REST console](<../../.gitbook/assets/Screenshot 2018-10-18 18.54.58.png>)
+![REST console](../../.gitbook/assets/screenshot-2018-10-18-18.54.58.png)
 
 REST console is designed to work with resources on your `Box` by sending HTTP requests in accordance with [FHIR RESTful API](http://hl7.org/fhir/http.html). To do this, we need to type an HTTP verb (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`) and the address of the resource (for example `/Patient` — _please pay attention to the resource name written with a capital letter_). In cases when you need to send the request body (e.g for a `POST` request), it is passed separated by empty line, in YAML or JSON format — you can choose both (request and response) content type by **YAML** | JSON switcher.
 
