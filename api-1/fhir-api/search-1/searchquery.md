@@ -8,9 +8,9 @@ With **SearchQuery** resource, you can define "managed"  SQL for Search API with
 
 | Parameter name        | Description                                               |
 | --------------------- | --------------------------------------------------------- |
-| **count**             | A number of records returned per page                     |
-| **page**              | Controls pagination                                       |
-| **total**             | The maximum number of results returned by a search result |
+| **\_count**           | A number of records returned per page                     |
+| **\_page**            | Controls pagination                                       |
+| **\_total**           | The maximum number of results returned by a search result |
 | **\_timeout**         | Defines query timeout                                     |
 | **join**              | Allows you to join related resources for search           |
 | **order-by**          | Defines the ordering of the search results                |
