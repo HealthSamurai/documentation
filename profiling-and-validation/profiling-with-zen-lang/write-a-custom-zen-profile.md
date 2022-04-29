@@ -60,7 +60,7 @@ Description of used schema keys:
 | zen.fhir/value-set.strength | optional | keyword specifying strength of binding                                                                                               |
 
 {% hint style="info" %}
-To validate data against custom zen profiles make sure make sure namespace with profile zen-lang schemas is imported in `AIDBOX_ZEN_ENTRYPOINT` ns
+To validate data against custom zen profiles make sure namespace with profile zen-lang schemas is imported in `AIDBOX_ZEN_ENTRYPOINT` ns
 {% endhint %}
 
 ### Examples
