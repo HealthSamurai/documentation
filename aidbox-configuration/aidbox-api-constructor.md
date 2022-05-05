@@ -6,24 +6,25 @@ Using Aidbox API constructor you can:
 * specify your own middlewares (e.g. Smart on FHIR authorization middleware)
 
 {% hint style="warning" %}
-The API constructor is beta now. You can find how API constructor is used to enable SMART on FHIR in [Aidbox sample project](https://github.com/Aidbox/aidbox-project-samples#smart-on-fhir-aidbox-installation).
+The API constructor is in beta now. Please [contact](../contact-us.md) us if you have questions or need help.
 {% endhint %}
 
-{% hint style="info" %}
-Please [contact](../contact-us.md) us if you have questions or need help with API constructor.
-{% endhint %}
+#### Usage examples:
+
+* [Sample API](https://github.com/Aidbox/devbox/blob/bb/zrc/mybox.edn) used in this documentation page example.
+* [Smart on FHIR configuration](https://github.com/Aidbox/aidbox-project-samples/blob/main/aidbox-project-samples/onc/smart.edn)
 
 ## Example setup
 
-Use [`bb` Devbox setup](../getting-started/installation/devbox-with-bb.md) to start Aidbox, it contains configured API Constructor example. Once Aidbox is running, open `Profiles` tab in the Aidbox UI. If everything is configured properly, page should contain namespace with `AIDBOX_ZEN_ENTRYPOINT` symbol. View of the symbol should show loaded routing.
+Use [`bb` Devbox setup](../getting-started/installation/devbox-with-bb.md) to start Aidbox, it contains configured [API Constructor example](https://github.com/Aidbox/devbox/blob/bb/zrc/mybox.edn). Once Aidbox is running, open `Profiles` tab in the Aidbox UI. If everything is configured properly, page should contain namespace with `AIDBOX_ZEN_ENTRYPOINT` symbol which is `mybox/box` in this example. View of the symbol should show loaded routes.
 
-Here's a notebook with routing defined via API constructor demo:&#x20;
+Here's a notebook with the example API demo usage :&#x20;
 
 ```
 https://aidbox.app/ExportedNotebook/df9ac147-daa4-4495-87b5-c4367cd441ef
 ```
 
-You can [import it](https://web.telegram.org/o/-LHqtKitlMYF2y7QBlXS/s/-LHqtKiuedlcKJLm337\_/\~/changes/gsp3ApDuLk8tbTr5YTKj/aidbox-ui/notebooks#import-a-notebook) into the Aidbox you have running with bb and run test REST requests.
+You can [import it](https://web.telegram.org/o/-LHqtKitlMYF2y7QBlXS/s/-LHqtKiuedlcKJLm337\_/\~/changes/gsp3ApDuLk8tbTr5YTKj/aidbox-ui/notebooks#import-a-notebook) into the example bb Aidbox and run test REST requests.
 
 ## API Constructor
 
@@ -40,7 +41,7 @@ The namespace with entrypoint symbol must be loaded: file containing namespace m
 [More info on loading namespace](aidbox-zen-lang-project.md)
 {% endhint %}
 
-Entrypoint symbol must be tagged with `aidbox/system` tag. `aidbox/system` describes set of services to start and configurations.
+Entrypoint symbol must be tagged with `aidbox/system` tag. `aidbox/system` describes a set of services to start and configurations.
 
 ### Services
 
@@ -112,4 +113,3 @@ Aidbox configuration with search and read on `Observation` resource available at
   :name       "patient"
   :expression [["subject" "id"]]}}
 ```
-
