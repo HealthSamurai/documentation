@@ -16,7 +16,7 @@ Usage of bundles by different endpoints:
 * `POST /`\
   Accepts bundles of certain types and executes REST requests contained in them.\
   Returns bundles with `transaction-response` or `batch-response` types.
-* `POST /Bundle/`, `PUT /Bundle/<id>`\
+* `POST /Bundle`, `PUT /Bundle/<id>`\
   Accepts a bundle and saves it as a regular resource regardless of its type.\
   Returns the saved resource.
 * `GET /<resourceType>`\
@@ -33,13 +33,14 @@ Aidbox supports FHIR batch/transaction interaction, as well as some additional o
 ```yaml
 POST /
 content-type: text/yaml
+accept: text/yaml
 
 resourceType: Bundle
 type: <type>
 ...
 ```
 
-Behavior of the endpoint depends on the `type` of a bundle resource provided in a request body:
+Behavior of the endpoint depends on the `type` of a bundle resource provided in a request body.
 
 Supported `type` values:
 
