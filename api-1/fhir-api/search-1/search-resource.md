@@ -4,10 +4,12 @@ description: New Search resource provides fine-grained control over search param
 
 # Search Resource
 
-You can define search parameters or override the existing one with Search meta-resource. Search resource takes precedence over [SearchParameter](broken-reference). This may be useful for performance optimization of built-in FHIR SearchParameters or for the implementation of complicated custom searches.
+You can define search parameters or override the existing one with Search meta-resource. Search resource takes precedence over [SearchParameter](searchparameter.md). This may be useful for performance optimization of built-in FHIR SearchParameters or for the implementation of complicated custom searches.
 
 ```yaml
 PUT /Search/Patient.name
+content-type: text/yaml
+accept: text/yaml
 
 resourceType: Search
 id: Patient.name # id of Search resource
@@ -22,21 +24,23 @@ order-by: "{{table}}.resource#>>'{name,0,family}'" # sql for ordering
 
 ### SQL Templating
 
-In "where" and "order-by" expressions you can use `{{table}}` for table name and `{{param}}` for  parameter.
+In "where" and "order-by" expressions you can use `{{table}}` for table name and `{{param}}` for parameter.
 
 ### format
 
-You can provide the format string for value where `?` will be replaced with the value of parameter. This feature may be useful for `ilike` expressions 
+You can provide the format string for value where `?` will be replaced with the value of parameter. This feature may be useful for `ilike` expressions
 
 ### **token search**
 
-You can define search parameters for different token syntax forms and `:text` modifier (other modifiers may be implemented in future). \
+You can define search parameters for different token syntax forms and `:text` modifier (other modifiers may be implemented in future).\
 To refer to system and code in SQL query use `{{param.system}}` and `{{param.code}}` accordingly.\
-To refer to value of param with `:text `modifier use `{{param.text}}` \
-For `:text` modifier you also need to specify `"text-format"`, refer to `{{param.text}}` with `?`. `"text-format"` is a format string which will be applied to`{{param.text}}`  before inserting into SQL query. It is useful for wrapping text with `%` for `like` or `ilike.` For example `text-format: '%?%'`
+To refer to value of param with `:text` modifier use `{{param.text}}`\
+For `:text` modifier you also need to specify `"text-format"`, refer to `{{param.text}}` with `?`. `"text-format"` is a format string which will be applied to`{{param.text}}` before inserting into SQL query. It is useful for wrapping text with `%` for `like` or `ilike.` For example `text-format: '%?%'`
 
 ```yaml
 PUT /Search/<resourceType>.<parameter>
+content-type: text/yaml
+accept: text/yaml
 
 resourceType: Search
 name: <parameter>
@@ -54,14 +58,17 @@ token:
 ### **reference search**
 
 Allows use different reference types in "where" expression. Reference can be defined [in several ways](http://www.hl7.org/fhir/search.html#reference):
-- {{param.resourceType}} for `ResourceType` and {{param.id}} for resource `id`
-- {{param.id}} for resource `id`
-- {{param.url}} for resource `url`
+
+* \{{param.resourceType\}} for `ResourceType` and \{{param.id\}} for resource `id`
+* \{{param.id\}} for resource `id`
+* \{{param.url\}} for resource `url`
 
 See example below
 
 ```yaml
 PUT /Search/<resourceType>.<parameter>
+content-type: text/yaml
+accept: text/yaml
 
 resourceType: Search
 name: <parameter>
@@ -81,6 +88,8 @@ If you set multi = 'array', parameters will be coerced as PostgreSQL array.
 # create patient resource
 
 PUT /Patient/my-patient
+content-type: text/yaml
+accept: text/yaml
 
 resourceType: Patient
 id: my-patient
@@ -91,6 +100,8 @@ name:
 # create search resource
 
 PUT /Search/Patient.name
+content-type: text/yaml
+accept: text/yaml
 
 resourceType: Search
 id: Patient.name 
@@ -107,8 +118,12 @@ order-by: "{{table}}.resource#>>'{name,0,family}'"
 # check query-sql field in response bundle
 
 GET /Patient?name=john
+content-type: text/yaml
+accept: text/yaml
 
 GET /Patient?_sort=name
+content-type: text/yaml
+accept: text/yaml
 ```
 
 #### Search patient identifiers with array search parameter:
@@ -117,6 +132,8 @@ GET /Patient?_sort=name
 # create patient resources (one query at a time)
 
 PUT /Patient/my-patient
+content-type: text/yaml
+accept: text/yaml
 
 resourceType: Patient
 id: my-patient
@@ -126,6 +143,8 @@ identifier:
 ###
 
 PUT /Patient/my-patient-1
+content-type: text/yaml
+accept: text/yaml
 
 resourceType: Patient
 id: my-patient-1
@@ -136,6 +155,8 @@ identifier:
 # create search resource 
 
 PUT /Search/Patient.identifier
+content-type: text/yaml
+accept: text/yaml
 
 resourceType: Search
 id: Patient.identifier 
@@ -150,14 +171,16 @@ multi: array
 # check query-sql field in response bundle
 
 GET /Patient?identifier=id1,id2,id3
+content-type: text/yaml
+accept: text/yaml
 ```
 
 #### token search:
 
 ```yaml
-PUT /
-ServiceRequest.identifier
-
+PUT /Search/ServiceRequest.identifier
+content-type: text/yaml
+accept: text/yaml
 
 resourceType: Search
 id: ServiceRequest.identifier
@@ -175,21 +198,29 @@ resource: {id: ServiceRequest, resourceType: Entity}
 
 
 GET /ServiceRequest?identifier=foo
+content-type: text/yaml
+accept: text/yaml
 # will result in querying with knife_extract(...) && ARRAY['foo']
 
 GET /ServiceRequest?identifier:text=foo
+content-type: text/yaml
+accept: text/yaml
 # will result in querying with array_to_string(knife_extract (...)) ilike '%foo%'
 
 GET /ServiceRequest?identifier:not=foo
+content-type: text/yaml
+accept: text/yaml
 # will result fallback to default implementation NOT resource @> '{"identifier": [{"value": "foo"}]}'
 ```
 
 #### reference search
 
-##### by type/id
+**by type/id**
 
 ```yaml
-PUT /Patient/generalPractitioner
+PUT /Search/Patient.generalPractitioner
+content-type: text/yaml
+accept: text/yaml
 
 resourceType: Search
 id: Patient.generalPractitioner
@@ -198,15 +229,19 @@ param-parser: reference
 where: '{{table}}.resource->'generalPractitioner' @>  jsonb_build_array(jsonb_build_object('id', {{param.id}}::text, 'resourceType', {{param.resourceType}}::text)) '
 resource: {id: Patient, resourceType: Entity}
 
-# search Patient by Pratitoner referene
+# search Patient by Pratitoner reference
 
 GET /Patient?generalPractitioner=Practitioner/pract-1
+content-type: text/yaml
+accept: text/yaml
 ```
 
-##### by id
+**by id**
 
 ```yaml
-PUT /Patient/generalPractitioner
+PUT /Search/Patient.generalPractitioner
+content-type: text/yaml
+accept: text/yaml
 
 resourceType: Search
 id: Patient.generalPractitioner
@@ -215,15 +250,19 @@ param-parser: reference
 where: '{{table}}.resource->'generalPractitioner' @>  jsonb_build_array(jsonb_build_object('id', {{param.id}}::text))  '
 resource: {id: Patient, resourceType: Entity}
 
-# search Patient by Pratitoner referene
+# search Patient by Pratitoner reference
 
 GET /Patient?generalPractitioner=pract-1
+content-type: text/yaml
+accept: text/yaml
 ```
 
-##### by url
+**by url**
 
 ```yaml
-PUT /Patient/myProfile
+PUT /Search/Patient.myProfile
+content-type: text/yaml
+accept: text/yaml
 
 resourceType: Search
 id: Patient.myProfile
@@ -235,4 +274,6 @@ resource: {id: Patient, resourceType: Entity}
 # search Patient by profile
 
 GET /Patient?myProfile=http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+content-type: text/yaml
+accept: text/yaml
 ```
