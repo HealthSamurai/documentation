@@ -137,3 +137,17 @@ Delete a box
 `message` - `FHIR OperationOutcome`
 {% endtab %}
 {% endtabs %}
+
+### `multibox/drop-box-caches`
+
+Drop cache in every box
+
+{% tabs %}
+{% tab title="Parameters" %}
+_expects no parameters._
+{% endtab %}
+
+{% tab title="Response" %}
+String: "ok".
+{% endtab %}
+{% endtabs %}
