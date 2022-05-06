@@ -184,8 +184,9 @@
   * [Role-Based Access Policies](security-and-access-control-1/security/role-based-access-policies.md)
   * [🎓 Access Control](security-and-access-control-1/security/access-policy.md)
   * [🎓 Sample: Patient can see their own data](security-and-access-control-1/security/sample-patient-can-see-its-own-data.md)
-  * [🎓 Multitenancy](security-and-access-control-1/security/multitenancy.md)
   * [Debug](security-and-access-control-1/security/debug.md)
+* [Multitenancy](security-and-access-control-1/multitenancy/README.md)
+  * [🎓 Multitenancy via AccessPolicy](security-and-access-control-1/multitenancy/multitenancy-via-accesspolicy.md)
 
 ## Storage <a href="#storage-1" id="storage-1"></a>
 

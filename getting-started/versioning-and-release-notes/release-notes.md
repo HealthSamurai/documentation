@@ -1,5 +1,13 @@
 # Release Notes
 
+## April 2022 - v:2204 _`edge`_
+
+* Added [$drop-cache](../../api-1/cache.md#drop-cache-operation) operation and and [`multibox/drop-box-caches`](../../multibox/multibox-box-manager-api.md#multibox-drop-box-caches) RPC
+* Enhanced `POST /` operation error handling and added [FHIR bundle resource documentation](../../api-1/fhir-api/bundle.md).&#x20;
+* Added [GET /$version operation](../../api-1/api/aidbox-version.md) to get Aidbox version.
+* Added `AIDBOX_EXTENSION_SCHEMA` environment variable to change a DB schema from `public` to a custom one.
+* etc
+
 ## March 2022 - v:2203 _`latest`_
 
 * Released a [February 2022 - v:2202 _`LTS`_](release-notes.md#february-2022-v-2202-stable).  __  The Aidbox team will backport security and critical bug fixes to it throughout a one-year support window.
@@ -12,7 +20,7 @@
 * Updated [HL7 v2 module](https://docs.aidbox.app/modules-1/hl7-v2-integration) documentation.&#x20;
 * Fixed [issues ](https://github.com/Aidbox/Issues/issues?q=is%3Aissue+milestone%3A%22March+2022+-+v%3A2203%22+is%3Aclosed)submitted by Aidbox users.
 
-## February 2022 - v:2202 _`LTS`_
+## February 2022 - v:2202 _`LTS`  `stable`_
 
 {% hint style="info" %}
 February 2022 - v:2202 is available as a long-term support version. End of life is April 2023.
@@ -27,7 +35,7 @@ February 2022 - v:2202 is available as a long-term support version. End of life 
 * Fixed [issues ](https://github.com/Aidbox/Issues/milestone/9?closed=1)submitted by Aidbox users.
 * Deprecated APM and JMX in default build. Please reach out to us if you're using it.
 
-## January 2022 - v:2201 `stable`
+## January 2022 - v:2201
 
 {% hint style="info" %}
 Starting from January 2022 we're switching to a new release cycle. We added`:latest and LTS` (long-term support) versions. Check [the updated release cycle](./).
@@ -46,14 +54,14 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 
 
-## December 2021 - v:2112 `stable`
+## December 2021 - v:2112
 
 * Added [slicings ](https://docs.aidbox.app/profiling-and-validation/profiling-with-zen-lang/write-a-custom-zen-profile#slicing)support to zen FHIR profiles.
 * Released [Devbox performance test suite](https://github.com/Aidbox/devbox#performance-tests).
 * Added new community [notebooks](../../aidbox-ui/notebooks.md) that demonstrate Aidbox functionality including Bulk export API, Aidbox terminology, Custom resources, etc.&#x20;
 * Fixed bugs submitted by Aidbox users and updated the documentation.
 
-## November 2021 - v:2111 `stable`
+## November 2021 - v:2111
 
 * Implemented the [`$translate`](../../terminology/usdtranslate-on-conceptmap.md) operation. So now you can translate code from one value set to another, based on the existing value set and concept maps resources, and/or other additional knowledge available to Aidbox.
 * Released FHIR bulk data export. Using [$export](../../api-1/bulk-api-1/usdexport.md) you can export patient-level, group level or system-level data to GCP, AWS storage in ndjson format.
@@ -66,7 +74,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 * Added [`AIDBOX_COMPLIANCE`](https://docs.aidbox.app/getting-started/installation/configure-devbox-aidbox-multibox#aidbox-compliance-mode) mode that changes Aidbox behavior to pass HL7® FHIR Conformance Tests.
 * Fixed bugs submitted by Aidbox users and updated the documentation.
 
-## October 2021 - v:2110 _`stable`_
+## October 2021 - v:2110
 
 * Released new API for Bulk Data import. Using [Aidbox.bulk](../../api-1/bulk-api-1/aidbox.bulk-data-import.md) you will be able to import data in both Aidbox and FHIR formats, validate uploaded resources and references asynchronously.
 * Added Smart App Launch sandbox to the [Aidbox portal sample app](https://github.com/Aidbox/aidbox-react-app#aidbox-react-sample-app).
@@ -86,7 +94,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 * Added `AIDBOX_DEV_MODE` env that enables  `_debug=policy` for [access policy debugging](https://docs.aidbox.app/security-and-access-control-1/security/access-policy#policy-debugging). We'll add more functionality that will be available for development purposes and can be disabled on production.
 * Fixed bugs submitted by Aidbox users and updated documentation.
 
-## September 2021 - v:2109 _`stable`_
+## September 2021 - v:2109
 
 * Added [Aidbox projects](../../aidbox-configuration/aidbox-zen-lang-project.md) that can be used to configure Aidboxes and validate data. Basically, Aidbox project is a directory with zen-lang edn files that describe Aidbox configuration.
 * 5 FHIR compartments are available as default in Aidbox. More details on [Compartments API](https://docs.aidbox.app/api-1/compartments).
@@ -95,7 +103,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 * Supported SMART Application Launch Framework Implementation Guide: Patient Portal Launch, Patient Standalone Launch, Provider EHR Launch, Provider Standalone Launch. Check the [sample](https://github.com/Aidbox/aidbox-project-samples#smart-on-fhir-aidbox-installation).&#x20;
 * Released [Aidbox API constructor on zen (alpha version)](../../aidbox-configuration/aidbox-api-constructor.md).
 
-## August 2021 - v:2108 _`stable`_
+## August 2021 - v:2108
 
 * Released [Aidbox Notebooks](../../aidbox-ui/notebooks.md).  Interactive notebooks for REST, SQL, RPC and Markdown. So now you can create your own notebooks or import community notebooks.
 
@@ -110,7 +118,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 * Added [empty query params remove #238](https://github.com/Aidbox/Issues/issues/238). Please **pay attention** **when** **using json-schema** **access policy** engine: Fields with empty values, such as `[], {}, "", null`, are removed before passing request into access policy processing. Make sure to add `require` check of the fields that are validated by a json schema
 * Fixed some bugs submitted by Aidbox users. Check it [here](https://github.com/Aidbox/Issues/milestone/3?closed=1).
 
-## July 2021 - v:2107 _`stable`_
+## July 2021 - v:2107
 
 * We've released a major Aidbox UI upgrade
 
@@ -132,7 +140,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 * Added Intercom so you can get help directly from your Aidbox.Dev or Aidbox.Cloud.
 * Added a guide on search performance optimization to our docs. Check it [here](https://docs.aidbox.app/api-1/api/search-parameters#optimization-of-search-parameters).
 
-## June 2021 - v:20210610 _`LTS`_
+## June 2021 - v:20210610
 
 * Added support for [Bulk API export in CSV](https://docs.aidbox.app/api-1/bulk-api-1/usddump-csv).     You can use **/\[resourceType]/$dump-csv** endpoint to generate CSV file in which JSON resource structure is flattened into comma-separated format.  Such an option for data export is useful for integrations with external EHR systems. &#x20;
 * Added support for [If-Match header](https://docs.aidbox.app/api-1/api/crud-1/delete) in DELETE operation of FHIR REST API.    If-Match is most often used to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource (i.e., to prevent the "lost update" problem). &#x20;

@@ -1,8 +1,8 @@
 ---
-description: Aidbox multi-tenant mode
+description: Build Multitenancy with AccessPolicy
 ---
 
-# 🎓 Multitenancy
+# 🎓 Multitenancy via AccessPolicy
 
 Aidbox stores all the tenants in a single database and serves number of them at once. It obtains `tenant-id` from each request and returns the data belonging to the tenant.
 
@@ -199,4 +199,3 @@ DELETE /Patient?_id=test-patient-1&identifier=tenantId|org1
 {% endcode %}
 {% endtab %}
 {% endtabs %}
-
