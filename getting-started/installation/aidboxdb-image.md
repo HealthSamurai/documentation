@@ -2,11 +2,11 @@
 description: this topic explains the configuration and internals of aidboxdb image
 ---
 
-# Use aidboxdb image
+# aidboxdb image
 
 ### Introduction
 
-aidboxdb image is a custom build of open source PostgreSQL database. Aidbox uses it as data storage. The image can be pulled from [HealthSamurai dockerhub](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1&ordering=last_updated). 
+aidboxdb image is a custom build of open source PostgreSQL database. Aidbox uses it as data storage. The image can be pulled from [HealthSamurai dockerhub](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1\&ordering=last\_updated).&#x20;
 
 The aidboxdb image use cases are:
 
@@ -17,103 +17,31 @@ An open source tool [wal-g](https://github.com/wal-g/wal-g) is used by aidboxdb 
 
 aidboxdb image is tagged by PostgreSQL version from which it is built. For example, if you want to use 11.11 PostgreSQL version you should pull healthsamurai/aidboxdb:11.11 image.
 
+Supported PostgreSQL versions: [14.2](https://hub.docker.com/layers/aidboxdb/healthsamurai/aidboxdb/14.2/images/sha256-5bdc4e259785be6c9741bd6faab8d37a8737154062fab8a84a7d68c7d81a5f6f), [13.6](https://hub.docker.com/layers/aidboxdb/healthsamurai/aidboxdb/13.6/images/sha256-49097e7fb0d60798dbdfe4a3ba31dc324abe232e399a78a487ab91dbd892e2c1?context=explore), [13.2](https://hub.docker.com/layers/aidboxdb/healthsamurai/aidboxdb/13.2/images/sha256-31294389f0339edeff3926ce0f27c856194f6e934ac744af5aa776b1f675dfe1?context=explore), [12.6](https://hub.docker.com/layers/aidboxdb/healthsamurai/aidboxdb/12.6/images/sha256-2a4fc68fc80c0f6e48ddd06b4dcd8a1cab72f2ab13968cc37b06fd2a53e85070?context=explore), [11.11](https://hub.docker.com/layers/aidboxdb/healthsamurai/aidboxdb/11.11/images/sha256-9e767a6f1a0d21faf8542edcdc9f11ba8e836889f6a05d38e29003297037d136?context=explore)
+
 The image is configured by supplying environment variables and command line arguments on startup. Keep in mind that you should not change the environment variables once you have initialised the database. The image expects them to be immutable.
 
 ### Required environment variables
 
-| Env variable name | Meaning |
-| :--- | :--- |
-| `POSTGRES_USER` | Name of the user that will be created during db initialization |
-| `POSTGRES_PASSWORD` | Password for that user |
-| `POSTGRES_DB` | Name of the database to be created on startup |
-| `WALG_` variables | Credentials for storage and bucket name for wal-g to use. Refer to the official docs for the details. |
+| Env variable name   | Meaning                                                                                               |
+| ------------------- | ----------------------------------------------------------------------------------------------------- |
+| `POSTGRES_USER`     | Name of the user that will be created during db initialization                                        |
+| `POSTGRES_PASSWORD` | Password for that user                                                                                |
+| `POSTGRES_DB`       | Name of the database to be created on startup                                                         |
+| `WALG_` variables   | Credentials for storage and bucket name for wal-g to use. Refer to the official docs for the details. |
 
 ### Optional environment variables
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left">Env variable name</th>
-      <th style="text-align:left">Default</th>
-      <th style="text-align:left">Meaning</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left"><code>PGDATA</code>
-      </td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left">Path to the postgresql cluster directory in the filesystem. /data by default.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>PG_ROLE</code>
-      </td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left">When set to &quot;replica&quot; image proceeds to the streaming replica
-        mode</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>PG_REPLICA</code>
-      </td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left">Name of the replication slot to be created in master database. Should
-        only contain lower case letters, numbers, and the underscore character.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>PG_MASTER_HOST</code>
-      </td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left">Master database host for streaming replica</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>PGAGENT_ENABLED</code>
-      </td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left">
-        <p>When present and <code>PG_ROLE</code> is not set to <code>&quot;replica&quot;</code> starts <code>pgagent</code> daemon
-          on <code>aidboxdb</code> start.</p>
-        <p><a href="../../app-development-guides/tutorials/working-with-pgagent.md">pgAgent tutorial</a>
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>PGAGENT_DB</code>
-      </td>
-      <td style="text-align:left"><em>Value of<code>POSTGRES_DB </code>variable</em>
-      </td>
-      <td style="text-align:left">Database where <code>pgagent</code> data is stored. If value is set, then <b>database must exist</b> on
-        container start up.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>PGAGENT_LOG_FILE_PATH</code>
-      </td>
-      <td style="text-align:left"><em><code>&quot;/tmp/pgagent.logs&quot;</code></em>
-      </td>
-      <td style="text-align:left">Path to file where <code>pgagent</code> messages are logged</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>PGAGENT_LOG_LEVEL</code>
-      </td>
-      <td style="text-align:left"><em><code>0</code></em>
-      </td>
-      <td style="text-align:left"><code>0</code> error, <code>1</code> warning, <code>2</code> debug.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>PGAGENT_USER</code>
-      </td>
-      <td style="text-align:left">postgres</td>
-      <td style="text-align:left">If you want to use custom user for <code>pgagent</code> you can specify
-        in this variable.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>PGAGENT_PASSWORD</code>
-      </td>
-      <td style="text-align:left"><em>Value of <code>POSTGRES_PASSWORD</code> variable</em>
-      </td>
-      <td style="text-align:left">Password for <b>custom</b>  <code>pgagent</code> user.</td>
-    </tr>
-  </tbody>
-</table>
-
-
+| Env variable name       | Default                                 | Meaning                                                                                                                                                                                                                                                  |
+| ----------------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `PGDATA`                |                                         | Path to the postgresql cluster directory in the filesystem. /data by default.                                                                                                                                                                            |
+| `PG_ROLE`               |                                         | When set to "replica" image proceeds to the streaming replica mode                                                                                                                                                                                       |
+| `PG_REPLICA`            |                                         | Name of the replication slot to be created in master database. Should only contain lower case letters, numbers, and the underscore character.                                                                                                            |
+| `PG_MASTER_HOST`        |                                         | Master database host for streaming replica                                                                                                                                                                                                               |
+| `PGAGENT_ENABLED`       |                                         | <p>When present and <code>PG_ROLE</code> is not set to <code>"replica"</code> starts <code>pgagent</code> daemon on <code>aidboxdb</code> start.</p><p><a href="../../app-development-guides/tutorials/working-with-pgagent.md">pgAgent tutorial</a></p> |
+| `PGAGENT_DB`            | _Value of`POSTGRES_DB` variable_        | Database where `pgagent` data is stored. If value is set, then **database must exist** on container start up.                                                                                                                                            |
+| `PGAGENT_LOG_FILE_PATH` | _`"/tmp/pgagent.logs"`_                 | Path to file where `pgagent` messages are logged                                                                                                                                                                                                         |
+| `PGAGENT_LOG_LEVEL`     | _`0`_                                   | `0` error, `1` warning, `2` debug.                                                                                                                                                                                                                       |
+| `PGAGENT_USER`          | postgres                                | If you want to use custom user  for `pgagent` you can specify in this variable.                                                                                                                                                                          |
+| `PGAGENT_PASSWORD`      | _Value of `POSTGRES_PASSWORD` variable_ | Password for **custom** `pgagent` user.                                                                                                                                                                                                                  |
 
