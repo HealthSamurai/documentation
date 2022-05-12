@@ -2,11 +2,16 @@
 
 ## April 2022 - v:2204 _`edge`_
 
+* Added ACL (access-control list) functionality to API constructor.
+* Released [`seed service`](../../aidbox-configuration/aidbox-zen-lang-project.md#seed-import) for Aidbox project. Declare a set of resources in Aidbox project and get them loaded in one or many Aidboxes on start.&#x20;
+* Added option to set [PostgreSQL schema](../installation/configure-devbox-aidbox-multibox.md#use-different-postgresql-schema) for Aidbox tables.
+* Added `content-type: application/json` as default if `content-type` and `accept` headers are missing.&#x20;
 * Added [$drop-cache](../../api-1/cache.md#drop-cache-operation) operation and and [`multibox/drop-box-caches`](../../multibox/multibox-box-manager-api.md#multibox-drop-box-caches) RPC
-* Enhanced `POST /` operation error handling and added [FHIR bundle resource documentation](../../api-1/fhir-api/bundle.md).&#x20;
 * Added [GET /$version operation](../../api-1/api/aidbox-version.md) to get Aidbox version.
-* Added `AIDBOX_EXTENSION_SCHEMA` environment variable to change a DB schema from `public` to a custom one.
-* etc
+* Enhanced `POST /` operation error handling and added [FHIR bundle resource documentation](../../api-1/fhir-api/bundle.md).&#x20;
+* Enhanced GraphQL with ConceptMap.group property support
+* Reviewed first-class extensions with zen-lang and updated [docs](../../modules-1/first-class-extensions.md#first-class-extension-as-zen-profile).
+* Reviewed and updated [Aidbox multitenancy docs](../../security-and-access-control-1/multitenancy/).&#x20;
 
 ## March 2022 - v:2203 _`latest`_
 
