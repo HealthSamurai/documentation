@@ -109,3 +109,19 @@ will add `ssl=true&sslmode=verify-ca` params to connection string.
 These parameters will enable SSL connection from Aidbox to postgresql Docs on JDBC PostgreSQL connection string are here: [https://jdbc.postgresql.org/documentation/80/connect.html](https://jdbc.postgresql.org/documentation/80/connect.html) [https://jdbc.postgresql.org/documentation/head/ssl-client.html](https://jdbc.postgresql.org/documentation/head/ssl-client.html)
 
 The next step is to configure your database to accept SSL connections. You can do that by passing your own postgresql.conf with argument -c config\_file passed into the db containter and probably you want to set up postgres to receive only SSL connections, you can do that by passing your own pg\_hba.conf file with -c hba\_file
+
+### Use different PostgreSQL schema
+
+By default Aidbox uses `public` schema. If you want Aidbox to use different schema, set [JDBC parameter `currentSchema`](https://jdbc.postgresql.org/documentation/head/connect.html#connection-parameters) using environment variable `AIDBOX_DB_PARAM_CURRENT_SCHEMA`:
+
+```
+AIDBOX_DB_PARAM_CURRENT_SCHEMA=myschema
+```
+
+PostgreSQL extensions can create objects. By default PostgreSQL sets up extension to use current schema. If you are going to share database between multiple applications, we recommend to create a dedicated schema for the extensions.
+
+Use `AIDBOX_EXTENSION_SCHEMA` environment variable to set up Aidbox to use dedicated extension schema:
+
+```
+AIDBOX_EXTENSION_SCHEMA=myextensionschema
+```
