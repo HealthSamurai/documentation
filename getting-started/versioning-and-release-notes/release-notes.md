@@ -1,6 +1,8 @@
 # Release Notes
 
-## April 2022 - v:2204 _`edge`_
+## May 2022 - v:2205 _`edge`_
+
+## April 2022 - v:2204 _`latest`_
 
 * Added ACL (access-control list) functionality to API constructor.
 * Released [`seed service`](../../aidbox-configuration/aidbox-zen-lang-project.md#seed-import) for Aidbox project. Declare a set of resources in Aidbox project and get them loaded in one or many Aidboxes on start.&#x20;
@@ -13,7 +15,7 @@
 * Reviewed first-class extensions with zen-lang and updated [docs](../../modules-1/first-class-extensions.md#first-class-extension-as-zen-profile).
 * Reviewed and updated [Aidbox multitenancy docs](../../security-and-access-control-1/multitenancy/).&#x20;
 
-## March 2022 - v:2203 _`latest`_
+## March 2022 - v:2203 _`stable`_
 
 * Released a [February 2022 - v:2202 _`LTS`_](release-notes.md#february-2022-v-2202-stable).  __  The Aidbox team will backport security and critical bug fixes to it throughout a one-year support window.
 * Added [`aidbox-validation-skip`](../../profiling-and-validation/profiling.md#aidbox-validation-skip-request-header) header that allows skipping resource reference validation.
@@ -25,7 +27,7 @@
 * Updated [HL7 v2 module](https://docs.aidbox.app/modules-1/hl7-v2-integration) documentation.&#x20;
 * Fixed [issues ](https://github.com/Aidbox/Issues/issues?q=is%3Aissue+milestone%3A%22March+2022+-+v%3A2203%22+is%3Aclosed)submitted by Aidbox users.
 
-## February 2022 - v:2202 _`LTS`  `stable`_
+## February 2022 - v:2202 _`LTS`_
 
 {% hint style="info" %}
 February 2022 - v:2202 is available as a long-term support version. End of life is April 2023.
