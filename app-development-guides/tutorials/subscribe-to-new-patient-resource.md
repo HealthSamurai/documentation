@@ -13,9 +13,9 @@ Aidbox [subscriptions module](../../api-1/reactive-api-and-subscriptions/subscri
 
 In order to start receive notifications, you have to register your services as a subscriber in Aidbox by creating a **SubsSubscription** resource.
 
-As external service to integrate Aidbox with, we will use [RequestCatcher](https://requestcatcher.com/). We will use aidbox name, so the final name of our service will be [https://aidbox.requestcatcher.com/](https://aidbox.requestcatcher.com/). You can use your own name.
+As external service to integrate Aidbox with, we will use [RequestCatcher](https://requestcatcher.com). We will use aidbox name, so the final name of our service will be [https://aidbox.requestcatcher.com/](https://aidbox.requestcatcher.com). You can use your own name.
 
-Open [https://aidbox.requestcatcher.com/](https://aidbox.requestcatcher.com/) in new tab, then create next **SubsSubsription** resource in your Aidbox instance:
+Open [https://aidbox.requestcatcher.com/](https://aidbox.requestcatcher.com) in new tab, then create next **SubsSubsription** resource in your Aidbox instance:
 
 ```yaml
 POST /SubsSubscription

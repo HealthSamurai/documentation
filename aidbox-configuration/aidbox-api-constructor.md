@@ -17,8 +17,6 @@ API constructor requires knowledge of [zen language](https://github.com/zen-lang
 
 * [Sample API](https://github.com/Aidbox/devbox/blob/bb/zrc/mybox.edn) used in this documentation page example.
 * [Smart on FHIR configuration](https://github.com/Aidbox/aidbox-project-samples/blob/main/aidbox-project-samples/onc/smart.edn)
-* [ACL example](https://github.com/Aidbox/aidbox-project-samples/tree/main/aidbox-project-samples/acl)
-* [Multitenancy example](https://github.com/Aidbox/aidbox-project-samples/tree/main/aidbox-project-samples/multitenancy)
 
 ## Example setup
 
@@ -103,7 +101,7 @@ An `op` describes REST operation. `:engine` specifies what operation handler sho
 
 #### Example
 
-```clojure
+```
  create-patient
  {:zen/tags #{aidbox.rest/op}
   :engine   aidbox.rest.v1/create
@@ -131,19 +129,15 @@ Expect target resource type as `:resource` and `:format` (`fhir` or `aidbox`)
 * `aidbox.rest.v1/patch`
 * `aidbox.rest.v1/transaction`
 
-#### ACL FHIR API&#x20;
+#### ACL FHIR API
+
+&#x20;Expects the same as regular FHIR API engines and `:filter`&#x20;
 
 * `aidbox.rest.acl/search`
 * `aidbox.rest.acl/create`
 * `aidbox.rest.acl/read`
 * `aidbox.rest.acl/update`
 * `aidbox.rest.acl/delete`
-
-See full description and usage examples:
-
-{% content-ref url="aidbox-api-constructor/acl.md" %}
-[acl.md](aidbox-api-constructor/acl.md)
-{% endcontent-ref %}
 
 ### Middlewares
 

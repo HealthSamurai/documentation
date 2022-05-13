@@ -12,7 +12,7 @@ $lookup operations is especially designed to be efficient implementation for thi
 
 > **Demo. US NPI by Aidbox**
 >
-> [https://search-resource.netlify.com/](https://search-resource.netlify.com/)\
+> [https://search-resource.netlify.com/](https://search-resource.netlify.com)\
 > Here is demo of US NPI \~10M practitioners in Aidbox Cloud using **$lookup** operation. You can source code of this app on [github](https://github.com/Aidbox/usnpi-ui).
 
 There is no way to implement the efficient multidimensional prefix search with ranking and sorting in the relational database. $lookup based on specific assumptions to find the right trade-off: if the search returns more than `count` (by default 50) results, we consider that the search failed and result can have some anomalies, for example, not complete sorting.

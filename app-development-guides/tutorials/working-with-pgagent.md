@@ -214,7 +214,7 @@ Don't worry if you see `WARNING: Couldn't create the primary connection [Attempt
 ### Defining a job via PgAdmin
 
 {% hint style="info" %}
-Refer to [https://www.pgadmin.org/](https://www.pgadmin.org/) for pgAdmin and pgAgent documentation.
+Refer to [https://www.pgadmin.org/](https://www.pgadmin.org) for pgAdmin and pgAgent documentation.
 {% endhint %}
 
 Now when pgagent is up and running we can define some jobs and see if they're actually scheduled.

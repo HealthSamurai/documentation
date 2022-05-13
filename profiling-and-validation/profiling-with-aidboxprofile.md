@@ -4,7 +4,7 @@ description: Create a profile with AidboxProfile and validate data
 
 # Profiling with AidboxProfile
 
-For custom profiling, Aidbox provides additional resource `AidboxProfile`. This resource specifies resource type and [JSON Schema](https://json-schema.org/) which validates the specified resource type.
+For custom profiling, Aidbox provides additional resource `AidboxProfile`. This resource specifies resource type and [JSON Schema](https://json-schema.org) which validates the specified resource type.
 
 ## AidboxProfile Resource Structure
 
@@ -37,7 +37,7 @@ bind:
 
 ### schema
 
-It's a plain [JSON Schema ](https://json-schema.org/)object which validates a resource.
+It's a plain [JSON Schema ](https://json-schema.org)object which validates a resource.
 
 **Example:** Require the `name` attribute
 

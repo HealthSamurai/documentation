@@ -40,6 +40,8 @@ Expects the same as regular FHIR API engines and also a `:filter`
 
 ### Filter
 
+An ACL operation requires `:filter` to be specified. A `filter` requires to define `:expression` which will be added to a SQL formed by the operation. `:expression` is made of `templates` joined with `:and` or `:or` operators. A `filter` optionally accepts `:filter-table`
+
 #### Example
 
 ```clojure
@@ -52,6 +54,8 @@ Expects the same as regular FHIR API engines and also a `:filter`
 
 ### Filter table
 
+Filter table defines SQL table to be joined or searched in with SQL templates.
+
 #### Example
 
 ```clojure
@@ -62,6 +66,13 @@ Expects the same as regular FHIR API engines and also a `:filter`
 ```
 
 ### Template
+
+Defines SQL template string. Accepts params. In the template string you can refer to variables with `{{<var>}}` syntax. Available variables:
+
+* &#x20;`params` can be referred with `{{params.<path>.<to>.<param>}}` syntax.
+* &#x20;`{{filter-table}}`  is the `:filter-table` added to the `filter`
+* `{{target-resource}}` is the jsonb of a resource being checked
+* `{{target-id}}` is the id of the resource
 
 #### Example
 
@@ -74,9 +85,15 @@ Expects the same as regular FHIR API engines and also a `:filter`
  subject-conditon
  {:zen/tags #{aidbox.rest.acl/sql-template}
   :template "{{target-resource}}#>>'{subject, id}' = {{filter-table}}.resource#>>'{patient, id}'"}
+  
+ id-conditon
+ {:zen/tags #{aidbox.rest.acl/sql-template}
+  :template "{{target-id}} = {{filter-table}}.resource#>>'{patient, id}'"}
 ```
 
 ### Parameter
+
+Defines a path in a request where to get data. The data can be used in a SQL template
 
 #### Example
 

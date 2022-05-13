@@ -4,13 +4,13 @@ description: This page covers types of Aidbox licenses and describes Aidbox Supp
 
 # Licensing and Support
 
-Aidbox offers developers a smooth path from a tiny digital health app prototype to a country-wide deployment of a global healthcare solution. [Health Samurai](https://www.health-samurai.io/) is always around to make sure that developers get all the necessary support.
+Aidbox offers developers a smooth path from a tiny digital health app prototype to a country-wide deployment of a global healthcare solution. [Health Samurai](https://www.health-samurai.io) is always around to make sure that developers get all the necessary support.
 
 ## Aidbox Licenses
 
 [Start](https://docs.aidbox.app/installation/setup-aidbox.dev) with a free Aidbox version called **Devbox**. You can only use Devbox at your local computer and can't use it with real healthcare data or PHI (Protected Health Information). But other than that, Devbox has all the features of the paid Aidbox version, and it is enough for proper Aidbox evaluation and the beginning of your healthcare app development.
 
-If you need Aidbox for a staging or production environment, it is time to move to the paid Aidbox version. Moving to the paid **Aidbox** is easy. [Log in](https://license-ui.aidbox.app/) to the license server and request a paid Aidbox license. Health Samurai will take care of the rest.
+If you need Aidbox for a staging or production environment, it is time to move to the paid Aidbox version. Moving to the paid **Aidbox** is easy. [Log in](https://license-ui.aidbox.app) to the license server and request a paid Aidbox license. Health Samurai will take care of the rest.
 
 If you need more than one Aidbox license, you will pay even less for the second Aidbox license that you are purchasing. If you are building a SaaS solution that would benefit from having a separate FHIR server for each client, you can get a **multi-tenant version of Aidbox (Multibox)**.
 
@@ -51,7 +51,7 @@ Besides Aidbox product and Aidbox Support, Health Samurai offers Professional se
 
 ## Aidbox Trial
 
-Aidbox license can be received for a trial period at no cost with the purchase of Aidbox Support. Do not fight your problems alone; get Aidbox Support and [Health Samurai](https://www.health-samurai.io/) on your side!
+Aidbox license can be received for a trial period at no cost with the purchase of Aidbox Support. Do not fight your problems alone; get Aidbox Support and [Health Samurai](https://www.health-samurai.io) on your side!
 
 * 1 month with Basic support
 * 2 months with Professional support
