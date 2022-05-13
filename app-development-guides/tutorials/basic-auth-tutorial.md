@@ -108,7 +108,7 @@ Now using this access token we can query Aidbox
 
 If you use external server, which provides you with JWT access token - you can configure Aidbox to trust this JWT token and act as Resource Server
 
-&#x20;_You can use for example this_ [_app to generate test JWT_](http://jwtbuilder.jamiekurtz.com)__
+&#x20;_You can use for example this_ [_app to generate test JWT_](http://jwtbuilder.jamiekurtz.com/)__
 
 First of all you have to register TokenIntrospector in Aidbox
 

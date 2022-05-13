@@ -6,7 +6,7 @@ Using Aidbox API constructor you can:
 * specify your own middlewares (e.g. Smart on FHIR authorization middleware)
 
 {% hint style="warning" %}
-The API constructor is in beta now. Please [contact](../contact-us.md) us if you have questions or need help.
+The API constructor is in beta now. Please [contact](../../contact-us.md) us if you have questions or need help.
 {% endhint %}
 
 {% hint style="info" %}
@@ -17,10 +17,12 @@ API constructor requires knowledge of [zen language](https://github.com/zen-lang
 
 * [Sample API](https://github.com/Aidbox/devbox/blob/bb/zrc/mybox.edn) used in this documentation page example.
 * [Smart on FHIR configuration](https://github.com/Aidbox/aidbox-project-samples/blob/main/aidbox-project-samples/onc/smart.edn)
+* [ACL example](https://github.com/Aidbox/aidbox-project-samples/tree/main/aidbox-project-samples/acl)
+* [Multitenancy example](https://github.com/Aidbox/aidbox-project-samples/tree/main/aidbox-project-samples/multitenancy)
 
 ## Example setup
 
-Use [`bb` Devbox setup](../getting-started/installation/devbox-with-bb.md) to start Aidbox, it contains configured [API constructor example](https://github.com/Aidbox/devbox/blob/bb/zrc/mybox.edn). Once Aidbox is running, open `Profiles` tab in the Aidbox UI. If everything is configured properly, page should contain namespace with `AIDBOX_ZEN_ENTRYPOINT` symbol which is `mybox/box` in this example. View of the symbol should show loaded routes.
+Use [`bb` Devbox setup](../../getting-started/installation/devbox-with-bb.md) to start Aidbox, it contains configured [API constructor example](https://github.com/Aidbox/devbox/blob/bb/zrc/mybox.edn). Once Aidbox is running, open `Profiles` tab in the Aidbox UI. If everything is configured properly, page should contain namespace with `AIDBOX_ZEN_ENTRYPOINT` symbol which is `mybox/box` in this example. View of the symbol should show loaded routes.
 
 Here's a notebook with the example API demo usage :&#x20;
 
@@ -42,7 +44,7 @@ AIDBOX_ZEN_ENTRYPOINT=mybox/box
 
 {% hint style="info" %}
 The namespace with entrypoint symbol must be loaded: file containing namespace mentioned in `AIDBOX_ZEN_PATHS` and imported or specified directly in`AIDBOX_ZEN_ENTRYPOINT` env.\
-[More info on loading namespace](aidbox-zen-lang-project.md)
+[More info on loading namespace](../aidbox-zen-lang-project.md)
 {% endhint %}
 
 Entrypoint symbol must be tagged with `aidbox/system` tag. `aidbox/system` describes a set of services to start and configurations.
@@ -63,7 +65,7 @@ A service contains `engine` and its configuration.
 #### Available engines:
 
 * `aidbox/http` - Describes http service, contains set of `apis`. Each api must be tagged with `aidbox.rest/api`.
-* `aidbox/seed` - Creates provided fixtures on start. Described [here](aidbox-zen-lang-project.md#seed-import).
+* `aidbox/seed` - Creates provided fixtures on start. Described [here](../aidbox-zen-lang-project.md#seed-import).
 
 #### Example
 
@@ -138,6 +140,12 @@ Expect target resource type as `:resource` and `:format` (`fhir` or `aidbox`)
 * `aidbox.rest.acl/read`
 * `aidbox.rest.acl/update`
 * `aidbox.rest.acl/delete`
+
+See full description and usage examples:
+
+{% content-ref url="acl.md" %}
+[acl.md](acl.md)
+{% endcontent-ref %}
 
 ### Middlewares
 

@@ -10,7 +10,7 @@ description: >-
 
 Devbox is compatible with macOS, Linux, and Windows 10 Pro.
 
-**Devbox** is a lightweight version of [Aidbox](https://www.health-samurai.io/aidbox). It is a special version aimed at local development and in your CI. To obtain Devbox license, please use our [License server](https://license-ui.aidbox.app).
+**Devbox** is a lightweight version of [Aidbox](https://www.health-samurai.io/aidbox). It is a special version aimed at local development and in your CI. To obtain Devbox license, please use our [License server](https://license-ui.aidbox.app/).
 
 ## Get your license
 
@@ -145,7 +145,7 @@ Starting Aidbox in an open mode without AIDBOX\_CLIENT\_SECRET is disabled!
 $ docker-compose up -d
 ```
 
-That's it! Devbox is running and you can point your browser to [http://localhost:8888](http://localhost:8888) to see a fancy welcome page.
+That's it! Devbox is running and you can point your browser to [http://localhost:8888](http://localhost:8888/) to see a fancy welcome page.
 
 \_\*\*\_Input your ADMIN\_ID and ADMIN\_PASSWORD and you will see your development environment. This is the way to create your best healthcare products.
 

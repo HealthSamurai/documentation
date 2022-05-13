@@ -33,7 +33,7 @@
 February 2022 - v:2202 is available as a long-term support version. End of life is April 2023.
 {% endhint %}
 
-* Released a beta version of [Aidbox API constructor ](../../aidbox-configuration/aidbox-api-constructor.md)that allows to define REST API granularly.
+* Released a beta version of [Aidbox API constructor ](../../aidbox-configuration/aidbox-api-constructor/)that allows to define REST API granularly.
 * Added Access Control debug option: [su header](../../security-and-access-control-1/security/debug.md#su-request-header). It allows doing a request on behalf of a certain user.
 * Added [Grafana dashboard RPC](../../core-modules/monitoring/grafana-integration.md) API that allows to get Aidbox metrics dashboards and import it to your Grafana.
 * Added [`_count`](../../api-1/fhir-api/search-1/\_count-and-\_page.md), [`_total`](../../api-1/fhir-api/search-1/\_total-or-\_countmethod.md) and [`_timeout`](../../api-1/fhir-api/search-1/\_timeout.md) environment variables to configure default values.
@@ -108,7 +108,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 * Added Datadog [integration URL configuration](https://docs.aidbox.app/core-modules/logging-and-audit/aidbox-logs-and-datadog-integration#datadog-logging). So now you can specify in configuration if you want to use one of the following domains`datadoghq.com, us3.datadoghq.com, datadoghq.eu, ddog-gov.com`.
 * Added a tutorial on how to configure [HL7 FHIR Da Vinci PDex Plan Net IG](../../fhir-implementation-guides/hl7-fhir-da-vinci-pdex-plan-net-ig.md) on Aidbox.
 * Supported SMART Application Launch Framework Implementation Guide: Patient Portal Launch, Patient Standalone Launch, Provider EHR Launch, Provider Standalone Launch. Check the [sample](https://github.com/Aidbox/aidbox-project-samples#smart-on-fhir-aidbox-installation).&#x20;
-* Released [Aidbox API constructor on zen (alpha version)](../../aidbox-configuration/aidbox-api-constructor.md).
+* Released [Aidbox API constructor on zen (alpha version)](../../aidbox-configuration/aidbox-api-constructor/).
 
 ## August 2021 - v:2108
 
@@ -143,7 +143,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
   * Log additional DB metrics from Aidbox.Dev. &#x20;
   * Added ELK, Kibana, and Grafana to Aidbox image. So now you can start exploring and analyzing logs from scratch. Check our tutorial on exploring and visualizing logs [here](https://docs.aidbox.app/app-development-guides/tutorials/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana).
 * We added a new auth mechanism for authorization Aidbox.Cloud and Aidbox.Multibox users by JWT.
-* Support for [OKTA](https://www.okta.com) as an external OAuth 2.0 provider.  Check out [the tutorial](../../security-and-access-control-1/auth/external-oauth-2.0-providers/configure-okta.md).
+* Support for [OKTA](https://www.okta.com/) as an external OAuth 2.0 provider.  Check out [the tutorial](../../security-and-access-control-1/auth/external-oauth-2.0-providers/configure-okta.md).
 * Added Intercom so you can get help directly from your Aidbox.Dev or Aidbox.Cloud.
 * Added a guide on search performance optimization to our docs. Check it [here](https://docs.aidbox.app/api-1/api/search-parameters#optimization-of-search-parameters).
 
@@ -152,7 +152,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 * Added support for [Bulk API export in CSV](https://docs.aidbox.app/api-1/bulk-api-1/usddump-csv).     You can use **/\[resourceType]/$dump-csv** endpoint to generate CSV file in which JSON resource structure is flattened into comma-separated format.  Such an option for data export is useful for integrations with external EHR systems. &#x20;
 * Added support for [If-Match header](https://docs.aidbox.app/api-1/api/crud-1/delete) in DELETE operation of FHIR REST API.    If-Match is most often used to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource (i.e., to prevent the "lost update" problem). &#x20;
 * Added support for additional mime types according to the [FHIR specification](http://hl7.org/fhir/http.html#mime-type)   Accept: _application/fhir+json_, Accept: _application/json+fhir._   When one of the headers is specified for your request, the same Content-Type header is returned by Aidbox.  &#x20;
-* Implemented integration with [Datadog](https://www.datadoghq.com).      Datadog offers cloud-based monitoring and analytics platform which integrates and automates infrastructure monitoring, application performance monitoring, and log management for real-time observability of customers.  You can [configure it](https://docs.aidbox.app/app-development-guides/receive-logs-from-your-app/aidbox-logs-and-datadog-integration) as storage for Aidbox logs. The detailed guide on how to use Datadog monitoring capabilities in your Aidbox-based system you can find [here. ](https://docs.aidbox.app/app-development-guides/receive-logs-from-your-app/datadog-guide) This is an easy way to leverage HIPAA-compliant log management SaaS platform to unify logs, metrics, and traces in a single view.&#x20;
+* Implemented integration with [Datadog](https://www.datadoghq.com/).      Datadog offers cloud-based monitoring and analytics platform which integrates and automates infrastructure monitoring, application performance monitoring, and log management for real-time observability of customers.  You can [configure it](https://docs.aidbox.app/app-development-guides/receive-logs-from-your-app/aidbox-logs-and-datadog-integration) as storage for Aidbox logs. The detailed guide on how to use Datadog monitoring capabilities in your Aidbox-based system you can find [here. ](https://docs.aidbox.app/app-development-guides/receive-logs-from-your-app/datadog-guide) This is an easy way to leverage HIPAA-compliant log management SaaS platform to unify logs, metrics, and traces in a single view.&#x20;
 * Logs that are published on Aidbox startup are cleaned up from useless data.&#x20;
 * SSL connection between Aidbox and PostgreSQL is now supported.  Please, read the [configuration instructions](https://docs.aidbox.app/getting-started/installation/use-devbox-aidbox#configuring-ssl-connection-with-postgresql) for more details. &#x20;
 * Fixed a bug with race condition occurring during CRUD operations with If-Match header.   Transaction rollback is implemented for the case when concurrent change happens to the resource.&#x20;
