@@ -43,23 +43,128 @@ The namespace with entrypoint symbol must be loaded: file containing namespace m
 
 Entrypoint symbol must be tagged with `aidbox/system` tag. `aidbox/system` describes a set of services to start and configurations.
 
+#### Example
+
+```clojure
+ box
+ {:zen/tags #{aidbox/system}
+  :zen/desc "test server"
+  :services {:http server}}
+```
+
 ### Services
 
 A service contains `engine` and its configuration.
 
-List of available engines:
+#### Available engines:
 
-* `aidbox/http`
+* `aidbox/http` - Describes http service, contains set of `apis`. Each api must be tagged with `aidbox.rest/api`.
+* `aidbox/seed` - Creates provided fixtures on start. Described [here](aidbox-zen-lang-project.md#seed-import).
 
-#### `aidbox/http`
+#### Example
 
-Describes http service, contains set of `apis`. Each api must be tagged with `aidbox.rest/api`.
+```clojure
+ server
+ {:zen/tags #{aidbox/service}
+  :engine   aidbox/http
+  :apis     #{api}}
+```
 
-`aidbox.rest/api` describes routing, route can contain operations, subroutes and other apis. Operations must be tagged with `aidbox.rest/op`.
+### `aidbox.rest/api`
 
-`aidbox.rest/op` describes REST operation.
+An `api` describes routing, route can contain operations, subroutes and other apis. Operations must be tagged with `aidbox.rest/op`.
 
-### Example
+`:middlewares` can be added to an `api`.
+
+#### Example
+
+```clojure
+ api
+ {:zen/tags #{aidbox.rest/api}
+  "multi-example" {"Patient" {:apis #{get-patient-api change-patient-api}}}}
+ 
+ change-patient-api
+ {:zen/tags    #{aidbox.rest/api}
+  :middlewares [inject-tenant-mw]
+  :POST multi-box.operations/create-patient
+  [:id] {:PUT    multi-box.operations/update-patient
+         :DELETE multi-box.operations/delete-patient}} 
+```
+
+### `aidbox.rest/op`
+
+An `op` describes REST operation. `:engine` specifies what operation handler should be used for this operation. Each engine can accept own parameters
+
+#### Example
+
+```
+ create-patient
+ {:zen/tags #{aidbox.rest/op}
+  :engine   aidbox.rest.v1/create
+  :resource "Patient"
+  :format   "fhir"}
+```
+
+### Available `aidbox.rest/op-engine`s
+
+#### Miscellaneous
+
+* `aidbox.rest.v1/aidbox-action` - Expects `:action`, passes request to existing Aidbox action. You can see list of available operations with this request:\
+  `GET /Operation?_elements=action&_result=array&_count=1000`
+* `aidbox.rest.v1/echo` - expects `:response` in the definition, returns the response.
+
+#### Regular FHIR API
+
+Expect target resource type as `:resource` and `:format` (`fhir` or `aidbox`)
+
+* `aidbox.rest.v1/search`&#x20;
+* `aidbox.rest.v1/create`
+* `aidbox.rest.v1/read`
+* `aidbox.rest.v1/update`
+* `aidbox.rest.v1/delete`
+* `aidbox.rest.v1/patch`
+* `aidbox.rest.v1/transaction`
+
+#### ACL FHIR API
+
+&#x20;Expects the same as regular FHIR API engines and `:filter`&#x20;
+
+* `aidbox.rest.acl/search`
+* `aidbox.rest.acl/create`
+* `aidbox.rest.acl/read`
+* `aidbox.rest.acl/update`
+* `aidbox.rest.acl/delete`
+
+### Middlewares
+
+Middlewares can change incoming request before executing `op`. Middlewares are applied to `aidbox.rest/api` which contains operations or other apis. On request Aidbox routing determines what `op` should be executed. Before executing the `op` Aidbox collects all middlewares applied to the apis containing the op. Then collected middlewares are applied in sequence to the request.
+
+A middleware should be defined with specified `:engine`. The `:engine` determines what the middleware will do. Depending on the chosen `:engine` middleware can accept different parameters.
+
+#### Example
+
+```clojure
+ inject-tenant-mw
+ {:zen/tags #{aidbox.rest/middleware}
+  :engine aidbox.rest.v1/transform-middleware
+  :rules  {[:resource :meta :tenantId]  [:oauth/user :data :tenantId]}}
+  
+ change-patient-api
+ {:zen/tags    #{aidbox.rest/api}
+  :middlewares [inject-tenant-mw]
+  :POST multi-box.operations/create-patient
+  [:id] {:PUT    multi-box.operations/update-patient
+         :DELETE multi-box.operations/delete-patient}} 
+```
+
+#### List of available `aidbox.rest/middleware-engine`&#x20;
+
+* `aidbox.rest.v1/match-middleware` - checks if a request satisfies to some pattern. Similar to the `AccessPolicy` `matcho` engine
+* `aidbox.rest.v1/params-middleware` - adds request query-string parameters taking data from the request context
+* `aidbox.rest.v1/transform-middleware` - transforms incoming request taking data from the request context&#x20;
+* `aidbox.rest.middlewares/transform-request-data` - the same as `transform-middleware` but provides more complex functionality
+
+### Project with API Constructor example
 
 Aidbox configuration with search and read on `Observation` resource available at `GET /access/Observation` and `GET /access/Observation/<id>`. Defined endpoints also contain a middleware injecting `patient` search parameter to ensure that user can only search for Observations for a specific patient.
 
@@ -83,22 +188,22 @@ Aidbox configuration with search and read on `Observation` resource available at
 
  access-api
  {:zen/tags #{aidbox.rest/api}
-  "Observation" {:middlewares  [inject-patient-search-parameter-mw]
-                 :GET   obs-search-op
-                 [:id]  {:GET obs-read-op}}}
+  "Observation" {:middlewares [inject-patient-search-parameter-mw]
+                 :GET  obs-search-op
+                 [:id] {:GET obs-read-op}}}
 
  obs-search-op
- {:zen/tags  #{aidbox.rest/op}
-  :engine    aidbox.rest.v1/search
-  :resource  "Observation"
-  :format    "aidbox"}
+ {:zen/tags #{aidbox.rest/op}
+  :engine   aidbox.rest.v1/search
+  :resource "Observation"
+  :format   "aidbox"}
 
  obs-read-op
- {:zen/tags    #{aidbox.rest/op}
-  :engine      aidbox.rest.v1/read
-  :params      {:patient observation-patient-param}
-  :resource    "Observation"
-  :format      "aidbox"}
+ {:zen/tags #{aidbox.rest/op}
+  :engine   aidbox.rest.v1/read
+  :params   {:patient observation-patient-param}
+  :resource "Observation"
+  :format   "aidbox"}
 
  inject-patient-search-parameter-mw
  {:zen/tags #{aidbox.rest/middleware}
