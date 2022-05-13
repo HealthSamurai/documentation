@@ -9,6 +9,10 @@ Using Aidbox API constructor you can:
 The API constructor is in beta now. Please [contact](../contact-us.md) us if you have questions or need help.
 {% endhint %}
 
+{% hint style="info" %}
+API constructor requires knowledge of [zen language](https://github.com/zen-lang/zen) and ability to discover zen definitions
+{% endhint %}
+
 #### Usage examples:
 
 * [Sample API](https://github.com/Aidbox/devbox/blob/bb/zrc/mybox.edn) used in this documentation page example.

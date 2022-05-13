@@ -21,7 +21,7 @@ Multibox is a type of Aidbox distribution that isolates data to separate databas
 
 {% hint style="warning" %}
 * Due to the database separation, it may be difficult to perform analytics, migrations, etc. across multiple tenants.
-* Data can't be easily shared between tenants, e.g. terminologies, Practitioner, Organization resources etc.
+* Data can't be shared between tenants, e.g. terminologies, Practitioner, Organization resources etc.
 {% endhint %}
 
 {% content-ref url="broken-reference" %}
@@ -39,7 +39,7 @@ In terms of multitenancy API Constructor allows you to:
 
 You can fine-tune access to every operation or resource type, for example:
 
-* Restrict access to resources like Patient, Encounter access by tenants, i.e. each tenant can only read/change their own resources.
+* Restrict access to `Patient` resources access by tenants, i.e. each tenant can only read/change their own `Patient` resources.
 * Allow `Location` resources read access across all tenants.
 * Allow creating `Location` resources only for some specific client.
 
