@@ -6,7 +6,7 @@ Using Aidbox API constructor you can:
 * specify your own middlewares (e.g. Smart on FHIR authorization middleware)
 
 {% hint style="warning" %}
-The API constructor is in beta now. Please [contact](../../contact-us.md) us if you have questions or need help.
+The API constructor is in beta now. Please [contact](../contact-us.md) us if you have questions or need help.
 {% endhint %}
 
 {% hint style="info" %}
@@ -22,7 +22,7 @@ API constructor requires knowledge of [zen language](https://github.com/zen-lang
 
 ## Example setup
 
-Use [`bb` Devbox setup](../../getting-started/installation/devbox-with-bb.md) to start Aidbox, it contains configured [API constructor example](https://github.com/Aidbox/devbox/blob/bb/zrc/mybox.edn). Once Aidbox is running, open `Profiles` tab in the Aidbox UI. If everything is configured properly, page should contain namespace with `AIDBOX_ZEN_ENTRYPOINT` symbol which is `mybox/box` in this example. View of the symbol should show loaded routes.
+Use [`bb` Devbox setup](../getting-started/installation/devbox-with-bb.md) to start Aidbox, it contains configured [API constructor example](https://github.com/Aidbox/devbox/blob/bb/zrc/mybox.edn). Once Aidbox is running, open `Profiles` tab in the Aidbox UI. If everything is configured properly, page should contain namespace with `AIDBOX_ZEN_ENTRYPOINT` symbol which is `mybox/box` in this example. View of the symbol should show loaded routes.
 
 Here's a notebook with the example API demo usage :&#x20;
 
@@ -44,7 +44,7 @@ AIDBOX_ZEN_ENTRYPOINT=mybox/box
 
 {% hint style="info" %}
 The namespace with entrypoint symbol must be loaded: file containing namespace mentioned in `AIDBOX_ZEN_PATHS` and imported or specified directly in`AIDBOX_ZEN_ENTRYPOINT` env.\
-[More info on loading namespace](../aidbox-zen-lang-project.md)
+[More info on loading namespace](aidbox-zen-lang-project.md)
 {% endhint %}
 
 Entrypoint symbol must be tagged with `aidbox/system` tag. `aidbox/system` describes a set of services to start and configurations.
@@ -65,7 +65,7 @@ A service contains `engine` and its configuration.
 #### Available engines:
 
 * `aidbox/http` - Describes http service, contains set of `apis`. Each api must be tagged with `aidbox.rest/api`.
-* `aidbox/seed` - Creates provided fixtures on start. Described [here](../aidbox-zen-lang-project.md#seed-import).
+* `aidbox/seed` - Creates provided fixtures on start. Described [here](aidbox-zen-lang-project.md#seed-import).
 
 #### Example
 
@@ -103,7 +103,7 @@ An `op` describes REST operation. `:engine` specifies what operation handler sho
 
 #### Example
 
-```
+```clojure
  create-patient
  {:zen/tags #{aidbox.rest/op}
   :engine   aidbox.rest.v1/create
@@ -131,9 +131,7 @@ Expect target resource type as `:resource` and `:format` (`fhir` or `aidbox`)
 * `aidbox.rest.v1/patch`
 * `aidbox.rest.v1/transaction`
 
-#### ACL FHIR API
-
-&#x20;Expects the same as regular FHIR API engines and `:filter`&#x20;
+#### ACL FHIR API&#x20;
 
 * `aidbox.rest.acl/search`
 * `aidbox.rest.acl/create`
@@ -143,8 +141,8 @@ Expect target resource type as `:resource` and `:format` (`fhir` or `aidbox`)
 
 See full description and usage examples:
 
-{% content-ref url="acl.md" %}
-[acl.md](acl.md)
+{% content-ref url="aidbox-api-constructor/acl.md" %}
+[acl.md](aidbox-api-constructor/acl.md)
 {% endcontent-ref %}
 
 ### Middlewares

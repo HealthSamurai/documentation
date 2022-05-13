@@ -25,7 +25,7 @@
 ## Aidbox configuration
 
 * [Aidbox project](aidbox-configuration/aidbox-zen-lang-project.md)
-* [API constructor (beta)](aidbox-configuration/aidbox-api-constructor/README.md)
+* [API constructor (beta)](aidbox-configuration/aidbox-api-constructor.md)
   * [ACL](aidbox-configuration/aidbox-api-constructor/acl.md)
 * [Setup SMTP provider](aidbox-configuration/setup-smtp-provider.md)
 * [Zen Configuration](aidbox-configuration/zen-configuration.md)

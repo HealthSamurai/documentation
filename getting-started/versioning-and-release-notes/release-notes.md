@@ -33,7 +33,7 @@
 February 2022 - v:2202 is available as a long-term support version. End of life is April 2023.
 {% endhint %}
 
-* Released a beta version of [Aidbox API constructor ](../../aidbox-configuration/aidbox-api-constructor/)that allows to define REST API granularly.
+* Released a beta version of [Aidbox API constructor ](../../aidbox-configuration/aidbox-api-constructor.md)that allows to define REST API granularly.
 * Added Access Control debug option: [su header](../../security-and-access-control-1/security/debug.md#su-request-header). It allows doing a request on behalf of a certain user.
 * Added [Grafana dashboard RPC](../../core-modules/monitoring/grafana-integration.md) API that allows to get Aidbox metrics dashboards and import it to your Grafana.
 * Added [`_count`](../../api-1/fhir-api/search-1/\_count-and-\_page.md), [`_total`](../../api-1/fhir-api/search-1/\_total-or-\_countmethod.md) and [`_timeout`](../../api-1/fhir-api/search-1/\_timeout.md) environment variables to configure default values.
@@ -108,7 +108,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 * Added Datadog [integration URL configuration](https://docs.aidbox.app/core-modules/logging-and-audit/aidbox-logs-and-datadog-integration#datadog-logging). So now you can specify in configuration if you want to use one of the following domains`datadoghq.com, us3.datadoghq.com, datadoghq.eu, ddog-gov.com`.
 * Added a tutorial on how to configure [HL7 FHIR Da Vinci PDex Plan Net IG](../../fhir-implementation-guides/hl7-fhir-da-vinci-pdex-plan-net-ig.md) on Aidbox.
 * Supported SMART Application Launch Framework Implementation Guide: Patient Portal Launch, Patient Standalone Launch, Provider EHR Launch, Provider Standalone Launch. Check the [sample](https://github.com/Aidbox/aidbox-project-samples#smart-on-fhir-aidbox-installation).&#x20;
-* Released [Aidbox API constructor on zen (alpha version)](../../aidbox-configuration/aidbox-api-constructor/).
+* Released [Aidbox API constructor on zen (alpha version)](../../aidbox-configuration/aidbox-api-constructor.md).
 
 ## August 2021 - v:2108
 

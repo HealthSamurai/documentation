@@ -8,7 +8,7 @@ description: Set up Growth Chart with Aidbox
 
 ## Set Up Aidbox Project
 
-First you need to specify your new SMART API using the [Aidbox API Constructor](../../../aidbox-configuration/aidbox-api-constructor/).
+First you need to specify your new SMART API using the [Aidbox API Constructor](../../../aidbox-configuration/aidbox-api-constructor.md).
 
 Create the `aidbox-project/single-patient-portal.edn` file with the following content:
 

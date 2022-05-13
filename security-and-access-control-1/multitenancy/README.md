@@ -55,8 +55,8 @@ You can fine-tune access to every operation or resource type, for example:
 * Multitenancy without isolation requires precise configuration.
 {% endhint %}
 
-{% content-ref url="../../aidbox-configuration/aidbox-api-constructor/" %}
-[aidbox-api-constructor](../../aidbox-configuration/aidbox-api-constructor/)
+{% content-ref url="../../aidbox-configuration/aidbox-api-constructor.md" %}
+[aidbox-api-constructor.md](../../aidbox-configuration/aidbox-api-constructor.md)
 {% endcontent-ref %}
 
 {% embed url="https://github.com/Aidbox/aidbox-project-samples/tree/main/aidbox-project-samples/multitenancy" %}
