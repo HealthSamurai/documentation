@@ -10,7 +10,7 @@ The API constructor is in beta now. Please [contact](../contact-us.md) us if you
 {% endhint %}
 
 {% hint style="info" %}
-API constructor requires knowledge of [zen language](https://github.com/zen-lang/zen) and ability to discover zen definitions
+API constructor requires knowledge of [zen language](https://github.com/zen-lang/zen).
 {% endhint %}
 
 #### Usage examples:
