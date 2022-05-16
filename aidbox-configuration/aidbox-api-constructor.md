@@ -17,6 +17,8 @@ API constructor requires knowledge of [zen language](https://github.com/zen-lang
 
 * [Sample API](https://github.com/Aidbox/devbox/blob/bb/zrc/mybox.edn) used in this documentation page example.
 * [Smart on FHIR configuration](https://github.com/Aidbox/aidbox-project-samples/blob/main/aidbox-project-samples/onc/smart.edn)
+* [ACL example](https://github.com/Aidbox/aidbox-project-samples/tree/main/aidbox-project-samples/acl)
+* [Multitenancy example](https://github.com/Aidbox/aidbox-project-samples/tree/main/aidbox-project-samples/multitenancy)
 
 ## Example setup
 
@@ -28,7 +30,7 @@ Here's a notebook with the example API demo usage :&#x20;
 https://aidbox.app/ExportedNotebook/df9ac147-daa4-4495-87b5-c4367cd441ef
 ```
 
-You can [import it](https://web.telegram.org/o/-LHqtKitlMYF2y7QBlXS/s/-LHqtKiuedlcKJLm337\_/\~/changes/gsp3ApDuLk8tbTr5YTKj/aidbox-ui/notebooks#import-a-notebook) into the example bb Aidbox and run test REST requests.
+You can [import it](../aidbox-ui/notebooks.md#import-a-notebook) into the example bb Aidbox and run test REST requests.
 
 ## API constructor definitions
 
@@ -101,7 +103,7 @@ An `op` describes REST operation. `:engine` specifies what operation handler sho
 
 #### Example
 
-```
+```clojure
  create-patient
  {:zen/tags #{aidbox.rest/op}
   :engine   aidbox.rest.v1/create
@@ -129,15 +131,19 @@ Expect target resource type as `:resource` and `:format` (`fhir` or `aidbox`)
 * `aidbox.rest.v1/patch`
 * `aidbox.rest.v1/transaction`
 
-#### ACL FHIR API
-
-&#x20;Expects the same as regular FHIR API engines and `:filter`&#x20;
+#### ACL FHIR API&#x20;
 
 * `aidbox.rest.acl/search`
 * `aidbox.rest.acl/create`
 * `aidbox.rest.acl/read`
 * `aidbox.rest.acl/update`
 * `aidbox.rest.acl/delete`
+
+See full description and usage examples:
+
+{% content-ref url="aidbox-api-constructor/acl.md" %}
+[acl.md](aidbox-api-constructor/acl.md)
+{% endcontent-ref %}
 
 ### Middlewares
 
