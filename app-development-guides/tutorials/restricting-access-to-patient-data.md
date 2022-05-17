@@ -1,12 +1,8 @@
----
-description: 'TODO: this tutorial is a draft.'
----
-
 # Restricting Access to Patient Data
 
 Create a CompartmentDefinition instance from a [standard patient CompartmentDefinition](https://www.hl7.org/fhir/compartmentdefinition-patient.json):
 
-```text
+```
 PUT /fhir/CompartmentDefinition/Patient
 Content-Type: application/json
 
@@ -706,7 +702,7 @@ Content-Type: application/json
 
 Create AccessPolicy resource which will allow all GET requests for `/fhir/Patient/*`
 
-```text
+```
 PUT /AccessPolicy/allow-to-get-patient-compartment
 Content-Type: application/json
 
@@ -734,4 +730,3 @@ Content-Type: application/json
 ```
 
 Put your patient ID value into the `pid` claim of your JWT. Congratulations, that's all.
-
