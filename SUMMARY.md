@@ -136,6 +136,8 @@
 ## FHIR Implementation Guides
 
 * [🎓 HL7 FHIR Da Vinci PDex Plan Net IG](fhir-implementation-guides/hl7-fhir-da-vinci-pdex-plan-net-ig.md)
+* [§170.315(g)(10) Standardized API for patient and population services](fhir-implementation-guides/170.315-g-10-standardized-api-for-patient-and-population-services/README.md)
+  * [🎓 Local run Inferno ONC tests](fhir-implementation-guides/170.315-g-10-standardized-api-for-patient-and-population-services/local-run-inferno-onc-tests.md)
 
 ## App development guides
 

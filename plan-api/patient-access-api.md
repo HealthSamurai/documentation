@@ -78,7 +78,7 @@ Here you can find steps to pass inferno tests.
     source: https://storage.googleapis.com/aidbox-public/inferno/inferno-community-fixtures.ndjson.gz
     ```
 3. You should have a user bound with Patient.
-4.  You need to expose your localhost devbox to the public. You can use [ngrok](https://ngrok.com) for instance.
+4.  You need to expose your localhost devbox to the public. You can use [ngrok](https://ngrok.com/) for instance.
 
     ```
     ngrok http 8888

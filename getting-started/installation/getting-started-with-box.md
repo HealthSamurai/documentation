@@ -27,7 +27,7 @@ Devbox in Cloud is a sandbox version of Aidbox in HealthSamurai cloud. Each Box 
 
 Please, pay attention, that the sandbox environment doesn't fit for any kind of production usage. The service availability and data integrity are not guaranteed. Do not put any PHI data there.
 
-To try out Devbox in Cloud, open [https://aidbox.app/](https://aidbox.app)
+To try out Devbox in Cloud, open [https://aidbox.app/](https://aidbox.app/)
 
 Choose how you would like to authorize Aidbox. It can be done via your Github or Google account.
 

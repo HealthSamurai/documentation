@@ -30,7 +30,7 @@ Aidbox uses [FHIR](https://www.hl7.org/fhir/overview.html) as a foundation and p
 
 You can try Aidbox in the cloud or get a free Devbox version for development and evaluation on your local computer.
 
-To get cloud sandbox, you need to log in with GitHub or Google account at [https://aidbox.app](https://aidbox.app) and create a new Box. Each Box is a private instance of a FHIR server with a separate database and domain. You can create multiple boxes for development and evaluation.
+To get cloud sandbox, you need to log in with GitHub or Google account at [https://aidbox.app](https://aidbox.app/) and create a new Box. Each Box is a private instance of a FHIR server with a separate database and domain. You can create multiple boxes for development and evaluation.
 
 To try Aidbox locally, you can get a free [Devbox](https://docs.aidbox.app/installation/setup-aidbox.dev) version in a Docker container. Do not forget that you can't load real healthcare data or PHI (Protected Health Information) to Aidbox cloud sandbox or Devbox. When setting up a staging or production environment for your healthcare application, please reach out to us for a paid Aidbox license.
 
