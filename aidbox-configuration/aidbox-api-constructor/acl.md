@@ -17,7 +17,7 @@ Code examples on this page are taken from the ACL and the multitenancy example p
 
 ## Overview
 
-### Operations
+### Available `aidbox.rest/op-engine`s
 
 Expects the same as regular FHIR API engines and also a `:filter`
 
