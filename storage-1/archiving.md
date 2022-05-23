@@ -17,7 +17,7 @@ In order to set up continuous backups, you need to do the following:&#x20;
 1. Configure `wal-g` access to external storage.
 2.  Enable archiving of logs in Postgres and write the archive command:
 
-    `archive_command = 'wal-g wal-push% p'`&#x20;
+    `archive_command = 'wal-g wal-push %p'`&#x20;
 3.  Make a base backup&#x20;
 
     `wal-g backup-push $PGDATA`
