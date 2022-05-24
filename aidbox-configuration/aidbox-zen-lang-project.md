@@ -57,6 +57,8 @@ AIDBOX_ZEN_LOAD=<zen-edn>
 AIDBOX_ZEN_LOAD='{ns my-zen-namespace import #{zen-proj1 zen-proj2 zen-proj3
 ```
 
+#### `AIDBOX_ZEN_ENTRYPOINT`&#x20;
+
 The `AIDBOX_ZEN_ENTRYPOINT` environment variable specifies a zen namespace or a zen symbol. Aidbox starts reading its configuration from the entrypoint.
 
 **Format:**
