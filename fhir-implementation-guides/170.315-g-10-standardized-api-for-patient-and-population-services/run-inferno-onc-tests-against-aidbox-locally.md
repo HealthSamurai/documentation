@@ -1,16 +1,16 @@
 ---
-description: How to setup Aidbox and Inferno ONC locally in order to pass the tests
+description: How to setup Aidbox and Inferno ONC locally to pass the tests
 ---
 
-# 🎓 Local run Inferno ONC tests
+# 🎓 Run Inferno ONC tests against Aidbox locally
 
 ## Install Devbox
 
-Follow `Step 1` and `Step 2` of the instruction to [install Devbox](../../getting-started/installation/setup-aidbox.dev.md#install-devbox) locally.
+Follow `Step 1,` `Step 2` and `Step 3` of the instruction to [install Devbox](run-inferno-onc-tests-against-aidbox-locally.md#install-devbox) locally.&#x20;
 
-## Fill in `.env` file
+## Extend `.env` file
 
-In addition of the `Step 3` of the instruction define following values in the `.env` file.
+In addition of the `Step 3` of the [instruction](run-inferno-onc-tests-against-aidbox-locally.md#install-devbox) define following values in the `.env` file.
 
 ```
 # Define aidbox parameters

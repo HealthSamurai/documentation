@@ -137,7 +137,8 @@
 
 * [🎓 HL7 FHIR Da Vinci PDex Plan Net IG](fhir-implementation-guides/hl7-fhir-da-vinci-pdex-plan-net-ig.md)
 * [§170.315(g)(10) Standardized API for patient and population services](fhir-implementation-guides/170.315-g-10-standardized-api-for-patient-and-population-services/README.md)
-  * [🎓 Local run Inferno ONC tests](fhir-implementation-guides/170.315-g-10-standardized-api-for-patient-and-population-services/local-run-inferno-onc-tests.md)
+  * [Considerations for Testing with Inferno ONC](fhir-implementation-guides/170.315-g-10-standardized-api-for-patient-and-population-services/considerations-for-testing-with-inferno-onc.md)
+  * [🎓 Run Inferno ONC tests against Aidbox locally](fhir-implementation-guides/170.315-g-10-standardized-api-for-patient-and-population-services/run-inferno-onc-tests-against-aidbox-locally.md)
 
 ## App development guides
 
