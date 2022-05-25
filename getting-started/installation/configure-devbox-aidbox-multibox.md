@@ -147,9 +147,10 @@ To generate public key run `openssl rsa -in key.pem -outform PEM -pubout -out pu
 
 Use next env vars to pass RSA keypair:
 
-`BOX_AUTH_KEYS_PRIVATE=-----BEGIN RSA PRIVATE KEY-----\n...\n-----END RSA PRIVATE KEY-----`
-
-`BOX_AUTH_KEYS_PUBLIC=-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----`
+```
+BOX_AUTH_KEYS_PRIVATE=-----BEGIN RSA PRIVATE KEY-----\n...\n-----END RSA PRIVATE KEY-----
+BOX_AUTH_KEYS_PUBLIC=-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----
+```
 
 #### Generate secret
 
@@ -158,4 +159,7 @@ To generate random string for HS256 algorith you can run ` openssl rand -base64 
 
 use next env var to pass secret param:
 
-`BOX_AUTH_KEYS_SECRET=<rand_string>`
+```
+BOX_AUTH_KEYS_SECRET=<rand_string>
+```
+
