@@ -148,6 +148,7 @@ To generate public key run `openssl rsa -in key.pem -outform PEM -pubout -out pu
 Use next env vars to pass RSA keypair:
 
 `BOX_AUTH_KEYS_PRIVATE=-----BEGIN RSA PRIVATE KEY-----\n...\n-----END RSA PRIVATE KEY-----`
+
 `BOX_AUTH_KEYS_PUBLIC=-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----`
 
 #### Generate secret
