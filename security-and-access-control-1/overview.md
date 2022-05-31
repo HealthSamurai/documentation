@@ -63,6 +63,14 @@ limit 10
 ```
 {% endcode %}
 
+### Session expiration
+
+Basically, all sessions stored in Aidbox are perpetual, and you have to manage session expiration by yourself manually. 
+
+However since [Aidbox v:2205](https://docs.aidbox.app/getting-started/versioning-and-release-notes/release-notes#may-2022-v-2205-edge) `Session.exp` field was added. It represents NumericDate from [RFC7519](https://www.rfc-editor.org/rfc/rfc7519#section-2) and it identifies the expiration time after which the Session will not be accepted for processing.
+
+You can specify `auth.*.access_token_expiration` (in seconds) on Client resource, so `Session.exp` field will be propagated once corresponding grant_type is used to launch a Session.
+
 ## Client
 
 To provide programmatic access to Aidbox you have to register a client - Client resource.
@@ -81,10 +89,6 @@ Other required attributes are determined based on the values of this attribute `
 * implicit
 * authorization_code
 * code
-
-{% hint style="warning" %}
-You can specify `auth.*.access_token_expiration` only for Clients with `auth.*.token_format: jwt`
-{% endhint %}
 
 {% hint style="info" %}
 You can find different authorization flow examples in the Auth Sandbox in the Aidbox ui

@@ -2,6 +2,8 @@
 
 ## May 2022 - v:2205 _`edge`_
 
+* Added [token expiration mechanism](../../security-and-access-control-1/overview.md#session-expiration) for stored Sessions. 
+
 ## April 2022 - v:2204 _`latest`_
 
 * Added [ACL (access-control list)](../../aidbox-configuration/aidbox-api-constructor/acl.md) functionality to [API constructor](../../aidbox-configuration/aidbox-api-constructor.md).
