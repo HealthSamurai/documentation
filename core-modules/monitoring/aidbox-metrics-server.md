@@ -110,3 +110,9 @@ scrape_configs:
 | `jvm_available_processors_size` | every hour       | number of processors available to the JVM                          |
 | `jvm_max_memory_size`           | every hour       | maximum amount of memory that JVM will attempt to use              |
 | `jvm_total_memory_size`         | every hour       | total amount of memory in JVM                                      |
+
+#### Disable PostgreSQL metrics
+
+If you have a different pg exporter you can disable Aidbox PostgreSQL metrics for avoiding metrics dublication.
+
+In this case, you should set `BOX_METRIC_POSTGRES_ON` to `false` value
