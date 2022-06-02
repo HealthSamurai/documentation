@@ -322,3 +322,38 @@ uri: '/Encounter'
 params: 
   practitioner: '.user.data.pract_id'
 ```
+
+### Allow-RPC engine
+
+Allows access to every RPC endpoint listed in the `rpc` field of the `AccessPolicy` resource with engine `allow-rpc`.
+
+Example:
+
+```yaml
+description: allow to list notebooks
+rpc:
+  aidbox.notebooks.list-notebooks: true
+type: rpc
+resourceType: AccessPolicy
+id: allow-list-notebooks
+engine: allow-rpc
+```
+
+### Matcho-RPC engine
+
+Allows access to the method if the request passes matcho check (see [Matcho engine section](./#matcho-engine)).
+
+Example:
+
+```yaml
+description: allow everyone to read "hello" notebook
+rpc:
+  aidbox.notebooks/get-notebook-by-id:
+    params:
+      notebook:
+        id: hello
+type: rpc
+resourceType: AccessPolicy
+id: allow-hello-notebook
+engine: matcho-rpc
+```
