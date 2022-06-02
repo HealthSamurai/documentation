@@ -28,7 +28,7 @@ issue:
 To fix this error we should find all incorrect dates in table via SQL query
 
 ```
-select (resource#>>'{birthDate}')::date from patient;
+select max((resource#>>'{birthDate}')::date) from patient;
 ```
 
 In response we catch an error&#x20;
