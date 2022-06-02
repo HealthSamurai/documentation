@@ -124,7 +124,7 @@ The information returned depends on the value of the `mode` parameter:
 | `normative`                  | As above, but only the normative portions of the Capability Statement                                                                                                            |
 | `terminology`                | A [TerminologyCapabilities](http://hl7.org/fhir/2018Sep/terminologycapabilities.html) resource that provides further information about terminologies are supported by the server |
 
-Servers MAY ignore the mode parameter and return a CapabilityStatement resource.  
+Servers MAY ignore the mode parameter and return a CapabilityStatement resource. &#x20;
 
 #### Configure CapabilityStatement
 
@@ -137,6 +137,7 @@ metadata:
   # override name and title of CapabilityStatement
   name: MyFHIRServer
   title: My FHIR server
+  description: Description of my FHIR server
   # override CapabilityStatement.rest.service
   service:
   - coding:
@@ -176,4 +177,4 @@ Path to specific part of metadata (for example Entity.Patient)
 {% endswagger-response %}
 {% endswagger %}
 
- Capability statements can become quite large; servers are encouraged to support the [`_summary`](http://hl7.org/fhir/2018Sep/search.html#summary) and [`_elements`](http://hl7.org/fhir/2018Sep/search.html#elements) parameters on the capabilities interaction, though this is not required. In addition, servers are encouraged to implement the [$subset](http://hl7.org/fhir/2018Sep/capabilitystatement-operation-subset.html) and [$implements](http://hl7.org/fhir/2018Sep/capabilitystatement-operation-implements.html) operations to make it easy for a client to check conformance.
+&#x20;Capability statements can become quite large; servers are encouraged to support the [`_summary`](http://hl7.org/fhir/2018Sep/search.html#summary) and [`_elements`](http://hl7.org/fhir/2018Sep/search.html#elements) parameters on the capabilities interaction, though this is not required. In addition, servers are encouraged to implement the [$subset](http://hl7.org/fhir/2018Sep/capabilitystatement-operation-subset.html) and [$implements](http://hl7.org/fhir/2018Sep/capabilitystatement-operation-implements.html) operations to make it easy for a client to check conformance.
