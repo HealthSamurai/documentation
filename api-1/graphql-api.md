@@ -30,15 +30,19 @@ Aidbox generates different GraphQL scalars, objects, queries with args and union
 
 ## Queries
 
-For each ResourceType two queries are generated:
+For each ResourceType these queries are generated:
 
-* `<resourceType>` e.g.: `Patient`.\
-  Receives a single parameter `id` and returns a resource with the requested `id`.\
-  For example: `Patient (id: "pat-1")`\
+* `<resourceType>`  — get fields of the specified resource.\
+  Accepts a single argument `id` and returns a resource with the specified `id`.\
+  Example: `Patient (id: "pat-1")`\
 
-* `<resourceType>List`e.g.: `PatientList`. Receives FHIR search parameters for that resourceType. SearchParameters have underscores instead of dashes and referenced later in this doc as `search_parameter`. For each SearchParameter there are two args generated:
+* `<resourceType>List`  — search resources of given resource type.\
+  Accepts FHIR search parameters for that resourceType. SearchParameters have underscores instead of dashes and referenced later in this documentation as `search_parameter`. For each SearchParameter two arguments are generated:
   * `<search_parameter>` e.g.: `PatientList(address_state: "CA")` Accepts a string. Is an equivalent of using FHIR search parameter
   * `<search_parameter>_list` e.g.: `PatientList(language_list: ["en", "de"])` Accepts a list of strings. It is an equivalent of repeating search parameters in FHIR search. _`<search_parameter>_list` arg is needed because args can't be repeated in the GraphQL query._
+* `<resourceType>History`  — get resource history.\
+  Accepts `id` argument and returns history of the resource with the specified `id`.\
+  Example: `PatientHistory(id: "pt1", _sort: "asc") {name}`
 
 ### Examples
 
