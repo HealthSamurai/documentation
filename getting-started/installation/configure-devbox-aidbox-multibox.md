@@ -18,21 +18,21 @@ All distributions require license details to be provided. Alongside with online 
 
 ### Required environment variables
 
-| Env variable name       | Meaning                                                           |
-| ----------------------- | ----------------------------------------------------------------- |
-| `AIDBOX_PORT`           | A port that webserver will listen to                              |
-| `AIDBOX_FHIR_VERSION`   | Version of FHIR - 1.0.2, 1.4.0, 1.8.0, 3.0.1, 3.2.0, 3.3.0, 4.0.0 |
-| `PGHOST`                | Aidboxdb host address                                             |
-| `PGPORT`                | Aidboxdb port                                                     |
-| `PGDATABASE`            | Name of the database that is used to store resources              |
-| `PGUSER`                | Database role name to use                                         |
-| `PGPASSWORD`            | A password of that role                                           |
-| `AIDBOX_CLIENT_ID`      | Root Client resource id to create on startup                      |
-| `AIDBOX_CLIENT_SECRET`  | A secret for that Client                                          |
-| `AIDBOX_ADMIN_ID`       | Root User resource id to create on startup                        |
-| `AIDBOX_ADMIN_PASSWORD` | A password for that User                                          |
-| `AIDBOX_LICENSE_ID`     | License id obtained from the license server                       |
-| `AIDBOX_LICENSE_KEY`    | Key for that license                                              |
+| Env variable name       | Meaning                                                                                                                                                                                                          |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `AIDBOX_PORT`           | A port that webserver will listen to                                                                                                                                                                             |
+| `AIDBOX_FHIR_VERSION`   | Version of FHIR - 1.0.2, 1.4.0, 1.8.0, 3.0.1, 3.2.0, 3.3.0, 4.0.0                                                                                                                                                |
+| `PGHOST`                | Aidboxdb host address                                                                                                                                                                                            |
+| `PGPORT`                | Aidboxdb port                                                                                                                                                                                                    |
+| `PGDATABASE`            | Name of the database that is used to store resources. `postgres` database name is not supported. Use `AIDBOX_AIDBOX_DB` environment variable if you really need to set `postgres` to be the database for Aidbox. |
+| `PGUSER`                | Database role name to use                                                                                                                                                                                        |
+| `PGPASSWORD`            | A password of that role                                                                                                                                                                                          |
+| `AIDBOX_CLIENT_ID`      | Root Client resource id to create on startup                                                                                                                                                                     |
+| `AIDBOX_CLIENT_SECRET`  | A secret for that Client                                                                                                                                                                                         |
+| `AIDBOX_ADMIN_ID`       | Root User resource id to create on startup                                                                                                                                                                       |
+| `AIDBOX_ADMIN_PASSWORD` | A password for that User                                                                                                                                                                                         |
+| `AIDBOX_LICENSE_ID`     | License id obtained from the license server                                                                                                                                                                      |
+| `AIDBOX_LICENSE_KEY`    | Key for that license                                                                                                                                                                                             |
 
 ### Optional environment variables
 
