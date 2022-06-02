@@ -126,24 +126,36 @@ Use `AIDBOX_EXTENSION_SCHEMA` environment variable to set up Aidbox to use dedic
 AIDBOX_EXTENSION_SCHEMA=myextensionschema
 ```
 
+Note: if your database already has extensions installed and you change extension schema (or current schema if extension schema is not configured), then you need to drop extensions from previous schema:&#x20;
+
+```
+DROP EXTENSION IF EXISTS fuzzystrmatch
+                       , jsonknife
+                       , jsquery
+                       , pg_stat_statements
+                       , pg_trgm
+                       , pgcrypto
+                       , unaccent;
+```
+
+Then change `AIDBOX_EXTENSION_SCHEMA` and restart Aidbox.
+
 ### Set up RSA private/public keys and secret
 
 Aidbox generates JWT tokens for different purposes:
-- As part of Oauth 2.0 authorization it generates authorization_code in JWT format
-- If you specify auth token format as JWT, then your access\_token and refresh\_token will be in JWT format.
 
-Aidbox supports two signing algorithms: RS256 and HS256. RS256 expects providing
-private key for signing JWT and public key for verifing it. As far as HS256
-needs only having secret for both operations.
+* As part of Oauth 2.0 authorization it generates authorization\_code in JWT format
+* If you specify auth token format as JWT, then your access\_token and refresh\_token will be in JWT format.
+
+Aidbox supports two signing algorithms: RS256 and HS256. RS256 expects providing private key for signing JWT and public key for verifing it. As far as HS256 needs only having secret for both operations.
 
 By default Aidbox generates both keypair and secret on every startup. This means that on every start all previously generated JWT will be invalid.
 
-In order to avoid such undesirable situation, you may pass RSA keypair and secret as Aidbox parameters. 
+In order to avoid such undesirable situation, you may pass RSA keypair and secret as Aidbox parameters.
 
 #### Generate RSA keypair
 
-Generate private key with `openssl genrsa -out key.pem 2048` in your terminal. Private key will be saved in file `key.pem`.
-To generate public key run `openssl rsa -in key.pem -outform PEM -pubout -out public.pem`. You will find public key in `public.pem` file.
+Generate private key with `openssl genrsa -out key.pem 2048` in your terminal. Private key will be saved in file `key.pem`. To generate public key run `openssl rsa -in key.pem -outform PEM -pubout -out public.pem`. You will find public key in `public.pem` file.
 
 Use next env vars to pass RSA keypair:
 
@@ -154,12 +166,10 @@ BOX_AUTH_KEYS_PUBLIC=-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----
 
 #### Generate secret
 
-
-To generate random string for HS256 algorith you can run ` openssl rand -base64 36` command. The lenght of the random string must be more than 256 bits (32 bytes).
+To generate random string for HS256 algorith you can run `openssl rand -base64 36` command. The lenght of the random string must be more than 256 bits (32 bytes).
 
 use next env var to pass secret param:
 
 ```
 BOX_AUTH_KEYS_SECRET=<rand_string>
 ```
-
