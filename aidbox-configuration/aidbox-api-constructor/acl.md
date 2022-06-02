@@ -26,6 +26,7 @@ Expects the same as regular FHIR API engines and also a `:filter`
 * `aidbox.rest.acl/read`
 * `aidbox.rest.acl/update`
 * `aidbox.rest.acl/delete`
+* `aidbox.rest.acl/create-with-filter-table-insert`  — create resource and create entry in filter table
 
 #### Example
 
@@ -50,6 +51,35 @@ An ACL operation requires `:filter` to be specified. A `filter` requires to defi
   :filter-table acl-box.acl/acl-table
   :expression   [:and acl-box.acl/user-condition
                  acl-box.acl/subject-conditon]}
+```
+
+### Filter table insert
+
+`aidbox.rest.acl/create-with-filter-table-insert` engine requires `:filter-table-insert` property which links operation with the schema tagged with `aidbox.rest.acl/filter-table-insert`.
+
+`insert-into-filter-table` schema has the following keys:
+
+* `engine`: currently only `aidbox.rest.acl/filter-table-insert-row-sql` is supported
+* `filter-table`: zen symbol defining filter table
+* `params`: sql parameters. See [Parameter section](acl.md#parameter).
+* `values`: values to insert in row. This property value is a map in which keys are column names and values are sql substrings for values.
+
+#### Example
+
+```clojure
+ insert-into-filter-table
+ {:zen/tags     #{aidbox.rest.acl/filter-table-insert}
+  :engine       aidbox.rest.acl/filter-table-insert-row-sql
+  :filter-table acl-box.acl/acl-table
+  :params       {:user-id acl-box.acl/user-id-param}
+  :values       {:id       "gen_random_uuid()"
+                 :txid     "nextval('transaction_id_seq'::text)"
+                 :status "'created'"
+                 :resource "jsonb_build_object('patient', jsonb_build_object('resourceType', 'Patient',
+                                                                             'id', {{target-id}}::text),
+                                               'user', jsonb_build_object('resourceType', 'User',
+                                                                             'id', {{params.user-id}}::text))"}}
+
 ```
 
 ### Filter table
