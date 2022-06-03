@@ -42,7 +42,7 @@ For each ResourceType these queries are generated:
   * `<search_parameter>_list` e.g.: `PatientList(language_list: ["en", "de"])` Accepts a list of strings. It is an equivalent of repeating search parameters in FHIR search. _`<search_parameter>_list` arg is needed because args can't be repeated in the GraphQL query._
 * `<resourceType>History`  — get resource history.\
   Accepts `id` argument and returns history of the resource with the specified `id`.\
-  Example: `PatientHistory(id: "pt1", _sort: "asc") {name}`
+  Example: `PatientHistory(id: "pt1", _sort: "txid") {name}`
 
 ### Examples
 
