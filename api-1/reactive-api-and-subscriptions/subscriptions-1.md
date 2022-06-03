@@ -1,18 +1,18 @@
-# Subscriptions
+# Aidbox Subscriptions
 
 Aidbox subscriptions module is a way to subscribe and get notifications about updating resources on the server. It is a common denominator of FHIR R4/R5 subscriptions specification with some extensions.
 
 This module introduces two new resources into Aidbox:
 
-* SubsSubscription — meta-resource which binds events \(create/update/delete resource\) with a communication channel through which subscriber is notified about changes.
-* SubsNotification — resource which represents notification with its status \(sent or not\).
+* SubsSubscription — meta-resource which binds events (create/update/delete resource) with a communication channel through which subscriber is notified about changes.
+* SubsNotification — resource which represents notification with its status (sent or not).
 
 {% hint style="warning" %}
 Aidbox doesn't delete **SubsNotification** resources by itself. The simple way to implement a retention policy is to create a cron job. [Let us know](https://t.me/aidbox) if there is a more clear way.
 {% endhint %}
 
 {% hint style="info" %}
-See tutorial ["Subscribe to new Patient resource"](../../app-development-guides/tutorials/subscribe-to-new-patient-resource.md)
+See tutorial ["Subscribe to new Patient resource"](../../tutorials/subscribe-to-new-patient-resource.md)
 {% endhint %}
 
 Your service can register subscription by POST **SubsSubscription** resource:
@@ -58,7 +58,7 @@ channel:
 
 ### Trigger format
 
-Subscription.trigger is a key-value object, where key is resource type and each value can contain a collection of events \(values can be 'all', 'create', 'update', 'delete'\) and .filter collection. For now filter support [**matcho**](../../app-development-guides/usdmatcho.md) engine \(FHIRPath and FHIR Search filters are coming soon\):
+Subscription.trigger is a key-value object, where key is resource type and each value can contain a collection of events (values can be 'all', 'create', 'update', 'delete') and .filter collection. For now filter support [**matcho**](../../app-development-guides/usdmatcho.md) engine (FHIRPath and FHIR Search filters are coming soon):
 
 ```yaml
 trigger:
@@ -115,7 +115,7 @@ notification: <notification content>
 response: <response content if present>
 ```
 
-### SubsSubscription/&lt;id&gt;/$handshake
+### SubsSubscription/\<id>/$handshake
 
 You can force a handshake notification for the specific subscription with:
 
@@ -136,7 +136,7 @@ status: failed
 error: {message: Connection refused}
 ```
 
-### SubsSubscription/&lt;id&gt;/$debug
+### SubsSubscription/\<id>/$debug
 
 To debug subscription notifications, you can send debug messages with:
 
@@ -165,7 +165,7 @@ status: failed
 error: {message: Connection refused}
 ```
 
-### SubsNotification/$notify \(not implemented yet\)
+### SubsNotification/$notify (not implemented yet)
 
 Or you can send a list of notifications by providing a list of search params:
 
@@ -173,7 +173,7 @@ Or you can send a list of notifications by providing a list of search params:
 POST /SubsNotification/$notify?_id=id-1,id-2,id-3
 ```
 
-### SubsNotification/&lt;id&gt;/$notify
+### SubsNotification/\<id>/$notify
 
 You can resend the specific notification with
 
@@ -189,7 +189,7 @@ notification: ....
 response: ...
 ```
 
-### /subs/webhook \(not implemented yet\)
+### /subs/webhook (not implemented yet)
 
 You can subscribe one instance of Aidbox to notifications from another instance and replicate data between boxes by using `/subs/webhook/<source-id>` endpoint:
 
@@ -209,4 +209,3 @@ channel:
     Authorization: Bearer <token>
 
 ```
-

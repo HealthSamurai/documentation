@@ -334,6 +334,6 @@ Pay attention that only`{{resourceType}}`can be used in place of table name, bec
 
 See another tutorial:
 
-{% content-ref url="../../../app-development-guides/tutorials/custom-search.md" %}
-[custom-search.md](../../../app-development-guides/tutorials/custom-search.md)
+{% content-ref url="../../../tutorials/custom-search.md" %}
+[custom-search.md](../../../tutorials/custom-search.md)
 {% endcontent-ref %}
