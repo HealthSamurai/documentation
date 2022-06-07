@@ -8,11 +8,11 @@
 * Enhanced [API constructor ACL](../../aidbox-configuration/aidbox-api-constructor/acl.md) with new operation engine [filter table insert on create](../../aidbox-configuration/aidbox-api-constructor/acl.md#filter).
 * **Changed** auth layer 400/401/403 **errors response body** to OperationOutcome resource.
 * Added [CapabilityStatement configuration](../../api-1/fhir-api/metadata.md#configure-capabilitystatement) options.
-* Improved setting [PostgreSQL schema](../installation/configure-devbox-aidbox-multibox.md#use-different-postgresql-schema) for Aidbox tables
+* Improved setting [PostgreSQL schema](../installation/configure-devbox-aidbox-multibox.md#use-different-postgresql-schema) for Aidbox tables.
 * Added option to set JWT private/public keys and secret[ via env](../installation/configure-devbox-aidbox-multibox.md#set-up-rsa-private-public-keys-and-secret).
 * Added [aidboxdb PostgreSQL 14.2 version](../installation/aidboxdb-image.md). Supported versions are 14.2 and 13.6.
 * Added tutorial [how to fix broken dates](../../tutorials/).
-* Released [Infrabox](https://github.com/HealthSamurai/infrabox-release) preview. Infrabox is a simple and efficient tool to manage production-ready Aidbox (Aidbox k8s infrastructure configuration management) infrastructure in your cloud.
+* Released Infrabox preview. Infrabox is a simple and efficient tool to deploy and manage production-ready Aidbox infrastructure on k8s.&#x20;
 
 ## April 2022 - v:2204 _`stable`_
 
