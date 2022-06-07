@@ -196,14 +196,6 @@
 * [Multitenancy](security-and-access-control-1/multitenancy/README.md)
   * [🎓 Multitenancy via AccessPolicy](security-and-access-control-1/multitenancy/multitenancy-via-accesspolicy.md)
 
-## Storage <a href="#storage-1" id="storage-1"></a>
-
-* [Archiving](storage-1/archiving.md)
-* [Database](storage-1/database.md)
-* [AWS S3](storage-1/aws-s3.md)
-* [GCP Cloud Storage](storage-1/gcp-cloud-storage.md)
-* [Azure Blob Storage](storage-1/azure.md)
-
 ## Core Modules
 
 * [Entities & Attributes](core-modules/entities-and-attributes.md)
@@ -217,6 +209,14 @@
   * [🎓 Log analysis and visualization tutorial](core-modules/logging-and-audit/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana.md)
   * [Datadog Log management integration](core-modules/logging-and-audit/aidbox-logs-and-datadog-integration.md)
   * [🎓 Export logs to Datadog tutorial](core-modules/logging-and-audit/datadog-guide.md)
+
+## Storage <a href="#storage-1" id="storage-1"></a>
+
+* [Archiving](storage-1/archiving.md)
+* [Database](storage-1/database.md)
+* [AWS S3](storage-1/aws-s3.md)
+* [GCP Cloud Storage](storage-1/gcp-cloud-storage.md)
+* [Azure Blob Storage](storage-1/azure.md)
 
 ## Modules <a href="#modules-1" id="modules-1"></a>
 
