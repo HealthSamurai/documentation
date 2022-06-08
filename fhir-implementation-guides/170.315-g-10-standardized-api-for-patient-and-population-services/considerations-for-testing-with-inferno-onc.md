@@ -68,7 +68,7 @@ smart:
   launch_uri: https://inferno.healthit.gov/suites/custom/smart/launch
 grant_types:
   - authorization_code
-  - basic                          # alternative flows can be allowed
+  - basic                          # used to exchange authorization_code for access_token
 secret: some-very-secret
 id: inferno-g10-client
 resourceType: Client
