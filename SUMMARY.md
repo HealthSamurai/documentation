@@ -233,6 +233,7 @@
 ## Multibox
 
 * [Multibox box manager API](multibox/multibox-box-manager-api.md)
+* [Multibox monitoring](multibox/multibox-monitoring.md)
 
 ## Plan API
 
