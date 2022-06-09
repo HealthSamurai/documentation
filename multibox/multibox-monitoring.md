@@ -27,7 +27,7 @@ Set up the following environment variables:
 Сreated dashboards will be placed in the `aidboxgen` folder
 {% endhint %}
 
-### `multibox.metrics/update-dashboards`
+### `multibox.metrics/export-dashboard`
 
 Generates dashboards with instance-specific metrics
 
