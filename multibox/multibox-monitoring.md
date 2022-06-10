@@ -57,5 +57,5 @@ _Expects no parameters_
 POST /rpc
 content-type: application/edn
 
-{:method multibox.metrics/update-dashboards}
+{:method multibox.metrics/export-dashboard}
 ```
