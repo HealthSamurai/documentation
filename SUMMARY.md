@@ -155,6 +155,7 @@
   * [APM Aidbox](tutorials/apm-aidbox.md)
   * [How to fix broken dates](tutorials/how-to-fix-broken-dates.md)
   * [Subscribe to new Patient resource](tutorials/subscribe-to-new-patient-resource.md)
+  * [Creating user & set up full user access](tutorials/creating-user-and-set-up-full-user-access.md)
 
 ## App development guides
 
