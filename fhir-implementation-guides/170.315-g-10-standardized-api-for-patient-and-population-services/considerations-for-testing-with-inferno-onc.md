@@ -55,6 +55,12 @@ PUT /Client/inferno-g10-client
 content-type: text/yaml
 accept: text/yaml
 
+id: inferno-g10-client
+resourceType: Client
+secret: some-very-secret
+grant_types:
+  - authorization_code
+  - basic                          # used to exchange authorization_code for access_token
 auth:
   authorization_code:
     pkce: false                    # no PKCE allowed
@@ -66,12 +72,6 @@ auth:
     access_token_expiration: 300
 smart:
   launch_uri: https://inferno.healthit.gov/suites/custom/smart/launch
-grant_types:
-  - authorization_code
-  - basic                          # used to exchange authorization_code for access_token
-secret: some-very-secret
-id: inferno-g10-client
-resourceType: Client
 ```
 
 ### `public` application
@@ -83,6 +83,10 @@ PUT /Client/inferno-g10-client
 content-type: text/yaml
 accept: text/yaml
 
+id: inferno-g10-client
+resourceType: Client
+grant_types:
+  - authorization_code
 auth:
   authorization_code:
     pkce: true                    # PKCE is activated
@@ -94,10 +98,6 @@ auth:
     access_token_expiration: 300
 smart:
   launch_uri: https://inferno.healthit.gov/suites/custom/smart/launch
-grant_types:
-  - authorization_code            # nothing but `authorization_code` allowed
-id: inferno-g10-client
-resourceType: Client
 ```
 
 ### `bulk` client for `back-end` application
@@ -105,6 +105,10 @@ resourceType: Client
 Client example for `bulk` application.
 
 ```yaml
+id: inferno-g10-bulk-client
+resourceType: Client
+grant_types:
+  - client_credentials
 auth:
   client_credentials:
     client_assertion_types:
@@ -112,12 +116,7 @@ auth:
     access_token_expiration: 300
 scope:
   - system/*.read
-grant_types:
-  - client_credentials
-jwks_uri:
-  - https://inferno.healthit.gov/suites/custom/g10_certification/.well-known/jwks.json
-id: inferno-g10-bulk-client
-resourceType: Client
+jwks_uri: https://inferno.healthit.gov/suites/custom/g10_certification/.well-known/jwks.json
 ```
 
 ## Expanding `scope`
