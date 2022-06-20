@@ -10,6 +10,80 @@ To start configuring Aidbox with [zen-lang](https://github.com/zen-lang/zen) you
 
 Aidbox project is a directory with zen-lang edn files. Aidbox project can be shared with many Aidbox instances giving them the same configuration.
 
+### Load project from git repository
+
+{% hint style="warning" %}
+Work in progress. Already available on :edge. Will be available on latest after 2206 release
+{% endhint %}
+
+#### Required project structure
+
+```
+<path-to-project-files>:
+-- <folder-with-edn-files>:
+---- *.edn
+-- package.json    
+```
+
+### Environment variables
+
+| Env variable name               | Meaning                                                                                               |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `BOX_PROJECT_GIT_PROTOCOL`      | Possible values: "https", "ssh"                                                                       |
+| `BOX_PROJECT_GIT_URL`           | GIt repository URL (https://github.com/\<user>/\<repo>.git)                                           |
+| `BOX_PROJECT_GIT_SUB__PATH`     | If want to place edn files inside another directory, you can provide this env variable                |
+| `BOX_PROJECT_GIT_ACCESS__TOKEN` | Access token can be used for accessing private repository                                             |
+| `BOX_PROJECT_GIT_TARGET__PATH`  | Override target clone directory. By default Aidbox will use /tmp/aidbox-project-git.                  |
+| `BOX_PROJECT_GIT_CHECKOUT`      | Checkout into branch or commit                                                                        |
+| `BOX_PROJECT_ENTRYPOINT`        | Specify a zen namespace or a zen symbol. Aidbox starts reading its configuration from the entrypoint. |
+| `BOX_PROJECT_GIT_PUBLIC_KEY`    | Public ssh key                                                                                        |
+| `BOX_PROJECT_GIT_PRIVATE_KEY`   | Private ssh key                                                                                       |
+
+#### Example configuration
+
+SSH example
+
+```
+BOX_PROJECT_ENTRYPOINT=smartbox.portal/box
+BOX_PROJECT_GIT_PROTOCOL=ssh
+BOX_PROJECT_GIT_PUBLIC__KEY="...."
+BOX_PROJECT_GIT_PRIVATE__KEY="-----BEGIN OPENSSH PRIVATE KEY-----\n....\n-----END OPENSSH PRIVATE KEY-----\n"
+BOX_PROJECT_GIT_URL=git@github.com:Aidbox/aidbox-project-samples.git
+BOX_PROJECT_GIT_SUB__PATH=aidbox-project-samples
+```
+
+#### HTTPS example
+
+```
+BOX_PROJECT_ENTRYPOINT=smartbox.portal/box
+BOX_PROJECT_GIT_PROTOCOL=https
+BOX_PROJECT_GIT_URL=https://github.com/Aidbox/aidbox-project-samples.git
+BOX_PROJECT_GIT_SUB__PATH=aidbox-project-samples
+```
+
+#### Startup errors
+
+Wrong zen source files path
+
+```
+Entrypoint 'smartbox.portal' not loaded.
+{:message "No file for ns 'smartbox.portal", :missing-ns smartbox.portal, :ns smartbox.portal}
+```
+
+Incorrect git repo url
+
+```
+Cloning into '/tmp/aidbox-project-git'...
+remote: Repository not found.
+fatal: repository 'https://github.com/Aidfdfdfbox/aidbox-project-samples.git/' not found
+```
+
+Incorrect checkout branch/commit
+
+```
+error: pathspec 'git-project-unexist' did not match any file(s) known to git
+```
+
 ### Load project using environment variables
 
 Aidbox uses environment variables to load project.
