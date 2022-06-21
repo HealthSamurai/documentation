@@ -209,7 +209,9 @@ You can declare a set of resources in Aidbox project and get them loaded in one 
   :engine    aidbox/seed
   :files     ["patients.ndjson.gz"]
   :resources [{:id "rpt-1" :resourceType "Patient"}
-              {:id "rpt-2" :resourceType "Patient"}]}
+              {:id "rpt-2" :resourceType "Patient"}]
+  :migrations [{:id "mig-1" :sql "create table mytable (id text)"}
+               {:id "mig-2" :sql "insert into mytable values ('hello')"}]}
 
  importbox
  {:zen/tags #{aidbox/system}
@@ -224,6 +226,8 @@ In this example `importbox/importbox` is the system entrypoint defined in the **
 `:files` - which `ndjson.gz` files will be imported at system startup. These files must be located inside the zen project described in the variable **`AIDBOX_ZEN_PATHS`**.
 
 `:resources` - in-place resources definitions that will be imported at system startup.
+
+`:migrations` — vector of migrations. Each migration is a map containing `id` and `sql` keys.&#x20;
 
 {% hint style="warning" %}
 `:resources` are imported sequentially, so make sure you don't break referential integrity.
