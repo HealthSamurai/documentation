@@ -76,7 +76,7 @@ smart:
 
 ### `public` application
 
-`public` apps cannot be allowed to keep secrets so they should be configured another way.
+`public`, which don't have backend service and are not able to keep secret securely, shouldn't have secret, basic grant type and `auth.authorization_code.secret_required` should be disabled. Example:
 
 ```yaml
 PUT /Client/inferno-g10-client
