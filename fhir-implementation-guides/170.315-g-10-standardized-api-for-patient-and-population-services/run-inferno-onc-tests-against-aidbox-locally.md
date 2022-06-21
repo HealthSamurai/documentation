@@ -6,11 +6,11 @@ description: How to setup Aidbox and Inferno ONC locally to pass the tests
 
 ## Install Devbox
 
-Follow `Step 1,` `Step 2` and `Step 3` of the instruction to [install Devbox](run-inferno-onc-tests-against-aidbox-locally.md#install-devbox) locally.&#x20;
+Follow `Step 1,` `Step 2` and `Step 3` of the instruction to [install Devbox](https://docs.aidbox.app/getting-started/installation/setup-aidbox.dev)
 
 ## Extend `.env` file
 
-In addition of the `Step 3` of the [instruction](run-inferno-onc-tests-against-aidbox-locally.md#install-devbox) define following values in the `.env` file.
+In addition of the `Step 3` of the [instruction](https://docs.aidbox.app/getting-started/installation/setup-aidbox.dev) define following values in the `.env` file.
 
 ```
 # Define aidbox parameters
@@ -22,8 +22,10 @@ AIDBOX_FHIR_VERSION=4.0.1
 AIDBOX_COMPLIANCE=enabled
 
 # Define zen project
-AIDBOX_ZEN_ENTRYPOINT=smart/test-box
-AIDBOX_ZEN_PATHS='url:zip:https://github.com/zen-lang/fhir/releases/latest/download/hl7-fhir-us-core.zip,url:edn:https://raw.githubusercontent.com/Aidbox/aidbox-project-samples/main/aidbox-project-samples/onc/smart.edn'
+BOX_PROJECT_GIT_PROTOCOL=https
+BOX_PROJECT_GIT_URL=https://github.com/Aidbox/aidbox-project-samples.git
+BOX_PROJECT_GIT_SUB__PATH=aidbox-project-samples
+BOX_PROJECT_ENTRYPOINT=smartbox.portal/box
 
 # Define access to you the bucket (https://docs.aidbox.app/api-1/bulk-api-1/usdexport#setup-storage)
 box_bulk__storage_backend=
