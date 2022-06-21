@@ -26,10 +26,7 @@ id: myorg.myapp  # id of your application
 apiVersion: 1    # App API version
 type: app
 endpoint:        # communication protocol between aidbox and app
-   type: http-rpc         # type of protocol - http-rpc | ws-rpc
-   host: app.mydomain.com # app service host for http protocols 
-   scheme: https          # app service schema for http protocols - default = https
-   port: 8080             # app service port - default = 80
+   type: http-rpc         # type of protocol - http-rpc | ws-rpc 
    secret: <yoursercret>  # will be used to secure aidbox - app communication
 entities: <Resource's Definitions, Profiles & Hooks>
 operations: <Operation's Definitions>
@@ -43,9 +40,7 @@ In the `endpoint` section, you describe how Aidbox will communicate with your se
 | Key        | type    | required | Options            | default  | description                          |
 | ---------- | ------- | -------- | ------------------ | -------- | ------------------------------------ |
 | **type**   | string  | true     | http-rpc \| ws-rpc | http-rpc | Protocol of communication            |
-| **host**   | string  | false    |                    |          | Domain of service for http protocols |
-| **schema** |         |          | http \| https      | https    | Schema of service for http           |
-| **port**   | integer |          |                    | 80       | Port of service for http             |
+| **url**   | string  | false    |                    |          |  Url of service to communicate |
 | **secret** | string  |          |                    |          | Secret key used for communication    |
 
 ### entities
