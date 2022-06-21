@@ -41,7 +41,7 @@ ONC Inferno requires certain TLS version usage over HTTP requests. The allowed v
 
 ## Setting up different SMART on FHIR application
 
-### `confidential` vs `public`  applications
+### `confidential` and `public`  applications
 
 There are [two types](http://www.hl7.org/fhir/smart-app-launch/app-launch.html#support-for-public-and-confidential-apps) of the applications using SMART on FHIR API:
 
@@ -69,7 +69,7 @@ auth:
     redirect_uri: https://inferno.healthit.gov/suites/custom/smart/redirect
     refresh_token: true
     secret_required: true          # secret is allowed
-    access_token_expiration: 300
+    access_token_expiration: 3600  # 1 hour
 smart:
   launch_uri: https://inferno.healthit.gov/suites/custom/smart/launch
 ```
@@ -95,7 +95,7 @@ auth:
     redirect_uri: https://inferno.healthit.gov/suites/custom/smart/redirect
     refresh_token: true
     secret_required: false        # secret is disabled
-    access_token_expiration: 300
+    access_token_expiration: 3600 # 1 hour
 smart:
   launch_uri: https://inferno.healthit.gov/suites/custom/smart/launch
 ```
@@ -113,7 +113,7 @@ auth:
   client_credentials:
     client_assertion_types:
       - urn:ietf:params:oauth:client-assertion-type:jwt-bearer
-    access_token_expiration: 300
+    access_token_expiration: 300 # 5 minutes
 scope:
   - system/*.read
 jwks_uri: https://inferno.healthit.gov/suites/custom/g10_certification/.well-known/jwks.json
