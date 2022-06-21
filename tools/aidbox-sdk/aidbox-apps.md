@@ -26,6 +26,7 @@ id: myorg.myapp  # id of your application
 apiVersion: 1    # App API version
 type: app
 endpoint:        # communication protocol between aidbox and app
+   url: https://my.service.com:8888
    type: http-rpc         # type of protocol - http-rpc | ws-rpc 
    secret: <yoursercret>  # will be used to secure aidbox - app communication
 entities: <Resource's Definitions, Profiles & Hooks>
@@ -40,7 +41,7 @@ In the `endpoint` section, you describe how Aidbox will communicate with your se
 | Key        | type    | required | Options            | default  | description                          |
 | ---------- | ------- | -------- | ------------------ | -------- | ------------------------------------ |
 | **type**   | string  | true     | http-rpc \| ws-rpc | http-rpc | Protocol of communication            |
-| **url**   | string  | false    |                    |          |  Url of service to communicate |
+| **url**   | string  | true    |                    |          |  Url of service to communicate         |
 | **secret** | string  |          |                    |          | Secret key used for communication    |
 
 ### entities
