@@ -83,7 +83,7 @@
   * [$load](api-1/bulk-api-1/usdload.md)
   * [$import & /fhir/$import](api-1/bulk-api-1/usdimport-and-fhir-usdimport.md)
   * [aidbox.bulk data import](api-1/bulk-api-1/aidbox.bulk-data-import.md)
-  * [Import from a bucket](api-1/bulk-api-1/import-from-a-bucket.md)
+  * [Mass Import from a bucket](api-1/bulk-api-1/import-from-a-bucket.md)
   * [🎓 Synthea by Bulk APi](api-1/bulk-api-1/synthea-by-bulk-api.md)
 * [Batch Upsert](api-1/batch-upsert.md)
 * [Batch/Transaction](api-1/transaction.md)

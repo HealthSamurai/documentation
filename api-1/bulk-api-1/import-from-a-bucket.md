@@ -1,19 +1,47 @@
-# Import from a bucket
+# Mass Import from a bucket
 
 ### `aidbox.bulk/load-from-bucket`
 
-It allows loading data from an AWS bucket directly to the Aidbox database with maximum performance.
+It allows loading data from a bunch of `.ndjson` files on an AWS bucket directly to the Aidbox database with maximum performance.
+
+### Files content and naming requirement
+
+1. The file must consist of Resources of the same type.
+2. The file name should start with a name of the Resource type, then some postfix is possible, and extension `.ndjson` is required. Files can be placed in subdirectories of any level. Files with the wrong path structure will be **ignored**.
+
+#### Valid file structure example:
+
+```
+fhir/1/Patient.ndjson
+fhir/1/patient-01.ndjson
+Observation.ndjson
+```
+
+#### Invalid file structure example:
+
+```
+import.ndjson
+01-patient.ndjson
+fhir/Patient
+```
+
+### Parameters
 
 {% tabs %}
 {% tab title="Parameters" %}
 Object with the following structure:
 
-* `bucket` defines your bucket connection string
-* `thread-num` defines how many threads will process the import. The default value is 4.
-* `account` object
-  * `access-key-id` AWS key ID
-  * `secret-access-key` AWS secret key
-  * `region` AWS Bucket region
+* `bucket` <mark style="color:red;">\*</mark> defines your bucket connection string in format`s3://<bucket-name>`
+* `thread-num` defines how many threads will process the import. The **default** is 4.
+* `account` credential:
+  * `access-key-id`  <mark style="color:red;">\*</mark> AWS key ID
+  * `secret-access-key` <mark style="color:red;">\*</mark> AWS secret key
+  * `region` <mark style="color:red;">\*</mark> AWS Bucket region
+* `disable-idx?`  the **default** is `false`.  Allows to drop all indexes for resources, which data are going to be loaded. Indexes will be restored at the end of successful import. All information about dropped indexes is stored at `DisabledIndex` resources.&#x20;
+* `drop-primary-key?` the **default** is `false`. The same as the previous parameter, but drops primary key constraint for resources tables. This parameter disables all checks for duplicates for imported resources.
+* `upsert?` the **default** is `false`.  If `upsert?` is `false`, import for files with `id`  uniqueness constraint violation will fail with an error, if `true` - records in the database will be overridden with records from import. Even when `upsert?` is `true`, it's still not allowed to have more than one record with the same id in one import file.  Setting this option to true will cause a decrease in performance.
+* `scheduler` possible **values**: `optimal` , `by-last-modified`, the **default** is `optimal` .  Establishes the order in which the files are processed. The `optimal`  value provides the best performance. `by-last-modified` should be used with  `thread-num = 1` to guarantee a stable order of file processing.
+* `prefixes`  array of prefixes  to specify which files should be processed. Example: with value `["fhir/1/", "fhir/2/Patient"]` only files from directory `"fhir/1"` and `Patient` files from directory `"fhir/2"` will be processed.&#x20;
 {% endtab %}
 
 {% tab title="Result" %}
