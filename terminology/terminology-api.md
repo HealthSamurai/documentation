@@ -14,13 +14,21 @@ Terminology bundles are .ndjson.gz files with filenames matching \*terminology-b
 
 Aidbox imports terminology bundles found in zen paths.
 
-#### Import terminology bundle from local system
+#### Import terminology bundle from local system using Aidbox project
 
-Put terminology bundle in `/my/aidbox/project/my-terminology-bundle.ndjson.gz`
+Aidbox reads files from [Aidbox projects](../aidbox-configuration/aidbox-zen-lang-project.md#aidbox-project) on startup and imports files whose names end with `terminology-bundle.ndjson.gz` .
 
-Set `AIDBOX_ZEN_PATHS=path:dir:/my/aidbox/project`\
-\
-Aidbox imports resources from ndjson.gz files \*terminology-bundle.ndjson.gz.
+For example path to terminology bundle GZIP fie is: `/my/aidbox/project/my-terminology-bundle.ndjson.gz`
+
+To load the terminology bundle into Aidbox set the `AIDBOX_ZEN_PATHS` environment variable like this:
+
+```
+ AIDBOX_ZEN_PATHS=path:dir:/my/aidbox/project
+```
+
+{% hint style="warning" %}
+Make sure that your Aidbox container [has access to the specified path](../profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile.md#setup-devbox-to-use-zen-project) on your system.
+{% endhint %}
 
 #### Import terminology bundle from a remote location
 
