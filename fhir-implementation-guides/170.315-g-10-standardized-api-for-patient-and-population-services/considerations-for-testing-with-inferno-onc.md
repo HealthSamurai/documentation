@@ -107,6 +107,7 @@ Client example for `bulk` application.
 ```yaml
 id: inferno-g10-bulk-client
 resourceType: Client
+type: bulk
 grant_types:
   - client_credentials
 auth:
