@@ -1,11 +1,5 @@
 # Logging & Audit
 
-{% hint style="warning" %}
-This feature is a beta version that is still undergoing final testing before its official release
-{% endhint %}
-
-This feature is a beta version that is still undergoing final testing before its official release
-
 ### Aidbox Logging
 
 Aidbox generates structured logs in Newline Delimited JSON format (ndjson). 
