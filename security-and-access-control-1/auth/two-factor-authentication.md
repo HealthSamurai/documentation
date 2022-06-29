@@ -4,10 +4,6 @@ description: This article explains 2FA implementation in Aidbox
 
 # Two Factor Authentication
 
-{% hint style="warning" %}
-This feature is in beta right now. If you have any feedback or comments, reach out to us!
-{% endhint %}
-
 {% hint style="info" %}
 Two Factor Authentication is not supported for external OAuth 2.0 providers
 {% endhint %}
