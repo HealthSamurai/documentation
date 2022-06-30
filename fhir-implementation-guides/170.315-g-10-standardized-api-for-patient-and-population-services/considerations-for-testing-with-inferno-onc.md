@@ -105,6 +105,10 @@ smart:
 Client example for `bulk` application.
 
 ```yaml
+PUT /Client/inferno-g10-bulk-client
+content-type: text/yaml
+accept: text/yaml
+
 id: inferno-g10-bulk-client
 resourceType: Client
 type: bulk
