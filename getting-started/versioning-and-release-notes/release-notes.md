@@ -2,7 +2,16 @@
 
 ## June 2022 - v:2206 _`latest`_
 
-*
+* Added git repository as a source for Aidbox project
+* Improved Aidbox startup time when loading terminology bundles.
+* Added nested resources validation when using zen profiling
+* Added load-from-bucket params
+* Improved chained search parameters performance
+* Added ability to specify SQL migrations in Aidbox project seed service
+* Added cluster usage metrics to Grafana dashboards
+* Enhanced API constructor with conditional CRUD
+* Added a tutorial on how to create a user and give full access
+* Minor fixes&#x20;
 
 ## May 2022 - v:2205 _`stable`_
 
