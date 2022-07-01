@@ -1,6 +1,10 @@
 # Release Notes
 
-## May 2022 - v:2205 _`latest`_
+## June 2022 - v:2206 _`latest`_
+
+*
+
+## May 2022 - v:2205 _`stable`_
 
 * Added RPC API access control engines: [allow-rpc engine](../../security-and-access-control-1/security/access-control/#allow-rpc-engine) and attribute-based [matcho-rpc engine](../../security-and-access-control-1/security/access-control/#matcho-rpc-engine).
 * Added GraphQL API resource [history search](../../api-1/graphql-api.md#queries) to retrieve a resource change history.
@@ -14,7 +18,7 @@
 * Added tutorial [how to fix broken dates](../../tutorials/).
 * Released Infrabox preview. Infrabox is a simple and efficient tool to deploy and manage production-ready Aidbox infrastructure on k8s.&#x20;
 
-## April 2022 - v:2204 _`stable`_
+## April 2022 - v:2204&#x20;
 
 * Added [ACL (access-control list)](../../aidbox-configuration/aidbox-api-constructor/acl.md) functionality to [API constructor](../../aidbox-configuration/aidbox-api-constructor.md).
 * Released [`seed service`](../../aidbox-configuration/aidbox-zen-lang-project.md#seed-import) for Aidbox project. Declare a set of resources in Aidbox project and get them loaded in one or many Aidboxes on start.
@@ -27,7 +31,7 @@
 * Reviewed first-class extensions with zen-lang and updated [docs](../../modules-1/first-class-extensions.md#first-class-extension-as-zen-profile).
 * Reviewed and updated [Aidbox multitenancy docs](../../security-and-access-control-1/multitenancy/).
 
-## March 2022 - v:2203 _`stable`_
+## March 2022 - v:2203
 
 * Released a [February 2022 - v:2202 _`LTS`_](release-notes.md#february-2022-v-2202-stable). \_\_ The Aidbox team will backport security and critical bug fixes to it throughout a one-year support window.
 * Added [`aidbox-validation-skip`](../../profiling-and-validation/profiling.md#aidbox-validation-skip-request-header) header that allows skipping resource reference validation.
@@ -137,7 +141,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 * We've released a major Aidbox UI upgrade
 
-![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (10).png>)
+![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (10) (10).png>)
 
 * Updated REST Console (check out[ the tutorial](https://bit.ly/rest\_console\_tutorial)):
   * Explicit request headers `content-type, accept` etc
