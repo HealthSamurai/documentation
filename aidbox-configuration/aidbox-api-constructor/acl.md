@@ -29,6 +29,8 @@ Expects the same as regular FHIR API engines and also a `:filter`
 * `aidbox.rest.acl/delete`
 * `aidbox.rest.acl/conditional-delete`
 * `aidbox.rest.acl/create-with-filter-table-insert`  — create resource and create entry in filter table
+* `aidbox.rest.acl/patient-level-bulk-export`
+* `aidbox.rest.acl/group-level-bulk-export`
 
 #### Example
 
