@@ -25,7 +25,9 @@ Expects the same as regular FHIR API engines and also a `:filter`
 * `aidbox.rest.acl/create`
 * `aidbox.rest.acl/read`
 * `aidbox.rest.acl/update`
+* `aidbox.rest.acl/conditional-update`
 * `aidbox.rest.acl/delete`
+* `aidbox.rest.acl/conditional-delete`
 * `aidbox.rest.acl/create-with-filter-table-insert`  — create resource and create entry in filter table
 
 #### Example
