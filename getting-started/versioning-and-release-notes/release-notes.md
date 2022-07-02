@@ -9,7 +9,7 @@
 * Improved chained search parameters performance
 * Added ability to specify SQL migrations in Aidbox project seed service
 * Added cluster usage metrics to Grafana dashboards
-* Enhanced API constructor with conditional CRUD
+* Enhanced [API constructor ACL](../../aidbox-configuration/aidbox-api-constructor/acl.md) with conditional CRUD  and patient/group level `$export`
 * Added a tutorial on how to create a user and give full access
 * Minor fixes&#x20;
 
