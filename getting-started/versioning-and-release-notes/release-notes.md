@@ -2,16 +2,16 @@
 
 ## June 2022 - v:2206 _`latest`_
 
-* Added git repository as a source for Aidbox project
-* Improved Aidbox startup time when loading terminology bundles.
-* Added nested resources validation when using zen profiling
-* Added load-from-bucket params
-* Improved chained search parameters performance
-* Added ability to specify SQL migrations in Aidbox project seed service
-* Added cluster usage metrics to Grafana dashboards
+* Added an option to [load Aidbox project from a remote Git repository](../../aidbox-configuration/aidbox-zen-lang-project.md#load-project-from-git-repository).
+* Improved Aidbox startup time when loading terminology bundles using Aidbox projects.
+* Added nested resources validation when using [zen profiling](../../profiling-and-validation/profiling-with-zen-lang/).
+* Added params to [load-from-bucket](../../api-1/bulk-api-1/import-from-a-bucket.md#parameters) import operation.&#x20;
+* Improved chained search parameters performance.
+* Added ability to specify SQL migrations in [Aidbox project seed service](../../aidbox-configuration/aidbox-zen-lang-project.md#seed-service).
+* Added cluster usage metrics to [Grafana dashboards](../../core-modules/monitoring/grafana-integration.md).
 * Enhanced [API constructor ACL](../../aidbox-configuration/aidbox-api-constructor/acl.md) with conditional CRUD  and patient/group level `$export`
-* Added a tutorial on how to create a user and give full access
-* Minor fixes&#x20;
+* Added a tutorial on how to [create a user and give full access](../../tutorials/creating-user-and-set-up-full-user-access.md)
+* Fixed issues submitted by Aidbox users and fixed minor bugs.&#x20;
 
 ## May 2022 - v:2205 _`stable`_
 
