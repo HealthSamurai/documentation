@@ -3,14 +3,15 @@
 ## June 2022 - v:2206 _`latest`_
 
 * Added an option to [load Aidbox project from a remote Git repository](../../aidbox-configuration/aidbox-zen-lang-project.md#load-project-from-git-repository).
-* Improved Aidbox startup time when loading terminology bundles using Aidbox projects.
+* Improved Aidbox startup time when loading [Aidbox project](../../aidbox-configuration/aidbox-zen-lang-project.md#aidbox\_zen\_paths) from [a zip archive](../../aidbox-configuration/aidbox-zen-lang-project.md#aidbox\_zen\_paths).
+* Added [Aidbox projects terminology bundle](../../terminology/terminology-api.md#import-using-aidbox-project) load cache. Aidbox doesn't load a terminology bundle into its database if the bundle has no changes.
+* [Aidbox project terminology](../../terminology/terminology-api.md#import-using-aidbox-project) bundle load is now async and doesn't affect Aidbox startup time.
 * Added nested resources validation when using [zen profiling](../../profiling-and-validation/profiling-with-zen-lang/).
 * Added params to [load-from-bucket](../../api-1/bulk-api-1/import-from-a-bucket.md#parameters) import operation.&#x20;
 * Improved chained search parameters performance.
 * Added ability to specify SQL migrations in [Aidbox project seed service](../../aidbox-configuration/aidbox-zen-lang-project.md#seed-service).
-* Added cluster usage metrics to [Grafana dashboards](../../core-modules/monitoring/grafana-integration.md).
-* Enhanced [API constructor ACL](../../aidbox-configuration/aidbox-api-constructor/acl.md) with conditional CRUD  and patient/group level `$export`
-* Added a tutorial on how to [create a user and give full access](../../tutorials/creating-user-and-set-up-full-user-access.md)
+* Enhanced [API constructor ACL](../../aidbox-configuration/aidbox-api-constructor/acl.md) with conditional CRUD  and patient/group level `$export`.
+* Added a tutorial on how to [create a user and give full access](../../tutorials/creating-user-and-set-up-full-user-access.md).
 * Fixed issues submitted by Aidbox users and fixed minor bugs.&#x20;
 
 ## May 2022 - v:2205 _`stable`_
