@@ -10,17 +10,6 @@ To start configuring Aidbox with [zen-lang](https://github.com/zen-lang/zen) you
 
 Aidbox project is a directory with zen-lang edn files. Aidbox project can be shared with many Aidbox instances giving them the same configuration.
 
-### Load project from git repository
-
-#### Required project structure
-
-```
-<path-to-project-files>:
--- <folder-with-edn-files>:
----- *.edn
--- package.json    
-```
-
 ### Environment variables
 
 | Env variable name               | Meaning                                                                                               |
@@ -35,6 +24,7 @@ Aidbox project is a directory with zen-lang edn files. Aidbox project can be sha
 | `BOX_PROJECT_GIT_PUBLIC_KEY`    | Public ssh key                                                                                        |
 | `BOX_PROJECT_GIT_PRIVATE_KEY`   | Private ssh key                                                                                       |
 
+### Load project from git repository
 #### Example configuration
 
 SSH example
@@ -178,6 +168,33 @@ Deprecated. Use `AIDBOX_ZEN_PATHS` and `AIDBOX_ZEN_ENTRYPOINT` instead.
 &#x20;`AIDBOX_ZEN_ENTRY` environment variable is used to specify zen project entry namespace.
 
 `BOX_ENTRYPOINT` environment variable is used to specify zen entry symbol.
+
+### External dependencies
+If you need to depend on external
+[zen-lang](https://github.com/zen-lang/zen) packets (e.g. any IG from
+[zen-fhir](https://github.com/zen-lang/fhir)) you can put
+`package.json` file into your `AIDBOX_ZEN_PATHS`. Currently that works
+only for the `path:dir` and git projects.
+
+#### Example of the `package.json` content
+```json
+{
+  "dependencies": {
+    "@zen-lang/hl7-fhir-r4-core": "^0.5.11",
+    ...
+  }
+}
+```
+
+#### Project from git repository
+You need to create `package.json` file in the root of the repository
+(or inside `BOX_PROJECT_GIT_SUB__PATH` if you're using it) and commit
+it. Aidbox will install specified dependencies while pulling project
+from git.
+
+#### Project from file system
+You need to create `package.json` file in the directory specified
+inside `AIDBOX_ZEN_PATHS` and run `npm install` inside that directory.
 
 ### Examples
 
