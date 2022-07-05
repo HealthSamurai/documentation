@@ -3,76 +3,11 @@ description: Use zen-lang to configure Aidbox
 ---
 
 # Aidbox project
-
-## Aidbox project
-
 To start configuring Aidbox with [zen-lang](https://github.com/zen-lang/zen) you need to create an Aidbox project.
 
 Aidbox project is a directory with zen-lang edn files. Aidbox project can be shared with many Aidbox instances giving them the same configuration.
 
-### Environment variables
-
-| Env variable name               | Meaning                                                                                               |
-| ------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `BOX_PROJECT_GIT_PROTOCOL`      | Possible values: "https", "ssh"                                                                       |
-| `BOX_PROJECT_GIT_URL`           | GIt repository URL (https://github.com/\<user>/\<repo>.git)                                           |
-| `BOX_PROJECT_GIT_SUB__PATH`     | If want to place edn files inside another directory, you can provide this env variable                |
-| `BOX_PROJECT_GIT_ACCESS__TOKEN` | Access token can be used for accessing private repository                                             |
-| `BOX_PROJECT_GIT_TARGET__PATH`  | Override target clone directory. By default Aidbox will use /tmp/aidbox-project-git.                  |
-| `BOX_PROJECT_GIT_CHECKOUT`      | Checkout into branch or commit                                                                        |
-| `BOX_PROJECT_ENTRYPOINT`        | Specify a zen namespace or a zen symbol. Aidbox starts reading its configuration from the entrypoint. |
-| `BOX_PROJECT_GIT_PUBLIC_KEY`    | Public ssh key                                                                                        |
-| `BOX_PROJECT_GIT_PRIVATE_KEY`   | Private ssh key                                                                                       |
-
-### Load project from git repository
-#### Example configuration
-
-SSH example
-
-```
-BOX_PROJECT_ENTRYPOINT=smartbox.portal/box
-BOX_PROJECT_GIT_PROTOCOL=ssh
-BOX_PROJECT_GIT_PUBLIC__KEY="...."
-BOX_PROJECT_GIT_PRIVATE__KEY="-----BEGIN OPENSSH PRIVATE KEY-----\n....\n-----END OPENSSH PRIVATE KEY-----\n"
-BOX_PROJECT_GIT_URL=git@github.com:Aidbox/aidbox-project-samples.git
-BOX_PROJECT_GIT_SUB__PATH=aidbox-project-samples
-```
-
-#### HTTPS example
-
-```
-BOX_PROJECT_ENTRYPOINT=smartbox.portal/box
-BOX_PROJECT_GIT_PROTOCOL=https
-BOX_PROJECT_GIT_URL=https://github.com/Aidbox/aidbox-project-samples.git
-BOX_PROJECT_GIT_SUB__PATH=aidbox-project-samples
-```
-
-#### Startup errors
-
-Wrong zen source files path
-
-{% hint style="danger" %}
-Entrypoint 'smartbox.portal' not loaded.&#x20;
-
-{:message "No file for ns 'smartbox.portal", :missing-ns smartbox.portal, :ns smartbox.portal}
-{% endhint %}
-
-Incorrect git repo url
-
-{% hint style="danger" %}
-Cloning into '/tmp/aidbox-project-git'...&#x20;
-
-remote: Repository not found.&#x20;
-
-fatal: repository 'https://github.com/Aidfdfdfbox/aidbox-project-samples.git/' not found
-{% endhint %}
-
-Incorrect checkout branch/commit
-
-{% hint style="danger" %}
-error: pathspec 'git-project-unexist' did not match any file(s) known to git
-{% endhint %}
-
+## Load Aidbox project
 ### Load project using environment variables
 
 Aidbox uses environment variables to load project.
@@ -169,49 +104,108 @@ Deprecated. Use `AIDBOX_ZEN_PATHS` and `AIDBOX_ZEN_ENTRYPOINT` instead.
 
 `BOX_ENTRYPOINT` environment variable is used to specify zen entry symbol.
 
-### External dependencies
-If you need to depend on external
-[zen-lang](https://github.com/zen-lang/zen) packets (e.g. any IG from
-[zen-fhir](https://github.com/zen-lang/fhir)) you can put
-`package.json` file into your `AIDBOX_ZEN_PATHS`. Currently that works
-only for the `path:dir` and git projects.
+### Load project from git repository
+#### Environment variables
+| Env variable name               | Meaning                                                                                               |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `BOX_PROJECT_GIT_PROTOCOL`      | Possible values: "https", "ssh"                                                                       |
+| `BOX_PROJECT_GIT_URL`           | GIt repository URL (https://github.com/\<user>/\<repo>.git)                                           |
+| `BOX_PROJECT_GIT_SUB__PATH`     | If want to place edn files inside another directory, you can provide this env variable                |
+| `BOX_PROJECT_GIT_ACCESS__TOKEN` | Access token can be used for accessing private repository                                             |
+| `BOX_PROJECT_GIT_TARGET__PATH`  | Override target clone directory. By default Aidbox will use /tmp/aidbox-project-git.                  |
+| `BOX_PROJECT_GIT_CHECKOUT`      | Checkout into branch or commit                                                                        |
+| `BOX_PROJECT_GIT_PUBLIC_KEY`    | Public ssh key                                                                                        |
+| `BOX_PROJECT_GIT_PRIVATE_KEY`   | Private ssh key                                                                                       |
 
-#### Example of the `package.json` content
+#### Example configuration
+
+SSH example
+
+```
+AIDBOX_ZEN_ENTRYPOINT=smartbox.portal/box
+BOX_PROJECT_GIT_PROTOCOL=ssh
+BOX_PROJECT_GIT_PUBLIC__KEY="...."
+BOX_PROJECT_GIT_PRIVATE__KEY="-----BEGIN OPENSSH PRIVATE KEY-----\n....\n-----END OPENSSH PRIVATE KEY-----\n"
+BOX_PROJECT_GIT_URL=git@github.com:Aidbox/aidbox-project-samples.git
+BOX_PROJECT_GIT_SUB__PATH=aidbox-project-samples
+```
+
+#### HTTPS example
+
+```
+AIDBOX_ZEN_ENTRYPOINT=smartbox.portal/box
+BOX_PROJECT_GIT_PROTOCOL=https
+BOX_PROJECT_GIT_URL=https://github.com/Aidbox/aidbox-project-samples.git
+BOX_PROJECT_GIT_SUB__PATH=aidbox-project-samples
+```
+
+#### Startup errors
+
+Wrong zen source files path
+
+{% hint style="danger" %}
+Entrypoint 'smartbox.portal' not loaded.&#x20;
+
+{:message "No file for ns 'smartbox.portal", :missing-ns smartbox.portal, :ns smartbox.portal}
+{% endhint %}
+
+Incorrect git repo url
+
+{% hint style="danger" %}
+Cloning into '/tmp/aidbox-project-git'...&#x20;
+
+remote: Repository not found.&#x20;
+
+fatal: repository 'https://github.com/Aidfdfdfbox/aidbox-project-samples.git/' not found
+{% endhint %}
+
+Incorrect checkout branch/commit
+
+{% hint style="danger" %}
+error: pathspec 'git-project-unexist' did not match any file(s) known to git
+{% endhint %}
+
+### Loading dependencies
+#### `AIDBOX_ZEN_PATHS`
+If the `node_modules` directory is present in a location from
+`AIDBOX_ZEN_PATHS` and it's populated with zen packages they will be
+loaded as dependencies. Thus for `zip` and `dir` paths if you have
+`package.json` file with dependencies you need to do `npm install`
+to ensure that `node_modules` directory is populated when Aidbox
+loads this path.
+
+#### Project from git repository
+For a git repository project you need to create `package.json` file in
+the root of the repository (or inside `BOX_PROJECT_GIT_SUB__PATH` if
+you're using it) and commit it. Aidbox will install specified
+dependencies while pulling project from git.
+
+## Examples
+You can see an example in the [🎓 Profiling with
+zen-lang](../profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile.md)
+tutorial.
+
+### Example of the `package.json` content
 ```json
 {
   "dependencies": {
     "@zen-lang/hl7-fhir-r4-core": "^0.5.11",
     ...
-  }
+	}
 }
 ```
 
-#### Project from git repository
-You need to create `package.json` file in the root of the repository
-(or inside `BOX_PROJECT_GIT_SUB__PATH` if you're using it) and commit
-it. Aidbox will install specified dependencies while pulling project
-from git.
-
-#### Project from file system
-You need to create `package.json` file in the directory specified
-inside `AIDBOX_ZEN_PATHS` and run `npm install` inside that directory.
-
-### Examples
-
-You can see an example in the [🎓 Profiling with zen-lang](../profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile.md) tutorial.
-
-### Configure Aidbox Project via `aidbox/system`
+## Configure Aidbox Project via `aidbox/system`
 
 {% hint style="info" %}
 This section is still under active development check it out later 🚧
 {% endhint %}
 
-### Seed Import
+## Seed Import
 
 You can declare a set of resources in Aidbox project and get them loaded in one or many Aidboxes on start. To do this you need to describe the seed service in the system entrypoint.
 
-#### Example
-
+### Example
 ```clojure
 {ns     importbox
  import #{aidbox
@@ -234,7 +228,7 @@ You can declare a set of resources in Aidbox project and get them loaded in one 
 
 In this example `importbox/importbox` is the system entrypoint defined in the **`AIDBOX_ZEN_ENTRYPOINT`** variable, the files described in the `:files` field are located inside the zen project defined in the variable **`AIDBOX_ZEN_PATHS`**.
 
-#### Seed Service
+### Seed Service
 
 `:files` - which `ndjson.gz` files will be imported at system startup. These files must be located inside the zen project described in the variable **`AIDBOX_ZEN_PATHS`**.
 
