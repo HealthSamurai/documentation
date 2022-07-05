@@ -141,7 +141,7 @@ BOX_PROJECT_GIT_SUB__PATH=aidbox-project-samples
 
 #### Startup errors
 
-Wrong zen source files path
+##### Wrong zen source files path
 
 {% hint style="danger" %}
 Entrypoint 'smartbox.portal' not loaded.&#x20;
@@ -149,7 +149,7 @@ Entrypoint 'smartbox.portal' not loaded.&#x20;
 {:message "No file for ns 'smartbox.portal", :missing-ns smartbox.portal, :ns smartbox.portal}
 {% endhint %}
 
-Incorrect git repo url
+##### Incorrect git repo url
 
 {% hint style="danger" %}
 Cloning into '/tmp/aidbox-project-git'...&#x20;
@@ -159,7 +159,7 @@ remote: Repository not found.&#x20;
 fatal: repository 'https://github.com/Aidfdfdfbox/aidbox-project-samples.git/' not found
 {% endhint %}
 
-Incorrect checkout branch/commit
+##### Incorrect checkout branch/commit
 
 {% hint style="danger" %}
 error: pathspec 'git-project-unexist' did not match any file(s) known to git
