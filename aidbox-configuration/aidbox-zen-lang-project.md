@@ -12,10 +12,6 @@ Aidbox project is a directory with zen-lang edn files. Aidbox project can be sha
 
 ### Load project from git repository
 
-{% hint style="warning" %}
-Work in progress. Already available on :edge. Will be available on latest after 2206 release
-{% endhint %}
-
 #### Required project structure
 
 ```
