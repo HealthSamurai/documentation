@@ -41,6 +41,8 @@ content-location: /BulkImportStatus/synthea
 {% endtab %}
 {% endtabs %}
 
+Option `contentEncoding ` supports `gzip` or `plain`.
+
 You can monitor progress using:
 
 ```yaml
