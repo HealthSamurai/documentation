@@ -41,7 +41,7 @@ content-location: /BulkImportStatus/synthea
 {% endtab %}
 {% endtabs %}
 
-Option `contentEncoding ` supports `gzip` or `plain`.
+Option `contentEncoding` supports `gzip` or `plain` (non-gzipped .ndjson files).
 
 You can monitor progress using:
 
