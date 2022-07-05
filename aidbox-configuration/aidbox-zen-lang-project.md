@@ -191,7 +191,7 @@ tutorial.
   "dependencies": {
     "@zen-lang/hl7-fhir-r4-core": "^0.5.11",
     ...
-	}
+    }
 }
 ```
 
