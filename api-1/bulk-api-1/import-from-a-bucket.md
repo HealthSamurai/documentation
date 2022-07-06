@@ -82,7 +82,10 @@ params:
 {% code title="Status: 200" %}
 ```
 result:
-  message: "Upload started"
+  message: Upload from bucket <s3://your-bucket-id> started. 6 new files added.
+  progress:
+    total: 6
+  new-files-count: 6
 ```
 {% endcode %}
 {% endtab %}
@@ -110,9 +113,47 @@ For each file being imported via `load-from-bucket` method, Aidbox creates `Load
 
 On launch `aidbox.bulk/load-from-bucket` checks if files from the bucket were planned to import and decides what to do:
 
-* If `ndjson` file has it's related `LoaderFile` resource, the loader skips this file from import
+* If `ndjson.gz` file has it's related `LoaderFile` resource, the loader skips this file from import
 * If there is no related `LoaderFile` resource, Aidbox puts this file to the queue creating a `LoaderFile` resource
 
 In order to import a file one more time you should delete related `LoaderFile` resource and relaunch `aidbox.bulk/load-from-bucket`.
 
 Files are processed completely. The loader doesn't support partial re-import.
+
+
+### `aidbox.bulk/load-from-bucket-status`
+Returns status and progress of import for specified bucket.
+Possible states are: `in-progress`, `completed`, `interrupted`.
+
+{% hint style="info" %}
+State `interrupted` means that aidbox was restarted during the loading process. If you run `aidbox.bulk/load-from-bucket` operation again on the same bucket, it will be continued.
+{% endhint %}
+
+#### Example
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+POST /rpc
+content-type: text/yaml
+accept: text/yaml
+
+method: aidbox.bulk/load-from-bucket-status
+params:
+  bucket: s3://your-bucket-id
+```
+{% endtab %}
+
+{% tab title="Response" %}
+{% code title="Status: 200" %}
+```
+result:
+  state: in-progress
+  progress:
+    total: 6
+    pending: 2
+    done: 4
+```
+{% endcode %}
+{% endtab %}
+{% endtabs %}
