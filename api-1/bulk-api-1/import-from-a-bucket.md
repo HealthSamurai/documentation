@@ -2,7 +2,12 @@
 
 ### `aidbox.bulk/load-from-bucket`
 
-It allows loading data from a bunch of `.ndjson` files on an AWS bucket directly to the Aidbox database with maximum performance.
+It allows loading data from a bunch of `.ndjson.gz` files on an AWS bucket directly to the Aidbox database with maximum performance.
+
+
+{% hint style="warning" %}
+**Be careful** You should run *only one* replica of aidbox to use `aidbox.bulk/load-from-bucket` operation.
+{% endhint %}
 
 ### Files content and naming requirement
 
@@ -12,16 +17,16 @@ It allows loading data from a bunch of `.ndjson` files on an AWS bucket directly
 #### Valid file structure example:
 
 ```
-fhir/1/Patient.ndjson
-fhir/1/patient-01.ndjson
-Observation.ndjson
+fhir/1/Patient.ndjson.gz
+fhir/1/patient-01.ndjson.gz
+Observation.ndjson.gz
 ```
 
 #### Invalid file structure example:
 
 ```
 import.ndjson
-01-patient.ndjson
+01-patient.ndjson.gz
 fhir/Patient
 ```
 
