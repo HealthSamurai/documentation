@@ -130,7 +130,7 @@ accept: text/yaml
 {% endtabs %}
  
 
-### Examples (executable in REST console)
+### Examples
 
 #### Search patient name with SQL ilike
 
