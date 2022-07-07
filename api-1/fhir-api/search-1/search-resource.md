@@ -1,10 +1,10 @@
 ---
-description: New Search resource provides fine-grained control over search parameters
+description: Search resource provides fine-grained control over search parameters
 ---
 
 # Search Resource
 
-You can define search parameters or override the existing one with Search meta-resource. Search resource takes precedence over [SearchParameter](searchparameter.md). This may be useful for performance optimization of built-in FHIR SearchParameters or for the implementation of complicated custom searches.
+Search meta-resource can be used to define search parameters or override the existing one. Search resources take precedence over [SearchParameters](searchparameter.md). This may be useful for performance optimization of built-in FHIR SearchParameters or for the implementation of complicated custom searches.
 
 ```yaml
 PUT /Search/Patient.name
@@ -21,14 +21,8 @@ where: "{{table}}.resource->>'name' ilike {{param}}" # sql for search
 format: "%?%" # parameter format for ilike 
 order-by: "{{table}}.resource#>>'{name,0,family}'" # sql for ordering
 ```
-
-### SQL Templating
-
-You can use `{{table}}` for table name and `{{param}}` for parameter in "where" and "order-by" expressions.
-
-### format
-
-You can provide the format string for value where `?` will be replaced with the value of parameter. This feature may be useful for `ilike` expressions
+Use `{{table}}` for table name and `{{param}}` for parameter in "where" and "order-by" expressions.\
+Provided `format` parameter will be passed to `{{param}}` (`?` will be replaced with the value of parameter). This feature may be useful writing `ilike` expressions.
 
 ### **Token search**
 
@@ -79,76 +73,6 @@ param-parser: reference
 ### Option multi: array
 
 If you set multi = 'array', parameters will be coerced as PostgreSQL array.
-
-### Examples (executable in REST console)
-
-#### Search patient name with SQL ilike
-
-{% tabs %}
-{% tab title="PUT /Patient" %}
-```yaml
-# create patient resource
-PUT /Patient/my-patient
-content-type: text/yaml
-accept: text/yaml
-
-resourceType: Patient
-id: my-patient
-name:
- - family: johnson
-```
-{% endtab %}
-
-{% tab title="PUT /Search" %}
-```yaml
-# create search resource
-PUT /Search/Patient.name
-content-type: text/yaml
-accept: text/yaml
-
-resourceType: Search
-id: Patient.name 
-name: name 
-resource: 
-  id: Patient
-  resourceType: Entity
-where: "{{table}}.resource->>'name' ilike {{param}}" 
-format: "%?%" 
-order-by: "{{table}}.resource#>>'{name,0,family}'" 
-```
-{% endtab %}
-
-{% tab title="GET /Patient" %}
-```yaml
-# execute search for new parameter
-# check query-sql field in response bundle
-GET /Patient?name=john
-content-type: text/yaml
-accept: text/yaml
-
-GET /Patient?_sort=name
-content-type: text/yaml
-accept: text/yaml
-```
-{% endtabs %}
-
-
-#### Search if patient is [deceaced](https://www.hl7.org/fhir/patient.html#search)
-```yaml
-PUT /Search/Patient.name
-content-type: text/yaml
-accept: text/yaml
-
-resourceType: Search
-id: Patient.deceased
-name: deceased
-resource:
-  id: Patient
-  resourceType: Entity
-where: "coalesce((resource#>>'{deceased,boolean}')::boolean, resource ?? 'deceased', false) = {{param}}"
-```
-
-#### Search patient identifiers with array search parameter
 
 {% tabs %}
 {% tab title="PUT /Patient" %}
@@ -206,6 +130,76 @@ accept: text/yaml
 {% endtab %}
 {% endtabs %}
  
+
+### Examples (executable in REST console)
+
+#### Search patient name with SQL ilike
+
+{% tabs %}
+{% tab title="PUT /Patient" %}
+```yaml
+# create patient resource
+PUT /Patient/my-patient
+content-type: text/yaml
+accept: text/yaml
+
+resourceType: Patient
+id: my-patient
+name:
+ - family: johnson
+```
+{% endtab %}
+
+{% tab title="PUT /Search" %}
+```yaml
+# create search resource
+PUT /Search/Patient.name
+content-type: text/yaml
+accept: text/yaml
+
+resourceType: Search
+id: Patient.name 
+name: name 
+resource: 
+  id: Patient
+  resourceType: Entity
+where: "{{table}}.resource->>'name' ilike {{param}}" 
+format: "%?%" 
+order-by: "{{table}}.resource#>>'{name,0,family}'" 
+```
+{% endtab %}
+
+{% tab title="GET /Patient" %}
+```yaml
+# execute search for new parameter
+# check query-sql field in response bundle
+GET /Patient?name=john
+content-type: text/yaml
+accept: text/yaml
+
+GET /Patient?_sort=name
+content-type: text/yaml
+accept: text/yaml
+```
+{% endtab %}
+{% endtabs %}
+
+
+#### Search if patient is [deceaced](https://www.hl7.org/fhir/patient.html#search)
+```yaml
+PUT /Search/Patient.name
+content-type: text/yaml
+accept: text/yaml
+
+resourceType: Search
+id: Patient.deceased
+name: deceased
+resource:
+  id: Patient
+  resourceType: Entity
+where: "coalesce((resource#>>'{deceased,boolean}')::boolean, resource ?? 'deceased', false) = {{param}}"
+```
+
 #### Token search
 
 {% tabs %}
