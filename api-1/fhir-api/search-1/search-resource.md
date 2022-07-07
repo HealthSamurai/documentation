@@ -253,9 +253,7 @@ accept: text/yaml
 {% endtab %}
 {% endtabs %}
 
-#### Reference search
-
-**By type/id**
+#### Reference search by type/id
 
 {% tabs %}
 {% tab title="PUT /Search" %}
@@ -283,7 +281,7 @@ accept: text/yaml
 {% endtab %}
 {% endtabs %}
 
-**By id**
+#### Reference search by id
 
 {% tabs %}
 {% tab title="PUT /Search" %}
@@ -310,7 +308,7 @@ accept: text/yaml
 {% endtab %}
 {% endtabs %}
 
-**By url**
+#### Reference search by url
 
 {% tabs %}
 {% tab title="PUT /Search" %}
