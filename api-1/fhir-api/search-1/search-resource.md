@@ -29,7 +29,8 @@ Provided `format` parameter will be passed to `{{param}}` (`?` will be replaced 
 You can define Search resources for different token syntax forms and `:text` modifier.\
 To refer to system and code in SQL query use `{{param.system}}` and `{{param.code}}` accordingly.\
 To refer to value of param with `:text` modifier use `{{param.text}}`\
-When using the `:text` modifier you also need to specify `"text-format"`, refer to `{{param.text}}` with `?`. `"text-format"` is a format string which will be applied to`{{param.text}}` before inserting into SQL query. It is useful for wrapping text with `%` for `like` or `ilike.` For example `text-format: '%?%'`
+When using the `:text` modifier you also need to specify `"text-format"`, refer to `{{param.text}}` with `?`.\
+`"text-format"` is a format string which will be applied to`{{param.text}}` before inserting into SQL query. It is useful for wrapping text with `%` for `like` or `ilike.` For example `text-format: '%?%'`
 
 ```yaml
 PUT /Search/<resourceType>.<parameter>
@@ -57,8 +58,6 @@ Allows use different reference types in "where" expression. Reference can be def
 * `{{param.id}}` for resource `id`
 * `{{param.url}}` for resource `url`
 
-See example below
-
 ```yaml
 PUT /Search/<resourceType>.<parameter>
 content-type: text/yaml
@@ -70,7 +69,7 @@ resource: {id: <resourceType>, resourceType: Entity}
 param-parser: reference
 ```
 
-### Option multi: array
+### Multi: array parameter
 
 If you set multi = 'array', parameters will be coerced as PostgreSQL array.
 
