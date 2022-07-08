@@ -34,7 +34,7 @@ GET [base]/[resourceType]?param=value&param=value&...
 Where **param** can be one of:
 
 * [Underscored parameter](./#special-parameters) started with underscore, like **`_sort`**
-* Name of [search parameter](broken-reference)
+* Name of [search parameter](searchparameter.md)
 * [Chained parameter ](chained-parameters.md)expression
 * [Dotted expression ](.-expressions.md)- started with **`.`**
 
@@ -79,7 +79,7 @@ GET /Patient?name=Max&_elements=id, birthDAte
 
 ## Search Parameters
 
-Search defined in terms of "[search parameters](./searchparameter.md)". SearchParameter is a meta-resource, which describes which part of the resource it is and how you can make it searchable.
+Search defined in terms of "[search parameters](searchparameter.md)". SearchParameter is a meta-resource, which describes which part of the resource it is and how you can make it searchable.
 
 Search parameter can be one of the following types:&#x20;
 
