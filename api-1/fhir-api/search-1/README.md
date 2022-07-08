@@ -70,7 +70,7 @@ GET /Patient?name=Max&_elements=id, birthDAte
 | [\_total](\_total-or-\_countmethod.md)        | FHIR  | Turn on/off total count                                           |
 | [\_include](\_include-and-\_revinclude.md)    | FHIR  | Include referenced resources into result                          |
 | [\_revinclude](\_include-and-\_revinclude.md) | FHIR  | Include into result resources, which reference searched resources |
-| [\_explain](\_explain.md)                     |       | See query execution plan                                          |
+| [\_explain](\_explain.md)                     |       | Get query execution plan                                          |
 | [\_result](\_result.md)                       |       | Change result format                                              |
 | \_security                                    | FHIR  |                                                                   |
 | [\_profile](\_profile.md)                     | FHIR  | Search by resource profile                                        |
