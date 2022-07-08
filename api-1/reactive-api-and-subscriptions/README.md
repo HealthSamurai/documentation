@@ -7,6 +7,6 @@ The list of available Reactive  API endpoints:
 {% endcontent-ref %}
 
 {% content-ref url="reactive-api-and-subscriptions/subscriptions-1.md" %}
-[reactive-api-and-subscriptions/subscriptions-1.md](reactive-api-and-subscriptions/subscriptions-1.md)
+[subscriptions-1.md](subscriptions-1.md)
 {% endcontent-ref %}
 
