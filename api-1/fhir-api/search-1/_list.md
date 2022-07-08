@@ -24,5 +24,3 @@ GET /AllergyIntolerance?patient=42&_list=$current-allergies
 
 This request will return all allergies in the patient 42's "Current Allergy List". The server returns all relevant AllergyIntolerance resources, and can also choose to return the list. 
 
-TBD: test script
-
