@@ -595,7 +595,7 @@ RequestGroup?_include=patient,author
 
 ### (rev)include and \_elements
 
-You can use the extended [elements](\_elements.md#elements-and-rev-includes) parameter to control elements of (rev)included resources by prefixing desired elements with the resource type:
+You can use the extended [elements](\_elements.md) parameter to control elements of (rev)included resources by prefixing desired elements with the resource type:
 
 ```yaml
 GET /Encounter?_include=patient&_elements=id,status,Patient.name,Patient.birthDate

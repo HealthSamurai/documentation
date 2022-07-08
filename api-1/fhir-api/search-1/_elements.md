@@ -2,15 +2,16 @@
 description: Include or exclude specific resource attributes in the search result
 ---
 
-# \_elements
+# _elements
 
 A client can request a specific set of elements to be returned as part of a resource in the search results using the `_elements` parameter:
 
 ```yaml
 GET /Patient?_elements=birthDate,name.given,address.city
+```
 
+```yaml
 # resp
-
 resourceType: Bundle
 type: searchset
 entry:
@@ -35,7 +36,7 @@ The `_elements` parameter consists of a comma-separated list of element paths. O
 
 If you want to exclude specific elements, you can prefix them with the `-` sign: 
 
-```javascript
+```yaml
 GET /Patient?_elements=-text,-identifier
 ```
 
@@ -43,7 +44,7 @@ GET /Patient?_elements=-text,-identifier
 
 You can include or exclude nested elements using a dot separated path to an element:
 
-```javascript
+```yaml
 GET /Patient?_elements=name.given,name.family
 ```
 
