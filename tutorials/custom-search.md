@@ -46,6 +46,8 @@ entry:
     subject:
       resourceType: Patient
       id: patient1
+    class:
+      code: enc1
   request:
     method: POST
     url: "/Encounter"
@@ -56,6 +58,8 @@ entry:
     subject:
       resourceType: Patient
       id: patient1
+    class:
+      code: enc2
   request:
     method: POST
     url: "/Encounter"
@@ -66,14 +70,17 @@ entry:
     subject:
       resourceType: Patient
       id: patient2
+    class:
+      code: enc3
   request:
     method: POST
-    url: "/Encounter"
-```
+    url: "/Encounter"```
 {% endtab %}
 
 {% tab title="Response" %}
 ```yaml
+# Status: 200
+
 # Status: 200
 
 id: '281'
@@ -339,28 +346,48 @@ query: |
 ```yaml
 # Status: 201
 
-query: "SELECT\njsonb_set(p.resource, '{encounters}', json_agg(e.resource::jsonb)::jsonb)\
-  \ AS resource\nFROM (SELECT id, \n      resource_type,\n      jsonb_set(\n     \
-  \   jsonb_set(resource, '{id}', to_jsonb(id)),\n        '{resourceType}', \n   \
-  \     to_jsonb(resource_type)) \n      AS resource \n      FROM patient) AS p\n\
-  JOIN (SELECT id, \n      resource_type, \n      jsonb_set(\n        jsonb_set(resource,\
-  \ '{id}', to_jsonb(id)), \n        '{resourceType}', \n        to_jsonb(resource_type))\
-  \ \n      AS resource \n      FROM encounter) AS e\nON p.id = e.resource->'subject'->>'id'\n\
-  GROUP BY p.id, p.resource\nHAVING p.id = 'patient1';"
+query: >-
+  SELECT
+
+  jsonb_set(p.resource, '{encounters}', json_agg(e.resource::jsonb)::jsonb) AS
+  resource
+
+  FROM (SELECT id, 
+        resource_type,
+        jsonb_set(
+          jsonb_set(resource, '{id}', to_jsonb(id)),
+          '{resourceType}', 
+          to_jsonb(resource_type)) 
+        AS resource 
+        FROM patient) AS p
+  JOIN (SELECT id, 
+        resource_type, 
+        jsonb_set(
+          jsonb_set(resource, '{id}', to_jsonb(id)), 
+          '{resourceType}', 
+          to_jsonb(resource_type)) 
+        AS resource 
+        FROM encounter) AS e
+  ON p.id = e.resource->'subject'->>'id'
+
+  GROUP BY p.id, p.resource
+
+  HAVING p.id = {{params.patient-id}};
 params:
-  patient-id: {isRequired: true}
-id: patient-with-encounters
+  patient-id:
+    isRequired: true
+id: >-
+  patient-with-encounters
 resourceType: AidboxQuery
 meta:
-  lastUpdated: '2018-11-27T13:30:45.670Z'
-  versionId: '37'
-  tag:
-  - {system: 'https://aidbox.app', code: created}
+  lastUpdated: '2022-07-08T12:15:55.520339Z'
+  createdAt: '2022-07-08T12:15:55.520339Z'
+  versionId: '21'
 ```
 {% endtab %}
 {% endtabs %}
 
-Pay attention to the end of the query: we used `{{params.patient.id}}` which takes the value from the request and passes it to the query securely (using PostgreSQL `PREPARE` statement). This means that the user of our custom search can change some parameters of the query and get different results.
+Pay attention to the end of the query: we used `{{params.patient-id}}` which takes the value from the request and passes it to the query securely (using PostgreSQL `PREPARE` statement). This means that the user of our custom search can change some parameters of the query and get different results.
 
 Let's try it in action!
 

@@ -19,7 +19,7 @@ There is no way to implement the efficient multidimensional prefix search with r
 
 Here is how it works.
 
-First of all, you have to describe priority groups of attributes with **by** parameter.  Groups are separated by `;` and inside group you specify the list of paths separated by `,`.  Each path expression consists of dot separated elements and indexes (filters support is coming soon) and should end with primitive type (examples: `name.given` or `identifier.value`).
+First of all, you have to describe priority groups of attributes with **by** parameter.  Groups are separated by `;` and inside group you specify the list of paths separated by `,`.  Each path expression consists of dot separated elements and indexes and should end with primitive type (examples: `name.given` or `identifier.value`).
 
 Result will be sorted with order of priority groups. For example, if you want to rate first matches of name, identifier and birth of data, and second matches in address and telecom you will use following expression:`name.family,name.given,identifier.value,birthDate;address.state,address.city,address.line,telecom.value`
 
