@@ -8,12 +8,12 @@ All resource types in Aidbox are stored in different tables, named with a lowerc
 
 ```
 CREATE TABLE "patient" (
-  id text PRIMARY KEY,               // id of resource
-  txid bigint not null,              // version id and logical transaction id
-  ts timestamptz DEFAULT NOW(),      // last updated time
-  resource_type text,                // resource type
-  status resource_status not null,   // resource status
-  resource jsonb not null            // resource body
+  id text PRIMARY KEY,               -- id of resource
+  txid bigint not null,              -- version id and logical transaction id
+  ts timestamptz DEFAULT NOW(),      -- last updated time
+  resource_type text,                -- resource type
+  status resource_status not null,   -- resource status
+  resource jsonb not null            -- resource body
 );
 ```
 

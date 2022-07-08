@@ -4,7 +4,7 @@ description: Sorting search results
 
 # \_sort
 
-We can sort results by search parameters or dot expressions.
+We can sort results by search parameters or [dot expressions](.-expressions.md).
 
 ```javascript
 GET /Organization?_sort=name
