@@ -6,7 +6,7 @@
 
 ## Prepare Data
 
-We need some sample data to see results of our queries. Let's create it.\
+We need some sample data to see results of our queries. Let's create it using [Batch/Transaction](https://docs.aidbox.app/api-1/transaction).\
 Copy the following snippet to the Aidbox.Cloud `REST Console`.
 
 {% hint style="info" %}
