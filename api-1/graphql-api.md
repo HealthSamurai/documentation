@@ -1,6 +1,6 @@
 # GraphQL API
 
-Aidbox supports default GraphQL implementation without any extensions (spec located [here](http://spec.graphql.org/June2018/))\
+Aidbox supports default GraphQL implementation without any extensions (spec is located [here](http://spec.graphql.org/June2018/))\
 Queries are supported, but mutations are not (yet)
 
 In Aidbox UI there is GraphiQL interface, you can try your queries there.\
@@ -60,7 +60,7 @@ For each ResourceType these queries are generated:
 
 For each ResourceType object with fields is generated.\
 For every FHIR resource attribute field is created.\
-Also for attributes with Reference type unions are created for direct and reverse includes\
+Also for attributes with Reference type unions are created for direct and reverse includes.\
 Reverse include fields have such format: `<revIncludeResourceType>s_as_<includedResourceReferenceSearchParameter>` e.g.:\
 `observations_as_subject` for Patient will be equivalent of `_revinclude=Observation:subject`
 
@@ -68,7 +68,6 @@ Reverse include fields have such format: `<revIncludeResourceType>s_as_<included
 
 {% tabs %}
 {% tab title="Request" %}
-{% code title="POST /$graphql" %}
 ```graphql
 {
   "query" : "
@@ -122,7 +121,6 @@ fragment PractitionerRoleWithPractitioner on PractitionerRole {
 }
 "}
 ```
-{% endcode %}
 {% endtab %}
 
 {% tab title="Response" %}
