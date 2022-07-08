@@ -155,10 +155,7 @@ AccessPolicy:
 
 Aidbox will provide a set of hooks you can hook-in to customize its behavior:
 
-TBD
 
 ### subscriptions
 
 In the subscription section, you can define subscriptions (a special type of hooks, which do not need a response). You can subscribe to specific life-cycle events of resources filtered by criteria or to changes in search queries.
-
-TBD
