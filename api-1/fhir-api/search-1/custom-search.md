@@ -86,7 +86,7 @@ query: |
   GROUP BY resource->>'class'
 ```
 
-Let's upload some sample data using [Bulk Upsert](../../transaction.md#bulk-upsert):
+Let's upload some sample data using [Batch Upsert](../../batch-upsert):
 
 ```yaml
 PUT /
@@ -113,7 +113,7 @@ PUT /
   class: {code: IMP}
   period: {start: "2013-06-07T09:02:01", end: "2013-06-07T15:10:09"}
   resourceType: Encounter
-  id: enc-3
+  id: enc-4
 ```
 
 After you created AidboxQuery, you can use it:
