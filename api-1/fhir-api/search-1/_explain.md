@@ -4,7 +4,7 @@ description: Debug & Optimise your SQL queries for Search
 
 # \_explain
 
-With the nonstandard  `_explain`  parameter, you can inspect the search query execution plan.
+With the nonstandard  `_explain`  parameter you can inspect the search query execution plan.
 
 ```yaml
 GET /Encounter?subject:Patient._ilike=john&_explain=analyze

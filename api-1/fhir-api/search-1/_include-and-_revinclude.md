@@ -9,18 +9,9 @@ A client can add related resources to a search result using **(rev)include** and
 For example, you may want to get encounters with patients (each encounter refers to):
 
 {% tabs %}
-{% tab title="GET" %}
-```yaml
-GET /Encounter?_include=Encounter:subject:Patient
-```
-
-```yaml
-GET /Encounter?_with=subject{Patient}
-```
-{% endtab %}
 
 {% tab title="PUT Patient" %}
-```
+```yaml
 PUT /Patient
 
 resourceType: Patient
@@ -31,7 +22,7 @@ name:
 {% endtab %}
 
 {% tab title="PUT Encounter" %}
-```
+```yaml
 PUT /Encounter
 
 resourceType: Encounter
@@ -43,6 +34,119 @@ class: {code: 'IMP',
   system: 'http://terminology.hl7.org/CodeSystem/v3-ActCode', 
   display: 'inpatient encounter'}
 status: finished
+```
+{% endtab %}
+
+{% tab title="GET" %}
+```yaml
+GET /Encounter?_include=Encounter:subject:Patient
+```
+
+```yaml
+GET /Encounter?_with=subject{Patient}
+```
+{% endtab %}
+
+{% tab title="Result 1" %}
+```yaml
+include-queries:
+  - - SELECT * FROM "patient" WHERE (id in (?)) LIMIT ?
+    - pat-234
+    - 5000
+type: searchset
+resourceType: Bundle
+total: 1
+link:
+  - relation: first
+    url: /Encounter?_include=Encounter:subject:Patient&page=1
+  - relation: self
+    url: /Encounter?_include=Encounter:subject:Patient&page=1
+query-timeout: 60000
+entry:
+  - resource:
+      class:
+        code: IMP
+        system: http://terminology.hl7.org/CodeSystem/v3-ActCode
+        display: inpatient encounter
+      status: finished
+      subject:
+        id: >-
+          pat-234
+        resourceType: Patient
+      id: >-
+        enc-234
+      resourceType: Encounter
+      meta: ...
+    fullUrl: https://searchdoc.edge.aidbox.app/Encounter/enc-234
+    link:
+      - relation: self
+        url: https://searchdoc.edge.aidbox.app/Encounter/enc-234
+  - resource:
+      name:
+        - family: Smith
+      id: >-
+        pat-234
+      resourceType: Patient
+      meta: .,.
+    fullUrl: https://searchdoc.edge.aidbox.app/Patient/pat-234
+    link:
+      - relation: self
+        url: https://searchdoc.edge.aidbox.app/Patient/pat-234
+query-sql:
+  - 'SELECT "encounter".* FROM "encounter" LIMIT ? OFFSET ? '
+  - 100
+  - 0
+```
+{% endtab %}
+
+{% tab title="Result 2" %}
+```yaml
+include-queries:
+  - - SELECT * FROM "patient" WHERE (id in (?)) LIMIT ?
+    - pat-234
+    - 5000
+type: searchset
+resourceType: Bundle
+total: 1
+link:
+  - relation: first
+    url: /Encounter?_with=subject{Patient}&page=1
+  - relation: self
+    url: /Encounter?_with=subject{Patient}&page=1
+entry:
+  - resource:
+      class:
+        code: IMP
+        system: http://terminology.hl7.org/CodeSystem/v3-ActCode
+        display: inpatient encounter
+      status: finished
+      subject:
+        id: >-
+          pat-234
+        resourceType: Patient
+      id: >-
+        enc-234
+      resourceType: Encounter
+      meta: ...
+    fullUrl: https://searchdoc.edge.aidbox.app/Encounter/enc-234
+    link:
+      - relation: self
+        url: https://searchdoc.edge.aidbox.app/Encounter/enc-234
+  - resource:
+      name:
+        - family: Smith
+      id: >-
+        pat-234
+      resourceType: Patient
+      meta: ...
+    fullUrl: https://searchdoc.edge.aidbox.app/Patient/pat-234
+    link:
+      - relation: self
+        url: https://searchdoc.edge.aidbox.app/Patient/pat-234
+query-sql:
+  - 'SELECT "encounter".* FROM "encounter" LIMIT ? OFFSET ? '
+  - 100
+  - 0
 ```
 {% endtab %}
 {% endtabs %}

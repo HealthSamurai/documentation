@@ -8,13 +8,13 @@ Search by the resource profile
 
 {% tabs %}
 {% tab title="FHIR format" %}
-```http
+```yaml
 GET /fhir/Patient?_profile=http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
 ```
 {% endtab %}
 
 {% tab title="Aidbox format" %}
-```http
+```yaml
 GET /Patient?_profile=http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
 ```
 {% endtab %}
@@ -24,13 +24,13 @@ You can search by multiple profiles separated by a comma
 
 {% tabs %}
 {% tab title="FHIR format" %}
-```http
+```yaml
 GET /fhir/Patient?_profile=http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient,http://fhir.nl/fhir/StructureDefinition/nl-core-patient
 ```
 {% endtab %}
 
 {% tab title="Aidbox format" %}
-```http
+```yaml
 GET /Patient?_profile=http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient,http://fhir.nl/fhir/StructureDefinition/nl-core-patient
 ```
 {% endtab %}
