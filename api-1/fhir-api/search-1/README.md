@@ -79,7 +79,7 @@ GET /Patient?name=Max&_elements=id, birthDAte
 
 ## Search Parameters
 
-Search defined in terms of "[search parameters](broken-reference)". SearchParameter is a meta-resource, which describes which part of the resource it is and how you can make it searchable.
+Search defined in terms of "[search parameters](./searchparameter.md)". SearchParameter is a meta-resource, which describes which part of the resource it is and how you can make it searchable.
 
 Search parameter can be one of the following types:&#x20;
 
