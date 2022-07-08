@@ -25,7 +25,7 @@ With parameters which start with dot you can filter resources by equality, e.g. 
 `omit-resources=<boolean>` if set to `true` omits resources leaving only `id` & `resourceType` fields
 
 `_count` & `_page` work as described [here](https://docs.aidbox.app/api-1/fhir-api/search-1/\_count-and-\_page)\
-`_total` & `_countMethod` work as described [here](https://docs.aidbox.app/api-1/fhir-api/search-1/\_total-or-\_countmethod)
+`_total` & `_totalMethod` work as described [here](https://docs.aidbox.app/api-1/fhir-api/search-1/\_total-or-\_countmethod)
 
 ### Notes
 
