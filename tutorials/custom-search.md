@@ -15,7 +15,7 @@ You can use the Copy button near the top right corner of a snippet to avoid copy
 
 {% tabs %}
 {% tab title="Request" %}
-```yaml
+````yaml
 POST /
 Accept: text/yaml
 Content-Type: text/yaml
@@ -75,9 +75,11 @@ entry:
   request:
     method: POST
     url: "/Encounter"```
-{% endtab %}
 
-{% tab title="Response" %}
+</div>
+
+<div data-gb-custom-block data-tag="tab" data-title='Response'>
+
 ```yaml
 # Status: 200
 
@@ -144,7 +146,7 @@ entry:
       tag:
       - {system: 'https://aidbox.app', code: created}
   status: 201
-```
+````
 {% endtab %}
 {% endtabs %}
 
@@ -156,7 +158,7 @@ Aidbox uses PostgreSQL (super advanced open-source DBMS), which allows expressin
 
 First of all, let's try to obtain a list of patients. Access the `DB Console` of our box and run the following code snippets:
 
-![DB Console](<../.gitbook/assets/screenshot-2018-11-27-19.41.13 (1).png>)
+![DB Console](<../.gitbook/assets/Screenshot 2018-11-27 19.41.13.png>)
 
 {% code title="patients.sql" %}
 ```sql
@@ -301,9 +303,9 @@ HAVING p.id = 'patient1';
 
 The result should look like the following table (but without pretty printing):
 
-| id         | resource                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `patient1` | <p><code>{"id":"patient1",</code></p><p> <code>"name":[{"given":["Max"],"family":"Turikov"}],</code></p><p> <code>"encounters":[</code></p><p> <code>{"id":"enc1",</code><br> <code>"status":"draft",</code><br> <code>"subject":{"id":"patient1","resourceType":"Patient"},</code><br> <code>"resourceType":"Encounter"},</code><br> <code>{"id":"enc2",</code><br> <code>"status":"draft",</code><br> <code>"subject":{"id":"patient1","resourceType":"Patient"},</code><br> <code>"resourceType":"Encounter"}],</code><br> <code>"resourceType":"Patient"}</code></p> |
+| id         | resource                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `patient1` | <p><code>{"id":"patient1",</code></p><p><code>"name":[{"given":["Max"],"family":"Turikov"}],</code></p><p><code>"encounters":[</code></p><p><code>{"id":"enc1",</code><br><code>"status":"draft",</code><br><code>"subject":{"id":"patient1","resourceType":"Patient"},</code><br><code>"resourceType":"Encounter"},</code><br><code>{"id":"enc2",</code><br><code>"status":"draft",</code><br><code>"subject":{"id":"patient1","resourceType":"Patient"},</code><br><code>"resourceType":"Encounter"}],</code><br><code>"resourceType":"Patient"}</code></p> |
 
 Now let's make the results of this query accessible via REST API. To do that, we need to create the `AidboxQuery` resource:
 
