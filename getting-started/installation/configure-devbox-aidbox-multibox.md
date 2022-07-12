@@ -31,8 +31,7 @@ All distributions require license details to be provided. Alongside with online 
 | `AIDBOX_CLIENT_SECRET`  | A secret for that Client                                                                                                                                                                                         |
 | `AIDBOX_ADMIN_ID`       | Root User resource id to create on startup                                                                                                                                                                       |
 | `AIDBOX_ADMIN_PASSWORD` | A password for that User                                                                                                                                                                                         |
-| `AIDBOX_LICENSE_ID`     | License id obtained from the license server                                                                                                                                                                      |
-| `AIDBOX_LICENSE_KEY`    | Key for that license                                                                                                                                                                                             |
+| `AIDBOX_LICENSE`        | License JWT obtained from the license server                                                                                                                                                                      |
 
 ### Optional environment variables
 
