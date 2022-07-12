@@ -16,7 +16,7 @@
 * Added a tutorial on how to [create a user and give full access](../../tutorials/creating-user-and-set-up-full-user-access.md).
 * Fixed issues submitted by Aidbox users and fixed minor bugs.&#x20;
 
-## May 2022 _`2205`_ ,_`stable`_
+## May 2022 _`2205`_ , _`stable`_
 
 * Added RPC API access control engines: [allow-rpc engine](../../security-and-access-control-1/security/access-control/#allow-rpc-engine) and attribute-based [matcho-rpc engine](../../security-and-access-control-1/security/access-control/#matcho-rpc-engine).
 * Added GraphQL API resource [history search](../../api-1/graphql-api.md#queries) to retrieve a resource change history.
