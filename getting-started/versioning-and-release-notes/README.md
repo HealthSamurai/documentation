@@ -24,7 +24,7 @@ Aidbox docker images are available on [Docker Hub](https://hub.docker.com/u/heal
 
 **Tagged releases**\
 \
-For every \*\*\*\* release, we create an immutable \*\*\*\* tag in the \*\*\*\* format YYMM (for example it will be **2107** for the 2021 July release).
+For every `:stable` release, we also create a tag in the format YYMM (for example it will be **2107** for the 2021 July release) if you want to check out to a specific Aidbox version.
 
 #### Long-term support releases
 
