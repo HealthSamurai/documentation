@@ -4,14 +4,14 @@
 
 ## June 2022 _`latest`_
 
-* Added an option to [load Aidbox project from a remote Git repository](../../aidbox-configuration/aidbox-zen-lang-project.md#load-project-from-git-repository).
-* Improved Aidbox startup time when loading [Aidbox project](../../aidbox-configuration/aidbox-zen-lang-project.md#aidbox\_zen\_paths) from [a zip archive](../../aidbox-configuration/aidbox-zen-lang-project.md#aidbox\_zen\_paths).
+* Added an option to [load Aidbox project from a remote Git repository](../../aidbox-configuration/aidbox-zen-lang-project/#load-project-from-git-repository).
+* Improved Aidbox startup time when loading [Aidbox project](../../aidbox-configuration/aidbox-zen-lang-project/#aidbox\_zen\_paths) from [a zip archive](../../aidbox-configuration/aidbox-zen-lang-project/#aidbox\_zen\_paths).
 * Added [Aidbox projects terminology bundle](../../terminology/terminology-api.md#import-using-aidbox-project) load cache. Aidbox doesn't load a terminology bundle into its database if the bundle has no changes.
 * [Aidbox project terminology](../../terminology/terminology-api.md#import-using-aidbox-project) bundle load is now async and doesn't affect Aidbox startup time.
 * Added nested resources validation when using [zen profiling](../../profiling-and-validation/profiling-with-zen-lang/).
 * Added params to [load-from-bucket](../../api-1/bulk-api-1/import-from-a-bucket.md#parameters) import operation.&#x20;
 * Improved chained search parameters performance.
-* Added ability to specify SQL migrations in [Aidbox project seed service](../../aidbox-configuration/aidbox-zen-lang-project.md#seed-service).
+* Added ability to specify SQL migrations in [Aidbox project seed service](../../aidbox-configuration/aidbox-zen-lang-project/#seed-service).
 * Enhanced [API constructor ACL](../../aidbox-configuration/aidbox-api-constructor/acl.md) with conditional CRUD  and patient/group level `$export`.
 * Added a tutorial on how to [create a user and give full access](../../tutorials/creating-user-and-set-up-full-user-access.md).
 * Fixed issues submitted by Aidbox users and fixed minor bugs.&#x20;
@@ -33,7 +33,7 @@
 ## April 2022 _`2204`_&#x20;
 
 * Added [ACL (access-control list)](../../aidbox-configuration/aidbox-api-constructor/acl.md) functionality to [API constructor](../../aidbox-configuration/aidbox-api-constructor.md).
-* Released [`seed service`](../../aidbox-configuration/aidbox-zen-lang-project.md#seed-import) for Aidbox project. Declare a set of resources in Aidbox project and get them loaded in one or many Aidboxes on start.
+* Released [`seed service`](../../aidbox-configuration/aidbox-zen-lang-project/#seed-import) for Aidbox project. Declare a set of resources in Aidbox project and get them loaded in one or many Aidboxes on start.
 * Added option to set [PostgreSQL schema](../installation/configure-devbox-aidbox-multibox.md#use-different-postgresql-schema) for Aidbox tables.
 * Added `content-type: application/json` as default if `content-type` and `accept` headers are missing.
 * Added [$drop-cache](../../api-1/cache.md#drop-cache-operation) operation and and [`multibox/drop-box-caches`](../../multibox/multibox-box-manager-api.md#multibox-drop-box-caches) RPC
@@ -47,7 +47,7 @@
 
 * Released a [February 2022 - v:2202 _`LTS`_](release-notes.md#february-2022-v-2202-stable). \_\_ The Aidbox team will backport security and critical bug fixes to it throughout a one-year support window.
 * Added [`aidbox-validation-skip`](../../profiling-and-validation/profiling.md#aidbox-validation-skip-request-header) header that allows skipping resource reference validation.
-* Standardized [Aidbox project](../../aidbox-configuration/aidbox-zen-lang-project.md) entrypoints.
+* Standardized [Aidbox project](../../aidbox-configuration/aidbox-zen-lang-project/) entrypoints.
 * Added fixes to [zen FHIR packages](../../profiling-and-validation/profiling-with-zen-lang/#zen-fhir-packages) and published [Structured Data Capture IG](https://build.fhir.org/ig/HL7/sdc/) as a zen FHIR package.
 * Supported [`:of-type`](../../api-1/fhir-api/search-1/token-search.md) modifier for token/Identifier search.
 * Enhanced [matcho engine](../../security-and-access-control-1/security/access-control/#matcho-engine) with `$every` and `$not` patterns.
@@ -127,7 +127,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 ## September 2021 - v:2109
 
-* Added [Aidbox projects](../../aidbox-configuration/aidbox-zen-lang-project.md) that can be used to configure Aidboxes and validate data. Basically, Aidbox project is a directory with zen-lang edn files that describe Aidbox configuration.
+* Added [Aidbox projects](../../aidbox-configuration/aidbox-zen-lang-project/) that can be used to configure Aidboxes and validate data. Basically, Aidbox project is a directory with zen-lang edn files that describe Aidbox configuration.
 * 5 FHIR compartments are available as default in Aidbox. More details on [Compartments API](https://docs.aidbox.app/api-1/compartments).
 * Added Datadog [integration URL configuration](https://docs.aidbox.app/core-modules/logging-and-audit/aidbox-logs-and-datadog-integration#datadog-logging). So now you can specify in configuration if you want to use one of the following domains`datadoghq.com, us3.datadoghq.com, datadoghq.eu, ddog-gov.com`.
 * Added a tutorial on how to configure [HL7 FHIR Da Vinci PDex Plan Net IG](../../fhir-implementation-guides/hl7-fhir-da-vinci-pdex-plan-net-ig.md) on Aidbox.

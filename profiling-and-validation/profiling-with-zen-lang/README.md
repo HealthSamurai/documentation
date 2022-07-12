@@ -48,7 +48,7 @@ Aidbox team created an open-source tool to generate Zen FHIR packages from FHIR 
 
 It is distributed as a jar file available here&#x20;
 
-Zen FHIR  package is an [Aidbox project](../../aidbox-configuration/aidbox-zen-lang-project.md) saved into zip archive
+Zen FHIR  package is an [Aidbox project](../../aidbox-configuration/aidbox-zen-lang-project/) saved into zip archive
 
 {% hint style="warning" %}
 Zen FHIR Packages require `AIDBOX_CORRECT_AIDBOX_FORMAT` environment variable to be declared
@@ -97,7 +97,7 @@ AIDBOX_ZEN_ENTRYPOINT=project
 
 ### Convert custom FHIR profiles to Zen FHIR package
 
-Using [this tool](https://github.com/zen-lang/fhir/blob/main/README.md) you can generate zen-lang schemas and use them in your [Aidbox projects](../../aidbox-configuration/aidbox-zen-lang-project.md).
+Using [this tool](https://github.com/zen-lang/fhir/blob/main/README.md) you can generate zen-lang schemas and use them in your [Aidbox projects](../../aidbox-configuration/aidbox-zen-lang-project/).
 
 ### Create custom Zen FHIR package based on existing Zen FHIR packages
 
