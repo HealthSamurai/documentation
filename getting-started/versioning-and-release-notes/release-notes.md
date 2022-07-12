@@ -16,7 +16,7 @@
 * Added a tutorial on how to [create a user and give full access](../../tutorials/creating-user-and-set-up-full-user-access.md).
 * Fixed issues submitted by Aidbox users and fixed minor bugs.&#x20;
 
-## May 2022 - v:2205 _`stable`_
+## May 2022 _`2205`_ ,_`stable`_
 
 * Added RPC API access control engines: [allow-rpc engine](../../security-and-access-control-1/security/access-control/#allow-rpc-engine) and attribute-based [matcho-rpc engine](../../security-and-access-control-1/security/access-control/#matcho-rpc-engine).
 * Added GraphQL API resource [history search](../../api-1/graphql-api.md#queries) to retrieve a resource change history.
@@ -30,7 +30,7 @@
 * Added tutorial [how to fix broken dates](../../tutorials/).
 * Released Infrabox preview. Infrabox is a simple and efficient tool to deploy and manage production-ready Aidbox infrastructure on k8s.&#x20;
 
-## April 2022 - v:2204&#x20;
+## April 2022 _`2204`_&#x20;
 
 * Added [ACL (access-control list)](../../aidbox-configuration/aidbox-api-constructor/acl.md) functionality to [API constructor](../../aidbox-configuration/aidbox-api-constructor.md).
 * Released [`seed service`](../../aidbox-configuration/aidbox-zen-lang-project.md#seed-import) for Aidbox project. Declare a set of resources in Aidbox project and get them loaded in one or many Aidboxes on start.
@@ -43,7 +43,7 @@
 * Reviewed first-class extensions with zen-lang and updated [docs](../../modules-1/first-class-extensions.md#first-class-extension-as-zen-profile).
 * Reviewed and updated [Aidbox multitenancy docs](../../security-and-access-control-1/multitenancy/).
 
-## March 2022 - v:2203
+## March 2022 _`2203`_
 
 * Released a [February 2022 - v:2202 _`LTS`_](release-notes.md#february-2022-v-2202-stable). \_\_ The Aidbox team will backport security and critical bug fixes to it throughout a one-year support window.
 * Added [`aidbox-validation-skip`](../../profiling-and-validation/profiling.md#aidbox-validation-skip-request-header) header that allows skipping resource reference validation.
@@ -55,7 +55,7 @@
 * Updated [HL7 v2 module](https://docs.aidbox.app/modules-1/hl7-v2-integration) documentation.
 * Fixed [issues ](https://github.com/Aidbox/Issues/issues?q=is%3Aissue+milestone%3A%22March+2022+-+v%3A2203%22+is%3Aclosed)submitted by Aidbox users.
 
-## February 2022 - v:2202 _`LTS`_
+## February 2022 - `2202` , _`LTS`_
 
 {% hint style="info" %}
 February 2022 - v:2202 is available as a long-term support version. End of life is April 2023.
