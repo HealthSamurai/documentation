@@ -1,4 +1,4 @@
-# Role-Based Access Policies
+# Role-Based Access Control
 
 Aidbox provides role-based access control mechanism based on access policies and Role resource.&#x20;
 
