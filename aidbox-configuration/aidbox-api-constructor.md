@@ -16,7 +16,7 @@ API constructor requires knowledge of [zen language](https://github.com/zen-lang
 #### Usage examples:
 
 * [Sample API](https://github.com/Aidbox/devbox/blob/bb/zrc/mybox.edn) used in this documentation page example.
-* [Smart on FHIR configuration](https://github.com/Aidbox/aidbox-project-samples/blob/main/aidbox-project-samples/onc/smart.edn)
+* [Smart on FHIR configuration](https://github.com/Aidbox/aidbox-project-samples/blob/main/aidbox-project-samples/smartbox/smartbox/smart-api.edn)
 * [ACL example](https://github.com/Aidbox/aidbox-project-samples/tree/main/aidbox-project-samples/acl)
 * [Multitenancy example](https://github.com/Aidbox/aidbox-project-samples/tree/main/aidbox-project-samples/multitenancy)
 
@@ -88,13 +88,13 @@ An `api` describes routing, route can contain operations, subroutes and other ap
  api
  {:zen/tags #{aidbox.rest/api}
   "multi-example" {"Patient" {:apis #{get-patient-api change-patient-api}}}}
- 
+
  change-patient-api
  {:zen/tags    #{aidbox.rest/api}
   :middlewares [inject-tenant-mw]
   :POST multi-box.operations/create-patient
   [:id] {:PUT    multi-box.operations/update-patient
-         :DELETE multi-box.operations/delete-patient}} 
+         :DELETE multi-box.operations/delete-patient}}
 ```
 
 ### `aidbox.rest/op`
@@ -158,13 +158,13 @@ A middleware should be defined with specified `:engine`. The `:engine` determine
  {:zen/tags #{aidbox.rest/middleware}
   :engine aidbox.rest.v1/transform-middleware
   :rules  {[:resource :meta :tenantId]  [:oauth/user :data :tenantId]}}
-  
+
  change-patient-api
  {:zen/tags    #{aidbox.rest/api}
   :middlewares [inject-tenant-mw]
   :POST multi-box.operations/create-patient
   [:id] {:PUT    multi-box.operations/update-patient
-         :DELETE multi-box.operations/delete-patient}} 
+         :DELETE multi-box.operations/delete-patient}}
 ```
 
 #### List of available `aidbox.rest/middleware-engine`&#x20;
