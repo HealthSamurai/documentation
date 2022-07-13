@@ -43,7 +43,7 @@ Github will ask you to confirm your password to continue.
 
 And now you are successfully authorized in Devbox in Cloud. Click the 'New Box' button to start.
 
-![](../../.gitbook/assets/scr-2018-10-11\_10-51-55.png)
+![](<../../.gitbook/assets/scr-2018-10-11\_10-51-55 (1).png>)
 
 In the displayed form, enter your future box name. It can be a name of your application you are going to build. It will be the base URL of your FHIR server.
 
@@ -55,7 +55,7 @@ Choose the desired FHIR version, and click the 'Create' button.
 
 Your new box will be successfully created. Click the box name to proceed.
 
-![](../../.gitbook/assets/scr-2018-10-11\_10-54-04.png)
+![](<../../.gitbook/assets/scr-2018-10-11\_10-54-04 (1).png>)
 
 
 

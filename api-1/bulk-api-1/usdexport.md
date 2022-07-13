@@ -241,6 +241,10 @@ DELETE /fhir/$export-status/<id>
 
 Export data from a FHIR server, whether or not it is associated with a patient. This supports use cases like backing up a server, or exporting terminology data by restricting the resources returned using the `_type` parameter.
 
+{% hint style="warning" %}
+Limitation: export operation will work for standard FHIR resources only, not for custom resources.&#x20;
+{% endhint %}
+
 {% tabs %}
 {% tab title="Request" %}
 ```http
