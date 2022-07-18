@@ -1,6 +1,6 @@
 # Role-Based Access Control
 
-Aidbox provides role-based access control mechanism based on access policies and Role resource.&#x20;
+Aidbox provides role-based access control mechanism based on access policies and Role resource.
 
 Each Role resource assigns a role to a user. Access Policy resource has an optional `roleName` property. Aidbox applies access policy with `roleName` specified only to users which have the corresponding role assigned.
 
@@ -30,11 +30,11 @@ id: user-1
 resourceType: User
 ```
 
-**Note**: _User resource has `roles` property. Aidbox does not assign any special me_a_ning to it._
+**Note**: _User resource has `roles` property. Aidbox does not assign any special meaning to it._
 
 ### Create a Role resource
 
-Role name is a string that defines role. You don't need to declare it explicitly. Role resource links a role and a user.&#x20;
+Role name is a string that defines role. You don't need to declare it explicitly. Role resource links a role and a user.
 
 Role resource has an optional links property which specifies related resources. Aidbox does not assign any special meaning to this property. Additionally, Role is an open resource so you can add any information to it.
 
@@ -45,9 +45,14 @@ POST /Role
 
 id: practioner-role-user-1
 resourceType: Role
+user:
+  id: user-1
+  resourceType: User
 name: practitioner
 links:
-  practitioner: {id: pr-1, resourceType: 'Practitioner'}
+  practitioner:
+    id: pr-1
+    resourceType: 'Practitioner'
 ```
 
 If you need to assign same role to multiple users then just create multiple Role resources with same `name` property.
@@ -75,7 +80,7 @@ matcho:
 
 ### Try it
 
-Log in as `user-1`.&#x20;
+Log in as `user-1`.
 
 Read your data
 
