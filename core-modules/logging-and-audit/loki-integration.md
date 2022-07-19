@@ -4,7 +4,7 @@ description: This section describes how to integrate your Aidbox with Loki.
 
 # Loki Log management integration
 
-[Loki](https://grafana.com/oss/loki/) Loki is a log aggregation system designed to store and query logs.
+[Loki](https://grafana.com/oss/loki/) is a log aggregation system designed to store and query logs.
 
 ## Loki logging
 
