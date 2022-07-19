@@ -18,13 +18,13 @@ AIDBOX_LK_BATCH_SIZE
 # Optional; default: 200.
 # How many log entries to collect before uploading.
 # Aidbox uploads logs when either at least AIDBOX_DD_BATCH_SIZE entries collected 
-# or time passed from previous log uploading exceeds AIDBOX_BATCH_TIMEOUT
+# or time passed from previous log uploading exceeds AIDBOX_LK_BATCH_TIMEOUT
 
 AIDBOX_LK_BATCH_TIMEOUT
 # Optional; default: 3600000 (1 hour)
 # How long to wait before uploading
-# Aidbox uploads logs when either at least AIDBOX_DD_BATCH_SIZE entries collected 
-# or time passed from previous log uploading exceeds AIDBOX_BATCH_TIMEOUT
+# Aidbox uploads logs when either at least AIDBOX_LK_BATCH_SIZE entries collected 
+# or time passed from previous log uploading exceeds AIDBOX_LK_BATCH_TIMEOUT
 ```
 
 {% hint style="warning" %}
