@@ -66,7 +66,17 @@ An ACL operation requires `:filter` to be specified. A `filter` requires to defi
 * `engine`: currently only `aidbox.rest.acl/filter-table-insert-row-sql` is supported
 * `filter-table`: zen symbol defining filter table
 * `params`: sql parameters. See [Parameter section](acl.md#parameter).
-* `values`: values to insert in row. This property value is a map in which keys are column names and values are sql substrings for values.
+* `values`: values to insert in row. This property value is a map in
+  which keys are column names and values are sql substrings for
+  values.
+
+### Conditional CRUD
+
+By default `aidbox.rest.acl/create`,
+`aidbox.rest.acl/conditional-update`,
+`aidbox.rest.acl/conditional-delete` engines doesn't make ACL checks,
+but this behavior could be overwritten by setting
+`BOX_FEATURES_ACL_CONDITIONAL__CRUD__ENABLE__CHECKS` environment variable.
 
 #### Example
 
