@@ -210,6 +210,7 @@
   * [Export logs to ElasticSearch/Kibana](core-modules/logging-and-audit/export-logs-to-elasticsearch-kibana.md)
   * [🎓 Log analysis and visualization tutorial](core-modules/logging-and-audit/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana.md)
   * [Datadog Log management integration](core-modules/logging-and-audit/aidbox-logs-and-datadog-integration.md)
+  * [Loki Log management integration](core-modules/logging-and-audit/loki-integration.md)
   * [🎓 Export logs to Datadog tutorial](core-modules/logging-and-audit/datadog-guide.md)
 
 ## Storage <a href="#storage-1" id="storage-1"></a>
