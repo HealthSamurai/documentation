@@ -70,14 +70,6 @@ An ACL operation requires `:filter` to be specified. A `filter` requires to defi
   which keys are column names and values are sql substrings for
   values.
 
-### Conditional CRUD
-
-By default `aidbox.rest.acl/create`,
-`aidbox.rest.acl/conditional-update`,
-`aidbox.rest.acl/conditional-delete` engines doesn't make ACL checks,
-but this behavior could be overwritten by setting
-`BOX_FEATURES_ACL_CONDITIONAL__CRUD__ENABLE__CHECKS` environment variable.
-
 #### Example
 
 ```clojure
@@ -147,3 +139,11 @@ Defines a path in a request where to get data. The data can be used in a SQL tem
   :source-schema {:type zen/string}
   :path          [:user :id]}
 ```
+
+## Conditional CRUD
+
+By default `aidbox.rest.acl/create`,
+`aidbox.rest.acl/conditional-update`,
+`aidbox.rest.acl/conditional-delete` engines doesn't make ACL checks,
+but this behavior could be overwritten by setting
+`BOX_FEATURES_ACL_CONDITIONAL__CRUD__ENABLE__CHECKS` environment variable.
