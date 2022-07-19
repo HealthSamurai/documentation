@@ -10,6 +10,11 @@
 [aidbox-logs-and-datadog-integration.md](../core-modules/logging-and-audit/aidbox-logs-and-datadog-integration.md)
 {% endcontent-ref %}
 
+{% content-ref url="../core-modules/logging-and-audit/loki-integration.md" %}
+[loki-integration.md](../core-modules/logging-and-audit/loki-integration.md)
+{% endcontent-ref %}
+
+
 ## Monitoring
 
 {% content-ref url="../core-modules/monitoring/grafana-integration.md" %}
