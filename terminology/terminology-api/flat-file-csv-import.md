@@ -16,7 +16,7 @@ When upload is done, rows of the flat file are loaded as `Concept` resources int
 {% tab title="Request" %}
 _Also check "Request with comments" and "Parameters" tabs for full request structure description._
 
-```yaml
+```clojure
 POST /rpc
 content-type: application/edn
 accept: application/edn
@@ -124,7 +124,7 @@ Object with the following structure:
 {% tab title="Result" %}
 Returns object with following attributes:
 
-```yaml
+```clojure
 {:result
   {:count <count of records in the file>,
    :code-system-id <"generated code system uuid">,
@@ -148,14 +148,14 @@ Here are 2 examples importing a fragment of ICD-10. The first one specifies as f
 
 #### Request
 
-```yaml
+```clojure
 POST /rpc
 accept: application/edn
 content-type: application/edn
 
 {:method aidbox.terminology.import-flat/import-from-url
  :params {:source-url "https://storage.googleapis.com/aidbox-public/documentation/icd10_example_no_header.csv"
-          :format      "csv"
+    o      :format      "csv"
           :csv-format  {:delimiter ";"
                         :quote "'"}
 
@@ -170,7 +170,7 @@ content-type: application/edn
 
 #### Response:
 
-```yaml
+```clojure
 {:result
   {:count 8,
    :code-system-id "0be7ce48-edab-497c-bb52-186a9ac64746",
@@ -209,7 +209,7 @@ File is also available [here](https://storage.googleapis.com/aidbox-public/docum
 
 #### Example
 
-```yaml
+```clojure
 POST /rpc
 accept: application/edn
 content-type: application/edn
@@ -238,7 +238,7 @@ content-type: application/edn
 
 #### Response
 
-```yaml
+```clojure
 {:result
   {:count 8,
    :code-system-id "5b56b672-7220-4878-96f6-254df0128a43",
