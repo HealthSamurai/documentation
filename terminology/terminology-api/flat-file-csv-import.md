@@ -257,8 +257,8 @@ ID,REC_CODE,ICD_CODE,ICD_NAME,ID_PARENT,ADDL_CODE,ACTIVE,DATE
 11748,2001203,W50-W64,Exposure to animate mechanical forces,15062,,1,
 11870,2001203W64,W64,Exposure to other and unspecified animate mechanical forces,11748,,1,
 11871,2001203W640,W64.0,Exposure to other and unspecified animate mechanical forces home while engaged in sports activity,11870,,1,
-11872,2001203W641,W64.00,\"Exposure to other and unspecified animate mechanical forces, home, while engaged in sports activity\",11871,,1,
-11873,2001203W641,W64.01,\"Exposure to other and unspecified animate mechanical forces, home, while engaged in leisure activity\",11871,,1,
+11872,2001203W641,W64.00,"Exposure to other and unspecified animate mechanical forces, home, while engaged in sports activity",11871,,1,
+11873,2001203W641,W64.01,"Exposure to other and unspecified animate mechanical forces, home, while engaged in leisure activity",11871,,1,
 ```
 {% endtab %}
 {% endtabs %}
