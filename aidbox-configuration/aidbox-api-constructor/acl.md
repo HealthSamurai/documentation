@@ -140,10 +140,22 @@ Defines a path in a request where to get data. The data can be used in a SQL tem
   :path          [:user :id]}
 ```
 
-## Conditional CRUD
+### Conditional CRUD
 
-By default `aidbox.rest.acl/create`,
+By default, `aidbox.rest.acl/create`,
 `aidbox.rest.acl/conditional-update`,
-`aidbox.rest.acl/conditional-delete` engines doesn't make ACL checks,
-but this behavior could be overwritten by setting
-`BOX_FEATURES_ACL_CONDITIONAL__CRUD__ENABLE__CHECKS` environment variable.
+`aidbox.rest.acl/conditional-delete` engines don't make ACL checks on underlying searches.
+That can lead to "multiple matches" error even when a user doesn't have access to some resources.
+Such behavior could be overwritten by `acl-checks-on-search?` parameter.
+
+#### Example
+
+```clojure
+ observation-conditional-delete
+ {:zen/tags   #{aidbox.rest/op}
+  :engine     aidbox.rest.acl/conditional-delete
+  :resource   "Observation"
+  :format     "fhir"
+  :filter     observation-filter
+  :acl-checks-on-search? true}
+```
