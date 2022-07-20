@@ -2,11 +2,11 @@
 
 If you have a terminology distributed as a flat file, for example CSV, you can use this API to import it as a set of [Concept](../concept.md) resources and later use them with [Terminology API](../terminology.md).
 
-### Load from URL
+## Load from URL
 
 Aidbox provides RPC API to load terminology from a flat file by url.
 
-#### RPC `aidbox.terminology.import-flat/import-from-url`
+### RPC `aidbox.terminology.import-flat/import-from-url`
 
 This method accepts an URL pointing to a flat file with a terminology, file format description, columns to [concept](../concept.md) mapping, `CodeSystem` resource and `ValueSet` resource. For hierarchical terminology it can build [hierarchy materialized paths](../concept.md#hierarchy).
 
@@ -133,7 +133,7 @@ Returns object with following attributes:
 {% endtab %}
 {% endtabs %}
 
-**Examples**
+#### Examples
 
 Here are 2 examples importing a fragment of ICD-10. The first one specifies as few parameters as possible and uses a CSV file without a header. The second one uses a CSV with header and also specifies deprecation criteria, hierarchy parameters and concept properties mapping. Below examples there are commentaries of parameters  and contents of used CSV files.
 
