@@ -7,12 +7,13 @@ description: Use a pre-packages terminology bundles to import codes into Aidbox
 ### Import using Aidbox project
 
 Specify path or url to zen terminology bundle in [`AIDBOX_ZEN_PATHS` environment variable](https://docs.aidbox.app/aidbox-configuration/aidbox-zen-lang-project#load-project-using-environment-variables). \
-\
 Source is either `url` or `path`. `url` is used to download Aidbox project from a remote location; `path` is used to load Aidbox project from the filesystem.\
 \
-Terminology bundles are .ndjson.gz files with filenames matching \*terminology-bundle.ndjson.gz wildcard.
-
 Aidbox imports terminology bundles found in zen paths.
+Bundles are just `.ndjson.gz` files with filenames matching \*terminology-bundle.ndjson.gz wildcard.
+By default, the import is done asynchronously. In some cases (e.g CI/CD pipeline) you might want to override such behavior. 
+Setting `BOX_FEATURES_TERMINOLOGY_IMPORT_SYNC` environment variable will change the import mode to synchronous.
+
 
 #### Import terminology bundle from local system using Aidbox project
 
