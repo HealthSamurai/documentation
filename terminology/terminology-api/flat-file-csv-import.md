@@ -102,7 +102,7 @@ Object with the following structure:
 * `value-set` - **Required**. ValueSet resource. Aidbox creates this resource
   * `url` - **Required**. ValueSet canonical URL
 * `header` - **Required**. Set `true` if the flat file contains header, otherwise `false`
-* `header-row` - **Required** if `header` `true`. The flat file header row index. Row indexing starts with 0
+* `header-row` - _Required if `header`  `true`_. The flat file header row index. Row indexing starts with 0
 * `data-row` - **Required**. Index of the first row where data starts in the flat file
 * `hierarchy` - _Optional_. Set `true` if terminology is hierarchical. If `true` Aidbox builds hierarchy materialized paths for each concept
 * `mapping` - **Required**. Mapping of the flat file columns to Concept resource. If `header true` put the column as a string, otherwise put an integer as a column index (indexing starts with 0)
@@ -113,9 +113,9 @@ Object with the following structure:
       * `column` - _Optional_. Maps to Concept.display
     * `deprecated?`
       * `column` - _Optional_. Maps to Concept.deprecated
-      * `true-values` - **Required** if `deprecated? <column>` specified. List of values indicating that a Concept is deprecated. For example: `:true-values ["inactive" "deprecated"]`
-    * `parent-id` - **Required** if `hierarchy true`. Maps to Concept.parent-id. Aidbox uses this value to find parent Concepts when building materialized paths
-    * `hierarchy-id` - **Required** if `hierarchy true`. Maps to Concept.hierarchy-id. Aidbox uses this value to check if this Concept is a parent when building materialized paths
+      * `true-values` - _Required if `deprecated? <column>` specified_. List of values indicating that a Concept is deprecated. For example: `:true-values ["inactive" "deprecated"]`
+    * `parent-id` - _Required if `hierarchy true`_. Maps to Concept.parent-id. Aidbox uses this value to find parent Concepts when building materialized paths
+    * `hierarchy-id` - _Required if `hierarchy true`_. Maps to Concept.hierarchy-id. Aidbox uses this value to check if this Concept is a parent when building materialized paths
   * `property` _Optional_. Maps to `Concept.property.<property-name>`
     * `<property-name>`
       * `column` - Reference to the flat file column.
