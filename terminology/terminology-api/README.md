@@ -41,8 +41,8 @@ Aidbox will import terminology from the specified path on start.
 
 ### Import from flat file (CSV)
 
-{% content-ref url="flat-file-csv-import.md" %}
-[flat-file-csv-import.md](flat-file-csv-import.md)
+{% content-ref url="import-flat-file-csv.md" %}
+[import-flat-file-csv.md](import-flat-file-csv.md)
 {% endcontent-ref %}
 
 ### /terminology/$import

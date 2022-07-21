@@ -121,7 +121,7 @@
 
 * [Aidbox terminology module overview](terminology/terminology.md)
 * [Import external (not-present) terminologies](terminology/terminology-api/README.md)
-  * [Flat file (CSV) import](terminology/terminology-api/flat-file-csv-import.md)
+  * [Import flat file (CSV)](terminology/terminology-api/import-flat-file-csv.md)
 * [Concept](terminology/concept.md)
 * [CodeSystem](terminology/codesystem-and-concept/README.md)
   * [CodeSystem Concept Lookup](terminology/codesystem-and-concept/concept-lookup.md)
