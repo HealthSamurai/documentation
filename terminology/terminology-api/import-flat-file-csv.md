@@ -1,4 +1,4 @@
-# Flat file (CSV) import
+# Import flat file (CSV)
 
 If you have a terminology distributed as a flat file, for example CSV, you can use this API to import it as a set of [Concept](../concept.md) resources and later use them with [Terminology API](../terminology.md).
 
@@ -34,6 +34,8 @@ accept: application/edn
   :data-row   <integer>
   :hierarchy  <true|false>
 
+  ;; If `:header true` put the <column> as a string,
+  ;; otherwise put an integer as a column index (indexing starts with 0)
   :mapping {:concept {:code        {:column <column>}
                       :display     {:column <column>}
                       :deprecated? {:column <column>
@@ -69,13 +71,13 @@ accept: application/edn
   :value-set {;; Required. ValueSet resource. Aidbox creates this resource
               :url "<ValueSet url>"} ;; Required. ValueSet canonical URL
 
-  :header <true|false> ;; Required. Set true if the flat file contains header, otherwhise false
+  :header <true|false> ;; Required. Set true if the flat file contains header, otherwise false
   :header-row <integer> ;; Required if `:header true`. The flat file header row index. Row indexing starts with 0
   :data-row <integer> ;; Required. Index of the first row where data starts in the flat file
   :hierarchy <true|false> ;; Optional. Set true if terminology is hierarchical. If true Aidbox builds hierarchy materialized paths for each concept
 
   :mapping {;; Required. Mapping of the flat file columns to Concept resource.
-            ;; If `:header true` put the <column> as a string, otherwhise put an integer as a column index (indexing starts with 0)
+            ;; If `:header true` put the <column> as a string, otherwise put an integer as a column index (indexing starts with 0)
             :concept {;; Required. Maps to main part of a Concept resource.
                       :code {:column <column>} ;; Required. Maps to Concept.code
                       :display {:column <column>} ;; Optional. Maps to Concept.display
