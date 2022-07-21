@@ -218,7 +218,7 @@ content-type: application/edn
 
 {:method aidbox.terminology.import-flat/import-from-url
  :params
- {:source-url  "https://storage.googleapis.com/aidbox-public/documentation/icd10_example_with_header.csv"
+ {:source-url  "https://storage.googleapis.com/aidbox-public/documentation/icd10_example_w_header.csv"
   :format      "csv"
   :csv-format  {:delimiter ","
                 :quote "\""}
