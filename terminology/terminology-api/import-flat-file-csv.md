@@ -195,6 +195,30 @@ File is also available [here](https://storage.googleapis.com/aidbox-public/docum
 11872;2001203W641;W64.00;Exposure to other and unspecified animate mechanical forces, home, while engaged in sports activity;11871;;1;
 11873;2001203W641;W64.01;Exposure to other and unspecified animate mechanical forces, home, while engaged in leisure activity;11871;;1;
 ```
+
+#### Imported `Concept` resources
+
+Loaded resources sample _(some output parts are omitted)_
+
+```clojure
+[{:resourceType "Concept"
+  :code "XX"
+  :display "External causes of morbidity and mortality"
+  :system "http://hl7.org/fhir/sid/icd-10"
+  ...}
+ ...
+ {:resourceType "Concept"
+  :code "W00-X59"
+  :display "Other external causes of accidental injury"
+  :system "http://hl7.org/fhir/sid/icd-10"
+  ...}
+ ...
+ {:resourceType "Concept"
+  :code "W64.01"
+  :display "Exposure to other and unspecified animate mechanical forces, home, while engaged in leisure activity"
+  :system "http://hl7.org/fhir/sid/icd-10"
+  ...}]
+```
 {% endtab %}
 
 {% tab title="Request with header parameter" %}
@@ -265,6 +289,34 @@ ID,REC_CODE,ICD_CODE,ICD_NAME,ID_PARENT,ADDL_CODE,ACTIVE,DATE
 11871,2001203W640,W64.0,Exposure to other and unspecified animate mechanical forces home while engaged in sports activity,11870,,1,
 11872,2001203W641,W64.00,"Exposure to other and unspecified animate mechanical forces, home, while engaged in sports activity",11871,,1,
 11873,2001203W641,W64.01,"Exposure to other and unspecified animate mechanical forces, home, while engaged in leisure activity",11871,,1,
+```
+
+#### Imported `Concept` resources
+
+Loaded resources sample _(some output parts are omitted)_
+
+```clojure
+[{:resourceType "Concept"
+  :code "XX"
+  :hierarchy ["XX"]
+  :display "External causes of morbidity and mortality"
+  :system "http://hl7.org/fhir/sid/icd-10"
+  ...}
+ ...
+ {:resourceType "Concept"
+  :code "W00-X59"
+  :hierarchy ["XX" "V01-X59" "W00-X59"]
+  :display "Other external causes of accidental injury"
+  :system "http://hl7.org/fhir/sid/icd-10"
+  :property {:updated_date "10/07/2020"}
+  ...}
+ ...
+ {:resourceType "Concept"
+  :code "W64.01"
+  :hierarchy ["XX" "V01-X59" "W00-X59" "W50-W64" "W64" "W64.0" "W64.01"]
+  :display "Exposure to other and unspecified animate mechanical forces, home, while engaged in leisure activity"
+  :system "http://hl7.org/fhir/sid/icd-10"
+  ...}]
 ```
 {% endtab %}
 {% endtabs %}
