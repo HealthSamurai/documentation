@@ -14,7 +14,7 @@ When upload is done, rows of the flat file are loaded as `Concept` resources int
 
 {% tabs %}
 {% tab title="Request" %}
-_Also check "Request with comments" and "Parameters" tabs for full request structure description._
+_Also check "Request with comments" and "Parameters" tabs for the full request structure description._
 
 ```clojure
 POST /rpc
@@ -29,16 +29,16 @@ accept: application/edn
   :csv-format {:delimiter "<char>"
                :quote "<char>"}
 
-  :header <true|false>
+  :header     <true|false>
   :header-row <integer>
-  :data-row <integer>
-  :hierarchy <true|false>
+  :data-row   <integer>
+  :hierarchy  <true|false>
 
-  :mapping {:concept {:code {:column <column>}
-                      :display {:column <column>}
+  :mapping {:concept {:code        {:column <column>}
+                      :display     {:column <column>}
                       :deprecated? {:column <column>
                                     :true-values ["<string>"]}
-                      :parent-id {:column <column>}
+                      :parent-id    {:column <column>}
                       :hierarchy-id {:column <column>}}
             :property {"<property-name>" {:column <column>}}}
 
@@ -140,8 +140,9 @@ Here are 2 examples importing a fragment of ICD-10. The first one specifies as f
 {% tabs %}
 {% tab title="Request without header parameter" %}
 * CSV file delimiter is `;`.This file contains no quoted strings, but since `:quote` parameter is required `'` character is used
-* `Concept.code` is mapped to the column with index `2`
-* `Concept.display` is mapped to the column with index `3`
+* This file contains no header and data starts at the row `0`.
+* `Concept.code` is mapped to the column with the index `2`
+* `Concept.display` is mapped to the column with the index `3`
 * Request will create
   * a `CodeSystem/icd10` resource with `:url http://hl7.org/fhir/sid/icd-10`
   * a `ValueSet/icd10` resource with `:url http://hl7.org/fhir/ValueSet/icd-10`
@@ -154,18 +155,19 @@ accept: application/edn
 content-type: application/edn
 
 {:method aidbox.terminology.import-flat/import-from-url
- :params {:source-url "https://storage.googleapis.com/aidbox-public/documentation/icd10_example_no_header.csv"
-    o      :format      "csv"
-          :csv-format  {:delimiter ";"
-                        :quote "'"}
+ :params
+ {:source-url "https://storage.googleapis.com/aidbox-public/documentation/icd10_example_no_header.csv"
+  :format      "csv"
+  :csv-format  {:delimiter ";"
+                :quote "'"}
 
-          :header   false
-          :data-row 0
-          :mapping  {:concept  {:code    {:column 2}
-                                :display {:column 3}}}
+  :header   false
+  :data-row 0
+  :mapping  {:concept {:code    {:column 2}
+                       :display {:column 3}}}
 
-          :code-system {:id "icd10", :url "http://hl7.org/fhir/sid/icd-10"}
-          :value-set   {:id "icd10", :url "http://hl7.org/fhir/ValueSet/icd-10"}}}
+  :code-system {:id "icd10", :url "http://hl7.org/fhir/sid/icd-10"}
+  :value-set   {:id "icd10", :url "http://hl7.org/fhir/ValueSet/icd-10"}}}
 ```
 
 #### Response:
@@ -195,7 +197,7 @@ File is also available [here](https://storage.googleapis.com/aidbox-public/docum
 
 {% tab title="Request with header parameter" %}
 * Value delimiter is `,` and string quotation is `"`
-* Header is in the first line (line index is `0`) and data starts in the next line (line index `1`)&#x20;
+* Header is in the first row (index is `0`) and data starts at the next row (index `1`)&#x20;
 * Materialized paths building is enabled, thus `:hierarchy true`
   * Column `ID_PARENT` is used to find parents
   * Column `ID` is used to resolve when a row is referenced as a parent
@@ -215,25 +217,27 @@ accept: application/edn
 content-type: application/edn
 
 {:method aidbox.terminology.import-flat/import-from-url
- :params {:source-url  "https://storage.googleapis.com/aidbox-public/documentation/icd10_example_with_header.csv"
-          :format      "csv"
-          :csv-format  {:delimiter ","
-                        :quote "\""}
+ :params
+ {:source-url  "https://storage.googleapis.com/aidbox-public/documentation/icd10_example_with_header.csv"
+  :format      "csv"
+  :csv-format  {:delimiter ","
+                :quote "\""}
 
-          :header      true
-          :header-row  0
-          :data-row    1
-          :hierarchy   true
-          :mapping     {:concept  {:code        {:column "ICD_CODE"}
-                                   :display     {:column "ICD_NAME"}
-                                   :deprecated? {:column "ACTIVE"
-                                                 :true-values ["0"]}
-                                   :parent-id    {:column "ID_PARENT"}
-                                   :hierarchy-id {:column "ID"}}
-                        :property {"updated_date" {:column "DATE"}}}
+  :header      true
+  :header-row  0
+  :data-row    1
+  :hierarchy   true
+  :mapping     {:concept {:code        {:column "ICD_CODE"}
+                          :display     {:column "ICD_NAME"}
+                          :deprecated? {:column "ACTIVE"
+                                        :true-values ["0"]}
+                          :parent-id    {:column "ID_PARENT"}
+                          :hierarchy-id {:column "ID"}}
+                :property {"updated_date" {:column "DATE"}}}
 
-          :code-system {:id "icd10", :url "http://hl7.org/fhir/sid/icd-10"}
-          :value-set   {:id "icd10", :url "http://hl7.org/fhir/ValueSet/icd-10"}}}
+  :code-system {:id "icd10", :url "http://hl7.org/fhir/sid/icd-10"}
+  :value-set   {:id "icd10", :url "http://hl7.org/fhir/ValueSet/icd-10"}}}
+
 ```
 
 #### Response
