@@ -135,7 +135,7 @@ Returns object with following attributes:
 
 #### Examples
 
-Here are 2 examples importing a fragment of ICD-10. The first one specifies as few parameters as possible and uses a CSV file without a header. The second one uses a CSV with header and also specifies deprecation criteria, hierarchy parameters and concept properties mapping. Below examples there are commentaries of parameters  and contents of used CSV files.
+Here are 2 examples importing a fragment of ICD-10. The first one specifies as few parameters as possible and uses a CSV file without a header. The second one uses a CSV with a header and also specifies a deprecation criteria, hierarchy parameters and a concept properties mapping. Both examples have commentaries of used parameters and contents of imported CSV files.
 
 {% tabs %}
 {% tab title="Request without header parameter" %}
