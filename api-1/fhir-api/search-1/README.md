@@ -69,6 +69,7 @@ GET /Patient?name=Max&_elements=id, birthDAte
 | [\_sort](\_sort.md)                           | FHIR  | Sort search results                                               |
 | [\_total](\_total-or-\_countmethod.md)        | FHIR  | Turn on/off total count                                           |
 | [\_include](\_include-and-\_revinclude.md)    | FHIR  | Include referenced resources into result                          |
+| [\_with](\_include-and-\_revinclude.md) | Aidbox  | Include into result resources (compact way compared to _include and _revinclude) |
 | [\_revinclude](\_include-and-\_revinclude.md) | FHIR  | Include into result resources, which reference searched resources |
 | [\_explain](\_explain.md)                     |       | Get query execution plan                                          |
 | [\_result](\_result.md)                       |       | Change result format                                              |

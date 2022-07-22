@@ -4,7 +4,7 @@ description: Include associated resources
 
 # \_include & \_revinclude
 
-A client can add related resources to a search result using **(rev)include** and **with** parameters. In ORM frameworks, such feature is sometimes called an "associations eager loading". This technique can save extra roundtrips from the client to the server and potential N+1 problem.
+A client can add related resources to a search result using **[(rev)include](https://www.hl7.org/fhir/search.html#revinclude)** FHIR parameters and **with** Aidbox parameter. In ORM frameworks, such feature is sometimes called an "associations eager loading". This technique can save extra roundtrips from the client to the server and potential N+1 problem.
 
 For example, you may want to get encounters with patients (each encounter refers to):
 
@@ -46,8 +46,9 @@ GET /Encounter?_with=subject{Patient}
 ```
 {% endtab %}
 
-{% tab title="Result 1" %}
+{% tab title="Result (_include)" %}
 ```yaml
+...
 include-queries:
   - - SELECT * FROM "patient" WHERE (id in (?)) LIMIT ?
     - pat-234
@@ -60,6 +61,56 @@ link:
     url: /Encounter?_include=Encounter:subject:Patient&page=1
   - relation: self
     url: /Encounter?_include=Encounter:subject:Patient&page=1
+entry:
+  - resource:
+      class:
+        code: IMP
+        system: http://terminology.hl7.org/CodeSystem/v3-ActCode
+        display: inpatient encounter
+      status: finished
+      subject:
+        id: >-
+          pat-234
+        resourceType: Patient
+      id: >-
+        enc-234
+      resourceType: Encounter
+      meta: ...
+    fullUrl: ...
+    link: ...
+  - resource:
+      name:
+        - family: Smith
+      id: >-
+        pat-234
+      resourceType: Patient
+      meta: ...
+    search:
+      mode: include
+    fullUrl: ...
+    link: ...
+query-sql:
+  - 'SELECT "encounter".* FROM "encounter" LIMIT ? OFFSET ? '
+  - 100
+  - 0
+```
+{% endtab %}
+
+{% tab title="Result (_with)" %}
+```yaml
+...
+include-queries:
+  - - SELECT * FROM "patient" WHERE (id in (?)) LIMIT ?
+    - pat-234
+    - 5000
+type: searchset
+resourceType: Bundle
+total: 1
+link:
+  - relation: first
+    url: /Encounter?_with=subject{Patient}&page=1
+  - relation: self
+    url: /Encounter?_with=subject{Patient}&page=1
 query-timeout: 60000
 entry:
   - resource:
@@ -76,61 +127,10 @@ entry:
         enc-234
       resourceType: Encounter
       meta: ...
-    fullUrl: https://searchdoc.edge.aidbox.app/Encounter/enc-234
+    fullUrl: ...
     link:
       - relation: self
-        url: https://searchdoc.edge.aidbox.app/Encounter/enc-234
-  - resource:
-      name:
-        - family: Smith
-      id: >-
-        pat-234
-      resourceType: Patient
-      meta: .,.
-    fullUrl: https://searchdoc.edge.aidbox.app/Patient/pat-234
-    link:
-      - relation: self
-        url: https://searchdoc.edge.aidbox.app/Patient/pat-234
-query-sql:
-  - 'SELECT "encounter".* FROM "encounter" LIMIT ? OFFSET ? '
-  - 100
-  - 0
-```
-{% endtab %}
-
-{% tab title="Result 2" %}
-```yaml
-include-queries:
-  - - SELECT * FROM "patient" WHERE (id in (?)) LIMIT ?
-    - pat-234
-    - 5000
-type: searchset
-resourceType: Bundle
-total: 1
-link:
-  - relation: first
-    url: /Encounter?_with=subject{Patient}&page=1
-  - relation: self
-    url: /Encounter?_with=subject{Patient}&page=1
-entry:
-  - resource:
-      class:
-        code: IMP
-        system: http://terminology.hl7.org/CodeSystem/v3-ActCode
-        display: inpatient encounter
-      status: finished
-      subject:
-        id: >-
-          pat-234
-        resourceType: Patient
-      id: >-
-        enc-234
-      resourceType: Encounter
-      meta: ...
-    fullUrl: https://searchdoc.edge.aidbox.app/Encounter/enc-234
-    link:
-      - relation: self
-        url: https://searchdoc.edge.aidbox.app/Encounter/enc-234
+        url: ...
   - resource:
       name:
         - family: Smith
@@ -138,10 +138,12 @@ entry:
         pat-234
       resourceType: Patient
       meta: ...
-    fullUrl: https://searchdoc.edge.aidbox.app/Patient/pat-234
+    search:
+      mode: include
+    fullUrl: ...
     link:
       - relation: self
-        url: https://searchdoc.edge.aidbox.app/Patient/pat-234
+        url: ...
 query-sql:
   - 'SELECT "encounter".* FROM "encounter" LIMIT ? OFFSET ? '
   - 100
@@ -150,25 +152,26 @@ query-sql:
 {% endtab %}
 {% endtabs %}
 
-Or patients with conditions (i.e. by a reverse reference):
+Or you can request patients and return all Encounter resources that refer to them (by a reverse reference):
 
 ```yaml
 GET /Patient?_revinclude=Encounter:subject:Patient
 ```
 
+Aidbox can do the same in a compact way: 
 ```yaml
 GET /Patient?_with=Encounter.subject
 ```
 
 ### \_include
 
-Syntax for include:
+Syntax for the _include search parameter:
 
-```
+```yaml
  _include(:reverse|:iterate|:logical)=(source-type:)search-param:(:target-type)
 ```
 
-**search-param** is a name of the search parameter with the type `reference` defined for **source-type**.
+Here **search-param** is a name of the search parameter with the type `reference` defined for **source-type**.
 
 This query can be interpreted in the following manner. For the **source-type** resources in the result include all **target-type resources,** which are referenced by the **search-param**. If you skip the **source-type,** it will be set to the resource-type you are searching for:
 
