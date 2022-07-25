@@ -4,7 +4,7 @@ description: >-
   FHIR.
 ---
 
-# Getting started
+# Aidbox documentation
 
 [Aidbox](https://www.health-samurai.io/aidbox) is a backend development platform for modern healthcare applications. Aidbox users have already built cloud EHR systems, patient-facing mobile applications, data-analytics products, and integration platforms.
 
@@ -26,15 +26,17 @@ Aidbox uses [FHIR](https://www.hl7.org/fhir/overview.html) as a foundation and p
 
 ​[Aidbox](https://www.health-samurai.io/aidbox) is a metadata-driven platform. It means that almost everything in Aidbox is represented as data (resources). For example, REST endpoints (operations), resource definitions, profiles, and access policies are resources in Aidbox. We call them meta-resources. Meta-resources play by the same rules as other resources - you can request and manipulate meta-resources with the use of the unified REST API.
 
-### Get your Aidbox
+### Try Aidbox
 
-You can try Aidbox in the cloud or get a free Devbox version for development and evaluation on your local computer.
+You can try Aidbox in the cloud or get a free version evaluation on your local computer.
 
-To get cloud sandbox, you need to log in with GitHub or Google account at [https://aidbox.app](https://aidbox.app/) and create a new Box. Each Box is a private instance of a FHIR server with a separate database and domain. You can create multiple boxes for development and evaluation.
+{% content-ref url="getting-started/run-aidbox-in-aidbox-sandbox.md" %}
+[run-aidbox-in-aidbox-sandbox.md](getting-started/run-aidbox-in-aidbox-sandbox.md)
+{% endcontent-ref %}
 
-To try Aidbox locally, you can get a free [Devbox](https://docs.aidbox.app/installation/setup-aidbox.dev) version in a Docker container. Do not forget that you can't load real healthcare data or PHI (Protected Health Information) to Aidbox cloud sandbox or Devbox. When setting up a staging or production environment for your healthcare application, please reach out to us for a paid Aidbox license.
-
-Health Samurai provides all kinds of support for Aidbox; you can learn more about it at [Aidbox Licensing and Support](https://docs.aidbox.app/editions-and-pricing).
+{% content-ref url="getting-started/run-aidbox-locally-with-docker/" %}
+[run-aidbox-locally-with-docker](getting-started/run-aidbox-locally-with-docker/)
+{% endcontent-ref %}
 
 ### FHIR & Aidbox
 
