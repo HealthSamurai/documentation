@@ -4,7 +4,7 @@ description: ilike search by resource content
 
 # \_ilike
 
-With **\_ilike** search parameter you search for terms inclusion as substring  in text representation of FHIR resource. Interesting feature of this parameter, that it can provide quick feedback to user about matches without forcing to print the whole word (as with full text search). For example `jo` will find Johns and Jolie or `asp` will match Aspirin.
+With **\_ilike** search parameter you search for terms inclusion as substring in text representation of FHIR resource. Interesting feature of this parameter, that it can provide quick feedback to user about matches without forcing to print the whole word (as with full text search). For example `jo` will find Johns and Jolie or `asp` will match Aspirin.
 
 That's why it is default search in Aidbox Console user interface.
 
@@ -13,6 +13,7 @@ GET /Patient?_ilike=joh+smit,jes+park
 ```
 
 With **\_ilike** parameter you term separated with space combined with `AND` and separated by comma `,` with `OR`. Example above is translated into SQL query like this:
+
 ```sql
 SELECT * FROM patient
 WHERE

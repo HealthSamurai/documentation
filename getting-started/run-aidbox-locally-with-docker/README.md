@@ -99,13 +99,15 @@ PGDATABASE=devbox
 ```
 {% endcode %}
 
-Insert your license key into environment file. Add line
+Insert your license key into environment file. Change the line
 
 ```shell
 AIDBOX_LICENSE=<your-license-key>
 ```
 
 to the `.env` file where `<your-license-key>` is a license key which you obtained on the  [get a license](./#get-a-license) step.
+
+You can find more about required Aidbox environment variables [here.](../../reference/configuration/environment-variables/aidbox-required-environment-variables.md)
 
 ### Launch Aidbox
 

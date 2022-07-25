@@ -4,7 +4,7 @@ description: >-
   development
 ---
 
-# Versioning & Release Notes
+# Versioning
 
 ### Aidbox release cycle
 

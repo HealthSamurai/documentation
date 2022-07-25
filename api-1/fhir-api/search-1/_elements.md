@@ -2,7 +2,7 @@
 description: Include or exclude specific resource attributes in the search result
 ---
 
-# _elements
+# \_elements
 
 A client can request a specific set of elements to be returned as part of a resource in the search results using the `_elements` parameter:
 
@@ -34,7 +34,7 @@ The `_elements` parameter consists of a comma-separated list of element paths. O
 
 ### Exclude
 
-If you want to exclude specific elements, you can prefix them with the `-` sign: 
+If you want to exclude specific elements, you can prefix them with the `-` sign:
 
 ```yaml
 GET /Patient?_elements=-text,-identifier
@@ -48,13 +48,12 @@ You can include or exclude nested elements using a dot separated path to an elem
 GET /Patient?_elements=name.given,name.family
 ```
 
-### Elements and \(rev\)includes
+### Elements and (rev)includes
 
- The \_elements parameter is not applied to included resources. If you want to filter included resources elements, prefix the element path with resourceType. For example:
+The \_elements parameter is not applied to included resources. If you want to filter included resources elements, prefix the element path with resourceType. For example:
 
 ```yaml
 GET /Encounter?_include=patient&_elements=id,type,Patient.name
 ```
 
-Result will contain id and type elements from Encounter and name from Patient. The `-` prefix will exclude elements \(for example `-Patient.identifier` will exclude the identifier from Patient resources\).
-
+Result will contain id and type elements from Encounter and name from Patient. The `-` prefix will exclude elements (for example `-Patient.identifier` will exclude the identifier from Patient resources).

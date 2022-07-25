@@ -18,6 +18,6 @@ All distributions require license details to be provided. Alongside with online 
 
 For more information take a look at the environment variables page.
 
-{% content-ref url="../reference/configuration/environment-variables/" %}
-[environment-variables](../reference/configuration/environment-variables/)
+{% content-ref url="../../reference/configuration/environment-variables/" %}
+[environment-variables](../../reference/configuration/environment-variables/)
 {% endcontent-ref %}

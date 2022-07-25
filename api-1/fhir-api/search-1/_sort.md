@@ -4,7 +4,7 @@ description: Sorting search results
 
 # \_sort
 
-We can sort results by search parameters or [dot expressions](../.-expressions.md).
+We can sort results by search parameters or [dot expressions](.-expressions.md).
 
 ```javascript
 GET /Organization?_sort=name
@@ -35,7 +35,7 @@ GET /Organization?_sort=-lastUpdated
 
 ### . expressions
 
-[Dot expressions](../.-expressions.md) can be used in sorting:
+[Dot expressions](.-expressions.md) can be used in sorting:
 
 ```javascript
 GET /Patient?_sort=.name.0.family

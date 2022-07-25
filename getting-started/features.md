@@ -14,7 +14,7 @@ Aidbox supports all major versions of FHIR: DSTU2, STU3, and R4. Strict validati
 
 Aidbox uses PostgreSQL exclusively but squeezes everything out of this database technology. Most of Aidbox flexibility and performance is coming from advanced PostgreSQL features like binary JSON, rich indexing system, etc. SQL is the second Aidbox API, which gives you extra power on structured data. Read more about our [database internals](https://docs.aidbox.app/storage-1/database).
 
-### OAuth & OIDC; User Management \(SCIM\)
+### OAuth & OIDC; User Management (SCIM)
 
 Aidbox has built-in [OAuth 2.0](https://docs.aidbox.app/auth-betta) OpenID Connect server and can work as Resource Server.
 
@@ -49,4 +49,3 @@ Aidbox integrates quickly and easily with an [SDK](https://docs.aidbox.app/aidbo
 ### Cloud infrastructure
 
 Modern healthcare systems live in the cloud, and we designed Aidbox for the cloud. Aidbox comes with an automated cloud infrastructure built on Kubernetes for deployment to Amazon AWS, Google Cloud Platform & Microsoft Azure.
-

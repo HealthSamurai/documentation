@@ -6,26 +6,26 @@ Basic Aidbox installation consists of two components: the backend and the databa
 
 Refer to the following pages for the specific image description and the list of available configuration options.
 
-{% content-ref url="../overview/aidboxdb-image.md" %}
-[aidboxdb-image.md](../overview/aidboxdb-image.md)
+{% content-ref url="aidboxdb-image.md" %}
+[aidboxdb-image.md](aidboxdb-image.md)
 {% endcontent-ref %}
 
-{% content-ref url="../reference/configuration/environment-variables/" %}
-[environment-variables](../reference/configuration/environment-variables/)
+{% content-ref url="../../reference/configuration/environment-variables/" %}
+[environment-variables](../../reference/configuration/environment-variables/)
 {% endcontent-ref %}
 
 Check out the tutorials if you are looking for a step-by-step guide on how to setup and run an image of your choice.
 
-{% content-ref url="run-aidbox-in-aidbox-sandbox.md" %}
-[run-aidbox-in-aidbox-sandbox.md](run-aidbox-in-aidbox-sandbox.md)
+{% content-ref url="../run-aidbox-in-aidbox-sandbox.md" %}
+[run-aidbox-in-aidbox-sandbox.md](../run-aidbox-in-aidbox-sandbox.md)
 {% endcontent-ref %}
 
-{% content-ref url="run-aidbox-locally-with-docker/" %}
-[run-aidbox-locally-with-docker](run-aidbox-locally-with-docker/)
+{% content-ref url="../run-aidbox-locally-with-docker/" %}
+[run-aidbox-locally-with-docker](../run-aidbox-locally-with-docker/)
 {% endcontent-ref %}
 
 If you are looking for the latest versions of the docker images or general release cycle explanation go to the Versioning page.
 
-{% content-ref url="../overview/versioning-and-release-notes.md" %}
-[versioning-and-release-notes.md](../overview/versioning-and-release-notes.md)
+{% content-ref url="../versioning-and-release-notes/" %}
+[versioning-and-release-notes](../versioning-and-release-notes/)
 {% endcontent-ref %}

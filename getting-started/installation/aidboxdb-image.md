@@ -32,7 +32,7 @@ The image is configured by supplying environment variables and command line argu
 
 Check aidboxdb environment variables
 
-{% content-ref url="../reference/configuration/environment-variables/aidboxdb-environment-variables.md" %}
-[aidboxdb-environment-variables.md](../reference/configuration/environment-variables/aidboxdb-environment-variables.md)
+{% content-ref url="../../reference/configuration/environment-variables/aidboxdb-environment-variables.md" %}
+[aidboxdb-environment-variables.md](../../reference/configuration/environment-variables/aidboxdb-environment-variables.md)
 {% endcontent-ref %}
 

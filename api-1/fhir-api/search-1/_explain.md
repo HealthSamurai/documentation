@@ -4,7 +4,7 @@ description: Debug & Optimise your SQL queries for Search
 
 # \_explain
 
-With the nonstandard  `_explain`  parameter you can inspect the search query execution plan.
+With the nonstandard `_explain` parameter you can inspect the search query execution plan.
 
 ```yaml
 GET /Encounter?subject:Patient._ilike=john&_explain=analyze
@@ -28,4 +28,3 @@ plan: |-
 ```
 
 If your query is slow and you see `Seq Scans` , it's time to build indexes. Do not forget to run `vacuum analyze` on tables involved in query. Read more about [PostgreSQL Explain](https://www.postgresql.org/docs/11/using-explain.html).
-

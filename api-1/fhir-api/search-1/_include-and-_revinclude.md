@@ -9,7 +9,6 @@ A client can add related resources to a search result using **(rev)include** and
 For example, you may want to get encounters with patients (each encounter refers to):
 
 {% tabs %}
-
 {% tab title="PUT Patient" %}
 ```yaml
 PUT /Patient
@@ -197,11 +196,11 @@ Syntax for **revinclude:**
 _revinclude(:reverse|:iterate|:logical)=(source-type:)search-param(:target-type)
 ```
 
-Interpretation**:**  include all **source-type** resources, which refer **target-type** resources by **search-param** in the result set.
+Interpretation\*\*:\*\* include all **source-type** resources, which refer **target-type** resources by **search-param** in the result set.
 
 ### :logical modifier
 
-If you provide `:logical` modifier, Aidbox will include logically referenced resources  as well. Logical reference means reference with attribute `type` set to resource-type and `identifier` attribute set to one of identifier of referenced resource. Example:
+If you provide `:logical` modifier, Aidbox will include logically referenced resources as well. Logical reference means reference with attribute `type` set to resource-type and `identifier` attribute set to one of identifier of referenced resource. Example:
 
 {% tabs %}
 {% tab title="GET" %}
@@ -252,7 +251,7 @@ status: finished
 
 ### **\_include=\***
 
-You can include all resources referenced from the search result using **\*.** This is considered _bad practice_ because it's too implicit. This feature is only implemented for conformance with the FHIR specification. **Please avoid using it!**&#x20;
+You can include all resources referenced from the search result using **\*.** This is considered _bad practice_ because it's too implicit. This feature is only implemented for conformance with the FHIR specification. **Please avoid using it!**
 
 {% hint style="danger" %}
 \_include=\* could not be used as part of chained (rev)includes!
@@ -264,7 +263,7 @@ GET /Encounter?_include=*
 
 ### Chained (rev)includes
 
-Client can chain (rev)includes to load next level of references.  (Rev)includes should go in a proper loading order. According to the FHIR specification, for chained includes a client must specify the `:iterate` modifier. However, in Aidbox this modifier is **optional** (it's better to skip it).
+Client can chain (rev)includes to load next level of references. (Rev)includes should go in a proper loading order. According to the FHIR specification, for chained includes a client must specify the `:iterate` modifier. However, in Aidbox this modifier is **optional** (it's better to skip it).
 
 {% tabs %}
 {% tab title="GET" %}
@@ -600,4 +599,3 @@ You can use the extended [elements](\_elements.md) parameter to control elements
 ```yaml
 GET /Encounter?_include=patient&_elements=id,status,Patient.name,Patient.birthDate
 ```
-

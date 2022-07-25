@@ -4,7 +4,7 @@ description: Change result format
 
 # \_result
 
- By default, the search result is returned as a FHIR Bundle. You can change this behavior by setting `_result=array` and your search result will be returned as JSON array with resources, without the Bundle envelope:
+&#x20;By default, the search result is returned as a FHIR Bundle. You can change this behavior by setting `_result=array` and your search result will be returned as JSON array with resources, without the Bundle envelope:
 
 ```yaml
 GET /Patient?_result=array
@@ -20,4 +20,3 @@ GET /Patient?_result=array
   id: pt-1
   resourceType: Patient
 ```
-
