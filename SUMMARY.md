@@ -130,6 +130,7 @@
 * [ValueSet](terminology/valueset/README.md)
   * [ValueSet Expansion](terminology/valueset/value-set-expansion.md)
   * [ValueSet Code Validation](terminology/valueset/value-set-validation.md)
+* [Handling hierarchies using ancestors](terminology/handling-hierarchies-using-ancestors.md)
 * [$translate on ConceptMap](terminology/usdtranslate-on-conceptmap.md)
 * [Terminology Tutorials](terminology/terminology-tutorials/README.md)
   * [🎓 Load ICD-10 terminology into Aidbox](terminology/terminology-tutorials/load-terminologies.md)

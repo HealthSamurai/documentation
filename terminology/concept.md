@@ -44,6 +44,10 @@ This is a boolean flag, which can be used to deactivate (but not delete) a conce
 
 It's a symbolic link on CodeSystem
 
+### ancestors
+
+A new hierarchy element-object that contains ancestors codes and amount of hops between current concept and ancestor. [See](handling-hierarchies-using-ancestors.md) detailed description and use cases.
+
 ### hierarchy
 
 A hierarchy element contains codes of parent concepts for hierarchical terminologies from top to bottom. This element is used for Subsumption Operation where you test that some code **isA** another code.
