@@ -2,7 +2,7 @@
 
 Using Aidbox API constructor you can:
 
-* define API, endpoints, handlers, and URL params schema&#x20;
+* define API, endpoints, handlers, and URL params schema
 * specify your own middlewares (e.g. Smart on FHIR authorization middleware)
 
 {% hint style="warning" %}
@@ -22,9 +22,9 @@ API constructor requires knowledge of [zen language](https://github.com/zen-lang
 
 ## Example setup
 
-Use [`bb` Devbox setup](../getting-started/installation/devbox-with-bb.md) to start Aidbox, it contains configured [API constructor example](https://github.com/Aidbox/devbox/blob/bb/zrc/mybox.edn). Once Aidbox is running, open `Profiles` tab in the Aidbox UI. If everything is configured properly, page should contain namespace with `AIDBOX_ZEN_ENTRYPOINT` symbol which is `mybox/box` in this example. View of the symbol should show loaded routes.
+Use [`bb` Devbox setup](../getting-started/devbox-with-bb.md) to start Aidbox, it contains configured [API constructor example](https://github.com/Aidbox/devbox/blob/bb/zrc/mybox.edn). Once Aidbox is running, open `Profiles` tab in the Aidbox UI. If everything is configured properly, page should contain namespace with `AIDBOX_ZEN_ENTRYPOINT` symbol which is `mybox/box` in this example. View of the symbol should show loaded routes.
 
-Here's a notebook with the example API demo usage :&#x20;
+Here's a notebook with the example API demo usage :
 
 ```
 https://aidbox.app/ExportedNotebook/df9ac147-daa4-4495-87b5-c4367cd441ef
@@ -123,7 +123,7 @@ An `op` describes REST operation. `:engine` specifies what operation handler sho
 
 Expect target resource type as `:resource` and `:format` (`fhir` or `aidbox`)
 
-* `aidbox.rest.v1/search`&#x20;
+* `aidbox.rest.v1/search`
 * `aidbox.rest.v1/create`
 * `aidbox.rest.v1/read`
 * `aidbox.rest.v1/update`
@@ -131,7 +131,7 @@ Expect target resource type as `:resource` and `:format` (`fhir` or `aidbox`)
 * `aidbox.rest.v1/patch`
 * `aidbox.rest.v1/transaction`
 
-#### ACL FHIR API&#x20;
+#### ACL FHIR API
 
 * `aidbox.rest.acl/search`
 * `aidbox.rest.acl/create`
@@ -167,11 +167,11 @@ A middleware should be defined with specified `:engine`. The `:engine` determine
          :DELETE multi-box.operations/delete-patient}}
 ```
 
-#### List of available `aidbox.rest/middleware-engine`&#x20;
+#### List of available `aidbox.rest/middleware-engine`
 
 * `aidbox.rest.v1/match-middleware` - checks if a request satisfies to some pattern. Similar to the `AccessPolicy` `matcho` engine
 * `aidbox.rest.v1/params-middleware` - adds request query-string parameters taking data from the request context
-* `aidbox.rest.v1/transform-middleware` - transforms incoming request taking data from the request context&#x20;
+* `aidbox.rest.v1/transform-middleware` - transforms incoming request taking data from the request context
 * `aidbox.rest.middlewares/transform-request-data` - the same as `transform-middleware` but provides more complex functionality
 
 ### Project with API Constructor example

@@ -24,9 +24,9 @@
 * Enhanced [API constructor ACL](../../aidbox-configuration/aidbox-api-constructor/acl.md) with new operation engine [filter table insert on create](../../aidbox-configuration/aidbox-api-constructor/acl.md#filter).
 * **Changed** auth layer 400/401/403 **errors response body** to OperationOutcome resource.
 * Added [CapabilityStatement configuration](../../api-1/fhir-api/metadata.md#configure-capabilitystatement) options.
-* Improved setting [PostgreSQL schema](../installation/configure-devbox-aidbox-multibox.md#use-different-postgresql-schema) for Aidbox tables.
-* Added option to set JWT private/public keys and secret[ via env](../installation/configure-devbox-aidbox-multibox.md#set-up-rsa-private-public-keys-and-secret).
-* Added [aidboxdb PostgreSQL 14.2 version](../installation/aidboxdb-image.md). Supported versions are 14.2 and 13.6.
+* Improved setting [PostgreSQL schema](../../getting-started/configure-devbox-aidbox-multibox.md#use-different-postgresql-schema) for Aidbox tables.
+* Added option to set JWT private/public keys and secret[ via env](../../getting-started/configure-devbox-aidbox-multibox.md#set-up-rsa-private-public-keys-and-secret).
+* Added [aidboxdb PostgreSQL 14.2 version](../aidboxdb-image.md). Supported versions are 14.2 and 13.6.
 * Added tutorial [how to fix broken dates](../../tutorials/).
 * Released Infrabox preview. Infrabox is a simple and efficient tool to deploy and manage production-ready Aidbox infrastructure on k8s.&#x20;
 
@@ -34,7 +34,7 @@
 
 * Added [ACL (access-control list)](../../aidbox-configuration/aidbox-api-constructor/acl.md) functionality to [API constructor](../../aidbox-configuration/aidbox-api-constructor.md).
 * Released [`seed service`](../../aidbox-configuration/aidbox-zen-lang-project/#seed-import) for Aidbox project. Declare a set of resources in Aidbox project and get them loaded in one or many Aidboxes on start.
-* Added option to set [PostgreSQL schema](../installation/configure-devbox-aidbox-multibox.md#use-different-postgresql-schema) for Aidbox tables.
+* Added option to set [PostgreSQL schema](../../getting-started/configure-devbox-aidbox-multibox.md#use-different-postgresql-schema) for Aidbox tables.
 * Added `content-type: application/json` as default if `content-type` and `accept` headers are missing.
 * Added [$drop-cache](../../api-1/cache.md#drop-cache-operation) operation and and [`multibox/drop-box-caches`](../../multibox/multibox-box-manager-api.md#multibox-drop-box-caches) RPC
 * Added [GET /$version operation](../../api-1/api/aidbox-version.md) to get Aidbox version.
@@ -45,7 +45,7 @@
 
 ## March 2022 _`2203`_
 
-* Released a [February 2022 - v:2202 _`LTS`_](release-notes.md#february-2022-v-2202-stable). \_\_ The Aidbox team will backport security and critical bug fixes to it throughout a one-year support window.
+* Released a [February 2022 - v:2202 _`LTS`_](./#february-2022-v-2202-stable). \_\_ The Aidbox team will backport security and critical bug fixes to it throughout a one-year support window.
 * Added [`aidbox-validation-skip`](../../profiling-and-validation/profiling.md#aidbox-validation-skip-request-header) header that allows skipping resource reference validation.
 * Standardized [Aidbox project](../../aidbox-configuration/aidbox-zen-lang-project/) entrypoints.
 * Added fixes to [zen FHIR packages](../../profiling-and-validation/profiling-with-zen-lang/#zen-fhir-packages) and published [Structured Data Capture IG](https://build.fhir.org/ig/HL7/sdc/) as a zen FHIR package.
@@ -64,7 +64,7 @@ February 2022 - v:2202 is available as a long-term support version. End of life 
 * Released a beta version of [Aidbox API constructor ](../../aidbox-configuration/aidbox-api-constructor.md)that allows to define REST API granularly.
 * Added Access Control debug option: [su header](../../security-and-access-control-1/security/debug.md#su-request-header). It allows doing a request on behalf of a certain user.
 * Added [Grafana dashboard RPC](../../core-modules/monitoring/grafana-integration.md) API that allows to get Aidbox metrics dashboards and import it to your Grafana.
-* Added [`_count`](../../api-1/fhir-api/search-1/\_count-and-\_page.md), [`_total`](../../api-1/fhir-api/search-1/\_total-or-\_countmethod.md) and [`_timeout`](../../api-1/fhir-api/search-1/\_timeout.md) environment variables to configure default values.
+* Added [`_count`](../../api-1/fhir-api/search-1/search-parameters-list/\_count-and-\_page.md), [`_total`](../../api-1/fhir-api/search-1/search-parameters-list/\_total-or-\_countmethod.md) and [`_timeout`](../../api-1/fhir-api/search-1/search-parameters-list/\_timeout.md) environment variables to configure default values.
 * Improved logging for RPC and GraphQL calls.
 * Fixed Aidbox UI pretty view display.
 * Fixed [issues ](https://github.com/Aidbox/Issues/milestone/9?closed=1)submitted by Aidbox users.
@@ -73,7 +73,7 @@ February 2022 - v:2202 is available as a long-term support version. End of life 
 ## January 2022 - v:2201
 
 {% hint style="info" %}
-Starting from January 2022 we're switching to a new release cycle. We added`:latest and LTS` (long-term support) versions. Check [the updated release cycle](./).
+Starting from January 2022 we're switching to a new release cycle. We added`:latest and LTS` (long-term support) versions. Check [the updated release cycle](../versioning-and-release-notes.md).
 {% endhint %}
 
 * Added FHIR R4 search parameters to [zen FHIR packages](../../profiling-and-validation/profiling-with-zen-lang/#zen-fhir-packages) (alpha) as a part of our roadmap to run Aidbox on managed PostgreSQL databases.
@@ -209,7 +209,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 ## February 2021 - v:20210319
 
-* Builds of [aidboxdb](../installation/aidboxdb-image.md) for PostgreSQL 11.11, 12.6, 13.2 are [released](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1\&ordering=last\_updated).
+* Builds of [aidboxdb](../aidboxdb-image.md) for PostgreSQL 11.11, 12.6, 13.2 are [released](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1\&ordering=last\_updated).
 * Aidbox now supports deployment on top of Azure PostgreSQL.
 * Improvements of [$changes API](../../api-1/reactive-api-and-subscriptions/usdsnapshot-usdwatch-and-usdversions-api.md): FHIR support, pagination, upper version limit. $changes is now available at the resource level.
 * [Enhancement of Transaction Bundle API](https://docs.aidbox.app/api-1/transaction) that allows to populate both resource and history tables in one transaction.

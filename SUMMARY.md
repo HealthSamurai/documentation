@@ -1,26 +1,26 @@
 # Table of contents
 
-* [Getting started](README.md)
+* [Aidbox documentation](README.md)
+
+## Overview
+
+* [Features](overview/features.md)
+* [Licensing and Support](overview/editions-and-pricing.md)
+* [aidboxdb](overview/aidboxdb-image.md)
+* [Versioning](overview/versioning-and-release-notes.md)
+* [Release Notes](overview/release-notes/README.md)
+  * [Releases Archive](overview/release-notes/release-notes-1/README.md)
+    * [0.4.7 addendum](overview/release-notes/release-notes-1/0.4.7-addendum.md)
+* [FAQ](overview/faq.md)
 
 ## Getting Started
 
-* [Installation & Configuration](getting-started/installation/README.md)
-  * [🎓 Devbox](getting-started/installation/setup-aidbox.dev.md)
-  * [🎓 Devbox in Cloud](getting-started/installation/getting-started-with-box.md)
-  * [🎓 Devbox with bb](getting-started/installation/devbox-with-bb.md)
-  * [Configure Devbox/Aidbox/Multibox](getting-started/installation/configure-devbox-aidbox-multibox.md)
-  * [aidboxdb image](getting-started/installation/aidboxdb-image.md)
-  * [🆕 Update Aidbox](getting-started/installation/update-aidbox.md)
-* [Features](getting-started/features.md)
-* [Licensing and Support](getting-started/editions-and-pricing.md)
-* [Versioning & Release Notes](getting-started/versioning-and-release-notes/README.md)
-  * [Release Notes](getting-started/versioning-and-release-notes/release-notes.md)
-  * [Releases Archive](getting-started/versioning-and-release-notes/release-notes-1/README.md)
-    * [0.4.7 addendum](getting-started/versioning-and-release-notes/release-notes-1/0.4.7-addendum.md)
-
-***
-
-* [FAQ](faq.md)
+* [Installation & Configuration](getting-started/installation.md)
+* [Run Aidbox in Aidbox Sandbox](getting-started/run-aidbox-in-aidbox-sandbox.md)
+* [Run Aidbox locally with Docker](getting-started/run-aidbox-locally-with-docker/README.md)
+  * [Update local Aidbox](getting-started/run-aidbox-locally-with-docker/update-aidbox.md)
+* [Run Aidbox locally with Babashka](getting-started/devbox-with-bb.md)
+* [Configure Devbox/Aidbox/Multibox](getting-started/configure-devbox-aidbox-multibox.md)
 
 ## Aidbox configuration
 
@@ -37,29 +37,30 @@
   * [Capability Statement](api-1/fhir-api/metadata.md)
   * [$validate](api-1/fhir-api/usdvalidate.md)
   * [Search](api-1/fhir-api/search-1/README.md)
-    * [\_id](api-1/fhir-api/search-1/\_id.md)
-    * [\_lastUpdated & \_createdAt](api-1/fhir-api/search-1/\_lastupdated.md)
-    * [\_profile](api-1/fhir-api/search-1/\_profile.md)
-    * [\_text & \_content](api-1/fhir-api/search-1/\_text-and-\_content.md)
-    * [\_ilike](api-1/fhir-api/search-1/\_ilike.md)
-    * [\_elements](api-1/fhir-api/search-1/\_elements.md)
-    * [Summary parameter](api-1/fhir-api/search-1/\_summary.md)
-    * [\_list](api-1/fhir-api/search-1/\_list.md)
-    * [\_count & \_page](api-1/fhir-api/search-1/\_count-and-\_page.md)
-    * [\_total or \_totalMethod](api-1/fhir-api/search-1/\_total-or-\_countmethod.md)
-    * [\_timeout](api-1/fhir-api/search-1/\_timeout.md)
-    * [\_sort](api-1/fhir-api/search-1/\_sort.md)
+    * [SearchParameter](api-1/fhir-api/search-1/searchparameter.md)
+    * [Search parameters list](api-1/fhir-api/search-1/search-parameters-list/README.md)
+      * [\_list](api-1/fhir-api/search-1/search-parameters-list/\_list.md)
+      * [\_id](api-1/fhir-api/search-1/search-parameters-list/\_id.md)
+      * [\_lastUpdated & \_createdAt](api-1/fhir-api/search-1/search-parameters-list/\_lastupdated.md)
+      * [\_profile](api-1/fhir-api/search-1/search-parameters-list/\_profile.md)
+      * [\_text & \_content](api-1/fhir-api/search-1/search-parameters-list/\_text-and-\_content.md)
+      * [\_ilike](api-1/fhir-api/search-1/search-parameters-list/\_ilike.md)
+      * [\_elements](api-1/fhir-api/search-1/search-parameters-list/\_elements.md)
+      * [\_count & \_page](api-1/fhir-api/search-1/search-parameters-list/\_count-and-\_page.md)
+      * [Summary parameter](api-1/fhir-api/search-1/search-parameters-list/\_summary.md)
+      * [\_total or \_totalMethod](api-1/fhir-api/search-1/search-parameters-list/\_total-or-\_countmethod.md)
+      * [\_timeout](api-1/fhir-api/search-1/search-parameters-list/\_timeout.md)
+      * [\_sort](api-1/fhir-api/search-1/search-parameters-list/\_sort.md)
+      * [\_include & \_revinclude](api-1/fhir-api/search-1/search-parameters-list/\_include-and-\_revinclude.md)
+      * [\_result](api-1/fhir-api/search-1/search-parameters-list/\_result.md)
+      * [\_filter](api-1/fhir-api/search-1/search-parameters-list/\_filter.md)
+      * [\_explain](api-1/fhir-api/search-1/search-parameters-list/\_explain.md)
+    * [Search Resource](api-1/fhir-api/search-1/search-resource.md)
     * [Token search](api-1/fhir-api/search-1/token-search.md)
-    * [\_include & \_revinclude](api-1/fhir-api/search-1/\_include-and-\_revinclude.md)
     * [Chained Parameters](api-1/fhir-api/search-1/chained-parameters.md)
     * [. expressions](api-1/fhir-api/search-1/.-expressions.md)
-    * [\_result](api-1/fhir-api/search-1/\_result.md)
-    * [\_explain](api-1/fhir-api/search-1/\_explain.md)
     * [AidboxQuery](api-1/fhir-api/search-1/custom-search.md)
     * [SearchQuery](api-1/fhir-api/search-1/searchquery.md)
-    * [SearchParameter](api-1/fhir-api/search-1/searchparameter.md)
-    * [Search Resource](api-1/fhir-api/search-1/search-resource.md)
-    * [\_filter](api-1/fhir-api/search-1/\_filter.md)
     * [$lookup](api-1/fhir-api/search-1/usdlookup.md)
   * [Observation/$lastn](api-1/fhir-api/misc.md)
   * [History](api-1/fhir-api/history-1.md)
@@ -265,3 +266,12 @@
 ***
 
 * [Contact us](contact-us.md)
+
+## Reference
+
+* [Configuration](reference/configuration/README.md)
+  * [Environment variables](reference/configuration/environment-variables/README.md)
+    * [Aidbox required environment variables](reference/configuration/environment-variables/aidbox-required-environment-variables.md)
+    * [Multibox required environment variables](reference/configuration/environment-variables/multibox-required-environment-variables.md)
+    * [Optional environment variables](reference/configuration/environment-variables/optional-environment-variables.md)
+    * [aidboxdb environment variables](reference/configuration/environment-variables/aidboxdb-environment-variables.md)

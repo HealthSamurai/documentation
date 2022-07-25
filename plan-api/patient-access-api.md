@@ -10,7 +10,7 @@ Patient Access API enables Smart App to get Patient's healthcare data after Pati
 
 In order to enable Patient Access API in your Aidbox instance you have to:
 
-1. Set up [Devbox](../getting-started/installation/setup-aidbox.dev.md).
+1. Set up [Devbox](broken-reference).
 2.  Set up patient-access-smart-api sample project. You need to add next env variables and restart your Devbox
 
     ```

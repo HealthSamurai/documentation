@@ -12,7 +12,7 @@ Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [co
 
 ## Before you start
 
-Install the Devbox sample repo following [this guide](../../getting-started/installation/setup-aidbox.dev.md)
+Install the Devbox sample repo following [this guide](broken-reference)
 
 Make sure that you have the latest `devbox:edge` image
 
@@ -130,7 +130,7 @@ services:
 
 ## Start Devbox and check if your profile is loaded
 
-Start Devbox using [this guide](../../getting-started/installation/setup-aidbox.dev.md#run-devbox) (perform steps from Devbox directory, not in zen project dir)
+Start Devbox using [this guide](broken-reference) (perform steps from Devbox directory, not in zen project dir)
 
 Open Devbox in your browser and click `Profiles` tab in the left menu:
 

@@ -8,7 +8,7 @@ description: Export Aidbox data to Power BI
 
 * Use `stable`, `latest` or `edge` Aidbox version
 * Set up correct Aidbox instance url in `AIDBOX_BASE_URL` environment variable
-* Set [`AIDBOX_COMPLIANCE`](../../getting-started/installation/configure-devbox-aidbox-multibox.md#enable-aidbox-compliance-mode) environment variable
+* Set [`AIDBOX_COMPLIANCE`](../../getting-started/configure-devbox-aidbox-multibox.md#enable-aidbox-compliance-mode) environment variable
 
 ## Authenticate Power BI connection in Aidbox
 
