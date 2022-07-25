@@ -19,7 +19,6 @@
 * [Run Aidbox in Aidbox Sandbox](getting-started/run-aidbox-in-aidbox-sandbox.md)
 * [Run Aidbox locally with Docker](getting-started/run-aidbox-locally-with-docker/README.md)
   * [Update local Aidbox](getting-started/installation/update-aidbox.md)
-* [Run Aidbox locally with Babashka](getting-started/installation/devbox-with-bb.md)
 * [Configure Devbox/Aidbox/Multibox](getting-started/installation/configure-devbox-aidbox-multibox.md)
 
 ## Aidbox configuration

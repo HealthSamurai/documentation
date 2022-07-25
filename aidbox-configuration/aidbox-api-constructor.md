@@ -15,14 +15,23 @@ API constructor requires knowledge of [zen language](https://github.com/zen-lang
 
 #### Usage examples:
 
-* [Sample API](https://github.com/Aidbox/devbox/blob/bb/zrc/mybox.edn) used in this documentation page example.
+* [Sample API](https://github.com/Aidbox/aidbox-project-samples/blob/main/aidbox-project-samples/api-constructor/mybox.edn) used in this documentation page example.
 * [Smart on FHIR configuration](https://github.com/Aidbox/aidbox-project-samples/blob/main/aidbox-project-samples/smartbox/smartbox/smart-api.edn)
 * [ACL example](https://github.com/Aidbox/aidbox-project-samples/tree/main/aidbox-project-samples/acl)
 * [Multitenancy example](https://github.com/Aidbox/aidbox-project-samples/tree/main/aidbox-project-samples/multitenancy)
 
 ## Example setup
 
-Use [`bb` Devbox setup](../getting-started/installation/devbox-with-bb.md) to start Aidbox, it contains configured [API constructor example](https://github.com/Aidbox/devbox/blob/bb/zrc/mybox.edn). Once Aidbox is running, open `Profiles` tab in the Aidbox UI. If everything is configured properly, page should contain namespace with `AIDBOX_ZEN_ENTRYPOINT` symbol which is `mybox/box` in this example. View of the symbol should show loaded routes.
+Use [Run Aidbox locally](../getting-started/run-aidbox-locally-with-docker/) to start Aidbox, here is configured [API constructor example](https://github.com/Aidbox/aidbox-project-samples/blob/main/aidbox-project-samples/api-constructor/mybox.edn). Add these environment variables:
+
+```bash
+BOX_PROJECT_GIT_PROTOCOL=https
+BOX_PROJECT_GIT_URL=https://github.com/Aidbox/aidbox-project-samples.git
+AIDBOX_ZEN_ENTRYPOINT=mybox/box
+BOX_PROJECT_GIT_SUB__PATH=aidbox-project-samples/api-constructor
+```
+
+Once Aidbox is running, open `Profiles` tab in the Aidbox UI. If everything is configured properly, page should contain namespace with `AIDBOX_ZEN_ENTRYPOINT` symbol which is `mybox/box` in this example. View of the symbol should show loaded routes.
 
 Here's a notebook with the example API demo usage :
 
@@ -30,7 +39,7 @@ Here's a notebook with the example API demo usage :
 https://aidbox.app/ExportedNotebook/df9ac147-daa4-4495-87b5-c4367cd441ef
 ```
 
-You can [import it](../aidbox-ui/notebooks.md#import-a-notebook) into the example bb Aidbox and run test REST requests.
+You can [import it](../aidbox-ui/notebooks.md#import-a-notebook) into the example and run test REST requests.
 
 ## API constructor definitions
 

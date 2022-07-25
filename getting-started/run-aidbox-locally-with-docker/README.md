@@ -20,22 +20,12 @@ Follow the [official Docker guide](https://docs.docker.com/compose/install/#inst
 
 ### Create docker-compose.yaml
 
-Firstly, let's make the configuration file. There are two parts: `aidboxdb` and `devbox`. First one is PostgreSQL database and the second one is the Aidbox itself (development version).
+Firstly, let's make the configuration file. There are two parts: `devbox-db` and `devbox`. First one is PostgreSQL database and the second one is the Aidbox itself (development version).
 
 {% code title="docker-compose.yaml" %}
 ```yaml
 version: '3.7'
 services:
-  aidboxdb:
-    image: "healthsamurai/aidboxdb:14.2"
-    pull_policy: always
-    restart: on-failure:5
-    volumes:
-    - "./pgdata:/data"
-    environment:
-      POSTGRES_USER:     postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB:       devbox
   devbox-db:
     image: "${PGIMAGE}"
     ports:
@@ -105,7 +95,7 @@ Insert your license key into environment file. Change the line
 AIDBOX_LICENSE=<your-license-key>
 ```
 
-to the `.env` file where `<your-license-key>` is a license key which you obtained on the  [get a license](./#get-a-license) step.
+in the `.env` file where `<your-license-key>` is a license key which you obtained on the  [get a license](./#get-a-license) step.
 
 You can find more about required Aidbox environment variables [here.](../../reference/configuration/environment-variables/aidbox-required-environment-variables.md)
 
