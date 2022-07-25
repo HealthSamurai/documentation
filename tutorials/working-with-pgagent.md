@@ -42,7 +42,7 @@ To create the extension run `CREATE EXTENSION pgagent;`
 There are some more options available to configure PgAgent:\
 You can specify log level with `PGAGENT_LOG_LEVEL` and you can specify a file where PgAagent logs are written in `PGAGENT_LOG_FILE_PATH`.
 
-You can see more info on [configuring aidboxdb](../getting-started/installation/aidboxdb-image.md).
+You can see more info on [configuring aidboxdb](../storage-1/aidboxdb-image.md).
 
 ## Step-by-step example with docker
 
@@ -292,6 +292,6 @@ If everything was successfull you will see new records in the table.
 
 * `pgagent` is a tool to run various jobs on your postgres database.
 * `pgagent` runs only if `PGAGENT_ENABLED` variable is present.
-* You can configure `pgagent` using several variables described [here](../getting-started/installation/aidboxdb-image.md#optional-environment-variables).
+* You can configure `pgagent` using several variables described [here](../storage-1/aidboxdb-image.md#optional-environment-variables).
 
 If you have any questions on how to configure `pgagent` feel free to [contact us](../contact-us.md).

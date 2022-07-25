@@ -1,7 +1,7 @@
 # DB Tables
 
 {% hint style="info" %}
-Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [contact](../contact-us.md) us if you have questions, feedback, or suggestions.
+Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [contact](../../contact-us.md) us if you have questions, feedback, or suggestions.
 {% endhint %}
 
 DB Tables provides info on the existing tables in the database and the following table attributes:
@@ -16,7 +16,7 @@ DB Tables provides info on the existing tables in the database and the following
 * last autoanalyze
 * last analyze
 
-![](../.gitbook/assets/image\_2022-02-09\_17-27-08.png)
+![](../../.gitbook/assets/image\_2022-02-09\_17-27-08.png)
 
 Table names are active links to extended info about the table:
 
@@ -24,4 +24,4 @@ Table names are active links to extended info about the table:
 * indexes&#x20;
 * resource example &#x20;
 
-![Extended info](../.gitbook/assets/image\_2022-02-09\_17-28-00.png)
+![Extended info](../../.gitbook/assets/image\_2022-02-09\_17-28-00.png)

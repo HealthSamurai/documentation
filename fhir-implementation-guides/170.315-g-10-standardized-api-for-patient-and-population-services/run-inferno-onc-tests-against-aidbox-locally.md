@@ -72,7 +72,7 @@ To let Inferno connect to the Aidbox we should add Application (`Client` in term
 
 1. Open Aidbox UI in your web-browser `http://localhost:8888`
 2. Enter `login` and `password` being defined in `AIDBOX_ADMIN_ID` and `AIDBOX_ADMIN_PASSWORD`
-3. Get to the [REST Console](../../aidbox-ui/rest-console-1.md)
+3. Get to the [REST Console](../../overview/aidbox-ui/rest-console-1.md)
 
 ### Create `Client` resource
 

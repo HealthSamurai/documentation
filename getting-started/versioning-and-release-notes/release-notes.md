@@ -26,7 +26,7 @@
 * Added [CapabilityStatement configuration](../../api-1/fhir-api/metadata.md#configure-capabilitystatement) options.
 * Improved setting [PostgreSQL schema](../installation/configure-devbox-aidbox-multibox.md#use-different-postgresql-schema) for Aidbox tables.
 * Added option to set JWT private/public keys and secret[ via env](../installation/configure-devbox-aidbox-multibox.md#set-up-rsa-private-public-keys-and-secret).
-* Added [aidboxdb PostgreSQL 14.2 version](../installation/aidboxdb-image.md). Supported versions are 14.2 and 13.6.
+* Added [aidboxdb PostgreSQL 14.2 version](../../storage-1/aidboxdb-image.md). Supported versions are 14.2 and 13.6.
 * Added tutorial [how to fix broken dates](../../tutorials/).
 * Released Infrabox preview. Infrabox is a simple and efficient tool to deploy and manage production-ready Aidbox infrastructure on k8s.&#x20;
 
@@ -78,20 +78,20 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 * Added FHIR R4 search parameters to [zen FHIR packages](../../profiling-and-validation/profiling-with-zen-lang/#zen-fhir-packages) (alpha) as a part of our roadmap to run Aidbox on managed PostgreSQL databases.
 * Released [load-from-bucket](../../api-1/bulk-api-1/aidbox.bulk-data-import.md#aidbox.bulk-load-from-bucket) import operation for huge imports that allows loading terabytes of data from an AWS bucket directly to the Aidbox database with maximum performance.
-* Added Aidbox UI new tools: [DB Tables](../../aidbox-ui/db-tables.md) and [DB Queries](../../aidbox-ui/db-queries.md) to improve database administration and introspection.
+* Added Aidbox UI new tools: [DB Tables](../../overview/aidbox-ui/db-tables.md) and [DB Queries](../../overview/aidbox-ui/db-queries.md) to improve database administration and introspection.
 * Added new env `box_compatibility_validation_json__schema_regex="#{:fhir-datetime}` to enable strict date time validation in JSON schema validation engine per [FHIR spec](https://www.hl7.org/fhir/datatypes.html#dateTime).
 * Improved [`$export`](../../api-1/bulk-api-1/usdexport.md) error statuses.
 * Added Search resource `reference` [support](../../api-1/fhir-api/search-1/search-resource.md#reference-search).
 * Improved [Search parameter](../../api-1/fhir-api/search-1/searchparameter.md#expression) expression error reporting.
 * Improved [zen profiles](../../profiling-and-validation/profiling-with-zen-lang/) support in [GraphQL API](../../api-1/graphql-api.md).
 * Released [Multibox box manager API](../../multibox/multibox-box-manager-api.md).
-* Added Aidbox UI [Analyze Attributes](../../aidbox-ui/attrs-stats.md) tab description.
+* Added Aidbox UI [Analyze Attributes](../../overview/aidbox-ui/attrs-stats.md) tab description.
 
 ## December 2021 - v:2112
 
 * Added [slicings ](https://docs.aidbox.app/profiling-and-validation/profiling-with-zen-lang/write-a-custom-zen-profile#slicing)support to zen FHIR profiles.
 * Released [Devbox performance test suite](https://github.com/Aidbox/devbox#performance-tests).
-* Added new community [notebooks](../../aidbox-ui/notebooks.md) that demonstrate Aidbox functionality including Bulk export API, Aidbox terminology, Custom resources, etc.
+* Added new community [notebooks](../../overview/aidbox-ui/notebooks.md) that demonstrate Aidbox functionality including Bulk export API, Aidbox terminology, Custom resources, etc.
 * Fixed bugs submitted by Aidbox users and updated the documentation.
 
 ## November 2021 - v:2111
@@ -103,7 +103,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 * Added zen FHIR packages version check. Aidbox won't start if you use an outdated zen FHIR package.
 * Extended `AuthConfig` resource with `forgotPasswordUrl` attribute.
 * Added Aidbox, Multibox, Devbox and Aidboxdb multi-arch Images (ARM64 and AMD64) to resolve Apple Silicon M1 processors performance issues.
-* Added GraphQL access control and Aidbox Terminology community [notebooks](../../aidbox-ui/notebooks.md).
+* Added GraphQL access control and Aidbox Terminology community [notebooks](../../overview/aidbox-ui/notebooks.md).
 * Added [`AIDBOX_COMPLIANCE`](https://docs.aidbox.app/getting-started/installation/configure-devbox-aidbox-multibox#aidbox-compliance-mode) mode that changes Aidbox behavior to pass HL7® FHIR Conformance Tests.
 * Fixed bugs submitted by Aidbox users and updated the documentation.
 
@@ -136,7 +136,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 ## August 2021 - v:2108
 
-* Released [Aidbox Notebooks](../../aidbox-ui/notebooks.md). Interactive notebooks for REST, SQL, RPC and Markdown. So now you can create your own notebooks or import community notebooks.
+* Released [Aidbox Notebooks](../../overview/aidbox-ui/notebooks.md). Interactive notebooks for REST, SQL, RPC and Markdown. So now you can create your own notebooks or import community notebooks.
 
 ![Aidbox notebooks](../../.gitbook/assets/2021-09-03\_16-53-32.png)
 
@@ -209,7 +209,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 ## February 2021 - v:20210319
 
-* Builds of [aidboxdb](../installation/aidboxdb-image.md) for PostgreSQL 11.11, 12.6, 13.2 are [released](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1\&ordering=last\_updated).
+* Builds of [aidboxdb](../../storage-1/aidboxdb-image.md) for PostgreSQL 11.11, 12.6, 13.2 are [released](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1\&ordering=last\_updated).
 * Aidbox now supports deployment on top of Azure PostgreSQL.
 * Improvements of [$changes API](../../api-1/reactive-api-and-subscriptions/usdsnapshot-usdwatch-and-usdversions-api.md): FHIR support, pagination, upper version limit. $changes is now available at the resource level.
 * [Enhancement of Transaction Bundle API](https://docs.aidbox.app/api-1/transaction) that allows to populate both resource and history tables in one transaction.

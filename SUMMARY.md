@@ -6,7 +6,12 @@
 
 * [Features](getting-started/features.md)
 * [Licensing and Support](getting-started/editions-and-pricing.md)
-* [aidboxdb](getting-started/installation/aidboxdb-image.md)
+* [Aidbox UI](overview/aidbox-ui/README.md)
+  * [Aidbox Notebooks](overview/aidbox-ui/notebooks.md)
+  * [REST Console](overview/aidbox-ui/rest-console-1.md)
+  * [Attrs stats](overview/aidbox-ui/attrs-stats.md)
+  * [DB Tables](overview/aidbox-ui/db-tables.md)
+  * [DB Queries](overview/aidbox-ui/db-queries.md)
 * [Versioning](getting-started/versioning-and-release-notes/README.md)
 * [Release Notes](getting-started/versioning-and-release-notes/release-notes.md)
   * [Releases Archive](getting-started/versioning-and-release-notes/release-notes-1/README.md)
@@ -99,15 +104,6 @@
 * [GraphQL API](api-1/graphql-api.md)
 * [RPC API](api-1/rpc-api.md)
 
-***
-
-* [Aidbox UI](aidbox-ui/README.md)
-  * [Aidbox Notebooks](aidbox-ui/notebooks.md)
-  * [REST Console](aidbox-ui/rest-console-1.md)
-  * [Attrs stats](aidbox-ui/attrs-stats.md)
-  * [DB Tables](aidbox-ui/db-tables.md)
-  * [DB Queries](aidbox-ui/db-queries.md)
-
 ## Profiling and validation
 
 * [Profiling and validation overview](profiling-and-validation/profiling.md)
@@ -170,6 +166,15 @@
 * [$matcho](app-development-guides/usdmatcho.md)
 * [$to-format](app-development-guides/usdto-format-fhir-aidbox.md)
 
+## Storage <a href="#storage-1" id="storage-1"></a>
+
+* [Overview](storage-1/aidboxdb-image.md)
+* [Database schema](storage-1/database.md)
+* [Archiving](storage-1/archiving.md)
+* [AWS S3](storage-1/aws-s3.md)
+* [GCP Cloud Storage](storage-1/gcp-cloud-storage.md)
+* [Azure Blob Storage](storage-1/azure.md)
+
 ## Security & Access Control <a href="#security-and-access-control-1" id="security-and-access-control-1"></a>
 
 * [Overview](security-and-access-control-1/overview.md)
@@ -214,14 +219,6 @@
   * [Datadog Log management integration](core-modules/logging-and-audit/aidbox-logs-and-datadog-integration.md)
   * [Loki Log management integration](core-modules/logging-and-audit/loki-integration.md)
   * [🎓 Export logs to Datadog tutorial](core-modules/logging-and-audit/datadog-guide.md)
-
-## Storage <a href="#storage-1" id="storage-1"></a>
-
-* [Archiving](storage-1/archiving.md)
-* [Database](storage-1/database.md)
-* [AWS S3](storage-1/aws-s3.md)
-* [GCP Cloud Storage](storage-1/gcp-cloud-storage.md)
-* [Azure Blob Storage](storage-1/azure.md)
 
 ## Modules <a href="#modules-1" id="modules-1"></a>
 

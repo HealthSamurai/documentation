@@ -39,7 +39,7 @@ Here's a notebook with the example API demo usage :
 https://aidbox.app/ExportedNotebook/df9ac147-daa4-4495-87b5-c4367cd441ef
 ```
 
-You can [import it](../aidbox-ui/notebooks.md#import-a-notebook) into the example and run test REST requests.
+You can [import it](../overview/aidbox-ui/notebooks.md#import-a-notebook) into the example and run test REST requests.
 
 ## API constructor definitions
 

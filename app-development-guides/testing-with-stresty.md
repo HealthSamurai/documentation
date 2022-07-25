@@ -4,7 +4,7 @@
 
 Create a box here [https://aidbox.app/static/aidbox.html](https://aidbox.app/static/aidbox.html). See the [tutorial](broken-reference) on how to create a new box.
 
-Access the [REST Console](../../aidbox-ui/rest-console-1.md) of the created box. Execute the following requests. Their meaning you can read in the [tutorial](../../security-and-access-control-1/auth/basic-auth.md#register-client).
+Access the [REST Console](../overview/aidbox-ui/rest-console-1.md) of the created box. Execute the following requests. Their meaning you can read in the [tutorial](../security-and-access-control-1/auth/basic-auth.md#register-client).
 
 {% code title="Create a client:" %}
 ```yaml
@@ -92,7 +92,7 @@ In the same folder, execute the following commands in the console.
 ### 1
 
 {% hint style="warning" %}
-Replace \<your_box_name> with the name of your box.
+Replace \<your\_box\_name> with the name of your box.
 {% endhint %}
 
 ```bash
@@ -147,7 +147,7 @@ Test results: 5 passed,
               0 skipped.
 ```
 
-You can check your box, it now has a patient. Access your [REST Console](../../aidbox-ui/rest-console-1.md) and make the request:
+You can check your box, it now has a patient. Access your [REST Console](../overview/aidbox-ui/rest-console-1.md) and make the request:
 
 {% tabs %}
 {% tab title="Request" %}

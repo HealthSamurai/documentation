@@ -6,8 +6,8 @@ Basic Aidbox installation consists of two components: the backend and the databa
 
 Refer to the following pages for the specific image description and the list of available configuration options.
 
-{% content-ref url="aidboxdb-image.md" %}
-[aidboxdb-image.md](aidboxdb-image.md)
+{% content-ref url="../../storage-1/aidboxdb-image.md" %}
+[aidboxdb-image.md](../../storage-1/aidboxdb-image.md)
 {% endcontent-ref %}
 
 {% content-ref url="../../reference/configuration/environment-variables/" %}
