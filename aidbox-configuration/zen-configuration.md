@@ -27,3 +27,13 @@ To set the `rest-search` value of the `features.graphql.access-control` option u
 ```
 box_features_graphql_access__control=rest-search
 ```
+
+## Enable Zen dev mode
+
+Aidbox exits when encounters major Zen schema errors.
+
+You can disable this behavior by enabling Zen dev mode:
+
+```
+AIDBOX_ZEN_DEV_MODE=true
+```
