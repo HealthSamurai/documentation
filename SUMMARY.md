@@ -24,7 +24,8 @@
 * [Run Aidbox in Aidbox Sandbox](getting-started/run-aidbox-in-aidbox-sandbox.md)
 * [Run Aidbox locally with Docker](getting-started/run-aidbox-locally-with-docker/README.md)
   * [Update local Aidbox](getting-started/installation/update-aidbox.md)
-* [Run Aidbox as a SaaS](getting-started/run-aidbox-as-a-saas.md)
+* [Run Aidbox as a SaaS](getting-started/run-aidbox-as-a-saas/README.md)
+  * [Aidbox as a SaaS on AWS](getting-started/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md)
 * [Configure Devbox/Aidbox/Multibox](getting-started/installation/configure-devbox-aidbox-multibox.md)
 
 ## Aidbox configuration
