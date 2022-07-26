@@ -1,3 +1,5 @@
 # Run Aidbox as a SaaS
 
-WIP
+{% content-ref url="aidbox-as-a-saas-on-aws.md" %}
+[aidbox-as-a-saas-on-aws.md](aidbox-as-a-saas-on-aws.md)
+{% endcontent-ref %}
