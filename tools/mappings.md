@@ -171,7 +171,7 @@ Because potentially there is a way to create an infinite recursion using the`$in
 
 **`omit-drop-blanks` parameter**
 
-Let's say we want to specify request depending on the gender field:
+Let' say we want to specify response depending on the gender field:
 
 ```yaml
 PATCH /Mapping/pat-example

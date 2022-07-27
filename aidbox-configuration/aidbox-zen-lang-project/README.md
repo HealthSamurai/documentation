@@ -10,13 +10,15 @@ Aidbox project is a directory with zen-lang edn files. Aidbox project can be sha
 
 ## Load Aidbox project
 
+Aidbox project can be loaded in two ways: stored in git repository (for example Github) or using environment variables (by url from some website or using path to local files).
+
 ### Load project using environment variables
 
-Aidbox uses environment variables to load project.
+Aidbox uses environment variables to load project. Requared are `AIDBOX_ZEN_PATHS` and `AIDBOX_ZEN_ENTRYPOINT`
 
 #### `AIDBOX_ZEN_PATHS`
 
-The `AIDBOX_ZEN_PATHS` environment variable is used to specify how Aidbox loads project.
+The `AIDBOX_ZEN_PATHS` environment variable is used to specify which files Aidbox needs to loads project.
 
 **Format**:
 
@@ -24,42 +26,41 @@ The `AIDBOX_ZEN_PATHS` environment variable is used to specify how Aidbox loads 
 AIDBOX_ZEN_PATHS=<source>:<format>:<path>[,<source>:<format>:<path>]*
 ```
 
-Source is either `url` or `path`. `url` is used to download Aidbox project from the remote location; `path` is used to load Aidbox project from the filesystem.
+`<source>` is either **`url`** or **`path`**. **`url`** is used to download Aidbox project from the remote location; **`path`** is used to load Aidbox project from the filesystem.
 
-Format can be `zip`, `dir` or `edn`. Note that `dir` is only applicable to the `path` source.
+\<format> parameter can be **`zip`**, **`dir`** or [**`edn`**](https://github.com/edn-format/edn). Note that **`dir`** is only applicable to the **`path`** source.
 
-Table of source and format compatibility:
+Table of sources and format compatibility:
 
 | source\format | `zip` | `dir` | `edn` |
 | ------------- | ----- | ----- | ----- |
 | `url`         | ✓     |       | ✓     |
 | `path`        | ✓     | ✓     | ✓     |
 
-Example:
+Example, downloading zip file from url:
 
-```
+```yaml
 AIDBOX_ZEN_PATHS=url:zip:https://github.com/zen-lang/fhir/releases/download/0.2.13-1/hl7-fhir-us-core.zip
 ```
 
-#### `AIDBOX_ZEN_LOAD`
-
-The `AIDBOX_ZEN_LOAD` environment variable is used to load a single namespace represented as [edn](https://github.com/edn-format/edn).
-
-**Format:**
+Getting files from local directory:
 
 ```
-AIDBOX_ZEN_LOAD=<zen-edn>
+AIDBOX_ZEN_PATHS=path:dir:/home/user/dir_edn_files
 ```
 
-**Example:**
+Get one .edn file remotely and another one from local system:
 
 ```
-AIDBOX_ZEN_LOAD='{ns my-zen-namespace import #{zen-proj1 zen-proj2 zen-proj3
+AIDBOX_ZEN_PATHS=path:edn:/home/user/dir_edn_files/main.edn12
+                 ,url:edn:https://edn-website/edn-file.edn
 ```
+
+``
 
 #### `AIDBOX_ZEN_ENTRYPOINT`
 
-The `AIDBOX_ZEN_ENTRYPOINT` environment variable specifies a zen namespace or a zen symbol. Aidbox starts reading its configuration from the entrypoint.
+The `AIDBOX_ZEN_ENTRYPOINT` environment variable require a zen namespace or a zen symbol. Aidbox starts reading its configuration from the entrypoint.
 
 **Format:**
 
@@ -82,6 +83,8 @@ AIDBOX_ZEN_ENTRYPOINT=aidbox-project1/dev-server
 AIDBOX_ZEN_ENTRYPOINT=aidbox-project2
 ```
 
+Also you can configure Aidbox project with non-required environment variables.
+
 #### `AIDBOX_ZEN_DEV_MODE`
 
 The `AIDBOX_ZEN_DEV_MODE` environment variable is used to enable the hot reloading of the aidbox project.
@@ -93,6 +96,26 @@ Hot reloading works only with directories and files in local file system. I.e. `
 {% endhint %}
 
 `AIDBOX_ZEN_ENTRY`, `AIDBOX_ZEN_PROJECT`, `BOX_ENTRYPOINT` are deprecated.
+
+
+
+#### `AIDBOX_ZEN_LOAD`
+
+The `AIDBOX_ZEN_LOAD` environment variable is used to load a single namespace represented as [edn](https://github.com/edn-format/edn).
+
+**Format:**
+
+```
+AIDBOX_ZEN_LOAD=<zen-edn>
+```
+
+**Example:**
+
+```
+AIDBOX_ZEN_LOAD='{ns my-zen-namespace import #{zen-proj1 zen-proj2 zen-proj3
+```
+
+
 
 #### `AIDBOX_ZEN_PROJECT`, `AIDBOX_ZEN_ENTRY`, `BOX_ENTRYPOINT`
 
@@ -134,7 +157,7 @@ BOX_PROJECT_GIT_URL=git@github.com:Aidbox/aidbox-project-samples.git
 BOX_PROJECT_GIT_SUB__PATH=aidbox-project-samples
 ```
 
-#### HTTPS example
+HTTPS example
 
 ```
 AIDBOX_ZEN_ENTRYPOINT=smartbox.portal/box
@@ -145,15 +168,15 @@ BOX_PROJECT_GIT_SUB__PATH=aidbox-project-samples
 
 #### Startup errors
 
-**Wrong zen source files path**
-
 {% hint style="danger" %}
 Entrypoint 'smartbox.portal' not loaded.
 
 {:message "No file for ns 'smartbox.portal", :missing-ns smartbox.portal, :ns smartbox.portal}
 {% endhint %}
 
-**Incorrect git repo url**
+Meaning: Wrong zen source files path
+
+****
 
 {% hint style="danger" %}
 Cloning into '/tmp/aidbox-project-git'...
@@ -163,11 +186,15 @@ remote: Repository not found.
 fatal: repository 'https://github.com/Aidfdfdfbox/aidbox-project-samples.git/' not found
 {% endhint %}
 
-**Incorrect checkout branch/commit**
+Meaning: Incorrect git repo url
+
+****
 
 {% hint style="danger" %}
 error: pathspec 'git-project-unexist' did not match any file(s) known to git
 {% endhint %}
+
+Meaning: Incorrect checkout branch/commit
 
 ### Loading dependencies
 
@@ -200,42 +227,3 @@ You can see an example in the [🎓 Profiling with zen-lang](../../profiling-and
 This section is still under active development check it out later 🚧
 {% endhint %}
 
-## Seed Import
-
-You can declare a set of resources in Aidbox project and get them loaded in one or many Aidboxes on start. To do this you need to describe the seed service in the system entrypoint.
-
-### Example
-
-```clojure
-{ns     importbox
- import #{aidbox
-          zenbox}
-
- seed
- {:zen/tags  #{aidbox/service}
-  :engine    aidbox/seed
-  :files     ["patients.ndjson.gz"]
-  :resources [{:id "rpt-1" :resourceType "Patient"}
-              {:id "rpt-2" :resourceType "Patient"}]
-  :migrations [{:id "mig-1" :sql "create table mytable (id text)"}
-               {:id "mig-2" :sql "insert into mytable values ('hello')"}]}
-
- importbox
- {:zen/tags #{aidbox/system}
-  :zen/desc "Import box for test"
-  :services {:seed seed}}}
-```
-
-In this example `importbox/importbox` is the system entrypoint defined in the **`AIDBOX_ZEN_ENTRYPOINT`** variable, the files described in the `:files` field are located inside the zen project defined in the variable **`AIDBOX_ZEN_PATHS`**.
-
-### Seed Service
-
-`:files` - which `ndjson.gz` files will be imported at system startup. These files must be located inside the zen project described in the variable **`AIDBOX_ZEN_PATHS`**.
-
-`:resources` - in-place resources definitions that will be imported at system startup.
-
-`:migrations` — vector of migrations. Each migration is a map containing `id` and `sql` keys.
-
-{% hint style="warning" %}
-`:resources` are imported sequentially, so make sure you don't break referential integrity.
-{% endhint %}
