@@ -167,6 +167,50 @@ This template will pass execution to either `/Mapping/patient` or `/Mapping/prac
 Because potentially there is a way to create an infinite recursion using the`$include` directive, there is an inclusion depth limit which equals to **5** for now.
 {% endhint %}
 
+### Mapping Parameters
+
+**`omit-drop-blanks` parameter**
+
+Let' say we want to specify response depending on the gender field:
+
+```yaml
+PATCH /Mapping/pat-example
+
+body:
+  entry:
+    - request:
+        url: $ '/Patient/' + patientId
+        method: PATCH
+      resource:
+        resourceType: "Patient"
+        gender:
+          $if: $ gender
+          $then: $ gender
+          $else: null
+```
+
+JUTE will remove all empty values (nulls and empty arrays) and Aidbox will answer with "Please provide body for patch" response.
+
+Passing `omit-drop-blanks` parameter will solve the issue.
+
+```yaml
+PATCH /Mapping/pat-example
+
+params:
+  omit-drop-blanks: true
+body:
+  entry:
+    - request:
+        url: $ '/Patient/' + patientId
+        method: PATCH
+      resource:
+        resourceType: "Patient"
+        gender:
+          $if: $ gender
+          $then: $ gender
+          $else: null
+```
+
 ### Mapping Editor in the Aidbox UI
 
 ![Mapping Editor UI](../.gitbook/assets/screenshot-2019-09-16-at-17.26.13.png)
