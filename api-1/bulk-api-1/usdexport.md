@@ -116,6 +116,7 @@ GET /fhir/$export-status/<id>
   "status": "completed",
   "transactionTime": "2021-12-08T08:28:06.489Z",
   "requiresAccessToken": false,
+  "request": "[base]/fhir/Patient/$export"
   "output": [
     {
       "type": "Patient",
