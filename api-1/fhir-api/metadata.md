@@ -13,14 +13,14 @@ Using `GET /metadata` you can access [FHIR capabilities](https://www.hl7.org/fhi
 Response is a `CapabilityStatement` generated from _meta resources_ created in an Aidbox instance. The list of this _meta resource_ types used for the response generation:
 
 * `Operation`
-* `SearchParmeter`
+* `SearchParameter`
 * `Entity`
 
 {% hint style="info" %}
 Aidbox `CapabilityStatement` updates automatically after _meta resources_ change. No interaction needed to apply changes to `CapabilityStatement`.
 {% endhint %}
 
-Read more about conformance rules [http://build.fhir.org/conformance-rules.html](http://build.fhir.org/conformance-rules.html) and the CapabilityStatement resource itself [http://build.fhir.org/capabilitystatement.html](http://build.fhir.org/capabilitystatement.html).
+Read more about [conformance rules](http://build.fhir.org/conformance-rules.html) and the [CapabilityStatement resource](http://build.fhir.org/capabilitystatement.html) itself.
 
 Base URL for FHIR compatible API is `<server-domain>/fhir/`.
 
