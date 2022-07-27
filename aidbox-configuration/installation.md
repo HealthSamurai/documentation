@@ -1,4 +1,4 @@
-# Installation & Configuration
+# Configure Aidbox and Multibox
 
 Basic Aidbox installation consists of two components: the backend and the database. Both are released as docker images and can be pulled from HealthSamurai [docker hub](https://hub.docker.com/u/healthsamurai). For each type of Aidbox license an individual backend image is available - either [Devbox](https://hub.docker.com/r/healthsamurai/devbox), [Aidbox](https://hub.docker.com/r/healthsamurai/aidboxone) or [Multibox](https://hub.docker.com/r/healthsamurai/multibox).
 
@@ -6,30 +6,30 @@ Basic Aidbox installation consists of two components: the backend and the databa
 
 Refer to the following pages for the specific image description and the list of available configuration options.
 
-{% content-ref url="../../storage-1/aidboxdb-image.md" %}
-[aidboxdb-image.md](../../storage-1/aidboxdb-image.md)
+{% content-ref url="../storage-1/aidboxdb-image.md" %}
+[aidboxdb-image.md](../storage-1/aidboxdb-image.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../reference/configuration/environment-variables/" %}
-[environment-variables](../../reference/configuration/environment-variables/)
+{% content-ref url="../reference/configuration/environment-variables/" %}
+[environment-variables](../reference/configuration/environment-variables/)
 {% endcontent-ref %}
 
-{% content-ref url="../../aidbox-configuration/zen-configuration.md" %}
-[zen-configuration.md](../../aidbox-configuration/zen-configuration.md)
+{% content-ref url="zen-configuration.md" %}
+[zen-configuration.md](zen-configuration.md)
 {% endcontent-ref %}
 
 Check out the tutorials if you are looking for a step-by-step guide on how to setup and run an image of your choice.
 
-{% content-ref url="../run-aidbox-in-aidbox-sandbox.md" %}
-[run-aidbox-in-aidbox-sandbox.md](../run-aidbox-in-aidbox-sandbox.md)
+{% content-ref url="../getting-started/run-aidbox-in-aidbox-sandbox.md" %}
+[run-aidbox-in-aidbox-sandbox.md](../getting-started/run-aidbox-in-aidbox-sandbox.md)
 {% endcontent-ref %}
 
-{% content-ref url="../run-aidbox-locally-with-docker/" %}
-[run-aidbox-locally-with-docker](../run-aidbox-locally-with-docker/)
+{% content-ref url="../getting-started/run-aidbox-locally-with-docker/" %}
+[run-aidbox-locally-with-docker](../getting-started/run-aidbox-locally-with-docker/)
 {% endcontent-ref %}
 
 If you are looking for the latest versions of the docker images or general release cycle explanation go to the Versioning page.
 
-{% content-ref url="../versioning-and-release-notes/" %}
-[versioning-and-release-notes](../versioning-and-release-notes/)
+{% content-ref url="../getting-started/versioning-and-release-notes/" %}
+[versioning-and-release-notes](../getting-started/versioning-and-release-notes/)
 {% endcontent-ref %}

@@ -20,7 +20,6 @@
 
 ## Getting Started
 
-* [Installation & Configuration](getting-started/installation/README.md)
 * [Run Aidbox in Aidbox Sandbox](getting-started/run-aidbox-in-aidbox-sandbox.md)
 * [Run Aidbox locally with Docker](getting-started/run-aidbox-locally-with-docker/README.md)
   * [Update local Aidbox](getting-started/installation/update-aidbox.md)
@@ -30,6 +29,7 @@
 
 ## Aidbox configuration
 
+* [Configure Aidbox and Multibox](aidbox-configuration/installation.md)
 * [Aidbox project](aidbox-configuration/aidbox-zen-lang-project/README.md)
   * [RPC-API](aidbox-configuration/aidbox-zen-lang-project/rpc-api.md)
 * [API constructor (beta)](aidbox-configuration/aidbox-api-constructor.md)
