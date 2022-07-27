@@ -20,13 +20,13 @@ Follow the [official Docker guide](https://docs.docker.com/compose/install/#inst
 
 ### Create docker-compose.yaml
 
-Firstly, let's make the configuration file. There are two parts: `devbox-db` and `devbox`. First one is PostgreSQL database and the second one is the Aidbox itself (development version).
+Firstly, let's make the configuration file. There are two services: `aidbox-db` and `aidbox`. The first one is PostgreSQL database and the second one is the Aidbox itself.
 
 {% code title="docker-compose.yaml" %}
 ```yaml
 version: '3.7'
 services:
-  devbox-db:
+  aidbox-db:
     image: "${PGIMAGE}"
     ports:
       - "${PGHOSTPORT}:${PGPORT}"
@@ -37,23 +37,24 @@ services:
       POSTGRES_PASSWORD: "${PGPASSWORD}"
       POSTGRES_DB:       "${PGDATABASE}"
 
-  devbox:
+  aidbox:
     image: "${AIDBOX_IMAGE}"
-    depends_on: ["devbox-db"]
+    depends_on: ["aidbox-db"]
     links:
-      - "devbox-db:database"
+      - "aidbox-db:database"
     ports:
       - "${AIDBOX_PORT}:${AIDBOX_PORT}"
     env_file:
       - .env
     environment:
       PGHOST: database
+
 ```
 {% endcode %}
 
 ### Create .env file
 
-To configure Aidbox we need to pass environment variables to it. For example your. We can pass them with `.env` file.
+To configure Aidbox we need to pass environment variables to it. We can pass them with `.env` file.
 
 {% code title=".env" %}
 ```shell
@@ -61,23 +62,22 @@ To configure Aidbox we need to pass environment variables to it. For example you
 PGIMAGE=healthsamurai/aidboxdb:14.2
 
 # aidbox image to run
-# AIDBOX_IMAGE=healthsamurai/devbox:stable
-AIDBOX_IMAGE=healthsamurai/devbox:edge
+# AIDBOX_IMAGE=healthsamurai/aidboxone:stable
+AIDBOX_IMAGE=healthsamurai/aidboxone:edge
 
 # license details
 AIDBOX_LICENSE=<your-license-key>
+
 # Client to create on start up
 AIDBOX_CLIENT_ID=root
 AIDBOX_CLIENT_SECRET=secret
 
 # root user to create on start up
-
 AIDBOX_ADMIN_ID=admin
 AIDBOX_ADMIN_PASSWORD=secret
 
 # port to run webserver at
 AIDBOX_PORT=8888
-
 AIDBOX_FHIR_VERSION=4.0.1
 
 # db connection params
@@ -85,6 +85,7 @@ PGPORT=5432
 PGHOSTPORT=5437
 PGUSER=postgres
 PGPASSWORD=postgres
+PGDATABASE=aidbox
 PGDATABASE=devbox
 ```
 {% endcode %}
