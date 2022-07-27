@@ -14,6 +14,10 @@ Refer to the following pages for the specific image description and the list of 
 [environment-variables](../../reference/configuration/environment-variables/)
 {% endcontent-ref %}
 
+{% content-ref url="../../aidbox-configuration/zen-configuration.md" %}
+[zen-configuration.md](../../aidbox-configuration/zen-configuration.md)
+{% endcontent-ref %}
+
 Check out the tutorials if you are looking for a step-by-step guide on how to setup and run an image of your choice.
 
 {% content-ref url="../run-aidbox-in-aidbox-sandbox.md" %}
