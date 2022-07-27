@@ -25,11 +25,10 @@
   * [Update local Aidbox](getting-started/installation/update-aidbox.md)
 * [Run Aidbox as a SaaS](getting-started/run-aidbox-as-a-saas/README.md)
   * [Aidbox as a SaaS on AWS](getting-started/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md)
-* [Configure Devbox/Aidbox/Multibox](getting-started/installation/configure-devbox-aidbox-multibox.md)
 
 ## Aidbox configuration
 
-* [Configure Aidbox and Multibox](aidbox-configuration/installation.md)
+* [Configure Aidbox and Multibox](getting-started/installation/README.md)
 * [Aidbox project](aidbox-configuration/aidbox-zen-lang-project/README.md)
   * [RPC-API](aidbox-configuration/aidbox-zen-lang-project/rpc-api.md)
 * [API constructor (beta)](aidbox-configuration/aidbox-api-constructor.md)

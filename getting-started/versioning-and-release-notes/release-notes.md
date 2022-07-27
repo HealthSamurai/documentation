@@ -24,8 +24,8 @@
 * Enhanced [API constructor ACL](../../aidbox-configuration/aidbox-api-constructor/acl.md) with new operation engine [filter table insert on create](../../aidbox-configuration/aidbox-api-constructor/acl.md#filter).
 * **Changed** auth layer 400/401/403 **errors response body** to OperationOutcome resource.
 * Added [CapabilityStatement configuration](../../api-1/fhir-api/metadata.md#configure-capabilitystatement) options.
-* Improved setting [PostgreSQL schema](../installation/configure-devbox-aidbox-multibox.md#use-different-postgresql-schema) for Aidbox tables.
-* Added option to set JWT private/public keys and secret[ via env](../installation/configure-devbox-aidbox-multibox.md#set-up-rsa-private-public-keys-and-secret).
+* Improved setting [PostgreSQL schema](broken-reference) for Aidbox tables.
+* Added option to set JWT private/public keys and secret[ via env](broken-reference).
 * Added [aidboxdb PostgreSQL 14.2 version](../../storage-1/aidboxdb-image.md). Supported versions are 14.2 and 13.6.
 * Added tutorial [how to fix broken dates](../../tutorials/).
 * Released Infrabox preview. Infrabox is a simple and efficient tool to deploy and manage production-ready Aidbox infrastructure on k8s.&#x20;
@@ -34,7 +34,7 @@
 
 * Added [ACL (access-control list)](../../aidbox-configuration/aidbox-api-constructor/acl.md) functionality to [API constructor](../../aidbox-configuration/aidbox-api-constructor.md).
 * Released [`seed service`](../../aidbox-configuration/aidbox-zen-lang-project/#seed-import) for Aidbox project. Declare a set of resources in Aidbox project and get them loaded in one or many Aidboxes on start.
-* Added option to set [PostgreSQL schema](../installation/configure-devbox-aidbox-multibox.md#use-different-postgresql-schema) for Aidbox tables.
+* Added option to set [PostgreSQL schema](broken-reference) for Aidbox tables.
 * Added `content-type: application/json` as default if `content-type` and `accept` headers are missing.
 * Added [$drop-cache](../../api-1/cache.md#drop-cache-operation) operation and and [`multibox/drop-box-caches`](../../multibox/multibox-box-manager-api.md#multibox-drop-box-caches) RPC
 * Added [GET /$version operation](../../api-1/api/aidbox-version.md) to get Aidbox version.
