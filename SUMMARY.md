@@ -30,7 +30,7 @@
 
 * [Configure Aidbox and Multibox](getting-started/installation/README.md)
 * [Aidbox project](aidbox-configuration/aidbox-zen-lang-project/README.md)
-  * [RPC-API](aidbox-configuration/aidbox-zen-lang-project/rpc-api.md)
+  * [Reload Aidbox project configuration](aidbox-configuration/aidbox-zen-lang-project/rpc-api.md)
 * [API constructor (beta)](aidbox-configuration/aidbox-api-constructor.md)
   * [ACL](aidbox-configuration/aidbox-api-constructor/acl.md)
 * [Setup SMTP provider](aidbox-configuration/setup-smtp-provider.md)
@@ -272,3 +272,4 @@
     * [Multibox required environment variables](reference/configuration/environment-variables/multibox-required-environment-variables.md)
     * [Optional environment variables](reference/configuration/environment-variables/optional-environment-variables.md)
     * [aidboxdb environment variables](reference/configuration/environment-variables/aidboxdb-environment-variables.md)
+  * [Aidbox project](reference/configuration/aidbox-project.md)
