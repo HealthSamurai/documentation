@@ -6,7 +6,7 @@ description: Use zen-lang to configure Aidbox
 
 To start configuring Aidbox with [zen-lang](https://github.com/zen-lang/zen) you need to create an Aidbox project.
 
-Aidbox project is a directory with zen-lang edn files. Aidbox project can be shared with many Aidbox instances giving them the same configuration.
+Aidbox project is a directory with zen-lang [edn](https://github.com/edn-format/edn) files. Aidbox project can be shared with many Aidbox instances giving them the same configuration.
 
 ## Load Aidbox project
 
@@ -14,7 +14,7 @@ Aidbox project can be loaded in two ways: stored in git repository (for example 
 
 ### Load project using environment variables
 
-Aidbox uses environment variables to load project. Requared are `AIDBOX_ZEN_PATHS` and `AIDBOX_ZEN_ENTRYPOINT`
+Aidbox uses environment variables to load project. Required are `AIDBOX_ZEN_PATHS` and `AIDBOX_ZEN_ENTRYPOINT`
 
 #### `AIDBOX_ZEN_PATHS`
 
@@ -26,9 +26,12 @@ The `AIDBOX_ZEN_PATHS` environment variable is used to specify which files Aidbo
 AIDBOX_ZEN_PATHS=<source>:<format>:<path>[,<source>:<format>:<path>]*
 ```
 
-`<source>` is either **`url`** or **`path`**. **`url`** is used to download Aidbox project from the remote location; **`path`** is used to load Aidbox project from the filesystem.
+`<source>` is either **`url`** or **`path`**.&#x20;
 
-\<format> parameter can be **`zip`**, **`dir`** or [**`edn`**](https://github.com/edn-format/edn). Note that **`dir`** is only applicable to the **`path`** source.
+* **`url`** is used to download Aidbox project from the remote location
+* **`path`** is used to load Aidbox project from the filesystem
+
+\<format> parameter can be **`zip`**, **`dir`** or **`edn`**. Note that **`dir`** is only applicable to the **`path`** source.
 
 Table of sources and format compatibility:
 
