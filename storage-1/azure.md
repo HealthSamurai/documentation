@@ -1,6 +1,6 @@
 # Azure Blob Storage
 
-Azure Blob Storage is used to store arbitrary unstructured data like images, files, backups, etc. Aidbox offers integration with Blob Storage to simplify upload and retrieval of data. You can read more on Blob Storage internals [here](https://docs.microsoft.com/en-gb/azure/storage/blobs/storage-blobs-introduction). All examples from this tutorial are executable in Aidbox REST console.
+Azure Blob Storage is used to store arbitrary unstructured data like images, files, backups, etc. Aidbox offers integration with Blob Storage to simplify upload and retrieval of data. You can read more on Blob Storage internals [here](https://docs.microsoft.com/en-gb/azure/storage/blobs/storage-blobs-introduction). All examples from this tutorial are executable in the [Aidbox REST console](../overview/aidbox-ui/rest-console-1.md).
 
 ### Set up Azure storage account
 
@@ -19,14 +19,14 @@ First of all, we have to create AzureAccount resource with **id** = account name
 POST /AzureAccount
 
 id: aidbox
-key: long-base64-endoded-string
+key: long-base64-encoded-string
 ```
 {% endtab %}
 {% endtabs %}
 
 ### Register AzureContainer
 
-Go to Azure console and create container, for example, "avatars". Now we can create an **AzureContainer** resource:
+Go to Azure console and create a container, for example, "avatars". Now we can create an **AzureContainer** resource:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -52,7 +52,7 @@ container: avatars
 
 ### Get Shared Access Signature (SAS) to upload file
 
-When configuration is complete, you can request a temporary URL to upload blobs. By default, such URL expires in 30 minutes. You can provide a blob name or just the extension (name will be generated).
+When the configuration is complete, you can request a temporary URL to upload blobs. By default, such URL expires in 30 minutes. You can provide a blob name or just the extension (name will be generated).
 
 {% tabs %}
 {% tab title="Request" %}
@@ -83,7 +83,7 @@ url:  https://aidbox.blob.core.windows.net/avatars/pt-1.png?sr=signature
 {% endtab %}
 {% endtabs %}
 
-Configure CORS in azure if you want to send data from browser:
+Configure CORS in Azure if you want to send data from the browser:
 
 ![](<../.gitbook/assets/image (7).png>)
 
@@ -99,9 +99,9 @@ fetch("<signed-url>", {
  }).then(...)
 ```
 
-### Get SAS to read file
+### Get SAS to read a file
 
-To read uploaded file you can request signed url with:
+To read the uploaded file you can request a signed URL with:
 
 ```yaml
 GET /azure/storage/avatar/pt-1.png
@@ -117,10 +117,10 @@ GET /azure/storage/avatar/pt-1.png?redirect=true
 ---
 status: 302
 headers:
-  Locaiton: <read-signed-url>
+  Location: <read-signed-url>
 ```
 
-For example, you can use a trick with redirect to render image:
+For example, you can use a trick with redirect to render an image:
 
 ```markup
 <img src="/azure/storage/avatar/pt-1.png?redirect=true"/>
