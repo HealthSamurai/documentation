@@ -6,10 +6,6 @@ The ValueSet resource official FHIR documentation can be found here: [https://ww
 
 All examples below can be executed in the REST Console of your Box in Aidbox.Cloud. Just copy/paste a sample into the REST Console and click the EXECUTE button or press Ctrl+Enter.
 
-Also, you can run all examples in [Postman](https://www.getpostman.com) having [Aibox.Dev](https://www.health-samurai.io/aidbox) running locally, or by setting up a box in Aidbox.Cloud. Download the Aidbox collection and open it in Postman. Set up the proper environment value for the `base` variable which should be the base URL of your FHIR server. Setup authorization if you are using Aidbox.Cloud.
-
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/view-collection/63adc3e748810862fddd?referrer=https%3A%2F%2Fapp.getpostman.com%2Frun-collection%2F63adc3e748810862fddd%23%3Fenv\[Aidbox.Dev]%3DW3sia2V5IjoiYmFzZSIsInZhbHVlIjoiaHR0cDovL2xvY2FsaG9zdDo4ODg4IiwiZGVzY3JpcHRpb24iOiIiLCJlbmFibGVkIjp0cnVlfV0%3D&\_ga=2.64469999.1592054488.1539615553-1595564802.1538573158)
-
 ### CRUD
 
 CRUD is fully supported for the ValueSet resource in Aidbox.

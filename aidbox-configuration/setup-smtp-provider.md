@@ -3,7 +3,7 @@
 Aidbox allows you to configure SMTP email provider to manage your email communications.
 
 {% hint style="info" %}
-To enable SMTP please specify optional environment variable`AIDBOX_BASE_URL.`The full list of variables is available [here](https://docs.aidbox.app/getting-started/installation/configure-devbox-aidbox-multibox#optional-environment-variables).
+To enable SMTP please specify optional environment variable`AIDBOX_BASE_URL.`The full list of variables is available [here](../getting-started/run-aidbox-locally-with-docker/).
 {% endhint %}
 
 ## Add SMTP provider
