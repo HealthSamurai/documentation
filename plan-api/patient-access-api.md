@@ -10,8 +10,8 @@ Patient Access API enables Smart App to get Patient's healthcare data after Pati
 
 In order to enable Patient Access API in your Aidbox instance you have to:
 
-1. Set up [Devbox](broken-reference).
-2.  Set up patient-access-smart-api sample project. You need to add next env variables and restart your Devbox
+1. Set up [Aidbox](../getting-started/run-aidbox-locally-with-docker/).
+2.  Set up patient-access-smart-api sample project. You need to add next env variables and restart your Aidbox
 
     ```
     AIDBOX_ZEN_ENTRYPOINT=aidbox.patient-access-smart-api.sample
@@ -78,7 +78,7 @@ Here you can find steps to pass inferno tests.
     source: https://storage.googleapis.com/aidbox-public/inferno/inferno-community-fixtures.ndjson.gz
     ```
 3. You should have a user bound with Patient.
-4.  You need to expose your localhost devbox to the public. You can use [ngrok](https://ngrok.com/) for instance.
+4.  You need to expose your localhost Aidbox to the public. You can use [ngrok](https://ngrok.com/) for instance.
 
     ```
     ngrok http 8888

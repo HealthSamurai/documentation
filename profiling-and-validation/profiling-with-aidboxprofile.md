@@ -139,8 +139,6 @@ STATUS: 201
 {% endtab %}
 {% endtabs %}
 
-{% hint style="warning" %}
-If you are using Aidbox.Dev below 0.3.1 version, then after creating an AidboxProfile resource, you will need to restart your Aidbox.Dev server.
 
 `$ docker-compose down && docker-compose up -d`
 {% endhint %}
@@ -198,7 +196,7 @@ STATUS: 422
 
 ### **Require Nested Properties**
 
-Let's require `given` and `family` elements of the `name` property. In this case, we are expecting that `name` attribute of the type [`HumanName`](https://www.hl7.org/fhir/datatypes.html#HumanName) will contain elements `given` and `family`. Let's create the `AidboxProfile` resource with the code below. Then you will need to restart server if you're on Aidbox.Dev.
+Let's require `given` and `family` elements of the `name` property. In this case, we are expecting that `name` attribute of the type [`HumanName`](https://www.hl7.org/fhir/datatypes.html#HumanName) will contain elements `given` and `family`. Let's create the `AidboxProfile` resource with the code below. 
 
 {% tabs %}
 {% tab title="Request YAML" %}

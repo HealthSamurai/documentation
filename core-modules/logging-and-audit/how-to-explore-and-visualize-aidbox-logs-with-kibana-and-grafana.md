@@ -12,7 +12,7 @@ description: >-
 This feature is available since [July 2021 - v:2107](https://docs.aidbox.app/getting-started/versioning-and-release-notes/release-notes#july-2021-v-2107-stable) Aidbox version&#x20;
 {% endhint %}
 
-To begin using pre-configured Kibana and Grafana please clone[ this repository](https://github.com/Aidbox/devbox) and execute `make up` operation in your shell.
+To begin using pre-configured Kibana and Grafana please clone [this repository](https://github.com/Aidbox/devbox) and execute `make up` operation in your shell.
 
 ## **Explore logs with Kibana**
 

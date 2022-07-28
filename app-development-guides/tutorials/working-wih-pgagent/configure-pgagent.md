@@ -48,7 +48,7 @@ spec:
 
 Now pgagent running as different user role in container.
 
-If you use devbox, specify env variables in docker compose file
+If you use AidboxOne, specify env variables in docker compose file
 
 ```text
 version: '3.1'

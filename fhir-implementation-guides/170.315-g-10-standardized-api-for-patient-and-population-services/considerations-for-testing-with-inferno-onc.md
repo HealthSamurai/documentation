@@ -19,7 +19,6 @@ The powerful [FHIR-server](https://www.health-samurai.io/aidbox). It also suppor
 
 Aidbox is distributed as a Docker container:
 
-* [devbox](https://hub.docker.com/r/healthsamurai/devbox)
 * [aidboxone](https://hub.docker.com/r/healthsamurai/aidboxone)
 * [multibox](https://hub.docker.com/r/healthsamurai/multibox)
 

@@ -6,15 +6,14 @@ description: How to setup Aidbox and Inferno ONC locally to pass the tests
 
 ## Install Devbox
 
-Follow `Step 1,` `Step 2` and `Step 3` of the instruction to [install Devbox](https://docs.aidbox.app/getting-started/installation/setup-aidbox.dev)
+Follow the instruction to [install Aidbox locally](../../getting-started/run-aidbox-locally-with-docker)
 
 ## Extend `.env` file
 
-In addition of the `Step 3` of the [instruction](https://docs.aidbox.app/getting-started/installation/setup-aidbox.dev) define following values in the `.env` file.
+In addition define following values in the `.env` file.
 
 ```
 # Define aidbox parameters
-# (https://docs.aidbox.app/getting-started/installation/setup-aidbox.dev#install-devbox)
 AIDBOX_BASE_URL=http://host.docker.internal:8888
 AIDBOX_CREATED_AT_URL=http://example.com/createdat
 AIDBOX_PORT=8888
@@ -33,9 +32,9 @@ box_bulk__storage_gcp_service__account=
 box_bulk__storage_gcp_bucket=
 ```
 
-## Run Devbox
+## Run Aidbox
 
-Execute the command bellow to run Devbox.
+Execute the command bellow to run Aidbox.
 
 ```bash
 docker-compose up -d

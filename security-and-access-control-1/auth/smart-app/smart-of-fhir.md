@@ -90,8 +90,8 @@ services:
       POSTGRES_USER: "${PGUSER}"
       POSTGRES_PASSWORD: "${PGPASSWORD}"
       POSTGRES_DB: "${PGDATABASE}"
-  devbox:
-    image: "healthsamurai/devbox:edge"
+  aidbox:
+    image: "healthsamurai/aidboxone:edge"
     pull_policy: always
     depends_on: ["aidboxdb"]
     restart: on-failure
@@ -119,7 +119,7 @@ services:
       - "./growth-chart/standalone:/app/standalone"
 ```
 
-Create the `.env` file and fill in your Devbox License ID and License Key:
+Create the `.env` file and fill in your Aidbox License ID and License Key:
 
 ```bash
 AIDBOX_LICENSE_ID=
@@ -139,7 +139,7 @@ AIDBOX_ADMIN_PASSWORD=secret
 PGPORT=5432
 PGUSER=postgres
 PGPASSWORD=postgres
-PGDATABASE=devbox
+PGDATABASE=aidbox
 ```
 
 ## Start Containers

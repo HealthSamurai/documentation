@@ -1,6 +1,6 @@
 # Patient Encounter notification Application
 
-In this tutorial, we will create a simple application written on [Clojure](https://clojure.org/) programming language using [Aidbox Clojure SDK](https://github.com/Aidbox/aidbox-clojure-sdk) and Aidbox.cloud or [Aidbox.dev](https://www.health-samurai.io/aidbox) as a backend.
+In this tutorial, we will create a simple application written on [Clojure](https://clojure.org/) programming language using [Aidbox Clojure SDK](https://github.com/Aidbox/aidbox-clojure-sdk) and Aidbox.cloud or [Aidboxone](https://www.health-samurai.io/aidbox) as a backend.
 
 All source code available on [Github Aidbox/app-mailgun-clj](https://github.com/Aidbox/app-mailgun-clj)
 
@@ -22,7 +22,7 @@ For sending Emails we will use [MailGun](https://www.mailgun.com/) service as th
 
 ### Get started
 
-Firstly, you need to install local Devbox. See the full instruction on how to [install Devbox](../getting-started/run-aidbox-locally-with-docker/) and [how to use Rest API](https://docs.aidbox.app/api-1/api)
+Firstly, you need to install local Aidbox. See the full instruction on how to [install Aidbox locally](../getting-started/run-aidbox-locally-with-docker/) and [how to use Rest API](https://docs.aidbox.app/api-1/api)
 
 In this sample application, we use Clojure CLI. See [Getting Started](https://clojure.org/guides/getting\_started) for details on how to install the tools.
 

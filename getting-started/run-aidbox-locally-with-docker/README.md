@@ -86,7 +86,6 @@ PGHOSTPORT=5437
 PGUSER=postgres
 PGPASSWORD=postgres
 PGDATABASE=aidbox
-PGDATABASE=devbox
 ```
 {% endcode %}
 

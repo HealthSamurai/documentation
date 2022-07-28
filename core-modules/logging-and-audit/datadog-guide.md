@@ -33,7 +33,7 @@ Set the `AIDBOX_DD_API_KEY` environment variable to the Datadog API Key.
 For example, if you are using Docker Compose, add the variable to the environment section:
 
 ```yaml
-devbox:
+aidbox:
   # ...
   environment:
     # ...

@@ -2,7 +2,7 @@
 
 ## Prerequisite
 
-* Box instance \(in cloud or Aidbox.Dev\)
+* Box instance \(in cloud or local\)
 * Basic knowledge about [OAuth 2.0 Authorization Framework](https://oauth.net/2/)
 * Configured [Users and Clients](users-and-clients.md)
 
