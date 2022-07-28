@@ -146,7 +146,7 @@ On this page you see the namespaces that are explicitly included in the zen proj
 
 Open your profile by clicking its name
 
-![](<../../.gitbook/assets/image (91) (1).png>)
+![](<../../.gitbook/assets/image (91).png>)
 
 ## Start validation
 
