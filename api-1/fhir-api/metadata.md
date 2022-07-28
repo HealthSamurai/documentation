@@ -156,6 +156,17 @@ metadata:
 If you want more control over CapabilityStatement, please contact us in the community chat!
 {% endhint %}
 
+### Notes
+
+#### rest\[].resource\[].profile
+
+The profile property is set when zen profiling is enabled and the following conditions are met:&#x20;
+
+* the corresponding resource is defined in zen profile&#x20;
+* there is exactly one zen schema tagged with `base-profile` for the corresponding resource
+
+## Aidbox native metadata
+
 To get metadata in the internal Aidbox format, use [`/$metadata?_format=yaml`](http://localhost:7777/$metadata?\_format=yaml)
 
 {% swagger baseUrl="<your-domain>/$metadata" path="" method="get" summary="Get Aidbox native metadata" %}
