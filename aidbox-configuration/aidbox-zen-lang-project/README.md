@@ -4,106 +4,90 @@ description: Use zen-lang to configure Aidbox
 
 # Aidbox project
 
-To start configuring Aidbox with [zen-lang](https://github.com/zen-lang/zen) you need to create an Aidbox project.
+Aidbox project is a collection of [zen](https://github.com/zen-lang/zen) namespaces which configure Aidbox.
 
-Aidbox project is a directory with zen-lang [edn](https://github.com/edn-format/edn) files. Aidbox project can be shared with many Aidbox instances giving them the same configuration.
+You can use Aidbox project to set up API constructor, load terminologies, profiles, and more.
+
+To use a project you need to
+- specify how to load Aidbox project,
+- set zen entrypoint.
 
 ## Load Aidbox project
+Aidbox project can be splitted into multiple parts. For example, you can load IGs from a remote location, load API constructor configuration from git repository, and load seed resources from a local directory.
 
-Aidbox project can be loaded in two ways: stored in git repository (for example Github) or using environment variables (by url from some website or using path to local files).
+Aidbox can load project parts from
+- git repository,
+- remote location,
+- local location,
+- npm.
 
-### Load project using environment variables
+Each part can depend on part distributed via npm. And vice versa, the only way to load npm part is to specify it as a dependency.
 
-Aidbox uses environment variables to load project. Required are `AIDBOX_ZEN_PATHS` and `AIDBOX_ZEN_ENTRYPOINT`
+Local and remote locations are specified using `AIDBOX_ZEN_PATHS` environment variable.
 
-#### `AIDBOX_ZEN_PATHS`
-
-The `AIDBOX_ZEN_PATHS` environment variable is used to specify which files Aidbox needs to loads project.
-
-**Format**:
-
+### AIDBOX\_ZEN\_PATHS
+Syntax:
 ```
 AIDBOX_ZEN_PATHS=<source>:<format>:<path>[,<source>:<format>:<path>]*
 ```
 
-`<source>` is either **`url`** or **`path`**.&#x20;
+`<source>` is either `url`, or `path`.
+- `url` is used to load project from remote location
+- `path` is used to load project from local location
 
-* **`url`** is used to download Aidbox project from the remote location
-* **`path`** is used to load Aidbox project from the filesystem
-
-\<format> parameter can be **`zip`**, **`dir`** or **`edn`**. Note that **`dir`** is only applicable to the **`path`** source.
+`<format>` is either `zip`, or `dir`, or `edn`.
 
 Table of sources and format compatibility:
 
 | source\format | `zip` | `dir` | `edn` |
-| ------------- | ----- | ----- | ----- |
+|---------------|-------|-------|-------|
 | `url`         | ✓     |       | ✓     |
 | `path`        | ✓     | ✓     | ✓     |
 
-Example, downloading zip file from url:
+### Load remote part
+You can load Aidbox project part from a public HTTPS endpoint.
 
+For example, set
 ```yaml
-AIDBOX_ZEN_PATHS=url:zip:https://github.com/zen-lang/fhir/releases/download/0.2.13-1/hl7-fhir-us-core.zip
+AIDBOX_ZEN_PATHS=url:zip:https://github.com/zen-lang/fhir/releases/latest/download/hl7.fhir.r4.core.zip
+```
+to load FHIR R4 profile part.
+
+Aidbox can load a single file too:
+```yaml
+AIDBOX_ZEN_PATHS=url:edn:https://example.org/my-namespace.edn
 ```
 
-Getting files from local directory:
+### Load local part
+You have three options: directory, zip file, and a single file.
 
+For example, let's load a part from a directory
 ```
-AIDBOX_ZEN_PATHS=path:dir:/home/user/dir_edn_files
-```
-
-Get one .edn file remotely and another one from local system:
-
-```
-AIDBOX_ZEN_PATHS=path:edn:/home/user/dir_edn_files/main.edn12
-                 ,url:edn:https://edn-website/edn-file.edn
+AIDBOX_ZEN_PATHS=path:dir:/srv/aidbox-project
 ```
 
-#### `AIDBOX_ZEN_ENTRYPOINT`
+### Load git repository
+Aidbox can load repository using either https or ssh. You can optionally specify a specific branch or commit, path of a project part inside repository, and location in which to clone repository.
 
-The `AIDBOX_ZEN_ENTRYPOINT` environment variable require a zen namespace or a zen symbol. Aidbox starts reading its configuration from the entrypoint.
+To set up git repository location you need to set multiple environment variables:
+- `BOX_PROJECT_GIT_PROTOCOL`: `https` for HTTPS, `ssh` for SSH method.
+- `BOX_PROJECT_GIT_URL`: full URL to git repository.
 
-**Format:**
+Then you need to specify authentication.
+For HTTPS:
+- `BOX_PROJECT_GIT_ACCESS__TOKEN`: access token for private repositories.
+For SSH:
+- `BOX_PROJECT_GIT_PUBLIC__KEY`: public SSH key,
+- `BOX_PROJECT_GIT_PRIVATE__KEY`: private SSH key.
 
-Using a zen namespace as an entrypoint:
+Additionally, you can control clone and checkout:
+- `BOX_PROJECT_GIT_CHECKOUT`: checkout specific commit or branch
+- `BOX_PROJECT_GIT_TARGET__PATH`: where to clone repository. Deafult is `/tmp/aidbox-project-git`.
 
-```
-AIDBOX_ZEN_ENTRYPOINT=zen.namespace
-```
+If your Aidbox project part is in subdirectory of the repository, you can specify its location relative to the repository root with `BOX_PROJECT_GIT_SUB__PATH` environment variable.
 
-Using a zen symbol as an entrypoint:
-
-```
-AIDBOX_ZEN_ENTRYPOINT=zen.namespace/zen-symbol
-```
-
-**Examples:**
-
-```
-AIDBOX_ZEN_ENTRYPOINT=aidbox-project1/dev-server
-AIDBOX_ZEN_ENTRYPOINT=aidbox-project2
-```
-
-
-
-### Load project from git repository
-
-#### Environment variables
-
-| Env variable name               | Meaning                                                                                |
-| ------------------------------- | -------------------------------------------------------------------------------------- |
-| `BOX_PROJECT_GIT_PROTOCOL`      | Possible values: "https", "ssh"                                                        |
-| `BOX_PROJECT_GIT_URL`           | GIt repository URL (https://github.com/\<user>/\<repo>.git)                            |
-| `BOX_PROJECT_GIT_SUB__PATH`     | If want to place edn files inside another directory, you can provide this env variable |
-| `BOX_PROJECT_GIT_ACCESS__TOKEN` | Access token can be used for accessing private repository                              |
-| `BOX_PROJECT_GIT_TARGET__PATH`  | Override target clone directory. By default Aidbox will use /tmp/aidbox-project-git.   |
-| `BOX_PROJECT_GIT_CHECKOUT`      | Checkout into branch or commit                                                         |
-| `BOX_PROJECT_GIT_PUBLIC_KEY`    | Public ssh key                                                                         |
-| `BOX_PROJECT_GIT_PRIVATE_KEY`   | Private ssh key                                                                        |
-
-#### Example configuration
-
-SSH example
+For example, let's load one of the Aidbox project samples using HTTPS and SSH methods.
+SSH:
 
 ```
 AIDBOX_ZEN_ENTRYPOINT=smartbox.portal/box
@@ -114,8 +98,7 @@ BOX_PROJECT_GIT_URL=git@github.com:Aidbox/aidbox-project-samples.git
 BOX_PROJECT_GIT_SUB__PATH=aidbox-project-samples
 ```
 
-HTTPS example
-
+HTTPS:
 ```
 AIDBOX_ZEN_ENTRYPOINT=smartbox.portal/box
 BOX_PROJECT_GIT_PROTOCOL=https
@@ -123,64 +106,92 @@ BOX_PROJECT_GIT_URL=https://github.com/Aidbox/aidbox-project-samples.git
 BOX_PROJECT_GIT_SUB__PATH=aidbox-project-samples
 ```
 
-#### Startup errors
+### Aidbox project part dependencies
+Aidbox project part can have dependencies. They are designed to be distributed via npm.
+Aidbox loads every directory in
+```
+node_modules/\@*/
+```
+as an Aidbox project part.
 
-{% hint style="danger" %}
+For example you can set up US Core profiles using local Aidbox project part with dependencies.
+
+Create a directory for Aidbox project part
+`mkdir -p /srv/aidbox-project`
+
+Go to the Aidbox project part directory
+```
+cd /srv/aidbox-project
+```
+
+Create a `package.json` file
+```
+{
+  "dependencies": {
+    "@zen-lang/hl7-fhir-r4-core": "^0.5.11"
+  }
+}
+```
+
+Install dependencies
+```
+npm install
+```
+
+Load Aidbox project part:
+```
+AIDBOX_ZEN_PATHS=path:dir:/srv/aidbox-project
+```
+
+**Note**: __Aidbox automatically installs dependencies when using git repository part. For local and remote location parts you need to install them manually.__
+
+### Load multiple Aidbox project parts
+Aidbox can load only one git project part and any number of parts using remote location, local location, and dependencies.
+
+To specify multiple locations, split them with comma in `AIDBOX_ZEN_PATHS` environment variable. E.g.
+```
+AIDBOX_ZEN_PATHS=path:edn:/home/user/dir_edn_files/main.edn12
+                 ,url:edn:https://edn-website/edn-file.edn
+
+```
+
+## Set Aidbox zen entrypoint
+Aidbox starts reading configuration from the zen entrypoint. The entrypoint is either namespaced symbol or namespace. The `AIDBOX_ZEN_ENTRYPOINT` environment variable specifies the zen entrypoint.
+
+We recommend using namespaced symbol because some functionality depends on entrypoint symbol. For example, `:services` for API constructor.
+
+Using a zen symbol as an entrypoint:
+
+Example:
+```
+AIDBOX_ZEN_ENTRYPOINT=zen.namespace/zen-symbol
+```
+
+## Examples
+
+You can see an example in the [Profiling with zen-lang](../../profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile.md) tutorial.
+
+## Common errors
+
+```
 Entrypoint 'smartbox.portal' not loaded.
 
 {:message "No file for ns 'smartbox.portal", :missing-ns smartbox.portal, :ns smartbox.portal}
-{% endhint %}
-
+```
 Meaning: Wrong zen source files path
 
-****
 
-{% hint style="danger" %}
+```
 Cloning into '/tmp/aidbox-project-git'...
 
 remote: Repository not found.
 
 fatal: repository 'https://github.com/Aidfdfdfbox/aidbox-project-samples.git/' not found
-{% endhint %}
-
+```
 Meaning: Incorrect git repo url
 
-****
 
-{% hint style="danger" %}
-error: pathspec 'git-project-unexist' did not match any file(s) known to git
-{% endhint %}
-
-Meaning: Incorrect checkout branch/commit
-
-### Loading dependencies
-
-#### `AIDBOX_ZEN_PATHS`
-
-If the `node_modules` directory is present in a location from `AIDBOX_ZEN_PATHS` and it's populated with zen packages they will be loaded as dependencies. Thus for `zip` and `dir` paths if you have `package.json` file with dependencies you need to do `npm install` to ensure that `node_modules` directory is populated when Aidbox loads this path.
-
-#### Project from git repository
-
-For a git repository project you need to create `package.json` file in the root of the repository (or inside `BOX_PROJECT_GIT_SUB__PATH` if you're using it) and commit it. Aidbox will install specified dependencies while pulling project from git.
-
-## Examples
-
-You can see an example in the [🎓 Profiling with zen-lang](../../profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile.md) tutorial.
-
-### Example of the `package.json` content
-
-```json
-{
-  "dependencies": {
-    "@zen-lang/hl7-fhir-r4-core": "^0.5.11",
-    ...
-    }
-}
 ```
-
-## Configure Aidbox Project via `aidbox/system`
-
-{% hint style="info" %}
-This section is still under active development check it out later 🚧
-{% endhint %}
-
+error: pathspec 'git-project-unexist' did not match any file(s) known to git
+```
+Meaning: Incorrect checkout branch/commit
