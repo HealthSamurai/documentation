@@ -8,7 +8,7 @@ Aidbox offers developers a smooth path from a tiny digital health app prototype 
 
 ## Aidbox Licenses
 
-[Start](https://docs.aidbox.app/installation/setup-aidbox.dev) with a free Aidbox version called **Devbox**. You can only use Devbox at your local computer and can't use it with real healthcare data or PHI (Protected Health Information). But other than that, Devbox has all the features of the paid Aidbox version, and it is enough for proper Aidbox evaluation and the beginning of your healthcare app development.
+You can try Aidbox [locally](run-aidbox-locally-with-docker/) or in [Aidbox Sandbox](run-aidbox-in-aidbox-sandbox.md). Standard license allows you to use Aidbox for free for 14 days. You can't use it with real healthcare data or PHI (Protected Health Information). But other than that, you can try all the features of the paid Aidbox version and it is enough for proper Aidbox evaluation and the beginning of your healthcare app development&#x20;
 
 If you need Aidbox for a staging or production environment, it is time to move to the paid Aidbox version. Moving to the paid **Aidbox** is easy. [Log in](https://license-ui.aidbox.app/) to the license server and request a paid Aidbox license. Health Samurai will take care of the rest.
 
@@ -18,9 +18,11 @@ Do not forget that you can host Aidbox yourself, or Health Samurai can host Aidb
 
 | **Aidbox Edition**             | **Price** |
 | ------------------------------ | --------- |
-| Devbox                         | free      |
-| Aidbox\*                       | $         |
+| Aidbox (14-day license)        | free      |
+| Aidbox                         | $         |
 | Multi-tenant Aidbox (Multibox) | \$$       |
+
+To learn about **pricing**, please get in touch with us at [hello@health-samurai.io](mailto:hello@health-samurai.io).
 
 ## Aidbox Support
 
@@ -44,12 +46,9 @@ Besides Aidbox product and Aidbox Support, Health Samurai offers Professional se
 * Migration from another FHIR server/platform to Aidbox
 * Project bootstrapping
 * Performance optimization
-*   Aidbox quick start training for engineers
+* Aidbox quick start training for engineers
 
-    \
-
-
-## Aidbox Trial
+### Aidbox Trial
 
 Aidbox license can be received for a trial period at no cost with the purchase of Aidbox Support. Do not fight your problems alone; get Aidbox Support and [Health Samurai](https://www.health-samurai.io/) on your side!
 

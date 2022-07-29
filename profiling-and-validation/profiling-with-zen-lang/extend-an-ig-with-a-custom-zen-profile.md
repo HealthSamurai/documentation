@@ -12,21 +12,13 @@ Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [co
 
 ## Before you start
 
-Install the Devbox sample repo following [this guide](broken-reference)
-
-Make sure that you have the latest `devbox:edge` image
-
-```bash
-docker pull healthsamurai/devbox:edge
-```
-
-Make sure your Devbox is configured to use `devbox:edge` image.
+Install the Aidbox following [this guide](../../getting-started/run-aidbox-locally-with-docker/).
 
 In the `.env` file find the line starting with `AIDBOX_IMAGE` and edit it to be like this if it is not:
 
 {% code title=".env" %}
 ```bash
-AIDBOX_IMAGE=healthsamurai/devbox:edge
+AIDBOX_IMAGE=healthsamurai/aidboxone:edge
 ```
 {% endcode %}
 
@@ -47,19 +39,19 @@ npm init -y
 npm install @zen-lang/hl7-fhir-r4-core @zen-lang/hl7-fhir-us-core
 ```
 
-Create zen entry namespace.
+Create zen entry file in my-zen-project directory.
 
-{% code title="my-zen-project/my-zen-devbox.edn" %}
+{% code title="my-zen-aidbox.edn" %}
 ```yaml
-{ns my-zen-devbox}
+{ns my-zen-aidbox}
 ```
 {% endcode %}
 
-Create namespace with your profiles
+Create namespace with your profiles.
 
-{% code title="my-zen-project/my-zen-profiles.edn" %}
+{% code title="my-zen-profiles.edn" %}
 ```
-{ns my-zen-devbox
+{ns my-zen-profiles
  import #{hl7-fhir-us-core.us-core-patient}
 
  MyPatientProfile
@@ -72,29 +64,29 @@ Create namespace with your profiles
 ```
 {% endcode %}
 
-Import the profiles namespace in the entry namespace
+Import the profiles namespace in the entry namespace.
 
-{% code title="my-zen-project/my-zen-devbox.edn" %}
+{% code title="my-zen-devbox.edn" %}
 ```
-{ns my-zen-devbox
+{ns my-zen-aidbox
  import #{my-zen-profiles}}
 ```
 {% endcode %}
 
-## Setup Devbox to use Zen project
+## Setup Aidbox to use Zen project
 
-Go to Devbox directory and add configuration variables to the end of `.env` file:
+Go back to Aidbox directory and add configuration variables to the end of `.env` file:
 
 {% code title=".env" %}
 ```bash
 AIDBOX_ZEN_PROJECT=/my-zen-project # mind the / at the beginning of the dir name
-AIDBOX_ZEN_ENTRY=my-zen-devbox
+AIDBOX_ZEN_ENTRY=my-zen-aidbox
 AIDBOX_ZEN_DEV_MODE=enable # set this variable if you want to have 
                            # zen reload namespaces on the fly as they change
 ```
 {% endcode %}
 
-To enable your Devbox reading the zen project data add zen project directory volume mount. In the `docker-compose.yaml` file find the section `devbox:` and add the following line under the `volumes:` section:
+To enable your Aidbox reading the zen project data add zen project directory volume mount. In the `docker-compose.yaml` file find the section `aidbox:` and add the following line under the `volumes:` section:
 
 ```yaml
 - "./my-zen-project:/my-zen-project"
@@ -115,11 +107,11 @@ So the file should look like this:
 ```yaml
 version: '3.7'
 services:
-  devbox-db:
+  aidbox-db:
     <...omitted...>
 
-  devbox:
-    container_name: "devbox"
+  aidbox:
+    container_name: "aidbox"
     image: "${AIDBOX_IMAGE}"
     <...omitted...>
     volumes:
@@ -128,11 +120,15 @@ services:
 ```
 {% endcode %}
 
-## Start Devbox and check if your profile is loaded
+## Check if your profile is loaded
 
-Start Devbox using [this guide](broken-reference) (perform steps from Devbox directory, not in zen project dir)
+Start Aidbox.
 
-Open Devbox in your browser and click `Profiles` tab in the left menu:
+```
+docker compose up
+```
+
+Open Aidbox in your browser and click `Profiles` tab in the left menu:
 
 ![](<../../.gitbook/assets/image (88).png>)
 
