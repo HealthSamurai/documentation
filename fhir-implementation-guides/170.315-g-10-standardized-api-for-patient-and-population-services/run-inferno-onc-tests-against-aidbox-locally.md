@@ -4,7 +4,7 @@ description: How to setup Aidbox and Inferno ONC locally to pass the tests
 
 # 🎓 Run Inferno ONC tests against Aidbox locally
 
-## Install Devbox
+## Install Aidbox
 
 Follow the instruction to [install Aidbox locally](../../getting-started/run-aidbox-locally-with-docker)
 

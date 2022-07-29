@@ -106,7 +106,7 @@ Aidbox sends logs into stdout if one of these env variables defined: `AIDBOX_STD
 If you prefer to write logs into the file system,  in the .env file specify `AIDBOX_LOGS` environment variable with a relative path to the desired location.
 
 ```yaml
-AIDBOX_LOGS: '/logs/devbox'
+AIDBOX_LOGS=/logs/aidbox
 ```
 
 Another option is to store logs in the ElasticSearch. Please, read the details [here ](https://docs.aidbox.app/app-development-guides/receive-logs-from-your-app/elastic-logs-and-monitoring-integration)
