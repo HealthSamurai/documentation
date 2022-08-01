@@ -28,10 +28,11 @@ grant_types:
 auth:
   authorization_code:
     redirect_uri: 'http://myapp.app'
-    access_token_expiration: 360
+    access_token_expiration: 360 # 6 minutes
     token_format: jwt
     secret_required: true
     refresh_token: true
+    refresh_token_expiration: 86400 # 24 hours
 ```
 {% endtab %}
 
@@ -47,7 +48,7 @@ grant_types:
 auth:
   authorization_code:
     redirect_uri: 'http://myapp.app'
-    access_token_expiration: 360
+    access_token_expiration: 360 # 6 minutes
     token_format: jwt
     pkce: true
     refresh_token: true
@@ -59,13 +60,14 @@ Client will act on behalf of the user, which means Access Policies should be con
 
 You can configure Client for JWT tokens, set token expiration and enable a refresh token:
 
-| auth_._authorization\_code. | options       | desc                                 |
-| --------------------------- | ------------- | ------------------------------------ |
-| **token\_format**           | jwt           | use access token in jwt format       |
-| **token\_expiration**       | int (seconds) | token expiration time from issued at |
-| **refresh\_token**          | true/false    | enable refresh\_token                |
-| **secret\_required**        | true/false    | require secret for token             |
-| **pkce**                    | true/false    | enable PKCE flow                     |
+| auth_._authorization\_code.    | options       | desc                                                       |
+| ------------------------------ | ------------- | ---------------------------------------------------------- |
+| **token\_format**              | jwt           | use access token in jwt format                             |
+| **access\_token\_expiration**  | int (seconds) | token expiration time from issued at                       |
+| **refresh\_token**             | true/false    | enable refresh\_token                                      |
+| **refresh\_token\_expiration** | int (seconds) | refresh token expiration time from issued at or last usage |
+| **secret\_required**           | true/false    | require secret for token                                   |
+| **pkce**                       | true/false    | enable PKCE flow                                           |
 
 {% hint style="info" %}
 If you want to use Authorization Code Grant for **Single Page Application** you do not need to set the `secret` attribute, use PKCE instead!
@@ -192,6 +194,36 @@ Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
 ```
 curl -H 'Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi' /Patient
 ```
+
+### Refresh Access Token
+
+To get new access token using refresh token
+
+{% tabs %}
+{% tab title="request" %}
+```yaml
+POST /auth/token
+Content-Type: application/json
+
+{
+  "grant_type": "refresh_token",
+  "client_id": "webapp",
+  "refresh_token": "eyJhb..PloA"
+}
+```
+{% endtab %}
+
+{% tab title="response" %}
+```yaml
+status: 200
+
+{
+  "access_token": "eyJh..D8YA", # new access_token
+  "expores_id": 360
+}
+```
+{% endtab %}
+{% endtabs %}
 
 ### Revoke Access Token (Close Session)
 
