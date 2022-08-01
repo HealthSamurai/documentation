@@ -26,12 +26,12 @@ Client will act on behalf of the user, which means Access Policies should be con
 
 You can configure Client for JWT tokens, set token expiration and enable refresh token:
 
-| attribute                             | options       | desc                                 |
-| ------------------------------------- | ------------- | ------------------------------------ |
-| _auth.password_**.token\_format**     | jwt           | use access token in jwt format       |
-| _auth.password_**.token\_expiration** | int (seconds) | token expiration time from issued at |
-| _auth.password_**.refresh\_token**    | true/false    | enable refresh\_token                |
-| _auth.password_**.secret\_required**  | true/false    | require client secret for token      |
+| attribute                                     | options       | desc                                 |
+| --------------------------------------------- | ------------- | ------------------------------------ |
+| _auth.password_**.token\_format**             | jwt           | use access token in jwt format       |
+| _auth.password_**.access\_token\_expiration** | int (seconds) | token expiration time from issued at |
+| _auth.password_**.refresh\_token**            | true/false    | enable refresh\_token                |
+| _auth.password_**.secret\_required**          | true/false    | require client secret for token      |
 
 ## Get Access Token
 
