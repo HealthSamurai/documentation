@@ -24,7 +24,7 @@ AIDBOX_IMAGE=healthsamurai/aidboxone:edge
 
 ## Create a zen project
 
-Inside of the cloned Devbox directory create a zen project directory and open it.\
+Inside of the cloned Aidbox directory create a zen project directory and open it.\
 In this example zen project directory is `my-zen-project/`
 
 ```bash
@@ -66,7 +66,7 @@ Create namespace with your profiles.
 
 Import the profiles namespace in the entry namespace.
 
-{% code title="my-zen-devbox.edn" %}
+{% code title="my-zen-aidbox.edn" %}
 ```
 {ns my-zen-aidbox
  import #{my-zen-profiles}}
@@ -96,7 +96,7 @@ The `volumes` section should be like this
 
 ```yaml
 services:
-  devbox:
+  aidbox:
     volumes:
     - "./my-zen-project:/my-zen-project"
 ```
