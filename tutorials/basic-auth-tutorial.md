@@ -74,7 +74,7 @@ Before you start - create a Client and User
 
 Now we have to go to authorize endpoint to get code
 
-&#x20;`` [`/auth/authorize?client_id=web-app&response_type=code`](javascript:void\(0\))``
+&#x20;`/auth/authorize?client_id=web-app&response_type=code`
 
 ![](<../.gitbook/assets/image (67).png>)
 
@@ -94,7 +94,7 @@ This flow works for single page apps. Before you start - create a Client
 
 Now we have to go to authorize endpoint to get code
 
-&#x20;`` [`/auth/authorize?client_id=web-app&response_type=code`](javascript:void\(0\))``
+&#x20;`/auth/authorize?client_id=web-app&response_type=code`
 
 #### When you have a token!
 

@@ -1,8 +1,24 @@
 # Release Notes
 
-## July 2022 _`edge`_
+## August 2022 `edge`
 
-## June 2022 _`latest`_
+## July 2022 _`latest`_
+
+* Added ability to [load from bucket](../../api-1/bulk-api-1/import-from-a-bucket.md) without deleting previously created LoaderFiles.
+* Added load-from-bucket `aidbox.bulk/load-from-bucket-status` RPC method to the load-from-bucket status.
+* Added an option to start Aidbox with invalid zen-lang schema in [dev-mode](../../reference/configuration/environment-variables/aidbox-project-environment-variables.md#aidbox\_zen\_dev\_mode) to improve debugging experience.
+* Added [an option](../../aidbox-configuration/aidbox-api-constructor/acl.md#conditional-crud) to use ACL checks on search phase of conditional operations.
+* Added `BOX_FEATURES_TERMINOLOGY_IMPORT_SYNC` environment variable to enable sync [terminology bundle file load](../../terminology/terminology-api/).
+* Improved GraphQL speed.
+* Added more detailed error messages in Bulk Import status.
+* Added `plain` option to use [`$import`](../../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md) with non-gzipped files.
+* Increased speed of the validation.
+* Added support of entry.search.mode field when using [\_include or \_revinclude](../../api-1/fhir-api/search-1/\_include-and-\_revinclude.md) search parameters.
+* [Published](https://github.com/zen-lang/fhir/releases/tag/0.5.18) multiple versions of zen fhir IGs to make possible to use non-latest versions.
+* Added [`profile`](../../api-1/fhir-api/metadata.md#notes) property to CapabilityStatement resource.
+* Fixed issues submitted by Aidbox users and fixed minor bugs.&#x20;
+
+## June 2022 _`stable, 2206, LTS`_
 
 * Added an option to [load Aidbox project from a remote Git repository](../../aidbox-configuration/aidbox-zen-lang-project/#load-project-from-git-repository).
 * Improved Aidbox startup time when loading [Aidbox project](../../aidbox-configuration/aidbox-zen-lang-project/#aidbox\_zen\_paths) from [a zip archive](../../aidbox-configuration/aidbox-zen-lang-project/#aidbox\_zen\_paths).
@@ -16,7 +32,7 @@
 * Added a tutorial on how to [create a user and give full access](../../tutorials/creating-user-and-set-up-full-user-access.md).
 * Fixed issues submitted by Aidbox users and fixed minor bugs.&#x20;
 
-## May 2022 _`2205`_ , _`stable`_
+## May 2022 _`2205`_&#x20;
 
 * Added RPC API access control engines: [allow-rpc engine](../../security-and-access-control-1/security/access-control/#allow-rpc-engine) and attribute-based [matcho-rpc engine](../../security-and-access-control-1/security/access-control/#matcho-rpc-engine).
 * Added GraphQL API resource [history search](../../api-1/graphql-api.md#queries) to retrieve a resource change history.
