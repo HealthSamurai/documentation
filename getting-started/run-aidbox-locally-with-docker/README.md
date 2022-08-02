@@ -68,6 +68,10 @@ AIDBOX_IMAGE=healthsamurai/aidboxone:edge
 # license details
 AIDBOX_LICENSE=<your-license-key>
 
+# if you got pair of id and key use this instead
+# AIDBOX_LICENSE_ID=<your-license-id>
+# AIDBOX_LICENSE_KEY=<your-license-key>
+
 # Client to create on start up
 AIDBOX_CLIENT_ID=root
 AIDBOX_CLIENT_SECRET=secret
