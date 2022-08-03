@@ -2,170 +2,11 @@
 description: Include associated resources
 ---
 
-# \_include & \_revinclude
-
-A client can add related resources to a search result using **[(rev)include](https://www.hl7.org/fhir/search.html#revinclude)** FHIR parameters and **with** Aidbox parameter. In ORM frameworks, such feature is sometimes called an "associations eager loading". This technique can save extra roundtrips from the client to the server and potential N+1 problem.
-
-For example, you may want to get encounters with patients (each encounter refers to):
-
-{% tabs %}
-{% tab title="PUT Patient" %}
-```yaml
-PUT /Patient
-
-resourceType: Patient
-id: pat-234
-name:
-  - family: Smith
-```
-{% endtab %}
-
-{% tab title="PUT Encounter" %}
-```yaml
-PUT /Encounter
-
-resourceType: Encounter
-id: enc-234
-subject: 
-  resourceType: Patient
-  id: pat-234
-class: {code: 'IMP', 
-  system: 'http://terminology.hl7.org/CodeSystem/v3-ActCode', 
-  display: 'inpatient encounter'}
-status: finished
-```
-{% endtab %}
-
-{% tab title="GET" %}
-```yaml
-GET /Encounter?_include=Encounter:subject:Patient
-```
-
-```yaml
-GET /Encounter?_with=subject{Patient}
-```
-{% endtab %}
-
-{% tab title="Result (_include)" %}
-```yaml
-...
-include-queries:
-  - - SELECT * FROM "patient" WHERE (id in (?)) LIMIT ?
-    - pat-234
-    - 5000
-type: searchset
-resourceType: Bundle
-total: 1
-link:
-  - relation: first
-    url: /Encounter?_include=Encounter:subject:Patient&page=1
-  - relation: self
-    url: /Encounter?_include=Encounter:subject:Patient&page=1
-entry:
-  - resource:
-      class:
-        code: IMP
-        system: http://terminology.hl7.org/CodeSystem/v3-ActCode
-        display: inpatient encounter
-      status: finished
-      subject:
-        id: >-
-          pat-234
-        resourceType: Patient
-      id: >-
-        enc-234
-      resourceType: Encounter
-      meta: ...
-    fullUrl: ...
-    link: ...
-  - resource:
-      name:
-        - family: Smith
-      id: >-
-        pat-234
-      resourceType: Patient
-      meta: ...
-    search:
-      mode: include
-    fullUrl: ...
-    link: ...
-query-sql:
-  - 'SELECT "encounter".* FROM "encounter" LIMIT ? OFFSET ? '
-  - 100
-  - 0
-```
-{% endtab %}
-
-{% tab title="Result (_with)" %}
-```yaml
-...
-include-queries:
-  - - SELECT * FROM "patient" WHERE (id in (?)) LIMIT ?
-    - pat-234
-    - 5000
-type: searchset
-resourceType: Bundle
-total: 1
-link:
-  - relation: first
-    url: /Encounter?_with=subject{Patient}&page=1
-  - relation: self
-    url: /Encounter?_with=subject{Patient}&page=1
-query-timeout: 60000
-entry:
-  - resource:
-      class:
-        code: IMP
-        system: http://terminology.hl7.org/CodeSystem/v3-ActCode
-        display: inpatient encounter
-      status: finished
-      subject:
-        id: >-
-          pat-234
-        resourceType: Patient
-      id: >-
-        enc-234
-      resourceType: Encounter
-      meta: ...
-    fullUrl: ...
-    link:
-      - relation: self
-        url: ...
-  - resource:
-      name:
-        - family: Smith
-      id: >-
-        pat-234
-      resourceType: Patient
-      meta: ...
-    search:
-      mode: include
-    fullUrl: ...
-    link:
-      - relation: self
-        url: ...
-query-sql:
-  - 'SELECT "encounter".* FROM "encounter" LIMIT ? OFFSET ? '
-  - 100
-  - 0
-```
-{% endtab %}
-{% endtabs %}
-
-Or you can request patients and return all Encounter resources that refer to them (by a reverse reference):
-
-```yaml
-GET /Patient?_revinclude=Encounter:subject:Patient
-```
-
-Aidbox can do the same in a compact way: 
-```yaml
-GET /Patient?_with=Encounter.subject
-```
+# \_include,  \_revinclude, \_with
 
 ### \_include
 
-Syntax for the _include search parameter:
+Syntax for the \_include search parameter:
 
 ```yaml
  _include(:reverse|:iterate|:logical)=(source-type:)search-param:(:target-type)
@@ -190,6 +31,18 @@ GET /Encounter?_include=subject
 {% hint style="warning" %}
 For more explicit interpretation and for performance reason, client must provide target-type for chained includes!
 {% endhint %}
+
+### **\_include=\***
+
+You can include all resources referenced from the search result using **\*.** This is considered _bad practice_ because it's too implicit. This feature is only implemented for conformance with the FHIR specification. **Please avoid using it!**
+
+{% hint style="danger" %}
+\_include=\* could not be used as part of chained (rev)includes!
+{% endhint %}
+
+```javascript
+GET /Encounter?_include=*
+```
 
 ### **\_revinclude**
 
@@ -251,18 +104,6 @@ status: finished
 ```
 {% endtab %}
 {% endtabs %}
-
-### **\_include=\***
-
-You can include all resources referenced from the search result using **\*.** This is considered _bad practice_ because it's too implicit. This feature is only implemented for conformance with the FHIR specification. **Please avoid using it!**
-
-{% hint style="danger" %}
-\_include=\* could not be used as part of chained (rev)includes!
-{% endhint %}
-
-```javascript
-GET /Encounter?_include=*
-```
 
 ### Chained (rev)includes
 
