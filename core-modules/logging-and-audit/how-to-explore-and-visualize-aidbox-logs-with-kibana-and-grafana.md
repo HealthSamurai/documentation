@@ -44,7 +44,7 @@ The example below will help you read REST API logs:
 
 Please put + to toggle `Time`, `w_m`, `w_r`_,_`w_url`, `d`, `w_st`, `w_uid` fields into the document table:
 
-![](<../../.gitbook/assets/image (41) (1) (1).png>)
+![](<../../.gitbook/assets/image (41) (1) (1) (1).png>)
 
 Now you can browse and explore REST API logs
 
@@ -71,7 +71,7 @@ The pre-configured views are the following:
 7. Response time.
 8. Slow queries.
 
-![Aidbox Grafana dashboard](<../../.gitbook/assets/image (49) (5) (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2).png>)
+![Aidbox Grafana dashboard](<../../.gitbook/assets/image (49) (5) (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (5).png>)
 
 You can update the default dashboard with your own custom views. For more info please refer to [Grafana documentation](https://grafana.com/tutorials/grafana-fundamentals/).
 
