@@ -14,7 +14,7 @@
 * Added `plain` option to use [`$import`](../../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md) with non-gzipped files.
 * Added support of [entry.search.mode ](../../api-1/fhir-api/search-1/search-with-related-resources.md#distinguish-between-matched-and-related-resources)field when using [\_include or \_revinclude](../../api-1/fhir-api/search-1/\_include-and-\_revinclude.md) search parameters.
 * Added [`profile`](../../api-1/fhir-api/metadata.md#notes) property to the CapabilityStatement resource.
-* Added configurable `refresh_token_expiration` parameter. The default lifetime is 86400 seconds (1 day).
+* Added configurable `refresh_token_expiration` parameter. If not defined refresh token doesn't expire.
 * Fixed issues submitted by Aidbox users and fixed minor bugs.
 
 ## June 2022 _`stable, 2206, LTS`_
