@@ -1,12 +1,17 @@
-# Mass Import from a bucket
+---
+description: >-
+  Load data from files in an existing Amazon Simple Storage Service (Amazon S3)
+  with maximum performance.
+---
+
+# Bulk import from an S3 bucket
 
 ### `aidbox.bulk/load-from-bucket`
 
 It allows loading data from a bunch of `.ndjson.gz` files on an AWS bucket directly to the Aidbox database with maximum performance.
 
-
 {% hint style="warning" %}
-**Be careful** You should run *only one* replica of aidbox to use `aidbox.bulk/load-from-bucket` operation.
+**Be careful** You should run _only one_ replica of aidbox to use `aidbox.bulk/load-from-bucket` operation.
 {% endhint %}
 
 ### Files content and naming requirement
@@ -39,14 +44,14 @@ Object with the following structure:
 * `bucket` <mark style="color:red;">\*</mark> defines your bucket connection string in format`s3://<bucket-name>`
 * `thread-num` defines how many threads will process the import. The **default** is 4.
 * `account` credential:
-  * `access-key-id`  <mark style="color:red;">\*</mark> AWS key ID
+  * `access-key-id` <mark style="color:red;">\*</mark> AWS key ID
   * `secret-access-key` <mark style="color:red;">\*</mark> AWS secret key
   * `region` <mark style="color:red;">\*</mark> AWS Bucket region
-* `disable-idx?`  the **default** is `false`.  Allows to drop all indexes for resources, which data are going to be loaded. Indexes will be restored at the end of successful import. All information about dropped indexes is stored at `DisabledIndex` resources.&#x20;
+* `disable-idx?` the **default** is `false`. Allows to drop all indexes for resources, which data are going to be loaded. Indexes will be restored at the end of successful import. All information about dropped indexes is stored at `DisabledIndex` resources.
 * `drop-primary-key?` the **default** is `false`. The same as the previous parameter, but drops primary key constraint for resources tables. This parameter disables all checks for duplicates for imported resources.
-* `upsert?` the **default** is `false`.  If `upsert?` is `false`, import for files with `id`  uniqueness constraint violation will fail with an error, if `true` - records in the database will be overridden with records from import. Even when `upsert?` is `true`, it's still not allowed to have more than one record with the same id in one import file.  Setting this option to true will cause a decrease in performance.
-* `scheduler` possible **values**: `optimal` , `by-last-modified`, the **default** is `optimal` .  Establishes the order in which the files are processed. The `optimal`  value provides the best performance. `by-last-modified` should be used with  `thread-num = 1` to guarantee a stable order of file processing.
-* `prefixes`  array of prefixes  to specify which files should be processed. Example: with value `["fhir/1/", "fhir/2/Patient"]` only files from directory `"fhir/1"` and `Patient` files from directory `"fhir/2"` will be processed.&#x20;
+* `upsert?` the **default** is `false`. If `upsert?` is `false`, import for files with `id` uniqueness constraint violation will fail with an error, if `true` - records in the database will be overridden with records from import. Even when `upsert?` is `true`, it's still not allowed to have more than one record with the same id in one import file. Setting this option to true will cause a decrease in performance.
+* `scheduler` possible **values**: `optimal` , `by-last-modified`, the **default** is `optimal` . Establishes the order in which the files are processed. The `optimal` value provides the best performance. `by-last-modified` should be used with `thread-num = 1` to guarantee a stable order of file processing.
+* `prefixes` array of prefixes to specify which files should be processed. Example: with value `["fhir/1/", "fhir/2/Patient"]` only files from directory `"fhir/1"` and `Patient` files from directory `"fhir/2"` will be processed.
 {% endtab %}
 
 {% tab title="Result" %}
@@ -120,10 +125,9 @@ In order to import a file one more time you should delete related `LoaderFile` r
 
 Files are processed completely. The loader doesn't support partial re-import.
 
-
 ### `aidbox.bulk/load-from-bucket-status`
-Returns status and progress of import for specified bucket.
-Possible states are: `in-progress`, `completed`, `interrupted`.
+
+Returns status and progress of import for specified bucket. Possible states are: `in-progress`, `completed`, `interrupted`.
 
 {% hint style="info" %}
 State `interrupted` means that aidbox was restarted during the loading process. If you run `aidbox.bulk/load-from-bucket` operation again on the same bucket, it will be continued.
