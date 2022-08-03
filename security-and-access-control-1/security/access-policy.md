@@ -151,7 +151,6 @@ engine: matcho
 matcho:
   user:
     data: { roles: {$contains: Patient} }
-  client: { id: postman }
   request-method: get
 ```
 
@@ -161,7 +160,6 @@ id: policy-for-postman-users-role-patient
 engine: json-schema
 schema:
   required:
-    - client
     - user
     - request-method
   properties:
@@ -180,12 +178,6 @@ schema:
                     enum:
                       - Patient
               type: array
-    client:
-      required:
-        - id
-      properties:
-        id:
-          const: postman
     request-method:
       const: get
 description: Read-only access for users with role Patient from client Postman
