@@ -34,13 +34,5 @@ Aidbox LTS releases are scheduled to be published twice a year. If you are not i
 
 | Aidbox version                                                                                                                                                                      | Availability starts | End of life |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- | ----------- |
-| [2106-lts](https://hub.docker.com/layers/healthsamurai/aidboxone/2106-lts/images/sha256-4e4566ee3f472cbc4c26ddf253c1bb3c0894cc6a0e307ef7a6b9a15fafba510c?context=explore)           | 2021-06             | 2022-06     |
-| [2202-lts](https://hub.docker.com/layers/aidboxone/healthsamurai/aidboxone/2202-lts/images/sha256-997c1e28b8ea2274979caf3fe2e6e620fa5eacd18f49195c293b7c74f85ec23d?context=explore) | 2022-04             | 2023-04     |
-
-### Aidboxdb release cycle
-
-The [aidboxdb](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1\&ordering=last\_updated) image is a custom build of an open-source PostgreSQL database. It contains a number of extensions that are needed to increase search performance.
-
-The aidboxdb image follows PostgreSQL versioning. For instance, if you want to use PostgreSQL 11.11, pull healthsamurai/aidboxdb:11.11
-
-The HealthSamurai team officially supports the latest minor release of each major version of PostgreSQL starting from 11. The currently supported versions of PostgreSQL are 11.11, 12.6, and 13.2.
+| [2202-lts](https://hub.docker.com/layers/aidboxone/healthsamurai/aidboxone/2202-lts/images/sha256-db99626a3ef739dc76a20f75eee7bf2ca4476548c1b89a1fe8a2993d4d02cf41?context=explore) | 2022-04             | 2023-04     |
+| [2206-lts](https://hub.docker.com/layers/aidboxone/healthsamurai/aidboxone/2206-lts/images/sha256-33ce2578c544b427408f2fc1e7526edc75f8d1df47dcb81d92f384fdb4b6b626?context=explore) | 2022-08             | 08-2022     |
