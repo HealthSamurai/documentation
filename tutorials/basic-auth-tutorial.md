@@ -6,9 +6,9 @@ The simplest way to interact with Aidbox API from your confidential (backend) co
 
 To start you have to register in Aidbox Auth Client with secret and basic flow enabled in this form:
 
-![Auth Client form](<../.gitbook/assets/image (79) (1).png>)
+![Auth Client form](<../.gitbook/assets/image (79).png>)
 
-![PUT Client/basic](<../.gitbook/assets/image (72) (1).png>)
+![PUT Client/basic](<../.gitbook/assets/image (50).png>)
 
 Let's create AccessPolicy for this Client
 
@@ -74,7 +74,7 @@ Before you start - create a Client and User
 
 Now we have to go to authorize endpoint to get code
 
-&#x20;`/auth/authorize?client_id=web-app&response_type=code`
+`/auth/authorize?client_id=web-app&response_type=code`
 
 ![](<../.gitbook/assets/image (67).png>)
 
@@ -94,7 +94,7 @@ This flow works for single page apps. Before you start - create a Client
 
 Now we have to go to authorize endpoint to get code
 
-&#x20;`/auth/authorize?client_id=web-app&response_type=code`
+`/auth/authorize?client_id=web-app&response_type=code`
 
 #### When you have a token!
 
@@ -108,7 +108,7 @@ Now using this access token we can query Aidbox
 
 If you use external server, which provides you with JWT access token - you can configure Aidbox to trust this JWT token and act as Resource Server
 
-&#x20;_You can use for example this_ [_app to generate test JWT_](http://jwtbuilder.jamiekurtz.com/)__
+_You can use for example this_ [_app to generate test JWT_](http://jwtbuilder.jamiekurtz.com/)\_\_
 
 First of all you have to register TokenIntrospector in Aidbox
 

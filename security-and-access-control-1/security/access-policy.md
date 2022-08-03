@@ -13,7 +13,7 @@ secret: secret
 grant_types: ['basic']
 ```
 
-Access the Access Control tab and create new access policy with the code below.  Let's consider the work of this policy. In this schema, two constraints are introduced:
+Access the Access Control tab and create new access policy with the code below. Let's consider the work of this policy. In this schema, two constraints are introduced:
 
 1. it is allowed to use only the GET method;
 2. it is allowed to use only request URIs starting with "/fhir/".
@@ -59,7 +59,7 @@ matcho:
 Now, let's execute requests in Postman.
 
 {% hint style="info" %}
-&#x20;A request succeeds if at least one of the policies is valid for it.
+A request succeeds if at least one of the policies is valid for it.
 {% endhint %}
 
 ### Positive Test
@@ -68,7 +68,7 @@ Now, let's execute requests in Postman.
 GET {{base}}/fhir/Patient
 ```
 
-![](<../../.gitbook/assets/policy1 (1).png>)
+![](<../../.gitbook/assets/policy1 (1) (1).png>)
 
 ### Negative Test
 
@@ -76,11 +76,11 @@ GET {{base}}/fhir/Patient
 POST {{base}}/fhir/Patient
 ```
 
-![](<../../.gitbook/assets/policy2 (1).png>)
+![](<../../.gitbook/assets/policy2 (1) (1).png>)
 
 ## Policy Debugging
 
-Let's use the parameter  \_\_debug=policy in requests to see which JSON-schema validation returned true/false.
+Let's use the parameter \_\_debug=policy in requests to see which JSON-schema validation returned true/false.
 
 ### Positive Test
 
@@ -88,7 +88,7 @@ Let's use the parameter  \_\_debug=policy in requests to see which JSON-schema v
 GET {{base}}/fhir/Patient
 ```
 
-![](../../.gitbook/assets/policy3.png)
+![](<../../.gitbook/assets/policy3 (1).png>)
 
 ### Negative Test
 
@@ -96,7 +96,7 @@ GET {{base}}/fhir/Patient
 POST {{base}}/fhir/Patient
 ```
 
-![](../../.gitbook/assets/policy4.png)
+![](<../../.gitbook/assets/policy4 (1).png>)
 
 See the full documentation [Access Policies](access-control/).
 
@@ -181,7 +181,6 @@ schema:
     request-method:
       const: get
 description: Read-only access for users with role Patient from client Postman
-
 ```
 
 ### Full Access for Administrator Role
@@ -297,7 +296,7 @@ The results of the schema validation should be the following:
 
 {% endswagger-description %}
 
-{% swagger-parameter in="path" name="" type="string" %}
+{% swagger-parameter in="path" name="" type="string" required="false" %}
 
 {% endswagger-parameter %}
 
@@ -307,8 +306,8 @@ The results of the schema validation should be the following:
 {% endswagger-response %}
 {% endswagger %}
 
-See the full documentation [Resource Owner Credentials Grant](broken-reference).
+See the full documentation [Resource Owner Credentials Grant](broken-reference/).
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="broken-reference/" %}
+[broken-reference](broken-reference/)
 {% endcontent-ref %}

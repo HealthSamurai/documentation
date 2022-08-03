@@ -4,17 +4,17 @@
 
 ## July 2022 _`latest`_
 
-* Added ability to [load-from-bucket](../../api-1/bulk-api-1/import-from-a-bucket.md) without deleting previously created LoaderFiles.
+* [Published](https://github.com/zen-lang/fhir/releases/tag/0.5.18) multiple versions of [zen FHIR IGs](broken-reference) to provide an option to use a specific version of an implementation guide. &#x20;
+* Improved GraphQL API performance.
+* Improved validation performance.
 * Added RPC method to get the [import status](../../api-1/bulk-api-1/import-from-a-bucket.md#aidbox.bulk-load-from-bucket-status) when running [load-from-bucket](../../api-1/bulk-api-1/import-from-a-bucket.md) import operation.&#x20;
 * Added an option to start Aidbox with an invalid [Aidbox project](../../aidbox-configuration/aidbox-zen-lang-project/) in [dev-mode](../../reference/configuration/environment-variables/aidbox-project-environment-variables.md#aidbox\_zen\_dev\_mode) to improve the debugging experience. By default, Aidbox doesn't start with invalid Aidbox projects.&#x20;
 * Added an option to enable [ACL checks for searches in conditional operations](../../aidbox-configuration/aidbox-api-constructor/acl.md#conditional-crud).
 * Added `BOX_FEATURES_TERMINOLOGY_IMPORT_SYNC` environment variable to enable sync [terminology bundle file load](../../terminology/terminology-api/).
-* Improved GraphQL API performance.
 * Added `plain` option to use [`$import`](../../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md) with non-gzipped files.
-* Improved validation performance.
 * Added support of [entry.search.mode ](../../api-1/fhir-api/search-1/search-with-related-resources.md#distinguish-between-matched-and-related-resources)field when using [\_include or \_revinclude](../../api-1/fhir-api/search-1/\_include-and-\_revinclude.md) search parameters.
-* [Published](https://github.com/zen-lang/fhir/releases/tag/0.5.18) multiple versions of [zen FHIR IGs](broken-reference) to provide an option to use a specific version of an implementation guide. &#x20;
 * Added [`profile`](../../api-1/fhir-api/metadata.md#notes) property to the CapabilityStatement resource.
+* Added configurable `refresh_token_expiration` parameter. The default lifetime is 86400 seconds (1 day).
 * Fixed issues submitted by Aidbox users and fixed minor bugs.
 
 ## June 2022 _`stable, 2206, LTS`_
@@ -168,7 +168,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 * We've released a major Aidbox UI upgrade
 
-![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2).png>)
+![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (9).png>)
 
 * Updated REST Console (check out[ the tutorial](https://bit.ly/rest\_console\_tutorial)):
   * Explicit request headers `content-type, accept` etc
