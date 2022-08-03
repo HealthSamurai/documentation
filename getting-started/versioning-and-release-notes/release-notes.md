@@ -4,19 +4,18 @@
 
 ## July 2022 _`latest`_
 
-* Added ability to [load from bucket](../../api-1/bulk-api-1/import-from-a-bucket.md) without deleting previously created LoaderFiles.
-* Added load-from-bucket `aidbox.bulk/load-from-bucket-status` RPC method to the load-from-bucket status.
-* Added an option to start Aidbox with invalid zen-lang schema in [dev-mode](../../reference/configuration/environment-variables/aidbox-project-environment-variables.md#aidbox\_zen\_dev\_mode) to improve debugging experience.
-* Added [an option](../../aidbox-configuration/aidbox-api-constructor/acl.md#conditional-crud) to use ACL checks on search phase of conditional operations.
+* Added ability to [load-from-bucket](../../api-1/bulk-api-1/import-from-a-bucket.md) without deleting previously created LoaderFiles.
+* Added RPC method to get the [import status](../../api-1/bulk-api-1/import-from-a-bucket.md#aidbox.bulk-load-from-bucket-status) when running [load-from-bucket](../../api-1/bulk-api-1/import-from-a-bucket.md) import operation.&#x20;
+* Added an option to start Aidbox with an invalid [Aidbox project](../../aidbox-configuration/aidbox-zen-lang-project/) in [dev-mode](../../reference/configuration/environment-variables/aidbox-project-environment-variables.md#aidbox\_zen\_dev\_mode) to improve the debugging experience. By default, Aidbox doesn't start with invalid Aidbox projects.&#x20;
+* Added an option to enable [ACL checks for searches in conditional operations](../../aidbox-configuration/aidbox-api-constructor/acl.md#conditional-crud).
 * Added `BOX_FEATURES_TERMINOLOGY_IMPORT_SYNC` environment variable to enable sync [terminology bundle file load](../../terminology/terminology-api/).
-* Improved GraphQL speed.
-* Added more detailed error messages in Bulk Import status.
+* Improved GraphQL API performance.
 * Added `plain` option to use [`$import`](../../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md) with non-gzipped files.
-* Increased speed of the validation.
+* Improved validation performance.
 * Added support of entry.search.mode field when using [\_include or \_revinclude](../../api-1/fhir-api/search-1/\_include-and-\_revinclude.md) search parameters.
-* [Published](https://github.com/zen-lang/fhir/releases/tag/0.5.18) multiple versions of zen fhir IGs to make possible to use non-latest versions.
-* Added [`profile`](../../api-1/fhir-api/metadata.md#notes) property to CapabilityStatement resource.
-* Fixed issues submitted by Aidbox users and fixed minor bugs.&#x20;
+* [Published](https://github.com/zen-lang/fhir/releases/tag/0.5.18) multiple versions of [zen FHIR IGs](broken-reference) to provide an option to use a specific version of an implementation guide. &#x20;
+* Added [`profile`](../../api-1/fhir-api/metadata.md#notes) property to the CapabilityStatement resource.
+* Fixed issues submitted by Aidbox users and fixed minor bugs.
 
 ## June 2022 _`stable, 2206, LTS`_
 
@@ -25,14 +24,14 @@
 * Added [Aidbox projects terminology bundle](../../terminology/terminology-api/#import-using-aidbox-project) load cache. Aidbox doesn't load a terminology bundle into its database if the bundle has no changes.
 * [Aidbox project terminology](../../terminology/terminology-api/#import-using-aidbox-project) bundle load is now async and doesn't affect Aidbox startup time.
 * Added nested resources validation when using [zen profiling](../../profiling-and-validation/profiling-with-zen-lang/).
-* Added params to [load-from-bucket](../../api-1/bulk-api-1/import-from-a-bucket.md#parameters) import operation.&#x20;
+* Added params to [load-from-bucket](../../api-1/bulk-api-1/import-from-a-bucket.md#parameters) import operation.
 * Improved chained search parameters performance.
 * Added ability to specify SQL migrations in [Aidbox project seed service](../../aidbox-configuration/aidbox-zen-lang-project/#seed-service).
-* Enhanced [API constructor ACL](../../aidbox-configuration/aidbox-api-constructor/acl.md) with conditional CRUD  and patient/group level `$export`.
+* Enhanced [API constructor ACL](../../aidbox-configuration/aidbox-api-constructor/acl.md) with conditional CRUD and patient/group level `$export`.
 * Added a tutorial on how to [create a user and give full access](../../tutorials/creating-user-and-set-up-full-user-access.md).
-* Fixed issues submitted by Aidbox users and fixed minor bugs.&#x20;
+* Fixed issues submitted by Aidbox users and fixed minor bugs.
 
-## May 2022 _`2205`_&#x20;
+## May 2022 _`2205`_
 
 * Added RPC API access control engines: [allow-rpc engine](../../security-and-access-control-1/security/access-control/#allow-rpc-engine) and attribute-based [matcho-rpc engine](../../security-and-access-control-1/security/access-control/#matcho-rpc-engine).
 * Added GraphQL API resource [history search](../../api-1/graphql-api.md#queries) to retrieve a resource change history.
@@ -40,17 +39,17 @@
 * Enhanced [API constructor ACL](../../aidbox-configuration/aidbox-api-constructor/acl.md) with new operation engine [filter table insert on create](../../aidbox-configuration/aidbox-api-constructor/acl.md#filter).
 * **Changed** auth layer 400/401/403 **errors response body** to OperationOutcome resource.
 * Added [CapabilityStatement configuration](../../api-1/fhir-api/metadata.md#configure-capabilitystatement) options.
-* Improved setting [PostgreSQL schema](broken-reference) for Aidbox tables.
-* Added option to set JWT private/public keys and secret[ via env](broken-reference).
+* Improved setting [PostgreSQL schema](broken-reference/) for Aidbox tables.
+* Added option to set JWT private/public keys and secret[ via env](broken-reference/).
 * Added [aidboxdb PostgreSQL 14.2 version](../../storage-1/aidboxdb-image.md). Supported versions are 14.2 and 13.6.
 * Added tutorial [how to fix broken dates](../../tutorials/).
-* Released Infrabox preview. Infrabox is a simple and efficient tool to deploy and manage production-ready Aidbox infrastructure on k8s.&#x20;
+* Released Infrabox preview. Infrabox is a simple and efficient tool to deploy and manage production-ready Aidbox infrastructure on k8s.
 
-## April 2022 _`2204`_&#x20;
+## April 2022 _`2204`_
 
 * Added [ACL (access-control list)](../../aidbox-configuration/aidbox-api-constructor/acl.md) functionality to [API constructor](../../aidbox-configuration/aidbox-api-constructor.md).
 * Released [`seed service`](../../aidbox-configuration/aidbox-zen-lang-project/#seed-import) for Aidbox project. Declare a set of resources in Aidbox project and get them loaded in one or many Aidboxes on start.
-* Added option to set [PostgreSQL schema](broken-reference) for Aidbox tables.
+* Added option to set [PostgreSQL schema](broken-reference/) for Aidbox tables.
 * Added `content-type: application/json` as default if `content-type` and `accept` headers are missing.
 * Added [$drop-cache](../../api-1/cache.md#drop-cache-operation) operation and and [`multibox/drop-box-caches`](../../multibox/multibox-box-manager-api.md#multibox-drop-box-caches) RPC
 * Added [GET /$version operation](../../api-1/api/aidbox-version.md) to get Aidbox version.
