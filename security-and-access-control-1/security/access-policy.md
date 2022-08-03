@@ -291,23 +291,4 @@ The results of the schema validation should be the following:
 | GET          | True                   | True             |
 | POST         | True                   | False            |
 
-{% swagger baseUrl="POST {{AIDBOX_URL}}/Patients/tortik" path="" method="get" summary="" %}
-{% swagger-description %}
-
-{% endswagger-description %}
-
-{% swagger-parameter in="path" name="" type="string" required="false" %}
-
-{% endswagger-parameter %}
-
-{% swagger-response status="200" description="" %}
-```
-```
-{% endswagger-response %}
-{% endswagger %}
-
-See the full documentation [Resource Owner Credentials Grant](broken-reference/).
-
-{% content-ref url="broken-reference/" %}
-[broken-reference](broken-reference/)
-{% endcontent-ref %}
+See the full documentation [Resource Owner Credentials Grant](../auth/resource-owner-password.md).
