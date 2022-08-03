@@ -195,14 +195,12 @@ matcho:
   request-method: {$enum: ['get','post','put','delete','patch']}
   user:
     data: {roles: {$contains: 'Administrator'}}
-  client: { id: postman }
 ```
 
 ```yaml
 engine: json-schema
 schema:
   required:
-    - client
     - user
     - request-method
   properties:
@@ -221,12 +219,6 @@ schema:
                     enum:
                       - Administrator
               type: array
-    client:
-      required:
-        - id
-      properties:
-        id:
-          const: postman
     request-method:
       enum:
         - get
