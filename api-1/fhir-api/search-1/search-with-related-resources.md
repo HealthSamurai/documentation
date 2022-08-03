@@ -4,7 +4,7 @@ A client can add related resources to a search result using [**(rev)include**](h
 
 ### Example
 
-You may want to get encounters with patients (each encounter refers to patient):
+This example demonstrates how [\_include, \_revinclude, and \_with](\_include-and-\_revinclude.md) search parameters work_._ You may want to get encounters with patients (each encounter refers to patient):
 
 #### Create Patient&#x20;
 
@@ -95,12 +95,6 @@ include-queries:
 ```
 {% endtab %}
 {% endtabs %}
-
-{% hint style="info" %}
-You can check which resource came from \_include __ or __ \_revinclude
-
-[search.mode](https://www.hl7.org/fhir/bundle-definitions.html#Bundle.entry.search.mode): An indication of whether the resource is in the search set because it matched the search criteria or whether it is included because another resource refers to it (e.g. by the [\_include](https://www.hl7.org/fhir/search.html#include) parameter)
-{% endhint %}
 
 #### Search with \_with
 
