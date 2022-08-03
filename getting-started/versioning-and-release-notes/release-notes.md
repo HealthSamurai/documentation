@@ -6,7 +6,7 @@
 
 * [Published](https://github.com/zen-lang/fhir/releases/tag/0.5.18) multiple versions of [zen FHIR IGs](broken-reference) to provide an option to use a specific version of an implementation guide. &#x20;
 * Improved GraphQL API performance.
-* Improved validation performance.
+* Improved validation with zen-lang performance.
 * Added RPC method to get the [import status](../../api-1/bulk-api-1/import-from-a-bucket.md#aidbox.bulk-load-from-bucket-status) when running [load-from-bucket](../../api-1/bulk-api-1/import-from-a-bucket.md) import operation.&#x20;
 * Added an option to start Aidbox with an invalid [Aidbox project](../../aidbox-configuration/aidbox-zen-lang-project/) in [dev-mode](../../reference/configuration/environment-variables/aidbox-project-environment-variables.md#aidbox\_zen\_dev\_mode) to improve the debugging experience. By default, Aidbox doesn't start with invalid Aidbox projects.&#x20;
 * Added an option to enable [ACL checks for searches in conditional operations](../../aidbox-configuration/aidbox-api-constructor/acl.md#conditional-crud).
