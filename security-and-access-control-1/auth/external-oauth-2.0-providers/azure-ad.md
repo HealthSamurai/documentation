@@ -14,7 +14,7 @@ description: How to configure AzureAD IdentityProvider with Aidbox
 
 ![](<../../../.gitbook/assets/azure0.png>)
 
-* Fill form. Choose `web` as a platform and https://<box-url>/auth/callback/azure
+* Fill form. Choose `web` as a platform and `https://<box-url>/auth/callback/azure`
 
 ![](<../../../.gitbook/assets/azure4.png>)
 
