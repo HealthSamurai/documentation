@@ -7,16 +7,20 @@ description: How to configure AzureAD IdentityProvider with Aidbox
 ## Register an application in Azure
 
 * Find **App Registration** in search bar
+
 ![](<../../../.gitbook/assets/azure7.png>)
 
 * Click **New Registration**
+
 ![](<../../../.gitbook/assets/azure0.png>)
 
 * Fill form. Choose `web` as a platform and https://<box-url>/auth/callback/azure
+
 ![](<../../../.gitbook/assets/azure4.png>)
 
 * Click **Certificates&secrets > New client secret** and create a new
   secret
+
 ![](<../../../.gitbook/assets/azure3.png>)
 Save it for next step
 
@@ -44,11 +48,13 @@ id: azure-ad
 ```
 
 You can find application (client) id on **App Overview** page
+
 ![](<../../../.gitbook/assets/azure5.png>)
 and your endpoints by clicking on **Endpoints** button
+
 ![](<../../../.gitbook/assets/azure2.png>)
 
-## Login into Aidbox with Okta
+## Login into Aidbox
 
 Go to your Aidbox base URL, you will be redirected to the login page -
 you should see **"Log in with Azure AD"** button. Press this button and log in with AzureAD user into aidbox.
