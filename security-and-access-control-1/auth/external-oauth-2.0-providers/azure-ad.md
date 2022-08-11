@@ -22,6 +22,7 @@ description: How to configure AzureAD IdentityProvider with Aidbox
   secret
 
 ![](<../../../.gitbook/assets/azure3.png>)
+
 Save it for next step
 
 ## Create IdentityProvider in Aidbox
