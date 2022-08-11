@@ -19,11 +19,9 @@ description: How to configure AzureAD IdentityProvider with Aidbox
 ![](<../../../.gitbook/assets/azure4.png>)
 
 * Click **Certificates&secrets > New client secret** and create a new
-  secret
+  secret. Save it for next step
 
 ![](<../../../.gitbook/assets/azure3.png>)
-
-Save it for next step
 
 ## Create IdentityProvider in Aidbox
 
@@ -51,6 +49,7 @@ id: azure-ad
 You can find application (client) id on **App Overview** page
 
 ![](<../../../.gitbook/assets/azure5.png>)
+
 
 and your endpoints by clicking on **Endpoints** button
 
