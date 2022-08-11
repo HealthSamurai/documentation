@@ -17,3 +17,5 @@ Default value for total method can be set with `box_search_default__params_total
 box_search_default__params_total=none
 ```
 {% endcode %}
+
+Keep in mind that even if you're using `box_search_default__params_total=none` you will still get `total` in cases when it's not decreasing performance. For example, if you don't use `_page` or number of returned resources is less than `_count` (by default is 100) counting `total` is a constant-time operation (O(1)) and won't delay the response.
