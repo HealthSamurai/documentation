@@ -50,6 +50,7 @@ id: azure-ad
 You can find application (client) id on **App Overview** page
 
 ![](<../../../.gitbook/assets/azure5.png>)
+
 and your endpoints by clicking on **Endpoints** button
 
 ![](<../../../.gitbook/assets/azure2.png>)
