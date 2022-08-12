@@ -10,7 +10,7 @@ By default, for all search requests Aidbox returns the total number in the resul
 * `estimate` - roughly estimate number of results
 * `accurate`- run accurate count
 
-Default value for total method can be set with `box_search_default__params_total` env
+Default value for total method can be set with [box\_search\_default\_\_params\_total ](../../../reference/configuration/environment-variables/optional-environment-variables.md#optional-environment-variables)env
 
 {% code title="Example:" %}
 ```
@@ -18,4 +18,4 @@ box_search_default__params_total=none
 ```
 {% endcode %}
 
-Keep in mind that even if you're using `box_search_default__params_total=none` you will still get `total` in cases when it's not decreasing performance. For example, if you don't use `_page` or number of returned resources is less than `_count` (by default is 100) counting `total` is a constant-time operation (O(1)) and won't delay the response.
+Keep in mind that even if you're using [`box_search_default__params_total`](../../../reference/configuration/environment-variables/optional-environment-variables.md#optional-environment-variables)`=none` you will still get `total` in cases when it's not decreasing performance. For example, if you don't use `_page` or number of returned resources is less than `_count` (by default is 100) counting `total` is a constant-time operation (O(1)) and won't delay the response.
