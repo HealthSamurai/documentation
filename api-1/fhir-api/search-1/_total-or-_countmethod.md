@@ -11,22 +11,3 @@ To get a response faster you can change this behavior using the **\_total** (or 
 * `none` - do not run count query&#x20;
 * `estimate` - roughly estimate number of results
 * `accurate`- run accurate count
-
-Default value for total method can be set with [box\_search\_default\_\_params\_total ](../../../reference/configuration/environment-variables/optional-environment-variables.md#optional-environment-variables)env
-
-{% code title="Example:" %}
-```
-box_search_default__params_total=none
-```
-{% endcode %}
-
-
-
-{% hint style="warning" %}
-if you use [`box_search_default__params_total`](../../../reference/configuration/environment-variables/optional-environment-variables.md#optional-environment-variables)`=none` you still get `total`when:
-
-1. &#x20; you don't use `_page`
-2. &#x20;the number of returned resources is less than `_count` (by default is 100).
-{% endhint %}
-
-.

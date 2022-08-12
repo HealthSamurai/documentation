@@ -1,8 +1,6 @@
 # Optional environment variables
 
-### Optional environment variables
-
-#### AIDBOX\_BASE\_URL
+### AIDBOX\_BASE\_URL
 
 ```
 AIDBOX_BASE_URL=<url>
@@ -16,7 +14,7 @@ Default is
 http://localhost:[AIDBOX_PORT]
 ```
 
-#### AIDBOX\_DB\_PARAM\_\*
+### AIDBOX\_DB\_PARAM\_\*
 
 ```
 AIDBOX_DB_PARAM_<parameter name>=<parameter value>
@@ -24,9 +22,26 @@ AIDBOX_DB_PARAM_<parameter name>=<parameter value>
 
 Parameters prefixed with `AIDBOX_DB_PARAM_` will be passed to [JDBC PostgreSQL connection string](https://jdbc.postgresql.org/documentation/80/connect.html).
 
-#### AIDBOX\_ES\_URL
+### AIDBOX\_ES\_URL
 
 If provided, enables mode to push logs to ElasticSearch
+
+### BOX\_SEARCH\_DEFAULT\_\_PARAMS\_TOTAL
+
+```
+box_search_default__params_total=<value>
+```
+
+`value` is one of: `none`, `estimate`, `accurate`.
+
+Sets the default total search parameter value.
+
+{% hint style="warning" %}
+if you use `box_search_default__params_total=none` you still get `total`when:
+
+1. &#x20; you don't use `_page`
+2. &#x20;the number of returned resources is less than `_count` (by default is 100).
+{% endhint %}
 
 
 
@@ -53,7 +68,6 @@ If provided, enables mode to push logs to ElasticSearch
 | `AIDBOX_ZEN_PATHS`                                                   | Specifies how Aidbox loads project                                                                                                                                                                                                                         |
 | `AIDBOX_EXTENSION_SCHEMA`                                            | Schema for PostgreSQL extensions. Default is current schema. See [use different PostgreSQL schema section](optional-environment-variables.md#use-different-postgresql-schema).                                                                             |
 | `BOX_SEARCH_DEFAULT__PARAMS_COUNT`                                   | Overrides the default count search parameter value. 100 is the default value. The provided value should be <= 1000                                                                                                                                         |
-| `BOX_SEARCH_DEFAULT__PARAMS_TOTAL`                                   | Overrides the default total search parameter value. Available values are: `none`, `accurate`, `estimate`. See[ total or totalMethod](../../../api-1/fhir-api/search-1/\_total-or-\_countmethod.md).                                                        |
 | `BOX_COMPATIBILITY_VALIDATION_JSON__SCHEMA_REGEX="#{:fhir-datetime}` | Enables strict date time validation in JSON schema validation engine per [FHIR spec](https://www.hl7.org/fhir/datatypes.html#dateTime).                                                                                                                    |
 | `BOX_COMPATIBILITY_AUTH_PKCE_CODE__CHALLENGE_S256_CONFORMANT`        | Use conformant S256 code challenge validation scheme.                                                                                                                                                                                                      |
 | `BOX_DEBUG_SU_ENABLE`                                                | Enables `su` request header [functionalty](https://docs.aidbox.app/security-and-access-control-1/security/debug#su-request-header)                                                                                                                         |
