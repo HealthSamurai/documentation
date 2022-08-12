@@ -43,21 +43,96 @@ if you use `box_search_default__params_total=none` you still get `total`when:
 2. &#x20;the number of returned resources is less than `_count` (by default is 100).
 {% endhint %}
 
+### AIDBOX\_ES\_AUTH
 
+```
+AIDBOX_ES_AUTH=<user>:<password>
+```
+
+Basic auth credentials for ElasticSearch
+
+### AIDBOX\_ES\_BATCH\_SIZE
+
+```
+AIDBOX_ES_BATCH_SIZE=<size>
+```
+
+Log batch size used to optimize log shipping performance. The default value is 200
+
+### AIDBOX\_ES\_BATCH\_TIMEOUT
+
+```
+AIDBOX_ES_BATCH_TIMEOUT=<timeout>
+```
+
+Timeout to post a batch to ElasticSearch. If there is not enough records to reach full batch size
+
+### AIDBOX\_ES\_INDEX\_PAT
+
+```
+AIDBOX_ES_INDEX_PAT=<format>
+```
+
+Custom index format string. The default value is 'aidbox-logs'-yyyy-MM-dd.
+
+### AIDBOX\_LOGS
+
+```
+AIDBOX_LOGS=<filepath>
+```
+
+If provided, enables mode to pipe logs as json into the file by specified path. If ElasticSearch URL is provided then the file is used as a fallback in case if ElasticSearch is not available
+
+### AIDBOX\_LOGS\_MAX\_LINES
+
+```
+AIDBOX_LOGS_MAX_LINES=<max-lines>
+```
+
+Sets the limit of log records to push into the file. When the limit is reached, the current log file is renamed with ".old" postfix and a new log file is created. The default value is "10000"
+
+### AIDBOX\_STDOUT\_JSON
+
+```
+AIDBOX_STDOUT_JSON=true
+```
+
+If provided, enables mode to write logs as json into stdout
+
+### AIDBOX\_STDOUT\_PRETTY
+
+```
+AIDBOX_STDOUT_PRETTY=true
+```
+
+If provided, enables mode to write logs in prettified format into stdout
+
+### AIDBOX\_DEVLOGS
+
+```
+AIDBOX_DEVLOGS=true
+```
+
+If provided, pushes logs into \_logs table of aidboxdb. Can be useful for testing and debugging
+
+### AIDBOX\_DD\_API\_KEY
+
+```
+AIDBOX_DD_API_KEY=true
+```
+
+If provided, enables mode to push logs to DataDog
+
+### AIDBOX\_DD\_BATCH\_SIZE
+
+```
+AIDBOX_DD_BATCH_SIZE=<batch-size>
+```
+
+Size of log batch, used to optimize performance of log shipping. The default value is 200
 
 | Env variable name                                                    | Meaning                                                                                                                                                                                                                                                    |
 | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `AIDBOX_ES_AUTH`                                                     | Basic auth credentials for ElasticSearch in `user:password` format                                                                                                                                                                                         |
-| `AIDBOX_ES_BATCH_SIZE`                                               | Log batch size used to optimize log shipping performance. The default value is 200                                                                                                                                                                         |
-| `AIDBOX_ES_BATCH_TIMEOUT`                                            | Timeout to post a batch to ElasticSearch. If there is not enough records to reach full batch size                                                                                                                                                          |
-| `AIDBOX_ES_INDEX_PAT`                                                | Custom index format string. The default value is 'aidbox-logs'-yyyy-MM-dd.                                                                                                                                                                                 |
-| `AIDBOX_LOGS`                                                        | If provided, enables mode to pipe logs as json into the file by specified path. If ElasticSearch URL is provided then the file is used as a fallback in case if ElasticSearch is not available                                                             |
-| `AIDBOX_LOGS_MAX_LINES`                                              | Sets the limit of log records to push into the file. When the limit is reached, the current log file is renamed with ".old" postfix and a new log file is created. The default value is "10000"                                                            |
-| `AIDBOX_STDOUT_JSON`                                                 | If provided, enables mode to write logs as json into stdout                                                                                                                                                                                                |
-| `AIDBOX_STDOUT_PRETTY`                                               | If provided, enables mode to write logs in prettified format into stdout                                                                                                                                                                                   |
-| `AIDBOX_DEVLOGS`                                                     | If provided, pushes logs into \_logs table of aidboxdb. Can be useful for testing and debugging                                                                                                                                                            |
-| `AIDBOX_DD_API_KEY`                                                  | If provided, enables mode to push logs to DataDog                                                                                                                                                                                                          |
-| `AIDBOX_DD_BATCH_SIZE`                                               | Size of log batch, used to optimize performance of log shipping. The default value is 200                                                                                                                                                                  |
 | `AIDBOX_DD_BATCH_TIMEOUT`                                            | Timeout (in ms) to post a batch to DataDog if there are not enough records to reach full batch size. Default value: 3600000 (1 hour)                                                                                                                       |
 | `AIDBOX_DD_LOGS`                                                     | Fallback file to write logs in if uploading to DataDog fails                                                                                                                                                                                               |
 | `AIDBOX_CREATED_AT_URL`                                              | Overrides createdAt extension url, default is `ex:createdAt`                                                                                                                                                                                               |
