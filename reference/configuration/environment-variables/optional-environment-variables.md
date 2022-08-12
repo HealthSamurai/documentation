@@ -131,24 +131,150 @@ AIDBOX_DD_BATCH_SIZE=<batch-size>
 
 Size of log batch, used to optimize performance of log shipping. The default value is 200
 
-| Env variable name                                                    | Meaning                                                                                                                                                                                                                                                    |
-| -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `AIDBOX_DD_BATCH_TIMEOUT`                                            | Timeout (in ms) to post a batch to DataDog if there are not enough records to reach full batch size. Default value: 3600000 (1 hour)                                                                                                                       |
-| `AIDBOX_DD_LOGS`                                                     | Fallback file to write logs in if uploading to DataDog fails                                                                                                                                                                                               |
-| `AIDBOX_CREATED_AT_URL`                                              | Overrides createdAt extension url, default is `ex:createdAt`                                                                                                                                                                                               |
-| `AIDBOX_CORRECT_AIDBOX_FORMAT`                                       | <p>If provided, activates transforming unknown polymorphic extensions to the correct Aidbox format avoiding keeping them at FHIR-format.</p><p>For example,</p><p><code>extension.*.valueString</code> stored as <code>extension.0.value.string</code></p> |
-| `AIDBOX_DEV_MODE`                                                    | Enables `_debug=policy` for [access policy debugging](https://docs.aidbox.app/security-and-access-control-1/security/access-policy#policy-debugging)                                                                                                       |
-| `AIDBOX_ZEN_ENTRYPOINT`                                              | Specifies entry point for loading Aidbox configuration                                                                                                                                                                                                     |
-| AIDBOX\__ZEN\_DEV\_MODE_                                             | Reload zen namespaces                                                                                                                                                                                                                                      |
-| `AIDBOX_ZEN_PATHS`                                                   | Specifies how Aidbox loads project                                                                                                                                                                                                                         |
-| `AIDBOX_EXTENSION_SCHEMA`                                            | Schema for PostgreSQL extensions. Default is current schema. See [use different PostgreSQL schema section](optional-environment-variables.md#use-different-postgresql-schema).                                                                             |
-| `BOX_SEARCH_DEFAULT__PARAMS_COUNT`                                   | Overrides the default count search parameter value. 100 is the default value. The provided value should be <= 1000                                                                                                                                         |
-| `BOX_COMPATIBILITY_VALIDATION_JSON__SCHEMA_REGEX="#{:fhir-datetime}` | Enables strict date time validation in JSON schema validation engine per [FHIR spec](https://www.hl7.org/fhir/datatypes.html#dateTime).                                                                                                                    |
-| `BOX_COMPATIBILITY_AUTH_PKCE_CODE__CHALLENGE_S256_CONFORMANT`        | Use conformant S256 code challenge validation scheme.                                                                                                                                                                                                      |
-| `BOX_DEBUG_SU_ENABLE`                                                | Enables `su` request header [functionalty](https://docs.aidbox.app/security-and-access-control-1/security/debug#su-request-header)                                                                                                                         |
-| `BOX_FEATURES_VALIDATION_SKIP_REFERENCE`                             | Enables skip resource reference validation [functionality](../../../profiling-and-validation/profiling.md#aidbox-validation-skip-request-header)                                                                                                           |
-| `BOX_WEB_MAX__BODY`                                                  | Maximum size of request body in bytes. Default is 8388608 (8 MiB)                                                                                                                                                                                          |
-| `BOX_FEATURES_TERMINOLOGY_IMPORT_SYNC`                               | Enables synchronous terminology bundle import                                                                                                                                                                                                              |
+### AIDBOX\_DD\_BATCH\_TIMEOUT
+
+```
+AIDBOX_DD_BATCH_TIMEOUT=<timeout-ms>
+```
+
+Timeout (in ms) to post a batch to DataDog if there are not enough records to reach full batch size. Default value: 3600000 (1 hour)
+
+### AIDBOX\_DD\_LOGS
+
+```
+AIDBOX_DD_LOGS=<filepath>
+```
+
+Fallback file to write logs in if uploading to DataDog fails
+
+### AIDBOX\_CREATED\_AT\_URL
+
+```
+AIDBOX_CREATED_AT_URL=<url>
+```
+
+Overrides createdAt extension url, default is `ex:createdAt`
+
+### AIDBOX\_CORRECT\_AIDBOX\_FORMAT
+
+```
+AIDBOX_CORRECT_AIDBOX_FORMAT=true
+```
+
+If provided, activates transforming unknown polymorphic extensions to the correct Aidbox format avoiding keeping them at FHIR-format.
+
+For example, `extension.*.valueString` stored as `extension.0.value.string`
+
+### AIDBOX\_DEV\_MODE
+
+```
+AIDBOX_DEV_MODE=true
+```
+
+Enables `_debug=policy` for [access policy debugging](https://docs.aidbox.app/security-and-access-control-1/security/access-policy#policy-debugging)
+
+### AIDBOX\_ZEN\_ENTRYPOINT
+
+```
+AIDBOX_ZEN_ENTRYPOINT=<entrypoint>
+```
+
+`entrypoint` is in format specified [here](../../../aidbox-configuration/aidbox-zen-lang-project/#set-aidbox-zen-entrypoint).
+
+Specifies entry point for loading Aidbox configuration.
+
+### AIDBOX\_ZEN\_DEV\_MODE
+
+```
+AIDBOX_ZEN_DEV_MODE=true
+```
+
+Enables watcher which reloads zen namespaces when they change.
+
+### AIDBOX\_ZEN\_PATHS
+
+```
+AIDBOX_ZEN_PATHS=<source>:<format>:<path>[,<source>:<format>:<path>]*
+```
+
+`<source>` is either `url`, or `path`.
+
+* `url` is used to load project from remote location
+* `path` is used to load project from local location
+
+`<format>` is either `zip`, or `dir`, or `edn`.
+
+Table of sources and format compatibility:
+
+|               |       |       |       |
+| ------------- | ----- | ----- | ----- |
+| source/format | `zip` | `dir` | `edn` |
+| `url`         | ✓     |       | ✓     |
+| `path`        | ✓     | ✓     | ✓     |
+
+### AIDBOX\_EXTENSION\_SCHEMA
+
+```
+AIDBOX_EXTENSION_SCHEMA=<schema>
+```
+
+Schema for PostgreSQL extensions. Default is current schema. See [use different PostgreSQL schema section](optional-environment-variables.md#use-different-postgresql-schema).
+
+### BOX\_SEARCH\_DEFAULT\_\_PARAMS\_COUNT
+
+```
+BOX_SEARCH_DEFAULT__PARAMS_COUNT=<count>
+```
+
+Overrides the default count search parameter value. 100 is the default value. The provided value should be <= 1000
+
+### BOX\_COMPATIBILITY\_VALIDATION\_JSON\_\_SCHEMA\_REGEX
+
+```
+BOX_COMPATIBILITY_VALIDATION_JSON__SCHEMA_REGEX="#{:fhir-datetime}"
+```
+
+Enables strict date time validation in JSON schema validation engine per [FHIR spec](https://www.hl7.org/fhir/datatypes.html#dateTime).
+
+### BOX\_COMPATIBILITY\_AUTH\_PKCE\_CODE\_\_CHALLENGE\_S256\_CONFORMANT
+
+```
+BOX_COMPATIBILITY_AUTH_PKCE_CODE__CHALLENGE_S256_CONFORMANT=true
+```
+
+Use conformant S256 code challenge validation scheme.
+
+### BOX\_DEBUG\_SU\_ENABLE
+
+```
+BOX_DEBUG_SU_ENABLE=true
+```
+
+Enables `su` request header [functionalty](https://docs.aidbox.app/security-and-access-control-1/security/debug#su-request-header).
+
+### BOX\_FEATURES\_VALIDATION\_SKIP\_REFERENCE
+
+```
+BOX_FEATURES_VALIDATION_SKIP_REFERENCE=true
+```
+
+Enables skip resource reference validation [functionality](../../../profiling-and-validation/profiling.md#aidbox-validation-skip-request-header).
+
+### BOX\_WEB\_MAX\_\_BODY
+
+```
+BOX_WEB_MAX__BODY=<max-size-bytes>
+```
+
+Maximum size of request body in bytes. Default is 8388608 (8 MiB)
+
+### BOX\_FEATURES\_TERMINOLOGY\_IMPORT\_SYNC
+
+```
+BOX_FEATURES_TERMINOLOGY_IMPORT_SYNC=true
+```
+
+Enables synchronous terminology bundle import
 
 ### Enable Aidbox compliance mode
 
