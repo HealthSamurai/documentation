@@ -38,6 +38,8 @@ Role name is a string that defines role. You don't need to declare it explicitly
 
 Role resource has an optional links property which specifies related resources. Aidbox does not assign any special meaning to this property. Additionally, Role is an open resource so you can add any information to it.
 
+You can put any additional data into `context` property.&#x20;
+
 Create a Role resource which assigns a role to the user we created.
 
 ```yaml
