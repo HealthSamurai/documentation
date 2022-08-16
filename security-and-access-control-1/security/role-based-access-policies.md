@@ -30,8 +30,6 @@ id: user-1
 resourceType: User
 ```
 
-**Note**: _User resource has `roles` property. Aidbox does not assign any special meaning to it._
-
 ### Create a Role resource
 
 Role name is a string that defines role. You don't need to declare it explicitly. Role resource links a role and a user.
