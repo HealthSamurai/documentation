@@ -219,6 +219,7 @@
   * [Grafana integration](core-modules/monitoring/grafana-integration.md)
 * [Logging & Audit](core-modules/logging-and-audit/README.md)
   * [Log Schema](core-modules/logging-and-audit/aidbox-log-schema.md)
+  * [Extending Aidbox Logs](core-modules/logging-and-audit/extending-access-logs.md)
   * Integrations
     * [Elastic Logs and Monitoring Integration](core-modules/logging-and-audit/elastic-logs-and-monitoring-integration.md)
     * [Export logs to ElasticSearch/Kibana](core-modules/logging-and-audit/export-logs-to-elasticsearch-kibana.md)
