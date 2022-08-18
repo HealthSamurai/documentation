@@ -1,11 +1,15 @@
 # Logging
 
 Aidbox produces structured logs on every signifact event to the internal stream which you may direct to different ways:
-- stdout in json or pretty string formats
-- file
-- Elasticsearch
-- Datadog
-- Loki
+- [stdout in json or pretty string formats](#stdour-log)
+- [file](#log-to-file)
+- [Elasticsearch](elastic-logs-and-monitoring-integration.md)
+- [Datadog](datadog-guide.md)
+- [Loki](loki-integration.md)
+
+{% hint style="info" %}
+Aidbox logs can be used in audit. Please, see our [article on auditing](audit.md) for more info.
+{% endhint %}
 
 ## Logs API
 
@@ -28,7 +32,11 @@ Please, pay attention, that you will not see the response for `GET /_logs` reque
 
 ## Configure logging
 
+### Stdout log
+
 Aidbox sends logs into stdout if one of these env variables defined: `AIDBOX_STDOUT_JSON`, `AIDBOX_STDOUT_PRETTY`
+
+### Log to file
 
 If you prefer to write logs into the file system,  in the .env file specify `AIDBOX_LOGS` environment variable with a relative path to the desired location.
 
@@ -36,7 +44,7 @@ If you prefer to write logs into the file system,  in the .env file specify `AID
 AIDBOX_LOGS=/logs/aidbox
 ```
 
-Another option is to store logs in the ElasticSearch. Please, read the details [here ](https://docs.aidbox.app/app-development-guides/receive-logs-from-your-app/elastic-logs-and-monitoring-integration)
+Another option is to store logs in the ElasticSearch. Please, read the details [here](https://docs.aidbox.app/app-development-guides/receive-logs-from-your-app/elastic-logs-and-monitoring-integration)
 
 
 
