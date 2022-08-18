@@ -1,18 +1,27 @@
-## Audit
+# Audit
 
-Aidbox automatically logs all auth, API, database and network events, so in most cases basic audit log may be derived from [Aidbox logs](README.md).
+Aidbox automatically logs all auth, API, database and network events, so in most cases basic audit log may be derived from [Aidbox logs](./).
 
 In rare cases Aidbox logs are not enough for auditing. For instance, you'd like to track business-relevant events happening outside of Aidbox control.
 
 {% hint style="info" %}
-*Example:* You may use the same patient search operaion `GET /Patient?_sort=-lastUpdated&_count=100` for showing it on UI and for making reports. 
-And from audit perspective you may consider it as different events.
+_**Example.**_ You may use the same patient search operation&#x20;
+
+`GET /Patient?_sort=-lastUpdated&_count=100`&#x20;
+
+for showing it on UI and for making reports. And from audit perspective you may consider it as different events.
 {% endhint %}
 
-In this case you may consider to options Aidbox provides:
+In this case you may consider two options Aidbox provides.
 
-Extending Aidbox logs. Aidbox allows you to enhance logs with your own data and push your own logs into Aidbox stream along with its internal logs.
+### Extending Aidbox Logs
 
-Use FHIR AuditEvent to store business-relevant events. FHIR introduced AuditEvent resource which plays well in FHIR ecosystem. Aidbox provides all FHIR API operation for AuditEvent resource.
+Aidbox allows you to enhance logs with your own data and push your own logs into Aidbox stream along with its internal logs.
 
-http://hl7.org/fhir/auditevent.html
+{% content-ref url="extending-access-logs.md" %}
+[extending-access-logs.md](extending-access-logs.md)
+{% endcontent-ref %}
+
+### FHIR AuditEvent
+
+FHIR Standard introduced [AuditEvent](http://hl7.org/fhir/auditevent.html) resource which into [FHIR ecosystem](http://hl7.org/fhir/security.html#audit). Aidbox provides comprehensive FHIR API for AuditEvent resource.
