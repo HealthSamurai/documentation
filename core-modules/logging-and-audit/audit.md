@@ -1,15 +1,15 @@
-## Audit logs
+## Audit
 
-Aidbox automatically logs all auth, API, database and network events, so in most cases basic audit log may be derived from Aidbox system log.
+Aidbox automatically logs all auth, API, database and network events, so in most cases basic audit log may be derived from [Aidbox logs](README.md).
 
-In rare cases Aidbox system logs are not enough. For instance, you would like to track business-relevant events happening outside of Aidbox control.
+In rare cases Aidbox logs are not enough for auditing. For instance, you'd like to track business-relevant events happening outside of Aidbox control.
 
-> Example:
-> Showing list of patients on UI and export patient list to a file may require the same request to Aidbox
-> You can use the same patient search operation for, let's say, for just showing the patient list on UI or to make an export file, which are different events from business perspective.
+{% hint style="info" %}
+*Example:* You may use the same patient search operaion `GET /Patient?_sort=-lastUpdated&_count=100` for showing it on UI and for making reports. 
+And from audit perspective you may consider it as different events.
+{% endhint %}
 
-
-Aidbox provides you two ways to recieve your events. ???
+In this case you may consider to options Aidbox provides:
 
 Extending Aidbox logs. Aidbox allows you to enhance logs with your own data and push your own logs into Aidbox stream along with its internal logs.
 

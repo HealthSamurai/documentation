@@ -1,11 +1,39 @@
-## Extending Aidbox Logs
+# Extending Aidbox Logs
 
 There few ways you may extend Aidbox logs:
-- `X-Audit-Req-Body` to log request body in logs,
+- `X-Correlation-Id` to add correlation id.
+- `X-Audit-Req-Body` to log request body,
 - `X-Audit` to add custom attributes to logs,
 - `POST /$loggy` to add your own log into Aidbox stream.
 
-### X-Audit-Req-Body
+## X-Correlation-Id
+
+You may send `X-Correlation-Id` header and Aidbox will propagate it to `w/req` & `w/resp` log events.
+
+```yaml
+# without X-Correlation-Id
+
+GET /Patient
+
+# in logs
+
+{"ev": "w/req", "w_url": "/Patient", "w_m": "get", ...}
+{"ev": "w/resp", "w_url": "/Patient", "w_m": "get", "w_st": 200, ...}
+
+
+# with X-Correlation-Id
+
+POST /Patient
+X-Correlation-Id: some-uuid
+
+# in logs
+
+{"ev": "w/req", "w_url": "/Patient", "w_m": "get", "w_corr_id": "my-corr-id", ...}
+{"ev": "w/resp", "w_url": "/Patient", "w_m": "get", "w_st": 200, "w_corr_id": "my-corr-id", ...}
+```
+
+
+## X-Audit-Req-Body
 
 By default aidbox doesn't log request body, because in most cases it's redudant. It may contain sensitve information (like passwords) or it may be pretty big and clog the log.
 
@@ -21,8 +49,9 @@ name=John
 
 # in logs
 
-{"ev": "w/req", "w_url": "/Patient/_search", "w_m": "post"}
-{"ev": "w/resp", "w_url": "/Patient/_search", "w_m": "post", "w_st": 200}
+{"ev": "w/req", "w_url": "/Patient/_search", "w_m": "post", ...}
+{"ev": "w/resp", "w_url": "/Patient/_search", "w_m": "post", "w_st": 200, ...}
+
 
 # with X-Audit-Req-Body
 
@@ -33,8 +62,8 @@ X-Audit-Req-Body: true
 name=John
 
 # in logs
-{"ev": "w/req", "w_url": "/Patient/_search", "w_m": "post", "w_b": "{\"name\":\"John\"}"}
-{"ev": "w/resp", "w_url": "/Patient/_search", "w_m": "post", "w_st": 200}
+{"ev": "w/req", "w_url": "/Patient/_search", "w_m": "post", "w_b": "{\"name\":\"John\"}", ...}
+{"ev": "w/resp", "w_url": "/Patient/_search", "w_m": "post", "w_st": 200, ...}
 ```
 
 ## X-Audit Header
@@ -49,8 +78,8 @@ X-Audit: eyJyb2xlIjogIm51cnNlIn0=
 ...body
 
 # in logs
-{ev: 'w/req', ....., role: 'nurse'}
-{ev: 'w/resp', ....., role: 'nurse'}
+{ev: 'w/req', role: 'nurse', ...}
+{ev: 'w/resp', role: 'nurse', ...}
 ```
 
 ## $loggy Endpoint
