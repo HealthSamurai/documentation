@@ -53,7 +53,7 @@ In table below you can see the most popular log events:
 
 ## Audit logs
 
-Aidbox [automatically logs](https://docs.aidbox.app/core-modules/logging-and-audit) all auth, API, database and network events, so in most cases basic audit log may be derived from Aidbox system log.
+Aidbox automatically logs all auth, API, database and network events, so in most cases basic audit log may be derived from Aidbox system log.
 
 In rare cases Aidbox system logs are not enough. For instance, you would like to track business-relevant events happening outside of Aidbox control.
 
@@ -81,89 +81,33 @@ By default aidbox doesn't log request body, because in most cases it's redudant.
 
 In case you want Aidbox to log request body (e.g. [FHIR Search over POST](http://hl7.org/fhir/http.html#search)) you can provide `X-Audit-Req-Body: true` header in the request.
 
-```
+```yaml
+# without X-Audit-Req-Body
+
 POST /Patient/_search
 Content-Type: application/x-www-form-urlencoded
 
 name=John
-```
 
-```json
-{
-    "ev": "w/req",
-    "w_url": "/Patient/_search",
-    "w": "w2",
-    "w_m": "post",
-    "tn": "devbox",
-    "op": "search",
-    "ts": "2022-08-18T13:51:08.810Z",
-    "w_addr": "127.0.0.1",
-    "ctx": "182bdb39120ac310b9e84d1fd809e539"
-}
-...
-{
-    "ev": "w/resp",
-    "w_url": "/Patient/_search",
-    "w": "w2",
-    "w_m": "post",
-    "tn": "devbox",
-    "op": "search",
-    "ts": "2022-08-18T13:51:08.821Z",
-    "w_ip": "127.0.0.1",
-    "rt": "Patient",
-    "w_r": "POST /Patient/_search",
-    "w_uid": "admin",
-    "d": 12,
-    "w_st": 200,
-    "ctx": "182bdb39120ac310b9e84d1fd809e539"
-}
-```
+# in logs
 
-```
+{"ev": "w/req", "w_url": "/Patient/_search", "w_m": "post"}
+{"ev": "w/resp", "w_url": "/Patient/_search", "w_m": "post", "w_st": 200}
+
+# with X-Audit-Req-Body
+
 POST /Patient/_search
 Content-Type: application/x-www-form-urlencoded
 X-Audit-Req-Body: true
 
 name=John
-```
 
-```json
-{
-    "ev": "w/req",
-    "w_url": "/Patient/_search",
-    "w": "w5",
-    "w_m": "post",
-    "tn": "devbox",
-    "op": "search",
-    "ts": "2022-08-18T13:54:47.623Z",
-    "w_addr": "127.0.0.1",
-    "w_b": "{\"name\":\"John\"}",
-    "ctx": "534e2a281adeb00fa06b28f41b862ce3"
-}
-...
-{
-    "ev": "w/resp",
-    "w_url": "/Patient/_search",
-    "w": "w5",
-    "w_m": "post",
-    "tn": "devbox",
-    "op": "search",
-    "ts": "2022-08-18T13:54:47.652Z",
-    "w_ip": "127.0.0.1",
-    "rt": "Patient",
-    "w_r": "POST /Patient/_search",
-    "w_uid": "admin",
-    "d": 30,
-    "w_st": 200,
-    "ctx": "534e2a281adeb00fa06b28f41b862ce3"
-}
+# in logs
+{"ev": "w/req", "w_url": "/Patient/_search", "w_m": "post", "w_b": "{\"name\":\"John\"}"}
+{"ev": "w/resp", "w_url": "/Patient/_search", "w_m": "post", "w_st": 200}
 ```
 
 ## X-Audit Header
-
----
-description: Add custom fields to logs
----
 
 If you want to add custom data to logs, you can use `X-Audit` header in the format `base64(json)` — all properties from this json will be merged with `w/req` and `w/resp` events.
 
@@ -179,13 +123,11 @@ X-Audit: eyJyb2xlIjogIm51cnNlIn0=
 {ev: 'w/resp', ....., role: 'nurse'}
 ```
 
-## $loggy endpoint
+## $loggy Endpoint
 
-Aidbox provides /$loggy endpoint that accepts logs with the defined structure
-  from your application. These logs are ingested into the elastic log. You can
-  find examples below.
+Aidbox provides `POST /$loggy` endpoint that accepts logs with the defined structure from your application. These logs are ingested into the elastic log. You can find examples below.
 
-### Input params
+### $loggy Input Params
 
 | Param name | Required | Type | Description |
 | :--- | :--- | :--- | :--- |
@@ -197,14 +139,14 @@ Aidbox provides /$loggy endpoint that accepts logs with the defined structure
 ### Example
 
 ```yaml
- POST /$loggy
+POST /$loggy
 
- type: ui
- v: "2020.02"
- fx: "fetchUsers"
- message:
-    error:
-        message: "Access Denied."
+type: ui
+v: "2020.02"
+fx: "fetchUsers"
+message:
+   error:
+       message: "Access Denied."
 
 # will produce log
 w_uid: admin
