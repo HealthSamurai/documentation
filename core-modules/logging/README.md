@@ -71,9 +71,12 @@ Use FHIR AuditEvent to store business-relevant events. FHIR introduced AuditEven
 http://hl7.org/fhir/auditevent.html
 
 
-## Extending Aidbox logs
+## Extending Aidbox Logs
 
-There few ways you may extend Aidbox logs
+There few ways you may extend Aidbox logs:
+- `X-Audit-Req-Body` to log request body in logs,
+- `X-Audit` to add custom attributes to logs,
+- `POST /$loggy` to add your own log into Aidbox stream.
 
 ### X-Audit-Req-Body
 
