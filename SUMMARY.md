@@ -218,13 +218,16 @@
   * [Aidbox Metrics Server](core-modules/monitoring/aidbox-metrics-server.md)
   * [Grafana integration](core-modules/monitoring/grafana-integration.md)
 * [Logging & Audit](core-modules/logging-and-audit/README.md)
-  * [Overview](core-modules/logging/README.md)
-  * [Elastic Logs and Monitoring Integration](core-modules/logging-and-audit/elastic-logs-and-monitoring-integration.md)
-  * [Export logs to ElasticSearch/Kibana](core-modules/logging-and-audit/export-logs-to-elasticsearch-kibana.md)
-  * [🎓 Log analysis and visualization tutorial](core-modules/logging-and-audit/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana.md)
-  * [Datadog Log management integration](core-modules/logging-and-audit/aidbox-logs-and-datadog-integration.md)
-  * [Loki Log management integration](core-modules/logging-and-audit/loki-integration.md)
-  * [🎓 Export logs to Datadog tutorial](core-modules/logging-and-audit/datadog-guide.md)
+  * [Aidbox Logs](core-modules/logging-and-audit/aidbox-logs.md)
+  * [Audit](core-modules/logging-and-audit/audit.md)
+  * Integrations
+    * [Elastic Logs and Monitoring Integration](core-modules/logging-and-audit/elastic-logs-and-monitoring-integration.md)
+    * [Export logs to ElasticSearch/Kibana](core-modules/logging-and-audit/export-logs-to-elasticsearch-kibana.md)
+    * [Datadog Log management integration](core-modules/logging-and-audit/aidbox-logs-and-datadog-integration.md)
+    * [Loki Log management integration](core-modules/logging-and-audit/loki-integration.md)
+  * Tutorials
+    * [🎓 Log analysis and visualization tutorial](core-modules/logging-and-audit/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana.md)
+    * [🎓 Export logs to Datadog tutorial](core-modules/logging-and-audit/datadog-guide.md)
 
 ## Modules <a href="#modules-1" id="modules-1"></a>
 
