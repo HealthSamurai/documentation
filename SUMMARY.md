@@ -218,6 +218,7 @@
   * [Aidbox Metrics Server](core-modules/monitoring/aidbox-metrics-server.md)
   * [Grafana integration](core-modules/monitoring/grafana-integration.md)
 * [Logging & Audit](core-modules/logging-and-audit/README.md)
+  * [Overview](core-modules/logging/README.md)
   * [Elastic Logs and Monitoring Integration](core-modules/logging-and-audit/elastic-logs-and-monitoring-integration.md)
   * [Export logs to ElasticSearch/Kibana](core-modules/logging-and-audit/export-logs-to-elasticsearch-kibana.md)
   * [🎓 Log analysis and visualization tutorial](core-modules/logging-and-audit/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana.md)
