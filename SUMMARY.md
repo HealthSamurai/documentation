@@ -218,8 +218,7 @@
   * [Aidbox Metrics Server](core-modules/monitoring/aidbox-metrics-server.md)
   * [Grafana integration](core-modules/monitoring/grafana-integration.md)
 * [Logging & Audit](core-modules/logging-and-audit/README.md)
-  * [Aidbox Logs](core-modules/logging-and-audit/aidbox-logs.md)
-    * [Log Schema](core-modules/logging-and-audit/aidbox-log-schema.md)
+  * [Log Schema](core-modules/logging-and-audit/aidbox-log-schema.md)
   * [Audit](core-modules/logging-and-audit/audit.md)
   * Integrations
     * [Elastic Logs and Monitoring Integration](core-modules/logging-and-audit/elastic-logs-and-monitoring-integration.md)
