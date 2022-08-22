@@ -241,7 +241,7 @@
 * [Aidbox Search](modules-1/aidbox-search/README.md)
   * [SQL endpoints](modules-1/aidbox-search/usdpsql.md)
 * [First-Class Extensions](modules-1/first-class-extensions.md)
-* [Aidbox forms](modules-1/aidbox-forms.md)
+* [Aidbox Forms](modules-1/aidbox-forms.md)
 
 ## Multibox
 
