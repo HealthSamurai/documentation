@@ -241,7 +241,7 @@
 * [Aidbox Search](modules-1/aidbox-search/README.md)
   * [SQL endpoints](modules-1/aidbox-search/usdpsql.md)
 * [First-Class Extensions](modules-1/first-class-extensions.md)
-* [Aidbox Forms](modules-1/aidbox-forms/README.md)
+* [Aidbox Forms](modules-1/aidbox-forms.md)
   * [Getting started](modules-1/aidbox-forms/getting-started.md)
   * [Aidbox forms UI](modules-1/aidbox-forms/aidbox-forms-ui/README.md)
     * [Forms](modules-1/aidbox-forms/aidbox-forms-ui/forms.md)
@@ -295,3 +295,4 @@
     * [aidboxdb environment variables](reference/configuration/environment-variables/aidboxdb-environment-variables.md)
     * [Aidbox project environment variables](reference/configuration/environment-variables/aidbox-project-environment-variables.md)
   * [Aidbox project](reference/configuration/aidbox-project.md)
+* [Aidbox Forms](reference/aidbox-forms.md)
