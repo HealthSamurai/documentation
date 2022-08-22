@@ -241,7 +241,18 @@
 * [Aidbox Search](modules-1/aidbox-search/README.md)
   * [SQL endpoints](modules-1/aidbox-search/usdpsql.md)
 * [First-Class Extensions](modules-1/first-class-extensions.md)
-* [Aidbox Forms](modules-1/aidbox-forms.md)
+* [Aidbox Forms](modules-1/aidbox-forms/README.md)
+  * [Getting started](modules-1/aidbox-forms/getting-started.md)
+  * [Aidbox forms UI](modules-1/aidbox-forms/aidbox-forms-ui/README.md)
+    * [Forms](modules-1/aidbox-forms/aidbox-forms-ui/forms.md)
+    * [Patients](modules-1/aidbox-forms/aidbox-forms-ui/patients.md)
+    * [Form Editor](modules-1/aidbox-forms/aidbox-forms-ui/form-editor.md)
+  * [User guides](modules-1/aidbox-forms/user-guides/README.md)
+    * [Create form from scratch](modules-1/aidbox-forms/user-guides/create-form-from-scratch.md)
+    * [Create form from Questionnaire](modules-1/aidbox-forms/user-guides/create-form-from-questionnaire.md)
+    * [Extract data to FHIR resources](modules-1/aidbox-forms/user-guides/extract-data-to-fhir-resources.md)
+    * [Customize form](modules-1/aidbox-forms/user-guides/customize-form.md)
+    * [Implement workflow](modules-1/aidbox-forms/user-guides/implement-workflow.md)
 
 ## Multibox
 
