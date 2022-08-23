@@ -276,6 +276,14 @@ BOX_FEATURES_TERMINOLOGY_IMPORT_SYNC=true
 
 Enables synchronous terminology bundle import
 
+### BOX\_FEATURES\_AUTHENTICATION\_INTROSPECTION\_CREATE\_\_USER
+
+```
+BOX_FEATURES_AUTHENTICATION_INTROSPECTION_CREATE__USER=<boolean>
+```
+
+Create a user when using foreign JWT access token and the user does not already exist.
+
 ### Enable Aidbox compliance mode
 
 `AIDBOX_COMPLIANCE=enabled`:
