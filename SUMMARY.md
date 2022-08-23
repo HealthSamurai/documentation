@@ -299,3 +299,6 @@
   * [Aidbox project](reference/configuration/aidbox-project.md)
 * [Aidbox Forms](reference/aidbox-forms.md)
   * [Layout DSL](reference/aidbox-forms/layout-dsl.md)
+  * [Document DSL](reference/aidbox-forms/document-dsl.md)
+  * [Launch DSL](reference/aidbox-forms/launch-dsl.md)
+  * [Lisp](reference/aidbox-forms/lisp.md)
