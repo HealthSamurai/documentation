@@ -178,6 +178,7 @@
 * [AWS S3](storage-1/aws-s3.md)
 * [GCP Cloud Storage](storage-1/gcp-cloud-storage.md)
 * [Azure Blob Storage](storage-1/azure.md)
+* [Oracle Cloud Storage](storage-1/oracle.md)
 
 ## Security & Access Control <a href="#security-and-access-control-1" id="security-and-access-control-1"></a>
 
