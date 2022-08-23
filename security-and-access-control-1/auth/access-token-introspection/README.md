@@ -58,6 +58,34 @@ request:
 
 ```
 
+### Create user automatically
+
+If you use JWT token introspection, you can configure Aidbox to create user from access token automatically.
+
+Set&#x20;
+
+```
+BOX_FEATURES_AUTHENTICATION_INTROSPECTION_CREATE__USER=true
+```
+
+environment variable to enable this feature.
+
+Then setup link between token introspector and identity provider.
+
+Relevant TokenIntrospector resource part:
+
+```
+# ...
+identity_provider:
+  id: <identity-provider-id>
+  resourceType: IdentityProvider
+# ...
+```
+
+Here `<identity-provider-id>` is the id of the IdentityProvider resource which issues tokens.
+
+When Aidbox encounters token it tries to resolve user. And if the user is not found, Aidbox gets user info from the identity provider and creates it.
+
 ### Examples
 
 Access control with Validating JWT Access Tokens and AccessPolicy
