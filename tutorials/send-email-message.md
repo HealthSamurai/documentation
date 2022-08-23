@@ -4,13 +4,13 @@
 
 2) Add environment variables to the docker-compose.yaml
 
-| Env name                | Sample value                      |
-| ----------------------- | --------------------------------- |
-| BOX_PROVIDER_MAILGUN__PROVIDER_URL | `https://api.mailgun.net/v3/{{DOMAIN}}/messages`     |
-| BOX_PROVIDER_MAILGUN__PROVIDER_TYPE | `mailgun`     |                         |
-| BOX_PROVIDER_MAILGUN__PROVIDER_FROM | `Sender's Name <noreply@{{DOMAIN}}>`      |
-| BOX_PROVIDER_MAILGUN__PROVIDER_USERNAME | `api` | 
-| BOX_PROVIDER_MAILGUN__PROVIDER_PASSWORD | `<password>` | 
+    | Env name                | Sample value                      |
+    | ----------------------- | --------------------------------- |
+    | BOX_PROVIDER_MAILGUN__PROVIDER_URL | `https://api.mailgun.net/v3/{{DOMAIN}}/messages`     |
+    | BOX_PROVIDER_MAILGUN__PROVIDER_TYPE | `mailgun`     |                         |
+    | BOX_PROVIDER_MAILGUN__PROVIDER_FROM | `Sender's Name <noreply@{{DOMAIN}}>`      |
+    | BOX_PROVIDER_MAILGUN__PROVIDER_USERNAME | `api` | 
+    | BOX_PROVIDER_MAILGUN__PROVIDER_PASSWORD | `<password>` | 
 
 3) Creating `NotificationTemplate` resource
 
