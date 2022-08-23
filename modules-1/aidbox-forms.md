@@ -4,13 +4,11 @@ description: Form building and structured data capturing with Aidbox
 
 # Aidbox Forms
 
-Form building and structured data capturing is a complex process.&#x20;
+Building forms and capturing structured data is a complex process.&#x20;
 
-One of the solutions is suggested by FHIR. There is [the FHIR SDC Implementation Guide ](https://build.fhir.org/ig/HL7/sdc/index.html)which describes how to collect data using Questionnaire and QuestionnaireResponse resources. It is a good way.
+One of the solutions is suggested by FHIR. There is [the FHIR SDC Implementation Guide ](https://build.fhir.org/ig/HL7/sdc/index.html)which describes how to collect data using Questionnaire and QuestionnaireResponse resources. It is a good way. But the implementation on FHIR turned out to be not convenient, a massive QuestionnaireResponse with nested objects does not allow you to conveniently work with this table and make all kinds of queries, as well as build analytics on the data. Additionally, QuestionnaireResponse is too generic and difficult to work with.
 
-But the implementation on FHIR turned out to be not convenient, a massive QuestionnaireResponse with nested objects does not allow you to conveniently work with this table and make all kinds of queries, as well as build analytics on the data. On the other hand, QuestionnaireResponse is too generic and difficult to work with.
-
-We tried to take into account all these difficulties when developing our product. We developed own **DSL**, which gives **flexibility** and **composabiltity**, with which you can describe any forms with complex logic and embed them in a workflow.
+We tried to take into account all these difficulties when developing our product. We developed our own **DSL**, which gives **flexibility** and **composabiltity**, with which you can describe any forms with complex logic and embed them in a workflow.
 
 {% hint style="info" %}
 &#x20;**Aidbox Forms** is a toolkit that helps EHR vendors create and customize forms for doctors, combine them into a workflow and collect data in a structured form, so that they can then be conveniently used for analytics and other purposes.
@@ -24,3 +22,15 @@ We tried to take into account all these difficulties when developing our product
 * Change the **layout** according to your style&#x20;
 * **Extract data** and store them in FHIR resources&#x20;
 * Describe **workflow** with data prefilled from previous forms or make it dynamic (when next form is suggested based on completed results)
+
+#### Our solution
+
+We have presented the form as a layered structure. To design the form, you need to describe the necessary layers by DSL.
+
+Let's look at the diagram how presents the form
+
+<figure><img src="../.gitbook/assets/Screenshot 2022-08-23 at 17.24.50.png" alt=""><figcaption></figcaption></figure>
+
+Two layers are required - **Form Layout** and **Data Model**, the rest can be optional depending on needs of your practice.
+
+**Form Layout** layer describes components and layout of the form. This layer is presented by [Layout DSL](../reference/aidbox-forms/layout-dsl.md).
