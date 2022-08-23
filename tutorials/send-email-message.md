@@ -1,8 +1,8 @@
 # Mailgun integration
 
-1. Create Mailgun account ([Mailgun Documentation](https://documentation.mailgun.com/en/latest/))
+1) Create Mailgun account ([Mailgun Documentation](https://documentation.mailgun.com/en/latest/))
 
-2. Add environment variables to the docker-compose.yaml
+2) Add environment variables to the docker-compose.yaml
 
 | Env name                | Sample value                      |
 | ----------------------- | --------------------------------- |
@@ -12,7 +12,7 @@
 | BOX_PROVIDER_MAILGUN__PROVIDER_USERNAME | `api` | 
 | BOX_PROVIDER_MAILGUN__PROVIDER_PASSWORD | `<password>` | 
 
-3. Creating `NotificationTemplate` resource
+3) Creating `NotificationTemplate` resource
 
 NotificationTemplate - a resource that stores the body of a mail message
 
@@ -24,7 +24,7 @@ accept: text/yaml
 template: <b>Hello world! Mustache value from Notification.providerData.payload - {{foo.bar}}</b>
 ```
 
-4. Creating `Notification` resource
+4) Creating `Notification` resource
 
 ``` yaml
 PUT /Notification/notification-1
@@ -43,12 +43,12 @@ providerData:
       bar: zaz
 ```
 
-5. Call notify method
+5) Call notify method
 
 ``` yaml
 POST /Notification/notification-1/$send
 ```
 ### Example of email sent from the template above
-![image](https://user-images.githubusercontent.com/43318093/186179607-8a51b6a0-f6dd-4913-84f8-856620eec533.png)
+![image](https://user-images.githubusercontent.com/43318093/186183697-aa0a23d9-0c0e-43a9-9980-a0dd6c170625.png)
 
 
