@@ -157,6 +157,7 @@
   * [How to fix broken dates](tutorials/how-to-fix-broken-dates.md)
   * [Subscribe to new Patient resource](tutorials/subscribe-to-new-patient-resource.md)
   * [Creating user & set up full user access](tutorials/creating-user-and-set-up-full-user-access.md)
+  * [Mailgun integration](tutorials/send-email-message.md)
 
 ## App development guides
 
