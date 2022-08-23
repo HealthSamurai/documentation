@@ -33,9 +33,9 @@ Let's look at the diagram how presents the form
 
 Two layers are required - **Form Layout** and **Data Model**, the rest can be optional depending on needs of your practice.
 
-**Form Layout** layer describes components and layout of the form. This layer is presented by [Layout DSL](../reference/aidbox-forms/layout-dsl.md).
+**Form Layout** layer describes components and layout of the form. This layer is described by [Layout DSL](../reference/aidbox-forms/layout-dsl.md).
 
-
+**Data Model** layer specifies the data structure in which form the data will be stored in the database. This layer is described by Document DSL.
 
 
 
