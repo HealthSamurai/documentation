@@ -296,5 +296,5 @@
     * [aidboxdb environment variables](reference/configuration/environment-variables/aidboxdb-environment-variables.md)
     * [Aidbox project environment variables](reference/configuration/environment-variables/aidbox-project-environment-variables.md)
   * [Aidbox project](reference/configuration/aidbox-project.md)
-* [Aidbox Forms](reference/aidbox-forms/README.md)
+* [Aidbox Forms](reference/aidbox-forms.md)
   * [Layout DSL](reference/aidbox-forms/layout-dsl.md)
