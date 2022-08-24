@@ -10,7 +10,7 @@ There are three types of layout nodes:
 * [Input node](layout-dsl.md#input-node)
 * [Subform](layout-dsl.md#subforms)
 
-Also you can set [Layout rules](layout-dsl.md#layout-rules) or [Customize node view](layout-dsl.md#customize-node-view).
+You can also set [Layout rules](layout-dsl.md#layout-rules) or [Customize node view](layout-dsl.md#customize-node-view).
 
 ## Container node
 
@@ -37,7 +37,7 @@ Minimal example of input node:
 
 ### Input node type
 
-By default Aidbox FormLayouts supports three types of inputs:
+By default Aidbox FormLayouts supports five types of inputs:
 
 * text input
 * number input
@@ -92,7 +92,7 @@ SuperDocumentLayout
 
 #### Choice & quantity input
 
-Since choice and quantity types are usually represented as `zen/map` in SDCDocument we need to use special key: `sdc-type` in SDCDocument definition:
+Since choice and quantity types are usually represented as `zen/map` in SDCDocument we need to use a special  key: `sdc-type` in SDCDocument definition:
 
 Example:
 
@@ -136,7 +136,7 @@ If you need to to group input fields or handle multiple readings of some field, 
                :children [{..} {..}]}
 ```
 
-For example if need to store blood pressure in map with two keys: _systolic_, _diastolic_ you can declare your document in such way:
+For example if need to store blood pressure in a map with two keys: _systolic_, _diastolic_ you can declare your document in such way:
 
 ```
 BloodPressureDocument
@@ -149,7 +149,7 @@ BloodPressureDocument
                                 :diastolic {:type zen/number}}}}}
 ```
 
-Then in form definition we can use subforms with it relative paths. We state that subforms binds to blood pressure map. Then all child elements in this subforms will be binded to fields in this `blood-pressure` map
+Then in form definition we can use subforms with their relative paths. We state that subforms binds to blood pressure map. Then all child elements in this subforms will be binded to fields in this `blood-pressure` map
 
 ```
 BloodPressureLayout
@@ -166,7 +166,7 @@ BloodPressureLayout
 
 If you have vector fields in your Document, you might need to use collection subforms to capture values.
 
-Just declare your field as `zen/vector` in document:
+Just declare your field as `zen/vector` in the document:
 
 ```
 :blood-pressure {:type zen/vector
@@ -190,8 +190,8 @@ And in subform definition set `collection=true`
 
 For each node we can use two types of rules:
 
-* `:sdc/disable-when` - disables node when calculating rule will return true (any non-nil value counts as true value)
-* `:sdc/display-when` - displays node if calculating result will return true
+* `:sdc/disable-when` - disables node when calculating rule returns true (any non-nil value counts as true value)
+* `:sdc/display-when` - displays node if calculating result returns true
 
 Usage:
 
@@ -202,7 +202,7 @@ Usage:
 
 ## Customize node view
 
-If you want to show something special than usual select component, you can customize visual view of node using `:control` field.
+If you want to show something different than usual select component, you can customize visual view of node using `:control` field.
 
 ```
 {:bind [:loinc-80884-0] :control ScoreSelector}
