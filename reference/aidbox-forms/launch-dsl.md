@@ -1,6 +1,6 @@
 # Launch DSL
 
-**Form `Launch`**binds to [`Document`](document-dsl.md) and `Form`. And optionally can specify fields populate logic via `populate-engine`
+**Form Launch** binds to [`Document`](document-dsl.md) and `Form`. And optionally can specify fields populate logic via `populate-engine`
 
 Default populate-engine - `aidbox.sdc/LispPopulate`
 

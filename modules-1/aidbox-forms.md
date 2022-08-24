@@ -27,7 +27,7 @@ We tried to take into account all these difficulties when developing our product
 
 We have presented the form as a layered structure. To design the form, you need to describe the necessary layers using DSL.
 
-Let's look at the diagram to see how the form is  built.
+Let's look at the diagram to see how the form is built.
 
 <figure><img src="../.gitbook/assets/Screenshot 2022-08-23 at 17.24.50.png" alt=""><figcaption></figcaption></figure>
 
@@ -43,7 +43,7 @@ Two layers are required - **Form Layout** and **Data Model**, the rest are optio
 
 **FHIR mapping layer** describes how data will be extracted to FHIR resources (Observation, AllergyIntolerance and others). This layer is described using [Finalize DSL](../reference/aidbox-forms/finalize-dsl.md).
 
-There is the entity that groups all form layers (DSL) - [`Form DSL`](../reference/aidbox-forms/form-dsl.md)``
+There is the entity that binds all form layers (DSL) - [Form DSL](../reference/aidbox-forms/form-dsl.md)
 
 
 
@@ -51,5 +51,5 @@ There is the entity that groups all form layers (DSL) - [`Form DSL`](../referenc
 
 
 
-This page is under construction&#x20;
+
 
