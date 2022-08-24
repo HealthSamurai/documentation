@@ -25,21 +25,31 @@ We tried to take into account all these difficulties when developing our product
 
 ### Our solution
 
-We have presented the form as a layered structure. To design the form, you need to describe the necessary layers by DSL.
+We have presented the form as a layered structure. To design the form, you need to describe the necessary layers using DSL.
 
-Let's look at the diagram how presents the form
+Let's look at the diagram to see how the form is  built.
 
 <figure><img src="../.gitbook/assets/Screenshot 2022-08-23 at 17.24.50.png" alt=""><figcaption></figcaption></figure>
 
-Two layers are required - **Form Layout** and **Data Model**, the rest can be optional depending on needs of your practice.
+Two layers are required - **Form Layout** and **Data Model**, the rest are optional depending on needs of your practice.&#x20;
 
-**Form Layout layer** describes components and layout of the form. This layer is described by [Layout DSL](../reference/aidbox-forms/layout-dsl.md).
+**Form Layout layer** describes components and how they are shown on the form. This layer is described using [Layout DSL](../reference/aidbox-forms/layout-dsl.md).
 
-**Data Model layer** specifies the data structure in which form the data will be stored in the database. This layer is described by [Document DSL](../reference/aidbox-forms/document-dsl.md).
+**Data Model layer** specifies the data structure or how the data will be stored in the database. This layer is described using [Document DSL](../reference/aidbox-forms/document-dsl.md).
 
-**Form Prefill layer** describes how to prefill form by existing data. This layer is described by [Launch DSL](../reference/aidbox-forms/launch-dsl.md).
+**Form Prefill layer** describes how to automatically fill out the form with existing data. This layer is described using [Launch DSL](../reference/aidbox-forms/launch-dsl.md).
+
+**Form Validation layer** describes validation rules and field constraints. This layer is described using [FinalizeConstraints DSL](../reference/aidbox-forms/finalizeconstraints-dsl.md).
+
+**FHIR mapping layer** describes how data will be extracted to FHIR resources (Observation, AllergyIntolerance and others). This layer is described using [Finalize DSL](../reference/aidbox-forms/finalize-dsl.md).
+
+There is the entity that groups all form layers (DSL) - [`Form DSL`](../reference/aidbox-forms/form-dsl.md)``
 
 
 
-This page is under construction
+
+
+
+
+This page is under construction&#x20;
 
