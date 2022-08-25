@@ -86,7 +86,6 @@ services:
       BOX_PROJECT_ENTRYPOINT: "smartbox.dev-portal/box"
       AIDBOX_LICENSE: "<YOUR_AIDBOX_LICENSE_FOR_SANDBOX>"
       AIDBOX_BASE_URL: "http://localhost:9999"
-
 ```
 
 ### **Create .env file**
@@ -166,3 +165,24 @@ Developer sandbox is available on
 ```
 "http://localhost:9999"
 ```
+
+### Create a FHIR portal admin resource
+
+```yaml
+PUT /User/administrator
+content-type: text/yaml
+accept: text/yaml
+
+email: example@email.io
+password: 'secret'
+roles:
+  - type: operator
+active: true
+```
+
+Log in to the admin interface using specified credentials
+
+```
+http://localhost:8888/admin/portal#/welcome
+```
+
