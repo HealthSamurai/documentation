@@ -56,8 +56,6 @@ Check [Kibana documentation](https://www.elastic.co/guide/en/kibana/current/disc
 
 ## **Visualize logs with Grafana**
 
-## **Visualize logs with Grafana**
-
 We've built a custom Grafana dashboard available by default where you can see basic metrics.
 
 The pre-configured views are the following:
