@@ -38,11 +38,15 @@ inputs:
 {% endtab %}
 {% endtabs %}
 
-You can monitor progress using:
+You can monitor progress by using `id` you provided in request body.
 
 ```yaml
-GET /BulkImportStatus/[id]
+GET /BulkImportStatus/synthea
 ```
+
+{% hint style="info" %}
+If you didn't provide `id` in request body, you can use `content-location` in response header.
+{% endhint %}
 
 ### Parameters
 
