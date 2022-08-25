@@ -154,16 +154,22 @@ docker compose up
 
 This command will download and start Aidbox and its dependencies. This can take a few minutes.
 
-FHIR portal is available on
+FHIR patient portal view is available on
 
-```
-"http://localhost:8888"
+```url
+http://localhost:8888/patient/portal#/welcome
 ```
 
 Developer sandbox is available on
 
+```url
+http://localhost:9999
 ```
-"http://localhost:9999"
+
+Aidbox UI is available on
+
+```url
+http://localhost:8888/ui/console
 ```
 
 ### Create a FHIR portal admin resource
@@ -182,7 +188,7 @@ active: true
 
 Log in to the admin interface using specified credentials
 
-```
+```url
 http://localhost:8888/admin/portal#/welcome
 ```
 
