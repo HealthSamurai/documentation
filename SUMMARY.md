@@ -306,5 +306,5 @@
   * [FinalizeConstraints DSL](reference/aidbox-forms/finalizeconstraints-dsl.md)
   * [Finalize DSL](reference/aidbox-forms/finalize-dsl.md)
   * [Form DSL](reference/aidbox-forms/form-dsl.md)
-  * [Workflow](reference/aidbox-forms/workflow.md)
+  * [Workflow reference](reference/aidbox-forms/workflow-reference.md)
   * [API reference](reference/aidbox-forms/api-reference.md)
