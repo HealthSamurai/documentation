@@ -2,9 +2,7 @@
 
 ### Get licenses
 
-Go to the [Aidbox portal](https://aidbox.app). Sign up and click the new license button. Choose product type "Aidbox" and hosting type "on premises".
-
-You'll see your license in the "My Licenses" list. Click on your new license and copy credentials. It is a long string like
+Go to the [Aidbox user portal](https://aidbox.app) and request 2 "on-premises" Aidbox licenses. It is a long string like
 
 ```
 eyJhbGciOiJ...
