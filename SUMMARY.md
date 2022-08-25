@@ -256,6 +256,8 @@
     * [Extract data to FHIR resources](modules-1/aidbox-forms/user-guides/extract-data-to-fhir-resources.md)
     * [Customize form](modules-1/aidbox-forms/user-guides/customize-form.md)
     * [Implement workflow](modules-1/aidbox-forms/user-guides/implement-workflow.md)
+* [SMARTbox](modules-1/smartbox/README.md)
+  * [Set up SMARTbox](modules-1/smartbox/set-up-smartbox.md)
 
 ## Multibox
 
