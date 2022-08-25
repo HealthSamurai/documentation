@@ -2,7 +2,7 @@
 
 ### Setup and environment variable
 
-Define`BOX_METRIC_PORT`environment variable with monitoring server port number.
+Define`BOX_METRICS_PORT`environment variable with monitoring server port number.
 
 ### Start metrics server
 
@@ -113,6 +113,6 @@ scrape_configs:
 
 #### Disable PostgreSQL metrics
 
-If you have a different pg exporter you can disable Aidbox PostgreSQL metrics for avoiding metrics dublication.
+If you have a different pg exporter you can disable Aidbox PostgreSQL metrics for avoiding metrics duplication.
 
-In this case, you should set `BOX_METRIC_POSTGRES_ON` to `false` value
+In this case, you should set `BOX_METRICS_POSTGRES_ON` to `false` value
