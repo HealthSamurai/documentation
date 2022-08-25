@@ -259,7 +259,7 @@
     * [Form Editor](modules-1/aidbox-forms/aidbox-forms-ui/form-editor.md)
 * [SMARTbox](modules-1/smartbox/README.md)
   * [Set up SMARTbox](modules-1/smartbox/set-up-smartbox.md)
-  * [Standardized API for patient](modules-1/smartbox/standardized-api-for-patient.md)
+  * [§170.315(g)(10) Standardized API for patient and population services documentation](modules-1/smartbox/170.315-g-10-standardized-api-for-patient-and-population-services-documentation.md)
 
 ## Multibox
 
