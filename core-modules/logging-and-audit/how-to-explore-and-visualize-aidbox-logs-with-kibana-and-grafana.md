@@ -69,7 +69,7 @@ The pre-configured views are the following:
 7. Response time.
 8. Slow queries.
 
-![Aidbox Grafana dashboard](<../../.gitbook/assets/image (49) (5) (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2) (1) (5) (1).png>)
+![Aidbox Grafana dashboard](https://user-images.githubusercontent.com/58147555/186731415-b31f6b94-9605-4079-b0a8-7c8313edbca4.png)
 
 You can update the default dashboard with your own custom views. For more info please refer to [Grafana documentation](https://grafana.com/tutorials/grafana-fundamentals/).
 
