@@ -63,11 +63,12 @@ The pre-configured views are the following:
 1. Requests per minute.
 2. Request duration heatmap.
 3. Number of requests per day.
-4. Clients/users online.
-5. DB size.
-6. Number of errors.
+4. Request Methods.
+5. Errors.
+6. Mean request http/db.
 7. Response time.
 8. Slow queries.
+9. Users/Clients online.
 
 ![Aidbox Grafana dashboard](https://user-images.githubusercontent.com/58147555/186731415-b31f6b94-9605-4079-b0a8-7c8313edbca4.png)
 
