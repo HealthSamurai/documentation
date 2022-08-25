@@ -10,7 +10,7 @@ Forms page is a list of forms that you are designed.They can be in different sta
 Form statuses will be displayed on the Form page in the future.
 {% endhint %}
 
-<figure><img src="../../../.gitbook/assets/Screenshot 2022-08-24 at 18.18.18 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Screenshot 2022-08-24 at 18.18.18.png" alt=""><figcaption></figcaption></figure>
 
 #### Actions that can be done:
 

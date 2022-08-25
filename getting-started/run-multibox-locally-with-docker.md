@@ -1,11 +1,10 @@
 # Run Multibox locally with Docker
 
-WIP
-This quickstart guide explains how to run Aidbox locally using docker compose. You will learn how to obtain a free short-time license and set up Aidbox.
+This quickstart guide explains how to run Multibox locally using docker compose. You will learn how to obtain a free short-time license and set up Multibox.
 
 ### Get a license
 
-Go to the [Aidbox portal](https://aidbox.app). Sign up and click the new license button. Choose product type "Aidbox" and hosting type "on premises".
+Go to the [Aidbox portal](https://aidbox.app). Sign up and click the new license button. Choose product type "Multibox".
 
 You'll see your license in the "My Licenses" list. Click on your new license and copy credentials. It is a long string like
 
@@ -21,7 +20,7 @@ Follow the [official Docker guide](https://docs.docker.com/compose/install/#inst
 
 ### Create docker-compose.yaml
 
-Firstly, let's make the configuration file. There are two services: `aidbox-db` and `aidbox`. The first one is PostgreSQL database and the second one is the Aidbox itself.
+Firstly, let's make the configuration file. There are two services: `aidbox-db`  and `multibox`. The first one is PostgreSQL database and the second one is the Multibox itself.
 
 {% code title="docker-compose.yaml" %}
 ```yaml
@@ -38,7 +37,7 @@ services:
       POSTGRES_PASSWORD: "${PGPASSWORD}"
       POSTGRES_DB:       "${PGDATABASE}"
 
-  aidbox:
+  multibox:
     image: "${AIDBOX_IMAGE}"
     depends_on: ["aidbox-db"]
     links:
@@ -49,22 +48,21 @@ services:
       - .env
     environment:
       PGHOST: database
-
 ```
 {% endcode %}
 
 ### Create .env file
 
-To configure Aidbox we need to pass environment variables to it. We can pass them with `.env` file.
+To configure Multibox we need to pass environment variables to it. We can pass them with `.env` file.
 
 {% code title=".env" %}
 ```shell
 # postgres image to run
-PGIMAGE=healthsamurai/aidboxdb:14.2
+PGIMAGE=healthsamurai/aidbox:14.2
 
 # aidbox image to run
 # AIDBOX_IMAGE=healthsamurai/aidboxone:stable
-AIDBOX_IMAGE=healthsamurai/aidboxone:edge
+AIDBOX_IMAGE=healthsamurai/multibox:edge
 
 # license details
 AIDBOX_LICENSE=<your-license-key>
@@ -72,14 +70,6 @@ AIDBOX_LICENSE=<your-license-key>
 # if you got pair of id and key use this instead
 # AIDBOX_LICENSE_ID=<your-license-id>
 # AIDBOX_LICENSE_KEY=<your-license-key>
-
-# Client to create on start up
-AIDBOX_CLIENT_ID=root
-AIDBOX_CLIENT_SECRET=secret
-
-# root user to create on start up
-AIDBOX_ADMIN_ID=admin
-AIDBOX_ADMIN_PASSWORD=secret
 
 # port to run webserver at
 AIDBOX_PORT=8888
@@ -91,6 +81,11 @@ PGHOSTPORT=5437
 PGUSER=postgres
 PGPASSWORD=postgres
 PGDATABASE=aidbox
+
+AIDBOX_CLUSTER_SECRET=secret
+AIDBOX_CLUSTER_DOMAIN=127.0.0.1.nip.io
+AIDBOX_SUPERUSER=admin:secret
+AIDBOX_BASE_URL=http://${AIDBOX_CLUSTER_DOMAIN}:${AIDBOX_PORT}
 ```
 {% endcode %}
 
@@ -100,22 +95,22 @@ Insert your license key into environment file. Change the line
 AIDBOX_LICENSE=<your-license-key>
 ```
 
-in the `.env` file where `<your-license-key>` is a license key which you obtained on the  [get a license](./#get-a-license) step.
+in the `.env` file where `<your-license-key>` is a license key which you obtained on the [get a license](run-multibox-locally-with-docker.md#get-a-license) step.
 
-You can find more about required Aidbox environment variables [here.](../../reference/configuration/environment-variables/aidbox-required-environment-variables.md)
+You can find more about required Multibox environment variables [here.](../reference/configuration/environment-variables/multibox-required-environment-variables.md)
 
-### Launch Aidbox
+### Launch Multibox
 
-Start Aidbox with Docker Compose
+Start Multibox with Docker Compose
 
 ```shell
 docker compose up
 ```
 
-This command will download and start Aidbox and its dependencies. This can take a few minutes.
+This command will download and start Multibox and its dependencies. This can take a few minutes.
 
-### Go to the Aidbox UI
+### Go to the Multibox UI
 
-Open [http://localhost:8888](http://localhost:8888). You'll see Aidbox login page. Sign in using login `admin` and password `secret`.
+Open [http://127.0.0.1.nip.io:8888](http://127.0.0.1.nip.io:8888). You'll see Multibox login page. Sign in using credentials specified in `AIDBOX_SUPERUSER` variable in `.env` file.
 
-Now you are ready to use Aidbox.
+Now you are ready to use Multibox.
