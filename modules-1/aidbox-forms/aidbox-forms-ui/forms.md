@@ -34,5 +34,5 @@ You can visit [the Form Editor page](form-editor.md) for more details.
 
 When you click on the `create form` button you will have two options:
 
-* [create from Questionnaire](../user-guides/create-form-from-questionnaire.md)
-* [create from Scratch](../user-guides/create-form-from-scratch.md)
+* [create from Questionnaire](broken-reference)
+* [create from Scratch](broken-reference)
