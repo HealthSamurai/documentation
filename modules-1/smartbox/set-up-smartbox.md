@@ -67,7 +67,7 @@ services:
       SMARTBOX_SANDBOX_BASIC: "root:secret"
       BOX_AUTH_LOGIN__REDIRECT: "/admin/portal"
       BOX_PROJECT_ENTRYPOINT: "smartbox.portal/box"
-      AIDBOX_LICENSE: "<YOUR_AIDBOXONE_LICENSE_FOR_PORTAL>"
+      AIDBOX_LICENSE: "<YOUR_AIDBOX_LICENSE_FOR_PORTAL>"
       AIDBOX_BASE_URL: "http://localhost:8888"
 
   sandbox:
@@ -84,7 +84,7 @@ services:
       PGDATABASE: "sandbox"
       BOX_AUTH_LOGIN__REDIRECT: "/"
       BOX_PROJECT_ENTRYPOINT: "smartbox.dev-portal/box"
-      AIDBOX_LICENSE: "<YOUR_AIDBOXONE_LICENSE_FOR_SANDBOX>"
+      AIDBOX_LICENSE: "<YOUR_AIDBOX_LICENSE_FOR_SANDBOX>"
       AIDBOX_BASE_URL: "http://localhost:9999"
 
 ```
