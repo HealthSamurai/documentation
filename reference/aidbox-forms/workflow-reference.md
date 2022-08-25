@@ -1,30 +1,5 @@
 # Workflow reference
 
-**Workflow** is a skeleton for forms composition in more complex structures.
-
-Initially Workflow have nested structure of items, where each item can be:
-
-* [Section](workflow-reference.md#section) - used for forms grouping.
-* [Form](workflow-reference.md#form) - reference to existed form.
-
-Workflow and items has status model , model is slightly different
-
-**Workflow statuses:**
-
-* `new`
-* `in-progress`
-* `canceled`
-* `completed`
-
-**Item statuses:**
-
-* `new`
-* `in-progress`
-* `skipped`
-* `completed`
-
-> `canceled` status used for WF because `skipped` status is not obvious in it's domain. WF is a process of action, but item is just a step which can be omitted.
-
 ### Workflow definition
 
 ```

@@ -47,6 +47,48 @@ There is the entity that binds all form layers (DSL) - [Form DSL](../reference/a
 
 
 
+Forms can be embedded into [a workflow](../reference/aidbox-forms/workflow-reference.md).
+
+{% hint style="info" %}
+**Workflow** is a skeleton for forms composition in more complex structures.
+{% endhint %}
+
+Initially Workflow have nested structure of items, where each item can be:
+
+* Section - used for forms grouping.
+* Form - reference to existed form.
+
+Workflow and items has status model , model is slightly different
+
+**Workflow statuses:**
+
+* `new`
+* `in-progress`
+* `canceled`
+* `completed`
+
+**Item statuses:**
+
+* `new`
+* `in-progress`
+* `skipped`
+* `completed`
+
+{% hint style="warning" %}
+**`canceled`** status used for WF because `skipped` status is not obvious in this domain. WF is a process of action, but item is just a step which can be omitted.
+{% endhint %}
+
+``
+
+Workflow support 2 additional features:
+
+* `versioning` - is automatic and based on hashing essential fields of definitions. If some essential field of form/wf is changed - created a new version and snapshotted to DB
+*   `section id generation -` is generated from item path (path from WF root to item itself).
+
+
+
+These features you can configure via [api-constructor](../aidbox-configuration/aidbox-api-constructor.md) in zen-project.
+
 
 
 
