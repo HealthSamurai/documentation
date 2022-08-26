@@ -303,6 +303,7 @@
     * [Optional environment variables](reference/configuration/environment-variables/optional-environment-variables.md)
     * [aidboxdb environment variables](reference/configuration/environment-variables/aidboxdb-environment-variables.md)
     * [Aidbox project environment variables](reference/configuration/environment-variables/aidbox-project-environment-variables.md)
+    * [Mailgun environment variables](reference/configuration/environment-variables/mailgun-environment-variables.md)
   * [Aidbox project](reference/configuration/aidbox-project.md)
 * [Aidbox Forms reference](reference/aidbox-forms.md)
   * [Layout DSL](reference/aidbox-forms/layout-dsl.md)
