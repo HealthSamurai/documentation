@@ -1,9 +1,35 @@
 # Mailgun environment variables
 
-| Env name                                     | Sample value                                     |
-| -------------------------------------------- | ------------------------------------------------ |
-| BOX\_PROVIDER\_MAILGUN\_\_PROVIDER\_URL      | `https://api.mailgun.net/v3/{{DOMAIN}}/messages` |
-| BOX\_PROVIDER\_MAILGUN\_\_PROVIDER\_TYPE     | `mailgun`                                        |
-| BOX\_PROVIDER\_MAILGUN\_\_PROVIDER\_FROM     | `Sender's Name <noreply@{{DOMAIN}}>`             |
-| BOX\_PROVIDER\_MAILGUN\_\_PROVIDER\_USERNAME | `api`                                            |
-| BOX\_PROVIDER\_MAILGUN\_\_PROVIDER\_PASSWORD | `<password>`                                     |
+### BOX\_PROVIDER\_MAILGUN\_\_PROVIDER\_URL
+
+```
+BOX_PROVIDER_MAILGUN__PROVIDER_URL=https://api.mailgun.net/v3/<your_domain>/messages
+```
+
+Mailgun API url.
+
+### BOX\_PROVIDER\_MAILGUN\_\_PROVIDER\_TYPE
+
+```
+BOX_PROVIDER_MAILGUN__PROVIDER_TYPE=mailgun
+```
+
+### BOX\_PROVIDER\_MAILGUN\_\_PROVIDER\_FROM
+
+```
+BOX_PROVIDER_MAILGUN__PROVIDER_FROM=<string>
+```
+
+`<string>` would go into _from_ field. Usually looks like in these: `example@example.com`,  `John Doe <noreply@example.com>`.
+
+### BOX\_PROVIDER\_MAILGUN\_\_PROVIDER\_USERNAME
+
+```
+BOX_PROVIDER_MAILGUN__PROVIDER_USERNAME=api
+```
+
+### BOX\_PROVIDER\_MAILGUN\_\_PROVIDER\_PASSWORD
+
+```
+BOX_PROVIDER_MAILGUN__PROVIDER_PASSWORD=<password>
+```
