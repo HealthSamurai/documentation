@@ -1,8 +1,6 @@
----
-description: A platform that allows you to manage Aidbox licenses
----
-
 # Aidbox user portal
+
+[Aidbox user portal](https://aidbox.app/) - platform that allows you to manage Aidbox licenses
 
 ### Projects management
 
