@@ -6,6 +6,7 @@
 
 * [Features](getting-started/features.md)
 * [Licensing and Support](getting-started/editions-and-pricing.md)
+* [Aidbox user portal](overview/aidbox-user-portal.md)
 * [Aidbox UI](overview/aidbox-ui/README.md)
   * [Aidbox Notebooks](overview/aidbox-ui/notebooks.md)
   * [REST Console](overview/aidbox-ui/rest-console-1.md)
