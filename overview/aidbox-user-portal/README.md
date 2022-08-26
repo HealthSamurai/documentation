@@ -1,6 +1,16 @@
+---
+description: A platform that allows you to manage Aidbox licenses
+---
+
 # Aidbox user portal
 
-[Aidbox user portal](https://aidbox.app/) - platform that allows you to manage Aidbox licenses
+### Sign Up
+
+Creating an account in the Aidbox user portal
+
+{% content-ref url="sign-up.md" %}
+[sign-up.md](sign-up.md)
+{% endcontent-ref %}
 
 ### Projects management
 

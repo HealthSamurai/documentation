@@ -4,9 +4,10 @@
 
 ## Overview
 
-* [Features](getting-started/features.md)
 * [Licensing and Support](getting-started/editions-and-pricing.md)
+* [Features](getting-started/features.md)
 * [Aidbox user portal](overview/aidbox-user-portal/README.md)
+  * [Sign Up](overview/aidbox-user-portal/sign-up.md)
   * [Projects](overview/aidbox-user-portal/projects/README.md)
     * [Licenses](overview/aidbox-user-portal/projects/licenses.md)
     * [Members](overview/aidbox-user-portal/projects/members.md)
