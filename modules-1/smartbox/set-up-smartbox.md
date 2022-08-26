@@ -142,6 +142,8 @@ BOX_BULK__STORAGE_GCP_BUCKET=<YOUR_GCP_BUCKET_NAME>
 BOX_PROJECT_GIT_PROTOCOL=https
 BOX_PROJECT_GIT_URL=https://github.com/Aidbox/aidbox-project-samples.git
 BOX_PROJECT_GIT_SUB__PATH=aidbox-project-samples/smartbox-single-tenant
+
+BOX_FEATURES_TERMINOLOGY_IMPORT_SYNC=true
 ```
 
 ### Launch Aidbox
@@ -191,4 +193,3 @@ Log in to the admin interface using specified credentials
 ```url
 http://localhost:8888/admin/portal#/welcome
 ```
-
