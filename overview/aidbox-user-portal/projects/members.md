@@ -21,7 +21,7 @@ The member must accept the invitation sent by mail
 1. On the main navigation sidebar, click on the project name
 2. On the menu that opens, click _**Members**_
 3. Click on a member in the list
-4. Information about the selected participant will appear on the right side of the screen. Click _**Edit**_
+4. Information about the selected member will appear on the right side of the screen. Click _**Edit**_
 5. Edit the data and press _**Update**_
 
 ### Delete member
