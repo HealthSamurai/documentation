@@ -2,5 +2,5 @@
 description: WIP
 ---
 
-# Aidbox user portal
+# Licenses
 
