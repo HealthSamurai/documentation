@@ -14,9 +14,7 @@ You can do that account by following [Mailgun Documentation](https://documentati
 
 ```yaml
 BOX_PROVIDER_MAILGUN__PROVIDER_URL: https://api.mailgun.net/v3/{{YOUR_DOMAIN}}/messages
-BOX_PROVIDER_MAILGUN__PROVIDER_TYPE: mailgun
 BOX_PROVIDER_MAILGUN__PROVIDER_FROM: Sender's Name <noreply@{{YOUR_DOMAIN}}>
-BOX_PROVIDER_MAILGUN__PROVIDER_USERNAME: api
 BOX_PROVIDER_MAILGUN__PROVIDER_PASSWORD: <password>
 ```
 
