@@ -163,6 +163,7 @@
   * [Subscribe to new Patient resource](tutorials/subscribe-to-new-patient-resource.md)
   * [Creating user & set up full user access](tutorials/creating-user-and-set-up-full-user-access.md)
   * [Mailgun integration](tutorials/mailgun-integration.md)
+  * [Postmark integration](tutorials/postmark-integration.md)
 
 ## App development guides
 
@@ -307,6 +308,7 @@
     * [aidboxdb environment variables](reference/configuration/environment-variables/aidboxdb-environment-variables.md)
     * [Aidbox project environment variables](reference/configuration/environment-variables/aidbox-project-environment-variables.md)
     * [Mailgun environment variables](reference/configuration/environment-variables/mailgun-environment-variables.md)
+    * [Postmark environment variables](reference/configuration/environment-variables/postmark-environment-variables.md)
   * [Aidbox project](reference/configuration/aidbox-project.md)
 * [Aidbox Forms reference](reference/aidbox-forms.md)
   * [Layout DSL](reference/aidbox-forms/layout-dsl.md)
