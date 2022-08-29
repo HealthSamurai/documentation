@@ -1,8 +1,14 @@
+---
+description: >-
+  This tutorial will guide you through SMARTbox installation and accepting
+  developer SMART application process
+---
+
 # Set up SMARTbox
 
 ### Get licenses
 
-Go to the [Aidbox user portal](https://aidbox.app) and request 2 "on-premises" Aidbox licenses. It is a long string like
+Go to the [Aidbox user portal](https://aidbox.app) and request 2 "on-premises" Aidbox licenses for Portal and Develop Sandbox. It is a long string like
 
 ```
 eyJhbGciOiJ...
@@ -34,9 +40,10 @@ GCP Cloud Storage is used in Bulk API for storing and distributing exported data
 
 ### **Create docker-compose.yaml**
 
-Make the configuration file. There are two services: aidbox-db and aidbox. The first one is PostgreSQL database and the second one is Aidbox itself.
+Create a `docker-compose.yaml` file and paste there following content.
 
 ```yaml
+# docker-compose.yaml
 version: '3.7'
 services:
   aidbox-db:
@@ -67,7 +74,7 @@ services:
       SMARTBOX_SANDBOX_BASIC: "root:secret"
       BOX_AUTH_LOGIN__REDIRECT: "/admin/portal"
       BOX_PROJECT_ENTRYPOINT: "smartbox.portal/box"
-      AIDBOX_LICENSE: "<YOUR_AIDBOX_LICENSE_FOR_PORTAL>"
+      AIDBOX_LICENSE: "${PORTAL_LICENSE}"
       AIDBOX_BASE_URL: "http://localhost:8888"
 
   sandbox:
@@ -84,15 +91,20 @@ services:
       PGDATABASE: "sandbox"
       BOX_AUTH_LOGIN__REDIRECT: "/"
       BOX_PROJECT_ENTRYPOINT: "smartbox.dev-portal/box"
-      AIDBOX_LICENSE: "<YOUR_AIDBOX_LICENSE_FOR_SANDBOX>"
+      AIDBOX_LICENSE: "${SANDBOX_LICENSE}"
       AIDBOX_BASE_URL: "http://localhost:9999"
 ```
+
+There are three services: aidbox-db, smartbox and developer sandbox. The first one is PostgreSQL database and the other ones are Aidboxes.
 
 ### **Create .env file**
 
 To configure Aidbox we need to pass environment variables to it. We can pass them with .env file.
 
 ```
+PORTAL_LICENSE=<YOUR_PORTAL_LICENSE>
+SANDBOX_LICENSE=<YOUR_SANDBOX_LICENSE>
+
 # postgres image to run
 PGIMAGE=healthsamurai/aidboxdb:14.2
 
@@ -154,48 +166,95 @@ By default Aidbox logs are turned off, you can enable them by setting:
 
 ### Launch Aidbox
 
-Start Aidbox with Docker Compose
+At first init AidboxDB with Docker Compose
+
+```bash
+docker compose pull && docker compose up aidbox-db
+```
+
+Wait till AidboxDB is ready to accept connections. You will the following log message:&#x20;
+
+```
+LOG: database system is ready to accept connections
+```
+
+Stop AidboxDB with `Ctrl+C` and start all three services with Docker Compose:
 
 ```shell
 docker compose up
 ```
 
-This command will download and start Aidbox and its dependencies. This can take a few minutes.
+Now SMARTbox is ready.
 
-FHIR patient portal view is available on
+### Create admin portal
 
-```url
-http://localhost:8888/patient/portal#/welcome
-```
+Open the login page on the Portal [http://localhost:8888/auth/login](http://localhost:8888/auth/login) and use your credentials to login.&#x20;
 
-Developer sandbox is available on
+Aidbox creates admin user at first start using env variables `AIDBOX_ADMIN_ID` and `AIDBOX_ADMIN_PASSWORD`.
 
-```url
-http://localhost:9999
-```
-
-Aidbox UI is available on
-
-```url
-http://localhost:8888/ui/console
-```
-
-### Create a FHIR portal admin resource
+Once you logged into, open Aidbox Console on [http://localhost:8888/ui/console](http://localhost:8888/ui/console). And open Users tab on the left navigation panel and create New user by clicking the New button on the top right corner of the screen. Paste the following User resource and save it.
 
 ```yaml
-PUT /User/administrator
-content-type: text/yaml
-accept: text/yaml
+resourceType: User
 
-email: example@email.io
-password: 'secret'
+email: operator@example.com
+password: secret
+
+name:
+  givenName: Test
+  familyName: Admin
 roles:
   - type: operator
 active: true
 ```
 
-Log in to the admin interface using specified credentials
+Logout from Aidbox Console by clicking the Logout button on the left bottom corner of the screen.
 
-```url
-http://localhost:8888/admin/portal#/welcome
-```
+### Admin portal
+
+To get to admin portal:
+
+* Open the login page on the Portal [http://localhost:8888/auth/login](http://localhost:8888/auth/login),
+* Use the email and password from the previous step as credentials
+
+On the admin portal you can manage apps, patients and other admins.
+
+### Developer sandbox
+
+#### Register developer
+
+Submit developer registration form
+
+* Open Developer Sandbox on [http://localhost:9999](http://localhost:9999)
+* Click the Sign Up button
+* Register a new developer
+
+Once you submitted the developer registration form, you should receive an email with the verification link.
+
+* Follow the link to confirm your email address.
+* You will be redirected on creation password form
+* Create a password, submit it.
+
+Now you can Sign In as developer to the Developer Sandbox.
+
+#### Create a SMART app in developer sandbox
+
+Once you logged into Developer Sandbox as a developer, you can create a new SMART Application&#x20;
+
+* Click the Create app button
+* Fill out and submit the new app form
+* Click the Submit for Review button to send the application to review
+
+#### Approve SMART App Publishing Request
+
+Go back to Administrator Portal on [http://localhost:8888](http://localhost:8888). You will see list of SMART App waiting for review.
+
+* Open the review request, made on the previous step
+* Click the Approve button.
+
+Go to [Apps page](http://localhost:8888/admin/portal#/administrator/deployed) and you will see approved SMART App there.
+
+### That's it
+
+In this tutorial we learned how to install SMARTbox and to get your first SMART app approved.
+

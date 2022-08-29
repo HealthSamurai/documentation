@@ -199,14 +199,11 @@ MyDocument
 
 Choise field - references valueset with answers
 
-Choice schema has next keys:
+choice schema has next keys:
 
-| property       | description                | type        | required? |
-| -------------- | -------------------------- | ----------- | --------- |
-| `:enum`        | List of available values   | zen/keyword | no        |
-| `:sdc/options` | Alternative options source | zen/keyword | no        |
-
-By default choice field uses `:enum` keyword for options definition.
+| property   | description                      | type       | required? |
+| ---------- | -------------------------------- | ---------- | --------- |
+| `valueset` | ValueSet ID with list of choices | zen/string | no        |
 
 Example:
 
@@ -229,48 +226,6 @@ MyDocument
                          :text "BP measurement site"}}}
 
 ```
-
-If by some reason you can't use zen-defined `:enum` keyword with options - you also have 2 alternative sources for retreiving them:
-
-* `:aidbox.sdc.options/valueset` use valuset stored in aidbox db
-* `:aidbox.sdc.options/rpc` - use custom rpc
-
-If you specify `:sdc/options :aidbox.sdc.options/valueset`, then you also must specify `:valueset` property.
-
-| property   | description                      | type       | required? |
-| ---------- | -------------------------------- | ---------- | --------- |
-| `valueset` | ValueSet ID with list of choices | zen/string | yes       |
-
-If you specify `:sdc/options :aidbox.sdc.options/rpc`, then you also must specify `:rpc` property.
-
-| property   | description                       | type       | required? |
-| ---------- | --------------------------------- | ---------- | --------- |
-| `valueset` | ValueSet ID with list of choices  | zen/string | yes       |
-| `rpc`      | rpc method invocation description | zen/map    | yes       |
-
-RPC method invocations have next structure
-
-| property   | description                      | type       | required? |
-| ---------- | -------------------------------- | ---------- | --------- |
-| `valueset` | ValueSet ID with list of choices | zen/string | yes       |
-| `method`   | rpc method name                  | zen/symbol | yes       |
-| `params`   | parameters map                   | zen/map    | yes       |
-
-Each value of parameters-map should be valid lisp expression.
-
-Example:
-
-```
-:sdc/options :aidbox.sdc.options/rpc
-:rpc {:method my-ns/my-rpc
-      :params {:p1 (lisp/+ 1 2)
-               :p2 20}}
-```
-
-###
-
-\
-
 
 ### calculated field-type
 
