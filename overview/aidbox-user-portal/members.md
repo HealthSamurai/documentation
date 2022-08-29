@@ -4,6 +4,8 @@ description: Collaborative work in projects
 
 # Members
 
+## How-tos
+
 ### Invite member
 
 1. On the main navigation sidebar, click on the project name

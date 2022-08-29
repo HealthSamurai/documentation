@@ -4,6 +4,8 @@ description: The project allows you to organize Aidbox licenses into groups
 
 # Projects
 
+## How-tos
+
 ### Create project <a href="#create-projects" id="create-projects"></a>
 
 1. On the main navigation sidebar,  click _**+ New Project**_
@@ -28,6 +30,8 @@ The created project will appear in the navigation sidebar
 {% hint style="warning" %}
 Deleting projects entails irretrievable deletion of all associated resources such as _Licenses_, _Members_
 {% endhint %}
+
+## References
 
 ### License management
 
