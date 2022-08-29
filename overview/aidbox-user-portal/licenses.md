@@ -1,5 +1,5 @@
 ---
-description: WIP
+description: Managing Aidbox licenses in a project
 ---
 
 # Licenses
