@@ -146,6 +146,12 @@ BOX_PROJECT_GIT_SUB__PATH=aidbox-project-samples/smartbox-single-tenant
 BOX_FEATURES_TERMINOLOGY_IMPORT_SYNC=true
 ```
 
+{% hint style="info" %}
+By default Aidbox logs are turned off, you can enable them by setting:
+
+* `AIDBOX_STDOUT_JSON=true`
+{% endhint %}
+
 ### Launch Aidbox
 
 Start Aidbox with Docker Compose
