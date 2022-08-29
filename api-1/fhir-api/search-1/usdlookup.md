@@ -65,7 +65,8 @@ GET /Patient/$lookup?\
   sort=name.family,name.given&\
   q=Joh+Do+1980&\
   count=50&\
-  limit=200
+  limit=200&\
+  mode=index
 ```
 
 {% code title="response" %}
