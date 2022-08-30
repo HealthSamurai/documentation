@@ -109,8 +109,7 @@ SANDBOX_LICENSE=<YOUR_SANDBOX_LICENSE>
 PGIMAGE=healthsamurai/aidboxdb:14.2
 
 # aidbox image to run
-# AIDBOX_IMAGE=healthsamurai/aidboxone:stable
-AIDBOX_IMAGE=healthsamurai/aidboxone:edge
+AIDBOX_IMAGE=healthsamurai/smartbox:edge
 
 # Client to create on startup
 AIDBOX_CLIENT_ID=root
@@ -128,14 +127,6 @@ PGPASSWORD=postgres
 PGDATABASE=postgres
 AIDBOX_PORT=8888
 
-# Compliance mode
-AIDBOX_COMPLIANCE=enabled
-AIDBOX_CREATED_AT_URL=http://fhir.aidbox.app/extension/createdat
-BOX_COMPATIBILITY_VALIDATION_JSON__SCHEMA_REGEX=#{:fhir-datetime}
-AIDBOX_FHIR_VERSION=4.0.1
-BOX_AUTH_GRANT__PAGE__URL=/auth/consent-screen
-BOX_COMPATIBILITY_AUTH_PKCE_CODE__CHALLENGE_S256_CONFORMANT=true
-
 # Mailgun
 BOX_PROVIDER_MAILGUN__PROVIDER_TYPE=mailgun
 BOX_PROVIDER_MAILGUN__PROVIDER_FROM=<YOUR_MAILGUN_FROM_EMAIL>
@@ -149,13 +140,6 @@ BOX_BULK__STORAGE_GCP_SERVICE__ACCOUNT=gcp-acc
 BOX_BULK__STORAGE_GCP_SERVICE__ACCOUNT__EMAIL=<YOUR_SERVICE_ACCOUNT_EMAIL>
 BOX_BULK__STORAGE_GCP_SERVICE__ACCOUNT__PRIVATE__KEY=<YOUR_SERVICE_ACCOUNT_PRIVATE_KEY>
 BOX_BULK__STORAGE_GCP_BUCKET=<YOUR_GCP_BUCKET_NAME>
-
-# Aidbox project
-BOX_PROJECT_GIT_PROTOCOL=https
-BOX_PROJECT_GIT_URL=https://github.com/Aidbox/aidbox-project-samples.git
-BOX_PROJECT_GIT_SUB__PATH=aidbox-project-samples/smartbox-single-tenant
-
-BOX_FEATURES_TERMINOLOGY_IMPORT_SYNC=true
 ```
 
 {% hint style="info" %}
