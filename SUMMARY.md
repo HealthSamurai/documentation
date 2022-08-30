@@ -230,7 +230,6 @@
   * [Extending Aidbox Logs](core-modules/logging-and-audit/extending-access-logs.md)
   * [Integrations](core-modules/logging-and-audit/integrations/README.md)
     * [Elastic Logs and Monitoring Integration](core-modules/logging-and-audit/elastic-logs-and-monitoring-integration.md)
-    * [Export logs to ElasticSearch/Kibana](core-modules/logging-and-audit/export-logs-to-elasticsearch-kibana.md)
     * [Datadog Log management integration](core-modules/logging-and-audit/aidbox-logs-and-datadog-integration.md)
     * [Loki Log management integration](core-modules/logging-and-audit/loki-integration.md)
   * [Tutorials](core-modules/logging-and-audit/tutorials/README.md)

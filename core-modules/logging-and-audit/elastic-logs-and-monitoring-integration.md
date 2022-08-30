@@ -1,6 +1,6 @@
 # Elastic Logs and Monitoring Integration
 
-### ElasticSearch Logging 
+### ElasticSearch Logging&#x20;
 
 In order to enable Aidbox logging to ElasticSearch, you need to define `AIDBOX_ES_URL` environment variable:
 
@@ -43,19 +43,4 @@ AIDBOX_ES_INDEX_PAT = <format string>
 {% hint style="warning" %}
 Note. If elastic was down and some logs were accumulated in `AIDBOX_LOGS`, Aidbox doesn't resend those logs to elastic
 {% endhint %}
-
-### Elastic APM Monitoring
-
-You need to define `ELASTIC_APM_SERVER_URLS` environment variable to enable monitoring with Elastic APM:
-
-```yaml
-ELASTIC_APM_SERVER_URLS = <url>
-# Required. APM server url
-ELASTIC_APM_SERVICE_NAME = <name>
-# Optional. Default value is "Aidbox"
-```
-
-The full list of configuration options can be found [here](https://www.elastic.co/guide/en/apm/agent/java/current/configuration.html#_option_reference).
-
-
 
