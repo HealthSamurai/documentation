@@ -30,4 +30,4 @@ For mobile and desktop application the simplest option is [Resource Owner Creden
 
 Aidbox is coming with Auth Sandbox - a small app that helps you configure and test all features of Auth module in Aidbox. Click the Auth Sandbox link in Aidbox UI navigation menu:
 
-![](<../../.gitbook/assets/image (1).png>)
+![](<../../.gitbook/assets/image (1) (1).png>)
