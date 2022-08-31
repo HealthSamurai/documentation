@@ -266,7 +266,7 @@ Go to [Apps page](http://localhost:8888/admin/portal#/administrator/deployed) an
 
 #### Populate test data and a `User`
 
-To load test data into the Portal, launch the command bellow in the `REST Console` tool.
+As the administrator of the Portal load test data into the Portal. To do it launch the command bellow in the `REST Console` tool.
 
 ```http
 POST /$load
