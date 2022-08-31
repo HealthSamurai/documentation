@@ -282,6 +282,7 @@
   * [Power BI](integrations/analytics/power-bi.md)
 * [Audit](integrations/audit.md)
 * [Authentication](integrations/authentication.md)
+* [Email providers](integrations/email-providers.md)
 
 ## Tools
 
