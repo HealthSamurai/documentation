@@ -223,11 +223,35 @@ Now you can Sign In as developer to the Developer Sandbox.
 
 #### Create a SMART app in developer sandbox
 
-Once you logged into Developer Sandbox as a developer, you can create a new SMART Application&#x20;
+#### Get and deploy Growth Chart
+
+To get and the Growth Chart downloaded and start it
+
+```bash
+git clone git@github.com:smart-on-fhir/growth-chart-app.git
+cd growth-chart-app
+npm install
+npm start
+```
+
+Register a SMART App
+
+Once you launched the Growth Chart app, you can register it in the Sandbox.
 
 * Click the Create app button
-* Fill out and submit the new app form
+* Populate the form:
+  * App name: Growth Chart
+  * Confidentiality: public
+  * Redirect URL: [http://localhost:9000/](http://localhost:9000/)
+  * Launch URL: [http://localhost:9000/launch.html](http://localhost:9000/launch.html)
+* Submit the new app form
 * Click the Submit for Review button to send the application to review
+
+After Growth Chart is registered copy its `Client ID`.
+
+#### Update Growth Chart `client_id`
+
+Open the file `growth-chart-app/launch.html` and fill the `client_id` property. Then save changes to the file.
 
 #### Approve SMART App Publishing Request
 
@@ -237,6 +261,27 @@ Go back to Administrator Portal on [http://localhost:8888](http://localhost:8888
 * Click the Approve button.
 
 Go to [Apps page](http://localhost:8888/admin/portal#/administrator/deployed) and you will see approved SMART App there.
+
+### User portal
+
+#### Populate test data and a `User`
+
+To load test data into the Portal, launch the command bellow in the `REST Console` tool.
+
+```http
+POST /$load
+Content-Type: text/yaml
+
+source: 'https://storage.googleapis.com/aidbox-public/smartbox/rows.ndjson.gz'
+```
+
+#### Sign in as a `User`
+
+``[`Open Sing-in`](http://localhost:8888/) form and fill in demo-user credentials `test-user-1` / `password`.  After login the list of SMART apps is shown.
+
+#### Launch Growth Chart SMART app
+
+To launch the app press the `Launch` button.
 
 ### That's it
 
