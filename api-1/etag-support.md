@@ -49,12 +49,18 @@ Aidbox **ETags** mechanisms is based on **txid** column of resource table in dat
 
 ### ETag Cache performance
 
-To build a cache for a specific resourceType **ETag** Aidbox runs a query to get the `max(txid)` value. To make this operation efficient, it's required to build an index on the txid column for tables where **ETag** will be used.
+To build a cache for a specific resourceType **ETag** Aidbox runs a query to get the `max` value of the `txid` column. To make this operation efficient, it's recommended to build an index on the `txid` column for tables where **ETag** will be used.
 
 Use query:
 
-```CREATE INDEX IF NOT EXISTS <resourceType>_txid_btree ON <resourceType> using btree(txid);```
+```sql
+CREATE INDEX IF NOT EXISTS <resourceType>_txid_btree ON <resourceType> using btree(txid);
+
+CREATE INDEX IF NOT EXISTS <resourceType>_history_txid_btree ON <resourceType>_history using btree(txid);
+```
 
 {% hint style="info" %}
-replace **<resourceType>** with **<resourceType>** table name, for example `CREATE INDEX IF NOT EXISTS patient_txid_btree ON patient using btree(txid);`
+replace **<resourceType>** with **<resourceType>** table name, for example
+`CREATE INDEX IF NOT EXISTS patient_txid_btree ON patient using btree(txid);
+CREATE INDEX IF NOT EXISTS patient_history_txid_btree ON patient_history using btree(txid);`
 {% endhint %}

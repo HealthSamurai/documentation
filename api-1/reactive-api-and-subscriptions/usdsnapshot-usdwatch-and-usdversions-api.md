@@ -27,6 +27,24 @@ With parameters which start with dot you can filter resources by equality, e.g. 
 `_count` & `_page` work as described [here](https://docs.aidbox.app/api-1/fhir-api/search-1/\_count-and-\_page)\
 `_total` & `_totalMethod` work as described [here](https://docs.aidbox.app/api-1/fhir-api/search-1/\_total-or-\_countmethod)
 
+### Cache performance
+
+Changes API uses a cache to track a resourceType last change. To build the cache it runs a query to get the `max` value of the `txid` column. To make this operation efficient, it is recommended to build an index on the `txid` column for tables where Changes API will be used.
+
+Use query:
+
+```sql
+CREATE INDEX IF NOT EXISTS <resourceType>_txid_btree ON <resourceType> using btree(txid);
+
+CREATE INDEX IF NOT EXISTS <resourceType>_history_txid_btree ON <resourceType>_history using btree(txid);
+```
+
+{% hint style="info" %}
+replace **<resourceType>** with **<resourceType>** table name, for example
+`CREATE INDEX IF NOT EXISTS patient_txid_btree ON patient using btree(txid);
+CREATE INDEX IF NOT EXISTS patient_history_txid_btree ON patient_history using btree(txid);`
+{% endhint %}
+
 ### Notes
 
 Polling request is cheap! If you want to watch rare changes (minutes-hours), this API is very resource efficient  (no subscriptions, no queues) and provides you lots of control. If nothing has been changed, you will get a response with status `304`,  otherwise a list of changes and a new **version** to poll next time.
