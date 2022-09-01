@@ -16,12 +16,21 @@ To specify what codes can be assigned to specific element, FHIR defines **bindin
 
 In Aidbox, all terminology services are built around non-FHIR **Concept** resource type. Concept resource behaves like other FHIR resources: you can CRUD & Search it. Concept structure essentially follows the structure of Coding data type with some additional attributes.
 
-Terminology service can be logically split into two parts:
+### Two-phase terminology
 
-* terminology service for your app to look up and validate existing codes;
-* terminology management to upload new code systems and create new value sets.
+#### Design/Management phase
 
-### Operations
+{% content-ref url="create-a-valueset.md" %}
+[create-a-valueset.md](create-a-valueset.md)
+{% endcontent-ref %}
+
+{% content-ref url="terminology-api/" %}
+[terminology-api](terminology-api/)
+{% endcontent-ref %}
+
+#### Usage phase
+
+FHIR spec offers FHIR terminology API for validation and lookups
 
 #### CodeSystem
 

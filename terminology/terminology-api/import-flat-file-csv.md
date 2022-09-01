@@ -1,8 +1,12 @@
+---
+description: Import flat file via REST
+---
+
 # Import flat file (CSV)
 
 If you have a terminology distributed as a flat file, for example CSV, you can use this API to import it as a set of [Concept](../concept.md) resources and later use them with [Terminology API](../terminology.md).
 
-## Load from URL
+## Import by URL
 
 Aidbox provides RPC API to load terminology from a flat file by url.
 
@@ -135,7 +139,7 @@ Returns object with following attributes:
 {% endtab %}
 {% endtabs %}
 
-#### Examples
+### Examples
 
 Here are 2 examples importing a fragment of ICD-10. The first one specifies as few parameters as possible and uses a CSV file without a header. The second one uses a CSV with a header and also specifies a deprecation criteria, hierarchy parameters and a concept properties mapping. Both examples have commentaries of used parameters and contents of imported CSV files.
 

@@ -124,8 +124,11 @@
 ## Terminology
 
 * [Aidbox terminology module overview](terminology/terminology.md)
-* [Import external (not-present) terminologies](terminology/terminology-api/README.md)
+* [Create a ValueSet](terminology/create-a-valueset.md)
+* [Import external terminologies](terminology/terminology-api/README.md)
+  * [Import using an Aidbox project](terminology/terminology-api/import-using-an-aidbox-project.md)
   * [Import flat file (CSV)](terminology/terminology-api/import-flat-file-csv.md)
+  * [$import operation](terminology/terminology-api/usdimport-operation.md)
 * [Concept](terminology/concept.md)
 * [CodeSystem](terminology/codesystem-and-concept/README.md)
   * [CodeSystem Concept Lookup](terminology/codesystem-and-concept/concept-lookup.md)
