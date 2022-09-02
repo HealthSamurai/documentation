@@ -2,6 +2,20 @@
 
 ## August 2022 `edge`
 
+* Aidbox FHIR API module (SMARTbox) passed ONC Certification. Certification details&#x20;
+* Added Aidbox user portal projects with ability to invite team members&#x20;
+* Added on option to get Aidbox hosted on AWS directly from the Aidbox user portal.
+* Added Aidbox forms alpha version&#x20;
+* Added RPC to track Aidbox project terminology bundles async load status&#x20;
+* Added env to automatically create a User resource on auth via TokenIntrospector. This allows to use both TokenIntrospector and IdentityProvider auth for the same User in Aidbox&#x20;
+* Added log event :op/timeout for logging custom operations timeout&#x20;
+* Added FHIR Bundle transaction conditional CRUD with urn:uuid support&#x20;
+* Added SNOMED CT bundle Enhanced zen.fhir profiles with RequiredPattern and FixedValue constraints Added seed service errors output
+* Published SMARTbox guide&#x20;
+* Added Azure AD and Keycloak external identity provider integration guides&#x20;
+* Published Mailgun integration tutorial Published Postmark integration tutorial
+* Added integrations with [Mailgun](../../tutorials/mailgun-integration.md) and [Postmark](../../tutorials/postmark-integration.md)
+
 ## July 2022 _`latest`_
 
 * [Published](https://github.com/zen-lang/fhir/releases/tag/0.5.18) multiple versions of [zen FHIR IGs ](../../profiling-and-validation/profiling-with-zen-lang/#zen-fhir-packages)to provide an option to use a specific version of an implementation guide. &#x20;
@@ -168,7 +182,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 * We've released a major Aidbox UI upgrade
 
-![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1).png>)
+![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (10) (8).png>)
 
 * Updated REST Console (check out[ the tutorial](https://bit.ly/rest\_console\_tutorial)):
   * Explicit request headers `content-type, accept` etc
