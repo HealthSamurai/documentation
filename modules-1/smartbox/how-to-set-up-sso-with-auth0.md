@@ -6,28 +6,6 @@ description: This guide explains how to set up single sign-on features (SSO) wit
 
 This guide expands [Set up SMARTbox](how-to-set-up-sso-with-auth0.md#set-up-smartbox).
 
-### Set up ngrok
-
-Use [Ngrok](https://ngrok.com) to expose the 8888 port.
-
-<pre class="language-bash"><code class="lang-bash"><strong>ngrok http 8888</strong></code></pre>
-
-The output should contain the forwarding details like this.
-
-```bash
-Forwarding https://f81a-5-161-99-84.ngrok.io -> http://localhost:8888
-```
-
-### Set `AIDBOX_BASE_URL` in the docker-compose.yaml&#x20;
-
-#### Follow the instructions according to the [Set up SMARTbox](how-to-set-up-sso-with-auth0.md#set-up-smartbox) guide till the 'Create docker-compose.yaml'.
-
-{% hint style="warning" %}
-`AIDBOX_BASE_URL` parameter on the `portal section` should have value Ngrok provided.
-
-In the current configuration setup, it is the `https://f81a-5-161-99-84.ngrok.io`
-{% endhint %}
-
 ## Create an application in Auth0
 
 &#x20;To create an application:
@@ -41,8 +19,7 @@ In the current configuration setup, it is the `https://f81a-5-161-99-84.ngrok.io
 
 After the app is created add the details:
 
-* Application login URL: `https://f81a-5-161-99-84.ngrok.io/auth/authorize`
-* Application callback URLs: `https://f81a-5-161-99-84.ngrok.io/auth/callback/auth0?`
+* Application callback URLs: `http://localhost:8888/auth/callback/auth0?`
 * Press the 'Save Changes' button
 
 Open the 'Advanced settings' of the application and copy:
@@ -51,15 +28,13 @@ Open the 'Advanced settings' of the application and copy:
 * `OAuth Token URL`
 * `OAuth User Info URL`
 
-They will be used when create IdentityProvider in SMARTbox.
-
 ## Create a user in Auth0
 
 To create a new user:
 
 * Open the 'Users' page
 * Press the 'Create User' button
-* Provie email and password
+* Provide email and password
 * Press the 'Create' button
 
 Copy the 'user\_id'. It looks like `auth0|6310e2d143b66b669906d775`
@@ -79,9 +54,9 @@ scopes:
 authorize_endpoint: https://dev-nei1uq73.us.auth0.com/authorize
 token_endpoint: https://dev-nei1uq73.us.auth0.com/oauth/token
 client:
-  id: ziW2tl6z5nmk2F9h7hAFqVRROOjO8lv0
-  secret: 7HoQ_ERhXWDbg6D1jx-mnHnN7-JvTXkYAzQv1y2H7zl_qRlkbHcZ-qFMb7sXsgvb
-  redirect_uri: https://f81a-5-161-99-84.ngrok.io/auth/callback/auth0
+  id: ziW...lv0
+  secret: 7HoQ...gvb
+  redirect_uri: http://localhost:8888/auth/callback/auth0
 resourceType: IdentityProvider
 title: Auth0
 active: true</code></pre>
