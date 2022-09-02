@@ -269,7 +269,7 @@
   * [Set up SMARTbox](modules-1/smartbox/set-up-smartbox.md)
   * [How to set up SSO with Auth0](modules-1/smartbox/how-to-set-up-sso-with-auth0.md)
   * [FHIR portal](modules-1/smartbox/fhir-portal.md)
-  * [Standardized API for patient](modules-1/smartbox/standardized-api-for-patient.md)
+  * [Standardized API for patient and population services](modules-1/smartbox/standardized-api-for-patient.md)
 
 ## Multibox
 
