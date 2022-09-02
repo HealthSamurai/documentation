@@ -11,7 +11,7 @@ This feature is in beta and can be changed in the near future.
 Specify path or url to zen terminology bundle in [`AIDBOX_ZEN_PATHS` environment variable](https://docs.aidbox.app/aidbox-configuration/aidbox-zen-lang-project#load-project-using-environment-variables).\
 Source is either `url` or `path`. `url` is used to download Aidbox project from a remote location; `path` is used to load Aidbox project from the filesystem.\
 \
-Aidbox imports terminology bundles found in zen paths. Bundles are just `.ndjson.gz` files with filenames matching `*terminology-bundle.ndjson.gz` wildcard. By default, the import is done asynchronously and you can [track the progress](import-using-an-aidbox-project.md#undefined). In some cases (e.g CI/CD pipeline) you might want to override such behavior. Setting `BOX_FEATURES_TERMINOLOGY_IMPORT_SYNC` environment variable will change the import mode to synchronous.
+Aidbox imports terminology bundles found in zen paths. Bundles are just `.ndjson.gz` files with filenames matching `*terminology-bundle.ndjson.gz` wildcard. By default, the import is done asynchronously. In some cases (e.g CI/CD pipeline) you might want to override such behavior. Setting `BOX_FEATURES_TERMINOLOGY_IMPORT_SYNC` environment variable will change the import mode to synchronous.
 
 ### Import terminology bundle from local system using Aidbox project
 
@@ -39,28 +39,3 @@ Set AIDBOX\_ZEN\_PATHS=url:zip:https://example.com/terminologies/my-terminology.
 \
 Aidbox will import terminology from the specified path on start.
 
-### Track import progress
-
-Aidbox offers an RPC method to track the async import progress.  The response shows bundles in the import queue, failed imports and currently importing bundle.
-
-Request:
-
-```yaml
-POST /rpc
-content-type: text/yaml
-
-method: aidbox.zen/terminology-bundle-import-status
-params: {}
-```
-
-Response example:
-
-```yaml
-result:
-  pending:
-    - hl7-fhir-us-core-terminology-bundle.ndjson.gz
-  fail:
-    - us-nlm-vsac-terminology-bundle.ndjson.gz
-  in-progress:
-    - hl7-fhir-r4-core-terminology-bundle.ndjson.gz
-```
