@@ -10,11 +10,11 @@
 * Added env to automatically create a User resource on auth via TokenIntrospector. This allows to use both TokenIntrospector and IdentityProvider auth for the same User in Aidbox.
 * Added log event :op/timeout for logging custom operations timeout&#x20;
 * Added FHIR Bundle transaction conditional CRUD with `urn:uuid` support&#x20;
-* Added SNOMED CT bundle&#x20;
-* Enhanced zen.fhir profiles with RequiredPattern and FixedValue constraints
+* Added [SNOMED CT bundle ](../../terminology/terminology-api/)
+* Enhanced [zen.fhir profiles](../../profiling-and-validation/profiling-with-zen-lang/) with RequiredPattern and FixedValue constraints
 * Added [seed service](../../aidbox-configuration/aidbox-zen-lang-project/seed-import.md) errors output.
-* Added [Azure Active Directory (Azure AD)](../../security-and-access-control-1/auth/external-oauth-2.0-providers/azure-ad.md) and [Keycloak](../../security-and-access-control-1/auth/external-oauth-2.0-providers/keycloak.md) external identity provider integration guides&#x20;
-* Added integrations with [Mailgun](../../tutorials/mailgun-integration.md) and [Postmark](../../tutorials/postmark-integration.md) email providers
+* Added [Azure Active Directory (Azure AD)](../../security-and-access-control-1/auth/external-oauth-2.0-providers/azure-ad.md) and [Keycloak](../../security-and-access-control-1/auth/external-oauth-2.0-providers/keycloak.md) external identity providers integration guides&#x20;
+* Added [Mailgun](../../tutorials/mailgun-integration.md) and [Postmark](../../tutorials/postmark-integration.md) email providers integration guides
 
 ## July 2022 _`2207, stable`_
 

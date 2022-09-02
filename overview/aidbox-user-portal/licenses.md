@@ -59,3 +59,9 @@ This quickstart guide explains how to run Multibox locally using docker compose.
 {% content-ref url="../../getting-started/run-multibox-locally-with-docker.md" %}
 [run-multibox-locally-with-docker.md](../../getting-started/run-multibox-locally-with-docker.md)
 {% endcontent-ref %}
+
+### Aidbox as a SaaS on AWS
+
+{% content-ref url="../../getting-started/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md" %}
+[aidbox-as-a-saas-on-aws.md](../../getting-started/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md)
+{% endcontent-ref %}
