@@ -58,7 +58,7 @@ To configure Multibox we need to pass environment variables to it. We can pass t
 {% code title=".env" %}
 ```shell
 # postgres image to run
-PGIMAGE=healthsamurai/aidbox:14.2
+PGIMAGE=healthsamurai/aidboxdb:14.2
 
 # aidbox image to run
 # AIDBOX_IMAGE=healthsamurai/aidboxone:stable
