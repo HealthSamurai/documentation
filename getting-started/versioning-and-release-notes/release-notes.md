@@ -6,7 +6,7 @@
 * Added [Aidbox FHIR API module (SMARTbox) set up guide](../../modules-1/smartbox/set-up-smartbox.md).
 * Added on option to [get Aidbox hosted on AWS](../run-aidbox-as-a-saas/) directly from the Aidbox user portal.
 * Released [Aidbox forms](../../modules-1/aidbox-forms.md) alpha version.
-* Added RPC method to track Aidbox project terminology bundles async load status.
+* Added [RPC method](../../terminology/terminology-api/import-using-an-aidbox-project.md#track-import-progress) to track Aidbox project terminology bundles async load status.
 * Added env to [automatically create a User resource](../../security-and-access-control-1/auth/access-token-introspection/#create-user-automatically) on auth via TokenIntrospector. This allows to use both TokenIntrospector and IdentityProvider auth for the same User in Aidbox.
 * Added log event [:op/timeout](../../core-modules/logging-and-audit/aidbox-log-schema.md) for logging custom operations timeout&#x20;
 * Added FHIR Bundle transaction conditional CRUD with `urn:uuid` support&#x20;
