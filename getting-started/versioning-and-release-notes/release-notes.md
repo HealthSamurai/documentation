@@ -1,22 +1,21 @@
 # Release Notes
 
-## August 2022 `edge`
+## August 2022 _`latest`_
 
-* Aidbox FHIR API module (SMARTbox) passed ONC Certification. Certification details&#x20;
-* Added Aidbox user portal projects with ability to invite team members&#x20;
-* Added on option to get Aidbox hosted on AWS directly from the Aidbox user portal.
-* Added Aidbox forms alpha version&#x20;
-* Added RPC to track Aidbox project terminology bundles async load status&#x20;
-* Added env to automatically create a User resource on auth via TokenIntrospector. This allows to use both TokenIntrospector and IdentityProvider auth for the same User in Aidbox&#x20;
+* Aidbox FHIR API module (SMARTbox) is officially certified by ICSA Labs to comply with the [ONC’s 2015 Edition Cures Update](https://www.healthit.gov/topic/certification-ehrs/2015-edition-cures-update-test-method) requirements / 170.315(g)(10).&#x20;
+* Added [Aidbox FHIR API module (SMARTbox) set up guide](../../modules-1/smartbox/set-up-smartbox.md).
+* Added on option to [get Aidbox hosted on AWS](../run-aidbox-as-a-saas/) directly from the Aidbox user portal.
+* Released [Aidbox forms](../../modules-1/aidbox-forms.md) alpha version.
+* Added RPC method to track Aidbox project terminology bundles async load status.
+* Added env to automatically create a User resource on auth via TokenIntrospector. This allows to use both TokenIntrospector and IdentityProvider auth for the same User in Aidbox.
 * Added log event :op/timeout for logging custom operations timeout&#x20;
 * Added FHIR Bundle transaction conditional CRUD with urn:uuid support&#x20;
 * Added SNOMED CT bundle Enhanced zen.fhir profiles with RequiredPattern and FixedValue constraints Added seed service errors output
 * Published SMARTbox guide&#x20;
 * Added Azure AD and Keycloak external identity provider integration guides&#x20;
-* Published Mailgun integration tutorial Published Postmark integration tutorial
-* Added integrations with [Mailgun](../../tutorials/mailgun-integration.md) and [Postmark](../../tutorials/postmark-integration.md)
+* Added integrations with [Mailgun](../../tutorials/mailgun-integration.md) and [Postmark](../../tutorials/postmark-integration.md) email providers
 
-## July 2022 _`latest`_
+## July 2022 _`2207, stable`_
 
 * [Published](https://github.com/zen-lang/fhir/releases/tag/0.5.18) multiple versions of [zen FHIR IGs ](../../profiling-and-validation/profiling-with-zen-lang/#zen-fhir-packages)to provide an option to use a specific version of an implementation guide. &#x20;
 * Improved GraphQL API performance.
