@@ -31,7 +31,7 @@
 * Added configurable `refresh_token_expiration` parameter. If not defined refresh token doesn't expire.
 * Fixed issues submitted by Aidbox users and fixed minor bugs.
 
-## June 2022 _`stable, 2206, LTS`_
+## June 2022 _`2206, LTS`_
 
 * Added an option to [load Aidbox project from a remote Git repository](../../aidbox-configuration/aidbox-zen-lang-project/#load-project-from-git-repository).
 * Improved Aidbox startup time when loading [Aidbox project](../../aidbox-configuration/aidbox-zen-lang-project/#aidbox\_zen\_paths) from [a zip archive](../../aidbox-configuration/aidbox-zen-lang-project/#aidbox\_zen\_paths).
