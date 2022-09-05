@@ -1,8 +1,6 @@
 # Aidbox user portal
 
-[Aidbox user portal](https://aidbox.app/ui/portal#/signin) is a single place to manage [Aidbox licenses](../../getting-started/editions-and-pricing.md#aidbox-licenses) with project members.
-
-You can try [Aidbox locally](../../getting-started/run-aidbox-locally-with-docker/) or in [Aidbox Sandbox](../../getting-started/run-aidbox-in-aidbox-sandbox.md). Standard license allows you to use Aidbox for free for 14 days. You can't use it with real healthcare data or PHI (Protected Health Information). But other than that, you can try all the features of the paid Aidbox version and it is enough for proper Aidbox evaluation and the beginning of your healthcare app development
+[Aidbox user portal](https://aidbox.app/ui/portal#/signin) is a single place to manage all your [Aidbox licenses](../../getting-started/editions-and-pricing.md#aidbox-licenses), split them into projects and share projects with your team.
 
 ## References
 
@@ -24,7 +22,7 @@ Managing Aidbox licenses in a project
 
 ### Members management
 
-Collaborative work in projects
+Invite your team to the project and manage licenses in a single place
 
 {% content-ref url="members.md" %}
 [members.md](members.md)

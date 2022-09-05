@@ -4,7 +4,7 @@
 
 * Aidbox FHIR API module (SMARTbox) is officially certified by ICSA Labs to comply with the [ONC’s 2015 Edition Cures Update](https://www.healthit.gov/topic/certification-ehrs/2015-edition-cures-update-test-method) requirements / 170.315(g)(10).&#x20;
 * Added [Aidbox FHIR API module (SMARTbox) set up guide](../../modules-1/smartbox/set-up-smartbox.md).
-* Added on option to [get Aidbox hosted on AWS](../run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md) directly from the Aidbox user portal. [Aidbox FHIR platform](https://aws.amazon.com/marketplace/pp/prodview-l5djlpvsd6o5g) available on AWS marketplace.&#x20;
+* Added on option to [get Aidbox hosted on AWS](../run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md) directly from the Aidbox user portal. [Aidbox FHIR platform](https://aws.amazon.com/marketplace/pp/prodview-l5djlpvsd6o5g) is available on AWS marketplace.&#x20;
 * Released [Aidbox forms](../../modules-1/aidbox-forms.md) alpha version.
 * Added [RPC method](../../terminology/terminology-api/import-using-an-aidbox-project.md#track-import-progress) to track Aidbox project terminology bundles async load status.
 * Added env to [automatically create a User resource](../../security-and-access-control-1/auth/access-token-introspection/#create-user-automatically) on auth via TokenIntrospector. This allows to use both TokenIntrospector and IdentityProvider auth for the same User in Aidbox.
