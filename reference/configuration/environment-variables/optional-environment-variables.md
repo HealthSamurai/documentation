@@ -94,18 +94,24 @@ Sets the limit of log records to push into the file. When the limit is reached, 
 ### AIDBOX\_STDOUT\_JSON
 
 ```
-AIDBOX_STDOUT_JSON=true
+AIDBOX_STDOUT_JSON=<log-level>
 ```
 
-If provided, enables mode to write logs as json into stdout
+`log-level` is one of: `off`, `fatal`, `error`, `warn`, `info`, `debug`, `trace`, `all`.
+
+By setting one of these values you would also get all the values to the left. e.g. if you set log level to `warn` you would also get log events with `fatal` and `error` levels (`off` is excluded).
 
 ### AIDBOX\_STDOUT\_PRETTY
 
 ```
-AIDBOX_STDOUT_PRETTY=true
+AIDBOX_STDOUT_PRETTY=<log-level>
 ```
 
-If provided, enables mode to write logs in prettified format into stdout
+`log-level` is one of: `off`, `fatal`, `error`, `warn`, `info`, `debug`, `trace`, `all`.
+
+By default `log-level` is `error`.
+
+By setting one of these values you would also get all the values to the left. e.g. if you set log level to `warn` you would also get log events with `fatal` and `error` levels (`off` is excluded).
 
 ### AIDBOX\_DEVLOGS
 

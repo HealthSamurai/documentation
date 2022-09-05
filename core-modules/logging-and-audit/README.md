@@ -1,11 +1,12 @@
-# Logging
+# Logging & Audit
 
 Aidbox produces structured logs on every signifact event to the internal stream which you may direct to different ways:
-- [stdout in json or pretty string formats](#stdour-log)
-- [file](#log-to-file)
-- [Elasticsearch](elastic-logs-and-monitoring-integration.md)
-- [Datadog](datadog-guide.md)
-- [Loki](loki-integration.md)
+
+* [stdout in json or pretty string formats](./#stdour-log)
+* [file](./#log-to-file)
+* [Elasticsearch](elastic-logs-and-monitoring-integration.md)
+* [Datadog](datadog-guide.md)
+* [Loki](loki-integration.md)
 
 {% hint style="info" %}
 Aidbox logs can be used in audit. Please, see our [article on auditing](audit.md) for more info.
@@ -13,7 +14,7 @@ Aidbox logs can be used in audit. Please, see our [article on auditing](audit.md
 
 ## Logs API
 
-You can get current logs through REST API by `GET /_logs`  - response will be  Chunked Transfer Encoding stream of new line separated JSON objects:
+You can get current logs through REST API by `GET /_logs` - response will be Chunked Transfer Encoding stream of new line separated JSON objects:
 
 ```yaml
 GET /_logs
@@ -34,17 +35,14 @@ Please, pay attention, that you will not see the response for `GET /_logs` reque
 
 ### Stdout log
 
-Aidbox sends logs into stdout if one of these env variables defined: `AIDBOX_STDOUT_JSON`, `AIDBOX_STDOUT_PRETTY`
+Aidbox sends logs into stdout if one of these env variables defined: [`AIDBOX_STDOUT_JSON`](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox\_stdout\_json), [`AIDBOX_STDOUT_PRETTY`](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox\_stdout\_pretty).&#x20;
 
 ### Log to file
 
-If you prefer to write logs into the file system,  in the .env file specify `AIDBOX_LOGS` environment variable with a relative path to the desired location.
+If you prefer to write logs into the file system, in the .env file specify `AIDBOX_LOGS` environment variable with a relative path to the desired location.
 
 ```yaml
 AIDBOX_LOGS=/logs/aidbox
 ```
 
 Another option is to store logs in the ElasticSearch. Please, read the details [here](https://docs.aidbox.app/app-development-guides/receive-logs-from-your-app/elastic-logs-and-monitoring-integration)
-
-
-
