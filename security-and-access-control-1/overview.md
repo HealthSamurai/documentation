@@ -71,9 +71,24 @@ You can specify `auth.*.access_token_expiration` (in seconds) on Client resource
 
 ## Client
 
-To provide programmatic access to Aidbox you have to register a client - Client resource.
+To provide programmatic access to Aidbox you have to register a `Client` resource.
 
-Client resource must have `grant_types` attribute defining authentification scheme for this Client.
+### `Client.audience`
+
+`A Client` can have the `audience` attribute. The `audience` shows what resource server access is intended for. Aidbox compares the `audience` of the `Client` to the `audience` it receives within a`JWT` and decides if the access should be granted.
+
+The `audience` attribute can be defined in 2 ways:
+
+* As a plain string. For example, `https://cmpl.aidbox.app/smart`
+* As a `Regex`. In that case, the `audience` value should start with the `#` symbol. For example, `#https://cmpl.aidbox.app/tenant/[^\]/smart`
+
+{% hint style="info" %}
+That validation of the `audience` happens when SMART on FHIR app launches
+{% endhint %}
+
+### `Client.grant_types`
+
+`Client` resource must have `grant_types` attribute defining authentification scheme for this Client.
 
 > [Application grant types](https://auth0.com/docs/configure/applications/application-grant-types#available-grant-types) (or flows) are methods through which applications can gain [Access Tokens](https://auth0.com/docs/security/tokens/access-tokens) and by which you grant limited access to your resources to another entity without exposing credentials.
 
