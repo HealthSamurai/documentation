@@ -141,3 +141,6 @@ In case of error, OperationOutcome resource will be returned:
 // HTTP/1.1 422 Unprocessable Entity
 ```
 
+{% hint style="warning" %}
+Please note that this endpoint doesn't persist any populated FHIR data to Aidbox database. This endpoint is read-only and it performs a stateless conversion of the document from one format to another. To persist FHIR data extracted from a CDDA document you need to setup a simple pipeline as described in this tutorial (TODO).
+{% endhint %}
