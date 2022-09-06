@@ -244,6 +244,7 @@
 ## Modules <a href="#modules-1" id="modules-1"></a>
 
 * [HL7 v2 Integration](modules-1/hl7-v2-integration.md)
+* [CCDA](modules-1/ccda-converter.md)
 * [FHIR Resources](modules-1/fhir-resources/README.md)
   * [Aidbox & FHIR formats](modules-1/fhir-resources/aidbox-and-fhir-formats.md)
 * [Custom Resources](modules-1/custom-resources/README.md)
