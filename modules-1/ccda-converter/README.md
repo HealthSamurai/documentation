@@ -4,11 +4,13 @@ description: >-
   documents to FHIR documents and backward.
 ---
 
-# CCDA
+# 📖 CCDA
 
 ## Introduction
 
-The HL7 **Clinical Document Architecture** (**CDA**) is an XML-based markup standard intended to specify the encoding, structure and semantics of clinical documents for exchange. To help developers to comply with § 170.315(g)(9) ONC criterion Aidbox provides endpoint to convert CCDA documents to FHIR format.
+The HL7 **Clinical Document Architecture** (**CDA**) is an XML-based markup standard intended to specify the encoding, structure and semantics of clinical documents for exchange. It’s the most widely used format for health information exchange in the US today. To help developers to comply with § 170.315(g)(9) ONC criterion Aidbox provides endpoint to convert CCDA documents to FHIR format.
+
+Aidbox CCDA converter aims to handle all data elements included into [USCDI v2](https://www.healthit.gov/isa/united-states-core-data-interoperability-uscdi#uscdi-v2), however it's still in alpha development stage, so some of them may be omitted.
 
 {% hint style="info" %}
 You can quickly evaluate CCDA to FHIR Converter on our [CCDA to FHIR Demo page](https://ccda.aidbox.app/).
@@ -31,11 +33,17 @@ Content-Type: application/cda+xml
 </ClinicalDocument>
 ```
 
+{% hint style="warning" %}
+Please note the`Content-Type: application/cda+xml` header. Any other MIME type will be rejected by this endpoint.
+{% endhint %}
+
 If conversion was successful, you'll get a [FHIR Document](https://www.hl7.org/fhir/documents.html) as a result:
 
-```json
-{
-  "resourceType" : "Bundle",
+<pre class="language-json"><code class="lang-json">// POST /ccda/to-fhir
+// HTTP/1.1 200 OK
+
+<strong>{
+</strong>  "resourceType" : "Bundle",
   "type" : "document",
   "entry" : [{
     "resource" : {
@@ -114,14 +122,14 @@ If conversion was successful, you'll get a [FHIR Document](https://www.hl7.org/f
     },
     "fullUrl" : "urn:uuid:practitioner-2.16.840.1.113883.4.6"
   }]
-}
-// POST /ccda/to-fhir
-// HTTP/1.1 200 OK
-```
+}</code></pre>
 
 In case of error, OperationOutcome resource will be returned:
 
 ```json
+// POST /ccda/to-fhir
+// HTTP/1.1 422 Unprocessable Entity
+
 {
   "resourceType": "OperationOutcome",
   "id": "invalid",
@@ -137,8 +145,6 @@ In case of error, OperationOutcome resource will be returned:
     }
   ]
 }
-// POST /ccda/to-fhir
-// HTTP/1.1 422 Unprocessable Entity
 ```
 
 {% hint style="warning" %}
