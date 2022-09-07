@@ -7,23 +7,45 @@ In order to define first-class extension as zen profile you should follow the st
 1. [Initialize](https://docs.aidbox.app/profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile#create-a-zen-project) zen project and add additional IGs if necessary
 2.  Define your custom first-class extension
 
-    ```
+    ```clojure
     {ns my-zen-project
-     import #{zen.fhir hl7-fhir-r4-core.string}
+     import #{zen.fhir
+              hl7-fhir-r4-core.string
+              hl7-fhir-r4-core.dateTime
+              hl7-fhir-r4-core.uri}
 
-     MyPatientProfile
+     MyPatient
      {:zen/tags #{zen/schema zen.fhir/profile-schema}
-      :zen.fhir/version "0.5.8"
+      :zen/desc "Patient resource schema with first-class extension definition examples"
+      :zen.fhir/version "0.5.20"
       :confirms #{zen.fhir/Resource}
       :zen.fhir/type "Patient"
       :zen.fhir/profileUri "urn:profile:MyPatientProfile"
       :type zen/map
-      :keys
-      {:meta {:type zen/map
-              :keys
-              {:tenant-id
-               {:confirms #{hl7-fhir-r4-core.string/schema}
-                :fhir/extensionUri "http://tenant-id-extension-url"}}}}}}
+      
+      :keys {:meta {:type zen/map
+                    :keys {:tenant-id
+                           {:confirms #{hl7-fhir-r4-core.string/schema}
+                            :zen/desc "Patient.meta.tenant-id first-class extension"
+                            :fhir/extensionUri "http://tenant-id-extension-url"}}}
+
+             :form {:type zen/vector
+                    :zen/desc "Patient.form.[*] array first-class extension"
+                    :every {:confirms #{hl7-fhir-r4-core.uri/schema}
+                            :fhir/extensionUri "http://patient-form-url"}}
+
+             :info {:type zen/map
+                    :zen/desc "Patient.info nested first-class extension"
+                    :fhir/extensionUri "http://patient-info"
+                    
+                    :keys {:registration {:confirms #{hl7-fhir-r4-core.dateTime/schema}
+                                          :zen/desc "Patient.info.registration 
+                                                     extension.url deduced from key"}
+                           
+                           :referral {:confirms #{hl7-fhir-r4-core.uri/schema}
+                                      :fhir/extensionUri "http://patient-info-referral"
+                                      :zen/desc "Patient.info.referral
+                                                 extension.url is specified"}}}}}}}
     ```
 3.  Fix `:zen.fhir/version` errors if needed
 
