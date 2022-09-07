@@ -45,7 +45,7 @@ In order to define first-class extension as zen profile you should follow the st
                            :referral {:confirms #{hl7-fhir-r4-core.uri/schema}
                                       :fhir/extensionUri "http://patient-info-referral"
                                       :zen/desc "Patient.info.referral
-                                                 extension.url is specified"}}}}}}}
+                                                 extension.url is specified"}}}}}}
     ```
 3.  Fix `:zen.fhir/version` errors if needed
 
