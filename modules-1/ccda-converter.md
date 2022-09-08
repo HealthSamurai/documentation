@@ -4,7 +4,7 @@ description: >-
   documents to FHIR documents and backward.
 ---
 
-# 📖 CCDA
+# CCDA
 
 ## Introduction
 
