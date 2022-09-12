@@ -18,14 +18,14 @@ With **SearchQuery** resource, you can define "managed"  SQL for Search API with
 | **reverse**           | Includes resources that refer resources from your query   |
 | **\_explain=analyze** | Helps to inspect the execution plan of a search query     |
 
+{% hint style="info" %}
+If you want to use arbitrary SQL (e.g. `LEFT JOIN`), consider [AidboxQuery](custom-search.md).&#x20;
+{% endhint %}
+
 ### Prepare example data
 
 We need some sample data to see the results of example queries. Let's create it.\
 Copy the following snippet to the Aidbox `REST Console`.
-
-{% hint style="info" %}
-You can use the Copy button near the top right corner of a snippet to avoid copying trailing spaces.
-{% endhint %}
 
 {% tabs %}
 {% tab title="Request (Aidbox format)" %}
@@ -96,6 +96,8 @@ entry:
     subject:
       resourceType: Patient
       id: patient1
+    class:
+      code: abc
   request:
     method: POST
     url: "/Encounter"
@@ -106,6 +108,8 @@ entry:
     subject:
       resourceType: Patient
       id: patient1
+    class:
+      code: abc
   request:
     method: POST
     url: "/Encounter"
@@ -116,6 +120,8 @@ entry:
     subject:
       resourceType: Patient
       id: patient2
+    class:
+      code: abc
   request:
     method: POST
     url: "/Encounter"
@@ -123,8 +129,8 @@ entry:
 - resource:
     id: apt1
     description: "Test appointment 1"
-    start: 2020-12-10T09:00:00Z
-    end: 2020-12-10T11:00:00Z
+    start: '2020-12-10T09:00:00Z'
+    end: '2020-12-10T11:00:00Z'
     status: booked
     participant: [{ actor: { resourceType: Patient, id: patient1}, status: accepted},{ actor: { resourceType: Practitioner, id: pr-1}, status: accepted}]
   request:
@@ -134,8 +140,8 @@ entry:
 - resource:
     id: apt2
     description: "Test appointment 2"
-    start: 2021-04-10T09:00:00Z
-    end: 2021-04-10T11:00:00Z
+    start: '2021-04-10T09:00:00Z'
+    end: '2021-04-10T11:00:00Z'
     status: booked
     participant: [{ actor: { resourceType: Patient, id: patient2}, status: accepted}, { actor: { resourceType: Practitioner, id: pr-2}, status: accepted}]
   request:
@@ -384,11 +390,11 @@ entry:
       x-duration: 21
       x-request-id: c9481d21-a93e-4bbd-940e-d7221ad45110
       status: '201'
-      
-We created 2 patients, 2 practitioners, 3 encounters, 2 appointments, 2 Managing organizations that are linked to each other.
 ```
 {% endtab %}
 {% endtabs %}
+
+We created 2 patients, 2 practitioners, 3 encounters, 2 appointments, 2 Managing organizations that are linked to each other.
 
 ### Define search query with filtering&#x20;
 
@@ -734,7 +740,7 @@ as: pt
 total: true
 includes:
   encounters:
-    # means reference going from Encounter to patient
+    # means that reference going from Encounter to patient
     reverse: true
     path: [subject]
     resource: {id: Encounter, resourceType: Entity}
