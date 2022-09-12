@@ -274,6 +274,14 @@ BOX_WEB_MAX__BODY=<max-size-bytes>
 
 Maximum size of request body in bytes. Default is 8388608 (8 MiB)
 
+### BOX\_WEB\_THREAD
+
+```
+BOX_WEB_THREAD=<count-of-web-worker-threads>
+```
+
+Count of HTTP server web workers. Default is 8
+
 ### BOX\_FEATURES\_TERMINOLOGY\_IMPORT\_SYNC
 
 ```
