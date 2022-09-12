@@ -398,3 +398,16 @@ use next env var to pass secret param:
 ```
 BOX_AUTH_KEYS_SECRET=<rand_string>
 ```
+
+### Configure Aidbox WEB server workers and DB connection pool
+
+By default Aidbox and Multibox runs with 8 web workers and 8 DB connection pool size. That means that Aidbox can process at same time 8 concurrent connections.&#x20;
+
+A good practice is stay pool size the same as CPU count of your database. For example, if your database has 16 CPU cores you can set `BOX_DB_POOL_MAXIMIM__POOL__SIZE=16`. Box web workers count is dependent on your load profile. For example, if you have a lot of fast read queries you can set `BOX_WEB_THREAD` equal x2 or x3 of your DB pool size (32 or 48). Or if you have a lot of batch insert queries we recomend stay web workers count as the same DB pool size.
+
+You can configure this parameter using following environment variables.
+
+```
+BOX_DB_POOL_MAXIMIM__POOL__SIZE=8
+BOX_WEB_THREAD=8
+```
