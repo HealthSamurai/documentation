@@ -31,7 +31,7 @@
 * [Run Aidbox as a SaaS](getting-started/run-aidbox-as-a-saas/README.md)
   * [Aidbox as a SaaS on AWS](getting-started/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md)
 * [Run Aidbox in Kubernetes](getting-started/run-aidbox-in-kubernetes/README.md)
-  * [HA Aidbox](getting-started/run-aidbox-in-kubernetes/ha-aidbox.md)
+  * [High Available Aidbox](getting-started/run-aidbox-in-kubernetes/high-available-aidbox.md)
 
 ## Aidbox configuration
 

@@ -1,5 +1,5 @@
 # Run Aidbox in Kubernetes
 
-{% content-ref url="ha-aidbox.md" %}
-[ha-aidbox.md](ha-aidbox.md)
+{% content-ref url="high-available-aidbox.md" %}
+[high-available-aidbox.md](high-available-aidbox.md)
 {% endcontent-ref %}

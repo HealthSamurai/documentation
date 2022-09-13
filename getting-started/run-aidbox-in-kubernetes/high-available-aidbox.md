@@ -1,4 +1,4 @@
-# HA Aidbox
+# High Available Aidbox
 
 {% hint style="info" %}
 Run parallel Aidbox replicas supported from **2208** version
@@ -10,7 +10,7 @@ To provide increased High availability, the approach is to run two or more appli
 
 ### Configuration
 
-Let's take the Kubernetes example of a hight availability Aidbox configuration (this example can also be applied to Multibox)
+Let's take the Kubernetes example of a high availability Aidbox configuration (this example can also be applied to Multibox)
 
 ```yaml
 apiVersion: apps/v1
