@@ -26,6 +26,9 @@ BOX_PROJECT_GIT_URL=https://github.com/Aidbox/aidbox-project-samples.git
 BOX_PROJECT_GIT_SUB__PATH=aidbox-project-samples/smartbox
 BOX_PROJECT_ENTRYPOINT=smartbox.portal/test-box
 
+# Active terminology import in SYNC mode
+BOX_FEATURES_TERMINOLOGY_IMPORT_SYNC=enabled
+
 # Define access to you the bucket (https://docs.aidbox.app/api-1/bulk-api-1/usdexport#setup-storage)
 box_bulk__storage_backend=
 box_bulk__storage_gcp_service__account=
