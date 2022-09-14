@@ -143,7 +143,7 @@ The result of the exchanging of the `code` for `token` is a JSON object containi
 
 * `access_token`. The access token issued by the authorization server
 * `token_type`.  Fixed value: `Bearer`
-* scope. Scope of access authorized
+* `scope`. Scope of access authorized
 
 More details can be found [here](https://www.hl7.org/fhir/smart-app-launch/app-launch.html#response-5)
 {% endhint %}
