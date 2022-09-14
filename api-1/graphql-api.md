@@ -11,11 +11,11 @@ GraphQL console sends all your requests to `$graphql` endpoint which you can use
 This endpoint allows you to execute GraphQL queries .
 {% endswagger-description %}
 
-{% swagger-parameter in="body" name="query" type="string" %}
+{% swagger-parameter in="body" name="query" type="string" required="false" %}
 GraphQL query
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="variables" type="object" %}
+{% swagger-parameter in="body" name="variables" type="object" required="false" %}
 JSON object with variables
 {% endswagger-parameter %}
 
@@ -32,26 +32,22 @@ Aidbox generates different GraphQL scalars, objects, queries with args and union
 
 For each ResourceType these queries are generated:
 
-* `<resourceType>`  — get fields of the specified resource.\
+* `<resourceType>` — get fields of the specified resource.\
   Accepts a single argument `id` and returns a resource with the specified `id`.\
-  Example: `Patient (id: "pat-1")`\
-
-* `<resourceType>List`  — search resources of given resource type.\
+  Example: `Patient (id: "pat-1")`\\
+* `<resourceType>List` — search resources of given resource type.\
   Accepts FHIR search parameters for that resourceType. SearchParameters have underscores instead of dashes and referenced later in this documentation as `search_parameter`. For each SearchParameter two arguments are generated:
   * `<search_parameter>` e.g.: `PatientList(address_state: "CA")` Accepts a string. Is an equivalent of using FHIR search parameter
   * `<search_parameter>_list` e.g.: `PatientList(language_list: ["en", "de"])` Accepts a list of strings. It is an equivalent of repeating search parameters in FHIR search. _`<search_parameter>_list` arg is needed because args can't be repeated in the GraphQL query._
-* `<resourceType>History`  — get resource history.\
+* `<resourceType>History` — get resource history.\
   Accepts `id` argument and returns history of the resource with the specified `id`.\
   Example: `PatientHistory(id: "pt1", _sort: "txid") {name}`
 
 ### Examples
 
-* `PatientList(language_list: ["en", "de"])` will return a set of Patients the same as `GET /Patient?language=en&language=de`  and those will be patients with `en` **AND** `de` as their communication language specified\
-
-* `PatientList(language: "en,de")` will return a set of Patients the same as `GET /Patient?language=en,de`  and those will be patients with `en` **OR** `de` as their communication language specified\
-
-* `PatientList(language_list: ["en", "de,fr"])` will return a set of Patients the same as `GET /Patient?language=en&language=de,fr`  and those will be patients with `en` **AND** (`de` **OR** `fr`) as their communication language specified\
-
+* `PatientList(language_list: ["en", "de"])` will return a set of Patients the same as `GET /Patient?language=en&language=de` and those will be patients with `en` **AND** `de` as their communication language specified\\
+* `PatientList(language: "en,de")` will return a set of Patients the same as `GET /Patient?language=en,de` and those will be patients with `en` **OR** `de` as their communication language specified\\
+* `PatientList(language_list: ["en", "de,fr"])` will return a set of Patients the same as `GET /Patient?language=en&language=de,fr` and those will be patients with `en` **AND** (`de` **OR** `fr`) as their communication language specified\\
 *   `PatientList(language: "en", language: "de")` is an **error**, it will ignore all `language` arg repetitions except of the last and will return a set of Patients the same as
 
     `GET /Patient?language=de`
@@ -61,7 +57,15 @@ For each ResourceType these queries are generated:
 For each ResourceType object with fields is generated.\
 For every FHIR resource attribute field is created.\
 Also for attributes with Reference type unions are created for direct and reverse includes.\
-Reverse include fields have such format: `<revIncludeResourceType>s_as_<includedResourceReferenceSearchParameter>` e.g.:\
+
+
+FHIR GraphQL [does not support](https://hl7.org/fhir/graphql.html#searching) [\_revinclude](fhir-api/search-1/\_include-and-\_revinclude.md) Search parameter. In Aidbox you can use reverse include in such format:&#x20;
+
+```
+<revIncludeResourceType>s_as_<includedResourceReferenceSearchParameter> 
+```
+
+For example:\
 `observations_as_subject` for Patient will be equivalent of `_revinclude=Observation:subject`
 
 ## Example
