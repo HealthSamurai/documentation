@@ -56,31 +56,31 @@ GET /Patient?name=Max&_elements=id, birthDAte
 
 ## Special Parameters
 
-| Parameter                                     | Type  | Description                                                       |
-| --------------------------------------------- | ----- | ----------------------------------------------------------------- |
-| [\_id](\_id.md)                               | FHIR  | Search and sort by resource id                                    |
-| [\_lastUpdated](\_lastupdated.md)             | FHIR  | Search and sort by resource last modification date                |
-| [\_text](\_text-and-\_content.md)             | FHIR  | Full text search by resource narrative                            |
-| [\_content](\_text-and-\_content.md)          | FHIR  | Full text search by resource content                              |
-| [\_ilike](\_ilike.md)                         |       | `ILIKE` search by resource content                                |
-| [\_elements](\_elements.md)                   | FHIR+ | Include or exclude specific resource elements                     |
-| [\_summary](\_summary.md)                     | FHIR  | Include only summary elements                                     |
-| [\_list](\_list.md)                           | FHIR  | Search resources included into specific List                      |
-| [\_sort](\_sort.md)                           | FHIR  | Sort search results                                               |
-| [\_total](\_total-or-\_countmethod.md)        | FHIR  | Turn on/off total count                                           |
-| [\_include](\_include-and-\_revinclude.md)    | FHIR  | Include referenced resources into result                          |
-| [\_with](\_include-and-\_revinclude.md) | Aidbox  | Include into result resources (compact way compared to _include and _revinclude) |
-| [\_revinclude](\_include-and-\_revinclude.md) | FHIR  | Include into result resources, which reference searched resources |
-| [\_explain](\_explain.md)                     |       | Get query execution plan                                          |
-| [\_result](\_result.md)                       |       | Change result format                                              |
-| \_security                                    | FHIR  |                                                                   |
-| [\_profile](\_profile.md)                     | FHIR  | Search by resource profile                                        |
-| \_has                                         | FHIR  |                                                                   |
-| \_tag                                         | FHIR  |                                                                   |
+| Parameter                                     | Type   | Description                                                                        |
+| --------------------------------------------- | ------ | ---------------------------------------------------------------------------------- |
+| [\_id](\_id.md)                               | FHIR   | Search and sort by resource id                                                     |
+| [\_lastUpdated](\_lastupdated.md)             | FHIR   | Search and sort by resource last modification date                                 |
+| [\_text](\_text-and-\_content.md)             | FHIR   | Full text search by resource narrative                                             |
+| [\_content](\_text-and-\_content.md)          | FHIR   | Full text search by resource content                                               |
+| [\_ilike](\_ilike.md)                         |        | `ILIKE` search by resource content                                                 |
+| [\_elements](\_elements.md)                   | FHIR+  | Include or exclude specific resource elements                                      |
+| [\_summary](\_summary.md)                     | FHIR   | Include only summary elements                                                      |
+| [\_list](\_list.md)                           | FHIR   | Search resources included into specific List                                       |
+| [\_sort](\_sort.md)                           | FHIR   | Sort search results                                                                |
+| [\_total](\_total-or-\_countmethod.md)        | FHIR   | Turn on/off total count                                                            |
+| [\_include](\_include-and-\_revinclude.md)    | FHIR   | Include referenced resources into result                                           |
+| [\_with](\_include-and-\_revinclude.md)       | Aidbox | Include into result resources (compact way compared to \_include and \_revinclude) |
+| [\_revinclude](\_include-and-\_revinclude.md) | FHIR   | Include into result resources, which reference searched resources                  |
+| [\_explain](\_explain.md)                     |        | Get query execution plan                                                           |
+| [\_result](\_result.md)                       |        | Change result format                                                               |
+| \_security                                    | FHIR   |                                                                                    |
+| [\_profile](\_profile.md)                     | FHIR   | Search by resource profile                                                         |
+| \_has                                         | FHIR   |                                                                                    |
+| \_tag                                         | FHIR   |                                                                                    |
 
 ## Search Parameters
 
-Search defined in terms of "[search parameters](searchparameter.md)". SearchParameter is a meta-resource, which describes which part of the resource it is and how you can make it searchable.
+Search is defined in terms of "[search parameters](searchparameter.md)". SearchParameter is a meta-resource, which describes which part of the resource it is and how you can make it searchable.
 
 Search parameter can be one of the following types:
 
