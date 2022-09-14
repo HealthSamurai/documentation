@@ -134,9 +134,19 @@ Authorization code flow with SMART on FHIR EHR Launch:
 * App redirects to the EHR Authorization endpoint providing extra parameters:
   * `scope`: OAuth scopes including scopes defined by SMART on FHIR
   * `aud`: FHIR Server base url
-* Authorization server checks asks user to grant access to resources requested by the App and redirects to the App with code
-* App exchanges code for token using the token endpoint
-* App uses the token for resource access
+* Authorization server checks asks user to grant access to resources requested by the App and redirects to the App with `code`
+* App exchanges `code` for `token` using the `token` endpoint
+* App uses the `token` for resource access
+
+{% hint style="info" %}
+The result of the exchanging of the `code` for `token` is a JSON object containing at least:
+
+* `access_token`. The access token issued by the authorization server
+* `token_type`.  Fixed value: `Bearer`
+* scope. Scope of access authorized
+
+More details can be found [here](https://www.hl7.org/fhir/smart-app-launch/app-launch.html#response-5)
+{% endhint %}
 
 ## Inferno tests
 
