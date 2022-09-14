@@ -6,7 +6,7 @@ description: How to setup Aidbox and Inferno ONC locally to pass the tests
 
 ## Install Aidbox
 
-Follow the instruction to [install Aidbox locally](../../getting-started/run-aidbox-locally-with-docker)
+Follow the instruction to [install Aidbox locally](../../getting-started/run-aidbox-locally-with-docker/)
 
 ## Extend `.env` file
 
@@ -23,8 +23,8 @@ AIDBOX_COMPLIANCE=enabled
 # Define zen project
 BOX_PROJECT_GIT_PROTOCOL=https
 BOX_PROJECT_GIT_URL=https://github.com/Aidbox/aidbox-project-samples.git
-BOX_PROJECT_GIT_SUB__PATH=aidbox-project-samples
-BOX_PROJECT_ENTRYPOINT=smartbox.portal/box
+BOX_PROJECT_GIT_SUB__PATH=aidbox-project-samples/smartbox
+BOX_PROJECT_ENTRYPOINT=smartbox.portal/test-box
 
 # Define access to you the bucket (https://docs.aidbox.app/api-1/bulk-api-1/usdexport#setup-storage)
 box_bulk__storage_backend=
@@ -85,7 +85,7 @@ resourceType: Client
 auth:
   authorization_code:
     pkce: false
-    audience:ml
+    audience:
     - http://host.docker.internal:8888/smart
     redirect_uri: http://localhost/custom/smart/redirect
     refresh_token: true
