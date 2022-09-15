@@ -106,7 +106,7 @@ PORTAL_LICENSE=<YOUR_PORTAL_LICENSE>
 SANDBOX_LICENSE=<YOUR_SANDBOX_LICENSE>
 
 # postgres image to run
-PGIMAGE=healthsamurai/aidboxdb:14.2
+PGIMAGE=healthsamurai/aidboxdb:14.2.2
 
 # aidbox image to run
 AIDBOX_IMAGE=healthsamurai/smartbox:edge
@@ -117,7 +117,7 @@ AIDBOX_CLIENT_SECRET=secret
 
 # root user to create on startup
 AIDBOX_ADMIN_ID=admin
-AIDBOX_ADMIN_PASSWORD=secret
+AIDBOX_ADMIN_PASSWORD=password
 
 # db connection params
 PGPORT=5432
@@ -150,19 +150,7 @@ By default Aidbox logs are turned off, you can enable them by setting:
 
 ### Launch Aidbox
 
-At first init AidboxDB with Docker Compose
-
-```bash
-docker compose pull && docker compose up aidbox-db
-```
-
-Wait till AidboxDB is ready to accept connections. You will the following log message:&#x20;
-
-```
-LOG: database system is ready to accept connections
-```
-
-Stop AidboxDB with `Ctrl+C` and start all three services with Docker Compose:
+Run the following command:
 
 ```shell
 docker compose up
@@ -170,36 +158,9 @@ docker compose up
 
 Now SMARTbox is ready.
 
-### Create admin portal
-
-Open the login page on the Portal [http://localhost:8888/auth/login](http://localhost:8888/auth/login) and use your credentials to login.&#x20;
-
-Aidbox creates admin user at first start using env variables `AIDBOX_ADMIN_ID` and `AIDBOX_ADMIN_PASSWORD`.
-
-Once you logged into, open Aidbox Console on [http://localhost:8888/ui/console](http://localhost:8888/ui/console). And open Users tab on the left navigation panel and create New user by clicking the New button on the top right corner of the screen. Paste the following User resource and save it.
-
-```yaml
-resourceType: User
-
-email: operator@example.com
-password: secret
-
-name:
-  givenName: Test
-  familyName: Admin
-roles:
-  - type: operator
-active: true
-```
-
-Logout from Aidbox Console by clicking the Logout button on the left bottom corner of the screen.
-
 ### Admin portal
 
-To get to admin portal:
-
-* Open the login page on the Portal [http://localhost:8888/auth/login](http://localhost:8888/auth/login),
-* Use the email and password from the previous step as credentials
+Open the admin portal [http://localhost:8888/](http://localhost:8888/) and login using credentials from the .env file `AIDBOX_ADMIN_ID` and `AIDBOX_ADMIN_PASSWORD`.
 
 On the admin portal you can manage apps, patients and other admins.
 
