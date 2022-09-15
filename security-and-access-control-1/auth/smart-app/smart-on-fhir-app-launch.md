@@ -99,9 +99,12 @@ Accept: text/yaml
 
 Aidbox provides the [RPC API](../../../api-1/rpc-api.md) method `aidbox.smart/get-launch-uri` to generate launch URI. The method accepts the following arguments:
 
-* `user`: Reference to  `User` resource
+* `user`: id of the `User` resource
 * `iss`: Aidbox base URL
-* `client`: Reference to `Client` resource
+* `client`: id of the `Client` resource
+* `ctx`: additional launch context
+  * `patient`: id of  `Patient` resource
+  * `encounter`: id of `Encounter` resource
 
 This RPC method generates SMART launch URL.
 
