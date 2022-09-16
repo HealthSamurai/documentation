@@ -216,33 +216,65 @@ Open the file `growth-chart-app/launch.html` and fill the `client_id` property. 
 
 #### Approve SMART App Publishing Request
 
-Go back to Administrator Portal on [http://localhost:8888](http://localhost:8888). You will see list of SMART App waiting for review.
+Go back to admin portal on [http://localhost:8888](http://localhost:8888). You will see list of SMART App waiting for review.
 
 * Open the review request, made on the previous step
 * Click the Approve button.
 
-Go to [Apps page](http://localhost:8888/admin/portal#/administrator/deployed) and you will see approved SMART App there.
+Now the smart app is available for your patients
 
-### User portal
+### Enable FHIR API for practice
 
-#### Populate test data and a `User`
+#### Register practice
 
-As the administrator of the Portal load test data into the Portal. To do it launch the command bellow in the `REST Console` tool.
+In order to register a practice your need to create Tenant resource in Aidbox.
 
-```http
-POST /$load
-Content-Type: text/yaml
+1. Open admin portal.
+2. Go to tenants page
+3. Create new tenant named My Clinic (id will be `my-clinic`).
 
-source: 'https://storage.googleapis.com/aidbox-public/smartbox/rows.ndjson.gz'
+Once you created tenant, you enabled FHIR API for patient, practitioners and bulk clients. Patient portal is reated for the practice as well. 
+Approved smart app is available for patient in that practice.
+
+#### Populate test data
+
+1. Go to Adibox REST Console. You may open it from admin portal
+2. Run the following import:
+   ```yaml
+   POST /$load
+   Content-Type: text/yaml
+
+   source: 'https://storage.googleapis.com/aidbox-public/smartbox/rows.ndjson.gz'
+   merge:
+     tenant:
+       id: my-clinic
+       resourceType: Tenant
+   ```
+   
+Once you saw 200 OK, Patient resource (id=test-pt-1) and corresponding resources had been uploaded into Aidbox. New we can create a User which has access to that data. 
+
+#### Create User resource
+
+In order to enroll your patient, you need to create User resource. Open Aidbox REST Console and run the following command:
+```yaml
+POST /User
+
+email: example@mail.com
+active: true
+tenant:
+  id: my-clinic
+  resourceType: Tenant
+fhirUser:
+  id: test-pt-1
+  resourceType: Patient
+roles:
+- type: patient
+password: password
 ```
 
 #### Sign in as a `User`
 
-``[`Open Sing-in`](http://localhost:8888/) form and fill in demo-user credentials `test-user-1` / `password`.  After login the list of SMART apps is shown.
-
-#### Launch Growth Chart SMART app
-
-To launch the app press the `Launch` button.
+Go to My Clinic's  patient portal and login as the user, created above with `example@mail.com` login and `password` password. Loaunch samrt app and provide requested consent.
 
 ### That's it
 
