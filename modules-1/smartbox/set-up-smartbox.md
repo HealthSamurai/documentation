@@ -70,8 +70,8 @@ services:
     environment:
       PGHOST: "database"
       PGDATABASE: "portal"
-      SMARTBOX_SANDBOX_HOST: "http://sandbox:8888"
-      SMARTBOX_SANDBOX_BASIC: "root:secret"
+      BOX_SMARTBOX_SANDBOX__URL: "http://sandbox:8888"
+      BOX_SMARTBOX_SANDBOX__BASIC: "root:secret"
       BOX_AUTH_LOGIN__REDIRECT: "/admin/portal"
       BOX_PROJECT_ENTRYPOINT: "smartbox.portal/box"
       AIDBOX_LICENSE: "${PORTAL_LICENSE}"
@@ -153,7 +153,7 @@ By default Aidbox logs are turned off, you can enable them by setting:
 Run the following command:
 
 ```shell
-docker compose up
+docker compose pull && docker compose up
 ```
 
 Now SMARTbox is ready.
