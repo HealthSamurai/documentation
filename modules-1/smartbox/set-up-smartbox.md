@@ -260,6 +260,9 @@ In order to enroll your patient, you need to create User resource. Open Aidbox R
 POST /User
 
 email: example@mail.com
+name:
+  givenName: Amy
+  familyName: Shaw
 active: true
 tenant:
   id: my-clinic
