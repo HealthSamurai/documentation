@@ -27,7 +27,9 @@
 * [Run Aidbox locally with Docker](getting-started/run-aidbox-locally-with-docker/README.md)
   * [Update local Aidbox](getting-started/installation/update-aidbox.md)
 * [Run Multibox locally with Docker](getting-started/run-multibox-locally-with-docker.md)
-* [Run Aidbox in Aidbox Sandbox](getting-started/run-aidbox-in-aidbox-sandbox.md)
+* [Run Aidbox in Aidbox
+  Sandbox](getting-started/run-aidbox-in-aidbox-sandbox.md)
+* [Run Aidbox with non-privileged postgresql role](getting-started/run-aidbox-with-non-privileged-pg-role.md)
 * [Run Aidbox as a SaaS](getting-started/run-aidbox-as-a-saas/README.md)
   * [Aidbox as a SaaS on AWS](getting-started/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md)
 * [Run Aidbox in Kubernetes](getting-started/run-aidbox-in-kubernetes/README.md)
