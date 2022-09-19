@@ -56,8 +56,9 @@ For each ResourceType these queries are generated:
 
 For each ResourceType object with fields is generated.\
 For every FHIR resource attribute field is created.\
-Also for attributes with Reference type unions are created for direct and reverse includes.\
+Also for attributes with Reference type unions are created for direct and reverse includes.
 
+### Handling \_revinclude
 
 FHIR GraphQL [does not support](https://hl7.org/fhir/graphql.html#searching) [\_revinclude](fhir-api/search-1/\_include-and-\_revinclude.md) Search parameter. In Aidbox you can use reverse include in such format:&#x20;
 
@@ -67,6 +68,66 @@ FHIR GraphQL [does not support](https://hl7.org/fhir/graphql.html#searching) [\_
 
 For example:\
 `observations_as_subject` for Patient will be equivalent of `_revinclude=Observation:subject`
+
+&#x20;Here's an example showing how to create [first class extension](../modules-1/first-class-extensions.md), search parameter and use it in GraphQL:
+
+{% tabs %}
+{% tab title="First Class Extension" %}
+```yaml
+PUT /Attribute/ServiceRequest.requestedOrganizationDepartment
+
+description: Department in the organization that made the service request
+resource: {id: ServiceRequest, resourceType: Entity}
+path: [requestedOrganizationDepartment]
+type: {id: Reference, resourceType: Entity}
+refers: 
+  - Organization
+extensionUrl: urn:extension:requestedOrganizationDepartment
+```
+{% endtab %}
+
+{% tab title="Search Parameter" %}
+```yaml
+PUT /SearchParameter/ServiceRequest.requestedOrganizationDepartment
+
+name: requestedOrganizationDepartment
+type: reference
+resource: {id: ServiceRequest, resourceType: Entity}
+expression: [[requestedOrganizationDepartment]]
+```
+{% endtab %}
+
+{% tab title="ServiceRequest" %}
+```yaml
+PUT /ServiceRequest/sr3
+
+intent: plan
+status: final
+subject:
+  id: pt1
+  resourceType: Patient
+requestedOrganizationDepartment:
+  id: org2
+  resourceType: Organization
+id: sr3
+resourceType: ServiceRequest
+```
+{% endtab %}
+
+{% tab title="GraphQL" %}
+```yaml
+query {
+ OrganizationList(_count: 5) {
+  id,
+    servicerequests_as_requestedOrganizationDepartment{
+      id
+    }
+  }
+}
+
+```
+{% endtab %}
+{% endtabs %}
 
 ## Example
 
