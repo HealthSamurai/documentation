@@ -127,9 +127,34 @@ query {
 
 ```
 {% endtab %}
+
+{% tab title="Response" %}
+```yaml
+{
+  "data": {
+    "OrganizationList": [
+      {
+        "id": "org-1",
+        "servicerequests_as_a": []
+      },
+      {
+        "id": "org2",
+        "servicerequests_as_a": [
+          {
+            "id": "sr3"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+{% endtab %}
 {% endtabs %}
 
 ## Example
+
+This example demonstrates how to use fragments, both types of search parameter arguments and reverse includes.
 
 {% tabs %}
 {% tab title="Request" %}
