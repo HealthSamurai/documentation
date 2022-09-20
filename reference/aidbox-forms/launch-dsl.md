@@ -36,6 +36,3 @@ For populate you can specify what fields should be populated.
                                    :where [:= :id (lisp/get-in [:params :encounter-id])]})}}
 ```
 
-####
-
-\

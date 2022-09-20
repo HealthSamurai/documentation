@@ -6,6 +6,8 @@
 * ``[`read-document`](api-reference.md#read-document) - get form with saved document
 * ``[`save`](api-reference.md#save) - save document
 * ``[`sign`](api-reference.md#sign) - finalize document, run extracts
+* ``[`aidbox.sdc/convert-document`](api-reference.md#aidbox.sdc-convert-document) - converts SDCDocument to FHIR QuestionnaireResponse
+* ``[`aidbox.sdc/convert-questionnaire`](api-reference.md#aidbox.sdc-convert-questionnaire)- converts FHIR Questionnaire to Aidbox SDC Form
 
 ### get-forms
 
@@ -269,11 +271,242 @@ error:
         errors: {...}   ;; zen-style  validation errors
 ```
 
-##
+### aidbox.sdc/convert-questionnaire
+
+Converts Questionnaire to Aidbox SDC Form (Document + Form + Launch + (Finalize))
+
+params:
+
+| Param                   | Description                                | Type     | required? |
+| ----------------------- | ------------------------------------------ | -------- | --------- |
+| url                     | Link to Questinnaire on public FHIR server | String   | no        |
+| resource                | Questionnaire resource body                | Resource | no        |
+| options                 | Additional options                         | Map      | no        |
+| optinos.gen-extractions | Generate basic extractions for fields      | Boolean  | no        |
+
+Request:
+
+```
+POST /rpc
+
+method: aidbox.sdc/convert-questionnaire
+params:
+  options:
+    gen-extractions: true
+  resource:
+    resourceType: Questionnaire
+    id: 90854-1
+    url: http://loinc.org/q/90854-1
+    name: Duke_Anxiety_Depression_Scale
+    title: Duke Anxiety Depression Scale
+    status: draft
+    code:
+    - system: http://loinc.org
+      code: 90854-1
+      display: Duke Anxiety Depression Scale
+    item:
+    - linkId: '107153'
+      text: Final score
+      type: decimal
+```
+
+Result:
+
+> Success
+
+```
+result:
+  ns: duke-anxiety-depression-scale
+  filename: duke-anxiety-depression-scale.edn
+  code: |
+    {ns duke-anxiety-depression-scale,
+     import #{aidbox.sdc zenbox fhir hl7-fhir-r4-core.Coding},
+     DukeAnxietyDepressionScaleDocument
+     {:zen/tags #{zen/schema aidbox.sdc/doc aidbox.sdc/rules},
+      :zen/desc "Duke Anxiety Depression Scale",
+      :type zen/map,
+      :confirms #{aidbox.sdc/Document},
+      :keys
+      {:loinc-107153
+       {:linkId "/107153",
+        :text "Final score",
+        :zen/desc "Final score",
+        :type zen/number,
+        :sdc-type aidbox.sdc/decimal}},
+      :source {:code "90854-1", :system "http://loinc.org"}},
+     DukeAnxietyDepressionScaleLayout
+     {:zen/tags #{aidbox.sdc/Layout aidbox.sdc/rules},
+      :document DukeAnxietyDepressionScaleDocument,
+      :engine aidbox.sdc/Hiccup,
+      :layout {:type aidbox.sdc/col, :children [{:bind [:loinc-107153]}]}},
+     DukeAnxietyDepressionScaleLaunch
+     {:zen/tags #{aidbox.sdc/Launch},
+      :document DukeAnxietyDepressionScaleDocument,
+      :params {:encounter-id {:type zen/string}},
+      :populate-engine aidbox.sdc/LispPopulate,
+      :populate
+      {:author (lisp/get-in [:ctx :user]),
+       :encounter
+       {:id (lisp/get-in [:params :encounter-id]),
+        :resourceType "Encounter"},
+       :patient
+       (lisp/sql
+        {:select [:#> :resource [:subject]],
+         :from :Encounter,
+         :where [:= :id (lisp/get-in [:params :encounter-id])]})}},
+     DukeAnxietyDepressionScaleFinalizeConstraints
+     {:type zen/map, :zen/tags #{zen/schema}},
+     DukeAnxietyDepressionScaleFinalize
+     {:zen/tags #{aidbox.sdc/Finalize zen/schema},
+      :document DukeAnxietyDepressionScaleDocument,
+      :profile DukeAnxietyDepressionScaleFinalizeConstraints,
+      :export-engine aidbox.sdc/LispExport,
+      :create
+      [(lisp/when
+        (lisp/get :loinc-107153)
+        {:resourceType "Observation",
+         :subject (lisp/get :patient),
+         :encounter (lisp/get :encounter),
+         :status "final",
+         :code {:coding [{:code "107153"}]},
+         :value {:integer (lisp/get :loinc-107153)}})]},
+     DukeAnxietyDepressionScaleForm
+     {:zen/tags #{aidbox.sdc/Form},
+      :title "Duke Anxiety Depression Scale",
+      :document DukeAnxietyDepressionScaleDocument,
+      :layout DukeAnxietyDepressionScaleLayout,
+      :launch DukeAnxietyDepressionScaleLaunch,
+      :finalize DukeAnxietyDepressionScaleFinalize}}
+```
+
+### aidbox.sdc/convert-document
+
+Converts SDCDocument to QuestionnaireResponse
+
+params:
+
+| Param    | Description               | Type              | required? |
+| -------- | ------------------------- | ----------------- | --------- |
+| id       | id of SDCDocument in DB   | String            | no        |
+| document | SDCDocument resource body | Resource          | no        |
+| format   | Output format             | "fhir" / "aidbox" | yes       |
+
+Request:
+
+> Example with document stored in DB
+
+```
+POST /rpc
+
+method: aidbox.sdc/convert-document
+params:
+  id: doc-1
+  format: fhir
+```
+
+> Example with SDCDocument resource body
+
+```
+POST /rpc
+
+method: aidbox.sdc/convert-document
+params:
+  document:
+    patient:
+      id: pt-1
+      resourceType: Patient
+    encounter:
+      id: enc-1
+      resourceType: Encounter
+    type: box.sdc.sdc-example/VitalsDocument
+    resourceType: SDCDocument
+    author:
+      id: u-1
+      resourceType: User
+    status: in-progress
+    id: doc-1
+    blood-pressure:
+      - numbers:
+          loinc-8480-6:
+            value: 100
+          loinc-8462-4:
+            value: 130
+        loinc-41904-4:
+          text: Biceps left
+          code: LA11158-5
+          system: 'http://loinc.org'
+      - numbers:
+          loinc-8480-6:
+            value: 110
+          loinc-8462-4:
+            value: 130
+        loinc-41904-4:
+          text: Biceps right
+          code: LA11159-3
+          system: 'http://loinc.org'
+    form:
+      form: box.sdc.sdc-example/VitalsForm
+    loinc-8867-4:
+      value: 75
+      unit: kg
+  format: fhir
+```
+
+Result:
+
+> Success
+
+```
+result:
+  resourceType: QuestionnaireResponse
+  status: in-progress
+  questionnaire: http://loinc.org/85353-1
+  encounter:
+    id: enc-1
+    resourceType: Encounter
+  item:
+  - linkId: "/blood-pressure"
+    text: Blood pressure
+    item:
+    - linkId: "/numbers"
+      text: Numbers
+      item:
+      - linkId: "/8480-6"
+        text: BP sys
+        answer:
+        - valueQuantity:
+            value: 100
+      - linkId: "/8462-4"
+        text: BP dias
+        answer:
+        - valueQuantity:
+            value: 130
+    - linkId: "/41904-4"
+      text: BP measurement site
+      answer:
+      - valueCoding:
+          system: http://loinc.org
+          code: LA11158-5
+  - linkId: "/blood-pressure"
+    item:
+    - item:
+      - answer:
+        - valueQuantity:
+            value: 110
+      - answer:
+        - valueQuantity:
+            value: 130
+    - answer:
+      - valueCoding:
+          code: LA11159-3
+  - linkId: "/8867-4"
+    answer:
+    - valueQuantity:
+        value: 75
+        unit: kg
+```
 
 \
 
-
-##
 
 \
