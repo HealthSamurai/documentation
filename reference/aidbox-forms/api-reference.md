@@ -68,6 +68,47 @@ params:
       encounter-id: enc-1
 ```
 
+
+
+Result:
+
+> Success
+
+```
+result:
+   form: 'box.sdc.sdc-example/VitalsForm' ;; Form name
+   title: "MyForm"                        ;; Form title
+   version: 1                             ;; Internal form version.
+   document: {}                           ;; SDCDocument resource
+   document-def: {}                       ;; Document zen definition (can be used for UI validations)
+   layout: {}                             ;; Enriched layout with document metadata and rules. Used for rendering
+   layout-def: {}                         ;; Layout zen definition. (can be used for retrieving additional info from layout engine)
+   rules: {}                              ;; merged (and optionally transformed) :sdc/rules from document and layout definitions
+   rules-order: {}                        ;; Rules keys in topological sort.
+   finalize-profile: {}                   ;; Zen Schema for Finalize Constraints
+```
+
+Error:
+
+```
+error:
+    message:  "Wrong population logic for resource defined"
+    errors:   [{message: "..."}] ;; schema validation errors  (zen-style errors)
+    warnings:                    ;; failed population logic expressions
+     - message: "..."
+       launch-ctx {...}          ;; context data of the launch process
+       localion:
+         expr: <lisp/expr>       ;; failed lisp/expr
+```
+
+####
+
+\
+
+
+\
+
+
 ### read-document
 
 Get form for saved document.
@@ -83,6 +124,33 @@ POST /rpc?
 method: aidbox.sdc.read-document
 params:
    id: doc-1
+```
+
+
+
+Result:
+
+> Success
+
+```
+result:
+   form: 'box.sdc.sdc-example/VitalsForm' ;; Form name
+   title: "MyForm"                        ;; Form title
+   version: 1                             ;; Internal form version.
+   document: {}                           ;; SDCDocument resource
+   document-def: {}                       ;; Document zen definition (can be used for UI validations)
+   layout: {}                             ;; Enriched layout with document metadata and rules. Used for rendering
+   layout-def: {}                         ;; Layout zen definition. (can be used for retrieving additional info from layout engine)
+   rules: {}                              ;; merged (and optionally transformed) :sdc/rules from document and layout definitions
+   rules-order: {}                        ;; Rules keys in topological sort.
+   finalize-profile: {}                   ;; Zen Schema for Finalize Constraints
+```
+
+Error:
+
+```
+error:
+    :message  "Can't find document"
 ```
 
 ### save
@@ -109,6 +177,29 @@ params:
     loinc-8310-5: {value: 36.6, unit: C},
     loinc-8867-4: {value: 72}
 ```
+
+Result
+
+> Success
+
+```
+result:
+  document:
+    id: doc-1,
+    patient: {id: pt-1, resourceType: Patient},
+    encounter: {id: enc-1, resourceType: Encounter},
+    type: box.sdc.sdc-example/VitalsDocument,
+    resourceType: SDCDocument,
+    loinc-59408-5: {value: 97},
+    author: {id: doc-1, resourceType: User},
+    loinc-8310-5: {value: 36.6, unit: C},
+    loinc-8867-4: {value: 72}
+```
+
+####
+
+\
+
 
 ### sign
 
@@ -138,6 +229,50 @@ params:
     loinc-8310-5: {value: 36.6, unit: C},
     loinc-8867-4: {value: 72}
 ```
+
+Response:
+
+> Success
+
+```
+result
+   document: {...}   ;; signed document
+   exported:         ;; exported resources (optional)
+     to-create: [...]
+     to-update: [...]
+     to-delete: [...]
+```
+
+> Error
+
+```
+error:
+  message: Document didn't pass sign validations
+  type: :sdc.error/validation
+  errors:
+    - message: More detailsed validation message
+  ...
+  message: Some of the exported documents are invalid
+  type: :sdc.error/export
+  errors:
+    to-create:
+      - resource: {...} ;; generated resource by export
+        export/idx: 0   ;; export position in export list
+        errors: {...}   ;; zen-style  validation errors
+    to-delete:
+      - resource: {...} ;; generated resource by export
+        export/idx: 0   ;; export position in export list
+        errors: {...}   ;; zen-style  validation errors
+    to-update:
+      - resource: {...} ;; generated resource by export
+        export/idx: 0   ;; export position in export list
+        errors: {...}   ;; zen-style  validation errors
+```
+
+##
+
+\
+
 
 ##
 
