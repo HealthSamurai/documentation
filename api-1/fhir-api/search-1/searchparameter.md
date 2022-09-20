@@ -92,5 +92,49 @@ query-sql:
   SELECT "patient".* FROM "patient" 
   WHERE ("patient".resource @> '{"address":[{"city":"NY"}]}')
    LIMIT 100 OFFSET 0
-
 ```
+
+#### Define custom SearchParameter with extension
+
+If you have defined [first-class extension](../../../modules-1/first-class-extensions.md), you have to use Aidbox format for the SearchParameter expression. If you use FHIR format, you don't need to create Attribute and the `expression` path should be in FHIR format.
+
+{% tabs %}
+{% tab title="First-class extension" %}
+```yaml
+PUT /Attribute/ServiceRequest.precondition
+
+resourceType: Attribute
+description: "The condition or state of the patient, prior or during the diagnostic procedure or test, for example, fasting, at-rest, or post-operative. This captures circumstances that may influence the measured value and have bearing on the interpretation of the result."
+resource: {id: ServiceRequest, resourceType: Entity}
+path: [precondition]
+id: ServiceRequest.precondition
+type: {id: CodeableConcept, resourceType: Entity}
+isCollection: true
+extensionUrl: "http://hl7.org/fhir/StructureDefinition/servicerequest-precondition"
+```
+{% endtab %}
+
+{% tab title="Second Tab" %}
+```yaml
+PUT /SearchParameter/ServiceRequest.precondition
+
+name: precondition
+type: token
+resource: {id: ServiceRequest, resourceType: Entity}
+expression: [[precondition, coding]]
+```
+{% endtab %}
+
+{% tab title="SearchParameter (FHIR extension)" %}
+```yaml
+PUT /SearchParameter/ServiceRequest.precondition
+
+name: precondition
+type: token
+resource: {id: ServiceRequest, resourceType: Entity}
+expression: [[extension, valueCodeableConcept, coding, code]]
+```
+{% endtab %}
+{% endtabs %}
+
+If you use [Zen IG](../../../aidbox-configuration/zen-configuration.md) then first-class extensions are generated from zen-schemas. You have to use Aidbox format for the custom SearchParameter `expression`.
