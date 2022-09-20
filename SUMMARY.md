@@ -171,6 +171,7 @@
   * [Creating user & set up full user access](tutorials/creating-user-and-set-up-full-user-access.md)
   * [Mailgun integration](tutorials/mailgun-integration.md)
   * [Postmark integration](tutorials/postmark-integration.md)
+  * [How to migrate transaction id to bigint](tutorials/how-to-migrate-transaction-id-to-big-int.md)
 
 ## App development guides
 
