@@ -11,7 +11,7 @@ One of the solutions is suggested by FHIR. There is [the FHIR SDC Implementation
 We tried to take into account all these difficulties when developing our product. We developed our own **DSL**, which gives **flexibility** and **composabiltity**, with which you can describe any forms with complex logic and embed them in a workflow.
 
 {% hint style="info" %}
-&#x20;**Aidbox Forms** is a toolkit that helps EHR vendors create and customize forms for doctors, combine them into a workflow and collect data in a structured form, so that they can then be conveniently used for analytics and other purposes.
+&#x20;**Aidbox Forms** is a toolkit that helps health vendors create and customize forms for doctors, combine them into a workflow and collect data in a structured form, so that they can then be conveniently used for analytics and other purposes.
 {% endhint %}
 
 ### By using Aidbox Forms you can:
@@ -46,6 +46,8 @@ Two layers are required - **Form Layout** and **Data Model**, the rest are optio
 There is the entity that binds all form layers (DSL) - [Form DSL](../reference/aidbox-forms/form-dsl.md)
 
 
+
+### Workflow
 
 Forms can be embedded into [a workflow](../reference/aidbox-forms/workflow-reference.md).
 
@@ -88,6 +90,17 @@ Workflow support 2 additional features:
 
 
 These features you can configure via [api-constructor](../aidbox-configuration/aidbox-api-constructor.md) in zen-project.
+
+
+
+### FHIR to Aidbox Forms conversion and to back.
+
+You may use Aidbox to convert existing [FHIR Questionnaires to Aidbox Forms](../reference/aidbox-forms/api-reference.md#aidbox.sdc-convert-questionnaire) and [SDCDocument to FHIR QuestionnaireResponse resource](../reference/aidbox-forms/api-reference.md#aidbox.sdc-convert-document).
+
+###
+
+\
+
 
 
 

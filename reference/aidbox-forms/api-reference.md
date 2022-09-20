@@ -383,6 +383,11 @@ result:
 
 Converts SDCDocument to QuestionnaireResponse
 
+Also you may choose the output format:
+
+* aidbox - to store inside Aidbox DB
+* fhir - to exchange with other FHIR systems
+
 params:
 
 | Param    | Description               | Type              | required? |
