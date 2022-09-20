@@ -114,7 +114,7 @@ extensionUrl: "http://hl7.org/fhir/StructureDefinition/servicerequest-preconditi
 ```
 {% endtab %}
 
-{% tab title="Second Tab" %}
+{% tab title="SearchParameter (First-class extension)" %}
 ```yaml
 PUT /SearchParameter/ServiceRequest.precondition
 
