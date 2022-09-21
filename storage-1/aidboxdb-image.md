@@ -2,7 +2,7 @@
 description: This topic explains the configuration and internals of aidboxdb image
 ---
 
-# aidboxdb
+# Overview
 
 ### Introduction
 
@@ -17,9 +17,9 @@ An open source tool [wal-g](https://github.com/wal-g/wal-g) is used by aidboxdb 
 
 aidboxdb image is tagged by PostgreSQL version from which it is built. For example, if you want to use 11.11 PostgreSQL version you should pull healthsamurai/aidboxdb:11.11 image.
 
-Actual supported PostgreSQL versions: [14.2](https://hub.docker.com/layers/aidboxdb/healthsamurai/aidboxdb/14.2/images/sha256-5bdc4e259785be6c9741bd6faab8d37a8737154062fab8a84a7d68c7d81a5f6f), [13.6](https://hub.docker.com/layers/aidboxdb/healthsamurai/aidboxdb/13.6/images/sha256-49097e7fb0d60798dbdfe4a3ba31dc324abe232e399a78a487ab91dbd892e2c1?context=explore)
+Actual supported PostgreSQL versions: [14.5](https://hub.docker.com/layers/healthsamurai/aidboxdb/14.5/images/sha256-8330a20d8ac5220ee40466781d51872ee3f50a7925f47d8da6f19c2fc6d44172?context=explore), [13.8](https://hub.docker.com/layers/healthsamurai/aidboxdb/13.8/images/sha256-f48c57079af5e940be9c18dab81cf780687cb24b0a778c6a2c9d3f808c705919?context=repo)
 
-Available versions: [13.2](https://hub.docker.com/layers/aidboxdb/healthsamurai/aidboxdb/13.2/images/sha256-31294389f0339edeff3926ce0f27c856194f6e934ac744af5aa776b1f675dfe1?context=explore), [12.6](https://hub.docker.com/layers/aidboxdb/healthsamurai/aidboxdb/12.6/images/sha256-2a4fc68fc80c0f6e48ddd06b4dcd8a1cab72f2ab13968cc37b06fd2a53e85070?context=explore), [11.11](https://hub.docker.com/layers/aidboxdb/healthsamurai/aidboxdb/11.11/images/sha256-9e767a6f1a0d21faf8542edcdc9f11ba8e836889f6a05d38e29003297037d136?context=explore)
+Available versions: [12.12](https://hub.docker.com/layers/healthsamurai/aidboxdb/12.12/images/sha256-8a898079a8dc3f9a46a652632450738cd1e88f340838fef8f2bc7101d1ab3e00?context=repo), [11.11](https://hub.docker.com/layers/aidboxdb/healthsamurai/aidboxdb/11.11/images/sha256-9e767a6f1a0d21faf8542edcdc9f11ba8e836889f6a05d38e29003297037d136?context=explore)
 
 List of additional installed extensions:
 
@@ -32,7 +32,7 @@ The image is configured by supplying environment variables and command line argu
 
 Check aidboxdb environment variables
 
-{% content-ref url="../../reference/configuration/environment-variables/aidboxdb-environment-variables.md" %}
-[aidboxdb-environment-variables.md](../../reference/configuration/environment-variables/aidboxdb-environment-variables.md)
+{% content-ref url="../reference/configuration/environment-variables/aidboxdb-environment-variables.md" %}
+[aidboxdb-environment-variables.md](../reference/configuration/environment-variables/aidboxdb-environment-variables.md)
 {% endcontent-ref %}
 
