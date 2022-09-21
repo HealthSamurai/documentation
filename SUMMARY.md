@@ -27,8 +27,7 @@
 * [Run Aidbox locally with Docker](getting-started/run-aidbox-locally-with-docker/README.md)
   * [Update local Aidbox](getting-started/installation/update-aidbox.md)
 * [Run Multibox locally with Docker](getting-started/run-multibox-locally-with-docker.md)
-* [Run Aidbox in Aidbox
-  Sandbox](getting-started/run-aidbox-in-aidbox-sandbox.md)
+* [Run Aidbox in Aidbox Sandbox](getting-started/run-aidbox-in-aidbox-sandbox.md)
 * [Run Aidbox with non-privileged postgresql role](getting-started/run-aidbox-with-non-privileged-pg-role.md)
 * [Run Aidbox as a SaaS](getting-started/run-aidbox-as-a-saas/README.md)
   * [Aidbox as a SaaS on AWS](getting-started/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md)
@@ -186,7 +185,7 @@
 
 ## Storage <a href="#storage-1" id="storage-1"></a>
 
-* [Overview](storage-1/aidboxdb-image.md)
+* [AiboxDB](storage-1/aidboxdb-image.md)
 * [Database schema](storage-1/database.md)
 * [Archiving](storage-1/archiving.md)
 * [AWS S3](storage-1/aws-s3.md)
@@ -318,7 +317,7 @@
     * [Aidbox required environment variables](reference/configuration/environment-variables/aidbox-required-environment-variables.md)
     * [Multibox required environment variables](reference/configuration/environment-variables/multibox-required-environment-variables.md)
     * [Optional environment variables](reference/configuration/environment-variables/optional-environment-variables.md)
-    * [aidboxdb environment variables](reference/configuration/environment-variables/aidboxdb-environment-variables.md)
+    * [AidboxDB environment variables](reference/configuration/environment-variables/aidboxdb-environment-variables.md)
     * [Aidbox project environment variables](reference/configuration/environment-variables/aidbox-project-environment-variables.md)
     * [Mailgun environment variables](reference/configuration/environment-variables/mailgun-environment-variables.md)
     * [Postmark environment variables](reference/configuration/environment-variables/postmark-environment-variables.md)
