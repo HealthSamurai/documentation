@@ -11,7 +11,7 @@ AidboxDB image is a custom build of open source PostgreSQL database. Aidbox uses
 ```bash
 docker run \
        -v "$(pwd)"/pgdata:/data/pg \
-       -e POSTGRES_USER='user' \
+       -e POSTGRES_USER='postgres' \
        -e POSTGRES_PASSWORD='pass' \
        -e POSTGRES_DB='aidbox' \
        -e PGDATA="/data/pg" \
