@@ -42,6 +42,7 @@ List of additional availiable extensions:
 * [pg\_repack](https://github.com/reorg/pg\_repack) — Reorganize tables in PostgreSQL databases with minimal locks&#x20;
 * [jsquery](https://github.com/postgrespro/jsquery) — JSON query language with GIN indexing support
 * [wal2json](https://github.com/eulerto/wal2json) — Is an output plugin for logical decoding
+* [wal-g](https://github.com/wal-g/wal-g) — Archival and Restoration for databases in the Cloud
 
 ### Configuration
 
