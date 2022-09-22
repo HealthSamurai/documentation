@@ -185,7 +185,7 @@
 
 ## Storage <a href="#storage-1" id="storage-1"></a>
 
-* [AiboxDB](storage-1/aidboxdb-image.md)
+* [AidboxDB](storage-1/aidboxdb-image.md)
 * [Database schema](storage-1/database.md)
 * [Archiving](storage-1/archiving.md)
 * [AWS S3](storage-1/aws-s3.md)
