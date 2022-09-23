@@ -233,31 +233,29 @@ In order to register a practice your need to create Tenant resource in Aidbox.
 2. Go to tenants page
 3. Create new tenant named My Clinic (id will be `my-clinic`).
 
-Once you created tenant, you enabled FHIR API for patient, practitioners and bulk clients. Patient portal is reated for the practice as well. Approved smart app is available for patient in that practice.
+Once you created tenant, you enabled FHIR API for patient, practitioners and bulk clients. Patient portal is reated for the practice as well. 
+Approved smart app is available for patient in that practice.
 
 #### Populate test data
 
 1. Go to Adibox REST Console. You may open it from admin portal
-2.  Run the following import:
+2. Run the following import:
+   ```yaml
+   POST /$load
+   Content-Type: text/yaml
 
-    ```yaml
-    POST /$load
-    Content-Type: text/yaml
-
-    source: 'https://storage.googleapis.com/aidbox-public/smartbox/rows.ndjson.gz'
-    merge:
-      meta:
-        tenant:
-          id: my-clinic
-          resourceType: Tenant
-    ```
-
-Once you saw 200 OK, Patient resource (id=test-pt-1) and corresponding resources had been uploaded into Aidbox. New we can create a User which has access to that data.
+   source: 'https://storage.googleapis.com/aidbox-public/smartbox/rows.ndjson.gz'
+   merge:
+     tenant:
+       id: my-clinic
+       resourceType: Tenant
+   ```
+   
+Once you saw 200 OK, Patient resource (id=test-pt-1) and corresponding resources had been uploaded into Aidbox. New we can create a User which has access to that data. 
 
 #### Create User resource
 
 In order to enroll your patient, you need to create User resource. Open Aidbox REST Console and run the following command:
-
 ```yaml
 POST /User
 
@@ -266,22 +264,22 @@ name:
   givenName: Amy
   familyName: Shaw
 active: true
+tenant:
+  id: my-clinic
+  resourceType: Tenant
 fhirUser:
   id: test-pt-1
   resourceType: Patient
 roles:
 - type: patient
 password: password
-meta:
-  tenant:
-    id: my-clinic
-    resourceType: Tenant
 ```
 
 #### Sign in as a `User`
 
-Go to My Clinic's patient portal and login as the user, created above with `example@mail.com` login and `password` password. Loaunch samrt app and provide requested consent.
+Go to My Clinic's  patient portal and login as the user, created above with `example@mail.com` login and `password` password. Loaunch samrt app and provide requested consent.
 
 ### That's it
 
 In this tutorial we learned how to install SMARTbox and to get your first SMART app approved.
+

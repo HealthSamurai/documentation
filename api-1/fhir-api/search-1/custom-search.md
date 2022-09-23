@@ -253,7 +253,7 @@ It's not possible to call such AidboxQuery from REST Console, because in REST co
 
 ### Return links
 
-You can use `enable-links` parameter to include [links](https://www.hl7.org/fhir/http.html#paging) in the response. Here is simple example how to use paging with AidboxQuery and include links&#x20;
+You can use `enable-links` parameter to include [links](https://www.hl7.org/fhir/http.html#paging) in the response. Here is simple example how to use paging with AidboxQuery and include links.&#x20;
 
 ```yaml
 PUT /AidboxQuery/q1
@@ -282,6 +282,8 @@ params:
     type: integer
     default: 1
 ```
+
+AidboxQuery expects that parameters `_count` and `_page` (exactly such names) are defined, otherwise links won't be attached.
 
 After sending `GET /$query/q1?patient=pt1&_count=1&_page=2` we will get&#x20;
 
