@@ -29,6 +29,8 @@ params:
 query: 'SELECT * from patient where id ilike = {{params.filter}} limit {{params.count}}
 # if count-query is present - it will be evaluated for total property in response
 count-query: 'SELECT count(*) from patient where id ilike = {{params.filter}}
+# not required. enable links in response, see the section below
+enable-links: false
 ```
 
 Here is a self-debugging AidboxQuery to start with:
@@ -86,7 +88,7 @@ query: |
   GROUP BY resource->>'class'
 ```
 
-Let's upload some sample data using [Batch Upsert](../../batch-upsert):
+Let's upload some sample data using [Batch Upsert](../../batch-upsert/):
 
 ```yaml
 PUT /
@@ -133,9 +135,9 @@ query: [...]
 PostgreSQL supports Special Date/Time inputs like **now**, **today**, **tomorrow** etc.
 {% endhint %}
 
-### Design AidboxQuery&#x20;
+### Design AidboxQuery
 
-To design the aidbox query, you can use `POST /$query/$debug`  endpoint without the need to create an AidboxQuery resource:
+To design the aidbox query, you can use `POST /$query/$debug` endpoint without the need to create an AidboxQuery resource:
 
 ```yaml
 POST /$query/$debug
@@ -241,7 +243,6 @@ data:
   status: updated
   resource: {email: testmail@mail.com, password: $s0$f0801$72nz8sgiT91maOn8zzOppA==$PtBarKD+2TafNX+k7sBeejnvfl+N5o2VhAGA7y+JIRA=}
 query: ['select * from public.User where id = ?', testuser]
-
 ```
 {% endtab %}
 {% endtabs %}
@@ -249,6 +250,83 @@ query: ['select * from public.User where id = ?', testuser]
 {% hint style="warning" %}
 It's not possible to call such AidboxQuery from REST Console, because in REST console there are no user claims. It can be done only by request with the access token provided. Check [OAuth2.0](https://docs.aidbox.app/tutorials/basic-auth-tutorial) doc for additional information.
 {% endhint %}
+
+### Return links
+
+You can use `enable-links` parameter to include [links](https://www.hl7.org/fhir/http.html#paging) in the response. Here is simple example how to use paging with AidboxQuery and include links&#x20;
+
+```yaml
+PUT /AidboxQuery/q1
+
+query: |
+  SELECT 
+   sr.*
+  FROM ServiceRequest sr
+  WHERE sr.Resource #>> '{subject,id}' = {{params.patient}}
+  LIMIT {{params._count}} OFFSET {{params._page}}
+count-query: |
+  SELECT count(*) FROM ServiceRequest sr 
+  WHERE sr.Resource #>> '{subject,id}' = {{params.patient}}
+
+enable-links: true
+
+params:
+  patient: 
+    type: string
+    isRequired: true
+    default: "pt1"
+  _count:
+    type: integer
+    default: 100
+  _page:
+    type: integer
+    default: 1
+```
+
+After sending `GET /$query/q1?patient=pt1&_count=1&_page=2` we will get&#x20;
+
+```yaml
+data:
+  - id: sr3
+    txid: 914
+    cts: '2022-09-19T14:16:56.752021Z'
+    ts: '2022-09-19T14:16:56.752021Z'
+    resource_type: ServiceRequest
+    status: created
+    resource:
+      a:
+        id: >-
+          org2
+        resourceType: Organization
+      intent: plan
+      status: final
+      subject:
+        id: >-
+          pt1
+        resourceType: Patient
+query:
+  - |-
+    SELECT 
+     sr.*
+    FROM ServiceRequest sr
+    WHERE sr.Resource #>> '{subject,id}' = ?
+    LIMIT ? OFFSET ?
+  - pt1
+  - 1
+  - 2
+total: 3
+link:
+  - relation: first
+    url: [base]/$query/q1?patient=pt1&_count=1&_page=1
+  - relation: self
+    url: [base]/$query/q1?patient=pt1&_count=1&_page=2
+  - relation: next
+    url: [base]/$query/q1?patient=pt1&_count=1&_page=3
+  - relation: previous
+    url: [base]/$query/q1?patient=pt1&_count=1&_page=1
+  - relation: last
+    url: [base]/$query/q1?patient=pt1&_count=1&_page=3
+```
 
 ### \_query
 
@@ -263,8 +341,6 @@ GET /fhir/Patient?_query=get-by-id&rid=patient1
 ```
 
 The result will be represented as the Search Bundle. If you call it from `fhir/` base-url, resulting resources will be transformed to the FHIR compliant representation.
-
-
 
 The main difference is that such a query can use an additional variable available in context of `{{resourceType}}`.
 

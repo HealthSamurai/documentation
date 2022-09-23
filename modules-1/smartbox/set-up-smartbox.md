@@ -266,15 +266,16 @@ name:
   givenName: Amy
   familyName: Shaw
 active: true
-tenant:
-  id: my-clinic
-  resourceType: Tenant
 fhirUser:
   id: test-pt-1
   resourceType: Patient
 roles:
 - type: patient
 password: password
+meta:
+  tenant:
+    id: my-clinic
+    resourceType: Tenant
 ```
 
 #### Sign in as a `User`
