@@ -6,7 +6,7 @@ description: >-
 
 # Seed v2
 
-**Seed v2 service keeps your resources synced** **with Aidbox** meaning that it loads declared resources into Aidbox at startup and deletes resources from Aidbox that were declared in Seed v2 and then removed. Sync semantics dramatically distinguishes Seed v2 from [Seed Import](seed-import.md) which implements upserting semantic and expects you make an explicit migration to delete undesirable resource from Aidbox.
+**Seed v2 service keeps your resources synced** **with Aidbox** meaning that it loads declared resources into Aidbox at startup and deletes resources from Aidbox that were declared in Seed v2 and then removed. Sync semantics dramatically distinguishes Seed v2 from [Seed Import](seed-import.md) which implements upserting semantic and expects you make an explicit migration to delete undesirable resources from Aidbox.
 
 Seed v2 was designed to make a reliable bridge between [aidbox-project on zen](./) and predecessor configuration way on meta-resources (e.g. AccessPolicy resources).&#x20;
 
@@ -42,11 +42,9 @@ Seed v2 uses SeedImport custom resources to track saved resources within the ser
 
 ## How to migrate from Seed import to Seed v2
 
-Seed import and Seed v2 may co-exist together. Loading resources from file and migration can be defined only with Seed Import. If you wish Aidbox to enable resource synchronisation instead of just loading for inlined resources you may migrate that resources to Seed v2.
+Seed import and Seed v2 may co-exist together. Loading resources from file and migrations can be defined only with Seed Import. If you wish Aidbox to enable resource synchronisation instead of just loading for inlined resources you may migrate that resources to Seed v2.
 
-
-
-It is recommended to declare a migration in Seed import which will delete all resources, you wish to move to Seed v2.
+Let's say you have `AccessPolicy/my-policy-policy` declared within Seed import.
 
 ```clojure
 {ns     importbox
@@ -64,7 +62,7 @@ It is recommended to declare a migration in Seed import which will delete all re
               :engine "allow"}]}}
 ```
 
-
+In order to migrate to Seed v2, it is recommended to declare a migration in Seed import which will delete all resources, you wish to move to Seed v2.
 
 ```clojure
 {ns     importbox
@@ -89,7 +87,11 @@ It is recommended to declare a migration in Seed import which will delete all re
 
 Seed v2 starts after Seed import, so be assured that migration will be run before Seed v2 comes to play.
 
-Why is it important to define delete migration? tbd
+### Why is it important to define delete migration?&#x20;
+
+Short answer is just to enable sync semantics for sure.&#x20;
+
+Imagine you migrated to Seed v2 without the migration. You played with it on staging and see that synchronisation worked fine. Then you decide to remove `AccessPolicy/my-access-policy` or change the id, and you see that changes was applied on staging environment. But once you deployed the solution on production you may notice that `AccessPolicy/my-access-policy` is still there. The reason is that the resource hadn't been tracked by Seed v2 on production before and the service knows nothing about it. So if you want to have sync semantic for sure, it is recommended to declare a migration in Seed import which will delete all resources, you wish to move to Seed v2.
 
 {% hint style="warning" %}
 Be aware that Aidbox runs migration only once. If you modify applied migration, Aidbox will ignore it.
