@@ -40,6 +40,7 @@
 * [Aidbox project](aidbox-configuration/aidbox-zen-lang-project/README.md)
   * [Reload Aidbox project configuration](aidbox-configuration/aidbox-zen-lang-project/rpc-api.md)
   * [Seed Import](aidbox-configuration/aidbox-zen-lang-project/seed-import.md)
+  * [Seed v2](aidbox-configuration/aidbox-zen-lang-project/seed-v2.md)
 * [API constructor (beta)](aidbox-configuration/aidbox-api-constructor.md)
   * [ACL](aidbox-configuration/aidbox-api-constructor/acl.md)
 * [Setup SMTP provider](aidbox-configuration/setup-smtp-provider.md)
