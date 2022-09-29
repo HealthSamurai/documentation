@@ -208,7 +208,7 @@
   * [External Oauth 2.0 Providers](security-and-access-control-1/auth/external-oauth-2.0-providers/README.md)
     * [🎓 Aidbox](security-and-access-control-1/auth/external-oauth-2.0-providers/aidbox.md)
     * [🎓 Okta](security-and-access-control-1/auth/external-oauth-2.0-providers/configure-okta.md)
-    * [🎓 AzureAD](security-and-access-control-1/auth/external-oauth-2.0-providers/azure-ad.md)
+    * [🎓 Azure AD](security-and-access-control-1/auth/external-oauth-2.0-providers/azure-ad.md)
     * [🎓 Keycloak](security-and-access-control-1/auth/external-oauth-2.0-providers/keycloak.md)
   * [Two Factor Authentication](security-and-access-control-1/auth/two-factor-authentication.md)
   * [SMART on FHIR](security-and-access-control-1/auth/smart-app/README.md)
