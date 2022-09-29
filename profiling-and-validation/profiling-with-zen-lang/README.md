@@ -30,9 +30,13 @@ Use FHIR $validate operation or a CRUD request with profile URL specified in `.m
 
 ## Validation modes supported with zen schemas
 
-For validation (e.g. in [FHIR CRUD API](../../api-1/api/crud-1/)) Aidbox uses zen schemas tagged with `zen.fhir/base-schema` or `zen.fhir/profile-schema`
+For validation (e.g. in [FHIR CRUD API](../../api-1/api/crud-1/)) Aidbox uses zen schemas tagged with `zen.fhir/base-schema` or `zen.fhir/profile-schema`.
 
-Schemas with these tags must have `:zen.fhir/type` and `:zen.fhir/profileUri` keys specified
+Schemas with these tags must have `:zen.fhir/type` and `:zen.fhir/profileUri` keys specified.
+
+{% content-ref url="write-a-custom-zen-profile.md" %}
+[write-a-custom-zen-profile.md](write-a-custom-zen-profile.md)
+{% endcontent-ref %}
 
 ### `zen.fhir/base-schema`
 

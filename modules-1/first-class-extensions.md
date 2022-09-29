@@ -5,7 +5,7 @@
 In order to define first-class extension as zen profile you should follow the steps below:
 
 1. [Initialize](https://docs.aidbox.app/profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile#create-a-zen-project) zen project and add additional IGs if necessary
-2.  Define your custom first-class extension
+2.  Define your custom first-class extension.  For syntax and more examples refer to [this page](../profiling-and-validation/profiling-with-zen-lang/write-a-custom-zen-profile.md).
 
     ```clojure
     {ns my-zen-project
