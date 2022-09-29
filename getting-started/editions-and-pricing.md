@@ -10,7 +10,7 @@ Aidbox offers developers a smooth path from a tiny digital health app prototype 
 
 You can try Aidbox [locally](run-aidbox-locally-with-docker/) or in [Aidbox Sandbox](run-aidbox-in-aidbox-sandbox.md). Standard license allows you to use Aidbox for free for 14 days. You can't use it with real healthcare data or PHI (Protected Health Information). But other than that, you can try all the features of the paid Aidbox version and it is enough for proper Aidbox evaluation and the beginning of your healthcare app development&#x20;
 
-If you need Aidbox for a staging or production environment, it is time to move to the paid Aidbox version. Moving to the paid **Aidbox** is easy. [Log in](https://license-ui.aidbox.app/) to the license server and request a paid Aidbox license. Health Samurai will take care of the rest.
+If you need Aidbox for a staging or production environment, it is time to move to the paid Aidbox version. Moving to the paid **Aidbox** is easy. [Log in](https://aidbox.app/) to the user portal and request a standard Aidbox license. Health Samurai will take care of the rest.
 
 If you need more than one Aidbox license, you will pay even less for the second Aidbox license that you are purchasing. If you are building a SaaS solution that would benefit from having a separate FHIR server for each client, you can get a **multi-tenant version of Aidbox (Multibox)**.
 
