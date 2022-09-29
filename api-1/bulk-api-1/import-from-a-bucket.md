@@ -6,6 +6,10 @@ description: >-
 
 # Bulk import from an S3 bucket
 
+{% hint style="info" %}
+If you want to import S3 objects with a presigned url, refer to [aidbox.bulk data import](aidbox.bulk-data-import.md).
+{% endhint %}
+
 ### `aidbox.bulk/load-from-bucket`
 
 It allows loading data from a bunch of `.ndjson.gz` files on an AWS bucket directly to the Aidbox database with maximum performance.
@@ -51,18 +55,9 @@ Object with the following structure:
 * `drop-primary-key?` the **default** is `false`. The same as the previous parameter, but drops primary key constraint for resources tables. This parameter disables all checks for duplicates for imported resources.
 * `upsert?` the **default** is `false`. If `upsert?` is `false`, import for files with `id` uniqueness constraint violation will fail with an error, if `true` - records in the database will be overridden with records from import. Even when `upsert?` is `true`, it's still not allowed to have more than one record with the same id in one import file. Setting this option to true will cause a decrease in performance.
 * `scheduler` possible **values**: `optimal` , `by-last-modified`, the **default** is `optimal` . Establishes the order in which the files are processed. The `optimal` value provides the best performance. `by-last-modified` should be used with `thread-num = 1` to guarantee a stable order of file processing.
-* `prefixes` array of prefixes to specify which files should be
-  processed. Example: with value `["fhir/1/", "fhir/2/Patient"]` only
-  files from directory `"fhir/1"` and `Patient` files from directory
-  `"fhir/2"` will be processed.
-* `connect-timeout` the **default** is `0`. Specifies the number of
-  milliseconds after which the file is considered as failed if
-  connection to the resource could not be established.  (e.g. in case
-  of network issues).  Zero is interpreted as an infinite timeout.
-* `read-timeout` the **default** is `0`. Specifies the number of
-  milliseconds after which the file is considered as failed if there
-  is no data available to read (e.g. in case of network issues).  Zero
-  is interpreted as an infinite timeout.
+* `prefixes` array of prefixes to specify which files should be processed. Example: with value `["fhir/1/", "fhir/2/Patient"]` only files from directory `"fhir/1"` and `Patient` files from directory `"fhir/2"` will be processed.
+* `connect-timeout` the **default** is `0`. Specifies the number of milliseconds after which the file is considered as failed if connection to the resource could not be established. (e.g. in case of network issues). Zero is interpreted as an infinite timeout.
+* `read-timeout` the **default** is `0`. Specifies the number of milliseconds after which the file is considered as failed if there is no data available to read (e.g. in case of network issues). Zero is interpreted as an infinite timeout.
 {% endtab %}
 
 {% tab title="Result" %}
