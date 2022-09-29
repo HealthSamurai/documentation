@@ -29,7 +29,7 @@ You can also configure token's format and expiration, as well refresh the token:
 | attribute                                                 | options       | desc                                                    |
 | --------------------------------------------------------- | ------------- | ------------------------------------------------------- |
 | _auth.client\_credentials_**.token\_format**              | jwt           | use access token in jwt format                          |
-| _auth.clientcredentials.access\__token\_expiration        | int (seconds) | token expiration time from issued at                    |
+| _auth.client\_credentials._**access\_token\_expiration**  | int (seconds) | token expiration time from issued at                    |
 | _auth.client\_credentials_**.refresh\_token**             | true/false    | enable refresh\_token                                   |
 | _auth.client\_credentials_**.refresh\_token\_expiration** | int (seconds) | refresh token expiration time from issued or last usage |
 
