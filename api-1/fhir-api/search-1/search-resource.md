@@ -21,6 +21,7 @@ where: "{{table}}.resource->>'name' ilike {{param}}" # sql for search
 format: "%?%" # parameter format for ilike 
 order-by: "{{table}}.resource#>>'{name,0,family}'" # sql for ordering
 ```
+
 Use `{{table}}` for table name and `{{param}}` for parameter in "where" and "order-by" expressions.\
 Provided `format` parameter will be passed to `{{param}}` (`?` will be replaced with the value of parameter). This feature may be useful writing `ilike` expressions.
 
@@ -128,7 +129,6 @@ accept: text/yaml
 ```
 {% endtab %}
 {% endtabs %}
- 
 
 ### Examples
 
@@ -183,8 +183,8 @@ accept: text/yaml
 {% endtab %}
 {% endtabs %}
 
+#### Search if patient is [deceased](https://www.hl7.org/fhir/patient.html#search)
 
-#### Search if patient is [deceaced](https://www.hl7.org/fhir/patient.html#search)
 ```yaml
 PUT /Search/Patient.name
 content-type: text/yaml
@@ -297,6 +297,7 @@ where: '{{table}}.resource->'generalPractitioner' @>  jsonb_build_array(jsonb_bu
 resource: {id: Patient, resourceType: Entity}
 ```
 {% endtab %}
+
 {% tab title="GET /Patient" %}
 ```yaml
 # search Patient by Pratitoner reference
@@ -324,6 +325,7 @@ where: '{{table}}.resource#>'{meta,profile}' @>  jsonb_build_array({{param.url}}
 resource: {id: Patient, resourceType: Entity}
 ```
 {% endtab %}
+
 {% tab title="GET /Patient" %}
 ```yaml
 # search Patient by profile
