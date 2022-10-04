@@ -1,7 +1,5 @@
 # Index management
 
-###
-
 ### ImmunizationEvaluation
 
 Search parameter: `ImmunizationEvaluation.date`
