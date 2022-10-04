@@ -141,7 +141,7 @@ Match DSL definition:
     Pattern `{request-method: {$enum: ["get", "post"]}}` matches `{request-method: "post"}`
   * **$one-of —** value must match any of the patterns.\
     Pattern `{a: {$one-of: [{b: "present?"}, {c: "present?"}]}` matches `{a: {c: 5}}`
-  * **$reference** - parse `Reference` or string into [aidbox format](../../modules-1/fhir-resources/aidbox-and-fhir-formats.md#references). Examples:
+  * **$reference** — parse `Reference` or string into [aidbox format](../../modules-1/fhir-resources/aidbox-and-fhir-formats.md#references). Examples:
     * Parse `Reference` elements
       * `parser: {reference: "Patient/pid"} => {id: "pid", resourceType: "Patient"}`
       * `{resource: {patient: {$reference: {id: '.user.data.patient_id'}}}`
@@ -150,9 +150,9 @@ Match DSL definition:
       * `{params: {subject: {$reference: {id: '.user.data.patient_id'}}}`
   * **$contains** — collection must contain at least one match.\
     Pattern `{type: {$contains: {system: "loinc"}}` matches `{type: [{system: "snomed"}, {system: "loinc"}]}`
-  * **$every** - each item in a collection must satisfy a pattern.\
+  * **$every** — each item in a collection must satisfy a pattern.\
     Pattern `{col: {"$every": {foo: "bar"}}` matches `{col: [{foo: "bar"}, {foo: "bar", baz: "quux"}]}`
-  * **$not** - negates a pattern.\
+  * **$not** — negates a pattern.\
     Pattern `{message: {$not: {status: private}}` matches {message: `{status: public}}` and does not match `{message: {status: private}}`. **Be careful** using `$not` as it is possible to create **too permissive** policies.
 
 {% hint style="warning" %}
