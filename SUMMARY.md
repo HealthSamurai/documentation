@@ -45,6 +45,7 @@
   * [ACL](aidbox-configuration/aidbox-api-constructor/acl.md)
 * [Setup SMTP provider](aidbox-configuration/setup-smtp-provider.md)
 * [Zen Configuration](aidbox-configuration/zen-configuration.md)
+* [Index management](aidbox-configuration/index-management.md)
 
 ## API <a href="#api-1" id="api-1"></a>
 
