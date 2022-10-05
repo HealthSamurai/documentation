@@ -1,8 +1,6 @@
-# Reload Aidbox project configuration
+# Reload Aidbox configuration project
 
-`aidbox.zen` provides a set of operations for working with Aidbox projects.
-
-Sometimes you want to reload zen namespaces. There is `AIDBOX_ZEN_DEV_MODE` variable to enable the hot reloading of the aidbox project.
+Sometimes you want to reload zen namespaces. There is `AIDBOX_ZEN_DEV_MODE` variable to enable the hot reloading of your Aidbox configuration project.
 
 ```shell
 AIDBOX_ZEN_DEV_MODE=true

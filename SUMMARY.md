@@ -37,8 +37,11 @@
 ## Aidbox configuration
 
 * [Configure Aidbox and Multibox](getting-started/installation/README.md)
-* [Aidbox project](aidbox-configuration/aidbox-zen-lang-project/README.md)
-  * [Reload Aidbox project configuration](aidbox-configuration/aidbox-zen-lang-project/rpc-api.md)
+* [Aidbox configuration project](aidbox-configuration/aidbox-zen-lang-project/README.md)
+  * [Aidbox configuration project structure](aidbox-configuration/aidbox-zen-lang-project/aidbox-configuration-project-structure.md)
+  * [Setting up a configuration project](aidbox-configuration/aidbox-zen-lang-project/setting-up-a-configuration-project.md)
+  * [Enable IGs](aidbox-configuration/aidbox-zen-lang-project/enable-igs.md)
+  * [Reload Aidbox configuration project](aidbox-configuration/aidbox-zen-lang-project/rpc-api.md)
   * [Seed Import](aidbox-configuration/aidbox-zen-lang-project/seed-import.md)
   * [Seed v2](aidbox-configuration/aidbox-zen-lang-project/seed-v2.md)
 * [API constructor (beta)](aidbox-configuration/aidbox-api-constructor.md)

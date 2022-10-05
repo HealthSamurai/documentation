@@ -16,7 +16,7 @@ This string is your license key.
 
 ### Install Docker and Docker Compose
 
-Follow the [official Docker guide](https://docs.docker.com/compose/install/#install-compose) to install Docker and Docker Compose
+Follow the [official Docker guide](https://docs.docker.com/compose/install/#install-compose) to install Docker and Docker Compose.
 
 ### Create docker-compose.yaml
 
@@ -44,11 +44,12 @@ services:
       - "aidbox-db:database"
     ports:
       - "${AIDBOX_PORT}:${AIDBOX_PORT}"
+    volumes:
+      - "./project:/project"
     env_file:
       - .env
     environment:
       PGHOST: database
-
 ```
 {% endcode %}
 
@@ -92,6 +93,10 @@ PGPASSWORD=postgres
 PGDATABASE=aidbox
 
 AIDBOX_COMPLIANCE=enabled
+
+# Aidbox configuraiton project path and entrypoint
+BOX_PROJECT_GIT_URL=project/
+AIDBOX_ZEN_ENTRYPOINT=system/box
 ```
 {% endcode %}
 
@@ -101,11 +106,31 @@ Insert your license key into environment file. Change the line
 AIDBOX_LICENSE=<your-license-key>
 ```
 
-in the `.env` file where `<your-license-key>` is a license key which you obtained on the  [get a license](./#get-a-license) step.
+in the `.env` file where `<your-license-key>` is a license key which you obtained on the [get a license](./#get-a-license) step.
 
 You can find more about required Aidbox environment variables [here.](../../reference/configuration/environment-variables/aidbox-required-environment-variables.md)
 
-### Launch Aidbox
+### Create your [Aidbox configuration project](../../aidbox-configuration/aidbox-zen-lang-project/)
+
+Your project is a place to set various Aidbox instance configurations, such as: [API constructor](../../aidbox-configuration/aidbox-api-constructor.md), [seed service](../../aidbox-configuration/aidbox-zen-lang-project/seed-v2.md), etc.
+
+Create a directory `project` with following structure:
+
+| Directory structure                                                      | zen-package.edn                                                                  | zrc/system.edn                                                                                                                           |
+| ------------------------------------------------------------------------ | -------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| <pre><code>project/
+  zen-package.edn
+  zrc/
+    system.edn</code></pre> | <pre class="language-clojure"><code class="lang-clojure">{:deps {}}</code></pre> | <pre class="language-clojure"><code class="lang-clojure">{:ns system
+ :import #{aidbox}
+ box
+ {:zen/tags #{aidbox/system}}}</code></pre> |
+
+{% hint style="info" %}
+You can change the names `project`, `system` and `box` to your preference. This requires updating `docker-compose.yml` `aidbox.volumes` and `AIDBOX_ZEN_ENTRYPOINT`, `BOX_PROJECT_GIT_URL` variables. Please refer to the [Aidbox configuration project documentation](../../aidbox-configuration/aidbox-zen-lang-project/) for details.
+{% endhint %}
+
+### Launch Aidbox&#x20;
 
 Start Aidbox with Docker Compose
 

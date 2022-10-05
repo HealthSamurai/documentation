@@ -1,208 +1,80 @@
 ---
-description: Use zen-lang to configure Aidbox
+description: >-
+  Aidbox configuration project refers to a set of configuration files used to
+  set up an Aidbox instance
 ---
 
-# Aidbox project
+# Aidbox configuration project
 
-Aidbox project is a collection of [zen](https://github.com/zen-lang/zen) namespaces which configure Aidbox.
+**Aidbox configuration project** is a directory which contains configuration files written in [Zen](https://github.com/zen-lang/zen) language. Don’t worry if you are not yet familiar with Zen — we’ll explain all the necessary details along the way. For now you can think of it as a simple syntax well-suited for specifying all sorts of configs.
 
-You can use Aidbox project to set up API constructor, load terminologies, profiles, and more.
+With Aidbox configuration project you can configure all things you need to have a functioning Aidbox instance including [API endpoints](../aidbox-api-constructor.md), [authorization flows](../aidbox-api-constructor/acl.md), [FHIR IGs](../../profiling-and-validation/profiling-with-zen-lang/) and more.
 
-To use a project you need to
+Once you set up your project for one Aidbox instance you can reuse it across multiple instances — they all will be configured in exactly the same way. This feature is especially useful for testing purposes. By providing a single directory you can be sure that your CI pipeline has the same setup as your deployed instance.
 
-* specify how to load Aidbox project,
-* set zen entrypoint.
+{% hint style="warning" %}
+Aidbox configuration project is sometimes referred to as Aidbox Project or just project. It should not be confused with Aidbox User Portal projects containing licenses.
+{% endhint %}
 
-## Load Aidbox project
+{% content-ref url="aidbox-configuration-project-structure.md" %}
+[aidbox-configuration-project-structure.md](aidbox-configuration-project-structure.md)
+{% endcontent-ref %}
 
-Aidbox project can be splitted into multiple parts. For example, you can load IGs from a remote location, load API constructor configuration from git repository, and load seed resources from a local directory.
+### Features supported by configuration projects
 
-Aidbox can load project parts from
+{% content-ref url="enable-igs.md" %}
+[enable-igs.md](enable-igs.md)
+{% endcontent-ref %}
 
-* git repository,
-* remote location,
-* local location,
-* npm.
+{% content-ref url="seed-v2.md" %}
+[seed-v2.md](seed-v2.md)
+{% endcontent-ref %}
 
-Each part can depend on part distributed via npm. And vice versa, the only way to load npm part is to specify it as a dependency.
+{% content-ref url="../aidbox-api-constructor.md" %}
+[aidbox-api-constructor.md](../aidbox-api-constructor.md)
+{% endcontent-ref %}
 
-Local and remote locations are specified using `AIDBOX_ZEN_PATHS` environment variable.
+{% content-ref url="rpc-api.md" %}
+[rpc-api.md](rpc-api.md)
+{% endcontent-ref %}
 
-### AIDBOX\_ZEN\_PATHS
+## Use Aidbox configuration project
 
-Syntax:
+Aidbox configuration project is simply a directory with files so to use it in Aidbox you just need to tell where it is located and how it can be accessed.
 
-```
-AIDBOX_ZEN_PATHS=<source>:<format>:<path>[,<source>:<format>:<path>]*
-```
+Currently Aidbox configuration projects are supported only for on-premise instances. Support for Cloud and AWS Marketplace installations is coming soon.
 
-`<source>` is either `url`, or `path`.
+{% hint style="info" %}
+Configuration projects can be provided either as a git repository url or as a local path. We recommend to keep your project in git as the source control allows you to easily track changes, revert them or switch between branches.
+{% endhint %}
 
-* `url` is used to load project from remote location
-* `path` is used to load project from local location
+### Set up a configuration project
 
-`<format>` is either `zip`, or `dir`, or `edn`.
+Setting up a project locally or in a cloud is done by providing access to a project directory.&#x20;
 
-Table of sources and format compatibility:
+{% content-ref url="setting-up-a-configuration-project.md" %}
+[setting-up-a-configuration-project.md](setting-up-a-configuration-project.md)
+{% endcontent-ref %}
 
-| source\format | `zip` | `dir` | `edn` |
-| ------------- | ----- | ----- | ----- |
-| `url`         | ✓     |       | ✓     |
-| `path`        | ✓     | ✓     | ✓     |
+### Production installation
 
-### Load remote part
+Production installation is the same as a regular installation. Exception can be the case when your production environment has no access to a git repo containing your project. For these cases Aidbox supports [other methods of providing configuration projects](setting-up-a-configuration-project.md#alternative-ways-to-provide-aidbox-configuration-project).
 
-You can load Aidbox project part from a public HTTPS endpoint.
+### Use configuration projects on user portal (aidbox.app)
 
-For example, set
+{% hint style="info" %}
+Aidbox configuration projects will be supported on aidbox.app in upcoming releases.
+{% endhint %}
 
-```yaml
-AIDBOX_ZEN_PATHS=url:zip:https://github.com/zen-lang/fhir/releases/latest/download/hl7.fhir.r4.core.zip
-```
+### Configuration projects in AWS Marketplace Aidbox SaaS&#x20;
 
-to load FHIR R4 profile part.
-
-Aidbox can load a single file too:
-
-```yaml
-AIDBOX_ZEN_PATHS=url:edn:https://example.org/my-namespace.edn
-```
-
-### Load local part
-
-You have three options: directory, zip file, and a single file.
-
-For example, let's load a part from a directory
-
-```
-AIDBOX_ZEN_PATHS=path:dir:/srv/aidbox-project
-```
-
-### Load git repository
-
-Aidbox can load repository using either https or ssh. You can optionally specify a branch or commit, path of a project part inside repository, and location in which to clone repository.
-
-To set up git repository location you need to set multiple environment variables:
-
-* `BOX_PROJECT_GIT_PROTOCOL`: `https` for HTTPS, `ssh` for SSH method.
-* `BOX_PROJECT_GIT_URL`: full URL to git repository.
-
-Then you need to specify authentication.&#x20;
-
-For HTTPS:
-
-* `BOX_PROJECT_GIT_ACCESS__TOKEN`: access token for private repositories.&#x20;
-
-For SSH:
-
-* `BOX_PROJECT_GIT_PUBLIC__KEY`: public SSH key,
-* `BOX_PROJECT_GIT_PRIVATE__KEY`: private SSH key.
-
-Additionally, you can control clone and checkout:
-
-* `BOX_PROJECT_GIT_CHECKOUT`: checkout specific commit or branch
-* `BOX_PROJECT_GIT_TARGET__PATH`: where to clone repository. Default is `/tmp/aidbox-project-git`.
-
-If your Aidbox project part is in subdirectory of the repository, you can specify its location relative to the repository root with `BOX_PROJECT_GIT_SUB__PATH` environment variable.
-
-For example, let's load one of the Aidbox project samples using HTTPS and SSH methods.&#x20;
-
-SSH:
-
-```
-AIDBOX_ZEN_ENTRYPOINT=smartbox.portal/box
-BOX_PROJECT_GIT_PROTOCOL=ssh
-BOX_PROJECT_GIT_PUBLIC__KEY="...."
-BOX_PROJECT_GIT_PRIVATE__KEY="-----BEGIN OPENSSH PRIVATE KEY-----\n....\n-----END OPENSSH PRIVATE KEY-----\n"
-BOX_PROJECT_GIT_URL=git@github.com:Aidbox/aidbox-project-samples.git
-BOX_PROJECT_GIT_SUB__PATH=aidbox-project-samples
-```
-
-HTTPS:
-
-```
-AIDBOX_ZEN_ENTRYPOINT=smartbox.portal/box
-BOX_PROJECT_GIT_PROTOCOL=https
-BOX_PROJECT_GIT_URL=https://github.com/Aidbox/aidbox-project-samples.git
-BOX_PROJECT_GIT_SUB__PATH=aidbox-project-samples
-```
-
-### Aidbox project part dependencies
-
-Aidbox project part can have dependencies. They are designed to be distributed via npm. Aidbox loads every directory in
-
-```
-node_modules/\@*/
-```
-
-as an Aidbox project part.
-
-For example you can set up US Core profiles using local Aidbox project part with dependencies.
-
-Create a directory for Aidbox project part&#x20;
-
-```
-mkdir -p /srv/aidbox-project
-```
-
-Go to the Aidbox project part directory
-
-```
-cd /srv/aidbox-project
-```
-
-Create a `package.json` file
-
-```
-{
-  "dependencies": {
-    "@zen-lang/hl7-fhir-r4-core": "^0.5.11"
-  }
-}
-```
-
-Install dependencies
-
-```
-npm install
-```
-
-Load Aidbox project part:
-
-```
-AIDBOX_ZEN_PATHS=path:dir:/srv/aidbox-project
-```
-
-**Note**: _Aidbox automatically installs dependencies when using git repository part. For local and remote location parts you need to install them manually._
-
-### Load multiple Aidbox project parts
-
-Aidbox can load only one git project part and any number of parts using remote location, local location, and dependencies.
-
-To specify multiple locations, split them with comma in `AIDBOX_ZEN_PATHS` environment variable. E.g.
-
-```
-AIDBOX_ZEN_PATHS=path:edn:/home/user/dir_edn_files/main.edn12
-                 ,url:edn:https://edn-website/edn-file.edn
-```
-
-## Set Aidbox zen entrypoint
-
-Aidbox starts reading configuration from the zen entrypoint. The entrypoint is either namespaced symbol or namespace. The `AIDBOX_ZEN_ENTRYPOINT` environment variable specifies the zen entrypoint.
-
-We recommend using namespaced symbol because some functionality depends on entrypoint symbol. For example, `:services` for API constructor.
-
-Using a zen symbol as an entrypoint:
-
-Example:
-
-```
-AIDBOX_ZEN_ENTRYPOINT=zen.namespace/zen-symbol
-```
+{% hint style="info" %}
+Aidbox configuration projects will be supported on AWS Marketplace in upcoming releases.
+{% endhint %}
 
 ## Examples
 
-You can see an example in the [Profiling with zen-lang](../../profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile.md) tutorial.
+See [examples of Aidbox configuration projects in our GitHub repository](https://github.com/Aidbox/aidbox-project-samples/tree/main/aidbox-project-samples).
 
 ## Common errors
 
