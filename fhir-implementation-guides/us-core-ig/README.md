@@ -8,7 +8,7 @@ In this tutorial, we'll explain how to configure Aidbox to use [US Core Implemen
 
 ## Support
 
-US Core IG contains the following FHIR artifacts: Profiles, Extensions, Terminology, Search Parameters, Operations and Capability Statements.
+US Core IG contains the following FHIR artifacts: Profiles, Extensions, Terminology, Search Parameters, Operations and Capability Statements. Supported parts of US Core IG are listed on the following page:
 
 {% content-ref url="us-core-ig-support-reference.md" %}
 [us-core-ig-support-reference.md](us-core-ig-support-reference.md)
