@@ -27,9 +27,9 @@ After Aidbox is ready to use, you need to specify US Core dependency.
 Put the following in `zen-package.edn`
 
 ```
-{:deps {us-core "https://"}}
+{:deps {us-core "https://github.com/zen-fhir/hl7-fhir-us-core.git"}}
 ```
 
-You can read more about providing IGs here [link!](../../aidbox-configuration/aidbox-zen-lang-project/enable-igs.md)&#x20;
+You can read more about providing IGs [here](../../aidbox-configuration/aidbox-zen-lang-project/enable-igs.md).&#x20;
 
 If you put US Core IG dependency while Aidbox is running you need to restart it so that it pull the dependency and consumes it.
