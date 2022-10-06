@@ -15,7 +15,7 @@ You can enable FHIR IGs you want to use by specifying dependencies in `zen-packa
 {% code title="zen-package.edn" %}
 ```clojure
 {:deps {us-core  "https://github.com/zen-fhir/hl7-fhir-us-core.git"
-        plan-net "https://github.com/zen-fhir/hl7-fhir-us-davinci-pdex-plan-net.git"}}b
+        plan-net "https://github.com/zen-fhir/hl7-fhir-us-davinci-pdex-plan-net.git"}}
 ```
 {% endcode %}
 
