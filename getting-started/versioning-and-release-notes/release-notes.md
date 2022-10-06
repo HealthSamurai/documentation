@@ -13,7 +13,7 @@
 * Updated documentation on how to configure Aidbox with [AIdbox configuration project](../../aidbox-configuration/aidbox-zen-lang-project/)
 * Updated documentation on how to [configure high available Aidbox](../run-aidbox-in-kubernetes/high-available-aidbox.md)
 * Added supported for [PostgreSQL 15](../../storage-1/aidboxdb-image.md) (beta)
-* Added documentation on how to build [most common indexes](../../aidbox-configuration/index-management.md).
+* Added documentation on how to build [most common indexes](../../aidbox-configuration/index-management.md).=
 * Added `aidbox` format support for [bulk import](../../api-1/bulk-api-1/aidbox.bulk-data-import.md#aidbox.bulk-import-start)
 * Added `enable-links` parameter for [AidboxQuery](../../api-1/fhir-api/search-1/custom-search.md#return-links)
 * Improved performance of profiling UI
