@@ -6,7 +6,7 @@
 
 * Added the [Client.audience](../../security-and-access-control-1/overview.md#client.audience) Regex support in SMART on FHIR App launch
 * Added an option to [filter Aidbox startup logs](../../core-modules/logging-and-audit/#stdout-log) by severity. By default Aidbox sets `AIDBOX_STDOUT_PRETTY = error` severity level
-* Added response headers to Aidbox REST Console and Aidbox Notebooks
+* Added response headers to [Aidbox REST Console](../../overview/aidbox-ui/rest-console-1.md) and [Aidbox Notebooks](../../overview/aidbox-ui/notebooks.md)
 * Released [Seed v2 service](../../aidbox-configuration/aidbox-zen-lang-project/seed-v2.md)
 * Enhanced Aidbox configuration process with [Aidbox configuration projects](../../aidbox-configuration/aidbox-zen-lang-project/)
 * Supported [`/health` endpoint](../../app-development-guides/receive-logs-from-your-app/health-check.md) for Multibox
