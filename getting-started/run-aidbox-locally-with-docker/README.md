@@ -126,15 +126,15 @@ Create a directory `project` with following structure:
  box
  {:zen/tags #{aidbox/system}}}</code></pre> |
 
-{% hint style="info" %}
-You can change the names `project`, `system` and `box` to your preference. This requires updating `docker-compose.yml` `aidbox.volumes` and `AIDBOX_ZEN_ENTRYPOINT`, `BOX_PROJECT_GIT_URL` variables. Please refer to the [Aidbox configuration project documentation](../../aidbox-configuration/aidbox-zen-lang-project/) for details.
-{% endhint %}
-
 Initialize it as a git repo and commit all the files:
 
 ```shell-session
-git init && git add . && git commit -m "Initial commit"
+git init && git add --all && git commit -m "Initial commit"
 ```
+
+{% hint style="info" %}
+You can change the names `project`, `system` and `box` to your preference. This requires updating `docker-compose.yml` `aidbox.volumes` and `AIDBOX_ZEN_ENTRYPOINT`, `BOX_PROJECT_GIT_URL` variables. Please refer to the [Aidbox configuration project documentation](../../aidbox-configuration/aidbox-zen-lang-project/) for details.
+{% endhint %}
 
 ### Launch Aidbox&#x20;
 
