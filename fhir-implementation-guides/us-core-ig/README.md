@@ -24,7 +24,9 @@ Currently it is only possible to use FHIR IGs for on-premise installations. We a
 2. After Aidbox is ready to use, you need to specify US Core dependency.\
    Put the following in `zen-package.edn`:\
    `{:deps {us-core "https://github.com/zen-fhir/hl7-fhir-us-core.git"}}`
-3. Commit changes:\
+3. Go to the file with entrypoint and add `hl7-fhir-us-core` namespace to the `:import`. E.g. if using the example from the guide, the `:import` section should look like this:\
+   `:import #{aidbox hl7-fhir-us-core}`
+4. Commit changes:\
    `git add zen-package.edn && git commit -m "Add us-core dependency"`
 
 Done. Now you can start Aidbox.
