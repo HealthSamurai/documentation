@@ -10,8 +10,9 @@
 * Added response headers to [Aidbox REST Console](../../overview/aidbox-ui/rest-console-1.md) and [Aidbox Notebooks](../../overview/aidbox-ui/notebooks.md)
 * Enhanced Aidbox configuration process with [Aidbox configuration projects](../../aidbox-configuration/aidbox-zen-lang-project/)
 * Supported [`/health` endpoint](../../app-development-guides/receive-logs-from-your-app/health-check.md) for Multibox
-* Updated documentation on how to configure Aidbox with [AIdbox configuration project](../../aidbox-configuration/aidbox-zen-lang-project/)
-* Updated documentation on how to [configure high available Aidbox](../run-aidbox-in-kubernetes/high-available-aidbox.md)
+* Updated documentation how to configure Aidbox with [AIdbox configuration project](../../aidbox-configuration/aidbox-zen-lang-project/)
+* Updated documentation how to [configure high available Aidbox](../run-aidbox-in-kubernetes/high-available-aidbox.md)
+* Added a tutorial how to [configure Aidbox with US Core Implementation Guide](../../fhir-implementation-guides/us-core-ig/) (US Core IG).
 * Added supported for [PostgreSQL 15](../../storage-1/aidboxdb-image.md) (beta)
 * Added documentation on how to build [most common indexes](../../aidbox-configuration/index-management.md).
 
