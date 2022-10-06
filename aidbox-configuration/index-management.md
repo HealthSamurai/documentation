@@ -1,5 +1,9 @@
 # Index management
 
+{% hint style="info" %}
+The following indexes cover regular searches, e.g. Patient?name=Smith. Please [contact us ](../contact-us.md)if you need more examples.
+{% endhint %}
+
 ### ImmunizationEvaluation
 
 Search parameter: `ImmunizationEvaluation.date`

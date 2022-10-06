@@ -13,7 +13,7 @@
 * Updated documentation on how to configure Aidbox with [AIdbox configuration project](../../aidbox-configuration/aidbox-zen-lang-project/)
 * Updated documentation on how to [configure high available Aidbox](../run-aidbox-in-kubernetes/high-available-aidbox.md)
 * Added supported for [PostgreSQL 15](../../storage-1/aidboxdb-image.md) (beta)
-* Added documentation on how to build [most common indexes](../../storage-1/index-management.md).
+* Added documentation on how to build [most common indexes](../../aidbox-configuration/index-management.md).
 
 ## August 2022 _`stable`_
 
