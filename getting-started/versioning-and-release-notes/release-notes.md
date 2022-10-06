@@ -1,13 +1,21 @@
 # Release Notes
 
-## September 2022 _`edge`_
+## October 2022 _`edge`_
+
+## September 2022 _`latest`_
 
 * Added the [Client.audience](../../security-and-access-control-1/overview.md#client.audience) Regex support in SMART on FHIR App launch
-* Added an option to [filter Aidbox startup logs](../../core-modules/logging-and-audit/#stdout-log) by severity. By default Aidbox sets `AIDBOX_STDOUT_PRETTY = error` severity level.
+* Added an option to [filter Aidbox startup logs](../../core-modules/logging-and-audit/#stdout-log) by severity. By default Aidbox sets `AIDBOX_STDOUT_PRETTY = error` severity level
 * Added response headers to Aidbox REST Console and Aidbox Notebooks
 * Released [Seed v2 service](../../aidbox-configuration/aidbox-zen-lang-project/seed-v2.md)
+* Enhanced Aidbox configuration process with [Aidbox configuration projects](../../aidbox-configuration/aidbox-zen-lang-project/)
+* Supported [`/health` endpoint](../../app-development-guides/receive-logs-from-your-app/health-check.md) for Multibox
+* Updated documentation on how to configure Aidbox with [AIdbox configuration project](../../aidbox-configuration/aidbox-zen-lang-project/)
+* Updated documentation on how to [configure high available Aidbox](../run-aidbox-in-kubernetes/high-available-aidbox.md)
+* Added supported for [PostgreSQL 15](../../storage-1/aidboxdb-image.md) (beta)
+* Added documentation on how to build [most common indexes](../../aidbox-configuration/index-management.md).
 
-## August 2022 _`latest`_
+## August 2022 _`stable`_
 
 * Aidbox FHIR API module (SMARTbox) is officially certified by ICSA Labs to comply with the [ONC’s 2015 Edition Cures Update](https://www.healthit.gov/topic/certification-ehrs/2015-edition-cures-update-test-method) requirements / 170.315(g)(10).&#x20;
 * Added [Aidbox FHIR API module (SMARTbox) set up guide](../../modules-1/smartbox/set-up-smartbox.md).
@@ -23,7 +31,7 @@
 * Added [Azure Active Directory (Azure AD)](../../security-and-access-control-1/auth/external-oauth-2.0-providers/azure-ad.md) and [Keycloak](../../security-and-access-control-1/auth/external-oauth-2.0-providers/keycloak.md) external identity providers integration guides&#x20;
 * Added [Mailgun](../../tutorials/mailgun-integration.md) and [Postmark](../../tutorials/postmark-integration.md) email providers integration guides
 
-## July 2022 _`2207, stable`_
+## July 2022 _`2207`_
 
 * [Published](https://github.com/zen-lang/fhir/releases/tag/0.5.18) multiple versions of [zen FHIR IGs ](../../profiling-and-validation/profiling-with-zen-lang/#zen-fhir-packages)to provide an option to use a specific version of an implementation guide. &#x20;
 * Improved GraphQL API performance.
@@ -54,7 +62,7 @@
 
 ## May 2022 _`2205`_
 
-* Added RPC API access control engines: [allow-rpc engine](../../security-and-access-control-1/security/access-control/#allow-rpc-engine) and attribute-based [matcho-rpc engine](../../security-and-access-control-1/security/access-control/#matcho-rpc-engine).
+* Added RPC API access control engines: [allow-rpc engine](../../security-and-access-control-1/security/access-control.md#allow-rpc-engine) and attribute-based [matcho-rpc engine](../../security-and-access-control-1/security/access-control.md#matcho-rpc-engine).
 * Added GraphQL API resource [history search](../../api-1/graphql-api.md#queries) to retrieve a resource change history.
 * Added [token expiration mechanism](../../security-and-access-control-1/overview.md#session-expiration) for stored Sessions.
 * Enhanced [API constructor ACL](../../aidbox-configuration/aidbox-api-constructor/acl.md) with new operation engine [filter table insert on create](../../aidbox-configuration/aidbox-api-constructor/acl.md#filter).
@@ -86,7 +94,7 @@
 * Standardized [Aidbox project](../../aidbox-configuration/aidbox-zen-lang-project/) entrypoints.
 * Added fixes to [zen FHIR packages](../../profiling-and-validation/profiling-with-zen-lang/#zen-fhir-packages) and published [Structured Data Capture IG](https://build.fhir.org/ig/HL7/sdc/) as a zen FHIR package.
 * Supported [`:of-type`](../../api-1/fhir-api/search-1/token-search.md) modifier for token/Identifier search.
-* Enhanced [matcho engine](../../security-and-access-control-1/security/access-control/#matcho-engine) with `$every` and `$not` patterns.
+* Enhanced [matcho engine](../../security-and-access-control-1/security/access-control.md#matcho-engine) with `$every` and `$not` patterns.
 * Added `patient` query parameter to the [bulk data export ](../../api-1/bulk-api-1/usdexport.md)operation.
 * Updated [HL7 v2 module](https://docs.aidbox.app/modules-1/hl7-v2-integration) documentation.
 * Fixed [issues ](https://github.com/Aidbox/Issues/issues?q=is%3Aissue+milestone%3A%22March+2022+-+v%3A2203%22+is%3Aclosed)submitted by Aidbox users.
@@ -134,7 +142,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 * Implemented the [`$translate`](../../terminology/usdtranslate-on-conceptmap.md) operation. So now you can translate code from one value set to another, based on the existing value set and concept maps resources, and/or other additional knowledge available to Aidbox.
 * Released FHIR bulk data export. Using [$export](../../api-1/bulk-api-1/usdexport.md) you can export patient-level, group level or system-level data to GCP, AWS storage in ndjson format.
-* Extended Aidbox [Access Policies](../../security-and-access-control-1/security/access-control/) to [GraphQL API](../../api-1/graphql-api.md).
+* Extended Aidbox [Access Policies](../../security-and-access-control-1/security/access-control.md) to [GraphQL API](../../api-1/graphql-api.md).
 * Released [metrics server](../../core-modules/monitoring/) as an Aidbox component that implements the new metrics API for PostgreSQL, HikariCP and JVM metrics.
 * Added zen FHIR packages version check. Aidbox won't start if you use an outdated zen FHIR package.
 * Extended `AuthConfig` resource with `forgotPasswordUrl` attribute.
