@@ -73,5 +73,5 @@ resourceType: AccessPolicy
 {% hint style="warning" %}
 Note that `allow-all` AccessPolicy created in  example uses engine allow, which grants **full** access to specified user.&#x20;
 
-If you want to set up user access more granularly, please refer to [AccessPolicy documentation](../security-and-access-control-1/security/access-control/)
+If you want to set up user access more granularly, please refer to [AccessPolicy documentation](../security-and-access-control-1/security/access-control.md)
 {% endhint %}

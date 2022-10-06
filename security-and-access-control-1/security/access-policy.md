@@ -98,10 +98,10 @@ POST {{base}}/fhir/Patient
 
 ![](../../.gitbook/assets/policy4.png)
 
-See the full documentation [Access Policies](access-control/).
+See the full documentation [Access Policies](access-control.md).
 
-{% content-ref url="access-control/" %}
-[access-control](access-control/)
+{% content-ref url="access-control.md" %}
+[access-control.md](access-control.md)
 {% endcontent-ref %}
 
 ## Access Policies for Users
