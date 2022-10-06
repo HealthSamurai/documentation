@@ -20,16 +20,19 @@ US Core IG contains the following FHIR artifacts: Profiles, Extensions, Terminol
 Currently it is only possible to use FHIR IGs for on-premise installations. We are working to add support for other distributions as well.
 {% endhint %}
 
-First of all, set up Aidbox instance. You can follow this [guide](../../getting-started/run-aidbox-locally-with-docker/).
+1. First of all, set up Aidbox instance. You can follow this [guide](../../getting-started/run-aidbox-locally-with-docker/).
+2. After Aidbox is ready to use, you need to specify US Core dependency.\
+   Put the following in `zen-package.edn`:\
+   `{:deps {us-core "https://github.com/zen-fhir/hl7-fhir-us-core.git"}}`
+3. Commit changes:\
+   `git add zen-package.edn && git commit -m "Add us-core dependency"`
 
-After Aidbox is ready to use, you need to specify US Core dependency.
+Done. Now you can start Aidbox.
 
-Put the following in `zen-package.edn`
+{% hint style="warning" %}
+If you put a dependency while Aidbox is running you need to restart it so that it pull the dependency and consumes it.
+{% endhint %}
 
-```
-{:deps {us-core "https://github.com/zen-fhir/hl7-fhir-us-core.git"}}
-```
-
+{% hint style="info" %}
 You can read more about providing IGs [here](../../aidbox-configuration/aidbox-zen-lang-project/enable-igs.md).&#x20;
-
-If you put US Core IG dependency while Aidbox is running you need to restart it so that it pull the dependency and consumes it.
+{% endhint %}

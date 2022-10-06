@@ -50,7 +50,7 @@ Configuration projects can be provided either as a git repository url or as a lo
 
 ### Set up a configuration project
 
-Setting up a project locally or in a cloud is done by providing access to a project directory.&#x20;
+Setting up a project on-premise is done by providing access to a project files.&#x20;
 
 {% content-ref url="setting-up-a-configuration-project.md" %}
 [setting-up-a-configuration-project.md](setting-up-a-configuration-project.md)
