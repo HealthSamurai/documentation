@@ -151,6 +151,8 @@
 
 ## FHIR Implementation Guides
 
+* [🎓 US Core IG](fhir-implementation-guides/us-core-ig/README.md)
+  * [US Core IG support reference](fhir-implementation-guides/us-core-ig/us-core-ig-support-reference.md)
 * [🎓 HL7 FHIR Da Vinci PDex Plan Net IG](fhir-implementation-guides/hl7-fhir-da-vinci-pdex-plan-net-ig.md)
 * [§170.315(g)(10) Standardized API for patient and population services](fhir-implementation-guides/170.315-g-10-standardized-api-for-patient-and-population-services/README.md)
   * [Considerations for Testing with Inferno ONC](fhir-implementation-guides/170.315-g-10-standardized-api-for-patient-and-population-services/considerations-for-testing-with-inferno-onc.md)

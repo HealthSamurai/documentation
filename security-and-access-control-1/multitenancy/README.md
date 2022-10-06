@@ -88,6 +88,6 @@ Aidbox FHIR API can have filters to ensure that a client can access only certain
 [multitenancy-via-accesspolicy.md](multitenancy-via-accesspolicy.md)
 {% endcontent-ref %}
 
-{% content-ref url="../security/access-control.md" %}
-[access-control.md](../security/access-control.md)
+{% content-ref url="../security/access-control/" %}
+[access-control](../security/access-control/)
 {% endcontent-ref %}
