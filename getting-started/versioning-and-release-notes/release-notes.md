@@ -12,7 +12,7 @@
 * Supported [`/health` endpoint](../../app-development-guides/receive-logs-from-your-app/health-check.md) for Multibox
 * Updated documentation on how to configure Aidbox with [Aidbox configuration project](../../aidbox-configuration/aidbox-zen-lang-project/)
 * Updated documentation on how to [configure high available Aidbox](../run-aidbox-in-kubernetes/high-available-aidbox.md)
-* Added supported for [PostgreSQL 15](../../storage-1/aidboxdb-image.md) (beta)
+* Added support for [PostgreSQL 15](../../storage-1/aidboxdb-image.md) (beta)
 * Added documentation on how to create [most common indexes](../../aidbox-configuration/index-management.md)
 * Added `aidbox` format support for [bulk import](../../api-1/bulk-api-1/aidbox.bulk-data-import.md#aidbox.bulk-import-start)
 * Added `enable-links` parameter for [AidboxQuery](../../api-1/fhir-api/search-1/custom-search.md#return-links)
