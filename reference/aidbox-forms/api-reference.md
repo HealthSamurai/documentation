@@ -8,6 +8,7 @@
 * ``[`sign`](api-reference.md#sign) - finalize document, run extracts
 * ``[`aidbox.sdc/convert-document`](api-reference.md#aidbox.sdc-convert-document) - converts SDCDocument to FHIR QuestionnaireResponse
 * ``[`aidbox.sdc/convert-questionnaire`](api-reference.md#aidbox.sdc-convert-questionnaire)- converts FHIR Questionnaire to Aidbox SDC Form
+  [`aidbox.sdc/get-form-access-jwt`](api-reference.md#aidbox.sdc-get-form-access-jwt)- creates policy token for form
 
 ### get-forms
 
@@ -222,7 +223,7 @@ params:
     patient: {id: pt-1, resourceType: Patient},
     encounter: {id: enc-1, resourceType: Encounter},
     type: box.sdc.sdc-example/VitalsDocument,
-    form: 
+    form:
       form: box.sdc.sdc-example/VitalsForm,
       version: 1.0.0
     resourceType: SDCDocument,
@@ -515,3 +516,49 @@ result:
 
 
 \
+
+### aidbox.sdc/get-form-access-jwt
+
+Creates policy token to get access to SDCDocument/SDCWorkflow
+
+params:
+
+| Param             | Description                | Type                    | required? |
+|-------------------|----------------------------|-------------------------|-----------|
+| form              | link to the form in DB     | Map                     | yes       |
+| form.id           | SDCDocument/SDCWorkflow id | String                  | yes       |
+| form.resourceType |                            | SDCDocument/SDCWorkflow | yes       |
+
+
+Request:
+
+> Example with document
+```javascript
+POST {{base}}/rpc
+
+method: aidbox.sdc/get-form-access-jwt
+params:
+  form:
+    id: doc-1
+	resourceType: SDCDocument
+```
+
+Result:
+```javascript
+result:
+  token: <jwt policy token>
+```
+
+Usage:
+
+With this token you can get access to the document via RPC without authorization in Aidbox
+
+```javascript
+POST {{base}}/rpc
+
+method: aidbox.sdc/read-document
+params:
+  id: doc-1
+
+policy: <jwt policy token>
+```
