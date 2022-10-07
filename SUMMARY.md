@@ -185,7 +185,7 @@
 * [Administration](app-development-guides/administration.md)
 * [Receive logs from your app](app-development-guides/receive-logs-from-your-app/README.md)
   * [X-Audit header](app-development-guides/receive-logs-from-your-app/x-audit-header.md)
-  * [Health Check](app-development-guides/receive-logs-from-your-app/health-check.md)
+  * [Health check](app-development-guides/receive-logs-from-your-app/health-check.md)
 * [$matcho](app-development-guides/usdmatcho.md)
 * [$to-format](app-development-guides/usdto-format-fhir-aidbox.md)
 

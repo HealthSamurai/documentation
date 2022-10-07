@@ -1,10 +1,10 @@
 ---
-description: Standard endpoint for health check
+description: Standard endpoint for health checks
 ---
 
-# Health Check
+# Health check
 
-Aidbox serves REST endpoint `GET /health` for automated health-checks as described by [RFC](https://inadarei.github.io/rfc-healthcheck/) (Health Check Response Format for HTTP APIs):
+Aidbox serves REST health check endpoint `GET /health` to configure Liveness, Readiness and Startup Probes. The response format is described by [RFC](https://inadarei.github.io/rfc-healthcheck/) (Health Check Response Format for HTTP APIs):
 
 {% code title="Request" %}
 ```yaml
