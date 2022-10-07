@@ -108,3 +108,40 @@ It iterates through them, evaluating each `AccessPolicy` against the request obj
 {% endhint %}
 
 If there are no `AccessPolicy` resources defined for a box, all requests will be denied.
+
+### Signed RPC policy token
+
+You can create policy-token to access rpc without creating AccessPolicy resource
+
+To do that call `aidbox.policy/create-policy-token` RPC method:
+
+```javascript
+POST {{base}}/rpc
+
+method: aidbox.policy/create-policy-token
+params:
+  expiration: 3
+  methods:
+    aidbox.sdc/read-document:
+	  params:
+	    id: doc-1
+	aidbox.sdc/save-document:
+	  params:
+	    id: doc-1
+```
+
+This RPC method will return you a JWT token, which can be used only to call two methods with params you described:
+
+* `aidbox.sdc/read-document`
+* `aidbox.sdc/save-document`
+
+To make a call RPC with this token just pass it in body:
+
+```javascript
+POST {{base}}/rpc
+
+method: aidbox.sdc/read-document
+params:
+  id: doc-1
+policy: <token from previous step>
+```

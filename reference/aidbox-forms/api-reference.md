@@ -1,14 +1,13 @@
 # API reference
 
-* ``[`get-forms`](api-reference.md#get-forms) - get existed forms
-* ``[`get-form`](api-reference.md#get-form) - get form definition for given form name
-* ``[`launch`](api-reference.md#launch) - launch new form with given params
-* ``[`read-document`](api-reference.md#read-document) - get form with saved document
-* ``[`save`](api-reference.md#save) - save document
-* ``[`sign`](api-reference.md#sign) - finalize document, run extracts
-* ``[`aidbox.sdc/convert-document`](api-reference.md#aidbox.sdc-convert-document) - converts SDCDocument to FHIR QuestionnaireResponse
-* ``[`aidbox.sdc/convert-questionnaire`](api-reference.md#aidbox.sdc-convert-questionnaire)- converts FHIR Questionnaire to Aidbox SDC Form
-  [`aidbox.sdc/get-form-access-jwt`](api-reference.md#aidbox.sdc-get-form-access-jwt)- creates policy token for form
+* \`\`[`get-forms`](api-reference.md#get-forms) - get existed forms
+* \`\`[`get-form`](api-reference.md#get-form) - get form definition for given form name
+* \`\`[`launch`](api-reference.md#launch) - launch new form with given params
+* \`\`[`read-document`](api-reference.md#read-document) - get form with saved document
+* \`\`[`save`](api-reference.md#save) - save document
+* \`\`[`sign`](api-reference.md#sign) - finalize document, run extracts
+* \`\`[`aidbox.sdc/convert-document`](api-reference.md#aidbox.sdc-convert-document) - converts SDCDocument to FHIR QuestionnaireResponse
+* \`\`[`aidbox.sdc/convert-questionnaire`](api-reference.md#aidbox.sdc-convert-questionnaire)- converts FHIR Questionnaire to Aidbox SDC Form [`aidbox.sdc/get-form-access-jwt`](api-reference.md#aidbox.sdc-get-form-access-jwt)- creates policy token for form
 
 ### get-forms
 
@@ -71,8 +70,6 @@ params:
       encounter-id: enc-1
 ```
 
-
-
 Result:
 
 > Success
@@ -106,11 +103,9 @@ error:
 
 ####
 
-\
+\\
 
-
-\
-
+\\
 
 ### read-document
 
@@ -128,8 +123,6 @@ method: aidbox.sdc.read-document
 params:
    id: doc-1
 ```
-
-
 
 Result:
 
@@ -201,8 +194,7 @@ result:
 
 ####
 
-\
-
+\\
 
 ### sign
 
@@ -512,11 +504,6 @@ result:
         unit: kg
 ```
 
-\
-
-
-\
-
 ### aidbox.sdc/get-form-access-jwt
 
 Creates policy token to get access to SDCDocument/SDCWorkflow
@@ -524,15 +511,15 @@ Creates policy token to get access to SDCDocument/SDCWorkflow
 params:
 
 | Param             | Description                | Type                    | required? |
-|-------------------|----------------------------|-------------------------|-----------|
+| ----------------- | -------------------------- | ----------------------- | --------- |
 | form              | link to the form in DB     | Map                     | yes       |
 | form.id           | SDCDocument/SDCWorkflow id | String                  | yes       |
 | form.resourceType |                            | SDCDocument/SDCWorkflow | yes       |
 
-
 Request:
 
 > Example with document
+
 ```javascript
 POST {{base}}/rpc
 
@@ -544,6 +531,7 @@ params:
 ```
 
 Result:
+
 ```javascript
 result:
   token: <jwt policy token>

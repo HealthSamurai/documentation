@@ -45,10 +45,6 @@ To set up git repository location you need to set multiple environment variables
 * `BOX_PROJECT_GIT_PROTOCOL`: `https` for HTTPS, `ssh` for SSH method.
 * `BOX_PROJECT_GIT_URL`: full URL to git repository. This can be HTTPS, SSH or local path.
 
-{% hint style="info" %}
-You can set `BOX_PROJECT_GIT_URL` to a local directory path even if this directory is not a git repository.
-{% endhint %}
-
 ### Authentication
 
 Authentication set up depends on the protocol used:&#x20;

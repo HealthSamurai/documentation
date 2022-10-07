@@ -31,10 +31,10 @@ description: Release notes for years 2019-2020
 * Complete rewrite of the [(rev)include](../../../api-1/fhir-api/search-1/\_include-and-\_revinclude.md) engine
 * New [Mapping module](../../../tools/mappings.md)
 * New [Hl7v2 module](../../../modules-1/hl7-v2-integration.md)
-* New engine for AccessPolicy - [matcho](../../../security-and-access-control-1/security/access-control/#matcho-engine)
+* New engine for AccessPolicy - [matcho](../../../security-and-access-control-1/security/access-control.md#matcho-engine)
 * New [Encryption API](../../../api-1/encryption-api.md)
 * [X-Audit header](../../../app-development-guides/receive-logs-from-your-app/x-audit-header.md) to add custom data to Aidbox logs
-* [X-Debug: policy](../../../security-and-access-control-1/security/access-control/#using-x-debug-policy-header) header to trace policy evaluation
+* [X-Debug: policy](../../../security-and-access-control-1/security/access-control.md#using-x-debug-policy-header) header to trace policy evaluation
 * Support for [\_elements](../../../api-1/fhir-api/search-1/\_elements.md#elements-and-ref-includes) for (rev)included resources
 
 Plenty of bug fixes!
@@ -81,8 +81,8 @@ It's time to upgrade your database - please stop your container and change image
 
 ### Features
 
-* `/auth/test-policy` operation for[ policy debug](../../../security-and-access-control-1/security/access-control/#debugging)
-* Support for [ident interpolation](../../../security-and-access-control-1/security/access-control/#sql-engine) in SQL policy - `SELECT * FROM {{!params.resource/type}}`
+* `/auth/test-policy` operation for[ policy debug](../../../security-and-access-control-1/security/access-control.md#debugging)
+* Support for [ident interpolation](../../../security-and-access-control-1/security/access-control.md#sql-engine) in SQL policy - `SELECT * FROM {{!params.resource/type}}`
 * [SQL Migrations](../../../modules-1/aidbox-search/usdpsql.md#sql-migrations)
 * New [\_explain](../../../api-1/fhir-api/search-1/#\_explain) parameter for Search API
 * Beta version of bulk [import operation](../../../api-1/bulk-api-1/#usdimport)&#x20;

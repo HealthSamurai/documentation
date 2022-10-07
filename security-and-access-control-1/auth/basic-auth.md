@@ -29,7 +29,7 @@ grant_types:
   - basic
 ```
 
-By default, your client does not have any permissions to access Aidbox REST API. So you probably want to configure some using Aidbox Access Policy. Access Policy can be _linked_ to the specific client by providing the reference to clients in `link` collection. For more sophisticated configuration, see [Access Policies](../security/access-control/) documentation.&#x20;
+By default, your client does not have any permissions to access Aidbox REST API. So you probably want to configure some using Aidbox Access Policy. Access Policy can be _linked_ to the specific client by providing the reference to clients in `link` collection. For more sophisticated configuration, see [Access Policies](../security/access-control.md) documentation.&#x20;
 
 ```yaml
 POST /AccessPolicy

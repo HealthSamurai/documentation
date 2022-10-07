@@ -199,7 +199,7 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-And this policy is a bit tricky. The allowed URI is `/Encounter` and it doesn't contain any additional parts that could be identified as request parameters as in the previous case. So, in order to provide the required request parameter `patient` to the Access Policy matching engine, we have to specify it as the query parameter of our request. And after the Access Policy engine allows such a request, the Search Engine comes into play. It filters out encounters that do not match the condition of `patient = our-patient-id`. To know more about how the AidBox Search works, see the [Search section](../../api-1/fhir-api/search-1/). To know more about the available search parameters, refer to the [Search Parameters section](access-control/search-parameters.md) of the FHIR documentation for the resource of interest.
+And this policy is a bit tricky. The allowed URI is `/Encounter` and it doesn't contain any additional parts that could be identified as request parameters as in the previous case. So, in order to provide the required request parameter `patient` to the Access Policy matching engine, we have to specify it as the query parameter of our request. And after the Access Policy engine allows such a request, the Search Engine comes into play. It filters out encounters that do not match the condition of `patient = our-patient-id`. To know more about how the AidBox Search works, see the [Search section](../../api-1/fhir-api/search-1/). To know more about the available search parameters, refer to the [Search Parameters section](search-parameters.md) of the FHIR documentation for the resource of interest.
 
 Finally, we can make a request for the list of patient encounters.
 
