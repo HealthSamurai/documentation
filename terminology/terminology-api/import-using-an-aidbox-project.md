@@ -35,8 +35,12 @@ Zip-archive your terminology bundle that is my-terminology-budnle.ndjson.gz file
 
 Upload your my-terminology.zip to a remote server e.g. https://example.com/terminologies/my-terminology.zip
 
-Set AIDBOX\_ZEN\_PATHS=url:zip:https://example.com/terminologies/my-terminology.zip\
-\
+Set [`AIDBOX_ZEN_PATHS` environment variable:](../../aidbox-configuration/aidbox-zen-lang-project/#aidbox\_zen\_paths)
+
+```
+AIDBOX_ZEN_PATHS=url:zip:https://example.com/terminologies/my-terminology.zip
+```
+
 Aidbox will import terminology from the specified path on start.
 
 ### Track import progress
