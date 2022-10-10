@@ -20,27 +20,27 @@
 
 ## August 2022 _`stable`_
 
-* Aidbox FHIR API module (SMARTbox) is officially certified by ICSA Labs to comply with the [ONC’s 2015 Edition Cures Update](https://www.healthit.gov/topic/certification-ehrs/2015-edition-cures-update-test-method) requirements / 170.315(g)(10).&#x20;
+* Aidbox FHIR API module (SMARTbox) is officially certified by ICSA Labs to comply with the [ONC’s 2015 Edition Cures Update](https://www.healthit.gov/topic/certification-ehrs/2015-edition-cures-update-test-method) requirements / 170.315(g)(10).
 * Added [Aidbox FHIR API module (SMARTbox) set up guide](../../modules-1/smartbox/set-up-smartbox.md).
-* Added an option to [get Aidbox hosted on AWS](../run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md) directly from the Aidbox user portal. [Aidbox FHIR platform](https://aws.amazon.com/marketplace/pp/prodview-l5djlpvsd6o5g) is available on AWS marketplace.&#x20;
+* Added an option to [get Aidbox hosted on AWS](../run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md) directly from the Aidbox user portal. [Aidbox FHIR platform](https://aws.amazon.com/marketplace/pp/prodview-l5djlpvsd6o5g) is available on AWS marketplace.
 * Released [Aidbox forms](../../modules-1/aidbox-forms.md) alpha version.
 * Added [RPC method](../../terminology/terminology-api/import-using-an-aidbox-project.md#track-import-progress) to track Aidbox project terminology bundles async load status.
 * Added env to [automatically create a User resource](../../security-and-access-control-1/auth/access-token-introspection/#create-user-automatically) on auth via TokenIntrospector. This allows to use both TokenIntrospector and IdentityProvider auth for the same User in Aidbox.
-* Added log event [:op/timeout](../../core-modules/logging-and-audit/aidbox-log-schema.md) for logging custom operations timeout&#x20;
-* Added FHIR Bundle transaction conditional CRUD with `urn:uuid` support&#x20;
-* Added [SNOMED CT bundle ](../../terminology/terminology-api/)
+* Added log event [:op/timeout](../../core-modules/logging-and-audit/aidbox-log-schema.md) for logging custom operations timeout
+* Added FHIR Bundle transaction conditional CRUD with `urn:uuid` support
+* Added [SNOMED CT bundle](../../terminology/terminology-api/)
 * Enhanced [zen.fhir profiles](../../profiling-and-validation/profiling-with-zen-lang/) with RequiredPattern and FixedValue constraints
 * Added [seed service](../../aidbox-configuration/aidbox-zen-lang-project/seed-import.md) errors output.
-* Added [Azure Active Directory (Azure AD)](../../security-and-access-control-1/auth/external-oauth-2.0-providers/azure-ad.md) and [Keycloak](../../security-and-access-control-1/auth/external-oauth-2.0-providers/keycloak.md) external identity providers integration guides&#x20;
+* Added [Azure Active Directory (Azure AD)](../../security-and-access-control-1/auth/external-oauth-2.0-providers/azure-ad.md) and [Keycloak](../../security-and-access-control-1/auth/external-oauth-2.0-providers/keycloak.md) external identity providers integration guides
 * Added [Mailgun](../../tutorials/mailgun-integration.md) and [Postmark](../../tutorials/postmark-integration.md) email providers integration guides
 
 ## July 2022 _`2207`_
 
-* [Published](https://github.com/zen-lang/fhir/releases/tag/0.5.18) multiple versions of [zen FHIR IGs ](../../profiling-and-validation/profiling-with-zen-lang/#zen-fhir-packages)to provide an option to use a specific version of an implementation guide. &#x20;
+* [Published](https://github.com/zen-lang/fhir/releases/tag/0.5.18) multiple versions of [zen FHIR IGs ](../../profiling-and-validation/profiling-with-zen-lang/#zen-fhir-packages)to provide an option to use a specific version of an implementation guide.
 * Improved GraphQL API performance.
 * Improved validation with zen-lang performance.
-* Added RPC method to get the [import status](../../api-1/bulk-api-1/import-from-a-bucket.md#aidbox.bulk-load-from-bucket-status) when running [load-from-bucket](../../api-1/bulk-api-1/import-from-a-bucket.md) import operation.&#x20;
-* Added an option to start Aidbox with an invalid [Aidbox project](../../aidbox-configuration/aidbox-zen-lang-project/) in [dev-mode](../../reference/configuration/environment-variables/aidbox-project-environment-variables.md#aidbox\_zen\_dev\_mode) to improve the debugging experience. By default, Aidbox doesn't start with invalid Aidbox projects.&#x20;
+* Added RPC method to get the [import status](../../api-1/bulk-api-1/import-from-a-bucket.md#aidbox.bulk-load-from-bucket-status) when running [load-from-bucket](../../api-1/bulk-api-1/import-from-a-bucket.md) import operation.
+* Added an option to start Aidbox with an invalid [Aidbox project](../../aidbox-configuration/aidbox-zen-lang-project/) in [dev-mode](../../reference/configuration/environment-variables/aidbox-project-environment-variables.md#aidbox\_zen\_dev\_mode) to improve the debugging experience. By default, Aidbox doesn't start with invalid Aidbox projects.
 * Added an option to enable [ACL checks for searches in conditional operations](../../aidbox-configuration/aidbox-api-constructor/acl.md#conditional-crud).
 * Added `BOX_FEATURES_TERMINOLOGY_IMPORT_SYNC` environment variable to enable sync [terminology bundle file load](../../terminology/terminology-api/).
 * Added `plain` option to use [`$import`](../../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md) with non-gzipped files.
@@ -200,7 +200,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 * We've released a major Aidbox UI upgrade
 
-![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (11).png>)
+![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (10).png>)
 
 * Updated REST Console (check out[ the tutorial](https://bit.ly/rest\_console\_tutorial)):
   * Explicit request headers `content-type, accept` etc
