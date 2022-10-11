@@ -14,7 +14,7 @@ This guide expands [Set up SMARTbox](set-up-smartbox.md).
 * Open the 'Applications' page&#x20;
 * Press the 'Create Application' button
 * Give the name of the application
-* Choose the type of the application. Consider, Native type
+* Choose the type of application. Consider, Native type
 * Press the 'Create' button
 
 After the app is created add the details:
@@ -39,27 +39,27 @@ To create a new user:
 
 Copy the 'user\_id'. It looks like `auth0|6310e2d143b66b669906d775`
 
-## Create `IdentityProvider` in Aidbox Portal
+## Create Tenant in Aidbox Portal
 
-As the administrator of the Portal create an `IdentityProvider` resource
+As the administrator of the Portal create an `Tenant` resource. Please, see [What is Tenant](what-is-tenant.md) for more details.
 
-<pre class="language-yaml"><code class="lang-yaml">id: auth0
-scopes:
-  - user
-  - read:org
-  - openid
-  - profile
-<strong>system: auth0
-</strong>userinfo_endpoint: https://dev-nei1uq73.us.auth0.com/userinfo
-authorize_endpoint: https://dev-nei1uq73.us.auth0.com/authorize
-token_endpoint: https://dev-nei1uq73.us.auth0.com/oauth/token
-client:
-  id: ziW...lv0
-  secret: 7HoQ...gvb
-  redirect_uri: http://localhost:8888/auth/callback/auth0
-resourceType: IdentityProvider
-title: Auth0
-active: true</code></pre>
+<pre class="language-yaml"><code class="lang-yaml">id: my-clinic
+resourceType: Tenant
+name: My Clinic Name
+logoUrl: https://example.com/my-clinic-logo.png
+identityProvider:
+  scopes:
+    - user
+<strong>    - read:org
+</strong>    - openid
+    - profile
+<strong>  system: aidbox:tenant:my-clinic
+</strong>  userinfo_endpoint: https://dev-nei1uq73.us.auth0.com/userinfo
+  authorize_endpoint: https://dev-nei1uq73.us.auth0.com/authorize
+  token_endpoint: https://dev-nei1uq73.us.auth0.com/oauth/token
+  client:
+    id: ziW...lv0
+    secret: 7HoQ...gvb</code></pre>
 
 {% hint style="info" %}
 The URLs copied from the Auth0 are used here:
@@ -75,20 +75,24 @@ It's important to provide the `system` attribute
 
 ## Create a User in Aidbox Portal
 
-The user should be linked to a Patient to be able to launch SMART Apps. And the the same time it should be related to the Auth0 user.
+The user should be linked to a Patient to be able to launch SMART Apps. And at the same time, it should be related to the Auth0 user. Please, see [What is Tenant](what-is-tenant.md) for more details.
 
 ```yaml
 id: test-user-1
 resourceType: User
 identifier:
   - value: auth0|6310e2d143b66b669906d775
-    system: auth0
+    system: aidbox:tenant:my-clinic
 fhirUser:
   id: test-pt-1
   resourceType: Patient
 roles:
   - type: patient
 active: true
+meta:
+  tenant:
+    id: my-clinic
+    resourceType: Tenant
 ```
 
 {% hint style="warning" %}
