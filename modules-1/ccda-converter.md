@@ -16,10 +16,6 @@ Aidbox CCDA converter aims to handle all data elements included into [USCDI v2](
 You can quickly evaluate CCDA to FHIR Converter on our [CCDA to FHIR Demo page](https://ccda.aidbox.app/).
 {% endhint %}
 
-{% hint style="warning" %}
-CCDA to FHIR mapping is still in development stage. You can check the current state of the mapping on [this spreadsheet](https://docs.google.com/spreadsheets/d/1rrjciXnSkAv7Le-\_wTQzjWNHzJhTKtV-UqzNBpza02c/edit?usp=sharing).&#x20;
-{% endhint %}
-
 ### Converting a CCDA document to FHIR
 
 To perform CCDA to FHIR conversion, use the `/ccda/to-fhir` endpoint:

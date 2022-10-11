@@ -281,6 +281,7 @@
     * [Forms](modules-1/aidbox-forms/aidbox-forms-ui/forms.md)
     * [Patients](modules-1/aidbox-forms/aidbox-forms-ui/patients.md)
     * [Form Editor](modules-1/aidbox-forms/aidbox-forms-ui/form-editor.md)
+* [Multitenancy](modules-1/multitenancy.md)
 * [Smartbox](modules-1/smartbox/README.md)
   * [Get started](modules-1/smartbox/get-started/README.md)
     * [Set up Smartbox locally](modules-1/smartbox/get-started/set-up-smartbox.md)
