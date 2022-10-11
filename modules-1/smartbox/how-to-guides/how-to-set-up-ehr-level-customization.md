@@ -23,5 +23,5 @@ logoUrl `should be provided under` smartbox `property`
 {% endhint %}
 
 {% hint style="success" %}
-`logoUrl` should a link to a publicly accessible image file
+`logoUrl` should be a link to a publicly accessible image file
 {% endhint %}
