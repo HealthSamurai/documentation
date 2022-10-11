@@ -19,9 +19,5 @@ resourceType: AidboxConfig
 ```
 
 {% hint style="info" %}
-logoUrl `should be provided under` smartbox `property`
-{% endhint %}
-
-{% hint style="success" %}
 `logoUrl` should be a link to a publicly accessible image file
 {% endhint %}
