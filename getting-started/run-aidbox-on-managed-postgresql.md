@@ -3,13 +3,12 @@
 This quickstart guide explains how to run Aidbox on managed PostgreSQL
 instance.
 
-### Prerequisites
-
-- aws-cli
-- psql
-- Postgresql instance
 
 ### Aurora PostgreSQL
+#### Prerequisites
+
+- aws CLI
+- psql
 
 #### Connect to db cluster
 
@@ -20,6 +19,21 @@ to connect to cluster using aws-cli and psql
 #### Create role
 
 Execute following sql in psql
+
+```sql
+CREATE USER aidbox WITH CREATEDB ENCRYPTED PASSWORD 'aidboxpass';
+```
+
+### Azure Database for PostgreSQL flexible server
+#### Prerequisites
+
+- azure CLI
+
+#### Create Role
+
+Follow [Azure
+Documentation](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/connect-azure-cli)
+and execute following SQL to create role:
 
 ```sql
 CREATE USER aidbox WITH CREATEDB ENCRYPTED PASSWORD 'aidboxpass';
