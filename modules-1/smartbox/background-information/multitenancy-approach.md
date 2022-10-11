@@ -60,9 +60,17 @@ FHIR API for patient-facing SMART apps is avaiable on&#x20;
 
 Patient doesn't have direct access to that API, but only via SMART apps, authorized by the patient.
 
-SMART apps&#x20;
+#### Authorization server
+
+Authorization server is available on
+
+`[aidbox-base-url]/tenant/[tenant-id]/patient/auth`
+
+Why is there dedicated auth server for every tenant? If a person is a patient in two different clinics they should be able to be logged into both patient portals independently. Otherwise it may cause undesirable behaviour when patient wants to launch a SMART app and share their data from both clinics.
 
 ### FHIR API for providers
+
+#### FHIR API for provider-facing SMART apps
 
 FHIR API for provider-facing SMART apps is avaiable on&#x20;
 
@@ -70,10 +78,17 @@ FHIR API for provider-facing SMART apps is avaiable on&#x20;
 
 Provider doesn't have direct access to that API, but only via SMART apps, authorized by the provider.
 
+#### Authorization server
 
+Authorization server for patients is available on
 
+`[aidbox-base-url]/tenant/[tenant-id]/provider/auth`
 
+#### Bulk API
 
+Bulk API is available on
 
+`[aidbox-base-url]/tenant/[tenant-id]/bulk-api`
 
-If a person is a patient in two different clinics they should be able to be logged into both patient portals independantly. Otherwise it may cause undesarable behaviour when patient wants to launch a SMART app and share their data from both clinics.
+It works in accordance to [Bulk Data Access IG](https://hl7.org/fhir/uv/bulkdata/STU1.0.1/).
+
