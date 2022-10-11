@@ -283,6 +283,7 @@
     * [Form Editor](modules-1/aidbox-forms/aidbox-forms-ui/form-editor.md)
 * [SMARTbox](modules-1/smartbox/README.md)
   * [Set up SMARTbox](modules-1/smartbox/set-up-smartbox.md)
+  * [What is Tenant](modules-1/smartbox/what-is-tenant.md)
   * [How to set up SSO with Auth0](modules-1/smartbox/how-to-set-up-sso-with-auth0.md)
   * [FHIR portal](modules-1/smartbox/fhir-portal.md)
   * [Standardized API for patient and population services](modules-1/smartbox/standardized-api-for-patient.md)
