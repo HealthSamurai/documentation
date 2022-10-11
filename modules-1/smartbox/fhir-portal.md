@@ -1,3 +1,0 @@
-# FHIR portal
-
-WIP

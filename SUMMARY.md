@@ -281,12 +281,14 @@
     * [Forms](modules-1/aidbox-forms/aidbox-forms-ui/forms.md)
     * [Patients](modules-1/aidbox-forms/aidbox-forms-ui/patients.md)
     * [Form Editor](modules-1/aidbox-forms/aidbox-forms-ui/form-editor.md)
-* [SMARTbox](modules-1/smartbox/README.md)
-  * [Set up SMARTbox](modules-1/smartbox/set-up-smartbox.md)
-  * [What is Tenant](modules-1/smartbox/what-is-tenant.md)
-  * [How to set up SSO with Auth0](modules-1/smartbox/how-to-set-up-sso-with-auth0.md)
-  * [FHIR portal](modules-1/smartbox/fhir-portal.md)
-  * [Standardized API for patient and population services](modules-1/smartbox/standardized-api-for-patient.md)
+* [Smartbox](modules-1/smartbox/README.md)
+  * [How-to guides](modules-1/smartbox/how-to-guides/README.md)
+    * [Set up Smartbox locally](modules-1/smartbox/how-to-guides/set-up-smartbox.md)
+    * [Register users](modules-1/smartbox/how-to-guides/register-users.md)
+    * [Set up SSO with Auth0](modules-1/smartbox/how-to-guides/how-to-set-up-sso-with-auth0.md)
+  * [Background information](modules-1/smartbox/background-information/README.md)
+    * [Multitenancy approach](modules-1/smartbox/background-information/multitenancy-approach.md)
+    * [What is Tenant](modules-1/smartbox/background-information/what-is-tenant.md)
 
 ## Multibox
 

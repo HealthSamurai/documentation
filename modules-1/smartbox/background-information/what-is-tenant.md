@@ -1,10 +1,8 @@
 ---
-description: This page explains, what a Tenant is and how to set up tenant (clinic)
+description: The article explains, what tenant is and how to set up tenant (clinic)
 ---
 
 # What is Tenant
-
-
 
 {% hint style="info" %}
 In terms of Aidbox, a tenant is logically isolated data belonging to one medical practice (clinic)

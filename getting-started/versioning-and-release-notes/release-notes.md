@@ -21,7 +21,7 @@
 ## August 2022 _`stable`_
 
 * Aidbox FHIR API module (SMARTbox) is officially certified by ICSA Labs to comply with the [ONC’s 2015 Edition Cures Update](https://www.healthit.gov/topic/certification-ehrs/2015-edition-cures-update-test-method) requirements / 170.315(g)(10).
-* Added [Aidbox FHIR API module (SMARTbox) set up guide](../../modules-1/smartbox/set-up-smartbox.md).
+* Added [Aidbox FHIR API module (SMARTbox) set up guide](../../modules-1/smartbox/how-to-guides/set-up-smartbox.md).
 * Added an option to [get Aidbox hosted on AWS](../run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md) directly from the Aidbox user portal. [Aidbox FHIR platform](https://aws.amazon.com/marketplace/pp/prodview-l5djlpvsd6o5g) is available on AWS marketplace.
 * Released [Aidbox forms](../../modules-1/aidbox-forms.md) alpha version.
 * Added [RPC method](../../terminology/terminology-api/import-using-an-aidbox-project.md#track-import-progress) to track Aidbox project terminology bundles async load status.

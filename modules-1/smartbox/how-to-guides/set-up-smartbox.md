@@ -1,10 +1,10 @@
 ---
 description: >-
-  This tutorial will guide you through SMARTbox installation and accepting
+  This tutorial will guide you through Smartbox installation and accepting
   developer SMART application process
 ---
 
-# Set up SMARTbox
+# Set up Smartbox locally
 
 ### Get licenses
 
@@ -24,16 +24,16 @@ Follow the [official Docker guide](https://docs.docker.com/compose/install/#inst
 
 GCP Cloud Storage is used in Bulk API for storing and distributing exported data. To enable bulk API, you need to create GCP Cloud Storage, set up GCP Service Account, and provide full access to the service account on this Cloud Storage.
 
-{% content-ref url="../../storage-1/gcp-cloud-storage.md" %}
-[gcp-cloud-storage.md](../../storage-1/gcp-cloud-storage.md)
+{% content-ref url="../../../storage-1/gcp-cloud-storage.md" %}
+[gcp-cloud-storage.md](../../../storage-1/gcp-cloud-storage.md)
 {% endcontent-ref %}
 
 ### **Set up Mailgun**
 
 [Mailgun](https://www.mailgun.com/) is used to communicate with users (developers, patients). It sends emails for resetting a password, email verification, etc.
 
-{% content-ref url="../../tutorials/mailgun-integration.md" %}
-[mailgun-integration.md](../../tutorials/mailgun-integration.md)
+{% content-ref url="../../../tutorials/mailgun-integration.md" %}
+[mailgun-integration.md](../../../tutorials/mailgun-integration.md)
 {% endcontent-ref %}
 
 ## Installation
@@ -156,7 +156,7 @@ Run the following command:
 docker compose pull && docker compose up
 ```
 
-Now SMARTbox is ready.
+Now Smartbox is ready.
 
 ### Admin portal
 
@@ -284,4 +284,4 @@ Go to My Clinic's patient portal and login as the user, created above with `exam
 
 ### That's it
 
-In this tutorial we learned how to install SMARTbox and to get your first SMART app approved.
+In this tutorial we learned how to install Smartbox and to get your first SMART app approved.

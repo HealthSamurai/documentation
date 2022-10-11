@@ -2,7 +2,7 @@
 description: This guide explains how to set up single sign-on features (SSO) with Auth0
 ---
 
-# How to set up SSO with Auth0
+# Set up SSO with Auth0
 
 This guide expands [Set up SMARTbox](set-up-smartbox.md).
 
@@ -41,7 +41,7 @@ Copy the `user_id`. It looks like `auth0|6310e2d143b66b669906d775`
 
 ## Create Tenant in Aidbox Portal
 
-As the administrator of the Portal create an `Tenant` resource. Please, see [What is Tenant](what-is-tenant.md) for more details.
+As the administrator of the Portal create an `Tenant` resource. Please, see [What is Tenant](../background-information/what-is-tenant.md) for more details.
 
 <pre class="language-yaml"><code class="lang-yaml">id: my-clinic
 resourceType: Tenant
@@ -75,7 +75,7 @@ It's important to provide the `system` attribute
 
 ## Create a User in Aidbox Portal
 
-The user should be linked to a Patient to be able to launch SMART Apps. And at the same time, it should be related to the Auth0 user. Please, see [What is Tenant](what-is-tenant.md) for more details.
+The user should be linked to a Patient to be able to launch SMART Apps. And at the same time, it should be related to the Auth0 user. Please, see [What is Tenant](../background-information/what-is-tenant.md) for more details.
 
 ```yaml
 id: test-user-1
