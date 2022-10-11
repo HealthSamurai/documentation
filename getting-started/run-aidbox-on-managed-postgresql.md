@@ -41,6 +41,13 @@ CREATE USER aidbox WITH CREATEDB ENCRYPTED PASSWORD 'aidboxpass';
 
 ### Setup Aidbox to use new user
 
+{% hint style="warning" %}
+You may encounter `permission denied` error when creating
+extensions. Just connect to PostgreSQL database using user that can
+create extension (usually admin user created with a server) and create
+failed extension manually.
+{% endhint %}
+
 Setup following environment variables. If you're using existing
 `PGDATABASE` make sure `aidbox` role has `CREATE` privilege on
 it. Otherwise Aidbox won't be able to install most of the extensions.
