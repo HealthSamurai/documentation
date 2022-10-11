@@ -105,5 +105,22 @@ livenessProbe:
   periodSeconds:  5
   successThreshold: 1
   failureThreshold: 4
+```
+
+#### Startup probe
+
+Startup probe - provide a way to defer the execution of liveness and readiness probes until a container indicates it’s able to handle them. Kubernetes won’t direct the other probe types to a container if it has a startup probe that hasn’t yet succeeded..
+
+```yaml
+startupProbe:
+  httpGet:
+    path: /health
+    port: 8080
+  scheme: HTTP
+  initialDelaySeconds: 20
+  timeoutSeconds: 5
+  periodSeconds:  5
+  successThreshold: 1
+  failureThreshold: 4
 
 ```
