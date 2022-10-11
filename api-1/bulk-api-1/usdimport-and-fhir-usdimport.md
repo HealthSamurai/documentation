@@ -61,6 +61,9 @@ If you didn't provide `id` in request body, you can use `content-location` in re
 
 For performance reasons `$import` does raw upsert into resource table without history update. If you want to store the previous version of resources in history, please set `update = true`
 
-With this flag Aidbox will update history for updated resources.
+With this flag Aidbox will update history for updated resources. For each resource:
+
+* if resource was not present in DB before the import, the import time will be the same.
+* if resource was present in DB before and it's updated during the import, it will double the time importing this resource because of additional insert operation into `_history` table.
 
 ##
