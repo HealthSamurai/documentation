@@ -39,7 +39,7 @@ To create a new user:
 
 Copy the `user_id`. It looks like `auth0|6310e2d143b66b669906d775`
 
-## Create Tenant in Aidbox Portal
+## Create a Tenant in Aidbox Portal
 
 As the administrator of the Portal create an `Tenant` resource. Please, see [What is Tenant](../background-information/what-is-tenant.md) for more details.
 
@@ -73,7 +73,7 @@ The URLs copied from the Auth0 are used here:
 It's important to provide the `system` attribute
 {% endhint %}
 
-## Create a User in Aidbox Portal
+## Create a user in Aidbox Portal
 
 The user should be linked to a Patient to be able to launch SMART Apps. And at the same time, it should be related to the Auth0 user. Please, see [What is Tenant](../background-information/what-is-tenant.md) for more details.
 
