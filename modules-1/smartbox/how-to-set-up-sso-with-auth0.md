@@ -11,18 +11,18 @@ This guide expands [Set up SMARTbox](set-up-smartbox.md).
 &#x20;To create an application:
 
 * Login to the Auth0
-* Open the 'Applications' page&#x20;
-* Press the 'Create Application' button
+* Open the `Applications` page&#x20;
+* Press the `Create Application` button
 * Give the name of the application
 * Choose the type of application. Consider, Native type
-* Press the 'Create' button
+* Press the `Create` button
 
 After the app is created add the details:
 
-* Application callback URLs: `http://localhost:8888/auth/callback/auth0?`
-* Press the 'Save Changes' button
+* Application callback URLs: `http://localhost:8888/tenant/my-clinic/patient/auth/callback/?`
+* Press the `Save Changes` button
 
-Open the 'Advanced settings' of the application and copy:
+Open the `Advanced settings` of the application and copy:
 
 * `OAuth Authorization URL`
 * `OAuth Token URL`
@@ -32,12 +32,12 @@ Open the 'Advanced settings' of the application and copy:
 
 To create a new user:
 
-* Open the 'Users' page
-* Press the 'Create User' button
+* Open the `Users` page
+* Press the `Create User` button
 * Provide email and password
-* Press the 'Create' button
+* Press the `Create` button
 
-Copy the 'user\_id'. It looks like `auth0|6310e2d143b66b669906d775`
+Copy the `user_id`. It looks like `auth0|6310e2d143b66b669906d775`
 
 ## Create Tenant in Aidbox Portal
 
@@ -102,14 +102,14 @@ meta:
 
 ## Checking it works together
 
-* Open the link `https://f81a-5-161-99-84.ngrok.io` in the Invisible (Stealth) mode
-* Press the 'Sign in with Auth0' button
-* Enter `email` and `password` of the user we created in the Auth0
-* Press the 'Login' button
+* Open the link `https://f81a-5-161-99-84.ngrok.io/tenant/my-clinic/patient/portal` in the Invisible (Stealth) mode
+* Click the `Sign In` link
+* Enter `email` and `password` of the user, we created in the Auth0
+* Press the `Login` button
 
 ### Launch the Growth Chart
 
-* On the SMARTbox page 'Applications' press the 'Launch' button against the Growth Chart application
-* Press the 'Allow' button on the consent screen
+* On the SMARTbox page `Applications`
+* Press the `Launch` button against the Growth Chart application
+* Press the `Allow` button on the consent screen
 * Get the Growth Chart works
-
