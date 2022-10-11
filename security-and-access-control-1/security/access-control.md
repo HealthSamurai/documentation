@@ -123,11 +123,11 @@ params:
   expiration: 3
   methods:
     aidbox.sdc/read-document:
-	  params:
-	    id: doc-1
-	aidbox.sdc/save-document:
-	  params:
-	    id: doc-1
+      params:
+        id: doc-1
+    aidbox.sdc/save-document:
+      params:
+        id: doc-1
 ```
 
 This RPC method will return you a JWT token, which can be used only to call two methods with params you described:
