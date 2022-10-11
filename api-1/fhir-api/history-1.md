@@ -22,7 +22,30 @@ The `request` element provides information about the interaction that occurred a
 
 Only operations create, update, and delete create history entries. Conditional creates, updates and deletes are converted to direct updates and deletes in a history list.
 
-### Example of the create (POST, PUT) operation in history:
+
+
+#### Internals of History API
+
+History table is a separate table into which a previous resource version is inserted on the resource update. When you make a call through History API the following query is invoked joining the _resource table_ and _history table_ for the same resource (example for Patient resource):
+
+```sql
+WITH history AS (
+    (SELECT id, txid, ts, resource_type, status::text AS status, resource, cts 
+           FROM "patient" WHERE id = ?) 
+    UNION 
+    (SELECT id, txid, ts, resource_type, status::text AS status, resource, cts
+           FROM "patient_history" WHERE id = ?)) 
+SELECT * FROM history ORDER BY txid DESC
+LIMIT ? OFFSET ?
+```
+
+On the create operation (e.g. via PUT/POST CRUD requests or [$import](../bulk-api-1/usdimport-and-fhir-usdimport.md)), i.e. the table does not contain the resource with same id and resource type, History API call will return the most recent resource version which is stored in the resource table with name `<resourceType>_history`(e.g. `patient_history` table).
+
+On update operation the old version of the resource in the main table is replaced by a new one. The old version firstly is moved to resource table and replaced with a new version in the main history table.&#x20;
+
+As all previous versions of the resource are stored in history table, the size of this table will grow with every update, on the size of the resource that was updated. At the same time, as history records are stored in a separate table, the _size_ of this table doesn't affect the performance of the operations not related to history (search, CRUD, etc.).
+
+#### Example: create (POST, PUT)
 
 ```yaml
 resourceType: Bundle
@@ -45,7 +68,7 @@ entry:
     url: Patient
 ```
 
-### Example of the update (PUT, PATCH) operation in history:
+#### Example: update (PUT, PATCH)
 
 ```yaml
 resourceType: Bundle
