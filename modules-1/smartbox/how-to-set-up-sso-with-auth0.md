@@ -4,7 +4,7 @@ description: This guide explains how to set up single sign-on features (SSO) wit
 
 # How to set up SSO with Auth0
 
-This guide expands [Set up SMARTbox](how-to-set-up-sso-with-auth0.md#set-up-smartbox).
+This guide expands [Set up SMARTbox](set-up-smartbox.md).
 
 ## Create an application in Auth0
 
