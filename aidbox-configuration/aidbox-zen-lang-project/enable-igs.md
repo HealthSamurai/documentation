@@ -10,9 +10,9 @@ Currently supported list of features:
 * **Searches** (_partial support_) — enable search
 * **CodeSystems & ValueSets** (_partial support_) — enable lookup and binding validation
 
-## Enable IG
+## How to enable an IG
 
-You can enable FHIR IGs you want to use by specifying dependencies in `zen-package.edn`. Here's an example for enabling US Core IG and Plan Net IG:
+You can enable FHIR IGs you want to use by specifying dependencies in `zen-package.edn`. Here's an example for enabling US Core IG and DaVinci PDEX Plan Net:
 
 {% code title="zen-package.edn" %}
 ```clojure
