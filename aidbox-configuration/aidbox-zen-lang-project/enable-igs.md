@@ -10,7 +10,9 @@ Currently supported list of features:
 * **Searches** (_partial support_) — enable search
 * **CodeSystems & ValueSets** (_partial support_) — enable lookup and binding validation
 
-You can enable FHIR IGs you want to use by specifying dependencies in `zen-package.edn`.
+## Enable IG
+
+You can enable FHIR IGs you want to use by specifying dependencies in `zen-package.edn`. Here's an example for enabling US Core IG and Plan Net IG:
 
 {% code title="zen-package.edn" %}
 ```clojure
@@ -18,6 +20,14 @@ You can enable FHIR IGs you want to use by specifying dependencies in `zen-packa
         plan-net "https://github.com/zen-fhir/hl7-fhir-us-davinci-pdex-plan-net.git"}}
 ```
 {% endcode %}
+
+{% hint style="info" %}
+Don't forget to commit changes after you made changes to your Aidbox configuration project:
+
+`git add zen-package.edn && git commit -m "Add IG dependencies"`
+{% endhint %}
+
+## Available IGs
 
 View the gallery of available FHIR IGs in our GitHub repository:
 
