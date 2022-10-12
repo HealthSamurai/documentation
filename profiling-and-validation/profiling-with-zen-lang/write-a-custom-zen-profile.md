@@ -8,6 +8,10 @@ description: Create a simple profile with zen
 This article is work-in-progress. Please [contact us](../../contact-us.md) if you want to get details on how to create a custom zen profile.
 {% endhint %}
 
+{% hint style="info" %}
+Note: you can not use Attributes and [zen profiles](./) on the same resource at the same time
+{% endhint %}
+
 {% embed url="https://github.com/zen-fhir/zen.fhir/blob/main/README.org" %}
 Full syntax description and examples
 {% endembed %}

@@ -63,7 +63,7 @@ In order to define first-class extension as zen profile you should follow the st
 
 ## Define new extension
 
-In Aidbox, you can define first-class extensions using the custom resource Attribute.
+In Aidbox, you can define first-class extensions using the custom resource [Attribute](../core-modules/entities-and-attributes.md).
 
 Let's create an extension definition of type `Reference` in the [REST Console](https://docs.aidbox.app/tutorials/rest-console) of Aidbox:
 
@@ -107,6 +107,10 @@ extensionUrl: urn:extension:requestedOrganizationDepartment
 *   `extensionUrl` - _string_.
 
     URL which will be used to create `extension` element in FHIR format. **If omitted, Attribute won't be transformed in FHIR format**
+
+{% hint style="info" %}
+Note: you can not use Attributes and [zen profiles](../profiling-and-validation/profiling-with-zen-lang/) on the same resource at the same time
+{% endhint %}
 
 ## Use your extension
 

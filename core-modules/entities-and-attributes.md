@@ -8,7 +8,7 @@ In Aidbox, almost everything is a **Resource**. Resource has a type, which is pl
 
 ### Entity
 
-Entity is meta-resource, which describe all resources in aidbox. There are three types of Entities: resource, type and primitive. 
+Entity is meta-resource, which describe all resources in aidbox. There are three types of Entities: resource, type and primitive.&#x20;
 
 #### Primitives:
 
@@ -146,5 +146,6 @@ GET /Attribute?entity=Patient\
 ...
 ```
 
-
-
+{% hint style="info" %}
+Note: you can not use Attributes and [zen profiles](../profiling-and-validation/profiling-with-zen-lang/) on the same resource at the same time
+{% endhint %}
