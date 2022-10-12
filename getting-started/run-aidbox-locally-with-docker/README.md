@@ -126,10 +126,10 @@ Create a directory `project` with following structure:
  box
  {:zen/tags #{aidbox/system}}}</code></pre> |
 
-Initialize it as a git repo and commit all the files:
+Initialize this directory as a git repo and commit all the files:
 
 ```shell-session
-git init && git add --all && git commit -m "Initial commit"
+cd project/ && git init && git add --all && git commit -m "Initial commit"
 ```
 
 {% hint style="info" %}
