@@ -4,45 +4,35 @@ description: Simple API to react on resource changes
 
 # Changes API
 
+Changes API can be used to get changes of resourceType or specific resource by versions. Each event (creating, updating, deleting) will increase version of the resource by 1.
 
-
-Polling request is cheap! If you want to watch rare changes (minutes-hours), this API is very resource efficient (no subscriptions, no queues) and provides you lots of control. If nothing has been changed, you will get a response with status `304`, otherwise a list of changes and a new **version** to poll next time.
+Polling request is cheap! If you want to watch rare changes (minutes-hours), this API is very resource efficient (no subscriptions, no queues) and provides you lots of control. If nothing has been changed, you will get a response with status `304`, otherwise Changes API will response with a list of changes and a new **version** to poll next time.
 
 ### Endpoints
 
-`GET /<resourceType>/$changes` — returns the latest version for the `resourceType`.\
+`GET /<resourceType>/$changes` — returns the latest version for the `resourceType`.
+
+`GET /<resourceType>/$changes?<parameters>`— depending on parameters returns changes of the `resourceType`.&#x20;
+
+\
 `GET /<resourceType>/<id>/$changes`  — returns latest version of a specific resource.
+
+`GET /<resourceType>/<id>/$changes?<parameters>`— depending on parameters returns changes of the specific resource.&#x20;
 
 ### Query-string parameters
 
-| Parameter                                 | Meaning                                                                                                                                                                                                             |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `version=<version>`                       | returns changes since the specified version                                                                                                                                                                         |
-| `version=<lower-version>,<upper-version>` | returns changes after the `lower-version` (exclusive) up to the`upper-version` (inclusive)                                                                                                                          |
-| `fhir=<boolean>`                          | <p>if set to <code>true</code> converts <code>changes.*.resource</code> to the FHIR format<br><em>(note, since Changes API is not <code>/fhir/</code> endpoint, the rest of the body isn't FHIR compliant)</em></p> |
-| `omit-resources=<boolean>`                | if set to `true` omits resources leaving only `id` & `resourceType` fields                                                                                                                                          |
-| `_count` & `_page`                        | work as described [here](https://docs.aidbox.app/api-1/fhir-api/search-1/\_count-and-\_page)                                                                                                                        |
-| `_total` & `_totalMethod`                 | work as described [here](https://docs.aidbox.app/api-1/fhir-api/search-1/\_total-or-\_countmethod)                                                                                                                  |
+Below are parameters to use in both resourceType and specific resource endpoints.
+
+| Parameter                                 | Meaning                                                                                                                                                                                                                      |
+| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `version=<version>`                       | Returns changes since the specified version                                                                                                                                                                                  |
+| `version=<lower-version>,<upper-version>` | Returns changes after the `lower-version` (exclusive) up to the`upper-version` (inclusive)                                                                                                                                   |
+| `fhir=<boolean>`                          | <p>If set to <code>true</code> converts <code>changes.*.resource</code> to the FHIR format<br><em>(note</em>: <em>since Changes API is not <code>/fhir/</code> endpoint, the rest of the body isn't FHIR compliant)</em></p> |
+| `omit-resources=<boolean>`                | If set to `true` omits resources leaving only `id` & `resourceType` fields                                                                                                                                                   |
+| `_count` & `_page`                        | Work as described [here](https://docs.aidbox.app/api-1/fhir-api/search-1/\_count-and-\_page)                                                                                                                                 |
+| `_total` & `_totalMethod`                 | Work as described [here](https://docs.aidbox.app/api-1/fhir-api/search-1/\_total-or-\_countmethod)                                                                                                                           |
 
 With parameters which start with [dot](../fhir-api/search-1/.-expressions.md) you can filter resources by equality, e.g. `.name.0.family=<string>`
-
-### Cache performance
-
-Changes API uses a cache to track a resourceType last change. To build the cache it runs a query to get the `max` value of the `txid` column. To make this operation efficient, it is recommended to build an index on the `txid` column for tables where Changes API will be used.
-
-Use query:
-
-```sql
-CREATE INDEX IF NOT EXISTS <resourceType>_txid_btree ON <resourceType> using btree(txid);
-
-CREATE INDEX IF NOT EXISTS <resourceType>_history_txid_btree ON <resourceType>_history using btree(txid);
-```
-
-Replace \<resourceType> with table name, for example:
-
-`CREATE INDEX IF NOT EXISTS patient_txid_btree ON patient using btree(txid);`
-
-`CREATE INDEX IF NOT EXISTS patient_history_txid_btree ON patient_history using btree(txid);`
 
 ### Example
 
@@ -183,3 +173,21 @@ changes:
 - event: created
   resource: {id: pt-2, resourceType: Patient}
 ```
+
+### Cache performance
+
+Changes API uses a cache to track a resourceType last change. To build the cache it runs a query to get the `max` value of the `txid` column. To make this operation efficient, it is recommended to build an index on the `txid` column for tables where Changes API will be used.
+
+Use query:
+
+```sql
+CREATE INDEX IF NOT EXISTS <resourceType>_txid_btree ON <resourceType> using btree(txid);
+
+CREATE INDEX IF NOT EXISTS <resourceType>_history_txid_btree ON <resourceType>_history using btree(txid);
+```
+
+Replace \<resourceType> with table name, for example:
+
+`CREATE INDEX IF NOT EXISTS patient_txid_btree ON patient using btree(txid);`
+
+`CREATE INDEX IF NOT EXISTS patient_history_txid_btree ON patient_history using btree(txid);`
