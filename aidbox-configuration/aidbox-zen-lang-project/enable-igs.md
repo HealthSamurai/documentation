@@ -10,9 +10,13 @@ Currently supported list of features:
 * **Searches** (_partial support_) — enable search
 * **CodeSystems & ValueSets** (_partial support_) — enable lookup and binding validation
 
-## Enable IG
+## How to enable an IG
 
-You can enable FHIR IGs you want to use by specifying dependencies in `zen-package.edn`. Here's an example for enabling US Core IG and Plan Net IG:
+You can enable FHIR IGs you want to use by specifying dependencies in the `zen-package.edn`.&#x20;
+
+#### Specify zen FHIR IGs in your zen-package.edn
+
+Here's an example for enabling US Core IG and DaVinci PDEX Plan Net:
 
 {% code title="zen-package.edn" %}
 ```clojure
@@ -22,10 +26,16 @@ You can enable FHIR IGs you want to use by specifying dependencies in `zen-packa
 {% endcode %}
 
 {% hint style="info" %}
-Don't forget to commit changes after you made changes to your Aidbox configuration project:
-
-`git add zen-package.edn && git commit -m "Add IG dependencies"`
+To the left of each zen FHIR IG URL you give a name. In this example the names are `us-core` and `plan-net`. These names are arbitrary and currently are used only to annotate a URL.
 {% endhint %}
+
+#### Commit changes to your Aidbox configuration project
+
+Don't forget to do `git commit` after you made changes to your Aidbox configuration project. To commit you can execute the following command inside your Aidbox configuration project directory:
+
+```bash
+git add zen-package.edn && git commit -m "Add IG dependencies"
+```
 
 ## Available IGs
 
