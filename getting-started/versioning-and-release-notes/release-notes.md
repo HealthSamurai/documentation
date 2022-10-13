@@ -2,6 +2,8 @@
 
 ## October 2022 _`edge`_
 
+* Supported [log streaming for browser](../../core-modules/logging-and-audit/#logs-in-browser) in user-friendly format.
+
 ## September 2022 _`latest`_
 
 * Released [Seed v2 service](../../aidbox-configuration/aidbox-zen-lang-project/seed-v2.md) for [Aidbox configuration projects](../../aidbox-configuration/aidbox-zen-lang-project/)

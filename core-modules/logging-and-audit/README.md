@@ -31,6 +31,10 @@ GET /_logs
 Please, pay attention, that you will not see the response for `GET /_logs` request in the Aidbox REST console. Use the terminal, or the browser console instead.
 {% endhint %}
 
+### Logs in browser
+
+You can open `[aidbox-base]/_logs?format=pretty` in your browser, and Aidbox will produce logs in pretty format, similar to [AIDBOX\_STDOUT\_PRETTY](./#stdout-log) format for stdout. Appeared in v2210.
+
 ## Configure logging
 
 ### Stdout log
