@@ -18,7 +18,7 @@ Currently supported list of features:
 
 You can enable FHIR IGs you want to use by specifying dependencies in the `zen-package.edn`.&#x20;
 
-#### Specify zen FHIR IGs in your zen-package.edn
+### Specify zen FHIR IGs in your zen-package.edn
 
 Here's an example for enabling US Core IG and DaVinci PDEX Plan Net:
 
@@ -39,7 +39,7 @@ Or another example for enabling FHIR r4 core IG:
 To the left of each zen FHIR IG URL you give a name. In the examples above the names are `r4-core`, `us-core` and `plan-net`. These names are arbitrary and currently are used only to annotate a URL.
 {% endhint %}
 
-#### Import the zen FHIR IGs entrypoints
+### Import the zen FHIR IGs entrypoints
 
 To enable zen FHIR IGs you provided you need to import them inside of your [entrypoint](setting-up-a-configuration-project.md#set-system-entrypoint).
 
@@ -58,7 +58,7 @@ Using the example from [the getting started page](../../getting-started/run-aidb
  box
  {:zen/tags #{aidbox/system}}}</code></pre> |
 
-#### Commit changes to your Aidbox configuration project
+### Commit changes to your Aidbox configuration project
 
 Don't forget to do `git commit` after you made changes to your Aidbox configuration project. To commit you can execute the following command inside your Aidbox configuration project directory:
 
@@ -66,9 +66,17 @@ Don't forget to do `git commit` after you made changes to your Aidbox configurat
 git add zen-package.edn && git commit -m "Add IG dependencies"
 ```
 
-#### Restart Aidbox
+### Restart Aidbox
 
-Currently, after you have changed `zen-package.edn`, you need to restart Aidbox for your changes to be applied.
+Currently, after you changed `zen-package.edn`, you need to restart Aidbox for your changes to be applied.
+
+### Check if an IG is enabled
+
+After Aidbox restarted with a new configuration you can use profiles, terminology and other IG features.
+
+To see currently loaded profiles you can go to the `profiles` UI page:
+
+<img src="../../.gitbook/assets/image (4).png" alt="" data-size="original">             ![](<../../.gitbook/assets/image (3).png>)
 
 ## Available IGs
 

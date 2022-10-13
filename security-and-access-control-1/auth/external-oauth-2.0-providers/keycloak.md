@@ -9,7 +9,7 @@ description: How to configure Keycloak IdentityProvider with Aidbox
 *   Click on the dropdown in the top-left corner where it says `Master`, then click on `Create Realm`\
     ``
 
-    <figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 *   Fill the name of your realm.\
 
 
@@ -36,7 +36,7 @@ description: How to configure Keycloak IdentityProvider with Aidbox
 *   Add `<aidbox-url>/auth/callback/keycloak` to `Valid redirect URIs` field.\
 
 
-    <figure><img src="../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../.gitbook/assets/image (3) (2).png" alt=""><figcaption></figcaption></figure>
 
 ## Create IdentityProvider in Aidbox
 
@@ -63,7 +63,7 @@ id: keycloak
 
 You can find client secret on `Clients details` page under `Credentials` tab
 
-<figure><img src="../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Login into Aidbox
 

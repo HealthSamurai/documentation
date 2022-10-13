@@ -110,11 +110,11 @@ in the `.env` file where `<your-license-key>` is a license key which you obtaine
 
 You can find more about required Aidbox environment variables [here.](../../reference/configuration/environment-variables/aidbox-required-environment-variables.md)
 
-### Create your [Aidbox configuration project](../../aidbox-configuration/aidbox-zen-lang-project/)
+### Create and set up your [Aidbox configuration project](../../aidbox-configuration/aidbox-zen-lang-project/)
 
 Your project is a place to set various Aidbox instance configurations, such as: [API constructor](../../aidbox-configuration/aidbox-api-constructor.md), [seed service](../../aidbox-configuration/aidbox-zen-lang-project/seed-v2.md), etc.
 
-Create a directory `project` with following structure:
+#### Create a directory `project` with following structure:
 
 | Directory structure                                                      | zen-package.edn                                                                  | zrc/system.edn                                                                                                                           |
 | ------------------------------------------------------------------------ | -------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
@@ -126,15 +126,23 @@ Create a directory `project` with following structure:
  box
  {:zen/tags #{aidbox/system}}}</code></pre> |
 
-Initialize this directory as a git repo and commit all the files:
+{% hint style="info" %}
+You can change the names `project`, `system` and `box` to your preference. This requires updating `docker-compose.yml` `aidbox.volumes` and `AIDBOX_ZEN_ENTRYPOINT`, `BOX_PROJECT_GIT_URL` variables. Please refer to the [Aidbox configuration project documentation](../../aidbox-configuration/aidbox-zen-lang-project/) for details.
+{% endhint %}
+
+#### Initialize this directory as a git repo and commit all the files you created:
 
 ```shell-session
 cd project/ && git init && git add --all && git commit -m "Initial commit"
 ```
 
-{% hint style="info" %}
-You can change the names `project`, `system` and `box` to your preference. This requires updating `docker-compose.yml` `aidbox.volumes` and `AIDBOX_ZEN_ENTRYPOINT`, `BOX_PROJECT_GIT_URL` variables. Please refer to the [Aidbox configuration project documentation](../../aidbox-configuration/aidbox-zen-lang-project/) for details.
-{% endhint %}
+After this you have successfully set up your Aidbox configuration project and now can proceed to the next step and launch Aidbox.
+
+If you want to learn in detail options available during Aidbox configuration project set up, please refer to this page:
+
+{% content-ref url="../../aidbox-configuration/aidbox-zen-lang-project/setting-up-a-configuration-project.md" %}
+[setting-up-a-configuration-project.md](../../aidbox-configuration/aidbox-zen-lang-project/setting-up-a-configuration-project.md)
+{% endcontent-ref %}
 
 ### Launch Aidbox&#x20;
 
