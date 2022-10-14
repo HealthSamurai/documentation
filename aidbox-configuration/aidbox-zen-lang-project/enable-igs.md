@@ -14,6 +14,12 @@ Currently supported list of features:
 * **Searches** (_partial support_) — enable search
 * **CodeSystems & ValueSets** (_partial support_) — enable lookup and binding validation
 
+## Available IGs
+
+View the gallery of available FHIR IGs in our GitHub repository:
+
+{% embed url="https://github.com/orgs/zen-fhir/repositories" %}
+
 ## How to enable an IG
 
 You can enable FHIR IGs you want to use by specifying dependencies in the `zen-package.edn`.&#x20;
@@ -77,11 +83,3 @@ After Aidbox restarted with a new configuration you can use profiles, terminolog
 To see currently loaded profiles you can go to the `profiles` UI page:
 
 <img src="../../.gitbook/assets/image (4).png" alt="" data-size="original">             ![](<../../.gitbook/assets/image (3).png>)
-
-## Available IGs
-
-View the gallery of available FHIR IGs in our GitHub repository:
-
-{% embed url="https://github.com/orgs/zen-fhir/repositories" %}
-Gallery of available FHIR IGs&#x20;
-{% endembed %}
