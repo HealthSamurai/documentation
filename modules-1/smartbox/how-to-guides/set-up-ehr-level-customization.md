@@ -20,9 +20,9 @@ smartbox:
 `logoUrl` should be a link to a publicly accessible image file
 {% endhint %}
 
-## Sandbox customization
+## Sandbox email templates customization
 
-### Confirm address email template
+### Confirm email address
 
 ```http
 PUT /NotificationTemplate/developer-confirm-email
@@ -45,7 +45,7 @@ template: |-
     * `familyName` of the developer
 * `confirm-address` is the link new user open to confirm the email exist
 
-### Application rejected email template
+### Application rejected
 
 ```
 PUT /NotificationTemplate/review-request-rejected
@@ -65,7 +65,7 @@ template: |-
     * `givenName`  of the developer
     * `familyName` of the developer
 
-### &#x20;Application approved email template
+### &#x20;Application approved
 
 ```
 PUT /NotificationTemplate/review-request-approved
@@ -85,7 +85,7 @@ template: |-
     * `givenName`  of the developer
     * `familyName` of the developer
 
-### Application suspended email template
+### Application suspended
 
 ```
 PUT /NotificationTemplate/suspend-deployed-application
@@ -105,7 +105,7 @@ template: |-
     * `givenName`  of the developer
     * `familyName` of the developer
 
-### Application suspended email template
+### Application suspended
 
 ```
 PUT /NotificationTemplate/approve-deployed-application
