@@ -19,7 +19,7 @@ description: Managing Aidbox licenses in a project
    * Development
 6. Enter the _Name_ of the license
 7. Specify _Hosting_ method
-   * Self Hosting
+   * Self-hosted
    * In Cloud / GCP
      1. Specify _Zone_
      2. Enter the _Instance URL_
