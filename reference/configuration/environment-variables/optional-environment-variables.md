@@ -374,9 +374,14 @@ Aidbox generates JWT tokens for different purposes:
 
 Aidbox supports two signing algorithms: RS256 and HS256. RS256 expects providing private key for signing JWT and public key for verifing it. As far as HS256 needs only having secret for both operations.
 
-By default Aidbox generates both keypair and secret on every startup. This means that on every start all previously generated JWT will be invalid.
+{% hint style="warning" %}
+Attention: by default Aidbox generates both keypair and secret on every startup. This means that on every start all previously generated JWT will be invalid. In order to avoid such undesirable situation, you may pass RSA keypair and secret as Aidbox parameters.\
 
-In order to avoid such undesirable situation, you may pass RSA keypair and secret as Aidbox parameters.
+
+It is required to pass RSA keypair and secret as Aidbox parameters if you have multiple replicas of the same Aidbox/Multibox instance.
+{% endhint %}
+
+
 
 #### Generate RSA keypair
 
