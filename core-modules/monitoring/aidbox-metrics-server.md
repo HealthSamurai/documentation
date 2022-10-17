@@ -60,14 +60,14 @@ scrape_configs:
 
 #### HTTP
 
-| Metric                                        | Update frequency | Description                                          |
-| --------------------------------------------- | ---------------- | ---------------------------------------------------- |
-| `aidbox_http_request_duration_seconds_bucket` | continuous       | request duration  as cumulative counters for buckets |
-| `aidbox_http_request_duration_seconds_count`  | continuous       | request duration events count                        |
-| `aidbox_http_request_duration_seconds_sum`    | continuous       | sum of request duration event value                  |
-| `aidbox_http_request_wait_seconds_bucket`     | continuous       | queue wait time as cumulative counters for buckets   |
-| `aidbox_http_request_wait_seconds_count`      | continuous       | queue wait time events count                         |
-| `aidbox_http_request_wait_seconds_sum`        | continuous       | sum of queue wait time events value                  |
+| Metric                                        | Update frequency | Description                                           |
+| --------------------------------------------- | ---------------- | ----------------------------------------------------- |
+| `aidbox_http_request_duration_seconds_bucket` | continuous       | request duration  as cumulative counters for buckets  |
+| `aidbox_http_request_duration_seconds_count`  | continuous       | request duration events count                         |
+| `aidbox_http_request_duration_seconds_sum`    | continuous       | sum of request duration events value                  |
+| `aidbox_http_request_wait_seconds_bucket`     | continuous       | queue waiting time as cumulative counters for buckets |
+| `aidbox_http_request_wait_seconds_count`      | continuous       | queue wait time events count                          |
+| `aidbox_http_request_wait_seconds_sum`        | continuous       | sum of queue wait time events value                   |
 
 #### Postgres
 
