@@ -17,7 +17,7 @@ US Core IG contains the following FHIR artifacts: Profiles, Extensions, Terminol
 ## Steps
 
 {% hint style="warning" %}
-Currently it is only possible to use FHIR IGs for on-premises installations. We are working to add support for other distributions as well.
+Currently it is only possible to use FHIR IGs for self-hosted installations. We are working to add support for other distributions as well.
 {% endhint %}
 
 1. First of all, set up Aidbox instance. You can follow this [guide](../../getting-started/run-aidbox-locally-with-docker/).

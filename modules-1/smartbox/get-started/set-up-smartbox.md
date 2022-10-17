@@ -8,7 +8,7 @@ description: >-
 
 ### Get licenses
 
-Go to the [Aidbox user portal](https://aidbox.app) and request 2 "on-premises" Aidbox licenses for Portal and Develop Sandbox. It is a long string like
+Go to the [Aidbox user portal](https://aidbox.app) and request 2 "self-hosted" Aidbox licenses for Portal and Develop Sandbox. It is a long string like
 
 ```
 eyJhbGciOiJ...

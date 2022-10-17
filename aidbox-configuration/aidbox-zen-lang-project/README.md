@@ -42,7 +42,7 @@ Aidbox configuration project is sometimes referred to as Aidbox Project or just 
 
 Aidbox configuration project is simply a directory with files so to use it in Aidbox you just need to tell where it is located and how it can be accessed.
 
-Currently Aidbox configuration projects are supported only for on-premise instances. Support for Cloud and AWS Marketplace installations is coming soon.
+Currently Aidbox configuration projects are supported only for self-hosted instances. Support for Cloud and AWS Marketplace installations is coming soon.
 
 {% hint style="info" %}
 Configuration projects can be provided either as a git repository url or as a local path. We recommend to keep your project in git as the source control allows you to easily track changes, revert them or switch between branches.
@@ -50,7 +50,7 @@ Configuration projects can be provided either as a git repository url or as a lo
 
 ### Set up a configuration project
 
-Setting up a project on-premise is done by providing access to a project files.&#x20;
+Setting up a self-hosted project is done by providing access to a project files.&#x20;
 
 {% content-ref url="setting-up-a-configuration-project.md" %}
 [setting-up-a-configuration-project.md](setting-up-a-configuration-project.md)

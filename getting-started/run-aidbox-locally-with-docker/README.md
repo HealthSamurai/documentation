@@ -4,7 +4,7 @@ This quickstart guide explains how to run Aidbox locally using docker compose. Y
 
 ### Get a license
 
-Go to the [Aidbox portal](https://aidbox.app). Sign up and click the new license button. Choose product type "Aidbox" and hosting type "on premises".
+Go to the [Aidbox portal](https://aidbox.app). Sign up and click the new license button. Choose product type "Aidbox" and hosting type "self hosted".
 
 You'll see your license in the "My Licenses" list. Click on your new license and copy credentials. It is a long string like
 
