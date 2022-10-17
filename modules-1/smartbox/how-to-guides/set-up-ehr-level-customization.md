@@ -4,7 +4,7 @@ description: This guide explains how to set up EHR-level customization
 
 # Set up EHR-level customization
 
-### How to set up EHR logo
+## How to set up EHR logo
 
 To set up logo use the following request.
 
@@ -22,7 +22,7 @@ smartbox:
 
 ## Sandbox customization
 
-### Confirm email template
+### Confirm address email template
 
 ```http
 PUT /NotificationTemplate/developer-confirm-email
@@ -45,7 +45,7 @@ template: |-
     * `familyName` of the developer
 * `confirm-address` is the link new user open to confirm the email exist
 
-### Application rejected template
+### Application rejected email template
 
 ```
 PUT /NotificationTemplate/review-request-rejected
@@ -65,7 +65,7 @@ template: |-
     * `givenName`  of the developer
     * `familyName` of the developer
 
-### &#x20;Application approved template
+### &#x20;Application approved email template
 
 ```
 PUT /NotificationTemplate/review-request-approved
@@ -85,7 +85,7 @@ template: |-
     * `givenName`  of the developer
     * `familyName` of the developer
 
-### Application suspended template
+### Application suspended email template
 
 ```
 PUT /NotificationTemplate/suspend-deployed-application
@@ -105,7 +105,7 @@ template: |-
     * `givenName`  of the developer
     * `familyName` of the developer
 
-### Application suspended template
+### Application suspended email template
 
 ```
 PUT /NotificationTemplate/approve-deployed-application
