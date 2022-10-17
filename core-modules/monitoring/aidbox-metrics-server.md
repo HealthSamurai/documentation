@@ -66,8 +66,8 @@ scrape_configs:
 | `aidbox_http_request_duration_seconds_count`  | continuous       | request duration events count                         |
 | `aidbox_http_request_duration_seconds_sum`    | continuous       | sum of request duration events value                  |
 | `aidbox_http_request_wait_seconds_bucket`     | continuous       | queue waiting time as cumulative counters for buckets |
-| `aidbox_http_request_wait_seconds_count`      | continuous       | queue wait time events count                          |
-| `aidbox_http_request_wait_seconds_sum`        | continuous       | sum of queue wait time events value                   |
+| `aidbox_http_request_wait_seconds_count`      | continuous       | queue waiting time events count                       |
+| `aidbox_http_request_wait_seconds_sum`        | continuous       | sum of queue waiting time events value                |
 
 #### Postgres
 
