@@ -16,7 +16,8 @@ description: Managing Aidbox licenses in a project
    * Multibox
 5. Specify _License type_
    * Standard
-   * Development
+   * Development (available if you have a contract for a standard license)
+   * CI/CD (available if you have a contract for a standard license)
 6. Enter the _Name_ of the license
 7. Specify _Hosting_ method
    * Self-hosted

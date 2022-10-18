@@ -8,21 +8,30 @@ Aidbox offers developers a smooth path from a tiny digital health app prototype 
 
 ## Aidbox Licenses
 
-You can try Aidbox [locally](run-aidbox-locally-with-docker/) or in [Aidbox Sandbox](run-aidbox-in-aidbox-sandbox.md). Standard license allows you to use Aidbox for free for 14 days. You can't use it with real healthcare data or PHI (Protected Health Information). But other than that, you can try all the features of the paid Aidbox version and it is enough for proper Aidbox evaluation and the beginning of your healthcare app development&#x20;
+To start using Aidbox or Multibox visit the [Aidbox user portal](https://aidbox.app/), create a [project ](../overview/aidbox-user-portal/projects.md)and get a [standard license](../overview/aidbox-user-portal/licenses.md). A standard license allows running Aidbox [locally](run-aidbox-locally-with-docker/) or in [Aidbox Sandbox](run-aidbox-in-aidbox-sandbox.md) for 14 days and then can be extended by the Health Samurai team. You can't use it with real healthcare data or PHI (Protected Health Information). But other than that, you can try all the features of Aidbox and decide if Aidbox is a good fit for your digital healthcare solution.&#x20;
 
-If you need Aidbox for a staging or production environment, it is time to move to the paid Aidbox version. Moving to the paid **Aidbox** is easy. [Log in](https://aidbox.app/) to the user portal and request a standard Aidbox license. Health Samurai will take care of the rest.
+#### Product license types:
 
-If you need more than one Aidbox license, you will pay even less for the second Aidbox license that you are purchasing. If you are building a SaaS solution that would benefit from having a separate FHIR server for each client, you can get a **multi-tenant version of Aidbox (Multibox)**.
+| **Aidbox Edition**                | **Price** |
+| --------------------------------- | --------- |
+| Aidbox standard license (14 days) | free      |
+| Aidbox standard license           | $         |
+| Multi-tenant Aidbox (Multibox)    | \$$       |
 
-Do not forget that you can host Aidbox yourself, or Health Samurai can host Aidbox for you in their cloud.
+After you get contract for a standard license you can get additional licenses for development and CI/CD pipelines:
 
-| **Aidbox Edition**             | **Price** |
-| ------------------------------ | --------- |
-| Aidbox (14-day license)        | free      |
-| Aidbox                         | $         |
-| Multi-tenant Aidbox (Multibox) | \$$       |
+| Additional licenses | Limitations                                                                                  |
+| ------------------- | -------------------------------------------------------------------------------------------- |
+| Development license | A development license allows to store not more than 2 GBs of data in your database.          |
+| CI/CD license       | A CI/CD license allow to run multiple instances in parallel, but for not more than 72 hours. |
 
-To learn about **pricing**, please get in touch with us at [hello@health-samurai.io](mailto:hello@health-samurai.io).
+You can install, administer, and maintain your own Aidbox or Multibox instance or Health Samurai can host Aidbox for you. To learn more about **pricing and hosting options**, please get in touch with us at [hello@health-samurai.io](mailto:hello@health-samurai.io).
+
+#### Aidbox for education
+
+For non-profit educational institutions the Health Samurai provides stantard Aidbox and Multibox licenses that can be used for instructional and non-commercial academic research. Please [contact us](../contact-us.md) for more information.&#x20;
+
+
 
 ## Aidbox Support
 
