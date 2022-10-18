@@ -10,7 +10,7 @@ Aidbox offers developers a smooth path from a tiny digital health app prototype 
 
 To start using Aidbox or Multibox visit the [Aidbox user portal](https://aidbox.app/), create a [project ](../overview/aidbox-user-portal/projects.md)and get a [standard license](../overview/aidbox-user-portal/licenses.md). A standard license allows running Aidbox [locally](run-aidbox-locally-with-docker/) or in [Aidbox Sandbox](run-aidbox-in-aidbox-sandbox.md) for 14 days and then can be extended by the Health Samurai team. You can't use it with real healthcare data or PHI (Protected Health Information). But other than that, you can try all the features of Aidbox and decide if Aidbox is a good fit for your digital healthcare solution.&#x20;
 
-#### Product license types:
+### Product license types:
 
 | **Aidbox Edition**                | **Price** |
 | --------------------------------- | --------- |
@@ -23,11 +23,11 @@ After you get contract for a standard license you can get additional licenses fo
 | Additional licenses | Limitations                                                                                  |
 | ------------------- | -------------------------------------------------------------------------------------------- |
 | Development license | A development license allows to store not more than 2 GBs of data in your database.          |
-| CI/CD license       | A CI/CD license allow to run multiple instances in parallel, but for not more than 72 hours. |
+| CI/CD license       | A CI/CD license allow to run multiple instances in parallel, but not more than for 72 hours. |
 
-You can install, administer, and maintain your own Aidbox or Multibox instance or Health Samurai can host Aidbox for you. To learn more about **pricing and hosting options**, please get in touch with us at [hello@health-samurai.io](mailto:hello@health-samurai.io).
+You can install, administer, and maintain your own Aidbox or Multibox instance or Health Samurai can host Aidbox for you. To learn more about **pricing and hosting options**, please [get in touch with us](../contact-us.md).
 
-#### Aidbox for education
+### Aidbox for education
 
 For non-profit educational institutions the Health Samurai provides stantard Aidbox and Multibox licenses that can be used for instructional and non-commercial academic research. Please [contact us](../contact-us.md) for more information.&#x20;
 
@@ -45,17 +45,23 @@ Health Samurai offers four support tiers: Basic, Professional, Enterprise, and U
 | Basic Support        | <ul><li>Account manager</li><li>Basic Aidbox consulting</li></ul>                                                                                                                                                                                          | $         |
 | Professional Support | <ul><li>Chat with Aidbox engineers</li><li>Monthly video conferences with Aidbox engineers</li><li>Priority fixing of non-blocking issues**</li><li>Priority release of new Aidbox features**</li><li>Aidbox performance optimization consulting</li></ul> | \$$       |
 | Enterprise Support   | <ul><li>Chat with Aidbox engineers</li><li>Weekly conferences with Aidbox engineers</li><li>Aidbox product enhancement or feature release**</li><li>FHIR and Aidbox consultative review and guidance</li></ul>                                             | \$$$      |
-| Ultimate Support     | <ul><li>Custom Aidbox build</li><li>Dedicated Engineer</li><li>Aidbox development for the Client</li><li>Participation in the Client’s project launch</li></ul>                                                                                            | \$$\$$    |
+| Ultimate Support     | <ul><li>Custom Aidbox build</li><li>Dedicated Engineers</li><li>Aidbox development for the Client</li><li>Participation in the Client’s project launch</li></ul>                                                                                           | \$$\$$    |
 
 \*\* - during the next three releases
 
-Besides Aidbox product and Aidbox Support, Health Samurai offers Professional services around Aidbox:
+### Professional services
 
-* Infrastructure deployment as a project
+If you have a development team ready to start, but need that extra expertise to get started or move faster, we can help you at any stage. Aidbox professional services include:&#x20;
+
+* Production-ready deployment as a project
+* Development quick start training&#x20;
+* Operations quick start training
 * Migration from another FHIR server/platform to Aidbox
 * Project bootstrapping
-* Performance optimization
-* Aidbox quick start training for engineers
+* Performance tuning and optimization
+* Major version upgrade
+
+We can also work with you to build a custom engagement that suits your needs. Please [contact us](../contact-us.md) for more info.
 
 ### Aidbox Trial
 
@@ -65,4 +71,4 @@ Aidbox license can be received for a trial period at no cost with the purchase o
 * 2 months with Professional support
 * 3 months with Enterprise or Ultimate support
 
-To learn about **pricing**, please get in touch with us at [hello@health-samurai.io](mailto:hello@health-samurai.io).
+To learn about **pricing**, please get in touch [with us](../contact-us.md).
