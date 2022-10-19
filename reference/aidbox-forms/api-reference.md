@@ -1,13 +1,16 @@
 # API reference
 
-* \`\`[`get-forms`](api-reference.md#get-forms) - get existed forms
-* \`\`[`get-form`](api-reference.md#get-form) - get form definition for given form name
-* \`\`[`launch`](api-reference.md#launch) - launch new form with given params
-* \`\`[`read-document`](api-reference.md#read-document) - get form with saved document
-* \`\`[`save`](api-reference.md#save) - save document
-* \`\`[`sign`](api-reference.md#sign) - finalize document, run extracts
-* \`\`[`aidbox.sdc/convert-document`](api-reference.md#aidbox.sdc-convert-document) - converts SDCDocument to FHIR QuestionnaireResponse
-* \`\`[`aidbox.sdc/convert-questionnaire`](api-reference.md#aidbox.sdc-convert-questionnaire)- converts FHIR Questionnaire to Aidbox SDC Form [`aidbox.sdc/get-form-access-jwt`](api-reference.md#aidbox.sdc-get-form-access-jwt)- creates policy token for form
+* [`get-forms`](api-reference.md#get-forms) - get existed forms
+* [`get-form`](api-reference.md#get-form) - get form definition for given form name
+* [`launch`](api-reference.md#launch) - launch new form with given params
+* [`read-document`](api-reference.md#read-document) - get form with saved document
+* [`save`](api-reference.md#save) - save document
+* [`sign`](api-reference.md#sign) - finalize document, run extracts
+* [`aidbox.sdc/convert-document`](api-reference.md#aidbox.sdc-convert-document) - converts SDCDocument to FHIR QuestionnaireResponse
+* [`aidbox.sdc/convert-questionnaire`](api-reference.md#aidbox.sdc-convert-questionnaire)- converts FHIR Questionnaire to Aidbox SDC Form [`aidbox.sdc/get-form-access-jwt`](api-reference.md#aidbox.sdc-get-form-access-jwt)- creates policy token for form
+* ``[`amend`](api-reference.md#amend) - put document to in-amendment state. Used for corrections
+
+
 
 ### get-forms
 
@@ -103,9 +106,7 @@ error:
 
 ####
 
-\\
 
-\\
 
 ### read-document
 
@@ -151,11 +152,15 @@ error:
 
 ### save
 
-Save document draft without any validations
+Save document draft without Finalize Profile validations. Can be used with documents in `draft`, `in-progress`, `in-amendment` statuses
 
 | Param    | Description       | Type        | required? |
 | -------- | ----------------- | ----------- | --------- |
 | document | document resource | SDCDocument | yes       |
+
+If document in `draft` status - set `in-progress` status to it.
+
+Request:
 
 ```
 POST /rpc?
@@ -174,7 +179,16 @@ params:
     loinc-8867-4: {value: 72}
 ```
 
-Result
+
+
+Result:
+
+> Error
+
+```
+error:
+  message: Can't be saved in final status: <(completed/canceled/amended)>
+```
 
 > Success
 
@@ -194,16 +208,27 @@ result:
 
 ####
 
-\\
-
 ### sign
 
-Validates document and run extractions on it. Mark document as completed
+Validates document and run extractions on it. Mark document as completed.
+
+Can be used wiht Documents in `draft`, `in-progress`, `in-amendment` statuses.
 
 | Param    | Description                                 | Type        | required? |
 | -------- | ------------------------------------------- | ----------- | --------- |
 | document | document resource                           | SDCDocument | yes       |
 | dry-run  | Run without saving document and extractions | boolean     | no        |
+
+
+
+Apply `created`/`patched`/`deleted` extractions. Create `Provenance` resource with links to `SDCDocument` and created resources(`created` extractions).
+
+> Additionally will create History SDCAddendum resource with timestamp user and document snapshot.
+
+> Additionally when called on document with`in-amendment` status it will
+>
+> * delete previously created extractions, Provenance resource, and recreate them with new data.
+> * create Amendment SDCAddendum resource with timestamp, user, and diff between last two snapshots from History addendums.
 
 ```
 POST /rpc?
@@ -550,3 +575,49 @@ params:
 
 policy: <jwt policy token>
 ```
+
+### amend
+
+Set `in-amendment` status for Document. Used for document corrections. Should be signed after correction
+
+Can be used only for documents in `completed`, `amended` statuses.
+
+| Param   | Description                                 | Type    | required? |
+| ------- | ------------------------------------------- | ------- | --------- |
+| id      | document id                                 | string  | yes       |
+| dry-run | Run without saving document and extractions | boolean | no        |
+
+> Additionally will create History SDCAddendum resource with timestamp and user.
+
+Request:
+
+```
+POST /rpc?
+
+method: 'aidbox.sdc/amend,
+params:
+  id: doc-1,
+```
+
+Response:
+
+> Success
+
+```
+result: {...} ;; updated document (the same if it is already in in-amendment status)
+```
+
+> Error
+
+```
+error:
+  message: Resource is not found
+  message: Can't be amended not in final status (completed/amended): <cur-status>
+  ...
+```
+
+##
+
+\
+
+
