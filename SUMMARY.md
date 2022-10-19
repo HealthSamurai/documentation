@@ -76,6 +76,7 @@
       * [\_explain](api-1/fhir-api/search-1/\_explain.md)
     * [Search with related resources](api-1/fhir-api/search-1/search-with-related-resources.md)
     * [Search Resource](api-1/fhir-api/search-1/search-resource.md)
+    * [Date search](api-1/fhir-api/search-1/date-search.md)
     * [Token search](api-1/fhir-api/search-1/token-search.md)
     * [Chained Parameters](api-1/fhir-api/search-1/chained-parameters.md)
     * [. expressions](api-1/fhir-api/search-1/.-expressions.md)
