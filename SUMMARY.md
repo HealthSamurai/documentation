@@ -289,6 +289,7 @@
     * [Set up Smartbox locally](modules-1/smartbox/get-started/set-up-smartbox.md)
   * [How-to guides](modules-1/smartbox/how-to-guides/README.md)
     * [Set up EHR-level customization](modules-1/smartbox/how-to-guides/set-up-ehr-level-customization.md)
+    * [Check email templates](modules-1/smartbox/how-to-guides/check-email-templates.md)
     * [Register users](modules-1/smartbox/how-to-guides/register-users.md)
     * [Set up SSO with Auth0](modules-1/smartbox/how-to-guides/how-to-set-up-sso-with-auth0.md)
   * [Techical reference](modules-1/smartbox/techical-reference.md)
