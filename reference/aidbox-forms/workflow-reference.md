@@ -196,7 +196,7 @@ Value of the key `:sdc/enable-when` should be boolean lisp expression. Lisp expr
 * [complete-step](workflow-reference.md#complete-step) - try complete WF step with document, call sign on it.
 * [complete-workflow](workflow-reference.md#complete-workflow) - complete WF
 * [cancel-workflow](workflow-reference.md#cancel-workflow) - try cancel WF
-* amend-workflow - amend completed WF
+* [amend-workflow](workflow-reference.md#amend-workflow) - amend completed WF
 
 #### get-workflows
 
