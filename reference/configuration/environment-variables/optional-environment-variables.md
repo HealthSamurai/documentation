@@ -234,6 +234,14 @@ BOX_SEARCH_DEFAULT__PARAMS_COUNT=<count>
 
 Overrides the default count search parameter value. 100 is the default value. The provided value should be <= 1000
 
+### BOX\_SEARCH\_FHIR\_\_COMPARISONS
+
+```
+BOX_SEARCH_FHIR__COMPARISONS=true
+```
+
+Use FHIR compliant [date search](https://www.hl7.org/fhir/search.html#prefix).&#x20;
+
 ### BOX\_COMPATIBILITY\_VALIDATION\_JSON\_\_SCHEMA\_REGEX
 
 ```
