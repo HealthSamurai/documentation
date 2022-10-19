@@ -68,6 +68,8 @@ Workflow and items has status model , model is slightly different
 * `in-progress`
 * `canceled`
 * `completed`
+* `in-amendment`
+* `amended`
 
 **Item statuses:**
 
@@ -75,9 +77,11 @@ Workflow and items has status model , model is slightly different
 * `in-progress`
 * `skipped`
 * `completed`
+* `in-amendment`
+* `amended`
 
 {% hint style="warning" %}
-**`canceled`** status used for WF because `skipped` status is not obvious in this domain. WF is a process of action, but item is just a step which can be omitted.
+**`canceled`** status used for WF because `skipped` status is not obvious in this domain. WF is a process of action, but item is just a step that can be optionally and can be omitted.
 {% endhint %}
 
 ``

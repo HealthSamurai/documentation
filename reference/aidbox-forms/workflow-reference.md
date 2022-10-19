@@ -101,6 +101,35 @@ When workflow is started - all `FormItems` will be populated with `Form` definit
  :document {id: doc-id :resourceType}}
 ```
 
+#### StatelessForm
+
+StatelessForm is item with type `aidbox.sdc/StatelessFormItem` It contains only reference to existed `form`. This field is mandatory
+
+It is different from typical `FormItem` in that way:
+
+* data populated to it's state on every read-workflow operation.
+* data extracted and populated back on every save operation.
+* this form can't be skipped.
+
+```
+{:item aidbox.sdc/StatelessFormItem
+ :form myforms/AllergyIntolerance}
+```
+
+> Zen validates reference - it can refer to symbols with `aidbox.sdc/Form` tag only.
+
+There is no difference between `StatelessFormItems` and `FormItem` on `workflow-start`
+
+```
+{:item aidbox.sdc/StatelessFormItem
+ :form myforms/AllergyIntolerance
+ :title "AllergyIntolerance"
+ :layout {... layout DSL}
+ :rules {... rules ...}
+ :document {id: doc-id :resourceType}}
+
+```
+
 **Form rule keys**
 
 FormItem also supports special rule based keys: `sdc/inject`, `sdc/enable-when`
@@ -163,9 +192,11 @@ Value of the key `:sdc/enable-when` should be boolean lisp expression. Lisp expr
 * [start-workflow](workflow-reference.md#start-workflow) - start WF and launch forms
 * [save-step](workflow-reference.md#save-step) - save document through WF, mark step as in-progress
 * [skip-step](workflow-reference.md#skip-step) - skip WF step
+* [amend-step](workflow-reference.md#undefined-1) - amend WF step
 * [complete-step](workflow-reference.md#complete-step) - try complete WF step with document, call sign on it.
 * [complete-workflow](workflow-reference.md#complete-workflow) - complete WF
 * [cancel-workflow](workflow-reference.md#cancel-workflow) - try cancel WF
+* amend-workflow - amend completed WF
 
 #### get-workflows
 
@@ -301,6 +332,8 @@ result:
 
 Save document draft without any validations. Mark step and it's parent sections as 'in-progress'
 
+Only steps in `new`/`in-progress`/`in-amendment` statues can be saved through this RPC
+
 | Param    | Description         | Type        | required? |
 | -------- | ------------------- | ----------- | --------- |
 | id       | workflow id         | string      | yes       |
@@ -358,13 +391,26 @@ error:
 
 ```
 result:
-    updates:
+  document:
+    id: doc-1,
+    patient: {id: pt-1, resourceType: Patient},
+    encounter: {id: enc-1, resourceType: Encounter},
+    type: box.sdc.sdc-example/VitalsDocument,
+    form:
+      form: box.sdc.sdc-example/VitalsForm,
+      version: 1.0.0
+    resourceType: SDCDocument,
+    loinc-59408-5: {value: 97},
+    author: {id: doc-1, resourceType: User},
+    loinc-8310-5: {value: 36.6, unit: C},
+    loinc-8867-4: {value: 72}
+  updates:
     - [[phisical-exam] {status: "in-progress"}]
 ```
 
 #### complete-step
 
-Try complete step with given document. Call sign on that document and extracts data. If everything is ok - mark step as completed. If one of the validations fails - returns error
+Try complete step with given document. Call sign on that document and extract data. If everything is ok - mark step as completed. If one of the validations fails - returns error
 
 | Param    | Description                                 | Type        | required? |
 | -------- | ------------------------------------------- | ----------- | --------- |
@@ -372,6 +418,13 @@ Try complete step with given document. Call sign on that document and extracts d
 | step     | path to nested item                         | array       | yes       |
 | document | document resource                           | SDCDocument | yes       |
 | dry-run  | Run without saving document and extractions | boolean     | no        |
+
+
+
+If workflow step was:
+
+* in `in-progress` status - set `completed` status
+* in `in-amendment` status - set `amended` status
 
 Returns patches for workflow or error
 
@@ -413,7 +466,7 @@ error:
   message: No such step <[path to step]> in wf <wf-1>
   message: Forms does not match in the step and given document
   message: Can't update steps of wf in <(completes/canceled)> statuses
-  message: Can't update step in <(completed/skipped)> status
+  message: Can't update step in <(completed/skipped/amended)> status
   message: Given document has different id than document in step: <doc1> != <doc2>
   message: Can't complete step %s in wf %s, due to valdation errors
   message: Can't complete this step because :sdc/enable-when rule failed: ...
@@ -486,9 +539,10 @@ Result:
 ```
 error:
   message: Resource SDCWorkflow/id not found
+  message: Can't skip step in workflow with status: '<(new/in-progress)>' 
   message: No such step <[path to step]> in wf <wf-1>
-  message: Can't skip completed step: <[path to step]>
   message: Can't skip stateless form step
+  message: Can't skip step in status '<(completed/amended/in-amendment)>': <[path to step]>
   message: Something wrong: Can't find document with id : <doc1>
 ```
 
@@ -496,8 +550,66 @@ error:
 
 ```
 result:
+    document: {... status: "skipped"}
     updates:
-    - [[phisical-exam] {status: "completed"}]
+    - [[phisical-exam] {status: "skipped"}]
+```
+
+#### amend-step
+
+Set `in-amendment` status for step and try to amend document.
+
+| Param   | Description                          | Type   | required? |
+| ------- | ------------------------------------ | ------ | --------- |
+| id      | workflow id                          | string | yes       |
+| step    | path to nested item                  | array  | yes       |
+| dry-run | Try without creating resources in DB | string | no        |
+
+> Additionally if workflow was in `completed` status - change it status to `in-amendment` and creates History addendum with timestamp and user
+
+Returns patches for workflow or error
+
+* patch - pair of `[step, patch-obj]`
+* step - path to item in WF (array)
+  * \[] - path for wf root
+  * \[section1] - path for section in 1st level
+  * \[section1 form1] - path for form, located in 2st level (real path in WF object = `{items: {section1: {items: {form1: {.. form ...}}}}}`)
+* patch-obj - item object with changed fields (example: `{status: "completed"}`)
+
+Request:
+
+```
+POST /rpc?
+
+method: 'aidbox.sdc/amend-step,
+params:
+  id: wf-1
+  step: [phisical-exam]
+```
+
+Result:
+
+> Error
+
+```
+error:
+  message: Resource SDCWorkflow/id not found
+  message: Can't amend step in workflow with '<(new/in-progress/canceled)>' status
+  message: No such step <[path to step]> in wf <wf-1>
+  message: Can't amend stateless form step
+  message: Something wrong: Can't find document with id : <doc1>
+  message: Can't amend this step because :sdc/enable-when rule failed
+  message: Can't amend this step because :sdc/enable-when rule is false
+  message: Can't amend step %s in wf %s, due to document amending errors
+```
+
+> Success
+
+```
+result:
+    document: {... status: "in-amendment"}
+    updates:
+    - [[phisical-exam] {status: "in-amendment"}]
 ```
 
 #### complete-workflow
@@ -509,13 +621,22 @@ Complete WF and it's items.
   * By default take docments from DB
   * Also can take documents for signing from parameters - (suitable for Offline mode).
 
-> Finalized step is step in `skipped` or `completed` status
+> Finalized step is step in `skipped`, `completed` or `amended` status
 
 | Param   | Description                       | Type    | required? |
 | ------- | --------------------------------- | ------- | --------- |
 | id      | workflow id                       | string  | yes       |
 | items   | documents in items structure      | map     | no        |
 | dry-run | Run without saving document in db | boolean | no        |
+
+
+
+If workflow was:
+
+* in `in-progress` status - set `completed` status
+* in `in-amendment` status - set `amended` status
+
+Additionally creates History addendum for WF with timestamp and user
 
 Returns patches for workflow or error
 
@@ -582,7 +703,7 @@ result:
 
 Tries skip all non-finalized steps and mark WF as canceled.
 
-> Finalized step is step in `skipped` or `completed` status
+> Finalized step is step in `skipped`, `completed` or `amended` status
 
 | Param   | Description                      | Type    | required? |
 | ------- | -------------------------------- | ------- | --------- |
@@ -631,6 +752,60 @@ result:
     - [[] {status: "canceled", cancel-reason "My private reason"}]
 ```
 
+#### amend-workflow
+
+
+
+Set `in-amendment` status for WF and all `completed`/`amended` steps.
+
+| Param   | Description                      | Type    | required? |
+| ------- | -------------------------------- | ------- | --------- |
+| id      | workflow id                      | string  | yes       |
+| dry-run | Run without saving updates in db | boolean | no        |
+
+> Additionally creates History Addendum with user and timestamp
+
+Returns patches for workflow or error
+
+* patch - pair of `[step, patch-obj]`
+* step - path to item in WF (array)
+  * \[] - path for wf root
+  * \[section1] - path for section in 1st level
+  * \[section1 form1] - path for form, located in 2st level (real path in WF object = `{items: {section1: {items: {form1: {.. form ...}}}}}`)
+* patch-obj - item object with changed fields (example: `{status: "completed"}`)
+
+Request:
+
+```
+POST /rpc?
+
+method: 'aidbox.sdc/amend-workflow,
+params:
+  id: wf-1
+```
+
+Result:
+
+> Error
+
+```
+error:
+  message: Resource SDCWorkflow/id not found
+  message: Can't amend workflow in status: <(new/in-progress/in-amendment/canceled)>
+  message: Can't amend workflow due to amend-document errors
+    errors:  [...]
+```
+
+> Success
+
+```
+result:
+    updates:
+    - [[section1 questionnaire] {status: "in-amendment"}]
+    - [[section1] {status: "in-amendment"}]
+    - [[] {status: "in-amendment"}]
+```
+
 ### Basic WF usage scenarios
 
 Assume we have such WF with one section and two forms
@@ -657,6 +832,8 @@ From the start (after WF start) we are working with form-items directly via step
 ### Fast skip scenario
 
 [![Fast skip scenario](https://camo.githubusercontent.com/e19ba76d9bd76df635d12beb32a839021ece740e022c94b17ad4a1e52a678702/687474703a2f2f7777772e706c616e74756d6c2e636f6d2f706c616e74756d6c2f706e672f6850354452694b5733384a746443387a30315475676767746f5773676a74523132495a794d363234556c6b36664167514c6a637a394a455a2d4752764e574d426a315a4b597059413143346c4a665132642d677a4b57377a31655f6631646a417a72617a665935446b534752313670394533726c5a77365f77632d5432743763356233386d6b7745676b3646675974506c525a5f674e656368667672354d4230347048594d533563716f386230516e57433161415034794a565741444247684c6c6d694f6e4a59773864757957705a435775544453614a6e5061556d4a6d6a4b436b39706b6a6872557a50317170734e544777764e5f74614a6963454377656c)](https://camo.githubusercontent.com/e19ba76d9bd76df635d12beb32a839021ece740e022c94b17ad4a1e52a678702/687474703a2f2f7777772e706c616e74756d6c2e636f6d2f706c616e74756d6c2f706e672f6850354452694b5733384a746443387a30315475676767746f5773676a74523132495a794d363234556c6b36664167514c6a637a394a455a2d4752764e574d426a315a4b597059413143346c4a665132642d677a4b57377a31655f6631646a417a72617a665935446b534752313670394533726c5a77365f77632d5432743763356233386d6b7745676b3646675974506c525a5f674e656368667672354d4230347048594d533563716f386230516e57433161415034794a565741444247684c6c6d694f6e4a59773864757957705a435775544453614a6e5061556d4a6d6a4b436b39706b6a6872557a50317170734e544777764e5f74614a6963454377656c)
+
+
 
 ### Optional features
 
