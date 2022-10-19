@@ -20,6 +20,31 @@ smartbox:
 `logoUrl` should be a link to a publicly accessible image file
 {% endhint %}
 
+## Smartbox (portal) templates customization
+
+### Reset user password
+
+```http
+PUT /NotificationTemplate/reset-user-password
+content-type: text/yaml
+
+template: |-
+  <p>Dear {{user.name.givenName}},<br />
+     To reset your password click this </p>
+  <a href={{confirm-href}}>link</a>
+  <p>Best wishes,<br />
+     Acme Inc</p>
+```
+
+#### Template parameters
+
+* `user`
+  * `email` address of the developer
+  * `name`
+    * `givenName`  of the developer
+    * `familyName` of the developer
+* `confirm-href` is the link users open to change their password
+
 ## Sandbox email templates customization
 
 ### Confirm email address
