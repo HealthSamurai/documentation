@@ -15,8 +15,8 @@ API constructor requires knowledge of [zen language](https://github.com/zen-lang
 
 #### Common API Constructor use cases
 
-{% content-ref url="aidbox-api-constructor/acl.md" %}
-[acl.md](aidbox-api-constructor/acl.md)
+{% content-ref url="../security-and-access-control-1/acl.md" %}
+[acl.md](../security-and-access-control-1/acl.md)
 {% endcontent-ref %}
 
 {% content-ref url="../modules-1/smartbox/background-information/multitenancy-approach.md" %}
@@ -166,8 +166,8 @@ Expect target resource type as `:resource` and `:format` (`fhir` or `aidbox`)
 
 See full description and usage examples:
 
-{% content-ref url="aidbox-api-constructor/acl.md" %}
-[acl.md](aidbox-api-constructor/acl.md)
+{% content-ref url="../security-and-access-control-1/acl.md" %}
+[acl.md](../security-and-access-control-1/acl.md)
 {% endcontent-ref %}
 
 ### Middlewares

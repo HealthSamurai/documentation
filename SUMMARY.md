@@ -46,7 +46,6 @@
   * [Seed Import](aidbox-configuration/aidbox-zen-lang-project/seed-import.md)
   * [Seed v2](aidbox-configuration/aidbox-zen-lang-project/seed-v2.md)
 * [API constructor (beta)](aidbox-configuration/aidbox-api-constructor.md)
-  * [Access control lists (ACL)](aidbox-configuration/aidbox-api-constructor/acl.md)
 * [Setup SMTP provider](aidbox-configuration/setup-smtp-provider.md)
 * [Zen Configuration](aidbox-configuration/zen-configuration.md)
 
@@ -234,6 +233,7 @@
   * [🎓 Sample: Patient can see their own data](security-and-access-control-1/security/sample-patient-can-see-its-own-data.md)
   * [Access Policies tutorial](security-and-access-control-1/security/search-parameters.md)
   * [Debug](security-and-access-control-1/security/debug.md)
+* [Access control lists (ACL)](security-and-access-control-1/acl.md)
 * [Multitenancy](security-and-access-control-1/multitenancy/README.md)
   * [🎓 Multitenancy via AccessPolicy](security-and-access-control-1/multitenancy/multitenancy-via-accesspolicy.md)
 
