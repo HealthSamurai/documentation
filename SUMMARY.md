@@ -296,6 +296,7 @@
   * [Background information](modules-1/smartbox/background-information/README.md)
     * [Multitenancy approach](modules-1/smartbox/background-information/multitenancy-approach.md)
     * [What is Tenant](modules-1/smartbox/background-information/what-is-tenant.md)
+    * [Email templating](modules-1/smartbox/background-information/email-templating.md)
 
 ## Multibox
 
