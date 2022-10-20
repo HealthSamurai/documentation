@@ -4,21 +4,225 @@
 The following indexes cover regular searches, e.g. Patient?name=Smith. Please [contact us ](../contact-us.md)if you need more examples.&#x20;
 {% endhint %}
 
-### ImmunizationEvaluation
 
-Search parameter: `ImmunizationEvaluation.date`
 
-```sql
-WIP: work in progress
-```
+### Account
 
-Search parameter: `ImmunizationEvaluation.identifier`, `ImmunizationEvaluation.dose-status`, `ImmunizationEvaluation.patient`, `ImmunizationEvaluation.status`, `ImmunizationEvaluation.immunization-event`, `ImmunizationEvaluation.target-disease`
+Search parameter: `Account.period`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS immunizationevaluation_resource__gin
-ON immunizationevaluation
+IF NOT EXISTS account_resource__serviceperiod_max
+ON account
+USING btree (knife_extract_max_timestamptz(resource, '[["servicePeriod"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS account_resource__serviceperiod_min
+ON account
+USING btree (knife_extract_min_timestamptz(resource, '[["servicePeriod"]]'));
+```
+
+Search parameter: `Account.name`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS account_resource__name_gin_trgm
+ON account
+USING GIN ((aidbox_text_search(knife_extract_text("account".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Account.patient`, `Account.identifier`, `Account.owner`, `Account.subject`, `Account.type`, `Account.status`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS account_resource__gin
+ON account
 USING GIN (resource);
+```
+
+### ActivityDefinition
+
+Search parameter: `ActivityDefinition.name`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS activitydefinition_resource__name_gin_trgm
+ON activitydefinition
+USING GIN ((aidbox_text_search(knife_extract_text("activitydefinition".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `ActivityDefinition.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS activitydefinition_resource__date_max
+ON activitydefinition
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS activitydefinition_resource__date_min
+ON activitydefinition
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+Search parameter: `ActivityDefinition.publisher`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS activitydefinition_resource__publisher_gin_trgm
+ON activitydefinition
+USING GIN ((aidbox_text_search(knife_extract_text("activitydefinition".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `ActivityDefinition.derived-from`, `ActivityDefinition.successor`, `ActivityDefinition.context`, `ActivityDefinition.predecessor`, `ActivityDefinition.url`, `ActivityDefinition.composed-of`, `ActivityDefinition.topic`, `ActivityDefinition.jurisdiction`, `ActivityDefinition.identifier`, `ActivityDefinition.status`, `ActivityDefinition.context-type`, `ActivityDefinition.version`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS activitydefinition_resource__gin
+ON activitydefinition
+USING GIN (resource);
+```
+
+Search parameter: `ActivityDefinition.context-quantity`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS activitydefinition_resource__context_quantity_max
+ON activitydefinition
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS activitydefinition_resource__context_quantity_min
+ON activitydefinition
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+```
+
+Search parameter: `ActivityDefinition.description`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS activitydefinition_resource__description_gin_trgm
+ON activitydefinition
+USING GIN ((aidbox_text_search(knife_extract_text("activitydefinition".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `ActivityDefinition.title`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS activitydefinition_resource__title_gin_trgm
+ON activitydefinition
+USING GIN ((aidbox_text_search(knife_extract_text("activitydefinition".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `ActivityDefinition.effective`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS activitydefinition_resource__effectiveperiod_max
+ON activitydefinition
+USING btree (knife_extract_max_timestamptz(resource, '[["effectivePeriod"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS activitydefinition_resource__effectiveperiod_min
+ON activitydefinition
+USING btree (knife_extract_min_timestamptz(resource, '[["effectivePeriod"]]'));
+```
+
+Search parameter: `ActivityDefinition.depends-on`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS activitydefinition_resource__gin
+ON activitydefinition
+USING GIN (resource);
+```
+
+### AdverseEvent
+
+Search parameter: `AdverseEvent.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS adverseevent_resource__date_max
+ON adverseevent
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS adverseevent_resource__date_min
+ON adverseevent
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+Search parameter: `AdverseEvent.resultingcondition`, `AdverseEvent.severity`, `AdverseEvent.actuality`, `AdverseEvent.event`, `AdverseEvent.category`, `AdverseEvent.recorder`, `AdverseEvent.substance`, `AdverseEvent.seriousness`, `AdverseEvent.location`, `AdverseEvent.subject`, `AdverseEvent.study`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS adverseevent_resource__gin
+ON adverseevent
+USING GIN (resource);
+```
+
+### AllergyIntolerance
+
+Search parameter: `AllergyIntolerance.onset`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS allergyintolerance_resource__reaction_onset_max
+ON allergyintolerance
+USING btree (knife_extract_max_timestamptz(resource, '[["reaction" "onset"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS allergyintolerance_resource__reaction_onset_min
+ON allergyintolerance
+USING btree (knife_extract_min_timestamptz(resource, '[["reaction" "onset"]]'));
+```
+
+Search parameter: `AllergyIntolerance.last-date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS allergyintolerance_resource__lastoccurrence_max
+ON allergyintolerance
+USING btree (knife_extract_max_timestamptz(resource, '[["lastOccurrence"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS allergyintolerance_resource__lastoccurrence_min
+ON allergyintolerance
+USING btree (knife_extract_min_timestamptz(resource, '[["lastOccurrence"]]'));
+```
+
+Search parameter: `AllergyIntolerance.clinical-status`, `AllergyIntolerance.recorder`, `AllergyIntolerance.asserter`, `AllergyIntolerance.manifestation`, `AllergyIntolerance.severity`, `AllergyIntolerance.verification-status`, `AllergyIntolerance.identifier`, `AllergyIntolerance.patient`, `AllergyIntolerance.route`, `AllergyIntolerance.category`, `AllergyIntolerance.type`, `AllergyIntolerance.criticality`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS allergyintolerance_resource__gin
+ON allergyintolerance
+USING GIN (resource);
+```
+
+Search parameter: `AllergyIntolerance.code`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS allergyintolerance_resource__gin
+ON allergyintolerance
+USING GIN (resource);
+```
+
+Search parameter: `AllergyIntolerance.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS allergyintolerance_resource__recordeddate_max
+ON allergyintolerance
+USING btree (knife_extract_max_timestamptz(resource, '[["recordedDate"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS allergyintolerance_resource__recordeddate_min
+ON allergyintolerance
+USING btree (knife_extract_min_timestamptz(resource, '[["recordedDate"]]'));
 ```
 
 ### Appointment
@@ -35,283 +239,26 @@ USING GIN (resource);
 Search parameter: `Appointment.date`
 
 ```sql
-WIP: work in progress
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS appointment_resource__start_max
+ON appointment
+USING btree (knife_extract_max_timestamptz(resource, '[["start"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS appointment_resource__start_min
+ON appointment
+USING btree (knife_extract_min_timestamptz(resource, '[["start"]]'));
 ```
 
-### StructureMap
+### AppointmentResponse
 
-Search parameter: `StructureMap.jurisdiction`, `StructureMap.context`, `StructureMap.status`, `StructureMap.url`, `StructureMap.context-type`, `StructureMap.identifier`, `StructureMap.version`
+Search parameter: `AppointmentResponse.location`, `AppointmentResponse.identifier`, `AppointmentResponse.appointment`, `AppointmentResponse.patient`, `AppointmentResponse.part-status`, `AppointmentResponse.actor`, `AppointmentResponse.practitioner`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS structuremap_resource__gin
-ON structuremap
+IF NOT EXISTS appointmentresponse_resource__gin
+ON appointmentresponse
 USING GIN (resource);
-```
-
-Search parameter: `StructureMap.name`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS structuremap_resource__name_gin_trgm
-ON structuremap
-USING GIN ((aidbox_text_search(knife_extract_text("structuremap".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `StructureMap.date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `StructureMap.description`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS structuremap_resource__description_gin_trgm
-ON structuremap
-USING GIN ((aidbox_text_search(knife_extract_text("structuremap".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `StructureMap.context-quantity`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `StructureMap.publisher`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS structuremap_resource__publisher_gin_trgm
-ON structuremap
-USING GIN ((aidbox_text_search(knife_extract_text("structuremap".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `StructureMap.title`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS structuremap_resource__title_gin_trgm
-ON structuremap
-USING GIN ((aidbox_text_search(knife_extract_text("structuremap".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
-```
-
-### CareTeam
-
-Search parameter: `CareTeam.date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `CareTeam.status`, `CareTeam.encounter`, `CareTeam.participant`, `CareTeam.patient`, `CareTeam.category`, `CareTeam.subject`, `CareTeam.identifier`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS careteam_resource__gin
-ON careteam
-USING GIN (resource);
-```
-
-### Linkage
-
-Search parameter: `Linkage.source`, `Linkage.item`, `Linkage.author`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS linkage_resource__gin
-ON linkage
-USING GIN (resource);
-```
-
-### Communication
-
-Search parameter: `Communication.received`, `Communication.sent`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Communication.status`, `Communication.encounter`, `Communication.patient`, `Communication.based-on`, `Communication.subject`, `Communication.instantiates-canonical`, `Communication.part-of`, `Communication.medium`, `Communication.identifier`, `Communication.instantiates-uri`, `Communication.recipient`, `Communication.category`, `Communication.sender`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS communication_resource__gin
-ON communication
-USING GIN (resource);
-```
-
-### MedicationDispense
-
-Search parameter: `MedicationDispense.whenprepared`, `MedicationDispense.whenhandedover`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `MedicationDispense.prescription`, `MedicationDispense.subject`, `MedicationDispense.identifier`, `MedicationDispense.receiver`, `MedicationDispense.destination`, `MedicationDispense.code`, `MedicationDispense.patient`, `MedicationDispense.medication`, `MedicationDispense.type`, `MedicationDispense.performer`, `MedicationDispense.status`, `MedicationDispense.responsibleparty`, `MedicationDispense.context`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS medicationdispense_resource__gin
-ON medicationdispense
-USING GIN (resource);
-```
-
-### ImagingStudy
-
-Search parameter: `ImagingStudy.endpoint`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `ImagingStudy.started`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `ImagingStudy.reason`, `ImagingStudy.bodysite`, `ImagingStudy.subject`, `ImagingStudy.series`, `ImagingStudy.status`, `ImagingStudy.interpreter`, `ImagingStudy.performer`, `ImagingStudy.referrer`, `ImagingStudy.encounter`, `ImagingStudy.dicom-class`, `ImagingStudy.basedon`, `ImagingStudy.modality`, `ImagingStudy.identifier`, `ImagingStudy.instance`, `ImagingStudy.patient`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS imagingstudy_resource__gin
-ON imagingstudy
-USING GIN (resource);
-```
-
-### ChargeItem
-
-Search parameter: `ChargeItem.service`, `ChargeItem.code`, `ChargeItem.identifier`, `ChargeItem.patient`, `ChargeItem.performing-organization`, `ChargeItem.account`, `ChargeItem.requesting-organization`, `ChargeItem.context`, `ChargeItem.enterer`, `ChargeItem.performer-actor`, `ChargeItem.performer-function`, `ChargeItem.subject`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS chargeitem_resource__gin
-ON chargeitem
-USING GIN (resource);
-```
-
-Search parameter: `ChargeItem.factor-override`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `ChargeItem.price-override`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `ChargeItem.quantity`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `ChargeItem.entered-date`, `ChargeItem.occurrence`
-
-```sql
-WIP: work in progress
-```
-
-### AdverseEvent
-
-Search parameter: `AdverseEvent.date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `AdverseEvent.resultingcondition`, `AdverseEvent.severity`, `AdverseEvent.actuality`, `AdverseEvent.event`, `AdverseEvent.category`, `AdverseEvent.recorder`, `AdverseEvent.substance`, `AdverseEvent.seriousness`, `AdverseEvent.location`, `AdverseEvent.subject`, `AdverseEvent.study`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS adverseevent_resource__gin
-ON adverseevent
-USING GIN (resource);
-```
-
-### Media
-
-Search parameter: `Media.based-on`, `Media.type`, `Media.modality`, `Media.site`, `Media.patient`, `Media.device`, `Media.view`, `Media.status`, `Media.identifier`, `Media.operator`, `Media.subject`, `Media.encounter`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS media_resource__gin
-ON media
-USING GIN (resource);
-```
-
-Search parameter: `Media.created`
-
-```sql
-WIP: work in progress
-```
-
-### QuestionnaireResponse
-
-Search parameter: `QuestionnaireResponse.authored`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `QuestionnaireResponse.part-of`, `QuestionnaireResponse.subject`, `QuestionnaireResponse.patient`, `QuestionnaireResponse.identifier`, `QuestionnaireResponse.source`, `QuestionnaireResponse.encounter`, `QuestionnaireResponse.based-on`, `QuestionnaireResponse.status`, `QuestionnaireResponse.author`, `QuestionnaireResponse.questionnaire`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS questionnaireresponse_resource__gin
-ON questionnaireresponse
-USING GIN (resource);
-```
-
-### Coverage
-
-Search parameter: `Coverage.class-type`, `Coverage.payor`, `Coverage.type`, `Coverage.beneficiary`, `Coverage.subscriber`, `Coverage.patient`, `Coverage.policy-holder`, `Coverage.identifier`, `Coverage.status`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS coverage_resource__gin
-ON coverage
-USING GIN (resource);
-```
-
-Search parameter: `Coverage.dependent`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS coverage_resource__dependent_gin_trgm
-ON coverage
-USING GIN ((aidbox_text_search(knife_extract_text("coverage".resource, $JSON$[["dependent"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `Coverage.class-value`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS coverage_resource__class_value_gin_trgm
-ON coverage
-USING GIN ((aidbox_text_search(knife_extract_text("coverage".resource, $JSON$[["class","value"]]$JSON$))) gin_trgm_ops);
-```
-
-### Procedure
-
-Search parameter: `Procedure.patient`, `Procedure.based-on`, `Procedure.reason-reference`, `Procedure.subject`, `Procedure.location`, `Procedure.category`, `Procedure.status`, `Procedure.performer`, `Procedure.instantiates-uri`, `Procedure.instantiates-canonical`, `Procedure.code`, `Procedure.encounter`, `Procedure.reason-code`, `Procedure.identifier`, `Procedure.part-of`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS procedure_resource__gin
-ON procedure
-USING GIN (resource);
-```
-
-Search parameter: `Procedure.date`
-
-```sql
-WIP: work in progress
 ```
 
 ### AuditEvent
@@ -319,7 +266,10 @@ WIP: work in progress
 Search parameter: `AuditEvent.patient`
 
 ```sql
-WIP: work in progress
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS auditevent_resource__gin
+ON auditevent
+USING GIN (resource);
 ```
 
 Search parameter: `AuditEvent.agent-name`
@@ -349,12 +299,6 @@ ON auditevent
 USING GIN ((aidbox_text_search(knife_extract_text("auditevent".resource, $JSON$[["agent","network","address"]]$JSON$))) gin_trgm_ops);
 ```
 
-Search parameter: `AuditEvent.date`
-
-```sql
-WIP: work in progress
-```
-
 Search parameter: `AuditEvent.site`, `AuditEvent.entity`, `AuditEvent.subtype`, `AuditEvent.altid`, `AuditEvent.entity-role`, `AuditEvent.agent`, `AuditEvent.outcome`, `AuditEvent.entity-type`, `AuditEvent.policy`, `AuditEvent.agent-role`, `AuditEvent.type`, `AuditEvent.source`, `AuditEvent.action`
 
 ```sql
@@ -364,597 +308,407 @@ ON auditevent
 USING GIN (resource);
 ```
 
-### PaymentReconciliation
-
-Search parameter: `PaymentReconciliation.disposition`
+Search parameter: `AuditEvent.date`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS paymentreconciliation_resource__disposition_gin_trgm
-ON paymentreconciliation
-USING GIN ((aidbox_text_search(knife_extract_text("paymentreconciliation".resource, $JSON$[["disposition"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS auditevent_resource__recorded_max
+ON auditevent
+USING btree (knife_extract_max_timestamptz(resource, '[["recorded"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS auditevent_resource__recorded_min
+ON auditevent
+USING btree (knife_extract_min_timestamptz(resource, '[["recorded"]]'));
 ```
 
-Search parameter: `PaymentReconciliation.status`, `PaymentReconciliation.requestor`, `PaymentReconciliation.request`, `PaymentReconciliation.identifier`, `PaymentReconciliation.outcome`, `PaymentReconciliation.payment-issuer`
+### Basic
+
+Search parameter: `Basic.code`, `Basic.patient`, `Basic.identifier`, `Basic.author`, `Basic.subject`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS paymentreconciliation_resource__gin
-ON paymentreconciliation
+IF NOT EXISTS basic_resource__gin
+ON basic
 USING GIN (resource);
 ```
 
-Search parameter: `PaymentReconciliation.created`
-
-```sql
-WIP: work in progress
-```
-
-### CompartmentDefinition
-
-Search parameter: `CompartmentDefinition.publisher`
+Search parameter: `Basic.created`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS compartmentdefinition_resource__publisher_gin_trgm
-ON compartmentdefinition
-USING GIN ((aidbox_text_search(knife_extract_text("compartmentdefinition".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS basic_resource__created_max
+ON basic
+USING btree (knife_extract_max_timestamptz(resource, '[["created"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS basic_resource__created_min
+ON basic
+USING btree (knife_extract_min_timestamptz(resource, '[["created"]]'));
 ```
 
-Search parameter: `CompartmentDefinition.date`
+### BodyStructure
 
-```sql
-WIP: work in progress
-```
-
-Search parameter: `CompartmentDefinition.version`, `CompartmentDefinition.resource`, `CompartmentDefinition.context`, `CompartmentDefinition.url`, `CompartmentDefinition.status`, `CompartmentDefinition.context-type`, `CompartmentDefinition.code`
+Search parameter: `BodyStructure.identifier`, `BodyStructure.patient`, `BodyStructure.morphology`, `BodyStructure.location`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS compartmentdefinition_resource__gin
-ON compartmentdefinition
+IF NOT EXISTS bodystructure_resource__gin
+ON bodystructure
 USING GIN (resource);
 ```
 
-Search parameter: `CompartmentDefinition.description`
+### Bundle
+
+Search parameter: `Bundle.identifier`, `Bundle.type`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS compartmentdefinition_resource__description_gin_trgm
-ON compartmentdefinition
-USING GIN ((aidbox_text_search(knife_extract_text("compartmentdefinition".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `CompartmentDefinition.name`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS compartmentdefinition_resource__name_gin_trgm
-ON compartmentdefinition
-USING GIN ((aidbox_text_search(knife_extract_text("compartmentdefinition".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `CompartmentDefinition.context-quantity`
-
-```sql
-WIP: work in progress
-```
-
-### Organization
-
-Search parameter: `Organization.name`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS organization_resource__name_gin_trgm
-ON organization
-USING GIN ((aidbox_text_search(knife_extract_text("organization".resource, $JSON$[["name"],["alias"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `Organization.address-country`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS organization_resource__address_country_gin_trgm
-ON organization
-USING GIN ((aidbox_text_search(knife_extract_text("organization".resource, $JSON$[["address","country"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `Organization.address`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS organization_resource__address_gin_trgm
-ON organization
-USING GIN ((aidbox_text_search(knife_extract_text("organization".resource, $JSON$[["address","text"],["address","district"],["address","country"],["address","city"],["address","line"],["address","state"],["address","postalCode"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `Organization.address-postalcode`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS organization_resource__address_postalcode_gin_trgm
-ON organization
-USING GIN ((aidbox_text_search(knife_extract_text("organization".resource, $JSON$[["address","postalCode"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `Organization.address-city`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS organization_resource__address_city_gin_trgm
-ON organization
-USING GIN ((aidbox_text_search(knife_extract_text("organization".resource, $JSON$[["address","city"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `Organization.partof`, `Organization.address-use`, `Organization.identifier`, `Organization.endpoint`, `Organization.type`, `Organization.active`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS organization_resource__gin
-ON organization
+IF NOT EXISTS bundle_resource__gin
+ON bundle
 USING GIN (resource);
 ```
 
-Search parameter: `Organization.address-state`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS organization_resource__address_state_gin_trgm
-ON organization
-USING GIN ((aidbox_text_search(knife_extract_text("organization".resource, $JSON$[["address","state"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `Organization.phonetic`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS organization_resource__phonetic_gin_trgm
-ON organization
-USING GIN ((aidbox_text_search(knife_extract_text("organization".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
-```
-
-### ExplanationOfBenefit
-
-Search parameter: `ExplanationOfBenefit.created`
+Search parameter: `Bundle.message`, `Bundle.composition`
 
 ```sql
 WIP: work in progress
 ```
 
-Search parameter: `ExplanationOfBenefit.detail-udi`, `ExplanationOfBenefit.encounter`, `ExplanationOfBenefit.payee`, `ExplanationOfBenefit.coverage`, `ExplanationOfBenefit.enterer`, `ExplanationOfBenefit.subdetail-udi`, `ExplanationOfBenefit.item-udi`, `ExplanationOfBenefit.facility`, `ExplanationOfBenefit.care-team`, `ExplanationOfBenefit.procedure-udi`, `ExplanationOfBenefit.identifier`, `ExplanationOfBenefit.provider`, `ExplanationOfBenefit.status`, `ExplanationOfBenefit.claim`, `ExplanationOfBenefit.patient`
+Search parameter: `Bundle.timestamp`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS explanationofbenefit_resource__gin
-ON explanationofbenefit
+IF NOT EXISTS bundle_resource__timestamp_max
+ON bundle
+USING btree (knife_extract_max_timestamptz(resource, '[["timestamp"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS bundle_resource__timestamp_min
+ON bundle
+USING btree (knife_extract_min_timestamptz(resource, '[["timestamp"]]'));
+```
+
+### CarePlan
+
+Search parameter: `CarePlan.care-team`, `CarePlan.replaces`, `CarePlan.based-on`, `CarePlan.activity-reference`, `CarePlan.part-of`, `CarePlan.subject`, `CarePlan.encounter`, `CarePlan.intent`, `CarePlan.patient`, `CarePlan.instantiates-canonical`, `CarePlan.performer`, `CarePlan.instantiates-uri`, `CarePlan.activity-code`, `CarePlan.condition`, `CarePlan.identifier`, `CarePlan.status`, `CarePlan.category`, `CarePlan.goal`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS careplan_resource__gin
+ON careplan
 USING GIN (resource);
 ```
 
-Search parameter: `ExplanationOfBenefit.disposition`
+Search parameter: `CarePlan.activity-date`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS explanationofbenefit_resource__disposition_gin_trgm
-ON explanationofbenefit
-USING GIN ((aidbox_text_search(knife_extract_text("explanationofbenefit".resource, $JSON$[["disposition"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS careplan_resource__activity_detail_scheduled_max
+ON careplan
+USING btree (knife_extract_max_timestamptz(resource, '[["activity" "detail" "scheduled"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS careplan_resource__activity_detail_scheduled_min
+ON careplan
+USING btree (knife_extract_min_timestamptz(resource, '[["activity" "detail" "scheduled"]]'));
 ```
 
-### Composition
-
-Search parameter: `Composition.period`, `Composition.date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Composition.title`
+Search parameter: `CarePlan.date`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS composition_resource__title_gin_trgm
-ON composition
-USING GIN ((aidbox_text_search(knife_extract_text("composition".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS careplan_resource__period_max
+ON careplan
+USING btree (knife_extract_max_timestamptz(resource, '[["period"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS careplan_resource__period_min
+ON careplan
+USING btree (knife_extract_min_timestamptz(resource, '[["period"]]'));
 ```
 
-Search parameter: `Composition.confidentiality`, `Composition.entry`, `Composition.category`, `Composition.section`, `Composition.status`, `Composition.subject`, `Composition.type`, `Composition.identifier`, `Composition.related-id`, `Composition.related-ref`, `Composition.attester`, `Composition.author`, `Composition.patient`, `Composition.context`, `Composition.encounter`
+### CareTeam
+
+Search parameter: `CareTeam.status`, `CareTeam.encounter`, `CareTeam.participant`, `CareTeam.patient`, `CareTeam.category`, `CareTeam.subject`, `CareTeam.identifier`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS composition_resource__gin
-ON composition
+IF NOT EXISTS careteam_resource__gin
+ON careteam
 USING GIN (resource);
 ```
 
-### CoverageEligibilityResponse
-
-Search parameter: `CoverageEligibilityResponse.created`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `CoverageEligibilityResponse.disposition`
+Search parameter: `CareTeam.date`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS coverageeligibilityresponse_resource__disposition_gin_trgm
-ON coverageeligibilityresponse
-USING GIN ((aidbox_text_search(knife_extract_text("coverageeligibilityresponse".resource, $JSON$[["disposition"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS careteam_resource__period_max
+ON careteam
+USING btree (knife_extract_max_timestamptz(resource, '[["period"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS careteam_resource__period_min
+ON careteam
+USING btree (knife_extract_min_timestamptz(resource, '[["period"]]'));
 ```
 
-Search parameter: `CoverageEligibilityResponse.outcome`, `CoverageEligibilityResponse.requestor`, `CoverageEligibilityResponse.request`, `CoverageEligibilityResponse.insurer`, `CoverageEligibilityResponse.identifier`, `CoverageEligibilityResponse.status`, `CoverageEligibilityResponse.patient`
+### ChargeItem
+
+Search parameter: `ChargeItem.service`, `ChargeItem.code`, `ChargeItem.identifier`, `ChargeItem.patient`, `ChargeItem.performing-organization`, `ChargeItem.account`, `ChargeItem.requesting-organization`, `ChargeItem.context`, `ChargeItem.enterer`, `ChargeItem.performer-actor`, `ChargeItem.performer-function`, `ChargeItem.subject`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS coverageeligibilityresponse_resource__gin
-ON coverageeligibilityresponse
+IF NOT EXISTS chargeitem_resource__gin
+ON chargeitem
 USING GIN (resource);
 ```
 
-### DocumentReference
-
-Search parameter: `DocumentReference.description`
+Search parameter: `ChargeItem.occurrence`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS documentreference_resource__description_gin_trgm
-ON documentreference
-USING GIN ((aidbox_text_search(knife_extract_text("documentreference".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS chargeitem_resource__occurrence_max
+ON chargeitem
+USING btree (knife_extract_max_timestamptz(resource, '[["occurrence"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS chargeitem_resource__occurrence_min
+ON chargeitem
+USING btree (knife_extract_min_timestamptz(resource, '[["occurrence"]]'));
 ```
 
-Search parameter: `DocumentReference.identifier`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `DocumentReference.contenttype`, `DocumentReference.security-label`, `DocumentReference.authenticator`, `DocumentReference.facility`, `DocumentReference.format`, `DocumentReference.category`, `DocumentReference.language`, `DocumentReference.subject`, `DocumentReference.setting`, `DocumentReference.encounter`, `DocumentReference.status`, `DocumentReference.relatesto`, `DocumentReference.relation`, `DocumentReference.event`, `DocumentReference.location`, `DocumentReference.patient`, `DocumentReference.related`, `DocumentReference.custodian`, `DocumentReference.author`, `DocumentReference.type`
+Search parameter: `ChargeItem.price-override`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS documentreference_resource__gin
-ON documentreference
+IF NOT EXISTS chargeitem_resource__price_override_max
+ON chargeitem
+USING btree (knife_extract_max_numeric(resource, '[["priceOverride","value"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS chargeitem_resource__price_override_min
+ON chargeitem
+USING btree (knife_extract_max_numeric(resource, '[["priceOverride","value"]]'));
+```
+
+Search parameter: `ChargeItem.factor-override`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS chargeitem_resource__factor_override_max
+ON chargeitem
+USING btree (knife_extract_max_numeric(resource, '[["factorOverride"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS chargeitem_resource__factor_override_min
+ON chargeitem
+USING btree (knife_extract_max_numeric(resource, '[["factorOverride"]]'));
+```
+
+Search parameter: `ChargeItem.quantity`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS chargeitem_resource__quantity_max
+ON chargeitem
+USING btree (knife_extract_max_numeric(resource, '[["quantity","value"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS chargeitem_resource__quantity_min
+ON chargeitem
+USING btree (knife_extract_max_numeric(resource, '[["quantity","value"]]'));
+```
+
+Search parameter: `ChargeItem.entered-date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS chargeitem_resource__entereddate_max
+ON chargeitem
+USING btree (knife_extract_max_timestamptz(resource, '[["enteredDate"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS chargeitem_resource__entereddate_min
+ON chargeitem
+USING btree (knife_extract_min_timestamptz(resource, '[["enteredDate"]]'));
+```
+
+### ChargeItemDefinition
+
+Search parameter: `ChargeItemDefinition.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS chargeitemdefinition_resource__date_max
+ON chargeitemdefinition
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS chargeitemdefinition_resource__date_min
+ON chargeitemdefinition
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+Search parameter: `ChargeItemDefinition.publisher`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS chargeitemdefinition_resource__publisher_gin_trgm
+ON chargeitemdefinition
+USING GIN ((aidbox_text_search(knife_extract_text("chargeitemdefinition".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `ChargeItemDefinition.title`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS chargeitemdefinition_resource__title_gin_trgm
+ON chargeitemdefinition
+USING GIN ((aidbox_text_search(knife_extract_text("chargeitemdefinition".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `ChargeItemDefinition.description`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS chargeitemdefinition_resource__description_gin_trgm
+ON chargeitemdefinition
+USING GIN ((aidbox_text_search(knife_extract_text("chargeitemdefinition".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `ChargeItemDefinition.version`, `ChargeItemDefinition.jurisdiction`, `ChargeItemDefinition.status`, `ChargeItemDefinition.context`, `ChargeItemDefinition.url`, `ChargeItemDefinition.context-type`, `ChargeItemDefinition.identifier`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS chargeitemdefinition_resource__gin
+ON chargeitemdefinition
 USING GIN (resource);
 ```
 
-Search parameter: `DocumentReference.period`, `DocumentReference.date`
-
-```sql
-WIP: work in progress
-```
-
-### EventDefinition
-
-Search parameter: `EventDefinition.derived-from`, `EventDefinition.url`, `EventDefinition.topic`, `EventDefinition.version`, `EventDefinition.context-type`, `EventDefinition.status`, `EventDefinition.jurisdiction`, `EventDefinition.context`, `EventDefinition.predecessor`, `EventDefinition.composed-of`, `EventDefinition.identifier`, `EventDefinition.successor`, `EventDefinition.depends-on`
+Search parameter: `ChargeItemDefinition.context-quantity`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS eventdefinition_resource__gin
-ON eventdefinition
+IF NOT EXISTS chargeitemdefinition_resource__context_quantity_max
+ON chargeitemdefinition
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS chargeitemdefinition_resource__context_quantity_min
+ON chargeitemdefinition
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+```
+
+Search parameter: `ChargeItemDefinition.effective`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS chargeitemdefinition_resource__effectiveperiod_max
+ON chargeitemdefinition
+USING btree (knife_extract_max_timestamptz(resource, '[["effectivePeriod"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS chargeitemdefinition_resource__effectiveperiod_min
+ON chargeitemdefinition
+USING btree (knife_extract_min_timestamptz(resource, '[["effectivePeriod"]]'));
+```
+
+### Claim
+
+Search parameter: `Claim.priority`, `Claim.status`, `Claim.use`, `Claim.procedure-udi`, `Claim.item-udi`, `Claim.detail-udi`, `Claim.enterer`, `Claim.subdetail-udi`, `Claim.payee`, `Claim.identifier`, `Claim.care-team`, `Claim.encounter`, `Claim.facility`, `Claim.insurer`, `Claim.patient`, `Claim.provider`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS claim_resource__gin
+ON claim
 USING GIN (resource);
 ```
 
-Search parameter: `EventDefinition.name`
+Search parameter: `Claim.created`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS eventdefinition_resource__name_gin_trgm
-ON eventdefinition
-USING GIN ((aidbox_text_search(knife_extract_text("eventdefinition".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS claim_resource__created_max
+ON claim
+USING btree (knife_extract_max_timestamptz(resource, '[["created"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS claim_resource__created_min
+ON claim
+USING btree (knife_extract_min_timestamptz(resource, '[["created"]]'));
 ```
 
-Search parameter: `EventDefinition.description`
+### ClaimResponse
+
+Search parameter: `ClaimResponse.requestor`, `ClaimResponse.request`, `ClaimResponse.identifier`, `ClaimResponse.status`, `ClaimResponse.outcome`, `ClaimResponse.patient`, `ClaimResponse.use`, `ClaimResponse.insurer`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS eventdefinition_resource__description_gin_trgm
-ON eventdefinition
-USING GIN ((aidbox_text_search(knife_extract_text("eventdefinition".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `EventDefinition.publisher`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS eventdefinition_resource__publisher_gin_trgm
-ON eventdefinition
-USING GIN ((aidbox_text_search(knife_extract_text("eventdefinition".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `EventDefinition.title`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS eventdefinition_resource__title_gin_trgm
-ON eventdefinition
-USING GIN ((aidbox_text_search(knife_extract_text("eventdefinition".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `EventDefinition.context-quantity`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `EventDefinition.effective`, `EventDefinition.date`
-
-```sql
-WIP: work in progress
-```
-
-### Encounter
-
-Search parameter: `Encounter.length`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Encounter.service-provider`, `Encounter.reason-reference`, `Encounter.participant-type`, `Encounter.participant`, `Encounter.reason-code`, `Encounter.status`, `Encounter.based-on`, `Encounter.identifier`, `Encounter.part-of`, `Encounter.patient`, `Encounter.location`, `Encounter.class`, `Encounter.account`, `Encounter.subject`, `Encounter.practitioner`, `Encounter.special-arrangement`, `Encounter.diagnosis`, `Encounter.appointment`, `Encounter.episode-of-care`, `Encounter.type`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS encounter_resource__gin
-ON encounter
+IF NOT EXISTS claimresponse_resource__gin
+ON claimresponse
 USING GIN (resource);
 ```
 
-Search parameter: `Encounter.location-period`, `Encounter.date`
-
-```sql
-WIP: work in progress
-```
-
-### ImplementationGuide
-
-Search parameter: `ImplementationGuide.description`
+Search parameter: `ClaimResponse.created`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS implementationguide_resource__description_gin_trgm
-ON implementationguide
-USING GIN ((aidbox_text_search(knife_extract_text("implementationguide".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS claimresponse_resource__created_max
+ON claimresponse
+USING btree (knife_extract_max_timestamptz(resource, '[["created"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS claimresponse_resource__created_min
+ON claimresponse
+USING btree (knife_extract_min_timestamptz(resource, '[["created"]]'));
 ```
 
-Search parameter: `ImplementationGuide.context-quantity`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `ImplementationGuide.title`
+Search parameter: `ClaimResponse.payment-date`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS implementationguide_resource__title_gin_trgm
-ON implementationguide
-USING GIN ((aidbox_text_search(knife_extract_text("implementationguide".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS claimresponse_resource__payment_date_max
+ON claimresponse
+USING btree (knife_extract_max_timestamptz(resource, '[["payment" "date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS claimresponse_resource__payment_date_min
+ON claimresponse
+USING btree (knife_extract_min_timestamptz(resource, '[["payment" "date"]]'));
 ```
 
-Search parameter: `ImplementationGuide.publisher`
+Search parameter: `ClaimResponse.disposition`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS implementationguide_resource__publisher_gin_trgm
-ON implementationguide
-USING GIN ((aidbox_text_search(knife_extract_text("implementationguide".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS claimresponse_resource__disposition_gin_trgm
+ON claimresponse
+USING GIN ((aidbox_text_search(knife_extract_text("claimresponse".resource, $JSON$[["disposition"]]$JSON$))) gin_trgm_ops);
 ```
 
-Search parameter: `ImplementationGuide.date`
+### ClinicalImpression
 
-```sql
-WIP: work in progress
-```
-
-Search parameter: `ImplementationGuide.name`
+Search parameter: `ClinicalImpression.date`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS implementationguide_resource__name_gin_trgm
-ON implementationguide
-USING GIN ((aidbox_text_search(knife_extract_text("implementationguide".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS clinicalimpression_resource__date_max
+ON clinicalimpression
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS clinicalimpression_resource__date_min
+ON clinicalimpression
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
 ```
 
-Search parameter: `ImplementationGuide.jurisdiction`, `ImplementationGuide.context`, `ImplementationGuide.context-type`, `ImplementationGuide.experimental`, `ImplementationGuide.resource`, `ImplementationGuide.depends-on`, `ImplementationGuide.version`, `ImplementationGuide.global`, `ImplementationGuide.url`, `ImplementationGuide.status`
+Search parameter: `ClinicalImpression.supporting-info`, `ClinicalImpression.assessor`, `ClinicalImpression.identifier`, `ClinicalImpression.patient`, `ClinicalImpression.status`, `ClinicalImpression.problem`, `ClinicalImpression.investigation`, `ClinicalImpression.encounter`, `ClinicalImpression.finding-ref`, `ClinicalImpression.previous`, `ClinicalImpression.finding-code`, `ClinicalImpression.subject`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS implementationguide_resource__gin
-ON implementationguide
-USING GIN (resource);
-```
-
-### EvidenceVariable
-
-Search parameter: `EvidenceVariable.depends-on`, `EvidenceVariable.jurisdiction`, `EvidenceVariable.url`, `EvidenceVariable.status`, `EvidenceVariable.topic`, `EvidenceVariable.context`, `EvidenceVariable.successor`, `EvidenceVariable.version`, `EvidenceVariable.composed-of`, `EvidenceVariable.derived-from`, `EvidenceVariable.identifier`, `EvidenceVariable.predecessor`, `EvidenceVariable.context-type`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS evidencevariable_resource__gin
-ON evidencevariable
-USING GIN (resource);
-```
-
-Search parameter: `EvidenceVariable.publisher`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS evidencevariable_resource__publisher_gin_trgm
-ON evidencevariable
-USING GIN ((aidbox_text_search(knife_extract_text("evidencevariable".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `EvidenceVariable.date`, `EvidenceVariable.effective`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `EvidenceVariable.name`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS evidencevariable_resource__name_gin_trgm
-ON evidencevariable
-USING GIN ((aidbox_text_search(knife_extract_text("evidencevariable".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `EvidenceVariable.description`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS evidencevariable_resource__description_gin_trgm
-ON evidencevariable
-USING GIN ((aidbox_text_search(knife_extract_text("evidencevariable".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `EvidenceVariable.context-quantity`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `EvidenceVariable.title`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS evidencevariable_resource__title_gin_trgm
-ON evidencevariable
-USING GIN ((aidbox_text_search(knife_extract_text("evidencevariable".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
-```
-
-### DiagnosticReport
-
-Search parameter: `DiagnosticReport.subject`, `DiagnosticReport.conclusion`, `DiagnosticReport.results-interpreter`, `DiagnosticReport.identifier`, `DiagnosticReport.media`, `DiagnosticReport.result`, `DiagnosticReport.encounter`, `DiagnosticReport.performer`, `DiagnosticReport.based-on`, `DiagnosticReport.category`, `DiagnosticReport.code`, `DiagnosticReport.status`, `DiagnosticReport.patient`, `DiagnosticReport.specimen`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS diagnosticreport_resource__gin
-ON diagnosticreport
-USING GIN (resource);
-```
-
-Search parameter: `DiagnosticReport.date`, `DiagnosticReport.issued`
-
-```sql
-WIP: work in progress
-```
-
-### ExampleScenario
-
-Search parameter: `ExampleScenario.publisher`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS examplescenario_resource__publisher_gin_trgm
-ON examplescenario
-USING GIN ((aidbox_text_search(knife_extract_text("examplescenario".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `ExampleScenario.name`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS examplescenario_resource__name_gin_trgm
-ON examplescenario
-USING GIN ((aidbox_text_search(knife_extract_text("examplescenario".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `ExampleScenario.date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `ExampleScenario.version`, `ExampleScenario.jurisdiction`, `ExampleScenario.context-type`, `ExampleScenario.status`, `ExampleScenario.url`, `ExampleScenario.context`, `ExampleScenario.identifier`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS examplescenario_resource__gin
-ON examplescenario
-USING GIN (resource);
-```
-
-Search parameter: `ExampleScenario.context-quantity`
-
-```sql
-WIP: work in progress
-```
-
-### ResearchDefinition
-
-Search parameter: `ResearchDefinition.name`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS researchdefinition_resource__name_gin_trgm
-ON researchdefinition
-USING GIN ((aidbox_text_search(knife_extract_text("researchdefinition".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `ResearchDefinition.derived-from`, `ResearchDefinition.status`, `ResearchDefinition.context`, `ResearchDefinition.successor`, `ResearchDefinition.topic`, `ResearchDefinition.jurisdiction`, `ResearchDefinition.predecessor`, `ResearchDefinition.context-type`, `ResearchDefinition.identifier`, `ResearchDefinition.composed-of`, `ResearchDefinition.version`, `ResearchDefinition.url`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS researchdefinition_resource__gin
-ON researchdefinition
-USING GIN (resource);
-```
-
-Search parameter: `ResearchDefinition.description`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS researchdefinition_resource__description_gin_trgm
-ON researchdefinition
-USING GIN ((aidbox_text_search(knife_extract_text("researchdefinition".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `ResearchDefinition.context-quantity`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `ResearchDefinition.depends-on`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `ResearchDefinition.title`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS researchdefinition_resource__title_gin_trgm
-ON researchdefinition
-USING GIN ((aidbox_text_search(knife_extract_text("researchdefinition".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `ResearchDefinition.effective`, `ResearchDefinition.date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `ResearchDefinition.publisher`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS researchdefinition_resource__publisher_gin_trgm
-ON researchdefinition
-USING GIN ((aidbox_text_search(knife_extract_text("researchdefinition".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
-```
-
-### MedicinalProductInteraction
-
-Search parameter: `MedicinalProductInteraction.subject`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS medicinalproductinteraction_resource__gin
-ON medicinalproductinteraction
+IF NOT EXISTS clinicalimpression_resource__gin
+ON clinicalimpression
 USING GIN (resource);
 ```
 
@@ -967,12 +721,6 @@ CREATE INDEX CONCURRENTLY
 IF NOT EXISTS codesystem_resource__publisher_gin_trgm
 ON codesystem
 USING GIN ((aidbox_text_search(knife_extract_text("codesystem".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `CodeSystem.context-quantity`
-
-```sql
-WIP: work in progress
 ```
 
 Search parameter: `CodeSystem.name`
@@ -1014,134 +762,725 @@ USING GIN ((aidbox_text_search(knife_extract_text("codesystem".resource, $JSON$[
 Search parameter: `CodeSystem.date`
 
 ```sql
-WIP: work in progress
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS codesystem_resource__date_max
+ON codesystem
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS codesystem_resource__date_min
+ON codesystem
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
 ```
 
-### MessageDefinition
-
-Search parameter: `MessageDefinition.context-quantity`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `MessageDefinition.publisher`
+Search parameter: `CodeSystem.context-quantity`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS messagedefinition_resource__publisher_gin_trgm
-ON messagedefinition
-USING GIN ((aidbox_text_search(knife_extract_text("messagedefinition".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS codesystem_resource__context_quantity_max
+ON codesystem
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS codesystem_resource__context_quantity_min
+ON codesystem
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
 ```
 
-Search parameter: `MessageDefinition.date`
+### Communication
 
-```sql
-WIP: work in progress
-```
-
-Search parameter: `MessageDefinition.name`
+Search parameter: `Communication.sent`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS messagedefinition_resource__name_gin_trgm
-ON messagedefinition
-USING GIN ((aidbox_text_search(knife_extract_text("messagedefinition".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS communication_resource__sent_max
+ON communication
+USING btree (knife_extract_max_timestamptz(resource, '[["sent"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS communication_resource__sent_min
+ON communication
+USING btree (knife_extract_min_timestamptz(resource, '[["sent"]]'));
 ```
 
-Search parameter: `MessageDefinition.status`, `MessageDefinition.jurisdiction`, `MessageDefinition.context`, `MessageDefinition.context-type`, `MessageDefinition.category`, `MessageDefinition.focus`, `MessageDefinition.version`, `MessageDefinition.parent`, `MessageDefinition.identifier`, `MessageDefinition.url`
+Search parameter: `Communication.status`, `Communication.encounter`, `Communication.patient`, `Communication.based-on`, `Communication.subject`, `Communication.instantiates-canonical`, `Communication.part-of`, `Communication.medium`, `Communication.identifier`, `Communication.instantiates-uri`, `Communication.recipient`, `Communication.category`, `Communication.sender`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS messagedefinition_resource__gin
-ON messagedefinition
+IF NOT EXISTS communication_resource__gin
+ON communication
 USING GIN (resource);
 ```
 
-Search parameter: `MessageDefinition.title`
+Search parameter: `Communication.received`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS messagedefinition_resource__title_gin_trgm
-ON messagedefinition
-USING GIN ((aidbox_text_search(knife_extract_text("messagedefinition".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS communication_resource__received_max
+ON communication
+USING btree (knife_extract_max_timestamptz(resource, '[["received"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS communication_resource__received_min
+ON communication
+USING btree (knife_extract_min_timestamptz(resource, '[["received"]]'));
 ```
 
-Search parameter: `MessageDefinition.description`
+### CommunicationRequest
+
+Search parameter: `CommunicationRequest.recipient`, `CommunicationRequest.subject`, `CommunicationRequest.category`, `CommunicationRequest.medium`, `CommunicationRequest.sender`, `CommunicationRequest.priority`, `CommunicationRequest.status`, `CommunicationRequest.based-on`, `CommunicationRequest.replaces`, `CommunicationRequest.requester`, `CommunicationRequest.encounter`, `CommunicationRequest.group-identifier`, `CommunicationRequest.identifier`, `CommunicationRequest.patient`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS messagedefinition_resource__description_gin_trgm
-ON messagedefinition
-USING GIN ((aidbox_text_search(knife_extract_text("messagedefinition".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS communicationrequest_resource__gin
+ON communicationrequest
+USING GIN (resource);
 ```
 
-Search parameter: `MessageDefinition.event`
+Search parameter: `CommunicationRequest.authored`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS communicationrequest_resource__authoredon_max
+ON communicationrequest
+USING btree (knife_extract_max_timestamptz(resource, '[["authoredOn"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS communicationrequest_resource__authoredon_min
+ON communicationrequest
+USING btree (knife_extract_min_timestamptz(resource, '[["authoredOn"]]'));
+```
+
+Search parameter: `CommunicationRequest.occurrence`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS communicationrequest_resource__occurrence_datetime_max
+ON communicationrequest
+USING btree (knife_extract_max_timestamptz(resource, '[["occurrence" "dateTime"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS communicationrequest_resource__occurrence_datetime_min
+ON communicationrequest
+USING btree (knife_extract_min_timestamptz(resource, '[["occurrence" "dateTime"]]'));
+```
+
+### CompartmentDefinition
+
+Search parameter: `CompartmentDefinition.publisher`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS compartmentdefinition_resource__publisher_gin_trgm
+ON compartmentdefinition
+USING GIN ((aidbox_text_search(knife_extract_text("compartmentdefinition".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `CompartmentDefinition.context-quantity`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS compartmentdefinition_resource__context_quantity_max
+ON compartmentdefinition
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS compartmentdefinition_resource__context_quantity_min
+ON compartmentdefinition
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+```
+
+Search parameter: `CompartmentDefinition.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS compartmentdefinition_resource__date_max
+ON compartmentdefinition
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS compartmentdefinition_resource__date_min
+ON compartmentdefinition
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+Search parameter: `CompartmentDefinition.version`, `CompartmentDefinition.resource`, `CompartmentDefinition.context`, `CompartmentDefinition.url`, `CompartmentDefinition.status`, `CompartmentDefinition.context-type`, `CompartmentDefinition.code`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS compartmentdefinition_resource__gin
+ON compartmentdefinition
+USING GIN (resource);
+```
+
+Search parameter: `CompartmentDefinition.description`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS compartmentdefinition_resource__description_gin_trgm
+ON compartmentdefinition
+USING GIN ((aidbox_text_search(knife_extract_text("compartmentdefinition".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `CompartmentDefinition.name`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS compartmentdefinition_resource__name_gin_trgm
+ON compartmentdefinition
+USING GIN ((aidbox_text_search(knife_extract_text("compartmentdefinition".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+```
+
+### Composition
+
+Search parameter: `Composition.title`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS composition_resource__title_gin_trgm
+ON composition
+USING GIN ((aidbox_text_search(knife_extract_text("composition".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Composition.confidentiality`, `Composition.entry`, `Composition.category`, `Composition.section`, `Composition.status`, `Composition.subject`, `Composition.type`, `Composition.identifier`, `Composition.related-id`, `Composition.related-ref`, `Composition.attester`, `Composition.author`, `Composition.patient`, `Composition.context`, `Composition.encounter`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS composition_resource__gin
+ON composition
+USING GIN (resource);
+```
+
+Search parameter: `Composition.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS composition_resource__date_max
+ON composition
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS composition_resource__date_min
+ON composition
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+Search parameter: `Composition.period`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS composition_resource__event_period_max
+ON composition
+USING btree (knife_extract_max_timestamptz(resource, '[["event" "period"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS composition_resource__event_period_min
+ON composition
+USING btree (knife_extract_min_timestamptz(resource, '[["event" "period"]]'));
+```
+
+### ConceptMap
+
+Search parameter: `ConceptMap.target-code`, `ConceptMap.other`, `ConceptMap.context-type`, `ConceptMap.dependson`, `ConceptMap.source-code`, `ConceptMap.target-system`, `ConceptMap.status`, `ConceptMap.source`, `ConceptMap.url`, `ConceptMap.version`, `ConceptMap.identifier`, `ConceptMap.target`, `ConceptMap.product`, `ConceptMap.jurisdiction`, `ConceptMap.source-system`, `ConceptMap.target-uri`, `ConceptMap.context`, `ConceptMap.source-uri`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS conceptmap_resource__gin
+ON conceptmap
+USING GIN (resource);
+```
+
+Search parameter: `ConceptMap.description`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS conceptmap_resource__description_gin_trgm
+ON conceptmap
+USING GIN ((aidbox_text_search(knife_extract_text("conceptmap".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `ConceptMap.publisher`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS conceptmap_resource__publisher_gin_trgm
+ON conceptmap
+USING GIN ((aidbox_text_search(knife_extract_text("conceptmap".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `ConceptMap.context-quantity`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS conceptmap_resource__context_quantity_max
+ON conceptmap
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS conceptmap_resource__context_quantity_min
+ON conceptmap
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+```
+
+Search parameter: `ConceptMap.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS conceptmap_resource__date_max
+ON conceptmap
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS conceptmap_resource__date_min
+ON conceptmap
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+Search parameter: `ConceptMap.title`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS conceptmap_resource__title_gin_trgm
+ON conceptmap
+USING GIN ((aidbox_text_search(knife_extract_text("conceptmap".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `ConceptMap.name`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS conceptmap_resource__name_gin_trgm
+ON conceptmap
+USING GIN ((aidbox_text_search(knife_extract_text("conceptmap".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+```
+
+### Condition
+
+Search parameter: `Condition.abatement-age`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS condition_resource__abatement_age_max
+ON condition
+USING btree (knife_extract_max_numeric(resource, '[["abatement","Age"],["abatement","Range"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS condition_resource__abatement_age_min
+ON condition
+USING btree (knife_extract_max_numeric(resource, '[["abatement","Age"],["abatement","Range"]]'));
+```
+
+Search parameter: `Condition.abatement-string`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS condition_resource__abatement_string_gin_trgm
+ON condition
+USING GIN ((aidbox_text_search(knife_extract_text("condition".resource, $JSON$[["abatement","string"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Condition.recorded-date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS condition_resource__recordeddate_max
+ON condition
+USING btree (knife_extract_max_timestamptz(resource, '[["recordedDate"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS condition_resource__recordeddate_min
+ON condition
+USING btree (knife_extract_min_timestamptz(resource, '[["recordedDate"]]'));
+```
+
+Search parameter: `Condition.onset-age`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS condition_resource__onset_age_max
+ON condition
+USING btree (knife_extract_max_numeric(resource, '[["onset","Age"],["onset","Range"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS condition_resource__onset_age_min
+ON condition
+USING btree (knife_extract_max_numeric(resource, '[["onset","Age"],["onset","Range"]]'));
+```
+
+Search parameter: `Condition.onset-date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS condition_resource__onset_datetime_max
+ON condition
+USING btree (knife_extract_max_timestamptz(resource, '[["onset" "dateTime"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS condition_resource__onset_datetime_min
+ON condition
+USING btree (knife_extract_min_timestamptz(resource, '[["onset" "dateTime"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS condition_resource__onset_period_max
+ON condition
+USING btree (knife_extract_max_timestamptz(resource, '[["onset" "Period"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS condition_resource__onset_period_min
+ON condition
+USING btree (knife_extract_min_timestamptz(resource, '[["onset" "Period"]]'));
+```
+
+Search parameter: `Condition.onset-info`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS condition_resource__onset_info_gin_trgm
+ON condition
+USING GIN ((aidbox_text_search(knife_extract_text("condition".resource, $JSON$[["onset","string"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Condition.identifier`, `Condition.category`, `Condition.verification-status`, `Condition.stage`, `Condition.evidence-detail`, `Condition.asserter`, `Condition.body-site`, `Condition.evidence`, `Condition.code`, `Condition.severity`, `Condition.encounter`, `Condition.patient`, `Condition.clinical-status`, `Condition.subject`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS condition_resource__gin
+ON condition
+USING GIN (resource);
+```
+
+Search parameter: `Condition.abatement-date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS condition_resource__abatement_datetime_max
+ON condition
+USING btree (knife_extract_max_timestamptz(resource, '[["abatement" "dateTime"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS condition_resource__abatement_datetime_min
+ON condition
+USING btree (knife_extract_min_timestamptz(resource, '[["abatement" "dateTime"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS condition_resource__abatement_period_max
+ON condition
+USING btree (knife_extract_max_timestamptz(resource, '[["abatement" "Period"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS condition_resource__abatement_period_min
+ON condition
+USING btree (knife_extract_min_timestamptz(resource, '[["abatement" "Period"]]'));
+```
+
+### Consent
+
+Search parameter: `Consent.source-reference`
 
 ```sql
 WIP: work in progress
 ```
 
-### NutritionOrder
-
-Search parameter: `NutritionOrder.instantiates-uri`, `NutritionOrder.instantiates-canonical`, `NutritionOrder.supplement`, `NutritionOrder.provider`, `NutritionOrder.oraldiet`, `NutritionOrder.additive`, `NutritionOrder.identifier`, `NutritionOrder.patient`, `NutritionOrder.status`, `NutritionOrder.encounter`, `NutritionOrder.formula`
+Search parameter: `Consent.period`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS nutritionorder_resource__gin
-ON nutritionorder
-USING GIN (resource);
+IF NOT EXISTS consent_resource__provision_period_max
+ON consent
+USING btree (knife_extract_max_timestamptz(resource, '[["provision" "period"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS consent_resource__provision_period_min
+ON consent
+USING btree (knife_extract_min_timestamptz(resource, '[["provision" "period"]]'));
 ```
 
-Search parameter: `NutritionOrder.datetime`
-
-```sql
-WIP: work in progress
-```
-
-### VerificationResult
-
-Search parameter: `VerificationResult.target`
+Search parameter: `Consent.date`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS verificationresult_resource__gin
-ON verificationresult
-USING GIN (resource);
+IF NOT EXISTS consent_resource__datetime_max
+ON consent
+USING btree (knife_extract_max_timestamptz(resource, '[["dateTime"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS consent_resource__datetime_min
+ON consent
+USING btree (knife_extract_min_timestamptz(resource, '[["dateTime"]]'));
 ```
 
-### MedicationAdministration
-
-Search parameter: `MedicationAdministration.status`, `MedicationAdministration.reason-not-given`, `MedicationAdministration.performer`, `MedicationAdministration.context`, `MedicationAdministration.device`, `MedicationAdministration.reason-given`, `MedicationAdministration.identifier`, `MedicationAdministration.medication`, `MedicationAdministration.code`, `MedicationAdministration.subject`, `MedicationAdministration.patient`, `MedicationAdministration.request`
+Search parameter: `Consent.action`, `Consent.status`, `Consent.purpose`, `Consent.identifier`, `Consent.category`, `Consent.scope`, `Consent.consentor`, `Consent.data`, `Consent.security-label`, `Consent.patient`, `Consent.actor`, `Consent.organization`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS medicationadministration_resource__gin
-ON medicationadministration
+IF NOT EXISTS consent_resource__gin
+ON consent
 USING GIN (resource);
 ```
 
-Search parameter: `MedicationAdministration.effective-time`
+### Contract
 
-```sql
-WIP: work in progress
-```
-
-### Flag
-
-Search parameter: `Flag.encounter`, `Flag.subject`, `Flag.author`, `Flag.patient`, `Flag.identifier`
+Search parameter: `Contract.issued`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS flag_resource__gin
-ON flag
+IF NOT EXISTS contract_resource__issued_max
+ON contract
+USING btree (knife_extract_max_timestamptz(resource, '[["issued"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS contract_resource__issued_min
+ON contract
+USING btree (knife_extract_min_timestamptz(resource, '[["issued"]]'));
+```
+
+Search parameter: `Contract.patient`, `Contract.instantiates`, `Contract.signer`, `Contract.domain`, `Contract.subject`, `Contract.identifier`, `Contract.url`, `Contract.status`, `Contract.authority`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS contract_resource__gin
+ON contract
 USING GIN (resource);
 ```
 
-Search parameter: `Flag.date`
+### Coverage
+
+Search parameter: `Coverage.class-type`, `Coverage.payor`, `Coverage.type`, `Coverage.beneficiary`, `Coverage.subscriber`, `Coverage.patient`, `Coverage.policy-holder`, `Coverage.identifier`, `Coverage.status`
 
 ```sql
-WIP: work in progress
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS coverage_resource__gin
+ON coverage
+USING GIN (resource);
+```
+
+Search parameter: `Coverage.dependent`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS coverage_resource__dependent_gin_trgm
+ON coverage
+USING GIN ((aidbox_text_search(knife_extract_text("coverage".resource, $JSON$[["dependent"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Coverage.class-value`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS coverage_resource__class_value_gin_trgm
+ON coverage
+USING GIN ((aidbox_text_search(knife_extract_text("coverage".resource, $JSON$[["class","value"]]$JSON$))) gin_trgm_ops);
+```
+
+### CoverageEligibilityRequest
+
+Search parameter: `CoverageEligibilityRequest.created`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS coverageeligibilityrequest_resource__created_max
+ON coverageeligibilityrequest
+USING btree (knife_extract_max_timestamptz(resource, '[["created"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS coverageeligibilityrequest_resource__created_min
+ON coverageeligibilityrequest
+USING btree (knife_extract_min_timestamptz(resource, '[["created"]]'));
+```
+
+Search parameter: `CoverageEligibilityRequest.patient`, `CoverageEligibilityRequest.status`, `CoverageEligibilityRequest.enterer`, `CoverageEligibilityRequest.facility`, `CoverageEligibilityRequest.provider`, `CoverageEligibilityRequest.identifier`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS coverageeligibilityrequest_resource__gin
+ON coverageeligibilityrequest
+USING GIN (resource);
+```
+
+### CoverageEligibilityResponse
+
+Search parameter: `CoverageEligibilityResponse.disposition`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS coverageeligibilityresponse_resource__disposition_gin_trgm
+ON coverageeligibilityresponse
+USING GIN ((aidbox_text_search(knife_extract_text("coverageeligibilityresponse".resource, $JSON$[["disposition"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `CoverageEligibilityResponse.created`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS coverageeligibilityresponse_resource__created_max
+ON coverageeligibilityresponse
+USING btree (knife_extract_max_timestamptz(resource, '[["created"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS coverageeligibilityresponse_resource__created_min
+ON coverageeligibilityresponse
+USING btree (knife_extract_min_timestamptz(resource, '[["created"]]'));
+```
+
+Search parameter: `CoverageEligibilityResponse.outcome`, `CoverageEligibilityResponse.requestor`, `CoverageEligibilityResponse.request`, `CoverageEligibilityResponse.insurer`, `CoverageEligibilityResponse.identifier`, `CoverageEligibilityResponse.status`, `CoverageEligibilityResponse.patient`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS coverageeligibilityresponse_resource__gin
+ON coverageeligibilityresponse
+USING GIN (resource);
+```
+
+### DetectedIssue
+
+Search parameter: `DetectedIssue.identified`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS detectedissue_resource__identified_max
+ON detectedissue
+USING btree (knife_extract_max_timestamptz(resource, '[["identified"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS detectedissue_resource__identified_min
+ON detectedissue
+USING btree (knife_extract_min_timestamptz(resource, '[["identified"]]'));
+```
+
+Search parameter: `DetectedIssue.patient`, `DetectedIssue.author`, `DetectedIssue.code`, `DetectedIssue.identifier`, `DetectedIssue.implicated`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS detectedissue_resource__gin
+ON detectedissue
+USING GIN (resource);
+```
+
+### Device
+
+Search parameter: `Device.model`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS device_resource__model_gin_trgm
+ON device
+USING GIN ((aidbox_text_search(knife_extract_text("device".resource, $JSON$[["modelNumber"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Device.udi-di`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS device_resource__udi_di_gin_trgm
+ON device
+USING GIN ((aidbox_text_search(knife_extract_text("device".resource, $JSON$[["udiCarrier","deviceIdentifier"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Device.device-name`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS device_resource__device_name_gin_trgm
+ON device
+USING GIN ((aidbox_text_search(knife_extract_text("device".resource, $JSON$[["deviceName","name"],["type","coding","display"],["type","text"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Device.patient`, `Device.location`, `Device.organization`, `Device.identifier`, `Device.status`, `Device.type`, `Device.url`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS device_resource__gin
+ON device
+USING GIN (resource);
+```
+
+Search parameter: `Device.udi-carrier`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS device_resource__udi_carrier_gin_trgm
+ON device
+USING GIN ((aidbox_text_search(knife_extract_text("device".resource, $JSON$[["udiCarrier","carrierHRF"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Device.manufacturer`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS device_resource__manufacturer_gin_trgm
+ON device
+USING GIN ((aidbox_text_search(knife_extract_text("device".resource, $JSON$[["manufacturer"]]$JSON$))) gin_trgm_ops);
+```
+
+### DeviceDefinition
+
+Search parameter: `DeviceDefinition.parent`, `DeviceDefinition.type`, `DeviceDefinition.identifier`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS devicedefinition_resource__gin
+ON devicedefinition
+USING GIN (resource);
+```
+
+### DeviceMetric
+
+Search parameter: `DeviceMetric.parent`, `DeviceMetric.type`, `DeviceMetric.source`, `DeviceMetric.identifier`, `DeviceMetric.category`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS devicemetric_resource__gin
+ON devicemetric
+USING GIN (resource);
+```
+
+### DeviceRequest
+
+Search parameter: `DeviceRequest.authored-on`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS devicerequest_resource__authoredon_max
+ON devicerequest
+USING btree (knife_extract_max_timestamptz(resource, '[["authoredOn"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS devicerequest_resource__authoredon_min
+ON devicerequest
+USING btree (knife_extract_min_timestamptz(resource, '[["authoredOn"]]'));
+```
+
+Search parameter: `DeviceRequest.event-date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS devicerequest_resource__occurrence_datetime_max
+ON devicerequest
+USING btree (knife_extract_max_timestamptz(resource, '[["occurrence" "dateTime"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS devicerequest_resource__occurrence_datetime_min
+ON devicerequest
+USING btree (knife_extract_min_timestamptz(resource, '[["occurrence" "dateTime"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS devicerequest_resource__occurrence_period_max
+ON devicerequest
+USING btree (knife_extract_max_timestamptz(resource, '[["occurrence" "Period"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS devicerequest_resource__occurrence_period_min
+ON devicerequest
+USING btree (knife_extract_min_timestamptz(resource, '[["occurrence" "Period"]]'));
+```
+
+Search parameter: `DeviceRequest.instantiates-uri`, `DeviceRequest.device`, `DeviceRequest.insurance`, `DeviceRequest.requester`, `DeviceRequest.status`, `DeviceRequest.based-on`, `DeviceRequest.encounter`, `DeviceRequest.intent`, `DeviceRequest.identifier`, `DeviceRequest.group-identifier`, `DeviceRequest.prior-request`, `DeviceRequest.code`, `DeviceRequest.subject`, `DeviceRequest.patient`, `DeviceRequest.instantiates-canonical`, `DeviceRequest.performer`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS devicerequest_resource__gin
+ON devicerequest
+USING GIN (resource);
 ```
 
 ### DeviceUseStatement
@@ -1155,182 +1494,315 @@ ON deviceusestatement
 USING GIN (resource);
 ```
 
-### Contract
+### DiagnosticReport
 
-Search parameter: `Contract.issued`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Contract.patient`, `Contract.instantiates`, `Contract.signer`, `Contract.domain`, `Contract.subject`, `Contract.identifier`, `Contract.url`, `Contract.status`, `Contract.authority`
+Search parameter: `DiagnosticReport.date`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS contract_resource__gin
-ON contract
+IF NOT EXISTS diagnosticreport_resource__effective_max
+ON diagnosticreport
+USING btree (knife_extract_max_timestamptz(resource, '[["effective"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS diagnosticreport_resource__effective_min
+ON diagnosticreport
+USING btree (knife_extract_min_timestamptz(resource, '[["effective"]]'));
+```
+
+Search parameter: `DiagnosticReport.issued`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS diagnosticreport_resource__issued_max
+ON diagnosticreport
+USING btree (knife_extract_max_timestamptz(resource, '[["issued"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS diagnosticreport_resource__issued_min
+ON diagnosticreport
+USING btree (knife_extract_min_timestamptz(resource, '[["issued"]]'));
+```
+
+Search parameter: `DiagnosticReport.subject`, `DiagnosticReport.conclusion`, `DiagnosticReport.results-interpreter`, `DiagnosticReport.identifier`, `DiagnosticReport.media`, `DiagnosticReport.result`, `DiagnosticReport.encounter`, `DiagnosticReport.performer`, `DiagnosticReport.based-on`, `DiagnosticReport.category`, `DiagnosticReport.code`, `DiagnosticReport.status`, `DiagnosticReport.patient`, `DiagnosticReport.specimen`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS diagnosticreport_resource__gin
+ON diagnosticreport
 USING GIN (resource);
 ```
 
-### Invoice
+### DocumentManifest
 
-Search parameter: `Invoice.subject`, `Invoice.participant-role`, `Invoice.identifier`, `Invoice.account`, `Invoice.patient`, `Invoice.participant`, `Invoice.recipient`, `Invoice.status`, `Invoice.type`, `Invoice.issuer`
+Search parameter: `DocumentManifest.created`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS invoice_resource__gin
-ON invoice
+IF NOT EXISTS documentmanifest_resource__created_max
+ON documentmanifest
+USING btree (knife_extract_max_timestamptz(resource, '[["created"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS documentmanifest_resource__created_min
+ON documentmanifest
+USING btree (knife_extract_min_timestamptz(resource, '[["created"]]'));
+```
+
+Search parameter: `DocumentManifest.patient`, `DocumentManifest.related-id`, `DocumentManifest.related-ref`, `DocumentManifest.recipient`, `DocumentManifest.item`, `DocumentManifest.subject`, `DocumentManifest.status`, `DocumentManifest.type`, `DocumentManifest.author`, `DocumentManifest.source`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS documentmanifest_resource__gin
+ON documentmanifest
 USING GIN (resource);
 ```
 
-Search parameter: `Invoice.totalnet`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Invoice.date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Invoice.totalgross`
-
-```sql
-WIP: work in progress
-```
-
-### PaymentNotice
-
-Search parameter: `PaymentNotice.provider`, `PaymentNotice.request`, `PaymentNotice.status`, `PaymentNotice.identifier`, `PaymentNotice.payment-status`, `PaymentNotice.response`
+Search parameter: `DocumentManifest.identifier`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS paymentnotice_resource__gin
-ON paymentnotice
+IF NOT EXISTS documentmanifest_resource__gin
+ON documentmanifest
 USING GIN (resource);
 ```
 
-Search parameter: `PaymentNotice.created`
-
-```sql
-WIP: work in progress
-```
-
-### Location
-
-Search parameter: `Location.address-postalcode`
+Search parameter: `DocumentManifest.description`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS location_resource__address_postalcode_gin_trgm
-ON location
-USING GIN ((aidbox_text_search(knife_extract_text("location".resource, $JSON$[["address","postalCode"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS documentmanifest_resource__description_gin_trgm
+ON documentmanifest
+USING GIN ((aidbox_text_search(knife_extract_text("documentmanifest".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
 ```
 
-Search parameter: `Location.name`
+### DocumentReference
+
+Search parameter: `DocumentReference.description`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS location_resource__name_gin_trgm
-ON location
-USING GIN ((aidbox_text_search(knife_extract_text("location".resource, $JSON$[["name"],["alias"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS documentreference_resource__description_gin_trgm
+ON documentreference
+USING GIN ((aidbox_text_search(knife_extract_text("documentreference".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
 ```
 
-Search parameter: `Location.address`
+Search parameter: `DocumentReference.date`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS location_resource__address_gin_trgm
-ON location
-USING GIN ((aidbox_text_search(knife_extract_text("location".resource, $JSON$[["address","text"],["address","district"],["address","country"],["address","city"],["address","line"],["address","state"],["address","postalCode"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS documentreference_resource__date_max
+ON documentreference
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS documentreference_resource__date_min
+ON documentreference
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
 ```
 
-Search parameter: `Location.address-state`
+Search parameter: `DocumentReference.identifier`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS location_resource__address_state_gin_trgm
-ON location
-USING GIN ((aidbox_text_search(knife_extract_text("location".resource, $JSON$[["address","state"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `Location.address-city`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS location_resource__address_city_gin_trgm
-ON location
-USING GIN ((aidbox_text_search(knife_extract_text("location".resource, $JSON$[["address","city"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `Location.organization`, `Location.identifier`, `Location.operational-status`, `Location.endpoint`, `Location.partof`, `Location.status`, `Location.type`, `Location.address-use`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS location_resource__gin
-ON location
+IF NOT EXISTS documentreference_resource__gin
+ON documentreference
 USING GIN (resource);
 ```
 
-Search parameter: `Location.address-country`
+Search parameter: `DocumentReference.contenttype`, `DocumentReference.security-label`, `DocumentReference.authenticator`, `DocumentReference.facility`, `DocumentReference.format`, `DocumentReference.category`, `DocumentReference.language`, `DocumentReference.subject`, `DocumentReference.setting`, `DocumentReference.encounter`, `DocumentReference.status`, `DocumentReference.relatesto`, `DocumentReference.relation`, `DocumentReference.event`, `DocumentReference.location`, `DocumentReference.patient`, `DocumentReference.related`, `DocumentReference.custodian`, `DocumentReference.author`, `DocumentReference.type`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS location_resource__address_country_gin_trgm
-ON location
-USING GIN ((aidbox_text_search(knife_extract_text("location".resource, $JSON$[["address","country"]]$JSON$))) gin_trgm_ops);
-```
-
-### Claim
-
-Search parameter: `Claim.priority`, `Claim.status`, `Claim.use`, `Claim.procedure-udi`, `Claim.item-udi`, `Claim.detail-udi`, `Claim.enterer`, `Claim.subdetail-udi`, `Claim.payee`, `Claim.identifier`, `Claim.care-team`, `Claim.encounter`, `Claim.facility`, `Claim.insurer`, `Claim.patient`, `Claim.provider`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS claim_resource__gin
-ON claim
+IF NOT EXISTS documentreference_resource__gin
+ON documentreference
 USING GIN (resource);
 ```
 
-Search parameter: `Claim.created`
-
-```sql
-WIP: work in progress
-```
-
-### Specimen
-
-Search parameter: `Specimen.collected`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Specimen.type`, `Specimen.parent`, `Specimen.subject`, `Specimen.collector`, `Specimen.container`, `Specimen.patient`, `Specimen.identifier`, `Specimen.status`, `Specimen.bodysite`, `Specimen.accession`, `Specimen.container-id`
+Search parameter: `DocumentReference.period`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS specimen_resource__gin
-ON specimen
+IF NOT EXISTS documentreference_resource__context_period_max
+ON documentreference
+USING btree (knife_extract_max_timestamptz(resource, '[["context" "period"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS documentreference_resource__context_period_min
+ON documentreference
+USING btree (knife_extract_min_timestamptz(resource, '[["context" "period"]]'));
+```
+
+### EffectEvidenceSynthesis
+
+Search parameter: `EffectEvidenceSynthesis.context-quantity`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS effectevidencesynthesis_resource__context_quantity_max
+ON effectevidencesynthesis
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS effectevidencesynthesis_resource__context_quantity_min
+ON effectevidencesynthesis
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+```
+
+Search parameter: `EffectEvidenceSynthesis.effective`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS effectevidencesynthesis_resource__effectiveperiod_max
+ON effectevidencesynthesis
+USING btree (knife_extract_max_timestamptz(resource, '[["effectivePeriod"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS effectevidencesynthesis_resource__effectiveperiod_min
+ON effectevidencesynthesis
+USING btree (knife_extract_min_timestamptz(resource, '[["effectivePeriod"]]'));
+```
+
+Search parameter: `EffectEvidenceSynthesis.publisher`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS effectevidencesynthesis_resource__publisher_gin_trgm
+ON effectevidencesynthesis
+USING GIN ((aidbox_text_search(knife_extract_text("effectevidencesynthesis".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `EffectEvidenceSynthesis.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS effectevidencesynthesis_resource__date_max
+ON effectevidencesynthesis
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS effectevidencesynthesis_resource__date_min
+ON effectevidencesynthesis
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+Search parameter: `EffectEvidenceSynthesis.context`, `EffectEvidenceSynthesis.context-type`, `EffectEvidenceSynthesis.version`, `EffectEvidenceSynthesis.url`, `EffectEvidenceSynthesis.identifier`, `EffectEvidenceSynthesis.jurisdiction`, `EffectEvidenceSynthesis.status`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS effectevidencesynthesis_resource__gin
+ON effectevidencesynthesis
 USING GIN (resource);
 ```
 
-### MedicationStatement
-
-Search parameter: `MedicationStatement.effective`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `MedicationStatement.code`, `MedicationStatement.identifier`, `MedicationStatement.category`, `MedicationStatement.medication`, `MedicationStatement.part-of`, `MedicationStatement.source`, `MedicationStatement.subject`, `MedicationStatement.context`, `MedicationStatement.status`, `MedicationStatement.patient`
+Search parameter: `EffectEvidenceSynthesis.title`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS medicationstatement_resource__gin
-ON medicationstatement
+IF NOT EXISTS effectevidencesynthesis_resource__title_gin_trgm
+ON effectevidencesynthesis
+USING GIN ((aidbox_text_search(knife_extract_text("effectevidencesynthesis".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `EffectEvidenceSynthesis.description`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS effectevidencesynthesis_resource__description_gin_trgm
+ON effectevidencesynthesis
+USING GIN ((aidbox_text_search(knife_extract_text("effectevidencesynthesis".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `EffectEvidenceSynthesis.name`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS effectevidencesynthesis_resource__name_gin_trgm
+ON effectevidencesynthesis
+USING GIN ((aidbox_text_search(knife_extract_text("effectevidencesynthesis".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+```
+
+### Encounter
+
+Search parameter: `Encounter.length`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS encounter_resource__length_max
+ON encounter
+USING btree (knife_extract_max_numeric(resource, '[["length"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS encounter_resource__length_min
+ON encounter
+USING btree (knife_extract_max_numeric(resource, '[["length"]]'));
+```
+
+Search parameter: `Encounter.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS encounter_resource__period_max
+ON encounter
+USING btree (knife_extract_max_timestamptz(resource, '[["period"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS encounter_resource__period_min
+ON encounter
+USING btree (knife_extract_min_timestamptz(resource, '[["period"]]'));
+```
+
+Search parameter: `Encounter.service-provider`, `Encounter.reason-reference`, `Encounter.participant-type`, `Encounter.participant`, `Encounter.reason-code`, `Encounter.status`, `Encounter.based-on`, `Encounter.identifier`, `Encounter.part-of`, `Encounter.patient`, `Encounter.location`, `Encounter.class`, `Encounter.account`, `Encounter.subject`, `Encounter.practitioner`, `Encounter.special-arrangement`, `Encounter.diagnosis`, `Encounter.appointment`, `Encounter.episode-of-care`, `Encounter.type`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS encounter_resource__gin
+ON encounter
+USING GIN (resource);
+```
+
+Search parameter: `Encounter.location-period`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS encounter_resource__location_period_max
+ON encounter
+USING btree (knife_extract_max_timestamptz(resource, '[["location" "period"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS encounter_resource__location_period_min
+ON encounter
+USING btree (knife_extract_min_timestamptz(resource, '[["location" "period"]]'));
+```
+
+### Endpoint
+
+Search parameter: `Endpoint.name`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS endpoint_resource__name_gin_trgm
+ON endpoint
+USING GIN ((aidbox_text_search(knife_extract_text("endpoint".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Endpoint.payload-type`, `Endpoint.connection-type`, `Endpoint.organization`, `Endpoint.status`, `Endpoint.identifier`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS endpoint_resource__gin
+ON endpoint
+USING GIN (resource);
+```
+
+### EnrollmentRequest
+
+Search parameter: `EnrollmentRequest.subject`, `EnrollmentRequest.identifier`, `EnrollmentRequest.status`, `EnrollmentRequest.patient`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS enrollmentrequest_resource__gin
+ON enrollmentrequest
 USING GIN (resource);
 ```
 
@@ -1345,12 +1817,134 @@ ON enrollmentresponse
 USING GIN (resource);
 ```
 
-### Evidence
+### EpisodeOfCare
 
-Search parameter: `Evidence.effective`, `Evidence.date`
+Search parameter: `EpisodeOfCare.date`
 
 ```sql
-WIP: work in progress
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS episodeofcare_resource__period_max
+ON episodeofcare
+USING btree (knife_extract_max_timestamptz(resource, '[["period"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS episodeofcare_resource__period_min
+ON episodeofcare
+USING btree (knife_extract_min_timestamptz(resource, '[["period"]]'));
+```
+
+Search parameter: `EpisodeOfCare.patient`, `EpisodeOfCare.incoming-referral`, `EpisodeOfCare.status`, `EpisodeOfCare.condition`, `EpisodeOfCare.identifier`, `EpisodeOfCare.organization`, `EpisodeOfCare.type`, `EpisodeOfCare.care-manager`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS episodeofcare_resource__gin
+ON episodeofcare
+USING GIN (resource);
+```
+
+### EventDefinition
+
+Search parameter: `EventDefinition.effective`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS eventdefinition_resource__effectiveperiod_max
+ON eventdefinition
+USING btree (knife_extract_max_timestamptz(resource, '[["effectivePeriod"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS eventdefinition_resource__effectiveperiod_min
+ON eventdefinition
+USING btree (knife_extract_min_timestamptz(resource, '[["effectivePeriod"]]'));
+```
+
+Search parameter: `EventDefinition.derived-from`, `EventDefinition.url`, `EventDefinition.topic`, `EventDefinition.version`, `EventDefinition.context-type`, `EventDefinition.status`, `EventDefinition.jurisdiction`, `EventDefinition.context`, `EventDefinition.predecessor`, `EventDefinition.composed-of`, `EventDefinition.identifier`, `EventDefinition.successor`, `EventDefinition.depends-on`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS eventdefinition_resource__gin
+ON eventdefinition
+USING GIN (resource);
+```
+
+Search parameter: `EventDefinition.name`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS eventdefinition_resource__name_gin_trgm
+ON eventdefinition
+USING GIN ((aidbox_text_search(knife_extract_text("eventdefinition".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `EventDefinition.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS eventdefinition_resource__date_max
+ON eventdefinition
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS eventdefinition_resource__date_min
+ON eventdefinition
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+Search parameter: `EventDefinition.description`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS eventdefinition_resource__description_gin_trgm
+ON eventdefinition
+USING GIN ((aidbox_text_search(knife_extract_text("eventdefinition".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `EventDefinition.publisher`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS eventdefinition_resource__publisher_gin_trgm
+ON eventdefinition
+USING GIN ((aidbox_text_search(knife_extract_text("eventdefinition".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `EventDefinition.title`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS eventdefinition_resource__title_gin_trgm
+ON eventdefinition
+USING GIN ((aidbox_text_search(knife_extract_text("eventdefinition".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `EventDefinition.context-quantity`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS eventdefinition_resource__context_quantity_max
+ON eventdefinition
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS eventdefinition_resource__context_quantity_min
+ON eventdefinition
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+```
+
+### Evidence
+
+Search parameter: `Evidence.context-quantity`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS evidence_resource__context_quantity_max
+ON evidence
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS evidence_resource__context_quantity_min
+ON evidence
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
 ```
 
 Search parameter: `Evidence.publisher`
@@ -1362,10 +1956,18 @@ ON evidence
 USING GIN ((aidbox_text_search(knife_extract_text("evidence".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
 ```
 
-Search parameter: `Evidence.context-quantity`
+Search parameter: `Evidence.effective`
 
 ```sql
-WIP: work in progress
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS evidence_resource__effectiveperiod_max
+ON evidence
+USING btree (knife_extract_max_timestamptz(resource, '[["effectivePeriod"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS evidence_resource__effectiveperiod_min
+ON evidence
+USING btree (knife_extract_min_timestamptz(resource, '[["effectivePeriod"]]'));
 ```
 
 Search parameter: `Evidence.title`
@@ -1386,6 +1988,20 @@ ON evidence
 USING GIN ((aidbox_text_search(knife_extract_text("evidence".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
 ```
 
+Search parameter: `Evidence.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS evidence_resource__date_max
+ON evidence
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS evidence_resource__date_min
+ON evidence
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
 Search parameter: `Evidence.derived-from`, `Evidence.url`, `Evidence.version`, `Evidence.status`, `Evidence.topic`, `Evidence.identifier`, `Evidence.predecessor`, `Evidence.composed-of`, `Evidence.context-type`, `Evidence.context`, `Evidence.depends-on`, `Evidence.jurisdiction`, `Evidence.successor`
 
 ```sql
@@ -1404,307 +2020,606 @@ ON evidence
 USING GIN ((aidbox_text_search(knife_extract_text("evidence".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
 ```
 
-### Bundle
+### EvidenceVariable
 
-Search parameter: `Bundle.timestamp`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Bundle.identifier`, `Bundle.type`
+Search parameter: `EvidenceVariable.depends-on`, `EvidenceVariable.jurisdiction`, `EvidenceVariable.url`, `EvidenceVariable.status`, `EvidenceVariable.topic`, `EvidenceVariable.context`, `EvidenceVariable.successor`, `EvidenceVariable.version`, `EvidenceVariable.composed-of`, `EvidenceVariable.derived-from`, `EvidenceVariable.identifier`, `EvidenceVariable.predecessor`, `EvidenceVariable.context-type`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS bundle_resource__gin
-ON bundle
+IF NOT EXISTS evidencevariable_resource__gin
+ON evidencevariable
 USING GIN (resource);
 ```
 
-Search parameter: `Bundle.message`, `Bundle.composition`
-
-```sql
-WIP: work in progress
-```
-
-### ResearchElementDefinition
-
-Search parameter: `ResearchElementDefinition.title`
+Search parameter: `EvidenceVariable.context-quantity`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS researchelementdefinition_resource__title_gin_trgm
-ON researchelementdefinition
-USING GIN ((aidbox_text_search(knife_extract_text("researchelementdefinition".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS evidencevariable_resource__context_quantity_max
+ON evidencevariable
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS evidencevariable_resource__context_quantity_min
+ON evidencevariable
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
 ```
 
-Search parameter: `ResearchElementDefinition.context-quantity`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `ResearchElementDefinition.name`
+Search parameter: `EvidenceVariable.publisher`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS researchelementdefinition_resource__name_gin_trgm
-ON researchelementdefinition
-USING GIN ((aidbox_text_search(knife_extract_text("researchelementdefinition".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS evidencevariable_resource__publisher_gin_trgm
+ON evidencevariable
+USING GIN ((aidbox_text_search(knife_extract_text("evidencevariable".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
 ```
 
-Search parameter: `ResearchElementDefinition.effective`, `ResearchElementDefinition.date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `ResearchElementDefinition.publisher`
+Search parameter: `EvidenceVariable.date`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS researchelementdefinition_resource__publisher_gin_trgm
-ON researchelementdefinition
-USING GIN ((aidbox_text_search(knife_extract_text("researchelementdefinition".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS evidencevariable_resource__date_max
+ON evidencevariable
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS evidencevariable_resource__date_min
+ON evidencevariable
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
 ```
 
-Search parameter: `ResearchElementDefinition.description`
+Search parameter: `EvidenceVariable.effective`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS researchelementdefinition_resource__description_gin_trgm
-ON researchelementdefinition
-USING GIN ((aidbox_text_search(knife_extract_text("researchelementdefinition".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS evidencevariable_resource__effectiveperiod_max
+ON evidencevariable
+USING btree (knife_extract_max_timestamptz(resource, '[["effectivePeriod"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS evidencevariable_resource__effectiveperiod_min
+ON evidencevariable
+USING btree (knife_extract_min_timestamptz(resource, '[["effectivePeriod"]]'));
 ```
 
-Search parameter: `ResearchElementDefinition.context`, `ResearchElementDefinition.status`, `ResearchElementDefinition.url`, `ResearchElementDefinition.version`, `ResearchElementDefinition.topic`, `ResearchElementDefinition.predecessor`, `ResearchElementDefinition.jurisdiction`, `ResearchElementDefinition.composed-of`, `ResearchElementDefinition.context-type`, `ResearchElementDefinition.derived-from`, `ResearchElementDefinition.identifier`, `ResearchElementDefinition.successor`
+Search parameter: `EvidenceVariable.name`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS researchelementdefinition_resource__gin
-ON researchelementdefinition
+IF NOT EXISTS evidencevariable_resource__name_gin_trgm
+ON evidencevariable
+USING GIN ((aidbox_text_search(knife_extract_text("evidencevariable".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `EvidenceVariable.description`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS evidencevariable_resource__description_gin_trgm
+ON evidencevariable
+USING GIN ((aidbox_text_search(knife_extract_text("evidencevariable".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `EvidenceVariable.title`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS evidencevariable_resource__title_gin_trgm
+ON evidencevariable
+USING GIN ((aidbox_text_search(knife_extract_text("evidencevariable".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
+```
+
+### ExampleScenario
+
+Search parameter: `ExampleScenario.publisher`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS examplescenario_resource__publisher_gin_trgm
+ON examplescenario
+USING GIN ((aidbox_text_search(knife_extract_text("examplescenario".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `ExampleScenario.name`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS examplescenario_resource__name_gin_trgm
+ON examplescenario
+USING GIN ((aidbox_text_search(knife_extract_text("examplescenario".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `ExampleScenario.version`, `ExampleScenario.jurisdiction`, `ExampleScenario.context-type`, `ExampleScenario.status`, `ExampleScenario.url`, `ExampleScenario.context`, `ExampleScenario.identifier`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS examplescenario_resource__gin
+ON examplescenario
 USING GIN (resource);
 ```
 
-Search parameter: `ResearchElementDefinition.depends-on`
-
-```sql
-WIP: work in progress
-```
-
-### BodyStructure
-
-Search parameter: `BodyStructure.identifier`, `BodyStructure.patient`, `BodyStructure.morphology`, `BodyStructure.location`
+Search parameter: `ExampleScenario.date`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS bodystructure_resource__gin
-ON bodystructure
+IF NOT EXISTS examplescenario_resource__date_max
+ON examplescenario
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS examplescenario_resource__date_min
+ON examplescenario
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+Search parameter: `ExampleScenario.context-quantity`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS examplescenario_resource__context_quantity_max
+ON examplescenario
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS examplescenario_resource__context_quantity_min
+ON examplescenario
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+```
+
+### ExplanationOfBenefit
+
+Search parameter: `ExplanationOfBenefit.created`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS explanationofbenefit_resource__created_max
+ON explanationofbenefit
+USING btree (knife_extract_max_timestamptz(resource, '[["created"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS explanationofbenefit_resource__created_min
+ON explanationofbenefit
+USING btree (knife_extract_min_timestamptz(resource, '[["created"]]'));
+```
+
+Search parameter: `ExplanationOfBenefit.detail-udi`, `ExplanationOfBenefit.encounter`, `ExplanationOfBenefit.payee`, `ExplanationOfBenefit.coverage`, `ExplanationOfBenefit.enterer`, `ExplanationOfBenefit.subdetail-udi`, `ExplanationOfBenefit.item-udi`, `ExplanationOfBenefit.facility`, `ExplanationOfBenefit.care-team`, `ExplanationOfBenefit.procedure-udi`, `ExplanationOfBenefit.identifier`, `ExplanationOfBenefit.provider`, `ExplanationOfBenefit.status`, `ExplanationOfBenefit.claim`, `ExplanationOfBenefit.patient`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS explanationofbenefit_resource__gin
+ON explanationofbenefit
 USING GIN (resource);
 ```
 
-### MedicinalProduct
-
-Search parameter: `MedicinalProduct.name`
+Search parameter: `ExplanationOfBenefit.disposition`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS medicinalproduct_resource__name_gin_trgm
-ON medicinalproduct
-USING GIN ((aidbox_text_search(knife_extract_text("medicinalproduct".resource, $JSON$[["name","productName"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS explanationofbenefit_resource__disposition_gin_trgm
+ON explanationofbenefit
+USING GIN ((aidbox_text_search(knife_extract_text("explanationofbenefit".resource, $JSON$[["disposition"]]$JSON$))) gin_trgm_ops);
 ```
 
-Search parameter: `MedicinalProduct.name-language`, `MedicinalProduct.identifier`
+### FamilyMemberHistory
+
+Search parameter: `FamilyMemberHistory.code`, `FamilyMemberHistory.sex`, `FamilyMemberHistory.instantiates-canonical`, `FamilyMemberHistory.relationship`, `FamilyMemberHistory.instantiates-uri`, `FamilyMemberHistory.patient`, `FamilyMemberHistory.status`, `FamilyMemberHistory.identifier`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS medicinalproduct_resource__gin
-ON medicinalproduct
+IF NOT EXISTS familymemberhistory_resource__gin
+ON familymemberhistory
 USING GIN (resource);
 ```
 
-### ResearchStudy
-
-Search parameter: `ResearchStudy.partof`, `ResearchStudy.category`, `ResearchStudy.focus`, `ResearchStudy.location`, `ResearchStudy.sponsor`, `ResearchStudy.identifier`, `ResearchStudy.keyword`, `ResearchStudy.protocol`, `ResearchStudy.principalinvestigator`, `ResearchStudy.status`, `ResearchStudy.site`
+Search parameter: `FamilyMemberHistory.date`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS researchstudy_resource__gin
-ON researchstudy
+IF NOT EXISTS familymemberhistory_resource__date_max
+ON familymemberhistory
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS familymemberhistory_resource__date_min
+ON familymemberhistory
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+### Flag
+
+Search parameter: `Flag.encounter`, `Flag.subject`, `Flag.author`, `Flag.patient`, `Flag.identifier`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS flag_resource__gin
+ON flag
 USING GIN (resource);
 ```
 
-Search parameter: `ResearchStudy.date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `ResearchStudy.title`
+Search parameter: `Flag.date`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS researchstudy_resource__title_gin_trgm
-ON researchstudy
-USING GIN ((aidbox_text_search(knife_extract_text("researchstudy".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS flag_resource__period_max
+ON flag
+USING btree (knife_extract_max_timestamptz(resource, '[["period"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS flag_resource__period_min
+ON flag
+USING btree (knife_extract_min_timestamptz(resource, '[["period"]]'));
 ```
 
-### AppointmentResponse
+### Goal
 
-Search parameter: `AppointmentResponse.location`, `AppointmentResponse.identifier`, `AppointmentResponse.appointment`, `AppointmentResponse.patient`, `AppointmentResponse.part-status`, `AppointmentResponse.actor`, `AppointmentResponse.practitioner`
+Search parameter: `Goal.start-date`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS appointmentresponse_resource__gin
-ON appointmentresponse
+IF NOT EXISTS goal_resource__start_date_max
+ON goal
+USING btree (knife_extract_max_timestamptz(resource, '[["start" "date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS goal_resource__start_date_min
+ON goal
+USING btree (knife_extract_min_timestamptz(resource, '[["start" "date"]]'));
+```
+
+Search parameter: `Goal.target-date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS goal_resource__target_due_date_max
+ON goal
+USING btree (knife_extract_max_timestamptz(resource, '[["target" "due" "date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS goal_resource__target_due_date_min
+ON goal
+USING btree (knife_extract_min_timestamptz(resource, '[["target" "due" "date"]]'));
+```
+
+Search parameter: `Goal.identifier`, `Goal.patient`, `Goal.lifecycle-status`, `Goal.category`, `Goal.subject`, `Goal.achievement-status`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS goal_resource__gin
+ON goal
 USING GIN (resource);
 ```
 
-### MedicinalProductIndication
+### GraphDefinition
 
-Search parameter: `MedicinalProductIndication.subject`
+Search parameter: `GraphDefinition.description`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS medicinalproductindication_resource__gin
-ON medicinalproductindication
+IF NOT EXISTS graphdefinition_resource__description_gin_trgm
+ON graphdefinition
+USING GIN ((aidbox_text_search(knife_extract_text("graphdefinition".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `GraphDefinition.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS graphdefinition_resource__date_max
+ON graphdefinition
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS graphdefinition_resource__date_min
+ON graphdefinition
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+Search parameter: `GraphDefinition.context-quantity`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS graphdefinition_resource__context_quantity_max
+ON graphdefinition
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS graphdefinition_resource__context_quantity_min
+ON graphdefinition
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+```
+
+Search parameter: `GraphDefinition.publisher`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS graphdefinition_resource__publisher_gin_trgm
+ON graphdefinition
+USING GIN ((aidbox_text_search(knife_extract_text("graphdefinition".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `GraphDefinition.name`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS graphdefinition_resource__name_gin_trgm
+ON graphdefinition
+USING GIN ((aidbox_text_search(knife_extract_text("graphdefinition".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `GraphDefinition.status`, `GraphDefinition.version`, `GraphDefinition.context`, `GraphDefinition.context-type`, `GraphDefinition.jurisdiction`, `GraphDefinition.url`, `GraphDefinition.start`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS graphdefinition_resource__gin
+ON graphdefinition
 USING GIN (resource);
 ```
 
-### Measure
+### Group
 
-Search parameter: `Measure.effective`, `Measure.date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Measure.publisher`
+Search parameter: `Group.type`, `Group.exclude`, `Group.characteristic`, `Group.member`, `Group.identifier`, `Group.managing-entity`, `Group.code`, `Group.actual`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS measure_resource__publisher_gin_trgm
-ON measure
-USING GIN ((aidbox_text_search(knife_extract_text("measure".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `Measure.description`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS measure_resource__description_gin_trgm
-ON measure
-USING GIN ((aidbox_text_search(knife_extract_text("measure".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `Measure.depends-on`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Measure.status`, `Measure.composed-of`, `Measure.jurisdiction`, `Measure.context`, `Measure.context-type`, `Measure.predecessor`, `Measure.version`, `Measure.url`, `Measure.derived-from`, `Measure.successor`, `Measure.topic`, `Measure.identifier`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS measure_resource__gin
-ON measure
+IF NOT EXISTS group_resource__gin
+ON group
 USING GIN (resource);
 ```
 
-Search parameter: `Measure.name`
+Search parameter: `Group.value`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS measure_resource__name_gin_trgm
-ON measure
-USING GIN ((aidbox_text_search(knife_extract_text("measure".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `Measure.context-quantity`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Measure.title`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS measure_resource__title_gin_trgm
-ON measure
-USING GIN ((aidbox_text_search(knife_extract_text("measure".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
-```
-
-### Person
-
-Search parameter: `Person.address`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS person_resource__address_gin_trgm
-ON person
-USING GIN ((aidbox_text_search(knife_extract_text("person".resource, $JSON$[["address","text"],["address","district"],["address","country"],["address","city"],["address","line"],["address","state"],["address","postalCode"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `Person.birthdate`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Person.address-state`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS person_resource__address_state_gin_trgm
-ON person
-USING GIN ((aidbox_text_search(knife_extract_text("person".resource, $JSON$[["address","state"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `Person.address-country`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS person_resource__address_country_gin_trgm
-ON person
-USING GIN ((aidbox_text_search(knife_extract_text("person".resource, $JSON$[["address","country"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `Person.link`, `Person.patient`, `Person.relatedperson`, `Person.organization`, `Person.telecom`, `Person.identifier`, `Person.gender`, `Person.email`, `Person.practitioner`, `Person.phone`, `Person.address-use`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS person_resource__gin
-ON person
+IF NOT EXISTS group_resource__gin
+ON group
 USING GIN (resource);
 ```
 
-Search parameter: `Person.address-postalcode`
+### GuidanceResponse
+
+Search parameter: `GuidanceResponse.patient`, `GuidanceResponse.request`, `GuidanceResponse.subject`, `GuidanceResponse.identifier`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS person_resource__address_postalcode_gin_trgm
-ON person
-USING GIN ((aidbox_text_search(knife_extract_text("person".resource, $JSON$[["address","postalCode"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS guidanceresponse_resource__gin
+ON guidanceresponse
+USING GIN (resource);
 ```
 
-Search parameter: `Person.name`, `Person.phonetic`
+### HealthcareService
+
+Search parameter: `HealthcareService.active`, `HealthcareService.service-category`, `HealthcareService.location`, `HealthcareService.endpoint`, `HealthcareService.service-type`, `HealthcareService.organization`, `HealthcareService.program`, `HealthcareService.coverage-area`, `HealthcareService.identifier`, `HealthcareService.characteristic`, `HealthcareService.specialty`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS person_resource__name_gin_trgm
-ON person
-USING GIN ((aidbox_text_search(knife_extract_text("person".resource, $JSON$[["name","family"],["name","given"],["name","middle"],["name","text"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS healthcareservice_resource__gin
+ON healthcareservice
+USING GIN (resource);
 ```
 
-Search parameter: `Person.address-city`
+Search parameter: `HealthcareService.name`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS person_resource__address_city_gin_trgm
-ON person
-USING GIN ((aidbox_text_search(knife_extract_text("person".resource, $JSON$[["address","city"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS healthcareservice_resource__name_gin_trgm
+ON healthcareservice
+USING GIN ((aidbox_text_search(knife_extract_text("healthcareservice".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+```
+
+### ImagingStudy
+
+Search parameter: `ImagingStudy.started`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS imagingstudy_resource__started_max
+ON imagingstudy
+USING btree (knife_extract_max_timestamptz(resource, '[["started"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS imagingstudy_resource__started_min
+ON imagingstudy
+USING btree (knife_extract_min_timestamptz(resource, '[["started"]]'));
+```
+
+Search parameter: `ImagingStudy.endpoint`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS imagingstudy_resource__gin
+ON imagingstudy
+USING GIN (resource);
+```
+
+Search parameter: `ImagingStudy.reason`, `ImagingStudy.bodysite`, `ImagingStudy.subject`, `ImagingStudy.series`, `ImagingStudy.status`, `ImagingStudy.interpreter`, `ImagingStudy.performer`, `ImagingStudy.referrer`, `ImagingStudy.encounter`, `ImagingStudy.dicom-class`, `ImagingStudy.basedon`, `ImagingStudy.modality`, `ImagingStudy.identifier`, `ImagingStudy.instance`, `ImagingStudy.patient`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS imagingstudy_resource__gin
+ON imagingstudy
+USING GIN (resource);
+```
+
+### Immunization
+
+Search parameter: `Immunization.reaction-date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS immunization_resource__reaction_date_max
+ON immunization
+USING btree (knife_extract_max_timestamptz(resource, '[["reaction" "date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS immunization_resource__reaction_date_min
+ON immunization
+USING btree (knife_extract_min_timestamptz(resource, '[["reaction" "date"]]'));
+```
+
+Search parameter: `Immunization.series`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS immunization_resource__series_gin_trgm
+ON immunization
+USING GIN ((aidbox_text_search(knife_extract_text("immunization".resource, $JSON$[["protocolApplied","series"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Immunization.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS immunization_resource__occurrence_max
+ON immunization
+USING btree (knife_extract_max_timestamptz(resource, '[["occurrence"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS immunization_resource__occurrence_min
+ON immunization
+USING btree (knife_extract_min_timestamptz(resource, '[["occurrence"]]'));
+```
+
+Search parameter: `Immunization.manufacturer`, `Immunization.location`, `Immunization.reaction`, `Immunization.vaccine-code`, `Immunization.target-disease`, `Immunization.performer`, `Immunization.status-reason`, `Immunization.reason-reference`, `Immunization.status`, `Immunization.patient`, `Immunization.reason-code`, `Immunization.identifier`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS immunization_resource__gin
+ON immunization
+USING GIN (resource);
+```
+
+Search parameter: `Immunization.lot-number`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS immunization_resource__lot_number_gin_trgm
+ON immunization
+USING GIN ((aidbox_text_search(knife_extract_text("immunization".resource, $JSON$[["lotNumber"]]$JSON$))) gin_trgm_ops);
+```
+
+### ImmunizationEvaluation
+
+Search parameter: `ImmunizationEvaluation.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS immunizationevaluation_resource__date_max
+ON immunizationevaluation
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS immunizationevaluation_resource__date_min
+ON immunizationevaluation
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+Search parameter: `ImmunizationEvaluation.identifier`, `ImmunizationEvaluation.dose-status`, `ImmunizationEvaluation.patient`, `ImmunizationEvaluation.status`, `ImmunizationEvaluation.immunization-event`, `ImmunizationEvaluation.target-disease`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS immunizationevaluation_resource__gin
+ON immunizationevaluation
+USING GIN (resource);
+```
+
+### ImmunizationRecommendation
+
+Search parameter: `ImmunizationRecommendation.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS immunizationrecommendation_resource__date_max
+ON immunizationrecommendation
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS immunizationrecommendation_resource__date_min
+ON immunizationrecommendation
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+Search parameter: `ImmunizationRecommendation.identifier`, `ImmunizationRecommendation.vaccine-type`, `ImmunizationRecommendation.target-disease`, `ImmunizationRecommendation.information`, `ImmunizationRecommendation.support`, `ImmunizationRecommendation.status`, `ImmunizationRecommendation.patient`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS immunizationrecommendation_resource__gin
+ON immunizationrecommendation
+USING GIN (resource);
+```
+
+### ImplementationGuide
+
+Search parameter: `ImplementationGuide.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS implementationguide_resource__date_max
+ON implementationguide
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS implementationguide_resource__date_min
+ON implementationguide
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+Search parameter: `ImplementationGuide.description`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS implementationguide_resource__description_gin_trgm
+ON implementationguide
+USING GIN ((aidbox_text_search(knife_extract_text("implementationguide".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `ImplementationGuide.title`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS implementationguide_resource__title_gin_trgm
+ON implementationguide
+USING GIN ((aidbox_text_search(knife_extract_text("implementationguide".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `ImplementationGuide.publisher`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS implementationguide_resource__publisher_gin_trgm
+ON implementationguide
+USING GIN ((aidbox_text_search(knife_extract_text("implementationguide".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `ImplementationGuide.name`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS implementationguide_resource__name_gin_trgm
+ON implementationguide
+USING GIN ((aidbox_text_search(knife_extract_text("implementationguide".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `ImplementationGuide.context-quantity`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS implementationguide_resource__context_quantity_max
+ON implementationguide
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS implementationguide_resource__context_quantity_min
+ON implementationguide
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+```
+
+Search parameter: `ImplementationGuide.jurisdiction`, `ImplementationGuide.context`, `ImplementationGuide.context-type`, `ImplementationGuide.experimental`, `ImplementationGuide.resource`, `ImplementationGuide.depends-on`, `ImplementationGuide.version`, `ImplementationGuide.global`, `ImplementationGuide.url`, `ImplementationGuide.status`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS implementationguide_resource__gin
+ON implementationguide
+USING GIN (resource);
 ```
 
 ### InsurancePlan
@@ -1781,13 +2696,1313 @@ ON insuranceplan
 USING GIN ((aidbox_text_search(knife_extract_text("insuranceplan".resource, $JSON$[["contact","address","state"]]$JSON$))) gin_trgm_ops);
 ```
 
-### Patient
+### Invoice
 
-Search parameter: `Patient.death-date`, `Patient.birthdate`
+Search parameter: `Invoice.subject`, `Invoice.participant-role`, `Invoice.identifier`, `Invoice.account`, `Invoice.patient`, `Invoice.participant`, `Invoice.recipient`, `Invoice.status`, `Invoice.type`, `Invoice.issuer`
 
 ```sql
-WIP: work in progress
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS invoice_resource__gin
+ON invoice
+USING GIN (resource);
 ```
+
+Search parameter: `Invoice.totalgross`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS invoice_resource__totalgross_max
+ON invoice
+USING btree (knife_extract_max_numeric(resource, '[["totalGross","value"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS invoice_resource__totalgross_min
+ON invoice
+USING btree (knife_extract_max_numeric(resource, '[["totalGross","value"]]'));
+```
+
+Search parameter: `Invoice.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS invoice_resource__date_max
+ON invoice
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS invoice_resource__date_min
+ON invoice
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+Search parameter: `Invoice.totalnet`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS invoice_resource__totalnet_max
+ON invoice
+USING btree (knife_extract_max_numeric(resource, '[["totalNet","value"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS invoice_resource__totalnet_min
+ON invoice
+USING btree (knife_extract_max_numeric(resource, '[["totalNet","value"]]'));
+```
+
+### Library
+
+Search parameter: `Library.title`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS library_resource__title_gin_trgm
+ON library
+USING GIN ((aidbox_text_search(knife_extract_text("library".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Library.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS library_resource__date_max
+ON library
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS library_resource__date_min
+ON library
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+Search parameter: `Library.type`, `Library.jurisdiction`, `Library.identifier`, `Library.topic`, `Library.status`, `Library.depends-on`, `Library.context-type`, `Library.content-type`, `Library.successor`, `Library.context`, `Library.version`, `Library.derived-from`, `Library.predecessor`, `Library.composed-of`, `Library.url`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS library_resource__gin
+ON library
+USING GIN (resource);
+```
+
+Search parameter: `Library.description`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS library_resource__description_gin_trgm
+ON library
+USING GIN ((aidbox_text_search(knife_extract_text("library".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Library.context-quantity`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS library_resource__context_quantity_max
+ON library
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS library_resource__context_quantity_min
+ON library
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+```
+
+Search parameter: `Library.publisher`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS library_resource__publisher_gin_trgm
+ON library
+USING GIN ((aidbox_text_search(knife_extract_text("library".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Library.effective`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS library_resource__effectiveperiod_max
+ON library
+USING btree (knife_extract_max_timestamptz(resource, '[["effectivePeriod"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS library_resource__effectiveperiod_min
+ON library
+USING btree (knife_extract_min_timestamptz(resource, '[["effectivePeriod"]]'));
+```
+
+Search parameter: `Library.name`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS library_resource__name_gin_trgm
+ON library
+USING GIN ((aidbox_text_search(knife_extract_text("library".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+```
+
+### Linkage
+
+Search parameter: `Linkage.source`, `Linkage.item`, `Linkage.author`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS linkage_resource__gin
+ON linkage
+USING GIN (resource);
+```
+
+### List
+
+Search parameter: `List.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS list_resource__date_max
+ON list
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS list_resource__date_min
+ON list
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+Search parameter: `List.title`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS list_resource__title_gin_trgm
+ON list
+USING GIN ((aidbox_text_search(knife_extract_text("list".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `List.notes`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS list_resource__notes_gin_trgm
+ON list
+USING GIN ((aidbox_text_search(knife_extract_text("list".resource, $JSON$[["note","text"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `List.patient`, `List.source`, `List.item`, `List.encounter`, `List.empty-reason`, `List.status`, `List.code`, `List.subject`, `List.identifier`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS list_resource__gin
+ON list
+USING GIN (resource);
+```
+
+### Location
+
+Search parameter: `Location.address-postalcode`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS location_resource__address_postalcode_gin_trgm
+ON location
+USING GIN ((aidbox_text_search(knife_extract_text("location".resource, $JSON$[["address","postalCode"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Location.name`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS location_resource__name_gin_trgm
+ON location
+USING GIN ((aidbox_text_search(knife_extract_text("location".resource, $JSON$[["name"],["alias"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Location.address`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS location_resource__address_gin_trgm
+ON location
+USING GIN ((aidbox_text_search(knife_extract_text("location".resource, $JSON$[["address","text"],["address","district"],["address","country"],["address","city"],["address","line"],["address","state"],["address","postalCode"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Location.address-state`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS location_resource__address_state_gin_trgm
+ON location
+USING GIN ((aidbox_text_search(knife_extract_text("location".resource, $JSON$[["address","state"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Location.address-city`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS location_resource__address_city_gin_trgm
+ON location
+USING GIN ((aidbox_text_search(knife_extract_text("location".resource, $JSON$[["address","city"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Location.organization`, `Location.identifier`, `Location.operational-status`, `Location.endpoint`, `Location.partof`, `Location.status`, `Location.type`, `Location.address-use`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS location_resource__gin
+ON location
+USING GIN (resource);
+```
+
+Search parameter: `Location.address-country`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS location_resource__address_country_gin_trgm
+ON location
+USING GIN ((aidbox_text_search(knife_extract_text("location".resource, $JSON$[["address","country"]]$JSON$))) gin_trgm_ops);
+```
+
+### Measure
+
+Search parameter: `Measure.effective`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS measure_resource__effectiveperiod_max
+ON measure
+USING btree (knife_extract_max_timestamptz(resource, '[["effectivePeriod"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS measure_resource__effectiveperiod_min
+ON measure
+USING btree (knife_extract_min_timestamptz(resource, '[["effectivePeriod"]]'));
+```
+
+Search parameter: `Measure.publisher`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS measure_resource__publisher_gin_trgm
+ON measure
+USING GIN ((aidbox_text_search(knife_extract_text("measure".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Measure.description`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS measure_resource__description_gin_trgm
+ON measure
+USING GIN ((aidbox_text_search(knife_extract_text("measure".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Measure.context-quantity`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS measure_resource__context_quantity_max
+ON measure
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS measure_resource__context_quantity_min
+ON measure
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+```
+
+Search parameter: `Measure.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS measure_resource__date_max
+ON measure
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS measure_resource__date_min
+ON measure
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+Search parameter: `Measure.status`, `Measure.composed-of`, `Measure.jurisdiction`, `Measure.context`, `Measure.context-type`, `Measure.predecessor`, `Measure.version`, `Measure.url`, `Measure.derived-from`, `Measure.successor`, `Measure.topic`, `Measure.identifier`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS measure_resource__gin
+ON measure
+USING GIN (resource);
+```
+
+Search parameter: `Measure.depends-on`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS measure_resource__gin
+ON measure
+USING GIN (resource);
+```
+
+Search parameter: `Measure.name`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS measure_resource__name_gin_trgm
+ON measure
+USING GIN ((aidbox_text_search(knife_extract_text("measure".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Measure.title`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS measure_resource__title_gin_trgm
+ON measure
+USING GIN ((aidbox_text_search(knife_extract_text("measure".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
+```
+
+### MeasureReport
+
+Search parameter: `MeasureReport.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS measurereport_resource__date_max
+ON measurereport
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS measurereport_resource__date_min
+ON measurereport
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+Search parameter: `MeasureReport.status`, `MeasureReport.identifier`, `MeasureReport.reporter`, `MeasureReport.measure`, `MeasureReport.evaluated-resource`, `MeasureReport.subject`, `MeasureReport.patient`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS measurereport_resource__gin
+ON measurereport
+USING GIN (resource);
+```
+
+Search parameter: `MeasureReport.period`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS measurereport_resource__period_max
+ON measurereport
+USING btree (knife_extract_max_timestamptz(resource, '[["period"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS measurereport_resource__period_min
+ON measurereport
+USING btree (knife_extract_min_timestamptz(resource, '[["period"]]'));
+```
+
+### Media
+
+Search parameter: `Media.created`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS media_resource__created_max
+ON media
+USING btree (knife_extract_max_timestamptz(resource, '[["created"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS media_resource__created_min
+ON media
+USING btree (knife_extract_min_timestamptz(resource, '[["created"]]'));
+```
+
+Search parameter: `Media.based-on`, `Media.type`, `Media.modality`, `Media.site`, `Media.patient`, `Media.device`, `Media.view`, `Media.status`, `Media.identifier`, `Media.operator`, `Media.subject`, `Media.encounter`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS media_resource__gin
+ON media
+USING GIN (resource);
+```
+
+### Medication
+
+Search parameter: `Medication.expiration-date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medication_resource__batch_expirationdate_max
+ON medication
+USING btree (knife_extract_max_timestamptz(resource, '[["batch" "expirationDate"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medication_resource__batch_expirationdate_min
+ON medication
+USING btree (knife_extract_min_timestamptz(resource, '[["batch" "expirationDate"]]'));
+```
+
+Search parameter: `Medication.code`, `Medication.lot-number`, `Medication.identifier`, `Medication.ingredient-code`, `Medication.ingredient`, `Medication.status`, `Medication.form`, `Medication.manufacturer`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medication_resource__gin
+ON medication
+USING GIN (resource);
+```
+
+### MedicationAdministration
+
+Search parameter: `MedicationAdministration.status`, `MedicationAdministration.reason-not-given`, `MedicationAdministration.performer`, `MedicationAdministration.context`, `MedicationAdministration.device`, `MedicationAdministration.reason-given`, `MedicationAdministration.identifier`, `MedicationAdministration.medication`, `MedicationAdministration.code`, `MedicationAdministration.subject`, `MedicationAdministration.patient`, `MedicationAdministration.request`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medicationadministration_resource__gin
+ON medicationadministration
+USING GIN (resource);
+```
+
+Search parameter: `MedicationAdministration.effective-time`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medicationadministration_resource__effective_max
+ON medicationadministration
+USING btree (knife_extract_max_timestamptz(resource, '[["effective"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medicationadministration_resource__effective_min
+ON medicationadministration
+USING btree (knife_extract_min_timestamptz(resource, '[["effective"]]'));
+```
+
+### MedicationDispense
+
+Search parameter: `MedicationDispense.whenhandedover`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medicationdispense_resource__whenhandedover_max
+ON medicationdispense
+USING btree (knife_extract_max_timestamptz(resource, '[["whenHandedOver"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medicationdispense_resource__whenhandedover_min
+ON medicationdispense
+USING btree (knife_extract_min_timestamptz(resource, '[["whenHandedOver"]]'));
+```
+
+Search parameter: `MedicationDispense.whenprepared`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medicationdispense_resource__whenprepared_max
+ON medicationdispense
+USING btree (knife_extract_max_timestamptz(resource, '[["whenPrepared"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medicationdispense_resource__whenprepared_min
+ON medicationdispense
+USING btree (knife_extract_min_timestamptz(resource, '[["whenPrepared"]]'));
+```
+
+Search parameter: `MedicationDispense.prescription`, `MedicationDispense.subject`, `MedicationDispense.identifier`, `MedicationDispense.receiver`, `MedicationDispense.destination`, `MedicationDispense.code`, `MedicationDispense.patient`, `MedicationDispense.medication`, `MedicationDispense.type`, `MedicationDispense.performer`, `MedicationDispense.status`, `MedicationDispense.responsibleparty`, `MedicationDispense.context`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medicationdispense_resource__gin
+ON medicationdispense
+USING GIN (resource);
+```
+
+### MedicationKnowledge
+
+Search parameter: `MedicationKnowledge.manufacturer`, `MedicationKnowledge.source-cost`, `MedicationKnowledge.code`, `MedicationKnowledge.ingredient`, `MedicationKnowledge.status`, `MedicationKnowledge.doseform`, `MedicationKnowledge.classification`, `MedicationKnowledge.ingredient-code`, `MedicationKnowledge.monitoring-program-type`, `MedicationKnowledge.classification-type`, `MedicationKnowledge.monograph`, `MedicationKnowledge.monograph-type`, `MedicationKnowledge.monitoring-program-name`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medicationknowledge_resource__gin
+ON medicationknowledge
+USING GIN (resource);
+```
+
+### MedicationRequest
+
+Search parameter: `MedicationRequest.intended-dispenser`, `MedicationRequest.priority`, `MedicationRequest.identifier`, `MedicationRequest.encounter`, `MedicationRequest.requester`, `MedicationRequest.category`, `MedicationRequest.code`, `MedicationRequest.patient`, `MedicationRequest.medication`, `MedicationRequest.status`, `MedicationRequest.intended-performer`, `MedicationRequest.intended-performertype`, `MedicationRequest.subject`, `MedicationRequest.intent`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medicationrequest_resource__gin
+ON medicationrequest
+USING GIN (resource);
+```
+
+Search parameter: `MedicationRequest.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medicationrequest_resource__dosageinstruction_timing_event_max
+ON medicationrequest
+USING btree (knife_extract_max_timestamptz(resource, '[["dosageInstruction" "timing" "event"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medicationrequest_resource__dosageinstruction_timing_event_min
+ON medicationrequest
+USING btree (knife_extract_min_timestamptz(resource, '[["dosageInstruction" "timing" "event"]]'));
+```
+
+Search parameter: `MedicationRequest.authoredon`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medicationrequest_resource__authoredon_max
+ON medicationrequest
+USING btree (knife_extract_max_timestamptz(resource, '[["authoredOn"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medicationrequest_resource__authoredon_min
+ON medicationrequest
+USING btree (knife_extract_min_timestamptz(resource, '[["authoredOn"]]'));
+```
+
+### MedicationStatement
+
+Search parameter: `MedicationStatement.code`, `MedicationStatement.identifier`, `MedicationStatement.category`, `MedicationStatement.medication`, `MedicationStatement.part-of`, `MedicationStatement.source`, `MedicationStatement.subject`, `MedicationStatement.context`, `MedicationStatement.status`, `MedicationStatement.patient`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medicationstatement_resource__gin
+ON medicationstatement
+USING GIN (resource);
+```
+
+Search parameter: `MedicationStatement.effective`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medicationstatement_resource__effective_max
+ON medicationstatement
+USING btree (knife_extract_max_timestamptz(resource, '[["effective"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medicationstatement_resource__effective_min
+ON medicationstatement
+USING btree (knife_extract_min_timestamptz(resource, '[["effective"]]'));
+```
+
+### MedicinalProduct
+
+Search parameter: `MedicinalProduct.name`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medicinalproduct_resource__name_gin_trgm
+ON medicinalproduct
+USING GIN ((aidbox_text_search(knife_extract_text("medicinalproduct".resource, $JSON$[["name","productName"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `MedicinalProduct.name-language`, `MedicinalProduct.identifier`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medicinalproduct_resource__gin
+ON medicinalproduct
+USING GIN (resource);
+```
+
+### MedicinalProductAuthorization
+
+Search parameter: `MedicinalProductAuthorization.holder`, `MedicinalProductAuthorization.country`, `MedicinalProductAuthorization.subject`, `MedicinalProductAuthorization.status`, `MedicinalProductAuthorization.identifier`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medicinalproductauthorization_resource__gin
+ON medicinalproductauthorization
+USING GIN (resource);
+```
+
+### MedicinalProductContraindication
+
+Search parameter: `MedicinalProductContraindication.subject`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medicinalproductcontraindication_resource__gin
+ON medicinalproductcontraindication
+USING GIN (resource);
+```
+
+### MedicinalProductIndication
+
+Search parameter: `MedicinalProductIndication.subject`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medicinalproductindication_resource__gin
+ON medicinalproductindication
+USING GIN (resource);
+```
+
+### MedicinalProductInteraction
+
+Search parameter: `MedicinalProductInteraction.subject`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medicinalproductinteraction_resource__gin
+ON medicinalproductinteraction
+USING GIN (resource);
+```
+
+### MedicinalProductPackaged
+
+Search parameter: `MedicinalProductPackaged.subject`, `MedicinalProductPackaged.identifier`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medicinalproductpackaged_resource__gin
+ON medicinalproductpackaged
+USING GIN (resource);
+```
+
+### MedicinalProductPharmaceutical
+
+Search parameter: `MedicinalProductPharmaceutical.target-species`, `MedicinalProductPharmaceutical.route`, `MedicinalProductPharmaceutical.identifier`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medicinalproductpharmaceutical_resource__gin
+ON medicinalproductpharmaceutical
+USING GIN (resource);
+```
+
+### MedicinalProductUndesirableEffect
+
+Search parameter: `MedicinalProductUndesirableEffect.subject`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS medicinalproductundesirableeffect_resource__gin
+ON medicinalproductundesirableeffect
+USING GIN (resource);
+```
+
+### MessageDefinition
+
+Search parameter: `MessageDefinition.publisher`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS messagedefinition_resource__publisher_gin_trgm
+ON messagedefinition
+USING GIN ((aidbox_text_search(knife_extract_text("messagedefinition".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `MessageDefinition.event`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS messagedefinition_resource__gin
+ON messagedefinition
+USING GIN (resource);
+```
+
+Search parameter: `MessageDefinition.context-quantity`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS messagedefinition_resource__context_quantity_max
+ON messagedefinition
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS messagedefinition_resource__context_quantity_min
+ON messagedefinition
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+```
+
+Search parameter: `MessageDefinition.name`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS messagedefinition_resource__name_gin_trgm
+ON messagedefinition
+USING GIN ((aidbox_text_search(knife_extract_text("messagedefinition".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `MessageDefinition.status`, `MessageDefinition.jurisdiction`, `MessageDefinition.context`, `MessageDefinition.context-type`, `MessageDefinition.category`, `MessageDefinition.focus`, `MessageDefinition.version`, `MessageDefinition.parent`, `MessageDefinition.identifier`, `MessageDefinition.url`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS messagedefinition_resource__gin
+ON messagedefinition
+USING GIN (resource);
+```
+
+Search parameter: `MessageDefinition.title`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS messagedefinition_resource__title_gin_trgm
+ON messagedefinition
+USING GIN ((aidbox_text_search(knife_extract_text("messagedefinition".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `MessageDefinition.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS messagedefinition_resource__date_max
+ON messagedefinition
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS messagedefinition_resource__date_min
+ON messagedefinition
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+Search parameter: `MessageDefinition.description`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS messagedefinition_resource__description_gin_trgm
+ON messagedefinition
+USING GIN ((aidbox_text_search(knife_extract_text("messagedefinition".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
+```
+
+### MessageHeader
+
+Search parameter: `MessageHeader.event`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS messageheader_resource__gin
+ON messageheader
+USING GIN (resource);
+```
+
+Search parameter: `MessageHeader.destination`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS messageheader_resource__destination_gin_trgm
+ON messageheader
+USING GIN ((aidbox_text_search(knife_extract_text("messageheader".resource, $JSON$[["destination","name"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `MessageHeader.source`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS messageheader_resource__source_gin_trgm
+ON messageheader
+USING GIN ((aidbox_text_search(knife_extract_text("messageheader".resource, $JSON$[["source","name"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `MessageHeader.enterer`, `MessageHeader.response-id`, `MessageHeader.author`, `MessageHeader.destination-uri`, `MessageHeader.source-uri`, `MessageHeader.focus`, `MessageHeader.code`, `MessageHeader.sender`, `MessageHeader.receiver`, `MessageHeader.responsible`, `MessageHeader.target`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS messageheader_resource__gin
+ON messageheader
+USING GIN (resource);
+```
+
+### MolecularSequence
+
+Search parameter: `MolecularSequence.patient`, `MolecularSequence.chromosome`, `MolecularSequence.type`, `MolecularSequence.identifier`, `MolecularSequence.referenceseqid`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS molecularsequence_resource__gin
+ON molecularsequence
+USING GIN (resource);
+```
+
+Search parameter: `MolecularSequence.window-end`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS molecularsequence_resource__window_end_max
+ON molecularsequence
+USING btree (knife_extract_max_numeric(resource, '[["referenceSeq","windowEnd"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS molecularsequence_resource__window_end_min
+ON molecularsequence
+USING btree (knife_extract_max_numeric(resource, '[["referenceSeq","windowEnd"]]'));
+```
+
+Search parameter: `MolecularSequence.window-start`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS molecularsequence_resource__window_start_max
+ON molecularsequence
+USING btree (knife_extract_max_numeric(resource, '[["referenceSeq","windowStart"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS molecularsequence_resource__window_start_min
+ON molecularsequence
+USING btree (knife_extract_max_numeric(resource, '[["referenceSeq","windowStart"]]'));
+```
+
+Search parameter: `MolecularSequence.variant-start`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS molecularsequence_resource__variant_start_max
+ON molecularsequence
+USING btree (knife_extract_max_numeric(resource, '[["variant","start"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS molecularsequence_resource__variant_start_min
+ON molecularsequence
+USING btree (knife_extract_max_numeric(resource, '[["variant","start"]]'));
+```
+
+Search parameter: `MolecularSequence.variant-end`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS molecularsequence_resource__variant_end_max
+ON molecularsequence
+USING btree (knife_extract_max_numeric(resource, '[["variant","end"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS molecularsequence_resource__variant_end_min
+ON molecularsequence
+USING btree (knife_extract_max_numeric(resource, '[["variant","end"]]'));
+```
+
+### NamingSystem
+
+Search parameter: `NamingSystem.value`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS namingsystem_resource__value_gin_trgm
+ON namingsystem
+USING GIN ((aidbox_text_search(knife_extract_text("namingsystem".resource, $JSON$[["uniqueId","value"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `NamingSystem.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS namingsystem_resource__date_max
+ON namingsystem
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS namingsystem_resource__date_min
+ON namingsystem
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+Search parameter: `NamingSystem.publisher`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS namingsystem_resource__publisher_gin_trgm
+ON namingsystem
+USING GIN ((aidbox_text_search(knife_extract_text("namingsystem".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `NamingSystem.contact`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS namingsystem_resource__contact_gin_trgm
+ON namingsystem
+USING GIN ((aidbox_text_search(knife_extract_text("namingsystem".resource, $JSON$[["contact","name"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `NamingSystem.name`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS namingsystem_resource__name_gin_trgm
+ON namingsystem
+USING GIN ((aidbox_text_search(knife_extract_text("namingsystem".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `NamingSystem.description`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS namingsystem_resource__description_gin_trgm
+ON namingsystem
+USING GIN ((aidbox_text_search(knife_extract_text("namingsystem".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `NamingSystem.responsible`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS namingsystem_resource__responsible_gin_trgm
+ON namingsystem
+USING GIN ((aidbox_text_search(knife_extract_text("namingsystem".resource, $JSON$[["responsible"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `NamingSystem.type`, `NamingSystem.kind`, `NamingSystem.jurisdiction`, `NamingSystem.telecom`, `NamingSystem.status`, `NamingSystem.context-type`, `NamingSystem.id-type`, `NamingSystem.context`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS namingsystem_resource__gin
+ON namingsystem
+USING GIN (resource);
+```
+
+Search parameter: `NamingSystem.period`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS namingsystem_resource__uniqueid_period_max
+ON namingsystem
+USING btree (knife_extract_max_timestamptz(resource, '[["uniqueId" "period"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS namingsystem_resource__uniqueid_period_min
+ON namingsystem
+USING btree (knife_extract_min_timestamptz(resource, '[["uniqueId" "period"]]'));
+```
+
+Search parameter: `NamingSystem.context-quantity`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS namingsystem_resource__context_quantity_max
+ON namingsystem
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS namingsystem_resource__context_quantity_min
+ON namingsystem
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+```
+
+### NutritionOrder
+
+Search parameter: `NutritionOrder.instantiates-uri`, `NutritionOrder.instantiates-canonical`, `NutritionOrder.supplement`, `NutritionOrder.provider`, `NutritionOrder.oraldiet`, `NutritionOrder.additive`, `NutritionOrder.identifier`, `NutritionOrder.patient`, `NutritionOrder.status`, `NutritionOrder.encounter`, `NutritionOrder.formula`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS nutritionorder_resource__gin
+ON nutritionorder
+USING GIN (resource);
+```
+
+Search parameter: `NutritionOrder.datetime`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS nutritionorder_resource__datetime_max
+ON nutritionorder
+USING btree (knife_extract_max_timestamptz(resource, '[["dateTime"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS nutritionorder_resource__datetime_min
+ON nutritionorder
+USING btree (knife_extract_min_timestamptz(resource, '[["dateTime"]]'));
+```
+
+### Observation
+
+Search parameter: `Observation.value-quantity`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS observation_resource__value_quantity_max
+ON observation
+USING btree (knife_extract_max_numeric(resource, '[["value","Quantity","value"],["value","SampledData"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS observation_resource__value_quantity_min
+ON observation
+USING btree (knife_extract_max_numeric(resource, '[["value","Quantity","value"],["value","SampledData"]]'));
+```
+
+Search parameter: `Observation.combo-value-concept`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS observation_resource__gin
+ON observation
+USING GIN (resource);
+```
+
+Search parameter: `Observation.combo-value-quantity`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS observation_resource__combo_value_quantity_max
+ON observation
+USING btree (knife_extract_max_numeric(resource, '[["value","Quantity","value"],["value","SampledData"],["component","value","Quantity","value"],["component","value","SampledData"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS observation_resource__combo_value_quantity_min
+ON observation
+USING btree (knife_extract_max_numeric(resource, '[["value","Quantity","value"],["value","SampledData"],["component","value","Quantity","value"],["component","value","SampledData"]]'));
+```
+
+Search parameter: `Observation.combo-data-absent-reason`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS observation_resource__gin
+ON observation
+USING GIN (resource);
+```
+
+Search parameter: `Observation.focus`, `Observation.encounter`, `Observation.method`, `Observation.component-code`, `Observation.subject`, `Observation.code`, `Observation.based-on`, `Observation.specimen`, `Observation.value-concept`, `Observation.patient`, `Observation.identifier`, `Observation.data-absent-reason`, `Observation.performer`, `Observation.status`, `Observation.component-data-absent-reason`, `Observation.derived-from`, `Observation.device`, `Observation.part-of`, `Observation.has-member`, `Observation.component-value-concept`, `Observation.category`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS observation_resource__gin
+ON observation
+USING GIN (resource);
+```
+
+Search parameter: `Observation.value-date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS observation_resource__value_datetime_max
+ON observation
+USING btree (knife_extract_max_timestamptz(resource, '[["value" "dateTime"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS observation_resource__value_datetime_min
+ON observation
+USING btree (knife_extract_min_timestamptz(resource, '[["value" "dateTime"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS observation_resource__value_period_max
+ON observation
+USING btree (knife_extract_max_timestamptz(resource, '[["value" "Period"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS observation_resource__value_period_min
+ON observation
+USING btree (knife_extract_min_timestamptz(resource, '[["value" "Period"]]'));
+```
+
+Search parameter: `Observation.value-string`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS observation_resource__value_string_gin_trgm
+ON observation
+USING GIN ((aidbox_text_search(knife_extract_text("observation".resource, $JSON$[["value","string"],["value","CodeableConcept","text"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Observation.component-value-quantity`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS observation_resource__component_value_quantity_max
+ON observation
+USING btree (knife_extract_max_numeric(resource, '[["component","value","Quantity","value"],["component","value","SampledData"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS observation_resource__component_value_quantity_min
+ON observation
+USING btree (knife_extract_max_numeric(resource, '[["component","value","Quantity","value"],["component","value","SampledData"]]'));
+```
+
+Search parameter: `Observation.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS observation_resource__effective_max
+ON observation
+USING btree (knife_extract_max_timestamptz(resource, '[["effective"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS observation_resource__effective_min
+ON observation
+USING btree (knife_extract_min_timestamptz(resource, '[["effective"]]'));
+```
+
+Search parameter: `Observation.combo-code`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS observation_resource__gin
+ON observation
+USING GIN (resource);
+```
+
+### OperationDefinition
+
+Search parameter: `OperationDefinition.description`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS operationdefinition_resource__description_gin_trgm
+ON operationdefinition
+USING GIN ((aidbox_text_search(knife_extract_text("operationdefinition".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `OperationDefinition.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS operationdefinition_resource__date_max
+ON operationdefinition
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS operationdefinition_resource__date_min
+ON operationdefinition
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+Search parameter: `OperationDefinition.context-quantity`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS operationdefinition_resource__context_quantity_max
+ON operationdefinition
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS operationdefinition_resource__context_quantity_min
+ON operationdefinition
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+```
+
+Search parameter: `OperationDefinition.title`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS operationdefinition_resource__title_gin_trgm
+ON operationdefinition
+USING GIN ((aidbox_text_search(knife_extract_text("operationdefinition".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `OperationDefinition.base`, `OperationDefinition.context-type`, `OperationDefinition.version`, `OperationDefinition.kind`, `OperationDefinition.code`, `OperationDefinition.status`, `OperationDefinition.instance`, `OperationDefinition.system`, `OperationDefinition.type`, `OperationDefinition.url`, `OperationDefinition.output-profile`, `OperationDefinition.jurisdiction`, `OperationDefinition.input-profile`, `OperationDefinition.context`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS operationdefinition_resource__gin
+ON operationdefinition
+USING GIN (resource);
+```
+
+Search parameter: `OperationDefinition.name`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS operationdefinition_resource__name_gin_trgm
+ON operationdefinition
+USING GIN ((aidbox_text_search(knife_extract_text("operationdefinition".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `OperationDefinition.publisher`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS operationdefinition_resource__publisher_gin_trgm
+ON operationdefinition
+USING GIN ((aidbox_text_search(knife_extract_text("operationdefinition".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
+```
+
+### Organization
+
+Search parameter: `Organization.name`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS organization_resource__name_gin_trgm
+ON organization
+USING GIN ((aidbox_text_search(knife_extract_text("organization".resource, $JSON$[["name"],["alias"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Organization.address-country`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS organization_resource__address_country_gin_trgm
+ON organization
+USING GIN ((aidbox_text_search(knife_extract_text("organization".resource, $JSON$[["address","country"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Organization.address`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS organization_resource__address_gin_trgm
+ON organization
+USING GIN ((aidbox_text_search(knife_extract_text("organization".resource, $JSON$[["address","text"],["address","district"],["address","country"],["address","city"],["address","line"],["address","state"],["address","postalCode"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Organization.address-postalcode`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS organization_resource__address_postalcode_gin_trgm
+ON organization
+USING GIN ((aidbox_text_search(knife_extract_text("organization".resource, $JSON$[["address","postalCode"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Organization.address-city`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS organization_resource__address_city_gin_trgm
+ON organization
+USING GIN ((aidbox_text_search(knife_extract_text("organization".resource, $JSON$[["address","city"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Organization.partof`, `Organization.address-use`, `Organization.identifier`, `Organization.endpoint`, `Organization.type`, `Organization.active`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS organization_resource__gin
+ON organization
+USING GIN (resource);
+```
+
+Search parameter: `Organization.address-state`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS organization_resource__address_state_gin_trgm
+ON organization
+USING GIN ((aidbox_text_search(knife_extract_text("organization".resource, $JSON$[["address","state"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Organization.phonetic`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS organization_resource__phonetic_gin_trgm
+ON organization
+USING GIN ((aidbox_text_search(knife_extract_text("organization".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+```
+
+### OrganizationAffiliation
+
+Search parameter: `OrganizationAffiliation.specialty`, `OrganizationAffiliation.participating-organization`, `OrganizationAffiliation.endpoint`, `OrganizationAffiliation.network`, `OrganizationAffiliation.identifier`, `OrganizationAffiliation.service`, `OrganizationAffiliation.primary-organization`, `OrganizationAffiliation.location`, `OrganizationAffiliation.role`, `OrganizationAffiliation.telecom`, `OrganizationAffiliation.active`, `OrganizationAffiliation.phone`, `OrganizationAffiliation.email`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS organizationaffiliation_resource__gin
+ON organizationaffiliation
+USING GIN (resource);
+```
+
+Search parameter: `OrganizationAffiliation.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS organizationaffiliation_resource__period_max
+ON organizationaffiliation
+USING btree (knife_extract_max_timestamptz(resource, '[["period"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS organizationaffiliation_resource__period_min
+ON organizationaffiliation
+USING btree (knife_extract_min_timestamptz(resource, '[["period"]]'));
+```
+
+### Patient
 
 Search parameter: `Patient.address-state`
 
@@ -1814,6 +4029,20 @@ CREATE INDEX CONCURRENTLY
 IF NOT EXISTS patient_resource__family_gin_trgm
 ON patient
 USING GIN ((aidbox_text_search(knife_extract_text("patient".resource, $JSON$[["name","family"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Patient.death-date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS patient_resource__deceased_datetime_max
+ON patient
+USING btree (knife_extract_max_timestamptz(resource, '[["deceased" "dateTime"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS patient_resource__deceased_datetime_min
+ON patient
+USING btree (knife_extract_min_timestamptz(resource, '[["deceased" "dateTime"]]'));
 ```
 
 Search parameter: `Patient.address-city`
@@ -1850,6 +4079,11 @@ CREATE INDEX CONCURRENTLY
 IF NOT EXISTS patient_resource__name_gin_trgm
 ON patient
 USING GIN ((aidbox_text_search(knife_extract_text("patient".resource, $JSON$[["name","family"],["name","given"],["name","middle"],["name","text"]]$JSON$))) gin_trgm_ops);
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS patient_resource__phonetic_gin_trgm
+ON patient
+USING GIN ((aidbox_text_search(knife_extract_text("patient".resource, $JSON$[["name","family"],["name","given"],["name","middle"],["name","text"]]$JSON$))) gin_trgm_ops);
 ```
 
 Search parameter: `Patient.address-postalcode`
@@ -1870,398 +4104,259 @@ ON patient
 USING GIN ((aidbox_text_search(knife_extract_text("patient".resource, $JSON$[["address","country"]]$JSON$))) gin_trgm_ops);
 ```
 
-### EffectEvidenceSynthesis
-
-Search parameter: `EffectEvidenceSynthesis.publisher`
+Search parameter: `Patient.birthdate`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS effectevidencesynthesis_resource__publisher_gin_trgm
-ON effectevidencesynthesis
-USING GIN ((aidbox_text_search(knife_extract_text("effectevidencesynthesis".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS patient_resource__birthdate_max
+ON patient
+USING btree (knife_extract_max_timestamptz(resource, '[["birthDate"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS patient_resource__birthdate_min
+ON patient
+USING btree (knife_extract_min_timestamptz(resource, '[["birthDate"]]'));
 ```
 
-Search parameter: `EffectEvidenceSynthesis.effective`, `EffectEvidenceSynthesis.date`
+### PaymentNotice
 
-```sql
-WIP: work in progress
-```
-
-Search parameter: `EffectEvidenceSynthesis.context`, `EffectEvidenceSynthesis.context-type`, `EffectEvidenceSynthesis.version`, `EffectEvidenceSynthesis.url`, `EffectEvidenceSynthesis.identifier`, `EffectEvidenceSynthesis.jurisdiction`, `EffectEvidenceSynthesis.status`
+Search parameter: `PaymentNotice.provider`, `PaymentNotice.request`, `PaymentNotice.status`, `PaymentNotice.identifier`, `PaymentNotice.payment-status`, `PaymentNotice.response`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS effectevidencesynthesis_resource__gin
-ON effectevidencesynthesis
+IF NOT EXISTS paymentnotice_resource__gin
+ON paymentnotice
 USING GIN (resource);
 ```
 
-Search parameter: `EffectEvidenceSynthesis.title`
+Search parameter: `PaymentNotice.created`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS effectevidencesynthesis_resource__title_gin_trgm
-ON effectevidencesynthesis
-USING GIN ((aidbox_text_search(knife_extract_text("effectevidencesynthesis".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS paymentnotice_resource__created_max
+ON paymentnotice
+USING btree (knife_extract_max_timestamptz(resource, '[["created"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS paymentnotice_resource__created_min
+ON paymentnotice
+USING btree (knife_extract_min_timestamptz(resource, '[["created"]]'));
 ```
 
-Search parameter: `EffectEvidenceSynthesis.description`
+### PaymentReconciliation
+
+Search parameter: `PaymentReconciliation.disposition`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS effectevidencesynthesis_resource__description_gin_trgm
-ON effectevidencesynthesis
-USING GIN ((aidbox_text_search(knife_extract_text("effectevidencesynthesis".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS paymentreconciliation_resource__disposition_gin_trgm
+ON paymentreconciliation
+USING GIN ((aidbox_text_search(knife_extract_text("paymentreconciliation".resource, $JSON$[["disposition"]]$JSON$))) gin_trgm_ops);
 ```
 
-Search parameter: `EffectEvidenceSynthesis.context-quantity`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `EffectEvidenceSynthesis.name`
+Search parameter: `PaymentReconciliation.status`, `PaymentReconciliation.requestor`, `PaymentReconciliation.request`, `PaymentReconciliation.identifier`, `PaymentReconciliation.outcome`, `PaymentReconciliation.payment-issuer`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS effectevidencesynthesis_resource__name_gin_trgm
-ON effectevidencesynthesis
-USING GIN ((aidbox_text_search(knife_extract_text("effectevidencesynthesis".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
-```
-
-### ResearchSubject
-
-Search parameter: `ResearchSubject.date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `ResearchSubject.individual`, `ResearchSubject.study`, `ResearchSubject.patient`, `ResearchSubject.identifier`, `ResearchSubject.status`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS researchsubject_resource__gin
-ON researchsubject
+IF NOT EXISTS paymentreconciliation_resource__gin
+ON paymentreconciliation
 USING GIN (resource);
 ```
 
-### Medication
-
-Search parameter: `Medication.expiration-date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Medication.code`, `Medication.lot-number`, `Medication.identifier`, `Medication.ingredient-code`, `Medication.ingredient`, `Medication.status`, `Medication.form`, `Medication.manufacturer`
+Search parameter: `PaymentReconciliation.created`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS medication_resource__gin
-ON medication
+IF NOT EXISTS paymentreconciliation_resource__created_max
+ON paymentreconciliation
+USING btree (knife_extract_max_timestamptz(resource, '[["created"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS paymentreconciliation_resource__created_min
+ON paymentreconciliation
+USING btree (knife_extract_min_timestamptz(resource, '[["created"]]'));
+```
+
+### Person
+
+Search parameter: `Person.address`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS person_resource__address_gin_trgm
+ON person
+USING GIN ((aidbox_text_search(knife_extract_text("person".resource, $JSON$[["address","text"],["address","district"],["address","country"],["address","city"],["address","line"],["address","state"],["address","postalCode"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Person.address-state`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS person_resource__address_state_gin_trgm
+ON person
+USING GIN ((aidbox_text_search(knife_extract_text("person".resource, $JSON$[["address","state"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Person.birthdate`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS person_resource__birthdate_max
+ON person
+USING btree (knife_extract_max_timestamptz(resource, '[["birthDate"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS person_resource__birthdate_min
+ON person
+USING btree (knife_extract_min_timestamptz(resource, '[["birthDate"]]'));
+```
+
+Search parameter: `Person.address-country`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS person_resource__address_country_gin_trgm
+ON person
+USING GIN ((aidbox_text_search(knife_extract_text("person".resource, $JSON$[["address","country"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Person.link`, `Person.patient`, `Person.relatedperson`, `Person.organization`, `Person.telecom`, `Person.identifier`, `Person.gender`, `Person.email`, `Person.practitioner`, `Person.phone`, `Person.address-use`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS person_resource__gin
+ON person
 USING GIN (resource);
 ```
 
-### ConceptMap
-
-Search parameter: `ConceptMap.target-code`, `ConceptMap.other`, `ConceptMap.context-type`, `ConceptMap.dependson`, `ConceptMap.source-code`, `ConceptMap.target-system`, `ConceptMap.status`, `ConceptMap.source`, `ConceptMap.url`, `ConceptMap.version`, `ConceptMap.identifier`, `ConceptMap.target`, `ConceptMap.product`, `ConceptMap.jurisdiction`, `ConceptMap.source-system`, `ConceptMap.target-uri`, `ConceptMap.context`, `ConceptMap.source-uri`
+Search parameter: `Person.address-postalcode`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS conceptmap_resource__gin
-ON conceptmap
+IF NOT EXISTS person_resource__address_postalcode_gin_trgm
+ON person
+USING GIN ((aidbox_text_search(knife_extract_text("person".resource, $JSON$[["address","postalCode"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Person.name`, `Person.phonetic`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS person_resource__name_gin_trgm
+ON person
+USING GIN ((aidbox_text_search(knife_extract_text("person".resource, $JSON$[["name","family"],["name","given"],["name","middle"],["name","text"]]$JSON$))) gin_trgm_ops);
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS person_resource__phonetic_gin_trgm
+ON person
+USING GIN ((aidbox_text_search(knife_extract_text("person".resource, $JSON$[["name","family"],["name","given"],["name","middle"],["name","text"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `Person.address-city`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS person_resource__address_city_gin_trgm
+ON person
+USING GIN ((aidbox_text_search(knife_extract_text("person".resource, $JSON$[["address","city"]]$JSON$))) gin_trgm_ops);
+```
+
+### PlanDefinition
+
+Search parameter: `PlanDefinition.context-quantity`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS plandefinition_resource__context_quantity_max
+ON plandefinition
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS plandefinition_resource__context_quantity_min
+ON plandefinition
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+```
+
+Search parameter: `PlanDefinition.type`, `PlanDefinition.url`, `PlanDefinition.definition`, `PlanDefinition.context-type`, `PlanDefinition.topic`, `PlanDefinition.derived-from`, `PlanDefinition.jurisdiction`, `PlanDefinition.predecessor`, `PlanDefinition.identifier`, `PlanDefinition.context`, `PlanDefinition.successor`, `PlanDefinition.version`, `PlanDefinition.status`, `PlanDefinition.composed-of`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS plandefinition_resource__gin
+ON plandefinition
 USING GIN (resource);
 ```
 
-Search parameter: `ConceptMap.description`
+Search parameter: `PlanDefinition.effective`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS conceptmap_resource__description_gin_trgm
-ON conceptmap
-USING GIN ((aidbox_text_search(knife_extract_text("conceptmap".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS plandefinition_resource__effectiveperiod_max
+ON plandefinition
+USING btree (knife_extract_max_timestamptz(resource, '[["effectivePeriod"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS plandefinition_resource__effectiveperiod_min
+ON plandefinition
+USING btree (knife_extract_min_timestamptz(resource, '[["effectivePeriod"]]'));
 ```
 
-Search parameter: `ConceptMap.context-quantity`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `ConceptMap.date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `ConceptMap.publisher`
+Search parameter: `PlanDefinition.date`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS conceptmap_resource__publisher_gin_trgm
-ON conceptmap
-USING GIN ((aidbox_text_search(knife_extract_text("conceptmap".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS plandefinition_resource__date_max
+ON plandefinition
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS plandefinition_resource__date_min
+ON plandefinition
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
 ```
 
-Search parameter: `ConceptMap.title`
+Search parameter: `PlanDefinition.name`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS conceptmap_resource__title_gin_trgm
-ON conceptmap
-USING GIN ((aidbox_text_search(knife_extract_text("conceptmap".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS plandefinition_resource__name_gin_trgm
+ON plandefinition
+USING GIN ((aidbox_text_search(knife_extract_text("plandefinition".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
 ```
 
-Search parameter: `ConceptMap.name`
+Search parameter: `PlanDefinition.publisher`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS conceptmap_resource__name_gin_trgm
-ON conceptmap
-USING GIN ((aidbox_text_search(knife_extract_text("conceptmap".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS plandefinition_resource__publisher_gin_trgm
+ON plandefinition
+USING GIN ((aidbox_text_search(knife_extract_text("plandefinition".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
 ```
 
-### CoverageEligibilityRequest
-
-Search parameter: `CoverageEligibilityRequest.created`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `CoverageEligibilityRequest.patient`, `CoverageEligibilityRequest.status`, `CoverageEligibilityRequest.enterer`, `CoverageEligibilityRequest.facility`, `CoverageEligibilityRequest.provider`, `CoverageEligibilityRequest.identifier`
+Search parameter: `PlanDefinition.depends-on`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS coverageeligibilityrequest_resource__gin
-ON coverageeligibilityrequest
+IF NOT EXISTS plandefinition_resource__gin
+ON plandefinition
 USING GIN (resource);
 ```
 
-### VisionPrescription
-
-Search parameter: `VisionPrescription.datewritten`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `VisionPrescription.patient`, `VisionPrescription.status`, `VisionPrescription.prescriber`, `VisionPrescription.identifier`, `VisionPrescription.encounter`
+Search parameter: `PlanDefinition.description`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS visionprescription_resource__gin
-ON visionprescription
-USING GIN (resource);
+IF NOT EXISTS plandefinition_resource__description_gin_trgm
+ON plandefinition
+USING GIN ((aidbox_text_search(knife_extract_text("plandefinition".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
 ```
 
-### MolecularSequence
-
-Search parameter: `MolecularSequence.variant-end`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `MolecularSequence.patient`, `MolecularSequence.chromosome`, `MolecularSequence.type`, `MolecularSequence.identifier`, `MolecularSequence.referenceseqid`
+Search parameter: `PlanDefinition.title`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS molecularsequence_resource__gin
-ON molecularsequence
-USING GIN (resource);
-```
-
-Search parameter: `MolecularSequence.window-start`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `MolecularSequence.window-end`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `MolecularSequence.variant-start`
-
-```sql
-WIP: work in progress
-```
-
-### MedicinalProductUndesirableEffect
-
-Search parameter: `MedicinalProductUndesirableEffect.subject`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS medicinalproductundesirableeffect_resource__gin
-ON medicinalproductundesirableeffect
-USING GIN (resource);
-```
-
-### MessageHeader
-
-Search parameter: `MessageHeader.destination`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS messageheader_resource__destination_gin_trgm
-ON messageheader
-USING GIN ((aidbox_text_search(knife_extract_text("messageheader".resource, $JSON$[["destination","name"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `MessageHeader.source`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS messageheader_resource__source_gin_trgm
-ON messageheader
-USING GIN ((aidbox_text_search(knife_extract_text("messageheader".resource, $JSON$[["source","name"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `MessageHeader.event`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `MessageHeader.enterer`, `MessageHeader.response-id`, `MessageHeader.author`, `MessageHeader.destination-uri`, `MessageHeader.source-uri`, `MessageHeader.focus`, `MessageHeader.code`, `MessageHeader.sender`, `MessageHeader.receiver`, `MessageHeader.responsible`, `MessageHeader.target`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS messageheader_resource__gin
-ON messageheader
-USING GIN (resource);
-```
-
-### AllergyIntolerance
-
-Search parameter: `AllergyIntolerance.clinical-status`, `AllergyIntolerance.recorder`, `AllergyIntolerance.asserter`, `AllergyIntolerance.manifestation`, `AllergyIntolerance.severity`, `AllergyIntolerance.verification-status`, `AllergyIntolerance.identifier`, `AllergyIntolerance.patient`, `AllergyIntolerance.route`, `AllergyIntolerance.category`, `AllergyIntolerance.type`, `AllergyIntolerance.criticality`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS allergyintolerance_resource__gin
-ON allergyintolerance
-USING GIN (resource);
-```
-
-Search parameter: `AllergyIntolerance.last-date`, `AllergyIntolerance.onset`, `AllergyIntolerance.date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `AllergyIntolerance.code`
-
-```sql
-WIP: work in progress
-```
-
-### SupplyDelivery
-
-Search parameter: `SupplyDelivery.status`, `SupplyDelivery.identifier`, `SupplyDelivery.receiver`, `SupplyDelivery.supplier`, `SupplyDelivery.patient`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS supplydelivery_resource__gin
-ON supplydelivery
-USING GIN (resource);
-```
-
-### EpisodeOfCare
-
-Search parameter: `EpisodeOfCare.date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `EpisodeOfCare.patient`, `EpisodeOfCare.incoming-referral`, `EpisodeOfCare.status`, `EpisodeOfCare.condition`, `EpisodeOfCare.identifier`, `EpisodeOfCare.organization`, `EpisodeOfCare.type`, `EpisodeOfCare.care-manager`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS episodeofcare_resource__gin
-ON episodeofcare
-USING GIN (resource);
-```
-
-### PractitionerRole
-
-Search parameter: `PractitionerRole.endpoint`, `PractitionerRole.organization`, `PractitionerRole.email`, `PractitionerRole.service`, `PractitionerRole.active`, `PractitionerRole.role`, `PractitionerRole.practitioner`, `PractitionerRole.identifier`, `PractitionerRole.phone`, `PractitionerRole.specialty`, `PractitionerRole.location`, `PractitionerRole.telecom`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS practitionerrole_resource__gin
-ON practitionerrole
-USING GIN (resource);
-```
-
-Search parameter: `PractitionerRole.date`
-
-```sql
-WIP: work in progress
-```
-
-### Library
-
-Search parameter: `Library.title`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS library_resource__title_gin_trgm
-ON library
-USING GIN ((aidbox_text_search(knife_extract_text("library".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `Library.type`, `Library.jurisdiction`, `Library.identifier`, `Library.topic`, `Library.status`, `Library.depends-on`, `Library.context-type`, `Library.content-type`, `Library.successor`, `Library.context`, `Library.version`, `Library.derived-from`, `Library.predecessor`, `Library.composed-of`, `Library.url`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS library_resource__gin
-ON library
-USING GIN (resource);
-```
-
-Search parameter: `Library.description`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS library_resource__description_gin_trgm
-ON library
-USING GIN ((aidbox_text_search(knife_extract_text("library".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `Library.date`, `Library.effective`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Library.context-quantity`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Library.publisher`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS library_resource__publisher_gin_trgm
-ON library
-USING GIN ((aidbox_text_search(knife_extract_text("library".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `Library.name`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS library_resource__name_gin_trgm
-ON library
-USING GIN ((aidbox_text_search(knife_extract_text("library".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS plandefinition_resource__title_gin_trgm
+ON plandefinition
+USING GIN ((aidbox_text_search(knife_extract_text("plandefinition".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
 ```
 
 ### Practitioner
@@ -2271,6 +4366,11 @@ Search parameter: `Practitioner.name`, `Practitioner.phonetic`
 ```sql
 CREATE INDEX CONCURRENTLY
 IF NOT EXISTS practitioner_resource__name_gin_trgm
+ON practitioner
+USING GIN ((aidbox_text_search(knife_extract_text("practitioner".resource, $JSON$[["name","family"],["name","given"],["name","middle"],["name","text"]]$JSON$))) gin_trgm_ops);
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS practitioner_resource__phonetic_gin_trgm
 ON practitioner
 USING GIN ((aidbox_text_search(knife_extract_text("practitioner".resource, $JSON$[["name","family"],["name","given"],["name","middle"],["name","text"]]$JSON$))) gin_trgm_ops);
 ```
@@ -2347,406 +4447,109 @@ ON practitioner
 USING GIN ((aidbox_text_search(knife_extract_text("practitioner".resource, $JSON$[["address","country"]]$JSON$))) gin_trgm_ops);
 ```
 
-### MedicationRequest
+### PractitionerRole
 
-Search parameter: `MedicationRequest.intended-dispenser`, `MedicationRequest.priority`, `MedicationRequest.identifier`, `MedicationRequest.encounter`, `MedicationRequest.requester`, `MedicationRequest.category`, `MedicationRequest.code`, `MedicationRequest.patient`, `MedicationRequest.medication`, `MedicationRequest.status`, `MedicationRequest.intended-performer`, `MedicationRequest.intended-performertype`, `MedicationRequest.subject`, `MedicationRequest.intent`
+Search parameter: `PractitionerRole.endpoint`, `PractitionerRole.organization`, `PractitionerRole.email`, `PractitionerRole.service`, `PractitionerRole.active`, `PractitionerRole.role`, `PractitionerRole.practitioner`, `PractitionerRole.identifier`, `PractitionerRole.phone`, `PractitionerRole.specialty`, `PractitionerRole.location`, `PractitionerRole.telecom`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS medicationrequest_resource__gin
-ON medicationrequest
+IF NOT EXISTS practitionerrole_resource__gin
+ON practitionerrole
 USING GIN (resource);
 ```
 
-Search parameter: `MedicationRequest.authoredon`, `MedicationRequest.date`
-
-```sql
-WIP: work in progress
-```
-
-### ImmunizationRecommendation
-
-Search parameter: `ImmunizationRecommendation.identifier`, `ImmunizationRecommendation.vaccine-type`, `ImmunizationRecommendation.target-disease`, `ImmunizationRecommendation.information`, `ImmunizationRecommendation.support`, `ImmunizationRecommendation.status`, `ImmunizationRecommendation.patient`
+Search parameter: `PractitionerRole.date`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS immunizationrecommendation_resource__gin
-ON immunizationrecommendation
+IF NOT EXISTS practitionerrole_resource__period_max
+ON practitionerrole
+USING btree (knife_extract_max_timestamptz(resource, '[["period"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS practitionerrole_resource__period_min
+ON practitionerrole
+USING btree (knife_extract_min_timestamptz(resource, '[["period"]]'));
+```
+
+### Procedure
+
+Search parameter: `Procedure.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS procedure_resource__performed_max
+ON procedure
+USING btree (knife_extract_max_timestamptz(resource, '[["performed"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS procedure_resource__performed_min
+ON procedure
+USING btree (knife_extract_min_timestamptz(resource, '[["performed"]]'));
+```
+
+Search parameter: `Procedure.patient`, `Procedure.based-on`, `Procedure.reason-reference`, `Procedure.subject`, `Procedure.location`, `Procedure.category`, `Procedure.status`, `Procedure.performer`, `Procedure.instantiates-uri`, `Procedure.instantiates-canonical`, `Procedure.code`, `Procedure.encounter`, `Procedure.reason-code`, `Procedure.identifier`, `Procedure.part-of`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS procedure_resource__gin
+ON procedure
 USING GIN (resource);
 ```
 
-Search parameter: `ImmunizationRecommendation.date`
+### Provenance
 
-```sql
-WIP: work in progress
-```
-
-### Immunization
-
-Search parameter: `Immunization.date`, `Immunization.reaction-date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Immunization.series`
+Search parameter: `Provenance.patient`, `Provenance.target`, `Provenance.agent-role`, `Provenance.agent`, `Provenance.signature-type`, `Provenance.entity`, `Provenance.location`, `Provenance.agent-type`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS immunization_resource__series_gin_trgm
-ON immunization
-USING GIN ((aidbox_text_search(knife_extract_text("immunization".resource, $JSON$[["protocolApplied","series"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `Immunization.manufacturer`, `Immunization.location`, `Immunization.reaction`, `Immunization.vaccine-code`, `Immunization.target-disease`, `Immunization.performer`, `Immunization.status-reason`, `Immunization.reason-reference`, `Immunization.status`, `Immunization.patient`, `Immunization.reason-code`, `Immunization.identifier`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS immunization_resource__gin
-ON immunization
+IF NOT EXISTS provenance_resource__gin
+ON provenance
 USING GIN (resource);
 ```
 
-Search parameter: `Immunization.lot-number`
+Search parameter: `Provenance.recorded`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS immunization_resource__lot_number_gin_trgm
-ON immunization
-USING GIN ((aidbox_text_search(knife_extract_text("immunization".resource, $JSON$[["lotNumber"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS provenance_resource__recorded_max
+ON provenance
+USING btree (knife_extract_max_timestamptz(resource, '[["recorded"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS provenance_resource__recorded_min
+ON provenance
+USING btree (knife_extract_min_timestamptz(resource, '[["recorded"]]'));
 ```
 
-### GraphDefinition
-
-Search parameter: `GraphDefinition.date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `GraphDefinition.description`
+Search parameter: `Provenance.when`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS graphdefinition_resource__description_gin_trgm
-ON graphdefinition
-USING GIN ((aidbox_text_search(knife_extract_text("graphdefinition".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
-```
+IF NOT EXISTS provenance_resource__occurred_datetime_max
+ON provenance
+USING btree (knife_extract_max_timestamptz(resource, '[["occurred" "dateTime"]]'));
 
-Search parameter: `GraphDefinition.context-quantity`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `GraphDefinition.publisher`
-
-```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS graphdefinition_resource__publisher_gin_trgm
-ON graphdefinition
-USING GIN ((aidbox_text_search(knife_extract_text("graphdefinition".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `GraphDefinition.name`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS graphdefinition_resource__name_gin_trgm
-ON graphdefinition
-USING GIN ((aidbox_text_search(knife_extract_text("graphdefinition".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `GraphDefinition.status`, `GraphDefinition.version`, `GraphDefinition.context`, `GraphDefinition.context-type`, `GraphDefinition.jurisdiction`, `GraphDefinition.url`, `GraphDefinition.start`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS graphdefinition_resource__gin
-ON graphdefinition
-USING GIN (resource);
-```
-
-### Account
-
-Search parameter: `Account.period`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Account.name`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS account_resource__name_gin_trgm
-ON account
-USING GIN ((aidbox_text_search(knife_extract_text("account".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `Account.patient`, `Account.identifier`, `Account.owner`, `Account.subject`, `Account.type`, `Account.status`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS account_resource__gin
-ON account
-USING GIN (resource);
-```
-
-### MeasureReport
-
-Search parameter: `MeasureReport.period`, `MeasureReport.date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `MeasureReport.status`, `MeasureReport.identifier`, `MeasureReport.reporter`, `MeasureReport.measure`, `MeasureReport.evaluated-resource`, `MeasureReport.subject`, `MeasureReport.patient`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS measurereport_resource__gin
-ON measurereport
-USING GIN (resource);
-```
-
-### DeviceMetric
-
-Search parameter: `DeviceMetric.parent`, `DeviceMetric.type`, `DeviceMetric.source`, `DeviceMetric.identifier`, `DeviceMetric.category`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS devicemetric_resource__gin
-ON devicemetric
-USING GIN (resource);
-```
-
-### Goal
-
-Search parameter: `Goal.start-date`, `Goal.target-date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Goal.identifier`, `Goal.patient`, `Goal.lifecycle-status`, `Goal.category`, `Goal.subject`, `Goal.achievement-status`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS goal_resource__gin
-ON goal
-USING GIN (resource);
-```
-
-### MedicationKnowledge
-
-Search parameter: `MedicationKnowledge.manufacturer`, `MedicationKnowledge.source-cost`, `MedicationKnowledge.code`, `MedicationKnowledge.ingredient`, `MedicationKnowledge.status`, `MedicationKnowledge.doseform`, `MedicationKnowledge.classification`, `MedicationKnowledge.ingredient-code`, `MedicationKnowledge.monitoring-program-type`, `MedicationKnowledge.classification-type`, `MedicationKnowledge.monograph`, `MedicationKnowledge.monograph-type`, `MedicationKnowledge.monitoring-program-name`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS medicationknowledge_resource__gin
-ON medicationknowledge
-USING GIN (resource);
-```
-
-### ClaimResponse
-
-Search parameter: `ClaimResponse.requestor`, `ClaimResponse.request`, `ClaimResponse.identifier`, `ClaimResponse.status`, `ClaimResponse.outcome`, `ClaimResponse.patient`, `ClaimResponse.use`, `ClaimResponse.insurer`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS claimresponse_resource__gin
-ON claimresponse
-USING GIN (resource);
-```
-
-Search parameter: `ClaimResponse.disposition`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS claimresponse_resource__disposition_gin_trgm
-ON claimresponse
-USING GIN ((aidbox_text_search(knife_extract_text("claimresponse".resource, $JSON$[["disposition"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `ClaimResponse.payment-date`, `ClaimResponse.created`
-
-```sql
-WIP: work in progress
-```
-
-### DeviceDefinition
-
-Search parameter: `DeviceDefinition.parent`, `DeviceDefinition.type`, `DeviceDefinition.identifier`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS devicedefinition_resource__gin
-ON devicedefinition
-USING GIN (resource);
-```
-
-### Slot
-
-Search parameter: `Slot.start`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Slot.service-category`, `Slot.identifier`, `Slot.status`, `Slot.appointment-type`, `Slot.service-type`, `Slot.specialty`, `Slot.schedule`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS slot_resource__gin
-ON slot
-USING GIN (resource);
-```
-
-### ValueSet
-
-Search parameter: `ValueSet.context-quantity`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `ValueSet.publisher`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS valueset_resource__publisher_gin_trgm
-ON valueset
-USING GIN ((aidbox_text_search(knife_extract_text("valueset".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `ValueSet.reference`, `ValueSet.jurisdiction`, `ValueSet.url`, `ValueSet.context`, `ValueSet.context-type`, `ValueSet.status`, `ValueSet.identifier`, `ValueSet.version`, `ValueSet.expansion`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS valueset_resource__gin
-ON valueset
-USING GIN (resource);
-```
-
-Search parameter: `ValueSet.code`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `ValueSet.name`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS valueset_resource__name_gin_trgm
-ON valueset
-USING GIN ((aidbox_text_search(knife_extract_text("valueset".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `ValueSet.date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `ValueSet.description`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS valueset_resource__description_gin_trgm
-ON valueset
-USING GIN ((aidbox_text_search(knife_extract_text("valueset".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `ValueSet.title`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS valueset_resource__title_gin_trgm
-ON valueset
-USING GIN ((aidbox_text_search(knife_extract_text("valueset".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
-```
-
-### MedicinalProductAuthorization
-
-Search parameter: `MedicinalProductAuthorization.holder`, `MedicinalProductAuthorization.country`, `MedicinalProductAuthorization.subject`, `MedicinalProductAuthorization.status`, `MedicinalProductAuthorization.identifier`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS medicinalproductauthorization_resource__gin
-ON medicinalproductauthorization
-USING GIN (resource);
-```
-
-### MedicinalProductContraindication
-
-Search parameter: `MedicinalProductContraindication.subject`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS medicinalproductcontraindication_resource__gin
-ON medicinalproductcontraindication
-USING GIN (resource);
-```
-
-### DeviceRequest
-
-Search parameter: `DeviceRequest.instantiates-uri`, `DeviceRequest.device`, `DeviceRequest.insurance`, `DeviceRequest.requester`, `DeviceRequest.status`, `DeviceRequest.based-on`, `DeviceRequest.encounter`, `DeviceRequest.intent`, `DeviceRequest.identifier`, `DeviceRequest.group-identifier`, `DeviceRequest.prior-request`, `DeviceRequest.code`, `DeviceRequest.subject`, `DeviceRequest.patient`, `DeviceRequest.instantiates-canonical`, `DeviceRequest.performer`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS devicerequest_resource__gin
-ON devicerequest
-USING GIN (resource);
-```
-
-Search parameter: `DeviceRequest.event-date`, `DeviceRequest.authored-on`
-
-```sql
-WIP: work in progress
-```
-
-### List
-
-Search parameter: `List.title`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS list_resource__title_gin_trgm
-ON list
-USING GIN ((aidbox_text_search(knife_extract_text("list".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `List.notes`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS list_resource__notes_gin_trgm
-ON list
-USING GIN ((aidbox_text_search(knife_extract_text("list".resource, $JSON$[["note","text"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `List.date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `List.patient`, `List.source`, `List.item`, `List.encounter`, `List.empty-reason`, `List.status`, `List.code`, `List.subject`, `List.identifier`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS list_resource__gin
-ON list
-USING GIN (resource);
+IF NOT EXISTS provenance_resource__occurred_datetime_min
+ON provenance
+USING btree (knife_extract_min_timestamptz(resource, '[["occurred" "dateTime"]]'));
 ```
 
 ### Questionnaire
 
-Search parameter: `Questionnaire.context-quantity`
+Search parameter: `Questionnaire.date`
 
 ```sql
-WIP: work in progress
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS questionnaire_resource__date_max
+ON questionnaire
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS questionnaire_resource__date_min
+ON questionnaire
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
 ```
 
 Search parameter: `Questionnaire.title`
@@ -2767,10 +4570,32 @@ ON questionnaire
 USING GIN ((aidbox_text_search(knife_extract_text("questionnaire".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
 ```
 
-Search parameter: `Questionnaire.effective`, `Questionnaire.date`
+Search parameter: `Questionnaire.context-quantity`
 
 ```sql
-WIP: work in progress
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS questionnaire_resource__context_quantity_max
+ON questionnaire
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS questionnaire_resource__context_quantity_min
+ON questionnaire
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+```
+
+Search parameter: `Questionnaire.effective`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS questionnaire_resource__effectiveperiod_max
+ON questionnaire
+USING btree (knife_extract_max_timestamptz(resource, '[["effectivePeriod"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS questionnaire_resource__effectiveperiod_min
+ON questionnaire
+USING btree (knife_extract_min_timestamptz(resource, '[["effectivePeriod"]]'));
 ```
 
 Search parameter: `Questionnaire.publisher`
@@ -2800,194 +4625,29 @@ ON questionnaire
 USING GIN (resource);
 ```
 
-### Endpoint
+### QuestionnaireResponse
 
-Search parameter: `Endpoint.name`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS endpoint_resource__name_gin_trgm
-ON endpoint
-USING GIN ((aidbox_text_search(knife_extract_text("endpoint".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `Endpoint.payload-type`, `Endpoint.connection-type`, `Endpoint.organization`, `Endpoint.status`, `Endpoint.identifier`
+Search parameter: `QuestionnaireResponse.part-of`, `QuestionnaireResponse.subject`, `QuestionnaireResponse.patient`, `QuestionnaireResponse.identifier`, `QuestionnaireResponse.source`, `QuestionnaireResponse.encounter`, `QuestionnaireResponse.based-on`, `QuestionnaireResponse.status`, `QuestionnaireResponse.author`, `QuestionnaireResponse.questionnaire`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS endpoint_resource__gin
-ON endpoint
+IF NOT EXISTS questionnaireresponse_resource__gin
+ON questionnaireresponse
 USING GIN (resource);
 ```
 
-### NamingSystem
-
-Search parameter: `NamingSystem.value`
+Search parameter: `QuestionnaireResponse.authored`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS namingsystem_resource__value_gin_trgm
-ON namingsystem
-USING GIN ((aidbox_text_search(knife_extract_text("namingsystem".resource, $JSON$[["uniqueId","value"]]$JSON$))) gin_trgm_ops);
-```
+IF NOT EXISTS questionnaireresponse_resource__authored_max
+ON questionnaireresponse
+USING btree (knife_extract_max_timestamptz(resource, '[["authored"]]'));
 
-Search parameter: `NamingSystem.publisher`
-
-```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS namingsystem_resource__publisher_gin_trgm
-ON namingsystem
-USING GIN ((aidbox_text_search(knife_extract_text("namingsystem".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `NamingSystem.context-quantity`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `NamingSystem.date`, `NamingSystem.period`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `NamingSystem.contact`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS namingsystem_resource__contact_gin_trgm
-ON namingsystem
-USING GIN ((aidbox_text_search(knife_extract_text("namingsystem".resource, $JSON$[["contact","name"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `NamingSystem.name`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS namingsystem_resource__name_gin_trgm
-ON namingsystem
-USING GIN ((aidbox_text_search(knife_extract_text("namingsystem".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `NamingSystem.description`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS namingsystem_resource__description_gin_trgm
-ON namingsystem
-USING GIN ((aidbox_text_search(knife_extract_text("namingsystem".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `NamingSystem.responsible`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS namingsystem_resource__responsible_gin_trgm
-ON namingsystem
-USING GIN ((aidbox_text_search(knife_extract_text("namingsystem".resource, $JSON$[["responsible"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `NamingSystem.type`, `NamingSystem.kind`, `NamingSystem.jurisdiction`, `NamingSystem.telecom`, `NamingSystem.status`, `NamingSystem.context-type`, `NamingSystem.id-type`, `NamingSystem.context`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS namingsystem_resource__gin
-ON namingsystem
-USING GIN (resource);
-```
-
-### MedicinalProductPackaged
-
-Search parameter: `MedicinalProductPackaged.subject`, `MedicinalProductPackaged.identifier`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS medicinalproductpackaged_resource__gin
-ON medicinalproductpackaged
-USING GIN (resource);
-```
-
-### Basic
-
-Search parameter: `Basic.created`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Basic.code`, `Basic.patient`, `Basic.identifier`, `Basic.author`, `Basic.subject`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS basic_resource__gin
-ON basic
-USING GIN (resource);
-```
-
-### PlanDefinition
-
-Search parameter: `PlanDefinition.depends-on`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `PlanDefinition.date`, `PlanDefinition.effective`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `PlanDefinition.type`, `PlanDefinition.url`, `PlanDefinition.definition`, `PlanDefinition.context-type`, `PlanDefinition.topic`, `PlanDefinition.derived-from`, `PlanDefinition.jurisdiction`, `PlanDefinition.predecessor`, `PlanDefinition.identifier`, `PlanDefinition.context`, `PlanDefinition.successor`, `PlanDefinition.version`, `PlanDefinition.status`, `PlanDefinition.composed-of`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS plandefinition_resource__gin
-ON plandefinition
-USING GIN (resource);
-```
-
-Search parameter: `PlanDefinition.name`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS plandefinition_resource__name_gin_trgm
-ON plandefinition
-USING GIN ((aidbox_text_search(knife_extract_text("plandefinition".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `PlanDefinition.publisher`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS plandefinition_resource__publisher_gin_trgm
-ON plandefinition
-USING GIN ((aidbox_text_search(knife_extract_text("plandefinition".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `PlanDefinition.context-quantity`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `PlanDefinition.description`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS plandefinition_resource__description_gin_trgm
-ON plandefinition
-USING GIN ((aidbox_text_search(knife_extract_text("plandefinition".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `PlanDefinition.title`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS plandefinition_resource__title_gin_trgm
-ON plandefinition
-USING GIN ((aidbox_text_search(knife_extract_text("plandefinition".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS questionnaireresponse_resource__authored_min
+ON questionnaireresponse
+USING btree (knife_extract_min_timestamptz(resource, '[["authored"]]'));
 ```
 
 ### RelatedPerson
@@ -3019,12 +4679,6 @@ ON relatedperson
 USING GIN ((aidbox_text_search(knife_extract_text("relatedperson".resource, $JSON$[["address","text"],["address","district"],["address","country"],["address","city"],["address","line"],["address","state"],["address","postalCode"]]$JSON$))) gin_trgm_ops);
 ```
 
-Search parameter: `RelatedPerson.birthdate`
-
-```sql
-WIP: work in progress
-```
-
 Search parameter: `RelatedPerson.address-postalcode`
 
 ```sql
@@ -3052,6 +4706,20 @@ ON relatedperson
 USING GIN ((aidbox_text_search(knife_extract_text("relatedperson".resource, $JSON$[["address","country"]]$JSON$))) gin_trgm_ops);
 ```
 
+Search parameter: `RelatedPerson.birthdate`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS relatedperson_resource__birthdate_max
+ON relatedperson
+USING btree (knife_extract_max_timestamptz(resource, '[["birthDate"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS relatedperson_resource__birthdate_min
+ON relatedperson
+USING btree (knife_extract_min_timestamptz(resource, '[["birthDate"]]'));
+```
+
 Search parameter: `RelatedPerson.name`, `RelatedPerson.phonetic`
 
 ```sql
@@ -3059,140 +4727,291 @@ CREATE INDEX CONCURRENTLY
 IF NOT EXISTS relatedperson_resource__name_gin_trgm
 ON relatedperson
 USING GIN ((aidbox_text_search(knife_extract_text("relatedperson".resource, $JSON$[["name","family"],["name","given"],["name","middle"],["name","text"]]$JSON$))) gin_trgm_ops);
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS relatedperson_resource__phonetic_gin_trgm
+ON relatedperson
+USING GIN ((aidbox_text_search(knife_extract_text("relatedperson".resource, $JSON$[["name","family"],["name","given"],["name","middle"],["name","text"]]$JSON$))) gin_trgm_ops);
 ```
 
-### SubstanceSpecification
+### RequestGroup
 
-Search parameter: `SubstanceSpecification.code`
+Search parameter: `RequestGroup.encounter`, `RequestGroup.instantiates-canonical`, `RequestGroup.identifier`, `RequestGroup.code`, `RequestGroup.status`, `RequestGroup.subject`, `RequestGroup.intent`, `RequestGroup.priority`, `RequestGroup.author`, `RequestGroup.participant`, `RequestGroup.patient`, `RequestGroup.instantiates-uri`, `RequestGroup.group-identifier`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS substancespecification_resource__gin
-ON substancespecification
+IF NOT EXISTS requestgroup_resource__gin
+ON requestgroup
 USING GIN (resource);
 ```
 
-### GuidanceResponse
-
-Search parameter: `GuidanceResponse.patient`, `GuidanceResponse.request`, `GuidanceResponse.subject`, `GuidanceResponse.identifier`
+Search parameter: `RequestGroup.authored`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS guidanceresponse_resource__gin
-ON guidanceresponse
+IF NOT EXISTS requestgroup_resource__authoredon_max
+ON requestgroup
+USING btree (knife_extract_max_timestamptz(resource, '[["authoredOn"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS requestgroup_resource__authoredon_min
+ON requestgroup
+USING btree (knife_extract_min_timestamptz(resource, '[["authoredOn"]]'));
+```
+
+### ResearchDefinition
+
+Search parameter: `ResearchDefinition.name`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS researchdefinition_resource__name_gin_trgm
+ON researchdefinition
+USING GIN ((aidbox_text_search(knife_extract_text("researchdefinition".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `ResearchDefinition.derived-from`, `ResearchDefinition.status`, `ResearchDefinition.context`, `ResearchDefinition.successor`, `ResearchDefinition.topic`, `ResearchDefinition.jurisdiction`, `ResearchDefinition.predecessor`, `ResearchDefinition.context-type`, `ResearchDefinition.identifier`, `ResearchDefinition.composed-of`, `ResearchDefinition.version`, `ResearchDefinition.url`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS researchdefinition_resource__gin
+ON researchdefinition
 USING GIN (resource);
 ```
 
-### ClinicalImpression
-
-Search parameter: `ClinicalImpression.date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `ClinicalImpression.supporting-info`, `ClinicalImpression.assessor`, `ClinicalImpression.identifier`, `ClinicalImpression.patient`, `ClinicalImpression.status`, `ClinicalImpression.problem`, `ClinicalImpression.investigation`, `ClinicalImpression.encounter`, `ClinicalImpression.finding-ref`, `ClinicalImpression.previous`, `ClinicalImpression.finding-code`, `ClinicalImpression.subject`
+Search parameter: `ResearchDefinition.description`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS clinicalimpression_resource__gin
-ON clinicalimpression
+IF NOT EXISTS researchdefinition_resource__description_gin_trgm
+ON researchdefinition
+USING GIN ((aidbox_text_search(knife_extract_text("researchdefinition".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `ResearchDefinition.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS researchdefinition_resource__date_max
+ON researchdefinition
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS researchdefinition_resource__date_min
+ON researchdefinition
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+Search parameter: `ResearchDefinition.context-quantity`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS researchdefinition_resource__context_quantity_max
+ON researchdefinition
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS researchdefinition_resource__context_quantity_min
+ON researchdefinition
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+```
+
+Search parameter: `ResearchDefinition.title`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS researchdefinition_resource__title_gin_trgm
+ON researchdefinition
+USING GIN ((aidbox_text_search(knife_extract_text("researchdefinition".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `ResearchDefinition.depends-on`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS researchdefinition_resource__gin
+ON researchdefinition
 USING GIN (resource);
 ```
 
-### OrganizationAffiliation
-
-Search parameter: `OrganizationAffiliation.specialty`, `OrganizationAffiliation.participating-organization`, `OrganizationAffiliation.endpoint`, `OrganizationAffiliation.network`, `OrganizationAffiliation.identifier`, `OrganizationAffiliation.service`, `OrganizationAffiliation.primary-organization`, `OrganizationAffiliation.location`, `OrganizationAffiliation.role`, `OrganizationAffiliation.telecom`, `OrganizationAffiliation.active`, `OrganizationAffiliation.phone`, `OrganizationAffiliation.email`
+Search parameter: `ResearchDefinition.effective`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS organizationaffiliation_resource__gin
-ON organizationaffiliation
+IF NOT EXISTS researchdefinition_resource__effectiveperiod_max
+ON researchdefinition
+USING btree (knife_extract_max_timestamptz(resource, '[["effectivePeriod"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS researchdefinition_resource__effectiveperiod_min
+ON researchdefinition
+USING btree (knife_extract_min_timestamptz(resource, '[["effectivePeriod"]]'));
+```
+
+Search parameter: `ResearchDefinition.publisher`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS researchdefinition_resource__publisher_gin_trgm
+ON researchdefinition
+USING GIN ((aidbox_text_search(knife_extract_text("researchdefinition".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
+```
+
+### ResearchElementDefinition
+
+Search parameter: `ResearchElementDefinition.title`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS researchelementdefinition_resource__title_gin_trgm
+ON researchelementdefinition
+USING GIN ((aidbox_text_search(knife_extract_text("researchelementdefinition".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `ResearchElementDefinition.name`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS researchelementdefinition_resource__name_gin_trgm
+ON researchelementdefinition
+USING GIN ((aidbox_text_search(knife_extract_text("researchelementdefinition".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `ResearchElementDefinition.depends-on`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS researchelementdefinition_resource__gin
+ON researchelementdefinition
 USING GIN (resource);
 ```
 
-Search parameter: `OrganizationAffiliation.date`
-
-```sql
-WIP: work in progress
-```
-
-### Condition
-
-Search parameter: `Condition.onset-age`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Condition.abatement-string`
+Search parameter: `ResearchElementDefinition.context-quantity`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS condition_resource__abatement_string_gin_trgm
-ON condition
-USING GIN ((aidbox_text_search(knife_extract_text("condition".resource, $JSON$[["abatement","string"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS researchelementdefinition_resource__context_quantity_max
+ON researchelementdefinition
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS researchelementdefinition_resource__context_quantity_min
+ON researchelementdefinition
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
 ```
 
-Search parameter: `Condition.abatement-age`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Condition.onset-date`, `Condition.recorded-date`, `Condition.abatement-date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Condition.onset-info`
+Search parameter: `ResearchElementDefinition.publisher`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS condition_resource__onset_info_gin_trgm
-ON condition
-USING GIN ((aidbox_text_search(knife_extract_text("condition".resource, $JSON$[["onset","string"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS researchelementdefinition_resource__publisher_gin_trgm
+ON researchelementdefinition
+USING GIN ((aidbox_text_search(knife_extract_text("researchelementdefinition".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
 ```
 
-Search parameter: `Condition.identifier`, `Condition.category`, `Condition.verification-status`, `Condition.stage`, `Condition.evidence-detail`, `Condition.asserter`, `Condition.body-site`, `Condition.evidence`, `Condition.code`, `Condition.severity`, `Condition.encounter`, `Condition.patient`, `Condition.clinical-status`, `Condition.subject`
+Search parameter: `ResearchElementDefinition.effective`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS condition_resource__gin
-ON condition
+IF NOT EXISTS researchelementdefinition_resource__effectiveperiod_max
+ON researchelementdefinition
+USING btree (knife_extract_max_timestamptz(resource, '[["effectivePeriod"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS researchelementdefinition_resource__effectiveperiod_min
+ON researchelementdefinition
+USING btree (knife_extract_min_timestamptz(resource, '[["effectivePeriod"]]'));
+```
+
+Search parameter: `ResearchElementDefinition.description`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS researchelementdefinition_resource__description_gin_trgm
+ON researchelementdefinition
+USING GIN ((aidbox_text_search(knife_extract_text("researchelementdefinition".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `ResearchElementDefinition.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS researchelementdefinition_resource__date_max
+ON researchelementdefinition
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS researchelementdefinition_resource__date_min
+ON researchelementdefinition
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+Search parameter: `ResearchElementDefinition.context`, `ResearchElementDefinition.status`, `ResearchElementDefinition.url`, `ResearchElementDefinition.version`, `ResearchElementDefinition.topic`, `ResearchElementDefinition.predecessor`, `ResearchElementDefinition.jurisdiction`, `ResearchElementDefinition.composed-of`, `ResearchElementDefinition.context-type`, `ResearchElementDefinition.derived-from`, `ResearchElementDefinition.identifier`, `ResearchElementDefinition.successor`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS researchelementdefinition_resource__gin
+ON researchelementdefinition
 USING GIN (resource);
 ```
 
-### HealthcareService
+### ResearchStudy
 
-Search parameter: `HealthcareService.active`, `HealthcareService.service-category`, `HealthcareService.location`, `HealthcareService.endpoint`, `HealthcareService.service-type`, `HealthcareService.organization`, `HealthcareService.program`, `HealthcareService.coverage-area`, `HealthcareService.identifier`, `HealthcareService.characteristic`, `HealthcareService.specialty`
+Search parameter: `ResearchStudy.partof`, `ResearchStudy.category`, `ResearchStudy.focus`, `ResearchStudy.location`, `ResearchStudy.sponsor`, `ResearchStudy.identifier`, `ResearchStudy.keyword`, `ResearchStudy.protocol`, `ResearchStudy.principalinvestigator`, `ResearchStudy.status`, `ResearchStudy.site`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS healthcareservice_resource__gin
-ON healthcareservice
+IF NOT EXISTS researchstudy_resource__gin
+ON researchstudy
 USING GIN (resource);
 ```
 
-Search parameter: `HealthcareService.name`
+Search parameter: `ResearchStudy.date`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS healthcareservice_resource__name_gin_trgm
-ON healthcareservice
-USING GIN ((aidbox_text_search(knife_extract_text("healthcareservice".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS researchstudy_resource__period_max
+ON researchstudy
+USING btree (knife_extract_max_timestamptz(resource, '[["period"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS researchstudy_resource__period_min
+ON researchstudy
+USING btree (knife_extract_min_timestamptz(resource, '[["period"]]'));
 ```
 
-### SpecimenDefinition
-
-Search parameter: `SpecimenDefinition.container`, `SpecimenDefinition.type`, `SpecimenDefinition.identifier`
+Search parameter: `ResearchStudy.title`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS specimendefinition_resource__gin
-ON specimendefinition
+IF NOT EXISTS researchstudy_resource__title_gin_trgm
+ON researchstudy
+USING GIN ((aidbox_text_search(knife_extract_text("researchstudy".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
+```
+
+### ResearchSubject
+
+Search parameter: `ResearchSubject.individual`, `ResearchSubject.study`, `ResearchSubject.patient`, `ResearchSubject.identifier`, `ResearchSubject.status`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS researchsubject_resource__gin
+ON researchsubject
 USING GIN (resource);
+```
+
+Search parameter: `ResearchSubject.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS researchsubject_resource__period_max
+ON researchsubject
+USING btree (knife_extract_max_timestamptz(resource, '[["period"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS researchsubject_resource__period_min
+ON researchsubject
+USING btree (knife_extract_min_timestamptz(resource, '[["period"]]'));
 ```
 
 ### RiskAssessment
@@ -3200,7 +5019,29 @@ USING GIN (resource);
 Search parameter: `RiskAssessment.date`
 
 ```sql
-WIP: work in progress
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS riskassessment_resource__occurrence_datetime_max
+ON riskassessment
+USING btree (knife_extract_max_timestamptz(resource, '[["occurrence" "dateTime"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS riskassessment_resource__occurrence_datetime_min
+ON riskassessment
+USING btree (knife_extract_min_timestamptz(resource, '[["occurrence" "dateTime"]]'));
+```
+
+Search parameter: `RiskAssessment.probability`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS riskassessment_resource__probability_max
+ON riskassessment
+USING btree (knife_extract_max_numeric(resource, '[["prediction","probability","Range"],["prediction","probability","decimal"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS riskassessment_resource__probability_min
+ON riskassessment
+USING btree (knife_extract_max_numeric(resource, '[["prediction","probability","Range"],["prediction","probability","decimal"]]'));
 ```
 
 Search parameter: `RiskAssessment.patient`, `RiskAssessment.condition`, `RiskAssessment.identifier`, `RiskAssessment.risk`, `RiskAssessment.subject`, `RiskAssessment.performer`, `RiskAssessment.method`, `RiskAssessment.encounter`
@@ -3209,305 +5050,6 @@ Search parameter: `RiskAssessment.patient`, `RiskAssessment.condition`, `RiskAss
 CREATE INDEX CONCURRENTLY
 IF NOT EXISTS riskassessment_resource__gin
 ON riskassessment
-USING GIN (resource);
-```
-
-Search parameter: `RiskAssessment.probability`
-
-```sql
-WIP: work in progress
-```
-
-### OperationDefinition
-
-Search parameter: `OperationDefinition.description`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS operationdefinition_resource__description_gin_trgm
-ON operationdefinition
-USING GIN ((aidbox_text_search(knife_extract_text("operationdefinition".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `OperationDefinition.title`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS operationdefinition_resource__title_gin_trgm
-ON operationdefinition
-USING GIN ((aidbox_text_search(knife_extract_text("operationdefinition".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `OperationDefinition.base`, `OperationDefinition.context-type`, `OperationDefinition.version`, `OperationDefinition.kind`, `OperationDefinition.code`, `OperationDefinition.status`, `OperationDefinition.instance`, `OperationDefinition.system`, `OperationDefinition.type`, `OperationDefinition.url`, `OperationDefinition.output-profile`, `OperationDefinition.jurisdiction`, `OperationDefinition.input-profile`, `OperationDefinition.context`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS operationdefinition_resource__gin
-ON operationdefinition
-USING GIN (resource);
-```
-
-Search parameter: `OperationDefinition.date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `OperationDefinition.context-quantity`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `OperationDefinition.name`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS operationdefinition_resource__name_gin_trgm
-ON operationdefinition
-USING GIN ((aidbox_text_search(knife_extract_text("operationdefinition".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `OperationDefinition.publisher`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS operationdefinition_resource__publisher_gin_trgm
-ON operationdefinition
-USING GIN ((aidbox_text_search(knife_extract_text("operationdefinition".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
-```
-
-### ActivityDefinition
-
-Search parameter: `ActivityDefinition.name`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS activitydefinition_resource__name_gin_trgm
-ON activitydefinition
-USING GIN ((aidbox_text_search(knife_extract_text("activitydefinition".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `ActivityDefinition.depends-on`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `ActivityDefinition.publisher`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS activitydefinition_resource__publisher_gin_trgm
-ON activitydefinition
-USING GIN ((aidbox_text_search(knife_extract_text("activitydefinition".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `ActivityDefinition.derived-from`, `ActivityDefinition.successor`, `ActivityDefinition.context`, `ActivityDefinition.predecessor`, `ActivityDefinition.url`, `ActivityDefinition.composed-of`, `ActivityDefinition.topic`, `ActivityDefinition.jurisdiction`, `ActivityDefinition.identifier`, `ActivityDefinition.status`, `ActivityDefinition.context-type`, `ActivityDefinition.version`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS activitydefinition_resource__gin
-ON activitydefinition
-USING GIN (resource);
-```
-
-Search parameter: `ActivityDefinition.description`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS activitydefinition_resource__description_gin_trgm
-ON activitydefinition
-USING GIN ((aidbox_text_search(knife_extract_text("activitydefinition".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `ActivityDefinition.title`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS activitydefinition_resource__title_gin_trgm
-ON activitydefinition
-USING GIN ((aidbox_text_search(knife_extract_text("activitydefinition".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `ActivityDefinition.context-quantity`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `ActivityDefinition.effective`, `ActivityDefinition.date`
-
-```sql
-WIP: work in progress
-```
-
-### Schedule
-
-Search parameter: `Schedule.date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Schedule.actor`, `Schedule.identifier`, `Schedule.active`, `Schedule.specialty`, `Schedule.service-category`, `Schedule.service-type`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS schedule_resource__gin
-ON schedule
-USING GIN (resource);
-```
-
-### Group
-
-Search parameter: `Group.type`, `Group.exclude`, `Group.characteristic`, `Group.member`, `Group.identifier`, `Group.managing-entity`, `Group.code`, `Group.actual`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS group_resource__gin
-ON group
-USING GIN (resource);
-```
-
-Search parameter: `Group.value`
-
-```sql
-WIP: work in progress
-```
-
-### MedicinalProductPharmaceutical
-
-Search parameter: `MedicinalProductPharmaceutical.target-species`, `MedicinalProductPharmaceutical.route`, `MedicinalProductPharmaceutical.identifier`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS medicinalproductpharmaceutical_resource__gin
-ON medicinalproductpharmaceutical
-USING GIN (resource);
-```
-
-### FamilyMemberHistory
-
-Search parameter: `FamilyMemberHistory.code`, `FamilyMemberHistory.sex`, `FamilyMemberHistory.instantiates-canonical`, `FamilyMemberHistory.relationship`, `FamilyMemberHistory.instantiates-uri`, `FamilyMemberHistory.patient`, `FamilyMemberHistory.status`, `FamilyMemberHistory.identifier`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS familymemberhistory_resource__gin
-ON familymemberhistory
-USING GIN (resource);
-```
-
-Search parameter: `FamilyMemberHistory.date`
-
-```sql
-WIP: work in progress
-```
-
-### ServiceRequest
-
-Search parameter: `ServiceRequest.specimen`, `ServiceRequest.category`, `ServiceRequest.based-on`, `ServiceRequest.encounter`, `ServiceRequest.performer-type`, `ServiceRequest.performer`, `ServiceRequest.identifier`, `ServiceRequest.subject`, `ServiceRequest.patient`, `ServiceRequest.priority`, `ServiceRequest.instantiates-uri`, `ServiceRequest.replaces`, `ServiceRequest.code`, `ServiceRequest.body-site`, `ServiceRequest.requester`, `ServiceRequest.status`, `ServiceRequest.intent`, `ServiceRequest.requisition`, `ServiceRequest.instantiates-canonical`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS servicerequest_resource__gin
-ON servicerequest
-USING GIN (resource);
-```
-
-Search parameter: `ServiceRequest.occurrence`, `ServiceRequest.authored`
-
-```sql
-WIP: work in progress
-```
-
-### DetectedIssue
-
-Search parameter: `DetectedIssue.patient`, `DetectedIssue.author`, `DetectedIssue.code`, `DetectedIssue.identifier`, `DetectedIssue.implicated`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS detectedissue_resource__gin
-ON detectedissue
-USING GIN (resource);
-```
-
-Search parameter: `DetectedIssue.identified`
-
-```sql
-WIP: work in progress
-```
-
-### Device
-
-Search parameter: `Device.model`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS device_resource__model_gin_trgm
-ON device
-USING GIN ((aidbox_text_search(knife_extract_text("device".resource, $JSON$[["modelNumber"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `Device.udi-di`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS device_resource__udi_di_gin_trgm
-ON device
-USING GIN ((aidbox_text_search(knife_extract_text("device".resource, $JSON$[["udiCarrier","deviceIdentifier"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `Device.device-name`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS device_resource__device_name_gin_trgm
-ON device
-USING GIN ((aidbox_text_search(knife_extract_text("device".resource, $JSON$[["deviceName","name"],["type","coding","display"],["type","text"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `Device.patient`, `Device.location`, `Device.organization`, `Device.identifier`, `Device.status`, `Device.type`, `Device.url`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS device_resource__gin
-ON device
-USING GIN (resource);
-```
-
-Search parameter: `Device.udi-carrier`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS device_resource__udi_carrier_gin_trgm
-ON device
-USING GIN ((aidbox_text_search(knife_extract_text("device".resource, $JSON$[["udiCarrier","carrierHRF"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `Device.manufacturer`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS device_resource__manufacturer_gin_trgm
-ON device
-USING GIN ((aidbox_text_search(knife_extract_text("device".resource, $JSON$[["manufacturer"]]$JSON$))) gin_trgm_ops);
-```
-
-### RequestGroup
-
-Search parameter: `RequestGroup.authored`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `RequestGroup.encounter`, `RequestGroup.instantiates-canonical`, `RequestGroup.identifier`, `RequestGroup.code`, `RequestGroup.status`, `RequestGroup.subject`, `RequestGroup.intent`, `RequestGroup.priority`, `RequestGroup.author`, `RequestGroup.participant`, `RequestGroup.patient`, `RequestGroup.instantiates-uri`, `RequestGroup.group-identifier`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS requestgroup_resource__gin
-ON requestgroup
 USING GIN (resource);
 ```
 
@@ -3522,6 +5064,20 @@ ON riskevidencesynthesis
 USING GIN ((aidbox_text_search(knife_extract_text("riskevidencesynthesis".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
 ```
 
+Search parameter: `RiskEvidenceSynthesis.context-quantity`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS riskevidencesynthesis_resource__context_quantity_max
+ON riskevidencesynthesis
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS riskevidencesynthesis_resource__context_quantity_min
+ON riskevidencesynthesis
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+```
+
 Search parameter: `RiskEvidenceSynthesis.status`, `RiskEvidenceSynthesis.identifier`, `RiskEvidenceSynthesis.version`, `RiskEvidenceSynthesis.context-type`, `RiskEvidenceSynthesis.url`, `RiskEvidenceSynthesis.jurisdiction`, `RiskEvidenceSynthesis.context`
 
 ```sql
@@ -3529,12 +5085,6 @@ CREATE INDEX CONCURRENTLY
 IF NOT EXISTS riskevidencesynthesis_resource__gin
 ON riskevidencesynthesis
 USING GIN (resource);
-```
-
-Search parameter: `RiskEvidenceSynthesis.context-quantity`
-
-```sql
-WIP: work in progress
 ```
 
 Search parameter: `RiskEvidenceSynthesis.title`
@@ -3564,142 +5114,262 @@ ON riskevidencesynthesis
 USING GIN ((aidbox_text_search(knife_extract_text("riskevidencesynthesis".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
 ```
 
-Search parameter: `RiskEvidenceSynthesis.effective`, `RiskEvidenceSynthesis.date`
-
-```sql
-WIP: work in progress
-```
-
-### SupplyRequest
-
-Search parameter: `SupplyRequest.date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `SupplyRequest.supplier`, `SupplyRequest.status`, `SupplyRequest.category`, `SupplyRequest.identifier`, `SupplyRequest.requester`, `SupplyRequest.subject`
+Search parameter: `RiskEvidenceSynthesis.date`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS supplyrequest_resource__gin
-ON supplyrequest
+IF NOT EXISTS riskevidencesynthesis_resource__date_max
+ON riskevidencesynthesis
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS riskevidencesynthesis_resource__date_min
+ON riskevidencesynthesis
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+Search parameter: `RiskEvidenceSynthesis.effective`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS riskevidencesynthesis_resource__effectiveperiod_max
+ON riskevidencesynthesis
+USING btree (knife_extract_max_timestamptz(resource, '[["effectivePeriod"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS riskevidencesynthesis_resource__effectiveperiod_min
+ON riskevidencesynthesis
+USING btree (knife_extract_min_timestamptz(resource, '[["effectivePeriod"]]'));
+```
+
+### Schedule
+
+Search parameter: `Schedule.actor`, `Schedule.identifier`, `Schedule.active`, `Schedule.specialty`, `Schedule.service-category`, `Schedule.service-type`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS schedule_resource__gin
+ON schedule
 USING GIN (resource);
 ```
 
-### Task
-
-Search parameter: `Task.owner`, `Task.part-of`, `Task.intent`, `Task.code`, `Task.performer`, `Task.based-on`, `Task.priority`, `Task.patient`, `Task.identifier`, `Task.focus`, `Task.encounter`, `Task.requester`, `Task.subject`, `Task.status`, `Task.business-status`, `Task.group-identifier`
+Search parameter: `Schedule.date`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS task_resource__gin
-ON task
+IF NOT EXISTS schedule_resource__planninghorizon_max
+ON schedule
+USING btree (knife_extract_max_timestamptz(resource, '[["planningHorizon"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS schedule_resource__planninghorizon_min
+ON schedule
+USING btree (knife_extract_min_timestamptz(resource, '[["planningHorizon"]]'));
+```
+
+### ServiceRequest
+
+Search parameter: `ServiceRequest.authored`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS servicerequest_resource__authoredon_max
+ON servicerequest
+USING btree (knife_extract_max_timestamptz(resource, '[["authoredOn"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS servicerequest_resource__authoredon_min
+ON servicerequest
+USING btree (knife_extract_min_timestamptz(resource, '[["authoredOn"]]'));
+```
+
+Search parameter: `ServiceRequest.specimen`, `ServiceRequest.category`, `ServiceRequest.based-on`, `ServiceRequest.encounter`, `ServiceRequest.performer-type`, `ServiceRequest.performer`, `ServiceRequest.identifier`, `ServiceRequest.subject`, `ServiceRequest.patient`, `ServiceRequest.priority`, `ServiceRequest.instantiates-uri`, `ServiceRequest.replaces`, `ServiceRequest.code`, `ServiceRequest.body-site`, `ServiceRequest.requester`, `ServiceRequest.status`, `ServiceRequest.intent`, `ServiceRequest.requisition`, `ServiceRequest.instantiates-canonical`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS servicerequest_resource__gin
+ON servicerequest
 USING GIN (resource);
 ```
 
-Search parameter: `Task.modified`, `Task.period`, `Task.authored-on`
-
-```sql
-WIP: work in progress
-```
-
-### CommunicationRequest
-
-Search parameter: `CommunicationRequest.recipient`, `CommunicationRequest.subject`, `CommunicationRequest.category`, `CommunicationRequest.medium`, `CommunicationRequest.sender`, `CommunicationRequest.priority`, `CommunicationRequest.status`, `CommunicationRequest.based-on`, `CommunicationRequest.replaces`, `CommunicationRequest.requester`, `CommunicationRequest.encounter`, `CommunicationRequest.group-identifier`, `CommunicationRequest.identifier`, `CommunicationRequest.patient`
+Search parameter: `ServiceRequest.occurrence`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS communicationrequest_resource__gin
-ON communicationrequest
+IF NOT EXISTS servicerequest_resource__occurrence_max
+ON servicerequest
+USING btree (knife_extract_max_timestamptz(resource, '[["occurrence"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS servicerequest_resource__occurrence_min
+ON servicerequest
+USING btree (knife_extract_min_timestamptz(resource, '[["occurrence"]]'));
+```
+
+### Slot
+
+Search parameter: `Slot.service-category`, `Slot.identifier`, `Slot.status`, `Slot.appointment-type`, `Slot.service-type`, `Slot.specialty`, `Slot.schedule`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS slot_resource__gin
+ON slot
 USING GIN (resource);
 ```
 
-Search parameter: `CommunicationRequest.authored`, `CommunicationRequest.occurrence`
-
-```sql
-WIP: work in progress
-```
-
-### EnrollmentRequest
-
-Search parameter: `EnrollmentRequest.subject`, `EnrollmentRequest.identifier`, `EnrollmentRequest.status`, `EnrollmentRequest.patient`
+Search parameter: `Slot.start`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS enrollmentrequest_resource__gin
-ON enrollmentrequest
+IF NOT EXISTS slot_resource__start_max
+ON slot
+USING btree (knife_extract_max_timestamptz(resource, '[["start"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS slot_resource__start_min
+ON slot
+USING btree (knife_extract_min_timestamptz(resource, '[["start"]]'));
+```
+
+### Specimen
+
+Search parameter: `Specimen.type`, `Specimen.parent`, `Specimen.subject`, `Specimen.collector`, `Specimen.container`, `Specimen.patient`, `Specimen.identifier`, `Specimen.status`, `Specimen.bodysite`, `Specimen.accession`, `Specimen.container-id`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS specimen_resource__gin
+ON specimen
 USING GIN (resource);
 ```
 
-### ChargeItemDefinition
-
-Search parameter: `ChargeItemDefinition.publisher`
+Search parameter: `Specimen.collected`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS chargeitemdefinition_resource__publisher_gin_trgm
-ON chargeitemdefinition
-USING GIN ((aidbox_text_search(knife_extract_text("chargeitemdefinition".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS specimen_resource__collection_collected_max
+ON specimen
+USING btree (knife_extract_max_timestamptz(resource, '[["collection" "collected"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS specimen_resource__collection_collected_min
+ON specimen
+USING btree (knife_extract_min_timestamptz(resource, '[["collection" "collected"]]'));
 ```
 
-Search parameter: `ChargeItemDefinition.title`
+### SpecimenDefinition
+
+Search parameter: `SpecimenDefinition.container`, `SpecimenDefinition.type`, `SpecimenDefinition.identifier`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS chargeitemdefinition_resource__title_gin_trgm
-ON chargeitemdefinition
-USING GIN ((aidbox_text_search(knife_extract_text("chargeitemdefinition".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `ChargeItemDefinition.description`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS chargeitemdefinition_resource__description_gin_trgm
-ON chargeitemdefinition
-USING GIN ((aidbox_text_search(knife_extract_text("chargeitemdefinition".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
-```
-
-Search parameter: `ChargeItemDefinition.effective`, `ChargeItemDefinition.date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `ChargeItemDefinition.context-quantity`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `ChargeItemDefinition.version`, `ChargeItemDefinition.jurisdiction`, `ChargeItemDefinition.status`, `ChargeItemDefinition.context`, `ChargeItemDefinition.url`, `ChargeItemDefinition.context-type`, `ChargeItemDefinition.identifier`
-
-```sql
-CREATE INDEX CONCURRENTLY
-IF NOT EXISTS chargeitemdefinition_resource__gin
-ON chargeitemdefinition
+IF NOT EXISTS specimendefinition_resource__gin
+ON specimendefinition
 USING GIN (resource);
+```
+
+### StructureMap
+
+Search parameter: `StructureMap.jurisdiction`, `StructureMap.context`, `StructureMap.status`, `StructureMap.url`, `StructureMap.context-type`, `StructureMap.identifier`, `StructureMap.version`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS structuremap_resource__gin
+ON structuremap
+USING GIN (resource);
+```
+
+Search parameter: `StructureMap.name`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS structuremap_resource__name_gin_trgm
+ON structuremap
+USING GIN ((aidbox_text_search(knife_extract_text("structuremap".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `StructureMap.date`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS structuremap_resource__date_max
+ON structuremap
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS structuremap_resource__date_min
+ON structuremap
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+Search parameter: `StructureMap.description`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS structuremap_resource__description_gin_trgm
+ON structuremap
+USING GIN ((aidbox_text_search(knife_extract_text("structuremap".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `StructureMap.publisher`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS structuremap_resource__publisher_gin_trgm
+ON structuremap
+USING GIN ((aidbox_text_search(knife_extract_text("structuremap".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `StructureMap.title`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS structuremap_resource__title_gin_trgm
+ON structuremap
+USING GIN ((aidbox_text_search(knife_extract_text("structuremap".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `StructureMap.context-quantity`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS structuremap_resource__context_quantity_max
+ON structuremap
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS structuremap_resource__context_quantity_min
+ON structuremap
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
 ```
 
 ### Substance
 
-Search parameter: `Substance.code`
-
-```sql
-WIP: work in progress
-```
-
 Search parameter: `Substance.expiry`
 
 ```sql
-WIP: work in progress
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS substance_resource__instance_expiry_max
+ON substance
+USING btree (knife_extract_max_timestamptz(resource, '[["instance" "expiry"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS substance_resource__instance_expiry_min
+ON substance
+USING btree (knife_extract_min_timestamptz(resource, '[["instance" "expiry"]]'));
 ```
 
 Search parameter: `Substance.quantity`
 
 ```sql
-WIP: work in progress
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS substance_resource__quantity_max
+ON substance
+USING btree (knife_extract_max_numeric(resource, '[["instance","quantity","value"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS substance_resource__quantity_min
+ON substance
+USING btree (knife_extract_max_numeric(resource, '[["instance","quantity","value"]]'));
 ```
 
 Search parameter: `Substance.identifier`, `Substance.container-identifier`, `Substance.substance-reference`, `Substance.category`, `Substance.status`
@@ -3711,153 +5381,231 @@ ON substance
 USING GIN (resource);
 ```
 
-### Provenance
-
-Search parameter: `Provenance.patient`, `Provenance.target`, `Provenance.agent-role`, `Provenance.agent`, `Provenance.signature-type`, `Provenance.entity`, `Provenance.location`, `Provenance.agent-type`
+Search parameter: `Substance.code`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS provenance_resource__gin
-ON provenance
+IF NOT EXISTS substance_resource__gin
+ON substance
 USING GIN (resource);
 ```
 
-Search parameter: `Provenance.recorded`, `Provenance.when`
+### SubstanceSpecification
 
-```sql
-WIP: work in progress
-```
-
-### Consent
-
-Search parameter: `Consent.date`, `Consent.period`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Consent.source-reference`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Consent.action`, `Consent.status`, `Consent.purpose`, `Consent.identifier`, `Consent.category`, `Consent.scope`, `Consent.consentor`, `Consent.data`, `Consent.security-label`, `Consent.patient`, `Consent.actor`, `Consent.organization`
+Search parameter: `SubstanceSpecification.code`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS consent_resource__gin
-ON consent
+IF NOT EXISTS substancespecification_resource__gin
+ON substancespecification
 USING GIN (resource);
 ```
 
-### CarePlan
+### SupplyDelivery
 
-Search parameter: `CarePlan.activity-date`, `CarePlan.date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `CarePlan.care-team`, `CarePlan.replaces`, `CarePlan.based-on`, `CarePlan.activity-reference`, `CarePlan.part-of`, `CarePlan.subject`, `CarePlan.encounter`, `CarePlan.intent`, `CarePlan.patient`, `CarePlan.instantiates-canonical`, `CarePlan.performer`, `CarePlan.instantiates-uri`, `CarePlan.activity-code`, `CarePlan.condition`, `CarePlan.identifier`, `CarePlan.status`, `CarePlan.category`, `CarePlan.goal`
+Search parameter: `SupplyDelivery.status`, `SupplyDelivery.identifier`, `SupplyDelivery.receiver`, `SupplyDelivery.supplier`, `SupplyDelivery.patient`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS careplan_resource__gin
-ON careplan
+IF NOT EXISTS supplydelivery_resource__gin
+ON supplydelivery
 USING GIN (resource);
 ```
 
-### Observation
+### SupplyRequest
 
-Search parameter: `Observation.combo-value-quantity`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Observation.focus`, `Observation.encounter`, `Observation.method`, `Observation.component-code`, `Observation.subject`, `Observation.code`, `Observation.based-on`, `Observation.specimen`, `Observation.value-concept`, `Observation.patient`, `Observation.identifier`, `Observation.data-absent-reason`, `Observation.performer`, `Observation.status`, `Observation.component-data-absent-reason`, `Observation.derived-from`, `Observation.device`, `Observation.part-of`, `Observation.has-member`, `Observation.component-value-concept`, `Observation.category`
+Search parameter: `SupplyRequest.supplier`, `SupplyRequest.status`, `SupplyRequest.category`, `SupplyRequest.identifier`, `SupplyRequest.requester`, `SupplyRequest.subject`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS observation_resource__gin
-ON observation
+IF NOT EXISTS supplyrequest_resource__gin
+ON supplyrequest
 USING GIN (resource);
 ```
 
-Search parameter: `Observation.value-string`
+Search parameter: `SupplyRequest.date`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS observation_resource__value_string_gin_trgm
-ON observation
-USING GIN ((aidbox_text_search(knife_extract_text("observation".resource, $JSON$[["value","string"],["value","CodeableConcept","text"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS supplyrequest_resource__authoredon_max
+ON supplyrequest
+USING btree (knife_extract_max_timestamptz(resource, '[["authoredOn"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS supplyrequest_resource__authoredon_min
+ON supplyrequest
+USING btree (knife_extract_min_timestamptz(resource, '[["authoredOn"]]'));
 ```
 
-Search parameter: `Observation.component-value-quantity`
+### Task
 
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Observation.combo-value-concept`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Observation.combo-code`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Observation.value-quantity`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Observation.value-date`, `Observation.date`
-
-```sql
-WIP: work in progress
-```
-
-Search parameter: `Observation.combo-data-absent-reason`
-
-```sql
-WIP: work in progress
-```
-
-### DocumentManifest
-
-Search parameter: `DocumentManifest.patient`, `DocumentManifest.related-id`, `DocumentManifest.related-ref`, `DocumentManifest.recipient`, `DocumentManifest.item`, `DocumentManifest.subject`, `DocumentManifest.status`, `DocumentManifest.type`, `DocumentManifest.author`, `DocumentManifest.source`
+Search parameter: `Task.modified`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS documentmanifest_resource__gin
-ON documentmanifest
+IF NOT EXISTS task_resource__lastmodified_max
+ON task
+USING btree (knife_extract_max_timestamptz(resource, '[["lastModified"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS task_resource__lastmodified_min
+ON task
+USING btree (knife_extract_min_timestamptz(resource, '[["lastModified"]]'));
+```
+
+Search parameter: `Task.authored-on`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS task_resource__authoredon_max
+ON task
+USING btree (knife_extract_max_timestamptz(resource, '[["authoredOn"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS task_resource__authoredon_min
+ON task
+USING btree (knife_extract_min_timestamptz(resource, '[["authoredOn"]]'));
+```
+
+Search parameter: `Task.period`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS task_resource__executionperiod_max
+ON task
+USING btree (knife_extract_max_timestamptz(resource, '[["executionPeriod"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS task_resource__executionperiod_min
+ON task
+USING btree (knife_extract_min_timestamptz(resource, '[["executionPeriod"]]'));
+```
+
+Search parameter: `Task.owner`, `Task.part-of`, `Task.intent`, `Task.code`, `Task.performer`, `Task.based-on`, `Task.priority`, `Task.patient`, `Task.identifier`, `Task.focus`, `Task.encounter`, `Task.requester`, `Task.subject`, `Task.status`, `Task.business-status`, `Task.group-identifier`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS task_resource__gin
+ON task
 USING GIN (resource);
 ```
 
-Search parameter: `DocumentManifest.created`
+### ValueSet
 
-```sql
-WIP: work in progress
-```
-
-Search parameter: `DocumentManifest.description`
+Search parameter: `ValueSet.publisher`
 
 ```sql
 CREATE INDEX CONCURRENTLY
-IF NOT EXISTS documentmanifest_resource__description_gin_trgm
-ON documentmanifest
-USING GIN ((aidbox_text_search(knife_extract_text("documentmanifest".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
+IF NOT EXISTS valueset_resource__publisher_gin_trgm
+ON valueset
+USING GIN ((aidbox_text_search(knife_extract_text("valueset".resource, $JSON$[["publisher"]]$JSON$))) gin_trgm_ops);
 ```
 
-Search parameter: `DocumentManifest.identifier`
+Search parameter: `ValueSet.date`
 
 ```sql
-WIP: work in progress
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS valueset_resource__date_max
+ON valueset
+USING btree (knife_extract_max_timestamptz(resource, '[["date"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS valueset_resource__date_min
+ON valueset
+USING btree (knife_extract_min_timestamptz(resource, '[["date"]]'));
+```
+
+Search parameter: `ValueSet.reference`, `ValueSet.jurisdiction`, `ValueSet.url`, `ValueSet.context`, `ValueSet.context-type`, `ValueSet.status`, `ValueSet.identifier`, `ValueSet.version`, `ValueSet.expansion`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS valueset_resource__gin
+ON valueset
+USING GIN (resource);
+```
+
+Search parameter: `ValueSet.name`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS valueset_resource__name_gin_trgm
+ON valueset
+USING GIN ((aidbox_text_search(knife_extract_text("valueset".resource, $JSON$[["name"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `ValueSet.description`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS valueset_resource__description_gin_trgm
+ON valueset
+USING GIN ((aidbox_text_search(knife_extract_text("valueset".resource, $JSON$[["description"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `ValueSet.title`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS valueset_resource__title_gin_trgm
+ON valueset
+USING GIN ((aidbox_text_search(knife_extract_text("valueset".resource, $JSON$[["title"]]$JSON$))) gin_trgm_ops);
+```
+
+Search parameter: `ValueSet.code`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS valueset_resource__gin
+ON valueset
+USING GIN (resource);
+```
+
+Search parameter: `ValueSet.context-quantity`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS valueset_resource__context_quantity_max
+ON valueset
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS valueset_resource__context_quantity_min
+ON valueset
+USING btree (knife_extract_max_numeric(resource, '[["useContext","value","Quantity","value"],["useContext","value","Range"]]'));
+```
+
+### VerificationResult
+
+Search parameter: `VerificationResult.target`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS verificationresult_resource__gin
+ON verificationresult
+USING GIN (resource);
+```
+
+### VisionPrescription
+
+Search parameter: `VisionPrescription.datewritten`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS visionprescription_resource__datewritten_max
+ON visionprescription
+USING btree (knife_extract_max_timestamptz(resource, '[["dateWritten"]]'));
+
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS visionprescription_resource__datewritten_min
+ON visionprescription
+USING btree (knife_extract_min_timestamptz(resource, '[["dateWritten"]]'));
+```
+
+Search parameter: `VisionPrescription.patient`, `VisionPrescription.status`, `VisionPrescription.prescriber`, `VisionPrescription.identifier`, `VisionPrescription.encounter`
+
+```sql
+CREATE INDEX CONCURRENTLY
+IF NOT EXISTS visionprescription_resource__gin
+ON visionprescription
+USING GIN (resource);
 ```
