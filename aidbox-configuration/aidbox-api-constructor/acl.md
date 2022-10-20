@@ -2,7 +2,9 @@
 description: Access control lists with API constructor
 ---
 
-# ACL
+# Access control lists (ACL)
+
+In Aidbox you can configure Access control lists using [API Constructor](../aidbox-api-constructor.md).
 
 `aidbox.rest.acl` provides a set of operations supporting SQL `:filter`s to be added on each request. `:filter`s can be used to restrict access to resources
 
@@ -28,7 +30,7 @@ Expects the same as regular FHIR API engines and also a `:filter`
 * `aidbox.rest.acl/conditional-update`
 * `aidbox.rest.acl/delete`
 * `aidbox.rest.acl/conditional-delete`
-* `aidbox.rest.acl/create-with-filter-table-insert`  — create resource and create entry in filter table
+* `aidbox.rest.acl/create-with-filter-table-insert` — create resource and create entry in filter table
 * `aidbox.rest.acl/patient-level-bulk-export`
 * `aidbox.rest.acl/group-level-bulk-export`
 
@@ -66,9 +68,7 @@ An ACL operation requires `:filter` to be specified. A `filter` requires to defi
 * `engine`: currently only `aidbox.rest.acl/filter-table-insert-row-sql` is supported
 * `filter-table`: zen symbol defining filter table
 * `params`: sql parameters. See [Parameter section](acl.md#parameter).
-* `values`: values to insert in row. This property value is a map in
-  which keys are column names and values are sql substrings for
-  values.
+* `values`: values to insert in row. This property value is a map in which keys are column names and values are sql substrings for values.
 
 #### Example
 
@@ -85,7 +85,6 @@ An ACL operation requires `:filter` to be specified. A `filter` requires to defi
                                                                              'id', {{target-id}}::text),
                                                'user', jsonb_build_object('resourceType', 'User',
                                                                              'id', {{params.user-id}}::text))"}}
-
 ```
 
 ### Filter table
@@ -105,8 +104,8 @@ Filter table defines SQL table to be joined or searched in with SQL templates.
 
 Defines SQL template string. Accepts params. In the template string you can refer to variables with `{{<var>}}` syntax. Available variables:
 
-* &#x20;`params` can be referred with `{{params.<path>.<to>.<param>}}` syntax.
-* &#x20;`{{filter-table}}`  is the `:filter-table` added to the `filter`
+* `params` can be referred with `{{params.<path>.<to>.<param>}}` syntax.
+* `{{filter-table}}` is the `:filter-table` added to the `filter`
 * `{{target-resource}}` is the jsonb of a resource being checked
 * `{{target-id}}` is the id of the resource
 
@@ -142,11 +141,7 @@ Defines a path in a request where to get data. The data can be used in a SQL tem
 
 ### Conditional CRUD
 
-By default, `aidbox.rest.acl/create`,
-`aidbox.rest.acl/conditional-update`,
-`aidbox.rest.acl/conditional-delete` engines don't make ACL checks on underlying searches.
-That can lead to "multiple matches" error even when a user doesn't have access to some resources.
-Such behavior could be overwritten by `acl-checks-on-search?` parameter.
+By default, `aidbox.rest.acl/create`, `aidbox.rest.acl/conditional-update`, `aidbox.rest.acl/conditional-delete` engines don't make ACL checks on underlying searches. That can lead to "multiple matches" error even when a user doesn't have access to some resources. Such behavior could be overwritten by `acl-checks-on-search?` parameter.
 
 #### Example
 

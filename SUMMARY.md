@@ -46,7 +46,7 @@
   * [Seed Import](aidbox-configuration/aidbox-zen-lang-project/seed-import.md)
   * [Seed v2](aidbox-configuration/aidbox-zen-lang-project/seed-v2.md)
 * [API constructor (beta)](aidbox-configuration/aidbox-api-constructor.md)
-  * [ACL](aidbox-configuration/aidbox-api-constructor/acl.md)
+  * [Access control lists (ACL)](aidbox-configuration/aidbox-api-constructor/acl.md)
 * [Setup SMTP provider](aidbox-configuration/setup-smtp-provider.md)
 * [Zen Configuration](aidbox-configuration/zen-configuration.md)
 

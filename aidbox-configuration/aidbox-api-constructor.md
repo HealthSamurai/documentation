@@ -13,6 +13,22 @@ The API constructor is in beta now. Please [contact](../contact-us.md) us if you
 API constructor requires knowledge of [zen language](https://github.com/zen-lang/zen).
 {% endhint %}
 
+#### Common API Constructor use cases
+
+{% content-ref url="aidbox-api-constructor/acl.md" %}
+[acl.md](aidbox-api-constructor/acl.md)
+{% endcontent-ref %}
+
+{% content-ref url="../modules-1/smartbox/background-information/multitenancy-approach.md" %}
+[multitenancy-approach.md](../modules-1/smartbox/background-information/multitenancy-approach.md)
+{% endcontent-ref %}
+
+{% content-ref url="../security-and-access-control-1/auth/smart-app/" %}
+[smart-app](../security-and-access-control-1/auth/smart-app/)
+{% endcontent-ref %}
+
+
+
 #### Usage examples:
 
 * [Sample API](https://github.com/Aidbox/aidbox-project-samples/blob/main/aidbox-project-samples/api-constructor/mybox.edn) used in this documentation page example.
