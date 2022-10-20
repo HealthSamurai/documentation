@@ -1,2 +1,0 @@
-# Extract and store data
-

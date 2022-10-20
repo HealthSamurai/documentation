@@ -21,7 +21,10 @@ We tried to take into account all these difficulties when developing our product
 * Add any **validation** to the form&#x20;
 * Change the **layout** according to your style&#x20;
 * **Extract data** and store them in FHIR resources&#x20;
-* Describe **workflow** with data prefilled from previous forms or make it dynamic (when next form is suggested based on completed results)
+* **Bind forms** in one **workflow** with complex logic and data pre-filled
+* **Create** forms with **FHIR Questionnaire** and **convert results** to FHIR QuestionnaireResponse to exchange with external third parties
+
+
 
 ### Our solution
 
@@ -31,7 +34,7 @@ Let's look at the diagram to see how the form is built.
 
 <figure><img src="../.gitbook/assets/Screenshot 2022-08-23 at 17.24.50.png" alt=""><figcaption></figcaption></figure>
 
-Two layers are required - **Form Layout** and **Data Model**, the rest are optional depending on needs of your practice.&#x20;
+Three layers are required - **Form Layout** , **Data Model** and **Form Prefill,** the rest are optional depending on needs of your practice.&#x20;
 
 **Form Layout layer** describes components and how they are shown on the form. This layer is described using [Layout DSL](../reference/aidbox-forms/layout-dsl.md).
 
@@ -44,71 +47,4 @@ Two layers are required - **Form Layout** and **Data Model**, the rest are optio
 **FHIR mapping layer** describes how data will be extracted to FHIR resources (Observation, AllergyIntolerance and others). This layer is described using [Finalize DSL](../reference/aidbox-forms/finalize-dsl.md).
 
 There is the entity that binds all form layers (DSL) - [Form DSL](../reference/aidbox-forms/form-dsl.md)
-
-
-
-### Workflow
-
-Forms can be embedded into [a workflow](../reference/aidbox-forms/workflow-reference.md).
-
-{% hint style="info" %}
-**Workflow** is a skeleton for forms composition in more complex structures.
-{% endhint %}
-
-Initially Workflow have nested structure of items, where each item can be:
-
-* Section - used for forms grouping.
-* Form - reference to existed form.
-
-Workflow and items has status model , model is slightly different
-
-**Workflow statuses:**
-
-* `new`
-* `in-progress`
-* `canceled`
-* `completed`
-* `in-amendment`
-* `amended`
-
-**Item statuses:**
-
-* `new`
-* `in-progress`
-* `skipped`
-* `completed`
-* `in-amendment`
-* `amended`
-
-{% hint style="warning" %}
-**`canceled`** status used for WF because `skipped` status is not obvious in this domain. WF is a process of action, but item is just a step that can be optionally and can be omitted.
-{% endhint %}
-
-``
-
-Workflow support 2 additional features:
-
-* `versioning` - is automatic and based on hashing essential fields of definitions. If some essential field of form/wf is changed - created a new version and snapshotted to DB
-*   `section id generation -` is generated from item path (path from WF root to item itself).
-
-
-
-These features you can configure via [api-constructor](../aidbox-configuration/aidbox-api-constructor.md) in zen-project.
-
-
-
-### FHIR to Aidbox Forms conversion and to back.
-
-You may use Aidbox to convert existing [FHIR Questionnaires to Aidbox Forms](../reference/aidbox-forms/api-reference.md#aidbox.sdc-convert-questionnaire) and [SDCDocument to FHIR QuestionnaireResponse resource](../reference/aidbox-forms/api-reference.md#aidbox.sdc-convert-document).
-
-###
-
-\
-
-
-
-
-
-
-
 
