@@ -28,7 +28,6 @@ smartbox:
 PUT /NotificationTemplate/reset-user-password
 content-type: text/yaml
 
-subject: Reset your password
 template: |-
   <p>Dear {{user.name.givenName}},<br />
      To reset your password click this </p>
@@ -54,7 +53,6 @@ template: |-
 PUT /NotificationTemplate/developer-confirm-email
 content-type: text/yaml
 
-subject: Confirm email address
 template: |-
   <p>Dear {{user.name.givenName}},<br />
      Please, verify your email address using this </p>
@@ -74,11 +72,10 @@ template: |-
 
 ### Application rejected
 
-```http
+```
 PUT /NotificationTemplate/review-request-rejected
 content-type: text/yaml
 
-subject: Review request rejected
 template: |-
   <p>Your application was rejected</p>
   <p>Best wishes,<br />
@@ -95,11 +92,10 @@ template: |-
 
 ### &#x20;Application approved
 
-```http
+```
 PUT /NotificationTemplate/review-request-approved
 content-type: text/yaml
 
-subject: Review request approved
 template: |-
   <p>Your application was approved</p>
   <p>Best wishes,<br />
@@ -116,11 +112,10 @@ template: |-
 
 ### Application suspended
 
-```http
+```
 PUT /NotificationTemplate/suspend-deployed-application
 content-type: text/yaml
 
-subject: Your application has been suspended
 template: |-
   <p>Your deployed application was suspended</p>
   <p>Best wishes,<br />
@@ -137,11 +132,10 @@ template: |-
 
 ### Application suspended
 
-```http
+```
 PUT /NotificationTemplate/approve-deployed-application
 content-type: text/yaml
 
-subject: Your application access has been approved
 template: |-
   <p>Your suspended application was deployed</p>
   <p>Best wishes,<br />

@@ -49,7 +49,7 @@ if you use `box_search_default__params_total=none` you still get `total`when:
 AIDBOX_ES_AUTH=<user>:<password>
 ```
 
-Basic auth credentials for ElasticSearch
+Basic auth credentials for ElasticSearch. API key is not supported.
 
 ### AIDBOX\_ES\_BATCH\_SIZE
 
