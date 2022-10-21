@@ -4,6 +4,11 @@ description: Overview of addendum scenario
 
 # Addendum
 
+There are two scenarios when you can do amendmets after signing the form.&#x20;
+
+* The first one, if you can't change data then you have the ability to add the addendum note, in this case you don't need to unlock the form.
+* &#x20;The second one, if you have the ability to change data then you need to unlock the form, change data and sign the form agian.
+
 Addendum module defines new resource `SDCAddendum` which contains any additional information about `SDCWorkflow`, `SDCDocument` resources.
 
 With this module implemented several secondary or maintenance features of SDCForms
@@ -39,7 +44,7 @@ snapshot: {...}
 
 
 
-You can use Addendum API
+You can use [Addendum API](../../reference/aidbox-forms/addendum-api.md)
 
 * [create-addendum](addendum.md#create-addendum-wip) - creates custom addendum resource for given source (SDCDocument/SDCWorkflow)
 * [add-note](addendum.md#add-note) - creates addendum Note for SDCDocument/SDCWorkflow&#x20;
