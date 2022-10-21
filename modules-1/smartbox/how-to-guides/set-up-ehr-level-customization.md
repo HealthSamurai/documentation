@@ -92,6 +92,10 @@ template: |-
   * `name`
     * `givenName`  of the developer
     * `familyName` of the developer
+* `client`
+  * `id` of the application
+  * `name` of the application
+  * `description` of the application
 
 ### &#x20;Application approved
 
@@ -113,6 +117,10 @@ template: |-
   * `name`
     * `givenName`  of the developer
     * `familyName` of the developer
+* `client`
+  * `id` of the application
+  * `name` of the application
+  * `description` of the application
 
 ### Application suspended
 
@@ -134,6 +142,10 @@ template: |-
   * `name`
     * `givenName`  of the developer
     * `familyName` of the developer
+* `client`
+  * `id` of the application
+  * `name` of the application
+  * `description` of the application
 
 ### Application suspended
 
@@ -155,3 +167,7 @@ template: |-
   * `name`
     * `givenName`  of the developer
     * `familyName` of the developer
+* `client`
+  * `id` of the application
+  * `name` of the application
+  * `description` of the application
