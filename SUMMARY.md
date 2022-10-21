@@ -346,4 +346,6 @@
   * [FinalizeConstraints DSL](reference/aidbox-forms/finalizeconstraints-dsl.md)
   * [Finalize DSL](reference/aidbox-forms/finalize-dsl.md)
   * [Form DSL](reference/aidbox-forms/form-dsl.md)
-  * [API reference](reference/aidbox-forms/api-reference.md)
+  * [Form API](reference/aidbox-forms/api-reference.md)
+  * [Workflow API](reference/aidbox-forms/workflow-api.md)
+  * [Addendum API](reference/aidbox-forms/addendum-api.md)
