@@ -13,7 +13,7 @@
 * [create-addendum](api-reference.md#create-addendum-wip) - creates custom addendum resource for given source (SDCDocument/SDCWorkflow)
 * [add-note](api-reference.md#add-note) - creates addendum Note for SDCDocument/SDCWorkflow&#x20;
 * [add-to-history](api-reference.md#add-to-history) - add history addendum for resource for given status. When resource in status `completed/amended` - snapshot can be saved (if resource is differs)
-* [create-amendment](api-reference.md#create-amendment)&#x20;
+* [create-amendment](api-reference.md#create-amendment) - create addendum resource with type amendment which contains difference between last two signs
 *   [add-comment](api-reference.md#add-comment) - add comment for document/workflow with optional path to commented value in resource
 
 
