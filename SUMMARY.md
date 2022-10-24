@@ -289,10 +289,10 @@
     * [Setup email provider](modules-1/smartbox/how-to-guides/setup-email-provider.md)
     * [Register users](modules-1/smartbox/how-to-guides/register-users.md)
     * [Set up SSO with Auth0](modules-1/smartbox/how-to-guides/how-to-set-up-sso-with-auth0.md)
+    * [Pass Inferno tests with Smartbox](modules-1/smartbox/how-to-guides/pass-inferno-tests-with-smartbox.md)
   * [Techical reference](modules-1/smartbox/techical-reference.md)
   * [Background information](modules-1/smartbox/background-information/README.md)
     * [Multitenancy approach](modules-1/smartbox/background-information/multitenancy-approach.md)
-    * [Pass Inferno tests with Smartbox](modules-1/smartbox/background-information/pass-inferno-tests-with-smartbox.md)
     * [What is Tenant](modules-1/smartbox/background-information/what-is-tenant.md)
     * [Email templating](modules-1/smartbox/background-information/email-templating.md)
 

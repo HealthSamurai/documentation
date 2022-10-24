@@ -28,13 +28,14 @@ smartbox:
 PUT /NotificationTemplate/reset-user-password
 content-type: text/yaml
 
-subject: Reset your password
+subject: Reset your password in {{tenant.name}}
 template: |-
   <p>Dear {{user.name.givenName}},<br />
      To reset your password click this </p>
   <a href={{confirm-href}}>link</a>
   <p>Best wishes,<br />
      Acme Inc</p>
+  <img src="{{tenant.logoUrl}}" />
 ```
 
 #### Template parameters
@@ -44,6 +45,10 @@ template: |-
   * `name`
     * `givenName`  of the developer
     * `familyName` of the developer
+* `tenant`
+  * `id` of the tenant
+  * `name` of the tenant
+  * `logoUrl` of the tenant
 * `confirm-href` is the link users open to change their password
 
 ## Sandbox email templates customization
@@ -92,6 +97,10 @@ template: |-
   * `name`
     * `givenName`  of the developer
     * `familyName` of the developer
+* `client`
+  * `id` of the application
+  * `name` of the application
+  * `description` of the application
 
 ### &#x20;Application approved
 
@@ -113,6 +122,10 @@ template: |-
   * `name`
     * `givenName`  of the developer
     * `familyName` of the developer
+* `client`
+  * `id` of the application
+  * `name` of the application
+  * `description` of the application
 
 ### Application suspended
 
@@ -134,6 +147,10 @@ template: |-
   * `name`
     * `givenName`  of the developer
     * `familyName` of the developer
+* `client`
+  * `id` of the application
+  * `name` of the application
+  * `description` of the application
 
 ### Application suspended
 
@@ -155,3 +172,7 @@ template: |-
   * `name`
     * `givenName`  of the developer
     * `familyName` of the developer
+* `client`
+  * `id` of the application
+  * `name` of the application
+  * `description` of the application
