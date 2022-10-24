@@ -292,6 +292,7 @@
   * [Techical reference](modules-1/smartbox/techical-reference.md)
   * [Background information](modules-1/smartbox/background-information/README.md)
     * [Multitenancy approach](modules-1/smartbox/background-information/multitenancy-approach.md)
+    * [Pass Inferno tests with Smartbox](modules-1/smartbox/background-information/pass-inferno-tests-with-smartbox.md)
     * [What is Tenant](modules-1/smartbox/background-information/what-is-tenant.md)
     * [Email templating](modules-1/smartbox/background-information/email-templating.md)
 
