@@ -16,6 +16,22 @@ There are dozens of ways to set up such a queue, probably the most simple one is
 
 On the next step some kind of background job or a worker will pick received files from a queue and process them one after another.
 
+### Validating CCDA files
+
+The current implementation supports two types of validation: 
+- XSD validation - validation is performed against CDA.xsd schema.
+- Schematron validation - validation is performed using HL7 Schematron file.  
+
+To validate your XML CCDA file - you have to use: 
+ [`/ccda/$validate` endpoint] 
+
+By default it will perform BOTH types of validation. 
+If you need just one of them - specify the ```method``` of validation in query parameters of route: 
+ - for Schematron validation - [`/ccda/$validate?method=schematron` endpoint] 
+ - for XSD validation - [`/ccda/$validate?method=xsd` endpoint] 
+
+NB(!):  ```resource``` field here is your raw XML CCDA file.
+
 ### Converting to FHIR
 
 There are many nuances in how the newly received file is processed and most of them are system-dependent. For instance, EHR data ingestion logic is very different from Public Health Data Lake’s. So it’s up to you to figure out an algorithm to meet your needs.
