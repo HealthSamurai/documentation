@@ -196,6 +196,7 @@
 * [Database schema](storage-1/database.md)
 * [Index management](aidbox-configuration/index-management.md)
 * [Archiving](storage-1/archiving.md)
+* [Delete data](storage-1/delete-data.md)
 * [AWS S3](storage-1/aws-s3.md)
 * [GCP Cloud Storage](storage-1/gcp-cloud-storage.md)
 * [Azure Blob Storage](storage-1/azure.md)
