@@ -4,6 +4,36 @@
 This page is incomplete.
 {% endhint %}
 
+
+
+
+
+### knife\_extract
+
+```sql
+knife_extract_text(data::jsonb, paths::jsonb) -> text[] 
+```
+
+Extract elements from jsonb `data` given jsonb array of paths `paths`.&#x20;
+
+Path is a jsonb array each element of which is either path element or filter.
+
+Path element is a jsonb string. It specifies keyword to follow in current map.
+
+Filter is a jsonb object. Only objects which contain filter objects are left in current array. &#x20;
+
+`knife_extract` iterates over each array while following path and flattens results.
+
+Example:
+
+```sql
+select knife_extract('{"telecom": [{"system": "phone", "value": "abc"}, {"system": "email", "value": "def"}]}', '[["telecom", {"system": "email"}]]');
+                  knife_extract                  
+-------------------------------------------------
+ {"{\"value\": \"def\", \"system\": \"email\"}"}
+(1 row)
+```
+
 ### knife\_extract\_text
 
 ```sql
@@ -12,9 +42,7 @@ knife_extract_text(data::jsonb, paths::jsonb) -> text[]
 
 Extract strings from jsonb `data` given jsonb array of paths `paths`.&#x20;
 
-Path is jsonb array of jsonb object keys.&#x20;
-
-knife\_extract\_text iterates over each array.
+Like `knife_extract` but return only strings.
 
 Example:
 
@@ -29,7 +57,16 @@ SELECT knife_extract_text(
 (1 row)
 ```
 
-
+```sql
+select knife_extract_text(
+  '{"telecom": [{"system": "phone", "value": "abc"}, {"system": "email", "value": "def"}]}',
+  '[["telecom", {"system": "email"}, "value"]]'
+  );
+ knife_extract_text 
+--------------------
+ {def}
+(1 row)
+```
 
 
 

@@ -110,6 +110,8 @@ Content-Type: text/yaml
 
 type: bulk-api-client
 active: true
+smart:
+  launch_uri: 'https://inferno.healthit.gov/suites/custom/smart/launch'
 auth:
   client_credentials:
     client_assertion_types: ['urn:ietf:params:oauth:client-assertion-type:jwt-bearer']
@@ -166,7 +168,7 @@ Create Inferno test session by following the link [https://inferno.healthit.gov/
 * Bulk Data Client ID: `inferno-my-clinic-bulk-client`
 * Group ID: `test-group-1`
 * Patient IDs in exported Group: `test-pt-1,test-pt-2`
-* Public Launch Client ID: inferno-public-patient-smart-app
+* Public Launch Client ID: `inferno-public-patient-smart-app`
 * EHR Launch Client ID: `inferno-confidential-patient-smart-app`
 * EHR Launch Client Secret: `inferno-confidential-patient-smart-app-secret`
 
