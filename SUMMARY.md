@@ -352,3 +352,4 @@
   * [Form API](reference/aidbox-forms/api-reference.md)
   * [Workflow API](reference/aidbox-forms/workflow-api.md)
   * [Addendum API](reference/aidbox-forms/addendum-api.md)
+* [Aidbox SQL functions](reference/aidbox-sql-functions.md)
