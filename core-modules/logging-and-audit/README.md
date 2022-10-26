@@ -39,7 +39,24 @@ You can open `[aidbox-base]/_logs?format=pretty` in your browser, and Aidbox wil
 
 ### Stdout log
 
-Aidbox sends logs into stdout if one of these env variables defined: [`AIDBOX_STDOUT_JSON`](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox\_stdout\_json), [`AIDBOX_STDOUT_PRETTY`](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox\_stdout\_pretty).&#x20;
+Aidbox sends logs into stdout if one of these env variables defined:
+[`AIDBOX_STDOUT_JSON`](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox\_stdout\_json),
+[`AIDBOX_STDOUT_PRETTY`](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox\_stdout\_pretty).&#x20;
+
+Both environment variables enable logging to stdout but the difference
+is log format.
+
+#### Example of the log output when `AIDBOX_STDOUT_JSON` enabled
+
+```json
+{"sql":"SELECT 1","d":2,"ts":"2022-10-26T10:59:59.825Z","w":"main","ev":"db/q"}
+```
+
+#### Example of the log output when `AIDBOX_STDOUT_PRETTY` enabled
+
+```
+11:01:12 main [1ms] SELECT 1
+```
 
 ### Log to file
 

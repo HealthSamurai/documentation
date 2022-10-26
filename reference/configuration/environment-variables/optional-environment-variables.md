@@ -20,7 +20,7 @@ http://localhost:[AIDBOX_PORT]
 AIDBOX_DB_PARAM_<parameter name>=<parameter value>
 ```
 
-Parameters prefixed with `AIDBOX_DB_PARAM_` will be passed to [JDBC PostgreSQL connection string](https://jdbc.postgresql.org/documentation/80/connect.html).
+Parameters prefixed with `AIDBOX_DB_PARAM_` will be passed to [JDBC PostgreSQL connection string](https://jdbc.postgresql.org/documentation/use/#connection-parameters).
 
 ### AIDBOX\_ES\_URL
 
@@ -99,7 +99,15 @@ AIDBOX_STDOUT_JSON=<log-level>
 
 `log-level` is one of: `off`, `fatal`, `error`, `warn`, `info`, `debug`, `trace`, `all`.
 
-By setting one of these values you would also get all the values to the left. e.g. if you set log level to `warn` you would also get log events with `fatal` and `error` levels (`off` is excluded).
+By setting one of these values you would also get all the values to
+the left. e.g. if you set log level to `warn` you would also get log
+events with `fatal` and `error` levels (`off` is excluded).
+
+#### Example of the log output
+
+```json
+{"sql":"SELECT 1","d":2,"ts":"2022-10-26T10:59:59.825Z","w":"main","ev":"db/q"}
+```
 
 ### AIDBOX\_STDOUT\_PRETTY
 
@@ -111,7 +119,15 @@ AIDBOX_STDOUT_PRETTY=<log-level>
 
 By default `log-level` is `error`.
 
-By setting one of these values you would also get all the values to the left. e.g. if you set log level to `warn` you would also get log events with `fatal` and `error` levels (`off` is excluded).
+By setting one of these values you would also get all the values to
+the left. e.g. if you set log level to `warn` you would also get log
+events with `fatal` and `error` levels (`off` is excluded).
+
+#### Example of the log output
+
+```
+11:01:12 main [1ms] SELECT 1
+```
 
 ### AIDBOX\_DEVLOGS
 
