@@ -1,9 +1,9 @@
 # Ready-to-use terminologies
 
-We prepackaged some of the most commonly used terminologies. You can load them using an [Aidbox project](import-using-an-aidbox-project.md).
+We prepackaged some of the most commonly used terminologies as samples. You can load them using an [Aidbox project](import-using-an-aidbox-project.md).
 
 {% hint style="info" %}
-Please make sure you have obtained [UMLS license](https://www.nlm.nih.gov/research/umls/index.html) in order to use LOINC, SNOMED CT and RxNorm terminologies.
+Please make sure you have an appropriate license to use these terminologies.&#x20;
 {% endhint %}
 
 | Terminology |                        Version                        | Public URL                                                                                                                                                                                                                       |
