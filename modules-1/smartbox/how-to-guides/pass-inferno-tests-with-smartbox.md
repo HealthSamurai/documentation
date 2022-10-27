@@ -110,8 +110,6 @@ Content-Type: text/yaml
 
 type: bulk-api-client
 active: true
-smart:
-  launch_uri: 'https://inferno.healthit.gov/suites/custom/smart/launch'
 auth:
   client_credentials:
     client_assertion_types: ['urn:ietf:params:oauth:client-assertion-type:jwt-bearer']
