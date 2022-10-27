@@ -137,6 +137,7 @@
   * [Import using an Aidbox project](terminology/terminology-api/import-using-an-aidbox-project.md)
   * [Import flat file (CSV)](terminology/terminology-api/import-flat-file-csv.md)
   * [$import operation](terminology/terminology-api/usdimport-operation.md)
+  * [Ready-to-use terminologies](terminology/terminology-api/ready-to-use-terminologies.md)
 * [Concept](terminology/concept.md)
 * [CodeSystem](terminology/codesystem-and-concept/README.md)
   * [CodeSystem Concept Lookup](terminology/codesystem-and-concept/concept-lookup.md)
