@@ -34,24 +34,25 @@ Replace `<ABSOLUTE_PATH_TO_PROJECT_DIR>` with absolute path to your project dire
  :import #{zen.fhir}
  
  diagnosis-vs
- {:tags #{zen.fhir/value-set}
-  :version "0.5.0"
-  :uri "diagnosis-vs"
+ {:zen/tags #{zen.fhir/value-set},
+  :zen.fhir/version "0.5.0",
+  :uri "diagnosis-vs",
   :ftr
-  {:module "csv"
-   :source-url "<ABSOLUTE_PATH_TO_PROJECT_DIR>/resources/icd-10.csv"
-   :ftr-path "<ABSOLUTE_PATH_TO_PROJECT_DIR>/ftr"
-   :tag "v1"
-   :source-type "flat-table"
-   :package-name "project",
+  {:module "ig",
+   :source-url "<ABSOLUTE_PATH_TO_PROJECT_DIR>/resources/icd-10.csv",
+   :ftr-path "<ABSOLUTE_PATH_TO_PROJECT_DIR>/ftr",
+   :tag "v1",
+   :source-type :flat-table,
+   :zen/package-name "project",
    :extractor-options
-   {:format "csv"
-    :csv-format {:delimiter ";" :quote "'"}
-    :header false
-    :data-row 0
-    :mapping {:concept {:code {:column 2} :display {:column 3}}}
-    :code-system {:id "icd10" :url "http://hl7.org/fhir/sid/icd-10"}
-    :value-set   {:id "icd10" :name "icd10.accidents" :url "diagnosis-vs"}}}}}
+   {:format "csv",
+    :csv-format {:delimiter ";", :quote "'"},
+    :header false,
+    :data-row 0,
+    :mapping {:concept {:code {:column 2}, :display {:column 3}}},
+    :code-system {:id "icd10", :url "http://hl7.org/fhir/sid/icd-10"},
+    :value-set
+    {:id "icd10", :name "icd10.accidents", :url "diagnosis-vs"}}}}}
 
 ```
 
@@ -94,3 +95,7 @@ project/
     disagnosis.edn
   ftr/csv
 ```
+
+Now you can run Aidbox with the following configuration project and use [FHIR Terminology API ](../valueset/)methods like `$validate-code/$lookup` on generated `diagnosis-vs` ValueSet.&#x20;
+
+To do this, you should set `BOX_PROJECT_GIT_URL` environment variable to the absolute path to your project directory and `AIDBOX_ZEN_ENTRYPOINT` to `system/box`. For more detailed instructions about these environment variables and Aidbox configuration project, please refer to this [page](../../getting-started/run-aidbox-locally-with-docker/).
