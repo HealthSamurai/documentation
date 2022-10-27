@@ -1,5 +1,5 @@
 ---
-description: Create a Aidbox projcet with ftr that can be used in aidbox
+description: Create a Aidbox projcet with FTR that can be used in Aidbox
 ---
 
 # Creating Aidbox project with FTR
@@ -43,7 +43,7 @@ Replace `<ABSOLUTE_PATH_TO_PROJECT_DIR>` with absolute path to your project dire
    :ftr-path "<ABSOLUTE_PATH_TO_PROJECT_DIR>/ftr",
    :tag "v1",
    :source-type :flat-table,
-   :zen/package-name "project",
+   :zen/package-name "aidbox-project-git",
    :extractor-options
    {:format "csv",
     :csv-format {:delimiter ";", :quote "'"},
@@ -104,4 +104,4 @@ project/
 
 Now you can run Aidbox with the following configuration project and use [FHIR Terminology API ](../valueset/)methods like `$validate-code/$lookup` on generated `diagnosis-vs` ValueSet.&#x20;
 
-To do this, you should set `BOX_PROJECT_GIT_URL` environment variable to the absolute path to your project directory and `AIDBOX_ZEN_ENTRYPOINT` to `system/box`. For more detailed instructions about these environment variables and Aidbox configuration project, please refer to this [page](../../getting-started/run-aidbox-locally-with-docker/).
+For detailed instructions about using Aidbox with Aidbox configuration project, please refer to this [page](../../getting-started/run-aidbox-locally-with-docker/).
