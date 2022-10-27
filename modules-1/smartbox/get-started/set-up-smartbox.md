@@ -106,7 +106,7 @@ PORTAL_LICENSE=<YOUR_PORTAL_LICENSE>
 SANDBOX_LICENSE=<YOUR_SANDBOX_LICENSE>
 
 # postgres image to run
-PGIMAGE=healthsamurai/aidboxdb:14.2.2
+PGIMAGE=healthsamurai/aidboxdb:14.5
 
 # aidbox image to run
 AIDBOX_IMAGE=healthsamurai/smartbox:edge
