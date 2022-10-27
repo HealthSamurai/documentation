@@ -71,7 +71,7 @@ Replace `<ABSOLUTE_PATH_TO_PROJECT_DIR>` with absolute path to your project dire
 
 #### Initialize this directory as a git repository, commit your initial set-up
 
-```
+```bash
 git init && git add . && git commit -m "init"
 ```
 
@@ -79,11 +79,17 @@ git init && git add . && git commit -m "init"
 
 Execute command listed below in project directory
 
-```
+```bash
 java -jar <PATH_TO_JAR> build-ftr
 ```
 
-Afer that, your project should have following structure:
+Commit FTR directory
+
+```bash
+git add . && git commit -m "ftr"
+```
+
+After that, your project should have the following structure:
 
 ```
 project/
