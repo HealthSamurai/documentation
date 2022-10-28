@@ -164,6 +164,7 @@ Create Inferno test session by following the link [https://inferno.healthit.gov/
 * Backend Services Token Endpoint:\
   `[aidbox-url]/auth/token`
 * Bulk Data Client ID: `inferno-my-clinic-bulk-client`
+* Encryption method `RS384`
 * Group ID: `test-group-1`
 * Patient IDs in exported Group: `test-pt-1,test-pt-2`
 * Public Launch Client ID: `inferno-public-patient-smart-app`
