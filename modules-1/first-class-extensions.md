@@ -1,13 +1,75 @@
 # First-Class Extensions
 
+In Aidbox there are two ways to define first-class extensions:&#x20;
+
+* Using [Zen profiles](first-class-extensions.md#first-class-extension-as-zen-profile)
+* Using [Attribute](first-class-extensions.md#define-new-extension)
+
 ## First-class extension as Zen profile
 
-In order to define first-class extension as zen profile you should follow the steps below:
+While FHIR uses two different ways to define **core elements** and **extensions**, zen profiles provide unified framework to describe both. Zen FHIR format offers user-defined elements or "first-class extensions". In zen profiles, you can define new attributes (elements) for existing (FHIR) resources. \
+The example below shows how to define extensions in zen profiles.
 
-1. [Initialize](https://docs.aidbox.app/profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile#create-a-zen-project) zen project and add additional IGs if necessary
-2.  Define your custom first-class extension.  For syntax and more examples refer to [this page](../profiling-and-validation/profiling-with-zen-lang/write-a-custom-zen-profile.md).
+{% tabs %}
+{% tab title="FHIR Patient with race extension" %}
+```yaml
+resourceType: Patient
+id: sample-pt
+extension:
+- url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-race
+  extension:
+  - url: text
+    valueString: Asian Indian
+  - url: ombCategory
+    valueCoding:
+       system: urn:oid:2.16.840.1.113883.6.238
+       code: 2028-9
+       display: Asian
+  - url: detailed
+    valueCoding:
+       system:
+       code: 2029-7	
+       display: Asian Indian
+```
+{% endtab %}
 
-    ```clojure
+{% tab title="Zen profile of Patient with race extension" %}
+```clojure
+MyPatientProfile
+{:zen/tags #{zen/schema zen.fhir/profile-schema}
+ :zen.fhir/version "0.5.0"
+ :zen.fhir/profileUri "urn:fhir:extension:MyPatientProfile"
+ :confirms #{fhir/Patient}
+ :type zen/map
+ :keys {:race
+        {:type zen/map
+         :fhir/extensionUri "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
+         :require #{:text}
+         :keys {:ombCategory {:type zen/vector
+                              :maxItems 5
+                              :every {:confirms #{fhir/Coding}
+                                      :zen.fhir/value-set {:symbol omb-race-category-value-set
+                                                           :strength :required}}}
+                :detailed {:type zen/vector
+                           :every {:confirms #{fhir/Coding}
+                                   :zen.fhir/value-set {:symbol detailed-race-value-set
+                                                        :strength :required}}}
+                :text {:confirms #{fhir/string}
+                       :zen/desc "Race Text"}}}}}
+```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="info" %}
+Note that extension elements have `:confirms` to a FHIR primitive or complex type specified. Previously these were specified in the base profile schema. These `:confirms` and the `:fhir/extensionUri` are needed to allow zen FHIR <-> FHIR format transformation.&#x20;
+{% endhint %}
+
+### Steps to define first-class extension as zen profile:
+
+1. [Initialize](https://docs.aidbox.app/profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile#create-a-zen-project) zen project and add additional IGs if necessary.
+2.  Define your custom first-class extension. For syntax and more examples refer to [this page](../profiling-and-validation/profiling-with-zen-lang/write-a-custom-zen-profile.md).
+
+    ```
     {ns my-zen-project
      import #{zen.fhir
               hl7-fhir-r4-core.string
@@ -45,23 +107,24 @@ In order to define first-class extension as zen profile you should follow the st
                            :referral {:confirms #{hl7-fhir-r4-core.uri/schema}
                                       :fhir/extensionUri "http://patient-info-referral"
                                       :zen/desc "Patient.info.referral
-                                                 extension.url is specified"}}}}}}
+                                                 extension.url is specified"}}}}}
     ```
 3.  Fix `:zen.fhir/version` errors if needed
 
     In order to fix this error, provide IG bundle with the matching zen FHIR version.
 
-    Error message example
+    Error message example:
 
     ```
     Expected '0.5.8', got '0.4.9'
     path: [:zen.fhir/version]
     ```
-4.  `:fhir/extensionUrl` property value
+4. Define `:fhir/extensionUri` property value. \
+   `:fhir/extensionUri` "http://tenant-id-extension-url" is an equivalent of the `extensionUrl` field of the [Attribute resource](first-class-extensions.md#define-new-extension) and used to form FHIR extension.
+5. Replace plain zen type by FHIR type in your extensions. \
+   I.e. use `:confirms #{hl7-fhir-r4-core.string/schema}` instead of `:type zen/string`.
 
-    Note: `:fhir/extensionUri` "http://tenant-id-extension-url" it is equivalent of the `extensionUrl` field of the Attribute resource it is used to form FHIR extension. And also it is important to use FHIR type instead of plain zen type, i.e. use `:confirms #{hl7-fhir-r4-core.string/schema}` instead of `:type zen/string`.
-
-## Define new extension
+## Define new extension with Attribute
 
 In Aidbox, you can define first-class extensions using the custom resource [Attribute](../core-modules/entities-and-attributes.md).
 
