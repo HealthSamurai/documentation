@@ -240,3 +240,56 @@ smart:
 Notice `meta._tenant` in the request containing the id of the tenant
 {% endhint %}
 
+## Client for Bulk API
+
+Bulk API Client must have a tenant link (see [this](multitenancy-approach.md) and [that](what-is-tenant.md) articles). To create a Bulk API Client use the following request.
+
+{% tabs %}
+{% tab title="Request" %}
+```http
+POST /Client
+
+name: bulk-app-name
+jwks_uri: http://jwks-uri
+auth:
+  client_credentials:
+    client_assertion_types:
+      - urn:ietf:params:oauth:client-assertion-type:jwt-bearer
+    access_token_expiration: 300
+type: bulk-api-client
+scope:
+  - system/*.read
+grant_types:
+  - client_credentials
+meta:
+  _tenant: my-clinic
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```http
+Status: 201
+
+meta:
+  _tenant: my-clinic
+name: bulk-app-name
+type: bulk-api-client
+grant_types:
+  - client_credentials
+resourceType: Client
+scope:
+  - system/*.read
+auth:
+  client_credentials:
+    client_assertion_types:
+      - urn:ietf:params:oauth:client-assertion-type:jwt-bearer
+    access_token_expiration: 300
+id: bb88c359-e080-4bc8-9418-47536f1c49f5
+jwks_uri: http://jwks-uri
+```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="info" %}
+Notice `meta._tenant` in the request containing the id of the tenant
+{% endhint %}
