@@ -196,8 +196,8 @@ This ValueSet definition confirms to [zen.fhir ValueSet schema](../../../profili
 ```json
 {
    "resourceType":"ValueSet",
-   "id":"gender2-vs-id",
-   "url":"gender2-vs",
+   "id":"gender-vs-id",
+   "url":"gender-vs",
    "status":"active",
    "compose":{
       "include":[
