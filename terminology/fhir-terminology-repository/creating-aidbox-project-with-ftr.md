@@ -14,20 +14,37 @@ description: Create a Aidbox projcet with FTR that can be used in Aidbox
 
 #### Create a directory `project` with following structure:
 
-| Directory structure                                                      | zen-package.edn                                                                  | zrc/system.edn                                                                                                                                       |
-| ------------------------------------------------------------------------ | -------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <pre><code>project/
-  zen-package.edn
+```bash
+project/
+  zen-package.edn #Package deps declaration
+  resources/
+    icd-10.csv #CSV source file
   zrc/
-    system.edn</code></pre> | <pre class="language-clojure"><code class="lang-clojure">{:deps {}}</code></pre> | <pre class="language-clojure"><code class="lang-clojure">{:ns system
+    system.edn #System entrypoint importing a ValueSet definion
+    diagnosis.edn # ValueSet definition
+```
+
+#### `zen-package.edn` file content:
+
+```clojure
+{:deps {}}
+```
+
+#### `zrc/system.edn` file content:
+
+```clojure
+{:ns system
  :import #{aidbox diagnosis}
  
  box
- {:zen/tags #{aidbox/system}}}</code></pre> |
+ {:zen/tags #{aidbox/system}}}
+```
 
-#### Create `zrc/diagnosis.edn` file, containing ValueSet definition:
+#### `zrc/diagnosis.edn` file content:
 
-Replace `<ABSOLUTE_PATH_TO_PROJECT_DIR>` with absolute path to your project directory
+Replace `<ABSOLUTE_PATH_TO_PROJECT_DIR>` placeholder with absolute path to your project directory.
+
+This ValueSet definition confirms to [zen.fhir ValueSet schema](../../profiling-and-validation/profiling-with-zen-lang/) and has a `:ftr` property, it contains an FTR manifest that defines a csv source via `:source-url` property to create an expanded version of the ValueSet to be stored in the resulting FTR. For details about FTR manifest, please, refer to this page.
 
 ```clojure
 {:ns diagnosis
@@ -43,7 +60,6 @@ Replace `<ABSOLUTE_PATH_TO_PROJECT_DIR>` with absolute path to your project dire
    :ftr-path "<ABSOLUTE_PATH_TO_PROJECT_DIR>/ftr",
    :tag "v1",
    :source-type :flat-table,
-   :zen/package-name "aidbox-project-git",
    :extractor-options
    {:format "csv",
     :csv-format {:delimiter ";", :quote "'"},
@@ -77,31 +93,158 @@ git init && git add . && git commit -m "init"
 
 #### Generating FTR
 
-Execute command listed below in project directory
+Replace `<PATH_TO_JAR>` placeholder with absolute path to `zen.jar`.&#x20;
+
+Execute command listed below in project directory:
 
 ```bash
 java -jar <PATH_TO_JAR> build-ftr
 ```
 
-Commit FTR directory
+Commit FTR directory:
 
 ```bash
-git add . && git commit -m "ftr"
+git add . && git commit -m "Build ftr"
 ```
 
-After that, your project should have the following structure:
+Now you can run Aidbox with the following configuration project and use [FHIR Terminology API ](../valueset/)methods like `$validate-code/$lookup` on generated `diagnosis-vs` ValueSet. Resource validation performed when someone invocates a FHIR REST operations will also validate ValueSet binding via FTR.
 
-```
+### Creating Aidbox project with FTR based on IG Source
+
+#### Create a directory `project` with following structure:
+
+```bash
 project/
-  zen-package.edn
-  resources/
-    icd-10.csv
+  zen-package.edn #Package deps declaration
+  resources/ig/
+    gender-codesystem.json #CodeSystem resource, lightweight http://hl7.org/fhir/administrative-gender version 
+    gender-valueset.json #ValueSet resource
+    package.json #IG package meta
   zrc/
-    system.edn
-    disagnosis.edn
-  ftr/csv
+    system.edn #System entrypoint importing a ValueSet definion
+    gender.edn # ValueSet definition
 ```
 
-Now you can run Aidbox with the following configuration project and use [FHIR Terminology API ](../valueset/)methods like `$validate-code/$lookup` on generated `diagnosis-vs` ValueSet.&#x20;
+**`zen-package.edn` file content:**
+
+```clojure
+{:deps {}}
+```
+
+#### `zrc/system.edn` file content:
+
+```clojure
+{:ns system
+ :import #{aidbox gender}
+ 
+ box
+ {:zen/tags #{aidbox/system}}}
+```
+
+#### `zrc/gender.edn` file content:
+
+Replace `<ABSOLUTE_PATH_TO_PROJECT_DIR>` placeholder with absolute path to your project directory.
+
+This ValueSet definition confirms to [zen.fhir ValueSet schema](../../profiling-and-validation/profiling-with-zen-lang/) and has a `:ftr` property, it contains an FTR manifest that defines an IG source via `:source-url` property to create an expanded version of the ValueSet to be stored in the resulting FTR. For details about FTR manifest, please, refer to this page.
+
+```clojure
+{ns gender
+ import #{zen.fhir}
+ gender-vs
+ {:zen/tags #{zen.fhir/value-set}
+  :zen.fhir/version "0.5.0"
+  :uri "gender-vs"
+  :ftr {:module "ig"
+        :source-url "<ABSOLUTE_PATH_TO_PROJECT_DIR>/resources/ig/"
+        :ftr-path "<ABSOLUTE_PATH_TO_PROJECT_DIR>bas/ftr"
+        :tag "v1"
+        :source-type :ig}}}
+```
+
+#### `resources/gender-codesystem.json` file content:
+
+```json
+{
+   "resourceType":"CodeSystem",
+   "id":"gender-cs-id",
+   "url":"gender-cs-url",
+   "status":"active",
+   "content":"complete",
+   "concept":[
+      {
+         "code":"male",
+         "display":"Male"
+      },
+      {
+         "code":"female",
+         "display":"Female"
+      },
+      {
+         "code":"other",
+         "display":"Other"
+      },
+      {
+         "code":"unknown",
+         "display":"Unknown"
+      }
+   ]
+}
+```
+
+#### `resources/gender-valueset.json` file content:
+
+```json
+{
+   "resourceType":"ValueSet",
+   "id":"gender2-vs-id",
+   "url":"gender2-vs",
+   "status":"active",
+   "compose":{
+      "include":[
+         {
+            "system":"gender-cs-url"
+         }
+      ]
+   }
+}
+```
+
+#### `resources/package.json` file content:
+
+```json
+{
+   "name":"ig",
+   "version":"0.0.1",
+   "type":"ig",
+   "title":"ig",
+   "description":"ig",
+   "author":"hs",
+   "url":"url"
+}
+```
+
+#### Initialize this directory as a git repository, commit your initial set-up
+
+```bash
+git init && git add . && git commit -m "init"
+```
+
+#### Generating FTR
+
+Replace `<PATH_TO_JAR>` placeholder with absolute path to `zen.jar`.&#x20;
+
+Execute command listed below in project directory:
+
+```bash
+java -jar <PATH_TO_JAR> build-ftr
+```
+
+Commit FTR directory:
+
+```bash
+git add . && git commit -m "Build ftr"
+```
+
+Now you can run Aidbox with the following configuration project and use [FHIR Terminology API ](../valueset/)methods like `$validate-code/$lookup` on generated `diagnosis-vs` ValueSet. Resource validation performed when someone invocates a FHIR REST operations will also validate ValueSet binding via FTR.
 
 For detailed instructions about using Aidbox with Aidbox configuration project, please refer to this [page](../../getting-started/run-aidbox-locally-with-docker/).
