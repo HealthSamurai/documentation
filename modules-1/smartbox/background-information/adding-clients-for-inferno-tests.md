@@ -8,7 +8,7 @@ A `Client` can be added with predefined secret and without. Sometimes it's impor
 
 ## Client with predefined secret and id
 
-To `create` or `update` a Client with predefined secret and client id.
+To `create` or `update` a Client with predefined `secret` and `id`.
 
 ```http
 PUT /Client/inferno-confidential-patient-smart-app
@@ -45,9 +45,9 @@ Content-Type: text/yaml
 
 method: smartbox.portal.developer.rpc/save-developer-application
 params:
+  confidentiality: confidential
   application-name: some-app-name
   description: some-app-name
-  confidentiality: confidential
   redirect-url: http://redirect
   launch-url: http://launch
   logo-url: http://logo
@@ -71,16 +71,16 @@ result:
 
 ### Request parameters
 
+* `confidentiality` is a set of two options: `confidential` and `public`. In the example above the `confidential` is chosen
 * `application-name` is the application name
 * `description` is the application description
-* `confidentiality` is a set of two options: `confidential` and `public`. In the example above the `confidential` is chosen
 * `redirect-url` is the redirect uri of the application
 * `launch-uri` is the launch uri pf the application
 * `logo-url` is the url of the application logo file
 * `org-name` is the name of the company application belongs to
 * `org-url` is the url of the compamy's website
 * `policy-url` is the link to the application policy page
-* `tos-url` os the link to the application term of services page
+* `tos-url` is the link to the application term of services page
 
 ### How to get Client secret
 
@@ -126,3 +126,53 @@ smart:
   launch_uri: http://launch</code></pre>
 {% endtab %}
 {% endtabs %}
+
+## Client without predefined id (public app)
+
+To `create` a Client without predefined `id` use the `smartbox.portal.developer.rpc/save-developer-application` RPC method.
+
+{% tabs %}
+{% tab title="Request" %}
+```http
+POST /rpc
+Content-Type: text/yaml
+
+method: smartbox.portal.developer.rpc/save-developer-application
+params:
+  confidentiality: public
+  application-name: public-app-name
+  description: public-app-name
+  redirect-url: http://public.redirect
+  launch-url: http://public.launch
+  logo-url: http://public.logo
+  org-name: public-org-name
+  org-url: http://public.org
+  policy-url: http://public.policy
+  tos-url: http://public.tos
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```http
+status: 200
+
+result:
+  id: 068c221b-65e5-496c-82d0-53874d3d8714
+  message: Application saved successfully
+```
+{% endtab %}
+{% endtabs %}
+
+### Request parameters
+
+* `confidentiality` is a set of two options: `confidential` and `public`. In the example above the `public` is chosen
+* `application-name` is the application name
+* `description` is the application description
+* `redirect-url` is the redirect uri of the application
+* `launch-uri` is the launch uri pf the application
+* `logo-url` is the url of the application logo file
+* `org-name` is the name of the company application belongs to
+* `org-url` is the url of the compamy's website
+* `policy-url` is the link to the application policy page
+* `tos-url` is the link to the application term of services page
+
