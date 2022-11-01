@@ -28,10 +28,6 @@ auth:
     access_token_expiration: 300
 smart:
   launch_uri: 'https://inferno.healthit.gov/suites/custom/smart/launch'
-meta:
-  tenant:
-    id: my-clinic
-    resourceType: Tenant
 ```
 
 * `id` of the Client is defined within the uri. It's a `inferno-confidential-patient-smart-app` value

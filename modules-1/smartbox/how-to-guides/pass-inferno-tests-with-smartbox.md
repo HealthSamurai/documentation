@@ -98,6 +98,10 @@ auth:
     access_token_expiration: 300
 smart:
   launch_uri: 'https://inferno.healthit.gov/suites/custom/smart/launch'
+meta:
+  tenant:
+    id: my-clinic
+    resourceType: Tenant
 ```
 
 #### inferno-my-clinic-bulk-client
@@ -141,6 +145,10 @@ auth:
     access_token_expiration: 300
 smart:
   launch_uri: 'https://inferno.healthit.gov/suites/custom/smart/launch'
+meta:
+  tenant:
+    id: my-clinic
+    resourceType: Tenant
 ```
 
 ### Create Inferno test session and run test
