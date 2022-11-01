@@ -297,6 +297,7 @@
     * [Pass Inferno tests with Smartbox](modules-1/smartbox/how-to-guides/pass-inferno-tests-with-smartbox.md)
   * [Techical reference](modules-1/smartbox/techical-reference.md)
   * [Background information](modules-1/smartbox/background-information/README.md)
+    * [Adding Clients for Inferno tests](modules-1/smartbox/background-information/adding-clients-for-inferno-tests.md)
     * [Multitenancy approach](modules-1/smartbox/background-information/multitenancy-approach.md)
     * [What is Tenant](modules-1/smartbox/background-information/what-is-tenant.md)
     * [Email templating](modules-1/smartbox/background-information/email-templating.md)

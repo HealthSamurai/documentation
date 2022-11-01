@@ -76,6 +76,8 @@ Now you can login to My Clinic patient portal with `example@mail.com / password`
 
 ### Client resources
 
+In the requests below the simples way of adding Clients is shown. In some cases it's important to create Client resources without predefined `secret` and `id` (see [that article](../background-information/adding-clients-for-inferno-tests.md) for more details).
+
 #### inferno-confidential-patient-smart-app
 
 ```yaml
