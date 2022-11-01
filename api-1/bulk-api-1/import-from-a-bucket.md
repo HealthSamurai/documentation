@@ -15,13 +15,20 @@ If you want to import S3 objects with a presigned url, refer to [aidbox.bulk dat
 It allows loading data from a bunch of `.ndjson.gz` files on an AWS bucket directly to the Aidbox database with maximum performance.
 
 {% hint style="warning" %}
-**Be careful** You should run _only one_ replica of aidbox to use `aidbox.bulk/load-from-bucket` operation.
+**Be careful** You should run _only one_ replica of Aidbox to use `aidbox.bulk/load-from-bucket` operation.
 {% endhint %}
 
 ### Files content and naming requirement
 
 1. The file must consist of Resources of the same type.
 2. The file name should start with a name of the Resource type, then some postfix is possible, and extension `.ndjson` is required. Files can be placed in subdirectories of any level. Files with the wrong path structure will be **ignored**.
+3. Every resource in `.ndjson` files MUST contain id property.
+
+#### Resource requirements for `aidbox.bulk/load-from-bucket`:
+
+| Operation                      | id       | resourceType |
+| ------------------------------ | -------- | ------------ |
+| `aidbox.bulk/load-from-bucket` | Required | Not required |
 
 #### Valid file structure example:
 

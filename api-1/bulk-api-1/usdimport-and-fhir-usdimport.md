@@ -1,9 +1,16 @@
 # $import & /fhir/$import
 
-`$import` is an implementation of the upcoming FHIR Bulk Import API. This is an asynchronous Operation, which returns url to monitor progress.
+`$import` is an implementation of the upcoming FHIR Bulk Import API. This is an asynchronous Operation, which returns url to monitor progress. There are two versions of this operation - `/fhir/$import` accepts data in FHIR format,  `/$import` works with [Aidbox format](../../modules-1/fhir-resources/aidbox-and-fhir-formats.md).
+
+#### Resource requirements for all import operations:
+
+| Operation       | id       | resourceType |
+| --------------- | -------- | ------------ |
+| `/$import`      | Required | Not required |
+| `/fhir/$import` | Required | Not required |
 
 {% hint style="warning" %}
-Keep in mind that $import does not validate inserted resources for the sake of performance. Pay attention to the structure of data you insert and use the correct URL for your data format, i.e.: use /fhir prefix for FHIR data.
+Keep in mind that $import **does not validate** inserted resources for the sake of performance. Pay attention to the structure of data you insert and use the correct URL for your data format, i.e.: use /fhir prefix for FHIR data.
 {% endhint %}
 
 {% hint style="info" %}

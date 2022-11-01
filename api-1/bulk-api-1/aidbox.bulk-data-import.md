@@ -18,7 +18,7 @@ Features of the aidbox.bulk API:
 
 ### `aidbox.bulk/import-start`
 
-Starts `aidbox.bulk` import
+Starts `aidbox.bulk` import.
 
 {% tabs %}
 {% tab title="Parameters" %}
@@ -49,6 +49,12 @@ Returns input params object with following attributes added:
 * `import` object identical to result object
 {% endtab %}
 {% endtabs %}
+
+#### Resource requirements for `aidbox.bulk/import-start`:
+
+| Operation                  | id       | resourceType |
+| -------------------------- | -------- | ------------ |
+| `aidbox.bulk/import-start` | Required | Required     |
 
 #### Example
 

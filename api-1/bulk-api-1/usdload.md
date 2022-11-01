@@ -1,8 +1,17 @@
-# $load
+# $load & /fhir/$load
 
-You can efficiently load data into Aidbox  in _ndjson_ _gz_ format from external web service or bucket. There are two versions of $load - `/$load` and `/[resourceType]/$load`.  First can load multiple resource types from one ndjson file, second is more efficient, but loads only for a specific resource type. Both operations accept body with **source** element, which should be publicly available url. If you want to secure your import use Signed URLs by Amazon S3 or Google Storage.&#x20;
+You can efficiently load data into Aidbox  in _ndjson_ _gz_ format from external web service or bucket. There are two versions of $load - `/$load` and `/c`.  First can load multiple resource types from one ndjson file, second is more efficient, but loads only for a specific resource type. Both operations accept body with **source** element, which should be publicly available url. If you want to secure your import use Signed URLs by Amazon S3 or Google Storage.&#x20;
 
 There are two versions of this operation - `/fhir/$load` accepts data in FHIR format,  `/$load` works with [Aidbox format](../../modules-1/fhir-resources/aidbox-and-fhir-formats.md).
+
+#### Resource requirements for all load operations:
+
+| Operation                    | id       | resourceType |
+| ---------------------------- | -------- | ------------ |
+| `/$load`                     | Required | Required     |
+| `/fhir/$load`                | Required | Required     |
+| `/[resourceType]/$load`      | Required | Not required |
+| `/fhir/[resourceType]/$load` | Required | Not required |
 
 {% hint style="warning" %}
 Keep in mind that $load **does not validate** inserted resources for the sake of performance. Pay attention to the structure of data you insert and use the correct URL for your data format, i.e.: use /fhir prefix for FHIR data.&#x20;
