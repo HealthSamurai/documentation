@@ -298,6 +298,7 @@
     * [Setup email provider](modules-1/smartbox/how-to-guides/setup-email-provider.md)
     * [Register users](modules-1/smartbox/how-to-guides/register-users.md)
     * [Set up SSO with Auth0](modules-1/smartbox/how-to-guides/how-to-set-up-sso-with-auth0.md)
+    * [How to perform EHR launch](modules-1/smartbox/how-to-guides/how-to-perform-ehr-launch.md)
     * [Pass Inferno tests with Smartbox](modules-1/smartbox/how-to-guides/pass-inferno-tests-with-smartbox.md)
   * [Techical reference](modules-1/smartbox/techical-reference.md)
   * [Background information](modules-1/smartbox/background-information/README.md)
