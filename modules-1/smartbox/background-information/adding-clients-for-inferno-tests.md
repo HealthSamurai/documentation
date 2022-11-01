@@ -33,7 +33,7 @@ smart:
 * `id` of the Client is defined within the uri. It's a `inferno-confidential-patient-smart-app` value
 * `secret` is defined in the request body. The secret value is `inferno-confidential-patient-smart-app-secret`
 
-## Client without predefined secret and id (confidential app)
+## Client without predefined secret and id (patient confidential app)
 
 To `create` a Client without predefined secret and client id use the `smartbox.portal.developer.rpc/save-developer-application` RPC method.
 
@@ -127,7 +127,7 @@ smart:
 {% endtab %}
 {% endtabs %}
 
-## Client without predefined id (public app)
+## Client without predefined id (patient public app)
 
 To `create` a Client without predefined `id` use the `smartbox.portal.developer.rpc/save-developer-application` RPC method.
 
@@ -175,4 +175,68 @@ result:
 * `org-url` is the url of the compamy's website
 * `policy-url` is the link to the application policy page
 * `tos-url` is the link to the application term of services page
+
+## Client for provider usage
+
+Provider SMART App must have a tenant link (see [this](multitenancy-approach.md) and [that](what-is-tenant.md) articles). To create a Client for provider use the following request.
+
+{% tabs %}
+{% tab title="Request" %}
+```http
+POST  /Client
+Content-Type: text/yaml
+
+type: provider-facing-smart-app 
+name: provider-app-name
+description: provider-app-description
+grant_types:
+   - authorization_code
+resourceType: Client
+smart:
+  launch_uri: http://launch
+auth:
+  authorization_code:
+    pkce: true
+    redirect_uri: http://redirect
+    refresh_token: true
+    secret_required: false
+    access_token_expiration: 300
+details:
+  logo-uri: http://logo
+meta:
+  _tenant: my-clinic
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```http
+status: 201
+
+description: provider-app-description
+meta:
+  _tenant: my-clinic
+name: provider-app-name
+type: provider-facing-smart-app
+grant_types:
+  - authorization_code
+resourceType: Client
+auth:
+  authorization_code:
+    pkce: true
+    redirect_uri: http://redirect
+    refresh_token: true
+    secret_required: false
+    access_token_expiration: 300
+details:
+  logo-uri: http://logo
+id: dfd4d79b-b3e3-4b66-a890-3059fc81f37f
+smart:
+  launch_uri: http://launch
+```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="info" %}
+Notice `meta._tenant` in the request containing the id of the tenant
+{% endhint %}
 
