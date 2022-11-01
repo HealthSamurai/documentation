@@ -3,6 +3,13 @@
 ## October 2022 _`edge`_
 
 * Supported [log streaming for browser](../../core-modules/logging-and-audit/#logs-in-browser) in user-friendly format.
+* Added [CI/CD licenses](../editions-and-pricing.md#product-license-types) on the [Aidbox user portal](../../overview/aidbox-user-portal/). You can get this license to run multiple instances of Aidbox and Multibox in parallel for 72 hours. Both development and CI/CD licenses are available for existing customers at no cost.
+* Introduced [FHIR Terminology repositories ](../../terminology/fhir-terminology-repository/)beta
+* Supported [validation against XSD and Schematron schemas](../../modules-1/ccda-converter.md#validating-a-ccda-document) in [Aidbox CCDA converter](../../modules-1/ccda-converter.md)
+* Supported [multitenancy](../../modules-1/smartbox/background-information/multitenancy-approach.md) for [SMARTbox](../../modules-1/smartbox/) (FHIR API for EHRs)
+* Added an option set up [EHR-level customization](../../modules-1/smartbox/how-to-guides/set-up-ehr-level-customization.md) (logos and templates) for [SMARTbox](../../modules-1/smartbox/)
+
+
 
 ## September 2022 _`latest`_
 
