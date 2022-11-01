@@ -152,7 +152,8 @@
   * [🎓 Load ICD-10 terminology into Aidbox](terminology/terminology-tutorials/load-terminologies.md)
 * [🏗 FHIR Terminology Repository](terminology/fhir-terminology-repository/README.md)
   * [FTR Specification](terminology/fhir-terminology-repository/ftr-specification.md)
-  * [Creating Aidbox project with FTR](terminology/fhir-terminology-repository/creating-aidbox-project-with-ftr.md)
+  * [Creating Aidbox project with FTR](terminology/fhir-terminology-repository/creating-aidbox-project-with-ftr/README.md)
+    * [FTR Manifest](terminology/fhir-terminology-repository/creating-aidbox-project-with-ftr/ftr-manifest.md)
 
 ## FHIR Implementation Guides
 

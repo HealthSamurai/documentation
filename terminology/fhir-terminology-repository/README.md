@@ -12,6 +12,6 @@ You can store resulting FTR on s3 like storage or regular file system. Aidbox te
 [ftr-specification.md](ftr-specification.md)
 {% endcontent-ref %}
 
-{% content-ref url="creating-aidbox-project-with-ftr.md" %}
-[creating-aidbox-project-with-ftr.md](creating-aidbox-project-with-ftr.md)
+{% content-ref url="creating-aidbox-project-with-ftr/" %}
+[creating-aidbox-project-with-ftr](creating-aidbox-project-with-ftr/)
 {% endcontent-ref %}

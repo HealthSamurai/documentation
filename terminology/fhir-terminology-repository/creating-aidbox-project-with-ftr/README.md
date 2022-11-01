@@ -44,7 +44,7 @@ project/
 
 Replace `<ABSOLUTE_PATH_TO_PROJECT_DIR>` placeholder with absolute path to your project directory.
 
-This ValueSet definition confirms to [zen.fhir ValueSet schema](../../profiling-and-validation/profiling-with-zen-lang/) and has a `:ftr` property, it contains an FTR manifest that defines a csv source via `:source-url` property to create an expanded version of the ValueSet to be stored in the resulting FTR. For details about FTR manifest, please, refer to this page.
+This ValueSet definition confirms to [zen.fhir ValueSet schema](../../../profiling-and-validation/profiling-with-zen-lang/) and has a `:ftr` property, it contains an FTR manifest that defines a csv source via `:source-url` property to create an expanded version of the ValueSet to be stored in the resulting FTR. For details about FTR manifest, please, refer to this [page](ftr-manifest.md).
 
 ```clojure
 {:ns diagnosis
@@ -107,7 +107,7 @@ Commit FTR directory:
 git add . && git commit -m "Build ftr"
 ```
 
-Now you can run Aidbox with the following configuration project and use [FHIR Terminology API ](../valueset/)methods like `$validate-code/$lookup` on generated `diagnosis-vs` ValueSet. Resource validation performed when someone invocates a FHIR REST operations will also validate ValueSet binding via FTR.
+Now you can run Aidbox with the following configuration project and use [FHIR Terminology API ](../../valueset/)methods like `$validate-code/$lookup` on generated `diagnosis-vs` ValueSet. Resource validation performed when someone invocates a FHIR REST operations will also validate ValueSet binding via FTR.
 
 ### Creating Aidbox project with FTR based on IG Source
 
@@ -145,7 +145,7 @@ project/
 
 Replace `<ABSOLUTE_PATH_TO_PROJECT_DIR>` placeholder with absolute path to your project directory.
 
-This ValueSet definition confirms to [zen.fhir ValueSet schema](../../profiling-and-validation/profiling-with-zen-lang/) and has a `:ftr` property, it contains an FTR manifest that defines an IG source via `:source-url` property to create an expanded version of the ValueSet to be stored in the resulting FTR. For details about FTR manifest, please, refer to this page.
+This ValueSet definition confirms to [zen.fhir ValueSet schema](../../../profiling-and-validation/profiling-with-zen-lang/) and has a `:ftr` property, it contains an FTR manifest that defines an IG source via `:source-url` property to create an expanded version of the ValueSet to be stored in the resulting FTR. For details about FTR manifest, please, refer to this [page](ftr-manifest.md).
 
 ```clojure
 {ns gender
@@ -245,6 +245,6 @@ Commit FTR directory:
 git add . && git commit -m "Build ftr"
 ```
 
-Now you can run Aidbox with the following configuration project and use [FHIR Terminology API ](../valueset/)methods like `$validate-code/$lookup` on generated `diagnosis-vs` ValueSet. Resource validation performed when someone invocates a FHIR REST operations will also validate ValueSet binding via FTR.
+Now you can run Aidbox with the following configuration project and use [FHIR Terminology API ](../../valueset/)methods like `$validate-code/$lookup` on generated `diagnosis-vs` ValueSet. Resource validation performed when someone invocates a FHIR REST operations will also validate ValueSet binding via FTR.
 
-For detailed instructions about using Aidbox with Aidbox configuration project, please refer to this [page](../../getting-started/run-aidbox-locally-with-docker/).
+For detailed instructions about using Aidbox with Aidbox configuration project, please refer to this [page](../../../getting-started/run-aidbox-locally-with-docker/).
