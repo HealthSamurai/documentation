@@ -4,8 +4,8 @@
 
 ## Overview
 
-* [Licensing and Support](getting-started/editions-and-pricing.md)
 * [Features](getting-started/features.md)
+* [Licensing and Support](getting-started/editions-and-pricing.md)
 * [Aidbox user portal](overview/aidbox-user-portal/README.md)
   * [Projects](overview/aidbox-user-portal/projects.md)
   * [Licenses](overview/aidbox-user-portal/licenses.md)
@@ -32,7 +32,7 @@
 * [Run Aidbox as a SaaS](getting-started/run-aidbox-as-a-saas/README.md)
   * [Aidbox as a SaaS on AWS](getting-started/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md)
 * [Run Aidbox on Kubernetes](getting-started/run-aidbox-in-kubernetes/README.md)
-  * [Deploy Aidbox in Kubernetes](getting-started/run-aidbox-in-kubernetes/deploy-aidbox-in-kubernetes.md)
+  * [Deploy Aidbox to Kubernetes](getting-started/run-aidbox-in-kubernetes/deploy-aidbox-in-kubernetes.md)
   * [High Available Aidbox](getting-started/run-aidbox-in-kubernetes/high-available-aidbox.md)
 
 ## Aidbox configuration
