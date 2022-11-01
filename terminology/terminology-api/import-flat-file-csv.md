@@ -6,6 +6,11 @@ description: Import flat file via REST
 
 If you have a terminology distributed as a flat file, for example CSV, you can use this API to import it as a set of [Concept](../concept.md) resources and later use them with [Terminology API](../terminology.md).
 
+{% hint style="warning" %}
+`Concepts` should have unique `code` property. In this regard Aidbox follows [FHIR constraints defined for CodeSystems](https://hl7.org/fhir/R4/codesystem.html#invs). If there are multiple `Concepts` with the\
+same `code`, only the last one will be loaded.&#x20;
+{% endhint %}
+
 ## Import by URL
 
 Aidbox provides RPC API to load terminology from a flat file by url.
