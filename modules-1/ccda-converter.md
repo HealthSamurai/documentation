@@ -154,3 +154,78 @@ In case of error, OperationOutcome resource will be returned:
 {% hint style="warning" %}
 Please note that this endpoint doesn't persist any populated FHIR data to Aidbox database. This endpoint is read-only and it performs a stateless conversion of the document from one format to another. To persist FHIR data extracted from a CDDA document you need to setup a simple pipeline as described in this tutorial (TODO).
 {% endhint %}
+
+### Validating a CCDA document 
+
+Aidbox CCDA converter supports validation of incoming CCDA documents.
+
+Basically, there are two types of validation: 
+- validation against XSD schema (validating against HL7© official CDA and POCD_MT000040 schemas)
+- validation using ISO Schematron (validation agains HL7© official Consolidation.sch Schematron schema) 
+
+By default both types of validation are used. 
+
+```http
+POST /ccda/to-fhir
+Authorization: .....
+Content-Type: application/cda+xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<ClinicalDocument 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns="urn:hl7-org:v3" ...>
+  ....
+</ClinicalDocument>
+```
+
+If validation was successful, you will get the following response: 
+
+```json
+{
+  "status": 200,
+  "body": {
+    "result": true
+  }
+}
+```
+
+If validation was failed - all errors will be returned:  
+
+```json
+{
+  "status": 200,
+  "body": {
+    "result": false 
+    "errors": [{"pattern": {"id": "failed-pattern-id"}
+                "rule": {"context" "path-in-cda-that-failed"
+                         "id" "failed-rule-id"}
+                "failed-assert" {"location" "location/in/cda/document/that/failed"
+                                 "schematron" "schematron-assert-that-failed"
+                                 "explanation" ["Why this error happened? You know, it is a philosophical question..."]
+                                 "id" "assertion-error-id"}}]
+   "no-of-fails": {"errors": 1 
+                   "warnings": 0}                              
+  }
+}
+```
+
+If error did occur - you will see ```pattern``` , ```rule``` and ```assert``` fields in response containing meaningful explanation why error happened.
+
+You may use just ```XSD``` or just ```Schematron``` validation by passsing ```method``` query param with ```xsd``` or ```schematron``` values:  
+
+```http
+POST /ccda/to-fhir/method?=xsd
+Authorization: .....
+Content-Type: application/cda+xml
+```
+
+```http
+POST /ccda/to-fhir/method?=schematron
+Authorization: .....
+Content-Type: application/cda+xml
+```
+
+{% hint style="warning" %}
+In UI version of Aidbox ```ccda.aidbox.app``` only XSD validation is implemented. 
+Uploaded XML file will be highlighted with green color if document passed validation. 
+{% endhint %}
