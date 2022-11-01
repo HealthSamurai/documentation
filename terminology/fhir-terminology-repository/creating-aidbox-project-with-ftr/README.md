@@ -6,7 +6,7 @@ description: Create a Aidbox projcet with FTR that can be used in Aidbox
 
 ### Prerequisites
 
-1. Download zen-ftr CLI: [Download link](https://github.com/HealthSamurai/ftr/releases/download/0.0.2/zen.jar)
+1. Download zen-ftr CLI: [Download link](https://github.com/HealthSamurai/ftr/releases/latest/download/zen.jar)
 2. Optionally create an alias to simplify CLI start-up process:\
    `alias zen="rlwrap java -jar /path/to/zen.jar"`
 
