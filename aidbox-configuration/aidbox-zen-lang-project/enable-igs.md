@@ -20,9 +20,18 @@ View the gallery of available FHIR IGs in our GitHub repository:
 
 {% embed url="https://github.com/orgs/zen-fhir/repositories" %}
 
-## How to enable an IG
+## How to enable IG
 
-You can enable FHIR IGs you want to use by specifying dependencies in the `zen-package.edn`.&#x20;
+You can enable FHIR IGs you want to use by specifying dependencies in the `zen-package.edn`.
+
+You need to go through the following steps:
+
+1. Specify zen FHIR IGs in your zen-package.edn
+2. Import the zen FHIR IGs entrypoints
+3. Commit changes to your Aidbox configuration project
+4. Restart Aidbox and check that IGs are enabled
+
+All of them are covered in a greater detail below.
 
 ### Specify zen FHIR IGs in your zen-package.edn
 
@@ -30,15 +39,15 @@ Here's an example for enabling US Core IG and DaVinci PDEX Plan Net:
 
 {% code title="zen-package.edn" %}
 ```clojure
-{:deps {us-core  "https://github.com/zen-fhir/hl7-fhir-us-core.git"
-        plan-net "https://github.com/zen-fhir/hl7-fhir-us-davinci-pdex-plan-net.git"}}
+{:deps {hl7-fhir-us-core  "https://github.com/zen-fhir/hl7-fhir-us-core.git"
+        hl7-fhir-us-davinci-pdex-plan-net "https://github.com/zen-fhir/hl7-fhir-us-davinci-pdex-plan-net.git"}}
 ```
 {% endcode %}
 
 Or another example for enabling FHIR r4 core IG:
 
 ```
-{:deps {r4-core "https://github.com/zen-fhir/hl7-fhir-r4-core.git"}}
+{:deps {hl7-fhir-r4-core "https://github.com/zen-fhir/hl7-fhir-r4-core.git"}}
 ```
 
 {% hint style="info" %}
@@ -74,12 +83,54 @@ git add zen-package.edn && git commit -m "Add IG dependencies"
 
 ### Restart Aidbox
 
-Currently, after you changed `zen-package.edn`, you need to restart Aidbox for your changes to be applied.
+After you changed `zen-package.edn` you need to restart Aidbox for your changes to be applied.
 
-### Check if an IG is enabled
+### Check that IGs are enabled
 
 After Aidbox restarted with a new configuration you can use profiles, terminology and other IG features.
 
 To see currently loaded profiles you can go to the `profiles` UI page:
 
 <img src="../../.gitbook/assets/image (4).png" alt="" data-size="original">             ![](<../../.gitbook/assets/image (3).png>)
+
+If you want to verify that validation with IGs work, you can create FHIR resource using FHIR REST API which will validate provided resource against specified Profile.
+
+For example, if you want to check that US Core IG works, you can send the following requests and check that response statuses are as expected.
+
+{% code title="Status: 201" %}
+```
+POST /Patient
+content-type: text/yaml
+accept: text/yaml
+
+meta:
+  profile:
+    - "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
+identifier:
+  - {system: "some-system", value: "unique-value"}
+name:
+  - {use: "anonymous"}
+gender: "other"
+```
+{% endcode %}
+
+This request checks that valid values for `gender` field are allowed.
+
+{% code title="Status: 422" %}
+```
+POST /Patient
+content-type: text/yaml
+accept: text/yaml
+
+meta:
+  profile:
+    - "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
+identifier:
+  - {system: "some-system", value: "unique-value"}
+name:
+  - {use: "anonymous"}
+gender: "this-gender-is-not-known"
+```
+{% endcode %}
+
+This request checks that invalid values for `gender` field are not allowed.

@@ -158,6 +158,9 @@
 ## FHIR Implementation Guides
 
 * [🎓 US Core IG](fhir-implementation-guides/us-core-ig/README.md)
+  * [How to enable US Core IG](fhir-implementation-guides/us-core-ig/how-to-enable-us-core-ig/README.md)
+    * [Start Aidbox with US Core IG enabled](fhir-implementation-guides/us-core-ig/how-to-enable-us-core-ig/start-aidbox-with-us-core-ig-enabled.md)
+    * [Add US Core IG to a running Aidbox instance](fhir-implementation-guides/us-core-ig/how-to-enable-us-core-ig/add-us-core-ig-to-a-running-aidbox-instance.md)
   * [US Core IG support reference](fhir-implementation-guides/us-core-ig/us-core-ig-support-reference.md)
 * [🎓 HL7 FHIR Da Vinci PDex Plan Net IG](fhir-implementation-guides/hl7-fhir-da-vinci-pdex-plan-net-ig.md)
 * [§170.315(g)(10) Standardized API for patient and population services](fhir-implementation-guides/170.315-g-10-standardized-api-for-patient-and-population-services/README.md)

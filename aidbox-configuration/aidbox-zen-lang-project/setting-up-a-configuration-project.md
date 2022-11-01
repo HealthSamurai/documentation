@@ -7,7 +7,7 @@ To set up a configuration project you need two things:&#x20;
 
 ## Set system entrypoint&#x20;
 
-Aidbox starts reading configuration from a Zen entrypoint. The entrypoint is a namespaced symbol. The `AIDBOX_ZEN_ENTRYPOINT` environment variable is used to specify it.
+Aidbox starts reading configuration from a Zen entrypoint. The entrypoint is a namespaced symbol which serves as a starting point for the whole system. The `AIDBOX_ZEN_ENTRYPOINT` environment variable is used to specify it.
 
 Namespace is related to a system config filename. The entrypoint symbol you use should be tagged with `aidbox/system`.
 
