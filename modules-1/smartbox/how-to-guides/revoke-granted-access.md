@@ -11,5 +11,6 @@ description: This guide explains how to revoke access from SMART App
 3. Click the `Revoke access` link against the selected application
 
 {% hint style="info" %}
-The `Revoke access` link is available when pateitn granted access. If no access granted, there is no such a link
+The `Revoke access` link is available when patient granted access. If no access granted, there is no such a link
 {% endhint %}
+

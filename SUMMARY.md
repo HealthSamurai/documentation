@@ -295,7 +295,7 @@
     * [Setup email provider](modules-1/smartbox/how-to-guides/setup-email-provider.md)
     * [Register users](modules-1/smartbox/how-to-guides/register-users.md)
     * [Set up SSO with Auth0](modules-1/smartbox/how-to-guides/how-to-set-up-sso-with-auth0.md)
-    * [Perform EHR launch](modules-1/smartbox/how-to-guides/perform-ehr-launch.md)
+    * [Perform EHR launch](modules-1/smartbox/how-to-guides/how-to-perform-ehr-launch.md)
     * [Revoke granted access](modules-1/smartbox/how-to-guides/revoke-granted-access.md)
     * [Pass Inferno tests with Smartbox](modules-1/smartbox/how-to-guides/pass-inferno-tests-with-smartbox.md)
     * [Run Inferno ONC tests against Aidbox locally](modules-1/smartbox/how-to-guides/run-inferno-onc-tests-against-aidbox-locally.md)

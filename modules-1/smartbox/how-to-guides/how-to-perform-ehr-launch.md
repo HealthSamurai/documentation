@@ -2,7 +2,7 @@
 description: This guide explains how EHR launch can be performed
 ---
 
-# How to perform EHR launch
+# Perform EHR launch
 
 ## To launch EHR SMART App (as patient)
 
