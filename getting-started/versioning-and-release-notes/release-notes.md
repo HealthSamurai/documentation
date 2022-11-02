@@ -8,6 +8,10 @@
 * Supported [validation against XSD and Schematron schemas](../../modules-1/ccda-converter.md#validating-a-ccda-document) in [Aidbox CCDA converter](../../modules-1/ccda-converter.md)
 * Supported [multitenancy](../../modules-1/smartbox/background-information/multitenancy-approach.md) for [SMARTbox](../../modules-1/smartbox/) (FHIR API for EHRs)
 * Added an option set up [EHR-level customization](../../modules-1/smartbox/how-to-guides/set-up-ehr-level-customization.md) (logos and templates) for [SMARTbox](../../modules-1/smartbox/)
+* Added [execute type in AidboxQuery](../../api-1/fhir-api/search-1/custom-search.md#query-types).
+* Added [FHIR compliant date search](../../api-1/fhir-api/search-1/date-search.md).
+* Added 180 seconds [timeout](../../api-1/fhir-api/search-1/\_timeout.md) for [(rev)include queries](../../api-1/fhir-api/search-1/\_include-and-\_revinclude.md).
+* **Breaking change:** removed limit of 1000 in [\_count queries](../../api-1/fhir-api/search-1/\_count-and-\_page.md).
 
 
 
