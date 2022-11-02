@@ -166,10 +166,11 @@ Basically, there are two types of validation:
 By default both types of validation are used. 
 
 ```http
-POST /ccda/to-fhir
+POST /ccda/validate
 Authorization: .....
 Content-Type: application/cda+xml
 
+resource:
 <?xml version="1.0" encoding="UTF-8"?>
 <ClinicalDocument 
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
@@ -214,13 +215,13 @@ If error did occur - you will see ```pattern``` , ```rule``` and ```assert``` fi
 You may use just ```XSD``` or just ```Schematron``` validation by passsing ```method``` query param with ```xsd``` or ```schematron``` values:  
 
 ```http
-POST /ccda/to-fhir/method?=xsd
+POST /ccda/validate/method?=xsd
 Authorization: .....
 Content-Type: application/cda+xml
 ```
 
 ```http
-POST /ccda/to-fhir/method?=schematron
+POST /ccda/validate/method?=schematron
 Authorization: .....
 Content-Type: application/cda+xml
 ```
