@@ -2,32 +2,33 @@
 
 ## October 2022 _`edge`_
 
-* Data API
-  * Added [execute type in AidboxQuery](../../api-1/fhir-api/search-1/custom-search.md#query-types).
-  * Added [FHIR compliant date search](../../api-1/fhir-api/search-1/date-search.md).
-  * Added 180 seconds [timeout](../../api-1/fhir-api/search-1/\_timeout.md) for [(rev)include queries](../../api-1/fhir-api/search-1/\_include-and-\_revinclude.md).
-  * **Breaking change:** removed limit of 1000 in [\_count queries](../../api-1/fhir-api/search-1/\_count-and-\_page.md).
 * Terminology
-  * Introduced FHIR Terminology repositories to store any terminology elements (code systems, value sets, concepts) in an effective way and distribute them among Aidbox instances.
+  * Introduced [FHIR Terminology repositories ](../../terminology/fhir-terminology-repository/)(alpha) to store any terminology elements (code systems, value sets, concepts) in an effective way and distribute them among Aidbox instances.
 * CCDA to FHIR converter
   * Supported [validation against XSD and Schematron schemas](../../modules-1/ccda-converter.md#validating-a-ccda-document)
   * Supported Diagnostic Imaging Report sections
   * Supported conversion of different sections of CCDA documents to ClinicalImpression resources
+* Search API
+  * Added [execute type in AidboxQuery](../../api-1/fhir-api/search-1/custom-search.md#query-types).
+  * Added [FHIR compliant date search](../../api-1/fhir-api/search-1/date-search.md).
+  * Added 180 seconds [timeout](../../api-1/fhir-api/search-1/\_timeout.md) for [(rev)include queries](../../api-1/fhir-api/search-1/\_include-and-\_revinclude.md).
+  * **Breaking change:** removed limit of 1000 in [\_count queries](../../api-1/fhir-api/search-1/\_count-and-\_page.md).
 * FHIR API for EHRs:&#x20;
   * Supported [multitenancy](../../modules-1/smartbox/background-information/multitenancy-approach.md)&#x20;
   * Added an option set up [EHR-level customization](../../modules-1/smartbox/how-to-guides/set-up-ehr-level-customization.md) (logos and templates)
 * Aidbox forms
-  * Supported rules, text type and display type conversion on FHIR Questionnaire -> SDCDocument converter
-  * Supported amendments and addendums of forms
+  * Supported rules, text type and display type conversion on [FHIR Questionnaire -> SDCDocument converter](../../reference/aidbox-forms/api-reference.md#aidbox.sdc-convert-questionnaire)
+  * Supported [amendments and addendums](../../modules-1/aidbox-forms/addendum.md) of forms
 * Aidbox user portal
-  * Introduced CI/CD licenses on the Aidbox user portal. You can get this license to run multiple instances of Aidbox and Multibox in parallel for 72 hours. Both development and CI/CD licenses are available for existing customers at no cost.
-* Documentation
+  * Introduced [CI/CD licenses](../editions-and-pricing.md#aidbox-licenses) on the [Aidbox user portal](../../overview/aidbox-user-portal/). You can get this license to run multiple instances of Aidbox and Multibox in parallel for 72 hours. Both development and CI/CD licenses are available for existing customers at no cost.
+  * Added an option to configure Aidbox instances hosted in Aidbox Cloud with FHIR Implementation Guides
+* Logging and audit
+  * Supported [log streaming to browser](../../core-modules/logging-and-audit/#logs-in-browser)
+  * Fixed incorrect calculation of request duration for resources in transaction bundles
+* Updated documentation
   * [Index management](../../aidbox-configuration/index-management.md)
   * [US Core IG configuration](../../fhir-implementation-guides/us-core-ig/)
   * [Deleting data guide](../../storage-1/delete-data.md)
-* Logging and audit
-  * Supported log streaming for browser in user-friendly format.
-  * Fixed incorrect calculation of request duration for resources in transaction bundles
 * Fixed issued submitted by Aidbox users
 
 ## September 2022 _`latest`_
