@@ -26,7 +26,7 @@ Aidbox is distributed as a Docker container:
 
 #### Aidbox
 
-It could be configured in [many ways](https://docs.aidbox.app/getting-started/installation/configure-devbox-aidbox-multibox) but the minimum configuration is defined [here](run-inferno-onc-tests-against-aidbox-locally.md).
+It could be configured in [many ways](https://docs.aidbox.app/getting-started/installation/configure-devbox-aidbox-multibox) but the minimum configuration is defined [here](../how-to-guides/run-inferno-onc-tests-against-aidbox-locally.md).
 
 Main configuration aspects:
 
@@ -40,7 +40,7 @@ ONC Inferno requires certain TLS version usage over HTTP requests. The allowed v
 
 ## Setting up different SMART on FHIR application
 
-### `confidential` and `public`  applications
+### `confidential` and `public` applications
 
 There are [two types](http://www.hl7.org/fhir/smart-app-launch/app-launch.html#support-for-public-and-confidential-apps) of the applications using SMART on FHIR API:
 

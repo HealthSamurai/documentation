@@ -2,11 +2,17 @@
 description: How to setup Aidbox and Inferno ONC locally to pass the tests
 ---
 
-# 🎓 Run Inferno ONC tests against Aidbox locally
+# Run Inferno ONC tests against Aidbox locally
+
+
+
+{% hint style="warning" %}
+Please, suggest use Smartbox to pass the Inferno tests. See more [details](pass-inferno-tests-with-smartbox.md)
+{% endhint %}
 
 ## Install Aidbox
 
-Follow the instruction to [install Aidbox locally](../../getting-started/run-aidbox-locally-with-docker/)
+Follow the instruction to [install Aidbox locally](../../../getting-started/run-aidbox-locally-with-docker/)
 
 ## Extend `.env` file
 
@@ -74,7 +80,7 @@ To let Inferno connect to the Aidbox we should add Application (`Client` in term
 
 1. Open Aidbox UI in your web-browser `http://localhost:8888`
 2. Enter `login` and `password` being defined in `AIDBOX_ADMIN_ID` and `AIDBOX_ADMIN_PASSWORD`
-3. Get to the [REST Console](../../overview/aidbox-ui/rest-console-1.md)
+3. Get to the [REST Console](../../../overview/aidbox-ui/rest-console-1.md)
 
 ### Create `Client` resource
 

@@ -31,6 +31,8 @@ query: 'SELECT * from patient where id ilike = {{params.filter}} limit {{params.
 count-query: 'SELECT count(*) from patient where id ilike = {{params.filter}}
 # not required. enable links in response, see the section below
 enable-links: false
+# not required. `query` or `execute`. see below
+type: query
 ```
 
 Here is a self-debugging AidboxQuery to start with:
@@ -328,6 +330,17 @@ link:
     url: [base]/$query/q1?patient=pt1&_count=1&_page=1
   - relation: last
     url: [base]/$query/q1?patient=pt1&_count=1&_page=3
+```
+
+### Query types
+
+AidboxQuery has `type` field, which can be either `query` or `execute`. Default type is query. This means that _SELECT_ statement in query parameter is expected. If you want to make SQL query with execute statements e.g. _TRUNCATE_, use `execute` type.&#x20;
+
+```yaml
+PUT /AidboxQuery/truncate
+
+query: 'TRUNCATE {{resourceType}}; TRUNCATE {{resourceType}}_history'
+type: execute
 ```
 
 ### \_query

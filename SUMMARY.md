@@ -163,9 +163,6 @@
     * [Add US Core IG to a running Aidbox instance](fhir-implementation-guides/us-core-ig/how-to-enable-us-core-ig/add-us-core-ig-to-a-running-aidbox-instance.md)
   * [US Core IG support reference](fhir-implementation-guides/us-core-ig/us-core-ig-support-reference.md)
 * [🎓 HL7 FHIR Da Vinci PDex Plan Net IG](fhir-implementation-guides/hl7-fhir-da-vinci-pdex-plan-net-ig.md)
-* [§170.315(g)(10) Standardized API for patient and population services](fhir-implementation-guides/170.315-g-10-standardized-api-for-patient-and-population-services/README.md)
-  * [Considerations for Testing with Inferno ONC](fhir-implementation-guides/170.315-g-10-standardized-api-for-patient-and-population-services/considerations-for-testing-with-inferno-onc.md)
-  * [🎓 Run Inferno ONC tests against Aidbox locally](fhir-implementation-guides/170.315-g-10-standardized-api-for-patient-and-population-services/run-inferno-onc-tests-against-aidbox-locally.md)
 
 ***
 
@@ -300,8 +297,10 @@
     * [Set up SSO with Auth0](modules-1/smartbox/how-to-guides/how-to-set-up-sso-with-auth0.md)
     * [How to perform EHR launch](modules-1/smartbox/how-to-guides/how-to-perform-ehr-launch.md)
     * [Pass Inferno tests with Smartbox](modules-1/smartbox/how-to-guides/pass-inferno-tests-with-smartbox.md)
+    * [Run Inferno ONC tests against Aidbox locally](modules-1/smartbox/how-to-guides/run-inferno-onc-tests-against-aidbox-locally.md)
   * [Techical reference](modules-1/smartbox/techical-reference.md)
   * [Background information](modules-1/smartbox/background-information/README.md)
+    * [Considerations for Testing with Inferno ONC](modules-1/smartbox/background-information/considerations-for-testing-with-inferno-onc.md)
     * [Adding Clients for Inferno tests](modules-1/smartbox/background-information/adding-clients-for-inferno-tests.md)
     * [Multitenancy approach](modules-1/smartbox/background-information/multitenancy-approach.md)
     * [What is Tenant](modules-1/smartbox/background-information/what-is-tenant.md)
