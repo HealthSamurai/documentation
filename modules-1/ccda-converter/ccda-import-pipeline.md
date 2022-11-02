@@ -27,8 +27,8 @@ To validate your XML CCDA file - you have to use:
 
 By default it will perform BOTH types of validation. 
 If you need just one of them - specify the ```method``` of validation in query parameters of route: 
- - for Schematron validation - [`/ccda/$validate?method=schematron` endpoint] 
- - for XSD validation - [`/ccda/$validate?method=xsd` endpoint] 
+ - for Schematron validation - [`/ccda/validate?method=schematron` endpoint] 
+ - for XSD validation - [`/ccda/validate?method=xsd` endpoint] 
 
 NB(!):  ```resource``` field here is your raw XML CCDA file.
 
