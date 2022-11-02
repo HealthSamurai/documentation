@@ -334,7 +334,7 @@ link:
 
 ### Query types
 
-AidboxQuery has `type` field, which can be either `query` or `execute`. Default type is query. This means that _`SELECT`_ statement in query parameter is expected. If you want to make SQL query with execute statements e.g. _`TRUNCATE`_, use `execute` type.&#x20;
+AidboxQuery has `type` field, which can be either `query` or `execute`. Default type is query. This means that _SELECT_ statement in query parameter is expected. If you want to make SQL query with execute statements e.g. _TRUNCATE_, use `execute` type.&#x20;
 
 ```yaml
 PUT /AidboxQuery/truncate
