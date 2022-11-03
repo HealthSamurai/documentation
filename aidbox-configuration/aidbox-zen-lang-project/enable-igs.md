@@ -29,7 +29,7 @@ You need to go through the following steps:
 1. Specify zen FHIR IGs in your zen-package.edn
 2. Import the zen FHIR IGs entrypoints
 3. Commit changes to your Aidbox configuration project
-4. Restart Aidbox and check that IGs are enabled
+4. Restart Aidbox and verify that IGs are enabled
 
 All of them are covered in a greater detail below.
 
@@ -85,7 +85,7 @@ git add zen-package.edn && git commit -m "Add IG dependencies"
 
 After you changed `zen-package.edn` you need to restart Aidbox for your changes to be applied.
 
-### Check that IGs are enabled
+### Verify that IGs are enabled
 
 After Aidbox restarted with a new configuration you can use profiles, terminology and other IG features.
 
@@ -106,15 +106,16 @@ accept: text/yaml
 meta:
   profile:
     - "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
-identifier:
-  - {system: "some-system", value: "unique-value"}
+birthsex: "F"
+gender: "female"
 name:
   - {use: "anonymous"}
-gender: "other"
+identifier:
+  - {system: "some-system", value: "unique-value"}
 ```
 {% endcode %}
 
-This request checks that valid values for `gender` field are allowed.
+This request checks that valid values for `birthsex` field are allowed.
 
 {% code title="Status: 422" %}
 ```
@@ -125,12 +126,13 @@ accept: text/yaml
 meta:
   profile:
     - "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
-identifier:
-  - {system: "some-system", value: "unique-value"}
+birthsex: "SOMETHING-UNKNOWN"
+gender: "female"
 name:
   - {use: "anonymous"}
-gender: "this-gender-is-not-known"
+identifier:
+  - {system: "some-system", value: "unique-value"}
 ```
 {% endcode %}
 
-This request checks that invalid values for `gender` field are not allowed.
+This request checks that invalid values for `birthsex` field are not allowed.

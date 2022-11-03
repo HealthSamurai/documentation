@@ -15,7 +15,7 @@ You need to go through the following steps:
 1. Set up base Aidbox instance
 2. Specify US Core as a dependency
 3. Commit changes to your Aidbox configuration project
-4. Restart Aidbox and check that IGs are enabled
+4. Restart Aidbox and verify that IGs are enabled
 
 All of them are covered in a greater detail below.
 
@@ -114,15 +114,16 @@ accept: text/yaml
 meta:
   profile:
     - "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
-identifier:
-  - {system: "some-system", value: "unique-value"}
+birthsex: "F"
+gender: "female"
 name:
   - {use: "anonymous"}
-gender: "other"
+identifier:
+  - {system: "some-system", value: "unique-value"}
 ```
 {% endcode %}
 
-This request checks that valid values for `gender` field are allowed.
+This request checks that valid values for `birthsex` field are allowed.
 
 {% code title="Status: 422" %}
 ```
@@ -133,15 +134,16 @@ accept: text/yaml
 meta:
   profile:
     - "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
-identifier:
-  - {system: "some-system", value: "unique-value"}
+birthsex: "SOMETHING-UNKNOWN"
+gender: "female"
 name:
   - {use: "anonymous"}
-gender: "this-gender-is-not-known"
+identifier:
+  - {system: "some-system", value: "unique-value"}
 ```
 {% endcode %}
 
-This request checks that invalid values for `gender` field are not allowed.
+This request checks that invalid values for `birthsex` field are not allowed.
 
 ## Resources
 
