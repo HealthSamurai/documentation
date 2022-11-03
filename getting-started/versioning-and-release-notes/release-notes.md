@@ -30,7 +30,7 @@
   * Supported [amendments and addendums](../../modules-1/aidbox-forms/addendum.md) of forms
 * Aidbox user portal
   * Introduced [CI/CD licenses](../editions-and-pricing.md#aidbox-licenses) on the [Aidbox user portal](../../overview/aidbox-user-portal/). You can get this license to run multiple instances of Aidbox and Multibox in parallel for 72 hours. Both development and CI/CD licenses are available for existing customers at no cost.
-  * Added an option to configure Aidbox instances hosted in Aidbox Cloud with FHIR Implementation Guides
+  * Added an option to configure Aidbox instances hosted in Aidbox Cloud with FHIR IGs for data validation.
 * Logging and audit
   * Supported [log streaming to browser](../../core-modules/logging-and-audit/#logs-in-browser)
   * Fixed incorrect calculation of request duration for resources in transaction bundles
