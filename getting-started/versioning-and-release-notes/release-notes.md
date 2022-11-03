@@ -1,9 +1,9 @@
 # Release Notes
 
-## October 2022 _`edge`_
+## October 2022 _`latest`_
 
 * Terminology
-  * Introduced [FHIR Terminology repositories ](../../terminology/fhir-terminology-repository/)(alpha) to store any terminology elements (code systems, value sets, concepts) in an effective way and distribute them among Aidbox instances.
+  * Introduced [FHIR Terminology repositories ](../../terminology/fhir-terminology-repository/)(alpha) to store any terminology elements (code systems, value sets, concepts) in an effective way and distribute them among Aidbox instances
 * CCDA to FHIR converter
   * Supported [validation against XSD and Schematron schemas](../../modules-1/ccda-converter.md#validating-a-ccda-document)
   * Supported Diagnostic Imaging Report sections:
@@ -18,19 +18,19 @@
     * Nursing notes
   * Supported Care Team section mapping
 * Search API
-  * Added [execute type in AidboxQuery](../../api-1/fhir-api/search-1/custom-search.md#query-types).
-  * Added [FHIR compliant date search](../../api-1/fhir-api/search-1/date-search.md).
-  * Added 180 seconds [timeout](../../api-1/fhir-api/search-1/\_timeout.md) for [(rev)include queries](../../api-1/fhir-api/search-1/\_include-and-\_revinclude.md).
-  * **Breaking change:** removed limit of 1000 in [\_count queries](../../api-1/fhir-api/search-1/\_count-and-\_page.md).
-* FHIR API for EHRs:&#x20;
+  * Added [execute type in AidboxQuery](../../api-1/fhir-api/search-1/custom-search.md#query-types)
+  * Added [FHIR compliant date search](../../api-1/fhir-api/search-1/date-search.md)
+  * Added 180 seconds [timeout](../../api-1/fhir-api/search-1/\_timeout.md) for [(rev)include queries](../../api-1/fhir-api/search-1/\_include-and-\_revinclude.md)
+  * **Breaking change:** removed limit of 1000 in [\_count queries](../../api-1/fhir-api/search-1/\_count-and-\_page.md)
+* FHIR API for EHRs
   * Supported [multitenancy](../../modules-1/smartbox/background-information/multitenancy-approach.md)&#x20;
   * Added an option set up [EHR-level customization](../../modules-1/smartbox/how-to-guides/set-up-ehr-level-customization.md) (logos and templates)
 * Aidbox forms
   * Supported rules, text type and display type conversion on [FHIR Questionnaire -> SDCDocument converter](../../reference/aidbox-forms/api-reference.md#aidbox.sdc-convert-questionnaire)
   * Supported [amendments and addendums](../../modules-1/aidbox-forms/addendum.md) of forms
 * Aidbox user portal
-  * Introduced [CI/CD licenses](../editions-and-pricing.md#aidbox-licenses) on the [Aidbox user portal](../../overview/aidbox-user-portal/). You can get this license to run multiple instances of Aidbox and Multibox in parallel for 72 hours. Both development and CI/CD licenses are available for existing customers at no cost.
-  * Added an option to configure Aidbox instances hosted in Aidbox Cloud with FHIR IGs for data validation.
+  * Introduced [CI/CD licenses](../editions-and-pricing.md#aidbox-licenses) on the [Aidbox user portal](../../overview/aidbox-user-portal/). You can get this license to run multiple instances of Aidbox and Multibox in parallel for 72 hours. Both development and CI/CD licenses are available for existing customers at no cost
+  * Added an option to configure Aidbox instances hosted in Aidbox Cloud with FHIR IGs for data validation
 * Logging and audit
   * Supported [log streaming to browser](../../core-modules/logging-and-audit/#logs-in-browser)
   * Fixed incorrect calculation of request duration for resources in transaction bundles
@@ -38,9 +38,9 @@
   * [Index management](../../aidbox-configuration/index-management.md)
   * [US Core IG configuration](../../fhir-implementation-guides/us-core-ig/)
   * [Deleting data guide](../../storage-1/delete-data.md)
-* Fixed [issues](https://github.com/Aidbox/Issues/issues?q=is%3Aissue+milestone%3A%22October+2022+-+v%3A2210%22+is%3Aclosed) submitted by Aidbox users and minor bugs.
+* Fixed [issues](https://github.com/Aidbox/Issues/issues?q=is%3Aissue+milestone%3A%22October+2022+-+v%3A2210%22+is%3Aclosed) submitted by Aidbox users and minor bugs
 
-## September 2022 _`latest`_
+## September 2022 _`2209, stable`_
 
 * Released [Seed v2 service](../../aidbox-configuration/aidbox-zen-lang-project/seed-v2.md) for [Aidbox configuration projects](../../aidbox-configuration/aidbox-zen-lang-project/)
 * Added [Client.audience](../../security-and-access-control-1/overview.md#client.audience) regex support in SMART on FHIR App launch
@@ -56,7 +56,7 @@
 * Added `enable-links` parameter for [AidboxQuery](../../api-1/fhir-api/search-1/custom-search.md#return-links)
 * Fixed issues submitted by Aidbox users and fixed minor bugs.
 
-## August 2022 _`stable`_
+## August 2022 _`2208`_
 
 * Aidbox FHIR API module (SMARTbox) is officially certified by ICSA Labs to comply with the [ONC’s 2015 Edition Cures Update](https://www.healthit.gov/topic/certification-ehrs/2015-edition-cures-update-test-method) requirements / 170.315(g)(10).
 * Added [Aidbox FHIR API module (SMARTbox) set up guide](../../modules-1/smartbox/get-started/set-up-smartbox.md).
