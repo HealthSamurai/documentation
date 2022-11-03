@@ -21,7 +21,7 @@ Follow the [official Docker guide](https://docs.docker.com/compose/install/#inst
 ### Clone and set up Aidbox template repository
 
 ```shell
-git clone https://github.com/aidbox/local-aidbox && cd local-aidbox
+git clone https://github.com/Aidbox/aidbox-docker-compose && cd aidbox-docker-compose
 ```
 
 This repository contains [Aidbox configuration project](../../aidbox-configuration/aidbox-zen-lang-project/) used to configure Aidbox and also additional files used to spin up Aidbox container.
