@@ -38,7 +38,7 @@
   * [Index management](../../aidbox-configuration/index-management.md)
   * [US Core IG configuration](../../fhir-implementation-guides/us-core-ig/)
   * [Deleting data guide](../../storage-1/delete-data.md)
-* Fixed issued submitted by Aidbox users
+* Fixed [issues](https://github.com/Aidbox/Issues/issues?q=is%3Aissue+milestone%3A%22October+2022+-+v%3A2210%22+is%3Aclosed) submitted by Aidbox users and minor bugs.
 
 ## September 2022 _`latest`_
 
