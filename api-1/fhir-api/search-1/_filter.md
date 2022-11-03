@@ -6,7 +6,7 @@ Aidbox offers the partial support of FHIR [\_filter](https://www.hl7.org/fhir/se
 
 ```
 # returns patient with specific id
-GET /fhir/Patient?_filter=id eq pt-2
+GET /fhir/Patient?_filter=id eq 'pt-2'
 
 # returns patients with name that contain specific substring e.g. Smith
 GET /fhir/Patient?_filter=name co 'smi'
