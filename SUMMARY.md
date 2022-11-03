@@ -286,7 +286,7 @@
     * [Form Editor](modules-1/aidbox-forms/aidbox-forms-ui/form-editor.md)
 * [Multitenancy](modules-1/multitenancy/README.md)
   * [How to enable first-class multitenancy](modules-1/multitenancy/how-to-enable-first-class-multitenancy.md)
-* [Smartbox](modules-1/smartbox/README.md)
+* [SMARTbox | FHIR API for EHRs](modules-1/smartbox/README.md)
   * [Get started](modules-1/smartbox/get-started/README.md)
     * [Set up Smartbox locally](modules-1/smartbox/get-started/set-up-smartbox.md)
   * [How-to guides](modules-1/smartbox/how-to-guides/README.md)
