@@ -6,8 +6,17 @@
   * Introduced [FHIR Terminology repositories ](../../terminology/fhir-terminology-repository/)(alpha) to store any terminology elements (code systems, value sets, concepts) in an effective way and distribute them among Aidbox instances.
 * CCDA to FHIR converter
   * Supported [validation against XSD and Schematron schemas](../../modules-1/ccda-converter.md#validating-a-ccda-document)
-  * Supported Diagnostic Imaging Report sections
-  * Supported conversion of different sections of CCDA documents to ClinicalImpression resources
+  * Supported Diagnostic Imaging Report sections:
+    * DICOM
+    * Findings
+    * History
+    * Indications for procedure
+  * Supported conversion of different sections of CCDA documents to ClinicalImpression resources:
+    * Consultation notes
+    * Discharge notes
+    * Procedure history notes
+    * Nursing notes
+  * Supported Care Team section mapping
 * Search API
   * Added [execute type in AidboxQuery](../../api-1/fhir-api/search-1/custom-search.md#query-types).
   * Added [FHIR compliant date search](../../api-1/fhir-api/search-1/date-search.md).
