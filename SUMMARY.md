@@ -298,7 +298,6 @@
     * [Perform EHR launch](modules-1/smartbox/how-to-guides/how-to-perform-ehr-launch.md)
     * [Revoke granted access](modules-1/smartbox/how-to-guides/revoke-granted-access.md)
     * [Pass Inferno tests with Smartbox](modules-1/smartbox/how-to-guides/pass-inferno-tests-with-smartbox.md)
-    * [Run Inferno ONC tests against Aidbox locally](modules-1/smartbox/how-to-guides/run-inferno-onc-tests-against-aidbox-locally.md)
   * [Techical reference](modules-1/smartbox/techical-reference.md)
   * [Background information](modules-1/smartbox/background-information/README.md)
     * [Considerations for Testing with Inferno ONC](modules-1/smartbox/background-information/considerations-for-testing-with-inferno-onc.md)

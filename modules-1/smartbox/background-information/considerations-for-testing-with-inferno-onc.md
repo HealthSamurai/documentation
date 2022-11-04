@@ -26,7 +26,7 @@ Aidbox is distributed as a Docker container:
 
 #### Aidbox
 
-It could be configured in [many ways](https://docs.aidbox.app/getting-started/installation/configure-devbox-aidbox-multibox) but the minimum configuration is defined [here](../how-to-guides/run-inferno-onc-tests-against-aidbox-locally.md).
+It could be configured in [many ways](https://docs.aidbox.app/getting-started/installation/configure-devbox-aidbox-multibox) but the minimum configuration is defined [here](broken-reference).
 
 Main configuration aspects:
 
