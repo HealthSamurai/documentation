@@ -166,3 +166,7 @@ Create Inferno test session by following the link [https://inferno.healthit.gov/
 * EHR Launch Client Secret: `inferno-confidential-patient-smart-app-secret`
 
 Once you run all tests, follow inferno instructions.
+
+{% hint style="info" %}
+Inferno has`EHR Practitioner App` sequence. To pass it, please, see the guide [How-to perform EHR launch](how-to-perform-ehr-launch.md)
+{% endhint %}
