@@ -168,5 +168,6 @@ Create Inferno test session by following the link [https://inferno.healthit.gov/
 Once you run all tests, follow inferno instructions.
 
 {% hint style="info" %}
-Inferno has`EHR Practitioner App` sequence. To pass it, please, see the guide [How-to perform EHR launch](how-to-perform-ehr-launch.md)
+1. To pass the `EHR Practitioner App` inferno sequence see the guide [How-to perform EHR launch](how-to-perform-ehr-launch.md)
+2. See [How-to revoke granted access](revoke-granted-access.md) to pass the `Token Revocation` Inferno test
 {% endhint %}
