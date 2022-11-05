@@ -4,11 +4,11 @@ description: Dev endpoint to test matcho engine
 
 # $matcho
 
-Macho DSL is used as engine in [AccessPolicy](../security-and-access-control-1/security/access-control.md#matcho-engine) and [Subscription](../api-1/reactive-api-and-subscriptions/subscriptions-1.md#trigger-format)
+Matcho DSL is used to define rules for [AccessPolicy](../security-and-access-control-1/security/access-control.md) and [Subscription](../api-1/reactive-api-and-subscriptions/subscriptions-1.md#trigger-format) resources.
 
 ## Definition
 
-Matcho DSL definition is described [here](../security-and-access-control-1/security/access-control.md#matcho-engine)
+Matcho DSL syntax is described [here](../security-and-access-control-1/security/evaluation-engines.md#matcho).
 
 ## Debug endpoint
 
