@@ -530,7 +530,7 @@ result:
 
 ### aidbox.sdc/get-form-access-jwt
 
-Creates policy token to get access to SDCDocument/SDCWorkflow
+Creates [policy token](../../security-and-access-control-1/security/access-policy.md#signed-rpc-policy-token) to get access to SDCDocument/SDCWorkflow
 
 params:
 
@@ -563,7 +563,7 @@ result:
 
 Usage:
 
-With this token you can get access to the document via RPC without authorization in Aidbox
+With this token you can get access to the document via RPC (save, sign, amend) without authorization in Aidbox
 
 ```javascript
 POST {{base}}/rpc

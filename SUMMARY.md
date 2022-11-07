@@ -281,6 +281,7 @@
   * [Versioning](modules-1/aidbox-forms/versioning.md)
   * [Converter](modules-1/aidbox-forms/converter.md)
   * [Addendum](modules-1/aidbox-forms/addendum.md)
+  * [Share a form](modules-1/aidbox-forms/share-a-form.md)
   * [Aidbox forms UI](modules-1/aidbox-forms/aidbox-forms-ui/README.md)
     * [Forms](modules-1/aidbox-forms/aidbox-forms-ui/forms.md)
     * [Documents](modules-1/aidbox-forms/aidbox-forms-ui/patients.md)
