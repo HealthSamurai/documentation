@@ -8,7 +8,7 @@ Workflow API wraps Form API and when you use WF you don't need to use Form API d
 * [start-workflow](workflow-api.md#start-workflow) - start WF and launch forms
 * [save-step](workflow-api.md#save-step) - save document through WF, mark step as in-progress
 * [skip-step](workflow-api.md#skip-step) - skip WF step
-* [amend-step](workflow-api.md#undefined-1) - amend WF step
+* [amend-step](workflow-api.md#amend-step) - amend WF step
 * [complete-step](workflow-api.md#complete-step) - try complete WF step with document, call sign on it.
 * [complete-workflow](workflow-api.md#complete-workflow) - complete WF
 * [cancel-workflow](workflow-api.md#cancel-workflow) - try cancel WF
