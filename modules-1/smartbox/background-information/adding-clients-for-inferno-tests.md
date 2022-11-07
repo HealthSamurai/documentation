@@ -45,8 +45,9 @@ Content-Type: text/yaml
 
 method: smartbox.portal.developer.rpc/save-developer-application
 params:
-  confidentiality: confidential
-  application-name: some-app-name
+  confidentiality:
+    value: confidential
+  name: some-app-name
   description: some-app-name
   redirect-url: http://redirect
   launch-url: http://launch
@@ -139,8 +140,9 @@ Content-Type: text/yaml
 
 method: smartbox.portal.developer.rpc/save-developer-application
 params:
-  confidentiality: public
-  application-name: public-app-name
+  confidentiality:
+    value: public
+  name: public-app-name
   description: public-app-name
   redirect-url: http://public.redirect
   launch-url: http://public.launch
