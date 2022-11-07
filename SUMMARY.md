@@ -278,6 +278,7 @@
 * [Aidbox Forms](modules-1/aidbox-forms.md)
   * [Getting started](modules-1/aidbox-forms/getting-started.md)
   * [Workflow](modules-1/aidbox-forms/workflow.md)
+  * [Versioning](modules-1/aidbox-forms/versioning.md)
   * [Converter](modules-1/aidbox-forms/converter.md)
   * [Addendum](modules-1/aidbox-forms/addendum.md)
   * [Aidbox forms UI](modules-1/aidbox-forms/aidbox-forms-ui/README.md)
