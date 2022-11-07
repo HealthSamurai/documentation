@@ -350,17 +350,17 @@ on `start-workflow`/`read-workflow` rpcs call - adds items :id information to pa
                      ...}}}
 ```
 
-You can use [Workflow API](../../reference/aidbox-forms/api-reference.md)
+You can use [Workflow API](../../reference/aidbox-forms/workflow-api.md)
 
-* [get-workflows](workflow.md#get-workflows) - get existed workflows
-* [get-workflow](workflow.md#get-workflow) - get workflow definition
-* [start-workflow](workflow.md#start-workflow) - start WF and launch forms
-* [save-step](workflow.md#save-step) - save document through WF, mark step as in-progress
-* [skip-step](workflow.md#skip-step) - skip WF step
-* [amend-step](workflow.md#undefined-1) - amend WF step
-* [complete-step](workflow.md#complete-step) - try complete WF step with document, call sign on it.
-* [complete-workflow](workflow.md#complete-workflow) - complete WF
-* [cancel-workflow](workflow.md#cancel-workflow) - try cancel WF
-* [amend-workflow](workflow.md#amend-workflow) - amend completed WF
+* [get-workflows](../../reference/aidbox-forms/workflow-api.md#get-workflows) - get existed workflows
+* [get-workflow](../../reference/aidbox-forms/workflow-api.md#get-workflow) - get workflow definition
+* [start-workflow](../../reference/aidbox-forms/workflow-api.md#start-workflow) - start WF and launch forms
+* [save-step](../../reference/aidbox-forms/workflow-api.md#save-step) - save document through WF, mark step as in-progress
+* [skip-step](../../reference/aidbox-forms/workflow-api.md#skip-step) - skip WF step
+* [amend-step](../../reference/aidbox-forms/workflow-api.md#amend-step) - amend WF step
+* [complete-step](../../reference/aidbox-forms/workflow-api.md#complete-step) - try complete WF step with document, call sign on it.
+* [complete-workflow](../../reference/aidbox-forms/workflow-api.md#complete-workflow) - complete WF
+* [cancel-workflow ](../../reference/aidbox-forms/workflow-api.md#cancel-workflow)- try cancel WF
+* [amend-workflow](../../reference/aidbox-forms/workflow-api.md#amend-workflow) - amend completed WF
 
 ###
