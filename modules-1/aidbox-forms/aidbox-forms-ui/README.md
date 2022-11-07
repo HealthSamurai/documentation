@@ -20,7 +20,7 @@ Form statuses will be displayed on the Form page in the future.
 
 This is another entry point to the system. You can create and debug forms in the context of a patient and encounter.&#x20;
 
-You can visit [the Patients page](patients.md) for more details.
+You can visit the Patients page for more details.
 
 ### Edit a Form
 
@@ -32,5 +32,5 @@ You can visit [the Form Editor page](form-editor.md) for more details.
 
 When you click on the `create form` button you will have two options:
 
-* [create from Questionnaire](broken-reference)
-* [create from Scratch](broken-reference)
+* create from Questionnaire
+* create from Scratch
