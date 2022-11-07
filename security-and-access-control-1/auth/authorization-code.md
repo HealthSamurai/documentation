@@ -65,7 +65,7 @@ You can configure Client for JWT tokens, set token expiration and enable a refre
 | **token\_format**              | jwt           | use access token in jwt format                             |
 | **access\_token\_expiration**  | int (seconds) | token expiration time from issued at                       |
 | **refresh\_token**             | true/false    | enable refresh\_token                                      |
-| **refresh\_token\_expiration** | int (seconds) | refresh token expiration time from issued at or last usage |
+| **refresh\_token\_expiration** | int (seconds) | refresh token expiration time from issued at or last usage. If not present, token will be expireless |
 | **secret\_required**           | true/false    | require secret for token                                   |
 | **pkce**                       | true/false    | enable PKCE flow                                           |
 
