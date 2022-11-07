@@ -563,7 +563,7 @@ result:
 
 Usage:
 
-With this token you can get access to the document via RPC (save, sign, amend) without authorization in Aidbox
+With this token you can get access to the document via RPC (read-document, save, sign, amend) without authorization in Aidbox
 
 ```javascript
 POST {{base}}/rpc
