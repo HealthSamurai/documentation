@@ -18,6 +18,10 @@ Smartbox has a documentation page. The address of the page is `https://example.c
 Here `https://example.com` is the Smartbox domain
 {% endhint %}
 
+## 9.10.10 Health IT developer confirms the Health IT module does not cache the JWK Set received via a TLS-protected URL for longer than the cache-control header received by an application indicates
+
+It is an attestation. You should state Smartbox never caches `JWK` sets it receives during the token validations.
+
 ## 9.10.11 Health IT developer demonstrates support for the Patient Demographics Suffix USCDI v1 element
 
 To demonstrate supporting of the `Suffix`
