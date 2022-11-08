@@ -241,27 +241,8 @@ GET /Condition?code:in=/ValueSet/cardiac-conditions
 
 Reference describes the relationship between resources. Following options are available for filtering by reference:
 
-Сoded element or identifier
-
-{% tabs %}
-{% tab title="FHIR format" %}
-```javascript
-GET /fhir/Patient?gender=female
-```
-{% endtab %}
-
-{% tab title="Aidbox format" %}
-```javascript
-GET /Patient?gender=female
-```
-{% endtab %}
-{% endtabs %}
-
 ```javascript
 [parameter]=[id]
-```
-
-```javascript
 [parameter]=[type]/[id]
 ```
 
