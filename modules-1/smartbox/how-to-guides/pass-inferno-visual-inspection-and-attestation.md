@@ -78,6 +78,125 @@ To demonstrate supporting of the `Previous Name`
    1. First `name` has `period.end` property. It means that `name` is the `previous` one
    2. Second `name` has no `period.end` property. That `name` is `current` one
 
+## 9.10.13 Health IT developer demonstrates support for issuing refresh tokens to native applications
+
+Native applications can register `custom URL schemas`. Instead of the ordinary `http://` prefix the URL of the native application can start with anything else. For example, `my-awesome-smart-app://` is a legal custom URL schema.
+
+In terms of `SMART App launch` supporting native applications stands for allowing custom schemas in the `redirect_uri` property.
+
+**To demonstrate native applications support**
+
+1. Register an application with a custom URL schema
+2. Build the authorization request URL
+3. Open the URL in the browser
+4. Authenticate in the Smartbox (enter login and password)
+5. Authorize the launch (allow on the Consent screen)
+6. Receive the \`code\` from Smartbox
+7. Get Postman collection installed
+8. Exchange the \`code\` to the \`access\_token\` & \`refresh\_token\`
+9. Use \`access\_token\` to fetch resources from Smartbox
+10. Use \`refresh\_token\` to get a new \`access\_token\`
+11. Use updated \`access\_token\` to fetch resources from Smartbox
+
+### Register an application with a custom URL schema
+
+<pre class="language-yaml"><code class="lang-yaml">PUT /Client/for-refresh-token
+content-type: text/yaml
+
+id: for-refresh-token
+type: patient-facing-smart-app
+grant_types:
+  - authorization_code
+  - basic
+resourceType: Client
+auth:
+  authorization_code:
+    pkce: false
+<strong>    redirect_uri: custom://redirect     # custom schema is defined
+</strong>    refresh_token: true
+    secret_required: true
+    access_token_expiration: 300
+secret: secret
+active: true
+smart:
+  launch_uri: https://inferno.healthit.gov/suites/custom/smart/launch</code></pre>
+
+### Build the authorization request URL
+
+The link should look like this `https://example.com/tenant/my-clinic/patient/auth/authorize?client_id=for-refresh-token&scope=launch/patient%20patient/Patient.read%20patient/Condition.read%20offline_access&state=my-state&response_type=code&redirect_uri=custom://redirect&aud=https://example.com/tenant/my-clinic/patient/smart-api`
+
+Instead of `https://example.com` use your Smartbox base url.
+
+### Open the URL in the browser
+
+In your web browser:
+
+1. Open a new private tab in the browser
+2. Open developer console to be able to see all the http requests the browser does
+3. Put the link to the URL bar and press enter
+
+### Authenticate in the Smartbox (enter login and password)
+
+Still on the browser enter you login and password credentials
+
+### Authorize the launch (allow on the Consent screen)
+
+Still on the browser press the `Allow` button
+
+### Receive the \`code\` from Smartbox
+
+After press the `Allow` button Smartbox redirects user back to the `Consent screen`.
+
+In the http requests list find the latest one `GET` request with the code `302`. The `location` header should start with the `custom://redirect?` string. \
+\
+Fetch the `code` parameter from the location. Mind there are other parameters in that link. You do not need them.
+
+### Get the Postman collection installed
+
+1. Open Postman
+2. Import the [collection](https://www.getpostman.com/collections/c3f1546d1df29d3df725)
+3. Update the `host` variable with your Smarbox base url
+
+### Exchange the \`code\` to the \`access\_token\` & \`refresh\_token\`
+
+In the Postman
+
+1. Open `Exchange code for access_token` request
+2. Put the `code` to the `code` parameter
+3. Press the `Send` button
+
+The result of the request is a JSON-object containing `access_token` and `refresh_token` properties.
+
+### Use \`access\_token\` to fetch resources from Smartbox
+
+Still in postman:
+
+1. Open the `Get Patient Resource` request
+2. Copy the `access_token` to the `token` input
+3. Press the `Send` button
+
+The result of the request is a JSON-object of the  `Patient` resource. Access token works.
+
+### Use \`refresh\_token\` to get a new \`access\_token\`
+
+Still in postman:
+
+1. Open the `Refresh access token` request
+2. Copy the `refresh_token` to the `refresh_token` parameter
+3. Press the `Send` button
+
+The result of the request is a JSON-object containing the `access_token`.
+
+### Use updated \`access\_token\` to fetch resources from Smartbox
+
+Still in postman:
+
+1. Open the `Get Patient Resource` request
+2. Copy the freshly issued `access_token` to the `token` input&#x20;
+3. Press the `Send` button
+
+The result of the request is the JSON-object of the  `Patient` resource. Updated `access_token`works
+
 ## 9.10.14 Health IT developer demonstrates the public location of its base URLs
 
 Smartbox generates the list of the base URLs. The address of the list is `https://example.com/service-base-urls`
