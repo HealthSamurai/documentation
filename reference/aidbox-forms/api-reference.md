@@ -10,6 +10,13 @@
 * [`aidbox.sdc/convert-questionnaire`](api-reference.md#aidbox.sdc-convert-questionnaire)- converts FHIR Questionnaire to Aidbox SDC Form&#x20;
 * [`aidbox.sdc/get-form-access-jwt`](api-reference.md#aidbox.sdc-get-form-access-jwt)- creates policy token for form
 * ``[`amend`](api-reference.md#amend) - put document to in-amendment state. Used for corrections
+* `add-note` - add note as addendum to the given document
+
+
+
+
+
+
 
 ### get-forms
 
@@ -613,4 +620,77 @@ error:
   message: Resource is not found
   message: Can't be amended not in final status (completed/amended): <cur-status>
   ...
+```
+
+### add-note
+
+Add Addendum Note to the given Document. This is the preferred way to add Notes to Documents.
+
+{% hint style="warning" %}
+Use this API (`aidbox.sdc/add-note`) instead of the low-level [Addendum API (`aidbox.sdc.addendum/add-note`)](addendum-api.md#add-note)
+{% endhint %}
+
+Params:
+
+| Param | Description                       | Type             | required? |
+| ----- | --------------------------------- | ---------------- | --------- |
+| id    | Document id                       | zen/string       | yes       |
+| user  | Reference to user which adds note | zenbox/Reference | yes       |
+| text  | Addendum note text                | zen/string       | yes       |
+
+Request:
+
+```
+POST /rpc?
+
+method: aidbox.sdc/add-note
+params:
+  id: doc-1
+  user:
+    id: user-1
+    resourceType: User
+  text: "Temperature measurements are not correct. Should be 100"
+```
+
+Result:
+
+> Success
+
+```
+result:
+  date: '2022-11-11T11:11:10.111Z'
+  text: Temperature measurements are not correct. Should be 100
+  type: aidbox.sdc.addendum/Note
+  user:
+    id: user-1
+    resourceType: User
+  target:
+    id: doc-1
+    resourceType: SDCDocument
+  id: f3989be1-9e6d-4e9e-a9bf-7b52956ea432
+  resourceType: SDCAddendum
+```
+
+Server responds with `HTTP 422 Unprocessable Entity` if wrong document id is provided.
+
+```
+POST /rpc?
+
+method: aidbox.sdc/add-note
+params:
+  id: some-unknown-document-id
+  user:
+    id: user-1
+    resourceType: User
+  text: "Temperature measurements are not correct. Should be 100"
+```
+
+Result:
+
+> Error
+
+```
+error:
+  message: Resource not found
+
 ```
