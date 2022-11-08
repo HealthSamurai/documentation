@@ -10,6 +10,22 @@ description: >-
 Currently this guide is in progress. It is going to be updated with all the attestations
 {% endhint %}
 
+## 9.10.01 Health IT Module demonstrated support for application registration for single patients
+
+Provided by certification buddy `Tests steps` require demonstrating the process of application registration for single patients. You should switch to the `Yes` option.
+
+{% hint style="info" %}
+Smartbox supports [several ways](../background-information/adding-clients-for-inferno-tests.md) to register SMART applications
+{% endhint %}
+
+## 9.10.02 Health IT Module demonstrated support for application registration for multiple patients
+
+Provided by certification buddy `Tests steps` require demonstrating the process of application registration for multiple patients. You should switch to the `Yes` option.
+
+{% hint style="info" %}
+Smartbox supports [several ways](../background-information/adding-clients-for-inferno-tests.md) to register SMART applications
+{% endhint %}
+
 ## 9.10.09 Health IT developer demonstrated the documentation is available at a publicly accessible URL
 
 Smartbox has a documentation page. The address of the page is `https://example.com/documentation`
