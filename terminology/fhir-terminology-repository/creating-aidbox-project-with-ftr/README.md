@@ -86,7 +86,7 @@ This ValueSet definition confirms to [zen.fhir ValueSet schema](../../../profili
 #### Initialize this directory as a git repository, commit your initial set-up
 
 ```bash
-git init && git add . && git commit -m "init"
+git init && git add --all && git commit -m "init"
 ```
 
 #### Generating FTR
