@@ -91,14 +91,14 @@ In terms of `SMART App launch` supporting native applications stands for allowin
 3. Open the URL in the browser
 4. Authenticate in the Smartbox (enter login and password)
 5. Authorize the launch (allow on the Consent screen)
-6. Receive the \`code\` from Smartbox
+6. Receive the `code` from Smartbox
 7. Get Postman collection installed
-8. Exchange the \`code\` to the \`access\_token\` & \`refresh\_token\`
-9. Use \`access\_token\` to fetch resources from Smartbox
-10. Use \`refresh\_token\` to get a new \`access\_token\`
-11. Use updated \`access\_token\` to fetch resources from Smartbox
+8. Exchange the `code` to the `access_token` and `refresh_token`
+9. Use `access_token` to fetch resources from Smartbox
+10. Use `refresh_token` to get a new `access_token`
+11. Use updated `access_token` to fetch resources from Smartbox
 
-### Register an application with a custom URL schema
+### 1. Register an application with a custom URL schema
 
 <pre class="language-yaml"><code class="lang-yaml">PUT /Client/for-refresh-token
 content-type: text/yaml
@@ -121,13 +121,13 @@ active: true
 smart:
   launch_uri: https://inferno.healthit.gov/suites/custom/smart/launch</code></pre>
 
-### Build the authorization request URL
+### 2. Build the authorization request URL
 
 The link should look like this `https://example.com/tenant/my-clinic/patient/auth/authorize?client_id=for-refresh-token&scope=launch/patient%20patient/Patient.read%20patient/Condition.read%20offline_access&state=my-state&response_type=code&redirect_uri=custom://redirect&aud=https://example.com/tenant/my-clinic/patient/smart-api`
 
 Instead of `https://example.com` use your Smartbox base url.
 
-### Open the URL in the browser
+### 3. Open the URL in the browser
 
 In your web browser:
 
@@ -135,29 +135,29 @@ In your web browser:
 2. Open developer console to be able to see all the http requests the browser does
 3. Put the link to the URL bar and press enter
 
-### Authenticate in the Smartbox (enter login and password)
+### 4. Authenticate in the Smartbox (enter login and password)
 
 Still on the browser enter you login and password credentials
 
-### Authorize the launch (allow on the Consent screen)
+### 5. Authorize the launch (allow on the Consent screen)
 
 Still on the browser press the `Allow` button
 
-### Receive the \`code\` from Smartbox
+### 6. Receive the \`code\` from Smartbox
 
 After press the `Allow` button Smartbox redirects user back to the `Consent screen`.
 
-In the http requests list find the latest one `GET` request with the code `302`. The `location` header should start with the `custom://redirect?` string. \
+In the list of the https requests find the latest one `GET` request with the code `302`. The `location` header should start with the `custom://redirect?` string. \
 \
 Fetch the `code` parameter from the location. Mind there are other parameters in that link. You do not need them.
 
-### Get the Postman collection installed
+### 7. Get the Postman collection installed
 
 1. Open Postman
 2. Import the [collection](https://www.getpostman.com/collections/c3f1546d1df29d3df725)
 3. Update the `host` variable with your Smarbox base url
 
-### Exchange the \`code\` to the \`access\_token\` & \`refresh\_token\`
+### 8. Exchange the \`code\` to the \`access\_token\` & \`refresh\_token\`
 
 In the Postman
 
@@ -167,7 +167,11 @@ In the Postman
 
 The result of the request is a JSON-object containing `access_token` and `refresh_token` properties.
 
-### Use \`access\_token\` to fetch resources from Smartbox
+{% hint style="warning" %}
+Smartbox allows to exchange `code` to `token` in no more than 5 minutes after the `code` was issued
+{% endhint %}
+
+### 9. Use \`access\_token\` to fetch resources from Smartbox
 
 Still in postman:
 
@@ -177,7 +181,7 @@ Still in postman:
 
 The result of the request is a JSON-object of the  `Patient` resource. Access token works.
 
-### Use \`refresh\_token\` to get a new \`access\_token\`
+### 10. Use \`refresh\_token\` to get a new \`access\_token\`
 
 Still in postman:
 
@@ -187,7 +191,7 @@ Still in postman:
 
 The result of the request is a JSON-object containing the `access_token`.
 
-### Use updated \`access\_token\` to fetch resources from Smartbox
+### 11. Use updated \`access\_token\` to fetch resources from Smartbox
 
 Still in postman:
 
