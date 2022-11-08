@@ -42,6 +42,10 @@ Default `refresh_token` lifespan is unlimited.
 To reduce the refresh\_token lifespan use [refresh\_token\_expiration documentation](../../../security-and-access-control-1/auth/authorization-code.md#configure-client)
 {% endhint %}
 
+## 9.10.07 Tester verifies that all information is accurate and without omission
+
+Switch to the `Yes` option. If something is lost, the tester says it.
+
 ## 9.10.09 Health IT developer demonstrated the documentation is available at a publicly accessible URL
 
 Smartbox has a documentation page. The address of the page is `https://example.com/documentation`
