@@ -10,13 +10,9 @@
 * [`aidbox.sdc/convert-questionnaire`](api-reference.md#aidbox.sdc-convert-questionnaire)- converts FHIR Questionnaire to Aidbox SDC Form&#x20;
 * [`aidbox.sdc/get-form-access-jwt`](api-reference.md#aidbox.sdc-get-form-access-jwt)- creates policy token for form
 * ``[`amend`](api-reference.md#amend) - put document to in-amendment state. Used for corrections
-* `add-note` - add note as addendum to the given document
+* ``[`add-note`](api-reference.md#add-note) - add note as addendum to the given document
 
-
-
-
-
-
+###
 
 ### get-forms
 
@@ -111,8 +107,6 @@ error:
 ```
 
 ####
-
-
 
 ### read-document
 
@@ -626,7 +620,7 @@ error:
 
 Add Addendum Note to the given Document. This is the preferred way to add Notes to Documents.
 
-{% hint style="warning" %}
+{% hint style="info" %}
 Use this API (`aidbox.sdc/add-note`) instead of the low-level [Addendum API (`aidbox.sdc.addendum/add-note`)](addendum-api.md#add-note)
 {% endhint %}
 
