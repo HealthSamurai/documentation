@@ -26,6 +26,14 @@ Provided by certification buddy `Tests steps` require demonstrating the process 
 Smartbox supports [several ways](../background-information/adding-clients-for-inferno-tests.md) to register SMART applications
 {% endhint %}
 
+## 9.10.03 Health IT Module demonstrated a graphical user interface for user to authorize FHIR resources
+
+During the test sessions, Smartbox shows users the `Consent screen`. The `Consent screen` is the graphical user interface.
+
+## 9.10.04 Health IT Module informed patient when "offline\_access" scope is being granted during authorization
+
+During the test sessions, Smartbox shows users the `Consent screen`. There is the `Offline access` option on the `Consent screen`.
+
 ## 9.10.09 Health IT developer demonstrated the documentation is available at a publicly accessible URL
 
 Smartbox has a documentation page. The address of the page is `https://example.com/documentation`
