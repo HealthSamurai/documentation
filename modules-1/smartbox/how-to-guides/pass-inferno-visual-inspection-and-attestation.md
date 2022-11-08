@@ -49,3 +49,7 @@ Smartbox generates the list of the base URLs. The address of the list is `https:
 {% hint style="info" %}
 Here `https://example.com` is the Smartbox domain
 {% endhint %}
+
+## 9.10.15 TLS version 1.2 or above must be enforced
+
+That behavior is not related to the Smartbox (Aidbox) settings. Setting the TLS versions and enforcement to the wanted versions is out of the Smartbox setup scope
