@@ -34,6 +34,14 @@ During the test sessions, Smartbox shows users the `Consent screen`. The `Consen
 
 During the test sessions, Smartbox shows users the `Consent screen`. There is the `Offline access` option on the `Consent screen`.
 
+## 9.10.05 Health IT Module attested that it is capable of issuing refresh tokens that are valid for a period of no shorter than three months
+
+Default `refresh_token` lifespan is unlimited.
+
+{% hint style="info" %}
+To reduce the refresh\_token lifespan use [refresh\_token\_expiration documentation](../../../security-and-access-control-1/auth/authorization-code.md#configure-client)
+{% endhint %}
+
 ## 9.10.09 Health IT developer demonstrated the documentation is available at a publicly accessible URL
 
 Smartbox has a documentation page. The address of the page is `https://example.com/documentation`
