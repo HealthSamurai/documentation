@@ -301,3 +301,60 @@ DELETE /fhir/$export-status/<id>
 202 Accepted
 {% endtab %}
 {% endtabs %}
+
+## Troubleshooting guide
+
+$export operation expects you setup external storage, Aidbox exports data into. In most cases issues with $exoprt are the consequence of incorrect Adbox configuration. In order to exclude this run the following rpc:&#x20;
+
+```
+POST /rpc
+Content-Type: text/yaml
+
+method: aidbox.bulk/storage-healthcheck
+```
+
+Normally, you should see something like this in response body:
+
+```
+result:
+  message: ok
+  storage:
+    type: gcp
+    bucket: my_bucket
+    account:
+      id: gcp-acc
+      resourceType: GcpServiceAccount
+```
+
+This means, that integration between Aidbox and your storage setup correctly.
+
+What other responses you may see
+
+### Storage-type not specified
+
+Storage-type not specified error means, `box_bulk__storage_backend` env variable wasn't setup. Valid values are `aws` and `gcp`.
+
+### Unsupported storage-type
+
+unsupported storage-type error means, `box_bulk__storage_backend` env variable has invalid value. Valid values are `aws` and `gcp`.
+
+### bulk-storage account not specified
+
+This error means account is not specified
+
+* `box_bulk__storage_gcp_service__account` for GCP
+* `box_bulk__storage_aws_account` for AWS
+
+### Account not found
+
+This means there is no account for aws or gcp
+
+Create [AWSAccount](../../storage-1/aws-s3.md) or [GCPServiceAccount](../../storage-1/gcp-cloud-storage.md), depending on your config.
+
+### Bucket is not specified
+
+This error means, bucket is not specified.
+
+Specify `box_bulk__storage_gcp_bucket` for GCP.
+
+Specify `box_bulk__storage_aws_bucket` for AWS.
