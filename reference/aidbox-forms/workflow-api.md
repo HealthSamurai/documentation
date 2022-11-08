@@ -13,6 +13,7 @@ Workflow API wraps Form API and when you use WF you don't need to use Form API d
 * [complete-workflow](workflow-api.md#complete-workflow) - complete WF
 * [cancel-workflow](workflow-api.md#cancel-workflow) - try cancel WF
 * [amend-workflow](workflow-api.md#amend-workflow) - amend completed WF
+* add-workflow-note - add addendum note to the given WF
 
 ### get-workflows
 
@@ -623,3 +624,76 @@ result:
 ```
 
 ###
+
+### add-workflow-note
+
+Add Addendum Note to the given Workflow. This is the preferred way to add Notes to Workflows.
+
+{% hint style="info" %}
+Use this API (`aidbox.sdc/add-workflow-note`) instead of the low-level [Addendum API (`aidbox.sdc.addendum/add-note`).](addendum-api.md#add-note)
+{% endhint %}
+
+Params:
+
+| Param | Description                       | Type             | required? |
+| ----- | --------------------------------- | ---------------- | --------- |
+| id    | workflow id                       | zen/string       | yes       |
+| user  | Reference to user which adds note | zenbox/Reference | yes       |
+| text  | Addendum note text                | zen/string       | yes       |
+
+Request:
+
+```
+POST /rpc?
+content-type: text/yaml
+
+method: aidbox.sdc/add-workflow-note
+params:
+  id: wf-1
+  user:
+    id: user-1
+    resourceType: User
+  text: "Some important note on this workflow"
+```
+
+Result:
+
+```
+result:
+  date: '2022-11-11T11:11:10.111Z'
+  text: Some important note on this workflow
+  type: aidbox.sdc.addendum/Note
+  user:
+    id: user-1
+    resourceType: User
+  target:
+    id: wf-1
+    resourceType: SDCWorkflow
+  id: 168d0d5f-d496-46fa-8bac-ccd9f9e335cf
+  resourceType: SDCAddendum
+```
+
+Server responds with `HTTP 422 Unprocessable Entity` if wrong workflow id is provided.
+
+Request:
+
+```
+POST /rpc?
+
+method: aidbox.sdc/add-workflow-note
+params:
+  id: some-unknown-wf-id
+  user:
+    id: user-1
+    resourceType: User
+  text: "Some important note on this workflow"
+```
+
+Result:
+
+> Error
+
+```
+error:
+  message: Resource not found
+```

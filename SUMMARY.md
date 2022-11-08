@@ -294,7 +294,7 @@
   * [How-to guides](modules-1/smartbox/how-to-guides/README.md)
     * [Pass Inferno tests with Smartbox](modules-1/smartbox/how-to-guides/pass-inferno-tests-with-smartbox.md)
     * [Perform EHR launch](modules-1/smartbox/how-to-guides/how-to-perform-ehr-launch.md)
-    * [Pass Inferno Visual Inspection and Attestation sequence](modules-1/smartbox/how-to-guides/pass-inferno-visual-inspection-and-attestation-sequence.md)
+    * [Pass Inferno Visual Inspection and Attestation](modules-1/smartbox/how-to-guides/pass-inferno-visual-inspection-and-attestation.md)
     * [Revoke granted access](modules-1/smartbox/how-to-guides/revoke-granted-access.md)
     * [Set up EHR-level customization](modules-1/smartbox/how-to-guides/set-up-ehr-level-customization.md)
     * [Check email templates](modules-1/smartbox/how-to-guides/check-email-templates.md)
