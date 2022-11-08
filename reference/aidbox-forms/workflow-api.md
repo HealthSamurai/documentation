@@ -13,7 +13,7 @@ Workflow API wraps Form API and when you use WF you don't need to use Form API d
 * [complete-workflow](workflow-api.md#complete-workflow) - complete WF
 * [cancel-workflow](workflow-api.md#cancel-workflow) - try cancel WF
 * [amend-workflow](workflow-api.md#amend-workflow) - amend completed WF
-* add-workflow-note - add addendum note to the given WF
+* [add-workflow-note](workflow-api.md#add-workflow-note) - add addendum note to the given WF
 
 ### get-workflows
 
