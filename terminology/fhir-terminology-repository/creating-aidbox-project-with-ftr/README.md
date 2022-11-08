@@ -54,8 +54,8 @@ This ValueSet definition confirms to [zen.fhir ValueSet schema](../../../profili
   :uri "diagnosis-vs",
   :ftr
   {:module "ig",
-   :source-url "<ABSOLUTE_PATH_TO_PROJECT_DIR>/resources/icd-10.csv",
-   :ftr-path "<ABSOLUTE_PATH_TO_PROJECT_DIR>/ftr",
+   :source-url "resources/icd-10.csv",
+   :ftr-path "ftr",
    :tag "v1",
    :source-type :flat-table,
    :extractor-options
