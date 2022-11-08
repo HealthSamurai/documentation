@@ -42,7 +42,13 @@ Default `refresh_token` lifespan is unlimited.
 To reduce the refresh\_token lifespan use [refresh\_token\_expiration documentation](../../../security-and-access-control-1/auth/authorization-code.md#configure-client)
 {% endhint %}
 
-## 9.10.07 Tester verifies that all information is accurate and without omission
+## 9.10.06 Health IT developer demonstrated the ability of the Health IT Module / authorization server to validate token it has issued
+
+1. Follow the guide of the [9.10.13 Health IT developer demonstrates support for issuing refresh tokens to native applications](pass-inferno-visual-inspection-and-attestation.md#9.10.13-health-it-developer-demonstrates-support-for-issuing-refresh-tokens-to-native-applications) guide till the end
+
+Smartbox allowed to fetch `Patient` resource with the `access_token` it issued.
+
+## &#x20;9.10.07 Tester verifies that all information is accurate and without omission
 
 Switch to the `Yes` option. If something is lost, the tester says it.
 
