@@ -6,10 +6,6 @@ description: >-
 
 # Pass Inferno Visual Inspection and Attestation
 
-{% hint style="warning" %}
-Currently this guide is in progress. It is going to be updated with all the attestations
-{% endhint %}
-
 ## 9.10.01 Health IT Module demonstrated support for application registration for single patients
 
 Provided by certification buddy `Tests steps` require demonstrating the process of application registration for single patients. You should switch to the `Yes` option.
