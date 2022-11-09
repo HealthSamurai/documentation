@@ -44,13 +44,13 @@ To reduce the refresh\_token lifespan use [refresh\_token\_expiration documentat
 
 Smartbox allowed to fetch `Patient` resource with the `access_token` it issued.
 
-## &#x20;9.10.07 Tester verifies that all information is accurate and without omission
+## 9.10.07 Tester verifies that all information is accurate and without omission
 
 Switch to the `Yes` option. If something is lost, the tester says it.
 
 ## 9.10.08 Information returned no greater than scopes pre-authorized for multi-patient queries
 
-**To demonstrate that bevaniour**
+**To demonstrate that behavior**
 
 * Pre-create the client for multi-patient API test
 * Launch the `Multi-Patient Authorization and API` sequence and get the green line
@@ -230,7 +230,7 @@ Fetch the `code` parameter from the location. Mind there are other parameters in
 
 1. Open Postman
 2. Import the [collection](https://www.getpostman.com/collections/c3f1546d1df29d3df725)
-3. Update the `host` variable with your Smarbox base url
+3. Update the `host` variable with your Smartbox base url
 
 ### 8. Exchange the \`code\` to the \`access\_token\` & \`refresh\_token\`
 
@@ -274,7 +274,7 @@ Still in postman:
 2. Copy the freshly issued `access_token` to the `token` input&#x20;
 3. Press the `Send` button
 
-The result of the request is the JSON-object of the  `Patient` resource. Updated `access_token`works
+The result of the request is the JSON-object of the  `Patient` resource. Updated `access_token` works
 
 ## 9.10.14 Health IT developer demonstrates the public location of its base URLs
 
@@ -286,4 +286,4 @@ Here `https://example.com` is the Smartbox domain
 
 ## 9.10.15 TLS version 1.2 or above must be enforced
 
-That behavior is not related to the Smartbox (Aidbox) settings. Setting the TLS versions and enforcement to the wanted versions is out of the Smartbox setup scope
+That behavior is not related to the Smartbox settings. Setting the TLS versions and enforcement to the wanted versions is out of the Smartbox setup scope
