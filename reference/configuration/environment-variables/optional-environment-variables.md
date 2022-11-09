@@ -39,8 +39,8 @@ Sets the default total search parameter value.
 {% hint style="warning" %}
 if you use `box_search_default__params_total=none` you still get `total`when:
 
-1. &#x20; you don't use `_page`
-2. &#x20;the number of returned resources is less than `_count` (by default is 100).
+1. you don't use `_page`
+2. the number of returned resources is less than `_count` (by default is 100).
 {% endhint %}
 
 ### AIDBOX\_ES\_AUTH
@@ -99,9 +99,7 @@ AIDBOX_STDOUT_JSON=<log-level>
 
 `log-level` is one of: `off`, `fatal`, `error`, `warn`, `info`, `debug`, `trace`, `all`.
 
-By setting one of these values you would also get all the values to
-the left. e.g. if you set log level to `warn` you would also get log
-events with `fatal` and `error` levels (`off` is excluded).
+By setting one of these values you would also get all the values to the left. e.g. if you set log level to `warn` you would also get log events with `fatal` and `error` levels (`off` is excluded).
 
 #### Example of the log output
 
@@ -119,9 +117,7 @@ AIDBOX_STDOUT_PRETTY=<log-level>
 
 By default `log-level` is `error`.
 
-By setting one of these values you would also get all the values to
-the left. e.g. if you set log level to `warn` you would also get log
-events with `fatal` and `error` levels (`off` is excluded).
+By setting one of these values you would also get all the values to the left. e.g. if you set log level to `warn` you would also get log events with `fatal` and `error` levels (`off` is excluded).
 
 #### Example of the log output
 
@@ -193,8 +189,7 @@ For example, `extension.*.valueString` stored as `extension.0.value.string`
 BOX_CACHE_REPLICATION_DISABLE=true
 ```
 
-By default, Aidbox works in multi-replica mode, so more than one Aidbox replica could be connected to the same database. If you are sure you'll be running only one Aidbox replica, you could disable replication mechanism with this variable.
-Check [High Available Aidbox](https://docs.aidbox.app/getting-started/run-aidbox-in-kubernetes/high-available-aidbox) for additional information.
+By default, Aidbox works in multi-replica mode, so more than one Aidbox replica could be connected to the same database. If you are sure you'll be running only one Aidbox replica, you could disable replication mechanism with this variable. Check [High Available Aidbox](https://docs.aidbox.app/getting-started/run-aidbox-in-kubernetes/high-available-aidbox) for additional information.
 
 ### AIDBOX\_DEV\_MODE
 
@@ -265,7 +260,7 @@ Overrides the default count search parameter value. 100 is the default value. Th
 BOX_SEARCH_FHIR__COMPARISONS=true
 ```
 
-Use FHIR compliant [date search](https://www.hl7.org/fhir/search.html#prefix).&#x20;
+Use FHIR compliant [date search](https://www.hl7.org/fhir/search.html#prefix).
 
 ### BOX\_COMPATIBILITY\_VALIDATION\_JSON\_\_SCHEMA\_REGEX
 
@@ -396,8 +391,6 @@ DROP EXTENSION IF EXISTS fuzzystrmatch
 
 Then change `AIDBOX_EXTENSION_SCHEMA` and restart Aidbox.
 
-
-
 ### Set up RSA private/public keys and secret
 
 Aidbox generates JWT tokens for different purposes:
@@ -408,13 +401,10 @@ Aidbox generates JWT tokens for different purposes:
 Aidbox supports two signing algorithms: RS256 and HS256. RS256 expects providing private key for signing JWT and public key for verifing it. As far as HS256 needs only having secret for both operations.
 
 {% hint style="warning" %}
-Attention: by default Aidbox generates both keypair and secret on every startup. This means that on every start all previously generated JWT will be invalid. In order to avoid such undesirable situation, you may pass RSA keypair and secret as Aidbox parameters.\
-
+Attention: by default Aidbox generates both keypair and secret on every startup. This means that on every start all previously generated JWT will be invalid. In order to avoid such undesirable situation, you may pass RSA keypair and secret as Aidbox parameters.\\
 
 It is required to pass RSA keypair and secret as Aidbox parameters if you have multiple replicas of the same Aidbox/Multibox instance.
 {% endhint %}
-
-
 
 #### Generate RSA keypair
 
@@ -439,13 +429,13 @@ BOX_AUTH_KEYS_SECRET=<rand_string>
 
 ### Configure Aidbox WEB server workers and DB connection pool
 
-By default Aidbox and Multibox runs with 8 web workers and 8 DB connection pool size. That means that Aidbox can process at same time 8 concurrent connections.&#x20;
+By default Aidbox and Multibox runs with 8 web workers and 8 DB connection pool size. That means that Aidbox can process at same time 8 concurrent connections.
 
-A good practice is stay pool size the same as CPU count of your database. For example, if your database has 16 CPU cores you can set `BOX_DB_POOL_MAXIMIM__POOL__SIZE=16`. Box web workers count is dependent on your load profile. For example, if you have a lot of fast read queries you can set `BOX_WEB_THREAD` equal x2 or x3 of your DB pool size (32 or 48). Or if you have a lot of batch insert queries we recomend stay web workers count as the same DB pool size.
+A good practice is stay pool size the same as CPU count of your database. For example, if your database has 16 CPU cores you can set `BOX_DB_POOL_MAXIMUM__POOL__SIZE=16`. Box web workers count is dependent on your load profile. For example, if you have a lot of fast read queries you can set `BOX_WEB_THREAD` equal x2 or x3 of your DB pool size (32 or 48). Or if you have a lot of batch insert queries we recomend stay web workers count as the same DB pool size.
 
 You can configure this parameter using following environment variables.
 
 ```
-BOX_DB_POOL_MAXIMIM__POOL__SIZE=8
+BOX_DB_POOL_MAXIMUM__POOL__SIZE=8
 BOX_WEB_THREAD=8
 ```
