@@ -52,6 +52,79 @@ Smartbox allowed to fetch `Patient` resource with the `access_token` it issued.
 
 Switch to the `Yes` option. If something is lost, the tester says it.
 
+## 9.10.08 Information returned no greater than scopes pre-authorized for multi-patient queries
+
+**To demonstrate that bevaniour**
+
+* Pre-create the client for multi-patient API test
+* Launch the `Multi-Patient Authorization and API` sequence and get the green line
+* Narrow the authorized scope in the client
+* Re-launch the `Multi-Patient Authorization and API` sequence and get some errors
+
+### Pre-create the client for multi-patient API test
+
+Mind the `scope` property. It holds the `system/*.read` value.
+
+<pre class="language-yaml"><code class="lang-yaml">PUT /Client/inferno-my-clinic-bulk-client
+Content-Type: text/yaml
+
+type: bulk-api-client
+active: true
+auth:
+  client_credentials:
+    client_assertion_types: ['urn:ietf:params:oauth:client-assertion-type:jwt-bearer']
+    access_token_expiration: 300
+<strong>scope: [system/*.read]
+</strong>jwks_uri: https://inferno.healthit.gov/suites/custom/g10_certification/.well-known/jwks.json
+grant_types:
+- client_credentials
+meta:
+  tenant:
+    id: my-clinic
+    resourceType: Tenant</code></pre>
+
+### Launch the `Multi-Patient Authorization and API` sequence and get the green line
+
+1. Start new Inferno session
+2. Switch to the `Multi-Patient Authorization and API` sequence
+3. Press the `Run tests` button
+4. Populate the test input
+5. Press the `Submit` button
+
+You should receive the green line.
+
+### Narrow the authorized scope in the client
+
+Mind the `scope` property. It holds the `system/Patient.read` value. Access to the other resources is forbidden.
+
+<pre class="language-yaml"><code class="lang-yaml">PUT /Client/inferno-my-clinic-bulk-client
+Content-Type: text/yaml
+
+type: bulk-api-client
+active: true
+auth:
+  client_credentials:
+    client_assertion_types: ['urn:ietf:params:oauth:client-assertion-type:jwt-bearer']
+    access_token_expiration: 300
+<strong>scope: [system/Patient.read]
+</strong>jwks_uri: https://inferno.healthit.gov/suites/custom/g10_certification/.well-known/jwks.json
+grant_types:
+- client_credentials
+meta:
+  tenant:
+    id: my-clinic
+    resourceType: Tenant</code></pre>
+
+### Re-launch the Multi-Patient Authorization and API sequence and get some errors
+
+1. Start new Inferno session (it's important)
+2. Switch to the `Multi-Patient Authorization and API` sequence
+3. Press the `Run tests` button
+4. Populate the test input
+5. Press the `Submit` button
+
+You should receive a lot of errors. It proves Smartbox doesn't allow to get access to the unauthorized resources.
+
 ## 9.10.09 Health IT developer demonstrated the documentation is available at a publicly accessible URL
 
 Smartbox has a documentation page. The address of the page is `https://example.com/documentation`
