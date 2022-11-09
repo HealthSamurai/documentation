@@ -52,46 +52,12 @@ Switch to the `Yes` option. If something is lost, the tester says it.
 
 **To demonstrate that behavior**
 
-* Pre-create the client for multi-patient API test
-* Launch the `Multi-Patient Authorization and API` sequence and get the green line
-* Narrow the authorized scope in the client
-* Re-launch the `Multi-Patient Authorization and API` sequence and get some errors
+* Add a Client with narrow pre-authorized `scope`
+* Launch the `Multi-Patient Authorization and API` sequence with wide scope
 
-### Pre-create the client for multi-patient API test
+### Add a Client with the narrow pre-authorized scope
 
-Mind the `scope` property. It holds the `system/*.read` value.
-
-<pre class="language-yaml"><code class="lang-yaml">PUT /Client/inferno-my-clinic-bulk-client
-Content-Type: text/yaml
-
-type: bulk-api-client
-active: true
-auth:
-  client_credentials:
-    client_assertion_types: ['urn:ietf:params:oauth:client-assertion-type:jwt-bearer']
-    access_token_expiration: 300
-<strong>scope: [system/*.read]
-</strong>jwks_uri: https://inferno.healthit.gov/suites/custom/g10_certification/.well-known/jwks.json
-grant_types:
-- client_credentials
-meta:
-  tenant:
-    id: my-clinic
-    resourceType: Tenant</code></pre>
-
-### Launch the `Multi-Patient Authorization and API` sequence and get the green line
-
-1. Start new Inferno session
-2. Switch to the `Multi-Patient Authorization and API` sequence
-3. Press the `Run tests` button
-4. Populate the test input
-5. Press the `Submit` button
-
-You should receive the green line.
-
-### Narrow the authorized scope in the client
-
-Mind the `scope` property. It holds the `system/Patient.read` value. Access to the other resources is forbidden.
+Mind the `scope` property. It holds the `system/Patient.read` value only. Access to the other resources is forbidden.
 
 <pre class="language-yaml"><code class="lang-yaml">PUT /Client/inferno-my-clinic-bulk-client
 Content-Type: text/yaml
@@ -111,15 +77,22 @@ meta:
     id: my-clinic
     resourceType: Tenant</code></pre>
 
-### Re-launch the Multi-Patient Authorization and API sequence and get some errors
+### Launch the Multi-Patient Authorization and API sequence with wide scope
 
 1. Start new Inferno session (it's important)
 2. Switch to the `Multi-Patient Authorization and API` sequence
 3. Press the `Run tests` button
-4. Populate the test input
+4. Set up the test:
+   * Bulk Data FHIR URL: `[aidbox-url]/tenant/my-clinic/bulk-api`
+   * Backend Services Token Endpoint: `[aidbox-url]/auth/token`
+   * Bulk Data Client ID: `inferno-my-clinic-bulk-client`
+   * Bulk Data Scopes: `system/Patient.read`
+   * Encryption method: `RS384`
+   * Group ID: `test-group-1`
+   * Patient IDs in exported Group: `test-pt-1,test-pt-2`&#x20;
 5. Press the `Submit` button
 
-You should receive a lot of errors. It proves Smartbox doesn't allow to get access to the unauthorized resources.
+You should receive a lot of errors as Smartbox doesn't issue the access token.
 
 ## 9.10.09 Health IT developer demonstrated the documentation is available at a publicly accessible URL
 
