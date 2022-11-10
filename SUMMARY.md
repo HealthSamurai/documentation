@@ -291,7 +291,7 @@
 * [SMARTbox | FHIR API for EHRs](modules-1/smartbox/README.md)
   * [Get started](modules-1/smartbox/get-started/README.md)
     * [Set up Smartbox locally](modules-1/smartbox/get-started/set-up-smartbox.md)
-    * [Deploy Smartbox to Kubernetes](modules-1/smartbox/get-started/deploy-smartbox-to-kubernetes.md)
+    * [Deploy Smartbox with Kubernetes](modules-1/smartbox/get-started/deploy-smartbox-with-kubernetes.md)
   * [How-to guides](modules-1/smartbox/how-to-guides/README.md)
     * [Pass Inferno tests with Smartbox](modules-1/smartbox/how-to-guides/pass-inferno-tests-with-smartbox.md)
     * [Perform EHR launch](modules-1/smartbox/how-to-guides/how-to-perform-ehr-launch.md)

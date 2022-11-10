@@ -1,12 +1,10 @@
 ---
-description: This guide explains how to deploy Smartbox to k8s in minimal configuration
+description: The guide covers only Smartbox mandatory components deployment in k8s
 ---
 
-# Deploy Smartbox to Kubernetes
+# Deploy Smartbox with Kubernetes
 
-## Not a production-ready deployment
-
-This guide shows how to deploy Smartbox in minimal configuration. One instance of ProsgreSQL and a two instances of Aidbox (Sandbox and Portal).
+This guide shows how to deploy Smartbox in minimal configuration. One instance of PostgreSQL and a two instances of Aidbox (Sandbox and Portal).
 
 To have a production-ready deployment there also should be:
 
@@ -20,6 +18,14 @@ To have a production-ready deployment there also should be:
 {% hint style="warning" %}
 This guide does not define exposing Smartbox to the Internet
 {% endhint %}
+
+## Prerequisites
+
+* [Kubernetes](https://kubernetes.io/) cluster is set up and running
+* `kubectl` utility is installed
+* Two Aidbox [licenses](../../../overview/aidbox-user-portal/licenses.md) are obtained
+* Email provider [credentials](../../../integrations/email-providers.md) are obtained
+* GCP connect [credentials](../../../storage-1/gcp-cloud-storage.md) are obtained
 
 ## Resources templates
 
