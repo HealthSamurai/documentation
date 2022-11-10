@@ -539,3 +539,13 @@ aidboxdb-0                 1/1     Running   1 (31s ago)   99m
 sandbox-759d6b46fc-qwzwd   0/1     Running   1 (31s ago)   9m56s
 smartbox-979b6dfbb-2bhkn   0/1     Running   1 (31s ago)   9m56s
 ```
+
+## User pre-build k8s configuration
+
+### How to use pre-built k8s configuration
+
+1. Download the file
+2. Populate the missed ENVs
+3. Run the command `kubectl apply -f smartbox.yaml`
+
+{% file src="../../../.gitbook/assets/smartbox.yaml" %}
