@@ -45,14 +45,14 @@ The `smartbox.yaml` is the k8s compiled templates configuration. The configurati
 
 * PGUSER
 * PGPASSWORD
-* AIDBOX\_LICENSE
-* AIDBOX\_ADMIN\_ID
-* AIDBOX\_ADMIN\_PASSWORD
 * BOX\_PROVIDER\_DEFAULT\_**\*** values. See the [documentation](../how-to-guides/setup-email-provider.md)
 
 ### Sandbox specific
 
 * PGDATABASE: sandbox
+* AIDBOX\_LICENSE
+* AIDBOX\_ADMIN\_ID
+* AIDBOX\_ADMIN\_PASSWORD
 * AIDBOX\_BASE\_URL: http://sandbox
 * AIDBOX\_ZEN\_ENTRYPOINT: 'smartbox.dev-portal/box'
 * AIDBOX\_CLIENT\_ID: sandbox-client
@@ -62,6 +62,9 @@ The `smartbox.yaml` is the k8s compiled templates configuration. The configurati
 ### Portal specific
 
 * PGDATABASE: smartbox
+* AIDBOX\_LICENSE
+* AIDBOX\_ADMIN\_ID
+* AIDBOX\_ADMIN\_PASSWORD
 * AIDBOX\_BASE\_URL: http://smartbox
 * AIDBOX\_CLIENT\_ID: portal-client
 * AIDBOX\_CLIENT\_SECRET: portal-secret
