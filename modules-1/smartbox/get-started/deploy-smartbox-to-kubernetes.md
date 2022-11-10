@@ -8,14 +8,16 @@ description: This guide explains how to deploy Smartbox to k8s in minimal config
 In no circumstances that guide can be used to deploy production-ready infrastructure Smartbox
 {% endhint %}
 
-## Database (PostgreSQL)
+## Resources templates
+
+### Database (PostgreSQL)
 
 Smartbox (as an Aidbox configuration) requires an instance of running PostgreSQL. There should be two databases on a PostgreSQL cluster:
 
 * First is for `Sandbox` instance
 * Second is for `Portal` instance
 
-### Volume
+#### Volume
 
 {% code title="Volume" %}
 ```yaml
@@ -33,7 +35,7 @@ spec:
 ```
 {% endcode %}
 
-### ENVs
+#### ENVs
 
 {% code title="ConfigMap - ENVs" %}
 ```yaml
@@ -61,7 +63,7 @@ data:
 ```
 {% endcode %}
 
-### Config
+#### Config
 
 {% code title="ConfigMap" %}
 ```yaml
@@ -90,7 +92,7 @@ data:
 ```
 {% endcode %}
 
-### StatefulSet
+#### StatefulSet
 
 {% code title="StatefulSet" %}
 ```yaml
@@ -154,7 +156,7 @@ spec:
 ```
 {% endcode %}
 
-### Service
+#### Service
 
 {% code title="Service" %}
 ```yaml
@@ -173,9 +175,9 @@ spec:
 ```
 {% endcode %}
 
-## Sandbox
+### Sandbox
 
-### ENVs
+#### ENVs
 
 ```yaml
 kind: ConfigMap
@@ -224,7 +226,7 @@ data:
 ```
 {% endcode %}
 
-### Service
+#### Service
 
 ```yaml
 kind: Service
@@ -241,7 +243,7 @@ spec:
     port: 80
 ```
 
-### Deployment
+#### Deployment
 
 ```yaml
 kind: Deployment
@@ -281,7 +283,7 @@ spec:
         livenessProbe:
           httpGet:
             scheme: HTTP
-            path: /__healthcheck
+            path: /health
             port: 8080
           initialDelaySeconds: 20
           timeoutSeconds: 10
@@ -291,9 +293,9 @@ spec:
         image: healthsamurai/smartbox:edge
 ```
 
-## Portal
+### Portal
 
-### ENVs
+#### ENVs
 
 {% code title="ConfigMap" %}
 ```yaml
@@ -356,7 +358,7 @@ data:
 ```
 {% endcode %}
 
-### Service
+#### Service
 
 {% code title="Service" %}
 ```yaml
@@ -375,7 +377,7 @@ spec:
 ```
 {% endcode %}
 
-### Deployment
+#### Deployment
 
 ```yaml
 kind: Deployment
@@ -415,7 +417,7 @@ spec:
         livenessProbe:
           httpGet:
             scheme: HTTP
-            path: /__healthcheck
+            path: /health
             port: 8080
           initialDelaySeconds: 20
           timeoutSeconds: 10
@@ -423,4 +425,80 @@ spec:
           failureThreshold: 12
         imagePullPolicy: Always
         image: healthsamurai/smartbox:edge
+```
+
+## Prepare a configuration file
+
+To get a k8s configuration file:
+
+1. Populate the templates above
+2. Combine all the templates to the `.yaml` file separating the templates with `---` lines
+
+The beginning of the file should look like.
+
+{% code title="smartbox.yaml" %}
+```yaml
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: smartbox
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: aidboxdb-data
+  namespace: smartbox
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+# ... other file content
+```
+{% endcode %}
+
+## Deploy Smartbox to your cluster
+
+To deploy Smartbox run the command.
+
+```
+kubectl apply -f smartbox.yaml
+```
+
+The result should look like this.
+
+```shell
+namespace/smartbox created
+persistentvolumeclaim/aidboxdb-data created
+configmap/aidboxdb-envs created
+secret/aidboxdb-envs created
+configmap/aidboxdb-config created
+statefulset.apps/aidboxdb created
+service/aidboxdb created
+configmap/sandbox created
+secret/sandbox created
+service/sandbox created
+deployment.apps/sandbox created
+configmap/smartbox created
+secret/smartbox created
+service/smartbox created
+deployment.apps/smartbox created
+```
+
+To check if everything is working fine run the command.
+
+```shell
+kubectl get pods -n smartbox
+```
+
+There should be 3 running pods.
+
+```
+NAME                       READY   STATUS    RESTARTS      AGE
+aidboxdb-0                 1/1     Running   1 (31s ago)   99m
+sandbox-759d6b46fc-qwzwd   0/1     Running   1 (31s ago)   9m56s
+smartbox-979b6dfbb-2bhkn   0/1     Running   1 (31s ago)   9m56s
 ```
