@@ -6,12 +6,20 @@ description: This guide explains how to deploy Smartbox to k8s in minimal config
 
 ## Not a production-ready deployment
 
-This guide shows how to deploy Smartbox in minimal configuration. One instance of ProsgreSQL and a two instances of Aidbox (Sandbox and Portal). To have a production-ready deployment there also should be:
+This guide shows how to deploy Smartbox in minimal configuration. One instance of ProsgreSQL and a two instances of Aidbox (Sandbox and Portal).
+
+To have a production-ready deployment there also should be:
 
 * Database and Aidbox replicas
 * Backups and restoring
 * Logging and rotations
 * Monitoring and Alerting
+* Expose Smartbox to the Internet
+* Issuing SSL certificates
+
+{% hint style="warning" %}
+This guide does not define exposing Smartbox to the Internet
+{% endhint %}
 
 ## Resources templates
 
