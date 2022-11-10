@@ -27,7 +27,53 @@ This guide does not define exposing Smartbox to the Internet
 * Email provider [credentials](../../../integrations/email-providers.md) are obtained
 * GCP connect [credentials](../../../storage-1/gcp-cloud-storage.md) are obtained
 
-## Resources templates
+## Prebuilt k8s configuration
+
+1. Download the file
+2. Populate the [missed ENVs](deploy-smartbox-to-kubernetes.md#smartbox-envs)
+3. Run the command `kubectl apply -f smartbox.yaml`
+
+{% file src="../../../.gitbook/assets/smartbox.yaml" %}
+
+{% hint style="info" %}
+The `smartbox.yaml` is the k8s compiled templates configuration. The configuration components contained in the file are defined [further in this guide](deploy-smartbox-to-kubernetes.md#resources-templates)
+{% endhint %}
+
+## Smartbox mandatory ENVs
+
+### Common for Portal & Sandbox
+
+* PGUSER
+* PGPASSWORD
+* AIDBOX\_LICENSE
+* AIDBOX\_ADMIN\_ID
+* AIDBOX\_ADMIN\_PASSWORD
+* BOX\_PROVIDER\_DEFAULT\_**\*** values. See the [documentation](../how-to-guides/setup-email-provider.md)
+
+### Sandbox specific
+
+* PGDATABASE: sandbox
+* AIDBOX\_BASE\_URL: http://sandbox
+* AIDBOX\_ZEN\_ENTRYPOINT: 'smartbox.dev-portal/box'
+* AIDBOX\_CLIENT\_ID: sandbox-client
+* AIDBOX\_CLIENT\_SECRET: sandbox-secret
+* BOX\_AUTH\_LOGIN\_\_REDIRECT: "/"
+
+### Portal specific
+
+* PGDATABASE: smartbox
+* AIDBOX\_BASE\_URL: http://smartbox
+* AIDBOX\_CLIENT\_ID: portal-client
+* AIDBOX\_CLIENT\_SECRET: portal-secret
+* BOX\_SMARTBOX\_SANDBOX\_\_URL: http://sandbox
+* BOX\_SMARTBOX\_SANDBOX\_\_BASIC: 'sandbox-client:sandbox-secret'
+* BOX\_BULK\_\_STORAGE\_GCP\_\* values. See the [documentation](../../../api-1/bulk-api-1/usdexport.md#gcp)
+
+{% hint style="info" %}
+All the available environment variables are defined [here](../../../reference/configuration/environment-variables/)
+{% endhint %}
+
+## Components templates
 
 ### Database (PostgreSQL)
 
@@ -446,38 +492,6 @@ spec:
         image: healthsamurai/smartbox:edge
 ```
 
-## Smartbox ENVs
-
-All the available environment variables are defined [here](../../../reference/configuration/environment-variables/).
-
-### Common for Portal & Sandbox
-
-* PGUSER
-* PGPASSWORD
-* AIDBOX\_LICENSE
-* AIDBOX\_ADMIN\_ID
-* AIDBOX\_ADMIN\_PASSWORD
-* BOX\_PROVIDER\_DEFAULT\_**\*** values. See the [documentation](../how-to-guides/setup-email-provider.md)
-
-### Sandbox specific
-
-* PGDATABASE: sandbox
-* AIDBOX\_BASE\_URL: http://sandbox
-* AIDBOX\_ZEN\_ENTRYPOINT: 'smartbox.dev-portal/box'
-* AIDBOX\_CLIENT\_ID: sandbox-client
-* AIDBOX\_CLIENT\_SECRET: sandbox-secret
-* BOX\_AUTH\_LOGIN\_\_REDIRECT: "/"
-
-### Portal specific
-
-* PGDATABASE: smartbox
-* AIDBOX\_BASE\_URL: http://smartbox
-* AIDBOX\_CLIENT\_ID: portal-client
-* AIDBOX\_CLIENT\_SECRET: portal-secret
-* BOX\_SMARTBOX\_SANDBOX\_\_URL: http://sandbox
-* BOX\_SMARTBOX\_SANDBOX\_\_BASIC: 'sandbox-client:sandbox-secret'
-* BOX\_BULK\_\_STORAGE\_GCP\_\* values. See the [documentation](../../../api-1/bulk-api-1/usdexport.md#gcp)
-
 ## Prepare a configuration file
 
 To get a k8s configuration file:
@@ -553,13 +567,3 @@ aidboxdb-0                 1/1     Running   1 (31s ago)   99m
 sandbox-759d6b46fc-qwzwd   0/1     Running   1 (31s ago)   9m56s
 smartbox-979b6dfbb-2bhkn   0/1     Running   1 (31s ago)   9m56s
 ```
-
-## User pre-build k8s configuration
-
-### How to use pre-built k8s configuration
-
-1. Download the file
-2. Populate the missed ENVs
-3. Run the command `kubectl apply -f smartbox.yaml`
-
-{% file src="../../../.gitbook/assets/smartbox.yaml" %}
