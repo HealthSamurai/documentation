@@ -193,6 +193,7 @@ data:
   PGDATABASE: sandbox
   AIDBOX_STDOUT_PRETTY: 'true'
   AIDBOX_PORT: '8080'
+  AIDBOX_BASE_URL: 'http://sandbox'
   PGPORT: '5432'
   AIDBOX_FHIR_VERSION: 4.0.1
   BOX_PROVIDER_DEFAULT_TYPE: mailgun
@@ -210,7 +211,6 @@ type: Opaque
 data:
   PGUSER: cG9zdGdyZXM=                  # base64 encoded postgres
   PGPASSWORD: cG9zdGdyZXM=              # base64 encoded postgres
-  AIDBOX_BASE_URL: aHR0cDovL3NhbmRib3g= # base64 encoded http://sandbox
   AIDBOX_ADMIN_ID: YWRtaW4=             # base64 encoded admin
   AIDBOX_ADMIN_PASSWORD: cGFzc3dvcmQ=   # base64 encoded password
   AIDBOX_CLIENT_ID: cm9vdA==            # base64 encoded root
@@ -316,6 +316,7 @@ data:
   AIDBOX_STDOUT_PRETTY: 'true'
   AIDBOX_PORT: '8080'
   AIDBOX_FHIR_VERSION: 4.0.1
+  AIDBOX_BASE_URL: 'http://smartbox'
   BOX_PROVIDER_DEFAULT_TYPE: mailgun
   BOX_BULK__STORAGE_BACKEND: gcp
   BOX_BULK__STORAGE_GCP_SERVICE__ACCOUNT: gcp-ac
@@ -333,7 +334,6 @@ type: Opaque
 data:
   PGUSER: cG9zdGdyZXM=                  # base64 encoded postgres
   PGPASSWORD: cG9zdGdyZXM=              # base64 encoded postgres
-  AIDBOX_BASE_URL: aHR0cDovL3NtYXJ0Ym94 # base64 encoded http://smartbox
   AIDBOX_ADMIN_ID: YWRtaW4=             # base64 encoded admin
   AIDBOX_ADMIN_PASSWORD: cGFzc3dvcmQ=   # base64 encoded password
   AIDBOX_CLIENT_ID: cm9vdA==            # base64 encoded root
