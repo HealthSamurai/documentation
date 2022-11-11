@@ -8,6 +8,6 @@ How to install Hight Available Aidbox
 
 Complete guide on deploying production-ready Aidbox on Kubernetes cluster.
 
-{% content-ref url="./" %}
-[.](./)
+{% content-ref url="deploy-aidbox-in-kubernetes.md" %}
+[deploy-aidbox-in-kubernetes.md](deploy-aidbox-in-kubernetes.md)
 {% endcontent-ref %}
