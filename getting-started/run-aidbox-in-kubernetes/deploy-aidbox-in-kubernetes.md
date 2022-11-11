@@ -229,6 +229,8 @@ A set of tools to perform HA PostgreSQL with fail and switchover, automated back
 
 ## Aidbox
 
+First of all, you need to get Aidbox license on [Aidbox user portal](https://aidbox.app)
+
 Create ConfigMap with all required config and database connection&#x20;
 
 {% code title="Aidbox ConfigMap" lineNumbers="true" %}
@@ -264,7 +266,7 @@ data:
   AIDBOX_ADMIN_PASSWORD: <admin_password>
   AIDBOX_CLIENT_ID: <root_client_id>
   AIDBOX_CLIENT_SECRET: <root_client_password>
-  AIDBOX_LICENSE: <JWT-LICENSE>
+  AIDBOX_LICENSE: <JWT-LICENSE>    # JWT license from aidbox user portal
   PGPASSWORD: <db_password>        # database password
   PGUSER: <db_user>                # database username
 ```
@@ -344,24 +346,48 @@ To verify that Aidbox started correctly you can check the logs:
 kubectl logs -f <aidbox-pod-name>
 ```
 
-## \[TODO] Ingress
+Create the Aidbox k8s service
 
-A Cluster must have an [ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) Installed. Our recommendation is use [kubernetes Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx). As alternative, you can use [Traefic](https://github.com/traefik/traefik/).
+{% code title="Aidbox service" lineNumbers="true" %}
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: aidbox
+  namespace: prod
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  selector:
+    service: aidbox
 
-#### Install Ingress NGINX controller
-
-{% code title="# Install Ingress NGINX" %}
-```shell
-helm repo add ....
-helm install ....
 ```
 {% endcode %}
 
-#### CertManager
+## Ingress
 
-To provide secure HTTPS connection you can use paid SSL certificates, issued for your domain, or use LetsEncrypt issued certificates. In case of using LetsEcrypt we recommend [install and configure Cert Manager](https://cert-manager.io/docs/installation/helm/) Operator
+A Cluster must have an [ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) Installed. Our recommendation is to use [kubernetes Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx). As an alternative, you can use [Traefic](https://github.com/traefik/traefik/). More additional information about Ingress in k8s you can found in this documentation — [Kubernetes Service Networking](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 
-{% code title="# Install Cert Manager" %}
+### Ingress NGINX controller
+
+Ingress-nginx — is an Ingress controller for Kubernetes using [NGINX](https://www.nginx.org/) as a reverse proxy and load balancer.
+
+{% code title="Install Ingress NGINX" %}
+```shell
+helm upgrade \
+  --install ingress-nginx ingress-nginx \
+  --repo https://kubernetes.github.io/ingress-nginx \
+  --namespace ingress-nginx --create-namespace
+```
+{% endcode %}
+
+### CertManager
+
+&#x20;To provide secure HTTPS connection you can use paid SSL certificates, issued for your domain, or use LetsEncrypt issued certificates. In case of using LetsEcrypt we recommend [install and configure Cert Manager](https://cert-manager.io/docs/installation/helm/) Operator
+
+{% code title="Install Cert Manager" %}
 ```bash
 helm repo add jetstack https://charts.jetstack.io
 helm repo update
@@ -369,7 +395,7 @@ helm install \
   cert-manager jetstack/cert-manager \
   --namespace cert-manager \
   --create-namespace \
-  --version v1.9.1 \
+  --version v1.10.0 \       # Or latest available version
   --set installCRDs=true
 ```
 {% endcode %}
@@ -397,10 +423,50 @@ spec:
 {% endcode %}
 
 {% hint style="info" %}
-If you use Multibox image and want to use cert manger - you should configure DNS01 authorization to provide wildcard certificates
+If you use Multibox image and want to use cert manger — you should configure DNS01 authorization to provide wildcard certificates
 
 [https://letsencrypt.org/docs/challenge-types/#dns-01-challenge](https://letsencrypt.org/docs/challenge-types/#dns-01-challenge)
 {% endhint %}
+
+### Ingress resource
+
+Now you can create k8s `Ingress` for Aidbox deployment
+
+{% code title="Ingress" lineNumbers="true" %}
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: aidbox
+  namespace: prod
+  annotations:
+    acme.cert-manager.io/http01-ingress-class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt
+    kubernetes.io/ingress.class: nginx
+spec:
+  tls:
+    - hosts:
+        - my.box.url
+      secretName: aidbox-tls
+  rules:
+    - host: my.box.url
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: aidbox
+                port:
+                  number: 80
+```
+{% endcode %}
+
+Now you can test ingress
+
+```bash
+curl https://my.box.url
+```
 
 ## \[TODO] Logging
 
