@@ -468,17 +468,44 @@ Now you can test ingress
 curl https://my.box.url
 ```
 
-## \[TODO] Logging
+## Logging
 
-Supported log storages
+General logging & audit information  can be found in this article — [Logging & Audit](https://docs.aidbox.app/core-modules/logging-and-audit)
 
-* ElasticSearch
-* Loki & Promtail
-* DataDog
+Aidbox supports integration with the following systems:
 
-Recomendation&#x20;
+* ElasticSearch — [Elastic Logs and Monitoring Integration](https://docs.aidbox.app/core-modules/logging-and-audit/integrations/elastic-logs-and-monitoring-integration)
+* Loki — [Grafana Loki Log management integration](https://docs.aidbox.app/core-modules/logging-and-audit/integrations/loki-integration)
+* DataDog — [Datadog Log management integration](https://docs.aidbox.app/core-modules/logging-and-audit/integrations/aidbox-logs-and-datadog-integration)
 
-Install Elastic & Kibana Configure Aidbox ES appender
+### ElasticSearch integration
+
+You can install ECK using [official guide.](https://www.elastic.co/guide/en/cloud-on-k8s/master/k8s-installing-eck.html)
+
+Configure Aidbox and ES integration
+
+<pre class="language-yaml" data-title="Aidbox ConfigMap" data-line-numbers><code class="lang-yaml">apiVersion: v1
+kind: Secret
+metadata:
+  name: aidbox
+  namespace: prod
+data:
+<strong>...
+</strong><strong>  AIDBOX_ES_URL = http://es-service.es-ns.svc.cluster.local
+</strong>  AIDBOX_ES_AUTH = &#x3C;user>:&#x3C;password>
+<strong>...</strong></code></pre>
+
+### DataDog integration
+
+<pre class="language-yaml" data-title="Aidbox ConfigMap" data-line-numbers><code class="lang-yaml">apiVersion: v1
+kind: Secret
+metadata:
+  name: aidbox
+  namespace: prod
+data:
+<strong>...
+</strong><strong>  AIDBOX_DD_API_KEY: &#x3C;Datadog API Key>
+</strong><strong>...</strong></code></pre>
 
 ## \[TODO] Monitoring
 
@@ -570,12 +597,12 @@ Link how to delivery to the Slak ......
 
 Vulnerability and security scanners
 
-* [Trivy operator](https://github.com/aquasecurity/trivy-operator) - Kubernetes-native security toolkit.
-* [Trivy operator Lens extension](https://github.com/aquasecurity/trivy-operator-lens-extension) - UI extension for Lens which provides visibility into Trivy reports
+* [Trivy operator](https://github.com/aquasecurity/trivy-operator) — Kubernetes-native security toolkit.
+* [Trivy operator Lens extension](https://github.com/aquasecurity/trivy-operator-lens-extension) — UI extension for Lens which provides visibility into Trivy reports
 
 Kubernetes Policy Management
 
-* [Kyverno](https://kyverno.io/) OR [Gatekeeper](https://github.com/open-policy-agent/gatekeeper) - Kubernetes  policy management
+* [Kyverno](https://kyverno.io/) OR [Gatekeeper](https://github.com/open-policy-agent/gatekeeper) — Kubernetes  policy management
 
 Advanced
 
