@@ -573,13 +573,17 @@ spec:
 ```
 {% endcode %}
 
-Alternatives:
+### Alternative solutions
 
-* VictoriaMetrics —
-* Thanos —
-* Grafana Mimir —
+* [VictoriaMetrics](https://victoriametrics.com/) — High Performance Open Source Time Series Database.
+* [Thanos](https://thanos.io/) — highly available Prometheus setup with long term storage capabilities.
+* [Grafana Mimir](https://grafana.com/oss/mimir/) — highly available, multi-tenant, long-term storage for Prometheus.
 
-Export Aidbox dashboards RPC call
+### Export the Aidbox Grafana dashboard
+
+
+
+### Additional monitoring
 
 System monitoring
 
