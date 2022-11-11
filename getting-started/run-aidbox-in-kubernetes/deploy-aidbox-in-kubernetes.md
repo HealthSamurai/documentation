@@ -1,7 +1,3 @@
----
-description: Work In Progress
----
-
 # Deploy Aidbox to Kubernetes
 
 ## Production-ready infrastructure&#x20;
