@@ -507,7 +507,7 @@ data:
 </strong><strong>  AIDBOX_DD_API_KEY: &#x3C;Datadog API Key>
 </strong><strong>  ...</strong></code></pre>
 
-## \[WIP] Monitoring
+## Monitoring
 
 For monitoring our recommendation is to use [kube prometheus stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack)
 
@@ -573,6 +573,33 @@ spec:
 ```
 {% endcode %}
 
+Or you can directly specify the Prometheus  scrapers configuration
+
+```yaml
+global:
+  external_labels:
+    monitor: 'aidbox'
+scrape_configs:
+  - job_name: aidbox
+    scrape_interval: 5s
+    metrics_path: /metrics
+    static_configs:
+      - targets: [ 'aidbox-metrics.prod.svc.cluster.local:8765' ]
+
+  - job_name: aidbox-minutes
+    scrape_interval: 30s
+    metrics_path: /metrics/minutes
+    static_configs:
+      - targets: [ 'aidbox-metrics.prod.svc.cluster.local:8765' ]
+
+  - job_name: aidbox-hours
+    scrape_interval: 1m
+    scrape_timeout: 30s                     
+    metrics_path: /metrics/hours
+    static_configs:
+      - targets: [ 'aidbox-metrics.prod.svc.cluster.local:8765' ]
+```
+
 ### Alternative solutions
 
 * [VictoriaMetrics](https://victoriametrics.com/) — High Performance Open Source Time Series Database.
@@ -581,19 +608,19 @@ spec:
 
 ### Export the Aidbox Grafana dashboard
 
-
+Aidbox metrics has integration with Grafana, which can generate dashboards and upload them to Grafana —  [Grafana Integration](https://docs.aidbox.app/core-modules/monitoring/grafana-integration)
 
 ### Additional monitoring
 
-System monitoring
+System monitoring:
 
-* node exporter —&#x20;
-* kube state metrics —&#x20;
-* cadvisor —&#x20;
+* [node exporter](https://github.com/prometheus/node\_exporter) — Prometheus exporter for hardware and OS metrics exposed by \*NIX kernels
+* [kube state metrics](https://github.com/kubernetes/kube-state-metrics) — is a simple service that listens to the Kubernetes API server and generates metrics about the state of the objects
+* [cadvisor](https://kubernetes.io/docs/concepts/cluster-administration/system-metrics/) — container usage metrics
 
-PostgreSQL monitoring
+PostgreSQL monitoring:
 
-* pg\_exporter — &#x20;
+* [pg\_exporter](https://github.com/prometheus-community/postgres\_exporter) —  Prometheus exporter for PostgreSQL server metrics
 
 ## \[TODO] Alerting
 
