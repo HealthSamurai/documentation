@@ -490,10 +490,10 @@ metadata:
   name: aidbox
   namespace: prod
 data:
-<strong>...
+<strong>  ...
 </strong><strong>  AIDBOX_ES_URL = http://es-service.es-ns.svc.cluster.local
 </strong>  AIDBOX_ES_AUTH = &#x3C;user>:&#x3C;password>
-<strong>...</strong></code></pre>
+<strong>  ...</strong></code></pre>
 
 ### DataDog integration
 
@@ -503,31 +503,93 @@ metadata:
   name: aidbox
   namespace: prod
 data:
-<strong>...
+<strong>  ...
 </strong><strong>  AIDBOX_DD_API_KEY: &#x3C;Datadog API Key>
-</strong><strong>...</strong></code></pre>
+</strong><strong>  ...</strong></code></pre>
 
-## \[TODO] Monitoring
+## \[WIP] Monitoring
 
-Recommendation:
+For monitoring our recommendation is to use [kube prometheus stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack)
 
-* KubePrometheus HELM install command
+```shell
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+helm install prometheus prometheus-community/kube-prometheus-stack
+```
 
-Alternatives: Metrics
+Create Aidbox metrics service
 
-* VictoriaMetrics
-* Thanos
-* Mimir
+{% code title="" lineNumbers="true" %}
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: aidbox-metrics
+  namespace: prod
+  labels:
+    operated: prometheus
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8765
+  selector:
+    service: aidbox
+```
+{% endcode %}
 
-Visualization
+Create ServiceMonitor config for scrapping metrics data
 
-* Grafana (part of KubePrometheus)
+{% code title="ServiceMonitor" lineNumbers="true" %}
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app.kubernetes.io/component: metrics
+    release: kube-prometheus
+    serviceMonitorSelector: aidbox
+  name: aidbox
+  namespace: kube-prometheus
+spec:
+  endpoints:
+    - honorLabels: true
+      interval: 10s
+      path: /metrics
+      targetPort: 8765
+    - honorLabels: true
+      interval: 60s
+      path: /metrics/minutes
+      targetPort: 8765
+    - honorLabels: true
+      interval: 10m
+      path: /metrics/hours
+      targetPort: 8765
+  namespaceSelector:
+    any: true
+  selector:
+    matchLabels:
+      operated: prometheus
+```
+{% endcode %}
 
-Example&#x20;
+Alternatives:
 
-Scrape aidbox metrics via service monitor&#x20;
+* VictoriaMetrics —
+* Thanos —
+* Grafana Mimir —
 
-Add service monitor file
+Export Aidbox dashboards RPC call
+
+System monitoring
+
+* node exporter —&#x20;
+* kube state metrics —&#x20;
+* cadvisor —&#x20;
+
+PostgreSQL monitoring
+
+* pg\_exporter — &#x20;
 
 ## \[TODO] Alerting
 
