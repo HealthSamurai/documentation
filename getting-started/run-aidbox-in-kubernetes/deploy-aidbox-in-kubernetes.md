@@ -17,7 +17,7 @@ Key infrastructure elements:
 
 ## Cluster configuration and tooling
 
-Recommended kubernetes cluster configuration:
+Recommended Kubernetes cluster configuration:
 
 * Small and medium workloads - 3 nodes X 4 VCPU 16 GB RAM
 * Huge workloads - 3 nodes X 8 VCPU X 64 GB RAM
@@ -177,6 +177,26 @@ spec:
 ```
 {% endcode %}
 
+Create master database service
+
+{% code title="Database Service" lineNumbers="true" %}
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: db
+  namespace: prod
+spec:
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+  selector:
+    service: db
+
+```
+{% endcode %}
+
 Replica installation contains all the same steps but required additional configuration
 
 {% code title="Replica DB config" lineNumbers="true" %}
@@ -207,19 +227,124 @@ A set of tools to perform HA PostgreSQL with fail and switchover, automated back
 * [Patroni](https://github.com/zalando/patroni) — A Template for PostgreSQL HA with ZooKeeper, ETCD or Consul.
 * [Postgres operator](https://github.com/zalando/postgres-operator) — The Postgres Operator delivers an easy to run HA PostgreSQL clusters on Kubernetes.
 
-## \[WIP] Aidbox
+## Aidbox
 
-No any additional requirements,&#x20;
+Create ConfigMap with all required config and database connection&#x20;
 
-only database required&#x20;
+{% code title="Aidbox ConfigMap" lineNumbers="true" %}
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aidbox
+  namespace: prod
+data:
+  AIDBOX_BASE_URL: https://my.box.url
+  AIDBOX_BOX_ID: aidbox
+  AIDBOX_FHIR_VERSION: 4.0.1
+  AIDBOX_PORT: '8080'
+  AIDBOX_STDOUT_PRETTY: all
+  BOX_INSTANCE_NAME: aidbox
+  BOX_METRICS_PORT: '8765'
+  PGDATABASE: aidbox
+  PGHOST: db.prod.svc.cluster.local   # database address
+  PGPORT: '5432'                      # database port
+```
+{% endcode %}
 
-Config&#x20;
+{% code title="Aidbox Secret" lineNumbers="true" %}
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: aidbox
+  namespace: prod
+data:
+  AIDBOX_ADMIN_ID: <admin_login>
+  AIDBOX_ADMIN_PASSWORD: <admin_password>
+  AIDBOX_CLIENT_ID: <root_client_id>
+  AIDBOX_CLIENT_SECRET: <root_client_password>
+  AIDBOX_LICENSE: <JWT-LICENSE>
+  PGPASSWORD: <db_password>        # database password
+  PGUSER: <db_user>                # database username
+```
+{% endcode %}
 
-HA aidbox&#x20;
+Aidbox Deployment
 
-No need any RBAC access
+{% code title="Aidbox Deployment" lineNumbers="true" %}
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aidbox
+  namespace: prod
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      service: aidbox
+  template:
+    metadata:
+      labels:
+        service: aidbox
+    spec:
+      containers:
+        - name: main
+          image: healthsamurai/aidboxone:latest
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+            - containerPort: 8765
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: aidbox
+            - secretRef:
+                name: aidbox
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 20
+            timeoutSeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 12
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 20
+            timeoutSeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 6
+          startupProbe:
+            httpGet:
+                path: /health
+                port: 8080
+            scheme: HTTP
+            initialDelaySeconds: 20
+            timeoutSeconds: 5
+            periodSeconds:  5
+            successThreshold: 1
+            failureThreshold: 4
 
-## \[WIP] Ingress
+```
+{% endcode %}
+
+All additional information about HA Aidbox configuration you can find in this article — [HA Aidbox](https://docs.aidbox.app/getting-started/run-aidbox-in-kubernetes/high-available-aidbox)&#x20;
+
+To verify that Aidbox started correctly you can check the logs:
+
+```bash
+kubectl logs -f <aidbox-pod-name>
+```
+
+## \[TODO] Ingress
 
 A Cluster must have an [ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) Installed. Our recommendation is use [kubernetes Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx). As alternative, you can use [Traefic](https://github.com/traefik/traefik/).
 
@@ -277,7 +402,7 @@ If you use Multibox image and want to use cert manger - you should configure DNS
 [https://letsencrypt.org/docs/challenge-types/#dns-01-challenge](https://letsencrypt.org/docs/challenge-types/#dns-01-challenge)
 {% endhint %}
 
-## \[WIP] Logging
+## \[TODO] Logging
 
 Supported log storages
 
@@ -289,7 +414,7 @@ Recomendation&#x20;
 
 Install Elastic & Kibana Configure Aidbox ES appender
 
-## \[WIP] Monitoring
+## \[TODO] Monitoring
 
 Recommendation:
 
@@ -311,7 +436,7 @@ Scrape aidbox metrics via service monitor&#x20;
 
 Add service monitor file
 
-## \[WIP] Alerting
+## \[TODO] Alerting
 
 #### Alert rules
 
