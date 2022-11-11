@@ -207,7 +207,7 @@ A set of tools to perform HA PostgreSQL with fail and switchover, automated back
 * [Patroni](https://github.com/zalando/patroni) — A Template for PostgreSQL HA with ZooKeeper, ETCD or Consul.
 * [Postgres operator](https://github.com/zalando/postgres-operator) — The Postgres Operator delivers an easy to run HA PostgreSQL clusters on Kubernetes.
 
-## \[TODO] Aidbox
+## \[WIP] Aidbox
 
 No any additional requirements,&#x20;
 
@@ -219,7 +219,7 @@ HA aidbox&#x20;
 
 No need any RBAC access
 
-## Ingress
+## \[WIP] Ingress
 
 A Cluster must have an [ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) Installed. Our recommendation is use [kubernetes Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx). As alternative, you can use [Traefic](https://github.com/traefik/traefik/).
 
@@ -277,7 +277,7 @@ If you use Multibox image and want to use cert manger - you should configure DNS
 [https://letsencrypt.org/docs/challenge-types/#dns-01-challenge](https://letsencrypt.org/docs/challenge-types/#dns-01-challenge)
 {% endhint %}
 
-## Logging
+## \[WIP] Logging
 
 Supported log storages
 
@@ -289,7 +289,7 @@ Recomendation&#x20;
 
 Install Elastic & Kibana Configure Aidbox ES appender
 
-## Monitoring
+## \[WIP] Monitoring
 
 Recommendation:
 
@@ -311,7 +311,7 @@ Scrape aidbox metrics via service monitor&#x20;
 
 Add service monitor file
 
-## Alerting
+## \[WIP] Alerting
 
 #### Alert rules
 
@@ -381,6 +381,11 @@ Vulnerability and security scanners
 
 * [Trivy operator](https://github.com/aquasecurity/trivy-operator) - Kubernetes-native security toolkit.
 * [Trivy operator Lens extension](https://github.com/aquasecurity/trivy-operator-lens-extension) - UI extension for Lens which provides visibility into Trivy reports
+
+Kubernetes Policy Management
+
 * [Kyverno](https://kyverno.io/) OR [Gatekeeper](https://github.com/open-policy-agent/gatekeeper) - Kubernetes  policy management
 
-TODO [https://www.datree.io/](https://www.datree.io/)
+Advanced
+
+* [Datree](https://www.datree.io/) — k8s resources linter
