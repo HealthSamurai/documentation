@@ -2,7 +2,7 @@
 description: Work In Progress
 ---
 
-# Deploy Aidbox in Kubernetes
+# Deploy Aidbox to Kubernetes
 
 ## Production-ready infrastructure&#x20;
 
@@ -40,7 +40,7 @@ Toolkit required for development and deployment:
 
 ### Managed solution
 
-Aidbox supports all popular managed Postgresql databases. Supported versions - 13 and higher
+Aidbox supports all popular managed Postgresql databases. Supported versions - 13 and higher. See more details in this article — [Run Aidbox on managed PostgreSQL](https://docs.aidbox.app/getting-started/run-aidbox-on-managed-postgresql).
 
 * [AWS RDS Aurora ](https://aws.amazon.com/ru/rds/aurora/)
 * [GCP Cloud SQL for PostgreSQL](https://cloud.google.com/sql/postgresql)
@@ -48,11 +48,11 @@ Aidbox supports all popular managed Postgresql databases. Supported versions - 1
 
 ### Self-managed solution
 
-For self-managed solution, we recommend use  [AidboxDB image](https://hub.docker.com/r/healthsamurai/aidboxdb) . This image contains all required extensions, backup tool, and pre-build replication support. Read more information in documentation [AidboxDB](../../storage-1/aidboxdb-image.md).
+For a self-managed solution, we recommend use  [AidboxDB image](https://hub.docker.com/r/healthsamurai/aidboxdb) . This image contains all required extensions, backup tool, and pre-build replication support. Read more information in the documentation — [AidboxDB](../../storage-1/aidboxdb-image.md).
 
-First step - create volume
+First step — create volume
 
-{% code title="Volume" lineNumbers="true" %}
+{% code title="Persistent Volume" lineNumbers="true" %}
 ```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -70,7 +70,7 @@ spec:
 ```
 {% endcode %}
 
-Next - create all required configs, like postgresql.conf, required container parameters and credentials.
+Next - create all required configs, like `postgresql.conf`, required container parameters and credentials.
 
 {% code title="postgresql.conf" lineNumbers="true" %}
 ```yaml
@@ -124,9 +124,9 @@ data:
 ```
 {% endcode %}
 
-Now we can create database StatefulSet
+Now we can create a database `StatefulSet`
 
-{% code title="" lineNumbers="true" %}
+{% code title="Db Master StatefulSet" lineNumbers="true" %}
 ```yaml
 apiVersion: apps/v1
 kind: StatefulSet
@@ -177,9 +177,9 @@ spec:
 ```
 {% endcode %}
 
-Replica installation contain all the same steps, but required additional configuration
+Replica installation contains all the same steps but required additional configuration
 
-{% code title="" lineNumbers="true" %}
+{% code title="Replica DB config" lineNumbers="true" %}
 ```yaml
 apiVersion: v1
 kind: ConfigMap
@@ -195,17 +195,17 @@ data:
 ```
 {% endcode %}
 
-For backups and wal arhivation we are recommended cloud-native solution [WAL-G](https://github.com/wal-g/wal-g). You can find full information about configuration and usage on [documentation page](https://github.com/wal-g/wal-g/blob/master/docs/PostgreSQL.md).
+For backups and WAL archivation we are recommended cloud-native solution [WAL-G](https://github.com/wal-g/wal-g). You can find full information about configuration and usage on [documentation page](https://github.com/wal-g/wal-g/blob/master/docs/PostgreSQL.md).
 
-* [Configure storage access](https://github.com/wal-g/wal-g/blob/6ec7680ef5cb66c938faf180c97b3378b701d685/docs/STORAGES.md) - WAL-G can store backups in S3, Google Cloud Storage, Azure, or local file system.
-* Recommended backup policy - Full backup every week, incremental backup every day.
+* [Configure storage access](https://github.com/wal-g/wal-g/blob/6ec7680ef5cb66c938faf180c97b3378b701d685/docs/STORAGES.md) — WAL-G can store backups in S3, Google Cloud Storage, Azure, or a local file system.
+* Recommended backup policy — Full backup every week, incremental backup every day.
 
-#### Automation
+### Alternative solutions
 
 A set of tools to perform HA PostgreSQL with fail and switchover, automated backups.
 
-* [Patroni](https://github.com/zalando/patroni) - A Template for PostgreSQL HA with ZooKeeper, ETCD or Consul.
-* [Postgres operator](https://github.com/zalando/postgres-operator) - The Postgres Operator delivers an easy to run HA PostgreSQL clusters on Kubernetes.
+* [Patroni](https://github.com/zalando/patroni) — A Template for PostgreSQL HA with ZooKeeper, ETCD or Consul.
+* [Postgres operator](https://github.com/zalando/postgres-operator) — The Postgres Operator delivers an easy to run HA PostgreSQL clusters on Kubernetes.
 
 ## \[TODO] Aidbox
 
