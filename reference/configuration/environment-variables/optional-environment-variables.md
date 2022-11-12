@@ -332,7 +332,9 @@ Create a user when using foreign JWT access token and the user does not already 
 
 \- Adds various attributes and endpoints info to CapabilityStatement
 
-\- Adds CapabilityStatement sanitizing (i.e. removes attributes containing `null` values and empty arrays)
+\- Sanitises CapabilityStatement (i.e. removes attributes containing `null` values and empty arrays)
+
+\- Adds `/fhir` to base URL for FHIR search parameters definitions in CapabilityStatement
 
 \- Adds AIDBOX\_BASE\_URL in `Bundle.link.url`
 
