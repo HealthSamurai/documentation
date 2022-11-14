@@ -84,9 +84,7 @@ identity_provider:
 # ...
 ```
 
-{% hint style="info" %}
-Here `<identity-provider-id>` is the id of the `IdentityProvider` resource which issues tokens
-{% endhint %}
+Here `<identity-provider-id>` is the id of the `IdentityProvider` resource which issues tokens.
 
 ### Examples
 
