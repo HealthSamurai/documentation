@@ -1,4 +1,4 @@
-# Deploy Aidbox to Kubernetes
+# Deploy Production-ready Aidbox to Kubernetes
 
 ## Production-ready infrastructure&#x20;
 
@@ -618,14 +618,18 @@ PostgreSQL monitoring:
 
 * [pg\_exporter](https://github.com/prometheus-community/postgres\_exporter) —  Prometheus exporter for PostgreSQL server metrics
 
-## \[TODO] Alerting
+## Alerting
 
-#### Alert rules
+[Alerting rules](https://prometheus.io/docs/prometheus/latest/configuration/alerting\_rules/) allow you to define alert conditions based on Prometheus expression language expressions and to send notifications about firing alerts to an external service.
+
+### Alert rules
+
+Alert for long-running HTTP queries with P99 > 5s in 5m interval
 
 {% code lineNumbers="true" %}
 ```yaml
 alert: SlowRequests
-for: 1m
+for: 5m
 expr: histogram_quantile(0.99, sum (rate(aidbox_http_request_duration_seconds_bucket[5m])) by (le, route, instance)) > 5
 labels: {severity: ticket}
 annotations:
@@ -635,15 +639,9 @@ annotations:
 ```
 {% endcode %}
 
-Disk usage....
+### Alert delivery
 
-Unavailable Deployments, nodes, STS ...
-
-#### Alert delivery
-
-Alert manager template for telegram and slack
-
-Telegram bot&#x20;
+Alert manager template for Telegram&#x20;
 
 {% code lineNumbers="true" %}
 ```yaml
@@ -675,24 +673,24 @@ receivers:
 ```
 {% endcode %}
 
-Link how to delivery to the Slak ......
+All other integrations you can find on [AlertManager documentation page.](https://prometheus.io/docs/alerting/latest/configuration/)
 
-#### Alternatives
+### Additional tools
 
 * Embedded Grafana alerts
 * Grafana OnCall
 
 ## Security
 
-Vulnerability and security scanners
+Vulnerability and security scanners:
 
 * [Trivy operator](https://github.com/aquasecurity/trivy-operator) — Kubernetes-native security toolkit.
 * [Trivy operator Lens extension](https://github.com/aquasecurity/trivy-operator-lens-extension) — UI extension for Lens which provides visibility into Trivy reports
 
-Kubernetes Policy Management
+Kubernetes Policy Management:
 
 * [Kyverno](https://kyverno.io/) OR [Gatekeeper](https://github.com/open-policy-agent/gatekeeper) — Kubernetes  policy management
 
-Advanced
+Advanced:
 
 * [Datree](https://www.datree.io/) — k8s resources linter
