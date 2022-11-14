@@ -4,19 +4,19 @@
 
 Key infrastructure elements:
 
-* [Cluster configuration ](deploy-aidbox-in-kubernetes.md#cluster-configuration-and-tooling) - Node pool and tooling
-* [Database](deploy-aidbox-in-kubernetes.md#database) - Cloud or self managed database
-* [Aidbox](deploy-aidbox-in-kubernetes.md#aidbox) - Aidbox installation
-* [Logging](deploy-aidbox-in-kubernetes.md#logging) - Сollect application and cluster logs
-* [Monitoring](deploy-aidbox-in-kubernetes.md#monitoring) - Сollect, alert, and visualize cluster and application metrics
-* [Security](deploy-aidbox-in-kubernetes.md#extra) - Vulnerability scanning and policy management
+* [Cluster configuration](deploy-aidbox-in-kubernetes.md#cluster-configuration-and-tooling) — Node pool and tooling
+* [Database](deploy-aidbox-in-kubernetes.md#database) — Cloud or self-managed database
+* [Aidbox](deploy-aidbox-in-kubernetes.md#aidbox) — Aidbox installation
+* [Logging](deploy-aidbox-in-kubernetes.md#logging) — Сollect application and cluster logs
+* [Monitoring](deploy-aidbox-in-kubernetes.md#monitoring) — Сollect, alert, and visualize cluster and application metrics
+* [Security](deploy-aidbox-in-kubernetes.md#extra) — Vulnerability scanning and policy management
 
 ## Cluster configuration and tooling
 
 Recommended Kubernetes cluster configuration:
 
-* Small and medium workloads - 3 nodes X 4 VCPU 16 GB RAM
-* Huge workloads - 3 nodes X 8 VCPU X 64 GB RAM
+* Small and medium workloads — 3 nodes X 4 VCPU 16 GB RAM
+* Huge workloads — 3 nodes X 8 VCPU X 64 GB RAM
 
 Toolkit required for development and deployment:
 
@@ -381,7 +381,7 @@ helm upgrade \
 
 ### CertManager
 
-&#x20;To provide secure HTTPS connection you can use paid SSL certificates, issued for your domain, or use LetsEncrypt issued certificates. In case of using LetsEcrypt we recommend [install and configure Cert Manager](https://cert-manager.io/docs/installation/helm/) Operator
+&#x20;To provide a secure HTTPS connection you can use paid SSL certificates, issued for your domain, or use LetsEncrypt-issued certificates. In case of using LetsEcrypt, we recommend [install and configure Cert Manager](https://cert-manager.io/docs/installation/helm/) Operator
 
 {% code title="Install Cert Manager" %}
 ```bash
