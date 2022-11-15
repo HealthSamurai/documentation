@@ -4,7 +4,25 @@ description: This article outlines the basic steps to get started with Aidbox Fo
 
 # Getting started
 
-Run Aidbox locally
+## Create a license on Aidbox portal
+
+* Sign up on [Aidbox portal](https://aidbox.app/ui/portal#/signin)
+* Create a license: product type - **Aidbox**, licence type - **development**, hosting - **self-hosted**
+* Copy & save a license key
+
+## Configure Aidbox project
+
+1. You need to have the following software installed:
+
+* docker
+* docker-compose
+* text editor with color highlighting \*> Recommended VSCode editor with `zen-lsp` plugin
+* any modern web-browser
+* git
+* make
+* npm
+
+2\. Run Aidbox locally
 
 {% content-ref url="../../getting-started/run-aidbox-locally-with-docker/" %}
 [run-aidbox-locally-with-docker](../../getting-started/run-aidbox-locally-with-docker/)
@@ -16,24 +34,23 @@ Run Aidbox in Aidbox sandbox
 [run-aidbox-in-aidbox-sandbox.md](../../getting-started/run-aidbox-in-aidbox-sandbox.md)
 {% endcontent-ref %}
 
-## Prerequisites
+3\. Clone [aidbox-zen-sdc](https://github.com/HealthSamurai/aidbox-zen-sdc) repository&#x20;
 
-You need to have the following software installed:
+4\. Configure project with a license. You need to create `.env file` in the root of repository (by copying from .env.tpl) and update AIDBOX\_LICENSE with the generated license key that you saved
 
-* docker
-* docker-compose
-* text editor with color highlighting \*> Recommended VSCode editor with `zen-lsp` plugin
-* any modern web-browser
+5\. Run `make init` to initialize project
 
-## Dev setup
+6\. Run in the terminal `make up` in the root of repository
 
-* Create `.env` file (by copying from `.env.tpl`) with your `AIDBOX_LICENSE_ID` `AIDBOX_LICENSE_KEY`
-* Run in the terminal `make up`
-* You can edit zen files in `zrc` directory and they will be automatically reloaded.
-* Open Aidbox console in browser [http://localhost:8080/](http://localhost:8080/)
-* Go to forms by pressing the button `Forms` (or by visiting [http://localhost:8080/ui/sdc](http://localhost:8080/ui/sdc) )
-* Play with the `Forms`
+7\. Open Aidbox console in browser [http://localhost:8080/ ](http://localhost:8080/), using login / passwod  - admin / admin
 
-> Caveats - models for persistence can't be live-reloaded. You need to restart the app
+8\. Go to forms by pressing the button `Forms` (or by visiting [http://localhost:8080/ui/sdc](http://localhost:8080/ui/sdc) )
 
-To finish development you can run `make down` to shutdown all services.
+9\. To finish development you can run `make down` to shutdown all services.
+
+{% hint style="info" %}
+You can edit zen files in `zrc` directory and they will be automatically reloaded
+{% endhint %}
+
+## Start form designing
+
