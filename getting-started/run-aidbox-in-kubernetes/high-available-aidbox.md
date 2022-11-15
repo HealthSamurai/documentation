@@ -28,6 +28,13 @@ spec:
       labels:
         service: aidbox
     spec:
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: topology.kubernetes.io/zone
+        whenUnsatisfiable: ScheduleAnyway
+        labelSelector:
+          matchLabels:
+            service: aidbox
       containers:
         - name: main
           image: healthsamurai/aidboxone:latest
@@ -123,4 +130,18 @@ startupProbe:
   successThreshold: 1
   failureThreshold: 4
 
+```
+
+#### Pod topology
+
+To improve fault tolerance in case of failure of one or more availability zones, you must specify — [Pod Topology Spread Constraints](https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/)
+
+```yaml
+topologySpreadConstraints:
+- maxSkew: 1
+  topologyKey: topology.kubernetes.io/zone
+  whenUnsatisfiable: ScheduleAnyway
+  labelSelector:
+    matchLabels:
+      service: aidbox
 ```
