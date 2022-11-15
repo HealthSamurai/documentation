@@ -18,7 +18,7 @@ vitals.edn
 
 
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Don't forget to import the created form into the forms.edn file so that the form is loaded after restarting the program.
 {% endhint %}
 
