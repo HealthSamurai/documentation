@@ -89,7 +89,7 @@ services:
     environment:
       PGHOST: "database"
       PGDATABASE: "sandbox"
-      BOX_AUTH_LOGIN__REDIRECT: "/"
+      BOX_AUTH_LOGIN__REDIRECT: "/#/dev/apps"
       BOX_PROJECT_ENTRYPOINT: "smartbox.dev-portal/box"
       AIDBOX_LICENSE: "${SANDBOX_LICENSE}"
       AIDBOX_BASE_URL: "http://localhost:9999"
