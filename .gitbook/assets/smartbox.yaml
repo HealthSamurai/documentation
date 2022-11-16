@@ -143,7 +143,7 @@ data:
   AIDBOX_FHIR_VERSION: 4.0.1
   AIDBOX_STDOUT_PRETTY: 'true'
   BOX_ID: aidboxone
-  BOX_AUTH_LOGIN__REDIRECT: "/#/dev/apps"
+  BOX_AUTH_LOGIN__REDIRECT: "/"
   BOX_PROVIDER_DEFAULT_TYPE: mailgun
 ---
 apiVersion: v1
