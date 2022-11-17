@@ -37,10 +37,15 @@ Add the lines below to the `.env` file.
 ```
 # SMTP
 BOX_PROVIDER_DEFAULT_TYPE=smtp
-BOX_PROVIDER_DEFAULT_SSL=true
+BOX_PROVIDER_DEFAULT_SSL=true             # if your SMTP supports SSL
+BOX_PROVIDER_DEFAULT_TLS=true             # if your SMTP supports TLS
 BOX_PROVIDER_DEFAULT_HOST=<YOUR_SMTP_HOST>
 BOX_PROVIDER_DEFAULT_PORT=<YOUR_SMTP_PORT>
 BOX_PROVIDER_DEFAULT_FROM=<YOUR_SMTP_FROM_EMAIL>
 BOX_PROVIDER_DEFAULT_USERNAME=<YOUR_SMTP_USERNAME>
 BOX_PROVIDER_DEFAULT_PASSWORD=<YOUR_SMTP_PASSWORD>
 ```
+
+{% hint style="success" %}
+`SSL` and `TLS` should be configured according to the SMTP provider documentation
+{% endhint %}
