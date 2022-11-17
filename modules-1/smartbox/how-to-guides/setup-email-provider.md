@@ -45,7 +45,3 @@ BOX_PROVIDER_DEFAULT_FROM=<YOUR_SMTP_FROM_EMAIL>
 BOX_PROVIDER_DEFAULT_USERNAME=<YOUR_SMTP_USERNAME>
 BOX_PROVIDER_DEFAULT_PASSWORD=<YOUR_SMTP_PASSWORD>
 ```
-
-{% hint style="success" %}
-`SSL` and `TLS` should be configured according to the SMTP provider documentation
-{% endhint %}
