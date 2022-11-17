@@ -14,6 +14,7 @@ Workflow API wraps Form API and when you use WF you don't need to use Form API d
 * [cancel-workflow](workflow-api.md#cancel-workflow) - try cancel WF
 * [amend-workflow](workflow-api.md#amend-workflow) - amend completed WF
 * [add-workflow-note](workflow-api.md#add-workflow-note) - add addendum note to the given WF
+* [get-workflow-addendums](workflow-api.md#get-workflow-addendums) - get list of addendums for the given WF
 
 ### get-workflows
 
@@ -687,6 +688,71 @@ params:
     id: user-1
     resourceType: User
   text: "Some important note on this workflow"
+```
+
+Result:
+
+> Error
+
+```
+error:
+  message: Resource not found
+```
+
+
+
+### get-workflow-addendums
+
+Returns collection of addendums for the given workflow.
+
+> This is the preferred way to retrieve Addendums related to a Workflow.
+
+> Use this API (`aidbox.sdc/get-workflow-addendums`) instead of the low-level Addendum API (`aidbox.sdc.addendum/get-addendums`).
+
+Params:
+
+| Param | Description | Type          | required? |
+| ----- | ----------- | ------------- | --------- |
+| id    | workflow id | zenbox/string | yes       |
+
+Request:
+
+```
+POST /rpc?
+
+method: aidbox.sdc/get-workflow-addendums
+params:
+    id: wf-1
+```
+
+Response:
+
+```
+result:
+  - date: '2022-10-01T12:00:00.000Z'
+    meta: ...
+    type: aidbox.sdc.addendum/History
+    resourceType: SDCAddendum
+    snapshot: ...
+    status: completed
+    id: 039455f7-ed08-4462-90a6-14b5b679d728
+    changed: true
+    target:
+      id: doc-1
+      resourceType: SDCDocument
+    user: ...
+```
+
+Server responds with `HTTP 422 Unprocessable Entity` if wrong id is provided.
+
+Request:
+
+```
+POST /rpc?
+
+method: aidbox.sdc.addendum/get-addendums
+params:
+    id: some-unknown-doc-id
 ```
 
 Result:

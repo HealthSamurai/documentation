@@ -1,12 +1,11 @@
 # Addendum API
 
-
-
 * [create-addendum](addendum-api.md#create-addendum-wip)
 * [add-note](addendum-api.md#add-note)
 * [add-to-history](addendum-api.md#add-to-history)
 * [create-amendment](addendum-api.md#create-amendment)
 * [add-comment](addendum-api.md#add-comment)
+* [get-addendums](addendum-api.md#get-addendums)
 
 ### create-addendum (WIP)
 
@@ -294,6 +293,67 @@ result:
 
 > It's looks like `Comment` similar to `Note` - but semantically they are different. Comment should not releated to status of `SDCDocument`/`SDCWorkflow` and used for informal conversations, which doesn't have any legal force. `Note` should be used for `SDCDocument`/`SDCWorkflow` in `completed`/`amended` statuses.
 
-##
+### get-addendums
+
+Returns collection of addendums for the given target resource.
+
+Params:
+
+| Param  | Description                  | Type             | required? |
+| ------ | ---------------------------- | ---------------- | --------- |
+| target | reference to target resource | zenbox/Reference | yes       |
+
+Request:
+
+```
+POST /rpc?
+
+method: aidbox.sdc.addendum/get-addendums
+params:
+  target:
+    id: doc-1
+    resourceType: SDCDocument
+```
+
+Response:
+
+```
+result:
+  - date: '2022-10-01T12:00:00.000Z'
+    meta: ...
+    type: aidbox.sdc.addendum/History
+    resourceType: SDCAddendum
+    snapshot: ...
+    status: completed
+    id: 039455f7-ed08-4462-90a6-14b5b679d728
+    changed: true
+    target:
+      id: doc-1
+      resourceType: SDCDocument
+    user: ...
+```
+
+Server responds with `HTTP 422 Unprocessable Entity` if wrong target is provided.
+
+Request:
+
+```
+POST /rpc?
+
+method: aidbox.sdc.addendum/get-addendums
+params:
+    target:
+        id: some-unknown-doc-id
+        resourceType: SDCDocument
+```
+
+Result:
+
+> Error
+
+```
+error:
+  message: Resource not found
+```
 
 \
