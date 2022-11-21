@@ -28,13 +28,13 @@ GCP Cloud Storage is used in Bulk API for storing and distributing exported data
 [gcp-cloud-storage.md](../../../storage-1/gcp-cloud-storage.md)
 {% endcontent-ref %}
 
-### **Set up Mailgun**
+### **Set up email provider**
 
-[Mailgun](https://www.mailgun.com/) is used to communicate with users (developers, patients). It sends emails for resetting a password, email verification, etc.
+{% hint style="info" %}
+In this guide `mailgun` is used to send email. Also Smartbox supports [different email providers](../how-to-guides/setup-email-provider.md) and [SMTP](../how-to-guides/setup-email-provider.md#how-to-set-up-smtp)
+{% endhint %}
 
-{% content-ref url="../../../tutorials/mailgun-integration.md" %}
-[mailgun-integration.md](../../../tutorials/mailgun-integration.md)
-{% endcontent-ref %}
+Email provider (`mailgun`) is used to communicate with users (developers, patients). It sends emails for resetting a password, email verification, etc.
 
 ## Installation
 
