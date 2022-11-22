@@ -4,7 +4,7 @@ description: This guide explains how you can set up email provider
 
 # Setup email provider
 
-Aidbox supports different [email API services](../../../integrations/email-providers.md) and [SMTP](../../../aidbox-configuration/setup-smtp-provider.md) protocol.
+Aidbox supports different email API services and SMTP protocol.
 
 ### How to set up `mailgun`
 
