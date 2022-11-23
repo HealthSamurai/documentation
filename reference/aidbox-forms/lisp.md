@@ -1,5 +1,9 @@
 # Lisp
 
+Aidbox Forms support a subset of the Lisp language for document definition, data retrieval and initialization, calculation of dynamic (derived) attributes, and data extraction.
+
+Supported Lisp functions are tested and documented using [zen-lang](https://github.com/zen-lang/zen). It is possible to implement your own Lisp interpreter in a programming language other than Clojure by adhering to this specification.
+
 ### Custom symbols
 
 * `lisp/i` (`lisp/j`)
