@@ -36,6 +36,8 @@ Supported Lisp functions are tested and documented using [zen-lang](https://gith
 * `lisp/select-keys`
 * `lisp/dissoc`
 * `lisp/matcho-filter`
+* `lisp/matcho-remove`
+* `lisp/matcho-path`
 * `lisp/date`
 * `lisp/timestamp`
 * `lisp/sql`
@@ -388,6 +390,35 @@ Examples:
 
 (lisp/matcho-filter [{:name "John" :age 32} {:name "Jack" :age 34}] {:age 34})
 => [{:name "Jack" :age 32}]
+```
+
+### `lisp/matcho-remove`
+
+Remove elements from vector by partial match
+
+Examples:
+
+```clojure
+(lisp/matcho-remove [{:name "John" :age 32} {:name "Jack" :age 34}] {:name "John"})
+=> [{:name "Jack" :age 34}]
+
+
+(lisp/matcho-remove [{:name "John" :age 32} {:name "Jack" :age 34}] {:age 34})
+=> [{:name "John" :age 32}]
+```
+
+### `lisp/matcho-path`
+
+Extract elements by path and filters
+
+Examples:
+
+```clojure
+(lisp/matcho-path {:foo [1 2]} [:foo]) => [1 2]
+;; ---------------------------------------------------------------
+(lisp/matcho-path {:foo [{:k1 [{:bar 1 :type 'a'}]} {:k1 [{:bar 2 :type 'a'}]}]} [:foo :k1 :bar]) => [1 2]
+;; ---------------------------------------------------------------
+(lisp/matcho-path {:foo [{:k1 [{:bar 1 :type 'a'}]} {:k1 [{:bar 2 :type 'b'}]}]} [:foo :k1 {:type 'b'} :bar]) => [2]
 ```
 
 ### `lisp/select-keys`
