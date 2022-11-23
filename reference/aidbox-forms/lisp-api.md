@@ -1,7 +1,7 @@
 # Lisp API
 
 * [lisp/get-specification](lisp-api.md#lisp-get-specification) - get the specification which is distributed in form of a test suite
-* [lisp/eval-lisp](lisp-api.md#lisp-eval-lisp)
+* [lisp/eval-lisp](lisp-api.md#lisp-eval-lisp) - evaluate lisp expression within the provided execution context (`data` or `resource`).
 
 ### lisp/get-specification
 
@@ -33,6 +33,10 @@ result:
 Server responds with `HTTP 422 Unprocessable Entity` if wrong params are provided.
 
 ### lisp/eval-lisp
+
+{% hint style="info" %}
+Some expressions are runtime specific. See language specification for more details.
+{% endhint %}
 
 Params:
 
