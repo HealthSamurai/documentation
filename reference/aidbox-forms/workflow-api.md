@@ -5,6 +5,7 @@ Workflow API wraps Form API and when you use WF you don't need to use Form API d
 {% endhint %}
 
 * [get-workflow](workflow-api.md#get-workflow) - get workflow definition
+* [get-workflows](workflow-api.md#get-workflows) - return existed workflows
 * [start-workflow](workflow-api.md#start-workflow) - start WF and launch forms
 * [save-step](workflow-api.md#save-step) - save document through WF, mark step as in-progress
 * [skip-step](workflow-api.md#skip-step) - skip WF step

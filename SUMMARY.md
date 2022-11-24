@@ -285,7 +285,7 @@
   * [Addendum](modules-1/aidbox-forms/addendum.md)
   * [Share a form](modules-1/aidbox-forms/share-a-form.md)
   * [Aidbox forms UI](modules-1/aidbox-forms/aidbox-forms-ui/README.md)
-    * [Forms](modules-1/aidbox-forms/aidbox-forms-ui/forms.md)
+    * [Forms & Workflow](modules-1/aidbox-forms/aidbox-forms-ui/forms.md)
     * [Documents](modules-1/aidbox-forms/aidbox-forms-ui/patients.md)
     * [Form Editor](modules-1/aidbox-forms/aidbox-forms-ui/form-editor.md)
 * [Multitenancy](modules-1/multitenancy/README.md)
