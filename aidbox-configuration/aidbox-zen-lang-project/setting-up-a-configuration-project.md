@@ -33,7 +33,9 @@ AIDBOX_ZEN_ENTRYPOINT=system/box
 ```
 
 {% hint style="info" %}
-`aidbox/system` can be configured with [`aidbox.config/config`](../../reference/configuration/aidbox-project/aidbox.config-config.md):
+Besides system environment variables for setting up aidbox configuration project, there are many other envs Aidbox respects as part of backward compatibility. Still they are considered as legacy.&#x20;
+
+It's more preferable to set up Aidbox with [aidbox.config/config](../../reference/configuration/aidbox-project/aidbox.config-config.md). You may provide it with `aidbox/system`
 
 {% code title="project/zrc/system.edn" overflow="wrap" %}
 ```clojure
@@ -48,9 +50,10 @@ AIDBOX_ZEN_ENTRYPOINT=system/box
  {:zen/tags #{aidbox/system}
   :config box-config
   ,,,}}
-
 ```
 {% endcode %}
+
+This is more preferable way, than configuring Aidbox via envs.
 {% endhint %}
 
 ## Provide Aidbox configuration project from a git repo
