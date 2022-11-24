@@ -4,13 +4,35 @@ description: This article outlines the basic steps to get started with Aidbox Fo
 
 # Getting started
 
-## Create a license on Aidbox portal
+You can try the Aidbox Forms module, edit test forms, create new ones, see how the data will be saved to the database and extracted, for this you need to run [the Aidbox Forms in Aidbox Sandbox](./#run-aidbox-forms-in-aidbox-sandbox).  But all your changes will not be saved. To develop forms, you need to run [the Aidbox Forms locally](./#run-aidbox-forms-locally).
+
+## Run Aidbox Forms in Aidbox Sandbox
+
+### Create a license on Aidbox portal
+
+* Sign up on [Aidbox portal](https://aidbox.app/ui/portal#/signin)
+* Create a license: product type - **Aidbox**, licence type - **standard** or **development**, hosting - **in Cloud (for free)**
+* Configure your project: select Aidbox SDC Forms
+
+### &#x20; Start playing with Aidbox Forms
+
+* Go to [Aidbox portal](https://aidbox.app/ui/portal#/signin), find your license in the "Personal project licenses" list. Click on your new license and navigate to the "URL" link in the "Hosting" box.
+* Press the button `Forms` in the Aidbox console in browser
+* Play with forms
+
+{% hint style="danger" %}
+This is only a sandbox with test forms, all your changes are not saved
+{% endhint %}
+
+## Run Aidbox Forms locally
+
+### Create a license on Aidbox portal
 
 * Sign up on [Aidbox portal](https://aidbox.app/ui/portal#/signin)
 * Create a license: product type - **Aidbox**, licence type - **development**, hosting - **self-hosted**
 * Copy & save a license key
 
-## Configure Aidbox project
+### Configure Aidbox project
 
 1. You need to have the following software installed:
 
@@ -52,7 +74,7 @@ Run Aidbox in Aidbox sandbox
 You can edit zen files in `zrc` directory and they will be automatically reloaded
 {% endhint %}
 
-## Start form designing
+### Start form designing
 
 You have two options how to design form
 
