@@ -32,6 +32,27 @@ you should specify the following environment variable
 AIDBOX_ZEN_ENTRYPOINT=system/box
 ```
 
+{% hint style="info" %}
+`aidbox/system` can be configured with [`aidbox.config/config`](../../reference/configuration/aidbox-project/aidbox.config-config.md):
+
+{% code title="project/zrc/system.edn" overflow="wrap" %}
+```clojure
+{ns system
+ import #{aidbox aidbox.config}
+
+ box-config
+ {:zen/tags #{aidbox.config/config}
+  ,,,}
+
+ box
+ {:zen/tags #{aidbox/system}
+  :config box-config
+  ,,,}}
+
+```
+{% endcode %}
+{% endhint %}
+
 ## Provide Aidbox configuration project from a git repo
 
 Aidbox container needs to know where Aidbox configuration project is located. For that you set `BOX_PROJECT_GIT_URL` environment variable to a git repository URL or a local directory path.

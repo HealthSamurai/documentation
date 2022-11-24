@@ -98,4 +98,4 @@ Note that AidboxQuery with variable `resourceType` can only be called with `_que
 
 In CI environments it is often desired to have same state at the beginning of each test suite. You can simply stop Aidbox, drop database, and start Aidbox again.
 
-Use [Aidbox project](../reference/configuration/aidbox-project.md) to set up fixtures. Note that you can use different Aidbox projects for each test suite (or different entrypoints).
+Use [Aidbox project](../reference/configuration/aidbox-project/) to set up fixtures. Note that you can use different Aidbox projects for each test suite (or different entrypoints).
