@@ -16,7 +16,7 @@ description: This article outlines the basic steps to get started with Aidbox Fo
 
 * docker
 * docker-compose
-* text editor with color highlighting \*> Recommended VSCode editor with `zen-lsp` plugin
+* text editor with color highlighting (recommended VSCode editor with `zen-lsp` plugin)
 * any modern web-browser
 * git
 * make
@@ -42,7 +42,7 @@ Run Aidbox in Aidbox sandbox
 
 6\. Run in the terminal `make up` in the root of repository
 
-7\. Open Aidbox console in browser [http://localhost:8080/ ](http://localhost:8080/), using login / passwod  - admin / admin
+7\. Open Aidbox console in browser [http://localhost:8080/ ](http://localhost:8080/), using login / password  - admin / password
 
 8\. Go to forms by pressing the button `Forms` (or by visiting [http://localhost:8080/ui/sdc](http://localhost:8080/ui/sdc) )
 
