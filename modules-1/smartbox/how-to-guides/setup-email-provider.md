@@ -6,7 +6,33 @@ description: This guide explains how you can set up email provider
 
 Aidbox supports different email API services and SMTP protocol.
 
-### How to set up `mailgun`
+## Smartbox administrator UI
+
+Use Smartbox administrator UI to set up email provider.
+
+### Setup provider details
+
+To set up email provider details:
+
+1. Click the `Settings` link in the header
+2. Click the `Email provider` tab
+3. Choose the provider type (`SMTP` or `mailgun`)
+4. Populate provider details
+5. Press the `Update email provider` button
+
+### Check if provider works
+
+To check provider works:
+
+1. Press the `Send test email` button
+2. Enter your email address
+3. Press the `Ok` button
+
+{% hint style="info" %}
+If you receive the test email message, the provider works
+{% endhint %}
+
+## How to set up `mailgun`
 
 Add the lines below to the `.env` file.
 
@@ -19,7 +45,7 @@ BOX_PROVIDER_DEFAULT_PASSWORD=<YOUR_MAILGUN_PASSWORD>
 BOX_PROVIDER_DEFAULT_URL=<YOUR_MAILGUN_URL>
 ```
 
-### How to set up `Postmark`
+## How to set up `Postmark`
 
 Add the lines below to the `.env` file.
 
@@ -30,7 +56,7 @@ BOX_PROVIDER_DEFAULT_FROM=<YOUR_POSTMARK_FROM>
 BOX_PROVIDER_DEFAULT_API__KEY=<YOUR_POSTMARK_API_KEY>
 ```
 
-### How to set up `SMTP`
+## How to set up `SMTP`
 
 Add the lines below to the `.env` file.
 
