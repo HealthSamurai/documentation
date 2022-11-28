@@ -6,6 +6,16 @@ description: This guide explains how to set up EHR-level customization
 
 ## How to set up EHR logo
 
+### With Smartbox UI
+
+1. Click the `Settings` link in the header
+2. Click the `Logo` tab
+3. Press the `Update logo` button
+4. Enter the logo URL
+5. Press the `Ok` button
+
+### With API
+
 To set up logo use the following request.
 
 ```http
