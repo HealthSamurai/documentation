@@ -280,6 +280,7 @@
     * [Design form locally in familiar editor](modules-1/aidbox-forms/getting-started/design-form-locally-in-familiar-editor.md)
     * [Design form in Aidbox Form IDE](modules-1/aidbox-forms/getting-started/design-form-in-aidbox-form-ide.md)
   * [How to create a form](modules-1/aidbox-forms/how-to-create-a-form.md)
+  * [How to create a form with calculated fields](modules-1/aidbox-forms/how-to-create-a-form-with-calculated-fields.md)
   * [How to embed forms to the workflow](modules-1/aidbox-forms/workflow.md)
   * [Versioning](modules-1/aidbox-forms/versioning.md)
   * [Converter](modules-1/aidbox-forms/converter.md)
