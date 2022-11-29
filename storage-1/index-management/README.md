@@ -2,6 +2,10 @@
 
 Since version 2211, Aidbox can suggest indexes for Search API.&#x20;
 
+{% hint style="warning" %}
+Index suggestion API is in draft stage. It will change in future!
+{% endhint %}
+
 Supported FHIR Search parameters types:
 
 * string
@@ -20,11 +24,11 @@ Supported [underscored parameters](../../api-1/fhir-api/search-1/#special-parame
 * \_content
 * \_createdAt
 * \_lastUpdated
+* [Dot expressions](../../api-1/fhir-api/search-1/.-expressions.md)
 
 Not supported:
 
 * zen Search Parameters
-* [Dot expressions](../../api-1/fhir-api/search-1/.-expressions.md)
 * \_filter
 * _include,_ \_revinclude
 
