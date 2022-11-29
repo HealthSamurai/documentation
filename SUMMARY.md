@@ -199,7 +199,8 @@
 
 * [AidboxDB](storage-1/aidboxdb-image.md)
 * [Database schema](storage-1/database.md)
-* [Index management](aidbox-configuration/index-management.md)
+* [Index management](storage-1/index-management/README.md)
+  * [Suggested indexes page](storage-1/index-management/index-management.md)
 * [Archiving](storage-1/archiving.md)
 * [Delete data](storage-1/delete-data.md)
 * [AWS S3](storage-1/aws-s3.md)
