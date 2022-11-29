@@ -34,6 +34,8 @@ You have two options available:
 
 &#x20;            [FinalizeConstrains DSL](../../../reference/aidbox-forms/finalizeconstraints-dsl.md)
 
+Go to [this page](../how-to-create-a-form.md) to start designing a form.
+
 {% hint style="info" %}
 Created form will be saved to local file sysem in your repository
 {% endhint %}

@@ -45,6 +45,8 @@ Example
 * [Finalize DSL](../../../reference/aidbox-forms/finalize-dsl.md)
 * [FinalizeConstrains DSL](../../../reference/aidbox-forms/finalizeconstraints-dsl.md)
 
+Go to [this page](../how-to-create-a-form.md) to start designing a form.
+
 {% hint style="success" %}
 In order not to describe the form from scratch, you can copy any suitable form from the templates and make a new form based on it
 {% endhint %}
