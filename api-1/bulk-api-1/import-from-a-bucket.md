@@ -166,7 +166,7 @@ Files are processed completely. The loader doesn't support partial re-import.
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "MinimalUserPolicyForLoaderFile",
+      "Sid": "MinimalUserPolicyForBulkImport",
       "Effect": "Allow",
       "Action": [
         "s3:ListBucket",
