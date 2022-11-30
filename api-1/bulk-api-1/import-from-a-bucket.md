@@ -92,7 +92,7 @@ See [Documentation of PostgreSQL](https://www.postgresql.org/docs/current/errcod
 
 #### Aidbox Error
 Any other errors than the above can be caught as Aidbox Error. The error message will be provided if available.
-
+<br/>
 
 {% endtab %}
 {% endtabs %}
