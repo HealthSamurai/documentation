@@ -161,38 +161,72 @@ Form `Finalize` binds to document, specifies custom validations and set `export-
 Default export-engine - `aidbox.sdc/LispExport` (see available commands: [LISP](../../reference/aidbox-forms/lisp.md) Reference)
 {% endhint %}
 
+```clojure
+VitalsFinalize
+{:zen/tags #{aidbox.sdc/Finalize zen/schema}
+
+;; bind to document
+:document VitalsDocument
+
+;; possible to define custom export engine
+:export-engine aidbox.sdc/LispExport
+
+;; describe which resources should be created based on form data
+:create [
+;; create observation resource if the field exists
+  (lisp/when (lisp/get :loinc-29463-7)
+    {:resourceType "Observation"
+     :status       "final"
+     :code         {:coding [{:code "29463-7"}]}
+     :subject      (lisp/get :patient)
+     :encounter    (lisp/get :encounter)
+     :value        {:Quantity (lisp/get :loinc-29463-7)}})
+
+;; decribe other resources to create
+
+ ,,,]}
 ```
- VitalsFinalize
- {:zen/tags #{aidbox.sdc/Finalize zen/schema}
 
-  ;; bind to document
-  :document VitalsDocument
+### Finalize Constraints
 
-  ;;
-  :profile {:require #{:loinc-8302-2 :loinc-8867-4}}
+The Form gets validated on `sign` operation using the document schema. An additional validation profile can be defined within the Finalize layer.
 
-  ;; define cusot export-engine
-  :export-engine aidbox.sdc/LispExport
-  :export [
+```clojure
+VitalsFinalize
+{:zen/tags #{aidbox.sdc/Finalize zen/schema}
 
-        ;; if field is existed create observation resource
-        (lisp/when (lisp/get :loinc-8302-2)
-          {:resourceType "Observation"
-          :subject   (lisp/get :patient)
-          :encounter (lisp/get :encounter)
-          :status    "final"
-          :code     {:coding [{:code "8302-2"}]}
-          :value {:Quantity {:value (lisp/get :loinc-8302-2)
-                             :unit "cm"}}})
+ ;; bind to document
+ :document VitalsDocument
 
-         (lisp/when (lisp/get :loinc-29463-7)
-          {:resourceType "Observation"
-            :subject   (lisp/get :patient)
-            :encounter (lisp/get :encounter)
-            :status    "final"
-            :code     {:coding [{:code "29463-7"}]}
-            :value {:Quantity {:value (lisp/get :loinc-29463-7)
-                              :unit "kg"}}})]}
+ ;; additional validation profile
+ :profile VitalsFinalizeConstraints
+
+,,,
+}
+```
+
+This profile can e.g. declare mandatory fields or set some limitations like min/max for numeric fields etc. The profile is defined via zen schema.
+
+```clojure
+VitalsFinalizeConstraints
+{:zen/tags #{zen/schema}
+ :type zen/map
+
+ ;; list of mandatory fields
+ :require #{:loinc-39156-5 :loinc-29463-7 :loinc-8302-2}
+
+ :keys
+ {
+  ;; limit field value to the specified range
+  :loinc-39156-5 {:type zen/number :min 20, :max 220}
+
+  ;; denote this field value is required
+  :loinc-29463-7 {:type zen/map :require #{:value}}
+
+  ;; more validation constraints
+  ,,,
+  }}}
+
 ```
 
 ### Form
@@ -215,4 +249,4 @@ Form used just to bind all DSLs to one item.
 
 ```
 
-For now you can alredy try to use created document via `aidbox.sdc` [API](../../reference/aidbox-forms/api-reference.md)
+For now you can already try to use created document via `aidbox.sdc` [API](../../reference/aidbox-forms/api-reference.md)
