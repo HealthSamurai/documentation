@@ -325,7 +325,6 @@ expansion:
   - {code: pager, module: fhir-3.3.0, system: 'http://hl7.org/fhir/contact-point-system', display: Pager, definition: The value is a pager number. These may be local pager numbers that are only usable on a particular pager system.}
   - {code: other, module: fhir-3.3.0, system: 'http://hl7.org/fhir/contact-point-system', display: Other, definition: 'A contact that is not a phone, fax, page or email address and is not expressible as a URL.  E.g. Internal mail address.  This SHOULD NOT be used for contacts that are expressible as a URL (e.g. Skype, Twitter, Facebook, etc.)  Extensions may be used to distinguish "other" contact types.'}
 ...
-
 ```
 {% endtab %}
 {% endtabs %}
@@ -336,7 +335,7 @@ Selects concepts found in this value set. This is an absolute URI that is a refe
 
 `concept` and `filter` don't apply to `valueSet`.
 
-N/B:  `ValueSet.compose.include.valueSet` **** should be an array not a string.
+N/B: `ValueSet.compose.include.valueSet` \*\*\*\* should be an array not a string.
 
 Let's include the `administrative-gender` value set. There will be 4 concepts: `male`, `female`, `unknown`, and `other`.
 
@@ -418,17 +417,17 @@ expansion:
 
 The `filter.op` element defines the kind of operation to perform as a part of the filter criteria. It can take one of the following values:
 
-| Code           | Display                         | Support         |
-| -------------- | ------------------------------- | --------------- |
-| =              |  Equals                         | `Supported`     |
-|  is-a          |  Is A (by subsumption)          | `Supported`     |
-|  descendent-of |  Descendent Of (by subsumption) | `Supported`     |
-|  is-not-a      |  Not (Is A) (by subsumption)    | `Supported`     |
-|  regex         |  Regular Expression             | `Supported`     |
-|  in            |  In Set                         | `Supported`     |
-|  not-in        |  Not in Set                     | `Supported`     |
-|  generalizes   |  Generalizes (by Subsumption)   | `Not supported` |
-|  exists        |  Exists                         | `Supported`     |
+| Code          | Display                        | Support         |
+| ------------- | ------------------------------ | --------------- |
+| =             | Equals                         | `Supported`     |
+| is-a          | Is A (by subsumption)          | `Supported`     |
+| descendent-of | Descendent Of (by subsumption) | `Supported`     |
+| is-not-a      | Not (Is A) (by subsumption)    | `Supported`     |
+| regex         | Regular Expression             | `Supported`     |
+| in            | In Set                         | `Supported`     |
+| not-in        | Not in Set                     | `Supported`     |
+| generalizes   | Generalizes (by Subsumption)   | `Not supported` |
+| exists        | Exists                         | `Supported`     |
 
 In the examples below we will use the [goal-status](https://www.hl7.org/fhir/codesystem-goal-status.html) code system which consists of :
 
@@ -555,7 +554,7 @@ expansion:
 
 ### Descendent Of (by subsumption)
 
-Let's include all concepts that have a transitive is-a relationship with the concept code `in-progress` provided as the value excluding the provided concept itself (i.e. include child codes). The result will include 4 values:  `on-target`, `ahead-of-target`, `behind-target`, and `sustaining`.
+Let's include all concepts that have a transitive is-a relationship with the concept code `in-progress` provided as the value excluding the provided concept itself (i.e. include child codes). The result will include 4 values: `on-target`, `ahead-of-target`, `behind-target`, and `sustaining`.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -610,14 +609,13 @@ expansion:
     hierarchy: [accepted, in-progress]
     definition: The goal has been met, but ongoing activity is needed to sustain the goal objective
 ...
-
 ```
 {% endtab %}
 {% endtabs %}
 
 ### Not (Is A) (by subsumption)
 
-Let's include all codes where the specified property of the code does not have an is-a relationship with the provided value `accepted`. The result will include 4 values whose parent is not `accepted`: `proposed`,  `cancelled`, `rejected`, and `entered-in-error`.
+Let's include all codes where the specified property of the code does not have an is-a relationship with the provided value `accepted`. The result will include 4 values whose parent is not `accepted`: `proposed`, `cancelled`, `rejected`, and `entered-in-error`.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -662,7 +660,7 @@ Aidbox supports filter operation `regex` and implements Postgresql regular expre
 
 Please notice that regular expressions require an additional character escaping in JSON.
 
-Let's include codes where the specified property of the code matches the regex specified in the provided value `\\w{8}`. The result will include 4 values that have 8 symbols in length: `proposed`, `accepted`, `achieved`, and `rejected`.&#x20;
+Let's include codes where the specified property of the code matches the regex specified in the provided value `\\w{8}`. The result will include 4 values that have 8 symbols in length: `proposed`, `accepted`, `achieved`, and `rejected`.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -802,7 +800,6 @@ expansion:
     definition: The goal has been met, but ongoing activity is needed to sustain the goal objective
   - {code: rejected, module: fhir-3.3.0, system: 'http://hl7.org/fhir/goal-status', display: Rejected, definition: A proposed goal was rejected}
 ...
-
 ```
 {% endtab %}
 {% endtabs %}

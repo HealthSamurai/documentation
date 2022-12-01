@@ -6,13 +6,13 @@ description: Do multiple operations in one call
 
 ### Introduction
 
-Transaction interaction allows performing several interactions using one http request. There are two types of transaction interaction \(type is specified by field `type`\): batch and transaction. The first one just executes requests one by one, the second one does the same, but roll backs all changes if any request fails. 
+Transaction interaction allows performing several interactions using one http request. There are two types of transaction interaction (type is specified by field `type`): batch and transaction. The first one just executes requests one by one, the second one does the same, but roll backs all changes if any request fails.
 
 ```
 POST [base]
 ```
 
-The body of such request contains one resource of type Bundle, which contains field entry with an array of interactions, for example: \
+The body of such request contains one resource of type Bundle, which contains field entry with an array of interactions, for example: \\
 
 ```yaml
 POST /
@@ -47,7 +47,7 @@ entry:
     url: "/AccessPolicy"
 ```
 
-Each element of the entry array contains a resource field \(body of the request\) and a request field \(request line in terms of the HTTP request\).
+Each element of the entry array contains a resource field (body of the request) and a request field (request line in terms of the HTTP request).
 
 ```yaml
 resource: # not needed for DELETE and GET
@@ -90,7 +90,6 @@ entry:
   request:
     method: POST
     url: "/Encounter"
-
 ```
 
 You can provide a full Url with value like `"urn:<uuid-here>"` and reference to the resource created by such interaction using ref: `{uri: "urn:<uuid-here>"}`. Those references are temporary and will be translated to valid Aidbox references when interaction entry is processed by a server.
@@ -147,4 +146,3 @@ entry:
 - resource: {birthDate: '2021-01-02', id: pt-1, resourceType: Patient}
 - resource: {birthDate: '2021-01-01', id: pt-1, resourceType: Patient}
 ```
-

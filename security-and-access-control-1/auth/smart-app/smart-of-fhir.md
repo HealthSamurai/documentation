@@ -460,7 +460,6 @@ entry:
   request:
     method: POST
     url: "/Observation"
-
 ```
 
 ## Launch Growth Chart

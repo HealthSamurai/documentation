@@ -36,7 +36,6 @@ Accept: text/yaml
 status: 200
 body:
   meta: {versionId: '999'}
-
 ```
 
 ### ETag Cache
@@ -60,7 +59,5 @@ CREATE INDEX IF NOT EXISTS <resourceType>_history_txid_btree ON <resourceType>_h
 ```
 
 {% hint style="info" %}
-replace **<resourceType>** with **<resourceType>** table name, for example
-`CREATE INDEX IF NOT EXISTS patient_txid_btree ON patient using btree(txid);
-CREATE INDEX IF NOT EXISTS patient_history_txid_btree ON patient_history using btree(txid);`
+replace with table name, for example `CREATE INDEX IF NOT EXISTS patient_txid_btree ON patient using btree(txid); CREATE INDEX IF NOT EXISTS patient_history_txid_btree ON patient_history using btree(txid);`
 {% endhint %}

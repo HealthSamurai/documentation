@@ -36,13 +36,13 @@ subscriptions: <Subscriptions>
 
 ### endpoint
 
-In the `endpoint` section, you describe how Aidbox will communicate with your service. 
+In the `endpoint` section, you describe how Aidbox will communicate with your service.
 
-| Key        | type    | required | Options            | default  | description                          |
-| ---------- | ------- | -------- | ------------------ | -------- | ------------------------------------ |
-| **type**   | string  | true     | http-rpc \| ws-rpc | http-rpc | Protocol of communication            |
-| **url**   | string  | true    |                    |          |  Url of service to communicate         |
-| **secret** | string  |          |                    |          | Secret key used for communication    |
+| Key        | type   | required | Options            | default  | description                       |
+| ---------- | ------ | -------- | ------------------ | -------- | --------------------------------- |
+| **type**   | string | true     | http-rpc \| ws-rpc | http-rpc | Protocol of communication         |
+| **url**    | string | true     |                    |          | Url of service to communicate     |
+| **secret** | string |          |                    |          | Secret key used for communication |
 
 ### entities
 
@@ -57,7 +57,6 @@ Patient: # existing resource type
   hooks: # resource life cycle hooks
     before_create: # map of hooks <hook-id>: { config-map }
        notify_on_patient: { emails: ['admin@hs.io'] }
-
 ```
 {% endcode %}
 
@@ -111,7 +110,7 @@ User:
 
 At the root of resource definition, you can also define **hooks** and **profiles** for this resource.
 
-Element definition will be translated into [Attribute Meta-Resource](broken-reference) and have the following properties:
+Element definition will be translated into [Attribute Meta-Resource](broken-reference/) and have the following properties:
 
 | name     | type | Description                    |
 | -------- | ---- | ------------------------------ |
@@ -119,7 +118,7 @@ Element definition will be translated into [Attribute Meta-Resource](broken-refe
 
 ### operations
 
-In the operation section, you define Custom REST operations as a map  \<operation-id>: \<operation-definition> and access policy (which will be bound to this operation):
+In the operation section, you define Custom REST operations as a map \<operation-id>: \<operation-definition> and access policy (which will be bound to this operation):
 
 {% code title="operations:" %}
 ```yaml
@@ -154,7 +153,6 @@ AccessPolicy:
 ### hooks
 
 Aidbox will provide a set of hooks you can hook-in to customize its behavior:
-
 
 ### subscriptions
 

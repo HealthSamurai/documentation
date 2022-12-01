@@ -60,18 +60,20 @@ To enable zen FHIR IGs you provided you need to import them inside of your [entr
 
 Using the example from [the getting started page](../../getting-started/run-aidbox-locally-with-docker/#create-and-set-up-your-aidbox-configuration-project) the updated entrypoint file will look like this for both of the examples above:
 
-| r4 core                                                                                                                                                   | us-core and plan-net                                                                                                                                                                               |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| r4 core                                                                                                                                                    | us-core and plan-net                                                                                                                                                                                |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | <pre class="language-clojure"><code class="lang-clojure">{:ns system
  :import #{aidbox hl7-fhir-r4-core}
  box
- {:zen/tags #{aidbox/system}}}</code></pre> | <pre class="language-clojure"><code class="lang-clojure">{:ns system
+ {:zen/tags #{aidbox/system}}}
+</code></pre> | <pre class="language-clojure"><code class="lang-clojure">{:ns system
  :import
  #{aidbox
    hl7-fhir-us-core
    hl7-fhir-us-davinci-pdex-plan-net}
  box
- {:zen/tags #{aidbox/system}}}</code></pre> |
+ {:zen/tags #{aidbox/system}}}
+</code></pre> |
 
 ### Commit changes to your Aidbox configuration project
 

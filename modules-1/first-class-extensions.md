@@ -164,6 +164,8 @@ extensionUrl: urn:extension:requestedOrganizationDepartment
 *   `isRequired` - _boolean_.
 
     Whether the attribute is required, i.e. if `true` sets attribute cardinality to `1..`
+* `isUnique` - _boolean_.\
+  Sets unique restriction on the attribute.&#x20;
 *   `refers` - _Reference(Entity)_.
 
     Only for type=Reference. Specifies to which resourceTypes this reference can refer to

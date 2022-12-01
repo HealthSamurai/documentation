@@ -73,26 +73,30 @@ Returns the string "Upload started"
 
 {% tab title="Error" %}
 The following types of errors can occur for this request.
+
 * AWS Error
 * PostgreSQL Error
-* Aidbox Error
-<br/>
+* Aidbox Error\
 
-#### AWS Error
-|Code            |Description               |
-|----------------|--------------------------|
-|InvalidAccount  |The AWS access key ID or AWS secret access key that you provided is not valid. |
-|NoSuchKey       |The specified S3 bucket or S3 object key does not exist. | 
 
-<br/>
+**AWS Error**
 
-#### PostgreSQL Error
-See [Documentation of PostgreSQL](https://www.postgresql.org/docs/current/errcodes-appendix.html).
-<br/>
+| Code           | Description                                                                    |
+| -------------- | ------------------------------------------------------------------------------ |
+| InvalidAccount | The AWS access key ID or AWS secret access key that you provided is not valid. |
+| NoSuchKey      | The specified S3 bucket or S3 object key does not exist.                       |
 
-#### Aidbox Error
-Any other errors than the above can be caught as Aidbox Error. The error message will be provided if available.
-<br/>
+\
+
+
+**PostgreSQL Error**
+
+See [Documentation of PostgreSQL](https://www.postgresql.org/docs/current/errcodes-appendix.html).\
+
+
+**Aidbox Error**
+
+Any other errors than the above can be caught as Aidbox Error. The error message will be provided if available.\
 
 {% endtab %}
 {% endtabs %}
@@ -157,10 +161,11 @@ On launch `aidbox.bulk/load-from-bucket` checks if files from the bucket were pl
 
 In order to import a file one more time you should delete related `LoaderFile` resource and relaunch `aidbox.bulk/load-from-bucket`.
 
-Files are processed completely. The loader doesn't support partial re-import.
-<br/>
+Files are processed completely. The loader doesn't support partial re-import.\
+
 
 ### AWS User Policy: Minimal Example
+
 ```json
 {
   "Version": "2012-10-17",
@@ -180,7 +185,9 @@ Files are processed completely. The loader doesn't support partial re-import.
   ]
 }
 ```
-<br/><br/>
+
+\
+\
 
 
 ### `aidbox.bulk/load-from-bucket-status`
