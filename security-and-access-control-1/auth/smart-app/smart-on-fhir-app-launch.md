@@ -2,9 +2,9 @@
 
 SMART on FHIR specifies authentication/authorization scheme for FHIR Applications. This scheme extends OAuth 2.0 and OpenID. To enable [SMART on FHIR](https://smarthealthit.org/) you need to create an [Aidbox project](../../../aidbox-configuration/aidbox-zen-lang-project/) and configure SMART API routes using the [Aidbox API Constructor](../../../aidbox-configuration/aidbox-api-constructor.md).
 
-{% hint style="warning" %}
+<!--{% hint style="warning" %}
 Currently SMART on FHIR support is in the alpha stage.
-{% endhint %}
+{% endhint %}-->
 
 {% hint style="info" %}
 You can use the configuration provided in the [Aidbox project samples](https://github.com/Aidbox/aidbox-project-samples) repo.
