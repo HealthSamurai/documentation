@@ -40,6 +40,7 @@ Supported Lisp functions are tested and documented using [zen-lang](https://gith
 * `lisp/matcho-path`
 * `lisp/date`
 * `lisp/timestamp`
+* `lisp/period`
 * `lisp/sql`
 
 ### `lisp/i` (`lisp/j`)
@@ -58,7 +59,7 @@ For (loop) expression. Takes a vector of one binding-form (example: \[ ]), and r
 
 Examples:
 
-```
+```clojure
 (lisp/for [lisp/i [1 2 3 4]] (+ lisp/i 10)) ;; => [11 12 13 14]
 ;; -------------------------------
 ;; ctx is {:foo [{:bar [1 2 3]} {:bar [10 20 30]}]}
@@ -77,7 +78,7 @@ Also can be used with variables See `lisp/i`, `lisp/j`, `lisp/global`
 
 Examples:
 
-```
+```clojure
 (lisp/get {:foo 10} :foo) ;; => 10
 ;; -----------------------
 (lisp/get [10 11 12] 1) ;; => 11
@@ -98,7 +99,7 @@ Also can be used with variables See `lisp/i`, `lisp/j`, `lisp/global`
 
 Examples:
 
-```
+```clojure
 (lisp/get-in {:foo {:bar 10}} [:foo bar]) ;; => 10
 ;; -----------------------
 (lisp/get-in {:foo [10 11 12]} [:foo 0]) ;; => 10
@@ -115,7 +116,7 @@ Also can be used with variables See `lisp/i`, `lisp/j`, `lisp/global`
 
 Examples:
 
-```
+```clojure
 (lisp/vals {:a 10 :b 20}) ;; => (10 20)
 ;; -----------------------------------
 ;; with lisp/global = {:foo {:a 10} :bar [1 2 3]}
@@ -128,7 +129,7 @@ Returns true when colleciton has an element, otherwise false.
 
 Examples:
 
-```
+```clojure
 (lisp/includes? [0] 0) ;; => true
 ;; ----------------
 (lisp/includes? [0 2 1] 10) ;; => false
@@ -142,7 +143,7 @@ Returns the sum of nums
 
 Examples:
 
-```
+```clojure
 (lisp/+ 10 20) ;; => 30
 ;; -----------------
 (lisp/+ 3 2 1) ;; => 6
@@ -156,7 +157,7 @@ If one arg is supplied, returns the negation of it, else subtracts all the follo
 
 Examples:
 
-```
+```clojure
 (lisp/- 1) ;; => -1
 ;; ----------------
 (lisp/- 2 1) ;; => 1
@@ -172,7 +173,7 @@ Returns the product of nums. (\*) returns 1.
 
 Examples:
 
-```
+```clojure
 (lisp/* 2 2) ;; => 4
 ;; ---------------------
 (lisp/* 1 10 10) ;; => 100
@@ -186,7 +187,7 @@ Returns numerator divided by all of the denominators.
 
 Examples:
 
-```
+```clojure
 (lisp/divide 10 2) ;; => 5
 ;; ----------------
 (lisp/divide 1000 10 10) ;; => 10
@@ -200,10 +201,10 @@ Modulus of num and div. Truncates toward negative infinity.
 
 Examples:
 
-```
+```clojure
 (lisp/mod 10 3) ;; => 1
 ;; ----------------
-  (lisp/mod 7 (lisp/+ 2 1)) ;; => 1
+(lisp/mod 7 (lisp/+ 2 1)) ;; => 1
 ```
 
 ### `lisp/=`
@@ -212,7 +213,7 @@ Returns true values are the same, otherwise false.
 
 Examples:
 
-```
+```clojure
 (lisp/= 0 0) ;; => true
 ;; ----------------
 (lisp/= 0 0 1) ;; => false
@@ -226,7 +227,7 @@ Returns true if nums are in monotonically decreasing order, otherwise false.
 
 Examples:
 
-```
+```clojure
 (lisp/> 1 2) ;; => false
 ;; ----------------
 (lisp/> 3 2 1) ;; => true
@@ -240,7 +241,7 @@ Returns true if nums are in monotonically non-increasing order, otherwise false.
 
 Examples:
 
-```
+```clojure
 (lisp/>= 0 0) ;; => true
 (lisp/>= 3 2 1) ;; => true
 (lisp/>= 1 (lisp/+ 10 0)) ;; => false
@@ -252,7 +253,7 @@ Returns true if nums are in monotonically increasing order, otherwise false.
 
 Examples:
 
-```
+```clojure
 (lisp/< 0 1) ;; => true
 ;; ----------------
 (lisp/< 1 2 3) ;; => true
@@ -266,7 +267,7 @@ Returns true if nums are in monotonically non-decreasing order, otherwise false.
 
 Examples:
 
-```
+```clojure
 (lisp/<= 0 0) ;; => true
 ;; ----------------
 (lisp/<= 0 0 1) ;; => true
@@ -280,8 +281,8 @@ Evaluates test. If logical true, evaluates body
 
 Examples:
 
-```
-  (lisp/when (lisp/< 0 1) 10) ;; => 10
+```clojure
+(lisp/when (lisp/< 0 1) 10) ;; => 10
 ;; ----------------
 (lisp/when (lisp/> 0 10) 10)  ;; => nil
 ;; ----------------
@@ -294,7 +295,7 @@ Evaluates test. If not the singular values nil or false, evaluates and yields th
 
 Examples:
 
-```
+```clojure
 (lisp/if true 10) ;; => 10
 ;; ----------------
 (lisp/if false 10 11) ;; => 11
@@ -310,7 +311,7 @@ Takes a set of test/expr pairs. It evaluates each test one at a time. If a test 
 
 Examples:
 
-```
+```clojure
 (lisp/cond true 10 :else 11) ;; => 10
 ;; ---------------------------------------
 (lisp/cond false 10 :else 11) ;; => 11
@@ -327,7 +328,7 @@ Evaluates exprs one at a time, from left to right. If a form returns a logical t
 
 Examples:
 
-```
+```clojure
 (lisp/or true) ;; => true
 ;; -----------------------------------------
 (lisp/or false true) ;; => true
@@ -344,7 +345,7 @@ Evaluates exprs one at a time, from left to right. If a form returns logical fal
 
 Examples:
 
-```
+```clojure
 (lisp/and true) ;; => true
 ;; -------------------------------------
 (lisp/and false true) ;; => false
@@ -361,10 +362,10 @@ Returns true if x is logical false, false otherwise.
 
 Examples:
 
-```
+```clojure
 (lisp/not true) ;; => false
 ;; -----------------------------------
-  (lisp/not (lisp/get {:foo 10} :foo)) ;; => false
+loj(lisp/not (lisp/get {:foo 10} :foo)) ;; => false
 ```
 
 ### `lisp/count`
@@ -373,7 +374,7 @@ Return the number of items in a collection
 
 Examples:
 
-```
+```clojure
 (lisp/count [1 2 3]) ;; => 3
 ```
 
@@ -383,7 +384,7 @@ Filter elements by partial match
 
 Examples:
 
-```
+```clojure
 (lisp/matcho-filter [{:name "John" :age 32} {:name "Jack" :age 34}] {:name "John"})
 => [{:name "John" :age 32}]
 
@@ -427,7 +428,7 @@ Returns a map containing only those entries in map whose key is in keys
 
 Examples:
 
-```
+```clojure
 (lisp/select-keys {:a 1 :b 2 :c 3} [:a :b]) ;; => {:a 1 :b 2}
 ```
 
@@ -437,7 +438,7 @@ Returns a map that does not contain a mapping for key(s)
 
 Examples:
 
-```
+```clojure
 (lisp/dissoc {:a 1 :b 2 :c 3} :a) ;; => {:b 2 :c 3}
 ;; ----------------------------------
 (lisp/dissoc {:a 1 :b 2 :c 3} :a :b) ;; => {:c 3}
@@ -449,7 +450,7 @@ Returns a current datetime in given format
 
 Examples:
 
-```
+```clojure
 (lisp/date "yyyy-MM-dd HH:mm") => "2022-01-21 23:51"
 ;;--------------
 (lisp/date "HH:mm") => "23:51"
@@ -461,8 +462,25 @@ Returns timestamp of current datetime
 
 Examples:
 
-```
+```clojure
 (lisp/timestamp) => 1658416557
+```
+
+### `lisp/period`
+
+Returns difference between two dates in given units. Arguments order is not matter - returns absolute value. Possible units are: :years :months :weeks :days
+
+Examples:
+
+```clojure
+(lisp/period "2022-01-01" "2022-12-12" :months) ;; => 11
+;; -------------
+(lisp/period "2022-01-01" "2022-01-10" :weeks) ;; => 1
+;; -------------
+(lisp/period "2022-01-01" "2022-01-10" :days) ;; => 9
+;; -------------
+(lisp/period "2022-01-10" "2022-01-01" :days) ;; => 9
+
 ```
 
 ### `lisp/sql`
@@ -475,7 +493,7 @@ Run SQL query. Returns first row(as map) of result. When selected only one colum
 
 Examples:
 
-```
+```clojure
 (lisp/sql "select * from patient where id = '1'")
 => {:id "1" :name [{:family "Smith"}]}
 

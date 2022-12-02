@@ -1,6 +1,6 @@
 # How to create a form
 
-To create new form you need to define 5 resources in zen (schemas from `adibox.sdc`) :
+To create new form you need to define 5 resources in zen (schemas from `aidbox.sdc`) :
 
 * [SDCDocument](how-to-create-a-form.md#sdcdocument) - contains questions with answers and other meta data
 * [Form Layout](how-to-create-a-form.md#form-layout) - binds to SDCDocument and its fields.
