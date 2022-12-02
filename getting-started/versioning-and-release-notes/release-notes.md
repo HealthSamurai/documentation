@@ -1,5 +1,13 @@
 # Release Notes
 
+## November 2022 _`edge`_
+
+* Terminology
+* CCDA to FHIR converter
+* FHIR API for EHRs
+* Aidbox forms
+* Aidbox user portal
+
 ## October 2022 _`latest`_
 
 * Terminology
@@ -20,7 +28,7 @@
 * Search API
   * Added [execute type in AidboxQuery](../../api-1/fhir-api/search-1/custom-search.md#query-types)
   * Added [FHIR compliant date search](../../api-1/fhir-api/search-1/date-search.md)
-  * Added 180 seconds [timeout](../../api-1/fhir-api/search-1/\_timeout.md) for [(rev)include queries](../../api-1/fhir-api/search-1/\_include-and-\_revinclude.md)
+  * Added 180-second [timeout](../../api-1/fhir-api/search-1/\_timeout.md) for [(rev)include queries](../../api-1/fhir-api/search-1/\_include-and-\_revinclude.md)
   * **Breaking change:** removed limit of 1000 in [\_count queries](../../api-1/fhir-api/search-1/\_count-and-\_page.md)
 * FHIR API for EHRs
   * Supported [multitenancy](../../modules-1/smartbox/background-information/multitenancy-approach.md)&#x20;
@@ -238,7 +246,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 * We've released a major Aidbox UI upgrade
 
-![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (1) (12) (1) (1) (9).png>)
+![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (10).png>)
 
 * Updated REST Console (check out[ the tutorial](https://bit.ly/rest\_console\_tutorial)):
   * Explicit request headers `content-type, accept` etc

@@ -10,43 +10,21 @@ POST [base]/$dump-sql
 
 ### Headers
 
-| Parameter | Required? | Type | Description |
-| :--- | :--- | :--- | :--- |
-| **content-type** | true | String | Content-type of the query body |
+| Parameter        | Required? | Type   | Description                    |
+| ---------------- | --------- | ------ | ------------------------------ |
+| **content-type** | true      | String | Content-type of the query body |
 
 ### Query parameters
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left">Parameter</th>
-      <th style="text-align:left">Required?</th>
-      <th style="text-align:left">Type</th>
-      <th style="text-align:left">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left"><b>_format</b>
-      </td>
-      <td style="text-align:left">false</td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">
-        <p></p>
-        <ul>
-          <li>json/ndjson: return output as ndjosn</li>
-          <li>otherwise: return output as TSV</li>
-        </ul>
-      </td>
-    </tr>
-  </tbody>
-</table>
+| Parameter    | Required? | Type   | Description                                                                                            |
+| ------------ | --------- | ------ | ------------------------------------------------------------------------------------------------------ |
+| **\_format** | false     | String | <p></p><ul><li>json/ndjson: return output as ndjosn </li><li>otherwise: return output as TSV</li></ul> |
 
 ### Body parameters
 
-| Parameter | Required? | Type | Description |
-| :--- | :--- | :--- | :--- |
-| **query** | true | String | Sql query to execute |
+| Parameter | Required? | Type   | Description          |
+| --------- | --------- | ------ | -------------------- |
+| **query** | true      | String | Sql query to execute |
 
 ## Example
 
@@ -80,10 +58,10 @@ EOF
 
 #### Headers
 
-| Header | Value |
-| :--- | :--- |
-| Content-Type | text/tab-separated-values |
-| Transfer-Encoding | Chunked |
+| Header            | Value                     |
+| ----------------- | ------------------------- |
+| Content-Type      | text/tab-separated-values |
+| Transfer-Encoding | Chunked                   |
 
 #### Body
 
@@ -95,12 +73,10 @@ pt-3	Charles
 
 #### Body as table
 
-|  |  |
-| :--- | :--- |
+|      |       |
+| ---- | ----- |
 | pt-1 | Alice |
-| pt-2 | Bob |
+| pt-2 | Bob   |
 {% endtab %}
 {% endtabs %}
-
-
 

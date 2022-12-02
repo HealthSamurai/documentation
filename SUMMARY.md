@@ -358,7 +358,7 @@
     * [Aidbox project environment variables](reference/configuration/environment-variables/aidbox-project-environment-variables.md)
     * [Mailgun environment variables](reference/configuration/environment-variables/mailgun-environment-variables.md)
     * [Postmark environment variables](reference/configuration/environment-variables/postmark-environment-variables.md)
-  * [Aidbox project](reference/configuration/aidbox-project/README.md)
+  * [Aidbox project](reference/configuration/aidbox-project.md)
     * [aidbox.config/config](reference/configuration/aidbox-project/aidbox.config-config.md)
 * [Aidbox Forms reference](reference/aidbox-forms.md)
   * [Layout DSL](reference/aidbox-forms/layout-dsl.md)

@@ -2,10 +2,6 @@
 
 SMART on FHIR specifies authentication/authorization scheme for FHIR Applications. This scheme extends OAuth 2.0 and OpenID. To enable [SMART on FHIR](https://smarthealthit.org/) you need to create an [Aidbox project](../../../aidbox-configuration/aidbox-zen-lang-project/) and configure SMART API routes using the [Aidbox API Constructor](../../../aidbox-configuration/aidbox-api-constructor.md).
 
-<!--{% hint style="warning" %}
-Currently SMART on FHIR support is in the alpha stage.
-{% endhint %}-->
-
 {% hint style="info" %}
 You can use the configuration provided in the [Aidbox project samples](https://github.com/Aidbox/aidbox-project-samples) repo.
 {% endhint %}
@@ -23,7 +19,7 @@ In the `aidbox-project-samples/smart-on-fhir/core.edn` file you can see example 
 Currently only two middlewares for SMART on FHIR authorization are implemented:
 
 * `:smart.fhir/single-patient-auth-middleware` — Patient launch
-* `:smart.fhir/authorization-middleware` — Provider launch    &#x20;
+* `:smart.fhir/authorization-middleware` — Provider launch
 
 ## Create Resources
 
@@ -103,7 +99,7 @@ Aidbox provides the [RPC API](../../../api-1/rpc-api.md) method `aidbox.smart/ge
 * `iss`: Aidbox base URL
 * `client`: id of the `Client` resource
 * `ctx`: additional launch context
-  * `patient`: id of  `Patient` resource
+  * `patient`: id of `Patient` resource
   * `encounter`: id of `Encounter` resource
 
 This RPC method generates SMART launch URL.
@@ -125,9 +121,7 @@ Authorization code flow with SMART on FHIR Standalone Launch:
 
 ## EHR Launch
 
-![EHR Launch Sequence](<../../../.gitbook/assets/image (93) (1) (1).png>)
-
-
+![EHR Launch Sequence](<../../../.gitbook/assets/image (93) (1).png>)
 
 Authorization code flow with SMART on FHIR EHR Launch:
 
@@ -145,7 +139,7 @@ Authorization code flow with SMART on FHIR EHR Launch:
 The result of the exchanging of the `code` for `token` is a JSON object containing at least:
 
 * `access_token`. The access token issued by the authorization server
-* `token_type`.  Fixed value: `Bearer`
+* `token_type`. Fixed value: `Bearer`
 * `scope`. Scope of access authorized
 
 More details can be found [here](https://www.hl7.org/fhir/smart-app-launch/app-launch.html#response-5)
@@ -154,6 +148,3 @@ More details can be found [here](https://www.hl7.org/fhir/smart-app-launch/app-l
 ## Inferno tests
 
 The SMART on FHIR sample in the [Aidbox Project Samples](https://github.com/Aidbox/aidbox-project-samples) is ready to pass the Inferno ONC Program and most of the Inferno Community SMART on FHIR tests. Follow the README in the Aidbox Project Samples repository to set up Aidbox for running these tests.
-
-
-
