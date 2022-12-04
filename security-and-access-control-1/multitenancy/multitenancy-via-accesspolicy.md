@@ -191,7 +191,7 @@ DELETE /Patient?_id=test-patient-1&identifier=tenantId|org1
 ```
 {% endtab %}
 
-{% tab title="Resoponse" %}
+{% tab title="Response" %}
 {% code title="Status: 200" %}
 ```
 // empty body
