@@ -80,8 +80,8 @@ The output could be a table like this.
 | ----------- | -------------- | ------------ |
 | `test-pt-1` | `Observation`  | `test-obs-1` |
 | `test-pt-1` | `Observation`  | `test-obs-2` |
-| `test-pt-1` | `Patient`      | `test-pt-1`  |
 |             | `Location`     | `loc-1`      |
+| `test-pt-1` | `Patient`      | `test-pt-1`  |
 
 {% hint style="info" %}
 `Location` here is the example of the resource not in the compartment so the `patient_id` is empty
