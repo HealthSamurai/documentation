@@ -173,3 +173,24 @@ jwks_uri: https://inferno.healthit.gov/suites/custom/g10_certification/.well-kno
 * `user/Practitioner.read`
 * `user/Organization.read`
 * `user/Location.read`
+
+`system/*.read` expands to:
+
+* `system/Patient.read`
+* `system/AllergyIntolerance.read`
+* `system/CarePlan.read`
+* `system/CareTeam.read`
+* `system/Condition.read`
+* `system/Device.read`
+* `system/DiagnosticReport.read`
+* `system/DocumentReference.read`
+* `system/Goal.read`
+* `system/Encounter.read`
+* `system/Immunization.read`
+* `system/MedicationRequest.read`
+* `system/Observation.read`
+* `system/Procedure.read`
+* `system/Provenance.read`
+* `system/Practitioner.read`
+* `system/Organization.read`
+* `system/Location.read`
