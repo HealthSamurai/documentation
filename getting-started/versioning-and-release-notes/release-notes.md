@@ -2,11 +2,16 @@
 
 ## November 2022 _`edge`_
 
-* Terminology
+* Aidbox configuration projects
+  * Improved startup time for Aidbox instances [configured with IGs](../../aidbox-configuration/aidbox-zen-lang-project/enable-igs.md)
+  * Improved local development workflow
+  * Improved Aidbox [support](../../fhir-implementation-guides/us-core-ig/us-core-ig-support-reference.md) of [US Core IG](../../fhir-implementation-guides/us-core-ig/) artifacts
+  * Added configuration of Aidbox features via zen-lang instead of envs
 * CCDA to FHIR converter
 * FHIR API for EHRs
 * Aidbox forms
 * Aidbox user portal
+  * Added configuration with multiple IGs at once
 
 ## October 2022 _`latest`_
 
@@ -246,7 +251,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 * We've released a major Aidbox UI upgrade
 
-![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (10).png>)
+![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (1) (12) (1) (10) (10) (8).png>)
 
 * Updated REST Console (check out[ the tutorial](https://bit.ly/rest\_console\_tutorial)):
   * Explicit request headers `content-type, accept` etc

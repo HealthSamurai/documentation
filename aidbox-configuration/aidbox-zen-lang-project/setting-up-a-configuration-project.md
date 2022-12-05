@@ -58,7 +58,14 @@ This is more preferable way, than configuring Aidbox via envs.
 
 ## Provide Aidbox configuration project from a git repo
 
-Aidbox container needs to know where Aidbox configuration project is located. For that you set `BOX_PROJECT_GIT_URL` environment variable to a git repository URL or a local directory path.
+Two key variables control project configuration:
+
+* `BOX_PROJECT_GIT_URL` — remote origin of a configuration project.
+* `BOX_PROJECT_GIT_TARGET__PATH` — where to find a configuration project on a Aidbox container filesystem. Default is `/tmp/aidbox-project-git`. You can specify your own directory to mount a persistent filesystem for caching cloned project.&#x20;
+
+Aidbox container can clone your configuration project from a remote repo. For that you set `BOX_PROJECT_GIT_URL` environment variable to a git repository URL or a local directory path. The configuration project will be cloned to the `BOX_PROJECT_GIT_TARGET__PATH`.&#x20;
+
+If you clone Aidbox configuration project yourself, you can mount the directory into a container and specify only the  `BOX_PROJECT_GIT_TARGET__PATH`. This will allow you to change in your project locally which is useful for development.
 
 #### Load git repository
 
@@ -87,7 +94,6 @@ For SSH:
 Additionally, you can control clone and checkout:
 
 * `BOX_PROJECT_GIT_CHECKOUT`: checkout specific commit or branch
-* `BOX_PROJECT_GIT_TARGET__PATH`: where to clone repository. Default is `/tmp/aidbox-project-git`.
 
 If your Aidbox configuration project is in subdirectory of the repository, you can specify its location relative to the repository root with `BOX_PROJECT_GIT_SUB__PATH` environment variable.
 
