@@ -50,12 +50,6 @@ This is only a sandbox with test forms, all your changes are not saved
 [run-aidbox-locally-with-docker](../../../getting-started/run-aidbox-locally-with-docker/)
 {% endcontent-ref %}
 
-Run Aidbox in Aidbox sandbox
-
-{% content-ref url="../../../getting-started/run-aidbox-in-aidbox-sandbox.md" %}
-[run-aidbox-in-aidbox-sandbox.md](../../../getting-started/run-aidbox-in-aidbox-sandbox.md)
-{% endcontent-ref %}
-
 3\. Clone [aidbox-zen-sdc](https://github.com/HealthSamurai/aidbox-zen-sdc) repository&#x20;
 
 4\. Configure project with a license. You need to create `.env file` in the root of repository (by copying from .env.tpl) and update AIDBOX\_LICENSE with the generated license key that you saved
