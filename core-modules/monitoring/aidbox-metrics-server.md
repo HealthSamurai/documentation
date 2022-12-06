@@ -37,23 +37,26 @@ scrape_configs:
   # omitted default scrappers configuration
   
   - job_name: aidbox
-    scrape_interval: 5s
+    honor_labels: true
+    scrape_interval: 10s
     metrics_path: /metrics
     static_configs:
       - targets: [ 'aidbox.example.com:9999' ]  # should be <AIDBOX_BASE_URL>:<BOX_METRICS_PORT
 
   - job_name: aidbox-minutes
-    scrape_interval: 30s
+   honor_labels: true
+    scrape_interval: 1m
     metrics_path: /metrics/minutes
     static_configs:
       - targets: [ 'aidbox.example.com:9999' ]  # should be <AIDBOX_BASE_URL>:<BOX_METRICS_PORT
 
   - job_name: aidbox-hours
-    scrape_interval: 1m
+    honor_labels: true
+    scrape_interval: 10m
     scrape_timeout: 30s                         # increased timeout
     metrics_path: /metrics/hours
     static_configs:
-      - targets: [ 'aidbox.example.org:com' ]   # should be <AIDBOX_BASE_URL>:<BOX_METRICS_PORT
+      - targets: [ 'aidbox.example.com:9999' ]   # should be <AIDBOX_BASE_URL>:<BOX_METRICS_PORT
 ```
 
 ### Collected metrics
