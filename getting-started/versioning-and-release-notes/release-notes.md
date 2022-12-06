@@ -49,7 +49,7 @@
   * Supported [log streaming to browser](../../core-modules/logging-and-audit/#logs-in-browser)
   * Fixed incorrect calculation of request duration for resources in transaction bundles
 * Updated documentation
-  * [Index management](../../storage-1/index-management/index-management.md)
+  * [Index management](../../storage-1/indexes/index-management-1.md)
   * [US Core IG configuration](../../fhir-implementation-guides/us-core-ig/)
   * [Deleting data guide](../../storage-1/delete-data.md)
 * Fixed [issues](https://github.com/Aidbox/Issues/issues?q=is%3Aissue+milestone%3A%22October+2022+-+v%3A2210%22+is%3Aclosed) submitted by Aidbox users and minor bugs
@@ -65,7 +65,7 @@
 * Updated documentation on how to configure Aidbox with [Aidbox configuration project](../../aidbox-configuration/aidbox-zen-lang-project/)
 * Updated documentation on how to [configure high available Aidbox](../run-aidbox-in-kubernetes/high-available-aidbox.md)
 * Added support for [PostgreSQL 15](../../storage-1/aidboxdb-image.md) (beta)
-* Added documentation on how to create [most common indexes](../../storage-1/index-management/index-management.md)
+* Added documentation on how to create [most common indexes](../../storage-1/indexes/index-management-1.md)
 * Added `aidbox` format support for [bulk import](../../api-1/bulk-api-1/aidbox.bulk-data-import.md#aidbox.bulk-import-start)
 * Added `enable-links` parameter for [AidboxQuery](../../api-1/fhir-api/search-1/custom-search.md#return-links)
 * Fixed issues submitted by Aidbox users and fixed minor bugs.
@@ -78,7 +78,7 @@
 * Updated documentation on how to configure Aidbox with [Aidbox configuration project](../../aidbox-configuration/aidbox-zen-lang-project/)
 * Updated documentation on how to [configure high available Aidbox](../run-aidbox-in-kubernetes/high-available-aidbox.md)
 * Added support for [PostgreSQL 15](../../storage-1/aidboxdb-image.md) (beta)
-* Added documentation on how to create [most common indexes](../../storage-1/index-management/index-management.md)
+* Added documentation on how to create [most common indexes](../../storage-1/indexes/index-management-1.md)
 * Added `aidbox` format support for [bulk import](../../api-1/bulk-api-1/aidbox.bulk-data-import.md#aidbox.bulk-import-start)
 * Added `enable-links` parameter for [AidboxQuery](../../api-1/fhir-api/search-1/custom-search.md#return-links)
 * Fixed issues submitted by Aidbox users and fixed minor bugs.
