@@ -8,6 +8,7 @@
   * Improved Aidbox [support](../../fhir-implementation-guides/us-core-ig/us-core-ig-support-reference.md) of [US Core IG](../../fhir-implementation-guides/us-core-ig/) artifacts
   * Added configuration of Aidbox features via zen-lang instead of envs
 * CCDA to FHIR converter
+  * [USCDI v1](https://www.healthit.gov/isa/united-states-core-data-interoperability-uscdi#uscdi-v1) compliance
 * FHIR API for EHRs
 * Aidbox forms
 * Aidbox user portal
