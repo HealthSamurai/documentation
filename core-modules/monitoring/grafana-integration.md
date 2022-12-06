@@ -35,7 +35,7 @@ Generates dashboards with instance-specific metrics
 {% tab title="Parameters" %}
 _`datasource`  (Optional) - specify prometheus like datasource name. Default: **Prometheus**_
 
-_`kibana-url` (Optional) - specify Kibana base url for generating a drill-down link into Kibana._
+_`kibana-url` (Optional) - specify Kibana base url for generating a drill-down link to Kibana._
 {% endtab %}
 
 {% tab title="Result" %}
@@ -56,9 +56,11 @@ POST /rpc
 content-type: application/edn
 
 {:method aidbox.metrics/update-aidbox-dashboard
- :params {:datasource "My Thanos DS"
+ :params {:datasource "My Prometheus Datasource name"
           :kibana-url "https://my.kibana.url.com"}
 ```
+
+<figure><img src="../../.gitbook/assets/Screen Shot 2022-12-06 at 08.44.55.png" alt=""><figcaption><p>Grafana Aidbox Dashboard</p></figcaption></figure>
 
 ### `aidbox.metrics/update-cluster-dashboard`
 
