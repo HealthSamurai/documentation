@@ -189,7 +189,7 @@ For example, `extension.*.valueString` stored as `extension.0.value.string`
 BOX_CACHE_REPLICATION_DISABLE=true
 ```
 
-By default, Aidbox works in multi-replica mode, so more than one Aidbox replica could be connected to the same database. If you are sure you'll be running only one Aidbox replica, you could disable replication mechanism with this variable. Check [High Available Aidbox](https://docs.aidbox.app/getting-started/run-aidbox-in-kubernetes/high-available-aidbox) for additional information.
+By default, Aidbox works in multi-replica mode, so more than one Aidbox replica could be connected to the same database. If you are sure you'll be running only one Aidbox replica, you could disable replication mechanism with this variable. Check [Highly Available Aidbox](https://docs.aidbox.app/getting-started/run-aidbox-in-kubernetes/high-available-aidbox) for additional information.
 
 ### AIDBOX\_DEV\_MODE
 

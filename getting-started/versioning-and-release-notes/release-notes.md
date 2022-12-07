@@ -63,7 +63,7 @@
 * Enhanced the Aidbox configuration process with [Aidbox configuration projects](../../aidbox-configuration/aidbox-zen-lang-project/)
 * Supported [`/health` endpoint](../../app-development-guides/receive-logs-from-your-app/health-check.md) for Multibox
 * Updated documentation on how to configure Aidbox with [Aidbox configuration project](../../aidbox-configuration/aidbox-zen-lang-project/)
-* Updated documentation on how to [configure high available Aidbox](../run-aidbox-in-kubernetes/high-available-aidbox.md)
+* Updated documentation on how to [configure highly available Aidbox](../run-aidbox-in-kubernetes/high-available-aidbox.md)
 * Added support for [PostgreSQL 15](../../storage-1/aidboxdb-image.md) (beta)
 * Added documentation on how to create [most common indexes](../../storage-1/indexes/create-indexes-manually.md)
 * Added `aidbox` format support for [bulk import](../../api-1/bulk-api-1/aidbox.bulk-data-import.md#aidbox.bulk-import-start)
@@ -76,7 +76,7 @@
 * Enhanced the Aidbox configuration process with [Aidbox configuration projects](../../aidbox-configuration/aidbox-zen-lang-project/)
 * Supported [`/health` endpoint](../../app-development-guides/receive-logs-from-your-app/health-check.md) for Multibox
 * Updated documentation on how to configure Aidbox with [Aidbox configuration project](../../aidbox-configuration/aidbox-zen-lang-project/)
-* Updated documentation on how to [configure high available Aidbox](../run-aidbox-in-kubernetes/high-available-aidbox.md)
+* Updated documentation on how to [configure highly available Aidbox](../run-aidbox-in-kubernetes/high-available-aidbox.md)
 * Added support for [PostgreSQL 15](../../storage-1/aidboxdb-image.md) (beta)
 * Added documentation on how to create [most common indexes](../../storage-1/indexes/create-indexes-manually.md)
 * Added `aidbox` format support for [bulk import](../../api-1/bulk-api-1/aidbox.bulk-data-import.md#aidbox.bulk-import-start)

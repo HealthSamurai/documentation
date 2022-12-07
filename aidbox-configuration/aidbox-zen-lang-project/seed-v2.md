@@ -12,12 +12,12 @@ description: >-
 Seed v2 is a stable feature, but it has couple of known issues, we are going to fix next release:
 
 * Seed v2 allows you to define resources with the same id, but it shouldn't as it may lead to unexpected behaviour.
-* For now, behaviour of Seed v2 is undefined in [High Available mode](../../getting-started/run-aidbox-in-kubernetes/high-available-aidbox.md).&#x20;
+* For now, behaviour of Seed v2 is undefined in [Highly Available mode](../../getting-started/run-aidbox-in-kubernetes/high-available-aidbox.md).
 
 Please, let us know, if you run into any issue with the service.
 {% endhint %}
 
-Seed v2 was designed to make a reliable bridge between [aidbox-project on zen](./) and predecessor configuration way on meta-resources (e.g. AccessPolicy resources).&#x20;
+Seed v2 was designed to make a reliable bridge between [aidbox-project on zen](./) and predecessor configuration way on meta-resources (e.g. AccessPolicy resources).
 
 The second reason is to bring interactive experience for meta-resources configuration which is incredibly useful while development.
 
@@ -49,7 +49,7 @@ Seed v2 uses SeedImport custom resources to track saved resources within the ser
      :matcho {:uri "/public-url"}}}}}}
 ```
 
-## Multiple resources example 
+## Multiple resources example
 
 ```clojure
 {ns system
@@ -127,9 +127,9 @@ In order to migrate to Seed v2, it is recommended to declare a migration in Seed
 
 Seed v2 starts after Seed import, so be assured that migration will be run before Seed v2 comes to play.
 
-### Why is it important to define delete migration?&#x20;
+### Why is it important to define delete migration?
 
-Short answer is just to enable sync semantics for sure.&#x20;
+Short answer is just to enable sync semantics for sure.
 
 Imagine you migrated to Seed v2 without the migration. You played with it on staging and see that synchronisation worked fine. Then you decide to remove `AccessPolicy/my-access-policy` or change the id, and you see that changes was applied on staging environment. But once you deployed the solution on production you may notice that `AccessPolicy/my-access-policy` is still there. The reason is that the resource hadn't been tracked by Seed v2 on production before and the service knows nothing about it. So if you want to have sync semantic for sure, it is recommended to declare a migration in Seed import which will delete all resources, you wish to move to Seed v2.
 
