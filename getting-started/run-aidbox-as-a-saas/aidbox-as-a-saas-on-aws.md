@@ -10,7 +10,7 @@ Click on the **"Continue to Subscribe"** button
 
 On the next scerrn click to the **"Subscribe"** button
 
-<figure><img src="../../.gitbook/assets/Screen Shot 2022-08-29 at 11.48.55 (1).png" alt=""><figcaption><p>Subscribe to the "Aidbox FHIR platform product"</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screen Shot 2022-08-29 at 11.48.55.png" alt=""><figcaption><p>Subscribe to the "Aidbox FHIR platform product"</p></figcaption></figure>
 
 On the last screen click on **"Set Up Your Account"** button.
 
