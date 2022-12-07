@@ -52,41 +52,32 @@ Seed v2 uses SeedImport custom resources to track saved resources within the ser
 ## Multiple resources example 
 
 ```clojure
-{ns     importbox
+{ns system
  import #{aidbox
           zenbox}
+
  box
  {:zen/tags #{aidbox/system}
-  :services {:my-resources my-seed}}
-  
+  :services {:seed-policy seed-policy}}
+
  seed-policy
- {:zen/tags  #{aidbox/service}
-  :engine    aidbox/seed-v2
+ {:zen/tags #{aidbox/service}
+  :engine   aidbox/seed-v2
   :resources
   {:Client
    {:myapp
-    {:secret #env AIDBOX_AUTH_CLIENT_SECRET
+    {:secret      #env AIDBOX_AUTH_CLIENT_SECRET
      :grant_types ["password"]
      :auth
      {:password
-      {:secret_required true
-       :access_token_expiration 86400
-      }
-     }
-    }
-   }
-  :AccessPolicy
+      {:secret_required         true
+       :access_token_expiration 86400}}}}
+   :AccessPolicy
    {:myapp-access-policy
     {:engine "matcho"
-     :matcho {
-      :client {:id "myapp"}
-      :uri "#/Patient/.*"
-      :request-method "get"}
-    }
-   }
-  }
- }
-}
+     :matcho {:client         {:id "myapp"}
+              :uri            "#/Patient/.*"
+              :request-method "get"}}}}}}
 ```
 
 ## How to migrate from Seed import to Seed v2
