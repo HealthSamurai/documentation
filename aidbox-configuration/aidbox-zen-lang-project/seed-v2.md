@@ -49,6 +49,46 @@ Seed v2 uses SeedImport custom resources to track saved resources within the ser
      :matcho {:uri "/public-url"}}}}}}
 ```
 
+## Multiple resources example 
+
+```clojure
+{ns     importbox
+ import #{aidbox
+          zenbox}
+ box
+ {:zen/tags #{aidbox/system}
+  :services {:my-resources my-seed}}
+  
+ seed-policy
+ {:zen/tags  #{aidbox/service}
+  :engine    aidbox/seed-v2
+  :resources
+  {:Client
+   {:myapp
+    {:secret #env AIDBOX_AUTH_CLIENT_SECRET
+     :grant_types ["password"]
+     :auth
+     {:password
+      {:secret_required true
+       :access_token_expiration 86400
+      }
+     }
+    }
+   }
+  :AccessPolicy
+   {:myapp-access-policy
+    {:engine "matcho"
+     :matcho {
+      :client {:id "myapp"}
+      :uri "#/Patient/.*"
+      :request-method "get"}
+    }
+   }
+  }
+ }
+}
+```
+
 ## How to migrate from Seed import to Seed v2
 
 Seed import and Seed v2 may co-exist together. Loading resources from file and migrations can be defined only with Seed Import. If you wish Aidbox to enable resource synchronisation instead of just loading for inlined resources you may migrate that resources to Seed v2.
