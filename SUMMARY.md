@@ -284,6 +284,7 @@
     * [Add Aidbox Forms Library](modules-1/aidbox-forms/getting-started/add-aidbox-forms-library.md)
   * [How to create a form](modules-1/aidbox-forms/how-to-create-a-form.md)
   * [How to create a form with calculated fields](modules-1/aidbox-forms/how-to-create-a-form-with-calculated-fields.md)
+  * [How to create a dynamic form](modules-1/aidbox-forms/how-to-create-a-dynamic-form.md)
   * [How to embed forms to the workflow](modules-1/aidbox-forms/workflow.md)
   * [How to use versioning](modules-1/aidbox-forms/versioning.md)
   * [How to convert FHIR Questionnaire to Aidbox Forms and back](modules-1/aidbox-forms/converter.md)
