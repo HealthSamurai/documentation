@@ -141,10 +141,11 @@ For each file being imported via `load-from-bucket` method, Aidbox creates `Load
   "status": "error",
   "error": {
     "code": "23505",
-    "source": "postgres"},
-  "message": "23505: ERROR: duplicate key value violates unique constraint \"patient_pkey\"
+    "source": "postgres"
+  },
+  "message": "23505: ERROR: duplicate key value violates unique constraint \"patient_pkey\""
 }
-```json
+```
 
 #### Sources of Errors
 The following sources of errors can occur for this request.
