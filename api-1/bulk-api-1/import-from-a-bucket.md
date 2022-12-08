@@ -72,8 +72,7 @@ Returns the string "Upload started"
 {% endtab %}
 
 {% tab title="Error" %}
-
-
+Returns error message
 {% endtab %}
 {% endtabs %}
 
@@ -107,9 +106,6 @@ result:
   new-files-count: 6
 ```
 {% endcode %}
-{% endtab %}
-{% tab title="Error" %}
-Returns error message
 {% endtab %}
 {% endtabs %}
 
