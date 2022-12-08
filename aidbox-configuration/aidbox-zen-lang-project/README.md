@@ -60,10 +60,18 @@ Setting up a self-hosted project is done by providing access to a project files.
 
 Production installation is the same as a regular installation. Exception can be the case when your production environment has no access to a git repo containing your project. For these cases Aidbox supports [other methods of providing configuration projects](setting-up-a-configuration-project.md#alternative-ways-to-provide-aidbox-configuration-project).
 
-### Use configuration projects on user portal (aidbox.app)
+### Use configuration projects for Sandbox instances on Aidbox user portal
 
-{% hint style="info" %}
-Aidbox configuration projects will be supported on aidbox.app in upcoming releases.
+1. Proceed to creating a new license
+2. Select either a _Standard_ or _Development_ license type and **Sandbox** hosting
+3. Choose which projects to enable in FHIR Server Configuration section.
+
+Currently available projects include various FHIR IG [zen packages](enable-igs.md) and [Aidbox SDC forms](../../tutorials/sdc-with-custom-resources.md).
+
+{% hint style="warning" %}
+FHIR terminologies from IG packages are not loaded into the Sandbox database. This means they won’t be available for introspection. You can still use them for validation.
+
+If you want to have them in the database, you need to configure projects for a local instance.
 {% endhint %}
 
 ### Configuration projects in AWS Marketplace Aidbox SaaS&#x20;
