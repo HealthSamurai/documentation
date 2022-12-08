@@ -1,6 +1,8 @@
 # Release Notes
 
-## November 2022 _`edge`_
+## December 2022 _`edge`_
+
+## November 2022 _`latest`_
 
 * Aidbox configuration projects
   * Improved startup time for Aidbox instances [configured with IGs](../../aidbox-configuration/aidbox-zen-lang-project/enable-igs.md)
@@ -8,13 +10,14 @@
   * Improved Aidbox [support](../../fhir-implementation-guides/us-core-ig/us-core-ig-support-reference.md) of [US Core IG](../../fhir-implementation-guides/us-core-ig/) artifacts
   * Added configuration of Aidbox features via zen-lang instead of envs
 * CCDA to FHIR converter
-  * [USCDI v1](https://www.healthit.gov/isa/united-states-core-data-interoperability-uscdi#uscdi-v1) compliance
-* FHIR API for EHRs
+  * Confirmed [USCDI v1](https://www.healthit.gov/isa/united-states-core-data-interoperability-uscdi#uscdi-v1) compliance
 * Aidbox forms
+  * Added forms as a configuration project to the [Aidbox user portal](../../overview/aidbox-user-portal/)
+  * Introduced the [form repository](https://github.com/Aidbox/sdc-forms-library) with the commonly used templates, such as PHQ-9, vital signs and GAD-7.
 * Aidbox user portal
-  * Added configuration with multiple IGs at once
+  * Added configuration with multiple IGs at once for managed Aidboxes
 
-## October 2022 _`latest`_
+## October 2022 _`stable`_
 
 * Terminology
   * Introduced [FHIR Terminology repositories ](../../terminology/fhir-terminology-repository/)(alpha) to store any terminology elements (code systems, value sets, concepts) in an effective way and distribute them among Aidbox instances
