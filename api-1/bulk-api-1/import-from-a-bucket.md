@@ -108,6 +108,9 @@ result:
 ```
 {% endcode %}
 {% endtab %}
+{% tab title="Error" %}
+Returns error message
+{% endtab %}
 {% endtabs %}
 
 #### Loader File
@@ -117,7 +120,7 @@ For each file being imported via `load-from-bucket` method, Aidbox creates `Load
 #### Loader File Example
 
 {% tabs %}
-{% tab title="Success" %}
+{% tab title="Done" %}
 ```json
 {
   "end": "2022-04-11T14:50:27.893Z",
@@ -152,8 +155,8 @@ The following sources of errors can occur for this request.
 
 * AWS Error
 * PostgreSQL Error
-* Aidbox Error\
-
+* Aidbox Error
+<br/>
 
 **AWS Error**
 
@@ -161,19 +164,17 @@ The following sources of errors can occur for this request.
 | -------------- | ------------------------------------------------------------------------------ |
 | InvalidAccount | The AWS access key ID or AWS secret access key that you provided is not valid. |
 | NoSuchKey      | The specified S3 bucket or S3 object key does not exist.                       |
-
-\
-
+<br/>
 
 **PostgreSQL Error**
 
-See [Documentation of PostgreSQL](https://www.postgresql.org/docs/current/errcodes-appendix.html).\
-
+See [Documentation of PostgreSQL](https://www.postgresql.org/docs/current/errcodes-appendix.html).
+<br/>
 
 **Aidbox Error**
 
-Any other errors than the above can be caught as Aidbox Error. The error message will be provided if available.\
-
+Any other errors than the above can be caught as Aidbox Error. An error message will be provided if available.
+<br/>
 {% endtab %}
 {% endtabs %}
 
@@ -187,8 +188,8 @@ On launch `aidbox.bulk/load-from-bucket` checks if files from the bucket were pl
 
 In order to import a file one more time you should delete related `LoaderFile` resource and relaunch `aidbox.bulk/load-from-bucket`.
 
-Files are processed completely. The loader doesn't support partial re-import.\
-
+Files are processed completely. The loader doesn't support partial re-import.
+<br/>
 
 #### AWS User Policy: Minimal Example
 
@@ -211,9 +212,7 @@ Files are processed completely. The loader doesn't support partial re-import.\
   ]
 }
 ```
-
-\
-\
+<br/>
 
 
 ### `aidbox.bulk/load-from-bucket-status`
