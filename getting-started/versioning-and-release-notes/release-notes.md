@@ -4,6 +4,7 @@
 
 ## November 2022 _`latest`_
 
+* Released [index suggestion API](../../storage-1/indexes/get-suggested-indexes.md) and updated documentation on [index management](../../storage-1/indexes/)
 * Aidbox configuration projects
   * Improved startup time for Aidbox instances [configured with IGs](../../aidbox-configuration/aidbox-zen-lang-project/enable-igs.md)
   * Improved [local development workflow](../../aidbox-configuration/aidbox-zen-lang-project/setting-up-a-configuration-project.md#provide-aidbox-configuration-project-from-a-git-repo)
