@@ -32,6 +32,12 @@
 
   zen/tag: [aidbox.config/compatibility](#aidbox.config-compatibility)
 
+- `:root-db` (zen/symbol)
+
+  
+
+  zen/tag: [aidbox.config/db](#aidbox.config-db)
+
 - `:db` (zen/symbol)
 
   
@@ -39,6 +45,12 @@
   zen/tag: [aidbox.config/db](#aidbox.config-db)
 
 - `:override-createdat-url` (zen/string)
+
+  
+
+
+
+- `:aidbox-license` (zen/string)
 
   
 
@@ -68,6 +80,24 @@
 
 
 
+- `:encrypt` (zen/map)
+
+  
+
+  - `:secret` (zen/string)
+
+    
+
+
+
+
+
+- `:disable-legacy-seed` (zen/boolean)
+
+  
+
+
+
 - `:search` (zen/symbol)
 
   
@@ -79,6 +109,12 @@
   
 
   zen/tag: [aidbox.config/auth](#aidbox.config-auth)
+
+- `:correct-aidbox-format` (zen/boolean)
+
+  
+
+
 
 - `:cache` (zen/map)
 
@@ -111,6 +147,12 @@
   zen/tag: [aidbox.config/smartbox](#aidbox.config-smartbox)
 
 - `:instances-number` (zen/integer)
+
+  
+
+
+
+- `:box-id` (zen/string)
 
   
 
@@ -386,6 +428,74 @@
 
 
 
+
+
+
+## aidbox.config/db
+
+- `:pool` (zen/map)
+
+  
+
+  - `:connection-timeout` (zen/integer)
+
+    ms
+
+
+
+  - `:idle-timeout` (zen/integer)
+
+    ms
+
+
+
+  - `:minimum-idle` (zen/integer)
+
+    
+
+
+
+  - `:maximum-pool-size` (zen/integer)
+
+    
+
+
+
+  - `:connection-init-sql` (zen/string)
+
+    
+
+
+
+
+
+- `:database` (zen/string)
+
+  
+
+
+
+- `:host` (zen/string)
+
+  
+
+
+
+- `:port` (zen/string)
+
+  
+
+
+
+- `:user` (zen/string)
+
+  
+
+
+
+- `:password` (zen/string)
+
+  
 
 
 
@@ -777,6 +887,12 @@
 
 ## aidbox.config/web
 
+- `:base-url` (zen/string)
+
+  Base url of the Aidbox instance
+
+
+
 - `:port` (zen/integer)
 
   
@@ -798,7 +914,6 @@
 - `:request-save-raw-body` (zen/boolean)
 
   Attach raw body to response
-
 
 
 
