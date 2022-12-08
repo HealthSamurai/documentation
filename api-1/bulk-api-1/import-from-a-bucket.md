@@ -146,8 +146,8 @@ For each file being imported via `load-from-bucket` method, Aidbox creates `Load
 }
 ```
 
-#### Sources of Errors
-The following sources of errors can occur for this request.
+#### Sources of Error
+There are the following sources of error for this request.
 
 * AWS Error
 * PostgreSQL Error
