@@ -4,19 +4,28 @@
 
 ## November 2022 _`latest`_
 
-* Released [index suggestion API](../../storage-1/indexes/get-suggested-indexes.md) and updated documentation on [index management](../../storage-1/indexes/)
-* Aidbox configuration projects
-  * Improved startup time for Aidbox instances [configured with IGs](../../aidbox-configuration/aidbox-zen-lang-project/enable-igs.md)
+* Aidbox deployment and maintenance
+  * Released [index suggestion API](../../storage-1/indexes/get-suggested-indexes.md) and updated documentation on [index management](../../storage-1/indexes/)
+  * Updated documentation on [highly available Aidbox](../run-aidbox-in-kubernetes/high-available-aidbox.md)
+  * Updated documentation on [production-ready deployment to Kubernetes](../run-aidbox-in-kubernetes/deploy-aidbox-in-kubernetes.md)
+* Smartbox
+  * Improved admin UI with configuration of [EHR-level logo](../../modules-1/smartbox/how-to-guides/set-up-ehr-level-customization.md#with-smartbox-ui), [email provider](../../modules-1/smartbox/how-to-guides/setup-email-provider.md) and [bulk export](../../modules-1/smartbox/how-to-guides/setup-email-provider-1.md)
+  * Added documentation on [deployment to Kubernetes](../../modules-1/smartbox/get-started/deploy-smartbox-to-kubernetes.md)
+  * Added guides on passing [Inferno tests](../../modules-1/smartbox/how-to-guides/pass-inferno-tests-with-smartbox.md) and [Inferno Visual Inspection and Attestation](../../modules-1/smartbox/how-to-guides/pass-inferno-visual-inspection-and-attestation.md)
+* Aidbox Configuration Projects
+  * Improved startup time for Aidbox instances [configured with zen FHIR IGs](../../aidbox-configuration/aidbox-zen-lang-project/enable-igs.md)
   * Improved [local development workflow](../../aidbox-configuration/aidbox-zen-lang-project/setting-up-a-configuration-project.md#provide-aidbox-configuration-project-from-a-git-repo)
   * Improved Aidbox [support](../../fhir-implementation-guides/us-core-ig/us-core-ig-support-reference.md) of [US Core IG](../../fhir-implementation-guides/us-core-ig/) artifacts
   * Added configuration of Aidbox features via zen-lang instead of envs
+* Aidbox User Portal
+  * Added support of setting multiple Aidbox Configuration Projects and zen FHIR IGs for Sandbox instances
 * CCDA to FHIR converter
   * Confirmed [USCDI v1](https://www.healthit.gov/isa/united-states-core-data-interoperability-uscdi#uscdi-v1) compliance
-* Aidbox forms
-  * Added forms as a configuration project to the [Aidbox user portal](../../overview/aidbox-user-portal/)
-  * Introduced the [form repository](https://github.com/Aidbox/sdc-forms-library) with the commonly used templates, such as PHQ-9, vital signs and GAD-7.
-* Aidbox user portal
-  * Added configuration with multiple IGs at once for managed Aidboxes
+* Aidbox Forms
+  * Added forms as a configuration project to the [Aidbox User Portal](../../overview/aidbox-user-portal/)
+  * Introduced the [form repository](https://github.com/Aidbox/sdc-forms-library) with the commonly used templates, such as PHQ-9, vital signs and GAD-7
+  * Published tutorials on how to create and manage forms in [Aidbox Forms](../../modules-1/aidbox-forms.md)
+* Supported tls for [SMTP provider](../../aidbox-configuration/setup-smtp-provider.md)
 
 ## October 2022 _`stable`_
 

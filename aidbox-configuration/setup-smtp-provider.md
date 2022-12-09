@@ -19,7 +19,8 @@ PUT /AidboxConfig/provider
             "type": "smtp",
             "host": "smtp.example.com",
             "port": 465,
-            "ssl": true,
+            // "ssl": true,
+            "tls": true,
             "from": "user@example.com",
             "username": "user@example.com",
             "password": "password"
@@ -27,3 +28,5 @@ PUT /AidboxConfig/provider
     }
 }
 ```
+
+You can set either `"ssl"` or `"tls"` depending what your SMTP supports.
