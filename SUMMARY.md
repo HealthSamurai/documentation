@@ -308,6 +308,7 @@
     * [Set up EHR-level customization](modules-1/smartbox/how-to-guides/set-up-ehr-level-customization.md)
     * [Check email templates](modules-1/smartbox/how-to-guides/check-email-templates.md)
     * [Setup email provider](modules-1/smartbox/how-to-guides/setup-email-provider.md)
+    * [Setup $export](modules-1/smartbox/how-to-guides/setup-email-provider-1.md)
     * [Register users](modules-1/smartbox/how-to-guides/register-users.md)
     * [Set up SSO with Auth0](modules-1/smartbox/how-to-guides/how-to-set-up-sso-with-auth0.md)
     * [Find out what resources were exported during the $export operation](modules-1/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-usdexport-operation.md)
