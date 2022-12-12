@@ -59,7 +59,7 @@ source: <new-version-of-data>
 strip-nulls: true
 ```
 
-### merge: <object literal>
+### merge: `object literal`
 
 It's possible to merge some data into every loaded resource using `merge` option.  A **shallow** merge will be used.
 
