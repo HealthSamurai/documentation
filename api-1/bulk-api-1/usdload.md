@@ -47,6 +47,31 @@ source: <new-version-of-data>
 update: true
 ```
 
+### strip-nulls: true
+
+By default for performance reasons `$load` does raw upsert into the resource table without cleaning up ~null~ values from resources. To make import behave in the same way as the `Create` operation, use options `strip-nulls: true`
+
+```yaml
+POST /fhir/Patient/$load
+Content-Type: text/yaml
+
+source: <new-version-of-data>
+strip-nulls: true
+```
+
+### merge: <object>
+
+It's possible to merge some data into every loaded resource using `merge` option.  A **shallow** merge will be used.
+
+```yaml
+POST /fhir/Patient/$load
+Content-Type: text/yaml
+
+source: <new-version-of-data>
+merge:
+  active: true
+```
+
 ### $load multiple resource types
 
 Or load the whole synthea package:
