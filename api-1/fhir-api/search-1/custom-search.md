@@ -423,6 +423,10 @@ GET /Attribute?_query=get-by-id&rid=Encounter.status
 Pay attention that only`{{resourceType}}`can be used in place of table name, because this variable is secure and will be inserted directly into the query. Other variables will be escaped and can't be used in such parts of a query.
 {% endhint %}
 
+{% hint style="info" %}
+If resourceType name can be interpreted as SQL keyword (e.g. Group), then `resourceType` should be quated: `"{{resourceType}}"`.
+{% endhint %}
+
 See another tutorial:
 
 {% content-ref url="../../../tutorials/custom-search.md" %}
