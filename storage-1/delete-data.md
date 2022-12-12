@@ -82,7 +82,7 @@ Similarly you can create an endpoint for this
 ```yaml
 PUT /AidboxQuery/truncate
 
-query: 'TRUNCATE {{resourceType}}; TRUNCATE {{resourceType}}_history'
+query: 'TRUNCATE "{{resourceType}}"; TRUNCATE "{{resourceType}}_history"'
 type: execute
 ```
 
