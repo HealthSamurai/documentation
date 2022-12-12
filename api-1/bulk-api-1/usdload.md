@@ -59,7 +59,7 @@ source: <new-version-of-data>
 strip-nulls: true
 ```
 
-### merge: <object>
+### merge: <object literal>
 
 It's possible to merge some data into every loaded resource using `merge` option.  A **shallow** merge will be used.
 
@@ -71,6 +71,7 @@ source: <new-version-of-data>
 merge:
   active: true
 ```
+
 
 ### $load multiple resource types
 
