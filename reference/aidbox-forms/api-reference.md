@@ -29,7 +29,7 @@ params:
 ```
 POST /rpc?
 
-method: aidbox.sdc.get-forms
+method: aidbox.sdc/get-forms
 params:
     q: 'Vitals'
 ```
@@ -47,7 +47,7 @@ params:
 ```
 POST /rpc?
 
-method: aidbox.sdc.get-form
+method: aidbox.sdc/get-form
 params:
     form : aidbox.sdc.VitalsForm
 ```
@@ -67,7 +67,7 @@ Launch form with given launch, prepoluate data, and return enriched with metadat
 ```
 POST /rpc?
 
-method: aidbox.sdc.launch
+method: aidbox.sdc/launch
 params:
    form: box.sdc.sdc-example/VitalsForm
    dry-run: true
@@ -120,7 +120,7 @@ Get form for saved document.
 ```
 POST /rpc?
 
-method: aidbox.sdc.read-document
+method: aidbox.sdc/read-document
 params:
    id: doc-1
 ```
