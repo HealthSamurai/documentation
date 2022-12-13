@@ -1,16 +1,16 @@
 # Form API
 
-* [`get-forms`](api-reference.md#get-forms) - get existed forms
-* [`get-form`](api-reference.md#get-form) - get form definition for given form name
-* [`launch`](api-reference.md#launch) - launch new form with given params
-* [`read-document`](api-reference.md#read-document) - get form with saved document
-* [`save`](api-reference.md#save) - save document
-* [`sign`](api-reference.md#sign) - finalize document, run extracts
+* [aidbox.sdc/get-forms](api-reference.md#get-forms) - get existed forms
+* [aidbox.sdc/get-form](api-reference.md#get-form) - get form definition for given form name
+* [aidbox.sdc/launch](api-reference.md#launch) - launch new form with given params
+* [aidbox.sdc/read-document](api-reference.md#read-document) - get form with saved document
+* [aidbox.sdc/save](api-reference.md#save) - save document
+* [aidbox.sdc/sign](api-reference.md#sign) - finalize document, run extracts
 * [`aidbox.sdc/convert-document`](api-reference.md#aidbox.sdc-convert-document) - converts SDCDocument to FHIR QuestionnaireResponse
 * [`aidbox.sdc/convert-questionnaire`](api-reference.md#aidbox.sdc-convert-questionnaire)- converts FHIR Questionnaire to Aidbox SDC Form&#x20;
 * [`aidbox.sdc/get-form-access-jwt`](api-reference.md#aidbox.sdc-get-form-access-jwt)- creates policy token for form
-* ``[`amend`](api-reference.md#amend) - put document to in-amendment state. Used for corrections
-* ``[`add-note`](api-reference.md#add-note) - add note as addendum to the given document
+* [aidbox.sdc/amend](api-reference.md#amend) - put document to in-amendment state. Used for corrections
+* [aidbox.sdc/add-note](api-reference.md#add-note) - add note as addendum to the given document
 
 ###
 
@@ -18,7 +18,9 @@
 
 Get forms definitions
 
-> Response can be narrowed with document Symbol name substring
+{% hint style="info" %}
+Response can be narrowed with document Symbol name substring
+{% endhint %}
 
 params:
 
@@ -165,7 +167,7 @@ Request:
 ```
 POST /rpc?
 
-method: 'aidbox.sdc/save,
+method: aidbox.sdc/save,
 params:
   document:
     id: doc-1,
@@ -233,7 +235,7 @@ Apply `created`/`patched`/`deleted` extractions. Create `Provenance` resource wi
 ```
 POST /rpc?
 
-method: 'aidbox.sdc/sign,
+method: aidbox.sdc/sign,
 params:
   document:
     id: doc-1,
@@ -594,7 +596,7 @@ Request:
 ```
 POST /rpc?
 
-method: 'aidbox.sdc/amend,
+method: aidbox.sdc/amend,
 params:
   id: doc-1,
 ```

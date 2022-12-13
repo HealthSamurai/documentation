@@ -100,7 +100,7 @@ Launch all forms of the WF and create `SDCWorkflow` resource.
 ```
 POST /rpc?
 
-method: 'aidbox.sdc/start-workflow,
+method: aidbox.sdc/start-workflow,
 params:
   workflow : aidbox.sdc.DemoVisitWorkflow
   params:
@@ -173,7 +173,7 @@ Request:
 ```
 POST /rpc?
 
-method: 'aidbox.sdc/save-step,
+method: aidbox.sdc/save-step,
 params:
   id: wf-1
   step: [phisical-exam]
@@ -259,7 +259,7 @@ Request:
 ```
 POST /rpc?
 
-method: 'aidbox.sdc/complete-step,
+method: aidbox.sdc/complete-step,
 params:
   id: wf-1
   step: [phisical-exam]
@@ -344,7 +344,7 @@ Request:
 ```
 POST /rpc?
 
-method: 'aidbox.sdc/skip-step,
+method: aidbox.sdc/skip-step,
 params:
   id: wf-1
   step: [phisical-exam]
@@ -471,7 +471,7 @@ Request:
 ```
 POST /rpc?
 
-method: 'aidbox.sdc/complete-workflow,
+method: aidbox.sdc/complete-workflow,
 params:
   id: wf-1
 ```
@@ -481,7 +481,7 @@ Params with direct document placement
 ```
 POST /rpc?
 
-method: 'aidbox.sdc/complete-workflow,
+method: aidbox.sdc/complete-workflow,
 params:
   id: wf-1
   items: 
@@ -544,7 +544,7 @@ Request:
 ```
 POST /rpc?
 
-method: 'aidbox.sdc/cancel-workflow,
+method: aidbox.sdc/cancel-workflow,
 params:
   id: wf-1
   reason: My private reason
@@ -598,7 +598,7 @@ Request:
 ```
 POST /rpc?
 
-method: 'aidbox.sdc/amend-workflow,
+method: aidbox.sdc/amend-workflow,
 params:
   id: wf-1
 ```
