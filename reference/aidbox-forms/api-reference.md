@@ -38,13 +38,13 @@ params:
 
 ### get-form
 
-Get form form for given document definition
+Get form for given document definition
 
 params:
 
-| Param    | Description      | Type   | required? |
-| -------- | ---------------- | ------ | --------- |
-| document | Form Symbol name | String | yes       |
+| Param | Description      | Type   | required? |
+| ----- | ---------------- | ------ | --------- |
+| form  | Form Symbol name | String | yes       |
 
 ```
 POST /rpc?
