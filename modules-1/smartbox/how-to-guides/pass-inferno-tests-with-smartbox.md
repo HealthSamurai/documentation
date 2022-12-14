@@ -303,3 +303,18 @@ Before you launch the test you should:
    * OAuth 2.0 Authorize Endpoint: `[aidbox-url]/tenant/my-clinic/patient/auth/authorize`
 4. Click the `Submit` button
 5. Click the `Perform Invalid Launch` link
+
+#### 9.5 SMART App Launch Error: Invalid Access Token Request
+
+1. Click the `9.5 SMART Invalid Token Request` link in the left sidebar
+2. Click the `Run tests` button
+3. Provide require parameters for tests
+   * FHIR Endpoint:\
+     `[aidbox-url]/tenant/my-clinic/patient/smart-api`
+   * Standalone Client ID: `inferno-confidential-patient-smart-app`
+   * Standalone Client Secret: `inferno-confidential-patient-smart-app-secret`
+   * OAuth 2.0 Authorize Endpoint: `[aidbox-url]/tenant/my-clinic/patient/auth/authorize`
+   * OAuth 2.0 Token Endpoint: `[aidbox-url]/auth/token`
+4. Click the `Submit` button
+5. Click the `Follow this link to authorize with the SMART server` link
+6. Press the `Allow` button on the consent screen
