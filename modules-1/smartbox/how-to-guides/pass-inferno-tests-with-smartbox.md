@@ -143,16 +143,16 @@ smart:
   launch_uri: 'https://inferno.healthit.gov/suites/custom/smart/launch'
 ```
 
-## Create Inferno test session and run test
+## Create Inferno test session
 
-Create Inferno test session by following the link [https://inferno.healthit.gov/onc-certification-g10-test-kit](https://inferno.healthit.gov/onc-certification-g10-test-kit). 
+Create Inferno test session by following the link [https://inferno.healthit.gov/onc-certification-g10-test-kit](https://inferno.healthit.gov/onc-certification-g10-test-kit).
 
 {% hint style="info" %}
 1. To pass the `EHR Practitioner App` inferno sequence see the guide [How-to perform EHR launch](how-to-perform-ehr-launch.md)
 2. See [How-to revoke granted access](revoke-granted-access.md) to pass the `Token Revocation` Inferno test
 {% endhint %}
 
-### Run all Inferno tests 
+### Run all Inferno tests
 
 Press the `Run all tests` button then provide require parameters for the tests:
 
@@ -162,7 +162,7 @@ Press the `Run all tests` button then provide require parameters for the tests:
 * Standalone Client Secret: `inferno-confidential-patient-smart-app-secret`
 * EHR Launch Client ID: `inferno-confidential-patient-smart-app`
 * EHR Launch Client Secret: `inferno-confidential-patient-smart-app-secret`
-* Bulk Data FHIR URL: \
+* Bulk Data FHIR URL:\
   `[aidbox-url]/tenant/my-clinic/bulk-api`
 * Backend Services Token Endpoint:\
   `[aidbox-url]/auth/token`
@@ -178,17 +178,16 @@ Once you run all tests, follow Inferno instructions.
 
 ### Run Inferno tests one by one
 
-#### 1 Standalone Patient App
+#### `1 Standalone Patient App` sequence
 
 To launch the sequence:
 
 1. Click the `Standalone Patient App` link in the left sidebar
-2. Press the `Run tests` button 
+2. Press the `Run tests` button
 3. Provide require parameters for tests
+   * FHIR Endpoint:\
+     `[aidbox-url]/tenant/my-clinic/patient/smart-api`
+   * Standalone Client ID: `inferno-confidential-patient-smart-app`
+   * Standalone Client Secret: `inferno-confidential-patient-smart-app-secret`
 
-  * FHIR Endpoint:\
-  `[aidbox-url]/tenant/my-clinic/patient/smart-api`
-  * Standalone Client ID: `inferno-confidential-patient-smart-app`
-  * Standalone Client Secret: `inferno-confidential-patient-smart-app-secret`
-
-Once you run tests, follow Inferno instructions.
+Once you run tests, follow the Inferno instructions.
