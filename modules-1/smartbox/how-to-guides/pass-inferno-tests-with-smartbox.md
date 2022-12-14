@@ -204,12 +204,12 @@ This test depends on the `Standalone Patient App` test. Pass the first sequence 
 Once you run tests, follow the Inferno instructions.
 
 {% hint style="info" %}
-By default the test expects to not get accees to all the resources but `Patient`, `Condition`, `Observation`. 
+By default the test expects to not get accees to all the resources but `Patient`, `Condition`, `Observation`.
 
 To pass the test you should:
 
 1. Uncheck all the resources but those ones on the Consent screen
-2. Keep following checkboxes checked `Launch Patient`, `Open ID`, `FHIR User` and `Offline Access` 
+2. Keep following checkboxes checked `Launch Patient`, `Open ID`, `FHIR User` and `Offline Access`
 {% endhint %}
 
 #### 3 EHR Practitioner App
@@ -246,13 +246,12 @@ Once you run tests, follow the Inferno instructions.
 1. Click the `7 Multi-Patient API` link in the left sidebar
 2. Click the `Run tests` button
 3. Provide require parameters for tests
-  * Bulk Data FHIR URL:\
-  `[aidbox-url]/tenant/my-clinic/bulk-api`
-  * Backend Services Token Endpoint:\
-  `[aidbox-url]/auth/token`
-  * Bulk Data Client ID: `inferno-my-clinic-bulk-client`
-  * Encryption method `RS384`
-  * Group ID: `test-group-1`
-  * Patient IDs in exported Group: `test-pt-1,test-pt-2`
+   * Bulk Data FHIR URL:\
+     `[aidbox-url]/tenant/my-clinic/bulk-api`
+   * Backend Services Token Endpoint:\
+     `[aidbox-url]/auth/token`
+   * Bulk Data Client ID: `inferno-my-clinic-bulk-client`
+   * Encryption method `RS384`
+   * Group ID: `test-group-1`
+   * Patient IDs in exported Group: `test-pt-1,test-pt-2`
 4. Click the `Submit` button
-
