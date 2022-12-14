@@ -280,7 +280,7 @@ Before you launch the test you should:
 1. Open the patient portal UI `[aidbox-url]/tenant/my-clinic/patient/portal`
 2. Login to the portal using credentials we created before `example@mail.com / password`
 3. Find the `inferno-confidential-patient-smart-app`
-4. Click the `Revoke access` button 
+4. Click the `Revoke access` button
 {% endhint %}
 
 1. Click the `9.3 Token Revocation` link in the left sidebar
@@ -337,3 +337,7 @@ Before you launch the test you should:
 8. Click the `Launch` button
 9. Click the `Follow this link to authorize with the SMART server` link
 10. Press the `Allow` button on the consent screen
+
+#### 9.10 Visual Inspection and Attestation
+
+To pass the visual inspection see the [Pass Inferno Visual Inspection and Attestation](pass-inferno-visual-inspection-and-attestation.md) guide.
