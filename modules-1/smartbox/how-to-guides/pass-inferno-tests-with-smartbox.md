@@ -255,3 +255,15 @@ Once you run tests, follow the Inferno instructions.
    * Group ID: `test-group-1`
    * Patient IDs in exported Group: `test-pt-1,test-pt-2`
 4. Click the `Submit` button
+
+#### 9.1 Public Client Standalone Launch with OpenID Connect
+
+1. Click the `9.1 SMART Public Client Launch` link in the left sidebar
+2. Click the `Run tests` button
+3. Provide require parameters for tests
+  * Bulk Data FHIR URL:\
+  `[aidbox-url]/tenant/my-clinic/patient/smart-api`
+  * Public Launch Client ID: `inferno-public-patient-smart-app`
+  * OAuth 2.0 Authorize Endpoint: `[aidbox-url]/tenant/my-clinic/patient/auth/authorize`
+  * OAuth 2.0 Token Endpoint: `[aidbox-url]/auth/token`
+4. Click the `Submit` button
