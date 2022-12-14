@@ -178,16 +178,27 @@ Once you run all tests, follow Inferno instructions.
 
 ### Run Inferno tests one by one
 
-#### `1 Standalone Patient App` sequence
-
-To launch the sequence:
+#### 1 Standalone Patient App - Full Access
 
 1. Click the `Standalone Patient App` link in the left sidebar
-2. Press the `Run tests` button
+2. Click the `Run tests` button
 3. Provide require parameters for tests
    * FHIR Endpoint:\
      `[aidbox-url]/tenant/my-clinic/patient/smart-api`
    * Standalone Client ID: `inferno-confidential-patient-smart-app`
    * Standalone Client Secret: `inferno-confidential-patient-smart-app-secret`
+4. Click the `Submit` button
+
+Once you run tests, follow the Inferno instructions.
+
+#### 2 Standalone Patient App - Limited Access
+
+{% hint style="warning" %}
+This test depends on the `Standalone Patient App` test. Pass the first sequence then continue that one
+{% endhint %}
+
+1. Click the `2 Limited Access App` link in the left sidebar
+2. Click the `Run tests` button
+3. Click the `Submit` button
 
 Once you run tests, follow the Inferno instructions.
