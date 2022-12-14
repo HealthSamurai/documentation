@@ -208,7 +208,7 @@ By default the test expects to not get accees to all the resources but `Patient`
 
 To pass the test you should:
 
-1. Uncheck all the resources but those oness on the Consent screen
+1. Uncheck all the resources but those ones on the Consent screen
 2. Keep following checkboxes checked `Launch Patient`, `Open ID`, `FHIR User` and `Offline Access` 
 {% endhint %}
 
@@ -228,3 +228,15 @@ To pass the test you should:
 8. Click the `Launch` button
 
 Once you perform EHR launch, follow the Inferno instructions.
+
+#### 4 Single Patient API
+
+{% hint style="warning" %}
+This test depends on the `Standalone Patient App` test. Pass the first sequence then continue that one
+{% endhint %}
+
+1. Click the `4 Single Patient API` link in the left sidebar
+2. Click the `Run tests` button
+3. Click the `Submit` button
+
+Once you run tests, follow the Inferno instructions.
