@@ -202,3 +202,29 @@ This test depends on the `Standalone Patient App` test. Pass the first sequence 
 3. Click the `Submit` button
 
 Once you run tests, follow the Inferno instructions.
+
+{% hint style="info" %}
+By default the test expects to not get accees to all the resources but `Patient`, `Condition`, `Observation`. 
+
+To pass the test you should:
+
+1. Uncheck all the resources but those oness on the Consent screen
+2. Keep following checkboxes checked `Launch Patient`, `Open ID`, `FHIR User` and `Offline Access` 
+{% endhint %}
+
+#### 3 EHR Practitioner App
+
+1. Click the `EHR Practitioner App` link in the left sidebar
+2. Click the `Run tests` button
+3. Provide require parameters for tests
+   * FHIR Endpoint:\
+     `[aidbox-url]/tenant/my-clinic/patient/smart-api`
+   * EHR Launch Client ID: `inferno-confidential-patient-smart-app`
+   * EHR Launch Client Secret: `inferno-confidential-patient-smart-app-secret`
+4. Click the `Submit` button
+5. Open the patient portal UI `[aidbox-url]/tenant/my-clinic/patient/portal`
+6. Login to the portal using credentials we created before `example@mail.com / password`
+7. Find the `inferno-confidential-patient-smart-app` application
+8. Click the `Launch` button
+
+Once you perform EHR launch, follow the Inferno instructions.
