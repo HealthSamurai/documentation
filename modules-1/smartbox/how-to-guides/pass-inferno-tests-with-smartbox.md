@@ -261,9 +261,33 @@ Once you run tests, follow the Inferno instructions.
 1. Click the `9.1 SMART Public Client Launch` link in the left sidebar
 2. Click the `Run tests` button
 3. Provide require parameters for tests
-  * Bulk Data FHIR URL:\
-  `[aidbox-url]/tenant/my-clinic/patient/smart-api`
-  * Public Launch Client ID: `inferno-public-patient-smart-app`
-  * OAuth 2.0 Authorize Endpoint: `[aidbox-url]/tenant/my-clinic/patient/auth/authorize`
-  * OAuth 2.0 Token Endpoint: `[aidbox-url]/auth/token`
+   * Bulk Data FHIR URL:\
+     `[aidbox-url]/tenant/my-clinic/patient/smart-api`
+   * Public Launch Client ID: `inferno-public-patient-smart-app`
+   * OAuth 2.0 Authorize Endpoint: `[aidbox-url]/tenant/my-clinic/patient/auth/authorize`
+   * OAuth 2.0 Token Endpoint: `[aidbox-url]/auth/token`
 4. Click the `Submit` button
+
+#### 9.3 Token Revocation
+
+{% hint style="warning" %}
+This test depends on the `Standalone Patient App` test. Pass the first sequence then continue that one
+{% endhint %}
+
+{% hint style="info" %}
+Before you launch the test you should:
+
+1. Open the patient portal UI `[aidbox-url]/tenant/my-clinic/patient/portal`
+2. Login to the portal using credentials we created before `example@mail.com / password`
+3. Find the `inferno-confidential-patient-smart-app`
+4. Click the `Revoke access` button 
+{% endhint %}
+
+1. Click the `9.3 Token Revocation` link in the left sidebar
+2. Click the `Run tests` button
+3. Provide require parameters for tests
+   * Prior to executing test, Health IT developer demonstrated revoking tokens provided during patient standalone launch.: `Yes`
+   * Keep other parameters unchanged
+4. Wait up to 30 seconds
+5. Click the `Submit` button
+
