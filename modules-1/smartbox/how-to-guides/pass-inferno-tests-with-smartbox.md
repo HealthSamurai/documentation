@@ -145,7 +145,10 @@ smart:
 
 ### Create Inferno test session and run test
 
-Create Inferno test session by following the link [https://inferno.healthit.gov/onc-certification-g10-test-kit](https://inferno.healthit.gov/onc-certification-g10-test-kit). Then press the button "Run all tests". You have to provide require parameters for test:
+Create Inferno test session by following the link [https://inferno.healthit.gov/onc-certification-g10-test-kit](https://inferno.healthit.gov/onc-certification-g10-test-kit). 
+
+#### Run all Inferno test 
+Press the `Run all tests` button then provide require parameters for the tests:
 
 * FHIR Endpoint:\
   `[aidbox-url]/tenant/my-clinic/patient/smart-api`
@@ -165,7 +168,7 @@ Create Inferno test session by following the link [https://inferno.healthit.gov/
 * EHR Launch Client ID: `inferno-confidential-patient-smart-app`
 * EHR Launch Client Secret: `inferno-confidential-patient-smart-app-secret`
 
-Once you run all tests, follow inferno instructions.
+Once you run all tests, follow Inferno instructions.
 
 {% hint style="info" %}
 1. To pass the `EHR Practitioner App` inferno sequence see the guide [How-to perform EHR launch](how-to-perform-ehr-launch.md)
