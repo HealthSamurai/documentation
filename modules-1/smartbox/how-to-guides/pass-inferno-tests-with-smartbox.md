@@ -291,3 +291,15 @@ Before you launch the test you should:
 4. Wait up to 30 seconds
 5. Click the `Submit` button
 
+#### 9.4 SMART App Launch Error: Invalid AUD Parameter
+
+1. Click the `9.4 SMART Invalid AUD Launch` link in the left sidebar
+2. Click the `Run tests` button
+3. Provide require parameters for tests
+   * FHIR Endpoint:\
+     `[aidbox-url]/tenant/my-clinic/patient/smart-api`
+   * Standalone Client ID: `inferno-confidential-patient-smart-app`
+   * Standalone Client Secret: `inferno-confidential-patient-smart-app-secret`
+   * OAuth 2.0 Authorize Endpoint: `[aidbox-url]/tenant/my-clinic/patient/auth/authorize`
+4. Click the `Submit` button
+5. Click the `Perform Invalid Launch` link
