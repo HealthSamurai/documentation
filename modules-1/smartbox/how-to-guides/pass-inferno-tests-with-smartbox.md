@@ -22,7 +22,7 @@ Once you have your Smartbox instance [up and running](../get-started/set-up-smar
 * Client resource for smart launch flows
 * Client resource for bulk api
 
-### Create Tenant
+## Create Tenant
 
 ```yaml
 PUT /Tenant/my-clinic
@@ -31,7 +31,7 @@ Content-Type: text/yaml
 name: My Clinic
 ```
 
-### Patient record
+## Patient record
 
 Demo patient record with all USCDI elements for Inferno test is available on Google Storage and maintained by Health Samurai team. You can upload with `/$load` endpoint:
 
@@ -74,7 +74,7 @@ meta:
 
 Now you can login to My Clinic patient portal with `example@mail.com / password`.
 
-### Client resources
+## Client resources
 
 In the requests below the simples way of adding Clients is shown. In some cases it's important to create Client resources without predefined `secret` and `id` (see [that article](../background-information/adding-clients-for-inferno-tests.md) for more details).
 
@@ -143,11 +143,11 @@ smart:
   launch_uri: 'https://inferno.healthit.gov/suites/custom/smart/launch'
 ```
 
-### Create Inferno test session and run test
+## Create Inferno test session and run test
 
 Create Inferno test session by following the link [https://inferno.healthit.gov/onc-certification-g10-test-kit](https://inferno.healthit.gov/onc-certification-g10-test-kit). 
 
-#### Run all Inferno test 
+#### Run all Inferno tests 
 Press the `Run all tests` button then provide require parameters for the tests:
 
 * FHIR Endpoint:\
