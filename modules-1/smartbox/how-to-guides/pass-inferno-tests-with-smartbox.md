@@ -318,3 +318,22 @@ Before you launch the test you should:
 4. Click the `Submit` button
 5. Click the `Follow this link to authorize with the SMART server` link
 6. Press the `Allow` button on the consent screen
+
+#### 9.8 EHR Launch with Patient Scopes
+
+1. Click the `9.8 EHR Launch with Patient Scopes` link in the left sidebar
+2. Click the `Run tests` button
+3. Provide require parameters for tests
+   * EHR launch FHIR Endpoint:\
+     `[aidbox-url]/tenant/my-clinic/patient/smart-api`
+   * EHR Launch Client ID: `inferno-confidential-patient-smart-app`
+   * EHR Launch Client Secret: `inferno-confidential-patient-smart-app-secret`
+   * OAuth 2.0 Authorize Endpoint: `[aidbox-url]/tenant/my-clinic/patient/auth/authorize`
+   * OAuth 2.0 Token Endpoint: `[aidbox-url]/auth/token`
+4. Click the `Submit` button
+5. Open the patient portal UI `[aidbox-url]/tenant/my-clinic/patient/portal`
+6. Login to the portal using credentials we created before `example@mail.com / password`
+7. Find the `inferno-confidential-patient-smart-app` application
+8. Click the `Launch` button
+9. Click the `Follow this link to authorize with the SMART server` link
+10. Press the `Allow` button on the consent screen
