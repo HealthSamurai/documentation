@@ -240,3 +240,19 @@ This test depends on the `Standalone Patient App` test. Pass the first sequence 
 3. Click the `Submit` button
 
 Once you run tests, follow the Inferno instructions.
+
+#### 7 Multi-Patient Authorization and API
+
+1. Click the `7 Multi-Patient API` link in the left sidebar
+2. Click the `Run tests` button
+3. Provide require parameters for tests
+  * Bulk Data FHIR URL:\
+  `[aidbox-url]/tenant/my-clinic/bulk-api`
+  * Backend Services Token Endpoint:\
+  `[aidbox-url]/auth/token`
+  * Bulk Data Client ID: `inferno-my-clinic-bulk-client`
+  * Encryption method `RS384`
+  * Group ID: `test-group-1`
+  * Patient IDs in exported Group: `test-pt-1,test-pt-2`
+4. Click the `Submit` button
+
