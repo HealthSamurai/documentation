@@ -134,6 +134,10 @@ In terms of `SMART App launch` supporting native applications stands for allowin
 
 **To demonstrate native applications support**
 
+{% hint style="warning" %}
+It is a good idea to perform this flow in the `Incognito mode` (Chrome) or `Private Window` (Firefox)
+{% endhint %}
+
 1. Register an application with a custom URL schema
 2. Build the authorization request URL
 3. Open the URL in the browser
@@ -185,7 +189,7 @@ In your web browser:
 
 ### 4. Authenticate in the Smartbox (enter login and password)
 
-Still on the browser enter you login and password credentials
+Still on the browser enter your pateint login and password credentials
 
 ### 5. Authorize the launch (allow on the Consent screen)
 
