@@ -4,12 +4,12 @@
 
 ### Mandatory software components
 
-Aidbox minimum installation consists of tow mandatory components:
+Aidbox minimum installation consists of two mandatory components:
 
 1. PostreSQL relations database management system as data persistence layer
 2. Aidbox itself configured working to the `PostgreSQL`
 
-#### PostgresSQL
+#### PostgreSQL
 
 As an `Aidboxdb` docker container can be got [here](https://hub.docker.com/r/healthsamurai/aidboxdb). It has all necessary extensions on board.
 
@@ -32,7 +32,6 @@ Main configuration aspects:
 
 * S3 account & bucket should be prepared as Aidbox uploads exported data to the bucket
 * Aidbox should be configured as a [zen-project](https://docs.aidbox.app/aidbox-configuration/aidbox-zen-lang-project)
-* In minimum approach there should be defined endpoints for your SMART API. Consider using as a drat the prepared [ONC Inferno tests ready zen-project](https://github.com/Aidbox/aidbox-project-samples/blob/main/aidbox-project-samples/onc/smart.edn)
 
 #### TLS for HTTP
 
