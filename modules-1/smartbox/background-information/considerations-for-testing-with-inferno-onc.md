@@ -37,7 +37,7 @@ Main configuration aspects:
 
 ONC Inferno requires certain TLS version usage over HTTP requests. The allowed versions are v1.2+.
 
-## Setting up different SMART on FHIR application
+## Technical requirements and attributes necessary for registration
 
 ### `confidential` and `public` applications
 
