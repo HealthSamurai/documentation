@@ -146,7 +146,19 @@
 
   zen/tag: [aidbox.config/smartbox](#aidbox.config-smartbox)
 
+- `:dev-mode` (zen/boolean)
+
+  
+
+
+
 - `:instances-number` (zen/integer)
+
+  
+
+
+
+- `:stdout-pretty` (zen/boolean)
 
   
 
