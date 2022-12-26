@@ -44,6 +44,7 @@
   * [Enable IGs](aidbox-configuration/aidbox-zen-lang-project/enable-igs.md)
   * [Seed Import](aidbox-configuration/aidbox-zen-lang-project/seed-import.md)
   * [Seed v2](aidbox-configuration/aidbox-zen-lang-project/seed-v2.md)
+  * [🎓 Migrate to git Aidbox Configuration Projects](aidbox-configuration/aidbox-zen-lang-project/migrate-to-git-aidbox-configuration-projects.md)
 * [API constructor (beta)](aidbox-configuration/aidbox-api-constructor.md)
 * [Setup SMTP provider](aidbox-configuration/setup-smtp-provider.md)
 * [Zen Configuration](aidbox-configuration/zen-configuration.md)
