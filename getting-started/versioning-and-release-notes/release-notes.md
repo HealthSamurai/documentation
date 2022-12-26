@@ -14,7 +14,7 @@
   * Added guides on passing [Inferno tests](../../modules-1/smartbox/how-to-guides/pass-inferno-tests-with-smartbox.md) and [Inferno Visual Inspection and Attestation](../../modules-1/smartbox/how-to-guides/pass-inferno-visual-inspection-and-attestation.md)
 * Aidbox Configuration Projects
   * Improved startup time for Aidbox instances [configured with zen FHIR IGs](../../aidbox-configuration/aidbox-zen-lang-project/enable-igs.md)
-  * Improved [local development workflow](../../aidbox-configuration/aidbox-zen-lang-project/setting-up-a-configuration-project.md#provide-aidbox-configuration-project-from-a-git-repo)
+  * Improved [local development workflow](broken-reference)
   * Improved Aidbox [support](../../fhir-implementation-guides/us-core-ig/us-core-ig-support-reference.md) of [US Core IG](../../fhir-implementation-guides/us-core-ig/) artifacts
   * Added configuration of Aidbox features via zen-lang instead of envs
 * Aidbox User Portal

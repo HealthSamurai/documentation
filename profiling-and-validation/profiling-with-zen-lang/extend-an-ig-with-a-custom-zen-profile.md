@@ -10,7 +10,7 @@ description: >-
 Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [contact](../../contact-us.md) us if you have questions, feedback or suggestions.
 {% endhint %}
 
-## Before you start
+## Prerequisites
 
 Install the Aidbox following [this guide](../../getting-started/run-aidbox-locally-with-docker/).
 
@@ -22,36 +22,39 @@ AIDBOX_IMAGE=healthsamurai/aidboxone:edge
 ```
 {% endcode %}
 
-## Create a zen project
+## Start with a zen project
 
-Inside of the cloned Aidbox directory create a zen project directory and open it.\
-In this example zen project directory is `my-zen-project/`
+The Aidbox starter repository you cloned by following the guide from [Prerequisites](extend-an-ig-with-a-custom-zen-profile.md#prerequisites) is already a zen project. It has `zen-package.edn`, the project package file, and `zrc/system.edn`, the project entry file.
 
-```bash
-mkdir my-zen-project
-cd my-zen-project
+## Add the required IG packages as dependencies
+
+Update `zen-package.edn` so that it reflects information about the new project’ dependencies.
+
+```clojure
+;; zen-package.edn
+{:deps {hl7-fhir-r4-core "https://github.com/zen-fhir/hl7-fhir-r4-core.git"
+        hl7-fhir-us-core "https://github.com/zen-fhir/hl7-fhir-us-core.git"}}
 ```
 
-Inside of your zen project directory initialize npm package for your project and then install zen dependencies you need. FHIR R4 and US core v3 are used as dependencies in this example
+A dependency is any other zen project. It is common to include FHIR IG packages this way. We provide a number of [prepackaged FHIR IGs](https://github.com/orgs/zen-fhir/repositories) which you can use similarly to the example above.
 
-```bash
-npm init -y
-npm install @zen-lang/hl7-fhir-r4-core @zen-lang/hl7-fhir-us-core
+You also need to update an entry file, `zrc/system.edn`. It is used, among other things, for importing and loading all the project’s files, including its dependencies.
+
+```clojure
+;; zrc/system.edn
+{ns system
+ import #{aidbox
+          aidbox.config
+          hl7-fhir-r4-core
+          hl7-fhir-us-core}
+ …}
 ```
 
-Create zen entry file in my-zen-project directory.
+## Create a namespace with your profiles
 
-{% code title="my-zen-aidbox.edn" %}
-```yaml
-{ns my-zen-aidbox}
-```
-{% endcode %}
-
-Create namespace with your profiles.
-
-{% code title="my-zen-profiles.edn" %}
-```
-{ns my-zen-profiles
+```clojure
+;; zrc/my-profiles.edn
+{ns my-profiles
  import #{hl7-fhir-us-core.us-core-patient}
 
  MyPatientProfile
@@ -62,63 +65,35 @@ Create namespace with your profiles.
   :type zen/map
   :require #{:birthDate}}}
 ```
-{% endcode %}
 
-Import the profiles namespace in the entry namespace.
+Add `my-profiles` namespace to the entry file imports.
 
-{% code title="my-zen-aidbox.edn" %}
+```clojure
+;; zrc/system.edn
+{ns system
+ import #{aidbox
+          aidbox.config
+          hl7-fhir-r4-core
+          hl7-fhir-us-core
+          my-profiles}
+ …}
 ```
-{ns my-zen-aidbox
- import #{my-zen-profiles}}
-```
-{% endcode %}
 
-## Setup Aidbox to use Zen project
+{% hint style="info" %}
+Refer to [Aidbox Configuration project page](../../aidbox-configuration/aidbox-zen-lang-project/) if you want to learn more about zen projects.
+{% endhint %}
 
-Go back to Aidbox directory and add configuration variables to the end of `.env` file:
+## Setup Aidbox for development with zen projects
+
+Add `AIDBOX_ZEN_DEV_MODE=enable` to your`.env` file:
 
 {% code title=".env" %}
 ```bash
-AIDBOX_ZEN_PROJECT=/my-zen-project # mind the / at the beginning of the dir name
-AIDBOX_ZEN_ENTRY=my-zen-aidbox
-AIDBOX_ZEN_DEV_MODE=enable # set this variable if you want to have 
-                           # zen reload namespaces on the fly as they change
+AIDBOX_ZEN_DEV_MODE=enable
 ```
 {% endcode %}
 
-To enable your Aidbox reading the zen project data add zen project directory volume mount. In the `docker-compose.yaml` file find the section `aidbox:` and add the following line under the `volumes:` section:
-
-```yaml
-- "./my-zen-project:/my-zen-project"
-```
-
-The `volumes` section should be like this
-
-```yaml
-services:
-  aidbox:
-    volumes:
-    - "./my-zen-project:/my-zen-project"
-```
-
-So the file should look like this:
-
-{% code title="docker-compose.yaml" %}
-```yaml
-version: '3.7'
-services:
-  aidbox-db:
-    <...omitted...>
-
-  aidbox:
-    container_name: "aidbox"
-    image: "${AIDBOX_IMAGE}"
-    <...omitted...>
-    volumes:
-    - "./my-zen-project:/my-zen-project"
-  <...omitted...>
-```
-{% endcode %}
+Now Aidbox will automatically reload when changes are made in the project. Note that this feature is a work in progress and some things may not reload properly.&#x20;
 
 ## Check if your profile is loaded
 
@@ -220,6 +195,13 @@ meta:
 {% endtab %}
 {% endtabs %}
 
+## Development and production tips
+
+If you want more tips about development and production usage, visit the links below:
+
+* [Development tips](../../aidbox-configuration/aidbox-zen-lang-project/setting-up-a-configuration-project.md#tips-for-local-development)
+* [Production tips](../../aidbox-configuration/aidbox-zen-lang-project/setting-up-a-configuration-project.md#tips-for-production)
+
 ## Example project
 
-[The example project](https://github.com/Aidbox/devbox/commit/431b14170f867f77f90779d4ff870d74c051c844) from this page
+See [the example project](https://github.com/Aidbox/devbox/commit/431b14170f867f77f90779d4ff870d74c051c844) used on this page.

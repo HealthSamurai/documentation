@@ -8,7 +8,7 @@ This reference is a work in progress. Please, [contact us](../../contact-us.md) 
 
 Currently supported version is `5.0.1`. It is available via this URL: `https://github.com/zen-fhir/hl7-fhir-us-core.git`.
 
-Historical versions `2.1.0`, `3.0.0`, `3.0.1`, `3.1.0`, `3.1.1`, `3.2.0`, `4.0.0`, `4.1.0` and `5.0.0` support is a work in progress. You can try them out by enabling [via zip URL](../../aidbox-configuration/aidbox-zen-lang-project/setting-up-a-configuration-project.md#alternative-ways-to-provide-aidbox-configuration-project). List of URLs is available [here](https://github.com/zen-lang/fhir/releases/latest).
+Historical versions `2.1.0`, `3.0.0`, `3.0.1`, `3.1.0`, `3.1.1`, `3.2.0`, `4.0.0`, `4.1.0` and `5.0.0` support is a work in progress. You can try them out by enabling [via zip URL](broken-reference). List of URLs is available [here](https://github.com/zen-lang/fhir/releases/latest).
 
 ## Supported artifacts
 

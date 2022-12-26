@@ -48,61 +48,46 @@ Schemas tagged with `zen.fhir/profile-schema` are used to validate resources tha
 
 ## Zen FHIR packages
 
-Aidbox team created an open-source tool to generate Zen FHIR packages from FHIR packages
+Aidbox team has created an [open-source tool to generate Zen FHIR packages](https://github.com/zen-lang/fhir) from FHIR packages.
 
-It is distributed as a jar file available here&#x20;
-
-Zen FHIR  package is an [Aidbox project](../../aidbox-configuration/aidbox-zen-lang-project/) saved into zip archive
+Generated packages are available under [zen-fhir Github organization](https://github.com/orgs/zen-fhir/repositories).
 
 {% hint style="warning" %}
-Zen FHIR Packages require `AIDBOX_CORRECT_AIDBOX_FORMAT` environment variable to be declared
+Zen FHIR Packages require `AIDBOX_CORRECT_AIDBOX_FORMAT=true` environment variable.
 {% endhint %}
 
 ### Use Zen FHIR packages
 
-You can enable Zen FHIR packages that contain FHIR profiles of the following implementation guides:
+We recommend to load Zen FHIR packages using an [Aidbox Configuration project](../../aidbox-configuration/aidbox-zen-lang-project/). Visit the following page for a detailed guide:
 
-* FHIR R4
-  * `hl7-fhir-us-core` - US Core
-  * `hl7-fhir-us-davinci-pdex` - Payer Data Exchange (PDex)
-  * `hl7-fhir-us-davinci-pdex-plan-net` - PDEX Payer Network
-  * `hl7-fhir-us-davinci-hrex` - The Da Vinci Payer Health Record exchange (HRex)
-  * `hl7-fhir-us-davinci-drug-formulary` - DaVinci Payer Data Exchange US Drug Formulary
-  * `hl7-fhir-us-carin-bb` - CARIN Consumer Directed Payer Data Exchange (CARIN IG for Blue Button®)
-  * `hl7-fhir-us-mcode` - mCODE™ (short for Minimal Common Oncology Data Elements)
-* FHIR STU 3
-  * `nictiz-fhir-nl-stu3-zib2017` - Nictiz NL, including MedMij and HL7 NL
+{% content-ref url="../../aidbox-configuration/aidbox-zen-lang-project/enable-igs.md" %}
+[enable-igs.md](../../aidbox-configuration/aidbox-zen-lang-project/enable-igs.md)
+{% endcontent-ref %}
 
-Zen FHIR packages are distributed as npm packages or as zen-lang standalone Aidbox projects
+There are also several other _deprecated_ ways to use Zen FHIR packages:
 
-Existing Zen FHIR packages are available as:
+#### [npm FHIR R4](https://www.npmjs.com/browse/depended/@zen-lang/hl7-fhir-r4-core) and [FHIR STU 3](https://www.npmjs.com/browse/depended/@zen-lang/hl7-fhir-r3-core)
 
-* [npm FHIR R4](https://www.npmjs.com/browse/depended/@zen-lang/hl7-fhir-r4-core)&#x20;
-* [npm FHIR STU 3](https://www.npmjs.com/browse/depended/@zen-lang/hl7-fhir-r3-core)
-* [standalone Aidbox projects](https://github.com/zen-lang/fhir/releases/latest)
+Install the required `npm` packages and set `AIDBOX_ZEN_PATHS` to a directory which _contains_ `node_modules` with them:
 
-#### Example configuration
+```
+AIDBOX_ZEN_PATHS=path/to/parent-of-node_modules/
+```
 
-```makefile
-AIDBOX_CORRECT_AIDBOX_FORMAT=true
+#### [Standalone Aidbox projects](https://github.com/zen-lang/fhir/releases/latest)
+
+Set `AIDBOX_ZEN_PATHS` to download URLs of all the required packages. Multiple URLs are separated by a comma.
+
+```
 AIDBOX_ZEN_PATHS="url:zip:https://github.com/zen-lang/fhir/releases/latest/download/hl7-fhir-us-core.zip
                  ,url:zip:https://github.com/zen-lang/fhir/releases/latest/download/hl7-fhir-us-carin-bb.zip
-                 ,url:zip:https://github.com/zen-lang/fhir/releases/latest/download/hl7-fhir-us-davinci-pdex.zip
-                 ,url:zip:https://github.com/zen-lang/fhir/releases/latest/download/hl7-fhir-us-davinci-drug-formulary.zip
-                 ,url:zip:https://github.com/zen-lang/fhir/releases/latest/download/hl7-fhir-us-davinci-pdex-plan-net.zip"
-AIDBOX_ZEN_LOAD="{ns project
-                  import #{hl7-fhir-us-core
-                           hl7-fhir-us-carin-bb
-                           hl7-fhir-us-davinci-pdex
-                           hl7-fhir-us-davinci-drug-formulary
-                           hl7-fhir-us-davinci-pdex-plan-net}}"
-AIDBOX_ZEN_ENTRYPOINT=project
+                 ,url:zip:https://github.com/zen-lang/fhir/releases/latest/download/hl7-fhir-us-davinci-pdex.zip"
 ```
 
 ### Convert custom FHIR profiles to Zen FHIR package
 
-Using [this tool](https://github.com/zen-lang/fhir/blob/main/README.md) you can generate zen-lang schemas and use them in your [Aidbox projects](../../aidbox-configuration/aidbox-zen-lang-project/).
+Our [`zen-lang/fhir`](https://github.com/zen-lang/fhir/blob/main/README.md) tool allows you to generate zen schemas for custom FHIR profiles and use them in your [Aidbox Configuration projects](../../aidbox-configuration/aidbox-zen-lang-project/).&#x20;
 
 ### Create custom Zen FHIR package based on existing Zen FHIR packages
 
-You can use existing Zen FHIR packages as a foundation for your custom Zen FHIR package. Check out [Profiling with Zen-lang guide](extend-an-ig-with-a-custom-zen-profile.md).
+You can use existing Zen FHIR packages as a foundation for your custom Zen FHIR package. See our [guide on profiling with Zen-lang](extend-an-ig-with-a-custom-zen-profile.md).

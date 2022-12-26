@@ -20,7 +20,7 @@ Aidbox configuration project is sometimes referred to as Aidbox Project or just 
 [aidbox-configuration-project-structure.md](aidbox-configuration-project-structure.md)
 {% endcontent-ref %}
 
-### Features supported by configuration projects
+## Features supported by configuration projects
 
 {% content-ref url="enable-igs.md" %}
 [enable-igs.md](enable-igs.md)
@@ -34,15 +34,15 @@ Aidbox configuration project is sometimes referred to as Aidbox Project or just 
 [aidbox-api-constructor.md](../aidbox-api-constructor.md)
 {% endcontent-ref %}
 
-{% content-ref url="rpc-api.md" %}
-[rpc-api.md](rpc-api.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ## Use Aidbox configuration project
 
-Aidbox configuration project is simply a directory with files so to use it in Aidbox you just need to tell where it is located and how it can be accessed.
+Aidbox configuration project is simply a directory with files. In order to use it in Aidbox you just need to tell where it is located and how it can be accessed.
 
-Currently Aidbox configuration projects are supported only for self-hosted instances. Support for Cloud and AWS Marketplace installations is coming soon.
+Currently Aidbox configuration projects are supported for self-hosted instances and for Aidbox User Portal Sandbox instances. Support for AWS Marketplace installations is coming soon.
 
 {% hint style="info" %}
 Configuration projects can be provided either as a git repository url or as a local path. We recommend to keep your project in git as the source control allows you to easily track changes, revert them or switch between branches.
@@ -58,9 +58,9 @@ Setting up a self-hosted project is done by providing access to a project files.
 
 ### Production installation
 
-Production installation is the same as a regular installation. Exception can be the case when your production environment has no access to a git repo containing your project. For these cases Aidbox supports [other methods of providing configuration projects](setting-up-a-configuration-project.md#alternative-ways-to-provide-aidbox-configuration-project).
+Production installation is the same as a regular installation. Exception can be the case when your production environment has no access to a git repo containing your project. For these cases Aidbox supports [other methods of providing configuration projects](broken-reference).
 
-### Use configuration projects for Sandbox instances on Aidbox user portal
+### Configuration projects for Sandbox instances on Aidbox user portal
 
 1. Proceed to creating a new license
 2. Select either a _Standard_ or _Development_ license type and **Sandbox** hosting
@@ -79,6 +79,12 @@ If you want to have them in the database, you need to configure projects for a l
 {% hint style="info" %}
 Aidbox configuration projects will be supported on AWS Marketplace in upcoming releases.
 {% endhint %}
+
+### Configuration projects in self-hosted instances
+
+{% content-ref url="setting-up-a-configuration-project.md" %}
+[setting-up-a-configuration-project.md](setting-up-a-configuration-project.md)
+{% endcontent-ref %}
 
 ## Examples
 

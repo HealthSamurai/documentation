@@ -1,22 +1,78 @@
-# Setting up a configuration project
+# Set up and use configuration projects
 
-To set up a configuration project you need two things:&#x20;
+Aidbox Configuration project requires a few things:&#x20;
 
-* [Set entrypoint symbol](setting-up-a-configuration-project.md#set-entrypoint-for-system-configuration). Entrypoint points to settings and services for this instance.
-* [Provide load configuration](setting-up-a-configuration-project.md#provide-aidbox-configuration-project-from-a-git-repo). This allows Aidbox to load your project on start.
+* [Project folder](setting-up-a-configuration-project.md#create-configuration-project-folder), which wraps all the necessary files required for a project package to function.
+* [Package file](setting-up-a-configuration-project.md#list-project-dependencies), which lists project’s dependencies.
+* [Entrypoint symbol](setting-up-a-configuration-project.md#set-entrypoint-for-system-configuration), which points to settings and services for an instance under configuration.
 
-## Set system entrypoint&#x20;
+{% hint style="info" %}
+We provide a CLI tool, called `zen`, which makes working with projects easier. It is distributed as `jar` file and can be downloaded from our [zen Github releases](https://github.com/HealthSamurai/ftr/releases).
+{% endhint %}
 
-Aidbox starts reading configuration from a Zen entrypoint. The entrypoint is a namespaced symbol which serves as a starting point for the whole system. The `AIDBOX_ZEN_ENTRYPOINT` environment variable is used to specify it.
+## Create Aidbox Configuration project folder
 
-Namespace is related to a system config filename. The entrypoint symbol you use should be tagged with `aidbox/system`.
+Configuration projects, which are also _zen projects_, work as git repositories under the hood. This means that you need to have a directory initialized as a git repo. You can either create it from scratch or clone an existing one.
 
-If your system config file looks like this
+You can also bootstrap a project with the help of [`zen`](https://github.com/HealthSamurai/ftr/releases) tool:
+
+```bash
+java -jar path/to/zen.jar init my-project
+```
+
+Then you need to set `BOX_PROJECT_GIT_URL` environment variable to the location of this repository so that Aidbox knows where to find it. Note that the location can be either a local path or a remote URL, for which you can optionally specify a commit and/or branch.
+
+See an example of an [initialized project on our Github](https://github.com/Aidbox/aidbox-docker-compose).
+
+## Provide access to your project
+
+Aidbox can load project from an URL or read directly from its file system.
+
+* `BOX_PROJECT_GIT_URL` — where to clone your project from. Aidbox substitutes it to `git clone <url>` command.
+* `BOX_PROJECT_GIT_PROTOCOL` — either `https` or `ssh`. Assumes local dir if omitted.
+* `BOX_PROJEC_GIT_TARGET__PATH` — where to clone your project to and where to read it from. Default value is a directory in `/tmp`
+
+If you specify only the target path then Aidbox expects you to clone a project into this location before it starts. This allows mounting persistent file system cache and using local file system for development. See [tips for development](setting-up-a-configuration-project.md#tips-for-development) and [tips for production](setting-up-a-configuration-project.md#tips-for-production).
+
+### Private repositories as projects
+
+If a repository you want to use as a project is under restricted access, you can provide the necessary SSH or HTTPS credentials via the following environment variables:
+
+* `BOX_PROJECT_GIT_ACCESS__TOKEN` —  access token for HTTPS
+* `BOX_PROJECT_GIT_PUBLIC__KEY` — SSH public key
+* `BOX_PROJECT_GIT_PRIVATE__KEY` — SSH private key
+
+## List project’s dependencies
+
+Project’s package file, `zen-package.edn`, should be located at the root of a configuration project. It is used to specify what dependencies, which are other zen projects, you wish to use.
+
+If you don’t have any dependencies, the file should look like this:
+
+{% code title="zen-package.edn" %}
+```clojure
+{:deps {}}
+```
+{% endcode %}
+
+See also an [example of `zen-package.edn` with specified dependencies](enable-igs.md#specify-zen-fhir-igs-in-your-zen-package.edn).
+
+You can [read more about how zen-package file is organized](aidbox-configuration-project-structure.md#zen-package.edn).
+
+## Set system entrypoint
+
+Aidbox starts reading configuration project from a zen entrypoint. It is a namespaced symbol which is tagged with `aidbox/system` tag. It is used to bootstrap the whole system.
+
+You can specify an entrypoint symbol via `AIDBOX_ZEN_ENTRYPOINT` environment variable.
+
+The entrypoint file should import all the packages and other namespaces you wish to use.\
+Its `ns` value should correspond to its filename (with `-` replaced by `_`).
+
+As an example, consider the following config file for a system which happens to import [zen-fhir US Core IG package](https://github.com/zen-fhir/hl7-fhir-us-core):
 
 {% code title="project/zrc/system.edn" %}
 ```clojure
-{ns     system
- import #{…}
+{:ns     system
+ :import #{hl7-fhir-us-core}
 
  box
  {:zen/tags #{aidbox/system}
@@ -26,7 +82,7 @@ If your system config file looks like this
 ```
 {% endcode %}
 
-you should specify the following environment variable
+You need to specify `AIDBOX_ZEN_ENTRYPOINT` environment variable. This variable is formatted as `<entrypoint namespace>/<entrypoint symbol name>`. Given entry file such as above, you get the following:
 
 ```
 AIDBOX_ZEN_ENTRYPOINT=system/box
@@ -56,126 +112,87 @@ It's more preferable to set up Aidbox with [aidbox.config/config](../../referenc
 This is more preferable way, than configuring Aidbox via envs.
 {% endhint %}
 
-## Provide Aidbox configuration project from a git repo
+## Proivde package source
 
-Two key variables control project configuration:
+## Tips for development
 
-* `BOX_PROJECT_GIT_URL` — remote origin of a configuration project.
-* `BOX_PROJECT_GIT_TARGET__PATH` — where to find a configuration project on a Aidbox container filesystem. Default is `/tmp/aidbox-project-git`. You can specify your own directory to mount a persistent filesystem for caching cloned project.&#x20;
+### Cache and reuse project’s dependencies
 
-Aidbox container can clone your configuration project from a remote repo. For that you set `BOX_PROJECT_GIT_URL` environment variable to a git repository URL or a local directory path. The configuration project will be cloned to the `BOX_PROJECT_GIT_TARGET__PATH`.&#x20;
+Suppose that you’ve configured your Aidbox instance with some heavy dependencies. During the development phase, you may wish to reuse these dependencies downloaded data. `BOX_PROJECT_GIT_TARGET__PATH` environment variable allows you to specify a path where your project with downloaded dependencies are going to be cached. By mounting this path to a persistent file system you'll provide downloaded data to Aidbox after a restart, thus making Aidbox reusing data (Aidbox also checks for dependencies updates in this case).
 
-If you clone Aidbox configuration project yourself, you can mount the directory into a container and specify only the  `BOX_PROJECT_GIT_TARGET__PATH`. This will allow you to change in your project locally which is useful for development.
+#### Usage with Docker
 
-#### Load git repository
+If you want to cache dependencies for Aidbox Docker container, you need to mount a cache directory as a volume.
 
-Aidbox can load repository using either https or ssh. You can optionally specify a branch or commit, path of a project part inside repository, and location in which to clone repository.
+See an [example in our Aidbox starter repository](https://github.com/Aidbox/aidbox-docker-compose).
 
-To set up git repository location you need to set multiple environment variables:
+### Hot reload for changes in Aidbox Configuration project
 
-* `BOX_PROJECT_GIT_PROTOCOL`: `https` for HTTPS, `ssh` for SSH method.
-* `BOX_PROJECT_GIT_URL`: full URL to git repository. This can be HTTPS, SSH or local path.
+By default, Aidbox requires a restart after making changes to a configuration project. If you wish to enable a hot reload, set the following environment variable:
 
-### Authentication
-
-Authentication set up depends on the protocol used:&#x20;
-
-For HTTPS:
-
-* `BOX_PROJECT_GIT_ACCESS__TOKEN`: access token for private repositories.&#x20;
-
-For SSH:
-
-* `BOX_PROJECT_GIT_PUBLIC__KEY`: public SSH key,
-* `BOX_PROJECT_GIT_PRIVATE__KEY`: private SSH key.
-
-### Specify branch and paths
-
-Additionally, you can control clone and checkout:
-
-* `BOX_PROJECT_GIT_CHECKOUT`: checkout specific commit or branch
-
-If your Aidbox configuration project is in subdirectory of the repository, you can specify its location relative to the repository root with `BOX_PROJECT_GIT_SUB__PATH` environment variable.
-
-For example, let's load one of the [Aidbox configuration project samples](https://github.com/Aidbox/aidbox-project-samples/tree/main/aidbox-project-samples) using HTTPS and SSH methods.&#x20;
-
-{% code title="SSH" %}
-```bash
-AIDBOX_ZEN_ENTRYPOINT=smartbox.portal/box
-BOX_PROJECT_GIT_PROTOCOL=ssh
-BOX_PROJECT_GIT_PUBLIC__KEY="...."
-BOX_PROJECT_GIT_PRIVATE__KEY="-----BEGIN OPENSSH PRIVATE KEY-----\n....\n-----END OPENSSH PRIVATE KEY-----\n"
-BOX_PROJECT_GIT_URL=git@github.com:Aidbox/aidbox-project-samples.git
-BOX_PROJECT_GIT_SUB__PATH=aidbox-project-samples/smartbox
-```
-{% endcode %}
-
-{% code title="HTTPS" %}
-```bash
-AIDBOX_ZEN_ENTRYPOINT=smartbox.portal/box
-BOX_PROJECT_GIT_PROTOCOL=https
-BOX_PROJECT_GIT_URL=https://github.com/Aidbox/aidbox-project-samples.git
-BOX_PROJECT_GIT_SUB__PATH=aidbox-project-samples/smartbox
-```
-{% endcode %}
-
-## Alternative ways to provide Aidbox configuration project
-
-Sometimes your production environment can not access an external git repository. In such cases you can configure Aidbox to load project via:
-
-* zip archive url
-* mounted file system path
-
-Local and remote locations are specified using `AIDBOX_ZEN_PATHS` environment variable.
-
-#### AIDBOX\_ZEN\_PATHS
-
-Syntax:
-
-```
-AIDBOX_ZEN_PATHS=<source>:<format>:<path>[,<source>:<format>:<path>]*
+```shell
+AIDBOX_ZEN_DEV_MODE=true
 ```
 
-`<source>` is either `url`, or `path`.
+You can also use Aidbox UI to reload namespaces: proceed to `Profiles` page on the left sidebar and click the reload button in the upper left corner.
 
-* `url` is used to load project from remote location
-* `path` is used to load project from local location
-
-`<format>` is either `zip`, or `dir`, or `edn`.
-
-Table of sources and format compatibility:
-
-| source\format | `zip` | `dir` | `edn` |
-| ------------- | ----- | ----- | ----- |
-| `url`         | ✓     |       | ✓     |
-| `path`        | ✓     | ✓     | ✓     |
-
-#### Load from remote source
-
-You can load Aidbox configuration project from a public HTTPS endpoint.
-
-For example, set
+Additionally, there’s [`aidbox.zen/reload-namespaces`](../../reference/configuration/aidbox-project.md#aidbox.zen-reload-namespaces) RPC method that does the same thing.&#x20;
 
 ```yaml
-AIDBOX_ZEN_PATHS=url:zip:https://github.com/zen-lang/fhir/releases/latest/download/hl7.fhir.r4.core.zip
+POST /rpc
+
+method: aidbox.zen/reload-namespaces
+params: {}
 ```
 
-to load FHIR R4 profiles.
+{% hint style="info" %}
+Hot reload feature is a work in progress. Please contact us if you encounter any issues.
+{% endhint %}
 
-Aidbox can load a single file too:
+### Editor support
 
-```yaml
-AIDBOX_ZEN_PATHS=url:edn:https://example.org/my-namespace.edn
+If you are using VS Code, we have [zen-lsp](https://github.com/zen-lang/zen-lsp) plugin which should help you write configs with less errors.
+
+{% hint style="info" %}
+VS Code plugin is in the alpha phase. Please contact us if you encounter any issues.
+{% endhint %}
+
+## Tips for production
+
+### Cache and reuse project’s dependencies
+
+This tip is the same as for development.
+
+### Provide prepackaged Aidbox project with all the dependencies
+
+In production you may not always have an access to a git repository with your project. It can also be convenient to bundle the project together with all its dependencies. You can use our [`zen`](https://github.com/HealthSamurai/ftr/releases) tool to address both of these concerns.
+
+Execute the following command inside the project directory to create a zip file with your project:
+
+```bash
+java -jar path/to/ zen.jar build target zen-package
 ```
 
-#### Load from local filesystem source&#x20;
+It will be available inside the `target` directory in the root of the project.
 
-You have three options: directory, zip file, and a single file.
-
-For example, let's load a project from a directory
+Now all you need is to set `AIDBOX_ZEN_PATHS` environment variable. There are two ways to do it:
 
 ```
-AIDBOX_ZEN_PATHS=path:dir:/srv/aidbox-project
+# 1 — provided at remote URL
+AIDBOX_ZEN_PATHS=url:package-zip:https://hostname.tld/zen-package.zip
+
+# 2 — provided at filesystem path
+AIDBOX_ZEN_PATHS=path:package-zip:path/to/zen-package.zip
 ```
 
-##
+It is also possible to provide an unpacked zip of your project:
+
+```
+AIDBOX_ZEN_PATHS=path:package-dir:path/to/unpacked-zip-content
+```
+
+## Share configuration projects with others
+
+Since configuration projects are just git repositories you can publish them in any git registry and other people will be able to use them for their own configurations: either as a standalone project or as a dependency.
+
+If your repository is available only under a restricted access, others will need to [set the appropriate environment variables so that Aidbox is able to access it](setting-up-a-configuration-project.md#private-repositories-as-projects).

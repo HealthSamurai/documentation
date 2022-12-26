@@ -4,13 +4,13 @@ description: Create a Aidbox projcet with FTR that can be used in Aidbox
 
 # Creating Aidbox project with FTR
 
-### Prerequisites
+## Prerequisites
 
 1. Download zen-ftr CLI: [Download link](https://github.com/HealthSamurai/ftr/releases/latest/download/zen.jar)
 
-### Creating Aidbox project with FTR based on CSV Source
+## Creating Aidbox project with FTR based on CSV Source
 
-#### Create a directory `project` with following structure:
+Create a directory `project` with following structure:
 
 ```bash
 project/
@@ -22,14 +22,13 @@ project/
     diagnosis.edn # ValueSet definition
 ```
 
-#### `zen-package.edn` file content:
-
+{% code title="zen-package.edn" %}
 ```clojure
 {:deps {}}
 ```
+{% endcode %}
 
-#### `zrc/system.edn` file content:
-
+{% code title="zrc/system.edn" %}
 ```clojure
 {:ns system
  :import #{aidbox diagnosis}
@@ -37,10 +36,7 @@ project/
  box
  {:zen/tags #{aidbox/system}}}
 ```
-
-#### `zrc/diagnosis.edn` file content:
-
-Replace `<ABSOLUTE_PATH_TO_PROJECT_DIR>` placeholder with absolute path to your project directory.
+{% endcode %}
 
 This ValueSet definition confirms to [zen.fhir ValueSet schema](../../../profiling-and-validation/profiling-with-zen-lang/) and has a `:ftr` property, it contains an FTR manifest that defines a csv source via `:source-url` property to create an expanded version of the ValueSet to be stored in the resulting FTR. For details about FTR manifest, please, refer to this [page](ftr-manifest.md).
 
@@ -70,7 +66,7 @@ This ValueSet definition confirms to [zen.fhir ValueSet schema](../../../profili
 
 ```
 
-#### Create `resources/icd-10.csv` file, containing CSV source for your ValueSet:
+Create `resources/icd-10.csv` file, containing CSV source for your ValueSet:
 
 ```csv
 10344;20;XX;External causes of morbidity and mortality;;;1;
@@ -83,13 +79,13 @@ This ValueSet definition confirms to [zen.fhir ValueSet schema](../../../profili
 11873;2001203W641;W64.01;Exposure to other and unspecified animate mechanical forces, home, while engaged in leisure activity;11871;;1;
 ```
 
-#### Initialize this directory as a git repository, commit your initial set-up
+Initialize this directory as a git repository, commit your initial set-up
 
 ```bash
 git init && git add --all && git commit -m "init"
 ```
 
-#### Generating FTR
+### Generating FTR
 
 Replace `<PATH_TO_JAR>` placeholder with absolute path to `zen.jar`.&#x20;
 
@@ -107,9 +103,9 @@ git add . && git commit -m "Build ftr"
 
 Now you can run Aidbox with the following configuration project and use [FHIR Terminology API ](../../valueset/)methods like `$validate-code/$lookup` on generated `diagnosis-vs` ValueSet. Resource validation performed when someone invocates a FHIR REST operations will also validate ValueSet binding via FTR.
 
-### Creating Aidbox project with FTR based on IG Source
+## Creating Aidbox project with FTR based on IG Source
 
-#### Create a directory `project` with following structure:
+Create a directory `project` with following structure:
 
 ```bash
 project/
@@ -123,14 +119,13 @@ project/
     gender.edn # ValueSet definition
 ```
 
-**`zen-package.edn` file content:**
-
+{% code title="zen-package.edn" %}
 ```clojure
 {:deps {}}
 ```
+{% endcode %}
 
-#### `zrc/system.edn` file content:
-
+{% code title="zrc/system.edn" %}
 ```clojure
 {:ns system
  :import #{aidbox gender}
@@ -138,10 +133,7 @@ project/
  box
  {:zen/tags #{aidbox/system}}}
 ```
-
-#### `zrc/gender.edn` file content:
-
-Replace `<ABSOLUTE_PATH_TO_PROJECT_DIR>` placeholder with absolute path to your project directory.
+{% endcode %}
 
 This ValueSet definition confirms to [zen.fhir ValueSet schema](../../../profiling-and-validation/profiling-with-zen-lang/) and has a `:ftr` property, it contains an FTR manifest that defines an IG source via `:source-url` property to create an expanded version of the ValueSet to be stored in the resulting FTR. For details about FTR manifest, please, refer to this [page](ftr-manifest.md).
 
@@ -153,15 +145,14 @@ This ValueSet definition confirms to [zen.fhir ValueSet schema](../../../profili
   :zen.fhir/version "0.5.0"
   :uri "gender-vs"
   :ftr {:module "ig"
-        :source-url "<ABSOLUTE_PATH_TO_PROJECT_DIR>/resources/ig/"
-        :ftr-path "<ABSOLUTE_PATH_TO_PROJECT_DIR>bas/ftr"
+        :source-url "resources/ig/"
+        :ftr-path "ftr"
         :tag "v1"
         :source-type :ig}}}
 ```
 
-#### `resources/gender-codesystem.json` file content:
-
 ```json
+// resources/gender-codesystem.json
 {
    "resourceType":"CodeSystem",
    "id":"gender-cs-id",
@@ -189,9 +180,8 @@ This ValueSet definition confirms to [zen.fhir ValueSet schema](../../../profili
 }
 ```
 
-#### `resources/gender-valueset.json` file content:
-
 ```json
+// resources/gender-valueset.json
 {
    "resourceType":"ValueSet",
    "id":"gender-vs-id",
@@ -207,9 +197,8 @@ This ValueSet definition confirms to [zen.fhir ValueSet schema](../../../profili
 }
 ```
 
-#### `resources/package.json` file content:
-
 ```json
+// resources/package.json
 {
    "name":"ig",
    "version":"0.0.1",
@@ -221,13 +210,13 @@ This ValueSet definition confirms to [zen.fhir ValueSet schema](../../../profili
 }
 ```
 
-#### Initialize this directory as a git repository, commit your initial set-up
+Initialize this directory as a git repository and commit your initial set-up:
 
 ```bash
 git init && git add . && git commit -m "init"
 ```
 
-#### Generating FTR
+### Generating FTR
 
 Replace `<PATH_TO_JAR>` placeholder with absolute path to `zen.jar`.&#x20;
 
@@ -246,3 +235,12 @@ git add . && git commit -m "Build ftr"
 Now you can run Aidbox with the following configuration project and use [FHIR Terminology API ](../../valueset/)methods like `$validate-code/$lookup` on generated `diagnosis-vs` ValueSet. Resource validation performed when someone invocates a FHIR REST operations will also validate ValueSet binding via FTR.
 
 For detailed instructions about using Aidbox with Aidbox configuration project, please refer to this [page](../../../getting-started/run-aidbox-locally-with-docker/).
+
+## Further steps
+
+For guidance on development and production usage, visit the links below:
+
+* [Development tips](../../../aidbox-configuration/aidbox-zen-lang-project/setting-up-a-configuration-project.md#tips-for-local-development)
+* [Production tips](../../../aidbox-configuration/aidbox-zen-lang-project/setting-up-a-configuration-project.md#tips-for-production)
+
+For customizing Aidbox startup behavior when using FTR, read about [FTR environment variables](../../../reference/configuration/environment-variables/ftr.md).

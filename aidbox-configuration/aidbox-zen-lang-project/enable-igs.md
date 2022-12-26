@@ -1,7 +1,7 @@
 # Enable IGs
 
 {% hint style="info" %}
-This feature currently available on the Aidbox`:latest` and `:edge` channels.
+This feature is currently available on the Aidbox`:latest` and `:edge` channels.
 {% endhint %}
 
 Aidbox configuration project allows you to easily enable [FHIR IGs](https://www.hl7.org/fhir/implementationguide.html) which extend basic FHIR functionality with a variety of features including additional profiles and terminologies. Currently Aidbox can only work with a subset of IG specification but we plan to extend it in the future.
@@ -56,7 +56,7 @@ To the left of each zen FHIR IG URL you give a name. In the examples above the n
 
 ### Import the zen FHIR IGs entrypoints
 
-To enable zen FHIR IGs you provided you need to import them inside of your [entrypoint](setting-up-a-configuration-project.md#set-system-entrypoint).
+To enable zen FHIR IGs you provided you need to import them inside of your [entrypoint](broken-reference).
 
 Using the example from [the getting started page](../../getting-started/run-aidbox-locally-with-docker/#create-and-set-up-your-aidbox-configuration-project) the updated entrypoint file will look like this for both of the examples above:
 
@@ -138,3 +138,10 @@ identifier:
 {% endcode %}
 
 This request checks that invalid values for `birthsex` field are not allowed.
+
+### Development and production tips
+
+If you want some tips regarding development and production usage, visit the links below:
+
+* [Development tips](setting-up-a-configuration-project.md#tips-for-local-development)
+* [Production tips](setting-up-a-configuration-project.md#tips-for-production)
