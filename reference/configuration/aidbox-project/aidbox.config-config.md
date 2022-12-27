@@ -207,6 +207,12 @@
 
 
 
+  - `:warmup-on-startup` (zen/boolean)
+
+    Warmup graphql caches on startup
+
+
+
 
 
 - `:validation` (zen/map)
