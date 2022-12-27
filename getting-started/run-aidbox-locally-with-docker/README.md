@@ -40,8 +40,8 @@ If you want to learn more about Aidbox environment variables, refer to the follo
 
 If you want to learn more about Aidbox configuration project set up, refer to the following page:
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="../../aidbox-configuration/aidbox-zen-lang-project/setting-up-a-configuration-project.md" %}
+[setting-up-a-configuration-project.md](../../aidbox-configuration/aidbox-zen-lang-project/setting-up-a-configuration-project.md)
 {% endcontent-ref %}
 
 ### Lauch Aidbox
