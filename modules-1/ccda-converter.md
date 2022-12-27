@@ -154,6 +154,37 @@ In case of error, OperationOutcome resource will be returned:
 Please note that this endpoint doesn't persist any populated FHIR data to Aidbox database. This endpoint is read-only and it performs a stateless conversion of the document from one format to another. To persist FHIR data extracted from a CDDA document you need to setup a simple pipeline as described in this tutorial (TODO).
 {% endhint %}
 
+#### Options for `/ccda/to-fhir` endpoint: 
+
+You may specify format of resulting FHIR document by passing `format` query param with `aidbox` or `fhir` value:
+
+* Return resulting FHIR document in [Aidbox Format](https://docs.aidbox.app/modules-1/fhir-resources/aidbox-and-fhir-formats):
+
+```http 
+POST /ccda/to-fhir/format=aidbox
+
+<?xml version="1.0" encoding="UTF-8"?>
+<ClinicalDocument 
+  ...
+</ClinicalDocument>
+```
+
+* Return resulting FHIR document in [FHIR Format](https://docs.aidbox.app/modules-1/fhir-resources/aidbox-and-fhir-formats):
+
+```http
+POST /ccda/to-fhir/format=fhir 
+
+<?xml version="1.0" encoding="UTF-8"?>
+<ClinicalDocument 
+  ...
+</ClinicalDocument>
+```
+
+{% hint style="warning" %}
+By default - resulting document will be in FHIR format.
+{% endhint %}
+
+
 ### Validating a CCDA document
 
 Aidbox CCDA module supports validation of CCDA documents. Basically, there are two types of validation:
