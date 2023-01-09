@@ -11,10 +11,11 @@ In order to enable GCP Pub/Sub integration you need to provide few env variables
 ```
 BOX_SUBSCRIPTIONS_PUBSUB_PROJECT=<GCP_PROJECT_NAME>
 BOX_SUBSCRIPTIONS_PUBSUB_TOPIC=<GCP_TOPIC_NAME>
-BOX_SUBSCRIPTIONS_PUBSUB_SERVICE_ACCOUNT=<GCP_SERVICE_ACCOUNT_ID_IN_AIDBOX>
+BOX_SUBSCRIPTIONS_PUBSUB_SERVICE_ACCOUNT_EMAIL=<GCP_SERVICE_ACCOUNT_EMAIL>
+BOX_SUBSCRIPTIONS_PUBSUB_SERVICE_ACCOUNT_PRIVATE__KEY=<GCP_SERVICE_ACCOUNT_PRIVATE_KEY>
 ```
 
-Aidbox doesn't create the topic, specified in `BOX_SUBSCRIPTIONS_PUBSUB_TOPIC`. In order to create GcpServiceAccount in Aidbox follow [Create GcpServiceAccount paragraph in the doc](../../storage-1/gcp-cloud-storage.md#create-gcpserviceaccount).
+Aidbox doesn't create the topic, specified in `BOX_SUBSCRIPTIONS_PUBSUB_TOPIC`.
 
 On every resource update, Aidbox will publish to GCP Pub/Sub message with empty body and few attributes:
 
