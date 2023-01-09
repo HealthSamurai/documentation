@@ -89,13 +89,13 @@ and after that you can define caclulated properties and their formulas under `:s
 MyDocument
 {:zen/tags #{aidbox.sdc/dok zen/schema aidbox.sdc/rules},
  :type zen/map
- :sdc/rules {:loinc-39156-5 (lisp/when (lisp/and
-                                          (lisp/get-in [:loinc-29463-7])
-                                          (lisp/get-in [:loinc-8302-2]))
-                             (lisp/* (lisp/divide
-                                        (lisp/* (lisp/get-in [:loinc-29463-7]) 703)
-                                        (lisp/* (lisp/get-in [:loinc-8302-2])
-                                                (lisp/get-in [:loinc-8302-2])))
+ :sdc/rules {:loinc-39156-5 (when (and
+                                          (get-in [:loinc-29463-7])
+                                          (get-in [:loinc-8302-2]))
+                             (* (divide
+                                        (* (get-in [:loinc-29463-7]) 703)
+                                        (* (get-in [:loinc-8302-2])
+                                                (get-in [:loinc-8302-2])))
                                      1))},
  :keys {:loinc-39156-5 {:questionCodeSystem "http://loinc.org",
                         :linkId "/39156-5",
@@ -263,7 +263,7 @@ Example:
 ```
 :sdc/options :aidbox.sdc.options/rpc
 :rpc {:method my-ns/my-rpc
-      :params {:p1 (lisp/+ 1 2)
+      :params {:p1 (+ 1 2)
                :p2 20}}
 ```
 
@@ -289,10 +289,7 @@ MyDocument
               :linkId "/39156-5",
               :text "BMI",
               :zen/desc "BMI"}},
- :sdc/rules {:bmi (lisp/*
-                   (lisp/divide
-                    (lisp/* (lisp/get-in [:weigth]) 703)
-                    (lisp/* (lisp/get-in [:height])
-                            (lisp/get-in [:height])))
-                   1)}}
+ :sdc/rules {:bmi (* (divide (* (get-in [:weigth]) 703)
+                             (* (get-in [:height]) (get-in [:height])))
+                     1)}}
 ```

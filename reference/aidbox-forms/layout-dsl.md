@@ -45,6 +45,10 @@ By default Aidbox FormLayouts supports five types of inputs:
 * quantity
 * calculated field
 
+Aidbox Forms has input-node inference logic based on special properties of the schema. 
+But you also have ability to force some input types by specifying sdc-type in SDCDocument field
+
+
 #### Text input
 
 To define text input just define your field as `zen/string`:
@@ -92,7 +96,8 @@ SuperDocumentLayout
 
 #### Choice & quantity input
 
-Since choice and quantity types are usually represented as `zen/map` in SDCDocument we need to use a special  key: `sdc-type` in SDCDocument definition:
+Since choice and quantity types are usually represented as `zen/map` in SDCDocument we should help input-type inference engine to select correect input-type 
+by specifing additional properties of node or specify input-type directly by special key: `sdc-type` in SDCDocument definition:
 
 Example:
 
@@ -100,19 +105,38 @@ Example:
 SuperDocument
 {...
  :type zen/map
- :keys {:choice-field {:type zen/map
-                       :keys {:code {:type zen/string}
-                              :system {:type zen/string}
-                              :display {:type zen/string}}
-                       :sdc-type aidbox.sdc/choice        ;; special type
-                       :enum [{:value {:code "Option 1"}} ;; in enum we declaring available options for select
+ :keys {
+        ;; use direct input-style set
+        :choice-field {:type zen/map
+                       :confirms #{aidbox.sdc.fhir/coding}
+                       :sdc-type aidbox.sdc/choice                     ;; <---- special type
+                       :enum [{:value {:code "Option 1"}}              ;; in enum we declaring available options for select
                               {:value {:code "Option 2}}]}
+
         :body-temperature {:type zen/map
                            :keys {:value {:type zen/number}
                                   :unit {:type zen/string}}
-                           :sdc-type aidbox.sdc/quantity ;; special type
-                           :units [{:name "kg"}          ;; available units for this field
+                           :sdc-type aidbox.sdc/quantity               ;; <--- use special type
+                           :units [{:name "kg"}                        ;; available units for this field
                                    {:name "lb"}]}
+
+        ;; use inference
+
+        :choice-field-inferred-1 {:type zen/map
+                                  :enum [{:value {:code "Option 1"}}         ;; <--- declare :enum property (helps inference)
+                                         {:value {:code "Option 2}}]}
+
+        :choice-field-inferred-2 {:type zen/map
+                                  :sdc/option :aidbox.sdc.options/valueset   ;; <--- declare :sdc/options (helps inference)
+                                  :valueset "my-valueset-id"}
+    
+        :quantity-inferred-1 {:confirms #{aidbox.sdc.fhir/quantity}}   ;; <--- declare :confirms with aidbox.sdc.fhir/quantity (helps inference)
+
+        :quantity-inferred-2 {:confirms #{aidbox.sdc.fhir/quantity}
+                              :units [{:name "kg"}                     ;; <--- declare available units for this field (helps inference)
+                                   {:name "lb"}]}
+                                   
+                                   
  ...
  }
 
@@ -197,7 +221,7 @@ Usage:
 
 ```
 {:bind [:blood-pressure :position]
- :sdc/display-when (lisp/get-in [:blood-pressure :systolic])} ;; field will show only if :systolic field is filled
+ :sdc/display-when (get-in [:blood-pressure :systolic])} ;; field will show only if :systolic field is filled
 ```
 
 ## Customize node view

@@ -19,6 +19,10 @@ Form DSL used just to bind all DSLs to one item.
   :finalize VitalsFinalize}
 ```
 
+Only `:document` layer is required.
+Other layers you add only if you need special logic there.
+
+
 
 
 

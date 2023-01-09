@@ -1,6 +1,16 @@
 # FinalizeConstraints DSL
 
+FinalizeConstraints is just like a document schema, but presumably more strict one.
+Internally, on Sign operation both (document and FinalizeConstraints) schemas will be used simultaneously to validate the data.
+
+Easiest approach for making a `FinalizeConstraints` schema is to copy original document schema and remove unnecessary keys or use `aidbox.sdc/generate-form-constraints` RPC for that. 
+
+
+Proficient Zen user might specify only an additional subset of constraints (e.g. `require`/`minItems`) that are needed for Sign, besides of constraints already existing in Document schema.
+
+In case `:profile` parameter will be omitted only a document schema will be used to validate data on Sign.
 Object example:
+
 
 ```
  VitalsFinalizeConstraints
@@ -66,13 +76,5 @@ Object example:
                                                       :keys {:value {:type zen/number}}}
                                  :datetime {:type zen/datetime}}}}}}
 ```
-
-FinalizeConstraints is just like a document schema, but presumably more strict one. Internally, on Sign operation both (document and FinalizeConstraints) schemas will be used simultaneously to validate the data.
-
-Easiest approach for making a `FinalizeConstraints` schema is to copy the original Document schema and add more constraints.
-
-Proficient Zen user might specify only an additional subset of constraints (e.g. `require`/`minItems`) that are needed for Sign, besides of constraints already existing in Document schema.
-
-In case `:profile` parameter will be omitted only a document schema will be used to validate data on Sign.
 
 ### ``

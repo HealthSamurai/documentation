@@ -189,13 +189,13 @@ Value of the `:sdc/inject` key should be rules map - where key should match expe
  :items {:form1 {:item aidbox.sdc/FormItem
                  :form myforms./VitalsForm}
          :form2 {:item aidbox.sdc/FormItem
-                 :sdc/inject {:vitals/bmi (lisp/get-in [:items :form1 :document :bmi])}
+                 :sdc/inject {:vitals/bmi (get-in [:items :form1 :document :bmi])}
                  :form myforms/Demographic}}}
 
 ;; myforms namespace
 DemographicDocument
 {:zen/tags #{aidbox.sdc/doc}
- :sdc/rules {:external-bmi (lisp/get :vitals/bmi)}
+ :sdc/rules {:external-bmi (get :vitals/bmi)}
  ...}
  
 Demographic
@@ -220,7 +220,7 @@ Value of the key `:sdc/enable-when` should be boolean lisp expression. Lisp expr
  :items {:form1 {:item aidbox.sdc/FormItem
                  :form myforms./VitalsForm}
          :form2 {:item aidbox.sdc/FormItem
-                 :sdc/enable-when (> (lisp/get-in [:items :form1 :document :bmi]) 5)
+                 :sdc/enable-when (> (get-in [:items :form1 :document :bmi]) 5)
                  :form myforms/Demographic}}}
 ```
 

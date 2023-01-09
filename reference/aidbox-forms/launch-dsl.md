@@ -28,11 +28,11 @@ For populate you can specify what fields should be populated.
   :populate-engine aidbox.sdc/LispPopulate
 
   ;; populate logic. Define fields in the shape of the document.
-  :populate {:author    (lisp/get-in [:ctx :user])
-             :encounter {:id (lisp/get-in [:params :encounter-id])
+  :populate {:author    (get-in [:ctx :user])
+             :encounter {:id (get-in [:params :encounter-id])
                          :resourceType "Encounter"}
-             :patient   (lisp/sql {:select [:#> :resource [:subject]]
-                                   :from :Encounter
-                                   :where [:= :id (lisp/get-in [:params :encounter-id])]})}}
+             :patient   (sql {:select [:#> :resource [:subject]]
+                              :from :Encounter
+                              :where [:= :id (get-in [:params :encounter-id])]})}}
 ```
 

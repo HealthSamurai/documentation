@@ -346,13 +346,12 @@ result:
       :zen/desc "Duke Anxiety Depression Scale",
       :type zen/map,
       :confirms #{aidbox.sdc/Document},
-      :keys
-      {:loinc-107153
-       {:linkId "/107153",
-        :text "Final score",
-        :zen/desc "Final score",
-        :type zen/number,
-        :sdc-type aidbox.sdc/decimal}},
+      :keys {:loinc-107153
+             {:linkId "/107153",
+              :text "Final score",
+              :zen/desc "Final score",
+              :type zen/number,
+              :sdc-type aidbox.sdc/decimal}},
       :source {:code "90854-1", :system "http://loinc.org"}},
      DukeAnxietyDepressionScaleLayout
      {:zen/tags #{aidbox.sdc/Layout aidbox.sdc/rules},
@@ -364,16 +363,13 @@ result:
       :document DukeAnxietyDepressionScaleDocument,
       :params {:encounter-id {:type zen/string}},
       :populate-engine aidbox.sdc/LispPopulate,
-      :populate
-      {:author (lisp/get-in [:ctx :user]),
-       :encounter
-       {:id (lisp/get-in [:params :encounter-id]),
-        :resourceType "Encounter"},
-       :patient
-       (lisp/sql
-        {:select [:#> :resource [:subject]],
-         :from :Encounter,
-         :where [:= :id (lisp/get-in [:params :encounter-id])]})}},
+      :populate {:author (get-in [:ctx :user]),
+                 :encounter
+                 {:id (get-in [:params :encounter-id]),
+                   :resourceType "Encounter"},
+                 :patient (sql {:select [:#> :resource [:subject]],
+                                :from :Encounter,
+                                :where [:= :id (get-in [:params :encounter-id])]})}},
      DukeAnxietyDepressionScaleFinalizeConstraints
      {:type zen/map, :zen/tags #{zen/schema}},
      DukeAnxietyDepressionScaleFinalize
@@ -382,14 +378,13 @@ result:
       :profile DukeAnxietyDepressionScaleFinalizeConstraints,
       :export-engine aidbox.sdc/LispExport,
       :create
-      [(lisp/when
-        (lisp/get :loinc-107153)
-        {:resourceType "Observation",
-         :subject (lisp/get :patient),
-         :encounter (lisp/get :encounter),
-         :status "final",
-         :code {:coding [{:code "107153"}]},
-         :value {:integer (lisp/get :loinc-107153)}})]},
+      [(when (get :loinc-107153)
+          {:resourceType "Observation",
+          :subject (get :patient),
+          :encounter (get :encounter),
+          :status "final",
+          :code {:coding [{:code "107153"}]},
+          :value {:integer (get :loinc-107153)}})]},
      DukeAnxietyDepressionScaleForm
      {:zen/tags #{aidbox.sdc/Form},
       :title "Duke Anxiety Depression Scale",

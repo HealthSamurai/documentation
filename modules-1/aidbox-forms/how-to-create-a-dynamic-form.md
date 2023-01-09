@@ -99,23 +99,21 @@ PHQ2PHQ9Document
 {,,,
  :sdc/rules
  {;; formula for PHQ2 score
-  :phq2-score (lisp/+
-                (lisp/get-in [:loinc-44250-9 :score])
-                (lisp/get-in [:loinc-44255-8 :score]))
+  :phq2-score (+ (get-in [:loinc-44250-9 :score])
+                 (get-in [:loinc-44255-8 :score]))
 
   ;; formula for PHQ9 score
-  :phq9-score (lisp/+
-                (lisp/get-in [:loinc-44250-9 :score])
-                (lisp/get-in [:loinc-44255-8 :score])
-                (lisp/get-in [:loinc-44254-1 :score]))
+  :phq9-score (+ (get-in [:loinc-44250-9 :score])
+                 (get-in [:loinc-44255-8 :score])
+                 (get-in [:loinc-44254-1 :score]))
 
   ;; helper rule
-  :phq2-threshold-exceeded? (lisp/>= (lisp/get-in [:phq2-score]) 3)
+  :phq2-threshold-exceeded? (>= (get-in [:phq2-score]) 3)
 
   ;; take PHQ9 score if PHQ2 score is bigger then 3 or take PHQ2 score otherwise
-  :final-score (lisp/if (lisp/get-in [:phq2-threshold-exceeded?])
-                   (lisp/get-in [:phq9-score])
-                   (lisp/get-in [:phq2-score]))}
+  :final-score (if (get-in [:phq2-threshold-exceeded?])
+                   (get-in [:phq9-score])
+                   (get-in [:phq2-score]))}
 ```
 
 ### Layout with conditional questions
@@ -131,7 +129,7 @@ PHQ2PHQ9Layout
  ;; display rules
  :sdc/rules
  {;; we reuse previously defined rule for conditional rendering
-  :enable-phq9? (lisp/get-in [:phq2-threshold-exceeded?])}
+  :enable-phq9? (get-in [:phq2-threshold-exceeded?])}
 
  :layout
  {:type aidbox.sdc/col
@@ -152,7 +150,7 @@ PHQ2PHQ9Layout
        ;; additional PHQ9 fields
        {:type aidbox.sdc/fields
         ;; render this container only if the condition is met
-        :sdc/display-when (lisp/get-in [:enable-phq9?])
+        :sdc/display-when (get-in [:enable-phq9?])
         :children
         [{:bind [:loinc-44254-1]}]}]}
 
@@ -181,21 +179,21 @@ PHQ2PHQ9Layout
 
  :sdc/rules
  {;; introduce logic to enable/disable the button
-  :disable-button? (lisp/get :phq2-threshold-exceeded?)
+  :disable-button? (get :phq2-threshold-exceeded?)
 
   ;; extend this rule, allow the button to overrule the PHQ-2 score
   :enable-phq9?
-  (lisp/or (lisp/get :force-phq9-questions?)
-           (lisp/get :phq2-threshold-exceeded?))}
+  (or (get :force-phq9-questions?)
+      (get :phq2-threshold-exceeded?))}
 
  :layout
  {:type aidbox.sdc/col
   :children
   [;; enable manual toggling only if PHQ-2 score is not exceeded
    {:bind [:force-phq9-questions?]
-    :sdc/disable-when (lisp/get :disable-button?)}
+    :sdc/disable-when (get :disable-button?)}
 
-   {:type     aidbox.sdc/fields
+   {:type aidbox.sdc/fields
     ;; omit previously defined fields
     :children [,,,]}]}
  }
@@ -208,5 +206,5 @@ PHQ2PHQ9Launch
 {:zen/tags #{aidbox.sdc/Launch}
  :document PHQ2PHQ9Document
  :populate-engine aidbox.sdc/LispPopulate
- :populate {:author (lisp/get-in [:ctx :user])}}
+ :populate {:author (get-in [:ctx :user])}}
 ```

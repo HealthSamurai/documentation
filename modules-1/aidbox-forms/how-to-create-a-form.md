@@ -29,15 +29,11 @@ Lets define some subset of the Vitals questionaire.
 
 ;; you also can define some rules for your document and also computed fields.
 ;; (lisp reference see bellow)
- :sdc/rules {:bmi (lisp/when
-                   (lisp/and (lisp/get :loinc-29463-7)
-                    (lisp/get :loinc-8302-2))
-                   (lisp/*
-                    (lisp/divide
-                     (lisp/get :loinc-29463-7)
-                     (lisp/get :loinc-8302-2)
-                     (lisp/get :loinc-8302-2))
-                    10000))},
+ :sdc/rules {:bmi (when (and (get :loinc-29463-7)
+                             (get :loinc-8302-2))
+                   (* (divide (get :loinc-29463-7)
+                              (get :loinc-8302-2))
+                      10000))},
 ;; all fields should be defined under :keys
 ;; fields are defined with zen types from: zen, aidbox.sdc, fhir namespaces
  :keys {:loinc-29463-7 {:sdc-type aidbox.sdc/quantity,
@@ -72,9 +68,7 @@ To store rule value in SDCDocument give it the same name as the field:
 ```
 DepressionDocument
 {...
- :sdc/rules {:phq2-score (lisp/+
-                            (lisp/get-in [...]
-                          ...)
+ :sdc/rules {:phq2-score (+ (get-in [...] ...)
  :type zen/map
  :keys {:phq2-score {:type zen/integer}} ;; phq2-score will be calculated on-fly and stored in the document
  ...
@@ -143,12 +137,12 @@ For that you can use:
   :populate-engine aidbox.sdc/LispPopulate
 
   ;; populate logic. Define fields in the shape of the document.
-  :populate {:author    (lisp/get-in [:ctx :user])
-             :encounter {:id (lisp/get-in [:params :encounter-id])
+  :populate {:author    (get-in [:ctx :user])
+             :encounter {:id (get-in [:params :encounter-id])
                          :resourceType "Encounter"}
-             :patient   (lisp/sql {:select [:#> :resource [:subject]]
+             :patient   (sql {:select [:#> :resource [:subject]]
                                    :from :Encounter
-                                   :where [:= :id (lisp/get-in [:params :encounter-id])]})}}
+                                   :where [:= :id (get-in [:params :encounter-id])]})}}
 ```
 
 More on launch: [Launch DSL](../../reference/aidbox-forms/launch-dsl.md) Reference
@@ -174,13 +168,13 @@ VitalsFinalize
 ;; describe which resources should be created based on form data
 :create [
 ;; create observation resource if the field exists
-  (lisp/when (lisp/get :loinc-29463-7)
+  (when (get :loinc-29463-7)
     {:resourceType "Observation"
      :status       "final"
      :code         {:coding [{:code "29463-7"}]}
-     :subject      (lisp/get :patient)
-     :encounter    (lisp/get :encounter)
-     :value        {:Quantity (lisp/get :loinc-29463-7)}})
+     :subject      (get :patient)
+     :encounter    (get :encounter)
+     :value        {:Quantity (get :loinc-29463-7)}})
 
 ;; decribe other resources to create
 

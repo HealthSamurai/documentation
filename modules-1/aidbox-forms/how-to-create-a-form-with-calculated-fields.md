@@ -115,14 +115,14 @@ GAD7Document
 {:zen/tags #{zen/schema aidbox.sdc/doc}
 
  ;; declare a named rule using expressions
- :sdc/rules {:70274-6 (lisp/+
-                       (lisp/get-in [:69725-0 :score])
-                       (lisp/get-in [:68509-9 :score])
-                       (lisp/get-in [:69733-4 :score])
-                       (lisp/get-in [:69734-2 :score])
-                       (lisp/get-in [:69735-9 :score])
-                       (lisp/get-in [:69689-8 :score])
-                       (lisp/get-in [:69736-7 :score]))}
+ :sdc/rules {:70274-6 (+
+                       (get-in [:69725-0 :score])
+                       (get-in [:68509-9 :score])
+                       (get-in [:69733-4 :score])
+                       (get-in [:69734-2 :score])
+                       (get-in [:69735-9 :score])
+                       (get-in [:69689-8 :score])
+                       (get-in [:69736-7 :score]))}
  :keys {:69725-0 {,,,} ;; omitted
         :68509-9 {,,,} ;; omitted
         :69733-4 {,,,} ;; omitted
@@ -154,5 +154,5 @@ GAD7Launch
 {:zen/tags #{aidbox.sdc/Launch}
  :document GAD7Document
  :populate-engine aidbox.sdc/LispPopulate
- :populate {:author (lisp/get-in [:ctx :user])}}
+ :populate {:author (get-in [:ctx :user])}}
 ```

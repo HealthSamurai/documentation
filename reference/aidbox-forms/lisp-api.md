@@ -25,7 +25,7 @@ Response:
 
 ```
 result:
-  - spec-edn: ... "complete zen specification in EDN format"
+  - spec-edn: ... "complete zen specification in ZEN format"
     fn-spec: ... "zen specification of a test function"
     test-suite: ... "complete test suite with AST expressions in JSON format"
 ```
@@ -55,7 +55,7 @@ POST /rpc?
 
 method: lisp/eval-lisp
 params:
-    expr: (lisp/str "Hello " (lisp/get-in [:name 0 :given 0]))
+    expr: (str "Hello " (get-in [:name 0 :given 0]))
     data:
         name:
             - given:
@@ -68,7 +68,7 @@ Response:
 result: Hello John
 ```
 
-Or the expression `expr` can be used for example to retrieve data via `lisp/sql` function for a given `resource`.
+Or the expression `expr` can be used for example to retrieve data via `sql` function for a given `resource`.
 
 > The `sql` functions are specified for `backend` lisp runtime only.
 
@@ -79,7 +79,7 @@ POST /rpc?
 
 method: lisp/eval-lisp
 params:
-    expr: (lisp/sql {:select :* :from :patient})
+    expr: (sql {:select :* :from :patient})
     resource:
         id: p1
         resourceType: Patient
@@ -111,7 +111,7 @@ POST /rpc?
 
 method: lisp/eval-lisp
 params:
-    expr: (lisp/str "Hello Mr. " (lisp/get-in [:name 0 :given 0]))
+    expr: (str "Hello Mr. " (get-in [:name 0 :given 0]))
     resource:
         id: p1
         resourceType: Patient
@@ -123,6 +123,7 @@ Response:
 result: Hello Mr. Morgan
 ```
 
-Server responds with `HTTP 422 Unprocessable Entity` if wrong params provided or with `HTTP 500 Internal Server Error` if wrong `resourceType` provided.
+Server responds with `HTTP 422 Unprocessable Entity` if wrong params provided 
+or with `HTTP 500 Internal Server Error` if wrong `resourceType` provided.
 
 \
