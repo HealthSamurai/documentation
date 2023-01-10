@@ -2,10 +2,7 @@
 
 ## December 2022 _`edge`_
 
-* Aidbox Forms
-  * Simplified DSL (brief definition, less layers to describe for basic behavior)
-  * Added layout autogeneration
-  * Added extraction based on templates
+
 
 ## November 2022 _`latest`_
 
