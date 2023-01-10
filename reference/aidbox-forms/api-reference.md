@@ -1,17 +1,17 @@
 # Form API
 
-* [aidbox.sdc/get-forms](api-reference.md#get-forms) - get existed forms
-* [aidbox.sdc/get-form](api-reference.md#get-form) - get form definition for given form name
-* [aidbox.sdc/launch](api-reference.md#launch) - launch new form with given params
-* [aidbox.sdc/read-document](api-reference.md#read-document) - get form with saved document
-* [aidbox.sdc/save](api-reference.md#save) - save document
-* [aidbox.sdc/sign](api-reference.md#sign) - finalize document, run extracts
+* [`aidbox.sdc/get-forms`](api-reference.md#get-forms) - get existed forms
+* [`aidbox.sdc/get-form`](api-reference.md#get-form) - get form definition for given form name
+* [`aidbox.sdc/launch`](api-reference.md#launch) - launch new form with given params
+* [`aidbox.sdc/read-document`](api-reference.md#read-document) - get form with saved document
+* [`aidbox.sdc/save`](api-reference.md#save) - save document
+* [`aidbox.sdc/sign`](api-reference.md#sign) - finalize document, run extracts
 * [`aidbox.sdc/convert-document`](api-reference.md#aidbox.sdc-convert-document) - converts SDCDocument to FHIR QuestionnaireResponse
 * [`aidbox.sdc/convert-questionnaire`](api-reference.md#aidbox.sdc-convert-questionnaire)- converts FHIR Questionnaire to Aidbox SDC Form
 * [`aidbox.sdc/get-form-access-jwt`](api-reference.md#aidbox.sdc-get-form-access-jwt)- creates policy token for form
-* [aidbox.sdc/generate-form-link](api-reference.md#aidbox.sdc-generate-form-link) - creates shared form link
-* [aidbox.sdc/amend](api-reference.md#amend) - put document to in-amendment state. Used for corrections
-* [aidbox.sdc/add-note](api-reference.md#add-note) - add note as addendum to the given document
+* [`aidbox.sdc/generate-form-link`](api-reference.md#aidbox.sdc-generate-form-link) - creates shared form link
+* [`aidbox.sdc/amend`](api-reference.md#amend) - put document to in-amendment state. Used for corrections
+* [`aidbox.sdc/add-note`](api-reference.md#add-note) - add note as addendum to the given document
 
 ###
 
@@ -294,12 +294,16 @@ Converts Questionnaire to Aidbox SDC Form (Document + Form + Launch + (Finalize)
 
 params:
 
-| Param                   | Description                                | Type     | required? |
-| ----------------------- | ------------------------------------------ | -------- | --------- |
-| url                     | Link to Questinnaire on public FHIR server | String   | no        |
-| resource                | Questionnaire resource body                | Resource | no        |
-| options                 | Additional options                         | Map      | no        |
-| optinos.gen-extractions | Generate basic extractions for fields      | Boolean  | no        |
+| Param                   | Description                                             | Type                                         | required? |
+|-------------------------|---------------------------------------------------------|----------------------------------------------|-----------|
+| url                     | Link to Questinnaire on public FHIR server              | zen/string                                   | no        |
+| resource                | Questionnaire resource body                             | zenbox/resource                              | no        |
+| options                 | Additional options                                      | map                                          | no        |
+| optinos.gen-extractions | Generate basic extractions for fields                   | boolean                                      | no        |
+| optinos.keygen-strategy | Strategy for document keys generation                   | "text"/"numbers"/"link-id"/"code-or-link-id" | no        |
+| optinos.base-name       | Name prefix for all generated zen-symbols and namespace | string                                       | no        |
+| options.key-prefix      | Prefix for document keys                                | zen/string                                   | no        |
+  
 
 Request:
 
@@ -340,21 +344,19 @@ result:
      import #{aidbox.sdc zenbox fhir hl7-fhir-r4-core.Coding},
      DukeAnxietyDepressionScaleDocument
      {:zen/tags #{zen/schema aidbox.sdc/doc aidbox.sdc/rules},
+      :source {:code "90854-1", :system "http://loinc.org"}
       :zen/desc "Duke Anxiety Depression Scale",
       :type zen/map,
       :confirms #{aidbox.sdc/Document},
-      :keys {:loinc-107153
-             {:linkId "/107153",
-              :text "Final score",
-              :zen/desc "Final score",
-              :type zen/number,
-              :sdc-type aidbox.sdc/decimal}},
-      :source {:code "90854-1", :system "http://loinc.org"}},
+      :keys {:final-score {:linkId "/107153",
+                           :text "Final score",
+                           :type zen/number,
+                           :sdc-type aidbox.sdc/decimal}}},
      DukeAnxietyDepressionScaleLayout
      {:zen/tags #{aidbox.sdc/Layout aidbox.sdc/rules},
       :document DukeAnxietyDepressionScaleDocument,
       :engine aidbox.sdc/Hiccup,
-      :layout {:type aidbox.sdc/col, :children [{:bind [:loinc-107153]}]}},
+      :layout {:type aidbox.sdc/col, :children [{:bind [:final-score]}]}},
      DukeAnxietyDepressionScaleLaunch
      {:zen/tags #{aidbox.sdc/Launch},
       :document DukeAnxietyDepressionScaleDocument,
@@ -364,9 +366,9 @@ result:
                  :encounter
                  {:id (get-in [:params :encounter-id]),
                    :resourceType "Encounter"},
-                 :patient (sql {:select [:#> :resource [:subject]],
-                                :from :Encounter,
-                                :where [:= :id (get-in [:params :encounter-id])]})}},
+                   :patient (sql {:select [:#> :resource [:subject]],
+                                  :from :Encounter,
+                                  :where [:= :id (get-in [:params :encounter-id])]})}},
      DukeAnxietyDepressionScaleFinalizeConstraints
      {:type zen/map, :zen/tags #{zen/schema}},
      DukeAnxietyDepressionScaleFinalize
@@ -375,13 +377,8 @@ result:
       :profile DukeAnxietyDepressionScaleFinalizeConstraints,
       :export-engine aidbox.sdc/LispExport,
       :create
-      [(when (get :loinc-107153)
-          {:resourceType "Observation",
-          :subject (get :patient),
-          :encounter (get :encounter),
-          :status "final",
-          :code {:coding [{:code "107153"}]},
-          :value {:integer (get :loinc-107153)}})]},
+      [{:template aidbox.sdc/gen-observation-template
+        :params {:path [:final-score]}}]}
      DukeAnxietyDepressionScaleForm
      {:zen/tags #{aidbox.sdc/Form},
       :title "Duke Anxiety Depression Scale",
@@ -394,6 +391,9 @@ result:
 ### aidbox.sdc/convert-document
 
 Converts SDCDocument to QuestionnaireResponse
+
+> If you need to have original Questionnaire `linkId`-s  - you should specify `:linkId` property of the SDCDocument fields.
+> By default field keys are used as `linkId`. 
 
 Also you may choose the output format:
 
@@ -482,29 +482,29 @@ result:
     id: enc-1
     resourceType: Encounter
   item:
-  - linkId: "/blood-pressure"
+  - linkId: "blood-pressure"
     text: Blood pressure
     item:
-    - linkId: "/numbers"
+    - linkId: "numbers"
       text: Numbers
       item:
-      - linkId: "/8480-6"
+      - linkId: "loinc-8480-6"
         text: BP sys
         answer:
         - valueQuantity:
             value: 100
-      - linkId: "/8462-4"
+      - linkId: "loinc-8462-4"
         text: BP dias
         answer:
         - valueQuantity:
             value: 130
-    - linkId: "/41904-4"
+    - linkId: "loinc-41904-4"
       text: BP measurement site
       answer:
       - valueCoding:
           system: http://loinc.org
           code: LA11158-5
-  - linkId: "/blood-pressure"
+  - linkId: "blood-pressure"
     item:
     - item:
       - answer:
@@ -516,7 +516,7 @@ result:
     - answer:
       - valueCoding:
           code: LA11159-3
-  - linkId: "/8867-4"
+  - linkId: "loinc-8867-4"
     answer:
     - valueQuantity:
         value: 75

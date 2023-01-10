@@ -12,7 +12,15 @@ For populate you can specify what fields should be populated.
 * [lisp expressions](lisp.md)
 * you need to follow [Document](document-dsl.md) fields structure.
 
+> For lisp `get` `get-in` functions the context is a map 
 
+```clojure
+{:ctx {:user {:id "user-id" :resourceType "User" ...}} ;; <--- injected logged-in user
+ :params {...}}                                        ;; <--- parameters to launch rpc
+``` 
+
+
+Example: 
 
 ```
  VitalsLaunch

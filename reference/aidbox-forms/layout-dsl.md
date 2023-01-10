@@ -4,6 +4,9 @@
 Layout DSL is still under development and unstable
 {% endhint %}
 
+Layout DSL can be changed with layout-engine.
+Default layout-engine described here - `aidbox.sdc/Hiccup`.
+
 There are three types of layout nodes:
 
 * [Container node](layout-dsl.md#container-node)
@@ -45,7 +48,7 @@ By default Aidbox FormLayouts supports five types of inputs:
 * quantity
 * calculated field
 
-Aidbox Forms has input-node inference logic based on special properties of the schema. 
+Aidbox Forms has input-node inference logic based on special properties of the field schemas. 
 But you also have ability to force some input types by specifying sdc-type in SDCDocument field
 
 
@@ -68,7 +71,8 @@ And bind some node in layout to this field:
 SuperDocumentLayout
 {...
  :type zen/map
- :layout {:type aidbox.sdc/fields
+ :engine aidbox.sdc/Hiccup              ;; <-- default layout engine.
+ :layout {:type aidbox.sdc/fields       ;; layout definition
           :children [{:bind [:field]}]}
  ...
  }
@@ -130,11 +134,11 @@ SuperDocument
                                   :sdc/option :aidbox.sdc.options/valueset   ;; <--- declare :sdc/options (helps inference)
                                   :valueset "my-valueset-id"}
     
-        :quantity-inferred-1 {:confirms #{aidbox.sdc.fhir/quantity}}   ;; <--- declare :confirms with aidbox.sdc.fhir/quantity (helps inference)
+        :quantity-inferred-1 {:confirms #{aidbox.sdc.fhir/quantity}}         ;; <--- declare :confirms with aidbox.sdc.fhir/quantity (helps inference)
 
         :quantity-inferred-2 {:confirms #{aidbox.sdc.fhir/quantity}
-                              :units [{:name "kg"}                     ;; <--- declare available units for this field (helps inference)
-                                   {:name "lb"}]}
+                              :units [{:name "kg"}                           ;; <--- declare available units for this field (helps inference)
+                                      {:name "lb"}]}
                                    
                                    
  ...
