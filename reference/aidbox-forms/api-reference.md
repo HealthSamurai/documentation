@@ -7,8 +7,9 @@
 * [aidbox.sdc/save](api-reference.md#save) - save document
 * [aidbox.sdc/sign](api-reference.md#sign) - finalize document, run extracts
 * [`aidbox.sdc/convert-document`](api-reference.md#aidbox.sdc-convert-document) - converts SDCDocument to FHIR QuestionnaireResponse
-* [`aidbox.sdc/convert-questionnaire`](api-reference.md#aidbox.sdc-convert-questionnaire)- converts FHIR Questionnaire to Aidbox SDC Form&#x20;
+* [`aidbox.sdc/convert-questionnaire`](api-reference.md#aidbox.sdc-convert-questionnaire)- converts FHIR Questionnaire to Aidbox SDC Form
 * [`aidbox.sdc/get-form-access-jwt`](api-reference.md#aidbox.sdc-get-form-access-jwt)- creates policy token for form
+* [aidbox.sdc/generate-form-link](api-reference.md#aidbox.sdc-generate-form-link) - creates shared form link
 * [aidbox.sdc/amend](api-reference.md#amend) - put document to in-amendment state. Used for corrections
 * [aidbox.sdc/add-note](api-reference.md#add-note) - add note as addendum to the given document
 
@@ -181,8 +182,6 @@ params:
     loinc-8867-4: {value: 72}
 ```
 
-
-
 Result:
 
 > Error
@@ -220,8 +219,6 @@ Can be used wiht Documents in `draft`, `in-progress`, `in-amendment` statuses.
 | -------- | ------------------------------------------- | ----------- | --------- |
 | document | document resource                           | SDCDocument | yes       |
 | dry-run  | Run without saving document and extractions | boolean     | no        |
-
-
 
 Apply `created`/`patched`/`deleted` extractions. Create `Provenance` resource with links to `SDCDocument` and created resources(`created` extractions).
 
@@ -571,6 +568,41 @@ params:
   id: doc-1
 
 policy: <jwt policy token>
+
+
+```
+
+### aidbox.sdc/generate-form-link
+
+Creates [policy token](../../security-and-access-control-1/security/access-policy.md#signed-rpc-policy-token) to get access to SDCDocument/SDCWorkflow
+
+params:
+
+| Param             | Description                | Type                    | required? |
+| ----------------- | -------------------------- | ----------------------- | --------- |
+| form              | link to the form in DB     | Map                     | yes       |
+| form.id           | SDCDocument/SDCWorkflow id | String                  | yes       |
+| form.resourceType |                            | SDCDocument/SDCWorkflow | yes       |
+
+Request:
+
+> Example with document
+
+```javascript
+POST {{base}}/rpc
+
+method: aidbox.sdc/generate-form-link
+params:
+  form:
+    id: doc-1
+    resourceType: SDCDocument
+```
+
+Result:
+
+```javascript
+result:
+  link: <shared form link>
 ```
 
 ### amend
