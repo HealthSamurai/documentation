@@ -1,12 +1,16 @@
 # How to create a form
 
-To create new form you need to define 5 resources in zen (schemas from `aidbox.sdc`) :
+To create new form you need to define Form-assembly and at least 1 layer (schemas from `aidbox.sdc`) :
 
+* [Form](how-to-create-a-form.md#form) - bind all layers in one place
 * [SDCDocument](how-to-create-a-form.md#sdcdocument) - contains questions with answers and other meta data
-* [Form Layout](how-to-create-a-form.md#form-layout) - binds to SDCDocument and its fields.
+
+Other layers you could add as you need some special behavior:
+
+* [Form Layout](how-to-create-a-form.md#form-layout) - define fields layout and display rules
 * [Form Launch](how-to-create-a-form.md#form-launch) - define form init parameters and prepopulate logic.
 * [Form Finalize](how-to-create-a-form.md#form-finalize) - define additional validations and extractions for form `sign`
-* [Form](how-to-create-a-form.md#form) - bind all in one place
+
 
 ### SDCDocument
 
@@ -29,33 +33,20 @@ Lets define some subset of the Vitals questionaire.
 
 ;; you also can define some rules for your document and also computed fields.
 ;; (lisp reference see bellow)
- :sdc/rules {:bmi (when (and (get :loinc-29463-7)
-                             (get :loinc-8302-2))
-                   (* (divide (get :loinc-29463-7)
-                              (get :loinc-8302-2))
+ :sdc/rules {:bmi (when (and (get :weight) (get :height))
+                   (* (divide (get :weight)
+                              (get :height))
                       10000))},
 ;; all fields should be defined under :keys
-;; fields are defined with zen types from: zen, aidbox.sdc, fhir namespaces
- :keys {:loinc-29463-7 {:sdc-type aidbox.sdc/quantity,
-                        :confirms #{fhir/Quantity},
-                        :questionCodeSystem "http://loinc.org",
-                        :linkId "/29463-7",
-                        :units [{:name "kg"}],
-                        :text "Weight",
-                        :zen/desc "Weight"},
-        :loinc-8302-2 {:questionCodeSystem "http://loinc.org",
-                       :linkId "/8302-2",
-                       :units [{:name "cm"}],
-                       :text "Body height",
-                       :sdc-type aidbox.sdc/quantity,
-                       :confirms #{fhir/Quantity},
-                       :zen/desc "Body height"},
-        :loinc-39156-5 {:questionCodeSystem "http://loinc.org",
-                        :linkId "/39156-5",
-                        :text "BMI",
-                        :type zen/number,
-                        :sdc-type aidbox.sdc/calculated,
-                        :zen/desc "BMI"}}}
+;; fields are defined with zen types and confirms.
+ :keys {:weight {:text "Weight",
+                 :confirms #{aidbox.sdc.fhir/quantity},
+                 :units [{:name "kg"}]},
+        :height {:text "Body height",
+                 :confirms #{aidbox.sdc.fhir/quantity}
+                 :units [{:name "cm"}]},
+        :bmi {:text "BMI",
+              :type zen/number}}}
 ```
 
 **SDC Rules** is just are [lisp expressions](https://github.com/getheal/zen-sdc/blob/main/docs/lisp.md) that can be used for two things:
@@ -79,9 +70,9 @@ More on SDCDocument:[ Document DSL](../../reference/aidbox-forms/document-dsl.md
 
 ### Form Layout
 
-Form layout binds to specific `SDCDocument` and layout-engine and defines layout via specific DSL
+Form layout defines fields layout for specific `SDCDocument` and layout-engine
 
-Default Layout DSL has shape of nested objects `{:type component-type :children []}`
+Default Layout engine is `aidbox.sdc/Hiccup` uses DSL in shape of nested objects `{:type component-type :children []}`
 
 ```
  VitalsLayout
@@ -108,7 +99,9 @@ More on form layout: [Layout DSL](../../reference/aidbox-forms/layout-dsl.md) Re
 
 ### Form Launch
 
-Form `Launch` binds to `SDCDocument` and `Form`. And optionally can specify fields populate logic via `populate-engine`
+Form `Launch` defines parameters schema for `aidbox.sdc/launch` rpc and populate logic for `SDCDocument`.
+
+If you don't specify this Layer your parameters (for `aidbox.sdc/launch` rpc) will be passed **as-is** to `SDCDocument`.
 
 {% hint style="info" %}
 Default populate-engine - `aidbox.sdc/LispPopulate`
@@ -141,15 +134,15 @@ For that you can use:
              :encounter {:id (get-in [:params :encounter-id])
                          :resourceType "Encounter"}
              :patient   (sql {:select [:#> :resource [:subject]]
-                                   :from :Encounter
-                                   :where [:= :id (get-in [:params :encounter-id])]})}}
+                              :from :Encounter
+                              :where [:= :id (get-in [:params :encounter-id])]})}}
 ```
 
 More on launch: [Launch DSL](../../reference/aidbox-forms/launch-dsl.md) Reference
 
 ### Form Finalize
 
-Form `Finalize` binds to document, specifies custom validations and set `export-engine` with its DSL to define extractions that should be done after document `sign`.
+Form `Finalize` defines extractions that should be done after document `sign` and optionally binds to custom constraint schema for validations.
 
 {% hint style="info" %}
 Default export-engine - `aidbox.sdc/LispExport` (see available commands: [LISP](../../reference/aidbox-forms/lisp.md) Reference)
@@ -167,14 +160,18 @@ VitalsFinalize
 
 ;; describe which resources should be created based on form data
 :create [
-;; create observation resource if the field exists
-  (when (get :loinc-29463-7)
-    {:resourceType "Observation"
-     :status       "final"
-     :code         {:coding [{:code "29463-7"}]}
-     :subject      (get :patient)
-     :encounter    (get :encounter)
-     :value        {:Quantity (get :loinc-29463-7)}})
+         ;; use lisp template to generate observation if field is exists
+         {:template aidbox.sdc/gen-observation-template
+          :params {:path [:bmi]} }
+
+         ;; create observation resource if the field exists
+         (when (get :height)
+             {:resourceType "Observation"
+             :status       "final"
+             :code         {:coding [{:code "29463-7"}]}
+             :subject      (get :patient)
+             :encounter    (get :encounter)
+             :value        {:Quantity (get :height)}})
 
 ;; decribe other resources to create
 
@@ -207,15 +204,14 @@ VitalsFinalizeConstraints
  :type zen/map
 
  ;; list of mandatory fields
- :require #{:loinc-39156-5 :loinc-29463-7 :loinc-8302-2}
+ :require #{:bmi :weight :height}
 
  :keys
- {
-  ;; limit field value to the specified range
-  :loinc-39156-5 {:type zen/number :min 20, :max 220}
+ {;; limit field value to the specified range
+  :bmi {:type zen/number :min 20, :max 220}
 
   ;; denote this field value is required
-  :loinc-29463-7 {:type zen/map :require #{:value}}
+  :weight {:type zen/map :require #{:value}}
 
   ;; more validation constraints
   ,,,

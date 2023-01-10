@@ -32,7 +32,6 @@ Let's summarize steps required to create a calculated form field.
 
 * Declare a rule under `:sdc/rules` in the document layer using lisp expression
 * Define a form field using the same name as the rule
-* Set field `:sdc-type` attribute to `aidbox.sdc/calculated`
 
 ### Form layer
 
@@ -46,12 +45,11 @@ Add following lines to `/zrc/tutorial/gad-7.edn` file:
 GAD7Form
 {:zen/tags #{aidbox.sdc/Form}
  :title    "GAD-7"
- :version  "1.0.0"
  :document GAD7Document
  :launch GAD7Launch}
 ```
 
-We just declared some form metadata like `:title` and `:version`. We also added a reference to `GAD7Document`, which describes the schema of the form model. Let's skip `:launch` for now and focus on the subject of this tutorial. The example Launch definition can be found in Appendix for completeness.
+We just declared some form metadata like `:title`. We also added a reference to `GAD7Document`, which describes the schema of the form model. Let's skip `:launch` for now and focus on the subject of this tutorial. The example Launch definition can be found in Appendix for completeness.
 
 ### Prepare Document with static fields
 
@@ -79,27 +77,20 @@ GAD7Document
  :zen/desc "GAD-7"
  :type zen/map
  :confirms #{aidbox.sdc/Document}
- :keys {:69725-0 {:confirms #{LL358-3}
-                  :sdc-type aidbox.sdc/choice
-                  :zen/desc "Feeling nervous, anxious, or on edge"}
-        :68509-9 {:confirms #{LL358-3}
-                  :sdc-type aidbox.sdc/choice
-                  :zen/desc "Not being able to stop or control worrying"}
-        :69733-4 {:confirms #{LL358-3}
-                  :sdc-type aidbox.sdc/choice
-                  :zen/desc "Worrying too much about different things"}
-        :69734-2 {:confirms #{LL358-3}
-                  :sdc-type aidbox.sdc/choice
-                  :zen/desc "Trouble relaxing"}
-        :69735-9 {:confirms #{LL358-3}
-                  :sdc-type aidbox.sdc/choice
-                  :zen/desc "Being so restless that it is hard to sit still"}
-        :69689-8 {:confirms #{LL358-3}
-                  :sdc-type aidbox.sdc/choice
-                  :zen/desc "Becoming easily annoyed or irritable"}
-        :69736-7 {:confirms #{LL358-3}
-                  :sdc-type aidbox.sdc/choice
-                  :zen/desc "Feeling afraid, as if something awful might happen"}}}
+ :keys {:69725-0 {:text "Feeling nervous, anxious, or on edge"}
+                  :confirms #{aidbox.sdc.fhir/coding LL358-3}
+        :68509-9 {:text "Not being able to stop or control worrying"
+                  :confirms #{aidbox.sdc.fhir/coding LL358-3}}
+        :69733-4 {:text "Worrying too much about different things"
+                  :confirms #{aidbox.sdc.fhir/coding LL358-3}}
+        :69734-2 {:text "Trouble relaxing"
+                  :confirms #{aidbox.sdc.fhir/coding LL358-3}}
+        :69735-9 {:text "Being so restless that it is hard to sit still"
+                  :confirms #{aidbox.sdc.fhir/coding LL358-3}}
+        :69689-8 {:text "Becoming easily annoyed or irritable"
+                  :confirms #{aidbox.sdc.fhir/coding LL358-3}}
+        :69736-7 {:text "Feeling afraid, as if something awful might happen"
+                  :confirms #{aidbox.sdc.fhir/coding LL358-3}}}}
 ```
 
 ### Declare calculated field
@@ -132,12 +123,11 @@ GAD7Document
         :69736-7 {,,,} ;; omitted
 
         ;; declare a calculated field
-        :70274-6 {:type zen/number
-                  :sdc-type aidbox.sdc/calculated ;; <-- this is important
-                  :zen/desc "GAD-7 Anxiety Severity Score"}}}
+        :70274-6 {:text "GAD-7 Anxiety Severity Score"
+                  :type zen/number}}}
 ```
 
-Finally we declare an additional form field with `:sdc-type` set to `aidbox.sdc/calculated` using the previously defined rule name `:70274-6`. The form field is linked to the corresponding rule via it's name. Calculated form fields will also be stored in the database.
+Finally we declare an additional form field using the previously defined rule name `:70274-6`. The form field is linked to the corresponding rule via it's name. Calculated form fields will also be stored in the database.
 
 ### Review the result
 

@@ -6,7 +6,7 @@ Version is positive natural number.
 
 > Started from version=1
 
-Versioning is automatic and based on hashing essential fields of definitions. If some essential field of form/wf is changed - created a new version and snapshotted to DB.
+Versioning is **automatic** and based on hashing essential fields of definitions. If some essential field of form/wf is changed - created a new version and snapshotted to DB.
 
 * Workflow essential fields are:
   * title

@@ -29,7 +29,7 @@ We have presented the form as a layered structure. To design the form, you need 
 * How data will be validated and how to put constraints on the fields - **Validation layer** (FinalizeConstrains DSL)
 * How to bind all layers for specific form - **Form layer** (Form DSL)
 
-Three layers are required - **Layout** , **Data Model** and  **Prefill** layers**,** the rest are optional depending on needs of your practice.&#x20;
+One layer is required - **Data Model** layer, the rest are optional depending on needs of your practice.&#x20;
 
 
 
@@ -38,7 +38,7 @@ Three layers are required - **Layout** , **Data Model** and  **Prefill** layers*
 * Create forms with **complex logic**
 * **Prefill** form with existing data
 * Add any **validation rules** to the forms
-* **Design the layou**t according to your style _(in roadmap)_
+* **Design the layout** according to your style _(in roadmap)_
 * **Extract data** & **store** them in FHIR resources
 * **Binding** of forms in the **workflow** with complex logic and data prefilling
 * FHIR **SDC support** (_in roadmap_)

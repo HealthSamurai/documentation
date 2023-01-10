@@ -56,7 +56,18 @@ Add following lines to `/zrc/tutorial/phq2phq9.edn` file:
 
 Let's describe form questions we want to be answered in order to calculate the final score. First, we define two fields from PHQ2 and then we take only one additional field from PHQ9.
 
+To keep the example short we define common schema `LL358-3` for each answer.
+
 ```
+ LL358-3
+ {:zen/tags #{zen/schema}
+  :type zen/map
+  :confirms #{aidbox.sdc.fhir/coding}
+  :enum [{:value {:display "Not at all" :code "LA6568-5" :score 0 :system "http://loinc.org"}}
+         {:value {:display "Several days" :code "LA6569-3" :score 1 :system "http://loinc.org"}}
+         {:value {:display "More than half the days" :code "LA6570-1" :score 2 :system "http://loinc.org"}}
+         {:value {:display "Nearly every day" :code "LA6571-9" :score 3 :system "http://loinc.org"}}]}
+
 PHQ2PHQ9Document
 {:zen/tags #{zen/schema aidbox.sdc/doc},
  :type zen/map,
@@ -64,24 +75,25 @@ PHQ2PHQ9Document
 
  :keys {
         ;; following two fields are used to calculate PHQ2 score
-        :loinc-44250-9 {:sdc-type aidbox.sdc/choice, :confirms #{LL358-3}
-                        :text "Little interest or pleasure in doing things"}
-        :loinc-44255-8 {:sdc-type aidbox.sdc/choice, :confirms #{LL358-3}
-                        :text "Feeling down, depressed, or hopeless"}
+        :loinc-44250-9 {:text "Little interest or pleasure in doing things"
+                        :confirms #{aidbox.sdc.fhir/coding LL358-3}}
+        :loinc-44255-8 {:text "Feeling down, depressed, or hopeless"
+                        :confirms #{aidbox.sdc.fhir/coding LL358-3}}
 
         ;; this additional field is used to calculate PHQ9 score
-        :loinc-44254-1 {:sdc-type aidbox.sdc/choice, :confirms #{LL358-3}
-                        :text "Feeling tired or having little energy"}
+        :loinc-44254-1 {:text "Feeling tired or having little energy"
+                        :confirms #{aidbox.sdc.fhir/coding LL358-3}}
 
         ;; calculated scores
-        :phq2-score {:sdc-type aidbox.sdc/calculated, :type zen/number
-                     :zen/desc "PHQ-2 total score [Reported]"}
-        :phq9-score {:sdc-type aidbox.sdc/calculated, :type zen/number
-                     :zen/desc "PHQ-9 total score [Reported]"}
+        :phq2-score {:text "PHQ-2 total score [Reported]"
+                     :type zen/number}
+        :phq9-score {:text "PHQ-9 total score [Reported]"
+                     :type zen/number}
 
         ;; final result will be either PHQ2 or PHQ9 score
-        :final-score {:sdc-type aidbox.sdc/calculated, :type zen/number
-                      :zen/desc "UI score display"}
+        :final-score {:text "UI score display" 
+                      :type zen/number}
+
 ```
 
 ### Rule to calculate PHQ scores
@@ -108,12 +120,12 @@ PHQ2PHQ9Document
                  (get-in [:loinc-44254-1 :score]))
 
   ;; helper rule
-  :phq2-threshold-exceeded? (>= (get-in [:phq2-score]) 3)
+  :phq2-threshold-exceeded? (>= (get :phq2-score) 3)
 
   ;; take PHQ9 score if PHQ2 score is bigger then 3 or take PHQ2 score otherwise
-  :final-score (if (get-in [:phq2-threshold-exceeded?])
-                   (get-in [:phq9-score])
-                   (get-in [:phq2-score]))}
+  :final-score (if (get :phq2-threshold-exceeded?)
+                 (get :phq9-score)
+                 (get :phq2-score))}
 ```
 
 ### Layout with conditional questions
@@ -150,7 +162,7 @@ PHQ2PHQ9Layout
        ;; additional PHQ9 fields
        {:type aidbox.sdc/fields
         ;; render this container only if the condition is met
-        :sdc/display-when (get-in [:enable-phq9?])
+        :sdc/display-when (get :enable-phq9?)
         :children
         [{:bind [:loinc-44254-1]}]}]}
 
