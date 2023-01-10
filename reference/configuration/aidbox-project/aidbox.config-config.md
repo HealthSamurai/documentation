@@ -146,6 +146,24 @@
 
   zen/tag: [aidbox.config/smartbox](#aidbox.config-smartbox)
 
+- `:telemetry` (zen/map)
+
+  
+
+  - `:usage-stats` (zen/boolean)
+
+    Allow/disallow to send usage statistic
+
+
+
+  - `:errors` (zen/boolean)
+
+    Allow/disallow to send errors
+
+
+
+
+
 - `:dev-mode` (zen/boolean)
 
   
