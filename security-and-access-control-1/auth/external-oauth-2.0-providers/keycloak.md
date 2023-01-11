@@ -13,13 +13,13 @@ description: How to configure Keycloak IdentityProvider with Aidbox
 *   Fill the name of your realm.\
 
 
-    <figure><img src="../../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../.gitbook/assets/image (6) (2).png" alt=""><figcaption></figcaption></figure>
 
 ## Create a client
 
 * Click on the client button in left menu&#x20;
 
-<figure><img src="../../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 * Then click on `Create client` button.
 

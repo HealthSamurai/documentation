@@ -120,6 +120,13 @@
 * [Compartments API](api-1/compartments.md)
 * [GraphQL API](api-1/graphql-api.md)
 * [RPC API](api-1/rpc-api.md)
+* [Task API](api-1/task-api.md)
+* [Archive/Restore API](api-1/archive-restore-api/README.md)
+  * [create-archive](api-1/archive-restore-api/create-archive.md)
+  * [restore-archive](api-1/archive-restore-api/restore-archive.md)
+  * [delete-archive](api-1/archive-restore-api/delete-archive.md)
+  * [prune-archived-data](api-1/archive-restore-api/prune-archived-data.md)
+* [Scheduler API](api-1/scheduler-api.md)
 
 ## Profiling and validation
 
@@ -184,6 +191,7 @@
   * [Mailgun integration](tutorials/mailgun-integration.md)
   * [Postmark integration](tutorials/postmark-integration.md)
   * [How to migrate transaction id to bigint](tutorials/how-to-migrate-transaction-id-to-big-int.md)
+  * [Automatically archive AuditEvent resources in GCP storage guide](tutorials/automatically-archive-auditevent-resources-in-gcp-storage-guide.md)
 
 ## App development guides
 

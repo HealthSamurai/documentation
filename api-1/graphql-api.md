@@ -1,7 +1,7 @@
 # GraphQL API
 
-Aidbox supports default GraphQL implementation without any extensions (spec is located [here](http://spec.graphql.org/June2018/))\
-Queries are supported, but mutations are not (yet)
+Aidbox supports default GraphQL implementation without any extensions ([specification](http://spec.graphql.org/June2018/))\
+Queries are supported, but mutations are not.
 
 In Aidbox UI there is GraphiQL interface, you can try your queries there.\
 GraphQL console sends all your requests to `$graphql` endpoint which you can use from your application too
@@ -26,7 +26,7 @@ JSON object with variables
 {% endswagger-response %}
 {% endswagger %}
 
-Aidbox generates different GraphQL scalars, objects, queries with args and unions from FHIR metadata.
+Aidbox generates different GraphQL scalars, objects, queries with arguments and unions from FHIR metadata.
 
 ## Queries
 
@@ -279,4 +279,12 @@ fragment PractitionerRoleWithPractitioner on PractitionerRole {
 {% endtab %}
 {% endtabs %}
 
-If you have any questions feel free to reach us at [Aidbox users chat](https://t.me/aidbox).
+## Configure GraphQL
+
+By default, Aidbox does in memory index cache warmup when the first request comes in.&#x20;
+
+You can change it to warmup cache on startup.
+
+```
+BOX_FEATURES_GRAPHQL_WARMUP__ON__STARTUP=true
+```

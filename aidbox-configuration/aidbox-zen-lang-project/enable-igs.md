@@ -93,7 +93,7 @@ After Aidbox restarted with a new configuration you can use profiles, terminolog
 
 To see currently loaded profiles you can go to the `profiles` UI page:
 
-<img src="../../.gitbook/assets/image (4).png" alt="" data-size="original">             ![](<../../.gitbook/assets/image (3).png>)
+<img src="../../.gitbook/assets/image (4) (2).png" alt="" data-size="original">             ![](<../../.gitbook/assets/image (3) (1).png>)
 
 If you want to verify that validation with IGs work, you can create FHIR resource using FHIR REST API which will validate provided resource against specified Profile.
 
