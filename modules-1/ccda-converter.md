@@ -161,7 +161,7 @@ You may specify format of resulting FHIR document by passing `format` query para
 * Return resulting FHIR document in [Aidbox Format](https://docs.aidbox.app/modules-1/fhir-resources/aidbox-and-fhir-formats):
 
 ```http 
-POST /ccda/to-fhir/format=aidbox
+POST /ccda/to-fhir?format=aidbox
 
 <?xml version="1.0" encoding="UTF-8"?>
 <ClinicalDocument 
@@ -172,7 +172,7 @@ POST /ccda/to-fhir/format=aidbox
 * Return resulting FHIR document in [FHIR Format](https://docs.aidbox.app/modules-1/fhir-resources/aidbox-and-fhir-formats):
 
 ```http
-POST /ccda/to-fhir/format=fhir 
+POST /ccda/to-fhir?format=fhir 
 
 <?xml version="1.0" encoding="UTF-8"?>
 <ClinicalDocument 
@@ -274,13 +274,13 @@ In case of failed validation endpoint will return a list of errors and warnings:
 You may specify type of validation  by passing `method` query param with `xsd` or `schematron` value:
 
 ```http
-POST /ccda/validate/method?=xsd
+POST /ccda/validate?method=xsd
 Authorization: .....
 Content-Type: application/cda+xml
 ```
 
 ```http
-POST /ccda/validate/method?=schematron
+POST /ccda/validate?method=schematron
 Authorization: .....
 Content-Type: application/cda+xml
 ```
@@ -290,7 +290,7 @@ On [CCDA Converter Demo page](https://ccda.aidbox.app) only XSD validation is im
 {% endhint %}
 
 
-### Persisting a result of CCDA->FHIR conversion 
+### Persisting a result of CCDA to FHIR conversion 
 
 ```http
 POST /ccda/persist
@@ -316,7 +316,7 @@ Transactional Bundle is executed and resources are persisted in DB. According to
 If you pass `create-docref` parameter then initial CCDA document will be saved as DocumentReference FHIR resource in Base64 format:
 
 ```http
-POST /ccda/persist/create-docref?=true
+POST /ccda/persist?create-docref=true
 Authorization: .....
 Content-Type: application/cda+xml
 ```
