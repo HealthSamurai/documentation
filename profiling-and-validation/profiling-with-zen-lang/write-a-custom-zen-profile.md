@@ -9,7 +9,7 @@ This article is work-in-progress. Please [contact us](../../contact-us.md) if yo
 {% endhint %}
 
 {% hint style="info" %}
-Note: you can not use Attributes and [zen profiles](./) on the same resource at the same time
+Note: you **can not** use Attributes and [zen profiles](./) on the same resource at the same time
 {% endhint %}
 
 {% embed url="https://github.com/zen-fhir/zen.fhir/blob/main/README.org" %}
