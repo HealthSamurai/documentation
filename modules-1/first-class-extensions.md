@@ -740,11 +740,54 @@ precondition:
 {% endtab %}
 {% endtabs %}
 
-## Request headers
+### Create FHIR primitive type extension
 
-If you are using some HTTP-client like Postman, you will need to specify some headers.
+FHIR primitive named _fieldName_ can be extended with _\_fieldName_ field. Aidbox treats _fieldName_ as independent from _fieldName_. Aidbox do not validate fields with names started with underscore.
 
-| Header        | Value                |
-| ------------- | -------------------- |
-| Authorization | Bearer \<your value> |
-| Content-Type  | text/yaml            |
+Suppose we need to extend Patient.gender attribute with primitive type. It means, that we need to create Patient.\_gender attribute.
+
+```yaml
+PUT /Attribute/Patient._gender
+
+path:
+  - _gender
+resource:
+  id: Patient
+  resourceType: Entity
+id: Patient._gender
+resourceType: Attribute
+```
+
+Now we can add extension attribute into \_gender attribute.
+
+```yaml
+PUT /Attribute/Patient._gender.extension
+
+path:
+  - _gender
+  - extension
+resource:
+  id: Patient
+  resourceType: Entity
+id: Patient._gender.extension
+isCollection: true
+type:
+  id: Extension
+  resourceType: Entity
+resourceType: Attribute
+```
+
+Finally, add Patient with extended gender.
+
+```yaml
+PUT /Patient/p-gender
+
+gender: male
+_gender: 
+  extension:
+    - valueCodeableConcept: 
+        coding:
+          - code: code-male
+            system: system-gender
+      url: https://example.com
+```
