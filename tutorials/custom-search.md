@@ -9,10 +9,6 @@
 We need some sample data to see results of our queries. Let's create it using [Batch/Transaction](https://docs.aidbox.app/api-1/transaction).\
 Copy the following snippet to the Aidbox.Cloud `REST Console`.
 
-{% hint style="info" %}
-You can use the Copy button near the top right corner of a snippet to avoid copying trailing spaces.
-{% endhint %}
-
 {% tabs %}
 {% tab title="Request" %}
 ````yaml
@@ -307,7 +303,7 @@ The result should look like the following table (but without pretty printing):
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `patient1` | <p><code>{"id":"patient1",</code></p><p><code>"name":[{"given":["Max"],"family":"Turikov"}],</code></p><p><code>"encounters":[</code></p><p><code>{"id":"enc1",</code><br><code>"status":"draft",</code><br><code>"subject":{"id":"patient1","resourceType":"Patient"},</code><br><code>"resourceType":"Encounter"},</code><br><code>{"id":"enc2",</code><br><code>"status":"draft",</code><br><code>"subject":{"id":"patient1","resourceType":"Patient"},</code><br><code>"resourceType":"Encounter"}],</code><br><code>"resourceType":"Patient"}</code></p> |
 
-Now let's make the results of this query accessible via REST API. To do that, we need to create the `AidboxQuery` resource:
+Now let's make the results of this query accessible via REST API. To do that, we need to create the [`AidboxQuery`](../api-1/fhir-api/search-1/custom-search.md) resource:
 
 {% tabs %}
 {% tab title="Request" %}
