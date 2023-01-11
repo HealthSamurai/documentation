@@ -1,19 +1,368 @@
 # Form API
 
+## Form API
+
+* [`aidbox.sdc/convert-questionnaire`](api-reference.md#aidbox.sdc-convert-questionnaire)- converts FHIR Questionnaire to Aidbox SDC Form
+* [`aidbox.sdc/generate-form-template`](api-reference.md#generate-form-template) - genereate form from scratch 
+* [`aidbox.sdc/generate-form-layout`](api-reference.md#generate-form-layout) - generate form layout
+* [`aidbox.sdc/generate-form-constraints`](api-reference.md#generate-form-constraints) - generate constraints schema
+* [`aidbox.sdc/generate-form-finalize`](api-reference.md#generate-form-finalize) - generate finalize with extractions
 * [`aidbox.sdc/get-forms`](api-reference.md#get-forms) - get existed forms
 * [`aidbox.sdc/get-form`](api-reference.md#get-form) - get form definition for given form name
 * [`aidbox.sdc/launch`](api-reference.md#launch) - launch new form with given params
+
+## Document API
+
 * [`aidbox.sdc/read-document`](api-reference.md#read-document) - get form with saved document
 * [`aidbox.sdc/save`](api-reference.md#save) - save document
 * [`aidbox.sdc/sign`](api-reference.md#sign) - finalize document, run extracts
 * [`aidbox.sdc/convert-document`](api-reference.md#aidbox.sdc-convert-document) - converts SDCDocument to FHIR QuestionnaireResponse
-* [`aidbox.sdc/convert-questionnaire`](api-reference.md#aidbox.sdc-convert-questionnaire)- converts FHIR Questionnaire to Aidbox SDC Form
 * [`aidbox.sdc/get-form-access-jwt`](api-reference.md#aidbox.sdc-get-form-access-jwt)- creates policy token for form
 * [`aidbox.sdc/generate-form-link`](api-reference.md#aidbox.sdc-generate-form-link) - creates shared form link
 * [`aidbox.sdc/amend`](api-reference.md#amend) - put document to in-amendment state. Used for corrections
 * [`aidbox.sdc/add-note`](api-reference.md#add-note) - add note as addendum to the given document
 
 ###
+
+### aidbox.sdc/convert-questionnaire
+
+Converts Questionnaire to Aidbox SDC Form (Document + Form + Launch + (Finalize))
+
+params:
+
+| Param                   | Description                                             | Type                                         | required? |
+|-------------------------|---------------------------------------------------------|----------------------------------------------|-----------|
+| url                     | Link to Questinnaire on public FHIR server              | zen/string                                   | no        |
+| resource                | Questionnaire resource body                             | zenbox/resource                              | no        |
+| options                 | Additional options                                      | map                                          | no        |
+| optinos.gen-extractions | Generate basic extractions for fields                   | boolean                                      | no        |
+| optinos.keygen-strategy | Strategy for document keys generation                   | "text"/"numbers"/"link-id"/"code-or-link-id" | no        |
+| optinos.base-name       | Name prefix for all generated zen-symbols and namespace | string                                       | no        |
+| options.key-prefix      | Prefix for document keys                                | zen/string                                   | no        |
+  
+
+Request:
+
+```
+POST /rpc
+
+method: aidbox.sdc/convert-questionnaire
+params:
+  options:
+    gen-extractions: true
+  resource:
+    resourceType: Questionnaire
+    id: 90854-1
+    url: http://loinc.org/q/90854-1
+    name: Duke_Anxiety_Depression_Scale
+    title: Duke Anxiety Depression Scale
+    status: draft
+    code:
+    - system: http://loinc.org
+      code: 90854-1
+      display: Duke Anxiety Depression Scale
+    item:
+    - linkId: '107153'
+      text: Final score
+      type: decimal
+```
+
+Result:
+
+> Success
+
+```
+result:
+  ns: duke-anxiety-depression-scale
+  filename: duke-anxiety-depression-scale.edn
+  code: |
+    {ns duke-anxiety-depression-scale,
+     import #{aidbox.sdc zenbox fhir hl7-fhir-r4-core.Coding},
+     DukeAnxietyDepressionScaleDocument
+     {:zen/tags #{zen/schema aidbox.sdc/doc aidbox.sdc/rules},
+      :source {:code "90854-1", :system "http://loinc.org"}
+      :zen/desc "Duke Anxiety Depression Scale",
+      :type zen/map,
+      :confirms #{aidbox.sdc/Document},
+      :keys {:final-score {:linkId "/107153",
+                           :text "Final score",
+                           :type zen/number,
+                           :sdc-type aidbox.sdc/decimal}}},
+     DukeAnxietyDepressionScaleLayout
+     {:zen/tags #{aidbox.sdc/Layout aidbox.sdc/rules},
+      :document DukeAnxietyDepressionScaleDocument,
+      :engine aidbox.sdc/Hiccup,
+      :layout {:type aidbox.sdc/col, :children [{:bind [:final-score]}]}},
+     DukeAnxietyDepressionScaleLaunch
+     {:zen/tags #{aidbox.sdc/Launch},
+      :document DukeAnxietyDepressionScaleDocument,
+      :params {:encounter-id {:type zen/string}},
+      :populate-engine aidbox.sdc/LispPopulate,
+      :populate {:author (get-in [:ctx :user]),
+                 :encounter
+                 {:id (get-in [:params :encounter-id]),
+                   :resourceType "Encounter"},
+                   :patient (sql {:select [:#> :resource [:subject]],
+                                  :from :Encounter,
+                                  :where [:= :id (get-in [:params :encounter-id])]})}},
+     DukeAnxietyDepressionScaleFinalizeConstraints
+     {:type zen/map, :zen/tags #{zen/schema}},
+     DukeAnxietyDepressionScaleFinalize
+     {:zen/tags #{aidbox.sdc/Finalize zen/schema},
+      :document DukeAnxietyDepressionScaleDocument,
+      :profile DukeAnxietyDepressionScaleFinalizeConstraints,
+      :export-engine aidbox.sdc/LispExport,
+      :create
+      [{:template aidbox.sdc/gen-observation-template
+        :params {:path [:final-score]}}]}
+     DukeAnxietyDepressionScaleForm
+     {:zen/tags #{aidbox.sdc/Form},
+      :title "Duke Anxiety Depression Scale",
+      :document DukeAnxietyDepressionScaleDocument,
+      :layout DukeAnxietyDepressionScaleLayout,
+      :launch DukeAnxietyDepressionScaleLaunch,
+      :finalize DukeAnxietyDepressionScaleFinalize}}
+```
+
+### generate-form-template 
+
+Generate ZEN namespace with empty Form definition and all relevant layers.
+You can use this as starting point when you need create custom form from scratch.
+
+> Note: rpc doesn't make any changes in filesystem - it just returns template. You then should save it to file manually
+
+
+params:
+
+| Param | Description       | Type   | required? |
+|-------|-------------------|--------|-----------|
+| ns    | Namespace of form | String | no        |
+| title | Form Title        | String | no        |
+
+
+```yaml
+POST /rpc?
+
+method: aidbox.sdc/generate-form-template
+params:
+    ns: 'my.company.forms.my-vitals'
+    title: 'My first form'
+```
+
+Result:
+
+> Success
+
+```
+result:
+  form-content: |
+    {ns my.company.forms.my-vitals,
+     import #{aidbox.sdc zenbox aidbox.sdc.fhir},
+
+     MyVitalsDocument
+     {:zen/tags #{zen/schema aidbox.sdc/doc aidbox.sdc/rules},
+      :zen/desc "My first form",
+      :type zen/map,
+      :confirms #{aidbox.sdc/Document},
+      :keys {}},
+
+     MyVitalsLayout
+     {:zen/tags #{aidbox.sdc/Layout aidbox.sdc/rules},
+      :document MyVitalsDocument,
+      :engine aidbox.sdc/Hiccup,
+      :layout {:type aidbox.sdc/col, :children []}},
+
+     MyVitalsLaunch
+     {:zen/tags #{aidbox.sdc/Launch},
+      :document MyVitalsDocument,
+      :params {:encounter-id {:type zen/string}},
+      :populate-engine aidbox.sdc/LispPopulate,
+      :populate
+      {:author (get-in [:ctx :user]),
+       :encounter
+       {:id (get-in [:params :encounter-id]), :resourceType "Encounter"},
+       :patient (sql {:select [:#> :resource [:subject]],
+                      :from :Encounter,
+                      :where [:= :id (get-in [:params :encounter-id])]})}},
+
+     MyVitalsFinalizeConstraints
+     {:type zen/map, :zen/tags #{zen/schema}},
+
+     MyVitalsFinalize
+     {:zen/tags #{aidbox.sdc/Finalize zen/schema},
+      :document MyVitalsDocument,
+      :profile MyVitalsFinalizeConstraints,
+      :export-engine aidbox.sdc/LispExport,
+      :create []},
+
+     MyVitalsForm
+     {:zen/tags #{aidbox.sdc/Form},
+      :title "My first form",
+      :document MyVitalsDocument,
+      :layout MyVitalsLayout,
+      :launch MyVitalsLaunch,
+      :finalize MyVitalsFinalize}}
+```
+
+
+### generate-form-layout
+
+Generate Form Layout Definition, based on Document schema.
+
+> Note: rpc doesn't make any changes in filesystem - it just returns template. You then should save it to file manually
+
+
+params:
+
+| Param     | Description              | Type              | required? |
+|-----------|--------------------------|-------------------|-----------|
+| document  | SDCDocument schema name  | symbol            | yes       |
+| show-keys | fields to show in layout | vector of strings | no        |
+
+if `show-keys` is not given - generate layout for all fields in the document.
+
+> NOTE: layout fields order will be the same as natural keys order in SDCDocument
+
+```
+POST /rpc?
+
+method: aidbox.sdc/generate-form-layout
+params:
+    document: my.company.forms.my-vitals/MyVitals
+    show-keys: 
+      - weight
+      - height
+```
+
+Result: 
+
+```
+result: |
+  {:zen/tags #{aidbox.sdc/Layout aidbox.sdc/rules},
+   :document my.company.forms.my-vitals/MyVitals,
+   :engine aidbox.sdc/Hiccup,
+   :layout
+   {:type aidbox.sdc/col,
+    :children
+    [{:bind [:height]}
+     {:bind [:weight]}]}}
+
+```
+
+Error 
+
+```
+error:
+  message: Invalid params
+  method: aidbox.sdc/generate-form-layout
+  errors:
+  - message: No symbol 'my.forms/MyForm found
+    type: symbol
+```
+
+### generate-form-constraints
+
+Generate Form FinalizeConstrains Definition, based on Document schema
+
+> Note: rpc doesn't make any changes in filesystem - it just returns template. You then should save it to file manually
+
+
+params:
+
+| Param         | Description             | Type              | required? |
+|---------------|-------------------------|-------------------|-----------|
+| document      | SDCDocument schema name | symbol            | yes       |
+| required-keys | Required fields         | vector of strings | no        |
+
+if `required-keys` is not given - all fields are required by default.
+
+```
+POST /rpc?
+
+method: aidbox.sdc/generate-form-constraints
+params:
+    document: my.company.forms.my-vitals/MyVitals
+    required-keys: 
+      - weight
+      - height
+```
+
+Result: 
+
+
+```
+result: |
+  {:zen/tags #{zen/schema},
+   :type zen/map,
+   :require #{:height :weight}}
+```
+
+Error 
+
+```
+error:
+  message: Invalid params
+  method: aidbox.sdc/generate-form-layout
+  errors:
+  - message: No symbol 'my.forms/MyForm found
+    type: symbol
+```
+
+### generate-form-finalize
+
+
+Generate Form Finalize Definition with extractions, based on Document schema.
+
+> Note: rpc doesn't make any changes in filesystem - it just returns template. You then should save it to file manually
+
+params:
+
+| Param        | Description                          | Type              | required? |
+|--------------|--------------------------------------|-------------------|-----------|
+| document     | SDCDocument schema name              | symbol            | yes       |
+| extract-keys | Keys for extraction                  | vector of strings | no        |
+| profile      | name of Finalize Constraint profile. | string/symbol     | no        |
+
+
+if `extract-keys` is not given - generate layout for all fields in the document.
+
+```
+POST /rpc?
+
+method: aidbox.sdc/generate-form-finalize
+params:
+    document: my.company.forms.my-vitals/MyVitals
+    profile: 
+    extract-keys: 
+      - weight
+      - height
+```
+
+Result: 
+
+```
+result: |
+  {:zen/tags #{aidbox.sdc/Finalize zen/schema},
+   :document box.sdc.sdc-example/VitalsDocument,
+   :export-engine aidbox.sdc/LispExport,
+   :create
+   [{:template aidbox.sdc/gen-observation-template,
+     :params {:path [:weight]}}
+    {:template aidbox.sdc/gen-observation-template,
+     :params {:path [:height]}}]}
+```
+
+Error 
+
+```
+error:
+  message: Invalid params
+  method: aidbox.sdc/generate-form-layout
+  errors:
+  - message: No symbol 'my.forms/MyForm found
+    type: symbol
+```
+
 
 ### get-forms
 
@@ -288,105 +637,6 @@ error:
         errors: {...}   ;; zen-style  validation errors
 ```
 
-### aidbox.sdc/convert-questionnaire
-
-Converts Questionnaire to Aidbox SDC Form (Document + Form + Launch + (Finalize))
-
-params:
-
-| Param                   | Description                                             | Type                                         | required? |
-|-------------------------|---------------------------------------------------------|----------------------------------------------|-----------|
-| url                     | Link to Questinnaire on public FHIR server              | zen/string                                   | no        |
-| resource                | Questionnaire resource body                             | zenbox/resource                              | no        |
-| options                 | Additional options                                      | map                                          | no        |
-| optinos.gen-extractions | Generate basic extractions for fields                   | boolean                                      | no        |
-| optinos.keygen-strategy | Strategy for document keys generation                   | "text"/"numbers"/"link-id"/"code-or-link-id" | no        |
-| optinos.base-name       | Name prefix for all generated zen-symbols and namespace | string                                       | no        |
-| options.key-prefix      | Prefix for document keys                                | zen/string                                   | no        |
-  
-
-Request:
-
-```
-POST /rpc
-
-method: aidbox.sdc/convert-questionnaire
-params:
-  options:
-    gen-extractions: true
-  resource:
-    resourceType: Questionnaire
-    id: 90854-1
-    url: http://loinc.org/q/90854-1
-    name: Duke_Anxiety_Depression_Scale
-    title: Duke Anxiety Depression Scale
-    status: draft
-    code:
-    - system: http://loinc.org
-      code: 90854-1
-      display: Duke Anxiety Depression Scale
-    item:
-    - linkId: '107153'
-      text: Final score
-      type: decimal
-```
-
-Result:
-
-> Success
-
-```
-result:
-  ns: duke-anxiety-depression-scale
-  filename: duke-anxiety-depression-scale.edn
-  code: |
-    {ns duke-anxiety-depression-scale,
-     import #{aidbox.sdc zenbox fhir hl7-fhir-r4-core.Coding},
-     DukeAnxietyDepressionScaleDocument
-     {:zen/tags #{zen/schema aidbox.sdc/doc aidbox.sdc/rules},
-      :source {:code "90854-1", :system "http://loinc.org"}
-      :zen/desc "Duke Anxiety Depression Scale",
-      :type zen/map,
-      :confirms #{aidbox.sdc/Document},
-      :keys {:final-score {:linkId "/107153",
-                           :text "Final score",
-                           :type zen/number,
-                           :sdc-type aidbox.sdc/decimal}}},
-     DukeAnxietyDepressionScaleLayout
-     {:zen/tags #{aidbox.sdc/Layout aidbox.sdc/rules},
-      :document DukeAnxietyDepressionScaleDocument,
-      :engine aidbox.sdc/Hiccup,
-      :layout {:type aidbox.sdc/col, :children [{:bind [:final-score]}]}},
-     DukeAnxietyDepressionScaleLaunch
-     {:zen/tags #{aidbox.sdc/Launch},
-      :document DukeAnxietyDepressionScaleDocument,
-      :params {:encounter-id {:type zen/string}},
-      :populate-engine aidbox.sdc/LispPopulate,
-      :populate {:author (get-in [:ctx :user]),
-                 :encounter
-                 {:id (get-in [:params :encounter-id]),
-                   :resourceType "Encounter"},
-                   :patient (sql {:select [:#> :resource [:subject]],
-                                  :from :Encounter,
-                                  :where [:= :id (get-in [:params :encounter-id])]})}},
-     DukeAnxietyDepressionScaleFinalizeConstraints
-     {:type zen/map, :zen/tags #{zen/schema}},
-     DukeAnxietyDepressionScaleFinalize
-     {:zen/tags #{aidbox.sdc/Finalize zen/schema},
-      :document DukeAnxietyDepressionScaleDocument,
-      :profile DukeAnxietyDepressionScaleFinalizeConstraints,
-      :export-engine aidbox.sdc/LispExport,
-      :create
-      [{:template aidbox.sdc/gen-observation-template
-        :params {:path [:final-score]}}]}
-     DukeAnxietyDepressionScaleForm
-     {:zen/tags #{aidbox.sdc/Form},
-      :title "Duke Anxiety Depression Scale",
-      :document DukeAnxietyDepressionScaleDocument,
-      :layout DukeAnxietyDepressionScaleLayout,
-      :launch DukeAnxietyDepressionScaleLaunch,
-      :finalize DukeAnxietyDepressionScaleFinalize}}
-```
 
 ### aidbox.sdc/convert-document
 
