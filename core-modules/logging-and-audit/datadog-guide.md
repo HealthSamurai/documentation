@@ -20,7 +20,7 @@ Click API Keys
 
 Enter the name of the new key and click Create API Key
 
-![](<../../.gitbook/assets/image (15) (1).png>)
+![](<../../.gitbook/assets/image (15).png>)
 
 Copy the newly generated key
 
