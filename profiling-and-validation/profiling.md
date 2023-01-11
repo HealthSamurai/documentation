@@ -18,7 +18,7 @@ Aidbox implements two ways of working with profiles: using AidboxProfile resourc
 [profiling-with-aidboxprofile.md](profiling-with-aidboxprofile.md)
 {% endcontent-ref %}
 
-### `aidbox-validation-skip` request header
+### Skip validation of references in resource using request header &#x20;
 
 `aidbox-validation-skip` header allows to skip resource reference validations.
 
