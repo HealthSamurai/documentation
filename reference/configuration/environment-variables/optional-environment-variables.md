@@ -326,6 +326,12 @@ BOX_FEATURES_AUTHENTICATION_INTROSPECTION_CREATE__USER=<boolean>
 
 Create a user when using foreign JWT access token and the user does not already exist.
 
+### BOX\_FEATURES\_GRAPHQL\_WARMUP\_\_ON\_\_STARTUP
+
+`BOX_FEATURES_GRAPHQL_WARMUP__ON__STARTUP=<boolean>`
+
+Warmup graphql caches on startup
+
 ### Enable Aidbox compliance mode
 
 `AIDBOX_COMPLIANCE=enabled`:
