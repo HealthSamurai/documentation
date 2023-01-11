@@ -288,3 +288,35 @@ Content-Type: application/cda+xml
 {% hint style="info" %}
 On [CCDA Converter Demo page](https://ccda.aidbox.app) only XSD validation is implemented. Uploaded XML file will be highlighted with green color if the document passed validation.
 {% endhint %}
+
+
+### Persisting a result of CCDA->FHIR conversion 
+
+```http
+POST /ccda/persist
+Authorization: .....
+Content-Type: application/cda+xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<ClinicalDocument 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns="urn:hl7-org:v3" ...>
+  ....
+</ClinicalDocument>
+```
+
+Aidbox provides a function of saving result of successful CCDA->FHIR conversion. 
+When CCDA document is converted - transactional Bundle resource is created with all resources that were created during the conversion.
+Transactional Bundle is executed and resources are persisted in DB. According to its transactional nature  - any single failure will rollback a whole transaction and nothing will be saved. 
+
+- If the same document is uploaded - resources in DB will remain unchanged. 
+- If uploaded document contain changes to resources with `id` that are already stored in DB - such documents will be updated (patched). 
+- References of created resources during the transaction will be stored in Provenance resource. 
+
+If you pass `create-docref` parameter then initial CCDA document will be saved as DocumentReference FHIR resource in Base64 format:
+
+```http
+POST /ccda/persist/create-docref?=true
+Authorization: .....
+Content-Type: application/cda+xml
+```
