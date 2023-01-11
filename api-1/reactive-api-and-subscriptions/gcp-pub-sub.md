@@ -4,6 +4,10 @@ description: Aidbox has support of GCP Pub/Sub integration
 
 # GCP Pub/Sub
 
+{% hint style="info" %}
+GCP Pub/Sub integration currently is in _Alpha_&#x20;
+{% endhint %}
+
 Any create, update, delete operations on all resources in Aidbox may be published to GCP Pub/Sub topic.
 
 In order to enable GCP Pub/Sub integration you need to provide few env variables:
