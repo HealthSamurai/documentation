@@ -348,6 +348,10 @@
 * [Authentication](integrations/authentication.md)
 * [Email providers](integrations/email-providers.md)
 
+## MDM
+
+* [MDM Module](mdm/mdm-module.md)
+
 ## Tools
 
 * [Mappings](tools/mappings.md)
