@@ -262,6 +262,14 @@ BOX_SEARCH_FHIR__COMPARISONS=true
 
 Use FHIR compliant [date search](https://www.hl7.org/fhir/search.html#prefix).
 
+### BOX\_SEARCH\_RESOURCE\_\_COMPAT
+
+```yaml
+BOX_SEARCH_RESOURCE__COMPAT=false
+```
+
+`false` to use preferred version of zen-search (`true` to backward compatibility zen search)
+
 ### BOX\_COMPATIBILITY\_VALIDATION\_JSON\_\_SCHEMA\_REGEX
 
 ```
