@@ -29,6 +29,6 @@ To start using Task API you should define a few services in your Aidbox service 
 
 If all services running correctly you would see Tasks icon on navigation bar and use built-in Aidbox Tasks UI:
 
-<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption><p>Tasks UI</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption><p>Tasks UI</p></figcaption></figure>
 
 <figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption><p>Expanded task</p></figcaption></figure>

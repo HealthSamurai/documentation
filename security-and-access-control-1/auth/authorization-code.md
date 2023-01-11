@@ -2,9 +2,9 @@
 
 #### Description
 
-The Authorization Code Grant is an OAuth 2.0 flow that regular web apps use in order to access an API, typically as web applications with backend and frontend (browser-based SPA, for example).&#x20;
+The Authorization Code Grant is an OAuth 2.0 flow that regular web apps use in order to access an API, typically as web applications with backend and frontend (browser-based SPA, for example).
 
-In this flow the application receives authorization from the user. Once the user has authorized the application, they get redirected back to it with a temporary access code in the URL. The application exchanges that code for an access token. For more detailed information read [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.1).&#x20;
+In this flow the application receives authorization from the user. Once the user has authorized the application, they get redirected back to it with a temporary access code in the URL. The application exchanges that code for an access token. For more detailed information read [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.1).
 
 ![Basic scheme](../../.gitbook/assets/untitled-diagram-page-3.svg)
 
@@ -56,18 +56,18 @@ auth:
 {% endtab %}
 {% endtabs %}
 
-Client will act on behalf of the user, which means Access Policies should be configured for User, not for Client.&#x20;
+Client will act on behalf of the user, which means Access Policies should be configured for User, not for Client.
 
 You can configure Client for JWT tokens, set token expiration and enable a refresh token:
 
-| auth_._authorization\_code.    | options       | desc                                                       |
-| ------------------------------ | ------------- | ---------------------------------------------------------- |
-| **token\_format**              | jwt           | use access token in jwt format                             |
-| **access\_token\_expiration**  | int (seconds) | token expiration time from issued at                       |
-| **refresh\_token**             | true/false    | enable refresh\_token                                      |
+| auth\_.\_authorization\_code.  | options       | desc                                                                                                 |
+| ------------------------------ | ------------- | ---------------------------------------------------------------------------------------------------- |
+| **token\_format**              | jwt           | use access token in jwt format                                                                       |
+| **access\_token\_expiration**  | int (seconds) | token expiration time from issued at                                                                 |
+| **refresh\_token**             | true/false    | enable refresh\_token                                                                                |
 | **refresh\_token\_expiration** | int (seconds) | refresh token expiration time from issued at or last usage. If not present, token will be expireless |
-| **secret\_required**           | true/false    | require secret for token                                   |
-| **pkce**                       | true/false    | enable PKCE flow                                           |
+| **secret\_required**           | true/false    | require secret for token                                                                             |
+| **pkce**                       | true/false    | enable PKCE flow                                                                                     |
 
 {% hint style="info" %}
 If you want to use Authorization Code Grant for **Single Page Application** you do not need to set the `secret` attribute, use PKCE instead!
@@ -79,7 +79,7 @@ If your application is a major consumer of Aidbox API, you can set **first\_part
 
 ## Get Code
 
-The next step is to query an authorize endpoint with `client_id` and `response_type` with value `code.`&#x20;
+The next step is to query an authorize endpoint with `client_id` and `response_type` with value `code.`
 
 For PKCE you will need to additionally supply `code_challenge` and `code_challenge_method`. First create a high-entropy string value with a minimum length of 43 characters and a maximum length of 128 characters, then produce a `code_challenge` using the S256 hashing method.
 
@@ -114,7 +114,7 @@ If users are not logged in, they will see the default login screen.
 
 If a client is not **first\_party** or the user has not yet granted permissions to the client, the user will see the grant page:
 
-![](<../../.gitbook/assets/image (4) (1) (1).png>)
+![](<../../.gitbook/assets/image (4) (1) (1) (1).png>)
 
 If the client was granted permission, the user agent will be redirected to the url configured in **Client.auth.authorization\_code.redirect\_uri** with the authorization code parameter.
 
@@ -243,4 +243,3 @@ Session is just a resource and you can inspect and manipulate sessions with stan
 ## Auth Sandbox Demo
 
 {% embed url="https://youtu.be/w8rscpqApMU" %}
-

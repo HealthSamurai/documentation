@@ -55,6 +55,7 @@
   * [Capability Statement](api-1/fhir-api/metadata.md)
   * [$validate](api-1/fhir-api/usdvalidate.md)
   * [Search](api-1/fhir-api/search-1/README.md)
+    * [Configure Search API](api-1/fhir-api/search-1/configure-search-api.md)
     * [SearchParameter](api-1/fhir-api/search-1/searchparameter.md)
     * [Search parameters list](api-1/fhir-api/search-1/search-parameters-list/README.md)
       * [\_list](api-1/fhir-api/search-1/\_list.md)
