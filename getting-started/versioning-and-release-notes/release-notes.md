@@ -14,7 +14,7 @@
   * Implemented [jsonpath search engine](../../api-1/fhir-api/search-1/configure-search-api.md)
   * GraphQL: added [warmup cache on startup](../../api-1/graphql-api.md#configure-graphql) option
 * Terminology API
-  * Added SNOMED FTR
+  * Added [SNOMED CT FTR integration](../../terminology/fhir-terminology-repository/load-snomed-ct-into-aidbox.md)
 * Aidbox Forms
   * Simplified DSL ([brief definition, less layers to describe for basic behavior](../../modules-1/aidbox-forms/how-to-create-a-form.md))
   * Added layout autogeneration
