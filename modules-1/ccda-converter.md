@@ -1,10 +1,10 @@
 ---
 description: >-
-  This page describes CCDA built-in module which provides API to convert CCDA
+  This page describes C-CDA built-in module which provides API to convert C-CDA
   documents to FHIR documents and backward.
 ---
 
-# CCDA
+# C-CDA
 
 ## Introduction
 
@@ -125,7 +125,8 @@ If conversion was successful, you'll get a [FHIR Document](https://www.hl7.org/f
     },
     "fullUrl" : "urn:uuid:practitioner-2.16.840.1.113883.4.6"
   }]
-}</code></pre>
+}
+</code></pre>
 
 In case of error, OperationOutcome resource will be returned:
 
@@ -154,13 +155,13 @@ In case of error, OperationOutcome resource will be returned:
 Please note that this endpoint doesn't persist any populated FHIR data to Aidbox database. This endpoint is read-only and it performs a stateless conversion of the document from one format to another. To persist FHIR data extracted from a CDDA document you need to setup a simple pipeline as described in this tutorial (TODO).
 {% endhint %}
 
-#### Options for `/ccda/to-fhir` endpoint: 
+#### Options for `/ccda/to-fhir` endpoint:
 
 You may specify format of resulting FHIR document by passing `format` query param with `aidbox` or `fhir` value:
 
 * Return resulting FHIR document in [Aidbox Format](https://docs.aidbox.app/modules-1/fhir-resources/aidbox-and-fhir-formats):
 
-```http 
+```http
 POST /ccda/to-fhir?format=aidbox
 
 <?xml version="1.0" encoding="UTF-8"?>
@@ -183,7 +184,6 @@ POST /ccda/to-fhir?format=fhir
 {% hint style="warning" %}
 By default - resulting document will be in FHIR format.
 {% endhint %}
-
 
 ### Validating a CCDA document
 
@@ -271,7 +271,7 @@ In case of failed validation endpoint will return a list of errors and warnings:
 }
 ```
 
-You may specify type of validation  by passing `method` query param with `xsd` or `schematron` value:
+You may specify type of validation by passing `method` query param with `xsd` or `schematron` value:
 
 ```http
 POST /ccda/validate?method=xsd
@@ -289,8 +289,7 @@ Content-Type: application/cda+xml
 On [CCDA Converter Demo page](https://ccda.aidbox.app) only XSD validation is implemented. Uploaded XML file will be highlighted with green color if the document passed validation.
 {% endhint %}
 
-
-### Persisting a result of CCDA to FHIR conversion 
+### Persisting a result of CCDA to FHIR conversion
 
 ```http
 POST /ccda/persist
@@ -305,13 +304,11 @@ Content-Type: application/cda+xml
 </ClinicalDocument>
 ```
 
-Aidbox provides a function of saving result of successful CCDA->FHIR conversion. 
-When CCDA document is converted - transactional Bundle resource is created with all resources that were created during the conversion.
-Transactional Bundle is executed and resources are persisted in DB. According to its transactional nature  - any single failure will rollback a whole transaction and nothing will be saved. 
+Aidbox provides a function of saving result of successful CCDA->FHIR conversion. When CCDA document is converted - transactional Bundle resource is created with all resources that were created during the conversion. Transactional Bundle is executed and resources are persisted in DB. According to its transactional nature - any single failure will rollback a whole transaction and nothing will be saved.
 
-- If the same document is uploaded - resources in DB will remain unchanged. 
-- If uploaded document contain changes to resources with `id` that are already stored in DB - such documents will be updated (patched). 
-- References of created resources during the transaction will be stored in Provenance resource. 
+* If the same document is uploaded - resources in DB will remain unchanged.
+* If uploaded document contain changes to resources with `id` that are already stored in DB - such documents will be updated (patched).
+* References of created resources during the transaction will be stored in Provenance resource.
 
 If you pass `create-docref` parameter then initial CCDA document will be saved as DocumentReference FHIR resource in Base64 format:
 

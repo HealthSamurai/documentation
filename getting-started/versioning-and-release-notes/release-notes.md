@@ -2,9 +2,28 @@
 
 ## December 2022 _`edge`_
 
-* Search API
+* MDM (Master Data Management)
+  * Added $match operation
+  * [Python SDK](https://github.com/Aidbox/mdm)
+* Archive/Restore API
+  * Released a API beta allowing archive and restore resources to/from S3 bucket.
+* Aidbox Configuration Projects
+  * Added a FHIR 4.0.1 compliant Configuration Project (also available on Aidbox User Portal)&#x20;
+  * Added a project with [Touchstone FHIR 4.0.1 basic server test suite fixtures](https://github.com/zen-fhir/touchstone-fhir-r4-fixtures).
+* Aidbox User Portal
+* Data API
   * Implemented [jsonpath search engine](../../api-1/fhir-api/search-1/configure-search-api.md)
   * GraphQL: added [warmup cache on startup](../../api-1/graphql-api.md#configure-graphql) option
+* Terminology API
+  * Added SNOMED FTR
+* Aidbox Forms
+  * Simplified DSL (brief definition, less layers to describe for basic behavior)
+  * Added layout autogeneration
+  * Added extraction based on templates
+  * Added API for generate layers (layout, finalize, finalize-constraints)
+* C-CDA to FHIR converter
+  * Added a guide on[ how to persist FHIR resources to a DB](../../modules-1/ccda-converter.md#persisting-a-result-of-ccda-to-fhir-conversion) after C-CDA to FHIR transformation.
+  * Improved Observation data mapping.
 
 ## November 2022 _`latest`_
 
@@ -23,7 +42,7 @@
   * Added configuration of Aidbox features via zen-lang instead of envs
 * Aidbox User Portal
   * Added support of setting multiple Aidbox Configuration Projects and zen FHIR IGs for Sandbox instances
-* CCDA to FHIR converter
+* C-CDA to FHIR converter
   * Confirmed [USCDI v1](https://www.healthit.gov/isa/united-states-core-data-interoperability-uscdi#uscdi-v1) compliance
 * Aidbox Forms
   * Added forms as a configuration project to the [Aidbox User Portal](../../overview/aidbox-user-portal/)
@@ -35,14 +54,14 @@
 
 * Terminology
   * Introduced [FHIR Terminology repositories ](../../terminology/fhir-terminology-repository/)(alpha) to store any terminology elements (code systems, value sets, concepts) in an effective way and distribute them among Aidbox instances
-* CCDA to FHIR converter
+* C-CDA to FHIR converter
   * Supported [validation against XSD and Schematron schemas](../../modules-1/ccda-converter.md#validating-a-ccda-document)
   * Supported Diagnostic Imaging Report sections:
     * DICOM
     * Findings
     * History
     * Indications for procedure
-  * Supported conversion of different sections of CCDA documents to ClinicalImpression resources:
+  * Supported conversion of different sections of C-CDA documents to ClinicalImpression resources:
     * Consultation notes
     * Discharge notes
     * Procedure history notes
@@ -416,9 +435,9 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 * We've released a major Aidbox UI upgrade
 
-![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (1) (12) (1) (10) (10) (1) (11) (1) (1) (1) (1) (10) (5).png>)
+![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (1) (12) (1) (10) (10) (1) (11) (1) (1) (1) (1) (1) (5).png>)
 
-![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (1) (12) (1) (10) (10) (1) (11) (1) (1) (1) (1) (10) (3).png>)
+![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (1) (12) (1) (10) (10) (1) (11) (1) (1) (1) (1) (1).png>)
 
 * Updated REST Console (check out[ the tutorial](https://bit.ly/rest\_console\_tutorial)):
   * Explicit request headers `content-type, accept` etc

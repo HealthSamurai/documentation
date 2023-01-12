@@ -1,8 +1,8 @@
 ---
-description: This article describes top-level steps to import data from CCDA documents.
+description: This article describes top-level steps to import data from C-CDA documents.
 ---
 
-# CCDA Import Pipeline
+# C-CDA Import Pipeline
 
 While importing data from CCDA documents, there are many nuances on every step. How does your system receive CCDA documents? What data elements do you want to persist? How would your system deduplicate patient records? Because answers to those questions are strictly system-specific, Aidbox does not provide a ready-to-use solution here. But you can implement this pipeline on your own, using your favorite technology stack. This article provides a top-level overview of such a pipeline.
 
@@ -18,19 +18,19 @@ On the next step some kind of background job or a worker will pick received file
 
 ### Validating CCDA files
 
-The current implementation supports two types of validation: 
-- XSD validation - validation is performed against CDA.xsd schema.
-- Schematron validation - validation is performed using HL7 Schematron file.  
+The current implementation supports two types of validation:
 
-To validate your XML CCDA file - you have to use: 
- [`/ccda/$validate` endpoint] 
+* XSD validation - validation is performed against CDA.xsd schema.
+* Schematron validation - validation is performed using HL7 Schematron file.
 
-By default it will perform BOTH types of validation. 
-If you need just one of them - specify the ```method``` of validation in query parameters of route: 
- - for Schematron validation - [`/ccda/validate?method=schematron` endpoint] 
- - for XSD validation - [`/ccda/validate?method=xsd` endpoint] 
+To validate your XML CCDA file - you have to use: \[`/ccda/$validate` endpoint]
 
-NB(!):  ```resource``` field here is your raw XML CCDA file.
+By default it will perform BOTH types of validation. If you need just one of them - specify the `method` of validation in query parameters of route:
+
+* for Schematron validation - \[`/ccda/validate?method=schematron` endpoint]
+* for XSD validation - \[`/ccda/validate?method=xsd` endpoint]
+
+NB(!): `resource` field here is your raw XML CCDA file.
 
 ### Converting to FHIR
 
@@ -57,4 +57,3 @@ Once you have cleaned up and deduplicated your CCDA data, you’re ready to subm
 ### Conclusion
 
 There’s no one-size-fits-all solution for a CCDA ingestion problem, because challenges that occur during this process are very system-specific. However, Aidbox helps to solve most common ones.
-
