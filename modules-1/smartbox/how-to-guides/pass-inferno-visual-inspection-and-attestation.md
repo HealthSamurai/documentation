@@ -264,3 +264,7 @@ Here `https://example.com` is the Smartbox domain
 ## 9.10.15 TLS version 1.2 or above must be enforced
 
 That behavior is not related to the Smartbox settings. Setting the TLS versions and enforcement to the wanted versions is out of the Smartbox setup scope
+
+## 9.10.16 Health IT developer attested that the Health IT Module is capable of issuing refresh tokens valid for a new period of no shorter than three months without requiring re-authentication and re-authorization when a valid refresh token is supplied by the application
+
+It is an attestation. You should state Smartbox is capable of issuing refresh tokens valid for a new period of no shorter than three months.
