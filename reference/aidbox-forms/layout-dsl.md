@@ -236,12 +236,4 @@ If you want to show something different than usual select component, you can cus
 {:bind [:loinc-80884-0] :control ScoreSelector}
 ```
 
-Your DSL interperter should understand this `:control` field\
-
-
-\
-
-
-\
-\
-\
+Your DSL interperter should understand this `:control` field
