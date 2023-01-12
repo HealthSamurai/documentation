@@ -10,7 +10,6 @@
 * Aidbox Configuration Projects
   * Added a FHIR 4.0.1 compliant Configuration Project (also available on Aidbox User Portal)&#x20;
   * Added a project with [Touchstone FHIR 4.0.1 basic server test suite fixtures](https://github.com/zen-fhir/touchstone-fhir-r4-fixtures).
-* Aidbox User Portal
 * Data API
   * Implemented [jsonpath search engine](../../api-1/fhir-api/search-1/configure-search-api.md)
   * GraphQL: added [warmup cache on startup](../../api-1/graphql-api.md#configure-graphql) option
