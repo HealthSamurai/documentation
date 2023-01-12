@@ -19,11 +19,11 @@ description: How to configure Keycloak IdentityProvider with Aidbox
 
 * Click on the client button in left menu&#x20;
 
-<figure><img src="../../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
 * Then click on `Create client` button.
 
-<figure><img src="../../../.gitbook/assets/image (10) (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
 
 *   Enter the client data\
 
@@ -31,12 +31,12 @@ description: How to configure Keycloak IdentityProvider with Aidbox
     <figure><img src="../../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 * Enable `Client authentication` checkbox.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 *   Add `<aidbox-url>/auth/callback/keycloak` to `Valid redirect URIs` field.\
 
 
-    <figure><img src="../../../.gitbook/assets/image (3) (2).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../.gitbook/assets/image (3) (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Create IdentityProvider in Aidbox
 
@@ -63,7 +63,7 @@ id: keycloak
 
 You can find client secret on `Clients details` page under `Credentials` tab
 
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Login into Aidbox
 

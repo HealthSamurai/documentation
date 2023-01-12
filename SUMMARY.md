@@ -163,6 +163,7 @@
   * [FTR Specification](terminology/fhir-terminology-repository/ftr-specification.md)
   * [Creating Aidbox project with FTR](terminology/fhir-terminology-repository/creating-aidbox-project-with-ftr/README.md)
     * [FTR Manifest](terminology/fhir-terminology-repository/creating-aidbox-project-with-ftr/ftr-manifest.md)
+  * [Load SNOMED CT into Aidbox](terminology/fhir-terminology-repository/load-snomed-ct-into-aidbox.md)
 
 ## FHIR Implementation Guides
 

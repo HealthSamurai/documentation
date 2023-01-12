@@ -68,7 +68,7 @@ This flow works for web and single page apps
 
 Before you start - create a Client and User
 
-![](<../.gitbook/assets/image (65).png>)
+![](<../.gitbook/assets/image (65) (1).png>)
 
 ![](<../.gitbook/assets/image (66).png>)
 
