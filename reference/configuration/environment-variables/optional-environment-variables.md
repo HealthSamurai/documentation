@@ -411,7 +411,7 @@ Then change `AIDBOX_EXTENSION_SCHEMA` and restart Aidbox.
 
 Aidbox generates JWT tokens for different purposes:
 
-* As part of Oauth 2.0 authorization it generates authorization\_code in JWT format
+* As part of OAuth 2.0 authorization it generates authorization\_code in JWT format
 * If you specify auth token format as JWT, then your access\_token and refresh\_token will be in JWT format.
 
 Aidbox supports two signing algorithms: RS256 and HS256. RS256 expects providing private key for signing JWT and public key for verifing it. As far as HS256 needs only having secret for both operations.
@@ -435,7 +435,7 @@ BOX_AUTH_KEYS_PUBLIC=-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----
 
 #### Generate secret
 
-To generate random string for HS256 algorith you can run `openssl rand -base64 36` command. The lenght of the random string must be more than 256 bits (32 bytes).
+To generate random string for HS256 algoritm you can run `openssl rand -base64 36` command. The length of the random string must be more than 256 bits (32 bytes).
 
 use next env var to pass secret param:
 
@@ -447,11 +447,31 @@ BOX_AUTH_KEYS_SECRET=<rand_string>
 
 By default Aidbox and Multibox runs with 8 web workers and 8 DB connection pool size. That means that Aidbox can process at same time 8 concurrent connections.
 
-A good practice is stay pool size the same as CPU count of your database. For example, if your database has 16 CPU cores you can set `BOX_DB_POOL_MAXIMUM__POOL__SIZE=16`. Box web workers count is dependent on your load profile. For example, if you have a lot of fast read queries you can set `BOX_WEB_THREAD` equal x2 or x3 of your DB pool size (32 or 48). Or if you have a lot of batch insert queries we recomend stay web workers count as the same DB pool size.
+A good practice is stay pool size the same as CPU count of your database. For example, if your database has 16 CPU cores you can set `BOX_DB_POOL_MAXIMUM__POOL__SIZE=16`. Box web workers count is dependent on your load profile. For example, if you have a lot of fast read queries you can set `BOX_WEB_THREAD` equal x2 or x3 of your DB pool size (32 or 48). Or if you have a lot of batch insert queries we recommend stay web workers count as the same DB pool size.
 
 You can configure this parameter using following environment variables.
 
 ```
 BOX_DB_POOL_MAXIMUM__POOL__SIZE=8
 BOX_WEB_THREAD=8
+```
+
+### Telemetry
+
+By default, aidbox doesn't send any anonymous telemetry data. You can enable it by providing environment variables below.
+
+#### BOX\_TELEMETRY\_USAGE\_\_STATS
+
+Send anonymous api usage data
+
+```
+BOX_TELEMETRY_USAGE_STATS=true
+```
+
+#### BOX\_TELEMETRY\_ERRORS
+
+Send anonymous errors data
+
+```
+BOX_TELEMETRY_ERRORS=true
 ```

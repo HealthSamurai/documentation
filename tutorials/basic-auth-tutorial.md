@@ -6,9 +6,9 @@ The simplest way to interact with Aidbox API from your confidential (backend) co
 
 To start you have to register in Aidbox Auth Client with secret and basic flow enabled in this form:
 
-![Auth Client form](<../.gitbook/assets/image (79).png>)
+![Auth Client form](<../.gitbook/assets/image (79) (1).png>)
 
-![PUT Client/basic](<../.gitbook/assets/image (50).png>)
+![PUT Client/basic](<../.gitbook/assets/image (72) (1).png>)
 
 Let's create AccessPolicy for this Client
 
@@ -68,7 +68,7 @@ This flow works for web and single page apps
 
 Before you start - create a Client and User
 
-![](<../.gitbook/assets/image (65) (1).png>)
+![](<../.gitbook/assets/image (65).png>)
 
 ![](<../.gitbook/assets/image (66).png>)
 
