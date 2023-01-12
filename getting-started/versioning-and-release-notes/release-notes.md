@@ -1,10 +1,10 @@
 # Release Notes
 
-## December 2022 _`edge`_
+## December 2022 _`latest`_
 
 * MDM (Master Data Management)
-  * Added $match operation
-  * [Python SDK](https://github.com/Aidbox/mdm)
+  * Added [$match](../../mdm/mdm-module.md) operation
+  * [Python API](https://github.com/Aidbox/mdm) for Aidbox MDM module
 * Archive/Restore API
   * Released a API beta allowing archive and restore resources to/from S3 bucket.
 * Aidbox Configuration Projects
@@ -23,8 +23,9 @@
 * C-CDA to FHIR converter
   * Added a guide on[ how to persist FHIR resources to a DB](../../modules-1/ccda-converter.md#persisting-a-result-of-ccda-to-fhir-conversion) after C-CDA to FHIR transformation.
   * Improved Observation data mapping.
+* [Google Cloud Pub/Sub integration](../../api-1/reactive-api-and-subscriptions/gcp-pub-sub.md)
 
-## November 2022 _`latest`_
+## November 2022 _`2211`_,_`stable`_
 
 * Aidbox deployment and maintenance
   * Released [index suggestion API](../../storage-1/indexes/get-suggested-indexes.md) and updated documentation on [index management](../../storage-1/indexes/)
@@ -49,7 +50,7 @@
   * Published tutorials on how to create and manage forms in [Aidbox Forms](../../modules-1/aidbox-forms.md)
 * Supported tls for [SMTP provider](../../aidbox-configuration/setup-smtp-provider.md)
 
-## October 2022 _`stable`_
+## October 2022 _`2210`_
 
 * Terminology
   * Introduced [FHIR Terminology repositories ](../../terminology/fhir-terminology-repository/)(alpha) to store any terminology elements (code systems, value sets, concepts) in an effective way and distribute them among Aidbox instances
@@ -89,7 +90,7 @@
   * [Deleting data guide](../../storage-1/delete-data.md)
 * Fixed [issues](https://github.com/Aidbox/Issues/issues?q=is%3Aissue+milestone%3A%22October+2022+-+v%3A2210%22+is%3Aclosed) submitted by Aidbox users and minor bugs
 
-## September 2022 _`2209, stable`_
+## September 2022 _`2209`_
 
 * Released [Seed v2 service](../../aidbox-configuration/aidbox-zen-lang-project/seed-v2.md) for [Aidbox configuration projects](../../aidbox-configuration/aidbox-zen-lang-project/)
 * Added [Client.audience](../../security-and-access-control-1/overview.md#client.audience) regex support in SMART on FHIR App launch
