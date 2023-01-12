@@ -16,10 +16,10 @@
 * Terminology API
   * Added SNOMED FTR
 * Aidbox Forms
-  * Simplified DSL (brief definition, less layers to describe for basic behavior)
+  * Simplified DSL ([brief definition, less layers to describe for basic behavior](../../modules-1/aidbox-forms/how-to-create-a-form.md))
   * Added layout autogeneration
-  * Added extraction based on templates
-  * Added API for generate layers (layout, finalize, finalize-constraints)
+  * Added [extraction based on templates](../../reference/aidbox-forms/finalize-dsl.md)
+  * Added API for generate layers ([layout, finalize, finalize-constraints](../../reference/aidbox-forms/api-reference.md))
 * C-CDA to FHIR converter
   * Added a guide on[ how to persist FHIR resources to a DB](../../modules-1/ccda-converter.md#persisting-a-result-of-ccda-to-fhir-conversion) after C-CDA to FHIR transformation.
   * Improved Observation data mapping.
@@ -434,9 +434,9 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 * We've released a major Aidbox UI upgrade
 
-![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (1) (12) (1) (10) (10) (1) (11) (1) (1) (1) (1) (1) (5).png>)
+![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (1) (12) (1) (10) (10) (1) (11) (1) (1) (1) (1) (1) (1) (9).png>)
 
-![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (1) (12) (1) (10) (10) (1) (11) (1) (1) (1) (1) (1).png>)
+![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (1) (12) (1) (10) (10) (1) (11) (1) (1) (1) (1) (1) (1) (2).png>)
 
 * Updated REST Console (check out[ the tutorial](https://bit.ly/rest\_console\_tutorial)):
   * Explicit request headers `content-type, accept` etc
