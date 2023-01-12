@@ -21,12 +21,20 @@ Follow the [official Docker guide](https://docs.docker.com/compose/install/#inst
 ### Clone and set up Aidbox template repository
 
 ```shell
-git clone https://github.com/Aidbox/aidbox-docker-compose && cd aidbox-docker-compose
+git clone https://github.com/Aidbox/aidbox-docker-compose --recurse-submodules && cd aidbox-docker-compose
 ```
 
 This repository contains [Aidbox configuration project](../../aidbox-configuration/aidbox-zen-lang-project/) used to configure Aidbox and also additional files used to spin up Aidbox container.
 
-You additionally need to update `.env` file so that `AIDBOX_LICENSE` matches your license key:
+Create `.env` file from `env.tpl`:
+
+```bash
+cp env.tpl .env
+```
+
+`env.tpl` is a template with environment variables. We copy it into a separate `.env` which is included in `.gitignore` to protect from secrets breach.
+
+Now update `.env` file so that `AIDBOX_LICENSE` matches your license key:
 
 ```shell
 AIDBOX_LICENSE=<your-license-key>
