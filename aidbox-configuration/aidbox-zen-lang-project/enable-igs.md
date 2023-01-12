@@ -46,9 +46,11 @@ Here's an example for enabling US Core IG and DaVinci PDEX Plan Net:
 
 Or another example for enabling FHIR r4 core IG:
 
-```
+{% code title="zen-package.edn" %}
+```clojure
 {:deps {hl7-fhir-r4-core "https://github.com/zen-fhir/hl7-fhir-r4-core.git"}}
 ```
+{% endcode %}
 
 {% hint style="info" %}
 To the left of each zen FHIR IG URL you give a name. In the examples above the names are `r4-core`, `us-core` and `plan-net`. These names are arbitrary and currently are used only to annotate a URL.

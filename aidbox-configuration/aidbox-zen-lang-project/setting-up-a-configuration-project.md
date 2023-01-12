@@ -112,6 +112,14 @@ It's more preferable to set up Aidbox with [aidbox.config/config](../../referenc
 This is more preferable way, than configuring Aidbox via envs.
 {% endhint %}
 
+## Commit your changes
+
+Aidbox Configuration project is a git repository. You need to commit all the changes you’ve made otherwise Aidbox won’t see them.
+
+```bash
+cd path/to/project && git add -A && git commit -m "new commit"
+```
+
 ## Tips for development
 
 ### Cache and reuse project’s dependencies
