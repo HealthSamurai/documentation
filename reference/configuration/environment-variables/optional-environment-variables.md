@@ -458,20 +458,20 @@ BOX_WEB_THREAD=8
 
 ### Telemetry
 
-By default, aidbox doesn't send any anonymous telemetry data. You can enable it by providing environment variables below.
-
-#### BOX\_TELEMETRY\_USAGE\_\_STATS
-
-Send anonymous api usage data
-
-```
-BOX_TELEMETRY_USAGE_STATS=true
-```
+By default, Aidbox collects and sends high-level anonymous API usage statistics used solely for Aidbox improvement.&#x20;
 
 #### BOX\_TELEMETRY\_ERRORS
 
-Send anonymous errors data
+```
+BOX_TELEMETRY_ERRORS=false
+```
+
+Disable sending anonymous errors data.
+
+#### BOX\_TELEMETRY\_USAGE\_\_STATS
 
 ```
-BOX_TELEMETRY_ERRORS=true
+BOX_TELEMETRY_USAGE_STATS=false
 ```
+
+Disable sending anonymous API usage statistics.
