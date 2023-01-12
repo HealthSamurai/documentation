@@ -69,7 +69,7 @@ Its `ns` value should correspond to its filename (with `-` replaced by `_`).
 
 As an example, consider the following config file for a system which happens to import [zen-fhir US Core IG package](https://github.com/zen-fhir/hl7-fhir-us-core):
 
-{% code title="project/zrc/system.edn" %}
+{% code title="zrc/system.edn" %}
 ```clojure
 {:ns     system
  :import #{hl7-fhir-us-core}
@@ -93,7 +93,7 @@ Besides system environment variables for setting up aidbox configuration project
 
 It's more preferable to set up Aidbox with [aidbox.config/config](../../reference/configuration/aidbox-project/aidbox.config-config.md). You may provide it with `aidbox/system`
 
-{% code title="project/zrc/system.edn" overflow="wrap" %}
+{% code title="zrc/system.edn" overflow="wrap" %}
 ```clojure
 {ns system
  import #{aidbox aidbox.config}
@@ -111,8 +111,6 @@ It's more preferable to set up Aidbox with [aidbox.config/config](../../referenc
 
 This is more preferable way, than configuring Aidbox via envs.
 {% endhint %}
-
-## Proivde package source
 
 ## Tips for development
 
