@@ -653,6 +653,18 @@
 
 
 
+- `:engine` (zen/keyword)
+
+  Engine to generate SQL statements.
+
+
+
+- `:resource-compat` (zen/boolean)
+
+  
+
+
+
 ## aidbox.config/auth
 
 - `:grant-page-url` (zen/string)
