@@ -23,10 +23,12 @@ description: >-
 6. Enter the _Name_ of the license
 7. Specify _Hosting_ method
    * Self-hosted
-   * In Cloud / GCP
-     1. Specify _Zone_
-     2. Enter the _Instance URL_
-     3. Specify _FHIR Version_
+   * AWS
+   * Sandbox
+     1. Choose _Configuration project_ if needed
+     2. Specify _Zone_, if you didn't choose configuration project
+     3. Enter the _Instance URL_
+     4. Specify _FHIR Version_
 8. Click _**Create**_
 
 ### Delete license
