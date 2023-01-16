@@ -374,9 +374,23 @@ Response can be narrowed with document Symbol name substring
 
 params:
 
-| Param | Description                     | Type   | required? |
-| ----- | ------------------------------- | ------ | --------- |
-| q     | substring of Form symbolic name | String | yes       |
+| Param              | Description                         | Type   | required? |
+|--------------------|-------------------------------------|--------|-----------|
+| q                  | substring of Form symbolic name     | String | no        |
+| include.properties | include-filter for properties match | map    | no        |
+| exclude.properties | exclude-filter for properties match | map    | no        |
+
+#### include/exclude filter
+
+- include/exclude properties should be in that shape as you except them in Form definition.
+- if property value is a set - then filter specifies elements subset with AND logic
+- if property value is a coll - then filter specifies collection matching with strict order and elements counts
+- if property value is a map - then filter specifies subset of map structure with searched leaves values
+- if property value is a keyword/string/symbol - then filter specifies equal match by stringified property value. 
+
+
+
+Request: 
 
 ```
 POST /rpc?
@@ -384,6 +398,22 @@ POST /rpc?
 method: aidbox.sdc/get-forms
 params:
     q: 'Vitals'
+    include:
+        properties:
+            teams: [physician]
+            in-dev: true
+```
+
+
+Response 
+
+```
+result:
+  entries:
+  - form: box.sdc.sdc-example/VitalsForm
+    title: Vitals Signs
+  - form: box.sdc.sdc-example/VitalsFormWithoutExtractions
+    title: Vitals Signs
 ```
 
 ### get-form
