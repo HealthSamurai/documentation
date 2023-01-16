@@ -47,23 +47,23 @@ Consider the following scenarios that demonstrate the difference between license
 
 A standard license allows running Aidbox locally or in Aidbox Sandbox for 14 days and then can be extended by the Health Samurai team.This license will be valid for 14 days. If your trial period expires, while you are installing your box, you’ll receive an error message:
 
-`License expires in %s. Please contact us for extended license (https://aidbox.app/?intercom-focus=true)`
+`License expires in %s. Please contact us for extended license.`
 
 ### Development license
 
 Development license is available for contract clients. This license imposes a 2.0 GiB database size limit. Development license allows running 2 instances in parallel. When you reach your database size limit, you’ll receive 3 types of messages - warning, error message and blocking message:&#x20;
 
-`Your database (%s) size %s is about to exceed the license limit %s in that case your process is going to shutdown. Please review database size or contact us for further information.`
+`Your database (name of your database) size 1.9 GiB is about to exceed the license limit 2.0 GiB, in that case your process is going to shutdown. Please review database size or contact us for further information.`
 
-Error message is: `Your database (%s) size is %s and it's above license limit %s. Please review database size or contact us for further information.`
+Error message is: `Your database (name of your database) size is 2.7 GiB and it's above license limit 2.0 GiB. Please review database size or contact us for further information.`
 
-Blocking message is: `Your database (%s) size is %s and it's above license limit %s, your process is going to shutdown in %d minutes. Please review database size or contact us for further information.`
+Blocking message is: `Your database (name of your database) size is 33.7 GiB and it's above license limit 2.0 GiB, your process is going to shutdown in 60 minutes. Please review database size or contact us for further information.`
 
 ### CI/CD license
 
 CI/CD license also available for contract clients. A CI/CD license allows you to run multiple instances in parallel, but not more than for 72 hours. After 72 hours license will expire (this is TTL of a license), you need to take a 3 hour break, before you continue your multiple instances. You’ll get a message, before your runtime expires:&#x20;
 
-`After 2 hours your CI/CD license will exceed allowed limit of runtime working (%s hours). After that your license will be blocked for %s hours. Please reboot system or contact us for further information (https://aidbox.app/?intercom-focus=true).`
+`After 2 hours your CI/CD license will exceed allowed limit of runtime working (72 hours). After that your license will be blocked for 3 hours. Please reboot system or contact us for further information.`
 
 ## References
 
