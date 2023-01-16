@@ -93,16 +93,15 @@ Accept: text/yaml
 
 ## Generate Launch URI for EHR Launch Sequence
 
-Aidbox provides the [RPC API](../../../api-1/rpc-api.md) method `aidbox.smart/get-launch-uri` to generate launch URI. The method accepts the following arguments:
+To generate SMART App launch URI use [RPC API](../../../api-1/rpc-api.md) method `aidbox.smart/get-launch-uri`. The method accepts the following arguments:
 
 * `user`: id of the `User` resource
 * `iss`: Aidbox base URL
 * `client`: id of the `Client` resource
-* `ctx`: additional launch context
+* `ctx`: additional launch contextо 
   * `patient`: id of `Patient` resource
   * `encounter`: id of `Encounter` resource
-
-This RPC method generates SMART launch URL.
+  * `fhirContext`: array of objects referring to any resource type other than `Patient` or `Encounter` (see [more details](https://build.fhir.org/ig/HL7/smart-app-launch/scopes-and-launch-context.html#fhir-context))
 
 ## Standalone Launch
 
