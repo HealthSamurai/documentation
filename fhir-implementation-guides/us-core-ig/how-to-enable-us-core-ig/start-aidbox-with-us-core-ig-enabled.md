@@ -29,13 +29,13 @@ Set up Aidbox instance by following our quick start guide.
 
 ### Specify US Core as a dependency
 
-Put the following content in `zen-package.edn`:
+Put the following content in `project/zen-package.edn`:
 
 ```clojure
 {:deps {hl7-fhir-us-core "https://github.com/zen-fhir/hl7-fhir-us-core.git"}}
 ```
 
-Go to the main configuration file for your system (`system.edn` if you followed the quick start guide from above) and add `hl7-fhir-us-core` namespace to imports. It should look like this:
+Go to the main configuration file for your system (`project/zrc/system.edn` if you followed the quick start guide from above) and add `hl7-fhir-us-core` namespace to imports. It should look like this:
 
 ```clojure
 {…
@@ -46,7 +46,7 @@ Go to the main configuration file for your system (`system.edn` if you followed 
 Commit the changes you just made:
 
 ```shell
-git add . && git commit -m "Add us-core dependency"
+cd project && git add . && git commit -m "Add us-core dependency" && cd ..
 ```
 
 Commit step is necessary as we are using [Aidbox configuration project](../../../aidbox-configuration/aidbox-zen-lang-project/) which is a git repository under the hood.

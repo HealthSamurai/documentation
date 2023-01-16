@@ -4,7 +4,7 @@ This quickstart guide explains how to run Aidbox in [Aidbox Sandbox cloud](https
 
 ### Get a license
 
-Go to the [Aidbox portal](https://aidbox.app). Sign up and click the new license button. Choose product type "Aidbox" and hosting type "In Cloud / GCP".
+Go to the [Aidbox portal](https://aidbox.app). Sign up and click the new license button. Choose product type "Aidbox" and hosting type "Sandbox".
 
 ### Go to the Aidbox UI
 
