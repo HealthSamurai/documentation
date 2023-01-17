@@ -153,5 +153,3 @@ CREATE INDEX aidbox_mng_idx_main_my_index2
 ON public.patient 
 USING gin (((jsonb_path_query_array(resource, '$.\"name\"[*].**?(@.type() == \"string\")'::jsonpath))::text) gin_trgm_ops)
 ```
-
-#### Why should I create Zen SearchParameter in configuration project instead of `POST /SearchParameter` or `AidboxQuery` or `SearchQuery`?
