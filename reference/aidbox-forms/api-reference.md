@@ -858,11 +858,12 @@ Creates [policy token](../../security-and-access-control-1/security/access-polic
 
 params:
 
-| Param             | Description                | Type                    | required? |
-| ----------------- | -------------------------- | ----------------------- | --------- |
-| form              | link to the form in DB     | Map                     | yes       |
-| form.id           | SDCDocument/SDCWorkflow id | String                  | yes       |
-| form.resourceType |                            | SDCDocument/SDCWorkflow | yes       |
+| Param             | Description                                   | Type                    | required? |
+|-------------------|-----------------------------------------------|-------------------------|-----------|
+| form              | link to the form in DB                        | Map                     | yes       |
+| form.id           | SDCDocument/SDCWorkflow id                    | String                  | yes       |
+| form.resourceType |                                               | SDCDocument/SDCWorkflow | yes       |
+| redirect-on-sing  | URI that used on form sign/amend for redirect | URI                     | no        |
 
 Request:
 
@@ -876,6 +877,7 @@ params:
   form:
     id: doc-1
     resourceType: SDCDocument
+  redirect-on-sing: http://my.portal.com?param1=p1
 ```
 
 Result:
