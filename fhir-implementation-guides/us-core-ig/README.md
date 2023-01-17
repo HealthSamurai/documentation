@@ -2,7 +2,7 @@
 description: Learn about US Core IG support in Aidbox
 ---
 
-# 🎓 US Core IG
+# US Core IG
 
 ## Support
 
@@ -16,6 +16,6 @@ US Core IG contains the following FHIR artifacts: Profiles, Extensions, Terminol
 
 If you want to learn how to enable US Core IG in Aidbox, proceed to the following page:
 
-{% content-ref url="how-to-enable-us-core-ig/" %}
-[how-to-enable-us-core-ig](how-to-enable-us-core-ig/)
+{% content-ref url="../../tutorials/fhir-conformance/how-to-enable-us-core-ig/" %}
+[how-to-enable-us-core-ig](../../tutorials/fhir-conformance/how-to-enable-us-core-ig/)
 {% endcontent-ref %}

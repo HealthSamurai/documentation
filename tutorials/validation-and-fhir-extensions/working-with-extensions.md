@@ -2,7 +2,7 @@
 
 ## Aidbox Native Extensions
 
-In addition to the FHIR extensions, Aidbox has its own implementation of [extensions as native attributes](../modules-1/first-class-extensions.md).
+In addition to the FHIR extensions, Aidbox has its own implementation of [extensions as native attributes](../../modules-1/first-class-extensions.md).
 
 First, you will need to create an Attribute resource.
 

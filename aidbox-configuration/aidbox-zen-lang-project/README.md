@@ -66,7 +66,7 @@ Production installation is the same as a regular installation. Exception can be 
 2. Select either a _Standard_ or _Development_ license type and **Sandbox** hosting
 3. Choose which projects to enable in FHIR Server Configuration section.
 
-Currently available projects include various FHIR IG [zen packages](enable-igs.md) and [Aidbox SDC forms](../../tutorials/sdc-with-custom-resources.md).
+Currently available projects include various FHIR IG [zen packages](enable-igs.md) and [Aidbox SDC forms](../../tutorials/tutorials/sdc-with-custom-resources.md).
 
 {% hint style="warning" %}
 FHIR terminologies from IG packages are not loaded into the Sandbox database. This means they won’t be available for introspection. You can still use them for validation.

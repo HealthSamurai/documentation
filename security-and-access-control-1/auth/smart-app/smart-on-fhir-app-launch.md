@@ -98,7 +98,7 @@ To generate SMART App launch URI use [RPC API](../../../api-1/rpc-api.md) method
 * `user`: id of the `User` resource
 * `iss`: Aidbox base URL
 * `client`: id of the `Client` resource
-* `ctx`: additional launch contextо 
+* `ctx`: additional launch contextо
   * `patient`: id of `Patient` resource
   * `encounter`: id of `Encounter` resource
   * `fhirContext`: array of objects referring to any resource type other than `Patient` or `Encounter` (see [more details](https://build.fhir.org/ig/HL7/smart-app-launch/scopes-and-launch-context.html#fhir-context))
@@ -120,7 +120,7 @@ Authorization code flow with SMART on FHIR Standalone Launch:
 
 ## EHR Launch
 
-![EHR Launch Sequence](<../../../.gitbook/assets/image (93) (1) (1).png>)
+![EHR Launch Sequence](<../../../.gitbook/assets/image (93) (1).png>)
 
 Authorization code flow with SMART on FHIR EHR Launch:
 

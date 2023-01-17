@@ -26,7 +26,7 @@ Archive/restore API is represented by several tasks:
 
 You can also use [Scheduler API](../scheduler-api.md) to automatically run create-archive task at the scheduled time. Check this tutorial for more information:
 
-{% content-ref url="../../tutorials/automatically-archive-auditevent-resources-in-gcp-storage-guide.md" %}
-[automatically-archive-auditevent-resources-in-gcp-storage-guide.md](../../tutorials/automatically-archive-auditevent-resources-in-gcp-storage-guide.md)
+{% content-ref url="../../tutorials/data-api/automatically-archive-auditevent-resources-in-gcp-storage-guide.md" %}
+[automatically-archive-auditevent-resources-in-gcp-storage-guide.md](../../tutorials/data-api/automatically-archive-auditevent-resources-in-gcp-storage-guide.md)
 {% endcontent-ref %}
 

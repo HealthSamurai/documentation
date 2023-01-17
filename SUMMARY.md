@@ -34,6 +34,39 @@
 * [Run Aidbox on Kubernetes](getting-started/run-aidbox-in-kubernetes/README.md)
   * [Deploy Production-ready Aidbox to Kubernetes](getting-started/run-aidbox-in-kubernetes/deploy-aidbox-in-kubernetes.md)
   * [Highly Available Aidbox](getting-started/run-aidbox-in-kubernetes/high-available-aidbox.md)
+* [Uploading Sample Data](getting-started/load-bundle-into-fhir-server.md)
+
+## Tutorials
+
+* [Security & Access Control](tutorials/security-and-access-control/README.md)
+  * [Authentication Tutorial](tutorials/security-and-access-control/basic-auth-tutorial.md)
+  * [Creating user & set up full user access](tutorials/security-and-access-control/creating-user-and-set-up-full-user-access.md)
+  * [Restricting Access to Patient Data](tutorials/security-and-access-control/restricting-access-to-patient-data.md)
+* [Data API](tutorials/data-api/README.md)
+  * [Custom Search](tutorials/data-api/custom-search.md)
+  * [Automatically archive AuditEvent resources in GCP storage guide](tutorials/data-api/automatically-archive-auditevent-resources-in-gcp-storage-guide.md)
+  * [How to fix broken dates](tutorials/data-api/how-to-fix-broken-dates.md)
+* [Administration](tutorials/administration/README.md)
+  * [How to migrate transaction id to bigint](tutorials/administration/how-to-migrate-transaction-id-to-big-int.md)
+  * [Working with pgAgent](tutorials/administration/working-with-pgagent.md)
+* [FHIR conformance](tutorials/fhir-conformance/README.md)
+  * [Touchstone FHIR 4.0.1 basic server](tutorials/fhir-conformance/touchstone-fhir-4.0.1-basic-server.md)
+  * [How to enable US Core IG](tutorials/fhir-conformance/how-to-enable-us-core-ig/README.md)
+    * [Start Aidbox with US Core IG enabled](tutorials/fhir-conformance/how-to-enable-us-core-ig/start-aidbox-with-us-core-ig-enabled.md)
+    * [Add US Core IG to a running Aidbox instance](tutorials/fhir-conformance/how-to-enable-us-core-ig/add-us-core-ig-to-a-running-aidbox-instance.md)
+  * [HL7 FHIR Da Vinci PDex Plan Net IG](tutorials/fhir-conformance/hl7-fhir-da-vinci-pdex-plan-net-ig.md)
+* [Validation & FHIR extensions](tutorials/validation-and-fhir-extensions/README.md)
+  * [Working with Extensions](tutorials/validation-and-fhir-extensions/working-with-extensions.md)
+* [Subscriptions](tutorials/subscriptions/README.md)
+  * [Subscribe to new Patient resource](tutorials/subscriptions/subscribe-to-new-patient-resource.md)
+* [Integrations](tutorials/integrations/README.md)
+  * [Postmark integration](tutorials/integrations/postmark-integration.md)
+  * [Mailgun integration](tutorials/integrations/mailgun-integration.md)
+* [Other tutorials](tutorials/tutorials/README.md)
+  * [Patient Encounter notification Application](tutorials/tutorials/patient-encounter-notification-application.md)
+  * [Sync Data From Aidbox](tutorials/tutorials/sync-data-from-aidbox.md)
+  * [SDC with Custom Resources](tutorials/tutorials/sdc-with-custom-resources.md)
+  * [APM Aidbox](tutorials/tutorials/apm-aidbox.md)
 
 ## Aidbox configuration
 
@@ -138,6 +171,11 @@
 * [Asynchronous resource validation](profiling-and-validation/validation-api.md)
 * [Profiling with AidboxProfile](profiling-and-validation/profiling-with-aidboxprofile.md)
 
+## FHIR Implementation Guides
+
+* [US Core IG](fhir-implementation-guides/us-core-ig/README.md)
+  * [US Core IG support reference](fhir-implementation-guides/us-core-ig/us-core-ig-support-reference.md)
+
 ## Terminology
 
 * [Aidbox terminology module overview](terminology/terminology.md)
@@ -164,36 +202,6 @@
   * [Creating Aidbox project with FTR](terminology/fhir-terminology-repository/creating-aidbox-project-with-ftr/README.md)
     * [FTR Manifest](terminology/fhir-terminology-repository/creating-aidbox-project-with-ftr/ftr-manifest.md)
   * [Load SNOMED CT into Aidbox](terminology/fhir-terminology-repository/load-snomed-ct-into-aidbox.md)
-
-## FHIR Implementation Guides
-
-* [🎓 US Core IG](fhir-implementation-guides/us-core-ig/README.md)
-  * [How to enable US Core IG](fhir-implementation-guides/us-core-ig/how-to-enable-us-core-ig/README.md)
-    * [Start Aidbox with US Core IG enabled](fhir-implementation-guides/us-core-ig/how-to-enable-us-core-ig/start-aidbox-with-us-core-ig-enabled.md)
-    * [Add US Core IG to a running Aidbox instance](fhir-implementation-guides/us-core-ig/how-to-enable-us-core-ig/add-us-core-ig-to-a-running-aidbox-instance.md)
-  * [US Core IG support reference](fhir-implementation-guides/us-core-ig/us-core-ig-support-reference.md)
-* [🎓 HL7 FHIR Da Vinci PDex Plan Net IG](fhir-implementation-guides/hl7-fhir-da-vinci-pdex-plan-net-ig.md)
-
-***
-
-* [Tutorials](tutorials/README.md)
-  * [Authentication Tutorial](tutorials/basic-auth-tutorial.md)
-  * [Restricting Access to Patient Data](tutorials/restricting-access-to-patient-data.md)
-  * [Uploading Sample Data](tutorials/load-bundle-into-fhir-server.md)
-  * [Custom Search](tutorials/custom-search.md)
-  * [Patient Encounter notification Application](tutorials/patient-encounter-notification-application.md)
-  * [Working with pgAgent](tutorials/working-with-pgagent.md)
-  * [Working with Extensions](tutorials/working-with-extensions.md)
-  * [Sync Data From Aidbox](tutorials/sync-data-from-aidbox.md)
-  * [SDC with Custom Resources](tutorials/sdc-with-custom-resources.md)
-  * [APM Aidbox](tutorials/apm-aidbox.md)
-  * [How to fix broken dates](tutorials/how-to-fix-broken-dates.md)
-  * [Subscribe to new Patient resource](tutorials/subscribe-to-new-patient-resource.md)
-  * [Creating user & set up full user access](tutorials/creating-user-and-set-up-full-user-access.md)
-  * [Mailgun integration](tutorials/mailgun-integration.md)
-  * [Postmark integration](tutorials/postmark-integration.md)
-  * [How to migrate transaction id to bigint](tutorials/how-to-migrate-transaction-id-to-big-int.md)
-  * [Automatically archive AuditEvent resources in GCP storage guide](tutorials/automatically-archive-auditevent-resources-in-gcp-storage-guide.md)
 
 ## App development guides
 

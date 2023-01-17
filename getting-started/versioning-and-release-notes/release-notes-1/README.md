@@ -71,7 +71,7 @@ It's time to upgrade your database - please stop your container and change image
 
 * In REST Console support for multiline URL line using `\`
 * New  `/<RT>/$lookup`  operation for efficient lookup search in millions of records - [read more](../../../api-1/fhir-api/search-1/usdlookup.md)
-* [AidboxQuery](../../../tutorials/custom-search.md) extended with count-query and params types and defaults
+* [AidboxQuery](../../../tutorials/data-api/custom-search.md) extended with count-query and params types and defaults
 * New `/<RT>/$load` and `/$load` [bulk operations](../../../api-1/bulk-api-1/#usdload) were added and [$import](../../../api-1/bulk-api-1/#usdimport) was upgraded
 * aidbox/db upgrade to 11.4 + fixes in json\_knife pg extension - (deep patterns, indexes)&#x20;
 * Highlighted logs for humans in [Aidbox.Dev](../../run-aidbox-locally-with-docker/) by default: docker logs -f \<your-box-container>
@@ -116,8 +116,8 @@ It's time to upgrade your database - please stop your container and change image
 ### Features
 
 * [User Level Logs](../../../core-modules/logging-and-audit/)
-* [Structured Data Capture](../../../tutorials/sdc-with-custom-resources.md) with Custom Resources (Alpha)
-* [History based replication](../../../tutorials/sync-data-from-aidbox.md)
+* [Structured Data Capture](../../../tutorials/tutorials/sdc-with-custom-resources.md) with Custom Resources (Alpha)
+* [History based replication](../../../tutorials/tutorials/sync-data-from-aidbox.md)
 * Search: new [\_ilike](../../../api-1/fhir-api/search-1/#\_ilike-search-non-fhir) search parameter
 * Search: [\_include=\*](../../../api-1/fhir-api/search-1/#\_include-and-\_revinclude)  support
 * Search: [\_list](../../../api-1/fhir-api/search-1/#\_list) parameter support

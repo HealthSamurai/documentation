@@ -17,7 +17,7 @@ BOX_PROVIDER_POSTMARK__PROVIDER_FROM: Sender's Name <noreply@{{YOUR_DOMAIN}}>
 BOX_PROVIDER_POSTMARK__PROVIDER_API__KEY: <api-key>
 ```
 
-You can find more about Postmark environment variables [here.](../reference/configuration/environment-variables/postmark-environment-variables.md)
+You can find more about Postmark environment variables [here.](../../reference/configuration/environment-variables/postmark-environment-variables.md)
 
 ### Creating `NotificationTemplate` resource
 

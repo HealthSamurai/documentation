@@ -135,7 +135,7 @@
 * Enhanced [zen.fhir profiles](../../profiling-and-validation/profiling-with-zen-lang/) with RequiredPattern and FixedValue constraints
 * Added [seed service](../../aidbox-configuration/aidbox-zen-lang-project/seed-import.md) errors output.
 * Added [Azure Active Directory (Azure AD)](../../security-and-access-control-1/auth/external-oauth-2.0-providers/azure-ad.md) and [Keycloak](../../security-and-access-control-1/auth/external-oauth-2.0-providers/keycloak.md) external identity providers integration guides
-* Added [Mailgun](../../tutorials/mailgun-integration.md) and [Postmark](../../tutorials/postmark-integration.md) email providers integration guides
+* Added [Mailgun](../../tutorials/integrations/mailgun-integration.md) and [Postmark](../../tutorials/integrations/postmark-integration.md) email providers integration guides
 * Aidbox FHIR API module (SMARTbox) is officially certified by ICSA Labs to comply with the [ONC’s 2015 Edition Cures Update](https://www.healthit.gov/topic/certification-ehrs/2015-edition-cures-update-test-method) requirements / 170.315(g)(10).
 * Added [Aidbox FHIR API module (SMARTbox) set up guide](../../modules-1/smartbox/get-started/set-up-smartbox.md).
 * Added an option to [get Aidbox hosted on AWS](../run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md) directly from the Aidbox user portal. [Aidbox FHIR platform](https://aws.amazon.com/marketplace/pp/prodview-l5djlpvsd6o5g) is available on AWS marketplace.
@@ -148,7 +148,7 @@
 * Enhanced [zen.fhir profiles](../../profiling-and-validation/profiling-with-zen-lang/) with RequiredPattern and FixedValue constraints
 * Added [seed service](../../aidbox-configuration/aidbox-zen-lang-project/seed-import.md) errors output.
 * Added [Azure Active Directory (Azure AD)](../../security-and-access-control-1/auth/external-oauth-2.0-providers/azure-ad.md) and [Keycloak](../../security-and-access-control-1/auth/external-oauth-2.0-providers/keycloak.md) external identity providers integration guides
-* Added [Mailgun](../../tutorials/mailgun-integration.md) and [Postmark](../../tutorials/postmark-integration.md) email providers integration guides
+* Added [Mailgun](../../tutorials/integrations/mailgun-integration.md) and [Postmark](../../tutorials/integrations/postmark-integration.md) email providers integration guides
 
 ## July 2022 _`2207`_
 
@@ -188,7 +188,7 @@
 * Improved chained search parameters performance.
 * Added ability to specify SQL migrations in [Aidbox project seed service](../../aidbox-configuration/aidbox-zen-lang-project/#seed-service).
 * Enhanced [API constructor ACL](../../security-and-access-control-1/acl.md) with conditional CRUD and patient/group level `$export`.
-* Added a tutorial on how to [create a user and give full access](../../tutorials/creating-user-and-set-up-full-user-access.md).
+* Added a tutorial on how to [create a user and give full access](../../tutorials/security-and-access-control/creating-user-and-set-up-full-user-access.md).
 * Fixed issues submitted by Aidbox users and fixed minor bugs.
 * Added an option to [load Aidbox project from a remote Git repository](../../aidbox-configuration/aidbox-zen-lang-project/#load-project-from-git-repository).
 * Improved Aidbox startup time when loading [Aidbox project](../../aidbox-configuration/aidbox-zen-lang-project/#aidbox\_zen\_paths) from [a zip archive](../../aidbox-configuration/aidbox-zen-lang-project/#aidbox\_zen\_paths).
@@ -199,7 +199,7 @@
 * Improved chained search parameters performance.
 * Added ability to specify SQL migrations in [Aidbox project seed service](../../aidbox-configuration/aidbox-zen-lang-project/#seed-service).
 * Enhanced [API constructor ACL](../../security-and-access-control-1/acl.md) with conditional CRUD and patient/group level `$export`.
-* Added a tutorial on how to [create a user and give full access](../../tutorials/creating-user-and-set-up-full-user-access.md).
+* Added a tutorial on how to [create a user and give full access](../../tutorials/security-and-access-control/creating-user-and-set-up-full-user-access.md).
 * Fixed issues submitted by Aidbox users and fixed minor bugs.
 
 ## May 2022 _`2205`_
@@ -213,7 +213,7 @@
 * Improved setting [PostgreSQL schema](broken-reference/) for Aidbox tables.
 * Added option to set JWT private/public keys and secret[ via env](broken-reference/).
 * Added [aidboxdb PostgreSQL 14.2 version](../../storage-1/aidboxdb-image.md). Supported versions are 14.2 and 13.6.
-* Added tutorial [how to fix broken dates](../../tutorials/).
+* Added tutorial [how to fix broken dates](../../tutorials/tutorials/).
 * Released Infrabox preview. Infrabox is a simple and efficient tool to deploy and manage production-ready Aidbox infrastructure on k8s.
 * Added RPC API access control engines: [allow-rpc engine](../../security-and-access-control-1/security/access-control.md#allow-rpc-engine) and attribute-based [matcho-rpc engine](../../security-and-access-control-1/security/access-control.md#matcho-rpc-engine).
 * Added GraphQL API resource [history search](../../api-1/graphql-api.md#queries) to retrieve a resource change history.
@@ -224,7 +224,7 @@
 * Improved setting [PostgreSQL schema](broken-reference/) for Aidbox tables.
 * Added option to set JWT private/public keys and secret[ via env](broken-reference/).
 * Added [aidboxdb PostgreSQL 14.2 version](../../storage-1/aidboxdb-image.md). Supported versions are 14.2 and 13.6.
-* Added tutorial [how to fix broken dates](../../tutorials/).
+* Added tutorial [how to fix broken dates](../../tutorials/tutorials/).
 * Released Infrabox preview. Infrabox is a simple and efficient tool to deploy and manage production-ready Aidbox infrastructure on k8s.
 
 ## April 2022 _`2204`_
@@ -397,13 +397,13 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 * Added [Aidbox projects](../../aidbox-configuration/aidbox-zen-lang-project/) that can be used to configure Aidboxes and validate data. Basically, Aidbox project is a directory with zen-lang edn files that describe Aidbox configuration.
 * 5 FHIR compartments are available as default in Aidbox. More details on [Compartments API](https://docs.aidbox.app/api-1/compartments).
 * Added Datadog [integration URL configuration](https://docs.aidbox.app/core-modules/logging-and-audit/aidbox-logs-and-datadog-integration#datadog-logging). So now you can specify in configuration if you want to use one of the following domains`datadoghq.com, us3.datadoghq.com, datadoghq.eu, ddog-gov.com`.
-* Added a tutorial on how to configure [HL7 FHIR Da Vinci PDex Plan Net IG](../../fhir-implementation-guides/hl7-fhir-da-vinci-pdex-plan-net-ig.md) on Aidbox.
+* Added a tutorial on how to configure [HL7 FHIR Da Vinci PDex Plan Net IG](../../tutorials/fhir-conformance/hl7-fhir-da-vinci-pdex-plan-net-ig.md) on Aidbox.
 * Supported SMART Application Launch Framework Implementation Guide: Patient Portal Launch, Patient Standalone Launch, Provider EHR Launch, Provider Standalone Launch. Check the [sample](https://github.com/Aidbox/aidbox-project-samples#smart-on-fhir-aidbox-installation).
 * Released [Aidbox API constructor on zen (alpha version)](../../aidbox-configuration/aidbox-api-constructor.md).
 * Added [Aidbox projects](../../aidbox-configuration/aidbox-zen-lang-project/) that can be used to configure Aidboxes and validate data. Basically, Aidbox project is a directory with zen-lang edn files that describe Aidbox configuration.
 * 5 FHIR compartments are available as default in Aidbox. More details on [Compartments API](https://docs.aidbox.app/api-1/compartments).
 * Added Datadog [integration URL configuration](https://docs.aidbox.app/core-modules/logging-and-audit/aidbox-logs-and-datadog-integration#datadog-logging). So now you can specify in configuration if you want to use one of the following domains`datadoghq.com, us3.datadoghq.com, datadoghq.eu, ddog-gov.com`.
-* Added a tutorial on how to configure [HL7 FHIR Da Vinci PDex Plan Net IG](../../fhir-implementation-guides/hl7-fhir-da-vinci-pdex-plan-net-ig.md) on Aidbox.
+* Added a tutorial on how to configure [HL7 FHIR Da Vinci PDex Plan Net IG](../../tutorials/fhir-conformance/hl7-fhir-da-vinci-pdex-plan-net-ig.md) on Aidbox.
 * Supported SMART Application Launch Framework Implementation Guide: Patient Portal Launch, Patient Standalone Launch, Provider EHR Launch, Provider Standalone Launch. Check the [sample](https://github.com/Aidbox/aidbox-project-samples#smart-on-fhir-aidbox-installation).
 * Released [Aidbox API constructor on zen (alpha version)](../../aidbox-configuration/aidbox-api-constructor.md).
 
@@ -437,9 +437,9 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 * We've released a major Aidbox UI upgrade
 
-![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (1) (12) (1) (10) (10) (1) (11) (1) (1) (1) (1) (1) (1) (1) (1) (4).png>)
+![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (1) (12) (1) (10) (10) (1) (11) (1) (1) (1) (1) (1) (1) (1) (1) (10).png>)
 
-![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (1) (12) (1) (10) (10) (1) (11) (1) (1) (1) (1) (1) (1) (1) (1) (9).png>)
+![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (1) (12) (1) (10) (10) (1) (11) (1) (1) (1) (1) (1) (1) (1) (1) (10) (7).png>)
 
 * Updated REST Console (check out[ the tutorial](https://bit.ly/rest\_console\_tutorial)):
   * Explicit request headers `content-type, accept` etc

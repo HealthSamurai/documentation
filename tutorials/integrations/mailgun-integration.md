@@ -18,7 +18,7 @@ BOX_PROVIDER_MAILGUN__PROVIDER_FROM: Sender's Name <noreply@{{YOUR_DOMAIN}}>
 BOX_PROVIDER_MAILGUN__PROVIDER_PASSWORD: <password>
 ```
 
-You can find more about Mailgun environment variables [here.](../reference/configuration/environment-variables/mailgun-environment-variables.md)
+You can find more about Mailgun environment variables [here.](../../reference/configuration/environment-variables/mailgun-environment-variables.md)
 
 ### Creating `NotificationTemplate` resource
 
