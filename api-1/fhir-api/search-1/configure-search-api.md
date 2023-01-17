@@ -67,7 +67,7 @@ Assuming you already know how to use [configuration projects](../../../aidbox-co
  patient-repository
  {:zen/tags #{aidbox.repository.v1/repository}
   :resourceType "Patient"
-  :extra-parameters-sources :all ; allow to use SearchParameters from outside of repo
+  :extra-parameter-sources :all ; allow to use SearchParameters from outside of repo
   :search-parameters #{my-parameter}}
 
  repositories
@@ -82,7 +82,7 @@ Assuming you already know how to use [configuration projects](../../../aidbox-co
       {:repositories repositories}}}
 ```
 
-Firstly we import `aidbox.search-parameter.v1` and `aidbox.repository.v1` namespaces from .edn files. These are zen-namespaces we need to make an `aidbox/service` which name is `repositories`.
+First we import `aidbox.search-parameter.v1` and `aidbox.repository.v1` namespaces from .edn files. These are zen-namespaces we need to make an `aidbox/service` which name is `repositories`.
 
 This service is our concept of wrapping resourceType-specific entities, as search parameters, indexes, and more, into one entity, called **repository**. We will add indexes for search parameters soon.
 
@@ -116,7 +116,7 @@ Import `aidbox.index.v1` in the example above and add `:indexes` into `patient-r
  {:zen/tags #{aidbox.repository.v1/repository}
   :resourceType "Patient"
   :indexes #{my-index1}
-  :extra-parameters-sources :all
+  :extra-parameter-sources :all
   :search-parameters #{my-parameter}}
 ```
 
