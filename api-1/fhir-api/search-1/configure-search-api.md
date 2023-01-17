@@ -105,6 +105,12 @@ GET /Patient?brthd=lt2023
 You can always look into the definition of Aidbox-specific namespaces in [Profiles page](../../../profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile.md#check-if-your-profile-is-loaded)
 {% endhint %}
 
+Formal Zen SearchParameters description:
+
+{% content-ref url="zen-search-parameters.md" %}
+[zen-search-parameters.md](zen-search-parameters.md)
+{% endcontent-ref %}
+
 #### How to make my index for Zen Search Parameter automatically?
 
 You can make index by your own with [Index Suggestion API](../../../storage-1/indexes/get-suggested-indexes.md). However, Aidbox can be configured to make indexes for desired SearchParameters at start automatically.
@@ -153,3 +159,9 @@ CREATE INDEX aidbox_mng_idx_main_my_index2
 ON public.patient 
 USING gin (((jsonb_path_query_array(resource, '$.\"name\"[*].**?(@.type() == \"string\")'::jsonpath))::text) gin_trgm_ops)
 ```
+
+Formal description of Zen Indexes:
+
+{% content-ref url="../../../storage-1/indexes/zen-indexes.md" %}
+[zen-indexes.md](../../../storage-1/indexes/zen-indexes.md)
+{% endcontent-ref %}
