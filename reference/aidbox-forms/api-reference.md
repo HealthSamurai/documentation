@@ -863,7 +863,7 @@ params:
 | form              | link to the form in DB                                 | Map                     | yes       |
 | form.id           | SDCDocument/SDCWorkflow id                             | String                  | yes       |
 | form.resourceType |                                                        | SDCDocument/SDCWorkflow | yes       |
-| redirect-on-sing  | URI that used after form sign/amend event for redirect | URI                     | no        |
+| redirect-on-sign  | URI that used after form sign/amend event for redirect | URI                     | no        |
 
 Request:
 
@@ -877,7 +877,7 @@ params:
   form:
     id: doc-1
     resourceType: SDCDocument
-  redirect-on-sing: http://my.portal.com?param1=p1
+  redirect-on-sign: http://my.portal.com?param1=p1
 ```
 
 Result:
