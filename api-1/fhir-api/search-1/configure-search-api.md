@@ -86,7 +86,9 @@ Firstly we import `aidbox.search-parameter.v1` and `aidbox.repository.v1` namesp
 
 This service is our concept of wrapping resourceType-specific entities, as search parameters, indexes, and more, into one entity, called **repository**. We will add indexes for search parameters soon.
 
-We have one repository for Patient resourceType: `patient-repository`. It contains `:search-parameters` key with new SearchParameter `my-parameter`.  SearchParameter must contain:
+We have one repository for Patient resourceType: `patient-repository`. It contains `:search-parameters` key with new SearchParameter `my-parameter`. &#x20;
+
+SearchParameter must contain:
 
 * type: [FHIR Search Parameter types](./#search-parameters)
 * resource, containing resourceType and id
@@ -134,7 +136,7 @@ select * from pg_indexes where tablename = 'patient';
 
 #### How to make my index explicitly with SQL?
 
-Use `aidbox.index.v1/index` tag with `:expression` and [PostgreSQL index`:type`](https://www.postgresql.org/docs/15/indexes-types.html) fields.
+Use `aidbox.index.v1/index` tag with `:expression` and [PostgreSQL index`:type`](https://www.postgresql.org/docs/15/indexes-types.html) fields:
 
 ```clojure
  my-index2
