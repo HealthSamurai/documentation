@@ -2,6 +2,8 @@
 
 ### Index
 
+Zen Index validation schema:
+
 ```clojure
 {ns aidbox.index.v1
  import #{aidbox.search-parameter.v1
@@ -33,3 +35,9 @@ Index must contain:
 * table - name of the table
 * expression - SQL expression&#x20;
 * type - two possible values: `:gin` or `:btree`
+
+Auto-index is auto-generated based on Zen SearchParameter.&#x20;
+
+Auto-index must contain:
+
+* for - symbol with tag `search-parameter`
