@@ -49,7 +49,7 @@ Consider the following scenarios that demonstrate the difference between license
 
 A standard license allows running Aidbox locally or in Aidbox Sandbox for 14 days and then can be extended by the Health Samurai team.This license will be valid for 14 days. If your trial period expires, while you are installing your box, you’ll receive an error message:
 
-`License expires in %s. Please contact us for extended license.`
+`License expires in 2 days. Please contact us for extended license.`
 
 ### Development license
 
