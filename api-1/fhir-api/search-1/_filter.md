@@ -4,6 +4,28 @@ Aidbox offers the partial support of FHIR [\_filter](https://www.hl7.org/fhir/se
 
 #### Supported operators
 
+| Operation   | String | Number | Date | Token | Reference | Quantity |
+| ----------- | :----: | :----: | :--: | :---: | :-------: | :------: |
+| eq          |    +   |  +\*\* |   +  |  +\*  |    n/a    |  +\*\*\* |
+| ne          |    -   |  +\*\* |   +  |   -   |    n/a    |  +\*\*\* |
+| co          |    +   |    -   |   -  |  n/a  |    n/a    |    n/a   |
+| sw          |    +   |   n/a  |  n/a |  n/a  |    n/a    |    n/a   |
+| ew          |    +   |   n/a  |  n/a |  n/a  |    n/a    |    n/a   |
+| gt/ge/lt/le |    -   |    +   |   +  |  n/a  |    n/a    |  +\*\*\* |
+| po          |   n/a  |   n/a  |   -  |  n/a  |    n/a    |    n/a   |
+| ss          |   n/a  |   n/a  |  n/a |   -   |    n/a    |    n/a   |
+| sb          |   n/a  |   n/a  |  n/a |   -   |    n/a    |    n/a   |
+| in          |   n/a  |   n/a  |  n/a |   -   |    n/a    |    n/a   |
+| re          |   n/a  |   n/a  |  n/a |  n/a  |     -     |    n/a   |
+
+\* token search is case sensitive
+
+\*\* number search doesn't support implicit precision
+
+\*\*\* support only numbers, not system with code
+
+#### Examples
+
 ```
 # returns patient with specific id
 GET /fhir/Patient?_filter=id eq 'pt-2'
@@ -27,4 +49,3 @@ GET /fhir/Patient?_filter=(name co 'smi' or name co 'fed') or name co 'unex'
 ```
 
 If your application requires not supported \_filter functionality, please reach out to us via email, community chat, or private support chat.
-
