@@ -82,7 +82,7 @@ Assuming you already know how to use [configuration projects](../../../aidbox-co
       {:repositories repositories}}}
 ```
 
-First we import `aidbox.search-parameter.v1` and `aidbox.repository.v1` namespaces from .edn files. These are zen-namespaces we need to make an `aidbox/service` which name is `repositories`.
+First we import `aidbox.search-parameter.v1` and `aidbox.repository.v1` namespaces from edn files. These are zen-namespaces we need to make an `aidbox/service` which name is `repositories`.
 
 This service is our concept of wrapping resourceType-specific entities, as search parameters, indexes, and more, into one entity, called **repository**. We will add indexes for search parameters soon.
 
