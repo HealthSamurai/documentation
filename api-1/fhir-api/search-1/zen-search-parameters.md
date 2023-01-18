@@ -2,6 +2,8 @@
 
 ### SearchParameter
 
+Zen SearchParameter validation schema:
+
 ```clojure
 {ns aidbox.search-parameter.v1
 
@@ -38,6 +40,8 @@ SearchParameter must contain following keys:  &#x20;
 * expression - [jsonknife](zen-search-parameters.md#jsonpath-vs-jsonknife) expression containing path in the resource to search for
 
 ### Repository
+
+Zen Repository validation schema:
 
 ```clojure
 {ns aidbox.repository.v1
