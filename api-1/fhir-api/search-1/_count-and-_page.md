@@ -10,7 +10,8 @@ Search results can contain many records, for more convenient work we can use pag
 
 Configure default value for count search parameter with&#x20;
 
-<pre class="language-yaml"><code class="lang-yaml"><strong>BOX_SEARCH_DEFAULT__PARAMS_COUNT=&#x3C;number></strong></code></pre>
+<pre class="language-yaml"><code class="lang-yaml"><strong>BOX_SEARCH_DEFAULT__PARAMS_COUNT=&#x3C;number>
+</strong></code></pre>
 
 The default value is 100.&#x20;
 

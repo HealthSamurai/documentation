@@ -4,7 +4,7 @@ description: Search resource provides fine-grained control over search parameter
 
 # Search Resource
 
-Search meta-resource can be used to define search parameters or override the existing one. Search resources take precedence over [SearchParameters](../search-1/searchparameter.md). This may be useful for performance optimization of built-in FHIR SearchParameters or for the implementation of complicated custom searches.
+Search meta-resource can be used to define search parameters or override the existing one. Search resources take precedence over [SearchParameters](searchparameter.md). This may be useful for performance optimization of built-in FHIR SearchParameters or for the implementation of complicated custom searches.
 
 ```yaml
 PUT /Search/Patient.name

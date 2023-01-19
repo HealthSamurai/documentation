@@ -19,11 +19,11 @@ There is no way to implement the efficient multidimensional prefix search with r
 
 Here is how it works.
 
-First of all, you have to describe priority groups of attributes with **by** parameter.  Groups are separated by `;` and inside group you specify the list of paths separated by `,`.  Each path expression consists of dot separated elements and indexes and should end with primitive type (examples: `name.given` or `identifier.value`).
+First of all, you have to describe priority groups of attributes with **by** parameter. Groups are separated by `;` and inside group you specify the list of paths separated by `,`. Each path expression consists of dot separated elements and indexes and should end with primitive type (examples: `name.given` or `identifier.value`).
 
 Result will be sorted with order of priority groups. For example, if you want to rate first matches of name, identifier and birth of data, and second matches in address and telecom you will use following expression:`name.family,name.given,identifier.value,birthDate;address.state,address.city,address.line,telecom.value`
 
-Let's say you are searching `joh 1979 ny` Aidbox will initially search in first priority group by expression like this:&#x20;
+Let's say you are searching `joh 1979 ny` Aidbox will initially search in first priority group by expression like this:
 
 ```
 expr = extract_space_separated(resource, paths) 
@@ -31,7 +31,7 @@ where expr ilike ' % joh' AND  expr ilike '% 1979'
 limit 50
 ```
 
-If this query returns  50 records, aidbox will respond with this records.
+If this query returns 50 records, aidbox will respond with this records.
 
 ```yaml
 GET /Patient/$lookup?\
@@ -49,7 +49,7 @@ Each **path expression** should point to primitive element!
 {% endhint %}
 
 * **by:** `;-separated` list of priority groups. Each group is `,-separated` list of **path expressions**.
-* **sort**:  `,-separated` list of **path expressions** to sort by
+* **sort**: `,-separated` list of **path expressions** to sort by
 * **q:** is `+` or space separated term (prefixes) to search
 * **limit**: is internal search limit (default 200)
 * **count**: number results to return (default 50)

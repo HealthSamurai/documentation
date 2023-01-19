@@ -24,7 +24,7 @@ Supported [underscored parameters](../../api-1/fhir-api/search-1/#special-parame
 * \_content
 * \_createdAt
 * \_lastUpdated
-* [Dot expressions](../../api-1/fhir-api/usdmatch/.-expressions.md)
+* [Dot expressions](../../api-1/fhir-api/search-1/.-expressions.md)
 
 Not supported:
 

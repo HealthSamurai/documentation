@@ -35,8 +35,8 @@ Where **param** can be one of:
 
 * [Underscored parameter](./#special-parameters) started with underscore, like **`_sort`**
 * Name of [search parameter](searchparameter.md)
-* [Chained parameter ](../usdmatch/chained-parameters.md)expression
-* [Dotted expression ](../usdmatch/.-expressions.md)- started with **`.`**
+* [Chained parameter ](chained-parameters.md)expression
+* [Dotted expression ](.-expressions.md)- started with **`.`**
 
 Simple search by patient name:
 
@@ -56,27 +56,27 @@ GET /Patient?name=Max&_elements=id, birthDAte
 
 ## Special Parameters
 
-| Parameter                                                                        | Type   | Description                                                                        |
-| -------------------------------------------------------------------------------- | ------ | ---------------------------------------------------------------------------------- |
-| [\_id](../usdmatch/search-parameters-list/\_id.md)                               | FHIR   | Search and sort by resource id                                                     |
-| [\_lastUpdated](../usdmatch/search-parameters-list/\_lastupdated.md)             | FHIR   | Search and sort by resource last modification date                                 |
-| [\_text](../usdmatch/search-parameters-list/\_text-and-\_content.md)             | FHIR   | Full text search by resource narrative                                             |
-| [\_content](../usdmatch/search-parameters-list/\_text-and-\_content.md)          | FHIR   | Full text search by resource content                                               |
-| [\_ilike](../usdmatch/search-parameters-list/\_ilike.md)                         |        | `ILIKE` search by resource content                                                 |
-| [\_elements](../usdmatch/search-parameters-list/\_elements.md)                   | FHIR+  | Include or exclude specific resource elements                                      |
-| [\_summary](../usdmatch/search-parameters-list/\_summary.md)                     | FHIR   | Include only summary elements                                                      |
-| [\_list](../usdmatch/search-parameters-list/\_list.md)                           | FHIR   | Search resources included into specific List                                       |
-| [\_sort](../usdmatch/search-parameters-list/\_sort.md)                           | FHIR   | Sort search results                                                                |
-| [\_total](../usdmatch/search-parameters-list/\_total-or-\_countmethod.md)        | FHIR   | Turn on/off total count                                                            |
-| [\_include](../usdmatch/search-parameters-list/\_include-and-\_revinclude.md)    | FHIR   | Include referenced resources into result                                           |
-| [\_with](../usdmatch/search-parameters-list/\_include-and-\_revinclude.md)       | Aidbox | Include into result resources (compact way compared to \_include and \_revinclude) |
-| [\_revinclude](../usdmatch/search-parameters-list/\_include-and-\_revinclude.md) | FHIR   | Include into result resources, which reference searched resources                  |
-| [\_explain](../usdmatch/search-parameters-list/\_explain.md)                     |        | Get query execution plan                                                           |
-| [\_result](../usdmatch/search-parameters-list/\_result.md)                       |        | Change result format                                                               |
-| \_security                                                                       | FHIR   |                                                                                    |
-| [\_profile](../usdmatch/search-parameters-list/\_profile.md)                     | FHIR   | Search by resource profile                                                         |
-| \_has                                                                            | FHIR   |                                                                                    |
-| \_tag                                                                            | FHIR   |                                                                                    |
+| Parameter                                     | Type   | Description                                                                        |
+| --------------------------------------------- | ------ | ---------------------------------------------------------------------------------- |
+| [\_id](\_id.md)                               | FHIR   | Search and sort by resource id                                                     |
+| [\_lastUpdated](\_lastupdated.md)             | FHIR   | Search and sort by resource last modification date                                 |
+| [\_text](\_text-and-\_content.md)             | FHIR   | Full text search by resource narrative                                             |
+| [\_content](\_text-and-\_content.md)          | FHIR   | Full text search by resource content                                               |
+| [\_ilike](\_ilike.md)                         |        | `ILIKE` search by resource content                                                 |
+| [\_elements](\_elements.md)                   | FHIR+  | Include or exclude specific resource elements                                      |
+| [\_summary](\_summary.md)                     | FHIR   | Include only summary elements                                                      |
+| [\_list](\_list.md)                           | FHIR   | Search resources included into specific List                                       |
+| [\_sort](\_sort.md)                           | FHIR   | Sort search results                                                                |
+| [\_total](\_total-or-\_countmethod.md)        | FHIR   | Turn on/off total count                                                            |
+| [\_include](\_include-and-\_revinclude.md)    | FHIR   | Include referenced resources into result                                           |
+| [\_with](\_include-and-\_revinclude.md)       | Aidbox | Include into result resources (compact way compared to \_include and \_revinclude) |
+| [\_revinclude](\_include-and-\_revinclude.md) | FHIR   | Include into result resources, which reference searched resources                  |
+| [\_explain](\_explain.md)                     |        | Get query execution plan                                                           |
+| [\_result](\_result.md)                       |        | Change result format                                                               |
+| \_security                                    | FHIR   |                                                                                    |
+| [\_profile](\_profile.md)                     | FHIR   | Search by resource profile                                                         |
+| \_has                                         | FHIR   |                                                                                    |
+| \_tag                                         | FHIR   |                                                                                    |
 
 ## Search Parameters
 

@@ -107,8 +107,8 @@ You can always look into the definition of Aidbox-specific namespaces in [Profil
 
 Formal Zen SearchParameters description:
 
-{% content-ref url="../usdmatch/zen-search-parameters.md" %}
-[zen-search-parameters.md](../usdmatch/zen-search-parameters.md)
+{% content-ref url="zen-search-parameters.md" %}
+[zen-search-parameters.md](zen-search-parameters.md)
 {% endcontent-ref %}
 
 #### How to make my index for Zen Search Parameter automatically?

@@ -32,7 +32,7 @@ Below are parameters to use in both resourceType and specific resource endpoints
 | `_count` & `_page`                        | Work as described [here](https://docs.aidbox.app/api-1/fhir-api/search-1/\_count-and-\_page)                                                                                                                                 |
 | `_total` & `_totalMethod`                 | Work as described [here](https://docs.aidbox.app/api-1/fhir-api/search-1/\_total-or-\_countmethod)                                                                                                                           |
 
-With parameters which start with [dot](../fhir-api/usdmatch/.-expressions.md) you can filter resources by equality, e.g. `.name.0.family=<string>`
+With parameters which start with [dot](../fhir-api/search-1/.-expressions.md) you can filter resources by equality, e.g. `.name.0.family=<string>`
 
 ### Example
 
@@ -101,7 +101,7 @@ changes:
       given: [Amanda]
 ```
 
-We can filter events by [dot expressions](../fhir-api/usdmatch/.-expressions.md). Filtering Patient events by family name:
+We can filter events by [dot expressions](../fhir-api/search-1/.-expressions.md). Filtering Patient events by family name:
 
 ```yaml
 GET /Patient/$changes?version=1&.name.0.family=Wood

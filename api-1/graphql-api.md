@@ -60,7 +60,7 @@ Also for attributes with Reference type unions are created for direct and revers
 
 ### Handling \_revinclude
 
-FHIR GraphQL [does not support](https://hl7.org/fhir/graphql.html#searching) [\_revinclude](fhir-api/usdmatch/search-parameters-list/\_include-and-\_revinclude.md) Search parameter. In Aidbox you can use reverse include in such format:&#x20;
+FHIR GraphQL [does not support](https://hl7.org/fhir/graphql.html#searching) [\_revinclude](fhir-api/search-1/\_include-and-\_revinclude.md) Search parameter. In Aidbox you can use reverse include in such format:&#x20;
 
 ```
 <revIncludeResourceType>s_as_<includedResourceReferenceSearchParameter> 

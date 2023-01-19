@@ -8,18 +8,18 @@ description: Release notes for years 2019-2020
 
 ### Features
 
-* Search and sort by [\_createdAt](../../../api-1/fhir-api/usdmatch/search-parameters-list/\_lastupdated.md) parameter
+* Search and sort by [\_createdAt](../../../api-1/fhir-api/search-1/\_lastupdated.md) parameter
 * Search by tokens with [:text modifier](../../../api-1/fhir-api/search-1/#common)
 * Filters in [Change API](../../../api-1/reactive-api-and-subscriptions/usdsnapshot-usdwatch-and-usdversions-api.md)
 * [Azure API](../../../storage-1/azure.md)
-* [SQL Parameters](../../../api-1/fhir-api/usdmatch/search-resource.md)
+* [SQL Parameters](../../../api-1/fhir-api/search-1/search-resource.md)
 
 ## 0.4.9 \[9 March 2020]
 
 ### Features
 
 * [Reactive API & Subscriptions](../../../api-1/reactive-api-and-subscriptions/)
-* New [design/debug](../../../api-1/fhir-api/usdmatch/custom-search.md#design-aidboxquery) endpoint for AidboxQuery
+* New [design/debug](../../../api-1/fhir-api/search-1/custom-search.md#design-aidboxquery) endpoint for AidboxQuery
 * Audit customization hook
 * New Clojure engine for AccessPolicy
 * Strip empty values in CRUD
@@ -28,14 +28,14 @@ description: Release notes for years 2019-2020
 
 ### Features
 
-* Complete rewrite of the [(rev)include](../../../api-1/fhir-api/usdmatch/search-parameters-list/\_include-and-\_revinclude.md) engine
+* Complete rewrite of the [(rev)include](../../../api-1/fhir-api/search-1/\_include-and-\_revinclude.md) engine
 * New [Mapping module](../../../tools/mappings.md)
 * New [Hl7v2 module](../../../modules-1/hl7-v2-integration.md)
 * New engine for AccessPolicy - [matcho](../../../security-and-access-control-1/security/access-control.md#matcho-engine)
 * New [Encryption API](../../../api-1/encryption-api.md)
 * [X-Audit header](../../../app-development-guides/receive-logs-from-your-app/x-audit-header.md) to add custom data to Aidbox logs
 * [X-Debug: policy](../../../security-and-access-control-1/security/access-control.md#using-x-debug-policy-header) header to trace policy evaluation
-* Support for [\_elements](../../../api-1/fhir-api/usdmatch/search-parameters-list/\_elements.md#elements-and-ref-includes) for (rev)included resources
+* Support for [\_elements](../../../api-1/fhir-api/search-1/\_elements.md#elements-and-ref-includes) for (rev)included resources
 
 Plenty of bug fixes!
 
@@ -47,9 +47,9 @@ Plenty of bug fixes!
 Now references to contained resources are represented as `localRef` attribute in [Aidbox Format](../../../modules-1/fhir-resources/aidbox-and-fhir-formats.md)
 {% endhint %}
 
-* Managed SQL for FHIR search by [SearchQuery](../../../api-1/fhir-api/usdmatch/searchquery.md)
-* A default timeout for Search Operations with [\_timeout](../../../api-1/fhir-api/usdmatch/search-parameters-list/\_timeout.md) param for high-load
-* Ordered search in [$lookup](../../../api-1/fhir-api/usdmatch/usdlookup.md)
+* Managed SQL for FHIR search by [SearchQuery](../../../api-1/fhir-api/search-1/searchquery.md)
+* A default timeout for Search Operations with [\_timeout](../../../api-1/fhir-api/search-1/\_timeout.md) param for high-load
+* Ordered search in [$lookup](../../../api-1/fhir-api/search-1/usdlookup.md)
 * microseconds precision for timestamps (Resource.meta.lastUpdated)&#x20;
 * Better Aidbox <=> FHIR conversion for first-class extensions
 * Added JWT sub & iss and client IP address to logs
@@ -70,7 +70,7 @@ It's time to upgrade your database - please stop your container and change image
 ### Features
 
 * In REST Console support for multiline URL line using `\`
-* New  `/<RT>/$lookup`  operation for efficient lookup search in millions of records - [read more](../../../api-1/fhir-api/usdmatch/usdlookup.md)
+* New  `/<RT>/$lookup`  operation for efficient lookup search in millions of records - [read more](../../../api-1/fhir-api/search-1/usdlookup.md)
 * [AidboxQuery](../../../tutorials/data-api/custom-search.md) extended with count-query and params types and defaults
 * New `/<RT>/$load` and `/$load` [bulk operations](../../../api-1/bulk-api-1/#usdload) were added and [$import](../../../api-1/bulk-api-1/#usdimport) was upgraded
 * aidbox/db upgrade to 11.4 + fixes in json\_knife pg extension - (deep patterns, indexes)&#x20;
@@ -181,8 +181,8 @@ This release is mostly dedicated to stabilisation of new auth module. Check-out 
 * Fixed [Aidbox](https://www.health-samurai.io/aidbox) to FHIR data transformation bug when polymorphic attributes wasn't properly handled in recursive elements such as `QuestionnaireResponse.item`
 * Support [`_total`](https://build.fhir.org/search.html#total) search parameter (\_totalMethod=count also works)
 * Support `page` search parameter (\_page - also works)
-* Added [$query](../../../api-1/fhir-api/usdmatch/custom-search.md) - SQL query into REST Endpoint
-* [\_query](../../../api-1/fhir-api/usdmatch/custom-search.md) - custom search related to resourceType
+* Added [$query](../../../api-1/fhir-api/search-1/custom-search.md) - SQL query into REST Endpoint
+* [\_query](../../../api-1/fhir-api/search-1/custom-search.md) - custom search related to resourceType
 * Implemented Compartments for requests like `/fhir/Patient/xxx/Observation`; Compartments are defined with CompartmentDefinition resource
 * `Observation/$lastn` is accessible as a part of Patient's compartment: `/fhir/Patient/ID/Observation/$lastn`
 * Implemented `:iterate` modifier for `_include` search parameter
