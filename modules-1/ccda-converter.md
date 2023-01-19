@@ -277,6 +277,8 @@ In case of failed validation endpoint will return a list of errors and warnings:
 
 #### Endpoint options
 
+Options are passed as query-string parameters, i.e. `/ccda/validate?option1=value1&option2=value2`.
+
 | Option   | Values                                                                    | Description                    |
 | -------- | ------------------------------------------------------------------------- | ------------------------------ |
 | `method` | <p><code>xsd | schematron | both</code><br>Default: <code>both</code></p> | Type of validation to perform. |
