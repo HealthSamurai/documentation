@@ -176,6 +176,7 @@ Options are passed as query-string parameters, i.e. `/ccda/persist?create-docref
 | Option          | Values                                                          | Description                                                                         |
 | --------------- | --------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | `create-docref` | <p><code>true | false</code><br>Default: <code>false</code></p> | Specifies if a DocumentReference resource is needed to store original XML document. |
+| `tenant-id`     | <p>ID of Tenant resource<br>Default: none</p>                   | For [Smartbox](smartbox/) users only. Assigns Tenant to all populated resources.    |
 
 ### Validating a C-CDA document
 
