@@ -1,4 +1,4 @@
-# Index management
+# Get suggested indexes
 
 Since version 2211, Aidbox can suggest indexes for Search API.&#x20;
 
@@ -24,7 +24,7 @@ Supported [underscored parameters](../../api-1/fhir-api/search-1/#special-parame
 * \_content
 * \_createdAt
 * \_lastUpdated
-* [Dot expressions](../../api-1/fhir-api/search-1/.-expressions.md)
+* [Dot expressions](../../api-1/fhir-api/usdmatch/.-expressions.md)
 
 Not supported:
 

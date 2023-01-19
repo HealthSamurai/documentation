@@ -2,7 +2,7 @@
 description: Aidbox database schema
 ---
 
-# Database
+# Database schema
 
 All resource types in Aidbox are stored in different tables, named with a lowercased resource type name. All these tables have a similar schema:
 
@@ -41,7 +41,7 @@ LIMIT 10
 
 ## Custom Queries
 
-You can define and expose over REST API sophisticated queries in SQL on FHIR data using [Custom Queries](../api-1/fhir-api/search-1/custom-search.md).
+You can define and expose over REST API sophisticated queries in SQL on FHIR data using [Custom Queries](../api-1/fhir-api/usdmatch/custom-search.md).
 
 ## Tutorials
 
