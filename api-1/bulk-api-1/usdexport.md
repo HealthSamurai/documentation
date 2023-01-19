@@ -60,7 +60,7 @@ Set the following environment variables:
 
 | Parameter       | Description                                                                                                                            |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `_outputFormat` | Specifies format in which the server generates files. <br /> The following formats are supported: <br /> <ul><li>`application/fhir+ndjson` — `.ndjson` files will be saved </li> <li>`application/fhir+ndjson+gzip`  — `.ndjson.gzip` files will be saved </li></ul>
+| `_outputFormat` | Specifies format in which the server generates files. <br /> The following formats are supported: <br /> <ul><li>`application/fhir+ndjson` — `.ndjson` files will be saved </li> <li>`application/fhir+ndjson+gzip`  — `.ndjson.gz` files will be saved </li></ul>
 | `_type`         | Includes only the specified types. This list is comma-separated.                                                                       |
 | `_since`        | Includes only resources changed after the specified time.                                                                              |
 | `patient`       | Export data that belongs only to listed patient. Format: comma-separated list of patient ids. Available only for patient-level export. |
