@@ -16,10 +16,6 @@ Aidbox C-CDA converter aims to handle all data elements included into [USCDI v1]
 You can quickly evaluate C-CDA to FHIR Converter on our [C-CDA to FHIR Demo page](https://ccda.aidbox.app/).
 {% endhint %}
 
-{% hint style="warning" %}
-C-CDA to FHIR mapping is still in development stage. You can check the current state of the mapping on [this spreadsheet](https://docs.google.com/spreadsheets/d/1rrjciXnSkAv7Le-\_wTQzjWNHzJhTKtV-UqzNBpza02c/edit?usp=sharing).
-{% endhint %}
-
 ### Converting a C-CDA document to FHIR
 
 To perform C-CDA to FHIR conversion without storing FHIR resources in the Aidbox database, use the `/ccda/to-fhir` endpoint. Simply `POST` C-CDA XML document in request body as in the following example:
