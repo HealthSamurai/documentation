@@ -16,6 +16,7 @@ Supported Lisp functions are tested and documented using [zen-lang](https://gith
 * `get-schema`
 * `vals`
 * `includes?`
+* `nil?`
 * `+`
 * `-`
 * `*`
@@ -149,6 +150,22 @@ Examples:
 (includes? [0 2 1] 10) ;; => false
 ;; ----------------
 (includes? [(+ 2 1)] 3) ;; => true
+```
+
+### `nil?`
+
+Returns true if x is nil, false otherwise.
+
+Examples:
+
+```clojure
+(nil? nil) => true
+;; -------------------
+(nil? 1) ;; => false
+;; -------------------
+(nil? []) ;; => false
+;; -------------------
+(nil? \"H\") ;; => false
 ```
 
 ### `+`
