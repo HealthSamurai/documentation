@@ -4,7 +4,7 @@ description: Pass Touchstone FHIR4-0-1-USCore-ClinData the test suite
 
 # Touchstone FHIR USCore ClinData
 
-You can pass Touchstone FHIR 4.0.1 basic server test suite on self-hosted Aidbox or in Aidbox User Portal Sandbox. Both self-hosted and the Sandbox Aidboxes use the same Configuration Projects.
+You can pass Touchstone FHIR 4.0.1 USCore ClinData test suite on self-hosted Aidbox or in Aidbox User Portal Sandbox. Both self-hosted and the Sandbox Aidboxes use the same Configuration Projects.
 
 ## Pass with Aidbox User Portal Sandbox
 
@@ -38,16 +38,16 @@ You can pass Touchstone FHIR 4.0.1 basic server test suite on self-hosted Aidbox
 
 1. Go to [https://touchstone.aegis.net/touchstone/testdefinitions?selectedTestGrp=/FHIR4-0-1-Advanced/USCore-ClinData\&activeOnly=false\&contentEntry=TEST\_SCRIPTS](https://touchstone.aegis.net/touchstone/testdefinitions?selectedTestGrp=/FHIR4-0-1-Advanced/USCore-ClinData\&activeOnly=false\&contentEntry=TEST\_SCRIPTS)
 2. Select all tests
-3. Press `Create Test Setup`
+3. Press **Create Test Setup**
 4. Select your `Test System` **Destination**
 5. Put `org-1` **organizationId**
 6. Put `pt-1` **patientId**
 7. Put `loc-1` **locationId**
 8. Put `pr-1` **practitionerId**
 9. Put `pt-1-provenance` **provenanceId**
-10. Press `Save`
+10. Press **Save**
 
 ### Run Test Setup
 
 1. Go to your **Test Setup**
-2. Press `Execute`
+2. Press **Execute**
