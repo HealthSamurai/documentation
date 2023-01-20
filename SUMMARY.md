@@ -51,6 +51,7 @@
   * [Working with pgAgent](tutorials/administration/working-with-pgagent.md)
 * [FHIR conformance](tutorials/fhir-conformance/README.md)
   * [Touchstone FHIR 4.0.1 basic server](tutorials/fhir-conformance/touchstone-fhir-4.0.1-basic-server.md)
+  * [Touchstone FHIR USCore ClinData](tutorials/fhir-conformance/touchstone-fhir-uscore-clindata.md)
   * [How to enable US Core IG](tutorials/fhir-conformance/how-to-enable-us-core-ig/README.md)
     * [Start Aidbox with US Core IG enabled](tutorials/fhir-conformance/how-to-enable-us-core-ig/start-aidbox-with-us-core-ig-enabled.md)
     * [Add US Core IG to a running Aidbox instance](tutorials/fhir-conformance/how-to-enable-us-core-ig/add-us-core-ig-to-a-running-aidbox-instance.md)
