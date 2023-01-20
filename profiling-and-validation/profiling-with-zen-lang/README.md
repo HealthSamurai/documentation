@@ -46,26 +46,6 @@ We recommend to load Zen FHIR packages using an [Aidbox Configuration project](.
 [enable-igs.md](../../aidbox-configuration/aidbox-zen-lang-project/enable-igs.md)
 {% endcontent-ref %}
 
-There are also several other _deprecated_ ways to use Zen FHIR packages:
-
-#### [npm FHIR R4](https://www.npmjs.com/browse/depended/@zen-lang/hl7-fhir-r4-core) and [FHIR STU 3](https://www.npmjs.com/browse/depended/@zen-lang/hl7-fhir-r3-core)
-
-Install the required `npm` packages and set `AIDBOX_ZEN_PATHS` to a directory which _contains_ `node_modules` with them:
-
-```
-AIDBOX_ZEN_PATHS=path/to/parent-of-node_modules/
-```
-
-#### [Standalone Aidbox projects](https://github.com/zen-lang/fhir/releases/latest)
-
-Set `AIDBOX_ZEN_PATHS` to download URLs of all the required packages. Multiple URLs are separated by a comma.
-
-```
-AIDBOX_ZEN_PATHS="url:zip:https://github.com/zen-lang/fhir/releases/latest/download/hl7-fhir-us-core.zip
-                 ,url:zip:https://github.com/zen-lang/fhir/releases/latest/download/hl7-fhir-us-carin-bb.zip
-                 ,url:zip:https://github.com/zen-lang/fhir/releases/latest/download/hl7-fhir-us-davinci-pdex.zip"
-```
-
 ### Convert custom FHIR profiles to Zen FHIR package
 
 Our [`zen-lang/fhir`](https://github.com/zen-lang/fhir/blob/main/README.md) tool allows you to generate zen schemas for custom FHIR profiles and use them in your [Aidbox Configuration projects](../../aidbox-configuration/aidbox-zen-lang-project/).&#x20;
