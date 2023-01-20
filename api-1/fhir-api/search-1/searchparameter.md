@@ -133,7 +133,9 @@ name: precondition
 type: token
 resource: {id: ServiceRequest, resourceType: Entity}
 expression:
-- [extension, {url: 'http://hl7.org/fhir/StructureDefinition/servicerequest-precondition'}, value, CodeableConcept, coding, code]
+- [extension, {url: 'http://hl7.org/fhir/StructureDefinition/servicerequest-precondition'}, 
+value, CodeableConcept, coding, code]
+
 ```
 {% endtab %}
 {% endtabs %}
