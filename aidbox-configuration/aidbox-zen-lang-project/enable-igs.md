@@ -26,12 +26,16 @@ You can enable FHIR IGs you want to use by specifying dependencies in the `zen-p
 
 You need to go through the following steps:
 
-1. Specify zen FHIR IGs in your zen-package.edn
+1. Specify zen FHIR IGs in your `zen-package.edn`
 2. Import the zen FHIR IGs entrypoints
 3. Commit changes to your Aidbox configuration project
 4. Restart Aidbox and verify that IGs are enabled
 
 All of them are covered in a greater detail below.
+
+{% hint style="warning" %}
+Zen FHIR packages require `AIDBOX_CORRECT_AIDBOX_FORMAT=true` environment variable.
+{% endhint %}
 
 ### Specify zen FHIR IGs in your zen-package.edn
 

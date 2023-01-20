@@ -1,10 +1,10 @@
 ---
 description: >-
-  Enable the US Core Implementation Guide, extend and validate data against this
-  profile.
+  Enable the US Core Implementation Guide, extend it with profile and validate
+  data against it
 ---
 
-# 🎓 Extend an IG with a custom zen profile
+# 🎓 Load zen profiles into Aidbox
 
 {% hint style="info" %}
 Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [contact](../../contact-us.md) us if you have questions, feedback or suggestions.
@@ -59,6 +59,7 @@ You also need to update an entry file, `zrc/system.edn`. It is used, among other
 
  MyPatientProfile
  {:zen/tags #{zen/schema zen.fhir/profile-schema}
+  ;; :confirms is needed only if you want to extend an existing profile
   :confirms #{hl7-fhir-us-core.us-core-patient/schema}
   :zen.fhir/type "Patient"
   :zen.fhir/profileUri "urn:profile:MyPatientProfile"

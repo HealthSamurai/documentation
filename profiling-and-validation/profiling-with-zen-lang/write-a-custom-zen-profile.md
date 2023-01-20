@@ -1,7 +1,3 @@
----
-description: Create a simple profile with zen
----
-
 # Write a custom zen profile
 
 {% hint style="info" %}
@@ -16,10 +12,32 @@ Note: you **can not** use Attributes and [zen profiles](./) on the same resource
 Full syntax description and examples
 {% endembed %}
 
-Zen-lang profile schema must be tagged with `zen.fhir/profile-schema` , describe data structure in the [Aidbox format](../../modules-1/fhir-resources/aidbox-and-fhir-formats.md) and conform to the following schema:
+## Validation modes supported with zen schemas
+
+Zen schemas are used by Aidbox for validating resources e.g. in [FHIR CRUD API](../../api-1/api/crud-1/). Such zen schemas must be tagged with either `zen.fhir/base-schema` or `zen.fhir/profile-schema`. Additionally they must have `:zen.fhir/type` and `:zen.fhir/profileUri` keys specified.
+
+### `zen.fhir/base-schema`
+
+Schemas tagged with `zen.fhir/base-schema` are used to validate every resource of a specified type. When loaded into Aidbox they will be used in place of the default JSON schemas.
+
+{% code title="zen.fhir/base-schema" %}
+```clojure
+{:zen/tags #{zen/schema zen/tag}
+  :zen/desc "This schema should be used to validate all resources of its type"
+  :confirms #{structure-schema}
+  :type     zen/map
+  :require  #{:zen.fhir/type}}
+```
+{% endcode %}
+
+### `zen.fhir/profile-schema`
+
+Schemas tagged with `zen.fhir/profile-schema` are used to validate resources that mention their `:zen.fhir/profileUri` in the `meta.profile` attribute.
+
+Those schemas must be tagged with `zen.fhir/profile-schema`, describe data structure in the [Aidbox format](../../modules-1/fhir-resources/aidbox-and-fhir-formats.md) and conform to the following schema:
 
 {% code title="zen.fhir/profile-schema" %}
-```
+```clojure
 {:zen/tags #{zen/tag zen/schema}
  :type     zen/map
  :confirms #{zen.fhir/structure-schema}
@@ -28,10 +46,10 @@ Zen-lang profile schema must be tagged with `zen.fhir/profile-schema` , describe
 ```
 {% endcode %}
 
-`zen.fhir/profile-schema` and every nested schema must conform to the following schema:
+`zen.fhir/profile-schema`, by virtue of being a `zen.fhir/nested-schema`, must also conform to the following schema:
 
 {% code title="zen.fhir/nested-schema" %}
-```
+```clojure
 {:zen/tags #{zen/schema}
  :type zen/map
  :keys {:fhir/flags {:type zen/set}
@@ -53,7 +71,7 @@ Zen-lang profile schema must be tagged with `zen.fhir/profile-schema` , describe
 ```
 {% endcode %}
 
-Description of used schema keys:
+## Description of various schema keys
 
 | key                         |          | description                                                                                                                          |
 | --------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------ |
@@ -67,11 +85,7 @@ Description of used schema keys:
 | zen.fhir/value-set.symbol   | optional | symbol referring to `zen.fhir/value-set` schema, used on validation to check data against a valueSet                                 |
 | zen.fhir/value-set.strength | optional | keyword specifying strength of binding                                                                                               |
 
-{% hint style="info" %}
-To validate data against custom zen profiles make sure namespace with profile zen-lang schemas is imported in `AIDBOX_ZEN_ENTRYPOINT` ns
-{% endhint %}
-
-### Examples
+## Examples
 
 #### `:zen.fhir/reference`&#x20;
 

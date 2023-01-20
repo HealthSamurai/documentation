@@ -38,8 +38,8 @@ Aidbox MDM module provides multiple API methods to match resources and sync MDM 
 
 Rest operation to match resource in Aidbox and FHIR format
 
-{% content-ref url="../api-1/fhir-api/usdmatch/" %}
-[usdmatch](../api-1/fhir-api/usdmatch/)
+{% content-ref url="../api-1/fhir-api/usdmatch.md" %}
+[usdmatch.md](../api-1/fhir-api/usdmatch.md)
 {% endcontent-ref %}
 
 RPC operation to match resource in Aidbox format

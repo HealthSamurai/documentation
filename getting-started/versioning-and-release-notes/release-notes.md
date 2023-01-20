@@ -73,8 +73,8 @@
 * Search API
   * Added [execute type in AidboxQuery](../../api-1/fhir-api/search-1/custom-search.md#query-types)
   * Added [FHIR compliant date search](../../api-1/fhir-api/search-1/date-search.md)
-  * Added 180-second [timeout](../../api-1/fhir-api/search-1/\_timeout.md) for [(rev)include queries](../../api-1/fhir-api/search-1/\_include-and-\_revinclude.md)
-  * **Breaking change:** removed limit of 1000 in [\_count queries](../../api-1/fhir-api/search-1/\_count-and-\_page.md)
+  * Added 180-second [timeout](../../api-1/fhir-api/search-1/search-parameters-list/\_timeout.md) for [(rev)include queries](../../api-1/fhir-api/search-1/search-parameters-list/\_include-and-\_revinclude.md)
+  * **Breaking change:** removed limit of 1000 in [\_count queries](../../api-1/fhir-api/search-1/search-parameters-list/\_count-and-\_page.md)
 * FHIR API for EHRs
   * Supported [multitenancy](../../modules-1/smartbox/background-information/multitenancy-approach.md)
   * Added an option set up [EHR-level customization](../../modules-1/smartbox/how-to-guides/set-up-ehr-level-customization.md) (logos and templates)
@@ -161,7 +161,7 @@
 * Added an option to enable [ACL checks for searches in conditional operations](../../security-and-access-control-1/acl.md#conditional-crud).
 * Added `BOX_FEATURES_TERMINOLOGY_IMPORT_SYNC` environment variable to enable sync [terminology bundle file load](../../terminology/terminology-api/).
 * Added `plain` option to use [`$import`](../../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md) with non-gzipped files.
-* Added support of [entry.search.mode ](../../api-1/fhir-api/search-1/search-with-related-resources.md#distinguish-between-matched-and-related-resources)field when using [\_include or \_revinclude](../../api-1/fhir-api/search-1/\_include-and-\_revinclude.md) search parameters.
+* Added support of [entry.search.mode ](../../api-1/fhir-api/search-1/search-with-related-resources.md#distinguish-between-matched-and-related-resources)field when using [\_include or \_revinclude](../../api-1/fhir-api/search-1/search-parameters-list/\_include-and-\_revinclude.md) search parameters.
 * Added [`profile`](../../api-1/fhir-api/metadata.md#notes) property to the CapabilityStatement resource.
 * Added configurable `refresh_token_expiration` parameter. If not defined refresh token doesn't expire.
 * Fixed issues submitted by Aidbox users and fixed minor bugs.
@@ -173,7 +173,7 @@
 * Added an option to enable [ACL checks for searches in conditional operations](../../security-and-access-control-1/acl.md#conditional-crud).
 * Added `BOX_FEATURES_TERMINOLOGY_IMPORT_SYNC` environment variable to enable sync [terminology bundle file load](../../terminology/terminology-api/).
 * Added `plain` option to use [`$import`](../../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md) with non-gzipped files.
-* Added support of [entry.search.mode ](../../api-1/fhir-api/search-1/search-with-related-resources.md#distinguish-between-matched-and-related-resources)field when using [\_include or \_revinclude](../../api-1/fhir-api/search-1/\_include-and-\_revinclude.md) search parameters.
+* Added support of [entry.search.mode ](../../api-1/fhir-api/search-1/search-with-related-resources.md#distinguish-between-matched-and-related-resources)field when using [\_include or \_revinclude](../../api-1/fhir-api/search-1/search-parameters-list/\_include-and-\_revinclude.md) search parameters.
 * Added [`profile`](../../api-1/fhir-api/metadata.md#notes) property to the CapabilityStatement resource.
 * Added configurable `refresh_token_expiration` parameter. If not defined refresh token doesn't expire.
 * Fixed issues submitted by Aidbox users and fixed minor bugs.
@@ -281,7 +281,7 @@ February 2022 - v:2202 is available as a long-term support version. End of life 
 * Released a beta version of [Aidbox API constructor ](../../aidbox-configuration/aidbox-api-constructor.md)that allows to define REST API granularly.
 * Added Access Control debug option: [su header](../../security-and-access-control-1/security/debug.md#su-request-header). It allows doing a request on behalf of a certain user.
 * Added [Grafana dashboard RPC](../../core-modules/monitoring/grafana-integration.md) API that allows to get Aidbox metrics dashboards and import it to your Grafana.
-* Added [`_count`](../../api-1/fhir-api/search-1/\_count-and-\_page.md), [`_total`](../../api-1/fhir-api/search-1/\_total-or-\_countmethod.md) and [`_timeout`](../../api-1/fhir-api/search-1/\_timeout.md) environment variables to configure default values.
+* Added [`_count`](../../api-1/fhir-api/search-1/search-parameters-list/\_count-and-\_page.md), [`_total`](../../api-1/fhir-api/search-1/search-parameters-list/\_total-or-\_countmethod.md) and [`_timeout`](../../api-1/fhir-api/search-1/search-parameters-list/\_timeout.md) environment variables to configure default values.
 * Improved logging for RPC and GraphQL calls.
 * Fixed Aidbox UI pretty view display.
 * Fixed [issues ](https://github.com/Aidbox/Issues/milestone/9?closed=1)submitted by Aidbox users.
@@ -289,7 +289,7 @@ February 2022 - v:2202 is available as a long-term support version. End of life 
 * Released a beta version of [Aidbox API constructor ](../../aidbox-configuration/aidbox-api-constructor.md)that allows to define REST API granularly.
 * Added Access Control debug option: [su header](../../security-and-access-control-1/security/debug.md#su-request-header). It allows doing a request on behalf of a certain user.
 * Added [Grafana dashboard RPC](../../core-modules/monitoring/grafana-integration.md) API that allows to get Aidbox metrics dashboards and import it to your Grafana.
-* Added [`_count`](../../api-1/fhir-api/search-1/\_count-and-\_page.md), [`_total`](../../api-1/fhir-api/search-1/\_total-or-\_countmethod.md) and [`_timeout`](../../api-1/fhir-api/search-1/\_timeout.md) environment variables to configure default values.
+* Added [`_count`](../../api-1/fhir-api/search-1/search-parameters-list/\_count-and-\_page.md), [`_total`](../../api-1/fhir-api/search-1/search-parameters-list/\_total-or-\_countmethod.md) and [`_timeout`](../../api-1/fhir-api/search-1/search-parameters-list/\_timeout.md) environment variables to configure default values.
 * Improved logging for RPC and GraphQL calls.
 * Fixed Aidbox UI pretty view display.
 * Fixed [issues ](https://github.com/Aidbox/Issues/milestone/9?closed=1)submitted by Aidbox users.

@@ -8,7 +8,7 @@ description: Release notes for years 2019-2020
 
 ### Features
 
-* Search and sort by [\_createdAt](../../../api-1/fhir-api/search-1/\_lastupdated.md) parameter
+* Search and sort by [\_createdAt](../../../api-1/fhir-api/search-1/search-parameters-list/\_lastupdated.md) parameter
 * Search by tokens with [:text modifier](../../../api-1/fhir-api/search-1/#common)
 * Filters in [Change API](../../../api-1/reactive-api-and-subscriptions/usdsnapshot-usdwatch-and-usdversions-api.md)
 * [Azure API](../../../storage-1/azure.md)
@@ -28,14 +28,14 @@ description: Release notes for years 2019-2020
 
 ### Features
 
-* Complete rewrite of the [(rev)include](../../../api-1/fhir-api/search-1/\_include-and-\_revinclude.md) engine
+* Complete rewrite of the [(rev)include](../../../api-1/fhir-api/search-1/search-parameters-list/\_include-and-\_revinclude.md) engine
 * New [Mapping module](../../../tools/mappings.md)
 * New [Hl7v2 module](../../../modules-1/hl7-v2-integration.md)
 * New engine for AccessPolicy - [matcho](../../../security-and-access-control-1/security/access-control.md#matcho-engine)
 * New [Encryption API](../../../api-1/encryption-api.md)
 * [X-Audit header](../../../app-development-guides/receive-logs-from-your-app/x-audit-header.md) to add custom data to Aidbox logs
 * [X-Debug: policy](../../../security-and-access-control-1/security/access-control.md#using-x-debug-policy-header) header to trace policy evaluation
-* Support for [\_elements](../../../api-1/fhir-api/search-1/\_elements.md#elements-and-ref-includes) for (rev)included resources
+* Support for [\_elements](../../../api-1/fhir-api/search-1/search-parameters-list/\_elements.md#elements-and-ref-includes) for (rev)included resources
 
 Plenty of bug fixes!
 
@@ -48,7 +48,7 @@ Now references to contained resources are represented as `localRef` attribute in
 {% endhint %}
 
 * Managed SQL for FHIR search by [SearchQuery](../../../api-1/fhir-api/search-1/searchquery.md)
-* A default timeout for Search Operations with [\_timeout](../../../api-1/fhir-api/search-1/\_timeout.md) param for high-load
+* A default timeout for Search Operations with [\_timeout](../../../api-1/fhir-api/search-1/search-parameters-list/\_timeout.md) param for high-load
 * Ordered search in [$lookup](../../../api-1/fhir-api/search-1/usdlookup.md)
 * microseconds precision for timestamps (Resource.meta.lastUpdated)&#x20;
 * Better Aidbox <=> FHIR conversion for first-class extensions

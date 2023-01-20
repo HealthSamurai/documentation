@@ -4,47 +4,29 @@ description: Validate your resources with zen-lang schemas
 
 # Profiling with zen-lang
 
-Aidbox supports a very powerful profile validation mechanism powered by [Zen language](https://github.com/zen-lang/zen). You can just define a set (or multiple sets) of validation profiles in [EDN](https://github.com/edn-format/edn) format and let your Aidbox server know its location. [Zen-lang](https://github.com/zen-lang/zen) allows Aidbox to validate resources against schemas. It can validate individual properties as well as large profiles in a composable way
+Aidbox supports a powerful profile validation mechanism powered by [Zen language](https://github.com/zen-lang/zen). It allows you to define a set (or multiple sets) of profiles in [edn](https://github.com/edn-format/edn) format and later load them into your Aidbox instance. These profiles can be used to validate resources against the specified schemas, including individual properties and also interoperation with other profiles in a composable way.
 
-## Enable zen profiling in Aidbox
+## Start using zen profiling in Aidbox
 
-1. Add environment variables to the docker-compose.yaml
-
-| Env name                | Sample value                      | Description                                                                                                             |
-| ----------------------- | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| AIDBOX\_ZEN\_PATHS      | url:zip:\<url to zen project>     | Use released project from [zen-lang/fhir repo](https://github.com/zen-lang/fhir/releases/latest)                        |
-| AIDBOX\_ZEN\_PATHS      | path:zip:\<file system path>      | Mount a Zen FHIR [NPM package](https://www.npmjs.com/search?q=%40zen-lang) with precompiled IGs or a custom zen project |
-| AIDBOX\_ZEN\_ENTRYPOINT | hl7-fhir-us-davinci-pdex-plan-net | Main zen namespace of an IG                                                                                             |
-
-&#x20;2\. Start Aidbox with the docker-compose
-
-StructureDefinitions and inlined terminologies are created during startup.&#x20;
-
-{% hint style="info" %}
-Resource examples and External (not-present) terminologies are not loaded in the storage by default
-{% endhint %}
-
-&#x20;3\. Validate resources&#x20;
-
-Use FHIR $validate operation or a CRUD request with profile URL specified in `.meta.profile` or in `.profile` query URL parameter.
-
-## Validation modes supported with zen schemas
-
-For validation (e.g. in [FHIR CRUD API](../../api-1/api/crud-1/)) Aidbox uses zen schemas tagged with `zen.fhir/base-schema` or `zen.fhir/profile-schema`.
-
-Schemas with these tags must have `:zen.fhir/type` and `:zen.fhir/profileUri` keys specified.
+1. Write profiles with schemas to validate against
 
 {% content-ref url="write-a-custom-zen-profile.md" %}
 [write-a-custom-zen-profile.md](write-a-custom-zen-profile.md)
 {% endcontent-ref %}
 
-### `zen.fhir/base-schema`
+&#x20;2\. Load profiles into your Aidbox instance
 
-Schemas tagged with `zen.fhir/base-schema` are used to validate every resource of their type. When loaded into Aidbox such schema will be used instead of default json schema validation
+{% content-ref url="extend-an-ig-with-a-custom-zen-profile.md" %}
+[extend-an-ig-with-a-custom-zen-profile.md](extend-an-ig-with-a-custom-zen-profile.md)
+{% endcontent-ref %}
 
-### `zen.fhir/profile-schema`
+{% hint style="info" %}
+Resource examples and external (not-present) terminologies are not loaded into the storage by default
+{% endhint %}
 
-Schemas tagged with `zen.fhir/profile-schema` are used to validate resources that mention their `:zen.fhir/profileUri` in the `meta.profile` attribute
+&#x20;3\. Validate resources against profiles
+
+Use FHIR [$validate](../../api-1/fhir-api/usdvalidate.md) operation or a CRUD request with a profile URL specified in `.meta.profile` or in `.profile` query parameters.
 
 ## Zen FHIR packages
 
@@ -53,7 +35,7 @@ Aidbox team has created an [open-source tool to generate Zen FHIR packages](http
 Generated packages are available under [zen-fhir Github organization](https://github.com/orgs/zen-fhir/repositories).
 
 {% hint style="warning" %}
-Zen FHIR Packages require `AIDBOX_CORRECT_AIDBOX_FORMAT=true` environment variable.
+Zen FHIR packages require `AIDBOX_CORRECT_AIDBOX_FORMAT=true` environment variable.
 {% endhint %}
 
 ### Use Zen FHIR packages
@@ -88,6 +70,6 @@ AIDBOX_ZEN_PATHS="url:zip:https://github.com/zen-lang/fhir/releases/latest/downl
 
 Our [`zen-lang/fhir`](https://github.com/zen-lang/fhir/blob/main/README.md) tool allows you to generate zen schemas for custom FHIR profiles and use them in your [Aidbox Configuration projects](../../aidbox-configuration/aidbox-zen-lang-project/).&#x20;
 
-### Create custom Zen FHIR package based on existing Zen FHIR packages
+### Create custom Zen FHIR package based on other Zen FHIR packages
 
 You can use existing Zen FHIR packages as a foundation for your custom Zen FHIR package. See our [guide on profiling with Zen-lang](extend-an-ig-with-a-custom-zen-profile.md).

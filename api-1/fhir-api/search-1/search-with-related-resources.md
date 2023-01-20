@@ -4,7 +4,7 @@ A client can add related resources to a search result using [**(rev)include**](h
 
 ### Example
 
-This example demonstrates how [\_include, \_revinclude, and \_with](\_include-and-\_revinclude.md) search parameters work_._ You may want to get encounters with patients (each encounter refers to patient):
+This example demonstrates how [\_include, \_revinclude, and \_with](search-parameters-list/\_include-and-\_revinclude.md) search parameters work_._ You may want to get encounters with patients (each encounter refers to patient):
 
 #### Create Patient&#x20;
 
