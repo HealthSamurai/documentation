@@ -132,9 +132,10 @@ PUT /SearchParameter/ServiceRequest.precondition
 name: precondition
 type: token
 resource: {id: ServiceRequest, resourceType: Entity}
-expression: [[extension, valueCodeableConcept, coding, code]]
+expression:
+- [extension, {url: 'http://hl7.org/fhir/StructureDefinition/servicerequest-precondition'}, value, CodeableConcept, coding, code]
 ```
 {% endtab %}
 {% endtabs %}
 
-If you use [Zen IG](../../../aidbox-configuration/zen-configuration.md) then first-class extensions are generated from zen-schemas. You have to use Aidbox format for the custom SearchParameter `expression`.
+If you use [Zen IG](../../../aidbox-configuration/zen-configuration.md) then first-class extensions are generated from zen-schemas. You have to use Aidbox format for the custom SearchParameter `expression`. (check tab #3 in the example above)
