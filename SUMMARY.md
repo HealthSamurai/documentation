@@ -184,7 +184,7 @@
 * [Aidbox terminology module overview](terminology/terminology.md)
 * [Create a ValueSet](terminology/create-a-valueset.md)
 * [Import external terminologies](terminology/terminology-api/README.md)
-  * [Import using an Aidbox project](terminology/terminology-api/import-using-an-aidbox-project.md)
+  * [Import via Aidbox Configuration project](terminology/terminology-api/import-using-an-aidbox-project.md)
   * [Import flat file (CSV)](terminology/terminology-api/import-flat-file-csv.md)
   * [$import operation](terminology/terminology-api/usdimport-operation.md)
   * [Ready-to-use terminologies](terminology/terminology-api/ready-to-use-terminologies.md)
@@ -202,8 +202,10 @@
   * [🎓 Load ICD-10 terminology into Aidbox](terminology/terminology-tutorials/load-terminologies.md)
 * [🏗 FHIR Terminology Repository](terminology/fhir-terminology-repository/README.md)
   * [FTR Specification](terminology/fhir-terminology-repository/ftr-specification.md)
-  * [Creating Aidbox project with FTR](terminology/fhir-terminology-repository/creating-aidbox-project-with-ftr/README.md)
-    * [FTR Manifest](terminology/fhir-terminology-repository/creating-aidbox-project-with-ftr/ftr-manifest.md)
+  * [Run Aidbox with FTR](terminology/fhir-terminology-repository/creating-aidbox-project-with-ftr/README.md)
+    * [FTR from CSV](terminology/fhir-terminology-repository/creating-aidbox-project-with-ftr/ftr-from-csv.md)
+    * [FTR from FHIR IG](terminology/fhir-terminology-repository/creating-aidbox-project-with-ftr/ftr-from-fhir-ig.md)
+  * [FTR Manifest](terminology/fhir-terminology-repository/ftr-manifest.md)
   * [Load SNOMED CT into Aidbox](terminology/fhir-terminology-repository/load-snomed-ct-into-aidbox.md)
 
 ## App development guides

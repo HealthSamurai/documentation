@@ -1,11 +1,19 @@
----
-description: Import ndjson bundle on Aidbox start
----
+# Import via Aidbox Configuration project
 
-# Import using an Aidbox project
+[Aidbox Configuration project](../../aidbox-configuration/aidbox-zen-lang-project/) is used to configure Aidbox with various features. One of the things it’s used for is providing Aidbox with external terminologies.
 
-{% hint style="info" %}
-This feature is in beta and can be changed in the near future.
+## Import terminologies using FTR
+
+[FHIR Terminology Repository](../fhir-terminology-repository/), or FTR, is an efficient way to store and handle terminologies. It is the recommended way to work with CodeSystem and ValueSet resources in Aidbox. You can start using it by providing [Aidbox Configuration project](../../aidbox-configuration/aidbox-zen-lang-project/) set up with FTR.
+
+{% content-ref url="../fhir-terminology-repository/creating-aidbox-project-with-ftr/" %}
+[creating-aidbox-project-with-ftr](../fhir-terminology-repository/creating-aidbox-project-with-ftr/)
+{% endcontent-ref %}
+
+## Import terminology bundles
+
+{% hint style="warning" %}
+This approach is deprecated. Its support may end in the near future.
 {% endhint %}
 
 Specify path or url to zen terminology bundle in [`AIDBOX_ZEN_PATHS` environment variable](https://docs.aidbox.app/aidbox-configuration/aidbox-zen-lang-project#load-project-using-environment-variables).\
