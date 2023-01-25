@@ -140,9 +140,10 @@ Please note that this endpoint doesn't persist any populated FHIR data to Aidbox
 
 There are several options you may pass to the `/ccda/to-fhir` endpoint. Options are passed as query string parameters, i.e. `/ccda/to-fhir?option1=value1&option2=value2`.
 
-| Option   | Values                                                          | Description                                                                                           |
-| -------- | --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `format` | <p><code>aidbox \| fhir</code><br>Default: <code>fhir</code></p> | [Format](fhir-resources/aidbox-and-fhir-formats.md) of resulting FHIR document. It's FHIR by default. |
+| Option   | Values                                                                  | Description                                                                                           |
+| -------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `format` | <p><code>aidbox \| fhir</code><br>Default: <code>fhir</code></p>        | [Format](fhir-resources/aidbox-and-fhir-formats.md) of resulting FHIR document. It's FHIR by default. |
+| `sections`      | <p> Look up for `Sections` table below in `values` column<p>     | Only mentioned sections will be parsed. By default - all sections will be parsed    |
 
 ### Persisting result of C-CDA to FHIR conversion
 
@@ -172,11 +173,42 @@ Also, if `create-docref` option is provided, this endpoint will create a [Docume
 #### Endpoint Options
 
 Options are passed as query-string parameters, i.e. `/ccda/persist?create-docref=true&option2=value2`.
+`sections` are passed separated by commas, i.e. `/ccda/persist?section=dicom,goals,findings`.
 
-| Option          | Values                                                          | Description                                                                         |
-| --------------- | --------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| Option          | Values                                                           | Description                                                                         |
+| --------------- | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | `create-docref` | <p><code>true \| false</code><br>Default: <code>false</code></p> | Specifies if a DocumentReference resource is needed to store original XML document. |
-| `tenant-id`     | <p>ID of Tenant resource<br>Default: none</p>                   | For [Smartbox](smartbox/) users only. Assigns Tenant to all populated resources.    |
+| `tenant-id`     | <p>ID of Tenant resource<br>Default: none</p>                    | For [Smartbox](smartbox/) users only. Assigns Tenant to all populated resources.    |
+| `sections`      | <p> Look up for `Sections` table below in `values` column<p>     | Only mentioned sections will be parsed. By default - all sections will be parsed    |
+
+#### Sections.  
+
+{% hint style="info" %}
+`coded` are parsed not via section OID, but via LOINC code as soon as such sections do not have   
+{% endhint %} 
+
+| Value               | Section OID(s)                                                                                                             |
+|---------------------|----------------------------------------------------------------------------------------------------------------------------|
+| `dicom`             | 2.16.840.1.113883.10.20.6.1.1                                                                                              |
+| `findings`          | 2.16.840.1.113883.10.20.6.1.2                                                                                              |
+| `assesment`         | 2.16.840.1.113883.10.20.22.2.8                                                                                             |
+| `goals`             | 2.16.840.1.113883.10.20.22.2.60                                                                                            | 
+| `problems`          | 2.16.840.1.113883.10.20.22.2.5.1                                                                                           |
+| `health-concerns`   | 2.16.840.1.113883.10.20.22.2.58                                                                                            |
+| `medications`       | 2.16.840.1.113883.10.20.22.2.1.1                                                                                           |
+| `medical-equipment` | 2.16.840.1.113883.10.20.22.2.23                                                                                            |
+| `immunizations`     | <p> 2.16.840.1.113883.10.20.22.2.2 </p> <p> 2.16.840.1.113883.10.20.22.2.2.1 </p> <p> 2.16.840.1.113883.10.20.22.4.52 </p> |
+| `payers`            | 2.16.840.1.113883.10.20.22.2.18                                                                                            |
+| `vital-signs`       | 2.16.840.1.113883.10.20.22.2.4.1                                                                                           |
+| `social-history`    | 2.16.840.1.113883.10.20.22.2.17                                                                                            |
+| `procedures`        | 2.16.840.1.113883.10.20.22.2.7.1                                                                                           |
+| `encounters`        | 2.16.840.1.113883.10.20.22.2.22.1                                                                                          |
+| `notes`             | <p> 2.16.840.1.113883.10.20.22.2.65 </p> <p> 1.3.6.1.4.1.19376.1.5.3.1.3.5 </p> <p> 2.16.840.1.113883.10.20.22.2.65 </p>   |
+| `plan-of-treatment` | 2.16.840.1.113883.10.20.22.2.10                                                                                            |
+| `careteam`          | 2.16.840.1.113883.10.20.22.2.500                                                                                           |
+| `coded`             | <p> 121072 </p> <p> 11329-0 </p> <p> 121109 </p>                                                                           |
+| `allergies`         | 2.16.840.1.113883.10.20.22.2.6.1                                                                                           |
+| `results`           | 2.16.840.1.113883.10.20.22.2.3.1                                                                                           |
 
 ### Validating a C-CDA document
 
@@ -276,6 +308,6 @@ In case of failed validation endpoint will return a list of errors and warnings:
 
 Options are passed as query-string parameters, i.e. `/ccda/validate?option1=value1&option2=value2`.
 
-| Option   | Values                                                                    | Description                    |
-| -------- | ------------------------------------------------------------------------- | ------------------------------ |
+| Option   | Values                                                                      | Description                    |
+| -------- | --------------------------------------------------------------------------- | ------------------------------ |
 | `method` | <p><code>xsd \| schematron \| both</code><br>Default: <code>both</code></p> | Type of validation to perform. |
