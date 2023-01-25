@@ -142,7 +142,7 @@ There are several options you may pass to the `/ccda/to-fhir` endpoint. Options 
 
 | Option   | Values                                                          | Description                                                                                           |
 | -------- | --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `format` | <p><code>aidbox | fhir</code><br>Default: <code>fhir</code></p> | [Format](fhir-resources/aidbox-and-fhir-formats.md) of resulting FHIR document. It's FHIR by default. |
+| `format` | <p><code>aidbox \| fhir</code><br>Default: <code>fhir</code></p> | [Format](fhir-resources/aidbox-and-fhir-formats.md) of resulting FHIR document. It's FHIR by default. |
 
 ### Persisting result of C-CDA to FHIR conversion
 
@@ -175,7 +175,7 @@ Options are passed as query-string parameters, i.e. `/ccda/persist?create-docref
 
 | Option          | Values                                                          | Description                                                                         |
 | --------------- | --------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `create-docref` | <p><code>true | false</code><br>Default: <code>false</code></p> | Specifies if a DocumentReference resource is needed to store original XML document. |
+| `create-docref` | <p><code>true \| false</code><br>Default: <code>false</code></p> | Specifies if a DocumentReference resource is needed to store original XML document. |
 | `tenant-id`     | <p>ID of Tenant resource<br>Default: none</p>                   | For [Smartbox](smartbox/) users only. Assigns Tenant to all populated resources.    |
 
 ### Validating a C-CDA document
@@ -278,4 +278,4 @@ Options are passed as query-string parameters, i.e. `/ccda/validate?option1=valu
 
 | Option   | Values                                                                    | Description                    |
 | -------- | ------------------------------------------------------------------------- | ------------------------------ |
-| `method` | <p><code>xsd | schematron | both</code><br>Default: <code>both</code></p> | Type of validation to perform. |
+| `method` | <p><code>xsd \| schematron \| both</code><br>Default: <code>both</code></p> | Type of validation to perform. |
