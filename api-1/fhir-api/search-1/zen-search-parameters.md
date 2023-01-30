@@ -1,5 +1,7 @@
 # Zen Search Parameters
 
+Formal description of Zen SearchParameter. Read [this](searchparameter.md#define-custom-searchparameter) guide first.
+
 ### SearchParameter
 
 Zen SearchParameter validation schema:
