@@ -44,76 +44,11 @@ BOX_SEARCH_RESOURCE__COMPAT=false # default is true
 
 #### How to make my Zen Search Parameter in configuration project?
 
-Most of the Search Parameters from IG work with Zen by default, also you can make a new one.
-
-Assuming you already know how to use [configuration projects](../../../aidbox-configuration/aidbox-zen-lang-project/setting-up-a-configuration-project.md), let's learn how to create zen search parameter by example:
-
-```clojure
-{ns main
- import #{aidbox.search-parameter.v1
-          aidbox
-          aidbox.repository.v1}
-
- zen-config
- {...}
-
- my-parameter
- {:zen/tags #{aidbox.search-parameter.v1/search-parameter}
-  :name "brthdt"
-  :type :date
-  :resource {:resourceType "Entity" :id "Patient"}
-  :expression [["birthDate"]]}
-
- patient-repository
- {:zen/tags #{aidbox.repository.v1/repository}
-  :resourceType "Patient"
-  :extra-parameter-sources :all ; allow to use SearchParameters from outside of repo
-  :search-parameters #{my-parameter}}
-
- repositories
- {:zen/tags #{aidbox/service}
-  :engine aidbox.repository.v1/engine
-  :repositories #{patient-repository}
-  :load-default true}
-
- box {:zen/tags #{aidbox/system}
-      :config   zen-config
-      :services
-      {:repositories repositories}}}
-```
-
-First we import `aidbox.search-parameter.v1` and `aidbox.repository.v1` namespaces from edn files. These are zen-namespaces we need to make an `aidbox/service` which name is `repositories`.
-
-This service is our concept of wrapping resourceType-specific entities, as search parameters, indexes, and more, into one entity, called **repository**. We will add indexes for search parameters soon.
-
-We have one repository for Patient resourceType: `patient-repository`. It contains `:search-parameters` key with new SearchParameter `my-parameter`. &#x20;
-
-SearchParameter must contain:
-
-* type: [FHIR Search Parameter types](./#search-parameters)
-* resource, containing resourceType and id
-* [jsonknife](configure-search-api.md#jsonpath-vs-jsonknife) expression containing path in the resource to search for
-* name to use in search
-
-After your Aidbox loads the service, you can use new search parameter:
-
-```yaml
-GET /Patient?brthd=lt2023
-```
-
-{% hint style="info" %}
-You can always look into the definition of Aidbox-specific namespaces in [Profiles page](../../../profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile.md#check-if-your-profile-is-loaded)
-{% endhint %}
-
-Formal Zen SearchParameters description:
-
-{% content-ref url="zen-search-parameters.md" %}
-[zen-search-parameters.md](zen-search-parameters.md)
-{% endcontent-ref %}
+Follow [this](searchparameter.md#define-custom-searchparameter) guide.
 
 #### Indexes for SearchParameters
 
-You can auto-generate indexes for SearchParameter:
+You can also auto-generate indexes for SearchParameter:
 
 {% content-ref url="../../../storage-1/indexes/" %}
 [indexes](../../../storage-1/indexes/)
