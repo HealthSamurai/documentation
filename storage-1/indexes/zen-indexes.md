@@ -1,5 +1,9 @@
 # Zen Indexes
 
+Formal description of Zen Indexes in `aidbox.index.v1`.  Read [this](./#how-to-make-my-index-explicitly-with-sql) guide first.
+
+Index can be used to create any PostgreSQL index. Auto-index is auto-generated based on Zen SearchParameter.&#x20;
+
 ### Index
 
 Zen Index validation schema:
@@ -35,8 +39,6 @@ Index must contain:
 * table - name of the table
 * expression - SQL expression&#x20;
 * type - two possible values: `:gin` or `:btree`
-
-Auto-index is auto-generated based on Zen SearchParameter.&#x20;
 
 Auto-index must contain:
 
