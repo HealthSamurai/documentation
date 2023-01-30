@@ -44,7 +44,7 @@ BOX_SEARCH_RESOURCE__COMPAT=false # default is true
 
 #### How to make my Zen Search Parameter in configuration project?
 
-Follow [this](searchparameter.md#define-custom-searchparameter-with-extension) guide.
+Follow [this](searchparameter.md#define-custom-searchparameter) guide.
 
 #### Indexes for SearchParameters
 
