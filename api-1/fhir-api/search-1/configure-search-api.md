@@ -111,57 +111,11 @@ Formal Zen SearchParameters description:
 [zen-search-parameters.md](zen-search-parameters.md)
 {% endcontent-ref %}
 
-#### How to make my index for Zen Search Parameter automatically?
+#### Indexes for SearchParameters
 
-You can make index by your own with [Index Suggestion API](../../../storage-1/indexes/get-suggested-indexes.md). However, Aidbox can be configured to make indexes for desired SearchParameters at start automatically.
+You can auto-generate indexes for SearchParameter:
 
-Import `aidbox.index.v1` in the example above and add `:indexes` into `patient-repository.`
-
-```clojure
- patient-repository
- {:zen/tags #{aidbox.repository.v1/repository}
-  :resourceType "Patient"
-  :indexes #{my-index1}
-  :extra-parameter-sources :all
-  :search-parameters #{my-parameter}}
-```
-
-Add new symbol `my-index1` with tag `aidbox.index.v1/auto-index` to make index on start, based on Index Suggestion API for Patient.brthd SearchParameter.
-
-```clojure
-  my-index1
- {:zen/tags #{aidbox.index.v1/auto-index}
-  :for my-parameter}
-```
-
-After restart new index will be added.
-
-```sql
-select * from pg_indexes where tablename = 'patient';
-```
-
-#### How to make my index explicitly with SQL?
-
-Use `aidbox.index.v1/index` tag with `:expression` and [PostgreSQL index`:type`](https://www.postgresql.org/docs/15/indexes-types.html) fields:
-
-```clojure
- my-index2
- {:zen/tags #{aidbox.index.v1/index}
-  :table "patient"
-  :expression "(jsonb_path_query_array(\"patient\".resource, ( '($.\"name\"[*]).** ? (@.type() == \"string\")')::jsonpath)::text) gin_trgm_ops"
-  :type :gin}
-```
-
-After restart new index will be added:
-
-```sql
-CREATE INDEX aidbox_mng_idx_main_my_index2
-ON public.patient 
-USING gin (((jsonb_path_query_array(resource, '$.\"name\"[*].**?(@.type() == \"string\")'::jsonpath))::text) gin_trgm_ops)
-```
-
-Formal description of Zen Indexes:
-
-{% content-ref url="../../../storage-1/indexes/zen-indexes.md" %}
-[zen-indexes.md](../../../storage-1/indexes/zen-indexes.md)
+{% content-ref url="../../../storage-1/indexes/" %}
+[indexes](../../../storage-1/indexes/)
 {% endcontent-ref %}
+
