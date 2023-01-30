@@ -207,6 +207,7 @@
     * [FTR from FHIR IG](terminology/fhir-terminology-repository/creating-aidbox-project-with-ftr/ftr-from-fhir-ig.md)
   * [FTR Manifest](terminology/fhir-terminology-repository/ftr-manifest.md)
   * [Load SNOMED CT into Aidbox](terminology/fhir-terminology-repository/load-snomed-ct-into-aidbox.md)
+  * [Load ICD-10-CM into Aidbox](terminology/fhir-terminology-repository/load-icd-10-cm-into-aidbox.md)
 
 ## App development guides
 
