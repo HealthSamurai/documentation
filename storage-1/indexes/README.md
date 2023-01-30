@@ -224,9 +224,9 @@ ON public.patient
 USING gin (((jsonb_path_query_array(resource, '$.\"name\"[*].**?(@.type() == \"string\")'::jsonpath))::text) gin_trgm_ops)
 ```
 
-Formal description of Zen Indexes
-
 As in previous section, actuall creation/deletion of indexes is triggered with `aidbox.index.draft/sync-indexes` RPC.
+
+Formal description of Zen Indexes:
 
 {% content-ref url="zen-indexes.md" %}
 [zen-indexes.md](zen-indexes.md)
