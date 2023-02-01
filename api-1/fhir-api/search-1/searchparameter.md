@@ -7,7 +7,7 @@ description: Define and use SearchParameter resource
 SearchParameter is a special meta-resource, which describes which part of resource and how you want to make searchable. Aidbox is coming with predefined set of search params for different resource types, but you can define new search params on-fly.
 
 {% hint style="warning" %}
-We do not support [FHIR SearchParameters](https://build.fhir.org/searchparameter.html). \
+Aidbox does not support [FHIR SearchParameters](https://build.fhir.org/searchparameter.html). \
 Aidbox SearchParameter has its own, concise structure, which is not the same as FHIR SearchParameters! \
 To import your own FHIR SearchParameters you have to convert it into Aidbox representation!
 {% endhint %}
