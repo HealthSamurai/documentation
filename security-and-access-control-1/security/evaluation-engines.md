@@ -102,12 +102,12 @@ For dynamic queries — to parameterize table name, for example — you have to 
 
 ```yaml
 resourceType: AccessPolicy
-id: practitioner-only-who-is-also-an-admin-allowed-to-see-his-patients
+id: practitioner-only-who-works-in-inpatient-department-allowed-to-see-his-patients
 engine: matcho
 matcho:
   user: 
-    # user.role should be equal to admin
-    role: admin
+    # user.department should be equal to inpatient
+    department: inpatient
     # user.data.practitioner_id should be present
     data: {practitioner_id: present?}
   # uri should match regexp
@@ -174,12 +174,12 @@ While original intent was to forbid `guest` users to delete `Patient` resources 
 
 ```yaml
 resourceType: AccessPolicy
-id: only-users-with-role-admin
+id: only-users-working-in-inpatient-department
 engine: matcho
 matcho:
   request-method: delete
   uri: '#^/Patient.*$'
-  user: {role: {$contains: admin}}
+  user: {department: {$contains: inpatient}}
 ```
 
 ```yaml
