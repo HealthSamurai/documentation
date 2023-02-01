@@ -8,8 +8,8 @@ SearchParameter is a special meta-resource, which describes which part of resour
 
 {% hint style="warning" %}
 Aidbox does not support [FHIR SearchParameters](https://build.fhir.org/searchparameter.html). \
-Aidbox SearchParameter has its own, concise structure, which is not the same as FHIR SearchParameters! \
-To import your own FHIR SearchParameters you have to convert it into Aidbox representation!
+Aidbox SearchParameter has its own, concise structure, which is not the same as FHIR SearchParameters. \
+To import your own FHIR SearchParameters you have to convert them into Aidbox representation.
 {% endhint %}
 
 Here is example of Patient.name search parameter:
