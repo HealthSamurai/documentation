@@ -322,9 +322,9 @@ spec:
             failureThreshold: 6
           startupProbe:
             httpGet:
-                path: /health
-                port: 8080
-            scheme: HTTP
+              path: /health
+              port: 8080
+              scheme: HTTP
             initialDelaySeconds: 20
             timeoutSeconds: 5
             periodSeconds:  5
@@ -489,7 +489,8 @@ data:
 <strong>  ...
 </strong><strong>  AIDBOX_ES_URL = http://es-service.es-ns.svc.cluster.local
 </strong>  AIDBOX_ES_AUTH = &#x3C;user>:&#x3C;password>
-<strong>  ...</strong></code></pre>
+<strong>  ...
+</strong></code></pre>
 
 ### DataDog integration
 
@@ -501,7 +502,8 @@ metadata:
 data:
 <strong>  ...
 </strong><strong>  AIDBOX_DD_API_KEY: &#x3C;Datadog API Key>
-</strong><strong>  ...</strong></code></pre>
+</strong><strong>  ...
+</strong></code></pre>
 
 ## Monitoring
 
