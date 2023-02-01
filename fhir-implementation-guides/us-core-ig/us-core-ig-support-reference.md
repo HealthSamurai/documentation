@@ -48,7 +48,7 @@ Loading a terminology into Aidbox allows you to use [Terminology API](broken-ref
 
 Loading Search Parameters into Aidbox enables you to use them in [Search API](../../api-1/fhir-api/search-1/).
 
-<table><thead><tr><th>Resource type</th><th>Parameter</th><th data-type="select">Support</th><th>Notes</th></tr></thead><tbody><tr><td>CareTeam</td><td>role</td><td></td><td></td></tr><tr><td>Condition</td><td>asserted-date</td><td></td><td>Work in progress</td></tr><tr><td>Encounter</td><td>discharge-disposition</td><td></td><td></td></tr><tr><td>Goal</td><td>description</td><td></td><td></td></tr><tr><td>Patient</td><td>race</td><td></td><td>Work in progress</td></tr><tr><td>Patient</td><td>ethnicity</td><td></td><td>Work in progress</td></tr><tr><td>Patient</td><td>gender-identity</td><td></td><td>Work in progress</td></tr></tbody></table>
+<table><thead><tr><th>Resource type</th><th>Parameter</th><th data-type="select">Support</th><th>Notes</th></tr></thead><tbody><tr><td>CareTeam</td><td>role</td><td></td><td></td></tr><tr><td>Condition</td><td>asserted-date</td><td></td><td>Since 2301</td></tr><tr><td>Encounter</td><td>discharge-disposition</td><td></td><td></td></tr><tr><td>Goal</td><td>description</td><td></td><td></td></tr><tr><td>Patient</td><td>race</td><td></td><td>Since 2301</td></tr><tr><td>Patient</td><td>ethnicity</td><td></td><td>Since 2301</td></tr><tr><td>Patient</td><td>gender-identity</td><td></td><td>Since 2301</td></tr></tbody></table>
 
 US Core IG also contains Search Parameters derived from the Base FHIR Specification, they all are fully supported.
 
