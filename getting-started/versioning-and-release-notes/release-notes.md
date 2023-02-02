@@ -1,12 +1,13 @@
 # Release Notes
 
-## December 2022 _`latest`_
+## January 2023 _`latest`_
 
 * Terminology
   * Added [ICD-10 FTR](../../terminology/fhir-terminology-repository/load-icd-10-cm-into-aidbox.md) integration
 * Data API
   * [Zen Search API](../../api-1/fhir-api/search-1/zen-search-parameters.md) is now considered stable
   * [Zen Index API](../../storage-1/indexes/zen-indexes.md) is now considered stable
+  * Implemented automatic loading of search parameters on extensions from IG
 * C-CDA to FHIR converter
   * Added configuration for [/ccda/to-fhir](../../modules-1/ccda-converter.md#endpoint-options) endpoint
   * Added configuration for [/ccda/persist](../../modules-1/ccda-converter.md#endpoint-options-1) endpoint
