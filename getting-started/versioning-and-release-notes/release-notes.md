@@ -2,6 +2,29 @@
 
 ## December 2022 _`latest`_
 
+* Terminology
+  * Added [ICD-10 FTR](../../terminology/fhir-terminology-repository/load-icd-10-cm-into-aidbox.md) integration
+* Data API
+  * [Zen Search API](../../api-1/fhir-api/search-1/zen-search-parameters.md) is now considered stable
+  * [Zen Index API](../../storage-1/indexes/zen-indexes.md) is now considered stable
+* C-CDA to FHIR converter
+  * Added configuration for [/ccda/to-fhir](../../modules-1/ccda-converter.md#endpoint-options) endpoint
+  * Added configuration for [/ccda/persist](../../modules-1/ccda-converter.md#endpoint-options-1) endpoint
+  * Added tenant support for [/ccda/persist](../../modules-1/ccda-converter.md#persisting-result-of-c-cda-to-fhir-conversion) endpoint
+* Security and Access Control
+  * Supported passing any launch context parameters on SMART on FHIR 2.0 app launch flow with [fhirContext](../../security-and-access-control-1/auth/smart-app/smart-on-fhir-app-launch.md#generate-launch-uri-for-ehr-launch-sequence) parameter
+* Ops
+  * Add GraphQL request body in gq/resp log event
+  * Changed container OS to Alpine and reduced total container size
+  * [Changed internal container User to non-root user.](https://github.com/Aidbox/Issues/issues/539)
+  * Introduced [Telemetry API ](../../reference/configuration/environment-variables/optional-environment-variables.md#telemetry)for errors and usage stats.
+* Aidbox Forms
+  * Added new forms templates to [forms library](https://github.com/Aidbox/sdc-forms-library/)
+  * Added [metadata properties](../../reference/aidbox-forms/form-dsl.md) to forms
+  * Added [`redirect-on-sign`](../../reference/aidbox-forms/api-reference.md#aidbox.sdc-generate-form-link) parameter
+
+## December 2022 _`2212`_,_`stable`_
+
 * MDM (Master Data Management)
   * Added [$match](../../mdm/mdm-module.md) operation
   * [Python API](https://github.com/Aidbox/mdm) for Aidbox MDM module
@@ -28,7 +51,7 @@
   * Improved Observation data mapping.
 * [Google Cloud Pub/Sub integration](../../api-1/reactive-api-and-subscriptions/gcp-pub-sub.md)
 
-## November 2022 _`2211`_,_`stable`_
+## November 2022 _`2211`_
 
 * Aidbox deployment and maintenance
   * Released [index suggestion API](../../storage-1/indexes/get-suggested-indexes.md) and updated documentation on [index management](../../storage-1/indexes/)
