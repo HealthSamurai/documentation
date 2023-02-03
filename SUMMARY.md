@@ -34,6 +34,7 @@
 * [Run Aidbox on Kubernetes](getting-started/run-aidbox-in-kubernetes/README.md)
   * [Deploy Production-ready Aidbox to Kubernetes](getting-started/run-aidbox-in-kubernetes/deploy-aidbox-in-kubernetes.md)
   * [Highly Available Aidbox](getting-started/run-aidbox-in-kubernetes/high-available-aidbox.md)
+  * [How to migrate to Apline Linux](getting-started/run-aidbox-in-kubernetes/how-to-migrate-to-apline-linux.md)
 * [Uploading Sample Data](getting-started/load-bundle-into-fhir-server.md)
 
 ## Tutorials
