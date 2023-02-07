@@ -43,23 +43,23 @@ id: as-manager-get-users-list
 engine: json-schema
 schema:
   required:
-	- jwt
+  - jwt
   properties:
-	uri:
-  	    enum:
-    	    - /User
-  	    type: string
-	request-method:
-  	    constant: get
-	jwt:
-  	    required:
-    	    - iss
-    	   - role
-  	   properties:
-           iss:
-                constant: https://auth.example.com
-            role:
-      	        constant: manager
+    uri:
+      enum:
+        - /User
+      type: string
+    request-method:
+      constant: get
+    jwt:
+      required:
+        - iss
+        - role
+      properties:
+        iss:
+          constant: https://auth.example.com
+        role:
+          constant: manager
 ```
 
 ## Create `JWT` token
