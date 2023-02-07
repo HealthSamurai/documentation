@@ -264,6 +264,7 @@
   * [Simple Role-Based Access Control](security-and-access-control-1/security/simple-role-based-access-control.md)
   * [Role-Based Access Control](security-and-access-control-1/security/role-based-access-policies.md)
   * [How to restrict operations on resource type](security-and-access-control-1/security/restrict-resource-operations.md)
+  * [🎓 Role-Based Access Control with JWT containing role](security-and-access-control-1/security/role-based-access-control-with-jwt-containing-role.md)
   * [🎓 Access Control](security-and-access-control-1/security/access-policy.md)
   * [🎓 Sample: Patient can see their own data](security-and-access-control-1/security/sample-patient-can-see-its-own-data.md)
   * [Access Policies tutorial](security-and-access-control-1/security/search-parameters.md)
