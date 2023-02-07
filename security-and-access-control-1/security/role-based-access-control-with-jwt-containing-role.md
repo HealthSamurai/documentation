@@ -58,8 +58,8 @@ schema:
   	properties:
     	iss:
       	constant: https://auth.example.com
-    	iss:
-      	role: manager
+    	role:
+      	constant: manager
 ```
 
 ## Create `JWT` token
