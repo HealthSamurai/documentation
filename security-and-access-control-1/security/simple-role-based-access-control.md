@@ -50,6 +50,18 @@ matcho:
   request-method: get
 ```
 
+{% hint style="info" %}
+Please note that if you like to add multiple request methods when using matcho engine you should use `$one-of` notation:
+
+```clojure
+request-method:
+  $one-of:
+  - get
+  - post
+  - put
+```
+{% endhint %}
+
 ### Try it
 
 Log in as `user-1`.

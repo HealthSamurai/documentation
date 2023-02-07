@@ -55,7 +55,7 @@ You can export your Aidbox notebook and import it to another Aidbox. Just click 
 
 To import the notebook click import and paste the link
 
-![Import Aidbox notebok](<../../.gitbook/assets/2021-09-03\_10-05-53 (1) (2) (3) (4) (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (4) (1) (2) (2) (1) (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2) (3).png>)
+![Import Aidbox notebok](<../../.gitbook/assets/2021-09-03\_10-05-53 (1) (2) (3) (4) (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (4) (1) (2) (2) (1) (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2) (1) (2).png>)
 
 ## Publish a notebook
 
