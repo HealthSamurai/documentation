@@ -5,7 +5,7 @@ description: This guide explains how to set up RBAC relies onto JWT containing a
 # 🎓 Role-Based Access Control with JWT containing role
 
 {% hint style="info" %}
-This guide is based on the TokenInstrospector tutorial. But we won't' create `User` resource
+This guide is based on the [TokenInstrospector tutorial](security-and-access-control-1/auth/access-token-introspection/README.md). But we won't' create `User` resource
 {% endhint %}
 
 ##  Token introspection
@@ -89,40 +89,29 @@ Make an HTTP request providing `authorization` header with the `JWT` as a `Beare
 {% tab title="Request" %}
 ```javascript
 GET /User
+content-type: text/yaml
 Authorization: Bearer eyJ0...1eAo
 ```
 {% endtab %}
 
-{% tab title="Response" %}
-```javascript
-Status: 200
-
-{
-	"entry": [],
-	"link": [
-    	{
-        	"relation": "first",
-        	"url": "/User?page=1"
-    	},
-    	{
-        	"relation": "self",
-        	"url": "/User?page=1"
-    	}
-	],
-	"query-sql": [
-    	"SELECT \"user\".* FROM \"user\" LIMIT ? OFFSET ? ",
-    	100,
-    	0
-	],
-	"query-time": 4,
-	"query-timeout": 60000,
-	"resourceType": "Bundle",
-	"total": 0,
-	"type": "searchset"
-}
+{% tab title="Response, status: 200" %}
+```yaml
+entry: []
+link:
+- relation: first
+  url: "/User?page=1"
+- relation: self
+  url: "/User?page=1"
+query-sql:
+- 'SELECT "user".* FROM "user" LIMIT ? OFFSET ? '
+- 100
+- 0
+query-time: 4
+query-timeout: 60000
+resourceType: Bundle
+total: 0
+type: searchset
 ```
 {% endtab %}
 {% endtabs %}
-
-
 
