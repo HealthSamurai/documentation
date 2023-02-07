@@ -46,20 +46,20 @@ schema:
 	- jwt
   properties:
 	uri:
-  	enum:
-    	- /user
-  	type: string
+  	    enum:
+    	    - /User
+  	    type: string
 	request-method:
-  	constant: get
+  	    constant: get
 	jwt:
-  	required:
-    	- iss
-    	- role
-  	properties:
-    	iss:
-      	constant: https://auth.example.com
-    	role:
-      	constant: manager
+  	    required:
+    	    - iss
+    	   - role
+  	   properties:
+           iss:
+                constant: https://auth.example.com
+            role:
+      	        constant: manager
 ```
 
 ## Create `JWT` token
