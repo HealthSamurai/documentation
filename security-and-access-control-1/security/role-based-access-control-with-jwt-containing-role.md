@@ -1,8 +1,8 @@
-# 🎓 Role-Based Access Control with JWT containing role
-
 ---
 description: This guide explains how to set up RBAC relies onto JWT containing a role claim
 ---
+
+# 🎓 Role-Based Access Control with JWT containing role
 
 {% hint style="info" %}
 This guide is based on the TokenInstrospector tutorial. But we won't' create `User` resource
