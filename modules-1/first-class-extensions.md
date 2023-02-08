@@ -39,7 +39,7 @@ MyPatientProfile
 {:zen/tags #{zen/schema zen.fhir/profile-schema}
  :zen.fhir/version "0.5.0"
  :zen.fhir/profileUri "urn:fhir:extension:MyPatientProfile"
- :confirms #{fhir/Patient}
+ :confirms #{hl7-fhir-r4-core/Patient}
  :type zen/map
  :keys {:race
         {:type zen/map
@@ -47,14 +47,14 @@ MyPatientProfile
          :require #{:text}
          :keys {:ombCategory {:type zen/vector
                               :maxItems 5
-                              :every {:confirms #{fhir/Coding}
+                              :every {:confirms #{hl7-fhir-r4-core/Coding}
                                       :zen.fhir/value-set {:symbol omb-race-category-value-set
                                                            :strength :required}}}
                 :detailed {:type zen/vector
-                           :every {:confirms #{fhir/Coding}
+                           :every {:confirms #{hl7-fhir-r4-core/Coding}
                                    :zen.fhir/value-set {:symbol detailed-race-value-set
                                                         :strength :required}}}
-                :text {:confirms #{fhir/string}
+                :text {:confirms #{hl7-fhir-r4-core/string}
                        :zen/desc "Race Text"}}}}}
 ```
 {% endtab %}
