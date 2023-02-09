@@ -4,11 +4,21 @@ description: Sorting search results
 
 # \_sort
 
-We can sort results by search parameters or [dot expressions](../.-expressions.md).
+### Supported search parameters types
 
-```javascript
-GET /Organization?_sort=name
-```
+* string
+* uri
+* number
+* reference
+* date
+* token
+* quantity
+* \_id
+* _\__lastUpdated
+* \_createdAt
+* \_score
+
+Aidbox also supports sorting with [jsonb dot expressions](../.-expressions.md).
 
 You can sort by multiple parameters:
 
@@ -24,19 +34,11 @@ You can change the sorting direction by prefixing parameter with `-` sign
 GET /Organization?_sort=-name
 ```
 
-### \_id & \_lastUpdated
-
-You can use `_id and _lastUpdated` parameters:
+### Examples
 
 ```javascript
 GET /Organization?_sort=_id
 GET /Organization?_sort=-lastUpdated
-```
-
-### . expressions
-
-[Dot expressions](../.-expressions.md) can be used in sorting:
-
-```javascript
+// . expression
 GET /Patient?_sort=.name.0.family
 ```
