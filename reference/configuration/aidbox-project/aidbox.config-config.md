@@ -116,6 +116,12 @@
 
 
 
+- `:logging` (zen/symbol)
+
+  
+
+  zen/tag: [aidbox.config/logging](#aidbox.config-logging)
+
 - `:cache` (zen/map)
 
   
@@ -696,6 +702,26 @@
 
 
   - `:secret` (zen/string)
+
+    
+
+
+
+
+
+## aidbox.config/logging
+
+- `:sql` (zen/map)
+
+  
+
+  - `:min-duration` (zen/number)
+
+    
+
+
+
+  - `:max-length` (zen/number)
 
     
 
