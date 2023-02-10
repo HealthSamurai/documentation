@@ -19,3 +19,10 @@ Similar to postgresql configuration. In some cases you can don't log query that 
 ```
 BOX_LOGGING_SQL_MIN__DURATION=100
 ```
+
+Also available in Aidbox configuration project config k
+
+{% content-ref url="../../reference/configuration/aidbox-project/aidbox.config-config.md" %}
+[aidbox.config-config.md](../../reference/configuration/aidbox-project/aidbox.config-config.md)
+{% endcontent-ref %}
+
