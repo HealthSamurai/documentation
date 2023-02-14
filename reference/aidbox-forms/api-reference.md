@@ -152,8 +152,8 @@ params:
 | format           | Format of QR. Aidbox or FHIR   | string  | yes       |
 | save-to-resource | Save Questionnaire to resource | boolean | no        |
 
-- To save Questionnaire to resource you should specify `:fhir/id` property in the [Form DSL](form-dsl.md#Properties for Conversion)
-- To specify additional fields that are represented in Questionnaire but not in the Form DSL - you can use predefined form properties for that [see Form DSL](form-dsl.md#Properties for Conversion)
+- To save Questionnaire to resource you should specify `:fhir/id` property in the [`Form DSL`](form-dsl.md#Properties\ for\ Conversion)
+- To specify additional fields that are represented in Questionnaire but not in the Form DSL - you can use predefined form properties for that [`Form DSL`](form-dsl.md#Properties\ for\ Conversion)
 
 Request:
 
