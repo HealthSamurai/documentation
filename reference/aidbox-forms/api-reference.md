@@ -2,7 +2,9 @@
 
 ## Form API
 
-* [`aidbox.sdc/convert-questionnaire`](api-reference.md#aidbox.sdc-convert-questionnaire)- converts FHIR Questionnaire to Aidbox SDC Form
+* [`aidbox.sdc/convert-questionnaire`](api-reference.md#convert-questionnaire)- converts FHIR Questionnaire to Aidbox SDC Form
+* [`aidbox.sdc/convert-form`](api-reference.md#convert-form) - converts Aidbox Form to FHIR Questionnaire
+* [`aidbox.sdc/convert-forms`](api-reference.md#convert-forms) - converts Aidbox Forms to FHIR Questionnaire resources
 * [`aidbox.sdc/generate-form-template`](api-reference.md#generate-form-template) - genereate form from scratch 
 * [`aidbox.sdc/generate-form-layout`](api-reference.md#generate-form-layout) - generate form layout
 * [`aidbox.sdc/generate-form-constraints`](api-reference.md#generate-form-constraints) - generate constraints schema
@@ -24,7 +26,7 @@
 
 ###
 
-### aidbox.sdc/convert-questionnaire
+### convert-questionnaire
 
 Converts Questionnaire to Aidbox SDC Form (Document + Form + Launch + (Finalize))
 
@@ -68,8 +70,6 @@ params:
 ```
 
 Result:
-
-> Success
 
 ```
 result:
@@ -124,6 +124,147 @@ result:
       :finalize DukeAnxietyDepressionScaleFinalize}}
 ```
 
+-----------------------------------------------------------------
+
+### convert-form
+
+Converts Aidbox Form to FHIR Questionnaire, optionaly can save it to Questinnaire resource in Aidbox.
+
+As Aidbox Forms is able to express more stuff than Questionnaire can handle - only subset of Forms functionality supported for convertion.
+
+Basically only `Document` and `FinalizeConstraints` DSLs are supported
+
+What is supported:
+
+- `Document` structure with questions
+  - nested questions
+  - repeated questions
+- Questions ordering based on natural question order in `Document DSL`
+- required fields based on `Document DSL` and `FinalizeConstraints DSL`
+- Questionnaire root properties via `Forms DSL` properties
+
+
+params:
+
+| Param            | Description                    | Type    | required? |
+|------------------|--------------------------------|---------|-----------|
+| form             | Form symbolic name             | symbol  | yes       |
+| format           | Format of QR. Aidbox or FHIR   | string  | yes       |
+| save-to-resource | Save Questionnaire to resource | boolean | no        |
+
+- To save Questionnaire to resource you should specify `:fhir/id` property in the [Form DSL](form-dsl.md#Properties for Conversion)
+- To specify additional fields that are represented in Questionnaire but not in the Form DSL - you can use predefined form properties for that [see Form DSL](form-dsl.md#Properties for Conversion)
+
+Request:
+
+```
+POST /rpc
+
+method: aidbox.sdc/convert-form
+params:
+  form: 'box.sdc.sdc-example/PHQ2PHQ9Form
+  format: "aidbox"
+  save-to-resource: true
+```
+
+Result:
+
+```yaml
+result:
+  resourceType: Questionnaire
+  title: PHQ2/PHQ9 Depresssion
+  name: box.sdc.sdc-example/PHQ2PHQ9Form
+  status: draft
+  lastReviewDate: '2022-10-10'
+  contact:
+    - name: cont1
+  telecom:
+    - system: tel
+      value: 300-00-00
+  effectivePeriod:
+    start: '2022-10-10T10:10:10Z'
+    end: '2022-10-10T10:10:10Z'
+  description: Base schema for questionnaire(document) definition. Also a resource in DB - SDCDocument
+  approvalDate: '2022-10-10'
+  item:
+  - linkId: misc-yes-no-button
+    text: 'PHQ-9 Questionnaire: For positive depression screen or follow up'
+    type: boolean
+  - linkId: 44258-2
+    text: Feeling bad about yourself-or that you are a failure or have let yourself or your family down
+    type: choice
+    code:
+      - code: 44258-2
+        system: http://loinc.org
+        answerOption:
+      - value:
+          Coding:
+            code: LA6568-5
+            system: http://loinc.org
+            display: Not at all
+      - value:
+          Coding:
+            code: LA6569-3
+            system: http://loinc.org
+            display: Several days
+      - value:
+          Coding:
+            code: LA6570-1
+            system: http://loinc.org
+            display: More than half the days
+      - value:
+          Coding:
+            code: LA6571-9
+            system: http://loinc.org
+            display: Nearly every day
+  - linkId: loinc-LL382-3
+    text: PHQ-9 Interp-score
+    type: decimal
+    code:
+      - code: LL382-3
+        system: http://loinc.org
+```
+
+Error:
+
+```yaml
+error:
+    message: Can't save form to resource: you need specify :fhir/id property on the form
+
+```
+
+### convert-forms
+
+Convert all SDCForms with :fhir/id property to FHIR questionnaire and store them in DB.
+
+This RPC don't have any paramerters.
+
+Returns list of pairs [form-name, convertions-result]
+where convertion result is one of:
+ - Ok
+ - {messge: "error message"}
+
+
+Request:
+
+```
+POST /rpc
+
+method: aidbox.sdc/convert-forms
+```
+
+Result:
+
+```yaml
+result:
+  - - box.sdc.sdc-example/PHQ2PHQ9Form
+    - ok
+  - - box.sdc.sdc-example/PHQ2PHQ9Form
+    - message: '...Something wrong with conversion...'
+
+```
+
+-----------------------------------------------------------------
 ### generate-form-template 
 
 Generate ZEN namespace with empty Form definition and all relevant layers.
@@ -150,8 +291,6 @@ params:
 ```
 
 Result:
-
-> Success
 
 ```
 result:
@@ -203,7 +342,6 @@ result:
       :launch MyVitalsLaunch,
       :finalize MyVitalsFinalize}}
 ```
-
 
 ### generate-form-layout
 
@@ -405,7 +543,7 @@ params:
 ```
 
 
-Response 
+Result 
 
 ```
 result:
