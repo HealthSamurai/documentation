@@ -131,14 +131,14 @@ metadata:
   namespace: prod
 spec:
   replicas: 1
-  serviceName: prod-db
+  serviceName: db
   selector:
     matchLabels:
-      service: prod-db
+      service: db
   template:
     metadata:
       labels:
-        service: prod-db
+        service: db
     spec:
       volumes:
         - name: db-pg-config
