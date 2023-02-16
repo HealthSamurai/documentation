@@ -671,6 +671,12 @@
 
 
 
+- `:token-operator` (zen/string)
+
+  
+
+
+
 ## aidbox.config/auth
 
 - `:grant-page-url` (zen/string)
