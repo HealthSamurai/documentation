@@ -820,7 +820,7 @@ Also you may choose the output format:
 
 Optionaly you can save converted `QuestionnaireResponse` to its resource table via `save-to-resource` flag
 
-> NOTE: If you use `save-to-resource = true` you should specify `format = 'aidbox'` anly
+> NOTE: If you use `save-to-resource = true` you should specify `format = 'aidbox'` only
 
 Params:
 

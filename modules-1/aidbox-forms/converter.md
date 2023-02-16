@@ -51,6 +51,9 @@ Example:
   :conversion {:convert-forms-on-start true}}
 ```
 
+You need to restart aidbox to take effect of changed configuration
+
+
 ### Document conversion on save
 
 For Document conversion you should set `[:conversion :convert-doc-on-save]` property to `true`
@@ -64,7 +67,9 @@ Example:
   :conversion {:convert-doc-on-save true}}
 ```
 
-After this configuration you should restart your Aidbox.
+You need to restart aidbox to take effect of changed configuration
+
 After that - every document changes will be reflected in QuestionnaireResponse resources.
 
-> NOTE: Id of converted QuestionnaireResponse will be the same as id of SDCDocument.
+
+> NOTE: `id` of converted `QuestionnaireResponse` will be the same as `id` of `SDCDocument`.
