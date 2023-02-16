@@ -818,13 +818,19 @@ Also you may choose the output format:
 * aidbox - to store inside Aidbox DB
 * fhir - to exchange with other FHIR systems
 
-params:
+Optionaly you can save converted `QuestionnaireResponse` to its resource table via `save-to-resource` flag
 
-| Param    | Description               | Type              | required? |
-| -------- | ------------------------- | ----------------- | --------- |
-| id       | id of SDCDocument in DB   | String            | no        |
-| document | SDCDocument resource body | Resource          | no        |
-| format   | Output format             | "fhir" / "aidbox" | yes       |
+> NOTE: If you use `save-to-resource = true` you should specify `format = 'aidbox'` anly
+
+Params:
+
+| Param            | Description                                 | Type              | required? |
+|------------------|---------------------------------------------|-------------------|-----------|
+| id               | id of SDCDocument in DB                     | String            | no        |
+| document         | SDCDocument resource body                   | Resource          | no        |
+| format           | Output format                               | "fhir" / "aidbox" | yes       |
+| save-to-resource | If true - converts and saves QR to resource | boolean           | no        |
+
 
 Request:
 

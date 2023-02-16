@@ -17,14 +17,14 @@ You can use [Aidbox Form API](../../reference/aidbox-forms/api-reference.md)
 
 ## Optional features
 
-### Forms conversion on startup
+Aidbox Forms supports
 
-Aidbox Forms support automatic Form convertion to Questionnaire resource on Aidbox startup.
+- automatic Form convertion to Questionnaire resource on Aidbox startup.
+- automatic SDCDocument convertion to QuestionnaireResponse resource on SDCDocument save.
+
+> These features can be configure via [api-constructor](../../aidbox-configuration/aidbox-api-constructor.md) in zen-project.
 
 You need to configure your `aidbox/system` with `sdc-service` and it's configuration.
-
-> This feature you can configure via [api-constructor](../../aidbox-configuration/aidbox-api-constructor.md) in zen-project.
-
 
 Example:
 
@@ -37,11 +37,34 @@ Example:
   :services {:sdc sdc-service}}
 ```
 
-`sdc-service` configuration
+
+### Forms conversion on startup
+
+For forms conversion you should set `[:conversion :convert-forms-on-start]` property to `true`
+
+Example:
 
 ```
  sdc-service
- {:zen/tags  #{aidbox/service}
-  :engine    aidbox.sdc/service
+ {:zen/tags   #{aidbox/service}
+  :engine     aidbox.sdc/service
   :conversion {:convert-forms-on-start true}}
 ```
+
+### Document conversion on save
+
+For Document conversion you should set `[:conversion :convert-doc-on-save]` property to `true`
+
+Example:
+
+```
+ sdc-service
+ {:zen/tags   #{aidbox/service}
+  :engine     aidbox.sdc/service
+  :conversion {:convert-doc-on-save true}}
+```
+
+After this configuration you should restart your Aidbox.
+After that - every document changes will be reflected in QuestionnaireResponse resources.
+
+> NOTE: Id of converted QuestionnaireResponse will be the same as id of SDCDocument.
