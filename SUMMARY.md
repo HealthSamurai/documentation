@@ -318,6 +318,7 @@
   * [How to convert FHIR Questionnaire to Aidbox Forms and back](modules-1/aidbox-forms/converter.md)
   * [How to change data after form signing](modules-1/aidbox-forms/addendum.md)
   * [How to share a form](modules-1/aidbox-forms/share-a-form.md)
+  * [How to customize form colors](modules-1/aidbox-forms/how-to-customize-form-colors.md)
   * [Aidbox forms UI](modules-1/aidbox-forms/aidbox-forms-ui/README.md)
     * [Forms & Workflow](modules-1/aidbox-forms/aidbox-forms-ui/forms.md)
     * [Documents](modules-1/aidbox-forms/aidbox-forms-ui/patients.md)
