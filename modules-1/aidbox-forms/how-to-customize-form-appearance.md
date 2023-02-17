@@ -1,4 +1,4 @@
-# How to customize form colors
+# How to customize form appearance
 
 Aidbox Forms gives you ability to customize form looking. To do this you can create a new theme, and specify it in sdc-service.
 
@@ -17,7 +17,9 @@ To use this theme specify `simplest-sdc-theme` under the `:theme` key in SDC ser
 
 In this theme we change only main-color, but this color changes a lot in Aidbox Forms looking: inputs border color, buttons background color, etc. So you can use just one key to style forms with your brand color. &#x20;
 
-If you need more detailed styling, you can use extended theme definition. With this you can change separately buttons main color, text color, input border, background, text colors and background colors.&#x20;
+If you need more detailed styling, you can use extended theme definition. With this you can change separately buttons main color, text color, input border, background, text colors, background colors, font and add a brand image.&#x20;
+
+### Buttons
 
 To change buttons appearance add to theme scheme a new map under `:button` key:
 
@@ -32,6 +34,8 @@ buttons-sdc-theme
 
 For filled buttons accent color will be used as background color, for outlined buttons as border color and text color.&#x20;
 
+### Inputs
+
 To change inputs appearance add to theme scheme a new map under `:input` key:
 
 ```
@@ -45,6 +49,8 @@ inputs-sdc-theme
 ```
 
 Here accent color will be used as border color on hover, focused state.&#x20;
+
+### Background colors
 
 Also you can change background colors:
 
@@ -62,13 +68,49 @@ To understand what each color is look at the image below:
 
 <figure><img src="../../.gitbook/assets/CleanShot 2023-02-16 at 11.34.05.png" alt=""><figcaption></figcaption></figure>
 
-So full theme look like this:&#x20;
+### Font
+
+To change font specify the `:font-family`  in theme scheme. Currently we support fonts only from this list, but we continue to add support for other fonts:&#x20;
+
+* Inter
+* Product Sans
+* Gotham Pro
+
+```clojure
+font-sdc-theme
+{:zen/tags #{aidbox.sdc/theme}
+ :zen/desc "Theme styled with NHS colors"
+ :main-color [0 94 184]
+ :font-family "Product Sans"}
+```
+
+### Brand images
+
+You can add brand image or logo of your company by adding a new map under the key `:brand-image`  and specify the location and the URL to image:
+
+```clojure
+brand-image-theme
+{:zen/tags #{aidbox.sdc/theme}
+ :zen/desc "Theme styled with NHS colors"
+ :main-color [0 94 184]
+ :brand-image {:top-right {:url "..."}
+               :bottom-left {:url "...}}}
+```
+
+Your images will be placed as following:
+
+<figure><img src="../../.gitbook/assets/CleanShot 2023-02-17 at 18.28.22.png" alt=""><figcaption></figcaption></figure>
+
+So full theme could look like this:
 
 ```clojure
 nhs-sdc-theme
 {:zen/tags #{aidbox.sdc/theme}
  :zen/desc "Theme styled with NHS colors"
  :main-color [0 94 184]
+ :font-family "Gotham Pro"
+ :brand-image {:top-right {:url "...."}
+               :bottom-left {:url "...."}}
  :background {:main-color [232 237 238]
               :form-color [255 255 255]
               :toolbar-color [118 134 146]}
@@ -78,3 +120,22 @@ nhs-sdc-theme
  :button {:accent-color [0 94 184]
           :text-color [255 255 255]}}
 ```
+
+## How to display one form with different themes
+
+Theme that you specify in sdc-service is default theme. You can specify theme for each form individually.
+
+In the link that you share with users just set query parameter theme with the symbol of form:
+
+{% code title="link " %}
+```
+aidbox-instance.io/ui/sdc#/documents/33fbdccb-0398-46ab-bce4-6160259552a8?policy-token=...
+```
+{% endcode %}
+
+<pre data-title="link with theme specified"><code>aidbox-instance.io/ui/sdc<a data-footnote-ref href="#user-content-fn-1">?theme=sdc-box/hs-red-theme</a>#/documents/33fbdccb-0398-46ab-bce4-6160259552a8?policy-token=...
+</code></pre>
+
+It's important to put this parameter **before fragment part** otherwise it will be ignored and default theme will be applied
+
+[^1]: 
