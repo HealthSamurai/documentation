@@ -60,63 +60,40 @@ Result:
 
 ```yaml
 result:
-  observation_date_param_knife_date_min_tstz:
-    for:
-      - resource-type: Observation
-        name: date
-        type: date
-        subtype: le
-      - resource-type: Observation
-        name: date
-        type: date
-        subtype: eq
-      - resource-type: Observation
-        name: date
-        type: date
-        subtype: ne
-      - resource-type: Observation
-        name: date
-        type: date
-        subtype: lt
-      - resource-type: Observation
-        name: date
-        type: date
-        subtype: null
+  - index-name: observation_date_param_knife_date_min_tstz
+    name: date
+    resource-type: Observation
     statement: >-
       CREATE INDEX CONCURRENTLY IF NOT EXISTS
       "observation_date_param_knife_date_min_tstz" ON "observation" USING btree
       ((knife_extract_min_timestamptz("observation".resource,
-      '[["effective","Period","start"],["effective","Period","end"],
-      ["effective","dateTime"],["effective","Timing","event"],
-      ["effective","instant"]]')) )
-  observation_date_param_knife_date_max_tstz:
-    for:
-      - resource-type: Observation
-        name: date
-        type: date
-        subtype: eq
-      - resource-type: Observation
-        name: date
-        type: date
-        subtype: ne
-      - resource-type: Observation
-        name: date
-        type: date
-        subtype: null
-      - resource-type: Observation
-        name: date
-        type: date
-        subtype: gt
-      - resource-type: Observation
-        name: date
-        type: date
-        subtype: ge
+      '[["effective","Period","start"],["effective","Period","end"],["effective","dateTime"],["effective","Timing","event"],["effective","instant"]]'))
+      )
+    subtypes:
+      - null
+      - eq
+      - ne
+      - lt
+      - le
+      - btw
+    type: date
+  - index-name: observation_date_param_knife_date_max_tstz
+    name: date
+    resource-type: Observation
     statement: >-
       CREATE INDEX CONCURRENTLY IF NOT EXISTS
       "observation_date_param_knife_date_max_tstz" ON "observation" USING btree
       ((knife_extract_max_timestamptz("observation".resource,
       '[["effective","Period","start"],["effective","Period","end"],["effective","dateTime"],["effective","Timing","event"],["effective","instant"]]'))
       )
+    subtypes:
+      - null
+      - eq
+      - ne
+      - gt
+      - ge
+      - btw
+    type: date
 ```
 
 Suggested two indexes: first one to search using `lt`, `le` and `eq` prefixes, second one to search using`gt`, `ge`, `eq` prefixes.&#x20;
@@ -151,56 +128,50 @@ Response:
 
 ```yaml
 result:
-  observation_date_param_knife_date_min_tstz:
-    for:
-      - resource-type: Observation
-        name: date
-        <...>
+  - index-name: observation_date_param_knife_date_min_tstz
+    name: date
+    resource-type: Observation
     statement: >-
       CREATE INDEX CONCURRENTLY IF NOT EXISTS
       "observation_date_param_knife_date_min_tstz" ON "observation" USING btree
       ((knife_extract_min_timestamptz("observation".resource,
       '[["effective","Period","start"],["effective","Period","end"],["effective","dateTime"],["effective","Timing","event"],["effective","instant"]]'))
       )
-  observation_date_param_knife_date_max_tstz:
-    for:
-      - resource-type: Observation
-        name: date
-        <...>
+    subtypes:
+      - null
+      - eq
+      - ne
+      - lt
+      - le
+      - btw
+    type: date
+  - index-name: observation_date_param_knife_date_max_tstz
+    name: date
+    resource-type: Observation
     statement: >-
       CREATE INDEX CONCURRENTLY IF NOT EXISTS
       "observation_date_param_knife_date_max_tstz" ON "observation" USING btree
       ((knife_extract_max_timestamptz("observation".resource,
       '[["effective","Period","start"],["effective","Period","end"],["effective","dateTime"],["effective","Timing","event"],["effective","instant"]]'))
       )
-  observation_resource_knife_resource:
-    for:
-      - resource-type: Observation
-        name: subject
-        <...>
+    subtypes:
+      - null
+      - eq
+      - ne
+      - gt
+      - ge
+      - btw
+    type: date
+  - index-name: observation_resource_id
+    name: id
+    resource-type: Observation
     statement: >-
-      CREATE INDEX CONCURRENTLY IF NOT EXISTS
-      "observation_resource_knife_resource" ON "observation" USING gin
-      (("observation".resource) jsonb_ops)
-  observation_subject_param_knife_reference_text:
-    for:
-      - resource-type: Observation
-        name: subject
-        <...>
-    statement: >-
-      CREATE INDEX CONCURRENTLY IF NOT EXISTS
-      "observation_subject_param_knife_reference_text" ON "observation" USING
-      gin ((CAST(jsonb_path_query_array("observation".resource,
-      CAST(('$."subject"[*]') AS jsonpath)) AS text)) gin_trgm_ops)
-  observation_resource_knife_id:
-    for:
-      - resource-type: Observation
-        name: id
-        <...>
-    statement: >-
-      CREATE INDEX CONCURRENTLY IF NOT EXISTS "observation_resource_knife_id" ON
+      CREATE INDEX CONCURRENTLY IF NOT EXISTS "observation_resource_id" ON
       "observation" USING btree (("observation".id) )
-
+    subtypes:
+      - in
+      - null
+    type: id
 ```
 
-Suggested indexes will increase performance of Observation.date, Observation.subject and Observation.\_id.
+Suggested indexes will increase performance of Observation.date and Observation.\_id.
