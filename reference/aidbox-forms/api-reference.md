@@ -148,7 +148,7 @@ params:
 
 | Param            | Description                    | Type    | required? |
 |------------------|--------------------------------|---------|-----------|
-| form             | Form symbolic name             | symbol  | yes       |
+| form             | Form symbolic name             | string  | yes       |
 | format           | Format of QR. Aidbox or FHIR   | string  | yes       |
 | save-to-resource | Save Questionnaire to resource | boolean | no        |
 
