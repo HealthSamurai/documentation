@@ -1007,7 +1007,7 @@ Redirect urls can be specified for different actions.
 - Submit
 - Save & Close 
 
-> By default there is no `Save & Close` button in page. When you specify `redirect-on-save` - button appeares in UI.
+> By default there is no `Save & Close` button in page. When you specify `redirect-on-save` - button will appear in UI.
 
 Params:
 
