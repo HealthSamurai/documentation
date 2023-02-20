@@ -6,7 +6,7 @@
 
 ## `BOX_FEATURES_FTR_PULL_ENABLE`
 
-Either `true` or `false`. By default, `true`.
+Either `true` or `false`. By default, `false`.
 
 `false` for Aidbox Sandbox instances.
 
