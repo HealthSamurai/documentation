@@ -998,9 +998,18 @@ policy: <jwt policy token>
 
 ### aidbox.sdc/generate-form-link
 
-Creates [policy token](../../security-and-access-control-1/security/access-policy.md#signed-rpc-policy-token) to get access to SDCDocument/SDCWorkflow
+Generates link for form access and management without authentication.
 
-params:
+> Creates [policy token](../../security-and-access-control-1/security/access-policy.md#signed-rpc-policy-token) to get access to SDCDocument/SDCWorkflow
+
+Redirect urls can be specified for different actions.
+
+- Submit
+- Save & Close 
+
+> By default there is no `Save & Close` button in page. When you specify `redirect-on-save` - button appeares in UI.
+
+Params:
 
 | Param             | Description                                            | Type                    | required? |
 |-------------------|--------------------------------------------------------|-------------------------|-----------|
@@ -1008,6 +1017,7 @@ params:
 | form.id           | SDCDocument/SDCWorkflow id                             | String                  | yes       |
 | form.resourceType |                                                        | SDCDocument/SDCWorkflow | yes       |
 | redirect-on-sign  | URI that used after form sign/amend event for redirect | URI                     | no        |
+| redirect-on-save  | URI that used after Save button is pressed             | URI                     | no        |
 
 Request:
 
@@ -1022,6 +1032,7 @@ params:
     id: doc-1
     resourceType: SDCDocument
   redirect-on-sign: http://my.portal.com?param1=p1
+  redirect-on-save: http://my.portal.com?param1=p3
 ```
 
 Result:
