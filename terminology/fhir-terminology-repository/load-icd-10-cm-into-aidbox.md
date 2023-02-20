@@ -59,6 +59,16 @@ You also need to import `icd10cm` namespace in your Aidbox entrypoint file. Assu
  …}
 ```
 
+#### Instruct Aidbox to load terminologies into the DB
+
+Set the following environment variable:
+
+```
+BOX_FEATURES_FTR_PULL_ENABLE=true
+```
+
+By default, Aidbox does not load terminologies into the database as that can take a lot of disk space. This means that full terminology functionality won’t be available until you enable it manually. [BOX\_FEATURES\_FTR\_PULL\_ENABLE](../../reference/configuration/environment-variables/ftr.md) environment variable is just for that. When you set it to `true`, Aidbox will load terminologies into the database on the next startup and start functioning as a fully-featured terminology server.
+
 #### Further steps
 
 If you want to customize Aidbox startup behavior when using FTR, read more about [FTR environment variables](../../reference/configuration/environment-variables/ftr.md).

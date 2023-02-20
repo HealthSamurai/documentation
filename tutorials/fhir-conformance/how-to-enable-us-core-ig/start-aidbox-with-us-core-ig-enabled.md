@@ -69,6 +69,10 @@ You’ll still be able to [validate codes from ValueSets](../../../terminology/v
 
 ### Verify that US Core IG works
 
+{% hint style="warning" %}
+By default, Aidbox does not load terminologies into the database in order to save the disk space. This still allows you to use them for validation but terminology server functionality won’t be available. If you do wish to load the terminologies, you need to set `BOX_FEATURES_FTR_PULL_ENABLE=true` environment variable.
+{% endhint %}
+
 Go to “Profiles” page in the Aidbox UI (`http://localhost:8888/ui/zen-ui`) and make sure that `hl7-fhir-us-core` is listed among the namespaces.
 
 You can also verify that validation with US Core IG works. For that you can make the following HTTP requests and check that response statuses are returned as expected.

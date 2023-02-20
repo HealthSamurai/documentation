@@ -8,8 +8,6 @@
 
 Either `true` or `false`. By default, `false`.
 
-`false` for Aidbox Sandbox instances.
-
 It tells Aidbox whether or not it should load [Concepts](../../../terminology/concept.md), [ValueSets](../../../terminology/valueset/) and [CodeSystems](../../../terminology/codesystem-and-concept/) into the database. Note that loading into the database is needed for [concept lookups](../../../terminology/codesystem-and-concept/concept-lookup.md) and [value set expansions](../../../terminology/valueset/value-set-expansion.md) as well as for accessing `GET /Concept`, `GET /ValueSet`, `GET /CodeSystem` endpoints but not for validation.
 
 ## `BOX_FEATURES_FTR_PULL_SYNC`

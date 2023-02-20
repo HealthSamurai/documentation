@@ -27,11 +27,14 @@ Aidbox reads files from [Aidbox projects](../../aidbox-configuration/aidbox-zen-
 
 For example, path to terminology bundle GZIP fie is: `/my/aidbox/project/my-terminology-bundle.ndjson.gz`.
 
-To load the terminology bundle into Aidbox set the [`AIDBOX_ZEN_PATHS` environment variable:](../../aidbox-configuration/aidbox-zen-lang-project/#aidbox\_zen\_paths)
+To load the terminology bundle into Aidbox set the following environment variables:
 
 ```
- AIDBOX_ZEN_PATHS=path:dir:/my/aidbox/project
+AIDBOX_ZEN_PATHS=path:dir:/my/aidbox/project
+BOX_FEATURES_FTR_PULL_ENABLE=true
 ```
+
+You can read more about [AIDBOX\_ZEN\_PATHS](../../reference/configuration/environment-variables/aidbox-project-environment-variables.md) and [BOX\_FEATURES\_FTR\_PULL\_ENABLE](../../reference/configuration/environment-variables/ftr.md) in our [configuration reference](../../reference/configuration/).
 
 {% hint style="warning" %}
 Make sure that your Aidbox container [has access to the specified path](../../profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile.md#setup-devbox-to-use-zen-project) on your system.

@@ -97,6 +97,10 @@ After you changed `zen-package.edn` you need to restart Aidbox for your changes 
 
 After Aidbox restarted with a new configuration you can use profiles, terminology and other IG features.
 
+{% hint style="warning" %}
+By default, Aidbox does not load terminologies into the database in order to save the disk space. This still allows you to use them for validation but terminology server functionality won’t be available. If you do wish to load the terminologies, you need to set `BOX_FEATURES_FTR_PULL_ENABLE=true` environment variable.
+{% endhint %}
+
 To see currently loaded profiles you can go to the `profiles` UI page:
 
 <img src="../../.gitbook/assets/image (4).png" alt="" data-size="original">             ![](<../../.gitbook/assets/image (3) (3).png>)
