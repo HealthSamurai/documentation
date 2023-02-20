@@ -206,7 +206,7 @@
   * [Run Aidbox with FTR](terminology/fhir-terminology-repository/creating-aidbox-project-with-ftr/README.md)
     * [FTR from CSV](terminology/fhir-terminology-repository/creating-aidbox-project-with-ftr/ftr-from-csv.md)
     * [FTR from FHIR IG](terminology/fhir-terminology-repository/creating-aidbox-project-with-ftr/ftr-from-fhir-ig.md)
-    * [FTR from FTR - Direct Dependency](terminology/fhir-terminology-repository/creating-aidbox-project-with-ftr/ftr-from-ftr-direct-dependency.md)
+    * [FTR from FTR — Direct Dependency](terminology/fhir-terminology-repository/creating-aidbox-project-with-ftr/ftr-from-ftr-direct-dependency.md)
   * [FTR Manifest](terminology/fhir-terminology-repository/ftr-manifest.md)
   * [Load SNOMED CT into Aidbox](terminology/fhir-terminology-repository/load-snomed-ct-into-aidbox.md)
   * [Load ICD-10-CM into Aidbox](terminology/fhir-terminology-repository/load-icd-10-cm-into-aidbox.md)

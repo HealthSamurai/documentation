@@ -14,3 +14,7 @@ You can use FTR in Aidbox in the following ways:
 [ftr-from-fhir-ig.md](ftr-from-fhir-ig.md)
 {% endcontent-ref %}
 
+{% content-ref url="ftr-from-ftr-direct-dependency.md" %}
+[ftr-from-ftr-direct-dependency.md](ftr-from-ftr-direct-dependency.md)
+{% endcontent-ref %}
+
