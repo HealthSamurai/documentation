@@ -1,18 +1,17 @@
-# FTR from FTR — Direct Dependency
+# FTR from FTR — Supplement
 
 ## Prerequisites
 
 1. Download zen-ftr CLI: [Download link](https://github.com/HealthSamurai/ftr/releases/latest/download/zen.jar)
 
-In this guide, we will create an FTR that represents a SNOMED CT subset that includes codes descending to `"Angina (disorder)" (194828000)`. The FTR on which we depend is stored remotely in a GitHub source-code repository. You can modify the `source-url` field in the FTR manifest to provide a desired URL, which can be a file path or network URL. Main use case for this extraction engine — design new ValueSets.
-
-## Creating [Aidbox Configuration project](../../../aidbox-configuration/aidbox-zen-lang-project/)
-
-Create a directory `project` with following structure:
+This guide will walk you through the creation of an FTR using the IG and a supplementary FTR. The ValueSet described in the IG relies heavily on our internal CodeSystem, which, in our case, is SNOMED-Subset. This system expands into codes that are descendants of `"Angina (disorder)" (194828000)`. The supplementary FTR is stored in a remote GitHub source-code repository. You can customize the `:extractor-options.supplements` property in the FTR manifest to provide additional supplementary FTRs and use the `:source-url` to specify the IG's path. For more information on the FTR manifest, please refer to this page.
 
 ```
 project/
   zen-package.edn #Package deps declaration
+  resources/ig/
+    angina-valueset.json #ValueSet resource
+    package.json #IG package meta
   zrc/
     system.edn #System entrypoint importing a ValueSet definion
     angina.edn # ValueSet definition
@@ -34,10 +33,62 @@ project/
 ```
 {% endcode %}
 
-This ValueSet definition conforms to the[ zen.fhir ValueSet schema](../../../profiling-and-validation/profiling-with-zen-lang/) and includes a `:ftr` property. The `:ftr` property contains an FTR manifest that defines an FTR-dependency source through the `:source-url` property, which allows the creation of an expanded version of the ValueSet to be stored in the resulting FTR. In addition, the `:extractor-options.target-tag` specifies the tag to be selected within the provided FTR dependency. For more information on the FTR manifest, please refer to this [page](../ftr-manifest.md).
+{% code title="resources/ig/angina-valueset.json" %}
+```json
+{
+  "compose": {
+    "include": [
+      {
+        "valueSet": [
+          "http://snomed.info/sct"
+        ],
+        "filter": [
+          {
+            "op": "is-a",
+            "property": "concept",
+            "value": "194828000"
+          }
+        ]
+      }
+    ]
+  },
+  "id": "anginavs",
+  "name": "anginavs",
+  "resourceType": "ValueSet",
+  "status": "active",
+  "url": "anginavs"
+}
+```
+{% endcode %}
+
+{% code title="resources/ig/package.json" %}
+```
+{
+  "name": "supplementdependant.core",
+  "version": "0.0.1",
+  "type": "supplementdependant",
+  "title": "supplementdependant",
+  "description": "supplementdependant",
+  "author": "supdep",
+  "url": "supplementdependant"
+}
+```
+{% endcode %}
+
+The ValueSet definition conforms to the [zen.fhir ValueSet schema](../../../profiling-and-validation/profiling-with-zen-lang/) and includes a :ftr property. This property contains an FTR manifest that defines an IG source using the :source-url property, and provides coordinates for supplementary ValueSets using :extractor-options.supplements. The supplementary ValueSets are used to create an expanded version of the ValueSet, which is then stored in the resulting FTR. To learn more about the FTR manifest, please refer to this [page](../ftr-manifest.md).
+
+#### Spec for supplement coordinate
+
+```clojure
+{
+  :source-url <path to some FTR repo, FS path or network URL>
+  :module <desired module> 
+  :tag <desired tag>
+}
+```
 
 {% code title="zrc/angina.edn" %}
-```clojure
+```
 {ns angina
  import #{zen.fhir}
  angina-vs
@@ -45,21 +96,13 @@ This ValueSet definition conforms to the[ zen.fhir ValueSet schema](../../../pro
   :zen.fhir/version "0.6.14"
   :uri "angina-vs"
   :ftr {:module            "nanosubset"
-        :source-url        "https://raw.githubusercontent.com/HealthSamurai/ftr/main/examples/microsnomed"
-        :ftr-path          "/tmp"
+        :source-url        "resources/ig"
+        :ftr-path          "ftr"
         :tag               "prod"
-        :source-type       :ftr
-        :extractor-options {:target-tag "prod"
-                            :value-set
-                            {:compose      {:include [{:valueSet ["http://snomed.info/sct"]
-                                                       :filter [{:op       "is-a"
-                                                                 :property "concept"
-                                                                 :value    "194828000"}]}]}
-                             :id           "nanosubset"
-                             :name         "nanosubset"
-                             :resourceType "ValueSet"
-                             :status       "active"
-                             :url          "nanosubset"}}}}}
+        :source-type       :ig
+        :extractor-options {:supplements [{:source-url "https://raw.githubusercontent.com/HealthSamurai/ftr/main/examples"
+                                           :module "microsnomed"
+                                           :tag "prod"}]}}}}
 ```
 {% endcode %}
 
