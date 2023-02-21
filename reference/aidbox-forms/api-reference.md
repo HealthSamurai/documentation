@@ -5,7 +5,7 @@
 * [`aidbox.sdc/convert-questionnaire`](api-reference.md#convert-questionnaire)- converts FHIR Questionnaire to Aidbox SDC Form
 * [`aidbox.sdc/convert-form`](api-reference.md#convert-form) - converts Aidbox Form to FHIR Questionnaire
 * [`aidbox.sdc/convert-forms`](api-reference.md#convert-forms) - converts Aidbox Forms to FHIR Questionnaire resources
-* [`aidbox.sdc/generate-form-template`](api-reference.md#generate-form-template) - genereate form from scratch 
+* [`aidbox.sdc/generate-form-template`](api-reference.md#generate-form-template) - genereate form from scratch
 * [`aidbox.sdc/generate-form-layout`](api-reference.md#generate-form-layout) - generate form layout
 * [`aidbox.sdc/generate-form-constraints`](api-reference.md#generate-form-constraints) - generate constraints schema
 * [`aidbox.sdc/generate-form-finalize`](api-reference.md#generate-form-finalize) - generate finalize with extractions
@@ -33,7 +33,7 @@ Converts Questionnaire to Aidbox SDC Form (Document + Form + Launch + (Finalize)
 params:
 
 | Param                   | Description                                             | Type                                         | required? |
-|-------------------------|---------------------------------------------------------|----------------------------------------------|-----------|
+| ----------------------- | ------------------------------------------------------- | -------------------------------------------- | --------- |
 | url                     | Link to Questinnaire on public FHIR server              | zen/string                                   | no        |
 | resource                | Questionnaire resource body                             | zenbox/resource                              | no        |
 | options                 | Additional options                                      | map                                          | no        |
@@ -41,7 +41,6 @@ params:
 | optinos.keygen-strategy | Strategy for document keys generation                   | "text"/"numbers"/"link-id"/"code-or-link-id" | no        |
 | optinos.base-name       | Name prefix for all generated zen-symbols and namespace | string                                       | no        |
 | options.key-prefix      | Prefix for document keys                                | zen/string                                   | no        |
-  
 
 Request:
 
@@ -124,7 +123,7 @@ result:
       :finalize DukeAnxietyDepressionScaleFinalize}}
 ```
 
------------------------------------------------------------------
+***
 
 ### convert-form
 
@@ -136,24 +135,23 @@ Basically only `Document` and `FinalizeConstraints` DSLs are supported
 
 What is supported:
 
-- `Document` structure with questions
-  - nested questions
-  - repeated questions
-- Questions ordering based on natural question order in `Document DSL`
-- required fields based on `Document DSL` and `FinalizeConstraints DSL`
-- Questionnaire root properties via `Forms DSL` properties
-
+* `Document` structure with questions
+  * nested questions
+  * repeated questions
+* Questions ordering based on natural question order in `Document DSL`
+* required fields based on `Document DSL` and `FinalizeConstraints DSL`
+* Questionnaire root properties via `Forms DSL` properties
 
 params:
 
 | Param            | Description                    | Type    | required? |
-|------------------|--------------------------------|---------|-----------|
+| ---------------- | ------------------------------ | ------- | --------- |
 | form             | Form symbolic name             | string  | yes       |
 | format           | Format of QR. Aidbox or FHIR   | string  | yes       |
 | save-to-resource | Save Questionnaire to resource | boolean | no        |
 
-- To save Questionnaire to resource you should specify `:fhir/id` property in the [`Form DSL`](form-dsl.md#properties-for-conversion)
-- To specify additional fields that are represented in Questionnaire but not in the Form DSL - you can use predefined form properties for that [`Form DSL`](form-dsl.md#properties-for-conversion)
+* To save Questionnaire to resource you should specify `:fhir/id` property in the [`Form DSL`](form-dsl.md#properties-for-conversion)
+* To specify additional fields that are represented in Questionnaire but not in the Form DSL - you can use predefined form properties for that [`Form DSL`](form-dsl.md#properties-for-conversion)
 
 Request:
 
@@ -239,11 +237,10 @@ Convert all SDCForms with :fhir/id property to FHIR questionnaire and store them
 
 This RPC don't have any paramerters.
 
-Returns list of pairs [form-name, convertions-result]
-where convertion result is one of:
- - Ok
- - {messge: "error message"}
+Returns list of pairs \[form-name, convertions-result] where convertion result is one of:
 
+* Ok
+* {messge: "error message"}
 
 Request:
 
@@ -264,22 +261,20 @@ result:
 
 ```
 
------------------------------------------------------------------
-### generate-form-template 
+***
 
-Generate ZEN namespace with empty Form definition and all relevant layers.
-You can use this as starting point when you need create custom form from scratch.
+### generate-form-template
+
+Generate ZEN namespace with empty Form definition and all relevant layers. You can use this as starting point when you need create custom form from scratch.
 
 > Note: rpc doesn't make any changes in filesystem - it just returns template. You then should save it to file manually
-
 
 params:
 
 | Param | Description       | Type   | required? |
-|-------|-------------------|--------|-----------|
+| ----- | ----------------- | ------ | --------- |
 | ns    | Namespace of form | String | no        |
 | title | Form Title        | String | no        |
-
 
 ```yaml
 POST /rpc?
@@ -349,11 +344,10 @@ Generate Form Layout Definition, based on Document schema.
 
 > Note: rpc doesn't make any changes in filesystem - it just returns template. You then should save it to file manually
 
-
 params:
 
 | Param     | Description              | Type              | required? |
-|-----------|--------------------------|-------------------|-----------|
+| --------- | ------------------------ | ----------------- | --------- |
 | document  | SDCDocument schema name  | symbol            | yes       |
 | show-keys | fields to show in layout | vector of strings | no        |
 
@@ -372,7 +366,7 @@ params:
       - height
 ```
 
-Result: 
+Result:
 
 ```
 result: |
@@ -387,7 +381,7 @@ result: |
 
 ```
 
-Error 
+Error
 
 ```
 error:
@@ -404,11 +398,10 @@ Generate Form FinalizeConstrains Definition, based on Document schema
 
 > Note: rpc doesn't make any changes in filesystem - it just returns template. You then should save it to file manually
 
-
 params:
 
 | Param         | Description             | Type              | required? |
-|---------------|-------------------------|-------------------|-----------|
+| ------------- | ----------------------- | ----------------- | --------- |
 | document      | SDCDocument schema name | symbol            | yes       |
 | required-keys | Required fields         | vector of strings | no        |
 
@@ -425,8 +418,7 @@ params:
       - height
 ```
 
-Result: 
-
+Result:
 
 ```
 result: |
@@ -435,7 +427,7 @@ result: |
    :require #{:height :weight}}
 ```
 
-Error 
+Error
 
 ```
 error:
@@ -448,7 +440,6 @@ error:
 
 ### generate-form-finalize
 
-
 Generate Form Finalize Definition with extractions, based on Document schema.
 
 > Note: rpc doesn't make any changes in filesystem - it just returns template. You then should save it to file manually
@@ -456,11 +447,10 @@ Generate Form Finalize Definition with extractions, based on Document schema.
 params:
 
 | Param        | Description                          | Type              | required? |
-|--------------|--------------------------------------|-------------------|-----------|
+| ------------ | ------------------------------------ | ----------------- | --------- |
 | document     | SDCDocument schema name              | symbol            | yes       |
 | extract-keys | Keys for extraction                  | vector of strings | no        |
 | profile      | name of Finalize Constraint profile. | string/symbol     | no        |
-
 
 if `extract-keys` is not given - generate layout for all fields in the document.
 
@@ -476,7 +466,7 @@ params:
       - height
 ```
 
-Result: 
+Result:
 
 ```
 result: |
@@ -490,7 +480,7 @@ result: |
      :params {:path [:height]}}]}
 ```
 
-Error 
+Error
 
 ```
 error:
@@ -500,7 +490,6 @@ error:
   - message: No symbol 'my.forms/MyForm found
     type: symbol
 ```
-
 
 ### get-forms
 
@@ -513,22 +502,20 @@ Response can be narrowed with document Symbol name substring
 params:
 
 | Param              | Description                         | Type   | required? |
-|--------------------|-------------------------------------|--------|-----------|
+| ------------------ | ----------------------------------- | ------ | --------- |
 | q                  | substring of Form symbolic name     | String | no        |
 | include.properties | include-filter for properties match | map    | no        |
 | exclude.properties | exclude-filter for properties match | map    | no        |
 
 #### include/exclude filter
 
-- include/exclude properties should be in that shape as you except them in Form definition.
-- if property value is a set - then filter specifies elements subset with AND logic
-- if property value is a coll - then filter specifies collection matching with strict order and elements counts
-- if property value is a map - then filter specifies subset of map structure with searched leaves values
-- if property value is a keyword/string/symbol - then filter specifies equal match by stringified property value. 
+* include/exclude properties should be in that shape as you except them in Form definition.
+* if property value is a set - then filter specifies elements subset with AND logic
+* if property value is a coll - then filter specifies collection matching with strict order and elements counts
+* if property value is a map - then filter specifies subset of map structure with searched leaves values
+* if property value is a keyword/string/symbol - then filter specifies equal match by stringified property value.
 
-
-
-Request: 
+Request:
 
 ```
 POST /rpc?
@@ -542,8 +529,7 @@ params:
             in-dev: true
 ```
 
-
-Result 
+Result
 
 ```
 result:
@@ -805,13 +791,11 @@ error:
         errors: {...}   ;; zen-style  validation errors
 ```
 
-
 ### aidbox.sdc/convert-document
 
 Converts SDCDocument to QuestionnaireResponse
 
-> If you need to have original Questionnaire `linkId`-s  - you should specify `:linkId` property of the SDCDocument fields.
-> By default field keys are used as `linkId`. 
+> If you need to have original Questionnaire `linkId`-s - you should specify `:linkId` property of the SDCDocument fields. By default field keys are used as `linkId`.
 
 Also you may choose the output format:
 
@@ -825,12 +809,11 @@ Optionaly you can save converted `QuestionnaireResponse` to its resource table v
 Params:
 
 | Param            | Description                                 | Type              | required? |
-|------------------|---------------------------------------------|-------------------|-----------|
+| ---------------- | ------------------------------------------- | ----------------- | --------- |
 | id               | id of SDCDocument in DB                     | String            | no        |
 | document         | SDCDocument resource body                   | Resource          | no        |
 | format           | Output format                               | "fhir" / "aidbox" | yes       |
 | save-to-resource | If true - converts and saves QR to resource | boolean           | no        |
-
 
 Request:
 
@@ -1004,20 +987,21 @@ Generates link for form access and management without authentication.
 
 Redirect urls can be specified for different actions.
 
-- Submit
-- Save & Close 
+* Submit
+* Save & Close
 
 > By default there is no `Save & Close` button in page. When you specify `redirect-on-save` - button will appear in UI.
 
 Params:
 
-| Param             | Description                                            | Type                    | required? |
-|-------------------|--------------------------------------------------------|-------------------------|-----------|
-| form              | link to the form in DB                                 | Map                     | yes       |
-| form.id           | SDCDocument/SDCWorkflow id                             | String                  | yes       |
-| form.resourceType |                                                        | SDCDocument/SDCWorkflow | yes       |
-| redirect-on-sign  | URI that used after form sign/amend event for redirect | URI                     | no        |
-| redirect-on-save  | URI that used after Save button is pressed             | URI                     | no        |
+| Param             | Description                                                                                                                                                                        | Type                    | required? |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- | --------- |
+| form              | link to the form in DB                                                                                                                                                             | Map                     | yes       |
+| form.id           | SDCDocument/SDCWorkflow id                                                                                                                                                         | String                  | yes       |
+| form.resourceType |                                                                                                                                                                                    | SDCDocument/SDCWorkflow | yes       |
+| redirect-on-sign  | URI that used after form sign/amend event for redirect                                                                                                                             | URI                     | no        |
+| redirect-on-save  | URI that used after Save button is pressed                                                                                                                                         | URI                     | no        |
+| theme             | <p>Theme that will be applied to form. <br>See <a data-mention href="../../modules-1/aidbox-forms/how-to-customize-form-appearance.md">how-to-customize-form-appearance.md</a></p> | String                  | no        |
 
 Request:
 
@@ -1031,6 +1015,7 @@ params:
   form:
     id: doc-1
     resourceType: SDCDocument
+  theme: sdc-box/example-theme
   redirect-on-sign: http://my.portal.com?param1=p1
   redirect-on-save: http://my.portal.com?param1=p3
 ```
