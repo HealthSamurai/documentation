@@ -84,23 +84,32 @@ Search is defined in terms of "[search parameters](searchparameter.md)". SearchP
 
 Search parameter can be one of the following types:
 
-| Type                                                        | Description                                                                                                                                                                                                                                                                                                  |
-| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [number](https://www.hl7.org/fhir/search.html#number)       | Search parameter SHALL be a number (a whole number, or a decimal).                                                                                                                                                                                                                                           |
-| [date](https://www.hl7.org/fhir/search.html#date)           | Search parameter is on a date/time. The date format is the standard XML format, though other formats may be supported.                                                                                                                                                                                       |
-| [string](https://www.hl7.org/fhir/search.html#string)       | Search parameter is a simple string, like a name part. Search is case-insensitive and accent-insensitive. May match just the start of a string. String parameters may contain spaces.                                                                                                                        |
-| [token](https://www.hl7.org/fhir/search.html#token)         | Search parameter on a coded element or identifier. May be used to search through the text, displayname, code and code/codesystem (for codes) and label, system and key (for identifier). Its value is either a string or a pair of namespace and value, separated by a "\|", depending on the modifier used. |
-| [reference](https://www.hl7.org/fhir/search.html#reference) | A reference to another resource.                                                                                                                                                                                                                                                                             |
-| [composite](https://www.hl7.org/fhir/search.html#composite) | A composite search parameter that combines a search on two values together.                                                                                                                                                                                                                                  |
-| [quantity](https://www.hl7.org/fhir/search.html#quantity)   | A search parameter that searches on a quantity.                                                                                                                                                                                                                                                              |
-| [uri](https://www.hl7.org/fhir/search.html#uri)             | A search parameter that searches on a URI (RFC 3986).                                                                                                                                                                                                                                                        |
+<table><thead><tr><th>Type</th><th data-type="select">Support</th><th>Description</th></tr></thead><tbody><tr><td><a href="https://www.hl7.org/fhir/search.html#number">number</a></td><td></td><td>Search parameter SHALL be a number (a whole number, or a decimal).</td></tr><tr><td><a href="https://www.hl7.org/fhir/search.html#date">date</a></td><td></td><td>Search parameter is on a date/time. The date format is the standard XML format, though other formats may be supported.</td></tr><tr><td><a href="https://www.hl7.org/fhir/search.html#string">string</a></td><td></td><td>Search parameter is a simple string, like a name part. Search is case-insensitive and accent-insensitive. May match just the start of a string. String parameters may contain spaces.</td></tr><tr><td><a href="https://www.hl7.org/fhir/search.html#token">token</a></td><td></td><td>Search parameter on a coded element or identifier. May be used to search through the text, displayname, code and code/codesystem (for codes) and label, system and key (for identifier). Its value is either a string or a pair of namespace and value, separated by a "|", depending on the modifier used.</td></tr><tr><td><a href="https://www.hl7.org/fhir/search.html#reference">reference</a></td><td></td><td>A reference to another resource.</td></tr><tr><td><a href="https://www.hl7.org/fhir/search.html#composite">composite</a></td><td></td><td>A composite search parameter that combines a search on two values together.</td></tr><tr><td><a href="https://www.hl7.org/fhir/search.html#quantity">quantity</a></td><td></td><td>A search parameter that searches on a quantity.</td></tr><tr><td><a href="https://www.hl7.org/fhir/search.html#uri">uri</a></td><td></td><td>A search parameter that searches on a URI (RFC 3986).</td></tr></tbody></table>
 
 Depending on the value type, different modifiers can be applied.
 
-### Common
+## Supported modifiers
 
-* `:missing`
-* `:text` — case insensitive, partial match of text & data associated with search parameter.
+| Modifier                  | Types                         | Description                                                                                                                                             |
+| ------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| missing                   | all                           | Tests whether the value in a resource is present (when the supplied parameter value is `true`) or absent (when the supplied parameter value is `false`) |
+| text                      | string, token, reference, uri | Tests whether the textual value in a resource matches the supplied parameter value using basic string matching (begins with or is, case-insensitive)    |
+| below                     | uri                           | Tests whether the value in a resource is or is subsumed by the supplied parameter value (is-a, or hierarchical relationships)                           |
+| contains                  | string                        | Case insensitive, partial match at start or end                                                                                                         |
+| ends,  ew                 | string                        | Case insensitive, partial match at end                                                                                                                  |
+| exact                     | string                        | No partial matches, case sensitive                                                                                                                      |
+| starts, sw                | string                        | Case insensitive, partial match at start                                                                                                                |
+| btw                       | date                          | Search between two dates                                                                                                                                |
+| identifier                | reference                     | Tests whether the `Reference.identifier` in a resource (rather than the `Reference.reference`) matches the supplied parameter value                     |
+| not                       | reference, token              | Reverses the code matching: returns all resources that do not have a matching item.                                                                     |
+| i                         | token                         | Case insensitive, exact match of text associated with token or token itself                                                                             |
+| in                        | token                         | Tests whether the value in a resource is a member of the supplied parameter ValueSet                                                                    |
+| of-type                   | token (only Identifier)       | Tests whether the `Identifier` value in a resource matches the supplied parameter value                                                                 |
+| iterate, reverse, logical | n/a                           | See [\_include](search-parameters-list/\_include-and-\_revinclude.md)                                                                                   |
+
+### Search with modifiers examples
+
+#### `:missing`
 
 {% tabs %}
 {% tab title="FHIR format" %}
@@ -121,6 +130,8 @@ GET /Entity?description:missing=true
 ```
 {% endtab %}
 {% endtabs %}
+
+#### `:text`
 
 {% tabs %}
 {% tab title="FHIR format" %}
@@ -150,12 +161,7 @@ GET /Patient?telecom:text=fhir
 {% endtab %}
 {% endtabs %}
 
-### Strings
-
-* `:exact` — no partial matches, case sensitive;
-* `:contains` — case insensitive, partial match at start or end.
-
-Default behavior is case insensitive, partial match at start.
+#### `:exact`
 
 {% tabs %}
 {% tab title="FHIR format" %}
@@ -171,11 +177,7 @@ GET /Patient?name:exact=Alex
 {% endtab %}
 {% endtabs %}
 
-### Token
-
-* `:not` — reverses the code matching: returns all resources that do not have a matching item.
-* `:i` — case insensitive, exact match of text associated with token or token itself.
-* `:in` — the search parameter is a URI (relative or absolute) that identifies a value set, and the search parameter tests whether the coding is in the specified value set.
+#### `:not`
 
 {% tabs %}
 {% tab title="FHIR format" %}
@@ -194,6 +196,8 @@ GET /Patient?gender:not=male
 ```
 {% endtab %}
 {% endtabs %}
+
+#### `i`
 
 {% tabs %}
 {% tab title="FHIR format" %}
@@ -217,6 +221,8 @@ GET /Patient?email:i=foo@bar.baz
 {% endtab %}
 {% endtabs %}
 
+#### `in`
+
 {% tabs %}
 {% tab title="FHIR format" %}
 ```javascript
@@ -237,48 +243,9 @@ GET /Condition?code:in=/ValueSet/cardiac-conditions
 {% endtab %}
 {% endtabs %}
 
-### Reference
+## Prefixes
 
-Reference describes the relationship between resources. Following options are available for filtering by reference:
-
-```javascript
-[parameter]=[id]
-[parameter]=[type]/[id]
-```
-
-For example, let's find all encounters related to a specified patient:
-
-{% tabs %}
-{% tab title="FHIR format" %}
-```javascript
-GET /fhir/Encounter?subject=patientid
-```
-{% endtab %}
-
-{% tab title="Aidbox format" %}
-```javascript
-GET /Encounter?subject=patientid
-```
-{% endtab %}
-{% endtabs %}
-
-{% tabs %}
-{% tab title="FHIR format" %}
-```javascript
-GET /fhir/Encounter?subject=Patient/patientid
-```
-{% endtab %}
-
-{% tab title="Aidbox format" %}
-```javascript
-GET /Encounter?subject=Patient/patientid
-```
-{% endtab %}
-{% endtabs %}
-
-### Prefixes
-
-For Numbers, Dates, and Quantities (will be supported), we can use the following conditionals in a search:
+For Numbers, Dates, and Quantities, we can use the following conditionals in a search:
 
 * `eq` - equal (default)
 * `ne` - non-equal
@@ -287,16 +254,18 @@ For Numbers, Dates, and Quantities (will be supported), we can use the following
 * `gt` - greater than
 * `ge` - greater or equal
 
+For example, to search for patients, who were born before 1986-04-28:
+
 {% tabs %}
 {% tab title="FHIR format" %}
 ```javascript
-GET /fhir/Patient?birthdate=gt1986-04-28
+GET /fhir/Patient?birthdate=lt1986-04-28
 ```
 {% endtab %}
 
 {% tab title="Aidbox format" %}
 ```javascript
-GET /Patient?birthdate=gt1986-04-28
+GET /Patient?birthdate=lt1986-04-28
 ```
 {% endtab %}
 {% endtabs %}

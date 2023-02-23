@@ -113,6 +113,7 @@
     * [Search Resource](api-1/fhir-api/search-1/search-resource.md)
     * [Search with related resources](api-1/fhir-api/search-1/search-with-related-resources.md)
     * [Token search](api-1/fhir-api/search-1/token-search.md)
+    * [Reference search](api-1/fhir-api/search-1/reference-search.md)
     * [Date search](api-1/fhir-api/search-1/date-search.md)
     * [AidboxQuery](api-1/fhir-api/search-1/custom-search.md)
     * [SearchQuery](api-1/fhir-api/search-1/searchquery.md)
