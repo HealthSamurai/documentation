@@ -23,7 +23,7 @@ The MDM service symbol structure:
 
 Consider this example with comments
 
-```
+```clojure
 {:zen/tags #{aidbox.mdm/model} ; fixed value
 
  ;; resource-type specifies the type of resources
