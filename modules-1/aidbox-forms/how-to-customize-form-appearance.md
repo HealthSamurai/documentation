@@ -2,7 +2,7 @@
 
 Aidbox Forms gives you ability to customize form looking. To do this you can create a new theme, and specify it in sdc-service.
 
-The simplest variant of forms theme looks like this:&#x20;
+The simplest variant of forms theme looks like this:
 
 ```clojure
 simplest-sdc-theme
@@ -15,9 +15,9 @@ simplest-sdc-theme
 
 To use this theme specify `simplest-sdc-theme` under the `:theme` key in SDC service.
 
-In this theme we change only main-color, but this color changes a lot in Aidbox Forms looking: inputs border color, buttons background color, etc. So you can use just one key to style forms with your brand color. &#x20;
+In this theme we change only main-color, but this color changes a lot in Aidbox Forms looking: inputs border color, buttons background color, etc. So you can use just one key to style forms with your brand color.
 
-If you need more detailed styling, you can use extended theme definition. With this you can change separately buttons main color, text color, input border, background, text colors, background colors, font and add a brand image.&#x20;
+If you need more detailed styling, you can use extended theme definition. With this you can change separately buttons main color, text color, input border, background, text colors, background colors, font and add a brand image.
 
 ### Buttons
 
@@ -32,11 +32,11 @@ buttons-sdc-theme
           :accent-color [255 255 255]}}
 ```
 
-For filled buttons accent color will be used as background color, for outlined buttons as border color and text color.&#x20;
+For filled buttons accent color will be used as background color, for outlined buttons as border color and text color.
 
 Also you can change text of `Save & Close` and `Submit` buttons.
 
-> Read more about [`Save & Close button`](../api-reference.md#aidbox.sdc/generate-form-link)
+> Read more about [`Save & Close button`](../../reference/aidbox-forms/api-reference.md#aidbox.sdc-generate-form-link)``
 
 ```clojure
 buttons-sdc-theme
@@ -63,7 +63,7 @@ inputs-sdc-theme
          :background-color [232 237 238]}}
 ```
 
-Here accent color will be used as border color on hover, focused state.&#x20;
+Here accent color will be used as border color on hover, focused state.
 
 ### Background colors
 
@@ -85,7 +85,7 @@ To understand what each color is look at the image below:
 
 ### Font
 
-To change font specify the `:font-family`  in theme scheme. Currently we support fonts only from this list, but we continue to add support for other fonts:&#x20;
+To change font specify the `:font-family` in theme scheme. Currently we support fonts only from this list, but we continue to add support for other fonts:
 
 * Inter
 * Product Sans
@@ -101,7 +101,7 @@ font-sdc-theme
 
 ### Brand images
 
-You can add brand image or logo of your company by adding a new map under the key `:brand-image`  and specify the location and the URL to image:
+You can add brand image or logo of your company by adding a new map under the key `:brand-image` and specify the location and the URL to image:
 
 ```clojure
 brand-image-theme
@@ -148,9 +148,10 @@ aidbox-instance.io/ui/sdc#/documents/33fbdccb-0398-46ab-bce4-6160259552a8?policy
 ```
 {% endcode %}
 
-<pre data-title="link with theme specified"><code>aidbox-instance.io/ui/sdc<a data-footnote-ref href="#user-content-fn-1">?theme=sdc-box/hs-red-theme</a>#/documents/33fbdccb-0398-46ab-bce4-6160259552a8?policy-token=...
-</code></pre>
+{% code title="link with theme specified" %}
+```
+aidbox-instance.io/ui/sdc?theme=sdc-box/hs-red-theme#/documents/33fbdccb-0398-46ab-bce4-6160259552a8?policy-token=...
+```
+{% endcode %}
 
 It's important to put this parameter **before fragment part** otherwise it will be ignored and default theme will be applied
-
-[^1]:
