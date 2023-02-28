@@ -34,6 +34,21 @@ buttons-sdc-theme
 
 For filled buttons accent color will be used as background color, for outlined buttons as border color and text color.&#x20;
 
+Also you can change text of `Save & Close` and `Submit` buttons.
+
+> Read more about [`Save & Close button`](../api-reference.md#aidbox.sdc/generate-form-link)
+
+```clojure
+buttons-sdc-theme
+{:zen/tags #{aidbox.sdc/theme}
+ :zen/desc "Default SDC theme"
+ :main-color [120 38 245]
+ :button {:redirect-text "Close"
+          :submit-text "Sign"
+	      :text-color [0 94 184]
+          :accent-color [255 255 255]}}
+```
+
 ### Inputs
 
 To change inputs appearance add to theme scheme a new map under `:input` key:
@@ -138,4 +153,4 @@ aidbox-instance.io/ui/sdc#/documents/33fbdccb-0398-46ab-bce4-6160259552a8?policy
 
 It's important to put this parameter **before fragment part** otherwise it will be ignored and default theme will be applied
 
-[^1]: 
+[^1]:

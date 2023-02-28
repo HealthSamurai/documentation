@@ -361,7 +361,7 @@ POST /rpc?
 method: aidbox.sdc/generate-form-layout
 params:
     document: my.company.forms.my-vitals/MyVitals
-    show-keys: 
+    show-keys:
       - weight
       - height
 ```
@@ -413,7 +413,7 @@ POST /rpc?
 method: aidbox.sdc/generate-form-constraints
 params:
     document: my.company.forms.my-vitals/MyVitals
-    required-keys: 
+    required-keys:
       - weight
       - height
 ```
@@ -460,8 +460,8 @@ POST /rpc?
 method: aidbox.sdc/generate-form-finalize
 params:
     document: my.company.forms.my-vitals/MyVitals
-    profile: 
-    extract-keys: 
+    profile:
+    extract-keys:
       - weight
       - height
 ```
@@ -990,7 +990,7 @@ Redirect urls can be specified for different actions.
 * Submit
 * Save & Close
 
-> By default there is no `Save & Close` button in page. When you specify `redirect-on-save` - button will appear in UI.
+> By default there is no `Save & Close` button in page. When you specify `redirect-button` - button will appear in UI.
 
 Params:
 
@@ -1000,7 +1000,7 @@ Params:
 | form.id           | SDCDocument/SDCWorkflow id                                                                                                                                                         | String                  | yes       |
 | form.resourceType |                                                                                                                                                                                    | SDCDocument/SDCWorkflow | yes       |
 | redirect-on-sign  | URI that used after form sign/amend event for redirect                                                                                                                             | URI                     | no        |
-| redirect-on-save  | URI that used after Save button is pressed                                                                                                                                         | URI                     | no        |
+| redirect-button   | URI that used after Save or Close button is pressed                                                                                                                                         | URI                     | no        |
 | theme             | <p>Theme that will be applied to form. <br>See <a data-mention href="../../modules-1/aidbox-forms/how-to-customize-form-appearance.md">how-to-customize-form-appearance.md</a></p> | String                  | no        |
 
 Request:
@@ -1017,7 +1017,7 @@ params:
     resourceType: SDCDocument
   theme: sdc-box/example-theme
   redirect-on-sign: http://my.portal.com?param1=p1
-  redirect-on-save: http://my.portal.com?param1=p3
+  redirect-button: http://my.portal.com?param1=p3
 ```
 
 Result:
