@@ -991,6 +991,12 @@
 
 
 
+- `:max-line` (zen/integer)
+
+  
+
+
+
 - `:request-save-raw-body` (zen/boolean)
 
   Attach raw body to response
