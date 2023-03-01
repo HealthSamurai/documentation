@@ -14,7 +14,26 @@ To setup Aidbox monitoring please read this [article](../../core-modules/logging
 
 After you've successfully installed APM URL, you can see APM in main Kibana menu and in services submenu you can see Aidbox. Refer to below screenshots:
 
+## Enable APM for 2202 and later versions
 
+Starting with version 2206 and later, Aidbox does not contain an APM agent inside the container. You can include it in your own container's Aidbox build.
+
+{% code title="Dockerfile" %}
+```docker
+FROM healthsamurai/aidboxone:<VERSION>
+COPY --from=docker.elastic.co/observability/apm-agent-java:latest /usr/agent/elastic-apm-agent.jar /app/elastic-apm-agent.jar
+```
+{% endcode %}
+
+After that, you can run Aidbox with APM as previously with `JAVA_OPTS` env variable&#x20;
+
+```bash
+JAVA_OPTS='-javaagent:/app/elastic-apm-agent.jar 
+           -Delastic.apm.service_name=aidbox 
+           -Delastic.apm.server_url=http://localhost:8200 
+           -Delastic.apm.secret_token=<token>'
+
+```
 
 ![](../../.gitbook/assets/screenshot-2021-08-10-at-17.27.36.png)
 
