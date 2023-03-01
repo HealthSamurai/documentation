@@ -318,6 +318,14 @@ BOX_WEB_THREAD=<count-of-web-worker-threads>
 
 Count of HTTP server web workers. Default is 8
 
+### BOX\_WEB\_MAX\_\_LINE
+
+```
+BOX_WEB_MAX__LINE=<max-line-bytes>
+```
+
+Length limit for HTTP initial line and per header, 414(Request-URI Too Long) will be returned if exceeding this limit. Default to 8192.
+
 ### BOX\_FEATURES\_TERMINOLOGY\_IMPORT\_SYNC
 
 ```
