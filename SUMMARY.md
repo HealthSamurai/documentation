@@ -295,7 +295,6 @@
     * [🎓 Log analysis and visualization tutorial](core-modules/logging-and-audit/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana.md)
     * [🎓 Export logs to Datadog tutorial](core-modules/logging-and-audit/datadog-guide.md)
   * [Audit](core-modules/logging-and-audit/audit.md)
-  * [Log event configuration](core-modules/logging-and-audit/log-event-configuration.md)
 
 ## Modules <a href="#modules-1" id="modules-1"></a>
 
