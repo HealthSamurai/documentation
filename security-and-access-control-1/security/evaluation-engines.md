@@ -109,7 +109,8 @@ matcho:
     # user.department should be equal to inpatient
     department: inpatient
     # user.data.practitioner_id should be present
-    data: {practitioner_id: present?}
+    data: 
+      practitioner_id: present?
   # uri should match regexp
   uri: '#/Encounter.*'
   # request method should be GET or POST
