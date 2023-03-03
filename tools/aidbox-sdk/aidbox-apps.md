@@ -8,10 +8,6 @@ You define the App using Aidbox SDK for your language and should not reverse eng
 [nodejs.md](nodejs.md)
 {% endcontent-ref %}
 
-{% content-ref url="clojure-sdk.md" %}
-[clojure-sdk.md](clojure-sdk.md)
-{% endcontent-ref %}
-
 {% content-ref url="python-sdk.md" %}
 [python-sdk.md](python-sdk.md)
 {% endcontent-ref %}

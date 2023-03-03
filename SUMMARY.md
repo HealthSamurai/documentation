@@ -383,7 +383,6 @@
 * [Aidbox SDK](tools/aidbox-sdk/README.md)
   * [Apps](tools/aidbox-sdk/aidbox-apps.md)
   * [NodeJs SDK](tools/aidbox-sdk/nodejs.md)
-  * [Clojure SDK](tools/aidbox-sdk/clojure-sdk.md)
   * [Python SDK](tools/aidbox-sdk/python-sdk.md)
   * [SDK internals](tools/aidbox-sdk/sdk-internals.md)
 
