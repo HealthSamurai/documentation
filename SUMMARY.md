@@ -87,8 +87,6 @@
 ## API <a href="#api-1" id="api-1"></a>
 
 * [FHIR API](api-1/fhir-api/README.md)
-  * [Capability Statement](api-1/fhir-api/metadata.md)
-  * [$validate](api-1/fhir-api/usdvalidate.md)
   * [Search](api-1/fhir-api/search-1/README.md)
     * [Configure Search API](api-1/fhir-api/search-1/configure-search-api.md)
     * [SearchParameter](api-1/fhir-api/search-1/searchparameter.md)
@@ -121,6 +119,8 @@
     * [. expressions](api-1/fhir-api/search-1/.-expressions.md)
     * [Chained Parameters](api-1/fhir-api/search-1/chained-parameters.md)
     * [$lookup](api-1/fhir-api/search-1/usdlookup.md)
+  * [Capability Statement](api-1/fhir-api/metadata.md)
+  * [$validate](api-1/fhir-api/usdvalidate.md)
   * [$match](api-1/fhir-api/usdmatch.md)
   * [Observation/$lastn](api-1/fhir-api/misc.md)
   * [History](api-1/fhir-api/history-1.md)
