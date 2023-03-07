@@ -54,3 +54,31 @@ You can also auto-generate indexes for SearchParameter:
 [indexes](../../../storage-1/indexes/)
 {% endcontent-ref %}
 
+## Preferred operator
+
+Token and Reference search parameters use exact match.
+
+Aidbox uses Postgres `@>` operator for this type of searches. The `@>` operator is the containment operator. It checks that FHIR resource contains some subresource.
+
+The main advantage of the `@>` operator is that the single GIN index covers all token and reference searches. However sometimes Postgres planner can not build effecient query plan.
+
+Alternatively in some cases it is possible to extract value directly using `#>>` operator. This operator extracts value from the given path. There is a limitation: path must not contain any arrays.
+
+You can configure Aidbox to prefer `#>>` operator to `@>` operator using the environment variable
+
+```
+box_search_token__operator
+```
+
+or using path
+
+```
+[:search :token-operator]
+```
+
+in Aidbox configuration project config zen symbol.
+
+Possible values are:
+
+* `@>`: use the `@>` operator always
+* `#>>`: use the `#>>` operator when possible, `@>` otherwise

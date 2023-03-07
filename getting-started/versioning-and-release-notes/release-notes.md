@@ -1,5 +1,23 @@
 # Release Notes
 
+## February 2023 _`edge`_
+
+* Terminology
+  *
+* Data API
+  *
+* C-CDA to FHIR converter
+  *
+* Security and Access Control
+  *
+* Ops
+  * Add GraphQL request body in gq/resp log event
+*   Aidbox Forms
+
+    * Added new forms templates to [forms library](https://github.com/Aidbox/sdc-forms-library/)
+
+
+
 ## January 2023 _`latest`_
 
 * Terminology
