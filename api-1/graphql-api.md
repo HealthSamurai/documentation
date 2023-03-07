@@ -63,8 +63,10 @@ Also for attributes with Reference type unions are created for direct and revers
 FHIR GraphQL [does not support](https://hl7.org/fhir/graphql.html#searching) [\_revinclude](fhir-api/search-1/search-parameters-list/\_include-and-\_revinclude.md) Search parameter. In Aidbox you can use reverse include in such format:&#x20;
 
 ```
-<revIncludeResourceType>s_as_<includedResourceReferenceSearchParameter> 
+<revIncludeResourceType>s_as_<path_to_reference_field> 
 ```
+
+Here `revIncludeResourceType` should be lowercase name of a resource; `path_to_reference_field` is a path to the field with type reference, where path separator is underscore (`_`).
 
 For example:\
 `observations_as_subject` for Patient will be equivalent of `_revinclude=Observation:subject`
