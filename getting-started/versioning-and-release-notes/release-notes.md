@@ -2,21 +2,40 @@
 
 ## February 2023 _`edge`_
 
-* Terminology
-  *
+* Validation and Terminology
+  * Reduced [Zen FHIR IG](../../aidbox-configuration/aidbox-zen-lang-project/enable-igs.md) size
+  * [New FTR extraction engine](../../terminology/fhir-terminology-repository/creating-aidbox-project-with-ftr/ftr-from-ftr-direct-dependency.md): creating new ValueSets based on existing FTRs
+  * [FTR from FTR — Supplement](../../terminology/fhir-terminology-repository/creating-aidbox-project-with-ftr/ftr-from-ftr-supplement.md)
 * Data API
-  *
+  * Implemented [JSONPath Sort](../../api-1/fhir-api/search-1/configure-search-api.md) (previously there was fallback to jsonknife)
+  * Implemented [#>> operation](../../api-1/fhir-api/search-1/configure-search-api.md#preferred-operator) to optimize some query types (enabled via env)
+  * [Now \_explain](../../api-1/fhir-api/search-1/search-parameters-list/\_explain.md) shows SQL even if the query failed with an error
+  * Implemented handling of unique errors: it is now possible to enforce uniqueness on some combination of fields
+  * Improved conformance of conditional queries
+* MDM (Master Data Management)
+  * Fixed bugs with Python integration
 * C-CDA to FHIR converter
-  *
+  * Introduced FHIR to CCD transformation (alpha)
 * Security and Access Control
-  *
+  * Released Aidbox [on path](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox\_base\_url)
+  * Improved [`__debug=policy`](../../security-and-access-control-1/security/access-policy.md#policy-debugging)``
 * Ops
-  * Add GraphQL request body in gq/resp log event
-*   Aidbox Forms
-
-    * Added new forms templates to [forms library](https://github.com/Aidbox/sdc-forms-library/)
-
-
+  * [Devbox images](../../overview/aidbox-user-portal/licenses.md#development-license) no longer supported, use [AidboxOne image](https://hub.docker.com/r/healthsamurai/aidboxone) instead
+  * Support [box\_web\_\*](../../reference/configuration/environment-variables/optional-environment-variables.md#box\_web\_max\_\_body) configs for Multibox
+  * Self bootstrap database permissions
+  * Introduced [Aidbox Status page](https://status.aidbox.app)
+* Aidbox Forms&#x20;
+  * Added new forms templates, incl. Lifestyle, Medications, Problem List to [forms library](https://github.com/Aidbox/sdc-forms-library/)
+  * Improved Form UX
+    * Added help tooltip for whole form and it's inputs
+    * Added markdown support for labels and help tooltips
+  * Added Forms [styling/branding](../../modules-1/aidbox-forms/how-to-customize-form-appearance.md): brand logo, buttons text, colors, fonts
+    * Added [3 predefined themes](https://github.com/HealthSamurai/aidbox-zen-sdc/blob/61ec12dba9d530b47afbffad4bf2227c95b65590/zrc/sdc-box.edn#L18) (SDC/Monochrome/HealthSamurai/NHS)
+  * Added [SDCForm to Questionnaire converter](../../reference/aidbox-forms/api-reference.md#convert-forms)
+  * Added customizable [redirect-button](../../reference/aidbox-forms/api-reference.md#aidbox.sdc-generate-form-link) to Form
+* Google Cloud Pub/Sub integration
+  * Added [Setting ](../../api-1/reactive-api-and-subscriptions/gcp-pub-sub.md#specify-resource-types-and-boxes-for-which-to-publish-notification)to specify for what resources should trigger message publishing
+  * Added [Option ](../../api-1/reactive-api-and-subscriptions/gcp-pub-sub.md#publish-a-message-before-a-resource-is-saved-to-a-database)to optimistically publish a message before the resource is saved to DB
 
 ## January 2023 _`latest`_
 
