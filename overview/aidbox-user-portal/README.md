@@ -1,16 +1,12 @@
+---
+description: A single place to manage your Aidbox licenses
+---
+
 # Aidbox user portal
 
-[Aidbox user portal](https://aidbox.app/ui/portal#/signin) is a single place to manage all your [Aidbox licenses](../../getting-started/editions-and-pricing.md#aidbox-licenses), split them into projects and share projects with your team.
+[Aidbox user portal](https://aidbox.app/ui/portal#/signup) allows you to get an [Aidbox license](https://docs.aidbox.app/\~/changes/cP0dGveACDeqsL8PvFlu/overview/editions-and-pricing#aidbox-licenses) and share it with other users
 
 ## References
-
-### Projects management
-
-The project allows you to organize Aidbox licenses into groups
-
-{% content-ref url="projects.md" %}
-[projects.md](projects.md)
-{% endcontent-ref %}
 
 ### Licenses management
 
@@ -18,6 +14,14 @@ Managing Aidbox licenses in a project
 
 {% content-ref url="licenses.md" %}
 [licenses.md](licenses.md)
+{% endcontent-ref %}
+
+### Projects management
+
+The project allows you to organize Aidbox licenses into groups
+
+{% content-ref url="projects.md" %}
+[projects.md](projects.md)
 {% endcontent-ref %}
 
 ### Members management

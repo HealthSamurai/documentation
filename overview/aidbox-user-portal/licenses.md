@@ -1,37 +1,52 @@
 ---
-description: >-
-  This article describes how to manage Aidbox licenses in a project and explains
-  the differences between license types.
+description: This article describes how to manage Aidbox licenses
 ---
 
 # Licenses
 
-## How-tos
+## Create license
 
-### Create license
+### Create self-hosted license
 
-1. On the main navigation sidebar, click on the _project name_
+1. On the main navigation sidebar, click on the _**project name**_
 2. On the menu that opens, click _**Licenses**_
-3. In the upper right corner of the page, click _**+ License**_
-4. Specify _Product type_
+3. In the upper right corner of the page, click **New **_**license**_
+4. Specify _FHIR Platform_
    * Aidbox
    * Multibox
-5. Specify _License type_
-   * Standard
-   * Development (available if you have a contract for a standard license)
-   * CI/CD (available if you have a contract for a standard license)
-6. Enter the _Name_ of the license
-7. Specify _Hosting_ method
-   * Self-hosted
-   * AWS
-   * Sandbox
-     1. Choose _Configuration project_ if needed
-     2. Specify _Zone_, if you didn't choose configuration project
-     3. Enter the _Instance URL_
-     4. Specify _FHIR Version_
-8. Click _**Create**_
+5. Enter the _FHIR platform name_
+6. Specify _Hosting_ as **Self-hosted**
+7. Click _**Create**_
 
-### Delete license
+This quickstart guide explains how to run Aidbox locally using docker compose
+
+{% content-ref url="../../getting-started/run-aidbox-locally-with-docker/" %}
+[run-aidbox-locally-with-docker](../../getting-started/run-aidbox-locally-with-docker/)
+{% endcontent-ref %}
+
+### Create GCP license
+
+1. On the main navigation sidebar, click on the _**project name**_
+2. On the menu that opens, click _**Licenses**_
+3. In the upper right corner of the page, click **New **_**license**_
+4. Specify _FHIR Platform_
+   * Aidbox
+   * Multibox
+5. Enter the _FHIR platform name_
+6. Specify _Hosting_ as **Google Cloud Platform**
+7. Specify _Aidbox version_
+   * Latest
+   * Edge
+8. Specify _Сonfiguration projects_
+9. Click _**Create**_
+
+### Create AWS license
+
+{% content-ref url="../../getting-started/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md" %}
+[aidbox-as-a-saas-on-aws.md](../../getting-started/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md)
+{% endcontent-ref %}
+
+## Delete license
 
 1. On the main navigation sidebar, click on the _project name_
 2. On the menu that opens, click _**Licenses**_
