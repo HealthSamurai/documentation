@@ -15,7 +15,7 @@ http://localhost:[AIDBOX_PORT]
 ```
 
 {% hint style="info" %}
-To make Aidbox works on the path `/aidbox`, you should set the `AIDBOX_BASE_URL` variable to `http://fhir.example.com/aidbox`
+To make Aidbox work on the path `/aidbox`, you should set the `AIDBOX_BASE_URL` variable to `http://fhir.example.com/aidbox`
 {% endhint %}
 
 ### AIDBOX\_DB\_PARAM\_\*
