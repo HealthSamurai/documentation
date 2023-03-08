@@ -71,3 +71,14 @@ BOX_SUBSCRIPTIONS_PUBSUB_RESOURCE__TYPES="Patient Encounter"
 // and about Encounter from any box. 
 BOX_SUBSCRIPTIONS_PUBSUB_RESOURCE__TYPES="Patient:boxone Patient:boxtwo Encounter"
 ```
+
+## Multibox: specify topic per box
+
+It's possible to specify different topics per box. Topic without box specification treated as default.
+
+```
+// For the box with an id `box-one` `box-one-topic` will be used. For all other boxes
+`default-topic` will be used. 
+BOX_SUBSCRIPTIONS_PUBSUB_TOPIC="default-topic box-one-topic:box-one"
+
+```
