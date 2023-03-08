@@ -271,6 +271,7 @@
   * [🎓 Role-Based Access Control with JWT containing role](security-and-access-control-1/security/role-based-access-control-with-jwt-containing-role.md)
   * [🎓 Access Control](security-and-access-control-1/security/access-policy.md)
   * [🎓 Sample: Patient can see their own data](security-and-access-control-1/security/sample-patient-can-see-its-own-data.md)
+  * [🎓 Role-Based Access Control with ACL](security-and-access-control-1/security/role-based-access-control-with-acl.md)
   * [Access Policies tutorial](security-and-access-control-1/security/search-parameters.md)
   * [Debug](security-and-access-control-1/security/debug.md)
 * [Access control lists (ACL)](security-and-access-control-1/acl.md)
