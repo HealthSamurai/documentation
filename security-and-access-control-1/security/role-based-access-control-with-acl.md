@@ -10,7 +10,7 @@ This guide is based on the [Access control list (ACL)](../acl.md)
 
 ## The goal
 
-When a user with the role `OrganizationAdmin` performs read request for some user like `GET /User/<user-id>`, Aidbox checks if `organization.id` of the requester and the desired user has the same organization reference. If the organization is the same Aidbox allows otherwise restricts access.
+When a user with the role `OrganizationAdmin` performs read request for some user like `GET /User/<user-id>`, Aidbox checks if `organization.id` of the requester and the desired user has the same organization reference. If the organization is the same, Aidbox allows otherwise restricts access.
 
 ## Init Aidbox configuration project 
 
@@ -154,9 +154,9 @@ In the following configuration project user and client credentials are written a
 
 ## Check configuration works
 
-Use you favorite REST clinet
+Use you favorite REST client
 
-### Get access token for admin-org-1 user
+### Get access token for `admin-org-1` user
 
 {% tabs %}
 {% tab title="request access_token for user admin-org-1" %}
@@ -187,7 +187,7 @@ access_token: MW...Ex
 {% endtab %}
 {% endtabs %}
 
-### Read user from the organization of the administrator
+### Read user belonging to the requester organization
 
 {% tabs %}
 {% tab title="fetch allowed user data" %}
@@ -206,7 +206,7 @@ resourceType: User
 {% endtab %}
 {% endtabs %}
 
-### Read user attempt from the different organization 
+### Read attempt user from the different organization 
 
 {% tabs %}
 {% tab title="fetch allowed user data" %}
