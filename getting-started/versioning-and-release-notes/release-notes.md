@@ -1,11 +1,10 @@
 # Release Notes
 
-## February 2023 _`edge`_
+## February 2023 _`latest`_
 
 * Validation and Terminology
-  * Reduced [Zen FHIR IG](../../aidbox-configuration/aidbox-zen-lang-project/enable-igs.md) size
-  * [New FTR extraction engine](../../terminology/fhir-terminology-repository/creating-aidbox-project-with-ftr/ftr-from-ftr-direct-dependency.md): creating new ValueSets based on existing FTRs
-  * [FTR from FTR — Supplement](../../terminology/fhir-terminology-repository/creating-aidbox-project-with-ftr/ftr-from-ftr-supplement.md)
+  * Reduced [zen FHIR IG](../../aidbox-configuration/aidbox-zen-lang-project/enable-igs.md)s size
+  * Introduced [New FTR extraction engine](../../terminology/fhir-terminology-repository/creating-aidbox-project-with-ftr/ftr-from-ftr-direct-dependency.md): creating new ValueSets based on existing FTRs
 * Data API
   * Implemented [JSONPath Sort](../../api-1/fhir-api/search-1/configure-search-api.md) (previously there was fallback to jsonknife)
   * Implemented [#>> operation](../../api-1/fhir-api/search-1/configure-search-api.md#preferred-operator) to optimize some query types (enabled via env)
@@ -352,7 +351,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 * We've released a major Aidbox UI upgrade
 
-![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (1) (12) (1) (10) (10) (1) (11) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (10) (8).png>)
+![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (1) (12) (1) (10) (10) (1) (11) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (11) (11).png>)
 
 * Updated REST Console (check out[ the tutorial](https://bit.ly/rest\_console\_tutorial)):
   * Explicit request headers `content-type, accept` etc
