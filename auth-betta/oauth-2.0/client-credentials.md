@@ -1,7 +1,3 @@
----
-description: Aidbox supports machine to machine authentication via client credentials oAuth 2.0 flow
----
-
 # Client Credentials Grant
 
 [Aidbox](https://www.health-samurai.io/aidbox) OAuth module support Client Credentials Grant flow in two formats. First- Strict adherence to specifications for better compatibility. Second - JSON request as a more modern and simple way. Read official [OAuth2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.4) for more details
