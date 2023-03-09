@@ -1,7 +1,7 @@
 ---
 description: >-
-  Aidbox supports machine to machine authentication via client credentials oAuth
-  2.0 flow
+  Aidbox supports machine to machine (m2m) authentication via client credentials
+  oAuth 2.0 flow
 ---
 
 # Client Credentials Grant
