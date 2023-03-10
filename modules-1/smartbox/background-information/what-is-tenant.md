@@ -54,7 +54,7 @@ content-type: text/yaml
 id: my-clinic
 resourceType: Tenant
 name: My Clinic Name
-logoUrl: https://example.com/my-clinic-logo.png
+logoUrl: 'https://example.com/my-clinic-logo.png'
 identityProvider:
   client:
     id: ziW2...lv0
@@ -127,7 +127,7 @@ meta:
 {% endhint %}
 
 {% hint style="info" %}
-`There should be at one element in` identifier `where`
+`There should be one element in` identifier `where`
 
 * `system` links to the `identityProvider.system`
 * `value` is the `user ID` in the external identity provider
