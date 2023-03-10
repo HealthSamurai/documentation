@@ -32,7 +32,7 @@ identityProvider:
 
 * `id` should consist of Unreserved Characters ([section 2.3 of RFC 3986](https://www.ietf.org/rfc/rfc3986.txt)) as it is used as the part of URL
 * `name` is a tenant name
-* `logoUrl` defies where the tenant logo image is. The link should be publicly accessible
+* `logoUrl` defines where the tenant logo image is. The link should be publicly accessible
 * `identityProvider` defines the external identity provider Aidbox uses to authenticate users. If it's omitted, Aidbox uses the built-in `Login` form
   * `client`
     * `id` is the `Client ID` in the external identity provider
