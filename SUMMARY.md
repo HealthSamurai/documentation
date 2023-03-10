@@ -242,7 +242,8 @@
 
 ## Security & Access Control <a href="#security-and-access-control-1" id="security-and-access-control-1"></a>
 
-* [Overview](security-and-access-control-1/overview.md)
+* [Overview](security-and-access-control-1/overview/README.md)
+  * [Tokens processing](security-and-access-control-1/overview/tokens-processing.md)
 * [Authentication Flows](security-and-access-control-1/auth/README.md)
   * [Basic Auth](security-and-access-control-1/auth/basic-auth.md)
   * [Client Credentials Grant](security-and-access-control-1/auth/client-credentials.md)
