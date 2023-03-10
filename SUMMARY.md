@@ -244,6 +244,7 @@
 
 * [Overview](security-and-access-control-1/overview/README.md)
   * [Tokens processing](security-and-access-control-1/overview/tokens-processing.md)
+  * [Storing authorization details](security-and-access-control-1/overview/storing-authorization-details.md)
 * [Authentication Flows](security-and-access-control-1/auth/README.md)
   * [Basic Auth](security-and-access-control-1/auth/basic-auth.md)
   * [Client Credentials Grant](security-and-access-control-1/auth/client-credentials.md)
