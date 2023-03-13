@@ -181,7 +181,7 @@
 * Added [SNOMED CT bundle](../../terminology/terminology-api/)
 * Enhanced [zen.fhir profiles](../../profiling-and-validation/profiling-with-zen-lang/) with RequiredPattern and FixedValue constraints
 * Added [seed service](../../aidbox-configuration/aidbox-zen-lang-project/seed-import.md) errors output.
-* Added [Azure Active Directory (Azure AD)](../../security-and-access-control-1/how-to-guides/set-up-external-identity-provider/azure-ad.md) and [Keycloak](../../security-and-access-control-1/how-to-guides/set-up-external-identity-provider/keycloak.md) external identity providers integration guides
+* Added [Azure Active Directory (Azure AD)](../../security-and-access-control-1/how-to-guides/azure-ad.md) and [Keycloak](../../security-and-access-control-1/how-to-guides/keycloak.md) external identity providers integration guides
 * Added [Mailgun](../../tutorials/integrations/mailgun-integration.md) and [Postmark](../../tutorials/integrations/postmark-integration.md) email providers integration guides
 
 ## July 2022 _`2207`_
@@ -259,7 +259,7 @@ February 2022 - v:2202 is available as a long-term support version. End of life 
 {% endhint %}
 
 * Released a beta version of [Aidbox API constructor ](../../aidbox-configuration/aidbox-api-constructor.md)that allows to define REST API granularly.
-* Added Access Control debug option: [su header](../../security-and-access-control-1/how-to-guides/debug.md#su-request-header). It allows doing a request on behalf of a certain user.
+* Added Access Control debug option: [su header](../../security-and-access-control-1/background-information/debug.md#su-request-header). It allows doing a request on behalf of a certain user.
 * Added [Grafana dashboard RPC](../../core-modules/monitoring/grafana-integration.md) API that allows to get Aidbox metrics dashboards and import it to your Grafana.
 * Added [`_count`](../../api-1/fhir-api/search-1/search-parameters-list/\_count-and-\_page.md), [`_total`](../../api-1/fhir-api/search-1/search-parameters-list/\_total-or-\_countmethod.md) and [`_timeout`](../../api-1/fhir-api/search-1/search-parameters-list/\_timeout.md) environment variables to configure default values.
 * Improved logging for RPC and GraphQL calls.
@@ -364,7 +364,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
   * Log additional DB metrics from Aidbox.Dev.
   * Added ELK, Kibana, and Grafana to Aidbox image. So now you can start exploring and analyzing logs from scratch. Check our tutorial on exploring and visualizing logs [here](https://docs.aidbox.app/app-development-guides/tutorials/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana).
 * We added a new auth mechanism for authorization Aidbox.Cloud and Aidbox.Multibox users by JWT.
-* Support for [OKTA](https://www.okta.com/) as an external OAuth 2.0 provider. Check out [the tutorial](../../security-and-access-control-1/how-to-guides/set-up-external-identity-provider/configure-okta.md).
+* Support for [OKTA](https://www.okta.com/) as an external OAuth 2.0 provider. Check out [the tutorial](../../security-and-access-control-1/how-to-guides/configure-okta.md).
 * Added Intercom so you can get help directly from your Aidbox.Dev or Aidbox.Cloud.
 * Added a guide on search performance optimization to our docs. Check it [here](https://docs.aidbox.app/api-1/api/search-parameters#optimization-of-search-parameters).
 
