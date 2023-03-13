@@ -5,10 +5,10 @@ description: This guide explains how to set up RBAC relies onto JWT containing a
 # 🎓 Role-Based Access Control with JWT containing role
 
 {% hint style="info" %}
-This guide is based on the [TokenInstrospector tutorial](../auth/access-token-introspection/token-introspection.md). But we won't' create `User` resource
+This guide is based on the [TokenInstrospector tutorial](../how-to-guides/token-introspection.md). But we won't' create `User` resource
 {% endhint %}
 
-##  Token introspection
+## Token introspection
 
 To make Aidbox trust `JWT` issued by external server token introspection is used.
 
@@ -75,7 +75,7 @@ To build `JWT` use [this tool](http://jwtbuilder.jamiekurtz.com). Mind the claim
 The `key` should be `very-secret`
 {% endhint %}
 
-To get signed JWT press the `Create Signed JWT` button. The generated  `JWT` looks like this
+To get signed JWT press the `Create Signed JWT` button. The generated `JWT` looks like this
 
 ```
 eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2F1dGguZXhhbXBsZS5jb20iLCJpYXQiOjE2NzU3NTgzMDEsImV4cCI6MTcwNzI5NDMwMSwiYXVkIjoiaHR0cHM6Ly9hdXRoLmV4YW1wbGUuY29tIiwic3ViIjoiYWxpY2VAZXhhbXBsZS5jb20iLCJyb2xlIjoibWFuYWdlciJ9.X7sibz1LloKlMPVV5Q39gSAJBxxutCORtYq4oRt1eAo
@@ -114,4 +114,3 @@ type: searchset
 ```
 {% endtab %}
 {% endtabs %}
-

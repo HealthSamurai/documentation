@@ -242,7 +242,7 @@
 
 ## Security & Access Control <a href="#security-and-access-control-1" id="security-and-access-control-1"></a>
 
-* [Overview](security-and-access-control-1/overview/README.md)
+* [Overview](security-and-access-control-1/overview.md)
   * [Tokens processing](security-and-access-control-1/overview/tokens-processing.md)
   * [Storing authorization details](security-and-access-control-1/overview/storing-authorization-details.md)
 * [Authentication Flows](security-and-access-control-1/auth/README.md)
@@ -251,8 +251,7 @@
   * [Resource Owner Grant](security-and-access-control-1/auth/resource-owner-password.md)
   * [Authorization Code Grant](security-and-access-control-1/auth/authorization-code.md)
   * [Implicit Grant](security-and-access-control-1/auth/implicit.md)
-  * [Validating Foreign Access Tokens](security-and-access-control-1/auth/access-token-introspection/README.md)
-    * [🎓 Token introspection](security-and-access-control-1/auth/access-token-introspection/token-introspection.md)
+  * [Validating Foreign Access Tokens](security-and-access-control-1/auth/access-token-introspection.md)
   * [External Oauth 2.0 Providers](security-and-access-control-1/auth/external-oauth-2.0-providers/README.md)
     * [🎓 Aidbox](security-and-access-control-1/auth/external-oauth-2.0-providers/aidbox.md)
     * [🎓 Okta](security-and-access-control-1/auth/external-oauth-2.0-providers/configure-okta.md)
@@ -279,6 +278,8 @@
 * [Access control lists (ACL)](security-and-access-control-1/acl.md)
 * [Multitenancy](security-and-access-control-1/multitenancy/README.md)
   * [🎓 Multitenancy via AccessPolicy](security-and-access-control-1/multitenancy/multitenancy-via-accesspolicy.md)
+* [How-to guides](security-and-access-control-1/how-to-guides/README.md)
+  * [🎓 Token introspection](security-and-access-control-1/how-to-guides/token-introspection.md)
 
 ## Core Modules
 
