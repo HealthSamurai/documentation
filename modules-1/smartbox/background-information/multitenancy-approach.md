@@ -4,7 +4,7 @@ description: The article explains Smartbox approach for multitenancy
 
 # Multitenancy approach
 
-Smartbox is distributed as an aidbox configuration project on top of Aidbox. It follows [Aidbox multitenancy approach](../../../security-and-access-control-1/background-information/multitenancy.md#aidbox-api-constructor) on API constructor.
+Smartbox is distributed as an aidbox configuration project on top of Aidbox. It follows [Aidbox multitenancy approach](../../../security-and-access-control-1/security/multitenancy.md#aidbox-api-constructor) on API constructor.
 
 All data is stored in one Postgres database. Multitenancy is achived by Smartbox on couple of levels:
 
