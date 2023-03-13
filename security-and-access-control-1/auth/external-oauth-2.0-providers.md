@@ -18,7 +18,7 @@ To add external OAuth 2.0 Provider integration, you should create a resource cal
 All examples in this tutorial are executable in Aidbox REST Console
 {% endhint %}
 
-### How to create `IdentityProvider`
+### Create `IdentityProvider`
 
 ```yaml
 POST /IdentityProvider

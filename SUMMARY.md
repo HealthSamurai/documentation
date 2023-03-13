@@ -274,7 +274,7 @@
   * [Debug access control](security-and-access-control-1/how-to-guides/debug.md)
   * [Prohibit user to login](security-and-access-control-1/auth/configuration-options.md)
 * [Background information](security-and-access-control-1/background-information/README.md)
-  * [External OAuth 2.0 Providers](security-and-access-control-1/background-information/external-oauth-2.0-providers.md)
+  * [External OAuth 2.0 Providers](security-and-access-control-1/auth/external-oauth-2.0-providers.md)
   * [Validating Foreign Access Tokens](security-and-access-control-1/background-information/access-token-introspection.md)
   * [Multitenancy](security-and-access-control-1/background-information/multitenancy.md)
   * [Access control lists (ACL)](security-and-access-control-1/background-information/acl.md)
