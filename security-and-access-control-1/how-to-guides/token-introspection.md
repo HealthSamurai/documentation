@@ -1,5 +1,5 @@
 ---
-description: Configure Aidbox to trust external JWT
+description: This guide explains how to configure Aidbox to trust external JWT
 ---
 
 # 🎓 Token introspection
