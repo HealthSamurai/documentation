@@ -23,8 +23,8 @@ API constructor requires knowledge of [zen language](https://github.com/zen-lang
 [multitenancy-approach.md](../modules-1/smartbox/background-information/multitenancy-approach.md)
 {% endcontent-ref %}
 
-{% content-ref url="../security-and-access-control-1/auth/smart-app/" %}
-[smart-app](../security-and-access-control-1/auth/smart-app/)
+{% content-ref url="../security-and-access-control-1/auth/smart-app.md" %}
+[smart-app.md](../security-and-access-control-1/auth/smart-app.md)
 {% endcontent-ref %}
 
 

@@ -25,7 +25,7 @@ In SMART’s EHR launch flow, a user has established an EHR session, and then de
 7. [Refresh access token](https://build.fhir.org/ig/HL7/smart-app-launch/app-launch.html#step-7-refresh)
 
 {% hint style="info" %}
-Check[ SMART App launch tutorial](smart-of-fhir.md) to launch Smart App locally
+Check[ SMART App launch tutorial](../how-to-guides/smart-on-fhir/smart-of-fhir.md) to launch Smart App locally
 {% endhint %}
 
 {% hint style="info" %}

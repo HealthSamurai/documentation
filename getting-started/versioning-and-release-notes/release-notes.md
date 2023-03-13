@@ -48,7 +48,7 @@
   * Added configuration for [/ccda/persist](../../modules-1/ccda-converter.md#endpoint-options-1) endpoint
   * Added tenant support for [/ccda/persist](../../modules-1/ccda-converter.md#persisting-result-of-c-cda-to-fhir-conversion) endpoint
 * Security and Access Control
-  * Supported passing any launch context parameters on SMART on FHIR 2.0 app launch flow with [fhirContext](../../security-and-access-control-1/auth/smart-app/smart-on-fhir-app-launch.md#generate-launch-uri-for-ehr-launch-sequence) parameter
+  * Supported passing any launch context parameters on SMART on FHIR 2.0 app launch flow with [fhirContext](../../security-and-access-control-1/how-to-guides/smart-on-fhir/smart-on-fhir-app-launch.md#generate-launch-uri-for-ehr-launch-sequence) parameter
 * Ops
   * Add GraphQL request body in gq/resp log event
   * Changed container OS to Alpine and reduced total container size

@@ -1,8 +1,8 @@
 ---
-description: Set up Growth Chart with Aidbox
+description: This guide explains how to get Growth Chart SMART App launched
 ---
 
-# 🎓 SMART App Launch tutorial
+# Get a SMART App launched
 
 [Growth Chart](https://github.com/smart-on-fhir/growth-chart-app) is a sample SMART App which displays children growth data as plot.
 
@@ -148,7 +148,7 @@ run the `docker-compose up` command.
 
 ## Configure Aidbox
 
-You need to create Client, User, Patient, Access Policies, and load Observations
+You need to create `Client`, `User`, `Patient`, `AccessPolicy`, and load `Observations`.
 
 ### Sign In
 
