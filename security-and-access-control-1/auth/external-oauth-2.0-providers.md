@@ -117,3 +117,7 @@ toScim:
 ```
 
 Each key here refers to the key in the `userinfo` response object, while value is an array that specifies path in a `User` resource.
+
+{% content-ref url="../how-to-guides/set-up-external-identity-provider/" %}
+[set-up-external-identity-provider](../how-to-guides/set-up-external-identity-provider/)
+{% endcontent-ref %}
