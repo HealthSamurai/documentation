@@ -2,7 +2,7 @@
 description: Aidbox as a Resource Server
 ---
 
-# Validating Foreign Access Tokens
+# External OAuth 2.0 Providers
 
 Aidbox can validate access tokens issued by 3rd-party servers. This way Aidbox acts as a Resource Server and leaves Identity management to a separate server.
 
@@ -11,7 +11,7 @@ To configure Aidbox as a Resource Server, you need to create one or more instanc
 1. JWT validation according to [RFC-7519](https://tools.ietf.org/html/rfc7519)
 2. opaque token introspection according to [RFC-7662](https://tools.ietf.org/html/rfc7662)
 
-### Validating JWT Access Tokens
+## Validating JWT Access Tokens
 
 For JWT validation, you need to specify either JWKs endpoint URL ([RFC-7517](https://tools.ietf.org/html/rfc7517)) or a pre-shared secret string if tokens are signed with HS256 algorithm:
 
@@ -28,7 +28,7 @@ When Aidbox validates the JWT token, it tries to find a matching `TokenIntrospec
 
 If JWT is valid, Aidbox will put it's claims into the request object under `jwt` key, so you'll be able to access them with [AccessPolicy checks](../security/access-control.md). If the token failed validation (it's expired or signature isn't correct) then the client will get a 401 "Unauthorised" response.
 
-### Validating Opaque (non-JWT) Tokens
+## Validating Opaque (non-JWT) Tokens
 
 When using old-fashioned (opaque) tokens, Aidbox can be configured to call a special endpoint with every new access token it receives. This endpoint, called a token introspection endpoint, returns information about access token - scopes, username and client ID associated with it, expiration time, etc. Most importantly, it tells if access token is active or not.
 
@@ -44,7 +44,7 @@ introspection_endpoint:
 
 According to [RFC-7662](https://tools.ietf.org/html/rfc7662), the only required attribute in token introspection's response is `active`. Aidbox uses this attribute to consider if token is valid or not. If token is valid, entire token introspection's response will be put into the request's object under `token` key, so you'll be able to use it in AccessPolicy checks. If token isn't valid, Aidbox will try to validate access token against currently active local sessions.
 
-### X-Client-Auth
+## X-Client-Auth
 
 In some situations (like micro-services), you want to add middle-ware client authentication. You can use the **X-Client-Auth** header with basic auth value for client id and secret to add client authentication to the JWT workflow.
 
@@ -61,7 +61,7 @@ request:
 
 ```
 
-### Create a user automatically
+## Create a user automatically
 
 {% hint style="warning" %}
 It works with `JWT` token introspection only
@@ -89,7 +89,7 @@ identity_provider:
 
 Here `<identity-provider-id>` is the id of the `IdentityProvider` resource which issues tokens.
 
-### Examples
+## Examples
 
 Access control with Validating JWT Access Tokens and AccessPolicy
 
@@ -136,5 +136,8 @@ link:
     id: box-user-id
 ```
 
-&#x20;
+## How to set-up identity provider
 
+{% content-ref url="../how-to-guides/set-up-external-identity-provider/" %}
+[set-up-external-identity-provider](../how-to-guides/set-up-external-identity-provider/)
+{% endcontent-ref %}

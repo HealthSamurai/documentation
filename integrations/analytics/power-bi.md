@@ -33,8 +33,8 @@ engine: allow
 
 Configure integration with Azure Active Directory that provides organizational authentication.
 
-{% content-ref url="../../security-and-access-control-1/auth/external-oauth-2.0-providers.md" %}
-[external-oauth-2.0-providers.md](../../security-and-access-control-1/auth/external-oauth-2.0-providers.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ## Connect Power BI to Aidbox
