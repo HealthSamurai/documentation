@@ -257,7 +257,6 @@
   * [SMART on FHIR](security-and-access-control-1/auth/smart-app/README.md)
     * [SMART on FHIR App Launch](security-and-access-control-1/auth/smart-app/smart-on-fhir-app-launch.md)
     * [🎓 SMART App Launch tutorial](security-and-access-control-1/auth/smart-app/smart-of-fhir.md)
-  * [Discovery API](security-and-access-control-1/auth/well-known-endpoint.md)
 * [Access Control](security-and-access-control-1/security/README.md)
   * [AccessPolicy](security-and-access-control-1/security/access-control.md)
   * [Evaluation engines](security-and-access-control-1/security/evaluation-engines.md)
@@ -266,7 +265,7 @@
   * [🎓 Access Control](security-and-access-control-1/security/access-policy.md)
   * [Access Policies tutorial](security-and-access-control-1/security/search-parameters.md)
 * [How-to guides](security-and-access-control-1/how-to-guides/README.md)
-  * [Prohibit user to login](security-and-access-control-1/how-to-guides/configuration-options.md)
+  * [Prohibit user to login](security-and-access-control-1/auth/configuration-options.md)
   * [Restrict operations on resource type](security-and-access-control-1/how-to-guides/restrict-resource-operations.md)
   * [Set-up token introspection](security-and-access-control-1/how-to-guides/token-introspection.md)
   * [Configure Aidbox as an External identity Provider](security-and-access-control-1/how-to-guides/aidbox.md)
@@ -281,6 +280,8 @@
 * [Background information](security-and-access-control-1/background-information/README.md)
   * [Multitenancy](security-and-access-control-1/background-information/multitenancy.md)
   * [Access control lists (ACL)](security-and-access-control-1/background-information/acl.md)
+* [Technical reference](security-and-access-control-1/technical-reference/README.md)
+  * [Discovery API](security-and-access-control-1/technical-reference/well-known-endpoint.md)
 
 ## Core Modules
 
