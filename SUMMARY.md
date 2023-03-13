@@ -258,7 +258,6 @@
   * [Evaluation engines](security-and-access-control-1/security/evaluation-engines.md)
   * [Role-Based Access Control (RBAC)](security-and-access-control-1/security/simple-role-based-access-control.md)
   * [🎓 Access Control](security-and-access-control-1/security/access-policy.md)
-  * [Access Policies tutorial](security-and-access-control-1/security/search-parameters.md)
 * [How-to guides](security-and-access-control-1/how-to-guides/README.md)
   * [External identity provider](security-and-access-control-1/how-to-guides/set-up-external-identity-provider/README.md)
     * [Aidbox](security-and-access-control-1/how-to-guides/aidbox.md)

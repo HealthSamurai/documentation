@@ -38,7 +38,7 @@ inputs:
   url: https://storage.googleapis.com/aidbox-public/demo/practitioner.ndjson.gz
 ```
 
-#### Structure of imported resources
+### Structure of imported resources
 
 In the previous step, we have imported a client that will authenticate users and two users with corresponding sets of related resources shown on the picture below. Overlapping outlines indicates the relation between enclosed resources. A similar diagram applies to User-2.
 
@@ -205,7 +205,7 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-And this policy is a bit tricky. The allowed URI is `/Encounter` and it doesn't contain any additional parts that could be identified as request parameters as in the previous case. So, in order to provide the required request parameter `patient` to the Access Policy matching engine, we have to specify it as the query parameter of our request. And after the Access Policy engine allows such a request, the Search Engine comes into play. It filters out encounters that do not match the condition of `patient = our-patient-id`. To know more about how the AidBox Search works, see the [Search section](../../api-1/fhir-api/search-1/). To know more about the available search parameters, refer to the [Search Parameters section](../security/search-parameters.md) of the FHIR documentation for the resource of interest.
+And this policy is a bit tricky. The allowed URI is `/Encounter` and it doesn't contain any additional parts that could be identified as request parameters as in the previous case. So, in order to provide the required request parameter `patient` to the Access Policy matching engine, we have to specify it as the query parameter of our request. And after the Access Policy engine allows such a request, the Search Engine comes into play. It filters out encounters that do not match the condition of `patient = our-patient-id`. To know more about how the Aidbox Search works, see the [Search section](../../api-1/fhir-api/search-1/). To know more about the available search parameters, refer to the [Search Parameters](https://www.hl7.org/fhir/search.html) section of the FHIR documentation for the resource of interest.
 
 Finally, we can make a request for the list of patient encounters.
 
@@ -286,7 +286,7 @@ GET /Encounter?patient=new-patient
 
 ## Observation access
 
-#### Read access
+### Read access
 
 Granting access to observations is similar to the previous case. We just add another policy that looks just like the previous one, but matches against another URI. It is so similar that we should stop there and think a little about what happens if we want to grant read access to more resources — we will end up with a bunch of almost indistinguishable policies. A better approach, in this case, is to use the `CompartmentDefinition` resource.
 
@@ -432,7 +432,7 @@ GET /Patient/new-patient/Observation
 
 If we want to grant access to some other resource, we just need to add it to the `CompartmentDefinition` resource that we've created earlier. See [FHIR documentation](https://www.hl7.org/fhir/compartmentdefinition-patient.html) to know what resources can be added to a patient compartment. And we can get rid of the Access Policy that was previously created for encounters.
 
-#### Write access
+### Write access
 
 The user should be able to create their own observation, e.g., to report blood sugar level. The following policy manages this case:
 
