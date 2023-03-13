@@ -1,25 +1,28 @@
-# Role-Based Access Control
+---
+description: >-
+  This article shows how to create a user for a practitioner and allow
+  practitioners to read their own data
+---
 
-Aidbox provides role-based access control mechanism based on access policies and Role resource.
+# Flexible RBAC built-in to Aidbox
 
-Each Role resource assigns a role to a user. Access Policy resource has an optional `roleName` property. Aidbox applies access policy with `roleName` specified only to users which have the corresponding role assigned.
+Aidbox provides role-based access control mechanism based on access policies and `Role` resource.
 
-This article demonstrates how to create a user for a practitioner and allow practitioners to read their own data.
+Each `Role` resource assigns a role to a `User.` `AccessPolicy` resource has an optional `roleName` property. Aidbox applies access policy with `roleName` specified only to users which have the corresponding role assigned.
 
-### Create a practitioner
+## Create a practitioner
 
 ```yaml
 POST /Practitioner
 
 id: pr-1
 resourceType: Practitioner
-
 name:
   - given:
       - John
 ```
 
-### Create a user
+## Create a user
 
 Aidbox does not store any role information in a User resource. So create a user as usual.
 
@@ -30,7 +33,7 @@ id: user-1
 resourceType: User
 ```
 
-### Create a Role resource
+## Create a Role resource
 
 Role name is a string that defines role. You don't need to declare it explicitly. Role resource links a role and a user.
 
@@ -38,7 +41,7 @@ Role resource has an optional links property which specifies related resources. 
 
 You can put any additional data into `context` property.&#x20;
 
-Create a Role resource which assigns a role to the user we created.
+Create a `Role` resource which assigns a role to the user we created.
 
 ```yaml
 POST /Role
@@ -55,13 +58,13 @@ links:
     resourceType: 'Practitioner'
 ```
 
-If you need to assign same role to multiple users then just create multiple Role resources with same `name` property.
+If you need to assign same role to multiple users then just create multiple `Role` resources with same `name` property.
 
-### Create an access policy
+## Create an access policy
 
-AccessPolicy resource has a `roleName` property. This property specifies the role name for the policy. Access policy with a role name is applied only users with the corresponding role.
+`AccessPolicy` resource has a `roleName` property. This property specifies the role name for the policy. Access policy with a role name is applied only users with the corresponding role.
 
-Create an access policy which allows practitioners to read their own data
+Create an `AccessPolicy` which allows practitioners to read their own data
 
 ```yaml
 POST /AccessPolicy
@@ -78,7 +81,7 @@ matcho:
     resource/id: .role.links.practitioner.id
 ```
 
-### Try it
+## Try it
 
 Log in as `user-1`.
 
@@ -88,7 +91,7 @@ Read your data
 GET /Practitioner/pr-1
 ```
 
-Aidbox will return you a Practitioner resource.
+Aidbox returns you a Practitioner resource.
 
 ### What's going on here
 
@@ -108,7 +111,7 @@ Aidbox applies access policy with `roleName` property only if a role with corres
 
 Access policy engine evaluates request object. And here it checks that `params.resource/id` property is equal to `role.links.practitioner.id` property.
 
-You can inspect request object [using `__debug` query parameter](../background-information/debug.md#\_\_debug-query-string-parameter).
+You can inspect request object [using `__debug` query parameter](../../background-information/debug.md#\_\_debug-query-string-parameter).
 
 ### Role resource schema
 

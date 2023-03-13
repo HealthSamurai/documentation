@@ -1,12 +1,22 @@
-# Simple Role-Based Access Control
+---
+description: >-
+  This article shows how to create a user for a practitioner and allow
+  practitioners to read patients data.
+---
 
-Aidbox provides role-based access control mechanism based on roles property in User resource.
+# Role-Based Access Control (RBAC)
 
-This article demonstrates how to create a user for a practitioner and allow practitioners to read patients data.
+Aidbox provides role-based access control mechanism based on access policies and `Role` resource.
 
-See also [role-based-access-policies.md](role-based-access-policies.md "mention") for a guide on flexible RBAC using Role resource.
+Each `Role` resource assigns a role to a `User.` `AccessPolicy` resource has an optional `roleName` property. Aidbox applies access policy with `roleName` specified only to users which have the corresponding role assigned.
 
-### Create a patient
+## Guide: flexible RBAC
+
+{% content-ref url="../how-to-guides/rbac/role-based-access-policies.md" %}
+[role-based-access-policies.md](../how-to-guides/rbac/role-based-access-policies.md)
+{% endcontent-ref %}
+
+## Create a patient
 
 ```yaml
 POST /Patient
@@ -19,7 +29,7 @@ name:
       - John
 ```
 
-### Create a user
+## Create a user
 
 Create a user containing `practitioner` role.
 
@@ -32,7 +42,7 @@ roles:
   - value: practitioner
 ```
 
-### Create an access policy
+## Create an access policy
 
 Create an access policy which allows practitioners to read patients data.
 
@@ -62,7 +72,7 @@ request-method:
 ```
 {% endhint %}
 
-### Try it
+## Try it
 
 Log in as `user-1`.
 
