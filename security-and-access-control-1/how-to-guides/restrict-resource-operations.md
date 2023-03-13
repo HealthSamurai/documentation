@@ -1,6 +1,10 @@
-# How to restrict operations on resource type
+---
+description: >-
+  This article shows how to create an access policy with restricted set of
+  operations on Patient resource
+---
 
-This article demonstrates how to create an access policy with restricted set of operations on Patient resource
+# Restrict operations on resource type
 
 ### Create a patient
 
@@ -100,4 +104,4 @@ Aidbox router stores data in the request object:
 
 Access policy engine evaluates request object. And here it checks that `operation.id` property contains either `Read` or `FhirRead` string.
 
-You can inspect request object [using `__debug` query parameter](../how-to-guides/debug.md#\_\_debug-query-string-parameter).
+You can inspect request object [using `__debug` query parameter](debug.md#\_\_debug-query-string-parameter).

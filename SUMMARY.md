@@ -264,12 +264,10 @@
   * [Evaluation engines](security-and-access-control-1/security/evaluation-engines.md)
   * [Simple Role-Based Access Control](security-and-access-control-1/security/simple-role-based-access-control.md)
   * [Role-Based Access Control](security-and-access-control-1/security/role-based-access-policies.md)
-  * [How to restrict operations on resource type](security-and-access-control-1/security/restrict-resource-operations.md)
   * [🎓 Access Control](security-and-access-control-1/security/access-policy.md)
   * [Access Policies tutorial](security-and-access-control-1/security/search-parameters.md)
-* [Access control lists (ACL)](security-and-access-control-1/acl.md)
-* [Multitenancy](security-and-access-control-1/multitenancy.md)
 * [How-to guides](security-and-access-control-1/how-to-guides/README.md)
+  * [Restrict operations on resource type](security-and-access-control-1/how-to-guides/restrict-resource-operations.md)
   * [Set-up token introspection](security-and-access-control-1/how-to-guides/token-introspection.md)
   * [Configure Aidbox as an External identity Provider](security-and-access-control-1/how-to-guides/aidbox.md)
   * [Set-up Okta identity provider](security-and-access-control-1/how-to-guides/configure-okta.md)
@@ -280,6 +278,9 @@
   * [Set-up RBAC with ACL](security-and-access-control-1/how-to-guides/role-based-access-control-with-acl.md)
   * [Set-up multitenancy via AccessPolicy](security-and-access-control-1/how-to-guides/multitenancy-via-accesspolicy.md)
   * [Debug access control](security-and-access-control-1/how-to-guides/debug.md)
+* [Background information](security-and-access-control-1/background-information/README.md)
+  * [Multitenancy](security-and-access-control-1/background-information/multitenancy.md)
+  * [Access control lists (ACL)](security-and-access-control-1/background-information/acl.md)
 
 ## Core Modules
 
