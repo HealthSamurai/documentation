@@ -1,8 +1,8 @@
 ---
-description: Configure Aidbox as an External OAuth Provider
+description: This guide explains how to configure Aidbox as an External OAuth Provider
 ---
 
-# 🎓 Aidbox
+# Configure Aidbox as an External identity Provider
 
 To set up one Aidbox instance to authenticate users in another Aidbox instance follow these steps:
 
@@ -13,7 +13,9 @@ To set up one Aidbox instance to authenticate users in another Aidbox instance f
 
 To set up the Provider Aidbox create a `Client` resource to be used by Client Aidbox
 
-_In this guide Provider Aidbox URL is `https://provider.example.com`_
+{% hint style="info" %}
+In this guide Identity Provider Aidbox URL is `https://provider.example.com`
+{% endhint %}
 
 #### Create `Client` resource
 
@@ -41,7 +43,9 @@ grant_types:
 
 Create an `IdentityProvider` resource to set up a Client Aidbox instance.
 
-_In this guide Client Aidbox URL is `https://client.example.com`_
+{% hint style="info" %}
+In this guide Client Aidbox URL is `https://client.example.com`
+{% endhint %}
 
 #### Create `IdentityProvider` resource
 
@@ -75,8 +79,8 @@ If the Provider and the Client Aidbox instances are configured correctly, users 
 
 #### User signs in the Client Aidbox using  Provider Aidbox
 
-1. Press "Sign in with `<Provider Aidbox title>`" button
-2. Enter email and password of some User from the Provider Aidbox
+1. Press the "Sign in with `<Provider Aidbox title>`" button
+2. Enter email and password of a User from the Provider Aidbox
 3. Allow requested scopes in the Grant screen
 
 Finally the user is authenticated and redirected to the Client Aidbox.

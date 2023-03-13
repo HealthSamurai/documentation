@@ -1,7 +1,6 @@
 # How to restrict operations on resource type
 
-This article demonstrates how to create an access policy with
-restricted set of operations on Patient resource
+This article demonstrates how to create an access policy with restricted set of operations on Patient resource
 
 ### Create a patient
 
@@ -32,10 +31,10 @@ matcho:
 ```
 
 ### Try it
+
 #### Create
 
-We won't be able to create new patient because we're not allowed to
-use `[Fhir]Create` operation
+We won't be able to create new patient because we're not allowed to use `[Fhir]Create` operation
 
 {% tabs %}
 {% tab title="Request" %}
@@ -67,8 +66,7 @@ issue:
 
 #### Read
 
-`[Fhir]Read` operation works as expected and you are able to read
-previously created patient
+`[Fhir]Read` operation works as expected and you are able to read previously created patient
 
 {% tabs %}
 {% tab title="Request" %}
@@ -98,11 +96,8 @@ GET /{resource-type}/{resource-id}
 Aidbox router stores data in the request object:
 
 * Reference to the `Read` operation in the `operation` property.
-* Resource type `Patient` from the url to the `params.recource/type`
-  property.
+* Resource type `Patient` from the url to the `params.recource/type` property.
 
-Access policy engine evaluates request object. And here it checks that
-`operation.id` property contains either `Read` or `FhirRead` string.
+Access policy engine evaluates request object. And here it checks that `operation.id` property contains either `Read` or `FhirRead` string.
 
-You can inspect request object [using `__debug` query
-parameter](debug.md#\_\_debug-query-string-parameter).
+You can inspect request object [using `__debug` query parameter](../how-to-guides/debug.md#\_\_debug-query-string-parameter).

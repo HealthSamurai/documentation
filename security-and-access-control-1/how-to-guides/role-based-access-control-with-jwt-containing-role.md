@@ -2,17 +2,19 @@
 description: This guide explains how to set up RBAC relies onto JWT containing a role claim
 ---
 
-# 🎓 Role-Based Access Control with JWT containing role
+# Set-up Role-Based Access Control with JWT containing role
 
 {% hint style="info" %}
-This guide is based on the [TokenInstrospector tutorial](../how-to-guides/token-introspection.md). But we won't' create `User` resource
+This guide is based on the [TokenInstrospector tutorial](token-introspection.md). But we won't' create `User` resource
 {% endhint %}
 
 ## Token introspection
 
 To make Aidbox trust `JWT` issued by external server token introspection is used.
 
-_In this guide external auth server URL is `https://auth.example.com`_
+{% hint style="info" %}
+In this guide external auth server URL is `https://auth.example.com`
+{% endhint %}
 
 ## Create `TokenIntrospector`
 

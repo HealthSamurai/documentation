@@ -55,12 +55,12 @@ You can fine-tune access to every operation or resource type, for example:
 * Multitenancy without isolation requires precise configuration.
 {% endhint %}
 
-{% content-ref url="../../aidbox-configuration/aidbox-api-constructor.md" %}
-[aidbox-api-constructor.md](../../aidbox-configuration/aidbox-api-constructor.md)
+{% content-ref url="../aidbox-configuration/aidbox-api-constructor.md" %}
+[aidbox-api-constructor.md](../aidbox-configuration/aidbox-api-constructor.md)
 {% endcontent-ref %}
 
-{% content-ref url="../acl.md" %}
-[acl.md](../acl.md)
+{% content-ref url="acl.md" %}
+[acl.md](acl.md)
 {% endcontent-ref %}
 
 {% embed url="https://github.com/Aidbox/aidbox-project-samples/tree/main/aidbox-project-samples/multitenancy" %}
@@ -84,10 +84,10 @@ Aidbox FHIR API can have filters to ensure that a client can access only certain
 * Different tenants can't have different configurations, e.g. the same FHIR version across all tenants.
 {% endhint %}
 
-{% content-ref url="multitenancy-via-accesspolicy.md" %}
-[multitenancy-via-accesspolicy.md](multitenancy-via-accesspolicy.md)
+{% content-ref url="how-to-guides/multitenancy-via-accesspolicy.md" %}
+[multitenancy-via-accesspolicy.md](how-to-guides/multitenancy-via-accesspolicy.md)
 {% endcontent-ref %}
 
-{% content-ref url="../security/access-control.md" %}
-[access-control.md](../security/access-control.md)
+{% content-ref url="security/access-control.md" %}
+[access-control.md](security/access-control.md)
 {% endcontent-ref %}

@@ -43,7 +43,7 @@ schema:
       const: get
 ```
 
-Matcho engine version:
+`Matcho` engine version:
 
 ```yaml
 resourceType: AccessPolicy
@@ -80,7 +80,7 @@ POST {{base}}/fhir/Patient
 
 ## Policy Debugging
 
-Let's use the parameter \_\_debug=policy in requests to see which JSON-schema validation returned true/false.
+Let's use the parameter `__debug=policy` in requests to see which JSON-schema validation returned true/false.
 
 ### Positive Test
 

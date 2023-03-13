@@ -2,7 +2,7 @@
 description: This guide explains how to set up RBAC with ACL
 ---
 
-# 🎓 Role-Based Access Control with ACL
+# Set-up RBAC with ACL
 
 {% hint style="info" %}
 This guide is based on the [Access control list (ACL)](../acl.md)
@@ -12,15 +12,15 @@ This guide is based on the [Access control list (ACL)](../acl.md)
 
 When a user with the role `OrganizationAdmin` performs read request for some user like `GET /User/<user-id>`, Aidbox checks if `organization.id` of the requester and the desired user has the same organization reference. If the organization is the same, Aidbox allows otherwise restricts access.
 
-## Init Aidbox configuration project 
+## Init Aidbox configuration project
 
-To set new [Adibox configuration project](../../aidbox-configuration/aidbox-zen-lang-project/README.md) 
+To set new [Adibox configuration project](../../aidbox-configuration/aidbox-zen-lang-project/)
 
 {% hint style="info" %}
 It is important to syncronize directory and file name to he `:ns` parameter of the configuration
 {% endhint %}
 
-Create an empty directory `acl` 
+Create an empty directory `acl`
 
 ```bash
 mkdir acl 
@@ -173,6 +173,7 @@ Content-Type: text/yaml
 }
 ```
 {% endtab %}
+
 {% tab title="response status: 200" %}
 ```yaml
 token_type: Bearer
@@ -197,6 +198,7 @@ Content-Type: text/yaml
 authorization: "Bearer MW...Ex"
 ```
 {% endtab %}
+
 {% tab title="response status: 200" %}
 ```yaml
 organization: { id: org-1, resourceType: Organization }
@@ -206,7 +208,7 @@ resourceType: User
 {% endtab %}
 {% endtabs %}
 
-### Read attempt user from the different organization 
+### Read attempt user from the different organization
 
 {% tabs %}
 {% tab title="fetch allowed user data" %}
@@ -216,6 +218,7 @@ Content-Type: text/yaml
 authorization: "Bearer MW...Ex"
 ```
 {% endtab %}
+
 {% tab title="response status: 404" %}
 ```yaml
 resourceType: OperationOutcome

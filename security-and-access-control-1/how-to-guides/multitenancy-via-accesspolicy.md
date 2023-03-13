@@ -1,8 +1,8 @@
 ---
-description: Build Multitenancy with AccessPolicy
+description: This guide shows how to build Multitenancy with AccessPolicy
 ---
 
-# 🎓 Multitenancy via AccessPolicy
+# Set-up multitenancy via AccessPolicy
 
 Aidbox stores all the tenants in a single database and serves number of them at once. It obtains `tenant-id` from each request and returns the data belonging to the tenant.
 
@@ -156,7 +156,7 @@ gender: male
 {% endtab %}
 {% endtabs %}
 
-Read updated `Patient` resource.&#x20;
+Read updated `Patient` resource.
 
 {% tabs %}
 {% tab title="Request" %}

@@ -1,8 +1,8 @@
 ---
-description: Access control debug tools available in Aidbox
+description: This guide explains how Access control debug tools work
 ---
 
-# Debug
+# Debug access control
 
 Aidbox offers multiple ways to debug access policies:
 
