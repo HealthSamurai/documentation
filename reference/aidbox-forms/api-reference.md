@@ -932,7 +932,7 @@ result:
 
 ### aidbox.sdc/get-form-access-jwt
 
-Creates [policy token](../../security-and-access-control-1/security/access-policy.md#signed-rpc-policy-token) to get access to SDCDocument/SDCWorkflow
+Creates [policy token](../../security-and-access-control-1/how-to-guides/access-policy.md#signed-rpc-policy-token) to get access to SDCDocument/SDCWorkflow
 
 params:
 
@@ -983,7 +983,7 @@ policy: <jwt policy token>
 
 Generates link for form access and management without authentication.
 
-> Creates [policy token](../../security-and-access-control-1/security/access-policy.md#signed-rpc-policy-token) to get access to SDCDocument/SDCWorkflow
+> Creates [policy token](../../security-and-access-control-1/how-to-guides/access-policy.md#signed-rpc-policy-token) to get access to SDCDocument/SDCWorkflow
 
 Redirect urls can be specified for different actions.
 
@@ -994,14 +994,14 @@ Redirect urls can be specified for different actions.
 
 Params:
 
-| Param             | Description                                                                                                                                                                        | Type                    | required? |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- | --------- |
-| form              | link to the form in DB                                                                                                                                                             | Map                     | yes       |
-| form.id           | SDCDocument/SDCWorkflow id                                                                                                                                                         | String                  | yes       |
-| form.resourceType |                                                                                                                                                                                    | SDCDocument/SDCWorkflow | yes       |
-| redirect-on-sign  | URI that used after form sign/amend event for redirect                                                                                                                             | URI                     | no        |
-| redirect-button   | URI that used after Save or Close button is pressed                                                                                                                                         | URI                     | no        |
-| theme             | <p>Theme that will be applied to form. <br>See <a data-mention href="../../modules-1/aidbox-forms/how-to-customize-form-appearance.md">how-to-customize-form-appearance.md</a></p> | String                  | no        |
+| Param             | Description                                                                                                                                                                       | Type                    | required? |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- | --------- |
+| form              | link to the form in DB                                                                                                                                                            | Map                     | yes       |
+| form.id           | SDCDocument/SDCWorkflow id                                                                                                                                                        | String                  | yes       |
+| form.resourceType |                                                                                                                                                                                   | SDCDocument/SDCWorkflow | yes       |
+| redirect-on-sign  | URI that used after form sign/amend event for redirect                                                                                                                            | URI                     | no        |
+| redirect-button   | URI that used after Save or Close button is pressed                                                                                                                               | URI                     | no        |
+| theme             | <p>Theme that will be applied to form.<br>See <a data-mention href="../../modules-1/aidbox-forms/how-to-customize-form-appearance.md">how-to-customize-form-appearance.md</a></p> | String                  | no        |
 
 Request:
 

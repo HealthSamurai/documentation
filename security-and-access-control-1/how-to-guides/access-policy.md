@@ -1,4 +1,8 @@
-# 🎓 Access Control
+---
+description: This guide shows how to create and test access policies in Aidbox
+---
+
+# Create and test access control
 
 ## Simple Access Policy
 
@@ -18,7 +22,7 @@ Access the Access Control tab and create new access policy with the code below. 
 1. it is allowed to use only the GET method;
 2. it is allowed to use only request URIs starting with "/fhir/".
 
-JSON-schema version:
+### JSON-schema version:
 
 ```yaml
 resourceType: AccessPolicy
@@ -43,7 +47,7 @@ schema:
       const: get
 ```
 
-`Matcho` engine version:
+### `Matcho` engine version:
 
 ```yaml
 resourceType: AccessPolicy
@@ -98,7 +102,7 @@ POST {{base}}/fhir/Patient
 
 ![](<../../.gitbook/assets/policy4 (1).png>)
 
-See the full documentation [Access Policies](access-control.md).
+See the full documentation [Access Policies](../security/access-control.md).
 
 ## Access Policies for Users
 

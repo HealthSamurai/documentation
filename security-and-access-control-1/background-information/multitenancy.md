@@ -84,8 +84,8 @@ Aidbox FHIR API can have filters to ensure that a client can access only certain
 * Different tenants can't have different configurations, e.g. the same FHIR version across all tenants.
 {% endhint %}
 
-{% content-ref url="../how-to-guides/multitenancy-via-accesspolicy.md" %}
-[multitenancy-via-accesspolicy.md](../how-to-guides/multitenancy-via-accesspolicy.md)
+{% content-ref url="../how-to-guides/access-control/multitenancy-via-accesspolicy.md" %}
+[multitenancy-via-accesspolicy.md](../how-to-guides/access-control/multitenancy-via-accesspolicy.md)
 {% endcontent-ref %}
 
 {% content-ref url="../security/access-control.md" %}

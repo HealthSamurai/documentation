@@ -111,7 +111,7 @@ Aidbox applies access policy with `roleName` property only if a role with corres
 
 Access policy engine evaluates request object. And here it checks that `params.resource/id` property is equal to `role.links.practitioner.id` property.
 
-You can inspect request object [using `__debug` query parameter](../../background-information/debug.md#\_\_debug-query-string-parameter).
+You can inspect request object [using `__debug` query parameter](../debug.md#\_\_debug-query-string-parameter).
 
 ### Role resource schema
 

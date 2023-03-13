@@ -17,7 +17,7 @@
   * Introduced FHIR to CCD transformation (alpha)
 * Security and Access Control
   * Supported Aidbox [on path](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox\_base\_url)
-  * Improved [`__debug=policy`](../../security-and-access-control-1/security/access-policy.md#policy-debugging)``
+  * Improved [`__debug=policy`](../../security-and-access-control-1/how-to-guides/access-policy.md#policy-debugging)``
 * Ops
   * [Devbox images](../../overview/aidbox-user-portal/licenses.md#development-license) are no longer supported. Please use [AidboxOne image](https://hub.docker.com/r/healthsamurai/aidboxone)  with [development license](../../overview/aidbox-user-portal/licenses.md#development-license)
   * Supported [box\_web\_\*](../../reference/configuration/environment-variables/optional-environment-variables.md#box\_web\_max\_\_body) configs for Multibox
@@ -259,7 +259,7 @@ February 2022 - v:2202 is available as a long-term support version. End of life 
 {% endhint %}
 
 * Released a beta version of [Aidbox API constructor ](../../aidbox-configuration/aidbox-api-constructor.md)that allows to define REST API granularly.
-* Added Access Control debug option: [su header](../../security-and-access-control-1/background-information/debug.md#su-request-header). It allows doing a request on behalf of a certain user.
+* Added Access Control debug option: [su header](../../security-and-access-control-1/how-to-guides/debug.md#su-request-header). It allows doing a request on behalf of a certain user.
 * Added [Grafana dashboard RPC](../../core-modules/monitoring/grafana-integration.md) API that allows to get Aidbox metrics dashboards and import it to your Grafana.
 * Added [`_count`](../../api-1/fhir-api/search-1/search-parameters-list/\_count-and-\_page.md), [`_total`](../../api-1/fhir-api/search-1/search-parameters-list/\_total-or-\_countmethod.md) and [`_timeout`](../../api-1/fhir-api/search-1/search-parameters-list/\_timeout.md) environment variables to configure default values.
 * Improved logging for RPC and GraphQL calls.

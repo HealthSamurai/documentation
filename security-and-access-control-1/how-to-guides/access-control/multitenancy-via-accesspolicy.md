@@ -1,20 +1,20 @@
 ---
-description: This guide shows how to build Multitenancy with AccessPolicy
+description: This guide shows how to build multi-tenancy with AccessPolicy
 ---
 
-# Set-up multitenancy via AccessPolicy
+# Configure multi-tenancy
 
 Aidbox stores all the tenants in a single database and serves number of them at once. It obtains `tenant-id` from each request and returns the data belonging to the tenant.
 
-### Key concepts
+## Key concepts
 
 * All resources have to be created with the `tenant-id`
 * `tenant id` is stored within the `identifier` attribute at the resource
 * Access policies require `tenant-id` parameter in each request
 
-### Multitenancy setup and requests example
+## Multi-tenancy setup and requests example
 
-#### Add `Client`
+### Add `Client`
 
 There are several ways to create client. We use the simplest one to do it: [Basic Auth](https://docs.aidbox.app/security-and-access-control-1/auth/basic-auth).
 
@@ -29,7 +29,7 @@ grant_types:
   - basic
 ```
 
-#### Add `org-1` tenant resource
+### Add `org-1` tenant resource
 
 Create patient providing it's `tenant-id` in the `identifier` property.
 
@@ -47,7 +47,7 @@ name:
 gender: male
 ```
 
-#### Define `AccessPolicy` for multi-tenancy
+### Define `AccessPolicy` for multi-tenancy
 
 Create access policy to ensure `tenant-id` is provided in all requests.
 
@@ -92,7 +92,7 @@ matcho:
         - "$contains": tenantId|org1
 ```
 
-#### Multi-tenant request examples
+### Multi-tenant request examples
 
 Search the `Patient` with the correct `tenant-id` returns the resource.
 
