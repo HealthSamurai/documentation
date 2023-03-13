@@ -26,7 +26,7 @@ jwt:
   secret: very-secret
 ```
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Currently we use common `secret` to validate our introspector works. In production installations it's better to switch to `jwks_uri` instead
 {% endhint %}
 
