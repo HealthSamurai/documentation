@@ -251,7 +251,6 @@
   * [Resource Owner Grant](security-and-access-control-1/auth/resource-owner-password.md)
   * [Authorization Code Grant](security-and-access-control-1/auth/authorization-code.md)
   * [Implicit Grant](security-and-access-control-1/auth/implicit.md)
-  * [Validating Foreign Access Tokens](security-and-access-control-1/auth/access-token-introspection.md)
   * [External Oauth 2.0 Providers](security-and-access-control-1/auth/external-oauth-2.0-providers.md)
   * [Two Factor Authentication](security-and-access-control-1/auth/two-factor-authentication.md)
   * [SMART on FHIR](security-and-access-control-1/auth/smart-app/README.md)
@@ -278,10 +277,11 @@
   * [Set-up multitenancy via AccessPolicy](security-and-access-control-1/how-to-guides/multitenancy-via-accesspolicy.md)
   * [Debug access control](security-and-access-control-1/how-to-guides/debug.md)
 * [Background information](security-and-access-control-1/background-information/README.md)
+  * [Validating Foreign Access Tokens](security-and-access-control-1/background-information/access-token-introspection.md)
   * [Multitenancy](security-and-access-control-1/background-information/multitenancy.md)
   * [Access control lists (ACL)](security-and-access-control-1/background-information/acl.md)
 * [Technical reference](security-and-access-control-1/technical-reference/README.md)
-  * [Discovery API](security-and-access-control-1/technical-reference/well-known-endpoint.md)
+  * [Discovery API](security-and-access-control-1/auth/well-known-endpoint.md)
 
 ## Core Modules
 

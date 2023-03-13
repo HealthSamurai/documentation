@@ -12,15 +12,15 @@
 
 ### API Consumer
 
-If you have backend service or periodical job that wants to interact with Aidbox API, you can use session-less [Basic Auth](basic-auth.md), [Client Credentials Grant](client-credentials.md) (OAuth) or [Access by JWT](access-token-introspection.md).
+If you have backend service or periodical job that wants to interact with Aidbox API, you can use session-less [Basic Auth](basic-auth.md), [Client Credentials Grant](client-credentials.md) (OAuth) or [Access by JWT](../background-information/access-token-introspection.md).
 
 ### Web Application
 
-If you want to work with Aidbox from a web application or implement Single Sign-On using Aidbox as Identity Server, consider [Authorization Code Grant](authorization-code.md) or [Access by JWT](access-token-introspection.md)
+If you want to work with Aidbox from a web application or implement Single Sign-On using Aidbox as Identity Server, consider [Authorization Code Grant](authorization-code.md) or [Access by JWT](../background-information/access-token-introspection.md)
 
 ### Single Page Application
 
-For SPA you can use [Implicit Grant](implicit.md), [Authorization Code Grant](authorization-code.md) without secret or [Access by JWT](access-token-introspection.md).
+For SPA you can use [Implicit Grant](implicit.md), [Authorization Code Grant](authorization-code.md) without secret or [Access by JWT](../background-information/access-token-introspection.md).
 
 ### Mobile and Desktop Application
 

@@ -2,7 +2,7 @@
 
 In order to add external OAuth 2.0 Provider integration, you have to create a resource called IdentityProvider. It will be used by the auth module to generate redirect links and make API calls to the provider to retrieve access token, user data, etc. All examples in this tutorial are executable in Aidbox REST Console.
 
-```text
+```yaml
 POST /IdentityProvider
 Accept: text/yaml
 Content-Type: text/yaml
@@ -22,57 +22,20 @@ client:
  secret: <your auth client secret>
 ```
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left">attribute</th>
-      <th style="text-align:left">description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left">system</td>
-      <td style="text-align:left">adds identifier for the created user with this system</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">authorize_endpoint</td>
-      <td style="text-align:left">OAuth Provider authorization endpoint</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">token_endpoint</td>
-      <td style="text-align:left">OAuth Provider access token endpoint</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">userinfo_endpoint</td>
-      <td style="text-align:left">OAuth Provider user profile endpoint</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">userinfo_header</td>
-      <td style="text-align:left">
-        <p>Some providers require different prefix then &quot;Bearer&quot; for Authorization
-          header in user info request. Fox example, if set to &quot;OAuth&quot; results
-          in:</p>
-        <p>GET /&lt;userinfo_endpoint&gt; with Authorization: Oauth &lt;access token&gt;</p>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left">scopes</td>
-      <td style="text-align:left">array of scopes for which you request access from user</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">client.id</td>
-      <td style="text-align:left">id of the client you registered in OAuth Provider API</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">client.secret</td>
-      <td style="text-align:left">secret of the client you registered in OAuth Provider API</td>
-    </tr>
-  </tbody>
-</table>
+| attribute           | description                                                                                                                                                                                                                              |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| system              | adds identifier for the created user with this system                                                                                                                                                                                    |
+| authorize\_endpoint | OAuth Provider authorization endpoint                                                                                                                                                                                                    |
+| token\_endpoint     | OAuth Provider access token endpoint                                                                                                                                                                                                     |
+| userinfo\_endpoint  | OAuth Provider user profile endpoint                                                                                                                                                                                                     |
+| userinfo\_header    | <p>Some providers require different prefix then "Bearer" for Authorization header in user info request. Fox example, if set to "OAuth" results in:</p><p>GET /&#x3C;userinfo_endpoint> with Authorization: Oauth &#x3C;access token></p> |
+| scopes              | array of scopes for which you request access from user                                                                                                                                                                                   |
+| client.id           | id of the client you registered in OAuth Provider API                                                                                                                                                                                    |
+| client.secret       | secret of the client you registered in OAuth Provider API                                                                                                                                                                                |
 
-Next, we have to create Client resource which will receive access token from Aidbox backend later on and use Aidbox API on behalf of the user. We enable the authorization\_code flow for the application and provide the redirect\_uri. 
+Next, we have to create Client resource which will receive access token from Aidbox backend later on and use Aidbox API on behalf of the user. We enable the authorization\_code flow for the application and provide the redirect\_uri.&#x20;
 
-```text
+```yaml
 POST /Client
 Accept: text/yaml
 Content-Type: text/yaml
@@ -85,11 +48,11 @@ auth:
   redirect_uri: <your app redirect uri>
 ```
 
-You will also need to register /auth/callback/&lt;provider-id&gt; as callback URI in your OAuth provider client application configuration. 
+You will also need to register /auth/callback/\<provider-id> as callback URI in your OAuth provider client application configuration.&#x20;
 
-To initiate authorization, redirect the user to the endpoint /auth/redirect/&lt;provider-id&gt;. You should provide at least two query parameters client\_id and response\_type. The following API interactions happen as a result:
+To initiate authorization, redirect the user to the endpoint /auth/redirect/\<provider-id>. You should provide at least two query parameters client\_id and response\_type. The following API interactions happen as a result:
 
-```text
+```yaml
 GET /auth/redirect/google?client_id=my-client&response_type=code
 # your application entrypoint
 # redirects to
@@ -114,7 +77,7 @@ GET <your app redirect uri>?code=...
 
 By default, everything that is returned by provider's userinfo endpoint gets stored into User.data. You can also configure mapping to other User attributes by adding 'toScim' object into IdentityProvider.
 
-```text
+```yaml
 PUT /IdentityProvider/<provider-id>
 Accept: text/yaml
 Content-Type: text/yaml
@@ -131,4 +94,3 @@ toScim:
 ```
 
 Each key here refers to the key in the userinfo response object, while value is an array that specifies path in User resource.
-

@@ -1,12 +1,15 @@
 ---
-description: >-
-  Aidbox can validate access tokens issued by 3rd-party servers. This way Aidbox
-  acts as a Resource Server and leaves Identity management to a separate server.
+description: Aidbox as a Resource Server
 ---
 
 # Validating Foreign Access Tokens
 
-To configure Aidbox as a Resource Server, you need to create one or more instances of TokenIntrospector resource. TokenIntrospector resources defines how access token validation will be performed. There are two different algorithms to validate tokens: JWT validation according to [RFC-7519](https://tools.ietf.org/html/rfc7519) and opaque token introspection according to [RFC-7662](https://tools.ietf.org/html/rfc7662).&#x20;
+Aidbox can validate access tokens issued by 3rd-party servers. This way Aidbox acts as a Resource Server and leaves Identity management to a separate server.
+
+To configure Aidbox as a Resource Server, you need to create one or more instances of `TokenIntrospector` resource. `TokenIntrospector` defines how access token validation is performed. There are two different algorithms to validate tokens:
+
+1. JWT validation according to [RFC-7519](https://tools.ietf.org/html/rfc7519)
+2. opaque token introspection according to [RFC-7662](https://tools.ietf.org/html/rfc7662)
 
 ### Validating JWT Access Tokens
 
@@ -21,7 +24,7 @@ jwt:
   secret: "xxxxxxxx"               # pre-shared key if JWT alg = HS256
 ```
 
-When Aidbox validates the JWT token, it tries to find a matching TokenIntrospector using `jwt.iss` and `type` attributes. If suitable TokenIntrospector is found, token is being validated with either JWK obtained from `jwks_uri` or with `jwt.secret`, depending on the signing algorithm. Token expiration (`exp` claim) is also being checked.
+When Aidbox validates the JWT token, it tries to find a matching `TokenIntrospector` using `jwt.iss` and `type` attributes. If suitable TokenIntrospector is found, token is being validated with either JWK obtained from `jwks_uri` or with `jwt.secret`, depending on the signing algorithm. Token expiration (`exp` claim) is also being checked.
 
 If JWT is valid, Aidbox will put it's claims into the request object under `jwt` key, so you'll be able to access them with [AccessPolicy checks](../security/access-control.md). If the token failed validation (it's expired or signature isn't correct) then the client will get a 401 "Unauthorised" response.
 
@@ -109,7 +112,6 @@ Your JWT token should contain `sub` attribute that equal `User.id` on your box.
 claims:
   ...
   sub: box-user-id
-  
 ```
 
 Also you can put box user id in to `box_user` claim attribute. This makes sense when you use external oauth provider or any other identity system that manages `sub` attribute itself. In this case, you can put the box user id in to `box_user` .
@@ -121,10 +123,9 @@ claims:
   ...
   sub: some-user-id-on-external-system
   box_user: box-user-id
-  
 ```
 
-When Aidbox receives request with JWT and `box_user` or `sub` attribute, Aidbox injects this user and their roles to the request. Now we can create some AccessPolicy.
+When Aidbox receives request with JWT and `box_user` or `sub` attribute, Aidbox injects this user and their roles to the request. Now we can create some `AccessPolicy`.
 
 ```yaml
 # AccessPolicy example

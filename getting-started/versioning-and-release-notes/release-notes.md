@@ -175,7 +175,7 @@
 * Added an option to [get Aidbox hosted on AWS](../run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md) directly from the Aidbox user portal. [Aidbox FHIR platform](https://aws.amazon.com/marketplace/pp/prodview-l5djlpvsd6o5g) is available on AWS marketplace.
 * Released [Aidbox forms](../../modules-1/aidbox-forms.md) alpha version.
 * Added [RPC method](../../terminology/terminology-api/import-using-an-aidbox-project.md#track-import-progress) to track Aidbox project terminology bundles async load status.
-* Added env to [automatically create a User resource](../../security-and-access-control-1/auth/access-token-introspection.md#create-user-automatically) on auth via TokenIntrospector. This allows to use both TokenIntrospector and IdentityProvider auth for the same User in Aidbox.
+* Added env to [automatically create a User resource](../../security-and-access-control-1/background-information/access-token-introspection.md#create-user-automatically) on auth via TokenIntrospector. This allows to use both TokenIntrospector and IdentityProvider auth for the same User in Aidbox.
 * Added log event [:op/timeout](../../core-modules/logging-and-audit/aidbox-log-schema.md) for logging custom operations timeout
 * Added FHIR Bundle transaction conditional CRUD with `urn:uuid` support
 * Added [SNOMED CT bundle](../../terminology/terminology-api/)
