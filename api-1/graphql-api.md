@@ -156,6 +156,33 @@ query {
 
 ## Example
 
+Example of fragments usage. Get id of DeviceRequestList resource, add address of Organizations and Practitioners referenced in DeviceRequestList.requester:
+
+```graphql
+query {
+  DeviceRequestList {
+    id,
+    requester {
+      resourceType
+      resource {
+        ... on Organization {
+          id,
+          address {
+            use
+          }
+        }
+        ... on Practitioner {
+          id,
+          address {
+            use
+          }
+        }
+      }
+    }
+  }
+}
+```
+
 This example demonstrates how to use fragments, both types of search parameter arguments and reverse includes.
 
 {% tabs %}
