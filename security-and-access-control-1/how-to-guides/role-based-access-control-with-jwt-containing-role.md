@@ -7,7 +7,7 @@ description: >-
 # RBAC with JWT containing role
 
 {% hint style="info" %}
-This guide is based on the [TokenInstrospector tutorial](../token-introspection.md). But we won't' create `User` resource
+This guide is based on the [TokenInstrospector tutorial](token-introspection.md). But we won't' create `User` resource
 {% endhint %}
 
 ## Token introspection
