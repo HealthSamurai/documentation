@@ -279,7 +279,7 @@
 * [Multitenancy](security-and-access-control-1/multitenancy/README.md)
   * [🎓 Multitenancy via AccessPolicy](security-and-access-control-1/multitenancy/multitenancy-via-accesspolicy.md)
 * [How-to guides](security-and-access-control-1/how-to-guides/README.md)
-  * [🎓 Token introspection](security-and-access-control-1/how-to-guides/token-introspection.md)
+  * [Set-up token introspection](security-and-access-control-1/how-to-guides/token-introspection.md)
 
 ## Core Modules
 
