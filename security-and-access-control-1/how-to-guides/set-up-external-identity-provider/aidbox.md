@@ -2,7 +2,7 @@
 description: This guide explains how to configure Aidbox as an External OAuth Provider
 ---
 
-# Configure Aidbox as an External identity Provider
+# Aidbox
 
 To set up one Aidbox instance to authenticate users in another Aidbox instance follow these steps:
 
