@@ -243,8 +243,6 @@
 ## Security & Access Control <a href="#security-and-access-control-1" id="security-and-access-control-1"></a>
 
 * [Overview](security-and-access-control-1/overview.md)
-  * [Tokens processing](security-and-access-control-1/overview/tokens-processing.md)
-  * [Storing authorization details](security-and-access-control-1/overview/storing-authorization-details.md)
 * [Authentication Flows](security-and-access-control-1/auth/README.md)
   * [Basic Auth](security-and-access-control-1/auth/basic-auth.md)
   * [Client Credentials Grant](security-and-access-control-1/auth/client-credentials.md)
@@ -264,7 +262,6 @@
   * [🎓 Access Control](security-and-access-control-1/security/access-policy.md)
   * [Access Policies tutorial](security-and-access-control-1/security/search-parameters.md)
 * [How-to guides](security-and-access-control-1/how-to-guides/README.md)
-  * [Prohibit user to login](security-and-access-control-1/auth/configuration-options.md)
   * [Restrict operations on resource type](security-and-access-control-1/how-to-guides/restrict-resource-operations.md)
   * [Set-up token introspection](security-and-access-control-1/how-to-guides/token-introspection.md)
   * [Configure Aidbox as an External identity Provider](security-and-access-control-1/how-to-guides/aidbox.md)
@@ -276,10 +273,13 @@
   * [Set-up RBAC with ACL](security-and-access-control-1/how-to-guides/role-based-access-control-with-acl.md)
   * [Set-up multitenancy via AccessPolicy](security-and-access-control-1/how-to-guides/multitenancy-via-accesspolicy.md)
   * [Debug access control](security-and-access-control-1/how-to-guides/debug.md)
+  * [Prohibit user to login](security-and-access-control-1/auth/configuration-options.md)
 * [Background information](security-and-access-control-1/background-information/README.md)
   * [Validating Foreign Access Tokens](security-and-access-control-1/background-information/access-token-introspection.md)
   * [Multitenancy](security-and-access-control-1/background-information/multitenancy.md)
   * [Access control lists (ACL)](security-and-access-control-1/background-information/acl.md)
+  * [Tokens processing](security-and-access-control-1/background-information/tokens-processing.md)
+  * [Storing authorization details](security-and-access-control-1/background-information/storing-authorization-details.md)
 * [Technical reference](security-and-access-control-1/technical-reference/README.md)
   * [Discovery API](security-and-access-control-1/auth/well-known-endpoint.md)
 
