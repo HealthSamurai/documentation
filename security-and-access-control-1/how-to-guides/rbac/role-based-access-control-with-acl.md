@@ -2,10 +2,10 @@
 description: This guide explains how to set up RBAC with ACL
 ---
 
-# Set-up RBAC with ACL
+# RBAC with ACL
 
 {% hint style="info" %}
-This guide is based on the [Access control list (ACL)](../background-information/acl.md)
+This guide is based on the [Access control list (ACL)](../../background-information/acl.md)
 {% endhint %}
 
 ## The goal
@@ -14,7 +14,7 @@ When a user with the role `OrganizationAdmin` performs read request for some use
 
 ## Init Aidbox configuration project
 
-To set new [Adibox configuration project](../../aidbox-configuration/aidbox-zen-lang-project/)
+To set new [Adibox configuration project](../../../aidbox-configuration/aidbox-zen-lang-project/)
 
 {% hint style="info" %}
 It is important to syncronize directory and file name to he `:ns` parameter of the configuration

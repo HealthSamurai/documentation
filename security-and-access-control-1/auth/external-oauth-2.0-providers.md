@@ -120,6 +120,6 @@ Each key here refers to the key in the `userinfo` response object, while value i
 
 ## How to set up identity provider
 
-{% content-ref url="../how-to-guides/set-up-external-identity-provider/" %}
-[set-up-external-identity-provider](../how-to-guides/set-up-external-identity-provider/)
+{% content-ref url="../how-to-guides/external-identity-provider/" %}
+[external-identity-provider](../how-to-guides/external-identity-provider/)
 {% endcontent-ref %}
