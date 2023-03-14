@@ -994,14 +994,15 @@ Redirect urls can be specified for different actions.
 
 Params:
 
-| Param             | Description                                                                                                                                                                       | Type                    | required? |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- | --------- |
-| form              | link to the form in DB                                                                                                                                                            | Map                     | yes       |
-| form.id           | SDCDocument/SDCWorkflow id                                                                                                                                                        | String                  | yes       |
-| form.resourceType |                                                                                                                                                                                   | SDCDocument/SDCWorkflow | yes       |
-| redirect-on-sign  | URI that used after form sign/amend event for redirect                                                                                                                            | URI                     | no        |
-| redirect-button   | URI that used after Save or Close button is pressed                                                                                                                               | URI                     | no        |
-| theme             | <p>Theme that will be applied to form.<br>See <a data-mention href="../../modules-1/aidbox-forms/how-to-customize-form-appearance.md">how-to-customize-form-appearance.md</a></p> | String                  | no        |
+| Param             | Description                                                                                                                                                                       | Type                      | required? |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- | --------- |
+| form              | link to the form in DB                                                                                                                                                            | Map                       | yes       |
+| form.id           | SDCDocument/SDCWorkflow id                                                                                                                                                        | String                    | yes       |
+| form.resourceType |                                                                                                                                                                                   | SDCDocument/SDCWorkflow   | yes       |
+| redirect-on-sign  | URI that used after form sign/amend event for redirect                                                                                                                            | URI                       | no        |
+| redirect-button   | URI that used after Save or Close button is pressed                                                                                                                               | URI                       | no        |
+| theme             | <p>Theme that will be applied to form.<br>See <a data-mention href="../../modules-1/aidbox-forms/how-to-customize-form-appearance.md">how-to-customize-form-appearance.md</a></p> | String                    | no        |
+| show-rules        | Show calculated fields formulas                                                                                                                                                   | true \| false \| readable | no        |
 
 Request:
 
@@ -1018,6 +1019,7 @@ params:
   theme: sdc-box/example-theme
   redirect-on-sign: http://my.portal.com?param1=p1
   redirect-button: http://my.portal.com?param1=p3
+  show-rules: true
 ```
 
 Result:
