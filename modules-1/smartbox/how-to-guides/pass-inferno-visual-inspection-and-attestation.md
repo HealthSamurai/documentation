@@ -104,7 +104,7 @@ Here `https://example.com` is the Smartbox domain
 
 ## 9.10.10 Health IT developer confirms the Health IT module does not cache the JWK Set received via a TLS-protected URL for longer than the cache-control header received by an application indicates
 
-It is an attestation. You should state Smartbox never caches `JWK` sets it receives during the token validations.
+It is an attestation. You should state Smartbox (Aidbox) caches `JWK` sets it receives during the token validations. Cached JWK lives for 5 minutes then it is deleted.
 
 ## 9.10.11 Health IT developer demonstrates support for the Patient Demographics Suffix USCDI v1 element
 
