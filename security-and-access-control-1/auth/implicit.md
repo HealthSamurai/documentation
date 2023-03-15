@@ -5,7 +5,9 @@ description: Implicit Grant flow. Supported but not recommendted to use
 # Implicit Grant
 
 {% hint style="warning" %}
-Implicit flow is not recommened to use since there is risk of leaking access token without any comfirmation it was received by the client. More over, some servers prohibit this flow entirely. Aidbox supports Implicit Grant flow but we don't enjoyt it very much
+Implicit flow is not recommended to use since there is a risk of leaking access token without any confirmation it was received by the client. More over, some servers prohibit this flow entirely. Aidbox supports Implicit Grant flow but we don't enjoy it very much.
+
+It is better to switch to [Authorization Code Grant with PKCE](authorization-code.md) extension instead
 {% endhint %}
 
 ## Description
@@ -19,24 +21,24 @@ Implicit Grant flow is an alternative for Authorization Code flow. This flow jus
 Obtaining access token
 {% endswagger-description %}
 
-{% swagger-parameter in="query" name="state" type="string" %}
+{% swagger-parameter in="query" name="state" type="string" required="false" %}
 a value used by the client to maintain state between the request and callback
 {% endswagger-parameter %}
 
-{% swagger-parameter in="query" name="scope" type="string" %}
+{% swagger-parameter in="query" name="scope" type="string" required="false" %}
 scope of the access request
 {% endswagger-parameter %}
 
-{% swagger-parameter in="query" name="redirect_uri" type="string" %}
+{% swagger-parameter in="query" name="redirect_uri" type="string" required="false" %}
 client redirect URI
 {% endswagger-parameter %}
 
-{% swagger-parameter in="query" name="client_id" type="string" %}
+{% swagger-parameter in="query" name="client_id" type="string" required="false" %}
 client ID
 {% endswagger-parameter %}
 
-{% swagger-parameter in="query" name="response_type" type="string" %}
-value MUST be set to 
+{% swagger-parameter in="query" name="response_type" type="string" required="false" %}
+value MUST be set to
 
 `token`
 {% endswagger-parameter %}
