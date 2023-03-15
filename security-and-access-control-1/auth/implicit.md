@@ -1,4 +1,12 @@
+---
+description: Implicit Grant flow. Supported but not recommendted to use
+---
+
 # Implicit Grant
+
+{% hint style="warning" %}
+Implicit flow is not recommened to use since there is risk of leaking access token without any comfirmation it was received by the client. More over, some servers prohibit this flow entirely. Aidbox supports Implicit Grant flow but we don't enjoyt it very much
+{% endhint %}
 
 ## Description
 
