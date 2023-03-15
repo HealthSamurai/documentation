@@ -90,7 +90,7 @@ source: ...
 
 The picture below, demonstrates the key data we uploaded. Jane user has access to 'Smoking and cancer research', and both users have access to 'Diet and diabetes research'.
 
-<figure><img src="https://hedge.aidbox.app/uploads/upload_2d65a719ee590e3994700d008717b348.png" alt=""><figcaption><p><em>Sample data for research study repository application</em></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-03-15 at 17.36.05.png" alt=""><figcaption><p><em>Sample data for research study repository application</em></p></figcaption></figure>
 
 ## Write access policies
 
