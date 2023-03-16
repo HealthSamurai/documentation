@@ -1,3 +1,9 @@
+---
+description: >-
+  An OAuth 2.0 flow that involves a user granting authorization to a client
+  application
+---
+
 # Authorization Code Grant
 
 #### Description
