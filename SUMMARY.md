@@ -258,6 +258,7 @@
   * [Multitenancy](security-and-access-control-1/security/multitenancy.md)
   * [Access control lists (ACL)](security-and-access-control-1/security/acl.md)
   * [SMART on FHIR](security-and-access-control-1/security/smart-app.md)
+  * [AccessPolicy best practices](security-and-access-control-1/security/accesspolicy-best-practices.md)
 * [Tutorials](security-and-access-control-1/tutorials/README.md)
   * [Relationship-based access control in Aidbox](security-and-access-control-1/tutorials/relationship-based-access-control-in-aidbox.md)
 * [How-to guides](security-and-access-control-1/how-to-guides/README.md)
