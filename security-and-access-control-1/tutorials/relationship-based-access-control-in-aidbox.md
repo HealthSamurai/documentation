@@ -141,7 +141,7 @@ matcho:
 matcho engine compares incoming request with defined pattern, if the key is not specified in pattern, it will be ignore while checking. `_include`, `_revinclude` and `_with` parameters expands the list of returning data with related resources. As far we want to leave only ResearchStudy resources, we excluded them explicitly.
 {% endhint %}
 
-Let's check it
+Let's check it.
 
 {% tabs %}
 {% tab title="Jane searches for her studies" %}
