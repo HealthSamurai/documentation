@@ -267,7 +267,7 @@ GET /Patient?_has:Group:member:_id=<group-id>
 
 This requests the server to return Patient resources, where the patient resource is referred to by at least one Group with id \<group-id>, and where the Group refers to the patient resource in the member search parameter.
 
-#### Where do we know group id if we don't have access to Group resource?
+#### Where do we know group id, if we don't have access to Group resource?
 
 Technically we don't need to have access to Group resource, we need only to know group id. And group id is available from ResearchStudy resource, we already have access to.
 
@@ -282,7 +282,11 @@ and:
   matcho:
     request-method: get
     uri: /Patient
-    params: {'_has:Group:member:_id': 'present?'}
+    params:
+      '_has:Group:member:_id': 'present?'
+      _include: 'nil?'
+      _revinclude: 'nil?'
+      _with: 'nil?'
 - engine: sql
   sql:
     query: |-
@@ -316,35 +320,31 @@ The endpoint to fetch all observation by group is
 GET /Observation?group=<group-id>
 ```
 
-There is no group search parameter for Observation in FHIR.
+There is no group search parameter for Observation in FHIR. And there is no way to define our parameter with SearchParameter resource.
 
+To enable complex search parameters, Aidbox provides [Search](../../api-1/fhir-api/search-1/search-resource.md) resource. We will specify one for search Observations by group:
 
+```
+PUT /Search/Observation.group
 
-There is no mechanisms to query all Observation resources, related to a group of patients.&#x20;
+name: group
+resource: {id: Observation, resourceType: Entity}
+where: '{{table}}.resource#>>''{subject,id}'' in (select member#>>''{entity,id}'' from "group", jsonb_array_elements(resource#>''{member}'') member where id = {{param}})'
+```
 
 {% hint style="info" %}
-FHIR R5
+**Chained-search & \_has in FHIR R5**
+
+FHIR R5 introduced chained-search support for [\_has parameter](https://build.fhir.org/search.html#has). So, our request in would look like the following
 
 ```
 GET /Observation?patient._has:Group:member:_id=<group-id>
 ```
+
+Aidbox is going to support it once FHIR R5 is released.
 {% endhint %}
 
-
-
-They call it `_has` with chained-searches. Aidbox doesn't support it out of the box, but we may support for our specific case with Aidbox SearchParameter
-
-The \_has parameter can also be used in chained-searches, for example https://build.fhir.org/search.html#has
-
-We got authorized request for Observation resources, and all FHIR search parameters for Observation resoruce is also available. https://www.hl7.org/fhir/observation.html#search
-
-```yaml
-PUT /Search/Observation.group
-
-name: group
-where: '{{table}}.resource#>>''{subject,id}'' in (select member#>>''{entity,id}'' from "group", jsonb_array_elements(resource#>''{member}'') member where id = {{param}})'
-resource: {id: Observation, resourceType: Entity}
-```
+The AccessPolicy will be very similar to previous one, we made for Patient search.
 
 ```yaml
 PUT /AccessPolicy/user-can-access-observation-related-research-study-group
@@ -366,6 +366,20 @@ and:
                          'enrollment', jsonb_build_array(jsonb_build_object('id', {{params.group}}::text)))
       limit 1
 ```
+
+Let's check it.
+
+{% tabs %}
+{% tab title="First Tab" %}
+```
+...
+```
+{% endtab %}
+
+{% tab title="Second Tab" %}
+
+{% endtab %}
+{% endtabs %}
 
 ## Conclusion
 
