@@ -4,8 +4,7 @@ description: Aidbox as a Resource Server
 
 # External OAuth 2.0 Providers
 
-<table data-card-size="large" data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td>Aidbox</td><td>FHIR++ platform with built-in OAuth 2.0</td><td></td><td><a href="../../../.gitbook/assets/aidbox-logo.png">aidbox-logo.png</a></td><td><a href="../aidbox.md">aidbox.md</a></td></tr><tr><td>Okta</td><td>Enterprise-grade, ID management service</td><td></td><td><a href="../../../.gitbook/assets/okta-logo.png">okta-logo.png</a></td><td><a href="../configure-okta.md">configure-okta.md</a></td></tr><tr><td>Microsoft Azure AD</td><td>Cloud-based IAM service</td><td></td><td><a href="../../../.gitbook/assets/azure-ad-logo.png">azure-ad-logo.png</a></td><td><a href="../azure-ad.md">azure-ad.md</a></td></tr><tr><td>Keycloak</td><td>Open-source IAM solution</td><td></td><td><a href="../../../.gitbook/assets/keycloak-logo.png">keycloak-logo.png</a></td><td><a href="../keycloak.md">keycloak.md</a></td></tr></tbody></table>
-
+<table data-column-title-hidden data-view="cards"><thead><tr><th></th><th data-hidden></th><th data-hidden></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td>Aidbox</td><td></td><td></td><td><a href="../../.gitbook/assets/aidbox-logo.png">aidbox-logo.png</a></td><td><a href="../aidbox.md">aidbox.md</a></td></tr><tr><td>Okta</td><td></td><td></td><td><a href="../../.gitbook/assets/okta-logo.png">okta-logo.png</a></td><td><a href="../configure-okta.md">configure-okta.md</a></td></tr><tr><td>Microsoft Azure AD</td><td></td><td></td><td><a href="../../.gitbook/assets/azure-ad-logo.png">azure-ad-logo.png</a></td><td><a href="../azure-ad.md">azure-ad.md</a></td></tr><tr><td>Keycloak</td><td></td><td></td><td><a href="../../.gitbook/assets/keycloak-logo.png">keycloak-logo.png</a></td><td><a href="../keycloak.md">keycloak.md</a></td></tr></tbody></table>
 
 Aidbox can validate access tokens issued by 3rd-party servers. This way Aidbox acts as a Resource Server and leaves Identity management to a separate server.
 
@@ -74,7 +73,7 @@ You can configure Aidbox to create user from access token automatically. When Ai
 
 To configure automatic user creation follow these **two steps**:
 
-#### 1. Define ENV variable&#x20;
+#### 1. Define ENV variable
 
 ```
 BOX_FEATURES_AUTHENTICATION_INTROSPECTION_CREATE__USER=true
