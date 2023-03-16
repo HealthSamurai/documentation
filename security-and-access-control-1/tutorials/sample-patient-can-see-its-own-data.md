@@ -12,7 +12,7 @@ In this tutorial, you will learn how to manage user access to patient resources.
 
 ## Prerequisites
 
-To complete this tutorial, you should install Postman and get access to the Aidbox Console (see [here](../../../getting-started/installation/) how to install your Aidbox instance) .
+To complete this tutorial, you should install Postman and get access to the Aidbox Console (see [here](../../getting-started/installation/) how to install your Aidbox instance) .
 
 Once you access the Aidbox REST Console, load resources that you need to work with policies:
 
@@ -42,7 +42,7 @@ inputs:
 
 In the previous step, we have imported a client that will authenticate users and two users with corresponding sets of related resources shown on the picture below. Overlapping outlines indicates the relation between enclosed resources. A similar diagram applies to User-2.
 
-![](<../../../.gitbook/assets/image (10) (1).png>)
+![](<../../.gitbook/assets/image (10) (1).png>)
 
 ## User Login‌ <a href="#user-login" id="user-login"></a>
 
@@ -88,9 +88,9 @@ POST /auth/token
 
 Notice the `patient_id` field of `userinfo` . This is the id of the Patient resource associated with our user. It will be used further in Access Policies to decide if access should be granted or not. In general, you need to specify `data.patient_id: some_patient_id` in your User resource to establish a relation to a Patient resource.‌
 
-The `access-token` field of `user-info` will be needed to perform requests on behalf of our User. See [here](../../auth/resource-owner-password.md#use-access-token) how to perform user request with a token.
+The `access-token` field of `user-info` will be needed to perform requests on behalf of our User. See [here](../auth/resource-owner-password.md#use-access-token) how to perform user request with a token.
 
-![](<../../../.gitbook/assets/image (8) (1) (1).png>)
+![](<../../.gitbook/assets/image (8) (1) (1).png>)
 
 At this point there are no access policies that allow the user to access any resources. So all attempts to make requests for Resources will be denied.
 
@@ -205,7 +205,7 @@ meta:
 {% endtab %}
 {% endtabs %}
 
-And this policy is a bit tricky. The allowed URI is `/Encounter` and it doesn't contain any additional parts that could be identified as request parameters as in the previous case. So, in order to provide the required request parameter `patient` to the Access Policy matching engine, we have to specify it as the query parameter of our request. And after the Access Policy engine allows such a request, the Search Engine comes into play. It filters out encounters that do not match the condition of `patient = our-patient-id`. To know more about how the Aidbox Search works, see the [Search section](../../../api-1/fhir-api/search-1/). To know more about the available search parameters, refer to the [Search Parameters](https://www.hl7.org/fhir/search.html) section of the FHIR documentation for the resource of interest.
+And this policy is a bit tricky. The allowed URI is `/Encounter` and it doesn't contain any additional parts that could be identified as request parameters as in the previous case. So, in order to provide the required request parameter `patient` to the Access Policy matching engine, we have to specify it as the query parameter of our request. And after the Access Policy engine allows such a request, the Search Engine comes into play. It filters out encounters that do not match the condition of `patient = our-patient-id`. To know more about how the Aidbox Search works, see the [Search section](../../api-1/fhir-api/search-1/). To know more about the available search parameters, refer to the [Search Parameters](https://www.hl7.org/fhir/search.html) section of the FHIR documentation for the resource of interest.
 
 Finally, we can make a request for the list of patient encounters.
 
@@ -312,7 +312,7 @@ resource:
 {% endtab %}
 {% endtabs %}
 
-Now, when we've created a `CompartmentDefinition` resource, we can access patient-related resources with such requests: `GET /Patient/{patient-id}/{resource}`. To know in detail about how compartments work, see the [Compartments tutorial](../../../api-1/compartments.md).
+Now, when we've created a `CompartmentDefinition` resource, we can access patient-related resources with such requests: `GET /Patient/{patient-id}/{resource}`. To know in detail about how compartments work, see the [Compartments tutorial](../../api-1/compartments.md).
 
 And that's it! We don't even need to add more policies, since we already have the policy that allows the user to access URIs that match `/Patient/.*` regex.
 
