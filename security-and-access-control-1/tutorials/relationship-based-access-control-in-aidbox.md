@@ -203,6 +203,8 @@ and:
         id = {{route-params.id}}
         and "researchstudy".resource @> jsonb_build_object('collaborator', jsonb_build_array(jsonb_build_object('id', {{user.id}}::text)))
       limit 1
+
+# 201 Created, 200 OK
 ```
 
 Let's check it.
@@ -310,7 +312,9 @@ Let's check it.
 
 There is no mechanisms to query all Observation resources, related to a group of patients.&#x20;
 
-
+```
+GET /Observation?group=<group-id>
+```
 
 But FHIR R5 has:
 
