@@ -39,7 +39,7 @@ ResearchStudy references to Group of patients invloved in the research with [`Re
 
 ResearchStudy doesn't have references to collaborators. So, we will introduce one and make a linkage with Aidbox User.
 
-<figure><img src="../../.gitbook/assets/Research study repository data model.png" alt=""><figcaption><p> <em>Data model of Research study repository application</em></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Research study repository data model.png" alt=""><figcaption><p><em>Data model of Research study repository application</em></p></figcaption></figure>
 
 As ResearchStudy resource is a core of our model, it's reasonable to make the list of available studies a starting point on UI. So we may imagine user's flow within UI.
 
@@ -103,17 +103,6 @@ Accept: text/yaml
 - {"id":"diet-research","resourceType":"ResearchStudy","status":"active","enrollment":[{"id":"group-2","resourceType":"Group"}],"collaborator":[{"id":"oscar","resourceType":"User"}]}
 ```
 
-<!-- :ignore -->
-<!--
-```yaml
-POST /$load
-Content-Type: text/yaml
-Accept: text/yaml
-
-source: https://storage.googleapis.com/aidbox-public/docs/security/research-study-repository-sample-data-3.ndjson.gz
-```
--->
-
 The picture below, demonstrates the key data we uploaded. Jane has access to 'Smoking research', and both users have access to 'Diet research'.
 
 <figure><img src="../../.gitbook/assets/ResearchStudy samples.png" alt=""><figcaption><p><em>Sample data for research study repository application</em></p></figcaption></figure>
@@ -126,7 +115,6 @@ Now, we are ready to define available enpoints and write AccessPolicy for them.
 
 The endpoint to fetch all user's research studies is
 
-<!-- :ignore -->
 ```yaml
 GET /ResearchStudy?collaborator=<user-id>
 ```
@@ -195,7 +183,7 @@ Authorization: Bearer janes-access-token
 ```
 {% endtab %}
 
-{% tab title="Jane searches for Oscar's studies" %}
+{% tab title="Jane searches for Oscar" %}
 ```yaml
 GET /ResearchStudy?collaborator=oscar
 Authorization: Bearer janes-access-token
@@ -211,7 +199,6 @@ We have secured endpoint for fetching list of studies. Note, that all [search pa
 
 The endpoint to fetch research study details is
 
-<!-- :ignore -->
 ```yaml
 GET /ResearchStudy/<research-study-id>
 ```
@@ -299,7 +286,6 @@ The `_has` parameter is a one of standard search parameters in FHIR, called [rev
 
 The `_has` parameter always goes with [modifiers](https://www.hl7.org/fhir/search.html#modifiers), which specify the search parameter. Let's get back and read the request we have.
 
-<!-- :ignore -->
 ```yaml
 GET /Patient?_has:Group:member:_id=<group-id>
 ```
@@ -310,7 +296,7 @@ This requests the server to return Patient resources, where the patient resource
 
 Technically we don't need to have access to Group resource, we need only to know group id. And group id is available from ResearchStudy resource, we already have access to.
 
-Thus, we may conclude the request is suitable for our needs. the AccessPolicy should check  existence of ResearchStudy with that \<group-id> and user-id in collaborators.
+Thus, we may conclude the request is suitable for our needs. the AccessPolicy should check existence of ResearchStudy with that \<group-id> and user-id in collaborators.
 
 ```yaml
 PUT /AccessPolicy/user-can-access-patient-related-research-study-group
@@ -344,7 +330,7 @@ and:
 Let's check it.
 
 {% tabs %}
-{% tab title="First Tab" %}
+{% tab title="Jane searches for patients from smoking research" %}
 ```yaml
 GET /Patient?_has:Group:member:_id=group-1
 Authorization: Bearer janes-access-token
@@ -353,7 +339,7 @@ Authorization: Bearer janes-access-token
 ```
 {% endtab %}
 
-{% tab title="Second Tab" %}
+{% tab title="Jane searches for patients from diet research" %}
 ```yaml
 GET /Patient?_has:Group:member:_id=group-2
 Authorization: Bearer janes-access-token
@@ -362,7 +348,7 @@ Authorization: Bearer janes-access-token
 ```
 {% endtab %}
 
-{% tab title="Second Tab" %}
+{% tab title="Jane searches for all patients" %}
 ```yaml
 GET /Patient
 Authorization: Bearer janes-access-token
@@ -371,7 +357,7 @@ Authorization: Bearer janes-access-token
 ```
 {% endtab %}
 
-{% tab title="Third Tab" %}
+{% tab title="Oscar searches for patients from diet research" %}
 ```yaml
 GET /Patient?_has:Group:member:_id=group-2
 Authorization: Bearer oscars-access-token
@@ -387,7 +373,6 @@ Search for patient endpoint is secured. The only one is left.
 
 The endpoint to fetch all observation by group is
 
-<!-- :ignore -->
 ```yaml
 GET /Observation?group=<group-id>
 ```
@@ -411,7 +396,6 @@ where: '{{table}}.resource#>>''{subject,id}'' in (select member#>>''{entity,id}'
 
 FHIR R5 is going to introduce chained-search support for [\_has parameter](https://build.fhir.org/search.html#has). So, our request would look like the following
 
-<!-- :ignore -->
 ```yaml
 GET /Observation?patient._has:Group:member:_id=<group-id>
 ```
@@ -453,7 +437,7 @@ and:
 Let's check it.
 
 {% tabs %}
-{% tab title="First Tab" %}
+{% tab title="Jane searches for observations from smoking research" %}
 ```yaml
 GET /Observation?group=group-1
 Authorization: Bearer janes-access-token
@@ -462,7 +446,7 @@ Authorization: Bearer janes-access-token
 ```
 {% endtab %}
 
-{% tab title="Second Tab" %}
+{% tab title="Jane searches for observations from diet research" %}
 ```yaml
 GET /Observation?group=group-2
 Authorization: Bearer janes-access-token
@@ -471,7 +455,7 @@ Authorization: Bearer janes-access-token
 ```
 {% endtab %}
 
-{% tab title="Second Tab" %}
+{% tab title="Jane searches for all observations" %}
 ```yaml
 GET /Observation
 Authorization: Bearer janes-access-token
@@ -480,7 +464,7 @@ Authorization: Bearer janes-access-token
 ```
 {% endtab %}
 
-{% tab title="Third Tab" %}
+{% tab title="Oscar searches for observations from diet research" %}
 ```yaml
 GET /Observation?group=group-2
 Authorization: Bearer oscars-access-token
