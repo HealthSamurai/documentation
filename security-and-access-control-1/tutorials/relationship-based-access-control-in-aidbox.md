@@ -143,22 +143,34 @@ matcho engine compares incoming request with defined pattern, if the key is not 
 
 Let's check it
 
+{% tabs %}
+{% tab title="Jane searches for her studies" %}
 ```yaml
 GET /ResearchStudy?collaborator=jane
 Authorization: Bearer janes-access-token
 
 # 200 OK
+```
+{% endtab %}
 
+{% tab title="Jane searches for all studies" %}
+```yaml
 GET /ResearchStudy
 Authorization: Bearer janes-access-token
 
 # 403 Forbidden
+```
+{% endtab %}
 
+{% tab title="Jane searches for Oscar's studies" %}
+```yaml
 GET /ResearchStudy?collaborator=oscar
 Authorization: Bearer janes-access-token
 
 # 403 Forbidden
 ```
+{% endtab %}
+{% endtabs %}
 
 We have secured endpoint for fetching list of studies. Note, that all [search parameters for ResearchStudy](https://www.hl7.org/fhir/researchstudy.html#search) is also available.
 
@@ -170,7 +182,7 @@ The endpoint to fetch research study details is
 GET /ResearchStudy/<research-study-id>
 ```
 
-It's not possible from the research study id find out if current user is a collaborator on this study or not. Fortunately, Aidbox AccessPolicy supports sql engine, which allows you to make your authorization decisions based on data you have.
+It's not possible find out if current user is a collaborator on this study or not by only research study id . Fortunately, Aidbox AccessPolicy supports sql engine, which allows you to make your authorization decisions based on data you have.
 
 ```yaml
 PUT /AccessPolicy/user-can-read-their-research-study
@@ -195,28 +207,38 @@ and:
 
 Let's check it.
 
+{% tabs %}
+{% tab title="Jane reads smoking research" %}
 ```yaml
-GET /ResearchStudy/smoking-and-cancer-research
+GET /ResearchStudy/smoking-research
 Authorization: Bearer janes-access-token
 
 # 200 OK
+```
+{% endtab %}
 
-GET /ResearchStudy/diet-and-diabetes-research
+{% tab title="Jane reads diet research" %}
+```yaml
+GET /ResearchStudy/diet-research
 Authorization: Bearer janes-access-token
 
 # 403 Forbidden
+```
+{% endtab %}
 
-GET /ResearchStudy/diet-and-diabetes-research
+{% tab title="Oscar reads diet research" %}
+```yaml
+GET /ResearchStudy/diet-research
 Authorization: Bearer oscars-access-token
 
-# 403 Forbidden
+# 200 Forbidden
 ```
+{% endtab %}
+{% endtabs %}
 
 We have secured one more endpoint. There are only two left.
 
 ### Search for patients
-
-FHIR supports
 
 The endpoint to fetch all patients by group is
 
@@ -224,11 +246,30 @@ The endpoint to fetch all patients by group is
 GET /Patient?_has:Group:member:_id=<group-id>
 ```
 
-You may notice, that we have only
+You may have a lot of questions to this request.
 
-As far we have group id and FHIR has build-in search parameter to filter over groups, let's use this one.
+* what does mean `_has:Group:member:_id` and
+* where do we know group id if we don't have access to Group resource?
 
-AccessPolicy для такого сценария становится чуть сложнее:
+#### What does mean `_has:Group:member:_id`?
+
+The `_has` parameter is a one of standard search parameters in FHIR, called [reverse chaining](https://www.hl7.org/fhir/search.html#has). FHIR specification says:
+
+> The `_has` parameter provides limited support for reverse chaining - that is, selecting resources based on the properties of resources that refer to them...
+
+The `_has` parameter always goes with [modifiers](https://www.hl7.org/fhir/search.html#modifiers), which specify the search parameter. Let's get back and read the request we have.
+
+```
+GET /Patient?_has:Group:member:_id=<group-id>
+```
+
+This requests the server to return Patient resources, where the patient resource is referred to by at least one Group with id \<group-id>, and where the Group refers to the patient resource in the member search parameter.
+
+#### Where do we know group id if we don't have access to Group resource?
+
+Technically we don't need to have access to Group resource, we need only to know group id. And group id is available from ResearchStudy resource, we already have access to.
+
+Thus, we may conclude the request is suitable for our needs. the AccessPolicy should check  existence of ResearchStudy with that \<group-id> and user-id in collaborators.
 
 ```yaml
 PUT /AccessPolicy/user-can-access-patient-related-research-study-group
@@ -251,9 +292,27 @@ and:
       limit 1
 ```
 
+Let's check it.
+
+{% tabs %}
+{% tab title="First Tab" %}
+```
+...
+```
+{% endtab %}
+
+{% tab title="Second Tab" %}
+
+{% endtab %}
+{% endtabs %}
+
 ### Search for observations
 
-There is no mechanisms to query all Observation resources, related to a group of patients. But FHIR R5 has:
+There is no mechanisms to query all Observation resources, related to a group of patients.&#x20;
+
+
+
+But FHIR R5 has:
 
 ```
 GET /Observation?patient._has:Group:member:_id=group-1
