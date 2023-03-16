@@ -2,7 +2,7 @@
 description: The article is in progress.
 ---
 
-# Relationship-based access control in Aidbox
+# Relationship-based access control
 
 Throughout this tutorial, we’ll walk you through the implementation of basic relationship-based access control model in Aidbox. We’ll assume you have Aidbox up & running already [locally](https://docs.aidbox.app/getting-started/run-aidbox-locally-with-docker) or [in cloud](https://docs.aidbox.app/getting-started/run-aidbox-in-aidbox-sandbox).
 
@@ -310,17 +310,27 @@ Let's check it.
 
 ### Search for observations
 
-There is no mechanisms to query all Observation resources, related to a group of patients.&#x20;
+The endpoint to fetch all observation by group is
 
 ```
 GET /Observation?group=<group-id>
 ```
 
-But FHIR R5 has:
+There is no group search parameter for Observation in FHIR.
+
+
+
+There is no mechanisms to query all Observation resources, related to a group of patients.&#x20;
+
+{% hint style="info" %}
+FHIR R5
 
 ```
-GET /Observation?patient._has:Group:member:_id=group-1
+GET /Observation?patient._has:Group:member:_id=<group-id>
 ```
+{% endhint %}
+
+
 
 They call it `_has` with chained-searches. Aidbox doesn't support it out of the box, but we may support for our specific case with Aidbox SearchParameter
 

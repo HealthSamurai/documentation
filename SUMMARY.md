@@ -260,7 +260,7 @@
   * [SMART on FHIR](security-and-access-control-1/security/smart-app.md)
   * [AccessPolicy best practices](security-and-access-control-1/security/accesspolicy-best-practices.md)
 * [Tutorials](security-and-access-control-1/tutorials/README.md)
-  * [Relationship-based access control in Aidbox](security-and-access-control-1/tutorials/relationship-based-access-control-in-aidbox.md)
+  * [Relationship-based access control](security-and-access-control-1/tutorials/relationship-based-access-control-in-aidbox.md)
 * [How-to guides](security-and-access-control-1/how-to-guides/README.md)
   * [Create and test access control](security-and-access-control-1/how-to-guides/access-policy.md)
   * [External identity provider](security-and-access-control-1/how-to-guides/set-up-external-identity-provider/README.md)
