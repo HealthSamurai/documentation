@@ -1,5 +1,5 @@
 ---
-description: Set of recommendations related to access policies creating and maintaning
+description: Access policies creating and maintaning recommendations
 ---
 
 # AccessPolicy best practices
