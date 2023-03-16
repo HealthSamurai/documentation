@@ -25,7 +25,7 @@ Our security policy says:
 
 > _User has access to all studies they collaborate on and to all patient records within those studies._
 
-Authorization model that best suits our task is [relationship-based access control](https://en.wikipedia.org/wiki/Relationship-based\_access\_control) (ReBAC). It states that subject's permission to access a resource is defined by the presence of relationships between those subjects and resources.
+Authorization model that best suits our task is [relationship-based access control](https://en.wikipedia.org/wiki/Relationship-based\_access\_control) (ReBAC). It states that _'subject's permission to access a resource is defined by the presence of relationships between those subjects and resources'_.
 
 We will focus only on read access, expecting that all data is uploaded. We will upload prepared sample data later on implementation section.
 
@@ -41,7 +41,7 @@ ResearchStudy doesn't have references to collaborators. So, we will introduce on
 
 <figure><img src="../../.gitbook/assets/Research study repository data model.png" alt=""><figcaption><p> <em>Data model of Research study repository application</em></p></figcaption></figure>
 
-As ResearchStudy resource is a core of our model, it's resonable to make the list of available studies a starting point on UI. So we may imagine user's flow within UI.
+As ResearchStudy resource is a core of our model, it's reasonable to make the list of available studies a starting point on UI. So we may imagine user's flow within UI.
 
 * Researcher enters the system and see the list of studies, they involved into as a collaborator.
 * They can drill down to a study to see details and search over related patients and observations.
@@ -85,10 +85,10 @@ Aidbox is ready to store our data, and we prepared data samples, so we could tes
 ```
 POST /$load
 
-source: ...
+source: https://storage.googleapis.com/aidbox-public/docs/security/research-study-repository-sample-data.ndjson.gz
 ```
 
-The picture below, demonstrates the key data we uploaded. Jane user has access to 'Smoking and cancer research', and both users have access to 'Diet and diabetes research'.
+The picture below, demonstrates the key data we uploaded. Jane has access to 'Smoking research', and both users have access to 'Diet research'.
 
 <figure><img src="../../.gitbook/assets/ResearchStudy samples.png" alt=""><figcaption><p><em>Sample data for research study repository application</em></p></figcaption></figure>
 
