@@ -1,5 +1,5 @@
 ---
-description: Learn how to build ReBAC in Aidbox with AccessPolicy
+description: Learn how to enable ReBAC in Aidbox with AccessPolicy
 ---
 
 # Relationship-based access control
@@ -400,7 +400,9 @@ And we met this requirement using ReBAC authorization model. In order to achieve
 * defined domain model resources, UI pages and FHIR endpoints for our application,
 * and we developed access policies in Aidbox to secured the endpoints.
 
+### What's next
 
+Writing access policies may be tricky some time, Aidbox has tooling to [debug AccessPolicy](../how-to-guides/debug.md).
 
 ## Talk to a Health Samurai Engineer
 
