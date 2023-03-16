@@ -56,7 +56,7 @@ As we mentioned earlier, FHIR ResearchStudy doesn't have references to collabora
 
 ### Add reference to collaborators
 
-There are many ways you can customize your data model with Aidbox. We will do this by creating an Attribute resource.
+There are many ways you can customize your data model with Aidbox. We will do this by creating [an Attribute resource](../../core-modules/entities-and-attributes.md).
 
 There is an HTTP request below for creating `Attribute/ResearchStudy.collaborator`. You can perform this request in [Aidbox REST Console](https://docs.aidbox.app/overview/aidbox-ui/rest-console-1).
 
@@ -119,7 +119,7 @@ The endpoint to fetch all user's research studies is
 GET /ResearchStudy?collaborator=<user-id>
 ```
 
-FHIR doesn't have search parameter `collaborator`. Aidbox allows you to define one with SearchParameter resource.
+FHIR doesn't have search parameter `collaborator`. Aidbox allows you to define one with [SearchParameter resource](../../api-1/fhir-api/search-1/searchparameter.md).
 
 ```yaml
 PUT /SearchParameter/ResearchStudy.collaborator
