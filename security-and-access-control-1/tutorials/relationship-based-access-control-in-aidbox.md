@@ -1,5 +1,5 @@
 ---
-description: The article is in progress.
+description: Learn how to build ReBAC in Aidbox with AccessPolicy
 ---
 
 # Relationship-based access control
@@ -23,7 +23,7 @@ We will model access for an example application called _Research study repositor
 
 Our security policy says:
 
-> _User has access to all studies they are collaborator of and to all patient records within those studies._
+> _User has access to all studies they collaborate on and to all patient records within those studies._
 
 Authorization model that best suits our task is [relationship-based access control](https://en.wikipedia.org/wiki/Relationship-based\_access\_control) (ReBAC). It states that subject's permission to access a resource is defined by the presence of relationships between those subjects and resources.
 
@@ -387,14 +387,20 @@ Let's check it.
 {% endtab %}
 {% endtabs %}
 
-## Conclusion
+Search for observation endpoint is secured for now. All endpoints are secured.
 
-We implemented security policy, described in ReBAC model and gave researchers an access to secured FHIR endpoints. Now researcher may see
+## That's it
 
-* list of studies,
-* study details,
-* list of patient,
-* list of observations.
+Let's recap, what we have done. There was a security policy, which stated:
+
+> _User has access to all studies they collaborate on and to all patient records within those studies._
+
+And we met this requirement using ReBAC authorization model. In order to achieve this we
+
+* defined domain model resources, UI pages and FHIR endpoints for our application,
+* and we developed access policies in Aidbox to secured the endpoints.
+
+
 
 ## Talk to a Health Samurai Engineer
 
