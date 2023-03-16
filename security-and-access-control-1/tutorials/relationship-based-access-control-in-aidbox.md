@@ -82,11 +82,37 @@ If you use zen profiles, Attribute resources will be disabled. Thus, you will ne
 
 Aidbox is ready to store our data, and we prepared data samples, so we could test our access policies. You can use the request below to upload sample data.
 
-```
-POST /$load
+```yaml
+PUT /
+Content-Type: text/yaml
+Accept: text/yaml
 
-source: https://storage.googleapis.com/aidbox-public/docs/security/research-study-repository-sample-data.ndjson.gz
+- {"id":"jane","resourceType":"User"}
+- {"id":"janes-session","resourceType":"Session","user":{"id":"jane","resourceType":"User"},"access_token":"janes-access-token"}
+- {"id":"oscar","resourceType":"User"}
+- {"id":"oscars-session","resourceType":"Session","user":{"id":"oscar","resourceType":"User"},"access_token":"oscars-access-token"}
+- {"id":"patient-1","resourceType":"Patient"}
+- {"id":"patient-1-obs-1","resourceType":"Observation","subject":{"id":"patient-1","resourceType":"Patient"},"status":"final","code":{"coding":[{"system":"http://loinc.org","code":"718-7","display":"hemoglobin [mass/volume] in blood"}]}}
+- {"id":"patient-2","resourceType":"Patient"}
+- {"id":"patient-2-obs-1","resourceType":"Observation","subject":{"id":"patient-2","resourceType":"Patient"},"status":"final","code":{"coding":[{"system":"http://loinc.org","code":"718-7","display":"hemoglobin [mass/volume] in blood"}]}}
+- {"id":"patient-3","resourceType":"Patient"}
+- {"id":"patient-3-obs-1","resourceType":"Observation","subject":{"id":"patient-3","resourceType":"Patient"},"status":"final","code":{"coding":[{"system":"http://loinc.org","code":"718-7","display":"hemoglobin [mass/volume] in blood"}]}}
+- {"id":"group-1","resourceType":"Group","actual":true,"type":"person","member":[{"entity":{"id":"patient-1","resourceType":"Patient"}},{"entity":{"id":"patient-2","resourceType":"Patient"}}]}
+- {"id":"group-2","resourceType":"Group","actual":true,"type":"person","member":[{"entity":{"id":"patient-2","resourceType":"Patient"}},{"entity":{"id":"patient-3","resourceType":"Patient"}}]}
+- {"id":"smoking-research","resourceType":"ResearchStudy","status":"active","enrollment":[{"id":"group-1","resourceType":"Group"}],"collaborator":[{"id":"jane","resourceType":"User"},{"id":"oscar","resourceType":"User"}]}
+- {"id":"diet-research","resourceType":"ResearchStudy","status":"active","enrollment":[{"id":"group-2","resourceType":"Group"}],"collaborator":[{"id":"oscar","resourceType":"User"}]}
 ```
+
+<!-- :ignore -->
+<!--
+```yaml
+POST /$load
+Content-Type: text/yaml
+Accept: text/yaml
+
+source: https://storage.googleapis.com/aidbox-public/docs/security/research-study-repository-sample-data-3.ndjson.gz
+```
+-->
 
 The picture below, demonstrates the key data we uploaded. Jane has access to 'Smoking research', and both users have access to 'Diet research'.
 
@@ -100,7 +126,8 @@ Now, we are ready to define available enpoints and write AccessPolicy for them.
 
 The endpoint to fetch all user's research studies is
 
-```
+<!-- :ignore -->
+```yaml
 GET /ResearchStudy?collaborator=<user-id>
 ```
 
@@ -108,6 +135,8 @@ FHIR doesn't have search parameter `collaborator`. Aidbox allows you to define o
 
 ```yaml
 PUT /SearchParameter/ResearchStudy.collaborator
+Content-Type: text/yaml
+Accept: text/yaml
 
 name: collaborator
 type: reference
@@ -120,25 +149,29 @@ AccessPolicy:
 
 ```yaml
 PUT /AccessPolicy/user-can-search-their-research-studies
+Content-Type: text/yaml
+Accept: text/yaml
 
 description: User can search for research studies, they collaborate on
 engine: matcho
 matcho:
-  user:
-    id: 'present?'
   request-method: get
   uri: /ResearchStudy
   params:
     collaborator: .user.id
-    _with: 'nil?'
-    _include: 'nil?'
-    _revinclude: 'nil?'
+    _with: nil?
+    _include: nil?
+    _revinclude: nil?
+  user:
+    id: present?
 ```
 
 {% hint style="info" %}
 **Why did we explicitly exclude `_include`, `_revinclude` and `_with` parameters?**
 
 matcho engine compares incoming request with defined pattern, if the key is not specified in pattern, it will be ignore while checking. `_include`, `_revinclude` and `_with` parameters expands the list of returning data with related resources. As far we want to leave only ResearchStudy resources, we excluded them explicitly.
+
+Read more on [AccessPolicy best practicies guide](https://docs.aidbox.app/security-and-access-control-1/security/accesspolicy-best-practices).
 {% endhint %}
 
 Let's check it.
@@ -178,7 +211,8 @@ We have secured endpoint for fetching list of studies. Note, that all [search pa
 
 The endpoint to fetch research study details is
 
-```
+<!-- :ignore -->
+```yaml
 GET /ResearchStudy/<research-study-id>
 ```
 
@@ -186,6 +220,8 @@ It's not possible find out if current user is a collaborator on this study or no
 
 ```yaml
 PUT /AccessPolicy/user-can-read-their-research-study
+Content-Type: text/yaml
+Accept: text/yaml
 
 description: User can research study, they collaborate on
 engine: complex
@@ -194,13 +230,15 @@ and:
   matcho:
     request-method: get
     uri: "#/ResearchStudy/.+"
+    user:
+      id: present?
 - engine: sql
   sql:
-    query: |-
+    query: |
       SELECT true
       FROM "researchstudy"
       WHERE 
-        id = {{route-params.id}}
+        id = {{params.resource/id}}
         and "researchstudy".resource @> jsonb_build_object('collaborator', jsonb_build_array(jsonb_build_object('id', {{user.id}}::text)))
       limit 1
 
@@ -244,7 +282,7 @@ We have secured one more endpoint. There are only two left.
 
 The endpoint to fetch all patients by group is
 
-```
+```yaml
 GET /Patient?_has:Group:member:_id=<group-id>
 ```
 
@@ -261,7 +299,8 @@ The `_has` parameter is a one of standard search parameters in FHIR, called [rev
 
 The `_has` parameter always goes with [modifiers](https://www.hl7.org/fhir/search.html#modifiers), which specify the search parameter. Let's get back and read the request we have.
 
-```
+<!-- :ignore -->
+```yaml
 GET /Patient?_has:Group:member:_id=<group-id>
 ```
 
@@ -275,6 +314,8 @@ Thus, we may conclude the request is suitable for our needs. the AccessPolicy sh
 
 ```yaml
 PUT /AccessPolicy/user-can-access-patient-related-research-study-group
+Content-Type: text/yaml
+Accept: text/yaml
 
 engine: complex
 and:
@@ -283,17 +324,19 @@ and:
     request-method: get
     uri: /Patient
     params:
-      '_has:Group:member:_id': 'present?'
-      _include: 'nil?'
-      _revinclude: 'nil?'
-      _with: 'nil?'
+      '_has:Group:member:_id': present?
+      _include: nil?
+      _revinclude: nil?
+      _with: nil?
+    user:
+      id: present?
 - engine: sql
   sql:
-    query: |-
+    query: |
       SELECT true
       FROM "researchstudy"
       WHERE "researchstudy".resource @>
-      jsonb_build_object('member', jsonb_build_array(jsonb_build_object('id', {{user.id}}::text)),
+      jsonb_build_object('collaborator', jsonb_build_array(jsonb_build_object('id', {{user.id}}::text)),
                          'enrollment', jsonb_build_array(jsonb_build_object('id', {{params._has:Group:member:_id}}::text)))
       limit 1
 ```
@@ -302,13 +345,39 @@ Let's check it.
 
 {% tabs %}
 {% tab title="First Tab" %}
-```
-...
+```yaml
+GET /Patient?_has:Group:member:_id=group-1
+Authorization: Bearer janes-access-token
+
+# 200 OK
 ```
 {% endtab %}
 
 {% tab title="Second Tab" %}
+```yaml
+GET /Patient?_has:Group:member:_id=group-2
+Authorization: Bearer janes-access-token
 
+# 403 Forbidden
+```
+{% endtab %}
+
+{% tab title="Second Tab" %}
+```yaml
+GET /Patient
+Authorization: Bearer janes-access-token
+
+# 403 Forbidden
+```
+{% endtab %}
+
+{% tab title="Third Tab" %}
+```yaml
+GET /Patient?_has:Group:member:_id=group-2
+Authorization: Bearer oscars-access-token
+
+# 200 OK
+```
 {% endtab %}
 {% endtabs %}
 
@@ -318,7 +387,8 @@ Search for patient endpoint is secured. The only one is left.
 
 The endpoint to fetch all observation by group is
 
-```
+<!-- :ignore -->
+```yaml
 GET /Observation?group=<group-id>
 ```
 
@@ -326,8 +396,10 @@ There is no group search parameter for Observation in FHIR. And there is no way 
 
 To enable complex search parameters, Aidbox provides [Search](../../api-1/fhir-api/search-1/search-resource.md) resource. We will specify one for search Observations by group:
 
-```
+```yaml
 PUT /Search/Observation.group
+Content-Type: text/yaml
+Accept: text/yaml
 
 name: group
 resource: {id: Observation, resourceType: Entity}
@@ -335,21 +407,24 @@ where: '{{table}}.resource#>>''{subject,id}'' in (select member#>>''{entity,id}'
 ```
 
 {% hint style="info" %}
-**Chained-search & \_has in FHIR R5**
+**Chained-search & \_has search parameter in FHIR R5**
 
-FHIR R5 introduced chained-search support for [\_has parameter](https://build.fhir.org/search.html#has). So, our request in would look like the following
+FHIR R5 is going to introduce chained-search support for [\_has parameter](https://build.fhir.org/search.html#has). So, our request would look like the following
 
-```
+<!-- :ignore -->
+```yaml
 GET /Observation?patient._has:Group:member:_id=<group-id>
 ```
 
-Aidbox is going to support it once FHIR R5 is released.
+Aidbox is going to support it, once FHIR R5 is released.
 {% endhint %}
 
 The AccessPolicy will be very similar to previous one, we made for Patient search.
 
 ```yaml
 PUT /AccessPolicy/user-can-access-observation-related-research-study-group
+Content-Type: text/yaml
+Accept: text/yaml
 
 engine: complex
 and:
@@ -358,17 +433,19 @@ and:
     request-method: get
     uri: /Observation
     params:
-      group: 'present?'
-      _include: 'nil?'
-      _revinclude: 'nil?'
-      _with: 'nil?'
+      group: present?
+      _include: nil?
+      _revinclude: nil?
+      _with: nil?
+    user:
+      id: present?
 - engine: sql
   sql:
-    query: |-
+    query: |
       SELECT true
       FROM "researchstudy"
       WHERE "researchstudy".resource @>
-      jsonb_build_object('member', jsonb_build_array(jsonb_build_object('id', {{user.id}}::text)),
+      jsonb_build_object('collaborator', jsonb_build_array(jsonb_build_object('id', {{user.id}}::text)),
                          'enrollment', jsonb_build_array(jsonb_build_object('id', {{params.group}}::text)))
       limit 1
 ```
@@ -377,13 +454,39 @@ Let's check it.
 
 {% tabs %}
 {% tab title="First Tab" %}
-```
-...
+```yaml
+GET /Observation?group=group-1
+Authorization: Bearer janes-access-token
+
+# 200 OK
 ```
 {% endtab %}
 
 {% tab title="Second Tab" %}
+```yaml
+GET /Observation?group=group-2
+Authorization: Bearer janes-access-token
 
+# 403 Forbidden
+```
+{% endtab %}
+
+{% tab title="Second Tab" %}
+```yaml
+GET /Observation
+Authorization: Bearer janes-access-token
+
+# 403 Forbidden
+```
+{% endtab %}
+
+{% tab title="Third Tab" %}
+```yaml
+GET /Observation?group=group-2
+Authorization: Bearer oscars-access-token
+
+# 200 OK
+```
 {% endtab %}
 {% endtabs %}
 
