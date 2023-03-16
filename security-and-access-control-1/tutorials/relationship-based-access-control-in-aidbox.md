@@ -39,14 +39,14 @@ ResearchStudy references to Group of patients invloved in the research with [`Re
 
 ResearchStudy doesn't have references to collaborators. So, we will introduce one and make a linkage with Aidbox User.
 
-<figure><img src="../../.gitbook/assets/Research study repository data model.png" alt=""><figcaption><p><em>Data model of Research study repository application</em></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Research study repository data model (1).png" alt=""><figcaption><p><em>Data model of Research study repository application</em></p></figcaption></figure>
 
 As ResearchStudy resource is a core of our model, it's reasonable to make the list of available studies a starting point on UI. So we may imagine user's flow within UI.
 
 * Researcher enters the system and see the list of studies, they involved into as a collaborator.
 * They can drill down to a study to see details and search over related patients and observations.
 
-<figure><img src="../../.gitbook/assets/UI pages &#x26; FHIR requests.png" alt=""><figcaption><p><em>UI pages &#x26; FHIR requests for Research study repository application</em></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/UI pages &#x26; FHIR requests (2).png" alt=""><figcaption><p><em>UI pages &#x26; FHIR requests for Research study repository application</em></p></figcaption></figure>
 
 Once we defined our data model, UI pages and FHIR requests, we may start implementing this.
 
@@ -105,7 +105,7 @@ Accept: text/yaml
 
 The picture below, demonstrates the key data we uploaded. Jane has access to 'Smoking research', and both users have access to 'Diet research'.
 
-<figure><img src="../../.gitbook/assets/ResearchStudy samples.png" alt=""><figcaption><p><em>Sample data for research study repository application</em></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/ResearchStudy samples (2).png" alt=""><figcaption><p><em>Sample data for research study repository application</em></p></figcaption></figure>
 
 ## Write access policies
 
