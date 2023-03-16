@@ -233,7 +233,7 @@ Authorization: Bearer janes-access-token
 GET /ResearchStudy/diet-research
 Authorization: Bearer oscars-access-token
 
-# 200 Forbidden
+# 200 OK
 ```
 {% endtab %}
 {% endtabs %}
@@ -312,6 +312,8 @@ Let's check it.
 {% endtab %}
 {% endtabs %}
 
+Search for patient endpoint is secured. The only one is left.
+
 ### Search for observations
 
 The endpoint to fetch all observation by group is
@@ -355,7 +357,11 @@ and:
   matcho:
     request-method: get
     uri: /Observation
-    params: {group: 'present?'}
+    params:
+      group: 'present?'
+      _include: 'nil?'
+      _revinclude: 'nil?'
+      _with: 'nil?'
 - engine: sql
   sql:
     query: |-
