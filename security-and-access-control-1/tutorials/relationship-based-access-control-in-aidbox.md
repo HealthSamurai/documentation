@@ -39,7 +39,7 @@ ResearchStudy references to Group of patients invloved in the research with [`Re
 
 ResearchStudy doesn't have references to collaborators. So, we will introduce one and make a linkage with Aidbox User.
 
-<figure><img src="https://hedge.aidbox.app/uploads/upload_cdfe68d6da6d9812277a9629e55dee82.png" alt=""><figcaption><p> <em>Data model of Research study repository application</em></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Frame 1 (2).png" alt=""><figcaption><p> <em>Data model of Research study repository application</em></p></figcaption></figure>
 
 As ResearchStudy resource is a core of our model, it's resonable to make the list of available studies a starting point on UI. So we may imagine user's flow within UI.
 
