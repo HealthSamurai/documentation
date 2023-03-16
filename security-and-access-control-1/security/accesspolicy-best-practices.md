@@ -12,7 +12,7 @@ Access policy naming is an important aspect as good name makes it is easier to u
 
 Name should describe the intended user, user group or application who was granted permissions, such as "practitioner" in the example provided. This way, anyone looking at the name can quickly identify the intended audience for the policy.
 
-For example,  `as-practitioner-use-graphql`
+For example, `as-practitioner-use-graphql`
 
 ### Explain what resources is granted access to
 
@@ -67,13 +67,13 @@ matcho:
 
 ## `complex` engine with `or` operator
 
-When using __only__ the `or` operator in the `complex` policy, it is recommended to create several access policies rather than combining all conditions into a single policy.
+When using **only** the `or` operator in the `complex` policy, it is recommended to create several access policies rather than combining all conditions into a single policy.
 
 It gives profits:
 
 1. Tiny policies give well grained access control
 2. Small policies are easy to maintain
-3. Aidbox logs access policy which granted access. If you have "fat" policy, it is not transparant what exact rule let a request in. When there are tiny policies, it is clear who passed the request. 
+3. Aidbox logs access policy which granted access. If you have "fat" policy, it is not transparent what exact rule let a request in. When there are tiny policies, it is clear who passed the request.
 
 For example, we have such an access policy.
 
@@ -121,7 +121,6 @@ matcho:
   request-method: post
 ```
 
-
 ## Needless RegEx usage
 
 Replacing RegEx patterns with plain string comparison can improve policy readability.
@@ -136,6 +135,6 @@ Replacing RegEx patterns with plain string comparison can improve policy readabi
 "#^/some-path/(operation-a|operation-b)$"
 →
 $one-of:
-- /some-path/operation-a
-- /some-path/operation-b
+  - /some-path/operation-a
+  - /some-path/operation-b
 ```
