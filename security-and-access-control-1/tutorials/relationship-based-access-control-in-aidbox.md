@@ -33,7 +33,7 @@ But before we dive into defining authorization, let's discuss our data model and
 
 ### Data model & UI
 
-The core entity of our application will be a research study. There is [a ResearchStudy resoruce in FHIR](https://www.hl7.org/fhir/researchstudy.html), which describes _'a process where a researcher or organization plans and then executes a series of steps intended to increase the field of healthcare-related knowledge'_.
+The core entity of our application will be a research study. There is [a ResearchStudy resource in FHIR](https://www.hl7.org/fhir/researchstudy.html), which describes _'a process where a researcher or organization plans and then executes a series of steps intended to increase the field of healthcare-related knowledge'_.
 
 ResearchStudy references to Group of patients invloved in the research with [`ResearchStudy.enrollment`](https://www.hl7.org/fhir/researchstudy-definitions.html#ResearchStudy.enrollment) element. Patient record is represented by two resources Patient and Observation.
 
