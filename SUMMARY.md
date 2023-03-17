@@ -390,6 +390,7 @@
 
 * [Mappings](tools/mappings.md)
 * [Aidbox SDK](tools/aidbox-sdk/README.md)
+  * [Aidbox JavaScript SDK](tools/aidbox-sdk/aidbox-javascript-sdk.md)
   * [Apps](tools/aidbox-sdk/aidbox-apps.md)
   * [NodeJs SDK](tools/aidbox-sdk/nodejs.md)
   * [Python SDK](tools/aidbox-sdk/python-sdk.md)
