@@ -1,4 +1,4 @@
-# 🎓 Custom Resources
+# Custom Resources using Entity
 
 All examples from this tutorial you can run in Postman. Here's the [web view](https://documenter.getpostman.com/view/5552124/RWgxsu5Y) of these examples in Postman.
 
@@ -14,7 +14,7 @@ Let's imagine that in our application we want to store user preferences such as 
 
 ### Create Definition​
 
-Access the REST console and paste the following request. You should see the response: 
+Access the REST console and paste the following request. You should see the response:&#x20;
 
 {% tabs %}
 {% tab title="Request" %}
@@ -378,7 +378,7 @@ schema:
 {% endtab %}
 {% endtabs %}
 
-As we see on the line 17 in the response above, the `theme` property has now type `string` and is restricted by the enumeration `[dark, white]`. 
+As we see on the line 17 in the response above, the `theme` property has now type `string` and is restricted by the enumeration `[dark, white]`.&#x20;
 
 Let's try to create an invalid resource now:
 
