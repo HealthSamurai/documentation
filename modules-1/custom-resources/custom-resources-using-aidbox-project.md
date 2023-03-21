@@ -4,7 +4,7 @@ description: Create custom resources with zen
 
 # Custom resources using Aidbox Project
 
-If you're not familiar with Aidbox Project, read [this](../../reference/configuration/aidbox-project.md) section first.
+If you're not familiar with Aidbox Project, read [this](../../aidbox-configuration/aidbox-zen-lang-project/aidbox-configuration-project-structure.md) section first.
 
 To create a custom resource in Aidbox Project you need to:
 
