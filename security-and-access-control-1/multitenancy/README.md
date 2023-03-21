@@ -59,8 +59,8 @@ You can fine-tune access to every operation or resource type, for example:
 [aidbox-api-constructor.md](../../aidbox-configuration/aidbox-api-constructor.md)
 {% endcontent-ref %}
 
-{% content-ref url="acl.md" %}
-[acl.md](acl.md)
+{% content-ref url="../acl.md" %}
+[acl.md](../acl.md)
 {% endcontent-ref %}
 
 {% embed url="https://github.com/Aidbox/aidbox-project-samples/tree/main/aidbox-project-samples/multitenancy" %}
@@ -88,6 +88,6 @@ Aidbox FHIR API can have filters to ensure that a client can access only certain
 [multitenancy-via-accesspolicy.md](../tutorials/multitenancy-via-accesspolicy.md)
 {% endcontent-ref %}
 
-{% content-ref url="access-control.md" %}
-[access-control.md](access-control.md)
+{% content-ref url="../security/access-control.md" %}
+[access-control.md](../security/access-control.md)
 {% endcontent-ref %}

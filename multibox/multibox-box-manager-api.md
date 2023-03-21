@@ -20,37 +20,117 @@ Multibox API is accessible on the box manager URL. Please use an external REST c
 
 List FHIR versions supported by the server. One of these values must be used in `multibox/create-box`.
 
+<details>
+
+<summary>Example</summary>
+
+{% code title="Request" %}
+```bash
+curl "multibox.example.host/rpc"  
+ -H "Content-Type: application/json"   
+ -d '{ "method": "multibox/fhir-versions" }'
+```
+{% endcode %}
+
+{% code title="Response" %}
+```json
+{
+  "result": [
+    "fhir-4.0.1",
+    "fhir-4.0.0",
+    "fhir-3.3.0",
+    "fhir-3.2.0",
+    "fhir-3.0.1",
+    "fhir-1.8.0",
+    "fhir-1.4.0",
+    "fhir-1.1.0",
+    "fhir-1.0.2"
+  ]
+}
+```
+{% endcode %}
+
+</details>
+
 ### `multibox/create-box`
 
 Create a new box for the current user.
 
 {% tabs %}
 {% tab title="Parameters" %}
-* `id` _(required)_: id of the box to create. Must match `/[a-z][a-z0-9]{4,}/`
-* `fhirVersion` _(required)_: FHIR version. Value must be from the `multibox/versions` response.
-* `description`: description of the box to create.
-* `env`: object with environment variables in `lower-kebab-case` (not in `UPPER_SNAKE_CASE`).
+<table><thead><tr><th>Parameter name</th><th data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td><strong>id</strong></td><td>true</td><td><p>ID of the box to create</p><p>Must match <code>/[a-z][a-z0-9]{4,}/</code></p></td></tr><tr><td><strong>fhirVersion</strong></td><td>true</td><td>FHIR version. Value must be from the <code>multibox/versions</code> response</td></tr><tr><td><strong>description</strong></td><td>false</td><td>description of the box to create</td></tr><tr><td><strong>env</strong></td><td>false</td><td><p>object with environment variables in</p><p><code>lower-kebab-case</code> (not<code>UPPER_SNAKE_CASE</code>)</p></td></tr></tbody></table>
 {% endtab %}
 
 {% tab title="Response" %}
-`description` - box description \
-`meta` - meta info about the box resource \
-`fhirVersion` \
-`box-url` \
-`access-url` - link to get admin access \
-`participant`- collection of user resources \
-`resourceType` \
-`env` - object with environment variables in lower-kebab-case (not in UPPER\_SNAKE\_CASE) \
-`access-token` \
-`id`
-{% endtab %}
-
-{% tab title="Errors" %}
-`message` - "Can not create box"\
-`message` - "Box already exists"\
-`message` - `FHIR OperationOutcome`
+| Property name   | Value      | Description                      |
+| --------------- | ---------- | -------------------------------- |
+| **id**          | **string** | ID of the created box            |
+| **description** | **string** | Box description                  |
+| **fhirVersion** | **string** | FHIR version                     |
+| **import**      | **object** |                                  |
+| **env**         | **object** | Envs used with BOX               |
+| **participant** | **object** | Contains requester information   |
 {% endtab %}
 {% endtabs %}
+
+<details>
+
+<summary>Example</summary>
+
+{% code title="Request" %}
+```bash
+curl "multibox.example.host/rpc"
+  -H "Content-Type: application/json"
+  -H "Authorization: Basic <credential-hash>"
+  -d '{
+       "method": "multibox/create-box", 
+       "params": {
+         "id": "testid",
+         "fhirVersion": "fhir-4.0.1",
+         "description": "Test box",
+         "env": { "aidbox-stdout-pretty": "fatal" } 
+     }
+   }'
+```
+{% endcode %}
+
+{% code title="Reponse" %}
+```json
+{
+  "result": {
+    "env": {
+      "aidbox-stdout-pretty": "fatal"
+    },
+    "import": {
+      "fhir-4.0.1": {}
+    },
+    "description": "Test box",
+    "fhirVersion": "fhir-4.0.1",
+    "participant": [
+      {
+        "role": "owner",
+        "user": {
+          "id": "admin",
+          "resourceType": "User"
+        }
+      }
+    ],
+    "id": "testid",
+    "resourceType": "Box",
+    "meta": {
+      "lastUpdated": "2023-03-03T13:21:58.989147Z",
+      "createdAt": "2023-03-03T13:21:58.989147Z",
+      "versionId": "7"
+    }
+  }
+}
+
+```
+{% endcode %}
+
+</details>
+
+
 
 ### `multibox/list-boxes`
 
@@ -62,19 +142,47 @@ _Expects no parameters_
 {% endtab %}
 
 {% tab title="Response" %}
-Collection of objects with the following structure:
-
-`id` - box id
-
-`cluster`&#x20;
-
-`fhirVersion` - fhir version
-{% endtab %}
-
-{% tab title="Error" %}
-`message -` "No user session"
+| Property name   | Type       | Description                               |
+| --------------- | ---------- | ----------------------------------------- |
+| **id**          | **string** | Box ID                                    |
+| **fhirVersion** | **string** | FHIR version of the box                   |
+| **constraints** | **object** | Contains max and current number of boxes  |
 {% endtab %}
 {% endtabs %}
+
+<details>
+
+<summary>Example</summary>
+
+{% code title="Request" %}
+```bash
+curl "multibox.example.host/rpc"   
+-H "Content-Type: application/json"   
+-H "Authorization: Basic <credential-hash>" 
+-d '{
+       "method": "multibox/list-boxes"
+    }'
+```
+{% endcode %}
+
+{% code title="Resource" %}
+```json
+{
+  "result": {
+    "list": [
+      {
+        "id": "testid",
+        "fhirVersion": "fhir-4.0.1"
+      }
+    ],
+    "constraints": null
+  }
+}
+
+```
+{% endcode %}
+
+</details>
 
 ### `multibox/get-box`
 
@@ -86,6 +194,12 @@ Get box information.
 {% endtab %}
 
 {% tab title="Response" %}
+| Property name | Type | Description |
+| ------------- | ---- | ----------- |
+|               |      |             |
+|               |      |             |
+|               |      |             |
+
 `description` - box description \
 `meta` - meta info about the box resource \
 `fhirVersion` \
@@ -104,6 +218,49 @@ Get box information.
 `message` - "No user session"
 {% endtab %}
 {% endtabs %}
+
+<details>
+
+<summary>Example</summary>
+
+{% code title="Response" %}
+```json
+{
+  "result": {
+    "description": "Test box",
+    "meta": {
+      "lastUpdated": "2023-03-03T13:21:58.989147Z",
+      "createdAt": "2023-03-03T13:21:58.989147Z",
+      "versionId": "7"
+    },
+    "fhirVersion": "fhir-4.0.1",
+    "box-url": "http://testid.127.0.0.1.nip.io:8788",
+    "access-url": "http://testid.127.0.0.1.nip.io:8788/__sudo?token=<token>&redirect-uri=/ui/console",
+    "participant": [
+      {
+        "role": "owner",
+        "user": {
+          "id": "admin",
+          "resourceType": "User"
+        }
+      }
+    ],
+    "resourceType": "Box",
+    "env": {
+      "aidbox_stdout_pretty": "fatal"
+    },
+    "access-token": <token>,
+    "id": "testid",
+    "import": {
+      "fhir-4.0.1": {}
+    }
+  }
+}
+
+```
+{% endcode %}
+
+</details>
 
 ### `multibox/delete-box`
 

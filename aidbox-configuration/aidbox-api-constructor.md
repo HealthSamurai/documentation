@@ -15,16 +15,16 @@ API constructor requires knowledge of [zen language](https://github.com/zen-lang
 
 #### Common API Constructor use cases
 
-{% content-ref url="../security-and-access-control-1/security/acl.md" %}
-[acl.md](../security-and-access-control-1/security/acl.md)
+{% content-ref url="../security-and-access-control-1/acl.md" %}
+[acl.md](../security-and-access-control-1/acl.md)
 {% endcontent-ref %}
 
 {% content-ref url="../modules-1/smartbox/background-information/multitenancy-approach.md" %}
 [multitenancy-approach.md](../modules-1/smartbox/background-information/multitenancy-approach.md)
 {% endcontent-ref %}
 
-{% content-ref url="../security-and-access-control-1/security/smart-app.md" %}
-[smart-app.md](../security-and-access-control-1/security/smart-app.md)
+{% content-ref url="../security-and-access-control-1/auth/smart-app/" %}
+[smart-app](../security-and-access-control-1/auth/smart-app/)
 {% endcontent-ref %}
 
 
@@ -166,8 +166,8 @@ Expect target resource type as `:resource` and `:format` (`fhir` or `aidbox`)
 
 See full description and usage examples:
 
-{% content-ref url="../security-and-access-control-1/security/acl.md" %}
-[acl.md](../security-and-access-control-1/security/acl.md)
+{% content-ref url="../security-and-access-control-1/acl.md" %}
+[acl.md](../security-and-access-control-1/acl.md)
 {% endcontent-ref %}
 
 ### Middlewares
