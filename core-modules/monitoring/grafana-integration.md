@@ -57,7 +57,7 @@ content-type: application/edn
 
 {:method aidbox.metrics/update-aidbox-dashboard
  :params {:datasource "My Prometheus Datasource name"
-          :kibana-url "https://my.kibana.url.com"}
+          :kibana-url "https://my.kibana.url.com"}}
 ```
 
 <figure><img src="../../.gitbook/assets/Screen Shot 2022-12-06 at 08.44.55.png" alt=""><figcaption><p>Grafana Aidbox Dashboard</p></figcaption></figure>
