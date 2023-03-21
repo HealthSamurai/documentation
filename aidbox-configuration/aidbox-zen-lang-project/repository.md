@@ -24,10 +24,17 @@ To create a repository add a service `aidbox.repository.v1` in system.edn like t
  zen-config
  {...}
 
+patient-repository
+ {:zen/tags #{aidbox.repository.v1/repository}
+  :resourceType "Patient" ; or your own
+  :indexes #{<my-indexes>}
+  :extra-parameter-sources :all
+  :search-parameters #{<my-parameters>}}
+
  repositories
  {:zen/tags #{aidbox/service}
   :engine aidbox.repository.v1/engine
-  :repositories #{patient-repository}
+  :repositories #{patient-repository <my-other-repositories>}
   :load-default true}
 
  box {:zen/tags #{aidbox/system}
@@ -36,6 +43,8 @@ To create a repository add a service `aidbox.repository.v1` in system.edn like t
       {:repositories repositories}}}
 ```
 {% endcode %}
+
+Here we defined patient-repository which can contain custom search-parameters and indexes.
 
 ## Create custom resource
 
