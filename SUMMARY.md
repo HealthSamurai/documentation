@@ -259,6 +259,7 @@
   * [Multitenancy](security-and-access-control-1/multitenancy/README.md)
   * [Access control lists (ACL)](security-and-access-control-1/acl.md)
   * [SMART on FHIR](security-and-access-control-1/auth/smart-app/README.md)
+  * [Access policy dev tool](security-and-access-control-1/security/access-policy-dev-tool.md)
   * [AccessPolicy best practices](security-and-access-control-1/security/accesspolicy-best-practices.md)
 * [Tutorials](core-modules/logging-and-audit/tutorials/README.md)
   * [Allow patients to see their own data](security-and-access-control-1/tutorials/sample-patient-can-see-its-own-data.md)
