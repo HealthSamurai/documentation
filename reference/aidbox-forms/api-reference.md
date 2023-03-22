@@ -9,6 +9,9 @@
 * [`aidbox.sdc/generate-form-layout`](api-reference.md#generate-form-layout) - generate form layout
 * [`aidbox.sdc/generate-form-constraints`](api-reference.md#generate-form-constraints) - generate constraints schema
 * [`aidbox.sdc/generate-form-finalize`](api-reference.md#generate-form-finalize) - generate finalize with extractions
+* [`aidbox.sdc/get-form-properties`](api-reference.md#get-form-properties) - get form related properties
+* [`aidbox.sdc/add-form-properties`](api-reference.md#add-form-properties) - add form dynamic properties
+* [`aidbox.sdc/delete-form-properties`](api-reference.md#delete-form-properties) - delete form dynamic properties
 * [`aidbox.sdc/get-forms`](api-reference.md#get-forms) - get existed forms
 * [`aidbox.sdc/get-form`](api-reference.md#get-form) - get form definition for given form name
 * [`aidbox.sdc/launch`](api-reference.md#launch) - launch new form with given params
@@ -489,6 +492,146 @@ error:
   errors:
   - message: No symbol 'my.forms/MyForm found
     type: symbol
+```
+
+### get-form-properties
+
+
+Get form related properties. 
+
+> Properties is a typical map where each key is a property name and value is any JSON value
+
+Properties are stored in two sources:
+
+- in ZEN (properties of Form symbol) -  static properties
+- in DB (SDCFormMetadata resource)  -  dynamic properties
+
+You can query `static`, `dynamic` or `all` form properties.
+
+> You can manage dynamic properties by `add-form-properties` and `delete-form-properties` RPCs
+
+params:
+
+| Param      | Description        | Type               | required? |
+|------------|--------------------|--------------------|-----------|
+| form       | Form symbolic name | String             | yes       |
+| properties | properties type    | static/dynamic/all | no        |
+
+Request:
+
+```
+POST /rpc?
+
+method: aidbox.sdc/get-form-properties
+params:
+    form: my.company.forms.vitals/Vitals
+    properties: dynamic
+```
+
+Response: 
+
+```
+result: 
+    form: my.company.forms.vitals/Vitals
+    properties: 
+       in-development: true
+
+```
+
+
+### add-form-properties
+
+Add set of dynamic properties to a form.
+
+> Properties is a typical map where each key is a property name and value is any JSON value
+> Dynamic Properties - properties that are stored in DB, in `SDCFormMetadata` resource
+
+Given properties will be merged with existed - you can replace old values by this operation.
+
+Returns updated `SDCFormMetadata` resource.
+
+params:
+
+| Param      | Description        | Type   | required? |
+|------------|--------------------|--------|-----------|
+| form       | Form symbolic name | String | yes       |
+| properties | properties map     | map    | yes       |
+
+Request:
+
+```
+POST /rpc?
+
+method: aidbox.sdc/add-form-properties
+params:
+    form: my.company.forms.vitals/Vitals
+    properties:
+      team: surgeons
+      in-development: true
+```
+
+Result: 
+
+> Success
+
+```
+result: 
+    id: my.company.forms.vitals/Vitals
+    resourceType: SDCFormMetadata
+    properties:
+      team: surgeons
+      in-development: true
+
+```
+
+
+### delete-form-properties
+
+Delete set of form dynamic properties.
+
+> Dynamic Properties - properties that are stored in DB, in `SDCFormMetadata` resource
+
+Returns updated `SDCFormMetadata` resource.
+Returns error when `SDCFormMetadata` resource or some of property name is not found
+
+params:
+
+| Param      | Description                | Type              | required? |
+|------------|----------------------------|-------------------|-----------|
+| form       | Form symbolic name         | String            | yes       |
+| properties | properties names to delete | vector of strings | yes       |
+
+Request:
+
+```
+POST /rpc?
+
+method: aidbox.sdc/delete-form-properties
+params:
+    form: my.company.forms.vitals/Vitals
+    properties:
+      - team
+      - in-development
+```
+
+Response: 
+
+> Success
+
+```
+result: 
+    id: my.company.forms.vitals/Vitals
+    resourceType: SDCFormMetadata
+    properties: {}
+
+```
+
+> Error 
+
+```
+error:
+  message:  SDCFormMetadata with id = '<resource-id>' is not found
+  message: There are no such properties [<prop-names>] in FormMetadata with id = '<resource-id>'
 ```
 
 ### get-forms
