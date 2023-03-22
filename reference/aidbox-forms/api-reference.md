@@ -994,15 +994,7 @@ Redirect urls can be specified for different actions.
 
 Params:
 
-| Param             | Description                                                                                                                                                                       | Type                      | required? |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- | --------- |
-| form              | link to the form in DB                                                                                                                                                            | Map                       | yes       |
-| form.id           | SDCDocument/SDCWorkflow id                                                                                                                                                        | String                    | yes       |
-| form.resourceType |                                                                                                                                                                                   | SDCDocument/SDCWorkflow   | yes       |
-| redirect-on-sign  | URI that used after form sign/amend event for redirect                                                                                                                            | URI                       | no        |
-| redirect-button   | URI that used after Save or Close button is pressed                                                                                                                               | URI                       | no        |
-| theme             | <p>Theme that will be applied to form.<br>See <a data-mention href="../../modules-1/aidbox-forms/how-to-customize-form-appearance.md">how-to-customize-form-appearance.md</a></p> | String                    | no        |
-| show-rules        | Show calculated fields formulas                                                                                                                                                   | true \| false \| readable | no        |
+<table><thead><tr><th>Param</th><th>Description</th><th>Type</th><th data-type="checkbox">required?</th><th>Default</th></tr></thead><tbody><tr><td>form</td><td>link to the form in DB</td><td>Map</td><td>true</td><td></td></tr><tr><td>form.id</td><td>SDCDocument/SDCWorkflow id</td><td>String</td><td>true</td><td></td></tr><tr><td>form.resourceType</td><td></td><td>SDCDocument/SDCWorkflow</td><td>true</td><td></td></tr><tr><td>redirect-on-sign</td><td>URI that used after form sign/amend event for redirect</td><td>URI</td><td>false</td><td></td></tr><tr><td>redirect-button</td><td>URI that used after Save or Close button is pressed</td><td>URI</td><td>false</td><td></td></tr><tr><td>theme</td><td>Theme that will be applied to form.<br>See <a data-mention href="../../modules-1/aidbox-forms/how-to-customize-form-appearance.md">how-to-customize-form-appearance.md</a></td><td>String</td><td>false</td><td></td></tr><tr><td>show-rules </td><td>Show calculated fields formulas</td><td>true | false | readable</td><td>false</td><td>false</td></tr><tr><td>allow-amend</td><td>Allow amend signed shared from</td><td>true | false</td><td>false</td><td>false</td></tr></tbody></table>
 
 Request:
 
@@ -1020,6 +1012,7 @@ params:
   redirect-on-sign: http://my.portal.com?param1=p1
   redirect-button: http://my.portal.com?param1=p3
   show-rules: true
+  allow-amend: true
 ```
 
 Result:
