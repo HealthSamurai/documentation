@@ -1,5 +1,7 @@
 ---
-description: This pages explains how Access policy dev tool works
+description: >-
+  Access policy dev tool simplifies development & debugging AccessPolicy
+  resources
 ---
 
 # Access policy dev tool
@@ -12,39 +14,32 @@ If you have any questions or ideas, how to make the dev tool better, feel free t
 
 ## Overview
 
-....
+The dev tool is a part of Aidbox UI Console, which aims
+
+* to edit AccessPolicy resource, and
+* to give a nice view for AccessPolicy debug output for specific request in the same place.
 
 <figure><img src="../../.gitbook/assets/Screenshot 2023-03-23 at 11.40.41.png" alt=""><figcaption><p>Access policy dev tool</p></figcaption></figure>
 
-## Get to Access policy dev tool
+The dev tool is split on two sides, editor side and result side. On the left side you define&#x20;
 
-### From the list of access policies
+* [AccessPolicy resource](access-control.md) and
+* HTTP request you are going to debug.
 
-To open **Access policy dev tool** click the _dev tool_ link on the right side of the row.
+When you press Save\&Run button, the dev tool saves AccessPolicy and performs policy debug operation for the specified request, and displays the result on the right side. You can see there
+
+* _Eval policy result._ List of all access policies and the result of evaluation.
+* _Parsed HTTP request._ It's an [internal representation](access-control.md#request-object-structure) of the request, which Aidbox passes to the eval-policy function.
+
+### How to get access to the dev tool
+
+You can get access to the dev tool from AccessPolicy list page by clicking dev tool link on a AccessPolicy you want to debug.
 
 <figure><img src="../../.gitbook/assets/Screenshot 2023-03-23 at 11.40.10.png" alt=""><figcaption><p>AccessPolicy list with the link to dev tool</p></figcaption></figure>
 
-### From the selected AccessPolicy
-
-To open **Access policy dev tool** from the AccessPolicy resource page click the _dev tool_ link in the header of the screen.
+You also can get access to the dev tool from AccessPolicy view page. The link is available on the top right corner.
 
 <figure><img src="../../.gitbook/assets/Screenshot 2023-03-23 at 11.48.13.png" alt=""><figcaption><p>AccessPolicy view page with the link to dev tool</p></figcaption></figure>
-
-## Dev tool panels
-
-There are 4 panels in the **Access policy dev tool**:
-
-1. Access policy editor (top left panel) is used to change current access policy. See [AccessPolicy resource documentation](access-control.md)
-2. HTTP request editor (bottom left panel) is used to define an HTTP request. The request is being tested against all the access policies. See details about [REST Console HTTP request structure](../../overview/aidbox-ui/rest-console-1.md#rest-console)
-3. Evaluation results (top right panel) is the area where all the access policies is enlisted and the evaluation result is shown
-4. HTTP request object (bottom right panel) is the representation of the HTTP request Aidbox received and processed during the evaluation request. See [Request object structure](access-control.md#request-object-structure)
-
-## Run evaluation
-
-To start evaluation access policies against your current HTTP request click the `Save & Run` button. Pressing the button invokes 2 events:
-
-1. `AccessPolicy` is saved
-2. `HTTP request` is sent to the evaluator
 
 ## Tips
 
