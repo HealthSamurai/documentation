@@ -59,3 +59,29 @@ To start evaluation access policies against your current HTTP request click the 
 
 1. `AccessPolicy` is saved
 2. `HTTP request` is sent to the evaluator
+
+## Send request on-behalf of `User` or `Client` with `Authorization` header
+
+Use Authorization header to make request on behalf of other `User` or `Client`.
+
+{% hint style="info" %}
+If Authorization header is not provided, Aidbox authenticates the request by current `asid` cookie
+{% endhint %}
+
+{% tabs %}
+
+{% tab title="Bearer token" %}
+```yaml
+GET /Patient?name=john
+authorization: Bearer eyJ...w5c
+```
+{% endtab %}
+
+{% tab title="Basic auth" %}
+```yaml
+GET /Patient?name=john
+Authorization: Basic <base64(client-id:client-secret)>
+```
+{% endtab %}
+
+{% endtabs %}
