@@ -4,28 +4,26 @@ description: This pages explains how Access policy dev tool works
 
 # Access policy dev tool
 
-Creating and maintaining access policies could be a difficult task. To reduce the complexity of this `dev tool` is created.
+Access policy dev tool simplifies development & debuging AccessPolicy resources. It was introduced in March v2303 release of Aidbox.
+
+<figure><img src="../../.gitbook/assets/Screenshot 2023-03-23 at 11.40.41.png" alt=""><figcaption><p>Access policy dev tool</p></figcaption></figure>
 
 ## Prerequisites
 
 **Access policy dev tool** user should have access to the RPC method `aidbox.auth/get-eval-policy-debug-token`.
 
-To check if user is granted needed access run following request in the REST Console.&#x20;
+To check if user is granted needed access run following request in the REST Console.
 
 ```yaml
 POST /rpc
 accept: text/yaml
 
 method: aidbox.auth/get-eval-policy-debug-token
-```
 
-The response should look like.
-
-```yaml
-# Response status: 200 OK
-
-result:
-  token: <temp-token>
+# Response: 200 OK
+# Body:
+# result:
+#  token: <temp-debug-token>
 ```
 
 ## Get to Access policy dev tool
@@ -46,12 +44,10 @@ To open **Access policy dev tool** from the AccessPolicy resource page click the
 
 There are 4 panels in the **Access policy dev tool**:
 
-1. Access policy editor (top left panel) is used to change current access policy. See  [AccessPolicy resource documentation](access-control.md)
+1. Access policy editor (top left panel) is used to change current access policy. See [AccessPolicy resource documentation](access-control.md)
 2. HTTP request editor (bottom left panel) is used to define an HTTP request. The request is being tested against all the access policies. See details about [REST Console HTTP request structure](../../overview/aidbox-ui/rest-console-1.md#rest-console)
 3. Evaluation results (top right panel) is the area where all the access policies is enlisted and the evaluation result is shown
 4. HTTP request object (bottom right panel) is the representation of the HTTP request Aidbox received and processed during the evaluation request. See [Request object structure](access-control.md#request-object-structure)
-
-<figure><img src="../../.gitbook/assets/Screenshot 2023-03-23 at 11.40.41.png" alt=""><figcaption><p>Dev tool panels</p></figcaption></figure>
 
 ## Run evaluation
 
@@ -60,28 +56,27 @@ To start evaluation access policies against your current HTTP request click the 
 1. `AccessPolicy` is saved
 2. `HTTP request` is sent to the evaluator
 
-## Send request on-behalf of `User` or `Client` with `Authorization` header
+## Tips
 
-Use Authorization header to make request on behalf of other `User` or `Client`.
+### How to send request on behalf of user or client?
 
-{% hint style="warning" %}
-If Authorization header is not provided, Aidbox authenticates the request by current `asid` cookie
-{% endhint %}
+You may provide Authorization header in the request. Example of request with provided Authorization header.
 
-{% tabs %}
-
-{% tab title="Bearer token" %}
 ```yaml
-GET /Patient?name=john
-authorization: Bearer eyJ...w5c
+GET /Patient
+Authorization: Bearer eyJ...w5c
 ```
-{% endtab %}
 
-{% tab title="Basic auth" %}
-```yaml
-GET /Patient?name=john
-Authorization: Basic <base64(client-id:client-secret)>
-```
-{% endtab %}
+If Authorization header is not provided, Aidbox will authenticate the request by _asid_ cookie.
 
-{% endtabs %}
+## That's it
+
+Access policy dev tool makes it easier to develop access policy.&#x20;
+
+### What's next
+
+If you are looking for recommendations, how to develop access policies, check out our [AccessPolicy best practices article](accesspolicy-best-practices.md).
+
+## Talk to a Health Samurai Engineer
+
+If you'd like to learn more about using Aidbox or have any questions about this guide, [connect with us on Telegram](https://t.me/aidbox). We're happy to help.
