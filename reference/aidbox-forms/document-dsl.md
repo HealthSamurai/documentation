@@ -120,6 +120,7 @@ SDCDocument has several embedded field-types:
 * `aidbox.sdc/number`     - fields with number
 * `aidbox.sdc/quantity`   - fields with measurement units
 * `aidbox.sdc/choice`     - fields with answers, located in valuesets
+* `aidbox.sdc/reference`  - fields with reference to arbitrary resources
 * `aidbox.sdc/calculated` - fields, which need to be calculated via rules engine
 
 
@@ -142,23 +143,25 @@ Can contain sub-fields or behaves like an array. Also has links to original sour
 
 super-field schema has next keys:
 
-| property               | description                                                           | type                                     | required? |
-|------------------------|-----------------------------------------------------------------------|------------------------------------------|-----------|
-| `text`                 | Question text                                                         | string                                   | yes       |
-| `help`                 | Question explanation or some hint - how to interpret it               | string                                   | no        |
-| `type`                 | zen/type of the value, which will be stored in DB                     | symbol                                   | no        |
-| `sdc-type`             | field meta-type - used for determine UI input type                    | symbol                                   | no        |
-| `confirms`             | additional schemas for stored value confirmation                      | set of symbols                           | no        |
-| `sdc/default-value`    | Default field value (also for repeated fields)                        | zen/any                                  | no        |
-| `enum`                 | List of available values    (used in choice)                          | zen/keyword                              | no        |
-| `sdc/options`          | Alternative options source  (used in choice)                          | zen/keyword                              | no        |
-| `units`                | List of units (used for quantity fields)                              | vector of {:name string}                 | no        |
-| `keys`                 | When field is complex object(map) - used for defining nested fields   | map of super-fields                      | no        |
-| `every`                | When field is coll (zen/vector) - used for defining coll-item schema  | super-field                              | no        |
-| `sdc/boundaries`       | Min/max values for quantity fields (for different measurement units)  | {:imperial MinMaxMap, :metric MinMaxMap} | no        |
-| `last-change-datetime` | Meta field - contains datetime of last changes                        | any                                      | no        |
-| `code`                 | CodeSystem of the question   (used in extractions)                    | Coding                                   | no        |
-| `linkId`               | Link to original questing (in questionnaire, used in converter to QR) | string                                   | no        |
+| property               | description                                                           | filed-type | type                                     | required? |
+|------------------------|-----------------------------------------------------------------------|------------|------------------------------------------|-----------|
+| `text`                 | Question text                                                         | all        | string                                   | yes       |
+| `help`                 | Question explanation or some hint - how to interpret it               | all        | string                                   | no        |
+| `type`                 | zen/type of the value, which will be stored in DB                     | all        | symbol                                   | no        |
+| `sdc-type`             | field meta-type - used for determine UI input type                    | all        | symbol                                   | no        |
+| `confirms`             | additional schemas for stored value confirmation                      | all        | set of symbols                           | no        |
+| `sdc/default-value`    | Default field value (also for repeated fields)                        | all        | zen/any                                  | no        |
+| `enum`                 | List of available values                                              | choice     | zen/keyword                              | no        |
+| `sdc/options`          | Alternative options source                                            | choice     | zen/keyword                              | no        |
+| `units`                | List of units                                                         | quantity   | vector of {:name string}                 | no        |
+| `keys`                 | When field is complex object(map) - used for defining nested fields   | group      | map of super-fields                      | no        |
+| `every`                | When field is coll (zen/vector) - used for defining coll-item schema  | repeated   | super-field                              | no        |
+| `sdc/boundaries`       | Min/max values for quantity fields (for different measurement units)  | quantity   | {:imperial MinMaxMap, :metric MinMaxMap} | no        |
+| `last-change-datetime` | Meta field - contains datetime of last changes                        | all        | any                                      | no        |
+| `code`                 | CodeSystem of the question   (used in extractions)                    | all        | Coding                                   | no        |
+| `linkId`               | Link to original questing (in questionnaire, used in converter to QR) | all        | string                                   | no        |
+| `resourceType`         | resource table for quering data                                       | reference  | string                                   | no        |
+
 
 ### quantity field-type
 
@@ -209,11 +212,14 @@ MyDocument
                                          :system "http://loinc.org"}}]}}}
 
 ```
-
-If by some reason you can't use zen-defined `:enum` keyword with options - you also have 2 alternative sources for retreiving them:
+For simple cases you can freely use `:enum` keyword with options - but for complex one (big datasets/more flexibility) you also have 2 alternative sources for retreiving them:
 
 * `:aidbox.sdc.options/valueset` use valuset stored in aidbox db
 * `:aidbox.sdc.options/rpc` - use custom rpc
+
+> It's better to use valuesets instead of `:enum`, they are more flexible for a long run. (ex: You will not have validation errors if change display of some value)
+> you can add valuesets by using [FTR](terminology/fhir-terminology-repository/ftr-specification.md)
+
 
 If you specify `:sdc/options :aidbox.sdc.options/valueset`, then you also must specify `:valueset` property.
 
@@ -250,6 +256,31 @@ Example:
 ###
 
 \
+
+### reference field-type
+
+Reference field-type contains aidbox reference to resource (id + resourceType + display)
+
+Also field has search semantics based on full resource text search.
+
+> To store reference - you should confirm `aidbox.sdc.fhir/reference` or `zenbox/Reference` schema.
+
+reference fields should have these properties:
+
+| property       | description                 | type   | required? |
+|----------------|-----------------------------|--------|-----------|
+| `resourceType` | name of table to query data | string | no        |
+
+Example:
+
+```
+MyDocument
+{:zen/tags #{aidbox.sdc/doc zen/schema}
+ :keys {:patient {:text "Patient"
+                  :type zen/map,
+                  :confirms #{aidbox.sdc.fhir/reference},
+                  :resourceType "Patient"}}}
+```
 
 
 ### calculated field-type
@@ -290,7 +321,7 @@ MyDocument
 
 ### SDCDocument extraction
 
-If you need to extract some values to Observation you need specify additional field property
+If you would like to extract some values to Observation you should specify additional field property:
 
 - `:code` - code/system of original Questionnaire question
 
@@ -300,6 +331,6 @@ MyDocument
 {:zen/tags #{zen/schema aidbox.sdc/doc},
  :keys {:bmi {:text "BMI",
               :type zen/number,
-              :code [{:system "http://loinc.org"}]}},
+              :code [{:system "http://loinc.org" :code "39156-5"}]}},
  }
 ```
