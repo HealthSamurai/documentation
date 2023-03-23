@@ -4,27 +4,17 @@ description: This pages explains how Access policy dev tool works
 
 # Access policy dev tool
 
-Access policy dev tool simplifies development & debuging AccessPolicy resources. It was introduced in March v2303 release of Aidbox.
+Access policy dev tool simplifies development & debugging AccessPolicy resources. It was introduced in March v2303 release of Aidbox.
+
+{% hint style="info" %}
+If you have any questions or ideas, how to make the dev tool better, feel free to communicate with us in [Aidbox community chat](https://t.me/aidbox).
+{% endhint %}
+
+## Overview
+
+....
 
 <figure><img src="../../.gitbook/assets/Screenshot 2023-03-23 at 11.40.41.png" alt=""><figcaption><p>Access policy dev tool</p></figcaption></figure>
-
-## Prerequisites
-
-**Access policy dev tool** user should have access to the RPC method `aidbox.auth/get-eval-policy-debug-token`.
-
-To check if user is granted needed access run following request in the REST Console.
-
-```yaml
-POST /rpc
-accept: text/yaml
-
-method: aidbox.auth/get-eval-policy-debug-token
-
-# Response: 200 OK
-# Body:
-# result:
-#  token: <temp-debug-token>
-```
 
 ## Get to Access policy dev tool
 
@@ -32,13 +22,13 @@ method: aidbox.auth/get-eval-policy-debug-token
 
 To open **Access policy dev tool** click the _dev tool_ link on the right side of the row.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-03-23 at 11.40.10.png" alt=""><figcaption><p><code>dev tool</code> link on the selected AccessPolicy</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-03-23 at 11.40.10.png" alt=""><figcaption><p>AccessPolicy list with the link to dev tool</p></figcaption></figure>
 
 ### From the selected AccessPolicy
 
 To open **Access policy dev tool** from the AccessPolicy resource page click the _dev tool_ link in the header of the screen.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-03-23 at 11.48.13.png" alt=""><figcaption><p><code>dev tool</code> link in the header of the screen</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-03-23 at 11.48.13.png" alt=""><figcaption><p>AccessPolicy view page with the link to dev tool</p></figcaption></figure>
 
 ## Dev tool panels
 
@@ -69,9 +59,27 @@ Authorization: Bearer eyJ...w5c
 
 If Authorization header is not provided, Aidbox will authenticate the request by _asid_ cookie.
 
+### Debug token
+
+Access policy dev tool expects you to have permission to run aidbox.auth/get-eval-policy-debug-token RPC method. Dev tool automatically renews the token.&#x20;
+
+You can check permission from Aidbox REST Console.
+
+```yaml
+POST /rpc
+accept: text/yaml
+
+method: aidbox.auth/get-eval-policy-debug-token
+
+# Response: 200 OK
+# Body:
+# result:
+#  token: <temp-debug-token>
+```
+
 ## That's it
 
-Access policy dev tool makes it easier to develop access policy.&#x20;
+Access policy dev tool makes it easier to develop access policy. If you have any questions or ideas, how to make the dev tool better, feel free to communicate with us in [Aidbox community chat](https://t.me/aidbox).
 
 ### What's next
 
