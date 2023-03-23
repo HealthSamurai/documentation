@@ -64,7 +64,7 @@ To start evaluation access policies against your current HTTP request click the 
 
 Use Authorization header to make request on behalf of other `User` or `Client`.
 
-{% hint style="info" %}
+{% hint style="warning" %}
 If Authorization header is not provided, Aidbox authenticates the request by current `asid` cookie
 {% endhint %}
 
