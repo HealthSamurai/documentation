@@ -52,7 +52,7 @@ GET /Patient
 Authorization: Bearer eyJ...w5c
 ```
 
-If Authorization header is not provided, Aidbox will authenticate the request by _asid_ cookie.
+If Authorization header is not provided, Aidbox authenticates the request by _asid_ cookie.
 
 ### Debug token
 
