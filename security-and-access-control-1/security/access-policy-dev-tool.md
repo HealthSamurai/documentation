@@ -21,7 +21,7 @@ The dev tool is a part of Aidbox UI Console, which aims
 
 <figure><img src="../../.gitbook/assets/Screenshot 2023-03-23 at 11.40.41.png" alt=""><figcaption><p>Access policy dev tool</p></figcaption></figure>
 
-The dev tool is split on two sides, editor side and result side. On the left side you define&#x20;
+The dev tool is split on two sides, editor side and result side. On the left side you define
 
 * [AccessPolicy resource](access-control.md) and
 * HTTP request you are going to debug.
@@ -31,13 +31,13 @@ When you press the Save\&Run button, the dev tool saves AccessPolicy and perform
 * _Eval policy result._ List of all access policies and the result of evaluation.
 * _Parsed HTTP request._ It's an [internal representation](access-control.md#request-object-structure) of the request, which Aidbox passes to the eval-policy function.
 
-### How to get access to the dev tool
+## How to get to the dev tool
 
-You can get access to the dev tool from AccessPolicy list page by clicking the dev tool link on a AccessPolicy you want to debug.
+To get to the dev tool from AccessPolicy list page, click the _dev tool_ link on a AccessPolicy you want to debug.
 
 <figure><img src="../../.gitbook/assets/Screenshot 2023-03-23 at 11.40.10.png" alt=""><figcaption><p>AccessPolicy list with the link to dev tool</p></figcaption></figure>
 
-You also can get access to the dev tool from AccessPolicy view page. The link is available on the top right corner.
+To get to the dev tool from AccessPolicy view page, click the link on the top right corner.
 
 <figure><img src="../../.gitbook/assets/Screenshot 2023-03-23 at 11.48.13.png" alt=""><figcaption><p>AccessPolicy view page with the link to dev tool</p></figcaption></figure>
 
@@ -45,18 +45,18 @@ You also can get access to the dev tool from AccessPolicy view page. The link is
 
 ### How to send request on behalf of user or client?
 
-You may provide Authorization header in the request. Example of request with provided Authorization header.
+By default Aidbox sends requests with your current session (your identity and permissions). To authenticate with another session, add Authorization header to the request.
+
+Example of the request with the provided Authorization header.
 
 ```yaml
 GET /Patient
 Authorization: Bearer eyJ...w5c
 ```
 
-If Authorization header is not provided, Aidbox authenticates the request by _asid_ cookie.
-
 ### Debug token
 
-Access policy dev tool expects you to have permission to run aidbox.auth/get-eval-policy-debug-token RPC method. Dev tool automatically renews the token.&#x20;
+Access policy dev tool expects you to have permission to run aidbox.auth/get-eval-policy-debug-token RPC method. Dev tool automatically renews the token.
 
 You can check permission from Aidbox REST Console.
 
