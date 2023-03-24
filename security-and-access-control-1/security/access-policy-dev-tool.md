@@ -58,7 +58,7 @@ Authorization: Bearer eyJ...w5c
 
 Access policy dev tool expects you to have permission to run aidbox.auth/get-eval-policy-debug-token RPC method. Dev tool automatically renews the token.
 
-You can check permission from Aidbox REST Console.
+To check you have access to to the RPC method, send the following in Aidbox REST Console.
 
 ```yaml
 POST /rpc
