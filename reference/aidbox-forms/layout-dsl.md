@@ -4,8 +4,7 @@
 Layout DSL is still under development and unstable
 {% endhint %}
 
-Layout DSL can be changed with layout-engine.
-Default layout-engine described here - `aidbox.sdc/Hiccup`.
+Layout DSL can be changed with layout-engine. Default layout-engine described here - `aidbox.sdc/Hiccup`.
 
 There are three types of layout nodes:
 
@@ -28,6 +27,43 @@ Typical description of node:
 
 * children - an array of child elements
 
+## Attachment
+
+If you want to show some image (e.g. for instructions), you can attach it via `aidbox.sdc/attachment` node
+
+```
+{:type aidbox.sdc/attachment
+ :src "...link to image..."}
+```
+
+You can also adjust `:width` and `:height`
+
+Currently supported attachment types:&#x20;
+
+* image
+* video
+* PDF
+
+## Label node
+
+To show some text or field from document as static text, use `aidbox.sdc/label` node
+
+{% code title="shows static text" %}
+```clojure
+{:type aidbox.sdc/label
+ :label "Some static text"}
+```
+{% endcode %}
+
+To show field from document as static text use `:bind` key
+
+{% code title="shows document field as static text" %}
+```clojure
+{:type aidbox.sdc/label
+ :bind [:organization :display]}
+```
+{% endcode %}
+
 ## Input node
 
 Minimal example of input node:
@@ -48,9 +84,7 @@ By default Aidbox FormLayouts supports five types of inputs:
 * quantity
 * calculated field
 
-Aidbox Forms has input-node inference logic based on special properties of the field schemas. 
-But you also have ability to force some input types by specifying sdc-type in SDCDocument field
-
+Aidbox Forms has input-node inference logic based on special properties of the field schemas. But you also have ability to force some input types by specifying sdc-type in SDCDocument field
 
 #### Text input
 
@@ -100,8 +134,7 @@ SuperDocumentLayout
 
 #### Choice & quantity input
 
-Since choice and quantity types are usually represented as `zen/map` in SDCDocument we should help input-type inference engine to select correect input-type 
-by specifing additional properties of node or specify input-type directly by special key: `sdc-type` in SDCDocument definition:
+Since choice and quantity types are usually represented as `zen/map` in SDCDocument we should help input-type inference engine to select correect input-type by specifing additional properties of node or specify input-type directly by special key: `sdc-type` in SDCDocument definition:
 
 Example:
 
