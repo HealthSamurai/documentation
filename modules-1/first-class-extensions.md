@@ -5,6 +5,10 @@ In Aidbox there are two ways to define first-class extensions:&#x20;
 * Using [Zen profiles](first-class-extensions.md#first-class-extension-as-zen-profile)
 * Using [Attribute](first-class-extensions.md#define-new-extension)
 
+If you're using Aidbox with zen, all resources will be validated by zen, not Attributes. In this case you should use zen profiles.&#x20;
+
+If you don't use zen, you can use Attributes.
+
 ## First-class extension as Zen profile
 
 While FHIR uses two different ways to define **core elements** and **extensions**, zen profiles provide unified framework to describe both. Zen FHIR format offers user-defined elements or "first-class extensions". In zen profiles, you can define new attributes (elements) for existing (FHIR) resources. \
