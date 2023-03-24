@@ -33,7 +33,7 @@ When you press the Save\&Run button, the dev tool saves AccessPolicy and perform
 
 ### How to get access to the dev tool
 
-You can get access to the dev tool from AccessPolicy list page by clicking dev tool link on a AccessPolicy you want to debug.
+You can get access to the dev tool from AccessPolicy list page by clicking the dev tool link on a AccessPolicy you want to debug.
 
 <figure><img src="../../.gitbook/assets/Screenshot 2023-03-23 at 11.40.10.png" alt=""><figcaption><p>AccessPolicy list with the link to dev tool</p></figcaption></figure>
 
