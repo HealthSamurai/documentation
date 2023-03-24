@@ -26,7 +26,7 @@ The dev tool is split on two sides, editor side and result side. On the left sid
 * [AccessPolicy resource](access-control.md) and
 * HTTP request you are going to debug.
 
-When you press Save\&Run button, the dev tool saves AccessPolicy and performs policy debug operation for the specified request, and displays the result on the right side. You can see there
+When you press the Save\&Run button, the dev tool saves AccessPolicy and performs policy debug operation for the specified request, and displays the result on the right side. You can see there
 
 * _Eval policy result._ List of all access policies and the result of evaluation.
 * _Parsed HTTP request._ It's an [internal representation](access-control.md#request-object-structure) of the request, which Aidbox passes to the eval-policy function.
