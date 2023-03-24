@@ -4,9 +4,15 @@ description: This guide explains how Access control debug tools work
 
 # Debug access control
 
-Aidbox offers multiple ways to debug access policies:
+Aidbox offers multiple ways to debug access policies.
 
-### `__debug` query-string parameter
+## Access policy dev tool
+
+[Access policy dev tool](debug.md#access-policy-dev-tool) simplifies development & debugging AccessPolicy resources. It was introduced in March v2303 release of Aidbox.
+
+<figure><img src="../../.gitbook/assets/Screenshot 2023-03-23 at 11.40.41.png" alt=""><figcaption><p>Access policy dev tool UI</p></figcaption></figure>
+
+## `__debug` query-string parameter
 
 There is a special query-string parameter `__debug=policy` you can pass to every Aidbox request. It will toggle debug mode for Request Authorization Layer, and in this mode instead of actual response client will get an object containing:
 
@@ -16,7 +22,7 @@ There is a special query-string parameter `__debug=policy` you can pass to every
 
 Define `AIDBOX_DEV_MODE` to enable `__debug` parameter
 
-### `x-debug: policy` request header
+## `x-debug: policy` request header
 
 For requests with the `x-debug: policy` header, details of access policy evaluation will be logged.
 
@@ -29,7 +35,7 @@ x-debug: policy
 # :auth/trace-policy {:access-policy-id :policy-2, :policy-type "json-schema",...
 ```
 
-### `su` request header
+## `su` request header
 
 `su` header allows to switch user on behalf of whom request is executed. Use `su=<user/client id>` to check how access control works for that user.
 
@@ -45,7 +51,7 @@ box_debug_su_enable=true
 `su` header is only available to admin users, who have at least one `AccessPolicy`  with `engine` = `allow` linked to them.&#x20;
 {% endhint %}
 
-#### Example
+### Example
 
 ```http
 # Request as an admin:
@@ -64,7 +70,7 @@ su: myid
 Status: 403
 ```
 
-### `/auth/test-policy` Operation
+## `/auth/test-policy` Operation
 
 You can use a special operation `POST /auth/test-policy` to design policy without creating an AccessPolicy resource and for different users and clients. Post on the `/auth/test-policy` with a simulated **request** attribute (you can provide existing `user-id` and `client-id` — Aidbox will find and populate request) and temporal policy in the **policy** attribute. If you want to test JWT auth, put your token in the `headers.authorization` with the `Bearer` prefix — the token will be parsed and its claims appear in the `request.jwt`. JWT in a header is parsed but not validated. This allows you to test JWT policy without **TokenIntrospector** registration.
 
