@@ -73,4 +73,19 @@ With this flag Aidbox will update history for updated resources. For each resour
 * if resource was not present in DB before the import, the import time will be the same.
 * if resource was present in DB before and it's updated during the import, it will double the time importing this resource because of additional insert operation into `_history` table.
 
-##
+## $import on top of the Task API (beta)
+
+Aidbox has introduced a new and improved version of the $import operation, currently in beta, to enhance its reliability and performance. By implementing this operation on top of the [task-api.md](../task-api.md "mention"), it allows the $import operation to be more reliable, continue work after restarts, and handle errors correctly. The Task API also enables the operation to accept multiple requests and execute them from a queue while simultaneously processing multiple items from the "inputs" field (with a default of two items processed simultaneously). Users can monitor the status of the operation through the   [#task-ui](../task-api.md#task-ui "mention").
+
+In the future, the ability to list and cancel $import operations will be added, as well as detailed progress info of the operation.
+
+{% hint style="info" %}
+To enable new version of $import & /fhir/$import operation set environment variable `BOX_BULK__API_ENGINE=task-api`
+{% endhint %}
+
+**Changes in the new $import API:**
+
+1. Executing more than one import with the same `id` is not possible. Users can omit the \`id\` field from the request, allowing Aidbox to generate the ID.
+2. The status of the workflow can be accessed with a GET request to `$import-status/<id>` instead of `/BulkImportStatus/<id>`. The URL for the import status is returned in the `content-location` header of the $import request.
+
+Please note that the new implementation is currently in beta, and further improvements and refinements may be made as needed.

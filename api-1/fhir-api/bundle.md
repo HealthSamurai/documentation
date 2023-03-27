@@ -10,25 +10,39 @@ description: >-
 Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [contact](../../contact-us.md) us if you have questions, feedback, or suggestions.
 {% endhint %}
 
-The Bundle resource has a variety of different applications.\
-Usage of bundles by different endpoints:
+The Bundle resource is a resource which groups multiple resources in one. It is important to differentiate Bundle resource and operation which take or return Bundles.
 
-* `POST /`\
-  Accepts bundles of certain types and executes REST requests contained in them.\
-  Returns bundles with `transaction-response` or `batch-response` types.
-* `POST /Bundle`, `PUT /Bundle/<id>`\
-  Accepts a bundle and saves it as a regular resource regardless of its type.\
-  Returns the saved resource.
-* `GET /<resourceType>`\
-  Searches for resources of specified resource type.\
-  Returns bundle of `searchset` type.
-* `GET /<resourceType>/_history`, `GET /<resourceType>/<id>/_history`\
-  Searches for previous versions of the specified resource or resource type\
-  Returns bundle of `history` type.
+Let's look at some operations working with Bundle resources.
 
-### `POST /` endpoint
+* `POST /` , `POST /fhir` \
+  Main article: [transaction.md](../transaction.md "mention").\
+  This operation accepts Bundle resource (with type batch or transaction); executes contained requests; then returns Bundle resource in response (with type batch-response or transaction-response).\
+  Operation `POST /` accepts and return Bundle in Aidbox format; operation `POST /fhir` accepts and returns Bundle in FHIR format.
+* `GET /<resourceType>`, `GET /fhir/<resourceType>`\
+  ``Main article: [search-1](search-1/ "mention")\
+  This operation searches for resource of type `resourceType` using search parameters provided in query string, and returns Bundle resource (with type `searchset`) containing all resources matching the given filters.
+* `GET /<resourceType>/<id>/_history`, `GET /fhir/<resourceType>/<id>/_history`\
+  ``Main article: [history-1.md](history-1.md "mention")\
+  This operation returns the Bundle resource (with type `history`) containing previous versions of the specified resource.
+* `GET /<resourceType>/_history`, `GET /fhir/<resourceType>/_history`\
+  ``Main article: [history-1.md](history-1.md "mention")\
+  This operations returns the Bundle resource (with type `history`) containing previous versions of resources with the specified type.
+* CRUD operations with Bundle resource\
+  Main article: [crud-1](../api/crud-1/ "mention")\
+  These are the usual FHIR CRUD operations with Bundle resource. They only store/update/get/search Bundle resources without additional semantics.\
+  These operations are rarely used.\
+  Examples: `POST /Bundle`, `GET /Bundle`, `GET /Bundle/<id>`, `PUT /Bundle`, \
+  `POST /fhir/Bundle`, `GET /fhir/Bundle`, `GET /fhir/Bundle/<id>`,\
+  `PUT /fhir/Bundle/<id>`
 
-Aidbox supports FHIR batch/transaction interaction, as well as some additional options to this endpoint.
+See more about the difference between Aidbox and FHIR formats (`/...` and `/fhir/...` endpoints) in the [aidbox-and-fhir-formats.md](../../modules-1/fhir-resources/aidbox-and-fhir-formats.md "mention") page.
+
+### `POST /` , `POST /fhir` endpoint
+
+Aidbox supports FHIR batch and transaction interactions, as well as some additional options to this endpoint.
+
+Same as with other endpoint, `POST /` accepts and returns Bundle in Aidbox format,\
+while `POST /fhir` accepts and returns Bundle in FHIR format.
 
 ```yaml
 POST /
