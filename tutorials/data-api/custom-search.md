@@ -11,7 +11,7 @@ Copy the following snippet to the Aidbox.Cloud `REST Console`.
 
 {% tabs %}
 {% tab title="Request" %}
-````yaml
+```yaml
 POST /
 Accept: text/yaml
 Content-Type: text/yaml
@@ -70,91 +70,124 @@ entry:
       code: enc3
   request:
     method: POST
-    url: "/Encounter"```
+    url: "/Encounter"
+```
+{% endtab %}
 
-</div>
-
-<div data-gb-custom-block data-tag="tab" data-title='Response'>
-
+{% tab title="Response" %}
 ```yaml
-# Status: 200
-
-# Status: 200
-
-id: '281'
 type: transaction-response
 resourceType: Bundle
 entry:
-- resource:
-    name:
-    - given: [Max]
-      family: Turikov
-    id: patient1
-    resourceType: Patient
-    meta:
-      lastUpdated: '2018-11-27T09:47:27.412Z'
-      versionId: '281'
-      tag:
-      - {system: 'https://aidbox.app', code: created}
-  status: 201
-- resource:
-    name:
-    - given: [Alex]
-      family: Antonov
-    id: patient2
-    resourceType: Patient
-    meta:
-      lastUpdated: '2018-11-27T09:47:27.412Z'
-      versionId: '281'
-      tag:
-      - {system: 'https://aidbox.app', code: created}
-  status: 201
-- resource:
-    status: draft
-    subject: {id: patient1, resourceType: Patient}
-    id: enc1
-    resourceType: Encounter
-    meta:
-      lastUpdated: '2018-11-27T09:47:27.412Z'
-      versionId: '281'
-      tag:
-      - {system: 'https://aidbox.app', code: created}
-  status: 201
-- resource:
-    status: draft
-    subject: {id: patient1, resourceType: Patient}
-    id: enc2
-    resourceType: Encounter
-    meta:
-      lastUpdated: '2018-11-27T09:47:27.412Z'
-      versionId: '281'
-      tag:
-      - {system: 'https://aidbox.app', code: created}
-  status: 201
-- resource:
-    status: draft
-    subject: {id: patient2, resourceType: Patient}
-    id: enc3
-    resourceType: Encounter
-    meta:
-      lastUpdated: '2018-11-27T09:47:27.412Z'
-      versionId: '281'
-      tag:
-      - {system: 'https://aidbox.app', code: created}
-  status: 201
-````
+  - resource:
+      name:
+        - given:
+            - Max
+          family: Turikov
+      id: >-
+        patient1
+      resourceType: Patient
+      meta:
+        lastUpdated: '2023-03-27T11:05:32.269055Z'
+        createdAt: '2023-03-27T11:05:32.269055Z'
+        versionId: '3'
+    response:
+      etag: '3'
+      location: /Patient/patient1/_history/3
+      status: '201'
+      lastModified: '2023-03-27T11:05:32.269055Z'
+  - resource:
+      name:
+        - given:
+            - Alex
+          family: Antonov
+      id: >-
+        patient2
+      resourceType: Patient
+      meta:
+        lastUpdated: '2023-03-27T11:05:32.269055Z'
+        createdAt: '2023-03-27T11:05:32.269055Z'
+        versionId: '4'
+    response:
+      etag: '4'
+      location: /Patient/patient2/_history/4
+      status: '201'
+      lastModified: '2023-03-27T11:05:32.269055Z'
+  - resource:
+      class:
+        code: enc1
+      status: draft
+      subject:
+        id: >-
+          patient1
+        resourceType: Patient
+      id: >-
+        enc1
+      resourceType: Encounter
+      meta:
+        lastUpdated: '2023-03-27T11:05:32.269055Z'
+        createdAt: '2023-03-27T11:05:32.269055Z'
+        versionId: '5'
+    response:
+      etag: '5'
+      location: /Encounter/enc1/_history/5
+      status: '201'
+      lastModified: '2023-03-27T11:05:32.269055Z'
+  - resource:
+      class:
+        code: enc2
+      status: draft
+      subject:
+        id: >-
+          patient1
+        resourceType: Patient
+      id: >-
+        enc2
+      resourceType: Encounter
+      meta:
+        lastUpdated: '2023-03-27T11:05:32.269055Z'
+        createdAt: '2023-03-27T11:05:32.269055Z'
+        versionId: '6'
+    response:
+      etag: '6'
+      location: /Encounter/enc2/_history/6
+      status: '201'
+      lastModified: '2023-03-27T11:05:32.269055Z'
+  - resource:
+      class:
+        code: enc3
+      status: draft
+      subject:
+        id: >-
+          patient2
+        resourceType: Patient
+      id: >-
+        enc3
+      resourceType: Encounter
+      meta:
+        lastUpdated: '2023-03-27T11:05:32.269055Z'
+        createdAt: '2023-03-27T11:05:32.269055Z'
+        versionId: '7'
+    response:
+      etag: '7'
+      location: /Encounter/enc3/_history/7
+      status: '201'
+      lastModified: '2023-03-27T11:05:32.269055Z'
+id: >-
+  8
+```
 {% endtab %}
 {% endtabs %}
 
 We created 2 patients and 3 encounters that are linked to those patients.
 
-## SQL
+## SQL API
 
-Aidbox uses PostgreSQL (super advanced open-source DBMS), which allows expressing very complex queries. Let's try to implement our task in SQL queries.
+Aidbox uses PostgreSQL (open-source DBMS), which allows expressing very complex queries. Let's try to implement our task in SQL queries.
 
-First of all, let's try to obtain a list of patients. Access the `DB Console` of our box and run the following code snippets:
+Let's get a list of patients. Access the `DB Console` of our box and run the following code snippets:
 
-![DB Console](<../../.gitbook/assets/Screenshot 2018-11-27 19.41.13.png>)
+![DB Console](<../../.gitbook/assets/screenshot-2018-11-27-19.41.13 (1).png>)
 
 {% code title="patients.sql" %}
 ```sql

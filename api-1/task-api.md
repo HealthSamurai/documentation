@@ -31,4 +31,4 @@ If all services running correctly you would see Tasks icon on navigation bar and
 
 <figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption><p>Tasks UI</p></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (7) (1).png" alt=""><figcaption><p>Expanded task</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption><p>Expanded task</p></figcaption></figure>
