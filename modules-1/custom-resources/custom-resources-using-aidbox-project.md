@@ -156,6 +156,8 @@ In this example, the OurType schema will be used to validate OurType resource, r
                   :zen.fhir/type "boolean"}
          :myreference {:confirms #{zen.fhir/Reference}
                        :zen.fhir/type "Reference"
+                       ; MyType, MyType2 are also base-profile schemas
+                       ; for custom repositories 
                        :zen.fhir/reference {:refers #{MyType MyType2}}}
          :myquantity {:zen.fhir/type "Quantity"
                       :type zen/map
