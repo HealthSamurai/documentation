@@ -86,6 +86,6 @@ To enable new version of $import & /fhir/$import operation set environment varia
 **Changes in the new $import API:**
 
 1. Executing more than one import with the same `id` is not possible. Users can omit the \`id\` field from the request, allowing Aidbox to generate the ID.
-2. The status of the workflow can be accessed with a GET request to `$import-status/<id>` instead of `/BulkImportStatus/<id>`. The URL for the import status is returned in the `content-location` header of the $import request.
+2. The status of the workflow can be accessed with a GET request to `$import/<id>` instead of `/BulkImportStatus/<id>`. The URL for the import status is returned in the `content-location` header of the $import request.
 
 Please note that the new implementation is currently in beta, and further improvements and refinements may be made as needed.
