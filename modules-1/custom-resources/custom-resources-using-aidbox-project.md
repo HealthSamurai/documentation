@@ -88,7 +88,8 @@ In this example, the OurType schema will be used to validate OurType resource, r
   :zen.fhir/version "0.5.11"
   :type zen/map
   :require #{:name},
-  :keys {:resourceType {:const {:value "OurType"}}
+  :keys {:resourceType {:const {:value "OurType"}
+                        :type zen/string}
          :name {:type  zen/vector
                 :every {:type zen/map
                         :keys {:given {:type  zen/vector
