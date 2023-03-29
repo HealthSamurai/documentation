@@ -21,6 +21,7 @@ Aidbox Forms supports
 
 - automatic Form convertion to Questionnaire resource on Aidbox startup.
 - automatic SDCDocument convertion to QuestionnaireResponse resource on SDCDocument save.
+- Form rules conversion to human-readable description.
 
 > These features can be configure via [api-constructor](../../aidbox-configuration/aidbox-api-constructor.md) in zen-project.
 
@@ -73,3 +74,69 @@ After that - every document changes will be reflected in QuestionnaireResponse r
 
 
 > NOTE: `id` of converted `QuestionnaireResponse` will be the same as `id` of `SDCDocument`.
+
+
+# Form rules conversion to human-readable description.
+
+You can enable aidbox.sdc/rules conversion to human friendly text while converting Form or Document.
+
+Because Questionnaire and QuestionnaireResponse structures doesn't have place where to store such data 
+We define 2 extra profiles for these resource-types.
+
+You can enable this feature by adding:
+
+- `zen.fhir` and `hl7-fhir-r4-core` dependecies to your zen-package.edn
+- `aidbox.sdc.extra` import to your entrypoint namespace
+
+Example:
+
+zen-package.edn
+
+```
+{:deps {zen.fhir "https://github.com/zen-fhir/zen.fhir.git"
+        hl7-fhir-r4-core "https://github.com/zen-fhir/hl7-fhir-r4-core.git"}}
+```
+
+box.edn
+
+> Assume that box.edn is your zen-project entrypoint namespace 
+
+
+```
+{ns box
+ import #{aidbox.sdc.extra}
+ 
+ ...
+ }
+```
+
+
+When feature is enabled you will see additional data in `Questionnaire` and `QuestionnaireResponse`
+after converting `Forms` and `Documents` with rules.
+
+In `Aidbox` format you will see `rule-description` field.
+
+```
+GET /Questionnaire/q1
+
+resourceType: Questionnaire
+item:
+  - linkId: 1
+    text: BMI
+    rule-description: "A / B * B\n\n where\n* A - body weight\n* B - body height"
+```
+
+In `FHIR` format you will see an extension with `valueMarkdown`
+
+```
+GET /fhir/Questionnaire/q1
+
+resourceType: Questionnaire
+item:
+  - linkId: 1
+    text: BMI
+    extension:
+       - url: urn:fhir:extension:sdc-questionnaire-ruleDescription
+         valueMarkdown: A / B * B\n\n where\n* A - body weight\n* B - body height
+```
+
