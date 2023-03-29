@@ -12,7 +12,7 @@ You need to enable Datadog Logs API and create an API Key
 
 To create a new API key go to [Datadog](https://app.datadoghq.com/) then go to Integrations -> APIs:
 
-![](<../../.gitbook/assets/image (11).png>)
+![](<../../.gitbook/assets/image (11) (1).png>)
 
 Click API Keys
 

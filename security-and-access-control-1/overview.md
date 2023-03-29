@@ -1,108 +1,134 @@
 ---
-description: User, Session, Client resources and mechanics explained
+description: This article explains who access control performs in Aidbox
 ---
 
 # Overview
 
-## **User**
+## How is HTTP request processed? <a href="#how-is-http-request-processed" id="how-is-http-request-processed"></a>
 
-Aidbox has a SCIM User Resource.
+When an HTTP request reaches Aidbox, it goes through several steps. The request can be rejected at any step due to checks being performed on the current step.
 
-Attributes:
+Set of HTTP request steps:
 
-| element    | type          | description      |
-| ---------- | ------------- | ---------------- |
-| id         | string        |                  |
-| email      | string        |                  |
-| password   | string        | Hash of password |
-| identifier | Identifier\[] |                  |
-| userName   |               |                  |
+1. Authentication
+2. Resolving route
+3. Authorization
+4. Request processing
 
-### Create Users
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>HTTP request processing pipeline</p></figcaption></figure>
 
-To create user you can use CRUD API, e.g. `POST /User` and `PUT /User/`
+### Authentication
 
-### User Login
+Authentication (AuthN) is the process of verifying the identity of a user or program. The goal is to ensure that the requestor is who they claim to be.
 
-Human User can use /auth/login to log in with credentials defined in a User resource
+If Aidbox is unable to authenticate the requestor, it may reject the request with an 400 error response.
 
-System can authenticate a User as it is specified in OAuth 2.0 spec. For example, you can get access token via
+### Resolving route
 
-```
-POST /auth/token
-client_id: password-client
-grant_type: password
-username: user@mail.com
-password: password
-```
+Aidbox evaluates the request and determines which handler to select. If no handler is found, it returns "404 Not found" response.
 
-Note for such authentification a Client resource should be created
+### Authorization
 
-{% hint style="info" %}
-You can find different authorization flow examples in the Auth Sandbox in the Aidbox ui
-{% endhint %}
+Authorization (AuthZ or access control) is the granting or denying access to a requestor. Access control is based on the [internal representation of the request](security/access-control.md#request-object-structure). Besides other internal request contains:
 
-`GET /auth/userinfo` returns info about current User session
+* requestor identity
+* the handler
 
-### Activate/Deactivate Users
+Aidbox applies access policies to determine if the request is allowed to invoke the selected handler. If at least one `AccessPolicy` allows the operation, handler processes the request. Otherwise, the server returns "401 Unauthorized" response.
 
-To control User active status you can change `User.inactive` attribute by setting true or false value. Deactivating user doesn't affect Session's activation.
+### Process the request
 
-## Sessions
+Processing the request is useful work done by the handler. When process done, Aidbox returns the output to the requestor.
 
-For each user login Aidbox creates Session resource
+## HTTP request positive scenario
 
-{% code title="Get last 10 sessions" %}
-```sql
-select cts, resource#>>'{user,id}'
-from session
-order by cts desc
-limit 10
-```
-{% endcode %}
+When:
 
-### Session expiration
+* [x] Requestor authenticated, and
+* [x] Route is resolved, and
+* [x] Desired operation is authorized
 
-Basically, all sessions stored in Aidbox are infinite, and you have to manage session expiration by yourself manually.
+Aidbox processes the request and returns the result to the requestor.
 
-However since [Aidbox v:2205](https://docs.aidbox.app/getting-started/versioning-and-release-notes/release-notes#may-2022-v-2205-edge) `Session.exp` field was added. It represents NumericDate from [RFC7519](https://www.rfc-editor.org/rfc/rfc7519#section-2) and it identifies the expiration time after which the Session will not be accepted for processing.
+## How authentication works
 
-You can specify `auth.*.access_token_expiration` (in seconds) on Client resource, so `Session.exp` field will be propagated once corresponding grant\_type is used to launch a Session.
+From an authentication point of view, there are two groups of operations:
 
-## Client
+1. AuthN to open a new session
+2. Useful work request authentication
 
-To provide programmatic access to Aidbox you have to register a `Client` resource.
+### Authentication to open a new session
 
-### `Client.audience`
+There are several flows to initiate a session:
 
-`A Client` can have the `audience` attribute. The `audience` shows what resource server access is intended for. Aidbox compares the `audience` of the `Client` to the `audience` it receives within a`JWT` and decides if the access should be granted.
+* User login with password flow
+* User login with external identity provider
+* Client login with Resource Owner Grant
 
-The `audience` attribute can be defined in 2 ways:
+During those login flows Aidbox authenticate user and client (program) requesting the session open. Session itself is needed to authentication `useful` request.
 
-* As a plain string. For example, `https://cmpl.aidbox.app/smart`
-* As a `Regex`. In that case, the `audience` value should start with the `#` symbol. For example, `#https://cmpl.aidbox.app/tenant/[^\]/smart`
+### Useful requests authentication
 
-{% hint style="info" %}
-That validation of the `audience` happens when SMART on FHIR app launches
-{% endhint %}
+Useful requests are performed by clients or programs. Clients add authorization details to each request they send to Aidbox. Clients auth flows supported by Aidbox:
 
-### `Client.grant_types`
+1. Basic auth
+2. Bearer JWT
+3. Bearer opaque tokens
+4. Cookie ASID
 
-`Client` resource must have `grant_types` attribute defining authentification scheme for this Client.
+#### Basic Auth
 
-> [Application grant types](https://auth0.com/docs/configure/applications/application-grant-types#available-grant-types) (or flows) are methods through which applications can gain [Access Tokens](https://auth0.com/docs/security/tokens/access-tokens) and by which you grant limited access to your resources to another entity without exposing credentials.
+[RFC 7617](https://datatracker.ietf.org/doc/html/rfc7617) defines the "Basic" HTTP authentication method. User ID and password pairs are encodes using base64 and then transmits them as credentials.
 
-Grant types are choosed appropriately based on the `grant_types` property of your Auth0-registered Application. The [OAuth 2.0 protocol](https://auth0.com/docs/authorization/flows/which-oauth-2-0-flow-should-i-use) supports several types of grants, which allow different types of access. **To see available grant types and grant type** mapping refer to the [doc](https://auth0.com/docs/configure/applications/application-grant-types#available-grant-types).
+#### Authentication with Bearer opaque token
 
-Other required attributes are determined based on the values of this attribute `grant_types` is an array of strings, possible values are:
+[Opaque token](https://tools.ietf.org/html/rfc7662) is a randomly generated string thus there is no meaningful information in the token.
 
-* basic
-* client\_credentials
-* password
-* implicit
-* authorization\_code
-* code
+How Aidbox processes opaque token to authenticate the requestor:
 
-{% hint style="info" %}
-You can find different authorization flow examples in the Auth Sandbox in the Aidbox ui
-{% endhint %}
+1. Aidbox sends request to the all auth servers it knows
+2. Each request asks if the token is issued by an auth server
+3. If the issuer is found, it returns the details related to the token
+4. Aidbox enriches the request with the requester details
+
+#### Authentication with Bearer JWT
+
+[JSON Web Token (JWT)](https://jwt.io/) is a signed container for claims and other details. JWT payload could be checked on fly: JWT expiration, claims and signature.
+
+How Aidbox processes JWT token to authenticate the requestor:
+
+1. Aidbox unpacks the JWT
+2. Aidbox checks JWT expiration
+3. Aidbox checks JWT signature
+4. Aidbox requests the token issuer
+5. Aidbox enriches the request with the requester details
+
+#### Authentication with user cookie
+
+When user logs in (with Aidbox credentials or external identity provider), Aidbox creates a session and sets the session cookie to the browser. Since that time all the requests done by user browser are signed with the session cookie.
+
+When Aidbox receives a request containing session cookie, Aidbox tries to fetch session related the cookie. If session is found, Aidbox authenticate request with the details storing in the session.
+
+| AuthN method          | External request | Local session access                                 |
+| --------------------- | ---------------- | ---------------------------------------------------- |
+| Basic auth            |                  | No session access but credentials are stored locally |
+| Opaque token          | Yes              |                                                      |
+| External JWT          | Yes              |                                                      |
+| JWT issued by Aidbox  |                  | Yes                                                  |
+| Cookie authentication |                  | Yes                                                  |
+
+## How access control performs
+
+Authorization decides if a request can be processed by the desired handler. By the start of authorization the original HTTP request is augmented with the user or client identity and the desired handler (see the [request object structure](security/access-control.md#request-object-structure)).
+
+Aidbox applies `AccessPolicy` resources the request one after the other. It does it until any policy grants the permission.
+
+![](<../.gitbook/assets/image (17).png>)![](<../.gitbook/assets/image (4).png>)
+
+Access policies work as `OR` logic gate. In the example below the third policy is skipped due to the second one granted the request in.
+
+If there is no policy allowing the request, Aidbox rejects the request with the 401 (Unauthorized) response.
+
+### What is a public route
+
+The route is public is anyone can access it. To make root public, create an `AccessPolicy` allowing access to it without any restrictions.
