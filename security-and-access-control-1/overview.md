@@ -15,7 +15,7 @@ Set of HTTP request steps:
 3. Authorization
 4. Request processing
 
-![](<../.gitbook/assets/image (1).png>)
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>HTTP request processing pipeline</p></figcaption></figure>
 
 ### Authentication
 
