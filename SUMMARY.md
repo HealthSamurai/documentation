@@ -47,7 +47,7 @@
   * [Custom Search](tutorials/data-api/custom-search.md)
   * [Automatically archive AuditEvent resources in GCP storage guide](tutorials/data-api/automatically-archive-auditevent-resources-in-gcp-storage-guide.md)
   * [How to fix broken dates](tutorials/data-api/how-to-fix-broken-dates.md)
-* [Administration](app-development-guides/administration.md)
+* [Administration](tutorials/administration/README.md)
   * [How to migrate transaction id to bigint](tutorials/administration/how-to-migrate-transaction-id-to-big-int.md)
   * [Working with pgAgent](tutorials/administration/working-with-pgagent.md)
 * [FHIR conformance](tutorials/fhir-conformance/README.md)
@@ -69,6 +69,7 @@
   * [Sync Data From Aidbox](tutorials/tutorials/sync-data-from-aidbox.md)
   * [SDC with Custom Resources](tutorials/tutorials/sdc-with-custom-resources.md)
   * [APM Aidbox](tutorials/tutorials/apm-aidbox.md)
+  * [License migration guide](tutorials/tutorials/license-migration-guide.md)
 
 ## Aidbox configuration
 
@@ -219,7 +220,7 @@
 
 * [Testing with Stresty](app-development-guides/testing-with-stresty.md)
 * [Working with Aidbox from .NET](app-development-guides/working-with-aidbox-from-.net.md)
-* [Administration](tutorials/administration/README.md)
+* [Administration](app-development-guides/administration.md)
 * [Receive logs from your app](app-development-guides/receive-logs-from-your-app/README.md)
   * [X-Audit header](app-development-guides/receive-logs-from-your-app/x-audit-header.md)
   * [Health check](app-development-guides/receive-logs-from-your-app/health-check.md)
@@ -266,7 +267,7 @@
   * [Restrict operations on resource type](security-and-access-control-1/tutorials/restrict-resource-operations.md)
   * [Configure multi-tenancy](security-and-access-control-1/tutorials/multitenancy-via-accesspolicy.md)
   * [Relationship-based access control](security-and-access-control-1/tutorials/relationship-based-access-control-in-aidbox.md)
-* [How-to guides](modules-1/smartbox/how-to-guides/README.md)
+* [How-to guides](security-and-access-control-1/how-to-guides/README.md)
   * [Create and test access control](security-and-access-control-1/how-to-guides/access-policy.md)
   * [External identity provider](security-and-access-control-1/how-to-guides/set-up-external-identity-provider/README.md)
     * [Aidbox](security-and-access-control-1/how-to-guides/aidbox.md)
@@ -345,7 +346,7 @@
   * [Get started](modules-1/smartbox/get-started/README.md)
     * [Set up Smartbox locally](modules-1/smartbox/get-started/set-up-smartbox.md)
     * [Deploy Smartbox with Kubernetes](modules-1/smartbox/get-started/deploy-smartbox-to-kubernetes.md)
-  * [How-to guides](security-and-access-control-1/how-to-guides/README.md)
+  * [How-to guides](modules-1/smartbox/how-to-guides/README.md)
     * [Pass Inferno tests with Smartbox](modules-1/smartbox/how-to-guides/pass-inferno-tests-with-smartbox.md)
     * [Perform EHR launch](modules-1/smartbox/how-to-guides/how-to-perform-ehr-launch.md)
     * [Pass Inferno Visual Inspection and Attestation](modules-1/smartbox/how-to-guides/pass-inferno-visual-inspection-and-attestation.md)

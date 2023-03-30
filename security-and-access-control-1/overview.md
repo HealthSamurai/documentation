@@ -15,7 +15,7 @@ Set of HTTP request steps:
 3. Authorization
 4. Request processing
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>HTTP request processing pipeline</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>HTTP request processing pipeline</p></figcaption></figure>
 
 ### Authentication
 
@@ -123,7 +123,7 @@ Authorization decides if a request can be processed by the desired handler. By t
 
 Aidbox applies `AccessPolicy` resources the request one after the other. It does it until any policy grants the permission.
 
-![](<../.gitbook/assets/image (17).png>)![](<../.gitbook/assets/image (4).png>)
+![](<../.gitbook/assets/image (17) (1).png>) ![](<../.gitbook/assets/image (11) (1).png>)
 
 Access policies work as `OR` logic gate. In the example below the third policy is skipped due to the second one granted the request in.
 

@@ -31,7 +31,7 @@ description: This guide shows how to set-up Keycloak identity provider with Aidb
     <figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 * Enable `Client authentication` checkbox.
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
 
 *   Add `<aidbox-url>/auth/callback/keycloak` to `Valid redirect URIs` field.\
 
@@ -63,7 +63,7 @@ id: keycloak
 
 You can find client secret on `Clients details` page under `Credentials` tab
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (2).png" alt=""><figcaption></figcaption></figure>
 
 ## Login into Aidbox
 
