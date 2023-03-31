@@ -52,3 +52,20 @@ How to read transform DSL
 * **tr/ref** - recursively go to type definition or follow content-ref
 * **tr/union** - translate union / choice types
 * **tr/ext** - translate known extensions
+
+### Remove transform from response
+
+Response can be very large because of `transform` key. Use `include-transform "false"` url parameter to remove it.
+
+```yaml
+POST /$to-format/fhir?include-transform=false
+
+resourceType: Observation
+value: 
+  string: test
+
+# 200
+resource: 
+  resourceType: Observation
+  valueString: test
+```
