@@ -4,7 +4,7 @@ description: >-
   documents to FHIR documents and backward.
 ---
 
-# 📃 C-CDA / FHIR Converter
+# C-CDA / FHIR Converter
 
 ## Introduction
 
@@ -105,24 +105,6 @@ If conversion was successful, you'll get a [FHIR Document](https://www.hl7.org/f
           "uri" : "urn:uuid:6f87fc48-b173-97c0-a5fd-1b7e483d5c67"
         }, {
           "uri" : "urn:uuid:b8b29b52-ecb1-7e69-bee9-52af94d0c174"
-        }, {
-          "uri" : "urn:uuid:cb89a5f1-994b-1660-584d-4e6c4b4cdc33"
-        }, {
-          "uri" : "urn:uuid:453f59c9-b057-44a3-e3be-56e660ea3abd"
-        }, {
-          "uri" : "urn:uuid:ea565d25-d34c-7dbe-819b-f92c9a26792f"
-        }, {
-          "uri" : "urn:uuid:5bda5eea-744c-a6e9-7c65-e9b676577a13"
-        }, {
-          "uri" : "urn:uuid:7154267b-efe9-c424-504b-a885ea734fdd"
-        }, {
-          "uri" : "urn:uuid:2608dce8-3663-d3e7-ad9e-fe8fef7748ad"
-        }, {
-          "uri" : "urn:uuid:e6941356-69b2-c13c-408a-51918e5b9674"
-        }, {
-          "uri" : "urn:uuid:fc569f5d-e27a-51ed-6289-ea6013b8225c"
-        }, {
-          "uri" : "urn:uuid:21781c99-5265-7693-5c3c-7b6081d87b0d"
         } ]
         
         ....
@@ -163,6 +145,42 @@ There are several options you may pass to the `/ccda/v2/to-fhir` endpoint. Optio
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `format`   | <p><code>aidbox | fhir</code><br>Default: <code>fhir</code></p>                                                                       | [Format](../fhir-resources/aidbox-and-fhir-formats.md) of resulting FHIR document. It's FHIR by default. |
 | `sections` | <p>Proceed to the <a href="./#list-of-supported-sections">Section Aliases</a> table to find all possible values. <br>Default: all</p> | Comma-separated list of section aliases to process. By default all sections are processed.               |
+
+### Converting a FHIR Document to C-CDA
+
+The `/ccda/v2/to-ccda` endpoint is used to convert FHIR document to C-CDA document. It accepts a [FHIR Document](https://build.fhir.org/documents.html), which is a specialized FHIR Bundle with [Composition](https://www.hl7.org/fhir/composition.html) resource as its first element. It is the user's responsibility to compose this bundle. The resulting C-CDA document will contain all sections from the provided Composition.
+
+{% hint style="warning" %}
+Because of technical limitation you have to make sure that provided FHIR Document doesn't contain circular references between resources.
+
+Circular references occur when two or more resources in the bundle reference each other in a loop, such as resource A references resource B, which in turn references resource C, which then references resource A again.
+{% endhint %}
+
+To convert a FHIR document to C-CDA, make a POST request to the `/ccda/v2/to-ccda` endpoint with the FHIR document in the request body. The endpoint will return the C-CDA document in XML format.
+
+```http
+POST /ccda/v2/to-ccda
+Content-Type: application/fhir+json
+Authorization: ...
+
+{
+    "resourceType": "Bundle",
+    "type": "document",
+    "entry": [...]
+}
+```
+
+```xml
+// POST /ccda/v2/to-ccda
+// HTTP/1.1 200 OK
+
+<?xml version="1.0" encoding="UTF-8"?>
+<ClinicalDocument 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns="urn:hl7-org:v3" ...>
+  ....
+</ClinicalDocument>
+```
 
 ### Persisting result of C-CDA to FHIR conversion
 
