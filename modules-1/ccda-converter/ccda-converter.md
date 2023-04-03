@@ -1,10 +1,10 @@
 ---
 description: >-
-  This page describes C-CDA built-in module which provides API to convert C-CDA
-  documents to FHIR documents and backward.
+  This page describes the first version of C-CDA to FHIR converter. This version
+  of converter is deprecated in favour of the new bidirectional converter.
 ---
 
-# C-CDA
+# 🔒 v1 Documentation
 
 ## Introduction
 
@@ -140,10 +140,10 @@ Please note that this endpoint doesn't persist any populated FHIR data to Aidbox
 
 There are several options you may pass to the `/ccda/to-fhir` endpoint. Options are passed as query string parameters, i.e. `/ccda/to-fhir?option1=value1&option2=value2`.
 
-| Option     | Values                                                                                                                                    | Description                                                                                           |
-| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `format`   | <p><code>aidbox | fhir</code><br>Default: <code>fhir</code></p>                                                                           | [Format](fhir-resources/aidbox-and-fhir-formats.md) of resulting FHIR document. It's FHIR by default. |
-| `sections` | <p>Proceed to the <a href="ccda-converter.md#section-aliases">Section Aliases</a> table to find all possible values. <br>Default: all</p> | Comma-separated list of section aliases to process. By default all sections are processed.            |
+| Option     | Values                                                                                                                                    | Description                                                                                              |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `format`   | <p><code>aidbox | fhir</code><br>Default: <code>fhir</code></p>                                                                           | [Format](../fhir-resources/aidbox-and-fhir-formats.md) of resulting FHIR document. It's FHIR by default. |
+| `sections` | <p>Proceed to the <a href="ccda-converter.md#section-aliases">Section Aliases</a> table to find all possible values. <br>Default: all</p> | Comma-separated list of section aliases to process. By default all sections are processed.               |
 
 ### Persisting result of C-CDA to FHIR conversion
 
@@ -177,7 +177,7 @@ Options are passed as query-string parameters, i.e. `/ccda/persist?create-docref
 | Option          | Values                                                                                                                                    | Description                                                                                |
 | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
 | `create-docref` | <p><code>true | false</code><br>Default: <code>false</code></p>                                                                           | Specifies if a DocumentReference resource is needed to store original XML document.        |
-| `tenant-id`     | <p>ID of Tenant resource<br>Default: none</p>                                                                                             | For [Smartbox](smartbox/) users only. Assigns Tenant to all populated resources.           |
+| `tenant-id`     | <p>ID of Tenant resource<br>Default: none</p>                                                                                             | For [Smartbox](../smartbox/) users only. Assigns Tenant to all populated resources.        |
 | `sections`      | <p>Proceed to the <a href="ccda-converter.md#section-aliases">Section Aliases</a> table to find all possible values. <br>Default: all</p> | Comma-separated list of section aliases to process. By default all sections are processed. |
 
 #### Section Aliases

@@ -44,9 +44,9 @@
   * [Zen Index API](../../storage-1/indexes/zen-indexes.md) is now considered stable
   * Implemented automatic loading of search parameters on extensions from IG
 * C-CDA to FHIR converter
-  * Added configuration for [/ccda/to-fhir](../../modules-1/ccda-converter.md#endpoint-options) endpoint
-  * Added configuration for [/ccda/persist](../../modules-1/ccda-converter.md#endpoint-options-1) endpoint
-  * Added tenant support for [/ccda/persist](../../modules-1/ccda-converter.md#persisting-result-of-c-cda-to-fhir-conversion) endpoint
+  * Added configuration for [/ccda/to-fhir](../../modules-1/ccda-converter/#endpoint-options) endpoint
+  * Added configuration for [/ccda/persist](../../modules-1/ccda-converter/#endpoint-options-1) endpoint
+  * Added tenant support for [/ccda/persist](../../modules-1/ccda-converter/#persisting-result-of-c-cda-to-fhir-conversion) endpoint
 * Security and Access Control
   * Supported passing any launch context parameters on SMART on FHIR 2.0 app launch flow with [fhirContext](../../security-and-access-control-1/how-to-guides/smart-on-fhir/smart-on-fhir-app-launch.md#generate-launch-uri-for-ehr-launch-sequence) parameter
 * Ops
@@ -83,7 +83,7 @@
   * Added [extraction based on templates](../../reference/aidbox-forms/finalize-dsl.md)
   * Added API for generate layers ([layout, finalize, finalize-constraints](../../reference/aidbox-forms/api-reference.md))
 * C-CDA to FHIR converter
-  * Added a guide on[ how to persist FHIR resources to a DB](../../modules-1/ccda-converter.md#persisting-a-result-of-ccda-to-fhir-conversion) after C-CDA to FHIR transformation.
+  * Added a guide on[ how to persist FHIR resources to a DB](../../modules-1/ccda-converter/#persisting-a-result-of-ccda-to-fhir-conversion) after C-CDA to FHIR transformation.
   * Improved Observation data mapping.
 * [Google Cloud Pub/Sub integration](../../api-1/reactive-api-and-subscriptions/gcp-pub-sub.md)
 
@@ -117,7 +117,7 @@
 * Terminology
   * Introduced [FHIR Terminology repositories ](../../terminology/fhir-terminology-repository/)(alpha) to store any terminology elements (code systems, value sets, concepts) in an effective way and distribute them among Aidbox instances
 * C-CDA to FHIR converter
-  * Supported [validation against XSD and Schematron schemas](../../modules-1/ccda-converter.md#validating-a-ccda-document)
+  * Supported [validation against XSD and Schematron schemas](../../modules-1/ccda-converter/#validating-a-ccda-document)
   * Supported Diagnostic Imaging Report sections:
     * DICOM
     * Findings
