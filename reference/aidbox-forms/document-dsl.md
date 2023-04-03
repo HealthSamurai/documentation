@@ -186,16 +186,19 @@ MyDocument
 
 ### choice field-type
 
-Choise field - references valueset with answers
+Choise field has predefined set of answers.
 
-Choice fields should have these properties:
+Choice fields use these properties:
 
-| property       | description                | type        | required? |
-| -------------- | -------------------------- | ----------- | --------- |
-| `:enum`        | List of available values   | zen/keyword | no        |
-| `:sdc/options` | Alternative options source | zen/keyword | no        |
+| property       | description                | type                              | required? |
+|----------------|----------------------------|-----------------------------------|-----------|
+| `:enum`        | List of available values   | zen/vector of values              | no        |
+| `:sdc/options` | Alternative options source | aidbox.sdc.options/{valueset,rpc} | no        |
+
 
 By default choice field uses `:enum` keyword for options definition.
+
+> if you don't use :enum - you should confirm `#{aidbox.sdc.fhir/coding}` schema.
 
 Example:
 
@@ -223,9 +226,29 @@ For simple cases you can freely use `:enum` keyword with options - but for compl
 
 If you specify `:sdc/options :aidbox.sdc.options/valueset`, then you also must specify `:valueset` property.
 
-| property   | description                      | type       | required? |
-| ---------- | -------------------------------- | ---------- | --------- |
-| `valueset` | ValueSet ID with list of choices | zen/string | yes       |
+| property   | description                        | type      | required? |
+|------------|------------------------------------|-----------|-----------|
+| `valueset` | lisp expr that returns ValueSet ID | lisp-expr | yes       |
+
+
+Example:
+
+Static valueset
+
+```
+:sdc/options :aidbox.sdc.options/valueset
+:valueset "my-food-allergy-valueset"
+```
+
+Dynamic valueset
+
+```
+:sdc/options :aidbox.sdc.options/valueset
+:valueset (if (= (get :type) "food")
+            "my-food-allergy-valueset"
+            "my-substance-allergy-valueset")
+```
+
 
 If you specify `:sdc/options :aidbox.sdc.options/rpc`, then you also must specify `:rpc` property.
 
