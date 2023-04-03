@@ -146,3 +146,38 @@ entry:
 - resource: {birthDate: '2021-01-02', id: pt-1, resourceType: Patient}
 - resource: {birthDate: '2021-01-01', id: pt-1, resourceType: Patient}
 ```
+
+## Change transaction isolation level
+
+By default Aidbox uses `SERIALIZABLE` transaction isolation level. This may lead to some transactions being rejected when there are many concurrent requests.
+
+See more about [transaction isolation in Postgres documentation](https://www.postgresql.org/docs/current/transaction-iso.html).
+
+The best way to handle rejected transactions is to retry them. If it is not possible, you can set lower isolation level.
+
+{% hint style="danger" %}
+Using isolation level lower than serializable may lead to data serialization anomalies.
+{% endhint %}
+
+Example:
+
+```yaml
+POST /fhir
+x-max-isolation-level: read-committed
+content-type: text/yaml
+accept: text/yaml
+
+resourceType: Bundle
+type: transaction
+entry:
+  - request:
+      method: PUT
+      url: "/Patient/pt-1"
+    resource:
+      active: true
+  - request:
+      method: PUT
+      url: "/Patient/pt-2"
+    resource:
+      active: false
+```
