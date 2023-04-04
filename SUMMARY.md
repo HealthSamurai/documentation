@@ -313,7 +313,7 @@
 ## Modules <a href="#modules-1" id="modules-1"></a>
 
 * [HL7 v2 Integration](modules-1/hl7-v2-integration/README.md)
-  * [HL7 v2 pipeline](modules-1/hl7-v2-integration/hl7-v2-pipeline.md)
+  * [HL7 v2 integration with Aidbox Project](modules-1/hl7-v2-integration/hl7-v2-integration-with-aidbox-project.md)
 * [C-CDA / FHIR Converter](modules-1/ccda-converter/README.md)
   * [🔒 v1 Documentation](modules-1/ccda-converter/ccda-converter.md)
 * [FHIR Resources](modules-1/fhir-resources/README.md)
