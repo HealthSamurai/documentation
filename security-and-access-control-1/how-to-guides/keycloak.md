@@ -13,7 +13,7 @@ description: This guide shows how to set-up Keycloak identity provider with Aidb
 *   Fill the name of your realm.\
 
 
-    <figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (6) (2).png" alt=""><figcaption></figcaption></figure>
 
 ## Create a client
 

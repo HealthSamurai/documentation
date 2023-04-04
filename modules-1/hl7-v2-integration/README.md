@@ -20,7 +20,7 @@ Both `Hl7v2Config` and `Hl7v2Message` are managed with standard CRUD API.
 
 ### Mapper module
 
-Most likely when a new HL7 v2 message is received, you want to make changes in the database — create, update or delete  FHIR resources. It's where the [Mapper module](../tools/mappings.md) comes on stage — HL7v2-IN module parses the message and then passes message data to the Mapping resource specified in `Hl7v2Config` instance via the `mapping` reference.
+Most likely when a new HL7 v2 message is received, you want to make changes in the database — create, update or delete  FHIR resources. It's where the [Mapper module](../../tools/mappings.md) comes on stage — HL7v2-IN module parses the message and then passes message data to the Mapping resource specified in `Hl7v2Config` instance via the `mapping` reference.
 
 Here is an example of a mapping which creates a new Patient resource with a name taken from the `PID.5` field each time a new message is received:
 
@@ -45,7 +45,7 @@ body:
 ```
 
 {% hint style="info" %}
-Please note that Mapping returns [FHIR Transaction Bundle](../api-1/transaction.md), so it can produce as many CRUD operations as you need. Any other Aidbox operation/endpoint can be triggered as well (for instance, [SQL endpoint](../storage-1/database.md)).
+Please note that Mapping returns [FHIR Transaction Bundle](../../api-1/transaction.md), so it can produce as many CRUD operations as you need. Any other Aidbox operation/endpoint can be triggered as well (for instance, [SQL endpoint](../../storage-1/database.md)).
 {% endhint %}
 
 ### Creating a Hl7v2Config Resource
@@ -76,7 +76,7 @@ Refer to a mapping which will process your messages with the `mapping` attribute
 
 Access the Aidbox UI and navigate to the "HL7 v2" tab in the left menu, then click the "New" button in the top right corner.
 
-![](../.gitbook/assets/screenshot-2019-11-14-at-18.20.41.png)
+![](../../.gitbook/assets/screenshot-2019-11-14-at-18.20.41.png)
 
 Copy-paste a following test message to the "New Message" form:
 
@@ -94,11 +94,11 @@ IN2||353333833|0000003333^RETIRED|||||||||||||||||||||||||||||||||Y|||CHR||||W||
 
 Pick an Hl7v2Config instance using the radio button and click the "Create" button:
 
-![](../.gitbook/assets/screenshot-2019-11-21-at-18.04.04.png)
+![](../../.gitbook/assets/screenshot-2019-11-21-at-18.04.04.png)
 
 You'll see a newly created message with additional information like status, parsed structure, outcome, etc.:
 
-![](../.gitbook/assets/screenshot-2019-11-14-at-18.50.57.png)
+![](../../.gitbook/assets/screenshot-2019-11-14-at-18.50.57.png)
 
 ### Submitting a Message with the REST API
 
