@@ -3,7 +3,7 @@
 ## March 2023 _`edge`_
 
 * Validation and Terminology
-  * FHIR R4B support
+  * Supported FHIR R4B&#x20;
 * Data API
   * Defined [custom resources using Aidbox Project](../../modules-1/custom-resources/getting-started-with-custom-resources.md#defining-a-custom-resource)
   * Added [$to-format operation](../../app-development-guides/usdto-format-fhir-aidbox.md) without getting transformation metadata
@@ -13,13 +13,12 @@
   * Added a header to [lower transaction isolation level](../../api-1/transaction.md#change-transaction-isolation-level)
 * Integrations
   * Improved [$import operation](../../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md#usdimport-on-top-of-the-task-api-beta), that allows for more reliable and efficient processing of multiple import requests through the Task API
-  * Set up [HL7v2 integration](../../modules-1/hl7-v2-integration/hl7-v2-integration-with-aidbox-project.md) with Aidbox Project using [the new parser](../../modules-1/hl7-v2-integration/hl7-v2-integration-with-aidbox-project.md#about-hl7-v2-parser) and [mapping engine](../../tutorials/tutorials/hl7-v2-pipeline-with-patient-mapping.md)
+  * Released [the new version of HL7 v2 parser](../../modules-1/hl7-v2-integration/hl7-v2-integration-with-aidbox-project.md#about-hl7-v2-parser) and [mapping engine](../../tutorials/tutorials/hl7-v2-pipeline-with-patient-mapping.md)
 * C-CDA to FHIR converter
-  * Released [FHIR to CCDA converter](../../modules-1/ccda-converter/#converting-a-c-cda-document-to-fhir) (beta). Supported sections:
+  * Released [FHIR to C-CDA bidirectional converter](../../modules-1/ccda-converter/#converting-a-c-cda-document-to-fhir) (beta). Supported sections:
     * Allergies, Encounters, Immunizations, Problems, Vital Signs, Results, Social History, Procedures, Medications
 * Security and Access control
   * Developed [access policy dev tool ](../../security-and-access-control-1/security/access-policy-dev-tool.md)
-  * [Speeded up access policies applying](https://github.com/HealthSamurai/sansara/issues/1768). Fast policies run earlier than slow ones
   * Added tutorials and guides:
     * [Auth overview article ](../../security-and-access-control-1/overview.md)
     * [How to implement the ReBAC authorization model ](../../security-and-access-control-1/tutorials/relationship-based-access-control-in-aidbox.md)in Aidbox within AccessPolicy
@@ -52,7 +51,7 @@
 * MDM (Master Data Management)
   * Fixed bugs with Python integration
 * C-CDA to FHIR converter
-  * Introduced FHIR to CCD transformation (beta)
+  * Introduced FHIR to CCD transformation (alpha)
 * Security and Access Control
   * Supported Aidbox [on path](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox\_base\_url)
   * Improved [`__debug=policy`](../../security-and-access-control-1/how-to-guides/access-policy.md#policy-debugging)
