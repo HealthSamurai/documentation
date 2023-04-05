@@ -35,5 +35,5 @@ In this example `importbox/importbox` is the system entrypoint defined in the **
 `:migrations` — vector of migrations. Each migration is a map containing `id` and `sql` keys.
 
 {% hint style="warning" %}
-``
+
 {% endhint %}

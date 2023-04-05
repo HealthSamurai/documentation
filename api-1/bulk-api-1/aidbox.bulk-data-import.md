@@ -264,4 +264,3 @@ result:
 {% endtab %}
 {% endtabs %}
 
-``

@@ -12,7 +12,7 @@ Aidbox docker images are available on [Docker Hub](https://hub.docker.com/u/heal
 
 ### **:edge**
 
-The most recent Aidbox build. **** We highly recommend using the **edge** channel in staging and dev environments to get access to new functionality and detect potential issues as soon as possible. Every commit into the Aidbox code base after successful CI is published to the **edge** channel. The **edge** channel may have issues and/or regressions.
+The most recent Aidbox build. We highly recommend using the **edge** channel in staging and dev environments to get access to new functionality and detect potential issues as soon as possible. Every commit into the Aidbox code base after successful CI is published to the **edge** channel. The **edge** channel may have issues and/or regressions.
 
 ### :**latest**
 

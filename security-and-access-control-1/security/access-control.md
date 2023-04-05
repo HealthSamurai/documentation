@@ -32,7 +32,7 @@ It supports various [evaluation engines](evaluation-engines.md): _Allow_, _JSON 
 
 ### Request object structure
 
-Aidbox evaluates `AccessPolicy` against a **request object** which represents **** incoming HTTP request. It has the following structure:
+Aidbox evaluates `AccessPolicy` against a **request object** which represents incoming HTTP request. It has the following structure:
 
 ```yaml
 # Request method (get/post/put/delete)

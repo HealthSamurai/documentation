@@ -4,7 +4,7 @@ Aidbox Search API can be configured in many ways. This page explains the differe
 
 ## Jsonpath vs jsonknife
 
-Aidbox has two engines to search: [jsonpath](https://www.postgresql.org/docs/12/datatype-json.html#DATATYPE-JSONPATH) and [jsonknife](https://github.com/niquola/jsonknife). ****&#x20;
+Aidbox has two engines to search: [jsonpath](https://www.postgresql.org/docs/12/datatype-json.html#DATATYPE-JSONPATH) and [jsonknife](https://github.com/niquola/jsonknife).&#x20;
 
 The engine is responsible for SQL generation for search operations. SQL by jsonpath and jsonknife is different for search parameter types: date, number, quantity, reference, string, token, uri.  \_lastUpdated, \_createdAt search parameters and :missing modifier searches are also differs by engine.
 

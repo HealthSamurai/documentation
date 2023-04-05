@@ -1,4 +1,4 @@
-# HL7 v2 pipeline
+# HL7 v2 integration with Aidbox Project
 
 The HL7 v2 pipeline is the next step in [HL7v2 Aidbox integration](./), which uses new versions of the HL7 v2 parser and mapper driven by zen/lang configurations. The HL7 v2 pipeline is fully configurable API and is robust against mismatches with HL7 v2 specification.
 
@@ -84,14 +84,19 @@ Now only the default configuration is available, but in future versions of the H
 
 ## Mapping configuration
 
-To convert from an intermediate format to FHIR Bundle or Aidbox Bundle, you need to define mapping, which should be tagged as `hl7v2.api/hl7v2-mapping` and contain the `:mapping` key. The `:mapping` value confirms as `lisp/expr` so you may use [Lisp expressions](../../reference/aidbox-forms/lisp.md) to define which intermediate format properties should be included in the Bundle resource.
+To convert from an intermediate format to FHIR Bundle or Aidbox Bundle, you need to define mapping, which should be tagged as `lisp/mapping` and contain the `:mapping` key. The `:mapping` value confirms as `lisp/expr` so you may use [Lisp expressions](../../reference/aidbox-forms/lisp.md) to define which intermediate format properties should be included in the Bundle resource.
+
+{% hint style="info" %}
+Null values and empty arrays will be truncated automatically in the resulted structure.
+{% endhint %}
 
 ```clojure
 {ns my-mappings
- import #{hl7v2.api}
+ import #{hl7v2.api
+          lisp}
 
  patient-fhir-mapping
- {:zen/tags #{hl7v2.api/hl7v2-mapping}
+ {:zen/tags #{lisp/mapping}
   :mapping  {:resourceType "Bundle"
              :type "transaction"
              :id (get-in [:parsed :message :proc_id :id])
@@ -101,10 +106,11 @@ To convert from an intermediate format to FHIR Bundle or Aidbox Bundle, you need
                       :resource {:resourceType "Patient"
 
                                  :extension
-                                 [{:url "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
-                                   :extension (for [i (get-in [:parsed :patient_group :patient :race])]
-                                                {:url "text"
-                                                 :valueCoding (select-keys i [:display :system :code])})}]
+                                 [(when (get-in [:parsed :patient_group :patient :race])
+                                    {:url "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
+                                     :extension (for [i (get-in [:parsed :patient_group :patient :race])]
+                                                  {:url "text"
+                                                   :valueCoding (select-keys i [:display :system :code])})})]
 
                                  :identifier   (for [i (get-in [:parsed :patient_group :patient :identifier])]
                                                  (select-keys i [:value :system :type]))
@@ -114,7 +120,12 @@ To convert from an intermediate format to FHIR Bundle or Aidbox Bundle, you need
 
                                  :birthDate    (get-in [:parsed :patient_group :patient :birthDate])
 
-                                 :gender       (get-in [:parsed :patient_group :patient :gender])
+                                 :gender       (get {"M" "male"
+                                                     "F" "female"
+                                                     "A" "other"
+                                                     "O" "other"
+                                                     "U" "unknown"}
+                                                    (get-in [:parsed :patient_group :patient :gender]))
 
                                  :address      (for [i (get-in [:parsed :patient_group :patient :address])]
                                                  (select-keys i [:line :city :state :postalCode :country]))
@@ -125,8 +136,9 @@ To convert from an intermediate format to FHIR Bundle or Aidbox Bundle, you need
                                  :martialStatus (when (get-in [:parsed :patient_group :patient :martialStatus])
                                                   {:coding (select-keys (get-in [:parsed :patient_group :patient :martialStatus])
                                                                         [:code :display :system])})}}
-                     ]}}
-}
+                     ]}
+  }
+ }
 ```
 
 ## Api configuration
@@ -184,7 +196,7 @@ accept: application/json
   "result": {
    "resourceType": "Bundle",
    "type": "transaction",
-   "id": "",
+   "id": "P",
    "entry": [
     {
      "request": {
@@ -214,10 +226,7 @@ accept: application/json
       "birthDate": "1999-07-23",
       "resourceType": "Patient",
       "extension": [
-       {
-        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race",
-        "extension": []
-       }
+       null
       ],
       "identifier": [
        {
@@ -225,7 +234,7 @@ accept: application/json
        }
       ],
       "telecom": [],
-      "gender": "M"
+      "gender": "male"
      }
     }
    ]
@@ -297,7 +306,7 @@ accept: application/json
   "errors": []
  },
  "apiOperation": "my-hl7-api/adt-in"
-}n
+}
 ```
 {% endtab %}
 {% endtabs %}

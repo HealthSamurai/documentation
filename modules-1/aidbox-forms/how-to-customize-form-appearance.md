@@ -36,7 +36,7 @@ For filled buttons accent color will be used as background color, for outlined b
 
 Also you can change text of `Save & Close` and `Submit` buttons.
 
-> Read more about [`Save & Close button`](../../reference/aidbox-forms/api-reference.md#aidbox.sdc-generate-form-link)``
+> Read more about [`Save & Close button`](../../reference/aidbox-forms/api-reference.md#aidbox.sdc-generate-form-link)
 
 ```clojure
 buttons-sdc-theme

@@ -7,7 +7,7 @@ description: This guide shows how to set-up Keycloak identity provider with Aidb
 ## Create a realm
 
 *   Click on the dropdown in the top-left corner where it says `Master`, then click on `Create Realm`\
-    ``
+
 
     <figure><img src="../../.gitbook/assets/image (1) (1) (2).png" alt=""><figcaption></figcaption></figure>
 *   Fill the name of your realm.\

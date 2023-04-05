@@ -1,6 +1,6 @@
 # Release Notes
 
-## March 2023 _`latest`_
+## March 2023 _`edge`_
 
 * Validation and Terminology
   * FHIR R4B support
@@ -25,7 +25,7 @@
     * [How to implement the ReBAC authorization model ](../../security-and-access-control-1/tutorials/relationship-based-access-control-in-aidbox.md)in Aidbox within AccessPolicy
     * [Access policy best practices ](../../security-and-access-control-1/security/accesspolicy-best-practices.md)
 * Aidbox user portal
-  * Added FHIR R4B Zen Package in configuration projects
+  * Added FHIR R4B zenFHIR package to configuration options
 * Aidbox Forms
   * Added an option [to select valueset dynamically](../../reference/aidbox-forms/document-dsl.md#choice-field-type) in the choice field
   * Added [new field type for storing resource references](../../reference/aidbox-forms/document-dsl.md#reference-field-type)
@@ -55,7 +55,7 @@
   * Introduced FHIR to CCD transformation (beta)
 * Security and Access Control
   * Supported Aidbox [on path](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox\_base\_url)
-  * Improved [`__debug=policy`](../../security-and-access-control-1/how-to-guides/access-policy.md#policy-debugging)``
+  * Improved [`__debug=policy`](../../security-and-access-control-1/how-to-guides/access-policy.md#policy-debugging)
 * Ops
   * [Devbox images](../../overview/aidbox-user-portal/licenses.md#development-license) are no longer supported. Please use [AidboxOne image](https://hub.docker.com/r/healthsamurai/aidboxone)  with [development license](../../overview/aidbox-user-portal/licenses.md#development-license)
   * Supported [box\_web\_\*](../../reference/configuration/environment-variables/optional-environment-variables.md#box\_web\_max\_\_body) configs for Multibox
@@ -388,7 +388,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 * We've released a major Aidbox UI upgrade
 
-![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (1) (12) (1) (10) (10) (1) (11) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2).png>)
+![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (1) (12) (1) (10) (10) (1) (11) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png>)
 
 * Updated REST Console (check out[ the tutorial](https://bit.ly/rest\_console\_tutorial)):
   * Explicit request headers `content-type, accept` etc

@@ -14,7 +14,7 @@ Yes, please, check out [the documentation](https://docs.aidbox.app/user-manageme
 
 ## **How to create a SearchParameter for extensions on a property in a resource?**
 
-You can create [custom search parameter](https://docs.aidbox.app/api-1/fhir-api/search-1/searchparameter) for extensions **** and to made SearchParameter easier to write you also can [define attribute](https://docs.aidbox.app/modules-1/first-class-extensions)
+You can create [custom search parameter](https://docs.aidbox.app/api-1/fhir-api/search-1/searchparameter) for extensions and to made SearchParameter easier to write you also can [define attribute](https://docs.aidbox.app/modules-1/first-class-extensions)
 
 ## **I’m building a request with revinclude. Is it possible to also apply a search for the include resource in that request?**
 

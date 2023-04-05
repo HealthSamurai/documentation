@@ -6,16 +6,17 @@ This tutorial is also available with a [sample aidbox configuration project](htt
 
 ## Mapping definition
 
-Define your mapping tagged by `hl7v2.api/hl7v2-mapping`.&#x20;
+Define your mapping tagged by `lisp/mapping`.&#x20;
 
 The `:mapping` value is confirmed as `lisp/expr`, so you may use [Lisp expressions](../../reference/aidbox-forms/lisp.md) to define which intermediate format properties should be included in the Bundle resource.
 
 ```clojure
 {ns my-mappings
- import #{hl7v2.api}
+ import #{hl7v2.api
+          lisp}
 
  patient-fhir-mapping
- {:zen/tags #{hl7v2.api/hl7v2-mapping}
+ {:zen/tags #{lisp/mapping}
   :mapping  {:resourceType "Bundle"
              :type "transaction"
              :id (get-in [:parsed :message :proc_id :id])
@@ -25,10 +26,11 @@ The `:mapping` value is confirmed as `lisp/expr`, so you may use [Lisp expressio
                       :resource {:resourceType "Patient"
 
                                  :extension
-                                 [{:url "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
-                                   :extension (for [i (get-in [:parsed :patient_group :patient :race])]
-                                                {:url "text"
-                                                 :valueCoding (select-keys i [:display :system :code])})}]
+                                 [(when (get-in [:parsed :patient_group :patient :race])
+                                    {:url "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
+                                     :extension (for [i (get-in [:parsed :patient_group :patient :race])]
+                                                  {:url "text"
+                                                   :valueCoding (select-keys i [:display :system :code])})})]
 
                                  :identifier   (for [i (get-in [:parsed :patient_group :patient :identifier])]
                                                  (select-keys i [:value :system :type]))
@@ -38,7 +40,12 @@ The `:mapping` value is confirmed as `lisp/expr`, so you may use [Lisp expressio
 
                                  :birthDate    (get-in [:parsed :patient_group :patient :birthDate])
 
-                                 :gender       (get-in [:parsed :patient_group :patient :gender])
+                                 :gender       (get {"M" "male"
+                                                     "F" "female"
+                                                     "A" "other"
+                                                     "O" "other"
+                                                     "U" "unknown"}
+                                                    (get-in [:parsed :patient_group :patient :gender]))
 
                                  :address      (for [i (get-in [:parsed :patient_group :patient :address])]
                                                  (select-keys i [:line :city :state :postalCode :country]))
