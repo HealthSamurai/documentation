@@ -1,5 +1,5 @@
 ---
-description: This article explains who access control performs in Aidbox
+description: This article explains how access control performs in Aidbox
 ---
 
 # Overview
