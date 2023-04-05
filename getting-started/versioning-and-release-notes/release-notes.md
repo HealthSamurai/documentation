@@ -1,5 +1,43 @@
 # Release Notes
 
+## March 2023 _`latest`_
+
+* Validation and Terminology
+  * FHIR R4B support
+* Data API
+  * Defined [custom resources using Aidbox Project](../../modules-1/custom-resources/getting-started-with-custom-resources.md#defining-a-custom-resource)
+  * Added [$to-format operation](../../app-development-guides/usdto-format-fhir-aidbox.md) without getting transformation metadata
+  * Fixed polymorphic reference targets for FHIR resources&#x20;
+  * Fixed Bundle conformance for AidboxQuery&#x20;
+  * Fixed sorting by token when using jsonknife engine
+  * Added a header to [lower transaction isolation level](../../api-1/transaction.md#change-transaction-isolation-level)
+* Integrations
+  * Improved [$import operation](../../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md#usdimport-on-top-of-the-task-api-beta), that allows for more reliable and efficient processing of multiple import requests through the Task API
+  * Set up [HL7v2 integration](../../modules-1/hl7-v2-integration/hl7-v2-integration-with-aidbox-project.md) with Aidbox Project using [the new parser](../../modules-1/hl7-v2-integration/hl7-v2-integration-with-aidbox-project.md#about-hl7-v2-parser) and [mapping engine](../../tutorials/tutorials/hl7-v2-pipeline-with-patient-mapping.md)
+* C-CDA to FHIR converter
+  * Released [FHIR to CCDA converter](../../modules-1/ccda-converter/#converting-a-c-cda-document-to-fhir) (beta). Supported sections:
+    * Allergies, Encounters, Immunizations, Problems, Vital Signs, Results, Social History, Procedures, Medications
+* Security and Access control
+  * Developed [access policy dev tool ](../../security-and-access-control-1/security/access-policy-dev-tool.md)
+  * [Speeded up access policies applying](https://github.com/HealthSamurai/sansara/issues/1768). Fast policies run earlier than slow ones
+  * Added tutorials and guides:
+    * [Auth overview article ](../../security-and-access-control-1/overview.md)
+    * [How to implement the ReBAC authorization model ](../../security-and-access-control-1/tutorials/relationship-based-access-control-in-aidbox.md)in Aidbox within AccessPolicy
+    * [Access policy best practices ](../../security-and-access-control-1/security/accesspolicy-best-practices.md)
+* Aidbox user portal
+  * Added FHIR R4B Zen Package in configuration projects
+* Aidbox Forms
+  * Added an option [to select valueset dynamically](../../reference/aidbox-forms/document-dsl.md#choice-field-type) in the choice field
+  * Added [new field type for storing resource references](../../reference/aidbox-forms/document-dsl.md#reference-field-type)
+  * Added [support for amending forms, that are shared via links](../../reference/aidbox-forms/api-reference.md#aidbox.sdc-generate-form-link)
+  * Showed form rules in human-friendly format:
+    * [Show in the UI](../../reference/aidbox-forms/api-reference.md#aidbox.sdc-generate-form-link)&#x20;
+    * [Attach to Questionnaire/QuestionnaireResponse on conversion ](../../modules-1/aidbox-forms/converter.md#form-rules-conversion-to-human-readable-description.)
+  * Added ability to [store form properties in DB](../../reference/aidbox-forms/api-reference.md#add-form-properties)&#x20;
+  * Added support for static images&#x20;
+  * Added wizard like layout&#x20;
+  * Added support for form help message
+
 ## February 2023 _`latest`_
 
 * Validation and Terminology
@@ -14,7 +52,7 @@
 * MDM (Master Data Management)
   * Fixed bugs with Python integration
 * C-CDA to FHIR converter
-  * Introduced FHIR to CCD transformation (alpha)
+  * Introduced FHIR to CCD transformation (beta)
 * Security and Access Control
   * Supported Aidbox [on path](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox\_base\_url)
   * Improved [`__debug=policy`](../../security-and-access-control-1/how-to-guides/access-policy.md#policy-debugging)``
@@ -350,7 +388,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 * We've released a major Aidbox UI upgrade
 
-![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (1) (12) (1) (10) (10) (1) (11) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (6).png>)
+![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (1) (12) (1) (10) (10) (1) (11) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2).png>)
 
 * Updated REST Console (check out[ the tutorial](https://bit.ly/rest\_console\_tutorial)):
   * Explicit request headers `content-type, accept` etc
