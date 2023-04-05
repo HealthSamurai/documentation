@@ -42,7 +42,7 @@ resourceType: Search
 name: <parameter>
 resource: {id: <resourceType>, resourceType: Entity}
 param-parser: token
-token:
+token-sql:
   only-code: <SQL query for parameter={{param.code}}>
   no-system: <SQL query for parameter=|{{param.code}}>
   only-system: <SQL query for parameter={{param.system}}|>
