@@ -27,22 +27,47 @@ Typical description of node:
 
 * children - an array of child elements
 
-## Attachment
 
-If you want to show some image (e.g. for instructions), you can attach it via `aidbox.sdc/attachment` node
+## File input
 
+Allows user to attach a file to the document. Must be binded to a key with [`aidbox.sdc/attachment`](./document-dsl.md#attachment-field-type) type in document.
+
+```clojure
+{:type aidbox.sdc/file-input
+ :bind [:pulse-image]}
 ```
-{:type aidbox.sdc/attachment
- :src "...link to image..."}
-```
 
-You can also adjust `:width` and `:height`
+## Media viewer
 
-Currently supported attachment types:&#x20;
+Gives ability to show some media content from diferent sources:
+
+* static url
+* files attached to document
+
+You can also adjust `:width` and `:height`.
+
+Currently supported content types:
 
 * image
 * video
 * PDF
+
+
+### Show static media content
+
+```clojure
+{:type aidbox.sdc/media-viewer
+ :src "https://example.com/image.png"
+ :width 500
+ :height 300}
+```
+
+### Show attachments from the document
+```clojure
+{:type aidbox.sdc/media-viewer
+ :bind [:pulse-image]}
+```
+
 
 ## Label node
 
@@ -166,14 +191,14 @@ SuperDocument
         :choice-field-inferred-2 {:type zen/map
                                   :sdc/option :aidbox.sdc.options/valueset   ;; <--- declare :sdc/options (helps inference)
                                   :valueset "my-valueset-id"}
-    
+
         :quantity-inferred-1 {:confirms #{aidbox.sdc.fhir/quantity}}         ;; <--- declare :confirms with aidbox.sdc.fhir/quantity (helps inference)
 
         :quantity-inferred-2 {:confirms #{aidbox.sdc.fhir/quantity}
                               :units [{:name "kg"}                           ;; <--- declare available units for this field (helps inference)
                                       {:name "lb"}]}
-                                   
-                                   
+
+
  ...
  }
 

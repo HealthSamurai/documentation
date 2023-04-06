@@ -1,6 +1,6 @@
 # Converter
 
-You can use Aidbox to convert 
+You can use Aidbox to convert
 - FHIR Questionnaires to Aidbox Forms
 - Aidbox Forms to FHIR Questionnaires (with some limitations)
 - SDCDocument to FHIR QuestionnaireResponse resource.
@@ -23,7 +23,7 @@ Aidbox Forms supports
 - automatic SDCDocument convertion to QuestionnaireResponse resource on SDCDocument save.
 - Form rules conversion to human-readable description.
 
-> These features can be configure via [api-constructor](../../aidbox-configuration/aidbox-api-constructor.md) in zen-project.
+> These features can be configured via [api-constructor](../../aidbox-configuration/aidbox-api-constructor.md) in zen-project.
 
 You need to configure your `aidbox/system` with `sdc-service` and it's configuration.
 
@@ -80,7 +80,7 @@ After that - every document changes will be reflected in QuestionnaireResponse r
 
 You can enable aidbox.sdc/rules conversion to human friendly text while converting Form or Document.
 
-Because Questionnaire and QuestionnaireResponse structures doesn't have place where to store such data 
+Because Questionnaire and QuestionnaireResponse structures doesn't have place where to store such data
 We define 2 extra profiles for these resource-types.
 
 You can enable this feature by adding:
@@ -99,13 +99,13 @@ zen-package.edn
 
 box.edn
 
-> Assume that box.edn is your zen-project entrypoint namespace 
+> Assume that box.edn is your zen-project entrypoint namespace
 
 
 ```
 {ns box
  import #{aidbox.sdc.extra}
- 
+
  ...
  }
 ```
@@ -139,4 +139,3 @@ item:
        - url: urn:fhir:extension:sdc-questionnaire-ruleDescription
          valueMarkdown: A / B * B\n\n where\n* A - body weight\n* B - body height
 ```
-

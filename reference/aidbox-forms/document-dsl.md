@@ -122,6 +122,7 @@ SDCDocument has several embedded field-types:
 * `aidbox.sdc/choice`     - fields with answers, located in valuesets
 * `aidbox.sdc/reference`  - fields with reference to arbitrary resources
 * `aidbox.sdc/calculated` - fields, which need to be calculated via rules engine
+* `aidbox.sdc/attachment` - fields, that can be used to attach a file
 
 
 This field types inferred from Document field schemas.
@@ -206,7 +207,7 @@ Example:
 MyDocument
 {:zen/tags #{zen/schema aidbox.sdc/doc},
  :keys {:bp-measurement {:text "BP measurement site"
-                         :confirms #{aidbox.sdc.fhir/coding}    ;; <-- if you use :enum to enumerate possible values - this confirms is optional 
+                         :confirms #{aidbox.sdc.fhir/coding}    ;; <-- if you use :enum to enumerate possible values - this confirms is optional
                          :enum [{:value {:text "Biceps left",
                                          :code "LA11158-5",
                                          :system "http://loinc.org"}}
@@ -326,6 +327,37 @@ MyDocument
                              (get :height)))}}
 ```
 
+### attachment field-type
+
+Attachment field can be used to attach a file to document. File can be stored in DB or in cloud bucket
+(currently AWS S3 and GCP buckets are supported)
+
+> NOTE: We recommend storing files in the cloud, since storing files in the database takes too much space
+> For cloud storage configuration [read here](#store-attachments-in-cloud-storage)
+
+Example:
+```clojure
+MyDocument
+{:zen/tags #{aidbox.sdc/doc zen/schema}
+ :keys {:pulse-image {:confirms #{aidbox.sdc.fhir/attachment}
+                      :sdc-type aidbox.sdc/attachment}}}
+```
+
+You can apply some constraints such as file type, max size:
+
+```clojure
+MyDocument
+{:zen/tags #{aidbox.sdc/doc zen/schema}
+ :keys {:pulse-image {:confirms #{aidbox.sdc.fhir/attachment}
+                      :sdc-type aidbox.sdc/attachment
+					  :type zen/map
+					  :keys {:contentType {:type zen/string
+                                           :regex "image/*"}
+                             :size {:type zen/integer
+                                    :max 100000}}}}}
+```
+
+
 ### QuestionnaireResponse convertions
 
 If you need to convert SDCDocument to QuestionnaireResponse you need to specify additional field property
@@ -356,4 +388,47 @@ MyDocument
               :type zen/number,
               :code [{:system "http://loinc.org" :code "39156-5"}]}},
  }
+```
+
+## Optional features
+
+### Store attachments in cloud storage
+
+Aidbox Forms support storing attachments in the cloud.
+
+Supported cloud storages:
+
+* AWS S3
+* GCP Cloud Storage
+
+> This feature can be configured via [api-constructor](../../aidbox-configuration/aidbox-api-constructor.md) in zen-project.
+
+
+
+1. Configure your `aidbox/system` with `sdc-service` and it's configuration.
+
+Example:
+
+> Your zen-project entrypoint namespace (box.edn for example)
+
+```
+ box
+ {:zen/tags #{aidbox/system}
+  :zen/desc "test server"
+  :services {:sdc sdc-service}}
+```
+
+2. Create [`AwsAccount`](../../storage-1/aws-s3.md) or [`GcpServiceAccount`](../../storage-1/gcp-cloud-storage.md)
+
+3. Configure sdc-service with created account resource and specify a bucket name
+
+Example:
+
+```clojure
+sdc-service
+{:zen/tags   #{aidbox/service}
+ :engine     aidbox.sdc/service
+ :attachment {:bucket {:name "sdcattachments_bucket"
+		       :account {:id "aws-account"
+				 :resourceType "AwsAccount"}}}}
 ```
