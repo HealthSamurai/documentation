@@ -46,7 +46,7 @@ As ResearchStudy resource is a core of our model, it's reasonable to make the li
 * Researcher enters the system and see the list of studies, they involved into as a collaborator.
 * They can drill down to a study to see details and search over related patients and observations.
 
-<figure><img src="../../.gitbook/assets/Relationship-based access control(1).png" alt=""><figcaption><p><em>UI pages &#x26; FHIR requests for Research study repository application</em></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Relationship-based access control (1).png" alt=""><figcaption><p><em>UI pages &#x26; FHIR requests for Research study repository application</em></p></figcaption></figure>
 
 Once we defined our data model, UI pages and FHIR requests, we may start implementing this.
 
