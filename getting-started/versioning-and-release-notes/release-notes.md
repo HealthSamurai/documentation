@@ -37,7 +37,7 @@
   * Added wizard like layout&#x20;
   * Added support for form help message
 
-## February 2023 _`stable, 2302`_
+## February 2023 _`stable, 2302, LTS`_
 
 * Validation and Terminology
   * Reduced [zen FHIR IGs](../../aidbox-configuration/aidbox-zen-lang-project/enable-igs.md) size
