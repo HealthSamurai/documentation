@@ -14,7 +14,7 @@ This feature is in alpha. It may change in backward-incompatible way in the futu
 
 Open _Profiles_ in Aidbox UI. Navigate to `aidbox/config` schema.&#x20;
 
-![](<../.gitbook/assets/image (102) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2) (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2).png>)
+![](<../.gitbook/assets/image (102) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2) (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png>)
 
 ## Set configuration option
 
