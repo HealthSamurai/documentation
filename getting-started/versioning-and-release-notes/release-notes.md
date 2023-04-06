@@ -1,6 +1,6 @@
 # Release Notes
 
-## March 2023 _`edge`_
+## March 2023 _`latest`_
 
 * Validation and Terminology
   * Supported FHIR R4B&#x20;
