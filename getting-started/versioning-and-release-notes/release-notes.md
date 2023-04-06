@@ -8,7 +8,7 @@
   * Defined [custom resources using Aidbox Project](../../modules-1/custom-resources/getting-started-with-custom-resources.md#defining-a-custom-resource)
   * Added [$to-format operation](../../app-development-guides/usdto-format-fhir-aidbox.md) without getting transformation metadata
   * Fixed polymorphic reference targets for FHIR resources&#x20;
-  * Fixed Bundle conformance for AidboxQuery&#x20;
+  * Fixed Bundle conformance for [AidboxQuery](../../api-1/fhir-api/search-1/custom-search.md)&#x20;
   * Fixed sorting by token when using jsonknife engine
   * Added a header to [lower transaction isolation level](../../api-1/transaction.md#change-transaction-isolation-level)
 * Integrations
@@ -37,7 +37,7 @@
   * Added wizard like layout&#x20;
   * Added support for form help message
 
-## February 2023 _`latest`_
+## February 2023 _`stable, 2302`_
 
 * Validation and Terminology
   * Reduced [zen FHIR IGs](../../aidbox-configuration/aidbox-zen-lang-project/enable-igs.md) size
@@ -72,7 +72,7 @@
   * Added [Setting ](../../api-1/reactive-api-and-subscriptions/gcp-pub-sub.md#specify-resource-types-and-boxes-for-which-to-publish-notification)to specify for what resources should trigger message publishing
   * Added [Option ](../../api-1/reactive-api-and-subscriptions/gcp-pub-sub.md#publish-a-message-before-a-resource-is-saved-to-a-database)to optimistically publish a message before the resource is saved to DB
 
-## January 2023 _`stable`_
+## January 2023 _`2301`_
 
 * Terminology
   * Added [ICD-10 FTR](../../terminology/fhir-terminology-repository/load-icd-10-cm-into-aidbox.md) integration
