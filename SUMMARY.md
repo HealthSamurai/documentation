@@ -39,10 +39,6 @@
 
 ## Tutorials
 
-* [Security & Access Control](tutorials/security-and-access-control/README.md)
-  * [Authentication Tutorial](tutorials/security-and-access-control/basic-auth-tutorial.md)
-  * [Creating user & set up full user access](tutorials/security-and-access-control/creating-user-and-set-up-full-user-access.md)
-  * [Restricting Access to Patient Data](tutorials/security-and-access-control/restricting-access-to-patient-data.md)
 * [Data API](tutorials/data-api/README.md)
   * [Custom Search](tutorials/data-api/custom-search.md)
   * [Automatically archive AuditEvent resources in GCP storage guide](tutorials/data-api/automatically-archive-auditevent-resources-in-gcp-storage-guide.md)
@@ -268,6 +264,9 @@
   * [Restrict operations on resource type](security-and-access-control-1/tutorials/restrict-resource-operations.md)
   * [Configure multi-tenancy](security-and-access-control-1/tutorials/multitenancy-via-accesspolicy.md)
   * [Relationship-based access control](security-and-access-control-1/tutorials/relationship-based-access-control-in-aidbox.md)
+  * [Authentication Tutorial](security-and-access-control-1/tutorials/basic-auth-tutorial.md)
+  * [Creating user & set up full user access](security-and-access-control-1/tutorials/creating-user-and-set-up-full-user-access.md)
+  * [Restricting Access to Patient Data](security-and-access-control-1/tutorials/restricting-access-to-patient-data.md)
 * [How-to guides](modules-1/smartbox/how-to-guides/README.md)
   * [Create and test access control](security-and-access-control-1/how-to-guides/access-policy.md)
   * [External identity provider](security-and-access-control-1/how-to-guides/set-up-external-identity-provider/README.md)
