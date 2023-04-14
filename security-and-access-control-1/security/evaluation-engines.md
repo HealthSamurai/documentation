@@ -21,11 +21,11 @@ There are also two additional engines which serve as a convenient way to write r
 
 All of them are described in a greater detail below.
 
-### Allow
+## Allow
 
 `allow` engine always evaluates to `true` regardless of a request object. Use it if you want to provide an unrestricted access to everything.
 
-#### Example
+### Example
 
 ```yaml
 resourceType: AccessPolicy
@@ -35,7 +35,7 @@ link:
 - { resourceType: User, id: admin }
 ```
 
-### JSON Schema
+## JSON Schema
 
 `json-schema` engine allows you to use [JSON Schema](https://json-schema.org) to validate the request object. It is specified under `schema` field of `AccessPolicy` resource. Currently supported JSON Schema version is **draft-07**.
 
@@ -43,7 +43,7 @@ link:
 Fields with empty values `— []`, `{}`, `""`, `null` — are removed from request before before access policy checks are applied to it. Make sure to specify all necessary fields as `required.`
 {% endhint %}
 
-#### Example
+### Example
 
 The following policy requires `request.params.resource/type` to be present and have a value of `"Organization"`:
 
@@ -60,7 +60,7 @@ schema:
           Organization
 ```
 
-### SQL
+## SQL
 
 `sql` engine executes an SQL statement and uses its return value as an evaluation result. Thus the statement should return a single row with just one column:
 
@@ -70,7 +70,7 @@ SELECT true FROM patient WHERE id = {{jwt.patient_id}} LIMIT 1;
 
 SQL statement can refer to request fields with a double curly braces interpolation. String inside the braces will be used as a path to value in the request object.
 
-#### Example
+### Example
 
 Suppose that we are checking a request that comes with a `User` resource referencing a `Practitioner` through `User.data.practitioner_id` element. The following policy allows requests only to `/fhir/Patient/<patient_id>` URLs and only to those patients who have a `Patient.generalPractitioner` element referencing the same practitioner as a `User` of our current request. In other words, `User` as a `Practitioner` is only allowed to see his own patients — those who reference him as their `generalPractitioner`.
 
@@ -90,13 +90,13 @@ sql:
       FROM patient WHERE id = {{params.resource/id}};
 ```
 
-#### Interpolation Rules
+### Interpolation Rules
 
 You can parameterize your SQL queries with request object using `{{path}}` syntax. For example, to get a user role provided at `{user: {data: {role: "admin"}}}` you write `{{user.data.role}}`. Parameter expressions are escaped by default to protect from SQL injection.
 
 For dynamic queries — to parameterize table name, for example — you have to use `{{!path}}` syntax. The expression `SELECT true from {{!params.resource/type}} limit 1` when a request contains `{params: {"resource/type": "Patient"}}` will be transformed into `SELECT true from "patient".` By default identifier names are double quoted and lower-cased.
 
-### Matcho
+## Matcho
 
 `matcho` engine leverages [Matcho](https://github.com/HealthSamurai/matcho) pattern matching — custom DSL developed by Health Samurai. It has very compact and declarative syntax with a limited expressivity. It is well-suited for writing all sorts of rules and thus is one of the easiest options to specify `AccessPolicy` checks.
 
@@ -124,7 +124,7 @@ Match DSL definition:
 
 * If pattern is a dictionary, search for its inclusion into a test subject. This algorithm is nested and recursive.\
   Pattern `{x: 1}` matches `{x: 1, y: 2, …}`\
-  ``Pattern `{a: {b: 5}` matches `{a: {b: 5, c: 6, …}, d: 7, …}`
+  \`\`Pattern `{a: {b: 5}` matches `{a: {b: 5, c: 6, …}, d: 7, …}`
 * If a pattern is an array, search for its elements in the order given.\
   Pattern `[1, 2]` matches `[1, 2, 3, …]`
 * Primitive values — strings, numbers and booleans — are compared by value.
@@ -171,7 +171,7 @@ matcho:
 While original intent was to forbid `guest` users to delete `Patient` resources this `AccessPolicy` allows to do `DELETE /Patient/<id>` for all the other users including unauthorized ones. In this case it is better to explicitly list allowed roles with `$enum.`
 {% endhint %}
 
-#### More examples
+### Examples
 
 ```yaml
 resourceType: AccessPolicy
@@ -210,11 +210,11 @@ matcho:
 Need help with `matcho` engine? Contact us on the [telegram chat](https://t.me/aidbox)!
 {% endhint %}
 
-### Complex
+## Complex
 
 `complex` engine allows you to combine several rules with `and` and `or` operators. You can use any engine rule to define a rule and even `complex` engine itself but it is forbidden to have both `and` and `or` keys on the same level. Rules are defined as an array of objects which must include an engine with a set of corresponding keys.
 
-#### Example
+### Example 1
 
 ```yaml
 resourceType: AccessPolicy
@@ -230,7 +230,7 @@ and:
 Policy in the example above represents the following logical expression:\
 `check-1 AND (check-2 OR check-3)`
 
-#### Example
+### Example 2
 
 Let's split SQL policy example from above into two separate rules and combine them under `and` rule:
 
@@ -263,13 +263,13 @@ and:
           FROM patient WHERE id = {{params.resource/id}};
 ```
 
-### Allow-RPC
+## Allow-RPC
 
 Requires to specify `type: rpc` for `AccessPolicy` resource.
 
 `allow-rpc` engine allows access to every RPC endpoint listed under the `rpc` field of the `AccessPolicy` resource.
 
-Example:
+### Example
 
 ```yaml
 resourceType: AccessPolicy
@@ -279,13 +279,13 @@ rpc:
   aidbox.notebooks.list-notebooks: true
 ```
 
-### Matcho-RPC
+## Matcho-RPC
 
 Requires to specify `type: rpc` for `AccessPolicy` resource.
 
 `matcho-rpc` allows access to all endpoints that satisfy specified [Matcho](evaluation-engines.md#matcho) rules.
 
-#### Example
+### Example
 
 ```yaml
 resourceType: AccessPolicy
