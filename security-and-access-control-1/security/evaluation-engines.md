@@ -214,6 +214,21 @@ Need help with `matcho` engine? Contact us on the [telegram chat](https://t.me/a
 
 `complex` engine allows you to combine several rules with `and` and `or` operators. You can use any engine rule to define a rule and even `complex` engine itself but it is forbidden to have both `and` and `or` keys on the same level. Rules are defined as an array of objects which must include an engine with a set of corresponding keys.
 
+### How AND & OR work
+
+Aidbox applies inner policies one after the other top-bottom.
+
+#### AND rule&#x20;
+
+Aidbox applies polices till one of two evens happens:
+
+1. One policy rejects the access. No further policies are applied. The access is rejected
+2. There is no more policies to evaluate. It means the access is granted
+
+#### OR rule
+
+Aidbox applies policies till at lest one grants the access. If it is happened no further policies are applied.
+
 ### Example 1
 
 ```yaml
