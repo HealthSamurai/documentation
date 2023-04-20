@@ -191,7 +191,7 @@ matcho:
   user: present?
   request-method: get
   params:
-    resource/type: {$enum: ['Patient', 'Encounter'}}
+    resource/type: {$enum: ['Patient', 'Encounter']}
 ```
 
 ```yaml
