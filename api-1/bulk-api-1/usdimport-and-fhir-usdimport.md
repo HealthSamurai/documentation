@@ -80,7 +80,7 @@ Aidbox has introduced a new and improved version of the $import operation, curre
 In the future, the ability to list and cancel $import operations will be added, as well as detailed progress info of the operation.
 
 {% hint style="info" %}
-To enable new version of $import API (/v2/$import & /v2/fhir/$import) set environment variable `BOX_BULK__API_ENGINE=task-api`
+To enable new version of $import API (`/v2/$import` & `/v2/fhir/$import`) set environment variable `BOX_BULK__API_ENGINE=task-api`
 {% endhint %}
 
 **Changes in the new $import API:**
@@ -132,7 +132,7 @@ Content-Location:  /v2/$import/synthea
 | `update`          | Update history for updated resources (false by default) |
 
 
-To check the staus of import make a GET request to `/v2/$import`:
+To check the staus of import make a GET request to `/v2/$import/<id>`:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -190,21 +190,21 @@ type: fhir
 inputs:
   - url: >-
       https://storage.googleapis.com/aidbox-public/synthea/100/Organization.ndjson.gz
+    resourceType: Organization
+    status: done
+    outcome: failed
+    error:
+      message: '403: Forbidden'
+  - url: >-
+      https://storage.googleapis.com/aidbox-public/synthea/100/Encounter.ndjson.gz
+    resourceType: Encounter
+    status: done
+    outcome: failed
+    error:
+      message: '403: Forbidden'
+  - url: >-
+      https://storage.googleapis.com/aidbox-public/synthea/100/Patient.ndjson.gz
     resourceType: Patient
-    status: done
-    outcome: failed
-    error:
-      message: '403: Forbidden'
-  - url: >-
-      https://storage.googleapis.com/aidbox-public/synthea/100/Organization.ndjson.gz
-    resourceType: MedicationRequest
-    status: done
-    outcome: failed
-    error:
-      message: '403: Forbidden'
-  - url: >-
-      https://storage.googleapis.com/aidbox-public/synthea/100/Organization.ndjson.gz
-    resourceType: CarePlan
     status: done
     outcome: failed
     error:
@@ -214,7 +214,7 @@ status: done
 outcome: failed
 error:
   message: >-
-    Import for some files failed with an error: task 'MedicationRequest
+    Import for some files failed with an error: task 'Organization
     https://storage.googleapis.com/aidbox-public/synthea/100/Organization.ndjson.gz
     failed
 ```
