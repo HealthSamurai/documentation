@@ -124,12 +124,13 @@ Content-Location:  /v2/$import/synthea
 {% endtabs %}
 ### Parameters
 
-| Parameter         | Description                                             |
-| ----------------- | ------------------------------------------------------- |
-| `id`              | Identifier of the import                                |
-| `contentEncoding` | Supports `gzip` or `plain` (non-gzipped .ndjson files)  |
-| `inputs`          | Resources to import                                     |
-| `update`          | Update history for updated resources (false by default) |
+| Parameter         | Description                                                                         |
+| ----------------- | ----------------------------------------------------------------------------------- |
+| `id`              | Identifier of the import. If you don't provide this, the id will be auto-generated. |
+|                   | You can check it on `Content-Location` header in response                           |
+| `contentEncoding` | Supports `gzip` or `plain` (non-gzipped .ndjson files)                              |
+| `inputs`          | Resources to import                                                                 |
+| `update`          | Update history for updated resources (false by default)                             |
 
 
 To check the staus of import make a GET request to `/v2/$import/<id>`:
