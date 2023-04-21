@@ -80,12 +80,143 @@ Aidbox has introduced a new and improved version of the $import operation, curre
 In the future, the ability to list and cancel $import operations will be added, as well as detailed progress info of the operation.
 
 {% hint style="info" %}
-To enable new version of $import & /fhir/$import operation set environment variable `BOX_BULK__API_ENGINE=task-api`
+To enable new version of $import API (/v2/$import & /v2/fhir/$import) set environment variable `BOX_BULK__API_ENGINE=task-api`
 {% endhint %}
 
 **Changes in the new $import API:**
 
 1. Executing more than one import with the same `id` is not possible. Users can omit the \`id\` field from the request, allowing Aidbox to generate the ID.
-2. The status of the workflow can be accessed with a GET request to `$import/<id>` instead of `/BulkImportStatus/<id>`. The URL for the import status is returned in the `content-location` header of the $import request.
+2. The status of the workflow can be accessed with a GET request to `/v2/$import/<id>` instead of `/BulkImportStatus/<id>`. The URL for the import status is returned in the `content-location` header of the $import request.
 
 Please note that the new implementation is currently in beta, and further improvements and refinements may be made as needed.
+
+To start import make a POST request to `/v2[/fhir]/$import`:
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+POST /v2/fhir/$import
+Accept: text/yaml
+Content-Type: text/yaml
+
+id: synthea
+contentEncoding: gzip
+inputs:
+- resourceType: Encounter
+  url: https://storage.googleapis.com/aidbox-public/synthea/100/Encounter.ndjson.gz
+- resourceType: Organization
+  url: https://storage.googleapis.com/aidbox-public/synthea/100/Organization.ndjson.gz
+- resourceType: Patient
+  url: https://storage.googleapis.com/aidbox-public/synthea/100/Patient.ndjson.gz
+```
+{% endtab %}
+
+{% tab title="Response" %}
+#### Status
+```
+200 OK
+```
+#### Headers
+```
+Content-Location:  /v2/$import/synthea
+```
+{% endtab %}
+{% endtabs %}
+### Parameters
+
+| Parameter         | Description                                             |
+| ----------------- | ------------------------------------------------------- |
+| `id`              | Identifier of the import                                |
+| `contentEncoding` | Supports `gzip` or `plain` (non-gzipped .ndjson files)  |
+| `inputs`          | Resources to import                                     |
+| `update`          | Update history for updated resources (false by default) |
+
+
+To check the staus of import make a GET request to `/v2/$import`:
+
+{% tabs %}
+{% tab title="Request" %}
+```html
+GET /v2/$import/<id>
+```
+{% endtab %}
+
+{% tab title="Response (done - succeeded)" %}
+#### Status
+```
+200 OK
+```
+#### Body
+```yaml
+type: fhir
+inputs:
+  - url: >-
+      https://storage.googleapis.com/aidbox-public/synthea/100/Organization.ndjson.gz
+    resourceType: Organization
+    status: done
+    outcome: succeeded
+    result:
+      imported-resources: 0
+  - url: >-
+      https://storage.googleapis.com/aidbox-public/synthea/100/Encounter.ndjson.gz
+    resourceType: Encounter
+    status: done
+    outcome: succeeded
+    result:
+      imported-resources: 3460
+  - url: https://storage.googleapis.com/aidbox-public/synthea/100/Patient.ndjson.gz
+    resourceType: Patient
+    status: done
+    outcome: succeeded
+    result:
+      imported-resources: 124
+contentEncoding: gzip
+status: done
+outcome: succeeded
+result:
+  message: All input files imported, 3584 new resources loaded
+  total-files: 3
+  total-imported-resources: 3584
+  ```
+{% endtab %}
+{% tab title="Response (done - failed)" %}
+#### Status
+```
+200 OK
+```
+#### Body
+```yaml
+type: fhir
+inputs:
+  - url: >-
+      https://storage.googleapis.com/aidbox-public/synthea/100/Organization.ndjson.gz
+    resourceType: Patient
+    status: done
+    outcome: failed
+    error:
+      message: '403: Forbidden'
+  - url: >-
+      https://storage.googleapis.com/aidbox-public/synthea/100/Organization.ndjson.gz
+    resourceType: MedicationRequest
+    status: done
+    outcome: failed
+    error:
+      message: '403: Forbidden'
+  - url: >-
+      https://storage.googleapis.com/aidbox-public/synthea/100/Organization.ndjson.gz
+    resourceType: CarePlan
+    status: done
+    outcome: failed
+    error:
+      message: '403: Forbidden'
+contentEncoding: gzip
+status: done
+outcome: failed
+error:
+  message: >-
+    Import for some files failed with an error: task 'MedicationRequest
+    https://storage.googleapis.com/aidbox-public/synthea/100/Organization.ndjson.gz
+    failed
+```
+{% endtab %}
+{% endtabs %}
