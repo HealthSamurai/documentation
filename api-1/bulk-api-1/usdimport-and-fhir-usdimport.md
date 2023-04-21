@@ -126,8 +126,7 @@ Content-Location:  /v2/$import/synthea
 
 | Parameter         | Description                                                                         |
 | ----------------- | ----------------------------------------------------------------------------------- |
-| `id`              | Identifier of the import. If you don't provide this, the id will be auto-generated. <br />
- You can check it on `Content-Location` header in response                           |
+| `id`              | Identifier of the import. <br /> If you don't provide this, the id will be auto-generated. You can check it on `Content-Location` header in response |
 | `contentEncoding` | Supports `gzip` or `plain` (non-gzipped .ndjson files)                              |
 | `inputs`          | Resources to import                                                                 |
 | `update`          | Update history for updated resources (false by default)                             |
