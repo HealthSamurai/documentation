@@ -156,19 +156,13 @@ inputs:
       https://storage.googleapis.com/aidbox-public/synthea/100/Organization.ndjson.gz
     resourceType: Organization
     status: in-progress
-    result:
-      imported-resources: 0
   - url: >-
       https://storage.googleapis.com/aidbox-public/synthea/100/Encounter.ndjson.gz
     resourceType: Encounter
     status: waiting
-    result:
-      imported-resources: 3460
   - url: https://storage.googleapis.com/aidbox-public/synthea/100/Patient.ndjson.gz
     resourceType: Patient
     status: waiting
-    result:
-      imported-resources: 124
 contentEncoding: gzip
 status: in-progress
 ```
