@@ -90,7 +90,7 @@ To enable new version of $import API (`/v2/$import` & `/v2/fhir/$import`) set en
 
 {% hint style="warning" %}
 * The new implementation is currently in beta, and further improvements and refinements may be made as needed.
-* This feature is curently not available in [Multibox](https://docs.aidbox.app/multibox/multibox-box-manager-api)
+* This feature is currently not available in [Multibox](https://docs.aidbox.app/multibox/multibox-box-manager-api)
 {% endhint %}
 
 To start import make a POST request to `/v2[/fhir]/$import`:
@@ -129,9 +129,9 @@ Content-Location:  /v2/$import/synthea
 
 | Parameter           | Description                                                                         |
 | ------------------- | ----------------------------------------------------------------------------------- |
-| `id`                | Identifier of the import. <br /> If you don't provide this, the id will be auto-generated. You can check it on `Content-Location` header in response |
+| `id`                | Identifier of the import. <br /> If you don't provide this, the id will be auto-generated. You can check it on `Content-Location` header in the response |
 | `contentEncoding`   | Supports `gzip` or `plain` (non-gzipped .ndjson files)                              |
-| `inputs` (required) | Resources to import <br /> <ul><li>`url` - URL from which load resources</li><li>`resourceType` - Resource type to be loaded</li></ul>                                                                 |
+| `inputs` (required) | Resources to import <br /> <ul><li>`url` - URL from which load resources</li><li>`resourceType` - Resource type to be loaded</li></ul>   |
 | `update`            | Update history for updated resources (false by default)                             |
 
 
