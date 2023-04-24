@@ -308,6 +308,7 @@
   * [Tutorials](<core-modules/logging-and-audit/tutorials/README (1).md>)
     * [🎓 Log analysis and visualization tutorial](core-modules/logging-and-audit/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana.md)
     * [🎓 Export logs to Datadog tutorial](core-modules/logging-and-audit/datadog-guide.md)
+    * [🎓 Set up logs with Aidbox project](core-modules/logging-and-audit/readme-1/set-up-logs-with-aidbox-project.md)
   * [Audit](core-modules/logging-and-audit/audit.md)
 
 ## Modules <a href="#modules-1" id="modules-1"></a>
