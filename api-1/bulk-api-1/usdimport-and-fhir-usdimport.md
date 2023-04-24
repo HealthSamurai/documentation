@@ -88,7 +88,10 @@ To enable new version of $import API (`/v2/$import` & `/v2/fhir/$import`) set en
 1. Executing more than one import with the same `id` is not possible. Users can omit the \`id\` field from the request, allowing Aidbox to generate the ID.
 2. The status of the workflow can be accessed with a GET request to `/v2/$import/<id>` instead of `/BulkImportStatus/<id>`. The URL for the import status is returned in the `content-location` header of the $import request.
 
-Please note that the new implementation is currently in beta, and further improvements and refinements may be made as needed.
+{% hint style="warning" %}
+* The new implementation is currently in beta, and further improvements and refinements may be made as needed.
+* This feature is curently not available in [Multibox](https://docs.aidbox.app/multibox/multibox-box-manager-api)
+{% endhint %}
 
 To start import make a POST request to `/v2[/fhir]/$import`:
 
@@ -124,12 +127,12 @@ Content-Location:  /v2/$import/synthea
 {% endtabs %}
 ### Parameters
 
-| Parameter         | Description                                                                         |
-| ----------------- | ----------------------------------------------------------------------------------- |
-| `id`              | Identifier of the import. <br /> If you don't provide this, the id will be auto-generated. You can check it on `Content-Location` header in response |
-| `contentEncoding` | Supports `gzip` or `plain` (non-gzipped .ndjson files)                              |
-| `inputs`          | Resources to import                                                                 |
-| `update`          | Update history for updated resources (false by default)                             |
+| Parameter         | Required | Description                                                                         |
+| ----------------- | -------- | ----------------------------------------------------------------------------------- |
+| `id`              |          | Identifier of the import. <br /> If you don't provide this, the id will be auto-generated. You can check it on `Content-Location` header in response |
+| `contentEncoding` |          | Supports `gzip` or `plain` (non-gzipped .ndjson files)                              |
+| `inputs`          |   ✅     | Resources to import <br /> <ul><li>`url` - URL from which load resources</li><li>`resourceType` - Resource type to be loaded</li></ul>                                                                 |
+| `update`          |          | Update history for updated resources (false by default)                             |
 
 
 To check the staus of import make a GET request to `/v2/$import/<id>`:
@@ -140,7 +143,36 @@ To check the staus of import make a GET request to `/v2/$import/<id>`:
 GET /v2/$import/<id>
 ```
 {% endtab %}
-
+{% tab title="Response (In progress)" %}
+#### Status
+```
+200 OK
+```
+#### Body
+```yaml
+type: fhir
+inputs:
+  - url: >-
+      https://storage.googleapis.com/aidbox-public/synthea/100/Organization.ndjson.gz
+    resourceType: Organization
+    status: in-progress
+    result:
+      imported-resources: 0
+  - url: >-
+      https://storage.googleapis.com/aidbox-public/synthea/100/Encounter.ndjson.gz
+    resourceType: Encounter
+    status: waiting
+    result:
+      imported-resources: 3460
+  - url: https://storage.googleapis.com/aidbox-public/synthea/100/Patient.ndjson.gz
+    resourceType: Patient
+    status: waiting
+    result:
+      imported-resources: 124
+contentEncoding: gzip
+status: in-progress
+```
+{% endtab %}
 {% tab title="Response (done - succeeded)" %}
 #### Status
 ```
@@ -192,9 +224,9 @@ inputs:
       https://storage.googleapis.com/aidbox-public/synthea/100/Organization.ndjson.gz
     resourceType: Organization
     status: done
-    outcome: failed
-    error:
-      message: '403: Forbidden'
+    outcome: succeeded
+    result:
+      imported-resources: 225
   - url: >-
       https://storage.googleapis.com/aidbox-public/synthea/100/Encounter.ndjson.gz
     resourceType: Encounter
@@ -214,8 +246,8 @@ status: done
 outcome: failed
 error:
   message: >-
-    Import for some files failed with an error: task 'Organization
-    https://storage.googleapis.com/aidbox-public/synthea/100/Organization.ndjson.gz
+    Import for some files failed with an error: task 'Encounter
+    https://storage.googleapis.com/aidbox-public/synthea/100/Encounter.ndjson.gz
     failed
 ```
 {% endtab %}
