@@ -171,11 +171,11 @@ See full description and usage examples:
 [acl.md](../security-and-access-control-1/acl.md)
 {% endcontent-ref %}
 
-### Injestion op-engine
+### map-to-fhir-bundle
 
 `injestion.core/map-to-fhir-bundle` - expects `:format` ("fhir" or "aidbox") and `:mapping` in the definition. Returns result of applying [lisp/mapping](../tools/mappings/mappings-with-lisp-mapping.md) in to the provided data structure and persisting it as Bundle.
 
-The result of the example below will be an `injestion/map-to-fhir` endpoint accepting the data structure on which the mapping will be applied as the body of the request.&#x20;
+The result of the example below will be an `POST/injestion/map-to-fhir` endpoint accepting the data structure on which the mapping will be applied as the body of the request.&#x20;
 
 #### Example
 
@@ -217,7 +217,7 @@ The result of the example below will be an `injestion/map-to-fhir` endpoint acce
 
  api
  {:zen/tags #{aidbox.rest/api}
-  "injestion" {"map-to-fhir" {:GET map-to-fhir}}}
+  "injestion" {"map-to-fhir" {:POST map-to-fhir}}}
 
  server
  {:zen/tags #{aidbox/service}

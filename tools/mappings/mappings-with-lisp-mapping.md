@@ -1,6 +1,6 @@
 # Mappings with lisp/mapping
 
-Aidbox provides the ability to **convert data dynamically** using `lisp/mapping` in your configuration. This is used in the [HL7 v2 pipeline](../../modules-1/hl7-v2-integration/hl7-v2-integration-with-aidbox-project.md) and some [API constructor](../../aidbox-configuration/aidbox-api-constructor.md#injestion-op-engine) operations.&#x20;
+Aidbox provides the ability to **convert data dynamically** using `lisp/mapping` in your configuration. This is used in the [HL7 v2 pipeline](../../modules-1/hl7-v2-integration/hl7-v2-integration-with-aidbox-project.md) and some [API constructor](../../aidbox-configuration/aidbox-api-constructor.md#map-to-fhir-bundle) operations.&#x20;
 
 In order to create **mapping**, you need to declare a definition with `lisp/mapping` tag and write a structure with `:mapping` key, using [lisp expressions](../../reference/aidbox-forms/lisp.md) in places where data will be calculated dynamically from the passed structure. It also allow to define an optional parameter `:data-schema`, which should be tagged as zen/schema and allows to validate the input data.&#x20;
 
