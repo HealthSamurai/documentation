@@ -8,11 +8,11 @@ description: This page explains what log appenders are and their parameters
 
 There are appenders in Aidbox to process log messages. An appender is a processing pipeline which:
 
-1. Filters log messages according its rules
-2. Transforms logs according its rules
-3. Delivers logs to the desired consumer
+1. Filters log messages according to appender's rules
+2. Transforms logs according to appender's rules
+3. Delivers logs to the log destination
 
-Each appender has independent set of filters and transformers. You can think of appenders as of streams that preprocess log messages and delivers them to consumers.
+Each appender has independent set of filters and transformers. You can think of appenders as of streams that preprocess logs and deliver log messages.
 
 ### How appender can be attached <a href="#how-appender-can-be-attached" id="how-appender-can-be-attached"></a>
 
@@ -97,4 +97,4 @@ It directs the stream of log messages to the Elasticsearch instance.
     * `password`
   * `batch`
     * `size` Size of elastic search post batch. Default value is 200
-    * `timeout` Timeout (in millisecond) when to post batch if there not enough messages to post a full batch. Default value is 1000 (1 second)
+    * `timeout` Timeout (in milliseconds) when to post batch if there not enough messages to post a full batch. Default value is 1000 (1 second)

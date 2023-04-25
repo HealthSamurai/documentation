@@ -5,20 +5,20 @@ description: This guide explains how logging can be activated with the Aidbox pr
 # 🎓 Set up logs with Aidbox project
 
 {% hint style="info" %}
-If you are not familiar with Aidbox Configuration project setup, please see the [article](../../../aidbox-configuration/aidbox-zen-lang-project/) then get back
+If you are not familiar with Aidbox Configuration project setup, please see this [article](../../../aidbox-configuration/aidbox-zen-lang-project/) and get back
 {% endhint %}
 
-## How logs work? <a href="#how-logs-work" id="how-logs-work"></a>
+## How do logs work? <a href="#how-logs-work" id="how-logs-work"></a>
 
 There are appenders in Aidbox to process log messages. Appender is a processing pipeline which:
 
-1. Filters logs according its rules
-2. Transforms logs according its rules
-3. Delivers logs to the desired consumer
+1. Filters logs according to appender's rules
+2. Transforms logs according to appender's rules
+3. Delivers logs to the desired log destination
 
 Each appender has independent set of filters and transformers.
 
-You can think of appenders as of streams that preprocess logs and delivers them.
+You can think of appenders as of streams that preprocess logs and deliver log messages.
 
 ### How appender can be attached <a href="#how-appender-can-be-attached" id="how-appender-can-be-attached"></a>
 
@@ -27,9 +27,15 @@ To attach an appender:
 1. Define the appender in Aidbox configuration
 2. Connect the appender as Aidbox service
 
+More detailed appenders information can be found in tech reference section.
+
+{% content-ref url="../technical-reference/log-appenders.md" %}
+[log-appenders.md](../technical-reference/log-appenders.md)
+{% endcontent-ref %}
+
 ### stdout-appender
 
-Stdout-appender directs the logs stream to the standard output (stdout). Stdout appedner sample configuration.
+Stdout-appender directs the logs stream to the standard output (stdout). Stdout appender sample configuration.
 
 ```clojure
  stdout-appender
@@ -40,7 +46,7 @@ Stdout-appender directs the logs stream to the standard output (stdout). Stdout 
 
 ### elasticsearch-appender
 
-It directs the stream of logs to the Elasticsearch instance. Elasticsearch appender sample configuration.
+This appenders directs the stream of logs to the Elasticsearch instance. Elasticsearch appender sample configuration.
 
 ```clojure
  elasticsearch-appender
@@ -51,7 +57,7 @@ It directs the stream of logs to the Elasticsearch instance. Elasticsearch appen
                :batch         {:size 1 :timeout 0}}}
 ```
 
-## Bare attached appenders whole snippet
+## Attached appenders snippet
 
 In this configuration two appenders (stdout and Elasticsearch) are defined and attached as Aidbox services.
 
@@ -151,6 +157,12 @@ The same set of lines is sent to Elasticsearch
 ## Add transformation
 
 Transformations is the tool to filter and alter log messages.
+
+The full list of supported transformations can be found in the technical reference.
+
+{% content-ref url="../technical-reference/log-transformations.md" %}
+[log-transformations.md](../technical-reference/log-transformations.md)
+{% endcontent-ref %}
 
 ### Filter noisy :w/req
 
@@ -297,6 +309,6 @@ aidbox-project-aidbox-1 | devbox 11:38:21 w27 [1004ms] select pg_sleep(1);
 This tutorial explained:
 
 * What log appenders are
-* How activate logs with Aidbox configuration
+* How to activate logs with Aidbox configuration
 * What transformers can be used to ignore log types entirely
-* How transformer is useful to filter log conditionally and alter the log message according business rules
+* How transformer is useful to filter log conditionally and alter the log message according to business rules
