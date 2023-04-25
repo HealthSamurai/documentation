@@ -136,13 +136,14 @@ An `op` describes REST operation. `:engine` specifies what operation handler sho
   :format   "fhir"}
 ```
 
-### Available `aidbox.rest/op-engine`s
+### Available `aidbox.rest/op-engines`
 
 #### Miscellaneous
 
-* `aidbox.rest.v1/aidbox-action` - Expects `:action`, passes request to existing Aidbox action. You can see list of available operations with this request:\
+* `aidbox.rest.v1/aidbox-action` - expects `:action`, passes request to existing Aidbox action. You can see list of available operations with this request:\
   `GET /Operation?_elements=action&_result=array&_count=1000`
 * `aidbox.rest.v1/echo` - expects `:response` in the definition, returns the response.
+* [`injestion.core/map-to-fhir-bundle`](aidbox-api-constructor.md#injestion-op-engine)
 
 #### Regular FHIR API
 
@@ -169,6 +170,65 @@ See full description and usage examples:
 {% content-ref url="../security-and-access-control-1/acl.md" %}
 [acl.md](../security-and-access-control-1/acl.md)
 {% endcontent-ref %}
+
+### Injestion op-engine
+
+`injestion.core/map-to-fhir-bundle` - expects `:format` ("fhir" or "aidbox") and `:mapping` in the definition. Returns result of applying [lisp/mapping](../tools/mappings/mappings-with-lisp-mapping.md) in to the provided data structure and persisting it as Bundle.
+
+The result of the example below will be an `injestion/map-to-fhir` endpoint accepting the data structure on which the mapping will be applied as the body of the request.&#x20;
+
+#### Example
+
+```clojure
+{ns injestion-op-ns
+ import #{aidbox
+          aidbox.rest
+          injestion.core}
+
+ my-mapping
+ {:zen/tags #{lisp/mapping}
+  :mapping  {:resourceType "Bundle"
+             :type "transaction"
+             :entry [{:resource {:resourceType "Patient"}
+                      :request {:method "PUT"
+                                :url "/Patient/zero"}}
+
+                     {:resource {:resourceType "Observation"
+                                 :status (get :status)
+                                 :code {:coding [{:system "http://loinc.org"
+                                                  :code "8867-4"
+                                                  :display "Respiratory rate"}]
+                                        :text "Breathing Rate"}
+                                 :subject {:reference "Patient/zero"}
+                                 :effectiveDateTime (get-in [:br 0 :dateTime]),
+                                 :valueQuantity   {
+                                                   :value (get-in [:br 0 :value :breathingRate]),
+                                                   :unit "breaths/minute",
+                                                   :system "http://unitsofmeasure.org",
+                                                   :code "/min"}}
+                      :request {:method "POST"
+                                :url "/Observation"}}]}}
+
+ map-to-fhir
+ {:zen/tags #{aidbox.rest/op}
+  :engine   injestion.core/map-to-fhir-bundle
+  :mapping  my-mapping
+  :format   "fhir"}
+
+ api
+ {:zen/tags #{aidbox.rest/api}
+  "injestion" {"map-to-fhir" {:GET map-to-fhir}}}
+
+ server
+ {:zen/tags #{aidbox/service}
+  :engine   aidbox/http
+  :apis     #{api}}
+
+ box
+ {:zen/tags #{aidbox/system}
+  :zen/desc "server"
+  :services {:http server}}}
+```
 
 ### Middlewares
 
