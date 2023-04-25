@@ -253,7 +253,7 @@ $ kubectl annotate -n aidboxdb-db postgrescluster aidboxdb --overwrite \
 
 ### Clone a Postgres Cluster <a href="#clone-a-postgres-cluster" id="clone-a-postgres-cluster"></a>
 
-You can create a single copy of the existing cluster by creating a new one and specify `dataSource` parameter. In the next example, we  create a `stage` cluster that is a copy of `aidboxdb` cluster.
+You can create a single copy of the existing cluster by creating a new one and specify `dataSource` parameter. In the next example, we  create a `stage` cluster that is a copy of `aidboxdb` cluster. [Related documentation](https://access.crunchydata.com/documentation/postgres-operator/5.3.1/tutorial/disaster-recovery/).
 
 ```yaml
 apiVersion: postgres-operator.crunchydata.com/v1beta1
