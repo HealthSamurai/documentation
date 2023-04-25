@@ -249,10 +249,106 @@ For creating a manual full backup you should annotate `postgrescluster` resource
 ```bash
 $ kubectl annotate -n aidboxdb-db postgrescluster aidboxdb --overwrite \
         postgres-operator.crunchydata.com/pgbackrest-backup="$(date)"
-postgrescluster.postgres-operator.crunchydata.com/aidboxdb annotated
+```
+
+### Clone a Postgres Cluster <a href="#clone-a-postgres-cluster" id="clone-a-postgres-cluster"></a>
+
+You can create a single copy of the existing cluster by creating a new one and specify `dataSource` parameter. In the next example, we  create a `stage` cluster that is a copy of `aidboxdb` cluster.
+
+```yaml
+apiVersion: postgres-operator.crunchydata.com/v1beta1
+kind: PostgresCluster
+metadata:
+  name: stage
+  namespace: aidboxdb-stage
+spec:
+  dataSource:
+    postgresCluster:
+      clusterName: aidboxdb
+      clusterNamespace: aidboxdb-db
+      repoName: repo1
+  image: healthsamurai/aidboxdb:15.2.0-crunchy
+  postgresVersion: 15
+  instances:
+    - dataVolumeClaimSpec:
+        accessModes:
+        - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: 1Gi
+  backups:
+    pgbackrest:
+      image: registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.41-4
+      repos:
+      - name: repo1
+        volume:
+          volumeClaimSpec:
+            accessModes:
+            - "ReadWriteOnce"
+            resources:
+              requests:
+                storage: 1Gi
+```
+
+Take care of `dataSource` parameter. In this section we specify the source that will be used for cloning.
+
+```yaml
+  dataSource:
+    postgresCluster:
+      clusterName: aidboxdb
+      clusterNamespace: aidboxdb-db
+      repoName: repo1
 ```
 
 ### Restore PITR
 
+When you needed to restore a specific time version of the cluster, or you want to periodically restore you can specify `restore` option on backup config.
 
+```yaml
+apiVersion: postgres-operator.crunchydata.com/v1beta1
+kind: PostgresCluster
+metadata:
+  name: stage-recovery
+  namespace: aidboxdb-stage
+spec:
+  image: healthsamurai/aidboxdb:15.2.0-crunchy
+  postgresVersion: 15
+  dataSource:
+    postgresCluster:
+      clusterName: aidboxdb
+      clusterNamespace: aidboxdb-db
+      repoName: repo1
+  instances:
+    - dataVolumeClaimSpec:
+        accessModes:
+        - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: 1Gi
+  backups:
+    pgbackrest:
+      image: registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.41-4
+      restore:
+        enabled: true
+        repoName: repo1
+        options:
+        - --type=time
+        - --target="2023-04-25 16:20:00-02"
+      repos:
+      - name: repo1
+        volume:
+          volumeClaimSpec:
+            accessModes:
+            - "ReadWriteOnce"
+            resources:
+              requests:
+                storage: 1Gi
+```
+
+Now you need trigger the recovery process
+
+```bash
+$ kubectl annotate -n aidboxdb-db  postgrescluster aidboxdb --overwrite \
+        postgres-operator.crunchydata.com/pgbackrest-restore="$(date)"
+```
 
