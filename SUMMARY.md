@@ -271,7 +271,7 @@
   * [Authentication Tutorial](tutorials/security-and-access-control/basic-auth-tutorial.md)
   * [Creating user & set up full user access](tutorials/security-and-access-control/creating-user-and-set-up-full-user-access.md)
   * [Restricting Access to Patient Data](tutorials/security-and-access-control/restricting-access-to-patient-data.md)
-* [How-to guides](modules-1/smartbox/how-to-guides/README.md)
+* [How-to guides](security-and-access-control-1/how-to-guides/README.md)
   * [Create and test access control](security-and-access-control-1/how-to-guides/access-policy.md)
   * [External identity provider](security-and-access-control-1/how-to-guides/set-up-external-identity-provider/README.md)
     * [Aidbox](security-and-access-control-1/how-to-guides/aidbox.md)
@@ -357,7 +357,7 @@
   * [Get started](modules-1/smartbox/get-started/README.md)
     * [Set up Smartbox locally](modules-1/smartbox/get-started/set-up-smartbox.md)
     * [Deploy Smartbox with Kubernetes](modules-1/smartbox/get-started/deploy-smartbox-to-kubernetes.md)
-  * [How-to guides](security-and-access-control-1/how-to-guides/README.md)
+  * [How-to guides](modules-1/smartbox/how-to-guides/README.md)
     * [Pass Inferno tests with Smartbox](modules-1/smartbox/how-to-guides/pass-inferno-tests-with-smartbox.md)
     * [Perform EHR launch](modules-1/smartbox/how-to-guides/how-to-perform-ehr-launch.md)
     * [Pass Inferno Visual Inspection and Attestation](modules-1/smartbox/how-to-guides/pass-inferno-visual-inspection-and-attestation.md)
@@ -404,7 +404,7 @@
 
 ## Tools
 
-* [Mappings](tools/mappings/README.md)
+* [Mappings](tools/mappings.md)
   * [Mappings with lisp/mapping](tools/mappings/mappings-with-lisp-mapping.md)
 * [Aidbox SDK](tools/aidbox-sdk/README.md)
   * [Aidbox JavaScript SDK](tools/aidbox-sdk/aidbox-javascript-sdk.md)

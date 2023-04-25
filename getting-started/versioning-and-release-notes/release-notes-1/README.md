@@ -29,7 +29,7 @@ description: Release notes for years 2019-2020
 ### Features
 
 * Complete rewrite of the [(rev)include](../../../api-1/fhir-api/search-1/search-parameters-list/\_include-and-\_revinclude.md) engine
-* New [Mapping module](../../../tools/mappings/)
+* New [Mapping module](../../../tools/mappings.md)
 * New [Hl7v2 module](../../../modules-1/hl7-v2-integration/)
 * New engine for AccessPolicy - [matcho](../../../security-and-access-control-1/security/access-control.md#matcho-engine)
 * New [Encryption API](../../../api-1/encryption-api.md)

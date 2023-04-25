@@ -79,12 +79,18 @@ spec:
   backups:
     pgbackrest:
       image: registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.41-4
+      global:
+        repo1-retention-full: "30"
+        repo1-retention-full-type: time      
       manual:
-        repoName: repo1
         options:
-         - --type=full
+          - '--type=full'
+        repoName: repo1
       repos:
         - name: repo1
+          schedules:
+            full: "0 1 * * 0"
+            incremental: "0 1 * * 1-6"        
           volume:
             volumeClaimSpec:
               accessModes:
@@ -193,7 +199,58 @@ data:
 
 ### Backup a cluster
 
+You can specify a [schedule backup and retention policy](https://access.crunchydata.com/documentation/postgres-operator/5.3.1/tutorial/backup-management/) for cluster&#x20;
 
+```yaml
+spec:
+  backups:
+    pgbackrest:
+      image: registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.41-4
+      global:
+        repo1-retention-full: "30"
+        repo1-retention-full-type: time      
+      manual:
+        options:
+          - '--type=full'
+        repoName: repo1
+      repos:
+        - name: repo1
+          schedules:
+            full: "0 1 * * 0"
+            incremental: "0 1 * * 1-6"        
+          volume:
+            volumeClaimSpec:
+              accessModes:
+                - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 10Gi
+```
+
+*   Define backup schedule. In this spec we define incremental backup from Monday to Saturday and take one full backup every Sunday at 1 AM
+
+    ```yaml
+    schedules:
+      full: "0 1 * * 0"
+      incremental: "0 1 * * 1-6"  
+    ```
+*   Define backup retention policy. In this spec we store all backups 30 days, after that period - delete them
+
+    ```yaml
+    global:
+      repo1-retention-full: "30"
+      repo1-retention-full-type: time  
+    ```
+
+### Create manual backup
+
+For creating a manual full backup you should annotate `postgrescluster` resource
+
+```bash
+$ kubectl annotate -n aidboxdb-db postgrescluster aidboxdb --overwrite \
+        postgres-operator.crunchydata.com/pgbackrest-backup="$(date)"
+postgrescluster.postgres-operator.crunchydata.com/aidboxdb annotated
+```
 
 ### Restore PITR
 
