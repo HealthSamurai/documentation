@@ -10,7 +10,7 @@ Transformation is the tool used to modify and/or filter log messages on the fly 
 
 ### How transformation can be activated <a href="#how-transformation-can-be-activated" id="how-transformation-can-be-activated"></a>
 
-To active transformations on an appender define the transformation and add it to the appender. In the example below there are two transfromation applied to the `:qb/q` log messages and aidbox.log/ignore transformation applied to the `:w/resp` messages.
+To active transformations on an appender define the transformation and add it to the appender. In the example below there are two transformation applied to the `:qb/q` log messages and `aidbox.log/ignore` transformation applied to the `:w/resp` messages.
 
 ```clojure
 {:ns     main
