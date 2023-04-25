@@ -104,4 +104,4 @@ Aidbox router stores data in the request object:
 
 Access policy engine evaluates request object. And here it checks that `operation.id` property contains either `Read` or `FhirRead` string.
 
-You can inspect request object [using `__debug` query parameter](debug.md#\_\_debug-query-string-parameter).
+You can inspect request object [using `__debug` query parameter](../how-to-guides/debug.md#\_\_debug-query-string-parameter).

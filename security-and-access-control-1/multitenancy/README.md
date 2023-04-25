@@ -59,8 +59,8 @@ You can fine-tune access to every operation or resource type, for example:
 [aidbox-api-constructor.md](../../aidbox-configuration/aidbox-api-constructor.md)
 {% endcontent-ref %}
 
-{% content-ref url="acl.md" %}
-[acl.md](acl.md)
+{% content-ref url="../acl.md" %}
+[acl.md](../acl.md)
 {% endcontent-ref %}
 
 {% embed url="https://github.com/Aidbox/aidbox-project-samples/tree/main/aidbox-project-samples/multitenancy" %}
