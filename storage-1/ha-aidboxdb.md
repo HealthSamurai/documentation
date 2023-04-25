@@ -100,6 +100,8 @@ spec:
   patroni:
     dynamicConfiguration:
       postgresql:
+        pg_hba:
+          - host all all 0.0.0.0/0 md5
         parameters:
           listen_addresses : '*'
           shared_preload_libraries : 'pg_stat_statements'
@@ -109,9 +111,10 @@ spec:
 
 Important notes
 
-* `image: healthsamurai/aidboxdb:15.2.0-crunchy`  - we recommend use our aidboxdb image build that is preconfigured for using in PGO
-* `replicas: 2`  - in this configuration we install 1 master and 1 replica
-* `backup options` - in this sample we use local PVC for storing backups. For configuring cloud storages like S3 or GCS you can [follow this instructions](https://access.crunchydata.com/documentation/postgres-operator/5.3.1/tutorial/backups/)
+* `image: healthsamurai/aidboxdb:15.2.0-crunchy`  - we recommend use our aidboxdb image build that is preconfigured for use in PGO
+* `replicas: 2`  - in this configuration, we install 1 master and 1 replica
+* `backup options` - in this sample, we use local PVC for storing backups. For configuring cloud storages like S3 or GCS you can [follow this instructions](https://access.crunchydata.com/documentation/postgres-operator/5.3.1/tutorial/backups/)
+* `pg_hba: ["host all all 0.0.0.0/0 md5"]` - for this tutorial we allow non SSL connection
 
 2. Create namespace and apply aidboxdb.yml resource
 
@@ -122,7 +125,7 @@ $ kubectl apply -f aidboxdb.yaml
 postgrescluster.postgres-operator.crunchydata.com/aidboxdb created
 ```
 
-3. Werify postgresql cluster
+3. Verify PostgreSQL cluster
 
 ```bash
 $ kubectl get pods -n aidboxdb-db
@@ -135,9 +138,58 @@ aidboxdb-repo-host-0         2/2     Running     0          12m
 
 ### Connect to the cluster&#x20;
 
-* get secrets&#x20;
-* get hosts&#x20;
-* configure aidbox
+1. Get connection credentials. Crunchy operator store all connection information in related `Secret` resource. In our case it `aidboxdb-pguser-aidbox`. More detailed information you can be found in the[ connection tutorial](https://access.crunchydata.com/documentation/postgres-operator/5.3.1/tutorial/connect-cluster/).
+
+```bash
+$ kubectl describe secret aidboxdb-pguser-aidbox -n aidboxdb-db
+Name:         aidboxdb-pguser-aidbox
+Namespace:    aidboxdb-db
+Annotations:  <none>
+
+Type:  Opaque
+
+Data
+====
+port:      4 bytes     # Database port 5432
+host:      32 bytes    # Local K8S host name
+user:      6 bytes     # User name
+password:  24 bytes    # Password
+dbname:    6 bytes     # database name
+verifier:  133 bytes
+jdbc-uri:  120 bytes
+uri:       101 bytes
+```
+
+2. Now you can set up this parameter for the Aidbox database connection. Look at [Install Aidbox in Kubernetes](../getting-started/run-aidbox-in-kubernetes/) tutorial
+
+{% code title="Aidbox ConfigMap" %}
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aidbox
+  namespace: prod
+data:
+  ...
+  PGDATABASE: aidbox
+  PGHOST: < host value from aidboxdb-pguser-aidbox secret>
+  PGPORT: '5432' 
+```
+{% endcode %}
+
+{% code title="Aidbox Secret" %}
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: aidbox
+  namespace: prod
+data:
+  ...
+  PGPASSWORD: < password value from aidboxdb-pguser-aidbox secret>
+  PGUSER:     < user value from aidboxdb-pguser-aidbox secret>
+```
+{% endcode %}
 
 ### Backup a cluster
 
