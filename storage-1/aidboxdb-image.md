@@ -56,6 +56,6 @@ The image is configured by supplying environment variables and command line argu
 
 An open-source tool [wal-g](https://github.com/wal-g/wal-g) is used by AidboxDB for continuous archival, backups, and restoration.
 
-{% content-ref url="archiving.md" %}
-[archiving.md](archiving.md)
+{% content-ref url="backup-and-restore/archiving.md" %}
+[archiving.md](backup-and-restore/archiving.md)
 {% endcontent-ref %}

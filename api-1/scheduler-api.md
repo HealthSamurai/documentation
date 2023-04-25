@@ -45,4 +45,4 @@ To start using Scheduler API you should define scheduler-service and add it into
 
 If all services running correctly you should see Scheduler icon on navigation bar:
 
-![](<../.gitbook/assets/image (1) (1) (3).png>)
+![](<../.gitbook/assets/image (1) (1).png>)
