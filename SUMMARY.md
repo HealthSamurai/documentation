@@ -315,6 +315,7 @@
     * [🎓 Set up logs with Aidbox project](core-modules/logging-and-audit/readme-1/set-up-logs-with-aidbox-project.md)
   * [Audit](core-modules/logging-and-audit/audit.md)
   * [Technical reference](core-modules/logging-and-audit/technical-reference/README.md)
+    * [Log appenders](core-modules/logging-and-audit/technical-reference/log-appenders.md)
     * [Log transformations](core-modules/logging-and-audit/technical-reference/log-transformations.md)
 
 ## Modules <a href="#modules-1" id="modules-1"></a>
