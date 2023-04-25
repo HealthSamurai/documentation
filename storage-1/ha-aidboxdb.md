@@ -352,3 +352,14 @@ $ kubectl annotate -n aidboxdb-db  postgrescluster aidboxdb --overwrite \
         postgres-operator.crunchydata.com/pgbackrest-restore="$(date)"
 ```
 
+### PGO CLI
+
+PGO Command Line Interface (CLI) for the Crunchy Operator built as a `kubectl` plugin, the `pgo` CLI facilitates the creation and management of PostgreSQL clusters created using the Crunchy Postgres Operator. For more information about using the CLI and the various commands available, please see the [`pgo` CLI documentation](https://access.crunchydata.com/documentation/postgres-operator-client/latest).
+
+```
+# Create a new backup
+$ kubectl pgo backup aidboxdb -n aidboxdb-db
+
+# Show backups
+$ kubectl pgo show backup aidboxdb -n aidboxdb-db
+```
