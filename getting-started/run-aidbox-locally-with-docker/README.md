@@ -52,6 +52,38 @@ If you want to learn more about Aidbox configuration project set up, refer to th
 [setting-up-a-configuration-project.md](../../aidbox-configuration/aidbox-zen-lang-project/setting-up-a-configuration-project.md)
 {% endcontent-ref %}
 
+#### Setting FHIR version
+
+By default, configuration project selects `FHIR R4` version and `hl7.fhir.r4.core` zen package respectively, to change this, do following:
+
+**FHIR R5**
+
+Update `project/zrc/system.edn` file:
+
+```clojure
+:fhir-version            "5.0.0"
+```
+
+Update `project/zen-package.edn`, add  corresponding dependency:
+
+```clojure
+{:deps {hl7-fhir-r5-core "https://github.com/zen-fhir/hl7-fhir-r5-core.git"}}
+```
+
+**FHIR R4B**
+
+Update `project/zrc/system.edn` file:
+
+```clojure
+:fhir-version            "4.3.0"
+```
+
+Update `project/zen-package.edn`, add  corresponding dependency:
+
+```clojure
+{:deps {hl7-fhir-r4b-core "https://github.com/zen-fhir/hl7-fhir-r4b-core.git"}}
+```
+
 ### Lauch Aidbox
 
 Start Aidbox with Docker Compose:

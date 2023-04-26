@@ -1,5 +1,10 @@
 # Release Notes
 
+## April 2023 _`edge`_
+
+* Validation and Terminology
+  * Supported FHIR R5
+
 ## March 2023 _`latest`_
 
 * Validation and Terminology
