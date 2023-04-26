@@ -2,7 +2,7 @@
 description: This guide explains how logging can be activated with the Aidbox project
 ---
 
-# 🎓 Set up logs with Aidbox project
+# Set up logs with Aidbox project
 
 We expect your [Aidbox project](../../../getting-started/run-aidbox-locally-with-docker/) is set up and running.
 
