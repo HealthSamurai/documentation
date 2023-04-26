@@ -10,10 +10,10 @@ description: >-
 
 In order to run Aidbox locally, you need to have [Docker & Docker compose installed](https://docs.docker.com/engine/install/). To begin with new aidbox project,&#x20;
 
-* run the following command
+* run the following command depending on FHIR version you want to have
 
 {% tabs %}
-{% tab title="with FHIR R4" %}
+{% tab title="FHIR R4" %}
 ```shell
 git clone \
   --depth=1\
@@ -25,7 +25,7 @@ git clone \
 ```
 {% endtab %}
 
-{% tab title="with FHIR R4B" %}
+{% tab title="FHIR R4B" %}
 ```sh
 git clone \
   --depth=1\
@@ -37,7 +37,7 @@ git clone \
 ```
 {% endtab %}
 
-{% tab title="with FHIR R5" %}
+{% tab title="FHIR R5" %}
 ```shell
 git clone \
   --depth=1\
