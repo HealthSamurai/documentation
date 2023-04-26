@@ -136,6 +136,26 @@ nhs-sdc-theme
           :text-color [255 255 255]}}
 ```
 
+## How to change font size
+
+To change font size, we have two settings in theme:
+
+* `:base-font-size`
+* `:input {:font-size}`
+
+First settings will modify field labels, sections titles, etc. The second will modify font size in inputs.
+
+<figure><img src="../../.gitbook/assets/font-size-theme.png" alt=""><figcaption></figcaption></figure>
+
+```clojure
+font-theme
+{:zen/tags #{aidbox.sdc/theme}
+ :zen/desc "Theme with font sizes modified"
+ :base-font-size "16px"
+ :input {:font-size "18px"}}
+```
+
+
 ## How to display one form with different themes
 
 Theme that you specify in sdc-service is default theme. You can specify theme for each form individually.
