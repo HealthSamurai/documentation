@@ -107,18 +107,6 @@ zen-package.edn file is a project meta file. You can specify dependencies for ex
 {:deps {hl7-fhir-r4-core "https://github.com/zen-fhir/hl7-fhir-r4-core.git"}}
 ```
 
-## That's it
-
-Now you have Aidbox project initialised and you ready to develop with Aidbox.
-
-### What's next
-
-Read more on [how to setup US core IG with Aidbox project](https://docs.aidbox.app/tutorials/fhir-conformance/how-to-enable-us-core-ig/start-aidbox-with-us-core-ig-enabled).
-
-## Talk to a Health Samurai Engineer
-
-If you'd like to learn more about using Aidbox or have any questions about this guide, [connect with us on Telegram](https://t.me/aidbox). We're happy to help.
-
 ## Troubleshooting
 
 ### Could not find main/box
@@ -130,3 +118,15 @@ If you see in logs the message
 ```
 
 it means, aidbox project wasn't configured correctly.
+
+## That's it
+
+Now you have Aidbox project initialised and you ready to develop with Aidbox.
+
+### What's next
+
+Read more on [how to setup US core IG with Aidbox project](https://docs.aidbox.app/tutorials/fhir-conformance/how-to-enable-us-core-ig/start-aidbox-with-us-core-ig-enabled).
+
+## Talk to a Health Samurai Engineer
+
+If you'd like to learn more about using Aidbox or have any questions about this guide, [connect with us on Telegram](https://t.me/aidbox). We're happy to help.

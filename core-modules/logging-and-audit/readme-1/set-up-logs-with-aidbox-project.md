@@ -4,9 +4,7 @@ description: This guide explains how logging can be activated with the Aidbox pr
 
 # 🎓 Set up logs with Aidbox project
 
-{% hint style="info" %}
-If you are not familiar with Aidbox Configuration project setup, please see this [article](../../../aidbox-configuration/aidbox-zen-lang-project/) and get back
-{% endhint %}
+We expect your [Aidbox project](../../../getting-started/run-aidbox-locally-with-docker/) is set up and running.
 
 ## How do logs work? <a href="#how-logs-work" id="how-logs-work"></a>
 
