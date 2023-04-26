@@ -84,6 +84,11 @@ Update `project/zen-package.edn`, add  corresponding dependency:
 {:deps {hl7-fhir-r4b-core "https://github.com/zen-fhir/hl7-fhir-r4b-core.git"}}
 ```
 
+{% hint style="info" %}
+Don't forget to commit your changes to zen configuration project:\
+`git add --all && git commit -m "<your_commit_message>"`
+{% endhint %}
+
 ### Lauch Aidbox
 
 Start Aidbox with Docker Compose:
