@@ -28,8 +28,8 @@ Check out the tutorials if you are looking for a step-by-step guide on how to se
 [run-aidbox-in-aidbox-sandbox.md](../run-aidbox-in-aidbox-sandbox.md)
 {% endcontent-ref %}
 
-{% content-ref url="../run-aidbox-locally-with-docker/" %}
-[run-aidbox-locally-with-docker](../run-aidbox-locally-with-docker/)
+{% content-ref url="../run-aidbox-locally-with-docker.md" %}
+[run-aidbox-locally-with-docker.md](../run-aidbox-locally-with-docker.md)
 {% endcontent-ref %}
 
 If you are looking for the latest versions of the docker images or general release cycle explanation go to the Versioning page.
