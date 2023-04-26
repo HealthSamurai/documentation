@@ -6,52 +6,49 @@ description: >-
 
 # Run Aidbox locally with Docker
 
-#### Setting FHIR version
-
-By default, configuration project selects `FHIR R4` version and `hl7.fhir.r4.core` zen package respectively, to change this, do following:
-
-**FHIR R5**
-
-Update `project/zrc/system.edn` file:
-
-```clojure
-:fhir-version            "5.0.0"
-```
-
-Update `project/zen-package.edn`, add  corresponding dependency:
-
-```clojure
-{:deps {hl7-fhir-r5-core "https://github.com/zen-fhir/hl7-fhir-r5-core.git"}}
-```
-
-**FHIR R4B**
-
-Update `project/zrc/system.edn` file:
-
-```clojure
-:fhir-version            "4.3.0"
-```
-
-Update `project/zen-package.edn`, add  corresponding dependency:
-
-```clojure
-{:deps {hl7-fhir-r4b-core "https://github.com/zen-fhir/hl7-fhir-r4b-core.git"}}
-```
-
-{% hint style="info" %}
-Don't forget to commit your changes to zen configuration project:\
-`git add --all && git commit -m "<your_commit_message>"`
-{% endhint %}
-
 ## Init & run Aidbox project
 
 In order to run Aidbox locally, you need to have [Docker & Docker compose installed](https://docs.docker.com/engine/install/). To begin with new aidbox project,&#x20;
 
 * run the following command
 
-```sh
-git clone --depth=1 --branch=main git@github.com:Aidbox/aidbox-project-template.git aidbox-project && cd aidbox-project && rm -rf .git
+{% tabs %}
+{% tab title="with FHIR R4" %}
+```shell
+git clone \
+  --depth=1\
+  --branch=main \
+  git@github.com:Aidbox/aidbox-project-template.git \
+  aidbox-project && \
+  cd aidbox-project && \
+  rm -rf .git
 ```
+{% endtab %}
+
+{% tab title="with FHIR R4B" %}
+```sh
+git clone \
+  --depth=1\
+  --branch=fhir-r4b \
+  git@github.com:Aidbox/aidbox-project-template.git \
+  aidbox-project && \
+  cd aidbox-project && \
+  rm -rf .git
+```
+{% endtab %}
+
+{% tab title="with FHIR R5" %}
+```shell
+git clone \
+  --depth=1\
+  --branch=fhir-r5 \
+  git@github.com:Aidbox/aidbox-project-template.git \
+  aidbox-project && \
+  cd aidbox-project && \
+  rm -rf .git
+```
+{% endtab %}
+{% endtabs %}
 
 * get your Aidbox license on [aidbox.app](https://aidbox.app/),
 * and then set `AIDBOX_LICENSE` env variable in .env file.

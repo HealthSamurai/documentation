@@ -24,7 +24,7 @@
 
 ## Getting Started
 
-* [Run Aidbox locally with Docker](getting-started/run-aidbox-locally-with-docker.md)
+* [Run Aidbox locally with Docker](getting-started/run-aidbox-locally-with-docker/README.md)
 * [Run Multibox locally with Docker](getting-started/run-multibox-locally-with-docker.md)
 * [Run Aidbox in Aidbox Sandbox](getting-started/run-aidbox-in-aidbox-sandbox.md)
 * [Run Aidbox on managed PostgreSQL](getting-started/run-aidbox-on-managed-postgresql.md)

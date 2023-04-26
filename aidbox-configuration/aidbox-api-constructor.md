@@ -38,7 +38,7 @@ API constructor requires knowledge of [zen language](https://github.com/zen-lang
 
 ## Example setup
 
-Use [Run Aidbox locally](../getting-started/run-aidbox-locally-with-docker.md) to start Aidbox, here is configured [API constructor example](https://github.com/Aidbox/aidbox-project-samples/blob/main/aidbox-project-samples/api-constructor/mybox.edn). Add these environment variables:
+Use [Run Aidbox locally](../getting-started/run-aidbox-locally-with-docker/) to start Aidbox, here is configured [API constructor example](https://github.com/Aidbox/aidbox-project-samples/blob/main/aidbox-project-samples/api-constructor/mybox.edn). Add these environment variables:
 
 ```bash
 BOX_PROJECT_GIT_PROTOCOL=https

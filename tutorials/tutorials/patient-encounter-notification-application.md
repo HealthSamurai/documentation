@@ -22,7 +22,7 @@ For sending Emails we will use [MailGun](https://www.mailgun.com/) service as th
 
 ### Get started
 
-Firstly, you need to install local Aidbox. See the full instruction on how to [install Aidbox locally](../../getting-started/run-aidbox-locally-with-docker.md) and [how to use Rest API](https://docs.aidbox.app/api-1/api)
+Firstly, you need to install local Aidbox. See the full instruction on how to [install Aidbox locally](../../getting-started/run-aidbox-locally-with-docker/) and [how to use Rest API](https://docs.aidbox.app/api-1/api)
 
 In this sample application, we use Clojure CLI. See [Getting Started](https://clojure.org/guides/getting\_started) for details on how to install the tools.
 
