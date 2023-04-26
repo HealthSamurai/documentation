@@ -1,5 +1,5 @@
 ---
-description: HA AidboxDB installation with Crunchy
+description: HA AidboxDB installation with Crunchy Operator
 ---
 
 # HA AidboxDB
@@ -43,7 +43,7 @@ kubectl apply -k kustomize/install/namespace
 kubectl apply --server-side -k kustomize/install/default
 ```
 
-3. Werify PGO
+3. Verify PGO installation
 
 ```bash
 $ kubectl get pods -n postgres-operator
@@ -54,7 +54,7 @@ pgo-upgrade-5b576ccfb5-m5qdc   1/1     Running   0          51m
 
 ### Create cluster
 
-For creating new PostgreSQL cluster using PGO you should create CRD `PostgresCluster.` More detailed information about creating a PGO cluster you can found in [official documentation](https://access.crunchydata.com/documentation/postgres-operator/5.3.1/tutorial/create-cluster/).
+For creating a new PostgreSQL cluster using PGO you should create CRD `PostgresCluster.` More detailed information about creating a PGO cluster you can found in [official documentation](https://access.crunchydata.com/documentation/postgres-operator/5.3.1/tutorial/create-cluster/).
 
 1. Create `aidboxdb.yml` file with the following content
 

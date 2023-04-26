@@ -1,26 +1,19 @@
----
-description: WIP
----
-
 # Backup and Restore
 
-Any postgres
+Logical PostgreSQL dump that can be used for major migration, dump schema and etc.
 
-* Managed
-* self hosted\
+{% content-ref url="pg_dump.md" %}
+[pg\_dump.md](pg\_dump.md)
+{% endcontent-ref %}
 
+Physical backup that can be used for archiving huge databases.
 
-Type of backups
+{% content-ref url="pg_basebackup.md" %}
+[pg\_basebackup.md](pg\_basebackup.md)
+{% endcontent-ref %}
 
-* Logical
-* physical
+A cloud-native solution that supports all primary cloud vendors.
 
-Tool
-
-* barman
-* pg\_basebackup
-* ...
-
-Wal-G
-
-* cloud native....
+{% content-ref url="archiving.md" %}
+[archiving.md](archiving.md)
+{% endcontent-ref %}
