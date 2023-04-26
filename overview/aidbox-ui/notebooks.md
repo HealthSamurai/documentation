@@ -29,13 +29,13 @@ So now you can easily:
 
 When clicking the notebooks tab in Aidbox UI you will get to the notebooks page. This page consists of your personal notebooks and Aidbox community notebooks.
 
-![](<../../.gitbook/assets/2021-09-03\_09-49-41 (1).png>)
+![](../../.gitbook/assets/2021-09-03\_09-49-41.png)
 
 ## Create a notebook
 
 You can create a notebook by clicking **new** in the notebooks menu. Each notebook consists of a title, subtitle, and a block of cells.
 
-![New Aidbox notebook](<../../.gitbook/assets/2021-09-03\_09-47-33 (1) (2) (3) (4) (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (4) (1) (2) (2) (1) (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png>)
+![New Aidbox notebook](<../../.gitbook/assets/2021-09-03\_09-47-33 (1) (2) (3) (4) (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (4) (1) (2) (2) (1) (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png>)
 
 After you create your cell click the **play** icon to see the answer.
 
@@ -43,7 +43,7 @@ After you create your cell click the **play** icon to see the answer.
 
 You can save a notebook for later use or share it with your team. The saved notebook will be available in **My notebooks section.**
 
-![Aidbox notebooks: personal and community](<../../.gitbook/assets/2021-09-03\_09-59-55 (1).png>)
+![Aidbox notebooks: personal and community](../../.gitbook/assets/2021-09-03\_09-59-55.png)
 
 ## Export a notebook
 
@@ -55,7 +55,7 @@ You can export your Aidbox notebook and import it to another Aidbox. Just click 
 
 To import the notebook click import and paste the link
 
-![Import Aidbox notebok](<../../.gitbook/assets/2021-09-03\_10-05-53 (1) (2) (3) (4) (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (4) (1) (2) (2) (1) (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png>)
+![Import Aidbox notebok](<../../.gitbook/assets/2021-09-03\_10-05-53 (1) (2) (3) (4) (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (4) (1) (2) (2) (1) (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png>)
 
 ## Publish a notebook
 

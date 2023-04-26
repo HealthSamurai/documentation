@@ -8,7 +8,7 @@ description: Overview of Aidbox features
 
 Aidbox is a FHIR Server and then more. We developed FHIR API, Subscriptions, GraphQL, and SQL API, which all engineers love. Users can extend Aidbox API with Custom Operations.
 
-Aidbox supports all major versions of FHIR: DSTU2, STU3, and R4. Strict validation ensures data consistency and integrity for all FHIR resources. With [Subscriptions](https://docs.aidbox.app/api-1/reactive-api-and-subscriptions), users can execute custom logic in their applications when specific data is changing.
+Aidbox supports all major FHIR versions: DSTU2, STU3, R4, R4B and R5. Strict validation ensures data consistency and integrity for all FHIR resources. With [Subscriptions](https://docs.aidbox.app/api-1/reactive-api-and-subscriptions), users can execute custom logic in their applications when specific data is changing.
 
 ### FHIR-aware PostgreSQL with SQL on FHIR support
 
