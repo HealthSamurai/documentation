@@ -1,6 +1,6 @@
 # Release Notes
 
-## April 2023 _`edge`_
+## April 2023 _`latest`_
 
 * Validation and Terminology
   * Supported [FHIR R5](../run-aidbox-locally-with-docker/#fhir-r5)
@@ -27,12 +27,9 @@
   * Optimized layout rules performance&#x20;
   * Added minor layout adaptations for small screens
   * Added [font configuration support to form-themes](../../modules-1/aidbox-forms/how-to-customize-form-appearance.md#how-to-change-font-size)
-  * Fixed minor bugs and issues\
+  * Fixed minor bugs and issues
 
-
-
-
-## March 2023 _`latest`_
+## March 2023 _`stable,`_ _`2303`_
 
 * Validation and Terminology
   * Supported FHIR R4B&#x20;
@@ -69,7 +66,7 @@
   * Added wizard like layout&#x20;
   * Added support for form help message
 
-## February 2023 _`stable, 2302, LTS`_
+## February 2023 _`2302, LTS`_
 
 * Validation and Terminology
   * Reduced [zen FHIR IGs](../../aidbox-configuration/aidbox-zen-lang-project/enable-igs.md) size
