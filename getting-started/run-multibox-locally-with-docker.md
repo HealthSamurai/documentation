@@ -20,7 +20,7 @@ Follow the [official Docker guide](https://docs.docker.com/compose/install/#inst
 
 ### Create docker-compose.yaml
 
-Firstly, let's make the configuration file. There are two services: `aidbox-db`  and `multibox`. The first one is PostgreSQL database and the second one is the Multibox itself.
+Firstly, let's make the configuration file. There are two services: `aidbox-db` and `multibox`. The first one is PostgreSQL database and the second one is the Multibox itself.
 
 {% code title="docker-compose.yaml" %}
 ```yaml
@@ -39,6 +39,7 @@ services:
 
   multibox:
     image: "${AIDBOX_IMAGE}"
+    pull_policy: always
     depends_on: ["aidbox-db"]
     links:
       - "aidbox-db:database"
@@ -106,7 +107,7 @@ You can find more about required Multibox environment variables [here.](../refer
 Start Multibox with Docker Compose
 
 ```shell
-docker compose up
+docker compose up --force-recreate
 ```
 
 This command will download and start Multibox and its dependencies. This can take a few minutes.
