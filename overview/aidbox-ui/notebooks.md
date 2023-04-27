@@ -23,7 +23,7 @@ So now you can easily:
 * REST, SQL, RPC Markdown support in cells
 * [Notebook save ](notebooks.md#save-a-notebook)
 * [Notebooks repository](notebooks.md#publish-notebook) - space for public notebook storage.
-* [Notebook share/upload ](notebooks.md#share-a-notebook)
+* [Notebook share/preview/upload ](notebooks.md#share-a-notebook)
 
 ## Notebooks section in Aidbox UI
 
@@ -57,6 +57,12 @@ To share your Aidbox notebook with others and upload it to another Aidbox, simpl
 <figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption><p>Share Aidbox notebook</p></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/Screenshot 2023-04-27 at 12.20.27.png" alt=""><figcaption><p>Snare notebook from notebook grid</p></figcaption></figure>
+
+## Preview a notebook
+
+You don't need a running Aidbox instance to preview a notebook. You can open the downloaded `.html` file in any browser and view its contents.
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption><p>Notebook preview</p></figcaption></figure>
 
 ## Upload a notebook
 
