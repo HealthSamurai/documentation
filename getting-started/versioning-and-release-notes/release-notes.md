@@ -8,18 +8,17 @@
   * Added new [preview feature](../../overview/aidbox-ui/notebooks.md#save-a-notebook): now, users can download their notebooks as HTML files, which can be viewed on any web browser, uploaded to an Aidbox instance, and used as regular noteboooks
 * Data API
   * Implemented [chained search for parameters](../../api-1/fhir-api/search-1/chained-parameters.md) defined by Search resource
-    * BREAKING: searchset bundle doesn’t support versionId anymore. Aidbox fills in 0 instead. This field may be removed in the near future. ETag functionality for Search API is removed. ETag functionality for GET/PUT/POST/DELETE operations is not affected.
+  * BREAKING: searchset bundle doesn’t support versionId anymore. Aidbox fills in 0 instead. This field may be removed in the near future. ETag functionality for Search API is removed. ETag functionality for GET/PUT/POST/DELETE operations is not affected.
 * Integrations
-  * Added new [API constructor engine](../../aidbox-configuration/aidbox-api-constructor.md#map-to-fhir-bundle)
-* [C-CDA / FHIR converter](../../modules-1/ccda-converter/)
-  * Improved FHIR to C-CDA mappings and C-CDA document validity
-  * Made /ccda/validate endpoint to behave exactly as HealthIT.gov CDA validator
+  * Added new [API constructor engine](../../aidbox-configuration/aidbox-api-constructor.md#map-to-fhir-bundle) to define custom enpoints and convert arbitrary data into FHIR
+* C-CDA / FHIR converter
+  * Enhanced [/ccda/validate](../../modules-1/ccda-converter/#validating-a-c-cda-document) endpoint to behave exactly as HealthIT.gov CDA validator
 * Security and access control
   * Supported [log filtering](../../core-modules/logging-and-audit/technical-reference/log-transformations.md) via [different appenders](../../core-modules/logging-and-audit/technical-reference/log-appenders.md)
   * Added [Authentication with AD FS](../../security-and-access-control-1/how-to-guides/set-up-external-identity-provider/microsoft-ad-fs.md) tutorial
 * Aidbox user portal
   * Added option to specify [FHIR R5 configuration project](https://aidbox.app/ui/portal#/signin)
-* DevOps
+* Ops
   * Added [AidboxDB automation with Crunchy Operator](../../storage-1/ha-aidboxdb.md)
 * Aidbox Forms
   * Added new [field type for storing attachments](../../reference/aidbox-forms/layout-dsl.md#file-input)
