@@ -10,11 +10,11 @@
   * Implemented [chained search for parameters](../../api-1/fhir-api/search-1/chained-parameters.md) defined by Search resource
   * BREAKING: searchset bundle doesn’t support versionId anymore. Aidbox fills in 0 instead. This field may be removed in the near future. ETag functionality for Search API is removed. ETag functionality for GET/PUT/POST/DELETE operations is not affected.
 * Integrations
-  * Added new [API constructor engine](../../aidbox-configuration/aidbox-api-constructor.md#map-to-fhir-bundle) to define custom enpoints and convert arbitrary data into FHIR
+  * Added new [API constructor engine](../../aidbox-configuration/aidbox-api-constructor.md#map-to-fhir-bundle) to define custom endpoints and convert arbitrary data into FHIR
 * C-CDA / FHIR converter
   * Enhanced [/ccda/validate](../../modules-1/ccda-converter/#validating-a-c-cda-document) endpoint to behave exactly as HealthIT.gov CDA validator
 * Security and access control
-  * Supported [log filtering](../../core-modules/logging-and-audit/technical-reference/log-transformations.md) via [different appenders](../../core-modules/logging-and-audit/technical-reference/log-appenders.md)
+  * Supported [log filtering](../../core-modules/logging-and-audit/technical-reference/log-transformations.md#aidbox.log-ignore) via [different appenders](../../core-modules/logging-and-audit/technical-reference/log-appenders.md)
   * Added [Authentication with AD FS](../../security-and-access-control-1/how-to-guides/set-up-external-identity-provider/microsoft-ad-fs.md) tutorial
 * Aidbox user portal
   * Added option to specify [FHIR R5 configuration project](https://aidbox.app/ui/portal#/signin)
@@ -22,7 +22,7 @@
   * Added [AidboxDB automation with Crunchy Operator](../../storage-1/ha-aidboxdb.md)
 * Aidbox Forms
   * Added new [field type for storing attachments](../../reference/aidbox-forms/layout-dsl.md#file-input)
-    * [Supported backends: ](../../reference/aidbox-forms/document-dsl.md#store-attachments-in-cloud-storage)
+    * [Supported cloud storages](../../reference/aidbox-forms/document-dsl.md#store-attachments-in-cloud-storage): AidboxDB, GCP Storage, AWS S3
   * Added support for using attachment as a source in [media-viewer widget](../../reference/aidbox-forms/layout-dsl.md#show-attachments-from-the-document)
   * Optimized layout rules performance&#x20;
   * Added minor layout adaptations for small screens
