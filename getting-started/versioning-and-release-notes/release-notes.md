@@ -4,6 +4,35 @@
 
 * Validation and Terminology
   * Supported FHIR R5
+* Aidbox Notebooks
+  * Added new preview feature: now, users can download their notebooks as HTML files, which can be viewed on any web browser, uploaded to an Aidbox instance, and used as regular noteboooks
+  * Data API
+    * Implemented chained search for parameters defined using Search resource
+    * BREAKING: searchset bundle doesn’t support versionId anymore. Aidbox fills in 0 instead. This field may be removed in the near future. ETag functionality for Search API is removed. ETag functionality for GET/PUT/POST/DELETE operations is not affected.
+* Integrations
+  * Added new API constructor engine
+*   C-CDA / FHIR converter
+
+    * Improved FHIR to C-CDA mappings and C-CDA document validity
+
+    Made /ccda/validate endpoint to behave exactly as HealthIT.gov CDA validator
+* Security and access control
+* Support log filtering via different appenders
+
+
+
+* Aidbox user portal
+  *
+    * Added option to specify FHIR R5 configuration project
+    * DevOps
+    * Added AidboxDB automation with Crunchy Operator
+    * Aidbox Forms
+    * Added new field type for storing attachments
+      * Supported backends: Aidbox DB, GCP Storage, AWS S3
+    * \
+
+
+
 
 ## March 2023 _`latest`_
 
