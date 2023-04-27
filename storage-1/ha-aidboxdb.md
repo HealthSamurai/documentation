@@ -104,6 +104,8 @@ spec:
       name: aidbox
       options: "SUPERUSER"
   patroni:
+    switchover:
+      enabled: true
     dynamicConfiguration:
       postgresql:
         pg_hba:
@@ -350,6 +352,24 @@ Now you need trigger the recovery process
 ```bash
 $ kubectl annotate -n aidboxdb-db  postgrescluster aidboxdb --overwrite \
         postgres-operator.crunchydata.com/pgbackrest-restore="$(date)"
+```
+
+### Switchover
+
+To change the primary in your HA cluster, you need to update the PostgresCluster spec to include the following fields:
+
+```yaml
+spec: 
+  patroni: 
+    switchover: 
+      enabled: true
+```
+
+This will prepare your cluster for a switchover. To trigger the switchover, you need to add the `postgres-operator.crunchydata.com/trigger-switchover` annotation to your custom resource. It's recommended to use a timestamp as the value for the annotation so you can track when you initiated the change.
+
+```
+$ kubectl annotate -n aidboxdb-db  postgrescluster aidboxdb --overwrite \
+        postgres-operator.crunchydata.com/trigger-switchover="$(date)"
 ```
 
 ### PGO CLI

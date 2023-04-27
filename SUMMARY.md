@@ -228,6 +228,7 @@
 * [AidboxDB](storage-1/aidboxdb-image.md)
 * [HA AidboxDB](storage-1/ha-aidboxdb.md)
 * [Backup and Restore](storage-1/backup-and-restore/README.md)
+  * [Crunchy Operator (pgBackRest)](storage-1/backup-and-restore/crunchy-operator-pgbackrest.md)
   * [pg\_dump](storage-1/backup-and-restore/pg\_dump.md)
   * [pg\_basebackup](storage-1/backup-and-restore/pg\_basebackup.md)
   * [WAL-G](storage-1/backup-and-restore/archiving.md)
