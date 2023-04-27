@@ -4,6 +4,8 @@ description: Search API for FHIR resources
 
 # Search
 
+
+
 Aidbox provides a Search API for all stored resources. Aidbox Search API is a superset of the [FHIR Search API](https://www.hl7.org/fhir/search.html).
 
 {% hint style="info" %}
@@ -273,3 +275,69 @@ GET /Patient?birthdate=lt1986-04-28
 {% hint style="info" %}
 Want to know more about [Aidbox](https://www.health-samurai.io/aidbox), FHIR, and search? Join our community [chat](https://t.me/aidbox) .
 {% endhint %}
+
+## Page links
+
+Aidbox returns links in response in search requests:
+
+```yaml
+GET /fhir/Patient
+
+resourceType: Bundle
+type: searchset
+meta:
+  versionId: '0'
+total: 0
+link:
+  - relation: first
+    url: /fhir/Patient?page=1
+  - relation: self
+    url: /fhir/Patient?page=1
+entry: []
+```
+
+There are two options that can modify url param content:
+
+* _AIDBOX\_COMPLIANCE_ environment variable
+* _X-Original-Uri_ header
+
+#### AIDBOX\_COMPLIANCE env
+
+IF `AIDBOX_COMPLIANCE` env is enabled then `AIDBOX_BASE_URL` environment variable will be used like this: `<AIDBOX_BASE_URL>/fhir/Patient?page=1`. For example we set `AIDBOX_BASE_URL` to `"https://example.com"`:
+
+```yaml
+GET /fhir/Patient
+
+resourceType: Bundle
+type: searchset
+meta:
+  versionId: '0'
+total: 0
+link:
+  - relation: first
+    url: https://example.com/fhir/Patient?page=1
+  - relation: self
+    url: https://example.com/fhir/Patient?page=1
+entry: []
+```
+
+#### X-Original-Uri header
+
+This header allows you completely overwrite content of `url` param. Aidbox will automatically add `page` param to your link, or replace if it exists.  For example:
+
+```yaml
+GET /fhir/Patient?name=example
+x-original-uri: https://example.com/fhir/Patient?page=4
+
+resourceType: Bundle
+type: searchset
+meta:
+  versionId: '0'
+total: 0
+link:
+  - relation: first
+    url: https://example.com/fhir/Patient?page=1
+  - relation: self
+    url: https://example.com/fhir/Patient?page=4
+entry: []
+```
