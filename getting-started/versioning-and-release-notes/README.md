@@ -34,9 +34,9 @@ Aidbox LTS releases are scheduled to be published twice a year. If you are not i
 
 | Aidbox version                                                                                                                                                                      | Support | Availability starts | End of life |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------------------- | ----------- |
-| [2202-lts](https://hub.docker.com/layers/aidboxone/healthsamurai/aidboxone/2202-lts/images/sha256-db99626a3ef739dc76a20f75eee7bf2ca4476548c1b89a1fe8a2993d4d02cf41?context=explore) | -       | 2022-04             | 2023-04     |
-| [2206-lts](https://hub.docker.com/layers/aidboxone/healthsamurai/aidboxone/2206-lts/images/sha256-33ce2578c544b427408f2fc1e7526edc75f8d1df47dcb81d92f384fdb4b6b626?context=explore) | ✔       | 2022-08             | 2023-08     |
 | [2302-lts](https://hub.docker.com/layers/healthsamurai/aidboxone/2302-lts/images/sha256-c462fa8eb24fed2be4483a98069a3ae62cb51ecbe8e24527c226e67b36972be5?context=explore)           | ✔       | 2023-04             | 2025-04     |
+| [2206-lts](https://hub.docker.com/layers/aidboxone/healthsamurai/aidboxone/2206-lts/images/sha256-33ce2578c544b427408f2fc1e7526edc75f8d1df47dcb81d92f384fdb4b6b626?context=explore) | ✔       | 2022-08             | 2023-08     |
+| [2202-lts](https://hub.docker.com/layers/aidboxone/healthsamurai/aidboxone/2202-lts/images/sha256-db99626a3ef739dc76a20f75eee7bf2ca4476548c1b89a1fe8a2993d4d02cf41?context=explore) | -       | 2022-04             | 2023-04     |
 
 #### LTS changelog
 
