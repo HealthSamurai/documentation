@@ -2,7 +2,7 @@
 
 ## Endpoint for Bundles
 
-Aidbox endpoint for bundles will be the base URL of your Box: `/` in Aidbox REST Console and `[base]` (`https://<YOUR-BOX>.aidbox.app`) in any other external client (Postman for example). Alternatively, `/fhir` and `[base]/fhir` can be used, read more about [/fhir](broken-reference) endpoints. 
+Aidbox endpoint for bundles will be the base URL of your Box: `/` in Aidbox REST Console and `[base]` (`https://<YOUR-BOX>.aidbox.app`) in any other external client (Postman for example). Alternatively, `/fhir` and `[base]/fhir` can be used.&#x20;
 
 ## Bundle Example
 
@@ -129,18 +129,18 @@ Status: 200
 
 Every transaction bundle MUST have the **type** field where value can be a **transaction** or **batch**, each element of`entry` field MUST have a **method** and an **url** fields in the `request`.
 
-Bundles must be sent via POST method to BASE_URL which is the URL of your Box for external clients and `/` or `/fhir` for REST Console (actually hostname exists in REST Console, but it is hidden).
+Bundles must be sent via POST method to BASE\_URL which is the URL of your Box for external clients and `/` or `/fhir` for REST Console (actually hostname exists in REST Console, but it is hidden).
 
 ## Aidbox REST Console
 
 1. Access your Box in Aidbox.Cloud.
 2. Open REST Console.
-3. Type in `POST /` or `POST /fhir`. (read about the [difference](broken-reference) between Aidbox and FHIR)
+3. Type in `POST /` or `POST /fhir`. (read about the [difference](aidbox-and-fhir-formats.md) between Aidbox and FHIR)
 4. Leave next line empty.
 5. Paste your bundle.
 6. Press Ctrl+Enter or click the **Send** button.
 
-![Bundle in Aidbox.Cloud REST Console](../../.gitbook/assets/scr-2018-10-29\_16-24-11.png)
+![Bundle in Aidbox.Cloud REST Console](../.gitbook/assets/scr-2018-10-29\_16-24-11.png)
 
 This is a brief description of how to work with transactions and batches in [Aidbox](https://www.health-samurai.io/aidbox). More interesting information coming soon, stay tuned!
 
