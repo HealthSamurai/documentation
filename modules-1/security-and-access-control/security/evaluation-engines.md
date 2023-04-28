@@ -155,6 +155,8 @@ Match DSL definition:
     Pattern `{col: {"$every": {foo: "bar"}}` matches `{col: [{foo: "bar"}, {foo: "bar", baz: "quux"}]}`
   * **$not** — negates a pattern.\
     Pattern `{message: {$not: {status: private}}` matches {message: `{status: public}}` and does not match `{message: {status: private}}`. **Be careful** using `$not` as it is possible to create **too permissive** policies.
+  * **$present-all** — checks that every element in $present-all are present in the original array, with no sort check. It can be combined with $length.
+  * **$length** — checks the length of the array.
 
 {% hint style="warning" %}
 Consider the following policy which uses `$not` key.
@@ -204,6 +206,17 @@ matcho:
   uri: '/Encounter'
   params: 
     practitioner: '.user.data.pract_id'
+```
+
+```yaml
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  resource:
+    $length: 2
+    $present-all:
+      - resourceType: Patient
+      - resourceType: Encounter
 ```
 
 {% hint style="info" %}
