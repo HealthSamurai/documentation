@@ -1,0 +1,6 @@
+root: ./
+
+redirects:
+    plan-api/plan-api-overview: api-1/plan-api/plan-api-overview.md
+    plan-api/plan-api: api-1/plan-api/README.md
+    plan-api/patient-access-api: api-1/plan-api/patient-access-api.md
