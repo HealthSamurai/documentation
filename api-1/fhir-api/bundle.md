@@ -7,7 +7,7 @@ description: >-
 # Bundle
 
 {% hint style="info" %}
-Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [contact](../../contact-us.md) us if you have questions, feedback, or suggestions.
+Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [contact](../../overview/contact-us.md) us if you have questions, feedback, or suggestions.
 {% endhint %}
 
 The Bundle resource is a resource which groups multiple resources in one. It is important to differentiate Bundle resource and operation which take or return Bundles.
@@ -35,7 +35,7 @@ Let's look at some operations working with Bundle resources.
   `POST /fhir/Bundle`, `GET /fhir/Bundle`, `GET /fhir/Bundle/<id>`,\
   `PUT /fhir/Bundle/<id>`
 
-See more about the difference between Aidbox and FHIR formats (`/...` and `/fhir/...` endpoints) in the [aidbox-and-fhir-formats.md](../../modules-1/fhir-resources/aidbox-and-fhir-formats.md "mention") page.
+See more about the difference between Aidbox and FHIR formats (`/...` and `/fhir/...` endpoints) in the [aidbox-and-fhir-formats.md](../../getting-started/aidbox-and-fhir-formats.md "mention") page.
 
 ### `POST /` , `POST /fhir` endpoint
 

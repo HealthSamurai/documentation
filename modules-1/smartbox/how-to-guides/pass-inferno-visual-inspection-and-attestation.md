@@ -35,7 +35,7 @@ During the test sessions, Smartbox shows users the `Consent screen`. There is th
 Default `refresh_token` lifespan is unlimited.
 
 {% hint style="info" %}
-To reduce the refresh\_token lifespan use [refresh\_token\_expiration documentation](../../../security-and-access-control-1/auth/authorization-code.md#configure-client)
+To reduce the refresh\_token lifespan use [refresh\_token\_expiration documentation](../../security-and-access-control/auth/authorization-code.md#configure-client)
 {% endhint %}
 
 ## 9.10.06 Health IT developer demonstrated the ability of the Health IT Module / authorization server to validate token it has issued
@@ -75,7 +75,8 @@ grant_types:
 meta:
   tenant:
     id: my-clinic
-    resourceType: Tenant</code></pre>
+    resourceType: Tenant
+</code></pre>
 
 ### Launch the Multi-Patient Authorization and API sequence with wide scope
 
@@ -89,7 +90,7 @@ meta:
    * Bulk Data Scopes: `system/Patient.read`
    * Encryption method: `RS384`
    * Group ID: `test-group-1`
-   * Patient IDs in exported Group: `test-pt-1,test-pt-2`&#x20;
+   * Patient IDs in exported Group: `test-pt-1,test-pt-2`
 5. Press the `Submit` button
 
 You should receive a lot of errors as Smartbox doesn't issue the access token.
@@ -171,7 +172,8 @@ auth:
 secret: secret
 active: true
 smart:
-  launch_uri: https://inferno.healthit.gov/suites/custom/smart/launch</code></pre>
+  launch_uri: https://inferno.healthit.gov/suites/custom/smart/launch
+</code></pre>
 
 ### 2. Build the authorization request URL
 
@@ -199,7 +201,7 @@ Still on the browser press the `Allow` button
 
 After press the `Allow` button Smartbox redirects user back to the `Consent screen`.
 
-In the list of the https requests find the latest one `GET` request with the code `302`. The `location` header should start with the `custom://redirect?` string. \
+In the list of the https requests find the latest one `GET` request with the code `302`. The `location` header should start with the `custom://redirect?` string.\
 \
 Fetch the `code` parameter from the location. Mind there are other parameters in that link. You do not need them.
 
@@ -231,7 +233,7 @@ Still in postman:
 2. Copy the `access_token` to the `token` input
 3. Press the `Send` button
 
-The result of the request is a JSON-object of the  `Patient` resource. Access token works.
+The result of the request is a JSON-object of the `Patient` resource. Access token works.
 
 ### 10. Use \`refresh\_token\` to get a new \`access\_token\`
 
@@ -248,10 +250,10 @@ The result of the request is a JSON-object containing the `access_token`.
 Still in postman:
 
 1. Open the `Get Patient Resource` request
-2. Copy the freshly issued `access_token` to the `token` input&#x20;
+2. Copy the freshly issued `access_token` to the `token` input
 3. Press the `Send` button
 
-The result of the request is the JSON-object of the  `Patient` resource. Updated `access_token` works
+The result of the request is the JSON-object of the `Patient` resource. Updated `access_token` works
 
 ## 9.10.14 Health IT developer demonstrates the public location of its base URLs
 

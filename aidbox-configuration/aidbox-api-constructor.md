@@ -6,7 +6,7 @@ Using Aidbox API constructor you can:
 * specify your own middlewares (e.g. Smart on FHIR authorization middleware)
 
 {% hint style="warning" %}
-The API constructor is in beta now. Please [contact](../contact-us.md) us if you have questions or need help.
+The API constructor is in beta now. Please [contact](../overview/contact-us.md) us if you have questions or need help.
 {% endhint %}
 
 {% hint style="info" %}
@@ -15,16 +15,16 @@ API constructor requires knowledge of [zen language](https://github.com/zen-lang
 
 #### Common API Constructor use cases
 
-{% content-ref url="../security-and-access-control-1/acl.md" %}
-[acl.md](../security-and-access-control-1/acl.md)
+{% content-ref url="../modules-1/security-and-access-control/security/acl.md" %}
+[acl.md](../modules-1/security-and-access-control/security/acl.md)
 {% endcontent-ref %}
 
 {% content-ref url="../modules-1/smartbox/background-information/multitenancy-approach.md" %}
 [multitenancy-approach.md](../modules-1/smartbox/background-information/multitenancy-approach.md)
 {% endcontent-ref %}
 
-{% content-ref url="../security-and-access-control-1/auth/smart-app/" %}
-[smart-app](../security-and-access-control-1/auth/smart-app/)
+{% content-ref url="../modules-1/security-and-access-control/security/smart-app.md" %}
+[smart-app.md](../modules-1/security-and-access-control/security/smart-app.md)
 {% endcontent-ref %}
 
 
@@ -38,7 +38,7 @@ API constructor requires knowledge of [zen language](https://github.com/zen-lang
 
 ## Example setup
 
-Use [Run Aidbox locally](../getting-started/run-aidbox-locally-with-docker/) to start Aidbox, here is configured [API constructor example](https://github.com/Aidbox/aidbox-project-samples/blob/main/aidbox-project-samples/api-constructor/mybox.edn). Add these environment variables:
+Use [Run Aidbox locally](../getting-started/run-aidbox/run-aidbox-locally-with-docker.md) to start Aidbox, here is configured [API constructor example](https://github.com/Aidbox/aidbox-project-samples/blob/main/aidbox-project-samples/api-constructor/mybox.edn). Add these environment variables:
 
 ```bash
 BOX_PROJECT_GIT_PROTOCOL=https
@@ -167,13 +167,13 @@ Expect target resource type as `:resource` and `:format` (`fhir` or `aidbox`)
 
 See full description and usage examples:
 
-{% content-ref url="../security-and-access-control-1/acl.md" %}
-[acl.md](../security-and-access-control-1/acl.md)
+{% content-ref url="../modules-1/security-and-access-control/security/acl.md" %}
+[acl.md](../modules-1/security-and-access-control/security/acl.md)
 {% endcontent-ref %}
 
 ### map-to-fhir-bundle
 
-`injestion.core/map-to-fhir-bundle` - expects `:format` ("fhir" or "aidbox") and `:mapping` in the definition. Returns result of applying [lisp/mapping](../tools/mappings/mappings-with-lisp-mapping.md) in to the provided data structure and persisting it as Bundle.
+`injestion.core/map-to-fhir-bundle` - expects `:format` ("fhir" or "aidbox") and `:mapping` in the definition. Returns result of applying [lisp/mapping](../app-development/mappings/mappings-with-lisp-mapping.md) in to the provided data structure and persisting it as Bundle.
 
 The result of the example below will be an `POST/injestion/map-to-fhir` endpoint accepting the data structure on which the mapping will be applied as the body of the request.&#x20;
 

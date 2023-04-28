@@ -9,9 +9,9 @@ description: Search API for FHIR resources
 Aidbox provides a Search API for all stored resources. Aidbox Search API is a superset of the [FHIR Search API](https://www.hl7.org/fhir/search.html).
 
 {% hint style="info" %}
-There are two versions of API, which differ by the [resources format](../../../modules-1/fhir-resources/aidbox-and-fhir-formats.md):
+There are two versions of API, which differ by the [resources format](../../../getting-started/aidbox-and-fhir-formats.md):
 
-* search by **`/[resourceType]`** returns results in [Aidbox Format](../../../modules-1/fhir-resources/aidbox-and-fhir-formats.md)
+* search by **`/[resourceType]`** returns results in [Aidbox Format](../../../getting-started/aidbox-and-fhir-formats.md)
 * search by **`/fhir/[resourceType]`** returns data in FHIR Format
 
 All data is stored and searched in Aidbox Format and converted on the fly to FHIR on FHIR endpoints!

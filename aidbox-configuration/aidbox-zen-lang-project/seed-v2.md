@@ -12,7 +12,7 @@ description: >-
 Seed v2 is a stable feature, but it has couple of known issues, we are going to fix next release:
 
 * Seed v2 allows you to define resources with the same id, but it shouldn't as it may lead to unexpected behaviour.
-* For now, behaviour of Seed v2 is undefined in [Highly Available mode](../../getting-started/run-aidbox-in-kubernetes/high-available-aidbox.md).
+* For now, behaviour of Seed v2 is undefined in [Highly Available mode](../../getting-started/run-aidbox/run-aidbox-in-kubernetes/high-available-aidbox.md).
 
 Please, let us know, if you run into any issue with the service.
 {% endhint %}

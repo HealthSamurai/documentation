@@ -24,7 +24,7 @@ This guide does not define exposing Smartbox to the Internet
 * [Kubernetes](https://kubernetes.io/) cluster is set up and running
 * `kubectl` utility is installed
 * Two Aidbox [licenses](../../../overview/aidbox-user-portal/licenses.md) are obtained
-* Email provider [credentials](../../../integrations/email-providers.md) are obtained
+* Email provider [credentials](../../../integrations/email-providers/) are obtained
 * GCP connect [credentials](../../../storage-1/gcp-cloud-storage.md) are obtained
 
 ## Prebuilt k8s configuration

@@ -1,6 +1,6 @@
 # $import & /fhir/$import
 
-`$import` is an implementation of the upcoming FHIR Bulk Import API. This is an asynchronous Operation, which returns url to monitor progress. There are two versions of this operation - `/fhir/$import` accepts data in FHIR format,  `/$import` works with [Aidbox format](../../modules-1/fhir-resources/aidbox-and-fhir-formats.md).
+`$import` is an implementation of the upcoming FHIR Bulk Import API. This is an asynchronous Operation, which returns url to monitor progress. There are two versions of this operation - `/fhir/$import` accepts data in FHIR format, `/$import` works with [Aidbox format](../../getting-started/aidbox-and-fhir-formats.md).
 
 #### Resource requirements for all import operations:
 
@@ -14,7 +14,7 @@ Keep in mind that $import **does not validate** inserted resources for the sake 
 {% endhint %}
 
 {% hint style="info" %}
-Please consider using [Asynchronous validation API](../../profiling-and-validation/validation-api.md#asynchronous-batch-validation-draft) to validate data after $import
+Please consider using [Asynchronous validation API](../../modules-1/profiling-and-validation/validation-api.md#asynchronous-batch-validation-draft) to validate data after $import
 {% endhint %}
 
 ### Example
@@ -75,7 +75,7 @@ With this flag Aidbox will update history for updated resources. For each resour
 
 ## $import on top of the Task API (beta)
 
-Aidbox has introduced a new and improved version of the $import operation, currently in beta, to enhance its reliability and performance. By implementing this operation on top of the [task-api.md](../task-api.md "mention"), it allows the $import operation to be more reliable, continue work after restarts, and handle errors correctly. The Task API also enables the operation to accept multiple requests and execute them from a queue while simultaneously processing multiple items from the "inputs" field (with a default of two items processed simultaneously). Users can monitor the status of the operation through the   [#task-ui](../task-api.md#task-ui "mention").
+Aidbox has introduced a new and improved version of the $import operation, currently in beta, to enhance its reliability and performance. By implementing this operation on top of the [task-api](../task-api/ "mention"), it allows the $import operation to be more reliable, continue work after restarts, and handle errors correctly. The Task API also enables the operation to accept multiple requests and execute them from a queue while simultaneously processing multiple items from the "inputs" field (with a default of two items processed simultaneously). Users can monitor the status of the operation through the [#task-ui](../task-api/#task-ui "mention").
 
 In the future, the ability to list and cancel $import operations will be added, as well as detailed progress info of the operation.
 
@@ -115,25 +115,28 @@ inputs:
 {% endtab %}
 
 {% tab title="Response" %}
-#### Status
+**Status**
+
 ```
 200 OK
 ```
-#### Headers
+
+**Headers**
+
 ```
 Content-Location:  /v2/$import/synthea
 ```
 {% endtab %}
 {% endtabs %}
+
 ### Parameters
 
-| Parameter           | Description                                                                         |
-| ------------------- | ----------------------------------------------------------------------------------- |
-| `id`                | Identifier of the import. <br /> If you don't provide this, the id will be auto-generated. You can check it on `Content-Location` header in the response |
-| `contentEncoding`   | Supports `gzip` or `plain` (non-gzipped .ndjson files)                              |
-| `inputs` (required) | Resources to import <br /> <ul><li>`url` - URL from which load resources</li><li>`resourceType` - Resource type to be loaded</li></ul>   |
-| `update`            | Update history for updated resources (false by default)                             |
-
+| Parameter           | Description                                                                                                                                                            |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                | <p>Identifier of the import.<br>If you don't provide this, the id will be auto-generated. You can check it on <code>Content-Location</code> header in the response</p> |
+| `contentEncoding`   | Supports `gzip` or `plain` (non-gzipped .ndjson files)                                                                                                                 |
+| `inputs` (required) | <p>Resources to import<br></p><ul><li><code>url</code> - URL from which load resources</li><li><code>resourceType</code> - Resource type to be loaded</li></ul>        |
+| `update`            | Update history for updated resources (false by default)                                                                                                                |
 
 To check the staus of import make a GET request to `/v2/$import/<id>`:
 
@@ -143,12 +146,16 @@ To check the staus of import make a GET request to `/v2/$import/<id>`:
 GET /v2/$import/<id>
 ```
 {% endtab %}
+
 {% tab title="Response (In progress)" %}
-#### Status
+**Status**
+
 ```
 200 OK
 ```
-#### Body
+
+**Body**
+
 ```yaml
 type: fhir
 inputs:
@@ -167,12 +174,16 @@ contentEncoding: gzip
 status: in-progress
 ```
 {% endtab %}
+
 {% tab title="Response (done - succeeded)" %}
-#### Status
+**Status**
+
 ```
 200 OK
 ```
-#### Body
+
+**Body**
+
 ```yaml
 type: fhir
 inputs:
@@ -203,14 +214,18 @@ result:
   message: All input files imported, 3584 new resources loaded
   total-files: 3
   total-imported-resources: 3584
-  ```
+```
 {% endtab %}
+
 {% tab title="Response (done - failed)" %}
-#### Status
+**Status**
+
 ```
 200 OK
 ```
-#### Body
+
+**Body**
+
 ```yaml
 type: fhir
 inputs:

@@ -24,12 +24,12 @@ Refer to the following pages for the specific image description and the list of 
 
 Check out the tutorials if you are looking for a step-by-step guide on how to setup and run an image of your choice.
 
-{% content-ref url="../run-aidbox-in-aidbox-sandbox.md" %}
-[run-aidbox-in-aidbox-sandbox.md](../run-aidbox-in-aidbox-sandbox.md)
+{% content-ref url="../run-aidbox/run-aidbox-in-aidbox-sandbox.md" %}
+[run-aidbox-in-aidbox-sandbox.md](../run-aidbox/run-aidbox-in-aidbox-sandbox.md)
 {% endcontent-ref %}
 
-{% content-ref url="../run-aidbox-locally-with-docker/" %}
-[run-aidbox-locally-with-docker](../run-aidbox-locally-with-docker/)
+{% content-ref url="../run-aidbox/run-aidbox-locally-with-docker.md" %}
+[run-aidbox-locally-with-docker.md](../run-aidbox/run-aidbox-locally-with-docker.md)
 {% endcontent-ref %}
 
 If you are looking for the latest versions of the docker images or general release cycle explanation go to the Versioning page.

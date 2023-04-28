@@ -6,9 +6,9 @@ This operation finds all resources which match (i.e. are similar to) the given r
 
 FHIR definition of the operation: [http://hl7.org/fhir/OperationDefinition/Patient-match](http://hl7.org/fhir/OperationDefinition/Patient-match)
 
-This operation translates to [aidbox.mdm/match RPC](../../../reference/rpc-reference/aidbox/mdm/aidbox.mdm-match.md) call. The RPC has simpler syntax and you can adjust threshold values. Consider using it if you are not required to use FHIR syntax.
+This operation translates to [aidbox.mdm/match RPC](../../reference/rpc-reference/aidbox/mdm/aidbox.mdm-match.md) call. The RPC has simpler syntax and you can adjust threshold values. Consider using it if you are not required to use FHIR syntax.
 
-To use `$match` operation you need to set up MDM. Read the [Aidbox MDM manual](../../../mdm/mdm-module.md) to learn how to use it.
+To use `$match` operation you need to set up MDM. Read the [Aidbox MDM manual](../../modules-1/mdm/mdm-module.md) to learn how to use it.
 
 ## Syntax
 
@@ -112,10 +112,10 @@ entry:
 
 ## See also
 
-{% content-ref url="../../../mdm/mdm-module.md" %}
-[mdm-module.md](../../../mdm/mdm-module.md)
+{% content-ref url="../../modules-1/mdm/mdm-module.md" %}
+[mdm-module.md](../../modules-1/mdm/mdm-module.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../../reference/rpc-reference/aidbox/mdm/aidbox.mdm-match.md" %}
-[aidbox.mdm-match.md](../../../reference/rpc-reference/aidbox/mdm/aidbox.mdm-match.md)
+{% content-ref url="../../reference/rpc-reference/aidbox/mdm/aidbox.mdm-match.md" %}
+[aidbox.mdm-match.md](../../reference/rpc-reference/aidbox/mdm/aidbox.mdm-match.md)
 {% endcontent-ref %}

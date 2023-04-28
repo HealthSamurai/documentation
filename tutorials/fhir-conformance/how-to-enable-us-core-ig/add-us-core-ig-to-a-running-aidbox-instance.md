@@ -25,7 +25,7 @@ If you are new to Aidbox it is strongly recommended not to skip any steps. Other
 
 ### Set up base Aidbox instance
 
-Check out our “Getting Started” guides. One of the easiest ways is by following this [guide](../../../getting-started/run-aidbox-locally-with-docker/).
+Check out our “Getting Started” guides. One of the easiest ways is by following this [guide](../../../getting-started/run-aidbox/run-aidbox-locally-with-docker.md).
 
 ### Specify US Core as a dependency
 
@@ -103,7 +103,7 @@ docker compose down && docker compose up -d
 
 Note that US Core IG takes about 1.5GB in the database. You can significantly reduce this size by disabling the loading of Concepts, ValueSets and CodeSystems. For that you need to set `BOX_FEATURES_FTR_PULL_ENABLE=true|false`.
 
-You’ll still be able to [validate codes from ValueSets](../../../terminology/valueset/value-set-validation.md) but [Concept lookups](../../../terminology/codesystem-and-concept/concept-lookup.md) and [ValueSet expansions](../../../terminology/valueset/value-set-expansion.md) as well as `GET /Concept`, `GET /ValueSet` and `GET /CodeSystem` endpoints won’t work. Lookups and expansions without loading into database are currently work in progress
+You’ll still be able to [validate codes from ValueSets](../../../modules-1/terminology/valueset/value-set-validation.md) but [Concept lookups](../../../modules-1/terminology/codesystem-and-concept/concept-lookup.md) and [ValueSet expansions](../../../modules-1/terminology/valueset/value-set-expansion.md) as well as `GET /Concept`, `GET /ValueSet` and `GET /CodeSystem` endpoints won’t work. Lookups and expansions without loading into database are currently work in progress
 
 ### Verify that US Core IG works
 

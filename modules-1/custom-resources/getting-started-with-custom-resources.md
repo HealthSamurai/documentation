@@ -344,7 +344,7 @@ enum:
 
 ### Validation of Incoming Resources
 
-To validate incoming resources, Aidbox uses json-schema which is generated from Entity & Attribute meta-resources (read more in [Validation Section](broken-reference)). Using [$json-schema](../../core-modules/usdjson-schema.md) operation we can inspect which schema will be applied to `UserSetting` resources:
+To validate incoming resources, Aidbox uses json-schema which is generated from Entity & Attribute meta-resources (read more in [Validation Section](broken-reference)). Using [$json-schema](../profiling-and-validation/usdjson-schema.md) operation we can inspect which schema will be applied to `UserSetting` resources:
 
 {% tabs %}
 {% tab title="Request" %}

@@ -8,7 +8,7 @@ description: >-
 
 **Aidbox configuration project** is a directory which contains configuration files written in [Zen](https://github.com/zen-lang/zen) language. Don’t worry if you are not yet familiar with Zen — we’ll explain all the necessary details along the way. For now you can think of it as a simple syntax well-suited for specifying all sorts of configs.
 
-With Aidbox configuration project you can configure all things you need to have a functioning Aidbox instance including [API endpoints](../aidbox-api-constructor.md), [authorization flows](../../security-and-access-control-1/acl.md), [FHIR IGs](../../profiling-and-validation/profiling-with-zen-lang/) and more.
+With Aidbox configuration project you can configure all things you need to have a functioning Aidbox instance including [API endpoints](../aidbox-api-constructor.md), [authorization flows](../../modules-1/security-and-access-control/security/acl.md), [FHIR IGs](../../modules-1/profiling-and-validation/profiling-with-zen-lang/) and more.
 
 Once you set up your project for one Aidbox instance you can reuse it across multiple instances — they all will be configured in exactly the same way. This feature is especially useful for testing purposes. By providing a single directory you can be sure that your CI pipeline has the same setup as your deployed instance.
 

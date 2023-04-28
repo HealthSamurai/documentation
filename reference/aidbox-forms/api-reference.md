@@ -496,15 +496,14 @@ error:
 
 ### get-form-properties
 
-
-Get form related properties. 
+Get form related properties.
 
 > Properties is a typical map where each key is a property name and value is any JSON value
 
 Properties are stored in two sources:
 
-- in ZEN (properties of Form symbol) -  static properties
-- in DB (SDCFormMetadata resource)  -  dynamic properties
+* in ZEN (properties of Form symbol) - static properties
+* in DB (SDCFormMetadata resource) - dynamic properties
 
 You can query `static`, `dynamic` or `all` form properties.
 
@@ -513,7 +512,7 @@ You can query `static`, `dynamic` or `all` form properties.
 params:
 
 | Param      | Description        | Type               | required? |
-|------------|--------------------|--------------------|-----------|
+| ---------- | ------------------ | ------------------ | --------- |
 | form       | Form symbolic name | String             | yes       |
 | properties | properties type    | static/dynamic/all | no        |
 
@@ -528,7 +527,7 @@ params:
     properties: dynamic
 ```
 
-Response: 
+Response:
 
 ```
 result: 
@@ -538,13 +537,11 @@ result:
 
 ```
 
-
 ### add-form-properties
 
 Add set of dynamic properties to a form.
 
-> Properties is a typical map where each key is a property name and value is any JSON value
-> Dynamic Properties - properties that are stored in DB, in `SDCFormMetadata` resource
+> Properties is a typical map where each key is a property name and value is any JSON value Dynamic Properties - properties that are stored in DB, in `SDCFormMetadata` resource
 
 Given properties will be merged with existed - you can replace old values by this operation.
 
@@ -553,7 +550,7 @@ Returns updated `SDCFormMetadata` resource.
 params:
 
 | Param      | Description        | Type   | required? |
-|------------|--------------------|--------|-----------|
+| ---------- | ------------------ | ------ | --------- |
 | form       | Form symbolic name | String | yes       |
 | properties | properties map     | map    | yes       |
 
@@ -570,7 +567,7 @@ params:
       in-development: true
 ```
 
-Result: 
+Result:
 
 > Success
 
@@ -584,20 +581,18 @@ result:
 
 ```
 
-
 ### delete-form-properties
 
 Delete set of form dynamic properties.
 
 > Dynamic Properties - properties that are stored in DB, in `SDCFormMetadata` resource
 
-Returns updated `SDCFormMetadata` resource.
-Returns error when `SDCFormMetadata` resource or some of property name is not found
+Returns updated `SDCFormMetadata` resource. Returns error when `SDCFormMetadata` resource or some of property name is not found
 
 params:
 
 | Param      | Description                | Type              | required? |
-|------------|----------------------------|-------------------|-----------|
+| ---------- | -------------------------- | ----------------- | --------- |
 | form       | Form symbolic name         | String            | yes       |
 | properties | properties names to delete | vector of strings | yes       |
 
@@ -614,7 +609,7 @@ params:
       - in-development
 ```
 
-Response: 
+Response:
 
 > Success
 
@@ -626,7 +621,7 @@ result:
 
 ```
 
-> Error 
+> Error
 
 ```
 error:
@@ -1075,7 +1070,7 @@ result:
 
 ### aidbox.sdc/get-form-access-jwt
 
-Creates [policy token](../../security-and-access-control-1/how-to-guides/access-policy.md#signed-rpc-policy-token) to get access to SDCDocument/SDCWorkflow
+Creates [policy token](../../modules-1/security-and-access-control/how-to-guides/access-policy.md#signed-rpc-policy-token) to get access to SDCDocument/SDCWorkflow
 
 params:
 
@@ -1126,7 +1121,7 @@ policy: <jwt policy token>
 
 Generates link for form access and management without authentication.
 
-> Creates [policy token](../../security-and-access-control-1/how-to-guides/access-policy.md#signed-rpc-policy-token) to get access to SDCDocument/SDCWorkflow
+> Creates [policy token](../../modules-1/security-and-access-control/how-to-guides/access-policy.md#signed-rpc-policy-token) to get access to SDCDocument/SDCWorkflow
 
 Redirect urls can be specified for different actions.
 
@@ -1137,7 +1132,7 @@ Redirect urls can be specified for different actions.
 
 Params:
 
-<table><thead><tr><th>Param</th><th>Description</th><th>Type</th><th data-type="checkbox">required?</th><th>Default</th></tr></thead><tbody><tr><td>form</td><td>link to the form in DB</td><td>Map</td><td>true</td><td></td></tr><tr><td>form.id</td><td>SDCDocument/SDCWorkflow id</td><td>String</td><td>true</td><td></td></tr><tr><td>form.resourceType</td><td></td><td>SDCDocument/SDCWorkflow</td><td>true</td><td></td></tr><tr><td>redirect-on-sign</td><td>URI that used after form sign/amend event for redirect</td><td>URI</td><td>false</td><td></td></tr><tr><td>redirect-button</td><td>URI that used after Save or Close button is pressed</td><td>URI</td><td>false</td><td></td></tr><tr><td>theme</td><td>Theme that will be applied to form.<br>See <a data-mention href="../../modules-1/aidbox-forms/how-to-customize-form-appearance.md">how-to-customize-form-appearance.md</a></td><td>String</td><td>false</td><td></td></tr><tr><td>show-rules </td><td>Show calculated fields formulas</td><td>true | false | readable</td><td>false</td><td>false</td></tr><tr><td>allow-amend</td><td>Allow amend signed shared from</td><td>true | false</td><td>false</td><td>false</td></tr></tbody></table>
+<table><thead><tr><th>Param</th><th>Description</th><th>Type</th><th data-type="checkbox">required?</th><th>Default</th></tr></thead><tbody><tr><td>form</td><td>link to the form in DB</td><td>Map</td><td>true</td><td></td></tr><tr><td>form.id</td><td>SDCDocument/SDCWorkflow id</td><td>String</td><td>true</td><td></td></tr><tr><td>form.resourceType</td><td></td><td>SDCDocument/SDCWorkflow</td><td>true</td><td></td></tr><tr><td>redirect-on-sign</td><td>URI that used after form sign/amend event for redirect</td><td>URI</td><td>false</td><td></td></tr><tr><td>redirect-button</td><td>URI that used after Save or Close button is pressed</td><td>URI</td><td>false</td><td></td></tr><tr><td>theme</td><td>Theme that will be applied to form.<br>See <a data-mention href="../../modules-1/aidbox-forms/how-to-customize-form-appearance.md">how-to-customize-form-appearance.md</a></td><td>String</td><td>false</td><td></td></tr><tr><td>show-rules</td><td>Show calculated fields formulas</td><td>true | false | readable</td><td>false</td><td>false</td></tr><tr><td>allow-amend</td><td>Allow amend signed shared from</td><td>true | false</td><td>false</td><td>false</td></tr></tbody></table>
 
 Request:
 
