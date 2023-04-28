@@ -338,8 +338,7 @@
     * [Multitenancy approach](modules-1/smartbox/background-information/multitenancy-approach.md)
     * [What is Tenant](modules-1/smartbox/background-information/what-is-tenant.md)
     * [Email templating](modules-1/smartbox/background-information/email-templating.md)
-* [Multitenancy](modules-1/multitenancy/README.md)
-  * [How to enable first-class multitenancy](modules-1/multitenancy/how-to-enable-first-class-multitenancy.md)
+* [Multitenancy](modules-1/multitenancy.md)
 
 ## FHIR Implementation Guides
 
