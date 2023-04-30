@@ -78,7 +78,6 @@ spec:
             storage: 10Gi
   backups:
     pgbackrest:
-      image: registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.41-4
       global:
         repo1-retention-full: "30"
         repo1-retention-full-type: time      
