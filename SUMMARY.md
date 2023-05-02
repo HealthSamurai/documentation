@@ -270,6 +270,7 @@
   * [HL7 v2 integration with Aidbox Project](modules-1/hl7-v2-integration/hl7-v2-integration-with-aidbox-project.md)
 * [C-CDA / FHIR Converter](modules-1/ccda-converter/README.md)
   * [🔒 v1 Documentation](modules-1/ccda-converter/ccda-converter.md)
+  * [Producing C-CDA documents](modules-1/ccda-converter/producing-c-cda-documents.md)
 * [Custom Resources](modules-1/custom-resources/README.md)
   * [$metadata](modules-1/custom-resources/custom-metadata.md)
   * [Custom resources using Aidbox Project](modules-1/custom-resources/custom-resources-using-aidbox-project.md)

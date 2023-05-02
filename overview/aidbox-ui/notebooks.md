@@ -35,7 +35,7 @@ When clicking the notebooks tab in Aidbox UI you will get to the notebooks page.
 
 You can create a notebook by clicking **new** in the notebooks menu. Each notebook consists of a title, subtitle, and a block of cells.
 
-![New Aidbox notebook](<../../.gitbook/assets/2021-09-03\_09-47-33 (1) (2) (3) (4) (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (4) (1) (2) (2) (1) (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2) (1) (3).png>)
+![New Aidbox notebook](<../../.gitbook/assets/2021-09-03\_09-47-33 (1) (2) (3) (4) (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (4) (1) (2) (2) (1) (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2) (1).png>)
 
 After you create your cell click the **play** icon to see the answer.
 
