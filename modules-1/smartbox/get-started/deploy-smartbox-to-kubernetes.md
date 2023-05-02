@@ -80,6 +80,8 @@ BOX\_SMARTBOX\_SANDBOX\_\_BASIC is deprecated. Use BOX\_SMARTBOX\_SANDBOX\_\_ADM
 All the available environment variables are defined [here](../../../reference/configuration/environment-variables/)
 {% endhint %}
 
+##
+
 ## Components templates
 
 ### Database (PostgreSQL)
