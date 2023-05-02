@@ -71,7 +71,7 @@ services:
       PGHOST: "database"
       PGDATABASE: "portal"
       BOX_SMARTBOX_SANDBOX__URL: "http://sandbox:8888"
-      BOX_SMARTBOX_SANDBOX__BASIC: "root:secret"
+      BOX_SMARTBOX_SANDBOX__ADMIN: "admin"
       BOX_AUTH_LOGIN__REDIRECT: "/admin/portal"
       BOX_PROJECT_ENTRYPOINT: "smartbox.portal/box"
       AIDBOX_LICENSE: "${PORTAL_LICENSE}"

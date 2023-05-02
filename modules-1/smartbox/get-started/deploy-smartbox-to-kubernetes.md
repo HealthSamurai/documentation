@@ -69,8 +69,12 @@ The `smartbox.yaml` is the k8s compiled templates configuration. The configurati
 * AIDBOX\_CLIENT\_ID: portal-client
 * AIDBOX\_CLIENT\_SECRET: portal-secret
 * BOX\_SMARTBOX\_SANDBOX\_\_URL: http://sandbox
-* BOX\_SMARTBOX\_SANDBOX\_\_BASIC: 'sandbox-client:sandbox-secret'
+* BOX\_SMARTBOX\_SANDBOX\_\_ADMIN: admin
 * BOX\_BULK\_\_STORAGE\_GCP\_\* values. See the [documentation](../../../api-1/bulk-api-1/usdexport.md#gcp)
+
+{% hint style="warn" %}
+BOX\_SMARTBOX\_SANDBOX\_\_BASIC is deprecated. Use BOX\_SMARTBOX\_SANDBOX\_\_ADMIN instead
+{% endhint %}
 
 {% hint style="info" %}
 All the available environment variables are defined [here](../../../reference/configuration/environment-variables/)
@@ -407,7 +411,7 @@ data:
   AIDBOX_CLIENT_ID: cm9vdA==            # base64 encoded root
   AIDBOX_CLIENT_SECRET: c2VjcmV0        # base64 encoded secret
   
-  BOX_SMARTBOX_SANDBOX__BASIC: cm9vdDpzZWNyZXQ= # base64 encoded root:secret
+  BOX_SMARTBOX_SANDBOX__ADMIN: YWRtaW4= # base64 encoded admin
   
   AIDBOX_LICENSE:                       # your base64 encoded lincense
   
@@ -421,8 +425,6 @@ data:
   BOX_BULK__STORAGE_GCP_SERVICE__ACCOUNT__EMAIL:
   BOX_BULK__STORAGE_GCP_SERVICE__ACCOUNT__PRIVATE__KEY:
   BOX_BULK__STORAGE_GCP_BUCKET:
-  
-  BOX_SMARTBOX_SANDBOX__BASIC:
 ```
 {% endcode %}
 
