@@ -6,11 +6,9 @@ description: >-
 
 # Producing C-CDA documents
 
-To populate a C-CDA document from FHIR data, it is necessary to compose a [FHIR Document bundle](https://build.fhir.org/documents.html) first. The FHIR Document bundle should contain a [Composition](https://www.hl7.org/fhir/composition.html) resource, which outlines the top-level attributes of the document, including the title, document type, author, subject (patient), and most importantly, the list of document sections. Each document section is specified by type, title, narrative, and the FHIR resources that will be included in that section. Once such bundle is composed, it can be posted to the [/ccda/v2/to-ccda](./#converting-a-fhir-document-to-c-cda) endpoint to convert it to the C-CDA document.
+To generate a C-CDA document from FHIR data, it is necessary to create a FHIR Document bundle containing a Composition resource that specifies the top-level document attributes, including the title, document type, author, subject (patient), and a list of document sections. Each section must be described by type, title, narrative, and the FHIR resources to be included. Once the FHIR Document bundle is composed, it can be submitted to the /ccda/v2/to-ccda endpoint for conversion to a C-CDA document.
 
-To simplify composing of such Document bundles, Aidbox provides a way to describe document contents in terms of the [FHIR Search API](https://hl7.org/fhir/search.html) using so-called Document Definiton. Document Definition includes attributes such as the type of document to be generated (specified by a LOINC code), the patient for whom the document is being generated, the date of the document, the title of the document, the organization listed as the custodian of the document, the author of the document, and the sections of the document (each with its own LOINC code and narrative template).
-
-Consider the following Document Definition example:
+To simplify the creation of Document bundles, Aidbox offers a feature called Document Definition, which enables the description of document contents using the FHIR Search API. The example below illustrates how to define a Document Definition:
 
 ```clojure
 {:type {:code  "18842-5",
@@ -75,9 +73,7 @@ Consider the following Document Definition example:
     :url "/Observation?category=vital-signs&patient=Patient/{{pid}}"}}]}
 ```
 
-Each resource attribute such as `:subject`, `:author` or `:section / :entry` is specified as FHIR transaction request which returns single resource or multiple resources. Therefore the full power of FHIR Search API can be used here to retrieve resources which meets certain criteria. For example, in the last section of this sample document, only Observations for specific patient and  category = vital-signs are retrieved. Additional criteria such as time span can be added easily.
-
-Simple parameters interpolation is also supported. In example above, Patient ID is not hardcoded but specified as `{{pid}}` parameter, so the same Document Definition can be used to populate documents for different patients.
+Each resource attribute, such as `:subject`, `:author`, or `:section/:entry`, is specified as a FHIR transaction request that returns a single resource or multiple resources. The full power of the FHIR Search API can be used to retrieve resources that meet specific criteria. For example, in the last section of the sample document, only observations for a specific patient and category = vital-signs are retrieved. Additional criteria, such as time span, can be easily added. Simple parameter interpolation is also supported. In the above example, the Patient ID is not hardcoded but specified as `{{pid}}` parameter, so the same Document Definition can be used to populate documents for different patients.
 
 ### /ccda/prepare-doc endpoint
 
