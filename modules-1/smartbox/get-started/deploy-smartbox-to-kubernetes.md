@@ -72,7 +72,7 @@ The `smartbox.yaml` is the k8s compiled templates configuration. The configurati
 * BOX\_SMARTBOX\_SANDBOX\_\_ADMIN: admin
 * BOX\_BULK\_\_STORAGE\_GCP\_\* values. See the [documentation](../../../api-1/bulk-api-1/usdexport.md#gcp)
 
-{% hint style="warn" %}
+{% hint style="warning" %}
 BOX\_SMARTBOX\_SANDBOX\_\_BASIC is deprecated. Use BOX\_SMARTBOX\_SANDBOX\_\_ADMIN instead
 {% endhint %}
 

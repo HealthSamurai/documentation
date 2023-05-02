@@ -6,7 +6,7 @@ description: >-
 
 # Set up Smartbox locally
 
-### Get licenses
+## Get licenses
 
 Go to the [Aidbox user portal](https://aidbox.app) and request 2 "self-hosted" Aidbox licenses for Portal and Develop Sandbox. It is a long string like
 
@@ -16,11 +16,11 @@ eyJhbGciOiJ...
 
 This string is your license key.
 
-### Install Docker and Docker Compose
+## Install Docker and Docker Compose
 
 Follow the [official Docker guide](https://docs.docker.com/compose/install/#install-compose) to install Docker and Docker Compose
 
-### Configure cloud storage
+## Configure cloud storage
 
 GCP Cloud Storage is used in Bulk API for storing and distributing exported data. To enable bulk API, you need to create GCP Cloud Storage, set up GCP Service Account, and provide full access to the service account on this Cloud Storage.
 
@@ -28,7 +28,7 @@ GCP Cloud Storage is used in Bulk API for storing and distributing exported data
 [gcp-cloud-storage.md](../../../storage-1/gcp-cloud-storage.md)
 {% endcontent-ref %}
 
-### **Set up email provider**
+## **Set up email provider**
 
 {% hint style="info" %}
 In this guide `mailgun` is used to send email. Also Smartbox supports [different email providers](../how-to-guides/setup-email-provider.md) and [SMTP](../how-to-guides/setup-email-provider.md#how-to-set-up-smtp)
@@ -36,9 +36,7 @@ In this guide `mailgun` is used to send email. Also Smartbox supports [different
 
 Email provider (`mailgun`) is used to communicate with users (developers, patients). It sends emails for resetting a password, email verification, etc.
 
-## Installation
-
-### **Create docker-compose.yaml**
+## **Create docker-compose.yaml**
 
 Create a `docker-compose.yaml` file and paste there following content.
 
@@ -97,7 +95,7 @@ services:
 
 There are three services: aidbox-db, smartbox and developer sandbox. The first one is PostgreSQL database and the other ones are Aidboxes.
 
-### **Create .env file**
+## **Create .env file**
 
 To configure Aidbox we need to pass environment variables to it. We can pass them with .env file.
 
@@ -152,7 +150,7 @@ By default Aidbox logs are turned off, you can enable them by setting:
 To use alternative email provider see the [document](../how-to-guides/setup-email-provider.md)
 {% endhint %}
 
-### Launch Aidbox
+## Launch Aidbox
 
 Run the following command:
 
@@ -162,15 +160,35 @@ docker compose pull && docker compose up
 
 Now Smartbox is ready.
 
-### Admin portal
+## Admin portal
 
 Open the admin portal [http://localhost:8888/](http://localhost:8888/) and login using credentials from the .env file `AIDBOX_ADMIN_ID` and `AIDBOX_ADMIN_PASSWORD`.
 
 On the admin portal you can manage apps, patients and other admins.
 
-### Developer sandbox
+## Developer sandbox
 
-#### Register developer
+### Setup TokenIntrospector in the Sandbox
+
+To make Sandbox respect tokens issued by Patient Portal:
+
+* Open the admin portal [http://localhost:9999/](http://localhost:9999/) and login using credentials from the .env file `AIDBOX_ADMIN_ID` and `AIDBOX_ADMIN_PASSWORD`
+* Open UI console [http://localhost:9999/ui/console](http://localhost:9999/ui/console)
+* Click the REST Console menu item in the left side bar
+* Create TokenIntrospector resource like example below
+
+```http
+PUT /TokenIntrospector/sandbox-respects-patient-portal-jwt
+
+jwt:
+  iss: http://localhost:8888 # Patient portal base_url value
+type: jwt
+jwks_uri: http://localhost:8888/.well-known/jwks.json # Patient portal jwks URL
+id: sandbox-respects-patient-portal-jwt
+resourceType: TokenIntrospector
+```
+
+### Register developer
 
 Submit developer registration form
 
@@ -186,9 +204,9 @@ Once you submitted the developer registration form, you should receive an email 
 
 Now you can Sign In as developer to the Developer Sandbox.
 
-#### Create a SMART app in developer sandbox
+## Create a SMART app in developer sandbox
 
-#### Get and deploy Growth Chart
+### Get and deploy Growth Chart
 
 To get and the Growth Chart downloaded and start it
 
@@ -214,11 +232,11 @@ Once you launched the Growth Chart app, you can register it in the Sandbox.
 
 After Growth Chart is registered copy its `Client ID`.
 
-#### Update Growth Chart `client_id`
+### Update Growth Chart `client_id`
 
 Open the file `growth-chart-app/launch.html` and fill the `client_id` property. Then save changes to the file.
 
-#### Approve SMART App Publishing Request
+### Approve SMART App Publishing Request
 
 Go back to admin portal on [http://localhost:8888](http://localhost:8888). You will see list of SMART App waiting for review.
 
@@ -227,9 +245,9 @@ Go back to admin portal on [http://localhost:8888](http://localhost:8888). You w
 
 Now the smart app is available for your patients
 
-### Enable FHIR API for tenant
+## Enable FHIR API for tenant
 
-#### Register a tenant
+### Register a tenant
 
 In order to register a tenant your need to create Tenant resource in Aidbox.
 
@@ -239,7 +257,7 @@ In order to register a tenant your need to create Tenant resource in Aidbox.
 
 Once you created tenant, you enabled FHIR API for patient, practitioners and bulk clients. Patient portal is related to the tenant as well. The approved smart app is available for patient in that tenant.
 
-#### Populate test data
+### Populate test data
 
 1. Go to Aidbox REST Console. You may open it from admin portal
 2.  Run the following import:
@@ -258,7 +276,7 @@ Once you created tenant, you enabled FHIR API for patient, practitioners and bul
 
 Once you saw 200 OK, Patient resource (id=test-pt-1) and corresponding resources had been uploaded into Aidbox. New we can create a User which has access to that data.
 
-#### Create User resource
+### Create User resource
 
 In order to enroll your patient, you need to create User resource. Open Aidbox REST Console and run the following command:
 
@@ -282,10 +300,10 @@ meta:
     resourceType: Tenant
 ```
 
-#### Sign in as a `User`
+### Sign in as a `User`
 
 Go to My Clinic's patient portal and login as the user, created above with `example@mail.com` login and `password` password. Loaunch samrt app and provide requested consent.
 
-### That's it
+## That's it
 
 In this tutorial we learned how to install Smartbox and to get your first SMART app approved.

@@ -331,7 +331,6 @@
     * [Register users](modules-1/smartbox/how-to-guides/register-users.md)
     * [Set up SSO with Auth0](modules-1/smartbox/how-to-guides/how-to-set-up-sso-with-auth0.md)
     * [Find out what resources were exported during the $export operation](modules-1/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-usdexport-operation.md)
-  * [Techical reference](modules-1/smartbox/techical-reference.md)
   * [Background information](modules-1/smartbox/background-information/README.md)
     * [Considerations for Testing with Inferno ONC](modules-1/smartbox/background-information/considerations-for-testing-with-inferno-onc.md)
     * [Adding Clients for Inferno tests](modules-1/smartbox/background-information/adding-clients-for-inferno-tests.md)
