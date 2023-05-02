@@ -776,21 +776,14 @@
 ## aidbox.config/smartbox
 
 - `:sandbox-url` (zen/string)
-
-  
-
-
-
+- `:sandbox-admin` (zen/string)
 - `:sandbox-basic` (zen/string)
-
-  
-
-
-
 - `:session-logs-link` (zen/string)
 
-  
 
+{% hint style="warning" %}
+`:sandbox-basic` is deprecated. Use `:sandbox-admin` instead
+{% endhint %}
 
 
 ## aidbox.config/provider
