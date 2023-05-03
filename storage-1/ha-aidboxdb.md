@@ -116,6 +116,10 @@ spec:
 
 </code></pre>
 
+{% hint style="info" %}
+Look at **`image`** property. Generally, you can use the default image provided by Crunchy Operator. But we strongly recommend using **healthsamurai/aidboxdb:15.2.0-crunchy**  image as the image that is optimized for Aidbox.
+{% endhint %}
+
 Important notes
 
 * `image: healthsamurai/aidboxdb:15.2.0-crunchy`  - we recommend use our aidboxdb image build that is preconfigured for use in PGO
@@ -123,7 +127,7 @@ Important notes
 * `backup options` - in this sample, we use local PVC for storing backups. For configuring cloud storages like S3 or GCS you can [follow this instructions](https://access.crunchydata.com/documentation/postgres-operator/5.3.1/tutorial/backups/)
 * `pg_hba: ["host all all 0.0.0.0/0 md5"]` - for this tutorial we allow non SSL connection
 
-2. Create namespace and apply aidboxdb.yml resource
+2. Create a namespace and apply `aidboxdb.yml` resource
 
 ```bash
 $ kubectl create ns aidboxdb-db
@@ -346,7 +350,7 @@ spec:
                 storage: 1Gi
 ```
 
-Now you need trigger the recovery process
+Now you need to trigger the recovery process
 
 ```bash
 $ kubectl annotate -n aidboxdb-db  postgrescluster aidboxdb --overwrite \
