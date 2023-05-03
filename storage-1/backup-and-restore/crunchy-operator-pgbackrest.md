@@ -142,7 +142,7 @@ spec:
         repo1-retention-full: "30"      # Delete backups after 30 days
 ```
 
-#### Manual backup configuration
+### Create backup
 
 At certain instances, you may find it necessary to perform a singular backup, especially before making significant modifications or updates to an application. To do so, you must first configure the `spec.backups.pgbackrest.manual` section, which includes details about the type of backup desired and any additional pgBackRest configuration settings required:
 
@@ -159,20 +159,127 @@ spec:
           - '--process-max=20'    # Max processes to use for compressing and transfer
 ```
 
-#### Create backup
-
 For creating a manual backup you should annotate `postgrescluster` resource with `postgres-operator.crunchydata.com/pgbackrest-backup` annotation:
 
 ```bash
 $ kubectl annotate -n aidboxdb-db postgrescluster aidboxdb --overwrite \
-        postgres-operator.crunchydata.com/pgbackrest-backup="$(date)"
+          postgres-operator.crunchydata.com/pgbackrest-backup="$(date)"
 ```
-
-### Inspect Backups
 
 ### Recovery
 
+Sometimes you need to recover your database or clone your production database to the stage environment. Generally in the recovery process, we can define two types of recovery: clone the existing cluster to another environment, PITR - recovery database at a specific point in time.
+
 #### Clone
 
+To create a new clone of the existing PG cluster you should specify `dataSource` parameter for the new cluster. In the sample below we create `stage` cluster as a copy of `aidboxdb` cluster in `aidboxdb-db` namespace.
+
+```yaml
+apiVersion: postgres-operator.crunchydata.com/v1beta1
+kind: PostgresCluster
+metadata:
+  name: stage
+  namespace: stage
+spec:
+  dataSource:
+    postgresCluster:
+      clusterName: aidboxdb
+      repoName: repo1
+      clusterNamespace: aidboxdb-db
+  image: healthsamurai/aidboxdb:15.2.0-crunchy
+  postgresVersion: 15
+  instances:
+    - dataVolumeClaimSpec:
+        accessModes:
+        - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: 1Gi
+  backups:
+    pgbackrest:
+      repos:
+      - name: repo1
+        volume:
+          volumeClaimSpec:
+            accessModes:
+            - "ReadWriteOnce"
+            resources:
+              requests:
+                storage: 1Gi
+```
+
 #### PITR
+
+When you need recovery to a specific point in time you should add recovery options to the new cluster configuration.
+
+```yaml
+apiVersion: postgres-operator.crunchydata.com/v1beta1
+kind: PostgresCluster
+metadata:
+  name: stage-pitr
+  namespace: stage-pitr
+spec:
+  dataSource:
+    postgresCluster:
+      clusterName: aidboxdb
+      repoName: repo1
+      clusterNamespace: aidboxdb-db
+      options:
+      - --type=time
+      - --target="2023-04-09 10:00:00-04"
+  image: healthsamurai/aidboxdb:15.2.0-crunchy
+  postgresVersion: 15
+  instances:
+    - dataVolumeClaimSpec:
+        accessModes:
+        - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: 1Gi
+  backups:
+    pgbackrest:
+      repos:
+      - name: repo1
+        volume:
+          volumeClaimSpec:
+            accessModes:
+            - "ReadWriteOnce"
+            resources:
+              requests:
+                storage: 1Gi
+```
+
+Look at `dataSource` . In this section, you can specify the type of recovery and target.
+
+```yaml
+spec:
+  dataSource:
+    postgresCluster:
+      clusterName: aidboxdb
+      clusterNamespace: aidboxdb-db
+      repoName: repo1
+      options:
+      - --type=time
+      - --target="2023-04-09 10:00:00-04"
+```
+
+### Inspect backup
+
+You can list of backups via direct exec `pgbackrest info` command on database image
+
+```bash
+$ export NS=aidboxdb-db
+$ kubectl exec  -n $NS \
+  $(kubectl get pod -n $NS -l "postgres-operator.crunchydata.com/data=postgres" -o jsonpath='{.items[0].metadata.name}') \
+  -- bash -c 'pgbackrest info'
+```
+
+For verifying existing backups you can run `pgbackrest verify` command&#x20;
+
+```bash
+$ export NS=aidboxdb-db
+$ kubectl exec  -n $NS \
+  $(kubectl get pod -n $NS -l "postgres-operator.crunchydata.com/data=postgres" -o jsonpath='{.items[0].metadata.name}') \
+  -- bash -c 'pgbackrest --stanza=db --log-level-console=info verify'
+```
 
