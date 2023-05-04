@@ -101,7 +101,7 @@ spec:
     - databases:
         - aidbox
       name: aidbox
-      options: "SUPERUSER"
+      options: "SUPERUSER CREATEROLE LOGIN CREATEDB"
   patroni:
     switchover:
       enabled: true
@@ -386,3 +386,103 @@ $ kubectl pgo backup aidboxdb -n aidboxdb-db
 # Show backups
 $ kubectl pgo show backup aidboxdb -n aidboxdb-db
 ```
+
+### Monitoring
+
+#### Configure
+
+```yaml
+spec:
+  monitoring:
+    pgmonitor:
+      exporter:
+        image: registry.developers.crunchydata.com/crunchydata/crunchy-postgres-exporter:ubi8-5.3.1-0
+```
+
+#### Install Prometheus stack
+
+Install all manually
+
+* prometheus -
+* grafana -&#x20;
+
+Prebuild prometheus stack for kubernetes
+
+* kube-prometheus -&#x20;
+
+#### Scrape config
+
+Configure scrape config for prometheus and PGO Crunchy Operator
+
+```yaml
+- job_name: crunchy-postgres-exporter
+  kubernetes_sd_configs:
+  - role: pod
+  relabel_configs:
+  - source_labels:
+    - __meta_kubernetes_pod_label_postgres_operator_crunchydata_com_crunchy_postgres_exporter
+    - __meta_kubernetes_pod_label_crunchy_postgres_exporter
+    action: keep
+    regex: true
+    separator: ''
+  - source_labels:
+    - __meta_kubernetes_pod_container_port_number
+    action: drop
+    regex: 5432
+  - source_labels:
+    - __meta_kubernetes_pod_container_port_number
+    action: drop
+    regex: 10000
+  - source_labels:
+    - __meta_kubernetes_pod_container_port_number
+    action: drop
+    regex: 8009
+  - source_labels:
+    - __meta_kubernetes_pod_container_port_number
+    action: drop
+    regex: 2022
+  - source_labels:
+    - __meta_kubernetes_pod_container_port_number
+    action: drop
+    regex: "^$"
+  - source_labels:
+    - __meta_kubernetes_namespace
+    action: replace
+    target_label: kubernetes_namespace
+  - source_labels:
+    - __meta_kubernetes_pod_name
+    target_label: pod
+  - source_labels:
+    - __meta_kubernetes_pod_label_postgres_operator_crunchydata_com_cluster
+    - __meta_kubernetes_pod_label_pg_cluster
+    target_label: cluster
+    separator: ''
+    replacement: "$1"
+  - source_labels:
+    - __meta_kubernetes_namespace
+    - cluster
+    target_label: pg_cluster
+    separator: ":"
+    replacement: "$1$2"
+  - source_labels:
+    - __meta_kubernetes_pod_ip
+    target_label: ip
+    replacement: "$1"
+  - source_labels:
+    - __meta_kubernetes_pod_label_postgres_operator_crunchydata_com_instance
+    - __meta_kubernetes_pod_label_deployment_name
+    target_label: deployment
+    replacement: "$1"
+    separator: ''
+  - source_labels:
+    - __meta_kubernetes_pod_label_postgres_operator_crunchydata_com_role
+    - __meta_kubernetes_pod_label_role
+    target_label: role
+    replacement: "$1"
+    separator: ''
+```
+
+#### Install dashboards
+
+Add Grafana dashboards
+
