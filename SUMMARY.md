@@ -43,6 +43,7 @@
 
 * [Data API](tutorials/data-api/README.md)
   * [Custom Search](tutorials/data-api/custom-search.md)
+  * [Change sort order by locale collation](tutorials/data-api/change-sort-order-by-locale-collation.md)
   * [How to fix broken dates](tutorials/data-api/how-to-fix-broken-dates.md)
 * [Administration](app-development-guides/administration.md)
   * [How to migrate transaction id to bigint](tutorials/administration/how-to-migrate-transaction-id-to-big-int.md)
