@@ -18,7 +18,7 @@ Workflow Engine allows implementing both simple scenarios using [predefined task
 
 ## Basic Concepts <a href="#basic-concepts" id="basic-concepts"></a>
 
-<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption><p>Workflow Engine Components</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (22).png" alt=""><figcaption><p>Workflow Engine Components</p></figcaption></figure>
 
 ### Task and Workflow
 

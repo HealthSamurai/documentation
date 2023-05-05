@@ -14,7 +14,7 @@ Let's create AccessPolicy for this Client
 
 ![PUT AcessPolicy/basic-policy](<../../../.gitbook/assets/image (51).png>)
 
-![GET /Patient](<../../../.gitbook/assets/image (52).png>)
+![GET /Patient](<../../../.gitbook/assets/image (52) (1).png>)
 
 ## Client Credentials Flow
 

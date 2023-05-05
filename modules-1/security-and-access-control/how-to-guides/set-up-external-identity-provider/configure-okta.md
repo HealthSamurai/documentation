@@ -12,7 +12,7 @@ Please make sure you use Aidbox v:2107 _`stable`_ or later Aidbox version
 
 If you do not have an Okta account, create it to get your authorization server. Find your **okta domain**. You can do it in **Security > API**
 
-![](<../../../../.gitbook/assets/image (40).png>)
+![](<../../../../.gitbook/assets/image (40) (1).png>)
 
 ## Create a Client (Application) in Okta
 

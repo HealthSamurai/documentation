@@ -16,7 +16,7 @@ To create a new API key go to [Datadog](https://app.datadoghq.com/) then go to I
 
 Click API Keys
 
-![](<../../../.gitbook/assets/image (13) (1).png>)
+![](<../../../.gitbook/assets/image (13).png>)
 
 Enter the name of the new key and click Create API Key
 
@@ -66,11 +66,11 @@ Now add a facet for the event.
 
 Go to logs then click add on the left
 
-![](<../../../.gitbook/assets/image (23).png>)
+![](<../../../.gitbook/assets/image (23) (1).png>)
 
 Use `@ev` path for the new facet
 
-![](<../../../.gitbook/assets/image (24).png>)
+![](<../../../.gitbook/assets/image (24) (1).png>)
 
 In this guide, we will add a metric for authorization failures
 
@@ -84,7 +84,7 @@ Click Add a new metric
 
 Define a query for the `auth/authorize-failed` event
 
-![](<../../../.gitbook/assets/image (27).png>)
+![](<../../../.gitbook/assets/image (27) (1).png>)
 
 Enter the name for the new metric and click Create metric
 
@@ -92,7 +92,7 @@ Enter the name for the new metric and click Create metric
 
 Now we can see our metric in the Metrics Explorer
 
-![](<../../../.gitbook/assets/image (29).png>)
+![](<../../../.gitbook/assets/image (29) (1).png>)
 
 And we can define monitoring to alert if there are too many authorization failures. To do this navigate to Monitors -> New Monitor
 
@@ -100,11 +100,11 @@ And we can define monitoring to alert if there are too many authorization failur
 
 Select monitor type "metric"
 
-![](<../../../.gitbook/assets/image (31).png>)
+![](<../../../.gitbook/assets/image (31) (1).png>)
 
 Set up monitoring options
 
-![](<../../../.gitbook/assets/image (32).png>)
+![](<../../../.gitbook/assets/image (32) (1).png>)
 
 And notifications
 
@@ -112,7 +112,7 @@ And notifications
 
 Now we can see our monitor on the Monitor page
 
-![](<../../../.gitbook/assets/image (34).png>)
+![](<../../../.gitbook/assets/image (34) (1).png>)
 
 It takes some time for Datadog to set up the monitor. After a while, it will become green
 

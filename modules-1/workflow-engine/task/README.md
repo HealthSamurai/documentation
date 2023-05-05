@@ -25,9 +25,7 @@ Aidbox provides several predefined tasks for routine jobs that can be called via
 
 ## &#x20;Task Instance
 
-intro
-
-<figure><img src="../../../.gitbook/assets/image (7).png" alt="" width="375"><figcaption><p>Task lifecycle</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (23).png" alt="" width="375"><figcaption><p>Task lifecycle</p></figcaption></figure>
 
 After creation task will become either `waiting` or `ready`. Executors will poll for a task in `ready` status, and execute them using [#task-executor-api](./#task-executor-api "mention").
 
@@ -70,4 +68,4 @@ Task instances could be created in multiple ways, for example by [#awf.task-crea
 
 </details>
 
-<figure><img src="../../../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (34).png" alt=""><figcaption><p>Task execution process</p></figcaption></figure>
