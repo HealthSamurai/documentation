@@ -391,6 +391,8 @@ $ kubectl pgo show backup aidboxdb -n aidboxdb-db
 
 #### Configure
 
+Enable monitoring capabilities by configuring monitoring.
+
 ```yaml
 spec:
   monitoring:
@@ -401,14 +403,14 @@ spec:
 
 #### Install Prometheus stack
 
-Install all manually
+Install all parts manually
 
-* prometheus -
-* grafana -&#x20;
+* [prometheus](https://prometheus.io/) - metrics and alerting open-source monitoring solution
+* [grafana](https://grafana.com/) - open-source observability tool
 
-Prebuild prometheus stack for kubernetes
+Or install Prebuild prometheus stack for Kubernetes
 
-* kube-prometheus -&#x20;
+* [kube-prometheus](https://github.com/prometheus-operator/kube-prometheus) - Prebuild prometheus stack for Kubernetes
 
 #### Scrape config
 
@@ -482,7 +484,5 @@ Configure scrape config for prometheus and PGO Crunchy Operator
     separator: ''
 ```
 
-#### Install dashboards
 
-Add Grafana dashboards
 
