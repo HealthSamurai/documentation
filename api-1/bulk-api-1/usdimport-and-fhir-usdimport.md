@@ -73,9 +73,9 @@ With this flag Aidbox will update history for updated resources. For each resour
 * if resource was not present in DB before the import, the import time will be the same.
 * if resource was present in DB before and it's updated during the import, it will double the time importing this resource because of additional insert operation into `_history` table.
 
-## $import on top of the Task API (beta)
+## $import on top of the Workflow (beta)
 
-Aidbox has introduced a new and improved version of the $import operation, currently in beta, to enhance its reliability and performance. By implementing this operation on top of the [task-api](../task-api/ "mention"), it allows the $import operation to be more reliable, continue work after restarts, and handle errors correctly. The Task API also enables the operation to accept multiple requests and execute them from a queue while simultaneously processing multiple items from the "inputs" field (with a default of two items processed simultaneously). Users can monitor the status of the operation through the [#task-ui](../task-api/#task-ui "mention").
+Aidbox has introduced a new and improved version of the $import operation, currently in beta, to enhance its reliability and performance. By implementing this operation on top of the [Workflow](../../modules-1/workflow-engine/workflow/), it allows the $import operation to be more reliable, continue work after restarts, and handle errors correctly. The Task API also enables the operation to accept multiple requests and execute them from a queue while simultaneously processing multiple items from the "inputs" field (with a default of two items processed simultaneously). Users can monitor the status of the operation through the [Workflow UI](../../modules-1/workflow-engine/workflow/#workflow-ui).
 
 In the future, the ability to list and cancel $import operations will be added, as well as detailed progress info of the operation.
 

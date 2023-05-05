@@ -131,9 +131,9 @@
   * Added [$match](../../modules-1/mdm/mdm-module.md) operation
   * [Python API](https://github.com/Aidbox/mdm) for Aidbox MDM module
 * Archive/Restore API
-  * [Task API](../../api-1/task-api/) allowing to define asynchronous operation called tasks.
-  * [Archive/Restore API](../../api-1/task-api/archive-restore-api/) allowing to archive and restore resources to/from S3 bucket powered by Task API.
-  * [Scheduler API](../../api-1/task-api/scheduler-api.md) allowing to execute tasks by schedule.
+  * [Task API](../../modules-1/workflow-engine/task/) allowing to define asynchronous operation called tasks.
+  * [Archive/Restore API](../../api-1/archive-restore-api/) allowing to archive and restore resources to/from S3 bucket powered by Task API.
+  * [Scheduler API](broken-reference) allowing to execute tasks by schedule.
 * Aidbox Configuration Projects
   * Added a [FHIR 4.0.1 compliant Configuration Project](https://github.com/Aidbox/fhir-r4-configuration-project) (also available on Aidbox User Portal).
   * Added a project with [Touchstone FHIR 4.0.1 basic server test suite fixtures](https://github.com/zen-fhir/touchstone-fhir-r4-fixtures).

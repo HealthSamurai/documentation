@@ -85,7 +85,7 @@ url:  https://aidbox.blob.core.windows.net/avatars/pt-1.png?sr=signature
 
 Configure CORS in Azure if you want to send data from the browser:
 
-![](<../.gitbook/assets/image (7).png>)
+![](<../.gitbook/assets/image (7) (2).png>)
 
 Now you can upload file from your UI using signed URL provided by Aidbox:
 

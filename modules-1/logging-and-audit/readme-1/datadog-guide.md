@@ -16,11 +16,11 @@ To create a new API key go to [Datadog](https://app.datadoghq.com/) then go to I
 
 Click API Keys
 
-![](<../../../.gitbook/assets/image (13).png>)
+![](<../../../.gitbook/assets/image (13) (1).png>)
 
 Enter the name of the new key and click Create API Key
 
-![](<../../../.gitbook/assets/image (15).png>)
+![](<../../../.gitbook/assets/image (15) (1).png>)
 
 Copy the newly generated key
 
@@ -60,7 +60,7 @@ Set the attributes
 | Trace Id attributes | ctx     |
 | Message attributes  | msg,err |
 
-![](<../../../.gitbook/assets/image (22).png>)
+![](<../../../.gitbook/assets/image (22) (1).png>)
 
 Now add a facet for the event.
 

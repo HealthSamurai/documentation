@@ -3,7 +3,7 @@
 Follow step-by-step guide to configure scheduled archive operation:
 
 1. Create [GCPServiceAccount](../../storage-1/gcp-cloud-storage.md#create-gcpserviceaccount) resource.
-2.  Define your scheduler rule with create-archive task as `:task-request` parameter. Check [Scheduler API](../../api-1/task-api/scheduler-api.md) and [create-archive](../../api-1/task-api/archive-restore-api/create-archive.md) documentation for more information.\
+2.  Define your scheduler rule with create-archive task as `:task-request` parameter. Check [Scheduler service](broken-reference) and [create-archive](../../api-1/archive-restore-api/create-archive.md) documentation for more information.\
     This rule means that Scheduler API will archive all AuditEvent resources that are older than 30 days every day at 2 am into GCP Cloud Storage.
 
     <pre class="language-clojure"><code class="lang-clojure">archive-every-day
@@ -29,25 +29,23 @@ Follow step-by-step guide to configure scheduled archive operation:
       :engine   awf.scheduler/task-scheduler-service-engine
       :rules    #{archive-every-day}}
     ```
-4.  Include task, executor and scheduler services in your Aidbox service configuration if they are not already included in your configuration.
+4.  Include scheduler service in your Aidbox service configuration if they are not already included in your configuration.
 
     ```clojure
     box
      {:zen/tags #{aidbox/system}
-      :services {:task-service awf.task/task-service
-                 :scheduler-service scheduler-service
-                 :aidbox-long-pool-executor-service awf.executor/aidbox-long-pool-executor-service}}
+      :services {:scheduler-service scheduler-service}}
     ```
 5. Restart Aidbox.
 6.  Check if new scheduler rules created in Scheduler UI:
 
-    <figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (3) (4).png" alt=""><figcaption></figcaption></figure>
 
 Full configuration for this guide:
 
 ```clojure
 {ns     aidbox-with-task
- import #{aidbox awf.task awf.executor aidbox.archive awf.scheduler}
+ import #{aidbox aidbox.archive awf.scheduler}
 
  archive-every-day
  {:zen/tags #{awf.scheduler/rule}
@@ -72,9 +70,7 @@ Full configuration for this guide:
 
  box
  {:zen/tags #{aidbox/system}
-  :services {:task-service awf.task/task-service
-             :scheduler-service scheduler-service
-             :aidbox-long-pool-executor-service awf.executor/aidbox-long-pool-executor-service}}
+  :services {:scheduler-service scheduler-service}}
 }
 ```
 
