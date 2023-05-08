@@ -6,7 +6,7 @@
 
 ## Aidbox predefined Tasks
 
-Aidbox provides several predefined tasks for routine jobs that can be called via [User API](./#task-user-api) or [task-related services](../services.md).
+Aidbox provides several predefined tasks for routine jobs that can be called via [User API](./#task-user-api) or [task-related services](../services.md). They are executed in aidbox runtime, and available from the box.
 
 <details>
 
@@ -83,11 +83,19 @@ When a new task is created  by [task-user-api.md](task-user-api.md "mention") or
 
 
 
+#### Tasks Statuses and Outcome
+
+Below is a representation of a Task Instance life cycle.
+
 <figure><img src="../../../.gitbook/assets/image (23).png" alt="" width="375"><figcaption><p>Task lifecycle</p></figcaption></figure>
 
-After creation task will become either `waiting` or `ready`. Executors will poll for a task in `ready` status, and execute them using [#task-executor-api](./#task-executor-api "mention").
+After creation task is moved by the engine to `ready` or `waiting status,` depending on the `executeAt` field.
 
-Task instances could be created in multiple ways, for example by [#awf.task-create-and-execute](./#awf.task-create-and-execute "mention")RPC operation, or by [services.md](../services.md "mention").&#x20;
+Tasks in the `ready` state could be pulled by executors. (Either internal or external)
+
+If the task failed, and available retry attempts are available, it will be moved to `waiting` again.
+
+Finally, a task is always moved into `done` status, either by an executor, user on cancel, or engine on timeout, with an outcome `succeeded` , `failed` or `canceled.`
 
 ## Task User API
 
@@ -105,6 +113,14 @@ Task instances could be created in multiple ways, for example by [#awf.task-crea
 </details>
 
 ## Task Implementation
+
+To add a custom task, a definition for it should be added to Aidbox Project, and the executor implemented with Executor API.
+
+### Task Definition
+
+....
+
+### Executor Implementation&#x20;
 
 [Task Executor API](task-executor-api.md) is designed to allow implement task executor in any programming language and use it in Aidbox via REST requests with [RPC calls](../../../api-1/rpc-api.md).
 
