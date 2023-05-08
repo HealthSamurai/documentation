@@ -4,11 +4,13 @@ Task Executor API is designed to allow implement task executor in any programmin
 
 ### `awf.task/poll`
 
-Fetches a new task from the queue and moves its status from `ready` to `requested`, immediately returns an empty array if there are no tasks in the queue.
+Fetches a new task from the queue and moves its status from `ready` to `requested`.&#x20;
+
+Immediately returns an empty array if there are no tasks in the queue.
 
 #### Params:
 
-<table><thead><tr><th>Parameter</th><th>Type</th><th data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>pool</td><td>string</td><td>true</td><td>???</td></tr><tr><td>maxBatchSize</td><td>integer</td><td>false</td><td>The number of tasks that can be polled from the queue simultaneously.<br><em>Default value: 1</em></td></tr><tr><td>includeDefinitions</td><td>string[]</td><td>false</td><td>An array of task definitions to include.<br><em>Exclusive with <code>excludeDefinitions</code></em></td></tr><tr><td>excludeDefinitions</td><td>string[]</td><td>false</td><td>An array of task definitions to exclude.<br><em>Exclusive with <code>includeDefinitions</code></em></td></tr></tbody></table>
+<table><thead><tr><th>Parameter</th><th>Type</th><th data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>pool</td><td>string</td><td>true</td><td></td></tr><tr><td>maxBatchSize</td><td>integer</td><td>false</td><td>The number of tasks that can be polled from the queue simultaneously.<br><em>Default value: 1</em></td></tr><tr><td>includeDefinitions</td><td>string[]</td><td>false</td><td>An array of task definitions to include.<br><em>Exclusive with <code>excludeDefinitions</code></em></td></tr><tr><td>excludeDefinitions</td><td>string[]</td><td>false</td><td>An array of task definitions to exclude.<br><em>Exclusive with <code>includeDefinitions</code></em></td></tr></tbody></table>
 
 #### Result:
 
@@ -56,11 +58,13 @@ result:
 
 ### `awf.task/long-poll`
 
-Fetches a new task from the queue and moves its status from `ready` to `requested`. Waits until timeout unless there will be a new task, and after that returns an empty array.&#x20;
+Fetches a new task from the queue and moves its status from `ready` to `requested`.&#x20;
+
+Waits until timeout unless there will be a new task. In case of timeout, returns an empty array.&#x20;
 
 #### Params:
 
-<table><thead><tr><th>Parameter</th><th>Type</th><th data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>pool</td><td>string</td><td>true</td><td>???</td></tr><tr><td>maxBatchSize</td><td>integer</td><td>false</td><td>The number of tasks that can be polled from the queue simultaneously.<br><em>Default value: 1</em></td></tr><tr><td>includeDefinitions</td><td>string[]</td><td>false</td><td>An array of task definitions to include.<br><em>Exclusive with <code>excludeDefinitions</code></em></td></tr><tr><td>excludeDefinitions</td><td>string[]</td><td>false</td><td>An array of task definitions to exclude.<br><em>Exclusive with <code>includeDefinitions</code></em></td></tr><tr><td>timeout</td><td>integer</td><td>false</td><td>A period of time in ms, the period of time during which the tasks can be polled. <br><em>Default value: 60000 (equal to 1 minute)</em></td></tr></tbody></table>
+<table><thead><tr><th>Parameter</th><th>Type</th><th data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>pool</td><td>string</td><td>true</td><td></td></tr><tr><td>maxBatchSize</td><td>integer</td><td>false</td><td>The number of tasks that can be polled from the queue simultaneously.<br><em>Default value: 1</em></td></tr><tr><td>includeDefinitions</td><td>string[]</td><td>false</td><td>An array of task definitions to include.<br><em>Exclusive with <code>excludeDefinitions</code></em></td></tr><tr><td>excludeDefinitions</td><td>string[]</td><td>false</td><td>An array of task definitions to exclude.<br><em>Exclusive with <code>includeDefinitions</code></em></td></tr><tr><td>timeout</td><td>integer</td><td>false</td><td>A period of time in ms, the period of time during which the tasks can be polled. <br><em>Default value: 60000 (equal to 1 minute)</em></td></tr></tbody></table>
 
 #### Result:
 
@@ -163,32 +167,40 @@ result:
 
 ### `awf.task/notify`
 
-Notifies task service that a task is still alive and creates AidboxTaskLog resource depending on the [notification type](task-executor-api.md#notification-types).
+Notifies Task Service that a task is still alive.&#x20;
 
-#### Notification types:
+After receiving notification, Task Service creates AidboxTaskLog resource with values of extra params fields below.
 
-| Notification type | Description                                                     |
-| ----------------- | --------------------------------------------------------------- |
-| `heartbeat`       | Used to renew the `inProgressTimeout` property of the task.     |
-| `progress`        | Used to periodically pass current progress to the task service. |
+#### Notification Types:
+
+| Notification Type | Description                                                                                     |
+| ----------------- | ----------------------------------------------------------------------------------------------- |
+| `heartbeat`       | Prolongs the `inProgressTimeout` property of the task and sends a string message.               |
+| `progress`        | Prolongs the `inProgressTimeout` property of the task and sends information about its progress. |
 
 #### Params:
 
 <table><thead><tr><th>Parameter</th><th>Type</th><th data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>id</td><td>string</td><td>true</td><td>Identifier of the Task resource.</td></tr><tr><td>execId</td><td>string</td><td>true</td><td>Execution id of the task. Used to avoid duplicate task executions.</td></tr><tr><td>notification</td><td>string</td><td>true</td><td>The type of notification depends on which extra parameters may be required.<br>Possible values: <a href="task-executor-api.md#heartbeat-extra-params"><code>heartbeat</code></a>, <a href="task-executor-api.md#progress-extra-params"><code>progress</code></a></td></tr></tbody></table>
 
-#### Heartbeat extra params:
+#### Extra Params
 
-<table><thead><tr><th>Parameter</th><th>Type</th><th data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>message</td><td>string</td><td>false</td><td>Message field for additional information.</td></tr></tbody></table>
+Depending on the [#notification-types](task-executor-api.md#notification-types "mention"), the following params are needed.&#x20;
 
-#### Progress extra params:
+These parameters will be recorded in AidboxTaskLog resource.
 
-<table><thead><tr><th>Parameter</th><th>Type</th><th data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>progress-current</td><td>integer</td><td>true</td><td>Current progress.</td></tr><tr><td>progress-total</td><td>integer</td><td>false</td><td>Total progress.</td></tr><tr><td>progress-unit</td><td>string</td><td>false</td><td>Unit is supposed to be used with <code>progress-total</code> and <code>progress-current</code>.<br><em>Example: <code>rows</code></em></td></tr></tbody></table>
+#### _For  `heartbeat` Notification_ Type :
+
+<table><thead><tr><th>Parameter</th><th>Type</th><th data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>message</td><td>string</td><td>false</td><td>A string message about any additional information.</td></tr></tbody></table>
+
+#### _For `progress` Notification Type :_
+
+<table><thead><tr><th>Parameter</th><th>Type</th><th data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>progress-current</td><td>integer</td><td>true</td><td>The current value of progress in an integer<br>(The numerator of <code>current / total</code>). </td></tr><tr><td>progress-total</td><td>integer</td><td>false</td><td>The total value of progress in an integer <br>(The dominator of <code>current / total</code>). </td></tr><tr><td>progress-unit</td><td>string</td><td>false</td><td>The unit for the values of <code>progress-total</code> and <code>progress-current</code>.<br><em>Example: <code>rows</code></em></td></tr></tbody></table>
 
 #### Result:
 
-| Parameter           | Type    | Description |
-| ------------------- | ------- | ----------- |
-| inProgressTimeoutAt | integer |             |
+| Parameter           | Type    | Description                                           |
+| ------------------- | ------- | ----------------------------------------------------- |
+| inProgressTimeoutAt | integer | The renewed `inProgressTimeout` property of the task. |
 
 {% tabs %}
 {% tab title="Request" %}
@@ -216,7 +228,7 @@ result:
 
 ### `awf.task/success`
 
-Move a task status from `in-progress`  to `done` with outcome `succeeded`.
+Move task status from `in-progress`  to `done` with outcome `succeeded`.
 
 #### Params:
 
@@ -271,7 +283,7 @@ result:
 
 ### `awf.task/fail`
 
-Moves a task status from `in-progress` to `done` with outcome `failed`.
+Moves task status from `in-progress` to `done` with outcome `failed`.
 
 #### Params:
 
