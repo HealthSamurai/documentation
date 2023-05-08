@@ -23,7 +23,65 @@ Aidbox provides several predefined tasks for routine jobs that can be called via
 
 </details>
 
-## &#x20;Task Instance
+## Task Instance
+
+When a new task is created  by [task-user-api.md](task-user-api.md "mention") or by [services.md](../services.md "mention") or [workflow](../workflow/ "mention"), new resource `AidboxTask` is created which stores task Params, Result, and Status, as well as some additional information regarding task execution. Bellow is an example of AidboxTask with fields explanation:
+
+```clojure
+{
+ ;; resource or service who requested task execution
+ :requester       {:resourceType "User" :id "admin"}
+
+ ;; number of finished attempts to execute tasks
+ :retryCount      1
+
+ ;; UUID which is assigned to a task, whenever task is started
+ ;; Executors should include it ina  requests
+ :execId         "44bc2-aac6-49a1-91e7-7f9fa29afe21"
+
+ ;; Current status of the Task.
+ ;; Possible values are: "created" "waiting" "ready" "requested" "in-progress" "done"
+ :status          "done"
+
+ ;; Outcome of the task execution, only available when task status is "done"
+ ;; Possible values are: "succeeded" "failed" "canceled"
+ :outcome         "succeeded"
+
+ ;; Only filled when outcome is "failed"
+ :outcomeReason   {;; Type of "fail"
+                   ;; Possible values are:
+                   ;; "awf.task/failed-by-executor" - executor called action awf.task/fail, error is validated with definition schema
+                   ;; "awf.executor/unknown-error" - unexpected error happened
+                   ;; "awf.task/failed-due-to-in-progress-timeout"
+                   :type "awf.task/failed-by-executor"
+                   :message "Failed by executor"
+                   :data {}}
+
+ ;; Params of the task, as specified by caller, should be valid to the schema of the definition
+ :params          {}
+
+ ;; Result of the task, should be valid to the schema of the definition, only present for a task with :outcame "succeeded"
+ :result          {}
+
+ ;; Error of the task, should be valid to the schema of the definition, only present for a task with :outcame "failed"
+ :error           {}
+
+ ;; Id of the task, generated if not supplied. Should be unique across the system.
+ :id  "ea82769d-e083-461c-8cb0-3427ed466f19"
+
+ ;; Human or machine-readable description of task instance.
+ :label "import-resources-aws-my-bucket"
+
+ ;; Symbol of the task definition in Aidbox Project,
+ ;; works as the unique name of the Task that resonates with its function
+ :definition  "aidbox.bulk/import-resource-task"
+
+ ;; Time when a task becomes "ready". Could be specified by the caller, or set by the engine on task retry.
+ :executeAt "2023-04-24T09:30:51.562261Z"
+ }
+```
+
+
 
 <figure><img src="../../../.gitbook/assets/image (23).png" alt="" width="375"><figcaption><p>Task lifecycle</p></figcaption></figure>
 
