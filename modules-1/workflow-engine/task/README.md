@@ -12,7 +12,7 @@ Aidbox provides several predefined tasks for routine jobs that can be called via
 
 <summary>Predefined tasks</summary>
 
-* &#x20;**Special tasks:**
+* **Special tasks:**
   * [**Decision task**](aidbox-predefined-tasks.md#decision-task) - a task used to implement an [Aidbox Workflow](../workflow/).
   * [**Subscription task**](aidbox-predefined-tasks.md#subscription-task) - a task that waits for the resource that meets specified criteria.
 
@@ -93,13 +93,13 @@ Below is a representation of a Task Instance life cycle.
 
 </div>
 
-After the creation of tasks, their status will be changed by Task Service to `ready`, `waiting`, or `status`, depending on the `executeAt` field.
+After the creation of tasks, their status will be changed by Task Service to `ready`, or `waiting`, depending on the `executeAt` field.
 
 Tasks in the status `ready` could be pulled by executors. (Either internal or external)
 
 If the task failed and retry attempts are available, its status will be changed back to `waiting` again.
 
-Finally, the status of tasks is always changed to `done`, either by an executor, a user on cancel, or Task Service on timeout, with one of the outcomes: `succeeded` , `failed` or `canceled.`
+Finally, the status of tasks is always changed to `done`, either by an executor, a user on cancel, or Task Service on timeout, with one of the following outcomes: `succeeded` , `failed` or `canceled.`
 
 ## Task User API
 
@@ -121,11 +121,11 @@ Finally, the status of tasks is always changed to `done`, either by an executor,
 To add a custom task:
 
 1. Add the definition of the task to Aidbox Project, so WorkflowEngine knows about the new task.
-2. &#x20;Implement tak logic using [Executor API](task-executor-api.md) either directly or through the SDK.
+2. &#x20;Implement task logic using [Executor API](task-executor-api.md) either directly or through the SDK.
 
 ### 1. Specify Task Definition
 
-The first step for implementing a new custom is to specify definitions of custom tasks in [aidbox-zen-lang-project](../../../aidbox-configuration/aidbox-zen-lang-project/ "mention") .&#x20;
+The first step for implementing a new custom task is to specify its definition in [aidbox-zen-lang-project](../../../aidbox-configuration/aidbox-zen-lang-project/ "mention") .&#x20;
 
 Task Definition contains all the information necessary to define the behavior of a task instance.
 
@@ -206,22 +206,22 @@ Below is an example of the Aidbox Project namespace with a new task definition.
 ### 2. Implement Task
 
 {% hint style="info" %}
-We are now preparing Aidbox Workflow/Task SDK. By using it, you can probably simplify this step if you use one of the following languages: **typescript**, **python**, or **.NET**.
+We are now preparing Aidbox Workflow/Task SDK. By using it, you can probably simplify this step if you use one of the following languages: **Typescript**, **Python**, or **.NET**.
 {% endhint %}
 
-Once you have the task definitions above, your custom tasks can be implemented in any programming language by using [Task Executor API](task-executor-api.md), according to the following diagram.
+Once you have the task definition above, your custom task can be implemented in any programming language by using [Task Executor API](task-executor-api.md), according to the following diagram.
 
 &#x20;
 
-<figure><img src="../../../.gitbook/assets/Workflow &#x26; Task Runtime.png" alt=""><figcaption><p>Aidbox Task Executor</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Workflow &#x26; Task Runtime.png" alt=""><figcaption></figcaption></figure>
 
-At first, a **`awf.task/long-poll`**  or **`awf.task/poll`** API request should be sent to Task Service to fetch a new task created by [task-user-api.md](task-user-api.md "mention") .&#x20;
+Initially, a request to the Task Service API should be made, either by using **`awf.task/long-poll`** or **`awf.task/poll`**, to fetch a new task created by [task-user-api.md](task-user-api.md "mention").
 
-Then, the executor should send an **`awf.task/start`** request to set the task status to `in-progress`. After receiving the response, the task you implement is supposed to be run.
+Next, a **`awf.task/start`** request should be sent to update the task status to `in-progress`. After receiving the response, your implemented task should begin execution.
 
-Finally, an **`awf.task/success`** request must be sent, if the execution is successful, or an**`awf.task/fail`** request if not. They both change the status of the task to `done` and set the corresponding outcome value.
+Finally, upon successful execution, a **`awf.task/success`** request should be sent. If the execution is not successful, a **`awf.task/fail`** request should be sent instead. Both of these requests will update the task status to `done` and set the corresponding outcome value.
 
-In case the task can run for a long time,  **`awf.task/notify`** requests need to be sent during their execution to tell Task Service that the worker continues processing and it extends the inProgressTimeout value.&#x20;
+If the task is expected to run for an extended period, **`awf.task/notify`** requests should be periodically sent during execution. The requests inform the Task Service that the worker is still processing the task and extend the `inProgressTimeout` value accordingly.
 
 All [Task Executor API](task-executor-api.md) methods are listed below.
 
