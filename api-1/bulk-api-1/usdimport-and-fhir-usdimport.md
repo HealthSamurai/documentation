@@ -73,9 +73,9 @@ With this flag Aidbox will update history for updated resources. For each resour
 * if resource was not present in DB before the import, the import time will be the same.
 * if resource was present in DB before and it's updated during the import, it will double the time importing this resource because of additional insert operation into `_history` table.
 
-## $import on top of the Workflow (beta)
+## /v2/$import on top of the Workflow Engine
 
-Aidbox has introduced a new and improved version of the $import operation, currently in beta, to enhance its reliability and performance. By implementing this operation on top of the [Workflow](../../modules-1/workflow-engine/workflow/), it allows the $import operation to be more reliable, continue work after restarts, and handle errors correctly. The Task API also enables the operation to accept multiple requests and execute them from a queue while simultaneously processing multiple items from the "inputs" field (with a default of two items processed simultaneously). Users can monitor the status of the operation through the [Workflow UI](../../modules-1/workflow-engine/workflow/#workflow-ui).
+Aidbox has introduced a new and improved version of the $import operation, currently in beta, to enhance its reliability and performance. By implementing this operation on top of the [workflow-engine](../../modules-1/workflow-engine/ "mention"), it allows the $import operation to be more reliable, continue work after restarts, and handle errors correctly. The Task API also enables the operation to accept multiple requests and execute them from a queue while simultaneously processing multiple items from the "inputs" field (with a default of two items processed simultaneously). Users can monitor the status of the operation through the [monitoring.md](../../modules-1/workflow-engine/monitoring.md "mention").
 
 In the future, the ability to list and cancel $import operations will be added, as well as detailed progress info of the operation.
 
@@ -138,7 +138,9 @@ Content-Location:  /v2/$import/synthea
 | `inputs` (required) | <p>Resources to import<br></p><ul><li><code>url</code> - URL from which load resources</li><li><code>resourceType</code> - Resource type to be loaded</li></ul>        |
 | `update`            | Update history for updated resources (false by default)                                                                                                                |
 
-To check the staus of import make a GET request to `/v2/$import/<id>`:
+To check the status of import make a GET request to `/v2/$import/<id>`:
+
+As the operation is build on top of our workflow engine, statuses and outcomes of the files and import as whole are inherited from [#task-statuses-and-outcomes](../../modules-1/workflow-engine/task/#task-statuses-and-outcomes "mention")
 
 {% tabs %}
 {% tab title="Request" %}
