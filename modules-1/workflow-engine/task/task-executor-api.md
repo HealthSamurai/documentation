@@ -4,7 +4,7 @@ Task Executor API is designed to allow implement task executor in any programmin
 
 ### `awf.task/poll`
 
-Fetches a `ready` task from the queue and changes its status from `ready` to `requested`.&#x20;
+Fetches a task in the status `ready` from the queue and changes its status to `requested`.&#x20;
 
 Immediately returns an empty array if there are no tasks in the queue.
 
@@ -60,7 +60,7 @@ result:
 
 ### `awf.task/long-poll`
 
-Fetches a `ready` task from the queue and changes its status from `ready` to `requested`.&#x20;
+Fetches a task in the status `ready` from the queue and changes its status to `requested`.&#x20;
 
 Waits for a timeout unless a new task is received. In case of timeout, returns an empty array.&#x20;
 
@@ -117,7 +117,9 @@ result:
 
 ### `awf.task/start`
 
-Changes the status of a task from `requested` to `in-progress` and start its execution. Requires to use `execId` received from `awf.task/poll` or `awf.task/long-poll`.
+Changes the status of a task from `requested` to `in-progress` and start its execution.&#x20;
+
+The required param of `execId` is supposed to be received from the request`awf.task/poll` or `awf.task/long-poll`.
 
 #### Params:
 

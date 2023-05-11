@@ -118,108 +118,11 @@ Finally, the status of tasks is always changed to `done`, either by an executor,
 
 ## Task Implementation
 
-`OLD` To add a custom task, a definition for it should be added to Aidbox Project, and the executor implemented with Executor API.
+To add a custom task, 1) a definition for it should be added to Aidbox Project, and 2) the executor implemented with Executor API.
 
-### Task Definition
+### 1. Specify Task Definition
 
-The first step for implementing a new custom task is to describe its definition in [aidbox-zen-lang-project](../../../aidbox-configuration/aidbox-zen-lang-project/ "mention").&#x20;
-
-Task Definition contains all the information necessary to define the behavior of a task instance.
-
-Below is an example of Aidbox Project namespace with a new task definition.
-
-```clojure
-```
-
-### Executor Implementation&#x20;
-
-<figure><img src="../../../.gitbook/assets/Workflow &#x26; Task Runtime.png" alt=""><figcaption><p>Task Executor API</p></figcaption></figure>
-
-[Task Executor API](task-executor-api.md) is designed to implement task executor in any programming language and use it in Aidbox via REST requests with [RPC calls](../../../api-1/rpc-api.md).
-
-<details>
-
-<summary>API methods</summary>
-
-[`awf.task/poll`](task-executor-api.md#awf.task-poll) - Fetches a new task from the queue and moves its status from `ready` to `requested`, immediately returns an empty array if there are no tasks in the queue.
-
-[`awf.task/long-poll`](task-executor-api.md#awf.task-long-poll) - Fetches a new task from the queue and moves its status from `ready` to `requested`, waits until timeout unless there will be a new task, and after that returns an empty array.&#x20;
-
-[`awf.task/start`](task-executor-api.md#awf.task-start) - Changes a task status from `requested` to `in-progress` and start its execution.
-
-[`awf.task/fail`](task-executor-api.md#awf.task-fail) - Changes a task status from `in-progress` to `done` with outcome `failed`.
-
-[`awf.task/success`](task-executor-api.md#awf.task-success) - Changes a task status from `in-progress`  to `done` with outcome `succeeded`.
-
-[`awf.task/notify`](task-executor-api.md#awf.task-notify) - Notifies task service that a task is still alive.
-
-</details>
-
-
-
-
-
-
-
-`NEW`&#x20;
-
-## Task Implementation
-
-To add custom tasks, the following steps will be needed.
-
-1. Implement Task Executor in any programming language or use SDK
-2. Specify Task Definition in Aidbox configuration project
-3. Implement particular tasks  in any programming language&#x20;
-
-### 1. Implement Task Executor
-
-{% hint style="info" %}
-We are now preparing Aidbox Workflow/Task SDK. By using it, you can probably skip this step if you use one of the following languages: **typescript**, **python**, or **.NET**.
-{% endhint %}
-
-Aidbox has its own Task Executor that handles task execution and communicates with Task Service.
-
-To perform custom tasks, you must have your own executor service.&#x20;
-
-The executor can be implemented in any programming language by using [Task Executor API](task-executor-api.md), according to the following diagram, which shows how Aidbox Task Executor works.
-
-&#x20;
-
-<figure><img src="../../../.gitbook/assets/Workflow &#x26; Task Runtime.png" alt=""><figcaption><p>Aidbox Task Executor</p></figcaption></figure>
-
-At first, when a worker gets available, the executor needs to send a **`awf.task/long-poll`** API request to Task Service. This request changes the status of a task from `ready` to `requested`, if there are tasks in `ready`, and returns that task.
-
-Then, the executor should send a **`awf.task/start`** request to change the task status to `in-progress`. After receiving the response, the executor runs the task you implement in step 3.
-
-Finally, if the execution is successful, the executor must send a **`awf.task/success`** request, otherwise **`awf.task/fail`**. They both change the status of the task to `done` and the former sets the outcome to `succeeded`, the latter to `failed`.
-
-For long tasks,  **`awf.task/notify`** requests should be sent during their execution to tell Task Service that the worker continues processing and it extends the inProgressTimeout value. Otherwise, Task Service may force those tasks to terminate automatically.
-
-All [Task Executor API](task-executor-api.md) methods are listed below.
-
-<details>
-
-<summary>API methods</summary>
-
-[`awf.task/poll`](task-executor-api.md#awf.task-poll) - Fetches a new task from the queue and changes its status from `ready` to `requested`, immediately returns an empty array if there are no tasks in the queue.
-
-[`awf.task/long-poll`](task-executor-api.md#awf.task-long-poll) - Fetches a new task from the queue and changes its status from `ready` to `requested`, waits until timeout unless there will be a new task, and after that returns an empty array.&#x20;
-
-[`awf.task/start`](task-executor-api.md#awf.task-start) - Changes the status of a task from `requested` to `in-progress` and start its execution.
-
-[`awf.task/notify`](task-executor-api.md#awf.task-notify) - Notifies Task Service that a task is still alive.
-
-[`awf.task/success`](task-executor-api.md#awf.task-success) - Changes the status of a task from `in-progress`  to `done` with outcome `succeeded`.
-
-[`awf.task/fail`](task-executor-api.md#awf.task-fail) - Changes the status of a task from `in-progress` to `done` with outcome `failed`.
-
-</details>
-
-
-
-### 2. Specify Task Definition
-
-You need to specify definitions of custom tasks in [aidbox-zen-lang-project](../../../aidbox-configuration/aidbox-zen-lang-project/ "mention") in order to run them with the executor.&#x20;
+The first step for implementing a new custom is to specify definitions of custom tasks in [aidbox-zen-lang-project](../../../aidbox-configuration/aidbox-zen-lang-project/ "mention") .&#x20;
 
 Task Definition contains all the information necessary to define the behavior of a task instance.
 
@@ -227,52 +130,36 @@ Below is an example of Aidbox Project namespace with a new task definition.
 
 ```clojure
 {ns     my-tasks
- ;; To define tasks, "awf.task" namespace should be imported
+ ;; For task definitions, "awf.task" namespace should be imported
  import #{awf.task}
 
- ;; Definition of Pool
- ;; `Pool` is a logical entity that provides a way of scoping tasks in Aidbox.
- ;; Each task and executor must be specified to belong to a pool in its definition.
- ;; After the creation of tasks, they will be registered to the specified pools,
- ;; grouped within a pool and waiting there in line,
- ;; from where executors registered those pools fetch tasks in turn.
- ;; The configuration of task instance behavior should be specified 
- ;; in the scope of a pool as follows
- my-tasks-pool
- {
-  ;; The tag "awf.task/pool" must be set to specify that this is a pool definition
-  :zen/tags #{awf.task/pool}
-
-  ;; Time limit in ms during which tasks can be in the status "requested"
-  ;; without switching to the status "started"
-  :requestedToStartTimeout 300
-
-  ;; Time limit in ms during which tasks can be in the status "in-progress"
-  :inProgressTimeout 800
-
-  ;; Allowed number of attempts for retry in case the execution fails
-  :allowedRetryCount 1
-
-  ;; Delay time in ms before each retry
-  :retryDelay 700
- }
-
-
- ;; Task Definition
- ;; The name ("example-task") will be used to execute this task
+ ;; The unique name of the task
  example-task
  {
   ;; The following tags must be set for task definitions
   :zen/tags #{awf.task/definition zen/schema}
 
-  ;; Every task definition has a hash-map (dictionary-like) data structure
+  ;; Every task definition is supposed to have a hash-map (dictionary-like) data structure
   :type zen/map
 
-  ;; Must be registered to a pool
-  :pool my-tasks-pool
+  ;; Time limit in milliseconds during which tasks can be in the status "requested"
+  ;; In case of timeout, the status is changed to "ready"
+  ;; The default value: 10000
+  :requestedToStartTimeout 300
 
-  ;; You can override the pool configuration (see above) for certain tasks
-  :allowedRetryCount 2
+  ;; Time limit in milliseconds during which tasks can be in the status "in-progress"
+  ;; In case of timeout, the status is changed to "waiting"
+  ;; The default value: 120000
+  :inProgressTimeout 5000
+
+  ;; The maximum number of retries allowed
+  ;; The default value: 2
+  :allowedRetryCount 1
+
+  ;; Delay time in milliseconds before each retry
+  ;; The default value: 10000
+  :retryDelay 2000
+
 
   ;; Define the schema of input, output, and error for task execution
   :keys {
@@ -312,7 +199,45 @@ Below is an example of Aidbox Project namespace with a new task definition.
                   :keys {:my-result {:type zen/number}}}}}}
 ```
 
-### 3. Implement task
 
-Once you have the executor and definitions of custom tasks, all you have to do is write the implementation of the tasks in the programming language you chose.
+
+### 2. Implement Task
+
+{% hint style="info" %}
+We are now preparing Aidbox Workflow/Task SDK. By using it, you can probably simplify this step if you use one of the following languages: **typescript**, **python**, or **.NET**.
+{% endhint %}
+
+Once you have the task definitions above, your custom tasks can be implemented in any programming language by using [Task Executor API](task-executor-api.md), according to the following diagram.
+
+&#x20;
+
+<figure><img src="../../../.gitbook/assets/Workflow &#x26; Task Runtime.png" alt=""><figcaption><p>Aidbox Task Executor</p></figcaption></figure>
+
+At first, a **`awf.task/long-poll`** API request should be sent to Task Service to fetch a new task created by [task-user-api.md](task-user-api.md "mention") .&#x20;
+
+Then, the executor should send a **`awf.task/start`** request to change the task status to `in-progress`. After receiving the response, the task you implement is supposed to be run.
+
+Finally, a **`awf.task/success`** request must be sent, if the execution is successful, or a**`awf.task/fail`** request if not. They both change the status of the task to `done` and sets the needed outcome value.
+
+In case the task can run for a long time,  **`awf.task/notify`** requests need to be sent during their execution to tell Task Service that the worker continues processing and it extends the inProgressTimeout value.&#x20;
+
+All [Task Executor API](task-executor-api.md) methods are listed below.
+
+<details>
+
+<summary>API methods</summary>
+
+[`awf.task/poll`](task-executor-api.md#awf.task-poll) - Fetches a new task from the queue and changes its status from `ready` to `requested`, immediately returns an empty array if there are no tasks in the queue.
+
+[`awf.task/long-poll`](task-executor-api.md#awf.task-long-poll) - Fetches a new task from the queue and changes its status from `ready` to `requested`. Waits for a timeout unless a new task is received. In case of timeout, returns an empty array.&#x20;
+
+[`awf.task/start`](task-executor-api.md#awf.task-start) - Changes the status of a task from `requested` to `in-progress` and start its execution.
+
+[`awf.task/notify`](task-executor-api.md#awf.task-notify) - Notifies Task Service that a task is still alive.
+
+[`awf.task/success`](task-executor-api.md#awf.task-success) - Changes the status of a task from `in-progress`  to `done` with outcome `succeeded`.
+
+[`awf.task/fail`](task-executor-api.md#awf.task-fail) - Changes the status of a task from `in-progress` to `done` with outcome `failed`.
+
+</details>
 
