@@ -30,7 +30,7 @@ For the more complex application when a simple granular task is not enough, it i
 
 ### Task Executor
 
-Task Executor a responsible for executing the logic behind a task. For predefined tasks, they are run within Aidbox, and custom task executors could be implemented in any programming language using API or SDK.
+Task Executor a responsible for executing the logic behind a task. For [predefined tasks](task/aidbox-predefined-tasks.md), they are run within Aidbox, and custom task executors could be [implemented](task/#task-implementation-1) in any programming language using API or SDK.
 
 ### Workflow Executor
 
@@ -46,7 +46,7 @@ _For example:_ whenever an Observation resource with a value of blood pressure a
 
 **Scheduler Service** - allows starting regular scheduled tasks or workflow.
 
-### Monitoring Console
+### [Monitoring Console](monitoring.md)
 
 To monitor the current state of tasks, workflow, and services Workflow Engine provides UI inside the Aidbox console. It's also possible to use API to implement your own user interface.&#x20;
 
@@ -62,11 +62,10 @@ To monitor the current state of tasks, workflow, and services Workflow Engine pr
 [workflow](workflow/)
 {% endcontent-ref %}
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="services.md" %}
+[services.md](services.md)
 {% endcontent-ref %}
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="monitoring.md" %}
+[monitoring.md](monitoring.md)
 {% endcontent-ref %}
-
