@@ -4,19 +4,21 @@ Task Executor API is designed to allow implement task executor in any programmin
 
 ### `awf.task/poll`
 
-Fetches a new task from the queue and moves its status from `ready` to `requested`.&#x20;
+Fetches a `ready` task from the queue and changes its status from `ready` to `requested`.&#x20;
 
 Immediately returns an empty array if there are no tasks in the queue.
 
+Either **taskDefinitions** or **workflowDefinitions** parameter SHOULD be specified.
+
 #### Params:
 
-<table><thead><tr><th>Parameter</th><th>Type</th><th data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>pool</td><td>string</td><td>true</td><td></td></tr><tr><td>maxBatchSize</td><td>integer</td><td>false</td><td>The number of tasks that can be polled from the queue simultaneously.<br><em>Default value: 1</em></td></tr><tr><td>includeDefinitions</td><td>string[]</td><td>false</td><td>An array of task definitions to include.<br><em>Exclusive with <code>excludeDefinitions</code></em></td></tr><tr><td>excludeDefinitions</td><td>string[]</td><td>false</td><td>An array of task definitions to exclude.<br><em>Exclusive with <code>includeDefinitions</code></em></td></tr></tbody></table>
+<table><thead><tr><th>Parameter</th><th>Type</th><th data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>taskDefinitions</td><td>string[]</td><td>false</td><td>An array of task definitions to include.<br></td></tr><tr><td>workflowDefinitions</td><td>string[]</td><td>false</td><td>An array of workflow definitions to include. In response, decision tasks will be returned for specified workflow if available.</td></tr><tr><td>maxBatchSize</td><td>integer</td><td>false</td><td>The number of tasks that can be polled from the queue simultaneously.<br><em>Default value: 1</em></td></tr></tbody></table>
 
 #### Result:
 
-| Parameter | Type      | Description                                 |
-| --------- | --------- | ------------------------------------------- |
-| resources | object\[] | Created AidboxTask resources with `execId`. |
+| Parameter | Type      | Description                         |
+| --------- | --------- | ----------------------------------- |
+| resources | object\[] | AidboxTask resources with `execId`. |
 
 {% tabs %}
 {% tab title="Request" %}
@@ -27,7 +29,7 @@ accept: text/yaml
 
 method: awf.task/poll
 params:
-    pool: awf.executor/aidbox-long-tasks-pool
+    taskDefinitions: [aidbox.bulk/import-resource-task]
 ```
 {% endtab %}
 
@@ -58,19 +60,21 @@ result:
 
 ### `awf.task/long-poll`
 
-Fetches a new task from the queue and moves its status from `ready` to `requested`.&#x20;
+Fetches a `ready` task from the queue and changes its status from `ready` to `requested`.&#x20;
 
-Waits until timeout unless there will be a new task. In case of timeout, returns an empty array.&#x20;
+Waits for a timeout unless a new task is received. In case of timeout, returns an empty array.&#x20;
+
+Either **taskDefinitions** or **workflowDefinitions** parameter SHOULD be specified.
 
 #### Params:
 
-<table><thead><tr><th>Parameter</th><th>Type</th><th data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>pool</td><td>string</td><td>true</td><td></td></tr><tr><td>maxBatchSize</td><td>integer</td><td>false</td><td>The number of tasks that can be polled from the queue simultaneously.<br><em>Default value: 1</em></td></tr><tr><td>includeDefinitions</td><td>string[]</td><td>false</td><td>An array of task definitions to include.<br><em>Exclusive with <code>excludeDefinitions</code></em></td></tr><tr><td>excludeDefinitions</td><td>string[]</td><td>false</td><td>An array of task definitions to exclude.<br><em>Exclusive with <code>includeDefinitions</code></em></td></tr><tr><td>timeout</td><td>integer</td><td>false</td><td>A period of time in ms, the period of time during which the tasks can be polled. <br><em>Default value: 60000 (equal to 1 minute)</em></td></tr></tbody></table>
+<table><thead><tr><th>Parameter</th><th>Type</th><th data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>taskDefinitions</td><td>string[]</td><td>false</td><td>An array of task definitions to include.<br></td></tr><tr><td>workflowDefinitions</td><td>string[]</td><td>false</td><td>An array of workflow definitions to include. In response, decision tasks will be returned for specified workflow if available.</td></tr><tr><td>maxBatchSize</td><td>integer</td><td>false</td><td>The number of tasks that can be polled from the queue simultaneously.<br><em>Default value: 1</em></td></tr><tr><td>timeout</td><td>integer</td><td>false</td><td>A period of time in ms, the period of time during which the tasks can be polled. <br><em>Default value: 60000 (equal to 1 minute)</em></td></tr></tbody></table>
 
 #### Result:
 
-| Parameter | Type      | Description                                 |
-| --------- | --------- | ------------------------------------------- |
-| resources | object\[] | Created AidboxTask resources with `execId`. |
+| Parameter | Type      | Description                         |
+| --------- | --------- | ----------------------------------- |
+| resources | object\[] | AidboxTask resources with `execId`. |
 
 {% tabs %}
 {% tab title="Request" %}
@@ -82,7 +86,7 @@ accept: text/yaml
 method: awf.task/long-poll
 params:
     timeout: 50000
-    pool: awf.executor/aidbox-long-tasks-pool
+    taskDefinitions: [aidbox.bulk/import-resource-task]
 ```
 {% endtab %}
 
@@ -113,7 +117,7 @@ result:
 
 ### `awf.task/start`
 
-Moves a task status from `requested` to `in-progress` and start its execution. Requires to use `execId` received from `awf.task/poll` or `awf.task/long-poll`.
+Changes the status of a task from `requested` to `in-progress` and start its execution. Requires to use `execId` received from `awf.task/poll` or `awf.task/long-poll`.
 
 #### Params:
 
@@ -144,7 +148,6 @@ params:
 result:
   resource:
     definition: aidbox.bulk/import-resource-task
-    pool: awf.executor/aidbox-long-tasks-pool
     meta:
       lastUpdated: '2023-05-05T13:40:38.088195Z'
       createdAt: '2023-05-05T09:37:41.786909Z'
@@ -186,7 +189,7 @@ After receiving notification, Task Service creates AidboxTaskLog resource with v
 
 Depending on the [#notification-types](task-executor-api.md#notification-types "mention"), the following params are needed.&#x20;
 
-These parameters will be recorded in AidboxTaskLog resource.
+These parameters with notification type will be recorded in AidboxTaskLog resource after handling API request.
 
 #### _For  `heartbeat` Notification_ Type :
 
@@ -228,7 +231,7 @@ result:
 
 ### `awf.task/success`
 
-Move task status from `in-progress`  to `done` with outcome `succeeded`.
+Changes the status of a task from `in-progress`  to `done`, setting the outcome to `succeeded`.
 
 #### Params:
 
@@ -283,7 +286,7 @@ result:
 
 ### `awf.task/fail`
 
-Moves task status from `in-progress` to `done` with outcome `failed`.
+Changes the status of a task from `in-progress` to `done`, setting the outcome to `failed`.
 
 #### Params:
 
@@ -314,7 +317,6 @@ params:
 result:
   resource:
     definition: aidbox.bulk/import-resource-task
-    pool: awf.executor/aidbox-long-tasks-pool2
     meta:
       lastUpdated: '2023-05-05T14:15:49.658083Z'
       createdAt: '2023-05-05T14:12:52.899952Z'
