@@ -18,7 +18,7 @@ In order to run Aidbox locally, you need to have [Docker & Docker compose instal
 git clone \
   --branch=main \
   --depth=1 \
-  git@github.com:Aidbox/aidbox-project-template.git \
+  https://github.com/Aidbox/aidbox-project-template.git \
   aidbox-project && \
   cd aidbox-project && \
   rm -rf .git
@@ -30,7 +30,7 @@ git clone \
 git clone \
   --branch=fhir-r4b \
   --depth=1 \
-  git@github.com:Aidbox/aidbox-project-template.git \
+  https://github.com/Aidbox/aidbox-project-template.git \
   aidbox-project && \
   cd aidbox-project && \
   rm -rf .git
@@ -42,7 +42,7 @@ git clone \
 git clone \
   --branch=fhir-r5 \
   --depth=1 \
-  git@github.com:Aidbox/aidbox-project-template.git \
+  https://github.com/Aidbox/aidbox-project-template.git \
   aidbox-project && \
   cd aidbox-project && \
   rm -rf .git
