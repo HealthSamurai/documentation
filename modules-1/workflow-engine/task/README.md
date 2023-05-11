@@ -118,7 +118,10 @@ Finally, the status of tasks is always changed to `done`, either by an executor,
 
 ## Task Implementation
 
-To add a custom task, 1) a definition for it should be added to Aidbox Project, and 2) the executor implemented with Executor API.
+To add a custom task:
+
+1. Add the definition of the task to Aidbox Project, so WorkflowEngine knows about the new task.
+2. &#x20;Implement tak logic using [Executor API](task-executor-api.md) either directly or through the SDK.
 
 ### 1. Specify Task Definition
 
@@ -126,14 +129,14 @@ The first step for implementing a new custom is to specify definitions of custom
 
 Task Definition contains all the information necessary to define the behavior of a task instance.
 
-Below is an example of Aidbox Project namespace with a new task definition.
+Below is an example of the Aidbox Project namespace with a new task definition.
 
 ```clojure
 {ns     my-tasks
  ;; For task definitions, "awf.task" namespace should be imported
  import #{awf.task}
 
- ;; The unique name of the task
+ ;; The name of the task, which is referred to with the namespace as "my-tasks/example-task"
  example-task
  {
   ;; The following tags must be set for task definitions
@@ -145,10 +148,9 @@ Below is an example of Aidbox Project namespace with a new task definition.
   ;; Time limit in milliseconds during which tasks can be in the status "requested"
   ;; In case of timeout, the status is changed to "ready"
   ;; The default value: 10000
-  :requestedToStartTimeout 300
+  :requestedToStartTimeout 3000
 
   ;; Time limit in milliseconds during which tasks can be in the status "in-progress"
-  ;; In case of timeout, the status is changed to "waiting"
   ;; The default value: 120000
   :inProgressTimeout 5000
 
@@ -213,11 +215,11 @@ Once you have the task definitions above, your custom tasks can be implemented i
 
 <figure><img src="../../../.gitbook/assets/Workflow &#x26; Task Runtime.png" alt=""><figcaption><p>Aidbox Task Executor</p></figcaption></figure>
 
-At first, a **`awf.task/long-poll`** API request should be sent to Task Service to fetch a new task created by [task-user-api.md](task-user-api.md "mention") .&#x20;
+At first, a **`awf.task/long-poll`**  or **`awf.task/poll`** API request should be sent to Task Service to fetch a new task created by [task-user-api.md](task-user-api.md "mention") .&#x20;
 
-Then, the executor should send a **`awf.task/start`** request to change the task status to `in-progress`. After receiving the response, the task you implement is supposed to be run.
+Then, the executor should send an **`awf.task/start`** request to set the task status to `in-progress`. After receiving the response, the task you implement is supposed to be run.
 
-Finally, a **`awf.task/success`** request must be sent, if the execution is successful, or a**`awf.task/fail`** request if not. They both change the status of the task to `done` and sets the needed outcome value.
+Finally, an **`awf.task/success`** request must be sent, if the execution is successful, or an**`awf.task/fail`** request if not. They both change the status of the task to `done` and set the corresponding outcome value.
 
 In case the task can run for a long time,  **`awf.task/notify`** requests need to be sent during their execution to tell Task Service that the worker continues processing and it extends the inProgressTimeout value.&#x20;
 
