@@ -1,6 +1,6 @@
 # Set up uniqueness in Resource
 
-Suppose we want to store Patient resource only if patient with such email does not already exist in the database. Hence we need to add ability to make `Patient.telecom.value` unique where `Patient.telecom.system = 'email'`.
+Suppose we want to store Patient resource only if patient with such email does not already exist in the database. Hence we need to make `Patient.telecom.value` unique where `Patient.telecom.system = 'email'`.
 
 ## Create Unique Index
 
