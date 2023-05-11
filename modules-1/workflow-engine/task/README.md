@@ -1,6 +1,6 @@
 # Task
 
-## Task Introduction
+## Introduction
 
 **Tasks** are atomic actions **asynchronously** executed by Aidbox or by an external executor. Tasks can be used as stand-alone operations or as part of an [Aidbox Workflow](../workflow/). It allows async operations to be more reliable, to continue work after restarts, and handle errors correctly. A typical example of task usage is asynchronous sending email or transforming a resource.
 
@@ -87,7 +87,11 @@ When a new task is created  by [task-user-api.md](task-user-api.md "mention") or
 
 Below is a representation of a Task Instance life cycle.
 
+<div align="center">
+
 <figure><img src="../../../.gitbook/assets/image (23).png" alt="" width="375"><figcaption><p>Task lifecycle</p></figcaption></figure>
+
+</div>
 
 After the creation of tasks, their status will be changed by Task Service to `ready`, `waiting`, or `status`, depending on the `executeAt` field.
 
