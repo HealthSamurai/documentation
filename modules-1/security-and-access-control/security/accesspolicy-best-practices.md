@@ -138,3 +138,34 @@ $one-of:
   - /some-path/operation-a
   - /some-path/operation-b
 ```
+
+## Disable unsafe search parameters
+
+By default access policy in Aidbox allows all the search parameters. Access policies checks only fields, specified in the policy and ignore others. It do nothing with semantic of the operation.
+
+Let's say you want to make GET /Practitioner publicly available, and you make the following AccessPolicy.
+
+```yaml
+engine: matcho
+matcho:
+  uri: /Practitioner
+  request-method: GET
+```
+
+This policy accepts GET /Practitioner request with any search parameter, including unsafe ones (e.g. `_include`, `_revinclude`, `_with`, `_assoc`).
+
+You may explicitly restrict _unsafe_ search parameters.
+
+```yaml
+engine: matcho
+matcho:
+  uri: /Practitioner
+  request-method: GET
+  params:
+    _include: nil?
+    _revinclude: nil?
+    _with: nil?
+    _assoc: nil?
+```
+
+Now the policy accepts GET /Practitioner request with any search parameters except `_include`, `_revinclude`, `_with`, `_assoc`.
