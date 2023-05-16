@@ -224,6 +224,7 @@
       * [FTR from FTR — Supplement](modules-1/terminology/fhir-terminology-repository/creating-aidbox-project-with-ftr/ftr-from-ftr-supplement.md)
     * [FTR Manifest](modules-1/terminology/fhir-terminology-repository/ftr-manifest.md)
     * [Load SNOMED CT into Aidbox](modules-1/terminology/fhir-terminology-repository/load-snomed-ct-into-aidbox.md)
+    * [Load LOINC into Aidbox](modules-1/terminology/fhir-terminology-repository/load-loinc-into-aidbox.md)
     * [Load ICD-10-CM into Aidbox](modules-1/terminology/fhir-terminology-repository/load-icd-10-cm-into-aidbox.md)
 * [Security & Access Control](modules-1/security-and-access-control/README.md)
   * [Overview](modules-1/security-and-access-control/overview.md)

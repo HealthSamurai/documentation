@@ -72,7 +72,7 @@ A request succeeds if at least one of the policies is valid for it.
 GET {{base}}/fhir/Patient
 ```
 
-![](<../../../.gitbook/assets/policy1 (1) (1).png>)
+![](<../../../.gitbook/assets/policy1 (1).png>)
 
 ### Negative Test
 
@@ -80,7 +80,7 @@ GET {{base}}/fhir/Patient
 POST {{base}}/fhir/Patient
 ```
 
-![](<../../../.gitbook/assets/policy2 (1) (1).png>)
+![](<../../../.gitbook/assets/policy2 (1).png>)
 
 ## Policy Debugging
 
@@ -92,7 +92,7 @@ Let's use the parameter `__debug=policy` in requests to see which JSON-schema va
 GET {{base}}/fhir/Patient
 ```
 
-![](<../../../.gitbook/assets/policy3 (1).png>)
+![](../../../.gitbook/assets/policy3.png)
 
 ### Negative Test
 
@@ -100,7 +100,7 @@ GET {{base}}/fhir/Patient
 POST {{base}}/fhir/Patient
 ```
 
-![](<../../../.gitbook/assets/policy4 (1).png>)
+![](../../../.gitbook/assets/policy4.png)
 
 See the full documentation [Access Policies](../security/access-control.md).
 
