@@ -143,7 +143,8 @@ An `op` describes REST operation. `:engine` specifies what operation handler sho
 * `aidbox.rest.v1/aidbox-action` - expects `:action`, passes request to existing Aidbox action. You can see list of available operations with this request:\
   `GET /Operation?_elements=action&_result=array&_count=1000`
 * `aidbox.rest.v1/echo` - expects `:response` in the definition, returns the response.
-* [`injestion.core/map-to-fhir-bundle`](aidbox-api-constructor.md#injestion-op-engine)
+* [`injestion.core/map-to-fhir-bundle`](aidbox-api-constructor.md#map-to-fhir-bundle)
+* [`aidbox.rest.v1/gateway`](aidbox-api-constructor.md#Gateway)
 
 #### Regular FHIR API
 
@@ -170,6 +171,44 @@ See full description and usage examples:
 {% content-ref url="../modules-1/security-and-access-control/security/acl.md" %}
 [acl.md](../modules-1/security-and-access-control/security/acl.md)
 {% endcontent-ref %}
+
+### Gateway
+
+We provide Gateway feature to make Aidbox a proxy server for your backend application, so you can:
+ - maintain a single entry point for your application
+ - extend the default Aidbox APIs to include your own business logic
+ - secure access control to your service
+
+#### Example
+As an example bellow we create CRUD endpoint that explains to Aidbox where is your server located
+and what endpoints we have to redirect
+
+```clojure
+{ns system
+ import #{aidbox aidbox.rest aidbox.rest.v1}
+
+ custom-backend
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.v1/gateway
+  :url "http://host.docker.internal:9999"
+  :secret #env secret_from_envs }
+
+ api
+ {:zen/tags #{aidbox.rest/api}
+  "extension-endpoint"  {:GET custom-backend
+                         :POST custom-backend
+                         [:id]  {:PATCH  custom-backend
+                                 :DELETE custom-backend}}}
+
+ server
+ {:zen/tags #{aidbox/service}
+  :engine   aidbox/http
+  :apis     #{api}}
+
+ box
+ {:zen/tags #{aidbox/system}
+  :services {:http server}}}
+```
 
 ### map-to-fhir-bundle
 
