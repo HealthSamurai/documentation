@@ -129,24 +129,24 @@ Consider this example
 
 ```clojure
 {ns main
- import #{aidbox.index.draft
+ import #{aidbox.index.v1
           aidbox
-          aidbox.repository.draft}
+          aidbox.repository.v1}
 
  my-index
- {:zen/tags #{aidbox.index.draft/index}
+ {:zen/tags #{aidbox.index.v1/index}
   :table :patient
   :expression "(jsonb_path_query_array(\"patient\".resource, ( '($.\"name\"[*]).** ? (@.type() == \"string\")')::jsonpath)::text) gin_trgm_ops"
   :type :gin}
 
  patient-repository
- {:zen/tags #{aidbox.repository.draft/repository}
+ {:zen/tags #{aidbox.repository.v1/repository}
   :resource-type :patient
   :indexes #{my-index3 my-index1}}
 
  repositories
  {:zen/tags #{aidbox/service}
-  :engine aidbox/repositories-draft
+  :engine aidbox.repository.v1/engine
   :repositories #{patient-repository}}
 
  box {:zen/tags #{aidbox/system}
@@ -161,19 +161,21 @@ Here
 * `patient-repository` is an Aidbox repository. It configures resource behavior. Currently it can only add indexes and search parameters.
 * `my-index` is index definition
 
-Use `aidbox.index.draft/sync-indexes` RPC to update indexes.
+Use `aidbox.index.v1/sync-indexes` RPC to update indexes.
 
 ```
 POST /rpc
 Content-Type: application/json
 Accept: application/json
 
-{"method": "aidbox.index.draft/sync-indexes"}
+{"method": "aidbox.index.v1/sync-indexes"}
 ```
 
 This RPC creates indexes requested by your configuration. And removes indexes not requested.
 
-Note. Aidbox managed indexes start with `aidbox_mng_idx` prefix. So your custom indexes which do not start with this prefix will not be affected.
+{% hint style="info" %}
+Aidbox managed indexes start with `aidbox_mng_idx` prefix. So your custom indexes which do not start with this prefix will not be affected.
+{% endhint %}
 
 ## Auto-generated indexes
 
@@ -224,7 +226,7 @@ ON public.patient
 USING gin (((jsonb_path_query_array(resource, '$.\"name\"[*].**?(@.type() == \"string\")'::jsonpath))::text) gin_trgm_ops)
 ```
 
-As in previous section, actuall creation/deletion of indexes is triggered with `aidbox.index.draft/sync-indexes` RPC.
+As in previous section, actuall creation/deletion of indexes is triggered with `aidbox.index.v1/sync-indexes` RPC.
 
 Formal description of Zen Indexes:
 
