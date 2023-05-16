@@ -69,6 +69,15 @@ BOX_FEATURES_FTR_PULL_ENABLE=true
 
 By default, Aidbox does not load terminologies into the database as that can take a lot of disk space. This means that full terminology functionality won’t be available until you enable it manually. [BOX\_FEATURES\_FTR\_PULL\_ENABLE](../../../reference/configuration/environment-variables/ftr.md) environment variable is just for that. When you set it to `true`, Aidbox will load terminologies into the database on the next startup and start functioning as a fully-featured terminology server.
 
+### Terminology translations
+
+Currently, we support various SNOMED CT terminology translations, and we can incorporate additional translation variants as needed. Translations are stored in the concept .`designation` property, and when a package includes multiple languages, the original language is also retained within the `.designation` property. To select the desired translation, simply modify the link to the corresponding package in `zen-package.edn.`
+
+| Zen Package Link                     | Languages (IETF BCP 47 tags) |
+| ------------------------------------ | ---------------------------- |
+| git@github.com:zen-fhir/snomed.git   | en                           |
+| git@github.com:zen-fhir/snomedca.git | en, fr                       |
+
 ### Further steps
 
 If you want to customize Aidbox startup behavior when using FTR, read more about [FTR environment variables](../../../reference/configuration/environment-variables/ftr.md).
