@@ -72,7 +72,7 @@ Currently, we support various LOINC terminology translations, and we can incorpo
 | Zen Package Link                        | Languages (IETF BCP 47 tags) |
 | --------------------------------------- | ---------------------------- |
 | git@github.com:zen-fhir/loinc.git       | en                           |
-| git@github.com:zen-fhir/loinc-fr-ca.git | fr-ca                        |
+| git@github.com:zen-fhir/loinc-fr-ca.git | en, fr-ca                    |
 
 #### Further steps
 
