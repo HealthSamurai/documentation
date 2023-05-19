@@ -45,6 +45,7 @@
   * [Custom Search](tutorials/data-api/custom-search.md)
   * [Change sort order by locale collation](tutorials/data-api/change-sort-order-by-locale-collation.md)
   * [Set up uniqueness in Resource](tutorials/data-api/set-up-uniqueness-in-resource.md)
+  * [Manage Indexes in Zen Project](tutorials/data-api/manage-indexes-in-zen-project.md)
   * [How to fix broken dates](tutorials/data-api/how-to-fix-broken-dates.md)
 * [Administration](app-development/administration.md)
   * [How to migrate transaction id to bigint](tutorials/administration/how-to-migrate-transaction-id-to-big-int.md)

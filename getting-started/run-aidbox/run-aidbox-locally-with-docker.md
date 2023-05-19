@@ -81,6 +81,56 @@ aidbox-project/
     └── main.edn
 ```
 
+If you want to move zen-related files into subfolder, for example, `project`, you can use
+
+```yaml
+BOX_PROJECT_GIT_TARGET__PATH=/project
+AIDBOX_ZEN_ENTRYPOINT=main/box
+```
+
+in the `.env` file.
+
+With these settings, the structure will be&#x20;
+
+```
+aidbox-project/
+├── .env
+├── docker-compose.yaml
+├── pgdata  [error opening dir]
+└── project
+    ├── zen-package.edn
+    └── zrc
+        └── project
+            ├── config.edn
+            └── main.edn
+```
+
+### .env
+
+Contains environment variables. At the start it has these defaults:
+
+```yaml
+AIDBOX_LICENSE=<your license>
+PGHOSTPORT=5437
+PGUSER=postgres
+PGPASSWORD=postgres
+PGDATABASE=aidbox
+AIDBOX_BASE_URL=http://localhost:8888
+AIDBOX_PORT=8888
+AIDBOX_CLIENT_SECRET=secret
+AIDBOX_ADMIN_PASSWORD=password
+BOX_PROJECT_GIT_TARGET__PATH=/aidbox-project
+AIDBOX_ZEN_ENTRYPOINT=main/box
+AIDBOX_DEV_MODE=true
+AIDBOX_ZEN_DEV_MODE=true
+```
+
+Most of them are obvious.&#x20;
+
+AIDBOX\_ZEN\_DEV\_MODE enables watcher which reloads zen namespaces when they change. So if you change some file in zrc folder it will be reloaded without restarting Aidbox.
+
+AIDBOX\_DEV\_MODE is used to debug [access-policy](../../modules-1/security-and-access-control/how-to-guides/access-policy.md).
+
 ### zrc/main.edn
 
 The main.edn file contains `main/box` entrypoint for your Aidbox configuration.
