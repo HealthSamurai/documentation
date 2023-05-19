@@ -96,7 +96,6 @@ With these settings, the structure will be&#x20;
 aidbox-project/
 ├── .env
 ├── docker-compose.yaml
-├── pgdata  [error opening dir]
 └── project
     ├── zen-package.edn
     └── zrc
