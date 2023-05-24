@@ -22,7 +22,7 @@ Client get access by OAuth 2.0 Client Credentials flow
 
 To start you have to register in Aidbox OAuth Client with secret and client\_credentials flow enabled
 
-![OAuth Client form](<../../../.gitbook/assets/image (53).png>)
+![OAuth Client form](<../../../.gitbook/assets/image (53) (1).png>)
 
 Before you start - create a Client
 

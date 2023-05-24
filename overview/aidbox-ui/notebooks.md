@@ -54,7 +54,7 @@ To share your Aidbox notebook with others and upload it to another Aidbox, simpl
 &#x20;If you choose to share as a _link_, Aidbox will generate a unique link, such as [https://aidbox.app/ExportedNotebook/fa061348-1851-4962-b39e-ba496eba23bd](https://aidbox.app/ExportedNotebook/fa061348-1851-4962-b39e-ba496eba23bd), and copy it to your clipboard. You can also share notebooks directly from the notebooks grid.\
 
 
-<figure><img src="../../.gitbook/assets/image (9) (2).png" alt=""><figcaption><p>Share Aidbox notebook</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (2) (1).png" alt=""><figcaption><p>Share Aidbox notebook</p></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/Screenshot 2023-04-27 at 12.20.27.png" alt=""><figcaption><p>Snare notebook from notebook grid</p></figcaption></figure>
 
@@ -62,7 +62,7 @@ To share your Aidbox notebook with others and upload it to another Aidbox, simpl
 
 You don't need a running Aidbox instance to preview a notebook. You can open the downloaded `.html` file in any browser and view its contents.
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption><p>Notebook preview</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (5).png" alt=""><figcaption><p>Notebook preview</p></figcaption></figure>
 
 ## Upload a notebook
 
