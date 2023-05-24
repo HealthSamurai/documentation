@@ -21,11 +21,11 @@ Go to **Application > Application** in Okta and create a new one.
 * Check **Authorization Code** Grant Type
 * Set Sign-in url to _**\<box-url>**/auth/callback/**\<identity-provider-id>**_
 
-![](<../../../../.gitbook/assets/image (41).png>)
+![](<../../../../.gitbook/assets/image (41) (1).png>)
 
 Checkout **Client ID** and **Client secret**
 
-![](<../../../../.gitbook/assets/image (43).png>)
+![](<../../../../.gitbook/assets/image (43) (1).png>)
 
 ## Create an IdentityProvider in Aidbox
 
@@ -61,6 +61,6 @@ token_endpoint: '<okta-domain>/oauth2/v1/token'
 
 Go to your Aidbox base URL, you will be redirected to the login page - you should see **"Log in with \<provider.title or .type>"** button**.** Press this button and log in with Okta user into aidbox.
 
-![](<../../../../.gitbook/assets/image (44) (1).png>)
+![](<../../../../.gitbook/assets/image (44).png>)
 
 This user will be logged into Aidbox Console, but without any permissions. Read more in [Access Control Section](../../security/) about permissions.

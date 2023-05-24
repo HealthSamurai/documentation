@@ -65,6 +65,7 @@
   * [Postmark integration](tutorials/integrations/postmark-integration.md)
   * [Mailgun integration](tutorials/integrations/mailgun-integration.md)
 * [Other tutorials](tutorials/tutorials/README.md)
+  * [Resource generation with map-to-fhir-bundle-task and subscription triggers](tutorials/tutorials/resource-generation-with-map-to-fhir-bundle-task-and-subscription-triggers.md)
   * [HL7 v2 pipeline with Patient mapping](tutorials/tutorials/hl7-v2-pipeline-with-patient-mapping.md)
   * [Patient Encounter notification Application](tutorials/tutorials/patient-encounter-notification-application.md)
   * [SDC with Custom Resources](tutorials/tutorials/sdc-with-custom-resources.md)

@@ -121,4 +121,4 @@ To properly validate the resulting resource, import the appropriate [fhir profil
 
 If your configuration was loaded correctly - you should see a new option when creating the HL7 v2 message.
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (3).png" alt=""><figcaption></figcaption></figure>
