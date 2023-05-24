@@ -197,7 +197,7 @@ result:
 
 ##
 
-## Injestion/map-to-fhir-bundle-task
+## injestion/map-to-fhir-bundle-task
 
 Task that applies [lisp/mapping](../../../app-development/mappings/mappings-with-lisp-mapping.md) to the given context and applies the result to the database as a bundle in either fhir or aidbox formats.
 
