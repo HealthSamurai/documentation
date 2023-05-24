@@ -52,9 +52,7 @@ Returns input params object with following attributes added:
 
 #### Resource requirements for `aidbox.bulk/import-start`:
 
-| Operation                  | id       | resourceType |
-| -------------------------- | -------- | ------------ |
-| `aidbox.bulk/import-start` | Required | Required     |
+<table><thead><tr><th width="321">Operation</th><th width="195">id</th><th>resourceType</th></tr></thead><tbody><tr><td><code>aidbox.bulk/import-start</code></td><td>Required</td><td>Required</td></tr></tbody></table>
 
 #### Example
 

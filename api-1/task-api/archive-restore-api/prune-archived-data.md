@@ -4,7 +4,7 @@ To delete data that has been archived from your Aidbox database you can make `/e
 
 ### prune-archived-data properties:
 
-<table><thead><tr><th>Properties</th><th data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>archiveId</td><td>true</td><td><code>archiveId</code> property of succeeded <a href="create-archive.md">create-archive</a> response if it archived at least 1 row.</td></tr></tbody></table>
+<table><thead><tr><th width="161">Properties</th><th width="104.33333333333331" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>archiveId</td><td>true</td><td><code>archiveId</code> property of succeeded <a href="create-archive.md">create-archive</a> response if it archived at least 1 row.</td></tr></tbody></table>
 
 {% tabs %}
 {% tab title="Request" %}

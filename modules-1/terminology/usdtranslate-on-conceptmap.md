@@ -13,12 +13,7 @@ All the examples can be found at the `"FHIR ConceptMap Resource and translation"
 
 ### Parameters and usage
 
-| Parameter | Type     | Description                                                                                   |
-| --------- | -------- | --------------------------------------------------------------------------------------------- |
-| `code`    | required | The code that is to be translated                                                             |
-| `system`  | required | The system for the code that is to be translated                                              |
-| `url`     | optional | <p>A canonical URL for a concept map.</p><p></p><p>Ignored when ConceptMap id is provided</p> |
-| `reverse` | optional | If true, the `translate` should return all the codes that might be mapped to the given code   |
+<table><thead><tr><th width="174.33333333333331">Parameter</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>code</code></td><td>required</td><td>The code that is to be translated</td></tr><tr><td><code>system</code></td><td>required</td><td>The system for the code that is to be translated</td></tr><tr><td><code>url</code></td><td>optional</td><td><p>A canonical URL for a concept map.</p><p></p><p>Ignored when ConceptMap id is provided</p></td></tr><tr><td><code>reverse</code></td><td>optional</td><td>If true, the <code>translate</code> should return all the codes that might be mapped to the given code</td></tr></tbody></table>
 
 #### Example request
 

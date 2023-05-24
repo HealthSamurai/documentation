@@ -10,13 +10,7 @@ GET [base]/Patient/[id]/$everything
 
 ### Patient-everything parameters <a href="#patient-everything-parameters" id="patient-everything-parameters"></a>
 
-| Query parameter |                                                         | Support status  |
-| --------------- | ------------------------------------------------------- | --------------- |
-| \_since         | Include resources updated after specified timestamp     | supported       |
-| \_count         | Limits return of each resource type. Without pagination | partial support |
-| \_type          | Filter result output by resource type                   | not supported   |
-| start           | Filter by care date start                               | not supported   |
-| end             | Filter by care date end                                 | not supported   |
+<table><thead><tr><th width="212.70358306188928">Query parameter</th><th></th><th>Support status</th></tr></thead><tbody><tr><td>_since</td><td>Include resources updated after specified timestamp</td><td>supported</td></tr><tr><td>_count</td><td>Limits return of each resource type. Without pagination</td><td>partial support</td></tr><tr><td>_type</td><td>Filter result output by resource type</td><td>not supported</td></tr><tr><td>start</td><td>Filter by care date start</td><td>not supported</td></tr><tr><td>end</td><td>Filter by care date end</td><td>not supported</td></tr></tbody></table>
 
 ## Examples
 

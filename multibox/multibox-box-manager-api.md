@@ -58,7 +58,7 @@ Create a new box for the current user.
 
 {% tabs %}
 {% tab title="Parameters" %}
-<table><thead><tr><th>Parameter name</th><th data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td><strong>id</strong></td><td>true</td><td><p>ID of the box to create</p><p>Must match <code>/[a-z][a-z0-9]{4,}/</code></p></td></tr><tr><td><strong>fhirVersion</strong></td><td>true</td><td>FHIR version. Value must be from the <code>multibox/versions</code> response</td></tr><tr><td><strong>description</strong></td><td>false</td><td>description of the box to create</td></tr><tr><td><strong>env</strong></td><td>false</td><td><p>object with environment variables in</p><p><code>lower-kebab-case</code> (not<code>UPPER_SNAKE_CASE</code>)</p></td></tr></tbody></table>
+<table><thead><tr><th width="177">Parameter name</th><th width="103.66666666666666" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td><strong>id</strong></td><td>true</td><td><p>ID of the box to create</p><p>Must match <code>/[a-z][a-z0-9]{4,}/</code></p></td></tr><tr><td><strong>fhirVersion</strong></td><td>true</td><td>FHIR version. Value must be from the <code>multibox/versions</code> response</td></tr><tr><td><strong>description</strong></td><td>false</td><td>description of the box to create</td></tr><tr><td><strong>env</strong></td><td>false</td><td><p>object with environment variables in</p><p><code>lower-kebab-case</code> (not<code>UPPER_SNAKE_CASE</code>)</p></td></tr></tbody></table>
 {% endtab %}
 
 {% tab title="Response" %}

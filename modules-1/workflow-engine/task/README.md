@@ -89,7 +89,7 @@ Below is a representation of a Task Instance life cycle.
 
 <div align="center">
 
-<figure><img src="../../../.gitbook/assets/image (23).png" alt="" width="375"><figcaption><p>Task lifecycle</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (23) (2).png" alt="" width="375"><figcaption><p>Task lifecycle</p></figcaption></figure>
 
 </div>
 
@@ -120,7 +120,7 @@ Finally, the status of tasks is always changed to `done`, either by an executor,
 
 To add a custom task:
 
-1. Add the definition of the task to Aidbox Project, so WorkflowEngine knows about the new task.
+1. Add the definition of the task to Aidbox Project, so TaskEngine knows about the new task.
 2. &#x20;Implement task logic using [Executor API](task-executor-api.md) either directly or through the SDK.
 
 ### 1. Specify Task Definition

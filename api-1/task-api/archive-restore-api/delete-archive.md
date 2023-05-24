@@ -4,7 +4,7 @@ To delete archived data **from cloud** you should start deleting process with `/
 
 ### delete-archive properties:
 
-<table><thead><tr><th>Properties</th><th data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>archiveId</td><td>true</td><td><code>archiveId</code> property of succeeded <a href="create-archive.md">create-archive</a> status response if it archived at least 1 row.</td></tr></tbody></table>
+<table><thead><tr><th width="169">Properties</th><th width="112.33333333333331" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>archiveId</td><td>true</td><td><code>archiveId</code> property of succeeded <a href="create-archive.md">create-archive</a> status response if it archived at least 1 row.</td></tr></tbody></table>
 
 {% tabs %}
 {% tab title="Request" %}

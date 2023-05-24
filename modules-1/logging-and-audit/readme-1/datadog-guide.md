@@ -12,7 +12,7 @@ You need to enable Datadog Logs API and create an API Key
 
 To create a new API key go to [Datadog](https://app.datadoghq.com/) then go to Integrations -> APIs:
 
-![](<../../../.gitbook/assets/image (11) (2).png>)
+![](<../../../.gitbook/assets/image (11) (2) (1).png>)
 
 Click API Keys
 
@@ -100,7 +100,7 @@ And we can define monitoring to alert if there are too many authorization failur
 
 Select monitor type "metric"
 
-![](<../../../.gitbook/assets/image (31) (1).png>)
+![](<../../../.gitbook/assets/image (31) (1) (1).png>)
 
 Set up monitoring options
 

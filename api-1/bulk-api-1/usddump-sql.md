@@ -10,21 +10,15 @@ POST [base]/$dump-sql
 
 ### Headers
 
-| Parameter        | Required? | Type   | Description                    |
-| ---------------- | --------- | ------ | ------------------------------ |
-| **content-type** | true      | String | Content-type of the query body |
+<table data-header-hidden><thead><tr><th width="160">Parameter</th><th width="150">Required?</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>Parameter</td><td>Required?</td><td>Type</td><td>Description</td></tr><tr><td><strong>content-type</strong></td><td>true</td><td>String</td><td>Content-type of the query body</td></tr></tbody></table>
 
 ### Query parameters
 
-| Parameter    | Required? | Type   | Description                                                                                            |
-| ------------ | --------- | ------ | ------------------------------------------------------------------------------------------------------ |
-| **\_format** | false     | String | <p></p><ul><li>json/ndjson: return output as ndjosn </li><li>otherwise: return output as TSV</li></ul> |
+<table data-header-hidden><thead><tr><th width="150">Parameter</th><th width="169.89801699716716">Required?</th><th width="156">Type</th><th>Description</th></tr></thead><tbody><tr><td>Parameter</td><td>Required?</td><td>Type</td><td>Description</td></tr><tr><td><strong>_format</strong></td><td>false</td><td>String</td><td><p></p><ul><li>json/ndjson: return output as ndjosn </li><li>otherwise: return output as TSV</li></ul></td></tr></tbody></table>
 
 ### Body parameters
 
-| Parameter | Required? | Type   | Description          |
-| --------- | --------- | ------ | -------------------- |
-| **query** | true      | String | Sql query to execute |
+<table data-header-hidden><thead><tr><th width="171">Parameter</th><th>Required?</th><th width="150">Type</th><th>Description</th></tr></thead><tbody><tr><td>Parameter</td><td>Required?</td><td>Type</td><td>Description</td></tr><tr><td><strong>query</strong></td><td>true</td><td>String</td><td>Sql query to execute</td></tr></tbody></table>
 
 ## Example
 

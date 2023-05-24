@@ -63,37 +63,11 @@ scrape_configs:
 
 #### HTTP
 
-| Metric                                        | Update frequency | Description                                           |
-| --------------------------------------------- | ---------------- | ----------------------------------------------------- |
-| `aidbox_http_request_duration_seconds_bucket` | continuous       | request duration  as cumulative counters for buckets  |
-| `aidbox_http_request_duration_seconds_count`  | continuous       | request duration events count                         |
-| `aidbox_http_request_duration_seconds_sum`    | continuous       | sum of request duration events value                  |
-| `aidbox_http_request_wait_seconds_bucket`     | continuous       | queue waiting time as cumulative counters for buckets |
-| `aidbox_http_request_wait_seconds_count`      | continuous       | queue waiting time events count                       |
-| `aidbox_http_request_wait_seconds_sum`        | continuous       | sum of queue waiting time events value                |
+<table><thead><tr><th width="285.3333333333333">Metric</th><th>Update frequency</th><th>Description</th></tr></thead><tbody><tr><td><code>aidbox_http_request_duration_seconds_bucket</code></td><td>continuous</td><td>request duration  as cumulative counters for buckets</td></tr><tr><td><code>aidbox_http_request_duration_seconds_count</code></td><td>continuous</td><td>request duration events count</td></tr><tr><td><code>aidbox_http_request_duration_seconds_sum</code></td><td>continuous</td><td>sum of request duration events value</td></tr><tr><td><code>aidbox_http_request_wait_seconds_bucket</code></td><td>continuous</td><td>queue waiting time as cumulative counters for buckets</td></tr><tr><td><code>aidbox_http_request_wait_seconds_count</code></td><td>continuous</td><td>queue waiting time events count</td></tr><tr><td><code>aidbox_http_request_wait_seconds_sum</code></td><td>continuous</td><td>sum of queue waiting time events value</td></tr></tbody></table>
 
 #### Postgres
 
-| Metric                                     | Update frequency | Description                          |
-| ------------------------------------------ | ---------------- | ------------------------------------ |
-| `pg_requests_total`                        | continuous       | number of executed selects requests  |
-| `pg_inserts_total`                         | continuous       | number of executed insert statements |
-| `pg_updates_total`                         | continuous       | number of executed update statements |
-| `pg_deletes_total`                         | continuous       | number of executed delete statements |
-| `pg_blks_hit`                              | continuous       | number of shared block cache hits    |
-| `pg_blks_read`                             | continuous       | number of shared blocks read         |
-| `pg_tup_fetched`                           | continuous       | fetched tuples number                |
-| `pg_tup_returned`                          | continuous       | returned tuples number               |
-| `pg_errors_total`                          | continuous       | number of errors                     |
-| `pg_activity_count`                        | continuous       | number of PG workers                 |
-| `pg_idx_scan`                              | every minute     | number of index scans                |
-| `pg_seq_scan`                              | every minute     | number of sequential scans           |
-| `pg_stat_statements_total_calls`           | every minute     | number of times executed             |
-| `pg_stat_statements_stddev_execution_time` | every minute     | statement execution time             |
-| `pg_stat_statements_mean_execution_time`   | every minute     | mean statement execution time        |
-| `pg_table_size`                            | every hour       | table size                           |
-| `pg_database_size`                         | every hour       | database size                        |
-| `pg_activity_max`                          | every hour       | maximum number of connections        |
+<table><thead><tr><th width="190.33333333333331">Metric</th><th>Update frequency</th><th>Description</th></tr></thead><tbody><tr><td><code>pg_requests_total</code></td><td>continuous</td><td>number of executed selects requests</td></tr><tr><td><code>pg_inserts_total</code></td><td>continuous</td><td>number of executed insert statements</td></tr><tr><td><code>pg_updates_total</code></td><td>continuous</td><td>number of executed update statements</td></tr><tr><td><code>pg_deletes_total</code></td><td>continuous</td><td>number of executed delete statements</td></tr><tr><td><code>pg_blks_hit</code></td><td>continuous</td><td>number of shared block cache hits</td></tr><tr><td><code>pg_blks_read</code></td><td>continuous</td><td>number of shared blocks read</td></tr><tr><td><code>pg_tup_fetched</code></td><td>continuous</td><td>fetched tuples number</td></tr><tr><td><code>pg_tup_returned</code></td><td>continuous</td><td>returned tuples number</td></tr><tr><td><code>pg_errors_total</code></td><td>continuous</td><td>number of errors</td></tr><tr><td><code>pg_activity_count</code></td><td>continuous</td><td>number of PG workers</td></tr><tr><td><code>pg_idx_scan</code></td><td>every minute</td><td>number of index scans</td></tr><tr><td><code>pg_seq_scan</code></td><td>every minute</td><td>number of sequential scans</td></tr><tr><td><code>pg_stat_statements_total_calls</code></td><td>every minute</td><td>number of times executed</td></tr><tr><td><code>pg_stat_statements_stddev_execution_time</code></td><td>every minute</td><td>statement execution time</td></tr><tr><td><code>pg_stat_statements_mean_execution_time</code></td><td>every minute</td><td>mean statement execution time</td></tr><tr><td><code>pg_table_size</code></td><td>every hour</td><td>table size</td></tr><tr><td><code>pg_database_size</code></td><td>every hour</td><td>database size</td></tr><tr><td><code>pg_activity_max</code></td><td>every hour</td><td>maximum number of connections</td></tr></tbody></table>
 
 #### Hikari (Postgres connection pool)
 

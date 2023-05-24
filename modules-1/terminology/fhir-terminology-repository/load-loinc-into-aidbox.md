@@ -69,10 +69,7 @@ By default, Aidbox does not load terminologies into the database as that can tak
 
 Currently, we support various LOINC terminology translations, and we can incorporate additional translation variants as needed. Translations are stored in the concept .`designation` property, and when a package includes multiple languages, the original language is also retained within the `.designation` property. To select the desired translation, simply modify the link to the corresponding package in `zen-package.edn.`
 
-| Zen Package Link                        | Languages (IETF BCP 47 tags) |
-| --------------------------------------- | ---------------------------- |
-| git@github.com:zen-fhir/loinc.git       | en                           |
-| git@github.com:zen-fhir/loinc-fr-ca.git | en, fr-ca                    |
+<table><thead><tr><th width="383">Zen Package Link</th><th>Languages (IETF BCP 47 tags)</th></tr></thead><tbody><tr><td>git@github.com:zen-fhir/loinc.git</td><td>en</td></tr><tr><td>git@github.com:zen-fhir/loinc-fr-ca.git</td><td>en, fr-ca</td></tr></tbody></table>
 
 #### Further steps
 

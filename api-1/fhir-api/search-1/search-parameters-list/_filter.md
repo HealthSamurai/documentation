@@ -4,19 +4,7 @@ Aidbox offers the partial support of FHIR [\_filter](https://www.hl7.org/fhir/se
 
 #### Supported operators
 
-| Operation   | String | Number | Date | Token | Reference | Quantity |
-| ----------- | :----: | :----: | :--: | :---: | :-------: | :------: |
-| eq          |    +   |  +\*\* |   +  |  +\*  |    n/a    |  +\*\*\* |
-| ne          |    -   |  +\*\* |   +  |   -   |    n/a    |  +\*\*\* |
-| co          |    +   |    -   |   -  |  n/a  |    n/a    |    n/a   |
-| sw          |    +   |   n/a  |  n/a |  n/a  |    n/a    |    n/a   |
-| ew          |    +   |   n/a  |  n/a |  n/a  |    n/a    |    n/a   |
-| gt/ge/lt/le |    -   |    +   |   +  |  n/a  |    n/a    |  +\*\*\* |
-| po          |   n/a  |   n/a  |   -  |  n/a  |    n/a    |    n/a   |
-| ss          |   n/a  |   n/a  |  n/a |   -   |    n/a    |    n/a   |
-| sb          |   n/a  |   n/a  |  n/a |   -   |    n/a    |    n/a   |
-| in          |   n/a  |   n/a  |  n/a |   -   |    n/a    |    n/a   |
-| re          |   n/a  |   n/a  |  n/a |  n/a  |     -     |    n/a   |
+<table><thead><tr><th width="128">Operation</th><th width="87" align="center">String</th><th width="100" align="center">Number</th><th align="center">Date</th><th width="100" align="center">Token</th><th width="122" align="center">Reference</th><th align="center">Quantity</th></tr></thead><tbody><tr><td>eq</td><td align="center">+</td><td align="center">+**</td><td align="center">+</td><td align="center">+*</td><td align="center">n/a</td><td align="center">+***</td></tr><tr><td>ne</td><td align="center">-</td><td align="center">+**</td><td align="center">+</td><td align="center">-</td><td align="center">n/a</td><td align="center">+***</td></tr><tr><td>co</td><td align="center">+</td><td align="center">-</td><td align="center">-</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">n/a</td></tr><tr><td>sw</td><td align="center">+</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">n/a</td></tr><tr><td>ew</td><td align="center">+</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">n/a</td></tr><tr><td>gt/ge/lt/le</td><td align="center">-</td><td align="center">+</td><td align="center">+</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">+***</td></tr><tr><td>po</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">-</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">n/a</td></tr><tr><td>ss</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">-</td><td align="center">n/a</td><td align="center">n/a</td></tr><tr><td>sb</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">-</td><td align="center">n/a</td><td align="center">n/a</td></tr><tr><td>in</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">-</td><td align="center">n/a</td><td align="center">n/a</td></tr><tr><td>re</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">-</td><td align="center">n/a</td></tr></tbody></table>
 
 \* token search is case sensitive
 

@@ -17,10 +17,7 @@ AIDBOX_ZEN_PATHS=<source>:<format>:<path>[,<source>:<format>:<path>]*
 
 Table of compatibility between sources and formats:
 
-| source\format | `zip` | `dir` | `edn` |
-| ------------- | ----- | ----- | ----- |
-| `url`         | ✓     |       | ✓     |
-| `path`        | ✓     | ✓     | ✓     |
+<table data-header-hidden><thead><tr><th></th><th width="178"></th><th></th><th></th></tr></thead><tbody><tr><td>source\format</td><td><code>zip</code></td><td><code>dir</code></td><td><code>edn</code></td></tr><tr><td><code>url</code></td><td>✓</td><td></td><td>✓</td></tr><tr><td><code>path</code></td><td>✓</td><td>✓</td><td>✓</td></tr></tbody></table>
 
 {% hint style="warning" %}
 Though it is possible to load multiple projects with `AIDBOX_ZEN_PATHS`, it is not recommended as it may lead to namespace clashes and hard-to-debug issues.

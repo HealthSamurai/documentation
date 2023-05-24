@@ -12,13 +12,11 @@ Either **taskDefinitions** or **workflowDefinitions** parameter SHOULD be specif
 
 #### Params:
 
-<table><thead><tr><th>Parameter</th><th>Type</th><th data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>taskDefinitions</td><td>string[]</td><td>false</td><td>An array of task definitions to include.<br></td></tr><tr><td>workflowDefinitions</td><td>string[]</td><td>false</td><td>An array of workflow definitions to include. In response, decision tasks will be returned for specified workflow if available.</td></tr><tr><td>maxBatchSize</td><td>integer</td><td>false</td><td>The number of tasks that can be polled from the queue simultaneously.<br><em>Default value: 1</em></td></tr></tbody></table>
+<table><thead><tr><th width="216">Parameter</th><th width="89">Type</th><th width="100" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>taskDefinitions</td><td>string[]</td><td>false</td><td>An array of task definitions to include.<br></td></tr><tr><td>workflowDefinitions</td><td>string[]</td><td>false</td><td>An array of workflow definitions to include. In response, decision tasks will be returned for specified workflow if available.</td></tr><tr><td>maxBatchSize</td><td>integer</td><td>false</td><td>The number of tasks that can be polled from the queue simultaneously.<br><em>Default value: 1</em></td></tr></tbody></table>
 
 #### Result:
 
-| Parameter | Type      | Description                         |
-| --------- | --------- | ----------------------------------- |
-| resources | object\[] | AidboxTask resources with `execId`. |
+<table><thead><tr><th width="153">Parameter</th><th width="92">Type</th><th width="503">Description</th></tr></thead><tbody><tr><td>resources</td><td>object[]</td><td>AidboxTask resources with <code>execId</code>.</td></tr></tbody></table>
 
 {% tabs %}
 {% tab title="Request" %}
@@ -68,13 +66,11 @@ Either **taskDefinitions** or **workflowDefinitions** parameter SHOULD be specif
 
 #### Params:
 
-<table><thead><tr><th>Parameter</th><th>Type</th><th data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>taskDefinitions</td><td>string[]</td><td>false</td><td>An array of task definitions to include.<br></td></tr><tr><td>workflowDefinitions</td><td>string[]</td><td>false</td><td>An array of workflow definitions to include. In response, decision tasks will be returned for specified workflow if available.</td></tr><tr><td>maxBatchSize</td><td>integer</td><td>false</td><td>The number of tasks that can be polled from the queue simultaneously.<br><em>Default value: 1</em></td></tr><tr><td>timeout</td><td>integer</td><td>false</td><td>A period of time in ms, the period of time during which the tasks can be polled. <br><em>Default value: 60000 (equal to 1 minute)</em></td></tr></tbody></table>
+<table><thead><tr><th width="198">Parameter</th><th width="89">Type</th><th width="100" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>taskDefinitions</td><td>string[]</td><td>false</td><td>An array of task definitions to include.<br></td></tr><tr><td>workflowDefinitions</td><td>string[]</td><td>false</td><td>An array of workflow definitions to include. In response, decision tasks will be returned for specified workflow if available.</td></tr><tr><td>maxBatchSize</td><td>integer</td><td>false</td><td>The number of tasks that can be polled from the queue simultaneously.<br><em>Default value: 1</em></td></tr><tr><td>timeout</td><td>integer</td><td>false</td><td>A period of time in ms, the period of time during which the tasks can be polled. <br><em>Default value: 60000 (equal to 1 minute)</em></td></tr></tbody></table>
 
 #### Result:
 
-| Parameter | Type      | Description                         |
-| --------- | --------- | ----------------------------------- |
-| resources | object\[] | AidboxTask resources with `execId`. |
+<table><thead><tr><th width="153">Parameter</th><th width="92">Type</th><th width="503">Description</th></tr></thead><tbody><tr><td>resources</td><td>object[]</td><td>AidboxTask resources with <code>execId</code>.</td></tr></tbody></table>
 
 {% tabs %}
 {% tab title="Request" %}
@@ -123,13 +119,11 @@ The required param of `execId` is supposed to be received from the request`awf.t
 
 #### Params:
 
-<table><thead><tr><th>Parameter</th><th>Type</th><th data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>id</td><td>string</td><td>true</td><td>Identifier of the Task resource.</td></tr><tr><td>execId</td><td>string</td><td>true</td><td>Execution id of the task. Used to avoid duplicate task executions.</td></tr></tbody></table>
+<table><thead><tr><th width="193">Parameter</th><th width="89">Type</th><th width="100" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>id</td><td>string</td><td>true</td><td>Identifier of the Task resource.</td></tr><tr><td>execId</td><td>string</td><td>true</td><td>Execution id of the task. Used to avoid duplicate task executions.</td></tr></tbody></table>
 
 #### Result:
 
-| Parameter | Type   | Description                  |
-| --------- | ------ | ---------------------------- |
-| resource  | object | Started AidboxTask resource. |
+<table><thead><tr><th width="153">Parameter</th><th width="92">Type</th><th width="503">Description</th></tr></thead><tbody><tr><td>resource</td><td>object</td><td>Started AidboxTask resource.</td></tr></tbody></table>
 
 {% tabs %}
 {% tab title="Request" %}
@@ -178,14 +172,11 @@ After receiving notification, Task Service creates AidboxTaskLog resource with v
 
 #### Notification Types:
 
-| Notification Type | Description                                                                                     |
-| ----------------- | ----------------------------------------------------------------------------------------------- |
-| `heartbeat`       | Prolongs the `inProgressTimeout` property of the task and sends a string message.               |
-| `progress`        | Prolongs the `inProgressTimeout` property of the task and sends information about its progress. |
+<table><thead><tr><th width="178.33333333333331">Notification Type</th><th>Description</th></tr></thead><tbody><tr><td><code>heartbeat</code></td><td>Prolongs the <code>inProgressTimeout</code> property of the task and sends a string message.</td></tr><tr><td><code>progress</code></td><td>Prolongs the <code>inProgressTimeout</code> property of the task and sends information about its progress.</td></tr></tbody></table>
 
 #### Params:
 
-<table><thead><tr><th>Parameter</th><th>Type</th><th data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>id</td><td>string</td><td>true</td><td>Identifier of the Task resource.</td></tr><tr><td>execId</td><td>string</td><td>true</td><td>Execution id of the task. Used to avoid duplicate task executions.</td></tr><tr><td>notification</td><td>string</td><td>true</td><td>The type of notification depends on which extra parameters may be required.<br>Possible values: <a href="task-executor-api.md#heartbeat-extra-params"><code>heartbeat</code></a>, <a href="task-executor-api.md#progress-extra-params"><code>progress</code></a></td></tr></tbody></table>
+<table><thead><tr><th width="193">Parameter</th><th width="89">Type</th><th width="100" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>id</td><td>string</td><td>true</td><td>Identifier of the Task resource.</td></tr><tr><td>execId</td><td>string</td><td>true</td><td>Execution id of the task. Used to avoid duplicate task executions.</td></tr><tr><td>notification</td><td>string</td><td>true</td><td>The type of notification depends on which extra parameters may be required.<br>Possible values: <a href="task-executor-api.md#heartbeat-extra-params"><code>heartbeat</code></a>, <a href="task-executor-api.md#progress-extra-params"><code>progress</code></a></td></tr></tbody></table>
 
 #### Extra Params
 
@@ -195,17 +186,15 @@ These parameters with notification type will be recorded in AidboxTaskLog resour
 
 #### _For  `heartbeat` Notification_ Type :
 
-<table><thead><tr><th>Parameter</th><th>Type</th><th data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>message</td><td>string</td><td>false</td><td>A string message about any additional information.</td></tr></tbody></table>
+<table><thead><tr><th width="193">Parameter</th><th width="89">Type</th><th width="100" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>message</td><td>string</td><td>false</td><td>A string message about any additional information.</td></tr></tbody></table>
 
 #### _For `progress` Notification Type :_
 
-<table><thead><tr><th>Parameter</th><th>Type</th><th data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>progress-current</td><td>integer</td><td>true</td><td>The current value of progress in an integer<br>(The numerator of <code>current / total</code>). </td></tr><tr><td>progress-total</td><td>integer</td><td>false</td><td>The total value of progress in an integer <br>(The dominator of <code>current / total</code>). </td></tr><tr><td>progress-unit</td><td>string</td><td>false</td><td>The unit for the values of <code>progress-total</code> and <code>progress-current</code>.<br><em>Example: <code>rows</code></em></td></tr></tbody></table>
+<table><thead><tr><th width="193">Parameter</th><th width="89">Type</th><th width="100" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>progress-current</td><td>integer</td><td>true</td><td>The current value of progress in an integer<br>(The numerator of <code>current / total</code>). </td></tr><tr><td>progress-total</td><td>integer</td><td>false</td><td>The total value of progress in an integer <br>(The dominator of <code>current / total</code>). </td></tr><tr><td>progress-unit</td><td>string</td><td>false</td><td>The unit for the values of <code>progress-total</code> and <code>progress-current</code>.<br><em>Example: <code>rows</code></em></td></tr></tbody></table>
 
 #### Result:
 
-| Parameter           | Type    | Description                                           |
-| ------------------- | ------- | ----------------------------------------------------- |
-| inProgressTimeoutAt | integer | The renewed `inProgressTimeout` property of the task. |
+<table><thead><tr><th width="208">Parameter</th><th width="92">Type</th><th>Description</th></tr></thead><tbody><tr><td>inProgressTimeoutAt</td><td>integer</td><td>The renewed <code>inProgressTimeout</code> property of the task.</td></tr></tbody></table>
 
 {% tabs %}
 {% tab title="Request" %}
@@ -237,13 +226,11 @@ Changes the status of a task from `in-progress`  to `done`, setting the outcome 
 
 #### Params:
 
-<table><thead><tr><th>Parameter</th><th>Type</th><th data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>id</td><td>string</td><td>true</td><td>Identifier of the Task resource.</td></tr><tr><td>execId</td><td>string</td><td>true</td><td>Execution id of the task. Used to avoid duplicate task executions.</td></tr><tr><td>result</td><td>object</td><td>false</td><td>Result with which task was succeeded.</td></tr></tbody></table>
+<table><thead><tr><th width="193">Parameter</th><th width="89">Type</th><th width="100" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>id</td><td>string</td><td>true</td><td>Identifier of the Task resource.</td></tr><tr><td>execId</td><td>string</td><td>true</td><td>Execution id of the task. Used to avoid duplicate task executions.</td></tr><tr><td>result</td><td>object</td><td>false</td><td>Result with which task was succeeded.</td></tr></tbody></table>
 
 #### Result:
 
-| Parameter | Type   | Description                    |
-| --------- | ------ | ------------------------------ |
-| resource  | object | Succeeded AidboxTask resource. |
+<table><thead><tr><th width="153">Parameter</th><th width="92">Type</th><th width="503">Description</th></tr></thead><tbody><tr><td>resource</td><td>object</td><td>Succeeded AidboxTask resource.</td></tr></tbody></table>
 
 {% tabs %}
 {% tab title="Request" %}
@@ -292,13 +279,11 @@ Changes the status of a task from `in-progress` to `done`, setting the outcome t
 
 #### Params:
 
-<table><thead><tr><th>Parameter</th><th>Type</th><th data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>id</td><td>string</td><td>true</td><td>Identifier of the Task resource.</td></tr><tr><td>execId</td><td>string</td><td>true</td><td>Execution id of the task. Used to avoid duplicate task executions.</td></tr><tr><td>error</td><td>object</td><td>false</td><td>Error with which task was failed.</td></tr></tbody></table>
+<table><thead><tr><th width="193">Parameter</th><th width="89">Type</th><th width="100" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>id</td><td>string</td><td>true</td><td>Identifier of the Task resource.</td></tr><tr><td>execId</td><td>string</td><td>true</td><td>Execution id of the task. Used to avoid duplicate task executions.</td></tr><tr><td>error</td><td>object</td><td>false</td><td>Error with which task was failed.</td></tr></tbody></table>
 
 #### Result:
 
-| Parameter | Type   | Description                 |
-| --------- | ------ | --------------------------- |
-| resource  | object | Failed AidboxTask resource. |
+<table><thead><tr><th width="153">Parameter</th><th width="92">Type</th><th width="503">Description</th></tr></thead><tbody><tr><td>resource</td><td>object</td><td>Failed AidboxTask resource.</td></tr></tbody></table>
 
 {% tabs %}
 {% tab title="Request" %}
