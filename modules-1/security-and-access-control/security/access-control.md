@@ -99,7 +99,7 @@ headers: {x-original-uri: '/fhir/Patient?__debug=policy', origin: 'https://ui.ai
 
 ### Request authorization logic
 
-`AccessPolicy` instance can be linked to `User`, `Client` or `Operation` resources with `AccessPolicy.link` resource. If `AccessPolicy` has no links, it’s considered a global policy. To authorize a request, Aidbox uses global policies in additiion to all `AccessPolicy` rules linked to `User`, `Client` and `Operation` associated with the current request.
+`AccessPolicy` instance can be linked to `User`, `Client` or `Operation` resources with `AccessPolicy.link` attribute. If `AccessPolicy` has no links, it’s considered a global policy. To authorize a request, Aidbox uses global policies in additiion to all `AccessPolicy` rules linked to `User`, `Client` and `Operation` associated with the current request.
 
 It iterates through them, evaluating each `AccessPolicy` against the request object. As soon as one of them passes the validation (evaluation result is `true`), the request is considered authorized and Aidbox stops further policies evaluation. If all policies fail to validate it (all of them evaluate to `false`), then Aidbox denies the request and responds with `403 Unauthorized`.
 
