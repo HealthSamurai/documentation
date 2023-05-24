@@ -61,6 +61,6 @@ token_endpoint: '<okta-domain>/oauth2/v1/token'
 
 Go to your Aidbox base URL, you will be redirected to the login page - you should see **"Log in with \<provider.title or .type>"** button**.** Press this button and log in with Okta user into aidbox.
 
-![](<../../../../.gitbook/assets/image (44).png>)
+![](<../../../../.gitbook/assets/image (44) (1).png>)
 
 This user will be logged into Aidbox Console, but without any permissions. Read more in [Access Control Section](../../security/) about permissions.

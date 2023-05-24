@@ -89,7 +89,7 @@ Below is a representation of a Task Instance life cycle.
 
 <div align="center">
 
-<figure><img src="../../../.gitbook/assets/image (23) (2).png" alt="" width="375"><figcaption><p>Task lifecycle</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (23).png" alt="" width="375"><figcaption><p>Task lifecycle</p></figcaption></figure>
 
 </div>
 

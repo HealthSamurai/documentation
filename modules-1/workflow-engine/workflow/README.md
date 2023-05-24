@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Workflow allows orchestrating a series of [tasks](../task/). Workflow in Aidbox is implemented through a special [decision](../task/aidbox-predefined-tasks.md#decision-task) task, an instance of which is created on every event of workflow, thus a logic behind workflow could be implemented as an executor for this task.
+Workflow allows orchestrating a series of [tasks](../task/). Workflow in Aidbox is implemented through a special [decision](../task/aidbox-predefined-tasks.md#awf.workflow-decision-task) task, an instance of which is created on every event of workflow, thus a logic behind workflow could be implemented as an executor for this task.
 
 We plan to add SDK for different programming languages to allow the implementation of workflow as a code on the client side. Also, we plan to introduce DSL to describe simple workflow inside Aidbox Configuration Project.&#x20;
 
@@ -66,7 +66,7 @@ When a new workflow is created  by [task-user-api.md](task-user-api.md "mention"
 
 Below is a representation of a Workflow Instance life cycle.
 
-<figure><img src="../../../.gitbook/assets/image (96).png" alt="" width="563"><figcaption><p>Workflow instance lifecycle</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (17).png" alt="" width="563"><figcaption><p>Workflow instance lifecycle</p></figcaption></figure>
 
 After the workflow is created, the decision task with the same definition is created to move the workflow to the `in-progress` state and to execute the workflow body until the new internal workflow activity is started. Then the decision task is completed with a successful outcome.&#x20;
 
@@ -94,7 +94,7 @@ When the started activity is executed, the new decision task should execute the 
 
 To add a custom workflow:
 
-1. Add the definition of the workflow to Aidbox Project, so WorkflowEngine knows about the new task.
+1. Add the definition of the workflow to Aidbox Project, so Task Service knows about the new task.
 2. &#x20;Implement decision tasks logic using [Executor API](../task/task-executor-api.md) either directly or through the SDK.
 
 ### 1. Specify Workflow Definition
@@ -166,9 +166,9 @@ We are now preparing Aidbox Workflow/Task SDK. By using it, you can probably sim
 
 Once you have the workflow definition above, your custom workflow can be implemented in any programming language by using [Task Executor API](../task/task-executor-api.md) and decision tasks. The Decision Executor should be separated from the Task Executor and handle only decision tasks. The process of polling for new tasks is the same as for the Task Executor and is simply simplified in the diagram as the "New Task Handshake". Also, all normal task executions are shown as external signals on the diagram and must be implemented according to the [Task Implementation Guide](../task/#2.-implement-task).
 
-<figure><img src="../../../.gitbook/assets/image (32).png" alt=""><figcaption><p>Workflow Execution Process</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (9).png" alt=""><figcaption><p>Workflow Execution Process</p></figcaption></figure>
 
-The decision task is created after the workflow is started. The decision task should contain one of the [defined events](../task/aidbox-predefined-tasks.md#event-types) to mark the purpose of the decision task and return one or more defined actions to inform the executor of the current status of the workflow and to schedule new tasks.
+The decision task is created after the workflow is started. The decision task should contain one of the [defined events](../task/aidbox-predefined-tasks.md#event-types) to mark the purpose of the decision task and return one or more [defined actions](../task/aidbox-predefined-tasks.md#action-types) to inform the executor of the current status of the workflow and to schedule new tasks.
 
 According to the above diagram, the workflow should execute **Task-1** and **Task-2** synchronously. In this case, the first execution of the decision task should return **`awf.workflow.action/schedule-task`** with the **Task-1** definition to create a new task in the Task Service.&#x20;
 
