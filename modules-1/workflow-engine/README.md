@@ -50,9 +50,11 @@ _For example:_ whenever an Observation resource with a value of blood pressure a
 
 To monitor the current state of tasks, workflow, and services Workflow Engine provides UI inside the Aidbox console. It's also possible to use API to implement your own user interface.&#x20;
 
+### Tutorials
 
+* [resource-generation-with-map-to-fhir-bundle-task-and-subscription-triggers.md](../../tutorials/tutorials/resource-generation-with-map-to-fhir-bundle-task-and-subscription-triggers.md "mention") - How to create an encounter when a specific observation is created.
 
-
+###
 
 {% content-ref url="task/" %}
 [task](task/)
@@ -69,3 +71,4 @@ To monitor the current state of tasks, workflow, and services Workflow Engine pr
 {% content-ref url="monitoring.md" %}
 [monitoring.md](monitoring.md)
 {% endcontent-ref %}
+
