@@ -192,4 +192,4 @@ When Task-1 is completed, the new decision task will be created, but this time i
 
 The last decision task must return the result of the workflow with the **`awf.workflow.action/complete-workflow`** action, and it changes the workflow status to `done`.
 
-This was the simplest example of workflow, but you can implement various workflows using the event parameter and the actions in result of [#awf.workflow-decision-task](../task/aidbox-predefined-tasks.md#awf.workflow-decision-task "mention").
+This was the simplest example of workflow, but you can implement various workflows checking the event parameter and setting the actions as the result of [#awf.workflow-decision-task](../task/aidbox-predefined-tasks.md#awf.workflow-decision-task "mention").
