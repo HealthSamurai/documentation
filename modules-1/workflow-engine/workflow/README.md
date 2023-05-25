@@ -168,11 +168,11 @@ We are now preparing Aidbox Workflow/Task SDK. By using it, you can probably sim
 
 Once you have the workflow definition above, your custom workflow can be implemented in any programming language by using [Task Executor API](../task/task-executor-api.md) and a decision task.
 
-The decision task is a predefined task to implement workflow and once a workflow started, this task is executed each time when a task started by workflow is completed.&#x20;
+The decision task is a predefined task to implement workflow and once a workflow is started, this task is executed each time when a task started by workflow is completed.&#x20;
 
-They are defined (with the definition: `awf.task/decision-task`) and implemented like other tasks according to [#task-implementation](../task/#task-implementation "mention").  However, the worker for decision tasks, unlike workers for other tasks, **must be alone** so that multiple workers cannot run the same decision task in parallel. This is important because decision tasks are executed multiple times, as we have already mentioned, and consistency must be maintained during the workflow.
+They are implemented like other tasks according to [#task-implementation](../task/#task-implementation "mention").  However, the worker for decision tasks, unlike workers for other tasks, **must be alone** so that multiple workers cannot run the same decision task in parallel. This is important because decision tasks are executed multiple times, as we have already mentioned, and consistency must be maintained during the workflow.
 
-Suppose that we are implementing a simple workflow, in which we want to start Task-1 first, and only after its successful completion start Task-2. Successful completion of Task-2 means that this workflow completed successfully. Thus, we need a decision task as the following flowchart indicates.
+Suppose that we are implementing a simple workflow, in which we want to start Task-1 first, and only after its successful completion start Task-2. Successful completion of Task-2 means that this workflow was completed successfully. Thus, we need a decision task as the following flowchart indicates.
 
 <figure><img src="../../../.gitbook/assets/Decision_task.png" alt="" width="375"><figcaption><p>Flowchart</p></figcaption></figure>
 
@@ -186,10 +186,10 @@ This decision task will be created the first time immediately after the workflow
 
 
 
-Here, to run **Task-1**, the decision task returns  _`action:`_**`awf.workflow.action/schedule-task`**  with the definition for Task-1, the unique label within this workflow and parameters for Task-1.&#x20;
+Here, to run **Task-1**, the decision task returns  _`action:`_**`awf.workflow.action/schedule-task`**  with the definition for Task-1, the unique label within this workflow, and the parameters for Task-1.&#x20;
 
-When Task-1 is completed, the new decision task will be created, but this time it should run **Task-2** with the same process as described above. When the value of  _`event`_ parameter for a decision task is `awf.workflow/task-completed`, the id of the completed task is placed in the _`task-id`_ parameter, so you can check it. For more details, see [#awf.workflow-decision-task](../task/aidbox-predefined-tasks.md#awf.workflow-decision-task "mention").
+When Task-1 is completed, the new decision task will be created, but this time it should run **Task-2** with the same process described above. When the value of  _`event`_ parameter for a decision task is `awf.workflow/task-completed`, the id of the completed task is placed in the _`task-id`_ parameter, so you can check it. For more details, see [#awf.workflow-decision-task](../task/aidbox-predefined-tasks.md#awf.workflow-decision-task "mention").
 
 The last decision task must return the result of the workflow with the **`awf.workflow.action/complete-workflow`** action, and it changes the workflow status to `done`.
 
-This was the simplest example of workflow, but you can implement various flexible workflows using the events and the actions of [#awf.workflow-decision-task](../task/aidbox-predefined-tasks.md#awf.workflow-decision-task "mention").
+This was the simplest example of workflow, but you can implement various workflows using the event parameter and the actions in result of [#awf.workflow-decision-task](../task/aidbox-predefined-tasks.md#awf.workflow-decision-task "mention").
