@@ -17,7 +17,7 @@ When a user with the role `OrganizationAdmin` performs read request for some use
 To set new [Adibox configuration project](../../../../aidbox-configuration/aidbox-zen-lang-project/)
 
 {% hint style="info" %}
-It is important to syncronize directory and file name to he `:ns` parameter of the configuration
+It is important to syncronize directory and file name to the `:ns` parameter of the configuration
 {% endhint %}
 
 Create an empty directory `acl`
