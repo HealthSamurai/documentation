@@ -35,7 +35,7 @@ cd acl && touch system.edn
 ## Populate configuration file
 
 {% hint style="warning" %}
-In the following configuration project user and client credentials are written as plain text to simplify the topic. In real life scenirous it is important to define credentials with ENVs
+In the following configuration project user and client credentials are written as plain text to simplify the topic. In real life scenarios it is important to define credentials with ENVs
 {% endhint %}
 
 ```edn
