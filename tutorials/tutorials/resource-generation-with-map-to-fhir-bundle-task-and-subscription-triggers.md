@@ -9,7 +9,7 @@ In our configuration we will need [**subscription trigger service**](../../modul
 {% code fullWidth="true" %}
 ```clojure
 {ns     my-subscription-trigger
- import #{aidbox awf.task awf.subscription-trigger injestion.core lisp}
+ import #{aidbox awf.task awf.subscription-trigger ingestion.core lisp}
 
  ;; Mapping to transform income data (passed from task :context) to fhir Bundle
  ;; get-in and get expressions use the :context task parameter as a place to get data from
@@ -35,7 +35,7 @@ In our configuration we will need [**subscription trigger service**](../../modul
                  {:get-in [:status] :comparator :eq :value "registered"}]
                  
   ;; When triggering a rule, the map-to-fhir-bundle-task would be executed 
-  :task-request {:definition injestion.core/map-to-fhir-bundle-task
+  :task-request {:definition ingestion.core/map-to-fhir-bundle-task
                  :params {
                           ;; Should be a string representation of the mapping definition symbol with the namespace.
                           :mapping "my-subscription-trigger/observation-bundle-mapping"

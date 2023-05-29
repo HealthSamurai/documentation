@@ -68,7 +68,7 @@ In general every expression is divided into three parts with specified keys:
 {% code fullWidth="true" %}
 ```clojure
 {ns     my-trigger
- import #{aidbox awf.subscription-trigger injestion.core lisp}
+ import #{aidbox awf.subscription-trigger ingestion.core lisp}
 
  observation-bundle-mapping
  {:zen/tags #{lisp/mapping}
@@ -88,7 +88,7 @@ In general every expression is divided into three parts with specified keys:
  {:zen/tags    #{awf.subscription-trigger/rule}
   :select-by    [{:get-in [:resourceType] :comparator :eq :value "Observation"}
                  {:get-in [:status] :comparator :eq :value "registered"}]
-  :task-request {:definition injestion.core/map-to-fhir-bundle-task
+  :task-request {:definition ingestion.core/map-to-fhir-bundle-task
                  :params {;; mapping should be a string representation of schema symbol with namespace
                           :mapping "my-trigger/observation-bundle-mapping"
                           :context {:resourceId (get-in [:id])
@@ -103,4 +103,4 @@ subscription-trigger-service
 ```
 {% endcode %}
 
-This example uses a subscription trigger with [injestion/map-to-fhir-bundle-task](task/aidbox-predefined-tasks.md#injestion-map-to-fhir-bundle-task). It means that every time an Observation resource is updated with status `registered`, an Encounter resource is created with the same `subject` and `performer` as the `participant`.&#x20;
+This example uses a subscription trigger with [ingestion/map-to-fhir-bundle-task](task/aidbox-predefined-tasks.md#ingestion-map-to-fhir-bundle-task). It means that every time an Observation resource is updated with status `registered`, an Encounter resource is created with the same `subject` and `performer` as the `participant`.&#x20;

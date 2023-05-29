@@ -27,8 +27,6 @@ API constructor requires knowledge of [zen language](https://github.com/zen-lang
 [smart-app.md](../modules-1/security-and-access-control/security/smart-app.md)
 {% endcontent-ref %}
 
-
-
 #### Usage examples:
 
 * [Sample API](https://github.com/Aidbox/aidbox-project-samples/blob/main/aidbox-project-samples/api-constructor/mybox.edn) used in this documentation page example.
@@ -143,7 +141,7 @@ An `op` describes REST operation. `:engine` specifies what operation handler sho
 * `aidbox.rest.v1/aidbox-action` - expects `:action`, passes request to existing Aidbox action. You can see list of available operations with this request:\
   `GET /Operation?_elements=action&_result=array&_count=1000`
 * `aidbox.rest.v1/echo` - expects `:response` in the definition, returns the response.
-* [`injestion.core/map-to-fhir-bundle`](aidbox-api-constructor.md#map-to-fhir-bundle)
+* [`ingestion.core/mapgto-fhir-bundle`](aidbox-api-constructor.md#map-to-fhir-bundle)
 * [`aidbox.rest.v1/gateway`](aidbox-api-constructor.md#Gateway)
 
 #### Regular FHIR API
@@ -175,13 +173,14 @@ See full description and usage examples:
 ### Gateway
 
 We provide Gateway feature to make Aidbox a proxy server for your backend application, so you can:
- - maintain a single entry point for your application
- - extend the default Aidbox APIs to include your own business logic
- - secure access control to your service
+
+* maintain a single entry point for your application
+* extend the default Aidbox APIs to include your own business logic
+* secure access control to your service
 
 #### Example
-As an example bellow we create CRUD endpoint that explains to Aidbox where is your server located
-and what endpoints we have to redirect
+
+As an example bellow we create CRUD endpoint that explains to Aidbox where is your server located and what endpoints we have to redirect
 
 ```clojure
 {ns system
@@ -212,17 +211,17 @@ and what endpoints we have to redirect
 
 ### map-to-fhir-bundle
 
-`injestion.core/map-to-fhir-bundle` - expects `:format` ("fhir" or "aidbox") and `:mapping` in the definition. Returns result of applying [lisp/mapping](../app-development/mappings/mappings-with-lisp-mapping.md) in to the provided data structure and persisting it as Bundle.
+`ingestion.core/map-to-fhir-bundle` - expects `:format` ("fhir" or "aidbox") and `:mapping` in the definition. Returns result of applying [lisp/mapping](../app-development/mappings/mappings-with-lisp-mapping.md) in to the provided data structure and persisting it as Bundle.
 
-The result of the example below will be an `POST/injestion/map-to-fhir` endpoint accepting the data structure on which the mapping will be applied as the body of the request.&#x20;
+The result of the example below will be an `POST/ingestion/map-to-fhir` endpoint accepting the data structure on which the mapping will be applied as the body of the request.
 
 #### Example
 
 ```clojure
-{ns injestion-op-ns
+{ns ingestion-op-ns
  import #{aidbox
           aidbox.rest
-          injestion.core}
+          ingestion.core}
 
  my-mapping
  {:zen/tags #{lisp/mapping}
@@ -250,13 +249,13 @@ The result of the example below will be an `POST/injestion/map-to-fhir` endpoint
 
  map-to-fhir
  {:zen/tags #{aidbox.rest/op}
-  :engine   injestion.core/map-to-fhir-bundle
+  :engine   ingestion.core/map-to-fhir-bundle
   :mapping  my-mapping
   :format   "fhir"}
 
  api
  {:zen/tags #{aidbox.rest/api}
-  "injestion" {"map-to-fhir" {:POST map-to-fhir}}}
+  "ingestion" {"map-to-fhir" {:POST map-to-fhir}}}
 
  server
  {:zen/tags #{aidbox/service}

@@ -197,7 +197,7 @@ result:
 
 ##
 
-## injestion/map-to-fhir-bundle-task
+## ingestion/map-to-fhir-bundle-task
 
 Task that applies [lisp/mapping](../../../app-development/mappings/mappings-with-lisp-mapping.md) to the given context and applies the result to the database as a bundle in either fhir or aidbox formats.
 
@@ -245,7 +245,7 @@ accept: text/yaml
 
 method: awf.task/create-and-execute
 params:
-  definition: injestion.core/map-to-fhir-bundle-task
+  definition: ingestion.core/map-to-fhir-bundle-task
   params:
     format: fhir
     mapping: my-mappings/my-mapping
@@ -273,7 +273,7 @@ result:
         status: final
       mapping: aidbox-with-task/my-mapping
     status: ready
-    definition: injestion.core/map-to-fhir-bundle-task
+    definition: ingestion.core/map-to-fhir-bundle-task
     id: >-
       fd9808c9-29c5-409b-a10f-96d3e28d0039
     resourceType: AidboxTask
@@ -288,7 +288,7 @@ result:
 ```yaml
 result:
   resource:
-    definition: injestion.core/map-to-fhir-bundle-task
+    definition: ingestion.core/map-to-fhir-bundle-task
     meta:
       lastUpdated: '2023-05-24T12:20:45.742574Z'
       createdAt: '2023-05-24T12:20:45.072825Z'
