@@ -6,159 +6,450 @@ Queries are supported, but mutations are not.
 In Aidbox UI there is GraphiQL interface, you can try your queries there.\
 GraphQL console sends all your requests to `$graphql` endpoint which you can use from your application too
 
-{% swagger baseUrl="" path="/$graphql" method="post" summary="GraphQL endpoint" %}
-{% swagger-description %}
-This endpoint allows you to execute GraphQL queries .
-{% endswagger-description %}
+## GraphQL endpoint
 
-{% swagger-parameter in="body" name="query" type="string" required="false" %}
-GraphQL query
-{% endswagger-parameter %}
+Aidbox uses the `/$graphql` endpoint to serve GraphQL requests.
 
-{% swagger-parameter in="body" name="variables" type="object" required="false" %}
-JSON object with variables
-{% endswagger-parameter %}
+To make a GraphQL request send a GraphQL request object using `POST` method.
 
-{% swagger-response status="200" description="Query successfully executed." %}
-```javascript
-{"data": {<query exectuion result>}
-```
-{% endswagger-response %}
-{% endswagger %}
+GraphQL request object can contain three properties:
 
-Aidbox generates different GraphQL scalars, objects, queries with arguments and unions from FHIR metadata.
+* `query` — the GraphQL query to evaluate.
+* `operationName` — the name of the operation to evaluate.
+* `variables` — the JSON object containing variable values.
 
-## Queries
-
-For each ResourceType these queries are generated:
-
-* `<resourceType>` — get fields of the specified resource.\
-  Accepts a single argument `id` and returns a resource with the specified `id`.\
-  Example: `Patient (id: "pat-1")`\\
-* `<resourceType>List` — search resources of given resource type.\
-  Accepts FHIR search parameters for that resourceType. SearchParameters have underscores instead of dashes and referenced later in this documentation as `search_parameter`. For each SearchParameter two arguments are generated:
-  * `<search_parameter>` e.g.: `PatientList(address_state: "CA")` Accepts a string. Is an equivalent of using FHIR search parameter
-  * `<search_parameter>_list` e.g.: `PatientList(language_list: ["en", "de"])` Accepts a list of strings. It is an equivalent of repeating search parameters in FHIR search. _`<search_parameter>_list` arg is needed because args can't be repeated in the GraphQL query._
-* `<resourceType>History` — get resource history.\
-  Accepts `id` argument and returns history of the resource with the specified `id`.\
-  Example: `PatientHistory(id: "pt1", _sort: "txid") {name}`
+Refer to [the GraphQL documentation](https://graphql.org/learn/serving-over-http/) to get more information about these properties.
 
 ### Examples
 
-* `PatientList(language_list: ["en", "de"])` will return a set of Patients the same as `GET /Patient?language=en&language=de` and those will be patients with `en` **AND** `de` as their communication language specified\\
-* `PatientList(language: "en,de")` will return a set of Patients the same as `GET /Patient?language=en,de` and those will be patients with `en` **OR** `de` as their communication language specified\\
-* `PatientList(language_list: ["en", "de,fr"])` will return a set of Patients the same as `GET /Patient?language=en&language=de,fr` and those will be patients with `en` **AND** (`de` **OR** `fr`) as their communication language specified\\
-*   `PatientList(language: "en", language: "de")` is an **error**, it will ignore all `language` arg repetitions except of the last and will return a set of Patients the same as
+#### Simple query
 
-    `GET /Patient?language=de`
-
-## Objects
-
-For each ResourceType object with fields is generated.\
-For every FHIR resource attribute field is created.\
-Also for attributes with Reference type unions are created for direct and reverse includes.
-
-### Handling \_revinclude
-
-FHIR GraphQL [does not support](https://hl7.org/fhir/graphql.html#searching) [\_revinclude](fhir-api/search-1/search-parameters-list/\_include-and-\_revinclude.md) Search parameter. In Aidbox you can use reverse include in such format:&#x20;
+Get IDs of two Patients. This query is similar to FHIR query
 
 ```
-<revIncludeResourceType>s_as_<path_to_reference_field> 
+GET /fhir/Patient?_count=2
 ```
 
-Here `revIncludeResourceType` should be lowercase name of a resource; `path_to_reference_field` is a path to the field with type reference, where path separator is underscore (`_`).
+Request
 
-For example:\
-`observations_as_subject` for Patient will be equivalent of `_revinclude=Observation:subject`
-
-&#x20;Here's an example showing how to create [first class extension](../modules-1/first-class-extensions.md), search parameter and use it in GraphQL:
-
-{% tabs %}
-{% tab title="First Class Extension" %}
-```yaml
-PUT /Attribute/ServiceRequest.requestedOrganizationDepartment
-
-description: Department in the organization that made the service request
-resource: {id: ServiceRequest, resourceType: Entity}
-path: [requestedOrganizationDepartment]
-type: {id: Reference, resourceType: Entity}
-refers: 
-  - Organization
-extensionUrl: urn:extension:requestedOrganizationDepartment
 ```
-{% endtab %}
+POST /$graphql
+content-type: text/yaml
+accept: text/yaml
 
-{% tab title="Search Parameter" %}
-```yaml
-PUT /SearchParameter/ServiceRequest.requestedOrganizationDepartment
-
-name: requestedOrganizationDepartment
-type: reference
-resource: {id: ServiceRequest, resourceType: Entity}
-expression: [[requestedOrganizationDepartment]]
-```
-{% endtab %}
-
-{% tab title="ServiceRequest" %}
-```yaml
-PUT /ServiceRequest/sr3
-
-intent: plan
-status: final
-subject:
-  id: pt1
-  resourceType: Patient
-requestedOrganizationDepartment:
-  id: org2
-  resourceType: Organization
-id: sr3
-resourceType: ServiceRequest
-```
-{% endtab %}
-
-{% tab title="GraphQL" %}
-```yaml
-query {
- OrganizationList(_count: 5) {
-  id,
-    servicerequests_as_requestedOrganizationDepartment{
+query: |
+  query {
+    PatientList(_count: 3) {
       id
     }
   }
-}
+```
+
+Response
 
 ```
-{% endtab %}
+data:
+  PatientList:
+    - id: patient-1
+    - id: patient-2
+    - id: patient-3
+```
 
-{% tab title="Response" %}
-```yaml
-{
-  "data": {
-    "OrganizationList": [
-      {
-        "id": "org-1",
-        "servicerequests_as_a": []
-      },
-      {
-        "id": "org2",
-        "servicerequests_as_a": [
-          {
-            "id": "sr3"
-          }
-        ]
-      }
-    ]
+#### Query with variables
+
+Same query as above, but using a variable to specify the number of results returned.
+
+Request:
+
+```
+POST /$graphql
+content-type: text/yaml
+accept: text/yaml
+
+query: |
+  query($count: integer) {
+    PatientList(_count: $count) {
+      id
+    }
   }
-}
+variables:
+  count: 3
 ```
-{% endtab %}
-{% endtabs %}
 
-## Example
+Response:
 
-Example of fragments usage. Get id of DeviceRequestList resource, add address of Organizations and Practitioners referenced in DeviceRequestList.requester:
+```
+data:
+  PatientList:
+    - id: patient-1
+    - id: patient-2
+    - id: patient-3
+```
 
-```graphql
+## Objects, unions, scalars
+
+Aidbox generates an object for every known resource and non-primitive data type.
+
+Aidbox generates a scalar for every known primitive type i.e. for every entity with type `primitive`.
+
+Aidbox generate a union for every reference field. Additionally Aidbox generates `AllResources` union which contains every resource object.
+
+## Fields
+
+Aidbox generate a field for every field in a resource. There are some special fields:
+
+* reference fields
+* revinclude fields
+
+### References
+
+Reference fields contain all usual fields of Aidbox references (`id`, `resourceType`, `display`, `identifier`) and a special `resource` fields.
+
+The `resource` field is an `AllResource` union. You can use it to fetch referred resource using GraphQL fragments.
+
+#### Example
+
+The following query is similar to
+
+```
+GET /Patient?_include=organization:Organization
+```
+
+Request
+
+```
+POST /$graphql
+content-type: text/yaml
+accept: text/yaml
+
+query: |
+  query {
+    PatientList {
+      id
+      name {
+        given
+      }
+      managingOrganization {
+        id
+        resource {
+          ... on Organization {
+            name
+            id
+          }
+        }
+      }
+    }
+  }
+```
+
+Response
+
+```
+data:
+  PatientList:
+    - id: pt-1
+      name:
+        - given:
+            - Patient name
+      managingOrganization:
+        id: org-1
+        resource:
+          name: Organization name
+          id: org-1
+```
+
+### Revincludes
+
+Aidbox generates special fields to include resources which reference this resource.
+
+Generated fields have the following name structure:
+
+```
+<sourceResourceType>_as_<path_to_reference>
+```
+
+_Note: unlike FHIR revincludes, GraphQL revincludes use field path, not parameter name._
+
+#### Example
+
+The following query is similar to
+
+```
+GET /Organization?_revinclude=CareTeam:participant
+```
+
+Request
+
+```
+POST /$graphql
+content-type: text/yaml
+accept: text/yaml
+
+query: |
+  query {
+    PractitionerList {
+      id
+      name {
+        given
+      }
+      careteams_as_participant_member {
+        id
+        name
+      }
+    }
+  }
+```
+
+Response
+
+```
+data:
+  PractitionerList:
+    - id: pr-1
+      name:
+        - given:
+            - Practitioner name
+      careteams_as_participant_member:
+        - id: ct-1
+          name: CareTeam name
+```
+
+## Queries
+
+Aidbox generates three types of queries:
+
+* get by ID,
+* search,
+* history.
+
+### Get by ID
+
+Aidbox generate query with name
+
+```
+<ResourceType>
+```
+
+This query accepts a single argument `id` and returns a resource with the specified `id`.
+
+#### Example
+
+The following query is similar to
+
+```
+GET /Patient/pt-1
+```
+
+Request
+
+```
+POST /$graphql
+content-type: text/yaml
+accept: text/yaml
+
+query: |
+  query {
+    Patient(id: "pt-1") {
+      id
+      name {
+        given
+      }
+    }
+  }
+```
+
+Response
+
+```
+data:
+  Patient:
+    id: pt-1
+    name:
+      - given:
+          - Patient
+```
+
+### History
+
+Aidbox generates query with name
+
+```
+<ResourceType>History
+```
+
+The query accepts `id` argument and return history of a resource with the specified `id`.
+
+#### Example
+
+The following query is similar to
+
+```
+GET /Practitioner/pr-1/_history
+```
+
+Request
+
+```
+POST /$graphql
+content-type: text/yaml
+accept: text/yaml
+
+query: |
+  query {
+    PractitionerHistory(id: "pr-1") {
+      id
+      name {
+        given
+      }
+      meta {
+        versionId
+      }
+    }
+  }
+```
+
+&#x20;Response
+
+```
+data:
+  PractitionerHistory:
+    - id: pr-1
+      name:
+        - given:
+            - New Practitioner name
+      meta:
+        versionId: '11001992'
+    - id: pr-1
+      name:
+        - given:
+            - Practitioner name
+      meta:
+        versionId: '11001990'
+```
+
+## Search
+
+Aidbox generates query with name
+
+```
+<ResourceType>List
+```
+
+The query can accept multiple arguments. Aidbox generates arguments from search parameters.
+
+Each search parameter lead to 2 arguments:
+
+* `<parameter>` — simple argument, equivalent to using FHIR search parameter
+* `<parameter>_list` — represents AND condition
+
+### Example
+
+The following query is similar to
+
+```
+GET /Practitioner?name=another
+```
+
+Request
+
+```
+POST /$graphql
+content-type: text/yaml
+accept: text/yaml
+
+query: |
+  query {
+    PractitionerList(name:"another") {
+      id
+      name {
+        given
+      }
+    }
+  }
+```
+
+Response
+
+```
+data:
+  PractitionerList:
+    - id: pr-2
+      name:
+        - given:
+            - Another Practitioner name
+```
+
+### Search with conditions
+
+It is possible to encode simple AND and OR conditions for a single parameter.
+
+FHIR allows to encode the following type of conditions for a single parameter:
+
+```
+(A OR B OR ...) AND (C OR D OR ...) AND ...
+```
+
+In GraphQL API `<parameter>_list` parameter represents AND condition.
+
+E.g. `PatientList(name_list: ["James", "Mary"])` searches for patients which have both names: James and Mary.
+
+Comma represents OR condition.
+
+E.g. `PatientList(name: "James,Mary")` searches for patients which have either name James or Mary
+
+You can use both conditions at the same time.
+
+E.g. `PatientList(name_list: ["James,Mary", "Robert,Patricia"])` searches for patients which have name James or Mary and name Robert or Patricia.
+
+### Search total
+
+Aidbox generates special field `total_` which contains total count of matching result. When you use this field, Aidbox can make a query to calculate total, which can be slow (depending on data).
+
+#### Example
+
+Request
+
+```
+POST /$graphql
+content-type: text/yaml
+accept: text/yaml
+
+query: |
+  query {
+    PatientList(_count: 2) {
+      id
+      name {
+        given
+      }
+      total_
+    }
+  }
+```
+
+Response
+
+```
+data:
+  PatientList:
+    - id: pt-1
+      name:
+        - given:
+            - Patient name
+      total_: 10000
+    - id: pt-2
+      name:
+        - given:
+            - Another Patient name
+      total_: 10000
+```
+
+## Complex examples
+
+### Multiple fragments
+
+Get id of DeviceRequestList resource, add address of Organizations and Practitioners referenced in DeviceRequestList.requester
+
+```
 query {
   DeviceRequestList {
     id,
@@ -183,11 +474,13 @@ query {
 }
 ```
 
+### Common fragment
+
 This example demonstrates how to use fragments, both types of search parameter arguments and reverse includes.
 
-{% tabs %}
-{% tab title="Request" %}
-```graphql
+Request
+
+```
 {
   "query" : "
 fragment PractitionerRoleWithPractitioner on PractitionerRole {
@@ -240,10 +533,10 @@ fragment PractitionerRoleWithPractitioner on PractitionerRole {
 }
 "}
 ```
-{% endtab %}
 
-{% tab title="Response" %}
-```javascript
+Response
+
+```
 {
   "data" : {
     "PatientList" : [ {
@@ -305,10 +598,10 @@ fragment PractitionerRoleWithPractitioner on PractitionerRole {
   }
 }
 ```
-{% endtab %}
-{% endtabs %}
 
-## Configure GraphQL
+## Configuration
+
+### Warmup
 
 By default, Aidbox does in memory index cache warmup when the first request comes in.&#x20;
 
@@ -317,3 +610,27 @@ You can change it to warmup cache on startup.
 ```
 BOX_FEATURES_GRAPHQL_WARMUP__ON__STARTUP=true
 ```
+
+### Revincludes with any type
+
+Some FHIR resources have references to any other resource type. E.g. `Task.for`.
+
+For performance reasons Aidbox does not generate revincludes for these references by default.
+
+{% hint style="info" %}
+When this feature is enabled, schema generation **will take 2 minutes** (approximately), Until the schema is generated **GraphQL requests will wait**.
+{% endhint %}
+
+You can enable them using the following environment variable:
+
+```
+BOX_FEATURES_GRAPHQL_REFERENCE__ANY=true
+```
+
+or by setting
+
+```
+[:features :graphql :reference-any]
+```
+
+configuration value in Aidbox project.
