@@ -27,7 +27,7 @@ Refer to [the GraphQL documentation](https://graphql.org/learn/serving-over-http
 Get IDs of two Patients. This query is similar to FHIR query
 
 ```
-GET /fhir/Patient?_count=2
+GET /fhir/Patient?_count=3
 ```
 
 Request
@@ -92,11 +92,11 @@ Aidbox generates an object for every known resource and non-primitive data type.
 
 Aidbox generates a scalar for every known primitive type i.e. for every entity with type `primitive`.
 
-Aidbox generate a union for every reference field. Additionally Aidbox generates `AllResources` union which contains every resource object.
+Aidbox generates a union for every reference field. Additionally Aidbox generates `AllResources` union which contains every resource object.
 
 ## Fields
 
-Aidbox generate a field for every field in a resource. There are some special fields:
+Aidbox generates a field for every field in a resource. There are some special fields:
 
 * reference fields
 * revinclude fields
@@ -224,7 +224,7 @@ Aidbox generates three types of queries:
 
 ### Get by ID
 
-Aidbox generate query with name
+Aidbox generates query with name
 
 ```
 <ResourceType>
