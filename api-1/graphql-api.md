@@ -613,9 +613,7 @@ BOX_FEATURES_GRAPHQL_WARMUP__ON__STARTUP=true
 
 ### Revincludes with any type
 
-Some FHIR resources have references to any other resource type. E.g. `Task.for`.
-
-For performance reasons Aidbox does not generate revincludes for these references by default.
+For the sake of performance, Aidbox does not provide revincludes for references of type `Reference(Any)`, e.g. for `Task.for`.
 
 {% hint style="info" %}
 When this feature is enabled, schema generation **will take 2 minutes** (approximately), Until the schema is generated **GraphQL requests will wait**.
