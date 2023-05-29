@@ -611,6 +611,12 @@ You can change it to warmup cache on startup.
 BOX_FEATURES_GRAPHQL_WARMUP__ON__STARTUP=true
 ```
 
+Or, using Aidbox project:
+
+```
+[:features :graphql :warmup-on-startup]
+```
+
 ### Revincludes with any type
 
 For the sake of performance, Aidbox does not provide revincludes for references of type `Reference(Any)`, e.g. for `Task.for`.
