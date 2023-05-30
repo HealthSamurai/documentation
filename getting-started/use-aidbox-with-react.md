@@ -96,6 +96,10 @@ git clone https://github.com/Aidbox/aidbox-sdk-js.git
 
 Next up, let's configure the web app environment variables. Grab the **.env.tpl** file, make a copy called **.env**, and modify the following variables according to the configuration you set up in Step 1:
 
+```bash
+cd aidbox-sdk-js/personal-health-record/
+```
+
 {% code title=".env" %}
 ```json
 VITE_APP_CLIENT=client-name - Client name
