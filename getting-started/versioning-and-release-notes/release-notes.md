@@ -1,5 +1,35 @@
 # Release Notes
 
+## May 2023 _`latest`_
+
+* Validation and Terminology
+  * Added [LOINC terminology](../../modules-1/terminology/fhir-terminology-repository/load-loinc-into-aidbox.md)
+  * Added support for[ multiple translations of LOINC terminology](../../modules-1/terminology/fhir-terminology-repository/load-loinc-into-aidbox.md#terminology-translations)
+  * Added support for [multiple translations of SNOMED CT terminology](../../modules-1/terminology/fhir-terminology-repository/load-snomed-ct-into-aidbox.md#terminology-translations)
+* Data API
+  * Added support for [FHIR R5 mixed chains](../../api-1/fhir-api/search-1/chained-parameters.md)
+  * Added [total\_](../../api-1/graphql-api.md#search-total) field for [GraphQL](../../api-1/graphql-api.md) queries to retrieve total number of results
+  * Added support for [revinclude ](../../api-1/graphql-api.md)in GraphQL when reference from source does not specify type
+* Integrations
+  * Launched [Workflow Engine](../../modules-1/workflow-engine/)
+* [C-CDA / FHIR converter](../../modules-1/ccda-converter/)
+  * Added new supported sections:
+    * Functional Status, Health Concerns, Mental Status, Plan of Treatment, Payers, Family History, Nutrition, and Medical Equipment
+* Security and access control&#x20;
+  * Added [AuditEvent viewer](../../modules-1/security-and-access-control/how-to-guides/research-possible-security-issues.md)
+* [Aidbox Forms](../../modules-1/aidbox-forms.md)
+  * Added integration with Aidbox [Workflow Engine](../../modules-1/workflow-engine/): add task to launch form
+  * Added minor features:
+    * Added support for lisp templates in finalize patch section
+    * Added support for redirects when embedded as iframe
+    * Add disable-back-button property to aidbox.sdc/pages widget
+    * Add support for showing images in a row with another fields
+  * Added minor fixes:
+    * Fixed automatic layout generation for subforms
+    * Fixed minor styling inconsistencies in UI
+
+
+
 ## April 2023 _`latest`_
 
 * Validation and Terminology
