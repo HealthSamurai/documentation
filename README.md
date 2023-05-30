@@ -6,7 +6,7 @@ description: Learn how to get up and running with the Aidbox FHIR platform.
 
 ## Fundamentals
 
-Aidbox is an FHIR backend platform that lets you build digital health solutions rapidly, saving up to 70% of development time and costs at the start.
+Aidbox is a FHIR backend platform that lets you build digital health solutions rapidly, saving up to 70% of development time and costs at the start.
 
 * [Features](introduction/features.md)
 * [Architecture](introduction/)
