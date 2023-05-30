@@ -90,6 +90,10 @@ The **$import endpoint** is your go-to tool for loading FHIR data asynchronously
 
 Time to get your hands on the sample app! Simply clone it from GitHub at this link: [https://github.com/Aidbox/aidbox-sdk-js/tree/main/personal-health-record](https://github.com/Aidbox/aidbox-sdk-js/tree/main/personal-health-record)
 
+```bash
+git clone https://github.com/Aidbox/aidbox-sdk-js.git
+```
+
 Next up, let's configure the web app environment variables. Grab the **.env.tpl** file, make a copy called **.env**, and modify the following variables according to the configuration you set up in Step 1:
 
 {% code title=".env" %}
