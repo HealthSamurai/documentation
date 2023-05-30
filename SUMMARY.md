@@ -3,6 +3,8 @@
 * [Introduction](README.md)
   * [Features](introduction/features.md)
   * [Architecture](introduction/readme.md)
+* [Getting Started](getting-started/README.md)
+  * [Use Aidbox with React](getting-started/use-aidbox-with-react.md)
 
 ## Overview
 
@@ -26,19 +28,19 @@
 
 ## Getting Started
 
-* [Run Aidbox](getting-started/run-aidbox/README.md)
-  * [Run Aidbox locally with Docker](getting-started/run-aidbox/run-aidbox-locally-with-docker.md)
-  * [Run Multibox locally with Docker](getting-started/run-aidbox/run-multibox-locally-with-docker.md)
-  * [Run Aidbox in Aidbox Sandbox](getting-started/run-aidbox/run-aidbox-in-aidbox-sandbox.md)
-  * [Run Aidbox on managed PostgreSQL](getting-started/run-aidbox/run-aidbox-on-managed-postgresql.md)
-  * [Run Aidbox as a SaaS](getting-started/run-aidbox/run-aidbox-as-a-saas/README.md)
-    * [Aidbox as a SaaS on AWS](getting-started/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md)
-  * [Run Aidbox on Kubernetes](getting-started/run-aidbox/run-aidbox-in-kubernetes/README.md)
-    * [Deploy Production-ready Aidbox to Kubernetes](getting-started/run-aidbox/run-aidbox-in-kubernetes/deploy-aidbox-in-kubernetes.md)
-    * [Highly Available Aidbox](getting-started/run-aidbox/run-aidbox-in-kubernetes/high-available-aidbox.md)
-    * [How to migrate to Apline Linux](getting-started/run-aidbox/run-aidbox-in-kubernetes/how-to-migrate-to-apline-linux.md)
-* [Uploading Sample Data](getting-started/load-bundle-into-fhir-server.md)
-* [Aidbox & FHIR formats](getting-started/aidbox-and-fhir-formats.md)
+* [Run Aidbox](getting-started-1/run-aidbox/README.md)
+  * [Run Aidbox locally with Docker](getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md)
+  * [Run Multibox locally with Docker](getting-started-1/run-aidbox/run-multibox-locally-with-docker.md)
+  * [Run Aidbox in Aidbox Sandbox](getting-started-1/run-aidbox/run-aidbox-in-aidbox-sandbox.md)
+  * [Run Aidbox on managed PostgreSQL](getting-started-1/run-aidbox/run-aidbox-on-managed-postgresql.md)
+  * [Run Aidbox as a SaaS](getting-started-1/run-aidbox/run-aidbox-as-a-saas/README.md)
+    * [Aidbox as a SaaS on AWS](getting-started-1/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md)
+  * [Run Aidbox on Kubernetes](getting-started-1/run-aidbox/run-aidbox-in-kubernetes/README.md)
+    * [Deploy Production-ready Aidbox to Kubernetes](getting-started-1/run-aidbox/run-aidbox-in-kubernetes/deploy-aidbox-in-kubernetes.md)
+    * [Highly Available Aidbox](getting-started-1/run-aidbox/run-aidbox-in-kubernetes/high-available-aidbox.md)
+    * [How to migrate to Apline Linux](getting-started-1/run-aidbox/run-aidbox-in-kubernetes/how-to-migrate-to-apline-linux.md)
+* [Uploading Sample Data](getting-started-1/load-bundle-into-fhir-server.md)
+* [Aidbox & FHIR formats](getting-started-1/aidbox-and-fhir-formats.md)
 
 ## Tutorials
 

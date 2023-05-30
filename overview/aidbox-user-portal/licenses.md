@@ -20,8 +20,8 @@ description: This article describes how to manage Aidbox licenses
 
 This quickstart guide explains how to run Aidbox locally using docker compose
 
-{% content-ref url="../../getting-started/run-aidbox/run-aidbox-locally-with-docker.md" %}
-[run-aidbox-locally-with-docker.md](../../getting-started/run-aidbox/run-aidbox-locally-with-docker.md)
+{% content-ref url="../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md" %}
+[run-aidbox-locally-with-docker.md](../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md)
 {% endcontent-ref %}
 
 ### Create GCP license
@@ -42,8 +42,8 @@ This quickstart guide explains how to run Aidbox locally using docker compose
 
 ### Create AWS license
 
-{% content-ref url="../../getting-started/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md" %}
-[aidbox-as-a-saas-on-aws.md](../../getting-started/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md)
+{% content-ref url="../../getting-started-1/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md" %}
+[aidbox-as-a-saas-on-aws.md](../../getting-started-1/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md)
 {% endcontent-ref %}
 
 ## Delete license
@@ -96,20 +96,20 @@ This page covers types of Aidbox licenses and describes Aidbox Support tiers.
 
 This quickstart guide explains how to run Aidbox locally using docker compose
 
-{% content-ref url="../../getting-started/run-aidbox/run-aidbox-locally-with-docker.md" %}
-[run-aidbox-locally-with-docker.md](../../getting-started/run-aidbox/run-aidbox-locally-with-docker.md)
+{% content-ref url="../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md" %}
+[run-aidbox-locally-with-docker.md](../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md)
 {% endcontent-ref %}
 
 ### Run Multibox locally
 
 This quickstart guide explains how to run Multibox locally using docker compose.
 
-{% content-ref url="../../getting-started/run-aidbox/run-multibox-locally-with-docker.md" %}
-[run-multibox-locally-with-docker.md](../../getting-started/run-aidbox/run-multibox-locally-with-docker.md)
+{% content-ref url="../../getting-started-1/run-aidbox/run-multibox-locally-with-docker.md" %}
+[run-multibox-locally-with-docker.md](../../getting-started-1/run-aidbox/run-multibox-locally-with-docker.md)
 {% endcontent-ref %}
 
 ### Aidbox as a SaaS on AWS
 
-{% content-ref url="../../getting-started/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md" %}
-[aidbox-as-a-saas-on-aws.md](../../getting-started/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md)
+{% content-ref url="../../getting-started-1/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md" %}
+[aidbox-as-a-saas-on-aws.md](../../getting-started-1/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md)
 {% endcontent-ref %}

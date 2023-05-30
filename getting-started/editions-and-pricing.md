@@ -8,7 +8,7 @@ Aidbox offers developers a smooth path from a tiny digital health app prototype 
 
 ## Aidbox Licenses
 
-To start using Aidbox or Multibox visit the [Aidbox user portal](https://aidbox.app/), create a [project ](../overview/aidbox-user-portal/projects.md)and get a [standard license](../overview/aidbox-user-portal/licenses.md). A standard license allows running Aidbox [locally](run-aidbox/run-aidbox-locally-with-docker.md) or in [Aidbox Sandbox](run-aidbox/run-aidbox-in-aidbox-sandbox.md) for 14 days and then can be extended by the Health Samurai team. You can't use it with real healthcare data or PHI (Protected Health Information). But other than that, you can try all the features of Aidbox and decide if Aidbox is a good fit for your digital healthcare solution.&#x20;
+To start using Aidbox or Multibox visit the [Aidbox user portal](https://aidbox.app/), create a [project ](../overview/aidbox-user-portal/projects.md)and get a [standard license](../overview/aidbox-user-portal/licenses.md). A standard license allows running Aidbox [locally](../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md) or in [Aidbox Sandbox](../getting-started-1/run-aidbox/run-aidbox-in-aidbox-sandbox.md) for 14 days and then can be extended by the Health Samurai team. You can't use it with real healthcare data or PHI (Protected Health Information). But other than that, you can try all the features of Aidbox and decide if Aidbox is a good fit for your digital healthcare solution.&#x20;
 
 ### Product license types:
 
@@ -31,8 +31,8 @@ You can install, administer, and maintain your own Aidbox or Multibox instance o
 
 You can get a turn-key production-ready Aidbox as a SaaS to start your development in minutes.
 
-{% content-ref url="run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md" %}
-[aidbox-as-a-saas-on-aws.md](run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md)
+{% content-ref url="../getting-started-1/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md" %}
+[aidbox-as-a-saas-on-aws.md](../getting-started-1/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md)
 {% endcontent-ref %}
 
 ### Aidbox for education

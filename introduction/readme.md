@@ -30,16 +30,16 @@ Aidbox uses [FHIR](https://www.hl7.org/fhir/overview.html) as a foundation and p
 
 You can get Aidbox hosted in the cloud (Aidbox Sandbox or AWS) or get self-hosted Aidbox license  for evaluation on your local computer or your own infrastructure.
 
-{% content-ref url="../getting-started/run-aidbox/run-aidbox-in-aidbox-sandbox.md" %}
-[run-aidbox-in-aidbox-sandbox.md](../getting-started/run-aidbox/run-aidbox-in-aidbox-sandbox.md)
+{% content-ref url="../getting-started-1/run-aidbox/run-aidbox-in-aidbox-sandbox.md" %}
+[run-aidbox-in-aidbox-sandbox.md](../getting-started-1/run-aidbox/run-aidbox-in-aidbox-sandbox.md)
 {% endcontent-ref %}
 
-{% content-ref url="../getting-started/run-aidbox/run-aidbox-locally-with-docker.md" %}
-[run-aidbox-locally-with-docker.md](../getting-started/run-aidbox/run-aidbox-locally-with-docker.md)
+{% content-ref url="../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md" %}
+[run-aidbox-locally-with-docker.md](../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md)
 {% endcontent-ref %}
 
-{% content-ref url="../getting-started/run-aidbox/run-aidbox-as-a-saas/" %}
-[run-aidbox-as-a-saas](../getting-started/run-aidbox/run-aidbox-as-a-saas/)
+{% content-ref url="../getting-started-1/run-aidbox/run-aidbox-as-a-saas/" %}
+[run-aidbox-as-a-saas](../getting-started-1/run-aidbox/run-aidbox-as-a-saas/)
 {% endcontent-ref %}
 
 ### FHIR & Aidbox
