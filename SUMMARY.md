@@ -274,6 +274,7 @@
     * [Set-up token introspection](modules-1/security-and-access-control/how-to-guides/token-introspection.md)
     * [Prohibit user to login](modules-1/security-and-access-control/how-to-guides/configuration-options.md)
     * [Debug access control](modules-1/security-and-access-control/how-to-guides/debug.md)
+    * [Research possible security issues](modules-1/security-and-access-control/how-to-guides/research-possible-security-issues.md)
   * [Technical reference](modules-1/security-and-access-control/technical-reference/README.md)
     * [User, Session, Client resources](modules-1/security-and-access-control/technical-reference/overview.md)
     * [Tokens processing](modules-1/security-and-access-control/technical-reference/tokens-processing.md)
