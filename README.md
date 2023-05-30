@@ -1,66 +1,38 @@
 ---
-description: >-
-  Aidbox is a backend development platform for modern healthcare applications on
-  FHIR.
+description: Learn how to get up and running with the Aidbox FHIR backend platform.
 ---
 
-# Aidbox documentation
+# Introduction
 
-[Aidbox](https://www.health-samurai.io/aidbox) is a backend development platform for modern healthcare applications. Aidbox users have already built cloud EHR systems, patient-facing mobile applications, data-analytics products, and integration platforms.
+## Fundamentals
 
-Aidbox uses [FHIR](https://www.hl7.org/fhir/overview.html) as a foundation and provides developers with many components that different medical records applications can reuse:
+Aidbox is an FHIR backend platform that lets you build digital health solutions rapidly and saves up to 70% of development time and costs at the start.
 
-* FHIR-aware PostgreSQL storage with SQL on FHIR support
-* FHIR REST API with GraphQL, reactive API & subscriptions
-* User management, access control, and audit log
-* Built-in FHIR, ICD-10, SNOMED, RxNorm, LOINC, and US NPI terminologies with the ability to load your terminologies and value sets
-* Custom resources & operations; first-class extensions
-* HL7 v.2, X12, and Apple HealthKit Medical Records adapters
-* Plugins extensibility with the use of your favorite technology
-* Bulk API and analytics tools integrations that include Tableau, Power BI, and Jupyter
-* Automated cloud infrastructure built on Kubernetes for AWS, Azure & GCP
+* [Features](introduction/features.md)
+* [Architecture](introduction/)
+* Deployment options
+* Use Cases
 
-​[Read Features Overview](https://docs.aidbox.app/features)​
 
-![](.gitbook/assets/1-aidbox.jpg)
 
-​[Aidbox](https://www.health-samurai.io/aidbox) is a metadata-driven platform. It means that almost everything in Aidbox is represented as data (resources). For example, REST endpoints (operations), resource definitions, profiles, and access policies are resources in Aidbox. We call them meta-resources. Meta-resources play by the same rules as other resources - you can request and manipulate meta-resources with the use of the unified REST API.
+## Quickstarts
 
-### Try Aidbox
+Discover how to start with Aidbox in just a few minutes.
 
-You can get Aidbox hosted in the cloud (Aidbox Sandbox or AWS) or get self-hosted Aidbox license  for evaluation on your local computer or your own infrastructure.
+<table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-cover data-type="files"></th></tr></thead><tbody><tr><td><strong>Start in the cloud</strong></td><td>Run SaaS Aidbox for free and explore it through built-in tutorials.</td><td><a href="getting-started/run-aidbox/run-aidbox-in-aidbox-sandbox.md">Learn more</a></td><td><a href=".gitbook/assets/qs1.png">qs1.png</a></td></tr><tr><td><strong>Run Aidbox locally</strong></td><td>Download and run Aidbox locally. Explore it through interactive tutorials.</td><td><a href="getting-started/run-aidbox/run-aidbox-locally-with-docker.md">Learn more</a></td><td><a href=".gitbook/assets/qs2.png">qs2.png</a></td></tr><tr><td><strong>Use Aidbox with React</strong></td><td>Develop your first app on top of Aidbox with the sample React App.</td><td>Learn More</td><td><a href=".gitbook/assets/qs3.png">qs3.png</a></td></tr></tbody></table>
 
-{% content-ref url="getting-started/run-aidbox/run-aidbox-in-aidbox-sandbox.md" %}
-[run-aidbox-in-aidbox-sandbox.md](getting-started/run-aidbox/run-aidbox-in-aidbox-sandbox.md)
-{% endcontent-ref %}
 
-{% content-ref url="getting-started/run-aidbox/run-aidbox-locally-with-docker.md" %}
-[run-aidbox-locally-with-docker.md](getting-started/run-aidbox/run-aidbox-locally-with-docker.md)
-{% endcontent-ref %}
 
-{% content-ref url="getting-started/run-aidbox/run-aidbox-as-a-saas/" %}
-[run-aidbox-as-a-saas](getting-started/run-aidbox/run-aidbox-as-a-saas/)
-{% endcontent-ref %}
+## Platform
 
-### FHIR & Aidbox
+<table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-cover data-type="files"></th></tr></thead><tbody><tr><td><strong>FHIR Database</strong></td><td>Store data in an FHIR format and qury with SQL</td><td><a href=".gitbook/assets/pl1.png">pl1.png</a></td></tr><tr><td><strong>FHIR API &#x26; Others</strong></td><td>Work with data via FHIR API, GraphQL, Subscriptions</td><td><a href=".gitbook/assets/pl2.png">pl2.png</a></td></tr><tr><td><strong>Access Control</strong></td><td></td><td><a href=".gitbook/assets/pl3.png">pl3.png</a></td></tr><tr><td><strong>File Storage</strong></td><td>Place unstructured data, archives, backups in S3</td><td><a href=".gitbook/assets/pl4.png">pl4.png</a></td></tr><tr><td><strong>Bulk API</strong></td><td>Import and export data effectively with Bulk API</td><td><a href=".gitbook/assets/pl5.png">pl5.png</a></td></tr><tr><td><strong>HIPAA features</strong></td><td>Become compliant with built-in technical safeguards</td><td><a href=".gitbook/assets/pl6.png">pl6.png</a></td></tr></tbody></table>
 
-Aidbox implements most of the [FHIR specification](https://www.hl7.org/fhir/) and supports all official versions of the standard. We designed Aidbox to be FHIR-compatible, but it uses its own framework. Besides FHIR, Aidbox offers many useful additions. The key differences are listed below:
+### Modules
 
-* Aidbox stores Resources in [Aidbox format](https://docs.aidbox.app/modules-1/fhir-resources/aidbox-and-fhir-formats), which is isomorphic to FHIR, but not the same.
-* Aidbox serves two sets of API: **Aidbox API** from "/" and **FHIR API** from "/fhir**"**. Aidbox API works with Aidbox format, and FHIR API works with FHIR format. When you interact with FHIR endpoints, Aidbox does on-the-fly conversion between these two formats.
-* Aidbox offers **First-Class Extensions** and **Custom Resources**, which FHIR doesn't support, but these additions are very handy for designing real-world systems.
-* Aidbox uses its own Entity/Attribute, SearchParameter and AidboxProfile framework instead of FHIR Structure Definitions. FHIR Profiles should be converted to Aidbox meta-resources.
+<table data-view="cards"><thead><tr><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td><mark style="background-color:blue;">beta version</mark></td><td><strong>Form Builder</strong></td><td>Design and publish complex forms to collect data in an FHIR format</td><td><a href="modules-1/aidbox-forms.md">Learn more</a></td></tr><tr><td><mark style="background-color:blue;">beta version</mark></td><td><strong>MPI Module</strong></td><td>Identify and reduce data duplication with ML-based Master Patient Index</td><td><a href="modules-1/mdm/">Learn more</a></td></tr><tr><td><mark style="background-color:blue;">beta version</mark></td><td><strong>Terminology Server</strong></td><td>Manage internal and external code systems in one place</td><td><a href="modules-1/terminology/">Learn more</a></td></tr><tr><td><mark style="background-color:yellow;">in-progress</mark></td><td><strong>Billing Module</strong></td><td>Automate billing processes  with backbone solution based on FHIR and X12</td><td>Learn more (soon)</td></tr><tr><td><mark style="background-color:yellow;">in-progress</mark></td><td><strong>Workflow Engine</strong></td><td>Automate business processes with task and workflow features</td><td><a href="modules-1/workflow-engine/workflow/">Learn more</a></td></tr><tr><td></td><td><strong>HL7 v2/FHIR Converter</strong></td><td>Enrich your ETL pipelines with bidirectional converter</td><td><a href="modules-1/hl7-v2-integration/">Learn more</a></td></tr><tr><td><mark style="background-color:blue;">beta version</mark></td><td><strong>C-CDA/FHIR Converter</strong></td><td>Plug the bidirectional converter in your integration flow</td><td><a href="modules-1/ccda-converter/">Learn more</a></td></tr><tr><td><mark style="background-color:yellow;">in-progress</mark></td><td><strong>X12/FHIR Converter</strong></td><td>Use bidirectional X12 converter to integrate with clearinghouses</td><td>Learn more (soon)</td></tr></tbody></table>
 
-### Resources
 
-In Aidbox, everything is a **Resource.** Each resource type is described with special **Entity** and **Attribute** meta-resources. **Entities** describe resources and types. **Attributes** describe the structure of resources and complex types. For each **Entity**, Aidbox generates database schema in PostgreSQL, REST endpoints for CRUD, history, search and other operations, and JSON-schema for validation.
 
-### Aidbox & FHIR Formats
+## Support
 
-Aidbox stores FHIR resources almost as is with 3 types of isomorphic transformations:
-
-* References
-* Union (Choice Types)
-* First-Class Extensions
-
-[Read more](https://docs.aidbox.app/modules-1/fhir-resources/aidbox-and-fhir-formats)
+<table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Aidbox Community</strong></td><td>Join the public Telegram chat, ask questions and share experience.</td><td><a href=".gitbook/assets/sp1.png">sp1.png</a></td><td><a href="https://t.me/aidbox">https://t.me/aidbox</a></td></tr><tr><td><strong>Issue Tracker</strong></td><td>Report bugs and requests in the public Issue Tracker.</td><td><a href=".gitbook/assets/sp2.png">sp2.png</a></td><td><a href="https://github.com/Aidbox/Issues/issues">https://github.com/Aidbox/Issues/issues</a></td></tr><tr><td><strong>Contact Us</strong></td><td>Connect with Samurai to get a support and guidance directly.</td><td><a href=".gitbook/assets/sp3.png">sp3.png</a></td><td><a href="https://www.health-samurai.io/contacts">https://www.health-samurai.io/contacts</a></td></tr></tbody></table>

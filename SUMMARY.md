@@ -1,10 +1,11 @@
 # Table of contents
 
-* [Aidbox documentation](README.md)
+* [Introduction](README.md)
+  * [Features](introduction/features.md)
+  * [Architecture](introduction/readme.md)
 
 ## Overview
 
-* [Features](getting-started/features.md)
 * [Licensing and Support](getting-started/editions-and-pricing.md)
 * [Aidbox user portal](overview/aidbox-user-portal/README.md)
   * [Projects](overview/aidbox-user-portal/projects.md)
