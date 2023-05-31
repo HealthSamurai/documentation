@@ -197,3 +197,188 @@ The deleteResource function is used to delete a specific resource identified by 
 ```
 deleteResource("Patient", "c58f29eb-f28d-67c1-0400-9af3aba3d58c")
 ```
+
+### createSubscription
+
+Aidbox subscription is a way to subscribe and get notifications about updating resources on the server. See our [subscription sample](https://github.com/Aidbox/aidbox-sdk-js/tree/main/subscription-sample) for more details.
+
+```javascript
+await client.createSubscription({
+  id: "patient-created",
+  status: "active",
+  trigger: { Patient: { event: ["create"] } },
+  channel: { endpoint: `${process.env.NODE_APP_URL}/patient-created` },
+});
+```
+
+### sendLog
+
+Aidbox has the ability to extend its logs. There is an [endpoint](https://docs.aidbox.app/core-modules/logging-and-audit/extending-access-logs#usdloggy-endpoint) that accepts logs with the defined structure from your application. These logs are ingested into the elastic log.
+
+```javascript
+await client.sendLog({
+  type: "ui",
+  message: { event: "YOUR_EVENT", id: "id", ... },
+  v: "APP_VERSION",
+  fx: "fetchUsers"
+})
+```
+
+### Bundle request
+
+SDK has helpers to prepare data for bundle request.
+
+```javascript
+client.transformToBundle(
+  [
+    {
+      resourceType: "Patient",
+      name: [
+        {
+          given: [""],
+          fimily: "",
+        },
+      ],
+    },
+  ],
+  "POST"
+);
+```
+
+Bundle requests could be a [transaction or batch](https://docs.aidbox.app/api-1/fhir-api/bundle#post-endpoint) type. SDK uses the "transaction" type by default but you can change it by providing it in the second parameter.
+
+```javascript
+const data = ArrayOfPatients.map(client.bundleEntryPost);
+
+await client.bundleRequest(data, "batch");
+```
+
+## Task API
+Queues are a valuable tool for achieving reliable, asynchronous, scalable, and retry-safe code execution.
+By using queues, we can ensure that tasks or messages are processed reliably, even in the face of failures or system disruptions.
+The asynchronous nature of queues allows tasks to be processed independently, enabling parallelism and reducing wait times.
+
+```javascript
+import { Engine } from "aidbox-javascript-sdk";
+
+const client = new Engine({
+  url: "http://localhost:8888",
+  username: "test", password: "secret"
+});
+```
+
+### Definition
+First of all we have to create task's schema with settings that apply restrictions on
+input and output arguments for entity like this one:
+
+```clojure
+ SendMessage
+ {:zen/tags #{awf.task/definition zen/schema}
+  :type zen/map
+  :require #{:params :result}
+  :keys {:params {:type zen/map
+                  :require #{:phone :message}
+                  :keys {:phone {:type zen/string}
+                         :message {:type zen/string}}}
+         :result {:type zen/map
+                  :require #{:status}
+                  :keys {:status {:type zen/string}}}}}
+```
+[More information about task definition](https://docs.aidbox.app/modules-1/workflow-engine/task#1.-specify-task-definition)  
+Notice: we have to regenerate SDK package each time we made changes into configuration project
+
+### Implementation
+Next step is creating business logic that will be considered as a worker,
+the worker will be handling each task, we can
+
+```javascript
+client.task.implement("SendMessage", async ({ params, status }) => {
+  const { message, phone } = params;
+  
+  try {
+    await fetch('https://message-sending-server.com/', {
+      method: 'POST',
+      body: JSON.stringify({ message, phone }),
+    });
+    
+    return { status: 'success' }
+  } catch(error) {
+    return { status: 'failure' } 
+  }
+}, { batchSize: 5 })
+```
+
+### Execution
+The way to execute a single task with unique context
+```javascript
+await client.task.execute("SendMessage", { phone: "+1234567890", message: "Hi!" })
+```
+
+
+## Workflow Engine
+Aidbox provides Workflow Engine module, so you're able to define your own sequence
+of async tasks on top of Task API. In many business processes, certain tasks depend on the completion of other tasks.
+Defining task dependencies through workflow implementation allows the developer
+to control the order in which tasks are executed.
+
+```javascript
+import { Engine } from "aidbox-javascript-sdk";
+
+const client = new Engine({
+  url: "http://localhost:8888",
+  username: "test", password: "secret"
+});
+```
+
+### Definition
+
+```clojure
+ CheckOutWorkflow
+ {:zen/tags #{awf.workflow/definition zen/schema}
+  :type zen/map
+  :pool decision-pool
+  :require #{:params :result}
+  :keys {:params {:type zen/map
+                  :require #{:clientId}
+                  :keys {:clientId {:type zen/string}}}
+         :result {:type zen/map
+                  :keys {:messageId {:type zen/string}}}
+         :error {:type zen/map
+                 :keys {:message {:type zen/string}}}}}
+```
+[More information about workflow definition](https://docs.aidbox.app/modules-1/workflow-engine/workflow#1.-specify-workflow-definition)  
+Notice: we have to regenerate SDK package each time we made changes into configuration project
+
+### Implementation
+
+```javascript
+await client.workflow.implement("CheckOutWorkflow", async ({ params }, { execute, complete, fail }) => {
+  if (params.event === 'awf.workflow.event/workflow-init') {
+    const response = await fetch("https://server.com/get-client")
+    const { phone } = response.json()
+    return [execute({ definition: "SendMessage", params: { phone, message: "Hi!" } })]
+  }
+
+  try {
+    const response = await fetch("https://workflow-state.com")
+    const data = response.json()
+
+    if (params.event === 'awf.workflow.event/task-completed' && data.step === 1) {
+      return [execute({ definition: "UpdateInformation", params: {} })]
+    }
+
+    if (params.event === 'awf.workflow.event/task-completed' && data.step === 2) {
+      return [complete({ })]
+    }
+  } catch(error) {
+    return [fail({ error })]
+  }
+
+  return []
+})
+```
+### Execution
+
+```javascript
+await client.workflow.execute("CheckOutWorkflow", { clientId: "" })
+```
