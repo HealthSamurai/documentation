@@ -254,9 +254,8 @@ await client.bundleRequest(data, "batch");
 ```
 
 ## Task API
-Queues are a valuable tool for achieving reliable, asynchronous, scalable, and retry-safe code execution.
-By using queues, we can ensure that tasks or messages are processed reliably, even in the face of failures or system disruptions.
-The asynchronous nature of queues allows tasks to be processed independently, enabling parallelism and reducing wait times.
+
+Queues are a valuable tool for achieving reliable, asynchronous, scalable, and retry-safe code execution. By using queues, we can ensure that tasks or messages are processed reliably, even in the face of failures or system disruptions. The asynchronous nature of queues allows tasks to be processed independently, enabling parallelism and reducing wait times.
 
 ```javascript
 import { Engine } from "aidbox-javascript-sdk";
@@ -268,8 +267,8 @@ const client = new Engine({
 ```
 
 ### Definition
-First of all we have to create task's schema with settings that apply restrictions on
-input and output arguments for entity like this one:
+
+First of all we have to create task's schema with settings that apply restrictions on input and output arguments for entity like this one:
 
 ```clojure
  SendMessage
@@ -284,12 +283,14 @@ input and output arguments for entity like this one:
                   :require #{:status}
                   :keys {:status {:type zen/string}}}}}
 ```
-[More information about task definition](https://docs.aidbox.app/modules-1/workflow-engine/task#1.-specify-task-definition)  
-Notice: we have to regenerate SDK package each time we made changes into configuration project
+
+{% hint style="info" %}
+We have to regenerate SDK package each time we made changes into configuration project. [More information about task definition](https://docs.aidbox.app/modules-1/workflow-engine/task#1.-specify-task-definition)
+{% endhint %}
 
 ### Implementation
-Next step is creating business logic that will be considered as a worker,
-the worker will be handling each task, we can
+
+Next step is creating business logic that will be considered as a worker, the worker will be handling each task, we can
 
 ```javascript
 client.task.implement("SendMessage", async ({ params, status }) => {
@@ -309,17 +310,16 @@ client.task.implement("SendMessage", async ({ params, status }) => {
 ```
 
 ### Execution
+
 The way to execute a single task with unique context
+
 ```javascript
 await client.task.execute("SendMessage", { phone: "+1234567890", message: "Hi!" })
 ```
 
-
 ## Workflow Engine
-Aidbox provides Workflow Engine module, so you're able to define your own sequence
-of async tasks on top of Task API. In many business processes, certain tasks depend on the completion of other tasks.
-Defining task dependencies through workflow implementation allows the developer
-to control the order in which tasks are executed.
+
+Aidbox provides Workflow Engine module, so you're able to define your own sequence of async tasks on top of Task API. In many business processes, certain tasks depend on the completion of other tasks. Defining task dependencies through workflow implementation allows the developer to control the order in which tasks are executed.
 
 ```javascript
 import { Engine } from "aidbox-javascript-sdk";
@@ -346,8 +346,10 @@ const client = new Engine({
          :error {:type zen/map
                  :keys {:message {:type zen/string}}}}}
 ```
-[More information about workflow definition](https://docs.aidbox.app/modules-1/workflow-engine/workflow#1.-specify-workflow-definition)  
-Notice: we have to regenerate SDK package each time we made changes into configuration project
+
+{% hint style="info" %}
+We have to regenerate SDK package each time we made changes into configuration project. [More information about workflow definition](https://docs.aidbox.app/modules-1/workflow-engine/workflow#1.-specify-workflow-definition)
+{% endhint %}
 
 ### Implementation
 
@@ -377,6 +379,7 @@ await client.workflow.implement("CheckOutWorkflow", async ({ params }, { execute
   return []
 })
 ```
+
 ### Execution
 
 ```javascript

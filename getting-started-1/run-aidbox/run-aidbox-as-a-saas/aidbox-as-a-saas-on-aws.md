@@ -10,7 +10,7 @@ Click on the **"Continue to Subscribe"** button
 
 On the next scerrn click to the **"Subscribe"** button
 
-<figure><img src="../../../.gitbook/assets/Screen Shot 2022-08-29 at 11.48.55.png" alt=""><figcaption><p>Subscribe to the "Aidbox FHIR platform product"</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Screen Shot 2022-08-29 at 11.48.55 (1).png" alt=""><figcaption><p>Subscribe to the "Aidbox FHIR platform product"</p></figcaption></figure>
 
 On the last screen click on **"Set Up Your Account"** button.
 
@@ -22,7 +22,7 @@ After that, you will be redirected to the Aidbox user portal page. Log in in to 
 
 On license create page select product type and fill all required fields. On "Hosting" section you need select **AWS** options. If you successfully subscribe on AWS you will see a green message "You have an active AWS subscription...". Select the hosting zone and click create button.
 
-<figure><img src="../../../.gitbook/assets/Screenshot 2023-03-08 at 09.24.26 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Screenshot 2023-03-08 at 09.24.26.png" alt=""><figcaption></figcaption></figure>
 
 You can check your license status on the licenses list page. Wait a couple of minutes until we install your environment and order certificates. As a result in "Hosting" section status should be changed to **Running**
 
