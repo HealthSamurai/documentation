@@ -161,7 +161,13 @@ Below is an example of the Aidbox Project namespace with a new task definition.
   ;; Delay time in milliseconds before each retry
   ;; The default value: 10000
   :retryDelay 2000
-
+  
+  ;; Max number of concurrently executed tasks
+  :concurrencyLimit 2
+  
+  ;; Path to parameter used to limit concurrency
+  ;; If not defined, <:concurrencyLimit> applied to all tasks with specific definition
+  ::concurrencyPath [:params :resourceType]
 
   ;; Define the schema of input, output, and error for task execution
   :keys {

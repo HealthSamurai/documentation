@@ -20,7 +20,7 @@ Click API Keys
 
 Enter the name of the new key and click Create API Key
 
-![](<../../../.gitbook/assets/image (15) (1) (1).png>)
+![](<../../../.gitbook/assets/image (15) (1).png>)
 
 Copy the newly generated key
 
@@ -88,7 +88,7 @@ Define a query for the `auth/authorize-failed` event
 
 Enter the name for the new metric and click Create metric
 
-![](<../../../.gitbook/assets/image (28) (1).png>)
+![](<../../../.gitbook/assets/image (28).png>)
 
 Now we can see our metric in the Metrics Explorer
 

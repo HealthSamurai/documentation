@@ -31,7 +31,7 @@ description: This guide shows how to set-up Keycloak identity provider with Aidb
     <figure><img src="../../../../.gitbook/assets/image (9) (2).png" alt=""><figcaption></figcaption></figure>
 * Enable `Client authentication` checkbox.
 
-<figure><img src="../../../../.gitbook/assets/image (10) (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (2).png" alt=""><figcaption></figcaption></figure>
 
 *   Add `<aidbox-url>/auth/callback/keycloak` to `Valid redirect URIs` field.\
 

@@ -170,8 +170,6 @@ Once you have the workflow definition above, your custom workflow can be impleme
 
 The decision task is a predefined task to implement workflow and once a workflow is started, this task is executed each time when a task started by workflow is completed.&#x20;
 
-They are implemented like other tasks according to [#task-implementation](../task/#task-implementation "mention").  However, the worker for decision tasks, unlike workers for other tasks, **must be alone** so that multiple workers cannot run the same decision task in parallel. This is important because decision tasks are executed multiple times, as we have already mentioned, and consistency must be maintained during the workflow.
-
 Suppose that we are implementing a simple workflow, in which we want to start Task-1 first, and only after its successful completion start Task-2. Successful completion of Task-2 means that this workflow was completed successfully. Thus, we need a decision task as the following flowchart indicates.
 
 <figure><img src="../../../.gitbook/assets/Decision_task.png" alt="" width="375"><figcaption><p>Flowchart</p></figcaption></figure>
