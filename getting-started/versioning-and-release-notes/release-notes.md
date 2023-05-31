@@ -8,24 +8,28 @@
   * Added support for[ multiple translations of LOINC terminology](../../modules-1/terminology/fhir-terminology-repository/load-loinc-into-aidbox.md#terminology-translations)
   * Added support for [multiple translations of SNOMED CT terminology](../../modules-1/terminology/fhir-terminology-repository/load-snomed-ct-into-aidbox.md#terminology-translations)
 * Data API
-  * Added support for [FHIR R5 mixed chains](../../api-1/fhir-api/search-1/chained-parameters.md)
-  * Added [total\_](../../api-1/graphql-api.md#search-total) field for [GraphQL](../../api-1/graphql-api.md) queries to retrieve total number of results
+  * Supported [FHIR R5 chained search parameters](../../api-1/fhir-api/search-1/chained-parameters.md)
+  * Added [total\_](../../api-1/graphql-api.md#search-total) for [GraphQL](../../api-1/graphql-api.md) queries to retrieve total number of results
   * Added support for [revinclude ](../../api-1/graphql-api.md)in GraphQL when reference from source does not specify type
 * [C-CDA / FHIR converter](../../modules-1/ccda-converter/)
   * Added new supported sections:
     * Functional Status, Health Concerns, Mental Status, Plan of Treatment, Payers, Family History, Nutrition, and Medical Equipment
 * Security and access control&#x20;
-  * Added [AuditEvent viewer](../../modules-1/security-and-access-control/how-to-guides/research-possible-security-issues.md)
+  * Introduced [AuditEvent viewer](../../modules-1/security-and-access-control/how-to-guides/research-possible-security-issues.md)
 * [Aidbox Forms](../../modules-1/aidbox-forms.md)
   * Added integration with Aidbox [Workflow Engine](../../modules-1/workflow-engine/): add task to launch form
   * Added minor features:
-    * Added support for lisp templates in finalize patch section
-    * Added support for redirects when embedded as iframe
-    * Add disable-back-button property to aidbox.sdc/pages widget
-    * Add support for showing images in a row with another fields
+    * support for lisp templates in finalize patch section
+    * support for redirects when embedded as iframe
+    * disable-back-button property to aidbox.sdc/pages widget
+    * support for showing images in a row with another fields
   * Added minor fixes:
-    * Fixed automatic layout generation for subforms
-    * Fixed minor styling inconsistencies in UI
+    * automatic layout generation for subforms
+    * minor styling inconsistencies in UI
+* [Aidbox JS SDK](../../app-development/aidbox-sdk/)
+  * Added a [quickstart guide ](../use-aidbox-with-react.md)demonstrating how to launch a PHR sample app on Aidbox
+  * Added a [PHR sample app](https://github.com/Aidbox/aidbox-sdk-js/tree/main/personal-health-record)
+  * Added [3 example apps](https://github.com/Aidbox/aidbox-sdk-js/tree/main/examples)
 
 ## April 2023 _`stable`_, _`2304`_
 
