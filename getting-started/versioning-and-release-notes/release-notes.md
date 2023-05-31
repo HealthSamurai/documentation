@@ -10,7 +10,7 @@
 * Data API
   * Supported [FHIR R5 chained search parameters](../../api-1/fhir-api/search-1/chained-parameters.md)
   * Added [total\_](../../api-1/graphql-api.md#search-total) for [GraphQL](../../api-1/graphql-api.md) queries to retrieve total number of results
-  * Added support for [revinclude ](../../api-1/graphql-api.md)in GraphQL when reference from source does not specify type
+  * Added support for [revinclude ](../../api-1/graphql-api.md#revincludes-with-any-type)in GraphQL when reference from source does not specify type
 * [C-CDA / FHIR converter](../../modules-1/ccda-converter/)
   * Added new supported sections:
     * Functional Status, Health Concerns, Mental Status, Plan of Treatment, Payers, Family History, Nutrition, and Medical Equipment
