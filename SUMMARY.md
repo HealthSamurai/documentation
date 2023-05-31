@@ -4,7 +4,7 @@
   * [Features](introduction/features.md)
   * [Architecture](introduction/readme.md)
 * [Getting Started](getting-started/README.md)
-  * [Run Aidbox locally](getting-started/run-aidbox-locally-with-docker.md)
+  * [Run Aidbox locally](getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md)
   * [Use Aidbox with React](getting-started/use-aidbox-with-react.md)
 
 ## Overview
