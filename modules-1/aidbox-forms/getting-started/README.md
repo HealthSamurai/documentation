@@ -46,8 +46,8 @@ This is only a sandbox with test forms, all your changes are not saved
 
 2\. Run Aidbox locally
 
-{% content-ref url="../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md" %}
-[run-aidbox-locally-with-docker.md](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md)
+{% content-ref url="../../../getting-started/run-aidbox-locally-with-docker.md" %}
+[run-aidbox-locally-with-docker.md](../../../getting-started/run-aidbox-locally-with-docker.md)
 {% endcontent-ref %}
 
 3\. Clone [aidbox-zen-sdc](https://github.com/HealthSamurai/aidbox-zen-sdc) repository&#x20;

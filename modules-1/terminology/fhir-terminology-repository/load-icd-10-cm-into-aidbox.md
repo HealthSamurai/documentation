@@ -12,7 +12,7 @@ There is a step-by-step guide below which takes you from our [default Aidbox Con
 
 ### Prerequisites
 
-You need to have an [Aidbox Configuration project](../../../getting-started/installation/) to load prepackaged ICD-10-CM terminology. One of the easiest way is to start with our [Docker Getting started guide](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md).
+You need to have an [Aidbox Configuration project](../../../getting-started/installation/) to load prepackaged ICD-10-CM terminology. One of the easiest way is to start with our [Docker Getting started guide](../../../getting-started/run-aidbox-locally-with-docker.md).
 
 ### Step-by-step guide
 

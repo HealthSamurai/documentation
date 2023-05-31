@@ -15,7 +15,7 @@ It introduces you to:&#x20;
 * Aidbox UI features that make the Aidbox instance transparent for you.
 
 {% hint style="warning" %}
-<img src="../../.gitbook/assets/docker.png" alt="" data-size="line">&#x20;
+<img src="../.gitbook/assets/docker.png" alt="" data-size="line">&#x20;
 
 Please **make sure** that you have already [installed Docker & Docker Compose](https://docs.docker.com/engine/install/).
 {% endhint %}
@@ -34,7 +34,7 @@ The _<mark style="color:green;"><mark style="color:green;background-color:yellow
 
 ### 2. Configure the Aidbox
 
-Aidbox is configured by dedicated [Aidbox Configuration Projects](broken-reference).&#x20;
+Aidbox is configured by dedicated [Aidbox Configuration Projects](../aidbox-configuration/aidbox-zen-lang-project/).&#x20;
 
 You can start with the default configuration project published on our GitHub and customize it for your specific needs later. Decide on the FHIR version and clone the corresponding project with the Bash commands below:
 
@@ -124,23 +124,23 @@ Navigate to [http://localhost:8888/](http://localhost:8888/) and Sign In to the 
 
 ### 4. Discover Aidbox features with Notebooks
 
-Go to the Notebooks section within [the Aidbox UI](../../overview/aidbox-ui/) and open Getting Started Notebooks.&#x20;
+Go to the Notebooks section within [the Aidbox UI](../overview/aidbox-ui/) and open Getting Started Notebooks.&#x20;
 
 Use the pre-defined Getting Started Notebooks to explore the basic features of Aidbox through interactive steps with API queries:&#x20;
 
-<figure><img src="../../.gitbook/assets/notebooks.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/notebooks.png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 **Aidbox Notebooks**
 
-Notebooks are interactive tutorials within the Aidbox UI with built-in REST, RPC, and SQL editors and the ability to execute requests and queries on the fly and see the result. You can use pre-built or create your own Notebooks. [Learn more.](../../overview/aidbox-ui/notebooks.md)
+Notebooks are interactive tutorials within the Aidbox UI with built-in REST, RPC, and SQL editors and the ability to execute requests and queries on the fly and see the result. You can use pre-built or create your own Notebooks. [Learn more.](../overview/aidbox-ui/notebooks.md)
 {% endhint %}
 
 
 
 ## Next Steps
 
-* Learn more about [Aidbox Configuration](broken-reference)
-* Unlock additional capabilities of [Aidbox UI](../../overview/aidbox-ui/)
-* Dive into the built-in [Aidbox Notebooks](../../overview/aidbox-ui/notebooks.md)
+* Learn more about [Aidbox Configuration](../aidbox-configuration/aidbox-zen-lang-project/)
+* Unlock additional capabilities of [Aidbox UI](../overview/aidbox-ui/)
+* Dive into the built-in [Aidbox Notebooks](../overview/aidbox-ui/notebooks.md)
 

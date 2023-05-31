@@ -34,8 +34,8 @@ You can get Aidbox hosted in the cloud (Aidbox Sandbox or AWS) or get self-hoste
 [run-aidbox-in-aidbox-sandbox.md](../getting-started-1/run-aidbox/run-aidbox-in-aidbox-sandbox.md)
 {% endcontent-ref %}
 
-{% content-ref url="../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md" %}
-[run-aidbox-locally-with-docker.md](../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md)
+{% content-ref url="../getting-started/run-aidbox-locally-with-docker.md" %}
+[run-aidbox-locally-with-docker.md](../getting-started/run-aidbox-locally-with-docker.md)
 {% endcontent-ref %}
 
 {% content-ref url="../getting-started-1/run-aidbox/run-aidbox-as-a-saas/" %}

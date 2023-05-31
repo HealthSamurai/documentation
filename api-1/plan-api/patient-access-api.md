@@ -10,7 +10,7 @@ Patient Access API enables Smart App to get Patient's healthcare data after Pati
 
 In order to enable Patient Access API in your Aidbox instance you have to:
 
-1. Set up [Aidbox](../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md).
+1. Set up [Aidbox](../../getting-started/run-aidbox-locally-with-docker.md).
 2.  Set up patient-access-smart-api sample project. You need to add next env variables and restart your Aidbox
 
     ```
