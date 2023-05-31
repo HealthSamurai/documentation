@@ -29,7 +29,7 @@
 ## Getting Started
 
 * [Run Aidbox](getting-started-1/run-aidbox/README.md)
-  * [Run Aidbox locally with Docker](getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md)
+  * [Run Aidbox locally](getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md)
   * [Run Multibox locally with Docker](getting-started-1/run-aidbox/run-multibox-locally-with-docker.md)
   * [Run Aidbox in Aidbox Sandbox](getting-started-1/run-aidbox/run-aidbox-in-aidbox-sandbox.md)
   * [Run Aidbox on managed PostgreSQL](getting-started-1/run-aidbox/run-aidbox-on-managed-postgresql.md)

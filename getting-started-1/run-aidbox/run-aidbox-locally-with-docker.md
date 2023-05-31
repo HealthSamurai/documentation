@@ -1,16 +1,42 @@
 ---
-description: >-
-  Aidbox project is a configuration of Aidbox instance, written in zen-lang.
-  This getting started guide shows you how to setup a new Aidbox project.
+description: Discover Aidbox through interactive tutorials called Notebooks on your laptop.
 ---
 
-# Run Aidbox locally with Docker
+# Run Aidbox locally
 
-## Init & run Aidbox project
+## Intro
 
-In order to run Aidbox locally, you need to have [Docker & Docker compose installed](https://docs.docker.com/engine/install/). To begin with new aidbox project,&#x20;
+This guide helps you to launch and explore the Aidbox key features locally through built-in interactive tutorials called Notebooks.
 
-* run the following command depending on FHIR version you want to have
+It introduces you to:&#x20;
+
+* The aidbox installation process with Docker & Docker Compose,
+* Basic API capabilities like RESTful FHIR and SQL API,
+* Aidbox UI features that make the Aidbox instance transparent for you.
+
+{% hint style="warning" %}
+<img src="../../.gitbook/assets/docker.png" alt="" data-size="line">&#x20;
+
+Please **make sure** that you have already [installed Docker & Docker Compose](https://docs.docker.com/engine/install/).
+{% endhint %}
+
+##
+
+## Quickstart Guide
+
+### 1. Get the Aidbox License with a self-hosting option&#x20;
+
+Generate the Aidbox License for a **14-day trial period** on [https://aidbox.app/](https://aidbox.app/) with the hosting option: **self-hosted** or use the license that you already have.&#x20;
+
+{% hint style="success" %}
+The _<mark style="color:green;"><mark style="color:green;background-color:yellow;">Aidbox License Key<mark style="color:green;background-color:yellow;"></mark>_ will be required in the next step, where we will prepare the configuration for Aidbox.
+{% endhint %}
+
+### 2. Configure the Aidbox
+
+Aidbox is configured by dedicated [Aidbox Configuration Projects](broken-reference).&#x20;
+
+You can start with the default configuration project published on our GitHub and customize it for your specific needs later. Decide on the FHIR version and clone the corresponding project with the Bash commands below:
 
 {% tabs %}
 {% tab title="FHIR R4" %}
@@ -50,26 +76,7 @@ git clone \
 {% endtab %}
 {% endtabs %}
 
-* get your Aidbox license on [aidbox.app](https://aidbox.app/)
-* and then set `AIDBOX_LICENSE` env variable in .env file
-
-Once you set up the project and provided the license key, you may start Aidbox service with Docker compose by running:
-
-```shell
-docker compose up --force-recreate
-```
-
-Open [http://localhost:8888](http://localhost:8888) and see Aidbox login page. Sign in using login `admin` and password `password`.
-
-{% hint style="info" %}
-`--force-recreate` argument for Docker Compose makes Docker to pull the latest Aidbox version if you have already pulled it before.
-{% endhint %}
-
-Now you are ready to use Aidbox. Let's see, what have we created.
-
-## Aidbox project structure
-
-Aidbox project folder contains configuration files written in [zen-lang](https://github.com/zen-lang/zen) and the docker-compose.yaml file to start Aidbox locally for development purposes.
+Here is the basic structure of the Aidbox Configuration Project:
 
 ```
 aidbox-project/
@@ -81,101 +88,59 @@ aidbox-project/
     └── main.edn
 ```
 
-If you want to move zen-related files into subfolder, for example, `project`, you can use
+{% hint style="info" %}
+**Aidbox Configuration Projects**
 
-```yaml
-BOX_PROJECT_GIT_TARGET__PATH=/project
-AIDBOX_ZEN_ENTRYPOINT=main/box
-```
+Everything in the Aidbox can be configured with a dedicated Aidbox Configuration Project from the FHIR version definition to enabling add-on modules.&#x20;
 
-in the `.env` file.
+This approach helps you keep configurations under a version control system and share them between Aidbox Instances.
 
-With these settings, the structure will be&#x20;
+[Learn more.](broken-reference)
+{% endhint %}
 
-```
-aidbox-project/
-├── .env
-├── docker-compose.yaml
-└── project
-    ├── zen-package.edn
-    └── zrc
-        └── project
-            ├── config.edn
-            └── main.edn
-```
+#### Add the license key to your configuration project.
 
-### .env
+Update the **.env** file within your configuration project with the Aidbox License Key from [Step 1](run-aidbox-locally-with-docker.md#1.-get-the-aidbox-license-with-a-self-hosting-option):&#x20;
 
-Contains environment variables. At the start it has these defaults:
+{% code title=".env" %}
+```ini
+AIDBOX_LICENSE=YOUR_AIDBOX_LICENSE_KEY
 
-```yaml
-AIDBOX_LICENSE=<your license>
 PGHOSTPORT=5437
 PGUSER=postgres
-PGPASSWORD=postgres
-PGDATABASE=aidbox
-AIDBOX_BASE_URL=http://localhost:8888
-AIDBOX_PORT=8888
-AIDBOX_CLIENT_SECRET=secret
-AIDBOX_ADMIN_PASSWORD=password
-BOX_PROJECT_GIT_TARGET__PATH=/aidbox-project
-AIDBOX_ZEN_ENTRYPOINT=main/box
-AIDBOX_DEV_MODE=true
-AIDBOX_ZEN_DEV_MODE=true
+...
+```
+{% endcode %}
+
+### 3. Start Aidbox with Docker Compose
+
+Start Aidbox with the Docker Compose:
+
+```shell
+docker compose up --force-recreate
 ```
 
-Most of them are obvious.&#x20;
+Navigate to [http://localhost:8888/](http://localhost:8888/) and Sign In to the Aidbox UI using the login `admin` and password `password`.
 
-AIDBOX\_ZEN\_DEV\_MODE enables watcher which reloads zen namespaces when they change. So if you change some file in zrc folder it will be reloaded without restarting Aidbox.
+### 4. Discover Aidbox features with Notebooks
 
-AIDBOX\_DEV\_MODE is used to debug [access-policy](../../modules-1/security-and-access-control/how-to-guides/access-policy.md).
+Go to the Notebooks section within [the Aidbox UI](../../overview/aidbox-ui/) and open Getting Started Notebooks.&#x20;
 
-### zrc/main.edn
+Use the pre-defined Getting Started Notebooks to explore the basic features of Aidbox through interactive steps with API queries:&#x20;
 
-The main.edn file contains `main/box` entrypoint for your Aidbox configuration.
+<figure><img src="../../.gitbook/assets/notebooks.png" alt=""><figcaption></figcaption></figure>
 
-```clojure
-{ns main
- import {aidbox
-         config}
- 
- box
- {:zen/tags #{aidbox/system}
-  :config   config/base-config
-  :services {:admin-user-seed config/admin-user-seed
-             :root-client-seed config/root-client-seed}}}
-```
+{% hint style="info" %}
+**Aidbox Notebooks**
 
-The config.edn file, imported by main.edn, contains configuration variables for Aidbox.
+Notebooks are interactive tutorials within the Aidbox UI with built-in REST, RPC, and SQL editors and the ability to execute requests and queries on the fly and see the result. You can use pre-built or create your own Notebooks. [Learn more.](../../overview/aidbox-ui/notebooks.md)
+{% endhint %}
 
-### zen-package.edn
 
-The zen-package.edn file is the project meta file. You can specify dependencies for external zen packages there.
 
-```
-{:deps {hl7-fhir-r4-core "https://github.com/zen-fhir/hl7-fhir-r4-core.git"}}
-```
+## Next Steps
 
-## Troubleshooting
+* Learn more about [Aidbox Configuration](broken-reference)
+* Unlock additional capabilities of [Aidbox UI](../../overview/aidbox-ui/)
+* Dive into the built-in [Aidbox Notebooks](../../overview/aidbox-ui/notebooks.md)
 
-### Could not find main/box
-
-If you see the message in logs&#x20;
-
-```
-:entrypoint/error Could not find main/box
-```
-
-it means, Aidbox project wasn't configured correctly.
-
-## That's it
-
-Now you have Aidbox project initialized and you ready to develop with Aidbox.
-
-### What's next
-
-Read more on [how to setup US core IG with Aidbox project](https://docs.aidbox.app/tutorials/fhir-conformance/how-to-enable-us-core-ig/start-aidbox-with-us-core-ig-enabled).
-
-## Talk to a Health Samurai Engineer
-
-If you'd like to learn more about using Aidbox or have any questions about this guide, [connect with us on Telegram](https://t.me/aidbox). We're happy to help.
