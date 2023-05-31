@@ -1,5 +1,5 @@
 ---
-description: Discover Aidbox through interactive tutorials called Notebooks on your laptop.
+description: Get up-to-speed with Aidbox features via interactive tutorials.
 ---
 
 # Run Aidbox locally
@@ -17,16 +17,16 @@ It introduces you to:&#x20;
 {% hint style="warning" %}
 <img src="../../.gitbook/assets/docker.png" alt="" data-size="line">&#x20;
 
-Please **make sure** that you have already [installed Docker & Docker Compose](https://docs.docker.com/engine/install/).
+Please **make sure** that both [installed Docker & Docker Compose](https://docs.docker.com/engine/install/) are installed.
 {% endhint %}
 
 ##
 
 ## Quickstart Guide
 
-### 1. Get the Aidbox License with a self-hosting option&#x20;
+### 1. Get the Aidbox License for self-hosting
 
-Generate the Aidbox License for a **14-day trial period** on [https://aidbox.app/](https://aidbox.app/) with the hosting option: **self-hosted** or use the license that you already have.&#x20;
+Create the Aidbox License for the **14-day trial period** on [https://aidbox.app/](https://aidbox.app/), select **self-hosted,** or use the license that you already have.&#x20;
 
 {% hint style="success" %}
 The _<mark style="color:green;"><mark style="color:green;background-color:yellow;">Aidbox License Key<mark style="color:green;background-color:yellow;"></mark>_ will be required in the next step, where we will prepare the configuration for Aidbox.
@@ -36,7 +36,7 @@ The _<mark style="color:green;"><mark style="color:green;background-color:yellow
 
 Aidbox is configured by dedicated [Aidbox Configuration Projects](../../aidbox-configuration/aidbox-zen-lang-project/).&#x20;
 
-You can start with the default configuration project published on our GitHub and customize it for your specific needs later. Decide on the FHIR version and clone the corresponding project with the Bash commands below:
+You can start with the default configuration project published on our GitHub and customize it for your specific needs later. Select the FHIR version and clone the corresponding project with the Bash commands below:
 
 {% tabs %}
 {% tab title="FHIR R4" %}
@@ -91,7 +91,7 @@ aidbox-project/
 {% hint style="info" %}
 **Aidbox Configuration Projects**
 
-Everything in the Aidbox can be configured with a dedicated Aidbox Configuration Project from the FHIR version definition to enabling add-on modules.&#x20;
+Everything in Aidbox can be configured with a dedicated Aidbox Configuration Project from the FHIR version definition to enabling add-on modules.&#x20;
 
 This approach helps you keep configurations under a version control system and share them between Aidbox Instances.
 
