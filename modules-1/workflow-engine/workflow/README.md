@@ -97,7 +97,7 @@ When the started activity is executed, the new decision task should execute the 
 To add a custom workflow:
 
 1. Add the definition of the workflow to Aidbox Project, so Task Service knows about the new task.
-2. &#x20;Implement decision tasks logic using [Executor API](../task/task-executor-api.md) either directly or through the SDK.
+2. &#x20;Implement decision tasks logic using [Executor API](../task/task-executor-api.md) either directly or through the [SDK](../../../app-development/aidbox-sdk/aidbox-javascript-sdk.md#task-api).
 
 ### 1. Specify Workflow Definition
 

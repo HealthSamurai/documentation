@@ -121,7 +121,7 @@ Finally, the status of tasks is always changed to `done`, either by an executor,
 To add a custom task:
 
 1. Add the definition of the task to Aidbox Project, so TaskEngine knows about the new task.
-2. &#x20;Implement task logic using [Executor API](task-executor-api.md) either directly or through the SDK.
+2. &#x20;Implement task logic using [Executor API](task-executor-api.md) either directly or through the [SDK](../../../app-development/aidbox-sdk/aidbox-javascript-sdk.md#task-api).
 
 ### 1. Specify Task Definition
 

@@ -24,17 +24,17 @@ Workflow Engine allows implementing both simple scenarios using [predefined task
 
 [task](task/ "mention") and [workflow](workflow/ "mention") are two basic concepts of Workflow Engines. Both a managed through API which is exposed by Aidbox.
 
-Tasks are the simplest building block, which is responsible for performing business actions. Aidbox provides a number of tasks from the box, or they could be implemented outside of Aidbox on any programming language using SDK or API.
+Tasks are the simplest building block, which is responsible for performing business actions. Aidbox provides a number of tasks from the box, or they could be implemented outside of Aidbox on any programming language using [SDK](../../app-development/aidbox-sdk/aidbox-javascript-sdk.md#task-api) or API.
 
 For the more complex application when a simple granular task is not enough, it is necessary to build a workflow. Workflow is a series of tasks that must be completed in a specific order and within a defined time frame to achieve a specific outcome.
 
 ### Task Executor
 
-Task Executor a responsible for executing the logic behind a task. For [predefined tasks](task/aidbox-predefined-tasks.md), they are run within Aidbox, and custom task executors could be [implemented](task/#task-implementation-1) in any programming language using API or SDK.
+Task Executor a responsible for executing the logic behind a task. For [predefined tasks](task/aidbox-predefined-tasks.md), they are run within Aidbox, and custom task executors could be [implemented](task/#task-implementation-1) in any programming language using [API](../../app-development/aidbox-sdk/aidbox-javascript-sdk.md#task-api) or SDK.
 
 ### Workflow Executor
 
-Workflow Executor a responsible for making decisions about the next steps in a workflow based on predefined rules, conditions, or logic.&#x20;
+Workflow Executor a responsible for making decisions about the next steps in a workflow based on predefined rules, conditions, or logic.  Workflow logic could be implemented using [Workflow Engine SDK](../../app-development/aidbox-sdk/aidbox-javascript-sdk.md#workflow-engine)
 
 ### [Services](services.md)
 
