@@ -2,6 +2,7 @@
 
 ## May 2023 _`latest`_
 
+* Released [Workflow Engine](../../modules-1/workflow-engine/)
 * Validation and Terminology
   * Added [LOINC terminology](../../modules-1/terminology/fhir-terminology-repository/load-loinc-into-aidbox.md)
   * Added support for[ multiple translations of LOINC terminology](../../modules-1/terminology/fhir-terminology-repository/load-loinc-into-aidbox.md#terminology-translations)
@@ -10,8 +11,6 @@
   * Added support for [FHIR R5 mixed chains](../../api-1/fhir-api/search-1/chained-parameters.md)
   * Added [total\_](../../api-1/graphql-api.md#search-total) field for [GraphQL](../../api-1/graphql-api.md) queries to retrieve total number of results
   * Added support for [revinclude ](../../api-1/graphql-api.md)in GraphQL when reference from source does not specify type
-* Integrations
-  * Launched [Workflow Engine](../../modules-1/workflow-engine/)
 * [C-CDA / FHIR converter](../../modules-1/ccda-converter/)
   * Added new supported sections:
     * Functional Status, Health Concerns, Mental Status, Plan of Treatment, Payers, Family History, Nutrition, and Medical Equipment
@@ -28,7 +27,7 @@
     * Fixed automatic layout generation for subforms
     * Fixed minor styling inconsistencies in UI
 
-## April 2023 _`latest`_
+## April 2023 _`stable`_, _`2304`_
 
 * Validation and Terminology
   * Supported [FHIR R5](../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md#fhir-r5)
@@ -57,7 +56,7 @@
   * Added [font configuration support to form-themes](../../modules-1/aidbox-forms/how-to-customize-form-appearance.md#how-to-change-font-size)
   * Fixed minor bugs and issues
 
-## March 2023 _`stable,`_ _`2303`_
+## March 2023 _`2303`_
 
 * Validation and Terminology
   * Supported FHIR R4B&#x20;
