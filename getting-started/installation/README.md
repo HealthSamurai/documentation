@@ -24,8 +24,8 @@ Refer to the following pages for the specific image description and the list of 
 
 Check out the tutorials if you are looking for a step-by-step guide on how to setup and run an image of your choice.
 
-{% content-ref url="../../getting-started-1/run-aidbox/run-aidbox-in-aidbox-sandbox.md" %}
-[run-aidbox-in-aidbox-sandbox.md](../../getting-started-1/run-aidbox/run-aidbox-in-aidbox-sandbox.md)
+{% content-ref url="../run-aidbox-in-aidbox-sandbox.md" %}
+[run-aidbox-in-aidbox-sandbox.md](../run-aidbox-in-aidbox-sandbox.md)
 {% endcontent-ref %}
 
 {% content-ref url="../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md" %}

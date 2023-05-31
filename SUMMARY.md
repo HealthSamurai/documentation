@@ -4,6 +4,7 @@
   * [Features](introduction/features.md)
   * [Architecture](introduction/readme.md)
 * [Getting Started](getting-started/README.md)
+  * [Run Aidbox in Aidbox Sandbox](getting-started/run-aidbox-in-aidbox-sandbox.md)
   * [Run Aidbox locally](getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md)
   * [Use Aidbox with React](getting-started/use-aidbox-with-react.md)
 
@@ -31,7 +32,6 @@
 
 * [Run Aidbox](getting-started-1/run-aidbox/README.md)
   * [Run Multibox locally with Docker](getting-started-1/run-aidbox/run-multibox-locally-with-docker.md)
-  * [Run Aidbox in Aidbox Sandbox](getting-started-1/run-aidbox/run-aidbox-in-aidbox-sandbox.md)
   * [Run Aidbox on managed PostgreSQL](getting-started-1/run-aidbox/run-aidbox-on-managed-postgresql.md)
   * [Run Aidbox as a SaaS](getting-started-1/run-aidbox/run-aidbox-as-a-saas/README.md)
     * [Aidbox as a SaaS on AWS](getting-started-1/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md)

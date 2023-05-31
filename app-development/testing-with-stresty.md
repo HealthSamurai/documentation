@@ -2,7 +2,7 @@
 
 ## requires to have your data publicly available. Power BI needs access to FHIR read operation `GET /fhir/<resourceType>` .Configure Your Box
 
-Create a box here [https://aidbox.app/static/aidbox.html](https://aidbox.app/static/aidbox.html). See the [tutorial](../getting-started-1/run-aidbox/run-aidbox-in-aidbox-sandbox.md) on how to create a new box.
+Create a box here [https://aidbox.app/static/aidbox.html](https://aidbox.app/static/aidbox.html). See the [tutorial](../getting-started/run-aidbox-in-aidbox-sandbox.md) on how to create a new box.
 
 Access the [REST Console](../overview/aidbox-ui/rest-console-1.md) of the created box. Execute the following requests. Their meaning you can read in the [tutorial](../modules-1/security-and-access-control/auth/basic-auth.md#register-client).
 
