@@ -182,7 +182,7 @@ With this flag Aidbox will update history for updated resources. For each resour
 
 ## /v2/$import on top of the Workflow Engine
 
-Aidbox has introduced a new and improved version of the $import operation, currently in beta, to enhance its reliability and performance. By implementing this operation on top of the [workflow-engine](../../modules-1/workflow-engine/ "mention"), it allows the $import operation to be more reliable, continue work after restarts, and handle errors correctly. The Task API also enables the operation to accept multiple requests and execute them from a queue while simultaneously processing multiple items from the "inputs" field (with a default of two items processed simultaneously). Users can monitor the status of the operation through the [monitoring.md](../../modules-1/workflow-engine/monitoring.md "mention").
+Improved version of the $import operation, to enhance its reliability and performance. By implementing this operation on top of the [workflow-engine](../../modules-1/workflow-engine/ "mention"), it allows the $import operation to be more reliable, continue work after restarts, and handle errors correctly. The Task API also enables the operation to accept multiple requests and execute them from a queue while simultaneously processing multiple items from the "inputs" field (with a default of two items processed simultaneously). Users can monitor the status of the operation through the [monitoring.md](../../modules-1/workflow-engine/monitoring.md "mention").
 
 In the future, the ability to list and cancel $import operations will be added, as well as detailed progress info on the operation.
 
@@ -196,8 +196,7 @@ To enable new version of $import API (`/v2/$import` & `/v2/fhir/$import`) set en
 2. The status of the workflow can be accessed with a GET request to `/v2/$import/<id>` instead of `/BulkImportStatus/<id>`. The URL for the import status is returned in the `content-location` header of the $import request.
 
 {% hint style="warning" %}
-* The new implementation is currently in beta, and further improvements and refinements may be made as needed.
-* This feature is currently not available in [Multibox](https://docs.aidbox.app/multibox/multibox-box-manager-api)
+This feature is currently not available in [Multibox](https://docs.aidbox.app/multibox/multibox-box-manager-api)
 {% endhint %}
 
 To start import make a POST request to `/v2[/fhir]/$import`:
