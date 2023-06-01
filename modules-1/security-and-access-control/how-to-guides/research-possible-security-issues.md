@@ -16,7 +16,7 @@ Simplifies research, diagnose and resolve possible security breaches. It is rele
 
 </div>
 
-## How to active the Viewer
+## How to enable the Viewer
 
 {% hint style="warning" %}
 Aidbox produces AuditEvents resources when the features is active
