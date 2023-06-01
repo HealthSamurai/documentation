@@ -41,7 +41,7 @@ This rule describes how to run the audit-events archiving task every day at 14:1
 
 ## Subscription trigger
 
-Subscription trigger is a service that allows you to subscribe to changes in the Aidbox database and perform the tasks or workflows described in the rules when the conditions are met.
+Subscription trigger is a service that allows you to subscribe to changes in the Aidbox database and perform tasks or workflows described in the rule when the conditions are met.
 
 To use the subscription trigger, you need to describe your rules in zen format and list them in the subscription trigger service definition.
 
