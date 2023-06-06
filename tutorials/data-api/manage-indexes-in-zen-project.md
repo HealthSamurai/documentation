@@ -166,34 +166,112 @@ Test that no indexes are created:
 select * from pg_indexes where indexname ilike 'aidbox_mng%'
 ```
 
-Start synchronization of indexes from zen-schemas.
+Start synchronization _**task**_ of indexes from zen-schemas. About tasks and workflow you can read [here](../../modules-1/workflow-engine/).
+
+Request:
 
 ```
 POST /rpc
-Content-Type: application/json
-Accept: application/json
+Content-Type: text/yaml
+Accept: text/yaml
 
-{"method": "aidbox.index.v1/sync-indexes"}
+method: aidbox.index.v1/sync-indexesm
 ```
 
-Response:&#x20;
+Response:
 
-```
-{
- "result": {
-  "removed": [],
-  "added": [
-   "aidbox_mng_idx_patient_brthdt_param_knife_date_min_low_tstz",
-   "aidbox_mng_idx_patient_brthdt_param_knife_date_max_high_tstz",
-   "aidbox_mng_idx_patient_brthdt_param_knife_date_max_tstz",
-   "aidbox_mng_idx_patient_brthdt_param_knife_date_min_tstz",
-   "aidbox_mng_idx_main_practitioner_identifier_gin_index"
-  ]
- }
-}
+```yaml
+result:
+  params:
+    indexes-to-drop: []
+    indexes-to-create:
+      - indexexpr: >-
+          (knife_extract_min_timestamptz("patient".resource,
+          '[["birthDate"]]')) 
+        indexname: aidbox_mng_idx_patient_brthdt_param_knife_date_min_tstz
+        indextype: btree
+        tablename: '"patient"'
+      - indexexpr: >-
+          (knife_extract_max_timestamptz("patient".resource,
+          '[["birthDate"]]')) 
+        indexname: aidbox_mng_idx_patient_brthdt_param_knife_date_max_tstz
+        indextype: btree
+        tablename: '"patient"'
+      - indexexpr: ("practitioner".resource)
+        indexname: aidbox_mng_idx_main_practitioner_identifier_gin_index
+        indextype: gin
+        tablename: '"practitioner"'
+  status: in-progress
+  definition: aidbox.index/sync-indexes-workflow
+  id: >-
+    6c702283-a723-4ef4-a6c1-90f16ebef8aa
+  resourceType: AidboxWorkflow
+  meta:
+    lastUpdated: '2023-06-06T13:19:18.420982Z'
+    createdAt: '2023-06-06T13:19:18.420982Z'
+    versionId: '4916'
 ```
 
-Now 5 managed indexes are created.
+Index synchronization may take some time. You can check the status of workflow with UI Aidbox console or with `awf.workflow/status` [rpc method](../../modules-1/workflow-engine/workflow/task-user-api.md#awf.workflow-status):&#x20;
+
+Request:
+
+```yaml
+POST /rpc
+content-type: text/yaml
+accept: text/yaml
+
+method: awf.workflow/status
+params:
+  id: 8dede5e7-08e4-4f2d-9296-3d4e554629f0
+```
+
+Response:
+
+```yaml
+result:
+  resource:
+    params:
+      indexes-to-drop: []
+      indexes-to-create:
+        - indexexpr: >-
+            (knife_extract_min_timestamptz("patient".resource,
+            '[["birthDate"]]')) 
+          indexname: aidbox_mng_idx_patient_brthdt_param_knife_date_min_tstz
+          indextype: btree
+          tablename: '"patient"'
+        - indexexpr: >-
+            (knife_extract_max_timestamptz("patient".resource,
+            '[["birthDate"]]')) 
+          indexname: aidbox_mng_idx_patient_brthdt_param_knife_date_max_tstz
+          indextype: btree
+          tablename: '"patient"'
+        - indexexpr: ("practitioner".resource)
+          indexname: aidbox_mng_idx_main_practitioner_identifier_gin_index
+          indextype: gin
+          tablename: '"practitioner"'
+    result:
+      message: All indexes are synced
+      created-indexes:
+        - aidbox_mng_idx_patient_brthdt_param_knife_date_min_tstz
+        - aidbox_mng_idx_patient_brthdt_param_knife_date_max_tstz
+        - aidbox_mng_idx_main_practitioner_identifier_gin_index
+      dropped-indexes: []
+      created-indexes-count: 3
+      dropped-indexes-count: 0
+    status: done
+    outcome: succeeded
+    definition: aidbox.index/sync-indexes-workflow
+    id: >-
+      6c702283-a723-4ef4-a6c1-90f16ebef8aa
+    resourceType: AidboxWorkflow
+    meta:
+      lastUpdated: '2023-06-06T13:19:18.753250Z'
+      createdAt: '2023-06-06T13:19:18.420982Z'
+      versionId: '4975'
+```
+
+After workflow is complete, you can see 3 managed indexes are created.
 
 ```sql
 select * from pg_indexes where indexname ilike 'aidbox_mng%'
