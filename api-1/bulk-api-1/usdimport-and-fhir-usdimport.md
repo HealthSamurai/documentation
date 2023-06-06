@@ -1,6 +1,6 @@
 # $import & /fhir/$import
 
-`$import` is an implementation of the upcoming FHIR Bulk Import API. This is an asynchronous Operation, which returns url to monitor progress. There are two versions of this operation - `/fhir/$import` accepts data in FHIR format, `/$import` works with [Aidbox format](../../getting-started-1/aidbox-and-fhir-formats.md).
+`$import` is an implementation of the upcoming FHIR Bulk Import API. This is an asynchronous Operation, which returns url to monitor progress. There are two versions of this operation - `/fhir/$import` accepts data in FHIR format, `/$import` works with [Aidbox format](../../storage-1/aidbox-and-fhir-formats.md).
 
 #### Resource requirements for all import operations:
 

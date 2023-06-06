@@ -35,7 +35,7 @@ Let's look at some operations working with Bundle resources.
   `POST /fhir/Bundle`, `GET /fhir/Bundle`, `GET /fhir/Bundle/<id>`,\
   `PUT /fhir/Bundle/<id>`
 
-See more about the difference between Aidbox and FHIR formats (`/...` and `/fhir/...` endpoints) in the [aidbox-and-fhir-formats.md](../../getting-started-1/aidbox-and-fhir-formats.md "mention") page.
+See more about the difference between Aidbox and FHIR formats (`/...` and `/fhir/...` endpoints) in the [aidbox-and-fhir-formats.md](../../storage-1/aidbox-and-fhir-formats.md "mention") page.
 
 ### `POST /` , `POST /fhir` endpoint
 

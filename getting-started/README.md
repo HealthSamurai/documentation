@@ -12,19 +12,19 @@ Discover how to start with Aidbox in just a few minutes.
 
 ## Tutorials
 
-{% content-ref url="../getting-started-1/run-aidbox/run-aidbox-on-managed-postgresql.md" %}
-[run-aidbox-on-managed-postgresql.md](../getting-started-1/run-aidbox/run-aidbox-on-managed-postgresql.md)
+{% content-ref url="run-aidbox-on-managed-postgresql.md" %}
+[run-aidbox-on-managed-postgresql.md](run-aidbox-on-managed-postgresql.md)
 {% endcontent-ref %}
 
-{% content-ref url="../getting-started-1/run-aidbox/run-aidbox-as-a-saas/" %}
-[run-aidbox-as-a-saas](../getting-started-1/run-aidbox/run-aidbox-as-a-saas/)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
-{% content-ref url="../getting-started-1/run-aidbox/run-aidbox-in-kubernetes/" %}
-[run-aidbox-in-kubernetes](../getting-started-1/run-aidbox/run-aidbox-in-kubernetes/)
+{% content-ref url="run-aidbox-in-kubernetes/" %}
+[run-aidbox-in-kubernetes](run-aidbox-in-kubernetes/)
 {% endcontent-ref %}
 
-{% content-ref url="../getting-started-1/load-bundle-into-fhir-server.md" %}
-[load-bundle-into-fhir-server.md](../getting-started-1/load-bundle-into-fhir-server.md)
+{% content-ref url="load-bundle-into-fhir-server.md" %}
+[load-bundle-into-fhir-server.md](load-bundle-into-fhir-server.md)
 {% endcontent-ref %}
 

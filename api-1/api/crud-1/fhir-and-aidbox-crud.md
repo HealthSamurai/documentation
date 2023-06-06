@@ -188,7 +188,7 @@ issue:
 {% endtabs %}
 
 {% hint style="info" %}
-Aidbox REST API doesn't ignore`id` and treats it as all other attributes in contrast to FHIR API. Read more about differences [here](../../../getting-started-1/aidbox-and-fhir-formats.md).
+Aidbox REST API doesn't ignore`id` and treats it as all other attributes in contrast to FHIR API. Read more about differences [here](../../../storage-1/aidbox-and-fhir-formats.md).
 {% endhint %}
 
 ## Conditional Create

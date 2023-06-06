@@ -5,7 +5,7 @@ description: This page describes types of Aidbox REST API operations in general
 # REST API
 
 {% hint style="info" %}
-Aidbox provides two REST APIs - FHIR and Aidbox. The main difference is [a format of resources](../../getting-started-1/aidbox-and-fhir-formats.md). Base URL for FHIR API is **/fhir** and for Aidbox **/**
+Aidbox provides two REST APIs - FHIR and Aidbox. The main difference is [a format of resources](../../storage-1/aidbox-and-fhir-formats.md). Base URL for FHIR API is **/fhir** and for Aidbox **/**
 {% endhint %}
 
 | Interaction type                                       |                                                                     | Format |

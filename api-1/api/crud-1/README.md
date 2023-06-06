@@ -10,7 +10,7 @@ description: >-
 
 
 {% hint style="info" %}
-Aidbox provides two REST APIs - FHIR and Aidbox. The main difference is [a format of resources](../../../getting-started-1/aidbox-and-fhir-formats.md). Base URL for FHIR API is **/fhir** and for Aidbox **/**
+Aidbox provides two REST APIs - FHIR and Aidbox. The main difference is [a format of resources](../../../storage-1/aidbox-and-fhir-formats.md). Base URL for FHIR API is **/fhir** and for Aidbox **/**
 {% endhint %}
 
 All sample requests can be run from the Postman collection:[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/view-collection/cd401dd93c5efab171ac?referrer=https%3A%2F%2Fapp.getpostman.com%2Frun-collection%2Fcd401dd93c5efab171ac%23%3Fenv\[Aidbox.Cloud]%3DW3sia2V5IjoiYmFzZTEiLCJ2YWx1ZSI6Imh0dHBzOi8vbWVyZWRpdGguYWlkYm94LmFwcCIsImRlc2NyaXB0aW9uIjoiIiwiZW5hYmxlZCI6ZmFsc2V9LHsia2V5IjoiYmFzZSIsInZhbHVlIjoiaHR0cHM6Ly9wYXZseXNoaW5hMjAxODExMDkuYWlkYm94LmFwcCIsImRlc2NyaXB0aW9uIjoiIiwiZW5hYmxlZCI6dHJ1ZX1d&\_ga=2.141573233.23745025.1543592968-654445837.1543359065)

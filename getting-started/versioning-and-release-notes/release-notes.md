@@ -188,8 +188,8 @@
 
 * Aidbox deployment and maintenance
   * Released [index suggestion API](../../storage-1/indexes/get-suggested-indexes.md) and updated documentation on [index management](../../storage-1/indexes/)
-  * Updated documentation on [highly available Aidbox](../../getting-started-1/run-aidbox/run-aidbox-in-kubernetes/high-available-aidbox.md)
-  * Updated documentation on [production-ready deployment to Kubernetes](../../getting-started-1/run-aidbox/run-aidbox-in-kubernetes/deploy-aidbox-in-kubernetes.md)
+  * Updated documentation on [highly available Aidbox](../run-aidbox-in-kubernetes/high-available-aidbox.md)
+  * Updated documentation on [production-ready deployment to Kubernetes](../run-aidbox-in-kubernetes/deploy-aidbox-in-kubernetes.md)
 * Smartbox
   * Improved admin UI with configuration of [EHR-level logo](../../modules-1/smartbox/how-to-guides/set-up-ehr-level-customization.md#with-smartbox-ui), [email provider](../../modules-1/smartbox/how-to-guides/setup-email-provider.md) and [bulk export](../../modules-1/smartbox/how-to-guides/setup-email-provider-1.md)
   * Added documentation on [deployment to Kubernetes](../../modules-1/smartbox/get-started/deploy-smartbox-to-kubernetes.md)
@@ -258,7 +258,7 @@
 * Enhanced the Aidbox configuration process with [Aidbox configuration projects](../../aidbox-configuration/aidbox-zen-lang-project/)
 * Supported [`/health` endpoint](../../app-development/receive-logs-from-your-app/health-check.md) for Multibox
 * Updated documentation on how to configure Aidbox with [Aidbox configuration project](../../aidbox-configuration/aidbox-zen-lang-project/)
-* Updated documentation on how to [configure highly available Aidbox](../../getting-started-1/run-aidbox/run-aidbox-in-kubernetes/high-available-aidbox.md)
+* Updated documentation on how to [configure highly available Aidbox](../run-aidbox-in-kubernetes/high-available-aidbox.md)
 * Added support for [PostgreSQL 15](../../storage-1/aidboxdb-image.md) (beta)
 * Added documentation on how to create [most common indexes](../../storage-1/indexes/create-indexes-manually.md)
 * Added `aidbox` format support for [bulk import](../../api-1/bulk-api-1/aidbox.bulk-data-import.md#aidbox.bulk-import-start)
@@ -269,7 +269,7 @@
 
 * Aidbox FHIR API module (SMARTbox) is officially certified by ICSA Labs to comply with the [ONC’s 2015 Edition Cures Update](https://www.healthit.gov/topic/certification-ehrs/2015-edition-cures-update-test-method) requirements / 170.315(g)(10).
 * Added [Aidbox FHIR API module (SMARTbox) set up guide](../../modules-1/smartbox/get-started/set-up-smartbox.md).
-* Added an option to [get Aidbox hosted on AWS](../../getting-started-1/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md) directly from the Aidbox user portal. [Aidbox FHIR platform](https://aws.amazon.com/marketplace/pp/prodview-l5djlpvsd6o5g) is available on AWS marketplace.
+* Added an option to [get Aidbox hosted on AWS](../aidbox-as-a-saas-on-aws.md) directly from the Aidbox user portal. [Aidbox FHIR platform](https://aws.amazon.com/marketplace/pp/prodview-l5djlpvsd6o5g) is available on AWS marketplace.
 * Released [Aidbox forms](../../modules-1/aidbox-forms.md) alpha version.
 * Added [RPC method](../../modules-1/terminology/terminology-api/import-using-an-aidbox-project.md#track-import-progress) to track Aidbox project terminology bundles async load status.
 * Added env to [automatically create a User resource](../../modules-1/security-and-access-control/auth/access-token-introspection.md#create-user-automatically) on auth via TokenIntrospector. This allows to use both TokenIntrospector and IdentityProvider auth for the same User in Aidbox.
@@ -447,7 +447,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 * We've released a major Aidbox UI upgrade
 
-![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (1) (12) (1) (10) (10) (1) (11) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (5).png>)
+![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (1) (12) (1) (10) (10) (1) (11) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2).png>)
 
 * Updated REST Console (check out[ the tutorial](https://bit.ly/rest\_console\_tutorial)):
   * Explicit request headers `content-type, accept` etc
