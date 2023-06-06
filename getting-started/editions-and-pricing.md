@@ -31,8 +31,8 @@ You can install, administer, and maintain your own Aidbox or Multibox instance o
 
 You can get a turn-key production-ready Aidbox as a SaaS to start your development in minutes.
 
-{% content-ref url="aidbox-as-a-saas-on-aws.md" %}
-[aidbox-as-a-saas-on-aws.md](aidbox-as-a-saas-on-aws.md)
+{% content-ref url="../getting-started-1/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md" %}
+[aidbox-as-a-saas-on-aws.md](../getting-started-1/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md)
 {% endcontent-ref %}
 
 ### Aidbox for education

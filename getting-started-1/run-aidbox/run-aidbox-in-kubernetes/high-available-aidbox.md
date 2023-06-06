@@ -1,4 +1,4 @@
-# High Available Aidbox
+# Highly Available Aidbox
 
 {% hint style="info" %}
 Run parallel Aidbox replicas supported from **2208** version

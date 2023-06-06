@@ -135,7 +135,7 @@ Bundles must be sent via POST method to BASE\_URL which is the URL of your Box f
 
 1. Access your Box in Aidbox.Cloud.
 2. Open REST Console.
-3. Type in `POST /` or `POST /fhir`. (read about the [difference](../storage-1/aidbox-and-fhir-formats.md) between Aidbox and FHIR)
+3. Type in `POST /` or `POST /fhir`. (read about the [difference](aidbox-and-fhir-formats.md) between Aidbox and FHIR)
 4. Leave next line empty.
 5. Paste your bundle.
 6. Press Ctrl+Enter or click the **Send** button.

@@ -44,7 +44,7 @@ Plenty of bug fixes!
 ### Features
 
 {% hint style="warning" %}
-Now references to contained resources are represented as `localRef` attribute in [Aidbox Format](../../../storage-1/aidbox-and-fhir-formats.md)
+Now references to contained resources are represented as `localRef` attribute in [Aidbox Format](../../../getting-started-1/aidbox-and-fhir-formats.md)
 {% endhint %}
 
 * Managed SQL for FHIR search by [SearchQuery](../../../api-1/fhir-api/search-1/searchquery.md)

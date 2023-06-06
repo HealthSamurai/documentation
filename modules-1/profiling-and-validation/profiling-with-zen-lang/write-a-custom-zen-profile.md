@@ -34,7 +34,7 @@ Schemas tagged with `zen.fhir/base-schema` are used to validate every resource o
 
 Schemas tagged with `zen.fhir/profile-schema` are used to validate resources that mention their `:zen.fhir/profileUri` in the `meta.profile` attribute.
 
-Those schemas must be tagged with `zen.fhir/profile-schema`, describe data structure in the [Aidbox format](../../../storage-1/aidbox-and-fhir-formats.md) and conform to the following schema:
+Those schemas must be tagged with `zen.fhir/profile-schema`, describe data structure in the [Aidbox format](../../../getting-started-1/aidbox-and-fhir-formats.md) and conform to the following schema:
 
 {% code title="zen.fhir/profile-schema" %}
 ```clojure
