@@ -264,6 +264,7 @@ Once you run tests, follow the Inferno instructions.
    * Bulk Data FHIR URL:\
      `[aidbox-url]/tenant/my-clinic/patient/smart-api`
    * Public Launch Client ID: `inferno-public-patient-smart-app`
+   * Proof Key for Code Exchange (PKCE): `Enabled`
    * OAuth 2.0 Authorize Endpoint: `[aidbox-url]/tenant/my-clinic/patient/auth/authorize`
    * OAuth 2.0 Token Endpoint: `[aidbox-url]/auth/token`
 4. Click the `Submit` button
