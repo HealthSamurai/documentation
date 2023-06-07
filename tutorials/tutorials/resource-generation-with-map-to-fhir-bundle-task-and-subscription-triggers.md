@@ -1,10 +1,10 @@
 # Resource generation with map-to-fhir-bundle-task and subscription triggers
 
-In this tutorial we will create a FHIR resource in response to another resource creation using map-to-fhie-bundle-task and subscription trigger.
+In this tutorial, we will create a FHIR resource in response to another resource creation using `map-to-fhir-bundle-task` and subscription trigger.
 
 ### Define Aidbox Project configuration
 
-In our configuration we will need [**subscription trigger service**](../../modules-1/workflow-engine/services.md#subscription-trigger)**,** **trigger rule** which requests  and [**lisp/mapping**](../../app-development/mappings/mappings-with-lisp-mapping.md).
+In our configuration, we will need the [**subscription trigger service**](../../modules-1/workflow-engine/services.md#subscription-trigger) with **trigger rule**, and [**lisp/mapping**](../../app-development/mappings/mappings-with-lisp-mapping.md).
 
 {% code fullWidth="true" %}
 ```clojure
@@ -63,4 +63,4 @@ In our configuration we will need [**subscription trigger service**](../../modul
 ```
 {% endcode %}
 
-Now a new Observation resource is created with the status `registered`, and the Encounter resource with the same `subject` and `performer` as `participant` is created with the status Planned.
+Now a new Observation resource is created with the status `registered`, and the Encounter resource with the same `subject` and `performer` as a `participant` is created with the status Planned.
