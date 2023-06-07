@@ -306,7 +306,7 @@ theme:
 
 ### Describe Structure of Custom Resource
 
-Now, let's put some restrictions and define our Custom Resource structure. To describe structure of a resource, we will use [Attribute](../entities-and-attributes.md) meta-resource. For example, we want to restrict the `theme` attribute to be a `string` value from the specific enumeration:
+Now, let's put some restrictions and define our Custom Resource structure. To describe structure of a resource, we will use [Attribute](../../core-modules/entities-and-attributes.md) meta-resource. For example, we want to restrict the `theme` attribute to be a `string` value from the specific enumeration:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -344,7 +344,7 @@ enum:
 
 ### Validation of Incoming Resources
 
-To validate incoming resources, Aidbox uses json-schema which is generated from Entity & Attribute meta-resources (read more in [Validation Section](../profiling-and-validation/profiling.md)). Using [$json-schema](../profiling-and-validation/usdjson-schema.md) operation we can inspect which schema will be applied to `UserSetting` resources:
+To validate incoming resources, Aidbox uses json-schema which is generated from Entity & Attribute meta-resources (read more in [Validation Section](../../profiling-and-validation/profiling.md)). Using [$json-schema](../../core-modules/usdjson-schema.md) operation we can inspect which schema will be applied to `UserSetting` resources:
 
 {% tabs %}
 {% tab title="Request" %}

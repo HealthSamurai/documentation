@@ -29,11 +29,11 @@ description: Release notes for years 2019-2020
 ### Features
 
 * Complete rewrite of the [(rev)include](../../../api-1/fhir-api/search-1/search-parameters-list/\_include-and-\_revinclude.md) engine
-* New [Mapping module](../../../app-development/mappings/)
+* New [Mapping module](../../../tools/mappings/)
 * New [Hl7v2 module](../../../modules-1/hl7-v2-integration/)
 * New engine for AccessPolicy - [matcho](../../../modules-1/security-and-access-control/security/access-control.md#matcho-engine)
-* New [Encryption API](../../../api-1/other/encryption-api.md)
-* [X-Audit header](../../../app-development/receive-logs-from-your-app/x-audit-header.md) to add custom data to Aidbox logs
+* New [Encryption API](../../../api-1/encryption-api.md)
+* [X-Audit header](../../../app-development-guides/receive-logs-from-your-app/x-audit-header.md) to add custom data to Aidbox logs
 * [X-Debug: policy](../../../modules-1/security-and-access-control/security/access-control.md#using-x-debug-policy-header) header to trace policy evaluation
 * Support for [\_elements](../../../api-1/fhir-api/search-1/search-parameters-list/\_elements.md#elements-and-ref-includes) for (rev)included resources
 
@@ -44,7 +44,7 @@ Plenty of bug fixes!
 ### Features
 
 {% hint style="warning" %}
-Now references to contained resources are represented as `localRef` attribute in [Aidbox Format](../../../getting-started-1/aidbox-and-fhir-formats.md)
+Now references to contained resources are represented as `localRef` attribute in [Aidbox Format](../../../modules-1/fhir-resources/aidbox-and-fhir-formats.md)
 {% endhint %}
 
 * Managed SQL for FHIR search by [SearchQuery](../../../api-1/fhir-api/search-1/searchquery.md)
@@ -83,7 +83,7 @@ It's time to upgrade your database - please stop your container and change image
 
 * `/auth/test-policy` operation for[ policy debug](../../../modules-1/security-and-access-control/security/access-control.md#debugging)
 * Support for [ident interpolation](../../../modules-1/security-and-access-control/security/access-control.md#sql-engine) in SQL policy - `SELECT * FROM {{!params.resource/type}}`
-* [SQL Migrations](../../../api-1/api/usdpsql.md#sql-migrations)
+* [SQL Migrations](../../../modules-1/aidbox-search/usdpsql.md#sql-migrations)
 * New [\_explain](../../../api-1/fhir-api/search-1/#\_explain) parameter for Search API
 * Beta version of bulk [import operation](../../../api-1/bulk-api-1/#usdimport)&#x20;
 * History & Snippets for REST & DB Console
@@ -99,7 +99,7 @@ It's time to upgrade your database - please stop your container and change image
 
 ### Features
 
-* [Sequence API](../../../api-1/other/sequence-api.md) - use PostgreSQL sequences through REST API
+* [Sequence API](../../../api-1/sequence-api.md) - use PostgreSQL sequences through REST API
 * Operation bound policy in App manifest
 * Clear resources deleted in App manifest ([#70](https://github.com/Aidbox/Issues/issues/70))
 * Bulk load terminologies - [tutorial](https://docs.aidbox.app/terminology/terminology-tutorials/load-terminologies)
@@ -115,14 +115,14 @@ It's time to upgrade your database - please stop your container and change image
 
 ### Features
 
-* [User Level Logs](../../../modules-1/logging-and-audit/)
+* [User Level Logs](../../../core-modules/logging-and-audit/)
 * [Structured Data Capture](../../../tutorials/tutorials/sdc-with-custom-resources.md) with Custom Resources (Alpha)
 * [History based replication](broken-reference)
 * Search: new [\_ilike](../../../api-1/fhir-api/search-1/#\_ilike-search-non-fhir) search parameter
 * Search: [\_include=\*](../../../api-1/fhir-api/search-1/#\_include-and-\_revinclude)  support
 * Search: [\_list](../../../api-1/fhir-api/search-1/#\_list) parameter support
 * [$dump](../../../api-1/bulk-api-1/#usddump) - Bulk Export Operation
-* [Health-Check](../../../app-development/receive-logs-from-your-app/health-check.md) endpoint by [RFC](https://inadarei.github.io/rfc-healthcheck/)
+* [Health-Check](../../../app-development-guides/receive-logs-from-your-app/health-check.md) endpoint by [RFC](https://inadarei.github.io/rfc-healthcheck/)
 
 ### Bug Fixes
 
@@ -133,7 +133,7 @@ It's time to upgrade your database - please stop your container and change image
 
 ## 0.4.1 _\[8 April 2019]_
 
-This release is mostly dedicated to stabilisation of new auth module. Check-out it's [documentation](../../../modules-1/security-and-access-control/auth/)!
+This release is mostly dedicated to stabilisation of new auth module. Check-out it's [documentation](../../../security-and-access-control-1/auth/)!
 
 ### Features
 
@@ -153,7 +153,7 @@ This release is mostly dedicated to stabilisation of new auth module. Check-out 
 
 ### Features
 
-* New [Auth module](../../../modules-1/security-and-access-control/auth/) (OAuth2, OpenID Connect and SCIM implementations)
+* New [Auth module](../../../security-and-access-control-1/auth/) (OAuth2, OpenID Connect and SCIM implementations)
 * Web UI for Aidbox.Dev
 * Migrate to Java 11
 * Clusters in Cloud

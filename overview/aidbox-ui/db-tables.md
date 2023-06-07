@@ -1,7 +1,7 @@
 # DB Tables
 
 {% hint style="info" %}
-Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [contact](../contact-us.md) us if you have questions, feedback, or suggestions.
+Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [contact](../../contact-us.md) us if you have questions, feedback, or suggestions.
 {% endhint %}
 
 DB Tables provides info on the existing tables in the database and the following table attributes:

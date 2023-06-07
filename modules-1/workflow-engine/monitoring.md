@@ -58,7 +58,7 @@ Scheduler rule list displays the list of all rules defined in Aidbox Project.
 
 <div data-full-width="true">
 
-<figure><img src="../../.gitbook/assets/image (38).png" alt=""><figcaption><p>Scheduler rule list</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (38) (1).png" alt=""><figcaption><p>Scheduler rule list</p></figcaption></figure>
 
 </div>
 
@@ -74,6 +74,6 @@ From the Activity tab, you can review all tasks and workflows launched by the ru
 
 <div data-full-width="true">
 
-<figure><img src="../../.gitbook/assets/image (34).png" alt=""><figcaption><p>Scheduler activities</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (34) (1).png" alt=""><figcaption><p>Scheduler activities</p></figcaption></figure>
 
 </div>

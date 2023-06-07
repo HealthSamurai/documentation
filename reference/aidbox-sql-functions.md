@@ -1,7 +1,7 @@
 # Aidbox SQL functions
 
 {% hint style="info" %}
-This page is in progress. Please [contact us](../overview/contact-us.md) if you need more SQL functions to be documented.
+This page is in progress. Please [contact us](../contact-us.md) if you need more SQL functions to be documented.
 {% endhint %}
 
 

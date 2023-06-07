@@ -58,7 +58,7 @@ channel:
 
 ### Trigger format
 
-Subscription.trigger is a key-value object, where key is resource type and each value can contain a collection of events (values can be 'all', 'create', 'update', 'delete') and .filter collection. For now filter support [**matcho**](../api/usdmatcho.md) engine (FHIRPath and FHIR Search filters are coming soon):
+Subscription.trigger is a key-value object, where key is resource type and each value can contain a collection of events (values can be 'all', 'create', 'update', 'delete') and .filter collection. For now filter support [**matcho**](../../app-development-guides/usdmatcho.md) engine (FHIRPath and FHIR Search filters are coming soon):
 
 ```yaml
 trigger:

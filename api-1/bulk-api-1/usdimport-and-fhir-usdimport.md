@@ -1,6 +1,6 @@
 # $import & /fhir/$import
 
-`$import` is an implementation of the upcoming FHIR Bulk Import API. This is an asynchronous Operation, which returns url to monitor progress. There are two versions of this operation - `/fhir/$import` accepts data in FHIR format, `/$import` works with [Aidbox format](../../getting-started-1/aidbox-and-fhir-formats.md).
+`$import` is an implementation of the upcoming FHIR Bulk Import API. This is an asynchronous Operation, which returns url to monitor progress. There are two versions of this operation - `/fhir/$import` accepts data in FHIR format, `/$import` works with [Aidbox format](../../modules-1/fhir-resources/aidbox-and-fhir-formats.md).
 
 #### Resource requirements for all import operations:
 
@@ -14,7 +14,7 @@ Keep in mind that $import **does not validate** inserted resources for the sake 
 {% endhint %}
 
 {% hint style="info" %}
-Please consider using [Asynchronous validation API](../../modules-1/profiling-and-validation/validation-api.md#asynchronous-batch-validation-draft) to validate data after $import
+Please consider using [Asynchronous validation API](../../profiling-and-validation/validation-api.md#asynchronous-batch-validation-draft) to validate data after $import
 {% endhint %}
 
 ### Example

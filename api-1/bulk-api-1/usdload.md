@@ -2,7 +2,7 @@
 
 You can efficiently load data into Aidbox in _ndjson_ _gz_ format from external web service or bucket. There are two versions of $load - `/$load` and `/[resourceType]/$load`. First can load multiple resource types from one ndjson file, second is more efficient, but loads only for a specific resource type. Both operations accept body with **source** element, which should be publicly available url. If you want to secure your import use Signed URLs by Amazon S3 or Google Storage.
 
-There are two versions of this operation - `/fhir/$load` accepts data in FHIR format, `/$load` works with [Aidbox format](../../getting-started-1/aidbox-and-fhir-formats.md).
+There are two versions of this operation - `/fhir/$load` accepts data in FHIR format, `/$load` works with [Aidbox format](../../modules-1/fhir-resources/aidbox-and-fhir-formats.md).
 
 #### Resource requirements for all load operations:
 
@@ -20,7 +20,7 @@ When loading resources with references, remember that '`<resourceType>/<id>'` is
 {% endhint %}
 
 {% hint style="info" %}
-Please consider using [Asynchronous validation API](../../modules-1/profiling-and-validation/validation-api.md#asynchronous-batch-validation-draft) to validate data after $load
+Please consider using [Asynchronous validation API](../../profiling-and-validation/validation-api.md#asynchronous-batch-validation-draft) to validate data after $load
 {% endhint %}
 
 Load 100 synthea Patients to Aidbox (see [tutorial](synthea-by-bulk-api.md)):

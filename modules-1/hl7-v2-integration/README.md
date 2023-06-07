@@ -20,7 +20,7 @@ Both `Hl7v2Config` and `Hl7v2Message` are managed with standard CRUD API.
 
 ### Mapper module
 
-Most likely when a new HL7 v2 message is received, you want to make changes in the database — create, update or delete  FHIR resources. It's where the [Mapper module](../../app-development/mappings/) comes on stage — HL7v2-IN module parses the message and then passes message data to the Mapping resource specified in `Hl7v2Config` instance via the `mapping` reference.
+Most likely when a new HL7 v2 message is received, you want to make changes in the database — create, update or delete  FHIR resources. It's where the [Mapper module](../../tools/mappings/) comes on stage — HL7v2-IN module parses the message and then passes message data to the Mapping resource specified in `Hl7v2Config` instance via the `mapping` reference.
 
 Here is an example of a mapping which creates a new Patient resource with a name taken from the `PID.5` field each time a new message is received:
 

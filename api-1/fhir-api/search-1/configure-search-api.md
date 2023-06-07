@@ -31,7 +31,7 @@ BOX_SEARCH_ENGINE="jsonpath" # or "knife"
 
 ## Zen Search
 
-[zen-lang ](https://github.com/zen-lang/zen)is a powerful DSL language to [configure Aidbox](../../../aidbox-configuration/aidbox-zen-lang-project/setting-up-a-configuration-project.md), [validate](../../../modules-1/profiling-and-validation/profiling-with-zen-lang/) profiles, and search. It allows you to set up search parameters from IGs automatically, make your own search parameters and indexes associated with them.
+[zen-lang ](https://github.com/zen-lang/zen)is a powerful DSL language to [configure Aidbox](../../../aidbox-configuration/aidbox-zen-lang-project/setting-up-a-configuration-project.md), [validate](../../../profiling-and-validation/profiling-with-zen-lang/) profiles, and search. It allows you to set up search parameters from IGs automatically, make your own search parameters and indexes associated with them.
 
 #### How to configure zen-search?
 

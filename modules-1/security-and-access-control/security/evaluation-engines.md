@@ -142,7 +142,7 @@ Match DSL definition:
     Pattern `{request-method: {$enum: ["get", "post"]}}` matches `{request-method: "post"}`
   * **$one-of —** value must match any of the patterns.\
     Pattern `{a: {$one-of: [{b: "present?"}, {c: "present?"}]}` matches `{a: {c: 5}}`
-  * **$reference** — parse `Reference` or string into [aidbox format](../../../getting-started-1/aidbox-and-fhir-formats.md#references). Examples:
+  * **$reference** — parse `Reference` or string into [aidbox format](../../fhir-resources/aidbox-and-fhir-formats.md#references). Examples:
     * Parse `Reference` elements
       * `parser: {reference: "Patient/pid"} => {id: "pid", resourceType: "Patient"}`
       * `{resource: {patient: {$reference: {id: '.user.data.patient_id'}}}`

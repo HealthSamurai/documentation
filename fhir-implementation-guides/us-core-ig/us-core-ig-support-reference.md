@@ -1,7 +1,7 @@
 # US Core IG support reference
 
 {% hint style="warning" %}
-This reference is a work in progress. Please, [contact us](../../overview/contact-us.md) if have any questions.
+This reference is a work in progress. Please, [contact us](../../contact-us.md) if have any questions.
 {% endhint %}
 
 ## Supported versions
@@ -13,7 +13,7 @@ Historical versions `2.1.0`, `3.0.0`, `3.0.1`, `3.1.0`, `3.1.1`, `3.2.0`, `4.0.0
 ## Supported artifacts
 
 {% hint style="info" %}
-Please, [contact us](../../overview/contact-us.md) if you want to use some of IG functions that are not currently supported.
+Please, [contact us](../../contact-us.md) if you want to use some of IG functions that are not currently supported.
 {% endhint %}
 
 ### Profiles
@@ -42,7 +42,7 @@ Loading a terminology into Aidbox allows you to use [Terminology API](../../modu
 
 #### Externally Published code systems
 
-<table><thead><tr><th width="280">ValueSet</th><th data-type="select">Support</th><th>Notes</th></tr></thead><tbody><tr><td><code>http://www.cms.gov/Medicare/Coding/ICD10</code></td><td></td><td>Refer to the <a href="../../modules-1/terminology/terminology-tutorials/load-terminologies.md">ICD 10 import guide</a></td></tr><tr><td><code>http://www.cms.gov/Medicare/Coding/HCPCSReleaseCodeSets</code></td><td></td><td></td></tr><tr><td><code>http://www.ada.org/cdt</code></td><td></td><td></td></tr><tr><td><code>https://www.usps.com</code></td><td></td><td></td></tr></tbody></table>
+<table><thead><tr><th width="280">ValueSet</th><th data-type="select">Support</th><th>Notes</th></tr></thead><tbody><tr><td><code>http://www.cms.gov/Medicare/Coding/ICD10</code></td><td></td><td>Refer to the <a href="../../terminology/terminology-tutorials/load-terminologies.md">ICD 10 import guide</a></td></tr><tr><td><code>http://www.cms.gov/Medicare/Coding/HCPCSReleaseCodeSets</code></td><td></td><td></td></tr><tr><td><code>http://www.ada.org/cdt</code></td><td></td><td></td></tr><tr><td><code>https://www.usps.com</code></td><td></td><td></td></tr></tbody></table>
 
 ### Search Parameters
 

@@ -188,8 +188,8 @@ id: sandbox-respects-patient-portal-jwt
 resourceType: TokenIntrospector
 ```
 
-{% content-ref url="../../security-and-access-control/how-to-guides/token-introspection.md" %}
-[token-introspection.md](../../security-and-access-control/how-to-guides/token-introspection.md)
+{% content-ref url="../../../security-and-access-control-1/how-to-guides/token-introspection.md" %}
+[token-introspection.md](../../../security-and-access-control-1/how-to-guides/token-introspection.md)
 {% endcontent-ref %}
 
 ### Register developer

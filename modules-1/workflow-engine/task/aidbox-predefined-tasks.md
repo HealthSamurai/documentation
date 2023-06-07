@@ -199,11 +199,11 @@ result:
 
 ## ingestion/map-to-fhir-bundle-task
 
-Task that applies [lisp/mapping](../../../app-development/mappings/mappings-with-lisp-mapping.md) to the given context and applies the result to the database as a bundle in either fhir or aidbox formats.
+Task that applies [lisp/mapping](../../../tools/mappings/mappings-with-lisp-mapping.md) to the given context and applies the result to the database as a bundle in either fhir or aidbox formats.
 
 ### Params
 
-<table data-full-width="false"><thead><tr><th width="141.33333333333331">Parameter</th><th width="85">Type</th><th width="104" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>mapping</td><td>string</td><td>true</td><td>Reference to a defined <a href="../../../app-development/mappings/mappings-with-lisp-mapping.md">lisp/mapping</a>.</td></tr><tr><td>context</td><td>object</td><td>true</td><td>Initial data.</td></tr><tr><td>format</td><td>string</td><td>true</td><td>Bundle format.<br><em>Possible values: <code>fhir</code>, <code>aidbox</code></em></td></tr></tbody></table>
+<table data-full-width="false"><thead><tr><th width="141.33333333333331">Parameter</th><th width="85">Type</th><th width="104" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>mapping</td><td>string</td><td>true</td><td>Reference to a defined <a href="../../../tools/mappings/mappings-with-lisp-mapping.md">lisp/mapping</a>.</td></tr><tr><td>context</td><td>object</td><td>true</td><td>Initial data.</td></tr><tr><td>format</td><td>string</td><td>true</td><td>Bundle format.<br><em>Possible values: <code>fhir</code>, <code>aidbox</code></em></td></tr></tbody></table>
 
 ### Example
 

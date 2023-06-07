@@ -96,7 +96,7 @@ Aidbox provides a predefined parser configuration, so you may use `hl7v2.config/
 
 Add your API in :apis set of Aidbox server definition.
 
-To properly validate the resulting resource, import the appropriate [fhir profiles](../../modules-1/profiling-and-validation/profiling-with-zen-lang/).
+To properly validate the resulting resource, import the appropriate [fhir profiles](../../profiling-and-validation/profiling-with-zen-lang/).
 
 ```clojure
 {ns box

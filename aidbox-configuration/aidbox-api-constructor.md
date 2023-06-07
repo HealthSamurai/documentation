@@ -6,7 +6,7 @@ Using Aidbox API constructor you can:
 * specify your own middlewares (e.g. Smart on FHIR authorization middleware)
 
 {% hint style="warning" %}
-The API constructor is in beta now. Please [contact](../overview/contact-us.md) us if you have questions or need help.
+The API constructor is in beta now. Please [contact](../contact-us.md) us if you have questions or need help.
 {% endhint %}
 
 {% hint style="info" %}
@@ -15,16 +15,16 @@ API constructor requires knowledge of [zen language](https://github.com/zen-lang
 
 #### Common API Constructor use cases
 
-{% content-ref url="../modules-1/security-and-access-control/security/acl.md" %}
-[acl.md](../modules-1/security-and-access-control/security/acl.md)
+{% content-ref url="../security-and-access-control-1/acl.md" %}
+[acl.md](../security-and-access-control-1/acl.md)
 {% endcontent-ref %}
 
 {% content-ref url="../modules-1/smartbox/background-information/multitenancy-approach.md" %}
 [multitenancy-approach.md](../modules-1/smartbox/background-information/multitenancy-approach.md)
 {% endcontent-ref %}
 
-{% content-ref url="../modules-1/security-and-access-control/security/smart-app.md" %}
-[smart-app.md](../modules-1/security-and-access-control/security/smart-app.md)
+{% content-ref url="../security-and-access-control-1/auth/smart-app/" %}
+[smart-app](../security-and-access-control-1/auth/smart-app/)
 {% endcontent-ref %}
 
 #### Usage examples:
@@ -166,8 +166,8 @@ Expect target resource type as `:resource` and `:format` (`fhir` or `aidbox`)
 
 See full description and usage examples:
 
-{% content-ref url="../modules-1/security-and-access-control/security/acl.md" %}
-[acl.md](../modules-1/security-and-access-control/security/acl.md)
+{% content-ref url="../security-and-access-control-1/acl.md" %}
+[acl.md](../security-and-access-control-1/acl.md)
 {% endcontent-ref %}
 
 ### Gateway
@@ -211,7 +211,7 @@ As an example bellow we create CRUD endpoint that explains to Aidbox where is yo
 
 ### map-to-fhir-bundle
 
-`ingestion.core/map-to-fhir-bundle` - expects `:format` ("fhir" or "aidbox") and `:mapping` in the definition. Returns result of applying [lisp/mapping](../app-development/mappings/mappings-with-lisp-mapping.md) in to the provided data structure and persisting it as Bundle.
+`ingestion.core/map-to-fhir-bundle` - expects `:format` ("fhir" or "aidbox") and `:mapping` in the definition. Returns result of applying [lisp/mapping](../tools/mappings/mappings-with-lisp-mapping.md) in to the provided data structure and persisting it as Bundle.
 
 The result of the example below will be an `POST/ingestion/map-to-fhir` endpoint accepting the data structure on which the mapping will be applied as the body of the request.
 

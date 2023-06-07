@@ -12,7 +12,7 @@ The client can request the server to return only **summary** elements of the res
 GET /Patient?_summary=true
 ```
 
-There is boolean **isSummary** attribute in [Attribute](../../../../modules-1/entities-and-attributes.md) definition. Which exact elements will be returned for a specific resource as \_summary can be inspected using the following request to the Attribute :
+There is boolean **isSummary** attribute in [Attribute](../../../../core-modules/entities-and-attributes.md) definition. Which exact elements will be returned for a specific resource as \_summary can be inspected using the following request to the Attribute :
 
 ```yaml
 GET /Attribute?entity=Patient&.isSummary=true&_elements=id,isSummary&_sort=_id

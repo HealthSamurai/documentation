@@ -204,7 +204,7 @@ GET /Patient?brthd=lt2023
 ```
 
 {% hint style="info" %}
-You can always look into the definition of Aidbox-specific namespaces in [Profiles page](../../../modules-1/profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile.md#check-if-your-profile-is-loaded)
+You can always look into the definition of Aidbox-specific namespaces in [Profiles page](../../../profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile.md#check-if-your-profile-is-loaded)
 {% endhint %}
 
 Formal Zen SearchParameters description:

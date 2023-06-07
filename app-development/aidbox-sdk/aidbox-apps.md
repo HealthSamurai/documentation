@@ -4,12 +4,12 @@ requires to have your data publicly available. Power BI needs access to FHIR rea
 
 You define the App using Aidbox SDK for your language and should not reverse engineer internal API, because it can be subject to change.
 
-{% content-ref url="nodejs.md" %}
-[nodejs.md](nodejs.md)
+{% content-ref url="../../tools/aidbox-sdk/nodejs.md" %}
+[nodejs.md](../../tools/aidbox-sdk/nodejs.md)
 {% endcontent-ref %}
 
-{% content-ref url="python-sdk.md" %}
-[python-sdk.md](python-sdk.md)
+{% content-ref url="../../tools/aidbox-sdk/python-sdk.md" %}
+[python-sdk.md](../../tools/aidbox-sdk/python-sdk.md)
 {% endcontent-ref %}
 
 ## App Resource

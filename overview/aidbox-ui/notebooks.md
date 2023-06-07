@@ -7,10 +7,10 @@ description: >-
 # Aidbox Notebooks
 
 {% hint style="warning" %}
-Aidbox notebooks is a beta. Please join [the discussion](https://github.com/Aidbox/Issues/discussions/412) or [contact](../contact-us.md) us if you want to contribute.
+Aidbox notebooks is a beta. Please join [the discussion](https://github.com/Aidbox/Issues/discussions/412) or [contact](../../contact-us.md) us if you want to contribute.
 {% endhint %}
 
-A notebook is a single page where you can run code ([REST](../../api-1/api/), [SQL](../../api-1/api/usdpsql.md), [RPC](../../api-1/rpc-api.md)) check the output, and complement it with text. Using Aidbox notebook you can easily create custom scenarios with your Aidbox data, save it for later use or share it with your colleagues and the Aidbox community.
+A notebook is a single page where you can run code ([REST](../../api-1/api/), [SQL](../../modules-1/aidbox-search/usdpsql.md), [RPC](../../api-1/rpc-api.md)) check the output, and complement it with text. Using Aidbox notebook you can easily create custom scenarios with your Aidbox data, save it for later use or share it with your colleagues and the Aidbox community.
 
 So now you can easily:
 
@@ -35,7 +35,7 @@ When clicking the notebooks tab in Aidbox UI you will get to the notebooks page.
 
 You can create a notebook by clicking **new** in the notebooks menu. Each notebook consists of a title, subtitle, and a block of cells.
 
-![New Aidbox notebook](<../../.gitbook/assets/2021-09-03\_09-47-33 (1) (2) (3) (4) (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (4) (1) (2) (2) (1) (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png>)
+![New Aidbox notebook](<../../.gitbook/assets/2021-09-03\_09-47-33 (1) (2) (3) (4) (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (4) (1) (2) (2) (1) (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png>)
 
 After you create your cell click the **play** icon to see the answer.
 

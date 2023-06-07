@@ -1,13 +1,13 @@
 # Authentication
 
-{% content-ref url="../modules-1/security-and-access-control/how-to-guides/set-up-external-identity-provider/configure-okta.md" %}
-[configure-okta.md](../modules-1/security-and-access-control/how-to-guides/set-up-external-identity-provider/configure-okta.md)
+{% content-ref url="../security-and-access-control-1/how-to-guides/configure-okta.md" %}
+[configure-okta.md](../security-and-access-control-1/how-to-guides/configure-okta.md)
 {% endcontent-ref %}
 
-{% content-ref url="../modules-1/security-and-access-control/how-to-guides/set-up-external-identity-provider/azure-ad.md" %}
-[azure-ad.md](../modules-1/security-and-access-control/how-to-guides/set-up-external-identity-provider/azure-ad.md)
+{% content-ref url="../security-and-access-control-1/how-to-guides/azure-ad.md" %}
+[azure-ad.md](../security-and-access-control-1/how-to-guides/azure-ad.md)
 {% endcontent-ref %}
 
-{% content-ref url="../modules-1/security-and-access-control/how-to-guides/set-up-external-identity-provider/keycloak.md" %}
-[keycloak.md](../modules-1/security-and-access-control/how-to-guides/set-up-external-identity-provider/keycloak.md)
+{% content-ref url="../security-and-access-control-1/how-to-guides/keycloak.md" %}
+[keycloak.md](../security-and-access-control-1/how-to-guides/keycloak.md)
 {% endcontent-ref %}

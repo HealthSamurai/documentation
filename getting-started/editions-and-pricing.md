@@ -25,7 +25,7 @@ After you get contract for a standard license you can get additional licenses fo
 | Development license | A development license allows to store not more than 2 GBs of data in your database.          |
 | CI/CD license       | A CI/CD license allow to run multiple instances in parallel, but not more than for 72 hours. |
 
-You can install, administer, and maintain your own Aidbox or Multibox instance or Health Samurai can host Aidbox for you. To learn more about **pricing and hosting options**, please [get in touch with us](../overview/contact-us.md).
+You can install, administer, and maintain your own Aidbox or Multibox instance or Health Samurai can host Aidbox for you. To learn more about **pricing and hosting options**, please [get in touch with us](../contact-us.md).
 
 ### Production-ready Aidbox as a SaaS
 
@@ -37,7 +37,7 @@ You can get a turn-key production-ready Aidbox as a SaaS to start your developme
 
 ### Aidbox for education
 
-For non-profit educational institutions the Health Samurai provides stantard Aidbox and Multibox licenses that can be used for instructional and non-commercial academic research. Please [contact us](../overview/contact-us.md) for more information.&#x20;
+For non-profit educational institutions the Health Samurai provides stantard Aidbox and Multibox licenses that can be used for instructional and non-commercial academic research. Please [contact us](../contact-us.md) for more information.&#x20;
 
 
 
@@ -69,7 +69,7 @@ If you have a development team ready to start, but need that extra expertise to 
 * Performance tuning and optimization
 * Major version upgrade
 
-We can also work with you to build a custom engagement that suits your needs. Please [contact us](../overview/contact-us.md) for more info.
+We can also work with you to build a custom engagement that suits your needs. Please [contact us](../contact-us.md) for more info.
 
 ### Aidbox Trial
 
@@ -79,4 +79,4 @@ Aidbox license can be received for a trial period at no cost with the purchase o
 * 2 months with Professional support
 * 3 months with Enterprise or Ultimate support
 
-To learn about **pricing**, please get in touch [with us](../overview/contact-us.md).
+To learn about **pricing**, please get in touch [with us](../contact-us.md).

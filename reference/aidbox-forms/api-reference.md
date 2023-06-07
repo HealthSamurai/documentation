@@ -1070,7 +1070,7 @@ result:
 
 ### aidbox.sdc/get-form-access-jwt
 
-Creates [policy token](../../modules-1/security-and-access-control/how-to-guides/access-policy.md#signed-rpc-policy-token) to get access to SDCDocument/SDCWorkflow
+Creates [policy token](../../security-and-access-control-1/how-to-guides/access-policy.md#signed-rpc-policy-token) to get access to SDCDocument/SDCWorkflow
 
 params:
 
@@ -1121,7 +1121,7 @@ policy: <jwt policy token>
 
 Generates link for form access and management without authentication.
 
-> Creates [policy token](../../modules-1/security-and-access-control/how-to-guides/access-policy.md#signed-rpc-policy-token) to get access to SDCDocument/SDCWorkflow
+> Creates [policy token](../../security-and-access-control-1/how-to-guides/access-policy.md#signed-rpc-policy-token) to get access to SDCDocument/SDCWorkflow
 
 Redirect urls can be specified for different actions.
 

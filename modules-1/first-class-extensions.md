@@ -71,7 +71,7 @@ Note that extension elements have `:confirms` to a FHIR primitive or complex typ
 ### Steps to define first-class extension as zen profile:
 
 1. [Initialize](https://docs.aidbox.app/profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile#create-a-zen-project) zen project and add additional IGs if necessary.
-2.  Define your custom first-class extension. For syntax and more examples refer to [this page](profiling-and-validation/profiling-with-zen-lang/write-a-custom-zen-profile.md).
+2.  Define your custom first-class extension. For syntax and more examples refer to [this page](../profiling-and-validation/profiling-with-zen-lang/write-a-custom-zen-profile.md).
 
     ```
     {ns my-zen-project
@@ -130,7 +130,7 @@ Note that extension elements have `:confirms` to a FHIR primitive or complex typ
 
 ## Define new extension with Attribute
 
-In Aidbox, you can define first-class extensions using the custom resource [Attribute](entities-and-attributes.md).
+In Aidbox, you can define first-class extensions using the custom resource [Attribute](../core-modules/entities-and-attributes.md).
 
 Let's create an extension definition of type `Reference` in the [REST Console](https://docs.aidbox.app/tutorials/rest-console) of Aidbox:
 
@@ -178,7 +178,7 @@ extensionUrl: urn:extension:requestedOrganizationDepartment
     URL which will be used to create `extension` element in FHIR format. **If omitted, Attribute won't be transformed in FHIR format**
 
 {% hint style="info" %}
-Note: you can not use Attributes and [zen profiles](profiling-and-validation/profiling-with-zen-lang/) on the same resource at the same time
+Note: you can not use Attributes and [zen profiles](../profiling-and-validation/profiling-with-zen-lang/) on the same resource at the same time
 {% endhint %}
 
 ## Use your extension
