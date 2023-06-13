@@ -262,7 +262,7 @@ data:
   AIDBOX_ADMIN_PASSWORD: <admin_password>
   AIDBOX_CLIENT_ID: <root_client_id>
   AIDBOX_CLIENT_SECRET: <root_client_password>
-  AIDBOX_LICENSE: <JWT-LICENSE>    # JWT license from aidbox user portal
+  AIDBOX_LICENSE: <JWT-LICENSE>    # JWT license from the Aidbox user portal
   PGPASSWORD: <db_password>        # database password
   PGUSER: <db_user>                # database username
 ```
@@ -364,7 +364,11 @@ spec:
 
 ## Ingress
 
-A Cluster must have an [ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) Installed. Our recommendation is to use [kubernetes Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx). As an alternative, you can use [Traefic](https://github.com/traefik/traefik/). More additional information about Ingress in k8s you can found in this documentation — [Kubernetes Service Networking](https://kubernetes.io/docs/concepts/services-networking/ingress/)
+A Cluster must have an [ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) Installed.&#x20;
+
+Our recommendation is to use [kubernetes Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx). As an alternative, you can use [Traefic](https://github.com/traefik/traefik/).&#x20;
+
+More additional information about Ingress in k8s can be found in this documentation — [Kubernetes Service Networking](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 
 ### Ingress NGINX controller
 
@@ -463,6 +467,167 @@ Now you can test ingress
 ```bash
 curl https://my.box.url
 ```
+
+## Multibox
+
+In case when you install the Multibox product additional configurations required
+
+### Multibox deployment
+
+Change image to `healthsamurai/multibox:latest`
+
+{% code title="Multibox deployment" lineNumbers="true" %}
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aidbox
+  namespace: prod
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      service: aidbox
+  template:
+    metadata:
+      labels:
+        service: aidbox
+    spec:
+      containers:
+        - name: main
+          image: healthsamurai/multibox:latest
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+            - containerPort: 8765
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: aidbox
+            - secretRef:
+                name: aidbox
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 20
+            timeoutSeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 12
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 20
+            timeoutSeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 6
+          startupProbe:
+            httpGet:
+              path: /health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 20
+            timeoutSeconds: 5
+            periodSeconds:  5
+            successThreshold: 1
+            failureThreshold: 4
+```
+{% endcode %}
+
+Add [required configurations](../../reference/configuration/environment-variables/multibox-required-environment-variables.md)
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aidbox
+  namespace: prod
+data:
+  AIDBOX_CLUSTER_DOMAIN: <domain>
+  AIDBOX_BASE_URL: <url>
+  AIDBOX_BASE_URL: https://my.box.url
+  AIDBOX_BOX_ID: aidbox
+  AIDBOX_FHIR_VERSION: 4.0.1
+  AIDBOX_PORT: '8080'
+  AIDBOX_STDOUT_PRETTY: all
+  BOX_INSTANCE_NAME: aidbox
+  BOX_METRICS_PORT: '8765'
+  PGDATABASE: aidbox
+  PGHOST: db.prod.svc.cluster.local   # database address
+  PGPORT: '5432'                      # database port
+```
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: aidbox
+  namespace: prod
+data:
+  AIDBOX_CLUSTER_SECRET: <secret>
+  AIDBOX_SUPERUSER: <login>:<password>
+  AIDBOX_ADMIN_ID: <admin_login>
+  AIDBOX_ADMIN_PASSWORD: <admin_password>
+  AIDBOX_CLIENT_ID: <root_client_id>
+  AIDBOX_CLIENT_SECRET: <root_client_password>
+  AIDBOX_LICENSE: <JWT-LICENSE>    # JWT license from the Aidbox user portal
+  PGPASSWORD: <db_password>        # database password
+  PGUSER: <db_user>                # database username
+```
+
+### Multibox Ingress resource
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: aidbox
+  namespace: prod
+  annotations:
+    acme.cert-manager.io/http01-ingress-class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt
+    kubernetes.io/ingress.class: nginx
+spec:
+  tls:
+    - hosts:
+        - my.box.url
+      secretName: aidbox-tls
+    - hosts:
+        - *.my.box.url
+      secretName: aidbox-tls      
+  rules:
+    - host: my.box.url
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: aidbox
+                port:
+                  number: 80
+    - host: *.my.box.url
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: aidbox
+                port:
+                  number: 80                  
+```
+
+{% hint style="info" %}
+If you want to use lets encrypt with multibox you should request wildcard certificates.
+
+In this case, you should configure [DNS01](https://cert-manager.io/docs/configuration/acme/dns01/) Challenge Provider
+{% endhint %}
 
 ## Logging
 
