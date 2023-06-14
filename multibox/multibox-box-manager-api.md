@@ -130,6 +130,123 @@ curl "multibox.example.host/rpc"
 
 </details>
 
+#### Creating box with Aidbox configuration project
+
+{% hint style="info" %}
+You can find more information about Aidbox configuration project [here](../aidbox-configuration/aidbox-zen-lang-project/).
+{% endhint %}
+
+To create box with Aidbox configuration project you can use this environments:
+
+| Environment variable name      | Description                                                                                      |
+| ------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `box-project-git-url`          | Where to clone your project from. Aidbox substitutes it to `git clone <url>` command.            |
+| `box-project-git-target--path` | Where to clone your project to and where to read it from. Default value is a directory in `/tmp` |
+| `aidbox-zen-entrypoint`        | It is a namespaced symbol which is tagged with `aidbox/system` tag                               |
+
+<details>
+
+<summary>Example with <code>box-project-git-url</code></summary>
+
+{% code title="Request" %}
+```bash
+curl "localhost:8888/rpc" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Basic <credential-hash>" \
+  -d '{
+       "method": "multibox/create-box", 
+       "params": {
+         "id": "myboxname",
+         "fhirVersion": "fhir-4.0.1",
+         "env": {"box-project-git-url": "https://github.com/Aidbox/aidbox-project-template.git",
+		 "aidbox-zen-entrypoint": "main/box"} 
+     }
+   }'
+```
+{% endcode %}
+
+{% code title="Response" %}
+```json
+{
+  "result": {
+    "env": {
+      "box-project-git-url": "https://github.com/Aidbox/aidbox-project-template.git",
+      "aidbox-zen-entrypoint": "main/box"
+    },
+    "import": {
+      "fhir-4.0.1": {}
+    },
+    "fhirVersion": "fhir-4.0.1",
+    "participant": [
+      {
+        "role": "owner",
+        "user": {
+          "id": "admin",
+          "resourceType": "User"
+        }
+      }
+    ],
+    "id": "myboxname",
+    "resourceType": "Box"
+  }
+}
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Example with <code>box-project-git-target--path</code></summary>
+
+{% code title="Request" %}
+```bash
+curl "localhost:8888/rpc" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Basic <credential-hash>" \
+  -d '{
+       "method": "multibox/create-box", 
+       "params": {
+         "id": "myboxname",
+         "fhirVersion": "fhir-4.0.1",
+         "env": {"box-project-git-target--path": "/myproject",
+		 "aidbox-zen-entrypoint": "main/box"} 
+     }
+   }'
+
+```
+{% endcode %}
+
+{% code title="Response" %}
+```json
+{
+  "result": {
+    "env": {
+      "aidbox-zen-entrypoint": "main/box",
+      "box-project-git-target--path": "/myproject"
+    },
+    "import": {
+      "fhir-4.0.1": {}
+    },
+    "fhirVersion": "fhir-4.0.1",
+    "participant": [
+      {
+        "role": "owner",
+        "user": {
+          "id": "admin",
+          "resourceType": "User"
+        }
+      }
+    ],
+    "id": "myboxname",
+    "resourceType": "Box"
+  }
+}
+```
+{% endcode %}
+
+</details>
+
 
 
 ### `multibox/list-boxes`
