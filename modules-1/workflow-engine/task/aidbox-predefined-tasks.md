@@ -90,6 +90,61 @@ result:
 {% endtab %}
 {% endtabs %}
 
+## awf.task/wait
+
+Task that will wait for the indicated duration or until the indicated datetime. Used in workflow when need to be paused for an external signal to continue.
+
+Either **duration** or **until** parameter SHOULD be specified.
+
+### Params
+
+<table data-full-width="false"><thead><tr><th width="180.33333333333331">Parameter</th><th width="128">Type</th><th width="109" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td><strong>duration</strong></td><td>object</td><td>false</td><td></td></tr><tr><td>duration.hours</td><td>integer</td><td>false</td><td>duration value in hours</td></tr><tr><td>duration.minutes</td><td>integer</td><td>false</td><td>duration value in minutes</td></tr><tr><td>duration.seconds</td><td>integer</td><td>false</td><td>duration value in seconds</td></tr><tr><td><strong>until</strong></td><td>datetime</td><td>false</td><td>FHIR datetime</td></tr></tbody></table>
+
+### Result
+
+No result
+
+### Example
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+POST /rpc
+content-type: text/yaml
+accept: text/yaml
+
+method: awf.task/create-and-execute
+params:
+  definition: awf.task/wait
+  params:
+    duration:
+      hours: 4
+      minutes: 30
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```yaml
+result:
+  resource:
+    params:
+      duration:
+        hours: 4
+        minutes: 30
+    status: in-progress
+    definition: awf.task/wait
+    retryCount: 1
+    id: >-
+      41ab6e83-fa01-4a25-be56-beafd3ee5744
+    resourceType: AidboxTask
+    meta:
+      lastUpdated: '2023-06-15T12:44:02.740779Z'
+      createdAt: '2023-06-15T12:44:02.740779Z'
+      versionId: '400'
+```
+{% endtab %}
+{% endtabs %}
+
 ##
 
 ## awf.workflow/decision-task

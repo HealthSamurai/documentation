@@ -15,6 +15,7 @@ Aidbox provides several predefined tasks for routine jobs that can be called via
 * **Special tasks:**
   * [**Decision task**](aidbox-predefined-tasks.md#decision-task) - a task used to implement an [Aidbox Workflow](../workflow/).
   * [**Subscription task**](aidbox-predefined-tasks.md#subscription-task) - a task that waits for the resource that meets specified criteria.
+  * [**Wait task**](aidbox-predefined-tasks.md#awf.task-wait) - a task that will wait for the indicated duration or until the indicated datetime.&#x20;
 
 <!---->
 

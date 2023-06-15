@@ -87,6 +87,7 @@ When the started activity is executed, the new decision task should execute the 
 * [`awf.workflow/create-and-execute`](task-user-api.md#awf.workflow-create-and-execute) - Creates an instance of a defined workflow and makes it ready to be executed immediately or at a specified time.
 * [`awf.workflow/status`](task-user-api.md#awf.workflow-status) - Returns the status of a workflow instance with the specified id.
 * [`awf.workflow/list`](task-user-api.md#awf.workflow-list) - Returns the list of all workflows.
+* [`awf.workflow/cancel`](task-user-api.md#awf.workflow-cancel) - Cancels a workflow that is not in status _`done`_, canceling recursively all activities started by that workflow.
 
 </details>
 

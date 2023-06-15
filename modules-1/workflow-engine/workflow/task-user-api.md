@@ -57,6 +57,67 @@ result:
 
 
 
+### `awf.workflow/cancel`
+
+Cancels a workflow that is **not** in status _`done`_, canceling recursively all activities started by that workflow.
+
+<table><thead><tr><th width="190">Parameter</th><th width="128.33333333333331">Type</th><th width="125" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>id</td><td>string</td><td>true</td><td>Id of the workflow to be canceled.</td></tr></tbody></table>
+
+#### Result:
+
+<table><thead><tr><th width="153">Parameter</th><th width="93">Type</th><th width="504">Description</th></tr></thead><tbody><tr><td>resource</td><td>object</td><td>The canceled AidboxWorkflow resource.</td></tr></tbody></table>
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+POST /rpc
+content-type: text/yaml
+accept: text/yaml
+
+method: awf.workflow/cancel
+params:
+  id: af10a9cf-3313-45f0-bbf4-7d3bf3a4da37
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```yaml
+result:
+  resource:
+    params:
+      type: aidbox
+      inputs:
+        - url: https://synthea-public.s3.amazonaws.com/2/Claim.ndjson.gz
+          resourceType: Claim
+      contentEncoding: gzip
+    status: done
+    outcome: canceled
+    definition: aidbox.bulk/import-resources-workflow
+    id: >-
+      af10a9cf-3313-45f0-bbf4-7d3bf3a4da37
+    resourceType: AidboxWorkflow
+    meta:
+      lastUpdated: '2023-06-15T12:58:31.362126Z'
+      createdAt: '2023-06-15T12:58:22.604066Z'
+      versionId: '712'
+```
+{% endtab %}
+
+{% tab title="Response (already done)" %}
+```yaml
+status: 422
+
+error:
+  type: workflow-has-been-done
+  message: >-
+    Workflow id:'af10a9cf-3313-45f0-bbf4-7d3bf3a4da37' has already been done.
+    Couldn't cancel it.
+```
+{% endtab %}
+{% endtabs %}
+
+
+
 ### `awf.workflow/status`
 
 Returns the status of a workflow instance with the specified id.
