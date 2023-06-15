@@ -1,7 +1,7 @@
 ---
 description: >-
   Multibox has pre-built integration with Grafana, generates dashboards and
-  upload it to Grafana
+  uploads it to Grafana
 ---
 
 # Multibox monitoring
