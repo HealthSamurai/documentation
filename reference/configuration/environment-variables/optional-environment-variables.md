@@ -352,6 +352,12 @@ Create a user when using foreign JWT access token and the user does not already 
 
 Warmup graphql caches on startup
 
+### BOX\_FEATURES\_GRAPHQL\_TIMEOUT
+
+BOX\_FEATURES\_GRAPHQL\_TIMEOUT`=<integer>`
+
+Sets timeout for graphql queries in seconds. Default value is `60`.
+
 ### Enable Aidbox compliance mode
 
 `AIDBOX_COMPLIANCE=enabled`:

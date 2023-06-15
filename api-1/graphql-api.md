@@ -18,6 +18,8 @@ GraphQL request object can contain three properties:
 * `operationName` — the name of the operation to evaluate.
 * `variables` — the JSON object containing variable values.
 
+You can set the `timeout` query parameter to limit execution time. Also there is a [config](../reference/configuration/environment-variables/optional-environment-variables.md#box\_features\_graphql\_timeout) for the default value if the parameter wasn't set.
+
 Refer to [the GraphQL documentation](https://graphql.org/learn/serving-over-http/) to get more information about these properties.
 
 ### Examples
@@ -84,6 +86,27 @@ data:
     - id: patient-1
     - id: patient-2
     - id: patient-3
+```
+
+#### Query with a timeout
+
+You can set a timeout (_in_ _seconds_) for the query.
+
+Request:
+
+```
+POST /$graphql?timeout=10
+content-type: text/yaml
+accept: text/yaml
+
+query: |
+  query($count: integer) {
+    PatientList(_count: $count) {
+      id
+    }
+  }
+variables:
+  count: 3
 ```
 
 ## Objects, unions, scalars
