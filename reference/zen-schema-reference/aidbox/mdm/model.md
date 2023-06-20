@@ -1,73 +1,39 @@
-# Technical details
+# model
 
-Aidbox MDM is enabled with `aidbox.mdm/splink-engine` service. Only one MDM service can be enabled.
+Splink model for probabilistic record linkage.
 
-## Service symbol
-
-An MDM service essentially is a collection of links to model symbols.
+## Schema
 
 ```
- patient-mdm
- {:zen/tags #{aidbox/service}
-  :engine aidbox.mdm/splink-engine
-  :models #{patient-mdm-model}}
-```
+ model
+ {:zen/tags #{zen/tag zen/schema}
+  :type zen/map
+  :require #{:comparisons :fields :blocking-conds :random-match-prob :resource-type}
+  :keys
+  {:random-match-prob {:type zen/number}
+   :resource-type {:type zen/string}
 
-The MDM service symbol structure:
+   :fields
+   {:type zen/map
+    :values {:type zen/vector}}
 
-* must be tagged with `aidbox/service` tag
-* must have field `:engine` with value `aidbox.mdm/splink-engine`&#x20;
-* must have field `:models` which is a set of symbols tagged with `aidbox.mdm/model` tag.
+   :use-frequencies-for
+   {:type zen/set
+    :every {:type zen/keyword}}
 
-## Model symbol
-
-Consider this example with comments
-
-```clojure
-{:zen/tags #{aidbox.mdm/model} ; fixed value
-
- ;; resource-type specifies the type of resources
- ;; for which the model is built
- :resource-type "Patient" ; required, string
-
- ;; List of fields, declared in the :fields section of model.
- ;; MDM will take into account frequencies of values for these fields.
- :use-frequencies-for #{:first_name} ; optional, set of keywords
-
- ;; If we take two resources at random, how likely is the
- ;; true match of these two resources
- :random-match-prob 0.003 ; number, required
-
- ;; Compare a pair of resources only when it satisfyes
- ;; one of the blocking conditions.
- ;; Each element is a part of SQL query.
- :blocking-conds ["l.first_name = r.first_name"] ; vector of strings, required.
-
- ;; Extract fields from resources.
- ;; Each key is an arbitary keyword.
- ;; Each value is a path.
- :fields {:first_name [:name 0 :given 0]}
-
- ;; Specification of comparisons and scores
- ;; Each key is a keyword, declared in the :fields property
- ;; of the model.
- ;; Each value is a vector, structure of which is described below.
- :comparisons
- {:first_name
-  [;; First value is always for the NULL condition.
-   ;; It should have both probabilities set to 1.
-   {:u-prob 1.0, :m-prob 1.0,
-    :cond "\"first_name_l\" IS NULL OR \"first_name_r\" IS NULL"}
-   ;; Second value is always for the ELSE conditions,
-   ;; i.e. when no other conditions are met.
-   {:cond :else
-    :u-prob 0.99, :m-prob 0.5}
-   ;; These conditions should be in order from the most strict
-   ;; to the most loose.
-   {:cond "first_name_l = first_name_r"
-    :u-prob 0.01, :m-prob 0.5}
-   {:cond "lev(first_name_l, first_name_r) <= 1"
-    :m-prob 0.15, :u-prob 0.001}]}}
+   :comparisons
+   {:type zen/map
+    :values {:type zen/vector
+             :every {:type zen/map
+                     :keys {:cond {:type zen/any}
+                            :m-prob {:type zen/number}
+                            :u-prob {:type zen/number}
+                            :use-frequencies {:type zen/boolean}}
+                     :require #{:cond :m-prob :u-prob}}}}
+   
+   :blocking-conds
+   {:type zen/vector
+    :every {:type zen/any}}}}
 ```
 
 ### Property `:fields`
@@ -176,7 +142,7 @@ Each comparison is defined using a map having three key-value pairs:
 * `:u-prob` -- u-probability of the comparison category
 * `:use-frequncies` -- optional boolean parameter. Enables frequency adjustment for this comparison. It is applicable only to exact equality comparison.
 
-See [mathematical-details.md](mathematical-details.md "mention") article to learn about m- and u-probabilities.
+See [mathematical-details.md](../../../../mdm/mathematical-details.md "mention") article to learn about m- and u-probabilities.
 
 SQL condition is inserted into WHERE part of generated queries.
 
@@ -190,12 +156,61 @@ In SQL conditions field names have suffixes: `_l` suffix is added for the first 
 
 ### Property `:random-math-prob`
 
-This property defines probability that two records picked at random will match. See [mathematical-details.md](mathematical-details.md "mention") for details.
+This property defines probability that two records picked at random will match. See [mathematical-details.md](../../../../mdm/mathematical-details.md "mention") for details.
 
-## Auto updates of MDM tables
+## Notes
 
-When an MDM model is enabled, Aidbox automatically updates the de-normalization table associated with the model. But you need to manually call the [`aidbox.mdm/update-mdm-tables` RPC](../reference/rpc-reference/aidbox/mdm/aidbox.mdm-update-mdm-tables.md) method once in a while to keep frequency data in sync.
+### Auto updates of MDM tables
+
+When an MDM model is enabled, Aidbox automatically updates the de-normalization table associated with the model. But you need to manually call the [`aidbox.mdm/update-mdm-tables` RPC](../../../rpc-reference/aidbox/mdm/aidbox.mdm-update-mdm-tables.md) method once in a while to keep frequency data in sync.
 
 Auto-update is triggered after any operation modifying resource. It updates one row of de-normalization table.
 
-&#x20;
+## Examples
+
+```
+{:zen/tags #{aidbox.mdm/model} ; fixed value
+
+ ;; resource-type specifies the type of resources
+ ;; for which the model is built
+ :resource-type "Patient" ; required, string
+
+ ;; List of fields, declared in the :fields section of model.
+ ;; MDM will take into account frequencies of values for these fields.
+ :use-frequencies-for #{:first_name} ; optional, set of keywords
+
+ ;; If we take two resources at random, how likely is the
+ ;; true match of these two resources
+ :random-match-prob 0.003 ; number, required
+
+ ;; Compare a pair of resources only when it satisfyes
+ ;; one of the blocking conditions.
+ ;; Each element is a part of SQL query.
+ :blocking-conds ["l.first_name = r.first_name"] ; vector of strings, required.
+
+ ;; Extract fields from resources.
+ ;; Each key is an arbitary keyword.
+ ;; Each value is a path.
+ :fields {:first_name [:name 0 :given 0]}
+
+ ;; Specification of comparisons and scores
+ ;; Each key is a keyword, declared in the :fields property
+ ;; of the model.
+ ;; Each value is a vector, structure of which is described below.
+ :comparisons
+ {:first_name
+  [;; First value is always for the NULL condition.
+   ;; It should have both probabilities set to 1.
+   {:u-prob 1.0, :m-prob 1.0,
+    :cond "\"first_name_l\" IS NULL OR \"first_name_r\" IS NULL"}
+   ;; Second value is always for the ELSE conditions,
+   ;; i.e. when no other conditions are met.
+   {:cond :else
+    :u-prob 0.99, :m-prob 0.5}
+   ;; These conditions should be in order from the most strict
+   ;; to the most loose.
+   {:cond "first_name_l = first_name_r"
+    :u-prob 0.01, :m-prob 0.5}
+   {:cond "lev(first_name_l, first_name_r) <= 1"
+    :m-prob 0.15, :u-prob 0.001}]}}
+```

@@ -5,7 +5,7 @@ description: The article explains, how Aidbox stores authorization details
 # Storing authorization details
 
 {% hint style="info" %}
-This article explains details about storing authorization information related to [SMART of FHIR app launch](../how-to-guides/smart-on-fhir/smart-on-fhir-app-launch.md) only
+This article explains details about storing authorization information related to [SMART of FHIR app launch](../../../security-and-access-control-1/how-to-guides/smart-on-fhir/smart-on-fhir-app-launch.md) only
 {% endhint %}
 
 ### `session` rsource

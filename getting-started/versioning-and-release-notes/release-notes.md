@@ -159,7 +159,7 @@
 ## December 2022 _`2212`_
 
 * MDM (Master Data Management)
-  * Added [$match](../../mdm/mdm-module.md) operation
+  * Added [$match](broken-reference) operation
   * [Python API](https://github.com/Aidbox/mdm) for Aidbox MDM module
 * Archive/Restore API
   * [Task API](../../modules-1/workflow-engine/task/) allowing to define asynchronous operation called tasks.
@@ -252,7 +252,7 @@
 ## September 2022 _`2209`_
 
 * Released [Seed v2 service](../../aidbox-configuration/aidbox-zen-lang-project/seed-v2.md) for [Aidbox configuration projects](../../aidbox-configuration/aidbox-zen-lang-project/)
-* Added [Client.audience](../../security-and-access-control-1/technical-reference/overview.md#client.audience) regex support in SMART on FHIR App launch
+* Added [Client.audience](../../modules-1/security-and-access-control/readme-1/overview.md#client.audience) regex support in SMART on FHIR App launch
 * Added an option to [filter Aidbox stdout logs](../../core-modules/logging-and-audit/#stdout-log) by severity. By default Aidbox sends only `error` severity level logs to stdout.
 * Added response headers to [Aidbox REST Console](../../overview/aidbox-ui/rest-console-1.md) and [Aidbox Notebooks](../../overview/aidbox-ui/notebooks.md)
 * Enhanced the Aidbox configuration process with [Aidbox configuration projects](../../aidbox-configuration/aidbox-zen-lang-project/)
@@ -314,7 +314,7 @@
 
 * Added RPC API access control engines: [allow-rpc engine](../../modules-1/security-and-access-control/security/access-control.md#allow-rpc-engine) and attribute-based [matcho-rpc engine](../../modules-1/security-and-access-control/security/access-control.md#matcho-rpc-engine).
 * Added GraphQL API resource [history search](../../api-1/graphql-api.md#queries) to retrieve a resource change history.
-* Added [token expiration mechanism](../../security-and-access-control-1/technical-reference/overview.md#session-expiration) for stored Sessions.
+* Added [token expiration mechanism](../../modules-1/security-and-access-control/readme-1/overview.md#session-expiration) for stored Sessions.
 * Enhanced [API constructor ACL](../../security-and-access-control-1/acl.md) with new operation engine [filter table insert on create](../../security-and-access-control-1/acl.md#filter).
 * **Changed** auth layer 400/401/403 **errors response body** to OperationOutcome resource.
 * Added [CapabilityStatement configuration](../../api-1/fhir-api/metadata.md#configure-capabilitystatement) options.
@@ -447,7 +447,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 * We've released a major Aidbox UI upgrade
 
-![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (1) (12) (1) (10) (10) (1) (11) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (11) (6).png>)
+![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (1) (12) (1) (10) (10) (1) (11) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png>)
 
 * Updated REST Console (check out[ the tutorial](https://bit.ly/rest\_console\_tutorial)):
   * Explicit request headers `content-type, accept` etc
