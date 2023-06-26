@@ -112,6 +112,7 @@
     * [Reference search](api-1/fhir-api/search-1/reference-search.md)
     * [Date search](api-1/fhir-api/search-1/date-search.md)
     * [Number search](api-1/fhir-api/search-1/number-search.md)
+    * [Location search](api-1/fhir-api/search-1/location-search.md)
     * [AidboxQuery](api-1/fhir-api/search-1/custom-search.md)
     * [SearchQuery](api-1/fhir-api/search-1/searchquery.md)
     * [. expressions](api-1/fhir-api/search-1/.-expressions.md)

@@ -8,7 +8,7 @@ Task UI list displays the list of tasks in the system.
 
 <div data-full-width="true">
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption><p>Task list</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (24).png" alt=""><figcaption><p>Task list</p></figcaption></figure>
 
 </div>
 
