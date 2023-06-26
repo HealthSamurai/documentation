@@ -300,6 +300,7 @@ Before you launch the test you should:
    * FHIR Endpoint:\
      `[aidbox-url]/tenant/my-clinic/patient/smart-api`
    * Standalone Client ID: `inferno-confidential-patient-smart-app`
+   * Proof Key for Code Exchange (PKCE): `Disabled`
    * Standalone Client Secret: `inferno-confidential-patient-smart-app-secret`
    * OAuth 2.0 Authorize Endpoint: `[aidbox-url]/tenant/my-clinic/patient/auth/authorize`
 4. Click the `Submit` button
