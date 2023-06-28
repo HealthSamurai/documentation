@@ -50,8 +50,6 @@ Patient portal provides to patient an ability
 * to authorize access to their EHI data for external SMART apps and revoke the access
 * change and reset their password.
 
-Read more about user registration in Smartbox. (link here)
-
 #### FHIR API for patient-facing SMART apps
 
 FHIR API for patient-facing SMART apps is avaiable on&#x20;
