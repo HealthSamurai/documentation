@@ -98,10 +98,10 @@ Sets the limit of log records to push into the file. When the limit is reached, 
 ### BOX\_LOGGING\_ENABLE\_\_HEALTH\_\_LOGS
 
 ```
-BOX\_LOGGING\_ENABLE\_\_HEALTH\_\_LOGS=<boolean>
+BOX_LOGGING_ENABLE__HEALTH__LOGS=<boolean>
 ```
 
-Enables `/health` endpoint requests logging. By default value is `false`. 
+Enables `/health` endpoint requests logging. Default value is `false`. 
 
 
 ### AIDBOX\_STDOUT\_JSON

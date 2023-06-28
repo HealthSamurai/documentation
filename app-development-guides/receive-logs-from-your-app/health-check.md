@@ -46,4 +46,4 @@ checks:
 
 ## Logging /health endpoint request
 
-By default `/health` endpoint requests are not logged. To enable it use `BOX\_LOGGING\_ENABLE\_\_HEALTH\_\_LOGS` ENV variable.
+By default `/health` endpoint requests are not logged. To enable it use `BOX_LOGGING_ENABLE__HEALTH__LOGS` ENV variable.
