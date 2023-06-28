@@ -66,20 +66,19 @@ AIDBOX_LICENSE=YOUR_AIDBOX_LICENSE_KEY
 ```
 {% endcode %}
 
-## Enabled multi-tenancy
+## Enable multi-tenancy
 
 To enable hierarchical access control (multi-tenancy on Organization resources) add necessary imports to the `zrc/main.edn` file.
 
 {% tabs %}
 {% tab title="FHIR R4" %}
-Add `hl7-fhir-r4-core`  and `aidbox.multitenancy.v1.fhir-r4` to the import section.
+Add `aidbox.multitenancy.v1.fhir-r4` to the import section.
 
 {% code title="zrc/main.edn" %}
 ```clojure
 {ns main
  import #{aidbox
-          hl7-fhir-r4-core
-          aidbox.multitenancy.v1.fhir-r4 
+          aidbox.multitenancy.v1.fhir-r4 ;; import multitenancy
           config}
  
  box
@@ -92,14 +91,13 @@ Add `hl7-fhir-r4-core`  and `aidbox.multitenancy.v1.fhir-r4` to the import secti
 {% endtab %}
 
 {% tab title="FHIR R5" %}
-Add `hl7-fhir-r5-core`  and `aidbox.multitenancy.v1.fhir-r5` to the import section.
+Add `aidbox.multitenancy.v1.fhir-r5` to the import section.
 
 {% code title="zrc/main.edn" %}
 ```clojure
 {ns main
  import #{aidbox
-          hl7-fhir-r4-core
-          aidbox.multitenancy.v1.fhir-r4 
+          aidbox.multitenancy.v1.fhir-r5 ;; import multitenancy
           config}
  
  box
@@ -198,7 +196,7 @@ GET /Organization/org-b/fhir/Patient/pt-1
 
 #### Patient is not visible from the nested Organization (org-c)&#x20;
 
-{% code title="status: 404" %}
+{% code title="status: 403" %}
 ```yaml
 GET /Organization/org-c/fhir/Patient/pt-1
 ```
