@@ -95,6 +95,15 @@ AIDBOX_LOGS_MAX_LINES=<max-lines>
 
 Sets the limit of log records to push into the file. When the limit is reached, the current log file is renamed with ".old" postfix and a new log file is created. The default value is "10000"
 
+### BOX\_LOGGING\_ENABLE\_\_HEALTH\_\_LOGS
+
+```
+BOX\_LOGGING\_ENABLE\_\_HEALTH\_\_LOGS=<boolean>
+```
+
+Enables `/health` endpoint requests logging. By default value is `false`. 
+
+
 ### AIDBOX\_STDOUT\_JSON
 
 ```

@@ -43,3 +43,7 @@ checks:
       observedUnit: msM
 ```
 {% endcode %}
+
+## Logging /health endpoint request
+
+By default `/health` endpoint requests are not logged. To enable it use `BOX\_LOGGING\_ENABLE\_\_HEALTH\_\_LOGS` ENV variable.
