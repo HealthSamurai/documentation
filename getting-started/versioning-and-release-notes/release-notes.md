@@ -1,6 +1,29 @@
 # Release Notes
 
-## May 2023 _`latest`_
+## June 2023 _`edge`_
+
+* Data API
+  * Added Location.near search parameter
+  * Added index synchronization via the Workflow and Task API
+  * Added \_timeout for \_include and \_revinclude
+  * Fixed behavior of the exact modifier
+  * Fixed jsonpath sort order
+  * Aidbox now returns operationoutcome instead of plain-text error on invalid accept format
+* C-CDA / FHIR converter
+  * Added the option to customize the converter logic in the Aidbox Configuration Project
+* Security and access control
+  * Added hierarchical organization-based access control (multi-tenancy on Organization resources)
+  * Added How to enable hierarchical access control tutorial&#x20;
+* Ops
+  * Released new PostgreSQl Aidboxdb images 15.3 14.8 13.11
+  * Included PostGis Extension
+  * Removed the /heath endpoint metrics and logs by default
+* Aidbox Forms
+  * Supported forms on mobile devices
+*
+  *
+
+## May 2023 _`stable`_,_`2305`_
 
 * Released [Workflow Engine](../../modules-1/workflow-engine/)
 * Validation and Terminology
@@ -31,7 +54,7 @@
   * Added a [PHR sample app](https://github.com/Aidbox/aidbox-sdk-js/tree/main/personal-health-record)
   * Added [3 example apps](https://github.com/Aidbox/aidbox-sdk-js/tree/main/examples)
 
-## April 2023 _`stable`_, _`2304`_
+## April 2023 _`stable`_,_`2304`_
 
 * Validation and Terminology
   * Supported [FHIR R5](../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md#fhir-r5)
