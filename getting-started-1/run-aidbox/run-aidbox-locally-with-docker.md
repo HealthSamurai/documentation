@@ -17,10 +17,8 @@ It introduces you to:&#x20;
 {% hint style="warning" %}
 <img src="../../.gitbook/assets/docker.png" alt="" data-size="line">&#x20;
 
-Please **make sure** that both [installed Docker & Docker Compose](https://docs.docker.com/engine/install/) are installed.
+Please **make sure** that both [Docker & Docker Compose](https://docs.docker.com/engine/install/) are installed.
 {% endhint %}
-
-##
 
 ## Quickstart Guide
 
