@@ -3,25 +3,27 @@
 ## June 2023 _`edge`_
 
 * Data API
-  * Added Location.near search parameter
-  * Added index synchronization via the Workflow and Task API
-  * Added \_timeout for \_include and \_revinclude
+  * Added [Location.near](../../api-1/fhir-api/search-1/location-search.md) search parameter
+  * Added[ index synchronization](../../storage-1/indexes/#index-management) via the Workflow and Task API
+  * Added [\_timeout](../../api-1/fhir-api/search-1/search-parameters-list/\_timeout.md) for[ \_include](../../api-1/fhir-api/search-1/search-parameters-list/\_include-and-\_revinclude.md) and \_revinclude
   * Fixed behavior of the exact modifier
   * Fixed jsonpath sort order
   * Aidbox now returns operationoutcome instead of plain-text error on invalid accept format
-* C-CDA / FHIR converter
-  * Added the option to customize the converter logic in the Aidbox Configuration Project
+* [C-CDA / FHIR converter](../../modules-1/ccda-converter/)
+  * Added the option to customize the converter logic in [the Aidbox Configuration Project](../../aidbox-configuration/zen-configuration.md)
 * Security and access control
-  * Added hierarchical organization-based access control (multi-tenancy on Organization resources)
-  * Added How to enable hierarchical access control tutorial&#x20;
+  * Added [hierarchical organization-based access control](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md) (multi-tenancy on Organization resources)
+  * Added [How to enable hierarchical access control](../../modules-1/multitenancy/how-to-enable-hierarchical-access-control.md) tutorial&#x20;
 * Ops
-  * Released new PostgreSQl Aidboxdb images 15.3 14.8 13.11
+  * Released new [PostgreSQL Aidboxdb images 15.3, 14.8, 13.11](../../storage-1/aidboxdb-image.md)
   * Included PostGis Extension
-  * Removed the /heath endpoint metrics and logs by default
+  * Enabled [the /heath endpoint metrics](../../app-development-guides/receive-logs-from-your-app/health-check.md) and logs by default
+  * Added [How to disable logging](../../app-development-guides/receive-logs-from-your-app/health-check.md#logging-health-endpoint-request) tutorial
 * Aidbox Forms
   * Supported forms on mobile devices
-*
-  *
+* SDK
+  * Released [TypeScript SDK module](https://github.com/Aidbox/aidbox-sdk-js/tree/main#workflow-definition) for Workflow Engine
+  * Added [a sample project](https://github.com/Aidbox/aidbox-sdk-js/tree/main/examples/aidbox-workflow) that demonstrates the following flow: remind a patient about upcoming appointment on a specific date, collect information about the patient’s condition with Aidbox Form and store information as FHIR data
 
 ## May 2023 _`stable`_,_`2305`_
 
