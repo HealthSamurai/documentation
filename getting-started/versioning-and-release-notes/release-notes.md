@@ -21,7 +21,7 @@
 * Ops
   * Released new [PostgreSQL Aidboxdb images 15.3, 14.8, 13.11](../../storage-1/aidboxdb-image.md)
   * Added PostGis Extension
-  * Enabled the [/heath](../../app-development-guides/receive-logs-from-your-app/health-check.md) endpoint metrics and logs by default
+  * Enabled the [/health](../../app-development-guides/receive-logs-from-your-app/health-check.md) endpoint metrics and logs by default
   * Added [How to disable logging](../../app-development-guides/receive-logs-from-your-app/health-check.md#logging-health-endpoint-request) tutorial
 * Aidbox Forms
   * Optimized [Forms](../../modules-1/aidbox-forms.md) for mobile devices
