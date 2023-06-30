@@ -3,9 +3,9 @@
 ## June 2023 _`latest`_
 
 * [Workflow Engine](../../modules-1/workflow-engine/):
-  * Added wait task - Task that will wait for the indicated duration or until the indicated datetime
-    * Added an option to cancel a workflow
-    * Added an option to set up parallel execution concurrency limit for specific tasks
+  * Added [wait ](../../modules-1/workflow-engine/task/aidbox-predefined-tasks.md#awf.task-wait)task
+  * Added an option to [cancel ](../../modules-1/workflow-engine/workflow/task-user-api.md#awf.workflow-cancel)a workflow
+  * Added an option to set up parallel execution concurrency limit for specific tasks
 * Data API
   * Added [Location.near](../../api-1/fhir-api/search-1/location-search.md) search parameter
   * Added[ index synchronization](../../storage-1/indexes/#index-management) via the Workflow and Task API
