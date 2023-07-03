@@ -92,7 +92,7 @@ result:
 
 ## awf.task/wait
 
-Task that will wait for the indicated duration or until the indicated datetime. Used in workflow when need to be paused for an external signal to continue.
+Task that will wait for the indicated duration or until the indicated datetime. Used in workflow when need to be paused for some purposes.
 
 Either **duration** or **until** parameter SHOULD be specified.
 
