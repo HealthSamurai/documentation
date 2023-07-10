@@ -15,18 +15,17 @@ We are still working on this page, sorry for the inconvenience.
 This part of functionality requires knowledge of zen language.
 {% endhint %}
 
-[More details about zen-configuration](https://docs.aidbox.app/aidbox-configuration/aidbox-zen-lang-project/aidbox-configuration-project-structure).
-
-# Mapping rules
-
-## Service configuration
+## Setup a service with the service configuration
 
 Here is basic information how to configure zen-project to enable the converter functionality.
 
+[More details about zen-configuration](https://docs.aidbox.app/aidbox-configuration/aidbox-zen-lang-project/aidbox-configuration-project-structure).
+
 ## Default rules
+
 Current conversion rules are stored in `.edn` files in the zen project.
 
-The core.edn file describes a top-level configuration of the service:
+The `core.edn` file describes a top-level configuration of the service:
 
 ```
 default-config
@@ -156,7 +155,7 @@ means get a value of the "VitalSignObservationV2" by path in the tree:
 
 Symbol `:*` means "for each" expression so `[:component :*]` means "for each element in :component vector".
 
-The table above describes all kind of special symbols:
+The table below describes all kind of special symbols:
 
 | Symbol                            | Meaning                | Example                                             |
 |-----------------------------------|------------------------|-----------------------------------------------------|
