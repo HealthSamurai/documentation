@@ -280,6 +280,7 @@
 * [C-CDA / FHIR Converter](modules-1/ccda-converter/README.md)
   * [🔒 v1 Documentation](modules-1/ccda-converter/ccda-converter.md)
   * [Producing C-CDA documents](modules-1/ccda-converter/producing-c-cda-documents.md)
+  * [How to customize conversion rules](modules-1/ccda-converter/ccda-fhir-dsl.md)
 * [Custom Resources](modules-1/custom-resources/README.md)
   * [$metadata](modules-1/custom-resources/custom-metadata.md)
   * [Custom resources using Aidbox Project](modules-1/custom-resources/custom-resources-using-aidbox-project.md)
