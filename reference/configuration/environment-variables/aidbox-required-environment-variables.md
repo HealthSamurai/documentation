@@ -14,7 +14,7 @@ A port that web server will listen to.
 AIDBOX_FHIR_VERSION=<fhir version>
 ```
 
-`<fhir version>` is one of: `1.0.2`, `1.4.0`, `1.8.0`, `3.0.1`, `3.2.0`, `3.3.0`, `4.0.0`, `4.0.1`.
+`<fhir version>` is one of: `1.0.2`, `1.4.0`, `1.8.0`, `3.0.1`, `3.2.0`, `3.3.0`, `4.0.0`, `4.0.1`, `4.3.0`, `5.0.0`
 
 ### PGHOST
 
