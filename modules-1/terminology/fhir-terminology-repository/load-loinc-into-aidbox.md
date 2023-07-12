@@ -71,6 +71,8 @@ Currently, we support various LOINC terminology translations, and we can incorpo
 
 <table><thead><tr><th width="383">Zen Package Link</th><th>Languages (IETF BCP 47 tags)</th></tr></thead><tbody><tr><td>git@github.com:zen-fhir/loinc.git</td><td>en</td></tr><tr><td>git@github.com:zen-fhir/loinc-fr-ca.git</td><td>en, fr-ca</td></tr></tbody></table>
 
+See also [$translate-concepts RPC](../concept/usdtranslate-concepts.md).
+
 #### Further steps
 
 If you want to customize Aidbox startup behavior when using FTR, read more about [FTR environment variables](../../../reference/configuration/environment-variables/ftr.md).

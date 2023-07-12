@@ -78,6 +78,8 @@ Currently, we support various SNOMED CT terminology translations, and we can inc
 | git@github.com:zen-fhir/snomed.git   | en                           |
 | git@github.com:zen-fhir/snomedca.git | en, fr                       |
 
+See also [$translate-concepts RPC](../concept/usdtranslate-concepts.md).
+
 ### Further steps
 
 If you want to customize Aidbox startup behavior when using FTR, read more about [FTR environment variables](../../../reference/configuration/environment-variables/ftr.md).

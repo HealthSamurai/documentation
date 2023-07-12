@@ -46,7 +46,7 @@ It's a symbolic link on CodeSystem
 
 ### ancestors
 
-A new hierarchy element-object that contains ancestors codes and amount of hops between current concept and ancestor. [See](handling-hierarchies-using-ancestors.md) detailed description and use cases.
+A new hierarchy element-object that contains ancestors codes and amount of hops between current concept and ancestor. [See](../../../terminology/handling-hierarchies-using-ancestors.md) detailed description and use cases.
 
 ### hierarchy
 

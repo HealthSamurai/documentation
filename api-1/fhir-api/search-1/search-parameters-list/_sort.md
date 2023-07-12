@@ -34,6 +34,10 @@ You can change the sorting direction by prefixing parameter with `-` sign
 GET /Organization?_sort=-name
 ```
 
+### Language to sort
+
+`_sort` can be used along with [`_search-language`](\_search-language.md#sorting) search parameter.
+
 ### Examples
 
 ```javascript

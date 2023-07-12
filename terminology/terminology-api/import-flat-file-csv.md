@@ -4,7 +4,7 @@ description: Import flat file via REST
 
 # Import flat file (CSV)
 
-If you have a terminology distributed as a flat file, for example CSV, you can use this API to import it as a set of [Concept](../concept.md) resources and later use them with [Terminology API](../terminology.md).
+If you have a terminology distributed as a flat file, for example CSV, you can use this API to import it as a set of [Concept](../../modules-1/terminology/concept/) resources and later use them with [Terminology API](../terminology.md).
 
 {% hint style="warning" %}
 `Concepts` should have unique `code` property. In this regard Aidbox follows [FHIR constraints defined for CodeSystems](https://hl7.org/fhir/R4/codesystem.html#invs). If there are multiple `Concepts` with the\
@@ -17,7 +17,7 @@ Aidbox provides RPC API to load terminology from a flat file by url.
 
 ### RPC `aidbox.terminology.import-flat/import-from-url`
 
-This method accepts an URL pointing to a flat file with a terminology, file format description, columns to [concept](../concept.md) mapping, `CodeSystem` resource and `ValueSet` resource. For hierarchical terminology it can build [hierarchy materialized paths](../concept.md#hierarchy).
+This method accepts an URL pointing to a flat file with a terminology, file format description, columns to [concept](../../modules-1/terminology/concept/) mapping, `CodeSystem` resource and `ValueSet` resource. For hierarchical terminology it can build [hierarchy materialized paths](../../modules-1/terminology/concept/#hierarchy).
 
 When upload is done, rows of the flat file are loaded as `Concept` resources into Aidbox. Also `CodeSystem` and `ValueSet` resources are created, these resources describe the full terminology from the file, i.e. the `ValueSet` composed of only this `CodeSystem` and all `Concept`s have `system` set to the `CodeSystem.url`.
 

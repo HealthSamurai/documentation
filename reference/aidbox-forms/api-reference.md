@@ -126,7 +126,7 @@ result:
       :finalize DukeAnxietyDepressionScaleFinalize}}
 ```
 
-***
+
 
 ### convert-form
 
@@ -264,7 +264,7 @@ result:
 
 ```
 
-***
+
 
 ### generate-form-template
 

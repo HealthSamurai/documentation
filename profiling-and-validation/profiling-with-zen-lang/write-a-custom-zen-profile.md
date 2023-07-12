@@ -105,7 +105,7 @@ Those schemas must be tagged with `zen.fhir/profile-schema`, describe data struc
 
 #### `zen.fhir/value-set`
 
-To enable value-set validation in zen [concept resources](../../terminology/concept.md) with `valueset` attribute populated must be loaded into Aidbox.
+To enable value-set validation in zen [concept resources](../../modules-1/terminology/concept/) with `valueset` attribute populated must be loaded into Aidbox.
 
 `:zen.fhir/value-set` key must be a symbol tagged with `zen.fhir/value-set`&#x20;
 
