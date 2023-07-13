@@ -35,13 +35,11 @@ accept: text/yaml
   partOf: {resourceType: Organization, id: org-a}
 - id: org-c
   resourceType: Organization
-  partOf:
   partOf: {resourceType: Organization, id: org-a}
 - id: org-d
   resourceType: Organization
 - id: org-e
   resourceType: Organization
-  partOf:
   partOf: {resourceType: Organization, id: org-d}
 ```
 {% endcode %}
