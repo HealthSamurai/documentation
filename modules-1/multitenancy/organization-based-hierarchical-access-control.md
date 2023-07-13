@@ -133,3 +133,30 @@ DELETE <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>/<id>
 GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>
 ```
 
+## Shared resource mode
+
+By default, nested API has ho access to a resource that is belonged to the upper organizations. Sometimes it is necessary to have resources that can be accessed by the nested APIs. To achive it the resource should be marked as `share`.&#x20;
+
+### Create a shared resource
+
+To create a shared resource, use the `https://aidbox.app/tenant-resource-mode` extension.
+
+{% code title="status: 201 Created" %}
+```yaml
+PUT /Organization/org-a/fhir/Practitioner/prac-1
+content-type: text/yaml
+
+meta:
+  extension:
+  - url: https://aidbox.app/tenant-resource-mode
+    valueString: "shared"
+```
+{% endcode %}
+
+### Access shared resource from a nested AP
+
+{% code title="status: 200 OK" %}
+```yaml
+GET /Organization/org-b/fhir/Practitioner/prac-1
+```
+{% endcode %}
