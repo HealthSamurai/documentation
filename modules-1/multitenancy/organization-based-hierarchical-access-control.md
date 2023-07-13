@@ -6,7 +6,7 @@ description: Achieve logical multi-tenancy with Aidbox
 
 Hierarchical organization-based access control in Aidbox allows for the restriction of access to data based on the organization to which it belongs. When this feature is enabled, the FHIR Organization resource in Aidbox gains new semantics and functionality.
 
-This means that when users interact with the Organizational FHIR API, they will only be able to access the resources that belong to their organization or tenant. The hierarchical organization-based access control ensures that data is logically isolated and accessible only within the appropriate organizational context.
+This means that when users interact with the Organizational FHIR API, they are only able to access the resources that belong to their organization or tenant. The hierarchical organization-based access control ensures that data is logically isolated and accessible only within the appropriate organizational context.
 
 ## Problem
 
@@ -18,7 +18,7 @@ Let's consider the next organization structure. There are two independent organi
 
 <figure><img src="../../.gitbook/assets/Screenshot 2023-06-28 at 16.40.54.png" alt=""><figcaption><p>Organization hierarchy structure</p></figcaption></figure>
 
-To achieve such a behaviour, you may consider an Aidbox feature called organization-based access control.&#x20;
+To achieve such a behavior, you may consider an Aidbox feature called organization-based access control.&#x20;
 
 Let's create the organization structure in Aidbox:
 
