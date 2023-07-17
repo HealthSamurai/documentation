@@ -4,6 +4,10 @@ description: This guide shows how to set-up Azure AD identity provider with Aidb
 
 # Azure AD
 
+{% hint style="info" %}
+This guide explains how to set-up Azure AD identity provider in Aidbox with a symmetric authentication mechanism. If you are looking for asymmetric (certificate-based one), please, follow [Azure AD with certificate authentication](../../modules-1/security-and-access-control/how-to-guides/set-up-external-identity-provider/azure-ad-1.md) guide.
+{% endhint %}
+
 ## Register an application in Azure
 
 * Find **App Registration** in search bar
