@@ -1,5 +1,9 @@
 # \_search-language
 
+{% hint style="warning" %}
+`_search-language` is experimental, generated SQL and semantic may change in future!
+{% endhint %}
+
 Search parameter `_search-language` can be used to search specifying language.&#x20;
 
 ```
@@ -12,10 +16,6 @@ Any [string search parameters](https://www.hl7.org/fhir/search.html#string) (e.g
 
 ### Turn on \_search-language
 
-{% hint style="warning" %}
-`_search-language` is experimental, generated SQL and semantic may change in future!
-{% endhint %}
-
 By default \_search-language is skipped. It can be turned on by
 
 ```
@@ -24,6 +24,8 @@ features
  :multilingual
  {:enable-search-language true}}
 ```
+
+
 
 ### Resources with Translation Extension
 
