@@ -1,5 +1,9 @@
 # How to use multilingual search
 
+{% hint style="warning" %}
+Multilingual search is **experimental**! API may change!
+{% endhint %}
+
 FHIR specifies the [translation extension](http://hl7.org/fhir/StructureDefinition/translation) to store translations from base language of resource to another languages. In this tutorial we will cover how to search through resources specifying language.
 
 First, let's create a resource Location, which has name in English and French:
