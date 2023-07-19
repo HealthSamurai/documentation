@@ -76,6 +76,8 @@ To filter AuditMessage resources enter query string into the search bar.
 
 ## Audit event types 
 
+The list of supported audit events:
+
 - `user-login`
 - `user-logout` 
 - `client-init-launch`
