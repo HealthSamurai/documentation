@@ -22,6 +22,33 @@ Simplifies research, diagnose and resolve possible security breaches. It is rele
 Aidbox produces AuditMessage resources when the features is active
 {% endhint %}
 
+### With Aidbox Configuration project
+
+To enable the Viewer:
+
+1. Find the file containing the `base-config` definition. It is tagged with the `aidbox.config/config` value
+2. Add the definition of the feature
+
+```clojure
+features
+{:zen/tags #{aidbox.config/features}
+ :audit    {:enable-audit-messages true}}
+```
+
+3. Attach the `features` to the `base-config`
+
+```clojure
+ base-config
+ {:zen/tags                #{aidbox.config/config}
+  ...
+  :features                features
+  ...
+  :aidbox-license          #env AIDBOX_LICENSE}
+```
+4. Restart Aidbox instance
+
+### Without Aidbox Configuration project
+
 To enable the Viewer define ENV variable `box_features_audit_enable__audit__messages` and restart Aidbox.
 
 For example, `box_features_audit_enable__audit__messages=enabled`.
