@@ -73,3 +73,12 @@ To see a certain AuditMessage details click it. Also there is a `raw` switcher. 
 To filter AuditMessage resources enter query string into the search bar.
 
 <figure><img src="../../../.gitbook/assets/audit-event-unfolded.png" alt=""><figcaption><p>Unfolded AuditMessage</p></figcaption></figure>
+
+## What event types are auditied
+
+- `user-login`
+- `user-logout` 
+- `client-init-launch`
+- `user-grant-access-client`
+- `client-exchange-code-token`
+- `client-refresh-access-token`
