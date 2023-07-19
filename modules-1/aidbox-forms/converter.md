@@ -49,7 +49,7 @@ Example:
  sdc-service
  {:zen/tags   #{aidbox/service}
   :engine     aidbox.sdc/service
-  :conversion {:convert-forms-on-start true}}
+  :conversion {:convert-forms-on-start {:enabled true}}
 ```
 
 You need to restart aidbox to take effect of changed configuration
@@ -65,7 +65,7 @@ Example:
  sdc-service
  {:zen/tags   #{aidbox/service}
   :engine     aidbox.sdc/service
-  :conversion {:convert-doc-on-save true}}
+  :conversion {:convert-doc-on-save {:enabled true}}
 ```
 
 You need to restart aidbox to take effect of changed configuration
@@ -76,9 +76,9 @@ After that - every document changes will be reflected in QuestionnaireResponse r
 > NOTE: `id` of converted `QuestionnaireResponse` will be the same as `id` of `SDCDocument`.
 
 
-# Form rules conversion to human-readable description.
+### Form rules conversion to human-readable description.
 
-You can enable aidbox.sdc/rules conversion to human friendly text while converting Form or Document.
+You can enable `aidbox.sdc/rules` conversion to human friendly text while converting Form or Document.
 
 Because Questionnaire and QuestionnaireResponse structures doesn't have place where to store such data
 We define 2 extra profiles for these resource-types.
@@ -87,6 +87,7 @@ You can enable this feature by adding:
 
 - `zen.fhir` and `hl7-fhir-r4-core` dependecies to your zen-package.edn
 - `aidbox.sdc.extra` import to your entrypoint namespace
+- `:describe-rules` key to service configuration or RPC call
 
 Example:
 
@@ -107,6 +108,12 @@ box.edn
  import #{aidbox.sdc.extra}
 
  ...
+
+ sdc-service
+ {:zen/tags   #{aidbox/service}
+  :engine     aidbox.sdc/service
+  :conversion {:convert-doc-on-save {:enabled true
+                                     :describe-rules true}}
  }
 ```
 
@@ -138,4 +145,84 @@ item:
     extension:
        - url: urn:fhir:extension:sdc-questionnaire-ruleDescription
          valueMarkdown: A / B * B\n\n where\n* A - body weight\n* B - body height
+```
+
+### Include `score` value in QuestionnaireResponse
+
+`aidbox.sdc/choice` field can have additional field called `:score` that have no represantation in
+QuestionnaireResponse.
+
+You can include this field in conversion by adding:
+
+- `zen.fhir` and `hl7-fhir-r4-core` dependecies to your zen-package.edn
+- `aidbox.sdc.extra` import to your entrypoint namespace
+- `:include-scores` key to service configuration or RPC call
+
+Example:
+
+zen-package.edn
+
+```
+{:deps {zen.fhir "https://github.com/zen-fhir/zen.fhir.git"
+        hl7-fhir-r4-core "https://github.com/zen-fhir/hl7-fhir-r4-core.git"}}
+```
+
+box.edn
+
+> Assume that box.edn is your zen-project entrypoint namespace
+
+
+```
+{ns box
+ import #{aidbox.sdc.extra}
+
+ ...
+
+ sdc-service
+ {:zen/tags   #{aidbox/service}
+  :engine     aidbox.sdc/service
+  :conversion {:convert-doc-on-save {:enabled true
+                                     :include-scores true}}
+ }
+```
+
+
+When feature is enabled you will see additional data in `QuestionnaireResponse`
+after converting `Documents` with scores.
+
+In `Aidbox` format you will see `score` field.
+
+```
+GET /QuestionnaireResponse/q1
+
+resourceType: QuestionnaireResponse
+item:
+  - linkId: 69734-2
+   	text: Trouble relaxing
+    answer:
+      - value:
+          Coding:
+            system: http://loinc.org
+            code: LA6571-9
+            display: Nearly every day
+            score: 3
+```
+
+In `FHIR` format you will see an extension with `valueInteger`
+
+```
+GET /fhir/Questionnaire/q1
+
+resourceType: Questionnaire
+item:
+  - linkId: 69725-0
+    text: Feeling nervous, anxious, or on edge
+    answer:
+      - valueCoding:
+          system: http://loinc.org
+          code: LA6569-3
+          display: Several days
+          extension:
+            - url: urn:fhir:extension:sdc-questionnaire-score
+              valueInteger: 1
 ```

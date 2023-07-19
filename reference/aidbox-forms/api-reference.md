@@ -530,9 +530,9 @@ params:
 Response:
 
 ```
-result: 
+result:
     form: my.company.forms.vitals/Vitals
-    properties: 
+    properties:
        in-development: true
 
 ```
@@ -572,7 +572,7 @@ Result:
 > Success
 
 ```
-result: 
+result:
     id: my.company.forms.vitals/Vitals
     resourceType: SDCFormMetadata
     properties:
@@ -614,7 +614,7 @@ Response:
 > Success
 
 ```
-result: 
+result:
     id: my.company.forms.vitals/Vitals
     resourceType: SDCFormMetadata
     properties: {}
@@ -946,12 +946,17 @@ Optionaly you can save converted `QuestionnaireResponse` to its resource table v
 
 Params:
 
-| Param            | Description                                 | Type              | required? |
-| ---------------- | ------------------------------------------- | ----------------- | --------- |
-| id               | id of SDCDocument in DB                     | String            | no        |
-| document         | SDCDocument resource body                   | Resource          | no        |
-| format           | Output format                               | "fhir" / "aidbox" | yes       |
-| save-to-resource | If true - converts and saves QR to resource | boolean           | no        |
+| Param                | Description                                                 | Type              | required? |
+|----------------------|-------------------------------------------------------------|-------------------|-----------|
+| id                   | id of SDCDocument in DB                                     | String            | no        |
+| document             | SDCDocument resource body                                   | Resource          | no        |
+| format               | Output format                                               | "fhir" / "aidbox" | yes       |
+| save-to-resource     | If true - converts and saves QR to resource                 | boolean           | no        |
+| opts                 |                                                             | Map               | no        |
+| opts.include-scores* | If true - include scores from answers to QR                 | boolean           | no        |
+| opts.describe-rules* | If true - will add field calculation rule description to QR | boolean           | no        |
+
+> * - to use include-scores and describe-rules options you need to import `aidbox.sdc.extra` namespace in configuration project
 
 Request:
 
