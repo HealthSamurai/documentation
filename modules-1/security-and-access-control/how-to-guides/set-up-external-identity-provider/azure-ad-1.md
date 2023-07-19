@@ -73,6 +73,10 @@ confirm: true
 # Private key & certificate are generated and saved in the IdentityProvider
 ```
 
+{% hint style="info" %}
+Aidbox generates certificate for 365 days.
+{% endhint %}
+
 Than you may download the certificate in order to upload it to Azure AD by following the link
 
 ```
