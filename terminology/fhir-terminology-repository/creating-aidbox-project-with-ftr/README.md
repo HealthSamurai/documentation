@@ -2,9 +2,9 @@
 description: Run Aidbox with FTR from various sources
 ---
 
-# Run Aidbox with FTR
+# Create an FTR instance
 
-You can use FTR in Aidbox in the following ways:
+You can create an FTR instance in the following ways:
 
 {% content-ref url="ftr-from-csv.md" %}
 [ftr-from-csv.md](ftr-from-csv.md)

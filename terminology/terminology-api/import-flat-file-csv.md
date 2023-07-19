@@ -4,7 +4,7 @@ description: Import flat file via REST
 
 # Import flat file (CSV)
 
-If you have a terminology distributed as a flat file, for example CSV, you can use this API to import it as a set of [Concept](../../modules-1/terminology/concept/) resources and later use them with [Terminology API](../terminology.md).
+If you have a terminology distributed as a flat file, for example CSV, you can use this API to import it as a set of [Concept](../../modules-1/terminology/concept/) resources and later use them with Terminology API.
 
 {% hint style="warning" %}
 `Concepts` should have unique `code` property. In this regard Aidbox follows [FHIR constraints defined for CodeSystems](https://hl7.org/fhir/R4/codesystem.html#invs). If there are multiple `Concepts` with the\
