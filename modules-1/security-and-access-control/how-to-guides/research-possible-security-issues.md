@@ -74,7 +74,7 @@ To filter AuditMessage resources enter query string into the search bar.
 
 <figure><img src="../../../.gitbook/assets/audit-event-unfolded.png" alt=""><figcaption><p>Unfolded AuditMessage</p></figcaption></figure>
 
-## What event types are auditied
+## Audit event types 
 
 - `user-login`
 - `user-logout` 
