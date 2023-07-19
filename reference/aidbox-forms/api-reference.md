@@ -147,11 +147,16 @@ What is supported:
 
 params:
 
-| Param            | Description                    | Type    | required? |
-| ---------------- | ------------------------------ | ------- | --------- |
-| form             | Form symbolic name             | string  | yes       |
-| format           | Format of QR. Aidbox or FHIR   | string  | yes       |
-| save-to-resource | Save Questionnaire to resource | boolean | no        |
+| Param                | Description                                                 | Type    | required? |
+|----------------------|-------------------------------------------------------------|---------|-----------|
+| form                 | Form symbolic name                                          | string  | yes       |
+| format               | Format of QR. Aidbox or FHIR                                | string  | yes       |
+| save-to-resource     | Save Questionnaire to resource                              | boolean | no        |
+| opts                 |                                                             | Map     | no        |
+| opts.describe-rules* | If true - will add field calculation rule description to QR | boolean | no        |
+
+> * - to use include-scores and describe-rules options you need to import `aidbox.sdc.extra` namespace in configuration project
+
 
 * To save Questionnaire to resource you should specify `:fhir/id` property in the [`Form DSL`](form-dsl.md#properties-for-conversion)
 * To specify additional fields that are represented in Questionnaire but not in the Form DSL - you can use predefined form properties for that [`Form DSL`](form-dsl.md#properties-for-conversion)
