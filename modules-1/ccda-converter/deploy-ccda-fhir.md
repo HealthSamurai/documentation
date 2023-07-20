@@ -11,4 +11,6 @@ There is the configuration project template prepared for the service deployment:
 git clone --depth=1 --branch=aidbox-ccda-service https://github.com/Aidbox/aidbox-project-template.git aidbox-project && cd aidbox-project && rm -rf .git
 ```
 
-For detailed instructions on deploying the service based on the configuration project template please refer to the [deployment guide](https://docs.aidbox.app/aidbox-configuration/aidbox-zen-lang-project/aidbox-configuration-project-structure)
+For detailed instructions on deploying the service based on the configuration project template please refer to the [deployment guide](https://docs.aidbox.app/getting-started/run-aidbox-locally-with-docker)
+
+Also there is a page about [project configuration structure](https://docs.aidbox.app/aidbox-configuration/aidbox-zen-lang-project/aidbox-configuration-project-structure).
