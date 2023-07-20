@@ -282,6 +282,7 @@
   * [HL7 v2 integration with Aidbox Project](modules-1/hl7-v2-integration/hl7-v2-integration-with-aidbox-project.md)
 * [C-CDA / FHIR Converter](modules-1/ccda-converter/README.md)
   * [🔒 v1 Documentation](modules-1/ccda-converter/ccda-converter.md)
+  * [How to deploy the service](modules-1/ccda-converter/deploy-ccda-fhir.md)
   * [Producing C-CDA documents](modules-1/ccda-converter/producing-c-cda-documents.md)
   * [How to customize conversion rules](modules-1/ccda-converter/ccda-fhir-dsl.md)
 * [Custom Resources](modules-1/custom-resources/README.md)
