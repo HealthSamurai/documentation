@@ -16,7 +16,7 @@ The article has be reviewed for next Inferno framework v0.3.12 and test suite
 ## Prerequisites
 
 {% hint style="info" %}
-Smartbox must be publicly available from the Internet in order to Inferno cloud reach Smartbox and run tests.
+Smartbox must be publicly available from the Internet in order to Inferno could reach Smartbox and run tests.
 {% endhint %}
 
 Once you have your Smartbox instance [up and running](../get-started/set-up-smartbox.md) you need to register a FHIR server by creating Tenant resource and upload necessary resources for Inferno.
