@@ -10,7 +10,7 @@ Create [indexes](https://docs.aidbox.app/api-1/fhir-api/search-1/usdlookup#creat
 
 ## **Does Aidbox support 2-factor authentication?**
 
-Yes, please, check out [the documentation](https://docs.aidbox.app/user-management-1/auth/two-factor-authentication).
+Yes, please, check out [the documentation](security-and-access-control-1/auth/two-factor-authentication.md).
 
 ## **How to create a SearchParameter for extensions on a property in a resource?**
 
