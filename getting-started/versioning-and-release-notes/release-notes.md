@@ -196,7 +196,6 @@
   * [Scheduler API](broken-reference) allowing to execute tasks by schedule.
 * Aidbox Configuration Projects
   * Added a [FHIR 4.0.1 compliant Configuration Project](https://github.com/Aidbox/fhir-r4-configuration-project) (also available on Aidbox User Portal).
-  * Added a project with [Touchstone FHIR 4.0.1 basic server test suite fixtures](https://github.com/zen-fhir/touchstone-fhir-r4-fixtures).
   * Added [a guide on passing Touchstone FHIR 4.0.1 basic server test suite](../../tutorials/fhir-conformance/touchstone-fhir-4.0.1-basic-server.md#pass-with-aidbox-user-portal-sandbox) on Aidbox User Portal.
 * Data API
   * Implemented [jsonpath search engine](../../api-1/fhir-api/search-1/configure-search-api.md)
