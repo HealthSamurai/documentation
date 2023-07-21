@@ -110,7 +110,7 @@ Content-Type: text/yaml
   - authorization_code
   auth:
     authorization_code:
-      pkce: false
+      pkce: true
       redirect_uri: 'https://inferno.healthit.gov/suites/custom/smart/redirect'
       refresh_token: true
       secret_required: false
