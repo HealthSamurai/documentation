@@ -27,7 +27,7 @@
   * Optimized [Forms](../../modules-1/aidbox-forms.md) for mobile devices
 * SDK
   * Released [TypeScript SDK module](https://github.com/Aidbox/aidbox-sdk-js/tree/main#workflow-definition) for [Workflow Engine](../../modules-1/workflow-engine/workflow/)
-  * Added [a sample project](https://github.com/Aidbox/aidbox-sdk-js/tree/main/examples/aidbox-workflow) that demonstrates the following flow: remind a patient about upcoming appointment on a specific date, collect information about the patient’s condition with Aidbox Form and store information as FHIR data
+  * Added [a sample project](https://github.com/Aidbox/aidbox-sdk-js/tree/main/examples/apps/workflow) that demonstrates the following flow: remind a patient about upcoming appointment on a specific date, collect information about the patient’s condition with Aidbox Form and store information as FHIR data
 
 ## May 2023 _`stable`_,_`2305`_
 
