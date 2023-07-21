@@ -60,6 +60,7 @@ POST /User
 Content-Type: text/yaml
 
 email: example@mail.com
+password: password
 name:
   givenName: Amy
   familyName: Shaw
@@ -69,7 +70,6 @@ fhirUser:
   resourceType: Patient
 roles:
 - type: patient
-password: password
 meta:
   tenant:
     id: my-clinic
