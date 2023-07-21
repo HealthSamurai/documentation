@@ -15,6 +15,10 @@ The article has be reviewed for next Inferno framework v0.3.12 and test suite
 
 ## Prerequisites
 
+{% hint style="info" %}
+Smartbox must be publicly available from the Internet in order to Inferno cloud reach Smartbox and run tests.
+{% endhint %}
+
 Once you have your Smartbox instance [up and running](../get-started/set-up-smartbox.md) you need to register a FHIR server by creating Tenant resource and upload necessary resources for Inferno.
 
 * Patient record with all USCDIv1 data elements in us-core format,
@@ -22,7 +26,7 @@ Once you have your Smartbox instance [up and running](../get-started/set-up-smar
 * Client resource for smart launch flows
 * Client resource for bulk api
 
-## Create Tenant
+### Create Tenant
 
 ```yaml
 PUT /Tenant/my-clinic
@@ -31,7 +35,7 @@ Content-Type: text/yaml
 name: My Clinic
 ```
 
-## Patient record
+### Prepare fixtures
 
 Demo patient record with all USCDI elements for Inferno test is available on Google Storage and maintained by Health Samurai team. You can upload with `/$load` endpoint:
 
@@ -74,73 +78,61 @@ meta:
 
 Now you can login to My Clinic patient portal with `example@mail.com / password`.
 
-## Client resources
+### Create client resources for Inferno
 
-In the requests below the simples way of adding Clients is shown. In some cases it's important to create Client resources without predefined `secret` and `id` (see [that article](../background-information/adding-clients-for-inferno-tests.md) for more details).
-
-#### inferno-confidential-patient-smart-app
+Inferno will act as smart app/bulk client app. Let's register inferno's apps as Client resources in Smartbox.
 
 ```yaml
-PUT /Client/inferno-confidential-patient-smart-app
+PUT /
 Content-Type: text/yaml
 
-type: patient-facing-smart-app
-active: true
-secret: inferno-confidential-patient-smart-app-secret
-grant_types:
-- authorization_code
-auth:
-  authorization_code:
-    pkce: false
-    redirect_uri: 'https://inferno.healthit.gov/suites/custom/smart/redirect'
-    refresh_token: true
-    secret_required: true
-    access_token_expiration: 300
-smart:
-  launch_uri: 'https://inferno.healthit.gov/suites/custom/smart/launch'
-```
-
-#### inferno-my-clinic-bulk-client
-
-```yaml
-PUT /Client/inferno-my-clinic-bulk-client
-Content-Type: text/yaml
-
-type: bulk-api-client
-active: true
-auth:
-  client_credentials:
-    client_assertion_types: ['urn:ietf:params:oauth:client-assertion-type:jwt-bearer']
-    access_token_expiration: 300
-scope: [system/*.read]
-jwks_uri: https://inferno.healthit.gov/suites/custom/g10_certification/.well-known/jwks.json
-grant_types:
-- client_credentials
-meta:
-  tenant:
-    id: my-clinic
-    resourceType: Tenant
-```
-
-#### inferno-public-patient-smart-app
-
-```yaml
-PUT /Client/inferno-public-patient-smart-app
-Content-Type: text/yaml
-
-type: patient-facing-smart-app
-active: true
-grant_types:
-- authorization_code
-auth:
-  authorization_code:
-    pkce: false
-    redirect_uri: 'https://inferno.healthit.gov/suites/custom/smart/redirect'
-    refresh_token: true
-    secret_required: false
-    access_token_expiration: 300
-smart:
-  launch_uri: 'https://inferno.healthit.gov/suites/custom/smart/launch'
+- id: inferno-confidential-patient-smart-app
+  resourceType: Client
+  type: patient-facing-smart-app
+  active: true
+  secret: inferno-confidential-patient-smart-app-secret
+  grant_types:
+  - authorization_code
+  auth:
+    authorization_code:
+      pkce: false
+      redirect_uri: 'https://inferno.healthit.gov/suites/custom/smart/redirect'
+      refresh_token: true
+      secret_required: true
+      access_token_expiration: 300
+  smart:
+    launch_uri: 'https://inferno.healthit.gov/suites/custom/smart/launch'
+- id: inferno-public-patient-smart-app
+  resourceType: Client
+  type: patient-facing-smart-app
+  active: true
+  grant_types:
+  - authorization_code
+  auth:
+    authorization_code:
+      pkce: false
+      redirect_uri: 'https://inferno.healthit.gov/suites/custom/smart/redirect'
+      refresh_token: true
+      secret_required: false
+      access_token_expiration: 300
+  smart:
+    launch_uri: 'https://inferno.healthit.gov/suites/custom/smart/launch'
+- id: inferno-my-clinic-bulk-client
+  resourceType: Client
+  type: bulk-api-client
+  active: true
+  auth:
+    client_credentials:
+      client_assertion_types: ['urn:ietf:params:oauth:client-assertion-type:jwt-bearer']
+      access_token_expiration: 300
+  scope: [system/*.read]
+  jwks_uri: https://inferno.healthit.gov/suites/custom/g10_certification/.well-known/jwks.json
+  grant_types:
+  - client_credentials
+  meta:
+    tenant:
+      id: my-clinic
+      resourceType: Tenant
 ```
 
 ## Create Inferno test session
