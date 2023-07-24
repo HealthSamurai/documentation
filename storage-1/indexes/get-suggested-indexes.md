@@ -31,7 +31,7 @@ Not supported:
 * zen Search Parameters
 * \_filter
 * _include,_ \_revinclude
-*
+* chained Search Parameters
 
 ### aidbox.index/suggest-index
 
