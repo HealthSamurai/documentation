@@ -175,7 +175,7 @@ POST /rpc
 Content-Type: text/yaml
 Accept: text/yaml
 
-method: aidbox.index.v1/sync-indexesm
+method: aidbox.index.v1/sync-indexes
 ```
 
 Response:
