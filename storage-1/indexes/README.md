@@ -174,7 +174,7 @@ Accept: application/json
 This RPC runs [workflow](../../modules-1/workflow-engine/) that creates indexes requested by your configuration. And removes indexes not requested.
 
 {% hint style="info" %}
-Aidbox managed indexes start with `aidbox_mng_idx` prefix. So your custom indexes which do not start with this prefix will not be affected.
+Aidbox managed indexes start with `aidbox_mng_idx` prefix. So your custom indexes which do not start with this prefix will not be affected by `sync-indexes` RPC.
 {% endhint %}
 
 ## Auto-generated indexes
