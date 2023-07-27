@@ -355,8 +355,8 @@
     * [What is Tenant](modules-1/smartbox/background-information/what-is-tenant.md)
     * [Email templating](modules-1/smartbox/background-information/email-templating.md)
 * [Multitenancy](modules-1/multitenancy/README.md)
-  * [How to enable hierarchical access control](modules-1/multitenancy/how-to-enable-hierarchical-access-control.md)
   * [Organization-based hierarchical access control](modules-1/multitenancy/organization-based-hierarchical-access-control.md)
+  * [How to enable hierarchical access control](modules-1/multitenancy/how-to-enable-hierarchical-access-control.md)
 
 ## FHIR Implementation Guides
 
