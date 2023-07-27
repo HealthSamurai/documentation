@@ -243,7 +243,11 @@ error:
 
 Convert all SDCForms with :fhir/id property to FHIR questionnaire and store them in DB.
 
-This RPC don't have any paramerters.
+params:
+
+| Param           | Description                                                | Type    | required? |
+|-----------------|------------------------------------------------------------|---------|-----------|
+| describe-rules* | If true - will add field calculation rule description to Q | boolean | no        |
 
 Returns list of pairs \[form-name, convertions-result] where convertion result is one of:
 
@@ -256,6 +260,8 @@ Request:
 POST /rpc
 
 method: aidbox.sdc/convert-forms
+params:
+  describe-rules: true
 ```
 
 Result:
