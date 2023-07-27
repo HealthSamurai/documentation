@@ -108,6 +108,7 @@
       * [\_filter](api-1/fhir-api/search-1/search-parameters-list/\_filter.md)
       * [\_explain](api-1/fhir-api/search-1/search-parameters-list/\_explain.md)
       * [\_source](api-1/fhir-api/search-1/search-parameters-list/\_source.md)
+      * [\_security](api-1/fhir-api/search-1/search-parameters-list/\_security.md)
     * [Zen Search Parameters](api-1/fhir-api/search-1/zen-search-parameters.md)
     * [Search Resource](api-1/fhir-api/search-1/search-resource.md)
     * [Search with related resources](api-1/fhir-api/search-1/search-with-related-resources.md)
