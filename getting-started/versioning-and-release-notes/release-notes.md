@@ -17,7 +17,7 @@
   * Supported SCIM v2 User API&#x20;
   * Added aidbox.rest.v1/gateway operation pass auth information (user, client, session) to backend service
 * Aidbox Forms
-  * Supported an option to include question scores in QuestionnaireResponse in the converter
+  * Supported an option to include [question scores](../../modules-1/aidbox-forms/converter.md#include-score-value-in-questionnaireresponse) in QuestionnaireResponse in the [converter](../../reference/aidbox-forms/api-reference.md#aidbox.sdc-convert-document)
   * Minor fixes: UI became more stable while loading
 
 ## June 2023 _`stable,2306`_
