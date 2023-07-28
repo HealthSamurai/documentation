@@ -1,6 +1,26 @@
 # Release Notes
 
-## June 2023 _`latest`_
+## July 2023 _`latest`_
+
+* Data API
+  * Added [multilingual search](../../tutorials/data-api/how-to-use-multilingual-search.md) with [\_search-language](../../api-1/fhir-api/search-1/search-parameters-list/\_search-language.md) parameter
+  * Added an option to translate concepts with [$translate-concepts](../../modules-1/terminology/concept/usdtranslate-concepts.md) endpoint
+  * Added [\_source](../../api-1/fhir-api/search-1/search-parameters-list/\_source.md) search parameter
+* [C-CDA / FHIR converter](../../modules-1/ccda-converter/)
+  * Supported C-CDA to work as [a standalone service](../../modules-1/ccda-converter/deploy-ccda-fhir.md)
+  * Added an option [to inspect intermediate conversion tree](../../modules-1/ccda-converter/ccda-fhir-dsl.md#rules-dsl-syntax)
+* Security and access control
+  * Added [shared resources](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#shared-resource-mode) in the organisation-based multitenancy&#x20;
+  * Supported [Azure AD asymmetric authentication ](../../security-and-access-control-1/how-to-guides/azure-ad.md)
+  * Added security dashboard in the AIdbox UI&#x20;
+  * Added new form for creation IdentityProvider resource&#x20;
+  * Supported SCIM v2 User API&#x20;
+  * Added aidbox.rest.v1/gateway operation pass auth information (user, client, session) to backend service
+* Aidbox Forms
+  * Supported an option to include question scores in QuestionnaireResponse in the converter
+  * Minor fixes: UI became more stable while loading
+
+## June 2023 _`stable,2306`_
 
 * [Workflow Engine](../../modules-1/workflow-engine/):
   * Added [wait ](../../modules-1/workflow-engine/task/aidbox-predefined-tasks.md#awf.task-wait)task
