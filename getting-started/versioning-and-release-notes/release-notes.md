@@ -11,7 +11,7 @@
   * Added an option [to inspect intermediate conversion tree](../../modules-1/ccda-converter/ccda-fhir-dsl.md#rules-dsl-syntax)
 * Security and access control
   * Added [shared resources](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#shared-resource-mode) in the organisation-based multitenancy&#x20;
-  * Supported [Azure AD asymmetric authentication ](../../modules-1/security-and-access-control/how-to-guides/set-up-external-identity-provider/azure-ad-1.md)
+  * Supported [Azure AD asymmetric authentication ](../../security-and-access-control-1/how-to-guides/azure-ad.md)
   * Added security dashboard in the AIdbox UI&#x20;
   * Added new form for creation IdentityProvider resource&#x20;
   * Supported SCIM v2 User API&#x20;
