@@ -40,7 +40,7 @@ Please note the`Content-Type: application/cda+xml` header. Any other MIME type w
 If conversion was successful, you'll get a [FHIR Document](https://www.hl7.org/fhir/documents.html) as a result. Accordingly to the FHIR Documents specification, the first resource in the resulting bundle is [Composition resource](https://www.hl7.org/fhir/composition.html) containing document header information as well as the list of document sections.
 
 ```json
-// POST /ccda/to-fhir
+// POST /ccda/v2/to-fhir
 // HTTP/1.1 200 OK
 
 {
@@ -112,7 +112,7 @@ If conversion was successful, you'll get a [FHIR Document](https://www.hl7.org/f
 In case of error, OperationOutcome resource will be returned:
 
 ```json
-// POST /ccda/to-fhir
+// POST /ccda/v2/to-fhir
 // HTTP/1.1 422 Unprocessable Entity
 
 {
