@@ -13,7 +13,7 @@
   * Added [shared resources](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#shared-resource-mode) in the [Organisation-based access control](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md)
   * Supported [Azure AD asymmetric authentication](../../modules-1/security-and-access-control/how-to-guides/set-up-external-identity-provider/azure-ad-1.md)&#x20;
   * Added security dashboard in the Aidbox UI&#x20;
-  * Added new form for creation IdentityProvider resource&#x20;
+  * Added a form to create an IdentityProvider resource&#x20;
   * Supported SCIM v2 User API&#x20;
   * Added aidbox.rest.v1/gateway operation pass auth information (user, client, session) to backend service
 * Aidbox Forms
