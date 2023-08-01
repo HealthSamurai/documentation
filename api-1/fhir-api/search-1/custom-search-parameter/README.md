@@ -2,7 +2,7 @@
 
 Aidbox has multiple options to provide custom searches.
 
-## [custom-search.md](custom-search.md "mention")
+## [custom-search.md](../custom-search.md "mention")
 
 Use AidboxQuery if you want to search writing your own SQL.
 
@@ -37,7 +37,7 @@ query-sql:
 
 #### Define custom SearchParameter with extension
 
-If you have defined [first-class extension](../../../modules-1/first-class-extensions.md), you have to use Aidbox format for the SearchParameter expression. If you use FHIR format, you don't need to create Attribute and the `expression` path should be in FHIR format.
+If you have defined [first-class extension](../../../../modules-1/first-class-extensions.md), you have to use Aidbox format for the SearchParameter expression. If you use FHIR format, you don't need to create Attribute and the `expression` path should be in FHIR format.
 
 {% tabs %}
 {% tab title="First-class extension" %}
@@ -81,13 +81,13 @@ value, CodeableConcept, coding, code]
 {% endtab %}
 {% endtabs %}
 
-If you use [Zen IG](../../../aidbox-configuration/zen-configuration.md) then first-class extensions are generated from zen-schemas. You have to use Aidbox format for the custom SearchParameter `expression` (check tab #3 in the example above).
+If you use [Zen IG](../../../../aidbox-configuration/zen-configuration.md) then first-class extensions are generated from zen-schemas. You have to use Aidbox format for the custom SearchParameter `expression` (check tab #3 in the example above).
 
 ## Custom SearchParameter with Zen
 
 Most of the Search Parameters from IG work with Zen by default, also you can make a new one.
 
-Assuming you already know how to use [configuration projects](../../../aidbox-configuration/aidbox-zen-lang-project/setting-up-a-configuration-project.md), let's learn how to create zen search parameter by example:
+Assuming you already know how to use [configuration projects](../../../../aidbox-configuration/aidbox-zen-lang-project/setting-up-a-configuration-project.md), let's learn how to create zen search parameter by example:
 
 ```clojure
 {ns main
@@ -131,9 +131,9 @@ We have one repository for Patient resourceType: `patient-repository`. It contai
 
 SearchParameter must contain:
 
-* type: [FHIR Search Parameter types](./#search-parameters)
+* type: [FHIR Search Parameter types](../#search-parameters)
 * resource, containing resourceType and id
-* [jsonknife](custom-search-parameter.md#jsonpath-vs-jsonknife) expression containing path in the resource to search for
+* [jsonknife](./#jsonpath-vs-jsonknife) expression containing path in the resource to search for
 * name to use in search
 
 After your Aidbox loads the service, you can use new search parameter:
@@ -143,7 +143,7 @@ GET /Patient?brthd=lt2023
 ```
 
 {% hint style="info" %}
-You can always look into the definition of Aidbox-specific namespaces in [Profiles page](../../../profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile.md#check-if-your-profile-is-loaded)
+You can always look into the definition of Aidbox-specific namespaces in [Profiles page](../../../../profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile.md#check-if-your-profile-is-loaded)
 {% endhint %}
 
 Formal Zen SearchParameters description:
@@ -154,7 +154,7 @@ Formal Zen SearchParameters description:
 
 ### Composite search parameter
 
-Read [Composite Search Parameters](composite-search-parameters.md) first.
+Read [Composite Search Parameters](../composite-search-parameters.md) first.
 
 Composite search parameter must contain additional key: components. It must be a nested array in following structure:
 

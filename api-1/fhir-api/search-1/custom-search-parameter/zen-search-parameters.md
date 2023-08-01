@@ -1,6 +1,8 @@
 # Zen Search Parameters
 
-Formal description of Zen SearchParameter. Read [this](searchparameter.md#define-custom-searchparameter) guide first.
+Formal description of Zen SearchParameter. Read this guide first.
+
+[#custom-searchparameter-with-zen](./#custom-searchparameter-with-zen "mention")
 
 ### SearchParameter
 

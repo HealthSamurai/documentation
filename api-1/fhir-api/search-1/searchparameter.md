@@ -69,4 +69,4 @@ Expression consists of array of PathArrays, all results of PathArray are concati
 
 ## &#x20;Create Custom Search Parameter
 
-Is described in [custom-search-parameter.md](custom-search-parameter.md "mention")page.
+Is described in [custom-search-parameter](custom-search-parameter/ "mention")page.
