@@ -10,7 +10,7 @@
   * Supported C-CDA to work as [a standalone service](../../modules-1/ccda-converter/deploy-ccda-fhir.md)
   * Added an option [to inspect intermediate conversion tree](../../modules-1/ccda-converter/ccda-fhir-dsl.md#rules-dsl-syntax)
 * Security and access control
-  * Added [shared resources](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#shared-resource-mode) in the organisation-based multitenancy&#x20;
+  * Added [shared resources](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#shared-resource-mode) in the [Organisation-based access control](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md)
   * Supported [Azure AD asymmetric authentication](../../modules-1/security-and-access-control/how-to-guides/set-up-external-identity-provider/azure-ad-1.md)&#x20;
   * Added security dashboard in the Aidbox UI&#x20;
   * Added new form for creation IdentityProvider resource&#x20;
