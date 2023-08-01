@@ -1,5 +1,7 @@
 # Composite Search Parameters
 
+Since version 2308 Aidbox supports Composite Search Parameters.
+
 [Composite Search Parameters](https://www.hl7.org/fhir/search.html#composite) are special search parameters to match resources by two or more values, separated by `$` sign. Such search parameters will search not by simple intersection, like `search-param1=value1&search-param2=value2`, but more strictly.&#x20;
 
 For example, take a look at [Observation](https://www.hl7.org/fhir/observation.html) resource structure and suppose we have following resource: &#x20;
@@ -36,3 +38,12 @@ GET /fhir/Observation?code=loinc|12907-1&value-quantity=1 // found
 GET /fhir/Observation?code=loinc|12907-1&value-quantity=2 // found
 ```
 
+## Enable composite search
+
+To turn on in Aidbox project use:
+
+```
+:search {...
+         :composite-search true
+         ...}
+```
