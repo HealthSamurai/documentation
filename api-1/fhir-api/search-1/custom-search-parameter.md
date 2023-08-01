@@ -159,7 +159,7 @@ Read [Composite Search Parameters](composite-search-parameters.md) first.
 Composite search parameter must contain additional key: components. It must be a nested array in following structure:
 
 ```
-[ <paths-to-search-for-value1> <paths-to-search-for-value2>]
+[ <paths-to-search-for-value1> <paths-to-search-for-value2> ...]
 ```
 
 In this example we create SearchParameter with name `composite-string-date` which will look for two parts: one is string, the other is date.&#x20;
