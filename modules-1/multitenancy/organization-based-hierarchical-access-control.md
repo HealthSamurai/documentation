@@ -133,6 +133,14 @@ DELETE <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>/<id>
 GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>
 ```
 
+{% hint style="warning" %}
+The search API does not support search parameters:
+
+* `_has`
+* `_assoc`
+* `_with`
+{% endhint %}
+
 ## Shared resource mode
 
 By default, nested API has ho access to a resource that is belonged to the upper organizations. Sometimes it is necessary to have resources that can be accessed by the nested APIs. To achive it the resource should be marked as `share`.&#x20;
