@@ -41,7 +41,11 @@ Supported Lisp functions are tested and documented using [zen-lang](https://gith
 * `matcho-path`
 * `date`
 * `timestamp`
+* `parse-date`
+* `format-date`
 * `period`
+* `dec-date`
+* `inc-date`
 * `sql`
 * `sql*`
 * `sdc->fhir-value`
@@ -497,6 +501,26 @@ Examples:
 (timestamp) => 1658416557
 ```
 
+### parse-date
+
+Parses string date with given format. Returns date in format 'yyyy-MM-dd'
+
+Examples:
+
+```clojure
+(parse-date \"10-30-2022\" \"MM-dd-yyyy\") => 2022-10-30
+```
+
+### format-date
+
+Takes date string in 'yyyy-MM-dd' and formats it to given template.
+
+Examples:
+
+```clojure
+(format-date \"2022-10-30\" \"MM-dd-yyyy\") => 10-30-2022
+```
+
 ### `period`
 
 Returns difference between two dates in given units. Arguments order is not matter - returns absolute value. Possible units are: :years :months :weeks :days
@@ -505,13 +529,46 @@ Examples:
 
 ```clojure
 (period "2022-01-01" "2022-12-12" :months) ;; => 11
-;; -------------
+;; ------------------------------------------------
 (period "2022-01-01" "2022-01-10" :weeks) ;; => 1
-;; -------------
+;; ------------------------------------------------
 (period "2022-01-01" "2022-01-10" :days) ;; => 9
-;; -------------
+;; ------------------------------------------------
 (period "2022-01-10" "2022-01-01" :days) ;; => 9
 
+```
+
+### dec-date
+
+Returns date decreased by number of date-units.
+Possible units are: :years :months :weeks :days
+
+
+Examples:
+
+```clojure
+(dec-date "2022-10-10" 1 :days) ;; => "2022-10-09"
+;; --------------------------------------------------
+(dec-date "2022-10-10" 1 :weeks) ;; => "2022-10-03"
+;; --------------------------------------------------
+(dec-date "2022-10-10" 1 :months) ;; => "2022-09-10"
+;; --------------------------------------------------
+(dec-date "2022-10-10" 1 :years) ;; => "2021-10-10"
+```
+
+### inc-date
+
+Returns date increased by number of date-units.
+Possible units are: :years :months :weeks :days
+
+```clojure
+(inc-date "2022-10-10" 1 :days) ;; => "2022-10-11"
+;; --------------------------------------------------
+(inc-date "2022-10-10" 1 :weeks) ;; =>  "2022-10-17"
+;; --------------------------------------------------
+(inc-date "2022-10-10" 1 :months) ;; => "2022-11-10"
+;; --------------------------------------------------
+(inc-date "2022-10-10" 1 :years) ;; => "2023-10-10"
 ```
 
 ### `sql`
