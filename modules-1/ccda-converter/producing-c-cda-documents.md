@@ -130,7 +130,7 @@ Endpoint returns a FHIR Document or OperationOutcome resource in case of error.
 Behaves the same way as `/ccda/prepare-doc`, but additionally applies C-CDA transformation, so you'll get C-CDA XML document in response.
 
 ```http
-POST /ccda/prepare-doc?pid=42
+POST /ccda/make-doc?pid=42
 Content-Type: application/json
 
 {
