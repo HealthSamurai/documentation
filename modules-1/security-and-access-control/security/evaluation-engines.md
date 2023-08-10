@@ -313,7 +313,7 @@ Requires to specify `type: rpc` for `AccessPolicy` resource.
 
 `matcho-rpc` allows access to all endpoints that satisfy specified [Matcho](evaluation-engines.md#matcho) rules.
 
-### Example
+### Example 1
 
 ```yaml
 resourceType: AccessPolicy
@@ -325,4 +325,24 @@ rpc:
     params:
       notebook:
         id: hello
+```
+
+### Example 2
+
+To control [tenant](../../multitenancy/README.md) access, use `tenant/org` in macho-rpc. `tenant/org` contains the current organization id in the multitenancy API.
+
+```yaml
+resourceType: AccessPolicy
+id: client-uses-rpc-method-on-org-a
+type: rpc
+engine: matcho-rpc
+rpc:
+  rpc-method-name:
+    uri: "/Organization/org-a/rpc"
+    # organization id should persist
+    tenant/org: "present?"
+    # client.details.org-id field should be equal to current organization id
+    client:
+      details:
+        org-id: ".tenant/org.id"
 ```
