@@ -141,10 +141,26 @@ Please note that this endpoint doesn't persist any populated FHIR data to Aidbox
 
 There are several options you may pass to the `/ccda/v2/to-fhir` endpoint. Options are passed as query string parameters, i.e. `/ccda/v2/to-fhir?option1=value1&option2=value2`.
 
-| Option     | Values                                                                                                                                | Description                                                                                                  |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| `format`   | <p><code>aidbox | fhir</code><br>Default: <code>fhir</code></p>                                                                       | [Format](../../getting-started/aidbox-and-fhir-formats.md) of resulting FHIR document. It's FHIR by default. |
-| `sections` | <p>Proceed to the <a href="./#list-of-supported-sections">Section Aliases</a> table to find all possible values. <br>Default: all</p> | Comma-separated list of section aliases to process. By default all sections are processed.                   |
+| Option      | Values                                                                                                                                | Description                                                                                              |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `format`    | <p><code>aidbox | fhir</code><br>Default: <code>fhir</code></p>                                                                       | [Format](../fhir-resources/aidbox-and-fhir-formats.md) of resulting FHIR document. It's FHIR by default. |
+| transaction | true                                                                                                                                  | Output FHIR bundle type. By default FHIR document bundle will be returned.                               |
+| `sections`  | <p>Proceed to the <a href="./#list-of-supported-sections">Section Aliases</a> table to find all possible values. <br>Default: all</p> | Comma-separated list of section aliases to process. By default all sections are processed.               |
+
+Example
+
+```http
+POST /ccda/v2/to-fhir?transaction=true
+Authorization: .....
+Content-Type: application/cda+xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<ClinicalDocument 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns="urn:hl7-org:v3" ...>
+  ....
+</ClinicalDocument>
+```
 
 ### Converting a FHIR Document to C-CDA
 
