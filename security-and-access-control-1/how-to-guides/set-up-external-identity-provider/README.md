@@ -37,6 +37,7 @@ resourceType: IdentityProvider
 system: https://google.com
 active: true
 id: <provider-id>
+userinfo-source: id-token | userinfo-endpoint
 authorize_endpoint: https://accounts.google.com/o/oauth2/v2/auth
 token_endpoint: https://www.googleapis.com/oauth2/v4/token
 userinfo_endpoint: https://www.googleapis.com/oauth2/v1/userinfo
@@ -51,6 +52,7 @@ client:
 | attribute            | description                                                                                                                                                                                                                              |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `system`             | adds identifier for the created user with this system                                                                                                                                                                                    |
+| `userinfo-source` | If `id-token`, `user.data` is populated with the `id_token.claims` value. Otherwise request to the `userinfo_endpoint` is performed to get user details. |
 | `authorize_endpoint` | OAuth Provider authorization endpoint                                                                                                                                                                                                    |
 | `token_endpoint`     | OAuth Provider access token endpoint                                                                                                                                                                                                     |
 | `userinfo_endpoint`  | OAuth Provider user profile endpoint                                                                                                                                                                                                     |
