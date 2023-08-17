@@ -24,8 +24,8 @@ In Aidbox, all terminology services are built around non-FHIR **Concept** resour
 [ftr-specification.md](../../terminology/fhir-terminology-repository/ftr-specification.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../terminology/create-a-valueset.md" %}
-[create-a-valueset.md](../../terminology/create-a-valueset.md)
+{% content-ref url="valueset/create-a-valueset.md" %}
+[create-a-valueset.md](valueset/create-a-valueset.md)
 {% endcontent-ref %}
 
 {% content-ref url="../../terminology/terminology-api/" %}
