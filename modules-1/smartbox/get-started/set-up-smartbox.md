@@ -166,32 +166,6 @@ Open the admin portal [http://localhost:8888/](http://localhost:8888/) and login
 
 On the admin portal you can manage apps, patients and other admins.
 
-## Developer sandbox
-
-### Setup TokenIntrospector in the Sandbox
-
-To make Sandbox respect tokens issued by Patient Portal:
-
-* Open the admin portal [http://localhost:9999/](http://localhost:9999/) and login using credentials from the .env file `AIDBOX_ADMIN_ID` and `AIDBOX_ADMIN_PASSWORD`
-* Open UI console [http://localhost:9999/ui/console](http://localhost:9999/ui/console)
-* Click the REST Console menu item in the left side bar
-* Create TokenIntrospector resource like example below
-
-```http
-PUT /TokenIntrospector/sandbox-respects-patient-portal-jwt
-
-jwt:
-  iss: http://localhost:8888 # Patient portal base_url value
-type: jwt
-jwks_uri: http://localhost:8888/.well-known/jwks.json # Patient portal jwks URL
-id: sandbox-respects-patient-portal-jwt
-resourceType: TokenIntrospector
-```
-
-{% content-ref url="../../../security-and-access-control-1/how-to-guides/token-introspection.md" %}
-[token-introspection.md](../../../security-and-access-control-1/how-to-guides/token-introspection.md)
-{% endcontent-ref %}
-
 ### Register developer
 
 Submit developer registration form
