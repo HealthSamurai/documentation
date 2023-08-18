@@ -141,6 +141,44 @@ The search API does not support search parameters:
 * `_with`
 {% endhint %}
 
+### Bundle
+
+```
+POST /Organization/org-b/fhir/
+Accept: text/yaml
+Content-Type: text/yaml
+
+resourceType: Bundle
+type: transaction
+entry:
+- request:
+    method: POST
+    url: 'Patient'
+  resource:
+    birthDate: '2021-01-01'
+    id: 'pt-1'
+    meta:
+      organization:
+        id: 'org-c'
+        resourceType: 'Organization'
+- request:
+    method: POST
+    url: 'Patient'
+  resource:
+    birthDate: '2021-01-01'
+    id: 'pt-2'
+```
+
+{% hint style="warning" %}
+Supported only bundle type `transaction`.
+{% endhint %}
+
+### Metadata
+
+```
+GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/metadata
+```
+
 ## Shared resource mode
 
 By default, nested API has ho access to a resource that is belonged to the upper organizations. Sometimes it is necessary to have resources that can be accessed by the nested APIs. To achive it the resource should be marked as `share`.&#x20;
