@@ -2,10 +2,6 @@
 
 Aidbox has multiple options to provide custom searches.
 
-## [custom-search.md](../custom-search.md "mention")
-
-Use AidboxQuery if you want to search writing your own SQL.
-
 ## Define SearchParameter resource
 
 You can define custom search params by just creating SearchParameter resource. Let's say you want to search patient by city:
