@@ -141,7 +141,7 @@ An `op` describes REST operation. `:engine` specifies what operation handler sho
 * `aidbox.rest.v1/aidbox-action` - expects `:action`, passes request to existing Aidbox action. You can see list of available operations with this request:\
   `GET /Operation?_elements=action&_result=array&_count=1000`
 * `aidbox.rest.v1/echo` - expects `:response` in the definition, returns the response.
-* [`ingestion.core/mapgto-fhir-bundle`](aidbox-api-constructor.md#map-to-fhir-bundle)
+* [`ingestion.core/map-to-fhir-bundle`](aidbox-api-constructor.md#map-to-fhir-bundle)
 * [`aidbox.rest.v1/gateway`](aidbox-api-constructor.md#Gateway)
 
 #### Regular FHIR API
