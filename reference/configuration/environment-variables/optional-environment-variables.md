@@ -120,6 +120,24 @@ By setting one of these values you would also get all the values to the left. e.
 {"sql":"SELECT 1","d":2,"ts":"2022-10-26T10:59:59.825Z","w":"main","ev":"db/q"}
 ```
 
+### AIDBOX\_STDOUT\_GOOGLE_\_JSON
+
+Produces logs in Google Logging format (see [LogEntry](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry)). 
+
+```
+AIDBOX_STDOUT_GOOGLE_JSON=<log-level>
+```
+
+`log-level` is one of: `off`, `fatal`, `error`, `warn`, `info`, `debug`, `trace`, `all`.
+
+By setting one of these values you would also get all the values to the left. e.g. if you set log level to `warn` you would also get log events with `fatal` and `error` levels (`off` is excluded).
+
+#### Example of the log output
+
+```json
+{"sql":"SELECT 1","d":2,"timestamp":"2022-10-26T10:59:59.825Z","severity":"INFO","w":"main","ev":"db/q"}
+```
+
 ### AIDBOX\_STDOUT\_PRETTY
 
 ```
