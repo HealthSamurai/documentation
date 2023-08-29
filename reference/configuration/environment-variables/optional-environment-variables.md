@@ -120,7 +120,7 @@ By setting one of these values you would also get all the values to the left. e.
 {"sql":"SELECT 1","d":2,"ts":"2022-10-26T10:59:59.825Z","w":"main","ev":"db/q"}
 ```
 
-### AIDBOX\_STDOUT\_GOOGLE_\_JSON
+### AIDBOX\_STDOUT\_GOOGLE\_JSON
 
 Produces logs in Google Logging format (see [LogEntry](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry)). 
 
