@@ -49,11 +49,24 @@ You can create View Definitions using REST API
 
 {% tabs %}
 {% tab title="Request" %}
+```yaml
+PUT /ViewDefinition/patient_view
 
+name: patient_view
+resource: '{"name":"patient_view","resource":"Patient","desc":"Patient flat view","select":[{"name":"id","expr":"id"},{"name":"bod","expr":"birthDate"},{"name":"gender","expr":"gender"}]}'
+```
 {% endtab %}
 
 {% tab title="Response" %}
-
+```yaml
+name: patient_view
+resource: >-
+  {"name":"patient_view","resource":"Patient","desc":"Patient flat
+  view","select":[{"name":"id","expr":"id"},{"name":"bod","expr":"birthDate"},{"name":"gender","expr":"gender"}]}
+id: >-
+  patient_view
+resourceType: ViewDefinition
+```
 {% endtab %}
 {% endtabs %}
 
