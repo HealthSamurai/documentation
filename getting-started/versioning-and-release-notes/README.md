@@ -32,7 +32,13 @@ Starting in January 2022 we are introducing long-term support releases. The Aidb
 
 Aidbox LTS releases are scheduled to be published twice a year. If you are not interested in getting new features on a monthly basis but want to get critical bug fixes, please consider switching to LTS releases.
 
-<table><thead><tr><th width="162">Aidbox version</th><th width="138">Support</th><th>Availability starts</th><th>End of life</th></tr></thead><tbody><tr><td><a href="https://hub.docker.com/layers/healthsamurai/aidboxone/2302-lts/images/sha256-f8eef5dc5b72486fedd221a926f550e5b03a081135ab2b86e792db24fe150629?context=explore">2302-lts</a></td><td>✔ </td><td>2023-04</td><td>2025-04</td></tr><tr><td><a href="https://hub.docker.com/layers/aidboxone/healthsamurai/aidboxone/2206-lts/images/sha256-33ce2578c544b427408f2fc1e7526edc75f8d1df47dcb81d92f384fdb4b6b626?context=explore">2206-lts</a></td><td>✔</td><td>2022-08</td><td>2023-08</td></tr><tr><td><a href="https://hub.docker.com/layers/aidboxone/healthsamurai/aidboxone/2202-lts/images/sha256-db99626a3ef739dc76a20f75eee7bf2ca4476548c1b89a1fe8a2993d4d02cf41?context=explore">2202-lts</a></td><td>-</td><td>2022-04</td><td>2023-04</td></tr></tbody></table>
+<table>
+<thead><tr><th width="162">Aidbox version</th><th width="138">Support</th><th>Availability starts</th><th>End of life</th></tr></thead>
+<tbody>
+<tr><td><a href="https://hub.docker.com/layers/healthsamurai/aidboxone/2302-lts/images/sha256-f8eef5dc5b72486fedd221a926f550e5b03a081135ab2b86e792db24fe150629?context=explore">2302-lts</a></td><td>✔ </td><td>2023-04</td><td>2025-04</td></tr>
+<tr><td><a href="https://hub.docker.com/layers/aidboxone/healthsamurai/aidboxone/2206-lts/images/sha256-33ce2578c544b427408f2fc1e7526edc75f8d1df47dcb81d92f384fdb4b6b626?context=explore">2206-lts</a></td><td>—</td><td>2022-08</td><td>2023-08</td></tr>
+<tr><td><a href="https://hub.docker.com/layers/aidboxone/healthsamurai/aidboxone/2202-lts/images/sha256-db99626a3ef739dc76a20f75eee7bf2ca4476548c1b89a1fe8a2993d4d02cf41?context=explore">2202-lts</a></td><td>—</td><td>2022-04</td><td>2023-04</td></tr>
+</tbody></table>
 
 #### LTS changelog
 
