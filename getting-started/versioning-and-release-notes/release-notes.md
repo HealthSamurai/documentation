@@ -23,7 +23,7 @@
   * Updated the sidebar in the Aidbox UI
 * DevOps
   * Add metrics for Aidbox logs. Count of logs per log level&#x20;
-  * Implemented PG database backup verification tool, improve grafana dashboards to show backup verification statuses
+  * Implemented PG database backup verification tool, improved Grafana dashboards to show backup verification statuses
 * Aidbox Forms
   * Added basic Forms Accessibility (Screen Readers, Keyboard Navigation)&#x20;
   * Improved mobile devices adaptation (form takes all visual space, buttons aligned in specific positions)&#x20;
