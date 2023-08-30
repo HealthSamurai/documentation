@@ -1,6 +1,35 @@
 # Release Notes
 
-## July 2023 _`latest`_
+## August 2023 _`latest`_
+
+* [SQL on FHIR engine ](../../modules-1/sql-on-fhir/)early access
+* Data API
+  * Added [\_filter](../../api-1/fhir-api/search-1/search-parameters-list/\_filter.md#forward-chains) for chained search
+  * Optimized GrapQL for revincludes
+  * Added [X-max-transaction-level](../../api-1/api/crud-1/update.md#isolation-levels) for CRUD
+* Integrations
+  * Supported FHIR R4B and R5 Topic-based subscriptions
+* Security and access control
+  * Added [Capability Statement ](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#metadata)endpoint for multitenant API&#x20;
+  * Added [bundle transaction](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#bundle) for multitenant API&#x20;
+  * Added [stdout appender](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox\_stdout\_google\_json) for logs in [Google format](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry)
+  * Added access policy usage in UI console on AccessPolicy page
+  * Added a neat UI to rotate credentials and download certificates on IdentityProvider view page
+  * Supported [BALP ](https://profiles.ihe.net/ITI/BALP/)for CRUD + Search operations. Both basic and patient profiles&#x20;
+  * Issue [2306-lts](./#long-term-support-releases)
+* Aidbox user portal
+  * Added the ability to specify a custom configuration project when creating a GCP Aidbox
+* Aidbox.app UI
+  * Updated the sidebar in the Aidbox UI
+* DevOps
+  * Add metrics for Aidbox logs. Count of logs per log level&#x20;
+  * Implemented PG database backup verification tool, improve grafana dashboards to show backup verification statuses
+* Aidbox Forms
+  * Added basic Forms Accessibility (Screen Readers, Keyboard Navigation)&#x20;
+  * Improved mobile devices adaptation (form takes all visual space, buttons aligned in specific positions)&#x20;
+  * Improved UX of developer tools (inline errors, autocomplete, code folding, bracket matching)
+
+## July 2023 _`stable,2307`_
 
 * Data API
   * Added [multilingual search](../../tutorials/data-api/how-to-use-multilingual-search.md) with [\_search-language](../../api-1/fhir-api/search-1/search-parameters-list/\_search-language.md) parameter
