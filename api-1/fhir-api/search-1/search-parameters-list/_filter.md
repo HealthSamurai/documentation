@@ -2,7 +2,7 @@
 
 Aidbox offers the partial support of FHIR [\_filter](https://www.hl7.org/fhir/search\_filter.html) API. However, we tend to use other search capabilities like AidboxQuery, SearchQuery, or Search resource for complex queries. They offer better expressiveness with SQL and better performance.
 
-#### Supported operators
+## Supported operators
 
 <table><thead><tr><th width="128">Operation</th><th width="87" align="center">String</th><th width="100" align="center">Number</th><th align="center">Date</th><th width="100" align="center">Token</th><th width="122" align="center">Reference</th><th align="center">Quantity</th></tr></thead><tbody><tr><td>eq</td><td align="center">+</td><td align="center">+**</td><td align="center">+</td><td align="center">+*</td><td align="center">n/a</td><td align="center">+***</td></tr><tr><td>ne</td><td align="center">-</td><td align="center">+**</td><td align="center">+</td><td align="center">-</td><td align="center">n/a</td><td align="center">+***</td></tr><tr><td>co</td><td align="center">+</td><td align="center">-</td><td align="center">-</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">n/a</td></tr><tr><td>sw</td><td align="center">+</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">n/a</td></tr><tr><td>ew</td><td align="center">+</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">n/a</td></tr><tr><td>gt/ge/lt/le</td><td align="center">-</td><td align="center">+</td><td align="center">+</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">+***</td></tr><tr><td>po</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">-</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">n/a</td></tr><tr><td>ss</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">-</td><td align="center">n/a</td><td align="center">n/a</td></tr><tr><td>sb</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">-</td><td align="center">n/a</td><td align="center">n/a</td></tr><tr><td>in</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">-</td><td align="center">n/a</td><td align="center">n/a</td></tr><tr><td>re</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">n/a</td><td align="center">-</td><td align="center">n/a</td></tr></tbody></table>
 
@@ -12,7 +12,7 @@ Aidbox offers the partial support of FHIR [\_filter](https://www.hl7.org/fhir/se
 
 \*\*\* support only numbers, not system with code
 
-#### Examples
+## Examples
 
 ```
 # returns patient with specific id
@@ -29,11 +29,18 @@ GET /fhir/Patient?_filter=birthdate ge 1996-06-06
 GET /fhir/Patient?_filter=birthdate le 1996-06-06
 ```
 
-#### Logical expressions support
+## Logical expressions support
+
+You can compose logical expressions using parentheses
 
 ```
-# you can do composition of logical expressions with parentheses
 GET /fhir/Patient?_filter=(name co 'smi' or name co 'fed') or name co 'unex'
 ```
 
-If your application requires not supported \_filter functionality, please reach out to us via email, community chat, or private support chat.
+## Forward chains
+
+Aidbox requires to specify chain targets explicitly:
+
+```
+GET /fhir/Patient?_filter=(organization:Organization.name eq 'myorg')
+```
