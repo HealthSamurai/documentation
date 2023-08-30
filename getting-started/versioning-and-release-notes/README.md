@@ -35,6 +35,7 @@ Aidbox LTS releases are scheduled to be published twice a year. If you are not i
 <table>
 <thead><tr><th width="162">Aidbox version</th><th width="138">Support</th><th>Availability starts</th><th>End of life</th></tr></thead>
 <tbody>
+<tr><td><a href="https://hub.docker.com/layers/healthsamurai/aidboxone/2306-lts/images/sha256-8fb6efd524d88c954a8f49ef0340ea6253bfe8dc09e796d8fa15820ee761fe21?context=explore">2306-lts</a></td><td>✔ </td><td>2023-06</td><td>2026-04</td></tr>
 <tr><td><a href="https://hub.docker.com/layers/healthsamurai/aidboxone/2302-lts/images/sha256-f8eef5dc5b72486fedd221a926f550e5b03a081135ab2b86e792db24fe150629?context=explore">2302-lts</a></td><td>✔ </td><td>2023-04</td><td>2025-04</td></tr>
 <tr><td><a href="https://hub.docker.com/layers/aidboxone/healthsamurai/aidboxone/2206-lts/images/sha256-33ce2578c544b427408f2fc1e7526edc75f8d1df47dcb81d92f384fdb4b6b626?context=explore">2206-lts</a></td><td>—</td><td>2022-08</td><td>2023-08</td></tr>
 <tr><td><a href="https://hub.docker.com/layers/aidboxone/healthsamurai/aidboxone/2202-lts/images/sha256-db99626a3ef739dc76a20f75eee7bf2ca4476548c1b89a1fe8a2993d4d02cf41?context=explore">2202-lts</a></td><td>—</td><td>2022-04</td><td>2023-04</td></tr>
