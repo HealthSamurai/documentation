@@ -189,6 +189,7 @@
     * [Workflow User API](modules-1/workflow-engine/workflow/task-user-api.md)
   * [Services](modules-1/workflow-engine/services.md)
   * [Monitoring](modules-1/workflow-engine/monitoring.md)
+* [Topic-Based Subscriptions](modules-1/topic-based-subscriptions.md)
 * [Entities & Attributes](core-modules/entities-and-attributes.md)
 * [First-Class Extensions](modules-1/first-class-extensions.md)
 * [Profiling and validation](modules-1/profiling-and-validation/README.md)
