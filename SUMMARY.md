@@ -365,8 +365,8 @@
   * [Organization-based hierarchical access control](modules-1/multitenancy/organization-based-hierarchical-access-control.md)
   * [How to enable hierarchical access control](modules-1/multitenancy/how-to-enable-hierarchical-access-control.md)
 * [SQL on FHIR](modules-1/sql-on-fhir/README.md)
-  * [View Definition](modules-1/sql-on-fhir/view-definition.md)
-  * [Query data above View Definitions](modules-1/sql-on-fhir/query-data-above-view-definitions.md)
+  * [Defining flat views with View Definitions](modules-1/sql-on-fhir/view-definition.md)
+  * [Query data from flat views](modules-1/sql-on-fhir/query-data-above-view-definitions.md)
   * [Reference](modules-1/sql-on-fhir/reference.md)
 
 ## FHIR Implementation Guides
