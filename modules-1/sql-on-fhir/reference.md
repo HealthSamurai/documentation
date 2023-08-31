@@ -2,33 +2,43 @@
 
 ## ViewDefinition structure
 
+### name
 
+Name of view definition (computer and database friendly) sql-name: Name is limited to letters, numbers, or underscores and cannot start with an underscore — i.e. with a regular expression of: `^[^][A-Za-z][A-Za-z0-9]+$`
 
-SQL on FHIR elements
+### сonstants (optional)
 
-#### сonstant
+Contact details for the publisher. Defined as an array of elemtents that contain the following elements:
 
-Contact details for the publisher.
+* **name** — Name of constant (referred to in FHIRPath as `%[name]`). Name is limited to letters, numbers, or underscores and cannot start with an underscore — i.e. with a regular expression of: `^[^][A-Za-z][A-Za-z0-9]+$`
+* **value** — Value of constant.
 
-#### from
+### select
 
-Creates a scope for selection relative to a parent FHIRPath expression.
+Defines the content of a column within the view. Defined as an array of elemtents that contain one of the following elements:
 
-#### foreach
-
-Same as from, but unnests a new row for each item in the collection.
-
-#### forEachNotNull
-
-Same as forEach, but produces a single row with a null value if the collection is empty
-
-#### where
-
-FHIRPath expression defining a filter condition.
+* **expr** — Creates a scope for selection relative to a parent FHIRPath expression.&#x20;
+* **foreach** — Same as `expr`, but unnests a new row for each item in the collection.
+* **forEachNotNull** — Same as `forEach`, but produces a single row with a `null` value if the collection is empty.
 
 ## FHIRPath expressions
 
-#### Exists(\[criteria])
+SQL on FHIR engine supports a subset of FHIRPath funcitons:
+
+* **where** — returns a collection containing only those elements in the input collection for which the stated `criteria` expression evaluates to `true`. Elements for which the expression evaluates to `false` or empty (`{ }`) are not included in the result.
+* **exists** — returns `true` if the collection has any elements, and `false` otherwise. This is the opposite of `empty()`, and as such is a shorthand for `empty().not()`. If the input collection is empty (`{ }`), the result is `false`.
+* **empty** — returns `true` if the input collection is empty (`{ }`) and `false` otherwise.
+* **extension** — will filter the input collection for items named "extension" with the given url. This is a syntactical shortcut for `.extension.where(url = string)`, but is simpler to write. Will return an empty collection if the input collection is empty or the url is empty.
+* **join** — the join function takes a collection of strings and _joins_ them into a single string, optionally using the given separator.
+* **ofType** — returns a collection that contains all items in the input collection that are of the given type or a subclass thereof. If the input collection is empty (`{ }`), the result is empty.
+* **first** — returns a collection containing only the first item in the input collection. This function is equivalent to `item[0]`, so it will return an empty collection if the input collection has no items.
+* Boolean operators: **and**, **or**, **not**.
+* Math operators: **addition (+)**, **subtraction (-)**, **multiplication (\*)**, **division (/)**.
+* Comparison operators: **equals (=)**, **not equals (!=)**, **greater than (>)**, **less or equal (<=)**.
+
+### Detailed explaination
+
+#### exists(\[criteria])
 
 Returns `true` if the collection has any elements, and `false` otherwise. Also this function takes one optional criteria which will be applied to the collection prior to the determination of the exists. If _any_ element meets the criteria then `true` will be returned.
 
@@ -112,7 +122,7 @@ The result of expression will be:
 | pt1    |
 | `NULL` |
 
-**join**
+#### **join**
 
 First patient:
 
