@@ -16,7 +16,7 @@ Aidbox's Topic-Based Subscription module offers a robust and efficient mechanism
 * **Flexibility**: Administrators enjoy a significant degree of flexibility, especially when it comes to defining Topics. The system offers a versatile range of filters that subscribers can use to refine the data they receive.
 * **High Performance**: Engineered for efficiency, our Topic-Based Subscription module is capable of effortlessly managing thousands of subscribers, maintaining its performance standards even under heavy loads.
 
-### **Main Components**
+## **Main Components**
 
 The Subscription mechanism is composed of two main parts.
 

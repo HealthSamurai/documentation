@@ -80,23 +80,106 @@ Below is an example of an Aidbox entrypoint configured with one topic for observ
 
 * Run Aidbox and check logs for the following output
 
-```
-// Some cod
+```log
+15:17:41 cro-1 :fhir.topic-based-subscription.topic/starting-replication-service {:service aidbox-with-subscriptions/observation-topic-srv, :slot-name "tbs_aidbox_with_subscriptions__observation_topic_srv"}
+15:17:41 cro-2 :fhir.topic-based-subscription.topic/starting-pg-persist-thread {:service aidbox-with-subscriptions/observation-topic-srv, :slot-name "tbs_aidbox_with_subscriptions__observation_topic_srv"}
+15:17:41 40c7a :fhir.topic-based-subscription.topic/service-started {:service aidbox-with-subscriptions/observation-topic-srv}
+15:17:41 cro-3 :fhir.topic-based-subscription.topic/starting-delivery-thread {:service aidbox-with-subscriptions/observation-topic-srv, :slot-name "tbs_aidbox_with_subscriptions__observation_topic_srv"}
+15:17:41 cro-4 :fhir.topic-based-subscription.subscription/start-notification-sender {:service aidbox-with-subscriptions/observation-topic-srv, :idx 0}
+15:17:41 cro-5 :fhir.topic-based-subscription.subscription/start-notification-sender {:service aidbox-with-subscriptions/observation-topic-srv, :idx 1}
+
 ```
 
 * Discover SubscriptionTopic resources in Aidbox using FHIR API&#x20;
 
 {% tabs %}
 {% tab title="Request" %}
-
+```json
+GET /fhir/SubscriptionTopic
+content-type: application/json
+accept: application/json
+```
 {% endtab %}
 
-{% tab title="Response R4B" %}
-
-{% endtab %}
-
-{% tab title="Response R5" %}
-
+{% tab title="Response" %}
+<pre class="language-json"><code class="lang-json"><strong>{
+</strong> "resourceType": "Bundle",
+ "type": "searchset",
+ "meta": {
+  "versionId": "0"
+ },
+ "total": 1,
+ "link": [
+  {
+   "relation": "first",
+   "url": "http://localhost:8765/fhir/SubscriptionTopic?page=1"
+  },
+  {
+   "relation": "self",
+   "url": "http://localhost:8765/fhir/SubscriptionTopic?page=1"
+  }
+ ],
+ "entry": [
+  {
+   "resource": {
+    "id": "cf153a1fde850de90215a6cd0f0abcf5",
+    "url": "http://aidbox.app/SubscriptionTopic/observations",
+    "meta": {
+     "slot_name": "tbs_aidbox_with_subscriptions__observation_topic_srv",
+     "queue_table_name": "observation_topic",
+     "subscription_status_table_name": "observation_topic_subs_status",
+     "lastUpdated": "2023-08-31T15:17:40.355938Z",
+     "versionId": "0",
+     "extension": [
+      {
+       "url": "ex:createdAt",
+       "valueInstant": "2023-08-31T15:17:40.355938Z"
+      }
+     ]
+    },
+    "status": "active",
+    "canFilterBy": [
+     {
+      "modifier": [
+       "eq",
+       "gt",
+       "lt",
+       "ge",
+       "le"
+      ],
+      "resource": "Observation",
+      "filterParameter": "value"
+     },
+     {
+      "modifier": [
+       "eq"
+      ],
+      "resource": "Observation",
+      "filterParameter": "value-increase"
+     }
+    ],
+    "resourceType": "SubscriptionTopic",
+    "resourceTrigger": [
+     {
+      "resource": "Observation",
+      "fhirPathCriteria": "%current.value.ofType(Quantity).value > 10"
+     }
+    ]
+   },
+   "search": {
+    "mode": "match"
+   },
+   "fullUrl": "http://localhost:8765/SubscriptionTopic/cf153a1fde850de90215a6cd0f0abcf5",
+   "link": [
+    {
+     "relation": "self",
+     "url": "http://localhost:8765/SubscriptionTopic/cf153a1fde850de90215a6cd0f0abcf5"
+    }
+   ]
+  }
+ ]
+}
+</code></pre>
 {% endtab %}
 {% endtabs %}
 
