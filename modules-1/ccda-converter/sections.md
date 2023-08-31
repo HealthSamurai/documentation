@@ -157,7 +157,7 @@ C-CDA Result:
          <observation moodCode="EVN" classCode="OBS">
             <templateId root="2.16.840.1.113883.10.20.22.4.7" extension="2014-06-09"/>
             <templateId root="2.16.840.1.113883.10.20.22.4.7"/>
-            <id root="a206a0d3-2cee-42f4-ad29-2c2470eb2bd5"/>
+            <id root="253eb5e5-77fe-4516-8f54-e3077b1c2870"/>
             <code xsi:type="CD" code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
             <statusCode code="completed"/>
             <effectiveTime>
@@ -213,7 +213,7 @@ C-CDA Result:
                <observation moodCode="EVN" classCode="OBS">
                   <templateId root="2.16.840.1.113883.10.20.22.4.9" extension="2014-06-09"/>
                   <templateId root="2.16.840.1.113883.10.20.22.4.9"/>
-                  <id root="1a45a366-a816-40c2-9e88-d59f5cd30aa0"/>
+                  <id root="ed655357-6611-4a22-9fec-d0d5b813df57"/>
                   <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
                   <statusCode code="completed"/>
                   <effectiveTime value="20120129"/>
@@ -226,7 +226,7 @@ C-CDA Result:
                      <observation classCode="OBS" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.10.20.22.4.8" extension="2014-06-09"/>
                         <templateId root="2.16.840.1.113883.10.20.22.4.8"/>
-                        <id root="ce168d0c-a625-4fa5-816d-c4ed4f02c24e"/>
+                        <id root="f44ac27c-ef9b-4c78-9bb7-a04ec70610d1"/>
                         <code code="SEV" codeSystem="2.16.840.1.113883.5.4"/>
                         <statusCode code="completed"/>
                         <value code="24484000"
@@ -242,7 +242,7 @@ C-CDA Result:
                <observation moodCode="EVN" classCode="OBS">
                   <templateId root="2.16.840.1.113883.10.20.22.4.9" extension="2014-06-09"/>
                   <templateId root="2.16.840.1.113883.10.20.22.4.9"/>
-                  <id root="84795391-b43b-42e1-a2ee-9820b14d97bb"/>
+                  <id root="161bb696-615a-462b-bfe8-65bbdc3cd7de"/>
                   <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
                   <statusCode code="completed"/>
                   <effectiveTime value="20100315"/>
@@ -255,7 +255,7 @@ C-CDA Result:
                      <observation classCode="OBS" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.10.20.22.4.8" extension="2014-06-09"/>
                         <templateId root="2.16.840.1.113883.10.20.22.4.8"/>
-                        <id root="98f9949d-fc28-4216-81a2-5fb1402bb844"/>
+                        <id root="1016d675-2eba-47c2-b9f5-3d2500842adf"/>
                         <code code="SEV" codeSystem="2.16.840.1.113883.5.4"/>
                         <statusCode code="completed"/>
                         <value code="255604002"
@@ -270,7 +270,8 @@ C-CDA Result:
          </observation>
       </entryRelationship>
    </act>
-</entry>```
+</entry>
+```
 
 ## Vital Signs Section (entries optional) (V3)
 OID: 2.16.840.1.113883.10.20.22.2.4
@@ -443,7 +444,7 @@ C-CDA Result:
          <observation moodCode="EVN" classCode="OBS">
             <templateId root="2.16.840.1.113883.10.20.22.4.7" extension="2014-06-09"/>
             <templateId root="2.16.840.1.113883.10.20.22.4.7"/>
-            <id root="1a7c2ca2-eef0-4d47-8c96-90d51b2d48b7"/>
+            <id root="03ccc3b9-54b2-48ae-9232-77ac2de313cd"/>
             <code xsi:type="CD" code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
             <statusCode code="completed"/>
             <effectiveTime>
@@ -499,7 +500,7 @@ C-CDA Result:
                <observation moodCode="EVN" classCode="OBS">
                   <templateId root="2.16.840.1.113883.10.20.22.4.9" extension="2014-06-09"/>
                   <templateId root="2.16.840.1.113883.10.20.22.4.9"/>
-                  <id root="bc70ee6b-fee5-4aae-865a-891b253a7486"/>
+                  <id root="3b0bbe80-cf83-4e74-b574-74fd4461a6c8"/>
                   <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
                   <statusCode code="completed"/>
                   <effectiveTime value="20120129"/>
@@ -512,7 +513,7 @@ C-CDA Result:
                      <observation classCode="OBS" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.10.20.22.4.8" extension="2014-06-09"/>
                         <templateId root="2.16.840.1.113883.10.20.22.4.8"/>
-                        <id root="948a7ab4-8e37-4297-b01c-476876db04ac"/>
+                        <id root="59a50e39-d46a-4d0b-9d79-0f305b92ff87"/>
                         <code code="SEV" codeSystem="2.16.840.1.113883.5.4"/>
                         <statusCode code="completed"/>
                         <value code="24484000"
@@ -528,7 +529,7 @@ C-CDA Result:
                <observation moodCode="EVN" classCode="OBS">
                   <templateId root="2.16.840.1.113883.10.20.22.4.9" extension="2014-06-09"/>
                   <templateId root="2.16.840.1.113883.10.20.22.4.9"/>
-                  <id root="afdee2ae-3685-4975-a2fb-cc7c0580f6e9"/>
+                  <id root="e0286e6d-9c50-4451-b6a8-6666fde52713"/>
                   <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
                   <statusCode code="completed"/>
                   <effectiveTime value="20100315"/>
@@ -541,7 +542,7 @@ C-CDA Result:
                      <observation classCode="OBS" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.10.20.22.4.8" extension="2014-06-09"/>
                         <templateId root="2.16.840.1.113883.10.20.22.4.8"/>
-                        <id root="12c0f9de-ae8c-46ab-b72c-e245df37eee8"/>
+                        <id root="747aa765-1476-4bfb-b1c3-554b062de087"/>
                         <code code="SEV" codeSystem="2.16.840.1.113883.5.4"/>
                         <statusCode code="completed"/>
                         <value code="255604002"
@@ -556,7 +557,8 @@ C-CDA Result:
          </observation>
       </entryRelationship>
    </act>
-</entry>```
+</entry>
+```
 
 ## Problem Section (entries optional) (V3)
 OID: 2.16.840.1.113883.10.20.22.2.5
