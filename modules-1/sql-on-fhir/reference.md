@@ -1,5 +1,9 @@
 # Reference
 
+## ViewDefinition structure
+
+
+
 SQL on FHIR elements
 
 * constant
@@ -7,9 +11,7 @@ SQL on FHIR elements
 * where
 * ...
 
-
-
-### FHIRPath expressions
+## FHIRPath expressions
 
 #### Exists(\[criteria])
 

@@ -4,6 +4,10 @@ description: Make analytics easier
 
 # SQL on FHIR
 
+{% hint style="info" %}
+**SQL on FHIR** engine is currently in **preview**
+{% endhint %}
+
 Performing analysis on FHIR data requires extracting data from deeply nested structures of resources, which may be cumbersome in some cases. To address this problem, Aidbox implements [SQL on FHIR](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/index.html) specification allowing users to create flat views of their resources in a simple, straightforward way
 
 ## Create View Definitions
