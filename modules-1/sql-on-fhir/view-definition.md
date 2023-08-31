@@ -1,5 +1,25 @@
 # Defining flat views with View Definitions
 
+SQL on FHIR utilizes ViewDefinition resources to describe the structure of flat views. A simple ViewDefinition may look like this:
+
+```json
+{
+    "name": "obs_view",
+    "resource": "Observation",
+    "select": [{
+        "name": "id",
+        "expr": "id",
+    }, {
+        "name": "pid",
+        "expr": "subject.getId('Patient')"
+    }]
+}
+```
+
+The view is described with its name, resource type and the declaration of the rows it contains. In this example, we define a flat view named `obs_view` for Observations, that will have 2 fields: `id`, defined as the Observation's own id, and `pid`, defined as the subject Patient's id.
+
+This example only scratches the surface. For more complex examples, see [query-data-above-view-definitions.md](query-data-above-view-definitions.md "mention"). For an in-depth overview of a ViewDefinition's structure consult [reference.md](reference.md "mention").
+
 ## Creating flat views
 
 ### With Aidbox UI
@@ -12,7 +32,7 @@ View definitions you've created can be viewed in a menu in the right part of the
 
 You can use the _Run_ button or `Ctrl+Enter` to preview your view. To save a View Definition and materialize it as a view in the database, press _Save_. _Delete_ button deletes both a View Definition and the corresponding view in the database.
 
-Note that a ViewDefinition resource used in Aidbox does not have the same structure as the one described by the [SQL on FHIR specification](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/StructureDefinition-ViewDefinition.html). This may change in the future.
+Note that a ViewDefinition resource used in Aidbox does not have the same structure as the one described by the [SQL on FHIR specification](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/StructureDefinition-ViewDefinition.html). To see how ViewDefinition is structured, consult the [reference.md](reference.md "mention") page.
 
 ### With REST API
 
