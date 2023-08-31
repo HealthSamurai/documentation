@@ -6,19 +6,19 @@ description: FHIR Bulk Data Export
 
 The [FHIR Bulk Data Export](https://hl7.org/fhir/uv/bulkdata/export.html) feature allows to export FHIR resources in ndjson format.
 
-Aidbox supports patient-level and group-level export. When the export request is submitted the server returns URL to check the export status. When export is finished, status endpoint returns URLs to download resources.&#x20;
+Aidbox supports patient-level and group-level export. When the export request is submitted the server returns URL to check the export status. When export is finished, status endpoint returns URLs to download resources.
 
 Only one export process can be run at the same time. If you try to submit an export request while there is active export, you get `429 Too Many Requests` error.
 
 ## Setup storage
 
-Aidbox can export data to GCP or AWS cloud. Export results will be in `<datetime>_<uuid>` folder on the bucket.&#x20;
+Aidbox can export data to GCP or AWS cloud. Export results will be in `<datetime>_<uuid>` folder on the bucket.
 
 ### GCP
 
 [Create bucket](https://cloud.google.com/storage/docs/creating-buckets) and [service account](https://cloud.google.com/iam/docs/creating-managing-service-accounts) that has read and write access to the bucket.
 
-[Create `GcpServiceAccount` resource](../../storage-1/gcp-cloud-storage.md) in Aidbox. Example:
+[Create `GcpServiceAccount` resource](../../storage-1/s3-compatible-storages/gcp-cloud-storage.md) in Aidbox. Example:
 
 ```yaml
 private-key: |
@@ -32,7 +32,7 @@ resourceType: GcpServiceAccount
 
 Set the following environment variables:
 
-* `box_bulk__storage_backend=gcp`  — backend for export
+* `box_bulk__storage_backend=gcp` — backend for export
 * `box_bulk__storage_gcp_service__account` — id of the `GcpServiceAccount` resource
 * `box_bulk__storage_gcp_bucket` — bucket name
 
@@ -40,7 +40,7 @@ Set the following environment variables:
 
 Create [S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html) and [IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id\_users\_create.html) that has read and write access to the bucket.
 
-[Create `AwsAccount` resource](../../storage-1/aws-s3.md) in Aidbox. Example:
+[Create `AwsAccount` resource](../../storage-1/s3-compatible-storages/aws-s3.md) in Aidbox. Example:
 
 ```yaml
 region: us-east-1
@@ -58,12 +58,12 @@ Set the following environment variables:
 
 ## Parameters
 
-| Parameter       | Description                                                                                                                            |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `_outputFormat` | Specifies format in which the server generates files. <br /> The following formats are supported: <br /> <ul><li>`application/fhir+ndjson` — `.ndjson` files will be saved </li> <li>`application/fhir+ndjson+gzip`  — `.ndjson.gz` files will be saved </li></ul>
-| `_type`         | Includes only the specified types. This list is comma-separated.                                                                       |
-| `_since`        | Includes only resources changed after the specified time.                                                                              |
-| `patient`       | Export data that belongs only to listed patient. Format: comma-separated list of patient ids. Available only for patient-level export. |
+| Parameter       | Description                                                                                                                                                                                                                                                                                               |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `_outputFormat` | <p>Specifies format in which the server generates files.<br>The following formats are supported:<br></p><ul><li><code>application/fhir+ndjson</code> — <code>.ndjson</code> files will be saved</li><li><code>application/fhir+ndjson+gzip</code> — <code>.ndjson.gz</code> files will be saved</li></ul> |
+| `_type`         | Includes only the specified types. This list is comma-separated.                                                                                                                                                                                                                                          |
+| `_since`        | Includes only resources changed after the specified time.                                                                                                                                                                                                                                                 |
+| `patient`       | Export data that belongs only to listed patient. Format: comma-separated list of patient ids. Available only for patient-level export.                                                                                                                                                                    |
 
 ## Patient-level export
 
@@ -73,7 +73,7 @@ To start export make a request to `/fhir/Patient/$export`:
 
 {% tabs %}
 {% tab title="Request" %}
-#### Rest console
+**Rest console**
 
 ```http
 GET /fhir/Patient/$export
@@ -83,11 +83,11 @@ Prefer: respond-async
 {% endtab %}
 
 {% tab title="Response" %}
-#### Status
+**Status**
 
 202 Accepted
 
-#### Headers
+**Headers**
 
 * `Content-Location` — Link to check export status (e.g. `/fhir/$export-status/<id>`)
 {% endtab %}
@@ -97,7 +97,7 @@ Make a request to the export status endpoint to check the status:
 
 {% tabs %}
 {% tab title="Request" %}
-#### Rest console
+**Rest console**
 
 ```
 GET /fhir/$export-status/<id>
@@ -105,11 +105,11 @@ GET /fhir/$export-status/<id>
 {% endtab %}
 
 {% tab title="Response (completed)" %}
-#### Status
+**Status**
 
 200 OK
 
-#### Body
+**Body**
 
 ```jsonp
 {
@@ -138,7 +138,7 @@ Delete request on the export status endpoint cancels export.
 
 {% tabs %}
 {% tab title="Request" %}
-#### Rest console
+**Rest console**
 
 ```
 DELETE /fhir/$export-status/<id>
@@ -146,7 +146,7 @@ DELETE /fhir/$export-status/<id>
 {% endtab %}
 
 {% tab title="Response" %}
-#### Status
+**Status**
 
 202 Accepted
 {% endtab %}
@@ -160,7 +160,7 @@ To start export make a request to `/fhir/Group/<group-id>/$export`:
 
 {% tabs %}
 {% tab title="Request" %}
-#### Rest console
+**Rest console**
 
 ```http
 GET /fhir/Group/<group-id>/$export
@@ -170,11 +170,11 @@ Prefer: respond-async
 {% endtab %}
 
 {% tab title="Response" %}
-#### Status
+**Status**
 
 202 Accepted
 
-#### Headers
+**Headers**
 
 * `Content-Location` — Link to check export status (e.g. `/fhir/$export-status/<id>`)
 {% endtab %}
@@ -184,7 +184,7 @@ Make a request to the export status endpoint to check the status:
 
 {% tabs %}
 {% tab title="Request" %}
-#### Rest console
+**Rest console**
 
 ```
 GET /fhir/$export-status/<id>
@@ -192,11 +192,11 @@ GET /fhir/$export-status/<id>
 {% endtab %}
 
 {% tab title="Response (completed)" %}
-#### Status
+**Status**
 
 200 OK
 
-#### Body
+**Body**
 
 ```jsonp
 {
@@ -224,7 +224,7 @@ Delete request on the export status endpoint cancels export.
 
 {% tabs %}
 {% tab title="Request" %}
-#### Rest console
+**Rest console**
 
 ```http
 DELETE /fhir/$export-status/<id>
@@ -232,7 +232,7 @@ DELETE /fhir/$export-status/<id>
 {% endtab %}
 
 {% tab title="Response" %}
-#### Status
+**Status**
 
 202 Accepted
 {% endtab %}
@@ -243,7 +243,7 @@ DELETE /fhir/$export-status/<id>
 System-level export exports data from a FHIR server, whether or not it is associated with a patient. You may restrict the resources returned using the `_type` parameter.
 
 {% hint style="warning" %}
-Limitation: export operation will work for standard FHIR resources only, not for custom resources.&#x20;
+Limitation: export operation will work for standard FHIR resources only, not for custom resources.
 {% endhint %}
 
 {% tabs %}
@@ -256,11 +256,11 @@ Prefer: respond-async
 {% endtab %}
 
 {% tab title="Response(completed)" %}
-#### Status
+**Status**
 
 200 OK
 
-#### Body
+**Body**
 
 ```jsonp
 {
@@ -288,7 +288,7 @@ Delete request on the export status endpoint cancels export.
 
 {% tabs %}
 {% tab title="Request" %}
-#### Rest console
+**Rest console**
 
 ```http
 DELETE /fhir/$export-status/<id>
@@ -296,7 +296,7 @@ DELETE /fhir/$export-status/<id>
 {% endtab %}
 
 {% tab title="Response" %}
-#### Status
+**Status**
 
 202 Accepted
 {% endtab %}
@@ -304,7 +304,7 @@ DELETE /fhir/$export-status/<id>
 
 ## Troubleshooting guide
 
-$export operation expects you setup external storage, Aidbox exports data into. In most cases issues with $exoprt are the consequence of incorrect Adbox configuration. In order to exclude this run the following rpc:&#x20;
+$export operation expects you setup external storage, Aidbox exports data into. In most cases issues with $exoprt are the consequence of incorrect Adbox configuration. In order to exclude this run the following rpc:
 
 ```
 POST /rpc
@@ -349,7 +349,7 @@ This error means account is not specified
 
 This means there is no account for aws or gcp
 
-Create [AWSAccount](../../storage-1/aws-s3.md) or [GCPServiceAccount](../../storage-1/gcp-cloud-storage.md), depending on your config.
+Create [AWSAccount](../../storage-1/s3-compatible-storages/aws-s3.md) or [GCPServiceAccount](../../storage-1/s3-compatible-storages/gcp-cloud-storage.md), depending on your config.
 
 ### Bucket is not specified
 

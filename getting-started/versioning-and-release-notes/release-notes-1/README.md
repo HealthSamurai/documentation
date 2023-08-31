@@ -11,7 +11,7 @@ description: Release notes for years 2019-2020
 * Search and sort by [\_createdAt](../../../api-1/fhir-api/search-1/search-parameters-list/\_lastupdated.md) parameter
 * Search by tokens with [:text modifier](../../../api-1/fhir-api/search-1/#common)
 * Filters in [Change API](../../../api-1/reactive-api-and-subscriptions/usdsnapshot-usdwatch-and-usdversions-api.md)
-* [Azure API](../../../storage-1/azure.md)
+* [Azure API](../../../storage-1/s3-compatible-storages/azure.md)
 * [SQL Parameters](../../../api-1/fhir-api/search-1/search-resource.md)
 
 ## 0.4.9 \[9 March 2020]

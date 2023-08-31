@@ -24,8 +24,8 @@ Follow the [official Docker guide](https://docs.docker.com/compose/install/#inst
 
 GCP Cloud Storage is used in Bulk API for storing and distributing exported data. To enable bulk API, you need to create GCP Cloud Storage, set up GCP Service Account, and provide full access to the service account on this Cloud Storage.
 
-{% content-ref url="../../../storage-1/gcp-cloud-storage.md" %}
-[gcp-cloud-storage.md](../../../storage-1/gcp-cloud-storage.md)
+{% content-ref url="../../../storage-1/s3-compatible-storages/gcp-cloud-storage.md" %}
+[gcp-cloud-storage.md](../../../storage-1/s3-compatible-storages/gcp-cloud-storage.md)
 {% endcontent-ref %}
 
 ## **Set up email provider**

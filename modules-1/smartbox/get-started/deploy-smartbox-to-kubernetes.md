@@ -25,7 +25,7 @@ This guide does not define exposing Smartbox to the Internet
 * `kubectl` utility is installed
 * Two Aidbox [licenses](../../../overview/aidbox-user-portal/licenses.md) are obtained
 * Email provider [credentials](../../../integrations/email-providers.md) are obtained
-* GCP connect [credentials](../../../storage-1/gcp-cloud-storage.md) are obtained
+* GCP connect [credentials](../../../storage-1/s3-compatible-storages/gcp-cloud-storage.md) are obtained
 
 ## Prebuilt k8s configuration
 

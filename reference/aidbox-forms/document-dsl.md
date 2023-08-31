@@ -1,13 +1,10 @@
 # Document DSL
 
-
 * Document is schema for Questionnaire with questions and answers and types of values.
 * Document is used as source of meta-information by [FormLayout](layout-dsl.md)
 * Document is used as source of meta-information by [FormFinalize](finalize-dsl.md)
 * Document resources stored in `SDCDocument` table.
 * Document can define computed fields via rules.
-
-
 
 ## Marking schema as SDC `Document` entity
 
@@ -115,18 +112,16 @@ Aidbox Form UI has embedded lisp engine. If you use your custom ui - you should 
 
 SDCDocument has several embedded field-types:
 
-* `aidbox.sdc/text`       - fields with multiline text
-* `aidbox.sdc/string`     - fields with oneline text
-* `aidbox.sdc/number`     - fields with number
-* `aidbox.sdc/quantity`   - fields with measurement units
-* `aidbox.sdc/choice`     - fields with answers, located in valuesets
-* `aidbox.sdc/reference`  - fields with reference to arbitrary resources
+* `aidbox.sdc/text` - fields with multiline text
+* `aidbox.sdc/string` - fields with oneline text
+* `aidbox.sdc/number` - fields with number
+* `aidbox.sdc/quantity` - fields with measurement units
+* `aidbox.sdc/choice` - fields with answers, located in valuesets
+* `aidbox.sdc/reference` - fields with reference to arbitrary resources
 * `aidbox.sdc/calculated` - fields, which need to be calculated via rules engine
 * `aidbox.sdc/attachment` - fields, that can be used to attach a file
 
-
-This field types inferred from Document field schemas.
-But you can overwrite that by specifying it directly via `:sdc-type` key
+This field types inferred from Document field schemas. But you can overwrite that by specifying it directly via `:sdc-type` key
 
 ### super-field schema
 
@@ -145,7 +140,7 @@ Can contain sub-fields or behaves like an array. Also has links to original sour
 super-field schema has next keys:
 
 | property               | description                                                           | filed-type | type                                     | required? |
-|------------------------|-----------------------------------------------------------------------|------------|------------------------------------------|-----------|
+| ---------------------- | --------------------------------------------------------------------- | ---------- | ---------------------------------------- | --------- |
 | `text`                 | Question text                                                         | all        | string                                   | yes       |
 | `help`                 | Question explanation or some hint - how to interpret it               | all        | string                                   | no        |
 | `type`                 | zen/type of the value, which will be stored in DB                     | all        | symbol                                   | no        |
@@ -159,10 +154,9 @@ super-field schema has next keys:
 | `every`                | When field is coll (zen/vector) - used for defining coll-item schema  | repeated   | super-field                              | no        |
 | `sdc/boundaries`       | Min/max values for quantity fields (for different measurement units)  | quantity   | {:imperial MinMaxMap, :metric MinMaxMap} | no        |
 | `last-change-datetime` | Meta field - contains datetime of last changes                        | all        | any                                      | no        |
-| `code`                 | CodeSystem of the question   (used in extractions)                    | all        | Coding                                   | no        |
+| `code`                 | CodeSystem of the question (used in extractions)                      | all        | Coding                                   | no        |
 | `linkId`               | Link to original questing (in questionnaire, used in converter to QR) | all        | string                                   | no        |
 | `resourceType`         | resource table for quering data                                       | reference  | string                                   | no        |
-
 
 ### quantity field-type
 
@@ -192,10 +186,9 @@ Choise field has predefined set of answers.
 Choice fields use these properties:
 
 | property       | description                | type                              | required? |
-|----------------|----------------------------|-----------------------------------|-----------|
+| -------------- | -------------------------- | --------------------------------- | --------- |
 | `:enum`        | List of available values   | zen/vector of values              | no        |
 | `:sdc/options` | Alternative options source | aidbox.sdc.options/{valueset,rpc} | no        |
-
 
 By default choice field uses `:enum` keyword for options definition.
 
@@ -216,21 +209,19 @@ MyDocument
                                          :system "http://loinc.org"}}]}}}
 
 ```
+
 For simple cases you can freely use `:enum` keyword with options - but for complex one (big datasets/more flexibility) you also have 2 alternative sources for retreiving them:
 
 * `:aidbox.sdc.options/valueset` use valuset stored in aidbox db
 * `:aidbox.sdc.options/rpc` - use custom rpc
 
-> It's better to use valuesets instead of `:enum`, they are more flexible for a long run. (ex: You will not have validation errors if change display of some value)
-> you can add valuesets by using [FTR](terminology/fhir-terminology-repository/ftr-specification.md)
-
+> It's better to use valuesets instead of `:enum`, they are more flexible for a long run. (ex: You will not have validation errors if change display of some value) you can add valuesets by using [FTR](terminology/fhir-terminology-repository/ftr-specification.md)
 
 If you specify `:sdc/options :aidbox.sdc.options/valueset`, then you also must specify `:valueset` property.
 
 | property   | description                        | type      | required? |
-|------------|------------------------------------|-----------|-----------|
+| ---------- | ---------------------------------- | --------- | --------- |
 | `valueset` | lisp expr that returns ValueSet ID | lisp-expr | yes       |
-
 
 Example:
 
@@ -249,7 +240,6 @@ Dynamic valueset
             "my-food-allergy-valueset"
             "my-substance-allergy-valueset")
 ```
-
 
 If you specify `:sdc/options :aidbox.sdc.options/rpc`, then you also must specify `:rpc` property.
 
@@ -279,7 +269,7 @@ Example:
 
 ###
 
-\
+\\
 
 ### reference field-type
 
@@ -292,7 +282,7 @@ Also field has search semantics based on full resource text search.
 reference fields should have these properties:
 
 | property       | description                 | type   | required? |
-|----------------|-----------------------------|--------|-----------|
+| -------------- | --------------------------- | ------ | --------- |
 | `resourceType` | name of table to query data | string | no        |
 
 Example:
@@ -305,7 +295,6 @@ MyDocument
                   :confirms #{aidbox.sdc.fhir/reference},
                   :resourceType "Patient"}}}
 ```
-
 
 ### calculated field-type
 
@@ -329,13 +318,12 @@ MyDocument
 
 ### attachment field-type
 
-Attachment field can be used to attach a file to document. File can be stored in DB or in cloud bucket
-(currently AWS S3 and GCP buckets are supported)
+Attachment field can be used to attach a file to document. File can be stored in DB or in cloud bucket (currently AWS S3 and GCP buckets are supported)
 
-> NOTE: We recommend storing files in the cloud, since storing files in the database takes too much space
-> For cloud storage configuration [read here](#store-attachments-in-cloud-storage)
+> NOTE: We recommend storing files in the cloud, since storing files in the database takes too much space For cloud storage configuration [read here](document-dsl.md#store-attachments-in-cloud-storage)
 
 Example:
+
 ```clojure
 MyDocument
 {:zen/tags #{aidbox.sdc/doc zen/schema}
@@ -357,13 +345,11 @@ MyDocument
                                     :max 100000}}}}}
 ```
 
-
 ### QuestionnaireResponse convertions
 
 If you need to convert SDCDocument to QuestionnaireResponse you need to specify additional field property
 
-
-- `:linkId` - linkId of original Questionnaire (if not given key of the question will be taken)
+* `:linkId` - linkId of original Questionnaire (if not given key of the question will be taken)
 
 ```
 MyDocument
@@ -378,8 +364,7 @@ MyDocument
 
 If you would like to extract some values to Observation you should specify additional field property:
 
-- `:code` - code/system of original Questionnaire question
-
+* `:code` - code/system of original Questionnaire question
 
 ```
 MyDocument
@@ -403,8 +388,6 @@ Supported cloud storages:
 
 > This feature can be configured via [api-constructor](../../aidbox-configuration/aidbox-api-constructor.md) in zen-project.
 
-
-
 1. Configure your `aidbox/system` with `sdc-service` and it's configuration.
 
 Example:
@@ -418,8 +401,7 @@ Example:
   :services {:sdc sdc-service}}
 ```
 
-2. Create [`AwsAccount`](../../storage-1/aws-s3.md) or [`GcpServiceAccount`](../../storage-1/gcp-cloud-storage.md)
-
+2. Create [`AwsAccount`](../../storage-1/s3-compatible-storages/aws-s3.md) or [`GcpServiceAccount`](../../storage-1/s3-compatible-storages/gcp-cloud-storage.md)
 3. Configure sdc-service with created account resource and specify a bucket name
 
 Example:

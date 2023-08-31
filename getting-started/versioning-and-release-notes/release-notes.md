@@ -2,7 +2,7 @@
 
 ## August 2023 _`latest`_
 
-* [SQL on FHIR engine ](../../storage-1/sql-on-fhir/)early access
+* [SQL on FHIR engine ](../../modules-1/sql-on-fhir/)early access
 * Data API
   * Added [\_filter](../../api-1/fhir-api/search-1/search-parameters-list/\_filter.md#forward-chains) for chained search
   * Optimized [GraphQL ](../../api-1/graphql-api.md)for revincludes
@@ -411,7 +411,7 @@
 * Added [GET /$version operation](../../api-1/api/aidbox-version.md) to get Aidbox version.
 * Enhanced `POST /` operation error handling and added [FHIR bundle resource documentation](../../api-1/fhir-api/bundle.md).
 * Enhanced GraphQL with ConceptMap.group property support
-* Reviewed first-class extensions with zen-lang and updated [docs](../../modules-1/first-class-extensions.md#first-class-extension-as-zen-profile).
+* Reviewed first-class extensions with zen-lang and updated [docs](../../storage-1/first-class-extensions.md#first-class-extension-as-zen-profile).
 * Reviewed and updated [Aidbox multitenancy docs](../../security-and-access-control-1/multitenancy/).
 
 ## March 2022 _`2203`_

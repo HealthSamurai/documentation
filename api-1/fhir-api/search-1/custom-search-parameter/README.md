@@ -33,7 +33,7 @@ query-sql:
 
 #### Define custom SearchParameter with extension
 
-If you have defined [first-class extension](../../../../modules-1/first-class-extensions.md), you have to use Aidbox format for the SearchParameter expression. If you use FHIR format, you don't need to create Attribute and the `expression` path should be in FHIR format.
+If you have defined [first-class extension](../../../../storage-1/first-class-extensions.md), you have to use Aidbox format for the SearchParameter expression. If you use FHIR format, you don't need to create Attribute and the `expression` path should be in FHIR format.
 
 {% tabs %}
 {% tab title="First-class extension" %}
