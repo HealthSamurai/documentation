@@ -6,10 +6,25 @@
 
 SQL on FHIR elements
 
-* constant
-* foreach
-* where
-* ...
+#### сonstant
+
+Contact details for the publisher.
+
+#### from
+
+Creates a scope for selection relative to a parent FHIRPath expression.
+
+#### foreach
+
+Same as from, but unnests a new row for each item in the collection.
+
+#### forEachNotNull
+
+Same as forEach, but produces a single row with a null value if the collection is empty
+
+#### where
+
+FHIRPath expression defining a filter condition.
 
 ## FHIRPath expressions
 
@@ -97,5 +112,74 @@ The result of expression will be:
 | pt1    |
 | `NULL` |
 
-* join
-* ...
+**join**
+
+First patient:
+
+```
+{
+  name: [{
+    given: [ 'Lael' ]
+  }]
+}
+```
+
+Second patient:
+
+```
+{
+  name: [{
+    given: [ 'Anastasia', 'Nastya' ]
+  }]
+}
+```
+
+The following expression will concatenate elements in one string separated with provided string argument:
+
+```
+Patient.name.given.join(';')
+```
+
+The result will be:
+
+| Value            |
+| ---------------- |
+| Lael             |
+| Anastasia;Nastya |
+
+#### where
+
+First patient:
+
+```
+{
+  name: [{
+    given: [ 'Lael' ],
+    family: 'Gitya'
+  }]
+}
+```
+
+Second patient:
+
+```
+{
+  name: [{
+    given: [ 'Anastasia', 'Nastya' ],
+    family: 'Smith'
+  }]
+}
+```
+
+The following expression will filter patients with names that contain 'Nastya', and their family name will be returned:
+
+```
+Patient.name.where(given.exists($this = 'Nastya')).family
+```
+
+The result will be:
+
+| Value  |
+| ------ |
+| `NULL` |
+| Smith  |
