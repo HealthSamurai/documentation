@@ -364,10 +364,6 @@
 * [Multitenancy](modules-1/multitenancy/README.md)
   * [Organization-based hierarchical access control](modules-1/multitenancy/organization-based-hierarchical-access-control.md)
   * [How to enable hierarchical access control](modules-1/multitenancy/how-to-enable-hierarchical-access-control.md)
-* [SQL on FHIR](modules-1/sql-on-fhir/README.md)
-  * [Defining flat views with View Definitions](modules-1/sql-on-fhir/view-definition.md)
-  * [Query data from flat views](modules-1/sql-on-fhir/query-data-above-view-definitions.md)
-  * [Reference](modules-1/sql-on-fhir/reference.md)
 
 ## FHIR Implementation Guides
 
@@ -377,6 +373,10 @@
 ## Storage <a href="#storage-1" id="storage-1"></a>
 
 * [AidboxDB](storage-1/aidboxdb-image.md)
+* [SQL on FHIR](storage-1/sql-on-fhir/README.md)
+  * [Defining flat views with View Definitions](storage-1/sql-on-fhir/view-definition.md)
+  * [Query data from flat views](storage-1/sql-on-fhir/query-data-above-view-definitions.md)
+  * [Reference](storage-1/sql-on-fhir/reference.md)
 * [Aidbox & FHIR formats](modules-1/fhir-resources/aidbox-and-fhir-formats.md)
 * [HA AidboxDB](storage-1/ha-aidboxdb.md)
 * [Backup and Restore](storage-1/backup-and-restore/README.md)
