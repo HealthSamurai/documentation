@@ -5,10 +5,10 @@
 * [SQL on FHIR engine ](../../modules-1/sql-on-fhir/)early access
 * Data API
   * Added [\_filter](../../api-1/fhir-api/search-1/search-parameters-list/\_filter.md#forward-chains) for chained search
-  * Optimized GrapQL for revincludes
+  * Optimized [GraphQL ](../../api-1/graphql-api.md)for revincludes
   * Added [X-max-transaction-level](../../api-1/api/crud-1/update.md#isolation-levels) for CRUD
 * Integrations
-  * Supported FHIR R4B and R5 Topic-based subscriptions
+  * Supported FHIR R4B and R5 [Topic-based subscriptions](../../modules-1/topic-based-subscriptions/)
 * Security and access control
   * Added [Capability Statement ](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#metadata)endpoint for multitenant API&#x20;
   * Added [bundle transaction](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#bundle) for multitenant API&#x20;
@@ -20,11 +20,11 @@
 * Aidbox user portal
   * Added the ability to specify a custom configuration project when creating a GCP Aidbox
 * Aidbox.app UI
-  * Updated the sidebar in the Aidbox UI
+  * Updated the sidebar in the [Aidbox UI](../../overview/aidbox-ui/)
 * DevOps
   * Add metrics for Aidbox logs. Count of logs per log level&#x20;
   * Implemented PG database backup verification tool, improved Grafana dashboards to show backup verification statuses
-* Aidbox Forms
+* [Aidbox Forms](../../modules-1/aidbox-forms.md)
   * Added basic Forms Accessibility (Screen Readers, Keyboard Navigation)&#x20;
   * Improved mobile devices adaptation (form takes all visual space, buttons aligned in specific positions)&#x20;
   * Improved UX of developer tools (inline errors, autocomplete, code folding, bracket matching)
