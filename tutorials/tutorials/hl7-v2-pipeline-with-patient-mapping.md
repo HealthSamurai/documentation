@@ -1,6 +1,6 @@
 # HL7 v2 pipeline with Patient mapping
 
-In this tutorial we will create an [HL7 v2 pipeline](../../modules-1/hl7-v2-integration/hl7-v2-integration-with-aidbox-project.md) to parse, map and persist Patient resources to your Aidbox database.
+In this tutorial we will create an [HL7 v2 pipeline](../../modules-1/integration-toolkit/hl7-v2-integration-with-aidbox-project.md) to parse, map and persist Patient resources to your Aidbox database.
 
 This tutorial is also available with a [sample aidbox configuration project](https://github.com/Aidbox/aidbox-project-samples/tree/main/aidbox-project-samples/hl7v2-in).
 

@@ -141,11 +141,11 @@ Please note that this endpoint doesn't persist any populated FHIR data to Aidbox
 
 There are several options you may pass to the `/ccda/v2/to-fhir` endpoint. Options are passed as query string parameters, i.e. `/ccda/v2/to-fhir?option1=value1&option2=value2`.
 
-| Option      | Values                                                                                                                                | Description                                                                                              |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `format`    | <p><code>aidbox | fhir</code><br>Default: <code>fhir</code></p>                                                                       | [Format](../fhir-resources/aidbox-and-fhir-formats.md) of resulting FHIR document. It's FHIR by default. |
-| transaction | true                                                                                                                                  | Output FHIR bundle type. By default FHIR document bundle will be returned.                               |
-| `sections`  | <p>Proceed to the <a href="./#list-of-supported-sections">Section Aliases</a> table to find all possible values. <br>Default: all</p> | Comma-separated list of section aliases to process. By default all sections are processed.               |
+| Option      | Values                                                                                                                                | Description                                                                                                 |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `format`    | <p><code>aidbox | fhir</code><br>Default: <code>fhir</code></p>                                                                       | [Format](../../fhir-resources/aidbox-and-fhir-formats.md) of resulting FHIR document. It's FHIR by default. |
+| transaction | true                                                                                                                                  | Output FHIR bundle type. By default FHIR document bundle will be returned.                                  |
+| `sections`  | <p>Proceed to the <a href="./#list-of-supported-sections">Section Aliases</a> table to find all possible values. <br>Default: all</p> | Comma-separated list of section aliases to process. By default all sections are processed.                  |
 
 Example
 
@@ -234,7 +234,7 @@ Options are passed as query-string parameters, i.e. `/ccda/v2/persist?create-doc
 | Option          | Values                                                                                                                                | Description                                                                                |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
 | `create-docref` | <p><code>true | false</code><br>Default: <code>false</code></p>                                                                       | Specifies if a DocumentReference resource is needed to store original XML document.        |
-| `tenant-id`     | <p>ID of Tenant resource<br>Default: none</p>                                                                                         | For [Smartbox](../smartbox/) users only. Assigns Tenant to all populated resources.        |
+| `tenant-id`     | <p>ID of Tenant resource<br>Default: none</p>                                                                                         | For [Smartbox](../../smartbox/) users only. Assigns Tenant to all populated resources.     |
 | `sections`      | <p>Proceed to the <a href="./#list-of-supported-sections">Section Aliases</a> table to find all possible values. <br>Default: all</p> | Comma-separated list of section aliases to process. By default all sections are processed. |
 
 ### Validating a C-CDA document

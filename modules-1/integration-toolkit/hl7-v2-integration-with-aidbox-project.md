@@ -1,6 +1,6 @@
 # HL7 v2 integration with Aidbox Project
 
-The HL7 v2 pipeline is the next step in [HL7v2 Aidbox integration](./), which uses new versions of the HL7 v2 parser and mapper driven by zen/lang configurations. The HL7 v2 pipeline is fully configurable API and is robust against mismatches with HL7 v2 specification.
+The HL7 v2 pipeline is the next step in [HL7v2 Aidbox integration](hl7-v2-integration.md), which uses new versions of the HL7 v2 parser and mapper driven by zen/lang configurations. The HL7 v2 pipeline is fully configurable API and is robust against mismatches with HL7 v2 specification.
 
 ## Quick start
 
@@ -170,7 +170,7 @@ For example, you need to [define an API](../../aidbox-configuration/aidbox-api-c
 
 ## Api endpoints
 
-Each declared endpoint accepts a HL7 v2 message under the `"message"` key. It can be invoked directly through a REST request or through the [HL7 v2 UI](./#submitting-a-message-with-the-rest-api) on the corresponding tab in the Aidbox UI.
+Each declared endpoint accepts a HL7 v2 message under the `"message"` key. It can be invoked directly through a REST request or through the [HL7 v2 UI](hl7-v2-integration.md#submitting-a-message-with-the-rest-api) on the corresponding tab in the Aidbox UI.
 
 Also, each endpoint accepts a boolean query argument `debug`, which allows you to return a response instead of writing data to the database.
 

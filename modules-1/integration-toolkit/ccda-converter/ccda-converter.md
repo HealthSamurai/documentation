@@ -140,10 +140,10 @@ Please note that this endpoint doesn't persist any populated FHIR data to Aidbox
 
 There are several options you may pass to the `/ccda/to-fhir` endpoint. Options are passed as query string parameters, i.e. `/ccda/to-fhir?option1=value1&option2=value2`.
 
-| Option     | Values                                                                                                                                    | Description                                                                                              |
-| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `format`   | <p><code>aidbox | fhir</code><br>Default: <code>fhir</code></p>                                                                           | [Format](../fhir-resources/aidbox-and-fhir-formats.md) of resulting FHIR document. It's FHIR by default. |
-| `sections` | <p>Proceed to the <a href="ccda-converter.md#section-aliases">Section Aliases</a> table to find all possible values. <br>Default: all</p> | Comma-separated list of section aliases to process. By default all sections are processed.               |
+| Option     | Values                                                                                                                                   | Description                                                                                |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| `format`   | `aidbox`                                                                                                                                 | <p>fhir<br>Default: <code>fhir</code></p>                                                  |
+| `sections` | <p>Proceed to the <a href="ccda-converter.md#section-aliases">Section Aliases</a> table to find all possible values.<br>Default: all</p> | Comma-separated list of section aliases to process. By default all sections are processed. |
 
 ### Persisting result of C-CDA to FHIR conversion
 
@@ -174,11 +174,11 @@ Also, if `create-docref` option is provided, this endpoint will create a [Docume
 
 Options are passed as query-string parameters, i.e. `/ccda/persist?create-docref=true&option2=value2`. `sections` are passed separated by commas, i.e. `/ccda/persist?section=dicom,goals,findings`.
 
-| Option          | Values                                                                                                                                    | Description                                                                                |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| `create-docref` | <p><code>true | false</code><br>Default: <code>false</code></p>                                                                           | Specifies if a DocumentReference resource is needed to store original XML document.        |
-| `tenant-id`     | <p>ID of Tenant resource<br>Default: none</p>                                                                                             | For [Smartbox](../smartbox/) users only. Assigns Tenant to all populated resources.        |
-| `sections`      | <p>Proceed to the <a href="ccda-converter.md#section-aliases">Section Aliases</a> table to find all possible values. <br>Default: all</p> | Comma-separated list of section aliases to process. By default all sections are processed. |
+| Option          | Values                                                                                                                                   | Description                                                                                |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| `create-docref` | `true`                                                                                                                                   | <p>false<br>Default: <code>false</code></p>                                                |
+| `tenant-id`     | <p>ID of Tenant resource<br>Default: none</p>                                                                                            | For [Smartbox](../../smartbox/) users only. Assigns Tenant to all populated resources.     |
+| `sections`      | <p>Proceed to the <a href="ccda-converter.md#section-aliases">Section Aliases</a> table to find all possible values.<br>Default: all</p> | Comma-separated list of section aliases to process. By default all sections are processed. |
 
 #### Section Aliases
 
@@ -304,6 +304,6 @@ In case of failed validation endpoint will return a list of errors and warnings:
 
 Options are passed as query-string parameters, i.e. `/ccda/validate?option1=value1&option2=value2`.
 
-| Option   | Values                                                                    | Description                    |
-| -------- | ------------------------------------------------------------------------- | ------------------------------ |
-| `method` | <p><code>xsd | schematron | both</code><br>Default: <code>both</code></p> | Type of validation to perform. |
+| Option   | Values | Description |
+| -------- | ------ | ----------- |
+| `method` | `xsd`  | schematron  |

@@ -35,9 +35,9 @@
   * Added [multilingual search](../../tutorials/data-api/how-to-use-multilingual-search.md) with [\_search-language](../../api-1/fhir-api/search-1/search-parameters-list/\_search-language.md) parameter
   * Added an option to translate concepts with [$translate-concepts](../../modules-1/terminology/concept/usdtranslate-concepts.md) endpoint
   * Added [\_source](../../api-1/fhir-api/search-1/search-parameters-list/\_source.md) search parameter
-* [C-CDA / FHIR converter](../../modules-1/ccda-converter/)
-  * Supported C-CDA to work as [a standalone service](../../modules-1/ccda-converter/deploy-ccda-fhir.md)
-  * Added an option [to inspect intermediate conversion tree](../../modules-1/ccda-converter/ccda-fhir-dsl.md#rules-dsl-syntax)
+* [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
+  * Supported C-CDA to work as [a standalone service](../../modules-1/integration-toolkit/ccda-converter/deploy-ccda-fhir.md)
+  * Added an option [to inspect intermediate conversion tree](../../modules-1/integration-toolkit/ccda-converter/ccda-fhir-dsl.md#rules-dsl-syntax)
 * Security and access control
   * Added [shared resources](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#shared-resource-mode) in the [Organisation-based access control](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md)
   * Supported [Azure AD asymmetric authentication](../../modules-1/security-and-access-control/how-to-guides/set-up-external-identity-provider/azure-ad-1.md)&#x20;
@@ -62,7 +62,7 @@
   * Supported OperationOutcome for invalid accept format errors
   * Fixed behavior of the [:exact](../../api-1/fhir-api/search-1/#exact) modifier
   * Fixed jsonpath sort order
-* [C-CDA / FHIR converter](../../modules-1/ccda-converter/)
+* [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
   * Supported modifying and creating new mappings using [the Aidbox Configuration Project](../../aidbox-configuration/zen-configuration.md)
 * Security and access control
   * Added [hierarchical organization-based access control](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md) (multi-tenancy on organization-level resources)
@@ -89,7 +89,7 @@
   * Supported [FHIR R5 chained search parameters](../../api-1/fhir-api/search-1/chained-parameters.md)
   * Added [total\_](../../api-1/graphql-api.md#search-total) for [GraphQL](../../api-1/graphql-api.md) queries to retrieve total number of results
   * Added support for [revinclude ](../../api-1/graphql-api.md#revincludes-with-any-type)in GraphQL when reference from source does not specify type
-* [C-CDA / FHIR converter](../../modules-1/ccda-converter/)
+* [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
   * Added new supported sections:
     * Functional Status, Health Concerns, Mental Status, Plan of Treatment, Payers, Family History, Nutrition, and Medical Equipment
 * Security and access control&#x20;
@@ -121,7 +121,7 @@
 * Integrations
   * Added new [API constructor engine](../../aidbox-configuration/aidbox-api-constructor.md#map-to-fhir-bundle) to define custom endpoints and convert arbitrary data into FHIR
 * C-CDA / FHIR converter
-  * Enhanced [/ccda/validate](../../modules-1/ccda-converter/#validating-a-c-cda-document) endpoint to behave exactly as HealthIT.gov CDA validator
+  * Enhanced [/ccda/validate](../../modules-1/integration-toolkit/ccda-converter/#validating-a-c-cda-document) endpoint to behave exactly as HealthIT.gov CDA validator
 * Security and access control
   * Supported [log filtering](../../core-modules/logging-and-audit/technical-reference/log-transformations.md#aidbox.log-ignore) via [different appenders](../../core-modules/logging-and-audit/technical-reference/log-appenders.md)
   * Added [Authentication with AD FS](../../security-and-access-control-1/how-to-guides/set-up-external-identity-provider/microsoft-ad-fs.md) tutorial
@@ -151,9 +151,9 @@
   * Added a header to [lower transaction isolation level](../../api-1/transaction.md#change-transaction-isolation-level)
 * Integrations
   * Improved [$import operation](../../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md#usdimport-on-top-of-the-task-api-beta), that allows for more reliable and efficient processing of multiple import requests through the Task API
-  * Released [the new version of HL7 v2 parser](../../modules-1/hl7-v2-integration/hl7-v2-integration-with-aidbox-project.md#about-hl7-v2-parser) and [mapping engine](../../tutorials/tutorials/hl7-v2-pipeline-with-patient-mapping.md)
+  * Released [the new version of HL7 v2 parser](../../modules-1/integration-toolkit/hl7-v2-integration-with-aidbox-project.md#about-hl7-v2-parser) and [mapping engine](../../tutorials/tutorials/hl7-v2-pipeline-with-patient-mapping.md)
 * C-CDA to FHIR converter
-  * Released [FHIR to C-CDA bidirectional converter](../../modules-1/ccda-converter/#converting-a-c-cda-document-to-fhir) (beta). Supported sections:
+  * Released [FHIR to C-CDA bidirectional converter](../../modules-1/integration-toolkit/ccda-converter/#converting-a-c-cda-document-to-fhir) (beta). Supported sections:
     * Allergies, Encounters, Immunizations, Problems, Vital Signs, Results, Social History, Procedures, Medications
 * Security and Access control
   * Developed [access policy dev tool ](../../security-and-access-control-1/security/access-policy-dev-tool.md)
@@ -219,9 +219,9 @@
   * [Zen Index API](../../storage-1/indexes/zen-indexes.md) is now considered stable
   * Implemented automatic loading of search parameters on extensions from IG
 * C-CDA to FHIR converter
-  * Added configuration for [/ccda/to-fhir](../../modules-1/ccda-converter/#endpoint-options) endpoint
-  * Added configuration for [/ccda/persist](../../modules-1/ccda-converter/#endpoint-options-1) endpoint
-  * Added tenant support for [/ccda/persist](../../modules-1/ccda-converter/#persisting-result-of-c-cda-to-fhir-conversion) endpoint
+  * Added configuration for [/ccda/to-fhir](../../modules-1/integration-toolkit/ccda-converter/#endpoint-options) endpoint
+  * Added configuration for [/ccda/persist](../../modules-1/integration-toolkit/ccda-converter/#endpoint-options-1) endpoint
+  * Added tenant support for [/ccda/persist](../../modules-1/integration-toolkit/ccda-converter/#persisting-result-of-c-cda-to-fhir-conversion) endpoint
 * Security and Access Control
   * Supported passing any launch context parameters on SMART on FHIR 2.0 app launch flow with [fhirContext](../../security-and-access-control-1/how-to-guides/smart-on-fhir/smart-on-fhir-app-launch.md#generate-launch-uri-for-ehr-launch-sequence) parameter
 * Ops
@@ -257,7 +257,7 @@
   * Added [extraction based on templates](../../reference/aidbox-forms/finalize-dsl.md)
   * Added API for generate layers ([layout, finalize, finalize-constraints](../../reference/aidbox-forms/api-reference.md))
 * C-CDA to FHIR converter
-  * Added a guide on[ how to persist FHIR resources to a DB](../../modules-1/ccda-converter/#persisting-a-result-of-ccda-to-fhir-conversion) after C-CDA to FHIR transformation.
+  * Added a guide on[ how to persist FHIR resources to a DB](../../modules-1/integration-toolkit/ccda-converter/#persisting-a-result-of-ccda-to-fhir-conversion) after C-CDA to FHIR transformation.
   * Improved Observation data mapping.
 * [Google Cloud Pub/Sub integration](../../api-1/reactive-api-and-subscriptions/gcp-pub-sub.md)
 
@@ -291,7 +291,7 @@
 * Terminology
   * Introduced [FHIR Terminology repositories ](../../terminology/fhir-terminology-repository/)(alpha) to store any terminology elements (code systems, value sets, concepts) in an effective way and distribute them among Aidbox instances
 * C-CDA to FHIR converter
-  * Supported [validation against XSD and Schematron schemas](../../modules-1/ccda-converter/#validating-a-ccda-document)
+  * Supported [validation against XSD and Schematron schemas](../../modules-1/integration-toolkit/ccda-converter/#validating-a-ccda-document)
   * Supported Diagnostic Imaging Report sections:
     * DICOM
     * Findings
