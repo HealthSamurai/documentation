@@ -192,7 +192,6 @@
 * [Topic-Based Subscriptions](modules-1/topic-based-subscriptions/README.md)
   * [Setup SubscriptionTopic](modules-1/topic-based-subscriptions/setup-subscriptiontopic.md)
   * [Subscribe to Topics (R4B)](modules-1/topic-based-subscriptions/subscribe-to-topics-r4b.md)
-  * [Subscribe to Topics (R5)](modules-1/topic-based-subscriptions/subscribe-to-topics-r5.md)
 * [Entities & Attributes](core-modules/entities-and-attributes.md)
 * [Profiling and validation](modules-1/profiling-and-validation/README.md)
   * [Profiling and validation overview](profiling-and-validation/profiling.md)

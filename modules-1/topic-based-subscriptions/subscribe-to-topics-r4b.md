@@ -8,7 +8,6 @@ Use FHIR API to discover available topics
 {% tab title="Request" %}
 ```
 GET /fhir/SubscriptionTopic
-content-type: application/json
 accept: application/json
 ```
 {% endtab %}
@@ -96,13 +95,17 @@ accept: application/json
 {% endtab %}
 {% endtabs %}
 
+In response, one configured topic is available, with `"url": "http://aidbox.app/SubscriptionTopic/observations"`. This url should be specified in `topic` field of a subscription.
+
 ### Launch subscriber service
 
-Aidbox expects a URL from a subscriber service&#x20;
+Lunch a web service which will receive notification. This service should expose url, which should be specified as `endpoint` field of subscription.
 
 ### Create Subscription (R4B)
 
-Create a Subscription resource with all the necessary attritutes
+Create a Subscription resource with all the necessary attributes.
+
+Profile `http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-subscription` is required for R4B.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -258,27 +261,7 @@ Status: 200
 {% endtab %}
 {% endtabs %}
 
-
-
 {% hint style="info" %}
-&#x20;In case there's no reply from subscriber service 3 times Aidbox will mark the subscription as `error`
+Aidbox will attempt a handshake with the service three times at 10-second intervals. If no successful response is received, the subscription will be shifted to an _`"errored"`_ status. To restart the process, the subscription should be deleted and recreated
 {% endhint %}
 
-### Trigger a notification
-
-To ensure the subscrtiption works as expected trigger a notification.
-
-* Create an Observation resource using FHIR API
-
-{% tabs %}
-{% tab title="Request" %}
-
-{% endtab %}
-
-{% tab title="Response" %}
-
-{% endtab %}
-{% endtabs %}
-
-* Check the notification is delivered
-* Additionally you can request Subscription status using $status operation
