@@ -1,6 +1,6 @@
 # \_filter
 
-Aidbox offers the partial support of FHIR [\_filter](https://www.hl7.org/fhir/search\_filter.html) API. However, we tend to use other search capabilities like AidboxQuery, SearchQuery, or Search resource for complex queries. They offer better expressiveness with SQL and better performance.
+[#forward-chain-element](../chained-parameters.md#forward-chain-element "mention")[chained-parameters.md](../chained-parameters.md "mention")[chained-parameters.md](../chained-parameters.md "mention")Aidbox offers the partial support of FHIR [\_filter](https://www.hl7.org/fhir/search\_filter.html) API. However, we tend to use other search capabilities like AidboxQuery, SearchQuery, or Search resource for complex queries. They offer better expressiveness with SQL and better performance.
 
 ## Supported operators
 
@@ -11,6 +11,18 @@ Aidbox offers the partial support of FHIR [\_filter](https://www.hl7.org/fhir/se
 \*\* number search doesn't support implicit precision
 
 \*\*\* support only numbers, not system with code
+
+## Chaining, dot expressions
+
+Aidbox supports forward chained search parameters in \_filter query and dot expressions.
+
+{% content-ref url="../chained-parameters.md" %}
+[chained-parameters.md](../chained-parameters.md)
+{% endcontent-ref %}
+
+{% content-ref url="../.-expressions.md" %}
+[.-expressions.md](../.-expressions.md)
+{% endcontent-ref %}
 
 ## Examples
 
@@ -29,7 +41,7 @@ GET /fhir/Patient?_filter=birthdate ge 1996-06-06
 GET /fhir/Patient?_filter=birthdate le 1996-06-06
 ```
 
-## Logical expressions support
+### Logical expressions support
 
 You can compose logical expressions using parentheses
 
@@ -37,10 +49,17 @@ You can compose logical expressions using parentheses
 GET /fhir/Patient?_filter=(name co 'smi' or name co 'fed') or name co 'unex'
 ```
 
-## Forward chains
+### Forward chains
 
 Aidbox requires to specify chain targets explicitly:
 
 ```
 GET /fhir/Patient?_filter=(organization:Organization.name eq 'myorg')
+```
+
+### Dot expressions
+
+```
+GET /fhir/Patient?filter=.name.0.family eq 'Doe'
+GET /fhir/Patient?filter=.name isnull true
 ```
