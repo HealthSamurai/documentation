@@ -82,6 +82,107 @@ CI/CD license also available for contract clients. A CI/CD license allows you to
 
 `After 2 hours your CI/CD license will exceed allowed limit of runtime working (72 hours). After that your license will be blocked for 3 hours. Please reboot system or contact us for further information.`
 
+## Manage Aidbox licenses via API
+
+### Issue token
+
+To access the API, you have to issue a token through the Aidbox [portal](https://aidbox.app/):
+
+1. On the main navigation sidebar, click on the _**project name**_
+2. On the menu that opens, click _**Settings**_
+3. Click button _**Issue Token**_
+
+### Create license
+
+```yaml
+POST aidbox.app/rpc
+content-type: text/yaml
+accept: text/yaml
+
+method: portal.portal/issue-license
+params: 
+  token: <your-token>
+  name: <license-name>
+  # aidbox | multibox
+  product: aidbox 
+  # standard | development | ci
+  type: standard
+```
+
+### Delete license
+
+There are two options for deleting a license: 
+
+by license id
+
+```yaml
+POST aidbox.app/rpc
+content-type: text/yaml
+accept: text/yaml
+
+method: portal.portal/remove-license
+params: 
+  token: <your-token>
+  id: <license-id>
+```
+
+by license string
+
+```yaml
+POST aidbox.app/rpc
+content-type: text/yaml
+accept: text/yaml
+
+method: portal.portal/remove-license
+params: 
+  token: <your-token>
+  license: <license-string>
+```
+
+### Get license
+
+Retrieve license:
+
+by license id
+
+```yaml
+POST aidbox.app/rpc
+content-type: text/yaml
+accept: text/yaml
+
+method: portal.portal/get-license
+params: 
+  token: <your-token>
+  id: <license-id>
+```
+
+by license string
+
+```yaml
+POST aidbox.app/rpc
+content-type: text/yaml
+accept: text/yaml
+
+method: portal.portal/get-license
+params: 
+  token: <your-token>
+  license: <license-string>
+```
+
+### Get list of licenses
+
+Retrieve all licenses associated with a project.
+
+```yaml
+POST aidbox.app/rpc
+content-type: text/yaml
+accept: text/yaml
+
+method: portal.portal/get-licenses
+params: 
+  token: <your-token>
+```
+
 ## References
 
 ### Licensing and Support
