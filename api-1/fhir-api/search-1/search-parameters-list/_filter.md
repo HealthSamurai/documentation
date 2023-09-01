@@ -1,6 +1,6 @@
 # \_filter
 
-[#forward-chain-element](../chained-parameters.md#forward-chain-element "mention")[chained-parameters.md](../chained-parameters.md "mention")[chained-parameters.md](../chained-parameters.md "mention")Aidbox offers the partial support of FHIR [\_filter](https://www.hl7.org/fhir/search\_filter.html) API. However, we tend to use other search capabilities like AidboxQuery, SearchQuery, or Search resource for complex queries. They offer better expressiveness with SQL and better performance.
+Aidbox offers the partial support of FHIR [\_filter](https://www.hl7.org/fhir/search\_filter.html) API. However, we tend to use other search capabilities like AidboxQuery, SearchQuery, or Search resource for complex queries. They offer better expressiveness with SQL and better performance.
 
 ## Supported operators
 
