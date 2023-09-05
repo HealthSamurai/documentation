@@ -129,7 +129,7 @@ To demonstrate supporting of the `Previous Name`
 
 ## 9.10.13 Health IT developer demonstrates support for issuing refresh tokens to native applications
 
-Native applications can register `custom URL schemas`. Instead of the ordinary `http://` prefix the URL of the native application can start with anything else. For example, `my-awesome-smart-app://` is a legal custom URL schema.
+Native applications can register `custom URL schemas`. Instead of the usual `http://`, the prefix the URL of the native application can start with anything else. For example, `my-awesome-smart-app://` is a legal custom URL schema.
 
 In terms of `SMART App launch` supporting native applications stands for allowing custom schemas in the `redirect_uri` property.
 
