@@ -9,7 +9,7 @@ Here is a list of supported sections.
 
 
 | Section Name | OID | LOINC Code | Internal ID | Alias
-| ------------------ |
+| --- | --- | --- | --- | --- |
 |[Allergies and Intolerances Section (entries optional) (V3)](sections/allergiesandintolerancessectioneo.md)|`2.16.840.1.113883.10.20.22.2.6`|48765-2|`AllergiesandIntolerancesSectioneo`|allergies
 |[Allergies and Intolerances Section (entries required) (V3)](sections/allergiesandintolerancessectioner.md)|`2.16.840.1.113883.10.20.22.2.6.1`|48765-2|`AllergiesandIntolerancesSectioner`|allergies
 |[Document Header](sections/header.md)|`N/A`|N/A|`Header`|header
