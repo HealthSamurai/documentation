@@ -1,8 +1,12 @@
-# Subscribe to Topics (R4B)
+# Tutorial: Subscribe to Topic (R4B)
+
+## Introduction
+
+This tutorial requires configuring your Aidbox instance with a specific SubscriptionTopic for Observation resource. Additionally, a web service that will receive `rest-hook` notifications is required.  This [Repo](https://github.com/Aidbox/aidbox-project-template/tree/topic-based-subscription-r4b) contains a suitable template project, which should be used for this tutorial.
 
 ### Choose a topic
 
-Use FHIR API to discover available topics
+Use FHIR API to discover available topics. Each topic contains `URL` field which should be specified as a `criteria` field of Subscription.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -95,17 +99,22 @@ accept: application/json
 {% endtab %}
 {% endtabs %}
 
-In response, one configured topic is available, with `"url": "http://aidbox.app/SubscriptionTopic/observations"`. This url should be specified in `topic` field of a subscription.
-
-### Launch subscriber service
-
-Lunch a web service which will receive notification. This service should expose url, which should be specified as `endpoint` field of subscription.
+In response, one configured topic is available, with `"url": "http://aidbox.app/SubscriptionTopic/observations"`.&#x20;
 
 ### Create Subscription (R4B)
 
 Create a Subscription resource with all the necessary attributes.
 
 Profile `http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-subscription` is required for R4B.
+
+Most interesting part are:
+
+* `"criteria" : "http://aidbox.app/SubscriptionTopic/observations"` - the Topic that a subscription are created for.
+* `{"url" : "http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-max-count", "valuePositiveInt" : 2}` notification will be delivered immediately when specified number of suitable events is met.
+* `{"url" : "http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-heartbeat-period", valueUnsignedInt" : 20}` period in seconds when all available to the moment messages will be delivered. if no messages collected  - heartbeat event will be fired.
+* `{"url" : "http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-payload-content", "valueCode" : "id-only"}` notification will only contain ids of resources. The other options are `full-resource` and `empty`.
+* `"endpoint" : "http://subscription-demo-server:9000/callback-test-1"` endpoint to which `POST` request with notifications will be sent.&#x20;
+* `{"url" : "http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-filter-criteria", "valueString" : "Observation?value=42"}` specifies, that only observation with `value=42` should be delivered for this notification. Available filters or resources may be configured in SubscriptionTopic.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -122,16 +131,16 @@ accept: application/json
   "channel" : {
     "extension" : [ {
       "url" : "http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-heartbeat-period",
-      "valueUnsignedInt" : 120
+      "valueUnsignedInt" : 20
     }, {
       "url" : "http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-timeout",
       "valueUnsignedInt" : 60
     }, {
       "url" : "http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-max-count",
-      "valuePositiveInt" : 4
+      "valuePositiveInt" : 2
     } ],
     "type" : "rest-hook",
-    "endpoint" : "http://localhost:27193/callback-url",
+    "endpoint" : "http://subscription-demo-server:9000/callback-test-1",
     "payload" : "application/fhir+json",
     "_payload" : {
       "extension" : [ {
@@ -143,16 +152,15 @@ accept: application/json
   "_criteria" : {
     "extension" : [ {
       "url" : "http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-filter-criteria",
-      "valueString" : "Observation?value=10"
+      "valueString" : "Observation?value=42"
     } ]
   },
   "resourceType" : "Subscription",
   "reason" : "R4/B Test Topic-Based Subscription for Observation",
   "status" : "requested",
-  "id" : "test-sub-id",
+  "id" : "test-sub-1",
   "end" : "2024-12-31T12:00:00.000-00:00"
 }
-
 ```
 {% endtab %}
 
@@ -221,6 +229,12 @@ accept: application/json
 {% endtabs %}
 
 As a result of this step Aidbox will try to perform a handshake with the subscriber service. By default Aidbox expects `Status:200`  response.
+
+You may notice `handshake` event in demo server UI:
+
+![](<../../.gitbook/assets/Screenshot 2023-09-04 at 16.14.03.png>)
+
+After the sucesfull handshake, status of the Subscrip
 
 {% tabs %}
 {% tab title="Request" %}
