@@ -18,22 +18,7 @@ You can quickly evaluate C-CDA to FHIR Converter on our [C-CDA to FHIR Demo page
 
 ### List of supported sections
 
-Below is the list of supported C-CDA sections, their corresponding OIDs and aliases. Section aliases are used to configure C-CDA endpoints to specify a list of sections to process.
-
-| Value               | Section OID(s)                                                                                                     | FHIR resource                           |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------ | --------------------------------------- |
-| `goals`             | 2.16.840.1.113883.10.20.22.2.60                                                                                    | Goal                                    |
-| `problems`          | 2.16.840.1.113883.10.20.22.2.5.1                                                                                   | Condition                               |
-| `medications`       | 2.16.840.1.113883.10.20.22.2.1.1                                                                                   | MedicationStatement                     |
-| `immunizations`     | <p>2.16.840.1.113883.10.20.22.2.2</p><p>2.16.840.1.113883.10.20.22.2.2.1</p><p>2.16.840.1.113883.10.20.22.4.52</p> | Immunization                            |
-| `payers`            | 2.16.840.1.113883.10.20.22.2.18                                                                                    | Coverage                                |
-| `vital-signs`       | 2.16.840.1.113883.10.20.22.2.4.1                                                                                   | Observation                             |
-| `social-history`    | 2.16.840.1.113883.10.20.22.2.17                                                                                    | Observation                             |
-| `procedures`        | 2.16.840.1.113883.10.20.22.2.7.1                                                                                   | Procedure                               |
-| `encounters`        | 2.16.840.1.113883.10.20.22.2.22.1                                                                                  | Encounter                               |
-| `plan-of-treatment` | 2.16.840.1.113883.10.20.22.2.10                                                                                    | Procedure, Observation, Encounter, Goal |
-| `allergies`         | 2.16.840.1.113883.10.20.22.2.6.1                                                                                   | AllergyIntolerance                      |
-| `results`           | 2.16.840.1.113883.10.20.22.2.3.1                                                                                   | Observation                             |
+The list of supported sections can be found [on the separate page](sections/). Section aliases are used to configure C-CDA endpoints to specify sections to process.
 
 ### Converting a C-CDA document to FHIR
 
@@ -141,11 +126,11 @@ Please note that this endpoint doesn't persist any populated FHIR data to Aidbox
 
 There are several options you may pass to the `/ccda/v2/to-fhir` endpoint. Options are passed as query string parameters, i.e. `/ccda/v2/to-fhir?option1=value1&option2=value2`.
 
-| Option      | Values                                                                                                                                | Description                                                                                                 |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `format`    | <p><code>aidbox | fhir</code><br>Default: <code>fhir</code></p>                                                                       | [Format](../../fhir-resources/aidbox-and-fhir-formats.md) of resulting FHIR document. It's FHIR by default. |
-| transaction | true                                                                                                                                  | Output FHIR bundle type. By default FHIR document bundle will be returned.                                  |
-| `sections`  | <p>Proceed to the <a href="./#list-of-supported-sections">Section Aliases</a> table to find all possible values. <br>Default: all</p> | Comma-separated list of section aliases to process. By default all sections are processed.                  |
+| Option      | Values                                                                                                                               | Description                                                                                |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `format`    | `aidbox`                                                                                                                             | <p>fhir<br>Default: <code>fhir</code></p>                                                  |
+| transaction | true                                                                                                                                 | Output FHIR bundle type. By default FHIR document bundle will be returned.                 |
+| `sections`  | <p>Proceed to the <a href="./#list-of-supported-sections">Section Aliases</a> table to find all possible values.<br>Default: all</p> | Comma-separated list of section aliases to process. By default all sections are processed. |
 
 Example
 
@@ -231,11 +216,11 @@ If the `create-docref` option is provided, this endpoint will also create a [Doc
 
 Options are passed as query-string parameters, i.e. `/ccda/v2/persist?create-docref=true&option2=value2`. `sections` are passed separated by commas, i.e. `/ccda/v2/persist?section=dicom,goals,findings`.
 
-| Option          | Values                                                                                                                                | Description                                                                                |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| `create-docref` | <p><code>true | false</code><br>Default: <code>false</code></p>                                                                       | Specifies if a DocumentReference resource is needed to store original XML document.        |
-| `tenant-id`     | <p>ID of Tenant resource<br>Default: none</p>                                                                                         | For [Smartbox](../../smartbox/) users only. Assigns Tenant to all populated resources.     |
-| `sections`      | <p>Proceed to the <a href="./#list-of-supported-sections">Section Aliases</a> table to find all possible values. <br>Default: all</p> | Comma-separated list of section aliases to process. By default all sections are processed. |
+| Option          | Values                                                                                                                               | Description                                                                                |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `create-docref` | `true`                                                                                                                               | <p>false<br>Default: <code>false</code></p>                                                |
+| `tenant-id`     | <p>ID of Tenant resource<br>Default: none</p>                                                                                        | For [Smartbox](../../smartbox/) users only. Assigns Tenant to all populated resources.     |
+| `sections`      | <p>Proceed to the <a href="./#list-of-supported-sections">Section Aliases</a> table to find all possible values.<br>Default: all</p> | Comma-separated list of section aliases to process. By default all sections are processed. |
 
 ### Validating a C-CDA document
 
@@ -335,6 +320,6 @@ In case of failed validation endpoint will return a list of errors and warnings:
 
 Options are passed as query-string parameters, i.e. `/ccda/validate?option1=value1&option2=value2`.
 
-| Option   | Values                                                                    | Description                    |
-| -------- | ------------------------------------------------------------------------- | ------------------------------ |
-| `method` | <p><code>xsd | schematron | both</code><br>Default: <code>both</code></p> | Type of validation to perform. |
+| Option   | Values | Description |
+| -------- | ------ | ----------- |
+| `method` | `xsd`  | schematron  |
