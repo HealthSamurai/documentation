@@ -293,7 +293,7 @@
 * [Integration toolkit](modules-1/integration-toolkit/README.md)
   * [C-CDA / FHIR Converter](modules-1/integration-toolkit/ccda-converter/README.md)
     * [🔒 v1 Documentation](modules-1/integration-toolkit/ccda-converter/ccda-converter.md)
-    * [List of supported sections](modules-1/integration-toolkit/ccda-converter/sections.md)
+    * [List of supported sections](modules-1/integration-toolkit/ccda-converter/sections/README.md)
     * [How to deploy the service](modules-1/integration-toolkit/ccda-converter/deploy-ccda-fhir.md)
     * [Producing C-CDA documents](modules-1/integration-toolkit/ccda-converter/producing-c-cda-documents.md)
     * [How to customize conversion rules](modules-1/integration-toolkit/ccda-converter/ccda-fhir-dsl.md)
