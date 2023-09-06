@@ -95,7 +95,7 @@ To access the API, you have to issue a token through the Aidbox [portal](https:/
 ### Create license
 
 ```yaml
-POST aidbox.app/rpc
+POST https://aidbox.app/rpc
 content-type: text/yaml
 accept: text/yaml
 
@@ -113,10 +113,10 @@ params:
 
 There are two options for deleting a license: 
 
-by license id
+by **license id**
 
 ```yaml
-POST aidbox.app/rpc
+POST https://aidbox.app/rpc
 content-type: text/yaml
 accept: text/yaml
 
@@ -126,10 +126,10 @@ params:
   id: <license-id>
 ```
 
-by license string
+by **license string**
 
 ```yaml
-POST aidbox.app/rpc
+POST https://aidbox.app/rpc
 content-type: text/yaml
 accept: text/yaml
 
@@ -143,10 +143,10 @@ params:
 
 Retrieve license:
 
-by license id
+by **license id**
 
 ```yaml
-POST aidbox.app/rpc
+POST https://aidbox.app/rpc
 content-type: text/yaml
 accept: text/yaml
 
@@ -156,10 +156,10 @@ params:
   id: <license-id>
 ```
 
-by license string
+by **license string**
 
 ```yaml
-POST aidbox.app/rpc
+POST https://aidbox.app/rpc
 content-type: text/yaml
 accept: text/yaml
 
@@ -174,7 +174,7 @@ params:
 Retrieve all licenses associated with a project.
 
 ```yaml
-POST aidbox.app/rpc
+POST https://aidbox.app/rpc
 content-type: text/yaml
 accept: text/yaml
 
