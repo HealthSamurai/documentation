@@ -15,6 +15,7 @@
     * [Deploy Production-ready Aidbox to Kubernetes](getting-started/run-aidbox-in-kubernetes/deploy-aidbox-in-kubernetes.md)
     * [Highly Available Aidbox](getting-started/run-aidbox-in-kubernetes/high-available-aidbox.md)
     * [How to migrate to Apline Linux](getting-started/run-aidbox-in-kubernetes/how-to-migrate-to-apline-linux.md)
+  * [Migrate from Multibox to Aidbox](getting-started/migrate-from-multibox-to-aidbox.md)
 * [Tutorials](<modules-1/security-and-access-control/tutorials/README (1).md>)
   * [Data API](tutorials/data-api/README.md)
     * [How to use multilingual search](tutorials/data-api/how-to-use-multilingual-search.md)
