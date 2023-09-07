@@ -90,11 +90,11 @@ To run queries present below, you can use some tool to run http requests (e.g. P
 
 ### Issue token
 
-To access the API, you have to issue a token through the Aidbox [portal](https://aidbox.app/):
+To access the API, you have to issue a token, bound with the project, through the Aidbox [portal](https://aidbox.app/):
 
-1. On the main navigation sidebar, click on the _**project name**_
-2. On the menu that opens, click _**Settings**_
-3. Click button _**Issue Token**_
+1. On the main navigation sidebar, click on the _**project name**_.
+2. On the menu that opens, click _**Settings**_.
+3. Click button _**Issue Token**._
 
 ### Create license
 
