@@ -1,13 +1,13 @@
 # Authentication
 
-{% content-ref url="../security-and-access-control-1/how-to-guides/configure-okta.md" %}
-[configure-okta.md](../security-and-access-control-1/how-to-guides/configure-okta.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
-{% content-ref url="../security-and-access-control-1/how-to-guides/azure-ad.md" %}
-[azure-ad.md](../security-and-access-control-1/how-to-guides/azure-ad.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
-{% content-ref url="../security-and-access-control-1/how-to-guides/keycloak.md" %}
-[keycloak.md](../security-and-access-control-1/how-to-guides/keycloak.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}

@@ -6,7 +6,7 @@ description: >-
 
 # Find out what resources were exported during the $export operation
 
-[$export](../../../api-1/bulk-api-1/usdexport.md) operation is used to export huge amounts of patient data directly to S3 buckets. Sometimes it is important to clarify what resources certain Bulk client had access to.
+[$export](broken-reference) operation is used to export huge amounts of patient data directly to S3 buckets. Sometimes it is important to clarify what resources certain Bulk client had access to.
 
 {% hint style="info" %}
 In the guide we analyze the behavior of the `inferno-my-clinic-bulk-client` client

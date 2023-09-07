@@ -6,7 +6,7 @@ description: Use $match to find duplicates
 
 ## Use match operation
 
-Use [$match](../../api-1/fhir-api/usdmatch.md) operation or [`aidbox.mdm/match` RPC method](../../reference/rpc-reference/aidbox/mdm/aidbox.mdm-match.md) to find similar resources:
+Use [$match](broken-reference) operation or [`aidbox.mdm/match` RPC method](../../reference/rpc-reference/aidbox/mdm/aidbox.mdm-match.md) to find similar resources:
 
 ```
 POST /fhir/Patient/$match

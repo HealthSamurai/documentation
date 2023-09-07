@@ -5,10 +5,10 @@ description: Multibox box life cycle RPC methods
 # Multibox box manager API
 
 {% hint style="info" %}
-Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [contact](../contact-us.md) us if you have question, feedback or suggestions.
+Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [contact](broken-reference) us if you have question, feedback or suggestions.
 {% endhint %}
 
-Multibox box manager API uses Aidbox JSON [RPC API](../api-1/rpc-api.md).
+Multibox box manager API uses Aidbox JSON [RPC API](broken-reference).
 
 {% hint style="info" %}
 Multibox API is accessible on the box manager URL. Please use an external REST client to access your Multibox server.
@@ -133,7 +133,7 @@ curl "multibox.example.host/rpc"
 #### Creating box with Aidbox configuration project
 
 {% hint style="info" %}
-You can find more information about Aidbox configuration project [here](../aidbox-configuration/aidbox-zen-lang-project/).
+You can find more information about Aidbox configuration project [here](broken-reference).
 {% endhint %}
 
 To create box with Aidbox configuration project you can use this environments:

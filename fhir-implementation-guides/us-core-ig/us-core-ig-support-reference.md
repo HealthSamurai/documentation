@@ -1,7 +1,7 @@
 # US Core IG support reference
 
 {% hint style="warning" %}
-This reference is a work in progress. Please, [contact us](../../contact-us.md) if have any questions.
+This reference is a work in progress. Please, [contact us](broken-reference) if have any questions.
 {% endhint %}
 
 ## Supported versions
@@ -13,7 +13,7 @@ Historical versions `2.1.0`, `3.0.0`, `3.0.1`, `3.1.0`, `3.1.1`, `3.2.0`, `4.0.0
 ## Supported artifacts
 
 {% hint style="info" %}
-Please, [contact us](../../contact-us.md) if you want to use some of IG functions that are not currently supported.
+Please, [contact us](broken-reference) if you want to use some of IG functions that are not currently supported.
 {% endhint %}
 
 ### Profiles
@@ -30,7 +30,7 @@ Enabling extensions allows Aidbox to validate its rules and constraints on a res
 
 ### Terminology
 
-Loading a terminology into Aidbox allows you to use [Terminology API](../../modules-1/terminology/) and also to validate value set bindings in resources. If a terminology is not loaded you can still save resources, but no validation of the terminology bindings will be applied.
+Loading a terminology into Aidbox allows you to use [Terminology API](broken-reference) and also to validate value set bindings in resources. If a terminology is not loaded you can still save resources, but no validation of the terminology bindings will be applied.
 
 #### Value Sets
 
@@ -42,11 +42,11 @@ Loading a terminology into Aidbox allows you to use [Terminology API](../../modu
 
 #### Externally Published code systems
 
-<table><thead><tr><th width="280">ValueSet</th><th data-type="select">Support</th><th>Notes</th></tr></thead><tbody><tr><td><code>http://www.cms.gov/Medicare/Coding/ICD10</code></td><td></td><td>Refer to the <a href="../../terminology/terminology-tutorials/load-terminologies.md">ICD 10 import guide</a></td></tr><tr><td><code>http://www.cms.gov/Medicare/Coding/HCPCSReleaseCodeSets</code></td><td></td><td></td></tr><tr><td><code>http://www.ada.org/cdt</code></td><td></td><td></td></tr><tr><td><code>https://www.usps.com</code></td><td></td><td></td></tr></tbody></table>
+<table><thead><tr><th width="280">ValueSet</th><th data-type="select">Support</th><th>Notes</th></tr></thead><tbody><tr><td><code>http://www.cms.gov/Medicare/Coding/ICD10</code></td><td></td><td>Refer to the <a href="broken-reference">ICD 10 import guide</a></td></tr><tr><td><code>http://www.cms.gov/Medicare/Coding/HCPCSReleaseCodeSets</code></td><td></td><td></td></tr><tr><td><code>http://www.ada.org/cdt</code></td><td></td><td></td></tr><tr><td><code>https://www.usps.com</code></td><td></td><td></td></tr></tbody></table>
 
 ### Search Parameters
 
-Loading Search Parameters into Aidbox enables you to use them in [Search API](../../api-1/fhir-api/search-1/).
+Loading Search Parameters into Aidbox enables you to use them in [Search API](broken-reference).
 
 <table><thead><tr><th width="163">Resource type</th><th>Parameter</th><th width="153" data-type="select">Support</th><th>Notes</th></tr></thead><tbody><tr><td>CareTeam</td><td>role</td><td></td><td></td></tr><tr><td>Condition</td><td>asserted-date</td><td></td><td>Since 2301</td></tr><tr><td>Encounter</td><td>discharge-disposition</td><td></td><td></td></tr><tr><td>Goal</td><td>description</td><td></td><td></td></tr><tr><td>Patient</td><td>race</td><td></td><td>Since 2301</td></tr><tr><td>Patient</td><td>ethnicity</td><td></td><td>Since 2301</td></tr><tr><td>Patient</td><td>gender-identity</td><td></td><td>Since 2301</td></tr></tbody></table>
 
@@ -64,4 +64,4 @@ Various REST API operations described in an IG.
 
 Supporting a CapabilityStatement allows to perform FHIR server capabilities discovery.
 
-<table><thead><tr><th width="260">Capability Statement</th><th width="155" data-type="select">Support</th><th>Notes</th></tr></thead><tbody><tr><td><a href="https://www.hl7.org/fhir/us/core/CapabilityStatement-us-core-server.html">Server CapabilityStatement</a></td><td></td><td>Aidbox instance <a href="../../api-1/fhir-api/metadata.md">generates Capability Statement</a> based on its current set up. Generated response may differ from the IG statement.</td></tr><tr><td><a href="https://www.hl7.org/fhir/us/core/CapabilityStatement-us-core-client.html">Client CapabilityStatement</a></td><td></td><td>This is related to FHIR clients, not FHIR servers.</td></tr></tbody></table>
+<table><thead><tr><th width="260">Capability Statement</th><th width="155" data-type="select">Support</th><th>Notes</th></tr></thead><tbody><tr><td><a href="https://www.hl7.org/fhir/us/core/CapabilityStatement-us-core-server.html">Server CapabilityStatement</a></td><td></td><td>Aidbox instance <a href="broken-reference">generates Capability Statement</a> based on its current set up. Generated response may differ from the IG statement.</td></tr><tr><td><a href="https://www.hl7.org/fhir/us/core/CapabilityStatement-us-core-client.html">Client CapabilityStatement</a></td><td></td><td>This is related to FHIR clients, not FHIR servers.</td></tr></tbody></table>

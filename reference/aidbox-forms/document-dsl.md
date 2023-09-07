@@ -386,7 +386,7 @@ Supported cloud storages:
 * AWS S3
 * GCP Cloud Storage
 
-> This feature can be configured via [api-constructor](../../aidbox-configuration/aidbox-api-constructor.md) in zen-project.
+> This feature can be configured via [api-constructor](broken-reference) in zen-project.
 
 1. Configure your `aidbox/system` with `sdc-service` and it's configuration.
 

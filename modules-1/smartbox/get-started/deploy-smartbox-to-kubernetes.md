@@ -23,7 +23,7 @@ This guide does not define exposing Smartbox to the Internet
 
 * [Kubernetes](https://kubernetes.io/) cluster is set up and running
 * `kubectl` utility is installed
-* Two Aidbox [licenses](../../../overview/aidbox-user-portal/licenses.md) are obtained
+* Two Aidbox [licenses](broken-reference) are obtained
 * Email provider [credentials](../../../integrations/email-providers.md) are obtained
 * GCP connect [credentials](../../../storage-1/s3-compatible-storages/gcp-cloud-storage.md) are obtained
 
@@ -70,7 +70,7 @@ The `smartbox.yaml` is the k8s compiled templates configuration. The configurati
 * AIDBOX\_CLIENT\_SECRET: portal-secret
 * BOX\_SMARTBOX\_SANDBOX\_\_URL: http://sandbox
 * BOX\_SMARTBOX\_SANDBOX\_\_ADMIN: admin
-* BOX\_BULK\_\_STORAGE\_GCP\_\* values. See the [documentation](../../../api-1/bulk-api-1/usdexport.md#gcp)
+* BOX\_BULK\_\_STORAGE\_GCP\_\* values. See the [documentation](broken-reference)
 
 {% hint style="warning" %}
 BOX\_SMARTBOX\_SANDBOX\_\_BASIC is deprecated. Use BOX\_SMARTBOX\_SANDBOX\_\_ADMIN instead

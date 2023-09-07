@@ -4,8 +4,8 @@ The HL7 v2 pipeline is the next step in [HL7v2 Aidbox integration](hl7-v2-integr
 
 ## Quick start
 
-{% content-ref url="../../tutorials/tutorials/hl7-v2-pipeline-with-patient-mapping.md" %}
-[hl7-v2-pipeline-with-patient-mapping.md](../../tutorials/tutorials/hl7-v2-pipeline-with-patient-mapping.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ## About HL7 v2 parser
@@ -145,7 +145,7 @@ Null values and empty arrays will be truncated automatically in the resulted str
 
 The HL7 v2 pipeline is primarily a user-configurable API that allows you to describe REST endpoints for different message types and operations for them. HL7 v2 pipeline operations must use `hl7v2.api/in-op` engine, as well as contain previously defined mapping and parser-config.
 
-For example, you need to [define an API](../../aidbox-configuration/aidbox-api-constructor.md) with an operation to process an ADT message and then write it to the database.
+For example, you need to [define an API](broken-reference) with an operation to process an ADT message and then write it to the database.
 
 ```clojure
 {ns my-hl7-api

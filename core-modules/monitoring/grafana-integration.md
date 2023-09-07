@@ -7,7 +7,7 @@ description: >-
 # Grafana integration
 
 {% hint style="info" %}
-Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [contact](../../contact-us.md) us if you have questions, feedback, or suggestions.
+Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [contact](broken-reference) us if you have questions, feedback, or suggestions.
 {% endhint %}
 
 ## Configuration

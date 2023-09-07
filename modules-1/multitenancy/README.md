@@ -4,7 +4,7 @@ description: This section aggregates vision and approaches on multitenancy issue
 
 # Multitenancy
 
-There are many ways you can [build multitenancy on top of Aidbox](../../security-and-access-control-1/multitenancy/). Current section is going to focus on an upcoming into Aidbox first-class multitenancy, which will provide you a guided framework to built your own multitenant application on top of Aidbox.
+There are many ways you can [build multitenancy on top of Aidbox](broken-reference). Current section is going to focus on an upcoming into Aidbox first-class multitenancy, which will provide you a guided framework to built your own multitenant application on top of Aidbox.
 
 {% hint style="info" %}
 Aidbox first-class multitenancy module and approach is in the active process of crystallising into a final solution. And you may influence on that stage, in order to the module better meet your requirements and expectations by sharing your use case with Health Samurai team.

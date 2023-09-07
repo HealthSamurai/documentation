@@ -101,8 +101,7 @@ Sets the limit of log records to push into the file. When the limit is reached, 
 BOX_LOGGING_DISABLE__HEALTH__LOGS=<boolean>
 ```
 
-Disable `/health` endpoint requests logging. Default value is `false`. 
-
+Disable `/health` endpoint requests logging. Default value is `false`.
 
 ### AIDBOX\_STDOUT\_JSON
 
@@ -122,7 +121,7 @@ By setting one of these values you would also get all the values to the left. e.
 
 ### AIDBOX\_STDOUT\_GOOGLE\_JSON
 
-Produces logs in Google Logging format (see [LogEntry](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry)). 
+Produces logs in Google Logging format (see [LogEntry](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry)).
 
 ```
 AIDBOX_STDOUT_GOOGLE_JSON=<log-level>
@@ -236,7 +235,7 @@ Enables `_debug=policy` for [access policy debugging](https://docs.aidbox.app/se
 AIDBOX_ZEN_ENTRYPOINT=<entrypoint>
 ```
 
-`entrypoint` is in format specified [here](../../../aidbox-configuration/aidbox-zen-lang-project/#set-aidbox-zen-entrypoint).
+`entrypoint` is in format specified [here](broken-reference).
 
 Specifies entry point for loading Aidbox configuration.
 
@@ -331,7 +330,7 @@ Enables `su` request header [functionalty](https://docs.aidbox.app/security-and-
 BOX_FEATURES_VALIDATION_SKIP_REFERENCE=true
 ```
 
-Enables skip resource reference validation [functionality](../../../profiling-and-validation/profiling.md#aidbox-validation-skip-request-header).
+Enables skip resource reference validation [functionality](broken-reference).
 
 ### BOX\_WEB\_MAX\_\_BODY
 

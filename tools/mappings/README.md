@@ -8,7 +8,7 @@ description: >-
 
 Most of real-world healthcare applications are integrated with 3rd-party systems to ingest data from them. Using the Mapping resource, you can describe how 3rd-party data is being converted to the FHIR format. Mappings are written using the [JUTE language](https://github.com/HealthSamurai/jute.clj#introduction).
 
-The Mapping is an Aidbox resource, so all [CRUD operations](../../api-1/api/crud-1/) are applicable to it. The Mapping's schema is pretty straightforward:
+The Mapping is an Aidbox resource, so all [CRUD operations](broken-reference) are applicable to it. The Mapping's schema is pretty straightforward:
 
 ```yaml
 resourceType: Mapping
@@ -19,7 +19,7 @@ scopeSchema:
   # A JSON schema for the incoming data (optional)
 ```
 
-If the `scopeSchema` attribute is provided, incoming mapping data (also called a scope) will be validated against it first. Then, a JUTE template from the `body` will be executed. Mapping should return a valid [Transaction Bundle](../../api-1/transaction.md), so when applied, it will be able to operate with multiple resources not just single one.
+If the `scopeSchema` attribute is provided, incoming mapping data (also called a scope) will be validated against it first. Then, a JUTE template from the `body` will be executed. Mapping should return a valid [Transaction Bundle](broken-reference), so when applied, it will be able to operate with multiple resources not just single one.
 
 ### Example
 

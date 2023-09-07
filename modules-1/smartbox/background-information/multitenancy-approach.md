@@ -4,7 +4,7 @@ description: The article explains Smartbox approach for multitenancy
 
 # Multitenancy approach
 
-Smartbox is distributed as an aidbox configuration project on top of Aidbox. It follows [Aidbox multitenancy approach](../../../security-and-access-control-1/multitenancy/#aidbox-api-constructor) on API constructor.
+Smartbox is distributed as an aidbox configuration project on top of Aidbox. It follows [Aidbox multitenancy approach](broken-reference) on API constructor.
 
 All data is stored in one Postgres database. Multitenancy is achived by Smartbox on couple of levels:
 
@@ -20,7 +20,7 @@ name: My Clinic
 ```
 
 {% hint style="info" %}
-You may be confused as you don't see Tenant resource on entities page in Aidbox Console. It happens because Tenant resource is defined in aidbox configuration project within zen-lang. You may follow profiles page and find Tenant resource definition in `smartbox.multitenancy` namespace.
+You may be confused as you don't see Tenant resource on entities page in Aidbox Console. It happens because Tenant resource is defined in aidbox configuration project within zen-lang. You may follow profiles page and find Tenant resource definition in `smartbox.multitenancy` namespace.
 {% endhint %}
 
 Every FHIR resource from [us-core IG](http://hl7.org/fhir/us/core/STU3.1.1/) is enhanced with reference to a tenant. E.g. Patient resource:
@@ -41,7 +41,7 @@ Once you created Tenant resource, FHIR API, a dedicated authorization server wit
 
 #### Patient portal
 
-Patient portal is available on&#x20;
+Patient portal is available on
 
 `[aidbox-base-url]/tenant/[tenant-id]/patient/portal`
 
@@ -52,7 +52,7 @@ Patient portal provides to patient an ability
 
 #### FHIR API for patient-facing SMART apps
 
-FHIR API for patient-facing SMART apps is avaiable on&#x20;
+FHIR API for patient-facing SMART apps is avaiable on
 
 `[aidbox-base-url]/tenant/[tenant-id]/patient/smart-api`
 
@@ -70,7 +70,7 @@ Why is there dedicated auth server for every tenant? If a person is a patient in
 
 #### FHIR API for provider-facing SMART apps
 
-FHIR API for provider-facing SMART apps is avaiable on&#x20;
+FHIR API for provider-facing SMART apps is avaiable on
 
 `[aidbox-base-url]/tenant/[tenant-id]/provider/smart-api`
 
@@ -89,4 +89,3 @@ Bulk API is available on
 `[aidbox-base-url]/tenant/[tenant-id]/bulk-api`
 
 It works in accordance to [Bulk Data Access IG](https://hl7.org/fhir/uv/bulkdata/STU1.0.1/).
-

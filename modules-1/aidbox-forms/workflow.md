@@ -2,7 +2,7 @@
 description: Overview of workflow
 ---
 
-# Workflow
+# How to embed forms to the workflow
 
 Forms can be embedded into a workflow.
 
@@ -38,8 +38,6 @@ Workflow and items has status model , model is slightly different
 {% hint style="warning" %}
 **`canceled`** status used for WF because `skipped` status is not obvious in this domain. WF is a process of action, but item is just a step that can be optionally and can be omitted.
 {% endhint %}
-
-
 
 ## Workflow definition
 
@@ -224,8 +222,6 @@ Value of the key `:sdc/enable-when` should be boolean lisp expression. Lisp expr
                  :form myforms/Demographic}}}
 ```
 
-
-
 ## Basic WF usage scenarios
 
 Assume we have such WF with one section and two forms
@@ -253,18 +249,14 @@ From the start (after WF start) we are working with form-items directly via step
 
 [![Fast skip scenario](https://camo.githubusercontent.com/e19ba76d9bd76df635d12beb32a839021ece740e022c94b17ad4a1e52a678702/687474703a2f2f7777772e706c616e74756d6c2e636f6d2f706c616e74756d6c2f706e672f6850354452694b5733384a746443387a30315475676767746f5773676a74523132495a794d363234556c6b36664167514c6a637a394a455a2d4752764e574d426a315a4b597059413143346c4a665132642d677a4b57377a31655f6631646a417a72617a665935446b534752313670394533726c5a77365f77632d5432743763356233386d6b7745676b3646675974506c525a5f674e656368667672354d4230347048594d533563716f386230516e57433161415034794a565741444247684c6c6d694f6e4a59773864757957705a435775544453614a6e5061556d4a6d6a4b436b39706b6a6872557a50317170734e544777764e5f74614a6963454377656c)](https://camo.githubusercontent.com/e19ba76d9bd76df635d12beb32a839021ece740e022c94b17ad4a1e52a678702/687474703a2f2f7777772e706c616e74756d6c2e636f6d2f706c616e74756d6c2f706e672f6850354452694b5733384a746443387a30315475676767746f5773676a74523132495a794d363234556c6b36664167514c6a637a394a455a2d4752764e574d426a315a4b597059413143346c4a665132642d677a4b57377a31655f6631646a417a72617a665935446b534752313670394533726c5a77365f77632d5432743763356233386d6b7745676b3646675974506c525a5f674e656368667672354d4230347048594d533563716f386230516e57433161415034794a565741444247684c6c6d694f6e4a59773864757957705a435775544453614a6e5061556d4a6d6a4b436b39706b6a6872557a50317170734e544777764e5f74614a6963454377656c)
 
-
-
 ## Optional features
 
 Workflow support 2 additional features:
 
 * `versioning` - is automatic and based on hashing essential fields of definitions. If some essential field of form/wf is changed - created a new version and snapshotted to DB
-*   `section id generation -` is generated from item path (path from WF root to item itself).
+* `section id generation -` is generated from item path (path from WF root to item itself).
 
-
-
-These features you can configure via [api-constructor](../../aidbox-configuration/aidbox-api-constructor.md) in zen-project.
+These features you can configure via [api-constructor](broken-reference) in zen-project.
 
 You need to configure your `aidbox/system` with `sdc-service` and it's configuration
 
@@ -338,4 +330,3 @@ You can use [Workflow API](../../reference/aidbox-forms/workflow-api.md)
 * [amend-workflow](../../reference/aidbox-forms/workflow-api.md#amend-workflow) - amend completed WF
 * [add-workflow-note](../../reference/aidbox-forms/workflow-api.md#add-workflow-note) - add addendum note to the given WF
 * [get-workflow-addendums](../../reference/aidbox-forms/workflow-api.md#get-workflow-addendums) - get list of addendums for the given WF
-

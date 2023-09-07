@@ -35,7 +35,7 @@ During the test sessions, Smartbox shows users the `Consent screen`. There is th
 Default `refresh_token` lifespan is unlimited.
 
 {% hint style="info" %}
-To reduce the refresh\_token lifespan use [refresh\_token\_expiration documentation](../../../security-and-access-control-1/auth/authorization-code.md#configure-client)
+To reduce the refresh\_token lifespan use [refresh\_token\_expiration documentation](broken-reference)
 {% endhint %}
 
 ## 9.10.06 Health IT developer demonstrated the ability of the Health IT Module / authorization server to validate token it has issued

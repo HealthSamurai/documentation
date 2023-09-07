@@ -126,8 +126,6 @@ result:
       :finalize DukeAnxietyDepressionScaleFinalize}}
 ```
 
-
-
 ### convert-form
 
 Converts Aidbox Form to FHIR Questionnaire, optionaly can save it to Questinnaire resource in Aidbox.
@@ -147,16 +145,16 @@ What is supported:
 
 params:
 
-| Param                | Description                                                 | Type    | required? |
-|----------------------|-------------------------------------------------------------|---------|-----------|
-| form                 | Form symbolic name                                          | string  | yes       |
-| format               | Format of QR. Aidbox or FHIR                                | string  | yes       |
-| save-to-resource     | Save Questionnaire to resource                              | boolean | no        |
-| opts                 |                                                             | Map     | no        |
-| opts.describe-rules* | If true - will add field calculation rule description to QR | boolean | no        |
+| Param                 | Description                                                 | Type    | required? |
+| --------------------- | ----------------------------------------------------------- | ------- | --------- |
+| form                  | Form symbolic name                                          | string  | yes       |
+| format                | Format of QR. Aidbox or FHIR                                | string  | yes       |
+| save-to-resource      | Save Questionnaire to resource                              | boolean | no        |
+| opts                  |                                                             | Map     | no        |
+| opts.describe-rules\* | If true - will add field calculation rule description to QR | boolean | no        |
 
-> * - to use include-scores and describe-rules options you need to import `aidbox.sdc.extra` namespace in configuration project
-
+> *
+>   * to use include-scores and describe-rules options you need to import `aidbox.sdc.extra` namespace in configuration project
 
 * To save Questionnaire to resource you should specify `:fhir/id` property in the [`Form DSL`](form-dsl.md#properties-for-conversion)
 * To specify additional fields that are represented in Questionnaire but not in the Form DSL - you can use predefined form properties for that [`Form DSL`](form-dsl.md#properties-for-conversion)
@@ -245,9 +243,9 @@ Convert all SDCForms with :fhir/id property to FHIR questionnaire and store them
 
 params:
 
-| Param           | Description                                                | Type    | required? |
-|-----------------|------------------------------------------------------------|---------|-----------|
-| describe-rules* | If true - will add field calculation rule description to Q | boolean | no        |
+| Param            | Description                                                | Type    | required? |
+| ---------------- | ---------------------------------------------------------- | ------- | --------- |
+| describe-rules\* | If true - will add field calculation rule description to Q | boolean | no        |
 
 Returns list of pairs \[form-name, convertions-result] where convertion result is one of:
 
@@ -274,8 +272,6 @@ result:
     - message: '...Something wrong with conversion...'
 
 ```
-
-
 
 ### generate-form-template
 
@@ -957,17 +953,18 @@ Optionaly you can save converted `QuestionnaireResponse` to its resource table v
 
 Params:
 
-| Param                | Description                                                 | Type              | required? |
-|----------------------|-------------------------------------------------------------|-------------------|-----------|
-| id                   | id of SDCDocument in DB                                     | String            | no        |
-| document             | SDCDocument resource body                                   | Resource          | no        |
-| format               | Output format                                               | "fhir" / "aidbox" | yes       |
-| save-to-resource     | If true - converts and saves QR to resource                 | boolean           | no        |
-| opts                 |                                                             | Map               | no        |
-| opts.include-scores* | If true - include scores from answers to QR                 | boolean           | no        |
-| opts.describe-rules* | If true - will add field calculation rule description to QR | boolean           | no        |
+| Param                 | Description                                                 | Type              | required? |
+| --------------------- | ----------------------------------------------------------- | ----------------- | --------- |
+| id                    | id of SDCDocument in DB                                     | String            | no        |
+| document              | SDCDocument resource body                                   | Resource          | no        |
+| format                | Output format                                               | "fhir" / "aidbox" | yes       |
+| save-to-resource      | If true - converts and saves QR to resource                 | boolean           | no        |
+| opts                  |                                                             | Map               | no        |
+| opts.include-scores\* | If true - include scores from answers to QR                 | boolean           | no        |
+| opts.describe-rules\* | If true - will add field calculation rule description to QR | boolean           | no        |
 
-> * - to use include-scores and describe-rules options you need to import `aidbox.sdc.extra` namespace in configuration project
+> *
+>   * to use include-scores and describe-rules options you need to import `aidbox.sdc.extra` namespace in configuration project
 
 Request:
 
@@ -1086,7 +1083,7 @@ result:
 
 ### aidbox.sdc/get-form-access-jwt
 
-Creates [policy token](../../security-and-access-control-1/how-to-guides/access-policy.md#signed-rpc-policy-token) to get access to SDCDocument/SDCWorkflow
+Creates [policy token](broken-reference) to get access to SDCDocument/SDCWorkflow
 
 params:
 
@@ -1137,7 +1134,7 @@ policy: <jwt policy token>
 
 Generates link for form access and management without authentication.
 
-> Creates [policy token](../../security-and-access-control-1/how-to-guides/access-policy.md#signed-rpc-policy-token) to get access to SDCDocument/SDCWorkflow
+> Creates [policy token](broken-reference) to get access to SDCDocument/SDCWorkflow
 
 Redirect urls can be specified for different actions.
 
