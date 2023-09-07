@@ -84,9 +84,9 @@ CI/CD license also available for contract clients. A CI/CD license allows you to
 
 ## Manage Aidbox licenses via API
 
-{% hint style="info" %}
+Licences API on Aidbox portal allows you to issue Aidbox licenses on-premise installation (self-hosted).&#x20;
+
 To run queries present below, you can use some tool to run http requests (e.g. Postman).
-{% endhint %}
 
 ### Issue token
 
