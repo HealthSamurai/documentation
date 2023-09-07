@@ -64,6 +64,8 @@ Aidbox acts as [Audit record repository](https://profiles.ihe.net/ITI/TF/Volume1
 * `POST /fhir/AuditEvent` to record events&#x20;
 * `GET /fhir/AuditEvent` to receive them
 
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-07 at 13.23.08.png" alt=""><figcaption></figcaption></figure>
+
 ## Next steps
 
 Check out how to [enable audit logging in Aidbox](setup-audit-logging.md).
