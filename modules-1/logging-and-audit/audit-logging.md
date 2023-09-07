@@ -1,5 +1,5 @@
 ---
-description: This page describes how Aidbox manages audit
+description: This page describes what is audit logging and how Aidbox deals with it
 ---
 
 # Audit logging
