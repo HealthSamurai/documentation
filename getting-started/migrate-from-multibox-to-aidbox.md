@@ -16,7 +16,7 @@ To migrate them to Aidbox instance, you need to issue an Aidbox license for each
 Stop Multibox instance
 
 ```
-docker compsoe stop multibox
+docker compose stop multibox
 ```
 
 ## Docker compose file
