@@ -138,7 +138,7 @@ Please note that this endpoint doesn't persist any populated FHIR data to Aidbox
 
 #### Endpoint options
 
-There are several options you may pass to the `/ccda/to-fhir` endpoint. Options are passed as query string parameters, i.e. `/ccda/to-fhir?option1=value1&option2=value2`.
+There are several options you may pass to the `/v2/ccda/to-fhir` endpoint. Options are passed as query string parameters, i.e. `/v2/ccda/to-fhir?option1=value1&option2=value2`.
 
 | Option     | Values                                                                                                                                   | Description                                                                                |
 | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
