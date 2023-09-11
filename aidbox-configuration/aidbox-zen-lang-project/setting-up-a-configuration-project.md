@@ -1,6 +1,6 @@
 # Set up and use configuration projects
 
-Aidbox Configuration project requires a few things:&#x20;
+Aidbox Configuration project requires a few things:
 
 * [Project folder](setting-up-a-configuration-project.md#create-configuration-project-folder), which wraps all the necessary files required for a project package to function.
 * [Package file](setting-up-a-configuration-project.md#list-project-dependencies), which lists project’s dependencies.
@@ -17,7 +17,7 @@ Configuration projects, which are also _zen projects_, work as git repositories 
 You can also bootstrap a project with the help of [`zen`](https://github.com/HealthSamurai/ftr/releases) tool:
 
 ```bash
-java -jar path/to/zen.jar init my-project
+java -jar path/to/zen.jar zen init my-project
 ```
 
 Then you need to set `BOX_PROJECT_GIT_URL` environment variable to the location of this repository so that Aidbox knows where to find it. Note that the location can be either a local path or a remote URL, for which you can optionally specify a commit and/or branch.
@@ -38,7 +38,7 @@ If you specify only the target path then Aidbox expects you to clone a project i
 
 If a repository you want to use as a project is under restricted access, you can provide the necessary SSH or HTTPS credentials via the following environment variables:
 
-* `BOX_PROJECT_GIT_ACCESS__TOKEN` —  access token for HTTPS
+* `BOX_PROJECT_GIT_ACCESS__TOKEN` — access token for HTTPS
 * `BOX_PROJECT_GIT_PUBLIC__KEY` — SSH public key
 * `BOX_PROJECT_GIT_PRIVATE__KEY` — SSH private key
 
@@ -89,7 +89,7 @@ AIDBOX_ZEN_ENTRYPOINT=system/box
 ```
 
 {% hint style="info" %}
-Besides system environment variables for setting up aidbox configuration project, there are many other envs Aidbox respects as part of backward compatibility. Still they are considered as legacy.&#x20;
+Besides system environment variables for setting up aidbox configuration project, there are many other envs Aidbox respects as part of backward compatibility. Still they are considered as legacy.
 
 It's more preferable to set up Aidbox with [aidbox.config/config](../../reference/configuration/aidbox-project/aidbox.config-config.md). You may provide it with `aidbox/system`
 
@@ -142,7 +142,7 @@ AIDBOX_ZEN_DEV_MODE=true
 
 You can also use Aidbox UI to reload namespaces: proceed to `Profiles` page on the left sidebar and click the reload button in the upper left corner.
 
-Additionally, there’s [`aidbox.zen/reload-namespaces`](../../reference/configuration/aidbox-project.md#aidbox.zen-reload-namespaces) RPC method that does the same thing.&#x20;
+Additionally, there’s [`aidbox.zen/reload-namespaces`](../../reference/configuration/aidbox-project.md#aidbox.zen-reload-namespaces) RPC method that does the same thing.
 
 ```yaml
 POST /rpc
@@ -176,7 +176,7 @@ In production you may not always have an access to a git repository with your pr
 Execute the following command inside the project directory to create a zip file with your project:
 
 ```bash
-java -jar path/to/ zen.jar build target zen-package
+java -jar path/to/ zen.jar zen build target zen-package
 ```
 
 It will be available inside the `target` directory in the root of the project.
