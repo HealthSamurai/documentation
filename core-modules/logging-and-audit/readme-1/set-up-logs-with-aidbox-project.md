@@ -55,6 +55,18 @@ This appenders directs the stream of logs to the Elasticsearch instance. Elastic
                :batch         {:size 1 :timeout 0}}}
 ```
 
+### open-telmetry-appender
+
+This appenders directs the stream of logs to the OpenTelemetry Collector. OpenTelemetry appender sample configuration.
+
+```clojure
+ open-telemetry-appender
+ {:zen/tags   #{aidbox/service}
+  :engine     aidbox.log/open-telemetry-appender
+  :config     {:url "http://host.docker.internal:4318"}}
+```
+
+
 ## Attached appenders snippet
 
 In this configuration two appenders (stdout and Elasticsearch) are defined and attached as Aidbox services.
@@ -77,11 +89,17 @@ In this configuration two appenders (stdout and Elasticsearch) are defined and a
                :index-pattern "'aidbox'-yyyy-MM-dd"
                :batch         {:size 1 :timeout 0}}}
 
+ open-telemetry-appender
+ {:zen/tags   #{aidbox/service}
+  :engine     aidbox.log/open-telemetry-appender
+  :config     {:url "http://host.docker.internal:4318"}}
+
  box
  {:zen/tags #{aidbox/system}
   :config   config/zen-config
   :services {:seed                   config/admin-seed
              :stdout                 stdout-appender
+             :otel-appender          open-telemetry-appender
              :elasticsearch-appender elasticsearch-appender}}}
 ```
 
