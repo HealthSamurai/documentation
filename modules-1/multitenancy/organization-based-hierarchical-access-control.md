@@ -143,12 +143,15 @@ The search API does not support search parameters:
 
 ### Bundle
 
+Supported transaction and batch bundle type.
+
 ```
 POST /Organization/org-b/fhir/
 Accept: text/yaml
 Content-Type: text/yaml
 
 resourceType: Bundle
+# transaction | batch
 type: transaction
 entry:
 - request:
@@ -168,10 +171,6 @@ entry:
     birthDate: '2021-01-01'
     id: 'pt-2'
 ```
-
-{% hint style="warning" %}
-Supported only bundle type `transaction`.
-{% endhint %}
 
 ### Metadata
 
