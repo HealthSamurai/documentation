@@ -73,7 +73,23 @@ To simplify the creation of Document bundles, Aidbox offers a feature called Doc
     :url "/Observation?category=vital-signs&patient=Patient/{{pid}}"}}]}
 ```
 
-Each resource attribute, such as `:subject`, `:author`, or `:section/:entry`, is specified as a FHIR transaction request that returns a single resource or multiple resources. The full power of the FHIR Search API can be used to retrieve resources that meet specific criteria. For example, in the last section of the sample document, only observations for a specific patient and category = vital-signs are retrieved. Additional criteria, such as time span, can be easily added. Simple parameter interpolation is also supported. In the above example, the Patient ID is not hardcoded but specified as `{{pid}}` parameter, so the same Document Definition can be used to populate documents for different patients.
+Each resource attribute, such as `:subject`, `:author`, or `:section/:entry`, is specified as a FHIR transaction request that returns a single resource or multiple resources. The full power of the FHIR Search API can be used to retrieve resources that meet specific criteria. For example, in the last section of the sample document:
+
+```clojure
+{:method "GET"
+ :url "/Observation?category=vital-signs&patient=Patient/{{pid}}"}
+```
+
+only observations for a specific patient and category `vital-signs` are retrieved.&#x20;
+
+Additional criteria, such as date or time span, can be easily added:
+
+```clojure
+{:method "GET"
+ :url "/Observation?category=vital-signs&patient=Patient/{{pid}}&date={{start-date}}&date={{end-date}}"}
+```
+
+Simple parameter interpolation is also supported. In the above example, the Patient ID is not hardcoded but specified as `{{pid}}` parameter, so the same Document Definition can be used to populate documents for different patients.
 
 ### /ccda/prepare-doc endpoint
 
