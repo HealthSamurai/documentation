@@ -55,7 +55,7 @@ This appenders directs the stream of logs to the Elasticsearch instance. Elastic
                :batch         {:size 1 :timeout 0}}}
 ```
 
-### open-telmetry-appender
+### open-telemetry-appender
 
 This appenders directs the stream of logs to the OpenTelemetry Collector. OpenTelemetry appender sample configuration.
 
