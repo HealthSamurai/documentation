@@ -14,8 +14,8 @@ Below is an example of an Aidbox entrypoint configured with one topic for observ
 ```clojure
 {ns     aidbox-with-subscriptions
  import #{fhir.topic-based-subscription
-          ;; profiles required for FHIR 4.3.0 version:
-          hl7-fhir-r4b-core hl7-fhir-uv-subscriptions-backport-r4b}
+          ;; the profile required for FHIR 4.3.0 version:
+          hl7-fhir-uv-subscriptions-backport-r4b}
 
  ;; topic definition structure corresponds to https://build.fhir.org/subscriptiontopic.html
  observation-topic
@@ -90,7 +90,7 @@ Below is an example of an Aidbox entrypoint configured with one topic for observ
 
 ```
 
-* Discover SubscriptionTopic resources in Aidbox using FHIR API&#x20;
+* Discover SubscriptionTopic resources in Aidbox using FHIR API
 
 {% tabs %}
 {% tab title="Request" %}

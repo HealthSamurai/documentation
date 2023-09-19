@@ -1,18 +1,18 @@
 # Task User API
 
-Task User API allows users to manually control Aidbox tasks by [RPC methods](../../../api-1/rpc-api.md).&#x20;
+Task User API allows users to manually control Aidbox tasks by [RPC methods](../../../api-1/rpc-api.md).
 
-### `awf.task/create-and-execute`&#x20;
+### `awf.task/create-and-execute`
 
 Creates an instance of a defined task and makes it ready to be executed immediately or at a specified time.
 
 #### Params:
 
-<table><thead><tr><th width="133">Parameter</th><th width="87">Type</th><th width="111" data-type="checkbox">Required</th><th width="411">Description</th></tr></thead><tbody><tr><td>id</td><td>string</td><td>false</td><td>Identifier of task (If not provided, will be auto-generated).</td></tr><tr><td>label</td><td>string</td><td>false</td><td>Human- or machine-readable description of task instance.<br><em>Example: <code>Import Patient resources</code></em></td></tr><tr><td>definition</td><td>string</td><td>true</td><td>Definition of <a href="task-user-api.md#aidbox-predefined-tasks">predefined task</a> or <br>custom-defined task.<br><em>Example:</em> <code>aidbox.archive/create-archive</code></td></tr><tr><td>params</td><td>object</td><td>true</td><td>The input parameters described in the task definition.</td></tr><tr><td>executeAt</td><td>string</td><td>false</td><td>Time at which the task will become ready. If not provided - task will become ready immediately. <br><em>Example: <code>2023-05-03T13:30:43</code></em></td></tr></tbody></table>
+<table><thead><tr><th width="133">Parameter</th><th width="87">Type</th><th width="111" data-type="checkbox">Required</th><th width="411">Description</th></tr></thead><tbody><tr><td>id</td><td>string</td><td>false</td><td>Identifier of task (If not provided, will be auto-generated).</td></tr><tr><td>label</td><td>string</td><td>false</td><td>Human- or machine-readable description of task instance.<br><em>Example: <code>Import Patient resources</code></em></td></tr><tr><td>definition</td><td>string</td><td>true</td><td>Definition of <a href="task-user-api.md#aidbox-predefined-tasks">predefined task</a> or<br>custom-defined task.<br><em>Example:</em> <code>aidbox.archive/create-archive</code></td></tr><tr><td>params</td><td>object</td><td>true</td><td>The input parameters described in the task definition.</td></tr><tr><td>executeAt</td><td>string</td><td>false</td><td>Time at which the task will become ready. If not provided - task will become ready immediately.<br><em>Example: <code>2023-05-03T13:30:43</code></em></td></tr></tbody></table>
 
 #### Result:
 
-<table><thead><tr><th width="153">Parameter</th><th width="92">Type</th><th width="503">Description</th></tr></thead><tbody><tr><td>resources</td><td>object[]</td><td>Created AidboxTask resources.</td></tr></tbody></table>
+<table><thead><tr><th width="153">Parameter</th><th width="92">Type</th><th width="503">Description</th></tr></thead><tbody><tr><td>resource</td><td>object</td><td>Created AidboxTask resource.</td></tr></tbody></table>
 
 {% tabs %}
 {% tab title="Request" %}
@@ -111,8 +111,6 @@ result:
 ```
 {% endtab %}
 {% endtabs %}
-
-
 
 ### `awf.task/cancel`
 
