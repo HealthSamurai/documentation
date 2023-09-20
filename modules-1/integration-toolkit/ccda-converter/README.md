@@ -32,7 +32,7 @@ Content-Type: application/cda+xml
 <?xml version="1.0" encoding="UTF-8"?>
 <ClinicalDocument 
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-  xmlns="urn:hl7-org:v3" ...>
+  xmlns="urn:hl7-org:v3" ... >
   ....
 </ClinicalDocument>
 ```

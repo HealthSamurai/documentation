@@ -293,7 +293,6 @@
     * [Discovery API](modules-1/security-and-access-control/readme-1/well-known-endpoint.md)
 * [Integration toolkit](modules-1/integration-toolkit/README.md)
   * [C-CDA / FHIR Converter](modules-1/integration-toolkit/ccda-converter/README.md)
-    * [🔒 v1 Documentation](modules-1/integration-toolkit/ccda-converter/ccda-converter.md)
     * [List of supported sections](modules-1/integration-toolkit/ccda-converter/sections/README.md)
       * [Allergies and Intolerances Section (entries required) (V3)](modules-1/integration-toolkit/ccda-converter/sections/allergiesandintolerancessectioner.md)
       * [Vital Signs Section (entries optional) (V3)](modules-1/integration-toolkit/ccda-converter/sections/vitalsignssectionentriesoptional.md)
