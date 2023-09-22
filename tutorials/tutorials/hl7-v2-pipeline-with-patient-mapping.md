@@ -6,7 +6,7 @@ This tutorial is also available with a [sample aidbox configuration project](htt
 
 ## Mapping definition
 
-Define your mapping tagged by `lisp/mapping`.&#x20;
+Define your mapping tagged by `lisp/mapping`.
 
 The `:mapping` value is confirmed as `lisp/expr`, so you may use [Lisp expressions](../../reference/aidbox-forms/lisp.md) to define which intermediate format properties should be included in the Bundle resource.
 
@@ -121,4 +121,4 @@ To properly validate the resulting resource, import the appropriate [fhir profil
 
 If your configuration was loaded correctly - you should see a new option when creating the HL7 v2 message.
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (2).png" alt=""><figcaption></figcaption></figure>

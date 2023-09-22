@@ -6,37 +6,35 @@ description: This guide shows how to set-up Keycloak identity provider with Aidb
 
 ## Create a realm
 
-*   Click on the dropdown in the top-left corner where it says `Master`, then click on `Create Realm`\
-
+*   Click on the dropdown in the top-left corner where it says `Master`, then click on `Create Realm`\\
 
     <figure><img src="../../.gitbook/assets/image (1) (1) (2) (1).png" alt=""><figcaption></figcaption></figure>
-*   Fill the name of your realm.\
+*   Pul the name of your realm to the `Realm name` input
 
-
-    <figure><img src="../../.gitbook/assets/image (6) (2).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (6) (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Create a client
 
-* Click on the client button in left menu&#x20;
+* Click the `Clients` menu item in the left sidebar
 
 <figure><img src="../../.gitbook/assets/image (8) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-* Then click on `Create client` button.
+*   Then click the `Create client` button\
 
-<figure><img src="../../.gitbook/assets/image (10) (2).png" alt=""><figcaption></figcaption></figure>
 
+    <figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 *   Enter the client data\
 
 
-    <figure><img src="../../.gitbook/assets/image (9) (2).png" alt=""><figcaption></figcaption></figure>
-* Enable `Client authentication` checkbox.
+    <figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+*   Check the `Client authentication` checkbox\
 
-<figure><img src="../../.gitbook/assets/image (10) (3).png" alt=""><figcaption></figcaption></figure>
 
+    <figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
 *   Add `<aidbox-url>/auth/callback/keycloak` to `Valid redirect URIs` field.\
 
 
-    <figure><img src="../../.gitbook/assets/image (3) (2).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
 ## Create IdentityProvider in Aidbox
 
@@ -63,7 +61,7 @@ id: keycloak
 
 You can find client secret on `Clients details` page under `Credentials` tab
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
 ## Login into Aidbox
 
