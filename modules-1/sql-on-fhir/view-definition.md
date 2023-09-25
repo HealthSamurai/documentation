@@ -6,17 +6,18 @@ SQL on FHIR utilizes ViewDefinition resources to describe the structure of flat 
 {
     "name": "obs_view",
     "resource": "Observation",
+    "status": "active",
     "select": [{
-        "name": "id",
-        "expr": "id",
+        "alias": "id",
+        "path": "id",
     }, {
-        "name": "pid",
-        "expr": "subject.getId('Patient')"
+        "alias": "pid",
+        "path": "subject.getId('Patient')"
     }]
 }
 ```
 
-The view is described with its name, resource type and the declaration of the rows it contains. In this example, we define a flat view named `obs_view` for Observations, that will have 2 fields: `id`, defined as the Observation's own id, and `pid`, defined as the subject Patient's id.
+The view is described with its name, resource type, status and the declaration of the rows it contains. In this example, we define a flat view named `obs_view` for Observations, that will have 2 fields: `id`, defined as the Observation's own id, and `pid`, defined as the subject Patient's id.
 
 This example only scratches the surface. For more complex examples, see [query-data-above-view-definitions.md](query-data-above-view-definitions.md "mention"). For an in-depth overview of a ViewDefinition's structure consult [reference.md](reference.md "mention").
 
@@ -26,13 +27,13 @@ This example only scratches the surface. For more complex examples, see [query-d
 
 To create a flat view of the resource, you have to define it with a special resource called ViewDefinition. You can do it with a View Definitions editor in Aidbox UI.
 
-<figure><img src="../../.gitbook/assets/image (97).png" alt=""><figcaption><p>View Definitions editor</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/2023-09-25-151846.png" alt=""><figcaption><p>View Definitions editor</p></figcaption></figure>
 
 View definitions you've created can be viewed in a menu in the right part of the screen. There also are several samples to get you started. Note that samples are presented as View Definitions only and have no corresponding views in the database by default.
 
 You can use the _Run_ button or `Ctrl+Enter` to preview your view. To save a View Definition and materialize it as a view in the database, press _Save_. _Delete_ button deletes both a View Definition and the corresponding view in the database.
 
-Note that a ViewDefinition resource used in Aidbox does not have the same structure as the one described by the [SQL on FHIR specification](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/StructureDefinition-ViewDefinition.html). To see how ViewDefinition is structured, consult the [reference.md](reference.md "mention") page.
+Note that a ViewDefinition resource used in Aidbox may difer from [SQL on FHIR specification](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/StructureDefinition-ViewDefinition.html). To see how Aidbox's ViewDefinition is structured, consult the [reference.md](reference.md "mention") page.
 
 ### With REST API
 
@@ -41,80 +42,70 @@ As ViewDefinition is a resource, it can be created via REST API. For example:
 {% tabs %}
 {% tab title="Request" %}
 ```yaml
-PUT /ViewDefinition/patient_view
+POST /ViewDefinition/
 
 name: patient_view
-resource: '{"name":"patient_view","resource":"Patient","desc":"Patient flat view","select":[{"name":"id","expr":"id"},{"name":"bod","expr":"birthDate"},{"name":"gender","expr":"gender"}]}'
+resource: Patient
+description: Patient flat view
+status: draft
+select:
+- alias: id
+  path: id
+- alias: bod
+  path: birthDate
+- alias: gender
+  path: gender
+
 ```
 {% endtab %}
 
 {% tab title="Response" %}
 ```yaml
 name: patient_view
-resource: >-
-  {"name":"patient_view","resource":"Patient","desc":"Patient flat
-  view","select":[{"name":"id","expr":"id"},{"name":"bod","expr":"birthDate"},{"name":"gender","expr":"gender"}]}
+select:
+  - path: id
+    alias: id
+  - path: birthDate
+    alias: bod
+  - path: gender
+    alias: gender
+status: draft
+resource: Patient
+description: Patient flat view
 id: >-
-  patient_view
+  30d1cf2a-6610-4887-9fc2-fbd425837d4e
 resourceType: ViewDefinition
 ```
 {% endtab %}
 {% endtabs %}
 
-Be aware that this step will only create a ViewDefinition, but not the corresponding flat view. You can materialize your View Definition via Aidbox UI as shown above (even if you've created it with REST API) or use a `sof/materialize-view` RPC call as follows:
+This step will create both a ViewDefinition resource and the corresponding flat view. `PUT` and `DELETE` operations will also affect both ViewDefinitions and their flat views.
 
-{% tabs %}
-{% tab title="Request" %}
+## Additional options
+
+By default views you define are materialized as views in `sof` schema. You can alter this behavior by adding an extension.
+
 ```yaml
-POST /rpc
-
-method: sof/materialize-view
-params:
-  view:
-    name: patient_view
-    resource: Patient
-    desc: Patient flat view
-    select:
-    - name: id
-      expr: id
-    - name: name
-      expr: name
-    - name: bod
-      expr: birthDate
-    - name: gender
-      expr: gender
-    limit: 100
+extension:
+  - url: https://fhir.aidbox.app/fhir/Extension/view-definition
+    extension:
+      - url: materialization
+        value:
+          code: table
+      - url: schema
+        value:
+          string: public
 ```
-{% endtab %}
 
-{% tab title="Response" %}
-```
-result:
-  status: ok
-  sql: >-
-    SELECT id as id , jsonb_path_query_first( r.resource , '$  . name' ) #>>
-    '{}' as name , jsonb_path_query_first( r.resource , '$  . birthDate' ) #>>
-    '{}' as bod , jsonb_path_query_first( r.resource , '$  . gender' ) #>> '{}'
-    as gender FROM "patient" as r LIMIT 100
-  data:
-    - id: pt1
-      name: '[{"given": ["John"], "family": "Smith"}]'
-      bod: '1976-12-12'
-      gender: male
-    - id: pt2
-      name: '[{"given": ["Ella El"], "family": "Smith"}]'
-      bod: '1998-11-22'
-      gender: female
-    - id: pt3
-      name: '[{"given": ["Frodo"], "family": "Baggins"}]'
-      bod: '1954-09-22'
-      gender: male
-    - id: pt4
-      name: '[{"given": ["Kot"], "family": "Terex"}]'
-      bod: '1978-02-29'
-      gender: male
-```
-{% endtab %}
-{% endtabs %}
+In the example above, view will be materialized as a table in a schema called `public`. Available materialization options are `table`, `materialized-view` and `view`.
 
-Note that it's not necessary to create a ViewDefinition resource to create a flat view with this RPC call. It's not advised though, as ViewDefinition provides more control over your flat views.
+If you create views via Aidbox UI, you can use the shorthand parameters `_materialization` and `_schema` instead, like this:
+
+```json
+{
+    "_materialization": "table",
+    "_scheme": "public"
+}
+```
+
+Note that these shorthands are not available for REST API.

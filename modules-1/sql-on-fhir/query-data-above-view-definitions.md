@@ -24,19 +24,20 @@ To find all patients who was born after or in 1970 and who were diagnosed with C
 {
   "name": "patient_view",
   "resource": "Patient",
-  "desc": "Patient flat view",
+  "status": "active",
+  "description": "Patient flat view",
   "select": [
     {
-      "name": "id",
-      "expr": "id"
+      "alias": "id",
+      "path": "id"
     },
     {
-      "name": "name",
-      "expr": "name[0].given.join(' ')"
+      "alias": "name",
+      "path": "name[0].given.join(' ')"
     },
     {
-      "name": "birthDate",
-      "expr": "birthDate"
+      "alias": "birthDate",
+      "path": "birthDate"
     }
   ]
 }
@@ -48,31 +49,32 @@ To find all patients who was born after or in 1970 and who were diagnosed with C
 {
   "name": "condition_view",
   "resource": "Condition",
+  "status": "active",
   "select": [
     {
-      "name": "id",
-      "expr": "id"
+      "alias": "id",
+      "path": "id"
     },
     {
-      "name": "pid",
-      "expr": "subject.getId('Patient')"
+      "alias": "pid",
+      "path": "subject.getId('Patient')"
     },
     {
       "forEach": "code.coding",
       "select": [
         {
-          "name": "code",
-          "expr": "code"
+          "alias": "code",
+          "path": "code"
         },
         {
-          "name": "system",
-          "expr": "system"
+          "alias": "system",
+          "path": "system"
         }
       ]
     },
     {
-      "name": "date",
-      "expr": "recordedDate"
+      "alias": "date",
+      "path": "recordedDate"
     }
   ]
 }
@@ -117,15 +119,16 @@ To find all times patients had an encounter in 2020 or later in a location manag
 {
   "name": "patient_view",
   "resource": "Patient",
-  "desc": "Patient flat view",
+  "description": "Patient flat view",
+  "status": "active",
   "select": [
     {
-      "name": "id",
-      "expr": "id"
+      "alias": "id",
+      "path": "id"
     },
     {
-      "name": "name",
-      "expr": "name[0].given.join(' ')"
+      "alias": "name",
+      "path": "name[0].given.join(' ')"
     }
   ]
 }
@@ -137,18 +140,19 @@ To find all times patients had an encounter in 2020 or later in a location manag
 {
   "name": "location_view",
   "resource": "Location",
+  "status": "active",
   "select": [
     {
-      "name": "id",
-      "expr": "id"
+      "alias": "id",
+      "path": "id"
     },
     {
-      "name": "name",
-      "expr": "name"
+      "alias": "name",
+      "path": "name"
     },
     {
-      "name": "org_id",
-      "expr": "managingOrganization.identifier.value"
+      "alias": "org_id",
+      "path": "managingOrganization.identifier.value"
     }
   ]
 }
@@ -160,22 +164,23 @@ To find all times patients had an encounter in 2020 or later in a location manag
 {
   "name": "encounter_view",
   "resource": "Encounter",
+  "status": "active",
   "select": [
     {
-      "name": "id",
-      "expr": "id"
+      "alias": "id",
+      "path": "id"
     },
     {
-      "name": "subject_id",
-      "expr": "subject.getId('Patient')"
+      "alias": "subject_id",
+      "path": "subject.getId('Patient')"
     },
     {
-      "name": "location_id",
-      "expr": "location[0].location.getId('Location')"
+      "alias": "location_id",
+      "path": "location[0].location.getId('Location')"
     },
     {
-      "name": "start_time",
-      "expr": "period.start"
+      "alias": "start_time",
+      "path": "period.start"
     }
   ]
 }
