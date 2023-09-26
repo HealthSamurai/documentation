@@ -2,6 +2,21 @@
 description: >-
   This page describes C-CDA built-in module which provides API to convert C-CDA
   documents to FHIR documents and backward.
+coverY: 0
+layout:
+  cover:
+    visible: false
+    size: full
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
 ---
 
 # C-CDA / FHIR Converter
@@ -11,6 +26,10 @@ description: >-
 C-CDA (Consolidated Clinical Document Architecture) is a standard that has been widely adopted in the healthcare industry for exchanging clinical documents. Based on the HL7 Clinical Document Architecture (CDA) standard, it provides a structured approach to capturing and sharing patient information in a consistent manner. However, with the healthcare industry moving towards the more modern FHIR standard, there is now a growing need to convert data between C-CDA and FHIR. Furthermore, the § 170.315(g)(9) ONC criterion mandates that EHR systems must import and export patient data in C-CDA format.
 
 To meet these data exchange requirements, Aidbox offers a module that performs C-CDA to FHIR and FHIR to C-CDA conversions. This module applies a set of rules consistently in both directions, ensuring a robust and reliable conversion process. In addition to data conversion, the module also provides endpoints for validating C-CDA documents and for persisting FHIR data extracted from C-CDA documents.
+
+{% hint style="info" %}
+C-CDA / FHIR Converter provides bidirectional mapping for all data elements from the [USCDI v1](https://www.healthit.gov/isa/sites/isa/files/2020-10/USCDI-Version-1-July-2020-Errata-Final\_0.pdf) list.
+{% endhint %}
 
 {% hint style="info" %}
 You can quickly evaluate C-CDA to FHIR Converter on our [C-CDA to FHIR Demo page](https://ccda.aidbox.app/v2/ccda-fhir).
