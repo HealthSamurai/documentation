@@ -7,7 +7,7 @@ description: >-
 # Producing C-CDA documents
 
 {% hint style="info" %}
-C-CDA / FHIR Converter provides bidirectional mapping for all data elements from the [USCDI v1](https://www.healthit.gov/isa/sites/isa/files/2020-10/USCDI-Version-1-July-2020-Errata-Final\_0.pdf) list.
+C-CDA / FHIR Converter provides bidirectional mapping for all data elements from the [USCDI v1](https://www.healthit.gov/isa/sites/isa/files/2020-10/USCDI-Version-1-July-2020-Errata-Final\_0.pdf) list. [Detailed list of supported C-CDA sections](sections/) is also available.
 {% endhint %}
 
 To generate a C-CDA document from FHIR data, it is necessary to create a [FHIR Document](https://hl7.org/fhir/R4/documents.html) bundle containing a [Composition](https://hl7.org/fhir/R4/composition.html) resource that specifies the top-level document attributes, including the title, document type, author, subject (patient), and a list of document sections. Each section must be described by type, title and the FHIR resources to be included. Once the FHIR Document bundle is composed, it can be submitted to the /ccda/v2/to-ccda endpoint for conversion to a C-CDA document.
@@ -72,23 +72,25 @@ To simplify the creation of Document bundles, Aidbox offers a feature called Doc
     :url "/Observation?category=vital-signs&patient=Patient/{{pid}}"}}]}
 ```
 
-Each resource attribute, such as `:subject`, `:author`, or `:section/:entry`, is specified as a HTTP request that returns a single FHIR resource or multiple FHIR resources. The full power of the FHIR Search API can be used to retrieve resources that meet specific criteria. For example, in the last section of the sample document:
+Each resource attribute, such as `:subject`, `:author`, or `:section/:entry`, is specified as a HTTP request that returns a single FHIR resource or multiple FHIR resources. The full power of the [FHIR Search API](https://www.hl7.org/fhir/search.html) can be used to retrieve resources that meet specific criteria.&#x20;
+
+Parameters interpolation is also supported. For example, in the Vitals Signs section of the sample above:
 
 ```clojure
 {:method "GET"
  :url "/Observation?category=vital-signs&patient=Patient/{{pid}}"}
 ```
 
-only observations for a specific patient and category `vital-signs` are retrieved.&#x20;
+`{{pid}}` will be replaced with the value passed in the query-string parameter `pid` and this way vitals observations are scoped to the specific patient.
 
-Additional criteria, such as time span, can be easily added:
+Another frequent use-case is date filtering. It can be easily added with two parameters: `start-date` and `end-date:`
 
 ```clojure
 {:method "GET"
  :url "/Observation?category=vital-signs&patient=Patient/{{pid}}&date={{start-date}}&date={{end-date}}"}
 ```
 
-In the above example, the Patient ID is not hardcoded but specified as `{{pid}}` parameter, so the same Document Definition can be used to populate documents for different patients.
+All the filtering logic is strictly described by the [FHIR Search specification](https://www.hl7.org/fhir/search.html), so the date filtering in the example above [is covered by `date` search param type](https://www.hl7.org/fhir/search.html#date).
 
 ### Predefined Document Definitions
 
@@ -138,7 +140,6 @@ Content-Type: application/json
         "display": "Vitals",
         "system": "http://loinc.org"
       },
-      "template": "Vitals",
       "entry": {
         "method": "GET",
         "url": "/Observation?category=vital-signs&patient=Patient/{{pid}}"
@@ -148,7 +149,7 @@ Content-Type: application/json
 }
 ```
 
-You can pass predefined Document Definition ID in`docdef-id` query-string parameter:
+You can pass predefined Document Definition ID in`docdef-id` query-string parameter:¡
 
 ```http
 GET /ccda/prepare-doc?docdef-id=continuity-of-care&pid=42&start-date=2023-01-01&end-date=2023-02-01
