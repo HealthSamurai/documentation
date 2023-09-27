@@ -13,6 +13,8 @@ It introduces you to:
 * The aidbox installation process with Docker & Docker Compose,
 * Logs & metrics exporting to Elasticsearch & Prometheus using OpenTelemetry collector service.
 
+<figure><img src="../../.gitbook/assets/audit-event-viewer (1).png" alt=""><figcaption><p>Aidbox logs&#x26;metrics data flow diagram</p></figcaption></figure>
+
 {% hint style="warning" %}
 <img src="../../.gitbook/assets/docker.png" alt="" data-size="original">
 
