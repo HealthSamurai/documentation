@@ -369,7 +369,7 @@
 * [Monitoring](core-modules/monitoring/README.md)
   * [Aidbox Metrics Server](core-modules/monitoring/aidbox-metrics-server.md)
   * [Grafana integration](core-modules/monitoring/grafana-integration.md)
-  * [Run Aidbox with OpenTelemetry locally](modules-1/monitoring/run-aidbox-with-opentelemetry-locally.md)
+  * [Run Aidbox with OpenTelemetry locally](modules-1/monitoring/run-aidbox-locally-with-docker.md)
 * [MDM](modules-1/mdm/README.md)
   * [Train model](modules-1/mdm/train-model.md)
   * [Configure MDM module](modules-1/mdm/configure-mdm-module.md)
