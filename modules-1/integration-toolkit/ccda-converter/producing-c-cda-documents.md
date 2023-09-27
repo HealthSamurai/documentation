@@ -85,8 +85,7 @@ Additional criteria, such as time span, can be easily added:
 
 ```clojure
 {:method "GET"
- :url "/Observation?category=vital-signs&patient=Patient/{{pid}}
-         &date={{start-date}}&date={{end-date}}"}
+ :url "/Observation?category=vital-signs&patient=Patient/{{pid}}&date={{start-date}}&date={{end-date}}"}
 ```
 
 In the above example, the Patient ID is not hardcoded but specified as `{{pid}}` parameter, so the same Document Definition can be used to populate documents for different patients.
@@ -152,8 +151,7 @@ Content-Type: application/json
 You can pass predefined Document Definition ID in`docdef-id` query-string parameter:
 
 ```http
-GET /ccda/prepare-doc?docdef-id=continuity-of-care
-        &pid=42&start-date=2023-01-01&end-date=2023-02-01
+GET /ccda/prepare-doc?docdef-id=continuity-of-care&pid=42&start-date=2023-01-01&end-date=2023-02-01
 ```
 
 Endpoint returns a FHIR Document or OperationOutcome resource in case of error.
@@ -234,6 +232,9 @@ Content-Type: application/cda+xml
 Predefined Document Definition example:
 
 ```http
-GET /ccda/prepare-doc?docdef-id=continuity-of-care
-        &pid=42&start-date=2023-01-01&end-date=2023-02-01
+GET /ccda/prepare-doc?docdef-id=continuity-of-care&pid=42&start-date=2023-01-01&end-date=2023-02-01
 ```
+
+{% hint style="info" %}
+These [Terms](https://storage.googleapis.com/aidbox-public/smartbox/certification/terms-of-use/Terms%20of%20use.pdf) govern your access to and use of the Aidbox FHIR API module. By accessing or using the Aidbox FHIR API, the App Developer (“You”), agrees to be bound by [these Terms](https://storage.googleapis.com/aidbox-public/smartbox/certification/terms-of-use/Terms%20of%20use.pdf).
+{% endhint %}
