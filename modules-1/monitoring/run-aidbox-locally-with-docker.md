@@ -52,6 +52,11 @@ aidbox-project/
 ├── .env
 ├── docker-compose.yaml
 ├── open-telemetry-config.yaml
+├── prometheus
+│   └── prometheus.yml
+├── grafana
+│   └── datasources
+│       └── all.yaml
 ├── zen-package.edn
 └── zrc/
     ├── config.edn
@@ -94,11 +99,28 @@ Navigate to [http://localhost:8888/](http://localhost:8888/) and Sign In to the 
 
 ### 4. Discover Aidbox logs with Kibana
 
-...
+Kibana should be available on [http://localhost:5602](http://localhost:5602) address. To view logs in Kibana we need to&#x20;
 
-### 5. Discover Aidbox metrics with Grafana
+* make sure that logs are coming to Elasticsearch and then&#x20;
+* create a data view to observe over logs.
 
-...
+Go to [Index Management](http://localhost:5602/app/management/data/index\_management/indices) page in Kibana (Menu → Stack Management → Index Management). You should see `aidbox_logs` index there.
+
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-27 at 15.19.04.png" alt=""><figcaption><p>Index management page</p></figcaption></figure>
+
+Then we may go to [Data Views](http://localhost:5602/app/management/kibana/dataViews) page (Menu → Stack Management → Data Views) and create a data view there.
+
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-27 at 15.19.50.png" alt=""><figcaption><p>Data view creation</p></figcaption></figure>
+
+Then go to [Discover](http://localhost:5602/app/discover) page (Menu → Discover) and observe your logs.
+
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-27 at 15.21.57.png" alt=""><figcaption><p>Log discover page</p></figcaption></figure>
+
+### 5. Discover Aidbox metrics with Prometheus
+
+Prometheus should be available on [http://localhost:9090](http://localhost:9090) address. To view metrics in Prometheus we need just to open it and search for it.
+
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-27 at 15.26.34.png" alt=""><figcaption><p>Prometheus UI</p></figcaption></figure>
 
 ## Next Steps
 
