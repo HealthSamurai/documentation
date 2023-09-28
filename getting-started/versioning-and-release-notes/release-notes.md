@@ -1,6 +1,27 @@
 # Release Notes
 
-## August 2023 _`latest`_
+## September 2023 _`latest`_
+
+* New [FHIR Validator](https://fhir-validator.aidbox.app/) public demo stand
+* SDK
+  * Launched [Open Source Telehealth application](https://github.com/Aidbox/telemed/) with end-to-end flow with 3 user roles \[Provider, Patient, Admin]
+* Integrations
+* [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
+  * Minor fixes
+* Security and access control
+  * Supported [Open Telemetry exporter for logs & metrics](../../modules-1/monitoring/run-aidbox-locally-with-docker.md)
+  * Supported [Bundle batch operation in Multitenant API](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#bundle)&#x20;
+  * Added [Audit event viewer UI on Aidbox Console](../../modules-1/logging-and-audit/setup-audit-logging.md)
+* [Aidbox Forms](../../modules-1/aidbox-forms.md)
+  * Improved Development Experience (DevX)
+    * Improved autocomplete for literals and keywords
+    * Added documentation in the autocomplete popup
+  * Configured Questionnaire converter to accept FHIR Bundle
+  * Added documentation in the autocomplete popup
+  * Launched new UI-Builder (Pre-alpha version)
+    * UI-Builder can be found: Aidbox Console > Aidbox Forms > Create Template > Create in UI Builder
+
+## August 2023 _`stable,2308`_
 
 * [SQL on FHIR engine ](../../modules-1/sql-on-fhir/)early access
 * Data API
@@ -10,23 +31,23 @@
 * Integrations
   * Supported FHIR R4B and R5 [Topic-based subscriptions](../../modules-1/topic-based-subscriptions/)
 * Security and access control
-  * Added [Capability Statement ](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#metadata)endpoint for multitenant API&#x20;
-  * Added [bundle transaction](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#bundle) for multitenant API&#x20;
+  * Added [Capability Statement ](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#metadata)endpoint for multitenant API
+  * Added [bundle transaction](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#bundle) for multitenant API
   * Added [stdout appender](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox\_stdout\_google\_json) for logs in [Google format](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry)
   * Added access policy usage in UI console on AccessPolicy page
   * Added a neat UI to rotate credentials and download certificates on IdentityProvider view page
-  * Supported [BALP ](https://profiles.ihe.net/ITI/BALP/)for CRUD + Search operations. Both basic and patient profiles&#x20;
+  * Supported [BALP ](https://profiles.ihe.net/ITI/BALP/)for CRUD + Search operations. Both basic and patient profiles
   * Issue [2306-lts](./#long-term-support-releases)
 * Aidbox user portal
   * Added the ability to specify a custom configuration project when creating a GCP Aidbox
 * Aidbox.app UI
   * Updated the sidebar in the [Aidbox UI](../../overview/aidbox-ui/)
 * DevOps
-  * Add metrics for Aidbox logs. Count of logs per log level&#x20;
+  * Add metrics for Aidbox logs. Count of logs per log level
   * Implemented PG database backup verification tool, improved Grafana dashboards to show backup verification statuses
 * [Aidbox Forms](../../modules-1/aidbox-forms.md)
-  * Added basic Forms Accessibility (Screen Readers, Keyboard Navigation)&#x20;
-  * Improved mobile devices adaptation (form takes all visual space, buttons aligned in specific positions)&#x20;
+  * Added basic Forms Accessibility (Screen Readers, Keyboard Navigation)
+  * Improved mobile devices adaptation (form takes all visual space, buttons aligned in specific positions)
   * Improved UX of developer tools (inline errors, autocomplete, code folding, bracket matching)
 
 ## July 2023 _`stable,2307`_
@@ -40,10 +61,10 @@
   * Added an option [to inspect intermediate conversion tree](../../modules-1/integration-toolkit/ccda-converter/ccda-fhir-dsl.md#rules-dsl-syntax)
 * Security and access control
   * Added [shared resources](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#shared-resource-mode) in the [Organisation-based access control](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md)
-  * Supported [Azure AD asymmetric authentication](../../modules-1/security-and-access-control/how-to-guides/set-up-external-identity-provider/azure-ad-1.md)&#x20;
-  * Added security dashboard in the Aidbox UI&#x20;
-  * Added a form to create an IdentityProvider resource&#x20;
-  * Supported SCIM v2 User API&#x20;
+  * Supported [Azure AD asymmetric authentication](../../modules-1/security-and-access-control/how-to-guides/set-up-external-identity-provider/azure-ad-1.md)
+  * Added security dashboard in the Aidbox UI
+  * Added a form to create an IdentityProvider resource
+  * Supported SCIM v2 User API
   * Added aidbox.rest.v1/gateway operation pass auth information (user, client, session) to backend service
 * Aidbox Forms
   * Supported an option to include [question scores](../../modules-1/aidbox-forms/converter.md#include-score-value-in-questionnaireresponse) in QuestionnaireResponse in the [converter](../../reference/aidbox-forms/api-reference.md#aidbox.sdc-convert-document)
@@ -66,7 +87,7 @@
   * Supported modifying and creating new mappings using [the Aidbox Configuration Project](../../aidbox-configuration/zen-configuration.md)
 * Security and access control
   * Added [hierarchical organization-based access control](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md) (multi-tenancy on organization-level resources)
-  * Added [How to enable hierarchical access control](../../modules-1/multitenancy/how-to-enable-hierarchical-access-control.md) tutorial&#x20;
+  * Added [How to enable hierarchical access control](../../modules-1/multitenancy/how-to-enable-hierarchical-access-control.md) tutorial
 * Ops
   * Released new [PostgreSQL Aidboxdb images 15.3, 14.8, 13.11](../../storage-1/aidboxdb-image.md)
   * Added PostGis Extension
@@ -92,7 +113,7 @@
 * [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
   * Added new supported sections:
     * Functional Status, Health Concerns, Mental Status, Plan of Treatment, Payers, Family History, Nutrition, and Medical Equipment
-* Security and access control&#x20;
+* Security and access control
   * Introduced [AuditEvent viewer](../../modules-1/security-and-access-control/how-to-guides/research-possible-security-issues.md)
 * [Aidbox Forms](../../modules-1/aidbox-forms.md)
   * Added integration with Aidbox [Workflow Engine](../../modules-1/workflow-engine/): add task to launch form
@@ -133,7 +154,7 @@
   * Added new [field type for storing attachments](../../reference/aidbox-forms/layout-dsl.md#file-input)
     * [Supported cloud storages](../../reference/aidbox-forms/document-dsl.md#store-attachments-in-cloud-storage): AidboxDB, GCP Storage, AWS S3
   * Added support for using attachment as a source in [media-viewer widget](../../reference/aidbox-forms/layout-dsl.md#show-attachments-from-the-document)
-  * Optimized layout rules performance&#x20;
+  * Optimized layout rules performance
   * Added minor layout adaptations for small screens
   * Added [font configuration support to form-themes](../../modules-1/aidbox-forms/how-to-customize-form-appearance.md#how-to-change-font-size)
   * Fixed minor bugs and issues
@@ -141,12 +162,12 @@
 ## March 2023 _`2303`_
 
 * Validation and Terminology
-  * Supported FHIR R4B&#x20;
+  * Supported FHIR R4B
 * Data API
   * Defined [custom resources using Aidbox Project](../../modules-1/custom-resources/getting-started-with-custom-resources.md#defining-a-custom-resource)
   * Added [$to-format operation](../../app-development-guides/usdto-format-fhir-aidbox.md) without getting transformation metadata
-  * Fixed polymorphic reference targets for FHIR resources&#x20;
-  * Fixed Bundle conformance for [AidboxQuery](../../api-1/fhir-api/search-1/custom-search.md)&#x20;
+  * Fixed polymorphic reference targets for FHIR resources
+  * Fixed Bundle conformance for [AidboxQuery](../../api-1/fhir-api/search-1/custom-search.md)
   * Fixed sorting by token when using jsonknife engine
   * Added a header to [lower transaction isolation level](../../api-1/transaction.md#change-transaction-isolation-level)
 * Integrations
@@ -156,11 +177,11 @@
   * Released [FHIR to C-CDA bidirectional converter](../../modules-1/integration-toolkit/ccda-converter/#converting-a-c-cda-document-to-fhir) (beta). Supported sections:
     * Allergies, Encounters, Immunizations, Problems, Vital Signs, Results, Social History, Procedures, Medications
 * Security and Access control
-  * Developed [access policy dev tool ](../../security-and-access-control-1/security/access-policy-dev-tool.md)
+  * Developed [access policy dev tool](../../security-and-access-control-1/security/access-policy-dev-tool.md)
   * Added tutorials and guides:
-    * [Auth overview article ](../../security-and-access-control-1/overview.md)
+    * [Auth overview article](../../security-and-access-control-1/overview.md)
     * [How to implement the ReBAC authorization model ](../../security-and-access-control-1/tutorials/relationship-based-access-control-in-aidbox.md)in Aidbox within AccessPolicy
-    * [Access policy best practices ](../../modules-1/security-and-access-control/security/accesspolicy-best-practices.md)
+    * [Access policy best practices](../../modules-1/security-and-access-control/security/accesspolicy-best-practices.md)
 * Aidbox user portal
   * Added FHIR R4B zenFHIR package to configuration options
 * Aidbox Forms
@@ -168,11 +189,11 @@
   * Added [new field type for storing resource references](../../reference/aidbox-forms/document-dsl.md#reference-field-type)
   * Added [support for amending forms, that are shared via links](../../reference/aidbox-forms/api-reference.md#aidbox.sdc-generate-form-link)
   * Showed form rules in human-friendly format:
-    * [Show in the UI](../../reference/aidbox-forms/api-reference.md#aidbox.sdc-generate-form-link)&#x20;
-    * [Attach to Questionnaire/QuestionnaireResponse on conversion ](../../modules-1/aidbox-forms/converter.md#form-rules-conversion-to-human-readable-description.)
-  * Added ability to [store form properties in DB](../../reference/aidbox-forms/api-reference.md#add-form-properties)&#x20;
-  * Added support for static images&#x20;
-  * Added wizard like layout&#x20;
+    * [Show in the UI](../../reference/aidbox-forms/api-reference.md#aidbox.sdc-generate-form-link)
+    * [Attach to Questionnaire/QuestionnaireResponse on conversion](../../modules-1/aidbox-forms/converter.md#form-rules-conversion-to-human-readable-description.)
+  * Added ability to [store form properties in DB](../../reference/aidbox-forms/api-reference.md#add-form-properties)
+  * Added support for static images
+  * Added wizard like layout
   * Added support for form help message
 
 ## February 2023 _`2302, LTS`_
@@ -194,10 +215,10 @@
   * Supported Aidbox [on path](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox\_base\_url)
   * Improved [`__debug=policy`](../../security-and-access-control-1/how-to-guides/access-policy.md#policy-debugging)
 * Ops
-  * [Devbox images](../../overview/aidbox-user-portal/licenses.md#development-license) are no longer supported. Please use [AidboxOne image](https://hub.docker.com/r/healthsamurai/aidboxone)  with [development license](../../overview/aidbox-user-portal/licenses.md#development-license)
+  * [Devbox images](../../overview/aidbox-user-portal/licenses.md#development-license) are no longer supported. Please use [AidboxOne image](https://hub.docker.com/r/healthsamurai/aidboxone) with [development license](../../overview/aidbox-user-portal/licenses.md#development-license)
   * Supported [box\_web\_\*](../../reference/configuration/environment-variables/optional-environment-variables.md#box\_web\_max\_\_body) configs for Multibox
   * Introduced [Aidbox status page](https://status.aidbox.app)
-* Aidbox Forms&#x20;
+* Aidbox Forms
   * Added new forms templates, incl. Lifestyle, Medications, Problem List to [forms library](https://github.com/Aidbox/sdc-forms-library/)
   * Improved Forms UX
     * Supported tooltip for forms and input fields
@@ -237,12 +258,12 @@
 ## December 2022 _`2212`_
 
 * MDM (Master Data Management)
-  * Added [$match](broken-reference) operation
+  * Added [$match](broken-reference/) operation
   * [Python API](https://github.com/Aidbox/mdm) for Aidbox MDM module
 * Archive/Restore API
   * [Task API](../../modules-1/workflow-engine/task/) allowing to define asynchronous operation called tasks.
   * [Archive/Restore API](../../api-1/task-api/archive-restore-api/) allowing to archive and restore resources to/from S3 bucket powered by Task API.
-  * [Scheduler API](broken-reference) allowing to execute tasks by schedule.
+  * [Scheduler API](broken-reference/) allowing to execute tasks by schedule.
 * Aidbox Configuration Projects
   * Added a [FHIR 4.0.1 compliant Configuration Project](https://github.com/Aidbox/fhir-r4-configuration-project) (also available on Aidbox User Portal).
   * Added [a guide on passing Touchstone FHIR 4.0.1 basic server test suite](../../tutorials/fhir-conformance/touchstone-fhir-4.0.1-basic-server.md#pass-with-aidbox-user-portal-sandbox) on Aidbox User Portal.
@@ -273,7 +294,7 @@
   * Added guides on passing [Inferno tests](../../modules-1/smartbox/how-to-guides/pass-inferno-tests-with-smartbox.md) and [Inferno Visual Inspection and Attestation](../../modules-1/smartbox/how-to-guides/pass-inferno-visual-inspection-and-attestation.md)
 * Aidbox Configuration Projects
   * Improved startup time for Aidbox instances [configured with zen FHIR IGs](../../aidbox-configuration/aidbox-zen-lang-project/enable-igs.md)
-  * Improved [local development workflow](broken-reference)
+  * Improved [local development workflow](broken-reference/)
   * Improved Aidbox [support](../../fhir-implementation-guides/us-core-ig/us-core-ig-support-reference.md) of [US Core IG](../../fhir-implementation-guides/us-core-ig/) artifacts
   * Added configuration of Aidbox features via zen-lang instead of envs
 * Aidbox User Portal
