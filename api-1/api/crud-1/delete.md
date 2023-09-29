@@ -8,7 +8,7 @@ Responds with `200 OK` on the successful deletion, but when removing a resource 
 
 Supports `If-Match` header, with `versionId` as ETAG.
 
-To get `204 No Content` instead of `200 OK`, use the `_no-content=true` query parameter.&#x20;
+To get `204 No Content` instead of `200 OK`, use the `_no-content=true` query parameter.
 
 * **`200` OK** - resource successfully deleted
 * **`204` No Content** - resource already deleted
@@ -18,8 +18,6 @@ To get `204 No Content` instead of `200 OK`, use the `_no-content=true` query pa
 {% hint style="info" %}
 Delete of non-existing resource will return 204 status and no body. Read [this thread](https://chat.fhir.org/#narrow/stream/179177-conformance/topic/Delete.20error.20codes) for more details.
 {% endhint %}
-
-
 
 ### Conditional Delete
 
@@ -33,15 +31,13 @@ It's not clear how to perform an ordinary `delete` on no matches. That's why `40
 * **One Match**: The server performs an ordinary `delete` on the matching resource
 * **Multiple matches**: Servers respond with `412 Precondition Failed` error indicating the client's criteria were not selective enough
 
-
-
 ## delete
 
 ```
 DELETE [base]/[type]/[id]
 ```
 
-This interaction deletes a resource, responds with `200 OK` on the successful deletion, but when removing an already deleted resource, it responds with `204 No Content`.&#x20;
+This interaction deletes a resource, responds with `200 OK` on the successful deletion, but when removing an already deleted resource, it responds with `204 No Content`.
 
 To always get `204 No Content` instead of `200 OK`, use `_no-content=true` query parameter.
 
@@ -96,7 +92,7 @@ DELETE /Patient/tom-id
 {% endtab %}
 {% endtabs %}
 
-## conditional delete
+## Conditional delete
 
 ```
 DELETE [base]/[type]?[search parameters]
@@ -107,3 +103,18 @@ Depending on the number of resources meeting the search criteria, different acti
 * **No matches:** Respond with `404 Not Found`
 * **One Match**: The server performs an ordinary `delete` on the matching resource
 * **Multiple matches**: Servers respond with `412 Precondition Failed` error indicating the client's criteria were not selective enough
+
+#### Delete all matches
+
+By default Aidbox refuses to delete resources when there is multiple matches. If you wish to delete all matching resources, set header
+
+```
+x-conditional-delete: remove-all
+```
+
+Example:
+
+```
+DELETE /fhir/Patient?identifier=abc
+x-conditional-delete: remove-all
+```
