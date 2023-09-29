@@ -6,6 +6,12 @@
 * SDK
   * Launched [Open Source Telehealth application](https://github.com/Aidbox/telemed/) with end-to-end flow with 3 user roles \[Provider, Patient, Admin]
 * Integrations
+* Data API
+  * Added new features to [SQL on FHIR module](../../modules-1/sql-on-fhir/) to control database view generation
+  * Updated [SQL on FHIR module ](../../modules-1/sql-on-fhir/)to match the SQL on FHIR standard changes
+    * &#x20;Control whether to use materialized views or regular views&#x20;
+    * Control in which schema to put a view ViewDefinition becomes a first-class resource
+  * Delete all matching resources using [conditional delete](../../api-1/api/crud-1/delete.md#conditional-delete)
 * [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
   * Minor fixes
 * Security and access control
