@@ -1,5 +1,15 @@
 # Setup SubscriptionTopic
 
+Here is described how to set up SubscriptionTopic for each Topic Queue Storage type:
+
+[For PostgreSQL](setup-subscriptiontopic.md#for-postgresql)
+
+[For Google Cloud Pub/Sub](setup-subscriptiontopic.md#for-google-cloud-pub-sub)
+
+
+
+### For PostgreSQL&#x20;
+
 ### Declare SubscriptionTopics in Aidbox configuration project
 
 To allow clients to subscribe to topics, configure the topic definition and topic storage first through the Aidbox configuration project
@@ -186,3 +196,9 @@ accept: application/json
 * Open Aidbox UI -> Subscription Topics to check the topic status
 
 <figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+
+
+### For Google Cloud Pub/Sub
+
+### &#x20;

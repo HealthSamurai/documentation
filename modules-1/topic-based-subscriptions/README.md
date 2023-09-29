@@ -4,6 +4,10 @@
 
 Aidbox's Topic-Based Subscription module offers a robust and efficient mechanism designed to allow clients to ask for notifications when data changes. It is an active notification system, an Aidbox server actively sends notifications to clients as changes occur.
 
+{% hint style="info" %}
+At the moment, as queue storage below, **PostgreSQL** and **Google Cloud Pub/Sub** are supported.  We are planning to support other options like **Apache Kafka** and **RabbitMQ**.
+{% endhint %}
+
 ## **Key Features of the Module:**
 
 * **FHIR Conformance**: Our implementation strictly adheres to the [FHIR Topic-Based Subscriptions Framework Guide](https://build.fhir.org/subscriptions.html), ensuring interoperability and standardized practices.
@@ -23,16 +27,19 @@ The Subscription mechanism is composed of two main parts.
 
 The following image shows the architecture of the Aidbox topic-based subscriptions module:
 
-<figure><img src="../../.gitbook/assets/Integrations domain.png" alt=""><figcaption><p>topic-based subscription module</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/topic-based-subscription.png" alt=""><figcaption><p>topic-based subscription module</p></figcaption></figure>
 
 The module is composed of two loosely coupled services:
 
-1. **Change Data Capture (CDC) Service -** is responsible for processing data change log stream from the PostgreSQL replication slot. The replication slot is created and processed according to topic configuration, which received from [aidbox-zen-lang-project](../../aidbox-configuration/aidbox-zen-lang-project/ "mention"). It's CDC service that is responsible for selecting only events who are match the **Topic Trigger** definition, evaluating **canFilterBy** expressions, and decoding events into proper FHIR resources.\
+1. **Change Data Capture (CDC) Service -** is responsible for processing data change log stream from the PostgreSQL replication slot. The replication slot is created and processed according to the topic configuration defined by [aidbox-zen-lang-project](../../aidbox-configuration/aidbox-zen-lang-project/ "mention"). The CDC service is responsible for selecting only events that match the **Topic Trigger** definition, evaluating **canFilterBy** expressions, and decoding events into proper FHIR resources.\
    \
-   The final events are stored in **Topic Queue Storage.** At the moment, only PostgreSQL is available as a queue storage, but support for other options is planned.\
+   The final events are stored in **Topic Queue Storage.** At the moment, PostgreSQL and Google Cloud Pub/Sub are available as queue storage, but support for other options is planned.\
    \
-   Every **event** consists of headers, which include `focusResourceType`, `focusResourceId`, and `canFilterByValues`, with the optional inclusion of triggered `resources`.
-2. **Delivery Service** - is responsible for delivering notifications from Topic Queue Storage to a client who created a subscription via specified channels. For every subscription, the service tracks all sent notifications to allow detection of delivery errors. The delivery is carried out by workers, the number of whom can be adjusted for each topic based on the anticipated number of subscriptions and available resources.\
+   Every **event** consists of headers, which include `focusResourceType`, `focusResourceId`, and `canFilterByValues`, with the optional inclusion of triggered `resources`.\
+
+2. **Delivery Service** - is responsible for delivering notifications from Topic Queue Storage to a client who created a subscription via specified channels. This service will be run only if _Topic Queue Storage_ is **PostgreSQL**.\
+   \
+   For every subscription, the service tracks all sent notifications to allow detection of delivery errors. The delivery is carried out by workers, the number of whom can be adjusted for each topic based on the anticipated number of subscriptions and available resources.\
    \
    The requests for **Subscriptions** are created by clients with [create](https://www.hl7.org/fhir/http.html#create) operations.\
    \
