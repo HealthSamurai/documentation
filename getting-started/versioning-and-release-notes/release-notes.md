@@ -6,6 +6,10 @@
 * SDK
   * Launched [Open Source Telehealth application](https://github.com/Aidbox/telemed/) with end-to-end flow with 3 user roles \[Provider, Patient, Admin]
 * Integrations
+  * Launched Topic-Based Subscriptions module for preview
+  * Introduced Aidbox Console UI topic status checks
+  * Enhanced monitoring stack integration, GCP Pub/Sub integration for topics, restart on replication channel failures
+  * Supported the \`end\` property of subscription
 * Data API
   * Added new features to [SQL on FHIR module](../../modules-1/sql-on-fhir/) to control database view generation
   * Updated [SQL on FHIR module ](../../modules-1/sql-on-fhir/)to match the SQL on FHIR standard changes
