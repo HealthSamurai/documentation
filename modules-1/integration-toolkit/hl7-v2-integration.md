@@ -219,7 +219,9 @@ You can define custom segment using `Hl7v2Config` resource.
 
 `msh` - message structure code
 
-`segment` - custom segment name
+`segment` - custom segment name, or name with group. Examples: `RAS_O17`, `RAS_O17:encoding`
+
+`quantifier` - The possible values are: `+`, `*` _and_ `?` _, which have the same semantics as in regular expressions._ The default value is `?`.&#x20;
 
 Each field:
 
@@ -253,6 +255,7 @@ extensions:
         name: VALUE
         type: ST
     segment: ZBE
+    quantifier: "*"
 id: cfg-1
 resourceType: Hl7v2Config
 ```
