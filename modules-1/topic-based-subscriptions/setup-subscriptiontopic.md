@@ -117,7 +117,7 @@ pubsub-patient-storage
 
 Below is an example of an Aidbox entrypoint configured with one topic for observation.
 
-{% code lineNumbers="true" fullWidth="true" %}
+{% code lineNumbers="true" fullWidth="false" %}
 ```clojure
 {ns     aidbox-with-subscriptions
  import #{fhir.topic-based-subscription
@@ -129,7 +129,8 @@ Below is an example of an Aidbox entrypoint configured with one topic for observ
   ;; SubscriptionTopic url should be an absolute URI (globally unique)
   :url "http://aidbox.app/SubscriptionTopic/observations"
   :resourceTrigger [
-                    ;; an SubscriptionTopic may consist of any number of resources
+                    ;; an SubscriptionTopic may consist 
+                    ;; of any number of resources
                     {:resource "Observation"
                      :fhirPathCriteria "%current.value.ofType(Quantity).value > 10"}]
   :canFilterBy [{:resource        "Observation"
@@ -140,7 +141,8 @@ Below is an example of an Aidbox entrypoint configured with one topic for observ
 
                 {:resource        "Observation"
                  :filterParameter "value-increase"
-                 ;; both %current and %previous state of the resource are available
+                 ;; both %current and %previous state of the 
+                 ;; resource are available
                  :_fhirPath       "%current.value.ofType(Quantity).value > %previous.value.ofType(Quantity).value"
                  :modifier        ["eq"]}]}
 
@@ -152,16 +154,25 @@ Below is an example of an Aidbox entrypoint configured with one topic for observ
   ;; The name of the table which will be created to store topic events:
   :table-name "observation_topic"
   ;; Possible value for maxContent are: "empty" | "id-only" | "full-resource"
-  ;; The actual Resource is only stored in queue when "full-resource" value are specified.
-  ;; When deciding which payload type to request, systems SHOULD consider both ease of processing and security of PHI. To mitigate the risk of information leakage, systems SHOULD use the minimum level of detail consistent with the use case. In practice, id-only provides a good balance between security and performance for many real-world scenarios.
+  ;; The actual Resource is only stored in queue when "full-resource" value 
+  ;; are specified. When deciding which payload type to request, 
+  ;; systems SHOULD consider both ease of processing and security of PHI. 
+  ;; To mitigate the risk of information leakage, systems SHOULD use the 
+  ;; minimum level of detail consistent with the use case. 
+  ;; In practice, id-only provides a good balance between security 
+  ;; and performance for many real-world scenarios.
   :maxContent "full-resource"
-  ;; The period, in seconds, during which events from the replication slot will be buffered before being written to storage:
+  ;; The period, in seconds, during which events from the replication slot 
+  ;; will be buffered before being written to storage:
   :timeout  10
-  ;; The maximum number of events the replication slot will buffer before writing to storage:
+  ;; The maximum number of events the replication slot will buffer before
+  ;; writing to storage:
   :maxCount 100
-  ;; Interval in seconds periodic heartbeat record generation in cdc_topic_heartbeat_table, to reclaim the WAL space:
+  ;; Interval in seconds periodic heartbeat record generation 
+  ;; in cdc_topic_heartbeat_table, to reclaim the WAL space:
   :heartbeat-rate 120
-  ;; The number of workers responsible for notification delivery. min number 4 is advised. One worker can handle up to 1024 subsrciptions:
+  ;; The number of workers responsible for notification delivery. 
+  ;; min number 4 is advised. One worker can handle up to 1024 subsrciptions:
   :senders-number 4}
 
 
@@ -185,7 +196,7 @@ Below is an example of an Aidbox entrypoint configured with one topic for observ
 
 * Run Aidbox and check logs for the following output
 
-{% code fullWidth="true" %}
+{% code fullWidth="false" %}
 ```log
 15:17:41 cro-1 :fhir.topic-based-subscription.topic/starting-replication-service {:service aidbox-with-subscriptions/observation-topic-srv, :slot-name "tbs_aidbox_with_subscriptions__observation_topic_srv"}
 15:17:41 cro-2 :fhir.topic-based-subscription.topic/starting-pg-persist-thread {:service aidbox-with-subscriptions/observation-topic-srv, :slot-name "tbs_aidbox_with_subscriptions__observation_topic_srv"}
@@ -296,7 +307,7 @@ accept: application/json
 
 ## Example configuration for Google Cloud Pub/Sub
 
-{% code fullWidth="true" %}
+{% code fullWidth="false" %}
 ```
 {ns pub-sub-topic
     import #{fhir.topic-based-subscription}
