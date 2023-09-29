@@ -4,9 +4,23 @@ description: Aidbox has support of GCP Pub/Sub integration
 
 # GCP Pub/Sub
 
+## Note
+
+This is old, not stable version.
+
+Since version 2309 Aidbox has GCP Pub/Sub integration via Topic-Based Subscriptions, which is ready for production use.
+
+{% content-ref url="../../modules-1/topic-based-subscriptions/" %}
+[topic-based-subscriptions](../../modules-1/topic-based-subscriptions/)
+{% endcontent-ref %}
+
+## GCP Pub/Sub
+
 {% hint style="info" %}
-GCP Pub/Sub integration currently is in _Alpha_&#x20;
+GCP Pub/Sub integration currently is in _Alpha_
 {% endhint %}
+
+
 
 Any create, update, or delete operations on all resources in Aidbox may be published to a GCP Pub/Sub topic.
 
@@ -41,7 +55,7 @@ BOX_SUBSCRIPTIONS_PUBSUB_EMULATOR__URL=http://localhost:8264
 
 ## Publish a message before a resource is saved to a Database
 
-By default message about change is published after the change is written to a Database. This approach makes the situation possible when a change was performed, but the message was not published.&#x20;
+By default message about change is published after the change is written to a Database. This approach makes the situation possible when a change was performed, but the message was not published.
 
 Set
 
@@ -49,7 +63,7 @@ Set
 BOX_SUBSCRIPTIONS_PUBSUB_BEFORE__SAVE=true
 ```
 
-to publish a message before a change is saved to Database.&#x20;
+to publish a message before a change is saved to Database.
 
 `versionId` attribute of a message will store the id of the version **before the update** of `nil` for `create` operation.
 
