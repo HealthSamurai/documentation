@@ -184,7 +184,7 @@ To convert a FHIR document to C-CDA, make a POST request to the `/ccda/v2/to-ccd
 
 ```http
 POST /ccda/v2/to-ccda
-Content-Type: application/fhir+json
+Content-Type: application/json
 Authorization: ...
 
 {
@@ -204,6 +204,44 @@ Authorization: ...
   xmlns="urn:hl7-org:v3" ...>
   ....
 </ClinicalDocument>
+```
+
+The source FHIR Document for this endpoint can be in either [FHIR or Aidbox format](../../fhir-resources/aidbox-and-fhir-formats.md). Endpoint uses  `Content-Type` header to understand which format is used. `Content-Type: application/json` means Aidbox format and `Content-Type: application/fhir+json` means FHIR format. So in the example above Aidbox format is used.
+
+If FHIR Document format and `Content-Type` header are mismached then 422 error will be returned:
+
+```http
+POST /ccda/v2/to-ccda
+Content-Type: application/json
+Authorization: ...
+
+{
+    "resourceType": "Bundle",
+    "type": "document",
+    // Reference is in FHIR format
+    "subject": {"reference": "urn:uuid:xxxxxxxxxxxxxxx"} 
+}
+```
+
+```json
+// POST /ccda/v2/to-ccda
+// HTTP/1.1 422 Invalid Entity
+
+{
+  "resourceType": "OperationOutcome",
+  "id": "invalid",
+  "text": {
+    "status": "generated",
+    "div": "Provided FHIR Document is in FHIR format, but expected to be in AIDBOX format. Make sure that you're using the right 'content-type' header.\n\nLearn about differences between Aidbox and FHIR formats here: https://docs.aidbox.app/storage-1/aidbox-and-fhir-formats"
+  },
+  "issue": [
+    {
+      "severity": "fatal",
+      "code": "invalid",
+      "diagnostics": "Provided FHIR Document is in FHIR format, but expected to be in AIDBOX format. Make sure that you're using the right 'content-type' header.\n\nLearn about differences between Aidbox and FHIR formats here: https://docs.aidbox.app/storage-1/aidbox-and-fhir-formats"
+    }
+  ]
+}
 ```
 
 ### Persisting result of C-CDA to FHIR conversion
