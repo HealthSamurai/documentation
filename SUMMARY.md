@@ -434,11 +434,6 @@
   * [Azure Blob Storage](storage-1/s3-compatible-storages/azure.md)
   * [Oracle Cloud Storage](storage-1/s3-compatible-storages/oracle.md)
 
-## Multibox
-
-* [Multibox box manager API](multibox/multibox-box-manager-api.md)
-* [Multibox monitoring](multibox/multibox-monitoring.md)
-
 ## Integrations
 
 * [Analytics](integrations/analytics/README.md)

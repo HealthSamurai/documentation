@@ -438,7 +438,7 @@
 * Released [`seed service`](../../aidbox-configuration/aidbox-zen-lang-project/#seed-import) for Aidbox project. Declare a set of resources in Aidbox project and get them loaded in one or many Aidboxes on start.
 * Added option to set [PostgreSQL schema](broken-reference/) for Aidbox tables.
 * Added `content-type: application/json` as default if `content-type` and `accept` headers are missing.
-* Added [$drop-cache](../../api-1/cache.md#drop-cache-operation) operation and and [`multibox/drop-box-caches`](../../multibox/multibox-box-manager-api.md#multibox-drop-box-caches) RPC
+* Added [$drop-cache](../../api-1/cache.md#drop-cache-operation) operation and and [`multibox/drop-box-caches`](broken-reference) RPC
 * Added [GET /$version operation](../../api-1/api/aidbox-version.md) to get Aidbox version.
 * Enhanced `POST /` operation error handling and added [FHIR bundle resource documentation](../../api-1/fhir-api/bundle.md).
 * Enhanced GraphQL with ConceptMap.group property support
@@ -486,7 +486,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 * Added Search resource `reference` [support](../../api-1/fhir-api/search-1/search-resource.md#reference-search).
 * Improved [Search parameter](../../api-1/fhir-api/search-1/searchparameter.md#expression) expression error reporting.
 * Improved [zen profiles](../../profiling-and-validation/profiling-with-zen-lang/) support in [GraphQL API](../../api-1/graphql-api.md).
-* Released [Multibox box manager API](../../multibox/multibox-box-manager-api.md).
+* Released [Multibox box manager API](broken-reference).
 * Added Aidbox UI [Analyze Attributes](../../overview/aidbox-ui/attrs-stats.md) tab description.
 
 ## December 2021 - v:2112
