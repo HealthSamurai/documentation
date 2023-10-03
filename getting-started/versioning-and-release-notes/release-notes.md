@@ -5,15 +5,14 @@
 * New [FHIR Validator](https://fhir-validator.aidbox.app/) public demo stand
 * SDK
   * Launched [Open Source Telehealth application](https://github.com/Aidbox/telemed/) with end-to-end flow with 3 user roles \[Provider, Patient, Admin]
-* Integrations
-  * Launched Topic-Based Subscriptions module for preview
-    * Added integration with GCP Pub/Sub
-    * Added restart on replication channel failure&#x20;
-    * Added ability to check topic status with Aidbox Console UI&#x20;
-    * Developed Aidbox monitoring stack integration&#x20;
-    * Supported Subscription `end` property&#x20;
-    * Introduced various fixes and enchantments&#x20;
-    * Added new sample configuration with the [Aidbox Project Template](https://github.com/Aidbox/aidbox-project-template/tree/topic-based-subscription-r4b)
+* [Topic-Based Subscriptions module](../../modules-1/topic-based-subscriptions/)
+  * Supported the [GCP Pub/Sub integration](../../modules-1/topic-based-subscriptions/setup-subscriptiontopic.md#example-configuration-for-google-cloud-pub-sub)
+  * Added restart on replication channel failure&#x20;
+  * Added ability to check topic status with Aidbox Console UI&#x20;
+  * Developed Aidbox monitoring stack integration&#x20;
+  * Supported Subscription `end` property&#x20;
+  * Introduced various fixes and enchantments&#x20;
+  * Added new sample configuration with the [Aidbox Project Template](https://github.com/Aidbox/aidbox-project-template/tree/topic-based-subscription-r4b)
 * Data API
   * Added new features to [SQL on FHIR module](../../modules-1/sql-on-fhir/) to control database view generation
   * Updated [SQL on FHIR module ](../../modules-1/sql-on-fhir/)to match the SQL on FHIR standard changes
