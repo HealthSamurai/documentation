@@ -30,7 +30,7 @@
   * Launched new UI-builder (Pre-alpha version)
     * UI-builder can be found: Aidbox Console > Aidbox Forms > Create Template > Create in UI-builder
 
-## August 2023 _`stable,2308`_
+## August 2023 _`2308`_
 
 * [SQL on FHIR engine ](../../modules-1/sql-on-fhir/)early access
 * Data API
@@ -59,7 +59,7 @@
   * Improved mobile devices adaptation (form takes all visual space, buttons aligned in specific positions)
   * Improved UX of developer tools (inline errors, autocomplete, code folding, bracket matching)
 
-## July 2023 _`stable,2307`_
+## July 2023 _`2307`_
 
 * Data API
   * Added [multilingual search](../../tutorials/data-api/how-to-use-multilingual-search.md) with [\_search-language](../../api-1/fhir-api/search-1/search-parameters-list/\_search-language.md) parameter
@@ -79,7 +79,7 @@
   * Supported an option to include [question scores](../../modules-1/aidbox-forms/converter.md#include-score-value-in-questionnaireresponse) in QuestionnaireResponse in the [converter](../../reference/aidbox-forms/api-reference.md#aidbox.sdc-convert-document)
   * Minor fixes: UI became more stable while loading
 
-## June 2023 _`stable,2306`_
+## June 2023 _`2306,LTS`_
 
 * [Workflow Engine](../../modules-1/workflow-engine/):
   * Added [wait ](../../modules-1/workflow-engine/task/aidbox-predefined-tasks.md#awf.task-wait)task
@@ -108,7 +108,7 @@
   * Released [TypeScript SDK module](https://github.com/Aidbox/aidbox-sdk-js/tree/main#workflow-definition) for [Workflow Engine](../../modules-1/workflow-engine/workflow/)
   * Added [a sample project](https://github.com/Aidbox/aidbox-sdk-js/tree/main/examples/apps/workflow) that demonstrates the following flow: remind a patient about upcoming appointment on a specific date, collect information about the patient’s condition with Aidbox Form and store information as FHIR data
 
-## May 2023 _`stable`_,_`2305`_
+## May 2023 _`2305`_
 
 * Released [Workflow Engine](../../modules-1/workflow-engine/)
 * Validation and Terminology
@@ -139,7 +139,7 @@
   * Added a [PHR sample app](https://github.com/Aidbox/aidbox-sdk-js/tree/main/personal-health-record)
   * Added [3 example apps](https://github.com/Aidbox/aidbox-sdk-js/tree/main/examples)
 
-## April 2023 _`stable`_,_`2304`_
+## April 2023 _`2304`_
 
 * Validation and Terminology
   * Supported [FHIR R5](../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md#fhir-r5)
