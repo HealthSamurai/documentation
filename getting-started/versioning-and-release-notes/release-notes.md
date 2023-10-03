@@ -10,7 +10,7 @@
   * Added restart on replication channel failure&#x20;
   * Added ability to check topic status with Aidbox Console UI&#x20;
   * Developed Aidbox monitoring stack integration&#x20;
-  * Supported Subscription `end` property&#x20;
+  * Supported [Subscription `end` property ](../../modules-1/topic-based-subscriptions/r4b-api-reference/subscription-api.md#create-subscription-post-fhir-subscription)
   * Added new sample configuration with the [Aidbox Project Template](https://github.com/Aidbox/aidbox-project-template/tree/topic-based-subscription-r4b)
   * Added [Tutorial: Subscribe to Topic (R4B)](../../modules-1/topic-based-subscriptions/subscribe-to-topics-r4b.md)
 * [SQL on FHIR engine](../../modules-1/sql-on-fhir/)
