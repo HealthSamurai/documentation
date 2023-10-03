@@ -2,9 +2,9 @@
 
 This page describes how to setup SubscriptionTopic for each Topic Queue Storage type:
 
-[For PostgreSQL](setup-subscriptiontopic.md#for-postgresql)
+[For PostgreSQL](setup-subscriptiontopic.md#example-configuration-for-postgresql)
 
-[For Google Cloud Pub/Sub](setup-subscriptiontopic.md#for-google-cloud-pub-sub)
+[For Google Cloud Pub/Sub](setup-subscriptiontopic.md#example-configuration-for-google-cloud-pub-sub)
 
 SubscriptionTopic is configured by Aidbox configuration project by zen-lang.
 
