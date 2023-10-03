@@ -1,6 +1,6 @@
 # Subscription API
 
-### `POST /fhir/Subscription`
+### Create Subscription - `POST /fhir/Subscription`
 
 Creates a new R4B subscription.
 
@@ -95,7 +95,7 @@ end: '2020-12-31T12:00:00Z'
 
 ###
 
-### `GET /fhir/Subscription/[id]/$status`
+### Subscription Status - `GET /fhir/Subscription/[id]/$status`
 
 This operation is used to get the current status information about a topic-based Subscription.
 
@@ -138,7 +138,7 @@ entry:
 
 
 
-### `GET /fhir/Subscription/[id]/$events`
+### Subscription Events - `GET /fhir/Subscription/[id]/$events`
 
 This operation is used to search for and get notifications that have been previously triggered by a topic-based Subscription.
 
@@ -238,7 +238,7 @@ entry:
 {% endtab %}
 {% endtabs %}
 
-### `DELETE /fhir/Subscription/[id]`
+### Delete Subscription - `DELETE /fhir/Subscription/[id]`
 
 Delete Subscription resource.
 
