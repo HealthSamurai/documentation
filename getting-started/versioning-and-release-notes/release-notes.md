@@ -11,28 +11,24 @@
   * Added ability to check topic status with Aidbox Console UI&#x20;
   * Developed Aidbox monitoring stack integration&#x20;
   * Supported Subscription `end` property&#x20;
-  * Introduced various fixes and enchantments&#x20;
   * Added new sample configuration with the [Aidbox Project Template](https://github.com/Aidbox/aidbox-project-template/tree/topic-based-subscription-r4b)
+  * Added [Tutorial: Subscribe to Topic (R4B)](../../modules-1/topic-based-subscriptions/subscribe-to-topics-r4b.md)
+* [SQL on FHIR engine](../../modules-1/sql-on-fhir/)
+  * Create [materialized views ](../../modules-1/sql-on-fhir/view-definition.md#additional-options)
 * Data API
-  * Added new features to [SQL on FHIR module](../../modules-1/sql-on-fhir/) to control database view generation
-  * Updated [SQL on FHIR module ](../../modules-1/sql-on-fhir/)to match the SQL on FHIR standard changes
-    * &#x20;Control whether to use materialized views or regular views&#x20;
-    * Control in which schema to put a view ViewDefinition becomes a first-class resource
   * Delete all matching resources using [conditional delete](../../api-1/api/crud-1/delete.md#conditional-delete)
-* [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
-  * Minor fixes
-* Security and access control
+* Ops
   * Supported [Open Telemetry exporter for logs & metrics](../../modules-1/monitoring/run-aidbox-locally-with-docker.md)
+* Security and access control
   * Supported [Bundle batch operation in Multitenant API](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#bundle)&#x20;
-  * Added [Audit event viewer UI on Aidbox Console](../../modules-1/logging-and-audit/setup-audit-logging.md)
+  * Added [Audit Log UI ](../../modules-1/logging-and-audit/setup-audit-logging.md)on Aidbox Console
 * [Aidbox Forms](../../modules-1/aidbox-forms.md)
   * Improved Development Experience (DevX)
-    * Improved autocomplete for literals and keywords
-    * Added documentation in the autocomplete popup
+    * Autocomplete for literals and keywords
+    * Documentation in the autocomplete popup
   * Configured Questionnaire converter to accept FHIR Bundle
-  * Added documentation in the autocomplete popup
-  * Launched new UI-Builder (Pre-alpha version)
-    * UI-Builder can be found: Aidbox Console > Aidbox Forms > Create Template > Create in UI Builder
+  * Launched new UI-builder (Pre-alpha version)
+    * UI-builder can be found: Aidbox Console > Aidbox Forms > Create Template > Create in UI-builder
 
 ## August 2023 _`stable,2308`_
 
