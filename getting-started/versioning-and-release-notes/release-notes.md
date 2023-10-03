@@ -13,7 +13,7 @@
     * Developed Aidbox monitoring stack integration&#x20;
     * Supported Subscription `end` property&#x20;
     * Introduced various fixes and enchantments&#x20;
-    * Added new sample configuration with Aidbox Project Template
+    * Added new sample configuration with the [Aidbox Project Template](https://github.com/Aidbox/aidbox-project-template/tree/topic-based-subscription-r4b)
 * Data API
   * Added new features to [SQL on FHIR module](../../modules-1/sql-on-fhir/) to control database view generation
   * Updated [SQL on FHIR module ](../../modules-1/sql-on-fhir/)to match the SQL on FHIR standard changes
