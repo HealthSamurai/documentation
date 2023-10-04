@@ -23,12 +23,10 @@
   * Supported [Bundle batch operation in Multitenant API](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#bundle)&#x20;
   * Added [Audit Log UI ](../../modules-1/logging-and-audit/setup-audit-logging.md)on Aidbox Console
 * [Aidbox Forms](../../modules-1/aidbox-forms.md)
-  * Improved Development Experience (DevX)
-    * Autocomplete for literals and keywords
-    * Documentation in the autocomplete popup
+  * Added autocomplete for literals and keywords
   * Configured Questionnaire converter to accept FHIR Bundle
-  * Launched new UI-builder (Pre-alpha version)
-    * UI-builder can be found: Aidbox Console > Aidbox Forms > Create Template > Create in UI-builder
+  * Added new form template SDOH PRAPARE to Form Library
+  * Releases new UI-builder pre-alpha version
 
 ## August 2023 _`2308`_
 
