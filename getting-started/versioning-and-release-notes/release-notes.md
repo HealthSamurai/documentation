@@ -26,7 +26,7 @@
   * Added autocomplete for literals and keywords
   * Configured Questionnaire converter to accept FHIR Bundle
   * Added new form template SDOH PRAPARE to Form Library
-  * Releases new UI-builder pre-alpha version
+  * Released new UI-builder pre-alpha version
 
 ## August 2023 _`2308`_
 
