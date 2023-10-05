@@ -47,14 +47,14 @@ system: 'okta'
 scopes:
   - profile
   - openid
-userinfo_endpoint: '<okta-domain>/oauth2/v1//userinfo'
 authorize_endpoint: '<okta-domain>/oauth2/v1/authorize'
+token_endpoint: '<okta-domain>/oauth2/v1/token'
+userinfo_endpoint: '<okta-domain>/oauth2/v1//userinfo'
+userinfo-source: id-token | userinfo-endpoint
 client:
   id: <client-id>
   secret: <client-secret>
   redirect_uri: '<box-url>/auth/callback/okta'
-
-token_endpoint: '<okta-domain>/oauth2/v1/token'
 ```
 
 ## Login into Aidbox with Okta

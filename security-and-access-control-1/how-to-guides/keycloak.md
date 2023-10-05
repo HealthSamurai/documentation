@@ -47,9 +47,10 @@ scopes:
   - profile
   - openid
 system: keycloak
-userinfo_endpoint: <keycloak-url>/realms/<your-realm>/protocol/openid-connect/userinfo
 authorize_endpoint: <keycloak-url>/realms/<your-realm>/protocol/openid-connect/auth
 token_endpoint: <keycloak-url>/realms/<your-realm>/protocol/openid-connect/token
+userinfo_endpoint: <keycloak-url>/realms/<your-realm>/protocol/openid-connect/userinfo
+userinfo-source: id-token | userinfo-endpoint
 client:
   id: <your client id>
   secret: <your client secret>

@@ -71,6 +71,7 @@ system: adfs
 authorize_endpoint: https://<adfs-domain>/adfs/oauth2/authorize/
 token_endpoint: https://<adfs-domain>/adfs/oauth2/token/
 userinfo_endpoint: https://<adfs-domain>/adfs/userinfo
+userinfo-source: id-token | userinfo-endpoint
 client:
   id: <your client id> # client id issued by AD FS
   secret: <your client secret> # shared secred issued by AD FS

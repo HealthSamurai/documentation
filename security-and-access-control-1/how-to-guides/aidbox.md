@@ -64,6 +64,7 @@ id: global-provider
 authorize_endpoint: https://provider.example.com/auth/authorize
 token_endpoint: https://provider.example.com/auth/token
 userinfo_endpoint: https://provider.example.com/auth/userinfo
+userinfo-source: id-token | userinfo-endpoint
 scopes:
  - user
  - read:org
