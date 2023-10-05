@@ -60,7 +60,8 @@ The base profile configures validation of the resource. It should be tagged with
   :zen.fhir/type "OurType"
   :zen.fhir/version "0.5.11"
   :type zen/map
-  :require #{:name},
+  :confirms #{zen.fhir/Resource}
+  :require #{:name}
   :keys {:name {:type  zen/vector
                 :every {:type zen/map
                         :keys {:given {:type  zen/vector
@@ -87,7 +88,8 @@ In this example, the OurType schema will be used to validate OurType resource, r
   :zen.fhir/type "OurType"
   :zen.fhir/version "0.5.11"
   :type zen/map
-  :require #{:name},
+  :require #{:name}
+  :confirms #{zen.fhir/Resource}
   :keys {:resourceType {:const {:value "OurType"}
                         :type zen/string}
          :name {:type  zen/vector
