@@ -38,7 +38,7 @@ In this example new custom resource have name OurType and will be available by e
 
 The `:base-profile` key is optional. If you don't want to validate resource on creating, you may not use it.  If not specified, custom resource won't be validated and search won't support this custom type.
 
-{% code title="system.edn" %}
+{% code title="main.edn" %}
 ```clojure
  our-repository
  {:zen/tags #{aidbox.repository.v1/repository}
@@ -53,7 +53,7 @@ The `:base-profile` key is optional. If you don't want to validate resource on c
 
 The base profile configures validation of the resource. It should be tagged with `zen.fhir/base-schema`.&#x20;
 
-{% code title="system.edn" %}
+{% code title="main.edn" %}
 ```clojure
  OurType
  {:zen/tags #{zen/schema zen.fhir/base-schema}
@@ -74,7 +74,7 @@ In this example, the OurType schema will be used to validate OurType resource, r
 
 ### Full example configuration
 
-{% code title="system.edn" %}
+{% code title="main.edn" %}
 ```clojure
 {ns main
  import #{aidbox.index.v1
