@@ -31,7 +31,7 @@ To enable tracing in Aidbox:
   :url      "http://otel-collector-url/v1/traces"}} ; otel collector traces endpoint
 ```
 
-## How to check OTEL receives traces&#x20;
+## How to check the OTEL collector receives traces&#x20;
 
 ### Set up `logging` exporter and `traces` pipeline in the OTEL collector configuration:
 

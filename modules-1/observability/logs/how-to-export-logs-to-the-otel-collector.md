@@ -35,7 +35,7 @@ To  enable exporting logs to the OTEL collector:
   :services {:otel-appender open-telemetry-appender}}} ; add otel-appender
 ```
 
-## How to check OTEL receives logs&#x20;
+## How to check the OTEL collector receives logs&#x20;
 
 ### Set up `logging` exporter and `logs` pipeline in the OTEL collector configuration:
 
