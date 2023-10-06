@@ -72,6 +72,10 @@ The `isStrict` attribute specifies if message parsing will be strict or not. Whe
 
 Refer to a mapping which will process your messages with the `mapping` attribute. Please note that you aren't obligated to keep all of your mapping logic inside a single `Mapping` resource — you can have one as an entrypoint and then dispatch execution to other mappings with the `$include` directive.
 
+**Sort for mixed ordered custom segments**
+
+In cases where some repeatable custom top-level segments are in mixed order, an error will most likely occur. The `sortTopLevelExtensions` attribute specifies whether such segments must be ordered before parsing. It does not affect segments that are already included in some group.
+
 ### Submitting a Message with Aidbox UI
 
 Access the Aidbox UI and navigate to the "HL7 v2" tab in the left menu, then click the "New" button in the top right corner.
@@ -217,9 +221,9 @@ Once `hl7proxy` is up and running, you can use [HAPI TestPanel](https://hapifhir
 
 You can define custom segment using `Hl7v2Config` resource.
 
-`msh` - message structure code
+`msh` - message structure code, or code with group. Examples: `RAS_O17`, `RAS_O17:encoding`
 
-`segment` - custom segment name, or name with group. Examples: `RAS_O17`, `RAS_O17:encoding`
+`segment` - custom segment name.&#x20;
 
 `quantifier` - The possible values are: `+`, `*` _and_ `?` _, which have the same semantics as in regular expressions._ The default value is `?`.&#x20;
 
@@ -236,6 +240,7 @@ mapping:
   id: example
   resourceType: Mapping
 isStrict: false
+sortTopLevelExtension: false
 extensions:
   - msh: ADT_A01
     fields:
