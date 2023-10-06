@@ -13,10 +13,10 @@ It introduces you to:
 * The Aidbox installation process with Docker & Docker Compose,
 * Logs & metrics & traces exporting to Elasticsearch & Prometheus & Zipkin using OpenTelemetry collector service.
 
-<figure><img src="../../.gitbook/assets/Telemetry (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Telemetry (1).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="warning" %}
-<img src="../../.gitbook/assets/docker.png" alt="" data-size="original">
+<img src="../../../.gitbook/assets/docker.png" alt="" data-size="original">
 
 Please **make sure** that both [Docker & Docker Compose](https://docs.docker.com/engine/install/) are installed.
 {% endhint %}
@@ -33,7 +33,7 @@ The _<mark style="color:green;background-color:yellow;">Aidbox License Key</mark
 
 ### 2. Configure the Aidbox
 
-Aidbox is configured by dedicated [Aidbox Configuration Projects](../../aidbox-configuration/aidbox-zen-lang-project/).
+Aidbox is configured by dedicated [Aidbox Configuration Projects](../../../aidbox-configuration/aidbox-zen-lang-project/).
 
 You can start with the default configuration project published on our GitHub and customize it for your specific needs later. Select the FHIR version and clone the corresponding project with the Bash commands below:
 
@@ -72,7 +72,7 @@ Everything in Aidbox can be configured with a dedicated Aidbox Configuration Pro
 
 This approach helps you keep configurations under a version control system and share them between Aidbox Instances.
 
-[Learn more.](../../getting-started-1/run-aidbox/broken-reference/)
+[Learn more.](../../../getting-started-1/run-aidbox/broken-reference/)
 {% endhint %}
 
 #### Add the license key to your configuration project.
@@ -108,32 +108,32 @@ Kibana should be available on [http://localhost:5602](http://localhost:5602) add
 
 Go to [Index Management](http://localhost:5602/app/management/data/index\_management/indices) page in Kibana (Menu → Stack Management → Index Management). You should see `aidbox_logs` index there.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-09-27 at 15.19.04.png" alt=""><figcaption><p>Index management page</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Screenshot 2023-09-27 at 15.19.04.png" alt=""><figcaption><p>Index management page</p></figcaption></figure>
 
 Then we shoould go to [Data Views](http://localhost:5602/app/management/kibana/dataViews) page (Menu → Stack Management → Data Views) and create a data view there.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-09-27 at 15.19.50.png" alt=""><figcaption><p>Data view creation</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Screenshot 2023-09-27 at 15.19.50.png" alt=""><figcaption><p>Data view creation</p></figcaption></figure>
 
 Then go to [Discover](http://localhost:5602/app/discover) page (Menu → Discover) and observe your logs.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-09-27 at 15.21.57.png" alt=""><figcaption><p>Log discover page</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Screenshot 2023-09-27 at 15.21.57.png" alt=""><figcaption><p>Log discover page</p></figcaption></figure>
 
 ### 5. Discover Aidbox metrics with Prometheus
 
 Prometheus should be available on [http://localhost:9090](http://localhost:9090) address. To see metrics in Prometheus we should open it and search for it.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-09-27 at 15.26.34.png" alt=""><figcaption><p>Prometheus UI</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Screenshot 2023-09-27 at 15.26.34.png" alt=""><figcaption><p>Prometheus UI</p></figcaption></figure>
 
 ### 6. Discover Aidbox traces with Zipkin
 
 Zipkin should be available on [http://localhost:9411/](http://localhost:9411/zipkin/) address. To see traces in Zipkin click the `Run query` button.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-10-06 at 11.32.14.png" alt=""><figcaption><p>Traces list in Zipkin</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Screenshot 2023-10-06 at 11.32.14.png" alt=""><figcaption><p>Traces list in Zipkin</p></figcaption></figure>
 
 Click the `Show` button to see all spans of a certain request.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-10-06 at 11.32.34.png" alt=""><figcaption><p>Trace view in Zipkin</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Screenshot 2023-10-06 at 11.32.34.png" alt=""><figcaption><p>Trace view in Zipkin</p></figcaption></figure>
 
 ## Next Steps
 
-* Learn more about [Aidbox Configuration](../../aidbox-configuration/aidbox-zen-lang-project/)
+* Learn more about [Aidbox Configuration](../../../aidbox-configuration/aidbox-zen-lang-project/)

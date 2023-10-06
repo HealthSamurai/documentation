@@ -18,7 +18,7 @@
 * Data API
   * Delete all matching resources using [conditional delete](../../api-1/api/crud-1/delete.md#conditional-delete)
 * Ops
-  * Supported [Open Telemetry exporter for logs & metrics](../../modules-1/monitoring/run-aidbox-locally-with-docker.md)
+  * Supported [Open Telemetry exporter for logs & metrics](../../modules-1/observability/getting-started/run-aidbox-locally-with-docker.md)
 * Security and access control
   * Supported [Bundle batch operation in Multitenant API](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#bundle)&#x20;
   * Added [Audit Log UI ](../../modules-1/logging-and-audit/setup-audit-logging.md)on Aidbox Console
