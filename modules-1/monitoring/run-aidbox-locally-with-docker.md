@@ -10,8 +10,8 @@ This guide helps you to launch and explore the Aidbox observability features loc
 
 It introduces you to:
 
-* The aidbox installation process with Docker & Docker Compose,
-* Logs & metrics exporting to Elasticsearch & Prometheus using OpenTelemetry collector service.
+* The Aidbox installation process with Docker & Docker Compose,
+* Logs & metrics & traces exporting to Elasticsearch & Prometheus & Zipkin using OpenTelemetry collector service.
 
 <figure><img src="../../.gitbook/assets/Telemetry (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -101,7 +101,7 @@ Navigate to [http://localhost:8888/](http://localhost:8888/) and Sign In to the 
 
 ### 4. Discover Aidbox logs with Kibana
 
-Kibana should be available on [http://localhost:5602](http://localhost:5602) address. To view logs in Kibana we need to&#x20;
+Kibana should be available on [http://localhost:5602](http://localhost:5602) address. To see logs in Kibana we should&#x20;
 
 * make sure that logs are coming to Elasticsearch and then&#x20;
 * create a data view to observe over logs.
@@ -110,7 +110,7 @@ Go to [Index Management](http://localhost:5602/app/management/data/index\_manage
 
 <figure><img src="../../.gitbook/assets/Screenshot 2023-09-27 at 15.19.04.png" alt=""><figcaption><p>Index management page</p></figcaption></figure>
 
-Then we may go to [Data Views](http://localhost:5602/app/management/kibana/dataViews) page (Menu → Stack Management → Data Views) and create a data view there.
+Then we shoould go to [Data Views](http://localhost:5602/app/management/kibana/dataViews) page (Menu → Stack Management → Data Views) and create a data view there.
 
 <figure><img src="../../.gitbook/assets/Screenshot 2023-09-27 at 15.19.50.png" alt=""><figcaption><p>Data view creation</p></figcaption></figure>
 
@@ -120,9 +120,19 @@ Then go to [Discover](http://localhost:5602/app/discover) page (Menu → Discove
 
 ### 5. Discover Aidbox metrics with Prometheus
 
-Prometheus should be available on [http://localhost:9090](http://localhost:9090) address. To view metrics in Prometheus we need just to open it and search for it.
+Prometheus should be available on [http://localhost:9090](http://localhost:9090) address. To see metrics in Prometheus we should open it and search for it.
 
 <figure><img src="../../.gitbook/assets/Screenshot 2023-09-27 at 15.26.34.png" alt=""><figcaption><p>Prometheus UI</p></figcaption></figure>
+
+### 6. Discover Aidbox traces with Zipkin
+
+Zipkin should be available on [http://localhost:9411/](http://localhost:9411/zipkin/) address. To see traces in Zipkin click the `Run query` button.
+
+<figure><img src="../../.gitbook/assets/Screenshot 2023-10-06 at 11.32.14.png" alt=""><figcaption><p>Traces list in Zipkin</p></figcaption></figure>
+
+Click the `Show` button to see all spans of a certain request.
+
+<figure><img src="../../.gitbook/assets/Screenshot 2023-10-06 at 11.32.34.png" alt=""><figcaption><p>Trace view in Zipkin</p></figcaption></figure>
 
 ## Next Steps
 
