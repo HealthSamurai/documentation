@@ -4,14 +4,14 @@ description: >-
   collector
 ---
 
-# How to use tracing in Aidbox
+# How to use tracing
 
 ## Prerequisites&#x20;
 
 1. [OTEL collector](https://opentelemetry.io/docs/collector/) should be deployed and [configured](https://opentelemetry.io/docs/collector/configuration/) to receive traces.
 2. Aidbox should be configured with [Aidbox configuration project](../../../aidbox-configuration/aidbox-zen-lang-project/).
 
-## How to enable tracing in Aidbox
+## How to enable tracing&#x20;
 
 To enable tracing in Aidbox:
 
@@ -33,7 +33,7 @@ To enable tracing in Aidbox:
 
 ## How to check OTEL receives traces&#x20;
 
-### Set up `logging` exporter and `traces` pipeline in OTEL collector configuration:
+### Set up `logging` exporter and `traces` pipeline in the OTEL collector configuration:
 
 ```yaml
 receivers:
@@ -60,6 +60,6 @@ Use Aidbox REST console to perform a request like this:
 GET /fhir/Patient
 ```
 
-### See Aidbox traces in OTEL collector stdout
+### See Aidbox traces in the OTEL collector stdout
 
 Open OTEL collector stdout and see the traces.

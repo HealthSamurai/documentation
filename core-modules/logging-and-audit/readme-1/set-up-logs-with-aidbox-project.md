@@ -4,7 +4,7 @@ description: This guide explains how logging can be activated with the Aidbox pr
 
 # Set up logs with Aidbox project
 
-We expect your [Aidbox project](broken-reference) is set up and running.
+We expect your [Aidbox project](broken-reference/) is set up and running.
 
 ## How do logs work? <a href="#how-logs-work" id="how-logs-work"></a>
 
@@ -63,9 +63,8 @@ This appenders directs the stream of logs to the OpenTelemetry Collector. OpenTe
  open-telemetry-appender
  {:zen/tags   #{aidbox/service}
   :engine     aidbox.log/open-telemetry-appender
-  :config     {:url "http://host.docker.internal:4318"}}
+  :config     {:url "http://host.docker.internal:4318/v1/logs"}} ; otel collector logs endpoint
 ```
-
 
 ## Attached appenders snippet
 
@@ -92,7 +91,7 @@ In this configuration two appenders (stdout and Elasticsearch) are defined and a
  open-telemetry-appender
  {:zen/tags   #{aidbox/service}
   :engine     aidbox.log/open-telemetry-appender
-  :config     {:url "http://host.docker.internal:4318"}}
+  :config     {:url "http://host.docker.internal:4318/v1/logs"}} ; otel collector logs endpoint
 
  box
  {:zen/tags #{aidbox/system}
@@ -227,7 +226,7 @@ Restart Aidbox and [repeat the actions](set-up-logs-with-aidbox-project.md#logs-
 
 **Logs output**
 
-There are fewer lines in the output.&#x20;
+There are fewer lines in the output.
 
 ```
 aidbox-project-aidbox-1 | devbox 11:21:29 w15 [9ms] SELECT "id" FROM "ui_history" WHERE "id" = ? ["4a3133aa3d02ef4a03caa05f2aec108ac0710eee"]
