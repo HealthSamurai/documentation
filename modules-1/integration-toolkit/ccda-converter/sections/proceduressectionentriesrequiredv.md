@@ -76,9 +76,9 @@ This is a typical procedure resource sample.
 C-CDA Equivalent:
 ```xml
 <entry>
-   <act classCode="ACT" moodCode="EVN">
-      <templateId root="2.16.840.1.113883.10.20.22.4.12" extension="2014-06-09"/>
-      <templateId root="2.16.840.1.113883.10.20.22.4.12"/>
+   <procedure moodCode="EVN" classCode="PROC">
+      <templateId root="2.16.840.1.113883.10.20.22.4.14" extension="2014-06-09"/>
+      <templateId root="2.16.840.1.113883.10.20.22.4.14"/>
       <id root="64af26d5-88ef-4169-ba16-c6ef16a1824f"/>
       <code codeSystem="2.16.840.1.113883.6.96"
              codeSystemName="HTTP://SNOMED.INFO/SCT"
@@ -102,7 +102,12 @@ C-CDA Equivalent:
          <low value="20140203092205-0700"/>
          <high value="20140203111514-0700"/>
       </effectiveTime>
-   </act>
+      <methodCode nullFlavor="UNK"/>
+      <targetSiteCode codeSystem="2.16.840.1.113883.6.96"
+                       codeSystemName="HTTP://SNOMED.INFO/SCT"
+                       displayName="Entire Appendix"
+                       code="181255000"/>
+   </procedure>
 </entry>
 ```
 
@@ -241,9 +246,9 @@ Like the previous examples, this is a typical Procedure resource sample.
 C-CDA Equivalent:
 ```xml
 <entry>
-   <act classCode="ACT" moodCode="EVN">
-      <templateId root="2.16.840.1.113883.10.20.22.4.12" extension="2014-06-09"/>
-      <templateId root="2.16.840.1.113883.10.20.22.4.12"/>
+   <observation classCode="OBS" moodCode="EVN">
+      <templateId root="2.16.840.1.113883.10.20.22.4.13" extension="2014-06-09"/>
+      <templateId root="2.16.840.1.113883.10.20.22.4.13"/>
       <id root="c03e5445-af1b-4911-a419-e2782f21448c"/>
       <code codeSystem="2.16.840.1.113883.6.96"
              codeSystemName="HTTP://SNOMED.INFO/SCT"
@@ -268,6 +273,7 @@ C-CDA Equivalent:
       </code>
       <statusCode code="completed"/>
       <effectiveTime value="20140329091522-1200"/>
-   </act>
+      <value xsi:type="CD"/>
+   </observation>
 </entry>
 ```

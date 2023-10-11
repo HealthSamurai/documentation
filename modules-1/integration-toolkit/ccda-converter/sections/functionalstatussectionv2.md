@@ -190,7 +190,8 @@ C-CDA Equivalent:
 ```xml
 <entry>
    <observation moodCode="EVN" classCode="OBS">
-      <templateId root="2.16.840.1.113883.10.20.22.4.69"/>
+      <templateId root="2.16.840.1.113883.10.20.22.4.67" extension="2014-06-09"/>
+      <templateId root="2.16.840.1.113883.10.20.22.4.67"/>
       <id root="b63a8636-cfff-4461-b018-53236c544444"/>
       <code codeSystem="2.16.840.1.113883.6.1"
              codeSystemName="HTTP://LOINC.ORG"

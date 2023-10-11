@@ -12,6 +12,7 @@ Here is a list of supported sections.
 | --- | --- | --- | --- | --- | 
 |[Allergies and Intolerances Section (entries optional) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/allergiesandintolerancessectioneo.md)|`2.16.840.1.113883.10.20.22.2.6`|48765-2|`AllergiesandIntolerancesSectioneo`|allergies
 |[Allergies and Intolerances Section (entries required) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/allergiesandintolerancessectioner.md)|`2.16.840.1.113883.10.20.22.2.6.1`|48765-2|`AllergiesandIntolerancesSectioner`|allergies
+|[Assessment Section](/modules-1/integration-toolkit/ccda-converter/sections/assessmentsection.md)|`2.16.840.1.113883.10.20.22.2.8`|51848-0|`AssessmentSection`|N/A
 |[Document Header](/modules-1/integration-toolkit/ccda-converter/sections/header.md)|`N/A`|N/A|`Header`|header
 |[Encounters Section (entries optional) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/encounterssectionentriesoptionalv3.md)|`2.16.840.1.113883.10.20.22.2.22`|46240-8|`EncountersSectionentriesoptionalV3`|encounters
 |[Encounters Section (entries required) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/encounterssectionentriesrequiredv3.md)|`2.16.840.1.113883.10.20.22.2.22.1`|46240-8|`EncountersSectionentriesrequiredV3`|encounters
@@ -19,6 +20,8 @@ Here is a list of supported sections.
 |[Functional Status Section (V2)](/modules-1/integration-toolkit/ccda-converter/sections/functionalstatussectionv2.md)|`2.16.840.1.113883.10.20.22.2.14`|47420-5|`FunctionalStatusSectionV2`|funcstatus
 |[Goals Section](/modules-1/integration-toolkit/ccda-converter/sections/goalssection.md)|`2.16.840.1.113883.10.20.22.2.60`|61146-7|`GoalsSection`|goals
 |[Health Concerns Section (V2)](/modules-1/integration-toolkit/ccda-converter/sections/healthconcernssectionv2.md)|`2.16.840.1.113883.10.20.22.2.58`|75310-3|`HealthConcernsSectionV2`|health-concerns
+|[Hospital Course Section](/modules-1/integration-toolkit/ccda-converter/sections/hospitalcoursesection.md)|`1.3.6.1.4.1.19376.1.5.3.1.3.5`|8648-8|`HospitalCourseSection`|N/A
+|[Hospital Discharge Instructions Section](/modules-1/integration-toolkit/ccda-converter/sections/hospitaldischargeinstructionssectio.md)|`2.16.840.1.113883.10.20.22.2.41`|8653-8|`HospitalDischargeInstructionsSectio`|N/A
 |[Immunizations Section (entries optional) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/immunizationssectionentriesoptiona.md)|`2.16.840.1.113883.10.20.22.2.2`|11369-6|`ImmunizationsSectionentriesoptiona`|immunizations
 |[Immunizations Section (entries required) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/immunizationssectionentriesrequire.md)|`2.16.840.1.113883.10.20.22.2.2.1`|11369-6|`ImmunizationsSectionentriesrequire`|immunizations
 |[Medical Equipment Section (V2)](/modules-1/integration-toolkit/ccda-converter/sections/medicalequipmentsectionv2.md)|`2.16.840.1.113883.10.20.22.2.23`|46264-8|`MedicalEquipmentSectionV2`|medical-equipment
