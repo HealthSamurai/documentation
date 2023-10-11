@@ -374,6 +374,7 @@
     * [How to export logs to the OTEL collector](modules-1/observability/logs/how-to-export-logs-to-the-otel-collector.md)
   * [Metrics](modules-1/observability/metrics/README.md)
     * [How to export metrics to the OTEL collector](modules-1/observability/metrics/how-to-export-metrics-to-the-otel-collector.md)
+    * [OpenTelemetry Metrics](modules-1/observability/metrics/opentelemetry-metrics.md)
   * [Traces](modules-1/observability/traces/README.md)
     * [How to use tracing](modules-1/observability/traces/how-to-use-tracing.md)
 * [MDM](modules-1/mdm/README.md)
