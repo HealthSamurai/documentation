@@ -12,6 +12,49 @@ C-CDA / FHIR Converter provides bidirectional mapping for all data elements from
 
 To generate a C-CDA document from FHIR data, it is necessary to create a [FHIR Document](https://hl7.org/fhir/R4/documents.html) bundle containing a [Composition](https://hl7.org/fhir/R4/composition.html) resource that specifies the top-level document attributes, including the title, document type, author, subject (patient), and a list of document sections. Each section must be described by type, title and the FHIR resources to be included. Once the FHIR Document bundle is composed, it can be submitted to the /ccda/v2/to-ccda endpoint for conversion to a C-CDA document.
 
+### Section templates and LOINC codes
+
+To pick the right `templateId` for a section, converter uses LOINC/OID mapping table which can be found on the [List of supported sections page](sections/). "Entries Required" / "Entries Optional" variation can be specified via FHIR extension. In the example below document contains two sections: [Social History Section (V3)](sections/socialhistorysectionv3.md) and  [Allergies and Intolerances Section (entries required) (V3)](sections/allergiesandintolerancessectioner.md).
+
+```json
+{
+  "resourceType": "Composition",
+  ...
+  "section": [
+    {
+      "title": "Social History",
+      "code" : {
+        "text" : "Social History",
+        "coding" : [ {
+          "code" : "29762-2",
+          "display" : "Social History",
+          "system" : "http://loinc.org"
+        } ]
+      },
+      "entry": [ ... ]
+    }, {
+      "title": "Allergies and Intolerances",
+      "extension" : [ {
+        "value" : {
+          "boolean" : true
+        },
+        "url" : "entries-required"
+      } ],
+      "code" : {
+        "coding" : [ {
+          "code" : "48765-2",
+          "display" : "48765-2",
+          "system" : "http://loinc.org"
+        } ]
+      },
+      "entry": [ ... ]
+    }
+  ]
+}
+```
+
+### Document Definitions&#x20;
+
 To simplify the creation of Document bundles, Aidbox offers a feature called Document Definition, which enables the description of document contents using the FHIR Search API. The example below illustrates how to define a Document Definition:
 
 ```clojure
