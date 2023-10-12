@@ -58,8 +58,8 @@ To pick the right `templateId` for a section, converter uses LOINC/OID mapping t
 To simplify the creation of Document bundles, Aidbox offers a feature called Document Definition, which enables the description of document contents using the FHIR Search API. The example below illustrates how to define a Document Definition:
 
 ```clojure
-{:type {:code  "18842-5",
-        :display "Discharge Summary",
+{:type {:code "34133-9" 
+        :display "Summarization of Episode Note"
         :system "http://loinc.org"}
 
  :date "2020-02-02"
@@ -78,6 +78,7 @@ To simplify the creation of Document bundles, Aidbox offers a feature called Doc
    :code {:code "48765-2"
           :display "Allergies"
           :system "http://loinc.org"}
+   :entriesRequired true
    :entry
    {:method "GET"
     :url "/AllergyIntolerance?patient=Patient/{{pid}}"}}
@@ -86,6 +87,7 @@ To simplify the creation of Document bundles, Aidbox offers a feature called Doc
    :code {:code "30954-2"
           :display "Results"
           :system "http://loinc.org"}
+   :entriesRequired true
    :entry
    {:method "GET"
     :url "/Observation?patient=Patient/{{pid}}&category=laboratory&_assoc=hasMember"}}
@@ -102,6 +104,7 @@ To simplify the creation of Document bundles, Aidbox offers a feature called Doc
    :code {:code "11450-4"
           :display "Problems"
           :system "http://loinc.org"}
+   :entriesRequired true
    :entry
    {:method "GET"
     :url "/Condition?patient=Patient/{{pid}}&category=problem-list-item"}}
@@ -110,6 +113,7 @@ To simplify the creation of Document bundles, Aidbox offers a feature called Doc
    :code {:code "8716-3"
           :display "Vitals"
           :system "http://loinc.org"}
+   :entriesRequired true
    :entry
    {:method "GET"
     :url "/Observation?category=vital-signs&patient=Patient/{{pid}}"}}]}
@@ -134,6 +138,16 @@ Another frequent use-case is date filtering. It can be easily added with two par
 ```
 
 All the filtering logic is strictly described by the [FHIR Search specification](https://www.hl7.org/fhir/search.html), so the date filtering in the example above [is covered by `date` search param type](https://www.hl7.org/fhir/search.html#date).
+
+Multiple FHIR searches per section is also possible:
+
+```clojure
+{:title "Procedures"
+ :code {:code "47519-4" :display "History of Procedures Document" :system "http://loinc.org"}
+ :entry
+ [{:method "GET" :url "/Procedure?subject=Patient/{{pid}}&category:not=225299006&status=completed&date=ge{{start-date}}&date=le{{end-date}}&_sort=date"}
+  {:method "GET" :url "/Procedure?subject=Patient/{{pid}}&status=completed&category=225299006"}]}
+```
 
 ### Predefined Document Definitions
 
