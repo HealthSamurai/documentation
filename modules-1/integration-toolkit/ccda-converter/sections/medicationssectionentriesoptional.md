@@ -2,9 +2,11 @@
 
 OID: 2.16.840.1.113883.10.20.22.2.1
 
-LOINC: 10160-0
+LOINCs: #{"10160-0"}
 
 Alias: medications
+
+Entries Required: N/A
 
 Internal ID: MedicationsSectionentriesoptional
 

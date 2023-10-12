@@ -2,9 +2,11 @@
 
 OID: 2.16.840.1.113883.10.20.22.2.14
 
-LOINC: 47420-5
+LOINCs: #{"47420-5"}
 
 Alias: funcstatus
+
+Entries Required: N/A
 
 Internal ID: FunctionalStatusSectionV2
 

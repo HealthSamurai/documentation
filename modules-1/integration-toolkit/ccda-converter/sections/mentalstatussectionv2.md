@@ -2,9 +2,11 @@
 
 OID: 2.16.840.1.113883.10.20.22.2.56
 
-LOINC: 10190-7
+LOINCs: #{"10190-7"}
 
 Alias: mental-status
+
+Entries Required: N/A
 
 Internal ID: MentalStatusSectionV2
 

@@ -2,9 +2,11 @@
 
 OID: 2.16.840.1.113883.10.20.22.2.10
 
-LOINC: 18776-5
+LOINCs: #{"18776-5"}
 
 Alias: plan-of-treatment
+
+Entries Required: N/A
 
 Internal ID: PlanofTreatmentSectionV2
 
@@ -222,7 +224,7 @@ The section contains a list of entries converted from the input resources.
       <entryRelationship typeCode="REFR">
          <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.10.20.22.4.143"/>
-            <id root="8a923a38-c149-4522-a52a-3344e40dcc79"/>
+            <id root="cb0e9ddf-19bd-46cc-9fff-7816b27f6c57"/>
             <code code="225773000" codeSystem="2.16.840.1.113883.6.96"/>
             <value code="394848005"
                     displayName="Medium Priority"

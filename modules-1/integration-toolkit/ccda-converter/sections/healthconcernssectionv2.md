@@ -2,9 +2,11 @@
 
 OID: 2.16.840.1.113883.10.20.22.2.58
 
-LOINC: 75310-3
+LOINCs: #{"75310-3"}
 
 Alias: health-concerns
+
+Entries Required: N/A
 
 Internal ID: HealthConcernsSectionV2
 

@@ -2,9 +2,11 @@
 
 OID: 2.16.840.1.113883.10.20.22.2.22.1
 
-LOINC: 46240-8
+LOINCs: #{"46240-8"}
 
 Alias: encounters
+
+Entries Required: N/A
 
 Internal ID: EncountersSectionentriesrequiredV3
 

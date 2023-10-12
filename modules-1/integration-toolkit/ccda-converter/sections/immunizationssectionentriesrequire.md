@@ -2,9 +2,11 @@
 
 OID: 2.16.840.1.113883.10.20.22.2.2.1
 
-LOINC: 11369-6
+LOINCs: #{"11369-6"}
 
 Alias: immunizations
+
+Entries Required: N/A
 
 Internal ID: ImmunizationsSectionentriesrequire
 

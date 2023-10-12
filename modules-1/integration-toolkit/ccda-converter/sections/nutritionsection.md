@@ -2,9 +2,11 @@
 
 OID: 2.16.840.1.113883.10.20.22.2.57
 
-LOINC: 61144-2
+LOINCs: #{"61144-2"}
 
 Alias: nutrition
+
+Entries Required: N/A
 
 Internal ID: NutritionSection
 

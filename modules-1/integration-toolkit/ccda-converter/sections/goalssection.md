@@ -2,9 +2,11 @@
 
 OID: 2.16.840.1.113883.10.20.22.2.60
 
-LOINC: 61146-7
+LOINCs: #{"61146-7"}
 
 Alias: goals
+
+Entries Required: N/A
 
 Internal ID: GoalsSection
 
@@ -128,7 +130,7 @@ C-CDA Equivalent:
       <entryRelationship typeCode="REFR">
          <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.10.20.22.4.143"/>
-            <id root="f9a90d10-d8f0-4655-84df-fed6c35b8da7"/>
+            <id root="2136dfb6-5108-4b7d-9336-9157d23316a4"/>
             <code code="225773000" codeSystem="2.16.840.1.113883.6.96"/>
             <value code="394849002"
                     displayName="High Priority"

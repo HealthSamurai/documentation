@@ -2,9 +2,11 @@
 
 OID: N/A
 
-LOINC: N/A
+LOINCs: #{}
 
 Alias: header
+
+Entries Required: N/A
 
 Internal ID: Header
 
@@ -46,41 +48,44 @@ Internal ID: Header
     "birthDate" : "1970-07-01",
     "resourceType" : "Patient",
     "extension" : [ {
-      "url" : "http://hl7.org/fhir/StructureDefinition/us-core-race",
       "extension" : [ {
-        "url" : "ombCategory",
         "value" : {
           "CodeableConcept" : {
+            "text" : "White",
             "coding" : [ {
-              "system" : "2.16.840.1.113883.6.238",
               "code" : "2106-3",
-              "display" : "White"
+              "display" : "White",
+              "system" : "2.16.840.1.113883.6.238"
             } ]
           }
-        }
+        },
+        "url" : "ombCategory"
       }, {
-        "url" : "detailed",
         "value" : {
           "CodeableConcept" : {
+            "text" : "White European",
             "coding" : [ {
-              "system" : "2.16.840.1.113883.6.238",
               "code" : "2108-9",
-              "display" : "White European"
+              "display" : "White European",
+              "system" : "2.16.840.1.113883.6.238"
             } ]
           }
-        }
-      } ]
+        },
+        "url" : "detailed"
+      } ],
+      "url" : "http://hl7.org/fhir/StructureDefinition/us-core-race"
     }, {
-      "url" : "http://hl7.org/fhir/StructureDefinition/us-core-ethnicity",
       "value" : {
         "CodeableConcept" : {
+          "text" : "Mexican",
           "coding" : [ {
-            "system" : "2.16.840.1.113883.6.238",
             "code" : "2186-5",
-            "display" : "Not Hispanic or Latino"
+            "display" : "Mexican",
+            "system" : "2.16.840.1.113883.6.238"
           } ]
         }
-      }
+      },
+      "url" : "http://hl7.org/fhir/StructureDefinition/us-core-ethnicity"
     } ],
     "id" : "patient",
     "identifier" : [ {
@@ -97,6 +102,18 @@ Internal ID: Header
       "use" : "home"
     } ],
     "gender" : "female"
+  },
+  "composition" : {
+    "identifier" : {
+      "value" : "TT107",
+      "system" : "2.16.840.1.113883.19.5.99999.1",
+      "extension" : [ {
+        "url" : "cda-assigning-authority-name",
+        "value" : {
+          "string" : "ABC"
+        }
+      } ]
+    }
   },
   "custodian" : {
     "name" : "Community Health and Hospitals",
@@ -166,6 +183,9 @@ C-CDA Equivalent:
    <templateId root="2.16.840.1.113883.10.20.22.1.1" extension="2015-08-01"/>
    <templateId root="2.16.840.1.113883.10.20.22.1.1"/>
    <id root="ee05e1da-df1b-7f7e-166c-e182e1d39f86"/>
+   <id extension="TT107"
+        assigningAuthorityName="ABC"
+        root="2.16.840.1.113883.19.5.99999.1"/>
    <code codeSystem="2.16.840.1.113883.6.1"
           codeSystemName="HTTP://LOINC.ORG"
           displayName="TESTDOC"
@@ -223,7 +243,7 @@ C-CDA Equivalent:
                             code="2108-9"/>
             <ethnicGroupCode codeSystem="2.16.840.1.113883.6.238"
                               codeSystemName="2.16.840.1.113883.6.238"
-                              displayName="Not Hispanic or Latino"
+                              displayName="Mexican"
                               code="2186-5"/>
          </patient>
       </patientRole>

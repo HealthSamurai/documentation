@@ -2,9 +2,11 @@
 
 OID: 2.16.840.1.113883.10.20.22.2.7
 
-LOINC: 47519-4
+LOINCs: #{"47519-4"}
 
 Alias: procedures
+
+Entries Required: N/A
 
 Internal ID: ProceduresSectionentriesoptionalV2
 

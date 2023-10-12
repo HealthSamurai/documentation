@@ -2,9 +2,11 @@
 
 OID: 2.16.840.1.113883.10.20.22.2.23
 
-LOINC: 46264-8
+LOINCs: #{"46264-8"}
 
 Alias: medical-equipment
+
+Entries Required: N/A
 
 Internal ID: MedicalEquipmentSectionV2
 
