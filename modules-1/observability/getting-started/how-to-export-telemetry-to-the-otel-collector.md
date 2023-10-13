@@ -38,12 +38,12 @@ To  enable exporting telemetry to the OTEL collector:
  open-telemetry-metrics-exporter
  {:zen/tags #{aidbox.telemetry.metrics/otlp-exporter}
   :url "http://url-to-otel-collector/v1/metrics" ; otel collector metrics endpoint
-  :period 5 #_"sec"}} ; period in seconds to send metrics 
+  :period 5 #_"sec"} ; period in seconds to send metrics 
  
  otel-trace-exporter
  {:zen/tags #{aidbox.telemetry.trace/exporter}
   :engine   aidbox.telemetry.trace/otlp-exporter
-  :url      "http://otel-collector-url/v1/traces"}} ; otel collector traces endpoint
+  :url      "http://otel-collector-url/v1/traces"} ; otel collector traces endpoint
 
  box
  {:zen/tags #{aidbox/system}
