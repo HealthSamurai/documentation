@@ -397,7 +397,6 @@
     * [Set up EHR-level customization](modules-1/smartbox/how-to-guides/set-up-ehr-level-customization.md)
     * [Check email templates](modules-1/smartbox/how-to-guides/check-email-templates.md)
     * [Setup email provider](modules-1/smartbox/how-to-guides/setup-email-provider.md)
-    * [Setup $export](modules-1/smartbox/how-to-guides/setup-email-provider-1.md)
     * [Register users](modules-1/smartbox/how-to-guides/register-users.md)
     * [Set up SSO with Auth0](modules-1/smartbox/how-to-guides/how-to-set-up-sso-with-auth0.md)
     * [Publish Terms of Use link onto the documentation page](modules-1/smartbox/how-to-guides/publish-terms-of-use-link-onto-the-documentation-page.md)

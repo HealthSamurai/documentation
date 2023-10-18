@@ -296,7 +296,7 @@
   * Updated documentation on [highly available Aidbox](../run-aidbox-in-kubernetes/high-available-aidbox.md)
   * Updated documentation on [production-ready deployment to Kubernetes](../run-aidbox-in-kubernetes/deploy-aidbox-in-kubernetes.md)
 * Smartbox
-  * Improved admin UI with configuration of [EHR-level logo](../../modules-1/smartbox/how-to-guides/set-up-ehr-level-customization.md#with-smartbox-ui), [email provider](../../modules-1/smartbox/how-to-guides/setup-email-provider.md) and [bulk export](../../modules-1/smartbox/how-to-guides/setup-email-provider-1.md)
+  * Improved admin UI with configuration of [EHR-level logo](../../modules-1/smartbox/how-to-guides/set-up-ehr-level-customization.md#with-smartbox-ui), [email provider](../../modules-1/smartbox/how-to-guides/setup-email-provider.md) and [bulk export](broken-reference)
   * Added documentation on [deployment to Kubernetes](../../modules-1/smartbox/get-started/deploy-smartbox-to-kubernetes.md)
   * Added guides on passing [Inferno tests](../../modules-1/smartbox/how-to-guides/pass-inferno-tests-with-smartbox.md) and [Inferno Visual Inspection and Attestation](../../modules-1/smartbox/how-to-guides/pass-inferno-visual-inspection-and-attestation.md)
 * Aidbox Configuration Projects
