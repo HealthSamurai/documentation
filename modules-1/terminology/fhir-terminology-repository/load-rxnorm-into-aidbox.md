@@ -12,7 +12,7 @@ This bundle contains only codes with SAB(Source Abbreviation) = RXNORM
 
 ## Prerequisites
 
-You need to have an [Aidbox Configuration project](broken-reference/) to load prepackaged RxNorm terminology. One of the easiest way is to start with our [Docker Getting started guide](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md).
+You need to have an [Aidbox Configuration project](../../../reference/configuration/environment-variables/aidbox-project-environment-variables.md) to load prepackaged RxNorm terminology. One of the easiest way is to start with our [Docker Getting started guide](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md).
 
 ## Step-by-step guide
 
@@ -23,14 +23,14 @@ Edit `zen-package.edn` to include RxNorm repository in the dependencies:
 {% code title="zen-package.edn" %}
 ```clojure
 {:deps {some-other-dep "…"
-        rxnorm "git@github.com:zen-fhir/rxnorm.git"}}
+        rxnorm "https://github.com/zen-fhir/rxnorm.git"}}
 ```
 {% endcode %}
 
-You also need to import `rxnorm` namespace in your Aidbox entrypoint file. Assuming you are working with `docker-compose-template` from [Prerequisites](load-rxnorm-into-aidbox.md#prerequisites), it is `zrc/system.edn` file.
+You also need to import `rxnorm` namespace in your Aidbox entrypoint file. Assuming you are working with `docker-compose-template` from [Prerequisites](load-rxnorm-into-aidbox.md#prerequisites), it is `zrc/main.edn` file.
 
 ```clojure
-{:ns system
+{:ns main
  :import {some-other-dep
           rxnorm}
 
