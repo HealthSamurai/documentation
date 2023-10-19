@@ -36,6 +36,35 @@ Set the following environment variables:
 * `box_bulk__storage_gcp_service__account` — id of the `GcpServiceAccount` resource
 * `box_bulk__storage_gcp_bucket` — bucket name
 
+### Azure
+
+[Create Azure storage account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal) and [storage container](https://learn.microsoft.com/en-us/azure/storage/blobs/blob-containers-portal#create-a-container).
+
+Create `AzureAccount` resource in Aidbox. Example:
+
+```yaml
+resourceType: AzureAccount
+id: azureaccount            # your storage account id
+key: 7x..LA                 # your storage account key
+```
+
+Create `AzureContainer` resource in Aidbox. Example:
+
+```yaml
+resourceType: AzureContainer
+id: smartboxexporttestcontainer
+account:
+  resourceType: AzureAccount
+  id: azureaccount
+storage: azureaccount
+container: azureaccountcontainer 
+```
+
+Set the following environment variables:
+
+* `box_bulk__storage_backend=azure` — backend for export
+* `box_bulk__storage_azure_container=smartboxexporttestcontainer` — id of the `AzureContainer` resource
+
 ### AWS
 
 Create [S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html) and [IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id\_users\_create.html) that has read and write access to the bucket.
