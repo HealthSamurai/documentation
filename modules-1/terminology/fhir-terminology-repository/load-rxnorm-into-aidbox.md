@@ -18,7 +18,7 @@ This bundle includes only codes with the `Source Abbreviation (SAB)` labeled as 
 
 To correctly set up Aidbox, we'll utilize the Aidbox configuration projects. \
 \
-There's an [existing guide](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md) for this process. Adhere to this guide, <mark style="background-color:green;">but note a variation</mark> when you reach the **`Configure the Aidbox`** step: instead of using the recommended configuration projects (R4,R4B,R5,etc.) — **clone this specific project**:      &#x20;
+There's an [existing guide](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md) for this process. Adhere to this guide, <mark style="background-color:green;">but note a variation</mark> when you reach the `Configure the Aidbox` step: instead of using the recommended configuration projects (R4,R4B,R5,etc.) — clone this specific project:      &#x20;
 
 ```sh
 git clone \
@@ -31,6 +31,8 @@ git clone \
 This project is tailored with specific configurations essential for terminology loading.
 
 ### Configuration Overview: Key Features and Distinctions
+
+To achieve the desired behavior, follow the steps we took. If you already have a configuration project, you can replicate these steps to enable RxNorm terminology in your Aidbox instance.
 
 #### Added RxNorm dependency to configuration project
 
@@ -81,6 +83,10 @@ By default, Aidbox does not load terminologies into the database as that can tak
 
 To achieve that we set `ftr.pull.enable` to true in `features` map.
 
+{% hint style="info" %}
+When adding this feature to existing configuration projects, be mindful. If you include dependencies like `hl7-fhir-r4-core` or `hl7-fhir-us-core`, Aidbox will load terminologies from these packages, which are sizable. Therefore, loading all the concepts into the database might take a while.
+{% endhint %}
+
 {% code title="zrc/config.edn" %}
 ```
  features
@@ -88,5 +94,30 @@ To achieve that we set `ftr.pull.enable` to true in `features` map.
   :ftr {:pull {:enable true}}}
 ```
 {% endcode %}
+
+### What else you can do with configs related to terminology?
+
+#### Lock Aidbox's start until all concepts are stored in the database
+
+When `ftr.pull.enable` is set to `true`, Aidbox loads concepts asynchronously by default. This means that immediately after starting, there might be no concepts available because they are still loading. To address this behavior, set `ftr.pull.sync` to `true`.
+
+{% code title="zrc/config.edn" %}
+```
+ features
+ {:zen/tags #{aidbox.config/features}
+  :ftr {:pull {:enable true
+               :sync true}}}
+```
+{% endcode %}
+
+### How can you determine if the concepts are still loading or have already loaded?
+
+Access the Aidbox UI and navigate to `Database` > [`Running Queries`](../../../overview/aidbox-ui/db-queries.md). Look for a query that includes `"_import"`; this query is responsible for loading concepts into your database. Once this query disappears from the list, you can check the concepts in the database. Proceed to `Database` > `DB Console` and enter the following query:
+
+```sql
+SELECT count(*) from Concept where system = 'http://www.nlm.nih.gov/research/umls/rxnorm'
+```
+
+
 
 [^1]: Namespace we've imported
