@@ -2,7 +2,7 @@
 
 RxNorm is a large medical terminology which can be used in [FHIR ValueSet](http://hl7.org/fhir/valueset.html) resources. It is distributed under a free license.
 
-We provide out-of-the-box integration with RxNorm through [Aidbox Configuration project](../../../reference/configuration/environment-variables/aidbox-project-environment-variables.md).&#x20;
+We provide out-of-the-box integration with RxNorm through [Aidbox Configuration project](https://docs.aidbox.app/aidbox-configuration/aidbox-zen-lang-project).&#x20;
 
 There is a step-by-step guide below which takes you from our [default Aidbox Configuration project](https://github.com/Aidbox/aidbox-docker-compose) to a fully enabled RxNorm terminology.
 
@@ -12,7 +12,7 @@ This bundle contains only codes with SAB(Source Abbreviation) = RXNORM
 
 ## Prerequisites
 
-You need to have an [Aidbox Configuration project](../../../reference/configuration/environment-variables/aidbox-project-environment-variables.md) to load prepackaged RxNorm terminology. One of the easiest way is to start with our [Docker Getting started guide](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md).
+You need to have an [Aidbox Configuration project](https://docs.aidbox.app/aidbox-configuration/aidbox-zen-lang-project) to load prepackaged RxNorm terminology. One of the easiest way is to start with our [Docker Getting started guide](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md).
 
 ## Step-by-step guide
 
