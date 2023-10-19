@@ -217,6 +217,7 @@
     * [Load SNOMED CT into Aidbox](modules-1/terminology/fhir-terminology-repository/load-snomed-ct-into-aidbox.md)
     * [Load LOINC into Aidbox](modules-1/terminology/fhir-terminology-repository/load-loinc-into-aidbox.md)
     * [Load ICD-10-CM into Aidbox](terminology/fhir-terminology-repository/load-icd-10-cm-into-aidbox.md)
+    * [Load RxNorm into Aidbox](modules-1/terminology/fhir-terminology-repository/load-rxnorm-into-aidbox.md)
   * [Concept](modules-1/terminology/concept/README.md)
     * [$translate-concepts](modules-1/terminology/concept/usdtranslate-concepts.md)
     * [Handling hierarchies using ancestors](modules-1/terminology/concept/handling-hierarchies-using-ancestors.md)
