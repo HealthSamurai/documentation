@@ -1,18 +1,24 @@
+---
+description: Setting up Aidbox with RxNorm terminology loaded via FTR
+---
+
 # Load RxNorm into Aidbox
 
-RxNorm is a large medical terminology which can be used in [FHIR ValueSet](http://hl7.org/fhir/valueset.html) resources. It is distributed under a free license.
+[RxNorm](https://www.nlm.nih.gov/research/umls/rxnorm/index.html) provides normalized names for clinical drugs and links its names to many of the drug vocabularies commonly used in pharmacy management and drug interaction software, including those of First Databank, Micromedex, Multum, and Gold Standard Drug Database. \
+\
+By providing links between these vocabularies, RxNorm can mediate messages between systems not using the same software and vocabulary. The license is free if you intend to use only the RxNorm codes.
 
-We provide out-of-the-box integration with RxNorm through [Aidbox Configuration project](https://docs.aidbox.app/aidbox-configuration/aidbox-zen-lang-project).&#x20;
+We offer out-of-the-box integration with the _most recent version_ of RxNorm, accessible at any given time, via the [Aidbox Configuration project](load-rxnorm-into-aidbox.md#setting-up-aidbox-configuration-project) and [FTR](../../../terminology/fhir-terminology-repository/ftr-specification.md).
 
-{% hint style="warning" %}
-This bundle contains only codes with SAB(Source Abbreviation) = RXNORM
+{% hint style="info" %}
+This bundle includes only codes with the `Source Abbreviation (SAB)` labeled as `RXNORM`. Codes from vocabularies such as SNOMED, Micromedix, GSDD, etc., <mark style="background-color:red;">are not part of this bundle</mark>. If you require these vocabularies, please [reach out to us](../../../contact-us.md).
 {% endhint %}
 
-## Setting up Aidbox configuration project
+## How to set up Aidbox with RxNorm terminology
 
-To set up the Aidbox configuration project, carefully follow [this](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md) guide.&#x20;
-
-During the step labeled `Configure the Aidbox` instead of cloning the proposed configuration projects, clone the following pre-packaged configuration project with the RxNorm-related configuration:
+To correctly set up Aidbox, we'll utilize the Aidbox configuration projects. \
+\
+There's an [existing guide](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md) for this process. Adhere to this guide, <mark style="background-color:green;">but note a variation</mark> when you reach the **`Configure the Aidbox`** step: instead of using the recommended configuration projects (R4,R4B,R5,etc.) — **clone this specific project**:      &#x20;
 
 ```sh
 git clone \
@@ -22,13 +28,39 @@ git clone \
   rm -rf .git
 ```
 
-### Configuration overview
+This project is tailored with specific configurations essential for terminology loading.
+
+### Configuration Overview: Key Features and Distinctions
 
 #### Added RxNorm dependency to configuration project
 
 {% code title="zen-package.edn" %}
 ```
 {:deps {rxnorm "https://github.com/zen-fhir/rxnorm.git"}}
+```
+{% endcode %}
+
+By adding this dependency, we instruct Aidbox to load the `zen.fhir` ValueSet definition, which is meant to include all codes from RxNorm. This ValueSet definition contains a specific directive detailing the FTR manifest. Aidbox'll use this manifest to input the actual RxNorm concepts into the database.
+
+{% code title="rxnorm/zrc/rxnorm.edn" lineNumbers="true" %}
+```clojure
+{ns rxnorm,
+ import #{zen.fhir},
+ value-set
+ {:zen/tags #{zen.fhir/value-set},
+  :zen/desc "Includes all concepts from RxNorm.",
+  :zen.fhir/version "0.6.0",
+  :fhir/code-systems
+  #{{:fhir/url "http://www.nlm.nih.gov/research/umls/rxnorm",
+     :zen.fhir/content :bundled}},
+  :uri "http://www.nlm.nih.gov/research/umls/rxnorm/valueset",
+  :version "10022023",
+  :ftr
+  {:module "rxnorm",
+   :source-url "https://storage.googleapis.com",
+   :ftr-path "ftr",
+   :source-type :cloud-storage,
+   :tag "prod"}}}
 ```
 {% endcode %}
 
@@ -40,6 +72,8 @@ git clone \
           <a data-footnote-ref href="#user-content-fn-1">rxnorm</a>}
  …}
 </code></pre>
+
+Zen requires importing a namespace into the entrypoint to load the ValueSet definition into the definitions store.
 
 #### FTR Pull Feature — instruct Aidbox to load concepts into the database
 
