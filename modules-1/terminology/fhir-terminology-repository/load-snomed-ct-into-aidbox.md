@@ -6,7 +6,7 @@ description: Start working with SNOMED CT terminology in Aidbox
 
 [SNOMED CT](https://www.snomed.org/snomed-ct/Use-SNOMED-CT) is a large medical terminology which can be used in [FHIR ValueSet](http://hl7.org/fhir/valueset.html) resources. It is distributed under a free license which you have to set up with them.
 
-We provide out-of-the-box integration with SNOMED CT through [Aidbox Configuration project](../../../reference/configuration/environment-variables/aidbox-project-environment-variables.md). You may start using it after we make sure you have the required SNOMED license.
+We provide out-of-the-box integration with SNOMED CT through [Aidbox Configuration project](../../../aidbox-configuration/aidbox-zen-lang-project/). You may start using it after we make sure you have the required SNOMED license.
 
 ## Step-by-step guide
 
