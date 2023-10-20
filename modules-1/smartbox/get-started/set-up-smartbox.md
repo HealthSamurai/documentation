@@ -22,11 +22,7 @@ Follow the [official Docker guide](https://docs.docker.com/compose/install/#inst
 
 ## Configure cloud storage
 
-GCP Cloud Storage is used in Bulk API for storing and distributing exported data. To enable bulk API, you need to create GCP Cloud Storage, set up GCP Service Account, and provide full access to the service account on this Cloud Storage.
-
-{% content-ref url="../../../storage-1/s3-compatible-storages/gcp-cloud-storage.md" %}
-[gcp-cloud-storage.md](../../../storage-1/s3-compatible-storages/gcp-cloud-storage.md)
-{% endcontent-ref %}
+Aidbox bulk API supports [GCP](../../../storage-1/s3-compatible-storages/gcp-cloud-storage.md), [AWS](../../../storage-1/s3-compatible-storages/aws-s3.md) and [Azure](../../../storage-1/s3-compatible-storages/azure.md) cloud storages. To pass the Inferno tests cloud storage should be properly set up.
 
 ## **Set up email provider**
 
