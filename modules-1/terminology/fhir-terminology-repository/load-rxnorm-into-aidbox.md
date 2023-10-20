@@ -22,7 +22,7 @@ There's an [existing guide](../../../getting-started-1/run-aidbox/run-aidbox-loc
 
 ```sh
 git clone \
-  https://github.com/Panthevm/aidbox-project-template-rxnorm.git \
+  https://github.com/Aidbox/aidbox-project-template-rxnorm.git \
   aidbox-project && \
   cd aidbox-project && \
   rm -rf .git
