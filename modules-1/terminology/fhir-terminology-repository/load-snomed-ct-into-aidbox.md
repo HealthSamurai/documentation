@@ -14,12 +14,6 @@ To correctly set up Aidbox, we'll utilize the Aidbox configuration projects. \
 \
 There's an [existing guide](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md) for this process. Adhere to this guide, <mark style="background-color:green;">but note a variation</mark> when you reach the `Configure the Aidbox` step: instead of using the recommended configuration projects (R4,R4B,R5,etc.) — clone this specific project:     &#x20;
 
-### Setting up Aidbox configuration project
-
-To set up the Aidbox configuration project, carefully follow [this](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md) guide.&#x20;
-
-During the step labeled `Configure the Aidbox` instead of cloning the proposed configuration projects, clone the following pre-packaged configuration project with the SNOMED-related configuration:
-
 ```sh
 git clone \
   https://github.com/Panthevm/aidbox-project-template-snomed.git \
