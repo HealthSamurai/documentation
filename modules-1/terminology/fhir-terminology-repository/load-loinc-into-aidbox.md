@@ -8,15 +8,13 @@ description: Start working with LOINC terminology in Aidbox
 
 We provide out-of-the box integration with LOINC through [Aidbox Configuration Project](../../../aidbox-configuration/aidbox-zen-lang-project/).
 
-This guide will walk you through the process, starting from [default Aidbox Configuration project](https://github.com/Aidbox/aidbox-docker-compose) and leading you all the way to having a fully enabled LOINC terminology.
+## How to set up Aidbox with LOINC terminology
 
-### Prerequisites
+### Confirm with us your SNOMED license <a href="#user-content-confirm-with-us-your-snomed-license" id="user-content-confirm-with-us-your-snomed-license"></a>
 
-You need to have an [Aidbox Configuration project](../../../getting-started/installation/) to load prepackaged LOINC terminology. One of the easiest way is to start with our [Docker Getting started guide](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md).
+SNOMED CT is distributed under a license which means that we can not redistribute it without making sure that other people have this license. You can confirm your eligibility for accessing SNOMED CT by contacting Aidbox team. See [our contacts here](https://docs.aidbox.app/contact-us).
 
-### Step-by-step guide
-
-#### Provide SSH keys to access our prepackaged LOINC repository
+### Provide SSH keys to access our prepackaged LOINC repository
 
 We distribute LOINC through a private Github repository. This means that you have to provide us with your public SSH key which we’ll add to the repository’s access list.
 
@@ -36,25 +34,52 @@ Be aware that there’s a newline at the end of `BOX_PROJECT_GIT_PRIVATE__KEY`. 
 
 ### Setting up Aidbox configuration project
 
-To set up the Aidbox configuration project, carefully follow [this](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md) guide.&#x20;
-
-During the step labeled `Configure the Aidbox` instead of cloning the proposed configuration projects, clone the following pre-packaged configuration project with the LOINC-related configuration:
+To correctly set up Aidbox, we'll utilize the Aidbox configuration projects. \
+\
+There's an [existing guide](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md) for this process. Adhere to this guide, <mark style="background-color:green;">but note a variation</mark> when you reach the `Configure the Aidbox` step: instead of using the recommended configuration projects (R4,R4B,R5,etc.) — clone this specific project:     &#x20;
 
 ```sh
 git clone \
-  https://github.com/Panthevm/aidbox-project-template-loinc.git \
+  https://github.com/Aidbox/aidbox-project-template-loinc.git \
   aidbox-project && \
   cd aidbox-project && \
   rm -rf .git
 ```
 
-### Configuration overview
+This project is tailored with specific configurations essential for terminology loading.
+
+### Configuration Overview: Key Features and Distinctions
+
+If you already have a configuration project, you can replicate these steps to enable LOINC terminology in your Aidbox instance.
 
 #### Added LOINC dependency to configuration project
 
 {% code title="zen-package.edn" %}
 ```
-{:deps {loinc "https://github.com/zen-fhir/loinc.git"}}
+{:deps {loinc "git@github.com:zen-fhir/loinc.git"}}
+```
+{% endcode %}
+
+By adding this dependency, we instruct Aidbox to load the `zen.fhir` ValueSet definition, which is meant to include all codes from LOINC. This ValueSet definition contains a specific directive detailing the FTR manifest. Aidbox'll use this manifest to input the actual RxNorm concepts into the database.
+
+{% code title="loinc/zrc/loinc.edn" lineNumbers="true" %}
+```clojure
+{ns loinc,
+ import #{zen.fhir},
+ value-set
+ {:zen/tags #{zen.fhir/value-set},
+  :zen/desc "Includes all concepts from LOINC.",
+  :zen.fhir/version "0.6.0",
+  :fhir/code-systems
+  #{{:fhir/url "http://loinc.org", :zen.fhir/content :bundled}},
+  :uri "http://loinc.org/vs",
+  :version "2.76",
+  :ftr
+  {:module "loinc",
+   :source-url "https://storage.googleapis.com",
+   :ftr-path "ftr",
+   :source-type :cloud-storage,
+   :tag "prod"}}}
 ```
 {% endcode %}
 
@@ -67,11 +92,17 @@ git clone \
  …}
 </code></pre>
 
+Zen requires importing a namespace into the entrypoint to load the ValueSet definition into the definitions store.
+
 #### FTR Pull Feature — instruct Aidbox to load concepts into the database
 
 By default, Aidbox does not load terminologies into the database as that can take a lot of disk space. This means that full terminology functionality won’t be available until you enable it manually. When you set it to `true`, Aidbox will load terminologies into the database on the next startup and start functioning as a fully-featured terminology server.
 
 To achieve that we set `ftr.pull.enable` to true in `features` map.
+
+{% hint style="info" %}
+When adding this feature to existing configuration projects, be mindful. If you include dependencies like `hl7-fhir-r4-core` or `hl7-fhir-us-core`, Aidbox will load terminologies from these packages, which are sizable. Therefore, loading all the concepts into the database might take a while.
+{% endhint %}
 
 {% code title="zrc/config.edn" %}
 ```
@@ -80,6 +111,29 @@ To achieve that we set `ftr.pull.enable` to true in `features` map.
   :ftr {:pull {:enable true}}}
 ```
 {% endcode %}
+
+### What else you can do with configs related to terminology?
+
+#### Lock Aidbox's start until all concepts are stored in the database
+
+When `ftr.pull.enable` is set to `true`, Aidbox loads concepts asynchronously by default. This means that immediately after starting, there might be no concepts available because they are still loading. To address this behavior, set `ftr.pull.sync` to `true`.
+
+{% code title="zrc/config.edn" %}
+```
+ features
+ {:zen/tags #{aidbox.config/features}
+  :ftr {:pull {:enable true
+               :sync true}}}
+```
+{% endcode %}
+
+### How can you determine if the concepts are still loading or have already loaded? (Usable for `async` pulls)
+
+Access the Aidbox UI and navigate to `Database` > [`Running Queries`](../../../overview/aidbox-ui/db-queries.md). Look for a query that includes `"_import"`; this query is responsible for loading concepts into your database. Once this query disappears from the list, you can check the concepts in the database. Proceed to `Database` > `DB Console` and enter the following query:
+
+```sql
+SELECT count(*) from Concept where system = 'http://loinc.org'
+```
 
 ## Terminology translations
 

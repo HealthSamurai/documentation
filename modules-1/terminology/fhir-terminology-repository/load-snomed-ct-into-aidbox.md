@@ -8,7 +8,7 @@ description: Start working with SNOMED CT terminology in Aidbox
 
 We provide out-of-the-box integration with SNOMED CT through [Aidbox Configuration project](../../../aidbox-configuration/aidbox-zen-lang-project/). You may start using it after we make sure you have the required SNOMED license.
 
-## How to set up Aidbox with RxNorm terminology
+## How to set up Aidbox with SNOMED terminology
 
 To correctly set up Aidbox, we'll utilize the Aidbox configuration projects. \
 \
@@ -54,9 +54,9 @@ Be aware that there’s a newline at the end of `BOX_PROJECT_GIT_PRIVATE__KEY`. 
 
 ## Configuration Overview: Key Features and Distinctions
 
-If you already have a configuration project, you can replicate these steps to enable RxNorm terminology in your Aidbox instance.
+If you already have a configuration project, you can replicate these steps to enable SNOMED terminology in your Aidbox instance.
 
-#### Added RxNorm dependency to configuration project
+#### Added SNOMED dependency to configuration project
 
 {% code title="zen-package.edn" %}
 ```
@@ -64,7 +64,7 @@ If you already have a configuration project, you can replicate these steps to en
 ```
 {% endcode %}
 
-By adding this dependency, we instruct Aidbox to load the `zen.fhir` ValueSet definition, which is meant to include all codes from SNOMED. This ValueSet definition contains a specific directive detailing the FTR manifest. Aidbox'll use this manifest to input the actual RxNorm concepts into the database.
+By adding this dependency, we instruct Aidbox to load the `zen.fhir` ValueSet definition, which is meant to include all codes from SNOMED. This ValueSet definition contains a specific directive detailing the FTR manifest. Aidbox'll use this manifest to input the actual SNOMED concepts into the database.
 
 {% code title="snomed/zrc/snomed.edn" lineNumbers="true" %}
 ```clojure
