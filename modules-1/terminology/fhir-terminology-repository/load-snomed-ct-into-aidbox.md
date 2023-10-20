@@ -8,12 +8,6 @@ description: Start working with SNOMED CT terminology in Aidbox
 
 We provide out-of-the-box integration with SNOMED CT through [Aidbox Configuration project](../../../reference/configuration/environment-variables/aidbox-project-environment-variables.md). You may start using it after we make sure you have the required SNOMED license.
 
-There is a step-by-step guide below which takes you from our [default Aidbox Configuration project](https://github.com/Aidbox/aidbox-docker-compose) to a fully enabled SNOMED terminology.
-
-## Prerequisites
-
-You need to have an [Aidbox Configuration project](broken-reference/) to load prepackaged SNOMED CT terminology. One of the easiest way is to start with our [Docker Getting started guide](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md).
-
 ## Step-by-step guide
 
 ### Confirm with us your SNOMED license
