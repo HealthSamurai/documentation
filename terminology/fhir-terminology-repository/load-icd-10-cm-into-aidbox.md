@@ -8,19 +8,13 @@ description: Start working with ICD-10-CM terminology in Aidbox
 
 We provide out-of-the box integration with ICD-10-CM through [Aidbox Configuration Project](../../aidbox-configuration/aidbox-zen-lang-project/). You may start using it after we make sure you have the required ICD-10-CM license.
 
-There is a step-by-step guide below which takes you from our [default Aidbox Configuration project](https://github.com/Aidbox/aidbox-docker-compose) to a fully enabled ICD-10-CM terminology.
+## Step-by-step guide
 
-### Prerequisites
-
-You need to have an [Aidbox Configuration project](../../getting-started/installation/) to load prepackaged ICD-10-CM terminology. One of the easiest way is to start with our [Docker Getting started guide](../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md).
-
-### Step-by-step guide
-
-#### Confirm with us your ICD-10-CM license
+### Confirm with us your ICD-10-CM license
 
 ICD-10-CM is distributed under a license which means that we can not redistribute it without making sure that other people have this license. You can confirm your eligibility for accessing ICD-10-CM by contacting Aidbox team. See [our contacts here](../../contact-us.md).
 
-#### Provide SSH keys to access our prepackaged ICD-10-CM repository
+### Provide SSH keys to access our prepackaged ICD-10-CM repository
 
 We distribute ICD-10-CM through a private Github repository. This means that you have to provide us with your public SSH key which we’ll add to the repository’s access list.
 
@@ -38,39 +32,51 @@ BOX_PROJECT_GIT_PUBLIC__KEY="ssh-…"
 
 Be aware that there’s a newline at the end of `BOX_PROJECT_GIT_PRIVATE__KEY`. Make sure that it is present otherwise the key becomes invalid.
 
-#### Add ICD-10-CM to Aidbox Configuration project dependencies
+### Setting up Aidbox configuration project
 
-Edit `zen-package.edn` to include ICD-10-CM repository in the dependencies:
+To set up the Aidbox configuration project, carefully follow [this](../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md) guide.&#x20;
+
+During the step labeled `Configure the Aidbox` instead of cloning the proposed configuration projects, clone the following pre-packaged configuration project with the ICD-10-CM-related configuration:
+
+```sh
+git clone \
+  https://github.com/Panthevm/aidbox-project-template-icd10cm.git \
+  aidbox-project && \
+  cd aidbox-project && \
+  rm -rf .git
+```
+
+### Configuration overview
+
+#### Added ICD-10-CM dependency to configuration project
 
 {% code title="zen-package.edn" %}
-```clojure
-{:deps {some-other-dep "…"
-        icd10cm "git@github.com:zen-fhir/icd10-cm.git"}}
+```
+{:deps {icd10cm "git@github.com:zen-fhir/icd10-cm.git"}}
 ```
 {% endcode %}
 
-You also need to import `icd10cm` namespace in your Aidbox entrypoint file. Assuming you are working with `docker-compose-template` from [Prerequisites](load-icd-10-cm-into-aidbox.md#prerequisites), it is `zrc/system.edn` file.
+#### Imported ICD-10-CM namespace to configuration project entrypoint
 
-```clojure
-{:ns system
- :import {some-other-dep
-          icd10cm}
-
+<pre><code>{ns main
+ import #{aidbox
+          config
+          <a data-footnote-ref href="#user-content-fn-1">icd10cm</a>}
  …}
+</code></pre>
+
+#### FTR Pull Feature — instruct Aidbox to load concepts into the database
+
+By default, Aidbox does not load terminologies into the database as that can take a lot of disk space. This means that full terminology functionality won’t be available until you enable it manually. When you set it to `true`, Aidbox will load terminologies into the database on the next startup and start functioning as a fully-featured terminology server.
+
+To achieve that we set `ftr.pull.enable` to true in `features` map.
+
+{% code title="zrc/config.edn" %}
 ```
-
-#### Instruct Aidbox to load terminologies into the DB
-
-Set the following environment variable:
-
+ features
+ {:zen/tags #{aidbox.config/features}
+  :ftr {:pull {:enable true}}}
 ```
-BOX_FEATURES_FTR_PULL_ENABLE=true
-```
+{% endcode %}
 
-By default, Aidbox does not load terminologies into the database as that can take a lot of disk space. This means that full terminology functionality won’t be available until you enable it manually. [BOX\_FEATURES\_FTR\_PULL\_ENABLE](../../reference/configuration/environment-variables/ftr.md) environment variable is just for that. When you set it to `true`, Aidbox will load terminologies into the database on the next startup and start functioning as a fully-featured terminology server.
-
-#### Further steps
-
-If you want to customize Aidbox startup behavior when using FTR, read more about [FTR environment variables](../../reference/configuration/environment-variables/ftr.md).
-
-One of the options you may want to consider is enabling`BOX_FEATURES_FTR_BUILD__INDEX__ON__STARTUP_SYNC`. Setting this environment variable to `true` will make Aidbox startup blocked until ICD-10-CM terminology is fully available for fast and efficient validation.
+[^1]: Namespace we've imported
