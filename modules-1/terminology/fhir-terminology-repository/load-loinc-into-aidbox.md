@@ -6,7 +6,7 @@ description: Start working with LOINC terminology in Aidbox
 
 [LOINC](https://loinc.org/), or Logical Observation Identifiers Names and Codes, is an extensive medical terminology system that can be incorporated into FHIR ValueSet resources. It is a universal standard for identifying health measurements, observations, and documents, which helps facilitate the sharing and aggregation of clinical results.
 
-We provide out-of-the box integration with LOINC through [Aidbox Configuration Project](../../../aidbox-configuration/aidbox-zen-lang-project/).&#x20;
+We provide out-of-the box integration with LOINC through [Aidbox Configuration Project](../../../aidbox-configuration/aidbox-zen-lang-project/).
 
 This guide will walk you through the process, starting from [default Aidbox Configuration project](https://github.com/Aidbox/aidbox-docker-compose) and leading you all the way to having a fully enabled LOINC terminology.
 
@@ -34,38 +34,54 @@ BOX_PROJECT_GIT_PUBLIC__KEY="ssh-…"
 
 Be aware that there’s a newline at the end of `BOX_PROJECT_GIT_PRIVATE__KEY`. Make sure that it is present otherwise the key becomes invalid.
 
-#### Add LOINC to Aidbox Configuration project dependencies
+### Setting up Aidbox configuration project
 
-Edit `zen-package.edn` to include LOINC repository in the dependencies:
+To set up the Aidbox configuration project, carefully follow [this](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md) guide.&#x20;
+
+During the step labeled `Configure the Aidbox` instead of cloning the proposed configuration projects, clone the following pre-packaged configuration project with the LOINC-related configuration:
+
+```sh
+git clone \
+  https://github.com/Panthevm/aidbox-project-template-loinc.git \
+  aidbox-project && \
+  cd aidbox-project && \
+  rm -rf .git
+```
+
+### Configuration overview
+
+#### Added LOINC dependency to configuration project
 
 {% code title="zen-package.edn" %}
-```clojure
-{:deps {some-other-dep "…"
-        loinc "git@github.com:zen-fhir/loinc.git"}}
+```
+{:deps {loinc "https://github.com/zen-fhir/loinc.git"}}
 ```
 {% endcode %}
 
-You also need to import `loinc` namespace in your Aidbox entrypoint file. Assuming you are working with `docker-compose-template` from [Prerequisites](load-loinc-into-aidbox.md#prerequisites), it is `zrc/system.edn` file.
+#### Imported LOINC namespace to configuration project entrypoint
 
-```clojure
-{:ns system
- :import {some-other-dep
-          loinc}
-
+<pre><code>{ns main
+ import #{aidbox
+          config
+          <a data-footnote-ref href="#user-content-fn-1">loinc</a>}
  …}
+</code></pre>
+
+#### FTR Pull Feature — instruct Aidbox to load concepts into the database
+
+By default, Aidbox does not load terminologies into the database as that can take a lot of disk space. This means that full terminology functionality won’t be available until you enable it manually. When you set it to `true`, Aidbox will load terminologies into the database on the next startup and start functioning as a fully-featured terminology server.
+
+To achieve that we set `ftr.pull.enable` to true in `features` map.
+
+{% code title="zrc/config.edn" %}
 ```
-
-#### Instruct Aidbox to load terminologies into the DB
-
-Set the following environment variable:
-
+ features
+ {:zen/tags #{aidbox.config/features}
+  :ftr {:pull {:enable true}}}
 ```
-BOX_FEATURES_FTR_PULL_ENABLE=true
-```
+{% endcode %}
 
-By default, Aidbox does not load terminologies into the database as that can take a lot of disk space. This means that full terminology functionality won’t be available until you enable it manually. [BOX\_FEATURES\_FTR\_PULL\_ENABLE](../../../reference/configuration/environment-variables/ftr.md) environment variable is just for that. When you set it to `true`, Aidbox will load terminologies into the database on the next startup and start functioning as a fully-featured terminology server.
-
-#### Terminology translations
+## Terminology translations
 
 Currently, we support various LOINC terminology translations, and we can incorporate additional translation variants as needed. Translations are stored in the concept .`designation` property, and when a package includes multiple languages, the original language is also retained within the `.designation` property. To select the desired translation, simply modify the link to the corresponding package in `zen-package.edn.`
 
@@ -73,8 +89,6 @@ Currently, we support various LOINC terminology translations, and we can incorpo
 
 See also [$translate-concepts RPC](../concept/usdtranslate-concepts.md).
 
-#### Further steps
 
-If you want to customize Aidbox startup behavior when using FTR, read more about [FTR environment variables](../../../reference/configuration/environment-variables/ftr.md).
 
-One of the options you may want to consider is enabling`BOX_FEATURES_FTR_BUILD__INDEX__ON__STARTUP_SYNC`. Setting this environment variable to `true` will make Aidbox startup blocked until LOINC terminology is fully available for fast and efficient validation.
+[^1]: Namespace we've imported
