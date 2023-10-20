@@ -56,7 +56,7 @@ id: smartboxexporttestcontainer
 account:
   resourceType: AzureAccount
   id: azureaccount
-storage: azureaccount             # your account storage
+storage: azureaccount             # your storage account
 container: azureaccountcontainer  # your account container
 ```
 

@@ -12,13 +12,27 @@ There is a step-by-step guide below which takes you from our [default Aidbox Con
 
 ## Prerequisites
 
-You need to have an [Aidbox Configuration project](broken-reference) to load prepackaged SNOMED CT terminology. One of the easiest way is to start with our [Docker Getting started guide](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md).
+You need to have an [Aidbox Configuration project](broken-reference/) to load prepackaged SNOMED CT terminology. One of the easiest way is to start with our [Docker Getting started guide](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md).
 
 ## Step-by-step guide
 
 ### Confirm with us your SNOMED license
 
 SNOMED CT is distributed under a license which means that we can not redistribute it without making sure that other people have this license. You can confirm your eligibility for accessing SNOMED CT by contacting Aidbox team. See [our contacts here](https://docs.aidbox.app/contact-us).
+
+### Setting up Aidbox configuration project
+
+To set up the Aidbox configuration project, carefully follow [this](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md) guide.&#x20;
+
+During the step labeled `Configure the Aidbox` instead of cloning the proposed configuration projects, clone the following pre-packaged configuration project with the SNOMED-related configuration:
+
+```sh
+git clone \
+  https://github.com/Panthevm/aidbox-project-template-snomed.git \
+  aidbox-project && \
+  cd aidbox-project && \
+  rm -rf .git
+```
 
 ### Provide SSH keys to access our prepackaged SNOMED CT repository
 
@@ -38,38 +52,40 @@ BOX_PROJECT_GIT_PUBLIC__KEY="ssh-…"
 
 Be aware that there’s a newline at the end of `BOX_PROJECT_GIT_PRIVATE__KEY`. Make sure that it is present otherwise the key becomes invalid.
 
-### Add SNOMED CT to Aidbox Configuration project dependencies
+### Configuration overview
 
-Edit `zen-package.edn` to include SNOMED CT repository in the dependencies:
+#### Added SNOMED dependency to configuration project
 
 {% code title="zen-package.edn" %}
-```clojure
-{:deps {some-other-dep "…"
-        snomed "git@github.com:zen-fhir/snomed.git"}}
+```
+{:deps {snomed "https://github.com/zen-fhir/snomed.git"}}
 ```
 {% endcode %}
 
-You also need to import `snomed` namespace in your Aidbox entrypoint file. Assuming you are working with `docker-compose-template` from [Prerequisites](load-snomed-ct-into-aidbox.md#prerequisites), it is `zrc/system.edn` file.
+#### Imported SNOMED namespace to configuration project entrypoint
 
-```clojure
-{:ns system
- :import {some-other-dep
-          snomed}
-
+<pre><code>{ns main
+ import #{aidbox
+          config
+          <a data-footnote-ref href="#user-content-fn-1">snomed</a>}
  …}
+</code></pre>
+
+#### FTR Pull Feature — instruct Aidbox to load concepts into the database
+
+By default, Aidbox does not load terminologies into the database as that can take a lot of disk space. This means that full terminology functionality won’t be available until you enable it manually. When you set it to `true`, Aidbox will load terminologies into the database on the next startup and start functioning as a fully-featured terminology server.
+
+To achieve that we set `ftr.pull.enable` to true in `features` map.
+
+{% code title="zrc/config.edn" %}
 ```
-
-### Instruct Aidbox to load terminologies into the DB
-
-Set the following environment variable:
-
+ features
+ {:zen/tags #{aidbox.config/features}
+  :ftr {:pull {:enable true}}}
 ```
-BOX_FEATURES_FTR_PULL_ENABLE=true
-```
+{% endcode %}
 
-By default, Aidbox does not load terminologies into the database as that can take a lot of disk space. This means that full terminology functionality won’t be available until you enable it manually. [BOX\_FEATURES\_FTR\_PULL\_ENABLE](../../../reference/configuration/environment-variables/ftr.md) environment variable is just for that. When you set it to `true`, Aidbox will load terminologies into the database on the next startup and start functioning as a fully-featured terminology server.
-
-### Terminology translations
+## Terminology translations
 
 Currently, we support various SNOMED CT terminology translations, and we can incorporate additional translation variants as needed. Translations are stored in the concept .`designation` property, and when a package includes multiple languages, the original language is also retained within the `.designation` property. To select the desired translation, simply modify the link to the corresponding package in `zen-package.edn.`
 
@@ -80,8 +96,4 @@ Currently, we support various SNOMED CT terminology translations, and we can inc
 
 See also [$translate-concepts RPC](../concept/usdtranslate-concepts.md).
 
-### Further steps
-
-If you want to customize Aidbox startup behavior when using FTR, read more about [FTR environment variables](../../../reference/configuration/environment-variables/ftr.md).
-
-One of the options you may want to consider is enabling`BOX_FEATURES_FTR_BUILD__INDEX__ON__STARTUP_SYNC`. Setting this environment variable to `true` will make Aidbox startup blocked until SNOMED CT terminology is fully available for fast and efficient validation.
+[^1]: Namespace we've imported
