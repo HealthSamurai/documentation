@@ -10,9 +10,19 @@ We provide out-of-the box integration with LOINC through [Aidbox Configuration P
 
 ## How to set up Aidbox with LOINC terminology
 
-### Confirm with us your SNOMED license <a href="#user-content-confirm-with-us-your-snomed-license" id="user-content-confirm-with-us-your-snomed-license"></a>
+To correctly set up Aidbox, we'll utilize the Aidbox configuration projects. \
+\
+There's an [existing guide](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md) for this process. Adhere to this guide, <mark style="background-color:green;">but note a variation</mark> when you reach the `Configure the Aidbox` step: instead of using the recommended configuration projects (R4,R4B,R5,etc.) — clone this specific project:     &#x20;
 
-SNOMED CT is distributed under a license which means that we can not redistribute it without making sure that other people have this license. You can confirm your eligibility for accessing SNOMED CT by contacting Aidbox team. See [our contacts here](https://docs.aidbox.app/contact-us).
+```sh
+git clone \
+  https://github.com/Aidbox/aidbox-project-template-loinc.git \
+  aidbox-project && \
+  cd aidbox-project && \
+  rm -rf .git
+```
+
+This project is tailored with specific configurations essential for terminology loading.
 
 ### Provide SSH keys to access our prepackaged LOINC repository
 
@@ -31,22 +41,6 @@ BOX_PROJECT_GIT_PUBLIC__KEY="ssh-…"
 ```
 
 Be aware that there’s a newline at the end of `BOX_PROJECT_GIT_PRIVATE__KEY`. Make sure that it is present otherwise the key becomes invalid.
-
-### Setting up Aidbox configuration project
-
-To correctly set up Aidbox, we'll utilize the Aidbox configuration projects. \
-\
-There's an [existing guide](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md) for this process. Adhere to this guide, <mark style="background-color:green;">but note a variation</mark> when you reach the `Configure the Aidbox` step: instead of using the recommended configuration projects (R4,R4B,R5,etc.) — clone this specific project:     &#x20;
-
-```sh
-git clone \
-  https://github.com/Aidbox/aidbox-project-template-loinc.git \
-  aidbox-project && \
-  cd aidbox-project && \
-  rm -rf .git
-```
-
-This project is tailored with specific configurations essential for terminology loading.
 
 ### Configuration Overview: Key Features and Distinctions
 
