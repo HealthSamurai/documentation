@@ -8,11 +8,11 @@ description: Start working with SNOMED CT terminology in Aidbox
 
 We provide out-of-the-box integration with SNOMED CT through [Aidbox Configuration project](../../../aidbox-configuration/aidbox-zen-lang-project/). You may start using it after we make sure you have the required SNOMED license.
 
-## Step-by-step guide
+## How to set up Aidbox with RxNorm terminology
 
-### Confirm with us your SNOMED license
-
-SNOMED CT is distributed under a license which means that we can not redistribute it without making sure that other people have this license. You can confirm your eligibility for accessing SNOMED CT by contacting Aidbox team. See [our contacts here](https://docs.aidbox.app/contact-us).
+To correctly set up Aidbox, we'll utilize the Aidbox configuration projects. \
+\
+There's an [existing guide](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md) for this process. Adhere to this guide, <mark style="background-color:green;">but note a variation</mark> when you reach the `Configure the Aidbox` step: instead of using the recommended configuration projects (R4,R4B,R5,etc.) — clone this specific project:     &#x20;
 
 ### Setting up Aidbox configuration project
 
@@ -27,6 +27,12 @@ git clone \
   cd aidbox-project && \
   rm -rf .git
 ```
+
+This project is tailored with specific configurations essential for terminology loading.
+
+### Confirm with us your SNOMED license
+
+SNOMED CT is distributed under a license which means that we can not redistribute it without making sure that other people have this license. You can confirm your eligibility for accessing SNOMED CT by contacting Aidbox team. See [our contacts here](https://docs.aidbox.app/contact-us).
 
 ### Provide SSH keys to access our prepackaged SNOMED CT repository
 
@@ -46,13 +52,39 @@ BOX_PROJECT_GIT_PUBLIC__KEY="ssh-…"
 
 Be aware that there’s a newline at the end of `BOX_PROJECT_GIT_PRIVATE__KEY`. Make sure that it is present otherwise the key becomes invalid.
 
-### Configuration overview
+## Configuration Overview: Key Features and Distinctions
 
-#### Added SNOMED dependency to configuration project
+If you already have a configuration project, you can replicate these steps to enable RxNorm terminology in your Aidbox instance.
+
+#### Added RxNorm dependency to configuration project
 
 {% code title="zen-package.edn" %}
 ```
-{:deps {snomed "https://github.com/zen-fhir/snomed.git"}}
+{:deps {snomed "git@github.com:zen-fhir/snomed.git"}}
+```
+{% endcode %}
+
+By adding this dependency, we instruct Aidbox to load the `zen.fhir` ValueSet definition, which is meant to include all codes from SNOMED. This ValueSet definition contains a specific directive detailing the FTR manifest. Aidbox'll use this manifest to input the actual RxNorm concepts into the database.
+
+{% code title="snomed/zrc/snomed.edn" lineNumbers="true" %}
+```clojure
+{ns snomed,
+ import #{zen.fhir},
+ value-set
+ {:zen/tags #{zen.fhir/value-set},
+  :zen/desc
+  "Includes all concepts from SNOMEDCT US edition snapshot. Both active and inactive concepts included, but is-a relationships only stored for active concepts",
+  :zen.fhir/version "0.6.0",
+  :fhir/code-systems
+  #{{:fhir/url "http://snomed.info/sct", :zen.fhir/content :bundled}},
+  :uri "http://snomed.info/sct",
+  :version "20230901",
+  :ftr
+  {:module "snomed",
+   :source-url "https://storage.googleapis.com",
+   :ftr-path "ftr",
+   :source-type :cloud-storage,
+   :tag "prod"}}}
 ```
 {% endcode %}
 
@@ -65,11 +97,17 @@ Be aware that there’s a newline at the end of `BOX_PROJECT_GIT_PRIVATE__KEY`. 
  …}
 </code></pre>
 
+Zen requires importing a namespace into the entrypoint to load the ValueSet definition into the definitions store.
+
 #### FTR Pull Feature — instruct Aidbox to load concepts into the database
 
 By default, Aidbox does not load terminologies into the database as that can take a lot of disk space. This means that full terminology functionality won’t be available until you enable it manually. When you set it to `true`, Aidbox will load terminologies into the database on the next startup and start functioning as a fully-featured terminology server.
 
 To achieve that we set `ftr.pull.enable` to true in `features` map.
+
+{% hint style="info" %}
+When adding this feature to existing configuration projects, be mindful. If you include dependencies like `hl7-fhir-r4-core` or `hl7-fhir-us-core`, Aidbox will load terminologies from these packages, which are sizable. Therefore, loading all the concepts into the database might take a while.
+{% endhint %}
 
 {% code title="zrc/config.edn" %}
 ```
@@ -78,6 +116,29 @@ To achieve that we set `ftr.pull.enable` to true in `features` map.
   :ftr {:pull {:enable true}}}
 ```
 {% endcode %}
+
+### What else you can do with configs related to terminology?
+
+#### Lock Aidbox's start until all concepts are stored in the database
+
+When `ftr.pull.enable` is set to `true`, Aidbox loads concepts asynchronously by default. This means that immediately after starting, there might be no concepts available because they are still loading. To address this behavior, set `ftr.pull.sync` to `true`.
+
+{% code title="zrc/config.edn" %}
+```
+ features
+ {:zen/tags #{aidbox.config/features}
+  :ftr {:pull {:enable true
+               :sync true}}}
+```
+{% endcode %}
+
+### How can you determine if the concepts are still loading or have already loaded? (Usable for `async` pulls)
+
+Access the Aidbox UI and navigate to `Database` > [`Running Queries`](../../../overview/aidbox-ui/db-queries.md). Look for a query that includes `"_import"`; this query is responsible for loading concepts into your database. Once this query disappears from the list, you can check the concepts in the database. Proceed to `Database` > `DB Console` and enter the following query:
+
+```sql
+SELECT count(*) from Concept where system = 'http://snomed.info/sct'
+```
 
 ## Terminology translations
 
