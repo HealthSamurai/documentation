@@ -40,15 +40,15 @@ Set the following environment variables:
 
 [Create Azure storage account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal) and [storage container](https://learn.microsoft.com/en-us/azure/storage/blobs/blob-containers-portal#create-a-container).
 
-Create `AzureAccount` resource in Aidbox. Example:
+Create `AzureAccount` resource in Aidbox.
 
 ```yaml
 resourceType: AzureAccount
-id: azureaccount            # your storage account id
-key: 7x..LA                 # your storage account key
+id: azureaccount                  # your storage account id
+key: 7x..LA                       # your storage account key
 ```
 
-Create `AzureContainer` resource in Aidbox. Example:
+Create `AzureContainer` resource in Aidbox.
 
 ```yaml
 resourceType: AzureContainer
@@ -56,8 +56,8 @@ id: smartboxexporttestcontainer
 account:
   resourceType: AzureAccount
   id: azureaccount
-storage: azureaccount
-container: azureaccountcontainer 
+storage: azureaccount             # your storage account
+container: azureaccountcontainer  # your account container
 ```
 
 Set the following environment variables:
