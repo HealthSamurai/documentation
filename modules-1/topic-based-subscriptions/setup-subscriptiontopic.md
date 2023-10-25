@@ -1,10 +1,6 @@
-# Setup SubscriptionTopic
+# Set up SubscriptionTopic
 
-This page describes how to setup SubscriptionTopic for each Topic Queue Storage type:
-
-[For PostgreSQL](setup-subscriptiontopic.md#example-configuration-for-postgresql)
-
-[For Google Cloud Pub/Sub](setup-subscriptiontopic.md#example-configuration-for-google-cloud-pub-sub)
+This page describes how to set up SubscriptionTopic for each Topic Queue Storage type.
 
 SubscriptionTopic is configured by Aidbox configuration project by zen-lang.
 
@@ -12,39 +8,29 @@ SubscriptionTopic is configured by Aidbox configuration project by zen-lang.
 [aidbox-zen-lang-project](../../aidbox-configuration/aidbox-zen-lang-project/)
 {% endcontent-ref %}
 
-In general, to setup the topic in Aidbox configuration project, you need to:
+In general, to set up the topic in Aidbox configuration project, you need the following steps:
 
-1. Import `fhir.topic-based-subscription` namespace (and `hl7-fhir-uv-subscriptions-backport-r4b` if you're using FHIR 4.3.0).
-2. Create topic definition which configures triggers and filters.
-3. Specify storage type, e.g. Google Pub/Sub or PostgreSQL.
-4. Link topic definition from step 2 and storage type from step 3 into one service.
-5. Link this service in the entrypoint (e.g. box).
-
-{% hint style="info" %}
-Description below contains settings in camel and kebab case.&#x20;
-
-Camel case is used for settings from FHIR Topic Definition resource ([https://build.fhir.org/subscriptiontopic.html](https://build.fhir.org/subscriptiontopic.html)). Kebab-case is used for Aidbox-specific configuration.
-{% endhint %}
-
-{% hint style="info" %}
-Remember that all these settings are stored in fhir.topic-based-subscription schema and can be read in Aidbox UI -> Profiles -> Namespaces -> fhir -> topic-based-subscription.
-{% endhint %}
+1. Import **`fhir.topic-based-subscription`** namespace (and **`hl7-fhir-uv-subscriptions-backport-r4b`** if you're using FHIR 4.3.0).
+2. Create **Topic Definition** which configures triggers and filters.
+3. Specify **Storage Type** (e.g. PostgreSQL or Google Pub/Sub) and configuration values for it.
+4. Link **Topic Definition** from step 2 and **Storage Type** from step 3 into one service.
+5. Link this service from step 4 in the entry point (e.g. box).
 
 ## Topic Definition configuration
 
-Topic Definition is a zen schema which is tagged with `fhir.topic-based-subscription/topic-definition` and corresponds to [FHIR SubscriptionTopic](https://build.fhir.org/subscriptiontopic.html) resource.
+Topic Definition is a zen schema which is tagged with **`fhir.topic-based-subscription/topic-definition`** and corresponds to [FHIR SubscriptionTopic](https://build.fhir.org/subscriptiontopic.html) resource.
 
-Topic Definition contains:
+**Topic Definition** contains:
 
-* url - should be absolute URI (globally unique)
-* resourceTrigger - an array of triggers, each specifies what resource types and FhirPath ([https://hl7.org/fhir/fhirpath.html](https://hl7.org/fhir/fhirpath.html)) criteria should trigger Aidbox to send changes to subscribers of the topic.
-*   canFilterBy - list of properties by which Subscriptions on the SubscriptionTopic can be filtered, contains FHIR [SubscriptionTopic.canFilterBy](https://build.fhir.org/subscriptiontopic-definitions.html#SubscriptionTopic.canFilterBy) and also FhirPath:
+* **url** - should be absolute URI (globally unique)
+* **resourceTrigger** - an array of triggers, each specifies what resource types and FhirPath ([https://hl7.org/fhir/fhirpath.html](https://hl7.org/fhir/fhirpath.html)) criteria should trigger Aidbox to send changes to subscribers of the topic.
+*   **canFilterBy** - list of properties by which Subscriptions on the SubscriptionTopic can be filtered, contains FHIR [SubscriptionTopic.canFilterBy](https://build.fhir.org/subscriptiontopic-definitions.html#SubscriptionTopic.canFilterBy) and also FhirPath:
 
-    * description
-    * resource
-    * filterParameter
-    * modifier
-    * \_fhirPath&#x20;
+    * `description`
+    * `resource`
+    * `filterParameter`
+    * `modifier`
+    * `_fhirPath`&#x20;
 
     Example:
 
@@ -73,35 +59,47 @@ Topic Definition contains:
 
 Topic storage specifies where to store and how to process events queue.
 
-It is zen schema tagged with `fhir.topic-based-subscription/topic-storage`, containing:&#x20;
+It is zen schema tagged with **`fhir.topic-based-subscription/topic-storage`**, containing:&#x20;
 
-* storage-type, e.g. `fhir.topic-based-subscription/google-pubsub` or `fhir.topic-based-subscription/postgres`
-* heartbeat-rate: Heartbeat rate requested for current storage in sec. Default is 10sec.
-* senders-number: Number of services that deliver subsctiptions.
-* timeout: in seconds
-* maxCount: max number of resources to hold on in Aidbox before timeout (batch sending)
-* maxContent: `empty`, `id-only` or `full-resource`
-* include-transaction: For tests purposes. Turns on includeTransaction replication slot option. Default is false
-* fhirpath-ignore-on-error: Ignore FhirPath execution errors on persisting queues.
-* status-interval: For test purpose mainly. Specifies the number of time between status packets sent back to the server. This allows for easier monitoring of the progress from server. A value of zero disables the periodic status updates completely, although an update will still be sent when requested by the server, to avoid timeout disconnect. The default value is 10 seconds.
+* **storage-type**:   Choose one of the following:
+  * _PostgreSQL_: `fhir.topic-based-subscription/postgres`
+  * _Google Pub/Sub_: `fhir.topic-based-subscription/gcp-pubsub`
+  * _Aidbox Workflow Engine Connector_: `fhir.topic-based-subscription/awf-connector`
+* **heartbeat-rate**:  Heartbeat rate requested for current storage in sec. Default is 10sec.
+* **timeout**:  Timeout value for batching in seconds
+* **maxCount**:  Max number of resources to hold on in Aidbox before timeout (batch sending)
+* **maxContent**:  `empty`, `id-only` or `full-resource`. Defines the permission of how much the event messages of Subscription can have information about the triggered resource.  It isn't allowed to create Subscriptions with `Subscription.content` value that requires more content tha`maxContent` value of its own topic.  Default is `empty`.
+* **include-transaction**:  For tests purposes. Turns on includeTransaction replication slot option. Default is false
+* **fhirpath-ignore-on-error**:  Ignore FhirPath execution errors on persisting queues.
+* **status-interval**:  For test purpose mainly. Specifies the number of time between status packets sent back to the server. This allows for easier monitoring of the progress from server. A value of zero disables the periodic status updates completely, although an update will still be sent when requested by the server, to avoid timeout disconnect. The default value is 10 seconds.
 
-For PostgreSQL storage-type:&#x20;
+In addition to the above, there are several properties for each specific **storage-type**.
 
-* table-name: name for table to store events
+For _PostgreSQL_:&#x20;
 
-For Google Pub/Sub:&#x20;
+* **table-name**:  Name for table to store events
+* **senders-number**:  Number of services that deliver subsctiptions.
 
-* topic-name: topic name in GCP.
-* bytes-threshold: max bytes to hold until publishing. Default is 10000.
-* project-name: project name in GCP.
-* enable-message-ordering: If true, enables message ordering. Uses focusResourceType and focusId as messageOrderingKey. Applied only when maxContent is 'id-only' or 'full-resource'.
+For _Google Pub/Sub_:&#x20;
+
+* **topic-name**:  Topic name in GCP.
+* **bytes-threshold**:  Max bytes to hold until publishing. Default is 10000.
+* **project-name**:  Project name in GCP.
+* **enable-message-ordering**:  If true, enables message ordering. Uses focusResourceType and focusId as messageOrderingKey. Applied only when maxContent is 'id-only' or 'full-resource'.
+
+For _Aidbox Workflow Engine Connector_:&#x20;
+
+* **rules**: Trigger rule for Task/Workflow. Either `task` or `workflow` below should be used to indicate which activity should be triggered.
+  * **filterBy**:  The list of filtering criteria for events on Topic (has the same properties as[ FHIR Subscription.filterBy](https://www.hl7.org/fhir/subscription-definitions.html#Subscription.filterBy): `resourceType`, `filterParameter`, `comparator`, `modifier`, `value`) &#x20;
+  * **task**:  Indicate which Task should be triggered by `definition` field.
+  * **workflow**:  Indicate which Workflow should be triggered by `definition` field.
 
 Example:
 
-```
-pubsub-patient-storage
-    {:zen/tags #{fhir.topic-based-subscription/topic-storage}
-     :storage-type fhir.topic-based-subscription/google-pubsub
+<pre><code><strong>...
+</strong><strong>pubsub-patient-storage
+</strong>    {:zen/tags #{fhir.topic-based-subscription/topic-storage}
+     :storage-type fhir.topic-based-subscription/gcp-pubsub
      :status-interval 0.5
      :maxContent "full-resource"
      :heartbeat-rate 0.5
@@ -111,11 +109,24 @@ pubsub-patient-storage
      :timeout 1
      :bytes-threshold 1000000
      :maxCount 10}
-```
+...
+</code></pre>
 
-## Example configuration for PostgreSQL&#x20;
+####
 
-Below is an example of an Aidbox entrypoint configured with one topic for observation.
+## Configuration Examples&#x20;
+
+Examples of an Aidbox entry point for each storage type, configured with one topic:
+
+[#postgresql-queue-storage](setup-subscriptiontopic.md#postgresql-queue-storage "mention")
+
+[#google-cloud-pub-sub](setup-subscriptiontopic.md#google-cloud-pub-sub "mention")
+
+[#aidbox-workflow-engine-connector](setup-subscriptiontopic.md#aidbox-workflow-engine-connector "mention")
+
+
+
+### PostgreSQL Queue Storage&#x20;
 
 {% code lineNumbers="true" fullWidth="false" %}
 ```clojure
@@ -192,7 +203,113 @@ Below is an example of an Aidbox entrypoint configured with one topic for observ
 ```
 {% endcode %}
 
-### Verify the SubscriptionTopic is available
+### Google Cloud Pub/Sub
+
+<pre class="language-clojure" data-full-width="false"><code class="lang-clojure">{ns pub-sub-topic
+    import #{fhir.topic-based-subscription}
+
+    observation-topic
+    {:zen/tags #{fhir.topic-based-subscription/topic-definition}
+     ;; SubscriptionTopic url should be an absolute URI (globally unique)
+     :url "http://aidbox.app/SubscriptionTopic/observations"
+     :resourceTrigger [
+                       ;; an SubscriptionTopic may consist 
+                       ;; of any number of resources
+<strong>                       {:resource "Observation"
+</strong><strong>                        :fhirPathCriteria "%current.value.ofType(Quantity).value > 10"}]
+</strong>     :canFilterBy [{:resource        "Observation"
+                    :filterParameter "value"
+<strong>                    ;; _fhirPath specifies how to calculate value for the filter
+</strong>                    :_fhirPath       "%current.value.ofType(Quantity).value"
+<strong>                    :modifier        ["eq" "gt" "lt" "ge" "le"]}
+</strong>
+                   {:resource        "Observation"
+                    :filterParameter "value-increase"
+                    ;; both %current and %previous state of the 
+                    ;; resource are available
+                    :_fhirPath       "%current.value.ofType(Quantity).value > %previous.value.ofType(Quantity).value"
+                    :modifier        ["eq"]}]}
+
+
+    gcp-pubsub-observation-topic-storage
+    {:zen/tags #{fhir.topic-based-subscription/topic-storage}
+     :storage-type fhir.topic-based-subscription/gcp-pubsub
+     :status-interval 10
+     :heartbeat-rate 120
+     :maxContent "full-resource"
+<strong>     :project-name "aidbox-cloud-demo"
+</strong>     :topic-name "aidbox-tbs-test"
+     :timeout  1
+     :maxCount 100
+     :bytes-threshold 10000
+     :enable-message-ordering false}
+
+    observation-topic-srv
+    {:zen/tags #{aidbox/service}
+     :engine fhir.topic-based-subscription/change-data-capture-service-engine
+     :topic-definition observation-topic
+     :topic-storage gcp-pubsub-observation-topic-storage}
+
+    box
+    {:zen/tags #{aidbox/system}
+     :zen/desc "box for topic test"
+     :services {:patient-topic-srv patient-topic-srv}}}
+</code></pre>
+
+### Aidbox Workflow Engine Connector
+
+<pre class="language-clojure" data-full-width="false"><code class="lang-clojure">{ns awf-connector-topic
+    import #{fhir.topic-based-subscription}
+
+    topic-def
+    {:zen/tags #{fhir.topic-based-subscription/topic-definition}
+     :url "http://aidbox.app/SubscriptionTopic/observations"
+     :resourceTrigger [{:resource "Patient"}
+                       {:resource "Encounter"
+                        :fhirPathCriteria "%current.status = 'completed'"}]
+
+<strong>     :canFilterBy [{:resource        "Patient"
+</strong>                    :filterParameter "Patient-deceased"
+                    :_fhirPath       "(%previous.deceased.exists().not() or %previoius.deceased = false) and (%current.deceased.exists() and %current.deceased = true)"
+                    :modifier        ["eq"]}
+                   {:filterParameter "resource-type"
+                    :_fhirPath       "resourceType"
+                    :modifier        ["eq"]}]}
+
+    awf-connector
+    {:zen/tags #{fhir.topic-based-subscription/topic-storage}
+     :storage-type fhir.topic-based-subscription/awf-connector
+     :maxContent "full-resource"
+<strong>     :rules [{:task     {:definition      encounter-completed-task}
+</strong><strong>              :filterBy [{:filterParameter "resource-type"
+</strong>                          :modifier        "eq"
+                          :value           "Encounter"}]}
+             {:task     {:definition      patient-change-task}
+              :filterBy [{:filterParameter "resource-type"
+                          :modifier        "eq"
+                          :value           "Patient"}]}
+             {:task     {:definition       patient-deceased-task}
+              :filterBy [{:resourceType    "Patient"
+                          :filterParameter "Patient-deceased"
+                          :modifier        "eq"
+                          :value           "true"}]}]}
+
+    patient-topic-srv
+    {:zen/tags #{aidbox/service}
+     :engine fhir.topic-based-subscription/change-data-capture-service-engine
+     :topic-definition topic-def
+     :topic-storage awf-connector}
+
+    box
+    {:zen/tags #{aidbox/system}
+     :zen/desc "box for topic test"
+     :services {:patient-topic-srv patient-topic-srv}}}
+     
+</code></pre>
+
+
+
+## Verify the SubscriptionTopic is available
 
 * Run Aidbox and check logs for the following output
 
@@ -304,55 +421,3 @@ accept: application/json
 * Open Aidbox UI -> Subscription Topics to check the topic status
 
 <figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-## Example configuration for Google Cloud Pub/Sub
-
-{% code fullWidth="false" %}
-```
-{ns pub-sub-topic
-    import #{fhir.topic-based-subscription}
-
-    patient-topic
-    {:zen/tags #{fhir.topic-based-subscription/topic-definition}
-     :url "some-url-2"
-     :resourceTrigger [{:resource "Patient"}
-                       {:resource "Organization"}]
-     :canFilterBy [{:resource        "Patient"
-                    :filterParameter "first-family-name"
-                    :_fhirPath       "%current.name[0].family"
-                    :modifier        ["eq"]}
-                   {:resource        "Patient"
-                    :filterParameter "first-family-name-alternative"
-                    :_fhirPath       "name[0].family"
-                    :modifier        ["eq"]}
-                   {:resource        "Patient"
-                    :filterParameter "prev-first-family-name"
-                    :_fhirPath       "%previous.name[0].family"
-                    :modifier        ["eq"]}]}
-
-
-    pubsub-patient-storage
-    {:zen/tags #{fhir.topic-based-subscription/topic-storage}
-     :storage-type fhir.topic-based-subscription/google-pubsub
-     :status-interval 0.5
-     :maxContent "full-resource"
-     :heartbeat-rate 0.5
-     :project-name "local-project"
-     :topic-name "test-topic"
-     :enable-message-ordering true
-     :timeout 1
-     :bytes-threshold 1000000
-     :maxCount 10}
-
-    patient-topic-srv
-    {:zen/tags #{aidbox/service}
-     :engine fhir.topic-based-subscription/change-data-capture-service-engine
-     :topic-definition patient-topic
-     :topic-storage pubsub-patient-storage}
-
-    box
-    {:zen/tags #{aidbox/system}
-     :zen/desc "box for topic test"
-     :services {:patient-topic-srv patient-topic-srv}}}
-```
-{% endcode %}

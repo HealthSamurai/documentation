@@ -191,7 +191,7 @@
   * [Services](modules-1/workflow-engine/services.md)
   * [Monitoring](modules-1/workflow-engine/monitoring.md)
 * [Topic-Based Subscriptions](modules-1/topic-based-subscriptions/README.md)
-  * [Setup SubscriptionTopic](modules-1/topic-based-subscriptions/setup-subscriptiontopic.md)
+  * [Set up SubscriptionTopic](modules-1/topic-based-subscriptions/setup-subscriptiontopic.md)
   * [Tutorial: Subscribe to Topic (R4B)](modules-1/topic-based-subscriptions/subscribe-to-topics-r4b.md)
   * [API Reference](modules-1/topic-based-subscriptions/r4b-api-reference/README.md)
     * [SubscriptionTopic API](modules-1/topic-based-subscriptions/r4b-api-reference/subscriptiontopic-api.md)

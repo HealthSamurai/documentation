@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This tutorial requires configuring your Aidbox instance with a specific SubscriptionTopic for Observation resource. Additionally, a web service that will receive `rest-hook` notifications is required.  This [Repo](https://github.com/Aidbox/aidbox-project-template/tree/topic-based-subscription-r4b) contains a suitable template project, which should be used for this tutorial.
+This tutorial requires configuring your Aidbox instance with a specific SubscriptionTopic for Observation resource. Additionally, a web service that will receive `rest-hook` notifications is required. This [Repo](https://github.com/Aidbox/aidbox-project-template/tree/topic-based-subscription-r4b) contains a suitable template project, which should be used for this tutorial.
 
 ### Choose a topic
 
@@ -99,7 +99,7 @@ accept: application/json
 {% endtab %}
 {% endtabs %}
 
-In response, one configured topic is available, with `"url": "http://aidbox.app/SubscriptionTopic/observations"`.&#x20;
+In response, one configured topic is available, with `"url": "http://aidbox.app/SubscriptionTopic/observations"`.
 
 ### Create Subscription (R4B)
 
@@ -111,9 +111,9 @@ Most interesting part are:
 
 * `"criteria" : "http://aidbox.app/SubscriptionTopic/observations"` - the Topic that a subscription are created for.
 * `{"url" : "http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-max-count", "valuePositiveInt" : 2}` notification will be delivered immediately when specified number of suitable events is met.
-* `{"url" : "http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-heartbeat-period", valueUnsignedInt" : 20}` period in seconds when all available to the moment messages will be delivered. if no messages collected  - heartbeat event will be fired.
+* `{"url" : "http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-heartbeat-period", valueUnsignedInt" : 20}` period in seconds when all available to the moment messages will be delivered. if no messages collected - heartbeat event will be fired.
 * `{"url" : "http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-payload-content", "valueCode" : "id-only"}` notification will only contain ids of resources. The other options are `full-resource` and `empty`.
-* `"endpoint" : "http://subscription-demo-server:9000/callback-test-1"` endpoint to which `POST` request with notifications will be sent.&#x20;
+* `"endpoint" : "http://subscription-demo-server:9000/callback-test-1"` endpoint to which `POST` request with notifications will be sent.
 * `{"url" : "http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-filter-criteria", "valueString" : "Observation?value=42"}` specifies, that only observation with `value=42` should be delivered for this notification. Available filters or resources may be configured in SubscriptionTopic.
 
 {% tabs %}
@@ -166,8 +166,8 @@ accept: application/json
 
 {% tab title="Response" %}
 <pre class="language-json"><code class="lang-json">Status: 201
-<strong>
-</strong><strong>{
+
+<strong>{
 </strong> "meta": {
   "profile": [
    "http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-subscription"
@@ -228,13 +228,13 @@ accept: application/json
 {% endtab %}
 {% endtabs %}
 
-As a result of this step Aidbox will try to perform a handshake with the subscriber service. By default Aidbox expects `Status:200`  response.
+As a result of this step Aidbox will try to perform a handshake with the subscriber service. By default Aidbox expects `Status:200` response.
 
 You may notice `handshake` event in demo server UI:
 
 ![](<../../.gitbook/assets/Screenshot 2023-09-04 at 16.14.03.png>)
 
-After the sucesfull handshake, status of the Subscrip
+After the successful handshake, the status of the Subscription will be `active`.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -278,4 +278,3 @@ Status: 200
 {% hint style="info" %}
 Aidbox will attempt a handshake with the service three times at 10-second intervals. If no successful response is received, the subscription will be shifted to an _`"errored"`_ status. To restart the process, the subscription should be deleted and recreated
 {% endhint %}
-
