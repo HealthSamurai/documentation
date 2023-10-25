@@ -4,7 +4,7 @@
   * [Features](getting-started/features.md)
   * [Architecture](introduction/readme.md)
 * [Getting Started](getting-started/README.md)
-  * [Run Aidbox in Aidbox Sandbox](getting-started/run-aidbox-in-aidbox-sandbox.md)
+  * [Run Aidbox in Sandbox](getting-started/run-aidbox-in-aidbox-sandbox.md)
   * [Run Aidbox locally](getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md)
   * [Use Aidbox with React](getting-started/use-aidbox-with-react.md)
   * [Run Aidbox on AWS](getting-started-1/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md)
