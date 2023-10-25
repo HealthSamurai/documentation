@@ -1,6 +1,6 @@
 # Apps
 
-requires to have your data publicly available. Power BI needs access to FHIR read operation `GET /fhir/<resourceType>` .You can extend [Aidbox](https://www.health-samurai.io/aidbox) with custom Apps. The app can define custom resources, custom endpoints, and subscribe to hooks or subscriptions. The app is a standalone service which will work with Aidbox to implement your specific app. App should be registered in Aidbox.
+You can extend [Aidbox](https://www.health-samurai.io/aidbox) with custom Apps. The app can define custom resources, custom endpoints, and subscribe to hooks or subscriptions. The app is a standalone service which will work with Aidbox to implement your specific app. App should be registered in Aidbox.
 
 You define the App using Aidbox SDK for your language and should not reverse engineer internal API, because it can be subject to change.
 
