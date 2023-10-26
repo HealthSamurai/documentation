@@ -1,6 +1,6 @@
 # Testing with Stresty
 
-## requires to have your data publicly available. Power BI needs access to FHIR read operation `GET /fhir/<resourceType>` .Configure Your Box
+## Configure Your Box
 
 Create a box here [https://aidbox.app/static/aidbox.html](https://aidbox.app/static/aidbox.html). See the [tutorial](broken-reference) on how to create a new box.
 
