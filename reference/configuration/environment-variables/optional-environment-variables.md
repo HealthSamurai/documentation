@@ -384,6 +384,14 @@ BOX\_FEATURES\_GRAPHQL\_TIMEOUT`=<integer>`
 
 Sets timeout for graphql queries in seconds. Default value is `60`.
 
+### BOX\_FEATURES\_FHIR\_TRANSACTION\_MAX\_\_ISOLATION\_LEVEL
+
+BOX\_FEATURES\_FHIR\_TRANSACTION\_MAX\_\_ISOLATION\_\_LEVEL=\<isolation-level>
+
+`isolation-level` is one of: `none`, `read-committed`, `repeatable-read`, `serializable`.
+
+Sets inclusive maximum isolation level for transactions.
+
 ### Enable Aidbox compliance mode
 
 `AIDBOX_COMPLIANCE=enabled`:

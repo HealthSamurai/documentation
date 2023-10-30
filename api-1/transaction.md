@@ -153,7 +153,7 @@ By default Aidbox uses `SERIALIZABLE` transaction isolation level. This may lead
 
 See more about [transaction isolation in Postgres documentation](https://www.postgresql.org/docs/current/transaction-iso.html).
 
-The best way to handle rejected transactions is to retry them. If it is not possible, you can set lower isolation level.
+The best way to handle rejected transactions is to retry them. If it is not possible, you can set maximum isolation level with HTTP header or [environment variable](../reference/configuration/environment-variables/optional-environment-variables.md#box\_features\_fhir\_transaction\_max\_\_isolation\_level). If both HTTP header and environment variable are provided, header will be used.
 
 {% hint style="danger" %}
 Using isolation level lower than serializable may lead to data serialization anomalies.
