@@ -39,6 +39,8 @@ This rule describes how to run the audit-events archiving task every day at 14:1
 
 Another example of rule definition is automatically delete AidboxTask, AidboxTaskLog and AidboxWrokflow resources with `awf.task/clean-up-activities` task.
 
+#### Cleanup rule definition
+
 ```clojure
   cleanup-tasks
   {:schedule "10 14 * * *"
