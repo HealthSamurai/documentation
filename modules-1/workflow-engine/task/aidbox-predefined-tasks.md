@@ -98,7 +98,7 @@ Either **duration** or **until** parameter SHOULD be specified.
 
 ### Params
 
-<table data-full-width="false"><thead><tr><th width="180.33333333333331">Parameter</th><th width="128">Type</th><th width="109" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td><strong>duration</strong></td><td>object</td><td>false</td><td>The task will wait for this duration</td></tr><tr><td>duration.hours</td><td>integer</td><td>false</td><td>duration value in hours</td></tr><tr><td>duration.minutes</td><td>integer</td><td>false</td><td>duration value in minutes</td></tr><tr><td>duration.seconds</td><td>integer</td><td>false</td><td>duration value in seconds</td></tr><tr><td><strong>until</strong></td><td>datetime</td><td>false</td><td><p>The task will wait for until this datetime. Need to indicate in string of valid  FHIR datetime -<br><code>YYYY-MM-DD</code> or </p><p><code>YYYY-MM-DDThh:mm:ss+zz:zz</code></p><p></p><p><em>Example:</em> "1905-08-23", "2015-02-07T13:28:17-05:00" or "2017-01-01T00:00:00.000Z"</p></td></tr></tbody></table>
+<table data-full-width="false"><thead><tr><th width="180.33333333333331">Parameter</th><th width="128">Type</th><th width="109" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td><strong>duration</strong></td><td>object</td><td>false</td><td>The task will wait for this duration</td></tr><tr><td>duration.hours</td><td>integer</td><td>false</td><td>duration value in hours</td></tr><tr><td>duration.minutes</td><td>integer</td><td>false</td><td>duration value in minutes</td></tr><tr><td>duration.seconds</td><td>integer</td><td>false</td><td>duration value in seconds</td></tr><tr><td><strong>until</strong></td><td>datetime</td><td>false</td><td><p>The task will wait for until this datetime. Need to indicate in string of valid FHIR datetime -<br><code>YYYY-MM-DD</code> or</p><p><code>YYYY-MM-DDThh:mm:ss+zz:zz</code></p><p><em>Example:</em> "1905-08-23", "2015-02-07T13:28:17-05:00" or "2017-01-01T00:00:00.000Z"</p></td></tr></tbody></table>
 
 ### Result
 
@@ -163,7 +163,7 @@ Decision tasks should also include an event that should represent the purpose of
 
 ### Result
 
-<table data-full-width="false"><thead><tr><th width="155.33333333333331">Parameter</th><th width="81">Type</th><th width="103" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>action</td><td>string</td><td>true</td><td><a href="aidbox-predefined-tasks.md#action-types">Type of action.</a><br><em>Example:</em> <em><code>awf.workflow.action/schedule-task</code></em></td></tr><tr><td><strong>task-request</strong></td><td>object</td><td>false</td><td><p>Object with task execution request. <strong>Required</strong> <strong>only if action type is</strong> <em><code>awf.workflow.action/schedule-task</code> or</em> </p><p><em><code>awf.workflow.action/schedule-workflow</code></em></p></td></tr><tr><td><p><strong>task-request</strong>.</p><p>definition</p></td><td>string</td><td>false</td><td>Definition of <a href="aidbox-predefined-tasks.md#aidbox-predefined-tasks">predefined task</a> or <br>custom-defined task.<br><em>Example:</em> <code>aidbox.archive/create-archive</code></td></tr><tr><td><strong>task-request</strong>.<br>label</td><td>string</td><td>false</td><td>Human- or machine-readable description of task instance. Should be  unique in the context of single workflow.<br><em>Example: <code>Import Patient resources</code></em></td></tr><tr><td><strong>task-request</strong>.<br>params</td><td>object</td><td>false</td><td>The input parameters described in the task or workflow definition.</td></tr></tbody></table>
+<table data-full-width="false"><thead><tr><th width="155.33333333333331">Parameter</th><th width="81">Type</th><th width="103" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>action</td><td>string</td><td>true</td><td><a href="aidbox-predefined-tasks.md#action-types">Type of action.</a><br><em>Example:</em> <em><code>awf.workflow.action/schedule-task</code></em></td></tr><tr><td><strong>task-request</strong></td><td>object</td><td>false</td><td><p>Object with task execution request. <strong>Required</strong> <strong>only if action type is</strong> <em><code>awf.workflow.action/schedule-task</code> or</em></p><p><em><code>awf.workflow.action/schedule-workflow</code></em></p></td></tr><tr><td><p><strong>task-request</strong>.</p><p>definition</p></td><td>string</td><td>false</td><td>Definition of <a href="aidbox-predefined-tasks.md#aidbox-predefined-tasks">predefined task</a> or<br>custom-defined task.<br><em>Example:</em> <code>aidbox.archive/create-archive</code></td></tr><tr><td><strong>task-request</strong>.<br>label</td><td>string</td><td>false</td><td>Human- or machine-readable description of task instance. Should be unique in the context of single workflow.<br><em>Example: <code>Import Patient resources</code></em></td></tr><tr><td><strong>task-request</strong>.<br>params</td><td>object</td><td>false</td><td>The input parameters described in the task or workflow definition.</td></tr></tbody></table>
 
 ### Action types
 
@@ -177,7 +177,7 @@ Loading resource in specified format (.gzip or .ndjson) from specified url and p
 
 ### Params
 
-<table data-full-width="false"><thead><tr><th width="216">Parameter</th><th width="86">Type</th><th width="102" data-type="checkbox">Required</th><th width="596">Description</th></tr></thead><tbody><tr><td>id</td><td>string</td><td>false</td><td>Identifier of the import.<br>If you don't provide this, the id will be auto-generated. You can check it on <code>Content-Location</code> header in the response</td></tr><tr><td>contentEncoding</td><td>string</td><td>false</td><td>Supports <code>gzip</code> or <code>plain</code> (non-gzipped .ndjson files)</td></tr><tr><td><strong>input</strong></td><td>object</td><td>true</td><td>Resource to import </td></tr><tr><td><strong>input</strong>.url</td><td>string</td><td>true</td><td>URL from which load resources</td></tr><tr><td><strong>input</strong>.resourceType</td><td>string</td><td>true</td><td>Resource type to be loaded</td></tr><tr><td>type</td><td>string</td><td>false</td><td>Type of persisted resource<br><em>Possible values: <code>fhir</code>, <code>aidbox</code></em></td></tr></tbody></table>
+<table data-full-width="false"><thead><tr><th width="786">Parameter</th><th width="86">Type</th><th width="102" data-type="checkbox">Required</th><th width="596">Description</th></tr></thead><tbody><tr><td>id</td><td>string</td><td>false</td><td>Identifier of the import.<br>If you don't provide this, the id will be auto-generated. You can check it on <code>Content-Location</code> header in the response</td></tr><tr><td>contentEncoding</td><td>string</td><td>false</td><td>Supports <code>gzip</code> or <code>plain</code> (non-gzipped .ndjson files)</td></tr><tr><td><strong>input</strong></td><td>object</td><td>true</td><td>Resource to import</td></tr><tr><td><strong>input</strong>.url</td><td>string</td><td>true</td><td>URL from which load resources</td></tr><tr><td><strong>input</strong>.resourceType</td><td>string</td><td>true</td><td>Resource type to be loaded</td></tr><tr><td>type</td><td>string</td><td>false</td><td>Type of persisted resource<br><em>Possible values: <code>fhir</code>, <code>aidbox</code></em></td></tr></tbody></table>
 
 ### Example
 
@@ -414,6 +414,91 @@ result:
     execId: ae747dd9-6cda-477f-8a83-5f6b18cee94e
     id: >-
       fd9808c9-29c5-409b-a10f-96d3e28d0039
+```
+{% endtab %}
+{% endtabs %}
+
+## awf.task/clean-up-activities
+
+Deletes all `AidboxTask`, `AidboxTaskLog` and `AidboxWorkflow` resources that are in "Done" state according to specified rules. Can be used with the [Scheduler service](../services.md#scheduler) to automatically clean up old tasks and workflows.&#x20;
+
+### Params
+
+<table data-full-width="false"><thead><tr><th width="259">Parameter</th><th width="94">Type</th><th width="103" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td><strong>rules</strong></td><td>object[]</td><td>true</td><td><p>Array of cleanup rules. </p><p>If either <code>includeDefinitions</code> or <code>excludeDefinitions</code> is not specified, deletes all <code>AidboxTask</code>, <code>AidboxTaskLog</code>, and <code>AidboxWorkflow</code> resources that are matched by <code>retentionPolicy</code> and are in the "Done" state. </p><p>If multiple rules are listed, they will be applied in the order they are listed.</p><p>At least 1 element is required. </p></td></tr><tr><td><strong>rules.</strong>retentionPolicy</td><td>object</td><td>true</td><td><p>Policy that manages the length of time resources are kept. Resources that are not within this time period will be deleted. </p><p><em>Example: <code>{"unit": "hour", "value": 1}</code> - means that any resource updated more than 1 hour ago will be deleted.</em></p></td></tr><tr><td><strong>rules.retentionPolicy.</strong>unit</td><td>string</td><td>true</td><td>Time units.<br><em>Possible values: <code>minute</code>, <code>hour</code>, <code>day</code>, <code>week</code>, <code>month</code>, <code>year</code></em></td></tr><tr><td><strong>rules.retentionPolicy.</strong>value</td><td>integer</td><td>true</td><td>Number of time units.</td></tr><tr><td><strong>rules.</strong>includeDefinitions</td><td>string[]</td><td>false</td><td><p>List of task/workflow defininitions that would be affected by this rule. </p><p><em>Example: <code>["aidbox.bulk/import-resource-task"]</code></em></p><p><em>Exclusive with <strong>rules.</strong>excludeDefinitions</em></p></td></tr><tr><td><strong>rules.</strong>excludeDefinitions</td><td></td><td>false</td><td><p>List of task/workflow definitions that would be ignored by this rule. In this case, the rule would be applied to all AidboxTask, AidboxTaskLog and AidboxWorkflow resources except the listed definitions.</p><p><em>Example: <code>["aidbox.bulk/import-resource-task"]</code></em></p><p><em>Exclusive with <strong>rules.</strong>includeDefinitions</em></p></td></tr></tbody></table>
+
+{% tabs %}
+{% tab title="Request" %}
+{% code fullWidth="false" %}
+```yaml
+POST /rpc
+content-type: text/yaml
+accept: text/yaml
+
+method: awf.task/create-and-execute
+params: 
+  definition: awf.task/clean-up-activities
+  params: 
+    rules:
+      - retentionPolicy:
+          unit: minute
+          value: 1
+        includeDefinitions:
+          - aidbox.bulk/import-resources-workflow
+```
+{% endcode %}
+{% endtab %}
+
+{% tab title="Response" %}
+```yaml
+Status: 200
+
+result:
+  resource:
+    params:
+      rules:
+        - retentionPolicy:
+            unit: minute
+            value: 1
+          includeDefinitions:
+            - aidbox.bulk/import-resources-workflow
+    status: ready
+    definition: awf.task/clean-up-activities
+    id: >-
+      e0f2d92d-92eb-4e12-9da8-ef619596fbb9
+    resourceType: AidboxTask
+    meta:
+      lastUpdated: '2023-10-30T13:40:01.071987Z'
+      createdAt: '2023-10-30T13:40:01.071987Z'
+      versionId: '73542'
+```
+{% endtab %}
+
+{% tab title="Status response" %}
+```yaml
+definition: awf.task/clean-up-activities
+meta:
+  lastUpdated: '2023-10-30T13:40:01.097386Z'
+  createdAt: '2023-10-30T13:40:01.071987Z'
+  versionId: '73549'
+params:
+  rules:
+    - retentionPolicy:
+        unit: minute
+        value: 1
+      includeDefinitions:
+        - aidbox.bulk/import-resources-workflow
+retryCount: 1
+outcome: succeeded
+resourceType: AidboxTask
+status: done
+result:
+  deletedRowsCount:
+    AidboxTask: 23
+    AidboxTaskLog: 124
+    AidboxWorkflow: 3
+execId: 746092c9-aa5e-43b4-ba8c-baa9d8c288d2
+id: >-
+  e0f2d92d-92eb-4e12-9da8-ef619596fbb9
 ```
 {% endtab %}
 {% endtabs %}
