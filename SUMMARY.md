@@ -198,6 +198,7 @@
     * [Subscription API](modules-1/topic-based-subscriptions/r4b-api-reference/subscription-api.md)
 * [Entities & Attributes](core-modules/entities-and-attributes.md)
 * [Profiling and validation](modules-1/profiling-and-validation/README.md)
+  * [FHIR Schema Validator](modules-1/profiling-and-validation/fhir-schema-validator.md)
   * [Profiling and validation overview](profiling-and-validation/profiling.md)
   * [Profiling with zen-lang](profiling-and-validation/profiling-with-zen-lang/README.md)
     * [Write a custom zen profile](profiling-and-validation/profiling-with-zen-lang/write-a-custom-zen-profile.md)
