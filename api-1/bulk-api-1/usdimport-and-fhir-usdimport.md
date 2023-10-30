@@ -49,8 +49,6 @@ status: 200
 
 <table><thead><tr><th width="258">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code></td><td>Identifier of the import</td></tr><tr><td><code>contentEncoding</code></td><td>Supports <code>gzip</code> or <code>plain</code> (non-gzipped .ndjson files)</td></tr><tr><td><code>inputs</code></td><td>Resources to import</td></tr><tr><td><code>update</code></td><td>Update history for updated resources (false by default)</td></tr></tbody></table>
 
-
-
 You can monitor progress by using `id` you provided in request body.
 
 {% tabs %}
@@ -163,7 +161,7 @@ If you didn't provide `id` in request body, you can use `content-location` in re
 
 ### Result
 
-<table><thead><tr><th width="262">Parameter</th><th width="95.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td><strong><code>id</code></strong></td><td>string</td><td>Identifier of the import</td></tr><tr><td><strong><code>resourceType</code></strong></td><td>string</td><td>Type of resource where the progress of import operation is recorded. <br><em>Possible value</em>: <code>BulkImportStatus</code></td></tr><tr><td><strong><code>meta</code></strong></td><td>object</td><td></td></tr><tr><td><code>meta.createdAt</code></td><td>string</td><td>Timestamp string at which the resource was created</td></tr><tr><td><code>meta.lastUpdated</code></td><td>string</td><td>Timestamp string at which the resource was updated last time</td></tr><tr><td><code>meta.versionId</code></td><td>string</td><td>Version id of this resource</td></tr><tr><td><strong><code>contentEncoding</code></strong></td><td>string</td><td> <code>gzip</code> or <code>plain</code></td></tr><tr><td><strong><code>time</code></strong></td><td>object</td><td></td></tr><tr><td><code>time.start</code></td><td>string</td><td>Timestamp string at which the operation started in ISO format</td></tr><tr><td><code>time.end</code></td><td>string</td><td>Timestamp string at which the operation was completed in ISO format.<br>Only present after the entire import operation has been completed</td></tr><tr><td><strong><code>type</code></strong></td><td>string</td><td><p>Data format type to be loaded.</p><p><em>Possible values</em>: <code>aidbox</code>, <code>fhir</code> </p></td></tr><tr><td><strong><code>inputs</code></strong></td><td>object[]</td><td></td></tr><tr><td><code>inputs[].url</code></td><td>string</td><td>URL from which load resources</td></tr><tr><td><code>inputs[].resourceType</code></td><td>string</td><td>Resource type to be loaded</td></tr><tr><td><code>inputs[].status</code></td><td>string</td><td><p>Load status for each input.<br>Only present after the operation for this input has been completed.</p><p><em>Possible values</em>: <code>finished</code>, <code>failed</code> </p></td></tr><tr><td><code>inputs[].total</code></td><td>integer</td><td>The number of loaded resources.<br>Only present after the operation for this input has been completed successfully</td></tr><tr><td><code>inputs[].ts</code></td><td>string</td><td>Timestamp string at which the loading was completed in ISO format.<br>Only present after the operation for this input has been completed</td></tr><tr><td><code>inputs[].duration</code></td><td>integer</td><td>Duration of loading in milliseconds.<br>Only present after the operation for this input has been completed successfully</td></tr><tr><td><strong><code>status</code></strong></td><td>string</td><td><p>Load status for all inputs.</p><p>Only present after the entire import operation has been completed.<br>After completed, this value is always <code>finished</code>, regardless of whether each input is <code>finished</code> or <code>failed</code>.</p><p><em>Possible value</em>: <code>finished</code></p></td></tr></tbody></table>
+<table><thead><tr><th width="262">Parameter</th><th width="95.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td><strong><code>id</code></strong></td><td>string</td><td>Identifier of the import</td></tr><tr><td><strong><code>resourceType</code></strong></td><td>string</td><td>Type of resource where the progress of import operation is recorded.<br><em>Possible value</em>: <code>BulkImportStatus</code></td></tr><tr><td><strong><code>meta</code></strong></td><td>object</td><td></td></tr><tr><td><code>meta.createdAt</code></td><td>string</td><td>Timestamp string at which the resource was created</td></tr><tr><td><code>meta.lastUpdated</code></td><td>string</td><td>Timestamp string at which the resource was updated last time</td></tr><tr><td><code>meta.versionId</code></td><td>string</td><td>Version id of this resource</td></tr><tr><td><strong><code>contentEncoding</code></strong></td><td>string</td><td><code>gzip</code> or <code>plain</code></td></tr><tr><td><strong><code>time</code></strong></td><td>object</td><td></td></tr><tr><td><code>time.start</code></td><td>string</td><td>Timestamp string at which the operation started in ISO format</td></tr><tr><td><code>time.end</code></td><td>string</td><td>Timestamp string at which the operation was completed in ISO format.<br>Only present after the entire import operation has been completed</td></tr><tr><td><strong><code>type</code></strong></td><td>string</td><td><p>Data format type to be loaded.</p><p><em>Possible values</em>: <code>aidbox</code>, <code>fhir</code></p></td></tr><tr><td><strong><code>inputs</code></strong></td><td>object[]</td><td></td></tr><tr><td><code>inputs[].url</code></td><td>string</td><td>URL from which load resources</td></tr><tr><td><code>inputs[].resourceType</code></td><td>string</td><td>Resource type to be loaded</td></tr><tr><td><code>inputs[].status</code></td><td>string</td><td><p>Load status for each input.<br>Only present after the operation for this input has been completed.</p><p><em>Possible values</em>: <code>finished</code>, <code>failed</code></p></td></tr><tr><td><code>inputs[].total</code></td><td>integer</td><td>The number of loaded resources.<br>Only present after the operation for this input has been completed successfully</td></tr><tr><td><code>inputs[].ts</code></td><td>string</td><td>Timestamp string at which the loading was completed in ISO format.<br>Only present after the operation for this input has been completed</td></tr><tr><td><code>inputs[].duration</code></td><td>integer</td><td>Duration of loading in milliseconds.<br>Only present after the operation for this input has been completed successfully</td></tr><tr><td><strong><code>status</code></strong></td><td>string</td><td><p>Load status for all inputs.</p><p>Only present after the entire import operation has been completed.<br>After completed, this value is always <code>finished</code>, regardless of whether each input is <code>finished</code> or <code>failed</code>.</p><p><em>Possible value</em>: <code>finished</code></p></td></tr></tbody></table>
 
 ###
 
@@ -176,19 +174,11 @@ With this flag Aidbox will update history for updated resources. For each resour
 * if resource was not present in DB before the import, the import time will be the same.
 * if resource was present in DB before and it's updated during the import, it will double the time importing this resource because of additional insert operation into `_history` table.
 
-
-
-
-
 ## /v2/$import on top of the Workflow Engine
 
 Improved version of the $import operation, to enhance its reliability and performance. By implementing this operation on top of the [workflow-engine](../../modules-1/workflow-engine/ "mention"), it allows the $import operation to be more reliable, continue work after restarts, and handle errors correctly. The Task API also enables the operation to accept multiple requests and execute them from a queue while simultaneously processing multiple items from the "inputs" field (with a default of two items processed simultaneously). Users can monitor the status of the operation through the [monitoring.md](../../modules-1/workflow-engine/monitoring.md "mention").
 
 In the future, the ability to list and cancel $import operations will be added, as well as detailed progress info on the operation.
-
-{% hint style="info" %}
-To enable new version of $import API (`/v2/$import` & `/v2/fhir/$import`) set environment variable `BOX_BULK__API_ENGINE=task-api`
-{% endhint %}
 
 **Changes in the new $import API:**
 
@@ -196,7 +186,7 @@ To enable new version of $import API (`/v2/$import` & `/v2/fhir/$import`) set en
 2. The status of the workflow can be accessed with a GET request to `/v2/$import/<id>` instead of `/BulkImportStatus/<id>`. The URL for the import status is returned in the `content-location` header of the $import request.
 
 {% hint style="warning" %}
-This feature is currently not available in [Multibox](https://docs.aidbox.app/multibox/multibox-box-manager-api)
+This feature is not available in [Multibox](https://docs.aidbox.app/multibox/multibox-box-manager-api)
 {% endhint %}
 
 To start import make a POST request to `/v2[/fhir]/$import`:
@@ -239,13 +229,9 @@ Content-Location:  /v2/$import/synthea
 
 <table><thead><tr><th width="226">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code></td><td>Identifier of the import.<br>If you don't provide this, the id will be auto-generated. You can check it on <code>Content-Location</code> header in the response</td></tr><tr><td><code>contentEncoding</code></td><td>Supports <code>gzip</code> or <code>plain</code> (non-gzipped .ndjson files)</td></tr><tr><td><code>inputs</code> (required)</td><td><p>Resources to import</p><ul><li><code>url</code> - URL from which load resources</li><li><code>resourceType</code> - Resource type to be loaded</li></ul></td></tr><tr><td><code>update</code></td><td>Update history for updated resources (false by default)</td></tr></tbody></table>
 
-
-
 To check the status of the import make a GET request to `/v2/$import/<id>`:
 
 As the operation is built on top of our workflow engine, the statuses and outcomes of the files and import as a whole are inherited from [#task-statuses-and-outcomes](../../modules-1/workflow-engine/task/#task-statuses-and-outcomes "mention")
-
-
 
 {% tabs %}
 {% tab title="Request" %}
