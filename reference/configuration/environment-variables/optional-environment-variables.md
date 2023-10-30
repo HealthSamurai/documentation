@@ -384,7 +384,7 @@ BOX\_FEATURES\_GRAPHQL\_TIMEOUT`=<integer>`
 
 Sets timeout for graphql queries in seconds. Default value is `60`.
 
-### BOX\_FEATURES\_FHIR\_TRANSACTION\_MAX\_\_ISOLATION\_LEVEL
+### BOX\_FEATURES\_FHIR\_TRANSACTION\_MAX\_\_ISOLATION\_\_LEVEL
 
 BOX\_FEATURES\_FHIR\_TRANSACTION\_MAX\_\_ISOLATION\_\_LEVEL=\<isolation-level>
 
