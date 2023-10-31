@@ -258,7 +258,7 @@ Task that applies [lisp/mapping](../../../tools/mappings/mappings-with-lisp-mapp
 
 ### Params
 
-<table data-full-width="false"><thead><tr><th width="141.33333333333331">Parameter</th><th width="85">Type</th><th width="104" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>mapping</td><td>string</td><td>true</td><td>Reference to a defined <a href="../../../tools/mappings/mappings-with-lisp-mapping.md">lisp/mapping</a>.</td></tr><tr><td>context</td><td>object</td><td>true</td><td>Initial data.</td></tr><tr><td>format</td><td>string</td><td>true</td><td>Bundle format.<br><em>Possible values: <code>fhir</code>, <code>aidbox</code></em></td></tr></tbody></table>
+<table data-full-width="false"><thead><tr><th width="379.34129478315526">Parameter</th><th width="85">Type</th><th width="104" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>mapping</td><td>string</td><td>true</td><td>Reference to a defined <a href="../../../tools/mappings/mappings-with-lisp-mapping.md">lisp/mapping</a>.</td></tr><tr><td>context</td><td>object</td><td>true</td><td>Initial data.</td></tr><tr><td>format</td><td>string</td><td>true</td><td>Bundle format.<br><em>Possible values: <code>fhir</code>, <code>aidbox</code></em></td></tr></tbody></table>
 
 ### Example
 
@@ -508,6 +508,152 @@ result:
 execId: 746092c9-aa5e-43b4-ba8c-baa9d8c288d2
 id: >-
   e0f2d92d-92eb-4e12-9da8-ef619596fbb9
+```
+{% endtab %}
+{% endtabs %}
+
+## aidbox.task/run-sql
+
+Executes the given SQL query. If given is array, executes given as prepared statement.
+
+### Params
+
+<table data-full-width="false"><thead><tr><th width="188">Parameter</th><th width="88">Type</th><th width="102" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>sql</td><td>string<br>or<br>string[]</td><td>true</td><td>SQL query or prepared statement.</td></tr></tbody></table>
+
+{% tabs %}
+{% tab title="Request" %}
+{% code fullWidth="false" %}
+```yaml
+POST /rpc
+content-type: text/yaml
+accept: text/yaml
+
+method: awf.task/create-and-execute
+params: 
+  definition: aidbox.task/run-sql
+  params: 
+    sql:
+      - SELECT id FROM Patient WHERE id=? LIMIT 1;
+      - 'pt-1'
+```
+{% endcode %}
+{% endtab %}
+
+{% tab title="Response" %}
+```yaml
+result:
+  resource:
+    params:
+      sql:
+        - SELECT id FROM Patient WHERE id=? LIMIT 1;
+        - pt-1
+    status: ready
+    definition: aidbox.task/run-sql
+    id: >-
+      ee56dfe3-5853-4da1-bbb2-2405b1d8b0a9
+    resourceType: AidboxTask
+    meta:
+      lastUpdated: '2023-10-31T08:02:05.399463Z'
+      createdAt: '2023-10-31T08:02:05.399463Z'
+      versionId: '73560'
+```
+{% endtab %}
+
+{% tab title="Status response" %}
+```yaml
+definition: aidbox.task/run-sql
+meta:
+  lastUpdated: '2023-10-31T08:02:05.449732Z'
+  createdAt: '2023-10-31T08:02:05.399463Z'
+  versionId: '73566'
+params:
+  sql:
+    - SELECT id FROM Patient WHERE id=? LIMIT 1;
+    - pt-1
+retryCount: 1
+outcome: succeeded
+resourceType: AidboxTask
+status: done
+result:
+  - id: pt-1
+execId: 86cb0940-75a1-4d2f-89ca-0a5fe4cbf497
+id: >-
+  ee56dfe3-5853-4da1-bbb2-2405b1d8b0a9
+```
+{% endtab %}
+{% endtabs %}
+
+## aidbox.task/run-rpc
+
+Executes the given Aidbox RPC-method with params.
+
+### Params
+
+<table data-full-width="false"><thead><tr><th width="188">Parameter</th><th width="88">Type</th><th width="102" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>method</td><td>string</td><td>true</td><td>Definition of the RPC-method.</td></tr><tr><td>params</td><td>object</td><td>false</td><td>Params of the RPC-method.</td></tr></tbody></table>
+
+{% tabs %}
+{% tab title="Request" %}
+{% code fullWidth="false" %}
+```yaml
+POST /rpc
+content-type: text/yaml
+accept: text/yaml
+
+method: awf.task/create-and-execute
+params: 
+  definition: aidbox.task/run-rpc
+  params: 
+    method: aidbox.pg/vacuum-table
+    params:
+      table: patient
+      analyze: true
+```
+{% endcode %}
+{% endtab %}
+
+{% tab title="Response" %}
+```yaml
+result:
+  resource:
+    params:
+      method: aidbox.pg/vacuum-table
+      params:
+        table: patient
+        analyze: true
+    status: ready
+    definition: aidbox.task/run-rpc
+    id: >-
+      374a188d-3f71-4910-82db-c993f174c501
+    resourceType: AidboxTask
+    meta:
+      lastUpdated: '2023-10-31T08:27:11.072779Z'
+      createdAt: '2023-10-31T08:27:11.072779Z'
+      versionId: '73604'
+```
+{% endtab %}
+
+{% tab title="Status response" %}
+```yaml
+definition: aidbox.task/run-rpc
+meta:
+  lastUpdated: '2023-10-31T08:27:11.099924Z'
+  createdAt: '2023-10-31T08:27:11.072779Z'
+  versionId: '73610'
+params:
+  method: aidbox.pg/vacuum-table
+  params:
+    table: patient
+    analyze: true
+retryCount: 1
+outcome: succeeded
+resourceType: AidboxTask
+status: done
+result:
+  res:
+    - 0
+execId: 3a9fdddb-17e2-49a7-ba95-0924cbf96cc6
+id: >-
+  374a188d-3f71-4910-82db-c993f174c501
 ```
 {% endtab %}
 {% endtabs %}
