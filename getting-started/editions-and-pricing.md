@@ -22,17 +22,27 @@ This license can be upgraded for production use with PHI data. Please [contact u
 
 ### Development license
 
-After you **get a contract for a standard license** you can get additional licenses for development and testing.\
-\
-A development license allows you to store not more than 2 GB of data in your database.
+After you **get a contract for a standard license or any support package** you can get additional licenses for development and testing. A development license allows you to store not more than 2 GB of data in your database.
 
 When you reach your database size limit, you’ll receive 3 types of messages - warning, error message, and blocking message:
 
+{% tabs %}
+{% tab title="Warning" %}
 `Your database (name of your database) size 1.9 GiB is about to exceed the license limit 2.0 GiB, in that case your process is going to shutdown. Please review database size or contact us for further information.`
+{% endtab %}
 
-Error message is: `Your database (name of your database) size is 2.7 GiB and it's above license limit 2.0 GiB. Please review database size or contact us for further information.`
+{% tab title="Error" %}
+`Your database (name of your database) size is 2.7 GiB and it's above license limit 2.0 GiB. Please review database size or contact us for further information.`
+{% endtab %}
 
-Blocking message is: `Your database (name of your database) size is 33.7 GiB and it's above license limit 2.0 GiB, your process is going to shutdown in 60 minutes. Please review database size or contact us for further information.`
+{% tab title="Blocking" %}
+`Your database (name of your database) size is 33.7 GiB and it's above license limit 2.0 GiB, your process is going to shutdown in 60 minutes. Please review database size or contact us for further information.`
+{% endtab %}
+{% endtabs %}
+
+{% hint style="info" %}
+If your company has an active contract with Health Samurai, please request access to your company project or [contact us](../contact-us.md).
+{% endhint %}
 
 ### Production-ready Aidbox as a SaaS
 
