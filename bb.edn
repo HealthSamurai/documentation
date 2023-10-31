@@ -29,11 +29,15 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
                (map (fn [v] (zipmap ["Package" "Versions"] v))
                     (into (sorted-map)
                           (update-vals
-                           (group-by (comp first  (fn [s] (clojure.string/split s (re-pattern "#"))))
-                                     (get
-                                      (->> (slurp "https://storage.googleapis.com/storage/v1/b/fhir-schemas/o?delimiter=/")
-                                           (cheshire.core/parse-string))
-                                      "prefixes"))
+                           (group-by (comp first
+                                           (fn [s] (clojure.string/split s (re-pattern "#"))))
+                                     (remove
+                                      (fn [p]
+                                        (= p "terminology-index-db/"))
+                                      (get
+                                       (->> (slurp "https://storage.googleapis.com/storage/v1/b/fhir-schemas/o?delimiter=/")
+                                            (cheshire.core/parse-string))
+                                       "prefixes")))
                            (fn [versions]
                              (clojure.string/join ", "
                                                   (mapv (comp second (fn [s] (clojure.string/split s (re-pattern "#|/"))))
