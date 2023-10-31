@@ -3,8 +3,7 @@
   (do
     (def path "modules-1/profiling-and-validation/fhir-schema-validator/supported-implementation-guides.md")
     (def template
-      "
----
+      "---
 description: >-
   List of supported Implementation Guides, which synchronise automatically every
   day at 00:00 UTC
