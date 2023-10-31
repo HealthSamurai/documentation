@@ -1,6 +1,7 @@
 name: FHIR Schema supported packages
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 0 * * *'
 
