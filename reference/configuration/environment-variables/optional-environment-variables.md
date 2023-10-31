@@ -390,7 +390,7 @@ BOX\_FEATURES\_FHIR\_TRANSACTION\_MAX\_\_ISOLATION\_\_LEVEL=\<isolation-level>
 
 `isolation-level` is one of: `none`, `read-committed`, `repeatable-read`, `serializable`.
 
-Sets inclusive maximum isolation level for transactions.
+Sets maximum (inclusive) isolation level for transactions. This value can be overridden by `x-max-isolation-level` header (see [here](../../../api-1/api/crud-1/update.md#isolation-levels)).
 
 ### Enable Aidbox compliance mode
 
