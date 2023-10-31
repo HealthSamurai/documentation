@@ -224,7 +224,7 @@ The section contains a list of entries converted from the input resources.
       <entryRelationship typeCode="REFR">
          <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.10.20.22.4.143"/>
-            <id root="cb0e9ddf-19bd-46cc-9fff-7816b27f6c57"/>
+            <id root="86f45978-214e-46e2-bcc0-f75c22eaa7dc"/>
             <code code="225773000" codeSystem="2.16.840.1.113883.6.96"/>
             <value code="394848005"
                     displayName="Medium Priority"

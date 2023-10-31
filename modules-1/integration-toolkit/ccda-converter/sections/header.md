@@ -190,7 +190,7 @@ C-CDA Equivalent:
           codeSystemName="HTTP://LOINC.ORG"
           displayName="TESTDOC"
           code="TESTDOC"/>
-   <title>2020202020</title>
+   <title>Document Title</title>
    <effectiveTime value="20200202"/>
    <confidentialityCode code="N"
                          displayName="normal"
@@ -279,16 +279,6 @@ C-CDA Equivalent:
          </representedCustodianOrganization>
       </assignedCustodian>
    </custodian>
-   <informationRecipient>
-      <intendedRecipient>
-         <informationRecipient>
-            <name>
-               <given>Docauthor</given>
-               <family>Foobar</family>
-            </name>
-         </informationRecipient>
-      </intendedRecipient>
-   </informationRecipient>
    <documentationOf>
       <serviceEvent classCode="PCPR">
          <id root="6b5da943-050a-6ae1-5f4b-2daea74b6103"/>

@@ -130,7 +130,7 @@ C-CDA Equivalent:
       <entryRelationship typeCode="REFR">
          <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.10.20.22.4.143"/>
-            <id root="2136dfb6-5108-4b7d-9336-9157d23316a4"/>
+            <id root="824a7d58-e91f-4049-99aa-d1ccb62adf8c"/>
             <code code="225773000" codeSystem="2.16.840.1.113883.6.96"/>
             <value code="394849002"
                     displayName="High Priority"

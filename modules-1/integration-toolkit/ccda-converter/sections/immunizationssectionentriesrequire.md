@@ -55,7 +55,7 @@ NB Immunization.status
 C-CDA Equivalent:
 ```xml
 <entry>
-   <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="true">
+   <substanceAdministration classCode="SBADM" moodCode="EVN">
       <templateId root="2.16.840.1.113883.10.20.22.4.52" extension="2015-08-01"/>
       <templateId root="2.16.840.1.113883.10.20.22.4.52"/>
       <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
@@ -106,7 +106,7 @@ C-CDA Equivalent:
 C-CDA Equivalent:
 ```xml
 <entry>
-   <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="true">
+   <substanceAdministration classCode="SBADM" moodCode="EVN">
       <templateId root="2.16.840.1.113883.10.20.22.4.52" extension="2015-08-01"/>
       <templateId root="2.16.840.1.113883.10.20.22.4.52"/>
       <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
