@@ -122,7 +122,7 @@ C-CDA Equivalent:
          <observation moodCode="EVN" classCode="OBS">
             <templateId root="2.16.840.1.113883.10.20.22.4.7" extension="2014-06-09"/>
             <templateId root="2.16.840.1.113883.10.20.22.4.7"/>
-            <id root="00504a6b-926f-455a-ba36-c7c738342f86"/>
+            <id root="6fab3ee9-95eb-41b0-8359-b484575dc20e"/>
             <code xsi:type="CD" code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
             <statusCode code="completed"/>
             <effectiveTime>
@@ -309,7 +309,7 @@ C-CDA Equivalent:
          <observation moodCode="EVN" classCode="OBS">
             <templateId root="2.16.840.1.113883.10.20.22.4.7" extension="2014-06-09"/>
             <templateId root="2.16.840.1.113883.10.20.22.4.7"/>
-            <id root="70f96f3d-b3da-4d0c-a80c-f32c2e756df8"/>
+            <id root="65158a02-84f5-449d-afb8-106c8494b86c"/>
             <code xsi:type="CD" code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
             <statusCode code="completed"/>
             <effectiveTime>
@@ -346,7 +346,7 @@ C-CDA Equivalent:
                <observation moodCode="EVN" classCode="OBS">
                   <templateId root="2.16.840.1.113883.10.20.22.4.9" extension="2014-06-09"/>
                   <templateId root="2.16.840.1.113883.10.20.22.4.9"/>
-                  <id root="0ff8501b-a86d-4350-b218-9fe7949c58d6"/>
+                  <id root="b6417f7a-7210-4e19-b665-1eaf4322f074"/>
                   <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
                   <statusCode code="completed"/>
                   <effectiveTime value="20120129"/>
@@ -359,7 +359,7 @@ C-CDA Equivalent:
                      <observation classCode="OBS" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.10.20.22.4.8" extension="2014-06-09"/>
                         <templateId root="2.16.840.1.113883.10.20.22.4.8"/>
-                        <id root="8babc65f-4ceb-4c0e-9815-5fe45f8120df"/>
+                        <id root="c11c7dec-887e-4cde-88ca-f3a01a3d87c7"/>
                         <code code="SEV" codeSystem="2.16.840.1.113883.5.4"/>
                         <statusCode code="completed"/>
                         <value code="24484000"
@@ -375,7 +375,7 @@ C-CDA Equivalent:
                <observation moodCode="EVN" classCode="OBS">
                   <templateId root="2.16.840.1.113883.10.20.22.4.9" extension="2014-06-09"/>
                   <templateId root="2.16.840.1.113883.10.20.22.4.9"/>
-                  <id root="e61e9aad-13ab-4952-9575-e473eecc614e"/>
+                  <id root="a90b5d89-ca5e-4a20-b211-be667e4c6b09"/>
                   <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
                   <statusCode code="completed"/>
                   <effectiveTime value="20100315"/>
@@ -388,7 +388,7 @@ C-CDA Equivalent:
                      <observation classCode="OBS" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.10.20.22.4.8" extension="2014-06-09"/>
                         <templateId root="2.16.840.1.113883.10.20.22.4.8"/>
-                        <id root="c9c31bbe-66c8-4d33-aaea-fb81b80c8703"/>
+                        <id root="6a0c4774-582d-4e97-ad8f-345e53bfd097"/>
                         <code code="SEV" codeSystem="2.16.840.1.113883.5.4"/>
                         <statusCode code="completed"/>
                         <value code="255604002"
@@ -550,7 +550,7 @@ C-CDA Equivalent:
          <observation moodCode="EVN" classCode="OBS">
             <templateId root="2.16.840.1.113883.10.20.22.4.7" extension="2014-06-09"/>
             <templateId root="2.16.840.1.113883.10.20.22.4.7"/>
-            <id root="70fd0912-dd86-481d-88cb-521018c1c613"/>
+            <id root="b233ba0d-cd5a-4126-b5b7-0897ec9f031f"/>
             <code xsi:type="CD" code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
             <statusCode code="completed"/>
             <effectiveTime>
@@ -606,7 +606,7 @@ C-CDA Equivalent:
                <observation moodCode="EVN" classCode="OBS">
                   <templateId root="2.16.840.1.113883.10.20.22.4.9" extension="2014-06-09"/>
                   <templateId root="2.16.840.1.113883.10.20.22.4.9"/>
-                  <id root="f2200b0d-050c-4942-9e11-f70834f525cc"/>
+                  <id root="ad98d9c2-6a5f-4c25-9e21-1f1da70861e8"/>
                   <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
                   <statusCode code="completed"/>
                   <effectiveTime value="20120129"/>
@@ -619,7 +619,7 @@ C-CDA Equivalent:
                      <observation classCode="OBS" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.10.20.22.4.8" extension="2014-06-09"/>
                         <templateId root="2.16.840.1.113883.10.20.22.4.8"/>
-                        <id root="2cd8036e-e8c0-4a81-9732-8adb9a73d6fe"/>
+                        <id root="6be2b3d8-6475-4409-b5b1-5c8c37a3a529"/>
                         <code code="SEV" codeSystem="2.16.840.1.113883.5.4"/>
                         <statusCode code="completed"/>
                         <value code="24484000"
@@ -635,7 +635,7 @@ C-CDA Equivalent:
                <observation moodCode="EVN" classCode="OBS">
                   <templateId root="2.16.840.1.113883.10.20.22.4.9" extension="2014-06-09"/>
                   <templateId root="2.16.840.1.113883.10.20.22.4.9"/>
-                  <id root="bbcfaf84-8854-4b9f-ae5a-deaa6abac6ad"/>
+                  <id root="8897a831-56c2-4bbf-97fa-3a8af8e71d80"/>
                   <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
                   <statusCode code="completed"/>
                   <effectiveTime value="20100315"/>
@@ -648,7 +648,7 @@ C-CDA Equivalent:
                      <observation classCode="OBS" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.10.20.22.4.8" extension="2014-06-09"/>
                         <templateId root="2.16.840.1.113883.10.20.22.4.8"/>
-                        <id root="6026071f-5859-4d5f-9c29-fbb34408cc0d"/>
+                        <id root="fb44e64d-d014-4f0a-b2ab-fd1c37aef605"/>
                         <code code="SEV" codeSystem="2.16.840.1.113883.5.4"/>
                         <statusCode code="completed"/>
                         <value code="255604002"
@@ -740,7 +740,7 @@ C-CDA Equivalent:
          <observation moodCode="EVN" classCode="OBS">
             <templateId root="2.16.840.1.113883.10.20.22.4.7" extension="2014-06-09"/>
             <templateId root="2.16.840.1.113883.10.20.22.4.7"/>
-            <id root="22dc0a80-1cf7-4b23-83ea-dd1427b315f9"/>
+            <id root="5c20a473-470c-40f2-8c9d-9ec497466cea"/>
             <code xsi:type="CD" code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
             <statusCode code="completed"/>
             <effectiveTime>
@@ -777,7 +777,7 @@ C-CDA Equivalent:
                <observation classCode="OBS" moodCode="EVN">
                   <templateId root="2.16.840.1.113883.10.20.22.4.9" extension="2014-06-09"/>
                   <templateId root="2.16.840.1.113883.10.20.22.4.9"/>
-                  <id root="b3881612-d508-4c73-8840-5fa8806f5029"/>
+                  <id root="1c1fda1c-d006-47d1-99ea-5b7ef1316864"/>
                   <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
                   <statusCode code="completed"/>
                   <value codeSystem="2.16.840.1.113883.6.96"
@@ -789,7 +789,7 @@ C-CDA Equivalent:
                      <observation classCode="OBS" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.10.20.22.4.8" extension="2014-06-09"/>
                         <templateId root="2.16.840.1.113883.10.20.22.4.8"/>
-                        <id root="ad1494ca-8aa4-4bfc-9a89-5ad13a90c98d"/>
+                        <id root="0588e65f-1469-4cfd-8721-a79518ec8428"/>
                         <code code="SEV" codeSystem="2.16.840.1.113883.5.4"/>
                         <statusCode code="completed"/>
                         <value code="6736007"
@@ -805,7 +805,7 @@ C-CDA Equivalent:
                <observation moodCode="EVN" classCode="OBS">
                   <templateId root="2.16.840.1.113883.10.20.22.4.9" extension="2014-06-09"/>
                   <templateId root="2.16.840.1.113883.10.20.22.4.9"/>
-                  <id root="3b6b6699-d3aa-443b-85e9-344fd29bd30e"/>
+                  <id root="0b1d604b-2e61-46e7-bc26-99fd6ab4bbc7"/>
                   <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
                   <statusCode code="completed"/>
                   <effectiveTime value="20100315"/>
@@ -818,7 +818,7 @@ C-CDA Equivalent:
                      <observation classCode="OBS" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.10.20.22.4.8" extension="2014-06-09"/>
                         <templateId root="2.16.840.1.113883.10.20.22.4.8"/>
-                        <id root="2b8be8b4-38fd-414e-8b84-84a3b054979e"/>
+                        <id root="788aa955-8686-486f-b31a-30bc1736e1c2"/>
                         <code code="SEV" codeSystem="2.16.840.1.113883.5.4"/>
                         <statusCode code="completed"/>
                         <value code="255604002"

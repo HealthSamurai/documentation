@@ -83,7 +83,7 @@ C-CDA Equivalent:
          <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.10.20.22.4.46" extension="2015-08-01"/>
             <templateId root="2.16.840.1.113883.10.20.22.4.46"/>
-            <id root="95dac4f5-162e-494a-a2bc-74ea85557585"/>
+            <id root="4b890f1c-6c88-40da-af22-74bfdcce9d36"/>
             <code codeSystem="2.16.840.1.113883.6.96"
                    displayName="Condition"
                    code="64572001">
@@ -177,7 +177,7 @@ C-CDA Equivalent:
          <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.10.20.22.4.46" extension="2015-08-01"/>
             <templateId root="2.16.840.1.113883.10.20.22.4.46"/>
-            <id root="010fc673-a28e-47fd-b9e4-051919f97c9f"/>
+            <id root="c8e6dbb5-a12f-4699-b82c-0f3da27c0bf6"/>
             <code codeSystem="2.16.840.1.113883.6.96"
                    displayName="Condition"
                    code="64572001">
