@@ -17,13 +17,27 @@ To start using Aidbox visit the [Aidbox user portal](https://aidbox.app/), creat
 | Aidbox standard license (14 days) | free      |
 | Aidbox standard license           | $         |
 
+### Standard license
+
+A standard license allows running Aidbox locally or in Aidbox Sandbox for 14 days and then can be extended by the Health Samurai team.This license will be valid for 14 days. If your trial period expires, while you are installing your box, you’ll receive an error message:
+
+`License expires in 2 days. Please contact us for extended license.`
+
+### Development license
+
 After you **get contract for a standard license** you can get additional licenses for development and testing:
 
 | Additional licenses | Limitations                                                                         |
 | ------------------- | ----------------------------------------------------------------------------------- |
 | Development license | A development license allows to store not more than 2 GBs of data in your database. |
 
-You can install, administer, and maintain your own Aidbox instance or Health Samurai can host Aidbox for you. To learn more about **pricing and hosting options**, please [get in touch with us](../contact-us.md).
+Development license is available for contract clients. When you reach your database size limit, you’ll receive 3 types of messages - warning, error message and blocking message:
+
+`Your database (name of your database) size 1.9 GiB is about to exceed the license limit 2.0 GiB, in that case your process is going to shutdown. Please review database size or contact us for further information.`
+
+Error message is: `Your database (name of your database) size is 2.7 GiB and it's above license limit 2.0 GiB. Please review database size or contact us for further information.`
+
+Blocking message is: `Your database (name of your database) size is 33.7 GiB and it's above license limit 2.0 GiB, your process is going to shutdown in 60 minutes. Please review database size or contact us for further information.`
 
 ### Production-ready Aidbox as a SaaS
 
