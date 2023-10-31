@@ -16,6 +16,47 @@ In general, to set up the topic in Aidbox configuration project, you need the fo
 4. Link **Topic Definition** from step 2 and **Storage Type** from step 3 into one service.
 5. Link this service from step 4 in the entry point (e.g. box).
 
+
+
+## Database Configuration
+
+SubscriptionTopic-based services rely on [PostgreSQL Logical Replication](https://www.postgresql.org/docs/current/logical-replication.html). Aidbox plays the role of the `Subscriber` to receive and process relevant events from the database. A replication slot is created automatically for each service when it starts. Therefore, in general, the database should be configured to support logical replication, and the `POSTGRES_USER` should have replication privileges.
+
+### Self Hosted Database
+
+If you use [aidboxdb-image.md](../../storage-1/aidboxdb-image.md "mention") then it's already configured to work properly with SubscriptionTopic.
+
+Otherwise, check that `wal_level` is set to `logical` in `postgresql.conf` file:
+
+```
+wal_level = logical
+```
+
+Check for other relevant settings in [PostgreSQL documentation](https://www.postgresql.org/docs/current/logical-replication-config.html).
+
+### Cloud Databases
+
+#### Azure Database for PostgreSQL - Flexible Server <a href="#logical-replication-and-logical-decoding-in-azure-database-for-postgresql---flexible-server" id="logical-replication-and-logical-decoding-in-azure-database-for-postgresql---flexible-server"></a>
+
+Setup your database instance according to  [the official guide ](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/concepts-logical#prerequisites-for-logical-replication-and-logical-decoding)(Prerequisites for logical replication and logical decoding):
+
+1. Go to server parameters page on the portal.
+2. Set the server parameter `wal_level` to `logical`.
+3. Update `max_worker_processes` parameter value to at least 16. Otherwise, you may run into issues like `WARNING: out of background worker slots`.
+4. Save the changes and restart the server to apply the changes.
+5. Confirm that your PostgreSQL instance allows network traffic from your connecting resource.
+6.  Grant the admin user replication permissions.SQLCopy
+
+    ```SQL
+    ALTER ROLE <adminname> WITH REPLICATION;
+    ```
+7. You may want to make sure the role you're using has [privileges](https://www.postgresql.org/docs/current/sql-grant.html) on the schema that you're replicating. Otherwise, you may run into errors such as `Permission denied for schema`.
+
+<figure><img src="../../.gitbook/assets/image (98).png" alt=""><figcaption><p>Server Parameters</p></figcaption></figure>
+
+\
+
+
 ## Topic Definition configuration
 
 Topic Definition is a zen schema which is tagged with **`fhir.topic-based-subscription/topic-definition`** and corresponds to [FHIR SubscriptionTopic](https://build.fhir.org/subscriptiontopic.html) resource.
