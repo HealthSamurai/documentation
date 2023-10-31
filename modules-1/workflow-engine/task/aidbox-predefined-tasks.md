@@ -422,13 +422,13 @@ result:
 
 Deletes `AidboxTask`, `AidboxTaskLog` and `AidboxWorkflow` resources that are in `done` state according to specified rules. \
 \
-When the workflow is matched by the rules, all activities requested by that workflow as AidboxTask and AidboxWorkflow would also be deleted. If task is matched by the rules, all it's AidboxTaskLog resources would also be deleted.\
+When the workflow is matched by the rule, all activities requested by that workflow as AidboxTask and AidboxWorkflow would also be deleted. If task is matched by the rule, all it's AidboxTaskLog resources would also be deleted.\
 \
-If either `includeDefinitions` or `excludeDefinitions` is not specified, deletes all resources that are matched by `retentionPolicy` and are in the "Done" state. \
 When includeDefinitions is specified, only activities with listed definitions will be deleted.\
-When excludeDefinitions is specified, all activities are deleted except for activities with the listed definitions.
+When excludeDefinitions is specified, all activities are deleted except for activities with the listed definitions.\
+If both includeDefinitions and excludeDefinitions are not specified, deletes all resources that match retentionPolicy.
 
-If multiple rules are listed, they will be applied in the order they are listed.\
+If multiple rules are listed, all rules are applied. \
 Can be used with the [Scheduler service](../services.md#cleanup-rule-definition) to automatically clean up old tasks and workflows.&#x20;
 
 ### Params
