@@ -228,7 +228,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 |                      silth.fhir.th.extensions |                                                                                                                                         0.1.0, 1.0.0 |
 |                         silth.fhir.th.mophpc1 |                                                                                                                                         0.1.1, 1.0.0 |
 |                             swiss.mednet.fhir |                                               0.10.0, 0.11.0, 0.12.0, 0.13.0, 0.14.0, 0.15.0, 0.2.0, 0.3.0, 0.4.0, 0.5.0, 0.6.0, 0.7.0, 0.8.0, 0.9.0 |
-|                         terminology-index-db/ |                                                                                                                                                      |
 |                           tigacorehub.patient |                                                                                                                       1.1.26, 1.1.27, 1.1.28, 1.1.29 |
 |                            tw.gov.mohw.twcore |                                                                                                                                         0.1.0, 0.1.1 |
 |                               us.cdc.phinvads |                                                  0.1.0, 0.1.1, 0.1.2, 0.10.0, 0.11.0, 0.12.0, 0.2.0, 0.3.0, 0.4.0, 0.5.0, 0.6.0, 0.7.0, 0.8.0, 0.9.0 |
