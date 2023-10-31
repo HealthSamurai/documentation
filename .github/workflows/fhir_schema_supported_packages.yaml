@@ -1,0 +1,26 @@
+name: FHIR Schema supported packages
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install Babashka
+      run: curl -s https://raw.githubusercontent.com/babashka/babashka/master/install | bash
+
+    - name: Execute bb task
+      run: bb run fhir-schema-supported-packages-sync
+
+    - name: Commit and push
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add modules-1/profiling-and-validation/fhir-schema-validator/supported-implementation-guides.md
+        git commit -m "Update supported-implementation-guides.md" -a
+        git push
