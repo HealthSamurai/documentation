@@ -514,7 +514,8 @@ id: >-
 
 ## aidbox.task/run-sql
 
-Executes the given SQL query. If given is array, executes given as prepared statement.
+Executes the given SQL query. If given is array, executes given as prepared statement. \
+If the query result is greater than 1000 rows, an error is returned.
 
 ### Params
 
