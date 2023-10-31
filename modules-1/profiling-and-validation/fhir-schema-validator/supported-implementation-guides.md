@@ -1,4 +1,3 @@
-
 ---
 description: >-
   List of supported Implementation Guides, which synchronise automatically every
