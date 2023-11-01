@@ -44,13 +44,11 @@ Setup your database instance according to  [the official guide ](https://learn.m
 2. Set the server parameter `wal_level` to `logical`.
 3. Update `max_worker_processes` parameter value to at least 16. Otherwise, you may run into issues like `WARNING: out of background worker slots`.
 4. Save the changes and restart the server to apply the changes.
-5. Confirm that your PostgreSQL instance allows network traffic from your connecting resource.
-6.  Grant the admin user replication permissions.SQLCopy
+5.  Grant the user with which Aidbox connects to the database replication permissions: SQLCopy.
 
     ```SQL
-    ALTER ROLE <adminname> WITH REPLICATION;
+    ALTER ROLE <username> WITH REPLICATION;
     ```
-7. You may want to make sure the role you're using has [privileges](https://www.postgresql.org/docs/current/sql-grant.html) on the schema that you're replicating. Otherwise, you may run into errors such as `Permission denied for schema`.
 
 <figure><img src="../../.gitbook/assets/image (98).png" alt=""><figcaption><p>Server Parameters</p></figcaption></figure>
 
