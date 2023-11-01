@@ -1,6 +1,37 @@
 # Release Notes
 
-## September 2023 _`latest`_
+## October 2023 _`latest`_
+
+* New [FHIR Schema Validator](../../modules-1/profiling-and-validation/fhir-schema-validator.md) for Aidbox (Early Alpha)
+* Terminology
+  * Supported [RxNorm terminology](../../modules-1/terminology/fhir-terminology-repository/load-rxnorm-into-aidbox.md) load to Aidbox
+* Data API&#x20;
+  * New database console sidebar&#x20;
+  * Added an option to [synchronize managed index](../../reference/configuration/environment-variables/optional-environment-variables.md#box\_config\_features\_index\_sync\_\_on\_\_start) when Aidbox starts
+* Integrations&#x20;
+  * Added[ Workflow Engine Connector](../../modules-1/topic-based-subscriptions/#supported-fhir-versions) for SubscriptionTopics service&#x20;
+  * Added [Workflow Engine clean-up task ](../../modules-1/workflow-engine/task/aidbox-predefined-tasks.md#awf.task-clean-up-activities)
+  * Added [run-sql built-in task](../../modules-1/workflow-engine/task/aidbox-predefined-tasks.md#aidbox.task-run-sql)
+* [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
+  * Changed logic [how section templateId is being selected ](../../modules-1/integration-toolkit/ccda-converter/producing-c-cda-documents.md#section-templates-and-loinc-codes)(resolve “entries required”/”entries optional” ambiguity)&#x20;
+  * Minor mapping fixes (immunizations, document header)&#x20;
+  * Added an option to have [more than one request ](../../modules-1/integration-toolkit/ccda-converter/producing-c-cda-documents.md#document-definitions)per section in Document Definition&#x20;
+  * Added an option to use [Observations with text values](../../modules-1/integration-toolkit/ccda-converter/producing-c-cda-documents.md#document-definitions) for section narratives
+* Security and access control&#x20;
+  * Supported Patient API
+* DevOps&#x20;
+  * Supported sending traces via [OpenTelemetry ](../../modules-1/monitoring/run-aidbox-locally-with-docker.md)
+  * Supported Azure Block in [$export operation](../../api-1/bulk-api-1/usdexport.md#azure)
+* SDK&#x20;
+  * Added Python SDK
+* [Aidbox Forms](../../modules-1/aidbox-forms.md)
+  * Improved UI-builder:
+    * Supported enableWhen expressions (only in [aidbox lisp](../../reference/aidbox-forms/lisp.md) yet)&#x20;
+    * Added constraints and validation for datetime, date, time, number fields&#x20;
+    * Forms built with UI builder now can be imported to forms library&#x20;
+    * Added preview for Questionnaire and QuestionnaireResponse in UI form builder
+
+## September 2023 _`2309`_
 
 * New [FHIR Validator](https://fhir-validator.aidbox.app/) public demo stand
 * SDK
