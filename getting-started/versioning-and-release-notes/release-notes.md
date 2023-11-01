@@ -23,7 +23,7 @@
   * Supported sending traces via [OpenTelemetry ](../../modules-1/monitoring/run-aidbox-locally-with-docker.md)
   * Supported Azure Block in [$export operation](../../api-1/bulk-api-1/usdexport.md#azure)
 * SDK&#x20;
-  * Added Python SDK
+  * Released[ Python SDK](https://github.com/Aidbox/aidbox-python)
 * [Aidbox Forms](../../modules-1/aidbox-forms.md)
   * Improved UI-builder:
     * Supported enableWhen expressions (only in [aidbox lisp](../../reference/aidbox-forms/lisp.md) yet)&#x20;
