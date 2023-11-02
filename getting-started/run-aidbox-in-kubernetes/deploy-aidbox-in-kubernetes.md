@@ -247,6 +247,13 @@ data:
   PGDATABASE: aidbox
   PGHOST: db.prod.svc.cluster.local   # database address
   PGPORT: '5432'                      # database port
+  BOX_PROJECT_GIT_URL: "https://github.com/Aidbox/aidbox-project-template.git"
+  BOX_PROJECT_GIT_PROTOCOL: "https"
+  BOX_PROJECT_GIT_TARGET__PATH: "/tmp/aidbox-project"
+  BOX_PROJECT_GIT_CHECKOUT: "main"
+  AIDBOX_ZEN_ENTRYPOINT=main/box
+  AIDBOX_DEV_MODE="false"
+  AIDBOX_ZEN_DEV_MODE="false"
 ```
 {% endcode %}
 
@@ -258,13 +265,20 @@ metadata:
   name: aidbox
   namespace: prod
 data:
-  AIDBOX_ADMIN_ID: <admin_login>
   AIDBOX_ADMIN_PASSWORD: <admin_password>
-  AIDBOX_CLIENT_ID: <root_client_id>
   AIDBOX_CLIENT_SECRET: <root_client_password>
   AIDBOX_LICENSE: <JWT-LICENSE>    # JWT license from the Aidbox user portal
-  PGPASSWORD: <db_password>        # database password
   PGUSER: <db_user>                # database username
+  PGPASSWORD: <db_password>        # database password
+  
+  BOX_AUTH_KEYS_SECRET: <random_string_auth_secret>
+  BOX_AUTH_KEYS_PRIVATE: <rsa_private_key> 
+  BOX_AUTH_KEYS_PUBLIC: <rsa_public_key> 
+  
+  # or just use our samples for non-production installation
+  # BOX_AUTH_KEYS_SECRET: "auth-key-secret"
+  # BOX_AUTH_KEYS_PRIVATE: "-----BEGIN RSA PRIVATE KEY-----\nMIICXAIBAAKBgQCRLKv0n9HPsajw3wcDH1k5DUSPPdKjxqp8h4OZKiG3wGEFYXi9\nfxBbpkQXjxGEmORi8UR4aM41kX8dd4SdMRGS1VX2AMgLEAFq354MpGBPIeJyv00y\nqV6wW0HT58+Nh+xdridDFSHkkplJFjDuQbYjfQzbSNECA31ME/GI9rGomQIDAQAB\nAoGAEYGytFecCnjtC6wHiVK71JeTIZd12fJsj4MbhWpJYeJxCMAz+l0S7MxweGtU\nNFpoKz7XUBJqcJcMvlHSBA89ZDobp3HS0R8ZDcdxossNRio3Ix1bRG7Pxnhs3R/T\nsOxlrQSgnSbg1k6M5iVSZt1ptCwch+ZLG37tD3ZvdAN0LCECQQC0IFiPJJEPauUi\neKmW4oUgBvOUVA93EqnBiv9lzk7UxrPgusFqnY02qJouDNvXXso6+FM8u9DNxSvw\nHPIuqJvhAkEAzlNYaJzoInkCS5PYTGg2f1GqRih9WHj8NUukfgbO61xT9QscM6An\n+RF8dfshU2zuaQFLTBPWrS0Nk0ZOxLFjuQJAZ4gz/sqwyiDR5RdfuscmZ3s3ZClQ\n3ksO4ZzoIXcMnoY7e888PvCh6ynLvO5NKiRkrrJu/XiikrNjBtdMaH8nYQJADkCF\nl9xW0KLJPM0+oLCGKy9J8sSzO9xHl6rc9vOjcXCUQBX/YbWLbVH+5ett9uRMZ6Z2\nPBAWwSmeiXDO2hliyQJBAI/7Gtzf1Z2O5pDgNMLkKcyX4BqsHFKFSD5Btb/zReEq\nTsr6vTvzucjJcS8843vgyhIUDtW2cu7G9BGxSfsZNCw=\n-----END RSA PRIVATE KEY-----\n"
+  # BOX_AUTH_KEYS_PUBLIC: "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCRLKv0n9HPsajw3wcDH1k5DUSP\nPdKjxqp8h4OZKiG3wGEFYXi9fxBbpkQXjxGEmORi8UR4aM41kX8dd4SdMRGS1VX2\nAMgLEAFq354MpGBPIeJyv00yqV6wW0HT58+Nh+xdridDFSHkkplJFjDuQbYjfQzb\nSNECA31ME/GI9rGomQIDAQAB\n-----END PUBLIC KEY-----\n"
 ```
 {% endcode %}
 
