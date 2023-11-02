@@ -115,7 +115,7 @@ When `ftr.pull.enable` is set to `true`, Aidbox loads concepts asynchronously by
 Access the Aidbox UI and navigate to `Database` > [`Running Queries`](../../../overview/aidbox-ui/db-queries.md). Look for a query that includes `"_import"`; this query is responsible for loading concepts into your database. Once this query disappears from the list, you can check the concepts in the database. Proceed to `Database` > `DB Console` and enter the following query:
 
 ```sql
-SELECT count(*) from Concept where system = 'http://www.nlm.nih.gov/research/umls/rxnorm'
+SELECT count(*) from Concept where resource->>'system' = 'http://www.nlm.nih.gov/research/umls/rxnorm'
 ```
 
 
