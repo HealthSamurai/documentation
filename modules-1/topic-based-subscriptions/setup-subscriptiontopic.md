@@ -36,6 +36,23 @@ Check for other relevant settings in [PostgreSQL documentation](https://www.post
 
 ### Cloud Databases
 
+#### AWS RDS PostgreSQL
+
+To enable a database instance hosted with [AWS RDS](https://aws.amazon.com/rds/postgresql/) to work with the SubscriptionTopic services parameter  `rds.logical_replication` should be set to `1`. One possible way to accomplish this is as follows:
+
+1. Navigate to **RDS**, this should take you to the RDS Dashboard.
+2. Click **Parameter Groups** in the **Resources** panel on the dashboard.
+3. Create parameter group
+4. Click the `Edit parameters`
+5. Search for `rds.logical_replication` and set its value to `1`.
+6. Navigate to the database instance, click **Modify**, and in the `DB parameter group` menu select the parameter group created in Step 3.
+
+<figure><img src="../../.gitbook/assets/image (99).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (102).png" alt=""><figcaption></figcaption></figure>
+
+To check that the setting is applied run query `SHOW wal_level;` he result should be `logical`.
+
 #### Azure Database for PostgreSQL - Flexible Server <a href="#logical-replication-and-logical-decoding-in-azure-database-for-postgresql---flexible-server" id="logical-replication-and-logical-decoding-in-azure-database-for-postgresql---flexible-server"></a>
 
 Setup your database instance according to  [the official guide ](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/concepts-logical#prerequisites-for-logical-replication-and-logical-decoding)(Prerequisites for logical replication and logical decoding):
