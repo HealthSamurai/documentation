@@ -6,7 +6,7 @@
 AIDBOX_BASE_URL=<url>
 ```
 
-URL to use in links between resources.
+Aidbox Base URL is URL Aidbox is available at. It consists of schema (http, https), domain, port (optional) and URL path (optional). Trailing slash is not allowed.&#x20;
 
 Default is
 

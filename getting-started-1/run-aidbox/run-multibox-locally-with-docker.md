@@ -100,7 +100,7 @@ AIDBOX_LICENSE=<your-license-key>
 
 in the `.env` file where `<your-license-key>` is a license key which you obtained on the [get a license](run-multibox-locally-with-docker.md#get-a-license) step.
 
-You can find more about required Multibox environment variables [here.](../../reference/configuration/environment-variables/multibox-required-environment-variables.md)
+You can find more about required Multibox environment variables [here.](broken-reference)
 
 ### Launch Multibox
 

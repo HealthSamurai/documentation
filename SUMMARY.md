@@ -490,7 +490,6 @@
 * [Configuration](reference/configuration/README.md)
   * [Environment variables](reference/configuration/environment-variables/README.md)
     * [Aidbox required environment variables](reference/configuration/environment-variables/aidbox-required-environment-variables.md)
-    * [Multibox required environment variables](reference/configuration/environment-variables/multibox-required-environment-variables.md)
     * [Optional environment variables](reference/configuration/environment-variables/optional-environment-variables.md)
     * [AidboxDB environment variables](reference/configuration/environment-variables/aidboxdb-environment-variables.md)
     * [Aidbox Configuration project](reference/configuration/environment-variables/aidbox-project-environment-variables.md)
