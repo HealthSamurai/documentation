@@ -132,7 +132,7 @@ Access the Aidbox UI and navigate to `Database` > [`Running Queries`](../../over
 
 {% code title="" %}
 ```sql
-SELECT count(*) from Concept where system = 'http://hl7.org/fhir/sid/icd-10'
+SELECT count(*) from concept where resource->>'system' = 'http://hl7.org/fhir/sid/icd-10'
 ```
 {% endcode %}
 
