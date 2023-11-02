@@ -229,6 +229,10 @@ First of all, you need to get Aidbox license on [Aidbox user portal](https://aid
 
 Create ConfigMap with all required config and database connection
 
+{% hint style="info" %}
+This ConfigMap example uses our default Aidbox Configuration Project Template. It's recommended to clone this template and bind your Aidbox installation with it.
+{% endhint %}
+
 {% code title="Aidbox ConfigMap" lineNumbers="true" %}
 ```yaml
 apiVersion: v1
@@ -251,9 +255,9 @@ data:
   BOX_PROJECT_GIT_PROTOCOL: "https"
   BOX_PROJECT_GIT_TARGET__PATH: "/tmp/aidbox-project"
   BOX_PROJECT_GIT_CHECKOUT: "main"
-  AIDBOX_ZEN_ENTRYPOINT=main/box
-  AIDBOX_DEV_MODE="false"
-  AIDBOX_ZEN_DEV_MODE="false"
+  AIDBOX_ZEN_ENTRYPOINT: main/box
+  AIDBOX_DEV_MODE: "false"
+  AIDBOX_ZEN_DEV_MODE: "false"
 ```
 {% endcode %}
 
