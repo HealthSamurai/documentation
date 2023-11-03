@@ -219,10 +219,11 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 |                               kl.dk.fhir.term |                                                                                                                                         1.0.0, 1.1.0 |
 |                medcom.fhir.dk.acknowledgement |                                                                                                                                                2.0.1 |
 |              medcom.fhir.dk.carecommunication |                                                                                                                                  2.0.0, 2.1.0, 3.0.0 |
-|                           medcom.fhir.dk.core |                                                                                                                                  2.0.0, 2.1.0, 2.2.0 |
+|                           medcom.fhir.dk.core |                                                                                                                           2.0.0, 2.1.0, 2.2.0, 2.3.0 |
+|            medcom.fhir.dk.homecareobservation |                                                                                                                                                1.0.0 |
 |           medcom.fhir.dk.hospitalnotification |                                                                                                                                  2.0.0, 3.0.0, 3.0.1 |
-|                      medcom.fhir.dk.messaging |                                                                                                                                                2.0.0 |
-|                    medcom.fhir.dk.terminology |                                                                                                             1.0.0, 1.1.0, 1.1.1, 1.2.0, 1.3.0, 1.4.0 |
+|                      medcom.fhir.dk.messaging |                                                                                                                                         2.0.0, 2.1.0 |
+|                    medcom.fhir.dk.terminology |                                                                                                      1.0.0, 1.1.0, 1.1.1, 1.2.0, 1.3.0, 1.4.0, 1.5.0 |
 |                   silth.fhir.terminology.core |                                                                                                                                                0.1.2 |
 |                        silth.fhir.th.claimcon |                                                                                                                                                0.1.2 |
 |                      silth.fhir.th.extensions |                                                                                                                                         0.1.0, 1.0.0 |
