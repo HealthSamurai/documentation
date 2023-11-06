@@ -6,7 +6,9 @@ description: >-
 
 # How to use tracing
 
-Aidbox supports exporting traces using the Protobuf protocol in line with the OTEL specification. Our guide configures Aidbox to export traces to the OpenTelemetry collector, but the setup can also be modified to export to other traces consumers that adhere to this specification.
+{% hint style="info" %}
+Aidbox supports exporting traces using the Protobuf protocol in line with the OTEL specification. This guide configures Aidbox to export traces to the OpenTelemetry collector, but the setup can also be modified to export to other traces consumers that adhere to this specification.
+{% endhint %}
 
 ## Prerequisites&#x20;
 
