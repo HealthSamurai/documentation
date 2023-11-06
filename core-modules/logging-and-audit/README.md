@@ -9,7 +9,7 @@ Aidbox produces structured logs on every signifact event to the internal stream 
 * [Loki](loki-integration.md)
 
 {% hint style="info" %}
-Aidbox logs can be used in audit. Please, see our [article on auditing](audit.md) for more info.
+Aidbox logs can be used in audit. Please, see our [article on auditing](../../modules-1/audit/) for more info.
 {% endhint %}
 
 ## Logs API

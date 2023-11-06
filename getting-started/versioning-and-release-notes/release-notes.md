@@ -50,7 +50,7 @@
   * Supported [Open Telemetry exporter for logs & metrics](../../modules-1/monitoring/run-aidbox-locally-with-docker.md)
 * Security and access control
   * Supported [Bundle batch operation in Multitenant API](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#bundle)&#x20;
-  * Added [Audit Log UI ](../../modules-1/logging-and-audit/setup-audit-logging.md)on Aidbox Console
+  * Added [Audit Log UI ](../../modules-1/audit/setup-audit-logging.md)on Aidbox Console
 * [Aidbox Forms](../../modules-1/aidbox-forms.md)
   * Added autocomplete for literals and keywords
   * Configured Questionnaire converter to accept FHIR Bundle
