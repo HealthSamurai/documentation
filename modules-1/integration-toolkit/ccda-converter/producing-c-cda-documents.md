@@ -191,6 +191,25 @@ var cda = aidbox.post('/ccda/v2/to-cda', bundle);
 Another pseudo-code example on how to populate section narrative from  section entries:
 
 ```javascript
+function generateVitalSignsNarrative(section, bundle) {
+  var result = '';
+  
+  for (i = 0; i < section.entry.length; i++) {
+    var vs = bundle.findByRef(section.entry[i]);
+    
+    result += '<paragraph>' + 
+      formatCode(vs.code) + " " +
+      formatDate(vs.effective) + " " +
+      formatValue(vs.value) + '</paragraph>';
+  }
+  
+  if (section.entry.length == 0) {
+    result = 'No vital signs available';
+  }
+  
+  return result;
+}
+
 var docdef = { ... };
 var bundle = aidbox.post('/ccda/prepare-doc', docdef);
 
@@ -201,7 +220,8 @@ for (i = 0; i < composition.section.length; i++) {
   
   if (section.code.coding[0].code == '8716-3') {
     section.text = {
-      // returns stringified HTML
+      // this function receives all the data it needs to populate narrative
+      // it returns stringified HTML
       div: generateVitalSignsNarrative(section, bundle),
       status: 'generated'
     };
