@@ -169,7 +169,7 @@ The best practice is to have Observation.code to be equal to section LOINC code 
 
 ### Making modifications to the source FHIR Document
 
-Quite often it's needed to make ad-hoc changes here and there in the CDA document to meet specific requirements. For example, one may want to generate section narrative from section entries or discard all patient identifiers except for SSN. To make this possible, you can get FHIR Document populated by Document Definition via `/ccda/prepare-doc` endpoint and then make modifications to it. Then all modifications are in place, you can submit result to the `/ccda/v2/to-cda` endpoint. Consider the following pseudo-code which removes all patient idenfitiers from the Patient resource except for SSN:
+Quite often it's needed to make ad-hoc changes here and there in the CDA document to meet specific requirements. For example, one may want to generate section narrative from section entries or discard all patient identifiers except for SSN. To make this possible, you can get FHIR Document populated by Document Definition via `/ccda/prepare-doc` endpoint and then make modifications to it. When all modifications are in place, you can submit result to the `/ccda/v2/to-cda` endpoint to generate the final CDA document. Consider the following pseudo-code which removes all patient idenfitiers from the Patient resource except for SSN:
 
 ```javascript
 var docdef = { ... };
