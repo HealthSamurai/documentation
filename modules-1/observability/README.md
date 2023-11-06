@@ -8,8 +8,8 @@ Aidbox emits three types of signals such as traces, metrics, and logs. All in Op
 [getting-started](getting-started/)
 {% endcontent-ref %}
 
-{% content-ref url="logs/" %}
-[logs](logs/)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 {% content-ref url="metrics/" %}

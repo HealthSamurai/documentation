@@ -1,6 +1,6 @@
 # Audit
 
-Aidbox automatically logs all auth, API, database and network events, so in most cases basic audit log may be derived from [Aidbox logs](../../core-modules/logging-and-audit/).
+Aidbox automatically logs all auth, API, database and network events, so in most cases basic audit log may be derived from [Aidbox logs](../observability/logging-and-audit/).
 
 In rare cases Aidbox logs are not enough for auditing. For instance, you'd like to track business-relevant events happening outside of Aidbox control.
 
@@ -26,6 +26,6 @@ FHIR Standard introduced [AuditEvent](http://hl7.org/fhir/auditevent.html) resou
 
 Aidbox allows you to enhance logs with your own data and push your own logs into Aidbox stream along with its internal logs.
 
-{% content-ref url="../../core-modules/logging-and-audit/extending-access-logs.md" %}
-[extending-access-logs.md](../../core-modules/logging-and-audit/extending-access-logs.md)
+{% content-ref url="../observability/logging-and-audit/background-information/extending-access-logs.md" %}
+[extending-access-logs.md](../observability/logging-and-audit/background-information/extending-access-logs.md)
 {% endcontent-ref %}

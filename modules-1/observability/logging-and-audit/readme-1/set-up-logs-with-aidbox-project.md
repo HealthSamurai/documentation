@@ -4,7 +4,7 @@ description: This guide explains how logging can be activated with the Aidbox pr
 
 # Set up logs with Aidbox project
 
-We expect your [Aidbox project](broken-reference/) is set up and running.
+We expect your [Aidbox project](../../../../core-modules/logging-and-audit/readme-1/broken-reference/) is set up and running.
 
 ## How do logs work? <a href="#how-logs-work" id="how-logs-work"></a>
 

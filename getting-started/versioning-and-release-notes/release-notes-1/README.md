@@ -50,7 +50,7 @@ Now references to contained resources are represented as `localRef` attribute in
 * Managed SQL for FHIR search by [SearchQuery](../../../api-1/fhir-api/search-1/searchquery.md)
 * A default timeout for Search Operations with [\_timeout](../../../api-1/fhir-api/search-1/search-parameters-list/\_timeout.md) param for high-load
 * Ordered search in [$lookup](../../../api-1/fhir-api/search-1/usdlookup.md)
-* microseconds precision for timestamps (Resource.meta.lastUpdated)&#x20;
+* microseconds precision for timestamps (Resource.meta.lastUpdated)
 * Better Aidbox <=> FHIR conversion for first-class extensions
 * Added JWT sub & iss and client IP address to logs
 * aidbox-cli elastic search logger now creates a new index for each day
@@ -70,12 +70,12 @@ It's time to upgrade your database - please stop your container and change image
 ### Features
 
 * In REST Console support for multiline URL line using `\`
-* New  `/<RT>/$lookup`  operation for efficient lookup search in millions of records - [read more](../../../api-1/fhir-api/search-1/usdlookup.md)
+* New `/<RT>/$lookup` operation for efficient lookup search in millions of records - [read more](../../../api-1/fhir-api/search-1/usdlookup.md)
 * [AidboxQuery](../../../tutorials/data-api/custom-search.md) extended with count-query and params types and defaults
 * New `/<RT>/$load` and `/$load` [bulk operations](../../../api-1/bulk-api-1/#usdload) were added and [$import](../../../api-1/bulk-api-1/#usdimport) was upgraded
-* aidbox/db upgrade to 11.4 + fixes in json\_knife pg extension - (deep patterns, indexes)&#x20;
+* aidbox/db upgrade to 11.4 + fixes in json\_knife pg extension - (deep patterns, indexes)
 * Highlighted logs for humans in [Aidbox.Dev](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md) by default: docker logs -f \<your-box-container>
-* New [Aidbox.Enterprise](broken-reference)
+* New [Aidbox.Enterprise](broken-reference/)
 
 ## 0.4.5 \[3 July 2019]
 
@@ -85,7 +85,7 @@ It's time to upgrade your database - please stop your container and change image
 * Support for [ident interpolation](../../../modules-1/security-and-access-control/security/access-control.md#sql-engine) in SQL policy - `SELECT * FROM {{!params.resource/type}}`
 * [SQL Migrations](../../../modules-1/aidbox-search/usdpsql.md#sql-migrations)
 * New [\_explain](../../../api-1/fhir-api/search-1/#\_explain) parameter for Search API
-* Beta version of bulk [import operation](../../../api-1/bulk-api-1/#usdimport)&#x20;
+* Beta version of bulk [import operation](../../../api-1/bulk-api-1/#usdimport)
 * History & Snippets for REST & DB Console
 
 ## 0.4.4 _\[17 June 2019]_
@@ -115,11 +115,11 @@ It's time to upgrade your database - please stop your container and change image
 
 ### Features
 
-* [User Level Logs](../../../core-modules/logging-and-audit/)
+* [User Level Logs](../../../modules-1/observability/logging-and-audit/)
 * [Structured Data Capture](../../../tutorials/tutorials/sdc-with-custom-resources.md) with Custom Resources (Alpha)
-* [History based replication](broken-reference)
+* [History based replication](broken-reference/)
 * Search: new [\_ilike](../../../api-1/fhir-api/search-1/#\_ilike-search-non-fhir) search parameter
-* Search: [\_include=\*](../../../api-1/fhir-api/search-1/#\_include-and-\_revinclude)  support
+* Search: [\_include=\*](../../../api-1/fhir-api/search-1/#\_include-and-\_revinclude) support
 * Search: [\_list](../../../api-1/fhir-api/search-1/#\_list) parameter support
 * [$dump](../../../api-1/bulk-api-1/#usddump) - Bulk Export Operation
 * [Health-Check](../../../app-development-guides/receive-logs-from-your-app/health-check.md) endpoint by [RFC](https://inadarei.github.io/rfc-healthcheck/)
@@ -143,7 +143,7 @@ This release is mostly dedicated to stabilisation of new auth module. Check-out 
 
 ### Bug Fixes
 
-* Reference search with `:identifier`  - #47
+* Reference search with `:identifier` - #47
 * Support for `isOpen` for applications - #69
 * Failure of search with invalid search param - #65
 * FHIR transaction endpoint urls without `/` - #62
@@ -171,13 +171,13 @@ This release is mostly dedicated to stabilisation of new auth module. Check-out 
 * [#51](https://github.com/Aidbox/Issues/issues/51) Fix CodeSystem create on `/fhir` api
 * [#49](https://github.com/Aidbox/Issues/issues/49) Fix \_sort with dashes in parameter name
 
-## 0.3.5  Hotfix
+## 0.3.5 Hotfix
 
-* [#51](https://github.com/Aidbox/Issues/issues/51) - Fix `CodeSystem` create on  `/fhir` api
+* [#51](https://github.com/Aidbox/Issues/issues/51) - Fix `CodeSystem` create on `/fhir` api
 
 ## 0.3.4
 
-* Subscriptions `$poll` operation and `webhook` channel: [Subscriptions](broken-reference);
+* Subscriptions `$poll` operation and `webhook` channel: [Subscriptions](broken-reference/);
 * Fixed [Aidbox](https://www.health-samurai.io/aidbox) to FHIR data transformation bug when polymorphic attributes wasn't properly handled in recursive elements such as `QuestionnaireResponse.item`
 * Support [`_total`](https://build.fhir.org/search.html#total) search parameter (\_totalMethod=count also works)
 * Support `page` search parameter (\_page - also works)

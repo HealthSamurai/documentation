@@ -12,19 +12,19 @@ You need to enable Datadog Logs API and create an API Key
 
 To create a new API key go to [Datadog](https://app.datadoghq.com/) then go to Integrations -> APIs:
 
-![](<../../.gitbook/assets/image (11) (2) (1).png>)
+![](<../../../../.gitbook/assets/image (11) (2) (1).png>)
 
 Click API Keys
 
-![](<../../.gitbook/assets/image (13).png>)
+![](<../../../../.gitbook/assets/image (13).png>)
 
 Enter the name of the new key and click Create API Key
 
-![](<../../.gitbook/assets/image (15) (1).png>)
+![](<../../../../.gitbook/assets/image (15) (1).png>)
 
 Copy the newly generated key
 
-![](<../../.gitbook/assets/image (16).png>)
+![](<../../../../.gitbook/assets/image (16).png>)
 
 ## Configure Aidbox
 
@@ -44,11 +44,11 @@ aidbox:
 
 Go to Logs -> Configuration
 
-![](<../../.gitbook/assets/image (18).png>)
+![](<../../../../.gitbook/assets/image (18).png>)
 
 Click edit on Preprocessing for JSON logs
 
-![](<../../.gitbook/assets/image (19).png>)
+![](<../../../../.gitbook/assets/image (19).png>)
 
 Set the attributes
 
@@ -60,75 +60,75 @@ Set the attributes
 | Trace Id attributes | ctx     |
 | Message attributes  | msg,err |
 
-![](<../../.gitbook/assets/image (22) (1).png>)
+![](<../../../../.gitbook/assets/image (22) (1).png>)
 
 Now add a facet for the event.
 
 Go to logs then click add on the left
 
-![](<../../.gitbook/assets/image (23) (2).png>)
+![](<../../../../.gitbook/assets/image (23) (2).png>)
 
 Use `@ev` path for the new facet
 
-![](<../../.gitbook/assets/image (24) (1).png>)
+![](<../../../../.gitbook/assets/image (24) (1).png>)
 
 In this guide, we will add a metric for authorization failures
 
 Go to Logs -> Generate Metrics
 
-![](<../../.gitbook/assets/image (25) (1).png>)
+![](<../../../../.gitbook/assets/image (25) (1).png>)
 
 Click Add a new metric
 
-![](<../../.gitbook/assets/image (26) (1).png>)
+![](<../../../../.gitbook/assets/image (26) (1).png>)
 
 Define a query for the `auth/authorize-failed` event
 
-![](<../../.gitbook/assets/image (27) (1).png>)
+![](<../../../../.gitbook/assets/image (27) (1).png>)
 
 Enter the name for the new metric and click Create metric
 
-![](<../../.gitbook/assets/image (28).png>)
+![](<../../../../.gitbook/assets/image (28).png>)
 
 Now we can see our metric in the Metrics Explorer
 
-![](<../../.gitbook/assets/image (29) (1).png>)
+![](<../../../../.gitbook/assets/image (29) (1).png>)
 
 And we can define monitoring to alert if there are too many authorization failures. To do this navigate to Monitors -> New Monitor
 
-![](<../../.gitbook/assets/image (30).png>)
+![](<../../../../.gitbook/assets/image (30).png>)
 
 Select monitor type "metric"
 
-![](<../../.gitbook/assets/image (31) (1).png>)
+![](<../../../../.gitbook/assets/image (31) (1).png>)
 
 Set up monitoring options
 
-![](<../../.gitbook/assets/image (32) (1).png>)
+![](<../../../../.gitbook/assets/image (32) (1).png>)
 
 And notifications
 
-![](<../../.gitbook/assets/image (33).png>)
+![](<../../../../.gitbook/assets/image (33).png>)
 
 Now we can see our monitor on the Monitor page
 
-![](<../../.gitbook/assets/image (34).png>)
+![](<../../../../.gitbook/assets/image (34).png>)
 
 It takes some time for Datadog to set up the monitor. After a while, it will become green
 
-![](<../../.gitbook/assets/image (35).png>)
+![](<../../../../.gitbook/assets/image (35).png>)
 
 And when there are too many authorization failures in a short period of time, it changes the status to warning
 
-![](<../../.gitbook/assets/image (36) (1).png>)
+![](<../../../../.gitbook/assets/image (36) (1).png>)
 
 Then when it hits the threshold, the alert is created
 
-![](<../../.gitbook/assets/image (37).png>)
+![](<../../../../.gitbook/assets/image (37).png>)
 
 On the Monitor page, you can see statistics
 
-![](<../../.gitbook/assets/image (38).png>)
+![](<../../../../.gitbook/assets/image (38).png>)
 
 {% hint style="warning" %}
 By default Aidbox sends logs as bundles of multiple records so if there's not enough data **you won't see any logs in Datadog**. For testing purposes reduce bundle size to 1 record by setting environment variable:

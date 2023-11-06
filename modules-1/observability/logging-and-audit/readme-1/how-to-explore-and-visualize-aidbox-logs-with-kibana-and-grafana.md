@@ -35,7 +35,7 @@ Aidbox Elastic appender sends logs as bundles of multiple records so if there's 
 AIDBOX_ES_BATCH_SIZE=1
 ```
 
-Aidbox Elastic appender documentation is available [here](elastic-logs-and-monitoring-integration.md#elasticsearch-logging).
+Aidbox Elastic appender documentation is available [here](../how-to-guides/elastic-logs-and-monitoring-integration.md#elasticsearch-logging).
 {% endhint %}
 
 Using the listed attributes helps you to read REST logs in Elastic search filtering them type by type.
@@ -44,11 +44,11 @@ The example below will help you read REST API logs:
 
 Please put + to toggle `Time`, `w_m`, `w_r`_,_`w_url`, `d`, `w_st`, `w_uid` fields into the document table:
 
-![](<../../.gitbook/assets/image (41) (1) (1).png>)
+![](<../../../../.gitbook/assets/image (41) (1) (1).png>)
 
 Now you can browse and explore REST API logs
 
-![](<../../.gitbook/assets/image (39).png>)
+![](<../../../../.gitbook/assets/image (39).png>)
 
 _Kibana's **Discover** enables you to quickly search and filter your data, get information about the structure of the fields, and visualize your data with **Lens** and **Maps**. You can customize and save your searches and place them on a dashboard._
 

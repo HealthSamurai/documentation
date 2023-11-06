@@ -10,7 +10,7 @@ Please pay attention! APM via Kibana is deprecated starting from [February 2022]
 
 First step to get started with APM is to read official [tutorial](https://www.elastic.co/guide/en/apm/server/current/getting-started-apm-server.html):
 
-To setup Aidbox monitoring please read this [article](../../core-modules/logging-and-audit/elastic-logs-and-monitoring-integration.md#elastic-apm-monitoring).
+To setup Aidbox monitoring please read this [article](../../modules-1/observability/logging-and-audit/how-to-guides/elastic-logs-and-monitoring-integration.md#elastic-apm-monitoring).
 
 After you've successfully installed APM URL, you can see APM in main Kibana menu and in services submenu you can see Aidbox. Refer to below screenshots:
 
@@ -25,7 +25,7 @@ COPY --from=docker.elastic.co/observability/apm-agent-java:latest /usr/agent/ela
 ```
 {% endcode %}
 
-After that, you can run Aidbox with APM as previously with `JAVA_OPTS` env variable&#x20;
+After that, you can run Aidbox with APM as previously with `JAVA_OPTS` env variable
 
 ```bash
 JAVA_OPTS='-javaagent:/app/elastic-apm-agent.jar 

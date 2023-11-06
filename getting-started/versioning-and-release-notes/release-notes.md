@@ -180,7 +180,7 @@
 * C-CDA / FHIR converter
   * Enhanced [/ccda/validate](../../modules-1/integration-toolkit/ccda-converter/#validating-a-c-cda-document) endpoint to behave exactly as HealthIT.gov CDA validator
 * Security and access control
-  * Supported [log filtering](../../core-modules/logging-and-audit/technical-reference/log-transformations.md#aidbox.log-ignore) via [different appenders](../../core-modules/logging-and-audit/technical-reference/log-appenders.md)
+  * Supported [log filtering](../../modules-1/observability/logging-and-audit/technical-reference/log-transformations.md#aidbox.log-ignore) via [different appenders](../../modules-1/observability/logging-and-audit/technical-reference/log-appenders.md)
   * Added [Authentication with AD FS](../../security-and-access-control-1/how-to-guides/set-up-external-identity-provider/microsoft-ad-fs.md) tutorial
 * Aidbox user portal
   * Added option to specify [FHIR R5 configuration project](https://aidbox.app/ui/portal#/signin)
@@ -375,7 +375,7 @@
   * Introduced [CI/CD licenses](../editions-and-pricing.md#aidbox-licenses) on the [Aidbox user portal](../../overview/aidbox-user-portal/). You can get this license to run multiple instances of Aidbox and Multibox in parallel for 72 hours. Both development and CI/CD licenses are available for existing customers at no cost
   * Added an option to configure Aidbox instances hosted in Aidbox Cloud with FHIR IGs for data validation
 * Logging and audit
-  * Supported [log streaming to browser](../../core-modules/logging-and-audit/#logs-in-browser)
+  * Supported [log streaming to browser](../../modules-1/observability/logging-and-audit/#logs-in-browser)
   * Fixed incorrect calculation of request duration for resources in transaction bundles
 * Updated documentation
   * [Index management](../../storage-1/indexes/create-indexes-manually.md)
@@ -387,7 +387,7 @@
 
 * Released [Seed v2 service](../../aidbox-configuration/aidbox-zen-lang-project/seed-v2.md) for [Aidbox configuration projects](../../aidbox-configuration/aidbox-zen-lang-project/)
 * Added [Client.audience](../../modules-1/security-and-access-control/readme-1/overview.md#client.audience) regex support in SMART on FHIR App launch
-* Added an option to [filter Aidbox stdout logs](../../core-modules/logging-and-audit/#stdout-log) by severity. By default Aidbox sends only `error` severity level logs to stdout.
+* Added an option to [filter Aidbox stdout logs](../../modules-1/observability/logging-and-audit/#stdout-log) by severity. By default Aidbox sends only `error` severity level logs to stdout.
 * Added response headers to [Aidbox REST Console](../../overview/aidbox-ui/rest-console-1.md) and [Aidbox Notebooks](../../overview/aidbox-ui/notebooks.md)
 * Enhanced the Aidbox configuration process with [Aidbox configuration projects](../../aidbox-configuration/aidbox-zen-lang-project/)
 * Supported [`/health` endpoint](../../app-development-guides/receive-logs-from-your-app/health-check.md) for Multibox
@@ -407,7 +407,7 @@
 * Released [Aidbox forms](../../modules-1/aidbox-forms.md) alpha version.
 * Added [RPC method](../../terminology/terminology-api/import-using-an-aidbox-project.md#track-import-progress) to track Aidbox project terminology bundles async load status.
 * Added env to [automatically create a User resource](../../security-and-access-control-1/auth/access-token-introspection.md#create-user-automatically) on auth via TokenIntrospector. This allows to use both TokenIntrospector and IdentityProvider auth for the same User in Aidbox.
-* Added log event [:op/timeout](../../core-modules/logging-and-audit/aidbox-log-schema.md) for logging custom operations timeout
+* Added log event [:op/timeout](../../modules-1/observability/logging-and-audit/technical-reference/aidbox-log-schema.md) for logging custom operations timeout
 * Added FHIR Bundle transaction conditional CRUD with `urn:uuid` support
 * Added [SNOMED CT bundle](../../terminology/terminology-api/)
 * Enhanced [zen.fhir profiles](../../profiling-and-validation/profiling-with-zen-lang/) with RequiredPattern and FixedValue constraints
@@ -572,7 +572,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 * Added [Asynchronous Batch Validation](../../profiling-and-validation/validation-api.md#asynchronous-batch-validation) mode to validate data in Aidbox against new profiles
 * Released [Aidbox RPC API](../../api-1/rpc-api.md)
 * Supported conditional patch (e.g.: `PATCH /Patient?name=foo`)
-* Added an [environment variable](../../core-modules/logging-and-audit/aidbox-logs-and-datadog-integration.md) to pass the environment to Datadog (dev/staging/prod).
+* Added an [environment variable](../../modules-1/observability/logging-and-audit/how-to-guides/aidbox-logs-and-datadog-integration.md) to pass the environment to Datadog (dev/staging/prod).
 * Added history for [$load](../../api-1/bulk-api-1/usdload.md) and [$import](../../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md) so now when using bulk import you have a source of truth for the history of every resource.
 * Added [empty query params remove #238](https://github.com/Aidbox/Issues/issues/238). Please **pay attention** **when** **using json-schema** **access policy** engine: Fields with empty values, such as `[], {}, "", null`, are removed before passing request into access policy processing. Make sure to add `require` check of the fields that are validated by a json schema
 * Fixed some bugs submitted by Aidbox users. Check it [here](https://github.com/Aidbox/Issues/milestone/3?closed=1).
