@@ -6,6 +6,8 @@ description: >-
 
 # How to use tracing
 
+Aidbox supports exporting traces using the Protobuf protocol in line with the OTEL specification. Our guide configures Aidbox to export traces to the OpenTelemetry collector, but the setup can also be modified to export to other traces consumers that adhere to this specification.
+
 ## Prerequisites&#x20;
 
 1. [OTEL collector](https://opentelemetry.io/docs/collector/) should be deployed and [configured](https://opentelemetry.io/docs/collector/configuration/) to receive traces.
@@ -28,7 +30,7 @@ To enable tracing in Aidbox:
  otel-trace-exporter
  {:zen/tags #{aidbox.telemetry.trace/exporter}
   :engine   aidbox.telemetry.trace/otlp-exporter
-  :url      "http://otel-collector-url/v1/traces"}} ; otel collector traces endpoint
+  :url      "http://otel-collector-url/v1/traces"}} ; traces consumer endpoint
 ```
 
 ## How to check the OTEL collector receives traces&#x20;
