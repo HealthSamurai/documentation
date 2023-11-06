@@ -16,7 +16,7 @@ Aidbox produces structured logs on every significant event to the internal strea
 Aidbox logs can be used in audit. Please, see our [article on auditing](../../audit/) for more info.
 {% endhint %}
 
-## Logs exporting
+## Logs exporting with OTEL spec
 
 Aidbox supports the [OpenTelemetry protocol](https://opentelemetry.io/) and exports logs in Protobuf format to any consumer that supports this specification.
 
