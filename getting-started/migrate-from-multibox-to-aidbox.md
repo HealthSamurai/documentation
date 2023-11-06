@@ -6,7 +6,7 @@ description: >-
 
 # Migrate from Multibox to Aidbox
 
-Let's say you have Multibox deployed locally by [Run Multibox locally getting started guide](../getting-started-1/run-aidbox/run-multibox-locally-with-docker.md). And you have couple of boxes launched there.
+Let's say you have Multibox deployed locally by [Run Multibox locally getting started guide](broken-reference). And you have couple of boxes launched there.
 
 * `fhirr4box` box with FHIR R4 version
 * `fhirr5box` box with FHIR R5 version
