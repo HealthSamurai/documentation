@@ -108,6 +108,10 @@ To simplify the creation of Document bundles, Aidbox offers a feature called Doc
    :entry
    {:method "GET"
     :url "/Condition?patient=Patient/{{pid}}&category=problem-list-item"}}
+    
+  {:title "Hospital Course"
+    :code {:code "8648-8" :display "Hospital course Narrative" :system "http://loinc.org"}
+    :text {:method "GET" :url "/Observation?subject=Patient/{{pid}}&code=8648-8"}}
 
   {:title "Vital Signs"
    :code {:code "8716-3"
@@ -149,6 +153,64 @@ Multiple FHIR searches per section is also possible:
   {:method "GET" :url "/Procedure?subject=Patient/{{pid}}&status=completed&category=225299006"}]}
 ```
 
+### Section Narratives
+
+Along with structured entries, CDA section contains human-readable narrative describing section data. This narrative can be automatically generated from entries ([if specific section supports it](sections/)) or it can be retrieved from Observation resource. To retrieve narrative from Observation, provide corresponding request under the `:text` key:
+
+```clojure
+{:title "Discharge Instructions"
+ :code {:code "8653-8"
+        :display "Discharge instructions"
+        :system "http://loinc.org"}
+ :text {:method "GET" :url "/Observation?subject=Patient/{{pid}}&code=8653-8"}}
+```
+
+The best practice is to have Observation.code to be equal to section LOINC code for Observations containing section narratives. Narrative itself can be stored in either Observation.note\[0].text or Observation.value.string.
+
+### Making modifications to the source FHIR Document
+
+Quite often it's needed to make ad-hoc changes here and there in the CDA document to meet specific requirements. For example, one may want to generate section narrative from section entries or discard all patient identifiers except for SSN. To make this possible, you can get FHIR Document populated by Document Definition via `/ccda/prepare-doc` endpoint and then make modifications to it. Then all modifications are in place, you can submit result to the `/ccda/v2/to-cda` endpoint. Consider the following pseudo-code which removes all patient idenfitiers from the Patient resource except for SSN:
+
+```javascript
+var docdef = { ... };
+var bundle = aidbox.post('/ccda/prepare-doc', docdef);
+
+var composition = bundle.entry[0].resource;
+var patient = bundle.findByRef(composition.subject);
+
+for (i = 0; i < patient.identifier.length; i++) {
+  var ident = patient.identifier[i];
+  if (ident.system != 'http://hl7.org/fhir/sid/us-ssn') {
+    patient.identifier[i] = null;
+  }
+}
+
+var cda = aidbox.post('/ccda/v2/to-cda', bundle);
+```
+
+Another pseudo-code example on how to populate section narrative from  section entries:
+
+```javascript
+var docdef = { ... };
+var bundle = aidbox.post('/ccda/prepare-doc', docdef);
+
+var composition = bundle.entry[0].resource;
+
+for (i = 0; i < composition.section.length; i++) {
+  var section = composition.section[i];
+  
+  if (section.code.coding[0].code == '8716-3') {
+    section.text = {
+      // returns stringified HTML
+      div: generateVitalSignsNarrative(section, bundle),
+      status: 'generated'
+    };
+  }
+}
+
+var cda = aidbox.post('/ccda/v2/to-cda', bundle);
+```
+
 ### Predefined Document Definitions
 
 C-CDA / FHIR module provides ready-to-use Document Definitions for most frequently used document types.
@@ -158,6 +220,8 @@ C-CDA / FHIR module provides ready-to-use Document Definitions for most frequent
 | continuity-of-care | CCD         | <p><code>pid</code> - Patient ID<br><code>start-date</code><br><code>end-date</code></p> |
 
 Additionally to this list, you can put your own predefined Document Definitions via [Aidbox Configuration Project](../../../aidbox-configuration/aidbox-zen-lang-project/).
+
+
 
 ### /ccda/prepare-doc endpoint
 
