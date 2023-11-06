@@ -1,4 +1,8 @@
-# Aidbox Metrics Server
+---
+description: This guide explains how to set up and use Aidbox Metrics Server
+---
+
+# Use Aidbox Metrics Server
 
 ### Setup and environment variable
 

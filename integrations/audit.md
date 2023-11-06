@@ -16,6 +16,6 @@
 
 ## Monitoring
 
-{% content-ref url="../core-modules/monitoring/grafana-integration.md" %}
-[grafana-integration.md](../core-modules/monitoring/grafana-integration.md)
+{% content-ref url="../modules-1/observability/metrics/monitoring/grafana-integration.md" %}
+[grafana-integration.md](../modules-1/observability/metrics/monitoring/grafana-integration.md)
 {% endcontent-ref %}

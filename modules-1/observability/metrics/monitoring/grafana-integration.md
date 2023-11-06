@@ -4,7 +4,7 @@ description: >-
   upload it to Grafana
 ---
 
-# Grafana integration
+# Set-up Grafana integration
 
 {% hint style="info" %}
 Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [contact](broken-reference) us if you have questions, feedback, or suggestions.
@@ -60,7 +60,7 @@ content-type: application/edn
           :kibana-url "https://my.kibana.url.com"}}
 ```
 
-<figure><img src="../../.gitbook/assets/Screen Shot 2022-12-06 at 08.44.55.png" alt=""><figcaption><p>Grafana Aidbox Dashboard</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/Screen Shot 2022-12-06 at 08.44.55.png" alt=""><figcaption><p>Grafana Aidbox Dashboard</p></figcaption></figure>
 
 ### `aidbox.metrics/update-cluster-dashboard`
 
