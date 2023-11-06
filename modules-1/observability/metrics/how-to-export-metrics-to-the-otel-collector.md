@@ -4,6 +4,10 @@ description: This guide explains how to export Aidbox metrics in OpenTelemetry f
 
 # How to export metrics to the OTEL collector
 
+{% hint style="info" %}
+Aidbox supports exporting metrics using the Protobuf protocol in line with the OTEL specification. This guide configures Aidbox to export metrics to the OpenTelemetry collector, but the setup can also be modified to export to other metrics consumers that adhere to this specification.
+{% endhint %}
+
 ## Prerequisites&#x20;
 
 1. [OTEL collector](https://opentelemetry.io/docs/collector/) should be deployed and [configured](https://opentelemetry.io/docs/collector/configuration/) to receive metrics.
@@ -24,7 +28,7 @@ To  enable exporting metrics to the OTEL collector:
 
  open-telemetry-metrics-exporter
  {:zen/tags #{aidbox.telemetry.metrics/otlp-exporter}
-  :url "http://url-to-otel-collector/v1/metrics" ; otel collector metrics endpoint
+  :url "http://url-to-otel-collector/v1/metrics" ; metrics consumer endpoint
   :period 5 #_"sec"}} ; period in seconds to send metrics 
 ```
 
