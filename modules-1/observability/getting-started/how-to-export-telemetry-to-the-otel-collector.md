@@ -6,6 +6,10 @@ description: This guide explains how to export Aidbox telemetry in OpenTelemetry
 
 Aidbox produces three types of signals: logs, metrics and traces in OTEL specification.&#x20;
 
+{% hint style="info" %}
+Aidbox supports exporting telemetry using the Protobuf protocol in line with the OTEL specification. This guide configures Aidbox to export telemetry to the OpenTelemetry collector, but the setup can also be modified to export to other telemetry consumers that adhere to this specification.
+{% endhint %}
+
 ## Prerequisites&#x20;
 
 1. [OTEL collector](https://opentelemetry.io/docs/collector/) should be deployed and [configured](https://opentelemetry.io/docs/collector/configuration/) to receive logs, metrics and traces.
@@ -25,25 +29,25 @@ To  enable exporting telemetry to the OTEL collector:
 ```clojure
 {:ns     main
  :import #{aidbox
-           aidbox.log ; import aidbox.log
+           aidbox.log               ; import aidbox.log
            aidbox.telemetry.metrics ; import aidbox.telemetry.metrics
-           aidbox.telemetry.trace ; import aidbox.telemetry.trace
+           aidbox.telemetry.trace   ; import aidbox.telemetry.trace
            config}
 
  open-telemetry-appender
  {:zen/tags   #{aidbox/service}
   :engine     aidbox.log/open-telemetry-appender
-  :config     {:url "http://url-to-otel-collector/v1/logs"}} ; otel collector logs endpoint
+  :config     {:url "http://url-to-otel-collector/v1/logs"}} ; logs consumer endpoint
 
  open-telemetry-metrics-exporter
  {:zen/tags #{aidbox.telemetry.metrics/otlp-exporter}
-  :url "http://url-to-otel-collector/v1/metrics" ; otel collector metrics endpoint
+  :url "http://url-to-otel-collector/v1/metrics" ; metrics consumer endpoint
   :period 5 #_"sec"} ; period in seconds to send metrics 
  
  otel-trace-exporter
  {:zen/tags #{aidbox.telemetry.trace/exporter}
   :engine   aidbox.telemetry.trace/otlp-exporter
-  :url      "http://otel-collector-url/v1/traces"} ; otel collector traces endpoint
+  :url      "http://otel-collector-url/v1/traces"} ; traces consumer endpoint
 
  box
  {:zen/tags #{aidbox/system}
@@ -89,6 +93,3 @@ GET /fhir/Patient
 ### See Aidbox telemetry in the OTEL collector stdout
 
 Open OTEL collector stdout and see the logs, metrics and traces.
-
-
-
