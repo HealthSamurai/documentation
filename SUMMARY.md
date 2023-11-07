@@ -419,6 +419,7 @@
 * [Multitenancy](modules-1/multitenancy/README.md)
   * [Organization-based hierarchical access control](modules-1/multitenancy/organization-based-hierarchical-access-control.md)
   * [How to enable hierarchical access control](modules-1/multitenancy/how-to-enable-hierarchical-access-control.md)
+* [Patient data access API](modules-1/patient-data-access-api.md)
 
 ## FHIR Implementation Guides
 
