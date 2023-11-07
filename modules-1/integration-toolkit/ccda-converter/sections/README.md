@@ -23,8 +23,8 @@ description: >-
 |[Immunizations Section (entries optional) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/immunizationssectionentriesoptiona.md)|11369-6|immunizations|✅
 |[Immunizations Section (entries required) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/immunizationssectionentriesrequire.md)|11369-6|immunizations|✅
 |[Medical Equipment Section (V2)](/modules-1/integration-toolkit/ccda-converter/sections/medicalequipmentsectionv2.md)|46264-8|medical-equipment|❌
-|[Medications Section (entries optional) (V2)](/modules-1/integration-toolkit/ccda-converter/sections/medicationssectionentriesoptional.md)|10160-0|medications|❌
-|[Medications Section (entries required) (V2)](/modules-1/integration-toolkit/ccda-converter/sections/medicationssectionentriesrequired.md)|10160-0|medications|❌
+|[Medications Section (entries optional) (V2)](/modules-1/integration-toolkit/ccda-converter/sections/medicationssectionentriesoptional.md)|10160-0|medications|✅
+|[Medications Section (entries required) (V2)](/modules-1/integration-toolkit/ccda-converter/sections/medicationssectionentriesrequired.md)|10160-0|medications|✅
 |[Mental Status Section (V2)](/modules-1/integration-toolkit/ccda-converter/sections/mentalstatussectionv2.md)|10190-7|mental-status|❌
 |[Notes](/modules-1/integration-toolkit/ccda-converter/sections/notessection.md)|11488-4, 28570-0, 11502-2, 34117-2, 18842-5, 11506-3|N/A|❌
 |[Nutrition Section](/modules-1/integration-toolkit/ccda-converter/sections/nutritionsection.md)|61144-2|nutrition|❌

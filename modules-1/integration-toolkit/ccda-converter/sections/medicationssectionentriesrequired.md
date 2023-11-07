@@ -43,7 +43,19 @@ So there are nullFlavor values placed in required field effectiveTime.
           displayName="display string"
           code="10160-0"/>
    <title>Medications Section (entries required) (V2)</title>
-   <text>Medications Section (entries required) (V2)</text>
+   <text>
+      <table>
+         <thead>
+            <tr>
+               <td>Medication</td>
+               <td>Timing</td>
+               <td>Route</td>
+               <td>Frequency</td>
+               <td>Dose</td>
+            </tr>
+         </thead>
+      </table>
+   </text>
    <entry>
       <substanceAdministration classCode="SBADM" moodCode="EVN">
          <templateId root="2.16.840.1.113883.10.20.22.4.16" extension="2014-06-09"/>
@@ -138,7 +150,28 @@ C-CDA Equivalent:
           displayName="display string"
           code="10160-0"/>
    <title>Medications Section (entries required) (V2)</title>
-   <text>Medications Section (entries required) (V2)</text>
+   <text>
+      <table>
+         <thead>
+            <tr>
+               <td>Medication</td>
+               <td>Timing</td>
+               <td>Route</td>
+               <td>Frequency</td>
+               <td>Dose</td>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>Sudafed 30 MG Oral Tablet (1049529)</td>
+               <td>2014-01-18 - 2014-01-28</td>
+               <td>Oral (C38288)</td>
+               <td>every 4.0 h</td>
+               <td>2.0 mg</td>
+            </tr>
+         </tbody>
+      </table>
+   </text>
    <entry>
       <substanceAdministration moodCode="EVN" classCode="SBADM">
          <templateId root="2.16.840.1.113883.10.20.22.4.16" extension="2014-06-09"/>
