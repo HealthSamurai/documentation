@@ -31,7 +31,7 @@ To  enable exporting logs to the OTEL collector:
  open-telemetry-appender
  {:zen/tags   #{aidbox/service}
   :engine     aidbox.log/open-telemetry-appender
-  :config     {:url "http://url-to-otel-collector/v1/logs"}} ; otel collector logs endpoint
+  :config     {:url "http://url-to-otel-collector/v1/logs"}} ; logs consumer endpoint
 
  box
  {:zen/tags #{aidbox/system}
