@@ -35,31 +35,41 @@ Even if MedicationStatement is without effective, produced C-CDA entry contains 
 
 So there are nullFlavor values placed in required field effectiveTime.
 ```xml
-<entry>
-   <substanceAdministration classCode="SBADM" moodCode="EVN">
-      <templateId root="2.16.840.1.113883.10.20.22.4.16" extension="2014-06-09"/>
-      <templateId root="2.16.840.1.113883.10.20.22.4.16"/>
-      <id root="b80bb774-0288-fda1-f201-890375a60c8f"/>
-      <statusCode code="active"/>
-      <effectiveTime xsi:type="IVL_TS">
-         <low nullFlavor="UNK"/>
-         <high nullFlavor="UNK"/>
-      </effectiveTime>
-      <doseQuantity nullFlavor="UNK"/>
-      <consumable>
-         <manufacturedProduct classCode="MANU">
-            <templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09"/>
-            <templateId root="2.16.840.1.113883.10.20.22.4.23"/>
-            <manufacturedMaterial>
-               <code codeSystem="2.16.840.1.113883.6.88"
-                      codeSystemName="HTTP://WWW.NLM.NIH.GOV/RESEARCH/UMLS/RXNORM"
-                      displayName="Sudafed 30 MG Oral Tablet"
-                      code="1049529"/>
-            </manufacturedMaterial>
-         </manufacturedProduct>
-      </consumable>
-   </substanceAdministration>
-</entry>
+<section>
+   <templateId root="2.16.840.1.113883.10.20.22.2.1.1" extension="2014-06-09"/>
+   <templateId root="2.16.840.1.113883.10.20.22.2.1.1"/>
+   <code codeSystem="2.16.840.1.113883.6.1"
+          codeSystemName="HTTP://LOINC.ORG"
+          displayName="display string"
+          code="10160-0"/>
+   <title>Medications Section (entries optional) (V2)</title>
+   <text>Medications Section (entries optional) (V2)</text>
+   <entry>
+      <substanceAdministration classCode="SBADM" moodCode="EVN">
+         <templateId root="2.16.840.1.113883.10.20.22.4.16" extension="2014-06-09"/>
+         <templateId root="2.16.840.1.113883.10.20.22.4.16"/>
+         <id root="b80bb774-0288-fda1-f201-890375a60c8f"/>
+         <statusCode code="active"/>
+         <effectiveTime xsi:type="IVL_TS">
+            <low nullFlavor="UNK"/>
+            <high nullFlavor="UNK"/>
+         </effectiveTime>
+         <doseQuantity nullFlavor="UNK"/>
+         <consumable>
+            <manufacturedProduct classCode="MANU">
+               <templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09"/>
+               <templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+               <manufacturedMaterial>
+                  <code codeSystem="2.16.840.1.113883.6.88"
+                         codeSystemName="HTTP://WWW.NLM.NIH.GOV/RESEARCH/UMLS/RXNORM"
+                         displayName="Sudafed 30 MG Oral Tablet"
+                         code="1049529"/>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </consumable>
+      </substanceAdministration>
+   </entry>
+</section>
 ```
 
 ## Medication Statement sample
@@ -120,39 +130,49 @@ This is a typical medication resource sample.
 
 C-CDA Equivalent:
 ```xml
-<entry>
-   <substanceAdministration moodCode="EVN" classCode="SBADM">
-      <templateId root="2.16.840.1.113883.10.20.22.4.16" extension="2014-06-09"/>
-      <templateId root="2.16.840.1.113883.10.20.22.4.16"/>
-      <id root="9aff221f-e689-5e3d-71ff-6edcb00406cb"/>
-      <statusCode code="active"/>
-      <effectiveTime operator="A" xsi:type="PIVL_TS">
-         <period xsi:type="IVL_PQ">
-            <low value="4.0" unit="h"/>
-            <high value="6.0" unit="h"/>
-         </period>
-      </effectiveTime>
-      <effectiveTime xsi:type="IVL_TS">
-         <low value="20140118"/>
-         <high value="20140128"/>
-      </effectiveTime>
-      <routeCode codeSystem="2.16.840.1.113883.3.26.1.1"
-                  codeSystemName="HTTP://NCITHESAURUS-STAGE.NCI.NIH.GOV"
-                  displayName="Oral"
-                  code="C38288"/>
-      <doseQuantity value="2.0" unit="mg"/>
-      <consumable>
-         <manufacturedProduct classCode="MANU">
-            <templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09"/>
-            <templateId root="2.16.840.1.113883.10.20.22.4.23"/>
-            <manufacturedMaterial>
-               <code codeSystem="2.16.840.1.113883.6.88"
-                      codeSystemName="HTTP://WWW.NLM.NIH.GOV/RESEARCH/UMLS/RXNORM"
-                      displayName="Sudafed 30 MG Oral Tablet"
-                      code="1049529"/>
-            </manufacturedMaterial>
-         </manufacturedProduct>
-      </consumable>
-   </substanceAdministration>
-</entry>
+<section>
+   <templateId root="2.16.840.1.113883.10.20.22.2.1.1" extension="2014-06-09"/>
+   <templateId root="2.16.840.1.113883.10.20.22.2.1.1"/>
+   <code codeSystem="2.16.840.1.113883.6.1"
+          codeSystemName="HTTP://LOINC.ORG"
+          displayName="display string"
+          code="10160-0"/>
+   <title>Medications Section (entries optional) (V2)</title>
+   <text>Medications Section (entries optional) (V2)</text>
+   <entry>
+      <substanceAdministration moodCode="EVN" classCode="SBADM">
+         <templateId root="2.16.840.1.113883.10.20.22.4.16" extension="2014-06-09"/>
+         <templateId root="2.16.840.1.113883.10.20.22.4.16"/>
+         <id root="9aff221f-e689-5e3d-71ff-6edcb00406cb"/>
+         <statusCode code="active"/>
+         <effectiveTime operator="A" xsi:type="PIVL_TS">
+            <period xsi:type="IVL_PQ">
+               <low value="4.0" unit="h"/>
+               <high value="6.0" unit="h"/>
+            </period>
+         </effectiveTime>
+         <effectiveTime xsi:type="IVL_TS">
+            <low value="20140118"/>
+            <high value="20140128"/>
+         </effectiveTime>
+         <routeCode codeSystem="2.16.840.1.113883.3.26.1.1"
+                     codeSystemName="HTTP://NCITHESAURUS-STAGE.NCI.NIH.GOV"
+                     displayName="Oral"
+                     code="C38288"/>
+         <doseQuantity value="2.0" unit="mg"/>
+         <consumable>
+            <manufacturedProduct classCode="MANU">
+               <templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09"/>
+               <templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+               <manufacturedMaterial>
+                  <code codeSystem="2.16.840.1.113883.6.88"
+                         codeSystemName="HTTP://WWW.NLM.NIH.GOV/RESEARCH/UMLS/RXNORM"
+                         displayName="Sudafed 30 MG Oral Tablet"
+                         code="1049529"/>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </consumable>
+      </substanceAdministration>
+   </entry>
+</section>
 ```

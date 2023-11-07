@@ -85,52 +85,62 @@ Internal ID: FunctionalStatusSectionV2
 
 C-CDA Equivalent:
 ```xml
-<entry>
-   <organizer classCode="CLUSTER" moodCode="EVN">
-      <templateId root="2.16.840.1.113883.10.20.22.4.66" extension="2014-06-09"/>
-      <templateId root="2.16.840.1.113883.10.20.22.4.66"/>
-      <id root="a7bc1062-8649-42a0-833d-eed65bd017c9"/>
-      <code codeSystem="2.16.840.1.113883.6.254"
-             codeSystemName="2.16.840.1.113883.6.254"
-             displayName="Self-Care"
-             code="d5"/>
-      <statusCode code="completed"/>
-      <component>
-         <observation moodCode="EVN" classCode="OBS">
-            <templateId root="2.16.840.1.113883.10.20.22.4.67" extension="2014-06-09"/>
-            <templateId root="2.16.840.1.113883.10.20.22.4.67"/>
-            <id root="b63a8636-cfff-4461-b018-40ba58ba8b32"/>
-            <code codeSystem="2.16.840.1.113883.6.1"
-                   codeSystemName="HTTP://LOINC.ORG"
-                   displayName="Functional status"
-                   code="54522-8"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20130311"/>
-            <value codeSystem="2.16.840.1.113883.6.96"
-                    codeSystemName="HTTP://SNOMED.INFO/SCT"
-                    displayName=" Independent walking"
-                    code="165245003"
-                    xsi:type="CD"/>
-            <author>
-               <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
-               <time value="20130706114500-0800"/>
-               <assignedAuthor>
-                  <id root="b63a8636-cfff-4461-b018-53236c541111"/>
-                  <code codeSystem="2.16.840.1.113883.5.53"
-                         codeSystemName="2.16.840.1.113883.5.53"
-                         displayName="Adult Medicine"
-                         code="207QA0505X"/>
-                  <addr nullFlavor="UNK"/>
-                  <telecom nullFlavor="UNK"/>
-                  <assignedPerson>
-                     <name nullFlavor="UNK"/>
-                  </assignedPerson>
-               </assignedAuthor>
-            </author>
-         </observation>
-      </component>
-   </organizer>
-</entry>
+<section>
+   <templateId root="2.16.840.1.113883.10.20.22.2.14" extension="2014-06-09"/>
+   <templateId root="2.16.840.1.113883.10.20.22.2.14"/>
+   <code codeSystem="2.16.840.1.113883.6.1"
+          codeSystemName="HTTP://LOINC.ORG"
+          displayName="display string"
+          code="47420-5"/>
+   <title>Functional Status Section (V2)</title>
+   <text>Functional Status Section (V2)</text>
+   <entry>
+      <organizer classCode="CLUSTER" moodCode="EVN">
+         <templateId root="2.16.840.1.113883.10.20.22.4.66" extension="2014-06-09"/>
+         <templateId root="2.16.840.1.113883.10.20.22.4.66"/>
+         <id root="a7bc1062-8649-42a0-833d-eed65bd017c9"/>
+         <code codeSystem="2.16.840.1.113883.6.254"
+                codeSystemName="2.16.840.1.113883.6.254"
+                displayName="Self-Care"
+                code="d5"/>
+         <statusCode code="completed"/>
+         <component>
+            <observation moodCode="EVN" classCode="OBS">
+               <templateId root="2.16.840.1.113883.10.20.22.4.67" extension="2014-06-09"/>
+               <templateId root="2.16.840.1.113883.10.20.22.4.67"/>
+               <id root="b63a8636-cfff-4461-b018-40ba58ba8b32"/>
+               <code codeSystem="2.16.840.1.113883.6.1"
+                      codeSystemName="HTTP://LOINC.ORG"
+                      displayName="Functional status"
+                      code="54522-8"/>
+               <statusCode code="completed"/>
+               <effectiveTime value="20130311"/>
+               <value codeSystem="2.16.840.1.113883.6.96"
+                       codeSystemName="HTTP://SNOMED.INFO/SCT"
+                       displayName=" Independent walking"
+                       code="165245003"
+                       xsi:type="CD"/>
+               <author>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                  <time value="20130706114500-0800"/>
+                  <assignedAuthor>
+                     <id root="b63a8636-cfff-4461-b018-53236c541111"/>
+                     <code codeSystem="2.16.840.1.113883.5.53"
+                            codeSystemName="2.16.840.1.113883.5.53"
+                            displayName="Adult Medicine"
+                            code="207QA0505X"/>
+                     <addr nullFlavor="UNK"/>
+                     <telecom nullFlavor="UNK"/>
+                     <assignedPerson>
+                        <name nullFlavor="UNK"/>
+                     </assignedPerson>
+                  </assignedAuthor>
+               </author>
+            </observation>
+         </component>
+      </organizer>
+   </entry>
+</section>
 ```
 
 ## sample1
@@ -190,38 +200,48 @@ C-CDA Equivalent:
 
 C-CDA Equivalent:
 ```xml
-<entry>
-   <observation moodCode="EVN" classCode="OBS">
-      <templateId root="2.16.840.1.113883.10.20.22.4.67" extension="2014-06-09"/>
-      <templateId root="2.16.840.1.113883.10.20.22.4.67"/>
-      <id root="b63a8636-cfff-4461-b018-53236c544444"/>
-      <code codeSystem="2.16.840.1.113883.6.1"
-             codeSystemName="HTTP://LOINC.ORG"
-             displayName="Functional status"
-             code="54522-8"/>
-      <statusCode code="completed"/>
-      <effectiveTime value="20130311"/>
-      <value codeSystem="2.16.840.1.113883.6.96"
-              codeSystemName="HTTP://SNOMED.INFO/SCT"
-              displayName=" Independent walking"
-              code="165245003"
-              xsi:type="CD"/>
-      <author>
-         <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
-         <time value="20130706114500-0800"/>
-         <assignedAuthor>
-            <id root="b63a8636-cfff-4461-b018-53236c546666"/>
-            <code codeSystem="2.16.840.1.113883.5.53"
-                   codeSystemName="2.16.840.1.113883.5.53"
-                   displayName="Adult Medicine"
-                   code="207QA0505X"/>
-            <addr nullFlavor="UNK"/>
-            <telecom nullFlavor="UNK"/>
-            <assignedPerson>
-               <name nullFlavor="UNK"/>
-            </assignedPerson>
-         </assignedAuthor>
-      </author>
-   </observation>
-</entry>
+<section>
+   <templateId root="2.16.840.1.113883.10.20.22.2.14" extension="2014-06-09"/>
+   <templateId root="2.16.840.1.113883.10.20.22.2.14"/>
+   <code codeSystem="2.16.840.1.113883.6.1"
+          codeSystemName="HTTP://LOINC.ORG"
+          displayName="display string"
+          code="47420-5"/>
+   <title>Functional Status Section (V2)</title>
+   <text>Functional Status Section (V2)</text>
+   <entry>
+      <observation moodCode="EVN" classCode="OBS">
+         <templateId root="2.16.840.1.113883.10.20.22.4.67" extension="2014-06-09"/>
+         <templateId root="2.16.840.1.113883.10.20.22.4.67"/>
+         <id root="b63a8636-cfff-4461-b018-53236c544444"/>
+         <code codeSystem="2.16.840.1.113883.6.1"
+                codeSystemName="HTTP://LOINC.ORG"
+                displayName="Functional status"
+                code="54522-8"/>
+         <statusCode code="completed"/>
+         <effectiveTime value="20130311"/>
+         <value codeSystem="2.16.840.1.113883.6.96"
+                 codeSystemName="HTTP://SNOMED.INFO/SCT"
+                 displayName=" Independent walking"
+                 code="165245003"
+                 xsi:type="CD"/>
+         <author>
+            <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+            <time value="20130706114500-0800"/>
+            <assignedAuthor>
+               <id root="b63a8636-cfff-4461-b018-53236c546666"/>
+               <code codeSystem="2.16.840.1.113883.5.53"
+                      codeSystemName="2.16.840.1.113883.5.53"
+                      displayName="Adult Medicine"
+                      code="207QA0505X"/>
+               <addr nullFlavor="UNK"/>
+               <telecom nullFlavor="UNK"/>
+               <assignedPerson>
+                  <name nullFlavor="UNK"/>
+               </assignedPerson>
+            </assignedAuthor>
+         </author>
+      </observation>
+   </entry>
+</section>
 ```

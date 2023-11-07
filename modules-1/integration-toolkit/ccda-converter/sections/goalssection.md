@@ -93,54 +93,63 @@ Internal ID: GoalsSection
 
 C-CDA Equivalent:
 ```xml
-<entry>
-   <observation moodCode="GOL" classCode="OBS">
-      <templateId root="2.16.840.1.113883.10.20.22.4.121"/>
-      <id root="3700b3b0-fbed-11e2-b788-0800200c9a66"/>
-      <code codeSystem="2.16.840.1.113883.6.1"
-             codeSystemName="HTTP://LOINC.ORG"
-             displayName="Negotiated Goal for Body Temperature"
-             code="8310-5"/>
-      <statusCode code="active"/>
-      <effectiveTime value="20150623"/>
-      <value xsi:type="IVL_PQ">
-         <low value="98" unit="[degF]"/>
-         <high value="99" unit="[degF]"/>
-      </value>
-      <author>
-         <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
-         <time value="20130730"/>
-         <assignedAuthor>
-            <id root="d839038b-7172-4165-a760-467925b43857"/>
-            <code codeSystem="2.16.840.1.113883.6.101"
-                   codeSystemName="HTTP://HL7.ORG/FHIR/VALUESET/PROVIDER-TAXONOMY"
-                   displayName="Registered nurse"
-                   code="163W00000X"/>
-            <addr nullFlavor="UNK"/>
-            <telecom nullFlavor="UNK"/>
-            <assignedPerson>
-               <name use="L">
-                  <given>Mary</given>
-                  <family>McDonald</family>
-                  <suffix>RN</suffix>
-               </name>
-            </assignedPerson>
-         </assignedAuthor>
-      </author>
-      <entryRelationship typeCode="REFR">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.10.20.22.4.143"/>
-            <id root="3f31c8c1-b73d-4cee-a784-d3b33bf2a0b1"/>
-            <code code="225773000" codeSystem="2.16.840.1.113883.6.96"/>
-            <value code="394849002"
-                    displayName="High Priority"
-                    codeSystemName="SNOMED"
-                    codeSystem="2.16.840.1.113883.6.96"
-                    xsi:type="CD"/>
-         </observation>
-      </entryRelationship>
-   </observation>
-</entry>
+<section>
+   <templateId root="2.16.840.1.113883.10.20.22.2.60"/>
+   <code codeSystem="2.16.840.1.113883.6.1"
+          codeSystemName="HTTP://LOINC.ORG"
+          displayName="display string"
+          code="61146-7"/>
+   <title>Goals Section</title>
+   <text>Goals Section</text>
+   <entry>
+      <observation moodCode="GOL" classCode="OBS">
+         <templateId root="2.16.840.1.113883.10.20.22.4.121"/>
+         <id root="3700b3b0-fbed-11e2-b788-0800200c9a66"/>
+         <code codeSystem="2.16.840.1.113883.6.1"
+                codeSystemName="HTTP://LOINC.ORG"
+                displayName="Negotiated Goal for Body Temperature"
+                code="8310-5"/>
+         <statusCode code="active"/>
+         <effectiveTime value="20150623"/>
+         <value xsi:type="IVL_PQ">
+            <low value="98" unit="[degF]"/>
+            <high value="99" unit="[degF]"/>
+         </value>
+         <author>
+            <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+            <time value="20130730"/>
+            <assignedAuthor>
+               <id root="d839038b-7172-4165-a760-467925b43857"/>
+               <code codeSystem="2.16.840.1.113883.6.101"
+                      codeSystemName="HTTP://HL7.ORG/FHIR/VALUESET/PROVIDER-TAXONOMY"
+                      displayName="Registered nurse"
+                      code="163W00000X"/>
+               <addr nullFlavor="UNK"/>
+               <telecom nullFlavor="UNK"/>
+               <assignedPerson>
+                  <name use="L">
+                     <given>Mary</given>
+                     <family>McDonald</family>
+                     <suffix>RN</suffix>
+                  </name>
+               </assignedPerson>
+            </assignedAuthor>
+         </author>
+         <entryRelationship typeCode="REFR">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.10.20.22.4.143"/>
+               <id root="2383ba98-1344-4a69-8b9e-45a5a317710c"/>
+               <code code="225773000" codeSystem="2.16.840.1.113883.6.96"/>
+               <value code="394849002"
+                       displayName="High Priority"
+                       codeSystemName="SNOMED"
+                       codeSystem="2.16.840.1.113883.6.96"
+                       xsi:type="CD"/>
+            </observation>
+         </entryRelationship>
+      </observation>
+   </entry>
+</section>
 ```
 
 ## sample1
@@ -209,37 +218,46 @@ C-CDA Equivalent:
 
 C-CDA Equivalent:
 ```xml
-<entry>
-   <observation moodCode="GOL" classCode="OBS">
-      <templateId root="2.16.840.1.113883.10.20.22.4.121"/>
-      <id root="3700b3b0-fbed-11e2-b778-0800200c9a66"/>
-      <code codeSystem="2.16.840.1.113883.6.1"
-             codeSystemName="HTTP://LOINC.ORG"
-             displayName="Resident's overall goal established during assessment process"
-             code="58144-7"/>
-      <statusCode code="active"/>
-      <effectiveTime value="20150623"/>
-      <value xsi:type="ST">Need to gain more energy to do regular activities. (Visual Inspection)</value>
-      <author>
-         <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
-         <time value="20130730"/>
-         <assignedAuthor>
-            <id root="d839038b-7171-4165-a760-467925b43857"/>
-            <code codeSystem="2.16.840.1.113883.6.101"
-                   codeSystemName="HTTP://HL7.ORG/FHIR/VALUESET/PROVIDER-TAXONOMY"
-                   displayName="Registered nurse"
-                   code="163W00000X"/>
-            <addr nullFlavor="UNK"/>
-            <telecom nullFlavor="UNK"/>
-            <assignedPerson>
-               <name use="L">
-                  <given>Mary</given>
-                  <family>McDonald</family>
-                  <suffix>RN</suffix>
-               </name>
-            </assignedPerson>
-         </assignedAuthor>
-      </author>
-   </observation>
-</entry>
+<section>
+   <templateId root="2.16.840.1.113883.10.20.22.2.60"/>
+   <code codeSystem="2.16.840.1.113883.6.1"
+          codeSystemName="HTTP://LOINC.ORG"
+          displayName="display string"
+          code="61146-7"/>
+   <title>Goals Section</title>
+   <text>Goals Section</text>
+   <entry>
+      <observation moodCode="GOL" classCode="OBS">
+         <templateId root="2.16.840.1.113883.10.20.22.4.121"/>
+         <id root="3700b3b0-fbed-11e2-b778-0800200c9a66"/>
+         <code codeSystem="2.16.840.1.113883.6.1"
+                codeSystemName="HTTP://LOINC.ORG"
+                displayName="Resident's overall goal established during assessment process"
+                code="58144-7"/>
+         <statusCode code="active"/>
+         <effectiveTime value="20150623"/>
+         <value xsi:type="ST">Need to gain more energy to do regular activities. (Visual Inspection)</value>
+         <author>
+            <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+            <time value="20130730"/>
+            <assignedAuthor>
+               <id root="d839038b-7171-4165-a760-467925b43857"/>
+               <code codeSystem="2.16.840.1.113883.6.101"
+                      codeSystemName="HTTP://HL7.ORG/FHIR/VALUESET/PROVIDER-TAXONOMY"
+                      displayName="Registered nurse"
+                      code="163W00000X"/>
+               <addr nullFlavor="UNK"/>
+               <telecom nullFlavor="UNK"/>
+               <assignedPerson>
+                  <name use="L">
+                     <given>Mary</given>
+                     <family>McDonald</family>
+                     <suffix>RN</suffix>
+                  </name>
+               </assignedPerson>
+            </assignedAuthor>
+         </author>
+      </observation>
+   </entry>
+</section>
 ```

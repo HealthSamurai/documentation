@@ -58,49 +58,59 @@ Internal ID: FamilyHistorySectionV3
 
 C-CDA Equivalent:
 ```xml
-<entry>
-   <organizer classCode="CLUSTER" moodCode="EVN">
-      <templateId root="2.16.840.1.113883.10.20.22.4.45" extension="2015-08-01"/>
-      <templateId root="2.16.840.1.113883.10.20.22.4.45"/>
-      <id root="01faa204-1111-4610-864f-cb50b650d0fa"/>
-      <statusCode code="completed"/>
-      <subject>
-         <relatedSubject classCode="PRS">
-            <code codeSystem="2.16.840.1.113883.5.111"
-                   codeSystemName="HTTP://TERMINOLOGY.HL7.ORG/CODESYSTEM/V3-ROLECODE"
-                   displayName="Brother"
-                   code="BRO"/>
-            <subject>
-               <name>Gerald</name>
-               <administrativeGenderCode codeSystem="2.16.840.1.113883.5.1"
-                                          codeSystemName="2.16.840.1.113883.5.1"
-                                          displayName="M"
-                                          code="M"/>
-            </subject>
-         </relatedSubject>
-      </subject>
-      <component>
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.10.20.22.4.46" extension="2015-08-01"/>
-            <templateId root="2.16.840.1.113883.10.20.22.4.46"/>
-            <id root="4b890f1c-6c88-40da-af22-74bfdcce9d36"/>
-            <code codeSystem="2.16.840.1.113883.6.96"
-                   displayName="Condition"
-                   code="64572001">
-               <translation codeSystem="2.16.840.1.113883.6.1"
-                             displayName="Condition Family Member"
-                             code="75315-2"/>
-            </code>
-            <statusCode code="completed"/>
-            <value codeSystem="2.16.840.1.113883.6.96"
-                    codeSystemName="HTTP://SNOMED.INFO/SCT"
-                    displayName="Asthma (disorder)"
-                    code="195967001"
-                    xsi:type="CD"/>
-         </observation>
-      </component>
-   </organizer>
-</entry>
+<section>
+   <templateId root="2.16.840.1.113883.10.20.22.2.15" extension="2015-08-01"/>
+   <templateId root="2.16.840.1.113883.10.20.22.2.15"/>
+   <code codeSystem="2.16.840.1.113883.6.1"
+          codeSystemName="HTTP://LOINC.ORG"
+          displayName="display string"
+          code="10157-6"/>
+   <title>Family History Section (V3)</title>
+   <text>Family History Section (V3)</text>
+   <entry>
+      <organizer classCode="CLUSTER" moodCode="EVN">
+         <templateId root="2.16.840.1.113883.10.20.22.4.45" extension="2015-08-01"/>
+         <templateId root="2.16.840.1.113883.10.20.22.4.45"/>
+         <id root="01faa204-1111-4610-864f-cb50b650d0fa"/>
+         <statusCode code="completed"/>
+         <subject>
+            <relatedSubject classCode="PRS">
+               <code codeSystem="2.16.840.1.113883.5.111"
+                      codeSystemName="HTTP://TERMINOLOGY.HL7.ORG/CODESYSTEM/V3-ROLECODE"
+                      displayName="Brother"
+                      code="BRO"/>
+               <subject>
+                  <name>Gerald</name>
+                  <administrativeGenderCode codeSystem="2.16.840.1.113883.5.1"
+                                             codeSystemName="2.16.840.1.113883.5.1"
+                                             displayName="M"
+                                             code="M"/>
+               </subject>
+            </relatedSubject>
+         </subject>
+         <component>
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.10.20.22.4.46" extension="2015-08-01"/>
+               <templateId root="2.16.840.1.113883.10.20.22.4.46"/>
+               <id root="7c1bcda8-15df-4ba6-b8f0-d1cdf54f638b"/>
+               <code codeSystem="2.16.840.1.113883.6.96"
+                      displayName="Condition"
+                      code="64572001">
+                  <translation codeSystem="2.16.840.1.113883.6.1"
+                                displayName="Condition Family Member"
+                                code="75315-2"/>
+               </code>
+               <statusCode code="completed"/>
+               <value codeSystem="2.16.840.1.113883.6.96"
+                       codeSystemName="HTTP://SNOMED.INFO/SCT"
+                       displayName="Asthma (disorder)"
+                       code="195967001"
+                       xsi:type="CD"/>
+            </observation>
+         </component>
+      </organizer>
+   </entry>
+</section>
 ```
 
 ## sample1
@@ -152,48 +162,58 @@ C-CDA Equivalent:
 
 C-CDA Equivalent:
 ```xml
-<entry>
-   <organizer classCode="CLUSTER" moodCode="EVN">
-      <templateId root="2.16.840.1.113883.10.20.22.4.45" extension="2015-08-01"/>
-      <templateId root="2.16.840.1.113883.10.20.22.4.45"/>
-      <id root="01faa204-0000-4610-864f-cb50b650d0fa"/>
-      <statusCode code="completed"/>
-      <subject>
-         <relatedSubject classCode="PRS">
-            <code codeSystem="2.16.840.1.113883.5.111"
-                   codeSystemName="HTTP://TERMINOLOGY.HL7.ORG/CODESYSTEM/V3-ROLECODE"
-                   displayName="Brother"
-                   code="BRO"/>
-            <subject>
-               <name>James</name>
-               <administrativeGenderCode codeSystem="2.16.840.1.113883.5.1"
-                                          codeSystemName="2.16.840.1.113883.5.1"
-                                          displayName="M"
-                                          code="M"/>
-            </subject>
-         </relatedSubject>
-      </subject>
-      <component>
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.10.20.22.4.46" extension="2015-08-01"/>
-            <templateId root="2.16.840.1.113883.10.20.22.4.46"/>
-            <id root="c8e6dbb5-a12f-4699-b82c-0f3da27c0bf6"/>
-            <code codeSystem="2.16.840.1.113883.6.96"
-                   displayName="Condition"
-                   code="64572001">
-               <translation codeSystem="2.16.840.1.113883.6.1"
-                             displayName="Condition Family Member"
-                             code="75315-2"/>
-            </code>
-            <text>High blood pressure</text>
-            <statusCode code="completed"/>
-            <value codeSystem="2.16.840.1.113883.6.96"
-                    codeSystemName="HTTP://SNOMED.INFO/SCT"
-                    displayName="Essential Hypertension"
-                    code="59621000"
-                    xsi:type="CD"/>
-         </observation>
-      </component>
-   </organizer>
-</entry>
+<section>
+   <templateId root="2.16.840.1.113883.10.20.22.2.15" extension="2015-08-01"/>
+   <templateId root="2.16.840.1.113883.10.20.22.2.15"/>
+   <code codeSystem="2.16.840.1.113883.6.1"
+          codeSystemName="HTTP://LOINC.ORG"
+          displayName="display string"
+          code="10157-6"/>
+   <title>Family History Section (V3)</title>
+   <text>Family History Section (V3)</text>
+   <entry>
+      <organizer classCode="CLUSTER" moodCode="EVN">
+         <templateId root="2.16.840.1.113883.10.20.22.4.45" extension="2015-08-01"/>
+         <templateId root="2.16.840.1.113883.10.20.22.4.45"/>
+         <id root="01faa204-0000-4610-864f-cb50b650d0fa"/>
+         <statusCode code="completed"/>
+         <subject>
+            <relatedSubject classCode="PRS">
+               <code codeSystem="2.16.840.1.113883.5.111"
+                      codeSystemName="HTTP://TERMINOLOGY.HL7.ORG/CODESYSTEM/V3-ROLECODE"
+                      displayName="Brother"
+                      code="BRO"/>
+               <subject>
+                  <name>James</name>
+                  <administrativeGenderCode codeSystem="2.16.840.1.113883.5.1"
+                                             codeSystemName="2.16.840.1.113883.5.1"
+                                             displayName="M"
+                                             code="M"/>
+               </subject>
+            </relatedSubject>
+         </subject>
+         <component>
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.10.20.22.4.46" extension="2015-08-01"/>
+               <templateId root="2.16.840.1.113883.10.20.22.4.46"/>
+               <id root="c5c85a1e-716a-4ac4-9dc6-d6e6c45d46d3"/>
+               <code codeSystem="2.16.840.1.113883.6.96"
+                      displayName="Condition"
+                      code="64572001">
+                  <translation codeSystem="2.16.840.1.113883.6.1"
+                                displayName="Condition Family Member"
+                                code="75315-2"/>
+               </code>
+               <text>High blood pressure</text>
+               <statusCode code="completed"/>
+               <value codeSystem="2.16.840.1.113883.6.96"
+                       codeSystemName="HTTP://SNOMED.INFO/SCT"
+                       displayName="Essential Hypertension"
+                       code="59621000"
+                       xsi:type="CD"/>
+            </observation>
+         </component>
+      </organizer>
+   </entry>
+</section>
 ```

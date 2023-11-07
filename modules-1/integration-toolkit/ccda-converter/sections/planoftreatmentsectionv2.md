@@ -187,52 +187,120 @@ In this case we have 3 entries:
 
 The section contains a list of entries converted from the input resources.
 ```xml
-<entry>
-   <observation moodCode="GOL" classCode="OBS">
-      <templateId root="2.16.840.1.113883.10.20.22.4.121" extension="2022-06-01"/>
-      <templateId root="2.16.840.1.113883.10.20.22.4.121"/>
-      <id root="9b56c25d-9104-45ee-9fa4-e0f3afaa01c1"/>
-      <code codeSystem="2.16.840.1.113883.6.1"
-             codeSystemName="HTTP://LOINC.ORG"
-             displayName="Weight loss"
-             code="45735-8"/>
-      <statusCode code="active"/>
-      <effectiveTime value="20131015"/>
-      <value xsi:type="IVL_PQ">
-         <low value="10" unit="%"/>
-      </value>
-      <author>
-         <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
-         <time value="20130730"/>
-         <assignedAuthor>
-            <id root="d839038b-7171-4165-a760-467925b43857"/>
-            <code codeSystem="2.16.840.1.113883.6.101"
-                   codeSystemName="HTTP://HL7.ORG/FHIR/VALUESET/PROVIDER-TAXONOMY"
-                   displayName="Registered nurse"
-                   code="163W00000X"/>
-            <addr nullFlavor="UNK"/>
-            <telecom nullFlavor="UNK"/>
-            <assignedPerson>
-               <name use="L">
-                  <given>Nurse</given>
-                  <family>Florence</family>
-                  <suffix>RN</suffix>
-               </name>
-            </assignedPerson>
-         </assignedAuthor>
-      </author>
-      <entryRelationship typeCode="REFR">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.10.20.22.4.143"/>
-            <id root="0667d04c-4378-458b-8ce2-8733061d60ee"/>
-            <code code="225773000" codeSystem="2.16.840.1.113883.6.96"/>
-            <value code="394848005"
-                    displayName="Medium Priority"
-                    codeSystemName="SNOMED"
-                    codeSystem="2.16.840.1.113883.6.96"
-                    xsi:type="CD"/>
-         </observation>
-      </entryRelationship>
-   </observation>
-</entry>
+<section>
+   <templateId root="2.16.840.1.113883.10.20.22.2.10" extension="2014-06-09"/>
+   <templateId root="2.16.840.1.113883.10.20.22.2.10"/>
+   <code codeSystem="2.16.840.1.113883.6.1"
+          codeSystemName="HTTP://LOINC.ORG"
+          displayName="display string"
+          code="18776-5"/>
+   <title>Plan of Treatment Section (V2)</title>
+   <text>Plan of Treatment Section (V2)</text>
+   <entry>
+      <observation moodCode="GOL" classCode="OBS">
+         <templateId root="2.16.840.1.113883.10.20.22.4.121" extension="2022-06-01"/>
+         <templateId root="2.16.840.1.113883.10.20.22.4.121"/>
+         <id root="9b56c25d-9104-45ee-9fa4-e0f3afaa01c1"/>
+         <code codeSystem="2.16.840.1.113883.6.1"
+                codeSystemName="HTTP://LOINC.ORG"
+                displayName="Weight loss"
+                code="45735-8"/>
+         <statusCode code="active"/>
+         <effectiveTime value="20131015"/>
+         <value xsi:type="IVL_PQ">
+            <low value="10" unit="%"/>
+         </value>
+         <author>
+            <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+            <time value="20130730"/>
+            <assignedAuthor>
+               <id root="d839038b-7171-4165-a760-467925b43857"/>
+               <code codeSystem="2.16.840.1.113883.6.101"
+                      codeSystemName="HTTP://HL7.ORG/FHIR/VALUESET/PROVIDER-TAXONOMY"
+                      displayName="Registered nurse"
+                      code="163W00000X"/>
+               <addr nullFlavor="UNK"/>
+               <telecom nullFlavor="UNK"/>
+               <assignedPerson>
+                  <name use="L">
+                     <given>Nurse</given>
+                     <family>Florence</family>
+                     <suffix>RN</suffix>
+                  </name>
+               </assignedPerson>
+            </assignedAuthor>
+         </author>
+         <entryRelationship typeCode="REFR">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.10.20.22.4.143"/>
+               <id root="d94324e9-7d40-4a49-91e6-4df61249d3cf"/>
+               <code code="225773000" codeSystem="2.16.840.1.113883.6.96"/>
+               <value code="394848005"
+                       displayName="Medium Priority"
+                       codeSystemName="SNOMED"
+                       codeSystem="2.16.840.1.113883.6.96"
+                       xsi:type="CD"/>
+            </observation>
+         </entryRelationship>
+      </observation>
+   </entry>
+   <entry>
+      <substanceAdministration moodCode="INT" classCode="SBADM">
+         <templateId root="2.16.840.1.113883.10.20.22.4.42" extension="2014-06-09"/>
+         <templateId root="2.16.840.1.113883.10.20.22.4.42"/>
+         <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
+         <statusCode code="active"/>
+         <effectiveTime xsi:type="IVL_TS">
+            <low value="20121002000000"/>
+            <high value="20121030235900"/>
+         </effectiveTime>
+         <routeCode codeSystem="2.16.840.1.113883.3.26.1.1"
+                     codeSystemName="HTTP://NCITHESAURUS-STAGE.NCI.NIH.GOV"
+                     displayName="ORAL"
+                     code="C38288"/>
+         <doseQuantity value="81.0" unit="milliGRAM(s)"/>
+         <consumable>
+            <manufacturedProduct classCode="MANU">
+               <templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09"/>
+               <templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+               <manufacturedMaterial>
+                  <code codeSystem="2.16.840.1.113883.6.88"
+                         codeSystemName="HTTP://WWW.NLM.NIH.GOV/RESEARCH/UMLS/RXNORM"
+                         displayName="aspirin"
+                         code="1191"/>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </consumable>
+      </substanceAdministration>
+   </entry>
+   <entry>
+      <encounter classCode="ENC" moodCode="INT">
+         <templateId root="2.16.840.1.113883.10.20.22.4.40" extension="2014-06-09"/>
+         <templateId root="2.16.840.1.113883.10.20.22.4.40"/>
+         <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
+         <code codeSystem="2.16.840.1.113883.6.96"
+                codeSystemName="HTTP://SNOMED.INFO/SCT"
+                displayName="encounter for check-up (procedure)"
+                code="185349003"/>
+         <statusCode code="active"/>
+         <effectiveTime>
+            <low value="20131015"/>
+            <high nullFlavor="UNK"/>
+         </effectiveTime>
+      </encounter>
+   </entry>
+   <entry>
+      <observation classCode="OBS" moodCode="GOL">
+         <templateId root="2.16.840.1.113883.10.20.22.4.44" extension="2014-06-09"/>
+         <templateId root="2.16.840.1.113883.10.20.22.4.44"/>
+         <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
+         <code codeSystem="2.16.840.1.113883.6.96"
+                codeSystemName="HTTP://SNOMED.INFO/SCT"
+                displayName="ECG"
+                code="142008000"/>
+         <statusCode code="active"/>
+         <effectiveTime value="20121002000000"/>
+      </observation>
+   </entry>
+</section>
 ```

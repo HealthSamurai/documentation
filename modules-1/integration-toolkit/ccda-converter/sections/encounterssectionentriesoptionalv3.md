@@ -128,89 +128,99 @@ Internal ID: EncountersSectionentriesoptionalV3
 
 C-CDA Equivalent:
 ```xml
-<entry>
-   <encounter moodCode="EVN" classCode="ENC">
-      <sdtc:dischargeDispositionCode codeSystem="2.16.840.1.113883.6.301.5"
-                                      codeSystemName="2.16.840.1.113883.6.301.5"
-                                      displayName="Discharged/Transferred to a Facility that Provides Custodial or Supportive Care"
-                                      code="04"/>
-      <templateId root="2.16.840.1.113883.10.20.22.4.49" extension="2015-08-01"/>
-      <templateId root="2.16.840.1.113883.10.20.22.4.49"/>
-      <id root="2a620155-9d11-439e-92b3-5d9815ff4de8"/>
-      <code codeSystem="2.16.840.1.113883.6.12"
-             codeSystemName="HTTP://TERMINOLOGY.HL7.ORG/VALUESET/V3-ACTENCOUNTERCODE"
-             displayName="Office outpatient visit 15 minutes"
-             code="99213"/>
-      <effectiveTime>
-         <low value="20120815"/>
-         <high nullFlavor="UNK"/>
-      </effectiveTime>
-      <participant typeCode="LOC">
-         <participantRole classCode="SDLOC">
-            <templateId root="2.16.840.1.113883.10.20.22.4.32"/>
-            <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
-            <code nullFlavor="NI"/>
-            <addr>
-               <state>OR</state>
-               <city>Portland</city>
-               <postalCode>97005</postalCode>
-               <streetAddressLine>1004 Healthcare Dr.</streetAddressLine>
-            </addr>
-            <telecom value="+1(555)555-1004"/>
-         </participantRole>
-      </participant>
-      <entryRelationship typeCode="RSON">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.10.20.22.4.19" extension="2014-06-09"/>
-            <templateId root="2.16.840.1.113883.10.20.22.4.19"/>
-            <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
-            <code codeSystem="2.16.840.1.113883.6.96"
-                   codeSystemName="HTTP://SNOMED.INFO/SCT"
-                   displayName="Finding"
-                   code="404684003"/>
-            <statusCode code="completed"/>
-            <effectiveTime>
-               <low value="20120925113000-0500"/>
-               <high nullFlavor="UNK"/>
-            </effectiveTime>
-            <value codeSystem="2.16.840.1.113883.6.96"
-                    codeSystemName="HTTP://SNOMED.INFO/SCT"
-                    displayName="Pneumonia"
-                    code="233604007"
-                    xsi:type="CD"/>
-         </observation>
-      </entryRelationship>
-      <entryRelationship typeCode="SUBJ">
-         <act classCode="ACT" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.10.20.22.4.80" extension="2015-08-01"/>
-            <templateId root="2.16.840.1.113883.10.20.22.4.80"/>
-            <code code="29308-4" codeSystem="2.16.840.1.113883.6.1"/>
-            <entryRelationship typeCode="SUBJ">
-               <observation classCode="OBS" moodCode="EVN">
-                  <templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2015-08-01"/>
-                  <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
-                  <id root="db734647-fc99-424c-a864-7e3cda82e704"/>
-                  <code xsi:type="CD"
-                         code="55607006"
-                         displayName="Problem"
-                         codeSystemName="SNOMED-CT"
-                         codeSystem="2.16.840.1.113883.6.96">
-                     <translation nullFlavor="UNK"/>
-                  </code>
-                  <statusCode code="completed"/>
-                  <effectiveTime>
-                     <low value="20120815"/>
-                     <high nullFlavor="NI"/>
-                  </effectiveTime>
-                  <value codeSystem="2.16.840.1.113883.6.96"
-                          codeSystemName="HTTP://SNOMED.INFO/SCT"
-                          displayName="Costal Chondritis"
-                          code="64109004"
-                          xsi:type="CD"/>
-               </observation>
-            </entryRelationship>
-         </act>
-      </entryRelationship>
-   </encounter>
-</entry>
+<section>
+   <templateId root="2.16.840.1.113883.10.20.22.2.22.1" extension="2015-08-01"/>
+   <templateId root="2.16.840.1.113883.10.20.22.2.22.1"/>
+   <code codeSystem="2.16.840.1.113883.6.1"
+          codeSystemName="HTTP://LOINC.ORG"
+          displayName="display string"
+          code="46240-8"/>
+   <title>Encounters Section (entries optional) (V3)</title>
+   <text>Encounters Section (entries optional) (V3)</text>
+   <entry>
+      <encounter moodCode="EVN" classCode="ENC">
+         <sdtc:dischargeDispositionCode codeSystem="2.16.840.1.113883.6.301.5"
+                                         codeSystemName="2.16.840.1.113883.6.301.5"
+                                         displayName="Discharged/Transferred to a Facility that Provides Custodial or Supportive Care"
+                                         code="04"/>
+         <templateId root="2.16.840.1.113883.10.20.22.4.49" extension="2015-08-01"/>
+         <templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+         <id root="2a620155-9d11-439e-92b3-5d9815ff4de8"/>
+         <code codeSystem="2.16.840.1.113883.6.12"
+                codeSystemName="HTTP://TERMINOLOGY.HL7.ORG/VALUESET/V3-ACTENCOUNTERCODE"
+                displayName="Office outpatient visit 15 minutes"
+                code="99213"/>
+         <effectiveTime>
+            <low value="20120815"/>
+            <high nullFlavor="UNK"/>
+         </effectiveTime>
+         <participant typeCode="LOC">
+            <participantRole classCode="SDLOC">
+               <templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+               <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
+               <code nullFlavor="NI"/>
+               <addr>
+                  <state>OR</state>
+                  <city>Portland</city>
+                  <postalCode>97005</postalCode>
+                  <streetAddressLine>1004 Healthcare Dr.</streetAddressLine>
+               </addr>
+               <telecom value="+1(555)555-1004"/>
+            </participantRole>
+         </participant>
+         <entryRelationship typeCode="RSON">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.10.20.22.4.19" extension="2014-06-09"/>
+               <templateId root="2.16.840.1.113883.10.20.22.4.19"/>
+               <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
+               <code codeSystem="2.16.840.1.113883.6.96"
+                      codeSystemName="HTTP://SNOMED.INFO/SCT"
+                      displayName="Finding"
+                      code="404684003"/>
+               <statusCode code="completed"/>
+               <effectiveTime>
+                  <low value="20120925113000-0500"/>
+                  <high nullFlavor="UNK"/>
+               </effectiveTime>
+               <value codeSystem="2.16.840.1.113883.6.96"
+                       codeSystemName="HTTP://SNOMED.INFO/SCT"
+                       displayName="Pneumonia"
+                       code="233604007"
+                       xsi:type="CD"/>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="SUBJ">
+            <act classCode="ACT" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.10.20.22.4.80" extension="2015-08-01"/>
+               <templateId root="2.16.840.1.113883.10.20.22.4.80"/>
+               <code code="29308-4" codeSystem="2.16.840.1.113883.6.1"/>
+               <entryRelationship typeCode="SUBJ">
+                  <observation classCode="OBS" moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2015-08-01"/>
+                     <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                     <id root="db734647-fc99-424c-a864-7e3cda82e704"/>
+                     <code xsi:type="CD"
+                            code="55607006"
+                            displayName="Problem"
+                            codeSystemName="SNOMED-CT"
+                            codeSystem="2.16.840.1.113883.6.96">
+                        <translation nullFlavor="UNK"/>
+                     </code>
+                     <statusCode code="completed"/>
+                     <effectiveTime>
+                        <low value="20120815"/>
+                        <high nullFlavor="NI"/>
+                     </effectiveTime>
+                     <value codeSystem="2.16.840.1.113883.6.96"
+                             codeSystemName="HTTP://SNOMED.INFO/SCT"
+                             displayName="Costal Chondritis"
+                             code="64109004"
+                             xsi:type="CD"/>
+                  </observation>
+               </entryRelationship>
+            </act>
+         </entryRelationship>
+      </encounter>
+   </entry>
+</section>
 ```
