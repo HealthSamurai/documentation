@@ -5,12 +5,13 @@ description: >-
 
 # Supported sections
 
+
 | Section Name | LOINCs | Alias | Narrative
 | --- | --- | --- | --- | 
 |[Allergies and Intolerances Section (entries optional) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/allergiesandintolerancessectioneo.md)|48765-2|allergies|✅
 |[Allergies and Intolerances Section (entries required) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/allergiesandintolerancessectioner.md)|48765-2|allergies|✅
 |[Assessment Section](/modules-1/integration-toolkit/ccda-converter/sections/assessmentsection.md)|51848-0|N/A|❌
-|[Document Header](/modules-1/integration-toolkit/ccda-converter/sections/header.md)||header|❌
+|[Document Header](/modules-1/integration-toolkit/ccda-converter/sections/header.md)|&nbsp;|header|❌
 |[Encounters Section (entries optional) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/encounterssectionentriesoptionalv3.md)|46240-8|encounters|❌
 |[Encounters Section (entries required) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/encounterssectionentriesrequiredv3.md)|46240-8|encounters|❌
 |[Family History Section (V3)](/modules-1/integration-toolkit/ccda-converter/sections/familyhistorysectionv3.md)|10157-6|family-history|❌
