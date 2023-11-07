@@ -85,7 +85,22 @@ C-CDA Equivalent:
           displayName="display string"
           code="47519-4"/>
    <title>Procedures Section (entries required) (V2)</title>
-   <text>Procedures Section (entries required) (V2)</text>
+   <text>
+      <table border="1" width="100%">
+         <thead>
+            <tr>
+               <td>Procedures</td>
+               <td>Status</td>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>Laparoscopic appendectomy (6025007)</td>
+               <td>completed</td>
+            </tr>
+         </tbody>
+      </table>
+   </text>
    <entry>
       <procedure moodCode="EVN" classCode="PROC">
          <templateId root="2.16.840.1.113883.10.20.22.4.14" extension="2014-06-09"/>
@@ -183,7 +198,22 @@ The section contains an Act entry converted from the input Procedure resource.
           displayName="display string"
           code="47519-4"/>
    <title>Procedures Section (entries required) (V2)</title>
-   <text>Procedures Section (entries required) (V2)</text>
+   <text>
+      <table border="1" width="100%">
+         <thead>
+            <tr>
+               <td>Procedures</td>
+               <td>Status</td>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>Nutrition education (61310001)</td>
+               <td>completed</td>
+            </tr>
+         </tbody>
+      </table>
+   </text>
    <entry>
       <act classCode="ACT" moodCode="EVN">
          <templateId root="2.16.840.1.113883.10.20.22.4.12" extension="2014-06-09"/>
@@ -275,7 +305,22 @@ C-CDA Equivalent:
           displayName="display string"
           code="47519-4"/>
    <title>Procedures Section (entries required) (V2)</title>
-   <text>Procedures Section (entries required) (V2)</text>
+   <text>
+      <table border="1" width="100%">
+         <thead>
+            <tr>
+               <td>Procedures</td>
+               <td>Status</td>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>12 lead ECG (268400002)</td>
+               <td>completed</td>
+            </tr>
+         </tbody>
+      </table>
+   </text>
    <entry>
       <observation classCode="OBS" moodCode="EVN">
          <templateId root="2.16.840.1.113883.10.20.22.4.13" extension="2014-06-09"/>

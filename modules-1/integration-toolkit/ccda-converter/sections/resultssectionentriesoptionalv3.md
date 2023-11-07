@@ -325,7 +325,97 @@ C-CDA Equivalent:
           displayName="display string"
           code="30954-2"/>
    <title>Results Section (entries optional) (V3)</title>
-   <text>Results Section (entries optional) (V3)</text>
+   <text>
+      <list>
+         <item>
+            <paragraph>Basic Metabolic Panel - Blood (51990-0)</paragraph>
+            <table>
+               <thead>
+                  <tr>
+                     <td>Code</td>
+                     <td>Value</td>
+                     <td>Date</td>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>Sodium [Moles/​volume] in Blood (2947-0)</td>
+                     <td>140 mmol/L</td>
+                     <td>2012-10-02T09:08:00-05:00</td>
+                  </tr>
+                  <tr>
+                     <td>Potassium [Moles/​volume] in Blood (6298-4)</td>
+                     <td>4.2 mmol/L</td>
+                     <td>2012-10-02T09:08:00-05:00</td>
+                  </tr>
+                  <tr>
+                     <td>Chloride [Moles/volume] in Blood (2069-3)</td>
+                     <td>98 mmol/L</td>
+                     <td>2012-10-02T09:08:00-05:00</td>
+                  </tr>
+                  <tr>
+                     <td>Carbon dioxide, total [Moles/volume] in Serum or Plasma (2028-9)</td>
+                     <td>24 mmol/L</td>
+                     <td>2012-10-02T09:08:00-05:00</td>
+                  </tr>
+                  <tr>
+                     <td>Urea nitrogen [Mass/volume] in Blood (6299-2)</td>
+                     <td>10 md/dL</td>
+                     <td>2012-10-02T09:08:00-05:00</td>
+                  </tr>
+                  <tr>
+                     <td>Creatinine [Mass/volume] in Blood (38483-4)</td>
+                     <td>1.2 mg/dL</td>
+                     <td>2012-10-02T09:08:00-05:00</td>
+                  </tr>
+                  <tr>
+                     <td>Glucose [Mass/volume] in Blood (2339-0)</td>
+                     <td>185 mmol/L</td>
+                     <td>2012-10-02T09:08:00-05:00</td>
+                  </tr>
+               </tbody>
+            </table>
+         </item>
+         <item>
+            <paragraph>Troponin T.Cardiac [Mass/Volume] In Serum Or Plasma (6598-7)</paragraph>
+            <table>
+               <thead>
+                  <tr>
+                     <td>Code</td>
+                     <td>Value</td>
+                     <td>Date</td>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>Troponin T.Cardiac [Mass/Volume] In Serum Or Plasma (6598-7)</td>
+                     <td>0.01 ng/mL</td>
+                     <td>2012-10-02T09:08:00-05:00</td>
+                  </tr>
+               </tbody>
+            </table>
+         </item>
+         <item>
+            <paragraph>Troponin T.Cardiac [Mass/Volume] In Serum Or Plasma (6598-7)</paragraph>
+            <table>
+               <thead>
+                  <tr>
+                     <td>Code</td>
+                     <td>Value</td>
+                     <td>Date</td>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>Troponin T.Cardiac [Mass/Volume] In Serum Or Plasma (6598-7)</td>
+                     <td>0.01 ng/mL</td>
+                     <td>2012-10-03T10:08:00-05:00</td>
+                  </tr>
+               </tbody>
+            </table>
+         </item>
+      </list>
+   </text>
    <entry>
       <organizer classCode="BATTERY" moodCode="EVN">
          <templateId root="2.16.840.1.113883.10.20.22.4.1" extension="2015-08-01"/>
@@ -554,7 +644,29 @@ C-CDA Equivalent:
           displayName="display string"
           code="30954-2"/>
    <title>Results Section (entries optional) (V3)</title>
-   <text>Results Section (entries optional) (V3)</text>
+   <text>
+      <list>
+         <item>
+            <paragraph>Carbon dioxide (2028-9)</paragraph>
+            <table>
+               <thead>
+                  <tr>
+                     <td>Code</td>
+                     <td>Value</td>
+                     <td>Date</td>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>Carbon dioxide (2028-9)</td>
+                     <td>27 mmol/L</td>
+                     <td>2012-08-15T10:05:00-08:00</td>
+                  </tr>
+               </tbody>
+            </table>
+         </item>
+      </list>
+   </text>
    <entry>
       <organizer classCode="BATTERY" moodCode="EVN">
          <templateId root="2.16.840.1.113883.10.20.22.4.1" extension="2015-08-01"/>
