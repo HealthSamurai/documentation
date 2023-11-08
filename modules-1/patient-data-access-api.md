@@ -46,10 +46,15 @@ content-type: text/yaml
   resourceType: Patient
 - id: obs-1
   resourceType: Observation
+  status: registered
+  code:
+    coding:
+    - system: http://loinc.org
+      code: 15074-8
+      display: Glucose [Moles/volume] in Blood
   subject:
     resourceType: Patient
     id: pt-1
-    status: registered
 ```
 {% endcode %}
 
@@ -92,8 +97,17 @@ body:
   total: 1
   entry:
   - resources:
-    id: obs-1
-    resourceType: Observation
+      id: obs-1
+      resourceType: Observation
+      status: registered
+      code:
+        coding:
+        - system: http://loinc.org
+          code: 15074-8
+          display: Glucose [Moles/volume] in Blood
+      subject:
+        resourceType: Patient
+        id: pt-1
 ```
 {% endtab %}
 {% endtabs %}
