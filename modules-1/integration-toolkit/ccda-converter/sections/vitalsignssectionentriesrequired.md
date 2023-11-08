@@ -358,6 +358,46 @@ C-CDA Equivalent:
                <td>2014-05-20T19:36:05-05:00</td>
                <td>120 mm[Hg]</td>
             </tr>
+            <tr>
+               <td>DIASTOLIC BLOOD PRESSURE (8462-4)</td>
+               <td>2014-05-20T19:36:05-05:00</td>
+               <td>80 mm[Hg]</td>
+            </tr>
+            <tr>
+               <td>HEART RATE (8867-4)</td>
+               <td>2014-05-20T19:36:05-05:00</td>
+               <td>80 /min</td>
+            </tr>
+            <tr>
+               <td>BODY TEMPERATURE (8310-5)</td>
+               <td>2014-05-20T19:36:05-05:00</td>
+               <td>37.2 Cel</td>
+            </tr>
+            <tr>
+               <td>RESPIRATORY RATE (9279-1)</td>
+               <td>2014-05-20T19:36:05-05:00</td>
+               <td>18 /min</td>
+            </tr>
+            <tr>
+               <td>HEIGHT (8302-2)</td>
+               <td>2014-05-20T19:36:05-05:00</td>
+               <td>170.2 cm</td>
+            </tr>
+            <tr>
+               <td>WEIGHT (29463-7)</td>
+               <td>2014-05-20T19:36:05-05:00</td>
+               <td>108.863 kg</td>
+            </tr>
+            <tr>
+               <td>BODY MASS INDEX (39156-5)</td>
+               <td>2014-05-20T19:36:05-05:00</td>
+               <td>37.58 kg/m2</td>
+            </tr>
+            <tr>
+               <td>OXYGEN SATURATION (2710-2)</td>
+               <td>2014-05-20T19:36:05-05:00</td>
+               <td>98 %</td>
+            </tr>
          </tbody>
       </table>
    </text>
@@ -365,7 +405,7 @@ C-CDA Equivalent:
       <organizer classCode="CLUSTER" moodCode="EVN">
          <templateId root="2.16.840.1.113883.10.20.22.4.26" extension="2015-08-01"/>
          <templateId root="2.16.840.1.113883.10.20.22.4.26"/>
-         <id root="7ba16faa-61e3-4b11-8c0c-f142f700e7b1"/>
+         <id root="35c43176-4b0b-4b03-8532-5eff4abfbf65"/>
          <code code="46680005"
                 displayName="Vital Signs"
                 codeSystem="2.16.840.1.113883.6.96"
