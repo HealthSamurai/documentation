@@ -10,8 +10,9 @@ This guide shows you how to enable audit logging in Aidbox and receive audit log
 
 ## Enable audit logging in aidbox configuration project
 
-To enable audit logging in Aidbox, import `aidbox.audit-record-repository` and describe `:audit` in your `aidbox/system` entrypoint:
+To enable audit logging in Aidbox, import `aidbox.audit-record-repository` and describe `:audit` in your `aidbox/system` entry point:
 
+{% code title="main.edn" %}
 ```clojure
 {ns main
  import #{aidbox
@@ -22,6 +23,7 @@ To enable audit logging in Aidbox, import `aidbox.audit-record-repository` and d
   :audit {:storage "AuditEvent"} ;; Add this line to your aidbox project
   }}
 ```
+{% endcode %}
 
 Once the configuration is updated, start Aidbox.
 
