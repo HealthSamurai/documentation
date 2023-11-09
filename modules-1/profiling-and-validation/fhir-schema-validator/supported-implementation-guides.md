@@ -94,7 +94,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 |                       hl7.fhir.us.davinci-crd |                                                                                                             0.1.0, 0.3.0, 1.0.0, 1.1.0-ballot, 2.0.0 |
 |                      hl7.fhir.us.davinci-deqm |                                                                                 0.1.0, 1.0.0, 1.1.0, 2.0.0, 2.1.0, 3.0.0, 3.1.0, 4.0.0-ballot, 4.0.0 |
 |            hl7.fhir.us.davinci-drug-formulary |                                                                                                             0.1.0, 1.0.0, 1.0.1, 1.1.0, 1.2.0, 2.0.0 |
-|                       hl7.fhir.us.davinci-dtr |                                                                                                                    0.1.0, 0.2.0, 1.0.0, 1.1.0-ballot |
+|                       hl7.fhir.us.davinci-dtr |                                                                                                             0.1.0, 0.2.0, 1.0.0, 1.1.0-ballot, 2.0.0 |
 |                      hl7.fhir.us.davinci-hrex |                                                                                                                                  0.1.0, 0.2.0, 1.0.0 |
 |                       hl7.fhir.us.davinci-pas |                                                                                                                    0.1.0, 1.0.0, 1.1.0, 1.2.0-ballot |
 |                      hl7.fhir.us.davinci-pcde |                                                                                                                                         0.1.0, 1.0.0 |
