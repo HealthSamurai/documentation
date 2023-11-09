@@ -4,9 +4,9 @@ description: >-
   within the system
 ---
 
-# Setup audit logging
+# Configure Audit Log
 
-This guide shows you how to enable audit logging in Aidbox and receive audit logs within FHIR API and Audit log viewer UI application.
+This guide shows you how to enable audit logging in Aidbox and receive audit logs within FHIR API and Audit log viewer UI application. It is expected, that you have Aidbox up & running in accordance to [Run Aidbox locally guide](../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md).
 
 ## Enable audit logging in aidbox configuration project
 
@@ -58,4 +58,3 @@ And find the audit event, produced by patient create operation.
 ## Talk to a Health Samurai Engineer
 
 If you'd like to learn more about using Aidbox or have any questions about this guide, [connect with us on Telegram](https://t.me/aidbox). We're happy to help.
-
