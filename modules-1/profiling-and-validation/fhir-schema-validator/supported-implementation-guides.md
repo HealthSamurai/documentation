@@ -43,6 +43,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 |                          ch.fhir.ig.swissnoso |                                                                                                                                         0.1.0, 1.0.0 |
 |            com.alextherapeutics.fhir.nicotine |                                                                                                                                   0.1.0-draft, 1.0.1 |
 |                           ee.hl7.fhir.base.r5 |                                                                                                                                         1.0.1, 1.0.2 |
+|                           egde.health.gateway |                                                                                                              0.1.3-alpha, 0.1.4, 0.1.5, 0.1.6, 0.1.7 |
 |         ehealthplatform.be.r4.federalprofiles |                                                                                                                1.1.40-beta, 1.1.41-beta, 1.1.42-beta |
 |                        fhir.cdc.opioid-mme-r4 |                                                                                                                                                3.0.0 |
 |                               fhir.cqf.common |                                                                                                                                                4.0.1 |
@@ -231,7 +232,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 |                      silth.fhir.th.extensions |                                                                                                                                         0.1.0, 1.0.0 |
 |                         silth.fhir.th.mophpc1 |                                                                                                                                         0.1.1, 1.0.0 |
 |                             swiss.mednet.fhir |                                               0.10.0, 0.11.0, 0.12.0, 0.13.0, 0.14.0, 0.15.0, 0.2.0, 0.3.0, 0.4.0, 0.5.0, 0.6.0, 0.7.0, 0.8.0, 0.9.0 |
-|                           tigacorehub.patient |                                                                                                                       1.1.26, 1.1.27, 1.1.28, 1.1.29 |
+|                           tigacorehub.patient |                                               1.1.17, 1.1.18, 1.1.19, 1.1.20, 1.1.21, 1.1.22, 1.1.23, 1.1.24, 1.1.25, 1.1.26, 1.1.27, 1.1.28, 1.1.29 |
 |                            tw.gov.mohw.twcore |                                                                                                                                         0.1.0, 0.1.1 |
 |                               us.cdc.phinvads |                                                  0.1.0, 0.1.1, 0.1.2, 0.10.0, 0.11.0, 0.12.0, 0.2.0, 0.3.0, 0.4.0, 0.5.0, 0.6.0, 0.7.0, 0.8.0, 0.9.0 |
 |                                   us.nlm.vsac |                                                0.1.0, 0.10.0, 0.11.0, 0.12.0, 0.13.0, 0.14.0, 0.2.0, 0.3.0, 0.4.0, 0.5.0, 0.6.0, 0.7.0, 0.8.0, 0.9.0 |
