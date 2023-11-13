@@ -8,8 +8,8 @@ description: This page describes Aidbox audit log module
 
 When audit logging is enabled, Aidbox produces audit logs for significant events:
 
-* FHIR CRUD & Search operations for basic FHIR resouces
-* FHIR CRUD & Search operations for patient compartment FHIR resources
+* FHIR CRUD & Search operations for basic FHIR resouces and custom resources
+* FHIR CRUD & Search operations for patient compartment FHIR resources and custom resources
 * \[WIP] Authentication & Authorization events (login, logout, SMART on FHIR authorization, etc)
 * \[WIP] Security & configuration updates
 
