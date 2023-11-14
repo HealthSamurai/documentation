@@ -69,6 +69,8 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 |                       hl7.fhir.cl.recetachile |                                                                                                                                                  0.9 |
 |                                 hl7.fhir.core |                                                                                                                                  1.4.0, 1.8.0, 3.5.0 |
 |                              hl7.fhir.dk.core |                                                                                                                           1.1.0, 2.0.0, 2.1.0, 2.2.0 |
+|                              hl7.fhir.fi.base |                                                1.0.0-rc17, 1.0.0-rc18, 1.0.0-rc19, 1.0.0-rc20, 1.0.0-rc21, 1.0.0-rc22, 1.0.0-rc23, 1.0.0-rc24, 1.0.0 |
+|                             hl7.fhir.fi.smart |                                                                   1.0.0-rc1, 1.0.0-rc2, 1.0.0-rc5, 1.0.0-rc6, 1.0.0-rc7, 1.0.0-rc8, 1.0.0-rc9, 1.0.0 |
 |                              hl7.fhir.kr.core |                                                                                                                                                1.0.1 |
 |                              hl7.fhir.r4.core |                                                                                                                                                4.0.1 |
 |                        hl7.fhir.r4.expansions |                                                                                                                                                4.0.1 |
