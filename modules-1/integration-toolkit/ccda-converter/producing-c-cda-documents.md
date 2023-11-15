@@ -165,7 +165,7 @@ Along with structured entries, CDA section contains human-readable narrative des
  :text {:method "GET" :url "/Observation?subject=Patient/{{pid}}&code=8653-8"}}
 ```
 
-The best practice is to have Observation.code to be equal to section LOINC code for Observations containing section narratives. Narrative itself can be stored in either Observation.note\[0].text or Observation.value.string.
+The best practice is to have Observation.code to be equal to section LOINC code for Observations containing section narratives. Narrative itself can be stored in either `Observation.note[0].text` or `Observation.value.string`.
 
 ### Making modifications to the source FHIR Document
 
@@ -185,7 +185,7 @@ for (i = 0; i < patient.identifier.length; i++) {
   }
 }
 
-var cda = aidbox.post('/ccda/v2/to-cda', bundle);
+var cda = aidbox.post('/ccda/v2/to-cсda', bundle);
 ```
 
 Another pseudo-code example on how to populate section narrative from  section entries:
@@ -228,7 +228,7 @@ for (i = 0; i < composition.section.length; i++) {
   }
 }
 
-var cda = aidbox.post('/ccda/v2/to-cda', bundle);
+var cda = aidbox.post('/ccda/v2/to-cсda', bundle);
 ```
 
 ### Predefined Document Definitions
@@ -290,7 +290,7 @@ Content-Type: application/json
 }
 ```
 
-You can pass predefined Document Definition ID in`docdef-id` query-string parameter:¡
+You can pass predefined Document Definition ID in`docdef-id` query-string parameter:
 
 ```http
 GET /ccda/prepare-doc?docdef-id=continuity-of-care&pid=42&start-date=2023-01-01&end-date=2023-02-01
