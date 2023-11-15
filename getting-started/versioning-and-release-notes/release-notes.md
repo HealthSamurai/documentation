@@ -6,7 +6,6 @@
 * Terminology
   * Supported [RxNorm terminology](../../modules-1/terminology/fhir-terminology-repository/load-rxnorm-into-aidbox.md) load to Aidbox
 * Data API&#x20;
-  * Released new database console sidebar&#x20;
   * Added an environment variable to [synchronize managed index](../../reference/configuration/environment-variables/optional-environment-variables.md#box\_config\_features\_index\_sync\_\_on\_\_start) when Aidbox starts
 * Integrations&#x20;
   * Added[ Workflow Engine Connector](../../modules-1/topic-based-subscriptions/#supported-fhir-versions) for FHIR Topic-based subscriptions
@@ -28,8 +27,10 @@
     * Added constraints and validation for datetime, date, time, number fields&#x20;
     * Added an option to import UI-built forms to a library&#x20;
     * Added preview for Questionnaire and QuestionnaireResponse in UI-builder
+* Aidbox UI
+  * Introduced new database console sidebar&#x20;
 
-## September 2023 _`2309`_
+## September 2023 _`stable, 2309`_
 
 * New [FHIR Validator](https://fhir-validator.aidbox.app/) public demo stand
 * SDK
