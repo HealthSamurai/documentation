@@ -142,6 +142,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 |                              hl7.fhir.us.phcp |                                                                                                                                         0.2.0, 1.0.0 |
 |                 hl7.fhir.us.physical-activity |                                                                                                                                                1.0.0 |
 |                            hl7.fhir.us.qicore |                                              1.6.0, 2.0.0, 2.1.0, 3.1.0, 3.2.0, 3.3.0, 4.0.0, 4.1.0, 4.1.1, 4.9.0, 5.0.0-ballot, 5.0.0, 6.0.0-ballot |
+|                hl7.fhir.us.registry-protocols |                                                                                                                                                1.0.0 |
 |                 hl7.fhir.us.sdoh-clinicalcare |                                                                                                                    0.1.0, 1.0.0, 1.1.0, 2.0.0, 2.1.0 |
 |                              hl7.fhir.us.sirb |                                                                                                                                         0.1.0, 1.0.0 |
 |                      hl7.fhir.us.specialty-rx |                                                                                                                    0.1.0, 1.0.0, 2.0.0-ballot, 2.0.0 |
