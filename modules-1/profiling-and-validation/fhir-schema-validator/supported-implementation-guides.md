@@ -51,7 +51,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 |                            fhir.tx.support.r4 | 0.1.0, 0.10.0, 0.11.0, 0.12.0, 0.13.0, 0.14.0, 0.15.0, 0.16.0, 0.17.0, 0.18.0, 0.19.0, 0.2.0, 0.3.0, 0.3.1, 0.4.0, 0.5.0, 0.6.0, 0.7.0, 0.8.0, 0.9.0 |
 |                               hl7.cda.us.ccda |                                                                                                                                         2.1.0-draft1 |
 |                               hl7.cda.uv.core |                                                                                                                        2.0.0-sd-ballot, 2.1.0-draft1 |
-|                              hl7.fhir.au.base |                                                                  0.1.0, 0.4.0, 0.5.0, 2.0.0, 2.2.0-ballot, 4.0.0, 4.1.0-ballot, 4.1.0, 4.1.1-preview |
+|                              hl7.fhir.au.base |                                                   0.1.0, 0.4.0, 0.5.0, 2.0.0, 2.2.0-ballot, 4.0.0, 4.1.0-ballot, 4.1.0, 4.1.1-preview, 4.1.2-preview |
 |                              hl7.fhir.au.core |                                                                                                            0.1.0-draft, 0.2.0-preview, 0.2.1-preview |
 |                                hl7.fhir.au.pd |                                                                                                                                         0.1.0, 2.0.1 |
 |                           hl7.fhir.be.allergy |                                                                                                                                  1.0.0, 1.0.1, 1.1.0 |
