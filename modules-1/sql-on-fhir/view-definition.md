@@ -104,7 +104,7 @@ If you create views via Aidbox UI, you can use the shorthand parameters `_materi
 ```json
 {
     "_materialization": "table",
-    "_scheme": "public"
+    "_schema": "public"
 }
 ```
 
