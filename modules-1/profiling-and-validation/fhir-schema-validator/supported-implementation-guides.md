@@ -52,7 +52,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 |                               hl7.cda.us.ccda |                                                                                                                                         2.1.0-draft1 |
 |                               hl7.cda.uv.core |                                                                                                                        2.0.0-sd-ballot, 2.1.0-draft1 |
 |                              hl7.fhir.au.base |                                                   0.1.0, 0.4.0, 0.5.0, 2.0.0, 2.2.0-ballot, 4.0.0, 4.1.0-ballot, 4.1.0, 4.1.1-preview, 4.1.2-preview |
-|                              hl7.fhir.au.core |                                                                                                            0.1.0-draft, 0.2.0-preview, 0.2.1-preview |
+|                              hl7.fhir.au.core |                                                                                             0.1.0-draft, 0.2.0-preview, 0.2.1-preview, 0.2.2-preview |
 |                                hl7.fhir.au.pd |                                                                                                                                         0.1.0, 2.0.1 |
 |                           hl7.fhir.be.allergy |                                                                                                                                  1.0.0, 1.0.1, 1.1.0 |
 |                              hl7.fhir.be.core |                                                                                                                                         2.0.0, 2.0.1 |
@@ -124,7 +124,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 |                    hl7.fhir.us.insurance-card |                                                                                                                                         0.1.0, 1.0.0 |
 |                               hl7.fhir.us.mcc |                                                                                                                          1.0.0-ballot, 1.0.0-ballot2 |
 |                             hl7.fhir.us.mcode |                                                                                                            0.9.1, 1.0.0, 1.16.0, 2.0.0, 2.1.0, 3.0.0 |
-|                               hl7.fhir.us.mdi |                                                                                                                                  1.0.0-ballot, 1.0.0 |
+|                               hl7.fhir.us.mdi |                                                                                                                           1.0.0-ballot, 1.0.0, 1.1.0 |
 |                          hl7.fhir.us.medmorph |                                                                                                                                  0.1.0, 0.2.0, 1.0.0 |
 |             hl7.fhir.us.medmorph-research-dex |                                                                                                                                                0.1.0 |
 |                              hl7.fhir.us.mihr |                                                                                                                                         1.0.0-ballot |
@@ -238,7 +238,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 |                           tigacorehub.patient |                                               1.1.17, 1.1.18, 1.1.19, 1.1.20, 1.1.21, 1.1.22, 1.1.23, 1.1.24, 1.1.25, 1.1.26, 1.1.27, 1.1.28, 1.1.29 |
 |                            tw.gov.mohw.twcore |                                                                                                                                         0.1.0, 0.1.1 |
 |                               us.cdc.phinvads |                                                  0.1.0, 0.1.1, 0.1.2, 0.10.0, 0.11.0, 0.12.0, 0.2.0, 0.3.0, 0.4.0, 0.5.0, 0.6.0, 0.7.0, 0.8.0, 0.9.0 |
-|                                   us.nlm.vsac |                                                0.1.0, 0.10.0, 0.11.0, 0.12.0, 0.13.0, 0.14.0, 0.2.0, 0.3.0, 0.4.0, 0.5.0, 0.6.0, 0.7.0, 0.8.0, 0.9.0 |
+|                                   us.nlm.vsac |                                        0.1.0, 0.10.0, 0.11.0, 0.12.0, 0.13.0, 0.14.0, 0.15.0, 0.2.0, 0.3.0, 0.4.0, 0.5.0, 0.6.0, 0.7.0, 0.8.0, 0.9.0 |
 
 
 ***
