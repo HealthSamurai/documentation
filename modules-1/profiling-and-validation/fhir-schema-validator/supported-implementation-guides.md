@@ -202,12 +202,13 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 |                           ihe.formatcode.fhir |                                                                                                                           0.2.2, 0.2.4, 1.0.0, 1.1.0 |
 |                                  ihe.iti.balp |                                                                                                                                  1.1.0, 1.1.1, 1.1.2 |
 |                            ihe.iti.basicaudit |                                                                                                                                                1.0.1 |
+|                                 ihe.iti.dsubm |                                                                                                                                        1.0.0-comment |
 |                                  ihe.iti.mcsd |                                                                                                                    3.4.0, 3.5.0, 3.6.1, 3.7.0, 3.8.0 |
 |                                   ihe.iti.mhd |                                                                                                                    4.1.0, 4.2.0-ballot, 4.2.0, 4.2.1 |
 |                                  ihe.iti.mxde |                                                                                                                                 1.3.0-comment, 1.3.0 |
-|                                  ihe.iti.npfs |                                                                                                                                        2.2.0-comment |
+|                                  ihe.iti.npfs |                                                                                                                                 2.2.0-comment, 2.2.0 |
 |                                   ihe.iti.pcf |                                                                                                                                 1.0.0-comment, 1.0.0 |
-|                                  ihe.iti.pdqm |                                                                                                                                                2.4.0 |
+|                                  ihe.iti.pdqm |                                                                                                                                 2.4.0, 3.0.0-comment |
 |                                  ihe.iti.pixm |                                                                                                                                         3.0.2, 3.0.3 |
 |                                  ihe.iti.pmir |                                                                                                                                         1.4.0, 1.5.0 |
 |                                  ihe.iti.svcm |                                                                                                                                  1.4.0, 1.5.0, 1.5.1 |
