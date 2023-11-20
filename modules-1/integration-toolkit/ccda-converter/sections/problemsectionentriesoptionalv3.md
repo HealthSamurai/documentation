@@ -249,12 +249,6 @@ The section contains an Act.entryRelationship.Observation entry converted from t
     "id" : "86f71898-e94e-469f-8851-00193b48ea85",
     "identifier" : [ {
       "value" : "66666",
-      "extension" : [ {
-        "value" : {
-          "string" : null
-        },
-        "url" : "cda-assigning-authority-name"
-      } ],
       "system" : "2.16.840.1.113883.4.6"
     } ],
     "resourceType" : "Practitioner"

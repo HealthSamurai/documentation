@@ -45,9 +45,6 @@ Internal ID: FamilyHistorySectionV3
         "display" : "Asthma (disorder)",
         "system" : "http://snomed.info/sct"
       } ]
-    },
-    "onset" : {
-      "Period" : [ ]
     }
   } ],
   "born" : {
@@ -92,7 +89,7 @@ C-CDA Equivalent:
             <observation classCode="OBS" moodCode="EVN">
                <templateId root="2.16.840.1.113883.10.20.22.4.46" extension="2015-08-01"/>
                <templateId root="2.16.840.1.113883.10.20.22.4.46"/>
-               <id root="7c1bcda8-15df-4ba6-b8f0-d1cdf54f638b"/>
+               <id root="e3c5397d-c000-4c97-86dd-e41eea8119c4"/>
                <code codeSystem="2.16.840.1.113883.6.96"
                       displayName="Condition"
                       code="64572001">
@@ -147,9 +144,6 @@ C-CDA Equivalent:
         "system" : "http://snomed.info/sct"
       } ]
     },
-    "onset" : {
-      "Period" : [ ]
-    },
     "note" : [ {
       "text" : "High blood pressure"
     } ]
@@ -196,7 +190,7 @@ C-CDA Equivalent:
             <observation classCode="OBS" moodCode="EVN">
                <templateId root="2.16.840.1.113883.10.20.22.4.46" extension="2015-08-01"/>
                <templateId root="2.16.840.1.113883.10.20.22.4.46"/>
-               <id root="c5c85a1e-716a-4ac4-9dc6-d6e6c45d46d3"/>
+               <id root="c3aabb61-051e-49c8-ae56-59a1c78a09a3"/>
                <code codeSystem="2.16.840.1.113883.6.96"
                       displayName="Condition"
                       code="64572001">

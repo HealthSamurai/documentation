@@ -45,7 +45,6 @@ NB Immunization.status
   "primarySource" : false,
   "status" : "not-done",
   "id" : "SOME-STRING",
-  "lotNumber" : [ ],
   "occurrence" : {
     "dateTime" : "2015-06-22T00:00:00-04:00"
   }

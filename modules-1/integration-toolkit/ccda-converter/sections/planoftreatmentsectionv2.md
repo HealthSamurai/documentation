@@ -37,9 +37,6 @@ In this case we have 3 entries:
     } ]
   },
   "id" : "SOME-STRING",
-  "note" : [ {
-    "text" : null
-  } ],
   "effective" : {
     "dateTime" : "2012-10-02T00:00:00Z"
   },
@@ -233,7 +230,7 @@ The section contains a list of entries converted from the input resources.
          <entryRelationship typeCode="REFR">
             <observation classCode="OBS" moodCode="EVN">
                <templateId root="2.16.840.1.113883.10.20.22.4.143"/>
-               <id root="d94324e9-7d40-4a49-91e6-4df61249d3cf"/>
+               <id root="e87a3365-6712-4aef-b4b9-3465cdaf9110"/>
                <code code="225773000" codeSystem="2.16.840.1.113883.6.96"/>
                <value code="394848005"
                        displayName="Medium Priority"

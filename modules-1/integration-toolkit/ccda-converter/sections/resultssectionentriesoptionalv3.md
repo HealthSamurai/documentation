@@ -329,7 +329,7 @@ C-CDA Equivalent:
       <list>
          <item>
             <paragraph>Basic Metabolic Panel - Blood (51990-0)</paragraph>
-            <table>
+            <table border="1" width="100%">
                <thead>
                   <tr>
                      <td>Code</td>
@@ -378,7 +378,7 @@ C-CDA Equivalent:
          </item>
          <item>
             <paragraph>Troponin T.Cardiac [Mass/Volume] In Serum Or Plasma (6598-7)</paragraph>
-            <table>
+            <table border="1" width="100%">
                <thead>
                   <tr>
                      <td>Code</td>
@@ -397,7 +397,7 @@ C-CDA Equivalent:
          </item>
          <item>
             <paragraph>Troponin T.Cardiac [Mass/Volume] In Serum Or Plasma (6598-7)</paragraph>
-            <table>
+            <table border="1" width="100%">
                <thead>
                   <tr>
                      <td>Code</td>
@@ -648,7 +648,7 @@ C-CDA Equivalent:
       <list>
          <item>
             <paragraph>Carbon dioxide (2028-9)</paragraph>
-            <table>
+            <table border="1" width="100%">
                <thead>
                   <tr>
                      <td>Code</td>

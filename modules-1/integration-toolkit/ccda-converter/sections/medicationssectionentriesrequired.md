@@ -44,7 +44,7 @@ So there are nullFlavor values placed in required field effectiveTime.
           code="10160-0"/>
    <title>Medications Section (entries required) (V2)</title>
    <text>
-      <table>
+      <table border="1" width="100%">
          <thead>
             <tr>
                <td>Medication</td>
@@ -54,6 +54,12 @@ So there are nullFlavor values placed in required field effectiveTime.
                <td>Dose</td>
             </tr>
          </thead>
+         <tbody>
+            <tr>
+               <td>Sudafed 30 MG Oral Tablet (1049529)</td>
+               <td>No information</td>
+            </tr>
+         </tbody>
       </table>
    </text>
    <entry>
@@ -151,7 +157,7 @@ C-CDA Equivalent:
           code="10160-0"/>
    <title>Medications Section (entries required) (V2)</title>
    <text>
-      <table>
+      <table border="1" width="100%">
          <thead>
             <tr>
                <td>Medication</td>

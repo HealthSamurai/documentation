@@ -28,9 +28,6 @@ Internal ID: FunctionalStatusSectionV2
       }
     },
     "resourceType" : "Observation",
-    "note" : [ {
-      "text" : null
-    } ],
     "extension" : [ {
       "value" : {
         "dateTime" : "2013-07-06T11:45:00-08:00"
@@ -157,9 +154,6 @@ C-CDA Equivalent:
     }
   },
   "resourceType" : "Observation",
-  "note" : [ {
-    "text" : null
-  } ],
   "extension" : [ {
     "value" : {
       "dateTime" : "2013-07-06T11:45:00-08:00"

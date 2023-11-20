@@ -103,6 +103,7 @@ C-CDA Equivalent:
    <text>Goals Section</text>
    <entry>
       <observation moodCode="GOL" classCode="OBS">
+         <templateId root="2.16.840.1.113883.10.20.22.4.121" extension="2022-06-01"/>
          <templateId root="2.16.840.1.113883.10.20.22.4.121"/>
          <id root="3700b3b0-fbed-11e2-b788-0800200c9a66"/>
          <code codeSystem="2.16.840.1.113883.6.1"
@@ -138,7 +139,7 @@ C-CDA Equivalent:
          <entryRelationship typeCode="REFR">
             <observation classCode="OBS" moodCode="EVN">
                <templateId root="2.16.840.1.113883.10.20.22.4.143"/>
-               <id root="2383ba98-1344-4a69-8b9e-45a5a317710c"/>
+               <id root="3bd131f7-8965-40da-ac4a-e4101723c8f7"/>
                <code code="225773000" codeSystem="2.16.840.1.113883.6.96"/>
                <value code="394849002"
                        displayName="High Priority"
@@ -190,7 +191,13 @@ C-CDA Equivalent:
     },
     "url" : "authoring-time"
   } ],
-  "priority" : { },
+  "priority" : {
+    "coding" : [ {
+      "code" : "high-priority",
+      "display" : "High Priority",
+      "system" : "http://terminology.hl7.org/CodeSystem/goal-priority"
+    } ]
+  },
   "id" : "3700b3b0-fbed-11e2-b778-0800200c9a66",
   "target" : [ {
     "detail" : {
@@ -228,6 +235,7 @@ C-CDA Equivalent:
    <text>Goals Section</text>
    <entry>
       <observation moodCode="GOL" classCode="OBS">
+         <templateId root="2.16.840.1.113883.10.20.22.4.121" extension="2022-06-01"/>
          <templateId root="2.16.840.1.113883.10.20.22.4.121"/>
          <id root="3700b3b0-fbed-11e2-b778-0800200c9a66"/>
          <code codeSystem="2.16.840.1.113883.6.1"
@@ -257,6 +265,18 @@ C-CDA Equivalent:
                </assignedPerson>
             </assignedAuthor>
          </author>
+         <entryRelationship typeCode="REFR">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.10.20.22.4.143"/>
+               <id root="42d1f2e5-59d2-49ba-821e-0f9e8ce73ca2"/>
+               <code code="225773000" codeSystem="2.16.840.1.113883.6.96"/>
+               <value code="394849002"
+                       displayName="High Priority"
+                       codeSystemName="SNOMED"
+                       codeSystem="2.16.840.1.113883.6.96"
+                       xsi:type="CD"/>
+            </observation>
+         </entryRelationship>
       </observation>
    </entry>
 </section>

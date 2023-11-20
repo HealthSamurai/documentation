@@ -30,9 +30,6 @@ Internal ID: VitalSignsSectionentriesrequired
     }
   },
   "resourceType" : "Observation",
-  "note" : [ {
-    "text" : null
-  } ],
   "status" : "final",
   "effective" : {
     "dateTime" : "2014-05-20T19:36:05-05:00"
@@ -65,9 +62,6 @@ Internal ID: VitalSignsSectionentriesrequired
     }
   },
   "resourceType" : "Observation",
-  "note" : [ {
-    "text" : null
-  } ],
   "status" : "final",
   "effective" : {
     "dateTime" : "2014-05-20T19:36:05-05:00"
@@ -100,9 +94,6 @@ Internal ID: VitalSignsSectionentriesrequired
     }
   },
   "resourceType" : "Observation",
-  "note" : [ {
-    "text" : null
-  } ],
   "status" : "final",
   "effective" : {
     "dateTime" : "2014-05-20T19:36:05-05:00"
@@ -135,9 +126,6 @@ Internal ID: VitalSignsSectionentriesrequired
     }
   },
   "resourceType" : "Observation",
-  "note" : [ {
-    "text" : null
-  } ],
   "status" : "final",
   "effective" : {
     "dateTime" : "2014-05-20T19:36:05-05:00"
@@ -170,9 +158,6 @@ Internal ID: VitalSignsSectionentriesrequired
     }
   },
   "resourceType" : "Observation",
-  "note" : [ {
-    "text" : null
-  } ],
   "status" : "final",
   "effective" : {
     "dateTime" : "2014-05-20T19:36:05-05:00"
@@ -205,9 +190,6 @@ Internal ID: VitalSignsSectionentriesrequired
     }
   },
   "resourceType" : "Observation",
-  "note" : [ {
-    "text" : null
-  } ],
   "status" : "final",
   "effective" : {
     "dateTime" : "2014-05-20T19:36:05-05:00"
@@ -240,9 +222,6 @@ Internal ID: VitalSignsSectionentriesrequired
     }
   },
   "resourceType" : "Observation",
-  "note" : [ {
-    "text" : null
-  } ],
   "status" : "final",
   "effective" : {
     "dateTime" : "2014-05-20T19:36:05-05:00"
@@ -275,9 +254,6 @@ Internal ID: VitalSignsSectionentriesrequired
     }
   },
   "resourceType" : "Observation",
-  "note" : [ {
-    "text" : null
-  } ],
   "status" : "final",
   "effective" : {
     "dateTime" : "2014-05-20T19:36:05-05:00"
@@ -310,9 +286,6 @@ Internal ID: VitalSignsSectionentriesrequired
     }
   },
   "resourceType" : "Observation",
-  "note" : [ {
-    "text" : null
-  } ],
   "status" : "final",
   "effective" : {
     "dateTime" : "2014-05-20T19:36:05-05:00"
@@ -405,7 +378,7 @@ C-CDA Equivalent:
       <organizer classCode="CLUSTER" moodCode="EVN">
          <templateId root="2.16.840.1.113883.10.20.22.4.26" extension="2015-08-01"/>
          <templateId root="2.16.840.1.113883.10.20.22.4.26"/>
-         <id root="35c43176-4b0b-4b03-8532-5eff4abfbf65"/>
+         <id root="4ba4bd5a-30f3-4d9e-8367-c51fa1d5a721"/>
          <code code="46680005"
                 displayName="Vital Signs"
                 codeSystem="2.16.840.1.113883.6.96"
