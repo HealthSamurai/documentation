@@ -22,7 +22,7 @@ A resource type is deemed patient-related if it has a search parameter named `pa
 
 There are two way to define patient context in a request:
 
-1. Create a user session in Aidbox that includes `patient_id`. Aidbox populates that property during the user login operation when `User.fhirUser` is a link to a Patient resource
+1. Create a user session in Aidbox with a `patient` field that links to a Patient resource. Aidbox will automatically populate this field during the user login process if `User.fhirUser` is a link to a Patient resource.
 2. Add `X-Patient-id` header to the request
 
 ### Base url for patient-related FHIR API&#x20;
