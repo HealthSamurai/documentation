@@ -361,7 +361,7 @@
   * [Getting started](modules-1/observability/getting-started/README.md)
     * [Run Aidbox with OpenTelemetry locally](modules-1/monitoring/run-aidbox-locally-with-docker.md)
     * [How to export telemetry to the OTEL collector](modules-1/observability/getting-started/how-to-export-telemetry-to-the-otel-collector.md)
-  * [Logs](modules-1/observability/logging-and-audit/README.md)
+  * [Logs](core-modules/logging-and-audit/README.md)
     * [How to export logs to the OTEL collector](modules-1/observability/logging-and-audit/how-to-export-logs-to-the-otel-collector.md)
     * [How-to guides](modules-1/observability/logging-and-audit/how-to-guides/README.md)
       * [Elastic Logs and Monitoring Integration](modules-1/observability/logging-and-audit/how-to-guides/elastic-logs-and-monitoring-integration.md)

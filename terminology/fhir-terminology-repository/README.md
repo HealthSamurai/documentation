@@ -4,9 +4,9 @@ description: FHIR Terminology Repository (FTR), repository layout specification,
 
 # 🏗 FHIR Terminology Repository
 
-**FTR** (FHIR Terminology Repository) it's open specification for repository layout, formats and algorithms to distribute FHIR terminologies as ValueSets.
+**FTR** (FHIR Terminology Repository) it's an open specification for repository layout, formats and algorithms to distribute FHIR terminologies as ValueSets.
 
-You can store resulting FTR on s3 like storage or regular file system. Aidbox team provides tools for FTR population and distribution mechanism via zen-packages. Aidbox can sync FTR's came with zen-packages and as a result validate/lookup ValueSets.
+You can store the resulting FTR on s3 like storage or a regular file system. Aidbox team provides tools for the FTR population and distribution mechanism via zen-packages. Aidbox can sync FTR's come with zen-packages and as a result, validate/lookup ValueSets.
 
 {% content-ref url="ftr-specification.md" %}
 [ftr-specification.md](ftr-specification.md)
@@ -28,4 +28,8 @@ You can store resulting FTR on s3 like storage or regular file system. Aidbox te
 
 {% content-ref url="../../modules-1/terminology/fhir-terminology-repository/load-loinc-into-aidbox.md" %}
 [load-loinc-into-aidbox.md](../../modules-1/terminology/fhir-terminology-repository/load-loinc-into-aidbox.md)
+{% endcontent-ref %}
+
+{% content-ref url="../../modules-1/terminology/fhir-terminology-repository/load-rxnorm-into-aidbox.md" %}
+[load-rxnorm-into-aidbox.md](../../modules-1/terminology/fhir-terminology-repository/load-rxnorm-into-aidbox.md)
 {% endcontent-ref %}

@@ -115,7 +115,7 @@ It's time to upgrade your database - please stop your container and change image
 
 ### Features
 
-* [User Level Logs](../../../modules-1/observability/logging-and-audit/)
+* [User Level Logs](../../../core-modules/logging-and-audit/)
 * [Structured Data Capture](../../../tutorials/tutorials/sdc-with-custom-resources.md) with Custom Resources (Alpha)
 * [History based replication](broken-reference/)
 * Search: new [\_ilike](../../../api-1/fhir-api/search-1/#\_ilike-search-non-fhir) search parameter

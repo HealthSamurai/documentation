@@ -7,7 +7,7 @@ description: Export Aidbox data to Power BI
 ## Prerequisites
 
 * Use `stable`, `latest` or `edge` Aidbox version
-* Set up correct Aidbox instance url in `AIDBOX_BASE_URL` environment variable
+* Set up the correct Aidbox instance URL in `AIDBOX_BASE_URL` environment variable
 * Set [`AIDBOX_COMPLIANCE`](broken-reference) environment variable
 
 ## Authenticate Power BI connection in Aidbox
@@ -16,7 +16,7 @@ Power BI offers two authentication modes:
 
 ### Anonymous access
 
-This mode requires to have your data publicly available. Power BI needs access to FHIR read operation `GET /fhir/<resourceType>` . \
+This mode requires you to have your data publicly available. Power BI needs access to FHIR read operation `GET /fhir/<resourceType>` . \
 \
 AccessPolicy to make your data publicly available via FHIR read operation:
 
@@ -33,8 +33,8 @@ engine: allow
 
 Configure integration with Azure Active Directory that provides organizational authentication.
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="../../security-and-access-control-1/how-to-guides/azure-ad.md" %}
+[azure-ad.md](../../security-and-access-control-1/how-to-guides/azure-ad.md)
 {% endcontent-ref %}
 
 ## Connect Power BI to Aidbox

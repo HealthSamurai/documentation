@@ -376,7 +376,7 @@
   * Introduced [CI/CD licenses](../editions-and-pricing.md#aidbox-licenses) on the [Aidbox user portal](../../overview/aidbox-user-portal/). You can get this license to run multiple instances of Aidbox and Multibox in parallel for 72 hours. Both development and CI/CD licenses are available for existing customers at no cost
   * Added an option to configure Aidbox instances hosted in Aidbox Cloud with FHIR IGs for data validation
 * Logging and audit
-  * Supported [log streaming to browser](../../modules-1/observability/logging-and-audit/#logs-in-browser)
+  * Supported [log streaming to browser](../../core-modules/logging-and-audit/#logs-in-browser)
   * Fixed incorrect calculation of request duration for resources in transaction bundles
 * Updated documentation
   * [Index management](../../storage-1/indexes/create-indexes-manually.md)
@@ -388,7 +388,7 @@
 
 * Released [Seed v2 service](../../aidbox-configuration/aidbox-zen-lang-project/seed-v2.md) for [Aidbox configuration projects](../../aidbox-configuration/aidbox-zen-lang-project/)
 * Added [Client.audience](../../modules-1/security-and-access-control/readme-1/overview.md#client.audience) regex support in SMART on FHIR App launch
-* Added an option to [filter Aidbox stdout logs](../../modules-1/observability/logging-and-audit/#stdout-log) by severity. By default Aidbox sends only `error` severity level logs to stdout.
+* Added an option to [filter Aidbox stdout logs](../../core-modules/logging-and-audit/#stdout-log) by severity. By default Aidbox sends only `error` severity level logs to stdout.
 * Added response headers to [Aidbox REST Console](../../overview/aidbox-ui/rest-console-1.md) and [Aidbox Notebooks](../../overview/aidbox-ui/notebooks.md)
 * Enhanced the Aidbox configuration process with [Aidbox configuration projects](../../aidbox-configuration/aidbox-zen-lang-project/)
 * Supported [`/health` endpoint](../../app-development-guides/receive-logs-from-your-app/health-check.md) for Multibox

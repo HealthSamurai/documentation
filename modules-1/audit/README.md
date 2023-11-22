@@ -1,6 +1,6 @@
 # Audit
 
-Aidbox automatically logs all auth, API, database and network events, so in most cases basic audit log may be derived from [Aidbox logs](../observability/logging-and-audit/).
+Aidbox automatically logs all auth, API, database and network events, so in most cases basic audit log may be derived from [Aidbox logs](../../core-modules/logging-and-audit/).
 
 In rare cases Aidbox logs are not enough for auditing. For instance, you'd like to track business-relevant events happening outside of Aidbox control.
 

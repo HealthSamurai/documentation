@@ -1,27 +1,23 @@
----
-description: This page describes Aidbox logging subsystem
----
-
 # Logs
 
 Aidbox produces structured logs on every significant event to the internal stream which you may direct to different ways:
 
 * [stdout in json or pretty string formats](./#stdour-log)
 * [file](./#log-to-file)
-* [Elasticsearch](how-to-guides/elastic-logs-and-monitoring-integration.md)
-* [Datadog](readme-1/datadog-guide.md)
-* [Loki](how-to-guides/loki-integration.md)
+* [Elasticsearch](../../modules-1/observability/logging-and-audit/how-to-guides/elastic-logs-and-monitoring-integration.md)
+* [Datadog](../../modules-1/observability/logging-and-audit/readme-1/datadog-guide.md)
+* [Loki](../../modules-1/observability/logging-and-audit/how-to-guides/loki-integration.md)
 
 {% hint style="info" %}
-Aidbox logs can be used in audit. Please, see our [article on auditing](../../audit/) for more info.
+Aidbox logs can be used in audit. Please, see our [article on auditing](../../modules-1/audit/) for more info.
 {% endhint %}
 
 ## Logs exporting with OTEL spec
 
 Aidbox supports the [OpenTelemetry protocol](https://opentelemetry.io/) and exports logs in Protobuf format to any consumer that supports this specification.
 
-{% content-ref url="how-to-export-logs-to-the-otel-collector.md" %}
-[how-to-export-logs-to-the-otel-collector.md](how-to-export-logs-to-the-otel-collector.md)
+{% content-ref url="../../modules-1/observability/logging-and-audit/how-to-export-logs-to-the-otel-collector.md" %}
+[how-to-export-logs-to-the-otel-collector.md](../../modules-1/observability/logging-and-audit/how-to-export-logs-to-the-otel-collector.md)
 {% endcontent-ref %}
 
 ## Logs API
@@ -51,7 +47,7 @@ You can open `[aidbox-base]/_logs?format=pretty` in your browser, and Aidbox wil
 
 ### Stdout log
 
-Aidbox sends logs into stdout if one of these env variables defined: [`AIDBOX_STDOUT_JSON`](../../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox\_stdout\_json), [`AIDBOX_STDOUT_PRETTY`](../../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox\_stdout\_pretty).
+Aidbox sends logs into stdout if one of these env variables defined: [`AIDBOX_STDOUT_JSON`](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox\_stdout\_json), [`AIDBOX_STDOUT_PRETTY`](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox\_stdout\_pretty).
 
 Both environment variables enable logging to stdout but the difference is log format.
 
@@ -77,6 +73,6 @@ AIDBOX_LOGS=/logs/aidbox
 
 Another option is to store logs in:
 
-* [ElasticSearch](how-to-guides/elastic-logs-and-monitoring-integration.md)
-* [Datadog](how-to-guides/aidbox-logs-and-datadog-integration.md)
-* [Loki](how-to-guides/loki-integration.md)
+* [ElasticSearch](../../modules-1/observability/logging-and-audit/how-to-guides/elastic-logs-and-monitoring-integration.md)
+* [Datadog](../../modules-1/observability/logging-and-audit/how-to-guides/aidbox-logs-and-datadog-integration.md)
+* [Loki](../../modules-1/observability/logging-and-audit/how-to-guides/loki-integration.md)
