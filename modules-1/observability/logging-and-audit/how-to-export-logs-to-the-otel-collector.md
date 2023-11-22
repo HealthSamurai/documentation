@@ -63,3 +63,22 @@ service:
 ### See Aidbox logs in the OTEL collector stdout
 
 Open OTEL collector stdout and see the logs.
+
+### Check logs sending status
+
+The common endpoint for checking status of sending metrics process
+
+```
+GET /telemetry/:zen-namespace/:zen-symbol-name/$status
+```
+
+In this case
+
+```yaml
+GET /telemetry/main/open-telemetry-metrics-exporter/$status
+
+queue-size: 10
+history:
+- ts: 1700661071
+  processed-count: 34
+```
