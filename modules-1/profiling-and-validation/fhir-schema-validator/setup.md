@@ -57,3 +57,22 @@ To enable a specific IG, list it in the following variable. Separate different p
 
 ```
 {% endcode %}
+
+
+
+### External Terminology Server
+
+To validate coded values with an external Terminology server, use the `validate-binding-url` variable by specifying the `ValueSet/$validate-code` endpoint.
+
+{% code title="zrc/config.edn" %}
+```
+ base-config
+ {:zen/tags #{aidbox.config/config}
+  ...
+  :validate-binding-url "https://tx.fhir.org/r4/ValueSet/$validate-code"
+  ...
+  }
+
+```
+{% endcode %}
+
