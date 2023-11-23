@@ -26,7 +26,7 @@ Please note that this validation mode suppresses other validation engines and do
 
 ## Enable a Specific Implementation Guide (IG)
 
-To enable a specific IG, list it in the following environment variable. Separate different packages using a colon (`:`). You can visit the following page to get a complete list of IGs supported by the FHIR Schema validator. Package entry template: `<package_name>#<package_version>`.
+To enable a specific IG, list it in the following variable. Separate different packages using a colon (`:`). You can visit the following page to get a complete [list of IGs](supported-implementation-guides.md) supported by the FHIR Schema validator. Package entry template: `<package_name>#<package_version>`.
 
 {% code title="zrc/config.edn" %}
 ```
