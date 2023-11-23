@@ -28,24 +28,6 @@ This project is tailored with specific configurations essential for terminology 
 
 SNOMED CT is distributed under a license which means that we can not redistribute it without making sure that other people have this license. You can confirm your eligibility for accessing SNOMED CT by contacting Aidbox team. See [our contacts here](https://docs.aidbox.app/contact-us).
 
-### Provide SSH keys to access our prepackaged SNOMED CT repository
-
-We distribute SNOMED CT through a private Github repository. This means that you have to provide us with your public SSH key which we’ll add to the repository’s access list.
-
-You also need to set Aidbox environment variables to use this public key and its corresponding private key. They are required so that Aidbox is able to work with private SNOMED CT repository.
-
-The required environment variables are listed below:
-
-```
-BOX_PROJECT_GIT_PRIVATE__KEY="-----BEGIN …
-…
------END … -----
-"
-BOX_PROJECT_GIT_PUBLIC__KEY="ssh-…"
-```
-
-Be aware that there’s a newline at the end of `BOX_PROJECT_GIT_PRIVATE__KEY`. Make sure that it is present otherwise the key becomes invalid.
-
 ## Configuration Overview: Key Features and Distinctions
 
 If you already have a configuration project, you can replicate these steps to enable SNOMED terminology in your Aidbox instance.
