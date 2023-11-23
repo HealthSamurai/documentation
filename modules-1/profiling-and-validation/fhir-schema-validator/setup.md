@@ -6,11 +6,17 @@ description: How to enable new validator engine and specify IGs
 
 ## Enable the FHIR Schema Validator Engine
 
-To enable the FHIR Schema Validator engine, provide the following environment variable:
+To enable the FHIR Schema Validator engine, provide the following variable in your Zen configuration project:
 
-{% code title=".env" %}
+{% code title="zrc/config.edn" %}
 ```
-BOX_FEATURES_VALIDATION_MODE=fhir-schema
+ features
+ {:zen/tags #{aidbox.config/features}
+  ...
+  :validation {:mode "fhir-schema"}
+  ...
+  }
+
 ```
 {% endcode %}
 
@@ -22,8 +28,14 @@ Please note that this validation mode suppresses other validation engines and do
 
 To enable a specific IG, list it in the following environment variable. Separate different packages using a colon (`:`). You can visit the following page to get a complete list of IGs supported by the FHIR Schema validator. Package entry template: `<package_name>#<package_version>`.
 
-{% code title=".env" %}
+{% code title="zrc/config.edn" %}
 ```
-BOX_FHIR__PACKAGES=hl7.fhir.r4.core#4.0.1:hl7.fhir.us.core#5.0.1
+ base-config
+ {:zen/tags #{aidbox.config/config}
+  ...
+  :fhir-packages "hl7.fhir.us.core#5.0.1"
+  ...
+  }
+
 ```
 {% endcode %}
