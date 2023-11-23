@@ -16,7 +16,7 @@ git clone \
   rm -rf .git
 ```
 
-This project is tailored with specific configurations for FHIR Schema Validator loading.
+This project is tailored with specific configurations for FHIR Schema Validator.
 
 ### Configuration Overview: Key Features and Distinctions
 
