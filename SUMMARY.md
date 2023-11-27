@@ -410,6 +410,7 @@
     * [Set up SSO with Auth0](modules-1/smartbox/how-to-guides/how-to-set-up-sso-with-auth0.md)
     * [Publish Terms of Use link onto the documentation page](modules-1/smartbox/how-to-guides/publish-terms-of-use-link-onto-the-documentation-page.md)
     * [Find out what resources were exported during the $export operation](modules-1/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-usdexport-operation.md)
+    * [Find documentation endpoint](modules-1/smartbox/how-to-guides/find-documentation-endpoint.md)
   * [Background information](modules-1/smartbox/background-information/README.md)
     * [Considerations for Testing with Inferno ONC](modules-1/smartbox/background-information/considerations-for-testing-with-inferno-onc.md)
     * [Adding Clients for Inferno tests](modules-1/smartbox/background-information/adding-clients-for-inferno-tests.md)
