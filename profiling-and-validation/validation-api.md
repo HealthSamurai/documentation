@@ -10,9 +10,10 @@ description: Use RPC to run a validation operation to check a resource conforman
 This is a draft API. We appreciate your feedback and ideas in [this discussion](https://github.com/Aidbox/Issues/discussions/409)
 {% endhint %}
 
-It may happen that you updated your profiles when data is already in your database or you want to do efficiently load a batch of data and validate it later.  API consists of 3 procedures and a couple of resources:
+It may happen that you updated your profiles when data is already in your database or you want to do efficiently load a batch of data and validate it later. API consists of 4 procedures and a couple of resources:
 
 * [aidbox.validation/batch-validation](validation-api.md#aidbox-validation-batch-validation) **-** run validation
+* [aidbox.validation/resources-batch-validation-task](validation-api.md#aidbox.validation-batch-validation-result) - run validation with [Aidbox Workflow](../modules-1/workflow-engine/workflow/)
 * [aidbox.validation/batch-validation-result](validation-api.md#aidbox-validation-batch-validation-result) - inspect results (useful for async mode)
 * [aidbox.validation/clear-batch-validation](validation-api.md#aidbox-validation-clear-batch-validation) - clear validation results
 
@@ -87,9 +88,72 @@ result:
           message: extra property
 ```
 
+#### aidbox.validation/resources-batch-validation-task
+
+You can run validation workflow with rpc method, which creates task for every resource provided in rpc's params fields `include` or `exclude`:
+
+```yaml
+POST /rpc
+accept: text/yaml
+content-type: text/yaml
+
+
+method: aidbox.validation/resources-batch-validation-task
+params:
+  include: ['patient', 'observation']
+  
+  
+# response
+params:
+  tables:
+    - patient
+    - observation
+status: in-progress
+definition: aidbox.validation/resource-types-batch-validation-workflow
+id: >-
+  7addda33-003e-4892-a1d9-0faffbedf86d
+resourceType: AidboxWorkflow
+```
+
+{% hint style="info" %}
+If you specify `include` param, only types you passed will be validated.
+
+If you specify `exclude` param, all types will be validated except the ones you passed.
+
+`include` and `exclude` params cannot be used together.
+{% endhint %}
+
+You can check a progress of workflow in Aidbox UI or by rpc method:
+
+```yaml
+POST /rpc
+accept: text/yaml
+content-type: text/yaml
+
+
+method: awf.workflow/status
+params:
+  id: 7addda33-003e-4892-a1d9-0faffbedf86d
+
+#response
+result:
+  resource:
+    params:
+      tables:
+        - patient
+        - observation
+    result: Finished
+    status: done
+    outcome: succeeded
+    definition: aidbox.validation/resource-types-batch-validation-workflow
+    id: >-
+      7addda33-003e-4892-a1d9-0faffbedf86d
+    resourceType: AidboxWorkflow
+```
+
 #### aidbox.validation/batch-validation-result
 
-If you run validation in async mode, it will respond instantly and run validation in the background. You can get validation results with  RPC `aidbox.validation/batch-validation-result`
+If you run validation in async mode or aidbox.validation/resources-batch-validation-task, it will respond instantly and run validation in the background. You can get validation results with RPC `aidbox.validation/batch-validation-result`
 
 ```yaml
 POST /rpc?_format=yaml
@@ -109,6 +173,13 @@ result:
     - resource: {....}
       errors: [{...}, {...}]
 ```
+
+{% hint style="info" %}
+```
+aidbox.validation/batch-validation-result method requires `resourceType` param, which has a default value `BatchValidationRun`. 
+So, if you want to get the result from aidbox.validation/resources-batch-validation-task you need pass "AidboxWorkflow" to `resourceType` param. 
+```
+{% endhint %}
 
 #### aidbox.validation/clear-batch-validation
 
