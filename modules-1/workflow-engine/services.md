@@ -8,7 +8,7 @@ To use the scheduler, you need to describe your rules in zen format and list the
 
 #### Rule params
 
-<table data-full-width="true"><thead><tr><th width="230">Parameter</th><th width="91">Type</th><th width="105.33333333333331" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>schedule</td><td>string</td><td>true</td><td>A string in <strong>cron</strong> format that describes how often an activity is executed.<br><em>Example: <code>*****</code> (Every minute)</em></td></tr><tr><td>concurrency-policy</td><td>string</td><td>false</td><td>Prohibits the scheduler to start an activity if a similar activity already started has not yet ended when value is <code>forbid</code>. Allows this behavior if the value is <code>allow</code>.<br><em>Default: <code>forbid</code></em></td></tr><tr><td>start-deadline-seconds</td><td>number</td><td>false</td><td>The period of time in which the task can be started after the assigned time in seconds.<br><em>Default: <code>60</code></em></td></tr><tr><td>task-request</td><td>map</td><td>true</td><td><p>Definition of the task-request to be performed.</p><p><em>Exclusive with workflow-request.</em></p></td></tr><tr><td>workflow-request</td><td>map</td><td>true</td><td><p>Definition of the workflow-request to be performed.</p><p><em>Exclusive with task-request.</em></p></td></tr></tbody></table>
+<table data-full-width="true"><thead><tr><th width="230">Parameter</th><th width="91">Type</th><th width="105.33333333333331" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>schedule</td><td>string</td><td>true</td><td>A string in <strong>cron</strong> format that describes how often an activity is executed.<br><em>Example: <code>*****</code> (Every minute)</em></td></tr><tr><td>execute-on-setup</td><td>boolean</td><td>false</td><td>If <code>true</code>, the task will always be started immediately on the first Aidbox start with the new rule. The rule will adhere to the schedule after this. <br><em>Default: <code>false</code></em></td></tr><tr><td>concurrency-policy</td><td>string</td><td>false</td><td>Prohibits the scheduler to start an activity if a similar activity already started has not yet ended when value is <code>forbid</code>. Allows this behavior if the value is <code>allow</code>.<br><em>Default: <code>forbid</code></em></td></tr><tr><td>start-deadline-seconds</td><td>number</td><td>false</td><td>The period of time in which the task can be started after the assigned time in seconds.<br><em>Default: <code>60</code></em></td></tr><tr><td>task-request</td><td>map</td><td>true</td><td><p>Definition of the task-request to be performed.</p><p><em>Exclusive with workflow-request.</em></p></td></tr><tr><td>workflow-request</td><td>map</td><td>true</td><td><p>Definition of the workflow-request to be performed.</p><p><em>Exclusive with task-request.</em></p></td></tr></tbody></table>
 
 #### Rule definition
 
@@ -16,6 +16,7 @@ To use the scheduler, you need to describe your rules in zen format and list the
  archive-every-day
  {:zen/tags #{awf.scheduler/rule}
   :schedule "10 14 * * *"
+  :execute-on-setup true
   :concurrency-policy "forbid"
   :start-deadline-seconds 60
   :task-request {:definition aidbox.archive/create-archive
