@@ -22,19 +22,14 @@ To get the Aidbox License:
 
 Aidbox is configured by the [Aidbox Configuration Projects](broken-reference). To create sample project run command below&#x20;
 
-{% tabs %}
-{% tab title="SMART App Launch 1.0.0" %}
-```sh
-git clone \
-  --branch=main \
+<pre><code><strong>git clone \
+</strong>  --branch=main \
   --depth=1 \
-  https://github.com/Aidbox/aidbox-project-template.git \
-  aidbox-project && \
-  cd aidbox-project && \
+  https://github.com/Aidbox/smart-app-launch-configuration-project.git \
+  aidbox-project &#x26;&#x26; \
+  cd aidbox-project &#x26;&#x26; \
   rm -rf .git
-```
-{% endtab %}
-{% endtabs %}
+</code></pre>
 
 {% hint style="info" %}
 See more details related the [running Aidbox locally](broken-reference)
@@ -55,13 +50,10 @@ AIDBOX_LICENSE=YOUR_AIDBOX_LICENSE_KEY
 
 To enable hierarchical access control (multi-tenancy on Organization resources) add necessary imports to the `zrc/main.edn` file.
 
-{% tabs %}
-{% tab title="SMART App Launch 1.0.0" %}
 1. Add `aidbox.auth` and `aidbox.patient-api.v1` to the import section.
 2. Add `grant-lookup-method` definition
 
-{% code title="zrc/main.edn" %}
-```clojure
+```
 {ns main
  import #{aidbox
           aidbox.oauth2         ;; import oauth2
@@ -79,9 +71,6 @@ To enable hierarchical access control (multi-tenancy on Organization resources) 
   :services {:admin-user-seed config/admin-user-seed
              :root-client-seed config/root-client-seed}}}
 ```
-{% endcode %}
-{% endtab %}
-{% endtabs %}
 
 ## Start Aidbox with Docker Compose
 
@@ -95,34 +84,7 @@ When Aidbox starts, navigate to the [http://localhost:8888](http://localhost:888
 
 ## Register OAuth & SMART on FHIR scopes
 
-To register scopes
-
-{% tabs %}
-{% tab title="SMART App Launch 1.0.0" %}
-{% code title="zrc/main.edn" %}
-```clojure
-{ns main
- import #{aidbox
-          aidbox.oauth2         ;; import oauth2
-          aidbox.patient-api.v1 ;; import Patient API
-          config}
-
- ;; define grant-lookup-method
- grant-lookup-method
- {:zen/tags #{aidbox.auth/grant-lookup}
-  :method   aidbox.auth/single-patient-grant-lookup}
-
- box
- {:zen/tags #{aidbox/system}
-  :config   config/base-config
-  :services {:admin-user-seed config/admin-user-seed
-             :root-client-seed config/root-client-seed}}}
-```
-{% endcode %}
-{% endtab %}
-{% endtabs %}
-
-### Create Scope resources
+### Load Scope resources for SMART App launch 1 & 2
 
 <pre class="language-yaml"><code class="lang-yaml"><strong>POST /$load
 </strong>Content-Type: text/yaml
@@ -238,7 +200,7 @@ Content-Type: text/yaml
   - {resourceType: Scope, id: offline-access}
 ```
 
-## Create Inferno test session
+## Run Inferno test session
 
 Create Inferno test session by following the link [https://inferno.healthit.gov/onc-certification-g10-test-kit](https://inferno.healthit.gov/onc-certification-g10-test-kit).
 
