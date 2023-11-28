@@ -48,6 +48,7 @@
     * [APM Aidbox](tutorials/tutorials/apm-aidbox.md)
     * [License migration guide](tutorials/tutorials/license-migration-guide.md)
     * [Automatically archive AuditEvent resources in GCP storage guide](tutorials/tutorials/automatically-archive-auditevent-resources-in-gcp-storage-guide.md)
+    * [\[WIP\] Multibox to Aidbox migration best practices](readme-1/tutorials/wip-multibox-to-aidbox-migration-best-practices.md)
 
 ## Overview
 
