@@ -48,13 +48,13 @@ AIDBOX_LICENSE=YOUR_AIDBOX_LICENSE_KEY
 
 ## Enable SMART on FHIR
 
-To enable hierarchical access control (multi-tenancy on Organization resources) add necessary imports to the `zrc/system.edn` file.
+To enable hierarchical access control (multi-tenancy on Organization resources) add necessary imports to the `zrc/main.edn` file.
 
 1. Add `aidbox.auth` and `aidbox.patient-api.v1` to the import section.
 2. Add `grant-lookup-method` definition
 
 ```
-{ns system
+{ns main
  import #{aidbox
           aidbox.oauth2         ;; import oauth2
           aidbox.patient-api.v1 ;; import Patient API
