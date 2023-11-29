@@ -20,9 +20,9 @@ To get the Aidbox License:
 
 ## Create Aidbox project
 
-Aidbox is configured by the [Aidbox Configuration Projects](broken-reference). To create sample project run command below&#x20;
+Aidbox is configured by the [Aidbox Configuration Projects](../../aidbox-configuration/aidbox-zen-lang-project/). To create sample project run command below&#x20;
 
-<pre><code><strong>git clone \
+<pre class="language-sh"><code class="lang-sh"><strong>git clone \
 </strong>  --branch=main \
   --depth=1 \
   https://github.com/Aidbox/smart-app-launch-configuration-project.git \
@@ -32,7 +32,7 @@ Aidbox is configured by the [Aidbox Configuration Projects](broken-reference). T
 </code></pre>
 
 {% hint style="info" %}
-See more details related the [running Aidbox locally](broken-reference)
+See more details related the [running Aidbox locally](../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md)
 {% endhint %}
 
 ### Apply the license
