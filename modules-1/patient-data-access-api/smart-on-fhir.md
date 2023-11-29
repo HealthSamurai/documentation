@@ -48,13 +48,13 @@ AIDBOX_LICENSE=YOUR_AIDBOX_LICENSE_KEY
 
 ## Enable SMART on FHIR
 
-To enable hierarchical access control (multi-tenancy on Organization resources) add necessary imports to the `zrc/main.edn` file.
+To enable hierarchical access control (multi-tenancy on Organization resources) add necessary imports to the `zrc/system.edn` file.
 
 1. Add `aidbox.auth` and `aidbox.patient-api.v1` to the import section.
 2. Add `grant-lookup-method` definition
 
 ```
-{ns main
+{ns system
  import #{aidbox
           aidbox.oauth2         ;; import oauth2
           aidbox.patient-api.v1 ;; import Patient API
@@ -86,6 +86,8 @@ When Aidbox starts, navigate to the [http://localhost:8888](http://localhost:888
 
 ### Load Scope resources for SMART App launch 1 & 2
 
+Use Aidbox UI Rest Console to load Scope resources.
+
 <pre class="language-yaml"><code class="lang-yaml"><strong>POST /$load
 </strong>Content-Type: text/yaml
 
@@ -93,6 +95,8 @@ source: 'https://storage.googleapis.com/aidbox-public/smart-on-fhir/scopes.ndjso
 </code></pre>
 
 ### Create AccessPolicy resources
+
+Use Aidbox UI Rest Console to create AccessPoliciy resources.
 
 <pre class="language-yaml"><code class="lang-yaml"><strong>PUT /
 </strong>Content-Type: text/yaml
@@ -116,6 +120,8 @@ source: 'https://storage.googleapis.com/aidbox-public/smart-on-fhir/scopes.ndjso
 </code></pre>
 
 ### Create Patient and User resources
+
+Use Aidbox UI Rest Console to create the Patient and User resources.
 
 ```yaml
 PUT /
