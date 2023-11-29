@@ -25,7 +25,7 @@ Aidbox is configured by the [Aidbox Configuration Projects](../../aidbox-configu
 <pre class="language-sh"><code class="lang-sh"><strong>git clone \
 </strong>  --branch=main \
   --depth=1 \
-  https://github.com/Aidbox/smart-app-launch-configuration-project.git \
+  https://github.com/Aidbox/aidbox-project-template \
   aidbox-project &#x26;&#x26; \
   cd aidbox-project &#x26;&#x26; \
   rm -rf .git
