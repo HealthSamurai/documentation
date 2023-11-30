@@ -8,7 +8,7 @@ description: This guide explains how SMART App launch (1.0.0 & 2.0.0) can be ena
 
 ### Docker and Docker Compose
 
-You should have Docker and Docker Compose installed before go further. To get it installed follow the [instructions](https://docs.docker.com/engine/install/).
+You should have Docker and Docker Compose installed before go further. To get it installed follow the [instructions](https://docs.docker.com/engine/install/).&#x20;
 
 ### Aidbox license
 
@@ -17,6 +17,18 @@ To get the Aidbox License:
 1. Go the Aidbox user portal [https://aidbox.app](https://aidbox.app/)
 2. Login to the portal
 3. Create new **self-hosted** Aidbox License or use the license that you already have
+
+## Expose Aidbox port to the Internet
+
+In this guide we are using `ngrok` to make Aidbox accessible from the Internet. Aidbox will be listening the 8888 port.
+
+To launch ngrok run the command below.
+
+```sh
+ngrok http 8888
+```
+
+When ngrok starts it shows the domain name which is linked to the 8888 port. The forwarding  domain name is used to defined `AIDBOX_BASE_URL` env value.
 
 ## Create Aidbox project
 
@@ -35,13 +47,15 @@ Aidbox is configured by the [Aidbox Configuration Projects](../../aidbox-configu
 See more details related the [running Aidbox locally](../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md)
 {% endhint %}
 
-### Apply the license
+### Apply the license and AIDBOX\_BASE\_URL
 
 Populate the `.env` file with the Aidbox License.&#x20;
 
 {% code title=".env" %}
 ```ini
 AIDBOX_LICENSE=YOUR_AIDBOX_LICENSE_KEY
+
+AIDBOX_BASE_URL=YOUR_NGROK_FORWARDING_DOMAIN_NAME
 ...
 ```
 {% endcode %}
