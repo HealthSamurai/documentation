@@ -143,9 +143,9 @@ Content-Type: text/yaml
 
 - id: my-patient
   resourceType: Patient
-- id: my-user
+- id: my-user              # my-user is a patient login
   resourceType: User
-  password: password
+  password: password       # password is a patient password
   fhirUser:
     id: my-patient
     resourceType: Patient
@@ -230,12 +230,16 @@ Create Inferno test session by following the link [https://inferno.healthit.gov/
 2. Click the `Run tests` button
 3. Provide require parameters for tests
    * FHIR Endpoint:\
-     `[aidbox-url]/patient/fhir`
+     `[AIDBOX_BASE_URL]/patient/fhir`
    * Standalone Client ID: `smart-app`
    * Standalone Client Secret: `secret`
 4. Click the `Submit` button
 
 Once you run tests, follow the Inferno instructions.
+
+{% hint style="info" %}
+Use  `my-user` as a login and `password` as a password to enter, if Aidbox asks to provide user credentials during the SMART App launch.
+{% endhint %}
 
 ### 2 Standalone Patient App - Limited Access
 
