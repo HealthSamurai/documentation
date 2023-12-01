@@ -1,5 +1,26 @@
 # Release Notes
 
+## November 2023 _`edge`_
+
+* Data API&#x20;
+  * Added [asynchronous resource validation](../../profiling-and-validation/validation-api.md)
+* Integrations
+  * Optimized [Activity Scheduler Service](../../modules-1/workflow-engine/services.md#scheduler) for Workflow Engine&#x20;
+* [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
+  * Improved performance from 2x (up to 3x faster)
+  * Added narrative generation for a number of sections (see all sections here)
+* Security and access control
+  * Enabled [SMART App launch v. 1 & 2 for Patient API](../../modules-1/patient-data-access-api/smart-on-fhir.md)&#x20;
+* [Aidbox Forms](../../modules-1/aidbox-forms.md)
+  * Added group widget in the UI Builder
+  * Added calculate expressions with FHIRPath/AidboxLisp
+  * Added FHIRPath support for enable-when expressions
+  * Add views for Questionnaire and QuestionnaireResponse in the UI Builder
+  * Enabled saving a Form as Questionnaire
+  * Integrated Questionnaire/QuestionnaireResponse in current list of Aidbox Forms
+  * Added $validate-response FHIR operation
+  * Added $process-response [FHIR SDC operation ](http://build.fhir.org/ig/HL7/sdc/OperationDefinition-Questionnaire-process-response.html)
+
 ## October 2023 _`latest`_
 
 * New [FHIR Schema Validator](../../modules-1/profiling-and-validation/fhir-schema-validator.md) for Aidbox (Early Alpha)
