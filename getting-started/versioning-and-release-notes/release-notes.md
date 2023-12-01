@@ -1,6 +1,6 @@
 # Release Notes
 
-## November 2023 _`edge`_
+## November 2023 _`latest`_
 
 * Data API&#x20;
   * Added [asynchronous resource validation](../../profiling-and-validation/validation-api.md)
@@ -21,7 +21,7 @@
   * Added $validate-response FHIR operation
   * Added $process-response [FHIR SDC operation ](http://build.fhir.org/ig/HL7/sdc/OperationDefinition-Questionnaire-process-response.html)
 
-## October 2023 _`latest`_
+## October 2023 _`stable, 2310`_
 
 * New [FHIR Schema Validator](../../modules-1/profiling-and-validation/fhir-schema-validator.md) for Aidbox (Early Alpha)
 * Terminology
@@ -51,7 +51,7 @@
 * Aidbox UI
   * Introduced new database console sidebar&#x20;
 
-## September 2023 _`stable, 2309`_
+## September 2023 _`2309`_
 
 * New [FHIR Validator](https://fhir-validator.aidbox.app/) public demo stand
 * SDK
