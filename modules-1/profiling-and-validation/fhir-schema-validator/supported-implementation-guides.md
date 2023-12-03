@@ -49,6 +49,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 |                               fhir.cdc.opioid-mme-r4 |                                                                                                                                                3.0.0 |
 |                                      fhir.cqf.common |                                                                                                                                                4.0.1 |
 |                                           fhir.dicom |                                                                                   2021.4.20210910, 2022.4.20221006, 2023.1.20230123, 2023.4.20230907 |
+|                                   fhir.hrsa.uds-plus |                                                                                                                                                1.0.1 |
 |                                   fhir.tx.support.r4 | 0.1.0, 0.10.0, 0.11.0, 0.12.0, 0.13.0, 0.14.0, 0.15.0, 0.16.0, 0.17.0, 0.18.0, 0.19.0, 0.2.0, 0.3.0, 0.3.1, 0.4.0, 0.5.0, 0.6.0, 0.7.0, 0.8.0, 0.9.0 |
 |                                      hl7.cda.us.ccda |                                                                                                                                         2.1.0-draft1 |
 |                                      hl7.cda.uv.core |                                                                                                                        2.0.0-sd-ballot, 2.1.0-draft1 |
@@ -97,7 +98,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 |                             hl7.fhir.us.davinci-cdex |                                                                                                      0.1.0, 0.2.0, 1.0.0, 1.1.0, 2.0.0-ballot, 2.0.0 |
 |                              hl7.fhir.us.davinci-crd |                                                                                                             0.1.0, 0.3.0, 1.0.0, 1.1.0-ballot, 2.0.0 |
 |                             hl7.fhir.us.davinci-deqm |                                                                                 0.1.0, 1.0.0, 1.1.0, 2.0.0, 2.1.0, 3.0.0, 3.1.0, 4.0.0-ballot, 4.0.0 |
-|                   hl7.fhir.us.davinci-drug-formulary |                                                                                                             0.1.0, 1.0.0, 1.0.1, 1.1.0, 1.2.0, 2.0.0 |
+|                   hl7.fhir.us.davinci-drug-formulary |                                                                                                      0.1.0, 1.0.0, 1.0.1, 1.1.0, 1.2.0, 2.0.0, 2.0.1 |
 |                              hl7.fhir.us.davinci-dtr |                                                                                                             0.1.0, 0.2.0, 1.0.0, 1.1.0-ballot, 2.0.0 |
 |                             hl7.fhir.us.davinci-hrex |                                                                                                                                  0.1.0, 0.2.0, 1.0.0 |
 |                              hl7.fhir.us.davinci-pas |                                                                                                             0.1.0, 1.0.0, 1.1.0, 1.2.0-ballot, 2.0.0 |
