@@ -96,7 +96,7 @@ C-CDA Equivalent:
 <section>
    <templateId root="2.16.840.1.113883.10.20.22.2.60"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="61146-7"/>
    <title>Goals Section</title>
@@ -107,7 +107,7 @@ C-CDA Equivalent:
          <templateId root="2.16.840.1.113883.10.20.22.4.121"/>
          <id root="3700b3b0-fbed-11e2-b788-0800200c9a66"/>
          <code codeSystem="2.16.840.1.113883.6.1"
-                codeSystemName="HTTP://LOINC.ORG"
+                codeSystemName="http://loinc.org"
                 displayName="Negotiated Goal for Body Temperature"
                 code="8310-5"/>
          <statusCode code="active"/>
@@ -122,7 +122,7 @@ C-CDA Equivalent:
             <assignedAuthor>
                <id root="d839038b-7172-4165-a760-467925b43857"/>
                <code codeSystem="2.16.840.1.113883.6.101"
-                      codeSystemName="HTTP://HL7.ORG/FHIR/VALUESET/PROVIDER-TAXONOMY"
+                      codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"
                       displayName="Registered nurse"
                       code="163W00000X"/>
                <addr nullFlavor="UNK"/>
@@ -139,7 +139,7 @@ C-CDA Equivalent:
          <entryRelationship typeCode="REFR">
             <observation classCode="OBS" moodCode="EVN">
                <templateId root="2.16.840.1.113883.10.20.22.4.143"/>
-               <id root="3bd131f7-8965-40da-ac4a-e4101723c8f7"/>
+               <id root="cbb98939-2cd7-496d-b201-cf5e5d35ffef"/>
                <code code="225773000" codeSystem="2.16.840.1.113883.6.96"/>
                <value code="394849002"
                        displayName="High Priority"
@@ -228,7 +228,7 @@ C-CDA Equivalent:
 <section>
    <templateId root="2.16.840.1.113883.10.20.22.2.60"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="61146-7"/>
    <title>Goals Section</title>
@@ -239,7 +239,7 @@ C-CDA Equivalent:
          <templateId root="2.16.840.1.113883.10.20.22.4.121"/>
          <id root="3700b3b0-fbed-11e2-b778-0800200c9a66"/>
          <code codeSystem="2.16.840.1.113883.6.1"
-                codeSystemName="HTTP://LOINC.ORG"
+                codeSystemName="http://loinc.org"
                 displayName="Resident's overall goal established during assessment process"
                 code="58144-7"/>
          <statusCode code="active"/>
@@ -251,7 +251,7 @@ C-CDA Equivalent:
             <assignedAuthor>
                <id root="d839038b-7171-4165-a760-467925b43857"/>
                <code codeSystem="2.16.840.1.113883.6.101"
-                      codeSystemName="HTTP://HL7.ORG/FHIR/VALUESET/PROVIDER-TAXONOMY"
+                      codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"
                       displayName="Registered nurse"
                       code="163W00000X"/>
                <addr nullFlavor="UNK"/>
@@ -268,7 +268,7 @@ C-CDA Equivalent:
          <entryRelationship typeCode="REFR">
             <observation classCode="OBS" moodCode="EVN">
                <templateId root="2.16.840.1.113883.10.20.22.4.143"/>
-               <id root="42d1f2e5-59d2-49ba-821e-0f9e8ce73ca2"/>
+               <id root="21ee3633-706f-48ac-bd89-c8404dd13a01"/>
                <code code="225773000" codeSystem="2.16.840.1.113883.6.96"/>
                <value code="394849002"
                        displayName="High Priority"

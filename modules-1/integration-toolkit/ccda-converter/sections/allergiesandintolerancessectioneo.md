@@ -94,7 +94,7 @@ C-CDA Equivalent:
    <templateId root="2.16.840.1.113883.10.20.22.2.6.1" extension="2015-08-01"/>
    <templateId root="2.16.840.1.113883.10.20.22.2.6.1"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="48765-2"/>
    <title>Allergies and Intolerances Section (entries optional) (V3)</title>
@@ -135,7 +135,7 @@ C-CDA Equivalent:
             <assignedAuthor>
                <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
                <code codeSystem="2.16.840.1.113883.6.101"
-                      codeSystemName="HTTP://HL7.ORG/FHIR/VALUESET/PROVIDER-TAXONOMY"
+                      codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"
                       displayName="Family Medicine"
                       code="207Q00000X"/>
                <addr nullFlavor="UNK"/>
@@ -152,7 +152,7 @@ C-CDA Equivalent:
             <observation moodCode="EVN" classCode="OBS">
                <templateId root="2.16.840.1.113883.10.20.22.4.7" extension="2014-06-09"/>
                <templateId root="2.16.840.1.113883.10.20.22.4.7"/>
-               <id root="c1260986-dfd1-44c3-a9ba-3e24290cd951"/>
+               <id root="a0576968-8af3-4257-9944-2ac5c26f61d6"/>
                <code xsi:type="CD" code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
                <statusCode code="completed"/>
                <effectiveTime>
@@ -170,7 +170,7 @@ C-CDA Equivalent:
                   <assignedAuthor>
                      <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
                      <code codeSystem="2.16.840.1.113883.6.101"
-                            codeSystemName="HTTP://HL7.ORG/FHIR/VALUESET/PROVIDER-TAXONOMY"
+                            codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"
                             displayName="Family Medicine"
                             code="207Q00000X"/>
                      <addr nullFlavor="UNK"/>
@@ -187,7 +187,7 @@ C-CDA Equivalent:
                   <participantRole classCode="MANU">
                      <playingEntity classCode="MMAT">
                         <code codeSystem="2.16.840.1.113883.6.96"
-                               codeSystemName="HTTP://SNOMED.INFO/SCT"
+                               codeSystemName="http://snomed.info/sct"
                                displayName="No Known Allergy (situation)"
                                code="716186003"/>
                      </playingEntity>
@@ -308,7 +308,7 @@ C-CDA Equivalent:
    <templateId root="2.16.840.1.113883.10.20.22.2.6.1" extension="2015-08-01"/>
    <templateId root="2.16.840.1.113883.10.20.22.2.6.1"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="48765-2"/>
    <title>Allergies and Intolerances Section (entries optional) (V3)</title>
@@ -373,7 +373,7 @@ C-CDA Equivalent:
             <observation moodCode="EVN" classCode="OBS">
                <templateId root="2.16.840.1.113883.10.20.22.4.7" extension="2014-06-09"/>
                <templateId root="2.16.840.1.113883.10.20.22.4.7"/>
-               <id root="9a1adf0a-38d8-403c-af92-b992f21d13d2"/>
+               <id root="609f5aa4-02ef-49cf-9646-d544f0a303d1"/>
                <code xsi:type="CD" code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
                <statusCode code="completed"/>
                <effectiveTime>
@@ -389,7 +389,7 @@ C-CDA Equivalent:
                   <participantRole classCode="MANU">
                      <playingEntity classCode="MMAT">
                         <code codeSystem="2.16.840.1.113883.6.88"
-                               codeSystemName="HTTP://WWW.NLM.NIH.GOV/RESEARCH/UMLS/RXNORM"
+                               codeSystemName="http://www.nlm.nih.gov/research/umls/rxnorm"
                                displayName="Codeine"
                                code="2670"/>
                      </playingEntity>
@@ -410,12 +410,12 @@ C-CDA Equivalent:
                   <observation moodCode="EVN" classCode="OBS">
                      <templateId root="2.16.840.1.113883.10.20.22.4.9" extension="2014-06-09"/>
                      <templateId root="2.16.840.1.113883.10.20.22.4.9"/>
-                     <id root="b916ebf5-e952-4eba-95ae-bdf0aebc8b4e"/>
+                     <id root="f779fa7a-c904-42f0-9240-6b75dd2217a7"/>
                      <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
                      <statusCode code="completed"/>
                      <effectiveTime value="20120129"/>
                      <value codeSystem="2.16.840.1.113883.6.96"
-                             codeSystemName="HTTP://SNOMED.INFO/SCT"
+                             codeSystemName="http://snomed.info/sct"
                              displayName="Nausea"
                              code="422587007"
                              xsi:type="CD"/>
@@ -423,7 +423,7 @@ C-CDA Equivalent:
                         <observation classCode="OBS" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.10.20.22.4.8" extension="2014-06-09"/>
                            <templateId root="2.16.840.1.113883.10.20.22.4.8"/>
-                           <id root="8432abb1-6901-4f17-bd2b-4abcd7008496"/>
+                           <id root="8ec1ced9-6bea-44e7-a810-cf2a04e0f7c1"/>
                            <code code="SEV" codeSystem="2.16.840.1.113883.5.4"/>
                            <statusCode code="completed"/>
                            <value code="24484000"
@@ -439,12 +439,12 @@ C-CDA Equivalent:
                   <observation moodCode="EVN" classCode="OBS">
                      <templateId root="2.16.840.1.113883.10.20.22.4.9" extension="2014-06-09"/>
                      <templateId root="2.16.840.1.113883.10.20.22.4.9"/>
-                     <id root="df8b9466-4885-4aff-814c-0517cce04e45"/>
+                     <id root="c6a13d73-0aa8-4daf-9faf-f8e5b94d8e0e"/>
                      <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
                      <statusCode code="completed"/>
                      <effectiveTime value="20100315"/>
                      <value codeSystem="2.16.840.1.113883.6.96"
-                             codeSystemName="HTTP://SNOMED.INFO/SCT"
+                             codeSystemName="http://snomed.info/sct"
                              displayName="Nausea"
                              code="422587007"
                              xsi:type="CD"/>
@@ -452,7 +452,7 @@ C-CDA Equivalent:
                         <observation classCode="OBS" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.10.20.22.4.8" extension="2014-06-09"/>
                            <templateId root="2.16.840.1.113883.10.20.22.4.8"/>
-                           <id root="1f0a40fb-123b-4f52-aa96-d28d27a22de9"/>
+                           <id root="b655e5aa-27f5-4e6f-8798-4444faf4c5ef"/>
                            <code code="SEV" codeSystem="2.16.840.1.113883.5.4"/>
                            <statusCode code="completed"/>
                            <value code="255604002"
@@ -586,7 +586,7 @@ C-CDA Equivalent:
    <templateId root="2.16.840.1.113883.10.20.22.2.6.1" extension="2015-08-01"/>
    <templateId root="2.16.840.1.113883.10.20.22.2.6.1"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="48765-2"/>
    <title>Allergies and Intolerances Section (entries optional) (V3)</title>
@@ -631,7 +631,7 @@ C-CDA Equivalent:
             <assignedAuthor>
                <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
                <code codeSystem="2.16.840.1.113883.6.101"
-                      codeSystemName="HTTP://HL7.ORG/FHIR/VALUESET/PROVIDER-TAXONOMY"
+                      codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"
                       displayName="Family Medicine"
                       code="207Q00000X"/>
                <addr nullFlavor="UNK"/>
@@ -648,7 +648,7 @@ C-CDA Equivalent:
             <observation moodCode="EVN" classCode="OBS">
                <templateId root="2.16.840.1.113883.10.20.22.4.7" extension="2014-06-09"/>
                <templateId root="2.16.840.1.113883.10.20.22.4.7"/>
-               <id root="89076171-98fa-48b6-9660-9ed586b1a10d"/>
+               <id root="4ebccdfb-93a2-4ce3-9aa3-1fdb8993d7b3"/>
                <code xsi:type="CD" code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
                <statusCode code="completed"/>
                <effectiveTime>
@@ -666,7 +666,7 @@ C-CDA Equivalent:
                   <assignedAuthor>
                      <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
                      <code codeSystem="2.16.840.1.113883.6.101"
-                            codeSystemName="HTTP://HL7.ORG/FHIR/VALUESET/PROVIDER-TAXONOMY"
+                            codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"
                             displayName="Family Medicine"
                             code="207Q00000X"/>
                      <addr nullFlavor="UNK"/>
@@ -683,7 +683,7 @@ C-CDA Equivalent:
                   <participantRole classCode="MANU">
                      <playingEntity classCode="MMAT">
                         <code codeSystem="2.16.840.1.113883.6.88"
-                               codeSystemName="HTTP://WWW.NLM.NIH.GOV/RESEARCH/UMLS/RXNORM"
+                               codeSystemName="http://www.nlm.nih.gov/research/umls/rxnorm"
                                displayName="Codeine"
                                code="2670"/>
                      </playingEntity>
@@ -704,12 +704,12 @@ C-CDA Equivalent:
                   <observation moodCode="EVN" classCode="OBS">
                      <templateId root="2.16.840.1.113883.10.20.22.4.9" extension="2014-06-09"/>
                      <templateId root="2.16.840.1.113883.10.20.22.4.9"/>
-                     <id root="563a7d88-4c78-463c-a9a7-bcef3ff0fade"/>
+                     <id root="ffda6172-0639-4512-9675-23eec23cc145"/>
                      <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
                      <statusCode code="completed"/>
                      <effectiveTime value="20120129"/>
                      <value codeSystem="2.16.840.1.113883.6.96"
-                             codeSystemName="HTTP://SNOMED.INFO/SCT"
+                             codeSystemName="http://snomed.info/sct"
                              displayName="Nausea"
                              code="422587007"
                              xsi:type="CD"/>
@@ -717,7 +717,7 @@ C-CDA Equivalent:
                         <observation classCode="OBS" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.10.20.22.4.8" extension="2014-06-09"/>
                            <templateId root="2.16.840.1.113883.10.20.22.4.8"/>
-                           <id root="e63bf86f-9650-401f-8815-8ae6ac3dfcd3"/>
+                           <id root="9dc1870e-ac57-4c61-adc5-b12515099a50"/>
                            <code code="SEV" codeSystem="2.16.840.1.113883.5.4"/>
                            <statusCode code="completed"/>
                            <value code="24484000"
@@ -733,12 +733,12 @@ C-CDA Equivalent:
                   <observation moodCode="EVN" classCode="OBS">
                      <templateId root="2.16.840.1.113883.10.20.22.4.9" extension="2014-06-09"/>
                      <templateId root="2.16.840.1.113883.10.20.22.4.9"/>
-                     <id root="4047ec8a-bbea-4cf3-875c-116088c29003"/>
+                     <id root="e87196c0-bfff-42da-a427-104f1d28057a"/>
                      <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
                      <statusCode code="completed"/>
                      <effectiveTime value="20100315"/>
                      <value codeSystem="2.16.840.1.113883.6.96"
-                             codeSystemName="HTTP://SNOMED.INFO/SCT"
+                             codeSystemName="http://snomed.info/sct"
                              displayName="Nausea"
                              code="422587007"
                              xsi:type="CD"/>
@@ -746,7 +746,7 @@ C-CDA Equivalent:
                         <observation classCode="OBS" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.10.20.22.4.8" extension="2014-06-09"/>
                            <templateId root="2.16.840.1.113883.10.20.22.4.8"/>
-                           <id root="1489037c-d285-4506-8715-837f848e770e"/>
+                           <id root="3005ca4f-510a-405e-83e0-9448d4de8de9"/>
                            <code code="SEV" codeSystem="2.16.840.1.113883.5.4"/>
                            <statusCode code="completed"/>
                            <value code="255604002"
@@ -828,7 +828,7 @@ C-CDA Equivalent:
    <templateId root="2.16.840.1.113883.10.20.22.2.6.1" extension="2015-08-01"/>
    <templateId root="2.16.840.1.113883.10.20.22.2.6.1"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="48765-2"/>
    <title>Allergies and Intolerances Section (entries optional) (V3)</title>
@@ -872,7 +872,7 @@ C-CDA Equivalent:
             <observation moodCode="EVN" classCode="OBS">
                <templateId root="2.16.840.1.113883.10.20.22.4.7" extension="2014-06-09"/>
                <templateId root="2.16.840.1.113883.10.20.22.4.7"/>
-               <id root="c4802b24-1e23-4d60-82da-4ef06322b619"/>
+               <id root="876ab2df-6cee-4f08-8863-12d6cab9a693"/>
                <code xsi:type="CD" code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
                <statusCode code="completed"/>
                <effectiveTime>
@@ -888,7 +888,7 @@ C-CDA Equivalent:
                   <participantRole classCode="MANU">
                      <playingEntity classCode="MMAT">
                         <code codeSystem="2.16.840.1.113883.6.88"
-                               codeSystemName="HTTP://WWW.NLM.NIH.GOV/RESEARCH/UMLS/RXNORM"
+                               codeSystemName="http://www.nlm.nih.gov/research/umls/rxnorm"
                                displayName="Penicillin G"
                                code="7980"/>
                      </playingEntity>
@@ -909,11 +909,11 @@ C-CDA Equivalent:
                   <observation classCode="OBS" moodCode="EVN">
                      <templateId root="2.16.840.1.113883.10.20.22.4.9" extension="2014-06-09"/>
                      <templateId root="2.16.840.1.113883.10.20.22.4.9"/>
-                     <id root="e391bbbf-3d85-481a-84f5-4f957a0068cd"/>
+                     <id root="75c2e152-b07e-415f-8238-0d6e30dedbf2"/>
                      <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
                      <statusCode code="completed"/>
                      <value codeSystem="2.16.840.1.113883.6.96"
-                             codeSystemName="HTTP://SNOMED.INFO/SCT"
+                             codeSystemName="http://snomed.info/sct"
                              displayName="Hives"
                              code="247472004"
                              xsi:type="CD"/>
@@ -921,7 +921,7 @@ C-CDA Equivalent:
                         <observation classCode="OBS" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.10.20.22.4.8" extension="2014-06-09"/>
                            <templateId root="2.16.840.1.113883.10.20.22.4.8"/>
-                           <id root="82b4a9f2-edca-42b6-917f-7b7bc617cfe1"/>
+                           <id root="c3c45dde-b21e-43cb-a85e-9563c17b3494"/>
                            <code code="SEV" codeSystem="2.16.840.1.113883.5.4"/>
                            <statusCode code="completed"/>
                            <value code="6736007"
@@ -937,12 +937,12 @@ C-CDA Equivalent:
                   <observation moodCode="EVN" classCode="OBS">
                      <templateId root="2.16.840.1.113883.10.20.22.4.9" extension="2014-06-09"/>
                      <templateId root="2.16.840.1.113883.10.20.22.4.9"/>
-                     <id root="28583772-5b6a-424b-b914-b5784e7de077"/>
+                     <id root="6f96f99a-1e69-4728-a7e3-97b571ed92c8"/>
                      <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
                      <statusCode code="completed"/>
                      <effectiveTime value="20100315"/>
                      <value codeSystem="2.16.840.1.113883.6.96"
-                             codeSystemName="HTTP://SNOMED.INFO/SCT"
+                             codeSystemName="http://snomed.info/sct"
                              displayName="Nausea"
                              code="422587007"
                              xsi:type="CD"/>
@@ -950,7 +950,7 @@ C-CDA Equivalent:
                         <observation classCode="OBS" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.10.20.22.4.8" extension="2014-06-09"/>
                            <templateId root="2.16.840.1.113883.10.20.22.4.8"/>
-                           <id root="11f5ad09-443e-4515-9fc6-e3aaeee3f481"/>
+                           <id root="01096357-7d5d-4f23-9845-110a4ce2873f"/>
                            <code code="SEV" codeSystem="2.16.840.1.113883.5.4"/>
                            <statusCode code="completed"/>
                            <value code="255604002"

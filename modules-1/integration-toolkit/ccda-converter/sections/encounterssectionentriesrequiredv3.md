@@ -62,7 +62,7 @@ Internal ID: EncountersSectionentriesrequiredV3
       "coding" : [ {
         "code" : "04",
         "display" : "Discharged/Transferred to a Facility that Provides Custodial or Supportive Care",
-        "system" : "2.16.840.1.113883.6.301.5"
+        "system" : "urn:oid:2.16.840.1.113883.6.301.5"
       } ]
     }
   },
@@ -132,7 +132,7 @@ C-CDA Equivalent:
    <templateId root="2.16.840.1.113883.10.20.22.2.22.1" extension="2015-08-01"/>
    <templateId root="2.16.840.1.113883.10.20.22.2.22.1"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="46240-8"/>
    <title>Encounters Section (entries required) (V3)</title>
@@ -140,14 +140,14 @@ C-CDA Equivalent:
    <entry>
       <encounter moodCode="EVN" classCode="ENC">
          <sdtc:dischargeDispositionCode codeSystem="2.16.840.1.113883.6.301.5"
-                                         codeSystemName="2.16.840.1.113883.6.301.5"
+                                         codeSystemName="urn:oid:2.16.840.1.113883.6.301.5"
                                          displayName="Discharged/Transferred to a Facility that Provides Custodial or Supportive Care"
                                          code="04"/>
          <templateId root="2.16.840.1.113883.10.20.22.4.49" extension="2015-08-01"/>
          <templateId root="2.16.840.1.113883.10.20.22.4.49"/>
          <id root="2a620155-9d11-439e-92b3-5d9815ff4de8"/>
          <code codeSystem="2.16.840.1.113883.6.12"
-                codeSystemName="HTTP://TERMINOLOGY.HL7.ORG/VALUESET/V3-ACTENCOUNTERCODE"
+                codeSystemName="http://terminology.hl7.org/ValueSet/v3-ActEncounterCode"
                 displayName="Office outpatient visit 15 minutes"
                 code="99213"/>
          <effectiveTime>
@@ -174,7 +174,7 @@ C-CDA Equivalent:
                <templateId root="2.16.840.1.113883.10.20.22.4.19"/>
                <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
                <code codeSystem="2.16.840.1.113883.6.96"
-                      codeSystemName="HTTP://SNOMED.INFO/SCT"
+                      codeSystemName="http://snomed.info/sct"
                       displayName="Finding"
                       code="404684003"/>
                <statusCode code="completed"/>
@@ -183,7 +183,7 @@ C-CDA Equivalent:
                   <high nullFlavor="UNK"/>
                </effectiveTime>
                <value codeSystem="2.16.840.1.113883.6.96"
-                       codeSystemName="HTTP://SNOMED.INFO/SCT"
+                       codeSystemName="http://snomed.info/sct"
                        displayName="Pneumonia"
                        code="233604007"
                        xsi:type="CD"/>
@@ -212,7 +212,7 @@ C-CDA Equivalent:
                         <high nullFlavor="NI"/>
                      </effectiveTime>
                      <value codeSystem="2.16.840.1.113883.6.96"
-                             codeSystemName="HTTP://SNOMED.INFO/SCT"
+                             codeSystemName="http://snomed.info/sct"
                              displayName="Costal Chondritis"
                              code="64109004"
                              xsi:type="CD"/>

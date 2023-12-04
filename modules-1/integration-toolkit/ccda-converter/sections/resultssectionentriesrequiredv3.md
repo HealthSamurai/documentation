@@ -321,7 +321,7 @@ C-CDA Equivalent:
    <templateId root="2.16.840.1.113883.10.20.22.2.3.1" extension="2015-08-01"/>
    <templateId root="2.16.840.1.113883.10.20.22.2.3.1"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="30954-2"/>
    <title>Results Section (entries required) (V3)</title>
@@ -422,7 +422,7 @@ C-CDA Equivalent:
          <templateId root="2.16.840.1.113883.10.20.22.4.1"/>
          <id root="cda1fc54-59fb-412d-86e0-acf6b78aa9a6"/>
          <code codeSystem="2.16.840.1.113883.6.1"
-                codeSystemName="HTTP://LOINC.ORG"
+                codeSystemName="http://loinc.org"
                 displayName="Basic Metabolic Panel - Blood"
                 code="51990-0"/>
          <statusCode code="completed"/>
@@ -432,7 +432,7 @@ C-CDA Equivalent:
                <templateId root="2.16.840.1.113883.10.20.22.4.2"/>
                <id root="d8fe6100-c31a-4b8c-b97d-57a6bd415bf7"/>
                <code codeSystem="2.16.840.1.113883.6.1"
-                      codeSystemName="HTTP://LOINC.ORG"
+                      codeSystemName="http://loinc.org"
                       displayName="Sodium [Moles/​volume] in Blood"
                       code="2947-0"/>
                <statusCode code="completed"/>
@@ -446,7 +446,7 @@ C-CDA Equivalent:
                <templateId root="2.16.840.1.113883.10.20.22.4.2"/>
                <id root="3ee6ac58-d22c-4416-9acc-c1c75c1c2c91"/>
                <code codeSystem="2.16.840.1.113883.6.1"
-                      codeSystemName="HTTP://LOINC.ORG"
+                      codeSystemName="http://loinc.org"
                       displayName="Potassium [Moles/​volume] in Blood"
                       code="6298-4"/>
                <statusCode code="completed"/>
@@ -460,7 +460,7 @@ C-CDA Equivalent:
                <templateId root="2.16.840.1.113883.10.20.22.4.2"/>
                <id root="0431a3ec-8ad6-49da-9de1-0a8704b7609d"/>
                <code codeSystem="2.16.840.1.113883.6.1"
-                      codeSystemName="HTTP://LOINC.ORG"
+                      codeSystemName="http://loinc.org"
                       displayName="Chloride [Moles/volume] in Blood"
                       code="2069-3"/>
                <statusCode code="completed"/>
@@ -474,7 +474,7 @@ C-CDA Equivalent:
                <templateId root="2.16.840.1.113883.10.20.22.4.2"/>
                <id root="70c62997-9f12-4b7c-9023-0cdf249336a7"/>
                <code codeSystem="2.16.840.1.113883.6.1"
-                      codeSystemName="HTTP://LOINC.ORG"
+                      codeSystemName="http://loinc.org"
                       displayName="Carbon dioxide, total [Moles/volume] in Serum or Plasma"
                       code="2028-9"/>
                <statusCode code="completed"/>
@@ -488,7 +488,7 @@ C-CDA Equivalent:
                <templateId root="2.16.840.1.113883.10.20.22.4.2"/>
                <id root="e3db8661-71b7-4cf3-a666-4ed9e127e134"/>
                <code codeSystem="2.16.840.1.113883.6.1"
-                      codeSystemName="HTTP://LOINC.ORG"
+                      codeSystemName="http://loinc.org"
                       displayName="Urea nitrogen [Mass/volume] in Blood"
                       code="6299-2"/>
                <statusCode code="completed"/>
@@ -502,7 +502,7 @@ C-CDA Equivalent:
                <templateId root="2.16.840.1.113883.10.20.22.4.2"/>
                <id root="21261c16-b527-49f2-916b-2ad5dabf4381"/>
                <code codeSystem="2.16.840.1.113883.6.1"
-                      codeSystemName="HTTP://LOINC.ORG"
+                      codeSystemName="http://loinc.org"
                       displayName="Creatinine [Mass/volume] in Blood"
                       code="38483-4"/>
                <statusCode code="completed"/>
@@ -516,7 +516,7 @@ C-CDA Equivalent:
                <templateId root="2.16.840.1.113883.10.20.22.4.2"/>
                <id root="7e68c2a8-a507-413b-aed4-87de5081b369"/>
                <code codeSystem="2.16.840.1.113883.6.1"
-                      codeSystemName="HTTP://LOINC.ORG"
+                      codeSystemName="http://loinc.org"
                       displayName="Glucose [Mass/volume] in Blood"
                       code="2339-0"/>
                <statusCode code="completed"/>
@@ -532,7 +532,7 @@ C-CDA Equivalent:
          <templateId root="2.16.840.1.113883.10.20.22.4.1"/>
          <id root="950c948f-e5b2-4973-b7c0-e9ee08875e04"/>
          <code codeSystem="2.16.840.1.113883.6.1"
-                codeSystemName="HTTP://LOINC.ORG"
+                codeSystemName="http://loinc.org"
                 displayName="Troponin T.Cardiac [Mass/Volume] In Serum Or Plasma"
                 code="6598-7"/>
          <statusCode code="completed"/>
@@ -542,7 +542,7 @@ C-CDA Equivalent:
                <templateId root="2.16.840.1.113883.10.20.22.4.2"/>
                <id root="01323ca7-4a72-4ae3-963d-af903df828d2"/>
                <code codeSystem="2.16.840.1.113883.6.1"
-                      codeSystemName="HTTP://LOINC.ORG"
+                      codeSystemName="http://loinc.org"
                       displayName="Troponin T.Cardiac [Mass/Volume] In Serum Or Plasma"
                       code="6598-7"/>
                <statusCode code="completed"/>
@@ -558,7 +558,7 @@ C-CDA Equivalent:
          <templateId root="2.16.840.1.113883.10.20.22.4.1"/>
          <id root="a4307cb2-b3b4-4f42-be03-1d9077376f4a"/>
          <code codeSystem="2.16.840.1.113883.6.1"
-                codeSystemName="HTTP://LOINC.ORG"
+                codeSystemName="http://loinc.org"
                 displayName="Troponin T.Cardiac [Mass/Volume] In Serum Or Plasma"
                 code="6598-7"/>
          <statusCode code="completed"/>
@@ -568,7 +568,7 @@ C-CDA Equivalent:
                <templateId root="2.16.840.1.113883.10.20.22.4.2"/>
                <id root="bf9c0a26-4524-4395-b3ce-100450b9c9ac"/>
                <code codeSystem="2.16.840.1.113883.6.1"
-                      codeSystemName="HTTP://LOINC.ORG"
+                      codeSystemName="http://loinc.org"
                       displayName="Troponin T.Cardiac [Mass/Volume] In Serum Or Plasma"
                       code="6598-7"/>
                <statusCode code="completed"/>
@@ -640,7 +640,7 @@ C-CDA Equivalent:
    <templateId root="2.16.840.1.113883.10.20.22.2.3.1" extension="2015-08-01"/>
    <templateId root="2.16.840.1.113883.10.20.22.2.3.1"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="30954-2"/>
    <title>Results Section (entries required) (V3)</title>
@@ -673,7 +673,7 @@ C-CDA Equivalent:
          <templateId root="2.16.840.1.113883.10.20.22.4.1"/>
          <id root="8DFF4B72-E8FE-11E4-B48A-460231621F93"/>
          <code codeSystem="2.16.840.1.113883.6.1"
-                codeSystemName="HTTP://LOINC.ORG"
+                codeSystemName="http://loinc.org"
                 displayName="Carbon dioxide"
                 code="2028-9"/>
          <statusCode code="completed"/>
@@ -683,7 +683,7 @@ C-CDA Equivalent:
                <templateId root="2.16.840.1.113883.10.20.22.4.2"/>
                <id root="503B5578-E8FF-11E4-B48A-460231621F93"/>
                <code codeSystem="2.16.840.1.113883.6.1"
-                      codeSystemName="HTTP://LOINC.ORG"
+                      codeSystemName="http://loinc.org"
                       displayName="Carbon dioxide"
                       code="2028-9"/>
                <statusCode code="completed"/>

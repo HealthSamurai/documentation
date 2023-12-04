@@ -46,7 +46,7 @@ This is a typical procedure resource sample.
     }, {
       "code" : "0DTJ4ZZ",
       "display" : "Resection of Appendix, Percutaneous Endoscopic Approach",
-      "system" : "2.16.840.1.113883.6.4"
+      "system" : "urn:oid:2.16.840.1.113883.6.4"
     }, {
       "code" : "47.01",
       "display" : "Laparoscopic appendectomy",
@@ -81,7 +81,7 @@ C-CDA Equivalent:
    <templateId root="2.16.840.1.113883.10.20.22.2.7.1" extension="2014-06-09"/>
    <templateId root="2.16.840.1.113883.10.20.22.2.7.1"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="47519-4"/>
    <title>Procedures Section (entries required) (V2)</title>
@@ -90,12 +90,14 @@ C-CDA Equivalent:
          <thead>
             <tr>
                <td>Procedures</td>
+               <td>Date</td>
                <td>Status</td>
             </tr>
          </thead>
          <tbody>
             <tr>
                <td>Laparoscopic appendectomy (6025007)</td>
+               <td>2014-02-03T09:22:05-07:00 - 2014-02-03T11:15:14-07:00</td>
                <td>completed</td>
             </tr>
          </tbody>
@@ -107,19 +109,19 @@ C-CDA Equivalent:
          <templateId root="2.16.840.1.113883.10.20.22.4.14"/>
          <id root="64af26d5-88ef-4169-ba16-c6ef16a1824f"/>
          <code codeSystem="2.16.840.1.113883.6.96"
-                codeSystemName="HTTP://SNOMED.INFO/SCT"
+                codeSystemName="http://snomed.info/sct"
                 displayName="Laparoscopic appendectomy"
                 code="6025007">
             <translation codeSystem="2.16.840.1.113883.6.12"
-                          codeSystemName="HTTP://TERMINOLOGY.HL7.ORG/VALUESET/V3-ACTENCOUNTERCODE"
+                          codeSystemName="http://terminology.hl7.org/ValueSet/v3-ActEncounterCode"
                           displayName="Laparoscopic Appendectomy"
                           code="44970"/>
             <translation codeSystem="2.16.840.1.113883.6.4"
-                          codeSystemName="2.16.840.1.113883.6.4"
+                          codeSystemName="urn:oid:2.16.840.1.113883.6.4"
                           displayName="Resection of Appendix, Percutaneous Endoscopic Approach"
                           code="0DTJ4ZZ"/>
             <translation codeSystem="2.16.840.1.113883.6.104"
-                          codeSystemName="HTTP://HL7.ORG/FHIR/SID/ICD-9-CM"
+                          codeSystemName="http://hl7.org/fhir/sid/icd-9-cm"
                           displayName="Laparoscopic appendectomy"
                           code="47.01"/>
          </code>
@@ -130,7 +132,7 @@ C-CDA Equivalent:
          </effectiveTime>
          <methodCode nullFlavor="UNK"/>
          <targetSiteCode codeSystem="2.16.840.1.113883.6.96"
-                          codeSystemName="HTTP://SNOMED.INFO/SCT"
+                          codeSystemName="http://snomed.info/sct"
                           displayName="Entire Appendix"
                           code="181255000"/>
       </procedure>
@@ -165,11 +167,11 @@ In this case :extension field is used to distinguish more common procedure act l
     }, {
       "code" : "S9470",
       "display" : "Nutritional counseling, diet",
-      "system" : "2.16.840.1.113883.6.13"
+      "system" : "urn:oid:2.16.840.1.113883.6.13"
     }, {
       "code" : "V65.3",
       "display" : "Dietary surveillance and counseling",
-      "system" : "2.16.840.1.113883.6.103"
+      "system" : "urn:oid:2.16.840.1.113883.6.103"
     }, {
       "code" : "Z71.3",
       "display" : "Dietary counseling and surveillance",
@@ -194,7 +196,7 @@ The section contains an Act entry converted from the input Procedure resource.
    <templateId root="2.16.840.1.113883.10.20.22.2.7.1" extension="2014-06-09"/>
    <templateId root="2.16.840.1.113883.10.20.22.2.7.1"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="47519-4"/>
    <title>Procedures Section (entries required) (V2)</title>
@@ -203,12 +205,14 @@ The section contains an Act entry converted from the input Procedure resource.
          <thead>
             <tr>
                <td>Procedures</td>
+               <td>Date</td>
                <td>Status</td>
             </tr>
          </thead>
          <tbody>
             <tr>
                <td>Nutrition education (61310001)</td>
+               <td>2014-03-29T10:45:13-05:00</td>
                <td>completed</td>
             </tr>
          </tbody>
@@ -220,23 +224,23 @@ The section contains an Act entry converted from the input Procedure resource.
          <templateId root="2.16.840.1.113883.10.20.22.4.12"/>
          <id root="9c0f070c-2e9e-4be1-a5b5-ff6d0f68123c"/>
          <code codeSystem="2.16.840.1.113883.6.96"
-                codeSystemName="HTTP://SNOMED.INFO/SCT"
+                codeSystemName="http://snomed.info/sct"
                 displayName="Nutrition education"
                 code="61310001">
             <translation codeSystem="2.16.840.1.113883.6.12"
-                          codeSystemName="HTTP://TERMINOLOGY.HL7.ORG/VALUESET/V3-ACTENCOUNTERCODE"
+                          codeSystemName="http://terminology.hl7.org/ValueSet/v3-ActEncounterCode"
                           displayName="Medical nutrition therapy; initial"
                           code="97802"/>
             <translation codeSystem="2.16.840.1.113883.6.13"
-                          codeSystemName="2.16.840.1.113883.6.13"
+                          codeSystemName="urn:oid:2.16.840.1.113883.6.13"
                           displayName="Nutritional counseling, diet"
                           code="S9470"/>
             <translation codeSystem="2.16.840.1.113883.6.103"
-                          codeSystemName="2.16.840.1.113883.6.103"
+                          codeSystemName="urn:oid:2.16.840.1.113883.6.103"
                           displayName="Dietary surveillance and counseling"
                           code="V65.3"/>
             <translation codeSystem="2.16.840.1.113883.6.90"
-                          codeSystemName="HTTP://HL7.ORG/FHIR/SID/ICD-10"
+                          codeSystemName="http://hl7.org/fhir/sid/icd-10"
                           displayName="Dietary counseling and surveillance"
                           code="Z71.3"/>
          </code>
@@ -272,7 +276,7 @@ Like the previous examples, this is a typical Procedure resource sample.
     }, {
       "code" : "G8704",
       "display" : "12-Lead Electrocardiogram (Ecg) Performed",
-      "system" : "2.16.840.1.113883.6.13"
+      "system" : "urn:oid:2.16.840.1.113883.6.13"
     }, {
       "code" : "89.52",
       "display" : "Electrocardiogram",
@@ -280,7 +284,7 @@ Like the previous examples, this is a typical Procedure resource sample.
     }, {
       "code" : "4A02X4Z",
       "display" : "Measurement of Cardiac Electrical Activity, External Approach",
-      "system" : "2.16.840.1.113883.6.4"
+      "system" : "urn:oid:2.16.840.1.113883.6.4"
     } ]
   },
   "performed" : {
@@ -301,7 +305,7 @@ C-CDA Equivalent:
    <templateId root="2.16.840.1.113883.10.20.22.2.7.1" extension="2014-06-09"/>
    <templateId root="2.16.840.1.113883.10.20.22.2.7.1"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="47519-4"/>
    <title>Procedures Section (entries required) (V2)</title>
@@ -310,12 +314,14 @@ C-CDA Equivalent:
          <thead>
             <tr>
                <td>Procedures</td>
+               <td>Date</td>
                <td>Status</td>
             </tr>
          </thead>
          <tbody>
             <tr>
                <td>12 lead ECG (268400002)</td>
+               <td>2014-03-29T09:15:22-12:00</td>
                <td>completed</td>
             </tr>
          </tbody>
@@ -327,23 +333,23 @@ C-CDA Equivalent:
          <templateId root="2.16.840.1.113883.10.20.22.4.13"/>
          <id root="c03e5445-af1b-4911-a419-e2782f21448c"/>
          <code codeSystem="2.16.840.1.113883.6.96"
-                codeSystemName="HTTP://SNOMED.INFO/SCT"
+                codeSystemName="http://snomed.info/sct"
                 displayName="12 lead ECG"
                 code="268400002">
             <translation codeSystem="2.16.840.1.113883.6.12"
-                          codeSystemName="HTTP://TERMINOLOGY.HL7.ORG/VALUESET/V3-ACTENCOUNTERCODE"
+                          codeSystemName="http://terminology.hl7.org/ValueSet/v3-ActEncounterCode"
                           displayName="Electrocardiogram, complete"
                           code="93000"/>
             <translation codeSystem="2.16.840.1.113883.6.13"
-                          codeSystemName="2.16.840.1.113883.6.13"
+                          codeSystemName="urn:oid:2.16.840.1.113883.6.13"
                           displayName="12-Lead Electrocardiogram (Ecg) Performed"
                           code="G8704"/>
             <translation codeSystem="2.16.840.1.113883.6.104"
-                          codeSystemName="HTTP://HL7.ORG/FHIR/SID/ICD-9-CM"
+                          codeSystemName="http://hl7.org/fhir/sid/icd-9-cm"
                           displayName="Electrocardiogram"
                           code="89.52"/>
             <translation codeSystem="2.16.840.1.113883.6.4"
-                          codeSystemName="2.16.840.1.113883.6.4"
+                          codeSystemName="urn:oid:2.16.840.1.113883.6.4"
                           displayName="Measurement of Cardiac Electrical Activity, External Approach"
                           code="4A02X4Z"/>
          </code>

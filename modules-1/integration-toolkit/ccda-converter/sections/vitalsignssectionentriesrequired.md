@@ -312,7 +312,7 @@ C-CDA Equivalent:
    <templateId root="2.16.840.1.113883.10.20.22.2.4" extension="2015-08-01"/>
    <templateId root="2.16.840.1.113883.10.20.22.2.4"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="8716-3"/>
    <title>Vital Signs Section (entries required) (V3)</title>
@@ -378,7 +378,7 @@ C-CDA Equivalent:
       <organizer classCode="CLUSTER" moodCode="EVN">
          <templateId root="2.16.840.1.113883.10.20.22.4.26" extension="2015-08-01"/>
          <templateId root="2.16.840.1.113883.10.20.22.4.26"/>
-         <id root="4ba4bd5a-30f3-4d9e-8367-c51fa1d5a721"/>
+         <id root="23fa6900-77f5-43f3-83bb-68d004e68ec6"/>
          <code code="46680005"
                 displayName="Vital Signs"
                 codeSystem="2.16.840.1.113883.6.96"
@@ -399,7 +399,7 @@ C-CDA Equivalent:
                <templateId root="2.16.840.1.113883.10.20.22.4.27"/>
                <id root="fdbd831b-5919-4f06-9467-76b07022f8e8"/>
                <code codeSystem="2.16.840.1.113883.6.1"
-                      codeSystemName="HTTP://LOINC.ORG"
+                      codeSystemName="http://loinc.org"
                       displayName="SYSTOLIC BLOOD PRESSURE"
                       code="8480-6"/>
                <statusCode code="completed"/>
@@ -413,7 +413,7 @@ C-CDA Equivalent:
                <templateId root="2.16.840.1.113883.10.20.22.4.27"/>
                <id root="553f3f45-9046-4659-b3e7-5de904003550"/>
                <code codeSystem="2.16.840.1.113883.6.1"
-                      codeSystemName="HTTP://LOINC.ORG"
+                      codeSystemName="http://loinc.org"
                       displayName="DIASTOLIC BLOOD PRESSURE"
                       code="8462-4"/>
                <statusCode code="completed"/>
@@ -427,7 +427,7 @@ C-CDA Equivalent:
                <templateId root="2.16.840.1.113883.10.20.22.4.27"/>
                <id root="77bfe276-a1dd-4372-9072-e603905acc07"/>
                <code codeSystem="2.16.840.1.113883.6.1"
-                      codeSystemName="HTTP://LOINC.ORG"
+                      codeSystemName="http://loinc.org"
                       displayName="HEART RATE"
                       code="8867-4"/>
                <statusCode code="completed"/>
@@ -441,7 +441,7 @@ C-CDA Equivalent:
                <templateId root="2.16.840.1.113883.10.20.22.4.27"/>
                <id root="24faa204-db62-4610-864f-cb50b650d0fa"/>
                <code codeSystem="2.16.840.1.113883.6.1"
-                      codeSystemName="HTTP://LOINC.ORG"
+                      codeSystemName="http://loinc.org"
                       displayName="BODY TEMPERATURE"
                       code="8310-5"/>
                <statusCode code="completed"/>
@@ -455,7 +455,7 @@ C-CDA Equivalent:
                <templateId root="2.16.840.1.113883.10.20.22.4.27"/>
                <id root="79f25395-8ec6-488b-8c05-becc97f79995"/>
                <code codeSystem="2.16.840.1.113883.6.1"
-                      codeSystemName="HTTP://LOINC.ORG"
+                      codeSystemName="http://loinc.org"
                       displayName="RESPIRATORY RATE"
                       code="9279-1"/>
                <statusCode code="completed"/>
@@ -469,7 +469,7 @@ C-CDA Equivalent:
                <templateId root="2.16.840.1.113883.10.20.22.4.27"/>
                <id root="6d3fa9f8-6049-41bd-b0c3-b0196bb6bd37"/>
                <code codeSystem="2.16.840.1.113883.6.1"
-                      codeSystemName="HTTP://LOINC.ORG"
+                      codeSystemName="http://loinc.org"
                       displayName="HEIGHT"
                       code="8302-2"/>
                <statusCode code="completed"/>
@@ -483,7 +483,7 @@ C-CDA Equivalent:
                <templateId root="2.16.840.1.113883.10.20.22.4.27"/>
                <id root="2594e631-2189-4e72-9dd1-d6769ee2a7be"/>
                <code codeSystem="2.16.840.1.113883.6.1"
-                      codeSystemName="HTTP://LOINC.ORG"
+                      codeSystemName="http://loinc.org"
                       displayName="WEIGHT"
                       code="29463-7"/>
                <statusCode code="completed"/>
@@ -497,7 +497,7 @@ C-CDA Equivalent:
                <templateId root="2.16.840.1.113883.10.20.22.4.27"/>
                <id root="5858e765-2ffe-413f-9197-260f2c6e7aa8"/>
                <code codeSystem="2.16.840.1.113883.6.1"
-                      codeSystemName="HTTP://LOINC.ORG"
+                      codeSystemName="http://loinc.org"
                       displayName="BODY MASS INDEX"
                       code="39156-5"/>
                <statusCode code="completed"/>
@@ -511,7 +511,7 @@ C-CDA Equivalent:
                <templateId root="2.16.840.1.113883.10.20.22.4.27"/>
                <id root="4ce6046c-f6e3-41b0-91fc-2d5325f2bbc3"/>
                <code codeSystem="2.16.840.1.113883.6.1"
-                      codeSystemName="HTTP://LOINC.ORG"
+                      codeSystemName="http://loinc.org"
                       displayName="OXYGEN SATURATION"
                       code="2710-2"/>
                <statusCode code="completed"/>

@@ -188,7 +188,7 @@ The section contains a list of entries converted from the input resources.
    <templateId root="2.16.840.1.113883.10.20.22.2.10" extension="2014-06-09"/>
    <templateId root="2.16.840.1.113883.10.20.22.2.10"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="18776-5"/>
    <title>Plan of Treatment Section (V2)</title>
@@ -199,7 +199,7 @@ The section contains a list of entries converted from the input resources.
          <templateId root="2.16.840.1.113883.10.20.22.4.121"/>
          <id root="9b56c25d-9104-45ee-9fa4-e0f3afaa01c1"/>
          <code codeSystem="2.16.840.1.113883.6.1"
-                codeSystemName="HTTP://LOINC.ORG"
+                codeSystemName="http://loinc.org"
                 displayName="Weight loss"
                 code="45735-8"/>
          <statusCode code="active"/>
@@ -213,7 +213,7 @@ The section contains a list of entries converted from the input resources.
             <assignedAuthor>
                <id root="d839038b-7171-4165-a760-467925b43857"/>
                <code codeSystem="2.16.840.1.113883.6.101"
-                      codeSystemName="HTTP://HL7.ORG/FHIR/VALUESET/PROVIDER-TAXONOMY"
+                      codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"
                       displayName="Registered nurse"
                       code="163W00000X"/>
                <addr nullFlavor="UNK"/>
@@ -230,7 +230,7 @@ The section contains a list of entries converted from the input resources.
          <entryRelationship typeCode="REFR">
             <observation classCode="OBS" moodCode="EVN">
                <templateId root="2.16.840.1.113883.10.20.22.4.143"/>
-               <id root="e87a3365-6712-4aef-b4b9-3465cdaf9110"/>
+               <id root="94b61780-d876-4d36-a892-a1354e4b6768"/>
                <code code="225773000" codeSystem="2.16.840.1.113883.6.96"/>
                <value code="394848005"
                        displayName="Medium Priority"
@@ -248,11 +248,11 @@ The section contains a list of entries converted from the input resources.
          <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
          <statusCode code="active"/>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20121002000000"/>
-            <high value="20121030235900"/>
+            <low value="20121002000000-0000"/>
+            <high value="20121030235900-0000"/>
          </effectiveTime>
          <routeCode codeSystem="2.16.840.1.113883.3.26.1.1"
-                     codeSystemName="HTTP://NCITHESAURUS-STAGE.NCI.NIH.GOV"
+                     codeSystemName="http://ncithesaurus-stage.nci.nih.gov"
                      displayName="ORAL"
                      code="C38288"/>
          <doseQuantity value="81.0" unit="milliGRAM(s)"/>
@@ -262,7 +262,7 @@ The section contains a list of entries converted from the input resources.
                <templateId root="2.16.840.1.113883.10.20.22.4.23"/>
                <manufacturedMaterial>
                   <code codeSystem="2.16.840.1.113883.6.88"
-                         codeSystemName="HTTP://WWW.NLM.NIH.GOV/RESEARCH/UMLS/RXNORM"
+                         codeSystemName="http://www.nlm.nih.gov/research/umls/rxnorm"
                          displayName="aspirin"
                          code="1191"/>
                </manufacturedMaterial>
@@ -276,7 +276,7 @@ The section contains a list of entries converted from the input resources.
          <templateId root="2.16.840.1.113883.10.20.22.4.40"/>
          <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
          <code codeSystem="2.16.840.1.113883.6.96"
-                codeSystemName="HTTP://SNOMED.INFO/SCT"
+                codeSystemName="http://snomed.info/sct"
                 displayName="encounter for check-up (procedure)"
                 code="185349003"/>
          <statusCode code="active"/>
@@ -292,11 +292,11 @@ The section contains a list of entries converted from the input resources.
          <templateId root="2.16.840.1.113883.10.20.22.4.44"/>
          <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
          <code codeSystem="2.16.840.1.113883.6.96"
-                codeSystemName="HTTP://SNOMED.INFO/SCT"
+                codeSystemName="http://snomed.info/sct"
                 displayName="ECG"
                 code="142008000"/>
          <statusCode code="active"/>
-         <effectiveTime value="20121002000000"/>
+         <effectiveTime value="20121002000000-0000"/>
       </observation>
    </entry>
 </section>

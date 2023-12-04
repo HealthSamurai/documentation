@@ -51,7 +51,7 @@ C-CDA Equivalent:
    <templateId root="2.16.840.1.113883.10.20.22.2.23" extension="2014-06-09"/>
    <templateId root="2.16.840.1.113883.10.20.22.2.23"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="46264-8"/>
    <title>Medical Equipment Section (V2)</title>
@@ -62,13 +62,13 @@ C-CDA Equivalent:
          <templateId root="2.16.840.1.113883.10.20.22.4.14"/>
          <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
          <code codeSystem="2.16.840.1.113883.6.96"
-                codeSystemName="HTTP://SNOMED.INFO/SCT"
+                codeSystemName="http://snomed.info/sct"
                 displayName="Stent Placement"
                 code="103716009"/>
          <statusCode code="completed"/>
          <effectiveTime value="20130512"/>
          <targetSiteCode codeSystem="2.16.840.1.113883.6.96"
-                          codeSystemName="HTTP://SNOMED.INFO/SCT"
+                          codeSystemName="http://snomed.info/sct"
                           displayName="bile duct"
                           code="28273000"/>
       </procedure>
@@ -148,7 +148,7 @@ C-CDA Equivalent:
    <templateId root="2.16.840.1.113883.10.20.22.2.23" extension="2014-06-09"/>
    <templateId root="2.16.840.1.113883.10.20.22.2.23"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="46264-8"/>
    <title>Medical Equipment Section (V2)</title>
@@ -163,13 +163,13 @@ C-CDA Equivalent:
                <templateId root="2.16.840.1.113883.10.20.22.4.14"/>
                <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
                <code codeSystem="2.16.840.1.113883.6.96"
-                      codeSystemName="HTTP://SNOMED.INFO/SCT"
+                      codeSystemName="http://snomed.info/sct"
                       displayName="Stent Placement"
                       code="103716009"/>
                <statusCode code="completed"/>
                <effectiveTime value="20130512"/>
                <targetSiteCode codeSystem="2.16.840.1.113883.6.96"
-                                codeSystemName="HTTP://SNOMED.INFO/SCT"
+                                codeSystemName="http://snomed.info/sct"
                                 displayName="bile duct"
                                 code="28273000"/>
                <participant typeCode="DEV">
@@ -181,7 +181,7 @@ C-CDA Equivalent:
                           assigningAuthorityName="https://www.fda.gov/"/>
                      <playingDevice>
                         <code codeSystem="2.16.840.1.113883.6.96"
-                               codeSystemName="HTTP://SNOMED.INFO/SCT"
+                               codeSystemName="http://snomed.info/sct"
                                displayName="cardiac pacemaker, device (physical object)"
                                code="14106009"/>
                      </playingDevice>

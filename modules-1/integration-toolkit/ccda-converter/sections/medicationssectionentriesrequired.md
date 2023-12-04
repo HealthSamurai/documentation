@@ -39,7 +39,7 @@ So there are nullFlavor values placed in required field effectiveTime.
    <templateId root="2.16.840.1.113883.10.20.22.2.1.1" extension="2014-06-09"/>
    <templateId root="2.16.840.1.113883.10.20.22.2.1.1"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="10160-0"/>
    <title>Medications Section (entries required) (V2)</title>
@@ -79,7 +79,7 @@ So there are nullFlavor values placed in required field effectiveTime.
                <templateId root="2.16.840.1.113883.10.20.22.4.23"/>
                <manufacturedMaterial>
                   <code codeSystem="2.16.840.1.113883.6.88"
-                         codeSystemName="HTTP://WWW.NLM.NIH.GOV/RESEARCH/UMLS/RXNORM"
+                         codeSystemName="http://www.nlm.nih.gov/research/umls/rxnorm"
                          displayName="Sudafed 30 MG Oral Tablet"
                          code="1049529"/>
                </manufacturedMaterial>
@@ -152,7 +152,7 @@ C-CDA Equivalent:
    <templateId root="2.16.840.1.113883.10.20.22.2.1.1" extension="2014-06-09"/>
    <templateId root="2.16.840.1.113883.10.20.22.2.1.1"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="10160-0"/>
    <title>Medications Section (entries required) (V2)</title>
@@ -195,7 +195,7 @@ C-CDA Equivalent:
             <high value="20140128"/>
          </effectiveTime>
          <routeCode codeSystem="2.16.840.1.113883.3.26.1.1"
-                     codeSystemName="HTTP://NCITHESAURUS-STAGE.NCI.NIH.GOV"
+                     codeSystemName="http://ncithesaurus-stage.nci.nih.gov"
                      displayName="Oral"
                      code="C38288"/>
          <doseQuantity value="2.0" unit="mg"/>
@@ -205,7 +205,7 @@ C-CDA Equivalent:
                <templateId root="2.16.840.1.113883.10.20.22.4.23"/>
                <manufacturedMaterial>
                   <code codeSystem="2.16.840.1.113883.6.88"
-                         codeSystemName="HTTP://WWW.NLM.NIH.GOV/RESEARCH/UMLS/RXNORM"
+                         codeSystemName="http://www.nlm.nih.gov/research/umls/rxnorm"
                          displayName="Sudafed 30 MG Oral Tablet"
                          code="1049529"/>
                </manufacturedMaterial>

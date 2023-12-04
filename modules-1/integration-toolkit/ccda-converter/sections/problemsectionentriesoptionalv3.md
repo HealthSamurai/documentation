@@ -97,7 +97,7 @@ The section contains an Act.entryRelationship.Observation entry converted from t
    <templateId root="2.16.840.1.113883.10.20.22.2.5" extension="2015-08-01"/>
    <templateId root="2.16.840.1.113883.10.20.22.2.5"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="11450-4"/>
    <title>Problem Section (entries optional) (V3)</title>
@@ -105,10 +105,10 @@ The section contains an Act.entryRelationship.Observation entry converted from t
       <table border="1" width="100%">
          <thead>
             <tr>
-               <td>Problems</td>
+               <td>Problem</td>
                <td>Onset</td>
                <td>Abatement</td>
-               <td>Resolution/Remission status</td>
+               <td>Status</td>
             </tr>
          </thead>
          <tbody>
@@ -150,17 +150,17 @@ The section contains an Act.entryRelationship.Observation entry converted from t
                   <high value="20140402124536-0505"/>
                </effectiveTime>
                <value codeSystem="2.16.840.1.113883.6.96"
-                       codeSystemName="HTTP://SNOMED.INFO/SCT"
+                       codeSystemName="http://snomed.info/sct"
                        displayName="Community Acquired Pneumonia"
                        code="385093006"
                        xsi:type="CD"/>
                <author>
                   <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
-                  <time value="20140302124536"/>
+                  <time value="20140302124536-0000"/>
                   <assignedAuthor>
                      <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
                      <code codeSystem="2.16.840.1.113883.6.101"
-                            codeSystemName="HTTP://HL7.ORG/FHIR/VALUESET/PROVIDER-TAXONOMY"
+                            codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"
                             displayName="Cardiovascular Disease"
                             code="207RC0000X"/>
                      <addr>
@@ -249,7 +249,7 @@ The section contains an Act.entryRelationship.Observation entry converted from t
     "id" : "86f71898-e94e-469f-8851-00193b48ea85",
     "identifier" : [ {
       "value" : "66666",
-      "system" : "2.16.840.1.113883.4.6"
+      "system" : "http://hl7.org/fhir/sid/us-npi"
     } ],
     "resourceType" : "Practitioner"
   },
@@ -274,7 +274,7 @@ C-CDA Equivalent:
    <templateId root="2.16.840.1.113883.10.20.22.2.5" extension="2015-08-01"/>
    <templateId root="2.16.840.1.113883.10.20.22.2.5"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="11450-4"/>
    <title>Problem Section (entries optional) (V3)</title>
@@ -282,10 +282,10 @@ C-CDA Equivalent:
       <table border="1" width="100%">
          <thead>
             <tr>
-               <td>Problems</td>
+               <td>Problem</td>
                <td>Onset</td>
                <td>Abatement</td>
-               <td>Resolution/Remission status</td>
+               <td>Status</td>
             </tr>
          </thead>
          <tbody>
@@ -327,18 +327,18 @@ C-CDA Equivalent:
                   <high value="20140402124536-0505"/>
                </effectiveTime>
                <value codeSystem="2.16.840.1.113883.6.96"
-                       codeSystemName="HTTP://SNOMED.INFO/SCT"
+                       codeSystemName="http://snomed.info/sct"
                        displayName="Community Acquired Pneumonia"
                        code="385093006"
                        xsi:type="CD"/>
                <author>
                   <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
-                  <time value="20140302124536"/>
+                  <time value="20140302124536-0000"/>
                   <assignedAuthor>
                      <id root="86f71898-e94e-469f-8851-00193b48ea85"/>
                      <id extension="66666" root="2.16.840.1.113883.4.6"/>
                      <code codeSystem="2.16.840.1.113883.6.101"
-                            codeSystemName="HTTP://HL7.ORG/FHIR/VALUESET/PROVIDER-TAXONOMY"
+                            codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"
                             displayName="Cardiovascular Disease"
                             code="207RC0000X"/>
                      <addr>

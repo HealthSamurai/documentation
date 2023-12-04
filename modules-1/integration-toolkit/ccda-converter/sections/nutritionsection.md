@@ -85,7 +85,7 @@ Nutrition status observation can be converted from the Observation resource.
         "suffix" : [ "M.D." ]
       } ],
       "address" : [ {
-        "line" : [ "1004 Healthcare Drive" ],
+        "line" : [ "1004 Healthcare Drive " ],
         "use" : null,
         "city" : "Portland",
         "state" : "OR",
@@ -130,7 +130,7 @@ Nutrition status observation can be converted from the Observation resource.
     "effective" : {
       "dateTime" : "2013-05-12"
     },
-    "id" : "ab1791b0-5c71-11db-b0de-0800200c9a66-1",
+    "id" : "ab1791b0-5c71-11db-b0de-0800200c9a66",
     "code" : {
       "coding" : [ {
         "code" : "75303-8",
@@ -150,7 +150,7 @@ Nutrition status observation can be converted from the Observation resource.
         "suffix" : [ "M.D." ]
       } ],
       "address" : [ {
-        "line" : [ "1004 Healthcare Drive" ],
+        "line" : [ "1004 Healthcare Drive " ],
         "use" : null,
         "city" : "Portland",
         "state" : "OR",
@@ -183,7 +183,7 @@ C-CDA Equivalent:
 <section>
    <templateId root="2.16.840.1.113883.10.20.22.2.57"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="61144-2"/>
    <title>Nutrition Section</title>
@@ -193,13 +193,13 @@ C-CDA Equivalent:
          <templateId root="2.16.840.1.113883.10.20.22.4.124"/>
          <id root="c12ecaaf-53f8-4593-8f79-359aeaa3948b"/>
          <code codeSystem="2.16.840.1.113883.6.1"
-                codeSystemName="HTTP://LOINC.ORG"
+                codeSystemName="http://loinc.org"
                 displayName="Nutritional status"
                 code="75305-3"/>
          <statusCode code="completed"/>
          <effectiveTime value="20130512"/>
          <value codeSystem="2.16.840.1.113883.6.96"
-                 codeSystemName="HTTP://SNOMED.INFO/SCT"
+                 codeSystemName="http://snomed.info/sct"
                  displayName="well nourished"
                  code="248324001"
                  xsi:type="CD"/>
@@ -208,13 +208,13 @@ C-CDA Equivalent:
                <templateId root="2.16.840.1.113883.10.20.22.4.138"/>
                <id root="ab1791b0-5c71-11db-b0de-0800200c9a66"/>
                <code codeSystem="2.16.840.1.113883.6.1"
-                      codeSystemName="HTTP://LOINC.ORG"
+                      codeSystemName="http://loinc.org"
                       displayName="Nutrition assessment"
                       code="75303-8"/>
                <statusCode code="completed"/>
                <effectiveTime value="20130512"/>
                <value codeSystem="2.16.840.1.113883.6.96"
-                       codeSystemName="HTTP://SNOMED.INFO/SCT"
+                       codeSystemName="http://snomed.info/sct"
                        displayName="low sodium diet (finding)"
                        code="386619000"
                        xsi:type="CD"/>
@@ -224,7 +224,7 @@ C-CDA Equivalent:
                   <assignedAuthor>
                      <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
                      <code codeSystem="2.16.840.1.113883.6.101"
-                            codeSystemName="HTTP://HL7.ORG/FHIR/VALUESET/PROVIDER-TAXONOMY"
+                            codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"
                             displayName="Adult Medicine"
                             code="207QA0505X"/>
                      <addr>
@@ -232,7 +232,7 @@ C-CDA Equivalent:
                         <state>OR</state>
                         <city>Portland</city>
                         <postalCode>99123</postalCode>
-                        <streetAddressLine>1004 Healthcare Drive</streetAddressLine>
+                        <streetAddressLine>1004 Healthcare Drive </streetAddressLine>
                      </addr>
                      <telecom value="+1(555)555-1004" use="WP"/>
                      <assignedPerson>
@@ -250,15 +250,15 @@ C-CDA Equivalent:
          <entryRelationship typeCode="SUBJ">
             <observation moodCode="EVN" classCode="OBS">
                <templateId root="2.16.840.1.113883.10.20.22.4.138"/>
-               <id root="099898a9-ce61-d3d2-01a7-b38c44142175"/>
+               <id root="ab1791b0-5c71-11db-b0de-0800200c9a66"/>
                <code codeSystem="2.16.840.1.113883.6.1"
-                      codeSystemName="HTTP://LOINC.ORG"
+                      codeSystemName="http://loinc.org"
                       displayName="Nutrition assessment"
                       code="75303-8"/>
                <statusCode code="completed"/>
                <effectiveTime value="20130512"/>
                <value codeSystem="2.16.840.1.113883.6.96"
-                       codeSystemName="HTTP://SNOMED.INFO/SCT"
+                       codeSystemName="http://snomed.info/sct"
                        displayName="excessive dietary carbohydrate intake(finding)"
                        code="430186007"
                        xsi:type="CD"/>
@@ -268,7 +268,7 @@ C-CDA Equivalent:
                   <assignedAuthor>
                      <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
                      <code codeSystem="2.16.840.1.113883.6.101"
-                            codeSystemName="HTTP://HL7.ORG/FHIR/VALUESET/PROVIDER-TAXONOMY"
+                            codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"
                             displayName="Adult Medicine"
                             code="207QA0505X"/>
                      <addr>
@@ -276,7 +276,7 @@ C-CDA Equivalent:
                         <state>OR</state>
                         <city>Portland</city>
                         <postalCode>99123</postalCode>
-                        <streetAddressLine>1004 Healthcare Drive</streetAddressLine>
+                        <streetAddressLine>1004 Healthcare Drive </streetAddressLine>
                      </addr>
                      <telecom value="+1(555)555-1004" use="WP"/>
                      <assignedPerson>

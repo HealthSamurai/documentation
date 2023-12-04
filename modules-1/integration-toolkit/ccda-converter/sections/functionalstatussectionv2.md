@@ -56,7 +56,7 @@ Internal ID: FunctionalStatusSectionV2
           "coding" : [ {
             "code" : "207QA0505X",
             "display" : "Adult Medicine",
-            "system" : "2.16.840.1.113883.5.53"
+            "system" : "urn:oid:2.16.840.1.113883.5.53"
           } ]
         }
       } ],
@@ -68,7 +68,7 @@ Internal ID: FunctionalStatusSectionV2
     "coding" : [ {
       "code" : "d5",
       "display" : "Self-Care",
-      "system" : "2.16.840.1.113883.6.254"
+      "system" : "urn:oid:2.16.840.1.113883.6.254"
     } ]
   },
   "status" : "final",
@@ -86,7 +86,7 @@ C-CDA Equivalent:
    <templateId root="2.16.840.1.113883.10.20.22.2.14" extension="2014-06-09"/>
    <templateId root="2.16.840.1.113883.10.20.22.2.14"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="47420-5"/>
    <title>Functional Status Section (V2)</title>
@@ -97,7 +97,7 @@ C-CDA Equivalent:
          <templateId root="2.16.840.1.113883.10.20.22.4.66"/>
          <id root="a7bc1062-8649-42a0-833d-eed65bd017c9"/>
          <code codeSystem="2.16.840.1.113883.6.254"
-                codeSystemName="2.16.840.1.113883.6.254"
+                codeSystemName="urn:oid:2.16.840.1.113883.6.254"
                 displayName="Self-Care"
                 code="d5"/>
          <statusCode code="completed"/>
@@ -107,13 +107,13 @@ C-CDA Equivalent:
                <templateId root="2.16.840.1.113883.10.20.22.4.67"/>
                <id root="b63a8636-cfff-4461-b018-40ba58ba8b32"/>
                <code codeSystem="2.16.840.1.113883.6.1"
-                      codeSystemName="HTTP://LOINC.ORG"
+                      codeSystemName="http://loinc.org"
                       displayName="Functional status"
                       code="54522-8"/>
                <statusCode code="completed"/>
                <effectiveTime value="20130311"/>
                <value codeSystem="2.16.840.1.113883.6.96"
-                       codeSystemName="HTTP://SNOMED.INFO/SCT"
+                       codeSystemName="http://snomed.info/sct"
                        displayName=" Independent walking"
                        code="165245003"
                        xsi:type="CD"/>
@@ -123,7 +123,7 @@ C-CDA Equivalent:
                   <assignedAuthor>
                      <id root="b63a8636-cfff-4461-b018-53236c541111"/>
                      <code codeSystem="2.16.840.1.113883.5.53"
-                            codeSystemName="2.16.840.1.113883.5.53"
+                            codeSystemName="urn:oid:2.16.840.1.113883.5.53"
                             displayName="Adult Medicine"
                             code="207QA0505X"/>
                      <addr nullFlavor="UNK"/>
@@ -182,7 +182,7 @@ C-CDA Equivalent:
         "coding" : [ {
           "code" : "207QA0505X",
           "display" : "Adult Medicine",
-          "system" : "2.16.840.1.113883.5.53"
+          "system" : "urn:oid:2.16.840.1.113883.5.53"
         } ]
       }
     } ],
@@ -198,7 +198,7 @@ C-CDA Equivalent:
    <templateId root="2.16.840.1.113883.10.20.22.2.14" extension="2014-06-09"/>
    <templateId root="2.16.840.1.113883.10.20.22.2.14"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="47420-5"/>
    <title>Functional Status Section (V2)</title>
@@ -209,13 +209,13 @@ C-CDA Equivalent:
          <templateId root="2.16.840.1.113883.10.20.22.4.67"/>
          <id root="b63a8636-cfff-4461-b018-53236c544444"/>
          <code codeSystem="2.16.840.1.113883.6.1"
-                codeSystemName="HTTP://LOINC.ORG"
+                codeSystemName="http://loinc.org"
                 displayName="Functional status"
                 code="54522-8"/>
          <statusCode code="completed"/>
          <effectiveTime value="20130311"/>
          <value codeSystem="2.16.840.1.113883.6.96"
-                 codeSystemName="HTTP://SNOMED.INFO/SCT"
+                 codeSystemName="http://snomed.info/sct"
                  displayName=" Independent walking"
                  code="165245003"
                  xsi:type="CD"/>
@@ -225,7 +225,7 @@ C-CDA Equivalent:
             <assignedAuthor>
                <id root="b63a8636-cfff-4461-b018-53236c546666"/>
                <code codeSystem="2.16.840.1.113883.5.53"
-                      codeSystemName="2.16.840.1.113883.5.53"
+                      codeSystemName="urn:oid:2.16.840.1.113883.5.53"
                       displayName="Adult Medicine"
                       code="207QA0505X"/>
                <addr nullFlavor="UNK"/>

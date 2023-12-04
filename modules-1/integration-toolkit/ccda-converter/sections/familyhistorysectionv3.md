@@ -24,7 +24,7 @@ Internal ID: FamilyHistorySectionV3
     "coding" : [ {
       "code" : "M",
       "display" : "M",
-      "system" : "2.16.840.1.113883.5.1"
+      "system" : "urn:oid:2.16.840.1.113883.5.1"
     } ]
   },
   "name" : "Gerald",
@@ -59,7 +59,7 @@ C-CDA Equivalent:
    <templateId root="2.16.840.1.113883.10.20.22.2.15" extension="2015-08-01"/>
    <templateId root="2.16.840.1.113883.10.20.22.2.15"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="10157-6"/>
    <title>Family History Section (V3)</title>
@@ -73,13 +73,13 @@ C-CDA Equivalent:
          <subject>
             <relatedSubject classCode="PRS">
                <code codeSystem="2.16.840.1.113883.5.111"
-                      codeSystemName="HTTP://TERMINOLOGY.HL7.ORG/CODESYSTEM/V3-ROLECODE"
+                      codeSystemName="http://terminology.hl7.org/CodeSystem/v3-RoleCode"
                       displayName="Brother"
                       code="BRO"/>
                <subject>
                   <name>Gerald</name>
                   <administrativeGenderCode codeSystem="2.16.840.1.113883.5.1"
-                                             codeSystemName="2.16.840.1.113883.5.1"
+                                             codeSystemName="urn:oid:2.16.840.1.113883.5.1"
                                              displayName="M"
                                              code="M"/>
                </subject>
@@ -89,7 +89,7 @@ C-CDA Equivalent:
             <observation classCode="OBS" moodCode="EVN">
                <templateId root="2.16.840.1.113883.10.20.22.4.46" extension="2015-08-01"/>
                <templateId root="2.16.840.1.113883.10.20.22.4.46"/>
-               <id root="e3c5397d-c000-4c97-86dd-e41eea8119c4"/>
+               <id root="745c0025-6bad-42e2-a9e8-b48ef2062068"/>
                <code codeSystem="2.16.840.1.113883.6.96"
                       displayName="Condition"
                       code="64572001">
@@ -99,7 +99,7 @@ C-CDA Equivalent:
                </code>
                <statusCode code="completed"/>
                <value codeSystem="2.16.840.1.113883.6.96"
-                       codeSystemName="HTTP://SNOMED.INFO/SCT"
+                       codeSystemName="http://snomed.info/sct"
                        displayName="Asthma (disorder)"
                        code="195967001"
                        xsi:type="CD"/>
@@ -122,7 +122,7 @@ C-CDA Equivalent:
     "coding" : [ {
       "code" : "M",
       "display" : "M",
-      "system" : "2.16.840.1.113883.5.1"
+      "system" : "urn:oid:2.16.840.1.113883.5.1"
     } ]
   },
   "name" : "James",
@@ -160,7 +160,7 @@ C-CDA Equivalent:
    <templateId root="2.16.840.1.113883.10.20.22.2.15" extension="2015-08-01"/>
    <templateId root="2.16.840.1.113883.10.20.22.2.15"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="10157-6"/>
    <title>Family History Section (V3)</title>
@@ -174,13 +174,13 @@ C-CDA Equivalent:
          <subject>
             <relatedSubject classCode="PRS">
                <code codeSystem="2.16.840.1.113883.5.111"
-                      codeSystemName="HTTP://TERMINOLOGY.HL7.ORG/CODESYSTEM/V3-ROLECODE"
+                      codeSystemName="http://terminology.hl7.org/CodeSystem/v3-RoleCode"
                       displayName="Brother"
                       code="BRO"/>
                <subject>
                   <name>James</name>
                   <administrativeGenderCode codeSystem="2.16.840.1.113883.5.1"
-                                             codeSystemName="2.16.840.1.113883.5.1"
+                                             codeSystemName="urn:oid:2.16.840.1.113883.5.1"
                                              displayName="M"
                                              code="M"/>
                </subject>
@@ -190,7 +190,7 @@ C-CDA Equivalent:
             <observation classCode="OBS" moodCode="EVN">
                <templateId root="2.16.840.1.113883.10.20.22.4.46" extension="2015-08-01"/>
                <templateId root="2.16.840.1.113883.10.20.22.4.46"/>
-               <id root="c3aabb61-051e-49c8-ae56-59a1c78a09a3"/>
+               <id root="b9bc51ac-434f-4c44-be76-510e8d75a88b"/>
                <code codeSystem="2.16.840.1.113883.6.96"
                       displayName="Condition"
                       code="64572001">
@@ -201,7 +201,7 @@ C-CDA Equivalent:
                <text>High blood pressure</text>
                <statusCode code="completed"/>
                <value codeSystem="2.16.840.1.113883.6.96"
-                       codeSystemName="HTTP://SNOMED.INFO/SCT"
+                       codeSystemName="http://snomed.info/sct"
                        displayName="Essential Hypertension"
                        code="59621000"
                        xsi:type="CD"/>

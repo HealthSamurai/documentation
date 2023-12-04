@@ -55,7 +55,7 @@ Internal ID: Header
             "coding" : [ {
               "code" : "2106-3",
               "display" : "White",
-              "system" : "2.16.840.1.113883.6.238"
+              "system" : "urn:oid:2.16.840.1.113883.6.238"
             } ]
           }
         },
@@ -67,7 +67,7 @@ Internal ID: Header
             "coding" : [ {
               "code" : "2108-9",
               "display" : "White European",
-              "system" : "2.16.840.1.113883.6.238"
+              "system" : "urn:oid:2.16.840.1.113883.6.238"
             } ]
           }
         },
@@ -81,7 +81,7 @@ Internal ID: Header
           "coding" : [ {
             "code" : "2186-5",
             "display" : "Mexican",
-            "system" : "2.16.840.1.113883.6.238"
+            "system" : "urn:oid:2.16.840.1.113883.6.238"
           } ]
         }
       },
@@ -90,7 +90,7 @@ Internal ID: Header
     "id" : "patient",
     "identifier" : [ {
       "value" : "118283339",
-      "system" : "2.16.840.1.113883.4.1"
+      "system" : "http://hl7.org/fhir/sid/us-ssn"
     } ],
     "telecom" : [ {
       "system" : "phone",
@@ -106,7 +106,7 @@ Internal ID: Header
   "composition" : {
     "identifier" : {
       "value" : "TT107",
-      "system" : "2.16.840.1.113883.19.5.99999.1",
+      "system" : "urn:oid:2.16.840.1.113883.19.5.99999.1",
       "extension" : [ {
         "url" : "cda-assigning-authority-name",
         "value" : {
@@ -123,7 +123,7 @@ Internal ID: Header
       "use" : "work"
     } ],
     "identifier" : [ {
-      "system" : "2.16.840.1.113883.4.6",
+      "system" : "http://hl7.org/fhir/sid/us-npi",
       "value" : "99998899"
     } ],
     "address" : [ {
@@ -187,7 +187,7 @@ C-CDA Equivalent:
         assigningAuthorityName="ABC"
         root="2.16.840.1.113883.19.5.99999.1"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="TESTDOC"
           code="TESTDOC"/>
    <title>Document Title</title>
@@ -234,15 +234,15 @@ C-CDA Equivalent:
                                        codeSystemName="AdministrativeGender"/>
             <birthTime value="19700701"/>
             <raceCode codeSystem="2.16.840.1.113883.6.238"
-                       codeSystemName="2.16.840.1.113883.6.238"
+                       codeSystemName="urn:oid:2.16.840.1.113883.6.238"
                        displayName="White"
                        code="2106-3"/>
             <sdtc:raceCode codeSystem="2.16.840.1.113883.6.238"
-                            codeSystemName="2.16.840.1.113883.6.238"
+                            codeSystemName="urn:oid:2.16.840.1.113883.6.238"
                             displayName="White European"
                             code="2108-9"/>
             <ethnicGroupCode codeSystem="2.16.840.1.113883.6.238"
-                              codeSystemName="2.16.840.1.113883.6.238"
+                              codeSystemName="urn:oid:2.16.840.1.113883.6.238"
                               displayName="Mexican"
                               code="2186-5"/>
          </patient>

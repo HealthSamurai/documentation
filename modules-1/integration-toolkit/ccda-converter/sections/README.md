@@ -26,7 +26,7 @@ description: >-
 |[Medications Section (entries optional) (V2)](/modules-1/integration-toolkit/ccda-converter/sections/medicationssectionentriesoptional.md)|10160-0|medications|✅
 |[Medications Section (entries required) (V2)](/modules-1/integration-toolkit/ccda-converter/sections/medicationssectionentriesrequired.md)|10160-0|medications|✅
 |[Mental Status Section (V2)](/modules-1/integration-toolkit/ccda-converter/sections/mentalstatussectionv2.md)|10190-7|mental-status|❌
-|[Notes](/modules-1/integration-toolkit/ccda-converter/sections/notessection.md)|11488-4, 28570-0, 11502-2, 34117-2, 18842-5, 11506-3|N/A|❌
+|[Notes](/modules-1/integration-toolkit/ccda-converter/sections/notessection.md)|18748-4, 11488-4, 28570-0, 11502-2, 34117-2, 18842-5, 11506-3|N/A|❌
 |[Nutrition Section](/modules-1/integration-toolkit/ccda-converter/sections/nutritionsection.md)|61144-2|nutrition|❌
 |[Payers Section (V3)](/modules-1/integration-toolkit/ccda-converter/sections/payerssectionv3.md)|48768-6|payers|❌
 |[Plan of Treatment Section (V2)](/modules-1/integration-toolkit/ccda-converter/sections/planoftreatmentsectionv2.md)|18776-5|plan-of-treatment|❌

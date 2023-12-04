@@ -57,7 +57,7 @@ C-CDA Equivalent:
    <templateId root="2.16.840.1.113883.10.20.22.2.2.1" extension="2015-08-01"/>
    <templateId root="2.16.840.1.113883.10.20.22.2.2.1"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="11369-6"/>
    <title>Immunizations Section (entries required) (V3)</title>
@@ -77,7 +77,7 @@ C-CDA Equivalent:
       </list>
    </text>
    <entry>
-      <substanceAdministration negationInd="false" classCode="SBADM" moodCode="EVN">
+      <substanceAdministration negationInd="false" moodCode="EVN" classCode="SBADM">
          <templateId root="2.16.840.1.113883.10.20.22.4.52" extension="2015-08-01"/>
          <templateId root="2.16.840.1.113883.10.20.22.4.52"/>
          <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
@@ -89,12 +89,22 @@ C-CDA Equivalent:
                <templateId root="2.16.840.1.113883.10.20.22.4.54"/>
                <manufacturedMaterial>
                   <code codeSystem="2.16.840.1.113883.12.292"
-                         codeSystemName="HTTP://HL7.ORG/FHIR/SID/CVX"
+                         codeSystemName="http://hl7.org/fhir/sid/cvx"
                          displayName="influenza, intradermal, quadrivalent, preservative free, injectable"
                          code="166"/>
                </manufacturedMaterial>
             </manufacturedProduct>
          </consumable>
+         <entryRelationship typeCode="COMP" inversionInd="true">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.10.20.22.4.53"/>
+               <code value="PATOBJ"
+                      codeSystem="2.16.840.1.113883.5.8"
+                      codeSystemName="HL7 Act Reason"
+                      displayName="patient objection"/>
+               <statusCode code="completed"/>
+            </observation>
+         </entryRelationship>
       </substanceAdministration>
    </entry>
 </section>
@@ -132,7 +142,7 @@ C-CDA Equivalent:
    <templateId root="2.16.840.1.113883.10.20.22.2.2.1" extension="2015-08-01"/>
    <templateId root="2.16.840.1.113883.10.20.22.2.2.1"/>
    <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="HTTP://LOINC.ORG"
+          codeSystemName="http://loinc.org"
           displayName="display string"
           code="11369-6"/>
    <title>Immunizations Section (entries required) (V3)</title>
@@ -164,7 +174,7 @@ C-CDA Equivalent:
                <templateId root="2.16.840.1.113883.10.20.22.4.54"/>
                <manufacturedMaterial>
                   <code codeSystem="2.16.840.1.113883.12.292"
-                         codeSystemName="HTTP://HL7.ORG/FHIR/SID/CVX"
+                         codeSystemName="http://hl7.org/fhir/sid/cvx"
                          displayName="Influenza virus vaccine"
                          code="88"/>
                   <lotNumberText>1</lotNumberText>
