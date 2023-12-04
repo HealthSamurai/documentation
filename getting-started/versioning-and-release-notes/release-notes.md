@@ -8,7 +8,7 @@
   * Optimized [Activity Scheduler Service](../../modules-1/workflow-engine/services.md#scheduler) for Workflow Engine&#x20;
 * [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
   * Improved performance from 2x (up to 3x faster)
-  * Added narrative generation for a number of sections (see all sections here)
+  * Added narrative generation for a number of sections (see all sections [here](../../modules-1/integration-toolkit/ccda-converter/#list-of-supported-sections))
 * Security and access control
   * Enabled [SMART App launch v. 1 & 2 for Patient API](../../modules-1/patient-data-access-api/smart-on-fhir.md)&#x20;
 * SDK
