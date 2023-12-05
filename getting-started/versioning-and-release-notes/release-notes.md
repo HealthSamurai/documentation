@@ -6,13 +6,12 @@
   * Added [asynchronous resource validation](../../profiling-and-validation/validation-api.md)
 * Integrations
   * Optimized [Activity Scheduler Service](../../modules-1/workflow-engine/services.md#scheduler) for Workflow Engine&#x20;
+  * Added [Python templates for HL7 v2 ADT, ORU, ORM to FHIR](https://github.com/Aidbox/integration-pipeline/tree/main/HL7v2) transformation
 * [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
-  * Improved performance from 2x (up to 3x faster)
-  * Added narrative generation for a number of sections (see all sections [here](../../modules-1/integration-toolkit/ccda-converter/#list-of-supported-sections))
+  * Improved performance
+  * Added narrative generation for several sections (see all sections [here](../../modules-1/integration-toolkit/ccda-converter/#list-of-supported-sections))
 * Security and access control
   * Enabled [SMART App launch v. 1 & 2 for Patient API](../../modules-1/patient-data-access-api/smart-on-fhir.md)&#x20;
-* SDK
-  * Added [mapping HL7v2 messages to FHIR](https://github.com/Aidbox/integration-pipeline/tree/main) with [Aidbox HL7 Converter](../../modules-1/integration-toolkit/hl7-v2-integration.md) and Python (ADT, ORU, ORM)
 * [Aidbox Forms](../../modules-1/aidbox-forms.md)
   * Added group widget in the UI Builder
   * Added calculate expressions with FHIRPath/AidboxLisp
