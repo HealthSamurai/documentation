@@ -424,6 +424,7 @@
 * [Patient data access API](modules-1/patient-data-access-api/README.md)
   * [How to enable patient data access API](modules-1/patient-data-access-api/how-to-enable-patient-data-access-api.md)
   * [How to enable SMART on FHIR on Patient Access API](modules-1/patient-data-access-api/smart-on-fhir.md)
+* [SMART on FHIR](modules-1/smart-on-fhir.md)
 
 ## FHIR Implementation Guides
 
