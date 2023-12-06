@@ -2,7 +2,7 @@
 description: This guide explains how SMART App launch (1.0.0 & 2.0.0) can be enabled
 ---
 
-# SMART on FHIR
+# How to enable SMART on FHIR on Patient Access API
 
 ## Prerequisites
 
@@ -128,9 +128,16 @@ Use Aidbox UI Rest Console to create AccessPoliciy resources.
       - /patient/auth/authorize
       - /patient/auth/authenticate
       - /patient/auth/grant
-- id: allow-fhir-api
+- id: allow-patient-access-api-over-smart-on-fhir
   resourceType: AccessPolicy
-  engine: smart-on-fhir
+  engine: complex
+  and:
+  - engine: matcho
+    matcho:
+      uri: /patient/fhir
+      client:
+        type: smart-app
+  - engine: smart-on-fhir
 </code></pre>
 
 ### Create Patient and User resources
