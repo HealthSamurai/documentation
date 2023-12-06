@@ -423,7 +423,7 @@
   * [How to enable hierarchical access control](modules-1/multitenancy/how-to-enable-hierarchical-access-control.md)
 * [Patient data access API](modules-1/patient-data-access-api/README.md)
   * [How to enable patient data access API](modules-1/patient-data-access-api/how-to-enable-patient-data-access-api.md)
-  * [SMART on FHIR](modules-1/patient-data-access-api/smart-on-fhir.md)
+  * [How to enable SMART on FHIR on Patient Access API](modules-1/patient-data-access-api/smart-on-fhir.md)
 
 ## FHIR Implementation Guides
 
