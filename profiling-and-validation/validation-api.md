@@ -92,9 +92,8 @@ result:
 
 You can run validation workflow with rpc method, which creates task for every resource provided in rpc's params fields `include` or `exclude`:
 
-```yaml
-POST /rpc
-accept: text/yaml
+<pre class="language-yaml"><code class="lang-yaml"><strong>POST /rpc
+</strong>accept: text/yaml
 content-type: text/yaml
 
 
@@ -113,7 +112,9 @@ definition: aidbox.validation/resource-types-batch-validation-workflow
 id: >-
   7addda33-003e-4892-a1d9-0faffbedf86d
 resourceType: AidboxWorkflow
-```
+</code></pre>
+
+You can also [run](../modules-1/workflow-engine/task/aidbox-predefined-tasks.md#aidbox.validation-resource-types-bath-validation-workflow) workflow directly to achieve the same result. &#x20;
 
 {% hint style="info" %}
 If you specify `include` param, only types you passed will be validated.

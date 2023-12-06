@@ -658,3 +658,59 @@ id: >-
 ```
 {% endtab %}
 {% endtabs %}
+
+## aidbox.validation/resource-types-bath-validation-workflow
+
+Executes validation on given table names. Creates a task for every table.&#x20;
+
+**Note: for every broken target resource creates a** `BatchValidationError` **resource.**&#x20;
+
+{% tabs %}
+{% tab title="Request" %}
+```yaml
+POST /rpc
+content-type: text/yaml
+accept: text/yaml
+
+method: awf.workflow/create-and-execute
+params: 
+  definition: aidbox.validation/resource-types-batch-validation-workflow
+  params: 
+    tables: ['patient', 'observation']
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```yaml
+result:
+  resource:
+    params:
+      tables:
+        - patient
+        - observation
+    status: in-progress
+    definition: aidbox.validation/resource-types-batch-validation-workflow
+    id: >-
+      c36e0665-0fe2-4cec-972f-2112716f9233
+    resourceType: AidboxWorkflow
+```
+{% endtab %}
+
+{% tab title="Status response" %}
+```yaml
+result:
+  resource:
+    params:
+      tables:
+        - patient
+        - observation
+    result: Finished
+    status: done
+    outcome: succeeded
+    definition: aidbox.validation/resource-types-batch-validation-workflow
+    id: >-
+      c36e0665-0fe2-4cec-972f-2112716f9233
+    resourceType: AidboxWorkflow
+```
+{% endtab %}
+{% endtabs %}
