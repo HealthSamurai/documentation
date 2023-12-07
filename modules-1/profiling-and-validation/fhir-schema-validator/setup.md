@@ -76,3 +76,6 @@ To validate coded values with an external Terminology server, use the `validate-
 ```
 {% endcode %}
 
+{% hint style="warning" %}
+Please note that this external terminology server will be used exclusively for validating terminology bindings.
+{% endhint %}

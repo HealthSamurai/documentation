@@ -4,18 +4,6 @@ description: Get to know, what SMART on FHIR features are supported in Aidbox
 
 # SMART on FHIR
 
-The SMART App Launch Framework connects third-party applications to Electronic Health Record data, allowing apps to launch from inside or outside the user interface of an EHR system. The framework supports apps for use by clinicians, patients, and others via a PHR or Patient Portal or any FHIR system where a user can give permissions to launch an app.
-
-Aidbox supports SMART on FHIR. You can find support status in this guide.
-
-### **Uses case**
-
-1. Patients apps that launch standalone (Patient Access for Standalone Apps)\
-   Read [how to enable SMART on FHIR on Patient Access API](patient-data-access-api/smart-on-fhir.md) guide.
-2. Patient apps that launch from a portal (Patient Access for EHR Launch)
-3. **\[WIP]** Provider apps that launch standalone (Clinician Access for Standalone)
-4. **\[WIP]** Provider apps that launch from a portal (Clinician Access for EHR Launch)
-
 ### **Launch sequences**
 
 1. Standalone launch
