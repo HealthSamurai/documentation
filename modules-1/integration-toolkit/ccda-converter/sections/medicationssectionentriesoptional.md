@@ -58,6 +58,9 @@ So there are nullFlavor values placed in required field effectiveTime.
             <tr>
                <td>Sudafed 30 MG Oral Tablet (1049529)</td>
                <td>No information</td>
+               <td>No information</td>
+               <td>No information</td>
+               <td>No information</td>
             </tr>
          </tbody>
       </table>

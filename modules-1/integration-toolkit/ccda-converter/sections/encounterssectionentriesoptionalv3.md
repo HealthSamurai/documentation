@@ -84,7 +84,7 @@ Internal ID: EncountersSectionentriesoptionalV3
         "value" : "+1(555)555-1004",
         "use" : null
       } ],
-      "id" : "SOME-STRING",
+      "id" : "2a620155-9d11-439e-92b3-5d9815ff4de8",
       "resourceType" : "Location"
     }
   } ],
@@ -101,7 +101,7 @@ Internal ID: EncountersSectionentriesoptionalV3
         "system" : "http://snomed.info/sct"
       } ]
     },
-    "id" : "SOME-STRING",
+    "id" : "2a620155-9d11-439e-92b3-5d9815ff4de8",
     "value" : {
       "CodeableConcept" : {
         "coding" : [ {
@@ -136,7 +136,24 @@ C-CDA Equivalent:
           displayName="display string"
           code="46240-8"/>
    <title>Encounters Section (entries optional) (V3)</title>
-   <text>Encounters Section (entries optional) (V3)</text>
+   <text>
+      <table border="1" width="100%">
+         <thead>
+            <tr>
+               <td>Type</td>
+               <td>Period</td>
+               <td>Dx</td>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>Office outpatient visit 15 minutes (99213)</td>
+               <td> - </td>
+               <td>Costal Chondritis (64109004)</td>
+            </tr>
+         </tbody>
+      </table>
+   </text>
    <entry>
       <encounter moodCode="EVN" classCode="ENC">
          <sdtc:dischargeDispositionCode codeSystem="2.16.840.1.113883.6.301.5"
@@ -157,7 +174,7 @@ C-CDA Equivalent:
          <participant typeCode="LOC">
             <participantRole classCode="SDLOC">
                <templateId root="2.16.840.1.113883.10.20.22.4.32"/>
-               <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
+               <id root="2a620155-9d11-439e-92b3-5d9815ff4de8"/>
                <code nullFlavor="NI"/>
                <addr>
                   <state>OR</state>
@@ -172,7 +189,7 @@ C-CDA Equivalent:
             <observation classCode="OBS" moodCode="EVN">
                <templateId root="2.16.840.1.113883.10.20.22.4.19" extension="2014-06-09"/>
                <templateId root="2.16.840.1.113883.10.20.22.4.19"/>
-               <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
+               <id root="2a620155-9d11-439e-92b3-5d9815ff4de8"/>
                <code codeSystem="2.16.840.1.113883.6.96"
                       codeSystemName="http://snomed.info/sct"
                       displayName="Finding"

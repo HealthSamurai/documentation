@@ -139,7 +139,7 @@ C-CDA Equivalent:
          <entryRelationship typeCode="REFR">
             <observation classCode="OBS" moodCode="EVN">
                <templateId root="2.16.840.1.113883.10.20.22.4.143"/>
-               <id root="cbb98939-2cd7-496d-b201-cf5e5d35ffef"/>
+               <id root="983b4329-4011-49b6-a85d-1769167dfc0e"/>
                <code code="225773000" codeSystem="2.16.840.1.113883.6.96"/>
                <value code="394849002"
                        displayName="High Priority"
@@ -268,7 +268,7 @@ C-CDA Equivalent:
          <entryRelationship typeCode="REFR">
             <observation classCode="OBS" moodCode="EVN">
                <templateId root="2.16.840.1.113883.10.20.22.4.143"/>
-               <id root="21ee3633-706f-48ac-bd89-c8404dd13a01"/>
+               <id root="f107e50e-0054-4da0-bbb7-3d795898006a"/>
                <code code="225773000" codeSystem="2.16.840.1.113883.6.96"/>
                <value code="394849002"
                        displayName="High Priority"

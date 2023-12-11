@@ -378,7 +378,7 @@ C-CDA Equivalent:
       <organizer classCode="CLUSTER" moodCode="EVN">
          <templateId root="2.16.840.1.113883.10.20.22.4.26" extension="2015-08-01"/>
          <templateId root="2.16.840.1.113883.10.20.22.4.26"/>
-         <id root="27d25517-5085-4903-8cb3-dc0bfcfe14d5"/>
+         <id root="b98b7bc3-5d51-4513-a32e-7b659d2f1f7e"/>
          <code code="46680005"
                 displayName="Vital Signs"
                 codeSystem="2.16.840.1.113883.6.96"

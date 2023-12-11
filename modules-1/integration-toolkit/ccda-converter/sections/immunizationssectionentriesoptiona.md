@@ -98,7 +98,8 @@ C-CDA Equivalent:
          <entryRelationship typeCode="COMP" inversionInd="true">
             <observation classCode="OBS" moodCode="EVN">
                <templateId root="2.16.840.1.113883.10.20.22.4.53"/>
-               <code value="PATOBJ"
+               <id root="52d23ddb-dd7d-4be7-85c5-9fa8e28abf90"/>
+               <code code="PATOBJ"
                       codeSystem="2.16.840.1.113883.5.8"
                       codeSystemName="HL7 Act Reason"
                       displayName="patient objection"/>
