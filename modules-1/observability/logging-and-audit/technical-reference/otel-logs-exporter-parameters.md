@@ -15,7 +15,8 @@ description: This page explains what parameters OTEL logs exporter has
  open-telemetry-appender
  {:zen/tags   #{aidbox/service}
   :engine     aidbox.log/open-telemetry-appender
-  :config     {:url "http://url-to-otel-collector/v1/logs"}}
+  :config     {:url "http://url-to-otel-collector/v1/logs"
+               :headers {"X-custom-logs-header" "header value"}}
 
  box
  {:zen/tags #{aidbox/system}
@@ -28,3 +29,4 @@ description: This page explains what parameters OTEL logs exporter has
 * `config`
   * `url` the URL of the consumer of the logs
   * `auth-token` Bearer header authorization
+  * `headers` Custom headers for log export request

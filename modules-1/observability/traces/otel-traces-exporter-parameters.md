@@ -15,10 +15,12 @@ description: This page explains what parameters OTEL traces exporter has
  {:zen/tags   #{aidbox.telemetry.trace/exporter}
   :engine     aidbox.telemetry.trace/otlp-exporter
   :url        "http://otel-collector-url/v1/traces"
-  :auth-token "authorization-your-bearer-token"}}
+  :auth-token "authorization-your-bearer-token"
+  :headers {"X-custom-trace-header" "header value"}}}
 ```
 
 ### Parameters
 
 * `url` the URL of the consumer of the metrics
 * `auth-token` Bearer header authorization
+* `headers` Custom headers for traces export request
