@@ -170,7 +170,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 |                       hl7.fhir.uv.genomics-reporting |                                                                                                                    0.1.0, 0.3.0, 1.0.0, 1.1.0, 2.0.0 |
 |                                     hl7.fhir.uv.ibcm |                                                                                                                                         1.0.0-ballot |
 |                      hl7.fhir.uv.ichom-breast-cancer |                                                                                                                                  1.0.0-ballot, 1.0.0 |
-|                              hl7.fhir.uv.ihe-sdc-ecc |                                                                                                                                         1.0.0-ballot |
+|                              hl7.fhir.uv.ihe-sdc-ecc |                                                                                                                                  1.0.0-ballot, 1.0.0 |
 |                                    hl7.fhir.uv.immds |                                                                                                                                         0.1.0, 0.2.0 |
 |                                      hl7.fhir.uv.ipa |                                                                                                                                         0.1.0, 1.0.0 |
 |                                      hl7.fhir.uv.ips |                                                                                                                           0.2.0, 0.3.0, 1.0.0, 1.1.0 |
