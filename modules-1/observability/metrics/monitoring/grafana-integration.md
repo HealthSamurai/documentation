@@ -16,7 +16,7 @@ You need to set up the following environment variables:
 
 | Environment variable           | Description                                                                                                      |
 | ------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
-| `BOX_INSTANCE_NAME`            | Provided instance name will be attached to metrics labels. Required for monitoring of multiple Aidbox instances. |
+| `AIDBOX_BOX_ID`                | Provided instance name will be attached to metrics labels. Required for monitoring of multiple Aidbox instances. |
 | `BOX_METRICS_GRAFANA_URL`      | Grafana instance url                                                                                             |
 | `BOX_METRICS_GRAFANA_USER`     | Grafana user name                                                                                                |
 | `BOX_METRICS_GRAFANA_PASSWORD` | Grafana user password                                                                                            |
