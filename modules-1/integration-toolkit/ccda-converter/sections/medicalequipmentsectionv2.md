@@ -19,7 +19,7 @@ Internal ID: MedicalEquipmentSectionV2
   "resourceType" : "Procedure",
   "id" : "SOME-STRING",
   "code" : {
-    "text" : "Stent Placement",
+    "text" : "Biliary Stent, May 5, 2013",
     "coding" : [ {
       "code" : "103716009",
       "display" : "Stent Placement",
@@ -55,7 +55,24 @@ C-CDA Equivalent:
           displayName="display string"
           code="46264-8"/>
    <title>Medical Equipment Section (V2)</title>
-   <text>Medical Equipment Section (V2)</text>
+   <text>
+      <table border="1" width="100%">
+         <thead>
+            <tr>
+               <td>ID</td>
+               <td>Assigning Auth</td>
+               <td>Code</td>
+               <td>Date</td>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>No information</td>
+               <td>2013-05-12</td>
+            </tr>
+         </tbody>
+      </table>
+   </text>
    <entry>
       <procedure classCode="PROC" moodCode="EVN">
          <templateId root="2.16.840.1.113883.10.20.22.4.14" extension="2014-06-09"/>
@@ -64,13 +81,17 @@ C-CDA Equivalent:
          <code codeSystem="2.16.840.1.113883.6.96"
                 codeSystemName="http://snomed.info/sct"
                 displayName="Stent Placement"
-                code="103716009"/>
+                code="103716009">
+            <originalText>Biliary Stent, May 5, 2013</originalText>
+         </code>
          <statusCode code="completed"/>
          <effectiveTime value="20130512"/>
          <targetSiteCode codeSystem="2.16.840.1.113883.6.96"
                           codeSystemName="http://snomed.info/sct"
                           displayName="bile duct"
-                          code="28273000"/>
+                          code="28273000">
+            <originalText>bile duct</originalText>
+         </targetSiteCode>
       </procedure>
    </entry>
 </section>
@@ -88,7 +109,7 @@ C-CDA Equivalent:
           "uri" : "#device"
         },
         "action" : {
-          "text" : "cardiac pacemaker, device (physical object)",
+          "text" : "Cardiac Pacemaker",
           "coding" : [ {
             "code" : "14106009",
             "display" : "cardiac pacemaker, device (physical object)",
@@ -115,7 +136,7 @@ C-CDA Equivalent:
       "status" : "completed",
       "id" : "SOME-STRING",
       "code" : {
-        "text" : "Stent Placement",
+        "text" : "Biliary Stent, May 5, 2013",
         "coding" : [ {
           "code" : "103716009",
           "display" : "Stent Placement",
@@ -152,7 +173,24 @@ C-CDA Equivalent:
           displayName="display string"
           code="46264-8"/>
    <title>Medical Equipment Section (V2)</title>
-   <text>Medical Equipment Section (V2)</text>
+   <text>
+      <table border="1" width="100%">
+         <thead>
+            <tr>
+               <td>ID</td>
+               <td>Assigning Auth</td>
+               <td>Code</td>
+               <td>Date</td>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>No information</td>
+               <td>No information</td>
+            </tr>
+         </tbody>
+      </table>
+   </text>
    <entry>
       <organizer classCode="CLUSTER" moodCode="EVN">
          <templateId root="2.16.840.1.113883.10.20.22.4.135"/>
@@ -165,13 +203,17 @@ C-CDA Equivalent:
                <code codeSystem="2.16.840.1.113883.6.96"
                       codeSystemName="http://snomed.info/sct"
                       displayName="Stent Placement"
-                      code="103716009"/>
+                      code="103716009">
+                  <originalText>Biliary Stent, May 5, 2013</originalText>
+               </code>
                <statusCode code="completed"/>
                <effectiveTime value="20130512"/>
                <targetSiteCode codeSystem="2.16.840.1.113883.6.96"
                                 codeSystemName="http://snomed.info/sct"
                                 displayName="bile duct"
-                                code="28273000"/>
+                                code="28273000">
+                  <originalText>bile duct</originalText>
+               </targetSiteCode>
                <participant typeCode="DEV">
                   <participantRole classCode="MANU">
                      <templateId root="2.16.840.1.113883.10.20.22.4.37"/>
@@ -183,7 +225,9 @@ C-CDA Equivalent:
                         <code codeSystem="2.16.840.1.113883.6.96"
                                codeSystemName="http://snomed.info/sct"
                                displayName="cardiac pacemaker, device (physical object)"
-                               code="14106009"/>
+                               code="14106009">
+                           <originalText>Cardiac Pacemaker</originalText>
+                        </code>
                      </playingDevice>
                      <scopingEntity>
                         <id root="2.16.840.1.113883.3.3719"/>

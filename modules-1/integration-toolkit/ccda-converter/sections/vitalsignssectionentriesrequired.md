@@ -378,7 +378,7 @@ C-CDA Equivalent:
       <organizer classCode="CLUSTER" moodCode="EVN">
          <templateId root="2.16.840.1.113883.10.20.22.4.26" extension="2015-08-01"/>
          <templateId root="2.16.840.1.113883.10.20.22.4.26"/>
-         <id root="ffb86ff7-5886-4f30-aa2b-d91201e4317e"/>
+         <id nullFlavor="NI"/>
          <code code="46680005"
                 displayName="Vital Signs"
                 codeSystem="2.16.840.1.113883.6.96"
@@ -401,7 +401,9 @@ C-CDA Equivalent:
                <code codeSystem="2.16.840.1.113883.6.1"
                       codeSystemName="http://loinc.org"
                       displayName="SYSTOLIC BLOOD PRESSURE"
-                      code="8480-6"/>
+                      code="8480-6">
+                  <originalText>SYSTOLIC BLOOD PRESSURE</originalText>
+               </code>
                <statusCode code="completed"/>
                <effectiveTime value="20140520193605-0500"/>
                <value value="120" unit="mm[Hg]" xsi:type="PQ"/>
@@ -415,7 +417,9 @@ C-CDA Equivalent:
                <code codeSystem="2.16.840.1.113883.6.1"
                       codeSystemName="http://loinc.org"
                       displayName="DIASTOLIC BLOOD PRESSURE"
-                      code="8462-4"/>
+                      code="8462-4">
+                  <originalText>DIASTOLIC BLOOD PRESSURE</originalText>
+               </code>
                <statusCode code="completed"/>
                <effectiveTime value="20140520193605-0500"/>
                <value value="80" unit="mm[Hg]" xsi:type="PQ"/>
@@ -429,7 +433,9 @@ C-CDA Equivalent:
                <code codeSystem="2.16.840.1.113883.6.1"
                       codeSystemName="http://loinc.org"
                       displayName="HEART RATE"
-                      code="8867-4"/>
+                      code="8867-4">
+                  <originalText>HEART RATE</originalText>
+               </code>
                <statusCode code="completed"/>
                <effectiveTime value="20140520193605-0500"/>
                <value value="80" unit="/min" xsi:type="PQ"/>
@@ -443,7 +449,9 @@ C-CDA Equivalent:
                <code codeSystem="2.16.840.1.113883.6.1"
                       codeSystemName="http://loinc.org"
                       displayName="BODY TEMPERATURE"
-                      code="8310-5"/>
+                      code="8310-5">
+                  <originalText>BODY TEMPERATURE</originalText>
+               </code>
                <statusCode code="completed"/>
                <effectiveTime value="20140520193605-0500"/>
                <value value="37.2" unit="Cel" xsi:type="PQ"/>
@@ -457,7 +465,9 @@ C-CDA Equivalent:
                <code codeSystem="2.16.840.1.113883.6.1"
                       codeSystemName="http://loinc.org"
                       displayName="RESPIRATORY RATE"
-                      code="9279-1"/>
+                      code="9279-1">
+                  <originalText>RESPIRATORY RATE</originalText>
+               </code>
                <statusCode code="completed"/>
                <effectiveTime value="20140520193605-0500"/>
                <value value="18" unit="/min" xsi:type="PQ"/>
@@ -471,7 +481,9 @@ C-CDA Equivalent:
                <code codeSystem="2.16.840.1.113883.6.1"
                       codeSystemName="http://loinc.org"
                       displayName="HEIGHT"
-                      code="8302-2"/>
+                      code="8302-2">
+                  <originalText>HEIGHT</originalText>
+               </code>
                <statusCode code="completed"/>
                <effectiveTime value="20140520193605-0500"/>
                <value value="170.2" unit="cm" xsi:type="PQ"/>
@@ -485,7 +497,9 @@ C-CDA Equivalent:
                <code codeSystem="2.16.840.1.113883.6.1"
                       codeSystemName="http://loinc.org"
                       displayName="WEIGHT"
-                      code="29463-7"/>
+                      code="29463-7">
+                  <originalText>WEIGHT</originalText>
+               </code>
                <statusCode code="completed"/>
                <effectiveTime value="20140520193605-0500"/>
                <value value="108.863" unit="kg" xsi:type="PQ"/>
@@ -499,7 +513,9 @@ C-CDA Equivalent:
                <code codeSystem="2.16.840.1.113883.6.1"
                       codeSystemName="http://loinc.org"
                       displayName="BODY MASS INDEX"
-                      code="39156-5"/>
+                      code="39156-5">
+                  <originalText>BODY MASS INDEX</originalText>
+               </code>
                <statusCode code="completed"/>
                <effectiveTime value="20140520193605-0500"/>
                <value value="37.58" unit="kg/m2" xsi:type="PQ"/>
@@ -513,7 +529,9 @@ C-CDA Equivalent:
                <code codeSystem="2.16.840.1.113883.6.1"
                       codeSystemName="http://loinc.org"
                       displayName="OXYGEN SATURATION"
-                      code="2710-2"/>
+                      code="2710-2">
+                  <originalText>OXYGEN SATURATION</originalText>
+               </code>
                <statusCode code="completed"/>
                <effectiveTime value="20140520193605-0500"/>
                <value value="98" unit="%" xsi:type="PQ"/>

@@ -16,7 +16,13 @@ Internal ID: ResultsSectionentriesoptionalV3
 
 ```json
 [ {
-  "resourceType" : "Observation",
+  "category" : [ {
+    "coding" : [ {
+      "code" : "laboratory",
+      "display" : "Laboratory",
+      "system" : "http://terminology.hl7.org/CodeSystem/observation-category"
+    } ]
+  } ],
   "hasMember" : [ {
     "value" : {
       "Quantity" : {
@@ -31,7 +37,7 @@ Internal ID: ResultsSectionentriesoptionalV3
     },
     "id" : "d8fe6100-c31a-4b8c-b97d-57a6bd415bf7",
     "code" : {
-      "text" : "Sodium [Moles/​volume] in Blood",
+      "text" : "Na",
       "coding" : [ {
         "code" : "2947-0",
         "display" : "Sodium [Moles/​volume] in Blood",
@@ -56,7 +62,7 @@ Internal ID: ResultsSectionentriesoptionalV3
     },
     "id" : "3ee6ac58-d22c-4416-9acc-c1c75c1c2c91",
     "code" : {
-      "text" : "Potassium [Moles/​volume] in Blood",
+      "text" : "K",
       "coding" : [ {
         "code" : "6298-4",
         "display" : "Potassium [Moles/​volume] in Blood",
@@ -81,7 +87,7 @@ Internal ID: ResultsSectionentriesoptionalV3
     },
     "id" : "0431a3ec-8ad6-49da-9de1-0a8704b7609d",
     "code" : {
-      "text" : "Chloride [Moles/volume] in Blood",
+      "text" : "Cl",
       "coding" : [ {
         "code" : "2069-3",
         "display" : "Chloride [Moles/volume] in Blood",
@@ -106,7 +112,7 @@ Internal ID: ResultsSectionentriesoptionalV3
     },
     "id" : "70c62997-9f12-4b7c-9023-0cdf249336a7",
     "code" : {
-      "text" : "Carbon dioxide, total [Moles/volume] in Serum or Plasma",
+      "text" : "CO2",
       "coding" : [ {
         "code" : "2028-9",
         "display" : "Carbon dioxide, total [Moles/volume] in Serum or Plasma",
@@ -131,7 +137,7 @@ Internal ID: ResultsSectionentriesoptionalV3
     },
     "id" : "e3db8661-71b7-4cf3-a666-4ed9e127e134",
     "code" : {
-      "text" : "Urea nitrogen [Mass/volume] in Blood",
+      "text" : "BUN",
       "coding" : [ {
         "code" : "6299-2",
         "display" : "Urea nitrogen [Mass/volume] in Blood",
@@ -156,7 +162,7 @@ Internal ID: ResultsSectionentriesoptionalV3
     },
     "id" : "21261c16-b527-49f2-916b-2ad5dabf4381",
     "code" : {
-      "text" : "Creatinine [Mass/volume] in Blood",
+      "text" : "Cr",
       "coding" : [ {
         "code" : "38483-4",
         "display" : "Creatinine [Mass/volume] in Blood",
@@ -181,7 +187,7 @@ Internal ID: ResultsSectionentriesoptionalV3
     },
     "id" : "7e68c2a8-a507-413b-aed4-87de5081b369",
     "code" : {
-      "text" : "Glucose [Mass/volume] in Blood",
+      "text" : "Glu",
       "coding" : [ {
         "code" : "2339-0",
         "display" : "Glucose [Mass/volume] in Blood",
@@ -193,16 +199,22 @@ Internal ID: ResultsSectionentriesoptionalV3
       "resourceType" : "Patient"
     }
   } ],
+  "resourceType" : "Observation",
+  "status" : "final",
   "id" : "cda1fc54-59fb-412d-86e0-acf6b78aa9a6",
   "code" : {
-    "text" : "Basic Metabolic Panel - Blood",
+    "text" : "Basic Metabolic Panel",
     "coding" : [ {
       "code" : "51990-0",
       "display" : "Basic Metabolic Panel - Blood",
       "system" : "http://loinc.org"
     } ]
   },
-  "status" : "final",
+  "subject" : {
+    "id" : "patient",
+    "resourceType" : "Patient"
+  }
+}, {
   "category" : [ {
     "coding" : [ {
       "code" : "laboratory",
@@ -210,12 +222,6 @@ Internal ID: ResultsSectionentriesoptionalV3
       "system" : "http://terminology.hl7.org/CodeSystem/observation-category"
     } ]
   } ],
-  "subject" : {
-    "id" : "patient",
-    "resourceType" : "Patient"
-  }
-}, {
-  "resourceType" : "Observation",
   "hasMember" : [ {
     "value" : {
       "Quantity" : {
@@ -230,7 +236,7 @@ Internal ID: ResultsSectionentriesoptionalV3
     },
     "id" : "01323ca7-4a72-4ae3-963d-af903df828d2",
     "code" : {
-      "text" : "Troponin T.Cardiac [Mass/Volume] In Serum Or Plasma",
+      "text" : "Troponin T",
       "coding" : [ {
         "code" : "6598-7",
         "display" : "Troponin T.Cardiac [Mass/Volume] In Serum Or Plasma",
@@ -242,16 +248,22 @@ Internal ID: ResultsSectionentriesoptionalV3
       "resourceType" : "Patient"
     }
   } ],
+  "resourceType" : "Observation",
+  "status" : "final",
   "id" : "950c948f-e5b2-4973-b7c0-e9ee08875e04",
   "code" : {
-    "text" : "Troponin T.Cardiac [Mass/Volume] In Serum Or Plasma",
+    "text" : "Troponin T",
     "coding" : [ {
       "code" : "6598-7",
       "display" : "Troponin T.Cardiac [Mass/Volume] In Serum Or Plasma",
       "system" : "http://loinc.org"
     } ]
   },
-  "status" : "final",
+  "subject" : {
+    "id" : "patient",
+    "resourceType" : "Patient"
+  }
+}, {
   "category" : [ {
     "coding" : [ {
       "code" : "laboratory",
@@ -259,12 +271,6 @@ Internal ID: ResultsSectionentriesoptionalV3
       "system" : "http://terminology.hl7.org/CodeSystem/observation-category"
     } ]
   } ],
-  "subject" : {
-    "id" : "patient",
-    "resourceType" : "Patient"
-  }
-}, {
-  "resourceType" : "Observation",
   "hasMember" : [ {
     "value" : {
       "Quantity" : {
@@ -279,7 +285,7 @@ Internal ID: ResultsSectionentriesoptionalV3
     },
     "id" : "bf9c0a26-4524-4395-b3ce-100450b9c9ac",
     "code" : {
-      "text" : "Troponin T.Cardiac [Mass/Volume] In Serum Or Plasma",
+      "text" : "Troponin T",
       "coding" : [ {
         "code" : "6598-7",
         "display" : "Troponin T.Cardiac [Mass/Volume] In Serum Or Plasma",
@@ -291,23 +297,17 @@ Internal ID: ResultsSectionentriesoptionalV3
       "resourceType" : "Patient"
     }
   } ],
+  "resourceType" : "Observation",
+  "status" : "final",
   "id" : "a4307cb2-b3b4-4f42-be03-1d9077376f4a",
   "code" : {
-    "text" : "Troponin T.Cardiac [Mass/Volume] In Serum Or Plasma",
+    "text" : "Troponin T",
     "coding" : [ {
       "code" : "6598-7",
       "display" : "Troponin T.Cardiac [Mass/Volume] In Serum Or Plasma",
       "system" : "http://loinc.org"
     } ]
   },
-  "status" : "final",
-  "category" : [ {
-    "coding" : [ {
-      "code" : "laboratory",
-      "display" : "Laboratory",
-      "system" : "http://terminology.hl7.org/CodeSystem/observation-category"
-    } ]
-  } ],
   "subject" : {
     "id" : "patient",
     "resourceType" : "Patient"
@@ -424,7 +424,9 @@ C-CDA Equivalent:
          <code codeSystem="2.16.840.1.113883.6.1"
                 codeSystemName="http://loinc.org"
                 displayName="Basic Metabolic Panel - Blood"
-                code="51990-0"/>
+                code="51990-0">
+            <originalText>Basic Metabolic Panel</originalText>
+         </code>
          <statusCode code="completed"/>
          <component>
             <observation classCode="OBS" moodCode="EVN">
@@ -434,7 +436,9 @@ C-CDA Equivalent:
                <code codeSystem="2.16.840.1.113883.6.1"
                       codeSystemName="http://loinc.org"
                       displayName="Sodium [Moles/​volume] in Blood"
-                      code="2947-0"/>
+                      code="2947-0">
+                  <originalText>Na</originalText>
+               </code>
                <statusCode code="completed"/>
                <effectiveTime value="20121002090800-0500"/>
                <value value="140" unit="mmol/L" xsi:type="PQ"/>
@@ -448,7 +452,9 @@ C-CDA Equivalent:
                <code codeSystem="2.16.840.1.113883.6.1"
                       codeSystemName="http://loinc.org"
                       displayName="Potassium [Moles/​volume] in Blood"
-                      code="6298-4"/>
+                      code="6298-4">
+                  <originalText>K</originalText>
+               </code>
                <statusCode code="completed"/>
                <effectiveTime value="20121002090800-0500"/>
                <value value="4.2" unit="mmol/L" xsi:type="PQ"/>
@@ -462,7 +468,9 @@ C-CDA Equivalent:
                <code codeSystem="2.16.840.1.113883.6.1"
                       codeSystemName="http://loinc.org"
                       displayName="Chloride [Moles/volume] in Blood"
-                      code="2069-3"/>
+                      code="2069-3">
+                  <originalText>Cl</originalText>
+               </code>
                <statusCode code="completed"/>
                <effectiveTime value="20121002090800-0500"/>
                <value value="98" unit="mmol/L" xsi:type="PQ"/>
@@ -476,7 +484,9 @@ C-CDA Equivalent:
                <code codeSystem="2.16.840.1.113883.6.1"
                       codeSystemName="http://loinc.org"
                       displayName="Carbon dioxide, total [Moles/volume] in Serum or Plasma"
-                      code="2028-9"/>
+                      code="2028-9">
+                  <originalText>CO2</originalText>
+               </code>
                <statusCode code="completed"/>
                <effectiveTime value="20121002090800-0500"/>
                <value value="24" unit="mmol/L" xsi:type="PQ"/>
@@ -490,7 +500,9 @@ C-CDA Equivalent:
                <code codeSystem="2.16.840.1.113883.6.1"
                       codeSystemName="http://loinc.org"
                       displayName="Urea nitrogen [Mass/volume] in Blood"
-                      code="6299-2"/>
+                      code="6299-2">
+                  <originalText>BUN</originalText>
+               </code>
                <statusCode code="completed"/>
                <effectiveTime value="20121002090800-0500"/>
                <value value="10" unit="md/dL" xsi:type="PQ"/>
@@ -504,7 +516,9 @@ C-CDA Equivalent:
                <code codeSystem="2.16.840.1.113883.6.1"
                       codeSystemName="http://loinc.org"
                       displayName="Creatinine [Mass/volume] in Blood"
-                      code="38483-4"/>
+                      code="38483-4">
+                  <originalText>Cr</originalText>
+               </code>
                <statusCode code="completed"/>
                <effectiveTime value="20121002090800-0500"/>
                <value value="1.2" unit="mg/dL" xsi:type="PQ"/>
@@ -518,7 +532,9 @@ C-CDA Equivalent:
                <code codeSystem="2.16.840.1.113883.6.1"
                       codeSystemName="http://loinc.org"
                       displayName="Glucose [Mass/volume] in Blood"
-                      code="2339-0"/>
+                      code="2339-0">
+                  <originalText>Glu</originalText>
+               </code>
                <statusCode code="completed"/>
                <effectiveTime value="20121002090800-0500"/>
                <value value="185" unit="mmol/L" xsi:type="PQ"/>
@@ -534,7 +550,9 @@ C-CDA Equivalent:
          <code codeSystem="2.16.840.1.113883.6.1"
                 codeSystemName="http://loinc.org"
                 displayName="Troponin T.Cardiac [Mass/Volume] In Serum Or Plasma"
-                code="6598-7"/>
+                code="6598-7">
+            <originalText>Troponin T</originalText>
+         </code>
          <statusCode code="completed"/>
          <component>
             <observation classCode="OBS" moodCode="EVN">
@@ -544,7 +562,9 @@ C-CDA Equivalent:
                <code codeSystem="2.16.840.1.113883.6.1"
                       codeSystemName="http://loinc.org"
                       displayName="Troponin T.Cardiac [Mass/Volume] In Serum Or Plasma"
-                      code="6598-7"/>
+                      code="6598-7">
+                  <originalText>Troponin T</originalText>
+               </code>
                <statusCode code="completed"/>
                <effectiveTime value="20121002090800-0500"/>
                <value value="0.01" unit="ng/mL" xsi:type="PQ"/>
@@ -560,7 +580,9 @@ C-CDA Equivalent:
          <code codeSystem="2.16.840.1.113883.6.1"
                 codeSystemName="http://loinc.org"
                 displayName="Troponin T.Cardiac [Mass/Volume] In Serum Or Plasma"
-                code="6598-7"/>
+                code="6598-7">
+            <originalText>Troponin T</originalText>
+         </code>
          <statusCode code="completed"/>
          <component>
             <observation classCode="OBS" moodCode="EVN">
@@ -570,7 +592,9 @@ C-CDA Equivalent:
                <code codeSystem="2.16.840.1.113883.6.1"
                       codeSystemName="http://loinc.org"
                       displayName="Troponin T.Cardiac [Mass/Volume] In Serum Or Plasma"
-                      code="6598-7"/>
+                      code="6598-7">
+                  <originalText>Troponin T</originalText>
+               </code>
                <statusCode code="completed"/>
                <effectiveTime value="20121003100800-0500"/>
                <value value="0.01" unit="ng/mL" xsi:type="PQ"/>

@@ -109,7 +109,9 @@ C-CDA Equivalent:
          <code codeSystem="2.16.840.1.113883.6.1"
                 codeSystemName="http://loinc.org"
                 displayName="Negotiated Goal for Body Temperature"
-                code="8310-5"/>
+                code="8310-5">
+            <originalText>Negotiated Goal for Body Temperature</originalText>
+         </code>
          <statusCode code="active"/>
          <effectiveTime value="20150623"/>
          <value xsi:type="IVL_PQ">
@@ -124,7 +126,9 @@ C-CDA Equivalent:
                <code codeSystem="2.16.840.1.113883.6.101"
                       codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"
                       displayName="Registered nurse"
-                      code="163W00000X"/>
+                      code="163W00000X">
+                  <originalText>Registered nurse</originalText>
+               </code>
                <addr nullFlavor="UNK"/>
                <telecom nullFlavor="UNK"/>
                <assignedPerson>
@@ -139,7 +143,7 @@ C-CDA Equivalent:
          <entryRelationship typeCode="REFR">
             <observation classCode="OBS" moodCode="EVN">
                <templateId root="2.16.840.1.113883.10.20.22.4.143"/>
-               <id root="983b4329-4011-49b6-a85d-1769167dfc0e"/>
+               <id nullFlavor="NI"/>
                <code code="225773000" codeSystem="2.16.840.1.113883.6.96"/>
                <value code="394849002"
                        displayName="High Priority"
@@ -241,7 +245,9 @@ C-CDA Equivalent:
          <code codeSystem="2.16.840.1.113883.6.1"
                 codeSystemName="http://loinc.org"
                 displayName="Resident's overall goal established during assessment process"
-                code="58144-7"/>
+                code="58144-7">
+            <originalText>Resident's overall goal established during assessment process</originalText>
+         </code>
          <statusCode code="active"/>
          <effectiveTime value="20150623"/>
          <value xsi:type="ST">Need to gain more energy to do regular activities. (Visual Inspection)</value>
@@ -253,7 +259,9 @@ C-CDA Equivalent:
                <code codeSystem="2.16.840.1.113883.6.101"
                       codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"
                       displayName="Registered nurse"
-                      code="163W00000X"/>
+                      code="163W00000X">
+                  <originalText>Registered nurse</originalText>
+               </code>
                <addr nullFlavor="UNK"/>
                <telecom nullFlavor="UNK"/>
                <assignedPerson>
@@ -268,7 +276,7 @@ C-CDA Equivalent:
          <entryRelationship typeCode="REFR">
             <observation classCode="OBS" moodCode="EVN">
                <templateId root="2.16.840.1.113883.10.20.22.4.143"/>
-               <id root="f107e50e-0054-4da0-bbb7-3d795898006a"/>
+               <id nullFlavor="NI"/>
                <code code="225773000" codeSystem="2.16.840.1.113883.6.96"/>
                <value code="394849002"
                        displayName="High Priority"

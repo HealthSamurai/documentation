@@ -148,7 +148,7 @@ C-CDA Equivalent:
          <tbody>
             <tr>
                <td>Office outpatient visit 15 minutes (99213)</td>
-               <td> - </td>
+               <td>2012-08-15 - Now</td>
                <td>Costal Chondritis (64109004)</td>
             </tr>
          </tbody>

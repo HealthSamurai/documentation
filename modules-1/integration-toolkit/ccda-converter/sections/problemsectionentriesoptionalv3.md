@@ -153,7 +153,9 @@ The section contains an Act.entryRelationship.Observation entry converted from t
                        codeSystemName="http://snomed.info/sct"
                        displayName="Community Acquired Pneumonia"
                        code="385093006"
-                       xsi:type="CD"/>
+                       xsi:type="CD">
+                  <originalText>Community Acquired Pneumonia</originalText>
+               </value>
                <author>
                   <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
                   <time value="20140302124536-0000"/>
@@ -162,7 +164,9 @@ The section contains an Act.entryRelationship.Observation entry converted from t
                      <code codeSystem="2.16.840.1.113883.6.101"
                             codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"
                             displayName="Cardiovascular Disease"
-                            code="207RC0000X"/>
+                            code="207RC0000X">
+                        <originalText>Cardiovascular Disease</originalText>
+                     </code>
                      <addr>
                         <country>US</country>
                         <state>MD</state>
@@ -330,7 +334,9 @@ C-CDA Equivalent:
                        codeSystemName="http://snomed.info/sct"
                        displayName="Community Acquired Pneumonia"
                        code="385093006"
-                       xsi:type="CD"/>
+                       xsi:type="CD">
+                  <originalText>Community Acquired Pneumonia</originalText>
+               </value>
                <author>
                   <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
                   <time value="20140302124536-0000"/>
@@ -340,7 +346,9 @@ C-CDA Equivalent:
                      <code codeSystem="2.16.840.1.113883.6.101"
                             codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"
                             displayName="Cardiovascular Disease"
-                            code="207RC0000X"/>
+                            code="207RC0000X">
+                        <originalText>Cardiovascular Disease</originalText>
+                     </code>
                      <addr>
                         <country>US</country>
                         <state>MD</state>
