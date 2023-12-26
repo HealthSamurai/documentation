@@ -462,7 +462,6 @@
 * [Analytics](integrations/analytics/README.md)
   * [Power BI](integrations/analytics/power-bi.md)
 * [Audit](integrations/audit.md)
-* [Authentication](integrations/authentication.md)
 * [Email providers](integrations/email-providers.md)
   * [Setup SMTP provider](aidbox-configuration/setup-smtp-provider.md)
 
