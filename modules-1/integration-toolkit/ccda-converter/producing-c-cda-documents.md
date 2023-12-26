@@ -299,7 +299,7 @@ GET /ccda/prepare-doc?docdef-id=continuity-of-care&pid=42&start-date=2023-01-01&
 Endpoint returns a FHIR Document or OperationOutcome resource in case of error.
 
 ```json
-// GET /ccda/prepare-doc?docdef-id=continuity-of-care
+// GET /ccda/prepare-doc?docdef-id=continuity-of-care?pid=xxx
 // HTTP/1.1 200 OK
 
 {
@@ -308,6 +308,22 @@ Endpoint returns a FHIR Document or OperationOutcome resource in case of error.
   "entry": [...]
 }
 ```
+
+```json
+// GET /ccda/prepare-doc?docdef-id=continuity-of-care?pid=xxx
+// HTTP/1.1 404 Not found
+
+{
+  "resourceType": "OperationOutcome",
+  "id": "processing",
+  "text": {
+    "status": "generated",
+    "div": "Transaction failed at entry[0]. Response status is 404. Response body is {\"resourceType\":\"OperationOutcome\",\"id\":\"not-found\",\"text\":{\"status\":\"generated\",\"div\":\"Resource Organization/42 not found\"},\"issue\":[{\"severity\":\"fatal\",\"code\":\"not-found\",\"diagnostics\":\"Resource Organization/42 not found\"}]}."
+  },
+
+  ....
+```
+
 
 ### /ccda/make-doc
 
@@ -369,6 +385,21 @@ Content-Type: application/cda+xml
   xmlns:sdtc="urn:hl7-org:sdtc">
   
 ...
+```
+
+```json
+// GET /ccda/make-doc?docdef-id=continuity-of-care?pid=xxx
+// HTTP/1.1 404 Not found
+
+{
+  "resourceType": "OperationOutcome",
+  "id": "processing",
+  "text": {
+    "status": "generated",
+    "div": "Transaction failed at entry[0]. Response status is 404. Response body is {\"resourceType\":\"OperationOutcome\",\"id\":\"not-found\",\"text\":{\"status\":\"generated\",\"div\":\"Resource Organization/42 not found\"},\"issue\":[{\"severity\":\"fatal\",\"code\":\"not-found\",\"diagnostics\":\"Resource Organization/42 not found\"}]}."
+  },
+
+  ....
 ```
 
 Predefined Document Definition example:
