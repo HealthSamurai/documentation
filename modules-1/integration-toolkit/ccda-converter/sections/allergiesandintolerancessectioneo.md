@@ -6,7 +6,7 @@ LOINCs: #{"48765-2"}
 
 Alias: allergies
 
-Entries Required: N/A
+Entries Required: false
 
 Internal ID: AllergiesandIntolerancesSectioneo
 

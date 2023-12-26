@@ -6,7 +6,7 @@ LOINCs: #{"30954-2"}
 
 Alias: results
 
-Entries Required: N/A
+Entries Required: false
 
 Internal ID: ResultsSectionentriesoptionalV3
 

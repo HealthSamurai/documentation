@@ -6,7 +6,7 @@ LOINCs: #{"46240-8"}
 
 Alias: encounters
 
-Entries Required: N/A
+Entries Required: true
 
 Internal ID: EncountersSectionentriesrequiredV3
 

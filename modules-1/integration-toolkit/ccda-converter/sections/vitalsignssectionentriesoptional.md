@@ -6,7 +6,7 @@ LOINCs: #{"8716-3"}
 
 Alias: vital-signs
 
-Entries Required: N/A
+Entries Required: false
 
 Internal ID: VitalSignsSectionentriesoptional
 

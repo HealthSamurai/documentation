@@ -6,7 +6,7 @@ LOINCs: #{"11369-6"}
 
 Alias: immunizations
 
-Entries Required: N/A
+Entries Required: true
 
 Internal ID: ImmunizationsSectionentriesrequire
 

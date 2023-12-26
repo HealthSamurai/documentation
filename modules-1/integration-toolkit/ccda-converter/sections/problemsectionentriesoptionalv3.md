@@ -6,7 +6,7 @@ LOINCs: #{"11450-4"}
 
 Alias: problems
 
-Entries Required: N/A
+Entries Required: false
 
 Internal ID: ProblemSectionentriesoptionalV3
 

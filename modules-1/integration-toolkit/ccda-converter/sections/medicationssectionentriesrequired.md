@@ -6,7 +6,7 @@ LOINCs: #{"10160-0"}
 
 Alias: medications
 
-Entries Required: N/A
+Entries Required: true
 
 Internal ID: MedicationsSectionentriesrequired
 

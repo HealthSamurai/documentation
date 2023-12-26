@@ -6,7 +6,7 @@ LOINCs: #{"47519-4"}
 
 Alias: procedures
 
-Entries Required: N/A
+Entries Required: false
 
 Internal ID: ProceduresSectionentriesoptionalV2
 
