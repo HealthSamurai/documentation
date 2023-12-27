@@ -2,7 +2,7 @@
 description: This article outlines the basic steps to start designing form locally
 ---
 
-# Design form locally in familiar editor
+# Design digital form locally in familiar editor
 
 ## Create file.edn with form name in zrc/ forms directory
 
@@ -38,14 +38,14 @@ Example
 
 ## To design the form, it is necessary to describe some schemes
 
-* [Form DSL ](../../../reference/aidbox-forms/form-dsl.md)
-* [Document DSL](../../../reference/aidbox-forms/document-dsl.md)
-* [Layout DSL](../../../reference/aidbox-forms/layout-dsl.md)
-* [Launch DSL](../../../reference/aidbox-forms/launch-dsl.md)
-* [Finalize DSL](../../../reference/aidbox-forms/finalize-dsl.md)
-* [FinalizeConstrains DSL](../../../reference/aidbox-forms/finalizeconstraints-dsl.md)
+* [Form DSL ](../../reference/aidbox-forms/form-dsl.md)
+* [Document DSL](../../reference/aidbox-forms/document-dsl.md)
+* [Layout DSL](../../reference/aidbox-forms/layout-dsl.md)
+* [Launch DSL](../../reference/aidbox-forms/launch-dsl.md)
+* [Finalize DSL](../../reference/aidbox-forms/finalize-dsl.md)
+* [FinalizeConstrains DSL](../../reference/aidbox-forms/finalizeconstraints-dsl.md)
 
-Go to [this page](../how-to-create-a-form.md) to start designing a form.
+Go to [this page](aidbox-code-editor/how-to-create-a-form.md) to start designing a form.
 
 {% hint style="success" %}
 In order not to describe the form from scratch, you can copy any suitable form from the templates and make a new form based on it

@@ -215,7 +215,7 @@
   * Added support for using attachment as a source in [media-viewer widget](../../reference/aidbox-forms/layout-dsl.md#show-attachments-from-the-document)
   * Optimized layout rules performance
   * Added minor layout adaptations for small screens
-  * Added [font configuration support to form-themes](../../modules-1/aidbox-forms/how-to-customize-form-appearance.md#how-to-change-font-size)
+  * Added [font configuration support to form-themes](../../modules-1/aidbox-forms/aidbox-code-editor/how-to-customize-form-appearance.md#how-to-change-font-size)
   * Fixed minor bugs and issues
 
 ## March 2023 _`2303`_
@@ -282,7 +282,7 @@
   * Improved Forms UX
     * Supported tooltip for forms and input fields
     * Supported Markdown for labels and tooltips
-  * Added Forms [styling/branding](../../modules-1/aidbox-forms/how-to-customize-form-appearance.md): logo, button texts, colors, fonts
+  * Added Forms [styling/branding](../../modules-1/aidbox-forms/aidbox-code-editor/how-to-customize-form-appearance.md): logo, button texts, colors, fonts
     * Added [3 predefined themes](https://github.com/HealthSamurai/aidbox-zen-sdc/blob/61ec12dba9d530b47afbffad4bf2227c95b65590/zrc/sdc-box.edn#L18) (monochrome/HealthSamurai/NHS)
   * Added [SDCForm to Questionnaire converter](../../reference/aidbox-forms/api-reference.md#convert-forms)
   * Added customizable [redirect-button](../../reference/aidbox-forms/api-reference.md#aidbox.sdc-generate-form-link) to Forms
@@ -332,7 +332,7 @@
 * Terminology API
   * Added [SNOMED CT FTR integration](../../modules-1/terminology/fhir-terminology-repository/load-snomed-ct-into-aidbox.md)
 * Aidbox Forms
-  * Simplified DSL ([brief definition, less layers to describe for basic behavior](../../modules-1/aidbox-forms/how-to-create-a-form.md))
+  * Simplified DSL ([brief definition, less layers to describe for basic behavior](../../modules-1/aidbox-forms/aidbox-code-editor/how-to-create-a-form.md))
   * Added layout autogeneration
   * Added [extraction based on templates](../../reference/aidbox-forms/finalize-dsl.md)
   * Added API for generate layers ([layout, finalize, finalize-constraints](../../reference/aidbox-forms/api-reference.md))
@@ -393,7 +393,7 @@
   * Added an option set up [EHR-level customization](../../modules-1/smartbox/how-to-guides/set-up-ehr-level-customization.md) (logos and templates)
 * Aidbox forms
   * Supported rules, text type and display type conversion on [FHIR Questionnaire -> SDCDocument converter](../../reference/aidbox-forms/api-reference.md#aidbox.sdc-convert-questionnaire)
-  * Supported [amendments and addendums](../../modules-1/aidbox-forms/addendum.md) of forms
+  * Supported [amendments and addendums](../../modules-1/aidbox-forms/aidbox-code-editor/addendum.md) of forms
 * Aidbox user portal
   * Introduced [CI/CD licenses](../editions-and-pricing.md#aidbox-licenses) on the [Aidbox user portal](../../overview/aidbox-user-portal/). You can get this license to run multiple instances of Aidbox and Multibox in parallel for 72 hours. Both development and CI/CD licenses are available for existing customers at no cost
   * Added an option to configure Aidbox instances hosted in Aidbox Cloud with FHIR IGs for data validation

@@ -2,7 +2,7 @@
 description: Overview of workflow
 ---
 
-# How to embed forms to the workflow
+# Aidbox Form workflow
 
 Forms can be embedded into a workflow.
 
@@ -316,17 +316,17 @@ on `start-workflow`/`read-workflow` rpcs call - adds items :id information to pa
                      ...}}}
 ```
 
-You can use [Workflow API](../../reference/aidbox-forms/workflow-api.md)
+You can use [Workflow API](../../../reference/aidbox-forms/workflow-api.md)
 
-* [get-workflow](../../reference/aidbox-forms/workflow-api.md#get-workflow) - get workflow definition
-* [get-workflows](../../reference/aidbox-forms/workflow-api.md#get-workflows) - return existed workflows
-* [start-workflow](../../reference/aidbox-forms/workflow-api.md#start-workflow) - start WF and launch forms
-* [save-step](../../reference/aidbox-forms/workflow-api.md#save-step) - save document through WF, mark step as in-progress
-* [skip-step](../../reference/aidbox-forms/workflow-api.md#skip-step) - skip WF step
-* [amend-step](../../reference/aidbox-forms/workflow-api.md#amend-step) - amend WF step
-* [complete-step](../../reference/aidbox-forms/workflow-api.md#complete-step) - try complete WF step with document, call sign on it.
-* [complete-workflow](../../reference/aidbox-forms/workflow-api.md#complete-workflow) - complete WF
-* [cancel-workflow](../../reference/aidbox-forms/workflow-api.md#cancel-workflow) - try cancel WF
-* [amend-workflow](../../reference/aidbox-forms/workflow-api.md#amend-workflow) - amend completed WF
-* [add-workflow-note](../../reference/aidbox-forms/workflow-api.md#add-workflow-note) - add addendum note to the given WF
-* [get-workflow-addendums](../../reference/aidbox-forms/workflow-api.md#get-workflow-addendums) - get list of addendums for the given WF
+* [get-workflow](../../../reference/aidbox-forms/workflow-api.md#get-workflow) - get workflow definition
+* [get-workflows](../../../reference/aidbox-forms/workflow-api.md#get-workflows) - return existed workflows
+* [start-workflow](../../../reference/aidbox-forms/workflow-api.md#start-workflow) - start WF and launch forms
+* [save-step](../../../reference/aidbox-forms/workflow-api.md#save-step) - save document through WF, mark step as in-progress
+* [skip-step](../../../reference/aidbox-forms/workflow-api.md#skip-step) - skip WF step
+* [amend-step](../../../reference/aidbox-forms/workflow-api.md#amend-step) - amend WF step
+* [complete-step](../../../reference/aidbox-forms/workflow-api.md#complete-step) - try complete WF step with document, call sign on it.
+* [complete-workflow](../../../reference/aidbox-forms/workflow-api.md#complete-workflow) - complete WF
+* [cancel-workflow](../../../reference/aidbox-forms/workflow-api.md#cancel-workflow) - try cancel WF
+* [amend-workflow](../../../reference/aidbox-forms/workflow-api.md#amend-workflow) - amend completed WF
+* [add-workflow-note](../../../reference/aidbox-forms/workflow-api.md#add-workflow-note) - add addendum note to the given WF
+* [get-workflow-addendums](../../../reference/aidbox-forms/workflow-api.md#get-workflow-addendums) - get list of addendums for the given WF

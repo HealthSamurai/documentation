@@ -2,7 +2,7 @@
 description: Overview of addendum scenario
 ---
 
-# Addendum
+# How to change data after form signing
 
 There are two scenarios when you can do amendmets after signing the form.&#x20;
 
@@ -44,10 +44,10 @@ snapshot: {...}
 
 
 
-You can use [Addendum API](../../reference/aidbox-forms/addendum-api.md)
+You can use [Addendum API](../../../reference/aidbox-forms/addendum-api.md)
 
-* [create-addendum](../../reference/aidbox-forms/addendum-api.md#create-addendum-wip) - creates custom addendum resource for given source (SDCDocument/SDCWorkflow)
-* [add-note](../../reference/aidbox-forms/addendum-api.md#add-note) - creates addendum Note for SDCDocument/SDCWorkflow&#x20;
-* [add-to-history](../../reference/aidbox-forms/addendum-api.md#add-to-history) - add history addendum for resource for given status. When resource in status `completed/amended` - snapshot can be saved (if resource is differs)
-* [create-amendment ](../../reference/aidbox-forms/addendum-api.md#create-amendment)
-* [add-comment ](../../reference/aidbox-forms/addendum-api.md#add-comment)- add comment for document/workflow with optional path to commented value in resource
+* [create-addendum](../../../reference/aidbox-forms/addendum-api.md#create-addendum-wip) - creates custom addendum resource for given source (SDCDocument/SDCWorkflow)
+* [add-note](../../../reference/aidbox-forms/addendum-api.md#add-note) - creates addendum Note for SDCDocument/SDCWorkflow&#x20;
+* [add-to-history](../../../reference/aidbox-forms/addendum-api.md#add-to-history) - add history addendum for resource for given status. When resource in status `completed/amended` - snapshot can be saved (if resource is differs)
+* [create-amendment ](../../../reference/aidbox-forms/addendum-api.md#create-amendment)
+* [add-comment ](../../../reference/aidbox-forms/addendum-api.md#add-comment)- add comment for document/workflow with optional path to commented value in resource

@@ -4,7 +4,7 @@ description: >-
   Editor in browser
 ---
 
-# Design digital form in Aidbox Code Editor
+# Aidbox Code Editor
 
 ## Overview
 
@@ -36,8 +36,8 @@ One layer is required - **Data Model** layer, the rest are optional depending on
 
 You have two options available:
 
-* [Create form from scratch](design-digital-form-in-aidbox-code-editor.md#create-form-from-scratch)
-* [Create form from Questionnaire](design-digital-form-in-aidbox-code-editor.md#create-form-from-questionnaire)
+* [Create form from scratch](./#create-form-from-scratch)
+* [Create form from Questionnaire](./#create-form-from-questionnaire)
 
 ## Create form from scratch
 
@@ -57,7 +57,7 @@ You have two options available:
 
 &#x20;            [FinalizeConstrains DSL](../../../reference/aidbox-forms/finalizeconstraints-dsl.md)
 
-Go to [this page](../how-to-create-a-form.md) to start designing a form.
+Go to [this page](how-to-create-a-form.md) to start designing a form.
 
 {% hint style="info" %}
 Created form will be saved to local file sysem in your repository
