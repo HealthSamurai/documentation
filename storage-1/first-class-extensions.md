@@ -661,8 +661,6 @@ subject:
 
 ## Using FHIR extensions
 
-FHIR extensions defined in the specification can be found in the registry [http://hl7.org/fhir/extensibility-registry.html](http://hl7.org/fhir/extensibility-registry.html).
-
 Let's create an attribute for the [servicerequest-precondition](http://hl7.org/fhir/extension-servicerequest-precondition.html) extension:
 
 ```yaml
