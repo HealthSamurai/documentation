@@ -5,48 +5,34 @@ description: Form building and structured data capturing with Aidbox
 # Aidbox Forms
 
 {% hint style="info" %}
-**Aidbox Forms** is a pluggable module for healthcare vendors who develop EHR-like solutions on top of Aidbox. It allows for designing **intelligent** and **styled forms** from scratch with **a flexible DSL** and **layer-by-layer approach**, editing these forms by clinicians, **storing structured data** in one place as linked FHIR resources, and sharing through different and customizable **APIs**: FHIR, export, and reporting API.
+Aidbox Forms is a **pluggable module** for healthcare vendors who need **to create digital forms**, questionnaires and surveys for the clinical workflows.
 {% endhint %}
 
-Building forms and capturing structured data is a complex process.&#x20;
+It allows to design and embed digital medical forms and capture data in FHIR format for reporting and analysis.
 
-One of the solutions is suggested by FHIR. There is [the FHIR SDC Implementation Guide ](https://build.fhir.org/ig/HL7/sdc/index.html)which describes how to collect data using Questionnaire and QuestionnaireResponse resources. It is a good way. But the implementation on FHIR turned out to be not convenient, a massive QuestionnaireResponse with nested objects does not allow you to conveniently work with this table and make all kinds of queries, as well as build analytics on the data. Additionally, QuestionnaireResponse is too generic and difficult to work with.
+## Aidbox Forms provides:
 
-We developed our solution based on domain-specific language (**DSL**) which gives **flexibility** and **composability**, with which you can describe **layer-by-layer** any forms  with complex logic and embed them in a workflow, capture structured data in FHIR storage.
+* Ready-made medical form repository ([Aidbox Forms Library](aidbox-forms/getting-started/add-aidbox-forms-library.md))
+* [UI Builder ](aidbox-forms/getting-started/design-digital-form-in-aidbox-ui-builder-alpha.md)(alpha) for creating forms without coding (based on [FHIR SDC Implementation Guide](https://build.fhir.org/ig/HL7/sdc/index.html))
+* [Aidbox Code Editor](aidbox-forms/getting-started/design-digital-form-in-aidbox-code-editor.md) for creating complex forms (based on DSL)
+* Form rendering engine
+* [FHIR SDC API](../reference/aidbox-forms/fhir-sdc-api.md)
+* [FHIR API](../api-1/fhir-api/)
+* [RPC API](../reference/aidbox-forms/api-reference.md)
+* [FHIR storage](broken-reference)
 
-### Our solution
+## By using Aidbox Forms you can:
 
-We have presented the form as a layered structure. To design the form, you need to describe the necessary layers using DSL.
+* Create form with complex logic from scratch in UI Builder or Code editor
+* Create form by importing FHIR Questionnaire from external sources
+* Use ready-made form from Aidbox Form Library or customise it according to your requirements&#x20;
+* Test form in UI Builder or Code editor
+* Pre-fill form with existing data
+* Add any validation rules to the forms
+* Extract data and store them in FHIR resources
+* Binding of forms in the workflow with complex logic and data prefilling
+* Coding clinical data with LOINC, SNOMED, RxNorm and others
+* Integrate form into your current solutions with the versatile API, iframe, and generating a link
+* Store and data in FHIR storage
 
-<figure><img src="../.gitbook/assets/Screenshot 2022-08-23 at 17.24.50.png" alt=""><figcaption></figcaption></figure>
-
-**Each** **layer** is responsible for solving a **specific problem**:
-
-* How structured data will be stored - **Data Model layer** (Document DSL)
-* How a form will be rendered - **Layout layer** (Layout DSL)
-* How to prefill a form with existing data and set the conext - **Prefill layer** (Launch DSL)
-* How data will be itemized & extracted to FHIR resources - **FHIR mapping layer** (Finalize DSL)
-* How data will be validated and how to put constraints on the fields - **Validation layer** (FinalizeConstrains DSL)
-* How to bind all layers for specific form - **Form layer** (Form DSL)
-
-One layer is required - **Data Model** layer, the rest are optional depending on needs of your practice.&#x20;
-
-
-
-### By using Aidbox Forms you can:
-
-* Create forms with **complex logic**
-* **Prefill** form with existing data
-* Add any **validation rules** to the forms
-* **Design the layout** according to your style _(in roadmap)_
-* **Extract data** & **store** them in FHIR resources
-* **Binding** of forms in the **workflow** with complex logic and data prefilling
-* FHIR **SDC support** (_in roadmap_)
-* **IDE**: form editor with debug & test mode
-* **Form builder** for non-developers (_in roadmap_)
-* Wide **templates library** (_in roadmap_)
-* Basic **UI component library**&#x20;
-* **Coding clinical** data with LOINC, SNOMED, RxNorm others
-
-
-
+###

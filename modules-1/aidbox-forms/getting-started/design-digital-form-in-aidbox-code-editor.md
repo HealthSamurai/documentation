@@ -1,10 +1,33 @@
 ---
 description: >-
-  This article outlines the basic steps to start designing form in Aidbox Form
-  IDE in browser
+  This article outlines the basic steps to start designing form in Aidbox Code
+  Editor in browser
 ---
 
-# Design form in Aidbox Form IDE
+# Design digital form in Aidbox Code Editor
+
+## Overview
+
+This tool is based on domain-specific language (DSL) which gives flexibility and composability, with which you can describe layer-by-layer any forms with complex logic, integrate them in your current solution to capture data and store it in FHIR storage.
+
+We have presented the form as a layered structure. To design the form, you need to describe the necessary layers using DSL.
+
+<figure><img src="../../../.gitbook/assets/Screenshot 2022-08-23 at 17.24.50.png" alt=""><figcaption></figcaption></figure>
+
+**Each** **layer** is responsible for solving a **specific problem**:
+
+* How structured data will be stored - **Data Model layer** (Document DSL)
+* How a form will be rendered - **Layout layer** (Layout DSL)
+* How to prefill a form with existing data and set the conext - **Prefill layer** (Launch DSL)
+* How data will be itemized & extracted to FHIR resources - **FHIR mapping layer** (Finalize DSL)
+* How data will be validated and how to put constraints on the fields - **Validation layer** (FinalizeConstrains DSL)
+* How to bind all layers for specific form - **Form layer** (Form DSL)
+
+One layer is required - **Data Model** layer, the rest are optional depending on needs of your practice.
+
+
+
+## Getting started
 
 * Open  [http://localhost:8080/ ](http://localhost:8080/), using login / passwod  - admin / admin
 * Go to forms by pressing the button `Forms` (or by visiting [http://localhost:8080/ui/sdc](http://localhost:8080/ui/sdc) )
@@ -13,8 +36,8 @@ description: >-
 
 You have two options available:
 
-* [Create form from scratch](design-form-in-aidbox-form-ide.md#create-form-from-scratch)
-* [Create form from Questionnaire](design-form-in-aidbox-form-ide.md#create-form-from-questionnaire)
+* [Create form from scratch](design-digital-form-in-aidbox-code-editor.md#create-form-from-scratch)
+* [Create form from Questionnaire](design-digital-form-in-aidbox-code-editor.md#create-form-from-questionnaire)
 
 ## Create form from scratch
 
