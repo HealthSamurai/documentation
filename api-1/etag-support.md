@@ -1,13 +1,17 @@
 # ETAG support
 
-Read more about [How ETAG](https://developer.mozilla.org/en/docs/Web/HTTP/%D0%97%D0%B0%D0%B3%D0%BE%D0%BB%D0%BE%D0%B2%D0%BA%D0%B8/ETag) works!
+The `ETag` HTTP response header is a unique identifier assigned to a specific version of a resource on a server. When a resource, like a web page or an API endpoint, changes, its `ETag` also changes. This mechanism allows client-side caching and efficient revalidation. \
+\
+When a client requests a resource, it may include the `ETag` it has in an `If-None-Match` request header. If the server's current version of the resource has a matching `ETag`, it means the content hasn't changed, and the server can send back a `304 Not Modified` response without the actual resource data. \
+\
+This saves bandwidth and speeds up the loading process, as the client can use its cached version. When the `ETags` don't match, it indicates the resource has changed, prompting the server to send the new version of the resource with its updated `ETag`.
 
 ### ETag Cache
 
 All ETag values are cached to make ETag queries efficient. If you somehow made this cache invalid, you can reset Aidbox ETag cache by `DELETE /$etags-cache` or `DELETE /Patient/$etags-cache`.
 
 {% hint style="warning" %}
-Aidbox **ETags** mechanisms is based on **txid** column of resource table in database! If you update resources in database, don't forget to update the **txid** column and reset cache. `UPDATE resource SET txid = nextval('transaction_id_seq')`
+The Aidbox **ETags** mechanism is based on **txid** column of the resource table in the database! If you update resources in the database, don't forget to update the **txid** column and reset cache. `UPDATE resource SET txid = nextval('transaction_id_seq')`
 {% endhint %}
 
 ### ETag Cache performance
