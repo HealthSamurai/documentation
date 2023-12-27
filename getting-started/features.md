@@ -20,11 +20,11 @@ Aidbox has built-in [OAuth 2.0](../modules-1/security-and-access-control/) OpenI
 
 ### Flexible Access Control & Audit Log
 
-Flexible security rules allow granular [access control](https://docs.aidbox.app/security/access-policy) to healthcare application data. Aidbox [audit log](https://docs.aidbox.app/administration/logging-and-audit) records details about every event in the system to provide necessary data for security analysis and compliance with HIPAA, HITECH act, and other regulations.
+Flexible security rules allow granular [access control](../security-and-access-control-1/security/) to healthcare application data. Aidbox [audit log](../modules-1/audit/audit-logging.md) records details about every event in the system to provide necessary data for security analysis and compliance with HIPAA, HITECH act, and other regulations.
 
 ### Built-in Terminology
 
-[Aidbox terminology](https://docs.aidbox.app/terminology/terminology-api) comes with FHIR, ICD-10, SNOMED, RxNorm, LOINC, and US NPI. Users can extend it with other terminologies and custom value sets.
+[Aidbox terminology](../modules-1/terminology/) comes with FHIR, ICD-10, SNOMED, RxNorm, LOINC, and US NPI. Users can extend it with other terminologies and custom value sets.
 
 ### Custom Resources & Operations; First-Class Extensions
 
