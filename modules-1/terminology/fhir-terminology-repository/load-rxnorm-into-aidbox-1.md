@@ -36,6 +36,7 @@ git clone \
 
 ### Import VSAC namespace to configuration project entrypoint
 
+{% code title="main.edn" %}
 ```
 {ns main
  import #{aidbox
@@ -43,6 +44,7 @@ git clone \
           us-nlm-vsac}
 }
 ```
+{% endcode %}
 
 ### Start Aidbox with Docker Compose
 
