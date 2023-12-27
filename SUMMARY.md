@@ -223,6 +223,7 @@
     * [Load LOINC into Aidbox](modules-1/terminology/fhir-terminology-repository/load-loinc-into-aidbox.md)
     * [Load ICD-10-CM into Aidbox](terminology/fhir-terminology-repository/load-icd-10-cm-into-aidbox.md)
     * [Load RxNorm into Aidbox](modules-1/terminology/fhir-terminology-repository/load-rxnorm-into-aidbox.md)
+    * [Load US VSAC Package into Aidbox](modules-1/terminology/fhir-terminology-repository/load-rxnorm-into-aidbox-1.md)
   * [Concept](modules-1/terminology/concept/README.md)
     * [$translate-concepts](modules-1/terminology/concept/usdtranslate-concepts.md)
     * [Handling hierarchies using ancestors](modules-1/terminology/concept/handling-hierarchies-using-ancestors.md)

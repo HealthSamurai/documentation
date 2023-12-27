@@ -27,7 +27,7 @@ Please **make sure** that both [Docker & Docker Compose](https://docs.docker.com
 Create the Aidbox License for the **14-day trial period** on [https://aidbox.app/](https://aidbox.app/), select **self-hosted,** or use the license that you already have.
 
 {% hint style="success" %}
-The _<mark style="color:green;background-color:yellow;"><mark style="color:green;">Aidbox License Key<mark style="color:green;"></mark>_ will be required in the next step, where we will prepare the configuration for Aidbox.
+The _<mark style="color:green;background-color:yellow;">Aidbox License Key</mark>_ will be required in the next step, where we will prepare the configuration for Aidbox.
 {% endhint %}
 
 ### 2. Configure the Aidbox
