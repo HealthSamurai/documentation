@@ -6,6 +6,10 @@ description: >-
 
 # Load US VSAC Package into Aidbox
 
+{% hint style="warning" %}
+The current package is a pre-built version of the VSAC contents 0.7.0 (2022-06-11). Please [reach out to us](../../../contact-us.md) if you need a newer version.
+{% endhint %}
+
 ## How to set up Aidbox with VSAC value sets
 
 To correctly set up Aidbox, we'll utilize the Aidbox configuration projects.&#x20;
@@ -30,7 +34,7 @@ git clone \
 ```
 {% endcode %}
 
-### Import RxNorm namespace to configuration project entrypoint
+### Import VSAC namespace to configuration project entrypoint
 
 ```
 {ns main
