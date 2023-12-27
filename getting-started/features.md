@@ -16,7 +16,7 @@ Aidbox uses PostgreSQL exclusively but squeezes everything out of this database 
 
 ### OAuth & OIDC; User Management (SCIM)
 
-Aidbox has built-in [OAuth 2.0](https://docs.aidbox.app/auth-betta) OpenID Connect server and can work as Resource Server.
+Aidbox has built-in [OAuth 2.0](../modules-1/security-and-access-control/) OpenID Connect server and can work as Resource Server.
 
 ### Flexible Access Control & Audit Log
 
