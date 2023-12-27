@@ -46,8 +46,6 @@ git clone \
 
 ### Start Aidbox with Docker Compose
 
-Start Aidbox with Docker Compose:
-
 ```shell
 docker compose up --force-recreate
 ```
