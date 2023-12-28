@@ -6,16 +6,19 @@ description: This article outlines operations from the FHIR SDC Implementation G
 
 Aidbox Forms module supports FHIR SDC operations:
 
-* [$populate](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populate.html) (WIP) - filling out a form with existing data
+* [$populate](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populate.html)  - filling out a form with existing data
 * [$extract](https://hl7.org/fhir/uv/sdc/OperationDefinition-QuestionnaireResponse-extract.html) - extract data from QuestionnaireResponse to other FHIR resources
-* $expand
-* $validate\_code
+* [$expand](https://www.hl7.org/fhir/valueset-operation-expand.html)
 
 
 
-## Populate Questionnaire (WIP) - $populate
+
+
+## Populate Questionnaire  - $populate
 
 The `populate` operation generates a [QuestionnaireResponse](https://www.hl7.org/fhir/questionnaireresponse.html) based on a specific [Questionnaire](https://www.hl7.org/fhir/questionnaire.html), filling in answers to questions where possible based on information provided as part of the operation or already known by the server about the subject of the Questionnaire.
+
+This implementation allows  the Observation based population.
 
 ## Questionnaire response extract to resources - $extract <a href="#root" id="root"></a>
 
@@ -24,3 +27,5 @@ The  `extract` operation takes a completed QuestionnaireResponse and converts it
 {% hint style="warning" %}
 When invoking the $extract operation, care should be taken that the submitted QuestionnaireResponse is itself valid. If not, the extract operation could fail (with appropriate OperationOutcomes) or, more problematic, might succeed but provide incorrect output.
 {% endhint %}
+
+This implementation allows the [Observation based](https://hl7.org/fhir/uv/sdc/extraction.html#observation-based-extraction) extraction.
