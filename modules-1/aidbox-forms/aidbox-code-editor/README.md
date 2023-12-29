@@ -30,16 +30,16 @@ One layer is required - **Data Model** layer, the rest are optional depending on
 ## Getting started
 
 * Open  [http://localhost:8080/ ](http://localhost:8080/), using login / passwod  - admin / admin
-* Go to forms by pressing the button `Forms` (or by visiting [http://localhost:8080/ui/sdc](http://localhost:8080/ui/sdc) )
-* Go to the `Forms & Workflows` page
-* Press on `Create Form` button
+* Go to forms by pressing the button `Aidbox Forms` (or by visiting [http://localhost:8080/ui/sdc](http://localhost:8080/ui/sdc) )
+* Go to the `Forms` page
+* Press on `Create Template` button
 
 You have two options available:
 
-* [Create form from scratch](./#create-form-from-scratch)
-* [Create form from Questionnaire](./#create-form-from-questionnaire)
+* [Create form in Code Editor (from scratch)](./#create-form-in-code-editor-from-scratch)
+* [Import Questionnaire (from FHIR Questionnaire)](./#import-questionnaire-from-fhir-questionnaire)
 
-## Create form from scratch
+## Create form in Code Editor from scratch
 
 * Before creating new form you need to give a form title and namespace
 * After that new form template will be generated and you will be redirected to the `Aidbox editor` page
@@ -83,7 +83,7 @@ Example
  }
 ```
 
-## Create form from Questionnaire
+## Import Questionnaire (from FHIR Questionnaire)
 
 * You can import the FHIR Questionnaire file from your local computer or import from json
 * After that new form will be generated and you will be redirected to the `Aidbox editor` page

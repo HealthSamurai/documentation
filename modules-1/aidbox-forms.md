@@ -13,7 +13,7 @@ It allows to design and embed digital medical forms and capture data in FHIR for
 ## Aidbox Forms provides:
 
 * Ready-made medical form repository ([Aidbox Forms Library](aidbox-forms/aidbox-code-editor/add-aidbox-forms-library.md))
-* [UI Builder ](aidbox-forms/aidbox-ui-builder-alpha.md)(alpha) for creating forms without a code (based on [FHIR SDC Implementation Guide](https://build.fhir.org/ig/HL7/sdc/index.html))
+* [UI Builder ](aidbox-forms/aidbox-ui-builder-alpha/)(alpha) for creating forms without a code (based on [FHIR SDC Implementation Guide](https://build.fhir.org/ig/HL7/sdc/index.html))
 * [Aidbox Code Editor](aidbox-forms/aidbox-code-editor/) for creating complex forms (based on DSL)
 * Form rendering engine
 * [FHIR SDC API](../reference/aidbox-forms/fhir-sdc-api.md)
