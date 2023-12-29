@@ -1,4 +1,4 @@
-# How to convert FHIR Questionnaire to Aidbox Forms and back
+# FHIR Questionnaire to Aidbox Forms and back conversion
 
 You can use Aidbox to convert
 
@@ -6,12 +6,12 @@ You can use Aidbox to convert
 * Aidbox Forms to FHIR Questionnaires (with some limitations)
 * SDCDocument to FHIR QuestionnaireResponse resource.
 
-You can use [Aidbox Form API](../../reference/aidbox-forms/api-reference.md)
+You can use [Aidbox Form API](../../../reference/aidbox-forms/api-reference.md)
 
-* [`aidbox.sdc/convert-document`](../../reference/aidbox-forms/api-reference.md#convert-document) - converts SDCDocument to FHIR QuestionnaireResponse
-* [`aidbox.sdc/convert-questionnaire`](../../reference/aidbox-forms/api-reference.md#convert-questionnaire)- converts FHIR Questionnaire to Aidbox SDC Form
-* [`aidbox.sdc/convert-form`](../../reference/aidbox-forms/api-reference.md#convert-form) - converts Form to FHIR Questionnaire
-* [`aidbox.sdc/convert-forms`](../../reference/aidbox-forms/api-reference.md#convert-forms) - converts all Forms to Questionnaire and save them in Aidbox
+* [`aidbox.sdc/convert-document`](../../../reference/aidbox-forms/api-reference.md#convert-document) - converts SDCDocument to FHIR QuestionnaireResponse
+* [`aidbox.sdc/convert-questionnaire`](../../../reference/aidbox-forms/api-reference.md#convert-questionnaire)- converts FHIR Questionnaire to Aidbox SDC Form
+* [`aidbox.sdc/convert-form`](../../../reference/aidbox-forms/api-reference.md#convert-form) - converts Form to FHIR Questionnaire
+* [`aidbox.sdc/convert-forms`](../../../reference/aidbox-forms/api-reference.md#convert-forms) - converts all Forms to Questionnaire and save them in Aidbox
 
 ## Optional features
 

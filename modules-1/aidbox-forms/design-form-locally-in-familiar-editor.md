@@ -1,8 +1,10 @@
 ---
-description: This article outlines the basic steps to start designing form locally
+description: >-
+  This article outlines the basic steps to start designing form locally in any
+  familiar editor
 ---
 
-# Design digital form locally in familiar editor
+# Any familiar form editor
 
 ## Create file.edn with form name in zrc/ forms directory
 

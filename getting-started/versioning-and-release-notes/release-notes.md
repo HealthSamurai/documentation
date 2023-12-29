@@ -126,7 +126,7 @@
   * Supported SCIM v2 User API
   * Added aidbox.rest.v1/gateway operation pass auth information (user, client, session) to backend service
 * Aidbox Forms
-  * Supported an option to include [question scores](../../modules-1/aidbox-forms/converter.md#include-score-value-in-questionnaireresponse) in QuestionnaireResponse in the [converter](../../reference/aidbox-forms/api-reference.md#aidbox.sdc-convert-document)
+  * Supported an option to include [question scores](../../modules-1/aidbox-forms/aidbox-code-editor/converter.md#include-score-value-in-questionnaireresponse) in QuestionnaireResponse in the [converter](../../reference/aidbox-forms/api-reference.md#aidbox.sdc-convert-document)
   * Minor fixes: UI became more stable while loading
 
 ## June 2023 _`2306,LTS`_
@@ -249,7 +249,7 @@
   * Added [support for amending forms, that are shared via links](../../reference/aidbox-forms/api-reference.md#aidbox.sdc-generate-form-link)
   * Showed form rules in human-friendly format:
     * [Show in the UI](../../reference/aidbox-forms/api-reference.md#aidbox.sdc-generate-form-link)
-    * [Attach to Questionnaire/QuestionnaireResponse on conversion](../../modules-1/aidbox-forms/converter.md#form-rules-conversion-to-human-readable-description.)
+    * [Attach to Questionnaire/QuestionnaireResponse on conversion](../../modules-1/aidbox-forms/aidbox-code-editor/converter.md#form-rules-conversion-to-human-readable-description.)
   * Added ability to [store form properties in DB](../../reference/aidbox-forms/api-reference.md#add-form-properties)
   * Added support for static images
   * Added wizard like layout
