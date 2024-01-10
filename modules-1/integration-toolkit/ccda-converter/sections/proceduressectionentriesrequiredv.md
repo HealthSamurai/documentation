@@ -42,7 +42,7 @@ This is a typical procedure resource sample.
     }, {
       "code" : "44970",
       "display" : "Laparoscopic Appendectomy",
-      "system" : "http://terminology.hl7.org/ValueSet/v3-ActEncounterCode"
+      "system" : "http://www.ama-assn.org/go/cpt"
     }, {
       "code" : "0DTJ4ZZ",
       "display" : "Resection of Appendix, Percutaneous Endoscopic Approach",
@@ -113,7 +113,7 @@ C-CDA Equivalent:
                 displayName="Laparoscopic appendectomy"
                 code="6025007">
             <translation codeSystem="2.16.840.1.113883.6.12"
-                          codeSystemName="http://terminology.hl7.org/ValueSet/v3-ActEncounterCode"
+                          codeSystemName="http://www.ama-assn.org/go/cpt"
                           displayName="Laparoscopic Appendectomy"
                           code="44970"/>
             <translation codeSystem="2.16.840.1.113883.6.4"
@@ -163,7 +163,7 @@ In this case :extension field is used to distinguish more common procedure act l
     }, {
       "code" : "97802",
       "display" : "Medical nutrition therapy; initial",
-      "system" : "http://terminology.hl7.org/ValueSet/v3-ActEncounterCode"
+      "system" : "http://www.ama-assn.org/go/cpt"
     }, {
       "code" : "S9470",
       "display" : "Nutritional counseling, diet",
@@ -228,7 +228,7 @@ The section contains an Act entry converted from the input Procedure resource.
                 displayName="Nutrition education"
                 code="61310001">
             <translation codeSystem="2.16.840.1.113883.6.12"
-                          codeSystemName="http://terminology.hl7.org/ValueSet/v3-ActEncounterCode"
+                          codeSystemName="http://www.ama-assn.org/go/cpt"
                           displayName="Medical nutrition therapy; initial"
                           code="97802"/>
             <translation codeSystem="2.16.840.1.113883.6.13"
@@ -272,7 +272,7 @@ Like the previous examples, this is a typical Procedure resource sample.
     }, {
       "code" : "93000",
       "display" : "Electrocardiogram, complete",
-      "system" : "http://terminology.hl7.org/ValueSet/v3-ActEncounterCode"
+      "system" : "http://www.ama-assn.org/go/cpt"
     }, {
       "code" : "G8704",
       "display" : "12-Lead Electrocardiogram (Ecg) Performed",
@@ -337,7 +337,7 @@ C-CDA Equivalent:
                 displayName="12 lead ECG"
                 code="268400002">
             <translation codeSystem="2.16.840.1.113883.6.12"
-                          codeSystemName="http://terminology.hl7.org/ValueSet/v3-ActEncounterCode"
+                          codeSystemName="http://www.ama-assn.org/go/cpt"
                           displayName="Electrocardiogram, complete"
                           code="93000"/>
             <translation codeSystem="2.16.840.1.113883.6.13"

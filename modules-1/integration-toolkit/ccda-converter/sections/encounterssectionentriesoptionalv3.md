@@ -51,7 +51,7 @@ Internal ID: EncountersSectionentriesoptionalV3
     "coding" : [ {
       "code" : "99213",
       "display" : "Office outpatient visit 15 minutes",
-      "system" : "http://terminology.hl7.org/ValueSet/v3-ActEncounterCode"
+      "system" : "http://www.ama-assn.org/go/cpt"
     } ]
   } ],
   "resourceType" : "Encounter",
@@ -164,7 +164,7 @@ C-CDA Equivalent:
          <templateId root="2.16.840.1.113883.10.20.22.4.49"/>
          <id root="2a620155-9d11-439e-92b3-5d9815ff4de8"/>
          <code codeSystem="2.16.840.1.113883.6.12"
-                codeSystemName="http://terminology.hl7.org/ValueSet/v3-ActEncounterCode"
+                codeSystemName="http://www.ama-assn.org/go/cpt"
                 displayName="Office outpatient visit 15 minutes"
                 code="99213"/>
          <effectiveTime>
