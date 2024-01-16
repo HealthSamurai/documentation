@@ -4,16 +4,38 @@ SQL on FHIR utilizes ViewDefinition resources to describe the structure of flat 
 
 ```json
 {
-    "name": "obs_view",
-    "resource": "Observation",
-    "status": "active",
-    "select": [{
-        "alias": "id",
-        "path": "id",
-    }, {
-        "alias": "pid",
-        "path": "subject.getId('Patient')"
-    }]
+  "resourceType": "ViewDefinition",
+  "select": [
+    {
+      "column": [
+        {
+          "path": "getResourceKey()",
+          "name": "id"
+        },
+        {
+          "path": "gender",
+          "name": "gender"
+        }
+      ]
+    },
+    {
+      "column": [
+        {
+          "path": "given.join(' ')",
+          "name": "given_name",
+          "description": "A single given name field with all names joined together."
+        },
+        {
+          "path": "family",
+          "name": "family_name"
+        }
+      ],
+      "forEach": "name.where(use = 'official').first()"
+    }
+  ],
+  "name": "patient_demographics",
+  "status": "draft",
+  "resource": "Patient"
 }
 ```
 
@@ -49,12 +71,13 @@ resource: Patient
 description: Patient flat view
 status: draft
 select:
-- alias: id
-  path: id
-- alias: bod
-  path: birthDate
-- alias: gender
-  path: gender
+- column:
+  - name: id
+    path: id
+  - name: bod
+    path: birthDate
+  - name: gender
+    path: gender
 
 ```
 {% endtab %}
@@ -63,12 +86,13 @@ select:
 ```yaml
 name: patient_view
 select:
-  - path: id
-    alias: id
-  - path: birthDate
-    alias: bod
-  - path: gender
-    alias: gender
+  - column:
+    - path: id
+      name: id
+    - path: birthDate
+      name: bod
+    - path: gender
+      name: gender
 status: draft
 resource: Patient
 description: Patient flat view

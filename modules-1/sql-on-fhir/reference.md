@@ -6,7 +6,7 @@
 
 Name of view definition (computer and database friendly) sql-name: Name is limited to letters, numbers, or underscores and cannot start with an underscore — i.e. with a regular expression of: `^[^][A-Za-z][A-Za-z0-9]+$`
 
-### сonstants (optional)
+### сonstant (optional)
 
 Contact details for the publisher. Defined as an array of elemtents that contain the following elements:
 
@@ -15,11 +15,14 @@ Contact details for the publisher. Defined as an array of elemtents that contain
 
 ### select
 
-Defines the content of a column within the view. Defined as an array of elemtents that contain one of the following elements:
+A collection of columns and nested selects to include in the view. Defined as an array of elements with a following structure:
 
-* **expr** — Creates a scope for selection relative to a parent FHIRPath expression.&#x20;
-* **foreach** — Same as `expr`, but unnests a new row for each item in the collection.
-* **forEachNotNull** — Same as `forEach`, but produces a single row with a `null` value if the collection is empty.
+* **column** — A column to be produced in the resulting table. Contains the following elements:
+  * **path** — FHIRPath expression that creates a column and defines its content. Supports a subset of FHIRPath described in FHIRPath expressions.
+  * **name** — Column name produced in the output.
+* **select** (optional) — Nested select relative to a parent expression.
+* **forEach** (optional) — A FHIRPath expression to retrieve the parent element(s) used in the containing select. The default is effectively `$this`. Can't be set when `forEachOrNull` is set.
+* **forEachOrNull** (optional) — Same as forEach, but will produce a row with null values if the collection is empty. Can't be set when `forEach` is set.
 
 ## FHIRPath expressions
 
@@ -36,11 +39,11 @@ SQL on FHIR engine supports a subset of FHIRPath funcitons:
 * Math operators: **addition (+)**, **subtraction (-)**, **multiplication (\*)**, **division (/)**.
 * Comparison operators: **equals (=)**, **not equals (!=)**, **greater than (>)**, **less or equal (<=)**.
 
-### Detailed explaination
+### Detailed explanation
 
-#### exists(\[criteria])
+#### exists(\[criteria: expression]) : Boolean
 
-Returns `true` if the collection has any elements, and `false` otherwise. Also this function takes one optional criteria which will be applied to the collection prior to the determination of the exists. If _any_ element meets the criteria then `true` will be returned.
+Returns `true` if the collection has any elements, and `false` otherwise. Also, this function takes one optional criteria which will be applied to the collection prior to the determination of the exists. If _any_ element meets the criteria then `true` will be returned.
 
 For example we have two patients:
 
@@ -77,7 +80,13 @@ The result of expression will be:
 | false |
 | true  |
 
-* extension
+#### empty() : Boolean
+
+Returns `true` if the input colleciton is empty and false otherwise.
+
+#### extension(url: string) : collection
+
+Will filter the input collection for items named "extension" with the given url. This is a syntactical shortcut for `.extension.where(url = string)`, but is simpler to write. Will return an empty collection if the input collection is empty or the url is empty.
 
 #### getId(\[resourceType])
 
@@ -122,7 +131,13 @@ The result of expression will be:
 | pt1    |
 | `NULL` |
 
-#### **join**
+#### **join(\[separator: String]) : String**
+
+The join function takes a collection of strings and _joins_ them into a single string, optionally using the given separator.
+
+If the input is empty, the result is empty.
+
+If no separator is specified, the strings are directly concatenated.
 
 First patient:
 
@@ -157,7 +172,19 @@ The result will be:
 | Lael             |
 | Anastasia;Nastya |
 
-#### where
+#### ofType(type: type specifier) : collection
+
+Returns a collection that contains all items in the input collection that are of the given type or a subclass thereof. If the input collection is empty, the result is empty. The `type` argument is an identifier that must resolve to the name of a type in a model.
+
+#### first() : collection
+
+Returns a collection containing only the first item in the input collection. This function is equivalent to `item[0]`, so it will return an empty collection if the input collection has no items.
+
+#### where(criteria: expression) : collection
+
+Returns a collection containing only those elements in the input collection for which the stated `criteria` expression evaluates to `true`. Elements for which the expression evaluates to `false` or empty are not included in the result.
+
+If the input collection is empty, the result is empty.
 
 First patient:
 
