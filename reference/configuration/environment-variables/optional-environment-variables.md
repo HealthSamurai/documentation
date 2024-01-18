@@ -348,7 +348,7 @@ Enables skip resource reference validation [functionality](broken-reference).
 BOX_WEB_MAX__BODY=<max-size-bytes>
 ```
 
-Maximum size of request body in bytes. Default is 8388608 (8 MiB)
+Maximum size of request body in bytes. Default is 20971520 (20 MiB)
 
 ### BOX\_WEB\_THREAD
 
