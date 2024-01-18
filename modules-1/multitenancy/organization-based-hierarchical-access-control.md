@@ -14,11 +14,11 @@ FHIR resources must be separated per organizations. Organizations can be nested.
 
 ## Solution
 
-Let's consider the next organization structure. There are two independent organizations Org A & Org D, each of them has nested, dependent organizations. Org B & Org C are nested to Org A, and Org E is nested to Org D.&#x20;
+Let's consider the next organization structure. There are two independent organizations Org A & Org D, each of them has nested, dependent organizations. Org B & Org C are nested to Org A, and Org E is nested to Org D.
 
 <figure><img src="../../.gitbook/assets/Screenshot 2023-06-28 at 16.40.54.png" alt=""><figcaption><p>Organization hierarchy structure</p></figcaption></figure>
 
-To achieve such a behavior, you may consider an Aidbox feature called organization-based access control.&#x20;
+To achieve such a behavior, you may consider an Aidbox feature called organization-based access control.
 
 Let's create the organization structure in Aidbox:
 
@@ -44,7 +44,7 @@ accept: text/yaml
 ```
 {% endcode %}
 
-When an Organization resource is created, a dedicated FHIR API is deployed for that organization. This API provides access to the associated FHIR resources.  Nested organization FHIR resources are accessible through the parent Organization API.
+When an Organization resource is created, a dedicated FHIR API is deployed for that organization. This API provides access to the associated FHIR resources. Nested organization FHIR resources are accessible through the parent Organization API.
 
 The Organization-based FHIR API base url:
 
@@ -105,7 +105,7 @@ GET /Organization/org-c/fhir/Patient/pt-1
 POST <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>
 ```
 
-### Read&#x20;
+### Read
 
 ```
 GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>/<id>
@@ -140,6 +140,18 @@ The search API does not support search parameters:
 * `_assoc`
 * `_with`
 {% endhint %}
+
+### History
+
+Resource full history
+
+<pre><code><strong>GET &#x3C;AIDBOX_BASE_URL>/Organization/&#x3C;org-id>/fhir/&#x3C;resource-type>/&#x3C;id>/_history
+</strong></code></pre>
+
+Specific version history entry
+
+<pre><code><strong>GET &#x3C;AIDBOX_BASE_URL>/Organization/&#x3C;org-id>/fhir/&#x3C;resource-type>/&#x3C;id>/_history/&#x3C;vid>
+</strong></code></pre>
 
 ### Bundle
 
@@ -180,7 +192,7 @@ GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/metadata
 
 ## Shared resource mode
 
-By default, nested API has ho access to a resource that is belonged to the upper organizations. Sometimes it is necessary to have resources that can be accessed by the nested APIs. To achive it the resource should be marked as `share`.&#x20;
+By default, nested API has ho access to a resource that is belonged to the upper organizations. Sometimes it is necessary to have resources that can be accessed by the nested APIs. To achive it the resource should be marked as `share`.
 
 ### Create a shared resource
 
