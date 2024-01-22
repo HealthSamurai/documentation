@@ -2,7 +2,7 @@
 
 ## **How can I load lots of data at a time with Aidbox API?**
 
-You can use [`Bulk API`](https://docs.aidbox.app/api-1/bulk-api-1) for that&#x20;
+You can use [`Bulk API`](https://docs.aidbox.app/api-1/bulk-api-1) for that
 
 ## **How to increase speed/performance for requests with complex parameters?**
 
@@ -22,7 +22,7 @@ In the FHIR Search API this is called chained-parameters. Read the details [here
 
 ## Aidbox appears to have a POST size limit of 20 MB by default. Is this configurable?
 
-For sizable data, we recommend using [Bulk API](https://docs.aidbox.app/api-1/bulk-api-1)
+You can change the size limit by changing [this variable](https://docs.aidbox.app/reference/configuration/environment-variables/optional-environment-variables#box\_web\_max\_\_body). However, for sizable data, we recommend using [Bulk API](https://docs.aidbox.app/api-1/bulk-api-1)
 
 ## I don't want to use BASIC authentication for security reasons. What can I use instead?
 
@@ -31,9 +31,9 @@ We suggest OAuth implementation in Client Credentials Grant. You need to use “
 * Create a Client and teach the external system to [receive token](https://docs.aidbox.app/auth/client-credentials).
 * Create an appropriate[ access policy](https://docs.aidbox.app/security/access-control#matcho-engine)
 
-## My search doesn’t work with the full link to the resource included. Why is that?&#x20;
+## My search doesn’t work with the full link to the resource included. Why is that?
 
-An example of the query that doesn't work:&#x20;
+An example of the query that doesn't work:
 
 GET /DocumentReference?patient=[https://my.aidbox.app/Patient/1234](https://my.aidbox.app/Patient/1234)
 
