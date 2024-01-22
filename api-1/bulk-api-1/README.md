@@ -4,9 +4,9 @@ description: Bulk export & import operations
 
 # Bulk API
 
-Aidbox supports various options for bulk import and export data.&#x20;
+Aidbox supports various options for the bulk import and export of data.
 
-The list of available Bulk  API endpoints:
+The list of available Bulk API endpoints:
 
 {% content-ref url="usddump.md" %}
 [usddump.md](usddump.md)
@@ -16,8 +16,8 @@ The list of available Bulk  API endpoints:
 [usddump-sql.md](usddump-sql.md)
 {% endcontent-ref %}
 
-{% content-ref url="usddump-csv.md" %}
-[usddump-csv.md](usddump-csv.md)
+{% content-ref url="usdexport.md" %}
+[usdexport.md](usdexport.md)
 {% endcontent-ref %}
 
 {% content-ref url="usdload.md" %}
@@ -30,6 +30,10 @@ The list of available Bulk  API endpoints:
 
 {% content-ref url="aidbox.bulk-data-import.md" %}
 [aidbox.bulk-data-import.md](aidbox.bulk-data-import.md)
+{% endcontent-ref %}
+
+{% content-ref url="import-from-a-bucket.md" %}
+[import-from-a-bucket.md](import-from-a-bucket.md)
 {% endcontent-ref %}
 
 ## Read more
