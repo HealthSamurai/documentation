@@ -8,7 +8,7 @@ description: >-
 
 Since AidboxDB 16.1 does not have the `jsonknife` extension on board as it was available in the previous versions there is the guide explaining how to migrate to it.
 
-## Check if extra steps needed
+## Check if extra DB migrations steps needed
 
 Before migrating to AidboxDB 16, it's crucial to determine whether you have any indexes using that extension. To get list of indexes utilizing `jsonknife` extension, run following SQL query:
 
@@ -25,7 +25,7 @@ WHERE indexdef ILIKE '%knife%';
 
 ### **Backup database**
 
-Begin by creating a complete backup of your database. For example, this can be achieved using the `pg_dump` command
+Begin by creating a complete backup of your database. For example, this can be achieved using the `pg_dump` command:
 
 ```sql
 pg_dump -U [username] [dbname] > [backupfile].sql
@@ -36,7 +36,7 @@ pg_dump -U [username] [dbname] > [backupfile].sql
 To create necessary `jsonknife` functions run the following SQL with-in your PG cluster.
 
 {% file src="../../.gitbook/assets/jsonknife-function-shims.sql" %}
-jsonknife functions shims
+jsonknife function shims
 {% endfile %}
 
 ### Restore database in the new cluster
