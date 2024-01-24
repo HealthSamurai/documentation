@@ -154,7 +154,9 @@ Returns latest `aidbox.bulk` import detailed errors list
 
 {% tabs %}
 {% tab title="Parameters" %}
-_Expects no parameters_
+Object with the following structure:
+
+* `omit-resources?`  (default: `false`)
 {% endtab %}
 
 {% tab title="Result" %}
@@ -261,4 +263,3 @@ result:
 {% endcode %}
 {% endtab %}
 {% endtabs %}
-
