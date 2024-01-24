@@ -436,7 +436,8 @@
 
 ## Storage <a href="#storage-1" id="storage-1"></a>
 
-* [AidboxDB](storage-1/aidboxdb-image.md)
+* [AidboxDB](storage-1/aidboxdb-image/README.md)
+  * [Migration to Aidboxdb 16.1: Handling the Removal of jsonknife Extension](storage-1/aidboxdb-image/migration-to-aidboxdb-16.1-handling-the-removal-of-jsonknife-extension.md)
 * [Database schema](storage-1/database.md)
 * [SQL on FHIR](modules-1/sql-on-fhir/README.md)
   * [Defining flat views with View Definitions](modules-1/sql-on-fhir/view-definition.md)

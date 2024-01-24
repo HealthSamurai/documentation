@@ -148,7 +148,7 @@
   * Added [hierarchical organization-based access control](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md) (multi-tenancy on organization-level resources)
   * Added [How to enable hierarchical access control](../../modules-1/multitenancy/how-to-enable-hierarchical-access-control.md) tutorial
 * Ops
-  * Released new [PostgreSQL Aidboxdb images 15.3, 14.8, 13.11](../../storage-1/aidboxdb-image.md)
+  * Released new [PostgreSQL Aidboxdb images 15.3, 14.8, 13.11](../../storage-1/aidboxdb-image/)
   * Added PostGis Extension
   * Enabled the [/health](../../app-development-guides/receive-logs-from-your-app/health-check.md) endpoint metrics and logs by default
   * Added [How to disable logging](../../app-development-guides/receive-logs-from-your-app/health-check.md#logging-health-endpoint-request) tutorial
@@ -416,7 +416,7 @@
 * Supported [`/health` endpoint](../../app-development-guides/receive-logs-from-your-app/health-check.md) for Multibox
 * Updated documentation on how to configure Aidbox with [Aidbox configuration project](../../aidbox-configuration/aidbox-zen-lang-project/)
 * Updated documentation on how to [configure highly available Aidbox](../run-aidbox-in-kubernetes/high-available-aidbox.md)
-* Added support for [PostgreSQL 15](../../storage-1/aidboxdb-image.md) (beta)
+* Added support for [PostgreSQL 15](../../storage-1/aidboxdb-image/) (beta)
 * Added documentation on how to create [most common indexes](../../storage-1/indexes/create-indexes-manually.md)
 * Added `aidbox` format support for [bulk import](../../api-1/bulk-api-1/aidbox.bulk-data-import.md#aidbox.bulk-import-start)
 * Added `enable-links` parameter for [AidboxQuery](../../api-1/fhir-api/search-1/custom-search.md#return-links)
@@ -477,7 +477,7 @@
 * Added [CapabilityStatement configuration](../../api-1/fhir-api/metadata.md#configure-capabilitystatement) options.
 * Improved setting [PostgreSQL schema](broken-reference/) for Aidbox tables.
 * Added option to set JWT private/public keys and secret[ via env](broken-reference/).
-* Added [aidboxdb PostgreSQL 14.2 version](../../storage-1/aidboxdb-image.md). Supported versions are 14.2 and 13.6.
+* Added [aidboxdb PostgreSQL 14.2 version](../../storage-1/aidboxdb-image/). Supported versions are 14.2 and 13.6.
 * Added tutorial [how to fix broken dates](../../tutorials/tutorials/).
 * Released Infrabox preview. Infrabox is a simple and efficient tool to deploy and manage production-ready Aidbox infrastructure on k8s.
 
@@ -660,7 +660,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 ## February 2021 - v:20210319
 
-* Builds of [aidboxdb](../../storage-1/aidboxdb-image.md) for PostgreSQL 11.11, 12.6, 13.2 are [released](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1\&ordering=last\_updated).
+* Builds of [aidboxdb](../../storage-1/aidboxdb-image/) for PostgreSQL 11.11, 12.6, 13.2 are [released](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1\&ordering=last\_updated).
 * Aidbox now supports deployment on top of Azure PostgreSQL.
 * Improvements of [$changes API](../../api-1/reactive-api-and-subscriptions/usdsnapshot-usdwatch-and-usdversions-api.md): FHIR support, pagination, upper version limit. $changes is now available at the resource level.
 * [Enhancement of Transaction Bundle API](https://docs.aidbox.app/api-1/transaction) that allows to populate both resource and history tables in one transaction.

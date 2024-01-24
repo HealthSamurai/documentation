@@ -54,14 +54,14 @@ Extensions **unavailable** since AidboxDB version 16:
 
 The image is configured by supplying environment variables and command line arguments on startup. Keep in mind that you should not change the environment variables once you have initialized the database. The image expects them to be immutable.
 
-{% content-ref url="../reference/configuration/environment-variables/aidboxdb-environment-variables.md" %}
-[aidboxdb-environment-variables.md](../reference/configuration/environment-variables/aidboxdb-environment-variables.md)
+{% content-ref url="../../reference/configuration/environment-variables/aidboxdb-environment-variables.md" %}
+[aidboxdb-environment-variables.md](../../reference/configuration/environment-variables/aidboxdb-environment-variables.md)
 {% endcontent-ref %}
 
 ### Archiving
 
 An open-source tool [wal-g](https://github.com/wal-g/wal-g) is used by AidboxDB for continuous archival, backups, and restoration.
 
-{% content-ref url="backup-and-restore/archiving.md" %}
-[archiving.md](backup-and-restore/archiving.md)
+{% content-ref url="../backup-and-restore/archiving.md" %}
+[archiving.md](../backup-and-restore/archiving.md)
 {% endcontent-ref %}

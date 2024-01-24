@@ -140,8 +140,32 @@ Match DSL definition:
 * Special keys:
   * **$enum** — value must be equal to one of the items in the enumeration.\
     Pattern `{request-method: {$enum: ["get", "post"]}}` matches `{request-method: "post"}`
-  * **$one-of —** value must match any of the patterns.\
-    Pattern `{a: {$one-of: [{b: "present?"}, {c: "present?"}]}` matches `{a: {c: 5}}`
+  * **$one-of —** value must match any of the patterns. Examples:
+    * Pattern `{a: {$one-of: [{b: "present?"}, {c: "present?"}]}` matches `{a: {c: 5}}`
+    *   If a string starts with `.` , it is interpreted as a path in the current test subject to fetch an array of allowed values:&#x20;
+
+        ```yaml
+        // JWT payload
+        iss: iss
+        roles:
+          - Manager
+          - Administrator
+          
+        // User
+        resourceType: User
+        id: user-id
+        data: 
+          role: Manager
+
+        // AccessPolicy
+        resourceType: AccessPolicy
+        id: user-allowed-if-its-role-within-jwt-roles
+        engine: matcho
+        user:
+          data:
+            role:
+              "$one-of": .jwt.roles
+        ```
   * **$reference** — parse `Reference` or string into [aidbox format](../../fhir-resources/aidbox-and-fhir-formats.md#references). Examples:
     * Parse `Reference` elements
       * `parser: {reference: "Patient/pid"} => {id: "pid", resourceType: "Patient"}`
@@ -329,7 +353,7 @@ rpc:
 
 ### Example 2
 
-To control [tenant](../../multitenancy/README.md) access, use `tenant/org` in macho-rpc. `tenant/org` contains the current organization id in the multitenancy API.
+To control [tenant](../../multitenancy/) access, use `tenant/org` in macho-rpc. `tenant/org` contains the current organization id in the multitenancy API.
 
 ```yaml
 resourceType: AccessPolicy
