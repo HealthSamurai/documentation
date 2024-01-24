@@ -161,10 +161,11 @@ Match DSL definition:
         resourceType: AccessPolicy
         id: user-allowed-if-its-role-within-jwt-roles
         engine: matcho
-        user:
-          data:
-            role:
-              "$one-of": .jwt.roles
+        matcho:
+          user:
+            data:
+              role:
+                "$one-of": .jwt.roles
         ```
   * **$reference** — parse `Reference` or string into [aidbox format](../../fhir-resources/aidbox-and-fhir-formats.md#references). Examples:
     * Parse `Reference` elements
