@@ -60,6 +60,6 @@ GET /fhir/Patient?_filter=(organization:Organization.name eq 'myorg')
 ### Dot expressions
 
 ```
-GET /fhir/Patient?filter=.name.0.family eq 'Doe'
-GET /fhir/Patient?filter=.name isnull true
+GET /fhir/Patient?_filter=.name.0.family eq 'Doe'
+GET /fhir/Patient?_filter=.name isnull true
 ```
