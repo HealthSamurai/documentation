@@ -492,7 +492,7 @@ It is required to pass RSA keypair and secret as Aidbox parameters if you have m
 
 #### Generate RSA keypair
 
-Generate private key with `openssl genrsa -out key.pem 2048` in your terminal. Private key will be saved in file `key.pem`. To generate public key run `openssl rsa -in key.pem -outform PEM -pubout -out public.pem`. You will find public key in `public.pem` file.
+Generate private key with `openssl genrsa -traditional -out key.pem 2048` in your terminal. Private key will be saved in file `key.pem`. To generate public key run `openssl rsa -in key.pem -outform PEM -pubout -out public.pem`. You will find public key in `public.pem` file.
 
 Use next env vars to pass RSA keypair:
 
