@@ -167,6 +167,37 @@ Match DSL definition:
               role:
                 "$one-of": .jwt.roles
         ```
+    * The `$one-of` key cannot be utilized concurrently with other keys. Examples:
+      *   **Correct usage example:** to use `$one-of` :  Here, the `resource/type` key is correctly nested within each option specified by the `$one-of` key.
+
+          ```yaml
+          resourceType: AccessPolicy
+          engine: matcho
+          matcho:
+            request-method: get
+            params:
+              $one-of:
+                - name: present?
+                  resource/type: Patient
+                - _id: present?
+                  resource/type: Patient
+                - id: present?
+                  resource/type: Patient
+          ```
+      *   **Incorrect usage example**: In this case, the `$one-of` key is improperly combined with the `resource/type` key within the same `params` block:
+
+          ```yaml
+          resourceType: AccessPolicy
+          engine: matcho
+          matcho:
+            request-method: get
+            params:
+              resource/type: Patient
+              $one-of:
+                - name: present?
+                - _id: present?
+                - id: present?
+          ```
   * **$reference** — parse `Reference` or string into [aidbox format](../../fhir-resources/aidbox-and-fhir-formats.md#references). Examples:
     * Parse `Reference` elements
       * `parser: {reference: "Patient/pid"} => {id: "pid", resourceType: "Patient"}`
@@ -174,14 +205,14 @@ Match DSL definition:
     * Parse reference string
       * `"Patient/pid" => {id: "pid", resourceType: "Patient"}`
       * `{params: {subject: {$reference: {id: '.user.data.patient_id'}}}`
-  * **$contains** — collection must contain at least one match.\
-    Pattern `{type: {$contains: {system: "loinc"}}` matches `{type: [{system: "snomed"}, {system: "loinc"}]}`
-  * **$every** — each item in a collection must satisfy a pattern.\
-    Pattern `{col: {"$every": {foo: "bar"}}` matches `{col: [{foo: "bar"}, {foo: "bar", baz: "quux"}]}`
-  * **$not** — negates a pattern.\
-    Pattern `{message: {$not: {status: private}}` matches {message: `{status: public}}` and does not match `{message: {status: private}}`. **Be careful** using `$not` as it is possible to create **too permissive** policies.
-  * **$present-all** — checks that every element in $present-all are present in the original array, with no sort check. It can be combined with $length.
-  * **$length** — checks the length of the array.
+    * **$contains** — collection must contain at least one match.\
+      Pattern `{type: {$contains: {system: "loinc"}}` matches `{type: [{system: "snomed"}, {system: "loinc"}]}`
+    * **$every** — each item in a collection must satisfy a pattern.\
+      Pattern `{col: {"$every": {foo: "bar"}}` matches `{col: [{foo: "bar"}, {foo: "bar", baz: "quux"}]}`
+    * **$not** — negates a pattern.\
+      Pattern `{message: {$not: {status: private}}` matches {message: `{status: public}}` and does not match `{message: {status: private}}`. **Be careful** using `$not` as it is possible to create **too permissive** policies.
+    * **$present-all** — checks that every element in $present-all are present in the original array, with no sort check. It can be combined with $length.
+    * **$length** — checks the length of the array.
 
 {% hint style="warning" %}
 Consider the following policy which uses `$not` key.
