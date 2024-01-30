@@ -168,7 +168,7 @@ Match DSL definition:
                 "$one-of": .jwt.roles
         ```
     * The `$one-of` key cannot be utilized concurrently with other keys. Examples:
-      *   **Correct usage example:** to use `$one-of` :  Here, the `resource/type` key is correctly nested within each option specified by the `$one-of` key.
+      *   **Correct usage example:** Here, the `resource/type` key is correctly nested within each option specified by the `$one-of` key.
 
           ```yaml
           resourceType: AccessPolicy
@@ -184,7 +184,7 @@ Match DSL definition:
                 - id: present?
                   resource/type: Patient
           ```
-      *   **Incorrect usage example**: In this case, the `$one-of` key is improperly combined with the `resource/type` key within the same `params` block:
+      *   **Incorrect usage example**:In this case, the `$one-of` key is improperly combined with the `resource/type` key within the same `params` block:
 
           ```yaml
           resourceType: AccessPolicy
