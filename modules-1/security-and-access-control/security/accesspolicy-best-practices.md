@@ -89,7 +89,7 @@ or:
         $one-of:
           - /Patient
           - '#/Patient/[^/]+$'
-          request-method: get
+        request-method: get
   - engine: matcho
     matcho:
       uri: /$graphql
