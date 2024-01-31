@@ -279,6 +279,7 @@
       * [Azure AD](security-and-access-control-1/how-to-guides/azure-ad.md)
       * [Azure AD with certificate authentication](modules-1/security-and-access-control/how-to-guides/set-up-external-identity-provider/azure-ad-1.md)
       * [Keycloak](security-and-access-control-1/how-to-guides/keycloak.md)
+      * [GitHub](modules-1/security-and-access-control/how-to-guides/set-up-external-identity-provider/github.md)
       * [Microsoft AD FS](security-and-access-control-1/how-to-guides/set-up-external-identity-provider/microsoft-ad-fs.md)
     * [RBAC](security-and-access-control-1/how-to-guides/rbac/README.md)
       * [Flexible RBAC built-in to Aidbox](security-and-access-control-1/how-to-guides/rbac/role-based-access-policies.md)
