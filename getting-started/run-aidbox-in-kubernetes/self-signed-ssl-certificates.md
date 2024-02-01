@@ -1,5 +1,5 @@
 ---
-description: Time page explaining how to make Aidbox respect self-signed SSL certificates
+description: This page explains how to make Aidbox respect self-signed SSL certificates
 ---
 
 # Self-signed SSL certificates
