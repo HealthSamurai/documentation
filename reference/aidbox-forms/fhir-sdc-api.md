@@ -2,18 +2,20 @@
 description: This article outlines operations from the FHIR SDC Implementation Guide.
 ---
 
-> Implementation corresponds to  FHIR SDC - **STU 3 Release (STU)**
+> Implementation corresponds to [SDC FHIR IG - 3.0.version 0](http://hl7.org/fhir/uv/sdc/)
 
 # FHIR SDC API
 
 Aidbox Forms module supports FHIR SDC operations:
 
 * [$populate](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populate.html)  - filling out a form with existing data
+* [$populatelink](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populatelink.html) - filling out a form with existing data, and return signed link to it
 * [$extract](https://hl7.org/fhir/uv/sdc/OperationDefinition-QuestionnaireResponse-extract.html) - extract data from QuestionnaireResponse to other FHIR resources
 * [$expand](https://www.hl7.org/fhir/valueset-operation-expand.html) - create a simple collection of codes suitable for use for data entry or validation.
 
 
-## Populate Questionnaire - $populate
+
+# Populate Questionnaire - $populate
 
 The [populate](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populate.html) operation generates a [QuestionnaireResponse](https://www.hl7.org/fhir/questionnaireresponse.html) based on a specific [Questionnaire](https://www.hl7.org/fhir/questionnaire.html), 
 filling in answers to questions where possible based on information provided as part of the operation or already known by the server about the subject of the Questionnaire.
@@ -22,7 +24,7 @@ filling in answers to questions where possible based on information provided as 
 and [Expression based](https://hl7.org/fhir/uv/sdc/populate.html#expression-based-population) populations.
 
 
-### URLs
+## URLs
 
 Populate Questionnaire provided via parameters
 
@@ -36,7 +38,7 @@ Populate Questionnaire referenced via id
 POST [base]/Questionnaire/[id]/$populate
 ```
 
-### Parameters:
+## Parameters
 
 | Parameter                                            | Cardinality | Type                                                             | Status          |
 |------------------------------------------------------|-------------|------------------------------------------------------------------|-----------------|
@@ -65,7 +67,7 @@ parameter:
     resourceType: Patient
 ```
 
-#### identifier
+### identifier
 
 A logical questionnaire identifier (i.e. Questionnaire.identifier). The server must know the questionnaire or be able to retrieve it from other known repositories.
 
@@ -76,7 +78,7 @@ valueIdentifier:
   value: 'vitals'
 ```
 
-#### canonical
+### canonical
 
 The canonical identifier for the questionnaire (optionally version-specific).
 
@@ -86,7 +88,7 @@ name: canonical
 valueCanonical: http://forms.aidbox.io/Questionnaire/vitals
 ```
 
-#### questionnaire
+### questionnaire
 
 The Questionnaire is provided directly as part of the request. Servers may choose not to accept questionnaires in this fashion
 
@@ -100,7 +102,7 @@ resource:
 ```
 
 
-#### questionnaireRef
+### questionnaireRef
 
 The Questionnaire is provided as a resource reference. Servers may choose not to accept questionnaires in this fashion or may fail if they cannot resolve or access the referenced questionnaire.
 
@@ -111,7 +113,7 @@ valueReference:
   id: new-form
 ```
 
-#### subject
+### subject
 
 The resource that is to be the QuestionnaireResponse.subject. The QuestionnaireResponse instance will reference the provided subject. In addition, if the local parameter is set to true, server information about the specified subject will be used to populate the instance.
 
@@ -123,7 +125,7 @@ valueReference:
   resourceType: Patient
 ```
 
-#### local
+### local
 If specified and set to true (and the server is capable), the server should use what resources and other knowledge it has about the referenced subject when pre-populating answers to questions.
 
 ```
@@ -131,7 +133,7 @@ name: local
 valueBoolean: true
 ```
 
-#### context
+### context
 
 Resources containing information to be used to help populate the QuestionnaireResponse. These will typically be FHIR resources.
 
@@ -188,7 +190,7 @@ valueReference:
 ```
 
 
-#### context.name
+### context.name
 
 The name of the launchContext or root Questionnaire variable the passed content should be used as for population purposes. The name SHALL correspond to a launchContext or variable delared at the root of the Questionnaire.
 
@@ -197,7 +199,7 @@ name: name
 valueString: encounter
 ```
 
-#### context.content
+### context.content
 
 The actual resource (or resources) to use as the value of the launchContext or variable.
 
@@ -219,12 +221,12 @@ resource:
   ...
 ```
 
-#### launchContext
+### launchContext
 
 Resources that provide context for form processing logic (pre-population) when creating/displaying/editing a QuestionnaireResponse.
 
 
-### Response
+## Response
 
 - in failure case - response is specified as [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) object.
 - in success case - response is specified as [Parameters](https://www.hl7.org/fhir/parameters.html#parameters) object.
@@ -237,8 +239,7 @@ Success response shape
 | response  | 1..1        | [QuestionnaireResponse](https://hl7.org/fhir/R4/questionnaireresponse.html) | The partially (or fully)-populated set of answers for the specified Questionnaire           |
 | issues    | 0..1        | [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html)           | A list of hints and warnings about problems encountered while populating the questionnaire. |
 
-### Request Example
-
+## Usage Example
 
 {% tabs %}
 {% tab title="Request" %}
@@ -310,7 +311,106 @@ issue:
 {% endtabs %}
 
 
-## Questionnaire response extract to resources - $extract <a href="#root" id="root"></a>
+
+# Populate Questionnaire and generate link - $populatelink
+
+The [populatelink](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populatelink.html) operation creates 
+a prefilled [QuestionnaireResponse](https://www.hl7.org/fhir/questionnaireresponse.html) based on a specific [Questionnaire](https://www.hl7.org/fhir/questionnaire.html), 
+and generates link to WEB-application, which will be used to fill out the form.
+
+## URLs
+
+Populate Questionnaire provided via parameters
+
+```
+POST [base]/Questionnaire/$populatelink
+```
+
+Populate Questionnaire referenced via id
+
+```
+POST [base]/Questionnaire/[id]/$populatelink
+```
+
+## Parameters
+
+Parameters are the same as [$populate](fhir-sdc-api.md#parameters)
+
+## Response
+
+- in failure case - response is specified as [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) object.
+- in success case - response is specified as [Parameters](https://www.hl7.org/fhir/parameters.html#parameters) object.
+
+Success response shape
+
+
+| Parameter | Cardinality | Type                                                              | Description                                                                                |
+|-----------|-------------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
+| link      | 1..1        | [uri](http://hl7.org/fhir/R4/datatypes.html#uri)                  | The URL for the web form that supports capturing the information defined by questionnaire  |
+| issues    | 0..1        | [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) | A list of hints and warnings about problems encountered while populating the questionnaire |
+
+
+
+## Usage Example
+
+{% tabs %}
+{% tab title="Request" %}
+```http
+POST [base]/Questionnaire/vitals/$populatelink
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- name: subject
+  valueReference:
+    id: pt-1
+    resourceType: Patient
+- name: context
+  part:
+  - name: name
+    valueString: encounter
+  - name: content
+    valueReference:
+      resourceType: Encounter
+      id: enc1
+```
+{% endtab %}
+
+{% tab title="Success Response" %}
+
+HTTP status: 200
+
+```yaml
+resourceType: Parameters
+parameter:
+- name: link
+  valueUri: http://forms.aidbox.io/ui/sdc#/questionnaire-response/12c1178c-70a9-4e02-a53d-65b13373926e?token=eyJhbGciOiJIUzI
+
+```
+{% endtab %}
+
+{% tab title="Failure Response" %}
+
+HTTP status: 422
+
+```yaml
+resourceType: OperationOutcome
+text:
+  status: generated
+  div: Parameters are invalid
+issue:
+- severity: error
+  code: invalid
+  expression:
+  - parameter.0.resource
+  diagnostics: unknown key :resource
+
+```
+{% endtab %}
+
+{% endtabs %}
+
+# Questionnaire response extract to resources - $extract <a href="#root" id="root"></a>
 
 The  `extract` operation takes a completed QuestionnaireResponse and converts it to a FHIR resource or Bundle of resources by using metadata embedded in the Questionnaire the QuestionnaireResponse is based on. The extracted resources might include Observations, MedicationStatements and other standard FHIR resources which can then be shared and manipulated.&#x20;
 
@@ -322,7 +422,7 @@ This implementation allows the [Observation based](https://hl7.org/fhir/uv/sdc/e
 
 
 
-## ValueSet Expansion - $expand
+# ValueSet Expansion - $expand
 
 Value Sets are used to define possible coded answer choices in a questionnaire.
 
