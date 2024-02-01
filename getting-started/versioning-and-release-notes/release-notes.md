@@ -3,7 +3,7 @@
 ## January 2024 _`latest`_
 
 * SDK
-  * Enchanced [Python SDK](https://github.com/Aidbox/aidbox-python) with basic FHIR Profiles support
+  * Added basic FHIR Profiles support to [Python SDK](https://github.com/Aidbox/aidbox-python)&#x20;
 * Security and access control
   * Added Access policy matcho engine [$one-of operator](../../modules-1/security-and-access-control/security/evaluation-engines.md#matcho) to fetch the list of the available values from the request context
   * Supported history endpoint within [the Organisation-based access control](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#history)
