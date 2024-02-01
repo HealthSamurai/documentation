@@ -45,13 +45,13 @@ POST [base]/Questionnaire/[id]/$populate
 | [identifier](fhir-sdc-api.md#identifier)             | 0..1        | [Identifier](http://hl7.org/fhir/R4/datatypes.html#Identifier)   | `supported`     |
 | [canonical](fhir-sdc-api.md#canonical)               | 0..1        | [uri](http://hl7.org/fhir/R4/datatypes.html#uri)                 | `supported`     |
 | [questionnaire](fhir-sdc-api.md#questionnaire)       | 0..1        | [Questionnaire](http://hl7.org/fhir/R4/questionnaire.html)       | `supported`     |
-| [questionnaireRef](fhir-sdc-api.md#questionnaireRef) | 0..1        | [Reference](http://hl7.org/fhir/R4/references.html#Reference)    | `supported`     |
+| [questionnaireRef](fhir-sdc-api.md#questionnaireref) | 0..1        | [Reference](http://hl7.org/fhir/R4/references.html#Reference)    | `supported`     |
 | [subject](fhir-sdc-api.md#valueset)                  | 1..1        | [Reference](http://hl7.org/fhir/R4/references.html#Reference)    | `supported`     |
 | [context](fhir-sdc-api.md#context)                   | 0..*        | [Reference](http://hl7.org/fhir/R4/references.html#Reference)    | `supported`     |
-| [context](fhir-sdc-api.md#context.name)              | 0..*        | [string](https://www.hl7.org/fhir/datatypes.html#string)         | `supported`     |
-| [context](fhir-sdc-api.md#context.content)           | 0..*        | [Reference](http://hl7.org/fhir/R4/references.html#Reference)    | `supported`     |
+| [context.name](fhir-sdc-api.md#context.name)         | 0..*        | [string](https://www.hl7.org/fhir/datatypes.html#string)         | `supported`     |
+| [context.content](fhir-sdc-api.md#context.content)   | 0..*        | [Reference](http://hl7.org/fhir/R4/references.html#Reference)    | `supported`     |
 | [local](fhir-sdc-api.md#local)                       | 0..1        | [boolean](http://hl7.org/fhir/R4/datatypes.html#boolean)         | `supported`     |
-| [launchContext](fhir-sdc-api.md#launchContext)       | 0..1        | [Extension](http://hl7.org/fhir/R4/extensibility.html#Extension) | `not supported` |
+| [launchContext](fhir-sdc-api.md#launchcontext)       | 0..1        | [Extension](http://hl7.org/fhir/R4/extensibility.html#Extension) | `not supported` |
 
 
 > Parameters are specified via FHIR [Parameters](https://www.hl7.org/fhir/parameters.html#parameters) type.
