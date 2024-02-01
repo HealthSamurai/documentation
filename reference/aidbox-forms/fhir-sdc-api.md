@@ -226,8 +226,8 @@ Resources that provide context for form processing logic (pre-population) when c
 
 ### Response
 
-in failure case - response specified as [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) object.
-in success case - response is specified via [Parameters](https://www.hl7.org/fhir/parameters.html#parameters) object.
+- in failure case - response specified as [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) object.
+- in success case - response is specified via [Parameters](https://www.hl7.org/fhir/parameters.html#parameters) object.
 
 Sucess response 
 
