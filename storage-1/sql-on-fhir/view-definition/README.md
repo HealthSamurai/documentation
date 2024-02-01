@@ -41,7 +41,7 @@ SQL on FHIR utilizes ViewDefinition resources to describe the structure of flat 
 
 The view is described with its name, resource type, status and the declaration of the rows it contains. In this example, we define a flat view named `obs_view` for Observations, that will have 2 fields: `id`, defined as the Observation's own id, and `pid`, defined as the subject Patient's id.
 
-This example only scratches the surface. For more complex examples, see [query-data-above-view-definitions.md](query-data-above-view-definitions.md "mention"). For an in-depth overview of a ViewDefinition's structure consult [reference.md](reference.md "mention").
+This example only scratches the surface. For more complex examples, see [query-data-above-view-definitions.md](../../../modules-1/sql-on-fhir/query-data-above-view-definitions.md "mention"). For an in-depth overview of a ViewDefinition's structure consult [reference.md](../../../modules-1/sql-on-fhir/reference.md "mention").
 
 ## Creating flat views
 
@@ -49,13 +49,13 @@ This example only scratches the surface. For more complex examples, see [query-d
 
 To create a flat view of the resource, you have to define it with a special resource called ViewDefinition. You can do it with a View Definitions editor in Aidbox UI.
 
-<figure><img src="../../.gitbook/assets/2023-09-25-151846.png" alt=""><figcaption><p>View Definitions editor</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/2023-09-25-151846.png" alt=""><figcaption><p>View Definitions editor</p></figcaption></figure>
 
 View definitions you've created can be viewed in a menu in the right part of the screen. There also are several samples to get you started. Note that samples are presented as View Definitions only and have no corresponding views in the database by default.
 
 You can use the _Run_ button or `Ctrl+Enter` to preview your view. To save a View Definition and materialize it as a view in the database, press _Save_. _Delete_ button deletes both a View Definition and the corresponding view in the database.
 
-Note that a ViewDefinition resource used in Aidbox may difer from [SQL on FHIR specification](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/StructureDefinition-ViewDefinition.html). To see how Aidbox's ViewDefinition is structured, consult the [reference.md](reference.md "mention") page.
+Note that a ViewDefinition resource used in Aidbox may difer from [SQL on FHIR specification](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/StructureDefinition-ViewDefinition.html). To see how Aidbox's ViewDefinition is structured, consult the [reference.md](../../../modules-1/sql-on-fhir/reference.md "mention") page.
 
 ### With REST API
 

@@ -87,7 +87,7 @@
   * Added new sample configuration with the [Aidbox Project Template](https://github.com/Aidbox/aidbox-project-template/tree/topic-based-subscription-r4b)
   * Added [Tutorial: Subscribe to Topic (R4B)](../../modules-1/topic-based-subscriptions/subscribe-to-topics-r4b.md)
 * [SQL on FHIR engine](../../modules-1/sql-on-fhir/)
-  * Create [materialized views ](../../modules-1/sql-on-fhir/view-definition.md#additional-options)
+  * Create [materialized views ](../../storage-1/sql-on-fhir/view-definition/#additional-options)
 * Data API
   * Delete all matching resources using [conditional delete](../../api-1/api/crud-1/delete.md#conditional-delete)
 * Ops
