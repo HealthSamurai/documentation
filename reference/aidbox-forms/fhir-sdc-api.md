@@ -179,8 +179,10 @@ they are:
 | author     | [Reference<Device, Practitioner, PractitionerRole, Patient, RelatedPerson, Organization>](http://hl7.org/fhir/R4/references.html#Reference) |
 | source     | [Reference<Device, Organization, Patient, Practitioner, PractitionerRole, RelatedPerson>](http://hl7.org/fhir/R4/references.html#Reference) |
 
-There paramerters passed directly to [QuestionnaireResponse](https://hl7.org/fhir/R4/questionnaireresponse.html) root properties and should not be used in populate expressions.
+These paramerters passed directly to [QuestionnaireResponse](https://hl7.org/fhir/R4/questionnaireresponse.html) root properties and should not be used in populate expressions.
 
+
+Example: 
 
 ```yaml
 name: name
