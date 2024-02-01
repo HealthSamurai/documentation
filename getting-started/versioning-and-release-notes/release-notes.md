@@ -1,6 +1,20 @@
 # Release Notes
 
-## November 2023 _`latest`_
+## January 2024 _`latest`_
+
+* Security and access control
+  * Added Access policy matcho engine [$one-of operator](../../modules-1/security-and-access-control/security/evaluation-engines.md#matcho) to fetch the list of the available values from the request context
+  * Supported history endpoint within [the Organisation-based access control](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#history)
+  * Documented [GitHub as an external identity provider](https://github.com/HealthSamurai/sansara/issues/4016)
+  * Fixed the code\_verifier to behave according to the RFC
+* DevOps
+  * Released AidboxDB 16.1. Updated [the list of the extensions](../../storage-1/aidboxdb-image/#extensions) within a Postgres
+  * Added guides for AidboxDB 16:
+    * Documented 'How to make Aidbox Docker image work with [self-signed SSL certificates](../run-aidbox-in-kubernetes/self-signed-ssl-certificates.md)'
+    * Documented [the migration steps ](../../storage-1/aidboxdb-image/migration-to-aidboxdb-16.1-handling-the-removal-of-jsonknife-extension.md)from the previous PG versions
+  * Removed apk-tools from our Docker images
+
+## November 2023 _`stable,2311`_
 
 * Data API&#x20;
   * Added [asynchronous resource validation](../../profiling-and-validation/validation-api.md)
