@@ -155,6 +155,8 @@ part:
 
 FHIR SDC launchContext extension [enumerates](http://hl7.org/fhir/uv/sdc/STU3/CodeSystem-launchContext.html) possible context variables, they are:
 
+> Not supported yet
+
 
 | Code      | Definition                                                                                                                         |
 |-----------|------------------------------------------------------------------------------------------------------------------------------------|
