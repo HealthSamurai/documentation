@@ -11,6 +11,9 @@
   * Supported history endpoint within [the Organisation-based access control](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#history)
   * Documented [GitHub as an external identity provider](https://github.com/HealthSamurai/sansara/issues/4016)
   * Fixed the code\_verifier to behave according to the RFC
+* [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
+  * Improved the C-CDA to FHIR conversion performance by 20%
+  * Administered Medications mapping to/from MedicationAdministration FHIR resource
 * DevOps
   * Released AidboxDB 16.1. Updated [the list of the extensions](../../storage-1/aidboxdb-image/#extensions) within a Postgres
   * Added guides for AidboxDB 16:
