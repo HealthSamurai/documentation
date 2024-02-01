@@ -6,18 +6,18 @@ description: >-
 
 # Migrate to the spec-compliant ViewDefinition format
 
-Aidbox's January 2024 release introduces an updated, SQL on FHIR spec-compliant `ViewDefinition` structure, including some minor breaking changes. These changes don't affect existing flat views, but alterations via `ViewDefinition` require adapting to the new format.
+Aidbox's January 2024 release introduces an updated, SQL on FHIR spec-compliant `ViewDefinition` resource structure, including some minor breaking changes. These changes don't affect existing flat views, but alterations via `ViewDefinition` require adapting to the new format.
 
-### Renames
+### Existing elements renames
 
-* `alias` is now `name`.
-* `union` is now`unionAll`.
-* `constants` is now `constant`.
-* `from` is replaced with `forEach`.
+* `alias` is now `name`
+* `union` is now`unionAll`
+* `constants` is now `constant`
+* `from` is replaced with `forEach`
 
-### New field: column
+### New element: column
 
-A `column` field is introduced in `select` for clearer, less nested column declarations. Move column-related details here.
+A `column` element is introduced in `select` for clearer, less nested column declarations. Move column-related details here.
 
 #### Before:
 
@@ -51,18 +51,18 @@ A `column` field is introduced in `select` for clearer, less nested column decla
   "select": [
 	  {
 	    "column": [
-	      {
+		{
 	        "name": "id",
 	        "path": "id"
-	      },
-	      {
+		},
+		{
 	        "name": "bod",
 	        "path": "birthDate"
-	      },
-		  {
+		},
+		{
 	        "name": "gender",
 	        "path": "gender"
-		  }
+		}
       ]
     }
   ]
