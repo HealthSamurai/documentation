@@ -49,20 +49,20 @@ A `column` element is introduced in `select` for clearer, less nested column dec
   "name": "patient_view",
   "resource": "Patient",
   "select": [
-	  {
-	    "column": [
-		{
-	        "name": "id",
-	        "path": "id"
-		},
-		{
-	        "name": "bod",
-	        "path": "birthDate"
-		},
-		{
-	        "name": "gender",
-	        "path": "gender"
-		}
+    {
+      "column": [
+        {
+          "name": "id",
+          "path": "id"
+        },
+        {
+           "name": "bod",
+           "path": "birthDate"
+        },
+        {
+           "name": "gender",
+           "path": "gender"
+        }
       ]
     }
   ]
