@@ -38,18 +38,18 @@ POST [base]/Questionnaire/[id]/$populate
 
 ### Parameters:
 
-| Parameter        | Cardinality | Type                                                             | Status          | Example                                              |
-|------------------|-------------|------------------------------------------------------------------|-----------------|------------------------------------------------------|
-| identifier       | 0..1        | [Identifier](http://hl7.org/fhir/R4/datatypes.html#Identifier)   | `supported`     | [identifier](fhir-sdc-api.md#identifier)             |
-| canonical        | 0..1        | [uri](http://hl7.org/fhir/R4/datatypes.html#uri)                 | `supported`     | [canonical](fhir-sdc-api.md#canonical)               |
-| questionnaire    | 0..1        | [Questionnaire](http://hl7.org/fhir/R4/questionnaire.html)       | `supported`     | [questionnaire](fhir-sdc-api.md#questionnaire)       |
-| questionnaireRef | 0..1        | [Reference](http://hl7.org/fhir/R4/references.html#Reference)    | `supported`     | [questionnaireRef](fhir-sdc-api.md#questionnaireRef) |
-| subject          | 1..1        | [Reference](http://hl7.org/fhir/R4/references.html#Reference)    | `supported`     | [subject](fhir-sdc-api.md#valueset)                  |
-| context          | 0..*        | [Reference](http://hl7.org/fhir/R4/references.html#Reference)    | `supported`     | [context](fhir-sdc-api.md#context)                   |
-| context.name     | 0..*        | [string](https://www.hl7.org/fhir/datatypes.html#string)         | `supported`     | [context](fhir-sdc-api.md#context.name)              |
-| context.content  | 0..*        | [Reference](http://hl7.org/fhir/R4/references.html#Reference)    | `supported`     | [context](fhir-sdc-api.md#context.content)           |
-| local            | 0..1        | [boolean](http://hl7.org/fhir/R4/datatypes.html#boolean)         | `supported`     | [local](fhir-sdc-api.md#local)                       |
-| launchContext    | 0..1        | [Extension](http://hl7.org/fhir/R4/extensibility.html#Extension) | `not supported` | [launchContext](fhir-sdc-api.md#launchContext)       |
+| Parameter                                            | Cardinality | Type                                                             | Status          |
+|------------------------------------------------------|-------------|------------------------------------------------------------------|-----------------|
+| [identifier](fhir-sdc-api.md#identifier)             | 0..1        | [Identifier](http://hl7.org/fhir/R4/datatypes.html#Identifier)   | `supported`     |
+| [canonical](fhir-sdc-api.md#canonical)               | 0..1        | [uri](http://hl7.org/fhir/R4/datatypes.html#uri)                 | `supported`     |
+| [questionnaire](fhir-sdc-api.md#questionnaire)       | 0..1        | [Questionnaire](http://hl7.org/fhir/R4/questionnaire.html)       | `supported`     |
+| [questionnaireRef](fhir-sdc-api.md#questionnaireRef) | 0..1        | [Reference](http://hl7.org/fhir/R4/references.html#Reference)    | `supported`     |
+| [subject](fhir-sdc-api.md#valueset)                  | 1..1        | [Reference](http://hl7.org/fhir/R4/references.html#Reference)    | `supported`     |
+| [context](fhir-sdc-api.md#context)                   | 0..*        | [Reference](http://hl7.org/fhir/R4/references.html#Reference)    | `supported`     |
+| [context](fhir-sdc-api.md#context.name)              | 0..*        | [string](https://www.hl7.org/fhir/datatypes.html#string)         | `supported`     |
+| [context](fhir-sdc-api.md#context.content)           | 0..*        | [Reference](http://hl7.org/fhir/R4/references.html#Reference)    | `supported`     |
+| [local](fhir-sdc-api.md#local)                       | 0..1        | [boolean](http://hl7.org/fhir/R4/datatypes.html#boolean)         | `supported`     |
+| [launchContext](fhir-sdc-api.md#launchContext)       | 0..1        | [Extension](http://hl7.org/fhir/R4/extensibility.html#Extension) | `not supported` |
 
 
 > Parameters are specified via FHIR [Parameters](https://www.hl7.org/fhir/parameters.html#parameters) type.
@@ -229,7 +229,7 @@ Resources that provide context for form processing logic (pre-population) when c
 - in failure case - response is specified as [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) object.
 - in success case - response is specified as [Parameters](https://www.hl7.org/fhir/parameters.html#parameters) object.
 
-Sucess response 
+Success response shape
 
 
 | Parameter | Cardinality | Type                                                                        | Description                                                                                 |
