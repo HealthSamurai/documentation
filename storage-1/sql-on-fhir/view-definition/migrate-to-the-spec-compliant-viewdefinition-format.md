@@ -6,24 +6,20 @@ description: >-
 
 # Migrate to the spec-compliant ViewDefinition format
 
-Starting from January 2024 release Aidbox supports SQL on FHIR specification-compliant `ViewDefinition` resource structure. This upgrade comes with a few minor breaking changes.
-
-{% hint style="info" %}
-These changes won't change anything in flat views you've created previously: you should be able to keep using them from your SQL requests as you did before. However, should you try to alter them via ViewDefinition, you'll have to upgrade it to the new format.
-{% endhint %}
+Aidbox's January 2024 release introduces an updated, SQL on FHIR spec-compliant `ViewDefinition` structure, including some minor breaking changes. These changes don't affect existing flat views, but alterations via `ViewDefinition` require adapting to the new format.
 
 ### Renames
 
-* `alias` field of the column changed to `name`.
-* `union` changed to `unionAll`.
-* `constants` changed to `constant`.
+* `alias` is now `name`.
+* `union` is now`unionAll`.
+* `constants` is now `constant`.
 * `from` is replaced with `forEach`.
 
 ### New field: column
 
-`column` is a new field in `select`, made to extract column declarations from it for better readability and less nesting. You need to move your column-related information to it.
+A `column` field is introduced in `select` for clearer, less nested column declarations. Move column-related details here.
 
-For example, this ViewDefinition:
+#### Before:
 
 ```json
 {
@@ -46,7 +42,7 @@ For example, this ViewDefinition:
 }
 ```
 
-should be modified into this:
+#### After:
 
 ```json
 {
@@ -73,9 +69,9 @@ should be modified into this:
 }
 ```
 
-If you have a `select` with `forEach` (or `forEachOrNull`), keep `forEach` outside of the `column`. Nested `select` with no `forEach` inside can be safely renamed to `column`.
+For `select` containing `forEach`(or `forEachOrNull`), keep `forEach` outside the `column`. Nested `select` without `forEach` can directly be converted to `column`.
 
-For example, this ViewDefinition:
+#### Before
 
 ```json
 {
@@ -110,7 +106,7 @@ For example, this ViewDefinition:
 }
 ```
 
-should be modified into this:
+#### After
 
 ```json
 {
