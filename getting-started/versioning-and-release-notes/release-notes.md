@@ -2,6 +2,8 @@
 
 ## January 2024 _`latest`_
 
+* SQL on FHIR
+  * Supported ViewDefinition specification&#x20;
 * SDK
   * Added basic FHIR Profiles support to [Python SDK](https://github.com/Aidbox/aidbox-python)&#x20;
 * Security and access control
