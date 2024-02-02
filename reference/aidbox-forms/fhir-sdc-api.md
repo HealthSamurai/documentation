@@ -8,10 +8,12 @@ description: This article outlines operations from the FHIR SDC Implementation G
 
 Aidbox Forms module supports FHIR SDC operations:
 
-* [$populate](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populate.html)  - filling out a form with existing data
-* [$populatelink](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populatelink.html) - filling out a form with existing data, and return signed link to it
+* [$populate](fhir-sdc-api#populate-questionnaire-usdpopulate)  - filling out a form with existing data [FHIR](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populate.html)
+* [$populatelink](fhir-sdc-api#populate-questionnaire-and-generate-link-usdpopulatelink) - filling out a form with existing data, and return signed link to it
+[FHIR](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populatelink.html)
 * [$extract](https://hl7.org/fhir/uv/sdc/OperationDefinition-QuestionnaireResponse-extract.html) - extract data from QuestionnaireResponse to other FHIR resources
-* [$expand](https://www.hl7.org/fhir/valueset-operation-expand.html) - create a simple collection of codes suitable for use for data entry or validation.
+[FHIR](https://hl7.org/fhir/uv/sdc/OperationDefinition-QuestionnaireResponse-extract.html)
+* [$expand](fhir-sdc-api#valueset-expansion-usdexpand) - create a simple collection of codes suitable for use for data entry or validation. [FHIR](https://www.hl7.org/fhir/valueset-operation-expand.html)
 
 
 
@@ -542,8 +544,6 @@ issue:
 {% endtabs %}
 
 
-
-
 # ValueSet Expansion - $expand Value Sets are used to define possible coded answer choices in a questionnaire.
 
 The use of standardized codes is useful when data needs to be populated into the questionnaire or extracted from the questionnaire for other uses.
@@ -551,8 +551,3 @@ The use of standardized codes is useful when data needs to be populated into the
 The `expand` operation expand given ValueSet in to set of concepts.
 
 This operation is described in detail [here](../../terminology/valueset/value-set-expansion.md).
-
-## URLs
-## Parameters
-## Response
-## Usage Example
