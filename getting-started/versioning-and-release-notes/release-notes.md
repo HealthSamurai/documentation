@@ -2,8 +2,8 @@
 
 ## January 2024 _`latest`_
 
-* SQL on FHIR
-  * Supported ViewDefinition specification&#x20;
+* Data API
+  * Supported [ViewDefinition resource structure](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/StructureDefinition-ViewDefinition.html) according to the latest [SQL on FHIR specification](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/index.html). These changes don’t affect existing views. Please check [this guide](../../storage-1/sql-on-fhir/view-definition/migrate-to-the-spec-compliant-viewdefinition-format.md) to update ViewDefinitions
 * SDK
   * Added basic FHIR Profiles support to [Python SDK](https://github.com/Aidbox/aidbox-python)&#x20;
 * Security and access control
@@ -15,11 +15,25 @@
   * Improved the C-CDA to FHIR conversion performance by 20%
   * Administered Medications mapping to/from MedicationAdministration FHIR resource
 * DevOps
-  * Released AidboxDB 16.1. Updated [the list of the extensions](../../storage-1/aidboxdb-image/#extensions) within a Postgres
+  * Released AidboxDB 16.1. Updated [the list of the extensions](../../storage-1/aidboxdb-image/#extensions) for Postgres
   * Added guides for AidboxDB 16:
     * Documented 'How to make Aidbox Docker image work with [self-signed SSL certificates](../run-aidbox-in-kubernetes/self-signed-ssl-certificates.md)'
     * Documented [the migration steps ](../../storage-1/aidboxdb-image/migration-to-aidboxdb-16.1-handling-the-removal-of-jsonknife-extension.md)from the previous PG versions
   * Removed apk-tools from our Docker images
+* [Aidbox Forms](../../modules-1/aidbox-forms.md)
+  * Questionnaire-based forms updates:
+    * Form Builder
+      * Added required constraints
+      * Added hidden rules & enable-when conditions
+      * Added scores for questions with coding
+      * Added support for loading Questionnaire from file/text
+      * Added tips for FHIRPath usage
+      * Complete themes support
+    * API
+      * Added Configuration to disable FHIR SDC operations
+      * Extend [$populate](../../reference/aidbox-forms/fhir-sdc-api.md#populate-questionnaire-usdpopulate) operation to support Questionnaire root properties
+      * Added operation to generating signed links for form filling
+      * Add $populatelink FHIR SDC operation
 
 ## November 2023 _`stable,2311`_
 
