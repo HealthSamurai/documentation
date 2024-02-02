@@ -34,7 +34,7 @@
       * Extended [$populate](../../reference/aidbox-forms/fhir-sdc-api.md#populate-questionnaire-usdpopulate) operation to support Questionnaire root properties
       * Added operation to generating signed links for form filling
       * Added [$populatelink](https://docs.aidbox.app/reference/aidbox-forms/fhir-sdc-api#populate-questionnaire-usdpopulatelink) FHIR SDC operation
-    * Aidbox DSL based forms updates
+    * Aidbox DSL-based forms updates
       * Fixed issues with concurrent save/submit UI operations
       * Fixed conversion of QuestionnaireResponse with included scores
 
