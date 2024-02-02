@@ -11,6 +11,7 @@ description: >-
 |[Allergies and Intolerances Section (entries optional) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/allergiesandintolerancessectioneo.md)|48765-2|allergies|✅
 |[Allergies and Intolerances Section (entries required) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/allergiesandintolerancessectioner.md)|48765-2|allergies|✅
 |[Assessment Section](/modules-1/integration-toolkit/ccda-converter/sections/assessmentsection.md)|51848-0|N/A|❌
+|[Default Section Rules](/modules-1/integration-toolkit/ccda-converter/sections/default.md)|&nbsp;|default|❌
 |[Document Header](/modules-1/integration-toolkit/ccda-converter/sections/header.md)|&nbsp;|header|❌
 |[Encounters Section (entries optional) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/encounterssectionentriesoptionalv3.md)|46240-8|encounters|❌
 |[Encounters Section (entries required) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/encounterssectionentriesrequiredv3.md)|46240-8|encounters|✅

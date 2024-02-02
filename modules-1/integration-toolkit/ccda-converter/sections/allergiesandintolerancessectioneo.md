@@ -29,53 +29,65 @@ Internal ID: AllergiesandIntolerancesSectioneo
   "type" : "allergy",
   "resourceType" : "AllergyIntolerance",
   "asserter" : {
-    "id" : "SOME-STRING",
-    "name" : [ {
-      "family" : "Seven",
-      "given" : [ "Henry" ],
-      "suffix" : null,
-      "use" : "official"
+    "resourceType" : "PractitionerRole",
+    "id" : "7e71b220-f14b-8001-9fc9-36a927492259",
+    "specialty" : [ {
+      "coding" : [ {
+        "code" : "207Q00000X",
+        "display" : "Family Medicine",
+        "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
+      } ],
+      "text" : "Family Medicine"
     } ],
-    "qualification" : [ {
-      "code" : {
-        "coding" : [ {
-          "code" : "207Q00000X",
-          "display" : "Family Medicine",
-          "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
-        } ]
-      }
-    } ],
-    "resourceType" : "Practitioner",
-    "telecom" : [ {
-      "system" : "phone",
-      "use" : "work",
-      "value" : "555-555-1002"
-    } ]
+    "period" : {
+      "start" : "2010-01-03T09:08:00-05:00"
+    },
+    "practitioner" : {
+      "id" : "SOME-STRING",
+      "name" : [ {
+        "family" : "Seven",
+        "given" : [ "Henry" ],
+        "suffix" : null,
+        "use" : "official"
+      } ],
+      "resourceType" : "Practitioner",
+      "telecom" : [ {
+        "system" : "phone",
+        "use" : "work",
+        "value" : "555-555-1002"
+      } ]
+    }
   },
   "recordedDate" : "2010-01-03",
   "recorder" : {
-    "id" : "SOME-STRING",
-    "name" : [ {
-      "family" : "Seven",
-      "given" : [ "Henry" ],
-      "suffix" : null,
-      "use" : "official"
+    "resourceType" : "PractitionerRole",
+    "id" : "f2e34f3f-360f-55fe-e31d-5763cee0b7cb",
+    "specialty" : [ {
+      "coding" : [ {
+        "code" : "207Q00000X",
+        "display" : "Family Medicine",
+        "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
+      } ],
+      "text" : "Family Medicine"
     } ],
-    "qualification" : [ {
-      "code" : {
-        "coding" : [ {
-          "code" : "207Q00000X",
-          "display" : "Family Medicine",
-          "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
-        } ]
-      }
-    } ],
-    "resourceType" : "Practitioner",
-    "telecom" : [ {
-      "system" : "phone",
-      "use" : "work",
-      "value" : "555-555-1002"
-    } ]
+    "period" : {
+      "start" : "2010-01-03"
+    },
+    "practitioner" : {
+      "id" : "SOME-STRING",
+      "name" : [ {
+        "family" : "Seven",
+        "given" : [ "Henry" ],
+        "suffix" : null,
+        "use" : "official"
+      } ],
+      "resourceType" : "Practitioner",
+      "telecom" : [ {
+        "system" : "phone",
+        "use" : "work",
+        "value" : "555-555-1002"
+      } ]
+    }
   },
   "code" : {
     "coding" : [ {
@@ -132,12 +144,15 @@ C-CDA Equivalent:
          </effectiveTime>
          <author>
             <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+            <time value="20100103"/>
             <assignedAuthor>
-               <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
+               <id root="f2e34f3f-360f-55fe-e31d-5763cee0b7cb"/>
                <code codeSystem="2.16.840.1.113883.6.101"
                       codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"
                       displayName="Family Medicine"
-                      code="207Q00000X"/>
+                      code="207Q00000X">
+                  <originalText>Family Medicine</originalText>
+               </code>
                <addr nullFlavor="UNK"/>
                <telecom value="555-555-1002" use="WP"/>
                <assignedPerson>
@@ -165,13 +180,15 @@ C-CDA Equivalent:
                        codeSystem="2.16.840.1.113883.6.96"/>
                <author>
                   <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
-                  <time nullFlavor="UNK"/>
+                  <time value="20100103090800-0500"/>
                   <assignedAuthor>
-                     <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
+                     <id root="7e71b220-f14b-8001-9fc9-36a927492259"/>
                      <code codeSystem="2.16.840.1.113883.6.101"
                             codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"
                             displayName="Family Medicine"
-                            code="207Q00000X"/>
+                            code="207Q00000X">
+                        <originalText>Family Medicine</originalText>
+                     </code>
                      <addr nullFlavor="UNK"/>
                      <telecom value="555-555-1002" use="WP"/>
                      <assignedPerson>
@@ -239,30 +256,31 @@ Another trivial sample
   "type" : "allergy",
   "resourceType" : "AllergyIntolerance",
   "asserter" : null,
-  "extension" : [ {
-    "url" : "authoring-time",
-    "value" : {
-      "dateTime" : "2020-06-22"
-    }
-  } ],
   "recordedDate" : "2014-01-03",
   "id" : "4a2ac5fc-0c85-4223-baee-c2e254803974",
   "recorder" : {
-    "resourceType" : "Practitioner",
-    "id" : "pract",
-    "name" : [ {
-      "text" : "Dr. Henry Seven",
-      "family" : "Seven",
-      "given" : [ "Henry" ]
-    } ],
-    "address" : [ {
-      "use" : "work",
-      "line" : [ "1002 Healthcare Dr" ],
-      "city" : "Portland",
-      "state" : "OR",
-      "postalCode" : "97266",
-      "country" : "USA"
-    } ]
+    "practitioner" : {
+      "resourceType" : "Practitioner",
+      "id" : "pract",
+      "name" : [ {
+        "text" : "Dr. Henry Seven",
+        "family" : "Seven",
+        "given" : [ "Henry" ]
+      } ],
+      "address" : [ {
+        "use" : "work",
+        "line" : [ "1002 Healthcare Dr" ],
+        "city" : "Portland",
+        "state" : "OR",
+        "postalCode" : "97266",
+        "country" : "USA"
+      } ]
+    },
+    "resourceType" : "PractitionerRole",
+    "id" : "ed014ada-a5d4-4590-baae-dc4988c3dd7d",
+    "period" : {
+      "start" : "2014-01-03T10:25:00-0500"
+    }
   },
   "code" : {
     "coding" : [ {
@@ -349,9 +367,9 @@ C-CDA Equivalent:
          </effectiveTime>
          <author>
             <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
-            <time value="20200622"/>
+            <time value="20140103102500-0500"/>
             <assignedAuthor>
-               <id root="4d7964bc-788b-9976-a728-4e17f8bfd249"/>
+               <id root="ed014ada-a5d4-4590-baae-dc4988c3dd7d"/>
                <addr use="WP">
                   <country>USA</country>
                   <state>OR</state>
@@ -497,54 +515,58 @@ Trivial allergy example
   "type" : "intolerance",
   "resourceType" : "AllergyIntolerance",
   "asserter" : {
-    "name" : [ {
-      "given" : [ "Henry" ],
-      "family" : "Seven",
-      "use" : "official",
-      "suffix" : null
+    "practitioner" : {
+      "name" : [ {
+        "given" : [ "Henry" ],
+        "family" : "Seven",
+        "use" : "official",
+        "suffix" : null
+      } ],
+      "telecom" : [ {
+        "system" : "phone",
+        "value" : "555-555-1002",
+        "use" : "work"
+      } ],
+      "id" : "SOME-STRING",
+      "resourceType" : "Practitioner"
+    },
+    "specialty" : [ {
+      "coding" : [ {
+        "code" : "207Q00000X",
+        "display" : "Family Medicine",
+        "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
+      } ],
+      "text" : "Family Medicine"
     } ],
-    "telecom" : [ {
-      "system" : "phone",
-      "value" : "555-555-1002",
-      "use" : "work"
-    } ],
-    "qualification" : [ {
-      "code" : {
-        "coding" : [ {
-          "code" : "207Q00000X",
-          "display" : "Family Medicine",
-          "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
-        } ]
-      }
-    } ],
-    "id" : "SOME-STRING",
-    "resourceType" : "Practitioner"
+    "resourceType" : "PractitionerRole"
   },
   "recordedDate" : "2014-01-03",
   "id" : "4a2ac5fc-0c85-4223-baee-c2e254803974",
   "recorder" : {
-    "name" : [ {
-      "given" : [ "Henry" ],
-      "family" : "Seven",
-      "use" : "official",
-      "suffix" : null
+    "practitioner" : {
+      "name" : [ {
+        "given" : [ "Henry" ],
+        "family" : "Seven",
+        "use" : "official",
+        "suffix" : null
+      } ],
+      "telecom" : [ {
+        "system" : "phone",
+        "value" : "555-555-1002",
+        "use" : "work"
+      } ],
+      "id" : "SOME-STRING",
+      "resourceType" : "Practitioner"
+    },
+    "specialty" : [ {
+      "coding" : [ {
+        "code" : "207Q00000X",
+        "display" : "Family Medicine",
+        "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
+      } ],
+      "text" : "Family Medicine"
     } ],
-    "telecom" : [ {
-      "system" : "phone",
-      "value" : "555-555-1002",
-      "use" : "work"
-    } ],
-    "qualification" : [ {
-      "code" : {
-        "coding" : [ {
-          "code" : "207Q00000X",
-          "display" : "Family Medicine",
-          "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
-        } ]
-      }
-    } ],
-    "id" : "SOME-STRING",
-    "resourceType" : "Practitioner"
+    "resourceType" : "PractitionerRole"
   },
   "code" : {
     "coding" : [ {
@@ -626,11 +648,12 @@ C-CDA Equivalent:
          <author>
             <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
             <assignedAuthor>
-               <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
                <code codeSystem="2.16.840.1.113883.6.101"
                       codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"
                       displayName="Family Medicine"
-                      code="207Q00000X"/>
+                      code="207Q00000X">
+                  <originalText>Family Medicine</originalText>
+               </code>
                <addr nullFlavor="UNK"/>
                <telecom value="555-555-1002" use="WP"/>
                <assignedPerson>
@@ -659,13 +682,13 @@ C-CDA Equivalent:
                        codeSystem="2.16.840.1.113883.6.96"/>
                <author>
                   <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
-                  <time nullFlavor="UNK"/>
                   <assignedAuthor>
-                     <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
                      <code codeSystem="2.16.840.1.113883.6.101"
                             codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"
                             displayName="Family Medicine"
-                            code="207Q00000X"/>
+                            code="207Q00000X">
+                        <originalText>Family Medicine</originalText>
+                     </code>
                      <addr nullFlavor="UNK"/>
                      <telecom value="555-555-1002" use="WP"/>
                      <assignedPerson>

@@ -28,12 +28,6 @@ Internal ID: FunctionalStatusSectionV2
       }
     },
     "resourceType" : "Observation",
-    "extension" : [ {
-      "value" : {
-        "dateTime" : "2013-07-06T11:45:00-08:00"
-      },
-      "url" : "authoring-time"
-    } ],
     "status" : "final",
     "effective" : {
       "dateTime" : "2013-03-11"
@@ -46,22 +40,28 @@ Internal ID: FunctionalStatusSectionV2
         "system" : "http://loinc.org"
       } ]
     },
+    "issued" : "2013-07-06T11:45:00-08:00",
     "subject" : {
       "id" : "patient",
       "resourceType" : "Patient"
     },
     "performer" : [ {
-      "qualification" : [ {
-        "code" : {
-          "coding" : [ {
-            "code" : "207QA0505X",
-            "display" : "Adult Medicine",
-            "system" : "urn:oid:2.16.840.1.113883.5.53"
-          } ]
-        }
-      } ],
+      "resourceType" : "PractitionerRole",
       "id" : "b63a8636-cfff-4461-b018-53236c541111",
-      "resourceType" : "Practitioner"
+      "period" : {
+        "start" : "2013-07-06T11:45:00-08:00"
+      },
+      "specialty" : [ {
+        "coding" : [ {
+          "code" : "207QA0505X",
+          "display" : "Adult Medicine",
+          "system" : "urn:oid:2.16.840.1.113883.5.53"
+        } ]
+      } ],
+      "practitioner" : {
+        "id" : "b63a8636-cfff-4461-b018-53236c541111",
+        "resourceType" : "Practitioner"
+      }
     } ]
   } ],
   "code" : {
@@ -154,12 +154,6 @@ C-CDA Equivalent:
     }
   },
   "resourceType" : "Observation",
-  "extension" : [ {
-    "value" : {
-      "dateTime" : "2013-07-06T11:45:00-08:00"
-    },
-    "url" : "authoring-time"
-  } ],
   "status" : "final",
   "effective" : {
     "dateTime" : "2013-03-11"
@@ -172,22 +166,28 @@ C-CDA Equivalent:
       "system" : "http://loinc.org"
     } ]
   },
+  "issued" : "2013-07-06T11:45:00-08:00",
   "subject" : {
     "id" : "patient",
     "resourceType" : "Patient"
   },
   "performer" : [ {
-    "qualification" : [ {
-      "code" : {
-        "coding" : [ {
-          "code" : "207QA0505X",
-          "display" : "Adult Medicine",
-          "system" : "urn:oid:2.16.840.1.113883.5.53"
-        } ]
-      }
-    } ],
+    "resourceType" : "PractitionerRole",
+    "period" : {
+      "start" : "2013-07-06T11:45:00-08:00"
+    },
     "id" : "b63a8636-cfff-4461-b018-53236c546666",
-    "resourceType" : "Practitioner"
+    "specialty" : [ {
+      "coding" : [ {
+        "code" : "207QA0505X",
+        "display" : "Adult Medicine",
+        "system" : "urn:oid:2.16.840.1.113883.5.53"
+      } ]
+    } ],
+    "practitioner" : {
+      "id" : "b63a8636-cfff-4461-b018-53236c546666",
+      "resourceType" : "Practitioner"
+    }
   } ]
 }
 ```

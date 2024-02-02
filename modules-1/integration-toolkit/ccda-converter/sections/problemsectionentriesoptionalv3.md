@@ -44,37 +44,39 @@ The main idea that each Condition resource is related to nested Observation in P
   "recordedDate" : "2014-03-02T12:45:36Z",
   "id" : "SOME-STRING",
   "recorder" : {
-    "name" : [ {
-      "given" : [ "Heartly" ],
-      "family" : "Sixer",
-      "use" : "official",
-      "suffix" : [ "MD" ]
+    "practitioner" : {
+      "name" : [ {
+        "given" : [ "Heartly" ],
+        "family" : "Sixer",
+        "use" : "official",
+        "suffix" : [ "MD" ]
+      } ],
+      "address" : [ {
+        "line" : [ "6666 StreetName St." ],
+        "use" : null,
+        "city" : "Silver Spring",
+        "state" : "MD",
+        "postalCode" : "20901",
+        "country" : "US"
+      } ],
+      "telecom" : [ {
+        "system" : "phone",
+        "value" : "+1(301)666-6666",
+        "use" : "work"
+      } ],
+      "id" : "SOME-STRING",
+      "resourceType" : "Practitioner"
+    },
+    "specialty" : [ {
+      "text" : "Cardiovascular Disease",
+      "coding" : [ {
+        "code" : "207RC0000X",
+        "display" : "Cardiovascular Disease",
+        "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
+      } ]
     } ],
-    "address" : [ {
-      "line" : [ "6666 StreetName St." ],
-      "use" : null,
-      "city" : "Silver Spring",
-      "state" : "MD",
-      "postalCode" : "20901",
-      "country" : "US"
-    } ],
-    "telecom" : [ {
-      "system" : "phone",
-      "value" : "+1(301)666-6666",
-      "use" : "work"
-    } ],
-    "qualification" : [ {
-      "code" : {
-        "text" : "Cardiovascular Disease",
-        "coding" : [ {
-          "code" : "207RC0000X",
-          "display" : "Cardiovascular Disease",
-          "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
-        } ]
-      }
-    } ],
-    "id" : "SOME-STRING",
-    "resourceType" : "Practitioner"
+    "resourceType" : "PractitionerRole",
+    "id" : "4b309dce-a2a7-576a-4520-98f92c510568"
   },
   "code" : {
     "text" : "Community Acquired Pneumonia",
@@ -160,7 +162,7 @@ The section contains an Act.entryRelationship.Observation entry converted from t
                   <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
                   <time value="20140302124536-0000"/>
                   <assignedAuthor>
-                     <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
+                     <id root="4b309dce-a2a7-576a-4520-98f92c510568"/>
                      <code codeSystem="2.16.840.1.113883.6.101"
                             codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"
                             displayName="Cardiovascular Disease"
@@ -221,41 +223,43 @@ The section contains an Act.entryRelationship.Observation entry converted from t
   "recordedDate" : "2014-03-02T12:45:36Z",
   "id" : "102ca2e9-884c-4523-a2b4-1b6c3469c397",
   "recorder" : {
-    "name" : [ {
-      "given" : [ "Heartly" ],
-      "family" : "Sixer",
-      "use" : "official",
-      "suffix" : [ "MD" ]
+    "resourceType" : "PractitionerRole",
+    "id" : "abfba15e-d567-4173-b522-80e40d8b2321",
+    "specialty" : [ {
+      "text" : "Cardiovascular Disease",
+      "coding" : [ {
+        "code" : "207RC0000X",
+        "display" : "Cardiovascular Disease",
+        "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
+      } ]
     } ],
-    "address" : [ {
-      "line" : [ "6666 StreetName St." ],
-      "use" : null,
-      "city" : "Silver Spring",
-      "state" : "MD",
-      "postalCode" : "20901",
-      "country" : "US"
-    } ],
-    "telecom" : [ {
-      "system" : "phone",
-      "value" : "+1(301)666-6666",
-      "use" : "work"
-    } ],
-    "qualification" : [ {
-      "code" : {
-        "text" : "Cardiovascular Disease",
-        "coding" : [ {
-          "code" : "207RC0000X",
-          "display" : "Cardiovascular Disease",
-          "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
-        } ]
-      }
-    } ],
-    "id" : "86f71898-e94e-469f-8851-00193b48ea85",
-    "identifier" : [ {
-      "value" : "66666",
-      "system" : "http://hl7.org/fhir/sid/us-npi"
-    } ],
-    "resourceType" : "Practitioner"
+    "practitioner" : {
+      "name" : [ {
+        "given" : [ "Heartly" ],
+        "family" : "Sixer",
+        "use" : "official",
+        "suffix" : [ "MD" ]
+      } ],
+      "address" : [ {
+        "line" : [ "6666 StreetName St." ],
+        "use" : null,
+        "city" : "Silver Spring",
+        "state" : "MD",
+        "postalCode" : "20901",
+        "country" : "US"
+      } ],
+      "telecom" : [ {
+        "system" : "phone",
+        "value" : "+1(301)666-6666",
+        "use" : "work"
+      } ],
+      "id" : "86f71898-e94e-469f-8851-00193b48ea85",
+      "identifier" : [ {
+        "value" : "66666",
+        "system" : "http://hl7.org/fhir/sid/us-npi"
+      } ],
+      "resourceType" : "Practitioner"
+    }
   },
   "code" : {
     "text" : "Community Acquired Pneumonia",
@@ -341,7 +345,7 @@ C-CDA Equivalent:
                   <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
                   <time value="20140302124536-0000"/>
                   <assignedAuthor>
-                     <id root="86f71898-e94e-469f-8851-00193b48ea85"/>
+                     <id root="abfba15e-d567-4173-b522-80e40d8b2321"/>
                      <id extension="66666" root="2.16.840.1.113883.4.6"/>
                      <code codeSystem="2.16.840.1.113883.6.101"
                             codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"

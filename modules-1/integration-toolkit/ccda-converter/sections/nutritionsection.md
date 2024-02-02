@@ -55,12 +55,6 @@ Nutrition status observation can be converted from the Observation resource.
       }
     },
     "resourceType" : "Observation",
-    "extension" : [ {
-      "value" : {
-        "dateTime" : "2013-07-30"
-      },
-      "url" : "authoring-time"
-    } ],
     "status" : "final",
     "effective" : {
       "dateTime" : "2013-05-12"
@@ -78,36 +72,41 @@ Nutrition status observation can be converted from the Observation resource.
       "resourceType" : "Patient"
     },
     "performer" : [ {
-      "name" : [ {
-        "given" : [ "Patricia", "Patty" ],
-        "family" : "Primary",
-        "use" : "official",
-        "suffix" : [ "M.D." ]
+      "resourceType" : "PractitionerRole",
+      "id" : "e6048cf7-9803-5d4c-043f-ec72335d57f3",
+      "period" : {
+        "start" : "2013-07-30"
+      },
+      "specialty" : [ {
+        "coding" : [ {
+          "code" : "207QA0505X",
+          "display" : "Adult Medicine",
+          "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
+        } ]
       } ],
-      "address" : [ {
-        "line" : [ "1004 Healthcare Drive " ],
-        "use" : null,
-        "city" : "Portland",
-        "state" : "OR",
-        "postalCode" : "99123",
-        "country" : "US"
-      } ],
-      "telecom" : [ {
-        "system" : "phone",
-        "value" : "+1(555)555-1004",
-        "use" : "work"
-      } ],
-      "qualification" : [ {
-        "code" : {
-          "coding" : [ {
-            "code" : "207QA0505X",
-            "display" : "Adult Medicine",
-            "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
-          } ]
-        }
-      } ],
-      "id" : "SOME-STRING",
-      "resourceType" : "Practitioner"
+      "practitioner" : {
+        "name" : [ {
+          "given" : [ "Patricia", "Patty" ],
+          "family" : "Primary",
+          "use" : "official",
+          "suffix" : [ "M.D." ]
+        } ],
+        "address" : [ {
+          "line" : [ "1004 Healthcare Drive " ],
+          "use" : null,
+          "city" : "Portland",
+          "state" : "OR",
+          "postalCode" : "99123",
+          "country" : "US"
+        } ],
+        "telecom" : [ {
+          "system" : "phone",
+          "value" : "+1(555)555-1004",
+          "use" : "work"
+        } ],
+        "id" : "SOME-STRING",
+        "resourceType" : "Practitioner"
+      }
     } ]
   }, {
     "value" : {
@@ -120,12 +119,6 @@ Nutrition status observation can be converted from the Observation resource.
       }
     },
     "resourceType" : "Observation",
-    "extension" : [ {
-      "value" : {
-        "dateTime" : "2013-07-30"
-      },
-      "url" : "authoring-time"
-    } ],
     "status" : "final",
     "effective" : {
       "dateTime" : "2013-05-12"
@@ -143,36 +136,38 @@ Nutrition status observation can be converted from the Observation resource.
       "resourceType" : "Patient"
     },
     "performer" : [ {
-      "name" : [ {
-        "given" : [ "Patricia", "Patty" ],
-        "family" : "Primary",
-        "use" : "official",
-        "suffix" : [ "M.D." ]
+      "resourceType" : "PractitionerRole",
+      "id" : "1a43f967-4c16-4920-16f9-f57a1e60726b",
+      "specialty" : [ {
+        "coding" : [ {
+          "code" : "207QA0505X",
+          "display" : "Adult Medicine",
+          "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
+        } ]
       } ],
-      "address" : [ {
-        "line" : [ "1004 Healthcare Drive " ],
-        "use" : null,
-        "city" : "Portland",
-        "state" : "OR",
-        "postalCode" : "99123",
-        "country" : "US"
-      } ],
-      "telecom" : [ {
-        "system" : "phone",
-        "value" : "+1(555)555-1004",
-        "use" : "work"
-      } ],
-      "qualification" : [ {
-        "code" : {
-          "coding" : [ {
-            "code" : "207QA0505X",
-            "display" : "Adult Medicine",
-            "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
-          } ]
-        }
-      } ],
-      "id" : "SOME-STRING",
-      "resourceType" : "Practitioner"
+      "practitioner" : {
+        "name" : [ {
+          "given" : [ "Patricia", "Patty" ],
+          "family" : "Primary",
+          "use" : "official",
+          "suffix" : [ "M.D." ]
+        } ],
+        "address" : [ {
+          "line" : [ "1004 Healthcare Drive " ],
+          "use" : null,
+          "city" : "Portland",
+          "state" : "OR",
+          "postalCode" : "99123",
+          "country" : "US"
+        } ],
+        "telecom" : [ {
+          "system" : "phone",
+          "value" : "+1(555)555-1004",
+          "use" : "work"
+        } ],
+        "id" : "SOME-STRING",
+        "resourceType" : "Practitioner"
+      }
     } ]
   } ]
 }
@@ -222,7 +217,7 @@ C-CDA Equivalent:
                   <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
                   <time value="20130730"/>
                   <assignedAuthor>
-                     <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
+                     <id root="e6048cf7-9803-5d4c-043f-ec72335d57f3"/>
                      <code codeSystem="2.16.840.1.113883.6.101"
                             codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"
                             displayName="Adult Medicine"
@@ -264,9 +259,8 @@ C-CDA Equivalent:
                        xsi:type="CD"/>
                <author>
                   <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
-                  <time value="20130730"/>
                   <assignedAuthor>
-                     <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
+                     <id root="1a43f967-4c16-4920-16f9-f57a1e60726b"/>
                      <code codeSystem="2.16.840.1.113883.6.101"
                             codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"
                             displayName="Adult Medicine"

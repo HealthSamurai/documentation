@@ -24,32 +24,31 @@ Internal ID: GoalsSection
     } ]
   },
   "expressedBy" : {
-    "name" : [ {
-      "given" : [ "Mary" ],
-      "family" : "McDonald",
-      "use" : "official",
-      "suffix" : [ "RN" ]
+    "resourceType" : "PractitionerRole",
+    "id" : "4e42ca15-5054-4b53-a181-0b945c7f58de",
+    "period" : {
+      "start" : "2013-08-01"
+    },
+    "specialty" : [ {
+      "text" : "Registered nurse",
+      "coding" : [ {
+        "code" : "163W00000X",
+        "display" : "Registered nurse",
+        "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
+      } ]
     } ],
-    "qualification" : [ {
-      "code" : {
-        "text" : "Registered nurse",
-        "coding" : [ {
-          "code" : "163W00000X",
-          "display" : "Registered nurse",
-          "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
-        } ]
-      }
-    } ],
-    "id" : "d839038b-7172-4165-a760-467925b43857",
-    "resourceType" : "Practitioner"
+    "practitioner" : {
+      "name" : [ {
+        "given" : [ "Mary" ],
+        "family" : "McDonald",
+        "use" : "official",
+        "suffix" : [ "RN" ]
+      } ],
+      "id" : "d839038b-7172-4165-a760-467925b43857",
+      "resourceType" : "Practitioner"
+    }
   },
   "resourceType" : "Goal",
-  "extension" : [ {
-    "value" : {
-      "dateTime" : "2013-07-30"
-    },
-    "url" : "authoring-time"
-  } ],
   "priority" : {
     "coding" : [ {
       "code" : "high-priority",
@@ -120,9 +119,9 @@ C-CDA Equivalent:
          </value>
          <author>
             <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
-            <time value="20130730"/>
+            <time value="20130801"/>
             <assignedAuthor>
-               <id root="d839038b-7172-4165-a760-467925b43857"/>
+               <id root="4e42ca15-5054-4b53-a181-0b945c7f58de"/>
                <code codeSystem="2.16.840.1.113883.6.101"
                       codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"
                       displayName="Registered nurse"
@@ -169,32 +168,31 @@ C-CDA Equivalent:
     } ]
   },
   "expressedBy" : {
-    "name" : [ {
-      "given" : [ "Mary" ],
-      "family" : "McDonald",
-      "use" : "official",
-      "suffix" : [ "RN" ]
+    "resourceType" : "PractitionerRole",
+    "id" : "728f4009-c432-4323-b909-dd57324dfdbe",
+    "period" : {
+      "start" : "2013-07-30"
+    },
+    "specialty" : [ {
+      "text" : "Registered nurse",
+      "coding" : [ {
+        "code" : "163W00000X",
+        "display" : "Registered nurse",
+        "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
+      } ]
     } ],
-    "qualification" : [ {
-      "code" : {
-        "text" : "Registered nurse",
-        "coding" : [ {
-          "code" : "163W00000X",
-          "display" : "Registered nurse",
-          "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
-        } ]
-      }
-    } ],
-    "id" : "d839038b-7171-4165-a760-467925b43857",
-    "resourceType" : "Practitioner"
+    "practitioner" : {
+      "name" : [ {
+        "given" : [ "Mary" ],
+        "family" : "McDonald",
+        "use" : "official",
+        "suffix" : [ "RN" ]
+      } ],
+      "id" : "d839038b-7171-4165-a760-467925b43857",
+      "resourceType" : "Practitioner"
+    }
   },
   "resourceType" : "Goal",
-  "extension" : [ {
-    "value" : {
-      "dateTime" : "2013-07-30"
-    },
-    "url" : "authoring-time"
-  } ],
   "priority" : {
     "coding" : [ {
       "code" : "high-priority",
@@ -255,7 +253,7 @@ C-CDA Equivalent:
             <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
             <time value="20130730"/>
             <assignedAuthor>
-               <id root="d839038b-7171-4165-a760-467925b43857"/>
+               <id root="728f4009-c432-4323-b909-dd57324dfdbe"/>
                <code codeSystem="2.16.840.1.113883.6.101"
                       codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"
                       displayName="Registered nurse"

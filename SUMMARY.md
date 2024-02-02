@@ -303,6 +303,7 @@
       * [Allergies and Intolerances Section (entries optional) (V3)](modules-1/integration-toolkit/ccda-converter/sections/allergiesandintolerancessectioneo.md)
       * [Allergies and Intolerances Section (entries required) (V3)](modules-1/integration-toolkit/ccda-converter/sections/allergiesandintolerancessectioner.md)
       * [Assessment Section](modules-1/integration-toolkit/ccda-converter/sections/assessmentsection.md)
+      * [Default Section Rules](modules-1/integration-toolkit/ccda-converter/sections/default.md)
       * [Document Header](modules-1/integration-toolkit/ccda-converter/sections/header.md)
       * [Encounters Section (entries optional) (V3)](modules-1/integration-toolkit/ccda-converter/sections/encounterssectionentriesoptionalv3.md)
       * [Encounters Section (entries required) (V3)](modules-1/integration-toolkit/ccda-converter/sections/encounterssectionentriesrequiredv3.md)

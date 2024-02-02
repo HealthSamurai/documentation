@@ -31,45 +31,42 @@ Internal ID: MedicationsSectionentriesoptional
   },
   "extension" : [ {
     "value" : {
-      "dateTime" : "2013-09-11T16:03:00-07:00"
-    },
-    "url" : "authoring-time"
-  }, {
-    "value" : {
       "Reference" : {
-        "name" : [ {
-          "given" : [ "Heartly" ],
-          "family" : "Sixer",
-          "use" : "official",
-          "suffix" : [ "MD" ]
+        "resourceType" : "PractitionerRole",
+        "id" : "7455d60f-2808-f746-30d9-df2d72c74bf6",
+        "specialty" : [ {
+          "text" : "Allopathic & Osteopathic Physicians; Internal Medicine, Cardiovascular Disease",
+          "coding" : [ {
+            "code" : "207RC0000X",
+            "display" : "Allopathic & Osteopathic Physicians; Internal Medicine, Cardiovascular Disease",
+            "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
+          } ]
         } ],
-        "address" : [ {
-          "line" : [ "6666 StreetName St." ],
-          "city" : "Silver Spring",
-          "state" : "MD",
-          "postalCode" : "20901",
-          "country" : "US"
-        } ],
-        "telecom" : [ {
-          "system" : "phone",
-          "value" : "+1(301)666-6666",
-          "use" : "work"
-        } ],
-        "qualification" : [ {
-          "code" : {
-            "text" : "Allopathic & Osteopathic Physicians; Internal Medicine, Cardiovascular Disease",
-            "coding" : [ {
-              "code" : "207RC0000X",
-              "display" : "Allopathic & Osteopathic Physicians; Internal Medicine, Cardiovascular Disease",
-              "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
-            } ]
-          }
-        } ],
-        "identifier" : [ {
-          "value" : "66666",
-          "system" : "http://hl7.org/fhir/sid/us-npi"
-        } ],
-        "resourceType" : "Practitioner"
+        "practitioner" : {
+          "name" : [ {
+            "given" : [ "Heartly" ],
+            "family" : "Sixer",
+            "use" : "official",
+            "suffix" : [ "MD" ]
+          } ],
+          "address" : [ {
+            "line" : [ "6666 StreetName St." ],
+            "city" : "Silver Spring",
+            "state" : "MD",
+            "postalCode" : "20901",
+            "country" : "US"
+          } ],
+          "telecom" : [ {
+            "system" : "phone",
+            "value" : "+1(301)666-6666",
+            "use" : "work"
+          } ],
+          "identifier" : [ {
+            "value" : "66666",
+            "system" : "http://hl7.org/fhir/sid/us-npi"
+          } ],
+          "resourceType" : "Practitioner"
+        }
       }
     },
     "url" : "author"
@@ -175,8 +172,8 @@ C-CDA Equivalent:
          </consumable>
          <author>
             <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
-            <time value="20130911160300-0700"/>
             <assignedAuthor>
+               <id root="7455d60f-2808-f746-30d9-df2d72c74bf6"/>
                <id extension="66666" root="2.16.840.1.113883.4.6"/>
                <code codeSystem="2.16.840.1.113883.6.101"
                       codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"
@@ -447,202 +444,6 @@ C-CDA Equivalent:
 </section>
 ```
 
-## sample-medication-administeration
-
-```json
-{
-  "dosage" : {
-    "route" : {
-      "text" : "Oral Route of Administration",
-      "coding" : [ {
-        "code" : "C38288",
-        "display" : "Oral Route of Administration",
-        "system" : "http://ncithesaurus-stage.nci.nih.gov"
-      } ]
-    },
-    "dose" : {
-      "value" : 2
-    }
-  },
-  "extension" : [ {
-    "value" : {
-      "dateTime" : "2013-09-11T16:03:00-07:00"
-    },
-    "url" : "authoring-time"
-  }, {
-    "value" : {
-      "Reference" : {
-        "name" : [ {
-          "given" : [ "Heartly" ],
-          "family" : "Sixer",
-          "use" : "official",
-          "suffix" : [ "MD" ]
-        } ],
-        "address" : [ {
-          "line" : [ "6666 StreetName St." ],
-          "city" : "Silver Spring",
-          "state" : "MD",
-          "postalCode" : "20901",
-          "country" : "US"
-        } ],
-        "telecom" : [ {
-          "system" : "phone",
-          "value" : "+1(301)666-6666",
-          "use" : "work"
-        } ],
-        "qualification" : [ {
-          "code" : {
-            "text" : "Allopathic & Osteopathic Physicians; Internal Medicine, Cardiovascular Disease",
-            "coding" : [ {
-              "code" : "207RC0000X",
-              "display" : "Allopathic & Osteopathic Physicians; Internal Medicine, Cardiovascular Disease",
-              "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
-            } ]
-          }
-        } ],
-        "id" : "1ca83382-bdb2-4e9a-ad6e-49a71cedcbb3",
-        "identifier" : [ {
-          "value" : "66666",
-          "system" : "http://hl7.org/fhir/sid/us-npi"
-        } ],
-        "resourceType" : "Practitioner"
-      }
-    },
-    "url" : "author"
-  } ],
-  "resourceType" : "MedicationAdministration",
-  "status" : "completed",
-  "effective" : {
-    "dateTime" : "2013-09-11T16:03:00-07:00"
-  },
-  "id" : "1061a257-3b5c-4b09-9dc7-23e59b788b18",
-  "subject" : {
-    "resourceType" : "Patient",
-    "id" : "patient"
-  },
-  "medication" : {
-    "CodeableConcept" : {
-      "text" : "Aspirin 81mg Oral Tablet",
-      "coding" : [ {
-        "code" : "243670",
-        "display" : "aspirin 81 MG Oral Tablet",
-        "system" : "http://www.nlm.nih.gov/research/umls/rxnorm"
-      } ]
-    }
-  }
-}
-```
-
-C-CDA Equivalent:
-```xml
-<section>
-   <templateId root="2.16.840.1.113883.10.20.22.2.1.1" extension="2014-06-09"/>
-   <templateId root="2.16.840.1.113883.10.20.22.2.1.1"/>
-   <code codeSystem="2.16.840.1.113883.6.1"
-          codeSystemName="http://loinc.org"
-          displayName="display string"
-          code="10160-0"/>
-   <title>Medications Section (entries optional) (V2)</title>
-   <text>
-      <table border="1" width="100%">
-         <caption>Prescribed Medications</caption>
-         <thead>
-            <tr>
-               <td>Medication</td>
-               <td>Timing</td>
-               <td>Route</td>
-               <td>Freq</td>
-               <td>Dose</td>
-            </tr>
-         </thead>
-         <tbody>
-            <tr>
-               <td colspan="5">No records</td>
-            </tr>
-         </tbody>
-      </table>
-      <table border="1" width="100%">
-         <caption>Administered Medications</caption>
-         <thead>
-            <tr>
-               <td>Medication</td>
-               <td>Date</td>
-               <td>Route</td>
-               <td>Dose</td>
-            </tr>
-         </thead>
-         <tbody>
-            <tr>
-               <td>aspirin 81 MG Oral Tablet (243670)</td>
-               <td>2013-09-11T16:03:00-07:00</td>
-               <td>Oral Route of Administration (C38288)</td>
-               <td>No information</td>
-            </tr>
-         </tbody>
-      </table>
-   </text>
-   <entry>
-      <substanceAdministration moodCode="EVN" classCode="SBADM">
-         <templateId root="2.16.840.1.113883.10.20.22.4.16" extension="2014-06-09"/>
-         <templateId root="2.16.840.1.113883.10.20.22.4.16"/>
-         <id root="1061a257-3b5c-4b09-9dc7-23e59b788b18"/>
-         <statusCode code="completed"/>
-         <effectiveTime value="20130911160300-0700"/>
-         <routeCode codeSystem="2.16.840.1.113883.3.26.1.1"
-                     codeSystemName="http://ncithesaurus-stage.nci.nih.gov"
-                     displayName="Oral Route of Administration"
-                     code="C38288">
-            <originalText>Oral Route of Administration</originalText>
-         </routeCode>
-         <doseQuantity value="2"/>
-         <consumable>
-            <manufacturedProduct classCode="MANU">
-               <templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09"/>
-               <templateId root="2.16.840.1.113883.10.20.22.4.23"/>
-               <manufacturedMaterial>
-                  <code codeSystem="2.16.840.1.113883.6.88"
-                         codeSystemName="http://www.nlm.nih.gov/research/umls/rxnorm"
-                         displayName="aspirin 81 MG Oral Tablet"
-                         code="243670">
-                     <originalText>Aspirin 81mg Oral Tablet</originalText>
-                  </code>
-               </manufacturedMaterial>
-            </manufacturedProduct>
-         </consumable>
-         <author>
-            <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
-            <time value="20130911160300-0700"/>
-            <assignedAuthor>
-               <id root="1ca83382-bdb2-4e9a-ad6e-49a71cedcbb3"/>
-               <id extension="66666" root="2.16.840.1.113883.4.6"/>
-               <code codeSystem="2.16.840.1.113883.6.101"
-                      codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"
-                      displayName="Allopathic &amp; Osteopathic Physicians; Internal Medicine, Cardiovascular Disease"
-                      code="207RC0000X">
-                  <originalText>Allopathic &amp; Osteopathic Physicians; Internal Medicine, Cardiovascular Disease</originalText>
-               </code>
-               <addr>
-                  <country>US</country>
-                  <state>MD</state>
-                  <city>Silver Spring</city>
-                  <postalCode>20901</postalCode>
-                  <streetAddressLine>6666 StreetName St.</streetAddressLine>
-               </addr>
-               <telecom value="+1(301)666-6666" use="WP"/>
-               <assignedPerson>
-                  <name use="L">
-                     <given>Heartly</given>
-                     <family>Sixer</family>
-                     <suffix>MD</suffix>
-                  </name>
-               </assignedPerson>
-            </assignedAuthor>
-         </author>
-      </substanceAdministration>
-   </entry>
-</section>
-```
-
 ## sample-prn-medication
 
 ```json
@@ -672,12 +473,6 @@ C-CDA Equivalent:
     } ]
   } ],
   "resourceType" : "MedicationStatement",
-  "extension" : [ {
-    "value" : {
-      "dateTime" : "2013-12-18"
-    },
-    "url" : "authoring-time"
-  } ],
   "status" : "active",
   "effective" : {
     "Period" : {
@@ -686,39 +481,40 @@ C-CDA Equivalent:
   },
   "id" : "47d3e719-f688-459d-bcdc-47c6de0767a9",
   "informationSource" : {
-    "name" : [ {
-      "given" : [ "Heartly" ],
-      "family" : "Sixer",
-      "use" : "official",
-      "suffix" : [ "MD" ]
+    "resourceType" : "PractitionerRole",
+    "specialty" : [ {
+      "text" : "Allopathic & Osteopathic Physicians; Internal Medicine, Cardiovascular Disease",
+      "coding" : [ {
+        "code" : "207RC0000X",
+        "display" : "Allopathic & Osteopathic Physicians; Internal Medicine, Cardiovascular Disease",
+        "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
+      } ]
     } ],
-    "address" : [ {
-      "line" : [ "6666 StreetName St." ],
-      "city" : "Silver Spring",
-      "state" : "MD",
-      "postalCode" : "20901",
-      "country" : "US"
-    } ],
-    "telecom" : [ {
-      "system" : "phone",
-      "value" : "+1(301)666-6666",
-      "use" : "work"
-    } ],
-    "qualification" : [ {
-      "code" : {
-        "text" : "Allopathic & Osteopathic Physicians; Internal Medicine, Cardiovascular Disease",
-        "coding" : [ {
-          "code" : "207RC0000X",
-          "display" : "Allopathic & Osteopathic Physicians; Internal Medicine, Cardiovascular Disease",
-          "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
-        } ]
-      }
-    } ],
-    "identifier" : [ {
-      "value" : "66666",
-      "system" : "http://hl7.org/fhir/sid/us-npi"
-    } ],
-    "resourceType" : "Practitioner"
+    "practitioner" : {
+      "name" : [ {
+        "given" : [ "Heartly" ],
+        "family" : "Sixer",
+        "use" : "official",
+        "suffix" : [ "MD" ]
+      } ],
+      "address" : [ {
+        "line" : [ "6666 StreetName St." ],
+        "city" : "Silver Spring",
+        "state" : "MD",
+        "postalCode" : "20901",
+        "country" : "US"
+      } ],
+      "telecom" : [ {
+        "system" : "phone",
+        "value" : "+1(301)666-6666",
+        "use" : "work"
+      } ],
+      "identifier" : [ {
+        "value" : "66666",
+        "system" : "http://hl7.org/fhir/sid/us-npi"
+      } ],
+      "resourceType" : "Practitioner"
+    }
   },
   "subject" : {
     "resourceType" : "Patient",
@@ -830,7 +626,6 @@ C-CDA Equivalent:
          </consumable>
          <author>
             <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
-            <time value="20131218"/>
             <assignedAuthor>
                <id extension="66666" root="2.16.840.1.113883.4.6"/>
                <code codeSystem="2.16.840.1.113883.6.101"

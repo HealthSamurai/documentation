@@ -138,36 +138,44 @@ Internal ID: Header
     "resourceType" : "Organization"
   },
   "authors" : [ {
-    "name" : [ {
-      "given" : [ "Henry" ],
-      "family" : "Seven",
-      "use" : "official",
-      "suffix" : null
+    "practitioner" : {
+      "name" : [ {
+        "given" : [ "Henry" ],
+        "family" : "Seven",
+        "use" : "official"
+      } ],
+      "address" : [ {
+        "line" : [ "1002 Healthcare Dr" ],
+        "city" : "Beaverton",
+        "state" : "OR",
+        "postalCode" : "97266",
+        "country" : "US"
+      } ],
+      "telecom" : [ {
+        "system" : "phone",
+        "value" : "+1(555)-555-1002",
+        "use" : "work"
+      } ],
+      "id" : "ca3e2395-79e9-d8a4-783d-252892f31fb7",
+      "identifier" : [ {
+        "value" : "111111",
+        "system" : "http://hl7.org/fhir/sid/us-npi"
+      } ],
+      "resourceType" : "Practitioner"
+    },
+    "specialty" : [ {
+      "text" : "Chronic Disease Hospital",
+      "coding" : [ {
+        "code" : "281P00000X",
+        "display" : "Chronic Disease Hospital",
+        "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
+      } ]
     } ],
-    "address" : [ {
-      "line" : [ "1002 Healthcare Dr" ],
-      "use" : null,
-      "city" : "Beaverton",
-      "state" : "OR",
-      "postalCode" : "97266",
-      "country" : "US"
-    } ],
-    "telecom" : [ {
-      "system" : "phone",
-      "value" : "+1(555)-555-1002",
-      "use" : "work"
-    } ],
-    "qualification" : [ {
-      "code" : {
-        "coding" : [ {
-          "code" : "281P00000X",
-          "display" : "Chronic Disease Hospital",
-          "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
-        } ]
-      }
-    } ],
-    "id" : "SOME-STRING",
-    "resourceType" : "Practitioner"
+    "id" : "dc6a82a9-8999-f7c9-b73d-160351225091",
+    "resourceType" : "PractitionerRole",
+    "period" : {
+      "start" : "2015-06-22"
+    }
   } ]
 }
 ```
@@ -255,16 +263,13 @@ C-CDA Equivalent:
       </patientRole>
    </recordTarget>
    <author>
-      <time value="20200101"/>
+      <time value="20150622"/>
       <assignedAuthor>
-         <id root="02bd92fa-a38a-aa6c-c0ea-75e59937a1ef"/>
+         <id root="c569ccb7-c838-fdf3-149b-beecd8e9bd41"/>
          <addr nullFlavor="UNK"/>
          <telecom nullFlavor="UNK"/>
          <assignedPerson>
-            <name>
-               <given>Docauthor</given>
-               <family>Foobar</family>
-            </name>
+            <name nullFlavor="UNK"/>
          </assignedPerson>
       </assignedAuthor>
    </author>

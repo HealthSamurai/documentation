@@ -120,31 +120,27 @@ In this case we have 3 entries:
     } ]
   },
   "expressedBy" : {
-    "name" : [ {
-      "given" : [ "Nurse" ],
-      "family" : "Florence",
-      "use" : "official",
-      "suffix" : [ "RN" ]
-    } ],
-    "qualification" : [ {
-      "code" : {
-        "coding" : [ {
-          "code" : "163W00000X",
-          "display" : "Registered nurse",
-          "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
-        } ]
-      }
-    } ],
+    "resourceType" : "PractitionerRole",
     "id" : "d839038b-7171-4165-a760-467925b43857",
-    "resourceType" : "Practitioner"
+    "specialty" : [ {
+      "coding" : [ {
+        "code" : "163W00000X",
+        "display" : "Registered nurse",
+        "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
+      } ]
+    } ],
+    "practitioner" : {
+      "name" : [ {
+        "given" : [ "Nurse" ],
+        "family" : "Florence",
+        "use" : "official",
+        "suffix" : [ "RN" ]
+      } ],
+      "id" : "d839038b-7171-4165-a760-467925b43857",
+      "resourceType" : "Practitioner"
+    }
   },
   "resourceType" : "Goal",
-  "extension" : [ {
-    "value" : {
-      "dateTime" : "2013-07-30"
-    },
-    "url" : "authoring-time"
-  } ],
   "priority" : {
     "coding" : [ {
       "code" : "medium-priority",
@@ -209,7 +205,6 @@ The section contains a list of entries converted from the input resources.
          </value>
          <author>
             <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
-            <time value="20130730"/>
             <assignedAuthor>
                <id root="d839038b-7171-4165-a760-467925b43857"/>
                <code codeSystem="2.16.840.1.113883.6.101"
