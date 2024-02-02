@@ -8,12 +8,10 @@ description: This article outlines operations from the FHIR SDC Implementation G
 
 Aidbox Forms module supports FHIR SDC operations:
 
-* [$populate](fhir-sdc-api#populate-questionnaire-usdpopulate)  - filling out a form with existing data [FHIR](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populate.html)
-* [$populatelink](fhir-sdc-api#populate-questionnaire-and-generate-link-usdpopulatelink) - filling out a form with existing data, and return signed link to it
-[FHIR](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populatelink.html)
-* [$extract](https://hl7.org/fhir/uv/sdc/OperationDefinition-QuestionnaireResponse-extract.html) - extract data from QuestionnaireResponse to other FHIR resources
-[FHIR](https://hl7.org/fhir/uv/sdc/OperationDefinition-QuestionnaireResponse-extract.html)
-* [$expand](fhir-sdc-api#valueset-expansion-usdexpand) - create a simple collection of codes suitable for use for data entry or validation. [FHIR](https://www.hl7.org/fhir/valueset-operation-expand.html)
+* [$populate](fhir-sdc-api.md#populate-questionnaire-usdpopulate)  - filling out a form with existing data ([FHIR](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populate.html))
+* [$populatelink](fhir-sdc-api.md#populate-questionnaire-and-generate-link-usdpopulatelink) - filling out a form with existing data, and return signed link to it ([FHIR](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populatelink.html))
+* [$extract](fhir-sdc-api.md#questionnaire-response-extract-to-resources-usdextract) - extract data from QuestionnaireResponse to other FHIR resources ([FHIR](https://hl7.org/fhir/uv/sdc/OperationDefinition-QuestionnaireResponse-extract.html))
+* [$expand](fhir-sdc-api.md#valueset-expansion-usdexpand) - create a simple collection of codes suitable for use for data entry or validation. ([FHIR](https://www.hl7.org/fhir/valueset-operation-expand.html))
 
 
 
@@ -413,7 +411,7 @@ issue:
 
 {% endtabs %}
 
-# Questionnaire response extract to resources - $extract <a href="#root" id="root"></a>
+# Questionnaire response extract to resources - $extract
 
 The [extract](http://hl7.org/fhir/uv/sdc/OperationDefinition/QuestionnaireResponse-extract) operation takes a completed `QuestionnaireResponse` and extracts it's data to `Bundle` of resources by using metadata embedded in the `Questionnaire` the `QuestionnaireResponse` is based on. The extracted resources might include `Observations`, MedicationStatements and other standard FHIR resources which can then be shared and manipulated.
 
