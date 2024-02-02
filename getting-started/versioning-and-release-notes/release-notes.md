@@ -10,15 +10,15 @@
   * Added Access policy matcho engine [$one-of operator](../../modules-1/security-and-access-control/security/evaluation-engines.md#matcho) to fetch the list of the available values from the request context
   * Supported history endpoint within [the Organisation-based access control](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#history)
   * Documented [GitHub as an external identity provider](https://github.com/HealthSamurai/sansara/issues/4016)
+  * Published [guide on how to use self-signed SSL certificates](https://docs.aidbox.app/getting-started/run-aidbox-in-kubernetes/self-signed-ssl-certificates?q=) when deploying Aidbox
   * Fixed the code\_verifier to behave according to the RFC
+  * Fixed minor issue in Multibox that led to many “do nothing” messages in the logs
 * [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
   * Improved the C-CDA to FHIR conversion performance by 20%
   * Administered Medications mapping to/from MedicationAdministration FHIR resource
 * DevOps
-  * Released AidboxDB 16.1. Updated [the list of the extensions](../../storage-1/aidboxdb-image/#extensions) for Postgres
-  * Added guides for AidboxDB 16:
-    * Documented 'How to make Aidbox Docker image work with [self-signed SSL certificates](../run-aidbox-in-kubernetes/self-signed-ssl-certificates.md)'
-    * Documented [the migration steps ](../../storage-1/aidboxdb-image/migration-to-aidboxdb-16.1-handling-the-removal-of-jsonknife-extension.md)from the previous PG versions
+  * Documented 'How to make Aidbox Docker image work with [self-signed SSL certificates](../run-aidbox-in-kubernetes/self-signed-ssl-certificates.md)'
+  * Released AidboxDB 16.1. Updated [the list of the extensions](../../storage-1/aidboxdb-image/#extensions) for Postgres. Documented [the migration steps ](../../storage-1/aidboxdb-image/migration-to-aidboxdb-16.1-handling-the-removal-of-jsonknife-extension.md)from the previous PG versions
   * Removed apk-tools from our Docker images
 * [Aidbox Forms](../../modules-1/aidbox-forms.md)
   * Questionnaire-based forms updates:
@@ -28,12 +28,15 @@
       * Added scores for questions with coding
       * Added support for loading Questionnaire from file/text
       * Added tips for FHIRPath usage
-      * Complete themes support
+      * Completed themes support
     * API
       * Added Configuration to disable FHIR SDC operations
-      * Extend [$populate](../../reference/aidbox-forms/fhir-sdc-api.md#populate-questionnaire-usdpopulate) operation to support Questionnaire root properties
+      * Extended [$populate](../../reference/aidbox-forms/fhir-sdc-api.md#populate-questionnaire-usdpopulate) operation to support Questionnaire root properties
       * Added operation to generating signed links for form filling
-      * Add $populatelink FHIR SDC operation
+      * Added [$populatelink](https://docs.aidbox.app/reference/aidbox-forms/fhir-sdc-api#populate-questionnaire-usdpopulatelink) FHIR SDC operation
+    * Aidbox DSL based forms updates
+      * Fixed issues with concurrent save/submit UI operations
+      * Fixed conversion of QuestionnaireResponse with included scores
 
 ## November 2023 _`stable,2311`_
 
