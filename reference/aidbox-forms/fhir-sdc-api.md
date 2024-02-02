@@ -531,7 +531,9 @@ issue:
 {% endtabs %}
 
 
-# ValueSet Expansion - $expand Value Sets are used to define possible coded answer choices in a questionnaire.
+# ValueSet Expansion - $expand 
+
+Value Sets are used to define possible coded answer choices in a questionnaire.
 
 The use of standardized codes is useful when data needs to be populated into the questionnaire or extracted from the questionnaire for other uses.
 
