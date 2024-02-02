@@ -20,19 +20,15 @@ Aidbox Forms module supports FHIR SDC operations:
 The [populate](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populate.html) operation generates a [QuestionnaireResponse](https://www.hl7.org/fhir/questionnaireresponse.html) based on a specific [Questionnaire](https://www.hl7.org/fhir/questionnaire.html), 
 filling in answers to questions where possible based on information provided as part of the operation or already known by the server about the subject of the Questionnaire.
 
-> This implementation allows the [Observation based](https://hl7.org/fhir/uv/sdc/populate.html#observation-based-population)
-and [Expression based](https://hl7.org/fhir/uv/sdc/populate.html#expression-based-population) populations.
+> This implementation supports the [Observation based](https://hl7.org/fhir/uv/sdc/populate.html#observation-based-population)
+and [Expression based](https://hl7.org/fhir/uv/sdc/populate.html#expression-based-population) population methods.
 
 
 ## URLs
 
-Populate Questionnaire provided via parameters
-
 ```
 POST [base]/Questionnaire/$populate
 ```
-
-Populate Questionnaire referenced via id
 
 ```
 POST [base]/Questionnaire/[id]/$populate
@@ -166,10 +162,16 @@ FHIR SDC launchContext extension [enumerates](http://hl7.org/fhir/uv/sdc/STU3/Co
 | user      | User User in context at launch time (FHIR Device, PractitionerRole, Practitioner, RelatedPerson, Organization or Patient resource) |
 | study     | ResearchStudy in context at launch time (FHIR ResearchStudy resource)                                                              |
 
-Additionnaly Aidbox expands this list with parameters that mirrors [QuestionnaireResponse](https://hl7.org/fhir/R4/questionnaireresponse.html) root properties, 
-they are:
 
-> WARN: This is non FHIR SDC compliant behavior!
+Additionnaly Aidbox expands this list with parameters that mirrors
+[QuestionnaireResponse](https://hl7.org/fhir/R4/questionnaireresponse.html) root properties.
+
+{% hint style="warning" %}
+WARN: This is non FHIR SDC compliant behavior!
+
+Paramerters passed directly to [QuestionnaireResponse](https://hl7.org/fhir/R4/questionnaireresponse.html) 
+root properties and should not be used in populate expressions.
+{% endhint %}
 
 
 | Code       | Type                                                                                                                                        |
@@ -181,7 +183,6 @@ they are:
 | author     | [Reference<Device, Practitioner, PractitionerRole, Patient, RelatedPerson, Organization>](http://hl7.org/fhir/R4/references.html#Reference) |
 | source     | [Reference<Device, Organization, Patient, Practitioner, PractitionerRole, RelatedPerson>](http://hl7.org/fhir/R4/references.html#Reference) |
 
-These paramerters passed directly to [QuestionnaireResponse](https://hl7.org/fhir/R4/questionnaireresponse.html) root properties and should not be used in populate expressions.
 
 
 Example: 
@@ -324,13 +325,9 @@ and generates link to WEB-application, which will be used to fill out the form.
 
 ## URLs
 
-Populate Questionnaire provided via parameters
-
 ```
 POST [base]/Questionnaire/$populatelink
 ```
-
-Populate Questionnaire referenced via id
 
 ```
 POST [base]/Questionnaire/[id]/$populatelink
@@ -416,22 +413,146 @@ issue:
 
 # Questionnaire response extract to resources - $extract <a href="#root" id="root"></a>
 
-The  `extract` operation takes a completed QuestionnaireResponse and converts it to a FHIR resource or Bundle of resources by using metadata embedded in the Questionnaire the QuestionnaireResponse is based on. The extracted resources might include Observations, MedicationStatements and other standard FHIR resources which can then be shared and manipulated.&#x20;
+The [extract](http://hl7.org/fhir/uv/sdc/OperationDefinition/QuestionnaireResponse-extract) operation takes a completed `QuestionnaireResponse` and extracts it's data to `Bundle` of resources by using metadata embedded in the `Questionnaire` the `QuestionnaireResponse` is based on. The extracted resources might include `Observations`, MedicationStatements and other standard FHIR resources which can then be shared and manipulated.
 
-{% hint style="warning" %}
-When invoking the $extract operation, care should be taken that the submitted QuestionnaireResponse is itself valid. If not, the extract operation could fail (with appropriate OperationOutcomes) or, more problematic, might succeed but provide incorrect output.
-{% endhint %}
-
-This implementation allows the [Observation based](https://hl7.org/fhir/uv/sdc/extraction.html#observation-based-extraction) extraction.
+Aidbox supports only the [Observation based](https://hl7.org/fhir/uv/sdc/extraction.html#observation-based-extraction) extraction method.
 
 
+## URLs
 
-# ValueSet Expansion - $expand
+```http
+URL: [base]/QuestionnaireResponse/$extract
+```
 
-Value Sets are used to define possible coded answer choices in a questionnaire.
+```
+URL: [base]/QuestionnaireResponse/[id]/$extract
+```
+
+## Parameters
+
+| Parameter              | Cardinality | Type                                             | Status      |
+|------------------------|-------------|--------------------------------------------------|-------------|
+| questionnaire-response | 0..1        | [Resourse](http://hl7.org/fhir/R4/resource.html) | `supported` | 
+
+> Parameters are specified via FHIR [Parameters](https://www.hl7.org/fhir/parameters.html#parameters) type.
+
+Example
+
+```
+resourceType: Parameters
+parameter:
+- name: questionnaire-response
+  resource:
+    id: qr-1
+    resourceType: QuestionnaireResponse
+    ...
+```
+
+### questionnaire-response
+
+The QuestionnaireResponse to extract data from. Used when the operation is invoked at the 'type' level.
+
+```yaml
+name: questionnaire-response
+resource:
+  id: qr-1
+  resourceType: QuestionnaireResponse
+```
+
+## Response
+
+- in failure case - response is specified as [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) object.
+- in success case - response is specified as [Parameters](https://www.hl7.org/fhir/parameters.html#parameters) object.
+
+
+| Parameter | Cardinality | Type                                                              | Description                                                                       |
+|-----------|-------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| return    | 1..1        | [Resourse](http://hl7.org/fhir/R4/resource.html)                  | FHIR Bundle with extracted resources                                              |
+| issues    | 0..1        | [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) | A list of hints and warnings about problems encountered while extracting the data |
+
+## Usage Example
+
+{% tabs %}
+{% tab title="Request" %}
+```http
+POST [base]/QuestionnaireResponse/$extract
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- name: questionnaire-response
+  resource:
+    id: pt-1
+    resourceType: QuestionnaireResponse
+    questionnaire: https://forms.aidbox.io/vitals
+    item:
+      - linkId: temperature
+        valueDecimal: 36.6
+    ...
+```
+{% endtab %}
+
+{% tab title="Success Response" %}
+
+HTTP status: 200
+
+```yaml
+return:
+  resourceType: Bundle
+  type: transaction
+  entry:
+  - resource:
+      resourceType: Observation
+      status: final
+      code:
+        coding:
+        - code: body-temperature
+          system: loinc
+      subject:
+        id: pt-1
+        resourceType: Patient
+      value:
+        Quantity:
+          unit: [c]
+          value: 36.6
+    request: {method: POST,  url: /Observation}
+
+```
+{% endtab %}
+
+{% tab title="Failure Response" %}
+
+HTTP status: 422
+
+```yaml
+resourceType: OperationOutcome
+text:
+  status: generated
+  div: Parameters are invalid
+issue:
+- severity: error
+  code: invalid
+  expression:
+  - parameter.0.resource.given
+  diagnostics: unknown key :given
+
+```
+{% endtab %}
+
+{% endtabs %}
+
+
+
+
+# ValueSet Expansion - $expand Value Sets are used to define possible coded answer choices in a questionnaire.
 
 The use of standardized codes is useful when data needs to be populated into the questionnaire or extracted from the questionnaire for other uses.
 
 The `expand` operation expand given ValueSet in to set of concepts.
 
 This operation is described in detail [here](../../terminology/valueset/value-set-expansion.md).
+
+## URLs
+## Parameters
+## Response
+## Usage Example
