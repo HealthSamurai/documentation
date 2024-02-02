@@ -432,9 +432,9 @@ URL: [base]/QuestionnaireResponse/[id]/$extract
 
 ## Parameters
 
-| Parameter              | Cardinality | Type                                             | Status      |
-|------------------------|-------------|--------------------------------------------------|-------------|
-| questionnaire-response | 0..1        | [Resourse](http://hl7.org/fhir/R4/resource.html) | `supported` | 
+| Parameter              | Cardinality | Type                                             | Description                                     |
+|------------------------|-------------|--------------------------------------------------|-------------------------------------------------|
+| questionnaire-response | 0..1        | [Resourse](http://hl7.org/fhir/R4/resource.html) | The QuestionnaireResponse to extract data from. |
 
 > Parameters are specified via FHIR [Parameters](https://www.hl7.org/fhir/parameters.html#parameters) type.
 
@@ -448,17 +448,6 @@ parameter:
     id: qr-1
     resourceType: QuestionnaireResponse
     ...
-```
-
-### questionnaire-response
-
-The QuestionnaireResponse to extract data from. Used when the operation is invoked at the 'type' level.
-
-```yaml
-name: questionnaire-response
-resource:
-  id: qr-1
-  resourceType: QuestionnaireResponse
 ```
 
 ## Response
