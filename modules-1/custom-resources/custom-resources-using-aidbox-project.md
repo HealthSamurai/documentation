@@ -250,3 +250,61 @@ In this example, the OurType schema will be used to validate OurType resource, r
 
 </details>
 
+<details>
+
+<summary>Extending USCore patient</summary>
+
+```
+{ns main
+ import #{aidbox.index.v1
+          aidbox.search-parameter.v1
+          aidbox.search-parameter.draft
+          aidbox
+          aidbox.repository.v1
+          hl7-fhir-us-core.us-core-patient
+          hl7-fhir-r4-core.string
+          zen.fhir
+          awf.task
+          awf.executor}
+
+
+ patient
+ {:zen/tags #{zen/schema zen.fhir/nested-schema}
+  :type zen/map
+  :zen.fhir/type "Patient"
+  :zen.fhir/version "0.5.11"
+  :confirms #{hl7-fhir-us-core.us-core-patient/schema}
+  :keys {:name {:type zen/vector
+                :every {:type zen/map
+                        :keys {:otherName
+                               {:confirms #{hl7-fhir-r4-core.string/schema}
+                                :fhir/extensionUri "http://someurl/r4/StructureDefinition/Patient-name-otherName"}}}}
+         :someField {:confirms #{hl7-fhir-r4-core.string/schema}
+                     :fhir/extensionUri "http://someurl/r4/StructureDefinition/Patient-someField"}}}
+
+ patient-repository
+ {:zen/tags #{aidbox.repository.v1/repository}
+  :resourceType "Patient"
+  :base-profile patient
+  :indexes #{}
+  :extra-parameter-sources :all
+  :search-parameters #{my-parameter}}
+
+ repositories
+ {:zen/tags #{aidbox/service}
+  :engine aidbox.repository.v1/engine
+  :repositories #{patient-repository}
+  :load-default true}
+
+ box {:zen/tags #{aidbox/system}
+      :services
+      {:repositories repositories
+       :task-service awf.task/task-service
+       :task-executor aidbox/aidbox-long-pool-executor-service
+       :decisions-executor aidbox/aidbox-decisions-pool-executor-service}}}
+```
+
+</details>
+
+
+
