@@ -104,7 +104,7 @@ Update the **.env** file within your configuration project with the Aidbox Licen
 ```ini
 AIDBOX_LICENSE=YOUR_AIDBOX_LICENSE_KEY
 
-PGHOSTPORT=5437
+PGPORT=5437
 PGUSER=postgres
 ...
 ```
