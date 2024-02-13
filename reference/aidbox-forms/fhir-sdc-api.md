@@ -42,7 +42,7 @@ POST [base]/Questionnaire/[id]/$populate
 | [canonical](fhir-sdc-api.md#canonical)               | 0..1        | [uri](http://hl7.org/fhir/R4/datatypes.html#uri)                 | `supported`     |
 | [questionnaire](fhir-sdc-api.md#questionnaire)       | 0..1        | [Questionnaire](http://hl7.org/fhir/R4/questionnaire.html)       | `supported`     |
 | [questionnaireRef](fhir-sdc-api.md#questionnaireref) | 0..1        | [Reference](http://hl7.org/fhir/R4/references.html#Reference)    | `supported`     |
-| [subject](fhir-sdc-api.md#valueset)                  | 1..1        | [Reference](http://hl7.org/fhir/R4/references.html#Reference)    | `supported`     |
+| [subject](fhir-sdc-api.md#subject)                   | 1..1        | [Reference](http://hl7.org/fhir/R4/references.html#Reference)    | `supported`     |
 | [context](fhir-sdc-api.md#context)                   | 0..*        | [Reference](http://hl7.org/fhir/R4/references.html#Reference)    | `supported`     |
 | [context.name](fhir-sdc-api.md#context.name)         | 0..*        | [string](https://www.hl7.org/fhir/datatypes.html#string)         | `supported`     |
 | [context.content](fhir-sdc-api.md#context.content)   | 0..*        | [Reference](http://hl7.org/fhir/R4/references.html#Reference)    | `supported`     |
