@@ -33,7 +33,8 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
                                            (fn [s] (clojure.string/split s (re-pattern "#"))))
                                      (remove
                                       (fn [p]
-                                        (clojure.string/includes? p "terminology-index-db"))
+                                        (or (clojure.string/includes? p "terminology-index-db")
+                                            (clojure.string/includes? p "url-global-index.ndjson.gz")))
                                       (map
                                        (fn [m] (second (clojure.string/split (get m "name") (re-pattern "/"))))
                                        (get
