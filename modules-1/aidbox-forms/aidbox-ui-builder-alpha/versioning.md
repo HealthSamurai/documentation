@@ -34,7 +34,7 @@ There are main rules - which helps you to stay the right way:
 - when form is ready for production use - you should make status = `active`
 - Only small changes (like fixing typos) are allowed in `Questionnaire`s in status `active` and `retired`.
 
-## UI Form Builder support
+## UI Form Builder versioning support
 
 UI Builder gives you an ability to change *version* related properties and helps you to not screw up 
 by warning your when you done something unsafe.
