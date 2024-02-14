@@ -154,13 +154,13 @@ FHIR SDC launchContext extension [enumerates](http://hl7.org/fhir/uv/sdc/STU3/Co
 > Not supported yet
 
 
-| Code      | Definition                                                                                                                         |
-|-----------|------------------------------------------------------------------------------------------------------------------------------------|
-| patient   | Patient Patient in context at launch time (FHIR Patient resource)                                                                  |
-| encounter | Encounter Encounter context at launch time (FHIR Encounter resource)                                                               |
-| location  | Location Location context at launch time (FHIR Location resource)                                                                  |
-| user      | User User in context at launch time (FHIR Device, PractitionerRole, Practitioner, RelatedPerson, Organization or Patient resource) |
-| study     | ResearchStudy in context at launch time (FHIR ResearchStudy resource)                                                              |
+| Code      | Definition                                                                                                                    |
+|-----------|-------------------------------------------------------------------------------------------------------------------------------|
+| patient   | Patient Patient in context at launch time (FHIR Patient resource)                                                             |
+| encounter | Encounter context at launch time (FHIR Encounter resource)                                                                    |
+| location  | Location context at launch time (FHIR Location resource)                                                                      |
+| user      | User in context at launch time (FHIR Device, PractitionerRole, Practitioner, RelatedPerson, Organization or Patient resource) |
+| study     | ResearchStudy in context at launch time (FHIR ResearchStudy resource)                                                         |
 
 
 Additionnaly Aidbox expands this list with parameters that mirrors
