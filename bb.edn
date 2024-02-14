@@ -33,11 +33,13 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
                                            (fn [s] (clojure.string/split s (re-pattern "#"))))
                                      (remove
                                       (fn [p]
-                                        (= p "terminology-index-db/"))
-                                      (get
-                                       (->> (slurp "https://storage.googleapis.com/storage/v1/b/fhir-schemas/o?delimiter=/")
-                                            (cheshire.core/parse-string))
-                                       "prefixes")))
+                                        (clojure.string/includes? p "terminology-index-db"))
+                                      (map
+                                       (fn [m] (second (clojure.string/split (get m "name") (re-pattern "/"))))
+                                       (get
+                                        (->> (slurp "https://storage.googleapis.com/storage/v1/b/fhir-schema-registry/o?maxResults=10000&delimiter=/1.0.0") 
+                                             (cheshire.core/parse-string)) 
+                                        "items"))))
                            (fn [versions]
                              (clojure.string/join ", "
                                                   (mapv (comp second (fn [s] (clojure.string/split s (re-pattern "#|/"))))
