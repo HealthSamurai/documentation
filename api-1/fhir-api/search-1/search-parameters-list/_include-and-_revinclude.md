@@ -4,28 +4,46 @@ description: Include associated resources
 
 # \_include, \_revinclude, \_with
 
-### \_include
+## Configuration
+
+Since 2402, Aidbox has a FHIR-compliant behavior for `_include` and `_revinclude` parameters. It is recommended to turn it on.
+
+To toggle on:
+
+```
+BOX_SEARCH_INCLUDE_CONFORMANT=true
+```
+
+Also, there's a way to set the maximum number of iterations for `:iterate` modifier:
+
+<pre><code><strong>BOX_SEARCH_INCLUDE_ITERATE__MAX=5
+</strong></code></pre>
+
+## Differences between FHIR-conformant and Aidbox mode
+
+Due to historical reasons Aidbox treats the `_include` and `_revinclude` parameters slightly differently from the behavior described in the specification (without FHIR-conformant mode on).
+
+1. The `_(rev)include` search parameter without the `:iterate` or `:recurse` modifier should only be applied to the initial ("matched") result. However, in Aidbox mode, it is also applied to the previous \_(rev)include.
+2. The \_(rev)include parameter with the :iterate(:recurse) modifier should be repeatedly applied to the result with included resources. However, in Aidbox mode, it only resolves cyclic references.
+3. In Aidbox mode, it is possible to search without specifying source type: `GET /Patient?_include=general-practitioner`, but in the FHIR-conformant mode it is not possible.&#x20;
+
+## \_include
 
 Syntax for the \_include search parameter:
 
 ```yaml
- _include(:reverse|:iterate|:logical)=(source-type:)search-param:(:target-type)
+ _include(:reverse|:iterate|:logical)=source-type:search-param:(:target-type)
 ```
 
 Here **search-param** is a name of the search parameter with the type `reference` defined for **source-type**.
 
-This query can be interpreted in the following manner. For the **source-type** resources in the result include all **target-type resources,** which are referenced by the **search-param**. If you skip the **source-type,** it will be set to the resource-type you are searching for:
-
-```yaml
-GET /Encounter?_include=subject:Patient 
-=> GET /Encounter?_include=Encounter:subject:Patient
-```
+This query can be interpreted in the following manner. For the **source-type** resources in the result include all **target-type resources,** which are referenced by the **search-param**.
 
 **target-type** is optional for not chained includes and means all referenced resource-types:
 
 ```yaml
-GET /Encounter?_include=subject 
-=> GET /Encounter?_include=subject:*
+GET /Encounter?_include=Encounter:subject 
+=> GET /Encounter?_include=Encounter:subject:*
 ```
 
 {% hint style="warning" %}
@@ -34,83 +52,33 @@ For more explicit interpretation and for performance reason, client must provide
 
 ### **\_include=\***
 
-You can include all resources referenced from the search result using **\*.** This is considered _bad practice_ because it's too implicit. This feature is only implemented for conformance with the FHIR specification. **Please avoid using it!**
+You can include all resources referenced from the search result using **\*.** This is considered _bad practice_ because it's too implicit.&#x20;
 
-{% hint style="danger" %}
-\_include=\* could not be used as part of chained (rev)includes!
-{% endhint %}
+This feature is only implemented for conformance with the FHIR specification.
+
+&#x20;**Please avoid using it!**
 
 ```javascript
 GET /Encounter?_include=*
+GET /Encounter?_include=Encounter:*
 ```
 
-### **\_revinclude**
+## **\_revinclude**
 
 Syntax for **revinclude:**
 
 ```
-_revinclude(:reverse|:iterate|:logical)=(source-type:)search-param(:target-type)
+_revinclude(:reverse|:iterate|:logical)=source-type:search-param(:target-type)
 ```
 
-Interpretation\*\*:\*\* include all **source-type** resources, which refer **target-type** resources by **search-param** in the result set.
-
-### :logical modifier
-
-If you provide `:logical` modifier, Aidbox will include logically referenced resources as well. Logical reference means reference with attribute `type` set to resource-type and `identifier` attribute set to one of identifier of referenced resource. Example:
-
-{% tabs %}
-{% tab title="GET" %}
-```markup
-GET /Encounter?_include:logical=patient
-```
-
-```yaml
-GET /Encounter?_with=patient:logical
-```
-
-```yaml
-GET /Patient?_revinclude:logical=Encounter:patient:Patient
-```
-
-```yaml
-GET /Patient?_with=Encounter.patient:logical
-```
-{% endtab %}
-
-{% tab title="PUT Patient" %}
-```yaml
-PUT /Patient
-
-resourceType: Patient
-id: pat-123
-identifier:
-- {system: 'ssn', value: '78787878'}
-```
-{% endtab %}
-
-{% tab title="PUT Encounter" %}
-```yaml
-PUT /Encounter
-
-resourceType: Encounter
-id: enc-123
-subject: 
-  type: Patient
-  identifier: {system: 'ssn', value: '78787878'}
-class: {code: 'IMP', 
-  system: 'http://terminology.hl7.org/CodeSystem/v3-ActCode', 
-  display: 'inpatient encounter'}
-status: finished
-```
-{% endtab %}
-{% endtabs %}
+Interpretation: include all **source-type** resources, which refer **target-type** resources by **search-param** in the result set.
 
 ### Chained (rev)includes
 
-Client can chain (rev)includes to load next level of references. (Rev)includes should go in a proper loading order. According to the FHIR specification, for chained includes a client must specify the `:iterate` modifier. However, in Aidbox this modifier is **optional** (it's better to skip it).
+Client can chain (rev)includes to load next level of references. (Rev)includes should go in a proper loading order. According to the FHIR specification, for chained includes a client must specify the `:iterate` modifier. However, in Aidbox mode this modifier is **optional**.
 
 {% tabs %}
-{% tab title="GET" %}
+{% tab title="GET (Aidbox mode)" %}
 ```yaml
 GET /RequestGroup?_include=encounter\
   &_include=patient:Patient\
@@ -203,12 +171,6 @@ text: {div: '<div xmlns="http://www.w3.org/1999/xhtml">Example RequestGroup illu
 Client must always specify **target-type** and **source-type** for intermediate (rev)includes because this is explicit and allows Aidbox to prepare dependency graph before query!
 {% endhint %}
 
-To save some keystrokes, you can group \_(rev)include params of the same level as a comma separated list:
-
-```yaml
-GET /RequestGroup?_include=encounter,patient:Patient,author:PractitionerRole
-```
-
 {% hint style="info" %}
 Here is the [discussion](https://chat.fhir.org/#narrow/stream/179166-implementers/topic/About.20\_include.3Aiterate) in the FHIR chat about the `:iterate` ambiguity. We appreciate your opinion!
 {% endhint %}
@@ -220,13 +182,13 @@ For self-referencing resources, you can specify the `:recurse` or `:iterate` mod
 {% tabs %}
 {% tab title="GET" %}
 ```yaml
-GET /Observation?_include:recurse=has-member
+GET /Observation?_include:recurse=Observation:has-member
 ```
 {% endtab %}
 
 {% tab title="PUT Obs1" %}
 ```
-put /Observation/bloodgroup
+PUT /Observation/bloodgroup
 
 category:
 - text: Laboratory
@@ -255,7 +217,7 @@ subject: {id: pat-234, resourceType: Patient}
 
 {% tab title="PUT Obs2" %}
 ```
-put /Observation/rhstatus
+PUT /Observation/rhstatus
 
 category:
 - text: Laboratory
@@ -281,7 +243,7 @@ subject: {id: pat-234, resourceType: Patient}
 
 {% tab title="PUT Obs3" %}
 ```
-put /Observation/bgpanel
+PUT /Observation/bgpanel
 
 category:
 - text: Laboratory
@@ -358,22 +320,68 @@ partOf:
 {% endtab %}
 {% endtabs %}
 
+### (rev)include and \_elements
+
+You can use the extended [elements](\_elements.md) parameter to control elements of (rev)included resources by prefixing desired elements with the resource type:
+
 ```yaml
-# get all children
-GET /Organization?_revinclude:iterate=Organization:partof:Organization
+GET /Encounter?_include=patient&_elements=id,status,Patient.name,Patient.birthDate
+```
+
+## :logical modifier
+
+If you provide `:logical` modifier, Aidbox will include logically referenced resources as well. Logical reference means reference with attribute `type` set to resource-type and `identifier` attribute set to one of identifier of referenced resource.&#x20;
+
+Example:
+
+{% tabs %}
+{% tab title="GET" %}
+```markup
+GET /Encounter?_include:logical=Encounter:patient
 ```
 
 ```yaml
-# get all parents
-GET /Organization?_include:recurse=partof
+GET /Encounter?_with=patient:logical
 ```
 
 ```yaml
-# get all parents
-GET /Organization?_include:iterate=Organization:partof:Organization
+GET /Patient?_revinclude:logical=Encounter:patient:Patient
 ```
 
-### Using the \_with parameter
+```yaml
+GET /Patient?_with=Encounter.patient:logical
+```
+{% endtab %}
+
+{% tab title="PUT Patient" %}
+```yaml
+PUT /Patient
+
+resourceType: Patient
+id: pat-123
+identifier:
+- {system: 'ssn', value: '78787878'}
+```
+{% endtab %}
+
+{% tab title="PUT Encounter" %}
+```yaml
+PUT /Encounter
+
+resourceType: Encounter
+id: enc-123
+subject: 
+  type: Patient
+  identifier: {system: 'ssn', value: '78787878'}
+class: {code: 'IMP', 
+  system: 'http://terminology.hl7.org/CodeSystem/v3-ActCode', 
+  display: 'inpatient encounter'}
+status: finished
+```
+{% endtab %}
+{% endtabs %}
+
+## Using the \_with parameter
 
 FHIR (rev)include syntax is non-DRY and sometimes confusing. We introduced the `_with` parameter that is a simple (like GraphQL) DSL to describe includes in a more compact way.
 
@@ -434,12 +442,4 @@ RequestGroup?_include=patient,author
  ---
  Organization?partof:recur{Organization}
  => Organization?_include:recurse=partof:Organization
-```
-
-### (rev)include and \_elements
-
-You can use the extended [elements](\_elements.md) parameter to control elements of (rev)included resources by prefixing desired elements with the resource type:
-
-```yaml
-GET /Encounter?_include=patient&_elements=id,status,Patient.name,Patient.birthDate
 ```
