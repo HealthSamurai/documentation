@@ -337,6 +337,7 @@
     * [How to customize conversion rules](modules-1/integration-toolkit/ccda-converter/ccda-fhir-dsl.md)
   * [HL7 v2 integration with Aidbox Project](modules-1/integration-toolkit/hl7-v2-integration-with-aidbox-project.md)
   * [HL7 v2 Integration](modules-1/integration-toolkit/hl7-v2-integration.md)
+  * [X12 message converter](modules-1/integration-toolkit/x12-message-converter.md)
 * [Custom Resources](modules-1/custom-resources/README.md)
   * [$metadata](modules-1/custom-resources/custom-metadata.md)
   * [Custom resources using Aidbox Project](modules-1/custom-resources/custom-resources-using-aidbox-project.md)
