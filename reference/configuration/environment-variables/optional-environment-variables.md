@@ -302,6 +302,25 @@ BOX_SEARCH_FHIR__COMPARISONS=true
 
 Use FHIR compliant [date search](https://www.hl7.org/fhir/search.html#prefix).
 
+### BOX\_SEARCH\_INCLUDE\_CONFORMANT
+
+```
+BOX_SEARCH_INCLUDE_CONFORMANT=true
+```
+
+When set to true, the behavior of \_include and \_revinclude becomes FHIR conformant:
+
+1. Without the :recur or :iterate modifier \_(rev)include is only applied to the initial result.
+2. With the :recur or :iterate modifier \_(rev)include is repeatedly applied to the resources found in the previous step.
+
+### BOX\_SEARCH\_INCLUDE\_ITERATE\_\_MAX
+
+```
+BOX_SEARCH_INCLUDE_ITERATE__MAX=10
+```
+
+Maximum number of iterations for \_include and \_revinclude with :recur or :iterate modifier. The default value is 10. If set to 0, queries for \_(rev)include will not be performed. If set to a negative value, no limit will be applied.
+
 ### BOX\_SEARCH\_RESOURCE\_\_COMPAT
 
 ```yaml
