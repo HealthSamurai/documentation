@@ -58,9 +58,10 @@ Example
 resourceType: Parameters
 parameter:
 - name: subject
-  valueReference:
-    id: pt-1
-    resourceType: Patient
+  value:
+    Reference:
+      id: pt-1
+      resourceType: Patient
 ```
 
 ### identifier
@@ -69,9 +70,10 @@ A logical questionnaire identifier (i.e. Questionnaire.identifier). The server m
 
 ```yaml
 name: identifier
-valueIdentifier:
-  system: 'forms.aidbox'
-  value: 'vitals'
+value:
+  Identifier:
+    system: 'forms.aidbox'
+    value: 'vitals'
 ```
 
 ### canonical
@@ -81,7 +83,8 @@ The canonical identifier for the questionnaire (optionally version-specific).
 
 ```yaml
 name: canonical
-valueCanonical: http://forms.aidbox.io/Questionnaire/vitals
+value:
+  Canonical: http://forms.aidbox.io/Questionnaire/vitals
 ```
 
 ### questionnaire
@@ -104,9 +107,10 @@ The Questionnaire is provided as a resource reference. Servers may choose not to
 
 ```yaml
 name: questionnaireRef
-valueReference:
-  resourceType: Questionnaire
-  id: new-form
+value:
+  Reference:
+    resourceType: Questionnaire
+    id: new-form
 ```
 
 ### subject
@@ -116,9 +120,10 @@ The resource that is to be the QuestionnaireResponse.subject. The QuestionnaireR
 
 ```yaml
 name: subject
-valueReference:
-  id: pt-1
-  resourceType: Patient
+value:
+  Reference:
+    id: pt-1
+    resourceType: Patient
 ```
 
 ### local
@@ -126,7 +131,8 @@ If specified and set to true (and the server is capable), the server should use 
 
 ```
 name: local
-valueBoolean: true
+value:
+  Boolean: true
 ```
 
 ### context
@@ -142,11 +148,13 @@ They should correspond launchContext parameter definitions.
 name: context
 part:
 - name: name
-  valueString: encounter
+  value:
+    String: encounter
 - name: content
-  valueReference:
-    resourceType: Encounter
-    id: enc1
+  value:
+    Reference:
+      resourceType: Encounter
+      id: enc1
 ```
 
 FHIR SDC launchContext extension [enumerates](http://hl7.org/fhir/uv/sdc/STU3/CodeSystem-launchContext.html) possible context variables, they are:
@@ -189,7 +197,8 @@ Example:
 
 ```yaml
 name: name
-valueReference: 
+value:
+  Reference: 
     id: sr1
     resourceType: ServiceRequest
 ```
@@ -201,7 +210,8 @@ The name of the launchContext or root Questionnaire variable the passed content 
 
 ```yaml
 name: name
-valueString: encounter
+value:
+  String: encounter
 ```
 
 ### context.content
@@ -210,9 +220,10 @@ The actual resource (or resources) to use as the value of the launchContext or v
 
 ```yaml 
 name: content
-valueReference:
-  resourceType: Encounter
-  id: enc1
+value:
+  Reference:
+    resourceType: Encounter
+    id: enc1
 ```
 
 Or 
@@ -255,17 +266,20 @@ content-type: text/yaml
 resourceType: Parameters
 parameter:
 - name: subject
-  valueReference:
-    id: pt-1
-    resourceType: Patient
+  value:
+    Reference:
+      id: pt-1
+      resourceType: Patient
 - name: context
   part:
   - name: name
-    valueString: encounter
+    value:
+      String: encounter
   - name: content
-    valueReference:
-      resourceType: Encounter
-      id: enc1
+    value:
+      Reference:
+        resourceType: Encounter
+        id: enc1
 ```
 {% endtab %}
 
@@ -363,17 +377,20 @@ content-type: text/yaml
 resourceType: Parameters
 parameter:
 - name: subject
-  valueReference:
-    id: pt-1
-    resourceType: Patient
+  value:
+    Reference:
+      id: pt-1
+      resourceType: Patient
 - name: context
   part:
   - name: name
-    valueString: encounter
+    value:
+      String: encounter
   - name: content
-    valueReference:
-      resourceType: Encounter
-      id: enc1
+    value:
+      Reference:
+        resourceType: Encounter
+        id: enc-1
 ```
 {% endtab %}
 
@@ -385,7 +402,8 @@ HTTP status: 200
 resourceType: Parameters
 parameter:
 - name: link
-  valueUri: http://forms.aidbox.io/ui/sdc#/questionnaire-response/12c1178c-70a9-4e02-a53d-65b13373926e?token=eyJhbGciOiJIUzI
+  value:
+    Uri: http://forms.aidbox.io/ui/sdc#/questionnaire-response/12c1178c-70a9-4e02-a53d-65b13373926e?token=eyJhbGciOiJIUzI
 
 ```
 {% endtab %}
@@ -476,7 +494,8 @@ parameter:
     questionnaire: https://forms.aidbox.io/vitals
     item:
       - linkId: temperature
-        valueDecimal: 36.6
+        value:
+          Decimal: 36.6
     ...
 ```
 {% endtab %}
