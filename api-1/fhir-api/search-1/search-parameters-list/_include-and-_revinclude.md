@@ -19,7 +19,7 @@ Also, there's a way to set the maximum number of iterations for `:iterate` modif
 <pre><code><strong>BOX_SEARCH_INCLUDE_ITERATE__MAX=5
 </strong></code></pre>
 
-## Differences between FHIR-conformant and Aidbox mode
+### Differences between FHIR-conformant and Aidbox mode
 
 Due to historical reasons Aidbox treats the `_include` and `_revinclude` parameters slightly differently from the behavior described in the specification (without FHIR-conformant mode on).
 
