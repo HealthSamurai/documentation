@@ -227,7 +227,7 @@ Content-Location:  /v2/$import/synthea
 
 ### Parameters
 
-<table><thead><tr><th width="226">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code></td><td>Identifier of the import.<br>If you don't provide this, the id will be auto-generated. You can check it on <code>Content-Location</code> header in the response</td></tr><tr><td><code>contentEncoding</code></td><td>Supports <code>gzip</code> or <code>plain</code> (non-gzipped .ndjson files)</td></tr><tr><td><code>inputs</code> (required)</td><td><p>Resources to import</p><ul><li><code>url</code> - URL from which load resources</li><li><code>resourceType</code> - Resource type to be loaded</li></ul></td></tr><tr><td><code>update</code></td><td>Update history for updated resources (false by default)</td></tr></tbody></table>
+<table><thead><tr><th width="226">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code></td><td>Identifier of the import.<br>If you don't provide this, the id will be auto-generated. You can check it on <code>Content-Location</code> header in the response</td></tr><tr><td><code>contentEncoding</code></td><td>Supports <code>gzip</code> or <code>plain</code> (non-gzipped .ndjson files)</td></tr><tr><td><code>inputs</code> (required)</td><td><p>Resources to import</p><ul><li><code>url</code> - URL from which load resources</li><li><code>resourceType</code> - Resource type to be loaded</li></ul></td></tr><tr><td><code>update</code></td><td>Update history for updated resources (false by default)</td></tr><tr><td><code>allowedRetryCount</code></td><td>Set the maximum number of import retries for each input (2 by default)</td></tr></tbody></table>
 
 To check the status of the import make a GET request to `/v2/$import/<id>`:
 
