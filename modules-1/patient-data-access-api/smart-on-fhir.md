@@ -134,7 +134,7 @@ Use Aidbox UI Rest Console to create AccessPoliciy resources.
   and:
   - engine: matcho
     matcho:
-      uri: /patient/fhir
+      uri: '#/patient/fhir/.+'
       client:
         type: smart-app
   - engine: smart-on-fhir
