@@ -64,12 +64,13 @@ AIDBOX_BASE_URL=YOUR_NGROK_FORWARDING_DOMAIN_NAME
 
 To enable hierarchical access control (multi-tenancy on Organization resources) add necessary imports to the `zrc/main.edn` file.
 
-1. Add `aidbox.auth` and `aidbox.patient-api.v1` to the import section.
+1. Add `aidbox.auth` , `aidbox.oauth2` and  `aidbox.patient-api.v1` to the import section.
 2. Add `grant-lookup-method` definition
 
 ```
 {ns main
  import #{aidbox
+          aidbox.auth           ;; import auth
           aidbox.oauth2         ;; import oauth2
           aidbox.patient-api.v1 ;; import Patient API
           config}

@@ -212,7 +212,7 @@
   * [Profiling with AidboxProfile](profiling-and-validation/profiling-with-aidboxprofile.md)
   * [$json-schema](core-modules/usdjson-schema.md)
 * [Aidbox terminology module](modules-1/terminology/README.md)
-  * [🏗 FHIR Terminology Repository](terminology/fhir-terminology-repository/README.md)
+  * [🏗️ FHIR Terminology Repository](terminology/fhir-terminology-repository/README.md)
     * [FTR Specification](terminology/fhir-terminology-repository/ftr-specification.md)
     * [Create an FTR instance](terminology/fhir-terminology-repository/creating-aidbox-project-with-ftr/README.md)
       * [FTR from CSV](terminology/fhir-terminology-repository/creating-aidbox-project-with-ftr/ftr-from-csv.md)
