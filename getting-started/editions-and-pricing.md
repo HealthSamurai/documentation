@@ -1,5 +1,5 @@
 ---
-description: This page covers types of Aidbox licenses and describes Aidbox Support tiers.
+description: This page covers the types of Aidbox licenses and describes Aidbox Support tiers.
 ---
 
 # Licensing and Support
@@ -16,15 +16,15 @@ To start using Aidbox visit the [Aidbox user portal](https://aidbox.app/), creat
 
 ### Standard license
 
-A standard license allows running Aidbox locally or in Aidbox Sandbox for 14 days (trial) and then can be extended by the Health Samurai team for production usage with PHI data.&#x20;
+A standard license allows running Aidbox locally or in Aidbox Sandbox for 14 days (trial) and then can be extended by the Health Samurai team for production usage with PHI data.
 
 This license can be upgraded for production use with PHI data. Please [contact us](../contact-us.md) for more details.
 
 ### Development license
 
-After you **get a contract for a standard license or any support package** you can get additional licenses for development and testing. A development license allows you to store not more than 2 GB of data in your database.
+After you've **got a contract for a standard license or any of our support packages**, you can get additional licenses for development and testing. A development license allows you to store up to 2 GiB of data in the database.
 
-When you reach your database size limit, you’ll receive 3 types of messages - warning, error message, and blocking message:
+Depending on how close you're to reaching the development license's database size limit, you’ll receive one of the following messages:
 
 {% tabs %}
 {% tab title="Warning" %}
