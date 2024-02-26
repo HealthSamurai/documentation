@@ -707,13 +707,13 @@ params:
 
 Launch form with given launch, prepoluate data, and return enriched with metadata layout.
 
-| Param         | Description                               | Type    | required? |
-| ------------- | ----------------------------------------- | ------- | --------- |
-| form          | Form Symbol name                          | String  | yes       |
-| dry-run       | Run without saving document in db         | boolean | no        |
-| unit-system   | Preffered unit system (default: imperial) | String  | no        |
-| rules-in-lisp | Return rules as Lisp or AST               | boolean | no        |
-| params        | Params to launch-context                  | map     | no        |
+| Param         | Description                               | Type                | required? |
+|---------------|-------------------------------------------|---------------------|-----------|
+| form          | Form Symbol name                          | String              | yes       |
+| dry-run       | Run without saving document in db         | boolean             | no        |
+| unit-system   | Preffered unit system (default: imperial) | `metric`/`imperial` | no        |
+| rules-in-lisp | Return rules as Lisp or AST               | boolean             | no        |
+| params        | Params to launch-context                  | map                 | no        |
 
 ```
 POST /rpc?
