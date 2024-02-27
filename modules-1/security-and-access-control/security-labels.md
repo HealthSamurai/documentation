@@ -20,13 +20,13 @@ There are two ways of the security labels appear to the request context:
 1. JWT’s `scope` claim
 2. Aidbox User’s property `securityLabel`
 
-### From the scope claim in JWT <a href="#docs-internal-guid-71b74bb2-7fff-d9f8-f70b-bfac58a2d392" id="docs-internal-guid-71b74bb2-7fff-d9f8-f70b-bfac58a2d392"></a>
+### scope claim in JWT <a href="#docs-internal-guid-71b74bb2-7fff-d9f8-f70b-bfac58a2d392" id="docs-internal-guid-71b74bb2-7fff-d9f8-f70b-bfac58a2d392"></a>
 
 Aidbox parses the `scope` claim and fetches security labels. There can be multiple security labels on the scope.
 
 A security label must be defined using the pattern `system|code`. For example, `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY.`
 
-### From the User.securityLabel
+### User.securityLabel
 
 If the request context is associated with a Aidbox user, Aidbox tries to get security labels from the `User.securityLabel`.&#x20;
 
@@ -41,3 +41,16 @@ securityLabel:
   - system: https://terminology.hl7.org/CodeSystem/v3-Confidentiality
     code: M
 ```
+
+## How access control works
+
+Security Labels access control is done in two steps:
+
+1. Resource-level access control
+2. Resource-element level access (masking)
+
+### Resource-level access control
+
+If the security labels of the request context intersect with the security labels of the resource, the requester can access the resource. Otherwise, no access.
+
+If a resource has no security labels, no one can access the resource.
