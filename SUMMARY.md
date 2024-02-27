@@ -297,6 +297,12 @@
     * [Tokens processing](modules-1/security-and-access-control/readme-1/tokens-processing.md)
     * [Storing authorization details](modules-1/security-and-access-control/readme-1/storing-authorization-details.md)
     * [Discovery API](modules-1/security-and-access-control/readme-1/well-known-endpoint.md)
+  * [Multitenancy](modules-1/security-and-access-control/multitenancy/README.md)
+    * [Organization-based hierarchical access control](modules-1/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md)
+    * [How to enable hierarchical access control](modules-1/security-and-access-control/multitenancy/how-to-enable-hierarchical-access-control.md)
+  * [Patient data access API](modules-1/security-and-access-control/patient-data-access-api/README.md)
+    * [How to enable patient data access API](modules-1/security-and-access-control/patient-data-access-api/how-to-enable-patient-data-access-api.md)
+    * [How to enable SMART on FHIR on Patient Access API](modules-1/security-and-access-control/patient-data-access-api/smart-on-fhir.md)
 * [Integration toolkit](modules-1/integration-toolkit/README.md)
   * [C-CDA / FHIR Converter](modules-1/integration-toolkit/ccda-converter/README.md)
     * [List of supported sections](modules-1/integration-toolkit/ccda-converter/sections/README.md)
@@ -426,12 +432,6 @@
     * [Multitenancy approach](modules-1/smartbox/background-information/multitenancy-approach.md)
     * [What is Tenant](modules-1/smartbox/background-information/what-is-tenant.md)
     * [Email templating](modules-1/smartbox/background-information/email-templating.md)
-* [Multitenancy](modules-1/multitenancy/README.md)
-  * [Organization-based hierarchical access control](modules-1/multitenancy/organization-based-hierarchical-access-control.md)
-  * [How to enable hierarchical access control](modules-1/multitenancy/how-to-enable-hierarchical-access-control.md)
-* [Patient data access API](modules-1/patient-data-access-api/README.md)
-  * [How to enable patient data access API](modules-1/patient-data-access-api/how-to-enable-patient-data-access-api.md)
-  * [How to enable SMART on FHIR on Patient Access API](modules-1/patient-data-access-api/smart-on-fhir.md)
 
 ## FHIR Implementation Guides
 

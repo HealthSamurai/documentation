@@ -8,7 +8,7 @@
   * Added basic FHIR Profiles support to [Python SDK](https://github.com/Aidbox/aidbox-python)&#x20;
 * Security and access control
   * Added Access policy matcho engine [$one-of operator](../../modules-1/security-and-access-control/security/evaluation-engines.md#matcho) to fetch the list of the available values from the request context
-  * Supported history endpoint within [the Organisation-based access control](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#history)
+  * Supported history endpoint within [the Organisation-based access control](../../modules-1/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md#history)
   * Documented [GitHub as an external identity provider](https://github.com/HealthSamurai/sansara/issues/4016)
   * Published [guide on how to use self-signed SSL certificates](https://docs.aidbox.app/getting-started/run-aidbox-in-kubernetes/self-signed-ssl-certificates?q=) when deploying Aidbox
   * Fixed the code\_verifier to behave according to the RFC
@@ -110,7 +110,7 @@
 * Ops
   * Supported [Open Telemetry exporter for logs & metrics](../../modules-1/monitoring/run-aidbox-locally-with-docker.md)
 * Security and access control
-  * Supported [Bundle batch operation in Multitenant API](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#bundle)&#x20;
+  * Supported [Bundle batch operation in Multitenant API](../../modules-1/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md#bundle)&#x20;
   * Added [Audit Log UI ](../../modules-1/audit/setup-audit-logging.md)on Aidbox Console
 * [Aidbox Forms](../../modules-1/aidbox-forms.md)
   * Added autocomplete for literals and keywords
@@ -128,8 +128,8 @@
 * Integrations
   * Supported FHIR R4B and R5 [Topic-based subscriptions](../../modules-1/topic-based-subscriptions/)
 * Security and access control
-  * Added [Capability Statement ](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#metadata)endpoint for multitenant API
-  * Added [bundle transaction](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#bundle) for multitenant API
+  * Added [Capability Statement ](../../modules-1/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md#metadata)endpoint for multitenant API
+  * Added [bundle transaction](../../modules-1/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md#bundle) for multitenant API
   * Added [stdout appender](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox\_stdout\_google\_json) for logs in [Google format](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry)
   * Added access policy usage in UI console on AccessPolicy page
   * Added a neat UI to rotate credentials and download certificates on IdentityProvider view page
@@ -157,7 +157,7 @@
   * Supported C-CDA to work as [a standalone service](../../modules-1/integration-toolkit/ccda-converter/deploy-ccda-fhir.md)
   * Added an option [to inspect intermediate conversion tree](../../modules-1/integration-toolkit/ccda-converter/ccda-fhir-dsl.md#rules-dsl-syntax)
 * Security and access control
-  * Added [shared resources](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md#shared-resource-mode) in the [Organisation-based access control](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md)
+  * Added [shared resources](../../modules-1/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md#shared-resource-mode) in the [Organisation-based access control](../../modules-1/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md)
   * Supported [Azure AD asymmetric authentication](../../modules-1/security-and-access-control/how-to-guides/set-up-external-identity-provider/azure-ad-1.md)
   * Added security dashboard in the Aidbox UI
   * Added a form to create an IdentityProvider resource
@@ -183,8 +183,8 @@
 * [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
   * Supported modifying and creating new mappings using [the Aidbox Configuration Project](../../aidbox-configuration/zen-configuration.md)
 * Security and access control
-  * Added [hierarchical organization-based access control](../../modules-1/multitenancy/organization-based-hierarchical-access-control.md) (multi-tenancy on organization-level resources)
-  * Added [How to enable hierarchical access control](../../modules-1/multitenancy/how-to-enable-hierarchical-access-control.md) tutorial
+  * Added [hierarchical organization-based access control](../../modules-1/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md) (multi-tenancy on organization-level resources)
+  * Added [How to enable hierarchical access control](../../modules-1/security-and-access-control/multitenancy/how-to-enable-hierarchical-access-control.md) tutorial
 * Ops
   * Released new [PostgreSQL Aidboxdb images 15.3, 14.8, 13.11](../../storage-1/aidboxdb-image/)
   * Added PostGis Extension
