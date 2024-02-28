@@ -257,8 +257,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL
 Provider has access to the Patient because there is overlap between the Patient labels and the Provider labels.
 
 Patient is labeled with:
+
 * <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`</mark>
+
 Provider is allowed:
+
 * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`  expands to:
   * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`
   * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|N`
@@ -278,8 +281,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL
 Provider has access to the Encounter because there is overlap between the Encounter labels and the Provider labels.
 
 Encounter is labeled with:
+
 * <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`</mark>
+
 Provider is allowed:
+
 * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`  expands to:
   * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`
   * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|N`
@@ -299,8 +305,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL
 Provider has access to the Observation because there is overlap between the Observation labels and the Provider labels.
 
 Observation is labeled with:
+
 * <mark style="background-color:blue;">``http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY``</mark>
+
 Provider is allowed:
+
 * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`  expands to:
   * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`
   * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|N`
@@ -322,8 +331,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL
 Finance has access to the Patient because there is overlap between the Patient labels and the Finance labels.
 
 Patient is labeled with:
+
 * <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`</mark>
+
 Finance is allowed:
+
 * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M` expands to:
   * <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`</mark>
   * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
@@ -340,8 +352,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL
 Finance has access to the Encounter because there is overlap between the Encounter labels and the Finance labels.
 
 Encounter is labeled with:
+
 * <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`</mark>
+
 Finance is allowed:
+
 * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M` expands to:
   * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
   * <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`</mark>
@@ -358,7 +373,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL
 Finance does not have access to the Observation because there is no overlap between the Observation labels and the Finance labels.
 
 Observation is labeled with:
+
 * `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
+
 Finance is only allowed:
+
 * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
 * `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`
