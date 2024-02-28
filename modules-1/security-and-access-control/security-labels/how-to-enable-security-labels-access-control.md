@@ -8,7 +8,7 @@ description: This guide explains how security label access control can be enable
 
 ### Docker and Docker Compose
 
-You should have Docker and Docker Compose installed before go further. To get it installed follow the [instructions](https://docs.docker.com/engine/install/).&#x20;
+You should have Docker and Docker Compose installed before go further. To get it installed follow the [instructions](https://docs.docker.com/engine/install/).
 
 ### Aidbox license
 
@@ -33,12 +33,12 @@ git clone \
 ```
 
 {% hint style="info" %}
-See more details related the [running Aidbox locally](broken-reference)
+See more details related the [running Aidbox locally](broken-reference/)
 {% endhint %}
 
 ### Apply the license
 
-Populate the `.env` file with the Aidbox License.&#x20;
+Populate the `.env` file with the Aidbox License.
 
 {% code title=".env" %}
 ```ini
@@ -49,7 +49,7 @@ AIDBOX_LICENSE=YOUR_AIDBOX_LICENSE_KEY
 
 ## Enable security labels access control
 
-Populate the `.env` file with the security labels ENVs.&#x20;
+Populate the `.env` file with the security labels ENVs.
 
 {% code title=".env" %}
 ```ini
@@ -227,13 +227,13 @@ subject:
 
 There are two users and two JWTs that we will use:
 
-{% code title="Provider's JWT" %}
+{% code title="Provider" %}
 ```
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2F1dGguZXhhbXBsZS5jb20iLCJzY29wZSI6Imh0dHA6Ly90ZXJtaW5vbG9neS5obDcub3JnL0NvZGVTeXN0ZW0vdjMtQ29uZmlkZW50aWFsaXR5fFIgaHR0cDovL3Rlcm1pbm9sb2d5LmhsNy5vcmcvQ29kZVN5c3RlbS92My1BY3RDb2RlfFBTWSBodHRwOi8vdGVybWlub2xvZ3kuaGw3Lm9yZy9Db2RlU3lzdGVtL3YzLUFjdENvZGV8Q1RDT01QVCJ9.7QZ65gtJPjiWVYjtvtuatvhq6262Sth3z4un_8rDdQg
 ```
 {% endcode %}
 
-{% code title="Finance's JWT" %}
+{% code title="Finance" %}
 ```
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2F1dGguZXhhbXBsZS5jb20iLCJzY29wZSI6Imh0dHA6Ly90ZXJtaW5vbG9neS5obDcub3JnL0NvZGVTeXN0ZW0vdjMtQ29uZmlkZW50aWFsaXR5fE0gaHR0cDovL3Rlcm1pbm9sb2d5LmhsNy5vcmcvQ29kZVN5c3RlbS92My1BY3RDb2RlfFJFU0NPTVBUIn0.j7WY0I0s2rl6T2Bje1gadRKquuSf-_K9JH1T3T0vvcE
 ```
@@ -245,7 +245,7 @@ To view the content of a JWT, copy and paste it to [jwt.io](https://jwt.io)
 
 ### Check resource-level access control works
 
-#### Provider has access to all the resources
+#### Provider has access to all resources
 
 {% code title="status: 200 OK" %}
 ```http
@@ -268,7 +268,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL
 ```
 {% endcode %}
 
-#### Finance has access to Patient and Encounter but Observation
+#### Finance has access to the Patient and Encounter but not to Observation
 
 {% code title="status: 200 OK" %}
 ```http
@@ -290,3 +290,11 @@ GET /Organization/org-a/fhir/Observation/obs-1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2F1dGguZXhhbXBsZS5jb20iLCJzY29wZSI6Imh0dHA6Ly90ZXJtaW5vbG9neS5obDcub3JnL0NvZGVTeXN0ZW0vdjMtQ29uZmlkZW50aWFsaXR5fE0gaHR0cDovL3Rlcm1pbm9sb2d5LmhsNy5vcmcvQ29kZVN5c3RlbS92My1BY3RDb2RlfFJFU0NPTVBUIn0.j7WY0I0s2rl6T2Bje1gadRKquuSf-_K9JH1T3T0vvcE
 ```
 {% endcode %}
+
+Finance does not have access to the Observation because there is no overlap between the Observation labels and the Finance labels.
+
+* Observation is labeled with:
+  * `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
+* Finance is only allowed:
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
+  * `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`&#x20;
