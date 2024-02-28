@@ -256,17 +256,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL
 
 Provider has access to the Patient because there is overlap between the Patient labels and the Provider labels.
 
-* Patient is labeled with:
+Patient is labeled with:
+* <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`</mark>
+Provider is allowed:
+* `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`  expands to:
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|N`
   * <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`</mark>
-* Provider is allowed:
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`  expands to:
-    * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`
-    * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|N`
-    * <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`</mark>
-    * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
-    * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
-  * `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
-  * `http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
+* `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
+* `http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`
 
 {% code title="status: 200 OK" %}
 ```http
@@ -277,17 +277,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL
 
 Provider has access to the Encounter because there is overlap between the Encounter labels and the Provider labels.
 
-* Encounter is labeled with:
+Encounter is labeled with:
+* <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`</mark>
+Provider is allowed:
+* `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`  expands to:
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|N`
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
   * <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`</mark>
-* Provider is allowed:
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`  expands to:
-    * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`
-    * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|N`
-    * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
-    * <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`</mark>
-    * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
-  * `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
-  * `http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
+* `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
+* `http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`
 
 {% code title="status: 200 OK" %}
 ```http
@@ -298,17 +298,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL
 
 Provider has access to the Observation because there is overlap between the Observation labels and the Provider labels.
 
-* Observation is labeled with:
-  * <mark style="background-color:blue;">``http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY``</mark>
-* Provider is allowed:
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`  expands to:
-    * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`
-    * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|N`
-    * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
-    * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
-    * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
-  * <mark style="background-color:blue;">``http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY``</mark>
-  * `http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`
+Observation is labeled with:
+* <mark style="background-color:blue;">``http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY``</mark>
+Provider is allowed:
+* `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`  expands to:
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|N`
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
+* <mark style="background-color:blue;">``http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY``</mark>
+* `http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`
 
 #### Finance has access to the Patient and Encounter but not to Observation
 
@@ -321,14 +321,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL
 
 Finance has access to the Patient because there is overlap between the Patient labels and the Finance labels.
 
-* Patient is labeled with:
+Patient is labeled with:
+* <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`</mark>
+Finance is allowed:
+* `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M` expands to:
   * <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`</mark>
-* Finance is allowed:
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M` expands to:
-    * <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`</mark>
-    * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
-    * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
-  * `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
+* `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`
 
 {% code title="status: 200 OK" %}
 ```http
@@ -339,14 +339,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL
 
 Finance has access to the Encounter because there is overlap between the Encounter labels and the Finance labels.
 
-* Encounter is labeled with:
+Encounter is labeled with:
+* <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`</mark>
+Finance is allowed:
+* `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M` expands to:
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
   * <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`</mark>
-* Finance is allowed:
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M` expands to:
-    * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
-    * <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`</mark>
-    * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
-  * `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
+* `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`
 
 {% code title="status: 403 Forbidden" %}
 ```http
@@ -357,8 +357,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL
 
 Finance does not have access to the Observation because there is no overlap between the Observation labels and the Finance labels.
 
-* Observation is labeled with:
-  * `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
-* Finance is only allowed:
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
-  * `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`
+Observation is labeled with:
+* `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
+Finance is only allowed:
+* `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
+* `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`
