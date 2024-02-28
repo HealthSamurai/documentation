@@ -52,8 +52,8 @@ For instance, the R code expands to R, N, M, L, and U.
 
 Security Labels access control is done in two steps:
 
-1. Resource-level access control
-2. Resource-element level access (masking)
+1. Resource-level access control. Decides whether a resource itself is accessible to a requester.
+2. Resource-element level access (masking). Decides whether some elements of the resource should be hidden from the requester.
 
 ### Resource-level access control
 
@@ -87,3 +87,9 @@ Resource accessibility matrix
 | Sensitivity: HIV                              | Sensitivity: PSY                              | <mark style="color:orange;">`no access`</mark> |
 | _no security labels_                          | Sensitivity: PSY                              | <mark style="color:orange;">`no access`</mark> |
 
+### Resource-element level access (masking)
+
+To perform masking:
+
+1. The resource itself should have the `http://terminology.hl7.org/CodeSystem/v3-ActCode|PROCESSINLINELABEL` security label in its meta.
+2. The resource properties should be tagged with the [Inline Security Label](http://hl7.org/fhir/uv/security-label-ds4p/STU1/StructureDefinition-extension-inline-sec-label.html) extension.\
