@@ -28,7 +28,7 @@ A security label must be defined using the pattern `system|code`. For example, `
 
 ### User.securityLabel
 
-If the request context is associated with a Aidbox user, Aidbox tries to get security labels from the `User.securityLabel`.&#x20;
+If the request context is associated with a Aidbox user, Aidbox tries to get security labels from the `User.securityLabel`.
 
 For example, the user resource containing two security labels.
 
@@ -61,20 +61,29 @@ If the security labels of the request context intersect with the security labels
 
 If a resource has no security labels, no one can access the resource.
 
-| Resource security labels            | Request security labels               | Accessibility                                  |
-| ----------------------------------- | ------------------------------------- | ---------------------------------------------- |
-| Confidentiality: V                  | Confidentiality: R                    | <mark style="color:orange;">`no access`</mark> |
-| Confidentiality: R                  | Confidentiality: R                    | <mark style="color:green;">`available`</mark>  |
-| Confidentiality: L                  | Confidentiality: R                    | <mark style="color:green;">`available`</mark>  |
-| Confidentiality: R<br>Sensitivity: PSY | Confidentiality: R                    | <mark style="color:green;">`available`</mark>  |
-| Sensitivity: PSY                    | Confidentiality: R                    | <mark style="color:orange;">`no access`</mark> |
-| Sensitivity: HIV                    | Confidentiality: R                    | <mark style="color:orange;">`no access`</mark> |
-| _no security labels_                | Confidentiality: R                    | <mark style="color:orange;">`no access`</mark> |
-| Confidentiality: V                  | Confidentiality: R<br>Sensitivity: PSY | <mark style="color:orange;">`no access`</mark> |
-| Confidentiality: R                  | Confidentiality: R<br>Sensitivity: PSY | <mark style="color:green;">`available`</mark>  |
-| Confidentiality: L                  | Confidentiality: R<br>Sensitivity: PSY | <mark style="color:green;">`available`</mark>  |
-| Confidentiality: R<br>Sensitivity: PSY | Confidentiality: R<br>Sensitivity: PSY | <mark style="color:green;">`available`</mark>  |
-| Sensitivity: PSY                    | Confidentiality: R<br>Sensitivity: PSY | <mark style="color:green;">`available`</mark>  |
-| Sensitivity: HIV                    | Confidentiality: R<br>Sensitivity: PSY | <mark style="color:orange;">`no access`</mark> |
-| _no security labels_                | Confidentiality: R<br>Sensitivity: PSY | <mark style="color:orange;">`no access`</mark> |
+Resource accessibility matrix
+
+| Resource security labels                      | Request security labels                       | Accessibility                                  |
+| --------------------------------------------- | --------------------------------------------- | ---------------------------------------------- |
+| Confidentiality: V                            | Confidentiality: R                            | <mark style="color:orange;">`no access`</mark> |
+| Confidentiality: R                            | Confidentiality: R                            | <mark style="color:green;">`available`</mark>  |
+| Confidentiality: L                            | Confidentiality: R                            | <mark style="color:green;">`available`</mark>  |
+| <p>Confidentiality: R<br>Sensitivity: PSY</p> | Confidentiality: R                            | <mark style="color:green;">`available`</mark>  |
+| Sensitivity: PSY                              | Confidentiality: R                            | <mark style="color:orange;">`no access`</mark> |
+| Sensitivity: HIV                              | Confidentiality: R                            | <mark style="color:orange;">`no access`</mark> |
+| _no security labels_                          | Confidentiality: R                            | <mark style="color:orange;">`no access`</mark> |
+| Confidentiality: V                            | <p>Confidentiality: R<br>Sensitivity: PSY</p> | <mark style="color:orange;">`no access`</mark> |
+| Confidentiality: R                            | <p>Confidentiality: R<br>Sensitivity: PSY</p> | <mark style="color:green;">`available`</mark>  |
+| Confidentiality: L                            | <p>Confidentiality: R<br>Sensitivity: PSY</p> | <mark style="color:green;">`available`</mark>  |
+| <p>Confidentiality: R<br>Sensitivity: PSY</p> | <p>Confidentiality: R<br>Sensitivity: PSY</p> | <mark style="color:green;">`available`</mark>  |
+| Sensitivity: PSY                              | <p>Confidentiality: R<br>Sensitivity: PSY</p> | <mark style="color:green;">`available`</mark>  |
+| Sensitivity: HIV                              | <p>Confidentiality: R<br>Sensitivity: PSY</p> | <mark style="color:orange;">`no access`</mark> |
+| _no security labels_                          | <p>Confidentiality: R<br>Sensitivity: PSY</p> | <mark style="color:orange;">`no access`</mark> |
+| Confidentiality: V                            | Sensitivity: PSY                              | <mark style="color:orange;">`no access`</mark> |
+| Confidentiality: R                            | Sensitivity: PSY                              | <mark style="color:orange;">`no access`</mark> |
+| Confidentiality: L                            | Sensitivity: PSY                              | <mark style="color:orange;">`no access`</mark> |
+| <p>Confidentiality: R<br>Sensitivity: PSY</p> | Sensitivity: PSY                              | <mark style="color:green;">`available`</mark>  |
+| Sensitivity: PSY                              | Sensitivity: PSY                              | <mark style="color:green;">`available`</mark>  |
+| Sensitivity: HIV                              | Sensitivity: PSY                              | <mark style="color:orange;">`no access`</mark> |
+| _no security labels_                          | Sensitivity: PSY                              | <mark style="color:orange;">`no access`</mark> |
 
