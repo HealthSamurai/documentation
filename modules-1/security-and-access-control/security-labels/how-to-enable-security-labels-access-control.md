@@ -284,6 +284,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL
 ```
 {% endcode %}
 
+Finance hase access to the Encounter because there is overlap between the Encounter labels and the Finance labels.
+
+* Encounter is labeled with:
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
+* Finance is only allowed:
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M` expands to `M`, `L` and `U`:
+    * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
+    * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
+    * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
+  * `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`
+
 {% code title="status: 403 Forbidden" %}
 ```http
 GET /Organization/org-a/fhir/Observation/obs-1
@@ -297,4 +308,4 @@ Finance does not have access to the Observation because there is no overlap betw
   * `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
 * Finance is only allowed:
   * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
-  * `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`&#x20;
+  * `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`
