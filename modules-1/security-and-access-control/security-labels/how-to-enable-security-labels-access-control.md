@@ -267,3 +267,23 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL
 
 #### Finance has access to Patient and Encounter but Observation
 
+{% code title="status: 200 OK" %}
+```http
+GET /Organization/org-a/fhir/Patient/pt-1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2F1dGguZXhhbXBsZS5jb20iLCJzY29wZSI6Imh0dHA6Ly90ZXJtaW5vbG9neS5obDcub3JnL0NvZGVTeXN0ZW0vdjMtQ29uZmlkZW50aWFsaXR5fE0gaHR0cDovL3Rlcm1pbm9sb2d5LmhsNy5vcmcvQ29kZVN5c3RlbS92My1BY3RDb2RlfFJFU0NPTVBUIn0.j7WY0I0s2rl6T2Bje1gadRKquuSf-_K9JH1T3T0vvcE
+```
+{% endcode %}
+
+{% code title="status: 200 OK" %}
+```http
+GET /Organization/org-a/fhir/Encounter/enc-1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2F1dGguZXhhbXBsZS5jb20iLCJzY29wZSI6Imh0dHA6Ly90ZXJtaW5vbG9neS5obDcub3JnL0NvZGVTeXN0ZW0vdjMtQ29uZmlkZW50aWFsaXR5fE0gaHR0cDovL3Rlcm1pbm9sb2d5LmhsNy5vcmcvQ29kZVN5c3RlbS92My1BY3RDb2RlfFJFU0NPTVBUIn0.j7WY0I0s2rl6T2Bje1gadRKquuSf-_K9JH1T3T0vvcE
+```
+{% endcode %}
+
+{% code title="status: 403 Forbidden" %}
+```http
+GET /Organization/org-a/fhir/Observation/obs-1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2F1dGguZXhhbXBsZS5jb20iLCJzY29wZSI6Imh0dHA6Ly90ZXJtaW5vbG9neS5obDcub3JnL0NvZGVTeXN0ZW0vdjMtQ29uZmlkZW50aWFsaXR5fE0gaHR0cDovL3Rlcm1pbm9sb2d5LmhsNy5vcmcvQ29kZVN5c3RlbS92My1BY3RDb2RlfFJFU0NPTVBUIn0.j7WY0I0s2rl6T2Bje1gadRKquuSf-_K9JH1T3T0vvcE
+```
+{% endcode %}
