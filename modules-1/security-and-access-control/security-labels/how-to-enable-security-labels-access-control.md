@@ -245,7 +245,7 @@ To view the content of a JWT, copy and paste it to [jwt.io](https://jwt.io)
 
 ### Check resource-level access control works
 
-#### Provider has access to all resources
+#### Provider's access to the Patient
 
 {% code title="status: 200 OK" %}
 ```http
@@ -271,6 +271,8 @@ Provider is allowed:
 * [ ] `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
 * [ ] `http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`
 
+#### Provider's access to the Encounter
+
 {% code title="status: 200 OK" %}
 ```http
 GET /Organization/org-a/fhir/Encounter/enc-1
@@ -294,6 +296,8 @@ Provider is allowed:
   * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
 * [ ] `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
 * [ ] `http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`
+
+#### Provider's access to the Observation
 
 {% code title="status: 200 OK" %}
 ```http
@@ -319,7 +323,7 @@ Provider is allowed:
 * [x] `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
 * [ ] `http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`
 
-#### Finance has access to the Patient and Encounter but not to Observation
+#### Finance's access to the Patient
 
 {% code title="status: 200 OK" %}
 ```http
@@ -341,6 +345,8 @@ Finance is allowed:
   * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
   * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
 * [ ] `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`
+
+#### Finance's access to the Encounter
 
 {% code title="status: 200 OK" %}
 ```http
