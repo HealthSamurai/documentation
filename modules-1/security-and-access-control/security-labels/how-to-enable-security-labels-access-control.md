@@ -277,6 +277,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL
 ```
 {% endcode %}
 
+Finance hase access to the Patient because there is overlap between the Patient labels and the Finance labels.
+
+* Encounter is labeled with:
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
+* Finance is only allowed:
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M` expands to:
+    * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
+    * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
+    * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
+  * `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`
+
 {% code title="status: 200 OK" %}
 ```http
 GET /Organization/org-a/fhir/Encounter/enc-1
