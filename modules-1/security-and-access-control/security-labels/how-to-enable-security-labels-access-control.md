@@ -262,7 +262,7 @@ Patient is labeled with:
 
 Provider is allowed:
 
-* `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`  expands to:
+* `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R` expands to:
   * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`
   * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|N`
   * <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`</mark>
@@ -286,7 +286,7 @@ Encounter is labeled with:
 
 Provider is allowed:
 
-* `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`  expands to:
+* `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R` expands to:
   * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`
   * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|N`
   * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
@@ -306,17 +306,17 @@ Provider has access to the Observation because there is overlap between the Obse
 
 Observation is labeled with:
 
-* <mark style="background-color:blue;">``http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY``</mark>
+* <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`</mark>
 
 Provider is allowed:
 
-* `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`  expands to:
+* `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R` expands to:
   * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`
   * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|N`
   * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
   * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
   * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
-* <mark style="background-color:blue;">``http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY``</mark>
+* <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`</mark>
 * `http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`
 
 #### Finance has access to the Patient and Encounter but not to Observation
@@ -380,3 +380,90 @@ Finance is only allowed:
 
 * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
 * `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`
+
+### Check resource-element access control works
+
+#### Provider
+
+{% tabs %}
+{% tab title="Encounter" %}
+Provider has access to all the fields within the Encounter resource.
+
+Encounter.subject is labeled:
+
+* <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`</mark>
+
+Provider is allowed:
+
+* `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R` expands to:
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|N`
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
+* `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
+* <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`</mark>
+
+```yaml
+class:
+  code: IMP
+  system: 'http://terminology.hl7.org/CodeSystem/v3-ActCode'
+id: enc-1
+meta:
+  extension:
+    - url: 'ex:createdAt'
+      valueInstant: '2024-02-27T15:06:00.455006Z'
+  lastUpdated: '2024-02-27T15:06:00.455006Z'
+  versionId: '107'
+resourceType: Encounter
+status: finished
+subject:
+  reference: Patient/pt-1
+```
+{% endtab %}
+
+{% tab title="Patient" %}
+Provider has no access the identifier of the Patient.
+
+Identifier is labeled:
+
+* `http://terminology.hl7.org/CodeSystem/v3-ActCode|FMCOMPT`
+
+Provider is allowed:
+
+* `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R` expands to:
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|N`
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
+* `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
+* `http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`
+
+```yaml
+gender: male
+id: pt-1
+identifier:
+  - extension:
+      - url: 'http://terminology.hl7.org/CodeSystem/data-absent-reason'
+        valueCode: masked
+meta:
+  extension:
+    - url: 'ex:createdAt'
+      valueInstant: '2024-02-26T16:51:38.264449Z'
+  lastUpdated: '2024-02-27T13:51:59.700672Z'
+  versionId: '100'
+name:
+  - family: Chalmers
+    given:
+      - Peter
+      - James
+    use: official
+resourceType: Patient
+```
+{% endtab %}
+{% endtabs %}
+
+#### Finance
+
+####
