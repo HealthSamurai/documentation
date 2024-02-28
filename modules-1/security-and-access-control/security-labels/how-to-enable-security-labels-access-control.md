@@ -71,3 +71,46 @@ docker compose up --force-recreate
 ```
 
 When Aidbox starts, navigate to the [http://localhost:8888](http://localhost:8888/) and sign in to the Aidbox UI using the credentials `admin` / `password`.
+
+## Ensure the security labels access control works
+
+### Create TokenIntrospector
+
+To make Aidbox trust `JWT` issued by external server token introspection is used.
+
+```yaml
+PUT /TokenIntrospector/security-labels-demo
+content-type: text/yaml
+
+resourceType: TokenIntrospector
+id: security-labels-demo-client
+type: jwt
+jwt:
+  iss: https://auth.example.com
+  secret: secret
+```
+
+{% hint style="info" %}
+Currently we use a common secret to make the introspector works. In production installations it's better to switch to `jwks_uri` instead.
+{% endhint %}
+
+### Create AccessPolicy
+
+This access policy allows `FhirRead` and `FhirSearch` operations for requesters having JWT with `iss` claim value `https://auth.example.com`.
+
+```yaml
+PUT /AccessPolicy/as-security-labels-demo-client-do-read-search
+content-type: text/yaml
+
+resourceType: AccessPolicy
+id: as-security-labels-demo-client-do-read-search
+link:
+- resourceType: Operation
+  id: FhirRead
+- resourceType: Operation
+  id: FhirSearch
+engine: matcho
+matcho:
+  jwt:
+    iss: https://auth.example.com
+```
