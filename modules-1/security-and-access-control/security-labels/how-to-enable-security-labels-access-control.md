@@ -17,3 +17,47 @@ To get the Aidbox License:
 1. Go the Aidbox user portal [https://aidbox.app](https://aidbox.app/)
 2. Login to the portal
 3. Create new **self-hosted** Aidbox License or use the license that you already have
+
+## Create Aidbox project
+
+To create sample project run command below.
+
+```shell
+git clone \
+  --branch=without-zen \
+  --depth=1 \
+  https://github.com/Aidbox/aidbox-project-template.git \
+  aidbox-project && \
+  cd aidbox-project && \
+  rm -rf .git
+```
+
+{% hint style="info" %}
+See more details related the [running Aidbox locally](broken-reference)
+{% endhint %}
+
+### Apply the license
+
+Populate the `.env` file with the Aidbox License.&#x20;
+
+{% code title=".env" %}
+```ini
+AIDBOX_LICENSE=YOUR_AIDBOX_LICENSE_KEY
+...
+```
+{% endcode %}
+
+## Enable security labels access control
+
+Populate the `.env` file with the security labels ENVs.&#x20;
+
+{% code title=".env" %}
+```
+# if true, security label feature is enabled
+BOX_FEATURES_SECURITY__LABELS_ENABLE=true
+
+# if true, removes security labels from the resource
+BOX_FEATURES_SECURITY__LABELS_STRIP__LABELS=true
+...
+```
+{% endcode %}
