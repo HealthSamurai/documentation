@@ -42,6 +42,12 @@ securityLabel:
     code: M
 ```
 
+### Expanding confidentiality security label
+
+The security label for confidentiality is [hierarchical](https://terminology.hl7.org/ValueSet-v3-Confidentiality.html). The code may contain several others.
+
+For instance, the R code expands to R, N, M, L, and U.
+
 ## How access control works
 
 Security Labels access control is done in two steps:
@@ -54,3 +60,4 @@ Security Labels access control is done in two steps:
 If the security labels of the request context intersect with the security labels of the resource, the requester can access the resource. Otherwise, no access.
 
 If a resource has no security labels, no one can access the resource.
+
