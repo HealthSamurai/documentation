@@ -262,7 +262,7 @@ Provider has access to the Patient because there is overlap between the Patient 
   * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R` 
     * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`
     * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|N`
-    * <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`</mark>
+    * <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`</mark>
     * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
     * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
   * `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
