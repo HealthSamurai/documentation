@@ -472,7 +472,7 @@ Finance has access to all the fields within the Encounter resource but to the su
 
 Encounter.subject is labeled:
 
-* <mark style="background-color:orange;">`http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`</mark>
+* <mark style="background-color:orange;">http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT</mark>
 
 Provider is allowed:
 
