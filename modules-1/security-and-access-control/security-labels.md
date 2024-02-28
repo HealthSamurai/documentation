@@ -69,5 +69,5 @@ If a resource has no security labels, no one can access the resource.
 | Confidentiality: R Sensitivity: PSY | Confidentiality: R      | <mark style="color:green;">`available`</mark>  |
 | Sensitivity: PSY                    | Confidentiality: R      | <mark style="color:orange;">`no access`</mark> |
 | Sensitivity: HIV                    | Confidentiality: R      | <mark style="color:orange;">`no access`</mark> |
-| _no security labels_                | Confidentiality: R      | <mark style="color:orange;">`no access`</mark> |
+| _**no security labels**_            | Confidentiality: R      | <mark style="color:orange;">`no access`</mark> |
 
