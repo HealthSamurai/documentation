@@ -425,7 +425,7 @@ subject:
 {% tab title="Patient" %}
 Provider has no access the identifier of the Patient.
 
-Identifier is labeled:
+Patient.identifier is labeled:
 
 * <mark style="background-color:orange;">`http://terminology.hl7.org/CodeSystem/v3-ActCode|FMCOMPT`</mark>
 
@@ -472,9 +472,9 @@ Finance has access to all the fields within the Encounter resource but to the su
 
 Encounter.subject is labeled:
 
-* <mark style="background-color:orange;">http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT</mark>
+* <mark style="background-color:orange;">`http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`</mark>
 
-Provider is allowed:
+Finance is allowed:
 
 * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M` expands to:
   * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
@@ -503,11 +503,42 @@ subject:
 {% endtab %}
 
 {% tab title="Patient" %}
-ddd
+Finance has no access the `identifier` and `name` of the Patient.
+
+`Patient.identifier` is labeled:
+
+* <mark style="background-color:orange;">`http://terminology.hl7.org/CodeSystem/v3-ActCode|FMCOMPT`</mark>
+
+`Patient.name` is labeled:
+
+* <mark style="background-color:orange;">`http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`</mark>
+
+Finance is allowed:
+
+* `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M` expands to:
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
+* `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`
 
 ```yaml
+gender: male
+id: pt-1
+identifier:
+  - extension:
+      - url: 'http://terminology.hl7.org/CodeSystem/data-absent-reason'
+        valueCode: masked
+meta:
+  extension:
+    - url: 'ex:createdAt'
+      valueInstant: '2024-02-26T16:51:38.264449Z'
+  lastUpdated: '2024-02-27T13:51:59.700672Z'
+  versionId: '100'
+name:
+  - extension:
+      - url: 'http://terminology.hl7.org/CodeSystem/data-absent-reason'
+        valueCode: masked
+resourceType: Patient
 ```
-
-ddd
 {% endtab %}
 {% endtabs %}
