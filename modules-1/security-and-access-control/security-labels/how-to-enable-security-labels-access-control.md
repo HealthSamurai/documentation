@@ -289,7 +289,7 @@ Finance hase access to the Encounter because there is overlap between the Encoun
 * Encounter is labeled with:
   * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
 * Finance is only allowed:
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M` expands to `M`, `L` and `U`:
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M` expands to:
     * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
     * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
     * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
