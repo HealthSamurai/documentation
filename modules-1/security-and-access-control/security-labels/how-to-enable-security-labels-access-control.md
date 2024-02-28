@@ -283,7 +283,7 @@ Finance hase access to the Patient because there is overlap between the Patient 
   * <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`</mark>
 * Finance is only allowed:
   * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M` expands to:
-    * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
+    * <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`</mark>
     * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
     * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
   * `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`
