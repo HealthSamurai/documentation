@@ -96,6 +96,8 @@ To perform masking:
 
 #### Masking examples
 
+Requestor has access to all `Encounter` fields but the `subject`.
+
 {% tabs %}
 {% tab title="Resource" %}
 ```yaml
