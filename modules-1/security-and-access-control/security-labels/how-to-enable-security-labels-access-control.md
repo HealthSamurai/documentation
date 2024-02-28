@@ -374,7 +374,7 @@ Finance does not have access to the Observation because there is no overlap betw
 
 Observation is labeled with:
 
-* `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
+* <mark style="background-color:orange;">`http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`</mark>
 
 Finance is only allowed:
 
@@ -427,7 +427,7 @@ Provider has no access the identifier of the Patient.
 
 Identifier is labeled:
 
-* `http://terminology.hl7.org/CodeSystem/v3-ActCode|FMCOMPT`
+* <mark style="background-color:orange;">`http://terminology.hl7.org/CodeSystem/v3-ActCode|FMCOMPT`</mark>
 
 Provider is allowed:
 
