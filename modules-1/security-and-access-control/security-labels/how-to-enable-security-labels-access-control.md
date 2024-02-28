@@ -120,6 +120,9 @@ matcho:
 #### Create Patient resource
 
 ```yaml
+PUT /fhir/Patient/pt-1
+content-type: text/yaml
+
 meta:
   security:
     - code: PROCESSINLINELABEL
