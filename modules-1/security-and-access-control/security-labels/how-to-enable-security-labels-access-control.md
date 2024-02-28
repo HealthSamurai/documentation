@@ -277,7 +277,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL
 ```
 {% endcode %}
 
-Finance hase access to the Patient because there is overlap between the Patient labels and the Finance labels.
+Finance has access to the Patient because there is overlap between the Patient labels and the Finance labels.
 
 * Encounter is labeled with:
   * <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`</mark>
@@ -295,7 +295,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL
 ```
 {% endcode %}
 
-Finance hase access to the Encounter because there is overlap between the Encounter labels and the Finance labels.
+Finance has access to the Encounter because there is overlap between the Encounter labels and the Finance labels.
 
 * Encounter is labeled with:
   * <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`</mark>
