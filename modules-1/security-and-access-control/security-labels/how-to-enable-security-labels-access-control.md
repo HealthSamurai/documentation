@@ -306,18 +306,18 @@ Provider has access to the Observation because there is overlap between the Obse
 
 Observation is labeled with:
 
-* <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`</mark>
+* [x] `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
 
 Provider is allowed:
 
-* `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R` expands to:
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|N`
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
-* <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`</mark>
-* `http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R` expands to:
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|N`
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
+* [x] `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`
 
 #### Finance has access to the Patient and Encounter but not to Observation
 
@@ -332,15 +332,15 @@ Finance has access to the Patient because there is overlap between the Patient l
 
 Patient is labeled with:
 
-* <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`</mark>
+* [x] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
 
 Finance is allowed:
 
-* `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M` expands to:
-  * <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`</mark>
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
-* `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M` expands to:
+  * [x] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`
 
 {% code title="status: 200 OK" %}
 ```http
@@ -353,15 +353,15 @@ Finance has access to the Encounter because there is overlap between the Encount
 
 Encounter is labeled with:
 
-* <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`</mark>
+* [x] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
 
 Finance is allowed:
 
-* `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M` expands to:
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
-  * <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`</mark>
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
-* `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M` expands to:
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
+  * [x] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`
 
 {% code title="status: 403 Forbidden" %}
 ```http
@@ -374,12 +374,12 @@ Finance does not have access to the Observation because there is no overlap betw
 
 Observation is labeled with:
 
-* <mark style="background-color:orange;">`http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`</mark>
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
 
 Finance is only allowed:
 
-* `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
-* `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`
 
 ### Check resource-element access control works
 
@@ -391,18 +391,18 @@ Provider has access to all the fields within the Encounter resource.
 
 Encounter.subject is labeled:
 
-* <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`</mark>
+* [x] `http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`
 
 Provider is allowed:
 
-* `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R` expands to:
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|N`
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
-* `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
-* <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`</mark>
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R` expands to:
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|N`
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
+* [x] `http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`
 
 ```yaml
 class:
@@ -427,18 +427,18 @@ Provider has no access the identifier of the Patient.
 
 Patient.identifier is labeled:
 
-* <mark style="background-color:orange;">`http://terminology.hl7.org/CodeSystem/v3-ActCode|FMCOMPT`</mark>
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-ActCode|FMCOMPT`
 
 Provider is allowed:
 
-* `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R` expands to:
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|N`
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
-* `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
-* `http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R` expands to:
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|N`
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`
 
 ```yaml
 gender: male
@@ -472,15 +472,15 @@ Finance has access to all the fields within the Encounter resource but to the su
 
 Encounter.subject is labeled:
 
-* <mark style="background-color:orange;">`http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`</mark>
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`
 
 Finance is allowed:
 
-* `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M` expands to:
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
-* `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M` expands to:
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`
 
 ```yaml
 class:
@@ -507,19 +507,19 @@ Finance has no access the `identifier` and `name` of the Patient.
 
 `Patient.identifier` is labeled:
 
-* <mark style="background-color:orange;">`http://terminology.hl7.org/CodeSystem/v3-ActCode|FMCOMPT`</mark>
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-ActCode|FMCOMPT`
 
 `Patient.name` is labeled:
 
-* <mark style="background-color:orange;">`http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`</mark>
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`
 
 Finance is allowed:
 
-* `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M` expands to:
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
-* `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M` expands to:
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`
 
 ```yaml
 gender: male
