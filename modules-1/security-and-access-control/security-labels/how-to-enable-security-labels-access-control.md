@@ -237,5 +237,5 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2F1dGguZXhhbXBsZS5jb20
 {% endcode %}
 
 {% hint style="info" %}
-To see the content of the JWTs copy a JWT and paste to the [jwt.io](https://jwt.io/)
+To view the content of a JWT, copy and paste it to [jwt.io](https://jwt.io)
 {% endhint %}
