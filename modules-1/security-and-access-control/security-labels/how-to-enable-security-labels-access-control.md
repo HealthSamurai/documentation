@@ -298,11 +298,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL
 Finance hase access to the Encounter because there is overlap between the Encounter labels and the Finance labels.
 
 * Encounter is labeled with:
-  * <mark style="color:green;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`</mark>
+  * <mark style="color:green;background-color:green;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`</mark>
 * Finance is only allowed:
   * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M` expands to:
     * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
-    * <mark style="color:green;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`</mark>
+    * <mark style="color:green;background-color:green;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`</mark>
     * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
   * `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`
 
