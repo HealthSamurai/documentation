@@ -52,7 +52,7 @@ AIDBOX_LICENSE=YOUR_AIDBOX_LICENSE_KEY
 Populate the `.env` file with the security labels ENVs.&#x20;
 
 {% code title=".env" %}
-```
+```ini
 # if true, security label feature is enabled
 BOX_FEATURES_SECURITY__LABELS_ENABLE=true
 
@@ -61,3 +61,13 @@ BOX_FEATURES_SECURITY__LABELS_STRIP__LABELS=true
 ...
 ```
 {% endcode %}
+
+## Start Aidbox with Docker Compose
+
+To start Aidbox run the command in the `aidbox-project` directory.
+
+```bash
+docker compose up --force-recreate
+```
+
+When Aidbox starts, navigate to the [http://localhost:8888](http://localhost:8888/) and sign in to the Aidbox UI using the credentials `admin` / `password`.
