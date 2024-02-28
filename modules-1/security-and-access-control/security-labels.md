@@ -61,13 +61,20 @@ If the security labels of the request context intersect with the security labels
 
 If a resource has no security labels, no one can access the resource.
 
-| Resource security labels            | Request security labels | Accessibility                                  |
-| ----------------------------------- | ----------------------- | ---------------------------------------------- |
-| Confidentiality: V                  | Confidentiality: R      | <mark style="color:orange;">`no access`</mark> |
-| Confidentiality: R                  | Confidentiality: R      | <mark style="color:green;">`available`</mark>  |
-| Confidentiality: L                  | Confidentiality: R      | <mark style="color:green;">`available`</mark>  |
-| Confidentiality: R Sensitivity: PSY | Confidentiality: R      | <mark style="color:green;">`available`</mark>  |
-| Sensitivity: PSY                    | Confidentiality: R      | <mark style="color:orange;">`no access`</mark> |
-| Sensitivity: HIV                    | Confidentiality: R      | <mark style="color:orange;">`no access`</mark> |
-| _**no security labels**_            | Confidentiality: R      | <mark style="color:orange;">`no access`</mark> |
+| Resource security labels            | Request security labels               | Accessibility                                  |
+| ----------------------------------- | ------------------------------------- | ---------------------------------------------- |
+| Confidentiality: V                  | Confidentiality: R                    | <mark style="color:orange;">`no access`</mark> |
+| Confidentiality: R                  | Confidentiality: R                    | <mark style="color:green;">`available`</mark>  |
+| Confidentiality: L                  | Confidentiality: R                    | <mark style="color:green;">`available`</mark>  |
+| Confidentiality: R Sensitivity: PSY | Confidentiality: R                    | <mark style="color:green;">`available`</mark>  |
+| Sensitivity: PSY                    | Confidentiality: R                    | <mark style="color:orange;">`no access`</mark> |
+| Sensitivity: HIV                    | Confidentiality: R                    | <mark style="color:orange;">`no access`</mark> |
+| _no security labels_                | Confidentiality: R                    | <mark style="color:orange;">`no access`</mark> |
+| Confidentiality: V                  | Confidentiality: R   Sensitivity: PSY | <mark style="color:orange;">`no access`</mark> |
+| Confidentiality: R                  | Confidentiality: R   Sensitivity: PSY | <mark style="color:green;">`available`</mark>  |
+| Confidentiality: L                  | Confidentiality: R   Sensitivity: PSY | <mark style="color:green;">`available`</mark>  |
+| Confidentiality: R Sensitivity: PSY | Confidentiality: R   Sensitivity: PSY | <mark style="color:green;">`available`</mark>  |
+| Sensitivity: PSY                    | Confidentiality: R   Sensitivity: PSY | <mark style="color:green;">`available`</mark>  |
+| Sensitivity: HIV                    | Confidentiality: R   Sensitivity: PSY | <mark style="color:orange;">`no access`</mark> |
+| _no security labels_                | Confidentiality: R   Sensitivity: PSY | <mark style="color:orange;">`no access`</mark> |
 
