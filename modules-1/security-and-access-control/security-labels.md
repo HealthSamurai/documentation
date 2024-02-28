@@ -92,4 +92,62 @@ Resource accessibility matrix
 To perform masking:
 
 1. The resource itself should have the `http://terminology.hl7.org/CodeSystem/v3-ActCode|PROCESSINLINELABEL` security label in its meta.
-2. The resource properties should be tagged with the [Inline Security Label](http://hl7.org/fhir/uv/security-label-ds4p/STU1/StructureDefinition-extension-inline-sec-label.html) extension.\
+2. The resource properties should be tagged with the [Inline Security Label](http://hl7.org/fhir/uv/security-label-ds4p/STU1/StructureDefinition-extension-inline-sec-label.html) extension.
+
+#### Masking examples
+
+{% tabs %}
+{% tab title="Resource" %}
+```yaml
+resourceType: Encounter
+id: enc-1
+meta:
+  security:
+    - code: PROCESSINLINELABEL
+      system: http://terminology.hl7.org/CodeSystem/v3-ActCode
+    - code: L
+      system: http://terminology.hl7.org/CodeSystem/v3-Confidentiality
+status: finished
+class:
+  system: http://terminology.hl7.org/CodeSystem/v3-ActCode
+  code: IMP
+subject:
+  reference: "Patient/pt-1"
+  extension:
+    - url: http://hl7.org/fhir/uv/security-label-ds4p/StructureDefinition/extension-inline-sec-label
+      valueCoding:
+        code: CTCOMPT
+        system: http://terminology.hl7.org/CodeSystem/v3-ActCode
+        display: care teamcompartment
+```
+{% endtab %}
+
+{% tab title="Request context" %}
+```yaml
+request_method: GET
+uri: /fhir/Encounter/enc-1
+security_labels:
+  - system: http://terminology.hl7.org/CodeSystem/v3-Confidentiality
+    code: R
+    display: Restricted
+  - system: http://terminology.hl7.org/CodeSystem/v3-ActCode
+    code: FMCOMPT
+    display: financial management compartment
+```
+{% endtab %}
+
+{% tab title="Masking outcome" %}
+```yaml
+resourceType: Encounter
+id: enc-1
+status: finished
+class:
+  system: http://terminology.hl7.org/CodeSystem/v3-ActCode
+  code: IMP
+subject:
+  extension:
+    - url: http://terminology.hl7.org/CodeSystem/data-absent-reason
+      valueCode: masked
+```
+{% endtab %}
+{% endtabs %}
