@@ -466,4 +466,48 @@ resourceType: Patient
 
 #### Finance
 
-####
+{% tabs %}
+{% tab title="Encounter" %}
+Finance has access to all the fields within the Encounter resource but to the subject.
+
+Encounter.subject is labeled:
+
+* <mark style="background-color:orange;">`http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`</mark>
+
+Provider is allowed:
+
+* `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M` expands to:
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
+  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
+* `http://terminology.hl7.org/CodeSystem/v3-ActCode|RESCOMPT`
+
+```yaml
+class:
+  code: IMP
+  system: 'http://terminology.hl7.org/CodeSystem/v3-ActCode'
+id: enc-1
+meta:
+  extension:
+    - url: 'ex:createdAt'
+      valueInstant: '2024-02-27T15:06:00.455006Z'
+  lastUpdated: '2024-02-27T15:06:00.455006Z'
+  versionId: '107'
+resourceType: Encounter
+status: finished
+subject:
+  extension:
+    - url: 'http://terminology.hl7.org/CodeSystem/data-absent-reason'
+      valueCode: masked
+```
+{% endtab %}
+
+{% tab title="Patient" %}
+ddd
+
+```yaml
+```
+
+ddd
+{% endtab %}
+{% endtabs %}
