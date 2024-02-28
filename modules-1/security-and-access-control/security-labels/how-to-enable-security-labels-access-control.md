@@ -258,18 +258,18 @@ Provider has access to the Patient because there is overlap between the Patient 
 
 Patient is labeled with:
 
-* <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`</mark>
+* [x] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
 
 Provider is allowed:
 
-* `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R` expands to:
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|N`
-  * <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`</mark>
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
-* `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
-* `http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R` expands to:
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|N`
+  * [x] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`
 
 {% code title="status: 200 OK" %}
 ```http
@@ -282,18 +282,18 @@ Provider has access to the Encounter because there is overlap between the Encoun
 
 Encounter is labeled with:
 
-* <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`</mark>
+* [x] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
 
 Provider is allowed:
 
-* `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R` expands to:
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|N`
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
-  * <mark style="background-color:blue;">`http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`</mark>
-  * `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
-* `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
-* `http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R` expands to:
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|R`
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|N`
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|M`
+  * [x] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|L`
+  * [ ] `http://terminology.hl7.org/CodeSystem/v3-Confidentiality|U`
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY`
+* [ ] `http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`
 
 {% code title="status: 200 OK" %}
 ```http
