@@ -239,3 +239,31 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2F1dGguZXhhbXBsZS5jb20
 {% hint style="info" %}
 To view the content of a JWT, copy and paste it to [jwt.io](https://jwt.io)
 {% endhint %}
+
+### Check resource-level access control works
+
+#### Provider has access to all the resources
+
+{% code title="status: 200 OK" %}
+```http
+GET /Organization/org-a/fhir/Patient/pt-1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2F1dGguZXhhbXBsZS5jb20iLCJzY29wZSI6Imh0dHA6Ly90ZXJtaW5vbG9neS5obDcub3JnL0NvZGVTeXN0ZW0vdjMtQ29uZmlkZW50aWFsaXR5fFIgaHR0cDovL3Rlcm1pbm9sb2d5LmhsNy5vcmcvQ29kZVN5c3RlbS92My1BY3RDb2RlfFBTWSBodHRwOi8vdGVybWlub2xvZ3kuaGw3Lm9yZy9Db2RlU3lzdGVtL3YzLUFjdENvZGV8Q1RDT01QVCJ9.7QZ65gtJPjiWVYjtvtuatvhq6262Sth3z4un_8rDdQg
+```
+{% endcode %}
+
+{% code title="status: 200 OK" %}
+```http
+GET /Organization/org-a/fhir/Encounter/enc-1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2F1dGguZXhhbXBsZS5jb20iLCJzY29wZSI6Imh0dHA6Ly90ZXJtaW5vbG9neS5obDcub3JnL0NvZGVTeXN0ZW0vdjMtQ29uZmlkZW50aWFsaXR5fFIgaHR0cDovL3Rlcm1pbm9sb2d5LmhsNy5vcmcvQ29kZVN5c3RlbS92My1BY3RDb2RlfFBTWSBodHRwOi8vdGVybWlub2xvZ3kuaGw3Lm9yZy9Db2RlU3lzdGVtL3YzLUFjdENvZGV8Q1RDT01QVCJ9.7QZ65gtJPjiWVYjtvtuatvhq6262Sth3z4un_8rDdQg
+```
+{% endcode %}
+
+{% code title="status: 200 OK" %}
+```http
+GET /Organization/org-a/fhir/Observation/obs-1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2F1dGguZXhhbXBsZS5jb20iLCJzY29wZSI6Imh0dHA6Ly90ZXJtaW5vbG9neS5obDcub3JnL0NvZGVTeXN0ZW0vdjMtQ29uZmlkZW50aWFsaXR5fFIgaHR0cDovL3Rlcm1pbm9sb2d5LmhsNy5vcmcvQ29kZVN5c3RlbS92My1BY3RDb2RlfFBTWSBodHRwOi8vdGVybWlub2xvZ3kuaGw3Lm9yZy9Db2RlU3lzdGVtL3YzLUFjdENvZGV8Q1RDT01QVCJ9.7QZ65gtJPjiWVYjtvtuatvhq6262Sth3z4un_8rDdQg
+```
+{% endcode %}
+
+#### Finance has access to Patient and Encounter but Observation
+
