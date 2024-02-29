@@ -13,15 +13,11 @@ Aidbox is a FHIR backend platform that lets you build digital health solutions r
 * Deployment options
 * Use Cases
 
-
-
 ## Quickstarts
 
 Discover how to start with Aidbox in just a few minutes.
 
 <table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-cover data-type="files"></th></tr></thead><tbody><tr><td><strong>Start in the cloud</strong></td><td>Run SaaS Aidbox for free and explore it through built-in tutorials.</td><td><a href="getting-started-1/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md">Learn more</a></td><td><a href=".gitbook/assets/qs1.png">qs1.png</a></td></tr><tr><td><strong>Run Aidbox locally</strong></td><td>Download and run Aidbox locally. Explore it through interactive tutorials.</td><td><a href="getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md">Learn more</a></td><td><a href=".gitbook/assets/qs2.png">qs2.png</a></td></tr><tr><td><strong>Use Aidbox with React</strong></td><td>Develop your first app on top of Aidbox with the sample React App.</td><td><a href="getting-started/use-aidbox-with-react.md">Learn more</a></td><td><a href=".gitbook/assets/qs3.png">qs3.png</a></td></tr></tbody></table>
-
-
 
 ## Platform
 
@@ -29,9 +25,7 @@ Discover how to start with Aidbox in just a few minutes.
 
 ### Modules
 
-<table data-view="cards"><thead><tr><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td> <mark style="background-color:blue;">beta</mark> </td><td><strong>Form Builder</strong></td><td>Design and publish complex forms to collect data in the FHIR format</td><td><a href="modules-1/aidbox-forms.md">Learn more</a></td></tr><tr><td> <mark style="background-color:blue;">beta</mark> </td><td><strong>MPI Module</strong></td><td>Identify and reduce data duplication with ML-based Master Patient Index</td><td><a href="modules-1/mdm/">Learn more</a></td></tr><tr><td> <mark style="background-color:blue;">beta</mark> </td><td><strong>Terminology Server</strong></td><td>Manage internal and external code systems in one place</td><td><a href="broken-reference">Learn more</a></td></tr><tr><td> <mark style="background-color:yellow;">in progress</mark> </td><td><strong>Billing Module</strong></td><td>Automate billing processes  with backbone solution based on FHIR and X12</td><td>Learn more (soon)</td></tr><tr><td> <mark style="background-color:yellow;">in progress</mark> </td><td><strong>Workflow Engine</strong></td><td>Automate business processes with task and workflow features</td><td><a href="broken-reference">Learn more</a></td></tr><tr><td> <mark style="background-color:blue;">beta</mark> </td><td><strong>HL7 v2/FHIR Converter</strong></td><td>Enrich your ETL pipelines with the ready-to-use converter</td><td><a href="modules-1/integration-toolkit/hl7-v2-integration.md">Learn more</a></td></tr><tr><td> <mark style="background-color:blue;">beta</mark> </td><td><strong>C-CDA/FHIR Converter</strong></td><td>Plug the bidirectional converter in your integration flow</td><td><a href="broken-reference">Learn more</a></td></tr><tr><td> <mark style="background-color:yellow;">in progress</mark> </td><td><strong>X12/FHIR Converter</strong></td><td>Use bidirectional X12 converter to integrate with clearinghouses</td><td>Learn more (soon)</td></tr></tbody></table>
-
-
+<table data-view="cards"><thead><tr><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td></td><td><strong>Form Builder</strong></td><td>Design and publish complex forms to collect data in the FHIR format</td><td><a href="modules-1/aidbox-forms.md">Learn more</a></td></tr><tr><td><mark style="background-color:blue;">beta</mark></td><td><strong>MPI Module</strong></td><td>Identify and reduce data duplication with ML-based Master Patient Index</td><td><a href="modules-1/mdm/">Learn more</a></td></tr><tr><td></td><td><strong>Terminology Server</strong></td><td>Manage internal and external code systems in one place</td><td><a href="broken-reference/">Learn more</a></td></tr><tr><td></td><td><strong>C-CDA/FHIR Converter</strong></td><td>Plug the bidirectional converter in your integration flow</td><td><a href="broken-reference/">Learn more</a></td></tr><tr><td></td><td><strong>Analytics on FHIR</strong></td><td>Use standardized ViewDefinitions to flatten FHIR data for analytics</td><td><a href="modules-1/sql-on-fhir/">Learn more</a></td></tr></tbody></table>
 
 ## Support
 
