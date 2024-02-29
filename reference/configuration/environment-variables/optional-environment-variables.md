@@ -562,3 +562,25 @@ BOX_TELEMETRY_USAGE_STATS=false
 ```
 
 Disable sending anonymous API usage statistics.
+
+### Security Labels
+
+#### BOX\_FEATURES\_SECURITY\_\_LABELS\_ENABLE
+
+The [Security Labels](optional-environment-variables.md#security-labels) access control feature is disabled by default. To enable it, set ENV to true.
+
+```ini
+BOX_FEATURES_SECURITY__LABELS_ENABLE=true
+```
+
+#### BOX\_FEATURES\_SECURITY\_\_LABELS\_STRIP\_\_LABELS
+
+By default, stripping is disabled. To enabled it, set ENV to true.
+
+```ini
+BOX_FEATURES_SECURITY__LABELS_STRIP__LABELS=true
+```
+
+{% hint style="info" %}
+Stripping is only applied during the masking. More [details about masking](../../../modules-1/security-and-access-control/security-labels.md#resource-element-level-access-masking)
+{% endhint %}
