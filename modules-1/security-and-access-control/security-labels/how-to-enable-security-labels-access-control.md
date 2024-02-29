@@ -58,6 +58,21 @@ BOX_FEATURES_SECURITY__LABELS_ENABLE=true
 
 # if true, removes security labels from the resource
 BOX_FEATURES_SECURITY__LABELS_STRIP__LABELS=true
+
+# Defines the FHIR version
+AIDBOX_FHIR_VERSION="4.0.1"
+...
+```
+{% endcode %}
+
+## Define the FHIR version
+
+Populate the `.env` file with `the AIDBOX_FHIR_VERSION` ENV variable.
+
+{% code title=".env" %}
+```ini
+# In this guide we are going to use FHIR 4.0.1 
+AIDBOX_FHIR_VERSION="4.0.1"
 ...
 ```
 {% endcode %}
@@ -76,7 +91,7 @@ When Aidbox starts, navigate to the [http://localhost:8888](http://localhost:888
 
 ### Create TokenIntrospector
 
-To make Aidbox trust `JWT` issued by external server token introspection is used.
+To make Aidbox trust `JWT` issued by external server token introspection is used, run the following request in the [REST Console](../../../overview/aidbox-ui/rest-console-1.md#rest-console).
 
 ```yaml
 PUT /TokenIntrospector/security-labels-demo
@@ -98,6 +113,8 @@ Currently we use a common secret to make the introspector works. In production i
 
 This access policy allows `FhirRead` and `FhirSearch` operations for requesters having JWT with `iss` claim value `https://auth.example.com`.
 
+To create the access policy, run the following request in the [REST Console](../../../overview/aidbox-ui/rest-console-1.md#rest-console).
+
 ```yaml
 PUT /AccessPolicy/as-security-labels-demo-client-do-read-search
 content-type: text/yaml
@@ -118,6 +135,8 @@ matcho:
 ### Populate data samples
 
 #### Create Patient resource
+
+To create the Patient, run the following request in the [REST Console](../../../overview/aidbox-ui/rest-console-1.md#rest-console).
 
 ```yaml
 PUT /fhir/Patient/pt-1
@@ -174,6 +193,8 @@ resourceType: Patient
 
 #### Create Encounter resource
 
+To create the Encounter, run the following request in the [REST Console](../../../overview/aidbox-ui/rest-console-1.md#rest-console).
+
 ```yaml
 PUT /fhir/Encounter/enc-1
 content-type: text/yaml
@@ -201,6 +222,8 @@ subject:
 ```
 
 #### Create Observation resource
+
+To create the Observation, run the following request in the [REST Console](../../../overview/aidbox-ui/rest-console-1.md#rest-console).
 
 ```yaml
 PUT /fhir/Observation/obs-1
