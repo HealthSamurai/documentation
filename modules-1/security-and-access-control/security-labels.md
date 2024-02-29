@@ -6,7 +6,7 @@ description: This pages explains how security labels access control control work
 
 ## What are Security Labels?
 
-Security Labels is a set of permissions associated with the request. When security labels are present in the request context, the requester is allowed to gather information according to the security labels.
+Security Labels is a set of permissions associated with a request. When security labels are present in the request context, the requester is allowed to gather information according to the security labels.
 
 Two security label code systems are currently supported:
 
@@ -17,8 +17,8 @@ Two security label code systems are currently supported:
 
 There are two ways of the security labels appear to the request context:
 
-1. JWT’s `scope` claim
-2. Aidbox User’s property `securityLabel`
+1. From the `scope` claim of a JWT.
+2. From the Aidbox User’s property `securityLabel`.
 
 ### scope claim in JWT <a href="#docs-internal-guid-71b74bb2-7fff-d9f8-f70b-bfac58a2d392" id="docs-internal-guid-71b74bb2-7fff-d9f8-f70b-bfac58a2d392"></a>
 
@@ -46,22 +46,25 @@ securityLabel:
 
 The security label for confidentiality is [hierarchical](https://terminology.hl7.org/ValueSet-v3-Confidentiality.html). The code may contain several others.
 
-For instance, the R code expands to R, N, M, L, and U.
+For example, the R code expands to R, N, M, L, and U.
 
 ## How access control works
 
 Security Labels access control is done in two steps:
 
 1. Resource-level access control. Decides whether a resource itself is accessible to a requester.
-2. Resource-element level access (masking). Decides whether some elements of the resource should be hidden from the requester.
+2. Resource-element level access (masking). Decides whether some elements of the resource should be hidden from the requester.\
+   Masking is applied only if the resource-level access control permits access to the resource.
 
 ### Resource-level access control
 
 If the security labels of the request context intersect with the security labels of the resource, the requester can access the resource. Otherwise, no access.
 
+{% hint style="warning" %}
 If a resource has no security labels, no one can access the resource.
+{% endhint %}
 
-Resource accessibility matrix
+#### Resource accessibility matrix
 
 | Resource security labels                      | Request security labels                       | Accessibility                                  |
 | --------------------------------------------- | --------------------------------------------- | ---------------------------------------------- |
