@@ -1,5 +1,5 @@
 ---
-description: This pages explains how security labels access control control works in Aidbox
+description: This pages explains how security labels access control works in Aidbox
 ---
 
 # Security Labels
