@@ -7,7 +7,7 @@
 ## February 2024 _`latest`_
 
 * Security and Access Control
-  * Released beta version of [Security Labels-based Access Control](../../modules-1/security-and-access-control/security-labels.md) to control access to data based on the classification of the data (privacy, sensitivity, etc) and the attributes of the requester.
+  * Released beta version of [Security Labels-based Access Control](../../modules-1/security-and-access-control/security/attribute-based-access-control-abac/security-labels/) to control access to data based on the classification of the data (privacy, sensitivity, etc) and the attributes of the requester.
 * Data API
   * Supported FHIR-conformant [`_include` and `_revinclude` parameters](../../api-1/fhir-api/search-1/search-parameters-list/\_include-and-\_revinclude.md)
 * Aidbox Forms

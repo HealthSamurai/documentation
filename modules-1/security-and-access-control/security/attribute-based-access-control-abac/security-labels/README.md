@@ -2,15 +2,15 @@
 description: This pages explains how security labels access control works in Aidbox
 ---
 
-# Security Label-based Access Control
+# Label-based Access Control
 
 ## What are security labels?
 
 A security label is a concept attached to a resource or bundle that provides specific security metadata about the information it is fixed to.
 
-## What is Security Label-based Access Control?
+## What is Label-based Access Control?
 
-Security Labels Access Control engine provides a mechanism to restrict access to bundles, resources, or resource elements depending on permissions associated with a request. When security labels are included in the request context, they allow the requester to access information in accordance with those labels.
+Label-based Access Control engine provides a mechanism to restrict access to bundles, resources, or resource elements depending on permissions associated with a request. When security labels are included in the request context, they allow the requester to access information in accordance with those labels.
 
 Two security label code systems are currently supported:
 
