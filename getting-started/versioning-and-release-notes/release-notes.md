@@ -10,8 +10,10 @@
   * Released beta version of [Security Labels-based Access Control](../../modules-1/security-and-access-control/security/attribute-based-access-control-abac/security-labels/) to control access to data based on the classification of the data (privacy, sensitivity, etc) and the attributes of the requester.
 * Data API
   * Supported FHIR-conformant [`_include` and `_revinclude` parameters](../../api-1/fhir-api/search-1/search-parameters-list/\_include-and-\_revinclude.md)
+  * Added parameter to set the maximum number of import retries for each input for [/v2/$import](../../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md#v2-usdimport-on-top-of-the-workflow-engine)
 * Aidbox Forms
 * [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
+* Fixed [issues](https://github.com/Aidbox/Issues/issues/573) submitted by Aidbox users and minor bugs
 
 ## January 2024 _`stable, 2401`_
 
