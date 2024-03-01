@@ -2,11 +2,15 @@
 description: This pages explains how security labels access control works in Aidbox
 ---
 
-# Security Labels
+# Security Label-based Access Control
 
-## What are Security Labels?
+## What are security labels?
 
-Security Labels is a set of permissions associated with a request. When security labels are present in the request context, the requester is allowed to gather information according to the security labels.
+A security label is a concept attached to a resource or bundle that provides specific security metadata about the information it is fixed to.
+
+## What is Security Label-based Access Control?
+
+Security Labels Access Control engine provides a mechanism to restrict access to bundles, resources, or resource elements depending on permissions associated with a request. When security labels are included in the request context, they allow the requester to access information in accordance with those labels.
 
 Two security label code systems are currently supported:
 
@@ -15,7 +19,7 @@ Two security label code systems are currently supported:
 
 ## Security Labels in the request context
 
-There are two ways of the security labels appear to the request context:
+There are two ways the security labels appear in the request context:
 
 1. From the `scope` claim of a JWT.
 2. From the Aidbox User’s property `securityLabel`.
@@ -28,9 +32,9 @@ A security label must be defined using the pattern `system|code`. For example, `
 
 ### User.securityLabel
 
-If the request context is associated with a Aidbox user, Aidbox tries to get security labels from the `User.securityLabel`.
+If the request context is associated with an Aidbox user, Aidbox tries to get security labels from the `User.securityLabel`.
 
-For example, the user resource containing two security labels.
+For example, the user resource contains two security labels.
 
 ```yaml
 resourceType: User
@@ -99,7 +103,7 @@ To perform masking:
 
 #### Masking examples
 
-Requestor has access to all `Encounter` fields but the `subject`.
+The requestor has access to all `Encounter` fields but the `subject`.
 
 {% tabs %}
 {% tab title="Resource" %}
