@@ -1,6 +1,19 @@
 # Release Notes
 
-## January 2024 _`latest`_
+## March 2024 `edge`
+
+`Work in progress`
+
+## February 2024 _`latest`_
+
+* Security and Access Control
+  * Released beta version of [Security Labels-based Access Control](../../modules-1/security-and-access-control/security-labels.md) to control access to data based on the classification of the data (privacy, sensitivity, etc) and the attributes of the requester.
+* Data API
+  * Supported FHIR-conformant [`_include` and `_revinclude` parameters](../../api-1/fhir-api/search-1/search-parameters-list/\_include-and-\_revinclude.md)
+* Aidbox Forms
+* [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
+
+## January 2024 _`stable, 2401`_
 
 * Data API
   * Supported [ViewDefinition resource structure](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/StructureDefinition-ViewDefinition.html) according to the latest [SQL on FHIR specification](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/index.html). These changes don’t affect existing views. Please check [this guide](../../storage-1/sql-on-fhir/view-definition/migrate-to-the-spec-compliant-viewdefinition-format.md) to update ViewDefinitions
@@ -38,7 +51,7 @@
       * Fixed issues with concurrent save/submit UI operations
       * Fixed conversion of QuestionnaireResponse with included scores
 
-## November 2023 _`stable,2311`_
+## November 2023 _`2311`_
 
 * Data API&#x20;
   * Added [asynchronous resource validation](../../profiling-and-validation/validation-api.md)
