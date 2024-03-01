@@ -418,7 +418,7 @@ Finance is only allowed:
 {% tab title="Encounter" %}
 Provider has access to all the fields within the Encounter resource.
 
-Encounter.subject is labeled:
+`Encounter.subject` is labeled:
 
 * [x] `http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`
 
@@ -499,7 +499,7 @@ resourceType: Patient
 {% tab title="Encounter" %}
 Finance has access to all the fields within the Encounter resource but to the subject.
 
-Encounter.subject is labeled:
+`Encounter.subject` is labeled:
 
 * [ ] `http://terminology.hl7.org/CodeSystem/v3-ActCode|CTCOMPT`
 
