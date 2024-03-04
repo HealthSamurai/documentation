@@ -11,7 +11,17 @@
 * Data API
   * Supported FHIR-conformant [`_include` and `_revinclude` parameters](../../api-1/fhir-api/search-1/search-parameters-list/\_include-and-\_revinclude.md)
   * Added parameter to set the maximum number of import retries for [/v2/$import](../../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md#v2-usdimport-on-top-of-the-workflow-engine)
-* Aidbox Forms
+* [Aidbox Forms](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/)
+  * Questionnaire-based forms updates:
+    * Ability to add help text
+    * Ability to add image for a question
+    * Selecting a code for an item from terminologies
+    * Selecting code for answerOption from terminologies
+    * Ability to create multi-page forms
+    * Ability to amend form using a shared link
+    * Supported attachment item
+    * Ability to add regex validation
+    * [Supported form versioning](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/versioning.md#ui-form-builder-versioning-support)
 * [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
 * Fixed [issues](https://github.com/Aidbox/Issues/issues/573) submitted by Aidbox users
 
