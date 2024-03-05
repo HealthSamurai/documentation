@@ -23,6 +23,9 @@
     * Ability to add regex validation
     * [Supported form versioning](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/versioning.md#ui-form-builder-versioning-support)
 * [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
+  * Support built-in rule based deduplication 
+  * Mapping fixes, bug fixes
+  * Minor UI enhancements  
 * Fixed [issues](https://github.com/Aidbox/Issues/issues/573) submitted by Aidbox users
 
 ## January 2024 _`stable, 2401`_
