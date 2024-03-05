@@ -149,6 +149,87 @@ security_labels:
 ```yaml
 resourceType: Encounter
 id: enc-1
+meta:
+  security:
+    - code: PROCESSINLINELABEL
+      system: http://terminology.hl7.org/CodeSystem/v3-ActCode
+    - code: L
+      system: http://terminology.hl7.org/CodeSystem/v3-Confidentiality
+status: finished
+class:
+  system: http://terminology.hl7.org/CodeSystem/v3-ActCode
+  code: IMP
+subject:
+  extension:
+    - url: http://terminology.hl7.org/CodeSystem/data-absent-reason
+      valueCode: masked
+```
+{% endtab %}
+{% endtabs %}
+
+### Remove security labels from the outcome
+
+To prevent security labels from appearing in the outcome, set the `strip labels` env:
+
+```yaml
+BOX_FEATURES_SECURITY__LABELS_STRIP__LABELS=true
+```
+
+**Stripping examples**
+
+The security labels from `meta.security` and `_status` fields have been removed from the outcome.
+
+{% tabs %}
+{% tab title="Resource" %}
+```yaml
+resourceType: Encounter
+id: enc-1
+meta:
+  security:
+    - code: PROCESSINLINELABEL
+      system: http://terminology.hl7.org/CodeSystem/v3-ActCode
+    - code: L
+      system: http://terminology.hl7.org/CodeSystem/v3-Confidentiality
+status: finished
+_status:
+  extension:
+    - url: http://hl7.org/fhir/uv/security-label-ds4p/StructureDefinition/extension-inline-sec-label
+      valueCoding:
+        code: FMCOMPT
+        system: http://terminology.hl7.org/CodeSystem/v3-ActCode
+        display: financial management compartment
+class:
+  system: http://terminology.hl7.org/CodeSystem/v3-ActCode
+  code: IMP
+subject:
+  reference: "Patient/pt-1"
+  extension:
+    - url: http://hl7.org/fhir/uv/security-label-ds4p/StructureDefinition/extension-inline-sec-label
+      valueCoding:
+        code: CTCOMPT
+        system: http://terminology.hl7.org/CodeSystem/v3-ActCode
+        display: care teamcompartment
+```
+{% endtab %}
+
+{% tab title="Request context" %}
+```
+request_method: GET
+uri: /fhir/Encounter/enc-1
+security_labels:
+  - system: http://terminology.hl7.org/CodeSystem/v3-Confidentiality
+    code: R
+    display: Restricted
+  - system: http://terminology.hl7.org/CodeSystem/v3-ActCode
+    code: FMCOMPT
+    display: financial management compartment
+```
+{% endtab %}
+
+{% tab title="Outcome " %}
+```
+resourceType: Encounter
+id: enc-1
 status: finished
 class:
   system: http://terminology.hl7.org/CodeSystem/v3-ActCode
