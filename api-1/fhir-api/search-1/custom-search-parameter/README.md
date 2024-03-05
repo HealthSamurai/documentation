@@ -31,6 +31,36 @@ query-sql:
    LIMIT 100 OFFSET 0
 ```
 
+#### Aidbox format example
+
+{% hint style="warning" %}
+Be aware of [Aidbox format](../../../../modules-1/fhir-resources/aidbox-and-fhir-formats.md) in "expression".&#x20;
+{% endhint %}
+
+In this example `["value", "string"]` expression used to look into FHIR `valueString` field:
+
+```
+PUT /fhir/SearchParameter/Observation.value-string
+content-type: application/json
+accept: application/json
+
+{
+  "name": "value-string",
+  "type": "string",
+  "resource": {
+    "id": "Observation",
+    "resourceType": "Entity"
+  },
+  "expression": [
+    [
+     "value", "string" 
+    ]
+  ],
+  "id": "Observation.value-string",
+  "resourceType": "SearchParameter"
+}
+```
+
 #### Define custom SearchParameter with extension
 
 If you have defined [first-class extension](../../../../storage-1/first-class-extensions.md), you have to use Aidbox format for the SearchParameter expression. If you use FHIR format, you don't need to create Attribute and the `expression` path should be in FHIR format.
@@ -123,7 +153,7 @@ First we import `aidbox.search-parameter.v1` and `aidbox.repository.v1` namespac
 
 This service is our concept of wrapping resourceType-specific entities, as search parameters, indexes, and more, into one entity, called **repository**. We will add indexes for search parameters soon.
 
-We have one repository for Patient resourceType: `patient-repository`. It contains `:search-parameters` key with new SearchParameter `my-parameter`. &#x20;
+We have one repository for Patient resourceType: `patient-repository`. It contains `:search-parameters` key with new SearchParameter `my-parameter`.
 
 SearchParameter must contain:
 
@@ -158,7 +188,7 @@ Composite search parameter must contain additional key: components. It must be a
 [ <paths-to-search-for-value1> <paths-to-search-for-value2> ...]
 ```
 
-In this example we create SearchParameter with name `composite-string-date` which will look for two parts: one is string, the other is date.&#x20;
+In this example we create SearchParameter with name `composite-string-date` which will look for two parts: one is string, the other is date.
 
 ```
  {ns ...
