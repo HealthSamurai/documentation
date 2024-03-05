@@ -34,10 +34,10 @@ query-sql:
 #### Aidbox format example
 
 {% hint style="warning" %}
-Be aware of [Aidbox format](../../../../modules-1/fhir-resources/aidbox-and-fhir-formats.md) in "expression".&#x20;
+Be aware of the [Aidbox format](../../../../modules-1/fhir-resources/aidbox-and-fhir-formats.md) in "expression".&#x20;
 {% endhint %}
 
-In this example `["value", "string"]` expression used to look into FHIR `valueString` field:
+In this example, the `["value", "string"]` expression is used to look into FHIR `valueString` field:
 
 ```
 PUT /fhir/SearchParameter/Observation.value-string
