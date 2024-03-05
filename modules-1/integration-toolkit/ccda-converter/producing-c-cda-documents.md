@@ -1,59 +1,32 @@
 ---
 description: >-
   This page describes how to populate C-CDA documents from FHIR data stored in
-  Aidbox.
+  Aidbox FHIR Server.
 ---
 
 # Producing C-CDA documents
+
+
 
 {% hint style="info" %}
 C-CDA / FHIR Converter provides bidirectional mapping for all data elements from the [USCDI v1](https://www.healthit.gov/isa/sites/isa/files/2020-10/USCDI-Version-1-July-2020-Errata-Final\_0.pdf) list. [Detailed list of supported C-CDA sections](sections/) is also available.
 {% endhint %}
 
-To generate a C-CDA document from FHIR data, it is necessary to create a [FHIR Document](https://hl7.org/fhir/R4/documents.html) bundle containing a [Composition](https://hl7.org/fhir/R4/composition.html) resource that specifies the top-level document attributes, including the title, document type, author, subject (patient), and a list of document sections. Each section must be described by type, title and the FHIR resources to be included. Once the FHIR Document bundle is composed, it can be submitted to the /ccda/v2/to-ccda endpoint for conversion to a C-CDA document.
+In certain cases, such as regulatory requirements, legacy systems integration, or the need to support a specific workflow, it may be necessary to convert FHIR data to C-CDA format to seamlessly integrate systems.
 
-### Section templates and LOINC codes
+A typical FHIR to C-CDA conversion process is usually divided into three main steps:&#x20;
 
-To pick the right `templateId` for a section, converter uses LOINC to OID mapping table which can be found on the [List of supported sections page](sections/). "Entries Required" / "Entries Optional" variation can be specified via FHIR extension. In the example below document contains two sections: [Social History Section (V3)](sections/socialhistorysectionv3.md) and  [Allergies and Intolerances Section (entries required) (V3)](sections/allergiesandintolerancessectioner.md).
+* **Gather required data in FHIR format:** In this step, a number of GET requests are performed to retrieve the required data from the FHIR server or source systems.&#x20;
+* **Generate FHIR 'document' type Bundle:** The gathered data is organized into a FHIR Document Bundle, with the FHIR Composition resource serving as the main document container.&#x20;
+* **Convert FHIR Document to C-CDA Document:** In this step, the FHIR data is mapped and transformed into C-CDA structures, and divided into entries and sections according to the C-CDA document template requirements.&#x20;
 
-```json
-{
-  "resourceType": "Composition",
-  ...
-  "section": [
-    {
-      "title": "Social History",
-      "code" : {
-        "text" : "Social History",
-        "coding" : [ {
-          "code" : "29762-2",
-          "display" : "Social History",
-          "system" : "http://loinc.org"
-        } ]
-      },
-      "entry": [ ... ]
-    }, {
-      "title": "Allergies and Intolerances",
-      "extension" : [ {
-        "value" : {
-          "boolean" : true
-        },
-        "url" : "entries-required"
-      } ],
-      "code" : {
-        "coding" : [ {
-          "code" : "48765-2",
-          "display" : "48765-2",
-          "system" : "http://loinc.org"
-        } ]
-      },
-      "entry": [ ... ]
-    }
-  ]
-}
-```
+Aidbox simplifies this process by incorporating features such as document definitions, section narrative generators, and pseudo-code scripts to preprocess the document before the conversion.
 
-### Document Definitions&#x20;
+In technical terms, to generate a C-CDA document from FHIR data, it is necessary to create a [FHIR Document](https://hl7.org/fhir/R4/documents.html) bundle containing a [Composition](https://hl7.org/fhir/R4/composition.html) resource that specifies the top-level document attributes, including the title, document type, author, subject (patient), and a list of document sections. Each section must be described by type, title and the FHIR resources to be included. Once the FHIR Document bundle is composed, it can be submitted to the /ccda/v2/to-ccda endpoint for conversion to a C-CDA document.
+
+Below are some details about each of these features.
+
+### Document Definitions
 
 To simplify the creation of Document bundles, Aidbox offers a feature called Document Definition, which enables the description of document contents using the FHIR Search API. The example below illustrates how to define a Document Definition:
 
@@ -123,7 +96,7 @@ To simplify the creation of Document bundles, Aidbox offers a feature called Doc
     :url "/Observation?category=vital-signs&patient=Patient/{{pid}}"}}]}
 ```
 
-Each resource attribute, such as `:subject`, `:author`, or `:section/:entry`, is specified as a HTTP request that returns a single FHIR resource or multiple FHIR resources. The full power of the [FHIR Search API](https://www.hl7.org/fhir/search.html) can be used to retrieve resources that meet specific criteria.&#x20;
+Each resource attribute, such as `:subject`, `:author`, or `:section/:entry`, is specified as a HTTP request that returns a single FHIR resource or multiple FHIR resources. The full power of the [FHIR Search API](https://www.hl7.org/fhir/search.html) can be used to retrieve resources that meet specific criteria.
 
 Parameters interpolation is also supported. For example, in the Vitals Signs section of the sample above:
 
@@ -151,6 +124,47 @@ Multiple FHIR searches per section is also possible:
  :entry
  [{:method "GET" :url "/Procedure?subject=Patient/{{pid}}&category:not=225299006&status=completed&date=ge{{start-date}}&date=le{{end-date}}&_sort=date"}
   {:method "GET" :url "/Procedure?subject=Patient/{{pid}}&status=completed&category=225299006"}]}
+```
+
+### Section templates and LOINC codes
+
+To pick the right `templateId` for a section, converter uses LOINC to OID mapping table which can be found on the [List of supported sections page](sections/). "Entries Required" / "Entries Optional" variation can be specified via FHIR extension. In the example below document contains two sections: [Social History Section (V3)](sections/socialhistorysectionv3.md) and [Allergies and Intolerances Section (entries required) (V3)](sections/allergiesandintolerancessectioner.md).
+
+```json
+{
+  "resourceType": "Composition",
+  ...
+  "section": [
+    {
+      "title": "Social History",
+      "code" : {
+        "text" : "Social History",
+        "coding" : [ {
+          "code" : "29762-2",
+          "display" : "Social History",
+          "system" : "http://loinc.org"
+        } ]
+      },
+      "entry": [ ... ]
+    }, {
+      "title": "Allergies and Intolerances",
+      "extension" : [ {
+        "value" : {
+          "boolean" : true
+        },
+        "url" : "entries-required"
+      } ],
+      "code" : {
+        "coding" : [ {
+          "code" : "48765-2",
+          "display" : "48765-2",
+          "system" : "http://loinc.org"
+        } ]
+      },
+      "entry": [ ... ]
+    }
+  ]
+}
 ```
 
 ### Section Narratives
@@ -188,7 +202,7 @@ for (i = 0; i < patient.identifier.length; i++) {
 var cda = aidbox.post('/ccda/v2/to-cсda', bundle);
 ```
 
-Another pseudo-code example on how to populate section narrative from  section entries:
+Another pseudo-code example on how to populate section narrative from section entries:
 
 ```javascript
 function generateVitalSignsNarrative(section, bundle) {
@@ -240,8 +254,6 @@ C-CDA / FHIR module provides ready-to-use Document Definitions for most frequent
 | continuity-of-care | CCD         | <p><code>pid</code> - Patient ID<br><code>start-date</code><br><code>end-date</code></p> |
 
 Additionally to this list, you can put your own predefined Document Definitions via [Aidbox Configuration Project](../../../aidbox-configuration/aidbox-zen-lang-project/).
-
-
 
 ### /ccda/prepare-doc endpoint
 
@@ -323,7 +335,6 @@ Endpoint returns a FHIR Document or OperationOutcome resource in case of error.
 
   ....
 ```
-
 
 ### /ccda/make-doc
 
