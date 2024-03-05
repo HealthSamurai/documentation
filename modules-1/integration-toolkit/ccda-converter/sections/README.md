@@ -6,11 +6,11 @@ description: >-
 
 # List of supported templates
 
-The C-CDA to FHIR Converter comes with pre-built scripts for converting C-CDA documents to FHIR Bundles.&#x20;
+The C-CDA to FHIR Converter comes with pre-built scripts for converting C-CDA documents to FHIR _Bundles_.&#x20;
 
 These scripts can be extended or modified to suit specific conversion needs. The flexibility of the conversion script enables the inclusion of extra entry or section level templates (e.g., open templates) to adhere to any changes in C-CDA specifications or to accommodate other specifications based on the HL7 CDA domain.&#x20;
 
-Below is a list of the most commonly used C-CDA document templates and their corresponding section templates.&#x20;
+Below is a list of the most commonly used C-CDA document templates and their corresponding section templates supported by the Aidbox C-CDA to FHIR Converter.
 
 Note that sections can be reused in multiple document templates, making it easier to cover documents not listed in the table.&#x20;
 
