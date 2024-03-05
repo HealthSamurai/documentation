@@ -308,7 +308,7 @@
     * [How to enable SMART on FHIR on Patient Access API](modules-1/security-and-access-control/patient-data-access-api/smart-on-fhir.md)
 * [Integration toolkit](modules-1/integration-toolkit/README.md)
   * [C-CDA / FHIR Converter](modules-1/integration-toolkit/ccda-converter/README.md)
-    * [List of supported sections](modules-1/integration-toolkit/ccda-converter/sections/README.md)
+    * [List of supported templates](modules-1/integration-toolkit/ccda-converter/sections/README.md)
       * [Allergies and Intolerances Section (entries optional) (V3)](modules-1/integration-toolkit/ccda-converter/sections/allergiesandintolerancessectioneo.md)
       * [Allergies and Intolerances Section (entries required) (V3)](modules-1/integration-toolkit/ccda-converter/sections/allergiesandintolerancessectioner.md)
       * [Assessment Section](modules-1/integration-toolkit/ccda-converter/sections/assessmentsection.md)
