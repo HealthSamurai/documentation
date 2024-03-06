@@ -188,7 +188,10 @@ The section contains a list of entries converted from the input resources.
           displayName="display string"
           code="18776-5"/>
    <title>Plan of Treatment Section (V2)</title>
-   <text>Plan of Treatment Section (V2)</text>
+   <text>
+      <paragraph>
+         <caption>No author - 2012-10-02T00:00:00Z</caption>~</paragraph>
+   </text>
    <entry>
       <observation moodCode="GOL" classCode="OBS">
          <templateId root="2.16.840.1.113883.10.20.22.4.121" extension="2022-06-01"/>

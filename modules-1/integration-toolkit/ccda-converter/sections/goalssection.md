@@ -99,7 +99,26 @@ C-CDA Equivalent:
           displayName="display string"
           code="61146-7"/>
    <title>Goals Section</title>
-   <text>Goals Section</text>
+   <text>
+      <table border="1" width="100%">
+         <thead>
+            <tr>
+               <th>Target</th>
+               <th>Target detail</th>
+               <th>Due date</th>
+               <th>Responsible Person</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>Negotiated Goal for Body Temperature (8310-5)</td>
+               <td>{:value 98, :unit "[degF]"} - {:value 99, :unit "[degF]"}</td>
+               <td>2015-06-23</td>
+               <td>Mary McDonald</td>
+            </tr>
+         </tbody>
+      </table>
+   </text>
    <entry>
       <observation moodCode="GOL" classCode="OBS">
          <templateId root="2.16.840.1.113883.10.20.22.4.121" extension="2022-06-01"/>
@@ -234,7 +253,26 @@ C-CDA Equivalent:
           displayName="display string"
           code="61146-7"/>
    <title>Goals Section</title>
-   <text>Goals Section</text>
+   <text>
+      <table border="1" width="100%">
+         <thead>
+            <tr>
+               <th>Target</th>
+               <th>Target detail</th>
+               <th>Due date</th>
+               <th>Responsible Person</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>Resident's overall goal established during assessment process (58144-7)</td>
+               <td>Need to gain more energy to do regular activities. (Visual Inspection)</td>
+               <td>2015-06-23</td>
+               <td>Mary McDonald</td>
+            </tr>
+         </tbody>
+      </table>
+   </text>
    <entry>
       <observation moodCode="GOL" classCode="OBS">
          <templateId root="2.16.840.1.113883.10.20.22.4.121" extension="2022-06-01"/>

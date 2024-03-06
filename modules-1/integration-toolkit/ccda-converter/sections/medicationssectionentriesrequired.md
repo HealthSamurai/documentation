@@ -109,11 +109,11 @@ C-CDA Equivalent:
          <caption>Prescribed Medications</caption>
          <thead>
             <tr>
-               <td>Medication</td>
-               <td>Timing</td>
-               <td>Route</td>
-               <td>Freq</td>
-               <td>Dose</td>
+               <th>Medication</th>
+               <th>Timing</th>
+               <th>Route</th>
+               <th>Freq</th>
+               <th>Dose</th>
             </tr>
          </thead>
          <tbody>
@@ -126,18 +126,18 @@ C-CDA Equivalent:
          <caption>Administered Medications</caption>
          <thead>
             <tr>
-               <td>Medication</td>
-               <td>Date</td>
-               <td>Route</td>
-               <td>Dose</td>
+               <th>Medication</th>
+               <th>Date</th>
+               <th>Route</th>
+               <th>Dose</th>
             </tr>
          </thead>
          <tbody>
             <tr>
-               <td>aspirin 81 MG Oral Tablet (243670)</td>
+               <td>Aspirin 81mg Oral Tablet (243670)</td>
                <td>2013-09-11T16:03:00-07:00</td>
                <td>Oral Route of Administration (C38288)</td>
-               <td>No information</td>
+               <td>~</td>
             </tr>
          </tbody>
       </table>
@@ -239,20 +239,20 @@ So there are nullFlavor values placed in required field effectiveTime.
          <caption>Prescribed Medications</caption>
          <thead>
             <tr>
-               <td>Medication</td>
-               <td>Timing</td>
-               <td>Route</td>
-               <td>Freq</td>
-               <td>Dose</td>
+               <th>Medication</th>
+               <th>Timing</th>
+               <th>Route</th>
+               <th>Freq</th>
+               <th>Dose</th>
             </tr>
          </thead>
          <tbody>
             <tr>
                <td>Sudafed 30 MG Oral Tablet (1049529)</td>
-               <td>No information</td>
-               <td>No information</td>
-               <td>No information</td>
-               <td>No information</td>
+               <td>~</td>
+               <td>~</td>
+               <td>~</td>
+               <td>~</td>
             </tr>
          </tbody>
       </table>
@@ -260,10 +260,10 @@ So there are nullFlavor values placed in required field effectiveTime.
          <caption>Administered Medications</caption>
          <thead>
             <tr>
-               <td>Medication</td>
-               <td>Date</td>
-               <td>Route</td>
-               <td>Dose</td>
+               <th>Medication</th>
+               <th>Date</th>
+               <th>Route</th>
+               <th>Dose</th>
             </tr>
          </thead>
          <tbody>
@@ -372,11 +372,11 @@ C-CDA Equivalent:
          <caption>Prescribed Medications</caption>
          <thead>
             <tr>
-               <td>Medication</td>
-               <td>Timing</td>
-               <td>Route</td>
-               <td>Freq</td>
-               <td>Dose</td>
+               <th>Medication</th>
+               <th>Timing</th>
+               <th>Route</th>
+               <th>Freq</th>
+               <th>Dose</th>
             </tr>
          </thead>
          <tbody>
@@ -384,7 +384,7 @@ C-CDA Equivalent:
                <td>Sudafed 30 MG Oral Tablet (1049529)</td>
                <td>2014-01-18 - 2014-01-28</td>
                <td>Oral (C38288)</td>
-               <td>x per 4.0 h</td>
+               <td>1x per 4.0 h</td>
                <td>2.0 mg</td>
             </tr>
          </tbody>
@@ -393,10 +393,10 @@ C-CDA Equivalent:
          <caption>Administered Medications</caption>
          <thead>
             <tr>
-               <td>Medication</td>
-               <td>Date</td>
-               <td>Route</td>
-               <td>Dose</td>
+               <th>Medication</th>
+               <th>Date</th>
+               <th>Route</th>
+               <th>Dose</th>
             </tr>
          </thead>
          <tbody>
@@ -455,6 +455,9 @@ C-CDA Equivalent:
         "count" : 1,
         "period" : 6.0
       }
+    },
+    "asNeeded" : {
+      "boolean" : true
     },
     "route" : {
       "text" : "Oral Route of Administration",
@@ -552,19 +555,19 @@ C-CDA Equivalent:
          <caption>Prescribed Medications</caption>
          <thead>
             <tr>
-               <td>Medication</td>
-               <td>Timing</td>
-               <td>Route</td>
-               <td>Freq</td>
-               <td>Dose</td>
+               <th>Medication</th>
+               <th>Timing</th>
+               <th>Route</th>
+               <th>Freq</th>
+               <th>Dose</th>
             </tr>
          </thead>
          <tbody>
             <tr>
-               <td>ibuprofen 600 MG Oral Tablet (197806)</td>
-               <td>2013-12-18 - </td>
+               <td>Ibuprofen 600mg Oral Tablet (197806)</td>
+               <td>2013-12-18 - Now</td>
                <td>Oral Route of Administration (C38288)</td>
-               <td>x per 6.0 h</td>
+               <td>PRN</td>
                <td>1.0 </td>
             </tr>
          </tbody>
@@ -573,10 +576,10 @@ C-CDA Equivalent:
          <caption>Administered Medications</caption>
          <thead>
             <tr>
-               <td>Medication</td>
-               <td>Date</td>
-               <td>Route</td>
-               <td>Dose</td>
+               <th>Medication</th>
+               <th>Date</th>
+               <th>Route</th>
+               <th>Dose</th>
             </tr>
          </thead>
          <tbody>
@@ -651,6 +654,14 @@ C-CDA Equivalent:
                </assignedPerson>
             </assignedAuthor>
          </author>
+         <precondition typeCode="PRCN">
+            <criterion>
+               <templateId root="2.16.840.1.113883.10.20.22.4.25" extension="2014-06-09"/>
+               <templateId root="2.16.840.1.113883.10.20.22.4.25"/>
+               <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+               <value nullFlavor="NI" xsi:type="CD"/>
+            </criterion>
+         </precondition>
       </substanceAdministration>
    </entry>
 </section>

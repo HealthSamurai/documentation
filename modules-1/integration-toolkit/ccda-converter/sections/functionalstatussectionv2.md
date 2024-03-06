@@ -68,7 +68,7 @@ Internal ID: FunctionalStatusSectionV2
     "coding" : [ {
       "code" : "d5",
       "display" : "Self-Care",
-      "system" : "urn:oid:2.16.840.1.113883.6.254"
+      "system" : "http://hl7.org/fhir/sid/icf"
     } ]
   },
   "status" : "final",
@@ -97,7 +97,7 @@ C-CDA Equivalent:
          <templateId root="2.16.840.1.113883.10.20.22.4.66"/>
          <id root="a7bc1062-8649-42a0-833d-eed65bd017c9"/>
          <code codeSystem="2.16.840.1.113883.6.254"
-                codeSystemName="urn:oid:2.16.840.1.113883.6.254"
+                codeSystemName="http://hl7.org/fhir/sid/icf"
                 displayName="Self-Care"
                 code="d5"/>
          <statusCode code="completed"/>

@@ -20,45 +20,6 @@ Internal ID: AllergiesandIntolerancesSectioner
     "resourceType" : "Patient",
     "id" : "patient"
   },
-  "clinicalStatus" : {
-    "coding" : [ {
-      "code" : "active",
-      "system" : "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical"
-    } ]
-  },
-  "type" : "allergy",
-  "resourceType" : "AllergyIntolerance",
-  "asserter" : {
-    "resourceType" : "PractitionerRole",
-    "id" : "7e71b220-f14b-8001-9fc9-36a927492259",
-    "specialty" : [ {
-      "coding" : [ {
-        "code" : "207Q00000X",
-        "display" : "Family Medicine",
-        "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
-      } ],
-      "text" : "Family Medicine"
-    } ],
-    "period" : {
-      "start" : "2010-01-03T09:08:00-05:00"
-    },
-    "practitioner" : {
-      "id" : "SOME-STRING",
-      "name" : [ {
-        "family" : "Seven",
-        "given" : [ "Henry" ],
-        "suffix" : null,
-        "use" : "official"
-      } ],
-      "resourceType" : "Practitioner",
-      "telecom" : [ {
-        "system" : "phone",
-        "use" : "work",
-        "value" : "555-555-1002"
-      } ]
-    }
-  },
-  "recordedDate" : "2010-01-03",
   "recorder" : {
     "resourceType" : "PractitionerRole",
     "id" : "f2e34f3f-360f-55fe-e31d-5763cee0b7cb",
@@ -89,6 +50,44 @@ Internal ID: AllergiesandIntolerancesSectioner
       } ]
     }
   },
+  "asserter" : {
+    "resourceType" : "PractitionerRole",
+    "id" : "7e71b220-f14b-8001-9fc9-36a927492259",
+    "specialty" : [ {
+      "coding" : [ {
+        "code" : "207Q00000X",
+        "display" : "Family Medicine",
+        "system" : "http://hl7.org/fhir/ValueSet/provider-taxonomy"
+      } ],
+      "text" : "Family Medicine"
+    } ],
+    "period" : {
+      "start" : "2010-01-03T09:08:00-05:00"
+    },
+    "practitioner" : {
+      "id" : "SOME-STRING",
+      "name" : [ {
+        "family" : "Seven",
+        "given" : [ "Henry" ],
+        "suffix" : null,
+        "use" : "official"
+      } ],
+      "resourceType" : "Practitioner",
+      "telecom" : [ {
+        "system" : "phone",
+        "use" : "work",
+        "value" : "555-555-1002"
+      } ]
+    }
+  },
+  "clinicalStatus" : {
+    "coding" : [ {
+      "code" : "active",
+      "system" : "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical"
+    } ]
+  },
+  "type" : "allergy",
+  "resourceType" : "AllergyIntolerance",
   "code" : {
     "coding" : [ {
       "system" : "http://snomed.info/sct",
@@ -114,19 +113,17 @@ C-CDA Equivalent:
       <table border="1" width="100%">
          <thead>
             <tr>
-               <td>Type</td>
-               <td>Substance</td>
-               <td>Onset</td>
-               <td>Reactions</td>
-               <td>Status</td>
+               <th>Type</th>
+               <th>Substance</th>
+               <th>Onset</th>
+               <th>Reactions</th>
+               <th>Status</th>
             </tr>
          </thead>
          <tbody>
             <tr>
                <td>allergy</td>
                <td>No Known Allergy (situation) (716186003)</td>
-               <td>No information</td>
-               <td>-</td>
                <td>active</td>
             </tr>
          </tbody>
@@ -139,7 +136,7 @@ C-CDA Equivalent:
          <code code="CONC" codeSystem="2.16.840.1.113883.5.6"/>
          <statusCode code="active"/>
          <effectiveTime>
-            <low value="20100103"/>
+            <low nullFlavor="UNK"/>
             <high nullFlavor="UNK"/>
          </effectiveTime>
          <author>
@@ -238,10 +235,7 @@ Another trivial sample
     "resourceType" : "Patient"
   },
   "onset" : {
-    "Period" : {
-      "start" : "2010-03-15",
-      "end" : null
-    }
+    "dateTime" : "2010-03-15"
   },
   "criticality" : "high",
   "clinicalStatus" : {
@@ -333,21 +327,21 @@ C-CDA Equivalent:
       <table border="1" width="100%">
          <thead>
             <tr>
-               <td>Type</td>
-               <td>Substance</td>
-               <td>Onset</td>
-               <td>Reactions</td>
-               <td>Status</td>
+               <th>Type</th>
+               <th>Substance</th>
+               <th>Onset</th>
+               <th>Reactions</th>
+               <th>Status</th>
             </tr>
          </thead>
          <tbody>
             <tr>
                <td>allergy</td>
                <td>Codeine (2670)</td>
-               <td>2010-03-15 - </td>
+               <td>2010-03-15</td>
                <td>
-                  <paragraph>2012-01-29 Nausea severe</paragraph>
-                  <paragraph>2010-03-15 Nausea mild</paragraph>
+                  <paragraph>2012-01-29 - Nausea (422587007) - severe</paragraph>
+                  <paragraph>2010-03-15 - Nausea (422587007) - mild</paragraph>
                </td>
                <td>active</td>
             </tr>
@@ -394,7 +388,7 @@ C-CDA Equivalent:
                <code xsi:type="CD" code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
                <statusCode code="completed"/>
                <effectiveTime>
-                  <low nullFlavor="UNK"/>
+                  <low value="20100315"/>
                   <high nullFlavor="UNK"/>
                </effectiveTime>
                <value code="419199007"
@@ -497,10 +491,7 @@ Trivial allergy example
     "resourceType" : "Patient"
   },
   "onset" : {
-    "Period" : {
-      "start" : "2010-03-15",
-      "end" : null
-    }
+    "dateTime" : "2010-03-15"
   },
   "criticality" : "high",
   "clinicalStatus" : {
@@ -613,21 +604,21 @@ C-CDA Equivalent:
       <table border="1" width="100%">
          <thead>
             <tr>
-               <td>Type</td>
-               <td>Substance</td>
-               <td>Onset</td>
-               <td>Reactions</td>
-               <td>Status</td>
+               <th>Type</th>
+               <th>Substance</th>
+               <th>Onset</th>
+               <th>Reactions</th>
+               <th>Status</th>
             </tr>
          </thead>
          <tbody>
             <tr>
                <td>intolerance</td>
                <td>Codeine (2670)</td>
-               <td>2010-03-15 - </td>
+               <td>2010-03-15</td>
                <td>
-                  <paragraph>2012-01-29 Nausea severe</paragraph>
-                  <paragraph>2010-03-15 Nausea mild</paragraph>
+                  <paragraph>2012-01-29 - Nausea (422587007) - severe</paragraph>
+                  <paragraph>2010-03-15 - Nausea (422587007) - mild</paragraph>
                </td>
                <td>active</td>
             </tr>
@@ -672,7 +663,7 @@ C-CDA Equivalent:
                <code xsi:type="CD" code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
                <statusCode code="completed"/>
                <effectiveTime>
-                  <low nullFlavor="UNK"/>
+                  <low value="20100315"/>
                   <high nullFlavor="UNK"/>
                </effectiveTime>
                <value code="59037007"
@@ -793,9 +784,7 @@ Another trivial sample
     "uri" : "urn:uuid:9f8231b9-aa93-0d4b-04a7-44e76a7a0a5b"
   },
   "onset" : {
-    "Period" : {
-      "start" : "1980-05-01"
-    }
+    "dateTime" : "1980-05-01"
   },
   "clinicalStatus" : {
     "coding" : [ {
@@ -854,21 +843,21 @@ C-CDA Equivalent:
       <table border="1" width="100%">
          <thead>
             <tr>
-               <td>Type</td>
-               <td>Substance</td>
-               <td>Onset</td>
-               <td>Reactions</td>
-               <td>Status</td>
+               <th>Type</th>
+               <th>Substance</th>
+               <th>Onset</th>
+               <th>Reactions</th>
+               <th>Status</th>
             </tr>
          </thead>
          <tbody>
             <tr>
                <td>intolerance</td>
                <td>Penicillin G (7980)</td>
-               <td>1980-05-01 - </td>
+               <td>1980-05-01</td>
                <td>
-                  <paragraph>- Hives moderate</paragraph>
-                  <paragraph>2010-03-15 Nausea mild</paragraph>
+                  <paragraph>~ - Hives (247472004) - moderate</paragraph>
+                  <paragraph>2010-03-15 - Nausea (422587007) - mild</paragraph>
                </td>
                <td>active</td>
             </tr>
@@ -894,7 +883,7 @@ C-CDA Equivalent:
                <code xsi:type="CD" code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
                <statusCode code="completed"/>
                <effectiveTime>
-                  <low nullFlavor="UNK"/>
+                  <low value="19800501"/>
                   <high nullFlavor="UNK"/>
                </effectiveTime>
                <value code="59037007"

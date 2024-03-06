@@ -104,7 +104,7 @@ Nutrition status observation can be converted from the Observation resource.
           "value" : "+1(555)555-1004",
           "use" : "work"
         } ],
-        "id" : "SOME-STRING",
+        "id" : "f0cfcf63-db7a-f341-2941-afbb8fc41e18",
         "resourceType" : "Practitioner"
       }
     } ]
@@ -165,7 +165,7 @@ Nutrition status observation can be converted from the Observation resource.
           "value" : "+1(555)555-1004",
           "use" : "work"
         } ],
-        "id" : "SOME-STRING",
+        "id" : "bc6132f8-079e-94c5-3205-4cecfa9aef67",
         "resourceType" : "Practitioner"
       }
     } ]

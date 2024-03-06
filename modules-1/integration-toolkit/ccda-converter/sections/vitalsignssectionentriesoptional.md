@@ -320,9 +320,9 @@ C-CDA Equivalent:
       <table border="1" width="100%">
          <thead>
             <tr>
-               <td>Vital sign</td>
-               <td>Date</td>
-               <td>Value and units</td>
+               <th>Vital sign</th>
+               <th>Date</th>
+               <th>Value and units</th>
             </tr>
          </thead>
          <tbody>
@@ -389,10 +389,7 @@ C-CDA Equivalent:
                           codeSystemName="LOINC"/>
          </code>
          <statusCode code="completed"/>
-         <effectiveTime>
-            <low value="20140520193605-0500"/>
-            <high value="20140520193605-0500"/>
-         </effectiveTime>
+         <effectiveTime nullFlavor="NI"/>
          <component>
             <observation classCode="OBS" moodCode="EVN">
                <templateId root="2.16.840.1.113883.10.20.22.4.27" extension="2014-06-09"/>

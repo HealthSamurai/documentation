@@ -89,9 +89,9 @@ C-CDA Equivalent:
       <table border="1" width="100%">
          <thead>
             <tr>
-               <td>Procedures</td>
-               <td>Date</td>
-               <td>Status</td>
+               <th>Procedures</th>
+               <th>Date</th>
+               <th>Status</th>
             </tr>
          </thead>
          <tbody>
@@ -204,9 +204,9 @@ The section contains an Act entry converted from the input Procedure resource.
       <table border="1" width="100%">
          <thead>
             <tr>
-               <td>Procedures</td>
-               <td>Date</td>
-               <td>Status</td>
+               <th>Procedures</th>
+               <th>Date</th>
+               <th>Status</th>
             </tr>
          </thead>
          <tbody>
@@ -313,9 +313,9 @@ C-CDA Equivalent:
       <table border="1" width="100%">
          <thead>
             <tr>
-               <td>Procedures</td>
-               <td>Date</td>
-               <td>Status</td>
+               <th>Procedures</th>
+               <th>Date</th>
+               <th>Status</th>
             </tr>
          </thead>
          <tbody>

@@ -17,7 +17,7 @@ Internal ID: MedicalEquipmentSectionV2
 ```json
 {
   "resourceType" : "Procedure",
-  "id" : "SOME-STRING",
+  "id" : "d6b614bd-04ce-410d-8726-e1fd01dcc72a",
   "code" : {
     "text" : "Biliary Stent, May 5, 2013",
     "coding" : [ {
@@ -59,15 +59,17 @@ C-CDA Equivalent:
       <table border="1" width="100%">
          <thead>
             <tr>
-               <td>ID</td>
-               <td>Assigning Auth</td>
-               <td>Code</td>
-               <td>Date</td>
+               <th>ID</th>
+               <th>Assigning Auth</th>
+               <th>Code</th>
+               <th>Date</th>
             </tr>
          </thead>
          <tbody>
             <tr>
-               <td>No information</td>
+               <td>~</td>
+               <td>~</td>
+               <td>~</td>
                <td>2013-05-12</td>
             </tr>
          </tbody>
@@ -77,7 +79,7 @@ C-CDA Equivalent:
       <procedure classCode="PROC" moodCode="EVN">
          <templateId root="2.16.840.1.113883.10.20.22.4.14" extension="2014-06-09"/>
          <templateId root="2.16.840.1.113883.10.20.22.4.14"/>
-         <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
+         <id root="d6b614bd-04ce-410d-8726-e1fd01dcc72a"/>
          <code codeSystem="2.16.840.1.113883.6.96"
                 codeSystemName="http://snomed.info/sct"
                 displayName="Stent Placement"
@@ -134,7 +136,7 @@ C-CDA Equivalent:
         "resourceType" : "Device"
       } ],
       "status" : "completed",
-      "id" : "SOME-STRING",
+      "id" : "d5b614bd-01ce-410d-8726-e1fd01dcc72a",
       "code" : {
         "text" : "Biliary Stent, May 5, 2013",
         "coding" : [ {
@@ -157,7 +159,14 @@ C-CDA Equivalent:
       }
     }
   } ],
-  "id" : "SOME-STRING",
+  "id" : "3e414708-0e61-4d48-8863-484a2d473a02",
+  "code" : {
+    "coding" : [ {
+      "code" : "40388003",
+      "display" : "Implant",
+      "system" : "http://snomed.info/sct"
+    } ]
+  },
   "status" : "current",
   "mode" : "snapshot"
 }
@@ -177,16 +186,15 @@ C-CDA Equivalent:
       <table border="1" width="100%">
          <thead>
             <tr>
-               <td>ID</td>
-               <td>Assigning Auth</td>
-               <td>Code</td>
-               <td>Date</td>
+               <th>ID</th>
+               <th>Assigning Auth</th>
+               <th>Code</th>
+               <th>Date</th>
             </tr>
          </thead>
          <tbody>
             <tr>
-               <td>No information</td>
-               <td>No information</td>
+               <td colspan="4">No records</td>
             </tr>
          </tbody>
       </table>
@@ -194,12 +202,21 @@ C-CDA Equivalent:
    <entry>
       <organizer classCode="CLUSTER" moodCode="EVN">
          <templateId root="2.16.840.1.113883.10.20.22.4.135"/>
-         <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
+         <id root="3e414708-0e61-4d48-8863-484a2d473a02"/>
+         <code codeSystem="2.16.840.1.113883.6.96"
+                codeSystemName="http://snomed.info/sct"
+                displayName="Implant"
+                code="40388003"/>
+         <statusCode code="completed"/>
+         <effectiveTime xsi:type="IVL_TS">
+            <low nullFlavor="UNK"/>
+            <high nullFlavor="UNK"/>
+         </effectiveTime>
          <component>
             <procedure moodCode="EVN" classCode="PROC">
                <templateId root="2.16.840.1.113883.10.20.22.4.14" extension="2014-06-09"/>
                <templateId root="2.16.840.1.113883.10.20.22.4.14"/>
-               <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
+               <id root="d5b614bd-01ce-410d-8726-e1fd01dcc72a"/>
                <code codeSystem="2.16.840.1.113883.6.96"
                       codeSystemName="http://snomed.info/sct"
                       displayName="Stent Placement"

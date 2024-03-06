@@ -328,48 +328,48 @@ C-CDA Equivalent:
    <text>
       <list>
          <item>
-            <paragraph>Basic Metabolic Panel - Blood (51990-0)</paragraph>
+            <caption>Basic Metabolic Panel (51990-0), No performer ID, No Lab, No Lab Address</caption>
             <table border="1" width="100%">
                <thead>
                   <tr>
-                     <td>Code</td>
-                     <td>Value</td>
-                     <td>Date</td>
+                     <th>Code</th>
+                     <th>Value</th>
+                     <th>Date</th>
                   </tr>
                </thead>
                <tbody>
                   <tr>
-                     <td>Sodium [Moles/​volume] in Blood (2947-0)</td>
+                     <td>Na (2947-0)</td>
                      <td>140 mmol/L</td>
                      <td>2012-10-02T09:08:00-05:00</td>
                   </tr>
                   <tr>
-                     <td>Potassium [Moles/​volume] in Blood (6298-4)</td>
+                     <td>K (6298-4)</td>
                      <td>4.2 mmol/L</td>
                      <td>2012-10-02T09:08:00-05:00</td>
                   </tr>
                   <tr>
-                     <td>Chloride [Moles/volume] in Blood (2069-3)</td>
+                     <td>Cl (2069-3)</td>
                      <td>98 mmol/L</td>
                      <td>2012-10-02T09:08:00-05:00</td>
                   </tr>
                   <tr>
-                     <td>Carbon dioxide, total [Moles/volume] in Serum or Plasma (2028-9)</td>
+                     <td>CO2 (2028-9)</td>
                      <td>24 mmol/L</td>
                      <td>2012-10-02T09:08:00-05:00</td>
                   </tr>
                   <tr>
-                     <td>Urea nitrogen [Mass/volume] in Blood (6299-2)</td>
+                     <td>BUN (6299-2)</td>
                      <td>10 md/dL</td>
                      <td>2012-10-02T09:08:00-05:00</td>
                   </tr>
                   <tr>
-                     <td>Creatinine [Mass/volume] in Blood (38483-4)</td>
+                     <td>Cr (38483-4)</td>
                      <td>1.2 mg/dL</td>
                      <td>2012-10-02T09:08:00-05:00</td>
                   </tr>
                   <tr>
-                     <td>Glucose [Mass/volume] in Blood (2339-0)</td>
+                     <td>Glu (2339-0)</td>
                      <td>185 mmol/L</td>
                      <td>2012-10-02T09:08:00-05:00</td>
                   </tr>
@@ -377,18 +377,18 @@ C-CDA Equivalent:
             </table>
          </item>
          <item>
-            <paragraph>Troponin T.Cardiac [Mass/Volume] In Serum Or Plasma (6598-7)</paragraph>
+            <caption>Troponin T (6598-7), No performer ID, No Lab, No Lab Address</caption>
             <table border="1" width="100%">
                <thead>
                   <tr>
-                     <td>Code</td>
-                     <td>Value</td>
-                     <td>Date</td>
+                     <th>Code</th>
+                     <th>Value</th>
+                     <th>Date</th>
                   </tr>
                </thead>
                <tbody>
                   <tr>
-                     <td>Troponin T.Cardiac [Mass/Volume] In Serum Or Plasma (6598-7)</td>
+                     <td>Troponin T (6598-7)</td>
                      <td>0.01 ng/mL</td>
                      <td>2012-10-02T09:08:00-05:00</td>
                   </tr>
@@ -396,18 +396,18 @@ C-CDA Equivalent:
             </table>
          </item>
          <item>
-            <paragraph>Troponin T.Cardiac [Mass/Volume] In Serum Or Plasma (6598-7)</paragraph>
+            <caption>Troponin T (6598-7), No performer ID, No Lab, No Lab Address</caption>
             <table border="1" width="100%">
                <thead>
                   <tr>
-                     <td>Code</td>
-                     <td>Value</td>
-                     <td>Date</td>
+                     <th>Code</th>
+                     <th>Value</th>
+                     <th>Date</th>
                   </tr>
                </thead>
                <tbody>
                   <tr>
-                     <td>Troponin T.Cardiac [Mass/Volume] In Serum Or Plasma (6598-7)</td>
+                     <td>Troponin T (6598-7)</td>
                      <td>0.01 ng/mL</td>
                      <td>2012-10-03T10:08:00-05:00</td>
                   </tr>
@@ -671,13 +671,13 @@ C-CDA Equivalent:
    <text>
       <list>
          <item>
-            <paragraph>Carbon dioxide (2028-9)</paragraph>
+            <caption>Carbon dioxide (2028-9), No performer ID, No Lab, No Lab Address</caption>
             <table border="1" width="100%">
                <thead>
                   <tr>
-                     <td>Code</td>
-                     <td>Value</td>
-                     <td>Date</td>
+                     <th>Code</th>
+                     <th>Value</th>
+                     <th>Date</th>
                   </tr>
                </thead>
                <tbody>

@@ -44,7 +44,7 @@ NB Immunization.status
   "recorded" : null,
   "primarySource" : false,
   "status" : "not-done",
-  "id" : "SOME-STRING",
+  "id" : "09f1fbb5-766e-487c-8029-c3bf6cb056f0",
   "occurrence" : {
     "dateTime" : "2015-06-22T00:00:00-04:00"
   }
@@ -62,25 +62,32 @@ C-CDA Equivalent:
           code="11369-6"/>
    <title>Immunizations Section (entries optional) (V3)</title>
    <text>
-      <list>
-         <item>
-            <list>
-               <item>Vaccine:
-          Code: 166; Display: influenza, intradermal, quadrivalent, preservative free, injectable; System: http://hl7.org/fhir/sid/cvx</item>
-               <item>Date: 2015-06-22T00:00:00-04:00</item>
-               <item>Status: not-done</item>
-               <item>Lot: -</item>
-               <item>Additional Notes:
-</item>
-            </list>
-         </item>
-      </list>
+      <table border="1" width="100%">
+         <thead>
+            <tr>
+               <th>Vaccine</th>
+               <th>Date</th>
+               <th>Status</th>
+               <th>Lot</th>
+               <th>Notes</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>influenza, intradermal, quadrivalent, preservative free, injectable (166)</td>
+               <td>2015-06-22T00:00:00-04:00</td>
+               <td>not-done</td>
+               <td>~</td>
+               <td>~</td>
+            </tr>
+         </tbody>
+      </table>
    </text>
    <entry>
       <substanceAdministration negationInd="false" moodCode="EVN" classCode="SBADM">
          <templateId root="2.16.840.1.113883.10.20.22.4.52" extension="2015-08-01"/>
          <templateId root="2.16.840.1.113883.10.20.22.4.52"/>
-         <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
+         <id root="09f1fbb5-766e-487c-8029-c3bf6cb056f0"/>
          <statusCode code="completed"/>
          <effectiveTime value="20150622000000-0400"/>
          <consumable>
@@ -116,7 +123,7 @@ C-CDA Equivalent:
 ```json
 {
   "resourceType" : "Immunization",
-  "id" : "SOME-STRING",
+  "id" : "e6f1ba43-c0ed-4b9b-9f12-f435d8ad8f92",
   "status" : "completed",
   "lotNumber" : "1",
   "vaccineCode" : {
@@ -148,25 +155,32 @@ C-CDA Equivalent:
           code="11369-6"/>
    <title>Immunizations Section (entries optional) (V3)</title>
    <text>
-      <list>
-         <item>
-            <list>
-               <item>Vaccine:
-          Code: 88; Display: Influenza virus vaccine; System: http://hl7.org/fhir/sid/cvx</item>
-               <item>Date: 2010-08-15</item>
-               <item>Status: completed</item>
-               <item>Lot: 1</item>
-               <item>Additional Notes:
-</item>
-            </list>
-         </item>
-      </list>
+      <table border="1" width="100%">
+         <thead>
+            <tr>
+               <th>Vaccine</th>
+               <th>Date</th>
+               <th>Status</th>
+               <th>Lot</th>
+               <th>Notes</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>Influenza virus vaccine (88)</td>
+               <td>2010-08-15</td>
+               <td>completed</td>
+               <td>1</td>
+               <td>~</td>
+            </tr>
+         </tbody>
+      </table>
    </text>
    <entry>
       <substanceAdministration negationInd="false" classCode="SBADM" moodCode="EVN">
          <templateId root="2.16.840.1.113883.10.20.22.4.52" extension="2015-08-01"/>
          <templateId root="2.16.840.1.113883.10.20.22.4.52"/>
-         <id root="7df888b6-0268-1e62-ff60-ceb2f2f88630"/>
+         <id root="e6f1ba43-c0ed-4b9b-9f12-f435d8ad8f92"/>
          <statusCode code="completed"/>
          <effectiveTime value="20100815"/>
          <consumable>

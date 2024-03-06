@@ -140,9 +140,9 @@ C-CDA Equivalent:
       <table border="1" width="100%">
          <thead>
             <tr>
-               <td>Type</td>
-               <td>Period</td>
-               <td>Dx</td>
+               <th>Type</th>
+               <th>Period</th>
+               <th>Dx</th>
             </tr>
          </thead>
          <tbody>
