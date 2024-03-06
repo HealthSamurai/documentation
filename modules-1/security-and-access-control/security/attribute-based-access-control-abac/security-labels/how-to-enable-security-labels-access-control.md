@@ -94,7 +94,7 @@ When Aidbox starts, navigate to the [http://localhost:8888](http://localhost:888
 To make Aidbox trust `JWT` issued by external server token introspection is used, run the following request in the [REST Console](../../../../../overview/aidbox-ui/rest-console-1.md#rest-console).
 
 ```yaml
-PUT /TokenIntrospector/security-labels-demo
+PUT /TokenIntrospector/security-labels-demo-client
 content-type: text/yaml
 
 resourceType: TokenIntrospector
