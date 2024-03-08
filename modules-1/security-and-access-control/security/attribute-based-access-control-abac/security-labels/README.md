@@ -241,3 +241,22 @@ subject:
 ```
 {% endtab %}
 {% endtabs %}
+
+## Superadmin Role with Label-based Access Control
+
+As mentioned [earlier](./#resource-level-access-control), resources without security labels cannot be accessed. This can affect the functionality of the Aidbox UI console, making resources like User, Client, Access Policy, etc. inaccessible until they are labeled.\
+\
+To avoid the need to label all resources displayed in the UI console, use the `superadmin` Role.\
+\
+Create a `Role` resource with the name `superadmin` and reference to the User used to log in to the UI console before enabling Label-based Access Control.
+
+```yaml
+POST /Role
+content-type: text/yaml
+accept: text/yaml
+
+name: superadmin
+user:
+  id: <user-id>
+  resourceType: User
+```
