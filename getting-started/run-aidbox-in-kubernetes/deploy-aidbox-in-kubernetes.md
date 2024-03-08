@@ -44,7 +44,7 @@ Aidbox supports all popular managed Postgresql databases. Supported versions - 1
 
 ### Self-managed solution
 
-For a self-managed solution, we recommend use [AidboxDB image](https://hub.docker.com/r/healthsamurai/aidboxdb) . This image contains all required extensions, backup tool, and pre-build replication support. Read more information in the documentation — [AidboxDB](../../storage-1/aidboxdb-image/).
+For a self-managed solution, we recommend using [AidboxDB image](https://hub.docker.com/r/healthsamurai/aidboxdb). This image contains all required extensions, backup tool, and pre-build replication support. Read more information in the documentation — [AidboxDB](../../storage-1/aidboxdb-image/).
 
 First step — create volume
 
@@ -211,7 +211,7 @@ data:
 ```
 {% endcode %}
 
-For backups and WAL archivation we are recommended cloud-native solution [WAL-G](https://github.com/wal-g/wal-g). You can find full information about configuration and usage on [documentation page](https://github.com/wal-g/wal-g/blob/master/docs/PostgreSQL.md).
+For backups and WAL archivation we recommend a cloud-native solution [WAL-G](https://github.com/wal-g/wal-g). You can find full information about its configuration and usage on this [documentation page](https://github.com/wal-g/wal-g/blob/master/docs/PostgreSQL.md).
 
 * [Configure storage access](https://github.com/wal-g/wal-g/blob/6ec7680ef5cb66c938faf180c97b3378b701d685/docs/STORAGES.md) — WAL-G can store backups in S3, Google Cloud Storage, Azure, or a local file system.
 * Recommended backup policy — Full backup every week, incremental backup every day.
