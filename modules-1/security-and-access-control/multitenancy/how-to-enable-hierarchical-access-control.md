@@ -170,34 +170,82 @@ org-a
 
 Use Aidbox UI Rest Console to create Patient resource in the organization B.
 
+{% tabs %}
+{% tab title="FHIR API" %}
 {% code title="status: 201 (created)" %}
 ```yaml
 PUT /Organization/org-b/fhir/Patient/pt-1
 ```
 {% endcode %}
+{% endtab %}
+
+{% tab title="Aidbox API" %}
+{% code title="status: 201 (created)" %}
+```yaml
+PUT /Organization/org-b/aidbox/Patient/pt-1
+```
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 
 ### Check access control works
 
 #### Patient is visible from the Organization above (org-a)
 
+{% tabs %}
+{% tab title="FHIR API" %}
 {% code title="status: 200" %}
 ```yaml
 GET /Organization/org-a/fhir/Patient/pt-1
 ```
 {% endcode %}
+{% endtab %}
+
+{% tab title="Aidbox API" %}
+{% code title="status: 200" %}
+```yaml
+GET /Organization/org-a/aidbox/Patient/pt-1
+```
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 
 #### Patient is visible from its Organization (org-b)
 
+{% tabs %}
+{% tab title="FHIR API" %}
 {% code title="status: 200" %}
 ```yaml
 GET /Organization/org-b/fhir/Patient/pt-1
 ```
 {% endcode %}
+{% endtab %}
+
+{% tab title="Aidbox API" %}
+{% code title="status: 200" %}
+```yaml
+GET /Organization/org-b/aidbox/Patient/pt-1
+```
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 
 #### Patient is not visible from the nested Organization (org-c)&#x20;
 
+{% tabs %}
+{% tab title="FHIR API" %}
 {% code title="status: 403" %}
 ```yaml
 GET /Organization/org-c/fhir/Patient/pt-1
 ```
 {% endcode %}
+{% endtab %}
+
+{% tab title="Aidbox API" %}
+{% code title="status: 403" %}
+```yaml
+GET /Organization/org-c/aidbox/Patient/pt-1
+```
+{% endcode %}
+{% endtab %}
+{% endtabs %}
