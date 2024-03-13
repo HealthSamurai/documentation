@@ -328,7 +328,7 @@ C-CDA Equivalent:
    <text>
       <list>
          <item>
-            <caption>Basic Metabolic Panel (51990-0), No performer ID, No Lab, No Lab Address</caption>
+            <caption>Basic Metabolic Panel, No performer ID, No Lab, No Lab Address</caption>
             <table border="1" width="100%">
                <thead>
                   <tr>
@@ -339,45 +339,45 @@ C-CDA Equivalent:
                </thead>
                <tbody>
                   <tr>
-                     <td>Na (2947-0)</td>
+                     <td>Na</td>
                      <td>140 mmol/L</td>
-                     <td>2012-10-02T09:08:00-05:00</td>
+                     <td>10/02/2012 2:08PM UTC</td>
                   </tr>
                   <tr>
-                     <td>K (6298-4)</td>
+                     <td>K</td>
                      <td>4.2 mmol/L</td>
-                     <td>2012-10-02T09:08:00-05:00</td>
+                     <td>10/02/2012 2:08PM UTC</td>
                   </tr>
                   <tr>
-                     <td>Cl (2069-3)</td>
+                     <td>Cl</td>
                      <td>98 mmol/L</td>
-                     <td>2012-10-02T09:08:00-05:00</td>
+                     <td>10/02/2012 2:08PM UTC</td>
                   </tr>
                   <tr>
-                     <td>CO2 (2028-9)</td>
+                     <td>CO2</td>
                      <td>24 mmol/L</td>
-                     <td>2012-10-02T09:08:00-05:00</td>
+                     <td>10/02/2012 2:08PM UTC</td>
                   </tr>
                   <tr>
-                     <td>BUN (6299-2)</td>
+                     <td>BUN</td>
                      <td>10 md/dL</td>
-                     <td>2012-10-02T09:08:00-05:00</td>
+                     <td>10/02/2012 2:08PM UTC</td>
                   </tr>
                   <tr>
-                     <td>Cr (38483-4)</td>
+                     <td>Cr</td>
                      <td>1.2 mg/dL</td>
-                     <td>2012-10-02T09:08:00-05:00</td>
+                     <td>10/02/2012 2:08PM UTC</td>
                   </tr>
                   <tr>
-                     <td>Glu (2339-0)</td>
+                     <td>Glu</td>
                      <td>185 mmol/L</td>
-                     <td>2012-10-02T09:08:00-05:00</td>
+                     <td>10/02/2012 2:08PM UTC</td>
                   </tr>
                </tbody>
             </table>
          </item>
          <item>
-            <caption>Troponin T (6598-7), No performer ID, No Lab, No Lab Address</caption>
+            <caption>Troponin T, No performer ID, No Lab, No Lab Address</caption>
             <table border="1" width="100%">
                <thead>
                   <tr>
@@ -388,15 +388,15 @@ C-CDA Equivalent:
                </thead>
                <tbody>
                   <tr>
-                     <td>Troponin T (6598-7)</td>
+                     <td>Troponin T</td>
                      <td>0.01 ng/mL</td>
-                     <td>2012-10-02T09:08:00-05:00</td>
+                     <td>10/02/2012 2:08PM UTC</td>
                   </tr>
                </tbody>
             </table>
          </item>
          <item>
-            <caption>Troponin T (6598-7), No performer ID, No Lab, No Lab Address</caption>
+            <caption>Troponin T, No performer ID, No Lab, No Lab Address</caption>
             <table border="1" width="100%">
                <thead>
                   <tr>
@@ -407,9 +407,9 @@ C-CDA Equivalent:
                </thead>
                <tbody>
                   <tr>
-                     <td>Troponin T (6598-7)</td>
+                     <td>Troponin T</td>
                      <td>0.01 ng/mL</td>
-                     <td>2012-10-03T10:08:00-05:00</td>
+                     <td>10/03/2012 3:08PM UTC</td>
                   </tr>
                </tbody>
             </table>
@@ -671,7 +671,7 @@ C-CDA Equivalent:
    <text>
       <list>
          <item>
-            <caption>Carbon dioxide (2028-9), No performer ID, No Lab, No Lab Address</caption>
+            <caption>Carbon dioxide, No performer ID, No Lab, No Lab Address</caption>
             <table border="1" width="100%">
                <thead>
                   <tr>
@@ -682,9 +682,9 @@ C-CDA Equivalent:
                </thead>
                <tbody>
                   <tr>
-                     <td>Carbon dioxide (2028-9)</td>
+                     <td>Carbon dioxide</td>
                      <td>27 mmol/L</td>
-                     <td>2012-08-15T10:05:00-08:00</td>
+                     <td>08/15/2012 6:05PM UTC</td>
                   </tr>
                </tbody>
             </table>

@@ -106,7 +106,7 @@ C-CDA Equivalent:
    <title>Medications Section (entries required) (V2)</title>
    <text>
       <table border="1" width="100%">
-         <caption>Prescribed Medications</caption>
+         <caption>Medications List</caption>
          <thead>
             <tr>
                <th>Medication</th>
@@ -134,9 +134,9 @@ C-CDA Equivalent:
          </thead>
          <tbody>
             <tr>
-               <td>Aspirin 81mg Oral Tablet (243670)</td>
-               <td>2013-09-11T16:03:00-07:00</td>
-               <td>Oral Route of Administration (C38288)</td>
+               <td>Aspirin 81mg Oral Tablet</td>
+               <td>09/11/2013 11:03PM UTC</td>
+               <td>Oral Route of Administration</td>
                <td>~</td>
             </tr>
          </tbody>
@@ -236,7 +236,7 @@ So there are nullFlavor values placed in required field effectiveTime.
    <title>Medications Section (entries required) (V2)</title>
    <text>
       <table border="1" width="100%">
-         <caption>Prescribed Medications</caption>
+         <caption>Medications List</caption>
          <thead>
             <tr>
                <th>Medication</th>
@@ -248,7 +248,7 @@ So there are nullFlavor values placed in required field effectiveTime.
          </thead>
          <tbody>
             <tr>
-               <td>Sudafed 30 MG Oral Tablet (1049529)</td>
+               <td>Sudafed 30 MG Oral Tablet</td>
                <td>~</td>
                <td>~</td>
                <td>~</td>
@@ -369,7 +369,7 @@ C-CDA Equivalent:
    <title>Medications Section (entries required) (V2)</title>
    <text>
       <table border="1" width="100%">
-         <caption>Prescribed Medications</caption>
+         <caption>Medications List</caption>
          <thead>
             <tr>
                <th>Medication</th>
@@ -381,9 +381,9 @@ C-CDA Equivalent:
          </thead>
          <tbody>
             <tr>
-               <td>Sudafed 30 MG Oral Tablet (1049529)</td>
-               <td>2014-01-18 - 2014-01-28</td>
-               <td>Oral (C38288)</td>
+               <td>Sudafed 30 MG Oral Tablet</td>
+               <td>01/18/2014 12:00AM UTC - 01/28/2014 12:00AM UTC</td>
+               <td>Oral</td>
                <td>1x per 4.0 h</td>
                <td>2.0 mg</td>
             </tr>
@@ -552,7 +552,7 @@ C-CDA Equivalent:
    <title>Medications Section (entries required) (V2)</title>
    <text>
       <table border="1" width="100%">
-         <caption>Prescribed Medications</caption>
+         <caption>Medications List</caption>
          <thead>
             <tr>
                <th>Medication</th>
@@ -564,9 +564,9 @@ C-CDA Equivalent:
          </thead>
          <tbody>
             <tr>
-               <td>Ibuprofen 600mg Oral Tablet (197806)</td>
-               <td>2013-12-18 - Now</td>
-               <td>Oral Route of Administration (C38288)</td>
+               <td>Ibuprofen 600mg Oral Tablet</td>
+               <td>12/18/2013 12:00AM UTC - Now</td>
+               <td>Oral Route of Administration</td>
                <td>PRN</td>
                <td>1.0 </td>
             </tr>

@@ -74,8 +74,8 @@ C-CDA Equivalent:
          </thead>
          <tbody>
             <tr>
-               <td>influenza, intradermal, quadrivalent, preservative free, injectable (166)</td>
-               <td>2015-06-22T00:00:00-04:00</td>
+               <td>influenza, intradermal, quadrivalent, preservative free, injectable</td>
+               <td>06/22/2015 4:00AM UTC</td>
                <td>not-done</td>
                <td>~</td>
                <td>~</td>
@@ -167,8 +167,8 @@ C-CDA Equivalent:
          </thead>
          <tbody>
             <tr>
-               <td>Influenza virus vaccine (88)</td>
-               <td>2010-08-15</td>
+               <td>Influenza virus vaccine</td>
+               <td>08/15/2010 12:00AM UTC</td>
                <td>completed</td>
                <td>1</td>
                <td>~</td>

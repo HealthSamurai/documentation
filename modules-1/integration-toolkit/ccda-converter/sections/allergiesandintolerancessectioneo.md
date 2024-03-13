@@ -123,7 +123,7 @@ C-CDA Equivalent:
          <tbody>
             <tr>
                <td>allergy</td>
-               <td>No Known Allergy (situation) (716186003)</td>
+               <td>No Known Allergy (situation)</td>
                <td>active</td>
             </tr>
          </tbody>
@@ -337,11 +337,11 @@ C-CDA Equivalent:
          <tbody>
             <tr>
                <td>allergy</td>
-               <td>Codeine (2670)</td>
-               <td>2010-03-15</td>
+               <td>Codeine</td>
+               <td>03/15/2010 12:00AM UTC</td>
                <td>
-                  <paragraph>2012-01-29 - Nausea (422587007) - severe</paragraph>
-                  <paragraph>2010-03-15 - Nausea (422587007) - mild</paragraph>
+                  <paragraph>01/29/2012 12:00AM UTC - Nausea - severe</paragraph>
+                  <paragraph>03/15/2010 12:00AM UTC - Nausea - mild</paragraph>
                </td>
                <td>active</td>
             </tr>
@@ -614,11 +614,11 @@ C-CDA Equivalent:
          <tbody>
             <tr>
                <td>intolerance</td>
-               <td>Codeine (2670)</td>
-               <td>2010-03-15</td>
+               <td>Codeine</td>
+               <td>03/15/2010 12:00AM UTC</td>
                <td>
-                  <paragraph>2012-01-29 - Nausea (422587007) - severe</paragraph>
-                  <paragraph>2010-03-15 - Nausea (422587007) - mild</paragraph>
+                  <paragraph>01/29/2012 12:00AM UTC - Nausea - severe</paragraph>
+                  <paragraph>03/15/2010 12:00AM UTC - Nausea - mild</paragraph>
                </td>
                <td>active</td>
             </tr>
@@ -853,11 +853,11 @@ C-CDA Equivalent:
          <tbody>
             <tr>
                <td>intolerance</td>
-               <td>Penicillin G (7980)</td>
-               <td>1980-05-01</td>
+               <td>Penicillin G</td>
+               <td>05/01/1980 12:00AM UTC</td>
                <td>
-                  <paragraph>~ - Hives (247472004) - moderate</paragraph>
-                  <paragraph>2010-03-15 - Nausea (422587007) - mild</paragraph>
+                  <paragraph>~ - Hives - moderate</paragraph>
+                  <paragraph>03/15/2010 12:00AM UTC - Nausea - mild</paragraph>
                </td>
                <td>active</td>
             </tr>

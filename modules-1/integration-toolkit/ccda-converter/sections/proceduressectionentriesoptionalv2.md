@@ -96,8 +96,8 @@ C-CDA Equivalent:
          </thead>
          <tbody>
             <tr>
-               <td>Laparoscopic appendectomy (6025007)</td>
-               <td>2014-02-03T09:22:05-07:00 - 2014-02-03T11:15:14-07:00</td>
+               <td>Laparoscopic appendectomy</td>
+               <td>02/03/2014 4:22PM UTC - 02/03/2014 6:15PM UTC</td>
                <td>completed</td>
             </tr>
          </tbody>
@@ -211,8 +211,8 @@ The section contains an Act entry converted from the input Procedure resource.
          </thead>
          <tbody>
             <tr>
-               <td>Nutrition education (61310001)</td>
-               <td>2014-03-29T10:45:13-05:00</td>
+               <td>Nutrition education</td>
+               <td>03/29/2014 3:45PM UTC</td>
                <td>completed</td>
             </tr>
          </tbody>
@@ -320,8 +320,8 @@ C-CDA Equivalent:
          </thead>
          <tbody>
             <tr>
-               <td>12 lead ECG (268400002)</td>
-               <td>2014-03-29T09:15:22-12:00</td>
+               <td>12 lead ECG</td>
+               <td>03/29/2014 9:15PM UTC</td>
                <td>completed</td>
             </tr>
          </tbody>

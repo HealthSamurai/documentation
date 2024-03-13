@@ -111,9 +111,9 @@ C-CDA Equivalent:
          </thead>
          <tbody>
             <tr>
-               <td>Negotiated Goal for Body Temperature (8310-5)</td>
+               <td>Negotiated Goal for Body Temperature</td>
                <td>{:value 98, :unit "[degF]"} - {:value 99, :unit "[degF]"}</td>
-               <td>2015-06-23</td>
+               <td>06/23/2015 12:00AM UTC</td>
                <td>Mary McDonald</td>
             </tr>
          </tbody>
@@ -265,9 +265,9 @@ C-CDA Equivalent:
          </thead>
          <tbody>
             <tr>
-               <td>Resident's overall goal established during assessment process (58144-7)</td>
+               <td>Resident's overall goal established during assessment process</td>
                <td>Need to gain more energy to do regular activities. (Visual Inspection)</td>
-               <td>2015-06-23</td>
+               <td>06/23/2015 12:00AM UTC</td>
                <td>Mary McDonald</td>
             </tr>
          </tbody>

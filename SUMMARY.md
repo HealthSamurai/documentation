@@ -320,6 +320,7 @@
       * [Functional Status Section (V2)](modules-1/integration-toolkit/ccda-converter/sections/functionalstatussectionv2.md)
       * [Goals Section](modules-1/integration-toolkit/ccda-converter/sections/goalssection.md)
       * [Health Concerns Section (V2)](modules-1/integration-toolkit/ccda-converter/sections/healthconcernssectionv2.md)
+      * [History of Present Illness Section](modules-1/integration-toolkit/ccda-converter/sections/historyofpresentillnesssection.md)
       * [Hospital Course Section](modules-1/integration-toolkit/ccda-converter/sections/hospitalcoursesection.md)
       * [Hospital Discharge Instructions Section](modules-1/integration-toolkit/ccda-converter/sections/hospitaldischargeinstructionssectio.md)
       * [Immunizations Section (entries optional) (V3)](modules-1/integration-toolkit/ccda-converter/sections/immunizationssectionentriesoptiona.md)

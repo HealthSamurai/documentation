@@ -140,16 +140,19 @@ C-CDA Equivalent:
       <table border="1" width="100%">
          <thead>
             <tr>
+               <th>Date</th>
                <th>Type</th>
-               <th>Period</th>
-               <th>Dx</th>
+               <th>Department</th>
+               <th>CareTeam</th>
+               <th>Description</th>
             </tr>
          </thead>
          <tbody>
             <tr>
-               <td>Office outpatient visit 15 minutes (99213)</td>
-               <td>2012-08-15 - Now</td>
-               <td>Costal Chondritis (64109004)</td>
+               <td>08/15/2012 12:00AM UTC - Now</td>
+               <td>Office outpatient visit 15 minutes</td>
+               <td>97005, Portland, OR, 1004 Healthcare Dr.</td>
+               <td>Costal Chondritis</td>
             </tr>
          </tbody>
       </table>

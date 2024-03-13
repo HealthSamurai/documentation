@@ -70,7 +70,7 @@ C-CDA Equivalent:
                <td>~</td>
                <td>~</td>
                <td>~</td>
-               <td>2013-05-12</td>
+               <td>05/12/2013 12:00AM UTC</td>
             </tr>
          </tbody>
       </table>

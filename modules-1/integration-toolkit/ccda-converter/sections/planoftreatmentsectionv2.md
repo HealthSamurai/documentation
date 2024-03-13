@@ -190,7 +190,7 @@ The section contains a list of entries converted from the input resources.
    <title>Plan of Treatment Section (V2)</title>
    <text>
       <paragraph>
-         <caption>No author - 2012-10-02T00:00:00Z</caption>~</paragraph>
+         <caption>No author - 10/02/2012 12:00AM UTC</caption>~</paragraph>
    </text>
    <entry>
       <observation moodCode="GOL" classCode="OBS">

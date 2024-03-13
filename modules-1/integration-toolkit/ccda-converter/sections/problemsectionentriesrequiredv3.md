@@ -115,10 +115,10 @@ The section contains an Act.entryRelationship.Observation entry converted from t
          </thead>
          <tbody>
             <tr>
-               <td>Community Acquired Pneumonia (385093006)</td>
-               <td>2014-03-02T12:45:36-05:00</td>
-               <td>2014-04-02T12:45:36-05:05</td>
-               <td> (active)</td>
+               <td>Community Acquired Pneumonia</td>
+               <td>03/02/2014 5:45PM UTC</td>
+               <td>04/02/2014 5:50PM UTC</td>
+               <td>N/A</td>
             </tr>
          </tbody>
       </table>
@@ -298,10 +298,10 @@ C-CDA Equivalent:
          </thead>
          <tbody>
             <tr>
-               <td>Community Acquired Pneumonia (385093006)</td>
-               <td>2014-03-02T12:45:36-05:00</td>
-               <td>2014-04-02T12:45:36-05:05</td>
-               <td> (active)</td>
+               <td>Community Acquired Pneumonia</td>
+               <td>03/02/2014 5:45PM UTC</td>
+               <td>04/02/2014 5:50PM UTC</td>
+               <td>N/A</td>
             </tr>
          </tbody>
       </table>
