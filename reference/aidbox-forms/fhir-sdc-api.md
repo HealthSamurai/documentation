@@ -331,11 +331,9 @@ issue:
 
 
 
-# Populate Questionnaire and generate link - $populatelink
+# Populate Questionnaire and generate a link - $populatelink
 
-The [populatelink](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populatelink.html) operation creates 
-a prefilled [QuestionnaireResponse](https://www.hl7.org/fhir/questionnaireresponse.html) based on a specific [Questionnaire](https://www.hl7.org/fhir/questionnaire.html), 
-and generates link to WEB-application, which will be used to fill out the form.
+The [populatelink](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populatelink.html) operation generates a link to a web page to be used to answer a specified [Questionnaire](https://www.hl7.org/fhir/questionnaire.html). The form at the specified location will be pre-filled with answers to questions where possible based on information provided as part of the operation or already known by the server about the subject of the Questionnaire.
 
 ## URLs
 
@@ -349,21 +347,41 @@ POST [base]/Questionnaire/[id]/$populatelink
 
 ## Parameters
 
-Parameters are the same as [$populate](fhir-sdc-api.md#parameters)
+The base set of parameters is the same as for [$populate](fhir-sdc-api.md#parameters). On top of that, a few extra parameters are supported by Aidbox Forms.
+
+{% hint style="warning" %}
+WARN: The following parameters are not FHIR SDC compliant. This is an extension of the specification.
+{% endhint %}
+
+### allow-amend
+
+Whether the generated link will allow amending and re-submitting the form.
+
+```
+name: allow-amend
+value:
+  Boolean: true
+```
+
+### redirect-on-submit
+
+A URL where the user will be redirected to after successfully submitting the form.
+
+```yaml
+name: redirect-on-submit
+value:
+  String: https://example.com/submit-hook?questionnaire=123
+```
 
 ## Response
 
-- in failure case - response is specified as [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) object.
-- in success case - response is specified as [Parameters](https://www.hl7.org/fhir/parameters.html#parameters) object.
-
-Success response shape
-
+- in failure case - response is specified as [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) object containing a link.
+- in success case - response is specified as [Parameters](https://www.hl7.org/fhir/parameters.html#parameters) object containing a list of issues.
 
 | Parameter | Cardinality | Type                                                              | Description                                                                                |
 |-----------|-------------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
 | link      | 1..1        | [uri](http://hl7.org/fhir/R4/datatypes.html#uri)                  | The URL for the web form that supports capturing the information defined by questionnaire  |
 | issues    | 0..1        | [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) | A list of hints and warnings about problems encountered while populating the questionnaire |
-
 
 
 ## Usage Example
