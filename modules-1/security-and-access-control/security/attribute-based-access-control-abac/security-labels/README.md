@@ -14,8 +14,8 @@ Label-based Access Control engine provides a mechanism to restrict access to bun
 
 Two security label code systems are currently supported:
 
-1. http://terminology.hl7.org/CodeSystem/v3-Confidentiality
-2. http://terminology.hl7.org/CodeSystem/v3-ActCode
+1. [http://terminology.hl7.org/CodeSystem/v3-Confidentiality](http://terminology.hl7.org/CodeSystem/v3-Confidentiality)
+2. [http://terminology.hl7.org/CodeSystem/v3-ActCode](http://terminology.hl7.org/CodeSystem/v3-ActCode)
 
 ## Security Labels in the request context
 
@@ -62,7 +62,7 @@ Security Labels access control is done in two steps:
 
 ### Resource-level access control
 
-If the security labels of the request context intersect with the security labels of the resource, the requester can access the resource. Otherwise, no access.
+If the security labels of the request context intersect with the security labels of the resource, the requester can access the resource. Otherwise, there is no access. Consider marking non-sensitive data with the security label U (unrestricted).&#x20;
 
 {% hint style="warning" %}
 If a resource has no security labels, no one can access the resource.
