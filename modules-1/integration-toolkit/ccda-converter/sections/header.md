@@ -50,25 +50,19 @@ Internal ID: Header
     "extension" : [ {
       "extension" : [ {
         "value" : {
-          "CodeableConcept" : {
-            "text" : "White",
-            "coding" : [ {
-              "code" : "2106-3",
-              "display" : "White",
-              "system" : "urn:oid:2.16.840.1.113883.6.238"
-            } ]
+          "Coding" : {
+            "code" : "2106-3",
+            "display" : "White",
+            "system" : "urn:oid:2.16.840.1.113883.6.238"
           }
         },
         "url" : "ombCategory"
       }, {
         "value" : {
-          "CodeableConcept" : {
-            "text" : "White European",
-            "coding" : [ {
-              "code" : "2108-9",
-              "display" : "White European",
-              "system" : "urn:oid:2.16.840.1.113883.6.238"
-            } ]
+          "Coding" : {
+            "code" : "2108-9",
+            "display" : "White European",
+            "system" : "urn:oid:2.16.840.1.113883.6.238"
           }
         },
         "url" : "detailed"
@@ -76,13 +70,10 @@ Internal ID: Header
       "url" : "http://hl7.org/fhir/StructureDefinition/us-core-race"
     }, {
       "value" : {
-        "CodeableConcept" : {
-          "text" : "Mexican",
-          "coding" : [ {
-            "code" : "2186-5",
-            "display" : "Mexican",
-            "system" : "urn:oid:2.16.840.1.113883.6.238"
-          } ]
+        "Coding" : {
+          "code" : "2186-5",
+          "display" : "Mexican",
+          "system" : "urn:oid:2.16.840.1.113883.6.238"
         }
       },
       "url" : "http://hl7.org/fhir/StructureDefinition/us-core-ethnicity"
@@ -244,21 +235,15 @@ C-CDA Equivalent:
             <raceCode codeSystem="2.16.840.1.113883.6.238"
                        codeSystemName="urn:oid:2.16.840.1.113883.6.238"
                        displayName="White"
-                       code="2106-3">
-               <originalText>White</originalText>
-            </raceCode>
+                       code="2106-3"/>
             <sdtc:raceCode codeSystem="2.16.840.1.113883.6.238"
                             codeSystemName="urn:oid:2.16.840.1.113883.6.238"
                             displayName="White European"
-                            code="2108-9">
-               <originalText>White European</originalText>
-            </sdtc:raceCode>
+                            code="2108-9"/>
             <ethnicGroupCode codeSystem="2.16.840.1.113883.6.238"
                               codeSystemName="urn:oid:2.16.840.1.113883.6.238"
                               displayName="Mexican"
-                              code="2186-5">
-               <originalText>Mexican</originalText>
-            </ethnicGroupCode>
+                              code="2186-5"/>
          </patient>
       </patientRole>
    </recordTarget>

@@ -105,20 +105,35 @@ The section contains an Act.entryRelationship.Observation entry converted from t
    <title>Problem Section (entries optional) (V3)</title>
    <text>
       <table border="1" width="100%">
+         <caption>Active Problems</caption>
          <thead>
             <tr>
                <th>Problem</th>
-               <th>Onset</th>
-               <th>Abatement</th>
-               <th>Status</th>
+               <th>Noted Date</th>
+               <th>Diagnosed Date</th>
             </tr>
          </thead>
          <tbody>
             <tr>
                <td>Community Acquired Pneumonia</td>
                <td>03/02/2014 5:45PM UTC</td>
-               <td>04/02/2014 5:50PM UTC</td>
-               <td>N/A</td>
+               <td>03/02/2014 12:45PM UTC</td>
+            </tr>
+         </tbody>
+      </table>
+      <table border="1" width="100%">
+         <caption>Resolved Problems</caption>
+         <thead>
+            <tr>
+               <th>Problem</th>
+               <th>Noted Date</th>
+               <th>Diagnosed Date</th>
+               <th>Resolved Date</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td colspan="4">No records</td>
             </tr>
          </tbody>
       </table>
@@ -288,20 +303,35 @@ C-CDA Equivalent:
    <title>Problem Section (entries optional) (V3)</title>
    <text>
       <table border="1" width="100%">
+         <caption>Active Problems</caption>
          <thead>
             <tr>
                <th>Problem</th>
-               <th>Onset</th>
-               <th>Abatement</th>
-               <th>Status</th>
+               <th>Noted Date</th>
+               <th>Diagnosed Date</th>
             </tr>
          </thead>
          <tbody>
             <tr>
                <td>Community Acquired Pneumonia</td>
                <td>03/02/2014 5:45PM UTC</td>
-               <td>04/02/2014 5:50PM UTC</td>
-               <td>N/A</td>
+               <td>03/02/2014 12:45PM UTC</td>
+            </tr>
+         </tbody>
+      </table>
+      <table border="1" width="100%">
+         <caption>Resolved Problems</caption>
+         <thead>
+            <tr>
+               <th>Problem</th>
+               <th>Noted Date</th>
+               <th>Diagnosed Date</th>
+               <th>Resolved Date</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td colspan="4">No records</td>
             </tr>
          </tbody>
       </table>
