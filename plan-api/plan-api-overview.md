@@ -107,12 +107,12 @@ Before you commit to promoting your app, please make sure you have entered the c
 Requests with pre-production app configurations should not be sent out. However, if you have sent a request with incorrect app information, you can still update the form with the correct details. Saving the form will result in updating the request as well, as long as it is pending review. You can find the current status of your Production Request under the _“App Status”_ section of the form.
 
 {% hint style="info" %}
-Consider the following recommendations to minimize the chances of a Production Request being rejected.
-{% endhint %}
+Consider the following recommendations to minimize the chances of a Production Request being rejected:
 
 * Make sure you have specified all the required app information;
 * Provide links to Terms of Service and policies;
-* Provide a clear and transparent description of your app and it's purpose;
+* Provide a clear and transparent description of your app and it's purpose.
+{% endhint %}
 
 As soon as your Production Request has been reviewed, you will receive an email on the address you used to register the account with the Developer Sandbox.
 
