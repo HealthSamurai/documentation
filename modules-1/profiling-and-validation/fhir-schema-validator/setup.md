@@ -43,7 +43,7 @@ AIDBOX_FHIR_PACKAGES=hl7.fhir.us.core#5.0.1
 To validate coded values with an external Terminology server, set it in the following environment variable by specifying the `ValueSet/$validate-code` endpoint.
 
 ```
-AIDBOX_FHIR_SCHEMA_VALIDATION_ENABLED=https://tx.fhir.org/r4/ValueSet/$validate-code
+AIDBOX_VALIDATE_BINDING_URL=https://tx.fhir.org/r4/ValueSet/$validate-code
 ```
 
 {% hint style="warning" %}
