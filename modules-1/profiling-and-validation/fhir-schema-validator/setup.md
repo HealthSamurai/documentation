@@ -20,61 +20,29 @@ This project is tailored with specific configurations for FHIR Schema Validator.
 
 ### Configuration Overview: Key Features and Distinctions
 
-If you already have a configuration project, you can replicate these steps to enable FHIR Schema Validator in your Aidbox instance.
-
 #### Enable the FHIR Schema Validator Engine
 
-To enable the FHIR Schema Validator engine, provide the following variable in your Zen configuration project:
-
-{% code title="zrc/config.edn" %}
-```
- features
- {:zen/tags #{aidbox.config/features}
-  ...
-  :validation {:mode "fhir-schema"}
-  ...
-  }
+To enable the FHIR Schema Validator engine, set the following environment variable:
 
 ```
-{% endcode %}
-
-{% hint style="info" %}
-Please note that this validation mode suppresses other validation engines and does not cooperate with them
-{% endhint %}
+AIDBOX_FHIR_SCHEMA_VALIDATION_ENABLED=true
+```
 
 #### Enable a Specific Implementation Guide (IG)
 
-To enable a specific IG, list it in the following variable. Separate different packages using a colon (`:`). You can visit the following page to get a complete [list of IGs](supported-implementation-guides.md) supported by the FHIR Schema validator. Package entry template: `<package_name>#<package_version>`.
-
-{% code title="zrc/config.edn" %}
-```
- base-config
- {:zen/tags #{aidbox.config/config}
-  ...
-  :fhir-packages "hl7.fhir.us.core#5.0.1"
-  ...
-  }
+To enable a specific IG, list it in the following environment variable. Separate different packages using a colon (`:`). You can visit the following page to get a complete [list of IGs](supported-implementation-guides.md) supported by the FHIR Schema validator. Package entry template: `<package_name>#<package_version>`.
 
 ```
-{% endcode %}
-
-
+AIDBOX_FHIR_PACKAGES=hl7.fhir.us.core#5.0.1
+```
 
 ### External Terminology Server
 
-To validate coded values with an external Terminology server, use the `validate-binding-url` variable by specifying the `ValueSet/$validate-code` endpoint.
-
-{% code title="zrc/config.edn" %}
-```
- base-config
- {:zen/tags #{aidbox.config/config}
-  ...
-  :validate-binding-url "https://tx.fhir.org/r4/ValueSet/$validate-code"
-  ...
-  }
+To validate coded values with an external Terminology server, set it in the following environment variable by specifying the `ValueSet/$validate-code` endpoint.
 
 ```
-{% endcode %}
+AIDBOX_FHIR_SCHEMA_VALIDATION_ENABLED=https://tx.fhir.org/r4/ValueSet/$validate-code
+```
 
 {% hint style="warning" %}
 Please note that this external terminology server will be used exclusively for validating terminology bindings.
