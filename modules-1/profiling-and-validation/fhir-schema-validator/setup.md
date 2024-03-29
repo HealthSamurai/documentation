@@ -20,6 +20,8 @@ This project is tailored with specific configurations for FHIR Schema Validator.
 
 ### Configuration Overview: Key Features and Distinctions
 
+If you already have a configuration project, you can replicate these steps to enable FHIR Schema Validator in your Aidbox instance.
+
 #### Enable the FHIR Schema Validator Engine
 
 To enable the FHIR Schema Validator engine, set the following environment variable:
