@@ -35,12 +35,17 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
                                       (fn [p]
                                         (or (clojure.string/includes? p "terminology-index-db")
                                             (clojure.string/includes? p "url-global-index.ndjson.gz")))
-                                      (map
-                                       (fn [m] (second (clojure.string/split (get m "name") (re-pattern "/"))))
+                                      (reduce
+                                       (fn [acc m] (let [parsed-name (clojure.string/split (get m "name") (re-pattern "/"))]
+                                                     (if (= "package.ndjson.gz"
+                                                              (nth parsed-name 2 nil))
+                                                        (conj acc (second parsed-name))
+                                                        acc)))
+                                       []
                                        (get
-                                        (->> (slurp "https://storage.googleapis.com/storage/v1/b/fhir-schema-registry/o?maxResults=10000&delimiter=/1.0.0") 
-                                             (cheshire.core/parse-string)) 
-                                        "items"))))
+                                        (->> (slurp "https://storage.googleapis.com/storage/v1/b/fhir-schema-registry/o?maxResults=10000&delimiter=/1.0.0")
+                                             (cheshire.core/parse-string))
+                                        "items")) ))
                            (fn [versions]
                              (clojure.string/join ", "
                                                   (mapv (comp second (fn [s] (clojure.string/split s (re-pattern "#|/"))))
