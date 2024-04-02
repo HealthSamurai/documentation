@@ -24,10 +24,6 @@ Multibox is a type of Aidbox distribution that isolates data to separate databas
 * Data can't be easily shared between tenants, e.g. terminologies, Practitioner, Organization resources etc.
 {% endhint %}
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
 ### Aidbox API Constructor
 
 Aidbox API Constructor is a tool to define your own REST API routes with middlewares, access checks, etc. \
