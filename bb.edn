@@ -71,7 +71,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
                                              (second v))]
                           [package-name
                            (:title (get-package-meta! (str package-name "#" (last versions))))
-                           (clojure.string/join ",\n " versions)]))
+                           (clojure.string/join ",  " versions)]))
                       (group-by (comp first
                                       (fn [s] (clojure.string/split s (re-pattern "#"))))
                                 (remove
