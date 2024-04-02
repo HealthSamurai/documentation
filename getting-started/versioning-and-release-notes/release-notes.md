@@ -25,6 +25,12 @@
     * Ability to place multiple widgets on one line
     * Ability to add placeholder for widget
     * Improved UI Builder dev experience via warnings and tips
+    
+* [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
+  * Support of FHIR formatted Bundle 
+  * Enhanced references resolving mechanism for `make-doc` and `prepare-doc` endpoints
+  * Mapping fixes, bug fixes
+ 
 
 ## February 2024 _`stable, 2402`_
 
