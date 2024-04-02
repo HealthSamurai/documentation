@@ -1,4 +1,5 @@
-{:tasks
+{:deps {cheshire/cheshire {:mvn/version "5.13.0"}}
+ :tasks
  {fhir-schema-supported-packages-sync
   (do
     (def path "modules-1/profiling-and-validation/fhir-schema-validator/supported-implementation-guides.md")
@@ -19,37 +20,76 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 ***
 ")
+    (def default-gcp-bucket-url "https://storage.googleapis.com/fhir-schema-registry")
+    (def default-package-core-file-name "package.ndjson.gz")
+
+    (defn build-full-package-file-uri
+      "Constructs a `uri` for the FHIR-Schema package file using the `gcp-bucket-url` and `package-core-file-name`."
+      ^java.net.URI
+      [{:as _options, :keys [gcp-bucket-url package-core-file-name]
+        :or {gcp-bucket-url default-gcp-bucket-url
+             package-core-file-name default-package-core-file-name}}
+       ^String package-full-name]
+      (let [encoded-package-full-name (java.net.URLEncoder/encode package-full-name "UTF-8")
+            normalized-url (.normalize (java.net.URI. (str gcp-bucket-url "/1.0.0" \/ encoded-package-full-name \/ package-core-file-name)))]
+        normalized-url))
+
+    (defn open-ndjson-gz-reader
+      [^String path]
+      (let [^java.io.BufferedReader
+            ndedn-gz-reader
+            (-> path
+                (clojure.java.io/input-stream)
+                (java.util.zip.GZIPInputStream.)
+                (clojure.java.io/reader))]
+        ndedn-gz-reader))
+
+    (defn get-package-meta!
+      "Reads first line from the `package.ndjson.gz`.
+       Return parsed `edn` with package meta."
+      [package-full-name]
+      (try
+        (cheshire.core/parse-string 
+         (.readLine
+          (open-ndjson-gz-reader
+           (build-full-package-file-uri {} package-full-name)))
+         keyword)
+        (catch Exception e (println (format "Unexist package: %s" package-full-name))))) 
+
     (spit path
           (clojure.string/replace
            template
            "{{table_content}}"
            (clojure.string/replace
             (with-out-str
-              (clojure.pprint/print-table
-               (map (fn [v] (zipmap ["Package" "Versions"] v))
-                    (into (sorted-map)
-                          (update-vals
-                           (group-by (comp first
-                                           (fn [s] (clojure.string/split s (re-pattern "#"))))
-                                     (remove
-                                      (fn [p]
-                                        (or (clojure.string/includes? p "terminology-index-db")
-                                            (clojure.string/includes? p "url-global-index.ndjson.gz")))
-                                      (reduce
-                                       (fn [acc m] (let [parsed-name (clojure.string/split (get m "name") (re-pattern "/"))]
-                                                     (if (= "package.ndjson.gz"
-                                                              (nth parsed-name 2 nil))
-                                                        (conj acc (second parsed-name))
-                                                        acc)))
-                                       []
-                                       (get
-                                        (->> (slurp "https://storage.googleapis.com/storage/v1/b/fhir-schema-registry/o?maxResults=10000&delimiter=/1.0.0")
-                                             (cheshire.core/parse-string))
-                                        "items")) ))
-                           (fn [versions]
-                             (clojure.string/join ", "
-                                                  (mapv (comp second (fn [s] (clojure.string/split s (re-pattern "#|/"))))
-                                                        versions))))))))
+              (clojure.pprint/print-table 
+               (mapv (fn [v] (zipmap ["Name" "Title" "Versions"] v))
+                     (mapv
+                      (fn [v]
+                        (let [package-name (first v)
+                              versions (mapv (comp second (fn [s] (clojure.string/split s (re-pattern "#|/"))))
+                                             (second v))]
+                          [package-name
+                           (:title (get-package-meta! (str package-name "#" (last versions))))
+                           (clojure.string/join ", " versions)]))
+                      (group-by (comp first
+                                      (fn [s] (clojure.string/split s (re-pattern "#"))))
+                                (remove
+                                 (fn [p]
+                                   (or (clojure.string/includes? p "terminology-index-db")
+                                       (clojure.string/includes? p "url-global-index.ndjson.gz")))
+                                 (reduce
+                                  (fn [acc m] (let [parsed-name (clojure.string/split (get m "name") (re-pattern "/"))]
+                                                (if (= "package.ndjson.gz"
+                                                       (nth parsed-name 2 nil))
+                                                  (conj acc (second parsed-name))
+                                                  acc)))
+                                  []
+                                  (get
+                                   (->> (slurp "https://storage.googleapis.com/storage/v1/b/fhir-schema-registry/o?maxResults=10000&delimiter=/1.0.0")
+                                        (cheshire.core/parse-string))
+                                   "items")) ))
+                      ))))
             "+"
             "|")))
 
