@@ -352,7 +352,9 @@ spec:
 ```
 {% endcode %}
 
-All additional information about HA Aidbox configuration you can find in this article — [HA Aidbox](https://docs.aidbox.app/getting-started/run-aidbox-in-kubernetes/high-available-aidbox)
+When Aidbox starts for the first time, resolving all the dependencies takes longer. If you encounter startupProbe failure, you might want to consider increasing the initialDelaySeconds and failureThreshold under the startupProbe spec in the config above.&#x20;
+
+All additional information about HA Aidbox configuration can be found in this article — [HA Aidbox](https://docs.aidbox.app/getting-started/run-aidbox-in-kubernetes/high-available-aidbox).
 
 To verify that Aidbox started correctly you can check the logs:
 
