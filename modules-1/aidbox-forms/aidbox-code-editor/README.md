@@ -8,6 +8,10 @@ description: >-
 
 ## Overview
 
+{% hint style="warning" %}
+We strongly recommend using our UI Form Builder based on FHIR SDC (Structured Data Capture), which we are continuously developing. The current solution will remain supported but will not receive further development at this time.
+{% endhint %}
+
 This tool is based on domain-specific language (DSL) which gives flexibility and composability, with which you can describe layer-by-layer any forms with complex logic, integrate them in your current solution to capture data and store it in FHIR storage.
 
 We have presented the form as a layered structure. To design the form, you need to describe the necessary layers using DSL.

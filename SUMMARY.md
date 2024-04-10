@@ -354,7 +354,7 @@
   * [Custom Resources using Entity](modules-1/custom-resources/getting-started-with-custom-resources.md)
 * [Aidbox Forms](modules-1/aidbox-forms.md)
   * [Getting started](modules-1/aidbox-forms/getting-started.md)
-  * [Aidbox UI Builder (alpha)](modules-1/aidbox-forms/aidbox-ui-builder-alpha/README.md)
+  * [Aidbox UI Builder](modules-1/aidbox-forms/aidbox-ui-builder-alpha/README.md)
     * [Form creation](modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation.md)
     * [Import FHIR Questionnaire](modules-1/aidbox-forms/aidbox-ui-builder-alpha/import-fhir-questionnaire.md)
     * [Versioning](modules-1/aidbox-forms/aidbox-ui-builder-alpha/versioning.md)

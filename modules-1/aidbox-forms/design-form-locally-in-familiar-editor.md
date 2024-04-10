@@ -6,6 +6,10 @@ description: >-
 
 # Any familiar form editor
 
+{% hint style="warning" %}
+We strongly recommend using our UI Form Builder based on FHIR SDC (Structured Data Capture), which we are continuously developing. The current solution will remain supported but will not receive further development at this time.
+{% endhint %}
+
 ## Create file.edn with form name in zrc/ forms directory
 
 Example:
