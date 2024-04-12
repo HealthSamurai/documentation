@@ -531,5 +531,6 @@
   * [Workflow API](reference/aidbox-forms/workflow-api.md)
   * [Addendum API](reference/aidbox-forms/addendum-api.md)
   * [FHIR SDC API](reference/aidbox-forms/fhir-sdc-api.md)
+  * [Aidbox SDC API](reference/aidbox-forms/aidbox-sdc-api.md)
 * [Aidbox SQL functions](reference/aidbox-sql-functions.md)
 * [SMART on FHIR](reference/smart-on-fhir.md)
