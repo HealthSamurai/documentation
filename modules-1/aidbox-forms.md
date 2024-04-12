@@ -17,6 +17,7 @@ It allows to design and embed digital medical forms and capture data in FHIR for
 * [Aidbox Code Editor](aidbox-forms/aidbox-code-editor/) for creating complex forms (based on DSL)
 * Form rendering engine
 * [FHIR SDC API](../reference/aidbox-forms/fhir-sdc-api.md)
+* [Aidbox SDC API](../reference/aidbox-forms/aidbox-sdc-api.md)
 * [FHIR API](../api-1/fhir-api/)
 * [RPC API](../reference/aidbox-forms/api-reference.md)
 * [FHIR storage](broken-reference)
