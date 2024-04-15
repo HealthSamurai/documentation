@@ -27,7 +27,7 @@ If you already have a configuration project, you can replicate these steps to en
 To enable the FHIR Schema Validator engine, set the following environment variable:
 
 ```
-AIDBOX_FHIR_SCHEMA_VALIDATION_ENABLED=true
+AIDBOX_FHIR_SCHEMA_VALIDATION=true
 ```
 
 #### Enable a Specific Implementation Guide (IG)
@@ -43,7 +43,7 @@ AIDBOX_FHIR_PACKAGES=hl7.fhir.us.core#5.0.1
 To validate coded values with an external Terminology server, set it in the following environment variable by specifying the `ValueSet/$validate-code` endpoint.
 
 ```
-AIDBOX_VALIDATE_BINDING_URL=https://tx.fhir.org/r4/ValueSet/$validate-code
+AIDBOX_VALIDATE_BINDING_URL=https://tx.fhir.org/r4/ValueSet/\$validate-code
 ```
 
 {% hint style="warning" %}
