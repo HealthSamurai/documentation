@@ -18,7 +18,7 @@ Aidbox doesn't have an atomic update yet. It also allows omitting `id` in the re
 PUT [base]/[type]?[search parameters]
 ```
 
-In contrast to FHIR, Aidbox conditional update allows creating a resource with a specific `id`. In case of one match, `conditional update`  ignores the id coming in the request body. That means that resource `id` can't be changed by any `update` operation.
+In contrast to FHIR, Aidbox conditional update allows creating a resource with a specific `id`. In case of one match, `conditional update` ignores the id coming in the request body. That means that resource `id` can't be changed by any `update` operation.
 
 * **No matches**: The server performs a `create` interaction (Aidbox version of create)
 * **One Match**: The server performs the update against the matching resource
@@ -206,10 +206,6 @@ meta:
   tag:
   - {system: 'https://aidbox.app', code: updated}
 ```
-{% endtab %}
-
-{% tab title="Response (Aidbox)" %}
-
 {% endtab %}
 {% endtabs %}
 

@@ -36,20 +36,19 @@ You can get [Capability Statement](https://www.hl7.org/fhir/capabilitystatement.
 GET <server-domain>/fhir/metadata
 ```
 
-{% swagger baseUrl="<your-domain>/fhir/metadata" path="" method="get" summary=" Get metadata" %}
-{% swagger-description %}
+## &#x20;Get metadata
 
-{% endswagger-description %}
+<mark style="color:blue;">`GET`</mark> `<your-domain>/fhir/metadata`
 
-{% swagger-parameter in="path" name="mode" type="string" %}
-full | normative | terminology
-{% endswagger-parameter %}
+#### Path Parameters
 
-{% swagger-parameter in="path" name="_format" type="string" %}
-json | yaml | edn | xml
-{% endswagger-parameter %}
+| Name     | Type   | Description                      |
+| -------- | ------ | -------------------------------- |
+| mode     | string | full \| normative \| terminology |
+| \_format | string | json \| yaml \| edn \| xml       |
 
-{% swagger-response status="200" description="" %}
+{% tabs %}
+{% tab title="200 " %}
 ```yaml
 patchFormat: [json-patch, merge-patch]
 rest:
@@ -113,8 +112,8 @@ rest:
     - {name: address-postalcode, definition: /SearchParameter/Patient.address-postalcode,
       type: string}
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
 The information returned depends on the value of the `mode` parameter:
 
@@ -124,7 +123,7 @@ The information returned depends on the value of the `mode` parameter:
 | `normative`                  | As above, but only the normative portions of the Capability Statement                                                                                                            |
 | `terminology`                | A [TerminologyCapabilities](http://hl7.org/fhir/2018Sep/terminologycapabilities.html) resource that provides further information about terminologies are supported by the server |
 
-Servers MAY ignore the mode parameter and return a CapabilityStatement resource. &#x20;
+Servers MAY ignore the mode parameter and return a CapabilityStatement resource.
 
 #### Configure CapabilityStatement
 
@@ -160,32 +159,36 @@ If you want more control over CapabilityStatement, please contact us in the comm
 
 #### rest\[].resource\[].profile
 
-The profile property is set when zen profiling is enabled and the following conditions are met:&#x20;
+The profile property is set when zen profiling is enabled and the following conditions are met:
 
-* the corresponding resource is defined in zen profile&#x20;
+* the corresponding resource is defined in zen profile
 * there is exactly one zen schema tagged with `base-profile` for the corresponding resource
 
 ## Aidbox native metadata
 
 To get metadata in the internal Aidbox format, use [`/$metadata?_format=yaml`](http://localhost:7777/$metadata?\_format=yaml)
 
-{% swagger baseUrl="<your-domain>/$metadata" path="" method="get" summary="Get Aidbox native metadata" %}
-{% swagger-description %}
+## Get Aidbox native metadata
 
-{% endswagger-description %}
+<mark style="color:blue;">`GET`</mark> `<your-domain>/$metadata`
 
-{% swagger-parameter in="path" name="_format" type="string" %}
-yaml | json | edn
-{% endswagger-parameter %}
+#### Path Parameters
 
-{% swagger-parameter in="query" name="path" type="string" %}
-Path to specific part of metadata (for example Entity.Patient)
-{% endswagger-parameter %}
+| Name     | Type   | Description         |
+| -------- | ------ | ------------------- |
+| \_format | string | yaml \| json \| edn |
 
-{% swagger-response status="200" description="" %}
+#### Query Parameters
+
+| Name | Type   | Description                                                    |
+| ---- | ------ | -------------------------------------------------------------- |
+| path | string | Path to specific part of metadata (for example Entity.Patient) |
+
+{% tabs %}
+{% tab title="200 " %}
 ```
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-&#x20;Capability statements can become quite large; servers are encouraged to support the [`_summary`](http://hl7.org/fhir/2018Sep/search.html#summary) and [`_elements`](http://hl7.org/fhir/2018Sep/search.html#elements) parameters on the capabilities interaction, though this is not required. In addition, servers are encouraged to implement the [$subset](http://hl7.org/fhir/2018Sep/capabilitystatement-operation-subset.html) and [$implements](http://hl7.org/fhir/2018Sep/capabilitystatement-operation-implements.html) operations to make it easy for a client to check conformance.
+Capability statements can become quite large; servers are encouraged to support the [`_summary`](http://hl7.org/fhir/2018Sep/search.html#summary) and [`_elements`](http://hl7.org/fhir/2018Sep/search.html#elements) parameters on the capabilities interaction, though this is not required. In addition, servers are encouraged to implement the [$subset](http://hl7.org/fhir/2018Sep/capabilitystatement-operation-subset.html) and [$implements](http://hl7.org/fhir/2018Sep/capabilitystatement-operation-implements.html) operations to make it easy for a client to check conformance.

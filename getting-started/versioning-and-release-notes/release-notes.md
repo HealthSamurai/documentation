@@ -6,7 +6,7 @@
 
 ## March 2024 _`latest`_
 
-* SQL on FHIR engine&#x20;
+* SQL on FHIR engine
   * Enhanced [SQL on FHIR® (v2.0) spec](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/index.html) test coverage. The SQL on FHIR coverage report is available[ here](https://fhir.github.io/sql-on-fhir-v2/#implshttps://fhir.github.io/sql-on-fhir-v2/#impls).
 * Validation
   * Released [FHIR schema validation engine](../../modules-1/profiling-and-validation/fhir-schema-validator/fhir-schema.md) (alpha). This validation engine is set to replace the existing [Zen Schema](../../profiling-and-validation/profiling-with-zen-lang/) and [JSON Schema](../../core-modules/usdjson-schema.md) validation engines.
@@ -25,12 +25,10 @@
     * Ability to place multiple widgets on one line
     * Ability to add placeholder for widget
     * Improved UI Builder dev experience via warnings and tips
-    
 * [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
-  * Support of FHIR formatted Bundle 
+  * Support of FHIR formatted Bundle
   * Enhanced references resolving mechanism for `make-doc` and `prepare-doc` endpoints
   * Mapping fixes, bug fixes
- 
 
 ## February 2024 _`stable, 2402`_
 
@@ -49,7 +47,7 @@
     * Ability to amend form using a shared link
     * Supported attachment item
     * Ability to add regex validation
-    * [Supported form versioning](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/versioning.md#ui-form-builder-versioning-support)
+    * [Supported form versioning](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/versioning.md#ui-form-builder-versioning-support)
 * [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
   * Support built-in rule based deduplication
   * Mapping fixes, bug fixes

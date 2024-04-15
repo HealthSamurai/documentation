@@ -2,17 +2,19 @@
 
 [Aidbox](https://www.health-samurai.io/aidbox) does validation using JSON-schema, which is generated automatically from Entity & Attribute meta-resources. Operation $json-schema provides access to this JSON-schema to debug and inspect:
 
-{% swagger baseUrl="" path="" method="get" summary="/$json-schema" %}
-{% swagger-description %}
+## /$json-schema
 
-{% endswagger-description %}
+<mark style="color:blue;">`GET`</mark>&#x20;
 
-{% swagger-parameter in="path" name="path" type="string" %}
-Dot separated specific path in json schema (because it's huge)
-{% endswagger-parameter %}
+#### Path Parameters
 
-{% swagger-response status="200" description="" %}
+| Name | Type   | Description                                                    |
+| ---- | ------ | -------------------------------------------------------------- |
+| path | string | Dot separated specific path in json schema (because it's huge) |
+
+{% tabs %}
+{% tab title="200 " %}
 ```
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
