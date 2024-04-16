@@ -45,6 +45,7 @@ entry:
   - resource:
       resourceType: ValueSet
       id: rxnorm
+      url: rxnorm
       status: active
       description: This value set includes all RxNorm codes.
       version: '10072019'
