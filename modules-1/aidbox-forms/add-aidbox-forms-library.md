@@ -7,16 +7,16 @@ description: The article outlines how to setup and use Aidbox Forms library
 The Aidbox Forms Library offers forms in two formats: Aidbox format (DSL-based) and FHIR format (FHIR Questionnaire). These forms can be loaded into Aidbox using various methods:
 
 1. Using Aidbox SDC configuration project while creating a license on the [Aidbox portal](https://aidbox.app/ui/portal#/signin)
-2. Using the [Aidbox Community Notebook](https://aidbox.app/ExportedNotebook/91387a94-fb51-4973-aa28-e9e21f47639b) (FHIR Format Forms Only)
-3. Through the aidbox-sdc-zen  project
+2. Using the Aidbox Community Notebook (FHIR Format Forms Only)
+3. Through the the Aidbox zen project
 
 By offering multiple loading methods, the Aidbox Forms Library provides flexibility for users to choose the most suitable method for their needs.
 
-## Setup Aidbox Forms Library using Aidbox SDC configuration project on the Aidbox portal
+## 1. Setup Aidbox Forms Library using Aidbox SDC configuration project on the Aidbox portal
 
 When creating a license on the [Aidbox portal](https://aidbox.app/ui/portal#/signin), you need to select the Aidbox SDC configuration project. Then the forms from the library will be loaded into your instance
 
-## Setup Aidbox Forms Library using Aidbox Notebooks
+## 2. Setup Aidbox Forms Library using Aidbox Notebooks
 
 {% hint style="warning" %}
 This way you can only upload forms in the FHIR format (FHIR Questionnaire)
@@ -32,9 +32,9 @@ The Aidbox Forms Library has been updated to include the following forms in the 
 
 Users can upload these forms using the `fhir/$load` operation and then open them in the Aidbox Forms module for editing according to their requirements.&#x20;
 
-Use [Aidbox Forms Library notebook](https://aidbox.app/ExportedNotebook/88275c87-00f3-4d1b-8811-1f650a19e41a) (community) for this purpose that is available in the Aidbox console of your instance.
+Use Aidbox Forms Library notebook (community) for this purpose that is available in the Aidbox console of your instance.
 
-## Setup Aidbox Forms Library using aidbox-zen-sdc project
+## 3. Setup Aidbox Forms Library using Aidbox zen project
 
 {% hint style="info" %}
 When you use [aidbox-zen-sdc](https://github.com/HealthSamurai/aidbox-zen-sdc) project as your project configuration - it already has aidbox-forms-library depency and several forms enabled.
@@ -42,7 +42,7 @@ When you use [aidbox-zen-sdc](https://github.com/HealthSamurai/aidbox-zen-sdc) p
 
 ### Use library forms
 
-To use aibox forms library you need to add it to your project dependencies and enable needed forms.
+To use Aidbox forms library you need to add it to your project dependencies and enable needed forms.
 
 #### Add library to project dependencies
 
