@@ -1,10 +1,10 @@
 ---
-description: This page under construction
+description: This article outlines the overview of UI Builder interface
 ---
 
 # Form creation
 
-## UI Builder Interface Overview
+## UI Builder interface overview
 
 When creating a form in the UI builder, the interface includes the following components:
 

@@ -356,7 +356,7 @@
   * [Getting started](modules-1/aidbox-forms/getting-started.md)
   * [Aidbox UI Builder](modules-1/aidbox-forms/aidbox-ui-builder-alpha/README.md)
     * [Form creation](modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/README.md)
-      * [Properties](modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/properties.md)
+      * [Form Settings](modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-settings.md)
       * [Widgets](modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md)
       * [Components](modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/components.md)
       * [Rules](modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/rules.md)

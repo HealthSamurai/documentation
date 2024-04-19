@@ -27,7 +27,7 @@ Aidbox Forms module provides available APIs:
 * Go to forms by pressing the button `Aidbox Forms` (or by visiting [http://localhost:8080/ui/sdc](http://localhost:8080/ui/sdc) )
 * Go to the `Forms` page
 * Press on `Create Template` button
-* Press on `Create in UI Builder (alpha`) button
+* Press on `Create in UI Builder` button
 
 You have two options to create form:
 
