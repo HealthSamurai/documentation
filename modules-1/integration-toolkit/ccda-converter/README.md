@@ -176,6 +176,44 @@ Because of technical limitation you have to make sure that provided FHIR Documen
 Circular references occur when two or more resources in the bundle reference each other in a loop, such as resource A references resource B, which in turn references resource C, which then references resource A again.
 {% endhint %}
 
+#### Validation of FHIR Bundle for Conversion Purposes 
+
+Incoming FHIR Bundle can be validated for the conversion purposes via using `/ccda/fhir-validate` endpoint. 
+Validator will check if it is possible to create valid C-CCDA document.
+If something is wrong with dataset - all potential errors will be aggregated and explained: 
+
+
+```http
+POST /ccda/v2/to-ccda
+Content-Type: application/json
+Authorization: ...
+
+{
+    "resourceType": "Bundle",
+    "type": "document",
+    "entry": [...]
+}
+
+```
+
+``` json
+{
+  "status": 200,
+  "body": {
+    "errors": [
+      {
+        "47420-5": {
+          "error": "Missing data for 'entries required' section: FunctionalStatusSectionV2",
+          "section-loinc": "47420-5"
+        }
+      }
+    ]
+  }
+}
+```
+
+
+
 {% hint style="info" %}
 There's a mechanism to streamline FHIR Document generation to use with this endpoint, please check [Producing C-CDA documents](producing-c-cda-documents.md) page.
 {% endhint %}
