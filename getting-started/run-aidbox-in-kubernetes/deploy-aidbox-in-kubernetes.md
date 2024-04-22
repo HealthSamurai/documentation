@@ -44,7 +44,11 @@ Aidbox supports all popular managed Postgresql databases. Supported versions - 1
 
 ### Self-managed solution
 
-For a self-managed solution, we recommend using [AidboxDB image](https://hub.docker.com/r/healthsamurai/aidboxdb). This image contains all required extensions, backup tool, and pre-build replication support. Read more information in the documentation — [AidboxDB](../../storage-1/aidboxdb-image/).
+For a self-managed solution, we recommend using the [AidboxDB image](https://hub.docker.com/r/healthsamurai/aidboxdb). This image contains all required extensions, backup tools, and pre-build replication support. Read more information in the documentation — [AidboxDB](../../storage-1/aidboxdb-image/).
+
+{% hint style="info" %}
+To streamline the deployment process, our DevOps engineers have prepared [Helm charts](https://github.com/Aidbox/helm-charts/tree/main/aidboxdb) that you may find helpful.&#x20;
+{% endhint %}
 
 First step — create volume
 
@@ -173,7 +177,7 @@ spec:
 ```
 {% endcode %}
 
-Create master database service
+Create a master database service
 
 {% code title="Database Service" lineNumbers="true" %}
 ```yaml
@@ -193,7 +197,7 @@ spec:
 ```
 {% endcode %}
 
-Replica installation contains all the same steps but required additional configuration
+Replica installation contains all the same steps but requires additional configuration
 
 {% code title="Replica DB config" lineNumbers="true" %}
 ```yaml
@@ -211,7 +215,7 @@ data:
 ```
 {% endcode %}
 
-For backups and WAL archivation we recommend a cloud-native solution [WAL-G](https://github.com/wal-g/wal-g). You can find full information about its configuration and usage on this [documentation page](https://github.com/wal-g/wal-g/blob/master/docs/PostgreSQL.md).
+For backups and WAL archiving we recommend a cloud-native solution [WAL-G](https://github.com/wal-g/wal-g). Full information about its configuration and usage is on this [documentation page](https://github.com/wal-g/wal-g/blob/master/docs/PostgreSQL.md).
 
 * [Configure storage access](https://github.com/wal-g/wal-g/blob/6ec7680ef5cb66c938faf180c97b3378b701d685/docs/STORAGES.md) — WAL-G can store backups in S3, Google Cloud Storage, Azure, or a local file system.
 * Recommended backup policy — Full backup every week, incremental backup every day.
@@ -221,11 +225,15 @@ For backups and WAL archivation we recommend a cloud-native solution [WAL-G](htt
 A set of tools to perform HA PostgreSQL with fail and switchover, automated backups.
 
 * [Patroni](https://github.com/zalando/patroni) — A Template for PostgreSQL HA with ZooKeeper, ETCD or Consul.
-* [Postgres operator](https://github.com/zalando/postgres-operator) — The Postgres Operator delivers an easy to run HA PostgreSQL clusters on Kubernetes.
+* [Postgres operator](https://github.com/zalando/postgres-operator) — The Postgres Operator delivers an easy-to-run HA PostgreSQL clusters on Kubernetes.
 
 ## Aidbox
 
-First of all, you need to get Aidbox license on [Aidbox user portal](https://aidbox.app)
+First, you must get an Aidbox license on the [Aidbox user portal](https://aidbox.app).
+
+{% hint style="info" %}
+You might want to use the [Helm charts](https://github.com/Aidbox/helm-charts/tree/main/aidbox) prepared by our DevOps engineers to make the deployment experience smoother.
+{% endhint %}
 
 Create ConfigMap with all required config and database connection
 
@@ -386,7 +394,7 @@ spec:
 
 A Cluster must have an [ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) Installed.
 
-Our recommendation is to use [kubernetes Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx). As an alternative, you can use [Traefic](https://github.com/traefik/traefik/).
+Our recommendation is to use the [Kubernetes Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx). As an alternative, you can use [Traefic](https://github.com/traefik/traefik/).
 
 More additional information about Ingress in k8s can be found in this documentation — [Kubernetes Service Networking](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 
@@ -405,7 +413,7 @@ helm upgrade \
 
 ### CertManager
 
-To provide a secure HTTPS connection you can use paid SSL certificates, issued for your domain, or use LetsEncrypt-issued certificates. In case of using LetsEcrypt, we recommend [install and configure Cert Manager](https://cert-manager.io/docs/installation/helm/) Operator
+To provide a secure HTTPS connection you can use paid SSL certificates, issued for your domain, or use LetsEncrypt-issued certificates. In the case of using LetsEcrypt, we recommend [installing and configuring Cert Manager](https://cert-manager.io/docs/installation/helm/) Operator
 
 {% code title="Install Cert Manager" %}
 ```bash
@@ -500,7 +508,7 @@ Aidbox supports integration with the following systems:
 
 ### ElasticSearch integration
 
-You can install ECK using [official guide.](https://www.elastic.co/guide/en/cloud-on-k8s/master/k8s-installing-eck.html)
+You can install ECK using the [official guide.](https://www.elastic.co/guide/en/cloud-on-k8s/master/k8s-installing-eck.html)
 
 Configure Aidbox and ES integration
 
@@ -531,7 +539,7 @@ data:
 
 ## Monitoring
 
-For monitoring our recommendation is to use [kube prometheus stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack)
+For monitoring our recommendation is to use the [Kube Prometheus stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack)
 
 ```shell
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
@@ -624,8 +632,8 @@ scrape_configs:
 
 ### Alternative solutions
 
-* [VictoriaMetrics](https://victoriametrics.com/) — High Performance Open Source Time Series Database.
-* [Thanos](https://thanos.io/) — highly available Prometheus setup with long term storage capabilities.
+* [VictoriaMetrics](https://victoriametrics.com/) — High-Performance Open Source Time Series Database.
+* [Thanos](https://thanos.io/) — highly available Prometheus setup with long-term storage capabilities.
 * [Grafana Mimir](https://grafana.com/oss/mimir/) — highly available, multi-tenant, long-term storage for Prometheus.
 
 ### Export the Aidbox Grafana dashboard
@@ -699,7 +707,7 @@ receivers:
 ```
 {% endcode %}
 
-All other integrations you can find on [AlertManager documentation page.](https://prometheus.io/docs/alerting/latest/configuration/)
+All other integrations you can find on the [AlertManager documentation page.](https://prometheus.io/docs/alerting/latest/configuration/)
 
 ### Additional tools
 
