@@ -48,7 +48,7 @@ IEA*1*191511902~
 ```
 {% endtab %}
 
-{% tab title="385 Response" %}
+{% tab title="835 Response" %}
 ```json
 {
   "errors": [ /* ... */ ],
