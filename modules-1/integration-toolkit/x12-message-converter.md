@@ -9,7 +9,7 @@ Right now, the converter only support four types of x12 messages: **835**, **837
 To parse a message, use `/x12/parse` endpoint.
 
 {% tabs %}
-{% tab title="Request" %}
+{% tab title="835 Request" %}
 ```
 POST /x12/parse
 content-type: text/plain
@@ -48,7 +48,7 @@ IEA*1*191511902~
 ```
 {% endtab %}
 
-{% tab title="Response" %}
+{% tab title="385 Response" %}
 ```json
 {
   "errors": [ /* ... */ ],
@@ -297,6 +297,182 @@ IEA*1*191511902~
 
 ```
 {% endtab %}
+
+{% tab title="270 Request" %}
+```
+POST /x12/parse
+accept: application/json
+
+ISA*00*          *00*          *ZZ*1234567        *ZZ*11111          *170508*1141*^*00501*000000101*1*P*:~
+GS*HC*XXXXXXX*XXXXX*20170617*1741*101*X*005010X279A1~
+ST*270*1234*005010X279A1~
+BHT*0022*13*10001234*20060501*1319~
+HL*1**20*1~
+NM1*PR*2*ABC COMPANY*****PI*842610001~
+HL*2*1*21*1~
+NM1*1P*2*BONE AND JOINT CLINIC*****SV*2000035~
+HL*3*2*22*0~
+TRN*1*93175-012547*9877281234~
+NM1*IL*1*SMITH*ROBERT****MI*11122333301~
+DMG*D8*19430519~
+DTP*291*D8*20060501~
+EQ*30~
+SE*13*1234~
+GE*1*101~
+IEA*1*000000101~
+```
+{% endtab %}
+
+{% tab title="270 Response" %}
+```json
+{
+  "errors": [/* ... */],
+  "control": {
+    "isa": {
+      "security_info": "          ",
+      "date": "170508",
+      "receiver_type": "ZZ",
+      "security_qual": "00",
+      "time": "1141",
+      "sender_id": "1234567        ",
+      "mode": "P",
+      "ds": ":",
+      "auth_info": "          ",
+      "sender_type": "ZZ",
+      "rs": "^",
+      "receiver_id": "11111          ",
+      "id": "000000101",
+      "ack": "1",
+      "auth_qual": "00",
+      "version": "00501"
+    },
+    "groups": [
+      {
+        "gs": {
+          "function": "HC",
+          "sender": "XXXXXXX",
+          "receiver": "XXXXX",
+          "date": "20170617",
+          "time": "1741",
+          "id": "101",
+          "standard": "X",
+          "version": "005010X279A1"
+        },
+        "ge": {
+          "number_transactions": 1,
+          "id": "101"
+        }
+      }
+    ],
+    "iea": {
+      "number_groups": 1,
+      "id": "000000101"
+    }
+  },
+  "message": {
+    "st": {
+      "type": "270",
+      "txid": "1234",
+      "version": "005010X279A1"
+    },
+    "tx": {
+      "struct": "0022",
+      "purpose": "13",
+      "txid": "10001234",
+      "date": "20060501",
+      "time": "1319"
+    },
+    "request": [
+      {
+        "_hl": {
+          "id": "1",
+          "level": "20",
+          "child": "1"
+        },
+        "source": {
+          "name": {
+            "type": "PR",
+            "kind": "2",
+            "name": "ABC COMPANY",
+            "identifier_system": "PI",
+            "identifier_value": "842610001"
+          }
+        },
+        "receivers": [
+          {
+            "_hl": {
+              "id": "2",
+              "parent": "1",
+              "level": "21",
+              "child": "1"
+            },
+            "receiver": {
+              "name": {
+                "type": "1P",
+                "kind": "2",
+                "name": "BONE AND JOINT CLINIC",
+                "identifier_system": "SV",
+                "identifier_value": "2000035"
+              }
+            },
+            "subscribers": [
+              {
+                "_hl": {
+                  "id": "3",
+                  "parent": "2",
+                  "level": "22",
+                  "child": "0"
+                },
+                "trace_number": [
+                  {
+                    "type": "1",
+                    "id": "93175-012547",
+                    "trace_assigning_entity_identifier": "9877281234"
+                  }
+                ],
+                "name": {
+                  "name": {
+                    "type": "IL",
+                    "kind": "1",
+                    "name": "SMITH",
+                    "name_first": "ROBERT",
+                    "identifier_system": "MI",
+                    "identifier_value": "11122333301"
+                  },
+                  "demographic_info": {
+                    "date_format": "D8",
+                    "birth_date": "19430519"
+                  },
+                  "date": [
+                    {
+                      "type": "291",
+                      "format": "D8",
+                      "date": "20060501"
+                    }
+                  ],
+                  "eligibility_or_benefit_inquiry": [
+                    {
+                      "subscriber_eligibility_or_benefit_inquiry": {
+                        "service_type_code": "30"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "se": {
+      "segment_count": 13,
+      "txid": "1234"
+    }
+  }
+}
+
+```
+{% endtab %}
 {% endtabs %}
 
 This query returns an object with fields `errors`, `control` and `message`.
@@ -310,7 +486,7 @@ By default, parser will try to infer the message type based on the `ST` header. 
 Keep in mind that the generator disregards the provided segment count value in favor of the one it computes itself.
 
 {% tabs %}
-{% tab title="Request" %}
+{% tab title="835 Request" %}
 ```json
 POST /x12/generate
 content-type: application/json
@@ -518,7 +694,7 @@ content-type: application/json
 ```
 {% endtab %}
 
-{% tab title="Response" %}
+{% tab title="835 Response" %}
 ```
 ST*835*112233~
 BPR*I*1100.0*C*ACH*CCP*01*888999777*DA*24681012*1935665544**01*111333555*DA*144444*20190316~
