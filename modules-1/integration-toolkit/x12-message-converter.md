@@ -11,7 +11,7 @@ To parse a message, use `/x12/parse` endpoint.
 {% tabs %}
 {% tab title="Request" %}
 ```
-POST /x12/parse?type=835
+POST /x12/parse
 content-type: text/plain
 accept: application/json
 
@@ -301,7 +301,7 @@ IEA*1*191511902~
 
 This query returns an object with fields `errors`, `control` and `message`.
 
-If you omit the `type` parameter, parser will try to infer the message type based on the `ST` header. This won't work if the message has several `ST` sections within it.
+By default, parser will try to infer the message type based on the `ST` header. You can use `type` parameter to force parser to use a specific type of message (e. g. `type=837`).
 
 ### Generating a message
 
