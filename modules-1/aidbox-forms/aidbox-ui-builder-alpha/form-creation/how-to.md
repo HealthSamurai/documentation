@@ -9,19 +9,23 @@ To populate a form we should:
 
 ### Form Setup 
 
-Assume that we already have form with 5 items(data: patient name, DOB, MRN, address, phone)
-and Patient resource in the Aidbox DB
+Assume that we already have:
+
+- form with 5 items(data: patient name, DOB, MRN, address, phone)
+- Patient resource in the Aidbox DB
 
 We should setup items with `populate` expressions.
 
 > How to find population expression:
 > 1. select widget in the outline
 > 2  click on `populate` checkbox in the widget settings panel
-> 2. in opened section select `Expression` populateion
+> 2. in opened section select `Expression` tab
 
-For this example we will use `%subject` parameter, which will contains `Patient` resource and FHIRPath expressions to retrieve data.
+For this example we will use:
+- `%subject` parameter, which will contain `Patient` resource 
+- `FHIRPath` expressions to retrieve data.
 
-> subject parameter will be filled with data in population operation
+> `%subject` parameter will be filled with data in population operation
 
 
 #### Expressions:
@@ -49,15 +53,16 @@ address (Text widget)
 ```fhirpath
 %subject.address.where(use='home').text
 ```
-- phone (Text widget)
+
+phone (Text widget)
 
 ```fhirpath
 %subject.telecom.where(system='phone', use='home').value
 ```
 
-### Populate Form
+### Populate Parameters
 
-To make %subject resource available we should call `$populate` operation with specific parameters
+To make `%subject` resource available we should call `$populate` operation with specific parameters
 
 - `subject = <reference>` (reference to patient)
 - `local = true` (says that we should search for subject in DB and load resource)
