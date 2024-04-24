@@ -2,7 +2,7 @@
 
 In this tutorial we will guide you how to setup ISiK Stufe 2 FHIR Implementation Guide.&#x20;
 
-## Setup Aidbox with ISiK Stufe 2 IG
+## Setup Aidbox with ISiK Stufe 2 IG with prebuilt Aidbox config
 
 To correctly set up Aidbox, we'll utilize the Aidbox configuration projects.&#x20;
 
@@ -20,11 +20,11 @@ git clone \
 
 The git template project contains ISiK FHIR IG preconfigured via .env file.
 
-## Resources examples&#x20;
+## Validate example resources against ISIK Stufe 2 profiles
 
 <details>
 
-<summary>Valid Patient resource</summary>
+<summary>Valid Patient resource example</summary>
 
 {% code lineNumbers="true" fullWidth="false" %}
 ```json
@@ -192,7 +192,7 @@ The git template project contains ISiK FHIR IG preconfigured via .env file.
 </details>
 
 {% hint style="info" %}
-Invalid Patient resoruce sample violates 'Name' (at least one 'official' name must be present) and 'Patientennummer' (identifier with code 'MR' must be present), additionaly this sample violates chosen union type 'humanname-namenszusatz' extension.
+The sample of the Patient resource is invalid as it does not comply with the 'Name' requirement (an 'official' name must be present) and the 'Patientennummer' requirement (an identifier with the code 'MR' must be present). Additionally, the sample breaches the rules of the 'humanname-namenszusatz' union type extension.
 {% endhint %}
 
 <details>
