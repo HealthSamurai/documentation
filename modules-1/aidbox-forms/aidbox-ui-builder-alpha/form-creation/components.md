@@ -24,9 +24,7 @@ When a user is designing a form in the UI builder, he can create a component:
 
 **This is what happens behind the scenes:**
 
-When a user saves a component, it is saved as a FHIR Questionnaire resource in the `active status` in the database according to the [FHIR SDC Implementation](https://build.fhir.org/ig/HL7/sdc/modular.html#modular-questionnaires) with the field `experimental: true`
-
-&#x20;and the extension&#x20;
+When a user saves a component, it is saved as a FHIR Questionnaire resource in the `active status` in the database according to the [FHIR SDC Implementation](https://build.fhir.org/ig/HL7/sdc/modular.html#modular-questionnaires) with the the extension&#x20;
 
 ```
   extension:
@@ -35,7 +33,33 @@ When a user saves a component, it is saved as a FHIR Questionnaire resource in t
       valueCode: assemble-child
 ```
 
+Here's an example of how a FHIR Questionnaire as a component looks like:
 
+{% code overflow="wrap" %}
+```json
+// {
+  "title": "Patient Phone",
+  "id": "09687a66-6bd7-415a-b10e-82d01029be49",
+  "status": "active",
+  "url": "http://aidbox.io/component/patient-phone",
+  "version": "1",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation",
+      "valueCode": "assemble-child"
+    }
+  ],
+  "resourceType": "Questionnaire",
+  "item": [
+    {
+      "text": "Patient Phone",
+      "type": "integer",
+      "linkId": "ginzzecv"
+    }
+  ]
+}
+```
+{% endcode %}
 
 {% hint style="warning" %}
 This Questionnaire is intended to be used as an assembly operation but cannot be used as a root - it must always be a child module
@@ -67,48 +91,32 @@ The component will be included in the form as a reference. This allows user to m
 
 **This is what happens behind the scenes:**
 
-Here is an example of what the original Questionnaire looks like with the component as a reference:
+The notion of a modular Questionnaire is that a 'display' item in a parent questionnaire can include an extension pointing to a specific Questionnaire whose items should be embedded in the resulting assembled Questionnaire in place of the 'display' item.
+
+Here is an example of how the original Questionnaire looks like with the component as a reference:
 
 {% code overflow="wrap" %}
 ```json
 // {
-  "title": "Home Health Consent (Test)",
-  "id": "829350bb-69a6-46c2-a6ee-b6c327409816",
+  "title": "Patient Contacts (test)",
+  "id": "patient-contacts--test",
   "status": "draft",
-  "url": "http://forms.aidbox.io/questionnaire/home-health-consent",
+  "url": "http://forms.aidbox.io/questionnaire/patient-contacts--test",
   "resourceType": "Questionnaire",
   "item": [
     {
+      "type": "string",
+      "text": "Patient Address",
+      "linkId": "XFzB42pV"
+    },
+    {
       "type": "display",
-      "linkId": "9jlEW-T3",
-      "text": "Sub-questionnaire cannot be resolved: demographic-",
+      "linkId": "Qz__-FDD",
+      "text": "Sub-questionnaire cannot be resolved: http://aidbox.io/component/patient-phone",
       "extension": [
         {
           "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire",
-          "valueCanonical": "demographic-|1"
-        }
-      ]
-    },
-    {
-      "text": "## Signature",
-      "type": "group",
-      "linkId": "UW4lnKd6"
-    },
-    {
-      "text": "Patient's Signature",
-      "type": "attachment",
-      "linkId": "ehb-HbyO",
-      "extension": [
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-          "valueCodeableConcept": {
-            "coding": [
-              {
-                "code": "signature",
-                "system": "http://aidbox.io/questionnaire-itemControl"
-              }
-            ]
-          }
+          "valueCanonical": "http://aidbox.io/component/patient-phone|1"
         }
       ]
     }
@@ -140,8 +148,6 @@ To do this you need:
 * click on "inline component" icon presented in the outline
 * continue working with the form as usual
 
-
-
 ## Editing a custom component
 
 To edit a component:&#x20;
@@ -156,3 +162,9 @@ After this, the component will open on a separate page of the UI builder.&#x20;
 {% hint style="warning" %}
 The user can make any changes. When saving changes, all forms that reference this component will be updated in accordance with these edits.
 {% endhint %}
+
+There are some use cases with component editing:
+
+1. The user can edit a component and then when saving the form that in the active status and  with this component, a rebuild will occur and the assembled Questionnaire will be overwritten. The database will have one original Questionnaire and one assembled Questionnaire.
+2. The user can create a new version of the component and save the old version of the form, then there will be one version of the original Questionnaire and the assembled Questionnaire will be overwritten  in the database.
+3. The user can create a new version of the component and save the new version of the form, then there will be two versions of original Questionnaires and two versions of assembled Questionnaires  in the database.
