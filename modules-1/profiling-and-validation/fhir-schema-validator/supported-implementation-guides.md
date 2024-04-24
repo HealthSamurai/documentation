@@ -4,15 +4,29 @@ description: >-
   day at 00:00 UTC
 ---
 
-# Supported Implementation Guides
+# Supported FHIR Implementation Guides (IGs)
 
-{% hint style="info" %}
-To configure Aidbox with the specified implementation guides, please refer to this [setup](setup.md) guide.
-{% endhint %}
+## Configure Aidbox
+
+To begin using FHIR IGs, enable the FHIR Schema validator engine in Aidbox.
+
+{% content-ref url="setup.md" %}
+[setup.md](setup.md)
+{% endcontent-ref %}
+
+**Example configuration**
+
+{% code title=".env" %}
+```bash
+AIDBOX_FHIR_SCHEMA_VALIDATION=true
+AIDBOX_FHIR_PACKAGES=hl7.fhir.us.core#5.0.1:hl7.fhir.us.mcode#3.0.0
+AIDBOX_VALIDATE_BINDING_URL=https://tx.fhir.org/r4/ValueSet/\$validate-code
+```
+{% endcode %}
+
+## Supported FHIR Implementation Guides (IGs) Packages
 
 Here is the complete list of supported and ready-to-use Implementation Guides (IGs) for the new validator engine. We use [packages2.fhir.org](http://packages2.fhir.org/) as the source of truth for implementation guides and synchronise them daily at 00:00 UTC. This documentation page is also updated automatically.
-
-## Supported Packages
 
 | Name                                                     | Title                                                                                                         | Versions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

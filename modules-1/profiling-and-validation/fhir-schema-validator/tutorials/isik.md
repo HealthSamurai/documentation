@@ -28,6 +28,9 @@ The git template project contains ISiK FHIR IG preconfigured via .env file.
 
 {% code lineNumbers="true" fullWidth="false" %}
 ```json
+POST /fhir/Patient
+Content-Type: application/json
+
 {
     "resourceType": "Patient",
     "id": "PatientinMusterfrau",
@@ -197,9 +200,13 @@ The sample of the Patient resource is invalid as it does not comply with the 'Na
 
 <details>
 
-<summary>Invalid Patient resource</summary>
+<summary>Invalid Patient resource example</summary>
 
+{% code lineNumbers="true" %}
 ```json
+POST /fhir/Patient
+Content-Type: application/json
+
 {
     "resourceType": "Patient",
     "id": "PatientinMusterfrau",
@@ -344,6 +351,7 @@ The sample of the Patient resource is invalid as it does not comply with the 'Na
     ]
 }
 ```
+{% endcode %}
 
 
 
