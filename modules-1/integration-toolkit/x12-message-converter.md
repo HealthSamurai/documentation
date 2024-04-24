@@ -2,7 +2,7 @@
 
 Aidbox includes a couple of endpoints to allow the conversion of x12 messages.
 
-Right now, the converter only support four types of x12 messages: 835, 837, 270 and 271.
+Right now, the converter only support four types of x12 messages: **835**, **837**, **270** and **271**.
 
 ### Parsing a message
 
