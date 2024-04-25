@@ -72,11 +72,13 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
                                             (clojure.string/split (:version x)
                                                                   (re-pattern "\\."))))
                                     manifests))]
-    (format "## %s
+    (format "---
+
+# %s
 
 %s
 
-#### Versions
+## Versions
 
 %s
 "
