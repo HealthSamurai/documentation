@@ -94,7 +94,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
              "")
             (->> 
              manifests
-             (mapv #(str "* '" (:name %) "#" (:version %) "'\n"))
+             (mapv #(str "* `" (:name %) "#" (:version %) "`\n"))
              (apply str)))))
 
 (defn build-template
