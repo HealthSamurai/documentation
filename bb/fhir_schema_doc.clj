@@ -4,8 +4,7 @@
 (def supported-implementation-guide-destination
   "modules-1/profiling-and-validation/fhir-schema-validator/supported-implementation-guides.md")
 
-(def supported-implementation-guide-template "
----
+(def supported-implementation-guide-template "---
 description: >-
   List of supported Implementation Guides, which synchronise automatically every
   day at 00:00 UTC
@@ -73,13 +72,26 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
                                             (clojure.string/split (:version x)
                                                                   (re-pattern "\\."))))
                                     manifests))]
-    (format "## %s\n\n%s\n\n%s\n\n"
+    (format "## %s
+
+<details>
+
+<summary>Description</summary>
+
+%s
+
+</details>
+
+#### Versions
+
+%s
+"
             (or (some :title manifests)
                 (some :name manifests))
             (some :description manifests)
             (->> 
              manifests
-             (mapv #(str "- " (:name %) "#" (:version %) "\n"))
+             (mapv #(str "* '" (:name %) "#" (:version %) "'\n"))
              (apply str)))))
 
 (defn build-template
