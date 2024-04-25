@@ -70,7 +70,7 @@ To make `%subject` resource available we should call `$populate` operation with 
 Operation call example:
 
 ```yaml
-POST /fhir/Questionnaire/$populate
+POST /fhir/Questionnaire/<qid>/$populate
 
 resourceType: Parameters
 parameter:
@@ -83,7 +83,78 @@ parameter:
 ```
 
 ## How to populate form with patient weight, height
+
+To populate a form we should: 
+
+1. setup a form to be able to get patient's observations
+2. provide partient's reference to population operation. 
+
+### Form Setup 
+
+Assume that we have:
+- Form with `body weight` and `body height` fields
+- Patient in DB
+- Patient's `body weight` and `body height` `Observations` in DB
+
+Stored `Observations` should be linked to a patient and should be coded with right terminology code (LOINC in our example)
+
+LOINC coding for body measurements:
+
+- Body Height: `{"system" : "http://loinc.org", "code" : "8302-2"}`
+- Body Weight: `{"system" : "http://loinc.org", "code" : "29463-7"}`
+
+
+Observation examples
+
+Body Weight
+
+```json
+{
+  "resourceType": "Observation",
+  "subject": {"id": "example", "resourceType": "Patient"},
+  "status": "final",
+  "code": {"coding": [{"code": "29463-7", "system": "http://loinc.org"}]},
+  "value": {"Quantity": {"unit": "kg", "value": 80}}
+}
+```
+
+Body Height
+
+```
+{
+  "resourceType": "Observation",
+  "subject": {"id": "example", "resourceType": "Patient"},
+  "status": "final",
+  "code": {"coding": [{"code": "8302-2", "system": "http://loinc.org"}]},
+  "value": {"Quantity": {"unit": "cm", "value": 180}}
+}
+```
+
+We should configure items with Observation based population
+
+1. Select item in outline
+2. Press `include code?` section and type corresponding code/system (from Observations)
+3. Enable `Populate` section (`Observation` population should be opened by default) and choose period to search for Observations. (For example 1 Month)
+
+### Populate parameters
+
+To pass Patient's reference we use  `subject` parameter to `$populate` opearation
+
+- `subject = <reference>` (reference to patient)
+
+Operation call example:
+
+```yaml
+POST /fhir/Questionnaire/<qid>/$populate
+
+resourceType: Parameters
+parameter:
+- name: subject
+  valueReference:
+    id: example
+    resourceType: Patient
+```
+
 ## How to populate form with patient allergies
 ## How to populate form with data from another form during the visit
-
 
