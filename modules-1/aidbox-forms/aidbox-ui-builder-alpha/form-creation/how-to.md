@@ -120,7 +120,7 @@ Body Weight
 
 Body Height
 
-```
+```json
 {
   "resourceType": "Observation",
   "subject": {"id": "example", "resourceType": "Patient"},
@@ -134,13 +134,11 @@ We should configure items with Observation based population
 
 1. Select item in outline
 2. Press `include code?` section and type corresponding code/system (from Observations)
-3. Enable `Populate` section (`Observation` population should be opened by default) and choose period to search for Observations. (For example 1 Month)
+3. Enable `Populate` section (`Observation` population should be opened by default) and choose period to search for Observations. (For example `1 Month`)
 
 ### Populate parameters
 
 To pass Patient's reference we use  `subject` parameter to `$populate` opearation
-
-- `subject = <reference>` (reference to patient)
 
 Operation call example:
 
@@ -156,5 +154,8 @@ parameter:
 ```
 
 ## How to populate form with patient allergies
+
+
+
 ## How to populate form with data from another form during the visit
 
