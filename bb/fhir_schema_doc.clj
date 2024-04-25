@@ -74,13 +74,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
                                     manifests))]
     (format "## %s
 
-<details>
-
-<summary>Description</summary>
-
 %s
-
-</details>
 
 #### Versions
 
@@ -88,7 +82,16 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 "
             (or (some :title manifests)
                 (some :name manifests))
-            (some :description manifests)
+            (or 
+             (when-let [desc (some :description manifests)]
+               (format "<details>
+<summary>Description</summary>
+
+%s
+
+</details>"
+                       desc))
+             "")
             (->> 
              manifests
              (mapv #(str "* '" (:name %) "#" (:version %) "'\n"))
