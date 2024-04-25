@@ -16,7 +16,7 @@ jobs:
       run: curl -s https://raw.githubusercontent.com/babashka/babashka/master/install | bash
 
     - name: Execute bb task
-      run: bb run fhir-schema-supported-packages-sync
+      run: bb -m fhir-schema-doc 
 
     - name: Commit and push
       run: |
