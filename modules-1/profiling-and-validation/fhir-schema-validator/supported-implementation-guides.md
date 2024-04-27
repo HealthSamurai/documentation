@@ -360,6 +360,7 @@ The purpose of SERIS is to improve surgical performance in Ontario through the m
 
 ## Versions
 
+* `ca.on.oh-seris#0.10.0-alpha1.0.5`
 * `ca.on.oh-seris#0.10.0-alpha1.0.4`
 * `ca.on.oh-seris#0.10.0-alpha1.0.3`
 * `ca.on.oh-seris#0.10.0-alpha1.0.2`
@@ -932,6 +933,7 @@ Progetto FHIR per Regione Lombardia
 
 ## Versions
 
+* `rl.fhir.r4.draft#0.0.21`
 * `rl.fhir.r4.draft#0.0.20`
 * `rl.fhir.r4.draft#0.0.19`
 * `rl.fhir.r4.draft#0.0.18`
@@ -1049,6 +1051,8 @@ Envoi du rapport d’endoscopie au dépôt provincial
 
 ## Versions
 
+* `rapportendoscopiequebec.test#0.0.47`
+* `rapportendoscopiequebec.test#0.0.46`
 * `rapportendoscopiequebec.test#0.0.45`
 * `rapportendoscopiequebec.test#0.0.44`
 * `rapportendoscopiequebec.test#0.0.43`
