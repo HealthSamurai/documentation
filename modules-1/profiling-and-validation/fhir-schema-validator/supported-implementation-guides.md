@@ -442,23 +442,6 @@ Provides guidance to US Realm implementers to use the FHIR for implementing acce
 
 ---
 
-# vzvz.fhir.nl-vzvz-core
-
-<details>
-<summary>Description</summary>
-
-FHIR artifacts for VZVZ projects
-
-</details>
-
-## Versions
-
-* `vzvz.fhir.nl-vzvz-core#0.1.0-beta`
-* `vzvz.fhir.nl-vzvz-core#0.1.0-beta-2`
-
-
----
-
 # Touchstone-ereferralontario.core
 
 <details>
@@ -563,12 +546,13 @@ Enlito FHIR API for measurement extraction (built Mon, Mar 8, 2021 18:40+0100+01
 <details>
 <summary>Description</summary>
 
-This IG defines the extensions that the tools use internally. Some of these extensions are content that are being evaluated for elevation into the main spec, and others are tooling concerns (built Tue, Dec 19, 2023 11:34+1100+11:00)
+This IG defines the extensions that the tools use internally. Some of these extensions are content that are being evaluated for elevation into the main spec, and others are tooling concerns (built Fri, Apr 26, 2024 06:44+1000+10:00)
 
 </details>
 
 ## Versions
 
+* `hl7.fhir.uv.tools#0.2.0`
 * `hl7.fhir.uv.tools#0.1.0`
 
 
@@ -956,12 +940,13 @@ Progetto FHIR per Regione Lombardia
 <details>
 <summary>Description</summary>
 
-Ressources de conformité basées sur le modèle d'exposition de l'Annuaire Santé. (built Wed, Apr 10, 2024 12:25+0000+00:00)
+Ressources de conformité basées sur le modèle d'exposition de l'Annuaire Santé. (built Thu, Apr 25, 2024 11:41+0000+00:00)
 
 </details>
 
 ## Versions
 
+* `ans.fhir.fr.annuaire#1.0.1`
 * `ans.fhir.fr.annuaire#1.0.0`
 * `ans.fhir.fr.annuaire#1.0.0-ballot`
 * `ans.fhir.fr.annuaire#1.0.0-ballot-4`
@@ -3965,6 +3950,8 @@ Danish municipalities implementation guide for FFInst (built Sun, Aug 27, 2023 1
 
 ## Versions
 
+* `br.ufg.cgis.rnds-lite#0.1.3`
+* `br.ufg.cgis.rnds-lite#0.1.2`
 * `br.ufg.cgis.rnds-lite#0.1.1`
 * `br.ufg.cgis.rnds-lite#0.1.0`
 * `br.ufg.cgis.rnds-lite#0.0.3`
@@ -8278,24 +8265,6 @@ test
 
 ---
 
-# vzvz.fhir.aof
-
-<details>
-<summary>Description</summary>
-
-FHIR artifacts for Aorta on FHIR
-
-</details>
-
-## Versions
-
-* `vzvz.fhir.aof#0.11.0-beta`
-* `vzvz.fhir.aof#0.9.0-beta`
-* `vzvz.fhir.aof#0.1.0-beta`
-
-
----
-
 # careplanrt.eng
 
 <details>
@@ -8796,22 +8765,6 @@ Exchange of member attribution list between payers and providers  (built Tue, Ja
 * `hl7.fhir.us.davinci-atr#2.0.0-ballot`
 * `hl7.fhir.us.davinci-atr#1.0.0`
 * `hl7.fhir.us.davinci-atr#0.1.0`
-
-
----
-
-# vzvz.fhir.mitz
-
-<details>
-<summary>Description</summary>
-
-FHIR artifacts for VZVZ projects
-
-</details>
-
-## Versions
-
-* `vzvz.fhir.mitz#0.1.0-beta`
 
 
 ---
