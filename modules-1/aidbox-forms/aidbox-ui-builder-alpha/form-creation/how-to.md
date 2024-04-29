@@ -162,6 +162,20 @@ parameter:
 
 ## How to populate form with patient allergies
 
+To populate a form with data from another form we should: 
+
+1. setup a form to be able to find allergies for a patient and populate them in a list
+    - Create a `group` item with `named expression` to search for allergies
+    - Set items populate expressions to extract data from found `AllergyIntolerance`
+2. provide `Patient` reference in input parameters of populate operation 
+
+### Form Setup
+
+TBD
+
+### Populate parameters
+
+TBD
 
 ## How to populate form with data from another form during the visit
 
