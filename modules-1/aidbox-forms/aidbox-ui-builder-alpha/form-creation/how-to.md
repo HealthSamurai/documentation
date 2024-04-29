@@ -91,7 +91,7 @@ To populate a form we should:
 ### Form Setup 
 
 Assume that we have:
-- Form with `body weight` and `body height` fields
+- Form with `body weight` and `body height` items
 - Patient in DB
 - Patient's `body weight` and `body height` `Observations` in DB
 
@@ -170,7 +170,7 @@ To populate a form with data from another form we should:
 1. setup a form to be able to find another form's response and get information from it
     - Enable input parameter, that is common for both forms. (`Encounter` in our case)
     - Set form's named expression with `FHIRQuery` to search for response in DB
-    - Set field's populate expression to extract data from found `QuestionnaireResponse`
+    - Set item's populate expression to extract data from found `QuestionnaireResponse`
 2. provide `Encounter` reference in input parameters of populate operation 
 
 
@@ -250,9 +250,9 @@ We should specify form's `named expression` with given query, but with small mod
 > - `%encounter` - populate input parameter. (all parameters start with `%` sign)
 > - `%encounter.id` - `FHIRPath` expression that extracts id from `Encounter` reference
 
-#### Set field's populate expression
+#### Set item's populate expression
 
-We should use created `named expression` (`%response`) to extract a value and fill out our field.
+We should use created `named expression` (`%response`) to extract a value and fill out our item.
 
 1. Select the item in outline 
 2. Enable `Populate` section (`Observation` population should be opened by default)
