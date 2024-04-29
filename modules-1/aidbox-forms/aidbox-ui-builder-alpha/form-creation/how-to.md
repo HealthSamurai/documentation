@@ -168,9 +168,9 @@ parameter:
 To populate a form with data from another form we should: 
 
 1. setup a form to be able to find another form's response and get information from it
-  1. Enable input parameter, that is common for both forms. (`Encounter` in our case)
-  2. Set form's named expression with `FHIRQuery` to search for response in DB
-  3. Set field's populate expression to extract data from found `QuestionnaireResponse`
+    1. Enable input parameter, that is common for both forms. (`Encounter` in our case)
+    2. Set form's named expression with `FHIRQuery` to search for response in DB
+    3. Set field's populate expression to extract data from found `QuestionnaireResponse`
 2. provide `Encounter` reference in input parameters of populate operation 
 
 
