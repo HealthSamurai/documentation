@@ -76,8 +76,7 @@ resourceType: Parameters
 parameter:
 - name: subject
   valueReference:
-    id: example
-    resourceType: Patient
+    reference: Patient/example
 - name: local
   valueBoolean: true
 ```
@@ -111,17 +110,15 @@ Body Weight
 ```yaml
 resourceType: Observation
 subject:
-  id: example
-  resourceType: Patient
+  reference: Patient/example
 status: final
 code:
   coding:
   - code: 29463-7
     system: http://loinc.org
-value:
-  Quantity:
-    unit: kg
-    value: 80
+valueQuantity:
+  unit: kg
+  value: 80
 ```
 
 Body Height
@@ -129,17 +126,15 @@ Body Height
 ```yaml
 resourceType: Observation
 subject:
-  id: example
-  resourceType: Patient
+  reference: Patient/example
 status: final
 code:
   coding:
   - code: 8302-2
     system: http://loinc.org
-value:
-  Quantity:
-    unit: cm
-    value: 180
+valueQuantity:
+  unit: cm
+  value: 180
 
 ```
 
@@ -151,7 +146,7 @@ We should configure items with Observation based population
 
 ### Populate parameters
 
-To pass Patient's reference we use  `subject` parameter to `$populate` opearation
+To pass Patient's reference we use  `subject` parameter to `$populate` operation
 
 Operation call example:
 
@@ -162,12 +157,10 @@ resourceType: Parameters
 parameter:
 - name: subject
   valueReference:
-    id: example
-    resourceType: Patient
+    reference: Patient/example
 ```
 
 ## How to populate form with patient allergies
-
 
 
 ## How to populate form with data from another form during the visit
@@ -175,7 +168,10 @@ parameter:
 To populate a form with data from another form we should: 
 
 1. setup a form to be able to find another form's response and get information from it
-2. provide some reference, that is common between those forms (in our example - `Encounter`) to populate operation 
+  1. Enable input parameter, that is common for both forms. (`Encounter` in our case)
+  2. Set form's named expression with `FHIRQuery` to search for response in DB
+  3. Set field's populate expression to extract data from found `QuestionnaireResponse`
+2. provide `Encounter` reference in input parameters of populate operation 
 
 
 ### Form Setup
@@ -184,12 +180,22 @@ Assume that we have:
 - 1st Form and it's response with captured data in DB, which will be used as data source
 - 2nd Form, that should be pre-populated
 
-Response of 1st form should be like this:
+
+#### Enable input parameter
+
+To use `%encounter` input parameter - we should enable it.
+
+1. Click on form's name in the outline panel (top left corner of the Form Builder)
+2. In `Populate section` of form's settings panel click on `Encounter` checkbox.
+
+#### Setup query to find a resource
+
+Response of 1st form should be stored in DB and looks like this:
 
 ```yaml
 resourceType: QuestionnaireResponse
 status: completed
-questionnaire: http://aidbox.io/forms/patient-name
+questionnaire: http://aidbox.io/forms/patient-name|1.0.0
 encounter:
   reference: Encounter/enc-1
 item:
@@ -199,11 +205,18 @@ item:
   - valueString: John Smith
 ```
 
-We need to build FHIR Search Query to find this response. We will use several filter criteria for this
+We are interested in next values from it.
 
-- `status` = completed - we need completed forms only
-- `questionnaire` - canonical link to 1st questionnare
-- `encounter` - which will be given at the end
+- `encounter reference` - will be common with our form
+- `questionnaire` - unique Questionnaire's identifier 
+- item's `linkId` - will be used to extract an answer.
+
+We need to build FHIR Search Query to find this response.
+We will use several filter criteria for this:
+
+- `status = completed`
+- `questionnaire`
+- `encounter`
 
 > We can use Aidbox REST Console to debug this query 
 
@@ -214,28 +227,58 @@ GET /QuestionnaireResponse?status=completed&questionnaire=http://aidbox.io/forms
 ```
 
 
-We should specify Form's named expression with given query, with small modifications
+We should specify form's `named expression` with given query, but with small modifications
 
-1. Click on section with Form's name in the outline panel in the Form UI Builder (top left corner)
-2. In Form's settings panel click button `+ Add Expression` (`Named Expressions` section).
-3. Click on appeared empty line
-4. set expression name = `q`,
-5. set language = `FHIRQuery`
+1. Click on form's name in the outline panel (top left corner of the Form Builder)
+2. In form's settings panel click button `+ Add Expression` (`Named Expressions` section).
+3. Select created empty line
+4. enter `expression name` = `response`,
+5. set `expression language` = `FHIRQuery`
 6. Copy Search Query with next modifications
+  - remove http method (`GET`) 
+  - replace `encounter` parameter value (`enc-1`) with embedded `FHIRPath` expression  `{{%encounter.id}}`
+7. Click `close` button in the `named expression` form
+  
+> Complete FHIRQuery
+>
+> ```
+> /QuestionnaireResponse?status=completed&questionnaire=http://aidbox.io/forms/patient-name&encounter={{%encounter.id}}
+> ```
 
+> Embedded FHIRPath expression `{{%encounter.id}}`  consists of:
+> - `{{}}` -  FHIRPath expression embedding point
+> - `%encounter` - populate input parameter. (all parameters start with `%` sign)
+> - `%encounter.id` - `FHIRPath` expression that extracts id from `Encounter` reference
+
+#### Set field's populate expression
+
+We should use created `named expression` (`%response`) to extract a value and fill out our field.
+
+1. Select the item in outline 
+2. Enable `Populate` section (`Observation` population should be opened by default)
+3. Select `Expression` tab 
+4. Enter `FHIRPath` expression that extracts needed value.
+
+```fhirpath
+%response.repeat(item).where(linkId='patient-name').answer.value
 ```
-/QuestionnaireResponse?status=completed&questionnaire=http://aidbox.io/forms/patient-name&encounter={{%encounter.id}}
-```
-> here we remove http method - `GET`, and replace `enc-1` value with `FHIRPath` expression `{{%encounter.id}}` 
-> `{{}}` - this means embed FHIRPath expression
-> `%encounter` - is a `$populate` input parameter.
-> `%encounter.id` - is a FHIRPath expression that extracts id from Encounter reference
-
-7. Click close button in a form
-8. To enable `%encounter` input parameter - click on `Encounter` checkbox in Populate section of Form settings
-
-
-TBD
-
 
 ### Populate parameters
+
+To pass Encounter's reference we use encounter `context` parameter to `$populate` operation
+
+Operation call example:
+
+```yaml
+POST /fhir/Questionnaire/<qid>/$populate
+
+resourceType: Parameters
+parameter:
+- name: context
+  part: 
+    - name: name
+      valueString: Encounter
+    - name: value
+      valueReference:
+        reference: Encounter/enc-1
+```
