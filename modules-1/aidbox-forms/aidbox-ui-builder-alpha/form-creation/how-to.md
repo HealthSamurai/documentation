@@ -235,8 +235,8 @@ We should specify form's `named expression` with given query, but with small mod
 4. enter `expression name` = `response`,
 5. set `expression language` = `FHIRQuery`
 6. Copy Search Query with next modifications
-  - remove http method (`GET`) 
-  - replace `encounter` parameter value (`enc-1`) with embedded `FHIRPath` expression  `{{%encounter.id}}`
+    - remove http method (`GET`) 
+    - replace `encounter` parameter value (`enc-1`) with embedded `FHIRPath` expression  `{{%encounter.id}}`
 7. Click `close` button in the `named expression` form
   
 > Complete FHIRQuery
