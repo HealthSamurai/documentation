@@ -2021,6 +2021,7 @@ ePrescription workflow specification
 
 ## Versions
 
+* `de.gematik.erezept-workflow.r4#1.3.0-rc3`
 * `de.gematik.erezept-workflow.r4#1.3.0-rc2`
 * `de.gematik.erezept-workflow.r4#1.3.0-rc1`
 * `de.gematik.erezept-workflow.r4#1.2.3`
@@ -5745,6 +5746,9 @@ Technical profiles used by nexuzhealth for the import and export of data.
 
 ## Versions
 
+* `nxh.fhir.r4#0.0.0-beta.5`
+* `nxh.fhir.r4#0.0.0-beta.4`
+* `nxh.fhir.r4#0.0.0-beta.3`
 * `nxh.fhir.r4#0.0.0-beta.2`
 * `nxh.fhir.r4#0.0.0-beta.1`
 * `nxh.fhir.r4#0.0.0-beta`
