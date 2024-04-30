@@ -229,6 +229,8 @@ parameter:
 
 ## How to populate form with patient allergies
 
+(**WIP: not completed**)
+
 To populate a form with data from allergies we should
 
 1. setup a form to be able to find allergies for a patient and populate them in a list (design time)
@@ -238,17 +240,108 @@ To populate a form with data from allergies we should
 
 ### Form Setup (design time)
 
-Assume that we alredy have:
+Assume that we already have:
 
 - Form for Allergies
-- Several AllergyIntolerance resources in DB
+- Several `AllergyIntolerance` resources in DB
+
+`AllergyIntolerance` resource examples:
+
+Food allergy
+
+```yaml
+resourceType: AllergyIntolerance
+id: example
+type: allergy
+patient:
+  reference: Patient/example
+category:
+- food
+criticality: high
+recordedDate: '2014-10-09T14:58:00+11:00'
+onsetDateTime: '2004'
+clinicalStatus:
+  coding:
+  - system: http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical
+    code: active
+    display: Active
+lastOccurrence: 2012-06
+reaction:
+- substance:
+    coding:
+    - system: http://www.nlm.nih.gov/research/umls/rxnorm
+      code: '1160593'
+      display: cashew nut allergenic extract Injectable Product
+  manifestation:
+  - coding:
+    - system: http://snomed.info/sct
+      code: '39579001'
+      display: Anaphylactic reaction
+  description: Challenge Protocol. Severe reaction to subcutaneous cashew extract. Epinephrine administered
+  onset: '2012-06-12'
+  severity: severe
+code:
+  coding:
+  - system: http://snomed.info/sct
+    code: '227493005'
+    display: Cashew nuts
+```
+
+No Known Drug Allergy
+
+```yaml
+resourceType: AllergyIntolerance
+id: nkda
+patient:
+  reference: Patient/example
+recordedDate: '2015-08-06T15:37:31-06:00'
+clinicalStatus:
+  coding:
+  - system: http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical
+    code: active
+    display: Active
+code:
+  coding:
+  - system: http://snomed.info/sct
+    code: '409137002'
+    display: No Known Drug Allergy (situation)
+  text: NKDA
+```
+
+Since there can be several allergies - we should use **Group Table** (or **Group**) for them.
+It will allow us to grow a form with new elements.
+
+Every row of a table should have next items:
+
+- category (text input)
+- allergy code (text item)
+- reaction (Choice input)
+- criticality (Choice input)
 
 > WARN: You should have items with types - that corresponds populate values types. (see [WARN section](how-to.md#warn))
 
-Because allergies are stored in a distinct resources (one resource per allergy) our 
-form can grow and list all number of allergies.
-In this scenario we should use `Group` item (or other Group based widgets: gtable, htable, vtable, grid) -
-it will allow us to grow a form with new elements. 
+reaction and allergy code should be taken from _Terminology_ server, in demo purposes we just set answerOptions with predefined values.
+
+Create a table
+
+1. Press `+ Add widget` button in the outline
+2. Select `Group Table` in a opened widget panel. 
+
+You will get a group table with 2 items in it.
+
+Now we must setup our inputs 
+
+1. Remove predefined `Group table's` items 
+    - hover items with mouse and click on trash icon. (outline)
+2. Create new `Group table` column
+    - Hover `Group Table` item in the outline and click on `+` sign - this will open an items list panel for choosing item.
+    - Select needed item type in a items list panel (for first column it should be `Text Input`)
+3. Enter text for created column 
+    - Select item (in the outline) and type it's title in `text` input of item's settings panel (for first column it should be `Category`)
+4. Repeat 2-3 steps for other columns
+    - `Text input` with text `Allergy code`
+    - `Choice input` with text `Reaction`
+    - `Choice input` with text `Criticality` 
 
 
 TBD
