@@ -115,7 +115,7 @@ phone (Text widget)
 %subject.telecom.value
 ```
 
-### Populate Parameters
+### Populate Parameters (usage time)
 
 To make `%subject` resource available we should call `$populate` operation with specific parameters
 
