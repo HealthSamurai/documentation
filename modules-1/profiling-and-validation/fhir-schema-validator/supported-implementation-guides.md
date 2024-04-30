@@ -10228,12 +10228,13 @@ FHIR Core package - the NPM package that contains all the definitions for the ba
 <details>
 <summary>Description</summary>
 
-This IG defines the global extensions - the ones defined for everyone. These extensions are always in scope wherever FHIR is being used (built Tue, Mar 12, 2024 13:29+1100+11:00)
+This IG defines the global extensions - the ones defined for everyone. These extensions are always in scope wherever FHIR is being used (built Sat, Apr 27, 2024 18:39+1000+10:00)
 
 </details>
 
 ## Versions
 
+* `hl7.fhir.uv.extensions#5.1.0`
 * `hl7.fhir.uv.extensions#5.1.0-cibuild`
 * `hl7.fhir.uv.extensions#5.1.0-ballot1`
 * `hl7.fhir.uv.extensions#1.0.0`
