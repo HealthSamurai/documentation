@@ -48,7 +48,7 @@ telecom:
 
 ```
 
-> WARN: You should have items with types - that corresponds populate types.
+> WARN: You should have items with types - that corresponds populate values types.
 
 | Item               | data type     |
 |--------------------|---------------|
