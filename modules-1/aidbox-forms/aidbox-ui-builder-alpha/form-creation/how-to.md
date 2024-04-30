@@ -4,15 +4,70 @@
 
 To populate a form we should: 
 
-1. setup a form to be able to get patient's data and prefill form items with it
-2. provide patient's reference to population operation. 
+1. setup a form to be able to get patient's data and prefill form items with it (design time)
+2. provide patient's reference to population operation. (usage time)
 
-### Form Setup 
+### Form Setup (design time)
 
 Assume that we already have:
 
 - form with 5 items(data: patient name, DOB, MRN, address, phone)
 - Patient resource in the Aidbox DB
+
+Patient resource example:
+
+```yaml
+resourceType: Patient
+id: example
+gender: male
+name:
+- family: Chalmers
+  given:
+  - Peter
+  - James
+address:
+- city: PleasantVille
+  district: Rainbow
+  postalCode: '3999'
+  text: 534 Erewhon St PeasantVille, Rainbow, Vic  3999
+  line:
+  - 534 Erewhon St
+  state: Vic
+identifier:
+- use: usual
+  type:
+    coding:
+    - system: http://terminology.hl7.org/CodeSystem/v2-0203
+      code: MR
+  system: urn:oid:1.2.36.146.595.217.0.1
+  value: '12345'
+birthDate: '1974-12-25'
+telecom:
+- system: phone
+  value: (03) 5555 6473
+
+```
+
+> WARN: You should have items with types - that corresponds populate types.
+
+| Item               | data type     |
+|--------------------|---------------|
+| String Input       | string        |
+| Textarea           | string        |
+| URL                | url           |
+| Integer Input      | integer       |
+| Decimal Input      | decimal       |
+| Quantity Input     | quantity      |
+| Date               | date          |
+| Time               | time          |
+| Datetime           | dateTime      |
+| Choice Input       | coding        |
+| Open Choice Input  | coding/string |
+| Radio Button       | coding        |
+| Boolean input      | boolean       |
+| File               | attachment    |
+| Author's Signature | attachment    |
+| Reference          | reference     |
 
 We should setup items with `populate` expressions.
 
@@ -33,7 +88,7 @@ For this example we will use:
 Patient name 
 
 ```fhirpath
-%subject.name.where(use='official').family + ' ' + %subject.name.where(use='official').given.first()
+%subject.name.family + ' ' + %subject.name.given.first()
 ```
 
 DOB (Date widget)
@@ -51,13 +106,13 @@ MRN (Text widget)
 address (Text widget)
 
 ```fhirpath
-%subject.address.where(use='home').text
+%subject.address.text
 ```
 
 phone (Text widget)
 
 ```fhirpath
-%subject.telecom.where(system='phone', use='home').value
+%subject.telecom.value
 ```
 
 ### Populate Parameters
@@ -70,7 +125,7 @@ To make `%subject` resource available we should call `$populate` operation with 
 Operation call example:
 
 ```yaml
-POST /fhir/Questionnaire/<qid>/$populate
+POST /fhir/Questionnaire/<qid>/$populatelink
 
 resourceType: Parameters
 parameter:
@@ -85,10 +140,10 @@ parameter:
 
 To populate a form we should: 
 
-1. setup a form to be able to get patient's observations
-2. provide patient's reference to population operation. 
+1. setup a form to be able to get patient's observations (design time)
+2. provide patient's reference to population operation.  (usage time)
 
-### Form Setup 
+### Form Setup (design time)
 
 Assume that we have:
 - Form with `body weight` and `body height` items
@@ -144,14 +199,14 @@ We should configure items with Observation based population
 2. Press `include code?` section and type corresponding code/system (from Observations)
 3. Enable `Populate` section (`Observation` population should be opened by default) and choose period to search for Observations. (For example `1 Month`)
 
-### Populate parameters
+### Populate parameters (usage time)
 
-To pass Patient's reference we use  `subject` parameter to `$populate` operation
+To pass Patient's reference we use `subject` parameter to `$populatelink`/`$populate` operation.
 
 Operation call example:
 
 ```yaml
-POST /fhir/Questionnaire/<qid>/$populate
+POST /fhir/Questionnaire/<qid>/$populatelink
 
 resourceType: Parameters
 parameter:
@@ -160,20 +215,32 @@ parameter:
     reference: Patient/example
 ```
 
+
 ## How to populate form with patient allergies
 
-To populate a form with data from another form we should: 
+To populate a form with data from allergies we should
 
-1. setup a form to be able to find allergies for a patient and populate them in a list
+1. setup a form to be able to find allergies for a patient and populate them in a list (design time)
     - Create a `group` item with `named expression` to search for allergies
     - Set items populate expressions to extract data from found `AllergyIntolerance`
-2. provide `Patient` reference in input parameters of populate operation 
+2. provide `Patient` reference in input parameters of populate operation  (usage time)
 
-### Form Setup
+### Form Setup (design time)
+
+Assume that we alredy have:
+
+- Form for Allergies
+- Several AllergyIntolerance resources in DB
+
+Because allergies are stored in a distinct resources (one resource per allergy) our 
+form can grow and list all number of allergies.
+In this scenario we should use `Group` item (or other Group based widgets: gtable, htable, vtable, grid) -
+it will allow us to grow a form with new elements. 
+
 
 TBD
 
-### Populate parameters
+### Populate parameters (usage time)
 
 TBD
 
@@ -181,19 +248,20 @@ TBD
 
 To populate a form with data from another form we should: 
 
-1. setup a form to be able to find another form's response and get information from it
+1. setup a form to be able to find another form's response and get information from it (design time)
     - Enable input parameter, that is common for both forms. (`Encounter` in our case)
     - Set form's named expression with `FHIRQuery` to search for response in DB
     - Set item's populate expression to extract data from found `QuestionnaireResponse`
-2. provide `Encounter` reference in input parameters of populate operation 
+2. provide `Encounter` reference in input parameters of populate operation (usage time)
 
 
-### Form Setup
+### Form Setup (design time)
 
 Assume that we have:
 - 1st Form and it's response with captured data in DB, which will be used as data source
 - 2nd Form, that should be pre-populated
 
+> We are working only with 2nd form in this demo
 
 #### Enable input parameter
 
@@ -219,44 +287,35 @@ item:
   - valueString: John Smith
 ```
 
-We are interested in next values from it.
+We are interested in following values from it.
 
 - `encounter reference` - will be common with our form
-- `questionnaire` - unique Questionnaire's identifier 
-- item's `linkId` - will be used to extract an answer.
+- `questionnaire` - unique `Questionnaire's` identifier 
+- item's `linkId` - will be used to extract an answer in following section.
 
-We need to build FHIR Search Query to find this response.
-We will use several filter criteria for this:
+We need to build `FHIR Search Query` to find this response.
 
-- `status = completed`
-- `questionnaire`
-- `encounter`
-
-> We can use Aidbox REST Console to debug this query 
+It's better to design and debug query in **Aidbox REST Console**
 
 Complete FHIR Search Query looks like this:
 
 ```
-GET /QuestionnaireResponse?status=completed&questionnaire=http://aidbox.io/forms/patient-name&encounter=enc-1
+GET /QuestionnaireResponse?status=completed&questionnaire=http://aidbox.io/forms/patient-name|1.0.0&encounter=enc-1
 ```
 
+It uses several filter criteria:
 
-We should specify form's `named expression` with given query, but with small modifications
+- `status = completed` - we need only submitted forms
+- `questionnaire`  - canonical URL of response's questionnaire
+- `encounter` - our common reference, for example `enc-1`
 
-1. Click on form's name in the outline panel (top left corner of the Form Builder)
-2. In form's settings panel click button `+ Add Expression` (`Named Expressions` section).
-3. Select created empty line
-4. enter `expression name` = `response`,
-5. set `expression language` = `FHIRQuery`
-6. Copy Search Query with next modifications
-    - remove http method (`GET`) 
-    - replace `encounter` parameter value (`enc-1`) with embedded `FHIRPath` expression  `{{%encounter.id}}`
-7. Click `close` button in the `named expression` form
-  
-> Complete FHIRQuery
->
+We should specify form's `named expression` with this query, but with small modifications:
+
+- remove http method (`GET`) 
+- replace `encounter` parameter value (= `enc-1`) with embedded `FHIRPath` expression  `{{%encounter.id}}`
+
 > ```
-> /QuestionnaireResponse?status=completed&questionnaire=http://aidbox.io/forms/patient-name&encounter={{%encounter.id}}
+> /QuestionnaireResponse?status=completed&questionnaire=http://aidbox.io/forms/patient-name|1.0.0&encounter={{%encounter.id}}
 > ```
 
 > Embedded FHIRPath expression `{{%encounter.id}}`  consists of:
@@ -264,6 +323,16 @@ We should specify form's `named expression` with given query, but with small mod
 > - `%encounter` - populate input parameter. (all parameters start with `%` sign)
 > - `%encounter.id` - `FHIRPath` expression that extracts id from `Encounter` reference
 
+To specify named expression we should:
+
+1. Click on form's name in the outline panel (top left corner of the Form Builder)
+2. In form's settings panel click button `+ Add Expression` (`Named Expressions` section).
+3. Select created empty line
+4. enter `expression name` = `response` (we will use expression by name in next section)
+5. set `expression language` = `FHIRQuery`
+6. Copy `FHIRQuery` that we get in last step
+7. Click `close` button in the `named expression` form
+  
 #### Set item's populate expression
 
 We should use created `named expression` (`%response`) to extract a value and fill out our item.
@@ -277,9 +346,9 @@ We should use created `named expression` (`%response`) to extract a value and fi
 %response.repeat(item).where(linkId='patient-name').answer.value
 ```
 
-### Populate parameters
+### Populate parameters (usage time)
 
-To pass Encounter's reference we use encounter `context` parameter to `$populate` operation
+To pass Encounter's reference we use `context` parameter - `encounter` to `$populatelink`/`$populate` operation
 
 Operation call example:
 
