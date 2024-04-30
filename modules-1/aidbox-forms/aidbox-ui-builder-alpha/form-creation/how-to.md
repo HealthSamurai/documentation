@@ -1,5 +1,30 @@
 # How Tos
 
+## Warn 
+
+### You should have items with types - that corresponds populate values types.
+
+In all populate items configuration you should use proper item(widget) for populate data 
+
+| Item               | data type     |
+|--------------------|---------------|
+| String Input       | string        |
+| Textarea           | string        |
+| URL                | url           |
+| Integer Input      | integer       |
+| Decimal Input      | decimal       |
+| Quantity Input     | quantity      |
+| Date               | date          |
+| Time               | time          |
+| Datetime           | dateTime      |
+| Choice Input       | coding        |
+| Open Choice Input  | coding/string |
+| Radio Button       | coding        |
+| Boolean input      | boolean       |
+| File               | attachment    |
+| Author's Signature | attachment    |
+| Reference          | reference     |
+
 ## How to populate form with patient demographic data: patient name, DOB, MRN, address, phone
 
 To populate a form we should: 
@@ -48,26 +73,7 @@ telecom:
 
 ```
 
-> WARN: You should have items with types - that corresponds populate values types.
-
-| Item               | data type     |
-|--------------------|---------------|
-| String Input       | string        |
-| Textarea           | string        |
-| URL                | url           |
-| Integer Input      | integer       |
-| Decimal Input      | decimal       |
-| Quantity Input     | quantity      |
-| Date               | date          |
-| Time               | time          |
-| Datetime           | dateTime      |
-| Choice Input       | coding        |
-| Open Choice Input  | coding/string |
-| Radio Button       | coding        |
-| Boolean input      | boolean       |
-| File               | attachment    |
-| Author's Signature | attachment    |
-| Reference          | reference     |
+> WARN: You should have items with types - that corresponds populate values types. (see [WARN section](how-to.md#warn))
 
 We should setup items with `populate` expressions.
 
@@ -136,6 +142,9 @@ parameter:
   valueBoolean: true
 ```
 
+
+
+
 ## How to populate form with patient weight, height
 
 To populate a form we should: 
@@ -149,6 +158,8 @@ Assume that we have:
 - Form with `body weight` and `body height` items
 - Patient in DB
 - Patient's `body weight` and `body height` `Observations` in DB
+
+> WARN: You should have items with types - that corresponds populate values types. (see [WARN section](how-to.md#warn))
 
 Stored `Observations` should be linked to a patient and should be coded with right terminology code (LOINC in our example)
 
@@ -232,6 +243,8 @@ Assume that we alredy have:
 - Form for Allergies
 - Several AllergyIntolerance resources in DB
 
+> WARN: You should have items with types - that corresponds populate values types. (see [WARN section](how-to.md#warn))
+
 Because allergies are stored in a distinct resources (one resource per allergy) our 
 form can grow and list all number of allergies.
 In this scenario we should use `Group` item (or other Group based widgets: gtable, htable, vtable, grid) -
@@ -260,6 +273,8 @@ To populate a form with data from another form we should:
 Assume that we have:
 - 1st Form and it's response with captured data in DB, which will be used as data source
 - 2nd Form, that should be pre-populated
+
+> WARN: You should have items with types - that corresponds populate values types. (see [WARN section](how-to.md#warn))
 
 > We are working only with 2nd form in this demo
 
