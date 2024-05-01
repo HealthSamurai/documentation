@@ -3111,12 +3111,13 @@ Medizinische Informationsobjekte (MIO) DiGA Toolkit V1.1.0
 <details>
 <summary>Description</summary>
 
-This IG defines the global extensions - the ones defined for everyone. These extensions are always in scope wherever FHIR is being used (built Sun, Mar 26, 2023 08:46+1100+11:00)
+This IG defines the global extensions - the ones defined for everyone. These extensions are always in scope wherever FHIR is being used (built Sat, Apr 27, 2024 18:39+1000+10:00)
 
 </details>
 
 ## Versions
 
+* `hl7.fhir.uv.extensions.r5#5.1.0`
 * `hl7.fhir.uv.extensions.r5#1.0.0`
 
 
@@ -7804,12 +7805,13 @@ Umsetzung der formularübergreifende Vorgaben für Digitale Muster der KBV
 <details>
 <summary>Description</summary>
 
-This IG defines the global extensions - the ones defined for everyone. These extensions are always in scope wherever FHIR is being used (built Sun, Mar 26, 2023 08:46+1100+11:00)
+This IG defines the global extensions - the ones defined for everyone. These extensions are always in scope wherever FHIR is being used (built Sat, Apr 27, 2024 18:39+1000+10:00)
 
 </details>
 
 ## Versions
 
+* `hl7.fhir.uv.extensions.r4#5.1.0`
 * `hl7.fhir.uv.extensions.r4#1.0.0`
 
 
