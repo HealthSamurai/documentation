@@ -74,11 +74,11 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
                                     manifests))]
     (format "---
 
-# %s
+### %s
 
 %s
 
-## Versions
+**Versions**
 
 %s
 "
