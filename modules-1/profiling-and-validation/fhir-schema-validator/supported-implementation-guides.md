@@ -210,6 +210,7 @@ Ontario Health
 
 ## Versions
 
+* `ontariomicdrfhirimplementationguide-0.10.00#0.9.6-beta`
 * `ontariomicdrfhirimplementationguide-0.10.00#0.9.5-beta`
 * `ontariomicdrfhirimplementationguide-0.10.00#0.9.4-beta`
 * `ontariomicdrfhirimplementationguide-0.10.00#0.9.3-beta`
@@ -3671,6 +3672,7 @@ de.ihe-d.terminology
 
 ## Versions
 
+* `hl7.fhir.uv.smart-app-launch#2.2.0`
 * `hl7.fhir.uv.smart-app-launch#2.2.0-ballot`
 * `hl7.fhir.uv.smart-app-launch#2.1.0`
 * `hl7.fhir.uv.smart-app-launch#2.1.0-ballot`
@@ -6498,6 +6500,7 @@ Draft of used FHIR resource profiles in Koppeltaal 2.0.
 
 ## Versions
 
+* `koppeltaalv2.00#0.12.0-beta.6`
 * `koppeltaalv2.00#0.12.0-beta.5`
 * `koppeltaalv2.00#0.12.0-beta.4`
 * `koppeltaalv2.00#0.12.0-beta.3`
@@ -10451,6 +10454,17 @@ Grundlage für die FHIR-Schnittstelle der CDS Software MAIA der Tiplu GmbH
 
 * `tiplu.maia.schnittstellendefinition#1.0.3`
 * `tiplu.maia.schnittstellendefinition#1.0.2`
+
+
+---
+
+# Gestion d'Agendas Partagés (GAP)
+
+
+
+## Versions
+
+* `ans.fhir.fr.gap#3.0.0`
 
 
 ---
