@@ -352,9 +352,14 @@ C-CDA Equivalent:
                <td>18 /min</td>
             </tr>
             <tr>
-               <td>HEIGHT</td>
-               <td>05/21/2014 12:36AM UTC</td>
-               <td>170.2 cm</td>
+               <td>Arterial Oxygen Saturation</td>
+               <td>~</td>
+               <td>~</td>
+            </tr>
+            <tr>
+               <td>Inhaled Oxygen Saturation</td>
+               <td>~</td>
+               <td>~</td>
             </tr>
             <tr>
                <td>WEIGHT</td>
@@ -362,14 +367,19 @@ C-CDA Equivalent:
                <td>108.863 kg</td>
             </tr>
             <tr>
+               <td>HEIGHT</td>
+               <td>05/21/2014 12:36AM UTC</td>
+               <td>170.2 cm</td>
+            </tr>
+            <tr>
                <td>BODY MASS INDEX</td>
                <td>05/21/2014 12:36AM UTC</td>
                <td>37.58 kg/m2</td>
             </tr>
             <tr>
-               <td>OXYGEN SATURATION</td>
-               <td>05/21/2014 12:36AM UTC</td>
-               <td>98 %</td>
+               <td>Head Occipital Circumference</td>
+               <td>~</td>
+               <td>~</td>
             </tr>
          </tbody>
       </table>
