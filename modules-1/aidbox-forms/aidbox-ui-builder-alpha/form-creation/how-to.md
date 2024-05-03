@@ -227,15 +227,16 @@ parameter:
 ```
 
 
-## How to populate form with patient allergies
 
-(**WIP: not completed**)
+
+## How to populate form with patient allergies
 
 To populate a form with data from allergies we should
 
 1. setup a form to be able to find allergies for a patient and populate them in a list (design time)
-    - Create a `group` item with `named expression` to search for allergies
-    - Set items populate expressions to extract data from found `AllergyIntolerance`
+    - Create a `group`/`group table` with columns of proper types
+    - Set `named expression` for created `group` to search for allergies
+    - Set columns `populate expressions` to extract data from found `AllergyIntolerance` resources
 2. provide `Patient` reference in input parameters of populate operation  (usage time)
 
 ### Form Setup (design time)
@@ -245,7 +246,8 @@ Assume that we already have:
 - Form for Allergies
 - Several `AllergyIntolerance` resources in DB
 
-`AllergyIntolerance` resource examples:
+
+#### `AllergyIntolerance` resource examples:
 
 Food allergy
 
@@ -254,7 +256,7 @@ resourceType: AllergyIntolerance
 id: example
 type: allergy
 patient:
-  reference: Patient/example
+  reference: Patient/pt-1
 category:
 - food
 criticality: high
@@ -293,7 +295,7 @@ No Known Drug Allergy
 resourceType: AllergyIntolerance
 id: nkda
 patient:
-  reference: Patient/example
+  reference: Patient/pt-1
 recordedDate: '2015-08-06T15:37:31-06:00'
 clinicalStatus:
   coding:
@@ -311,7 +313,7 @@ code:
 Since there can be several allergies - we should use **Group Table** (or **Group**) for them.
 It will allow us to grow a form with new elements.
 
-Every row of a table should have next items:
+Every table row should have next columns:
 
 - category (text input)
 - allergy code (text item)
@@ -320,9 +322,9 @@ Every row of a table should have next items:
 
 > WARN: You should have items with types - that corresponds populate values types. (see [WARN section](how-to.md#warn))
 
-reaction and allergy code should be taken from _Terminology_ server, in demo purposes we just set answerOptions with predefined values.
+Reaction and allergy code should be taken from _Terminology_ server, in demo purposes we just set answerOptions with predefined values.
 
-Create a table
+#### Create a table with columns
 
 1. Press `+ Add widget` button in the outline
 2. Select `Group Table` in a opened widget panel. 
@@ -333,22 +335,129 @@ Now we must setup our inputs
 
 1. Remove predefined `Group table's` items 
     - hover items with mouse and click on trash icon. (outline)
-2. Create new `Group table` column
+2. Create `Category` column and set answer options  [Category item FHIR Spec](http://hl7.org/fhir/r4/valueset-allergy-intolerance-category.html)
     - Hover `Group Table` item in the outline and click on `+` sign - this will open an items list panel for choosing item.
-    - Select needed item type in a items list panel (for first column it should be `Text Input`)
-3. Enter text for created column 
-    - Select item (in the outline) and type it's title in `text` input of item's settings panel (for first column it should be `Category`)
-4. Repeat 2-3 steps for other columns
-    - `Text input` with text `Allergy code`
-    - `Choice input` with text `Reaction`
-    - `Choice input` with text `Criticality` 
+    - Select `Choice Input` item type in a items list panel
+    - Type it's title = `Category` in `text` input of item's settings panel
+    - Find `Options` section in `Attributes` segment of `item's settings` panel
+    - Fill out options with next value [Category item FHIR Spec](http://hl7.org/fhir/r4/valueset-allergy-intolerance-category.html)
+        - `code` =  `food`        , `display` = `Food`
+        - `code` =  `medication`  , `display` = `Medication`
+        - `code` =  `environment` , `display` = `Environment`
+        - `code` =  `biologic`    , `display` = `Biologic`
+3. Create `Allergy Code` column
+    - Repeat actions from 2nd step with next values
+    - `text` = `Allergy code`
+    - `Options` are
+          - `system` = `http://snomed.info/sct`, `code` = `409137002`, `display` = `No Known Drug Allergy (situation)`
+          - `system` = `http://snomed.info/sct`, `code` = `227493005`, `display` = `Cashew nuts`
+          (in production we should use ValuseSet here, but for demo purposes we just fill our value from existed `AllergyIntolerance` resource)
+5. Create `Reaction` column and set answer options
+    - Repeat actions from 2nd step with next values
+    - `text` = `Reaction`
+    - `Options` are: 
+          - `code` = `1160593`, `display` = `cashew nut allergenic extract Injectable Product`
+          (in production we should use ValuseSet here, but for demo purposes we just fill our value from existed `AllergyIntolerance` resource)
+6. Create `Criticality` column and set answer options
+    - Repeat actions from 2nd step with next values
+    - Find `Options` section in `Attributes` segment of `item's settings` panel
+    - text = `Criticality`
+    - `Options` are:  [Criticality item FHIR Spec](http://hl7.org/fhir/r4/valueset-allergy-intolerance-criticality.html)
+          - `code` = `low`              , `display` = `Low Risk`
+          - `code` = `high`             , `display` = `High Risk`
+          - `code` = `unable-to-assess` , `display` = `Unable to Assess Risk`
+        
 
+        
+#### Set table `population expression`
 
-TBD
+At first we should design and debug a FHIR Query to find `AllergyIntolerance` resources
+
+For searching `AllergyIntolerance` we need only `Patient` reference that we get as `%subject` Input Parameter  see Input Parameters section
+
+Complete FHIR Search Query looks like this:
+
+```
+GET /AllergyIntolerance?patient=pt-1
+```
+
+We should specify form's `named expression` with this query, but with small modifications:
+
+- remove http method (`GET`) 
+- replace `patient` parameter value (= `pt-1`) with embedded `FHIRPath` expression  `{{%subject.id}}`
+
+> ```
+> /AllergyIntolerance?patient={{%subject.id}}
+> ```
+
+> Embedded FHIRPath expression `{{%subject.id}}`  consists of:
+> - `{{}}` -  FHIRPath expression embedding point
+> - `%subject` - populate input parameter. (all parameters start with `%` sign)
+> - `%subject.id` - `FHIRPath` expression that extracts `id` from `Patient` reference
+
+To specify named expression we should:
+
+1. Click on `group table` item in the outline panel
+2. Enable `Populate` section in item's settings panel (`Observation` population should be opened by default)
+3. Select `Expression` tab in `Populate` section.
+4. enter `expression name` = `allergy` (we will use expression by name in next section)
+5. set `expression language` = `FHIRQuery`
+6. Copy `FHIRQuery` that we get in last step
+  
+
+#### Set columns `population expressions`
+
+For every column we should set populate expression which extracts data from `%allergy` named expression.
+
+1. Select column item in the outline 
+2. Enable `Populate` section (`Observation` population should be opened by default)
+3. Select `Expression` tab 
+4. Enter `FHIRPath` expression that extracts needed value.
+
+Category (Choice input)
+
+```fhirpath
+%qitem.answerOption.valueCoding.where(code = %allergy.category.first())
+```
+> There can be several catigories but for demo purpores we just use first of them
+
+Allergy code (Choice item)
+
+```
+%allergy.reaction.substance.coding.first()
+```
+
+Reaction (Choice input) 
+
+```fhirpath
+%allergy.reaction.substance.coding.first()
+```
+> There can be several reactoins but for demo purpores we just use first of them
+
+Criticality (Choice input)
+
+```fhirpath
+%qitem.answerOption.valueCoding.where(code = %allergy.criticality)
+```
+
 
 ### Populate parameters (usage time)
 
-TBD
+To pass Patient's reference we use `subject` parameter to `$populatelink`/`$populate` operation.
+
+Operation call example:
+
+```yaml
+POST /fhir/Questionnaire/<qid>/$populatelink
+
+resourceType: Parameters
+parameter:
+- name: subject
+  valueReference:
+    reference: Patient/example
+```
+
+
 
 ## How to populate form with data from another form during the visit
 
@@ -429,7 +538,7 @@ We should specify form's `named expression` with this query, but with small modi
 > Embedded FHIRPath expression `{{%encounter.id}}`  consists of:
 > - `{{}}` -  FHIRPath expression embedding point
 > - `%encounter` - populate input parameter. (all parameters start with `%` sign)
-> - `%encounter.id` - `FHIRPath` expression that extracts id from `Encounter` reference
+> - `%encounter.id` - `FHIRPath` expression that extracts `id` from `Encounter` reference
 
 To specify named expression we should:
 
@@ -461,7 +570,7 @@ To pass Encounter's reference we use `context` parameter - `encounter` to `$popu
 Operation call example:
 
 ```yaml
-POST /fhir/Questionnaire/<qid>/$populate
+POST /fhir/Questionnaire/<qid>/$populatelink
 
 resourceType: Parameters
 parameter:
@@ -473,3 +582,6 @@ parameter:
       valueReference:
         reference: Encounter/enc-1
 ```
+
+
+
