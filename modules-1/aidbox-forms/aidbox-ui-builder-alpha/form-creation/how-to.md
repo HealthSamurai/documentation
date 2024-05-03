@@ -349,23 +349,23 @@ Now we must setup our inputs
     - Repeat actions from 2nd step with next values
     - `text` = `Allergy code`
     - `Options` are
-          - `system` = `http://snomed.info/sct`, `code` = `409137002`, `display` = `No Known Drug Allergy (situation)`
-          - `system` = `http://snomed.info/sct`, `code` = `227493005`, `display` = `Cashew nuts`
-          (in production we should use ValuseSet here, but for demo purposes we just fill our value from existed `AllergyIntolerance` resource)
+        - `system` = `http://snomed.info/sct`, `code` = `409137002`, `display` = `No Known Drug Allergy (situation)`
+        - `system` = `http://snomed.info/sct`, `code` = `227493005`, `display` = `Cashew nuts`
+        (in production we should use ValuseSet here, but for demo purposes we just fill our value from existed `AllergyIntolerance` resource)
 5. Create `Reaction` column and set answer options
     - Repeat actions from 2nd step with next values
     - `text` = `Reaction`
     - `Options` are: 
-          - `code` = `1160593`, `display` = `cashew nut allergenic extract Injectable Product`
-          (in production we should use ValuseSet here, but for demo purposes we just fill our value from existed `AllergyIntolerance` resource)
+        - `code` = `1160593`, `display` = `cashew nut allergenic extract Injectable Product`
+        (in production we should use ValuseSet here, but for demo purposes we just fill our value from existed `AllergyIntolerance` resource)
 6. Create `Criticality` column and set answer options
     - Repeat actions from 2nd step with next values
     - Find `Options` section in `Attributes` segment of `item's settings` panel
     - text = `Criticality`
     - `Options` are:  [Criticality item FHIR Spec](http://hl7.org/fhir/r4/valueset-allergy-intolerance-criticality.html)
-          - `code` = `low`              , `display` = `Low Risk`
-          - `code` = `high`             , `display` = `High Risk`
-          - `code` = `unable-to-assess` , `display` = `Unable to Assess Risk`
+        - `code` = `low`              , `display` = `Low Risk`
+        - `code` = `high`             , `display` = `High Risk`
+        - `code` = `unable-to-assess` , `display` = `Unable to Assess Risk`
         
 
         
