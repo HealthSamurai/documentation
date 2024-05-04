@@ -9448,12 +9448,13 @@ Profiles for the May profiling training
 <details>
 <summary>Description</summary>
 
-Pan-Canadian Patient Summary (PS-CA) 1.0.0 - Projectathon Release
+Pan-Canadian Patient Summary (PS-CA) 1.1.0 DFT - Trial Ballot Release to support Limited Production Rollouts (LPRs) of Patient Summary in Canada
 
 </details>
 
 **Versions**
 
+* `ca.infoway.io.psca#1.1.0`
 * `ca.infoway.io.psca#1.0.0`
 * `ca.infoway.io.psca#1.0.0-projectathon-pre`
 * `ca.infoway.io.psca#1.0.0-pre`
