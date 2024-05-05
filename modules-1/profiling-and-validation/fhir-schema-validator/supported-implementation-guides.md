@@ -6509,6 +6509,7 @@ Draft of used FHIR resource profiles in Koppeltaal 2.0.
 * `koppeltaalv2.00#0.12.0-beta.3`
 * `koppeltaalv2.00#0.12.0-beta.2`
 * `koppeltaalv2.00#0.12.0-beta.1`
+* `koppeltaalv2.00#0.12.0`
 * `koppeltaalv2.00#0.11.1`
 * `koppeltaalv2.00#0.11.0`
 * `koppeltaalv2.00#0.10.1`
@@ -9218,12 +9219,13 @@ Spezifikationen für DiGas zur digitalen Behandlung von Verdauungserkrankungen
 <details>
 <summary>Description</summary>
 
-eHealth Platform Federal Core Profiles (built Tue, Sep 13, 2022 17:18+0200+02:00)
+eHealth Platform Federal Core Profiles (built Thu, May 2, 2024 15:28+0200+02:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.be.core#2.1.0`
 * `hl7.fhir.be.core#2.0.1`
 * `hl7.fhir.be.core#2.0.0`
 
