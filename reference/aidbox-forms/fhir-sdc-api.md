@@ -353,6 +353,17 @@ The base set of parameters is the same as for [$populate](fhir-sdc-api.md#parame
 WARN: The following parameters are not FHIR SDC compliant. This is an extension of the specification.
 {% endhint %}
 
+{% hint style="warning" %}
+NOTE:  Don't forget to wrap parameters in `Parameters object`
+
+```yaml
+resourceType: Parameters
+parameter:
+- name:  [var-name]
+  value: [var-value]
+    ```
+{% endhint %}
+
 ### allow-amend
 
 Whether the generated link will allow amending and re-submitting the form.
@@ -362,6 +373,7 @@ name: allow-amend
 value:
   Boolean: true
 ```
+
 
 ### redirect-on-submit
 

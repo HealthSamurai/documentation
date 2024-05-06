@@ -16,6 +16,18 @@ POST [base]/QuestionnaireResponse/[id]/$generate-link
 
 ## Parameters
 
+{% hint style="warning" %}
+NOTE:  All parameters wrapped with  `Parameters object`
+
+```yaml
+resourceType: Parameters
+parameter:
+- name:  [var-name]
+  value: [var-value]
+    ```
+{% endhint %}
+
+
 ### allow-amend
 
 Whether the generated link will allow amending and re-submitting the form.
@@ -35,3 +47,52 @@ name: redirect-on-submit
 value:
   String: https://example.com/submit-hook?questionnaire=123
 ```
+
+## Usage Example
+
+{% tabs %}
+{% tab title="Request" %}
+```http
+POST [base]/QuestionnaireResponse/[id]/$generate-link
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+  - name: allow-amend
+    value:
+      Boolean: true
+  - name: redirect-on-submit
+    value:
+      String: https://example.com/submit-hook?questionnaire=123
+```
+{% endtab %}
+
+{% tab title="Success Response" %}
+
+HTTP status: 200
+
+```yaml
+link: http://forms.aidbox.io/ui/sdc#/questionnaire-response/12c1178c-70a9-4e02-a53d-65b13373926e?token=eyJhbGciOiJIUzI
+```
+{% endtab %}
+
+{% tab title="Failure Response" %}
+
+HTTP status: 422
+
+```yaml
+resourceType: OperationOutcome
+text:
+  status: generated
+  div: Parameters are invalid
+issue:
+- severity: error
+  code: invalid
+  expression:
+  - parameter.0.resource
+  diagnostics: unknown key :resource
+
+```
+{% endtab %}
+
+{% endtabs %}
