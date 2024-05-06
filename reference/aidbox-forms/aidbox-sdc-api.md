@@ -24,7 +24,7 @@ resourceType: Parameters
 parameter:
 - name:  [var-name]
   value: [var-value]
-    ```
+```
 {% endhint %}
 
 
