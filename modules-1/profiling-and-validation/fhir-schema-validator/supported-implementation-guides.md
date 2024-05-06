@@ -10370,6 +10370,7 @@ Abrechnungsinformationen des E-Rezeptes für den Patienten
 
 **Versions**
 
+* `de.gematik.erezept-patientenrechnung.r4#1.0.3`
 * `de.gematik.erezept-patientenrechnung.r4#1.0.2`
 * `de.gematik.erezept-patientenrechnung.r4#1.0.1`
 * `de.gematik.erezept-patientenrechnung.r4#1.0.0`
