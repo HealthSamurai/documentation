@@ -69,6 +69,18 @@ However since [Aidbox v:2205](https://docs.aidbox.app/getting-started/versioning
 
 You can specify `auth.*.access_token_expiration` (in seconds) on Client resource, so `Session.exp` field will be propagated once corresponding grant\_type is used to launch a Session.
 
+### Session expiration for Aidbox UI
+
+In Aidbox version [v:2402](https://docs.aidbox.app/overview/release-notes#february-2024-stable-2402) and later, sessions created through the Aidbox UI log-in are not infinite. The default session expiration time is set to 432000 seconds (5 days). To change the default time, create an `AuthConfig` resource and set the `asidCookieMaxAge` to the desired value:
+
+```
+PUT /AuthConfig/my-auth-config
+content-type: text/yaml
+accept: text/yaml
+
+asidCookieMaxAge: 86400 # seconds
+```
+
 ## Client
 
 To provide programmatic access to Aidbox you have to register a `Client` resource.
