@@ -73,7 +73,7 @@ You can specify `auth.*.access_token_expiration` (in seconds) on Client resource
 
 In Aidbox version [v:2402](https://docs.aidbox.app/overview/release-notes#february-2024-stable-2402) and later, sessions created through the Aidbox UI log-in are not infinite. The default session expiration time is set to 432000 seconds (5 days). To change the default time, create an `AuthConfig` resource and set the `asidCookieMaxAge` to the desired value:
 
-```
+```yaml
 PUT /AuthConfig/my-auth-config
 content-type: text/yaml
 accept: text/yaml
