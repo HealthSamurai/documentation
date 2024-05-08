@@ -232,6 +232,8 @@ Sammlung von Erweiterungen, Profilen und Value Sets zur Nutzung der Treuhandstel
 
 **Versions**
 
+* `ths-greifswald.ttp-fhir-gw#2024.1.1`
+* `ths-greifswald.ttp-fhir-gw#2024.1.0`
 * `ths-greifswald.ttp-fhir-gw#2024.1.0-alpha`
 * `ths-greifswald.ttp-fhir-gw#2023.1.1`
 * `ths-greifswald.ttp-fhir-gw#2023.1.0`
@@ -8028,12 +8030,13 @@ FHIR implementation guide for the Genomics Clinical Picture Repository standard 
 <details>
 <summary>Description</summary>
 
-A FHIR Implementation Guide for the Danish common needs across healthcare sectors (built Mon, Jan 8, 2024 21:45+0100+01:00)
+A FHIR Implementation Guide for the Danish common needs across healthcare sectors (built Mon, May 6, 2024 15:20+0200+02:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.dk.core#3.2.0`
 * `hl7.fhir.dk.core#3.1.0`
 * `hl7.fhir.dk.core#3.0.0`
 * `hl7.fhir.dk.core#2.2.0`
