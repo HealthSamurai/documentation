@@ -378,6 +378,10 @@ GET <AIDBOX_BASE_URL>/Organization/<org-id>/aidbox/metadata
 
 By default, nested API has no access to a resource that belongs to the upper organizations. Sometimes it is necessary to have resources that can be accessed by the nested APIs. To achieve it the resource should be marked as `share`.
 
+{% hint style="warning" %}
+Update and delete operations are not allowed from nested organizations' APIs. To update or delete `shared`resource use its root organization API.
+{% endhint %}
+
 ### Create a shared resource
 
 To create a shared resource, use the `https://aidbox.app/tenant-resource-mode` extension.
