@@ -3773,6 +3773,22 @@ The SDC specification provides an infrastructure to standardize the capture and 
 
 ---
 
+### healthhub.fhir.dk.core
+
+<details>
+<summary>Description</summary>
+
+PLSP Health Hub
+
+</details>
+
+**Versions**
+
+* `healthhub.fhir.dk.core#1.0.0-alpha`
+
+
+---
+
 ### ehelse.fhir.no.grunndata
 
 <details>
@@ -5574,6 +5590,22 @@ Package version 1.0.0
 * `us.cdc.phinvads#0.1.2`
 * `us.cdc.phinvads#0.1.1`
 * `us.cdc.phinvads#0.1.0`
+
+
+---
+
+### Northwell.Person.Extensions
+
+<details>
+<summary>Description</summary>
+
+Custom extensions on Person resource for BirthSex, Importance, Religion
+
+</details>
+
+**Versions**
+
+* `Northwell.Person.Extensions#1.0.0-alpha`
 
 
 ---
@@ -8126,6 +8158,22 @@ Egde Health Gateway FHIR facade
 * `egde.health.gateway#0.1.1`
 * `egde.health.gateway#0.1.3-alpha`
 * `egde.health.gateway#0.1.0-alpha`
+
+
+---
+
+### 電子病歷交換單張實作指引(EMR-IG)
+
+<details>
+<summary>Description</summary>
+
+電子病歷交換單張實作指引 EMR IG (built Mon, May 6, 2024 17:37+0800+08:00)
+
+</details>
+
+**Versions**
+
+* `tw.gov.mohw.emr#0.1.0`
 
 
 ---
