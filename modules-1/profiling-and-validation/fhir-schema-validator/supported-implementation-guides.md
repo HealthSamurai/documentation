@@ -984,12 +984,13 @@ Diese bilden die Grundlage zur Umsetzung der zukünftigen digitalen Formtexte (F
 <summary>Description</summary>
 
 The US Core Implementation Guide is based on FHIR Version R4 and defines the minimum conformance requirements for accessing patient data. The Argonaut pilot implementations, ONC 2015 Edition Common Clinical Data Set (CCDS), and ONC U.S. Core Data for Interoperability (USCDI) v1 provided the requirements for this guide. The prior Argonaut search and vocabulary requirements, based on FHIR DSTU2, are updated in this guide to support FHIR Version R4. This guide was used as the basis for further testing and guidance by the Argonaut Project Team to provide additional content and guidance specific to Data Query Access for purpose of ONC Certification testing. These profiles are the foundation for future US Realm FHIR implementation guides. In addition to Argonaut, they are used by DAF-Research, QI-Core, and CIMI. Under the guidance of HL7 and the HL7 US Realm Steering Committee, the content will expand in future versions to meet the needs specific to the US Realm.
-These requirements were originally developed, balloted, and published in FHIR DSTU2 as part of the Office of the National Coordinator for Health Information Technology (ONC) sponsored Data Access Framework (DAF) project. For more information on how DAF became US Core see the US Core change notes. (built Tue, Dec 19, 2023 21:01+0000+00:00)
+These requirements were originally developed, balloted, and published in FHIR DSTU2 as part of the Office of the National Coordinator for Health Information Technology (ONC) sponsored Data Access Framework (DAF) project. For more information on how DAF became US Core see the US Core change notes. (built Wed, May 8, 2024 15:33+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.us.core#7.0.0`
 * `hl7.fhir.us.core#7.0.0-ballot`
 * `hl7.fhir.us.core#6.1.0`
 * `hl7.fhir.us.core#6.1.0-snapshot1`
@@ -5126,6 +5127,7 @@ Package Release des ISiK Modul Terminplanung
 **Versions**
 
 * `de.gematik.isik-terminplanung#4.0.0-rc`
+* `de.gematik.isik-terminplanung#3.0.4`
 * `de.gematik.isik-terminplanung#3.0.3`
 * `de.gematik.isik-terminplanung#3.0.2`
 * `de.gematik.isik-terminplanung#2.0.4`
@@ -6134,6 +6136,7 @@ Dokumentenaustausch-Modul der Informationstechnischen Systeme im Krankenhaus Aus
 **Versions**
 
 * `de.gematik.isik-dokumentenaustausch#4.0.0-rc`
+* `de.gematik.isik-dokumentenaustausch#3.0.3`
 * `de.gematik.isik-dokumentenaustausch#3.0.2`
 * `de.gematik.isik-dokumentenaustausch#3.0.1`
 * `de.gematik.isik-dokumentenaustausch#3.0.0`
@@ -7229,16 +7232,15 @@ Medizinische Informationsobjekte (MIO) DiGA Device Toolkit V1.0.0
 <details>
 <summary>Description</summary>
 
-***Content TBD***
-
-This IG is developed for the Data exchange industry – Pharmaceutical Quality (PQ) project 
+This IG is developed for the HL7 International Pharmaceutical Quality (PQ) - Industry Use Case project, sponsored by the Biomedical Research and Regulation Work Group 
 * [Project Proposal: PSS-2137](https://jira.hl7.org/browse/PSS-2137)
-* [Project Scope Statement: PSS-2145](https://jira.hl7.org/browse/PSS-2145) (built Mon, Dec 18, 2023 15:56+0000+00:00)
+* [Project Scope Statement: PSS-2145](https://jira.hl7.org/browse/PSS-2145) (built Wed, May 8, 2024 13:18+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.uv.pharm-quality#1.0.0`
 * `hl7.fhir.uv.pharm-quality#1.0.0-ballot`
 
 
@@ -10257,6 +10259,7 @@ Verzeichnisdienst der Telematikinfrastruktur
 
 **Versions**
 
+* `de.gematik.fhir.directory#0.11.6`
 * `de.gematik.fhir.directory#0.11.5`
 * `de.gematik.fhir.directory#0.11.4`
 * `de.gematik.fhir.directory#0.11.3`
