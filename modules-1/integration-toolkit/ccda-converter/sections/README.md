@@ -66,6 +66,7 @@ If you have specific document or section-level requirements, feel free to [conta
 |[Procedures Section (entries required) (V2)](/modules-1/integration-toolkit/ccda-converter/sections/proceduressectionentriesrequiredv.md)|47519-4|procedures|✅
 |[Results Section (entries optional) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/resultssectionentriesoptionalv3.md)|30954-2|results|✅
 |[Results Section (entries required) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/resultssectionentriesrequiredv3.md)|30954-2|results|✅
+|[Review of Systems Section](/modules-1/integration-toolkit/ccda-converter/sections/reviewofsystemssection.md)|10187-3|review-of-systems|❌
 |[Social History Section (V3)](/modules-1/integration-toolkit/ccda-converter/sections/socialhistorysectionv3.md)|29762-2|social-history|✅
 |[Vital Signs Section (entries optional) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/vitalsignssectionentriesoptional.md)|8716-3|vital-signs|✅
 |[Vital Signs Section (entries required) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/vitalsignssectionentriesrequired.md)|8716-3|vital-signs|✅
