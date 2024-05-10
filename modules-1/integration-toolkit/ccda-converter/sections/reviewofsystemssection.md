@@ -38,9 +38,17 @@ C-CDA Equivalent:
    <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.18"/>
    <code codeSystem="2.16.840.1.113883.6.1"
           codeSystemName="http://loinc.org"
-          displayName="display string"
-          code="10187-3"/>
+          displayName="REVIEW OF SYSTEMS"
+          code="10187-3">
+      <originalText>REVIEW OF SYSTEMS</originalText>
+   </code>
    <title>REVIEW OF SYSTEMS</title>
-   <text>No data for section Review of Systems Section</text>
+   <text>
+      <paragraph>
+         Patient denies recent history of fever or malaise. Positive
+         For weakness and shortness of breath. One episode of melena. No recent
+        headaches. Positive for osteoarthritis in hips, knees and hands.
+      </paragraph>
+   </text>
 </section>
 ```
