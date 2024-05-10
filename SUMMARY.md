@@ -371,6 +371,7 @@
       * [How To](modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to.md)
     * [Import FHIR Questionnaire](modules-1/aidbox-forms/aidbox-ui-builder-alpha/import-fhir-questionnaire.md)
     * [Form sharing](modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-sharing.md)
+    * [Printing forms](modules-1/aidbox-forms/aidbox-ui-builder-alpha/printing-form.md)
   * [Aidbox Code Editor](modules-1/aidbox-forms/aidbox-code-editor/README.md)
     * [Form creation](modules-1/aidbox-forms/aidbox-code-editor/how-to-create-a-form.md)
     * [Dynamic form creation](modules-1/aidbox-forms/aidbox-code-editor/how-to-create-a-dynamic-form.md)
