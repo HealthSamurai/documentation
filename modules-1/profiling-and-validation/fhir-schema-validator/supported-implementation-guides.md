@@ -3785,6 +3785,7 @@ PLSP Health Hub
 
 **Versions**
 
+* `healthhub.fhir.dk.core#1.0.1-alpha`
 * `healthhub.fhir.dk.core#1.0.0-alpha`
 
 
@@ -5504,12 +5505,14 @@ The eHealth4U is a research project that undertakes the challenge of designing a
 <details>
 <summary>Description</summary>
 
-KBV-Basis-Profile V 1.5.0
+KBV-Basis-Profile V 1.6.0
 
 </details>
 
 **Versions**
 
+* `kbv.basis#1.6.0`
+* `kbv.basis#1.6.0-Expansions`
 * `kbv.basis#1.5.0`
 * `kbv.basis#1.5.0-Expansions`
 * `kbv.basis#1.4.0`
@@ -6851,6 +6854,7 @@ Package Release des ISiK Modul Vitalparameter
 * `de.gematik.isik-vitalparameter#4.0.0-rc`
 * `de.gematik.isik-vitalparameter#4.0.0-alpha-validation-MII`
 * `de.gematik.isik-vitalparameter#4.0.0-alpha-validation-MII-2`
+* `de.gematik.isik-vitalparameter#3.0.3`
 * `de.gematik.isik-vitalparameter#3.0.2`
 * `de.gematik.isik-vitalparameter#3.0.1`
 * `de.gematik.isik-vitalparameter#2.0.3`
@@ -7377,6 +7381,7 @@ Medikations-Modul der Informationstechnischen Systeme im Krankenhaus Ausbaustufe
 **Versions**
 
 * `de.gematik.isik-medikation#4.0.0-rc`
+* `de.gematik.isik-medikation#3.0.2`
 * `de.gematik.isik-medikation#3.0.1`
 * `de.gematik.isik-medikation#3.0.0`
 * `de.gematik.isik-medikation#2.0.2`
