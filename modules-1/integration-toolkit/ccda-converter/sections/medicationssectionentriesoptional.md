@@ -33,7 +33,7 @@ Internal ID: MedicationsSectionentriesoptional
     "value" : {
       "Reference" : {
         "resourceType" : "PractitionerRole",
-        "id" : "7455d60f-2808-f746-30d9-df2d72c74bf6",
+        "id" : "4f5546e6-901e-8d7d-bc08-1734ffa11140",
         "specialty" : [ {
           "text" : "Allopathic & Osteopathic Physicians; Internal Medicine, Cardiovascular Disease",
           "coding" : [ {
@@ -173,7 +173,7 @@ C-CDA Equivalent:
          <author>
             <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
             <assignedAuthor>
-               <id root="7455d60f-2808-f746-30d9-df2d72c74bf6"/>
+               <id root="4f5546e6-901e-8d7d-bc08-1734ffa11140"/>
                <id extension="66666" root="2.16.840.1.113883.4.6"/>
                <code codeSystem="2.16.840.1.113883.6.101"
                       codeSystemName="http://hl7.org/fhir/ValueSet/provider-taxonomy"

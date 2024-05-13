@@ -336,6 +336,7 @@
       * [Mental Status Section (V2)](modules-1/integration-toolkit/ccda-converter/sections/mentalstatussectionv2.md)
       * [Notes](modules-1/integration-toolkit/ccda-converter/sections/notessection.md)
       * [Nutrition Section](modules-1/integration-toolkit/ccda-converter/sections/nutritionsection.md)
+      * [Past Medical History (V3)](modules-1/integration-toolkit/ccda-converter/sections/pastmedicalhistoryv3.md)
       * [Payers Section (V3)](modules-1/integration-toolkit/ccda-converter/sections/payerssectionv3.md)
       * [Plan of Treatment Section (V2)](modules-1/integration-toolkit/ccda-converter/sections/planoftreatmentsectionv2.md)
       * [Problem Section (entries optional) (V3)](modules-1/integration-toolkit/ccda-converter/sections/problemsectionentriesoptionalv3.md)

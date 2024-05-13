@@ -341,6 +341,8 @@ C-CDA Equivalent:
                <td>03/15/2010 12:00AM UTC</td>
                <td>
                   <paragraph>01/29/2012 12:00AM UTC - Nausea - severe</paragraph>
+               </td>
+               <td>
                   <paragraph>03/15/2010 12:00AM UTC - Nausea - mild</paragraph>
                </td>
                <td>active</td>
@@ -618,6 +620,8 @@ C-CDA Equivalent:
                <td>03/15/2010 12:00AM UTC</td>
                <td>
                   <paragraph>01/29/2012 12:00AM UTC - Nausea - severe</paragraph>
+               </td>
+               <td>
                   <paragraph>03/15/2010 12:00AM UTC - Nausea - mild</paragraph>
                </td>
                <td>active</td>
@@ -857,6 +861,8 @@ C-CDA Equivalent:
                <td>05/01/1980 12:00AM UTC</td>
                <td>
                   <paragraph>~ - Hives - moderate</paragraph>
+               </td>
+               <td>
                   <paragraph>03/15/2010 12:00AM UTC - Nausea - mild</paragraph>
                </td>
                <td>active</td>
