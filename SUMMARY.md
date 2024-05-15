@@ -206,6 +206,7 @@
     * [Setup Aidbox with FHIR Schema validation engine](modules-1/profiling-and-validation/fhir-schema-validator/setup.md)
     * [Tutorials](modules-1/profiling-and-validation/fhir-schema-validator/tutorials/README.md)
       * [ISiK](modules-1/profiling-and-validation/fhir-schema-validator/tutorials/isik.md)
+      * [Uploading FHIR IG using UploadFIG Library](modules-1/profiling-and-validation/fhir-schema-validator/tutorials/uploading-fhir-ig-using-uploadfig-library.md)
   * [Profiling and validation overview](profiling-and-validation/profiling.md)
   * [Profiling with zen-lang](profiling-and-validation/profiling-with-zen-lang/README.md)
     * [Write a custom zen profile](profiling-and-validation/profiling-with-zen-lang/write-a-custom-zen-profile.md)
