@@ -175,6 +175,7 @@ Version 2023
 
 **Versions**
 
+* `dvmd.kdl.r4#2024.0.0-qa3`
 * `dvmd.kdl.r4#2024.0.0-qa2`
 * `dvmd.kdl.r4#2024.0.0-qa`
 * `dvmd.kdl.r4#2023.0.1`
