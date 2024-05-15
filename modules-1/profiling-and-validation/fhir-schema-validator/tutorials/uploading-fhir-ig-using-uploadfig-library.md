@@ -54,9 +54,9 @@ grant_type: client_credentials
 
 This command will generate an Access Token that you'll need for authentication.
 
-### 3.2 Copy access\_token from output
+### 3.2 Copy Access Token from output
 
-After executing the command, you'll receive a response containing the Access Token. Copy the Access Token for later use.
+After executing the command, you'll receive a response containing the Access Token. Copy the `access_token` for later use.
 
 {% code title="Output" %}
 ```yaml
@@ -66,7 +66,7 @@ access_token: ZjU1YjMyYTQtYWUzZi00NWU1LWFkYjctMWMxMGI4ZGYyMGVj # Access Token
 ```
 {% endcode %}
 
-## 4. Upload  Implementation Guide
+## 4. Upload Implementation Guide
 
 To upload the IG, you need to specify the base URL of your Aidbox instance, along with the name and version of the package you wish to upload.&#x20;
 
