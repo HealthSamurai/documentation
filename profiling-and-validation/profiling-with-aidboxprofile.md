@@ -2,7 +2,11 @@
 description: Create a profile with AidboxProfile and validate data
 ---
 
-# Profiling with AidboxProfile
+# AidboxProfile
+
+{% hint style="info" %}
+AidboxProfile is scheduled for deprecation in several upcoming releases. Please consider using FHIR Schema validator.
+{% endhint %}
 
 For custom profiling, Aidbox provides additional resource `AidboxProfile`. This resource specifies resource type and [JSON Schema](https://json-schema.org/) which validates the specified resource type.
 
