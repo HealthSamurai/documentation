@@ -2,7 +2,7 @@
 description: How to enable new validator engine and specify IGs
 ---
 
-# Setup
+# Setup Aidbox with FHIR Schema validation engine
 
 To correctly set up Aidbox, we'll utilize the Aidbox configuration projects. \
 \
@@ -38,12 +38,12 @@ To enable a specific IG, list it in the following environment variable. Separate
 AIDBOX_FHIR_PACKAGES=hl7.fhir.us.core#5.0.1
 ```
 
-### External Terminology Server
+### External Terminology Service
 
-To validate coded values with an external Terminology server, set it in the following environment variable by specifying the `ValueSet/$validate-code` endpoint.
+To validate coded values with an external Terminology service, set it in the following environment variable.
 
 ```
-AIDBOX_VALIDATE_BINDING_URL=https://tx.fhir.org/r4/ValueSet/\$validate-code
+AIDBOX_TERMINOLOGY_SERVICE_BASE_URL=https://tx.fhir.org/r4
 ```
 
 {% hint style="warning" %}
