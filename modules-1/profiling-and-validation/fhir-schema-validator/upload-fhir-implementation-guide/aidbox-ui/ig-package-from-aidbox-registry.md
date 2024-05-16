@@ -14,13 +14,13 @@ You can explore the list of available packages in the registry here:
 [supported-implementation-guides.md](../../supported-implementation-guides.md)
 {% endcontent-ref %}
 
-## 1. Run Aidbox with FHIR Schema Validation Engine
+### 1. Run Aidbox with FHIR Schema Validation Engine
 
 {% content-ref url="../../setup.md" %}
 [setup.md](../../setup.md)
 {% endcontent-ref %}
 
-## 2. Open the Aidbox UI
+### 2. Open the Aidbox UI
 
 1. Navigate to the **FHIR Packages** page
 2. Go to the **Import FHIR Package** sidebar section
@@ -29,7 +29,7 @@ You can explore the list of available packages in the registry here:
 
 
 
-Learn about other methods for loading IGs here:
+Other methods for loading IGs here:
 
 {% content-ref url="../" %}
 [..](../)

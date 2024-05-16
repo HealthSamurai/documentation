@@ -202,7 +202,7 @@
   * [FHIR Schema Validator](modules-1/profiling-and-validation/fhir-schema-validator.md)
     * [FHIR Schema](modules-1/profiling-and-validation/fhir-schema-validator/fhir-schema.md)
     * [Validator Features](modules-1/profiling-and-validation/fhir-schema-validator/validator-features.md)
-    * [Supported FHIR Implementation Guides (IGs)](modules-1/profiling-and-validation/fhir-schema-validator/supported-implementation-guides.md)
+    * [Aidbox FHIR IGs Registry](modules-1/profiling-and-validation/fhir-schema-validator/supported-implementation-guides.md)
     * [Setup Aidbox with FHIR Schema validation engine](modules-1/profiling-and-validation/fhir-schema-validator/setup.md)
     * [Upload FHIR Implementation Guide](modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/README.md)
       * [Environment Variable](modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/environment-variable.md)

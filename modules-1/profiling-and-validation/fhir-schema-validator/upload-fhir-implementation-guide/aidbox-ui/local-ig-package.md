@@ -1,12 +1,12 @@
 ---
-description: Instructions for Uploading a Local IG Package from Your Computer to Aidbox
+description: Upload a Local IG Package from Your Computer to Aidbox
 ---
 
 # Local IG Package
 
 Aidbox allows you to upload a package from your computer even in offline mode. The file must be in **.targz** format.&#x20;
 
-If the package has dependencies, they can either be attached or automatically downloaded from the Aidbox Registry.
+If the package includes dependencies, they can either be included in the upload or automatically downloaded from the Aidbox Registry when online.
 
 ## 1. Run Aidbox with FHIR Schema Validation Engine
 
@@ -19,7 +19,7 @@ If the package has dependencies, they can either be attached or automatically do
 1. Navigate to the **FHIR Packages** page.
 2. Go to the **Import FHIR Package** sidebar section.
 3. Click the "**Choose files"** button in the "**Upload package .targz files**" section.
-4. Click on **Submit** button.
+4. Click **Submit** button.
 
 
 

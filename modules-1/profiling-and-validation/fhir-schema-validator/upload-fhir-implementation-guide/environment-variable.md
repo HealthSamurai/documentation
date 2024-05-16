@@ -1,7 +1,5 @@
 ---
-description: >-
-  Instruction for loading a FHIR Implementation Guide into Aidbox using an
-  environment variable
+description: Uplooad a FHIR Implementation Guide into Aidbox using an environment variable
 ---
 
 # Environment Variable
@@ -36,13 +34,13 @@ Aidbox will automatically resolve and load the dependencies of the specified IGs
 
 
 
-You can find the list of supported IGs for use in the environment variable here:
+The list of supported IGs for use in the environment variable here:
 
 {% content-ref url="../supported-implementation-guides.md" %}
 [supported-implementation-guides.md](../supported-implementation-guides.md)
 {% endcontent-ref %}
 
-Learn about other methods for loading IGs here:
+Other methods for loading IGs:
 
 {% content-ref url="aidbox-ui/ig-package-from-aidbox-registry.md" %}
 [ig-package-from-aidbox-registry.md](aidbox-ui/ig-package-from-aidbox-registry.md)
