@@ -33,7 +33,7 @@ git clone \
 ```
 
 {% hint style="info" %}
-See more details related the [running Aidbox locally](../../../security-labels/broken-reference/)
+See more details related the [running Aidbox locally](https://github.com/Aidbox/documentation/blob/master/modules-1/security-and-access-control/security-labels/broken-reference/README.md)
 {% endhint %}
 
 ### Apply the license

@@ -6,7 +6,7 @@ description: Access Aidbox API from your Service
 
 ## Basic Auth
 
-The simplest way to programmatically interact with  Aidbox API is to use [Basic Access Authentication](https://tools.ietf.org/html/rfc7617). In this scheme you provide client credentials with every HTTP request in the special header  - `Authorization: Basic <credentials>`,  where `<credentials>` is the base64 encoding of Client.id and Client.secret joined by a colon:
+The simplest way to programmatically interact with Aidbox API is to use [Basic Access Authentication](https://tools.ietf.org/html/rfc7617). In this scheme you provide client credentials with every HTTP request in the special header - `Authorization: Basic <credentials>`, where `<credentials>` is the base64 encoding of Client.id and Client.secret joined by a colon:
 
 ```yaml
 GET /Patient
@@ -16,7 +16,7 @@ Authorization: Basic {base64(Client.id + ':' + Client.secret)}
 
 ### Register Client
 
-The first step is to create resource [Client](broken-reference) with id & secret and add `'basic'` to it's `grant_types` collection:
+The first step is to create resource [Client](https://github.com/Aidbox/documentation/blob/master/security-and-access-control-1/auth/broken-reference/README.md) with id & secret and add `'basic'` to it's `grant_types` collection:
 
 ```yaml
 POST /Client
@@ -29,7 +29,7 @@ grant_types:
   - basic
 ```
 
-By default, your client does not have any permissions to access Aidbox REST API. So you probably want to configure some using Aidbox Access Policy. Access Policy can be _linked_ to the specific client by providing the reference to clients in `link` collection. For more sophisticated configuration, see [Access Policies](../../modules-1/security-and-access-control/security/access-control.md) documentation.&#x20;
+By default, your client does not have any permissions to access Aidbox REST API. So you probably want to configure some using Aidbox Access Policy. Access Policy can be _linked_ to the specific client by providing the reference to clients in `link` collection. For more sophisticated configuration, see [Access Policies](../../modules-1/security-and-access-control/security/access-control.md) documentation.
 
 ```yaml
 POST /AccessPolicy
@@ -91,4 +91,3 @@ fetch('<box>/Patient', {
 ### Test Basic in Auth Sandbox
 
 {% embed url="https://www.youtube.com/watch?v=xWtNNi_Q-dU" %}
-

@@ -75,7 +75,7 @@ It's time to upgrade your database - please stop your container and change image
 * New `/<RT>/$load` and `/$load` [bulk operations](../../../api-1/bulk-api-1/#usdload) were added and [$import](../../../api-1/bulk-api-1/#usdimport) was upgraded
 * aidbox/db upgrade to 11.4 + fixes in json\_knife pg extension - (deep patterns, indexes)
 * Highlighted logs for humans in [Aidbox.Dev](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md) by default: docker logs -f \<your-box-container>
-* New [Aidbox.Enterprise](broken-reference/)
+* New [Aidbox.Enterprise](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/release-notes-1/broken-reference/README.md)
 
 ## 0.4.5 \[3 July 2019]
 
@@ -117,7 +117,7 @@ It's time to upgrade your database - please stop your container and change image
 
 * [User Level Logs](../../../core-modules/logging-and-audit/)
 * [Structured Data Capture](../../../tutorials/tutorials/sdc-with-custom-resources.md) with Custom Resources (Alpha)
-* [History based replication](broken-reference/)
+* [History based replication](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/release-notes-1/broken-reference/README.md)
 * Search: new [\_ilike](../../../api-1/fhir-api/search-1/#\_ilike-search-non-fhir) search parameter
 * Search: [\_include=\*](../../../api-1/fhir-api/search-1/#\_include-and-\_revinclude) support
 * Search: [\_list](../../../api-1/fhir-api/search-1/#\_list) parameter support
@@ -177,7 +177,7 @@ This release is mostly dedicated to stabilisation of new auth module. Check-out 
 
 ## 0.3.4
 
-* Subscriptions `$poll` operation and `webhook` channel: [Subscriptions](broken-reference/);
+* Subscriptions `$poll` operation and `webhook` channel: [Subscriptions](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/release-notes-1/broken-reference/README.md);
 * Fixed [Aidbox](https://www.health-samurai.io/aidbox) to FHIR data transformation bug when polymorphic attributes wasn't properly handled in recursive elements such as `QuestionnaireResponse.item`
 * Support [`_total`](https://build.fhir.org/search.html#total) search parameter (\_totalMethod=count also works)
 * Support `page` search parameter (\_page - also works)

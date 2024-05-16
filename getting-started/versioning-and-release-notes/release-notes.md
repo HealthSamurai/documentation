@@ -409,12 +409,12 @@
 ## December 2022 _`2212`_
 
 * MDM (Master Data Management)
-  * Added [$match](broken-reference/) operation
+  * Added [$match](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/broken-reference/README.md) operation
   * [Python API](https://github.com/Aidbox/mdm) for Aidbox MDM module
 * Archive/Restore API
   * [Task API](../../modules-1/workflow-engine/task/) allowing to define asynchronous operation called tasks.
   * [Archive/Restore API](../../api-1/task-api/archive-restore-api/) allowing to archive and restore resources to/from S3 bucket powered by Task API.
-  * [Scheduler API](broken-reference/) allowing to execute tasks by schedule.
+  * [Scheduler API](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/broken-reference/README.md) allowing to execute tasks by schedule.
 * Aidbox Configuration Projects
   * Added a [FHIR 4.0.1 compliant Configuration Project](https://github.com/Aidbox/fhir-r4-configuration-project) (also available on Aidbox User Portal).
   * Added [a guide on passing Touchstone FHIR 4.0.1 basic server test suite](../../tutorials/fhir-conformance/touchstone-fhir-4.0.1-basic-server.md#pass-with-aidbox-user-portal-sandbox) on Aidbox User Portal.
@@ -440,12 +440,12 @@
   * Updated documentation on [highly available Aidbox](../run-aidbox-in-kubernetes/high-available-aidbox.md)
   * Updated documentation on [production-ready deployment to Kubernetes](../run-aidbox-in-kubernetes/deploy-aidbox-in-kubernetes.md)
 * Smartbox
-  * Improved admin UI with configuration of [EHR-level logo](../../modules-1/smartbox/how-to-guides/set-up-ehr-level-customization.md#with-smartbox-ui), [email provider](../../modules-1/smartbox/how-to-guides/setup-email-provider.md) and [bulk export](broken-reference/)
+  * Improved admin UI with configuration of [EHR-level logo](../../modules-1/smartbox/how-to-guides/set-up-ehr-level-customization.md#with-smartbox-ui), [email provider](../../modules-1/smartbox/how-to-guides/setup-email-provider.md) and [bulk export](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/broken-reference/README.md)
   * Added documentation on [deployment to Kubernetes](../../modules-1/smartbox/get-started/deploy-smartbox-to-kubernetes.md)
   * Added guides on passing [Inferno tests](../../modules-1/smartbox/how-to-guides/pass-inferno-tests-with-smartbox.md) and [Inferno Visual Inspection and Attestation](../../modules-1/smartbox/how-to-guides/pass-inferno-visual-inspection-and-attestation.md)
 * Aidbox Configuration Projects
   * Improved startup time for Aidbox instances [configured with zen FHIR IGs](../../aidbox-configuration/aidbox-zen-lang-project/enable-igs.md)
-  * Improved [local development workflow](broken-reference/)
+  * Improved [local development workflow](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/broken-reference/README.md)
   * Improved Aidbox [support](../../fhir-implementation-guides/us-core-ig/us-core-ig-support-reference.md) of [US Core IG](../../fhir-implementation-guides/us-core-ig/) artifacts
   * Added configuration of Aidbox features via zen-lang instead of envs
 * Aidbox User Portal
@@ -567,8 +567,8 @@
 * Enhanced [API constructor ACL](../../security-and-access-control-1/acl.md) with new operation engine [filter table insert on create](../../security-and-access-control-1/acl.md#filter).
 * **Changed** auth layer 400/401/403 **errors response body** to OperationOutcome resource.
 * Added [CapabilityStatement configuration](../../api-1/fhir-api/metadata.md#configure-capabilitystatement) options.
-* Improved setting [PostgreSQL schema](broken-reference/) for Aidbox tables.
-* Added option to set JWT private/public keys and secret[ via env](broken-reference/).
+* Improved setting [PostgreSQL schema](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/broken-reference/README.md) for Aidbox tables.
+* Added option to set JWT private/public keys and secret[ via env](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/broken-reference/README.md).
 * Added [aidboxdb PostgreSQL 14.2 version](../../storage-1/aidboxdb-image/). Supported versions are 14.2 and 13.6.
 * Added tutorial [how to fix broken dates](../../tutorials/tutorials/).
 * Released Infrabox preview. Infrabox is a simple and efficient tool to deploy and manage production-ready Aidbox infrastructure on k8s.
@@ -577,9 +577,9 @@
 
 * Added [ACL (access-control list)](../../security-and-access-control-1/acl.md) functionality to [API constructor](../../aidbox-configuration/aidbox-api-constructor.md).
 * Released [`seed service`](../../aidbox-configuration/aidbox-zen-lang-project/#seed-import) for Aidbox project. Declare a set of resources in Aidbox project and get them loaded in one or many Aidboxes on start.
-* Added option to set [PostgreSQL schema](broken-reference/) for Aidbox tables.
+* Added option to set [PostgreSQL schema](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/broken-reference/README.md) for Aidbox tables.
 * Added `content-type: application/json` as default if `content-type` and `accept` headers are missing.
-* Added [$drop-cache](../../api-1/cache.md#drop-cache-operation) operation and and [`multibox/drop-box-caches`](broken-reference/) RPC
+* Added [$drop-cache](../../api-1/cache.md#drop-cache-operation) operation and and [`multibox/drop-box-caches`](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/broken-reference/README.md) RPC
 * Added [GET /$version operation](../../api-1/api/aidbox-version.md) to get Aidbox version.
 * Enhanced `POST /` operation error handling and added [FHIR bundle resource documentation](../../api-1/fhir-api/bundle.md).
 * Enhanced GraphQL with ConceptMap.group property support
@@ -627,7 +627,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 * Added Search resource `reference` [support](../../api-1/fhir-api/search-1/search-resource.md#reference-search).
 * Improved [Search parameter](../../api-1/fhir-api/search-1/searchparameter.md#expression) expression error reporting.
 * Improved [zen profiles](../../profiling-and-validation/profiling-with-zen-lang/) support in [GraphQL API](../../api-1/graphql-api.md).
-* Released [Multibox box manager API](broken-reference/).
+* Released [Multibox box manager API](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/broken-reference/README.md).
 * Added Aidbox UI [Analyze Attributes](../../overview/aidbox-ui/attrs-stats.md) tab description.
 
 ## December 2021 - v:2112

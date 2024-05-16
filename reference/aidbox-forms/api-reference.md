@@ -708,7 +708,7 @@ params:
 Launch form with given launch, prepoluate data, and return enriched with metadata layout.
 
 | Param         | Description                               | Type                | required? |
-|---------------|-------------------------------------------|---------------------|-----------|
+| ------------- | ----------------------------------------- | ------------------- | --------- |
 | form          | Form Symbol name                          | String              | yes       |
 | dry-run       | Run without saving document in db         | boolean             | no        |
 | unit-system   | Preffered unit system (default: imperial) | `metric`/`imperial` | no        |
@@ -1083,7 +1083,7 @@ result:
 
 ### aidbox.sdc/get-form-access-jwt
 
-Creates [policy token](broken-reference) to get access to SDCDocument/SDCWorkflow
+Creates [policy token](https://github.com/Aidbox/documentation/blob/master/reference/aidbox-forms/broken-reference/README.md) to get access to SDCDocument/SDCWorkflow
 
 params:
 
@@ -1134,7 +1134,7 @@ policy: <jwt policy token>
 
 Generates link for form access and management without authentication.
 
-> Creates [policy token](broken-reference) to get access to SDCDocument/SDCWorkflow
+> Creates [policy token](https://github.com/Aidbox/documentation/blob/master/reference/aidbox-forms/broken-reference/README.md) to get access to SDCDocument/SDCWorkflow
 
 Redirect urls can be specified for different actions.
 

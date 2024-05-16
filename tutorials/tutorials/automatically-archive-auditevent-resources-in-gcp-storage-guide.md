@@ -3,13 +3,14 @@
 Follow step-by-step guide to configure scheduled archive operation:
 
 1. Create [GCPServiceAccount](../../storage-1/s3-compatible-storages/gcp-cloud-storage.md#create-gcpserviceaccount) resource.
-2.  Define your scheduler rule with create-archive task as `:task-request` parameter. Check [Scheduler service](broken-reference) and [create-archive](../../api-1/archive-restore-api/create-archive.md) documentation for more information.\
+2.  Define your scheduler rule with create-archive task as `:task-request` parameter. Check [Scheduler service](https://github.com/Aidbox/documentation/blob/master/tutorials/tutorials/broken-reference/README.md) and [create-archive](../../api-1/archive-restore-api/create-archive.md) documentation for more information.\
     This rule means that Scheduler API will archive all AuditEvent resources that are older than 30 days every day at 2 am into GCP Cloud Storage.
 
-    <pre class="language-clojure"><code class="lang-clojure">archive-every-day
+    ```clojure
+    archive-every-day
      {:zen/tags #{awf.scheduler/rule}
       :schedule "0 2 * * *"
-      :task-<a data-footnote-ref href="#user-content-fn-1">request</a> {:definition aidbox.archive/create-archive
+      :task-request {:definition aidbox.archive/create-archive
                      :params {:targetResourceType    "AuditEvent"
                               :history               false
                               :criteriaPaths         ["recorded"]
@@ -20,7 +21,7 @@ Follow step-by-step guide to configure scheduled archive operation:
                                                       :resourceType "GcpServiceAccount"}
                               :bucket                "aidbox-archive"
                               :pruneArchivedData     false}}}
-    </code></pre>
+    ```
 3.  Define your scheduler service if it is not already defined in your configuration. Include created rule in scheduler-service `:rules` property.
 
     ```clojure
@@ -73,7 +74,3 @@ Full configuration for this guide:
   :services {:scheduler-service scheduler-service}}
 }
 ```
-
-
-
-[^1]: 

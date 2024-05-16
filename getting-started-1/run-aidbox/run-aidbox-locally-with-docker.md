@@ -93,7 +93,7 @@ Everything in Aidbox can be configured with a dedicated Aidbox Configuration Pro
 
 This approach helps you keep configurations under a version control system and share them between Aidbox Instances.
 
-[Learn more.](broken-reference/)
+[Learn more.](https://github.com/Aidbox/documentation/blob/master/getting-started-1/run-aidbox/broken-reference/README.md)
 {% endhint %}
 
 #### Add the license key to your configuration project.

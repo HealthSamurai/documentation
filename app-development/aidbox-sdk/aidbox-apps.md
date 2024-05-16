@@ -106,7 +106,7 @@ User:
 
 At the root of resource definition, you can also define **hooks** and **profiles** for this resource.
 
-Element definition will be translated into [Attribute Meta-Resource](../../tools/aidbox-sdk/broken-reference/) and have the following properties:
+Element definition will be translated into [Attribute Meta-Resource](https://github.com/Aidbox/documentation/blob/master/tools/aidbox-sdk/broken-reference/README.md) and have the following properties:
 
 | name     | type | Description                    |
 | -------- | ---- | ------------------------------ |

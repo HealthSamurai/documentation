@@ -20,9 +20,8 @@ Archive/restore API is represented by several [tasks](../../../modules-1/workflo
 [prune-archived-data.md](../../archive-restore-api/prune-archived-data.md)
 {% endcontent-ref %}
 
-You can also use [Scheduler service](broken-reference) to automatically run create-archive task at the scheduled time. Check this tutorial for more information:
+You can also use [Scheduler service](https://github.com/Aidbox/documentation/blob/master/api-1/task-api/archive-restore-api/broken-reference/README.md) to automatically run create-archive task at the scheduled time. Check this tutorial for more information:
 
 {% content-ref url="../../../tutorials/tutorials/automatically-archive-auditevent-resources-in-gcp-storage-guide.md" %}
 [automatically-archive-auditevent-resources-in-gcp-storage-guide.md](../../../tutorials/tutorials/automatically-archive-auditevent-resources-in-gcp-storage-guide.md)
 {% endcontent-ref %}
-

@@ -8,7 +8,7 @@ FHIR definition of the operation: [http://hl7.org/fhir/OperationDefinition/Patie
 
 This operation translates to [aidbox.mdm/match RPC](../../reference/rpc-reference/aidbox/mdm/aidbox.mdm-match.md) call. The RPC has simpler syntax and you can adjust threshold values. Consider using it if you are not required to use FHIR syntax.
 
-To use `$match` operation you need to set up MDM. Read the [Aidbox MDM manual](broken-reference) to learn how to use it.
+To use `$match` operation you need to set up MDM. Read the [Aidbox MDM manual](https://github.com/Aidbox/documentation/blob/master/api-1/fhir-api/broken-reference/README.md) to learn how to use it.
 
 ## Syntax
 
@@ -112,8 +112,8 @@ entry:
 
 ## See also
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="https://github.com/Aidbox/documentation/blob/master/api-1/fhir-api/broken-reference/README.md" %}
+[https://github.com/Aidbox/documentation/blob/master/api-1/fhir-api/broken-reference/README.md](https://github.com/Aidbox/documentation/blob/master/api-1/fhir-api/broken-reference/README.md)
 {% endcontent-ref %}
 
 {% content-ref url="../../reference/rpc-reference/aidbox/mdm/aidbox.mdm-match.md" %}

@@ -90,7 +90,7 @@ query: |
   GROUP BY resource->>'class'
 ```
 
-Let's upload some sample data using [Batch Upsert](../../batch-upsert/):
+Let's upload some sample data using [Batch Upsert](https://github.com/Aidbox/documentation/blob/master/api-1/batch-upsert/README.md):
 
 ```yaml
 PUT /
@@ -255,7 +255,7 @@ It's not possible to call such AidboxQuery from REST Console, because in REST co
 
 ### Return links
 
-You can use `enable-links` parameter to include [links](https://www.hl7.org/fhir/http.html#paging) in the response. Here is simple example how to use paging with AidboxQuery and include links.&#x20;
+You can use `enable-links` parameter to include [links](https://www.hl7.org/fhir/http.html#paging) in the response. Here is simple example how to use paging with AidboxQuery and include links.
 
 ```yaml
 PUT /AidboxQuery/q1
@@ -287,7 +287,7 @@ params:
 
 AidboxQuery expects that parameters `_count` and `_page` (exactly such names) are defined, otherwise links won't be attached.
 
-After sending `GET /$query/q1?patient=pt1&_count=1&_page=2` we will get&#x20;
+After sending `GET /$query/q1?patient=pt1&_count=1&_page=2` we will get
 
 ```yaml
 data:
@@ -334,7 +334,7 @@ link:
 
 ### Query types
 
-AidboxQuery has `type` field, which can be either `query` or `execute`. Default type is query. This means that _SELECT_ statement in query parameter is expected. If you want to make SQL query with execute statements e.g. _TRUNCATE_, use `execute` type.&#x20;
+AidboxQuery has `type` field, which can be either `query` or `execute`. Default type is query. This means that _SELECT_ statement in query parameter is expected. If you want to make SQL query with execute statements e.g. _TRUNCATE_, use `execute` type.
 
 ```yaml
 PUT /AidboxQuery/truncate

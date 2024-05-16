@@ -62,7 +62,7 @@ To the left of each zen FHIR IG URL you give a name. In the examples above the n
 
 ### Import the zen FHIR IGs entrypoints
 
-To enable zen FHIR IGs you provided you need to import them inside of your [entrypoint](broken-reference/).
+To enable zen FHIR IGs you provided you need to import them inside of your [entrypoint](https://github.com/Aidbox/documentation/blob/master/aidbox-configuration/aidbox-zen-lang-project/broken-reference/README.md).
 
 Using the example from [the getting started page](../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md#create-and-set-up-your-aidbox-configuration-project) the updated entrypoint file will look like this for both of the examples above:
 

@@ -78,6 +78,6 @@ When you call `aidbox/start` method, `aidbox-sdk` try to connect to `Aidbox` wit
 
 ### Mailgun integration
 
-[Documentation](../send-email-message/)
+[Documentation](https://github.com/Aidbox/documentation/blob/master/tutorials/send-email-message/README.md)
 
 ### Aidbox Jobs

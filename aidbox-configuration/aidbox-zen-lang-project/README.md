@@ -54,7 +54,7 @@ Setting up a self-hosted project is done by providing access to project files.
 
 ### Production installation
 
-A production installation is the same as a regular installation, except when your production environment has no access to the git repo containing your configuration project. For these cases Aidbox supports [other methods of providing configuration projects](broken-reference).
+A production installation is the same as a regular installation, except when your production environment has no access to the git repo containing your configuration project. For these cases Aidbox supports [other methods of providing configuration projects](https://github.com/Aidbox/documentation/blob/master/aidbox-configuration/aidbox-zen-lang-project/broken-reference/README.md).
 
 ### Configuration projects for Sandbox instances on Aidbox user portal
 
@@ -96,8 +96,6 @@ Entrypoint 'smartbox.portal' not loaded.
 
 Meaning: Wrong zen source files path
 
-
-
 ```
 Cloning into '/tmp/aidbox-project-git'...
 
@@ -107,8 +105,6 @@ fatal: repository 'https://github.com/Aidfdfdfbox/aidbox-project-samples.git/' n
 ```
 
 Meaning: Incorrect git repo url
-
-
 
 ```
 error: pathspec 'git-project-unexist' did not match any file(s) known to git

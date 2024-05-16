@@ -1,10 +1,10 @@
 ---
 description: >-
   Step-by-step guide to upload an FHIR Implementation Guide into Aidbox using
-  the open-source UploadFIG library
+  the open-source UploadFIG
 ---
 
-# Uploading FHIR IG using UploadFIG Library
+# UploadFIG Tool
 
 ## 1. Setup Aidbox
 
@@ -14,9 +14,9 @@ Set up Aidbox with the FHIR Schema validation engine. Following the guide below:
 [setup.md](../setup.md)
 {% endcontent-ref %}
 
-## 2. Setup UploadFIG Library
+## 2. Setup UploadFIG
 
-To get started with the **UploadFIG** library, you'll first need to install **Dotnet** and download **uploadfig**. Follow the commands below or refer to the original [UploadFIG Installation guide](https://github.com/brianpos/UploadFIG?tab=readme-ov-file#installation):
+To get started with the **UploadFIG**, you'll first need to install **Dotnet** and download **uploadfig**. Follow the commands below or refer to the original [UploadFIG Installation guide](https://github.com/brianpos/UploadFIG?tab=readme-ov-file#installation):
 
 {% tabs %}
 {% tab title="Mac OS" %}
@@ -28,13 +28,13 @@ $ export PATH="$PATH:/Users/<USER_NAME>/.dotnet/tools"
 {% endtab %}
 {% endtabs %}
 
-After installation, verify that the library is correctly installed:
+After installation, verify that the is correctly installed:
 
 ```
 UploadFIG --version
 ```
 
-These steps ensure that you have the necessary tools installed and configured to use the **UploadFIG** library effectively.
+These steps ensure that you have the necessary tools installed and configured to use the **UploadFIG** effectively.
 
 ## 3. Get Bearer Access Token
 
