@@ -28,6 +28,6 @@ description: >-
 [aidbox-fhir-api.md](aidbox-fhir-api.md)
 {% endcontent-ref %}
 
-{% content-ref url="uploading-fhir-ig-using-uploadfig-library.md" %}
-[uploading-fhir-ig-using-uploadfig-library.md](uploading-fhir-ig-using-uploadfig-library.md)
+{% content-ref url="../tutorials/uploading-fhir-ig-using-uploadfig-library.md" %}
+[uploading-fhir-ig-using-uploadfig-library.md](../tutorials/uploading-fhir-ig-using-uploadfig-library.md)
 {% endcontent-ref %}

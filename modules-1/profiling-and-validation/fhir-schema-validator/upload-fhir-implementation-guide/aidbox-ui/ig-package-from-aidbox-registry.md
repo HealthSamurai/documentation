@@ -31,22 +31,6 @@ You can explore the list of available packages in the registry here:
 
 Learn about other methods for loading IGs here:
 
-{% content-ref url="../environment-variable.md" %}
-[environment-variable.md](../environment-variable.md)
-{% endcontent-ref %}
-
-{% content-ref url="ig-package-from-aidbox-registry.md" %}
-[ig-package-from-aidbox-registry.md](ig-package-from-aidbox-registry.md)
-{% endcontent-ref %}
-
-{% content-ref url="local-ig-package.md" %}
-[local-ig-package.md](local-ig-package.md)
-{% endcontent-ref %}
-
-{% content-ref url="../aidbox-fhir-api.md" %}
-[aidbox-fhir-api.md](../aidbox-fhir-api.md)
-{% endcontent-ref %}
-
-{% content-ref url="../uploading-fhir-ig-using-uploadfig-library.md" %}
-[uploading-fhir-ig-using-uploadfig-library.md](../uploading-fhir-ig-using-uploadfig-library.md)
+{% content-ref url="../" %}
+[..](../)
 {% endcontent-ref %}

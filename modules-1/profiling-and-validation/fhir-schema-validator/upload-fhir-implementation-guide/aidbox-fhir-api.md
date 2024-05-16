@@ -6,15 +6,16 @@ description: How to load FHIR Canonical resources via Aidbox FHIR API
 
 Aidbox provides a FHIR CRUD API over canonical resources such as StructureDefinition, SearchParameter, and ValueSet.
 
-This enables you to create profiles on resources dynamically on an Aidbox instance already in operation. Additionally, you can create Search Parameters to search for resources.
+## Creating a StructureDefinition
 
-## Example of creating a StructureDefinition:
+This allows you to create profiles on resources in Aidbox instance at runtime
 
-Send a PUT request to create a profile called "patient-profile" and specify that the "gender" key must be present.
+Send a PUT request to create a profile called "**patient-profile**" and specify that the "**gender**" key must be present.
 
 ```yaml
 PUT /fhir/StructureDefinition/patient-profile
 
+resourceType: StructureDefinition
 url: http://example.org/fhir/StructureDefinition/patient-profile
 name: patient-profile
 derivation: constraint
@@ -58,3 +59,71 @@ issue:
       path: gender
 ```
 
+## Creating a SearchParameter
+
+You can create SearchParameters to search for resources.
+
+Send a PUT request to create a FHIR search parameter called "**patient-profile**"
+
+```yaml
+PUT /fhir/SearchParameter/new-gender
+
+resourceType: SearchParameter
+url: http://example.org/fhir/SearchParameter/new-gender
+base:
+- Patient
+expression: Patient.gender
+status: draft
+type: token
+version: 4.0.1
+name: new-gender
+code: new-gender
+```
+
+Check that the search parameter was successfully uploaded by creating a Patient resource and search them using "**new-gender**" query parameter.
+
+```yaml
+POST /fhir/Patient
+
+gender: unknown
+```
+
+```
+GET /fhir/Patient?new-gender=unknown
+```
+
+## Creating a ValueSet
+
+Send a PUT request to create a ValueSet called "**my-gender-identity**"
+
+```yaml
+PUT /fhir/ValueSet/my-gender-identity
+
+resourceType: ValueSet
+url: http://hl7.org/fhir/ValueSet/my-gender-identity
+status: draft
+compose:
+  include:
+    - system: http://hl7.org/fhir/gender-identity
+      concept:
+        - code: male
+          display: male
+        - code: female
+          display: female
+        - code: non-binary
+          display: non-binary
+        - code: transgender-male
+          display: transgender male
+        - code: transgender-female
+          display: transgender female
+        - code: other
+          display: other
+        - code: non-disclose
+          display: does not wish to disclose
+```
+
+Learn about other methods for loading IGs here:
+
+{% content-ref url="./" %}
+[.](./)
+{% endcontent-ref %}

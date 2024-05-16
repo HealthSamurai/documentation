@@ -24,3 +24,7 @@ If the package has dependencies, they can either be attached or automatically do
 
 
 Learn about other methods for loading IGs here:
+
+{% content-ref url="../" %}
+[..](../)
+{% endcontent-ref %}

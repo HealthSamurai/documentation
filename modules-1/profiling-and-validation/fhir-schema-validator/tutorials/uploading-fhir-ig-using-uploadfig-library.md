@@ -85,3 +85,11 @@ UploadFIG \
 ```
 
 This command initiates the upload process, sending the specified IG package to your Aidbox instance
+
+
+
+Learn about other methods for loading IGs here:
+
+{% content-ref url="../upload-fhir-implementation-guide/" %}
+[upload-fhir-implementation-guide](../upload-fhir-implementation-guide/)
+{% endcontent-ref %}
