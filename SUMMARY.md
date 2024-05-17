@@ -173,7 +173,6 @@
 * [ETAG support](api-1/etag-support.md)
 * [Plan API](api-1/plan-api/README.md)
   * [Plan API Overview](plan-api/plan-api-overview.md)
-  * [Patient Access API](plan-api/patient-access-api.md)
 * [Other](api-1/other/README.md)
   * [Compartments API](api-1/compartments.md)
   * [Sequence API](api-1/sequence-api.md)
