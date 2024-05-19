@@ -175,6 +175,7 @@ Version 2023
 
 **Versions**
 
+* `dvmd.kdl.r4#2024.0.0`
 * `dvmd.kdl.r4#2024.0.0-qa3`
 * `dvmd.kdl.r4#2024.0.0-qa2`
 * `dvmd.kdl.r4#2024.0.0-qa`
@@ -1645,12 +1646,13 @@ Arkhn profiles and extensions
 <details>
 <summary>Description</summary>
 
-Implementation guide for eTOC based on CH ORF (built Thu, Dec 28, 2023 11:48+0100+01:00)
+Implementation guide for eTOC based on CH ORF (built Fri, May 17, 2024 12:54+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `ch.fhir.ig.ch-etoc#3.0.0-ballot`
 * `ch.fhir.ig.ch-etoc#2.0.1`
 * `ch.fhir.ig.ch-etoc#2.0.0`
 * `ch.fhir.ig.ch-etoc#2.0.0-ballot`
@@ -1814,12 +1816,13 @@ Danish municipalities implementation guide for common informationmodel (built We
 <details>
 <summary>Description</summary>
 
-Implementation Guide for CH ATC (Audit Trail Consumption) (built Wed, Jan 31, 2024 11:51+0100+01:00)
+Implementation Guide for CH ATC (Audit Trail Consumption) (built Fri, May 17, 2024 08:56+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `ch.fhir.ig.ch-atc#3.3.0-ballot`
 * `ch.fhir.ig.ch-atc#3.2.0`
 * `ch.fhir.ig.ch-atc#3.2.0-ballot`
 * `ch.fhir.ig.ch-atc#3.1.0`
@@ -3997,6 +4000,7 @@ Danish municipalities implementation guide for FFInst (built Sun, Aug 27, 2023 1
 
 **Versions**
 
+* `br.ufg.cgis.rnds-lite#0.1.5`
 * `br.ufg.cgis.rnds-lite#0.1.4`
 * `br.ufg.cgis.rnds-lite#0.1.3`
 * `br.ufg.cgis.rnds-lite#0.1.2`
@@ -4377,12 +4381,13 @@ Put a description here
 <details>
 <summary>Description</summary>
 
-FHIR® Implementation Guide for the Electronic Laboratory Report of the Swiss Federal Office of Public Health (built Thu, Mar 28, 2024 10:13+0100+01:00)
+FHIR® Implementation Guide for the Electronic Laboratory Report of the Swiss Federal Office of Public Health (built Fri, May 17, 2024 13:24+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `ch.fhir.ig.ch-elm#1.3.0`
 * `ch.fhir.ig.ch-elm#1.2.0`
 * `ch.fhir.ig.ch-elm#1.1.1`
 * `ch.fhir.ig.ch-elm#1.1.0`
@@ -4919,6 +4924,7 @@ Implementation guide CH VACD (built Fri, Jun 18, 2021 09:33+0200+02:00)
 
 **Versions**
 
+* `ch.fhir.ig.ch-vacd#5.0.0-ballot`
 * `ch.fhir.ig.ch-vacd#4.0.1`
 * `ch.fhir.ig.ch-vacd#4.0.0`
 * `ch.fhir.ig.ch-vacd#4.0.0-ballot`
@@ -6135,6 +6141,22 @@ Medizininformatik Initiative - Modul Medizinisches Forschungsvorhaben
 
 ---
 
+### CH IPS (R4)
+
+<details>
+<summary>Description</summary>
+
+The FHIR implementation guide CH IPS is derived from the Swiss Core IG (CH Core) and ensures conformity with the International Patient Summary (IPS). (built Fri, May 17, 2024 10:21+0000+00:00)
+
+</details>
+
+**Versions**
+
+* `ch.fhir.ig.ch-ips#1.0.0-ballot`
+
+
+---
+
 ### Implementation Guide CHMED20AF (R4)
 
 <details>
@@ -6397,12 +6419,13 @@ fhir-human-services-directory (built Wed, Oct 4, 2023 18:49+0000+00:00)
 <details>
 <summary>Description</summary>
 
-Implementation guide CH RAD-Order (R4) (built Tue, Feb 22, 2022 11:41+0100+01:00)
+Implementation guide CH RAD-Order (R4) (built Fri, May 17, 2024 11:21+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `ch.fhir.ig.ch-rad-order#2.0.0-ballot`
 * `ch.fhir.ig.ch-rad-order#1.0.0`
 * `ch.fhir.ig.ch-rad-order#0.1.0`
 
@@ -6506,12 +6529,13 @@ Test Profiles for Questionnaire App
 <details>
 <summary>Description</summary>
 
-FHIR® Implementation Guide for Laboratory Reports in Switzerland (built Thu, Dec 28, 2023 11:59+0100+01:00)
+FHIR® Implementation Guide for Laboratory Reports in Switzerland (built Fri, May 17, 2024 09:30+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `ch.fhir.ig.ch-lab-report#1.0.0-ballot`
 * `ch.fhir.ig.ch-lab-report#0.1.1`
 * `ch.fhir.ig.ch-lab-report#0.1.0`
 
@@ -7507,17 +7531,18 @@ Cygnet Health FHIR System
 
 ---
 
-### CH-AllergyIntolerance (R4)
+### CH AllergyIntolerance (R4)
 
 <details>
 <summary>Description</summary>
 
-Implementation guide CH-AllergyIntolerance (R4) (built Thu, Dec 28, 2023 10:34+0100+01:00)
+Implementation guide CH AllergyIntolerance (R4) (built Fri, May 17, 2024 08:01+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `ch.fhir.ig.ch-allergyintolerance#3.0.0-ballot`
 * `ch.fhir.ig.ch-allergyintolerance#2.0.1`
 * `ch.fhir.ig.ch-allergyintolerance#2.0.0`
 * `ch.fhir.ig.ch-allergyintolerance#2.0.0-ballot`
@@ -8215,12 +8240,13 @@ Egde Health Gateway FHIR facade
 <details>
 <summary>Description</summary>
 
-Order & Referral by Form - Implementation Guide (CH ORF) (built Thu, Dec 28, 2023 11:35+0100+01:00)
+Order & Referral by Form - Implementation Guide (CH ORF) (built Fri, May 17, 2024 06:30+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `ch.fhir.ig.ch-orf#3.0.0-ballot`
 * `ch.fhir.ig.ch-orf#2.0.1`
 * `ch.fhir.ig.ch-orf#2.0.0`
 * `ch.fhir.ig.ch-orf#2.0.0-ballot`
@@ -10963,6 +10989,7 @@ Der Abrechnungsdatensatz zum E-Rezept
 
 **Versions**
 
+* `de.gkvsv.erezeptabrechnungsdaten#1.4.0`
 * `de.gkvsv.erezeptabrechnungsdaten#1.4.0-rc`
 * `de.gkvsv.erezeptabrechnungsdaten#1.3.2`
 * `de.gkvsv.erezeptabrechnungsdaten#1.3.1`
