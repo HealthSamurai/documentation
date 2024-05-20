@@ -567,7 +567,7 @@ Disable sending anonymous API usage statistics.
 
 #### BOX\_FEATURES\_SECURITY\_\_LABELS\_ENABLE
 
-The [Security Labels](optional-environment-variables.md#security-labels) access control feature is disabled by default. To enable it, set ENV to true.
+The [Security Labels](optional-environment-variables.md#security-labels) access control feature is disabled by default. To enable it, set the env to true.
 
 ```ini
 BOX_FEATURES_SECURITY__LABELS_ENABLE=true
@@ -575,7 +575,7 @@ BOX_FEATURES_SECURITY__LABELS_ENABLE=true
 
 #### BOX\_FEATURES\_SECURITY\_\_LABELS\_STRIP\_\_LABELS
 
-By default, stripping is disabled. To enabled it, set ENV to true.
+By default, stripping is disabled. To enable it, set the env to true.
 
 ```ini
 BOX_FEATURES_SECURITY__LABELS_STRIP__LABELS=true
@@ -587,9 +587,15 @@ Stripping is only applied during the masking. More [details about masking](../..
 
 ### Observability
 
+Follow the link below to learn how Aidbox metrics work.
+
+{% content-ref url="../../../modules-1/observability/metrics/" %}
+[metrics](../../../modules-1/observability/metrics/)
+{% endcontent-ref %}
+
 **BOX\_METRICS\_PORT**
 
-Define the environment variable with the monitoring server port number to be able to export metrics.&#x20;
+Defines the port which will be used to expose metrics.
 
 **BOX\_METRICS\_POSTGRES\_ON**
 
@@ -603,8 +609,8 @@ Specify the Grafana instance URL in this env.&#x20;
 
 **BOX\_METRICS\_GRAFANA\_USER**
 
-Specify the Grafana user name
+Specify the Grafana user name.
 
 **BOX\_METRICS\_GRAFANA\_PASSWORD**
 
-Specify the Grafana user password
+Specify the Grafana user password.
