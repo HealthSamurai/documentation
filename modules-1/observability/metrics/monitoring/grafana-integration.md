@@ -1,7 +1,7 @@
 ---
 description: >-
   Aidbox metrics has integration with Grafana, which can generate dashboards and
-  upload it to Grafana
+  upload them to Grafana
 ---
 
 # Set-up Grafana integration
