@@ -584,3 +584,27 @@ BOX_FEATURES_SECURITY__LABELS_STRIP__LABELS=true
 {% hint style="info" %}
 Stripping is only applied during the masking. More [details about masking](../../../modules-1/security-and-access-control/security/attribute-based-access-control-abac/security-labels/#resource-element-level-access-masking)
 {% endhint %}
+
+### Observability
+
+**BOX\_METRICS\_PORT**
+
+Define the environment variable with the monitoring server port number to be able to export metrics.&#x20;
+
+**BOX\_METRICS\_POSTGRES\_ON**
+
+If you have a different pg exporter, disable Aidbox PostgreSQL metrics to avoid metrics duplication by setting the env to false.
+
+`BOX_METRICS_POSTGRES_ON=false`&#x20;
+
+**BOX\_METRICS\_GRAFANA\_URL**
+
+Specify the Grafana instance URL in this env.&#x20;
+
+**BOX\_METRICS\_GRAFANA\_USER**
+
+Specify the Grafana user name
+
+**BOX\_METRICS\_GRAFANA\_PASSWORD**
+
+Specify the Grafana user password
