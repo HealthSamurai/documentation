@@ -4456,12 +4456,13 @@ SaniQ
 
 ---
 
-### Consolidated CDA
+### Consolidated CDA (C-CDA)
 
 
 
 **Versions**
 
+* `hl7.cda.us.ccda#3.0.0`
 * `hl7.cda.us.ccda#3.0.0-ballot`
 
 
