@@ -10,10 +10,10 @@ Define`BOX_METRICS_PORT`environment variable with monitoring server port number.
 
 ### Start metrics server
 
-Aidbox starts monitoring server on startup automatically.
+Aidbox exposes metrics endpoints on startup automatically.
 
 {% hint style="info" %}
-To check the monitoring server works make `GET <AIDBOX_BASE_URL>:<BOX_METRICS_PORT>` request. The output should be a string "aidbox metrics".
+To check if the monitoring server works make the `GET <AIDBOX_BASE_URL>:<BOX_METRICS_PORT>` request. The output should be a string "aidbox metrics".
 {% endhint %}
 
 ### Metrics server endpoints
@@ -27,7 +27,7 @@ There are three types of metrics Aidbox collects and exposes. All endpoints are 
 | `GET /metrics/hours`   | every hour       |
 
 {% hint style="info" %}
-The `/metrics/hours` response can take some time since it collects a lot of information from the database. Make sure your metrics scraper timeout is sufficient.
+The `/metrics/hours` response can take some time since it collects much information from the database. Make sure your metrics scraper timeout is sufficient.
 {% endhint %}
 
 #### Prometheus example scrapers configuration
