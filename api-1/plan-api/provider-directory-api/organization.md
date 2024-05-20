@@ -87,8 +87,9 @@ GET [base]/Organization/$dump-csv
 
 ### Parameters
 
-| Organization.active              | true/false                                                                     |
+| Parameter                        | Description                                                                    |
 | -------------------------------- | ------------------------------------------------------------------------------ |
+| Organization.active              | true/false                                                                     |
 | Organization.address             | address                                                                        |
 | Organization.address-city        | city                                                                           |
 | Organization.address-country     | country                                                                        |

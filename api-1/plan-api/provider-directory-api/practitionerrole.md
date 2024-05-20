@@ -88,8 +88,9 @@ GET [base]/PractitionerRole/$dump-csv
 
 ### Parameters
 
-| PractitionerRole.active            | true/false                                                                                         |
+| Parameter                          | Description                                                                                        |
 | ---------------------------------- | -------------------------------------------------------------------------------------------------- |
+| PractitionerRole.active            | true/false                                                                                         |
 | PractitionerRole.date              | the period during which the practitioner is authorized to perform in these role(s)                 |
 | PractitionerRole.email             | email                                                                                              |
 | PractitionerRole.endpoint          | technical endpoints providing access to services operated for the practitioner with this role      |
