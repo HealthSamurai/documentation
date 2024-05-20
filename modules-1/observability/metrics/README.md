@@ -14,7 +14,7 @@ Aidbox supports the [OpenTelemetry protocol](https://opentelemetry.io/) and expo
 
 ## Export metrics to Prometheus
 
-To export metrics to Prometheus, set up Aidbox Metrics server.
+Configure how metrics are getting exposed from the Aidbox.
 
 {% content-ref url="monitoring/aidbox-metrics-server.md" %}
 [aidbox-metrics-server.md](monitoring/aidbox-metrics-server.md)
