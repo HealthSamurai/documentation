@@ -14,6 +14,8 @@ Send a PUT request to create a profile called "**patient-profile**" and specify 
 
 ```yaml
 PUT /fhir/StructureDefinition/patient-profile
+content-type: text/yaml
+accept: text/yaml
 
 resourceType: StructureDefinition
 url: http://example.org/fhir/StructureDefinition/patient-profile
@@ -35,6 +37,8 @@ Check that the profile was successfully uploaded by creating a Patient resource 
 
 ```yaml
 POST /fhir/Patient
+content-type: text/yaml
+accept: text/yaml
 
 resourceType: Patient
 meta:
@@ -67,6 +71,8 @@ Send a PUT request to create a FHIR search parameter called "**patient-profile**
 
 ```yaml
 PUT /fhir/SearchParameter/new-gender
+content-type: text/yaml
+accept: text/yaml
 
 resourceType: SearchParameter
 url: http://example.org/fhir/SearchParameter/new-gender
@@ -84,6 +90,8 @@ Check that the search parameter was successfully uploaded by creating a Patient 
 
 ```yaml
 POST /fhir/Patient
+content-type: text/yaml
+accept: text/yaml
 
 gender: unknown
 ```
@@ -98,6 +106,8 @@ Send a PUT request to create a ValueSet called "**my-gender-identity**"
 
 ```yaml
 PUT /fhir/ValueSet/my-gender-identity
+content-type: text/yaml
+accept: text/yaml
 
 resourceType: ValueSet
 url: http://hl7.org/fhir/ValueSet/my-gender-identity

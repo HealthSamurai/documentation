@@ -1,12 +1,12 @@
 ---
-description: Uplooad a FHIR Implementation Guide into Aidbox using an environment variable
+description: Upload a FHIR Implementation Guide into Aidbox using an environment variable
 ---
 
 # Environment Variable
 
 You can configure Aidbox to load Implementation Guides at startup using environment variables.
 
-Set the environment variable with the names and versions of the IGs.&#x20;
+Set the environment variable with the names and versions of the IGs.
 
 ***
 
