@@ -112,6 +112,7 @@ accept: text/yaml
 resourceType: ValueSet
 url: http://hl7.org/fhir/ValueSet/my-gender-identity
 status: draft
+name: my-gender-identity
 compose:
   include:
     - system: http://hl7.org/fhir/gender-identity
