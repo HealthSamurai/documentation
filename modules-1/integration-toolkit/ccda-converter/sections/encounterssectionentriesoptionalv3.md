@@ -152,6 +152,7 @@ C-CDA Equivalent:
                <td>08/15/2012 12:00AM UTC - Now</td>
                <td>Office outpatient visit 15 minutes</td>
                <td>97005, Portland, OR, 1004 Healthcare Dr.</td>
+               <td>N/A</td>
                <td>Costal Chondritis</td>
             </tr>
          </tbody>

@@ -33,6 +33,7 @@ If you have specific document or section-level requirements, feel free to [conta
 
 | Section Name | LOINCs | Alias | Narrative
 | --- | --- | --- | --- | 
+|[Admission Diagnosis Section (V3)](/modules-1/integration-toolkit/ccda-converter/sections/admissiondiagnosissectionv3.md)|46241-6|admission-diagnosis|✅
 |[Advance Directives Section (entries optional) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/advancedirectivessectionentriesop.md)|42348-3|advance-directives|❌
 |[Advance Directives Section (entries required) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/advancedirectivessectentriesre.md)|42348-3|advance-directives|❌
 |[Allergies and Intolerances Section (entries optional) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/allergiesandintolerancessectioneo.md)|48765-2|allergies|✅
@@ -41,6 +42,7 @@ If you have specific document or section-level requirements, feel free to [conta
 |[Chief Complaint Section](/modules-1/integration-toolkit/ccda-converter/sections/chiefcomplaintsection.md)|10154-3|chief-complaint|❌
 |[Chief Complaint and Reason for Visit Section](/modules-1/integration-toolkit/ccda-converter/sections/chiefcomplaintandreasonforvisits.md)|46239-0|chief-complaint-and-reason-for-visit|❌
 |[Default Section Rules](/modules-1/integration-toolkit/ccda-converter/sections/default.md)|&nbsp;|default|❌
+|[Discharge Diagnosis Section (V3)](/modules-1/integration-toolkit/ccda-converter/sections/dischargediagnosissectionv3.md)|11535-2|discharge-diagnosis|✅
 |[Document Header](/modules-1/integration-toolkit/ccda-converter/sections/header.md)|&nbsp;|header|❌
 |[Encounters Section (entries optional) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/encounterssectionentriesoptionalv3.md)|46240-8|encounters|❌
 |[Encounters Section (entries required) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/encounterssectionentriesrequiredv3.md)|46240-8|encounters|✅
@@ -63,6 +65,8 @@ If you have specific document or section-level requirements, feel free to [conta
 |[Past Medical History (V3)](/modules-1/integration-toolkit/ccda-converter/sections/pastmedicalhistoryv3.md)|11348-0|past-medical-history|✅
 |[Payers Section (V3)](/modules-1/integration-toolkit/ccda-converter/sections/payerssectionv3.md)|48768-6|payers|❌
 |[Plan of Treatment Section (V2)](/modules-1/integration-toolkit/ccda-converter/sections/planoftreatmentsectionv2.md)|18776-5|plan-of-treatment|✅
+|[Postprocedure Diagnosis Section (V3)](/modules-1/integration-toolkit/ccda-converter/sections/postprocedurediagnosissectionv3.md)|59769-0|postprocedure-diagnosis|✅
+|[Preoperative Diagnosis Section (V3)](/modules-1/integration-toolkit/ccda-converter/sections/preoperativediagnosissectionv3.md)|10219-4|preoperative-diagnosis|✅
 |[Problem Section (entries optional) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/problemsectionentriesoptionalv3.md)|11450-4|problems|✅
 |[Problem Section (entries required) (V3)](/modules-1/integration-toolkit/ccda-converter/sections/problemsectionentriesrequiredv3.md)|11450-4|problems|✅
 |[Procedures Section (entries optional) (V2)](/modules-1/integration-toolkit/ccda-converter/sections/proceduressectionentriesoptionalv2.md)|47519-4|procedures|✅
