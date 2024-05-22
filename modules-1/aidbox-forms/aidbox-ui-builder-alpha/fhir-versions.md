@@ -11,7 +11,7 @@ Our module automatically checks the Questionnaire version and handles conversion
 
 ## FHIR Version configuration
 
-To configure Aidbox FHIR version you can read [Requried env variables](../../../reference/configuration/environment-variables/aidbox-required-environment-variables#aidbox_fhir_version) section.
+To configure Aidbox FHIR version you can read [Required ENV variables](../../../reference/configuration/environment-variables/aidbox-required-environment-variables#aidbox_fhir_version) section.
 
 
 ## Import/load questionnare with conversion
