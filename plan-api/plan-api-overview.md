@@ -132,7 +132,9 @@ Should you need to update the app details used on production after the app has b
 
 ## API permissions and scopes
 
-Access tokens have scopes, which define permissions and the resources that the token can access. Scopes are primarily utilized to determine the type of data an application is requesting. Scopes should be explicitly declared. In case of using wildcard, only supported scopes will be provided.
+Access tokens have scopes, which define permissions and the resources that the token can access. Scopes are primarily utilized to determine the type of data an application is requesting. Scopes should be explicitly declared. In case of using a wildcard, only supported scopes will be provided.
+
+Refer to the [FHIR API docs](../api-1/fhir-api/search-1/) for guidance.
 
 Note: Any Scope not currently listed is not supported Patient Access scopes:
 
@@ -146,6 +148,15 @@ patient/MedicationRequest.read
 patient/Goal.read
 patient/Condition.read
 patient/CarePlan.read
+patient/Procedure.read
+patient/DocumentReference.read
+patient/AllergyIntolerance.read
+patient/Immunization.read
+patient/Provenance.read
+patient/Observation.read
+patient/Device.read
+patient/Practitioner.read
+patient/Organization.read
 ```
 
 Provider Directory Access is publicly available. Here is the list of supported resource types:
@@ -156,7 +167,7 @@ Practitioner
 Location
 PractitionerRole
 HealthcareService
-Organization
-Affiliation
+OrganizationAffiliation
 InsurancePlan
 ```
+
