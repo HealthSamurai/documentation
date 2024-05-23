@@ -2033,6 +2033,7 @@ ePrescription workflow specification
 
 **Versions**
 
+* `de.gematik.erezept-workflow.r4#1.3.1`
 * `de.gematik.erezept-workflow.r4#1.3.0`
 * `de.gematik.erezept-workflow.r4#1.3.0-rc3`
 * `de.gematik.erezept-workflow.r4#1.3.0-rc2`
@@ -4000,6 +4001,7 @@ Danish municipalities implementation guide for FFInst (built Sun, Aug 27, 2023 1
 
 **Versions**
 
+* `br.ufg.cgis.rnds-lite#0.1.6`
 * `br.ufg.cgis.rnds-lite#0.1.5`
 * `br.ufg.cgis.rnds-lite#0.1.4`
 * `br.ufg.cgis.rnds-lite#0.1.3`
@@ -5822,6 +5824,9 @@ Technical profiles used by nexuzhealth for the import and export of data.
 
 **Versions**
 
+* `nxh.fhir.r4#0.0.0-beta.9`
+* `nxh.fhir.r4#0.0.0-beta.8`
+* `nxh.fhir.r4#0.0.0-beta.7`
 * `nxh.fhir.r4#0.0.0-beta.6`
 * `nxh.fhir.r4#0.0.0-beta.5`
 * `nxh.fhir.r4#0.0.0-beta.4`
@@ -9946,6 +9951,7 @@ FHIR R4 profiles for the electronic health record (EHR) submissions to the Nethe
 
 **Versions**
 
+* `iknl.fhir.nl.r4.ncr-ehr#1.0.0`
 * `iknl.fhir.nl.r4.ncr-ehr#0.4.0-alpha`
 * `iknl.fhir.nl.r4.ncr-ehr#0.3.0`
 * `iknl.fhir.nl.r4.ncr-ehr#0.2.0`
@@ -10990,8 +10996,10 @@ Der Abrechnungsdatensatz zum E-Rezept
 
 **Versions**
 
+* `de.gkvsv.erezeptabrechnungsdaten#1.4.1`
 * `de.gkvsv.erezeptabrechnungsdaten#1.4.0`
 * `de.gkvsv.erezeptabrechnungsdaten#1.4.0-rc`
+* `de.gkvsv.erezeptabrechnungsdaten#1.3.3`
 * `de.gkvsv.erezeptabrechnungsdaten#1.3.2`
 * `de.gkvsv.erezeptabrechnungsdaten#1.3.1`
 * `de.gkvsv.erezeptabrechnungsdaten#1.3.0`
