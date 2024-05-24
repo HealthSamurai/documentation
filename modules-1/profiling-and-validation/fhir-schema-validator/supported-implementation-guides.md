@@ -925,6 +925,7 @@ Progetto FHIR per Regione Lombardia
 
 **Versions**
 
+* `rl.fhir.r4.draft#0.0.22`
 * `rl.fhir.r4.draft#0.0.21`
 * `rl.fhir.r4.draft#0.0.20`
 * `rl.fhir.r4.draft#0.0.19`
@@ -3923,6 +3924,7 @@ The CA:FeX Interoperability Specifications (Canadian FHIR Exchange (CA:FeX))  se
 
 **Versions**
 
+* `ca.infoway.io.cafex#2.0.0-dft-pre`
 * `ca.infoway.io.cafex#2.0.0-DFT-Ballot`
 
 
@@ -4001,6 +4003,7 @@ Danish municipalities implementation guide for FFInst (built Sun, Aug 27, 2023 1
 
 **Versions**
 
+* `br.ufg.cgis.rnds-lite#0.1.7`
 * `br.ufg.cgis.rnds-lite#0.1.6`
 * `br.ufg.cgis.rnds-lite#0.1.5`
 * `br.ufg.cgis.rnds-lite#0.1.4`
@@ -4078,6 +4081,7 @@ Implementation Guide for the Mobile access to Health Documents (epr-mhealth) Pro
 
 **Versions**
 
+* `de.netzwerk-universitaetsmedizin.ebm-cpg#0.8.0`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.7.0`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.7.1-snapshot`
 
@@ -6782,6 +6786,22 @@ National Alpha country profiles
 **Versions**
 
 * `alpha.core.r4#1.0.0`
+
+
+---
+
+### acme.dallas.cowboy
+
+<details>
+<summary>Description</summary>
+
+Definition of the Dallas Cowboy
+
+</details>
+
+**Versions**
+
+* `acme.dallas.cowboy#0.1.0-alpha`
 
 
 ---
