@@ -15,6 +15,10 @@ When audit logging is enabled, Aidbox produces audit logs for significant events
 
 Aidbox produces audit logs in conformance with [Basic Audit Log Patterns IG](https://profiles.ihe.net/ITI/BALP/).
 
+{% hint style="warning" %}
+At this time, Aidbox is only capable of producing `AuditEvent` in the `FHIR R4` version.
+{% endhint %}
+
 ### Aidbox as an Audit record repository
 
 Aidbox acts as [Audit record repository](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html#9.1.1.3) (ARR) for FHIR AuditEvent resources. Aidbox supports
