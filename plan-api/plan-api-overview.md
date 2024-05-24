@@ -90,9 +90,9 @@ When you are done filling out the app information, click on _“Save”_ button 
 
 ### SMART Auth and FHIR API sandbox
 
-The Developer Sandbox allows you to test your application from a health plan beneficiary perspective by using synthetic clinical resources. This enables you to launch your app as a health plan Patient would within the Sandbox. To use this feature, you must create synthetic patient resources. Go to the list of your apps and click on _“Initialize Patient”_ button and confirm your action. As a result, the following synthetic FHIR resources will be created: _Patient_, _Coverage_ and _ExplanationOfBenefit_. You will be able to see and inspect them under the _“My Data”_ tab. These resources will be used in an emulated launch of your application.
+The Developer Sandbox allows you to test your application from a health plan beneficiary perspective by using synthetic clinical resources. This enables you to launch your app as a health plan Patient would within the Sandbox. To use this feature, you must create synthetic patient resources. Go to the list of your apps and click on _“Initialize Patient”_ button and confirm your action. As a result, a bundle of synthetic FHIR resources will be created and attached. You will be able to view and inspect them under _“My Data”_ tab. These resources will be used in an emulated launch of your application.
 
-After you have created the synthetic FHIR resources, you will be able to launch your SMART application as a Patient, perform the Authorization Code Grant flow and make calls to the FHIR API using your app. A _“Launch App”_ button will appear on your application card on the _"Apps"_ page. Make sure you have provided all the necessary information, such as Launch and Redirect URLs.
+Now you are able to launch your SMART application as a Patient, perform the Authorization Code Grant flow and make calls to the FHIR API using your app in the Sandbox. A _“Launch App”_ button will appear on the app page and app list. Make sure you have provided all the necessary information, such as Launch and Redirect URLs.
 
 ### Publishing your app on the Member Portal
 
