@@ -3924,6 +3924,7 @@ The CA:FeX Interoperability Specifications (Canadian FHIR Exchange (CA:FeX))  se
 
 **Versions**
 
+* `ca.infoway.io.cafex#2.0.0`
 * `ca.infoway.io.cafex#2.0.0-dft-pre`
 * `ca.infoway.io.cafex#2.0.0-DFT-Ballot`
 
@@ -4327,6 +4328,25 @@ Ilustra criação de guias de implementação (built Sun, Mar 31, 2024 18:31-030
 * `br.ufg.cgis.ig#0.0.3`
 * `br.ufg.cgis.ig#0.0.2`
 * `br.ufg.cgis.ig#0.0.1`
+
+
+---
+
+### iknl.fhir.nl.r4.palga
+
+<details>
+<summary>Description</summary>
+
+IKNL profiles to fill the NCR (NKR) with data that is sent to IKNL by Palga
+
+</details>
+
+**Versions**
+
+* `iknl.fhir.nl.r4.palga#1.0.0`
+* `iknl.fhir.nl.r4.palga#0.3.0-beta`
+* `iknl.fhir.nl.r4.palga#0.2.0`
+* `iknl.fhir.nl.r4.palga#0.1.0`
 
 
 ---
@@ -7605,6 +7625,7 @@ Medizininformatik Initiative - Modul Intensivmedizin PDMS-Daten und hochauflöse
 
 **Versions**
 
+* `de.medizininformatikinitiative.kerndatensatz.icu#2024.0.0-alpha2`
 * `de.medizininformatikinitiative.kerndatensatz.icu#2024.0.0-alpha1`
 * `de.medizininformatikinitiative.kerndatensatz.icu#1.0.0`
 
@@ -9556,12 +9577,13 @@ Implementation guide CH LAB-Order (R4) (built Thu, Jun 29, 2023 23:13+0200+02:00
 <details>
 <summary>Description</summary>
 
-Ressources de conformité basées sur le modèle d'exposition 3.0 du ROR (built Wed, Mar 13, 2024 09:10+0000+00:00)
+Ressources de conformité basées sur le modèle d'exposition 3.0 du ROR (built Wed, May 22, 2024 08:41+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `ans.fhir.fr.ror#0.4.0-snapshot-1`
 * `ans.fhir.fr.ror#0.3.0`
 * `ans.fhir.fr.ror#0.2.0`
 * `ans.fhir.fr.ror#0.1.1`
