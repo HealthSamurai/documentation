@@ -49,6 +49,22 @@ Danish MedCom Core IG (built Tue, Oct 31, 2023 14:20+0100+01:00)
 
 ---
 
+### ig.fhir-il-community.org.t17
+
+<details>
+<summary>Description</summary>
+
+A national project for managing the pre authorization process between HMOs and Hospitals for ambulatory hospital services 
+
+</details>
+
+**Versions**
+
+* `ig.fhir-il-community.org.t17#0.1.0`
+
+
+---
+
 ### Dental Data Exchange
 
 <details>
@@ -844,12 +860,13 @@ The CA Core+ project provides profiles based on the business, conceptual, and lo
 <details>
 <summary>Description</summary>
 
-Implementation Guide for IHE defined FormatCode vocabulary. (built Tue, Mar 12, 2024 16:59-0500-05:00)
+Implementation Guide for IHE defined FormatCode vocabulary. (built Fri, May 17, 2024 12:02-0500-05:00)
 
 </details>
 
 **Versions**
 
+* `ihe.formatcode.fhir#1.3.0`
 * `ihe.formatcode.fhir#1.2.0`
 * `ihe.formatcode.fhir#1.1.1`
 * `ihe.formatcode.fhir#1.1.0`
@@ -1871,12 +1888,13 @@ The Central Cancer Registry Reporting Content IG provides healthcare organizatio
 <details>
 <summary>Description</summary>
 
-ImplementationGuide for IHE IT Infrastructure Technical Framework Supplement Mobile access to Health Documents (MHD) (built Wed, Aug 2, 2023 10:57-0500-05:00)
+ImplementationGuide for IHE IT Infrastructure Technical Framework Supplement Mobile access to Health Documents (MHD) (built Sat, May 18, 2024 12:30-0500-05:00)
 
 </details>
 
 **Versions**
 
+* `ihe.iti.mhd#4.2.2`
 * `ihe.iti.mhd#4.2.1`
 * `ihe.iti.mhd#4.2.0`
 * `ihe.iti.mhd#4.2.0-ballot`
@@ -9517,17 +9535,19 @@ A FHIR profile to export patient data for DiGAs that treat ICD-10 F17.2. (built 
 
 ---
 
-### Guía de Implementación "cl core" FHIR R4, (Versión Evolutiva)
+### Guía de Implementación ''cl core'' FHIR R4, (Versión Evolutiva)
 
 <details>
 <summary>Description</summary>
 
-Guía de Implementación Versión de Desarrollo Sobre STU 1, para los perfiles Core que se van a requerir a nivel de desarrollo Nacional para Sistemas que Intercambien datos en estandar FHIR-R4 (built Thu, Oct 26, 2023 13:08-0300-03:00)
+Guía de Implementación Versión de Desarrollo Sobre STU 1, para los perfiles Core que se van a requerir a nivel de desarrollo Nacional para Sistemas que Intercambien datos en estandar FHIR-R4 (built Tue, Mar 19, 2024 15:38-0300-03:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.cl.clcore#1.8.10`
+* `hl7.fhir.cl.clcore#1.8.6`
 * `hl7.fhir.cl.clcore#1.8.5`
 * `hl7.fhir.cl.clcore#1.8.4`
 * `hl7.fhir.cl.clcore#1.8.3`
