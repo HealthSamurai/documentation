@@ -48,6 +48,42 @@ value:
   String: https://example.com/submit-hook?questionnaire=123
 ```
 
+### redirect-on-submit
+
+A URL where the user will be redirected to after hitting Save button.
+
+> By default `Save button is not visible` - form autosaved after every keystroke. But sometimes it's usefull to close form in a partially-filled state
+
+```yaml
+name: redirect-on-save
+value:
+  String: https://example.com/submit-hook?questionnaire=123
+```
+
+### link expiration time
+
+Link expiration period (days)
+
+
+```yaml
+name: expiration
+value:
+  Integer: 30
+```
+
+> By default thir parameter = 7 days
+
+
+### theme
+
+Form theme.
+
+```yaml
+name: theme
+value:
+  String: hs-theme
+```
+
 ## Usage Example
 
 {% tabs %}
