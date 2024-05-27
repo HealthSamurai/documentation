@@ -48,7 +48,7 @@ value:
   String: https://example.com/submit-hook?questionnaire=123
 ```
 
-### redirect-on-submit
+### redirect-on-save
 
 A URL where the user will be redirected to after hitting Save button.
 
