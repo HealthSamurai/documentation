@@ -12,6 +12,7 @@
   * [Uploading Sample Data](getting-started-1/load-bundle-into-fhir-server.md)
   * [Run Aidbox on Kubernetes](getting-started/run-aidbox-in-kubernetes/README.md)
     * [Deploy Production-ready Aidbox to Kubernetes](getting-started/run-aidbox-in-kubernetes/deploy-aidbox-in-kubernetes.md)
+    * [Deploy Aidbox with Helm Charts](getting-started/run-aidbox-in-kubernetes/deploy-aidbox-with-helm-charts.md)
     * [Highly Available Aidbox](getting-started/run-aidbox-in-kubernetes/high-available-aidbox.md)
     * [How to migrate to Apline Linux](getting-started/run-aidbox-in-kubernetes/how-to-migrate-to-apline-linux.md)
     * [Self-signed SSL certificates](getting-started/run-aidbox-in-kubernetes/self-signed-ssl-certificates.md)
