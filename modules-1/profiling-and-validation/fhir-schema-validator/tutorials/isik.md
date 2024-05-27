@@ -20,6 +20,14 @@ git clone \
 
 The git template project contains ISiK FHIR IG preconfigured via .env file.
 
+{% hint style="info" %}
+If you already have a running Aidbox instance, please refer to the following guide:
+{% endhint %}
+
+{% content-ref url="../upload-fhir-implementation-guide/" %}
+[upload-fhir-implementation-guide](../upload-fhir-implementation-guide/)
+{% endcontent-ref %}
+
 ## Validate example resources against ISIK Stufe 2 profiles
 
 <details>
