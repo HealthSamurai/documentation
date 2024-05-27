@@ -21,7 +21,7 @@ git clone \
 The git template project contains US Core version 6.1.0 FHIR IG preconfigured via .env file.
 
 {% hint style="info" %}
-If you already have running Aidbox instance, please refre to the following guides:
+If you already have a running Aidbox instance, please refer to the following guide:
 {% endhint %}
 
 {% content-ref url="../upload-fhir-implementation-guide/" %}
