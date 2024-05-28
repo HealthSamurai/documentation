@@ -159,16 +159,14 @@ part:
 
 FHIR SDC launchContext extension [enumerates](http://hl7.org/fhir/uv/sdc/STU3/CodeSystem-launchContext.html) possible context variables, they are:
 
-> Not supported yet
 
-
-| Code      | Definition                                                                                                                    |
-|-----------|-------------------------------------------------------------------------------------------------------------------------------|
-| patient   | Patient Patient in context at launch time (FHIR Patient resource)                                                             |
-| encounter | Encounter context at launch time (FHIR Encounter resource)                                                                    |
-| location  | Location context at launch time (FHIR Location resource)                                                                      |
-| user      | User in context at launch time (FHIR Device, PractitionerRole, Practitioner, RelatedPerson, Organization or Patient resource) |
-| study     | ResearchStudy in context at launch time (FHIR ResearchStudy resource)                                                         |
+| Code      | Type                                                                                                                                                 | Definition                                 |
+|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| patient   | [Reference<Patient>](http://hl7.org/fhir/R4/references.html#Reference)/resource                                                                      | Patient Patient in context at launch time  |
+| encounter | [Reference<Encounter>](http://hl7.org/fhir/R4/references.html#Reference)/resource                                                                    | Encounter context at launch time           |
+| location  | [Reference<Location>](http://hl7.org/fhir/R4/references.html#Reference)/resource                                                                     | Location context at launch time            |
+| user      | [Reference<Patient, Device, PractitionerRole, Practitioner, RelatedPerson, Organization>](http://hl7.org/fhir/R4/references.html#Reference)/resource | User in context at launch time             |
+| study     | [Reference<ResearchStudy>](http://hl7.org/fhir/R4/references.html#Reference)/resource                                                                | ResearchStudy in context at launch time    |
 
 
 Additionnaly Aidbox expands this list with parameters that mirrors
@@ -206,7 +204,8 @@ value:
 
 ### context.name
 
-The name of the launchContext or root Questionnaire variable the passed content should be used as for population purposes. The name SHALL correspond to a launchContext or variable delared at the root of the Questionnaire.
+The name of the launchContext or root Questionnaire variable the passed content should be used as for population purposes.
+The name SHALL correspond to a launchContext or variable delared at the root of the Questionnaire.
 
 ```yaml
 name: name
@@ -234,6 +233,9 @@ resource:
   ...
   resourceType: Encounter
   id: enc1
+  subject: 
+    id: pt-1
+    resourceType: Patient
   ...
 ```
 
@@ -360,7 +362,7 @@ NOTE:  Don't forget to wrap parameters in `Parameters object`
 resourceType: Parameters
 parameter:
 - name:  [var-name]
-  value: [var-value]
+  value: [varType: var-value]
 ```
 {% endhint %}
 
@@ -453,10 +455,12 @@ parameter:
     value:
       String: encounter
   - name: content
-    value:
-      Reference:
-        resourceType: Encounter
-        id: enc-1
+    resource:
+      resourceType: Encounter
+      id: enc-1
+      subject:
+        id: pt-1
+        resourceType: Patient
 ```
 {% endtab %}
 
