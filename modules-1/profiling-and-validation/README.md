@@ -14,11 +14,11 @@ The process of creating these constraints is known as _profiling_. These constra
 
 Though Aidbox does not emphasize the process of profiling, it provides a rich experience for introspection of IGs loaded into Aidbox. For example:
 
-* To view the content of an IG in the Aidbox UI, navigate to `"FHIR Packages" > "<IG name>"`.
-* To view the rendered StructureDefinition differential/snapshot, go to `"FHIR Packages" > "<IG name>" > "Profiles tab" > "<profile>" > "Differential" or "Snapshot"`.
-* To expand ValueSets from an IG, go to `"FHIR Packages" > "<IG name>" > "ValueSets" > "<ValueSet>" > "Expansion tab"`.
+* To view the content of an IG in the Aidbox UI, navigate to `"FHIR Packages" > "<IG name>"`
+* To view the rendered StructureDefinition differential/snapshot, go to `"FHIR Packages" > "<IG name>" > "Profiles tab" > "<profile>" > "Differential" or "Snapshot"`
+* To expand ValueSets from an IG, go to `"FHIR Packages" > "<IG name>" > "ValueSets" > "<ValueSet>" > "Expansion tab"`
 
-Additionally, Aidbox offers a developer-oriented approach for creating and testing profiles. You can simply POST a `StructureDefinition` to a running Aidbox instance and validate a resource against it. Your `StructureDefinitions` and other Conformance Resources posted via the FHIR CRUD API will later appear in the aidbox.main package. To view its content, navigate to `"FHIR Packages" > "app.aidbox.main" > "Profiles tab"`.
+Additionally, Aidbox offers a developer-oriented approach for creating and testing profiles. You can simply POST a `StructureDefinition` to a running Aidbox instance and validate a resource against it. Your `StructureDefinitions` and other Conformance Resources posted via the FHIR CRUD API will later appear in the aidbox.main package. To view its content, navigate to `"FHIR Packages" > "app.aidbox.main" > "Profiles tab"`
 
 ## What is _Validation_?
 
