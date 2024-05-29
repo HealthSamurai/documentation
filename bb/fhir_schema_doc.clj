@@ -32,7 +32,7 @@ AIDBOX_VALIDATE_BINDING_URL=https://tx.fhir.org/r4/ValueSet/\\$validate-code
 
 ## Supported FHIR Implementation Guides (IGs) Packages
 
-Here is the complete list of supported and ready-to-use Implementation Guides (IGs) for the new validator engine. We use [packages2.fhir.org](http://packages2.fhir.org/) as the source of truth for implementation guides and synchronise them daily at 00:00 UTC. This documentation page is also updated automatically.
+Here is the complete list of supported and ready-to-use Implementation Guides (IGs) for the new validator engine. We use [packages2.fhir.org](http://packages2.fhir.org/) as the source of truth for implementation guides and synchronise them daily at 00:00 UTC. The package includes the following resources: FHIR NPM Package manifest, FHIR Schemas, StructureDefinitions (for introspection purposes only), SearchParameters, CompartmentDefinitions, and ValueSet resources (for introspection purposes only). This documentation page is also updated automatically.
 
 {{list-of-packages}}
 ")
