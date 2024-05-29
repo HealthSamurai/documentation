@@ -217,6 +217,7 @@
       * [UploadFIG Tool](modules-1/profiling-and-validation/fhir-schema-validator/tutorials/uploading-fhir-ig-using-uploadfig-library.md)
     * [Tutorials](modules-1/profiling-and-validation/fhir-schema-validator/tutorials/README.md)
       * [US Core](modules-1/profiling-and-validation/fhir-schema-validator/tutorials/us-core.md)
+      * [Inferno Test-Suite US Core 3.1.1](modules-1/profiling-and-validation/fhir-schema-validator/tutorials/inferno-test-suite-us-core-3.1.1.md)
       * [Carin BB](modules-1/profiling-and-validation/fhir-schema-validator/tutorials/carin-bb.md)
       * [Davinci Pdex](modules-1/profiling-and-validation/fhir-schema-validator/tutorials/davinci-pdex.md)
       * [mCode](modules-1/profiling-and-validation/fhir-schema-validator/tutorials/mcode.md)
