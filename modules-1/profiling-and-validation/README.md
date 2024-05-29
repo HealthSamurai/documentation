@@ -20,6 +20,8 @@ Though Aidbox does not emphasize the process of profiling, it provides a rich ex
 
 Additionally, Aidbox offers a developer-oriented approach for creating and testing profiles. You can simply POST a `StructureDefinition` to a running Aidbox instance and validate a resource against it. Your `StructureDefinitions` and other Conformance Resources posted via the FHIR CRUD API will later appear in the aidbox.main package. To view its content, navigate to `"FHIR Packages" > "app.aidbox.main" > "Profiles tab"`
 
+The FHIR ecosystem offers a diverse array of tools for profiling, with the most notable being the [FHIR Shorthand](https://build.fhir.org/ig/HL7/fhir-shorthand/)/[SUSHI](https://github.com/FHIR/sushi) project and the [FHIR IG Publisher](https://confluence.hl7.org/display/FHIR/IG+Publisher+Documentation).
+
 ## What is _Validation_?
 
 Specifying constraints and refinements is only half the job; your FHIR server must also ensure that incoming data conforms to the selected IG for its operation. The process of verifying that a data instance is valid against a predefined set of constraints is known as _validation_.
