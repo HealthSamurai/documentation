@@ -218,6 +218,7 @@
     * [Tutorials](modules-1/profiling-and-validation/fhir-schema-validator/tutorials/README.md)
       * [US Core](modules-1/profiling-and-validation/fhir-schema-validator/tutorials/us-core.md)
       * [Carin BB](modules-1/profiling-and-validation/fhir-schema-validator/tutorials/carin-bb.md)
+      * [Davinci Pdex](modules-1/profiling-and-validation/fhir-schema-validator/tutorials/davinci-pdex.md)
       * [mCode](modules-1/profiling-and-validation/fhir-schema-validator/tutorials/mcode.md)
       * [ISiK](modules-1/profiling-and-validation/fhir-schema-validator/tutorials/isik.md)
   * [zen-lang validator](profiling-and-validation/profiling-with-zen-lang/README.md)
