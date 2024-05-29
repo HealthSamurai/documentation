@@ -12,7 +12,11 @@ The process of creating these constraints is known as _profiling_. These constra
 
 ## What Aidbox provides for _profiling_?
 
-Though Aidbox does not emphasize the process of profiling, it provides a rich experience for introspection of IGs loaded into Aidbox. For example:
+Though Aidbox does not emphasize the process of profiling, it provides a rich experience for introspection of IGs loaded into Aidbox.
+
+{% hint style="info" %}
+Introspection views are available only in the New UI. To enable it, go to `"Settings" > "New UI."`
+{% endhint %}
 
 * To view the content of an IG in the Aidbox UI, navigate to `"FHIR Packages" > "<IG name>"`
 * To view the rendered StructureDefinition differential/snapshot, go to `"FHIR Packages" > "<IG name>" > "Profiles tab" > "<profile>" > "Differential" or "Snapshot"`
