@@ -41,7 +41,6 @@ Content-Type: application/json
 
 {
     "resourceType": "Patient",
-    "id": "PatientinMusterfrau",
     "meta": {
         "profile":  [
             "https://gematik.de/fhir/isik/v3/Basismodul/StructureDefinition/ISiKPatient"
@@ -217,7 +216,6 @@ Content-Type: application/json
 
 {
     "resourceType": "Patient",
-    "id": "PatientinMusterfrau",
     "meta": {
         "profile":  [
             "https://gematik.de/fhir/isik/v3/Basismodul/StructureDefinition/ISiKPatient"
