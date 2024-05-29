@@ -452,12 +452,13 @@ Ressourcen zur Rezeptanforderung eines E-Rezeptes
 <details>
 <summary>Description</summary>
 
-Provides guidance to US Realm implementers to use the FHIR for implementing access and exchange Electronic Long-Term Services and Supports (eLTSS) Dataset data  elements (built Fri, Dec 15, 2023 20:54+0000+00:00)
+Provides guidance to US Realm implementers to use the FHIR for implementing access and exchange Electronic Long-Term Services and Supports (eLTSS) Dataset data  elements (built Mon, May 27, 2024 02:28+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.us.eltss#2.0.0`
 * `hl7.fhir.us.eltss#2.0.0-ballot`
 * `hl7.fhir.us.eltss#1.0.0`
 * `hl7.fhir.us.eltss#0.1.0`
@@ -3813,6 +3814,7 @@ PLSP Health Hub
 
 **Versions**
 
+* `healthhub.fhir.dk.core#1.0.2-alpha`
 * `healthhub.fhir.dk.core#1.0.1-alpha`
 * `healthhub.fhir.dk.core#1.0.0-alpha`
 
