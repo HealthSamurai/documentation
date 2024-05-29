@@ -6,7 +6,15 @@ description: How to load FHIR Canonical resources via Aidbox FHIR API
 
 Aidbox provides a FHIR CRUD API over canonical resources such as StructureDefinition, SearchParameter, and ValueSet.
 
-## Creating a StructureDefinition
+### 1. Run Aidbox with FHIR Schema Validation Engine
+
+{% content-ref url="../setup.md" %}
+[setup.md](../setup.md)
+{% endcontent-ref %}
+
+## 2. Creating conformance resources
+
+### StructureDefinition
 
 This allows you to create profiles on resources in Aidbox instance at runtime
 
@@ -63,7 +71,7 @@ issue:
       path: gender
 ```
 
-## Creating a SearchParameter
+### Creating a SearchParameter
 
 You can create SearchParameters to search for resources.
 
@@ -100,7 +108,7 @@ gender: unknown
 GET /fhir/Patient?new-gender=unknown
 ```
 
-## Creating a ValueSet
+### Creating a ValueSet
 
 Send a PUT request to create a ValueSet called "**my-gender-identity**"
 
