@@ -136,9 +136,15 @@ Access tokens have scopes, which define permissions and the resources that the t
 
 Refer to the [FHIR API docs](../api-1/fhir-api/search-1/) for guidance.
 
-Note: Any Scope not currently listed is not supported Patient Access scopes:
+{% hint style="info" %}
+Any scope not currently listed is not supported Patient Access scopes
+{% endhint %}
 
 ```
+openid
+fhirUser
+profile
+offline_access
 patient/CareTeam.read
 patient/Coverage.read
 patient/ExplanationOfBenefit.read
