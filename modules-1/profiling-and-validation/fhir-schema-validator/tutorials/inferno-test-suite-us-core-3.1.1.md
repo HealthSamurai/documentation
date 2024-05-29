@@ -73,6 +73,6 @@ In the test tree, click on the `"US Core FHIR API"` test. Then, click on the `"R
 
 1. **FHIR Endpoint (required)**: Enter the Aidbox link with the added suffix `/fhir` (e.g., `https://my.aidbox/fhir`, where the base link is `https://my.aidbox` and the suffix is `/fhir`).
 2. **OAuth Credentials, Access Token**: Insert the Access Token obtained earlier.
-3. **Patient IDs**: The patients in the test suite bundle have the following IDs: `d831ec91-c7a3-4a61-9312-7ff0c4a32134, e91975f5-9445-c11f-cabf-c3c6dae161f2` just copy and insert this substring.
+3. **Patient IDs**: The patients in the test suite bundle have the following IDs: `d831ec91-c7a3-4a61-9312-7ff0c4a32134,e91975f5-9445-c11f-cabf-c3c6dae161f2` just copy and insert this substring.
 
 After entering this information, simply run the tests by pressing the "submit" button.
