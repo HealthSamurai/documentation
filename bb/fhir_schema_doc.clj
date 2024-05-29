@@ -26,7 +26,7 @@ To begin using FHIR IGs, enable the FHIR Schema validator engine in Aidbox.
 ```bash
 AIDBOX_FHIR_SCHEMA_VALIDATION=true
 AIDBOX_FHIR_PACKAGES=hl7.fhir.us.core#5.0.1:hl7.fhir.us.mcode#3.0.0
-AIDBOX_VALIDATE_BINDING_URL=https://tx.fhir.org/r4/ValueSet/\\$validate-code
+AIDBOX_TERMINOLOGY_SERVICE_BASE_URL=https://tx.fhir.org/r4
 ```
 {% endcode %}
 
