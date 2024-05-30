@@ -2,7 +2,7 @@
 
 Get started with Aidbox locally using one of these methods:
 
-### 1. Standard Method
+### Simple Method
 
 Quick setup using Docker and cURL. Perfect for getting started fast.
 
@@ -10,7 +10,7 @@ Quick setup using Docker and cURL. Perfect for getting started fast.
 [run-aidbox-locally.md](run-aidbox-locally.md)
 {% endcontent-ref %}
 
-### 2. Configuration Project Method
+### Configuration Project Method
 
 Use a predefined configuration for a tailored setup.
 
