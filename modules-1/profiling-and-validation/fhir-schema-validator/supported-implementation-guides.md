@@ -26,7 +26,7 @@ AIDBOX_VALIDATE_BINDING_URL=https://tx.fhir.org/r4/ValueSet/\$validate-code
 
 ## Supported FHIR Implementation Guides (IGs) Packages
 
-Here is the complete list of supported and ready-to-use Implementation Guides (IGs) for the new validator engine. We use [packages2.fhir.org](http://packages2.fhir.org/) as the source of truth for implementation guides and synchronise them daily at 00:00 UTC. This documentation page is also updated automatically.
+Here is the complete list of supported and ready-to-use Implementation Guides (IGs) for the new validator engine. We use [packages2.fhir.org](http://packages2.fhir.org/) as the source of truth for implementation guides and synchronise them daily at 00:00 UTC. The package includes the following resources: FHIR NPM Package manifest, FHIR Schemas, StructureDefinitions (for introspection purposes only), SearchParameters, CompartmentDefinitions, and ValueSet resources (for introspection purposes only). This documentation page is also updated automatically.
 
 ---
 
@@ -514,6 +514,7 @@ NHS Booking and Referrals
 * `uk.nhsdigital.bars.r4#1.8.0-alpha`
 * `uk.nhsdigital.bars.r4#1.7.0-alpha`
 * `uk.nhsdigital.bars.r4#1.6.0`
+* `uk.nhsdigital.bars.r4#1.6.0+001`
 * `uk.nhsdigital.bars.r4#1.5.0`
 * `uk.nhsdigital.bars.r4#1.4.0`
 * `uk.nhsdigital.bars.r4#1.3.0`
@@ -4102,6 +4103,7 @@ Implementation Guide for the Mobile access to Health Documents (epr-mhealth) Pro
 
 **Versions**
 
+* `de.netzwerk-universitaetsmedizin.ebm-cpg#0.9.0`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.8.0`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.7.0`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.7.1-snapshot`
@@ -5868,6 +5870,8 @@ Technical profiles used by nexuzhealth for the import and export of data.
 
 **Versions**
 
+* `nxh.fhir.r4#0.0.0-beta.11`
+* `nxh.fhir.r4#0.0.0-beta.10`
 * `nxh.fhir.r4#0.0.0-beta.9`
 * `nxh.fhir.r4#0.0.0-beta.8`
 * `nxh.fhir.r4#0.0.0-beta.7`
