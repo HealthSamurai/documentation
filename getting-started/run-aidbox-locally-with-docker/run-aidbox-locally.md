@@ -4,7 +4,7 @@ description: Follow these steps to launch Aidbox locally using Docker
 
 # Run Aidbox locally
 
-## Prerequisites
+### Prerequisites
 
 {% hint style="warning" %}
 <img src="../../.gitbook/assets/docker.png" alt="" data-size="original">
@@ -12,17 +12,15 @@ description: Follow these steps to launch Aidbox locally using Docker
 Please **make sure** that both [Docker & Docker Compose](https://docs.docker.com/engine/install/) are installed.
 {% endhint %}
 
-## Steps
+### Steps
 
-1. **Create a Directory**
-
-### 1. Create a directory
+#### 1. Create a directory
 
 ```sh
 mkdir aidbox && cd aidbox
 ```
 
-### 2. **Run Aidbox on Docker**
+#### 2. **Run Aidbox on Docker**
 
 ```bash
 curl -JO https://aidbox.app/runme && docker compose up
@@ -30,22 +28,22 @@ curl -JO https://aidbox.app/runme && docker compose up
 
 This command downloads the Aidbox script and starts Aidbox using Docker Compose.
 
-### 3. Access Aidbox
+#### 3. Access Aidbox
 
-Navigate to [http://localhost:8888/](http://localhost:8888/)
+Open in browser [http://localhost:8080/](http://localhost:8888/)
 
-### 4. Activate your Aidbox instance
+#### 4. Activate your Aidbox instance
 
 * Using AidboxID\
   AidboxID is a unique identifier within Aidbox ecosystem used for product activation
 * Using Aidbox license\
   Aidbox license can be issued on the [Aidbox user portal](https://aidbox.app/). More about Aidbox licenses [here](../../overview/aidbox-user-portal/licenses.md).&#x20;
 
-### 5. **Discover Aidbox features using Notebooks**
+#### 5. **Discover Aidbox features using Notebooks**
 
 Use Getting Started Notebooks to explore basic Aidbox features&#x20;
 
-<figure><img src="../../.gitbook/assets/notebooks.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2024-05-30 at 20.17.18.png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 **Aidbox Notebooks**
