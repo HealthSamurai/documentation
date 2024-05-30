@@ -6,8 +6,8 @@ Get started with Aidbox locally using one of these methods:
 
 Quick setup using Docker and cURL. Perfect for getting started fast.
 
-{% content-ref url="./" %}
-[.](./)
+{% content-ref url="run-aidbox-locally.md" %}
+[run-aidbox-locally.md](run-aidbox-locally.md)
 {% endcontent-ref %}
 
 ### 2. Configuration Project Method
