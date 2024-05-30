@@ -20,7 +20,7 @@ Aidbox allows you to upload an arbitrary FHIR Implementation Guide by referring 
 2. Go to the **Import FHIR Package** sidebar section.
 3.  Enter the public **Package URL** via the input from the "**Provide URLs to package .targz files**" section
 
-    _Example #1:_ [https://packages.simplifier.net/hl7.fhir.us.core/5.0.1](https://packages.simplifier.net/hl7.fhir.r4.core/4.0.1)
+    _Example #1:_ [https://packages.simplifier.net/hl7.fhir.us.core/5.0.1](https://packages.simplifier.net/hl7.fhir.us.core/5.0.1)
 
     _Example #2:_ [https://packages2.fhir.org/packages/hl7.fhir.us.core/5.0.1](https://packages2.fhir.org/packages/hl7.fhir.us.core/5.0.1)
 4. Click **Submit** button.
