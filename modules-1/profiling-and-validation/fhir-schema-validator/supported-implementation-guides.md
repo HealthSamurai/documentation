@@ -20,7 +20,7 @@ To begin using FHIR IGs, enable the FHIR Schema validator engine in Aidbox.
 ```bash
 AIDBOX_FHIR_SCHEMA_VALIDATION=true
 AIDBOX_FHIR_PACKAGES=hl7.fhir.us.core#5.0.1:hl7.fhir.us.mcode#3.0.0
-AIDBOX_VALIDATE_BINDING_URL=https://tx.fhir.org/r4/ValueSet/\$validate-code
+AIDBOX_TERMINOLOGY_SERVICE_BASE_URL=https://tx.fhir.org/r4
 ```
 {% endcode %}
 
@@ -493,6 +493,7 @@ NHS Booking and Referrals
 
 **Versions**
 
+* `uk.nhsdigital.bars.r4#1.31.0`
 * `uk.nhsdigital.bars.r4#1.30.0`
 * `uk.nhsdigital.bars.r4#1.29.0-test+001`
 * `uk.nhsdigital.bars.r4#1.28.0`
@@ -534,12 +535,13 @@ NHS Booking and Referrals
 <details>
 <summary>Description</summary>
 
-臺灣核心實作指引(TW Core IG) (built Tue, Apr 9, 2024 21:27+0800+08:00)
+臺灣核心實作指引(TW Core IG) (built Tue, May 28, 2024 21:46+0800+08:00)
 
 </details>
 
 **Versions**
 
+* `tw.gov.mohw.twcore#0.2.2`
 * `tw.gov.mohw.twcore#0.2.1`
 * `tw.gov.mohw.twcore#0.2.0`
 * `tw.gov.mohw.twcore#0.1.1`
@@ -11148,6 +11150,7 @@ Fresenius Medical Care Data Model
 
 **Versions**
 
+* `fmcna.caredata.fhir.ig.r4#1.1.7`
 * `fmcna.caredata.fhir.ig.r4#1.1.6`
 * `fmcna.caredata.fhir.ig.r4#1.1.5`
 * `fmcna.caredata.fhir.ig.r4#1.1.4`
