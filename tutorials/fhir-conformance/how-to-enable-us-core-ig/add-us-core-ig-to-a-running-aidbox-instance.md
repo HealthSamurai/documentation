@@ -25,7 +25,7 @@ If you are new to Aidbox it is strongly recommended not to skip any steps. Other
 
 ### Set up base Aidbox instance
 
-Check out our “Getting Started” guides. One of the easiest ways is by following this [guide](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md).
+Check out our “Getting Started” guides. One of the easiest ways is by following this [guide](../../../getting-started/run-aidbox-locally-with-docker/).
 
 ### Specify US Core as a dependency
 

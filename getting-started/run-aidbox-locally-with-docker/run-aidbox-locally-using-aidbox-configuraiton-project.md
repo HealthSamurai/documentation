@@ -1,8 +1,4 @@
----
-description: Get up-to-speed with Aidbox features via interactive tutorials.
----
-
-# Run Aidbox locally
+# Run Aidbox locally using Aidbox Configuraiton project
 
 ## Intro
 
@@ -32,7 +28,7 @@ The _<mark style="color:green;background-color:yellow;">Aidbox License Key</mark
 
 ### 2. Configure the Aidbox
 
-Aidbox is configured by dedicated [Aidbox Configuration Projects](../../aidbox-configuration/aidbox-zen-lang-project/).
+Dedicated Aidbox Configuration Projects configure Aidbox.
 
 You can start with the default configuration project published on our GitHub and customize it for your specific needs later. Select the FHIR version and clone the corresponding project with the Bash commands below:
 
@@ -98,7 +94,7 @@ This approach helps you keep configurations under a version control system and s
 
 #### Add the license key to your configuration project.
 
-Update the **.env** file within your configuration project with the Aidbox License Key from [Step 1](run-aidbox-locally-with-docker.md#1.-get-the-aidbox-license-with-a-self-hosting-option):
+Update the **.env** file within your configuration project with the Aidbox License Key from [Step 1](run-aidbox-locally-using-aidbox-configuraiton-project.md#1.-get-the-aidbox-license-with-a-self-hosting-option):
 
 {% code title=".env" %}
 ```ini

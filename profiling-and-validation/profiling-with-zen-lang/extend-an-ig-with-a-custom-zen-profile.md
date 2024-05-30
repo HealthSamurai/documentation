@@ -12,7 +12,7 @@ Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [co
 
 ## Prerequisites
 
-Install the Aidbox following [this guide](../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md).
+Install the Aidbox following [this guide](../../getting-started/run-aidbox-locally-with-docker/).
 
 In the `.env` file find the line starting with `AIDBOX_IMAGE` and edit it to be like this if it is not:
 
@@ -94,7 +94,7 @@ AIDBOX_ZEN_DEV_MODE=enable
 ```
 {% endcode %}
 
-Now Aidbox will automatically reload when changes are made in the project. Note that this feature is a work in progress and some things may not reload properly.&#x20;
+Now Aidbox will automatically reload when changes are made in the project. Note that this feature is a work in progress and some things may not reload properly.
 
 ## Check if your profile is loaded
 

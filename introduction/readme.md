@@ -28,14 +28,14 @@ Aidbox uses [FHIR](https://www.hl7.org/fhir/overview.html) as a foundation and p
 
 ### Try Aidbox
 
-You can get Aidbox hosted in the cloud (Aidbox Sandbox or AWS) or get self-hosted Aidbox license  for evaluation on your local computer or your own infrastructure.
+You can get Aidbox hosted in the cloud (Aidbox Sandbox or AWS) or get self-hosted Aidbox license for evaluation on your local computer or your own infrastructure.
 
 {% content-ref url="../getting-started/run-aidbox-in-aidbox-sandbox.md" %}
 [run-aidbox-in-aidbox-sandbox.md](../getting-started/run-aidbox-in-aidbox-sandbox.md)
 {% endcontent-ref %}
 
-{% content-ref url="../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md" %}
-[run-aidbox-locally-with-docker.md](../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md)
+{% content-ref url="../getting-started/run-aidbox-locally-with-docker/" %}
+[run-aidbox-locally-with-docker](../getting-started/run-aidbox-locally-with-docker/)
 {% endcontent-ref %}
 
 {% content-ref url="../getting-started-1/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md" %}
@@ -47,7 +47,7 @@ You can get Aidbox hosted in the cloud (Aidbox Sandbox or AWS) or get self-hoste
 Aidbox implements most of the [FHIR specification](https://www.hl7.org/fhir/) and supports all official versions of the standard. We designed Aidbox to be FHIR-compatible, but it uses its own framework. Besides FHIR, Aidbox offers many useful additions. The key differences are listed below:
 
 * Aidbox stores Resources in [Aidbox format](https://docs.aidbox.app/modules-1/fhir-resources/aidbox-and-fhir-formats), which is isomorphic to FHIR, but not the same.
-* Aidbox serves two sets of API: **Aidbox API** from "/" and **FHIR API** from "/fhir**"**. Aidbox API works with Aidbox format, and FHIR API works with FHIR format. When you interact with FHIR endpoints, Aidbox does on-the-fly conversion between these two formats.
+* Aidbox serves two sets of API: **Aidbox API** from "/" and **FHIR API** from "/fhir\*\*"\*\*. Aidbox API works with Aidbox format, and FHIR API works with FHIR format. When you interact with FHIR endpoints, Aidbox does on-the-fly conversion between these two formats.
 * Aidbox offers **First-Class Extensions** and **Custom Resources**, which FHIR doesn't support, but these additions are very handy for designing real-world systems.
 * Aidbox uses its own Entity/Attribute, SearchParameter and AidboxProfile framework instead of FHIR Structure Definitions. FHIR Profiles should be converted to Aidbox meta-resources.
 

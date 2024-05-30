@@ -44,7 +44,7 @@ Aidbox is configured by the [Aidbox Configuration Projects](../../../aidbox-conf
 </code></pre>
 
 {% hint style="info" %}
-See more details related the [running Aidbox locally](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md)
+See more details related the [running Aidbox locally](../../../getting-started/run-aidbox-locally-with-docker/)
 {% endhint %}
 
 ### Apply the license and AIDBOX\_BASE\_URL

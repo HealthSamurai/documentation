@@ -4,7 +4,7 @@ description: >-
   Authority Center (VSAC) at the National Library of Medicine (NLM)
 ---
 
-# Load US VSAC Package into Aidbox
+# Load US VSAC Package to Aidbox
 
 {% hint style="warning" %}
 The current package is a pre-built version of the VSAC contents 0.7.0 (2022-06-11). Please [reach out to us](../../../contact-us.md) if you need a newer version.
@@ -15,7 +15,7 @@ The current package is a pre-built version of the VSAC contents 0.7.0 (2022-06-1
 To correctly set up Aidbox, we'll utilize the Aidbox configuration projects.&#x20;
 
 {% hint style="info" %}
-Check the [existing guide](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md) that explains how to run Aidbox locally      &#x20;
+Check the [existing guide](../../../getting-started/run-aidbox-locally-with-docker/) that explains how to run Aidbox locally      &#x20;
 {% endhint %}
 
 ```sh

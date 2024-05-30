@@ -74,7 +74,7 @@ It's time to upgrade your database - please stop your container and change image
 * [AidboxQuery](../../../tutorials/data-api/custom-search.md) extended with count-query and params types and defaults
 * New `/<RT>/$load` and `/$load` [bulk operations](../../../api-1/bulk-api-1/#usdload) were added and [$import](../../../api-1/bulk-api-1/#usdimport) was upgraded
 * aidbox/db upgrade to 11.4 + fixes in json\_knife pg extension - (deep patterns, indexes)
-* Highlighted logs for humans in [Aidbox.Dev](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md) by default: docker logs -f \<your-box-container>
+* Highlighted logs for humans in [Aidbox.Dev](../../run-aidbox-locally-with-docker/) by default: docker logs -f \<your-box-container>
 * New [Aidbox.Enterprise](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/release-notes-1/broken-reference/README.md)
 
 ## 0.4.5 \[3 July 2019]

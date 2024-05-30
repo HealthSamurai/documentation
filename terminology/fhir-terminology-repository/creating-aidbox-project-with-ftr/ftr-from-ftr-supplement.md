@@ -114,7 +114,7 @@ git init && git add . && git commit -m "init"
 
 ## Generate FTR
 
-Replace `<PATH_TO_JAR>` placeholder with absolute path to `zen.jar`.&#x20;
+Replace `<PATH_TO_JAR>` placeholder with absolute path to `zen.jar`.
 
 Execute command listed below in project directory:
 
@@ -130,7 +130,7 @@ git add . && git commit -m "Build ftr"
 
 Now you can run Aidbox with the following configuration project and use [FHIR Terminology API ](../../valueset/)methods like `$validate-code/$lookup` on generated `angina-vs` ValueSet. Resource validation performed when someone invocates a FHIR REST operations will also validate ValueSet binding via FTR.
 
-For detailed instructions about using Aidbox with Aidbox configuration project, please refer to this [page](../../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md).
+For detailed instructions about using Aidbox with Aidbox configuration project, please refer to this [page](../../../getting-started/run-aidbox-locally-with-docker/).
 
 ## Instruct Aidbox to load terminologies into the DB
 

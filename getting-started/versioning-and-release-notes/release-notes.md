@@ -284,7 +284,7 @@
 ## April 2023 _`2304`_
 
 * Validation and Terminology
-  * Supported [FHIR R5](../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md#fhir-r5)
+  * Supported [FHIR R5](../run-aidbox-locally-with-docker/#fhir-r5)
 * Aidbox Notebooks
   * Added new [preview feature](../../overview/aidbox-ui/notebooks.md#save-a-notebook): now, users can download their notebooks as HTML files, which can be viewed on any web browser, uploaded to an Aidbox instance, and used as regular noteboooks
 * Data API

@@ -18,8 +18,8 @@ description: This article describes how to manage Aidbox licenses
 
 This quickstart guide explains how to run Aidbox locally using docker compose
 
-{% content-ref url="../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md" %}
-[run-aidbox-locally-with-docker.md](../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md)
+{% content-ref url="../../getting-started/run-aidbox-locally-with-docker/" %}
+[run-aidbox-locally-with-docker](../../getting-started/run-aidbox-locally-with-docker/)
 {% endcontent-ref %}
 
 ### Create a hosted Aidbox instance
@@ -169,8 +169,8 @@ This page covers types of Aidbox licenses and describes Aidbox Support tiers.
 
 This quickstart guide explains how to run Aidbox locally using docker compose
 
-{% content-ref url="../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md" %}
-[run-aidbox-locally-with-docker.md](../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md)
+{% content-ref url="../../getting-started/run-aidbox-locally-with-docker/" %}
+[run-aidbox-locally-with-docker](../../getting-started/run-aidbox-locally-with-docker/)
 {% endcontent-ref %}
 
 ### Aidbox as a SaaS on AWS

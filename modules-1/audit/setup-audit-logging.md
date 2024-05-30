@@ -6,7 +6,7 @@ description: >-
 
 # Configure Audit Log
 
-This guide shows you how to enable audit logging in Aidbox and receive audit logs within FHIR API and Audit log viewer UI application. It is expected, that you have Aidbox up & running in accordance to [Run Aidbox locally guide](../../getting-started-1/run-aidbox/run-aidbox-locally-with-docker.md).
+This guide shows you how to enable audit logging in Aidbox and receive audit logs within FHIR API and Audit log viewer UI application. It is expected, that you have Aidbox up & running in accordance to [Run Aidbox locally guide](../../getting-started/run-aidbox-locally-with-docker/).
 
 ## Enable audit logging in aidbox configuration project
 
