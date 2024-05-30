@@ -124,6 +124,7 @@ C-CDA Equivalent:
             <tr>
                <td>allergy</td>
                <td>No Known Allergy (situation)</td>
+               <td>N/A</td>
                <td>active</td>
             </tr>
          </tbody>
@@ -342,6 +343,12 @@ C-CDA Equivalent:
                <td>
                   <paragraph>01/29/2012 12:00AM UTC - Nausea - severe</paragraph>
                </td>
+               <td>active</td>
+            </tr>
+            <tr>
+               <td>allergy</td>
+               <td>Codeine</td>
+               <td>03/15/2010 12:00AM UTC</td>
                <td>
                   <paragraph>03/15/2010 12:00AM UTC - Nausea - mild</paragraph>
                </td>
@@ -621,6 +628,12 @@ C-CDA Equivalent:
                <td>
                   <paragraph>01/29/2012 12:00AM UTC - Nausea - severe</paragraph>
                </td>
+               <td>active</td>
+            </tr>
+            <tr>
+               <td>intolerance</td>
+               <td>Codeine</td>
+               <td>03/15/2010 12:00AM UTC</td>
                <td>
                   <paragraph>03/15/2010 12:00AM UTC - Nausea - mild</paragraph>
                </td>
@@ -862,6 +875,12 @@ C-CDA Equivalent:
                <td>
                   <paragraph>~ - Hives - moderate</paragraph>
                </td>
+               <td>active</td>
+            </tr>
+            <tr>
+               <td>intolerance</td>
+               <td>Penicillin G</td>
+               <td>05/01/1980 12:00AM UTC</td>
                <td>
                   <paragraph>03/15/2010 12:00AM UTC - Nausea - mild</paragraph>
                </td>
