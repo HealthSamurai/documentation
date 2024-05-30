@@ -4,25 +4,19 @@ description: This page covers types of Aidbox licenses and describes Aidbox Supp
 
 # Licensing and Support
 
-Aidbox offers developers a smooth path from a tiny digital health app prototype to a country-wide deployment of a global healthcare solution. [Health Samurai](https://www.health-samurai.io/) is always around to make sure that developers get all the necessary support.
+Aidbox offers developers a smooth path from a tiny digital health app prototype to a country-wide deployment of a global healthcare solution. [Health Samurai](https://www.health-samurai.io/) is always around to ensure developers get all the necessary support.
 
-## Aidbox Licenses
+## Aidbox license types:
 
-To start using Aidbox visit the [Aidbox user portal](https://aidbox.app/), create a [project ](../overview/aidbox-user-portal/projects.md)and get a [standard license](../overview/aidbox-user-portal/licenses.md). A standard license allows running Aidbox [locally](run-aidbox-locally-with-docker/) or in [Aidbox Sandbox](run-aidbox-in-aidbox-sandbox.md) for 14 days and then can be extended by the Health Samurai team.&#x20;
+<table data-header-hidden><thead><tr><th width="447"></th><th></th></tr></thead><tbody><tr><td><strong>Aidbox Edition</strong></td><td><strong>Price</strong></td></tr><tr><td>Aidbox production license</td><td>$</td></tr><tr><td>Development license </td><td>free</td></tr></tbody></table>
 
-### Product license types:
+### Production license
 
-<table data-header-hidden><thead><tr><th width="447"></th><th></th></tr></thead><tbody><tr><td><strong>Aidbox Edition</strong></td><td><strong>Price</strong></td></tr><tr><td>Aidbox standard license</td><td>$</td></tr><tr><td>Development license (available for customers only)</td><td>free</td></tr></tbody></table>
-
-### Standard license
-
-A standard license allows running Aidbox locally or in Aidbox Sandbox for 14 days (trial) and then can be extended by the Health Samurai team for production usage with PHI data.&#x20;
-
-This license can be upgraded for production use with PHI data. Please [contact us](../contact-us.md) for more details.
+A production license allows running Aidbox for 14 days (trial) and then can be extended by the Health Samurai team for production usage with PHI data. Please [contact us](../contact-us.md) for more details.
 
 ### Development license
 
-After you **get a contract for a standard license or any support package** you can get additional licenses for development and testing. A development license allows you to store not more than 2 GB of data in your database.
+A development license allows you to store not more than 2 GB of data in your database.
 
 When you reach your database size limit, you’ll receive 3 types of messages - warning, error message, and blocking message:
 
@@ -39,10 +33,6 @@ When you reach your database size limit, you’ll receive 3 types of messages - 
 `Your database (name of your database) size is 33.7 GiB and it's above license limit 2.0 GiB, your process is going to shutdown in 60 minutes. Please review database size or contact us for further information.`
 {% endtab %}
 {% endtabs %}
-
-{% hint style="info" %}
-If your company has an active contract with Health Samurai, please request access to your company project or [contact us](../contact-us.md).
-{% endhint %}
 
 ### Production-ready Aidbox as a SaaS
 
