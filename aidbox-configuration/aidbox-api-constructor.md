@@ -190,7 +190,8 @@ As an example bellow we create CRUD endpoint that explains to Aidbox where is yo
  {:zen/tags #{aidbox.rest/op}
   :engine aidbox.rest.v1/gateway
   :url "http://host.docker.internal:9999"
-  :secret #env secret_from_envs }
+  :secret #env secret_from_envs
+  :timeout 36000}
 
  api
  {:zen/tags #{aidbox.rest/api}
