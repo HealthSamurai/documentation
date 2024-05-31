@@ -4,11 +4,11 @@ description: Aidbox Core Engine Overview
 
 # Entities & Attributes
 
-In Aidbox, almost everything is a **Resource**. Resource has a type, which is placed in **resourceType** attribute. All resource types are described with "meta-resources"  - **Entity** and **Attribute**. **Entity** defines the resource or complex type and set of **Attributes** describe its structure.
+In Aidbox, almost everything is a **Resource**. Resource has a type, which is placed in **resourceType** attribute. All resource types are described with "meta-resources" - **Entity** and **Attribute**. **Entity** defines the resource or complex type and a set of **Attributes** describes its structure.
 
 ### Entity
 
-Entity is meta-resource, which describe all resources in aidbox. There are three types of Entities: resource, type and primitive.&#x20;
+Entity is meta-resource, which describes all resources in aidbox. There are three types of Entities: resource, type and primitive.
 
 #### Primitives:
 
@@ -37,7 +37,7 @@ GET /Entity?type=primitive\
 ...
 ```
 
-For now there is no way to define custom primitive type. Contact us if you need it.
+For now, there is no way to define custom primitive type. Contact us if you need it.
 
 #### Complex Types:
 
