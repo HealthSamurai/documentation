@@ -224,6 +224,7 @@
       * [Davinci Pdex](modules-1/profiling-and-validation/fhir-schema-validator/tutorials/davinci-pdex.md)
       * [mCode](modules-1/profiling-and-validation/fhir-schema-validator/tutorials/mcode.md)
       * [ISiK](modules-1/profiling-and-validation/fhir-schema-validator/tutorials/isik.md)
+      * [Uploading IG terminology content to external FHIR terminology server](modules-1/profiling-and-validation/fhir-schema-validator/tutorials/uploading-ig-terminology-content-to-external-fhir-terminology-server.md)
   * [zen-lang validator](profiling-and-validation/profiling-with-zen-lang/README.md)
     * [Write a custom zen profile](profiling-and-validation/profiling-with-zen-lang/write-a-custom-zen-profile.md)
     * [🎓 Load zen profiles into Aidbox](profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile.md)
