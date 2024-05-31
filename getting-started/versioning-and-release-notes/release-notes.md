@@ -3,7 +3,7 @@
 ## May 2024 _`latest`_
 
 * **Aidbox development licenses** are now available to all users, empowering everyone to explore, develop, and innovate with our comprehensive FHIR-first healthcare platform.&#x20;
-* **Simplified Aidbox Launch**: We've developed a simplified [method to launch Aidbox](../run-aidbox-locally-with-docker/run-aidbox-locally.md), making it easier than ever to get started.
+* **Simplified Aidbox Launch**: We've developed a simplified[ way to launch Aidbox](../run-aidbox-locally-with-docker/run-aidbox-locally.md), making it easier than ever to get started.
 * **AidboxID Login:** Users can now log in to Aidbox using AidboxID for streamlined and secure access.
 * **FHIR schema validation engine (beta).** This validation engine is set to replace the existing Zen Schema and JSON Schema validation engines.
   * Supported multiple sources to load IGs to Aidbox:
