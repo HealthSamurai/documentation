@@ -15,7 +15,7 @@
     * Aidbox UI (at runtime)
     * FHIR API (at runtime)
     * UploadFIG tool (at runtime)
-* **New Aidbox UI**:
+* **New Aidbox UI (Settings -> New UI)**:
   * Enhanced navigation with a double sidebar for improved access to features and resources.
   * Resource browser
   * FHIR IG  package introspection
