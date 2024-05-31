@@ -1,6 +1,6 @@
 # Run Aidbox locally
 
-Get started with Aidbox locally using one of these methods:
+Get started with Aidbox locally using one of these ways:
 
 ### Simple&#x20;
 
