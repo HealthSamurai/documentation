@@ -22,6 +22,18 @@
   * Settings (read-only)
 * **DevOps:**
   * Published Helm charts to simplify the process of deploying and managing Aidbox in K8s&#x20;
+* [Aidbox Forms](../../modules-1/aidbox-forms.md)
+  * UI builder updates (FHIR Questionnaire-based):
+    * [Ability to create custom components and reuse them in other forms](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/components.md)
+    * [Supported different versions depending on FHIR server version](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/fhir-versions.md)
+    * Added open choice widget
+    * Published guides on [how to populate form with patient demographic data](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to.md#how-to-populate-form-with-patient-demographic-data-patient-name-dob-mrn-address-phone); [how to populate form with patient weight, height](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to.md#how-to-populate-form-with-patient-weight-height); [how to populate form with patient allergies](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to.md#how-to-populate-form-with-patient-allergies); [how to populate form with data from another form during the visit](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to.md#how-to-populate-form-with-data-from-another-form-during-the-visit)
+    * [Implemented printing form or basic PDF generation](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/printing-forms.md)
+    * Improved UI Builder user experience via preview form button, quick search for a field on the form or in the outline, etc
+    * Ability to enable the outline in form preview for form navigation
+    * Ability to show or hide option's scores on the form
+    * Supported Multitenancy in Aidbox Forms
+  * [Released the Public Aidbox Form Builder](https://form-builder.aidbox.app/)
 
 ## March 2024 _`stable, 2403`_&#x20;
 
