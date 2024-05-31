@@ -1,10 +1,29 @@
 # Release Notes
 
-## April 2024 _`edge`_
+## May 2024 _`latest`_
 
-`WIP`
+* **Aidbox development licenses** are now available to all users, empowering everyone to explore, develop, and innovate with our comprehensive FHIR-first healthcare platform.&#x20;
+* **Simplified Aidbox Launch**: We've developed a simplified [method to launch Aidbox](../run-aidbox-locally-with-docker/run-aidbox-locally.md), making it easier than ever to get started.
+* **AidboxID Login:** Users can now log in to Aidbox using AidboxID for streamlined and secure access.
+* **FHIR schema validation engine (beta).** This validation engine is set to replace the existing Zen Schema and JSON Schema validation engines.
+  * Supported multiple sources to load IGs to Aidbox:
+    * Aidbox FHIR IGs repository
+    * Public URL to an IG Package
+    * Local IG package&#x20;
+  * Supported multiple interfaces to load IGs to Aidbox:
+    * .env file
+    * Aidbox UI (at runtime)
+    * FHIR API (at runtime)
+    * UploadFIG tool (at runtime)
+* **New Aidbox UI**:
+  * Enhanced navigation with a double sidebar for improved access to features and resources.
+  * Resource browser
+  * FHIR IG  package introspection
+  * Settings (read-only)
+* **DevOps:**
+  * Published Helm charts to simplify the process of deploying and managing Aidbox in K8s&#x20;
 
-## March 2024 _`latest`_
+## March 2024 _`stable, 2403`_&#x20;
 
 * SQL on FHIR engine
   * Enhanced [SQL on FHIR® (v2.0) spec](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/index.html) test coverage. The SQL on FHIR coverage report is available[ here](https://fhir.github.io/sql-on-fhir-v2/#implshttps://fhir.github.io/sql-on-fhir-v2/#impls).
@@ -30,7 +49,7 @@
   * Enhanced references resolving mechanism for `make-doc` and `prepare-doc` endpoints
   * Mapping fixes, bug fixes
 
-## February 2024 _`stable, 2402`_
+## February 2024 _`2402,LTS`_
 
 * Security and Access Control
   * Released beta version of [Label-based Access Control](../../modules-1/security-and-access-control/security/attribute-based-access-control-abac/security-labels/) to control access to data based on the classification of the data (privacy, sensitivity, etc) and the attributes of the requester.
@@ -114,7 +133,7 @@
   * Added $validate-response FHIR operation
   * Added $process-response [FHIR SDC operation](http://build.fhir.org/ig/HL7/sdc/OperationDefinition-Questionnaire-process-response.html)
 
-## October 2023 _`stable, 2310`_
+## October 2023 _`2310`_
 
 * New [FHIR Schema Validator](../../modules-1/profiling-and-validation/fhir-schema-validator.md) for Aidbox (Early Alpha)
 * Terminology
