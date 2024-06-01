@@ -1436,12 +1436,14 @@ This is a guide for implementing the Consumer-Focused Real-Time Pharmacy Benefit
 <details>
 <summary>Description</summary>
 
-IL core project 0.12.0
+IL core project 0.14.2 (patch)
 
 </details>
 
 **Versions**
 
+* `il.core.fhir.r4#0.14.3`
+* `il.core.fhir.r4#0.14.2`
 * `il.core.fhir.r4#0.14.1`
 * `il.core.fhir.r4#0.14.0`
 * `il.core.fhir.r4#0.13.1`
@@ -2082,6 +2084,22 @@ FHIR Implementation Guide to exchange assessments of and data on a person's func
 
 * `hl7.fhir.us.pacio-pfe#1.0.0`
 * `hl7.fhir.us.pacio-pfe#1.0.0-ballot`
+
+
+---
+
+### FHIR.DGMC
+
+<details>
+<summary>Description</summary>
+
+DGMC
+
+</details>
+
+**Versions**
+
+* `FHIR.DGMC#0.1.0`
 
 
 ---
@@ -4105,6 +4123,7 @@ Implementation Guide for the Mobile access to Health Documents (epr-mhealth) Pro
 
 **Versions**
 
+* `de.netzwerk-universitaetsmedizin.ebm-cpg#0.9.1`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.9.0`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.8.0`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.7.0`
@@ -5872,6 +5891,7 @@ Technical profiles used by nexuzhealth for the import and export of data.
 
 **Versions**
 
+* `nxh.fhir.r4#0.0.0-beta.12`
 * `nxh.fhir.r4#0.0.0-beta.11`
 * `nxh.fhir.r4#0.0.0-beta.10`
 * `nxh.fhir.r4#0.0.0-beta.9`
@@ -6888,6 +6908,22 @@ Testprojekt für Hilfs- und Heilmittel eVerordnungen
 
 ---
 
+### cidadex.testex
+
+<details>
+<summary>Description</summary>
+
+rede de dados em saúde da cidade X
+
+</details>
+
+**Versions**
+
+* `cidadex.testex#1.0.1-beta`
+
+
+---
+
 ### furore.test.fsh.demo
 
 <details>
@@ -7861,6 +7897,7 @@ MedMorph Research Content IG enables researchers to access data from EHRs levera
 
 **Versions**
 
+* `ans.fhir.fr.pdsm#3.1.0`
 * `ans.fhir.fr.pdsm#3.0.1`
 * `ans.fhir.fr.pdsm#3.0.0`
 
@@ -11150,6 +11187,8 @@ Fresenius Medical Care Data Model
 
 **Versions**
 
+* `fmcna.caredata.fhir.ig.r4#1.1.9`
+* `fmcna.caredata.fhir.ig.r4#1.1.8`
 * `fmcna.caredata.fhir.ig.r4#1.1.7`
 * `fmcna.caredata.fhir.ig.r4#1.1.6`
 * `fmcna.caredata.fhir.ig.r4#1.1.5`
@@ -11497,12 +11536,13 @@ For Clinical Safety Information please refer to the [FHIR Implementer’s Safety
 * Standards Development Organizations
 * Vendors: EHR, PHR; Health Care IT; Clinical Decision Support Systems, Public Health Surveillance Systems
 * Providers: Ambulatory and Healthcare Institutions (hospitals, long term care, mental health)
-* Local, State, Tribal and Federal Public Health Agencies (built Wed, Aug 31, 2022 17:39+0000+00:00)
+* Local, State, Tribal and Federal Public Health Agencies (built Thu, Dec 14, 2023 17:36+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.us.ecr#2.1.1`
 * `hl7.fhir.us.ecr#2.1.0`
 * `hl7.fhir.us.ecr#2.0.0`
 * `hl7.fhir.us.ecr#1.1.0`
