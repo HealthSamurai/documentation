@@ -1878,12 +1878,13 @@ Medizininformatik Initiative - Modul Fall
 <details>
 <summary>Description</summary>
 
-The Central Cancer Registry Reporting Content IG provides healthcare organizations the necessary data exchange mechanisms to report cancer data to public health agencies. (built Thu, Dec 9, 2021 14:20+0000+00:00)
+The Central Cancer Registry Reporting Content IG provides healthcare organizations the necessary data exchange mechanisms to report cancer data to public health agencies. (built Fri, May 31, 2024 12:55+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.us.central-cancer-registry-reporting#1.0.0`
 * `hl7.fhir.us.central-cancer-registry-reporting#0.1.0`
 
 
@@ -5891,6 +5892,7 @@ Technical profiles used by nexuzhealth for the import and export of data.
 
 **Versions**
 
+* `nxh.fhir.r4#0.0.0-beta.13`
 * `nxh.fhir.r4#0.0.0-beta.12`
 * `nxh.fhir.r4#0.0.0-beta.11`
 * `nxh.fhir.r4#0.0.0-beta.10`
@@ -7069,12 +7071,13 @@ FHIR R4 profielen voor samenwerking tussen IKNL en Performation
 <details>
 <summary>Description</summary>
 
-This implementation guide defines profiles, operations and guidance for the use of CQL with FHIR, both as a mechanism for querying, as well as inline and integrated usage as part of knowledge artifacts. (built Sat, Apr 6, 2024 09:37+1100+11:00)
+This implementation guide defines profiles, operations and guidance for the use of CQL with FHIR, both as a mechanism for querying, as well as inline and integrated usage as part of knowledge artifacts. (built Fri, May 31, 2024 14:18+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.uv.cql#1.0.0`
 * `hl7.fhir.uv.cql#1.0.0-snapshot`
 * `hl7.fhir.uv.cql#1.0.0-ballot`
 
@@ -10587,12 +10590,13 @@ Put a description here
 <details>
 <summary>Description</summary>
 
-This implementation guide defines profiles, operations, capability statements and guidance to facilitate the content management lifecycle for authoring, publishing, distribution, and implementation of FHIR knowledge artifacts such as value sets, profiles, libraries, rules, and measures. The guide is intended to be used by specification and content implementation guide authors as both a dependency for validation of published artifacts, and a guide for construction and publication of content. (built Sat, Apr 6, 2024 06:47+1100+11:00)
+This implementation guide defines profiles, operations, capability statements and guidance to facilitate the content management lifecycle for authoring, publishing, distribution, and implementation of FHIR knowledge artifacts such as value sets, profiles, libraries, rules, and measures. The guide is intended to be used by specification and content implementation guide authors as both a dependency for validation of published artifacts, and a guide for construction and publication of content. (built Fri, May 31, 2024 16:38+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.uv.crmi#1.0.0`
 * `hl7.fhir.uv.crmi#1.0.0-snapshot`
 * `hl7.fhir.uv.crmi#1.0.0-ballot2`
 * `hl7.fhir.uv.crmi#1.0.0-ballot`
