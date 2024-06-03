@@ -4,11 +4,11 @@ description: A workflow engine designed to orchestrate and automate healthcare p
 
 # Workflow Engine
 
-## Workflow Engine ComponentsOverview
+## Workflow Engine Components Overview
 
-The Aidbox workflow engine is a core module of the Aidbox FHIR backend which allows to define and execute custom business logic based on the data state and events in Aidbox.
+The Aidbox workflow engine is a core module of the Aidbox FHIR backend that allows you to define and execute custom business logic based on the data state and events in Aidbox.
 
-Having a workflow engine tightly integrated with FHIR server offers numerous benefits for healthcare organizations seeking to optimize their processes and improve patient care. Here are some key advantages:&#x20;
+Having a workflow engine tightly integrated with a FHIR server offers numerous benefits for healthcare organizations seeking to optimize their processes and improve patient care. Here are some key advantages:
 
 1. Seamless data access and manipulation: With direct access to FHIR resources and operations, workflows can easily read, create, update, and delete healthcare data without the need for complex data integration or mapping.
 2. Real-time event processing: The event-driven architecture allows the workflow engine to respond immediately to changes in FHIR data, enabling rapid adaptation and reaction to various healthcare scenarios.
@@ -22,15 +22,15 @@ Workflow Engine allows implementing both simple scenarios using [predefined task
 
 ### Task and Workflow
 
-[task](task/ "mention") and [workflow](workflow/ "mention") are two basic concepts of Workflow Engines. Both a managed through API which is exposed by Aidbox.
+[task](task/ "mention") and [workflow](workflow/ "mention") are two basic concepts of Workflow Engine. Both are managed through Aidbox API.
 
-Tasks are the simplest building block, which is responsible for performing business actions. Aidbox provides a number of tasks from the box, or they could be implemented outside of Aidbox on any programming language using [SDK](../../app-development/aidbox-sdk/aidbox-javascript-sdk.md#task-api) or API.
+Tasks are the simplest building block responsible for performing business actions. Aidbox provides a number of tasks out of the box. Additional tasks can be implemented outside of Aidbox in any programming language using an [SDK](../../app-development/aidbox-sdk/aidbox-javascript-sdk.md#task-api) or API directly.
 
-For the more complex application when a simple granular task is not enough, it is necessary to build a workflow. Workflow is a series of tasks that must be completed in a specific order and within a defined time frame to achieve a specific outcome.
+For more complex application when a simple granular task is not enough, it is necessary to build a workflow. Workflow is a series of tasks that must be completed in a specific order and within a defined time frame to achieve a specific outcome.
 
 ### Task Executor
 
-Task Executor a responsible for executing the logic behind a task. For [predefined tasks](task/aidbox-predefined-tasks.md), they are run within Aidbox, and custom task executors could be [implemented](task/#task-implementation-1) in any programming language using [API](../../app-development/aidbox-sdk/aidbox-javascript-sdk.md#task-api) or SDK.
+Task Executor a responsible for executing the logic behind a task. For [predefined tasks](task/aidbox-predefined-tasks.md), they are run within Aidbox, and custom task executors could be [implemented](task/#task-implementation-1) in any programming language using an [SDK](../../app-development/aidbox-sdk/aidbox-javascript-sdk.md#task-api) or API directly.
 
 ### Workflow Executor
 
@@ -54,8 +54,6 @@ To monitor the current state of tasks, workflow, and services Workflow Engine pr
 
 * [resource-generation-with-map-to-fhir-bundle-task-and-subscription-triggers.md](../../tutorials/tutorials/resource-generation-with-map-to-fhir-bundle-task-and-subscription-triggers.md "mention") - How to create an encounter when a specific observation is created.
 
-###
-
 {% content-ref url="task/" %}
 [task](task/)
 {% endcontent-ref %}
@@ -71,4 +69,3 @@ To monitor the current state of tasks, workflow, and services Workflow Engine pr
 {% content-ref url="monitoring.md" %}
 [monitoring.md](monitoring.md)
 {% endcontent-ref %}
-
