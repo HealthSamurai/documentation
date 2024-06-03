@@ -30,11 +30,11 @@ For more complex application when a simple granular task is not enough, it is ne
 
 ### Task Executor
 
-Task Executor a responsible for executing the logic behind a task. For [predefined tasks](task/aidbox-predefined-tasks.md), they are run within Aidbox, and custom task executors could be [implemented](task/#task-implementation-1) in any programming language using an [SDK](../../app-development/aidbox-sdk/aidbox-javascript-sdk.md#task-api) or API directly.
+Task Executor is responsible for executing the logic behind a task. For [predefined tasks](task/aidbox-predefined-tasks.md), they are run within Aidbox, and custom task executors could be [implemented](task/#task-implementation-1) in any programming language using an [SDK](../../app-development/aidbox-sdk/aidbox-javascript-sdk.md#task-api) or API directly.
 
 ### Workflow Executor
 
-Workflow Executor a responsible for making decisions about the next steps in a workflow based on predefined rules, conditions, or logic.  Workflow logic could be implemented using [Workflow Engine SDK](../../app-development/aidbox-sdk/aidbox-javascript-sdk.md#workflow-engine)
+Workflow Executor is responsible for making decisions about the next steps in a workflow based on predefined rules, conditions, or logic. Workflow logic could be implemented using [Workflow Engine SDK](../../app-development/aidbox-sdk/aidbox-javascript-sdk.md#workflow-engine)
 
 ### [Services](services.md)
 
