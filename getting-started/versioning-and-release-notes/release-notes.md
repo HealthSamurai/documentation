@@ -4,24 +4,24 @@
 
 * **Aidbox development licenses** are now available to all users, empowering everyone to explore, develop, and innovate with our comprehensive FHIR-first healthcare platform.&#x20;
 * **Simplified Aidbox Launch**: We've developed a simplified[ way to launch Aidbox](../run-aidbox-locally-with-docker/run-aidbox-locally.md), making it easier than ever to get started.
-* **AidboxID Login:** Users can now log in to Aidbox using AidboxID for streamlined and secure access.
-* **FHIR schema validation engine (beta).** This validation engine is set to replace the existing Zen Schema and JSON Schema validation engines.
+* **AidboxID Login:** Users can now log in to Aidbox using AidboxID to streamline and secure access.
+* [**FHIR schema validation engine (beta)**](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator)**.** This validation engine is set to replace the existing Zen Schema and JSON Schema validation engines.
   * Supported multiple sources to load IGs to Aidbox:
-    * Aidbox FHIR IGs repository
-    * Public URL to an IG Package
-    * Local IG package&#x20;
+    * [Aidbox FHIR IGs repository](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/aidbox-ui/ig-package-from-aidbox-registry)
+    * [Public URL to an IG Package](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/aidbox-ui/public-url-to-ig-package)
+    * [Local IG package ](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/aidbox-ui/local-ig-package)
   * Supported multiple interfaces to load IGs to Aidbox:
-    * .env file
-    * Aidbox UI (at runtime)
-    * FHIR API (at runtime)
-    * UploadFIG tool (at runtime)
+    * [.env file](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/environment-variable)
+    * [Aidbox UI](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/aidbox-ui) (at runtime)
+    * [FHIR API](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/aidbox-fhir-api) (at runtime)
+    * [UploadFIG tool](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/uploading-fhir-ig-using-uploadfig-library) (at runtime)
 * **New Aidbox UI (Settings -> New UI)**:
   * Enhanced navigation with a double sidebar for improved access to features and resources.
   * Resource browser
   * FHIR IG  package introspection
   * Settings (read-only)
 * **DevOps:**
-  * Published Helm charts to simplify the process of deploying and managing Aidbox in K8s&#x20;
+  * Published [Helm charts](https://github.com/Aidbox/helm-charts?tab=readme-ov-file) to simplify the process of deploying and managing Aidbox in K8s&#x20;
 * [Aidbox Forms](../../modules-1/aidbox-forms.md)
   * UI builder updates (FHIR Questionnaire-based):
     * [Ability to create custom components and reuse them in other forms](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/components.md)
