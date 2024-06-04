@@ -1067,6 +1067,8 @@ Envoi du rapport d’endoscopie au dépôt provincial
 
 **Versions**
 
+* `rapportendoscopiequebec.test#0.0.49`
+* `rapportendoscopiequebec.test#0.0.48`
 * `rapportendoscopiequebec.test#0.0.47`
 * `rapportendoscopiequebec.test#0.0.46`
 * `rapportendoscopiequebec.test#0.0.45`
@@ -10061,6 +10063,7 @@ FHIR R4 profiles for the electronic health record (EHR) submissions to the Nethe
 
 **Versions**
 
+* `iknl.fhir.nl.r4.ncr-ehr#1.0.1`
 * `iknl.fhir.nl.r4.ncr-ehr#1.0.0`
 * `iknl.fhir.nl.r4.ncr-ehr#0.4.0-alpha`
 * `iknl.fhir.nl.r4.ncr-ehr#0.3.0`
