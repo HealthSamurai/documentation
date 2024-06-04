@@ -67,7 +67,7 @@ Internal ID: Header
         },
         "url" : "detailed"
       } ],
-      "url" : "http://hl7.org/fhir/StructureDefinition/us-core-race"
+      "url" : "https://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
     }, {
       "value" : {
         "Coding" : {
@@ -76,7 +76,7 @@ Internal ID: Header
           "system" : "urn:oid:2.16.840.1.113883.6.238"
         }
       },
-      "url" : "http://hl7.org/fhir/StructureDefinition/us-core-ethnicity"
+      "url" : "https://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"
     } ],
     "id" : "patient",
     "identifier" : [ {
@@ -92,7 +92,14 @@ Internal ID: Header
       "value" : "+1(555)-226-1544",
       "use" : "home"
     } ],
-    "gender" : "female"
+    "gender" : "female",
+    "maritalStatus" : {
+      "coding" : [ {
+        "code" : "UNK",
+        "display" : "Unknown",
+        "system" : "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus"
+      } ]
+    }
   },
   "composition" : {
     "identifier" : {
@@ -232,6 +239,10 @@ C-CDA Equivalent:
                                        codeSystem="2.16.840.1.113883.5.1"
                                        codeSystemName="AdministrativeGender"/>
             <birthTime value="19700701"/>
+            <maritalStatusCode code="UNK"
+                                displayName="Unknown"
+                                codeSystem="2.16.840.1.113883.1.11.12212"
+                                codeSystemName="MaritalStatus"/>
             <raceCode codeSystem="2.16.840.1.113883.6.238"
                        codeSystemName="urn:oid:2.16.840.1.113883.6.238"
                        displayName="White"

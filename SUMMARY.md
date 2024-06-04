@@ -337,6 +337,7 @@
       * [Assessment Section](modules-1/integration-toolkit/ccda-converter/sections/assessmentsection.md)
       * [Chief Complaint Section](modules-1/integration-toolkit/ccda-converter/sections/chiefcomplaintsection.md)
       * [Chief Complaint and Reason for Visit Section](modules-1/integration-toolkit/ccda-converter/sections/chiefcomplaintandreasonforvisits.md)
+      * [Complications Section (V3)](modules-1/integration-toolkit/ccda-converter/sections/complicationssectionv3.md)
       * [Course of Care Section](modules-1/integration-toolkit/ccda-converter/sections/courseofcaresection.md)
       * [Default Section Rules](modules-1/integration-toolkit/ccda-converter/sections/default.md)
       * [Discharge Diagnosis Section (V3)](modules-1/integration-toolkit/ccda-converter/sections/dischargediagnosissectionv3.md)
