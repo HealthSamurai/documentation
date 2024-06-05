@@ -6,8 +6,6 @@ description: >-
 
 # Authorization Code Grant
 
-#### Description
-
 The Authorization Code Grant is an OAuth 2.0 flow that regular web apps use in order to access an API, typically as web applications with backend and frontend (browser-based SPA, for example).
 
 In this flow the application receives authorization from the user. Once the user has authorized the application, they get redirected back to it with a temporary access code in the URL. The application exchanges that code for an access token. For more detailed information read [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.1).
@@ -16,7 +14,13 @@ In this flow the application receives authorization from the user. Once the user
 
 For applications that are able to securely store a secret it is recommended to supply the secret in the token request due to security considerations. Otherwise, if the application is unable to securely store a secret (i.e. a frontend only app), we suggest using [PKCE](https://datatracker.ietf.org/doc/html/rfc7636). Both methods are supported by Aidbox.
 
-## Configure Client
+### Easy way
+
+The easiest way to test Authorization Code Grant flow is to run through the [Aidbox Sandbox UI](./#auth-sandbox) (_Auth -> Sandbox ->_ Resource Owner).
+
+<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption><p>Sandbox UI</p></figcaption></figure>
+
+### Configure Client
 
 The first step is to configure Client for Authorization Grant with `secret` and `redirect_uri`, as well as `code` grant type:
 
@@ -83,7 +87,7 @@ If you want to use Authorization Code Grant for **Single Page Application** you 
 If your application is a major consumer of Aidbox API, you can set **first\_party** attribute as **true.** This means that the same User Session will be shared between Aidbox and client, so if you close the client session, Aidbox User Session will be closed too.
 {% endhint %}
 
-## Get Code
+### Get Code
 
 The next step is to query an authorize endpoint with `client_id` and `response_type` with value `code.`
 
@@ -128,7 +132,7 @@ If the client was granted permission, the user agent will be redirected to the u
 <redirect_uri>?code=****&state=***
 ```
 
-## Get Access Token
+### Get Access Token
 
 With this code and client secret, you can request an Access Token with`grant_type: authorization_code`. If you're using PKCE, you will need to supply `code_verifier` used to produce the `code_challenge`.
 
@@ -164,8 +168,6 @@ Content-Type: application/json
 
 If the provided code is accurate, you will get access token, user information and refresh token (if enabled):
 
-{% tabs %}
-{% tab title="token-response" %}
 ```yaml
 status: 200
 
@@ -181,21 +183,15 @@ status: 200
  }
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ### Use Access Token
 
 You can use access token in the Authorization header for Aidbox API calls:
 
-{% tabs %}
-{% tab title="authorized-request" %}
 ```yaml
 GET /Patient
 Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
 ```
-{% endtab %}
-{% endtabs %}
 
 ```
 curl -H 'Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi' /Patient
@@ -206,7 +202,7 @@ curl -H 'Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi'
 To get new access token using refresh token
 
 {% tabs %}
-{% tab title="request" %}
+{% tab title="Request" %}
 ```yaml
 POST /auth/token
 Content-Type: application/json
@@ -219,7 +215,7 @@ Content-Type: application/json
 ```
 {% endtab %}
 
-{% tab title="response" %}
+{% tab title="Response" %}
 ```yaml
 status: 200
 
@@ -235,17 +231,9 @@ status: 200
 
 Aidbox creates a Session resource for each Access Token which can be closed with a special endpoint `DELETE /Session` with the token in Authorization header:
 
-{% tabs %}
-{% tab title="close-session" %}
 ```yaml
 DELETE /Session
 Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
 ```
-{% endtab %}
-{% endtabs %}
 
 Session is just a resource and you can inspect and manipulate sessions with standard Search & CRUD API. For example, use `GET /Session` to get all sessions.
-
-## Auth Sandbox Demo
-
-{% embed url="https://youtu.be/w8rscpqApMU" %}

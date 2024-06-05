@@ -10,45 +10,39 @@ Implicit flow is not recommended to use since there is a risk of leaking access 
 It is better to switch to [Authorization Code Grant with PKCE](authorization-code.md) extension instead
 {% endhint %}
 
-## Description
-
 Implicit Grant flow is an alternative for Authorization Code flow. This flow just receives `access_token` in query string fragment instead of obtaining secure`code`. It's indented for client-side apps use in order to access an API, typically as Web SPA applications. For more detailed information, read [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.2).
 
 ![Basic scheme](../../.gitbook/assets/untitled-diagram-page-4.svg)
 
-{% swagger baseUrl="[base]/" path="auth/authorize" method="get" summary="Authorization Endpoint" %}
-{% swagger-description %}
+### Easy way
+
+The easiest way to test Implicit Grant flow is to run through the [Aidbox Sandbox UI](./#auth-sandbox) (_Auth -> Sandbox ->_ Implicit).
+
+<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption><p>Sandbox UI</p></figcaption></figure>
+
+### Authorization Endpoint
+
+<mark style="color:blue;">`GET`</mark> `[base]/auth/authorize`
+
 Obtaining access token
-{% endswagger-description %}
 
-{% swagger-parameter in="query" name="state" type="string" required="false" %}
-a value used by the client to maintain state between the request and callback
-{% endswagger-parameter %}
+#### Query Parameters
 
-{% swagger-parameter in="query" name="scope" type="string" required="false" %}
-scope of the access request
-{% endswagger-parameter %}
+| Name           | Type   | Description                                                                   |
+| -------------- | ------ | ----------------------------------------------------------------------------- |
+| state          | string | a value used by the client to maintain state between the request and callback |
+| scope          | string | scope of the access request                                                   |
+| redirect\_uri  | string | client redirect URI                                                           |
+| client\_id     | string | client ID                                                                     |
+| response\_type | string | <p>value MUST be set to</p><p><code>token</code></p>                          |
 
-{% swagger-parameter in="query" name="redirect_uri" type="string" required="false" %}
-client redirect URI
-{% endswagger-parameter %}
-
-{% swagger-parameter in="query" name="client_id" type="string" required="false" %}
-client ID
-{% endswagger-parameter %}
-
-{% swagger-parameter in="query" name="response_type" type="string" required="false" %}
-value MUST be set to
-
-`token`
-{% endswagger-parameter %}
-
-{% swagger-response status="302" description="Redirect" %}
+{% tabs %}
+{% tab title="302 Redirect" %}
 ```
 [redirect_uri]#access_token=YzI3ZjQ1M2MtYzFlYi00ZjI3LWI2MzgtOTQ0MWI0ZmIzZjBi&state=eyJoYXNoIjoiIy9pbXBsaWNpdC9iYXNpYyIsImZvcm0tZGF0YSI6eyJ0eXBlIjoiYmFzaWMiLCJiYXNpYyI6eyJjbGllbnQtaWQiOiJpbXAtY2xpZW50In19LCJmb3JtLXBhdGgiOiJpbXBsaWNpdC1wYWdlIn0%3D
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
 After this request, the resource owner (user) will be redirected to Log-in/Sign-up page.
 
@@ -60,7 +54,7 @@ Next step is granting access to the client:
 
 After granting access the user is redirected to the redirect\_uri from the client configuration with `access_token` in query string fragment.
 
-## Example
+### Example
 
 {% tabs %}
 {% tab title="Create client" %}

@@ -4,8 +4,6 @@ description: Access Aidbox API from your Service
 
 # Basic Auth
 
-## Basic Auth
-
 The simplest way to programmatically interact with Aidbox API is to use [Basic Access Authentication](https://tools.ietf.org/html/rfc7617). In this scheme you provide client credentials with every HTTP request in the special header - `Authorization: Basic <credentials>`, where `<credentials>` is the base64 encoding of Client.id and Client.secret joined by a colon:
 
 ```yaml
@@ -13,6 +11,12 @@ GET /Patient
 Accept: text/yaml
 Authorization: Basic {base64(Client.id + ':' + Client.secret)}
 ```
+
+### Easy way
+
+The easiest way to test Basic Auth is to run through the [Aidbox Sandbox UI](./#auth-sandbox) (_Auth -> Sandbox -> Basic Auth_).
+
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption><p>Sandbox UI</p></figcaption></figure>
 
 ### Register Client
 
@@ -87,7 +91,3 @@ fetch('<box>/Patient', {
 
 ```
 {% endcode %}
-
-### Test Basic in Auth Sandbox
-
-{% embed url="https://www.youtube.com/watch?v=xWtNNi_Q-dU" %}

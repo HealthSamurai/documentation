@@ -40,7 +40,7 @@ The workflow details view allows you to check the results and parameters of the 
 
 <div data-full-width="true">
 
-<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption><p>Workflow params</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption><p>Workflow params</p></figcaption></figure>
 
 </div>
 

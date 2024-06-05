@@ -1,16 +1,19 @@
 # Resource Owner Grant
 
-#### Description
-
 The Password grant type is used by first-party clients to exchange a user's credentials for an access token. Since this involves the client asking the user for their password, it should not be used by third party clients. In this flow, the user's username and password are exchanged directly for an access token. The application acts on behalf of the user. Refer to [OAuth 2.0 spec](https://tools.ietf.org/html/rfc6749#section-4.3) for more details.
 
 ![Basic scheme](../../.gitbook/assets/untitled-diagram-page-2.svg)
+
+### Easy way
+
+The easiest way to test Resource Owner Grant flow is to run through the [Aidbox Sandbox UI](./#auth-sandbox) (_Auth -> Sandbox ->_ Resource Owner).
+
+<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption><p>Sandbox UI</p></figcaption></figure>
 
 ### Configure Client
 
 The first step is to configure Client for Resource Owner Grant with secret and password grant type:
 
-{% code title="client" %}
 ```yaml
 PUT /Client/myapp
 Accept: text/yaml
@@ -20,7 +23,6 @@ secret: verysecret
 grant_types:
   - password
 ```
-{% endcode %}
 
 Client will act on behalf of the user, which means Access Policies should be configured for User, not for Client.
 
@@ -33,13 +35,14 @@ You can configure Client for JWT tokens, set token expiration and enable refresh
 | _auth.password_**.refresh\_token**            | true/false    | enable refresh\_token                |
 | _auth.password_**.secret\_required**          | true/false    | require client secret for token      |
 
-## Get Access Token
+### Get Access Token
 
 Next step is to collect username & password and exchange username, password, client id and secret (if required) for Access Token.
 
-Using Basic & form-url-encoded:
+Using Authorization header `{base64(Client.id + ':' + Client.secret)}` or by JSON request with `client_id` and `client_secret` in body:
 
-{% code title="using-basic" %}
+{% tabs %}
+{% tab title="Request with Authorization header " %}
 ```yaml
 POST /auth/token
 Authorization: Basic base64(client.id, client.secret)
@@ -47,11 +50,9 @@ Content-Type: application/x-www-form-urlencoded
 
 grant_type=password&username=user&password=password
 ```
-{% endcode %}
+{% endtab %}
 
-Or by JSON request:
-
-{% code title="json-request" %}
+{% tab title="Request with credentials in body" %}
 ```yaml
 POST /auth/token
 Content-Type: application/json
@@ -64,7 +65,8 @@ Content-Type: application/json
   "password": "password"
 }
 ```
-{% endcode %}
+{% endtab %}
+{% endtabs %}
 
 If provided credentials are correct, you will get a response with the access token, user information and refresh token (if enabled):
 
@@ -113,10 +115,3 @@ Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
 {% endcode %}
 
 Session is just a Resource and you can inspect and manipulate sessions by a standard Search & CRUD API. For example, to get all sessions: `GET /Session`
-
-### Auth Sandbox Demo
-
-{% embed url="https://www.youtube.com/watch?v=_joSWjtakmA" %}
-
-
-

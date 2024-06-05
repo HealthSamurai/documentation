@@ -476,4 +476,4 @@ accept: application/json
 
 * Open Aidbox UI -> Subscription Topics to check the topic status
 
-<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
