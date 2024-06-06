@@ -77,15 +77,15 @@ config:
   AIDBOX_FHIR_VERSION: 4.0.1
   AIDBOX_FHIR_SCHEMA_VALIDATION: true
   AIDBOX_FHIR_PACKAGES: hl7.fhir.r4.core#4.0.1
-  AIDBOX_BASE_URL: <your-base-url>
   AIDBOX_PORT: 8888
   AIDBOX_COMPLIANCE: enabled
-
+  
 ingress:
+  enabled: true
+  className: nginx
   annotations:
     acme.cert-manager.io/http01-ingress-class: nginx
     cert-manager.io/cluster-issuer: letsencrypt
-    kubernetes.io/ingress.class: nginx
 ```
 
 All AidboxDB helm config values are [here](https://github.com/Aidbox/helm-charts/tree/main/aidbox#values).
