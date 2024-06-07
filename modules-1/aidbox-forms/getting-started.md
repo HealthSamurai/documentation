@@ -11,8 +11,7 @@ You can try the Aidbox Forms module, edit test forms, create new ones, see how t
 ### Create a license on Aidbox portal
 
 * Sign up on [Aidbox portal](https://aidbox.app/ui/portal#/signin)
-* Create a license: product type - **Aidbox**, licence type - **standard** or **development**, hosting - **in Cloud (for free)**
-* Configure your project: select Aidbox SDC Forms
+* Create a license: licence type - **production** or **development**, hosting - **in Cloud (for free)**
 
 ### &#x20; Start playing with Aidbox Forms
 
@@ -20,17 +19,13 @@ You can try the Aidbox Forms module, edit test forms, create new ones, see how t
 * Press the button `Forms` in the Aidbox console in browser
 * Play with forms
 
-{% hint style="danger" %}
-This is only a sandbox with test forms, all your changes are not saved
-{% endhint %}
-
 ## Run Aidbox Forms locally
 
 ### Create a license on Aidbox portal
 
 * Sign up on [Aidbox portal](https://aidbox.app/ui/portal#/signin)
-* Create a license: product type - **Aidbox**, licence type - **development**, hosting - **self-hosted**
-* Copy & save a license key
+* Create a license: licence type - **development**, hosting - **self-hosted**
+* Copy and save a license key
 
 ### Configure Aidbox project
 
@@ -74,5 +69,5 @@ You have three options how to design form
 
 * [Design form locally (in your familiar editor)](design-form-locally-in-familiar-editor.md)
 * [Design form in Aidbox Code Editor (in browser)](aidbox-code-editor/)
-* [Design form in Aidbox UI Builder (alpha)](aidbox-ui-builder-alpha/)
+* [Design form in Aidbox UI Builder](aidbox-ui-builder-alpha/)
 
