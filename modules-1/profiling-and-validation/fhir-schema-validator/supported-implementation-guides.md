@@ -1256,6 +1256,7 @@ Die Basisfunktionalitäten der elektronischen Patientenakte
 
 **Versions**
 
+* `de.gematik.epa#1.0.1`
 * `de.gematik.epa#1.0.0`
 * `de.gematik.epa#0.0.3`
 
@@ -1962,22 +1963,6 @@ Ontario Patient Summary
 * `ca.on.oh.patient-summary#0.9.1-alpha-1`
 * `ca.on.oh.patient-summary#0.0.9-alpha-2`
 * `ca.on.oh.patient-summary#0.0.9-alpha-1`
-
-
----
-
-### who.ved
-
-<details>
-<summary>Description</summary>
-
-Claim fhir
-
-</details>
-
-**Versions**
-
-* `who.ved#4.0.0`
 
 
 ---
@@ -6581,8 +6566,6 @@ Exchange of (COVID-19) immunication information
 
 **Versions**
 
-* `vzvz.covid-vaccinations#0.5.1-beta`
-* `vzvz.covid-vaccinations#0.5.0-beta`
 * `vzvz.covid-vaccinations#0.4.0-beta`
 * `vzvz.covid-vaccinations#0.3.1-beta`
 * `vzvz.covid-vaccinations#0.3.0-beta`
@@ -7258,6 +7241,7 @@ Die ePA-Medication Spezifikation
 
 **Versions**
 
+* `de.gematik.epa.medication#1.0.1`
 * `de.gematik.epa.medication#1.0.0`
 * `de.gematik.epa.medication#1.0.0-RC`
 * `de.gematik.epa.medication#0.0.3`
@@ -8076,6 +8060,25 @@ Der MedikationsplanPlus als Implementierung in R4
 
 ---
 
+### 醫療保險理賠實作指引
+
+<details>
+<summary>Description</summary>
+
+醫療保險理賠實作指引 (built Mon, Dec 25, 2023 23:25+0800+08:00)
+
+</details>
+
+**Versions**
+
+* `tw.cathay.fhir.iclaim#0.1.3`
+* `tw.cathay.fhir.iclaim#0.1.2`
+* `tw.cathay.fhir.iclaim#0.1.1`
+* `tw.cathay.fhir.iclaim#0.1.0`
+
+
+---
+
 ### DK MedCom acknowledgement
 
 <details>
@@ -8144,12 +8147,18 @@ NL package of FHIR R4 conformance resources for zib (Zorginformatiebouwstenen, C
 
 ---
 
-### kl.dk.fhir.children
+### KLChildren implementation guide, an implementation of FBU
 
+<details>
+<summary>Description</summary>
 
+KLChildren contains the specification for reporting data from the Danish health promotion and disease prevention program for children in Denmark (Sundhedsplejen). Data is reported to FK Gateway (built Wed, Jun 5, 2024 10:40+0200+02:00)
+
+</details>
 
 **Versions**
 
+* `kl.dk.fhir.children#2.0.0`
 * `kl.dk.fhir.children#1.0.0`
 
 
@@ -10480,6 +10489,7 @@ Verzeichnisdienst der Telematikinfrastruktur
 
 **Versions**
 
+* `de.gematik.fhir.directory#0.11.7`
 * `de.gematik.fhir.directory#0.11.6`
 * `de.gematik.fhir.directory#0.11.5`
 * `de.gematik.fhir.directory#0.11.4`
