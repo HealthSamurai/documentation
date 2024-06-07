@@ -18,7 +18,7 @@ To play with forms on a test data without authorization and without creating an 
 
 ## Aidbox Forms provides:
 
-* Ready-made medical form repository ([Aidbox Forms Library](aidbox-forms/add-aidbox-forms-library.md))
+* Ready-made medical form repository ([Aidbox Form ](aidbox-forms/add-aidbox-forms-library.md)[Gallery](aidbox-forms/add-aidbox-forms-library.md))
 * [UI Builder](aidbox-forms/aidbox-ui-builder-alpha/) for creating forms without a code (based on [FHIR SDC Implementation Guide](https://build.fhir.org/ig/HL7/sdc/index.html))
 * [Aidbox Code Editor](aidbox-forms/aidbox-code-editor/) for creating complex forms (based on DSL)
 * Form rendering engine
@@ -32,7 +32,7 @@ To play with forms on a test data without authorization and without creating an 
 
 * Create a form with complex logic from scratch in UI Builder or Code editor
 * Create a form by importing FHIR Questionnaire from external sources
-* Use a ready-made form from Aidbox Form Library or customize it according to your requirements
+* Use a ready-made form from Aidbox Form Gallery or customize it according to your requirements
 * Test form in UI Builder or Code editor
 * Pre-fill form with existing data
 * Add any validation rules to the forms

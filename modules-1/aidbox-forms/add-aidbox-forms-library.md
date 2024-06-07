@@ -1,28 +1,22 @@
 ---
-description: The article outlines how to setup and use Aidbox Forms library
+description: The article outlines how to use forms from Aidbox Form Gallery
 ---
 
-# Aidbox Forms Library
+# Aidbox Form Gallery
 
-The Aidbox Forms Library offers forms in two formats: Aidbox format (DSL-based) and FHIR format (FHIR Questionnaire). These forms can be loaded into Aidbox using various methods:
+The Aidbox Form Gallery offers forms in FHIR format (FHIR Questionnaire). There are more than 3000 forms in the Aidbox Form Gallery.&#x20;
 
-1. Using Aidbox SDC configuration project while creating a license on the [Aidbox portal](https://aidbox.app/ui/portal#/signin)
-2. Using the Aidbox Community Notebook (FHIR Format Forms Only)
-3. Through the the Aidbox zen project
+Previews of these forms are available [here](https://form-builder.aidbox.app/).
 
-By offering multiple loading methods, the Aidbox Forms Library provides flexibility for users to choose the most suitable method for their needs.
+These forms can be loaded into Aidbox using various methods:
 
-## 1. Setup Aidbox Forms Library using Aidbox SDC configuration project on the Aidbox portal
+1. Using the Aidbox Community Notebook (limited set of forms for demo)&#x20;
+2. Through the public Aidbox Form Builder
+3. Searching and loading a form from the Aidbox Form Gallery inside the Aidbox Form Builder (in progress)
 
-When creating a license on the [Aidbox portal](https://aidbox.app/ui/portal#/signin), you need to select the Aidbox SDC configuration project. Then the forms from the library will be loaded into your instance
+## 1. Using the Aidbox Community Notebook (limited set of forms for demo)&#x20;
 
-## 2. Setup Aidbox Forms Library using Aidbox Notebooks
-
-{% hint style="warning" %}
-This way you can only upload forms in the FHIR format (FHIR Questionnaire)
-{% endhint %}
-
-The Aidbox Forms Library has been updated to include the following forms in the FHIR format:
+The Aidbox Form Gallery includes the following forms in FHIR format:
 
 * **ROS (Review of System)**
 * **Physical Exam**
@@ -32,55 +26,19 @@ The Aidbox Forms Library has been updated to include the following forms in the 
 
 Users can upload these forms using the `fhir/$load` operation and then open them in the Aidbox Forms module for editing according to their requirements.&#x20;
 
-Use Aidbox Forms Library notebook (community) for this purpose that is available in the Aidbox console of your instance.
+Use the Aidbox Form Gallery notebook (community) available in the Aidbox console of your instance for this purpose.
 
-## 3. Setup Aidbox Forms Library using Aidbox zen project
+## 2. Through the public Aidbox Form Builder
 
-{% hint style="info" %}
-When you use [aidbox-zen-sdc](https://github.com/HealthSamurai/aidbox-zen-sdc) project as your project configuration - it already has aidbox-forms-library depency and several forms enabled.
-{% endhint %}
+The Aidbox Form Gallery is accessible on the[ public Aidbox Form Builder page](https://form-builder.aidbox.app/).
 
-### Use library forms
+Follow these steps:
 
-To use Aidbox forms library you need to add it to your project dependencies and enable needed forms.
+* find the form in the [Aidbox Form Gallery](https://form-builder.aidbox.app/)
+* open it in Form Builder
+* download the form definition
+* load the form definition through the Form Builder UI or use an FHIR operation `POST /fhir/Questionnaire`
 
-#### Add library to project dependencies
+## 3. Searching and loading a form from the Aidbox Form Gallery inside the Aidbox Form Builder (in progress)
 
-\
-{PROJECT\_ROOT}/zen-package.edn
-
-```clojure
-{:deps {aidbox-forms "https://github.com/Aidbox/sdc-forms-library"}}
-
-```
-
-#### Enable forms
-
-To enable forms you need add them to import section of your project-entrypoint namespace \
-(or some different namespace which will be loaded)
-
-a) You can import them all by importing library root namespace
-
-```
-{ns sdc-box
- import #{aidbox.forms}
-```
-
-b) Or for more precise control - you can add them one by one.
-
-```
-{ns sdc-box
- import #{aidbox.forms.vitals 
-          aidbox.forms.phq2phq9}
-```
-
-After that, you can go to Aibox Forms UI and see
-
-### Change Library Forms
-
-If you need to change one of the library form - you should copy it (as file) from library to your project `/zrc` directory and edit it there. To preserve your changes you commit them to git and push to remote git-repo.
-
-{% hint style="info" %}
-Library Forms should not be edited manually - only used. Because these changes will not be pushed to upstream. And after restart you will get clean state of these forms.
-{% endhint %}
-
+This feature is currently under development.
