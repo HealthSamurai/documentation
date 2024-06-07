@@ -1,5 +1,9 @@
 # Aidbox Search Parameters
 
+{% hint style="warning" %}
+Aidbox Search Parameters will be ignored if Aidbox operates with the FHIR Schema validator engine. Please contact [us](../../../../contact-us.md) if you need assistance migrating to FHIR Search Parameters.
+{% endhint %}
+
 You can define custom search params by just creating SearchParameter resource. Let's say you want to search patient by city:
 
 ```yaml
