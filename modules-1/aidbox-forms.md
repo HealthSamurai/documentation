@@ -10,6 +10,12 @@ Aidbox Forms is a **pluggable module** for healthcare vendors who need **to crea
 
 It allows to design and embed digital medical forms and capture data in FHIR format for reporting and analysis.
 
+
+
+{% hint style="info" %}
+To play with forms on a test data without authorization and without creating an Aidbox instance, use the [public Aidbox Form Builder](https://form-builder.aidbox.app/). In it, you can create a form, download its definition, or share it via a link.
+{% endhint %}
+
 ## Aidbox Forms provides:
 
 * Ready-made medical form repository ([Aidbox Forms Library](aidbox-forms/add-aidbox-forms-library.md))
