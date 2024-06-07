@@ -346,7 +346,7 @@
 * Validation and Terminology
   * Supported FHIR R4B
 * Data API
-  * Defined [custom resources using Aidbox Project](../../modules-1/custom-resources/getting-started-with-custom-resources.md#defining-a-custom-resource)
+  * Defined [custom resources using Aidbox Project](../../storage-1/custom-resources/getting-started-with-custom-resources.md#defining-a-custom-resource)
   * Added [$to-format operation](../../app-development-guides/usdto-format-fhir-aidbox.md) without getting transformation metadata
   * Fixed polymorphic reference targets for FHIR resources
   * Fixed Bundle conformance for [AidboxQuery](../../api-1/fhir-api/search-1/custom-search.md)

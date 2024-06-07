@@ -7,8 +7,6 @@ description: >-
 
 # CRUD
 
-
-
 {% hint style="info" %}
 Aidbox provides two REST APIs - FHIR and Aidbox. The main difference is [a format of resources](../../../modules-1/fhir-resources/aidbox-and-fhir-formats.md). Base URL for FHIR API is **/fhir** and for Aidbox **/**
 {% endhint %}
@@ -17,13 +15,13 @@ All sample requests can be run from the Postman collection:[![Run in Postman](ht
 
 ## Introduction
 
-A **resource** is an object with a type, associated data, relationships to other resources, and a set of methods that operate on it (information about that can be found in FHIR [specification](https://www.hl7.org/fhir/resourcelist.html) or through Aidbox [metadata](../../../modules-1/custom-resources/custom-metadata.md)). In most cases, a resource is represented as a JSON/XML/YAML document.
+A **resource** is an object with a type, associated data, relationships to other resources, and a set of methods that operate on it (information about that can be found in FHIR [specification](https://www.hl7.org/fhir/resourcelist.html)). In most cases, a resource is represented as a JSON/XML/YAML document.
 
 Each resource has its own resource **type**, this type defines a set of data that can be stored with this resource, and possible relationships with other resources.
 
 **Attribute** is a part of the resource definition, which describes what fields can or must be present in the resource document, type of such fields, and their cardinality.
 
-Every resource type has the same set of **interactions** available. These interactions are described below.&#x20;
+Every resource type has the same set of **interactions** available. These interactions are described below.
 
 Each interaction can fail with:
 

@@ -4,13 +4,13 @@ description: Create custom resources, search parameters, indexes in Configuratio
 
 # Repository
 
-Repository is our concept of wrapping resourceType-specific entities, as search parameters, indexes, and more, into one entity, called **repository**. With defined repository, you can create custom resource, search parameters and indexes.&#x20;
+Repository is our concept of wrapping resourceType-specific entities, as search parameters, indexes, and more, into one entity, called **repository**. With defined repository, you can create custom resource, search parameters and indexes.
 
 ## Create repository
 
-Prerequisites: check out [Aidbox configuration project structure](aidbox-configuration-project-structure.md).&#x20;
+Prerequisites: check out [Aidbox configuration project structure](aidbox-configuration-project-structure.md).
 
-To create a repository add a service `aidbox.repository.v1` in system.edn like this.&#x20;
+To create a repository add a service `aidbox.repository.v1` in system.edn like this.
 
 {% code title="zrc/system.edn" %}
 ```
@@ -48,7 +48,7 @@ Here we defined patient-repository which can contain custom search-parameters an
 
 ## Create custom resource
 
-Described in [Custom resources module](../../modules-1/custom-resources/custom-resources-using-aidbox-project.md).
+Described in [Custom resources module](../../storage-1/custom-resources/custom-resources-using-aidbox-project.md).
 
 ## Create search parameter
 
