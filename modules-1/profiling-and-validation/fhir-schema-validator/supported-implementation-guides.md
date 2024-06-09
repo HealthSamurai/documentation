@@ -3213,6 +3213,7 @@ Beinhaltet die in DEMIS für die Umsetzung der Arztmeldung genutzten Information
 
 **Versions**
 
+* `rki.demis.disease#1.3.0`
 * `rki.demis.disease#1.2.0`
 * `rki.demis.disease#1.1.0`
 
@@ -4562,6 +4563,7 @@ Beinhaltet die in DEMIS zur Umsetzung der Erregernachweismeldungen definierten I
 
 **Versions**
 
+* `rki.demis.laboratory#1.24.1`
 * `rki.demis.laboratory#1.24.0`
 
 
@@ -6577,16 +6579,12 @@ Antepartum Summary is a content profile that defines the structure for the aggre
 <details>
 <summary>Description</summary>
 
-Exchange of (COVID-19) immunication information
+Exchange of COVID-19 immunication information
 
 </details>
 
 **Versions**
 
-* `vzvz.covid-vaccinations#0.3.0-beta`
-* `vzvz.covid-vaccinations#0.2.1-beta`
-* `vzvz.covid-vaccinations#0.2.0-beta`
-* `vzvz.covid-vaccinations#0.1.3`
 * `vzvz.covid-vaccinations#0.1.2`
 * `vzvz.covid-vaccinations#0.1.1`
 * `vzvz.covid-vaccinations#0.1.0`
@@ -7258,6 +7256,7 @@ Die ePA-Medication Spezifikation
 
 * `de.gematik.epa.medication#1.0.1`
 * `de.gematik.epa.medication#1.0.0`
+* `de.gematik.epa.medication#1.0.2-rc1`
 * `de.gematik.epa.medication#1.0.0-RC`
 * `de.gematik.epa.medication#0.0.3`
 
@@ -8241,6 +8240,7 @@ Das DEMIS Common Package definiert das Datenmodell der Basismeldeinhalte.
 
 **Versions**
 
+* `rki.demis.common#1.0.1`
 * `rki.demis.common#1.0.0`
 
 
