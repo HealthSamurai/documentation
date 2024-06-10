@@ -113,6 +113,22 @@ BOX_LOGGING_DISABLE__HEALTH__LOGS=<boolean>
 
 Disable `/health` endpoint requests logging. Default value is `false`.
 
+### BOX\_LOGGING\_SQL\_MIN\_\_DURATION
+
+```
+BOX_LOGGING_SQL_MIN__DURATION=<integer>
+```
+
+Threshold for logging only long queries. Analogue from postgres.
+
+### BOX\_LOGGING\_SQL\_MAX\_\_LENGTH
+
+```
+BOX_LOGGING_SQL_MAX__LENGTH=<integer>
+```
+
+Max length of a query to be logged.
+
 ### AIDBOX\_STDOUT\_JSON
 
 ```
