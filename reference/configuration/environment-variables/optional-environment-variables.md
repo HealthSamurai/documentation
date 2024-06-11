@@ -119,7 +119,9 @@ Disable `/health` endpoint requests logging. Default value is `false`.
 BOX_LOGGING_SQL_MIN__DURATION=<integer>
 ```
 
-Threshold for logging only long queries. Analogue from postgres.
+Threshold for logging only long queries. Analogue from Postgres.
+
+Log requests whose execution time exceeds the specified number of milliseconds.
 
 ### BOX\_LOGGING\_SQL\_MAX\_\_LENGTH
 
