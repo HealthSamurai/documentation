@@ -25,7 +25,7 @@ After creating a form, you can generate a link to the form and send it to the us
    * Send the message containing the link to the user or users who need to fill out the form.
 5. **User Fills Out the Form:**
    * When the user clicks on the link, they will be directed to the form.
-   * The user can then fill out the form online and submit it.
+   * The user can then fill out the form online (or [offline](./offline-forms.md)) and submit it.
 6. **Review Responses:**
    * After the user submits the form, you can access and review their responses within Aidbox Forms.
 
@@ -62,6 +62,3 @@ After creating a form, you can generate an iframe code for this form and embed i
    * When users access your application, they will see the embedded form and can fill it out directly within your application.
 7. **Collect and Review Responses:**
    * After users submit the form, you can access and review their responses within Aidbox Forms.
-
-
-

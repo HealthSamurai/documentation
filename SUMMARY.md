@@ -413,6 +413,7 @@
     * [Form sharing](modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-sharing.md)
     * [Printing forms](modules-1/aidbox-forms/aidbox-ui-builder-alpha/printing-forms.md)
     * [FHIR versions](modules-1/aidbox-forms/aidbox-ui-builder-alpha/fhir-versions.md)
+    * [Offline forms](modules-1/aidbox-forms/aidbox-ui-builder-alpha/offline-forms.md)
   * [Aidbox Code Editor](modules-1/aidbox-forms/aidbox-code-editor/README.md)
     * [Form creation](modules-1/aidbox-forms/aidbox-code-editor/how-to-create-a-form.md)
     * [Dynamic form creation](modules-1/aidbox-forms/aidbox-code-editor/how-to-create-a-dynamic-form.md)
