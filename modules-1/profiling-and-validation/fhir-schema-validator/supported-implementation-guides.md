@@ -2055,6 +2055,7 @@ ePrescription workflow specification
 
 **Versions**
 
+* `de.gematik.erezept-workflow.r4#1.4.0-rc1`
 * `de.gematik.erezept-workflow.r4#1.3.1`
 * `de.gematik.erezept-workflow.r4#1.3.0`
 * `de.gematik.erezept-workflow.r4#1.3.0-rc3`
@@ -6585,7 +6586,6 @@ Exchange of COVID-19 immunication information
 
 **Versions**
 
-* `vzvz.covid-vaccinations#0.1.2`
 * `vzvz.covid-vaccinations#0.1.1`
 * `vzvz.covid-vaccinations#0.1.0`
 
