@@ -165,6 +165,64 @@ The table below describes all kind of special symbols:
 
 ## Defining new rules
 
+## Overriding existing rules 
 
+Sometimes, you do not need to rewrite all set of conversion rules or you just do not want to do it. 
+For this particular purpose we have an option that will make able to rewrite only some of conversion rules. 
+
+For that purpose you can open zen-introspector by clicking `Profiles` in Aidbox UI. CCDA rules are stored 
+in `aidbox/ccda/rules` folder. Here you will see our default set of conversion rules. 
+
+Let it be Vital Signs section narrative. It is available via `#aidbox.ccda.rules.vital-signs/narrative`.
+We do not want to display just the most popular observations, but we want to see only those observations that
+are really present in dataset, without any placeholders.  
+
+We create `.yaml` file where we say: 
+```
+aidbox.ccda.rules.vital-signs/narrative:
+  assoc:
+    - cda: [text 0]
+      const:
+        type: table
+        header:
+          - Vital sign
+          - Date
+          - Value and units
+    - fhir: [entry *]
+      cda: [text 0 rows]
+      apply-rules:
+        - fhir: [code]
+          cda: [0]
+        - fhir: [effective]
+          cda: [1]
+        - fhir: [value]
+          cda: [2]
+```
+
+`aidbox.ccda.rules.vital-signs/narrative` - means that we are going to override narrative in Vital Signs namespace 
+`assoc` - this instruction means that we substitute all conversion rules to the given in `.yaml` file 
+
+If you need to substitute just one rule and leave all the rest there is `select` instruction:  
+
+```
+aidbox.ccda.rules.encounters/narrative:
+  select:
+    - selector:
+        cda:  [text 0 cols 1]
+        fhir: [entry * type 0]
+      override:
+        cda:  [text 0 cols 1]
+        fhir: [entry * class]
+```
+Code here says that you:
+- find the rule in `aidbox.ccda.rules.encounters/narrative` that is equal 
+to the rule declared in `selector`
+- substitue the rule that was found to the rule that was declared in `override`
+
+You can see the example of this config [here](https://github.com/Aidbox/aidbox-project-template/tree/aidbox-ccda-custom-rules) . 
+
+{% hint style="warning" %}
+The work with Override DSL is in progress.
+{% endhint %}
 
 ## DSL description
