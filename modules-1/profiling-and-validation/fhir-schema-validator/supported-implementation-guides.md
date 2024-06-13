@@ -6586,7 +6586,6 @@ Exchange of COVID-19 immunication information
 
 **Versions**
 
-* `vzvz.covid-vaccinations#0.1.1`
 * `vzvz.covid-vaccinations#0.1.0`
 
 
@@ -6893,6 +6892,22 @@ Definition of the Dallas Cowboy
 **Versions**
 
 * `acme.dallas.cowboy#0.1.0-alpha`
+
+
+---
+
+### acme.minneapolis.cowboy
+
+<details>
+<summary>Description</summary>
+
+This is our Cowboy project
+
+</details>
+
+**Versions**
+
+* `acme.minneapolis.cowboy#0.1.0`
 
 
 ---
