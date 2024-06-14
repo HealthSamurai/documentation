@@ -180,7 +180,7 @@ are really present in dataset, without any placeholders.
 We create `.yaml` file where we say: 
 ```
 aidbox.ccda.rules.vital-signs/narrative:
-  assoc:
+  replace:
     - cda: [text 0]
       const:
         type: table
@@ -200,7 +200,7 @@ aidbox.ccda.rules.vital-signs/narrative:
 ```
 
 `aidbox.ccda.rules.vital-signs/narrative` - means that we are going to override narrative in Vital Signs namespace 
-`assoc` - this instruction means that we substitute all conversion rules to the given in `.yaml` file 
+`replace` - this instruction means that we substitute all conversion rules to the given in `.yaml` file 
 
 If you need to substitute just one rule and leave all the rest there is `select` instruction:  
 
