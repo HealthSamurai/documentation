@@ -229,6 +229,7 @@ Ontario Health
 
 **Versions**
 
+* `ontariomicdrfhirimplementationguide-0.10.00#0.9.8-beta`
 * `ontariomicdrfhirimplementationguide-0.10.00#0.9.7-beta`
 * `ontariomicdrfhirimplementationguide-0.10.00#0.9.6-beta`
 * `ontariomicdrfhirimplementationguide-0.10.00#0.9.5-beta`
@@ -4350,6 +4351,7 @@ Medizinische Informationsobjekte (MIO) Impfpass V1.1.0
 
 **Versions**
 
+* `kl.dk.fhir.term#2.1.0`
 * `kl.dk.fhir.term#2.0.0`
 * `kl.dk.fhir.term#1.1.0`
 * `kl.dk.fhir.term#1.0.0`
@@ -6571,22 +6573,6 @@ Antepartum Summary is a content profile that defines the structure for the aggre
 **Versions**
 
 * `ihe.pcc.maps#1.0.0-comment`
-
-
----
-
-### vzvz.covid-vaccinations
-
-<details>
-<summary>Description</summary>
-
-Exchange of COVID-19 immunication information
-
-</details>
-
-**Versions**
-
-* `vzvz.covid-vaccinations#0.1.0`
 
 
 ---
@@ -8853,7 +8839,6 @@ Profiles, extensions, value sets, code systems and implementation guides standar
 * `us.nlm.vsac#0.12.0`
 * `us.nlm.vsac#0.11.0`
 * `us.nlm.vsac#0.10.0`
-* `us.nlm.vsac#0.9.0`
 * `us.nlm.vsac#0.8.0`
 * `us.nlm.vsac#0.7.0`
 * `us.nlm.vsac#0.6.0`
