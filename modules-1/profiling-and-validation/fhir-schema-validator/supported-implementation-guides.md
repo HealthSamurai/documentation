@@ -2816,12 +2816,13 @@ Put a description here
 <details>
 <summary>Description</summary>
 
-FHIR profiles used in FHIR Publishing processes within Health New Zealand Te Whatu Ora (built Fri, Jun 14, 2024 04:41+0000+00:00)
+FHIR profiles used in FHIR Publishing processes within Health New Zealand Te Whatu Ora (built Sat, Jun 15, 2024 00:39+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `tewhatuora.digitaltooling.ig#0.0.3`
 * `tewhatuora.digitaltooling.ig#0.0.2`
 
 
@@ -6347,6 +6348,23 @@ NL package of FHIR R4 conformance resources for Patient Corrections.
 
 ---
 
+### Health New Zealand Te Whatu Ora Digital Tooling Implementation Guide
+
+<details>
+<summary>Description</summary>
+
+FHIR profiles used in FHIR Publishing processes within Health New Zealand Te Whatu Ora (built Sat, Jun 15, 2024 21:37+0000+00:00)
+
+</details>
+
+**Versions**
+
+* `tewhatuora.digitaltooling.iguat#0.0.5`
+* `tewhatuora.digitaltooling.iguat#0.0.4`
+
+
+---
+
 ### LogicNets.NCCN
 
 <details>
@@ -8854,9 +8872,6 @@ Profiles, extensions, value sets, code systems and implementation guides standar
 
 **Versions**
 
-* `us.nlm.vsac#0.18.0`
-* `us.nlm.vsac#0.17.0`
-* `us.nlm.vsac#0.16.0`
 * `us.nlm.vsac#0.15.0`
 * `us.nlm.vsac#0.14.0`
 * `us.nlm.vsac#0.13.0`
