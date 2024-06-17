@@ -16,8 +16,8 @@ Discover how to start with Aidbox in just a few minutes.
 [run-aidbox-on-managed-postgresql.md](run-aidbox-on-managed-postgresql.md)
 {% endcontent-ref %}
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="../getting-started-1/run-aidbox/run-multibox-locally-with-docker.md" %}
+[run-multibox-locally-with-docker.md](../getting-started-1/run-aidbox/run-multibox-locally-with-docker.md)
 {% endcontent-ref %}
 
 {% content-ref url="run-aidbox-in-kubernetes/" %}
@@ -27,3 +27,4 @@ Discover how to start with Aidbox in just a few minutes.
 {% content-ref url="../getting-started-1/load-bundle-into-fhir-server.md" %}
 [load-bundle-into-fhir-server.md](../getting-started-1/load-bundle-into-fhir-server.md)
 {% endcontent-ref %}
+
