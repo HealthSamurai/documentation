@@ -27,6 +27,14 @@ parameter:
 ```
 {% endhint %}
 
+| Parameter                                                  | Cardinality | Type                                                     |
+|------------------------------------------------------------|-------------|----------------------------------------------------------|
+| [allow-amend](aidbox-sdc-api.md#allow-amend)               | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#boolean) |
+| [redirect-on-submit](aidbox-sdc-api.md#redirect-on-submit) | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#string)  |
+| [redirect-on-save](aidbox-sdc-api.md#redirect-on-save)     | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#string)  |
+| [expiration](aidbox-sdc-api.md#expiration)                 | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#integer) |
+| [theme](aidbox-sdc-api.md#theme)                           | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#string)  |
+| [read-only](aidbox-sdc-api.md#read-only)                   | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#boolean) |
 
 ### allow-amend
 
@@ -60,7 +68,7 @@ value:
   String: https://example.com/submit-hook?questionnaire=123
 ```
 
-### link expiration time
+### expiration
 
 Link expiration period (days)
 
@@ -82,6 +90,16 @@ Form theme.
 name: theme
 value:
   String: hs-theme
+```
+
+### read-only
+
+Show form in a **read-only** mode
+
+```yaml
+name: read-only
+value:
+  Boolean: true
 ```
 
 ## Usage Example
