@@ -4476,12 +4476,13 @@ Put a description here
 <details>
 <summary>Description</summary>
 
-FHIR® Implementation Guide for the Electronic Laboratory Report of the Swiss Federal Office of Public Health (built Fri, May 17, 2024 13:24+0000+00:00)
+FHIR® Implementation Guide for the Electronic Laboratory Report of the Swiss Federal Office of Public Health (built Mon, Jun 17, 2024 08:46+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `ch.fhir.ig.ch-elm#1.3.1`
 * `ch.fhir.ig.ch-elm#1.3.0`
 * `ch.fhir.ig.ch-elm#1.2.0`
 * `ch.fhir.ig.ch-elm#1.1.1`
@@ -5058,12 +5059,13 @@ International Patient Summary (IPS) FHIR Implementation Guide (built Tue, Nov 22
 <details>
 <summary>Description</summary>
 
-The Da Vinci Fast Healthcare Interoperability Resource (FHIR) Value-Based Performance Reporting Implementation Guide (this IG) describes exchange of value-based performance reports among stakeholders such as payers, providers, and government care programs. (built Mon, Jul 31, 2023 14:29+0000+00:00)
+The Da Vinci Fast Healthcare Interoperability Resource (FHIR) Value-Based Performance Reporting Implementation Guide (this IG) specifies standard representations of value-based performance reports that are exchanged payers and providers, which include performance metrics on financial, utilization, etc. and quality measures for varies types of value-based contracts. (built Mon, Jun 17, 2024 13:48+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.us.davinci-vbpr#1.0.0`
 * `hl7.fhir.us.davinci-vbpr#1.0.0-ballot`
 
 
@@ -6353,12 +6355,13 @@ NL package of FHIR R4 conformance resources for Patient Corrections.
 <details>
 <summary>Description</summary>
 
-FHIR profiles used in FHIR Publishing processes within Health New Zealand Te Whatu Ora (built Sat, Jun 15, 2024 21:37+0000+00:00)
+FHIR profiles used in FHIR Publishing processes within Health New Zealand Te Whatu Ora (built Mon, Jun 17, 2024 02:48+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `tewhatuora.digitaltooling.iguat#0.0.6`
 * `tewhatuora.digitaltooling.iguat#0.0.5`
 * `tewhatuora.digitaltooling.iguat#0.0.4`
 
@@ -8872,9 +8875,6 @@ Profiles, extensions, value sets, code systems and implementation guides standar
 
 **Versions**
 
-* `us.nlm.vsac#0.15.0`
-* `us.nlm.vsac#0.14.0`
-* `us.nlm.vsac#0.13.0`
 * `us.nlm.vsac#0.12.0`
 * `us.nlm.vsac#0.11.0`
 * `us.nlm.vsac#0.10.0`
