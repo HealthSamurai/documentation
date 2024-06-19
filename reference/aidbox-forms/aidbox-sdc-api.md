@@ -30,10 +30,10 @@ parameter:
 | Parameter                                                  | Cardinality | Type                                                     |
 |------------------------------------------------------------|-------------|----------------------------------------------------------|
 | [allow-amend](aidbox-sdc-api.md#allow-amend)               | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#boolean) |
-| [redirect-on-submit](aidbox-sdc-api.md#redirect-on-submit) | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#string)  |
-| [redirect-on-save](aidbox-sdc-api.md#redirect-on-save)     | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#string)  |
-| [expiration](aidbox-sdc-api.md#expiration)                 | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#integer) |
-| [theme](aidbox-sdc-api.md#theme)                           | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#string)  |
+| [redirect-on-submit](aidbox-sdc-api.md#redirect-on-submit) | 0..1        | [String](http://hl7.org/fhir/R4/datatypes.html#string)  |
+| [redirect-on-save](aidbox-sdc-api.md#redirect-on-save)     | 0..1        | [String](http://hl7.org/fhir/R4/datatypes.html#string)  |
+| [expiration](aidbox-sdc-api.md#expiration)                 | 0..1        | [Integer](http://hl7.org/fhir/R4/datatypes.html#integer) |
+| [theme](aidbox-sdc-api.md#theme)                           | 0..1        | [String](http://hl7.org/fhir/R4/datatypes.html#string)  |
 | [read-only](aidbox-sdc-api.md#read-only)                   | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#boolean) |
 
 ### allow-amend
