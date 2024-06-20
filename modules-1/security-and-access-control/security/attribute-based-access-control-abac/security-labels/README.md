@@ -167,7 +167,7 @@ subject:
 {% endtab %}
 {% endtabs %}
 
-### Remove security labels from the outcome
+### Remove security labels from the response
 
 To prevent security labels from appearing in the outcome, set the `strip labels` env:
 
