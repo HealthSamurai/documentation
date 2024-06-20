@@ -1446,12 +1446,13 @@ This is a guide for implementing the Consumer-Focused Real-Time Pharmacy Benefit
 <details>
 <summary>Description</summary>
 
-IL core project 0.14.2 (patch)
+IL core project vesrion 0.15.0
 
 </details>
 
 **Versions**
 
+* `il.core.fhir.r4#0.15.0`
 * `il.core.fhir.r4#0.14.3`
 * `il.core.fhir.r4#0.14.2`
 * `il.core.fhir.r4#0.14.1`
@@ -5082,6 +5083,7 @@ Medizinische Informationsobjekte (MIO) KH-Entlassbrief V1.0.0
 
 **Versions**
 
+* `kbv.mio.kh-entlassbrief#1.0.0-update`
 * `kbv.mio.kh-entlassbrief#1.0.0-kommentierung`
 
 
@@ -5712,7 +5714,6 @@ Package version 1.0.0
 * `us.cdc.phinvads#0.12.0`
 * `us.cdc.phinvads#0.11.0`
 * `us.cdc.phinvads#0.10.0`
-* `us.cdc.phinvads#0.9.0`
 * `us.cdc.phinvads#0.8.0`
 * `us.cdc.phinvads#0.7.0`
 * `us.cdc.phinvads#0.6.0`
@@ -5755,6 +5756,7 @@ Basis-Profile für die Abgabedaten im eRezept-Kontext
 **Versions**
 
 * `de.abda.erezeptabgabedatenbasis#1.4.0`
+* `de.abda.erezeptabgabedatenbasis#1.4.1-rc`
 * `de.abda.erezeptabgabedatenbasis#1.4.0-rc2`
 * `de.abda.erezeptabgabedatenbasis#1.4.0-rc`
 * `de.abda.erezeptabgabedatenbasis#1.3.1`
@@ -8869,20 +8871,6 @@ Profiles, extensions, value sets, code systems and implementation guides standar
 
 ---
 
-### us.nlm.vsac
-
-
-
-**Versions**
-
-* `us.nlm.vsac#0.12.0`
-* `us.nlm.vsac#0.11.0`
-* `us.nlm.vsac#0.10.0`
-* `us.nlm.vsac#0.1.0`
-
-
----
-
 ### healthdata.be.r4.dcd
 
 <details>
@@ -9260,6 +9248,17 @@ The Patient Master Identity Registry (PMIR) Profile supports the creating, updat
 
 * `ihe.iti.pmir#1.5.0`
 * `ihe.iti.pmir#1.4.0`
+
+
+---
+
+### Guide d'implémentation de la télésurveillance
+
+
+
+**Versions**
+
+* `ans.fhir.fr.telesurveillance#0.1.0-ballot`
 
 
 ---
@@ -9714,12 +9713,13 @@ Guía de Implementación Versión de Desarrollo Sobre STU 1, para los perfiles C
 <details>
 <summary>Description</summary>
 
-Implementation guide CH LAB-Order (R4) (built Thu, Jun 29, 2023 23:13+0200+02:00)
+Implementation guide CH CH LAB-Order (R4) (built Tue, Jun 18, 2024 13:27+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `ch.fhir.ig.ch-lab-order#2.0.0`
 * `ch.fhir.ig.ch-lab-order#2.0.0-ballot`
 * `ch.fhir.ig.ch-lab-order#1.0.0`
 * `ch.fhir.ig.ch-lab-order#0.1.0`
