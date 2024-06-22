@@ -2039,6 +2039,22 @@ Medizinische Informationsobjekte (MIO) Mutterpass V1.1.0
 
 ---
 
+### de.gematik.erg
+
+<details>
+<summary>Description</summary>
+
+E-Rechnung der PKV
+
+</details>
+
+**Versions**
+
+* `de.gematik.erg#1.0.0-CC`
+
+
+---
+
 ### ForgePatientChart.0830
 
 <details>
@@ -3723,6 +3739,7 @@ This US-specific implementation guide (IG) provides guidance on the exchange of 
 
 **Versions**
 
+* `hl7.fhir.us.mdi#2.0.0-snapshot1`
 * `hl7.fhir.us.mdi#2.0.0-ballot`
 * `hl7.fhir.us.mdi#1.1.0`
 * `hl7.fhir.us.mdi#1.0.0`
@@ -5264,6 +5281,7 @@ Package Release des ISiK Modul Terminplanung
 * `de.gematik.isik-terminplanung#3.0.4`
 * `de.gematik.isik-terminplanung#3.0.3`
 * `de.gematik.isik-terminplanung#3.0.2`
+* `de.gematik.isik-terminplanung#2.0.5`
 * `de.gematik.isik-terminplanung#2.0.4`
 * `de.gematik.isik-terminplanung#2.0.3`
 
@@ -5714,12 +5732,6 @@ Package version 1.0.0
 
 **Versions**
 
-* `us.cdc.phinvads#0.12.0`
-* `us.cdc.phinvads#0.11.0`
-* `us.cdc.phinvads#0.10.0`
-* `us.cdc.phinvads#0.3.0`
-* `us.cdc.phinvads#0.2.0`
-* `us.cdc.phinvads#0.1.2`
 * `us.cdc.phinvads#0.1.1`
 * `us.cdc.phinvads#0.1.0`
 
@@ -6907,6 +6919,22 @@ National Alpha country profiles
 **Versions**
 
 * `alpha.core.r4#1.0.0`
+
+
+---
+
+### kbv.all.st
+
+<details>
+<summary>Description</summary>
+
+KBV Schluesseltabellen
+
+</details>
+
+**Versions**
+
+* `kbv.all.st#1.3.1`
 
 
 ---
@@ -9576,12 +9604,13 @@ eHealth Platform Federal Core Profiles (built Tue, Jun 11, 2024 14:06+0200+02:00
 <details>
 <summary>Description</summary>
 
-This implementation guide is provided to support the use of FHIR®© in an Australian context. (built Sat, Mar 9, 2024 23:11+1100+11:00)
+This implementation guide is provided to support the use of FHIR®© in an Australian context. (built Thu, Jun 20, 2024 16:57+1000+10:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.au.base#4.2.1-preview`
 * `hl7.fhir.au.base#4.2.0-preview`
 * `hl7.fhir.au.base#4.1.0`
 * `hl7.fhir.au.base#4.1.2-preview`
@@ -10059,12 +10088,13 @@ Package Release des ISIP Basis Modul
 <details>
 <summary>Description</summary>
 
-This implementation guide is provided to support the use of FHIR®© in an Australian context, and defines the minimum set of constraints on the FHIR resources to create the AU Core profiles. This implementation guide forms the foundation to build future AU Realm FHIR implementation guides and its content will continue to grow to meet the needs of AU implementers. (built Sun, Mar 10, 2024 01:01+1100+11:00)
+This implementation guide is provided to support the use of FHIR®© in an Australian context, and defines the minimum set of constraints on the FHIR resources to create the AU Core profiles. This implementation guide forms the foundation to build future AU Realm FHIR implementation guides and its content will continue to grow to meet the needs of AU implementers. (built Thu, Jun 20, 2024 18:17+1000+10:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.au.core#0.4.0-preview`
 * `hl7.fhir.au.core#0.3.0-ballot`
 * `hl7.fhir.au.core#0.2.2-preview`
 * `hl7.fhir.au.core#0.2.1-preview`
