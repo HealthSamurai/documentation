@@ -163,8 +163,6 @@ NHS (England) National Services Implementation Guide
 
 **Versions**
 
-* `uk.nhsdigital.r4.test#2.8.9-prerelease`
-* `uk.nhsdigital.r4.test#2.8.8-prerelease`
 * `uk.nhsdigital.r4.test#2.8.7-prerelease`
 * `uk.nhsdigital.r4.test#2.8.6-prerelease`
 * `uk.nhsdigital.r4.test#2.8.5-prerelease`
@@ -5921,6 +5919,8 @@ Technical profiles used by nexuzhealth for the import and export of data.
 
 **Versions**
 
+* `nxh.fhir.r4#0.0.0-beta.17`
+* `nxh.fhir.r4#0.0.0-beta.16`
 * `nxh.fhir.r4#0.0.0-beta.15`
 * `nxh.fhir.r4#0.0.0-beta.14`
 * `nxh.fhir.r4#0.0.0-beta.13`
