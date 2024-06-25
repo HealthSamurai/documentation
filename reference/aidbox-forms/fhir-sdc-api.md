@@ -2,29 +2,26 @@
 description: This article outlines operations from the FHIR SDC Implementation Guide.
 ---
 
+# FHIR SDC API
+
 > Implementation corresponds to [SDC FHIR IG - 3.0.version 0](http://hl7.org/fhir/uv/sdc/)
 
-# FHIR SDC API
+## FHIR SDC API
 
 Aidbox Forms module supports FHIR SDC operations:
 
-* [$populate](fhir-sdc-api.md#populate-questionnaire-usdpopulate)  - filling out a form with existing data ([FHIR](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populate.html))
+* [$populate](fhir-sdc-api.md#populate-questionnaire-usdpopulate) - filling out a form with existing data ([FHIR](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populate.html))
 * [$populatelink](fhir-sdc-api.md#populate-questionnaire-and-generate-a-link-usdpopulatelink) - filling out a form with existing data, and return signed link to it ([FHIR](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populatelink.html))
 * [$extract](fhir-sdc-api.md#questionnaire-response-extract-to-resources-usdextract) - extract data from QuestionnaireResponse to other FHIR resources ([FHIR](https://hl7.org/fhir/uv/sdc/OperationDefinition-QuestionnaireResponse-extract.html))
 * [$expand](fhir-sdc-api.md#valueset-expansion-usdexpand) - create a simple collection of codes suitable for use for data entry or validation. ([FHIR](https://www.hl7.org/fhir/valueset-operation-expand.html))
 
+## Populate Questionnaire - $populate
 
+The [populate](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populate.html) operation generates a [QuestionnaireResponse](https://www.hl7.org/fhir/questionnaireresponse.html) based on a specific [Questionnaire](https://www.hl7.org/fhir/questionnaire.html), filling in answers to questions where possible based on information provided as part of the operation or already known by the server about the subject of the Questionnaire.
 
-# Populate Questionnaire - $populate
+> This implementation supports the [Observation based](https://hl7.org/fhir/uv/sdc/populate.html#observation-based-population) and [Expression based](https://hl7.org/fhir/uv/sdc/populate.html#expression-based-population) population methods.
 
-The [populate](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populate.html) operation generates a [QuestionnaireResponse](https://www.hl7.org/fhir/questionnaireresponse.html) based on a specific [Questionnaire](https://www.hl7.org/fhir/questionnaire.html), 
-filling in answers to questions where possible based on information provided as part of the operation or already known by the server about the subject of the Questionnaire.
-
-> This implementation supports the [Observation based](https://hl7.org/fhir/uv/sdc/populate.html#observation-based-population)
-and [Expression based](https://hl7.org/fhir/uv/sdc/populate.html#expression-based-population) population methods.
-
-
-## URLs
+### URLs
 
 ```
 POST [base]/Questionnaire/$populate
@@ -34,21 +31,20 @@ POST [base]/Questionnaire/$populate
 POST [base]/Questionnaire/[id]/$populate
 ```
 
-## Parameters
+### Parameters
 
 | Parameter                                            | Cardinality | Type                                                             | Status          |
-|------------------------------------------------------|-------------|------------------------------------------------------------------|-----------------|
+| ---------------------------------------------------- | ----------- | ---------------------------------------------------------------- | --------------- |
 | [identifier](fhir-sdc-api.md#identifier)             | 0..1        | [Identifier](http://hl7.org/fhir/R4/datatypes.html#Identifier)   | `supported`     |
 | [canonical](fhir-sdc-api.md#canonical)               | 0..1        | [uri](http://hl7.org/fhir/R4/datatypes.html#uri)                 | `supported`     |
 | [questionnaire](fhir-sdc-api.md#questionnaire)       | 0..1        | [Questionnaire](http://hl7.org/fhir/R4/questionnaire.html)       | `supported`     |
 | [questionnaireRef](fhir-sdc-api.md#questionnaireref) | 0..1        | [Reference](http://hl7.org/fhir/R4/references.html#Reference)    | `supported`     |
 | [subject](fhir-sdc-api.md#subject)                   | 1..1        | [Reference](http://hl7.org/fhir/R4/references.html#Reference)    | `supported`     |
-| [context](fhir-sdc-api.md#context)                   | 0..*        | [Reference](http://hl7.org/fhir/R4/references.html#Reference)    | `supported`     |
+| [context](fhir-sdc-api.md#context)                   | 0..\*       | [Reference](http://hl7.org/fhir/R4/references.html#Reference)    | `supported`     |
 | [context.name](fhir-sdc-api.md#context.name)         | 1..1        | [string](https://www.hl7.org/fhir/datatypes.html#string)         | `supported`     |
-| [context.content](fhir-sdc-api.md#context.content)   | 1..*        | [Reference](http://hl7.org/fhir/R4/references.html#Reference)    | `supported`     |
+| [context.content](fhir-sdc-api.md#context.content)   | 1..\*       | [Reference](http://hl7.org/fhir/R4/references.html#Reference)    | `supported`     |
 | [local](fhir-sdc-api.md#local)                       | 0..1        | [boolean](http://hl7.org/fhir/R4/datatypes.html#boolean)         | `supported`     |
 | [launchContext](fhir-sdc-api.md#launchcontext)       | 0..1        | [Extension](http://hl7.org/fhir/R4/extensibility.html#Extension) | `not supported` |
-
 
 > Parameters are specified via FHIR [Parameters](https://www.hl7.org/fhir/parameters.html#parameters) type.
 
@@ -64,7 +60,7 @@ parameter:
       resourceType: Patient
 ```
 
-### identifier
+#### identifier
 
 A logical questionnaire identifier (i.e. Questionnaire.identifier). The server must know the questionnaire or be able to retrieve it from other known repositories.
 
@@ -76,10 +72,9 @@ value:
     value: 'vitals'
 ```
 
-### canonical
+#### canonical
 
 The canonical identifier for the questionnaire (optionally version-specific).
-
 
 ```yaml
 name: canonical
@@ -87,7 +82,7 @@ value:
   Canonical: http://forms.aidbox.io/Questionnaire/vitals
 ```
 
-### questionnaire
+#### questionnaire
 
 The Questionnaire is provided directly as part of the request. Servers may choose not to accept questionnaires in this fashion
 
@@ -100,8 +95,7 @@ resource:
   ...
 ```
 
-
-### questionnaireRef
+#### questionnaireRef
 
 The Questionnaire is provided as a resource reference. Servers may choose not to accept questionnaires in this fashion or may fail if they cannot resolve or access the referenced questionnaire.
 
@@ -113,10 +107,9 @@ value:
     id: new-form
 ```
 
-### subject
+#### subject
 
 The resource that is to be the QuestionnaireResponse.subject. The QuestionnaireResponse instance will reference the provided subject. In addition, if the local parameter is set to true, server information about the specified subject will be used to populate the instance.
-
 
 ```yaml
 name: subject
@@ -126,7 +119,8 @@ value:
     resourceType: Patient
 ```
 
-### local
+#### local
+
 If specified and set to true (and the server is capable), the server should use what resources and other knowledge it has about the referenced subject when pre-populating answers to questions.
 
 ```
@@ -135,14 +129,13 @@ value:
   Boolean: true
 ```
 
-### context
+#### context
 
 Resources containing information to be used to help populate the QuestionnaireResponse. These will typically be FHIR resources.
 
-Context paramertes are presented as pairs of `name` and `content` parameters that are placed under the  `part` key.
+Context paramertes are presented as pairs of `name` and `content` parameters that are placed under the `part` key.
 
 They should correspond launchContext parameter definitions.
-
 
 ```yaml
 name: context
@@ -159,39 +152,32 @@ part:
 
 FHIR SDC launchContext extension [enumerates](http://hl7.org/fhir/uv/sdc/STU3/CodeSystem-launchContext.html) possible context variables, they are:
 
+| Code      | Type                                                                                                                                                  | Definition                                |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| patient   | [Reference](http://hl7.org/fhir/R4/references.html#Reference)/resource                                                                                | Patient Patient in context at launch time |
+| encounter | [Reference](http://hl7.org/fhir/R4/references.html#Reference)/resource                                                                                | Encounter context at launch time          |
+| location  | [Reference](http://hl7.org/fhir/R4/references.html#Reference)/resource                                                                                | Location context at launch time           |
+| user      | [Reference\<Patient, Device, PractitionerRole, Practitioner, RelatedPerson, Organization>](http://hl7.org/fhir/R4/references.html#Reference)/resource | User in context at launch time            |
+| study     | [Reference](http://hl7.org/fhir/R4/references.html#Reference)/resource                                                                                | ResearchStudy in context at launch time   |
 
-| Code      | Type                                                                                                                                                 | Definition                                 |
-|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
-| patient   | [Reference<Patient>](http://hl7.org/fhir/R4/references.html#Reference)/resource                                                                      | Patient Patient in context at launch time  |
-| encounter | [Reference<Encounter>](http://hl7.org/fhir/R4/references.html#Reference)/resource                                                                    | Encounter context at launch time           |
-| location  | [Reference<Location>](http://hl7.org/fhir/R4/references.html#Reference)/resource                                                                     | Location context at launch time            |
-| user      | [Reference<Patient, Device, PractitionerRole, Practitioner, RelatedPerson, Organization>](http://hl7.org/fhir/R4/references.html#Reference)/resource | User in context at launch time             |
-| study     | [Reference<ResearchStudy>](http://hl7.org/fhir/R4/references.html#Reference)/resource                                                                | ResearchStudy in context at launch time    |
-
-
-Additionnaly Aidbox expands this list with parameters that mirrors
-[QuestionnaireResponse](https://hl7.org/fhir/R4/questionnaireresponse.html) root properties.
+Additionnaly Aidbox expands this list with parameters that mirrors [QuestionnaireResponse](https://hl7.org/fhir/R4/questionnaireresponse.html) root properties.
 
 {% hint style="warning" %}
 WARN: This is non FHIR SDC compliant behavior!
 
-Paramerters passed directly to [QuestionnaireResponse](https://hl7.org/fhir/R4/questionnaireresponse.html) 
-root properties and should not be used in populate expressions.
+Paramerters passed directly to [QuestionnaireResponse](https://hl7.org/fhir/R4/questionnaireresponse.html) root properties and should not be used in populate expressions.
 {% endhint %}
 
+| Code       | Type                                                                                                                                         |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| identifier | [Identifier](http://hl7.org/fhir/R4/datatypes.html#Identifier)                                                                               |
+| basedOn    | [Reference\<CarePlan, ServiceRequest>](http://hl7.org/fhir/R4/references.html#Reference)                                                     |
+| partOf     | [Reference\<Observation, Procedure>](http://hl7.org/fhir/R4/references.html#Reference)                                                       |
+| encounter  | [Reference\<CarePlan/ServiceRequest>](http://hl7.org/fhir/R4/references.html#Reference)                                                      |
+| author     | [Reference\<Device, Practitioner, PractitionerRole, Patient, RelatedPerson, Organization>](http://hl7.org/fhir/R4/references.html#Reference) |
+| source     | [Reference\<Device, Organization, Patient, Practitioner, PractitionerRole, RelatedPerson>](http://hl7.org/fhir/R4/references.html#Reference) |
 
-| Code       | Type                                                                                                                                        |
-|------------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| identifier | [Identifier](http://hl7.org/fhir/R4/datatypes.html#Identifier)                                                                              |
-| basedOn    | [Reference<CarePlan, ServiceRequest>](http://hl7.org/fhir/R4/references.html#Reference)                                                     |
-| partOf     | [Reference<Observation, Procedure>](http://hl7.org/fhir/R4/references.html#Reference)                                                       |
-| encounter  | [Reference<CarePlan/ServiceRequest>](http://hl7.org/fhir/R4/references.html#Reference)                                                      |
-| author     | [Reference<Device, Practitioner, PractitionerRole, Patient, RelatedPerson, Organization>](http://hl7.org/fhir/R4/references.html#Reference) |
-| source     | [Reference<Device, Organization, Patient, Practitioner, PractitionerRole, RelatedPerson>](http://hl7.org/fhir/R4/references.html#Reference) |
-
-
-
-Example: 
+Example:
 
 ```yaml
 name: name
@@ -201,11 +187,9 @@ value:
     resourceType: ServiceRequest
 ```
 
+#### context.name
 
-### context.name
-
-The name of the launchContext or root Questionnaire variable the passed content should be used as for population purposes.
-The name SHALL correspond to a launchContext or variable delared at the root of the Questionnaire.
+The name of the launchContext or root Questionnaire variable the passed content should be used as for population purposes. The name SHALL correspond to a launchContext or variable delared at the root of the Questionnaire.
 
 ```yaml
 name: name
@@ -213,11 +197,11 @@ value:
   String: encounter
 ```
 
-### context.content
+#### context.content
 
 The actual resource (or resources) to use as the value of the launchContext or variable.
 
-```yaml 
+```yaml
 name: content
 value:
   Reference:
@@ -225,9 +209,9 @@ value:
     id: enc1
 ```
 
-Or 
+Or
 
-```yaml 
+```yaml
 name: content
 resource:
   ...
@@ -239,25 +223,23 @@ resource:
   ...
 ```
 
-### launchContext
+#### launchContext
 
 Resources that provide context for form processing logic (pre-population) when creating/displaying/editing a QuestionnaireResponse.
 
+### Response
 
-## Response
-
-- in failure case - response is specified as [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) object.
-- in success case - response is specified as [Parameters](https://www.hl7.org/fhir/parameters.html#parameters) object.
+* in failure case - response is specified as [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) object.
+* in success case - response is specified as [Parameters](https://www.hl7.org/fhir/parameters.html#parameters) object.
 
 Success response shape
 
-
 | Parameter | Cardinality | Type                                                                        | Description                                                                                 |
-|-----------|-------------|-----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| --------- | ----------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | response  | 1..1        | [QuestionnaireResponse](https://hl7.org/fhir/R4/questionnaireresponse.html) | The partially (or fully)-populated set of answers for the specified Questionnaire           |
 | issues    | 0..1        | [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html)           | A list of hints and warnings about problems encountered while populating the questionnaire. |
 
-## Usage Example
+### Usage Example
 
 {% tabs %}
 {% tab title="Request" %}
@@ -286,7 +268,6 @@ parameter:
 {% endtab %}
 
 {% tab title="Success Response" %}
-
 HTTP status: 200
 
 ```yaml
@@ -311,7 +292,6 @@ parameter:
 {% endtab %}
 
 {% tab title="Failure Response" %}
-
 HTTP status: 422
 
 ```yaml
@@ -328,16 +308,13 @@ issue:
 
 ```
 {% endtab %}
-
 {% endtabs %}
 
-
-
-# Populate Questionnaire and generate a link - $populatelink
+## Populate Questionnaire and generate a link - $populatelink
 
 The [populatelink](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populatelink.html) operation generates a link to a web page to be used to answer a specified [Questionnaire](https://www.hl7.org/fhir/questionnaire.html). The form at the specified location will be pre-filled with answers to questions where possible based on information provided as part of the operation or already known by the server about the subject of the Questionnaire.
 
-## URLs
+### URLs
 
 ```
 POST [base]/Questionnaire/$populatelink
@@ -347,7 +324,7 @@ POST [base]/Questionnaire/$populatelink
 POST [base]/Questionnaire/[id]/$populatelink
 ```
 
-## Parameters
+### Parameters
 
 The base set of parameters is the same as for [$populate](fhir-sdc-api.md#parameters). On top of that, a few extra parameters are supported by Aidbox Forms.
 
@@ -356,7 +333,7 @@ WARN: The following parameters are not FHIR SDC compliant. This is an extension 
 {% endhint %}
 
 {% hint style="warning" %}
-NOTE:  Don't forget to wrap parameters in `Parameters object`
+NOTE: Don't forget to wrap parameters in `Parameters object`
 
 ```yaml
 resourceType: Parameters
@@ -366,7 +343,7 @@ parameter:
 ```
 {% endhint %}
 
-### allow-amend
+#### allow-amend
 
 Whether the generated link will allow amending and re-submitting the form.
 
@@ -376,8 +353,7 @@ value:
   Boolean: true
 ```
 
-
-### redirect-on-submit
+#### redirect-on-submit
 
 A URL where the user will be redirected to after successfully submitting the form.
 
@@ -387,7 +363,7 @@ value:
   String: https://example.com/submit-hook?questionnaire=123
 ```
 
-### redirect-on-save
+#### redirect-on-save
 
 A URL where the user will be redirected to after hitting Save button.
 
@@ -399,7 +375,7 @@ value:
   String: https://example.com/submit-hook?questionnaire=123
 ```
 
-### link expiration time
+#### link expiration time
 
 Link expiration period (days)
 
@@ -411,8 +387,7 @@ value:
 
 > By default thir parameter = 7 days
 
-
-### theme
+#### theme
 
 Form theme.
 
@@ -422,19 +397,17 @@ value:
   String: hs-theme
 ```
 
+### Response
 
-## Response
-
-- in failure case - response is specified as [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) object containing a link.
-- in success case - response is specified as [Parameters](https://www.hl7.org/fhir/parameters.html#parameters) object containing a list of issues.
+* in failure case - response is specified as [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) object containing a link.
+* in success case - response is specified as [Parameters](https://www.hl7.org/fhir/parameters.html#parameters) object containing a list of issues.
 
 | Parameter | Cardinality | Type                                                              | Description                                                                                |
-|-----------|-------------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
+| --------- | ----------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
 | link      | 1..1        | [uri](http://hl7.org/fhir/R4/datatypes.html#uri)                  | The URL for the web form that supports capturing the information defined by questionnaire  |
 | issues    | 0..1        | [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) | A list of hints and warnings about problems encountered while populating the questionnaire |
 
-
-## Usage Example
+### Usage Example
 
 {% tabs %}
 {% tab title="Request" %}
@@ -465,7 +438,6 @@ parameter:
 {% endtab %}
 
 {% tab title="Success Response" %}
-
 HTTP status: 200
 
 ```yaml
@@ -479,7 +451,6 @@ parameter:
 {% endtab %}
 
 {% tab title="Failure Response" %}
-
 HTTP status: 422
 
 ```yaml
@@ -496,17 +467,15 @@ issue:
 
 ```
 {% endtab %}
-
 {% endtabs %}
 
-# Questionnaire response extract to resources - $extract
+## Questionnaire response extract to resources - $extract
 
 The [extract](http://hl7.org/fhir/uv/sdc/OperationDefinition/QuestionnaireResponse-extract) operation takes a completed `QuestionnaireResponse` and extracts it's data to `Bundle` of resources by using metadata embedded in the `Questionnaire` the `QuestionnaireResponse` is based on. The extracted resources might include `Observations`, MedicationStatements and other standard FHIR resources which can then be shared and manipulated.
 
-Aidbox supports only the [Observation based](https://hl7.org/fhir/uv/sdc/extraction.html#observation-based-extraction) extraction method.
+Aidbox supports only the [Observation based](https://hl7.org/fhir/uv/sdc/extraction.html#observation-based-extraction) and [Definition based](https://hl7.org/fhir/uv/sdc/extraction.html#definition-based-extraction) extraction methods.
 
-
-## URLs
+### URLs
 
 ```http
 URL: [base]/QuestionnaireResponse/$extract
@@ -516,10 +485,10 @@ URL: [base]/QuestionnaireResponse/$extract
 URL: [base]/QuestionnaireResponse/[id]/$extract
 ```
 
-## Parameters
+### Parameters
 
 | Parameter              | Cardinality | Type                                             | Description                                     |
-|------------------------|-------------|--------------------------------------------------|-------------------------------------------------|
+| ---------------------- | ----------- | ------------------------------------------------ | ----------------------------------------------- |
 | questionnaire-response | 0..1        | [Resourse](http://hl7.org/fhir/R4/resource.html) | The QuestionnaireResponse to extract data from. |
 
 > Parameters are specified via FHIR [Parameters](https://www.hl7.org/fhir/parameters.html#parameters) type.
@@ -536,18 +505,17 @@ parameter:
     ...
 ```
 
-## Response
+### Response
 
-- in failure case - response is specified as [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) object.
-- in success case - response is specified as [Parameters](https://www.hl7.org/fhir/parameters.html#parameters) object.
-
+* in failure case - response is specified as [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) object.
+* in success case - response is specified as [Parameters](https://www.hl7.org/fhir/parameters.html#parameters) object.
 
 | Parameter | Cardinality | Type                                                              | Description                                                                       |
-|-----------|-------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| --------- | ----------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | return    | 1..1        | [Resourse](http://hl7.org/fhir/R4/resource.html)                  | FHIR Bundle with extracted resources                                              |
 | issues    | 0..1        | [OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) | A list of hints and warnings about problems encountered while extracting the data |
 
-## Usage Example
+### Usage Example
 
 {% tabs %}
 {% tab title="Request" %}
@@ -571,7 +539,6 @@ parameter:
 {% endtab %}
 
 {% tab title="Success Response" %}
-
 HTTP status: 200
 
 ```yaml
@@ -599,7 +566,6 @@ return:
 {% endtab %}
 
 {% tab title="Failure Response" %}
-
 HTTP status: 422
 
 ```yaml
@@ -616,11 +582,9 @@ issue:
 
 ```
 {% endtab %}
-
 {% endtabs %}
 
-
-# ValueSet Expansion - $expand 
+## ValueSet Expansion - $expand
 
 Value Sets are used to define possible coded answer choices in a questionnaire.
 
