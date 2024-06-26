@@ -335,6 +335,7 @@ WARN: The following parameters are not FHIR SDC compliant. This is an extension 
 {% hint style="warning" %}
 NOTE: Don't forget to wrap parameters in `Parameters object`
 
+
 ```yaml
 resourceType: Parameters
 parameter:
@@ -342,6 +343,16 @@ parameter:
   value: [varType: var-value]
 ```
 {% endhint %}
+
+
+| Parameter                                                | Cardinality | Type                                                     |
+|----------------------------------------------------------|-------------|----------------------------------------------------------|
+| [allow-amend](fhir-sdc-api.md#allow-amend)               | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#boolean) |
+| [redirect-on-submit](fhir-sdc-api.md#redirect-on-submit) | 0..1        | [String](http://hl7.org/fhir/R4/datatypes.html#string)   |
+| [redirect-on-submit](fhir-sdc-api.md#redirect-on-submit) | 0..1        | [String](http://hl7.org/fhir/R4/datatypes.html#string)   |
+| [expiration](fhir-sdc-api.md#link-expiration-time)       | 0..1        | [Integer](http://hl7.org/fhir/R4/datatypes.html#integer) |
+| [theme](fhir-sdc-api.md#theme)                           | 0..1        | [String](http://hl7.org/fhir/R4/datatypes.html#string)   |
+| [read-only](fhir-sdc-api.md#read-only)                   | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#boolean) |
 
 #### allow-amend
 
@@ -396,6 +407,17 @@ name: theme
 value:
   String: hs-theme
 ```
+
+#### read-only
+
+Open form in read-only mode.
+
+```yaml
+name: read-only
+value:
+  Boolean: true
+```
+
 
 ### Response
 
