@@ -163,15 +163,6 @@ NHS (England) National Services Implementation Guide
 
 **Versions**
 
-* `uk.nhsdigital.r4.test#2.8.6-prerelease`
-* `uk.nhsdigital.r4.test#2.8.5-prerelease`
-* `uk.nhsdigital.r4.test#2.8.17-prerelease`
-* `uk.nhsdigital.r4.test#2.8.16-prerelease`
-* `uk.nhsdigital.r4.test#2.8.15-prerelease`
-* `uk.nhsdigital.r4.test#2.8.14-prerelease`
-* `uk.nhsdigital.r4.test#2.8.13-prerelease`
-* `uk.nhsdigital.r4.test#2.8.12-prerelease`
-* `uk.nhsdigital.r4.test#2.8.11-prerelease`
 * `uk.nhsdigital.r4.test#2.8.10-prerelease`
 
 
@@ -269,12 +260,13 @@ Sammlung von Erweiterungen, Profilen und Value Sets zur Nutzung der Treuhandstel
 <details>
 <summary>Description</summary>
 
-eRezeptAbgabedatensatz 1.4.0 vom 16.05.2024
+eRezeptAbgabedatensatz 1.4.1 vom 25.06.2024
 
 </details>
 
 **Versions**
 
+* `de.abda.erezeptabgabedaten#1.4.1`
 * `de.abda.erezeptabgabedaten#1.4.0`
 * `de.abda.erezeptabgabedaten#1.4.1-rc`
 * `de.abda.erezeptabgabedaten#1.4.0-rc2`
@@ -947,6 +939,7 @@ Progetto FHIR per Regione Lombardia
 
 **Versions**
 
+* `rl.fhir.r4.draft#0.0.23`
 * `rl.fhir.r4.draft#0.0.22`
 * `rl.fhir.r4.draft#0.0.21`
 * `rl.fhir.r4.draft#0.0.20`
@@ -4747,12 +4740,13 @@ Nictiz NL package of FHIR R4 conformance resources for Lab Exchange.
 <details>
 <summary>Description</summary>
 
-Support encoding and presentation of an interactive multimedia report (built Mon, Jul 25, 2022 14:36-0500-05:00)
+Support encoding and presentation of an interactive multimedia report (built Thu, Jun 20, 2024 08:48-0500-05:00)
 
 </details>
 
 **Versions**
 
+* `ihe.rad.imr#1.1.0`
 * `ihe.rad.imr#1.0.0`
 * `ihe.rad.imr#1.0.0-comment`
 * `ihe.rad.imr#0.1.0`
@@ -5751,6 +5745,7 @@ Basis-Profile für die Abgabedaten im eRezept-Kontext
 
 **Versions**
 
+* `de.abda.erezeptabgabedatenbasis#1.4.1`
 * `de.abda.erezeptabgabedatenbasis#1.4.0`
 * `de.abda.erezeptabgabedatenbasis#1.4.1-rc`
 * `de.abda.erezeptabgabedatenbasis#1.4.0-rc2`
@@ -6815,6 +6810,10 @@ Laniado Hospital Test Project
 
 **Versions**
 
+* `laniado.test.fhir.r4#0.1.43`
+* `laniado.test.fhir.r4#0.1.42`
+* `laniado.test.fhir.r4#0.1.41`
+* `laniado.test.fhir.r4#0.1.40`
 * `laniado.test.fhir.r4#0.1.31`
 * `laniado.test.fhir.r4#0.1.30`
 * `laniado.test.fhir.r4#0.1.29`
@@ -10121,6 +10120,7 @@ Put a description here
 
 **Versions**
 
+* `de.gematik.isik-basismodul#4.0.0-rc3`
 * `de.gematik.isik-basismodul#4.0.0-rc2`
 * `de.gematik.isik-basismodul#4.0.0-rc`
 * `de.gematik.isik-basismodul#3.0.5`
