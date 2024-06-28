@@ -15,6 +15,12 @@ Aidbox Forms module supports FHIR SDC operations:
 * [$extract](fhir-sdc-api.md#questionnaire-response-extract-to-resources-usdextract) - extract data from QuestionnaireResponse to other FHIR resources ([FHIR](https://hl7.org/fhir/uv/sdc/OperationDefinition-QuestionnaireResponse-extract.html))
 * [$expand](fhir-sdc-api.md#valueset-expansion-usdexpand) - create a simple collection of codes suitable for use for data entry or validation. ([FHIR](https://www.hl7.org/fhir/valueset-operation-expand.html))
 
+We have created an[ Aidbox notebook](https://docs.aidbox.app/overview/aidbox-ui/notebooks) demonstrating different population and extraction methods&#x20;
+
+> We have created an[ Aidbox notebook](https://docs.aidbox.app/overview/aidbox-ui/notebooks) demonstrating different population and extraction methods:
+>
+> [**Aidbox forms: populate & extract**](https://aidbox.app/ExportedNotebook/10b1ea71-8e25-4f5e-aaff-e64ae50a27d5)&#x20;
+
 ## Populate Questionnaire - $populate
 
 The [populate](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populate.html) operation generates a [QuestionnaireResponse](https://www.hl7.org/fhir/questionnaireresponse.html) based on a specific [Questionnaire](https://www.hl7.org/fhir/questionnaire.html), filling in answers to questions where possible based on information provided as part of the operation or already known by the server about the subject of the Questionnaire.
@@ -335,7 +341,6 @@ WARN: The following parameters are not FHIR SDC compliant. This is an extension 
 {% hint style="warning" %}
 NOTE: Don't forget to wrap parameters in `Parameters object`
 
-
 ```yaml
 resourceType: Parameters
 parameter:
@@ -344,9 +349,8 @@ parameter:
 ```
 {% endhint %}
 
-
 | Parameter                                                | Cardinality | Type                                                     |
-|----------------------------------------------------------|-------------|----------------------------------------------------------|
+| -------------------------------------------------------- | ----------- | -------------------------------------------------------- |
 | [allow-amend](fhir-sdc-api.md#allow-amend)               | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#boolean) |
 | [redirect-on-submit](fhir-sdc-api.md#redirect-on-submit) | 0..1        | [String](http://hl7.org/fhir/R4/datatypes.html#string)   |
 | [redirect-on-submit](fhir-sdc-api.md#redirect-on-submit) | 0..1        | [String](http://hl7.org/fhir/R4/datatypes.html#string)   |
@@ -417,7 +421,6 @@ name: read-only
 value:
   Boolean: true
 ```
-
 
 ### Response
 
