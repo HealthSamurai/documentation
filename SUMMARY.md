@@ -424,7 +424,7 @@
     * [Versioning](modules-1/aidbox-forms/aidbox-code-editor/versioning.md)
     * [Form sharing](modules-1/aidbox-forms/aidbox-code-editor/share-a-form.md)
     * [Aidbox Form workflow](modules-1/aidbox-forms/aidbox-code-editor/workflow.md)
-    * [Сhanging data after form signing](modules-1/aidbox-forms/aidbox-code-editor/addendum.md)
+    * [Changing data after form signing](modules-1/aidbox-forms/aidbox-code-editor/addendum.md)
     * [FHIR Questionnaire to Aidbox Forms and back conversion](modules-1/aidbox-forms/aidbox-code-editor/converter.md)
   * [Any familiar form editor](modules-1/aidbox-forms/design-form-locally-in-familiar-editor.md)
   * [Aidbox Form Gallery](modules-1/aidbox-forms/add-aidbox-forms-library.md)
