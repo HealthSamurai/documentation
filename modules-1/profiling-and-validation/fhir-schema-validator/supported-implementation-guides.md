@@ -30,17 +30,18 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 ---
 
-### Danish MedCom Core
+### DK MedCom Core
 
 <details>
 <summary>Description</summary>
 
-Danish MedCom Core IG (built Tue, Oct 31, 2023 14:20+0100+01:00)
+Danish MedCom Core IG (built Thu, Jun 27, 2024 14:12+0200+02:00)
 
 </details>
 
 **Versions**
 
+* `medcom.fhir.dk.core#2.4.0`
 * `medcom.fhir.dk.core#2.3.0`
 * `medcom.fhir.dk.core#2.2.0`
 * `medcom.fhir.dk.core#2.1.0`
@@ -5554,12 +5555,13 @@ Guidelines for conveying coverage requirements to clinicians when planning treat
 <details>
 <summary>Description</summary>
 
-The DK MedCom Terminology IG (built Mon, Feb 5, 2024 08:46+0100+01:00)
+The DK MedCom Terminology IG (built Thu, Jun 27, 2024 12:10+0200+02:00)
 
 </details>
 
 **Versions**
 
+* `medcom.fhir.dk.terminology#1.7.0`
 * `medcom.fhir.dk.terminology#1.6.0`
 * `medcom.fhir.dk.terminology#1.5.0`
 * `medcom.fhir.dk.terminology#1.4.0`
@@ -6798,6 +6800,8 @@ Laniado Hospital Test Project
 
 **Versions**
 
+* `laniado.test.fhir.r4#0.1.52`
+* `laniado.test.fhir.r4#0.1.51`
 * `laniado.test.fhir.r4#0.1.50`
 * `laniado.test.fhir.r4#0.1.49`
 * `laniado.test.fhir.r4#0.1.48`
@@ -7274,10 +7278,6 @@ NHS (England) National Services Implementation Guide
 
 **Versions**
 
-* `uk.nhsdigital.r4#2.1.7-discovery`
-* `uk.nhsdigital.r4#2.1.6-discovery`
-* `uk.nhsdigital.r4#2.1.5-discovery`
-* `uk.nhsdigital.r4#2.1.4-discovery`
 * `uk.nhsdigital.r4#2.1.34-discovery`
 * `uk.nhsdigital.r4#2.1.33-discovery`
 * `uk.nhsdigital.r4#2.1.32-discovery`
