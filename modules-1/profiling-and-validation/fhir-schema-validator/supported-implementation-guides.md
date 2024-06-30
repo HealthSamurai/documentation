@@ -7278,9 +7278,6 @@ NHS (England) National Services Implementation Guide
 
 **Versions**
 
-* `uk.nhsdigital.r4#2.1.34-discovery`
-* `uk.nhsdigital.r4#2.1.33-discovery`
-* `uk.nhsdigital.r4#2.1.32-discovery`
 * `uk.nhsdigital.r4#2.1.31-discovery`
 * `uk.nhsdigital.r4#2.1.30-discovery`
 * `uk.nhsdigital.r4#2.1.3-dev`
@@ -9018,12 +9015,13 @@ KR Core V1 기반의 건강정보 고속도로 상세규격 - 1.0.2-beta.4
 <details>
 <summary>Description</summary>
 
-The DK MedCom Messaging IG (built Tue, Oct 31, 2023 14:54+0100+01:00)
+The DK MedCom Messaging IG (built Fri, Jun 28, 2024 07:12+0200+02:00)
 
 </details>
 
 **Versions**
 
+* `medcom.fhir.dk.messaging#2.2.0`
 * `medcom.fhir.dk.messaging#2.1.0`
 * `medcom.fhir.dk.messaging#2.0.0`
 
@@ -10281,6 +10279,7 @@ The goal of the CA Baseline specification is to expose the implementation guide 
 
 **Versions**
 
+* `hl7.fhir.ca.baseline#1.1.8`
 * `hl7.fhir.ca.baseline#1.1.7`
 * `hl7.fhir.ca.baseline#1.1.6`
 * `hl7.fhir.ca.baseline#1.1.4`
@@ -11730,12 +11729,13 @@ Danish municipalities implementation guide for common informationmodel (built We
 <details>
 <summary>Description</summary>
 
-The DK MedCom Carecommunication IG (built Wed, Oct 4, 2023 16:20+0200+02:00)
+The DK MedCom Carecommunication IG (built Fri, Jun 28, 2024 11:23+0200+02:00)
 
 </details>
 
 **Versions**
 
+* `medcom.fhir.dk.carecommunication#4.0.0`
 * `medcom.fhir.dk.carecommunication#3.0.0`
 * `medcom.fhir.dk.carecommunication#2.1.0`
 * `medcom.fhir.dk.carecommunication#2.0.0`
