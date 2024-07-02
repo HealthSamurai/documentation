@@ -6800,6 +6800,9 @@ Laniado Hospital Test Project
 
 **Versions**
 
+* `laniado.test.fhir.r4#0.1.55`
+* `laniado.test.fhir.r4#0.1.54`
+* `laniado.test.fhir.r4#0.1.53`
 * `laniado.test.fhir.r4#0.1.52`
 * `laniado.test.fhir.r4#0.1.51`
 * `laniado.test.fhir.r4#0.1.50`
@@ -7278,9 +7281,6 @@ NHS (England) National Services Implementation Guide
 
 **Versions**
 
-* `uk.nhsdigital.r4#2.1.31-discovery`
-* `uk.nhsdigital.r4#2.1.30-discovery`
-* `uk.nhsdigital.r4#2.1.3-dev`
 * `uk.nhsdigital.r4#2.1.29-discovery`
 * `uk.nhsdigital.r4#2.1.28-discovery`
 * `uk.nhsdigital.r4#2.1.27-discovery`
