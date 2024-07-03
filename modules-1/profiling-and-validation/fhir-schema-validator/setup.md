@@ -49,3 +49,21 @@ AIDBOX_TERMINOLOGY_SERVICE_BASE_URL=https://tx.fhir.org/r4
 {% hint style="warning" %}
 Please note that this external terminology server will be used exclusively for validating terminology bindings.
 {% endhint %}
+
+### Validation Engine Settings
+
+#### FHIRSchema Validator Strict Extension Resolution
+
+Extensions referenced in data instances must be known to Aidbox. If Aidbox encounters an unknown extension during validation, it will raise a validation error.
+
+```
+AIDBOX_VALIDATOR_STRICT_EXTENSION_RESOLUTION_ENABLED=true
+```
+
+#### FHIRSchema Validator Strict Extension Resolution
+
+Profiles referenced in data instances _(e.g. meta.profile)_ must be known to Aidbox. If Aidbox encounters an unknown profile during validation, it will raise a validation error.
+
+```
+AIDBOX_VALIDATOR_STRICT_PROFILE_RESOLUTION_ENABLED=true
+```
