@@ -16,13 +16,11 @@ All sample requests are available in the Postman collection:[![Run in Postman](h
 | Resource Type     | `GET /<RESOURCE_TYPE>/_history{?[parameters]&_format=[mime-type]}`      | `Supported`     |
 | All Resources     | `GET /_history{?[parameters]&_format=[mime-type]}`                      | `Not Supported` |
 
-The result of the history operation is a Bundle with type `history` containing links section for pagination, the  specified version history, sorted with newest versions first, and including deleted resources.
+The result of the history operation is a Bundle with type `history` containing links section for pagination, the specified version history, sorted with newest versions first, and including deleted resources.
 
 The `request` element provides information about the interaction that occurred and caused the new version of the resource.
 
 Only operations create, update, and delete create history entries. Conditional creates, updates and deletes are converted to direct updates and deletes in a history list.
-
-
 
 #### Internals of History API
 
@@ -41,7 +39,7 @@ LIMIT ? OFFSET ?
 
 On the create operation (e.g. via PUT/POST CRUD requests or [$import](../bulk-api-1/usdimport-and-fhir-usdimport.md)), i.e. the table does not contain the resource with same id and resource type, History API call will return the most recent resource version which is stored in the resource table with name `<resourceType>_history`(e.g. `patient_history` table).
 
-On update operation the old version of the resource in the main table is replaced by a new one. The old version firstly is moved to resource table and replaced with a new version in the main history table.&#x20;
+On update operation the old version of the resource in the main table is replaced by a new one. The old version firstly is moved to resource table and replaced with a new version in the main history table.
 
 As all previous versions of the resource are stored in history table, the size of this table will grow with every update, on the size of the resource that was updated. At the same time, as history records are stored in a separate table, the _size_ of this table doesn't affect the performance of the operations not related to history (search, CRUD, etc.).
 
@@ -161,24 +159,24 @@ entry:
 
 ## History Parameters
 
-&#x20;The parameters to the history interaction may include:
+The parameters to the history interaction may include:
 
 | Parameter | Type    | Description                                                                                                                                    |
 | --------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | \_count   | integer | Number of return records requested. The server is not bound to return the number requested, but cannot return more.                            |
-| \_txid    | integer | Logical transaction id (aidbox logical clock)                                                                                                  |
+| \_txid    | integer | Only include resource versions whose logical transaction ID (= versionId) is greater than the given number.                                    |
 | \_since   | instant | Only include resource versions that were created at or after the given instant in time.                                                        |
 | \_at      | date    | Only include resource versions that were current at some point during the time period specified in the date time value (may be more than one). |
 | \_count   | integer | Total records on the page (default - 100)                                                                                                      |
 | \_page    | integer | Specific page pointer                                                                                                                          |
-|  \_format | enum    | Result format: yaml, json, xml, edn, transit                                                                                                   |
+| \_format  | enum    | Result format: yaml, json, xml, edn, transit                                                                                                   |
 
 ### Examples of the history requests with parameters:
 
-&#x20;`{{base}}/Patient/_history?_count=3`
+`{{base}}/Patient/_history?_count=3`
 
-&#x20;`{{base}}/Patient/_history?_since=2018-11-27T22:00:16.609Z`
+`{{base}}/Patient/_history?_since=2018-11-27T22:00:16.609Z`
 
-&#x20;`{{base}}/Patient/_history?_at=2018-11-27`
+`{{base}}/Patient/_history?_at=2018-11-27`
 
-&#x20;`{{base}}/Patient/_history?_format=yaml`
+`{{base}}/Patient/_history?_format=yaml`
