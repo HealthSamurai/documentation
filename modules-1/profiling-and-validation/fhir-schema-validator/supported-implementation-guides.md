@@ -1982,6 +1982,7 @@ Progetto FHIR per Regione Lombardia
 
 **Versions**
 
+* `rl.fhir.r4#0.0.13`
 * `rl.fhir.r4#0.0.12`
 * `rl.fhir.r4#0.0.11`
 * `rl.fhir.r4#0.0.10`
@@ -5305,12 +5306,30 @@ Package Release des ISiK Modul Terminplanung
 
 * `de.gematik.isik-terminplanung#4.0.0-rc2`
 * `de.gematik.isik-terminplanung#4.0.0-rc`
+* `de.gematik.isik-terminplanung#3.0.5`
 * `de.gematik.isik-terminplanung#3.0.4`
 * `de.gematik.isik-terminplanung#3.0.3`
 * `de.gematik.isik-terminplanung#3.0.2`
 * `de.gematik.isik-terminplanung#2.0.5`
 * `de.gematik.isik-terminplanung#2.0.4`
 * `de.gematik.isik-terminplanung#2.0.3`
+
+
+---
+
+### Digital Tooling Implementation Guide
+
+<details>
+<summary>Description</summary>
+
+FHIR profiles used in FHIR Publishing processes within Health New Zealand Te Whatu Ora (built Wed, Jul 3, 2024 23:15+0000+00:00)
+
+</details>
+
+**Versions**
+
+* `tewhatuora.digitaltooling#0.0.7`
+* `tewhatuora.digitaltooling#0.0.6`
 
 
 ---
@@ -7347,12 +7366,6 @@ NHS (England) National Services Implementation Guide
 
 **Versions**
 
-* `uk.nhsdigital.r4#2.1.11-discovery`
-* `uk.nhsdigital.r4#2.1.10-discovery`
-* `uk.nhsdigital.r4#2.1.1-dev`
-* `uk.nhsdigital.r4#2.1.0-dev`
-* `uk.nhsdigital.r4#2.0.24-dev`
-* `uk.nhsdigital.r4#2.0.23-dev`
 * `uk.nhsdigital.r4#2.0.22-dev`
 * `uk.nhsdigital.r4#2.0.21-dev`
 * `uk.nhsdigital.r4#2.0.20-dev`
@@ -7690,9 +7703,11 @@ Medikations-Modul der Informationstechnischen Systeme im Krankenhaus Ausbaustufe
 
 * `de.gematik.isik-medikation#4.0.0-rc2`
 * `de.gematik.isik-medikation#4.0.0-rc`
+* `de.gematik.isik-medikation#3.0.3`
 * `de.gematik.isik-medikation#3.0.2`
 * `de.gematik.isik-medikation#3.0.1`
 * `de.gematik.isik-medikation#3.0.0`
+* `de.gematik.isik-medikation#2.0.3`
 * `de.gematik.isik-medikation#2.0.2`
 
 
