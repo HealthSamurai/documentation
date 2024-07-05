@@ -164,7 +164,7 @@ The parameters to the history interaction may include:
 | Parameter | Type    | Description                                                                                                                                    |
 | --------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | \_count   | integer | Number of return records requested. The server is not bound to return the number requested, but cannot return more.                            |
-| \_txid    | integer | Only include resource versions whose logical transaction ID (= versionId) is greater than the given number.                                    |
+| \_txid    | integer | Only include resource versions whose logical transaction sequence number (= versionId) is greater than the given number.                       |
 | \_since   | instant | Only include resource versions that were created at or after the given instant in time.                                                        |
 | \_at      | date    | Only include resource versions that were current at some point during the time period specified in the date time value (may be more than one). |
 | \_count   | integer | Total records on the page (default - 100)                                                                                                      |
