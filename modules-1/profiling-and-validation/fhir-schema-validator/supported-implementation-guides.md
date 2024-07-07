@@ -1955,6 +1955,17 @@ Ontario Patient Summary
 
 ---
 
+### Cercle De Soins
+
+
+
+**Versions**
+
+* `ans.fhir.fr.cds#2.0.0-ballot`
+
+
+---
+
 ### eRS.r4.assets
 
 <details>
@@ -7366,7 +7377,6 @@ NHS (England) National Services Implementation Guide
 
 **Versions**
 
-* `uk.nhsdigital.r4#2.0.19-dev`
 * `uk.nhsdigital.r4#2.0.18-dev`
 * `uk.nhsdigital.r4#2.0.17-dev`
 * `uk.nhsdigital.r4#2.0.16-dev`
