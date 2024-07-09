@@ -369,10 +369,35 @@ GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/metadata
 
 {% tab title="Aidbox API" %}
 ```
-GET <AIDBOX_BASE_URL>/Organization/<org-id>/aidbox/metadata
+GET <AIDBOX_BASE_URL>/Organization/<org-id>/aidbox/metadat
 ```
 {% endtab %}
 {% endtabs %}
+
+### AidboxQuery
+
+{% hint style="info" %}
+[Learn more about AidboxQuery](../../../api-1/fhir-api/search-1/custom-search.md).
+{% endhint %}
+
+To use `$query` endpoint under organization-based hierarchical access control it is necessary to explicitly create `organization` param in `AidboxQuery`.
+
+```yaml
+PUT /AidboxQuery/<query-name>
+
+params:
+  organization:
+    type: string
+query: "SELECT * from patient pt WHERE pt.resource#>>'{meta,organization,id}' = {{params.organization}}"
+count-query: "SELECT count(*) from patient pt WHERE pt.resource#>>'{meta,organization,id}' = {{params.organization}}"
+type: query
+```
+
+Now `org-id` is automatically available in the query in `{{params.organization}}`.&#x20;
+
+```yaml
+GET /Organization/<org-id>/$query/<query-name>
+```
 
 ## Shared resource mode
 
