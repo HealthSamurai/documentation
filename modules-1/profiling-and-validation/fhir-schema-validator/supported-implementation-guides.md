@@ -3221,6 +3221,7 @@ Projekt Basisprofilierung R4 (HL7 Deutschland e.V.)
 
 **Versions**
 
+* `de.basisprofil.r4#1.5.0`
 * `de.basisprofil.r4#1.5.0-ballot3`
 * `de.basisprofil.r4#1.5.0-ballot2`
 * `de.basisprofil.r4#1.5.0-ballot`
@@ -7377,7 +7378,6 @@ NHS (England) National Services Implementation Guide
 
 **Versions**
 
-* `uk.nhsdigital.r4#2.0.18-dev`
 * `uk.nhsdigital.r4#2.0.17-dev`
 * `uk.nhsdigital.r4#2.0.16-dev`
 * `uk.nhsdigital.r4#2.0.15-dev`
