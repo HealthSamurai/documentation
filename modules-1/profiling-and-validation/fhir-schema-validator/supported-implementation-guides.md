@@ -3916,6 +3916,8 @@ PLSP Health Hub
 
 **Versions**
 
+* `healthhub.fhir.dk.core#1.0.4`
+* `healthhub.fhir.dk.core#1.0.3-alpha`
 * `healthhub.fhir.dk.core#1.0.2-alpha`
 * `healthhub.fhir.dk.core#1.0.1-alpha`
 * `healthhub.fhir.dk.core#1.0.0-alpha`
@@ -4205,6 +4207,9 @@ Implementation Guide for the Mobile access to Health Documents (epr-mhealth) Pro
 
 **Versions**
 
+* `de.netzwerk-universitaetsmedizin.ebm-cpg#1.0.0`
+* `de.netzwerk-universitaetsmedizin.ebm-cpg#0.10.0`
+* `de.netzwerk-universitaetsmedizin.ebm-cpg#0.9.2`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.9.1`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.9.0`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.8.0`
@@ -6210,8 +6215,6 @@ Electronic Prescription Service
 
 **Versions**
 
-* `uk.nhsdigital.medicines.r4.test#2.8.7-prerelease`
-* `uk.nhsdigital.medicines.r4.test#2.8.3-prerelease`
 * `uk.nhsdigital.medicines.r4.test#2.8.16-prerelease`
 * `uk.nhsdigital.medicines.r4.test#2.8.11-prerelease`
 * `uk.nhsdigital.medicines.r4.test#2.7.1-prerelease`
@@ -7363,24 +7366,6 @@ This Guide describes Tiga interfaces (built Fri, Jul 15, 2022 16:34+0200+02:00)
 **Versions**
 
 * `TigaCoreHUB.Patient#1.1.0`
-
-
----
-
-### uk.nhsdigital.r4
-
-<details>
-<summary>Description</summary>
-
-NHS (England) National Services Implementation Guide
-
-</details>
-
-**Versions**
-
-* `uk.nhsdigital.r4#2.0.17-dev`
-* `uk.nhsdigital.r4#2.0.16-dev`
-* `uk.nhsdigital.r4#2.0.15-dev`
 
 
 ---
