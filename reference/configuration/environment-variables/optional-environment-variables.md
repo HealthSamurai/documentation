@@ -304,6 +304,14 @@ AIDBOX_EXTENSION_SCHEMA=<schema>
 
 Schema for PostgreSQL extensions. Default is current schema. See [use different PostgreSQL schema section](optional-environment-variables.md#use-different-postgresql-schema).
 
+### AIDBOX\_SECURITY\_AUDIT\_\_LOG\_ENABLED
+
+```
+AIDBOX_SECURITY_AUDIT__LOG_ENABLED=true
+```
+
+Enable producing audit logs in FHIR AuditEvent format for significant events.
+
 ### BOX\_SEARCH\_DEFAULT\_\_PARAMS\_COUNT
 
 ```
