@@ -8,15 +8,24 @@ description: >-
 
 This guide shows you how to enable audit logging in Aidbox and receive audit logs within FHIR API and Audit log viewer UI application. It is expected, that you have Aidbox up & running in accordance to [Run Aidbox locally guide](../../getting-started/run-aidbox-locally-with-docker/).
 
-## Enable audit logging in aidbox configuration project
+### Two ways to enable Audit Log
 
-To enable audit logging in Aidbox, import `aidbox.audit-record-repository` and describe `:audit` in your `aidbox/system` entry point:
+1. **Environment variable**
+
+To enable audit logging in Aidbox set the following variable to `true`. The default value is `false`.
+
+```
+AIDBOX_SECURITY_AUDIT__LOG_ENABLED=true
+```
+
+2. **Aidbox configuration project**
+
+&#x20;If you use aidbox configuration project describe `:audit` in your `aidbox/system` entry point:
 
 {% code title="zrc/main.edn" %}
 ```clojure
 {ns main
- import #{aidbox
-          aidbox.audit-record-repository} ;; Add import aidbox.audit-record-repository
+ import #{aidbox}
  
  box
  {:zen/tags #{aidbox/system}
