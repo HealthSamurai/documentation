@@ -3249,6 +3249,7 @@ Beinhaltet die in DEMIS für die Umsetzung der Arztmeldung genutzten Information
 
 **Versions**
 
+* `rki.demis.disease#1.4.0`
 * `rki.demis.disease#1.3.0`
 * `rki.demis.disease#1.2.0`
 * `rki.demis.disease#1.1.0`
@@ -6215,9 +6216,6 @@ Electronic Prescription Service
 
 **Versions**
 
-* `uk.nhsdigital.medicines.r4.test#2.8.16-prerelease`
-* `uk.nhsdigital.medicines.r4.test#2.8.11-prerelease`
-* `uk.nhsdigital.medicines.r4.test#2.7.1-prerelease`
 * `uk.nhsdigital.medicines.r4.test#2.6.6-prerelease`
 
 
@@ -8371,6 +8369,7 @@ Das DEMIS Common Package definiert das Datenmodell der Basismeldeinhalte.
 
 **Versions**
 
+* `rki.demis.common#1.0.2`
 * `rki.demis.common#1.0.1`
 * `rki.demis.common#1.0.0`
 
@@ -10634,6 +10633,7 @@ Verzeichnisdienst der Telematikinfrastruktur
 
 **Versions**
 
+* `de.gematik.fhir.directory#0.11.8`
 * `de.gematik.fhir.directory#0.11.7`
 * `de.gematik.fhir.directory#0.11.6`
 * `de.gematik.fhir.directory#0.11.5`
