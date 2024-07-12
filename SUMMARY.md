@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Introduction](README.md)
+* [Aidbox FHIR platform documentation](README.md)
   * [Features](getting-started/features.md)
   * [Architecture](introduction/readme.md)
 * [Getting Started](getting-started/README.md)
