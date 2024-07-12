@@ -1,18 +1,20 @@
 # Aidbox FHIR platform documentation
 
-## Fundamentals
-
-Aidbox is a mature and reliable FHIR platform that enables rapid development of digital health solutions, reducing development time and costs by up to 70% from the start.
-
-* [Features](getting-started/features.md)
-* [Architecture](introduction/)
-* [Run Aidbox on Kubernetes](getting-started/run-aidbox-in-kubernetes/)
-
 ## Quickstarts
 
 Discover how to start with Aidbox in just a few minutes.
 
 <table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Run Aidbox locally</strong></td><td>Download and run Aidbox locally. Explore it through interactive tutorials.</td><td><a href="getting-started/run-aidbox-locally-with-docker/">Learn more</a></td><td><a href=".gitbook/assets/qs2.png">qs2.png</a></td><td><a href="getting-started/run-aidbox-locally-with-docker/#simple">#simple</a></td></tr><tr><td><strong>Run in sandbox</strong></td><td>Run SaaS Aidbox for free and explore it through built-in tutorials.</td><td><a href="getting-started-1/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md">Learn more</a></td><td><a href=".gitbook/assets/qs1.png">qs1.png</a></td><td><a href="getting-started/run-aidbox-in-aidbox-sandbox.md">run-aidbox-in-aidbox-sandbox.md</a></td></tr><tr><td><strong>Use Aidbox with React</strong></td><td>Develop your first app on top of Aidbox with the sample React App.</td><td><a href="getting-started/use-aidbox-with-react.md">Learn more</a></td><td><a href=".gitbook/assets/qs3.png">qs3.png</a></td><td><a href="getting-started/use-aidbox-with-react.md">use-aidbox-with-react.md</a></td></tr></tbody></table>
+
+## Overview
+
+Aidbox is a mature and reliable FHIR platform that enables rapid development of digital health solutions, reducing development time and costs by up to 70% from the start.
+
+* [Features](getting-started/features.md)
+* [Architecture](introduction/)
+* [Licensing and support](getting-started/editions-and-pricing.md)
+* [Release notes](getting-started/versioning-and-release-notes/release-notes.md)
+* [Run Aidbox on Kubernetes](getting-started/run-aidbox-in-kubernetes/)
 
 ## Platform
 
@@ -24,4 +26,4 @@ Discover how to start with Aidbox in just a few minutes.
 
 ## Support
 
-<table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Aidbox Community</strong></td><td>Join the public Telegram chat, ask questions and share experience.</td><td><a href=".gitbook/assets/sp1.png">sp1.png</a></td><td><a href="https://t.me/aidbox">https://t.me/aidbox</a></td></tr><tr><td><strong>Issue Tracker</strong></td><td>Report bugs and requests in the public Issue Tracker.</td><td><a href=".gitbook/assets/sp2.png">sp2.png</a></td><td><a href="https://github.com/Aidbox/Issues/issues">https://github.com/Aidbox/Issues/issues</a></td></tr><tr><td><strong>Contact Us</strong></td><td>Connect with Samurai to get a support and guidance directly.</td><td><a href=".gitbook/assets/sp3.png">sp3.png</a></td><td><a href="https://www.health-samurai.io/contacts">https://www.health-samurai.io/contacts</a></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Aidbox Community</strong></td><td>Join the public Telegram chat, ask questions and share experience.</td><td><a href=".gitbook/assets/sp1.png">sp1.png</a></td><td><a href="https://t.me/aidbox">https://t.me/aidbox</a></td></tr><tr><td><strong>Issue Tracker</strong></td><td>Report bugs and requests in the public Issue Tracker.</td><td><a href=".gitbook/assets/sp2.png">sp2.png</a></td><td><a href="https://github.com/Aidbox/Issues/issues">https://github.com/Aidbox/Issues/issues</a></td></tr><tr><td><strong>Contact Us</strong></td><td>Connect with Samurai to get support and guidance directly.</td><td><a href=".gitbook/assets/sp3.png">sp3.png</a></td><td><a href="https://www.health-samurai.io/contacts">https://www.health-samurai.io/contacts</a></td></tr></tbody></table>
