@@ -39,7 +39,7 @@ git clone \
 {% endtabs %}
 
 {% hint style="info" %}
-See more details related the [running Aidbox locally](broken-reference)
+More details at [running Aidbox locally](../../../getting-started/run-aidbox-locally-with-docker/#using-configuration-project-method)
 {% endhint %}
 
 ### Apply the license
