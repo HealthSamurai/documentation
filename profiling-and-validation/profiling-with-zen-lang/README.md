@@ -4,7 +4,9 @@ description: Validate your resources with zen-lang schemas
 
 # zen-lang validator
 
-{% hint style="info" %}
+
+
+{% hint style="danger" %}
 The zen-lang validator is scheduled for deprecation in several upcoming releases. Please consider using FHIR Schema validator.
 {% endhint %}
 
