@@ -6,7 +6,7 @@ While all validation features work correctly, we're still integrating FHIR Schem
 Test FHIR Schema Validator on public [demo page](https://fhir-validator.aidbox.app).
 {% endhint %}
 
-This new validation engine is set to replace the existing [Zen Schema Validator](../../reference/zen-schema-reference/) and [JSON Schema](broken-reference) validator. \
+This new validation engine is set to replace the existing [Zen Schema Validator](../../reference/zen-schema-reference/) and [JSON Schema](../../profiling-and-validation/profiling-with-aidboxprofile.md) validator. \
 \
 The primary objectives for this new validator are _enhanced performance_, _easy configuration_, and _straightforward interaction_. Internally, the new validator utilizes the [FHIR Schema](https://github.com/fhir-schema/fhir-schema) for the validation process. We believe that it has the potential to become a [community](https://chat.fhir.org/#narrow/stream/391879-FHIR-Schema/topic/early.20draft) standard, and we are actively working towards this goal. \
 \
