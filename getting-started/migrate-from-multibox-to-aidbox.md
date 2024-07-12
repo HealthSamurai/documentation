@@ -6,7 +6,7 @@ description: >-
 
 # Migrate from Multibox to Aidbox
 
-Let's say you have Multibox deployed locally by [Run Multibox locally getting started guide](../getting-started-1/run-aidbox/run-multibox-locally-with-docker.md). And you have couple of boxes launched there.
+Let's say you have Multibox deployed locally. And you have a couple of boxes launched there.
 
 * `fhirr4box` box with FHIR R4 version
 * `fhirr5box` box with FHIR R5 version
@@ -113,9 +113,8 @@ Now you can run your aidbox instances
 docker compose up -d fhirr4box fhirr5box
 ```
 
-`fhirr4box` will be accessible on `http://localhost:8888`, and `fhirr5box` will be accessible on `http://localhost:9999`.&#x20;
+`fhirr4box` will be accessible on `http://localhost:8888`, and `fhirr5box` will be accessible on `http://localhost:9999`.
 
 ## Talk to a Health Samurai Engineer
 
 If you'd like to learn more about using Aidbox or have any questions about this guide, [connect with us on Telegram](https://t.me/aidbox). We're happy to help.
-
