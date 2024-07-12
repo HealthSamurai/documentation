@@ -4,10 +4,8 @@ description: Validate your resources with zen-lang schemas
 
 # zen-lang validator
 
-
-
 {% hint style="danger" %}
-The zen-lang validator is scheduled for deprecation in several upcoming releases. Please consider using FHIR Schema validator.
+The zen-lang validator is scheduled for deprecation in several upcoming releases. Please consider using [FHIR Schema validator](../../modules-1/profiling-and-validation/fhir-schema-validator.md).
 {% endhint %}
 
 Aidbox supports a powerful profile validation mechanism powered by [Zen language](https://github.com/zen-lang/zen). It allows you to define a set (or multiple sets) of profiles in [edn](https://github.com/edn-format/edn) format and later load them into your Aidbox instance. These profiles can be used to validate resources against the specified schemas, including individual properties and also interoperation with other profiles in a composable way.
