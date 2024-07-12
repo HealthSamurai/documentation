@@ -1,177 +1,280 @@
-# Uploading Sample Data
+---
+description: This page explain how you can load synthetic data to Aidbox
+---
 
-## Endpoint for Bundles
+# Upload Sample Data
 
-Aidbox endpoint for bundles will be the base URL of your Box: `/` in Aidbox REST Console and `[base]` (`https://<YOUR-BOX>.aidbox.app`) in any other external client (Postman for example). Alternatively, `/fhir` and `[base]/fhir` can be used.&#x20;
+### Datasets
 
-## Bundle Example
+Pre-built datasets:
 
-According to the [FHIR specification](https://www.hl7.org/fhir/http.html#transaction), a bundle is a container for a collection of resources for transport and persistence purposes. Below is an example of a request to create two patients:
+* 100 Patient records:   200K resources and 300MB
+* 1K Patient records:   2M resources and 3GB
+* 10K Patient records:   20M resources and 30GB
+* 100K Patient records:   200M resources and 300GB
+
+Contained resources:  Patient, AllergyIntolerance, CarePlan, CareTeam, Claim, Condition, Device, DiagnosticReport, DocumentReference, Encounter, ExplanationOfBenefit, ImagingStudy, Immunization, Location, Medication, MedicationAdministration, MedicationRequest, Observation, Organization, Practitioner, PractitionerRole, Procedure, Provenance, SupplyDelivery.
+
+### Load dataset
+
+To load the dataset use [/v2/fhir/$import](../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md#v2-usdimport-on-top-of-the-workflow-engine) operation.&#x20;
+
+Run the following request in the REST console and wait a few minutes.&#x20;
+
+You can track import status in `Workflow Engine` interface.
 
 {% tabs %}
-{% tab title="Request" %}
-```javascript
-POST /fhir
-Accept: application/json
-Content-Type: application/json
+{% tab title="100 ~ 300MB" %}
+{% hint style="success" %}
+This dataset can be used for local development and cloud sandboxes.
+{% endhint %}
 
-{
-  "resourceType": "bundle",
-  "type": "transaction",
-  "entry":
-  [{
-      "request": {
-        "method": "POST",
-        "url": "/Patient"
-      },
-      "resource": {
-        "name": [{
-            "given": ["Bob"]
-          }
-        ]
-      }
-    }, {
-      "request": {
-        "method": "POST",
-        "url": "/Patient"
-      },
-      "resource": {
-        "name": [{
-            "given": ["Peter"]
-          }
-        ]
-      }
-    }
-  ]
-}
+```yaml
+POST /v2/fhir/$import
+Accept: text/yaml
+Content-Type: text/yaml
+
+id: synthea-100
+contentEncoding: gzip
+inputs:
+- resourceType: AllergyIntolerance
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100/fhir/AllergyIntolerance.ndjson.gz
+- resourceType: CarePlan
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100/fhir/CarePlan.ndjson.gz
+- resourceType: CareTeam
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100/fhir/CareTeam.ndjson.gz
+- resourceType: Claim
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100/fhir/Claim.ndjson.gz
+- resourceType: Condition
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100/fhir/Condition.ndjson.gz
+- resourceType: Device
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100/fhir/Device.ndjson.gz
+- resourceType: DiagnosticReport
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100/fhir/DiagnosticReport.ndjson.gz
+- resourceType: DocumentReference
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100/fhir/DocumentReference.ndjson.gz
+- resourceType: Encounter
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100/fhir/Encounter.ndjson.gz
+- resourceType: ExplanationOfBenefit
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100/fhir/ExplanationOfBenefit.ndjson.gz
+- resourceType: ImagingStudy
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100/fhir/ImagingStudy.ndjson.gz
+- resourceType: Immunization
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100/fhir/Immunization.ndjson.gz
+- resourceType: Location
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100/fhir/Location.ndjson.gz
+- resourceType: Medication
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100/fhir/Medication.ndjson.gz
+- resourceType: MedicationAdministration
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100/fhir/MedicationAdministration.ndjson.gz
+- resourceType: MedicationRequest
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100/fhir/MedicationRequest.ndjson.gz
+- resourceType: Observation
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100/fhir/Observation.ndjson.gz
+- resourceType: Organization
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100/fhir/Organization.ndjson.gz
+- resourceType: Patient
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100/fhir/Patient.ndjson.gz
+- resourceType: Practitioner
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100/fhir/Practitioner.ndjson.gz
+- resourceType: PractitionerRole
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100/fhir/PractitionerRole.ndjson.gz
+- resourceType: Procedure
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100/fhir/Procedure.ndjson.gz
+- resourceType: Provenance
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100/fhir/Provenance.ndjson.gz
+- resourceType: SupplyDelivery
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100/fhir/SupplyDelivery.ndjson.gz
 ```
 {% endtab %}
 
-{% tab title="Response" %}
-```javascript
-Status: 200
+{% tab title="1K ~ 3GB" %}
+{% hint style="success" %}
+This dataset can be used for local development and cloud sandboxes.
+{% endhint %}
 
-{
-    "id": "64",
-    "type": "transaction-response",
-    "resourceType": "Bundle",
-    "entry": [
-        {
-            "resource": {
-                "name": [
-                    {
-                        "given": [
-                            "Bob"
-                        ]
-                    }
-                ],
-                "id": "d1f48e05-220c-4d27-9d30-22df21f1b86b",
-                "resourceType": "Patient",
-                "meta": {
-                    "lastUpdated": "2018-10-29T12:47:45.769Z",
-                    "versionId": "64",
-                    "tag": [
-                        {
-                            "system": "https://aidbox.io",
-                            "code": "created"
-                        }
-                    ]
-                }
-            },
-            "status": 201
-        },
-        {
-            "resource": {
-                "name": [
-                    {
-                        "given": [
-                            "Peter"
-                        ]
-                    }
-                ],
-                "id": "49bcfa88-9915-4832-a763-1d60cb561cc3",
-                "resourceType": "Patient",
-                "meta": {
-                    "lastUpdated": "2018-10-29T12:47:45.769Z",
-                    "versionId": "64",
-                    "tag": [
-                        {
-                            "system": "https://aidbox.io",
-                            "code": "created"
-                        }
-                    ]
-                }
-            },
-            "status": 201
-        }
-    ]
-}
+```yaml
+POST /v2/fhir/$import
+Accept: text/yaml
+Content-Type: text/yaml
+
+id: synthea-1000
+contentEncoding: gzip
+inputs:
+- resourceType: AllergyIntolerance
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/1000/fhir/AllergyIntolerance.ndjson.gz
+- resourceType: CarePlan
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/1000/fhir/CarePlan.ndjson.gz
+- resourceType: CareTeam
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/1000/fhir/CareTeam.ndjson.gz
+- resourceType: Claim
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/1000/fhir/Claim.ndjson.gz
+- resourceType: Condition
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/1000/fhir/Condition.ndjson.gz
+- resourceType: Device
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/1000/fhir/Device.ndjson.gz
+- resourceType: DiagnosticReport
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/1000/fhir/DiagnosticReport.ndjson.gz
+- resourceType: DocumentReference
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/1000/fhir/DocumentReference.ndjson.gz
+- resourceType: Encounter
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/1000/fhir/Encounter.ndjson.gz
+- resourceType: ExplanationOfBenefit
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/1000/fhir/ExplanationOfBenefit.ndjson.gz
+- resourceType: ImagingStudy
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/1000/fhir/ImagingStudy.ndjson.gz
+- resourceType: Immunization
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/1000/fhir/Immunization.ndjson.gz
+- resourceType: Location
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/1000/fhir/Location.ndjson.gz
+- resourceType: Medication
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/1000/fhir/Medication.ndjson.gz
+- resourceType: MedicationAdministration
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/1000/fhir/MedicationAdministration.ndjson.gz
+- resourceType: MedicationRequest
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/1000/fhir/MedicationRequest.ndjson.gz
+- resourceType: Observation
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/1000/fhir/Observation.ndjson.gz
+- resourceType: Organization
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/1000/fhir/Organization.ndjson.gz
+- resourceType: Patient
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/1000/fhir/Patient.ndjson.gz
+- resourceType: Practitioner
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/1000/fhir/Practitioner.ndjson.gz
+- resourceType: PractitionerRole
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/1000/fhir/PractitionerRole.ndjson.gz
+- resourceType: Procedure
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/1000/fhir/Procedure.ndjson.gz
+- resourceType: Provenance
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/1000/fhir/Provenance.ndjson.gz
+- resourceType: SupplyDelivery
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/1000/fhir/SupplyDelivery.ndjson.gz
+```
+{% endtab %}
+
+{% tab title="10K ~ 30GB" %}
+```yaml
+POST /v2/fhir/$import
+Accept: text/yaml
+Content-Type: text/yaml
+
+id: synthea-10000
+contentEncoding: gzip
+inputs:
+- resourceType: AllergyIntolerance
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/10000/fhir/AllergyIntolerance.ndjson.gz
+- resourceType: CarePlan
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/10000/fhir/CarePlan.ndjson.gz
+- resourceType: CareTeam
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/10000/fhir/CareTeam.ndjson.gz
+- resourceType: Claim
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/10000/fhir/Claim.ndjson.gz
+- resourceType: Condition
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/10000/fhir/Condition.ndjson.gz
+- resourceType: Device
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/10000/fhir/Device.ndjson.gz
+- resourceType: DiagnosticReport
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/10000/fhir/DiagnosticReport.ndjson.gz
+- resourceType: DocumentReference
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/10000/fhir/DocumentReference.ndjson.gz
+- resourceType: Encounter
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/10000/fhir/Encounter.ndjson.gz
+- resourceType: ExplanationOfBenefit
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/10000/fhir/ExplanationOfBenefit.ndjson.gz
+- resourceType: ImagingStudy
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/10000/fhir/ImagingStudy.ndjson.gz
+- resourceType: Immunization
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/10000/fhir/Immunization.ndjson.gz
+- resourceType: Location
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/10000/fhir/Location.ndjson.gz
+- resourceType: Medication
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/10000/fhir/Medication.ndjson.gz
+- resourceType: MedicationAdministration
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/10000/fhir/MedicationAdministration.ndjson.gz
+- resourceType: MedicationRequest
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/10000/fhir/MedicationRequest.ndjson.gz
+- resourceType: Observation
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/10000/fhir/Observation.ndjson.gz
+- resourceType: Organization
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/10000/fhir/Organization.ndjson.gz
+- resourceType: Patient
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/10000/fhir/Patient.ndjson.gz
+- resourceType: Practitioner
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/10000/fhir/Practitioner.ndjson.gz
+- resourceType: PractitionerRole
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/10000/fhir/PractitionerRole.ndjson.gz
+- resourceType: Procedure
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/10000/fhir/Procedure.ndjson.gz
+- resourceType: Provenance
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/10000/fhir/Provenance.ndjson.gz
+- resourceType: SupplyDelivery
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/10000/fhir/SupplyDelivery.ndjson.gz
+
+```
+{% endtab %}
+
+{% tab title="100K ~ 300GB" %}
+{% hint style="warning" %}
+This dataset required around 300GB of Database storage size!
+{% endhint %}
+
+```yaml
+POST /v2/fhir/$import
+Accept: text/yaml
+Content-Type: text/yaml
+
+id: synthea-100000
+contentEncoding: gzip
+inputs:
+- resourceType: AllergyIntolerance
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100000/fhir/AllergyIntolerance.ndjson.gz
+- resourceType: CarePlan
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100000/fhir/CarePlan.ndjson.gz
+- resourceType: CareTeam
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100000/fhir/CareTeam.ndjson.gz
+- resourceType: Claim
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100000/fhir/Claim.ndjson.gz
+- resourceType: Condition
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100000/fhir/Condition.ndjson.gz
+- resourceType: Device
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100000/fhir/Device.ndjson.gz
+- resourceType: DiagnosticReport
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100000/fhir/DiagnosticReport.ndjson.gz
+- resourceType: DocumentReference
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100000/fhir/DocumentReference.ndjson.gz
+- resourceType: Encounter
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100000/fhir/Encounter.ndjson.gz
+- resourceType: ExplanationOfBenefit
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100000/fhir/ExplanationOfBenefit.ndjson.gz
+- resourceType: ImagingStudy
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100000/fhir/ImagingStudy.ndjson.gz
+- resourceType: Immunization
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100000/fhir/Immunization.ndjson.gz
+- resourceType: Location
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100000/fhir/Location.ndjson.gz
+- resourceType: Medication
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100000/fhir/Medication.ndjson.gz
+- resourceType: MedicationAdministration
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100000/fhir/MedicationAdministration.ndjson.gz
+- resourceType: MedicationRequest
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100000/fhir/MedicationRequest.ndjson.gz
+- resourceType: Observation
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100000/fhir/Observation.ndjson.gz
+- resourceType: Organization
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100000/fhir/Organization.ndjson.gz
+- resourceType: Patient
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100000/fhir/Patient.ndjson.gz
+- resourceType: Practitioner
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100000/fhir/Practitioner.ndjson.gz
+- resourceType: PractitionerRole
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100000/fhir/PractitionerRole.ndjson.gz
+- resourceType: Procedure
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100000/fhir/Procedure.ndjson.gz
+- resourceType: Provenance
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100000/fhir/Provenance.ndjson.gz
+- resourceType: SupplyDelivery
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/100000/fhir/SupplyDelivery.ndjson.gz
 ```
 {% endtab %}
 {% endtabs %}
 
-[FHIR specification](https://www.hl7.org/fhir/http.html#transaction) says that a bundle should look like this:
-
-```javascript
-{
-  "resourceType": "bundle",
-  "type": "transaction",
-  "entry": [{
-      "request": {
-        "method": "GET",
-        "url": "/Patient"
-      }
-    }
-  ]
-}
-
-```
-
-Every transaction bundle MUST have the **type** field where value can be a **transaction** or **batch**, each element of`entry` field MUST have a **method** and an **url** fields in the `request`.
-
-Bundles must be sent via POST method to BASE\_URL which is the URL of your Box for external clients and `/` or `/fhir` for REST Console (actually hostname exists in REST Console, but it is hidden).
-
-## Aidbox REST Console
-
-1. Access your Box in Aidbox.Cloud.
-2. Open REST Console.
-3. Type in `POST /` or `POST /fhir`. (read about the [difference](../modules-1/fhir-resources/aidbox-and-fhir-formats.md) between Aidbox and FHIR)
-4. Leave next line empty.
-5. Paste your bundle.
-6. Press Ctrl+Enter or click the **Send** button.
-
-![Bundle in Aidbox.Cloud REST Console](../.gitbook/assets/scr-2018-10-29\_16-24-11.png)
-
-This is a brief description of how to work with transactions and batches in [Aidbox](https://www.health-samurai.io/aidbox). More interesting information coming soon, stay tuned!
-
-## Generating transaction bundle with Synthea (advanced topic)
-
-Here's how we can install Synthea — [Synthetic Patient Population Simulator](https://github.com/synthetichealth/synthea).
-
-```bash
-git clone https://github.com/synthetichealth/synthea.git
-cd synthea
-./gradlew build check test
-```
-
-Generating the population one at a time...
-
-```bash
-./run_synthea -s 1000
-ls output/fhir
-```
-
-...you should see few files with names similar to those:
-
-```bash
-hospitalInformation1537450368636.json 
-Mckinley734_Johnston597_f25b9177-3c01-4d76-a48f-0a83affa5a56.json
-```
-
-{% hint style="danger" %}
-**Make sure that you  use`POST /fhir`for synthea bundles, not just `POST /`**
-{% endhint %}
-
-Copy the content of the first file to REST Console, use `POST /fhir` to upload the FHIR transaction bundle. Everything else is the same as in the previous step. After that, upload the content of the second file into Aidbox. That's all, you are awesome!
-
-Read more about Synthea generator - [https://github.com/synthetichealth/synthea](https://github.com/synthetichealth/synthea).

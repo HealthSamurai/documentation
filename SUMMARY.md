@@ -12,7 +12,7 @@
   * [Run Aidbox on AWS](getting-started-1/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md)
   * [Run Multibox locally](getting-started-1/run-aidbox/run-multibox-locally-with-docker.md)
   * [Run Aidbox on managed PostgreSQL](getting-started/run-aidbox-on-managed-postgresql.md)
-  * [Uploading Sample Data](getting-started-1/load-bundle-into-fhir-server.md)
+  * [Upload Sample Data](getting-started-1/load-bundle-into-fhir-server.md)
   * [Run Aidbox on Kubernetes](getting-started/run-aidbox-in-kubernetes/README.md)
     * [Deploy Production-ready Aidbox to Kubernetes](getting-started/run-aidbox-in-kubernetes/deploy-aidbox-in-kubernetes.md)
     * [Deploy Aidbox with Helm Charts](getting-started/run-aidbox-in-kubernetes/deploy-aidbox-with-helm-charts.md)
