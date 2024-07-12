@@ -16,21 +16,21 @@ A production license allows running Aidbox for 14 days (trial) and then can be e
 
 ### Development license
 
-A development license allows you to store not more than 2 GB of data in your database.
+A development license allows you to store not more than 5 GB of data in your database.
 
 When you reach your database size limit, you’ll receive 3 types of messages - warning, error message, and blocking message:
 
 {% tabs %}
 {% tab title="Warning" %}
-`Your database (name of your database) size 1.9 GiB is about to exceed the license limit 2.0 GiB, in that case your process is going to shutdown. Please review database size or contact us for further information.`
+`Your database (name of your database) size 4.9 GiB is about to exceed the license limit 5.0 GiB, in that case your process is going to shutdown. Please review database size or contact us for further information.`
 {% endtab %}
 
 {% tab title="Error" %}
-`Your database (name of your database) size is 2.7 GiB and it's above license limit 2.0 GiB. Please review database size or contact us for further information.`
+`Your database (name of your database) size is 2.7 GiB and it's above license limit 5.0 GiB. Please review database size or contact us for further information.`
 {% endtab %}
 
 {% tab title="Blocking" %}
-`Your database (name of your database) size is 33.7 GiB and it's above license limit 2.0 GiB, your process is going to shutdown in 60 minutes. Please review database size or contact us for further information.`
+`Your database (name of your database) size is 33.7 GiB and it's above license limit 5.0 GiB, your process is going to shutdown in 60 minutes. Please review database size or contact us for further information.`
 {% endtab %}
 {% endtabs %}
 
