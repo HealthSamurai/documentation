@@ -10,14 +10,13 @@ Aidbox is a FHIR backend platform that lets you build digital health solutions r
 
 * [Features](getting-started/features.md)
 * [Architecture](introduction/)
-* Deployment options
-* Use Cases
+* [Run Aidbox on Kubernetes](getting-started/run-aidbox-in-kubernetes/)
 
 ## Quickstarts
 
 Discover how to start with Aidbox in just a few minutes.
 
-<table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-cover data-type="files"></th></tr></thead><tbody><tr><td><strong>Start in the cloud</strong></td><td>Run SaaS Aidbox for free and explore it through built-in tutorials.</td><td><a href="getting-started-1/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md">Learn more</a></td><td><a href=".gitbook/assets/qs1.png">qs1.png</a></td></tr><tr><td><strong>Run Aidbox locally</strong></td><td>Download and run Aidbox locally. Explore it through interactive tutorials.</td><td><a href="getting-started/run-aidbox-locally-with-docker/">Learn more</a></td><td><a href=".gitbook/assets/qs2.png">qs2.png</a></td></tr><tr><td><strong>Use Aidbox with React</strong></td><td>Develop your first app on top of Aidbox with the sample React App.</td><td><a href="getting-started/use-aidbox-with-react.md">Learn more</a></td><td><a href=".gitbook/assets/qs3.png">qs3.png</a></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Run Aidbox locally</strong></td><td>Download and run Aidbox locally. Explore it through interactive tutorials.</td><td><a href="getting-started/run-aidbox-locally-with-docker/">Learn more</a></td><td><a href=".gitbook/assets/qs2.png">qs2.png</a></td><td><a href="getting-started/run-aidbox-locally-with-docker/#simple">#simple</a></td></tr><tr><td><strong>Run in sandbox</strong></td><td>Run SaaS Aidbox for free and explore it through built-in tutorials.</td><td><a href="getting-started-1/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md">Learn more</a></td><td><a href=".gitbook/assets/qs1.png">qs1.png</a></td><td></td></tr><tr><td><strong>Use Aidbox with React</strong></td><td>Develop your first app on top of Aidbox with the sample React App.</td><td><a href="getting-started/use-aidbox-with-react.md">Learn more</a></td><td><a href=".gitbook/assets/qs3.png">qs3.png</a></td><td></td></tr></tbody></table>
 
 ## Platform
 
