@@ -2,7 +2,7 @@
 
 ## Fundamentals
 
-Aidbox is a [FHIR platform](https://www.health-samurai.io/aidbox) that lets you build digital health solutions rapidly, saving up to 70% of development time and costs at the start.
+Aidbox is a mature and reliable [FHIR platform](https://www.health-samurai.io/aidbox) that enables rapid development of digital health solutions, reducing development time and costs by up to 70% from the start.
 
 * [Features](getting-started/features.md)
 * [Architecture](introduction/)
