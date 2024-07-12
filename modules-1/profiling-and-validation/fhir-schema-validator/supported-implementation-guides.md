@@ -3917,6 +3917,7 @@ PLSP Health Hub
 
 **Versions**
 
+* `healthhub.fhir.dk.core#1.0.5`
 * `healthhub.fhir.dk.core#1.0.4`
 * `healthhub.fhir.dk.core#1.0.3-alpha`
 * `healthhub.fhir.dk.core#1.0.2-alpha`
@@ -6201,22 +6202,6 @@ PACIO Re-Assessment Timepoints Implementation Guide (built Wed, Sep 28, 2022 16:
 
 * `hl7.fhir.us.pacio-rt#1.0.0`
 * `hl7.fhir.us.pacio-rt#0.1.0`
-
-
----
-
-### uk.nhsdigital.medicines.r4.test
-
-<details>
-<summary>Description</summary>
-
-Electronic Prescription Service
-
-</details>
-
-**Versions**
-
-* `uk.nhsdigital.medicines.r4.test#2.6.6-prerelease`
 
 
 ---
