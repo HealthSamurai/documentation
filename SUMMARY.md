@@ -1,8 +1,8 @@
 # Table of contents
 
 * [Aidbox FHIR platform documentation](README.md)
-  * [Features](getting-started/features.md)
-  * [Architecture](readme/architecture.md)
+  * [Features](aidbox-fhir-platform-documentation/features.md)
+  * [Architecture](aidbox-fhir-platform-documentation/architecture.md)
 * [Getting Started](getting-started/README.md)
   * [Run Aidbox in Sandbox](getting-started/run-aidbox-in-aidbox-sandbox.md)
   * [Run Aidbox locally](getting-started/run-aidbox-locally-with-docker/README.md)
