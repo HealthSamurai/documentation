@@ -1236,6 +1236,7 @@ Die Basisfunktionalitäten der elektronischen Patientenakte
 
 **Versions**
 
+* `de.gematik.epa#1.0.2`
 * `de.gematik.epa#1.0.1`
 * `de.gematik.epa#1.0.0`
 * `de.gematik.epa#0.0.3`
@@ -5375,6 +5376,22 @@ Building an Implementation Guide and Package with Simplifier.net
 
 ---
 
+### de.gematik.dev.epa
+
+<details>
+<summary>Description</summary>
+
+[Development] Die ePA-Basisfunktionlitäten
+
+</details>
+
+**Versions**
+
+* `de.gematik.dev.epa#1.1.0-alpha.4`
+
+
+---
+
 ### KBV.MIO.ZAEB
 
 <details>
@@ -6964,6 +6981,22 @@ The purpose of SETP is to improve surgical performance in Ontario through the me
 
 ---
 
+### de.gematik.dev.epa.medication
+
+<details>
+<summary>Description</summary>
+
+[Development] Die ePA-Medication-Spezifikation
+
+</details>
+
+**Versions**
+
+* `de.gematik.dev.epa.medication#1.1.0-alpha.4`
+
+
+---
+
 ### de.medizininformatikinitiative.kerndatensatz.laborbefund
 
 <details>
@@ -7367,6 +7400,7 @@ Die ePA-Medication Spezifikation
 
 **Versions**
 
+* `de.gematik.epa.medication#1.0.2`
 * `de.gematik.epa.medication#1.0.1`
 * `de.gematik.epa.medication#1.0.0`
 * `de.gematik.epa.medication#1.0.2-rc1`
@@ -7735,10 +7769,6 @@ Electronic Prescription Service
 
 **Versions**
 
-* `uk.nhsdigital.medicines.r4#2.5.0`
-* `uk.nhsdigital.medicines.r4#2.3.0`
-* `uk.nhsdigital.medicines.r4#2.2.1`
-* `uk.nhsdigital.medicines.r4#2.2.0`
 * `uk.nhsdigital.medicines.r4#2.1.14-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.13-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.12-alpha`
