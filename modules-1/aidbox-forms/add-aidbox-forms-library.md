@@ -12,7 +12,7 @@ These forms can be loaded into Aidbox using various methods:
 
 1. Using the Aidbox Community Notebook (limited set of forms for demo)&#x20;
 2. Through the public Aidbox Form Builder
-3. Searching and loading a form from the Aidbox Form Gallery inside the Aidbox Form Builder (in progress)
+3. Searching and importing a form from the Aidbox Form Gallery inside the Aidbox Form Builder
 
 ## 1. Using the Aidbox Community Notebook (limited set of forms for demo)&#x20;
 
@@ -39,6 +39,13 @@ Follow these steps:
 * download the form definition
 * load the form definition through the Form Builder UI or use an FHIR operation `POST /fhir/Questionnaire`
 
-## 3. Searching and loading a form from the Aidbox Form Gallery inside the Aidbox Form Builder (in progress)
+## 3. Searching and importing a form from the Aidbox Form Gallery inside the Aidbox Instance
 
-This feature is currently under development.
+Open the Aidbox console and navigate to the Aidbox Forms page, you will find the Form Gallery section. There, you will discover over 3000 form templates.&#x20;
+
+These templates can be:
+
+* viewed in preview mode&#x20;
+* &#x20;imported into your Aidbox Instance
+
+Once you click the import button, the form is saved to the database and opens in the Form Builder.
