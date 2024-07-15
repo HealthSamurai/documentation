@@ -418,7 +418,6 @@
 * Terminology
   * Added [ICD-10 FTR](../../terminology/fhir-terminology-repository/load-icd-10-cm-into-aidbox.md) integration
 * Data API
-  * [Zen Search API](broken-reference) is now considered stable
   * [Zen Index API](../../storage-1/indexes/zen-indexes.md) is now considered stable
   * Implemented automatic loading of search parameters on extensions from IG
 * C-CDA to FHIR converter
