@@ -174,10 +174,10 @@ If Windows supports a native tar command:
 tar -cvzf mypackage.tar.gz mypackage
 ```
 
-**OR**
+or download and install **7-Zip**
 
-1. **Install 7-Zip**: If you haven't already, download and install **7-Zip**
-2. `7z a -ttar mypackage.tar.gz mypackage`
+1. `"C:\Program Files\7-Zip/7z.exe" a -ttar mypackage.tar mypackage`
+2. `"C:\Program Files\7-Zip/7z.exe" a -tgzip mypackage.tar.gz mypackage.tar`
 {% endtab %}
 {% endtabs %}
 
