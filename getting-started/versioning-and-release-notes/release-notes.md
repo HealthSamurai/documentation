@@ -296,7 +296,7 @@
   * Added new supported sections:
     * Functional Status, Health Concerns, Mental Status, Plan of Treatment, Payers, Family History, Nutrition, and Medical Equipment
 * Security and access control
-  * Introduced [AuditEvent viewer](../../modules-1/security-and-access-control/how-to-guides/research-possible-security-issues.md)
+  * Introduced [AuditEvent viewer](broken-reference)
 * [Aidbox Forms](../../modules-1/aidbox-forms.md)
   * Added integration with Aidbox [Workflow Engine](../../modules-1/workflow-engine/): add task to launch form
   * Added minor features:

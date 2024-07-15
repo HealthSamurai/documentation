@@ -316,7 +316,6 @@
     * [Set-up token introspection](security-and-access-control-1/how-to-guides/token-introspection.md)
     * [Prohibit user to login](security-and-access-control-1/auth/configuration-options.md)
     * [Debug access control](security-and-access-control-1/how-to-guides/debug.md)
-    * [Research possible security issues](modules-1/security-and-access-control/how-to-guides/research-possible-security-issues.md)
   * [Technical reference](modules-1/security-and-access-control/readme-1/README.md)
     * [User, Session, Client resources](modules-1/security-and-access-control/readme-1/overview.md)
     * [Tokens processing](modules-1/security-and-access-control/readme-1/tokens-processing.md)
