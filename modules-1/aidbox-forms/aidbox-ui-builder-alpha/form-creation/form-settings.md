@@ -1,5 +1,5 @@
 ---
-description: This article outlines the form settings
+description: This page is under construction.
 ---
 
 # Form Settings
@@ -49,4 +49,20 @@ When saving the form, Aidbox check the id for uniqueness
 
 ### Launch Context
 
-\
+
+
+
+
+### Additional Information
+
+In this section, you can add additional information to the form that will be needed when publishing the form.
+
+**Publisher** - the name of the organization or individual that published the questionnaire.
+
+**Contact** - contact details to assist a user in finding and communicating with the publisher. It may be a web site, an email address, a telephone number, etc.
+
+**Derived From (URL)** - the URL of a Questionnaire that this Questionnaire is based on.
+
+**Description** - a free text natural language description of the questionnaire. This description can be used to capture details such as why the questionnaire was built, comments about misuse, instructions for clinical use and interpretation, literature references, examples from the paper world, etc.
+
+**Copyright** - a copyright statement relating to the questionnaire and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the questionnaire.\
