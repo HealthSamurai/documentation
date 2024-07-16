@@ -415,6 +415,7 @@
     * [FHIR versions](modules-1/aidbox-forms/aidbox-ui-builder-alpha/fhir-versions.md)
     * [Offline forms](modules-1/aidbox-forms/aidbox-ui-builder-alpha/offline-forms.md)
     * [Forms multitenancy](modules-1/aidbox-forms/aidbox-ui-builder-alpha/forms-multitenancy.md)
+    * [Template-based PDF gen WORK IN PROGRESS](modules-1/aidbox-forms/aidbox-ui-builder-alpha/template-based-pdf-gen.md)
   * [Aidbox Code Editor](modules-1/aidbox-forms/aidbox-code-editor/README.md)
     * [Form creation](modules-1/aidbox-forms/aidbox-code-editor/how-to-create-a-form.md)
     * [Dynamic form creation](modules-1/aidbox-forms/aidbox-code-editor/how-to-create-a-dynamic-form.md)
