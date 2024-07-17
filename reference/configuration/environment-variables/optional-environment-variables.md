@@ -1,5 +1,17 @@
 # Optional environment variables
 
+### JAVA\_OPTS
+
+```
+JAVA_OPTS="<string>"
+```
+
+Configure general JAVA options. For example - request and max heap size configuration.
+
+```
+JAVA_OPTS="-Xms1024m -Xmx1024m"
+```
+
 ### AIDBOX\_BOX\_ID
 
 Assigns unique id for Aidbox instance. Important to set if you deploy few Aidbox instances and wish to separate their telemetry data (logs, metrics, traces) in your observability system.
