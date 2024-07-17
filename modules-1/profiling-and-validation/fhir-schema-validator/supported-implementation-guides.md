@@ -489,7 +489,6 @@ NHS Booking and Referrals
 * `uk.nhsdigital.bars.r4#1.12.0-alpha`
 * `uk.nhsdigital.bars.r4#1.11.0-alpha`
 * `uk.nhsdigital.bars.r4#1.10.0-alpha`
-* `uk.nhsdigital.bars.r4#1.9.0-alpha`
 * `uk.nhsdigital.bars.r4#1.8.0-alpha`
 * `uk.nhsdigital.bars.r4#1.7.0-alpha`
 * `uk.nhsdigital.bars.r4#1.6.0`
@@ -956,6 +955,7 @@ Ressources de conformité basées sur le modèle d'exposition de l'Annuaire Sant
 **Versions**
 
 * `ans.fhir.fr.annuaire#1.1.0-snapshot`
+* `ans.fhir.fr.annuaire#1.1.0-snapshot-2`
 * `ans.fhir.fr.annuaire#1.0.1`
 * `ans.fhir.fr.annuaire#1.0.0`
 * `ans.fhir.fr.annuaire#1.0.0-ballot`
@@ -1236,6 +1236,7 @@ Die Basisfunktionalitäten der elektronischen Patientenakte
 
 **Versions**
 
+* `de.gematik.epa#1.1.0-rc1`
 * `de.gematik.epa#1.0.2`
 * `de.gematik.epa#1.0.1`
 * `de.gematik.epa#1.0.0`
@@ -1702,6 +1703,7 @@ Data model of the German Cancer Consortium (DKTK) and the Comprehensive Cancer C
 
 **Versions**
 
+* `de.dktk.oncology#1.6.0`
 * `de.dktk.oncology#1.5.0`
 * `de.dktk.oncology#1.3.0`
 * `de.dktk.oncology#1.2.0`
@@ -2073,6 +2075,7 @@ ePrescription workflow specification
 
 **Versions**
 
+* `de.gematik.erezept-workflow.r4#1.4.0-rc3`
 * `de.gematik.erezept-workflow.r4#1.4.0-rc1`
 * `de.gematik.erezept-workflow.r4#1.3.1`
 * `de.gematik.erezept-workflow.r4#1.3.0`
@@ -3351,6 +3354,7 @@ Drafted Implementation Guide for Alberta Patient Summary (PS-AB)
 
 **Versions**
 
+* `ca.ab.fhir.psab#1.0.1`
 * `ca.ab.fhir.psab#1.0.0`
 * `ca.ab.fhir.psab#0.3.0-pre9`
 * `ca.ab.fhir.psab#0.3.0-pre8`
@@ -4089,24 +4093,6 @@ This is a demonstration package for FHIR North 2023
 
 * `acme.canada.2023#1.2.0`
 * `acme.canada.2023#0.0.1-alpha`
-
-
----
-
-### uk.nhsdigital.clinical.r4
-
-<details>
-<summary>Description</summary>
-
-NHS Digital FHIR Clinical ImplementationGuide
-
-</details>
-
-**Versions**
-
-* `uk.nhsdigital.clinical.r4#2.1.2-dev`
-* `uk.nhsdigital.clinical.r4#2.1.1-dev`
-* `uk.nhsdigital.clinical.r4#2.1.0-dev`
 
 
 ---
@@ -6523,6 +6509,7 @@ DGMC
 
 **Versions**
 
+* `fhir.dgmc#0.1.2`
 * `fhir.dgmc#0.1.1`
 
 
@@ -7401,6 +7388,7 @@ Die ePA-Medication Spezifikation
 
 **Versions**
 
+* `de.gematik.epa.medication#1.1.0-rc1`
 * `de.gematik.epa.medication#1.0.2`
 * `de.gematik.epa.medication#1.0.1`
 * `de.gematik.epa.medication#1.0.0`
@@ -7755,24 +7743,6 @@ The official documentation of the HL7 FHIR interface of SAMPLES by qualitype Gmb
 **Versions**
 
 * `qualitype.fhir.samples#1.0.0`
-
-
----
-
-### uk.nhsdigital.medicines.r4
-
-<details>
-<summary>Description</summary>
-
-Electronic Prescription Service
-
-</details>
-
-**Versions**
-
-* `uk.nhsdigital.medicines.r4#2.1.13-alpha`
-* `uk.nhsdigital.medicines.r4#2.1.12-alpha`
-* `uk.nhsdigital.medicines.r4#2.1.11-alpha`
 
 
 ---
