@@ -4,7 +4,9 @@ Sometimes your data couldn't be modeled using resources provided by FHIR Core sp
 \
 Aidbox provides following mechanisms to create custom resource types:
 
-
+{% content-ref url="custom-resources-on-fhir-logical-model.md" %}
+[custom-resources-on-fhir-logical-model.md](custom-resources-on-fhir-logical-model.md)
+{% endcontent-ref %}
 
 {% content-ref url="custom-resources-using-aidbox-project.md" %}
 [custom-resources-using-aidbox-project.md](custom-resources-using-aidbox-project.md)

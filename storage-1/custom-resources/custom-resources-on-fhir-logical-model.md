@@ -1,9 +1,9 @@
-# Custom resources on FHIR logical model
+# Custom resources on FHIR resource model
 
-A logical model is a representation of data structures, that are not implemented in a FHIR specification. A FHIR logical data model - or simply logical model - is an expression of a data structure captured using FHIR. Logical models expressed via FHIR StructureDefinition resource,  with `kind` property set to `logical`. For example:
+A resource model is a representation of data structures, that are not implemented in a FHIR specification. A FHIR resource data model - or simply resource model - is an expression of a data structure captured using FHIR. Resource models expressed via FHIR StructureDefinition resource,  with `kind` property set to `resource`. For example:
 
 ```
- "kind": "logical",
+ "kind": "resource",
  "abstract": false,
  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Element",
  "derivation": "specialization",
@@ -11,7 +11,7 @@ A logical model is a representation of data structures, that are not implemented
 
 ## Configure Aidbox
 
-To begin using FHIR logical models, enable the FHIR Schema validator engine in Aidbox.
+To begin using FHIR resource models, enable the FHIR Schema validator engine in Aidbox.
 
 {% content-ref url="../../modules-1/profiling-and-validation/fhir-schema-validator/setup.md" %}
 [setup.md](../../modules-1/profiling-and-validation/fhir-schema-validator/setup.md)
@@ -38,7 +38,7 @@ accept: application/json
     "resourceType": "StructureDefinition",
     "status": "active",
     "id": "CustomUser",
-    "kind": "logical",
+    "kind": "resource",
     "url": "http://example.org/StructureDefinition/CustomUser",
     "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Element",
     "differential": {
@@ -89,7 +89,7 @@ Response:
  "resourceType": "StructureDefinition",
  "status": "active",
  "id": "CustomUser",
- "kind": "logical",
+ "kind": "resource",
  "url": "http://example.org/StructureDefinition/CustomUser",
  "differential": {
   "element": [
