@@ -1,17 +1,14 @@
-# Custom resources on FHIR resource model
+# Custom resources using StructureDefinition
 
-A resource model is a representation of data structures, that are not implemented in a FHIR specification. A FHIR resource data model - or simply resource model - is an expression of a data structure captured using FHIR. Resource models expressed via FHIR StructureDefinition resource,  with `kind` property set to `resource`. For example:
+{% hint style="warning" %}
+Custom resources are not interoperable with FHIR.
+{% endhint %}
 
-```
- "kind": "resource",
- "abstract": false,
- "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Element",
- "derivation": "specialization",
-```
+FHIR uses StructureDefinition resources to model data structures. Aidbox allows you to model data in the same way by expressing your custom resource via a FHIR StructureDefinition resource.
 
 ## Configure Aidbox
 
-To begin using FHIR resource models, enable the FHIR Schema validator engine in Aidbox.
+To begin using custom FHIR resources, enable the FHIR Schema validator engine in Aidbox.
 
 {% content-ref url="../../modules-1/profiling-and-validation/fhir-schema-validator/setup.md" %}
 [setup.md](../../modules-1/profiling-and-validation/fhir-schema-validator/setup.md)

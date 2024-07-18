@@ -503,7 +503,7 @@
   * [Migrate to AidboxDB 16](storage-1/aidboxdb-image/migration-to-aidboxdb-16.1-handling-the-removal-of-jsonknife-extension.md)
 * [Database schema](storage-1/database.md)
 * [Custom Resources](storage-1/custom-resources/README.md)
-  * [Custom resources on FHIR resource model](storage-1/custom-resources/custom-resources-on-fhir-logical-model.md)
+  * [Custom resources using StructureDefinition](storage-1/custom-resources/custom-resources-on-fhir-logical-model.md)
   * [Custom resources using Aidbox Project](storage-1/custom-resources/custom-resources-using-aidbox-project.md)
   * [Custom Resources using Entity](storage-1/custom-resources/getting-started-with-custom-resources.md)
 * [SQL on FHIR](modules-1/sql-on-fhir/README.md)
