@@ -30,7 +30,7 @@ accept: application/json
 {
     "derivation": "specialization",
     "name": "CustomUser",
-    "abstract": "false",
+    "abstract": false,
     "type": "CustomUser",
     "resourceType": "StructureDefinition",
     "status": "active",
