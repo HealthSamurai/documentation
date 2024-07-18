@@ -489,9 +489,6 @@ NHS Booking and Referrals
 * `uk.nhsdigital.bars.r4#1.12.0-alpha`
 * `uk.nhsdigital.bars.r4#1.11.0-alpha`
 * `uk.nhsdigital.bars.r4#1.10.0-alpha`
-* `uk.nhsdigital.bars.r4#1.8.0-alpha`
-* `uk.nhsdigital.bars.r4#1.7.0-alpha`
-* `uk.nhsdigital.bars.r4#1.6.0`
 * `uk.nhsdigital.bars.r4#1.6.0+001`
 * `uk.nhsdigital.bars.r4#1.5.0`
 * `uk.nhsdigital.bars.r4#1.4.0`
@@ -5622,6 +5619,22 @@ A terminology registry which an be cited by FHIR artifacts (built Wed, Oct 11, 2
 
 ---
 
+### de.gematik.epa.research
+
+<details>
+<summary>Description</summary>
+
+The ePA research data specification
+
+</details>
+
+**Versions**
+
+* `de.gematik.epa.research#1.0.0-cc1`
+
+
+---
+
 ### Da Vinci Prior Authorization Support (PAS) FHIR IG
 
 <details>
@@ -6498,7 +6511,7 @@ Belgian Patient profiles (built Mon, Jun 26, 2023 17:48+0200+02:00)
 
 ---
 
-### fhir.dgmc
+### Israel Division of Governmental Hospitals Profiles
 
 <details>
 <summary>Description</summary>
@@ -6509,6 +6522,7 @@ DGMC
 
 **Versions**
 
+* `fhir.dgmc#0.1.3`
 * `fhir.dgmc#0.1.2`
 * `fhir.dgmc#0.1.1`
 
@@ -7164,6 +7178,7 @@ KBV Schluesseltabellen
 
 **Versions**
 
+* `kbv.all.st-rc#1.3.0`
 * `kbv.all.st-rc#1.2.0`
 
 
