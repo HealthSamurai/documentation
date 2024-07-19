@@ -301,7 +301,7 @@ Supported transaction and batch bundle type.
 {% tabs %}
 {% tab title="FHIR API" %}
 ```yaml
-POST /Organization/org-b/fhir/
+POST /Organization/org-a/fhir/
 Accept: text/yaml
 Content-Type: text/yaml
 
@@ -330,7 +330,7 @@ entry:
 
 {% tab title="Aidbox API" %}
 ```yaml
-POST /Organization/org-b/aidbox/
+POST /Organization/org-a/aidbox/
 Accept: text/yaml
 Content-Type: text/yaml
 
