@@ -556,6 +556,7 @@
 
 ## Reference
 
+* [FHIRSchema reference](https://github.com/fhir-schema/fhir-schema/tree/FHIRSchema-Extesions/book/src/reference)
 * [Zen schema reference](reference/zen-schema-reference/README.md)
   * [aidbox](reference/rpc-reference/aidbox/README.md)
     * [mdm](reference/rpc-reference/aidbox/mdm/README.md)
