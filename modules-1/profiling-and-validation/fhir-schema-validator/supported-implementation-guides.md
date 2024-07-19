@@ -471,8 +471,6 @@ NHS Booking and Referrals
 
 **Versions**
 
-* `uk.nhsdigital.bars.r4#1.31.0`
-* `uk.nhsdigital.bars.r4#1.30.0`
 * `uk.nhsdigital.bars.r4#1.29.0-test+001`
 * `uk.nhsdigital.bars.r4#1.28.0`
 * `uk.nhsdigital.bars.r4#1.27.0`
@@ -489,9 +487,6 @@ NHS Booking and Referrals
 * `uk.nhsdigital.bars.r4#1.12.0-alpha`
 * `uk.nhsdigital.bars.r4#1.11.0-alpha`
 * `uk.nhsdigital.bars.r4#1.10.0-alpha`
-* `uk.nhsdigital.bars.r4#1.6.0+001`
-* `uk.nhsdigital.bars.r4#1.5.0`
-* `uk.nhsdigital.bars.r4#1.4.0`
 * `uk.nhsdigital.bars.r4#1.3.0`
 * `uk.nhsdigital.bars.r4#1.2.0`
 * `uk.nhsdigital.bars.r4#1.1.0`
@@ -4465,6 +4460,7 @@ IKNL profiles to fill the NCR (NKR) with data that is sent to IKNL by Palga
 
 **Versions**
 
+* `iknl.fhir.nl.r4.palga#1.0.1`
 * `iknl.fhir.nl.r4.palga#1.0.0`
 * `iknl.fhir.nl.r4.palga#0.3.0-beta`
 * `iknl.fhir.nl.r4.palga#0.2.0`
@@ -5329,12 +5325,13 @@ Package Release des ISiK Modul Terminplanung
 <details>
 <summary>Description</summary>
 
-FHIR profiles used in FHIR Publishing processes within Health New Zealand Te Whatu Ora (built Wed, Jul 3, 2024 23:15+0000+00:00)
+FHIR profiles used in FHIR Publishing processes within Health New Zealand Te Whatu Ora (built Wed, Jul 17, 2024 05:09+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `tewhatuora.digitaltooling#0.0.8`
 * `tewhatuora.digitaltooling#0.0.7`
 * `tewhatuora.digitaltooling#0.0.6`
 
@@ -6886,6 +6883,9 @@ Laniado Hospital Test Project
 
 **Versions**
 
+* `laniado.test.fhir.r4#0.1.60`
+* `laniado.test.fhir.r4#0.1.57`
+* `laniado.test.fhir.r4#0.1.56`
 * `laniado.test.fhir.r4#0.1.55`
 * `laniado.test.fhir.r4#0.1.54`
 * `laniado.test.fhir.r4#0.1.53`
