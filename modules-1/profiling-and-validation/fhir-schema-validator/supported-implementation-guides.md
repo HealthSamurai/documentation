@@ -471,8 +471,6 @@ NHS Booking and Referrals
 
 **Versions**
 
-* `uk.nhsdigital.bars.r4#1.29.0-test+001`
-* `uk.nhsdigital.bars.r4#1.28.0`
 * `uk.nhsdigital.bars.r4#1.27.0`
 * `uk.nhsdigital.bars.r4#1.26.0`
 * `uk.nhsdigital.bars.r4#1.25.0`
@@ -487,7 +485,6 @@ NHS Booking and Referrals
 * `uk.nhsdigital.bars.r4#1.12.0-alpha`
 * `uk.nhsdigital.bars.r4#1.11.0-alpha`
 * `uk.nhsdigital.bars.r4#1.10.0-alpha`
-* `uk.nhsdigital.bars.r4#1.3.0`
 * `uk.nhsdigital.bars.r4#1.2.0`
 * `uk.nhsdigital.bars.r4#1.1.0`
 * `uk.nhsdigital.bars.r4#1.0.0`
@@ -6883,6 +6880,7 @@ Laniado Hospital Test Project
 
 **Versions**
 
+* `laniado.test.fhir.r4#0.1.61`
 * `laniado.test.fhir.r4#0.1.60`
 * `laniado.test.fhir.r4#0.1.57`
 * `laniado.test.fhir.r4#0.1.56`
@@ -10129,12 +10127,13 @@ Package Release des ISIP Basis Modul
 <details>
 <summary>Description</summary>
 
-This implementation guide is provided to support the use of FHIR®© in an Australian context, and defines the minimum set of constraints on the FHIR resources to create the AU Core profiles. This implementation guide forms the foundation to build future AU Realm FHIR implementation guides and its content will continue to grow to meet the needs of AU implementers. (built Thu, Jun 20, 2024 18:17+1000+10:00)
+This implementation guide is provided to support the use of FHIR®© in an Australian context, and defines the minimum set of constraints on the FHIR resources to create the AU Core profiles. This implementation guide forms the foundation to build future AU Realm FHIR implementation guides and its content will continue to grow to meet the needs of AU implementers. (built Thu, Jul 18, 2024 09:54+1000+10:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.au.core#0.4.1-preview`
 * `hl7.fhir.au.core#0.4.0-preview`
 * `hl7.fhir.au.core#0.3.0-ballot`
 * `hl7.fhir.au.core#0.2.2-preview`
@@ -11796,12 +11795,13 @@ Danish municipalities implementation guide for common informationmodel (built We
 <details>
 <summary>Description</summary>
 
-The DK MedCom Carecommunication IG (built Fri, Jun 28, 2024 11:23+0200+02:00)
+The DK MedCom Carecommunication IG (built Thu, Jul 18, 2024 11:41+0200+02:00)
 
 </details>
 
 **Versions**
 
+* `medcom.fhir.dk.carecommunication#4.0.1`
 * `medcom.fhir.dk.carecommunication#4.0.0`
 * `medcom.fhir.dk.carecommunication#3.0.0`
 * `medcom.fhir.dk.carecommunication#2.1.0`
