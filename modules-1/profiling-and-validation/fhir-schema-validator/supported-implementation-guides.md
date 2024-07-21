@@ -471,9 +471,6 @@ NHS Booking and Referrals
 
 **Versions**
 
-* `uk.nhsdigital.bars.r4#1.27.0`
-* `uk.nhsdigital.bars.r4#1.26.0`
-* `uk.nhsdigital.bars.r4#1.25.0`
 * `uk.nhsdigital.bars.r4#1.24.0-alpha`
 * `uk.nhsdigital.bars.r4#1.23.0-alpha`
 * `uk.nhsdigital.bars.r4#1.22.0-alpha`
@@ -806,6 +803,7 @@ The CA Core+ project provides profiles based on the business, conceptual, and lo
 
 **Versions**
 
+* `ca.infoway.io.core#0.2.0-dft`
 * `ca.infoway.io.core#0.2.0-dft-ballot`
 * `ca.infoway.io.core#0.1.0-dft`
 * `ca.infoway.io.core#0.1.0-DFT-Ballot`
@@ -10632,6 +10630,7 @@ Verzeichnisdienst der Telematikinfrastruktur
 
 **Versions**
 
+* `de.gematik.fhir.directory#0.11.9`
 * `de.gematik.fhir.directory#0.11.8`
 * `de.gematik.fhir.directory#0.11.7`
 * `de.gematik.fhir.directory#0.11.6`
@@ -10702,6 +10701,7 @@ Der PKV-Abgabedatensatz enthält die notwendigen Informationen für die Abrechnu
 
 **Versions**
 
+* `de.abda.erezeptabgabedatenpkv#1.3.0-rc`
 * `de.abda.erezeptabgabedatenpkv#1.2.0`
 * `de.abda.erezeptabgabedatenpkv#1.1.0`
 * `de.abda.erezeptabgabedatenpkv#1.1.0-rc9`
