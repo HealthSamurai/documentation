@@ -19,3 +19,11 @@ Aidbox provides following mechanisms to create custom resource types:
 {% content-ref url="getting-started-with-custom-resources.md" %}
 [getting-started-with-custom-resources.md](getting-started-with-custom-resources.md)
 {% endcontent-ref %}
+
+{% hint style="danger" %}
+Entity & Attributes and Zen Schema are planned to be retired and will be replaced by FHIR Schema. Here’s a migration guide to help you transition your custom resources defined via Entity & Attributes / Zen Schema.
+{% endhint %}
+
+{% content-ref url="migrate-to-fhirschema/" %}
+[migrate-to-fhirschema](migrate-to-fhirschema/)
+{% endcontent-ref %}
