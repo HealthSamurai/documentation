@@ -2,6 +2,8 @@
 
 ## Pre requisites
 
+The materials in this section describe what to do next with the resulting FHIR Schema resource or set of resources. They explain how to load them into Aidbox, either one by one or via IG. Additionally, they outline the requirements for FHIR Schema to define a Custom Resource and provide a detailed FHIR Schema specification.
+
 {% content-ref url="../../../modules-1/profiling-and-validation/fhir-schema-validator.md" %}
 [fhir-schema-validator.md](../../../modules-1/profiling-and-validation/fhir-schema-validator.md)
 {% endcontent-ref %}
