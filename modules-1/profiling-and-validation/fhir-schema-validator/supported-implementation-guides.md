@@ -471,7 +471,6 @@ NHS Booking and Referrals
 
 **Versions**
 
-* `uk.nhsdigital.bars.r4#1.24.0-alpha`
 * `uk.nhsdigital.bars.r4#1.23.0-alpha`
 * `uk.nhsdigital.bars.r4#1.22.0-alpha`
 * `uk.nhsdigital.bars.r4#1.20.0-alpha`
@@ -9327,6 +9326,22 @@ The Patient Master Identity Registry (PMIR) Profile supports the creating, updat
 
 * `ihe.iti.pmir#1.5.0`
 * `ihe.iti.pmir#1.4.0`
+
+
+---
+
+### Estonian Terminology resources
+
+<details>
+<summary>Description</summary>
+
+Terminoloogia mis on kasutusel juurutusjuhendites (built Fri, Jul 19, 2024 09:46+0300+03:00)
+
+</details>
+
+**Versions**
+
+* `ee.fhir.terminology#0.0.1`
 
 
 ---
