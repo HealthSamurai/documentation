@@ -243,6 +243,8 @@ isRequired: true
 resource: {id: UserSetting, resourceType: Entity}
 ```
 
+To describe `isRequired` use `required` that sits on the same level with `elements`:
+
 ```json
 {"required": ["requiredField"],
  "elements":
@@ -257,6 +259,8 @@ path: ['someCollection']
 type: {id: string, resourceType: Entity}
 resource: {id: UserSetting, resourceType: Entity}
 ```
+
+To describe `isCollection` use `array: true`
 
 ```json
 {"elements":
