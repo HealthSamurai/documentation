@@ -191,10 +191,10 @@ For paths with length greater than 1 (e.g `["composite", "field"]`), simply nest
 
 ```json
 {"elements": {"theme": {"type": "string"}
-              "composite": {"elements": {"field": {"type": "string}}}}}
+              "composite": {"elements": {"field": {"type": "string"}}}}}
 ```
 
-#### What to do with enums?
+#### What to do with `enums`
 
 Enums can be described using FHIRPath constraints, here's an example:
 

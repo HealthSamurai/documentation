@@ -227,3 +227,137 @@ accept: application/json
 {% endtabs %}
 
 ## Manual Approach
+
+Let's take the same EmailSchedule custom resource and try to convert it to FHIRSchema
+
+### Translate zen definition `:keys` to FHIRSchema element entry
+
+For example, we have `name` key in `EmailSchedule` custom resource:
+
+```yaml
+{...
+:keys {:name {:type zen/string}}
+...}
+```
+
+To describe it as a FHIRSchema element, do the following:
+
+```json
+{"elements": {"name": {"type": "string"}}}
+```
+
+For nested keys simply nest "elements" statements like this:
+
+```json
+{"elements": {"name": {"type": "string"}
+              "reports": {"elements": {"enabled": {"type": "boolean"}},
+                          "array": true}}}
+```
+
+#### What to do with `:enum`
+
+Enums can be described using FHIRPath constraints, here's an example:
+
+```json
+{"elements":
+ "days": {
+    "array": true,
+    "type": "string",
+    "datatype": "string",
+    "constraints": {
+    "<your-constraint-id>": {
+      "expression": "%context.subsetOf('mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun')",
+      "severity": "error"
+    }}}}
+```
+
+Alternatively, you can create a ValueSet and bind it to the coded value.
+
+```json
+{"elements":
+ {"days":
+  {"type": "string",
+   "binding": {"valueSet": "<your-vs-url>",
+               "strength": "required"}}}}
+```
+
+#### What to do with `zen/any`
+
+```yaml
+{...
+:keys {:parameters {:type zen/any}}
+...}
+```
+
+To describe `zen/any` use `additionalProperties` with `any`
+
+```json
+{"elements":
+ {"parameters": {"additionalProperties": {"any": true}}}}
+```
+
+#### What to do with `:require`
+
+```yaml
+{...
+:require  #{:reports}
+:keys {:reports {:type zen/vector
+                ...}}
+...}
+```
+
+To describe `:require` use `required` that sits on the same level with `elements`:
+
+```json
+{"required": ["reports"],
+ "elements":
+ {"reports": {"array": true,
+              ...}}
+```
+
+#### What to do with `zen/vector`
+
+```yaml
+{...
+:keys {:days {:type zen/vector :every {:type zen/string}}}
+...}
+```
+
+To describe `isCollection` use `array: true`
+
+```json
+{"elements":
+ {"days": {"array": true, "type": "string"}}
+```
+
+### Resulting FHIRSchema
+
+```json
+{ "derivation": "specialization",
+  "id": "EmailSchedule",
+  "kind": "resource",
+  "datatype": "EmailSchedule",
+  "url": "EmailSchedule",
+  "required": [
+    "reports"
+  ],
+  "type": "EmailSchedule",
+  "elements": {
+    "name": {
+      "type": "string"
+    },
+    "parameters": {"additionalProperties": {"any": true}},
+    "days": {
+      "array": true,
+      "type": "string",
+      "datatype": "string",
+      "constraints": {
+        "enum-7": {
+          "expression": "%context.subsetOf('mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun')",
+          "severity": "error"
+        }
+      }
+    }
+  }
+}
+```
