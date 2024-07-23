@@ -462,3 +462,44 @@ For more information about this instruction, refer to the relevant [section](htt
    {"<your-constraint-id>": {"expression": "%context.subsetOf('dark' | 'white')",
                              "severity":   "error"}}}}}
 ```
+
+#### Handling resulting FHIR Schemas
+
+To deliver the FHIR Schema(s) and related Entities you authored to Aidbox, follow these steps. Ensure that your Aidbox is configured to run with the FHIRSchema validation engine. Here's a guide describing how to achieve that:
+
+{% content-ref url="../../../modules-1/profiling-and-validation/fhir-schema-validator/setup.md" %}
+[setup.md](../../../modules-1/profiling-and-validation/fhir-schema-validator/setup.md)
+{% endcontent-ref %}
+
+**Single FHIRSchema Delivery**
+
+If you have only one FHIRSchema that replaces your custom-defined Entity/Attributes, follow this guide to deliver a single FHIRSchema to Aidbox.
+
+{% content-ref url="../custom-resources-using-fhirschema.md" %}
+[custom-resources-using-fhirschema.md](../custom-resources-using-fhirschema.md)
+{% endcontent-ref %}
+
+**Multiple Schemas as a Package**
+
+If you have multiple schemas replacing a set of resources and want to work with this set of entities as a package (ImplementationGuide), refer to this guide on how to create your own FHIR NPM package with ImplementationGuide entities.
+
+{% content-ref url="../../../modules-1/profiling-and-validation/fhir-schema-validator/tutorials/how-to-create-fhir-npm-package.md" %}
+[how-to-create-fhir-npm-package.md](../../../modules-1/profiling-and-validation/fhir-schema-validator/tutorials/how-to-create-fhir-npm-package.md)
+{% endcontent-ref %}
+
+**Loading the FHIR NPM Package**
+
+{% content-ref url="../../../modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/" %}
+[upload-fhir-implementation-guide](../../../modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/)
+{% endcontent-ref %}
+
+#### **Important Notes:**
+
+{% hint style="warning" %}
+**Schema Precedence:** Uploaded FHIRSchemas with your resource definitions have higher precedence than Entity/Attribute definitions, so validation will be performed using the FHIRSchema. You can delete your Entity/Attribute resources after creating the FHIRSchema with resource definitions.
+{% endhint %}
+
+{% hint style="danger" %}
+**SearchParameters:** SearchParameters described for custom resources won't work in FHIRSchema validation mode. You need to redefine them as regular FHIR SearchParameters, not Aidbox Search Parameters.
+{% endhint %}
+
