@@ -509,6 +509,7 @@
   * [Custom Resources using Entity](storage-1/custom-resources/getting-started-with-custom-resources.md)
   * [Migrate to FHIRSchema](storage-1/custom-resources/migrate-to-fhirschema/README.md)
     * [Migrate custom resources defined with Entity & Attributes to FHIR Schema](storage-1/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md)
+    * [Migrate custom resources defined with Zen to FHIR Schema](storage-1/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-zen-to-fhir-schema.md)
 * [SQL on FHIR](modules-1/sql-on-fhir/README.md)
   * [Defining flat views with View Definitions](storage-1/sql-on-fhir/view-definition/README.md)
     * [Migrate to the spec-compliant ViewDefinition format](storage-1/sql-on-fhir/view-definition/migrate-to-the-spec-compliant-viewdefinition-format.md)

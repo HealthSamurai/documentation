@@ -1,6 +1,6 @@
 # Migrate custom resources defined with Entity & Attributes to FHIR Schema
 
-## Pre requisites
+## Prerequisites
 
 The materials in this section describe what to do next with the resulting FHIR Schema resource or set of resources. They explain how to load them into Aidbox, either one by one or via IG. Additionally, they outline the requirements for FHIR Schema to define a Custom Resource and provide a detailed FHIR Schema specification.
 
