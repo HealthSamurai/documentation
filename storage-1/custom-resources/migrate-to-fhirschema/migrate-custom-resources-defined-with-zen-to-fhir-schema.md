@@ -65,7 +65,8 @@ Here's an example of migrating a custom resource `EmailSchedule`that describes t
                                                    {:value "fri"}
                                                    {:value "sat"}
                                                    {:value "sun"}]}}
-            :parameters {:type zen/any}
+            :data {:type zen/any}
+            :parameters {:type zen/map :validation-type :open}
             :time {:type zen/string}
             :timezone {:type zen/string}
             :reports {:type zen/vector
@@ -111,28 +112,26 @@ accept: application/json
 ```json
 {
   "derivation": "specialization",
-  "id": "EmailSchedule",
+  "id": "",
+  "name": "",
   "kind": "resource",
-  "datatype": "EmailSchedule",
   "url": "EmailSchedule",
+  "base": "Resource",
   "elements": {
     "timezone": {
-      "type": "string",
-      "datatype": "string"
+      "type": "string"
     },
     "reports": {
       "array": true,
       "min": 1,
       "elements": {
         "enabled": {
-          "type": "boolean",
-          "datatype": "boolean"
+          "type": "boolean"
         },
         "reportType": {
           "type": "string",
-          "datatype": "string",
           "constraints": {
-            "enum-8": {
+            "enum-5": {
               "expression": "%context.subsetOf('campaign' | 'summary' | 'combined-campaign')",
               "severity": "error"
             }
@@ -141,24 +140,19 @@ accept: application/json
         "fileFormat": {
           "elements": {
             "csvPartial": {
-              "type": "boolean",
-              "datatype": "boolean"
+              "type": "boolean"
             },
             "pdfPartial": {
-              "type": "boolean",
-              "datatype": "boolean"
+              "type": "boolean"
             },
             "csvFull": {
-              "type": "boolean",
-              "datatype": "boolean"
+              "type": "boolean"
             },
             "csv": {
-              "type": "boolean",
-              "datatype": "boolean"
+              "type": "boolean"
             },
             "pdf": {
-              "type": "boolean",
-              "datatype": "boolean"
+              "type": "boolean"
             }
           }
         },
@@ -166,9 +160,8 @@ accept: application/json
           "array": true,
           "min": 1,
           "type": "string",
-          "datatype": "string",
           "constraints": {
-            "enum-9": {
+            "enum-6": {
               "expression": "%context.subsetOf('appointment-reminder' | 'appointment-notification' | 'appointment-noshow' | 'appointment-alert' | 'recall' | 'broadcast')",
               "severity": "error"
             }
@@ -183,32 +176,24 @@ accept: application/json
       ]
     },
     "id": {
-      "type": "string",
-      "datatype": "string"
+      "type": "string"
     },
     "name": {
-      "type": "string",
-      "datatype": "string"
+      "type": "string"
     },
     "recipients": {
       "array": true,
       "min": 1,
-      "type": "string",
-      "datatype": "string"
-    },
-    "parameters": {
-       "any": true
+      "type": "string"
     },
     "time": {
-      "type": "string",
-      "datatype": "string"
+      "type": "string"
     },
     "days": {
       "array": true,
       "type": "string",
-      "datatype": "string",
       "constraints": {
-        "enum-7": {
+        "enum-4": {
           "expression": "%context.subsetOf('mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun')",
           "severity": "error"
         }
@@ -220,19 +205,23 @@ accept: application/json
       }
     },
     "resourceType": {
-      "type": "string",
-      "datatype": "string"
+      "type": "string"
+    },
+    "parameters": {
+      "additionalProperties": {
+        "any": true
+      }
+    },
+    "data": {
+      "any": true
     }
   },
   "required": [
     "reports"
-  ],
-  "type": "EmailSchedule"
+  ]
 }
 ```
 {% endcode %}
-
-
 {% endtab %}
 {% endtabs %}
 
@@ -312,28 +301,82 @@ In FHIR, terminology bindings occur in four gradations: required, extensible, pr
 
 This approach leverages FHIR's capabilities for managing value sets, ensuring consistency and reusability across different resources.
 
-#### **Handling** `zen/any`
+#### **Handling** `:validation-type :open`
 
-The `zen/any` type for a Zen definition indicates that the value is arbitrary and may be of any type.
+The `:validation-type :open` with `:type zen/map` instruction for a Zen definition indicates that value is an arbitrary map with arbitrary key/value pairs.
 
 **Example:** `parameters` property in `EmailSchedule` resource
 
 ```yaml
 {...
-:keys {:parameters {:type zen/any}}
+:keys {:parameters {:type zen/map :validation-type :open}}
 ...}
 ```
 
 **FHIRSchema Equivalent**
 
-To describe `zen/any` use `additionalProperties` with `any`
+With FHIRSchema, you can express identical semantics using `additionalProperties` and `any: true`. However, note that resource definitions using these instructions are not compatible with FHIR. This means you cannot convert FHIRSchema with these instructions back to StructureDefinition, as FHIR doesn't naturally describe arbitrary key/value nodes.
+
+To express `:validation-type :open` with `:type zen/map` in FHIRSchema:
+
+```json
+{
+  "elements": {
+    "parameters": {
+      "additionalProperties": {
+        "any": true
+      }
+    }
+  }
+}
+```
+
+* `additionalProperties` indicates that any property not described in `elements` will be validated against the schema provided in `additionalProperties`.
+* `any: true` indicates that the value is arbitrary and may be of any type.
+
+You can also include more complex schemas within `additionalProperties`. For example:
+
+```json
+{"elements": {
+    "parameters": {
+      "elements": {
+        "someField": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": {
+        "type": "string",
+        "constraints": {
+          // Define constraints here
+        }
+      }
+    }
+  }
+}
+```
+
+This means any keys not described in `elements` must have a string value and pass the defined constraints. For more details about these FHIRSchema instructions, please refer to the reference specification [section](https://fhir-schema.github.io/fhir-schema/reference/extensions.html).
+
+#### **Handling** `zen/any`
+
+The `zen/any` type for a Zen definition indicates that the value is arbitrary and may be of any type.
+
+**Example:** `data` property in `EmailSchedule` resource
+
+```yaml
+{...
+:keys {:data {:type zen/any}}
+...}
+```
+
+**FHIRSchema Equivalent**
+
+To describe `zen/any` use `any` without `additionalProperties`.&#x20;
 
 ```json
 {"elements":
- {"parameters": {"any": true}}}
+ {"data": {"any": true}}}
 ```
-
-For more details about these FHIRSchema instructions, please refer to the reference specification [section](https://fhir-schema.github.io/fhir-schema/reference/extensions.html).
 
 #### **Handling `:require`**   &#x20;
 
@@ -387,6 +430,82 @@ To express `zen/vector` in FHIRSchema, use `array: true`.
 
 For more information about this instruction, please refer to the relevant [section](https://fhir-schema.github.io/fhir-schema/reference/element.html#shape) in the FHIRSchema specification.
 
+**Handling `:refers`**
+
+The `:refers` instruction indicates that a node will contain a reference to another resource and limits the possible target resource types to a predefined list.
+
+**Example:**
+
+```clojure
+{...
+:keys {:organization {:confirms #{zenbox/Reference}
+                      :zen.fhir/reference {:refers #{my-resources.organization/Organization}}}}
+...}
+
+```
+
+In this example, the `organization` property refers to a resource of type `Organization`.
+
+**FHIRSchema Equivalent**
+
+To express this in FHIRSchema, use the `refers` instruction and specify the "Reference" type. This will be handled as a regular FHIR reference. Additionally, in the `refers` property, you can reference not only resource types but also profiles on some resources.
+
+```
+{
+  "elements": {
+    "organization": {
+      "type": "Reference",
+      "refers": ["Organization"]
+    }
+  }
+}
+```
+
+In this schema, `organization` is defined as a reference to resources of type `Organization`.
+
+For more information about this instruction, refer to the relevant [section](https://fhir-schema.github.io/fhir-schema/reference/element.html#reference-target) of the FHIR Schema reference specification.
+
+**Handling `:fhir/polymorphic`**
+
+The `:fhir/polymorphic` instruction indicates a choice of datatypes that allows values of different types for specific fields.
+
+**Example:**
+
+```clojure
+{...
+ :keys {:effective
+         {:type zen/map
+          :fhir/polymorphic true
+          :exclusive-keys #{#{:dateTime :Period}}
+          :keys {:dateTime {:confirms #{my-types/DateTime}}
+                 :period {:confirms #{my-types/Period}}}}}
+...}
+
+```
+
+In this example, the `effective` property can be either `effectiveDateTime` or `effectivePeriod`.
+
+**FHIRSchema Equivalent**
+
+To express this in FHIRSchema, use the `choiceOf` instruction:
+
+```
+{
+  "elements": {
+    "effectiveDateTime": {
+      "choiceOf": "effective",
+      "type": "DateTime"
+    },
+    "effectivePeriod": {
+      "type": "Period",
+      "choiceOf": "effective"
+    }
+  }
+}
+```
+
+For more information about this instruction, refer to the relevant [section](https://fhir-schema.github.io/fhir-schema/reference/element.html#choice-type) of the FHIR Schema reference specification.
+
 ### Resulting FHIRSchema
 
 ```json
@@ -403,7 +522,24 @@ For more information about this instruction, please refer to the relevant [secti
     "name": {
       "type": "string"
     },
-    "parameters": {"any": true},
+    "data": {"any": true},
+    "parameters": {
+      "additionalProperties": {
+        "any": true
+      }
+    },
+    "organization": {
+      "type": "Reference",
+      "refers": ["Organization"]
+    },
+    "effectiveDateTime": {
+      "choiceOf": "effective",
+      "type": "DateTime"
+    },
+    "effectivePeriod": {
+      "type": "Period",
+      "choiceOf": "effective"
+    },
     "recipients": {"array": true, "type": "string"},
     "days": {
       "array": true,
@@ -418,3 +554,43 @@ For more information about this instruction, please refer to the relevant [secti
   }
 }
 ```
+
+**Handling resulting FHIR Schemas**
+
+To deliver the FHIR Schema(s) and related Entities you authored to Aidbox, follow these steps. Ensure that your Aidbox is configured to run with the FHIRSchema validation engine. Here's a guide describing how to achieve that:
+
+{% content-ref url="../../../modules-1/profiling-and-validation/fhir-schema-validator/setup.md" %}
+[setup.md](../../../modules-1/profiling-and-validation/fhir-schema-validator/setup.md)
+{% endcontent-ref %}
+
+**Single FHIRSchema Delivery**
+
+If you have only one FHIRSchema that replaces your custom-defined Entity/Attributes, follow this guide to deliver a single FHIRSchema to Aidbox.
+
+{% content-ref url="../custom-resources-using-fhirschema.md" %}
+[custom-resources-using-fhirschema.md](../custom-resources-using-fhirschema.md)
+{% endcontent-ref %}
+
+**Multiple Schemas as a Package**
+
+If you have multiple schemas replacing a set of resources and want to work with this set of entities as a package (ImplementationGuide), refer to this guide on how to create your own FHIR NPM package with ImplementationGuide entities.
+
+{% content-ref url="../../../modules-1/profiling-and-validation/fhir-schema-validator/tutorials/how-to-create-fhir-npm-package.md" %}
+[how-to-create-fhir-npm-package.md](../../../modules-1/profiling-and-validation/fhir-schema-validator/tutorials/how-to-create-fhir-npm-package.md)
+{% endcontent-ref %}
+
+**Loading the FHIR NPM Package**
+
+{% content-ref url="../../../modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/" %}
+[upload-fhir-implementation-guide](../../../modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/)
+{% endcontent-ref %}
+
+**Important Notes:**
+
+{% hint style="warning" %}
+**Schema Precedence:** Uploaded FHIRSchemas with your resource definitions have higher precedence than Entity/Attribute definitions, so validation will be performed using the FHIRSchema. You can delete your Entity/Attribute resources after creating the FHIRSchema with resource definitions.
+{% endhint %}
+
+{% hint style="danger" %}
+**SearchParameters:** SearchParameters described for custom resources won't work in FHIRSchema validation mode. You need to redefine them as regular FHIR SearchParameters, not Aidbox Search Parameters.
+{% endhint %}
