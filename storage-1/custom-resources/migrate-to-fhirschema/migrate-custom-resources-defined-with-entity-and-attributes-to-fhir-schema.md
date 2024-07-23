@@ -194,11 +194,24 @@ SELECT * FROM Attribute WHERE resource#>>'{resource, id}' = 'UserSetting'
 The FHIRSchema `elements` is similar to an Attribute collection, serving the same purpose: defining a properties for an Entity. For example, we have the `theme` Attribute related to the `UserSetting` Entity:
 
 ```yaml
-id: UserSetting.theme
-path: ['theme']
-type: {id: string, resourceType: Entity}
-enum: ['dark', 'white']
-resource: {id: UserSetting, resourceType: Entity}
+{
+  "id": "UserSetting.theme",
+  "path": [
+    "theme"
+  ],
+  "type": {
+    "id": "string",
+    "resourceType": "Entity"
+  },
+  "enum": [
+    "dark",
+    "white"
+  ],
+  "resource": {
+    "id": "UserSetting",
+    "resourceType": "Entity"
+  }
+}
 ```
 
 It states that the theme property must be a `string`. This property has the path `['theme']`, indicating it is at the root of the entity type. It is limited to two possible values: `dark` and `white`, defined via an `enum` property. Additionally, it includes a reference to the Entity to which this attribute belongs: `UserSetting`.\
@@ -391,6 +404,43 @@ To express `isCollection` in FHIRSchema, use `array: true`.
 
 For more information about this instruction, please refer to the relevant [section](https://fhir-schema.github.io/fhir-schema/reference/element.html#shape) in the FHIRSchema specification.
 
+#### Handling `refers`
+
+The `refers` instruction indicates that a node will contain a reference to another resource and limits the possible target resource types to a predefined list.
+
+**Example:**
+
+```json
+{
+  "id": "UserSetting.refToSmth",
+  "path": ["refToSmth"],
+  "type": { "id": "string", "resourceType": "Entity" },
+  "refers": ["SomeType"],
+  "resource": { "id": "UserSetting", "resourceType": "Entity" }
+}
+```
+
+In this example, the `refToSmth` property refers to a resource of type `SomeType`.
+
+**FHIRSchema Equivalent**
+
+To express this in FHIRSchema, use the `refers` instruction and specify the "Reference" type. This will be handled as a regular FHIR reference. Additionally, in the `refers` property, you can reference not only resource types but also profiles on some resources.
+
+```json
+{
+  "elements": {
+    "refToSmth": {
+      "type": "Reference",
+      "refers": ["SomeType"]
+    }
+  }
+}
+```
+
+In this schema, `refToSmth` is defined as a reference to resources of type `SomeType`.
+
+For more information about this instruction, refer to the relevant [section](https://fhir-schema.github.io/fhir-schema/reference/element.html#reference-target) of the FHIR Schema reference specification.
+
 ### Resulting FHIRSchema
 
 ```json
@@ -402,7 +452,8 @@ For more information about this instruction, please refer to the relevant [secti
  "url": "https://example.com/FHIRSchema/UserSetting",
  "required": ["requiredField"],
  "elements":
- {"someCollection": {"array": true, "type": "string"}
+ {"someCollection": {"array": true, "type": "string"},
+  "refToSmth": {"type": "Reference", "refers": ["SomeType"]}
   "requiredField": {"type": "string"},
   "someContainer": {"additionalProperties": {"any": true}},
   "theme":
