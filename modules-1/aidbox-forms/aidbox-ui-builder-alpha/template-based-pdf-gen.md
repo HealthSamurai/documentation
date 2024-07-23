@@ -1,8 +1,14 @@
 ---
-description: Custom HTML generation for Questionnaire and QuestionnaireResponse using the $render operation.
+description: >-
+  Custom HTML generation for Questionnaire and QuestionnaireResponse using the
+  $render operation.
 ---
 
-# WORK IN PROGRESS Custom HTML Generation for Questionnaire and QuestionnaireResponse
+# Template-based PDF generation
+
+{% hint style="danger" %}
+This page is under construction.
+{% endhint %}
 
 ## Overview
 
@@ -31,6 +37,7 @@ parameter:
     value: 
       integer: 5
 ```
+
 The 'template-id' parameter specifies the ID of the SDCPrintTemplate resource to be used for rendering. `repeated-items-count` specifies the number of repetitions for fields marked as `repeats`. If this parameter is not provided, the default value is 1.
 
 ### Making a Call for a QuestionnaireResponse
@@ -72,13 +79,9 @@ A template is an HTML document with placeholders for data, conditional logic and
 The input to the template engine includes a context that contains the following parameters:
 
 1. **items** - A vector that contains all the widgets. It is important to note that the widgets are in the same order as they appear in the form. The structure is almost flat, meaning that widgets do not contain children, with the exceptions being Choice Matrix, Grid, and Group Table widgets.
-
 2. **title** - The title of the Questionnaire. For QuestionnaireResponse, the title of the associated Questionnaire is used.
-
 3. **repeatedCount** - The specified number of repetitions for widgets that have the `repeats` property set.
-
 4. **is-q** - A boolean value that is true if $render was called for a Questionnaire resource.
-
 5. **is-qr** - A boolean value that is true if $render was called for a QuestionnaireResponse resource.
 
 #### Item Structure
@@ -105,12 +108,10 @@ text - The title of the widget.
 
 ### Common Issues
 
-- **Incorrect Template, Questionnaire and QuestionnaireResponse IDs**: Verify that all IDs provided in the request are correct. If any of the IDs cannot be found, either because they do not exist or belong to another tenant, the operation will return a 404 code with an OperationOutcome resource describing which of the resources could not be retrieved for rendering.
+* **Incorrect Template, Questionnaire and QuestionnaireResponse IDs**: Verify that all IDs provided in the request are correct. If any of the IDs cannot be found, either because they do not exist or belong to another tenant, the operation will return a 404 code with an OperationOutcome resource describing which of the resources could not be retrieved for rendering.
 
 ## FAQs
 
-**Q: Can I use the same template for both Questionnaire and QuestionnaireResponse?**
-A: Yes, the same `SDCPrintTemplate` can be used for rendering both Questionnaire and QuestionnaireResponse resources, provided it is designed to accommodate the structure of both resource types. However, if you want to create your own template that is suitable for both Questionnaire and QuestionnaireResponse, you will need to consider the differences in the FHIR standard between these entities. 
+**Q: Can I use the same template for both Questionnaire and QuestionnaireResponse?** A: Yes, the same `SDCPrintTemplate` can be used for rendering both Questionnaire and QuestionnaireResponse resources, provided it is designed to accommodate the structure of both resource types. However, if you want to create your own template that is suitable for both Questionnaire and QuestionnaireResponse, you will need to consider the differences in the FHIR standard between these entities.
 
 To differentiate between the resource types in the template, you can use two boolean values in the context: `is-q` and `is-qr`. These values can be used to conditionally render specific sections or elements based on the resource type being processed.
-
