@@ -39,7 +39,9 @@ Since FHIRSchema shares the same semantic meaning and purpose as StructureDefini
 
 ## Create FHIRSchema for custom resource
 
-Let's define several resources to describe the typical notification flow. This guide is also available as a Javascript application in the [examples repository](https://github.com/Aidbox/app-examples/tree/main/aidbox-notify-via-custom-resources).
+The further guide details the process of creating custom resources for a notification system, demonstrating the typical workflow of creating, managing, and sending template-based notifications from a healthcare system to patients using custom resources defined through FHIRSchema.
+
+Additionally, this guide is accompanied by a [JavaScript application](https://github.com/Aidbox/app-examples/tree/main/aidbox-notify-via-custom-resources#aidbox-notify-via-custom-resources) that showcases the implementation of notification handling. This includes requesting notifications, locking them for processing, and completing the sending process.&#x20;
 
 To implement a notification flow, you may need a notification resource and a template resource to store your notification messages.
 
