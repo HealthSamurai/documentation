@@ -26,7 +26,7 @@ In the following sections, we will describe how to obtain the FHIR Schema from a
 
 ## Semi-Automated approach
 
-You can use a special REST API endpoint to migrate specific Zen definitions to the FHIR schema. The endpoint requires a `Zen namespace` and `symbol` under which the custom resource definition is described. Internally, it attempts to compile the entity to the FHIR schema.
+You can use a special REST API endpoint to migrate specific Zen definitions to the FHIR schema. The endpoint requires a `Zen namespace` and `symbol` under which the custom resource definition is described. Internally, it attempts to compile the Zen definition to the FHIR schema.
 
 ```http
 GET /ZenSchema/<zen-namespace>/<zen-definition-symbol>/$dump-as-fhir-schema
@@ -565,7 +565,7 @@ To deliver the FHIR Schema(s) and related Entities you authored to Aidbox, follo
 
 **Single FHIRSchema Delivery**
 
-If you have only one FHIRSchema that replaces your custom-defined Entity/Attributes, follow this guide to deliver a single FHIRSchema to Aidbox.
+If you have only one FHIRSchema that replaces your custom-defined Zen definition, follow this guide to deliver a single FHIRSchema to Aidbox.
 
 {% content-ref url="../custom-resources-using-fhirschema.md" %}
 [custom-resources-using-fhirschema.md](../custom-resources-using-fhirschema.md)
@@ -588,7 +588,7 @@ If you have multiple schemas replacing a set of resources and want to work with 
 **Important Notes:**
 
 {% hint style="warning" %}
-**Schema Precedence:** Uploaded FHIRSchemas with your resource definitions have higher precedence than Entity/Attribute definitions, so validation will be performed using the FHIRSchema. You can delete your Entity/Attribute resources after creating the FHIRSchema with resource definitions.
+**Schema Precedence:** Uploaded FHIRSchemas with your resource definitions have higher precedence than Zen definitions, so validation will be performed using the FHIRSchema. You can delete your Zen definition after creating the FHIRSchema with resource definitions.
 {% endhint %}
 
 {% hint style="danger" %}
