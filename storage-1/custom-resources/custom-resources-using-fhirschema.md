@@ -59,7 +59,7 @@ elements:
 ```
 {% endcode %}
 
-Most important part of this schema is template constraint, which says that element `template` is required to be included in resource and its value should be _string_ type. Also `kind`: `resource` is a property that tells the Aidbox to create a new resource instead of constraining an existing one with a new profile.
+Most important part of this schema is template constraint, which says that element `template` is required to be included in resource and its value should be _string_ type. Also `derivation`: `specialization` is a property that tells the Aidbox to create a new resource instead of constraining an existing one with a new profile.
 
 Now, when we got resource to store our templates, let's shape more complex one.
 
