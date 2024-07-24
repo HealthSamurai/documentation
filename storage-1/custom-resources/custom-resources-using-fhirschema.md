@@ -18,16 +18,22 @@ To begin using custom FHIR resources, enable the FHIRSchema validator engine in 
 
 To understand the meaning of the schemas described below, you should know the meaning of some basic FHIRSchema properties:
 
-1. `base`: This property defines the base profile from which schema will inherit all _elements_ and _constraints._
-2. `url`: This property represents the FHIRSchema canonical URL. You can use this URL as the base definition in other profiles. It is **required** in every FHIRSchema instance and is used in the same sense as a FHIR `StructureDefinition.url` property.&#x20;
-3. `name`: This property is a machine-readable name for the profile. It can be used as an alias.
-4. `type`: This property represents the resource type that the current profile restricts. In the case of custom resources, the value of this property should match the `name` property. It is **required** in every FHIRSchema instance and is used in the same sense as a FHIR `StructureDefinition.type` property.
-5. `kind`: This property is used to define the kind of structure that FHIRSchema is describing. It is used in the same sense as a FHIR `StructureDefinition.kind` property. \
-   To define **custom resources**, you should use `kind`: `resource`.
-6. `derivation`: This property represents how the type relates to the `base` property. If it is set to `specialization` - Aidbox will create a new resource type with tables in the database and other resource logic. If it is set to `constraint` - Aidbox will create a new profile that constrains the resource type described on the base field. Otherwise, it has the same meaning as a FHIR `StructureDefinition.derivation` property.
-7. `required`: This properties controls the presence of the required subelements.
-8. `excluded`:  This properties controls the absence of the excluded subelements.
-9. `elements`: This property is where constraints on schema elements are defined. There are nested properties to constrain shape, cardinality, slicing, etc. For a more complex description, see the [FHIRSchema wiki](https://fhir-schema.github.io/fhir-schema/reference/element.html).
+<table data-full-width="true"><thead><tr><th>Property</th><th>Description</th><th>Additional Notes</th></tr></thead><tbody><tr><td><code>base</code></td><td><p>This property contains the canonical URL to the FHIRSchema/StructureDefinition whose elements and constraints will be inherited.</p><p></p><p>It shares the same meaning as FHIR <code>StructureDefinition.baseDefinition</code></p></td><td><p>Usually, you want to set this property to <code>DomainResource</code>. This provides all the resource infrastructure, such as top-level <code>extension</code> collection and <code>meta</code>, which allows you to populate meta in the FHIR manner and add profile references.<br></p><p>If you omit this field, only the elements defined in the <code>elements</code> section of FHIRSchema will be validated. Aidbox does not perform any automatic inference of the <code>base</code> if it is omitted.</p></td></tr><tr><td><code>url</code>*</td><td><p>This field contains the unique canonical URL for your FHIRSchema. <br><br>In the context of custom resources, this field is not important. However, it becomes crucial when defining profiles, as you use the profile's canonical URL to reference it in the <code>meta.profile</code> of a resource instance.<br></p><p>It shares the same meaning as FHIR <code>StructureDefinition.url</code></p></td><td></td></tr><tr><td><code>name</code>*</td><td>This field provides the computer-readable name for your custom resource or profile. <br><br>It shares the same meaning as FHIR <code>StructureDefinition.name</code></td><td>When defining a new resource type, the current implementation requires that this field must be equal to both the <code>type</code> and <code>id</code>.</td></tr><tr><td><code>type</code>*</td><td>This property provides reource type name for a new resource definition or in case of profiling the type of resource that is being constrained.<br><br>It shares the same meaning as FHIR <code>StructureDefinition.type</code></td><td>When defining a new resource type, the current implementation requires that this field must be equal to both the <code>name</code> and <code>id</code>.</td></tr><tr><td><code>kind</code>*</td><td>This property is used to define the kind of structure that FHIRSchema is describing. <br><br>It shares the same meaning as FHIR <code>StructureDefinition.kind</code></td><td>To define <strong>custom resources</strong>, you should use <code>kind</code>: <code>resource</code> or <code>kind: logical</code></td></tr><tr><td><code>derivation</code>*</td><td>This property represents how the type relates to the <code>base</code> property. If it is set to <code>specialization</code> - Aidbox will create a new resource type with tables in the database and other resource infrastructure. If it is set to <code>constraint</code> - Aidbox will create a new profile  that can be referenced on resource instances</td><td></td></tr><tr><td><code>id</code></td><td>It shares the same meaning as FHIR <code>Resource.id</code></td><td>When defining a new resource type, the current implementation requires that this field must be equal to both the <code>type</code> and <code>name</code>.</td></tr></tbody></table>
+
+FHIRSchema may contain additional fields at the top level, but they share the same meaning as properties defined in the `elements` instruction.
+
+For more information about these fields, please refer to the FHIRSchema reference [specification](https://fhir-schema.github.io/fhir-schema/index.html).
+
+### Implicit Requirements for Logical Models
+
+Logical models have two implicit requirements:
+
+1. **Base Value:**
+   * The base value is limited to two possible values: `Element` or `base`.
+2. **Type Value:**
+   * The type value must be a fully specified URL and may share the same value as the URL property. This requirement is enforced by FHIR to avoid clashes with core resources. Users can define resources as logical models with `kind: logical`, whereas resources with `kind: resource` can only be defined by FHIR.
+
+Since FHIRSchema shares the same semantic meaning and purpose as StructureDefinition, it also inherits all these limitations of the original StructureDefinition resource.
 
 ## Create FHIRSchema for custom resource
 
