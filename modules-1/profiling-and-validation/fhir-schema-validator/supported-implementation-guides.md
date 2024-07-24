@@ -471,17 +471,12 @@ NHS Booking and Referrals
 
 **Versions**
 
-* `uk.nhsdigital.bars.r4#1.23.0-alpha`
-* `uk.nhsdigital.bars.r4#1.22.0-alpha`
-* `uk.nhsdigital.bars.r4#1.20.0-alpha`
-* `uk.nhsdigital.bars.r4#1.19.0-alpha`
 * `uk.nhsdigital.bars.r4#1.18.0-alpha`
 * `uk.nhsdigital.bars.r4#1.17.0-alpha`
 * `uk.nhsdigital.bars.r4#1.16.0-alpha`
 * `uk.nhsdigital.bars.r4#1.12.0-alpha`
 * `uk.nhsdigital.bars.r4#1.11.0-alpha`
 * `uk.nhsdigital.bars.r4#1.10.0-alpha`
-* `uk.nhsdigital.bars.r4#1.2.0`
 * `uk.nhsdigital.bars.r4#1.1.0`
 * `uk.nhsdigital.bars.r4#1.0.0`
 * `uk.nhsdigital.bars.r4#0.5.0-test`
@@ -5362,6 +5357,7 @@ Building an Implementation Guide and Package with Simplifier.net
 
 **Versions**
 
+* `de.gematik.dev.epa#1.1.0-alpha.5`
 * `de.gematik.dev.epa#1.1.0-alpha.4`
 
 
@@ -6803,6 +6799,7 @@ Draft of used FHIR resource profiles in Koppeltaal 2.0.
 
 **Versions**
 
+* `koppeltaalv2.00#0.14.0-beta.1`
 * `koppeltaalv2.00#0.12.0-beta.6`
 * `koppeltaalv2.00#0.12.0-beta.5`
 * `koppeltaalv2.00#0.12.0-beta.4`
@@ -8679,6 +8676,22 @@ test
 
 ---
 
+### Estonian Base Implementation Guide
+
+<details>
+<summary>Description</summary>
+
+Eesti FHIR standardi baas juurutusjuhend (built Sun, Jul 21, 2024 14:35+0300+03:00)
+
+</details>
+
+**Versions**
+
+* `ee.fhir.base#1.1.0`
+
+
+---
+
 ### careplanrt.eng
 
 <details>
@@ -9335,12 +9348,13 @@ The Patient Master Identity Registry (PMIR) Profile supports the creating, updat
 <details>
 <summary>Description</summary>
 
-Terminoloogia mis on kasutusel juurutusjuhendites (built Fri, Jul 19, 2024 09:46+0300+03:00)
+Terminoloogia mis on kasutusel juurutusjuhendites (built Mon, Jul 22, 2024 11:21+0300+03:00)
 
 </details>
 
 **Versions**
 
+* `ee.fhir.terminology#0.2.0`
 * `ee.fhir.terminology#0.0.1`
 
 
@@ -10645,6 +10659,7 @@ Verzeichnisdienst der Telematikinfrastruktur
 
 **Versions**
 
+* `de.gematik.fhir.directory#0.11.10`
 * `de.gematik.fhir.directory#0.11.9`
 * `de.gematik.fhir.directory#0.11.8`
 * `de.gematik.fhir.directory#0.11.7`
