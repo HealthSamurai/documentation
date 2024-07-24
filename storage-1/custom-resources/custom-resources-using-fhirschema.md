@@ -19,14 +19,15 @@ To begin using custom FHIR resources, enable the FHIRSchema validator engine in 
 To understand the meaning of the schemas described below, you should know the meaning of some basic FHIRSchema properties:
 
 1. `base`: This property defines the base profile from which schema will inherit all _elements_ and _constraints._
-2. `url`: This property represents the FHIRSchema canonical URL. You can use it to link to the current profile as a base for other profiles. It is **required** in every FHIRSchema instance and is used in the same sense as a FHIR `StructureDefinition.url` property.&#x20;
+2. `url`: This property represents the FHIRSchema canonical URL. You can use this URL as the base definition in other profiles. It is **required** in every FHIRSchema instance and is used in the same sense as a FHIR `StructureDefinition.url` property.&#x20;
 3. `name`: This property is a machine-readable name for the profile. It can be used as an alias.
 4. `type`: This property represents the resource type that the current profile restricts. In the case of custom resources, the value of this property should match the `name` property. It is **required** in every FHIRSchema instance and is used in the same sense as a FHIR `StructureDefinition.type` property.
 5. `kind`: This property is used to define the kind of structure that FHIRSchema is describing. It is used in the same sense as a FHIR `StructureDefinition.kind` property. \
    To define **custom resources**, you should use `kind`: `resource`.
 6. `derivation`: This property represents how the type relates to the `base` property. If it is set to `specialization` - Aidbox will create a new resource type with tables in the database and other resource logic. If it is set to `constraint` - Aidbox will create a new profile that constrains the resource type described on the base field. Otherwise, it has the same meaning as a FHIR `StructureDefinition.derivation` property.
-7. `required|excluded`: This properties controls the presence or absence of required and excluded subelements.
-8. `elements`: This property is where constraints on schema elements are defined. There are nested properties to constrain shape, cardinality, slicing, etc. For a more complex description, see the [FHIRSchema wiki](https://fhir-schema.github.io/fhir-schema/reference/element.html).
+7. `required`: This properties controls the presence of the required subelements.
+8. `excluded`:  This properties controls the absence of the excluded subelements.
+9. `elements`: This property is where constraints on schema elements are defined. There are nested properties to constrain shape, cardinality, slicing, etc. For a more complex description, see the [FHIRSchema wiki](https://fhir-schema.github.io/fhir-schema/reference/element.html).
 
 ## Create FHIRSchema for custom resource
 
@@ -116,9 +117,7 @@ elements:
     refers: ["Patient"]
 ```
 
-In addition to properties from the FHIRSchema of notification template, in this one we use   _value sets_ and _references_. To link our template with notification, we need to define the `template` element with type `Reference` and allow `TutorNotificationTemplate` type in `refers` property. More interesting one here is `type` and `status` elements. There both have terminology `binding` property that contains value set URL in `valueSet` property and `strength`: `required`, that is used to force binding validation. But in case of status we don't want to use all _task-status codes_ to specify notification status. This is the reason why the `constraints` property appears. It is used  to express that status of notification **shall be** `requested`, `in-progress` or `completed`.&#x20;
-
-
+In addition to properties from the FHIRSchema of notification template, in this one we use _value sets_ and _references_. To link our template with notification, we need to define the `template` element with type `Reference` and allow `TutorNotificationTemplate` type in `refers` property. More interesting one here is `type` and `status` elements. There both have terminology `binding` property that contains value set URL in `valueSet` property and `strength`: `required`, that is used to force binding validation. But in case of status we don't want to use all _task-status codes_ to specify notification status. This is the reason why the `constraints` property appears. It is used  to express that status of notification **shall be** `requested`, `in-progress` or `completed`.&#x20;
 
 ## Create Search Parameters on custom resources
 
