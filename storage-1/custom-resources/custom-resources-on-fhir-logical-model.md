@@ -46,9 +46,7 @@ accept: application/json
     "name": "TutorNotificationTemplate",
     "abstract": false,
     "type": "TutorNotificationTemplate",
-    "resourceType": "StructureDefinition",
     "status": "active",
-    "id": "TutorNotificationTemplate",
     "kind": "resource",
     "url": "http://example.org/StructureDefinition/TutorNotificationTemplate",
     "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DomainResource",
@@ -129,14 +127,12 @@ Now, when we got resource to store our templates, let's shape more complex one -
 
 {% tabs %}
 {% tab title="Request" %}
-```
+```json
 POST /fhir/StructureDefinition
 content-type: application/json
 accept: application/json
 
 {
-  "resourceType": "StructureDefinition",
-  "id": "TutorNotification",
   "url": "http://example.com/aidbox-sms-tutor/TutorNotification",
   "name": "TutorNotification",
   "status": "active",
@@ -249,7 +245,7 @@ accept: application/json
 
 {% tab title="Response" %}
 {% code title="status: 200" %}
-```
+```json
 {
  "derivation": "specialization",
  "name": "TutorNotification",

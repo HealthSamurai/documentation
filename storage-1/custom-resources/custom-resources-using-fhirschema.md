@@ -54,8 +54,6 @@ Let's start with shaping a TutorNotificationTemplate resource.
 accept: application/json
 
 {
-  "id": "TutorNotificationTemplate",
-  "resourceType": "FHIRSchema",
   "url": "http://example.com/aidbox-sms-tutor/TutorNotificationTemplate",
   "type": "TutorNotificationTemplate",
   "name": "TutorNotificationTemplate",
@@ -113,8 +111,6 @@ content-type: application/json
 accept: application/json
 
 {
-  "id": "TutorNotification",
-  "resourceType": "FHIRSchema",
   "url": "http://example.com/aidbox-sms-tutor/TutorNotification",
   "type": "TutorNotification",
   "name": "TutorNotification",
