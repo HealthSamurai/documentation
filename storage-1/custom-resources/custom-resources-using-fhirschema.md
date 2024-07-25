@@ -14,6 +14,10 @@ To begin using custom FHIR resources, enable the FHIRSchema validator engine in 
 [setup.md](../../modules-1/profiling-and-validation/fhir-schema-validator/setup.md)
 {% endcontent-ref %}
 
+## FHIRSchema endpoint
+
+Aidbox provides `/fhir/FHIRSchema` POST endpoints for creating FHIRSchema instances.&#x20;
+
 ## FHIRSchema top level properties
 
 To understand the meaning of the schemas described below, you should know the meaning of some basic FHIRSchema properties:
