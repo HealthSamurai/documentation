@@ -471,9 +471,6 @@ NHS Booking and Referrals
 
 **Versions**
 
-* `uk.nhsdigital.bars.r4#1.18.0-alpha`
-* `uk.nhsdigital.bars.r4#1.17.0-alpha`
-* `uk.nhsdigital.bars.r4#1.16.0-alpha`
 * `uk.nhsdigital.bars.r4#1.12.0-alpha`
 * `uk.nhsdigital.bars.r4#1.11.0-alpha`
 * `uk.nhsdigital.bars.r4#1.10.0-alpha`
@@ -5799,6 +5796,17 @@ Package version 1.0.0
 
 ---
 
+### Patsiendi üldandmete teenus / Master Patient Index
+
+
+
+**Versions**
+
+* `ee.fhir.mpi#1.1.0`
+
+
+---
+
 ### Northwell.Person.Extensions
 
 <details>
@@ -6986,6 +6994,7 @@ The purpose of SETP is to improve surgical performance in Ontario through the me
 
 **Versions**
 
+* `de.gematik.dev.epa.medication#1.1.0-alpha.5`
 * `de.gematik.dev.epa.medication#1.1.0-alpha.4`
 
 
@@ -7459,6 +7468,7 @@ Progetto OMr Gestione Rete Digitale Rete Laboratori per Regione Lombardia
 
 **Versions**
 
+* `gdrl.fhir.r4#1.3.0`
 * `gdrl.fhir.r4#1.2.0`
 * `gdrl.fhir.r4#1.2.0-----beta`
 * `gdrl.fhir.r4#1.1.0`
