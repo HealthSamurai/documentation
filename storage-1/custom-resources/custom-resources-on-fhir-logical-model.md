@@ -123,7 +123,7 @@ Now, when we got resource to store our templates, let's shape more complex one -
 3. `template`:  reference to `TutorNotificationTemplate` .
 4. `message`: message template text and is of the FHIR `string` data type.
 5. `sendAfter`: property that specifies the `dateTime` after which this notification should be sent.
-6. `subject`: Reference to the `Patient` resource to whom this notification will be sent.
+6. `subject`: reference to the `Patient` resource to whom this notification will be sent.
 
 {% tabs %}
 {% tab title="Request" %}
