@@ -14,6 +14,19 @@ To begin using custom FHIR resources, enable the FHIR Schema validator engine in
 [setup.md](../../modules-1/profiling-and-validation/fhir-schema-validator/setup.md)
 {% endcontent-ref %}
 
+## Limitations of FHIR Logical Models
+
+Logical models (StructureDefinition/FHIRSchema with `kind: logical`) have two limitations as guided by the FHIR specification:
+
+1. **Base Value:**
+   * The base value is limited to two possible values: `Element` or `base`.
+2. **Type Value:**
+   * The type value must be a fully specified URL and may share the same value as the URL property. This requirement is enforced by FHIR to avoid clashes with core resources.
+
+{% hint style="danger" %}
+Due to the second limitation, resource definitions based on logical models are not intended for instantiation and are provided to an end FHIR server only as data structure examples.&#x20;
+{% endhint %}
+
 ## Create StructureDefinition for custom resource
 
 To create a custom resource in Aidbox using StructureDefinition you have to create StructureDefinition resource via REST API.&#x20;
@@ -765,3 +778,19 @@ Manually writing StructureDefinitions can be overwhelming. Fortunately, there is
 {% content-ref url="../../modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/" %}
 [upload-fhir-implementation-guide](../../modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/)
 {% endcontent-ref %}
+
+## How Aidbox Deals with FHIR Limitations for Custom Resources
+
+### **FHIR Type ValueSet Bindings**
+
+FHIR defines certain ValueSets that list all resource types and binds them with required strength to some properties. For example, the `SearchParameter.base` property points to the resource this `SearchParameter` is intended for and has this exact binding. Obviously, your custom resource type is not mentioned in this ValueSet. However, you still want to create and use search parameters for your custom resources.
+
+During validation, Aidbox checks whether the resource type is in the given ValueSet or if it is a known custom resource for Aidbox. This allows you to use custom resources in resources like `CapabilityStatement` or `SearchParameter`, or in the `type` property of references.
+
+### **References to Unknown FHIR Types**
+
+FHIR allows references to point only to FHIR resources. Aidbox, however, allows you to specify custom resources in reference targets as well.
+
+### **Bundle Entries Must Inherit from Resource FHIR Type**
+
+FHIR explicitly states that `Bundle.entry.resource` must be a type that inherits from the Resource FHIR type. Aidbox relaxes this constraint and checks that the referenced resource inherits from at least one `StructureDefinition`/`FHIRSchema` with `kind: resource` and `derivation: specialization`.
