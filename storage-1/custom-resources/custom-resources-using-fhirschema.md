@@ -16,7 +16,7 @@ To begin using custom FHIR resources, enable the FHIRSchema validator engine in 
 
 ## FHIRSchema endpoint
 
-Aidbox provides `/fhir/FHIRSchema` POST endpoints for creating FHIRSchema instances.&#x20;
+Aidbox provides the `/fhir/FHIRSchema` POST endpoint for creating FHIRSchema instances. Examples of usage are given in this article below.
 
 ## FHIRSchema top level properties
 
