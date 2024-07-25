@@ -42,3 +42,17 @@ Aidbox Forms provide three options for pre-filling the field:
 
 
 
+## Description of widgets
+
+### Annotation Pad
+
+The Annotation Pad widget allows users to draw or write annotations directly within a form. This is particularly useful for capturing visual information, sketches, or handwritten notes that cannot be easily captured through text inputs. The Annotation Pad widget provides a flexible and intuitive way to gather this type of data.
+
+**Settings:**
+
+* **Background image:** An image that will be displayed as the background of the annotation area.
+* **Pen Color**: The color of the pen used for drawing or writing.
+* **Pen Thickness**: The thickness of the pen used for drawing or writing.
+* **Erase Option**: A tool for erasing parts of the drawing or writing.
+
+The annotation will be saved as base64 encoded attachment in QuestionnaireResponse.
