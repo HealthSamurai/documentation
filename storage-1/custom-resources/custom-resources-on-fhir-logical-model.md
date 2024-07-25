@@ -118,12 +118,12 @@ accept: application/json
 
 Now, when we got resource to store our templates, let's shape more complex one - resource `TutorNotification` that has following properties:
 
-1. `type`: `binding` property that contains value set URL in `valueSet` property and `strength`: `required`, that is used to force binding validation.
+1. `type`: property that contains `binding` value set URL in `valueSet` property and `strength`: `required`, that is used to force binding validation.
 2. `status`: also has `binding` to `valueSet` with additional constraint to `requested`, `in-progress` or `completed` values.
 3. `template`:  reference to `TutorNotificationTemplate` .
-4. `message`: arbitrary text and is of the FHIR `string` data type.
-5. `sendAfter`: `dateTime` property.
-6. `subject`: reference to `Patient` resource.
+4. `message`: message template text and is of the FHIR `string` data type.
+5. `sendAfter`: property that specifies the `dateTime` after which this notification should be sent.
+6. `subject`: Reference to the `Patient` resource to whom this notification will be sent.
 
 {% tabs %}
 {% tab title="Request" %}
