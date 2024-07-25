@@ -73,6 +73,12 @@ To implement a notification flow, you may need a notification resource and a tem
 
 Let's start with shaping a TutorNotificationTemplate resource.
 
+This resource contains one property defined under `FHIRSchema.elements`:
+
+1. `template`: this property is for notification template text and is of the FHIR `string` data type. Also, it is a required property.
+
+Also `FHIRSchema.derivation`: `specialization` is a property that tells the Aidbox to create a new resource instead of constraining an existing one with a new profile.
+
 {% tabs %}
 {% tab title="Request" %}
 <pre class="language-json" data-line-numbers><code class="lang-json"><strong>POST /fhir/FHIRSchema
@@ -125,9 +131,14 @@ Status: 200
 {% endtab %}
 {% endtabs %}
 
-Most important part of this schema is template constraint, which says that element `template` is required to be included in resource and its value should be _string_ type. Also `derivation`: `specialization` is a property that tells the Aidbox to create a new resource instead of constraining an existing one with a new profile.
+Now, when we got resource to store our templates, let's shape a more complex one - resource `TutorNotification` that has the following properties:
 
-Now, when we got resource to store our templates, let's shape more complex one.
+1. `type`: property that contains `binding` value set URL in `valueSet` property and `strength`: `required`, that is used to force binding validation.
+2. `status`:  property with `binding` to `valueSet: http://hl7.org/fhir/ValueSet/task-status` with additional constraint to `requested`, `in-progress` or `completed` values.
+3. `template`:  reference to `TutorNotificationTemplate` resource that we created above.
+4. `message`: message text and is of the FHIR `string` data type.
+5. `sendAfter`: property that specifies the `dateTime` after which this notification should be sent.
+6. `subject`: reference to the `Patient` resource to whom this notification will be sent.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -271,8 +282,6 @@ Status: 200
 ```
 {% endtab %}
 {% endtabs %}
-
-In addition to properties from the FHIRSchema of notification template, in this one we use _value sets_ and _references_. To link our template with notification, we need to define the `template` element with type `Reference` and allow `TutorNotificationTemplate` type in `refers` property. More interesting one here is `type` and `status` elements. There both have terminology `binding` property that contains value set URL in `valueSet` property and `strength`: `required`, that is used to force binding validation. But in case of status we don't want to use all _task-status codes_ to specify notification status. This is the reason why the `constraints` property appears. It is used  to express that status of notification **shall be** `requested`, `in-progress` or `completed`.&#x20;
 
 ## Create Search Parameters on custom resources
 

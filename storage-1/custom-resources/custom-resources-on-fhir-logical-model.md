@@ -45,7 +45,7 @@ Let's start with shaping a TutorNotificationTemplate resource.
 
 This resource contains one property defined under `StructureDefinition.differential`:
 
-1. `template`: This property is for arbitrary text and is of the FHIR `string` data type.
+1. `template`: This property is for notification template text and is of the FHIR `string` data type. Also, it is a required property.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -132,9 +132,9 @@ accept: application/json
 Now, when we got resource to store our templates, let's shape more complex one - resource `TutorNotification` that has following properties:
 
 1. `type`: property that contains `binding` value set URL in `valueSet` property and `strength`: `required`, that is used to force binding validation.
-2. `status`: also has `binding` to `valueSet` with additional constraint to `requested`, `in-progress` or `completed` values.
-3. `template`:  reference to `TutorNotificationTemplate` .
-4. `message`: message template text and is of the FHIR `string` data type.
+2. `status`:  property with `binding` to `valueSet: http://hl7.org/fhir/ValueSet/task-status` with additional constraint to `requested`, `in-progress` or `completed` values.
+3. `template`:  reference to `TutorNotificationTemplate` that we created above.
+4. `message`: message text and is of the FHIR `string` data type.
 5. `sendAfter`: property that specifies the `dateTime` after which this notification should be sent.
 6. `subject`: reference to the `Patient` resource to whom this notification will be sent.
 
