@@ -471,11 +471,6 @@ NHS Booking and Referrals
 
 **Versions**
 
-* `uk.nhsdigital.bars.r4#1.12.0-alpha`
-* `uk.nhsdigital.bars.r4#1.11.0-alpha`
-* `uk.nhsdigital.bars.r4#1.10.0-alpha`
-* `uk.nhsdigital.bars.r4#1.1.0`
-* `uk.nhsdigital.bars.r4#1.0.0`
 * `uk.nhsdigital.bars.r4#0.5.0-test`
 * `uk.nhsdigital.bars.r4#0.4.0-test`
 * `uk.nhsdigital.bars.r4#0.3.0-test`
@@ -860,6 +855,7 @@ The DK MedCom HospitalNotification IG (built Thu, Mar 2, 2023 09:52+0100+01:00)
 
 **Versions**
 
+* `hl7.fhir.fr.core#2.1.0-ballot`
 * `hl7.fhir.fr.core#2.0.1`
 * `hl7.fhir.fr.core#2.0.0`
 * `hl7.fhir.fr.core#2.0.0-ballot`
@@ -2053,6 +2049,7 @@ ePrescription workflow specification
 
 **Versions**
 
+* `de.gematik.erezept-workflow.r4#1.4.0`
 * `de.gematik.erezept-workflow.r4#1.4.0-rc3`
 * `de.gematik.erezept-workflow.r4#1.4.0-rc1`
 * `de.gematik.erezept-workflow.r4#1.3.1`
@@ -5214,6 +5211,7 @@ Ontario Health
 
 **Versions**
 
+* `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.17`
 * `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.16`
 * `accdr.fhir.ig.pkg#0.9.15`
 
@@ -6002,6 +6000,7 @@ Technical profiles used by nexuzhealth for the import and export of data.
 
 **Versions**
 
+* `nxh.fhir.r4#0.0.0-beta.18`
 * `nxh.fhir.r4#0.0.0-beta.17`
 * `nxh.fhir.r4#0.0.0-beta.16`
 * `nxh.fhir.r4#0.0.0-beta.15`
@@ -6882,6 +6881,7 @@ Laniado Hospital Test Project
 
 **Versions**
 
+* `laniado.test.fhir.r4#0.1.62`
 * `laniado.test.fhir.r4#0.1.61`
 * `laniado.test.fhir.r4#0.1.60`
 * `laniado.test.fhir.r4#0.1.57`
