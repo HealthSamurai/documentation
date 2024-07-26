@@ -121,3 +121,19 @@ The Radio Button widget allows users to select one option from a set of predefin
 * **Orientation**: Display orientation of the options (vertical or horizontal).
 * **Column Count**: The number of columns used to display the options.
 
+
+
+### Checkbox List
+
+The Checkbox List widget allows users to select multiple options from a predefined list. This widget is ideal for scenarios where multiple selections are permitted or required.
+
+**Settings:**
+
+* **Options**: A list of values that the user can choose from.&#x20;
+  * Each option should have a display text, code and system. The user can fill in values ​​or use the import option. In this case, the user will be given the opportunity to select a terminology server, select a valueset in it and find the needed coded value, then the code, system and display will be automatically filled in.
+  * Optionally, the user can include a score to each option and show the score if needed, which will be taken into account in the calculations. To do this, need to click on the include score and show score boxes.
+  * Instead of inlining options into the form, the use can use a ValueSet that is stored in the Aidbox instance. To do this, the user need to click on the ValueSet box and select the ValueSet.
+* **Orientation**: Display orientation of the options (vertical or horizontal).
+* **Column Count**: The number of columns used to display the options.
+* **Multiple Selection**: An option to allow the user to select more than one choice. To enable multiple selection, need to set repeats flag, by default, this flag is set.&#x20;
+
