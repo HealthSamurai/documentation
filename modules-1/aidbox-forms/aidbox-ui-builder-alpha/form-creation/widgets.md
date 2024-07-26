@@ -65,4 +65,18 @@ The Speech to Text widget allows users to input text by speaking, which is then 
 
 **Settings:**
 
-* **Language**: The language in which the speech will be recognized and transcribed.
+* **Language**: The language in which the speech will be recognised and transcribed.
+
+
+
+### Choice
+
+The Choice widget allows users to select one or more options from a predefined list of options and it is displayed on the form as a drop-down list.
+
+**Settings:**
+
+* **Multiple Selection**: An option to allow the user to select more than one choice. To enable multiple selection, need to set repeats flag.
+* **Options**: A list of values that the user can choose from.&#x20;
+  * Each option should have a display text, code and system. The user can fill in values ​​or use the import option. In this case, the user will be given the opportunity to select a terminology server, select a valueset in it and find the needed coded value, then the code, system and display will be automatically filled in.
+  * Optionally, the user can include a score to each option and show the score if needed, which will be taken into account in the calculations. To do this, need to click on the include score and show score boxes.
+  * Instead of inlining options into the form, the use can use a ValueSet that is stored in the Aidbox instance. To do this, the user need to click on the ValueSet box and select the ValueSet.
