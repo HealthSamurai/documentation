@@ -94,4 +94,16 @@ it is displayed on the form as a drop-down list.
   * Optionally, the user can include a score to each option and show the score if needed, which will be taken into account in the calculations. To do this, need to click on the include score and show score boxes.
   * Instead of inlining options into the form, the use can use a ValueSet that is stored in the Aidbox instance. To do this, the user need to click on the ValueSet box and select the ValueSet.
 * **Open choice label:** By default the ability to choose your own option is displayed as "specify other..", but the user can redefine the label for this.
-* **Multiple Selection**: Not supported.
+* **Multiple Selection**: Not supported yet, but can be supported on demand.
+
+
+
+### Checkbox
+
+The Checkbox widget allows users to toggle between two states: checked (true) and unchecked (false). This widget is ideal for scenarios where a binary choice is needed, such as accepting terms and conditions or indicating a simple yes/no answer.
+
+**Settings:**
+
+* **Required**: When using this flag, the initial value for the checkbox is set to false automatically. If the user does not change it when filling out the form, this value is included in the completed QuestionnaireResponse.&#x20;
+* **Repeats:** This option is not available for checkbox.
+
