@@ -98,6 +98,7 @@
       * [Aidbox Search Parameters](api-1/fhir-api/search-1/custom-search-parameter/aidbox-search-parameters.md)
       * [Zen Search Parameters](api-1/fhir-api/search-1/custom-search-parameter/zen-search-parameters.md)
       * [Custom Search Parameters](api-1/fhir-api/search-1/custom-search-parameter/custom-search-parameters.md)
+      * [Migrate from Aidbox SearchParameter to FHIR SearchParameter](api-1/fhir-api/search-1/custom-search-parameter/migrate-from-aidbox-searchparameter-to-fhir-searchparameter.md)
     * [Search parameters list](api-1/fhir-api/search-1/search-parameters-list/README.md)
       * [\_search-language](api-1/fhir-api/search-1/search-parameters-list/\_search-language.md)
       * [\_list](api-1/fhir-api/search-1/search-parameters-list/\_list.md)
