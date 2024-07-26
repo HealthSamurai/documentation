@@ -107,3 +107,17 @@ The Checkbox widget allows users to toggle between two states: checked (true) an
 * **Required**: When using this flag, the initial value for the checkbox is set to false automatically. If the user does not change it when filling out the form, this value is included in the completed QuestionnaireResponse.&#x20;
 * **Repeats:** This option is not available for checkbox.
 
+
+
+### Radio Button
+
+The Radio Button widget allows users to select one option from a set of predefined choices. This widget is ideal for scenarios where only a single selection is permitted.
+
+**Settings:**
+
+* **Options**: A list of values that the user can choose from.&#x20;
+  * Each option should have a display text, code and system. The user can fill in values ​​or use the import option. In this case, the user will be given the opportunity to select a terminology server, select a valueset in it and find the needed coded value, then the code, system and display will be automatically filled in.
+  * Optionally, the user can include a score to each option and show the score if needed, which will be taken into account in the calculations. To do this, need to click on the include score and show score boxes.
+* **Orientation**: Display orientation of the options (vertical or horizontal).
+* **Column Count**: The number of columns used to display the options.
+
