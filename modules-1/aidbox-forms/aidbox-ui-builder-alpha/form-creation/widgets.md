@@ -56,3 +56,13 @@ The Annotation Pad widget allows users to draw or write annotations directly wit
 * **Erase Option**: A tool for erasing parts of the drawing or writing.
 
 The annotation will be saved as base64 encoded attachment in QuestionnaireResponse.
+
+
+
+### Speech to text
+
+The Speech to Text widget allows users to input text by speaking, which is then automatically transcribed into the form. This is especially useful for capturing detailed information or notes, making the form-filling process faster and more efficient.
+
+**Settings:**
+
+* **Language**: The language in which the speech will be recognized and transcribed.
