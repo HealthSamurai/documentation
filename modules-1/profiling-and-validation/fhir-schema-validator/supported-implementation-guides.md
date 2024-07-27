@@ -471,8 +471,6 @@ NHS Booking and Referrals
 
 **Versions**
 
-* `uk.nhsdigital.bars.r4#0.5.0-test`
-* `uk.nhsdigital.bars.r4#0.4.0-test`
 * `uk.nhsdigital.bars.r4#0.3.0-test`
 * `uk.nhsdigital.bars.r4#0.2.0-test`
 
@@ -1843,6 +1841,7 @@ Medizininformatik Initiative - Modul Fall
 
 **Versions**
 
+* `de.medizininformatikinitiative.kerndatensatz.fall#2024.1.0-alpha1`
 * `de.medizininformatikinitiative.kerndatensatz.fall#2024.0.1`
 * `de.medizininformatikinitiative.kerndatensatz.fall#2024.0.0`
 * `de.medizininformatikinitiative.kerndatensatz.fall#2024.0.0-ballot`
@@ -6881,6 +6880,7 @@ Laniado Hospital Test Project
 
 **Versions**
 
+* `laniado.test.fhir.r4#0.1.63`
 * `laniado.test.fhir.r4#0.1.62`
 * `laniado.test.fhir.r4#0.1.61`
 * `laniado.test.fhir.r4#0.1.60`
