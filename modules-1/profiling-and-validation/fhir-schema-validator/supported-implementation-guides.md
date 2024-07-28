@@ -460,23 +460,6 @@ Ontario-specific business use cases and content
 
 ---
 
-### uk.nhsdigital.bars.r4
-
-<details>
-<summary>Description</summary>
-
-NHS Booking and Referrals
-
-</details>
-
-**Versions**
-
-* `uk.nhsdigital.bars.r4#0.3.0-test`
-* `uk.nhsdigital.bars.r4#0.2.0-test`
-
-
----
-
 ### 臺灣核心實作指引(TW Core IG)
 
 <details>
@@ -4208,8 +4191,6 @@ Greater Manchester LHCRE Implementation Guide
 
 **Versions**
 
-* `uk.gm#0.0.9-dev`
-* `uk.gm#0.0.8-dev`
 * `uk.gm#0.0.7-dev`
 * `uk.gm#0.0.6-dev`
 * `uk.gm#0.0.5-dev`
@@ -5351,6 +5332,7 @@ Building an Implementation Guide and Package with Simplifier.net
 
 **Versions**
 
+* `de.gematik.dev.epa#1.1.0-alpha.6`
 * `de.gematik.dev.epa#1.1.0-alpha.5`
 * `de.gematik.dev.epa#1.1.0-alpha.4`
 
@@ -10669,6 +10651,8 @@ Verzeichnisdienst der Telematikinfrastruktur
 
 **Versions**
 
+* `de.gematik.fhir.directory#0.11.12`
+* `de.gematik.fhir.directory#0.11.11`
 * `de.gematik.fhir.directory#0.11.10`
 * `de.gematik.fhir.directory#0.11.9`
 * `de.gematik.fhir.directory#0.11.8`
@@ -10855,6 +10839,7 @@ Abrechnungsinformationen des E-Rezeptes für den Patienten
 * `de.gematik.erezept-patientenrechnung.r4#1.0.2`
 * `de.gematik.erezept-patientenrechnung.r4#1.0.1`
 * `de.gematik.erezept-patientenrechnung.r4#1.0.0`
+* `de.gematik.erezept-patientenrechnung.r4#1.0.4-rc2`
 
 
 ---
