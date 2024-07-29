@@ -4191,7 +4191,6 @@ Greater Manchester LHCRE Implementation Guide
 
 **Versions**
 
-* `uk.gm#0.0.7-dev`
 * `uk.gm#0.0.6-dev`
 * `uk.gm#0.0.5-dev`
 * `uk.gm#0.0.4-dev`
@@ -10218,12 +10217,13 @@ HRex may define new extensions, profiles, value sets, constraints/extension to o
 <details>
 <summary>Description</summary>
 
-CARIN Consumer Directed Payer Data Exchange (CARIN IG for Blue Button®) (built Mon, Nov 28, 2022 15:15+0000+00:00)
+CARIN Consumer Directed Payer Data Exchange (CARIN IG for Blue Button®) (built Sat, Jul 27, 2024 20:08+0800+08:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.us.carin-bb#2.1.0-snapshot1`
 * `hl7.fhir.us.carin-bb#2.0.0`
 * `hl7.fhir.us.carin-bb#1.2.0`
 * `hl7.fhir.us.carin-bb#1.1.0`
