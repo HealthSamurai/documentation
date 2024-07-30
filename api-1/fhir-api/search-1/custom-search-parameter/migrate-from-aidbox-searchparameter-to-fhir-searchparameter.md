@@ -18,6 +18,8 @@ To define FHIR SearchParameter you should know the meaning of some basic FHIR Se
 
 <table data-full-width="true"><thead><tr><th width="172">Property</th><th width="294">Description</th><th>Additional Notes</th></tr></thead><tbody><tr><td><code>base</code> *</td><td>The resource type(s) this search parameter applies to.</td><td>In Aidbox SearchParameter it was <code>reference</code> to Entity in <code>resource</code> property.</td></tr><tr><td><code>url</code> *</td><td>Canonical identifier for this search parameter, represented as a URI (globally unique).</td><td>Didn't exists in Aidbox SearchParameter.</td></tr><tr><td><code>expression</code> *</td><td><a href="https://www.hl7.org/fhir/fhirpath.html">FHIRPath expression</a> that extracts the values.</td><td>You need to manually convert Adibox <code>SearchParameter.expression</code> to <a href="https://www.hl7.org/fhir/fhirpath.html">F</a><a href="https://www.hl7.org/fhir/fhirpath.html">HIRPath expression</a>.</td></tr><tr><td><code>name</code> *</td><td>Computationally friendly name of the search parameter.</td><td>The same as in Adibox <code>SearchParameter.name</code>.</td></tr><tr><td><code>status</code> *</td><td><code>draft | active | retired | unknown</code>. Binding to <a href="https://hl7.org/fhir/R5/valueset-publication-status.html">publication-status</a> ValueSet.</td><td>Didn't exist in Aidbox SearchParameter. Use <code>active</code> status.</td></tr><tr><td><code>type</code> *</td><td><code>number | date | string | token | reference | composite | quantity | uri | special</code>. Binding to <a href="https://hl7.org/fhir/R4/valueset-search-param-type.html">search-param-type</a> ValueSet.</td><td>Transfer this value as it was in Adbox <code>SearchParameter.type</code>.</td></tr></tbody></table>
 
+## Simple case
+
 Let's migrate custom Aidbox SearchParameter `Patient.city`:
 
 ```json
@@ -94,13 +96,13 @@ The final step is to add the missing `status` and `url` fields required by the F
 
 Here is the migration request for `Patient.city` SearchParameter:
 
-```json
-PUT /fhir/SearchParameter/patient-city
+<pre class="language-json"><code class="lang-json">PUT /fhir/SearchParameter/patient-city
 content-type: application/json
 accept: application/json
 
 {
-  "name": "city",
+<strong>  "resourceType": "SearchParameter",
+</strong>  "name": "city",
   "url": "http://example.org/fhir/SearchParameter/patient-city",
   "status": "active",
   "description": "Search by city",
@@ -109,4 +111,47 @@ accept: application/json
   "type": "token",
   "expression": "Patient.address.city"
 }
+</code></pre>
+
+## Complex expression cases
+
+For more complex cases, there is a need for more complex expression mapping. Here is a few examples:
+
+#### Aidbox expression with `or`
+
+If expression contains multiple arrays, it means `or` statement between multiple expressions:
+
+```json
+"expression": [
+  ["address", "city"],
+  ["address", "line"]
+ ] 
+```
+
+#### FHIR expression with `or`
+
+This is what it looks like in the FHIRPath format:
+
+```json
+"expression": "Patient.address.city or Patient.address.line"
+```
+
+
+
+#### Aidbox expression with `or`
+
+When expression contains object, it means `where` statement. In this case it would extract records with element `telecom` which contains field `system` with value `email`:
+
+```json
+"expression": [
+  ["telecom", {"system": "email"}]
+ ] 
+```
+
+#### FHIR expression with `or`
+
+This is what it looks like in the FHIRPath format:
+
+```json
+"Patient.telecom.where(system = 'email')"
 ```
