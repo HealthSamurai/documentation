@@ -138,7 +138,7 @@ This is what it looks like in the FHIRPath format:
 
 
 
-#### Aidbox expression with `or`
+#### Aidbox expression with `where`
 
 When expression contains object, it means `where` statement. In this case it would extract records with element `telecom` which contains field `system` with value `email`:
 
@@ -148,7 +148,7 @@ When expression contains object, it means `where` statement. In this case it wou
  ] 
 ```
 
-#### FHIR expression with `or`
+#### FHIR expression with `where`
 
 This is what it looks like in the FHIRPath format:
 
