@@ -223,7 +223,7 @@ Now the smart app is available for your patients
 
 ### Register a tenant
 
-In order to register a tenant your need to create Tenant resource in Aidbox.
+In order to register a tenant you need to create Tenant resource in Aidbox.
 
 1. Open admin portal.
 2. Go to tenants page.
@@ -276,7 +276,7 @@ meta:
 
 ### Sign in as a `User`
 
-Go to My Clinic's patient portal and login as the user, created above with `example@mail.com` login and `password` password. Loaunch samrt app and provide requested consent.
+Go to My Clinic's patient portal and login as the user, created above with `example@mail.com` login and `password` password. Launch smart app and provide requested consent.
 
 ## That's it
 
