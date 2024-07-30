@@ -43,6 +43,7 @@ If you have specific document or section-level requirements, feel free to [conta
 |[Chief Complaint and Reason for Visit Section](/modules-1/integration-toolkit/ccda-converter/sections/chiefcomplaintandreasonforvisits.md)|46239-0|chief-complaint-and-reason-for-visit|❌
 |[Complications Section (V3)](/modules-1/integration-toolkit/ccda-converter/sections/complicationssectionv3.md)|55109-3|complications|✅
 |[Course of Care Section](/modules-1/integration-toolkit/ccda-converter/sections/courseofcaresection.md)|8648-8|course-of-care|❌
+|[DICOM Object Catalog Section - DCM 121181](/modules-1/integration-toolkit/ccda-converter/sections/dicomobjectcatalogsectiondcm121.md)|121181|diagnostic-imaging-report|❌
 |[Default Section Rules](/modules-1/integration-toolkit/ccda-converter/sections/default.md)|&nbsp;|default|❌
 |[Discharge Diagnosis Section (V3)](/modules-1/integration-toolkit/ccda-converter/sections/dischargediagnosissectionv3.md)|11535-2|discharge-diagnosis|✅
 |[Document Header](/modules-1/integration-toolkit/ccda-converter/sections/header.md)|&nbsp;|header|❌

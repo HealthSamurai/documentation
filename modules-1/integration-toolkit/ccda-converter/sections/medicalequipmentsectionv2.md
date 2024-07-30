@@ -234,10 +234,10 @@ C-CDA Equivalent:
                <participant typeCode="DEV">
                   <participantRole classCode="MANU">
                      <templateId root="2.16.840.1.113883.10.20.22.4.37"/>
-                     <id root="913f9c49-dcb5-44e2-087c-ee284f4a00b7"/>
                      <id root="2.16.840.1.113883.3.3719"
                           extension="(01)51022222233336(11)141231(17)150707(10)A213B1(21)1234"
                           assigningAuthorityName="https://www.fda.gov/"/>
+                     <id root="913f9c49-dcb5-44e2-087c-ee284f4a00b7"/>
                      <playingDevice>
                         <code codeSystem="2.16.840.1.113883.6.96"
                                codeSystemName="http://snomed.info/sct"

@@ -148,7 +148,7 @@ C-CDA Equivalent:
          <templateId root="2.16.840.1.113883.10.20.22.4.16"/>
          <id root="1061a257-3b5c-4b09-9dc7-23e59b788b18"/>
          <statusCode code="completed"/>
-         <effectiveTime value="20130911160300-0700"/>
+         <effectiveTime value="20130911160300-0700" xsi:type="IVL_TS"/>
          <routeCode codeSystem="2.16.840.1.113883.3.26.1.1"
                      codeSystemName="http://ncithesaurus-stage.nci.nih.gov"
                      displayName="Oral Route of Administration"
