@@ -4191,11 +4191,6 @@ Greater Manchester LHCRE Implementation Guide
 
 **Versions**
 
-* `uk.gm#0.0.6-dev`
-* `uk.gm#0.0.5-dev`
-* `uk.gm#0.0.4-dev`
-* `uk.gm#0.0.3-dev`
-* `uk.gm#0.0.2-dev`
 * `uk.gm#0.0.12-dev`
 * `uk.gm#0.0.11-dev`
 * `uk.gm#0.0.10-dev`
@@ -6786,6 +6781,8 @@ Draft of used FHIR resource profiles in Koppeltaal 2.0.
 
 **Versions**
 
+* `koppeltaalv2.00#0.14.0-beta.3`
+* `koppeltaalv2.00#0.14.0-beta.2`
 * `koppeltaalv2.00#0.14.0-beta.1`
 * `koppeltaalv2.00#0.12.0-beta.6`
 * `koppeltaalv2.00#0.12.0-beta.5`
@@ -7194,6 +7191,7 @@ Various supporting code systems for tx.fhir.org (R4)
 
 **Versions**
 
+* `fhir.tx.support.r4#0.26.0`
 * `fhir.tx.support.r4#0.25.0`
 * `fhir.tx.support.r4#0.24.0`
 * `fhir.tx.support.r4#0.22.0`
@@ -10699,13 +10697,15 @@ FHIR Core package - the NPM package that contains all the definitions for the ba
 <details>
 <summary>Description</summary>
 
-This IG defines the global extensions - the ones defined for everyone. These extensions are always in scope wherever FHIR is being used (built Sat, Apr 27, 2024 18:39+1000+10:00)
+This IG defines the global extensions - the ones defined for everyone. These extensions are always in scope wherever FHIR is being used (built Tue, Jul 30, 2024 06:42+0800+08:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.uv.extensions#5.2.0-ballot`
 * `hl7.fhir.uv.extensions#5.1.0`
+* `hl7.fhir.uv.extensions#5.1.0-snapshot1`
 * `hl7.fhir.uv.extensions#5.1.0-cibuild`
 * `hl7.fhir.uv.extensions#5.1.0-ballot1`
 * `hl7.fhir.uv.extensions#1.0.0`
