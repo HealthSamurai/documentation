@@ -16,7 +16,7 @@ There's an [existing guide](../../../getting-started/run-aidbox-locally-with-doc
 
 ```sh
 git clone \
-  https://github.com/Panthevm/aidbox-project-template-snomed.git \
+  https://github.com/Aidbox/aidbox-project-template-snomed.git \
   aidbox-project && \
   cd aidbox-project && \
   rm -rf .git
