@@ -78,13 +78,137 @@ When rendering a template, the template engine has the following variables in th
 
 1. **items** - A vector containing all the widgets. It is important to note that the widgets are in the same order as they appear in the form. The structure is almost flat, meaning that widgets do not contain children, with the exceptions being Choice Matrix, Grid, and Group Table widgets.
 2. **title** - The title of the Questionnaire. For QuestionnaireResponse, the title of the associated Questionnaire is used.
-3. **repeatedCount** - The specified number of repetitions for widgets that have the `repeats` property set.
+3. **repeated-count** - The specified number of repetitions for widgets that have the `repeats` property set.
 4. **is-q** - A boolean value that is true if $render was called for a Questionnaire resource.
 5. **is-qr** - A boolean value that is true if $render was called for a QuestionnaireResponse resource.
 
+### Basic example
+
+Let's consider a basic example for clarity: there is a form with three fields (see Figure 1). The task is to create a print version where a table will be generated. In the left column of the table, the title and response from the textarea field will be placed, in the right column - the response from the datetime field, and the field with the signature should not be displayed at all.
+
+{% tabs %}
+{% tab title="Form" %}
+![form](../../../.gitbook/assets/form-for-pdf.png)
+{% endtab %}
+{% tab title="Questionnaire" %}
+```yaml
+url: http://forms.aidbox.io/questionnaire/test-pdf
+item:
+  - text: Textarea at left side
+    type: text
+    linkId: textarea
+  - text: Date at right side
+    type: date
+    linkId: date
+  - text: Signature
+    type: attachment
+    linkId: signature
+    extension:
+      - url: http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl
+        value:
+          CodeableConcept:
+            coding:
+              - code: signature
+                system: http://aidbox.io/questionnaire-itemControl
+title: Test pdf
+status: draft
+id: >-
+  cc5cc148-a051-42d0-a7f2-275f09566593
+resourceType: Questionnaire
+```
+{% endtab %}
+{% tab title="QuestionnaireResponse" %}
+```yaml
+item:
+  - text: Textarea at left side
+    answer:
+      - value:
+          string: >-
+            As they rounded a bend in the path that ran beside the river, Lara
+            recognized the silhouette of a fig tree atop a nearby hill. The
+            weather was hot and the days were long.
+    linkId: textarea
+  - text: Date at right side
+    answer:
+      - value:
+          date: '1066-06-14'
+    linkId: date
+  - text: Signature
+    linkId: signature
+status: in-progress
+encounter:
+  id: >-
+    be0aa36d-02b5-45ff-a83b-209d4718eb95
+  resourceType: Encounter
+questionnaire: http://forms.aidbox.io/questionnaire/test-pdf
+id: >-
+  c9dacb6d-b6de-4250-8e08-a77f1d34a119
+resourceType: QuestionnaireResponse
+```
+{% endtab %}
+{% endtabs %}
+
+Let's implement a loop in the template where we will check the linkId of each widget, which can be found in both the Forms Builder and through the API, and depending on that, use a specific HTML fragment. For the Signature widget, we do not specify any condition at all, as it should not be displayed. As a result, we get the following SDCPrintTemplate resource:
+
+```yaml
+content: |
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Example for pdf</title>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <style>
+          li {
+              list-style-type: disc;
+              list-style-position: inside;
+          }
+      </style>
+  </head>
+
+  <body class="p-16 text-sm flex justify-center print:p-0">
+      <article class="max-w-screen-lg w-full">
+
+          <h1 class="text-2xl font-semibold mb-5 text-center"> Example for pdf </h1>
+
+          <table class="border-collapse w-full">
+              <tr class="break-inside-avoid">
+                  {% for item in items %}
+                  {% if item.linkId = "textarea" %}
+                  <td class="border
+                              border-slate-700
+                              p-1">
+                  {{item.text}}: {{ item.widget/value.value.string }}              
+                  </td>
+                  {% endif %}
+                  {% if item.linkId = "date" %}
+                  <td class="border 
+          border-slate-700
+          min-w-40
+          p-1">
+                  {{ item.widget/value.value.date }}
+                  </td>
+                  {% endif %}
+                  {% endfor %}
+              </tr>
+          </table>
+      </article>
+  </body>
+
+  </html>
+id: test
+resourceType: SDCPrintTemplate
+```
+
+After call `$render` with our QuestionnaireResponse and new template, we get the following:
+
+![rendered form](../../../.gitbook/assets/rendered-form.png)
+
 ### Including Other Templates to Your Template
 
-TODO: include-resource
+To avoid repetitions in templates, we supported a custom tag `include-resource`. Its principle of operation is similar to the Selmer built-in `include` tag, but it allows referencing templates declared as an SDCPrintTemplate resource by specifying the resource id as the tag argument. For an example of usage, consider the our `default-template`, which reuses the `default-widget` template.
 
 ## FAQ
 
@@ -93,3 +217,5 @@ TODO: include-resource
 **Q: Can I use the same template for both Questionnaire and QuestionnaireResponse?** A: Yes, the same SDCPrintTemplate can be used for rendering both Questionnaire and QuestionnaireResponse resources, provided it is designed to accommodate the structure of both resource types. However, if you want to create your own template that is suitable for both Questionnaire and QuestionnaireResponse, you will need to consider the differences in the FHIR standard between these resources.
 
 To differentiate between the resource types in the template, you can use two boolean values in the context: `is-q` and `is-qr`. These values can be used to conditionally render specific sections or elements based on the resource type being processed.
+
+**Q: Why does in my rendered document: "ERROR: template not found template-id"?** A: This message appears when you use the `include-resource` tag in your template and refer to a non-existent template. Double-check that the template with the specified template-id exists.
