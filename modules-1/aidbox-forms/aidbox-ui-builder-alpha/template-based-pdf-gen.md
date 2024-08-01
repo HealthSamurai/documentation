@@ -6,10 +6,6 @@ description: >-
 
 # Template-based PDF generation
 
-{% hint style="danger" %}
-This page is under construction.
-{% endhint %}
-
 ## Overview
 
 This feature introduces the capability to generate custom PDF representation for Questionnaire and QuestionnaireResponse resources. It is facilitated through the `$render` operation. This document explains how to use this operation and provides examples on how to create custom print templates.
@@ -67,28 +63,11 @@ Aidbox comes with a predefined template `default-template` which serves as a uni
 
 Here's how to create your own custom print template:
 
-TODO:
-1. write HTML template with Selmer, use linkIDs
-2. POST to SDCPrintTemplate
-3. $render with custom template-id
-
-### Template Render Context
-
-When rendering a template, the template engine has the following variables in the context:
-
-1. **items** - A vector containing all the widgets. It is important to note that the widgets are in the same order as they appear in the form. The structure is almost flat, meaning that widgets do not contain children, with the exceptions being Choice Matrix, Grid, and Group Table widgets.
-2. **title** - The title of the Questionnaire. For QuestionnaireResponse, the title of the associated Questionnaire is used.
-3. **repeated-count** - The specified number of repetitions for widgets that have the `repeats` property set.
-4. **is-q** - A boolean value that is true if $render was called for a Questionnaire resource.
-5. **is-qr** - A boolean value that is true if $render was called for a QuestionnaireResponse resource.
-
-### Basic example
-
 Let's consider a basic example for clarity: there is a form with three fields (see Figure 1). The task is to create a print version where a table will be generated. In the left column of the table, the title and response from the textarea field will be placed, in the right column - the response from the datetime field, and the field with the signature should not be displayed at all.
 
 {% tabs %}
 {% tab title="Form" %}
-![form](../../../.gitbook/assets/form-for-pdf.png)
+![Figure 1](../../../.gitbook/assets/form-for-pdf.png)
 {% endtab %}
 {% tab title="Questionnaire" %}
 ```yaml
@@ -148,63 +127,79 @@ resourceType: QuestionnaireResponse
 {% endtab %}
 {% endtabs %}
 
-Let's implement a loop in the template where we will check the linkId of each widget, which can be found in both the Forms Builder and through the API, and depending on that, use a specific HTML fragment. For the Signature widget, we do not specify any condition at all, as it should not be displayed. As a result, we get the following SDCPrintTemplate resource:
+Let's create a custom print template with id `test`. When writing a template, we can use variables from the [render context](#template-render-context). In the template we will implement a loop where we will check the linkId of each widget and depending on that, add a specific HTML fragment. For the Signature widget, we do not specify any condition at all, as it should not be displayed.
 
 ```yaml
+PUT [base]/SDCPrintTemplate/test-template
+Accept: text/yaml
+Content-Type: text/yaml
+
 content: |
   <!DOCTYPE html>
   <html lang="en">
 
   <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Example for pdf</title>
-      <script src="https://cdn.tailwindcss.com"></script>
-      <style>
-          li {
-              list-style-type: disc;
-              list-style-position: inside;
-          }
-      </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Example for pdf</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      li {
+          list-style-type: disc;
+          list-style-position: inside;
+        }
+    </style>
   </head>
 
   <body class="p-16 text-sm flex justify-center print:p-0">
-      <article class="max-w-screen-lg w-full">
-
-          <h1 class="text-2xl font-semibold mb-5 text-center"> Example for pdf </h1>
-
-          <table class="border-collapse w-full">
-              <tr class="break-inside-avoid">
-                  {% for item in items %}
-                  {% if item.linkId = "textarea" %}
-                  <td class="border
-                              border-slate-700
-                              p-1">
-                  {{item.text}}: {{ item.widget/value.value.string }}              
-                  </td>
-                  {% endif %}
-                  {% if item.linkId = "date" %}
-                  <td class="border 
-          border-slate-700
-          min-w-40
-          p-1">
-                  {{ item.widget/value.value.date }}
-                  </td>
-                  {% endif %}
-                  {% endfor %}
-              </tr>
-          </table>
-      </article>
+    <article class="max-w-screen-lg w-full">
+      <h1 class="text-2xl font-semibold mb-5 text-center"> Example for pdf </h1>
+      <table class="border-collapse w-full">
+        <tr class="break-inside-avoid">
+          {% for item in items %}
+            {% if item.linkId = "textarea" %}
+              <td class="border border-slate-700 p-1">
+                {{item.text}}: {{ item.widget/value.value.string }}              
+              </td>
+            {% endif %}
+            {% if item.linkId = "date" %}
+              <td class="border border-slate-700 min-w-40 p-1">
+                {{ item.widget/value.value.date }}
+              </td>
+            {% endif %}
+          {% endfor %}
+        </tr>
+      </table>
+    </article>
   </body>
 
   </html>
-id: test
-resourceType: SDCPrintTemplate
 ```
 
-After call `$render` with our QuestionnaireResponse and new template, we get the following:
+Now let's render our form using the template we've just created:
+
+```yaml
+POST [base]/QuestionnaireResponse/be0aa36d-02b5-45ff-a83b-209d4718eb95/$render
+Accept: text/html
+Content-Type: text/yaml
+
+parameter: 
+  - name: 'template-id'
+    value: 
+      string: 'test-template'
+```
 
 ![rendered form](../../../.gitbook/assets/rendered-form.png)
+
+### Template Render Context
+
+When rendering a template, the template engine has the following variables in the context:
+
+1. **items** - A vector containing all the widgets. It is important to note that the widgets are in the same order as they appear in the form. The structure is almost flat, meaning that widgets do not contain children, with the exceptions being Choice Matrix, Grid, and Group Table widgets.
+2. **title** - The title of the Questionnaire. For QuestionnaireResponse, the title of the associated Questionnaire is used.
+3. **repeated-count** - The specified number of repetitions for widgets that have the `repeats` property set.
+4. **is-q** - A boolean value that is true if $render was called for a Questionnaire resource.
+5. **is-qr** - A boolean value that is true if $render was called for a QuestionnaireResponse resource.
 
 ### Including Other Templates to Your Template
 
@@ -218,4 +213,4 @@ To avoid repetitions in templates, we supported a custom tag `include-resource`.
 
 To differentiate between the resource types in the template, you can use two boolean values in the context: `is-q` and `is-qr`. These values can be used to conditionally render specific sections or elements based on the resource type being processed.
 
-**Q: Why does in my rendered document: "ERROR: template not found template-id"?** A: This message appears when you use the `include-resource` tag in your template and refer to a non-existent template. Double-check that the template with the specified template-id exists.
+**Q: What does "ERROR: template not found template-id" mean in a rendered form?** A: This message appears when you use the `include-resource` tag in your template and refer to a non-existent template. Double-check that the template with the specified template-id exists.
