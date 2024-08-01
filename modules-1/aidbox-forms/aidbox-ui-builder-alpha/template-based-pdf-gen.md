@@ -129,6 +129,7 @@ resourceType: QuestionnaireResponse
 
 Let's create a custom print template with id `test`. When writing a template, we can use variables from the [render context](#template-render-context). In the template we will implement a loop where we will check the linkId of each widget and depending on that, add a specific HTML fragment. For the Signature widget, we do not specify any condition at all, as it should not be displayed.
 
+{% code %}
 ```yaml
 PUT [base]/SDCPrintTemplate/test-template
 Accept: text/yaml
@@ -175,6 +176,7 @@ content: |
 
   </html>
 ```
+{% endcode %}
 
 Now let's render our form using the template we've just created:
 
