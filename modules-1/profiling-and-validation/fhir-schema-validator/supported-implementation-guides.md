@@ -1002,6 +1002,8 @@ Envoi du rapport d’endoscopie au dépôt provincial
 
 **Versions**
 
+* `rapportendoscopiequebec.test#0.0.56`
+* `rapportendoscopiequebec.test#0.0.55`
 * `rapportendoscopiequebec.test#0.0.54`
 * `rapportendoscopiequebec.test#0.0.53`
 * `rapportendoscopiequebec.test#0.0.52`
@@ -4176,25 +4178,6 @@ Implementation Guide for the Mobile access to Health Documents (epr-mhealth) Pro
 **Versions**
 
 * `hl7.fhir.us.vitalsigns#0.1.0`
-
-
----
-
-### uk.gm
-
-<details>
-<summary>Description</summary>
-
-Greater Manchester LHCRE Implementation Guide
-
-</details>
-
-**Versions**
-
-* `uk.gm#0.0.12-dev`
-* `uk.gm#0.0.11-dev`
-* `uk.gm#0.0.10-dev`
-* `uk.gm#0.0.1-dev`
 
 
 ---
@@ -9337,12 +9320,14 @@ The Patient Master Identity Registry (PMIR) Profile supports the creating, updat
 <details>
 <summary>Description</summary>
 
-Terminoloogia mis on kasutusel juurutusjuhendites (built Mon, Jul 22, 2024 11:21+0300+03:00)
+Terminoloogia mis on kasutusel juurutusjuhendites (built Tue, Jul 30, 2024 22:46+0300+03:00)
 
 </details>
 
 **Versions**
 
+* `ee.fhir.terminology#0.2.2`
+* `ee.fhir.terminology#0.2.1`
 * `ee.fhir.terminology#0.2.0`
 * `ee.fhir.terminology#0.0.1`
 
