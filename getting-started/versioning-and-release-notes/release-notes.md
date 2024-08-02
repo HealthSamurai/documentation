@@ -1,5 +1,22 @@
 # Release Notes
 
+## July 2024 _`stable, 2407`_&#x20;
+
+* [Aidbox Forms](../../modules-1/aidbox-forms.md)
+  * UI builder updates (FHIR Questionnaire-based):
+    * [Implemented Offline mode for forms](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/offline-forms.md)
+    * Supported definition-based extraction
+    * [Ability to search and use templates from Aidbox Form Gallary on UI](../../modules-1/aidbox-forms/add-aidbox-forms-library.md)
+    * Ability to embed Aidbox UI Builder as a web-component
+    * [Implemented Template-based PDF Generation](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/template-based-pdf-gen.md)
+    * [Added a Speech to text widget](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#speech-to-text)
+    * [Added an Annotation Pad widget](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#annotation-pad)
+    * Performance optimization for large forms
+    * Added support for meta and tag additions in Questionnaire
+    * [Supported multi-selection](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#choice)
+    * [Supported initial value population](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#common-widgets-settings)
+    * Implemented Audit logging
+
 ## May 2024 _`latest`_
 
 * **Aidbox development licenses** are now available to all users, empowering everyone to explore, develop, and innovate with our comprehensive FHIR-first healthcare platform.&#x20;
