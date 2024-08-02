@@ -1,6 +1,6 @@
 # Release Notes
 
-## July 2024 _`stable, 2407`_&#x20;
+## July 2024 _`,latest`_&#x20;
 
 * [Aidbox Forms](../../modules-1/aidbox-forms.md)
   * UI builder updates (FHIR Questionnaire-based):
