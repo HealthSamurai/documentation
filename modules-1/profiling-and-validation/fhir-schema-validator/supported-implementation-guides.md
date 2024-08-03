@@ -3763,6 +3763,7 @@ de.ihe-d.terminology
 
 **Versions**
 
+* `de.ihe-d.terminology#3.0.1`
 * `de.ihe-d.terminology#3.0.0`
 * `de.ihe-d.terminology#3.0.0-alpha2`
 
@@ -4452,9 +4453,6 @@ Put a description here
 
 **Versions**
 
-* `uk.adsv2.r4#1.6.1`
-* `uk.adsv2.r4#1.6.0`
-* `uk.adsv2.r4#1.4.0`
 * `uk.adsv2.r4#1.3.0`
 
 
@@ -5758,6 +5756,7 @@ Package version 1.0.0
 
 **Versions**
 
+* `ee.fhir.mpi#1.1.1`
 * `ee.fhir.mpi#1.1.0`
 
 
@@ -8653,12 +8652,13 @@ test
 <details>
 <summary>Description</summary>
 
-Eesti FHIR standardi baas juurutusjuhend (built Sun, Jul 21, 2024 14:35+0300+03:00)
+Eesti FHIR standardi baas juurutusjuhend (built Tue, Jul 30, 2024 23:09+0300+03:00)
 
 </details>
 
 **Versions**
 
+* `ee.fhir.base#1.1.1`
 * `ee.fhir.base#1.1.0`
 
 
