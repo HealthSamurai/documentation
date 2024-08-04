@@ -4442,22 +4442,6 @@ Medizinische Informationsobjekte (MIO) Laborbefund V1.0.0
 
 ---
 
-### uk.adsv2.r4
-
-<details>
-<summary>Description</summary>
-
-Put a description here
-
-</details>
-
-**Versions**
-
-* `uk.adsv2.r4#1.3.0`
-
-
----
-
 ### CH ELM (R4)
 
 <details>
@@ -5537,6 +5521,22 @@ eHealth Platform R4 Federal Profiles
 * `ehealthplatform.be.r4.federalprofiles#0.1.10-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.1-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.0-beta`
+
+
+---
+
+### digi.derm
+
+<details>
+<summary>Description</summary>
+
+Test/spike into FHIR profiling
+
+</details>
+
+**Versions**
+
+* `digi.derm#0.1.0`
 
 
 ---
@@ -10710,6 +10710,7 @@ Der PKV-Abgabedatensatz enthält die notwendigen Informationen für die Abrechnu
 
 **Versions**
 
+* `de.abda.erezeptabgabedatenpkv#1.3.0`
 * `de.abda.erezeptabgabedatenpkv#1.3.0-rc`
 * `de.abda.erezeptabgabedatenpkv#1.2.0`
 * `de.abda.erezeptabgabedatenpkv#1.1.0`
@@ -11768,13 +11769,12 @@ For Clinical Safety Information please refer to the [FHIR Implementer’s Safety
 <details>
 <summary>Description</summary>
 
-This package contains additional FHIR assets to support the ADS FHIR Bundle for Bundle 2 data items.
+This package contains additional FHIR assets to support the ADS FHIR Bundle for Bundle 1 data items.
 
 </details>
 
 **Versions**
 
-* `uk.ads.r4#1.2.0-bundle2-alpha`
 * `uk.ads.r4#1.1.0-bundle1-alpha`
 * `uk.ads.r4#1.0.2-mvp-alpha`
 * `uk.ads.r4#1.0.1-mvp-alpha`
