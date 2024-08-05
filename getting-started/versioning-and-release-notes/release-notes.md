@@ -1,7 +1,11 @@
 # Release Notes
 
-## July 2024 _`,latest`_&#x20;
+## July 2024 _`latest`_&#x20;
 
+* Aidbox
+  * Introduced support for [custom resources using FHIR logical models](../../storage-1/custom-resources/custom-resources-on-fhir-logical-model.md) and [custom resources using FHIR schemas](../../storage-1/custom-resources/custom-resources-using-fhirschema.md)
+  * Published [JavaScript app example](https://github.com/Aidbox/app-examples/blob/main/aidbox-notify-via-custom-resources/README.md) demonstrating custom resources with a typical notification flow: requesting a notification, locking it for sending, and sending it (placeholder)
+  * Supported [enabling Audit Log using an environment variable](../../modules-1/audit/setup-audit-logging.md#two-ways-to-enable-audit-log)&#x20;
 * [Aidbox Forms](../../modules-1/aidbox-forms.md)
   * UI builder updates (FHIR Questionnaire-based):
     * [Implemented Offline mode for forms](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/offline-forms.md)
@@ -12,12 +16,16 @@
     * [Added a Speech to text widget](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#speech-to-text)
     * [Added an Annotation Pad widget](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#annotation-pad)
     * Performance optimization for large forms
-    * Added support for meta and tag additions in Questionnaire
+    * Added support for meta and tag additions in the Questionnaire
     * [Supported multi-selection](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#choice)
     * [Supported initial value population](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#common-widgets-settings)
     * Implemented Audit logging
+* [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
+  * Introduced the ability to [override existing conversion rules using the DSL](../../modules-1/integration-toolkit/ccda-converter/ccda-fhir-dsl.md)
+  * Supported DICOM section
+  * Improved performance
 
-## May 2024 _`latest`_
+## May 2024 _`stable, 2405`_
 
 * **Aidbox development licenses** are now available to all users, empowering everyone to explore, develop, and innovate with our comprehensive FHIR-first healthcare platform.&#x20;
 * **Simplified Aidbox Launch**: We've developed a simplified[ way to launch Aidbox](../run-aidbox-locally-with-docker/run-aidbox-locally.md), making it easier than ever to get started.
@@ -52,7 +60,7 @@
     * Supported Multitenancy in Aidbox Forms
   * [Released the Public Aidbox Form Builder](https://form-builder.aidbox.app/)
 
-## March 2024 _`stable, 2403`_&#x20;
+## March 2024 _`2403`_&#x20;
 
 * SQL on FHIR engine
   * Enhanced [SQL on FHIR® (v2.0) spec](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/index.html) test coverage. The SQL on FHIR coverage report is available[ here](https://fhir.github.io/sql-on-fhir-v2/#implshttps://fhir.github.io/sql-on-fhir-v2/#impls).

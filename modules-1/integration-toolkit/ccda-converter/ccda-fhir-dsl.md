@@ -1,14 +1,13 @@
 ---
-description: >-
-  This page describes how to customize the conversion results.
+description: This page describes how to customize the conversion results.
 ---
 
-# Overview
+# How to customize conversion rules
 
 The converter is a rule-based service so it allows users to define conversion rules using a special Domain-Specific Language (DSL), enabling customization and mapping of data elements between C-CDA and FHIR standards.
 
 {% hint style="warning" %}
-We are still working on this page, sorry for the inconvenience.
+This page is currently under construction.
 {% endhint %}
 
 {% hint style="info" %}
@@ -17,7 +16,7 @@ This part of functionality requires knowledge of zen language.
 
 ## Setup a service with the service configuration
 
-Here is basic information how to configure zen-project to enable the converter functionality.
+Here is basic information on configuring zen-project to enable the converter functionality.
 
 [More details about zen-configuration](https://docs.aidbox.app/aidbox-configuration/aidbox-zen-lang-project/aidbox-configuration-project-structure).
 
@@ -65,10 +64,12 @@ The `:section-rules` key defines the default conversion rules.
 Each key inside `:section-rules` references mappings for the section entries and the narrative part of C-CDA document.
 
 For example, this entry
+
 ```
   {"VitalSignsSectionentriesrequired"    {:entries aidbox.ccda.rules.vital-signs/rules
                                           :narrative aidbox.ccda.rules.vital-signs/narrative}
 ```
+
 is related to Vital signs section mapping.
 
 The reference `:entries aidbox.ccda.rules.vital-signs/rules` points to the file with corresponding mappings:
@@ -157,27 +158,22 @@ Symbol `:*` means "for each" expression so `[:component :*]` means "for each ele
 
 The table below describes all kind of special symbols:
 
-| Symbol                            | Meaning                | Example                                             |
-|-----------------------------------|------------------------|-----------------------------------------------------|
-|  :*                               | for each               | `[:component :*]`                                   |
-|  0-N number                       | get N-th element       | `[:component 0]`                                    |
-|  {:resourceType "Observation"}    | filtering expression, select all maps where there is a key `:resourceType` with value `"Observation"` | `[:entry.Organizer {:resourceType "Observation"}]` |
+| Symbol                        | Meaning                                                                                               | Example                                            |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| :\*                           | for each                                                                                              | `[:component :*]`                                  |
+| 0-N number                    | get N-th element                                                                                      | `[:component 0]`                                   |
+| {:resourceType "Observation"} | filtering expression, select all maps where there is a key `:resourceType` with value `"Observation"` | `[:entry.Organizer {:resourceType "Observation"}]` |
 
-## Defining new rules
+## Overriding existing rules
 
-## Overriding existing rules 
+Aidbox users can define conversion rules for specific sections.&#x20;
 
-Sometimes, you do not need to rewrite all set of conversion rules or you just do not want to do it. 
-For this particular purpose we have an option that will make able to rewrite only some of conversion rules. 
+Existing CCDA rules are displayed in `aidbox/ccda/rules` folder of zen-ui .&#x20;
 
-For that purpose you can open zen-introspector by clicking `Profiles` in Aidbox UI. CCDA rules are stored 
-in `aidbox/ccda/rules` folder. Here you will see our default set of conversion rules. 
+Let it be Vital Signs section narrative. It is available via `#aidbox.ccda.rules.vital-signs/narrative`. We do not want to display just the most popular observations, but we want to see only those observations in the dataset, without any placeholders.
 
-Let it be Vital Signs section narrative. It is available via `#aidbox.ccda.rules.vital-signs/narrative`.
-We do not want to display just the most popular observations, but we want to see only those observations that
-are really present in dataset, without any placeholders.  
+We create `.yaml` file where we say:
 
-We create `.yaml` file where we say: 
 ```
 aidbox.ccda.rules.vital-signs/narrative:
   replace:
@@ -199,10 +195,9 @@ aidbox.ccda.rules.vital-signs/narrative:
           cda: [2]
 ```
 
-`aidbox.ccda.rules.vital-signs/narrative` - means that we are going to override narrative in Vital Signs namespace 
-`replace` - this instruction means that we substitute all conversion rules to the given in `.yaml` file 
+`aidbox.ccda.rules.vital-signs/narrative` - means that we are going to override the narrative in Vital Signs namespace `replace` - this instruction means that we substitute all conversion rules to the given in `.yaml` file
 
-If you need to substitute just one rule and leave all the rest there is `select` instruction:  
+If you need to substitute just one rule and leave all the rest there is `select` instruction:
 
 ```
 aidbox.ccda.rules.encounters/narrative:
@@ -214,12 +209,13 @@ aidbox.ccda.rules.encounters/narrative:
         cda:  [text 0 cols 1]
         fhir: [entry * class]
 ```
-Code here says that you:
-- find the rule in `aidbox.ccda.rules.encounters/narrative` that is equal 
-to the rule declared in `selector`
-- substitue the rule that was found to the rule that was declared in `override`
 
-You can see the example of this config [here](https://github.com/Aidbox/aidbox-project-template/tree/aidbox-ccda-custom-rules) . 
+Code here says that you:
+
+* find the rule in `aidbox.ccda.rules.encounters/narrative` that is equal to the rule declared in `selector`
+* substitue the rule that was found to the rule that was declared in `override`
+
+You can see the example of this config [here](https://github.com/Aidbox/aidbox-project-template/tree/aidbox-ccda-custom-rules) .
 
 {% hint style="warning" %}
 The work with Override DSL is in progress.
