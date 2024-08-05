@@ -878,6 +878,7 @@ Progetto FHIR per Regione Lombardia
 
 **Versions**
 
+* `rl.fhir.r4.draft#0.1.0`
 * `rl.fhir.r4.draft#0.0.23`
 * `rl.fhir.r4.draft#0.0.22`
 * `rl.fhir.r4.draft#0.0.21`
@@ -5536,6 +5537,7 @@ Test/spike into FHIR profiling
 
 **Versions**
 
+* `digi.derm#0.1.1`
 * `digi.derm#0.1.0`
 
 
@@ -11769,14 +11771,12 @@ For Clinical Safety Information please refer to the [FHIR Implementer’s Safety
 <details>
 <summary>Description</summary>
 
-This package contains additional FHIR assets to support the ADS FHIR Bundle for Bundle 1 data items.
+FHIR Assets for ADS FHIR Bundle MVP data items.
 
 </details>
 
 **Versions**
 
-* `uk.ads.r4#1.1.0-bundle1-alpha`
-* `uk.ads.r4#1.0.2-mvp-alpha`
 * `uk.ads.r4#1.0.1-mvp-alpha`
 * `uk.ads.r4#1.0.0-mvp-alpha`
 
