@@ -9646,12 +9646,13 @@ eHealth Platform Federal Core Profiles (built Tue, Jun 11, 2024 14:06+0200+02:00
 <details>
 <summary>Description</summary>
 
-This implementation guide is provided to support the use of FHIR®© in an Australian context. (built Thu, Jun 20, 2024 16:57+1000+10:00)
+This implementation guide is provided to support the use of FHIR®© in an Australian context. (built Sun, Aug 4, 2024 06:52+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.au.base#4.2.2-ballot`
 * `hl7.fhir.au.base#4.2.1-preview`
 * `hl7.fhir.au.base#4.2.0-preview`
 * `hl7.fhir.au.base#4.1.0`
@@ -11777,7 +11778,6 @@ FHIR Assets for ADS FHIR Bundle MVP data items.
 
 **Versions**
 
-* `uk.ads.r4#1.0.1-mvp-alpha`
 * `uk.ads.r4#1.0.0-mvp-alpha`
 
 
