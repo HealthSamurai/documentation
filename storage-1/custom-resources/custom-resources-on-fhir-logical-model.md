@@ -1,14 +1,14 @@
 # Custom resources using StructureDefinition
 
 {% hint style="warning" %}
-Custom resources are not interoperable with FHIR.
+Custom resources are defined by individual organizations or projects to meet specific needs not covered by the FHIR standard. While these resources can be useful within a particular ecosystem, they may not be interoperable with other systems that do not recognize or support those custom resources.
 {% endhint %}
 
-FHIR uses StructureDefinition resources to model data structures. Aidbox allows you to model data in the same way by expressing your custom resource via a FHIR StructureDefinition resource.
+FHIR uses StructureDefinition resources to model data structures. Aidbox allows you to model data in the same way by expressing your custom resource using a FHIR StructureDefinition resource.
 
 ## Configure Aidbox
 
-To begin using custom FHIR resources, enable the FHIR Schema validator engine in Aidbox.
+To begin using custom FHIR resources, enable the FHIR Schema validation engine in Aidbox.
 
 {% content-ref url="../../modules-1/profiling-and-validation/fhir-schema-validator/setup.md" %}
 [setup.md](../../modules-1/profiling-and-validation/fhir-schema-validator/setup.md)
@@ -31,7 +31,7 @@ Due to the second limitation, resource definitions based on logical models are n
 
 To create a custom resource in Aidbox using StructureDefinition you have to create StructureDefinition resource via REST API.&#x20;
 
-It is a usual FHIR [StructureDefinition resource](https://www.hl7.org/fhir/structuredefinition.html), but with several limitations for creating a new custom resource:
+It is a usual FHIR [StructureDefinition resource](https://www.hl7.org/fhir/structuredefinition.html), but with several limitations:
 
 1. `name`, `type`, and `id` must be equal.
 2. &#x20;`kind`: must be equal to `resource` or `logical`
@@ -374,7 +374,7 @@ accept: application/json
 {% endtab %}
 {% endtabs %}
 
-## Create Search Parameters on custom resources
+## Define search parameters&#x20;
 
 {% tabs %}
 {% tab title="Request" %}

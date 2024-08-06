@@ -1,10 +1,10 @@
-# Custom resources using FHIRSchema
+# Custom resources using FHIR Schema
 
 {% hint style="warning" %}
-Custom resources are not interoperable with FHIR.
+Custom resources are defined by individual organizations or projects to meet specific needs not covered by the FHIR standard. While these resources can be useful within a particular ecosystem, they may not be interoperable with other systems that do not recognize or support those custom resources.
 {% endhint %}
 
-FHIRSchema is a project that aims to simplify the implementation and validation of FHIR (Fast Healthcare Interoperability Resources) resources across different programming languages. It also provides the ability to define custom resources. You can read more about the syntax and validation algorithms in the [FHIRSchema documentation](https://fhir-schema.github.io/fhir-schema/).
+FHIR Schema is a community project that aims to simplify the implementation and validation of FHIR (Fast Healthcare Interoperability Resources) resources across different programming languages. It also provides the ability to define custom resources. You can read more about the syntax and validation algorithms in the [FHIR Schema documentation](https://fhir-schema.github.io/fhir-schema/).
 
 ## Configure Aidbox
 
@@ -14,7 +14,7 @@ To begin using custom FHIR resources, enable the FHIRSchema validator engine in 
 [setup.md](../../modules-1/profiling-and-validation/fhir-schema-validator/setup.md)
 {% endcontent-ref %}
 
-## FHIRSchema endpoint
+## FHIR Schema endpoint
 
 Aidbox provides the `/fhir/FHIRSchema` POST endpoint for creating FHIRSchema instances. Examples of usage are given in this article below.
 
@@ -38,15 +38,15 @@ accept: application/json
 {% endtab %}
 {% endtabs %}
 
-## FHIRSchema top level properties
+## FHIR Schema top level properties
 
-To understand the meaning of the schemas described below, you should know the meaning of some basic FHIRSchema properties, required fields marked as \*:
+To understand the meaning of the schemas described below, it is important to know the meaning of some basic FHIR Schema properties:
 
-<table data-full-width="true"><thead><tr><th>Property</th><th>Description</th><th>Additional Notes</th></tr></thead><tbody><tr><td><code>base</code></td><td><p>This property contains the canonical URL to the FHIRSchema/StructureDefinition whose elements and constraints will be inherited.</p><p></p><p>It shares the same meaning as FHIR <code>StructureDefinition.baseDefinition</code></p></td><td><p>Usually, you want to set this property to <code>DomainResource</code>. This provides all the resource infrastructure, such as top-level <code>extension</code> collection and <code>meta</code>, which allows you to populate meta in the FHIR manner and add profile references.<br></p><p>If you omit this field, only the elements defined in the <code>elements</code> section of FHIRSchema will be validated. Aidbox does not perform any automatic inference of the <code>base</code> if it is omitted.</p></td></tr><tr><td><code>url</code>*</td><td><p>This field contains the unique canonical URL for your FHIRSchema. <br><br>In the context of custom resources, this field is not important. However, it becomes crucial when defining profiles, as you use the profile's canonical URL to reference it in the <code>meta.profile</code> of a resource instance.<br></p><p>It shares the same meaning as FHIR <code>StructureDefinition.url</code></p></td><td></td></tr><tr><td><code>name</code>*</td><td>This field provides the computer-readable name for your custom resource or profile. <br><br>It shares the same meaning as FHIR <code>StructureDefinition.name</code></td><td>When defining a new resource type, the current implementation requires that this field must be equal to both the <code>type</code> and <code>id</code>.</td></tr><tr><td><code>type</code></td><td>This property provides reource type name for a new resource definition or in case of profiling the type of resource that is being constrained.<br><br>It shares the same meaning as FHIR <code>StructureDefinition.type</code></td><td>When defining a new resource type, the current implementation requires that this field must be equal to both the <code>name</code> and <code>id</code>.</td></tr><tr><td><code>kind</code>*</td><td>This property is used to define the kind of structure that FHIRSchema is describing. <br><br>It shares the same meaning as FHIR <code>StructureDefinition.kind</code></td><td>To define <strong>custom resources</strong>, you should use <code>kind</code>: <code>resource</code> or <code>kind: logical</code></td></tr><tr><td><code>derivation</code>*</td><td>This property represents how the type relates to the <code>base</code> property. If it is set to <code>specialization</code> - Aidbox will create a new resource type with tables in the database and other resource infrastructure. If it is set to <code>constraint</code> - Aidbox will create a new profile  that can be referenced on resource instances</td><td></td></tr><tr><td><code>id</code></td><td>It shares the same meaning as FHIR <code>Resource.id</code></td><td>When defining a new resource type, the current implementation requires that this field must be equal to both the <code>type</code> and <code>name</code>.</td></tr></tbody></table>
+<table data-full-width="true"><thead><tr><th>Property</th><th>Description</th><th>Additional Notes</th></tr></thead><tbody><tr><td><code>base</code></td><td><p>This property contains the canonical URL to the FHIR Schema/StructureDefinition whose elements and constraints will be inherited.</p><p></p><p>It shares the same meaning as FHIR <code>StructureDefinition.baseDefinition</code></p></td><td><p>Usually, you want to set this property to <code>DomainResource</code>. This provides all the resource infrastructure, such as top-level <code>extension</code> collection and <code>meta</code>, which allows you to populate meta in the FHIR manner and add profile references.<br></p><p>If you omit this field, only the elements defined in the <code>elements</code> section of FHIR Schema will be validated. Aidbox does not perform any automatic inference of the <code>base</code> if it is omitted.</p></td></tr><tr><td><code>url</code>*</td><td><p>This field contains the unique canonical URL for your FHIRSchema. <br><br>In the context of custom resources, this field is not important. However, it becomes crucial when defining profiles, as you use the profile's canonical URL to reference it in the <code>meta.profile</code> of a resource instance.<br></p><p>It shares the same meaning as FHIR <code>StructureDefinition.url</code></p></td><td></td></tr><tr><td><code>name</code>*</td><td>This field provides the computer-readable name for your custom resource or profile. <br><br>It shares the same meaning as FHIR <code>StructureDefinition.name</code></td><td>When defining a new resource type, the current implementation requires that this field must be equal to both the <code>type</code> and <code>id</code>.</td></tr><tr><td><code>type</code></td><td>This property provides reource type name for a new resource definition or in case of profiling the type of resource that is being constrained.<br><br>It shares the same meaning as FHIR <code>StructureDefinition.type</code></td><td>When defining a new resource type, the current implementation requires that this field must be equal to both the <code>name</code> and <code>id</code>.</td></tr><tr><td><code>kind</code>*</td><td>This property is used to define the kind of structure that FHIRSchema is describing. <br><br>It shares the same meaning as FHIR <code>StructureDefinition.kind</code></td><td>To define <strong>custom resources</strong>, you should use <code>kind</code>: <code>resource</code> or <code>kind: logical</code></td></tr><tr><td><code>derivation</code>*</td><td>This property represents how the type relates to the <code>base</code> property. If it is set to <code>specialization</code> - Aidbox will create a new resource type with tables in the database and other resource infrastructure. If it is set to <code>constraint</code> - Aidbox will create a new profile  that can be referenced on resource instances</td><td></td></tr><tr><td><code>id</code></td><td>It shares the same meaning as FHIR <code>Resource.id</code></td><td>When defining a new resource type, the current implementation requires that this field must be equal to both the <code>type</code> and <code>name</code>.</td></tr></tbody></table>
 
-FHIRSchema may contain additional fields at the top level, but they share the same meaning as properties defined in the `elements` instruction.
+FHIR Schema may contain additional fields at the top level, but they share the same meaning as properties defined in the `elements` instruction.
 
-For more information about these fields, please refer to the FHIRSchema reference [specification](https://fhir-schema.github.io/fhir-schema/index.html).
+For more information about these fields, please refer to the FHIR Schema reference [specification](https://fhir-schema.github.io/fhir-schema/index.html).
 
 ### Limitations of FHIR Logical Models
 
@@ -57,17 +57,17 @@ Logical models (StructureDefinition/FHIRSchema with kind: logical) have two limi
 2. **Type Value:**
    * The type value must be a fully specified URL and may share the same value as the URL property. This requirement is enforced by FHIR to avoid clashes with core resources.
 
-Since FHIRSchema shares the same semantic meaning and purpose as StructureDefinition, it inherits all these limitations of the original StructureDefinition resource.
+Since FHIR Schema shares the same semantic meaning and purpose as StructureDefinition, it inherits all these limitations of the original StructureDefinition resource.
 
 {% hint style="danger" %}
 Due to the second limitation, resource definitions based on logical models are not intended for instantiation and are provided to an end FHIR server only as data structure examples.&#x20;
 {% endhint %}
 
-## Create FHIRSchema for custom resource
+## Create customs resources using FHIR Schemas
 
-The further guide details the process of creating custom resources for a notification system, demonstrating the typical workflow of creating, managing, and sending template-based notifications from a healthcare system to patients using custom resources defined through FHIRSchema.
+This guide will walk you through the process of creating custom resources for a notification system, demonstrating the typical workflow of creating, managing, and sending template-based notifications from a healthcare system to patients using custom resources defined through FHIRSchema.
 
-Additionally, this guide is accompanied by a [JavaScript application](https://github.com/Aidbox/app-examples/tree/main/aidbox-notify-via-custom-resources#aidbox-notify-via-custom-resources) that showcases the implementation of notification handling. This includes requesting notifications, locking them for processing, and completing the sending process.&#x20;
+Additionally, there is a [JavaScript application](https://github.com/Aidbox/app-examples/tree/main/aidbox-notify-via-custom-resources#aidbox-notify-via-custom-resources) that showcases the implementation of notification handling. This includes requesting notifications, locking them for processing, and completing the sending process.&#x20;
 
 To implement a notification flow, you may need a notification resource and a template resource to store your notification messages.
 
@@ -131,7 +131,7 @@ Status: 200
 {% endtab %}
 {% endtabs %}
 
-Now, when we got resource to store our templates, let's shape a more complex one - resource `TutorNotification` that has the following properties:
+Now, when a resource to store notification templates is available, a more complex resource can be shaped: the `TutorNotification`. This resource will include several key properties:
 
 1. `type`: property that contains `binding` value set URL in `valueSet` property and `strength`: `required`, that is used to force binding validation.
 2. `status`:  property with `binding` to `valueSet: http://hl7.org/fhir/ValueSet/task-status` with additional constraint to `requested`, `in-progress` or `completed` values.
@@ -283,7 +283,7 @@ Status: 200
 {% endtab %}
 {% endtabs %}
 
-## Create Search Parameters on custom resources
+## Define search parameters&#x20;
 
 With defined resources, most of the work is done, but there is one missing aspect of any FHIR resource. You definitely want to check your requested notifications or include related subjects to the search bundle. Aidbox allows you to define SearchParameter resources in addition to custom resources.
 

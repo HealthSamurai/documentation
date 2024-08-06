@@ -505,11 +505,11 @@
   * [Migrate to AidboxDB 16](storage-1/aidboxdb-image/migration-to-aidboxdb-16.1-handling-the-removal-of-jsonknife-extension.md)
 * [Database schema](storage-1/database.md)
 * [Custom Resources](storage-1/custom-resources/README.md)
-  * [Custom resources using FHIRSchema](storage-1/custom-resources/custom-resources-using-fhirschema.md)
+  * [Custom resources using FHIR Schema](storage-1/custom-resources/custom-resources-using-fhirschema.md)
   * [Custom resources using StructureDefinition](storage-1/custom-resources/custom-resources-on-fhir-logical-model.md)
   * [Custom resources using Aidbox Project](storage-1/custom-resources/custom-resources-using-aidbox-project.md)
   * [Custom Resources using Entity](storage-1/custom-resources/getting-started-with-custom-resources.md)
-  * [Migrate to FHIRSchema](storage-1/custom-resources/migrate-to-fhirschema/README.md)
+  * [Migrate to FHIR Schema](storage-1/custom-resources/migrate-to-fhirschema/README.md)
     * [Migrate custom resources defined with Entity & Attributes to FHIR Schema](storage-1/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md)
     * [Migrate custom resources defined with Zen to FHIR Schema](storage-1/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-zen-to-fhir-schema.md)
 * [SQL on FHIR](modules-1/sql-on-fhir/README.md)
@@ -563,7 +563,6 @@
 ## Reference
 
 * [FHIRSchema reference](https://fhir-schema.github.io/fhir-schema/)
-* [FHIRSchema reference](https://github.com/fhir-schema/fhir-schema/tree/FHIRSchema-Extesions/book/src/reference)
 * [Zen schema reference](reference/zen-schema-reference/README.md)
   * [aidbox](reference/rpc-reference/aidbox/README.md)
     * [mdm](reference/rpc-reference/aidbox/mdm/README.md)
