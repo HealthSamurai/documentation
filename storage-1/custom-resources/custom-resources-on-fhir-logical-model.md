@@ -14,19 +14,6 @@ To begin using custom FHIR resources, enable the FHIR Schema validation engine i
 [setup.md](../../modules-1/profiling-and-validation/fhir-schema-validator/setup.md)
 {% endcontent-ref %}
 
-## Limitations of FHIR Logical Models
-
-Logical models (StructureDefinition/FHIRSchema with `kind: logical`) have two limitations as guided by the FHIR specification:
-
-1. **Base Value:**
-   * The base value is limited to two possible values: `Element` or `base`.
-2. **Type Value:**
-   * The type value must be a fully specified URL and may share the same value as the URL property. This requirement is enforced by FHIR to avoid clashes with core resources.
-
-{% hint style="danger" %}
-Due to the second limitation, resource definitions based on logical models are not intended for instantiation and are provided to an end FHIR server only as data structure examples.&#x20;
-{% endhint %}
-
 ## Create StructureDefinition for custom resource
 
 To create a custom resource in Aidbox using StructureDefinition you have to create StructureDefinition resource via REST API.&#x20;
@@ -129,12 +116,12 @@ accept: application/json
 {% endtab %}
 {% endtabs %}
 
-Now, when we got resource to store our templates, let's shape more complex one - resource `TutorNotification` that has following properties:
+Now, that we got resource to store our templates, let's shape a more complex one - a resource `TutorNotification` that has the following properties:
 
 1. `type`: property that contains `binding` value set URL in `valueSet` property and `strength`: `required`, that is used to force binding validation.
-2. `status`:  property with `binding` to `valueSet: http://hl7.org/fhir/ValueSet/task-status` with additional constraint to `requested`, `in-progress` or `completed` values.
+2. `status`:  property with `binding` to `valueSet: http://hl7.org/fhir/ValueSet/task-status` with additional constraints to `requested`, `in-progress` or `completed` values.
 3. `template`:  reference to `TutorNotificationTemplate` that we created above.
-4. `message`: message text and is of the FHIR `string` data type.
+4. `message`:  message text and is of the FHIR `string` data type.
 5. `sendAfter`: property that specifies the `dateTime` after which this notification should be sent.
 6. `subject`: reference to the `Patient` resource to whom this notification will be sent.
 
@@ -399,7 +386,7 @@ accept: application/json
 {% endtab %}
 {% endtabs %}
 
-So request that creates welcome sms notification for James Morgan at 12:00 should look like this:
+So request that creates a welcome sms notification for James Morgan at 12:00 should look like this:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -491,9 +478,9 @@ Status: 201
 {% endtab %}
 {% endtabs %}
 
-Let's create an instance of `TutorNotificationTemplate` resource with welcome message based on related patient's given name.
+Let's create an instance of `TutorNotificationTemplate` resource with a welcome message based on the related patient's given name.
 
-Now you can interact with created resources just like with any other FHIR resources.
+Now you can interact with cuctom resources just like with any other FHIR resources.
 
 ## Interact with a resource
 
@@ -600,7 +587,7 @@ Status: 200
 {% endtab %}
 {% endtabs %}
 
-It allows you to make following requests:
+It allows you to make the following requests:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -648,7 +635,7 @@ accept: application/json
 {% endtab %}
 {% endtabs %}
 
-The other one is used to include related Patient resources to the search bundle.
+The other one is used to include related Patient resources in the search bundle.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -783,7 +770,7 @@ Manually writing StructureDefinitions can be overwhelming. Fortunately, there is
 
 ### **FHIR Type ValueSet Bindings**
 
-FHIR defines certain ValueSets that list all resource types and binds them with required strength to some properties. For example, the `SearchParameter.base` property points to the resource this `SearchParameter` is intended for and has this exact binding. Obviously, your custom resource type is not mentioned in this ValueSet. However, you still want to create and use search parameters for your custom resources.
+FHIR defines certain ValueSets that list all resource types and binds them with required strength to some properties. For example, the `SearchParameter.base` property points to the resource this `SearchParameter` is intended for and has this exact binding. Your custom resource type is not mentioned in this ValueSet. However, you still want to create and use search parameters for your custom resources.
 
 During validation, Aidbox checks whether the resource type is in the given ValueSet or if it is a known custom resource for Aidbox. This allows you to use custom resources in resources like `CapabilityStatement` or `SearchParameter`, or in the `type` property of references.
 
