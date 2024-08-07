@@ -69,4 +69,5 @@ You have three options how to design form
 
 * [Design form locally (in your familiar editor)](design-form-locally-in-familiar-editor.md)
 * [Design form in Aidbox Code Editor (in browser)](aidbox-code-editor/)
-* [Design form in Aidbox UI Builder](aidbox-ui-builder/)
+* [Design form in Aidbox UI Builder](aidbox-ui-builder-alpha/)
+
