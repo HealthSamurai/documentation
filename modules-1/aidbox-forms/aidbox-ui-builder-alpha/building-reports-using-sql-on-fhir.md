@@ -211,7 +211,7 @@ Example of the completed Vitals Signs Record Form (QuestionnaireResponse):
 }
 ```
 
-### Incoming Data
+#### Incoming Data
 
 * Vitals Sign Test Form -  url http://forms.aidbox.io/questionnaire/vitals-sign-test-form
 * Data Fields in QuestionnaireResponse:
@@ -220,7 +220,7 @@ Example of the completed Vitals Signs Record Form (QuestionnaireResponse):
   * Group containing these fields - linkID: `group_1`
 * Patient id - `morgan`
 
-### Purpose
+#### Purpose
 
 To build a report of how blood pressure changes from visit to visit for a specific patient.
 
