@@ -30,17 +30,22 @@ accept: text/yaml
 
 - id: org-a
   resourceType: Organization
+  name: Organization A
 - id: org-b
   resourceType: Organization
   partOf: {resourceType: Organization, id: org-a}
+  name: Organization B
 - id: org-c
   resourceType: Organization
   partOf: {resourceType: Organization, id: org-a}
+  name: Organization C
 - id: org-d
   resourceType: Organization
+  name: Organization D
 - id: org-e
   resourceType: Organization
   partOf: {resourceType: Organization, id: org-d}
+  name: Organization E
 ```
 {% endcode %}
 

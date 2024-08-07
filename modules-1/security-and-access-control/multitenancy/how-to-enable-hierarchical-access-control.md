@@ -22,7 +22,7 @@ To get the Aidbox License:
 
 ## Create Aidbox project
 
-Aidbox is configured by the [Aidbox Configuration Projects](broken-reference). To create sample project run command below&#x20;
+Aidbox is configured by the [Aidbox Configuration Project.](../../../aidbox-configuration/aidbox-zen-lang-project/) To create sample project run command below&#x20;
 
 {% tabs %}
 {% tab title="FHIR R4" %}
@@ -50,8 +50,26 @@ git clone \
 {% endtab %}
 {% endtabs %}
 
+### OrgBAC with FHIR Schema validator
+
+To use hierarchical access control with the [FHIR Schema validator](../../profiling-and-validation/fhir-schema-validator.md), you need to have [Aidbox Configuration Project](../../../aidbox-configuration/aidbox-zen-lang-project/) and enable the [FHIR Schema validator](../../profiling-and-validation/fhir-schema-validator.md). To create a sample project with hierarchical access control and the FHIR Schema validator, run the command below. This will clone the `orgbac-with-fhir-schema` branch, which has the FHIR Schema validator enabled and the Aidbox Configuration Project configured:
+
+{% tabs %}
+{% tab title="FHIR R4" %}
+```sh
+git clone \
+  --branch=orgbac-with-fhir-schema \
+  --depth=1 \
+  https://github.com/Aidbox/aidbox-project-template.git \
+  aidbox-project && \
+  cd aidbox-project && \
+  rm -rf .git
+```
+{% endtab %}
+{% endtabs %}
+
 {% hint style="info" %}
-See more details related the [running Aidbox locally](broken-reference)
+See more details related the [running Aidbox locally](../../../getting-started/run-aidbox-locally-with-docker/).
 {% endhint %}
 
 ### Apply the license
@@ -131,6 +149,8 @@ Use Aidbox UI Rest Console to create nested Organization resources.
 {% code title="status: 201 (created)" %}
 ```yaml
 PUT /fhir/Organization/org-a
+
+name: Organization A
 ```
 {% endcode %}
 
@@ -143,6 +163,7 @@ PUT /fhir/Organization/org-b
 partOf:
   resourceType: Organization
   id: org-a
+name: Organization B
 ```
 {% endcode %}
 
@@ -155,6 +176,7 @@ PUT /fhir/Organization/org-c
 partOf:
   resourceType: Organization
   id: org-b
+name: Organization C
 ```
 {% endcode %}
 
