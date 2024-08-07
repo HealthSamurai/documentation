@@ -11,13 +11,13 @@
     * [Implemented Offline mode for forms](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/offline-forms.md)
     * Supported definition-based extraction
     * [Ability to search and use templates from Aidbox Form Gallery on UI](../../modules-1/aidbox-forms/add-aidbox-forms-library.md)
-    * Ability to embed Aidbox UI Builder as a web-component
+    * [Ability to embed Aidbox UI Builder as a web-component](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/embedding-builder.md)
     * [Implemented Template-based PDF Generation](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/template-based-pdf-gen.md)
     * [Added a Speech to text widget](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#speech-to-text)
     * [Added an Annotation Pad widget](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#annotation-pad)
     * Performance optimization for large forms
     * Added support for meta and tag additions in the Questionnaire
-    * [Supported multi-selection](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#choice)
+    * [Supported multi-selection](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#common-widgets-settings)
     * [Supported initial value population](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#common-widgets-settings)
     * Implemented Audit logging
 * [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
@@ -49,11 +49,11 @@
   * Published [Helm charts](https://github.com/Aidbox/helm-charts?tab=readme-ov-file) to simplify the process of deploying and managing Aidbox in K8s&#x20;
 * [Aidbox Forms](../../modules-1/aidbox-forms.md)
   * UI builder updates (FHIR Questionnaire-based):
-    * [Ability to create custom components and reuse them in other forms](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/components.md)
-    * [Supported different versions depending on FHIR server version](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/fhir-versions.md)
+    * [Ability to create custom components and reuse them in other forms](broken-reference)
+    * [Supported different versions depending on FHIR server version](broken-reference)
     * Added open choice widget
-    * Published guides on [how to populate form with patient demographic data](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to.md#how-to-populate-form-with-patient-demographic-data-patient-name-dob-mrn-address-phone); [how to populate form with patient weight, height](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to.md#how-to-populate-form-with-patient-weight-height); [how to populate form with patient allergies](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to.md#how-to-populate-form-with-patient-allergies); [how to populate form with data from another form during the visit](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to.md#how-to-populate-form-with-data-from-another-form-during-the-visit)
-    * [Implemented printing form or basic PDF generation](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/printing-forms.md)
+    * Published guides on [how to populate form with patient demographic data](broken-reference); [how to populate form with patient weight, height](broken-reference); [how to populate form with patient allergies](broken-reference); [how to populate form with data from another form during the visit](broken-reference)
+    * [Implemented printing form or basic PDF generation](broken-reference)
     * Improved UI Builder user experience via preview form button, quick search for a field on the form or in the outline, etc
     * Ability to enable the outline in form preview for form navigation
     * Ability to show or hide option's scores on the form
@@ -93,7 +93,7 @@
 * Data API
   * Supported FHIR-conformant [`_include` and `_revinclude` parameters](../../api-1/fhir-api/search-1/search-parameters-list/\_include-and-\_revinclude.md)
   * Added parameter to set the maximum number of import retries for [/v2/$import](../../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md#v2-usdimport-on-top-of-the-workflow-engine)
-* [Aidbox Forms](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/)
+* [Aidbox Forms](broken-reference)
   * Questionnaire-based forms updates:
     * Ability to add help text
     * Ability to add image for a question
@@ -103,7 +103,7 @@
     * Ability to amend form using a shared link
     * Supported attachment item
     * Ability to add regex validation
-    * [Supported form versioning](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/versioning.md#ui-form-builder-versioning-support)
+    * [Supported form versioning](broken-reference)
 * [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
   * Support built-in rule based deduplication
   * Mapping fixes, bug fixes
