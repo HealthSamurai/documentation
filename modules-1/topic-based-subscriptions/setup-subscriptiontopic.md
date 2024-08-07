@@ -96,7 +96,7 @@ Topic Definition is a zen schema which is tagged with **`fhir.topic-based-subscr
     {:zen/tags #{fhir.topic-based-subscription/topic-definition}
      :url "<YOUR URL>"
      :resourceTrigger [{:resource "Patient"
-                        :fhirPathCriteria "%current.birthDate > '2023'}
+                        :fhirPathCriteria "%current.birthDate > '2023'"}
                        {:resource "Organization"}
                        < ... other resources ... >]
      :canFilterBy [{:resource        "Patient"
