@@ -3,7 +3,7 @@
 ## July 2024 _`latest`_&#x20;
 
 * Aidbox
-  * Introduced support for [custom resources using FHIR logical models](../../storage-1/custom-resources/custom-resources-on-fhir-logical-model.md) and [custom resources using FHIR schemas](../../storage-1/custom-resources/custom-resources-using-fhirschema.md)
+  * Introduced support for [custom resources using FHIR StructureDefinitions](../../storage-1/custom-resources/custom-resources-on-fhir-logical-model.md) and [custom resources using FHIR schemas](../../storage-1/custom-resources/custom-resources-using-fhirschema.md)
   * Published [JavaScript app example](https://github.com/Aidbox/app-examples/blob/main/aidbox-notify-via-custom-resources/README.md) demonstrating custom resources with a typical notification flow: requesting a notification, locking it for sending, and sending it (placeholder)
   * Supported [enabling Audit Log using an environment variable](../../modules-1/audit/setup-audit-logging.md#two-ways-to-enable-audit-log)&#x20;
 * [Aidbox Forms](../../modules-1/aidbox-forms.md)
