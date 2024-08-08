@@ -1907,6 +1907,7 @@ Medizininformatik Initiative - Modul Fall
 
 **Versions**
 
+* `de.medizininformatikinitiative.kerndatensatz.fall#2024.1.0-alpha2`
 * `de.medizininformatikinitiative.kerndatensatz.fall#2024.1.0-alpha1`
 * `de.medizininformatikinitiative.kerndatensatz.fall#2024.0.1`
 * `de.medizininformatikinitiative.kerndatensatz.fall#2024.0.0`
@@ -5187,6 +5188,7 @@ Version zur Ballotierung durch HL7 Deutschland und Kommentierung durch die Mediz
 **Versions**
 
 * `de.medizininformatikinitiative.kerndatensatz.onkologie#2024.0.0-ballot`
+* `de.medizininformatikinitiative.kerndatensatz.onkologie#2024.0.0-ballot-beta-1`
 * `de.medizininformatikinitiative.kerndatensatz.onkologie#2024.0.0-ballot-alpha-1`
 
 
@@ -5854,6 +5856,7 @@ Test/spike into FHIR profiling
 
 **Versions**
 
+* `digi.derm#0.1.2`
 * `digi.derm#0.1.1`
 * `digi.derm#0.1.0`
 
