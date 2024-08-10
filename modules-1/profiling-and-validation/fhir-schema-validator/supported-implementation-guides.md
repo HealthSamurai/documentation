@@ -1363,6 +1363,7 @@ Due to Public Health Departments' familiarity with V2, a test implementation pro
 
 **Versions**
 
+* `hl7.fhir.us.home-lab-report#1.1.0`
 * `hl7.fhir.us.home-lab-report#1.0.0`
 * `hl7.fhir.us.home-lab-report#1.0.0-ballot`
 
@@ -4955,6 +4956,17 @@ Support encoding and presentation of an interactive multimedia report (built Thu
 * `ihe.rad.imr#1.0.0`
 * `ihe.rad.imr#1.0.0-comment`
 * `ihe.rad.imr#0.1.0`
+
+
+---
+
+### FHIR Clinical Documents
+
+
+
+**Versions**
+
+* `hl7.fhir.uv.fhir-clinical-document#1.0.0-ballot`
 
 
 ---
