@@ -3828,6 +3828,7 @@ Generic ClinicalReportResearch message based on HdBe-R4-Clinical Building Blocks
 
 **Versions**
 
+* `hl7.fhir.uv.ibcm#1.0.0-ballot2`
 * `hl7.fhir.uv.ibcm#1.0.0-ballot`
 
 
@@ -9911,6 +9912,22 @@ This project holds the profiles, message examples, and simplifier implementation
 * `surescripts.specialty#1.2.0-beta`
 * `surescripts.specialty#1.1.0-beta`
 * `surescripts.specialty#1.0.0-beta`
+
+
+---
+
+### DICOM® SR to FHIR Resource Mapping IG
+
+<details>
+<summary>Description</summary>
+
+Provides guidance for extracting key content from DICOM® Structured Report (SR) objects into FHIR Observations to make use of the results with  the larger hospital enterprise. (built Fri, Aug 9, 2024 16:23+0000+00:00)
+
+</details>
+
+**Versions**
+
+* `hl7.fhir.uv.dicom-sr#1.0.0-ballot`
 
 
 ---
