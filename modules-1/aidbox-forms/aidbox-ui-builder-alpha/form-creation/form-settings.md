@@ -23,7 +23,17 @@ When saving the form, Aidbox check the id for uniqueness
 
 ### Form Title
 
+A short, descriptive, user-friendly title for the questionnaire.
+
 ### URL
+
+This is the id that will be used to link a QuestionnaireResponse to the Questionnaire the response is for. It is used to identify this questionnaire when it is referenced in a specification, model, design or an instance; also called its canonical identifier.
+
+
+
+{% hint style="info" %}
+URL is generated automatically. A custom prefix can be specified in the Aidbox Forms module settings.
+{% endhint %}
 
 ### Version
 
