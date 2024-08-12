@@ -37,15 +37,47 @@ URL is generated automatically. A custom prefix can be specified in the Aidbox F
 
 ### Version
 
+The identifier that is used to identify this version of the questionnaire when it is referenced in a specification, model, design or instance. This is an arbitrary value managed by the questionnaire author and is not expected to be globally unique.
+
+There may be different questionnaires that have the same url but different versions. The version can be appended to the url in a reference to allow a reference to a particular business version of the questionnaire with the format.
+
+{% hint style="info" %}
+`Url` and `version` are used as `Questionnaire`uniq identifier - they should be unique globally.
+{% endhint %}
+
+For more details, go to the page - [Versioning.](versioning.md)
+
 ### Status
 
+The current state of this questionnaire.
 
+FHIR Questionnaire statuses: `draft`, `active`, `retired` and `unknown` (`unknown` should not be used by user)
+
+* `draft` - used when you developing a form
+* `active` - used for forms in production - you should be carefull, and do not change these forms (small changes are ok).
+* `retired`- used for production retired forms - you also should be carefull about these, they are used for historical reasons
+
+### Default Language
+
+This is the default language of the form. Since forms can be multilingual, choosing the default language gives you the opportunity to set the translation of the form in other languages.
+
+### Reusable Context
+
+With this setting, you can specify how the form will be used. If you mark the form as `Component` or a `Form and Component`, then the form will be available in the add widget popup in the components tab and can be included in other forms as component.
+
+* `Form` - This form can be used only as an _independent form_
+* `Component` - This form can be used only as an _component_ (included in other forms)
+* `Form or Component` - This form can be used only as an _independent form_ or be included in other forms as _component_
 
 ### Code
 
 An identifier for this collection of questions in a particular terminology such as LOINC.  It allows linking of the complete Questionnaire resources to formal terminologies.
 
-### Launch Context
+### Tags
+
+### Show outline
+
+### Population
 
 ### Additional Information
 
