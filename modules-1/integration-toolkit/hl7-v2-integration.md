@@ -12,9 +12,9 @@ Video version of this tutorial
 
 ## Introduction
 
-In 2019, HL7 v2 is still the most widely-used standard for healthcare IT systems integration. If you're developing software which receives information from other systems within a hospital/clinic, most likely it will be HL7 v2 messages.
+In 2019, HL7 v2 is still the most widely-used standard for healthcare IT systems integration. If you're developing software that receives information from other systems within a hospital/clinic, most likely it will be HL7 v2 messages.
 
-To process those messages, react on them and modify data stored in your Aidbox, there is a Hl7v2-in module. It provides two resources: `Hl7v2Config` and `Hl7v2Message`. `Hl7v2Config`determines how messages will be parsed and processed. `Hl7v2Message` represents a single received HL7 v2 message and contains raw representation, status (processed/error), error description in case of error and other useful information.
+To process those messages, react to them and modify data stored in your Aidbox, there is a Hl7v2-in module. It provides two resources: `Hl7v2Config` and `Hl7v2Message`. `Hl7v2Config`determines how messages will be parsed and processed. `Hl7v2Message` represents a single received HL7 v2 message and contains raw representation, status (processed/error), error description in case of error and other useful information.
 
 Both `Hl7v2Config` and `Hl7v2Message` are managed with standard CRUD API.
 
