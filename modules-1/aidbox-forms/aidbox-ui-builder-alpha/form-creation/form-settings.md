@@ -1,5 +1,5 @@
 ---
-description: This page is under construction.
+description: The article outlines the general form settings
 ---
 
 # Form Settings
@@ -75,9 +75,51 @@ An identifier for this collection of questions in a particular terminology such 
 
 ### Tags
 
+Questionnaire contains an element "meta", which is a set of metadata that provides technical and workflow context to the resource.&#x20;
+
+Tag is an metadata item.  Tags are used to relate resources to process and workflow.
+
+For example, you can use custom form typing and in order to filter the required form types you can use the tag mechanism for this.
+
 ### Show outline
 
+You can set the show outline and see how it will look in the form preview. An outline with top-level groups will be displayed on the left side of the form.
+
+This feature is convenient to use if the form is very large and you need to navigate through it.
+
 ### Population
+
+In order to pre-fill the form with data that is in the database. You need to define the incomming parameters for the form, which will then be used in specific fields that you want to pre-fill with data.
+
+**Incoming parameters:**
+
+Parameters that can be passed to form's launch process. Parameters should be enabled before use. Every parameter will be available in populate expressions via it's name&#x20;
+
+Patient  `%patient`
+
+Encounter `%encounter`&#x20;
+
+Location `%location`&#x20;
+
+User `%user`&#x20;
+
+Study `%study`
+
+**Named Expressions:**
+
+Named expressions can be also used in data pre-population process.&#x20;
+
+They are useful when:
+
+* you need an additional information, that is not exists in incoming parameters
+* you want to share some common pre-calculation with other populate expressions
+
+They can be referenced with `%expr-name` literal.
+
+Example: `%patient.name.first().given` where `%patient` is\
+an expression name _patient_, prefixed with _%_ symbol.
+
+For more details of usage, look at how-to guide [here](how-to.md).
 
 ### Additional Information
 
