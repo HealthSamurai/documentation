@@ -108,11 +108,11 @@ Patient [group]
 
 #### 1. Setting group extraction context
 
-Select "Patient" group in outline and enable extraction, choose "Definition".&#x20;
-
-Now we need to set `itemExtractionContext` for the whole "Patient" group. Fill it with:
-
-`Patient/{{%resource.subject.id}}`
+1. Select group in outline
+2. Expand `Data extraction` section
+3. Check `Extract`&#x20;
+4. Select `Definition`
+5. Fill `Group extraction context` with **`Patient/{{%resource.subject.id}}`**
 
 When aidbox mets this group during the extraction process, it will fetch Patient resource with id = subject.id of QuestionnaireResponse.&#x20;
 
