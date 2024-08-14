@@ -1298,6 +1298,22 @@ Description de la structure des données d'identification des acteurs de santé 
 
 ---
 
+### National Healthcare Safety Network (NHSN) Digital Quality Measure (dQM) Reporting Implementation Guide
+
+<details>
+<summary>Description</summary>
+
+This content describes the specifications for the for the Health Level Seven International® (HL7) Fast Healthcare Interoperability Resources® (FHIR) digital quality measures (dQMs) reported to the National Healthcare Safety Network (NHSN). (built Mon, Aug 12, 2024 17:39+0000+00:00)
+
+</details>
+
+**Versions**
+
+* `hl7.fhir.us.nhsn-dqm#1.0.0-ballot`
+
+
+---
+
 ### devdays.letsbuildafhirspec.simplifier1
 
 <details>
@@ -2097,6 +2113,22 @@ Progetto FHIR per Regione Lombardia
 
 ---
 
+### Finnish Scheduling
+
+<details>
+<summary>Description</summary>
+
+Finnish HL7 FHIR implementation guide for scheduling, published and maintained by HL7 Finland (built Mon, Aug 12, 2024 12:49+0300+03:00)
+
+</details>
+
+**Versions**
+
+* `hl7.fhir.fi.scheduling#0.2.0`
+
+
+---
+
 ### kbv.mio.mutterpass
 
 <details>
@@ -2409,12 +2441,13 @@ Umsetzung des elektronischen Rezepts
 <details>
 <summary>Description</summary>
 
-The QICore Implementation Guide defines a set of FHIR profiles with extensions and bindings needed to create interoperable, quality-focused applications. The profiles in this implementation guide derive from and extend the [US Core](http://hl7.org/fhir/us/core) profiles to provide a common foundation for building, sharing, and evaluating knowledge artifacts across quality improvement efforts in the US Realm. (built Fri, Mar 1, 2024 18:46+0000+00:00)
+The QICore Implementation Guide defines a set of FHIR profiles with extensions and bindings needed to create interoperable, quality-focused applications. The profiles in this implementation guide derive from and extend the [US Core](http://hl7.org/fhir/us/core) profiles to provide a common foundation for building, sharing, and evaluating knowledge artifacts across quality improvement efforts in the US Realm. (built Mon, Aug 12, 2024 16:12+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.us.qicore#7.0.0-ballot`
 * `hl7.fhir.us.qicore#6.0.0`
 * `hl7.fhir.us.qicore#6.0.0-ballot`
 * `hl7.fhir.us.qicore#5.0.0`
@@ -2921,6 +2954,22 @@ Put a description here
 
 * `nictiz.fhir.nl.r4.cio#1.0.0-beta.2`
 * `nictiz.fhir.nl.r4.cio#1.0.0-beta.1`
+
+
+---
+
+### de.gematik.dev.terminology
+
+<details>
+<summary>Description</summary>
+
+[Development] Terminologies for Telematics Infrastructure (TI)
+
+</details>
+
+**Versions**
+
+* `de.gematik.dev.terminology#1.0.1-alpha.1`
 
 
 ---
@@ -4064,6 +4113,7 @@ PLSP Health Hub
 
 **Versions**
 
+* `healthhub.fhir.dk.core#1.0.6`
 * `healthhub.fhir.dk.core#1.0.5`
 * `healthhub.fhir.dk.core#1.0.4`
 * `healthhub.fhir.dk.core#1.0.3-alpha`
@@ -5333,6 +5383,7 @@ International Patient Summary (IPS) FHIR Implementation Guide (built Tue, Nov 22
 
 **Versions**
 
+* `hl7.fhir.uv.ips#2.0.0-ballot`
 * `hl7.fhir.uv.ips#1.1.0`
 * `hl7.fhir.uv.ips#1.0.0`
 * `hl7.fhir.uv.ips#0.3.0`
@@ -12245,6 +12296,22 @@ Fresenius Medical Care Data Model
 
 ---
 
+### de.gematik.terminology
+
+<details>
+<summary>Description</summary>
+
+Terminologies for Telematics Infrastructure (TI)
+
+</details>
+
+**Versions**
+
+* `de.gematik.terminology#1.0.0`
+
+
+---
+
 ### PACIO Functional Status Implementation Guide
 
 <details>
@@ -12782,6 +12849,7 @@ Mobile Antepartum Summary is a content profile that defines the structure for th
 
 **Versions**
 
+* `hl7.fhir.us.identity-matching#2.0.0-ballot`
 * `hl7.fhir.us.identity-matching#1.0.0`
 * `hl7.fhir.us.identity-matching#1.0.0-ballot`
 
