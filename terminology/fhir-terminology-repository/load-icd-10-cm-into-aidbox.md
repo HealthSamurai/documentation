@@ -36,7 +36,7 @@ If you already have a configuration project, you can replicate these steps to en
 
 {% code title="zen-package.edn" %}
 ```
-{:deps {icd10cm "git@github.com:zen-fhir/icd10-cm.git"}}
+{:deps {icd10cm "https://github.com/zen-fhir/icd10-cm.git"}}
 ```
 {% endcode %}
 

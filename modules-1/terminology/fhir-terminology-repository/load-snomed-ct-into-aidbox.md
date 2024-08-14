@@ -36,7 +36,7 @@ If you already have a configuration project, you can replicate these steps to en
 
 {% code title="zen-package.edn" %}
 ```
-{:deps {snomed "git@github.com:zen-fhir/snomed.git"}}
+{:deps {snomed "https://github.com/zen-fhir/snomed.git"}}
 ```
 {% endcode %}
 

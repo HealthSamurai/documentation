@@ -32,7 +32,7 @@ If you already have a configuration project, you can replicate these steps to en
 
 {% code title="zen-package.edn" %}
 ```
-{:deps {loinc "git@github.com:zen-fhir/loinc.git"}}
+{:deps {loinc "https://github.com/zen-fhir/loinc.git"}}
 ```
 {% endcode %}
 
