@@ -207,6 +207,7 @@
   * [API Reference](modules-1/topic-based-subscriptions/r4b-api-reference/README.md)
     * [SubscriptionTopic API](modules-1/topic-based-subscriptions/r4b-api-reference/subscriptiontopic-api.md)
     * [Subscription API](modules-1/topic-based-subscriptions/r4b-api-reference/subscription-api.md)
+  * [\[WIP\] Dynamic SubscriptionTopic with destinations](modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations.md)
 * [Entities & Attributes](core-modules/entities-and-attributes.md)
 * [Profiling and validation](modules-1/profiling-and-validation/README.md)
   * [FHIR Schema Validator](modules-1/profiling-and-validation/fhir-schema-validator.md)
