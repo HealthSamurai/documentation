@@ -169,6 +169,7 @@ NHS (England) National Services Implementation Guide
 * `uk.nhsdigital.r4.test#2.8.7-prerelease`
 * `uk.nhsdigital.r4.test#2.8.6-prerelease`
 * `uk.nhsdigital.r4.test#2.8.5-prerelease`
+* `uk.nhsdigital.r4.test#2.8.18-prerelease`
 * `uk.nhsdigital.r4.test#2.8.17-prerelease`
 * `uk.nhsdigital.r4.test#2.8.16-prerelease`
 * `uk.nhsdigital.r4.test#2.8.15-prerelease`
@@ -738,12 +739,13 @@ This Implementation Guide was made possible through the visionary leadership of 
 
 This Implementation Guide was created under the supervision and review of the [HL7 Patient Care Work Group](https://www.hl7.org/Special/committees/patientcare/index.cfm). This is the HL7 project page for the [Multiple Chronic Conditions e-Care Project.](https://confluence.hl7.org/display/PC/Multiple+Chronic+Conditions+%28MCC%29+eCare+Plan)
 
- (built Fri, Jul 28, 2023 17:45+0000+00:00)
+ (built Tue, Aug 13, 2024 20:59+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.us.mcc#1.0.0`
 * `hl7.fhir.us.mcc#1.0.0-ballot2`
 * `hl7.fhir.us.mcc#1.0.0-ballot`
 
@@ -1080,6 +1082,8 @@ Envoi du rapport d’endoscopie au dépôt provincial
 
 **Versions**
 
+* `rapportendoscopiequebec.test#0.0.58`
+* `rapportendoscopiequebec.test#0.0.57`
 * `rapportendoscopiequebec.test#0.0.56`
 * `rapportendoscopiequebec.test#0.0.55`
 * `rapportendoscopiequebec.test#0.0.54`
@@ -2227,12 +2231,13 @@ Medizininformatik Initiative - Modul Mikrobiologie
 <details>
 <summary>Description</summary>
 
-FHIR Implementation Guide to exchange assessments of and data on a person's functioning, including body functions, activities, and participation, between post-acute care (PAC) and other providers, patients, and key stakeholders (built Fri, Jan 5, 2024 16:53+0000+00:00)
+FHIR Implementation Guide to exchange assessments of and data on a person's functioning, including body functions, activities, and participation, between post-acute care (PAC) and other providers, patients, and key stakeholders (built Tue, Aug 13, 2024 15:07+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.us.pacio-pfe#2.0.0-ballot`
 * `hl7.fhir.us.pacio-pfe#1.0.0`
 * `hl7.fhir.us.pacio-pfe#1.0.0-ballot`
 
@@ -2891,6 +2896,17 @@ NL package of FHIR R4 conformance resources for ELZ.
 
 ---
 
+### FHIR Application Feature Framework Implementation Guide
+
+
+
+**Versions**
+
+* `hl7.fhir.uv.application-feature#1.0.0-ballot`
+
+
+---
+
 ### de.gevko.dev.tetvz
 
 <details>
@@ -2969,6 +2985,7 @@ Put a description here
 
 **Versions**
 
+* `de.gematik.dev.terminology#1.0.1-alpha.3`
 * `de.gematik.dev.terminology#1.0.1-alpha.1`
 
 
@@ -4066,6 +4083,22 @@ The Documentation Templates and Rules (DTR) Implementation Guide (IG) specifies 
 
 ---
 
+### Scheduling
+
+<details>
+<summary>Description</summary>
+
+The IHE FHIR Scheduling Profile is a specification providing FHIR APIs and guidance for access to and booking of appointments for patients by both patient and practitioner end users. This specification is based on FHIR Version 4 and specifically the Schedule, Slot, and Appointment resources, and on the previous work of the [Argonaut Project](https://fhir.org/guides/argonaut/scheduling/release1/). (built Tue, Aug 13, 2024 16:34-0500-05:00)
+
+</details>
+
+**Versions**
+
+* `ihe.iti.scheduling#1.0.0-comment`
+
+
+---
+
 ### Pan-Canadian Patient Summary
 
 <details>
@@ -4113,6 +4146,7 @@ PLSP Health Hub
 
 **Versions**
 
+* `healthhub.fhir.dk.core#1.0.7`
 * `healthhub.fhir.dk.core#1.0.6`
 * `healthhub.fhir.dk.core#1.0.5`
 * `healthhub.fhir.dk.core#1.0.4`
@@ -5532,8 +5566,10 @@ Ontario Health
 
 **Versions**
 
+* `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.18`
 * `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.17`
 * `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.16`
+* `accdr.fhir.ig.pkg#0.9.18`
 * `accdr.fhir.ig.pkg#0.9.15`
 
 
@@ -5673,6 +5709,7 @@ Building an Implementation Guide and Package with Simplifier.net
 
 **Versions**
 
+* `de.gematik.dev.epa#1.1.0-alpha.12`
 * `de.gematik.dev.epa#1.1.0-alpha.6`
 * `de.gematik.dev.epa#1.1.0-alpha.5`
 * `de.gematik.dev.epa#1.1.0-alpha.4`
@@ -6406,6 +6443,22 @@ Medizinische Inofmrationsobjekte (MIO) Rhecord
 
 ---
 
+### Query for Existing Data for Mobile (QEDm)
+
+<details>
+<summary>Description</summary>
+
+The Query for Existing Data for Mobile Profile (QEDm) supports dynamic queries for clinical data elements, including observations, allergy and intolerances, problems, diagnostic results, medications, immunizations, procedures, encounters and provenance by making the information widely available to other systems within and across enterprises to support provision of better clinical care. It defines a transaction used to query a list of specific data elements, persisted as FHIR resources. (built Mon, Aug 5, 2024 09:48-0500-05:00)
+
+</details>
+
+**Versions**
+
+* `ihe.pcc.qedm#3.0.0-comment1`
+
+
+---
+
 ### jp-core.draft1
 
 <details>
@@ -6473,6 +6526,22 @@ Essilor Luxottica IT EYECARE FHIR PROJECT
 
 * `hl7.fhir.essilux.core#0.0.2`
 * `hl7.fhir.essilux.core#0.0.1`
+
+
+---
+
+### nexuzhealth.fhir.r4
+
+<details>
+<summary>Description</summary>
+
+Technical profiles used by Nexuzhealth FHIR Stores
+
+</details>
+
+**Versions**
+
+* `nexuzhealth.fhir.r4#1.0.0`
 
 
 ---
@@ -6616,6 +6685,7 @@ Electronic Prescription Service
 
 * `uk.nhsdigital.medicines.r4.test#2.8.7-prerelease`
 * `uk.nhsdigital.medicines.r4.test#2.8.3-prerelease`
+* `uk.nhsdigital.medicines.r4.test#2.8.18-prerelease`
 * `uk.nhsdigital.medicines.r4.test#2.8.16-prerelease`
 * `uk.nhsdigital.medicines.r4.test#2.8.11-prerelease`
 * `uk.nhsdigital.medicines.r4.test#2.7.1-prerelease`
@@ -7123,6 +7193,22 @@ An implementation guide for adopting FHIR for health information exchange in 43f
 
 * `silth.fhir.th.mophpc1#1.0.0`
 * `silth.fhir.th.mophpc1#0.1.1`
+
+
+---
+
+### Finance and Insurance Service (FAIS)
+
+<details>
+<summary>Description</summary>
+
+The Finance and Insurance Service (FAIS) stores, categorizes, and facilitates the administration of centralized claims and finance data for patient care. The service receives claims/financial data from Point of Service applications (including financing applications acting as a point of service interface outside of other PoS systems) and curates the management of them. (built Wed, Aug 7, 2024 10:04-0500-05:00)
+
+</details>
+
+**Versions**
+
+* `ihe.iti.fais#1.0.0-comment`
 
 
 ---
@@ -10970,18 +11056,13 @@ Put a description here
 <details>
 <summary>Description</summary>
 
-The Da Vinci Payer Health Record exchange (HRex) Framework/library specifies the FHIR elements used in multiple Da Vinci implementation guides. This includes FHIR profiles, functions, operations, and constraints on other specifications such as CDS-Hooks and other aspects of Da Vinci Use Cases that are common across more than a single use case.
-
-Da Vinci HRex Implementation Guide (IG) will make use of US Core profiles that are based on the FHIR R4 specification wherever practical. The HRex IG will use the HL7 FHIR Release 4/US Core STU3 specification as its base but will provide additional guidance and documentation to support implementations that follow the HL7 FHIR STU3/US Core STU2 and HL7 FHIR DSTU2/Argonaut specifications.
-
-The HRex profiles documented in this IG will be used to exchange data between providers systems (e.g. EHRs) and other providers, payers, and third-party applications where appropriate. In addition, exchanges from payer systems to providers, other payers, and third-party applications are supported by the HRex profiles and operations.
-
-HRex may define new extensions, profiles, value sets, constraints/extension to other specification (e.g. specific CDS-Hooks) that are specific Da Vinci requirements. Where appropriate these Da Vinci specific artifacts will be promoted for incorporation into the future versions of existing standards (e.g. R4 US Core profiles) and deprecated in this guide on publication in the updated standard. (built Wed, Mar 23, 2022 18:55+0000+00:00)
+The Da Vinci Payer Health Record exchange (HRex) Framework/library specifies the FHIR elements used in multiple Da Vinci implementation guides. This includes FHIR profiles, functions, operations, and constraints on other specifications such as CDS-Hooks and other aspects of Da Vinci Use Cases that are common across more than a single use case.\n\nDa Vinci HRex Implementation Guide (IG) will make use of US Core profiles that are based on the FHIR R4 specification wherever practical. The HRex IG will use the HL7 FHIR Release 4/US Core STU3 specification as its base but will provide additional guidance and documentation to support implementations that follow the HL7 FHIR STU3/US Core STU2 and HL7 FHIR DSTU2/Argonaut specifications.\n\nThe HRex profiles documented in this IG will be used to exchange data between providers systems (e.g. EHRs) and other providers, payers, and third-party applications where appropriate. In addition, exchanges from payer systems to providers, other payers, and third-party applications are supported by the HRex profiles and operations.\n\nHRex may define new extensions, profiles, value sets, constraints/extension to other specification (e.g. specific CDS-Hooks) that are specific Da Vinci requirements. Where appropriate these Da Vinci specific artifacts will be promoted for incorporation into the future versions of existing standards (e.g. R4 US Core profiles) and deprecated in this guide on publication in the updated standard. (built Tue, Aug 13, 2024 16:31+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.us.davinci-hrex#1.1.0-ballot`
 * `hl7.fhir.us.davinci-hrex#1.0.0`
 * `hl7.fhir.us.davinci-hrex#0.2.0`
 * `hl7.fhir.us.davinci-hrex#0.1.0`
@@ -11031,12 +11112,13 @@ Fresenius Medical Care Data Model
 <details>
 <summary>Description</summary>
 
-FHIR R4 profiles for the electronic health record (EHR) submissions to the Netherlands Cancer Registry (NCR). (This version is identical to 1.0.1 and is meant for testing the release system)
+FHIR R4 profiles for the electronic health record (EHR) submissions to the Netherlands Cancer Registry (NCR).
 
 </details>
 
 **Versions**
 
+* `iknl.fhir.nl.r4.ncr-ehr#1.1.0`
 * `iknl.fhir.nl.r4.ncr-ehr#1.0.2`
 * `iknl.fhir.nl.r4.ncr-ehr#1.0.1`
 * `iknl.fhir.nl.r4.ncr-ehr#1.0.0`
