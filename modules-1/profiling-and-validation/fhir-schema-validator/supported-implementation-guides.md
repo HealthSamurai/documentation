@@ -169,6 +169,7 @@ NHS (England) National Services Implementation Guide
 * `uk.nhsdigital.r4.test#2.8.7-prerelease`
 * `uk.nhsdigital.r4.test#2.8.6-prerelease`
 * `uk.nhsdigital.r4.test#2.8.5-prerelease`
+* `uk.nhsdigital.r4.test#2.8.19-prerelease`
 * `uk.nhsdigital.r4.test#2.8.18-prerelease`
 * `uk.nhsdigital.r4.test#2.8.17-prerelease`
 * `uk.nhsdigital.r4.test#2.8.16-prerelease`
@@ -200,6 +201,22 @@ Version 2023
 * `dvmd.kdl.r4#2024.0.0-qa`
 * `dvmd.kdl.r4#2023.0.1`
 * `dvmd.kdl.r4#2023.0.0`
+
+
+---
+
+### HL7 Laboratory Report
+
+<details>
+<summary>Description</summary>
+
+This guide describes how the Laboratory Report can be represented in the UV REALM. (built Wed, Aug 14, 2024 20:47+0000+00:00)
+
+</details>
+
+**Versions**
+
+* `hl7.fhir.uv.lab-report#1.0.0-ballot`
 
 
 ---
@@ -1082,6 +1099,12 @@ Envoi du rapport d’endoscopie au dépôt provincial
 
 **Versions**
 
+* `rapportendoscopiequebec.test#0.0.64`
+* `rapportendoscopiequebec.test#0.0.63`
+* `rapportendoscopiequebec.test#0.0.62`
+* `rapportendoscopiequebec.test#0.0.61`
+* `rapportendoscopiequebec.test#0.0.60`
+* `rapportendoscopiequebec.test#0.0.59`
 * `rapportendoscopiequebec.test#0.0.58`
 * `rapportendoscopiequebec.test#0.0.57`
 * `rapportendoscopiequebec.test#0.0.56`
@@ -1277,6 +1300,7 @@ Die Basisfunktionalitäten der elektronischen Patientenakte
 
 **Versions**
 
+* `de.gematik.epa#1.1.0`
 * `de.gematik.epa#1.1.0-rc1`
 * `de.gematik.epa#1.0.2`
 * `de.gematik.epa#1.0.1`
@@ -1549,6 +1573,22 @@ A project from ACME Corp for a specific use case, building on the R4 ACME Base P
 * `acme.usecase.r4#0.0.3`
 * `acme.usecase.r4#0.0.2`
 * `acme.usecase.r4#0.0.1`
+
+
+---
+
+### Standardized Medication Profile (SMP) FHIR IG
+
+<details>
+<summary>Description</summary>
+
+Guidelines for conveying coverage requirements to clinicians when planning treatment. (built Wed, Aug 14, 2024 18:30+0800+08:00)
+
+</details>
+
+**Versions**
+
+* `hl7.fhir.us.smp#1.0.0-ballot`
 
 
 ---
@@ -4158,6 +4198,22 @@ PLSP Health Hub
 
 ---
 
+### Terminology Change Set Exchange
+
+<details>
+<summary>Description</summary>
+
+This IG provides profiles and implementation guidance for exchanging terminology change sets that include full semantic detail from the source terminology utilizing the CodeSystem resource.  It also addresses exchanging terminology change sets containing provisional concepts not yet incorporated in source terminologies, such as those requiring rapid distribution during a pandemic-response context. Analysis of semantic detail to include is informed by the Tinkar Standardized Terminology Knowledgebase (https://www.hl7.org/implement/standards/product_brief.cfm?product_id=573) Reference Model, and mappings from that architecture are included on CodeSystem profiles.  It provides background and context for the Tinkar Standardized Terminology Knowledgebase Reference Model and its native representation to enable lossless knowledge assets in various formats.  In 2021, HL7 published the HL7 Logical Model: Standardized Terminology Knowledgebase, Release 1—an informative document outlining the requirements for managing terminology across diverse healthcare organizations. This document emphasized the need for a robust terminology foundation, supporting extensions for various informatics systems. It introduced a self-describing logical model for terminology knowledge bases, specifically designed to represent standard terminology modules such as SNOMED CT Releases, value sets, coding systems, local terms, and equivalence mappings. The logical model comprehensively captured internal semantics, concept details, detailed relationships between terms, and hierarchies of standard terminology modules. The foundation for a standard-based Terminology Knowledge Architecture (Tinkar) specification was articulated to facilitate knowledge management for terminology among vendors, providers, and standards development organizations, including Health Level Seven International (HL7). (built Wed, Aug 14, 2024 14:50+0000+00:00)
+
+</details>
+
+**Versions**
+
+* `hl7.fhir.uv.termchangeset#1.0.0-ballot`
+
+
+---
+
 ### ehelse.fhir.no.grunndata
 
 <details>
@@ -4285,6 +4341,7 @@ The CA:FeX Interoperability Specifications (Canadian FHIR Exchange (CA:FeX))  se
 
 **Versions**
 
+* `ca.infoway.io.cafex#2.1.0-DFT-preBallot`
 * `ca.infoway.io.cafex#2.0.0`
 * `ca.infoway.io.cafex#2.0.0-dft-pre`
 * `ca.infoway.io.cafex#2.0.0-DFT-Ballot`
@@ -5206,27 +5263,29 @@ This implementation guide is provided to support the use of FHIR®© for clinica
 <details>
 <summary>Description</summary>
 
-This specification has undergone ballot and connectathon testing. It is expected to evolve, possibly significantly, as part of that process.
-Feedback is welcome and may be submitted through the FHIR JIRA tracker indicating US Da Vinci PDex as the specification. If balloting on this IG, please submit your comments via the tracker and reference them in your ballot submission implementation guide.
+This specification has undergone ballot and connectathon testing. It is expected to continue to evolve, possibly significantly, as part of that process.
+Feedback is welcome and may be submitted through the FHIR JIRA tracker indicating US Da Vinci PDex as the specification.  If balloting on this IG, please submit your comments via the tracker and reference them in your ballot submission implementation guide.
 
 This guide can be reviewed offline. Go to the Downloads section. Click on the link to download the full Implementation Guide as a zip file. Expand the zip file and use a web browser to launch the index.html file in the directory created by the zip extract process. External hyperlinks in the guide will not be available unless you have an active internet connection. 
 
 [Financial Management](https://confluence.hl7.org/display/FM/Financial+Management+Home) is the Sponsoring Work Group for this Implementation Guide.
 
-**The Payer Data Exchange (PDex) Implementation Guide (IG) is provided for Payers/Health Plans to enable them to create a Member's Health History using clinical resources (based on US Core 3.1.1 Profiles based on FHIR R4) which can be understood by providers and, if they choose to, committed to their Electronic Medical Records (EMR) System.**
+**The Payer Data Exchange (PDex) Implementation Guide (IG) is provided for Payers/Health Plans to enable them to create a Member's Health History using clinical resources (based on US Core 3.1.1 and 6.1.0 Profiles based on FHIR R4) which can be understood by providers and, if they choose to, committed to their Electronic Medical Records (EMR) System.**
 
-The PDex work group has made changes to the original version of the IG following the publication of the final CMS Interoperability and Patient Access Rule.
+The PDex work group has made changes to the original version of the IG following the publication of the final CMS Interoperability and Patient Access Rule (CMS-9115_ andin STU2.1 the IG has been expanded to meet the requirements of the CMS Prior Authorization Rule (CMS-0057).
 
-This IG uses the same Member Health History "payload" for member-authorized exchange of information with other Health Plans and with Third-Party Applications. It describes the interaction patterns that, when followed, allow the various parties involved in managing healthcare and payer data to more easily integrate and exchange data securely and effectively.
+This IG uses the same Member Health History "payload" for member-authorized exchange of information with other Health Plans, with Providers and with Third-Party Applications. It describes the interaction patterns that, when followed, allow the various parties involved in managing healthcare and payer data to more easily integrate and exchange data securely and effectively.
 
 This IG covers the exchange of:
-- Claims-based information
+- Claims-based information (without financials)
 - Clinical Information (such as Lab Results, Allergies and Conditions)
+- Prior Authorization information
 
 This IG covers the exchange of this information using US Core and Da Vinci Health Record Exchange (HRex) Profiles. This superset of clinical profiles forms the Health Plan Member's Health History. 
 
 This IG covers the exchange of a Member's Health History in the following scenarios:
-- Provider requested Provider-Health Plan Exchange using CDS-Hooks and SMART-on-FHIR
+- Provider requested exchange using SMART-on-FHIR Bulk exchange
+- Health Plan Exchange using SMART-on-FHIR
 - Member-authorized Health Plan to Health Plan exchange
 - Member-authorized Health Plan to Third-Party Application exchange
 
@@ -5240,12 +5299,13 @@ The latter two scenarios are provided to meet the requirements identified in the
 **The Vocabulary, Value Sets and codings used to express data in this IG are subject to review and will be reconciled with**  [X12](http://www.x12.org).
 
 See the [Table of Contents](toc.html) for more information.
- (built Sat, Jan 6, 2024 03:03+0000+00:00)
+ (built Wed, Aug 14, 2024 19:57+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.us.davinci-pdex#2.1.0-ballot`
 * `hl7.fhir.us.davinci-pdex#2.0.0`
 * `hl7.fhir.us.davinci-pdex#2.0.0-ballot`
 * `hl7.fhir.us.davinci-pdex#1.0.0`
@@ -5302,6 +5362,7 @@ FHIR package for DGMC (Division of Governmental Hospitals Israel)
 
 **Versions**
 
+* `il.fhir.r4.dgmc#0.1.6`
 * `il.fhir.r4.dgmc#0.1.5`
 * `il.fhir.r4.dgmc#0.1.4`
 
@@ -6685,6 +6746,7 @@ Electronic Prescription Service
 
 * `uk.nhsdigital.medicines.r4.test#2.8.7-prerelease`
 * `uk.nhsdigital.medicines.r4.test#2.8.3-prerelease`
+* `uk.nhsdigital.medicines.r4.test#2.8.19-prerelease`
 * `uk.nhsdigital.medicines.r4.test#2.8.18-prerelease`
 * `uk.nhsdigital.medicines.r4.test#2.8.16-prerelease`
 * `uk.nhsdigital.medicines.r4.test#2.8.11-prerelease`
@@ -7567,6 +7629,7 @@ The purpose of SETP is to improve surgical performance in Ontario through the me
 
 **Versions**
 
+* `de.gematik.dev.epa.medication#1.1.0-alpha.6`
 * `de.gematik.dev.epa.medication#1.1.0-alpha.5`
 * `de.gematik.dev.epa.medication#1.1.0-alpha.4`
 
@@ -8051,6 +8114,7 @@ Die ePA-Medication Spezifikation
 
 **Versions**
 
+* `de.gematik.epa.medication#1.1.1`
 * `de.gematik.epa.medication#1.1.0-rc1`
 * `de.gematik.epa.medication#1.0.2`
 * `de.gematik.epa.medication#1.0.1`
@@ -12389,6 +12453,7 @@ Terminologies for Telematics Infrastructure (TI)
 
 **Versions**
 
+* `de.gematik.terminology#1.0.1`
 * `de.gematik.terminology#1.0.0`
 
 
