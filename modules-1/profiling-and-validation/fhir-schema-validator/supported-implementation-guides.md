@@ -169,6 +169,7 @@ NHS (England) National Services Implementation Guide
 * `uk.nhsdigital.r4.test#2.8.7-prerelease`
 * `uk.nhsdigital.r4.test#2.8.6-prerelease`
 * `uk.nhsdigital.r4.test#2.8.5-prerelease`
+* `uk.nhsdigital.r4.test#2.8.20-prerelease`
 * `uk.nhsdigital.r4.test#2.8.19-prerelease`
 * `uk.nhsdigital.r4.test#2.8.18-prerelease`
 * `uk.nhsdigital.r4.test#2.8.17-prerelease`
@@ -6746,6 +6747,7 @@ Electronic Prescription Service
 
 * `uk.nhsdigital.medicines.r4.test#2.8.7-prerelease`
 * `uk.nhsdigital.medicines.r4.test#2.8.3-prerelease`
+* `uk.nhsdigital.medicines.r4.test#2.8.20-prerelease`
 * `uk.nhsdigital.medicines.r4.test#2.8.19-prerelease`
 * `uk.nhsdigital.medicines.r4.test#2.8.18-prerelease`
 * `uk.nhsdigital.medicines.r4.test#2.8.16-prerelease`
@@ -7438,6 +7440,7 @@ Draft of used FHIR resource profiles in Koppeltaal 2.0.
 
 **Versions**
 
+* `koppeltaalv2.00#0.14.0-beta.4`
 * `koppeltaalv2.00#0.14.0-beta.3`
 * `koppeltaalv2.00#0.14.0-beta.2`
 * `koppeltaalv2.00#0.14.0-beta.1`
@@ -7815,6 +7818,7 @@ KBV Schluesseltabellen
 
 **Versions**
 
+* `kbv.all.st-rc#1.4.0`
 * `kbv.all.st-rc#1.3.0`
 * `kbv.all.st-rc#1.2.0`
 
