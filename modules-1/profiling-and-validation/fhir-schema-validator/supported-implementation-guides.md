@@ -4187,6 +4187,7 @@ PLSP Health Hub
 
 **Versions**
 
+* `healthhub.fhir.dk.core#1.0.8`
 * `healthhub.fhir.dk.core#1.0.7`
 * `healthhub.fhir.dk.core#1.0.6`
 * `healthhub.fhir.dk.core#1.0.5`
@@ -5728,12 +5729,13 @@ Package Release des ISiK Modul Terminplanung
 <details>
 <summary>Description</summary>
 
-FHIR profiles used in FHIR Publishing processes within Health New Zealand Te Whatu Ora (built Wed, Jul 17, 2024 05:09+0000+00:00)
+FHIR profiles used in FHIR Publishing processes within Health New Zealand Te Whatu Ora (built Fri, Aug 16, 2024 02:17+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `tewhatuora.digitaltooling#0.0.9`
 * `tewhatuora.digitaltooling#0.0.8`
 * `tewhatuora.digitaltooling#0.0.7`
 * `tewhatuora.digitaltooling#0.0.6`
@@ -9054,12 +9056,13 @@ The DK MedCom acknowledgement IG (built Mon, Feb 5, 2024 12:24+0100+01:00)
 <details>
 <summary>Description</summary>
 
-ImplementationGuide for Personal Health Devices (PHD), used in remote patient monitoring (e.g., weight scales, blood pressure cuffs, glucose monitors, pulse-oximeters, etc.). (built Thu, May 12, 2022 20:20+0000+00:00)
+ImplementationGuide for Personal Health Devices (PHD), used in remote patient monitoring (e.g., weight scales, blood pressure cuffs, glucose monitors, pulse-oximeters, etc.). (built Fri, Aug 16, 2024 03:08+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.uv.phd#2.0.0-ballot`
 * `hl7.fhir.uv.phd#1.0.0`
 * `hl7.fhir.uv.phd#0.3.0`
 * `hl7.fhir.uv.phd#0.2.0`
@@ -10809,12 +10812,13 @@ Profiles for the May profiling training
 <details>
 <summary>Description</summary>
 
-Pan-Canadian Patient Summary (PS-CA) 1.1.0 DFT - Trial Ballot Release to support Limited Production Rollouts (LPRs) of Patient Summary in Canada
+Pan-Canadian Patient Summary (PS-CA) 2.0.0 DFT - preBallot Release to support 2025 Projectathon and Limited Production Rollouts (LPRs) of Patient Summary in Canada
 
 </details>
 
 **Versions**
 
+* `ca.infoway.io.psca#2.0.0-DFT-preBallot`
 * `ca.infoway.io.psca#1.1.0`
 * `ca.infoway.io.psca#1.0.0`
 * `ca.infoway.io.psca#1.0.0-projectathon-pre`
