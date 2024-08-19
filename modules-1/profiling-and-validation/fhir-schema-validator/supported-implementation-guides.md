@@ -861,12 +861,13 @@ HL7 BE Laboratory WG Implementation Guide (built Thu, Sep 8, 2022 14:30+0200+02:
 <details>
 <summary>Description</summary>
 
-The CA Core+ project provides profiles based on the business, conceptual, and logical models in the pan-Canadian Health Data Content Framework. These models capture the data that is essential for clinical and business workflows to provide better health outcomes for Canadians.
+The CA Core+ project provides profiles based on the business, conceptual, and logical models in the pan-Canadian Health Data Content Framework Canadian Core for Data Interoperability (pCHDCF-CACDI). These models capture the data that is essential for clinical and business workflows to provide better health outcomes for Canadians.
 
 </details>
 
 **Versions**
 
+* `ca.infoway.io.core#0.3.0-dft-preballot`
 * `ca.infoway.io.core#0.2.0-dft`
 * `ca.infoway.io.core#0.2.0-dft-ballot`
 * `ca.infoway.io.core#0.1.0-dft`
