@@ -111,6 +111,7 @@ accept: text/yaml
 
 resourceType: Search
 id: Patient.identifier 
+name: identifier
 resource: 
  resourceType: Entity
  id: Patient
