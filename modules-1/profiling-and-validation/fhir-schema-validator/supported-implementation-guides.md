@@ -169,6 +169,7 @@ NHS (England) National Services Implementation Guide
 * `uk.nhsdigital.r4.test#2.8.7-prerelease`
 * `uk.nhsdigital.r4.test#2.8.6-prerelease`
 * `uk.nhsdigital.r4.test#2.8.5-prerelease`
+* `uk.nhsdigital.r4.test#2.8.21-prerelease`
 * `uk.nhsdigital.r4.test#2.8.20-prerelease`
 * `uk.nhsdigital.r4.test#2.8.19-prerelease`
 * `uk.nhsdigital.r4.test#2.8.18-prerelease`
@@ -4188,6 +4189,8 @@ PLSP Health Hub
 
 **Versions**
 
+* `healthhub.fhir.dk.core#1.0.10`
+* `healthhub.fhir.dk.core#1.0.9`
 * `healthhub.fhir.dk.core#1.0.8`
 * `healthhub.fhir.dk.core#1.0.7`
 * `healthhub.fhir.dk.core#1.0.6`
@@ -6750,6 +6753,7 @@ Electronic Prescription Service
 
 * `uk.nhsdigital.medicines.r4.test#2.8.7-prerelease`
 * `uk.nhsdigital.medicines.r4.test#2.8.3-prerelease`
+* `uk.nhsdigital.medicines.r4.test#2.8.21-prerelease`
 * `uk.nhsdigital.medicines.r4.test#2.8.20-prerelease`
 * `uk.nhsdigital.medicines.r4.test#2.8.19-prerelease`
 * `uk.nhsdigital.medicines.r4.test#2.8.18-prerelease`
@@ -11741,6 +11745,7 @@ Implementation Guide for the Ontario DHDR HL7 FHIR 4.0.0- work-in-progress versi
 
 **Versions**
 
+* `ca.on.oh-dhdr#4.0.2-alpha1.0.3`
 * `ca.on.oh-dhdr#4.0.2-alpha1.0.2`
 * `ca.on.oh-dhdr#4.0.2-alpha1.0.1`
 * `ca.on.oh-dhdr#4.0.2-alpha1.0.0`
@@ -12673,12 +12678,13 @@ Der PKV-Abgabedatensatz enthält die notwendigen Informationen für die Abrechnu
 <details>
 <summary>Description</summary>
 
-FHIR implementation options and guidance for medication REMS participants (built Fri, Apr 5, 2024 14:52+0000+00:00)
+FHIR implementation options and guidance for medication REMS participants (built Mon, Aug 19, 2024 20:02+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.us.medication-rems#1.0.0`
 * `hl7.fhir.us.medication-rems#1.0.0-ballot`
 
 
