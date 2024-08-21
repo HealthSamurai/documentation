@@ -157,6 +157,16 @@ GET /Organization/org-c/aidbox/Patient/pt-1
 {% endtab %}
 {% endtabs %}
 
+### Limitations
+
+Some Aidbox features do not respect Organization-based access control. The resources managing these features are inaccessible under the Organization API.
+
+For example, there is `SubsSubscription` resource.
+
+Any request to the `SubsSubscription` resource will return `OperationOutcome` with the `422` HTTP code and issue code `not-supported`.
+
+If `SubsSubscription` resource is created using regular API (not Organization API), Aidbox Subscriptions will send notifications irrespectively of Organization hierarchy.
+
 ## FHIR API over Organization resources
 
 {% tabs %}
