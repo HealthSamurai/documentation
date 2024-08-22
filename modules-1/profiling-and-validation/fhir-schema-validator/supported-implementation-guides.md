@@ -1102,6 +1102,7 @@ Envoi du rapport d’endoscopie au dépôt provincial
 
 **Versions**
 
+* `rapportendoscopiequebec.test#0.0.65`
 * `rapportendoscopiequebec.test#0.0.64`
 * `rapportendoscopiequebec.test#0.0.63`
 * `rapportendoscopiequebec.test#0.0.62`
@@ -4042,6 +4043,22 @@ de.ihe-d.terminology
 
 ---
 
+### CH IG (R4)
+
+<details>
+<summary>Description</summary>
+
+Implementation Guide CH IG (R4) for ... (built Tue, Aug 20, 2024 19:07+0000+00:00)
+
+</details>
+
+**Versions**
+
+* `ch.fhir.ig.ch-ig#1.2.0`
+
+
+---
+
 ### SMART App Launch
 
 
@@ -4842,12 +4859,13 @@ Put a description here
 <details>
 <summary>Description</summary>
 
-FHIR® Implementation Guide for the Electronic Laboratory Report of the Swiss Federal Office of Public Health (built Mon, Jun 17, 2024 08:46+0000+00:00)
+FHIR® Implementation Guide for the Electronic Laboratory Report of the Swiss Federal Office of Public Health (built Tue, Aug 20, 2024 16:23+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `ch.fhir.ig.ch-elm#1.4.0`
 * `ch.fhir.ig.ch-elm#1.3.1`
 * `ch.fhir.ig.ch-elm#1.3.0`
 * `ch.fhir.ig.ch-elm#1.2.0`
@@ -11846,6 +11864,7 @@ Abrechnungsinformationen des E-Rezeptes für den Patienten
 
 **Versions**
 
+* `de.gematik.erezept-patientenrechnung.r4#1.0.4`
 * `de.gematik.erezept-patientenrechnung.r4#1.0.3`
 * `de.gematik.erezept-patientenrechnung.r4#1.0.2`
 * `de.gematik.erezept-patientenrechnung.r4#1.0.1`
