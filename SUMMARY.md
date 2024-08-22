@@ -419,6 +419,7 @@
     * [FHIR versions](modules-1/aidbox-forms/aidbox-ui-builder-alpha/fhir-versions.md)
     * [Offline forms](modules-1/aidbox-forms/aidbox-ui-builder-alpha/offline-forms.md)
     * [Embedding UI Builder](modules-1/aidbox-forms/aidbox-ui-builder-alpha/embedding-builder.md)
+    * [Embedding Form Renderer](modules-1/aidbox-forms/aidbox-ui-builder-alpha/embedding-renderer.md)
     * [Forms multitenancy](modules-1/aidbox-forms/aidbox-ui-builder-alpha/forms-multitenancy.md)
     * [Template-based PDF generation](modules-1/aidbox-forms/aidbox-ui-builder-alpha/template-based-pdf-gen.md)
     * [Building reports using SQL on FHIR](modules-1/aidbox-forms/aidbox-ui-builder-alpha/building-reports-using-sql-on-fhir.md)
