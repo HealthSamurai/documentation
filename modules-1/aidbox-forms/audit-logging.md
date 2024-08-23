@@ -13,6 +13,7 @@ Audit Logging disabled by default and should be enabled via configuration.
 
 - [setup audit logging](../../modules-1/audit/setup-audit-logging.md)
 
+
 # Audit Logging in Aidbox Forms Module
 
 The Aidbox Forms module is a critical component for capturing information.
