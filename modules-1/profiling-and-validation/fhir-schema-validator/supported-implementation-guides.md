@@ -1102,6 +1102,7 @@ Envoi du rapport d’endoscopie au dépôt provincial
 
 **Versions**
 
+* `rapportendoscopiequebec.test#0.0.66`
 * `rapportendoscopiequebec.test#0.0.65`
 * `rapportendoscopiequebec.test#0.0.64`
 * `rapportendoscopiequebec.test#0.0.63`
@@ -4048,12 +4049,13 @@ de.ihe-d.terminology
 <details>
 <summary>Description</summary>
 
-Implementation Guide CH IG (R4) for ... (built Tue, Aug 20, 2024 19:07+0000+00:00)
+Implementation Guide CH IG (R4) for ... (built Wed, Aug 21, 2024 06:24+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `ch.fhir.ig.ch-ig#1.2.1`
 * `ch.fhir.ig.ch-ig#1.2.0`
 
 
