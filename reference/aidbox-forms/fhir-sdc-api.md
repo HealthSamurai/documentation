@@ -357,6 +357,7 @@ parameter:
 | [expiration](fhir-sdc-api.md#link-expiration-time)       | 0..1        | [Integer](http://hl7.org/fhir/R4/datatypes.html#integer) |
 | [theme](fhir-sdc-api.md#theme)                           | 0..1        | [String](http://hl7.org/fhir/R4/datatypes.html#string)   |
 | [read-only](fhir-sdc-api.md#read-only)                   | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#boolean) |
+| [app-name](fhir-sdc-api.md#read-only)                    | 0..1        | [String](http://hl7.org/fhir/R4/datatypes.html#string)   |
 
 #### allow-amend
 
@@ -420,6 +421,18 @@ Open form in read-only mode.
 name: read-only
 value:
   Boolean: true
+```
+
+#### app-name
+
+Application name that will be used in Audit logging when returned link was used.
+
+> Audit logging should be enabled via [configuartion](../../modules-1/audit/setup-audit-logging.md)
+
+```yaml
+- name: app-name
+  value
+    String: my-app
 ```
 
 ### Response
