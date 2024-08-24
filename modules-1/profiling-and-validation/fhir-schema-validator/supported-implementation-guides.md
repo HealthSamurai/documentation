@@ -5753,12 +5753,13 @@ Package Release des ISiK Modul Terminplanung
 <details>
 <summary>Description</summary>
 
-FHIR profiles used in FHIR Publishing processes within Health New Zealand Te Whatu Ora (built Fri, Aug 16, 2024 02:17+0000+00:00)
+FHIR profiles used in FHIR Publishing processes within Health New Zealand Te Whatu Ora (built Thu, Aug 22, 2024 04:30+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `tewhatuora.digitaltooling#0.0.10`
 * `tewhatuora.digitaltooling#0.0.9`
 * `tewhatuora.digitaltooling#0.0.8`
 * `tewhatuora.digitaltooling#0.0.7`
@@ -8259,6 +8260,7 @@ leumit FHIR entities
 
 **Versions**
 
+* `leumit.fhir.r4#0.4.0`
 * `leumit.fhir.r4#0.3.0`
 * `leumit.fhir.r4#0.2.0`
 * `leumit.fhir.r4#0.1.0`
@@ -10881,12 +10883,13 @@ customExtensions
 
 Der Gesetzgeber hat im Zuge des „Gesetzes für eine bessere Versorgung durch Digitalisierung und Innovation“ im Rahmen des § 33a SGB V festgelegt, dass Versicherte einen Leistungsanspruch auf Versorgung mit digitalen Gesundheitsanwendungen haben, welche Medizinprodukte niedriger Risikoklasse darstellen, deren Hauptfunktion wesentlich auf digitalen Technologien beruht und die dazu bestimmt sind, bei den Versicherten oder in der Versorgung durch Leistungserbringer die Erkennung, Überwachung, Behandlung oder Linderung von Krankheiten oder die Erkennung, Behandlung, Linderung oder Kompensierung von Verletzungen oder Behinderungen zu unterstützen. Damit wurde der Kreis der auch digital verordnungsfähigen Produkte und Leistungen gemäß § 86 SGB V Abs. 1 Satz 1 Nummer 2 auf digitale Gesundheitsanwendungen erweitert. 
 
-Weitere technischen Vorgaben zur Verwendung der Profile finden sich unter https://update.kbv.de/ita-update/DigitaleMuster/eVDGA/ in dem Dokument [KBV_ITA_VGEX_Technische_Anlage_EVDGA].
+Weitere technischen Vorgaben zur Verwendung der Profile finden sich unter https://update.kbv.de/ita-update/DigitaleMuster/eVDGA/ in dem Dokument [KBV_ITA_VGEX_Technische_Anlage_eVDGA].
 
 </details>
 
 **Versions**
 
+* `kbv.itv.evdga#1.0.0`
 * `kbv.itv.evdga#1.0.0-cc`
 
 
