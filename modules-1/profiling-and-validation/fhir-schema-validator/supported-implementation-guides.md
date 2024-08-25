@@ -4528,6 +4528,7 @@ Implementation Guide for the Mobile access to Health Documents (epr-mhealth) Pro
 
 **Versions**
 
+* `de.netzwerk-universitaetsmedizin.ebm-cpg#1.0.1`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#1.0.0`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.10.0`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.9.2`
