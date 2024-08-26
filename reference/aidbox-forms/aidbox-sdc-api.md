@@ -2,22 +2,24 @@
 description: Custom SDC operations supported by Aidbox Forms.
 ---
 
+# Aidbox SDC API
+
 * [$generate-link](aidbox-sdc-api.md#generate-a-link-to-a-questionnaireresponse-usdgenerate-link)
 
-# Generate a link to a QuestionnaireResponse - $generate-link
+## Generate a link to a QuestionnaireResponse - $generate-link
 
 This operation generates a link to a web page to be used to continue answering a specified [QuestionnaireResponse](https://hl7.org/fhir/R4/questionnaireresponse.html).
 
-## URLs
+### URLs
 
 ```
 POST [base]/QuestionnaireResponse/[id]/$generate-link
 ```
 
-## Parameters
+### Parameters
 
 {% hint style="warning" %}
-NOTE:  All parameters wrapped with  `Parameters object`
+NOTE: All parameters wrapped with `Parameters object`
 
 ```yaml
 resourceType: Parameters
@@ -28,7 +30,7 @@ parameter:
 {% endhint %}
 
 | Parameter                                                  | Cardinality | Type                                                     |
-|------------------------------------------------------------|-------------|----------------------------------------------------------|
+| ---------------------------------------------------------- | ----------- | -------------------------------------------------------- |
 | [allow-amend](aidbox-sdc-api.md#allow-amend)               | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#boolean) |
 | [redirect-on-submit](aidbox-sdc-api.md#redirect-on-submit) | 0..1        | [String](http://hl7.org/fhir/R4/datatypes.html#string)   |
 | [redirect-on-save](aidbox-sdc-api.md#redirect-on-save)     | 0..1        | [String](http://hl7.org/fhir/R4/datatypes.html#string)   |
@@ -37,7 +39,7 @@ parameter:
 | [read-only](aidbox-sdc-api.md#read-only)                   | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#boolean) |
 | [app-name](aidbox-sdc-api.md#read-only)                    | 0..1        | [String](http://hl7.org/fhir/R4/datatypes.html#string)   |
 
-### allow-amend
+#### allow-amend
 
 Whether the generated link will allow amending and re-submitting the form.
 
@@ -47,7 +49,7 @@ value:
   Boolean: true
 ```
 
-### redirect-on-submit
+#### redirect-on-submit
 
 A URL where the user will be redirected to after successfully submitting the form.
 
@@ -57,7 +59,7 @@ value:
   String: https://example.com/submit-hook?questionnaire=123
 ```
 
-### redirect-on-save
+#### redirect-on-save
 
 A URL where the user will be redirected to after hitting Save button.
 
@@ -69,10 +71,9 @@ value:
   String: https://example.com/submit-hook?questionnaire=123
 ```
 
-### expiration
+#### expiration
 
 Link expiration period (days)
-
 
 ```yaml
 name: expiration
@@ -82,8 +83,7 @@ value:
 
 > By default thir parameter = 7 days
 
-
-### theme
+#### theme
 
 Form theme.
 
@@ -93,7 +93,7 @@ value:
   String: hs-theme
 ```
 
-### read-only
+#### read-only
 
 Show form in a **read-only** mode
 
@@ -103,7 +103,7 @@ value:
   Boolean: true
 ```
 
-#### app-name
+**app-name**
 
 Application name that will be used in Audit logging when returned link was used.
 
@@ -115,8 +115,7 @@ Application name that will be used in Audit logging when returned link was used.
     String: my-app
 ```
 
-
-## Usage Example
+### Usage Example
 
 {% tabs %}
 {% tab title="Request" %}
@@ -136,7 +135,6 @@ parameter:
 {% endtab %}
 
 {% tab title="Success Response" %}
-
 HTTP status: 200
 
 ```yaml
@@ -145,7 +143,6 @@ link: http://forms.aidbox.io/ui/sdc#/questionnaire-response/12c1178c-70a9-4e02-a
 {% endtab %}
 
 {% tab title="Failure Response" %}
-
 HTTP status: 422
 
 ```yaml
@@ -162,5 +159,10 @@ issue:
 
 ```
 {% endtab %}
-
 {% endtabs %}
+
+> Aidbox uses HS256 to sign JWT token by default. To use RS256 you need to set&#x20;
+>
+> `BOX_AUTH_KEYS_PRIVATE` and `BOX_AUTH_KEYS_PUBLIC` environment variables.
+>
+> [https://docs.aidbox.app/reference/configuration/environment-variables/optional-environment-variables#set-up-rsa-private-public-keys-and-secret](https://docs.aidbox.app/reference/configuration/environment-variables/optional-environment-variables#set-up-rsa-private-public-keys-and-secret)
