@@ -275,9 +275,11 @@ Enables `_debug=policy` for [access policy debugging](https://docs.aidbox.app/se
 AIDBOX_ZEN_ENTRYPOINT=<entrypoint>
 ```
 
-`entrypoint` is in format specified [here](broken-reference).
+Specifies entry point for loading Aidbox configuration. Example:
 
-Specifies entry point for loading Aidbox configuration.
+```
+AIDBOX_ZEN_ENTRYPOINT=main/box
+```
 
 ### AIDBOX\_ZEN\_DEV\_MODE
 
