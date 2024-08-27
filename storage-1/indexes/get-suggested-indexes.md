@@ -16,7 +16,7 @@ Supported FHIR Search parameters types:
 * reference
 * uri
 
-Supported [underscored parameters](broken-reference)
+Supported [underscored parameters](../../api-1/fhir-api/search-1/search-parameters-list/)
 
 * \_id
 * \_ilike
@@ -24,7 +24,7 @@ Supported [underscored parameters](broken-reference)
 * \_content
 * \_createdAt
 * \_lastUpdated
-* [Dot expressions](broken-reference)
+* [Dot expressions](../../api-1/fhir-api/search-1/.-expressions.md)
 
 Not supported:
 
