@@ -399,7 +399,7 @@ Enables `su` request header [functionalty](https://docs.aidbox.app/security-and-
 BOX_FEATURES_VALIDATION_SKIP_REFERENCE=true
 ```
 
-Enables skip resource reference validation [functionality](broken-reference).
+Enables skip resource reference validation [functionality](../../../profiling-and-validation/profiling.md).
 
 ### BOX\_WEB\_MAX\_\_BODY
 
