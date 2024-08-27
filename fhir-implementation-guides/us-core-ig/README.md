@@ -11,11 +11,3 @@ US Core IG contains the following FHIR artifacts: Profiles, Extensions, Terminol
 {% content-ref url="us-core-ig-support-reference.md" %}
 [us-core-ig-support-reference.md](us-core-ig-support-reference.md)
 {% endcontent-ref %}
-
-## Enable IG
-
-If you want to learn how to enable US Core IG in Aidbox, proceed to the following page:
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}

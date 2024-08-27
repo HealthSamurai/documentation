@@ -20,7 +20,7 @@ The easiest way to test Basic Auth is to run through the [Aidbox Sandbox UI](./#
 
 ### Register Client
 
-The first step is to create resource [Client](https://github.com/Aidbox/documentation/blob/master/security-and-access-control-1/auth/broken-reference/README.md) with id & secret and add `'basic'` to it's `grant_types` collection:
+The first step is to create resource [Client](../../modules-1/security-and-access-control/readme-1/overview.md) with id & secret and add `'basic'` to it's `grant_types` collection:
 
 ```yaml
 POST /Client

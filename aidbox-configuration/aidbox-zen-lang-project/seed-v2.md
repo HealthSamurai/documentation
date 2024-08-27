@@ -21,7 +21,7 @@ Seed v2 was designed to make a reliable bridge between [aidbox-project on zen](.
 
 The second reason is to bring interactive experience for meta-resources configuration which is incredibly useful while development.
 
-Seed v2 service respects [Aidbox project reloading](https://github.com/Aidbox/documentation/blob/master/aidbox-configuration/aidbox-zen-lang-project/broken-reference/README.md) as well. It allows you to synchronise resources without restarting Aidbox.
+Seed v2 service respects [Aidbox project reloading](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox\_zen\_dev\_mode) as well. It allows you to synchronise resources without restarting Aidbox.
 
 If you provide invalid resource within seed v2, Aidbox won't start, reporting an error. In case of reloading Aidbox project with an invalid resource, Aidbox will report an error in console.
 
