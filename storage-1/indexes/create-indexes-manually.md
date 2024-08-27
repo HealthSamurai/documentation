@@ -1,7 +1,7 @@
 # Create indexes manually
 
 {% hint style="info" %}
-The following indexes cover regular searches, e.g. Patient?name=Smith. Please [contact us ](broken-reference)if you need more examples.&#x20;
+The following indexes cover regular searches, e.g. Patient?name=Smith. Please [contact us ](../../contact-us.md)if you need more examples.&#x20;
 {% endhint %}
 
 ### Account
