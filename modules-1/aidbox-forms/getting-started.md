@@ -41,10 +41,6 @@ You can try the Aidbox Forms module, edit test forms, create new ones, see how t
 
 2\. Run Aidbox locally
 
-{% content-ref url="broken-reference/" %}
-[broken-reference](broken-reference/)
-{% endcontent-ref %}
-
 3\. Clone [aidbox-zen-sdc](https://github.com/HealthSamurai/aidbox-zen-sdc) repository
 
 4\. Configure project with a license. You need to create `.env file` in the root of repository (by copying from .env.tpl) and update AIDBOX\_LICENSE with the generated license key that you saved
