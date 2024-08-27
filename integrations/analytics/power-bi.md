@@ -8,7 +8,7 @@ description: Export Aidbox data to Power BI
 
 * Use `stable`, `latest` or `edge` Aidbox version
 * Set up the correct Aidbox instance URL in `AIDBOX_BASE_URL` environment variable
-* Set [`AIDBOX_COMPLIANCE`](broken-reference) environment variable
+* Set [`AIDBOX_COMPLIANCE`](../../reference/configuration/environment-variables/optional-environment-variables.md#enable-aidbox-compliance-mode) environment variable
 
 ## Authenticate Power BI connection in Aidbox
 
@@ -40,5 +40,3 @@ Configure integration with Azure Active Directory that provides organizational a
 ## Connect Power BI to Aidbox
 
 {% embed url="https://docs.microsoft.com/en-us/power-query/connectors/fhir/fhir#connect-to-a-fhir-server-from-power-query-desktop" %}
-
-###
