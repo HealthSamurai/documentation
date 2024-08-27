@@ -4,8 +4,8 @@ The HL7 v2 pipeline is the next step in [HL7v2 Aidbox integration](hl7-v2-integr
 
 ## Quick start
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="../../getting-started/run-aidbox-locally-with-docker/run-aidbox-locally-using-aidbox-configuraiton-project.md" %}
+[run-aidbox-locally-using-aidbox-configuraiton-project.md](../../getting-started/run-aidbox-locally-with-docker/run-aidbox-locally-using-aidbox-configuraiton-project.md)
 {% endcontent-ref %}
 
 ## About HL7 v2 parser
