@@ -1,12 +1,8 @@
 # Aidbox SQL functions
 
 {% hint style="info" %}
-This page is in progress. Please [contact us](broken-reference) if you need more SQL functions to be documented.
+This page is in progress. Please [contact us](../contact-us.md) if you need more SQL functions to be documented.
 {% endhint %}
-
-
-
-
 
 ### knife\_extract
 
