@@ -160,7 +160,7 @@ extension:
        display: Asian Indian
 ```
 
-Read more about [/$to-format Operation](broken-reference).
+Read more about [/$to-format Operation](../../app-development-guides/usdto-format-fhir-aidbox.md).
 
 The response should be:
 
