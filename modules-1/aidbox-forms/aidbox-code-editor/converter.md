@@ -21,7 +21,7 @@ Aidbox Forms supports
 * automatic SDCDocument convertion to QuestionnaireResponse resource on SDCDocument save.
 * Form rules conversion to human-readable description.
 
-> These features can be configured via [api-constructor](broken-reference) in zen-project.
+> These features can be configured via [api-constructor](../../../aidbox-configuration/aidbox-api-constructor.md) in zen-project.
 
 You need to configure your `aidbox/system` with `sdc-service` and it's configuration.
 
