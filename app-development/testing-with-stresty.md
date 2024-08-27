@@ -147,7 +147,7 @@ Test results: 5 passed,
               0 skipped.
 ```
 
-You can check your box, it now has a patient. Access your [REST Console](broken-reference) and make the request:
+You can check your box, it now has a patient. Access your [REST Console](../overview/aidbox-ui/rest-console-1.md) and make the request:
 
 {% tabs %}
 {% tab title="Request" %}
