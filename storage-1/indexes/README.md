@@ -16,7 +16,7 @@ Aidbox provides mechanisms to
 
 Aidbox uses [PostgreSQL](https://www.postgresql.org/) database for storage. Most of resource data is contained in [_resource_](../database.md) column with [_jsonb_](https://www.postgresql.org/docs/current/datatype-json.html) type.
 
-Consider simple example: _active_ searh parameter for _Patient_ resource.
+Consider simple example: _active_ search parameter for _Patient_ resource.
 
 Let's try the search query
 
