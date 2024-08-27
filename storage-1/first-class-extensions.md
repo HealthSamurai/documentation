@@ -178,7 +178,7 @@ extensionUrl: urn:extension:requestedOrganizationDepartment
     URL which will be used to create `extension` element in FHIR format. **If omitted, Attribute won't be transformed in FHIR format**
 
 {% hint style="info" %}
-Note: you can not use Attributes and [zen profiles](broken-reference) on the same resource at the same time
+Note: you can not use Attributes and zen profiles on the same resource at the same time
 {% endhint %}
 
 ## Use your extension
