@@ -52,8 +52,8 @@
     * [Ability to create custom components and reuse them in other forms](broken-reference)
     * [Supported different versions depending on FHIR server version](broken-reference)
     * Added open choice widget
-    * Published guides on [how to populate form with patient demographic data](broken-reference); [how to populate form with patient weight, height](broken-reference); [how to populate form with patient allergies](broken-reference); [how to populate form with data from another form during the visit](broken-reference)
-    * [Implemented printing form or basic PDF generation](broken-reference)
+    * Published guides on [how to populate form with patient demographic data](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to.md); [how to populate form with patient weight, height](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to.md#how-to-populate-form-with-patient-weight-height); [how to populate form with patient allergies](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to.md#how-to-populate-form-with-patient-allergies); [how to populate form with data from another form during the visit](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to.md#how-to-populate-form-with-data-from-another-form-during-the-visit)
+    * [Implemented printing form or basic PDF generation](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/printing-forms.md)
     * Improved UI Builder user experience via preview form button, quick search for a field on the form or in the outline, etc
     * Ability to enable the outline in form preview for form navigation
     * Ability to show or hide option's scores on the form
@@ -65,7 +65,7 @@
 * SQL on FHIR engine
   * Enhanced [SQL on FHIR® (v2.0) spec](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/index.html) test coverage. The SQL on FHIR coverage report is available[ here](https://fhir.github.io/sql-on-fhir-v2/#implshttps://fhir.github.io/sql-on-fhir-v2/#impls).
 * Validation
-  * Released [FHIR schema validation engine](broken-reference) (alpha). This validation engine is set to replace the existing [Zen Schema](../../profiling-and-validation/profiling-with-zen-lang/) and [JSON Schema](broken-reference) validation engines.
+  * Released [FHIR schema validation engine](broken-reference) (alpha). This validation engine is set to replace the existing [Zen Schema](../../profiling-and-validation/profiling-with-zen-lang/) and JSON Schema validation engines.
   * Launched [FHIR IGs Repository](../../modules-1/profiling-and-validation/fhir-schema-validator/supported-implementation-guides.md) (alpha). Aidbox now lets you introspect and load FHIR IGs directly from a mirrored version of **packages2.fhir.org** into your Aidbox instance, either through the UI or configuration files
 * [Aidbox Forms](../../modules-1/aidbox-forms.md)
   * UI builder updates (FHIR Questionnaire-based):
@@ -103,7 +103,7 @@
     * Ability to amend form using a shared link
     * Supported attachment item
     * Ability to add regex validation
-    * [Supported form versioning](broken-reference)
+    * [Supported form versioning](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-settings.md)
 * [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
   * Support built-in rule based deduplication
   * Mapping fixes, bug fixes
@@ -321,7 +321,7 @@
   * Added new supported sections:
     * Functional Status, Health Concerns, Mental Status, Plan of Treatment, Payers, Family History, Nutrition, and Medical Equipment
 * Security and access control
-  * Introduced [AuditEvent viewer](broken-reference)
+  * Introduced [AuditEvent viewer](../../modules-1/audit/)
 * [Aidbox Forms](../../modules-1/aidbox-forms.md)
   * Added integration with Aidbox [Workflow Engine](../../modules-1/workflow-engine/): add task to launch form
   * Added minor features:
