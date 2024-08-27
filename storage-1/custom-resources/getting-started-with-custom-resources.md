@@ -1,9 +1,5 @@
 # Custom Resources using Entity
 
-All examples from this tutorial you can run in Postman. Here's the [web view](https://documenter.getpostman.com/view/5552124/RWgxsu5Y) of these examples in Postman.
-
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/view-collection/946aa4df5535c073ce00?referrer=https%3A%2F%2Fapp.getpostman.com%2Frun-collection%2F946aa4df5535c073ce00%23%3Fenv%5BAidbox.Cloud%5D%3DW3sia2V5IjoiYmFzZSIsInZhbHVlIjoiaHR0cHM6Ly9uZXdlaHIuYWlkYm94LmFwcCIsImRlc2NyaXB0aW9uIjoiIiwiZW5hYmxlZCI6dHJ1ZX1d&\_ga=2.116593734.1133756186.1540376522-1595564802.1538573158)
-
 ## Defining a Custom Resource
 
 Sometimes your data does not fit any existing FHIR resources. It is not always obvious that your data _cannot_ be translated to FHIR because of some FHIR  generalizations. The right first step is to go to [FHIR com](https://t.me/aidbox)[unity chat](https://t.me/aidbox) and ask your specific question about mapping to FHIR, or contact Health Samurai modeling team about your concern. If you are still sure that there is no appropriate resource in FHIR or it takes too much time to wait for it, you can define your own **Custom Resources** in [Aidbox](https://www.health-samurai.io/aidbox)**.**
