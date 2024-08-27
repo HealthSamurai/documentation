@@ -39,10 +39,6 @@ FROM "patient"
 LIMIT 10
 ```
 
-## Custom Queries
-
-You can define and expose over REST API sophisticated queries in SQL on FHIR data using [Custom Queries](broken-reference).
-
 ## Tutorials
 
 Check out our video tutorial about SQL on FHIR in PostgreSQL:
