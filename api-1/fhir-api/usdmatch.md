@@ -112,10 +112,6 @@ entry:
 
 ## See also
 
-{% content-ref url="https://github.com/Aidbox/documentation/blob/master/api-1/fhir-api/broken-reference/README.md" %}
-[https://github.com/Aidbox/documentation/blob/master/api-1/fhir-api/broken-reference/README.md](https://github.com/Aidbox/documentation/blob/master/api-1/fhir-api/broken-reference/README.md)
-{% endcontent-ref %}
-
 {% content-ref url="../../reference/rpc-reference/aidbox/mdm/aidbox.mdm-match.md" %}
 [aidbox.mdm-match.md](../../reference/rpc-reference/aidbox/mdm/aidbox.mdm-match.md)
 {% endcontent-ref %}
