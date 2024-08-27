@@ -1,7 +1,7 @@
 # US Core IG support reference
 
 {% hint style="warning" %}
-This reference is a work in progress. Please, [contact us](broken-reference) if have any questions.
+This reference is a work in progress. Please, [contact us](../../contact-us.md) if have any questions.
 {% endhint %}
 
 ## Supported versions
@@ -11,10 +11,6 @@ Currently supported version is `5.0.1`. It is available via this URL: `https://g
 Historical versions `2.1.0`, `3.0.0`, `3.0.1`, `3.1.0`, `3.1.1`, `3.2.0`, `4.0.0`, `4.1.0` and `5.0.0` support is a work in progress. You can try them out by enabling via zip URL. List of URLs is available [here](https://github.com/zen-lang/fhir/releases/latest).
 
 ## Supported artifacts
-
-{% hint style="info" %}
-Please, [contact us](broken-reference) if you want to use some of IG functions that are not currently supported.
-{% endhint %}
 
 ### Profiles
 
