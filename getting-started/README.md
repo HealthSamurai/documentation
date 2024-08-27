@@ -16,10 +16,6 @@ Discover how to start with Aidbox in just a few minutes.
 [run-aidbox-on-managed-postgresql.md](run-aidbox-on-managed-postgresql.md)
 {% endcontent-ref %}
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
 {% content-ref url="run-aidbox-in-kubernetes/" %}
 [run-aidbox-in-kubernetes](run-aidbox-in-kubernetes/)
 {% endcontent-ref %}
