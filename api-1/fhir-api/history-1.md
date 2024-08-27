@@ -8,8 +8,6 @@ description: History operation
 
 The history operation retrieves the history of either a particular resource, all resources of a given type, or all resources supported by the system. The operation is performed by HTTP `GET` command. See the FHIR documentation [http://hl7.org/fhir/http.html#history](http://hl7.org/fhir/http.html#history) for more details.
 
-All sample requests are available in the Postman collection:[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/view-collection/81e23283893f85027f4f?referrer=https%3A%2F%2Fapp.getpostman.com%2Frun-collection%2F81e23283893f85027f4f%23%3Fenv\[Aidbox.Cloud]%3DW3sia2V5IjoiYmFzZTEiLCJ2YWx1ZSI6Imh0dHBzOi8vbWVyZWRpdGguYWlkYm94LmFwcCIsImRlc2NyaXB0aW9uIjoiIiwiZW5hYmxlZCI6ZmFsc2V9LHsia2V5IjoiYmFzZSIsInZhbHVlIjoiaHR0cHM6Ly9wYXZseXNoaW5hMjAxODExMDkuYWlkYm94LmFwcCIsImRlc2NyaXB0aW9uIjoiIiwiZW5hYmxlZCI6dHJ1ZX1d&\_ga=2.191880237.625263863.1543359065-654445837.1543359065)
-
 | Operation Scope   | Request                                                                 | Aidbox          |
 | ----------------- | ----------------------------------------------------------------------- | --------------- |
 | Specific Resource | `GET /<RESOURCE_TYPE>/<ID>/_history{?[parameters]&_format=[mime-type]}` | `Supported`     |
