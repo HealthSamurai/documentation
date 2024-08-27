@@ -7,9 +7,12 @@ description: Define and use SearchParameter resource
 SearchParameter is a special meta-resource, which describes which part of resource and how you want to make searchable. Aidbox is coming with predefined set of search params for different resource types, but you can define new search params on-fly.
 
 {% hint style="warning" %}
-Aidbox SearchParameter has its own, concise structure, which is not the same as FHIR SearchParameters.\
-To import your own FHIR SearchParameters you have to convert them into Aidbox representation.
+When [FHIRSchema mode](../../../modules-1/profiling-and-validation/fhir-schema-validator.md) is set (which is default behavior), SearchParameter is FHIR [SearchParameter](https://www.hl7.org/fhir/searchparameter.html) resource.
+
+When FHIRSchema mode is not set, Aidbox expects SearchParameter resource to have its own structure, which is not the same as FHIR SearchParameters. In this case to import your own FHIR SearchParameters you have to convert them into Aidbox representation.
 {% endhint %}
+
+## Aidbox SearchParameter
 
 Here is example of Patient.name search parameter:
 
