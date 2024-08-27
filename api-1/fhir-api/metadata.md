@@ -184,11 +184,4 @@ To get metadata in the internal Aidbox format, use [`/$metadata?_format=yaml`](h
 | ---- | ------ | -------------------------------------------------------------- |
 | path | string | Path to specific part of metadata (for example Entity.Patient) |
 
-{% tabs %}
-{% tab title="200 " %}
-```
-```
-{% endtab %}
-{% endtabs %}
-
 Capability statements can become quite large; servers are encouraged to support the [`_summary`](http://hl7.org/fhir/2018Sep/search.html#summary) and [`_elements`](http://hl7.org/fhir/2018Sep/search.html#elements) parameters on the capabilities interaction, though this is not required. In addition, servers are encouraged to implement the [$subset](http://hl7.org/fhir/2018Sep/capabilitystatement-operation-subset.html) and [$implements](http://hl7.org/fhir/2018Sep/capabilitystatement-operation-implements.html) operations to make it easy for a client to check conformance.
