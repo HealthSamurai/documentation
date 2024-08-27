@@ -26,7 +26,7 @@ Enabling extensions allows Aidbox to validate its rules and constraints on a res
 
 ### Terminology
 
-Loading a terminology into Aidbox allows you to use [Terminology API](broken-reference) and also to validate value set bindings in resources. If a terminology is not loaded you can still save resources, but no validation of the terminology bindings will be applied.
+Loading a terminology into Aidbox allows you to use [Terminology API](../../modules-1/terminology/) and also to validate value set bindings in resources. If a terminology is not loaded you can still save resources, but no validation of the terminology bindings will be applied.
 
 #### Value Sets
 
