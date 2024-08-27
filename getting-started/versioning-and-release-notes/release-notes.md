@@ -65,7 +65,7 @@
 * SQL on FHIR engine
   * Enhanced [SQL on FHIR® (v2.0) spec](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/index.html) test coverage. The SQL on FHIR coverage report is available[ here](https://fhir.github.io/sql-on-fhir-v2/#implshttps://fhir.github.io/sql-on-fhir-v2/#impls).
 * Validation
-  * Released [FHIR schema validation engine](broken-reference) (alpha). This validation engine is set to replace the existing [Zen Schema](../../profiling-and-validation/profiling-with-zen-lang/) and JSON Schema validation engines.
+  * Released [FHIR schema validation engine](../../modules-1/profiling-and-validation/fhir-schema-validator.md) (alpha). This validation engine is set to replace the existing [Zen Schema](../../profiling-and-validation/profiling-with-zen-lang/) and JSON Schema validation engines.
   * Launched [FHIR IGs Repository](../../modules-1/profiling-and-validation/fhir-schema-validator/supported-implementation-guides.md) (alpha). Aidbox now lets you introspect and load FHIR IGs directly from a mirrored version of **packages2.fhir.org** into your Aidbox instance, either through the UI or configuration files
 * [Aidbox Forms](../../modules-1/aidbox-forms.md)
   * UI builder updates (FHIR Questionnaire-based):
