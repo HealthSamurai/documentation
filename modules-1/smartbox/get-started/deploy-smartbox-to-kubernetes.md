@@ -70,7 +70,7 @@ The `smartbox.yaml` is the k8s compiled templates configuration. The configurati
 * AIDBOX\_CLIENT\_SECRET: portal-secret
 * BOX\_SMARTBOX\_SANDBOX\_\_URL: http://sandbox
 * BOX\_SMARTBOX\_SANDBOX\_\_ADMIN: admin
-* BOX\_BULK\_\_STORAGE\_GCP\_\* values. See the [documentation](broken-reference)
+* BOX\_BULK\_\_STORAGE\_GCP\_\* values. See the [documentation](../../../storage-1/s3-compatible-storages/gcp-cloud-storage.md)
 
 {% hint style="warning" %}
 BOX\_SMARTBOX\_SANDBOX\_\_BASIC is deprecated. Use BOX\_SMARTBOX\_SANDBOX\_\_ADMIN instead
