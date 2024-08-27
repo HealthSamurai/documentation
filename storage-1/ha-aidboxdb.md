@@ -171,7 +171,7 @@ jdbc-uri:  120 bytes
 uri:       101 bytes
 ```
 
-2. Now you can set up this parameter for the Aidbox database connection. Look at [Install Aidbox in Kubernetes](broken-reference) tutorial
+2. Now you can set up this parameter for the Aidbox database connection. Look at [Install Aidbox in Kubernetes](../getting-started/run-aidbox-in-kubernetes/) tutorial
 
 {% code title="Aidbox ConfigMap" %}
 ```yaml
