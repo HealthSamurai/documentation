@@ -1,53 +1,48 @@
-# \[WIP] Dynamic SubscriptionTopic with destinations
+# \[WIP] AidboxSubscriptionTopic with destinations
 
 {% hint style="danger" %}
 **Feature Under Development**\
 \
-This feature is currently under development and will be available as a beta version in the upcoming release. Please note that this feature is subject to change and may contain incomplete or experimental functionality.&#x20;
+This feature is currently under development and will be available as a beta version in the upcoming release. Please note that this feature is subject to change and may contain incomplete or experimental functionality.
 {% endhint %}
 
-This Subscription feature allows users to subscribe to changes in FHIR resources and receive notifications sent to various destinations, such as Kafka.&#x20;
+This Subscription feature allows users to subscribe to changes in FHIR resources and receive notifications sent to various destinations, such as Kafka.
 
 ## Key Components
 
-1. [**SubscriptionTopic**](https://www.hl7.org/fhir/subscriptiontopic.html) - FHIR resource that defines what is available for subscription, and specifies available filters and shapes of the notification.
-2. **TopicDestination** - custom Aidbox resource that is responsible for defining where and how the notifications triggered by a `SubscriptionTopic` should be sent. This resource provides the flexibility to specify different types of destinations.
+1. **AidboxSubscriptionTopic** - a custom Aidbox resource modeled after the [FHIR R5 SubscriptionTopic](https://www.hl7.org/fhir/subscriptiontopic.html) resource. It defines the available subscription options and specifies the filters and notification shapes that can be used.
+2. **TopicDestination** - custom Aidbox resource that is responsible for defining where and how the notifications triggered by a `AidboxSubscriptionTopic` should be sent. This resource provides the flexibility to specify different types of destinations.
 
-## SubscriptionTopic
+## AidboxSubscriptionTopic
 
-The FHIR SubscriptionTopic resource is available since the R4B version. To make this feature work with FHIR R4 version Aidbox will import it from FHIR R5.
+This resource describes data sources for Subscriptions. It allows to subscribe events in Aidbox and filter them by user-defined triggers. Triggers are defined under `AidboxSubscriptionTopic.resourceTrigger` property. All supported `resourceTrigger` properties are available in the table below:
 
-The current implementation does not support all `SubscriptionTopic.resourceTrigger` properties/capabilities.  All supported `SubscriptionTopic.resourceTrigger` properties are available in the table below:
-
-<table data-full-width="true"><thead><tr><th width="257">Property</th><th width="91">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>resource</code> *</td><td>uri</td><td>Resource (reference to definition) for this trigger definition. It is binding to <a href="https://www.hl7.org/fhir/valueset-all-resource-types.html">All Resource Types</a>.</td></tr><tr><td><code>supportedInteraction</code></td><td>code</td><td>create | update | delete</td></tr><tr><td><code>fhirPathCriteria</code></td><td>string</td><td>FHIRPath based trigger rule. Only current resource state is allowed.</td></tr><tr><td><code>description</code></td><td>string</td><td>Text representation of the event trigger.</td></tr></tbody></table>
+<table data-full-width="true"><thead><tr><th width="257">Property</th><th width="91">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>resource</code> *</td><td>uri</td><td>Resource (reference to definition) for this trigger definition. It is binding to <a href="https://www.hl7.org/fhir/valueset-all-resource-types.html">All Resource Types</a>.</td></tr><tr><td><code>fhirPathCriteria</code></td><td>string</td><td>FHIRPath based trigger rule. Only current resource state is allowed.</td></tr><tr><td><code>description</code></td><td>string</td><td>Text representation of the event trigger.</td></tr></tbody></table>
 
 \* required property.
 
 {% hint style="warning" %}
-The current beta version does not support `eventTrigger`, `canFilterBy`,`notificationShape` capabilities of SubscriptionTopic.
+The current version of AidboxSubscriptionTopic resource does not support `eventTrigger`, `canFilterBy`,`notificationShape` capabilities of FHIR R5 SubscriptionTopic.
 {% endhint %}
 
-To create `SubscriptionTopic` resource use FHIR API:
+To create `AidboxSubscriptionTopic` resource use FHIR API:
 
 ```json
-POST /fhir/SubscriptionTopic
+POST /fhir/AidboxSubscriptionTopic
 content-type: application/json
 accept: application/json
 
 {
-  "resourceType": "SubscriptionTopic",
+  "resourceType": "AidboxSubscriptionTopic",
   "id": "example",
-  "url": "http://example.org/FHIR/R5/SubscriptionTopic/example",
+  "url": "http://example.org/AidboxSubscriptionTopic/example",
   "status": "active",
-  "description": "Example topic for completed encounters",
+  "description": "Example topic for completed QuestionnaireResponses",
   "resourceTrigger": [
     {
-      "description": "An Encounter has been completed",
-      "resource": "http://hl7.org/fhir/StructureDefinition/Encounter",
-      "supportedInteraction": [
-        "update"
-      ],
-      "fhirPathCriteria": "(%current.status = 'completed')"
+      "description": "An QuestionnaireResponse has been completed",
+      "resource": "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse",
+      "fhirPathCriteria": "status = 'completed'"
     }
   ]
 }
@@ -55,21 +50,46 @@ accept: application/json
 
 ## TopicDestination
 
-It is a custom Aidbox resource that comes with profiles for different destinations. The`TopicDestination` has a link to a `SubscriptionTopic` to describe events that will be delivered. It is possible to create multiple `TopicDestination` linked to the same `SubscriptionTopic` in case you need to deliver events to different destinations.
+It is a custom Aidbox resource that comes with profiles for different destinations. The`TopicDestination` has a link to a `AidboxSubscriptionTopic` to describe events that will be delivered. It is possible to create multiple `TopicDestination` linked to the same `AidboxSubscriptionTopic` in case you need to deliver events to different destinations.
 
 **`TopicDestination` properties**:
 
-<table data-full-width="true"><thead><tr><th width="188">Property</th><th width="128">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>kind</code> *</td><td>code</td><td>Defines the destination for sending notifications.<br><code>Kafka</code> - the only possible value for now. Expected to be expanded.</td></tr><tr><td><code>topic</code> * </td><td>string</td><td>Url of <code>SubscriptionTopic</code> resource. </td></tr><tr><td><code>status</code> * </td><td>code</td><td><code>active</code> - the only possible value for now. Expected to be expanded.</td></tr><tr><td><code>parameter</code> * </td><td><a href="https://www.hl7.org/fhir/parameters.html">FHIR parameters</a></td><td>Defines the destination parameters for sending notifications. Parameters are restricted by profiles for each destination.</td></tr></tbody></table>
+<table data-full-width="true"><thead><tr><th width="188">Property</th><th width="128">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>kind</code> *</td><td>code</td><td>Defines the destination for sending notifications.<br><code>Kafka</code> - the only possible value for now. Expected to be expanded.</td></tr><tr><td><code>topic</code> *</td><td>string</td><td>Url of <code>AidboxSubscriptionTopic</code> resource.</td></tr><tr><td><code>parameter</code> *</td><td><a href="https://www.hl7.org/fhir/parameters.html">FHIR parameters</a></td><td>Defines the destination parameters for sending notifications. Parameters are restricted by profiles for each destination.</td></tr><tr><td><code>status</code> </td><td>code</td><td><code>active</code> - the only possible value for now. Expected to be expanded.</td></tr></tbody></table>
 
 \* required property.
 
-To **start** the subscription **create** `TopicDestination` resource with `active` status and reference to `SubscriptionTopic`.
+To **start** processing subscription data **create** `TopicDestination` resource with reference to `AidboxSubscriptionTopic`. Examples of `TopicDestination` resources see in kind specific sections.
 
-To **stop** the subscription **delete** `TopicDestination` resource.
+To **stop** processing subscription data **delete** `TopicDestination` resource.
 
-### TopicDestionation API
+### Kafka
 
-**Create**
+To send notifications to `Kafka` create `TopicDestination` resource with `http://fhir.aidbox.app/StructureDefinition/TopicDestinationKafka` profile, kind `kafka`, and specify parameters.
+
+TopicDestination parameters are [FHIR parameters](https://www.hl7.org/fhir/parameters.html).
+
+All available parameters:
+
+<table data-full-width="true"><thead><tr><th width="206">Parameter name</th><th width="135">Value type</th><th>Description</th></tr></thead><tbody><tr><td>kafkaTopic *</td><td>valueString</td><td>The Kafka topic where the data should be sent.</td></tr><tr><td>bootstrap.servers *</td><td>valueString</td><td>Comma-separated string. Specifies the Kafka broker to connect to. Only one broker can be listed.</td></tr><tr><td>compression.type</td><td>valueString</td><td>Specify the final compression type for a given topic. This configuration accepts the standard compression codecs ('gzip', 'snappy', 'lz4', 'zstd').</td></tr><tr><td>batch.size</td><td>valueInteger</td><td>This configuration controls the default batch size in bytes.</td></tr><tr><td>delivery.timeout.ms</td><td>valueInteger</td><td>A maximum time limit for reporting the success or failure of a record sent by a producer, covering delays before sending, waiting for broker acknowledgment, and handling retriable errors. </td></tr><tr><td>max.block.ms</td><td>valueInteger</td><td>The configuration controls how long the <code>KafkaProducer</code>'s <code>send()</code>method will block. </td></tr><tr><td>max.request.size</td><td>valueInteger</td><td>The maximum size of a request in bytes.</td></tr><tr><td>request.timeout.ms</td><td>valueInteger</td><td>The maximum amount of time the client will wait for the response of a request.</td></tr><tr><td>ssl.keystore.key</td><td>valueString</td><td>Private key in the format specified by 'ssl.keystore.type'.</td></tr></tbody></table>
+
+\* required parameter.
+
+{% hint style="info" %}
+For additional details see [Kafka Producer Configs Documentation](https://kafka.apache.org/documentation/#producerconfigs)
+{% endhint %}
+
+**TopicDestination Kafka behavior on Kafka connection errors (on the Aidbox start or during regular work):**
+
+* Kafka disconnected.
+* SubscriptionTopic produces a new event. The event is put into the buffer of the Kafka Producer.
+  * Buffer size: `buffer.memory` (default: 33554432 bytes)
+  * If the buffer is already full:
+    * The side effect was performed (e.g. resource creation/update).
+    * If Kafka Producer can't send data in time (`delivery.timeout.ms`) - the data will be lost.
+  * If `delivery.timeout.ms` is exceeded, the event will be lost. The number of failed processes will increase. The last error will also be shown in the `$status` response.
+  * If the connection is restored, the Kafka Producer will submit the data.
+
+Example (full example see here: [Github](https://github.com/Aidbox/app-examples/tree/main/aidbox-forms-and-kafka-topic-destination)):
 
 {% tabs %}
 {% tab title="Request" %}
@@ -79,39 +99,22 @@ content-type: application/json
 accept: application/json
 
 {
-  "resourceType": "TopicDestination",
   "meta": {
     "profile": [
-      "http://aidbox.app/TopicDestination/Kafka|0.0.1"
+      "http://fhir.aidbox.app/StructureDefinition/TopicDestinationKafka"
     ]
   },
-  "kind": "Kafka",
-  "topic": "http://example.org/FHIR/R5/SubscriptionTopic/example",
-  "status": "active",
+  "kind": "kafka",
+  "id": "kafka-destination",
+  "topic": "http://example.org/FHIR/R5/SubscriptionTopic/QuestionnaireResponse-topic",
   "parameter": [
     {
-      "name": "bootstrapServer",
-      "valueString": "kafka-broker1:9092"
-    },
-    {
-      "name": "authToken",
-      "valueString": "eY...your-auth-token-here"
-    },
-    {
       "name": "kafkaTopic",
-      "valueString": "patient-topic"
+      "valueString": "aidbox-forms"
     },
     {
-      "name": "username",
-      "valueString": "your-kafka-username"
-    },
-    {
-      "name": "password",
-      "valueString": "your-kafka-password"
-    },
-    {
-      "name": "retries",
-      "valueInteger": 5
+      "name": "bootstrap.servers",
+      "valueString": "kafka:29092"
     }
   ]
 }
@@ -123,209 +126,22 @@ accept: application/json
 ```json
 
 {
-  "id": "topic-destination-id",
   "meta": {
-    "profile": ["http://aidbox.app/TopicDestination/Kafka|0.0.1"]
+    "profile": [
+      "http://fhir.aidbox.app/StructureDefinition/TopicDestinationKafka"
+    ]
   },
-  "resourceType": "TopicDestination",
-  "kind": "Kafka",
-  "topic": "http://example.org/FHIR/R5/SubscriptionTopic/example",
-  "status": "active",
+  "kind": "kafka",
+  "id": "kafka-destination",
+  "topic": "http://example.org/FHIR/R5/SubscriptionTopic/QuestionnaireResponse-topic",
   "parameter": [
     {
-      "name": "bootstrapServer",
-      "valueString": "kafka-broker1:9092"
-    },
-    {
-      "name": "authToken",
-      "valueString": "eY...your-auth-token-here"
-    },
-    {
       "name": "kafkaTopic",
-      "valueString": "patient-topic"
+      "valueString": "aidbox-forms"
     },
     {
-      "name": "username",
-      "valueString": "your-kafka-username"
-    },
-    {
-      "name": "password",
-      "valueString": "your-kafka-password"
-    },
-    {
-      "name": "retries",
-      "valueInteger": 5
-    }
-  ]
-}
-```
-{% endcode %}
-{% endtab %}
-{% endtabs %}
-
-**Read**
-
-{% tabs %}
-{% tab title="Request" %}
-```yaml
-GET /fhir/TopicDestination/<topic-destination-id>
-content-type: application/json
-accept: application/json
-```
-{% endtab %}
-
-{% tab title="Response" %}
-{% code title="200 OK" %}
-```json
-{
-  "resourceType": "TopicDestination",
-  "meta": {
-    "profile": ["http://aidbox.app/TopicDestination/Kafka|0.0.1"]
-  },
-  "kind": "Kafka",
-  "topic": "http://example.org/FHIR/R5/SubscriptionTopic/example",
-  "status": "active",
-   "parameter": [
-    {
-      "name": "bootstrapServer",
-      "valueString": "kafka-broker1:9092"
-    },
-    {
-      "name": "authToken",
-      "valueString": "eY...your-auth-token-here"
-    },
-    {
-      "name": "kafkaTopic",
-      "valueString": "patient-topic"
-    },
-    {
-      "name": "username",
-      "valueString": "your-kafka-username"
-    },
-    {
-      "name": "password",
-      "valueString": "your-kafka-password"
-    },
-    {
-      "name": "retries",
-      "valueInteger": 5
-    }
-  ]
-}
-```
-{% endcode %}
-{% endtab %}
-{% endtabs %}
-
-**Search**
-
-{% tabs %}
-{% tab title="Request" %}
-```
-GET /fhir/TopicDestination
-content-type: application/json
-accept: application/json
-```
-{% endtab %}
-
-{% tab title="Response" %}
-{% code title="200 OK" %}
-```json
-{
-  "resourceType": "Bundle",
-  "type": "searchset",
-  "total": 1,
-  "entry": [
-    {
-      "resourceType": "TopicDestination",
-      "meta": {
-        "profile": [
-          "http://aidbox.app/TopicDestination/Kafka|0.0.1"
-        ]
-      },
-      "kind": "Kafka",
-      "topic": "http://example.org/FHIR/R5/SubscriptionTopic/example",
-      "status": "active",
-      "parameter": [
-        {
-          "name": "bootstrapServer",
-          "valueString": "kafka-broker1:9092"
-        },
-        {
-          "name": "authToken",
-          "valueString": "eY...your-auth-token-here"
-        },
-        {
-          "name": "kafkaTopic",
-          "valueString": "patient-topic"
-        },
-        {
-          "name": "username",
-          "valueString": "your-kafka-username"
-        },
-        {
-          "name": "password",
-          "valueString": "your-kafka-password"
-        },
-        {
-          "name": "retries",
-          "valueInteger": 5
-        }
-      ]
-    }
-  ]
-}
-```
-{% endcode %}
-{% endtab %}
-{% endtabs %}
-
-**Delete**
-
-{% tabs %}
-{% tab title="Request" %}
-```yaml
-DELETE /fhir/TopicDestination/<topic-destination-id>
-content-type: application/json
-accept: application/json
-```
-{% endtab %}
-
-{% tab title="Response" %}
-{% code title="200 OK" %}
-```json
-{
-  "resourceType": "TopicDestination",
-  "meta": {
-    "profile": ["http://aidbox.app/TopicDestination/Kafka|0.0.1"]
-  },
-  "kind": "Kafka",
-  "topic": "http://example.org/FHIR/R5/SubscriptionTopic/example",
-  "status": "active",
-  "parameter": [
-    {
-      "name": "bootstrapServer",
-      "valueString": "kafka-broker1:9092"
-    },
-    {
-      "name": "authToken",
-      "valueString": "eY...your-auth-token-here"
-    },
-    {
-      "name": "kafkaTopic",
-      "valueString": "patient-topic"
-    },
-    {
-      "name": "username",
-      "valueString": "your-kafka-username"
-    },
-    {
-      "name": "password",
-      "valueString": "your-kafka-password"
-    },
-    {
-      "name": "retries",
-      "valueInteger": 5
+      "name": "bootstrap.servers",
+      "valueString": "kafka:29092"
     }
   ]
 }
@@ -349,76 +165,101 @@ accept: application/json
 {% code title="200 OK" %}
 ```json
 {
-  "kind": "Kafka",
-  "status": "running",
-  "queueSize": 100,
-  "sentCount": 888, 
-  "failedCount": 9
+ "start-time": "2024-08-28T12:21:10.445306Z",
+ "status": "active",
+ "success-processed": 4,
+ "in-process": 0,
+ "fail-processed": 3,
+ "last-error": "org.apache.kafka.common.errors.TimeoutException: Topic aidbox-forms not present in metadata after 10000 ms.",
+ "kafka-metrics": {
+  "batch-split-total": 0,
+  "successful-authentication-rate": 0,
+  "successful-authentication-total": 0,
+  "connection-count": 1,
+  "reauthentication-latency-max": "NaN",
+  "record-send-rate": 0,
+  "io-wait-time-ns-avg": 29975927777.333332,
+  "failed-reauthentication-total": 0,
+  "buffer-total-bytes": 33554432,
+  "txn-commit-time-ns-total": 0,
+  "io-wait-ratio": 1.1841328259243653,
+  "select-rate": 0.039502791530601496,
+  "io-time-ns-total": 1051582604,
+  "record-retry-rate": 0,
+  "txn-send-offsets-time-ns-total": 0,
+  "record-size-max": "NaN",
+  "connection-creation-rate": 0,
+  "produce-throttle-time-max": "NaN",
+  "record-size-avg": "NaN",
+  "successful-reauthentication-total": 0,
+  "failed-reauthentication-rate": 0,
+  "batch-split-rate": 0,
+  "request-latency-max": "NaN",
+  "failed-authentication-total": 0,
+  "request-total": 5,
+  "response-rate": 0,
+  "buffer-exhausted-total": 0,
+  "connection-close-total": 1752,
+  "record-error-total": 0,
+  "failed-authentication-rate": 0,
+  "successful-authentication-no-reauth-total": 0,
+  "txn-begin-time-ns-total": 0,
+  "bufferpool-wait-time-total": 0,
+  "batch-size-avg": "NaN",
+  "incoming-byte-total": 642,
+  "network-io-total": 50,
+  "io-ratio": 0.000005874575333807379,
+  "compression-rate-avg": "NaN",
+  "metadata-wait-time-ns-total": 0,
+  "bufferpool-wait-ratio": 0,
+  "record-error-rate": 0,
+  "buffer-available-bytes": 33554432,
+  "request-latency-avg": "NaN",
+  "record-queue-time-max": "NaN",
+  "commit-id": "771b9576b00ecf5b",
+  "network-io-rate": 0,
+  "batch-size-max": "NaN",
+  "count": 112,
+  "io-time-ns-avg": 148709,
+  "txn-init-time-ns-total": 0,
+  "requests-in-flight": 0,
+  "flush-time-ns-total": 0,
+  "select-total": 32214,
+  "waiting-threads": 0,
+  "byte-total": 6546,
+  "incoming-byte-rate": 0,
+  "outgoing-byte-rate": 0,
+  "buffer-exhausted-rate": 0,
+  "start-time-ms": 1724847670445,
+  "response-total": 21,
+  "version": "3.8.0",
+  "record-retry-total": 0,
+  "io-waittime-total": 6042608558702,
+  "byte-rate": 0,
+  "produce-throttle-time-avg": "NaN",
+  "reauthentication-latency-avg": "NaN",
+  "record-send-total": 4,
+  "bufferpool-wait-time-ns-total": 0,
+  "metadata-age": 105.946,
+  "connection-creation-total": 5,
+  "request-size-avg": "NaN",
+  "record-queue-time-avg": "NaN",
+  "iotime-total": 1051582604,
+  "compression-rate": "NaN",
+  "successful-reauthentication-rate": 0,
+  "records-per-request-avg": "NaN",
+  "connection-close-rate": 0,
+  "io-wait-time-ns-total": 6042608558702,
+  "outgoing-byte-total": 7356,
+  "txn-abort-time-ns-total": 0,
+  "request-size-max": "NaN",
+  "request-rate": 0
+ }
 }
 ```
 {% endcode %}
 {% endtab %}
 {% endtabs %}
-
-### Kafka
-
-To send notifications to `Kafka` create `TopicDestination` resource with `http://aidbox.app/TopicDestination/Kafka|0.0.1` profile, kind `Kafka`, and specify parameters.
-
-TopicDestination parameters are [FHIR parameters](https://www.hl7.org/fhir/parameters.html).&#x20;
-
-All available parameters:
-
-<table data-full-width="true"><thead><tr><th width="188">Parameter</th><th width="128">Type</th><th>Description</th></tr></thead><tbody><tr><td>bootstrapServer *</td><td>valueString</td><td>Specifies the Kafka broker to connect to. Only one broker can be listed.</td></tr><tr><td>kafkaTopic * </td><td>valueString</td><td>The Kafka topic where the data should be sent.</td></tr><tr><td>authToken </td><td>valueString</td><td>A token for authentication if your Kafka setup requires one.</td></tr><tr><td>username </td><td>valueString</td><td>Your Kafka username.</td></tr><tr><td>password</td><td>valueString</td><td>Your Kafka password.</td></tr><tr><td>retries</td><td>valueInteger</td><td>Number of times to retry sending the message in case of a failure.</td></tr></tbody></table>
-
-\* required parameter.
-
-- kafkaTopic
-- Kafka Producer Settings (for additional details see [Kafka Producer Configs Documantation](https://kafka.apache.org/documentation/#producerconfigs)):
-    - bootstrap.servers (comma separated string)
-    - compression.type
-    - batch.size
-    - delivery.timeout.ms
-    - max.block.ms
-    - max.request.size
-    - request.timeout.ms  
-    - ssl.keystore.key
-
-**TopicDestinationKafka behavior on Kafka connection errors (on the Aidbox start or during regular work):**
-
-- Kafka disconnected.
-- SubscriptionTopic produces a new event. The event is put into the buffer of the Kafka Producer.
-    - Buffer size: `buffer.memory` (default: 33554432 bytes)
-    - If the buffer is already full, Kafka sending starts to work synchronously with the CRUD request:
-        - The CRUD request will freeze for `delivery.timeout.ms`;
-        - The CRUD request will fail when it reaches the timeout;
-        - The side effect was performed.
-- If the connection is restored, the Kafka Producer will submit the data.
-- If `delivery.timeout.ms` is exceeded, the event will be lost. The number of failed processes will increase. The last error will also be shown in the `$status` response.
-
-Example (full example see here: [Github](https://github.com/Aidbox/app-examples/tree/main/aidbox-forms-and-kafka-topic-destination)):
-
-```json
-{
-  "meta": {
-    "profile": [
-      "http://fhir.aidbox.app/StructureDefinition/TopicDestinationKafka"
-    ]
-  },
-  "kind": "kafka",
-  "id": "kafka-destination",
-  "topic": "http://example.org/FHIR/R5/SubscriptionTopic/QuestionnaireResponse-topic",
-  "parameter": [
-    {
-      "name": "kafkaTopic",
-      "valueString": "aidbox-forms"
-    },
-    {
-      "name": "bootstrap.servers",
-      "valueString": "kafka:29092"
-    }
-  ]
-}
-```
 
 ## Notification Shape
 
@@ -426,57 +267,57 @@ Notification is a [FHIR Bundle](https://build.fhir.org/bundle.html) resource wit
 
 ```json
 {
-	"resourceType": "Bundle",
-	"type": "subscription-notification",
-	"timestamp": "2024-08-28T11:10:13.675866Z",
-	"entry": [
-		{
-			"resource": {
-				"type": "event-notification",
-				"topic": "http://example.org/FHIR/R5/SubscriptionTopic/QuestionnaireResponse-topic",
-				"resourceType": "TopicDestinationStatus",
-				"topic-destination": {
-					"reference": "TopicDestination/kafka-destination"
-				}
-			}
-		},
-		{
-			"resource": {
-				"id": "3df44906-a578-4437-915c-f0c006838b2d",
-				"item": [
-					{
-						"text": "ROS Defaults",
-						"answer": [
-							{
-								"valueString": "sdfvzbdfgqearcxvbgadfgqwerdtasdf"
-							}
-						],
-						"linkId": "1"
-					},
-					{
-						"text": "Constitutional ",
-						"linkId": "2"
-					}
-				],
-				"meta": {
-					"lastUpdated": "2024-08-28T11:10:13.673430Z",
-					"versionId": "124",
-					"extension": [
-						{
-							"url": "ex:createdAt",
-							"valueInstant": "2024-08-28T11:09:51.431354Z"
-						}
-					]
-				},
-				"status": "in-progress",
-				"resourceType": "QuestionnaireResponse",
-				"questionnaire": "http://forms.aidbox.io/questionnaire/ros|0.1.0"
-			},
-			"request": {
-				"method": "POST",
-				"url": "/fhir/Questionnaire/$process-response"
-			}
-		}
-	]
+  "resourceType": "Bundle",
+  "type": "subscription-notification",
+  "timestamp": "2024-08-28T11:10:13.675866Z",
+  "entry": [
+    {
+      "resource": {
+        "type": "event-notification",
+        "topic": "http://example.org/FHIR/R5/SubscriptionTopic/QuestionnaireResponse-topic",
+        "resourceType": "TopicDestinationStatus",
+        "topic-destination": {
+          "reference": "TopicDestination/kafka-destination"
+        }
+      }
+    },
+    {
+      "resource": {
+        "id": "3df44906-a578-4437-915c-f0c006838b2d",
+        "item": [
+          {
+            "text": "ROS Defaults",
+            "answer": [
+              {
+                "valueString": "sdfvzbdfgqearcxvbgadfgqwerdtasdf"
+              }
+            ],
+            "linkId": "1"
+          },
+          {
+            "text": "Constitutional ",
+            "linkId": "2"
+          }
+        ],
+        "meta": {
+          "lastUpdated": "2024-08-28T11:10:13.673430Z",
+          "versionId": "124",
+          "extension": [
+            {
+              "url": "ex:createdAt",
+              "valueInstant": "2024-08-28T11:09:51.431354Z"
+            }
+          ]
+        },
+        "status": "in-progress",
+        "resourceType": "QuestionnaireResponse",
+        "questionnaire": "http://forms.aidbox.io/questionnaire/ros|0.1.0"
+      },
+      "request": {
+        "method": "POST",
+        "url": "/fhir/Questionnaire/$process-response"
+      }
+    }
+  ]
 }
 ```
