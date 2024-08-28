@@ -1,4 +1,4 @@
-# \[WIP] AidboxSubscriptionTopic with destinations
+# AidboxSubscriptionTopic with destinations
 
 {% hint style="danger" %}
 **Feature Under Development**\
@@ -89,7 +89,7 @@ For additional details see [Kafka Producer Configs Documentation](https://kafka.
   * If `delivery.timeout.ms` is exceeded, the event will be lost. The number of failed processes will increase. The last error will also be shown in the `$status` response.
   * If the connection is restored, the Kafka Producer will submit the data.
 
-Example (full example see here: [Github](https://github.com/Aidbox/app-examples/tree/main/aidbox-forms-and-kafka-topic-destination)):
+Example (full example see here: [Github](https://github.com/Aidbox/app-examples/tree/main/aidbox-subscriptions-to-kafka)):
 
 {% tabs %}
 {% tab title="Request" %}
