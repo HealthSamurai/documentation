@@ -360,52 +360,6 @@ accept: application/json
 {% endtab %}
 {% endtabs %}
 
-## Notification Shape
-
-Notification is a [FHIR Bundle](https://build.fhir.org/bundle.html) resource with `subscription-notification` type and resources that belong to the notification in the entry.
-
-```json
-{
-  "resourceType": "Bundle",
-  "id": "00b99077-2bda-436e-98cc-a4f65d6c2fe0",
-  "type": "subscription-notification",
-  "timestamp": "2020-04-17T10:24:13.1882432-05:00",
-  "entry": [
-    {
-      "fullUrl": "https://example.org/FHIR/R5/Encounter/2",
-      "resource": {
-        "resourceType": "Encounter",
-        "id": "2",
-        "status": "in-progress",
-        "class": [
-          {
-            "coding": [
-              {
-                "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
-                "code": "VR",
-                "display": "virtual"
-              }
-            ]
-          }
-        ],
-        "subject": {
-          "reference": "Patient/ABC"
-        }
-      },
-      "request": {
-        "method": "PUT",
-        "url": "Encounter/2"
-      },
-      "response": {
-        "status": "201"
-      }
-    }
-  ]
-}
-```
-
-## Destinations
-
 ### Kafka
 
 To send notifications to `Kafka` create `TopicDestination` resource with `http://aidbox.app/TopicDestination/Kafka|0.0.1` profile, kind `Kafka`, and specify parameters.
@@ -417,3 +371,112 @@ All available parameters:
 <table data-full-width="true"><thead><tr><th width="188">Parameter</th><th width="128">Type</th><th>Description</th></tr></thead><tbody><tr><td>bootstrapServer *</td><td>valueString</td><td>Specifies the Kafka broker to connect to. Only one broker can be listed.</td></tr><tr><td>kafkaTopic * </td><td>valueString</td><td>The Kafka topic where the data should be sent.</td></tr><tr><td>authToken </td><td>valueString</td><td>A token for authentication if your Kafka setup requires one.</td></tr><tr><td>username </td><td>valueString</td><td>Your Kafka username.</td></tr><tr><td>password</td><td>valueString</td><td>Your Kafka password.</td></tr><tr><td>retries</td><td>valueInteger</td><td>Number of times to retry sending the message in case of a failure.</td></tr></tbody></table>
 
 \* required parameter.
+
+- kafkaTopic
+- Kafka Producer Settings (for additional details see [Kafka Producer Configs Documantation](https://kafka.apache.org/documentation/#producerconfigs)):
+    - bootstrap.servers (comma separated string)
+    - compression.type
+    - batch.size
+    - delivery.timeout.ms
+    - max.block.ms
+    - max.request.size
+    - request.timeout.ms  
+    - ssl.keystore.key
+
+**TopicDestinationKafka behavior on Kafka connection errors (on the Aidbox start or during regular work):**
+
+- Kafka disconnected.
+- SubscriptionTopic produces a new event. The event is put into the buffer of the Kafka Producer.
+    - Buffer size: `buffer.memory` (default: 33554432 bytes)
+    - If the buffer is already full, Kafka sending starts to work synchronously with the CRUD request:
+        - The CRUD request will freeze for `delivery.timeout.ms`;
+        - The CRUD request will fail when it reaches the timeout;
+        - The side effect was performed.
+- If the connection is restored, the Kafka Producer will submit the data.
+- If `delivery.timeout.ms` is exceeded, the event will be lost. The number of failed processes will increase. The last error will also be shown in the `$status` response.
+
+Example (full example see here: [Github](https://github.com/Aidbox/app-examples/tree/main/aidbox-forms-and-kafka-topic-destination)):
+
+```json
+{
+  "meta": {
+    "profile": [
+      "http://fhir.aidbox.app/StructureDefinition/TopicDestinationKafka"
+    ]
+  },
+  "kind": "kafka",
+  "id": "kafka-destination",
+  "topic": "http://example.org/FHIR/R5/SubscriptionTopic/QuestionnaireResponse-topic",
+  "parameter": [
+    {
+      "name": "kafkaTopic",
+      "valueString": "aidbox-forms"
+    },
+    {
+      "name": "bootstrap.servers",
+      "valueString": "kafka:29092"
+    }
+  ]
+}
+```
+
+## Notification Shape
+
+Notification is a [FHIR Bundle](https://build.fhir.org/bundle.html) resource with `subscription-notification` type and resources that belong to the notification in the entry.
+
+```json
+{
+	"resourceType": "Bundle",
+	"type": "subscription-notification",
+	"timestamp": "2024-08-28T11:10:13.675866Z",
+	"entry": [
+		{
+			"resource": {
+				"type": "event-notification",
+				"topic": "http://example.org/FHIR/R5/SubscriptionTopic/QuestionnaireResponse-topic",
+				"resourceType": "TopicDestinationStatus",
+				"topic-destination": {
+					"reference": "TopicDestination/kafka-destination"
+				}
+			}
+		},
+		{
+			"resource": {
+				"id": "3df44906-a578-4437-915c-f0c006838b2d",
+				"item": [
+					{
+						"text": "ROS Defaults",
+						"answer": [
+							{
+								"valueString": "sdfvzbdfgqearcxvbgadfgqwerdtasdf"
+							}
+						],
+						"linkId": "1"
+					},
+					{
+						"text": "Constitutional ",
+						"linkId": "2"
+					}
+				],
+				"meta": {
+					"lastUpdated": "2024-08-28T11:10:13.673430Z",
+					"versionId": "124",
+					"extension": [
+						{
+							"url": "ex:createdAt",
+							"valueInstant": "2024-08-28T11:09:51.431354Z"
+						}
+					]
+				},
+				"status": "in-progress",
+				"resourceType": "QuestionnaireResponse",
+				"questionnaire": "http://forms.aidbox.io/questionnaire/ros|0.1.0"
+			},
+			"request": {
+				"method": "POST",
+				"url": "/fhir/Questionnaire/$process-response"
+			}
+		}
+	]
+}
+```
