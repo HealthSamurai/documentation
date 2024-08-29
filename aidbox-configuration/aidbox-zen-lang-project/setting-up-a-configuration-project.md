@@ -30,7 +30,7 @@ Aidbox can load project from an URL or read directly from its file system.
 
 * `BOX_PROJECT_GIT_URL` — where to clone your project from. Aidbox substitutes it to `git clone <url>` command.
 * `BOX_PROJECT_GIT_PROTOCOL` — either `https` or `ssh`. Assumes local dir if omitted.
-* `BOX_PROJEC_GIT_TARGET__PATH` — where to clone your project to and where to read it from. Default value is a directory in `/tmp`
+* `BOX_PROJECT_GIT_TARGET__PATH` — where to clone your project to and where to read it from. Default value is a directory in `/tmp`
 
 If you specify only the target path then Aidbox expects you to clone a project into this location before it starts. This allows mounting persistent file system cache and using local file system for development. See [tips for development](setting-up-a-configuration-project.md#tips-for-development) and [tips for production](setting-up-a-configuration-project.md#tips-for-production).
 
