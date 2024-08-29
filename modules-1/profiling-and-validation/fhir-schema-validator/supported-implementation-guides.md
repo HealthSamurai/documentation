@@ -4344,6 +4344,7 @@ Ontario Patient Summary
 
 **Versions**
 
+* `hl7.fhir.us.davinci-deqm#5.0.0-ballot`
 * `hl7.fhir.us.davinci-deqm#4.0.0`
 * `hl7.fhir.us.davinci-deqm#4.0.0-ballot`
 * `hl7.fhir.us.davinci-deqm#3.1.0`
@@ -12569,12 +12570,13 @@ HL7 FHIR Implementation Guide: Transversal Clinical Core (built Tue, May 31, 202
 <details>
 <summary>Description</summary>
 
-This HL7 Implementation Guide (IG) defines how to exchange Social Determinants of Health (SDOH) content defined by the Gravity Project using the HL7 FHIR standard.. (built Thu, Jul 27, 2023 20:34+0000+00:00)
+This HL7 Implementation Guide (IG) defines how to exchange Social Determinants of Health (SDOH) content defined by the Gravity Project using the HL7 FHIR standard.. (built Tue, Aug 27, 2024 16:48+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.us.sdoh-clinicalcare#2.2.0`
 * `hl7.fhir.us.sdoh-clinicalcare#2.1.0`
 * `hl7.fhir.us.sdoh-clinicalcare#2.0.0`
 * `hl7.fhir.us.sdoh-clinicalcare#1.1.0`
