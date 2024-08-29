@@ -1,7 +1,7 @@
 ---
 description: >-
-  Customizable PDF generation for Questionnaire and QuestionnaireResponse using the
-  $render operation.
+  Customizable PDF generation for Questionnaire and QuestionnaireResponse using
+  the $render operation.
 ---
 
 # Template-based PDF generation
@@ -69,6 +69,7 @@ Let's consider a basic example for clarity: there is a form with three fields (s
 {% tab title="Form" %}
 ![Figure 1](../../../.gitbook/assets/form-for-pdf.png)
 {% endtab %}
+
 {% tab title="Questionnaire" %}
 ```yaml
 url: http://forms.aidbox.io/questionnaire/test-pdf
@@ -96,6 +97,7 @@ id: >-
 resourceType: Questionnaire
 ```
 {% endtab %}
+
 {% tab title="QuestionnaireResponse" %}
 ```yaml
 item:
@@ -127,14 +129,13 @@ resourceType: QuestionnaireResponse
 {% endtab %}
 {% endtabs %}
 
-Let's create a custom print template with id `test`. When writing a template, we can use variables from the [render context](#template-render-context). In the template we will implement a loop where we will check the linkId of each widget and depending on that, add a specific HTML fragment. For the Signature widget, we do not specify any condition at all, as it should not be displayed.
+Let's create a custom print template with id `test`. When writing a template, we can use variables from the [render context](template-based-pdf-gen.md#template-render-context). In the template we will implement a loop where we will check the linkId of each widget and depending on that, add a specific HTML fragment. For the Signature widget, we do not specify any condition at all, as it should not be displayed.
 
 ```yaml
 PUT [base]/SDCPrintTemplate/test-template
 Accept: text/yaml
 Content-Type: text/yaml
 
-{% raw %}
 content: |
   <!DOCTYPE html>
   <html lang="en">
@@ -157,7 +158,8 @@ content: |
       <h1 class="text-2xl font-semibold mb-5 text-center"> Example for pdf </h1>
       <table class="border-collapse w-full">
         <tr class="break-inside-avoid">
-          {% for item in items %}
+          {% raw %}
+{% for item in items %}
             {% if item.linkId = "textarea" %}
               <td class="border border-slate-700 p-1">
                 {{item.text}}: {{ item.widget/value.value.string }}              
@@ -169,13 +171,13 @@ content: |
               </td>
             {% endif %}
           {% endfor %}
+{% endraw %}
         </tr>
       </table>
     </article>
   </body>
 
   </html>
-{% endraw %}
 ```
 
 Now let's render our form using the template we've just created:
