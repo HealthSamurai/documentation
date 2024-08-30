@@ -126,4 +126,8 @@ The Attachment widget allows users to upload files as part of their form submiss
 * **Allowed file-types**: You can limit the types of files that can be uploaded (image, audio, video, pdf, doc, csv etc or specify other).
 * **Max File Size**: Set the maximum file size (in kilobytes) allowed for upload.
 
+**Additional Functionality:**
+
+* **File Preview**: When using the form, the attached file can be viewed by opening it in a separate page. To do this, the user needs to click on the eye icon.
+
 The attached file will be saved as base64 encoded attachment in QuestionnaireResponse.
