@@ -70,7 +70,7 @@ TopicDestination parameters are [FHIR parameters](https://www.hl7.org/fhir/param
 
 All available parameters:
 
-<table data-full-width="true"><thead><tr><th width="206">Parameter name</th><th width="135">Value type</th><th>Description</th></tr></thead><tbody><tr><td>kafkaTopic *</td><td>valueString</td><td>The Kafka topic where the data should be sent.</td></tr><tr><td>bootstrap.servers *</td><td>valueString</td><td>Comma-separated string. Specifies the Kafka broker to connect to. Only one broker can be listed.</td></tr><tr><td>compression.type</td><td>valueString</td><td>Specify the final compression type for a given topic. This configuration accepts the standard compression codecs ('gzip', 'snappy', 'lz4', 'zstd').</td></tr><tr><td>batch.size</td><td>valueInteger</td><td>This configuration controls the default batch size in bytes.</td></tr><tr><td>delivery.timeout.ms</td><td>valueInteger</td><td>A maximum time limit for reporting the success or failure of a record sent by a producer, covering delays before sending, waiting for broker acknowledgment, and handling retriable errors. </td></tr><tr><td>max.block.ms</td><td>valueInteger</td><td>The configuration controls how long the <code>KafkaProducer</code>'s <code>send()</code>method will block. </td></tr><tr><td>max.request.size</td><td>valueInteger</td><td>The maximum size of a request in bytes.</td></tr><tr><td>request.timeout.ms</td><td>valueInteger</td><td>The maximum amount of time the client will wait for the response of a request.</td></tr><tr><td>ssl.keystore.key</td><td>valueString</td><td>Private key in the format specified by 'ssl.keystore.type'.</td></tr></tbody></table>
+<table data-full-width="true"><thead><tr><th width="206">Parameter name</th><th width="135">Value type</th><th>Description</th></tr></thead><tbody><tr><td>kafkaTopic *</td><td>valueString</td><td>The Kafka topic where the data should be sent.</td></tr><tr><td>bootstrap.servers *</td><td>valueString</td><td>Comma-separated string. Specifies the Kafka broker to connect to. Only one broker can be listed.</td></tr><tr><td>compression.type</td><td>valueString</td><td>Specify the final compression type for a given topic. This configuration accepts the standard compression codecs ('gzip', 'snappy', 'lz4', 'zstd').</td></tr><tr><td>batch.size</td><td>valueInteger</td><td>This configuration controls the default batch size in bytes.</td></tr><tr><td>delivery.timeout.ms</td><td>valueInteger</td><td>A maximum time limit for reporting the success or failure of a record sent by a producer, covering delays before sending, waiting for broker acknowledgment, and handling retriable errors. </td></tr><tr><td>max.block.ms</td><td>valueInteger</td><td>The configuration controls how long the <code>KafkaProducer</code>'s <code>send()</code>method will block. </td></tr><tr><td>max.request.size</td><td>valueInteger</td><td>The maximum size of a request in bytes.</td></tr><tr><td>request.timeout.ms</td><td>valueInteger</td><td>The maximum amount of time the client will wait for the response of a request.</td></tr><tr><td>ssl.keystore.key</td><td>valueString</td><td>Private key in the format specified by 'ssl.keystore.type'.</td></tr><tr><td>security.protocol</td><td>valueString</td><td>Protocol used to communicate with brokers.</td></tr><tr><td>sasl.mechanism</td><td>valueString</td><td>SASL mechanism used for client connections.</td></tr><tr><td>sasl.jaas.config</td><td>valueString</td><td>JAAS login context parameters for SASL connections in the format used by JAAS configuration files.</td></tr><tr><td>sasl.client.callback.handler.class</td><td>valueString</td><td>The fully qualified name of a SASL client callback handler class that implements the AuthenticateCallbackHandler interface.</td></tr></tbody></table>
 
 \* required parameter.
 
@@ -89,7 +89,7 @@ For additional details see [Kafka Producer Configs Documentation](https://kafka.
   * If `delivery.timeout.ms` is exceeded, the event will be lost. The number of failed processes will increase. The last error will also be shown in the `$status` response.
   * If the connection is restored, the Kafka Producer will submit the data.
 
-Example (full example see here: [Github](https://github.com/Aidbox/app-examples/tree/main/aidbox-subscriptions-to-kafka)):
+#### Example: Kafka in private local environment (full example see here: [Github](https://github.com/Aidbox/app-examples/tree/main/aidbox-subscriptions-to-kafka))
 
 {% tabs %}
 {% tab title="Request" %}
@@ -147,6 +147,107 @@ accept: application/json
 }
 ```
 {% endcode %}
+{% endtab %}
+{% endtabs %}
+
+#### Example: MSK Kafka in AWS environment with IAM
+
+{% tabs %}
+{% tab title="Request" %}
+```json
+POST /fhir/TopicDestination
+content-type: application/json
+accept: application/json
+
+{
+  "meta": {
+    "profile": [
+      "http://fhir.aidbox.app/StructureDefinition/TopicDestinationKafka"
+    ]
+  },
+  "kind": "kafka",
+  "id": "kafka-destination",
+  "topic": "http://example.org/FHIR/R5/SubscriptionTopic/QuestionnaireResponse-topic",
+  "parameter": [
+    {
+      "name": "kafkaTopic",
+      "valueString": "aidbox-forms"
+    },
+    {
+      "name": "bootstrap.servers",
+      "valueString": "b-1.checkmsktbd.9szqwn.c16.kafka.us-east-1.amazonaws.com:9098,b-3.checkmsktbd.9szqwn.c16.kafka.us-east-1.amazonaws.com:9098,b-2.checkmsktbd.9szqwn.c16.kafka.us-east-1.amazonaws.com:9098"
+    },
+    {
+      "name": "security.protocol",
+      "valueString": "SASL_SSL"
+    },
+    {
+      "name": "sasl.mechanism",
+      "valueString": "AWS_MSK_IAM"
+    },
+    {
+      "name": "sasl.jaas.config",
+      "valueString": "software.amazon.msk.auth.iam.IAMLoginModule required;"
+    },
+    {
+      "name": "sasl.client.callback.handler.class",
+      "valueString": "software.amazon.msk.auth.iam.IAMClientCallbackHandler"
+    }
+  ]
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+201 OK
+
+```json
+{
+ "id": "",
+ "kind": "kafka",
+ "meta": {
+  "profile": [
+   "http://fhir.aidbox.app/StructureDefinition/TopicDestinationKafka"
+  ],
+  "lastUpdated": "2024-08-30T07:50:26.494982Z",
+  "versionId": "111",
+  "extension": [
+   {
+    "url": "ex:createdAt",
+    "valueInstant": "2024-08-30T07:50:26.494982Z"
+   }
+  ]
+ },
+ "topic": "http://example.org/FHIR/R5/SubscriptionTopic/QuestionnaireResponse-topic",
+ "parameter": [
+  {
+   "name": "kafkaTopic",
+   "valueString": "aidbox-forms"
+  },
+  {
+   "name": "bootstrap.servers",
+   "valueString": "b-1.checkmsktbd.9szqwn.c16.kafka.us-east-1.amazonaws.com:9098,b-3.checkmsktbd.9szqwn.c16.kafka.us-east-1.amazonaws.com:9098,b-2.checkmsktbd.9szqwn.c16.kafka.us-east-1.amazonaws.com:9098"
+  },
+  {
+   "name": "security.protocol",
+   "valueString": "SASL_SSL"
+  },
+  {
+   "name": "sasl.mechanism",
+   "valueString": "AWS_MSK_IAM"
+  },
+  {
+   "name": "sasl.jaas.config",
+   "valueString": "software.amazon.msk.auth.iam.IAMLoginModule required;"
+  },
+  {
+   "name": "sasl.client.callback.handler.class",
+   "valueString": "software.amazon.msk.auth.iam.IAMClientCallbackHandler"
+  }
+ ],
+ "resourceType": "TopicDestination"
+}
+```
 {% endtab %}
 {% endtabs %}
 
