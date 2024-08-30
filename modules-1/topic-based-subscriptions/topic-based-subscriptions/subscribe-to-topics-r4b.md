@@ -232,7 +232,7 @@ As a result of this step Aidbox will try to perform a handshake with the subscri
 
 You may notice `handshake` event in demo server UI:
 
-![](<../../.gitbook/assets/Screenshot 2023-09-04 at 16.14.03.png>)
+![](<../../../.gitbook/assets/Screenshot 2023-09-04 at 16.14.03.png>)
 
 After the successful handshake, the status of the Subscription will be `active`.
 

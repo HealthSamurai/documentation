@@ -178,7 +178,7 @@
 * Data API
   * Added an environment variable to [synchronize managed index](../../reference/configuration/environment-variables/optional-environment-variables.md#box\_config\_features\_index\_sync\_\_on\_\_start) when Aidbox starts
 * Integrations
-  * Added[ Workflow Engine Connector](../../modules-1/topic-based-subscriptions/#supported-fhir-versions) for FHIR Topic-based subscriptions
+  * Added[ Workflow Engine Connector](../../modules-1/topic-based-subscriptions/topic-based-subscriptions/#supported-fhir-versions) for FHIR Topic-based subscriptions
   * Added Workflow Engine[ clean-up built-in task](../../modules-1/workflow-engine/task/aidbox-predefined-tasks.md#awf.task-clean-up-activities)
   * Added Workflow Engine [run-sql built-in task](../../modules-1/workflow-engine/task/aidbox-predefined-tasks.md#aidbox.task-run-sql)
 * [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
@@ -205,14 +205,14 @@
 * New [FHIR Validator](https://fhir-validator.aidbox.app/) public demo stand
 * SDK
   * Launched [Open Source Telehealth application](https://github.com/Aidbox/telemed/) with end-to-end flow with 3 user roles \[Provider, Patient, Admin]
-* [Topic-Based Subscriptions module](../../modules-1/topic-based-subscriptions/)
-  * Supported the [GCP Pub/Sub integration](../../modules-1/topic-based-subscriptions/setup-subscriptiontopic.md#example-configuration-for-google-cloud-pub-sub)
+* [Topic-Based Subscriptions module](../../modules-1/topic-based-subscriptions/topic-based-subscriptions/)
+  * Supported the [GCP Pub/Sub integration](../../modules-1/topic-based-subscriptions/topic-based-subscriptions/setup-subscriptiontopic.md#example-configuration-for-google-cloud-pub-sub)
   * Added restart on replication channel failure
   * Added ability to check topic status with Aidbox Console UI
   * Developed Aidbox monitoring stack integration
-  * Supported [Subscription `end` property](../../modules-1/topic-based-subscriptions/r4b-api-reference/subscription-api.md#create-subscription-post-fhir-subscription)
+  * Supported [Subscription `end` property](../../modules-1/topic-based-subscriptions/topic-based-subscriptions/r4b-api-reference/subscription-api.md#create-subscription-post-fhir-subscription)
   * Added new sample configuration with the [Aidbox Project Template](https://github.com/Aidbox/aidbox-project-template/tree/topic-based-subscription-r4b)
-  * Added [Tutorial: Subscribe to Topic (R4B)](../../modules-1/topic-based-subscriptions/subscribe-to-topics-r4b.md)
+  * Added [Tutorial: Subscribe to Topic (R4B)](../../modules-1/topic-based-subscriptions/topic-based-subscriptions/subscribe-to-topics-r4b.md)
 * [SQL on FHIR engine](../../modules-1/sql-on-fhir/)
   * Create [materialized views](../../storage-1/sql-on-fhir/view-definition/#additional-options)
 * Data API
@@ -236,7 +236,7 @@
   * Optimized [GraphQL ](../../api-1/graphql-api.md)for revincludes
   * Added [X-max-transaction-level](../../api-1/api/crud-1/update.md#isolation-levels) for CRUD
 * Integrations
-  * Supported FHIR R4B and R5 [Topic-based subscriptions](../../modules-1/topic-based-subscriptions/)
+  * Supported FHIR R4B and R5 [Topic-based subscriptions](../../modules-1/topic-based-subscriptions/topic-based-subscriptions/)
 * Security and access control
   * Added [Capability Statement ](../../modules-1/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md#metadata)endpoint for multitenant API
   * Added [bundle transaction](../../modules-1/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md#bundle) for multitenant API

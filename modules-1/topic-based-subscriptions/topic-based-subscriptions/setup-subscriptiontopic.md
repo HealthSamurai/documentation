@@ -4,8 +4,8 @@ This page describes how to set up SubscriptionTopic for each Topic Queue Storage
 
 SubscriptionTopic is configured by Aidbox configuration project by zen-lang.
 
-{% content-ref url="../../aidbox-configuration/aidbox-zen-lang-project/" %}
-[aidbox-zen-lang-project](../../aidbox-configuration/aidbox-zen-lang-project/)
+{% content-ref url="../../../aidbox-configuration/aidbox-zen-lang-project/" %}
+[aidbox-zen-lang-project](../../../aidbox-configuration/aidbox-zen-lang-project/)
 {% endcontent-ref %}
 
 In general, to set up the topic in Aidbox configuration project, you need the following steps:
@@ -24,7 +24,7 @@ SubscriptionTopic-based services rely on [PostgreSQL Logical Replication](https:
 
 ### Self Hosted Database
 
-If you use [aidboxdb-image](../../storage-1/aidboxdb-image/ "mention") then it's already configured to work properly with SubscriptionTopic.
+If you use [aidboxdb-image](../../../storage-1/aidboxdb-image/ "mention") then it's already configured to work properly with SubscriptionTopic.
 
 Otherwise, check that `wal_level` is set to `logical` in `postgresql.conf` file:
 
@@ -47,9 +47,9 @@ To enable a database instance hosted with [AWS RDS](https://aws.amazon.com/rds/p
 5. Search for `rds.logical_replication` and set its value to `1`.
 6. Navigate to the database instance, click **Modify**, and in the `DB parameter group` menu select the parameter group created in Step 3.
 
-<figure><img src="../../.gitbook/assets/image (99).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (99).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (102).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (102).png" alt=""><figcaption></figcaption></figure>
 
 To check that the setting is applied run query `SHOW wal_level;` he result should be `logical`.
 
@@ -67,7 +67,7 @@ Setup your database instance according to  [the official guide ](https://learn.m
     ALTER ROLE <username> WITH REPLICATION;
     ```
 
-<figure><img src="../../.gitbook/assets/image (98).png" alt=""><figcaption><p>Server Parameters</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (98).png" alt=""><figcaption><p>Server Parameters</p></figcaption></figure>
 
 \
 
@@ -476,4 +476,4 @@ accept: application/json
 
 * Open Aidbox UI -> Subscription Topics to check the topic status
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>

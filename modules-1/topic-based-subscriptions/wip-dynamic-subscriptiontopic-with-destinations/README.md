@@ -1,4 +1,4 @@
-# AidboxSubscriptionTopic
+# Topic-based subscriptions using AidboxSubscriptionTopic
 
 {% hint style="danger" %}
 This functionality was introduced in the 2408 release and is available in Beta. Please note that this feature is subject to change and may contain incomplete or experimental functionality.
@@ -8,7 +8,7 @@ This functionality was introduced in the 2408 release and is available in Beta. 
 
 This feature enables dynamic subscriptions to changes in FHIR resources, allowing users/systems to receive notifications through multiple channels, including Kafka.
 
-<figure><img src="../../.gitbook/assets/image (107).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (107).png" alt=""><figcaption></figcaption></figure>
 
 For an application example, refer to [Aidbox Subscriptions & Kafka TopicDestination](https://github.com/Aidbox/app-examples/tree/main/aidbox-subscriptions-to-kafka)
 
