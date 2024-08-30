@@ -2,8 +2,8 @@
 
 To proceed with Kafka integration please configure `AidboxSubscriptionTopic` module.
 
-{% content-ref url="../wip-dynamic-subscriptiontopic-with-destinations.md" %}
-[wip-dynamic-subscriptiontopic-with-destinations.md](../wip-dynamic-subscriptiontopic-with-destinations.md)
+{% content-ref url="./" %}
+[.](./)
 {% endcontent-ref %}
 
 ### Behaviour Overview

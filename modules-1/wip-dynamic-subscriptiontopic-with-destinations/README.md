@@ -1,38 +1,38 @@
 # AidboxSubscriptionTopic
 
 {% hint style="danger" %}
-**This feature was introduced in 2408 release and currently available in Beta.**\
-\
-Please note that this feature is subject to change and may contain incomplete or experimental functionality.
+This functionality was introduced in the 2408 release and is available in Beta. Please note that this feature is subject to change and may contain incomplete or experimental functionality.
 {% endhint %}
 
-This Subscription feature allows users to subscribe to changes in FHIR resources and receive notifications in different channels like Kafka.
+### Overview
+
+This feature enables dynamic subscriptions to changes in FHIR resources, allowing users/systems to receive notifications through multiple channels, including Kafka.
 
 <figure><img src="../../.gitbook/assets/image (107).png" alt=""><figcaption></figcaption></figure>
 
-See application example here: [Aidbox Subscriptions & Kafka TopicDestination](https://github.com/Aidbox/app-examples/tree/main/aidbox-subscriptions-to-kafka)
+For an application example, refer to [Aidbox Subscriptions & Kafka TopicDestination](https://github.com/Aidbox/app-examples/tree/main/aidbox-subscriptions-to-kafka)
 
 ## Key Components
 
-1. **`AidboxSubscriptionTopic`** - a custom Aidbox resource modelled after the [FHIR R6 SubscriptionTopic](https://build.fhir.org/subscriptiontopic.html) resource. These resources describe what notifications should be propagated to external systems. It defines the available subscription options and specifies the filters and notification shapes that can be used.
-2. **`TopicDestination`** - custom Aidbox resource that is responsible for defining where and how the notifications triggered by a `AidboxSubscriptionTopic` should be sent. This resource provides the flexibility to specify different types of destinations.
+1. **`AidboxSubscriptionTopic`** is a custom Aidbox resource modeled after the [FHIR R6 SubscriptionTopic](https://build.fhir.org/subscriptiontopic.html) resource. The resource allows defining a set of events that clients can subscribe to, such as changes in specific resources.&#x20;
+2. **`TopicDestination`** is a custom Aidbox resource that defines where and how the notifications triggered by an `AidboxSubscriptionTopic` should be sent. This resource offers flexibility in specifying various types of destinations.
 
 {% hint style="warning" %}
-**FHIR Compliance:** The `AidboxSubscriptionTopic` resource mirrors the structure of the FHIR `SubscriptionTopic` in version R6, supporting the features detailed below.
+**FHIR Compliance:**&#x20;
 
-* For FHIR R4: Use the `AidboxSubscriptionTopic` as is, since FHIR does not provide this feature in R4.
-* For FHIR R4b, R5, and R6: Use either the `AidboxSubscriptionTopic` or the FHIR `SubscriptionTopic` resource, depending on the FHIR version being used (support for the last is coming soon).
+* **For FHIR R4**: Use the `AidboxSubscriptionTopic` as it is, since FHIR does not include this functionality in R4.
+* **For FHIR R4b, R5, and R6**: You can use either the `AidboxSubscriptionTopic` or the FHIR SubscriptionTopic resource, depending on the FHIR version in use (support for the latter is coming soon).
 {% endhint %}
 
 ## AidboxSubscriptionTopic
 
-This resource describes data sources for Subscriptions. It allows to subscribe events in Aidbox and filter them by user-defined triggers. Triggers are defined by `resourceTrigger` element. All supported `resourceTrigger` properties:
+The `AidboxSubscriptionTopic` resource describes the data sources for subscriptions. It allows clients to subscribe to events in Aidbox and filter them using user-defined triggers, which are specified by the `resourceTrigger` element. Supported properties:
 
 <table data-full-width="false"><thead><tr><th width="257">Property</th><th width="91">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>resource</code> *</td><td>uri</td><td>Resource (reference to definition) for this trigger definition. It is binding to <a href="https://www.hl7.org/fhir/valueset-all-resource-types.html">All Resource Types</a>.</td></tr><tr><td><code>fhirPathCriteria</code></td><td>string</td><td>FHIRPath based trigger rule. Only current resource state is allowed.</td></tr><tr><td><code>description</code></td><td>string</td><td>Text representation of the event trigger.</td></tr></tbody></table>
 
-\* required property.
+\* required.
 
-### Create `AidboxSubscriptionTopic` resource
+#### Create `AidboxSubscriptionTopic` resource
 
 ```json
 POST /fhir/AidboxSubscriptionTopic
@@ -57,29 +57,35 @@ accept: application/json
 
 ## TopicDestination
 
-Use TopicDestination resource to define channel configurations.
+The `TopicDestination` resource is used to define channel configurations for processing subscription data.
 
-To **start** processing subscription data **create** `TopicDestination` resource with reference to `AidboxSubscriptionTopic`. Examples of `TopicDestination` resources see in kind specific sections.
+#### Create a TopicDestination
 
-To **stop** processing subscription data **delete** `TopicDestination` resource.
+To start processing subscription data, create a `TopicDestination` resource with a reference to the `AidboxSubscriptionTopic`. Examples of `TopicDestination` resources can be found in kind-specific sections.
 
-Please make sure that resource meta contains kind-specific `TopicDestination` profile.
+#### Stop subscription data processing
 
-### **Elements**
+To stop processing subscription data, delete the `TopicDestination` resource.
+
+#### TopicDestination Profile
+
+Ensure that the resource metadata contains the kind-specific `TopicDestination` profile.
+
+#### **Elements**
 
 <table data-full-width="false"><thead><tr><th width="188">Property</th><th width="128">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>status</code> </td><td>code</td><td><code>active</code> - the only possible value for now. Expected to be expanded.</td></tr><tr><td><code>topic</code> *</td><td>string</td><td>Url of <code>AidboxSubscriptionTopic</code> resource.</td></tr><tr><td><code>kind</code> *</td><td>code</td><td>Defines the destination for sending notifications.<br><code>Kafka</code> - the only possible value for now. Expected to be expanded.</td></tr><tr><td><code>parameter</code> *</td><td><a href="https://www.hl7.org/fhir/parameters.html">FHIR parameters</a></td><td>Defines the destination parameters for sending notifications. Parameters are restricted by profiles for each destination.</td></tr></tbody></table>
 
-\* required property.
+\* required.
 
-### Currently supported channels
+#### Currently supported channels
 
-{% content-ref url="wip-dynamic-subscriptiontopic-with-destinations/kafka-topicdestination.md" %}
-[kafka-topicdestination.md](wip-dynamic-subscriptiontopic-with-destinations/kafka-topicdestination.md)
+{% content-ref url="kafka-topicdestination.md" %}
+[kafka-topicdestination.md](kafka-topicdestination.md)
 {% endcontent-ref %}
 
 ## Notification Shape
 
-Notification is a [FHIR Bundle](https://build.fhir.org/bundle.html) resource with `subscription-notification` type and resources that belong to the notification in the entry.
+Notification is a [FHIR Bundle](https://build.fhir.org/bundle.html) resource with `subscription-notification` type, contanining relevant resources in its entries.
 
 ```json
 {
