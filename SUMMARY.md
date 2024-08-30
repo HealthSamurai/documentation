@@ -207,7 +207,7 @@
   * [API Reference](modules-1/topic-based-subscriptions/r4b-api-reference/README.md)
     * [SubscriptionTopic API](modules-1/topic-based-subscriptions/r4b-api-reference/subscriptiontopic-api.md)
     * [Subscription API](modules-1/topic-based-subscriptions/r4b-api-reference/subscription-api.md)
-  * [AidboxSubscriptionTopic](modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/README.md)
+  * [AidboxSubscriptionTopic](modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations.md)
     * [Kafka TopicDestination](modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/kafka-topicdestination.md)
 * [Entities & Attributes](core-modules/entities-and-attributes.md)
 * [Profiling and validation](modules-1/profiling-and-validation/README.md)

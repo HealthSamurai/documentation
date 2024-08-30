@@ -8,7 +8,7 @@ Please note that this feature is subject to change and may contain incomplete or
 
 This Subscription feature allows users to subscribe to changes in FHIR resources and receive notifications in different channels like Kafka.
 
-<figure><img src="../../../.gitbook/assets/image (107).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (107).png" alt=""><figcaption></figcaption></figure>
 
 See application example here: [Aidbox Subscriptions & Kafka TopicDestination](https://github.com/Aidbox/app-examples/tree/main/aidbox-subscriptions-to-kafka)
 
@@ -63,16 +63,18 @@ To **start** processing subscription data **create** `TopicDestination` resource
 
 To **stop** processing subscription data **delete** `TopicDestination` resource.
 
+Please make sure that resource meta contains kind-specific `TopicDestination` profile.
+
 ### **Elements**
 
 <table data-full-width="false"><thead><tr><th width="188">Property</th><th width="128">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>status</code> </td><td>code</td><td><code>active</code> - the only possible value for now. Expected to be expanded.</td></tr><tr><td><code>topic</code> *</td><td>string</td><td>Url of <code>AidboxSubscriptionTopic</code> resource.</td></tr><tr><td><code>kind</code> *</td><td>code</td><td>Defines the destination for sending notifications.<br><code>Kafka</code> - the only possible value for now. Expected to be expanded.</td></tr><tr><td><code>parameter</code> *</td><td><a href="https://www.hl7.org/fhir/parameters.html">FHIR parameters</a></td><td>Defines the destination parameters for sending notifications. Parameters are restricted by profiles for each destination.</td></tr></tbody></table>
 
 \* required property.
 
-### Currently supported channels:
+### Currently supported channels
 
-{% content-ref url="kafka-topicdestination.md" %}
-[kafka-topicdestination.md](kafka-topicdestination.md)
+{% content-ref url="wip-dynamic-subscriptiontopic-with-destinations/kafka-topicdestination.md" %}
+[kafka-topicdestination.md](wip-dynamic-subscriptiontopic-with-destinations/kafka-topicdestination.md)
 {% endcontent-ref %}
 
 ## Notification Shape

@@ -1,12 +1,10 @@
 # Kafka TopicDestination
 
-To setup Kafka integration please use AidboxSubscriptionTopic module and continue with this document.
+To proceed with Kafka integration please configure `AidboxSubscriptionTopic` module.
 
-{% content-ref url="./" %}
-[.](./)
+{% content-ref url="../wip-dynamic-subscriptiontopic-with-destinations.md" %}
+[wip-dynamic-subscriptiontopic-with-destinations.md](../wip-dynamic-subscriptiontopic-with-destinations.md)
 {% endcontent-ref %}
-
-To send notifications to `Kafka` create `TopicDestination` resource with `http://fhir.aidbox.app/StructureDefinition/TopicDestinationKafka` profile, kind `kafka`, and specify parameters.
 
 ### Behaviour Overview
 
