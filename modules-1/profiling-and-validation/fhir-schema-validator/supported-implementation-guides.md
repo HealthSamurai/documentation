@@ -535,6 +535,7 @@ NHS Booking and Referrals
 
 **Versions**
 
+* `uk.nhsdigital.bars.r4#1.33.0`
 * `uk.nhsdigital.bars.r4#1.32.0`
 * `uk.nhsdigital.bars.r4#1.31.0`
 * `uk.nhsdigital.bars.r4#1.30.0`
@@ -6127,6 +6128,22 @@ Guidelines for conveying coverage requirements to clinicians when planning treat
 
 ---
 
+### de.medizininformatikinitiative.kerndatensatz.bildgebung
+
+<details>
+<summary>Description</summary>
+
+Medizininformatik Initiative - Modul Befunde bildgebender Verfahren
+
+</details>
+
+**Versions**
+
+* `de.medizininformatikinitiative.kerndatensatz.bildgebung#2025.0.0-ballot`
+
+
+---
+
 ### DK MedCom Terminology
 
 <details>
@@ -7877,6 +7894,22 @@ KBV Schluesseltabellen
 
 ---
 
+### rdc.interoperability.guide
+
+<details>
+<summary>Description</summary>
+
+Interoperability R5 Guide
+
+</details>
+
+**Versions**
+
+* `rdc.interoperability.guide#1.0.0`
+
+
+---
+
 ### Patient Demographics Query for mobile (PDQm)
 
 <details>
@@ -8026,12 +8059,13 @@ This implementation guide defines profiles, operations and guidance for the use 
 <details>
 <summary>Description</summary>
 
-Les nomenclatures des objets de Sante (built Wed, Feb 28, 2024 14:48+0000+00:00)
+Les nomenclatures des objets de Sante (built Thu, Aug 29, 2024 14:54+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `ans.fr.nos#1.3.0`
 * `ans.fr.nos#1.2.0`
 * `ans.fr.nos#1.1.0`
 
