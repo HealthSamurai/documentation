@@ -1,5 +1,22 @@
 # Release Notes
 
+## August 2024 &#x20;
+
+* Aidbox
+  *
+* [Aidbox Forms](../../modules-1/aidbox-forms.md)
+  * UI builder updates (FHIR Questionnaire-based):
+    * [Supported Multilingual Forms](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/multilingual-forms.md)
+    * [Implemented Multilingual Builder Interface](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/multilingual-ui-builder.md)
+    * Provided delete, copy form on the Form template grid
+    * [Implemented reusing forms as component](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/components.md)
+    * Added the SDC config resource for general settings
+    * [Provided the ability to restrict the type of attached file](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#attachment)
+    * Supported cqf-expression to provide prefilling the value in the display field
+    * [Integrated the Termbox server with Aidbox Forms for using external terminologies](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/integration-with-external-terminology-servers..md)
+    * [Added an ability to embed forms as web-component](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/embedding-renderer.md)
+    * [Provided the ability to display an attached image on the form](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#attachment)
+
 ## July 2024 _`latest`_&#x20;
 
 * Aidbox
@@ -9,14 +26,14 @@
 * [Aidbox Forms](../../modules-1/aidbox-forms.md)
   * UI builder updates (FHIR Questionnaire-based):
     * [Implemented Offline mode for forms](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/offline-forms.md)
-    * Supported definition-based extraction
+    * [Supported definition-based extraction](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-extract-data-from-forms.md#definition-based-extraction)
     * [Ability to search and use templates from Aidbox Form Gallery on UI](../../modules-1/aidbox-forms/add-aidbox-forms-library.md)
     * [Ability to embed Aidbox UI Builder as a web-component](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/embedding-builder.md)
     * [Implemented Template-based PDF Generation](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/template-based-pdf-gen.md)
     * [Added a Speech to text widget](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#speech-to-text)
     * [Added an Annotation Pad widget](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#annotation-pad)
     * Performance optimization for large forms
-    * Added support for meta and tag additions in the Questionnaire
+    * [Added support for meta and tag additions in the Questionnaire](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-settings.md#tags)
     * [Supported multi-selection](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#common-widgets-settings)
     * [Supported initial value population](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#common-widgets-settings)
     * Implemented Audit logging
