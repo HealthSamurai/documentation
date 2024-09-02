@@ -8206,6 +8206,7 @@ Die ePA-Medication Spezifikation
 
 * `de.gematik.epa.medication#1.1.1`
 * `de.gematik.epa.medication#1.1.0-rc1`
+* `de.gematik.epa.medication#1.0.3`
 * `de.gematik.epa.medication#1.0.2`
 * `de.gematik.epa.medication#1.0.1`
 * `de.gematik.epa.medication#1.0.0`
@@ -11194,6 +11195,7 @@ Put a description here
 
 **Versions**
 
+* `de.gematik.isik-basismodul#4.0.0`
 * `de.gematik.isik-basismodul#4.0.0-rc3`
 * `de.gematik.isik-basismodul#4.0.0-rc2`
 * `de.gematik.isik-basismodul#4.0.0-rc`
