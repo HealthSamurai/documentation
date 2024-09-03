@@ -43,7 +43,7 @@ name: [{given: ["Tom"]}]
 gender: male
 ```
 
-## Response code
+## Response codes
 
 The following codes can be returned by the server:
 
