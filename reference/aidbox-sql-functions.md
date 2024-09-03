@@ -7,7 +7,7 @@ This page is in progress. Please [contact us](../contact-us.md) if you need more
 ### knife\_extract
 
 ```sql
-knife_extract_text(data::jsonb, paths::jsonb) -> text[] 
+knife_extract(data::jsonb, paths::jsonb) -> jsonb[] 
 ```
 
 Extract elements from jsonb `data` given jsonb array of paths `paths`.&#x20;
