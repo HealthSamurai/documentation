@@ -14,15 +14,17 @@ For an application example, refer to [Aidbox Subscriptions & Kafka TopicDestinat
 
 ## Key Components
 
-1. **`AidboxSubscriptionTopic`** is a custom Aidbox resource modeled after the [FHIR R6 SubscriptionTopic](https://build.fhir.org/subscriptiontopic.html) resource. The resource allows defining a set of events that clients can subscribe to, such as changes in specific resources.&#x20;
-2. **`TopicDestination`** is a custom Aidbox resource that defines where and how the notifications triggered by an `AidboxSubscriptionTopic` should be sent. This resource offers flexibility in specifying various types of destinations.
+* **`AidboxSubscriptionTopic`** is a custom Aidbox resource modeled after the [FHIR R6 SubscriptionTopic](https://build.fhir.org/subscriptiontopic.html) resource. The resource allows defining a set of events that clients can subscribe to, such as changes in specific resources.&#x20;
 
 {% hint style="warning" %}
 **FHIR Compliance:**&#x20;
 
 * **For FHIR R4**: Use the `AidboxSubscriptionTopic` as it is, since FHIR does not include this functionality in R4.
-* **For FHIR R4b, R5, and R6**: You can use either the `AidboxSubscriptionTopic` or the FHIR SubscriptionTopic resource, depending on the FHIR version in use (support for the latter is coming soon).
+* **For FHIR R4b, R5, and R6**: You can use either the `AidboxSubscriptionTopic` or the FHIR SubscriptionTopic resource, depending on the FHIR version used. These version-specific resources will be added in the upcoming releases.&#x20;
 {% endhint %}
+
+* **`TopicDestination`** is a custom Aidbox resource that defines where and how the notifications triggered by an `AidboxSubscriptionTopic` should be sent. This resource offers flexibility in specifying various types of destinations. And is considered as a system configuration resource.
+* **AidboxSubscription** (not implemented yet) is a custom Aidbox resource that describes client requests to be notified about events described by SubscriptionTopic, specifies what actual filters to apply, and specifies channel, endpoint, and payload shape. Subscriptions are created by a client using[ FHIR API](https://build.fhir.org/subscriptions.html#creating-a-subscription).
 
 ## AidboxSubscriptionTopic
 
@@ -85,7 +87,7 @@ Ensure that the resource metadata contains the kind-specific `TopicDestination` 
 
 ## Notification Shape
 
-Notification is a [FHIR Bundle](https://build.fhir.org/bundle.html) resource with `subscription-notification` type, contanining relevant resources in its entries.
+Notification is a [FHIR Bundle](https://build.fhir.org/bundle.html) resource with `subscription-notification` type, containing relevant resources in its entries.
 
 ```json
 {
