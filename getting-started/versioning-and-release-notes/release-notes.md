@@ -10,7 +10,7 @@
     * [Implemented Multilingual Builder Interface](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/multilingual-ui-builder.md)
     * Provided delete, copy form on the Form template grid
     * [Implemented reusing forms as component](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/components.md)
-    * Added the SDC config resource for general settings
+    * [Added the SDC config resource for general settings](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/configuration.md)
     * [Provided the ability to restrict the type of attached file](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#attachment)
     * Supported cqf-expression to provide prefilling the value in the display field
     * [Integrated the Termbox server with Aidbox Forms for using external terminologies](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/integration-with-external-terminology-servers..md)
