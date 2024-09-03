@@ -1,9 +1,13 @@
 # Release Notes
 
-## August 2024 &#x20;
+## August 2024
 
-* Aidbox
-  *
+* Aidbox&#x20;
+  * Introduced dynamic [Topic-based subscriptions](../../modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/) and supported [Kafka (OSS and AWS)](../../modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/kafka-topicdestination.md) as  delivery channels
+  * Released a [demo of publishing a completed QuestionnaireResponse to Kafka topic](https://github.com/Aidbox/app-examples/tree/main/aidbox-subscriptions-to-kafka).&#x20;
+  * Added an option to connect a self-hosted Aidbox instance to the [ViewDefinition builder](https://sqlonfhir.aidbox.app/?utm\_source=aidbox-docs\&utm\_medium=release-notes)
+  * Enhanced [SQL on FHIR spec coverage](https://fhir.github.io/sql-on-fhir-v2/#impls)
+  * Supported [Audit logging](../../modules-1/audit/audit-logging.md) using external identity providers
 * [Aidbox Forms](../../modules-1/aidbox-forms.md)
   * UI builder updates (FHIR Questionnaire-based):
     * [Supported Multilingual Forms](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/multilingual-forms.md)
@@ -17,12 +21,12 @@
     * [Added an ability to embed forms as web-component](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/embedding-renderer.md)
     * [Provided the ability to display an attached image on the form](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#attachment)
 
-## July 2024 _`latest`_&#x20;
+## July 2024 _`latest`_
 
 * Aidbox
   * Introduced support for [custom resources using FHIR StructureDefinitions](../../storage-1/custom-resources/custom-resources-on-fhir-logical-model.md) and [custom resources using FHIR schemas](../../storage-1/custom-resources/custom-resources-using-fhirschema.md)
   * Published [JavaScript app example](https://github.com/Aidbox/app-examples/blob/main/aidbox-notify-via-custom-resources/README.md) demonstrating custom resources with a typical notification flow: requesting a notification, locking it for sending, and sending it (placeholder)
-  * Supported [enabling Audit Log using an environment variable](../../modules-1/audit/setup-audit-logging.md#two-ways-to-enable-audit-log)&#x20;
+  * Supported [enabling Audit Log using an environment variable](../../modules-1/audit/setup-audit-logging.md#two-ways-to-enable-audit-log)
 * [Aidbox Forms](../../modules-1/aidbox-forms.md)
   * UI builder updates (FHIR Questionnaire-based):
     * [Implemented Offline mode for forms](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/offline-forms.md)
@@ -44,14 +48,14 @@
 
 ## May 2024 _`stable, 2405`_
 
-* **Aidbox development licenses** are now available to all users, empowering everyone to explore, develop, and innovate with our comprehensive FHIR-first healthcare platform.&#x20;
+* **Aidbox development licenses** are now available to all users, empowering everyone to explore, develop, and innovate with our comprehensive FHIR-first healthcare platform.
 * **Simplified Aidbox Launch**: We've developed a simplified[ way to launch Aidbox](../run-aidbox-locally-with-docker/run-aidbox-locally.md), making it easier than ever to get started.
 * **AidboxID Login:** Users can now log in to Aidbox using AidboxID to streamline and secure access.
 * [**FHIR schema validation engine (beta)**](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator)**.** This validation engine is set to replace the existing Zen Schema and JSON Schema validation engines.
   * Supported multiple sources to load IGs to Aidbox:
     * [Aidbox FHIR IGs repository](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/aidbox-ui/ig-package-from-aidbox-registry)
     * [Public URL to an IG Package](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/aidbox-ui/public-url-to-ig-package)
-    * [Local IG package ](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/aidbox-ui/local-ig-package)
+    * [Local IG package](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/aidbox-ui/local-ig-package)
   * Supported multiple interfaces to load IGs to Aidbox:
     * [.env file](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/environment-variable)
     * [Aidbox UI](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/aidbox-ui) (at runtime)
@@ -60,10 +64,10 @@
 * **New Aidbox UI (Settings -> New UI)**:
   * Enhanced navigation with a double sidebar for improved access to features and resources.
   * Resource browser
-  * FHIR IG  package introspection
+  * FHIR IG package introspection
   * Settings (read-only)
 * **DevOps:**
-  * Published [Helm charts](https://github.com/Aidbox/helm-charts?tab=readme-ov-file) to simplify the process of deploying and managing Aidbox in K8s&#x20;
+  * Published [Helm charts](https://github.com/Aidbox/helm-charts?tab=readme-ov-file) to simplify the process of deploying and managing Aidbox in K8s
 * [Aidbox Forms](../../modules-1/aidbox-forms.md)
   * UI builder updates (FHIR Questionnaire-based):
     * Ability to create custom components and reuse them in other forms
@@ -77,7 +81,7 @@
     * Supported Multitenancy in Aidbox Forms
   * [Released the Public Aidbox Form Builder](https://form-builder.aidbox.app/)
 
-## March 2024 _`2403`_&#x20;
+## March 2024 _`2403`_
 
 * SQL on FHIR engine
   * Enhanced [SQL on FHIR® (v2.0) spec](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/index.html) test coverage. The SQL on FHIR coverage report is available[ here](https://fhir.github.io/sql-on-fhir-v2/#implshttps://fhir.github.io/sql-on-fhir-v2/#impls).
