@@ -4,7 +4,7 @@
 
 * Aidbox&#x20;
   * Introduced dynamic [Topic-based subscriptions](../../modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/) and supported [Kafka (OSS and AWS)](../../modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/kafka-topicdestination.md) as  delivery channels
-  * Released a [demo of publishing a completed QuestionnaireResponse to Kafka topic](https://github.com/Aidbox/app-examples/tree/main/aidbox-subscriptions-to-kafka).&#x20;
+  * Released a [demo of publishing a completed QuestionnaireResponse to Kafka topic](https://github.com/Aidbox/app-examples/tree/main/aidbox-subscriptions-to-kafka)
   * Added an option to connect a self-hosted Aidbox instance to the [ViewDefinition builder](https://sqlonfhir.aidbox.app/?utm\_source=aidbox-docs\&utm\_medium=release-notes)
   * Enhanced [SQL on FHIR spec coverage](https://fhir.github.io/sql-on-fhir-v2/#impls)
   * Supported [Audit logging](../../modules-1/audit/audit-logging.md) using external identity providers
@@ -289,7 +289,7 @@
   * Added an option [to inspect intermediate conversion tree](../../modules-1/integration-toolkit/ccda-converter/ccda-fhir-dsl.md#rules-dsl-syntax)
 * Security and access control
   * Added [shared resources](../../modules-1/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md#shared-resource-mode) in the [Organisation-based access control](../../modules-1/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md)
-  * Supported [Azure AD asymmetric authentication](../../modules-1/security-and-access-control/how-to-guides/set-up-external-identity-provider/azure-ad-1.md)
+  * Supported [Azure AD asymmetric authentication](../../modules-1/security-and-access-control/set-up-external-identity-provider/azure-ad-1.md)
   * Added security dashboard in the Aidbox UI
   * Added a form to create an IdentityProvider resource
   * Supported SCIM v2 User API
@@ -373,7 +373,7 @@
   * Enhanced [/ccda/validate](../../modules-1/integration-toolkit/ccda-converter/#validating-a-c-cda-document) endpoint to behave exactly as HealthIT.gov CDA validator
 * Security and access control
   * Supported [log filtering](../../modules-1/observability/logging-and-audit/technical-reference/log-transformations.md#aidbox.log-ignore) via [different appenders](../../modules-1/observability/logging-and-audit/technical-reference/log-appenders.md)
-  * Added [Authentication with AD FS](../../security-and-access-control-1/how-to-guides/set-up-external-identity-provider/microsoft-ad-fs.md) tutorial
+  * Added [Authentication with AD FS](../../modules-1/security-and-access-control/set-up-external-identity-provider/microsoft-ad-fs.md) tutorial
 * Aidbox user portal
   * Added option to specify [FHIR R5 configuration project](https://aidbox.app/ui/portal#/signin)
 * Ops
@@ -603,7 +603,7 @@
 * Added [SNOMED CT bundle](../../terminology/terminology-api/)
 * Enhanced [zen.fhir profiles](../../profiling-and-validation/profiling-with-zen-lang/) with RequiredPattern and FixedValue constraints
 * Added [seed service](../../aidbox-configuration/aidbox-zen-lang-project/seed-import.md) errors output.
-* Added [Azure Active Directory (Azure AD)](../../security-and-access-control-1/how-to-guides/azure-ad.md) and [Keycloak](../../security-and-access-control-1/how-to-guides/keycloak.md) external identity providers integration guides
+* Added [Azure Active Directory (Azure AD)](../../modules-1/security-and-access-control/set-up-external-identity-provider/azure-ad.md) and [Keycloak](../../modules-1/security-and-access-control/set-up-external-identity-provider/keycloak.md) external identity providers integration guides
 * Added [Mailgun](../../tutorials/integrations/mailgun-integration.md) and [Postmark](../../tutorials/integrations/postmark-integration.md) email providers integration guides
 
 ## July 2022 _`2207`_
@@ -786,7 +786,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
   * Log additional DB metrics from Aidbox.Dev.
   * Added ELK, Kibana, and Grafana to Aidbox image. So now you can start exploring and analyzing logs from scratch. Check our tutorial on exploring and visualizing logs [here](https://docs.aidbox.app/app-development-guides/tutorials/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana).
 * We added a new auth mechanism for authorization Aidbox.Cloud and Aidbox.Multibox users by JWT.
-* Support for [OKTA](https://www.okta.com/) as an external OAuth 2.0 provider. Check out [the tutorial](../../security-and-access-control-1/how-to-guides/configure-okta.md).
+* Support for [OKTA](https://www.okta.com/) as an external OAuth 2.0 provider. Check out [the tutorial](../../modules-1/security-and-access-control/set-up-external-identity-provider/configure-okta.md).
 * Added Intercom so you can get help directly from your Aidbox.Dev or Aidbox.Cloud.
 * Added a guide on search performance optimization to our docs. Check it [here](https://docs.aidbox.app/api-1/api/search-parameters#optimization-of-search-parameters).
 

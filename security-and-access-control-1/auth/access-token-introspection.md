@@ -8,7 +8,7 @@ description: Aidbox as a Resource Server
 We have prepared guides detailing the setup process for the most frequently requested IdP solutions. You may choose to utilize one of these guides, or you can browse down this page and explore that article.
 {% endhint %}
 
-<table data-column-title-hidden data-view="cards"><thead><tr><th></th><th data-hidden></th><th data-hidden></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td>Aidbox</td><td></td><td></td><td><a href="../../.gitbook/assets/aidbox-logo.png">aidbox-logo.png</a></td><td><a href="../how-to-guides/aidbox.md">aidbox.md</a></td></tr><tr><td>Okta</td><td></td><td></td><td><a href="../../.gitbook/assets/okta-logo.png">okta-logo.png</a></td><td><a href="../how-to-guides/configure-okta.md">configure-okta.md</a></td></tr><tr><td>Microsoft Azure AD</td><td></td><td></td><td><a href="../../.gitbook/assets/azure-ad-logo.png">azure-ad-logo.png</a></td><td><a href="../how-to-guides/azure-ad.md">azure-ad.md</a></td></tr><tr><td>Keycloak</td><td></td><td></td><td><a href="../../.gitbook/assets/keycloak-logo.png">keycloak-logo.png</a></td><td><a href="../how-to-guides/keycloak.md">keycloak.md</a></td></tr></tbody></table>
+<table data-column-title-hidden data-view="cards"><thead><tr><th></th><th data-hidden></th><th data-hidden></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td>Aidbox</td><td></td><td></td><td><a href="../../.gitbook/assets/aidbox-logo.png">aidbox-logo.png</a></td><td><a href="../../modules-1/security-and-access-control/set-up-external-identity-provider/aidbox.md">aidbox.md</a></td></tr><tr><td>Okta</td><td></td><td></td><td><a href="../../.gitbook/assets/okta-logo.png">okta-logo.png</a></td><td><a href="../../modules-1/security-and-access-control/set-up-external-identity-provider/configure-okta.md">configure-okta.md</a></td></tr><tr><td>Microsoft Azure AD</td><td></td><td></td><td><a href="../../.gitbook/assets/azure-ad-logo.png">azure-ad-logo.png</a></td><td><a href="../../modules-1/security-and-access-control/set-up-external-identity-provider/azure-ad.md">azure-ad.md</a></td></tr><tr><td>Keycloak</td><td></td><td></td><td><a href="../../.gitbook/assets/keycloak-logo.png">keycloak-logo.png</a></td><td><a href="../../modules-1/security-and-access-control/set-up-external-identity-provider/keycloak.md">keycloak.md</a></td></tr></tbody></table>
 
 Aidbox can validate access tokens issued by 3rd-party servers. This way Aidbox acts as a Resource Server and leaves Identity management to a separate server.
 
@@ -144,6 +144,6 @@ link:
 
 ## How to set-up identity provider
 
-{% content-ref url="../how-to-guides/set-up-external-identity-provider/" %}
-[set-up-external-identity-provider](../how-to-guides/set-up-external-identity-provider/)
+{% content-ref url="../../modules-1/security-and-access-control/set-up-external-identity-provider/" %}
+[set-up-external-identity-provider](../../modules-1/security-and-access-control/set-up-external-identity-provider/)
 {% endcontent-ref %}

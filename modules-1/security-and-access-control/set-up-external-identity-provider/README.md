@@ -4,7 +4,7 @@ description: >-
   Aidbox
 ---
 
-# External identity provider
+# External identity providers
 
 {% hint style="info" %}
 This guide provides instructions on how to configure Aidbox to work with any IAM service that supports the OAuth 2.0 specification.
@@ -12,7 +12,7 @@ This guide provides instructions on how to configure Aidbox to work with any IAM
 Additionally, we have created guides detailing the setup process for the most frequently requested IdP solutions. You may choose to utilize one of these guides, or you can browse down this page and explore that article.
 {% endhint %}
 
-<table data-card-size="large" data-view="cards"><thead><tr><th></th><th></th><th data-hidden></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td>Aidbox</td><td>FHIR++ platform with built-in OAuth 2.0</td><td></td><td><a href="../../../.gitbook/assets/aidbox-logo.png">aidbox-logo.png</a></td><td><a href="../aidbox.md">aidbox.md</a></td></tr><tr><td>Okta</td><td>Enterprise-grade, ID management service</td><td></td><td><a href="../../../.gitbook/assets/okta-logo.png">okta-logo.png</a></td><td><a href="../configure-okta.md">configure-okta.md</a></td></tr><tr><td>Microsoft Azure AD</td><td>Cloud-based IAM service</td><td></td><td><a href="../../../.gitbook/assets/azure-ad-logo.png">azure-ad-logo.png</a></td><td><a href="../azure-ad.md">azure-ad.md</a></td></tr><tr><td>Keycloak</td><td>Open-source IAM solution</td><td></td><td><a href="../../../.gitbook/assets/keycloak-logo.png">keycloak-logo.png</a></td><td><a href="../keycloak.md">keycloak.md</a></td></tr></tbody></table>
+<table data-card-size="large" data-view="cards"><thead><tr><th></th><th></th><th data-hidden></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td>Aidbox</td><td>FHIR++ platform with built-in OAuth 2.0</td><td></td><td><a href="../../../.gitbook/assets/aidbox-logo.png">aidbox-logo.png</a></td><td><a href="aidbox.md">aidbox.md</a></td></tr><tr><td>Okta</td><td>Enterprise-grade, ID management service</td><td></td><td><a href="../../../.gitbook/assets/okta-logo.png">okta-logo.png</a></td><td><a href="configure-okta.md">configure-okta.md</a></td></tr><tr><td>Microsoft Azure AD</td><td>Cloud-based IAM service</td><td></td><td><a href="../../../.gitbook/assets/azure-ad-logo.png">azure-ad-logo.png</a></td><td><a href="azure-ad.md">azure-ad.md</a></td></tr><tr><td>Keycloak</td><td>Open-source IAM solution</td><td></td><td><a href="../../../.gitbook/assets/keycloak-logo.png">keycloak-logo.png</a></td><td><a href="keycloak.md">keycloak.md</a></td></tr></tbody></table>
 
 ## `IdentityProvider` resource
 
@@ -52,7 +52,7 @@ client:
 | attribute            | description                                                                                                                                                                                                                              |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `system`             | adds identifier for the created user with this system                                                                                                                                                                                    |
-| `userinfo-source` | If `id-token`, `user.data` is populated with the `id_token.claims` value. Otherwise request to the `userinfo_endpoint` is performed to get user details. |
+| `userinfo-source`    | If `id-token`, `user.data` is populated with the `id_token.claims` value. Otherwise request to the `userinfo_endpoint` is performed to get user details.                                                                                 |
 | `authorize_endpoint` | OAuth Provider authorization endpoint                                                                                                                                                                                                    |
 | `token_endpoint`     | OAuth Provider access token endpoint                                                                                                                                                                                                     |
 | `userinfo_endpoint`  | OAuth Provider user profile endpoint                                                                                                                                                                                                     |
