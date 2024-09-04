@@ -43,15 +43,12 @@ accept: application/json
 
 {
   "resourceType": "AidboxSubscriptionTopic",
-  "id": "example",
-  "url": "http://example.org/AidboxSubscriptionTopic/example",
+  "url": "http://example.org/FHIR/R5/SubscriptionTopic/QuestionnaireResponse-topic",
   "status": "active",
-  "description": "Example topic for completed QuestionnaireResponses",
-  "resourceTrigger": [
+  "trigger": [
     {
-      "resource": "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse",
-      "fhirPathCriteria": "status = 'completed'",
-      "description": "An QuestionnaireResponse has been completed"
+      "resource": "QuestionnaireResponse",
+      "fhirPathCriteria": "status = 'completed' or status = 'amended'"
     }
   ]
 }
