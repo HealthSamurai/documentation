@@ -95,9 +95,9 @@ Deprecated. Use `AIDBOX_ZEN_PATHS` and `AIDBOX_ZEN_ENTRYPOINT` instead.
 
 `BOX_ENTRYPOINT` environment variable is used to specify zen entry symbol.12
 
-## `BOX_PROJECT_GIT_SUB_PATH`
+## `BOX_PROJECT_GIT_SUB__PATH`
 
-With the use of `BOX_PROJECT_GIT_SUB_PATH`, it is possible to check out only a specific directory from a repository. The value of the variable should be set to a path starting with a repository name.&#x20;
+With the use of `BOX_PROJECT_GIT_SUB__PATH`, it is possible to check out only a specific directory from a repository. The value of the variable should be set to a path starting with a repository name.&#x20;
 
 For example, suppose you have repository `xyz` with the following organization:
 
@@ -107,4 +107,4 @@ For example, suppose you have repository `xyz` with the following organization:
 /c
 ```
 
-If you now set `BOX_PROJECT_GIT_SUB_PATH=xyz/a/b`, then only folder `b` is going to be cloned.
+If you now set `BOX_PROJECT_GIT_SUB__PATH=xyz/a/b`, then only folder `b` is going to be cloned.
