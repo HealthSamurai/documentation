@@ -21,9 +21,9 @@ So now you can easily:
 ## **Functionality**
 
 * REST, SQL, RPC Markdown support in cells
-* [Notebook save ](notebooks.md#save-a-notebook)
+* [Notebook save](notebooks.md#save-a-notebook)
 * [Notebooks repository](notebooks.md#publish-notebook) - space for public notebook storage.
-* [Notebook share/preview/upload ](notebooks.md#share-a-notebook)
+* [Notebook share/preview/upload](notebooks.md#share-a-notebook)
 
 ## Notebooks section in Aidbox UI
 
@@ -49,10 +49,9 @@ You can save a notebook for later use or share it with your team. The saved note
 
 To share your Aidbox notebook with others and upload it to another Aidbox, simply click on the `share` button and choose the share method that works best for you — either as a _file_ or a _link_.
 
-&#x20;If you choose to share as a _file_, Aidbox will download the notebook as a `.html` file, which will contain a preview of the notebook.
+If you choose to share as a _file_, Aidbox will download the notebook as a `.html` file, which will contain a preview of the notebook.
 
-&#x20;If you choose to share as a _link_, Aidbox will generate a unique link, such as [https://aidbox.app/ExportedNotebook/fa061348-1851-4962-b39e-ba496eba23bd](https://aidbox.app/ExportedNotebook/fa061348-1851-4962-b39e-ba496eba23bd), and copy it to your clipboard. You can also share notebooks directly from the notebooks grid.\
-
+If you choose to share as a _link_, Aidbox will generate a unique link, such as [https://aidbox.app/ExportedNotebook/fa061348-1851-4962-b39e-ba496eba23bd](https://aidbox.app/ExportedNotebook/fa061348-1851-4962-b39e-ba496eba23bd), and copy it to your clipboard. You can also share notebooks directly from the notebooks grid.\\
 
 <figure><img src="../../.gitbook/assets/image (9) (2) (1).png" alt=""><figcaption><p>Share Aidbox notebook</p></figcaption></figure>
 
@@ -81,10 +80,3 @@ If you selected `as link` option, paste the notebook share link and click `uploa
 You can also publish a notebook and share it with the Aidbox community. The published notebook will be available in the Community notebooks section.
 
 ![Publish Aidbox notebook](../../.gitbook/assets/2021-09-03\_10-13-27.png)
-
-## **Future functionality would include:**
-
-* Javascript
-* GraphQL
-* Stresty
-* Visualizations
