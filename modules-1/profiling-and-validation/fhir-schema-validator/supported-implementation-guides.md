@@ -5410,6 +5410,7 @@ FHIR package for DGMC (Division of Governmental Hospitals Israel)
 
 **Versions**
 
+* `il.fhir.r4.dgmc#0.1.7`
 * `il.fhir.r4.dgmc#0.1.6`
 * `il.fhir.r4.dgmc#0.1.5`
 * `il.fhir.r4.dgmc#0.1.4`
@@ -10658,12 +10659,13 @@ Spezifikationen für DiGas zur digitalen Behandlung von Verdauungserkrankungen
 <details>
 <summary>Description</summary>
 
-eHealth Platform Federal Core Profiles (built Tue, Jun 11, 2024 14:06+0200+02:00)
+eHealth Platform Federal Core Profiles (built Fri, Aug 30, 2024 17:07+0200+02:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.be.core#2.1.2`
 * `hl7.fhir.be.core#2.1.1`
 * `hl7.fhir.be.core#2.1.0`
 * `hl7.fhir.be.core#2.0.1`
