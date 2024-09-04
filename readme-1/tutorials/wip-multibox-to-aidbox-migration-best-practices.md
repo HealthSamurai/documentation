@@ -1,5 +1,6 @@
 ---
 description: How to transit from Multibox to Aidbox?
+hidden: true
 ---
 
 # \[WIP] Multibox to Aidbox migration best practices

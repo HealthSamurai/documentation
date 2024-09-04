@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Generate sample data for Bulk API
 
 You can use sample data for executing Bulk API endpoints from related documentation sections.
@@ -9,7 +13,7 @@ Sample data contains:
 * 3 appointments with references to patients
 
 {% hint style="success" %}
-You can quickly copy sample requests using the icon in the top right corner of code blocks and execute them in the Aidbox REST console. 
+You can quickly copy sample requests using the icon in the top right corner of code blocks and execute them in the Aidbox REST console.
 {% endhint %}
 
 {% tabs %}
@@ -108,4 +112,3 @@ entry:
 ```
 {% endtab %}
 {% endtabs %}
-

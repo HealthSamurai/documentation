@@ -1,5 +1,6 @@
 ---
 description: Dev endpoint to test matcho engine
+hidden: true
 ---
 
 # $matcho

@@ -152,6 +152,7 @@
   * [$to-format](app-development-guides/usdto-format-fhir-aidbox.md)
 * [Bulk API](api-1/bulk-api-1/README.md)
   * [Configure Access Policies for Bulk API](api-1/bulk-api-1/configure-access-policies-for-bulk-api.md)
+  * [🎓 Synthea by Bulk APi](api-1/bulk-api-1/synthea-by-bulk-api.md)
   * [Generate sample data for Bulk API](api-1/bulk-api-1/generate-sample-data-for-bulk-api.md)
   * [$dump](api-1/bulk-api-1/usddump.md)
   * [$dump-sql](api-1/bulk-api-1/usddump-sql.md)
@@ -162,7 +163,6 @@
   * [$import & /fhir/$import](api-1/bulk-api-1/usdimport-and-fhir-usdimport.md)
   * [aidbox.bulk data import](api-1/bulk-api-1/aidbox.bulk-data-import.md)
   * [Bulk import from an S3 bucket](api-1/bulk-api-1/import-from-a-bucket.md)
-  * [🎓 Synthea by Bulk APi](api-1/bulk-api-1/synthea-by-bulk-api.md)
 * [RPC API](api-1/rpc-api.md)
 * [Archive/Restore API](api-1/task-api/archive-restore-api/README.md)
   * [create-archive](api-1/archive-restore-api/create-archive.md)
@@ -570,7 +570,6 @@
 * [Receive logs from your app](app-development-guides/receive-logs-from-your-app/README.md)
   * [X-Audit header](app-development-guides/receive-logs-from-your-app/x-audit-header.md)
   * [Health check](app-development-guides/receive-logs-from-your-app/health-check.md)
-* [Administration](tutorials/administration/README.md)
 * [Working with Aidbox from .NET](app-development-guides/working-with-aidbox-from-.net.md)
 * [Testing with Stresty](app-development/testing-with-stresty.md)
 
