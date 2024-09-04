@@ -32,33 +32,24 @@ This is a directory with all your configuration files. They specify how a box sh
 * `box/` — directory with configs for services such as ACL or FHIR IG.\
   Each service config comes with its own set of options.
 
-| zrc/system.edn                                                                        | zrc/box/acl.edn |
-| ------------------------------------------------------------------------------------- | --------------- |
+| zrc/system.edn                                                                                                                                                                            | zrc/box/acl.edn                                                                                                     |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | <pre class="language-clojure"><code class="lang-clojure">{ns     system
-</code></pre> |                 |
-| import #{aidbox                                                                       |                 |
+ import #{aidbox}
 
-```
-      …}
-```
+server {...}
 
-box {:zen/tags #{aidbox/system} :services {:http server …\}}
-
-…
-
-server {…\}} |
-
-```clojure
-{ns     box.acl
+ box 
+ {:zen/tags #{aidbox/system} 
+  :services {:http server …}}}
+</code></pre> | <pre><code>{ns     box.acl
 import #{aidbox.rest.acl}
 some-acl-symbol
 {…}
 …
 some-other-acl-symbol
 {…}}
-```
-
-|
+</code></pre> |
 
 ### Examples
 
