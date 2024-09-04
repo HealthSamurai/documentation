@@ -1,10 +1,12 @@
 # Add US Core IG to a running Aidbox instance
 
-## Steps
-
 {% hint style="warning" %}
-Currently it is only possible to use FHIR IGs for self-hosted installations. We are working to add support for other distributions as well.
+This tutorial is deprecated. Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
+
+[setup.md](../../../modules-1/profiling-and-validation/fhir-schema-validator/setup.md "mention")
 {% endhint %}
+
+## Steps
 
 {% hint style="info" %}
 You are advised not to start Aidbox until all steps are finished. Otherwise you risk to start a misconfigured instance.

@@ -1,12 +1,14 @@
 # Custom Search Parameter
 
-This page describes how to create your own SearchParameters that are not present in the FHIR core specification or the IGs you're using.
+This page describes how to create your SearchParameters that are not present in the FHIR core specification or the IGs you're using.
 
-By default Aidbox provides SearchParameters defined in the FHIR Core spec or any IG's loaded to the Aidbox instance. You can create custom search parameter using different approaches:
+By default, Aidbox provides SearchParameters defined in the FHIR Core spec or any IG's loaded in the Aidbox instance. You can create custom search parameter using different approaches:
 
 {% content-ref url="custom-search-parameters.md" %}
 [custom-search-parameters.md](custom-search-parameters.md)
 {% endcontent-ref %}
+
+Deprecated:
 
 {% content-ref url="aidbox-search-parameters.md" %}
 [aidbox-search-parameters.md](aidbox-search-parameters.md)

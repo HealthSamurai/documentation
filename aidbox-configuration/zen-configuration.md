@@ -5,14 +5,16 @@ description: Configure Aidbox using environment variables and Zen
 # Zen Configuration
 
 {% hint style="warning" %}
-This feature is in alpha. It may change in backward-incompatible way in the future.
+Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
+
+[setup.md](../modules-1/profiling-and-validation/fhir-schema-validator/setup.md "mention")
 {% endhint %}
 
 ## Find configuration options
 
 `aidbox/config` schema lists available Zen configuration options with descriptions
 
-Open _Profiles_ in Aidbox UI. Navigate to `aidbox/config` schema.&#x20;
+Open _Profiles_ in Aidbox UI. Navigate to `aidbox/config` schema.
 
 ![](<../.gitbook/assets/image (102) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (2) (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1).png>)
 

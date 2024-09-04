@@ -2,7 +2,7 @@
 
 ## Configure Aidbox
 
-To begin using custom seacrh parameters, enable the FHIR Schema validator engine in Aidbox.
+To begin using custom search parameters, enable the FHIR Schema validator engine in Aidbox.
 
 {% content-ref url="../../../../modules-1/profiling-and-validation/fhir-schema-validator/setup.md" %}
 [setup.md](../../../../modules-1/profiling-and-validation/fhir-schema-validator/setup.md)
@@ -197,6 +197,3 @@ entry:
 This table contains properties required by the FHIR specification and properties that Aidbox interprets.
 
 <table><thead><tr><th width="144">Property</th><th width="167">FHIR datatype</th><th>Description</th></tr></thead><tbody><tr><td>url</td><td>uri</td><td>Search parameter unique canonical url</td></tr><tr><td>version</td><td>string</td><td>Search parameter version</td></tr><tr><td>name</td><td>string</td><td>Search parameter name, used to perform actual search queries</td></tr><tr><td>status</td><td>code</td><td>draft | active | retired | unknown</td></tr><tr><td>description</td><td>markdown</td><td>Natural language description of the search parameter</td></tr><tr><td>code</td><td>code</td><td>Recommended name for parameter in search url (Aidbox ignores it, and use <code>.name</code> instead)</td></tr><tr><td>base</td><td>code[]</td><td>The resource type(s) this search parameter applies to</td></tr><tr><td>type</td><td>code</td><td>number | date | string | token | reference | composite | quantity | uri | special</td></tr><tr><td>expression</td><td>string</td><td>FHIRPath expression that extracts the values</td></tr><tr><td>component</td><td>BackboneElement</td><td>For Composite resources to define the parts</td></tr></tbody></table>
-
-
-

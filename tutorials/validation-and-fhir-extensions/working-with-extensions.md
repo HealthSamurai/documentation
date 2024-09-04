@@ -1,5 +1,11 @@
 # Working with Extensions
 
+{% hint style="warning" %}
+This tutorial is deprecated. Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
+
+[setup.md](../../modules-1/profiling-and-validation/fhir-schema-validator/setup.md "mention")
+{% endhint %}
+
 ## Aidbox Native Extensions
 
 In addition to the FHIR extensions, Aidbox has its own implementation of [extensions as native attributes](../../storage-1/first-class-extensions.md).
