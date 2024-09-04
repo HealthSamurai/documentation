@@ -1,10 +1,3 @@
----
-description: >-
-  This example showcases [Aidbox
-  SubscriptionTopic](https://docs.aidbox.app/modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations)
-  producing data to  Kafka.
----
-
 # Tutorial: produce QuestionnaireResponse to Kafka topic
 
 ### Prerequisites
