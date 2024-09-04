@@ -4,7 +4,7 @@
 This feature is currently available on the Aidbox`:latest` and `:edge` channels.
 {% endhint %}
 
-Aidbox configuration project allows you to easily enable [FHIR IGs](https://www.hl7.org/fhir/implementationguide.html) which extend basic FHIR functionality with a variety of features including additional profiles and terminologies. Currently Aidbox can only work with a subset of IG specification but we plan to extend it in the future.
+Aidbox configuration project allows you to easily enable [FHIR IGs](https://www.hl7.org/fhir/implementationguide.html) which extend basic FHIR functionality with a variety of features including additional profiles and terminologies. Currently, Aidbox can only work with a subset of IG specification but we plan to extend it in the future.
 
 Currently supported list of features:
 
@@ -31,7 +31,7 @@ You need to go through the following steps:
 3. Commit changes to your Aidbox configuration project
 4. Restart Aidbox and verify that IGs are enabled
 
-All of them are covered in a greater detail below.
+All of them are covered in greater detail below.
 
 {% hint style="warning" %}
 Zen FHIR packages require `AIDBOX_CORRECT_AIDBOX_FORMAT=true` environment variable.
@@ -66,22 +66,23 @@ To enable zen FHIR IGs you provided you need to import them inside of your [entr
 
 Using the example from [the getting started page](../../getting-started/run-aidbox-locally-with-docker/#create-and-set-up-your-aidbox-configuration-project) the updated entrypoint file will look like this for both of the examples above:
 
-| r4 core                                                                            | us-core and plan-net                                                               |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| <pre class="language-clojure"><code class="lang-clojure">{:ns system
-</code></pre> |                                                                                    |
-| :import #{aidbox hl7-fhir-r4-core}                                                 |                                                                                    |
-| box                                                                                |                                                                                    |
-| {:zen/tags #{aidbox/system\}}}                                                     |                                                                                    |
-|                                                                                    | <pre class="language-clojure"><code class="lang-clojure">{:ns system
+| r4 core                                                                                                                                                        | us-core and plan-net                                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| <pre class="language-clojure"><code class="lang-clojure">{ns system
+ import #{aidbox hl7-fhir-r4-core}
+ 
+ 
+ 
+ box
+ {:zen/tags #{aidbox/system}}}
+</code></pre> | <pre><code>{import
+ #{aidbox
+   hl7-fhir-us-core
+   hl7-fhir-us-davinci-pdex-plan-net}
+  
+  box
+  {:zen/tags #{aidbox/system}}}
 </code></pre> |
-| :import                                                                            |                                                                                    |
-| #{aidbox                                                                           |                                                                                    |
-| hl7-fhir-us-core                                                                   |                                                                                    |
-| hl7-fhir-us-davinci-pdex-plan-net}                                                 |                                                                                    |
-| box                                                                                |                                                                                    |
-| {:zen/tags #{aidbox/system\}}}                                                     |                                                                                    |
-|                                                                                    |                                                                                    |
 
 ### Commit changes to your Aidbox configuration project
 
@@ -93,21 +94,21 @@ git add zen-package.edn && git commit -m "Add IG dependencies"
 
 ### Restart Aidbox
 
-After you changed `zen-package.edn` you need to restart Aidbox for your changes to be applied.
+After you change `zen-package.edn` you need to restart Aidbox for your changes to be applied.
 
 ### Verify that IGs are enabled
 
-After Aidbox restarted with a new configuration you can use profiles, terminology and other IG features.
+After Aidbox restarted with a new configuration you can use profiles, terminology, and other IG features.
 
 {% hint style="warning" %}
-By default, Aidbox does not load terminologies into the database in order to save the disk space. This still allows you to use them for validation but terminology server functionality won’t be available. If you do wish to load the terminologies, you need to set `BOX_FEATURES_FTR_PULL_ENABLE=true` environment variable.
+By default, Aidbox does not load terminologies into the database to save disk space. This still allows you to use them for validation but terminology server functionality won’t be available. If you do wish to load the terminologies, you need to set `BOX_FEATURES_FTR_PULL_ENABLE=true` environment variable.
 {% endhint %}
 
 To see currently loaded profiles you can go to the `profiles` UI page:
 
 ![](<../../.gitbook/assets/image (4) (1) (2).png>) ![](<../../.gitbook/assets/image (3) (3).png>)
 
-If you want to verify that validation with IGs work, you can create FHIR resource using FHIR REST API which will validate provided resource against specified Profile.
+If you want to verify that validation with IGs work, you can create FHIR resource using FHIR REST API which will validate the provided resource against the specified Profile.
 
 For example, if you want to check that US Core IG works, you can send the following requests and check that response statuses are as expected.
 
