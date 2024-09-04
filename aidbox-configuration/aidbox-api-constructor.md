@@ -1,5 +1,11 @@
 # API constructor (beta)
 
+{% hint style="warning" %}
+Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
+
+[setup.md](../modules-1/profiling-and-validation/fhir-schema-validator/setup.md "mention")
+{% endhint %}
+
 Using Aidbox API constructor you can:
 
 * define API, endpoints, handlers, and URL params schema
