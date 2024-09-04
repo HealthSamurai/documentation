@@ -204,6 +204,7 @@
 * [Topic-based subscriptions](modules-1/topic-based-subscriptions/README.md)
   * [Topic-based subscriptions using AidboxSubscriptionTopic](modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/README.md)
     * [Kafka TopicDestination](modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/kafka-topicdestination.md)
+    * [Tutorial: produce QuestionnaireResponse to Kafka topic](modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/tutorial-produce-questionnaireresponse-to-kafka-topic.md)
   * [Topic-Based Subscriptions using Aidbox configuration project (zen)](modules-1/topic-based-subscriptions/topic-based-subscriptions/README.md)
     * [Set up SubscriptionTopic](modules-1/topic-based-subscriptions/topic-based-subscriptions/setup-subscriptiontopic.md)
     * [Tutorial: Subscribe to Topic (R4B)](modules-1/topic-based-subscriptions/topic-based-subscriptions/subscribe-to-topics-r4b.md)
