@@ -230,12 +230,17 @@ Codemap is mapping between OID and URI based codesystems.
 If default set of codemaps is not suitable for you for some reason - you may declare your own custom codemaps and 
 they will override default ones.
 
-Codemap is basically a hash-map where OID is a key and URI is a value: 
+Codemap is basically a hash-map that we use to perform: 
+- URI -> OID in FHIR->C-CDA conversion 
+- OID -> URI in C-CDA->FHIR conversion 
+
+This is URI to OID codemap, URI is a key, OID is a values: 
 
 ```
 {"http://terminology.hl7.org/CodeSystem/hsloc"    "2.16.840.1.113883.6.259",
  "http://hl7.org/fhir/ValueSet/provider-taxonomy" "2.16.840.1.113883.6.101"}
 ```
+
 You can see example of codemap [here](https://github.com/Aidbox/aidbox-project-template/blob/aidbox-ccda-custom-rules/custom-rules/custom-codemaps.yaml), it is just a YAML file: 
 
 ```
