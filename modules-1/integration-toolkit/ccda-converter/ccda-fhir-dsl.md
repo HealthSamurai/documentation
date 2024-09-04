@@ -231,8 +231,8 @@ If default set of codemaps is not suitable for you for some reason - you may dec
 they will override default ones.
 
 Codemap is basically a hash-map that we use to perform: 
-- URI -> OID in FHIR->C-CDA conversion 
-- OID -> URI in C-CDA->FHIR conversion 
+- URI to OID translation for FHIR to C-CDA conversion 
+- OID to URI translation for C-CDA to FHIR conversion 
 
 This is URI to OID codemap, URI is a key, OID is a values: 
 
