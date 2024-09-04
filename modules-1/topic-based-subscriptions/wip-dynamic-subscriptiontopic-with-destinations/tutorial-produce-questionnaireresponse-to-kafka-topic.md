@@ -119,16 +119,6 @@ Open the Aidbox [REST Console](http://localhost:8888/ui/console#/rest) and get t
 GET /fhir/TopicDestination/kafka-destination/$status
 ```
 
-#### See Messages in Kafka UI
+#### Check Messages in Kafka UI
 
 Open [Kafka UI](http://localhost:8080/) -> `Topics` -> `aidbox-forms` -> `messages` and review the `QuestionnaireResponse` that was created after submitting the form.
-
-### Demo
-
-A deployed and configured [Aidbox](https://subscriptions.hz.aidbox.dev/) instance with [Kafka](https://kafka-ui-subscriptions.hz.aidbox.dev/) is available for you to explore how Aidbox's SubscriptionTopic works. The SubscriptionTopic in Aidbox is set up to send `QuestionnaireResponse` events in the `completed` and 'amended' status to Kafka.
-
-To try it out:
-
-1. Open [form](https://bit.ly/aidbox-subscriptions-form)
-2. Submit or amend the response
-3. Open the [Kafka UI](https://bit.ly/subscriptions-demo-kafka-ui) to view your `QuestionnaireResponse` in the Kafka messages tab.
