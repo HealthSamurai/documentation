@@ -188,7 +188,7 @@ template:
 
 .**template** is a template described in the section above.
 
-Now you can test how data is extracted using  `POST /AlphaSDC/<id>/$extract` endpoint:
+Now you can test how data is extracted using `POST /AlphaSDC/<id>/$extract` endpoint:
 
 {% code title="request" %}
 ```yaml
@@ -249,10 +249,3 @@ GET /Vitals?.patient.id=pt-1
 {% hint style="info" %}
 Please provide your feedback and use cases for SDC using [github](https://github.com/Aidbox/Issues/issues)
 {% endhint %}
-
-## TBD
-
-* alternative template languages - JUTE; FHIRPath etc
-* support for Update & Delete
-* template validation
-* $pre-populate Operation with SQL engine
