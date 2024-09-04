@@ -9,7 +9,7 @@ description: >-
 **Seed v2 service keeps your resources synced** **with Aidbox** meaning that it loads declared resources into Aidbox at startup and deletes resources from Aidbox that were declared in Seed v2 and then removed. Sync semantics dramatically distinguishes Seed v2 from [Seed Import](seed-import.md) which implements upserting semantic and expects you make an explicit migration to delete undesirable resources from Aidbox.
 
 {% hint style="warning" %}
-Seed v2 is a stable feature, but it has couple of known issues, we are going to fix next release:
+Seed v2 is a stable feature, but it has couple of known issues:
 
 * Seed v2 allows you to define resources with the same id, but it shouldn't as it may lead to unexpected behaviour.
 * For now, behaviour of Seed v2 is undefined in [Highly Available mode](../../getting-started/run-aidbox-in-kubernetes/high-available-aidbox.md).
