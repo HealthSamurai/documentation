@@ -6,27 +6,27 @@ description: >-
 
 # Seed v2
 
-**Seed v2 service keeps your resources synced** **with Aidbox** meaning that it loads declared resources into Aidbox at startup and deletes resources from Aidbox that were declared in Seed v2 and then removed. Sync semantics dramatically distinguishes Seed v2 from [Seed Import](seed-import.md) which implements upserting semantic and expects you make an explicit migration to delete undesirable resources from Aidbox.
+**Seed v2 service keeps your resources synced** **with Aidbox** meaning that it loads declared resources into Aidbox at startup and deletes resources from Aidbox that were declared in Seed v2 and then removed. Sync semantics dramatically distinguishes Seed v2 from [Seed Import](seed-import.md) which implements upserting semantics and expects you to make an explicit migration to delete undesirable resources from Aidbox.
 
 {% hint style="warning" %}
-Seed v2 is a stable feature, but it has couple of known issues:
+Seed v2 is a stable feature, but it has a couple of known issues:
 
 * Seed v2 allows you to define resources with the same id, but it shouldn't as it may lead to unexpected behaviour.
-* For now, behaviour of Seed v2 is undefined in [Highly Available mode](../../getting-started/run-aidbox-in-kubernetes/high-available-aidbox.md).
+* For now, the behavior of Seed v2 is undefined in [Highly Available mode](../../getting-started/run-aidbox-in-kubernetes/high-available-aidbox.md).
 
-Please, let us know, if you run into any issue with the service.
+Please, let us know if you run into any issues with the service.
 {% endhint %}
 
-Seed v2 was designed to make a reliable bridge between [aidbox-project on zen](./) and predecessor configuration way on meta-resources (e.g. AccessPolicy resources).
+Seed v2 was designed to make a reliable bridge between [aidbox-project on zen](./) and the predecessor configuration way on meta-resources (e.g. AccessPolicy resources).
 
-The second reason is to bring interactive experience for meta-resources configuration which is incredibly useful while development.
+The second reason is to bring an interactive experience for meta-resources configuration which is incredibly useful during development.
 
-Seed v2 service respects [Aidbox project reloading](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox\_zen\_dev\_mode) as well. It allows you to synchronise resources without restarting Aidbox.
+Seed v2 service respects [Aidbox project reloading](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox\_zen\_dev\_mode) as well. It allows you to synchronize resources without restarting Aidbox.
 
-If you provide invalid resource within seed v2, Aidbox won't start, reporting an error. In case of reloading Aidbox project with an invalid resource, Aidbox will report an error in console.
+If you provide an invalid resource within seed v2, Aidbox won't start, reporting an error. In case of reloading Aidbox project with an invalid resource, Aidbox will report an error in the console.
 
 {% hint style="info" %}
-Seed v2 uses SeedImport custom resources to track saved resources within the service. Do not delete or modify them directly, otherwise Aidbox won't be able to detect resources gone from Aidbox project and won't delete them.
+Seed v2 uses SeedImport custom resources to track saved resources within the service. Do not delete or modify them directly, otherwise, Aidbox won't be able to detect resources gone from Aidbox project and won't delete them.
 {% endhint %}
 
 ## Example
@@ -82,7 +82,7 @@ Seed v2 uses SeedImport custom resources to track saved resources within the ser
 
 ## How to migrate from Seed import to Seed v2
 
-Seed import and Seed v2 may co-exist together. Loading resources from file and migrations can be defined only with Seed Import. If you wish Aidbox to enable resource synchronisation instead of just loading for inlined resources you may migrate that resources to Seed v2.
+Seed import and Seed v2 may co-exist together. Loading resources from file and migrations can be defined only with Seed Import. If you wish Aidbox to enable resource synchronization instead of just loading for inlined resources you may migrate those resources to Seed v2.
 
 Let's say you have `AccessPolicy/my-policy-policy` declared within Seed import.
 
@@ -102,7 +102,7 @@ Let's say you have `AccessPolicy/my-policy-policy` declared within Seed import.
               :engine "allow"}]}}
 ```
 
-In order to migrate to Seed v2, it is recommended to declare a migration in Seed import which will delete all resources, you wish to move to Seed v2.
+To migrate to Seed v2, it is recommended to declare a migration in Seed import which will delete all resources, you wish to move to Seed v2.
 
 ```clojure
 {ns     importbox
@@ -125,14 +125,14 @@ In order to migrate to Seed v2, it is recommended to declare a migration in Seed
                 :sql "delete from accesspolicy where id in ('my-access-plicy')"}]}}
 ```
 
-Seed v2 starts after Seed import, so be assured that migration will be run before Seed v2 comes to play.
+Seed v2 starts after Seed import, so be assured that migration will be run before Seed v2 comes into play.
 
 ### Why is it important to define delete migration?
 
-Short answer is just to enable sync semantics for sure.
+The short answer is just to enable sync semantics for sure.
 
-Imagine you migrated to Seed v2 without the migration. You played with it on staging and see that synchronisation worked fine. Then you decide to remove `AccessPolicy/my-access-policy` or change the id, and you see that changes was applied on staging environment. But once you deployed the solution on production you may notice that `AccessPolicy/my-access-policy` is still there. The reason is that the resource hadn't been tracked by Seed v2 on production before and the service knows nothing about it. So if you want to have sync semantic for sure, it is recommended to declare a migration in Seed import which will delete all resources, you wish to move to Seed v2.
+Imagine you migrated to Seed v2 without the migration. You played with it on staging and see that synchronization worked fine. Then you decide to remove `AccessPolicy/my-access-policy` or change the id, and you see that changes were applied on the staging environment. But once you deploy the solution on production you may notice that `AccessPolicy/my-access-policy` is still there. The reason is that the resource hadn't been tracked by Seed v2 on production before and the service knows nothing about it. So if you want to have sync semantics for sure, it is recommended to declare a migration in Seed import which will delete all resources, you wish to move to Seed v2.
 
 {% hint style="warning" %}
-Be aware that Aidbox runs migration only once. If you modify applied migration, Aidbox will ignore it.
+Be aware that Aidbox runs migration only once. If you modify the applied migration, Aidbox will ignore it.
 {% endhint %}
