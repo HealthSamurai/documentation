@@ -26,7 +26,7 @@ When you reach your database size limit, you’ll receive 3 types of messages - 
 {% endtab %}
 
 {% tab title="Error" %}
-`Your database (name of your database) size is 2.7 GiB and it's above license limit 5.0 GiB. Please review database size or contact us for further information.`
+`Your database (name of your database) size is 5.7 GiB and it's above license limit 5.0 GiB. Please review database size or contact us for further information.`
 {% endtab %}
 
 {% tab title="Blocking" %}
@@ -48,7 +48,7 @@ For non-profit educational institutions, the Health Samurai provides Aidbox lice
 
 ## Aidbox Support
 
-We know that starting with new technology is a challenge. That's why we are inviting Aidbox users to subscribe to one of Aidbox Support tiers from your first days with Aidbox. It might be the time when you need Aidbox Support the most.
+We know that starting with new technology is a challenge. That's why we are inviting Aidbox users to subscribe to one of Aidbox Support tiers from their first days with Aidbox. It might be the time when you need Aidbox Support the most.
 
 Health Samurai offers four support tiers: Basic, Professional, Enterprise, and Ultimate. Below is what you need to know about each of them:\\
 
