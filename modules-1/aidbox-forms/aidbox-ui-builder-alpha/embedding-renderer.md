@@ -38,6 +38,7 @@ Here is a comprehensive list of attributes that can be passed to the `<aidbox-fo
 - `token` (optional): JWT token for authenticating the user.
 - `questionnaire-id` (optional): The ID of the questionnaire to load. Either `questionnaire` or `questionnaire-id` must be provided.
 - `questionnaire-response-id` (optional): The ID of the questionnaire response to load. Either `questionnaire-response` or `questionnaire-response-id` must be provided.
+- `hide-footer` (optional): Hides the footer of the form.
 
 ## Embedding Renderer in Controlled Mode
 
@@ -85,6 +86,7 @@ You can pass the following attributes to the `<aidbox-form-renderer>` tag:
 - `token` (optional): JWT token used for user authentication.
 - `questionnaire` (required): The questionnaire provided as a JSON string.
 - `questionnaire-response` (optional): The questionnaire response provided as a JSON string.
+- `hide-footer` (optional): Hides the footer of the form.
 
 ### Step 4: Listen to Renderer Events
 
