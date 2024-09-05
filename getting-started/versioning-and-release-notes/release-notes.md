@@ -20,6 +20,8 @@
     * [Integrated the Termbox server with Aidbox Forms for using external terminologies](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/integration-with-external-terminology-servers..md)
     * [Added an ability to embed forms as web-component](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/embedding-renderer.md)
     * [Provided the ability to display an attached image on the form](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#attachment)
+  * [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
+    * Add support for [user-defined codemaps](../../modules-1/integration-toolkit/ccda-converter/ccda-fhir-dsl.md#custom-codemaps)
 
 ## July 2024 _`latest`_
 
