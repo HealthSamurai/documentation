@@ -2,19 +2,19 @@
 
 ## Overview
 
-The [`CodeSystem`](https://www.hl7.org/fhir/codesystem.html) resource specifies a set of Concepts included in this code system.&#x20;
+The [`CodeSystem`](https://www.hl7.org/fhir/codesystem.html) resource specifies a set of Concepts included in this code system.
 
-[Aidbox](https://www.health-samurai.io/aidbox) assumes a separate creation of the `CodeSystem` resource and a set of `Concepts` composing it. This means that the CodeSystem resource describes only meta information of the code system: url, name, publisher, etc. Whereas Concept resources describe the content of the code system and are associated with the code system by the Concept.system attribute with the same value as the CodeSystem.url element.
+[Aidbox](https://www.health-samurai.io/aidbox) assumes a separate creation of the `CodeSystem` resource and a set of `Concepts` composing it. This means that the CodeSystem resource describes only the meta information of the code system: URL, name, publisher, etc. Whereas Concept resources describe the content of the code system and are associated with the code system by the Concept.system attribute with the same value as the CodeSystem.url element.
 
-For FHIR conformance, we allow to create the CodeSystem resource with a list of included concepts. If it contains listed Concepts at the moment of saving a CodeSystem, then Aidbox saves submitted Concepts as separate resources. The CodeSystem resource itself is saved without the concept attribute. This method of the CodeSystem creation may be used for small dictionaries (generally, not more than 100 concepts). In the case when your code system is big, Aidbox strongly recommends to create the CodeSystem resource separately and upload Concepts in parts.
+For FHIR conformance, we allow to create the CodeSystem resource with a list of included concepts. If it contains listed Concepts at the moment of saving a CodeSystem, then Aidbox saves submitted Concepts as separate resources. The CodeSystem resource itself is saved without the concept attribute. This method of the CodeSystem creation may be used for small dictionaries (generally, not more than 100 concepts). In the case when your code system is big, Aidbox strongly recommends creating the CodeSystem resource separately and uploading Concepts in parts.
 
 ## CRUD
 
 ### Create
 
-[`CodeSystem`](https://www.hl7.org/fhir/codesystem.html) resource can be created as a FHIR resource with embedded concepts itself. This approach is applicable for those cases when your code system contains a small number of concepts, usually no more than 100.&#x20;
+[`CodeSystem`](https://www.hl7.org/fhir/codesystem.html) resource can be created as a FHIR resource with embedded concepts. This approach is applicable for those cases when your code system contains a small number of concepts, usually no more than 100.
 
-For example, we will create a `CodeSystem` for eye color containing `Brown`, `Blue`, `Green`, `Hazel`,  `Heterochromia` coded concepts.
+For example, we will create a `CodeSystem` for eye color containing `Brown`, `Blue`, `Green`, `Hazel`, `Heterochromia` coded concepts.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -22,7 +22,7 @@ For example, we will create a `CodeSystem` for eye color containing `Brown`, `Bl
 POST [base]/CodeSystem
 
 {
-	"resourceType" : "CodeSystem",
+	"resourceType": "CodeSystem",
 	"id": "custom-eye-color",
 	"status": "draft",
 	"url": "http://code.system/eyes.color",
@@ -142,21 +142,21 @@ STATUS: 200
 
 Another way to create `CodeSystem` is a separate creation of the CodeSystem body and Concepts.
 
-For example, lets create a CodeSystem with a custom subset of Units of measurement (aka [UCUM](http://unitsofmeasure.org/trac)). We will compose this CodeSystem from the most common healthcare units of measure.
+For example, let's create a CodeSystem with a custom subset of Units of measurement (aka [UCUM](http://unitsofmeasure.org/trac)). We will compose this CodeSystem from the most common healthcare units of measure.
 
-| Code      | Descriptive Name                     | Display  |
-| --------- | ------------------------------------ | -------- |
-| %         | Persent                              | %        |
-| /uL       | PerMicroLiter                        | /uL      |
-| \[iU]/L   | InternationalUnitsPerLiter           | IU/L     |
-| kPa       | KiloPascal                           | kPa      |
-| ng/mL     | NanoGramsPerMilliLiter               | ng/mL    |
-| U/L       | UnitsPerLiter                        | U/L      |
-| u\[iU]/mL | MicroInternationalUnitsPerMilliLiter | uIU/mL   |
-| ug/dL     | MicroGramsPerDeciLiter               | ug/dL    |
-| ug/L      | MicroGramsPerLiter                   | ug/L     |
-| ug/mL     | MicroGramsPerMilliLiter              | ug/mL    |
-| umol/L    | MicroMolesPerLiter                   | umol/L   |
+| Code      | Descriptive Name                     | Display |
+| --------- | ------------------------------------ | ------- |
+| %         | Persent                              | %       |
+| /uL       | PerMicroLiter                        | /uL     |
+| \[iU]/L   | InternationalUnitsPerLiter           | IU/L    |
+| kPa       | KiloPascal                           | kPa     |
+| ng/mL     | NanoGramsPerMilliLiter               | ng/mL   |
+| U/L       | UnitsPerLiter                        | U/L     |
+| u\[iU]/mL | MicroInternationalUnitsPerMilliLiter | uIU/mL  |
+| ug/dL     | MicroGramsPerDeciLiter               | ug/dL   |
+| ug/L      | MicroGramsPerLiter                   | ug/L    |
+| ug/mL     | MicroGramsPerMilliLiter              | ug/mL   |
+| umol/L    | MicroMolesPerLiter                   | umol/L  |
 
 For this subset, let's create the `CodeSystem` resource.
 
@@ -202,7 +202,7 @@ POST [base]/Concept
  "system": "http://code.system/ucum.subset",
  "code": "%",
  "display": "%",
- "definition": "Persent"
+ "definition": "Percent"
 }
 
 POST [base]/Concept
@@ -293,7 +293,7 @@ POST [base]
 
 ### Read
 
-The `read` operation works same as the FHIR `read` interaction.
+The `read` operation works the same as the FHIR `read` interaction.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -320,14 +320,14 @@ STATUS: 201
 ### Update
 
 {% hint style="warning" %}
-Aidbox does not support update for the CodeSystem resource.
+Aidbox does not support updates for the CodeSystem resource.
 {% endhint %}
 
 In the terminology, it is a good practice not to update existing Coded Systems. Aidbox follows this principle. If you need to update any existing CodeSystem resource, you will have to explicitly delete this CodeSystem and re-create it again with your changes.
 
 ### Delete
 
-On delete `CodeSystem`,  Aidbox deletes `CodeSystem` resource, and marks each `Concept` with the `deprecated` = `true`.
+On delete `CodeSystem`, Aidbox deletes `CodeSystem` resource, and marks each `Concept` with the `deprecated` = `true`.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -351,7 +351,7 @@ STATUS: 201
 {% endtab %}
 {% endtabs %}
 
-Let's check all concepts of the system.
+Let's check all the concepts of the system.
 
 {% tabs %}
 {% tab title="Request" %}
