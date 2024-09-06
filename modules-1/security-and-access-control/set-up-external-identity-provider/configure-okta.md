@@ -5,18 +5,20 @@ description: This guide shows how to set-up Okta identity provider with Aidbox
 # Okta
 
 {% hint style="info" %}
-Please make sure you use Aidbox v:2107 _`stable`_ or later Aidbox version
+Please make sure you use Aidbox v:2107 or later Aidbox version
 {% endhint %}
 
 ## Create an Account in Okta
 
-If you do not have an Okta account, create it to get your authorization server. Find your **okta domain**. You can do it in **Security > API**
+If you do not have an Okta account, create it to get your authorization server ([Okta developer portal](https://developer.okta.com)).
+
+Find your **okta domain**. You can do it in **Security -> API**
 
 ![](<../../../.gitbook/assets/image (40) (1).png>)
 
 ## Create a Client (Application) in Okta
 
-Go to **Application > Application** in Okta and create a new one.
+Go to **Application -> Application** in Okta and create a new one.
 
 * Check **Authorization Code** Grant Type
 * Set Sign-in url to _**\<box-url>**/auth/callback/**\<identity-provider-id>**_
@@ -33,24 +35,26 @@ Using REST Console create an IdentityProvider config. Replace **\<okta-domain>**
 
 * `client.redirect_uri` should be _**\<box-url>**/auth/callback/**\<identity-provider-fdid>**_
 * set `client.client_id` and `client.client_secret` to Okta's credentials
-* replace **\<box-url>** with your box url (like http://localhost:8080)
+* replace **\<box-url>** with your box URL (like http://localhost:8080)
 * set scopes to `['profile', 'openid']`
+* `authorization_endpoint,` `token_endpoint`can be found in Authorization Server Settings (**Security -> API -> \<your server> -> Settings -> Metadata URI**)
 
 ```yaml
 PUT /IdentityProvider/okta?_format=yaml&_pretty=true
 content-type: text/yaml
 
 type: okta
-title: MyOkta # this element present only in 202106 version
+title: MyOkta
 active: true
 system: 'okta'
 scopes:
   - profile
   - openid
-authorize_endpoint: '<okta-domain>/oauth2/v1/authorize'
-token_endpoint: '<okta-domain>/oauth2/v1/token'
-userinfo_endpoint: '<okta-domain>/oauth2/v1//userinfo'
-userinfo-source: id-token | userinfo-endpoint
+# e.g. https://dev-30323539.okta.com/oauth2/default/v1/authorize
+authorize_endpoint: '<okta-domain>/oauth2/<authorization-server-id>/v1/authorize'
+token_endpoint: '<okta-domain>/oauth2/<authorization-server-id>/v1/token'
+userinfo_endpoint: '<okta-domain>/oauth2/<authorization-server-id>/v1/userinfo'
+userinfo-source: id-token # or userinfo-endpoint
 client:
   id: <client-id>
   secret: <client-secret>
@@ -59,7 +63,7 @@ client:
 
 ## Login into Aidbox with Okta
 
-Go to your Aidbox base URL, you will be redirected to the login page - you should see **"Log in with \<provider.title or .type>"** button\*\*.\*\* Press this button and log in with Okta user into aidbox.
+Go to your Aidbox base URL, you will be redirected to the login page - you should see **"Log in with \<provider.title or .type>"** button. Press this button and log in with Okta user into aidbox.
 
 ![](<../../../.gitbook/assets/image (44) (1).png>)
 
