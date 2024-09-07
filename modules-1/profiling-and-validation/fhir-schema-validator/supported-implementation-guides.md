@@ -446,7 +446,6 @@ Derived profiles from the ACME Base project, explaining the creation and use of 
 
 **Versions**
 
-* `acme.product.r4#3.0.0`
 * `acme.product.r4#2.0.0`
 * `acme.product.r4#1.0.0`
 * `acme.product.r4#1.0.0-alpha`
@@ -1176,7 +1175,6 @@ Envoi du rapport d’endoscopie au dépôt provincial
 * `rapportendoscopiequebec.test#0.0.12`
 * `rapportendoscopiequebec.test#0.0.11`
 * `rapportendoscopiequebec.test#0.0.10`
-* `rapportendoscopiequebec.test#0.0.9`
 * `rapportendoscopiequebec.test#0.0.8`
 * `rapportendoscopiequebec.test#0.0.7`
 * `rapportendoscopiequebec.test#0.0.6`
@@ -1258,6 +1256,22 @@ Medizinische Informationsobjekte (MIO) Mutterpass V1.0.0
 **Versions**
 
 * `MIO.KBV.Mutterpass#1.0.0`
+
+
+---
+
+### de.abda.eRezeptAbgabedatenBasis
+
+<details>
+<summary>Description</summary>
+
+Basis-Profile für die Abgabedaten im eRezept-Kontext
+
+</details>
+
+**Versions**
+
+* `de.abda.eRezeptAbgabedatenBasis#1.1.0-rc1`
 
 
 ---
@@ -1462,7 +1476,6 @@ Special Authorization Digital Information Exchange will have the initial package
 
 * `ca.on.health.sadie#0.1.9-beta`
 * `ca.on.health.sadie#0.1.8-beta`
-* `ca.on.health.sadie#0.1.7-beta`
 * `ca.on.health.sadie#0.1.6-beta`
 * `ca.on.health.sadie#0.1.5-beta`
 * `ca.on.health.sadie#0.1.4-beta`
@@ -1541,12 +1554,10 @@ IL core project vesrion 0.15.1
 * `il.core.fhir.r4#0.8.1`
 * `il.core.fhir.r4#0.8.0`
 * `il.core.fhir.r4#0.7.0`
-* `il.core.fhir.r4#0.6.0`
 * `il.core.fhir.r4#0.5.0`
 * `il.core.fhir.r4#0.4.0`
 * `il.core.fhir.r4#0.3.0`
 * `il.core.fhir.r4#0.2.0`
-* `il.core.fhir.r4#0.1.1`
 * `il.core.fhir.r4#0.1.0`
 
 
@@ -1733,22 +1744,6 @@ Implementation Guide for the Privacy Policy Query for Mobile (PPQm) for the Swis
 
 ---
 
-### TInterop.23
-
-<details>
-<summary>Description</summary>
-
-Projet de test Formation FHIR
-
-</details>
-
-**Versions**
-
-* `TInterop.23#1.0.0-alpha`
-
-
----
-
 ### Arkhn.core
 
 <details>
@@ -1810,7 +1805,6 @@ Data model of the German Cancer Consortium (DKTK) and the Comprehensive Cancer C
 
 * `de.dktk.oncology#1.6.0`
 * `de.dktk.oncology#1.5.0`
-* `de.dktk.oncology#1.3.0`
 * `de.dktk.oncology#1.2.0`
 * `de.dktk.oncology#1.1.1`
 * `de.dktk.oncology#1.1.0`
@@ -2578,6 +2572,7 @@ FHIR Resources for MII
 **Versions**
 
 * `difuture.trustcenter.sp#1.0.0-beta-3`
+* `difuture.trustcenter.sp#1.0.0-beta-2`
 
 
 ---
@@ -3510,7 +3505,6 @@ Nationales Forschungsnetzwerk der Universitätsmedizin zu Covid-19
 **Versions**
 
 * `de.gecco#1.0.5-rc.3`
-* `de.gecco#1.0.4-rc.3`
 * `de.gecco#1.0.5-rc.2`
 * `de.gecco#1.0.4-rc.2`
 * `de.gecco#1.0.5-rc.1`
@@ -3577,8 +3571,6 @@ Drafted Implementation Guide for Alberta Patient Summary (PS-AB)
 * `ca.ab.fhir.psab#1.0.0`
 * `ca.ab.fhir.psab#0.3.0-pre9`
 * `ca.ab.fhir.psab#0.3.0-pre8`
-* `ca.ab.fhir.psab#0.3.0-pre7`
-* `ca.ab.fhir.psab#0.3.0-pre6`
 * `ca.ab.fhir.psab#0.3.0-pre5`
 * `ca.ab.fhir.psab#0.3.0-pre4`
 * `ca.ab.fhir.psab#0.3.0-pre3`
@@ -3588,7 +3580,6 @@ Drafted Implementation Guide for Alberta Patient Summary (PS-AB)
 * `ca.ab.fhir.psab#0.3.0-pre12`
 * `ca.ab.fhir.psab#0.3.0-pre11`
 * `ca.ab.fhir.psab#0.3.0-pre10`
-* `ca.ab.fhir.psab#0.3.0-pre1`
 
 
 ---
@@ -4261,10 +4252,14 @@ hl7.fhir.no.basis 2.0.14
 * `ehelse.fhir.no.grunndata#2.3.3`
 * `ehelse.fhir.no.grunndata#2.3.2`
 * `ehelse.fhir.no.grunndata#2.3.1`
+* `ehelse.fhir.no.grunndata#2.3.0`
 * `ehelse.fhir.no.grunndata#2.3.5-buildnumbersuffix2`
 * `ehelse.fhir.no.grunndata#2.3.5-buildingnumbersuffix`
+* `ehelse.fhir.no.grunndata#2.2.4`
 * `ehelse.fhir.no.grunndata#2.2.3`
 * `ehelse.fhir.no.grunndata#2.2.2`
+* `ehelse.fhir.no.grunndata#2.2.1`
+* `ehelse.fhir.no.grunndata#2.2.0`
 * `ehelse.fhir.no.grunndata#2.1.0`
 
 
@@ -4419,6 +4414,7 @@ NHS Digital FHIR Clinical ImplementationGuide
 **Versions**
 
 * `uk.nhsdigital.clinical.r4#2.1.2-dev`
+* `uk.nhsdigital.clinical.r4#2.1.1-dev`
 * `uk.nhsdigital.clinical.r4#2.1.0-dev`
 
 
@@ -4678,23 +4674,7 @@ Disclaimer: All proprietary documents, guides, guidance, standards, codes, and v
 * `hl7.fhir.us.bfdr#2.0.0-ballot`
 * `hl7.fhir.us.bfdr#1.1.0`
 * `hl7.fhir.us.bfdr#1.0.0`
-
-
----
-
-### kbv.mio.u-heft
-
-<details>
-<summary>Description</summary>
-
-Medizinische Informationsobjekte (MIO) Kinderuntersuchungsheft V1.0.1
-
-</details>
-
-**Versions**
-
-* `kbv.mio.u-heft#1.0.1-festlegungsversion`
-* `kbv.mio.u-heft#1.0.1-benehmensversion`
+* `hl7.fhir.us.bfdr#0.1.0`
 
 
 ---
@@ -4796,7 +4776,6 @@ IKNL profiles to fill the NCR (NKR) with data that is sent to IKNL by Palga
 **Versions**
 
 * `iknl.fhir.nl.r4.palga#1.0.1`
-* `iknl.fhir.nl.r4.palga#1.0.0`
 * `iknl.fhir.nl.r4.palga#0.3.0-beta`
 * `iknl.fhir.nl.r4.palga#0.2.0`
 * `iknl.fhir.nl.r4.palga#0.1.0`
@@ -4848,7 +4827,6 @@ Put a description here
 **Versions**
 
 * `uk.adsv2.r4#1.6.1`
-* `uk.adsv2.r4#1.6.0`
 * `uk.adsv2.r4#1.4.0`
 * `uk.adsv2.r4#1.3.0`
 
@@ -4907,11 +4885,13 @@ Einwilligungsmanagement
 **Versions**
 
 * `de.einwilligungsmanagement#1.1.0-alpha.1`
+* `de.einwilligungsmanagement#1.0.2`
 * `de.einwilligungsmanagement#1.0.1`
 * `de.einwilligungsmanagement#1.0.0`
 * `de.einwilligungsmanagement#1.0.0-RC2`
 * `de.einwilligungsmanagement#1.0.0-RC1`
 * `de.einwilligungsmanagement#0.0.5-snapshot`
+* `de.einwilligungsmanagement#0.0.4-snapshot`
 * `de.einwilligungsmanagement#0.0.3-snapshot`
 * `de.einwilligungsmanagement#0.0.2-snapshot`
 * `de.einwilligungsmanagement#0.0.1-snapshot`
@@ -5149,6 +5129,22 @@ Definitions (API, structures and terminologies) for the R4 version of the FHIR s
 **Versions**
 
 * `hl7.fhir.r4.core#4.0.1`
+
+
+---
+
+### UK.NHSDigital.BARS.R4
+
+<details>
+<summary>Description</summary>
+
+NHS Booking and Referrals
+
+</details>
+
+**Versions**
+
+* `UK.NHSDigital.BARS.R4#0.1.0-test`
 
 
 ---
@@ -5947,6 +5943,7 @@ eHealth Platform R4 Federal Profiles
 * `ehealthplatform.be.r4.federalprofiles#1.1.24-beta`
 * `ehealthplatform.be.r4.federalprofiles#1.1.23-beta`
 * `ehealthplatform.be.r4.federalprofiles#1.1.22-beta`
+* `ehealthplatform.be.r4.federalprofiles#1.1.21-beta`
 * `ehealthplatform.be.r4.federalprofiles#1.1.20-beta`
 * `ehealthplatform.be.r4.federalprofiles#1.1.2-beta`
 * `ehealthplatform.be.r4.federalprofiles#1.1.19-beta`
@@ -5968,6 +5965,7 @@ eHealth Platform R4 Federal Profiles
 * `ehealthplatform.be.r4.federalprofiles#0.1.53-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.52-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.51-beta`
+* `ehealthplatform.be.r4.federalprofiles#0.1.50-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.5-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.49-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.48-beta`
@@ -5978,7 +5976,6 @@ eHealth Platform R4 Federal Profiles
 * `ehealthplatform.be.r4.federalprofiles#0.1.43-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.42-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.41-beta`
-* `ehealthplatform.be.r4.federalprofiles#0.1.40-bet`
 * `ehealthplatform.be.r4.federalprofiles#0.1.39-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.38-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.37-beta`
@@ -5998,7 +5995,6 @@ eHealth Platform R4 Federal Profiles
 * `ehealthplatform.be.r4.federalprofiles#0.1.25-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.24-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.23-beta`
-* `ehealthplatform.be.r4.federalprofiles#0.1.22-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.21-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.20-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.2-beta`
@@ -6011,6 +6007,7 @@ eHealth Platform R4 Federal Profiles
 * `ehealthplatform.be.r4.federalprofiles#0.1.11-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.10-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.1-beta`
+* `ehealthplatform.be.r4.federalprofiles#0.1.0-beta`
 
 
 ---
@@ -6027,6 +6024,7 @@ Test/spike into FHIR profiling
 **Versions**
 
 * `digi.derm#0.1.2`
+* `digi.derm#0.1.1`
 * `digi.derm#0.1.0`
 
 
@@ -6160,8 +6158,23 @@ Development of an implementation guide for the company mint medical.
 * `mint.fhir#1.2.1`
 * `mint.fhir#1.2.0`
 * `mint.fhir#1.2.2-preview`
-* `mint.fhir#1.2.1-preview`
 * `mint.fhir#1.2.0-preview`
+
+
+---
+
+### ehealth4u.package
+
+<details>
+<summary>Description</summary>
+
+The eHealth4U is a research project that undertakes the challenge of designing and developing a prototype of the national integrated EHR system in Cyprus. More information: http://ehealth4u.cs.ucy.ac.cy/
+
+</details>
+
+**Versions**
+
+* `ehealth4u.package#1.0.0`
 
 
 ---
@@ -6249,6 +6262,22 @@ Package version 1.0.0
 
 * `ee.fhir.mpi#1.1.1`
 * `ee.fhir.mpi#1.1.0`
+
+
+---
+
+### HIP FHIR Common Terminology  Guide
+
+<details>
+<summary>Description</summary>
+
+Common terminology used by HIP FHIR services (built Thu, Sep 5, 2024 03:47+0000+00:00)
+
+</details>
+
+**Versions**
+
+* `tewhatuora.hip-core#1.9.0`
 
 
 ---
@@ -7013,6 +7042,22 @@ Indonesia Health Information Exchange
 
 ---
 
+### LogicNets.NCCN
+
+<details>
+<summary>Description</summary>
+
+LogicNets FHIR Projects
+
+</details>
+
+**Versions**
+
+* `LogicNets.NCCN#0.8.1`
+
+
+---
+
 ### Genomics Reporting Implementation Guide
 
 <details>
@@ -7081,7 +7126,6 @@ DGMC
 **Versions**
 
 * `fhir.dgmc#0.1.3`
-* `fhir.dgmc#0.1.2`
 * `fhir.dgmc#0.1.1`
 
 
@@ -7632,23 +7676,6 @@ The purpose of SETP is to improve surgical performance in Ontario through the me
 
 ---
 
-### de.medizininformatikinitiative.kerndatensatz.laborbefund
-
-<details>
-<summary>Description</summary>
-
-Put a description here
-
-</details>
-
-**Versions**
-
-* `de.medizininformatikinitiative.kerndatensatz.laborbefund#1.0.6`
-* `de.medizininformatikinitiative.kerndatensatz.laborbefund#1.0.7-alpha1`
-
-
----
-
 ### alpha.core.r4
 
 <details>
@@ -8028,22 +8055,6 @@ The Basic Audit Log Patterns (BALP) Implementation Guide is a Content Profile th
 
 ---
 
-### MedNet interface implementation guide
-
-<details>
-<summary>Description</summary>
-
-This Guide describes Tiga interfaces (built Fri, Jul 15, 2022 16:34+0200+02:00)
-
-</details>
-
-**Versions**
-
-* `TigaCoreHUB.Patient#1.1.0`
-
-
----
-
 ### uk.nhsdigital.r4
 
 <details>
@@ -8146,14 +8157,12 @@ Die ePA-Medication Spezifikation
 <details>
 <summary>Description</summary>
 
-Implementation Guide pour définir l'API FHIR pour ECLAIRE (Essais CLiniques Accessibles Interconnectés pour la Recherche ouverts à l'Ecosystème) (built Mon, Feb 26, 2024 13:32+0000+00:00)
+Implementation Guide pour définir l'API FHIR pour ECLAIRE (Essais CLiniques Accessibles Interconnectés pour la Recherche ouverts à l'Ecosystème) (built Fri, Jul 28, 2023 16:02+0000+00:00)
 
 </details>
 
 **Versions**
 
-* `ans.fhir.fr.eclaire#0.3.0`
-* `ans.fhir.fr.eclaire#0.2.0`
 * `ans.fhir.fr.eclaire#0.1.0`
 
 
@@ -8179,26 +8188,6 @@ Note that participation in the NHSN requires enrollment and filing of reporting 
 * `hl7.fhir.us.hai#2.1.0`
 * `hl7.fhir.us.hai#2.0.0`
 * `hl7.fhir.us.hai#0.1.0`
-
-
----
-
-### gdrl.fhir.r4
-
-<details>
-<summary>Description</summary>
-
-Progetto OMr Gestione Rete Digitale Rete Laboratori per Regione Lombardia
-
-</details>
-
-**Versions**
-
-* `gdrl.fhir.r4#1.3.0`
-* `gdrl.fhir.r4#1.2.0`
-* `gdrl.fhir.r4#1.2.0-----beta`
-* `gdrl.fhir.r4#1.1.0`
-* `gdrl.fhir.r4#1.0.0`
 
 
 ---
@@ -8336,22 +8325,6 @@ This IG is developed for the HL7 International Pharmaceutical Quality (PQ) - Ind
 * `hl7.fhir.uv.ae-research-ig#1.0.1`
 * `hl7.fhir.uv.ae-research-ig#1.0.0`
 * `hl7.fhir.uv.ae-research-ig#1.0.0-ballot`
-
-
----
-
-### Modelisationdesstructuresetdesprofessionnels.sept2021
-
-<details>
-<summary>Description</summary>
-
-Description de la structure des données d'identification des acteurs de santé exposées par les nouveaux services Annuaire Santé d'interrogation FHIR de l'Agence du Numérique en Santé (ANS). 
-
-</details>
-
-**Versions**
-
-* `Modelisationdesstructuresetdesprofessionnels.sept2021#0.1.0`
 
 
 ---
@@ -8951,6 +8924,7 @@ Ce projet contient l'ensemble des ressources de conformité FHIR R4 produite par
 
 **Versions**
 
+* `ans.cnsa.fhir#0.1.2`
 * `ans.cnsa.fhir#0.1.1`
 * `ans.cnsa.fhir#0.1.0`
 * `ans.cnsa.fhir#0.0.1`
@@ -9036,13 +9010,12 @@ Der MedikationsplanPlus als Implementierung in R4
 <details>
 <summary>Description</summary>
 
-The DK MedCom acknowledgement IG (built Mon, Feb 5, 2024 12:24+0100+01:00)
+The DK MedCom acknowledgement IG (built Fri, Mar 10, 2023 15:20+0100+01:00)
 
 </details>
 
 **Versions**
 
-* `medcom.fhir.dk.acknowledgement#2.0.2`
 * `medcom.fhir.dk.acknowledgement#2.0.1`
 
 
@@ -9642,6 +9615,25 @@ Estonian HL7 FHIR base Implementation Guide and profiles.
 
 ---
 
+### Subscriptions R5 Backport
+
+<details>
+<summary>Description</summary>
+
+The Subscription R5 Backport Implementation Guide enables servers running versions of FHIR earlier than R5 to implement a subset of R5 Subscriptions in a standardized way. (built Mon, Dec 18, 2023 22:14+0000+00:00)
+
+</details>
+
+**Versions**
+
+* `hl7.fhir.uv.subscriptions-backport#1.2.0-ballot`
+* `hl7.fhir.uv.subscriptions-backport#1.1.0`
+* `hl7.fhir.uv.subscriptions-backport#1.0.0`
+* `hl7.fhir.uv.subscriptions-backport#0.1.0`
+
+
+---
+
 ### National Healthcare Directory Attestation and Verification
 
 <details>
@@ -9777,7 +9769,6 @@ Defines and exposes all HL7 terminologies managed through the unified terminolog
 * `hl7.terminology.r5#5.0.0`
 * `hl7.terminology.r5#4.0.0`
 * `hl7.terminology.r5#3.1.0`
-* `hl7.terminology.r5#3.0.0`
 * `hl7.terminology.r5#2.1.0`
 * `hl7.terminology.r5#2.0.0`
 * `hl7.terminology.r5#1.0.0`
@@ -9998,7 +9989,6 @@ Defines and exposes all HL7 terminologies managed through the unified terminolog
 * `hl7.terminology.r4#5.0.0`
 * `hl7.terminology.r4#4.0.0`
 * `hl7.terminology.r4#3.1.0`
-* `hl7.terminology.r4#3.0.0`
 * `hl7.terminology.r4#2.1.0`
 * `hl7.terminology.r4#2.0.0`
 * `hl7.terminology.r4#1.0.0`
@@ -10074,6 +10064,7 @@ Exchange of member attribution list between payers and providers  (built Tue, Ja
 * `hl7.fhir.us.davinci-atr#2.0.0`
 * `hl7.fhir.us.davinci-atr#2.0.0-ballot`
 * `hl7.fhir.us.davinci-atr#1.0.0`
+* `hl7.fhir.us.davinci-atr#0.1.0`
 
 
 ---
@@ -10949,21 +10940,22 @@ Medication data are integral to informing the quality, safety, and costs of U.S.
 
 This implementation guide provides HL7 FHIR resources to define standards for exchange between a hospital and NHSN. 
 
-This publication provides the data model, defined data items, and their corresponding code and value sets, for reporting inpatient medication administration data for inpatients diagnosed with COVID-19. This guide describes constraints on the US Core and base FHIR resources for reporting, which are derived from requirements developed by the NHSN in consultation wtih the Health Level Seven (HL7) Pharmacy Work Group. Resources in this US Realm implementation guide are specific to reporting medication administration data to NHSN.
+This publication provides the data model, defined data items, and their corresponding code and value sets, for reporting inpatient medication administration data for inpatients diagnosed with COVID-19. This guide describes constraints on the US Core and base FHIR resources for reporting, which are derived from requirements developed by the NHSN in consultation with the Health Level Seven (HL7) Pharmacy Work Group. Resources in this US Realm implementation guide are specific to reporting medication administration data to NHSN.
 
-This guide contains a library of FHIR profiles and is compliant with FHIR Release 4. At a minimum, a Document Bundle amd Composition will be exchanged along with a Patient, and associated COVID-19 Condition and laboratory results.
+This guide contains a library of FHIR profiles and is compliant with FHIR Release 4. At a minimum, a Document Bundle and Composition will be exchanged along with a Patient, and associated COVID-19 Condition and laboratory results.
 
 This guide defines 4 new Profiles:
 
 * [Composition - Inpatient Medication Administration](StructureDefinition-Composition-inpatient-med-admin.html)
 * [Condition - Lab Confirmed COVID-19](StructureDefinition-Condition-lab-confirmed-covid.html)
 * [Condition - Suspected COVID-19](StructureDefinition-Condition-suspected-covid.html)
-* [Observation - Laboratory SARS COVID-19](StructureDefinition-Observation-lab-sars-cov.html) (built Tue, Apr 13, 2021 00:12+0000+00:00)
+* [Observation - Laboratory SARS COVID-19](StructureDefinition-Observation-lab-sars-cov.html) (built Tue, Oct 12, 2021 13:08+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.us.nhsn-med-admin#1.0.0`
 * `hl7.fhir.us.nhsn-med-admin#0.1.0`
 
 
@@ -11077,8 +11069,10 @@ This implementation guide is provided to support the use of FHIR®© in an Austr
 
 * `hl7.fhir.au.core#1.0.0-ballot`
 * `hl7.fhir.au.core#0.4.1-preview`
+* `hl7.fhir.au.core#0.4.0-preview`
 * `hl7.fhir.au.core#0.3.0-ballot`
 * `hl7.fhir.au.core#0.2.2-preview`
+* `hl7.fhir.au.core#0.2.1-preview`
 * `hl7.fhir.au.core#0.2.0-preview`
 * `hl7.fhir.au.core#0.1.0-draft`
 
@@ -11378,7 +11372,6 @@ Sending colonoscopy data for cancer screening to a central registry in Norway
 * `colonoscopyreport.no#0.3.0-beta1`
 * `colonoscopyreport.no#0.2.0-beta1`
 * `colonoscopyreport.no#0.1.0-beta2`
-* `colonoscopyreport.no#0.1.0-beta`
 
 
 ---
@@ -11623,6 +11616,7 @@ Verzeichnisdienst der Telematikinfrastruktur
 
 **Versions**
 
+* `de.gematik.fhir.directory#0.11.13`
 * `de.gematik.fhir.directory#0.11.12`
 * `de.gematik.fhir.directory#0.11.11`
 * `de.gematik.fhir.directory#0.11.10`
@@ -11795,6 +11789,7 @@ Put a description here
 
 **Versions**
 
+* `ans.fhir.fr.sas#1.0.0`
 * `ans.fhir.fr.sas#1.0.0-ballot`
 
 
@@ -11840,6 +11835,22 @@ Abrechnungsinformationen des E-Rezeptes für den Patienten
 
 ---
 
+### shin.interconnect
+
+<details>
+<summary>Description</summary>
+
+This is a project for the Surescripts Health Information Network Interconnect FHIR guide.
+
+</details>
+
+**Versions**
+
+* `shin.interconnect#1.0.0-beta`
+
+
+---
+
 ### Patient Request for Corrections Implementation Guide
 
 <details>
@@ -11861,12 +11872,13 @@ The Patient Request for Corrections Implementation Guide provides a method for c
 <details>
 <summary>Description</summary>
 
-Guidelines for conveying coverage requirements to clinicians when planning treatment (built Fri, Oct 20, 2023 14:17+0000+00:00)
+Guidelines for conveying coverage requirements to clinicians when planning treatment (built Mon, Jan 8, 2024 18:55+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.us.davinci-crd#2.0.1`
 * `hl7.fhir.us.davinci-crd#2.0.0`
 * `hl7.fhir.us.davinci-crd#1.1.0-ballot`
 * `hl7.fhir.us.davinci-crd#1.0.0`
@@ -12428,7 +12440,6 @@ Fresenius Medical Care Data Model
 
 * `fmcna.caredata.fhir.ig.r4#1.1.9`
 * `fmcna.caredata.fhir.ig.r4#1.1.8`
-* `fmcna.caredata.fhir.ig.r4#1.1.7`
 * `fmcna.caredata.fhir.ig.r4#1.1.6`
 * `fmcna.caredata.fhir.ig.r4#1.1.5`
 * `fmcna.caredata.fhir.ig.r4#1.1.4`
@@ -12880,7 +12891,6 @@ The DK MedCom Carecommunication IG (built Thu, Jul 18, 2024 11:41+0200+02:00)
 **Versions**
 
 * `medcom.fhir.dk.carecommunication#4.0.1`
-* `medcom.fhir.dk.carecommunication#4.0.0`
 * `medcom.fhir.dk.carecommunication#3.0.0`
 * `medcom.fhir.dk.carecommunication#2.1.0`
 * `medcom.fhir.dk.carecommunication#2.0.0`
