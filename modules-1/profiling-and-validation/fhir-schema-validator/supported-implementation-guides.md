@@ -223,22 +223,6 @@ This guide describes how the Laboratory Report can be represented in the UV REAL
 
 ---
 
-### Guía de Implementación Core-CL FHIR R4 (Standard Trial For Use (STU))
-
-<details>
-<summary>Description</summary>
-
-Guía de Implementación para los perfiles Core que se van a requerir a nivel de desarrollo Nacional para Sistemas que Intercambien datos en estandar FHIR-R4 (built Thu, Jan 20, 2022 16:37-0300-03:00)
-
-</details>
-
-**Versions**
-
-* `hl7.fhir.cl.CoreCH#1.0.0`
-
-
----
-
 ### ontariomicdrfhirimplementationguide-0.10.00
 
 <details>
@@ -570,6 +554,26 @@ NHS Booking and Referrals
 * `uk.nhsdigital.bars.r4#0.4.0-test`
 * `uk.nhsdigital.bars.r4#0.3.0-test`
 * `uk.nhsdigital.bars.r4#0.2.0-test`
+
+
+---
+
+### 臺灣核心實作指引(TW Core IG)
+
+<details>
+<summary>Description</summary>
+
+臺灣核心實作指引(TW Core IG) (built Tue, May 28, 2024 21:46+0800+08:00)
+
+</details>
+
+**Versions**
+
+* `tw.gov.mohw.twcore#0.2.2`
+* `tw.gov.mohw.twcore#0.2.1`
+* `tw.gov.mohw.twcore#0.2.0`
+* `tw.gov.mohw.twcore#0.1.1`
+* `tw.gov.mohw.twcore#0.1.0`
 
 
 ---
@@ -932,6 +936,7 @@ The DK MedCom HospitalNotification IG (built Thu, Mar 2, 2023 09:52+0100+01:00)
 
 **Versions**
 
+* `hl7.fhir.fr.core#2.1.0`
 * `hl7.fhir.fr.core#2.1.0-ballot`
 * `hl7.fhir.fr.core#2.0.1`
 * `hl7.fhir.fr.core#2.0.0`
@@ -1156,7 +1161,6 @@ Envoi du rapport d’endoscopie au dépôt provincial
 * `rapportendoscopiequebec.test#0.0.12`
 * `rapportendoscopiequebec.test#0.0.11`
 * `rapportendoscopiequebec.test#0.0.10`
-* `rapportendoscopiequebec.test#0.0.9`
 * `rapportendoscopiequebec.test#0.0.8`
 * `rapportendoscopiequebec.test#0.0.7`
 * `rapportendoscopiequebec.test#0.0.6`
@@ -1429,6 +1433,7 @@ This Guide describes mednet interfaces (built Fri, Jul 15, 2022 16:34+0200+02:00
 
 * `swiss.mednet.fhir#0.15.0`
 * `swiss.mednet.fhir#0.14.0`
+* `swiss.mednet.fhir#0.13.0`
 * `swiss.mednet.fhir#0.12.0`
 * `swiss.mednet.fhir#0.11.0`
 * `swiss.mednet.fhir#0.10.0`
@@ -2541,7 +2546,6 @@ Malaysia Health Information Exchange
 
 **Versions**
 
-* `phis.ig.dev#0.1.7`
 * `phis.ig.dev#0.1.6`
 * `phis.ig.dev#0.1.5`
 * `phis.ig.dev#0.1.4`
@@ -2651,13 +2655,12 @@ National Directory (built Tue, Aug 9, 2022 16:36+0000+00:00)
 <details>
 <summary>Description</summary>
 
-The Non-Patient File Sharing (NPFS) Profile defines how to share non-patient files such as clinical workflow definitions, domain policies, and stylesheets. Those files can be created and consumed by many different systems involved in a wide variety of data sharing workflows. (built Thu, Nov 16, 2023 16:06-0600-06:00)
+ImplementationGuide for IHE IT Infrastructure Technical Framework Supplement Non-patient File Sharing (NPFS) (built Wed, Aug 2, 2023 08:42-0500-05:00)
 
 </details>
 
 **Versions**
 
-* `ihe.iti.npfs#2.2.0`
 * `ihe.iti.npfs#2.2.0-comment`
 
 
@@ -3011,7 +3014,6 @@ Put a description here
 
 **Versions**
 
-* `nictiz.fhir.nl.r4.cio#1.0.0-beta.2`
 * `nictiz.fhir.nl.r4.cio#1.0.0-beta.1`
 
 
@@ -3172,9 +3174,11 @@ Ontario Mental Health and Addictions Provincial Data Set
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.11`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.10`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.9`
+* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.8`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.7`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.6`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.5`
+* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.4`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.3`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.2`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.1`
@@ -3669,7 +3673,6 @@ Umsetzung der elektronischen Heilmittelverordnung
 * `de.gevko.evo.hlm#1.2.1`
 * `de.gevko.evo.hlm#1.2.0`
 * `de.gevko.evo.hlm#1.1.0`
-* `de.gevko.evo.hlm#1.0.3`
 * `de.gevko.evo.hlm#1.0.2`
 * `de.gevko.evo.hlm#1.0.1`
 * `de.gevko.evo.hlm#1.0.0`
@@ -3875,7 +3878,6 @@ A core set of FHIR resources profiled for use in Finland, published and maintain
 
 * `hl7.fhir.fi.base#1.0.0`
 * `hl7.fhir.fi.base#1.0.0-rc24`
-* `hl7.fhir.fi.base#1.0.0-rc23`
 * `hl7.fhir.fi.base#1.0.0-rc22`
 * `hl7.fhir.fi.base#1.0.0-rc21`
 * `hl7.fhir.fi.base#1.0.0-rc20`
@@ -3894,6 +3896,22 @@ A core set of FHIR resources profiled for use in Finland, published and maintain
 
 * `hl7.fhir.us.womens-health-registries#0.2.0`
 * `hl7.fhir.us.womens-health-registries#0.1.0`
+
+
+---
+
+### hsos.eWundbericht
+
+<details>
+<summary>Description</summary>
+
+Deutscher eWundbericht
+
+</details>
+
+**Versions**
+
+* `hsos.eWundbericht#0.9.0`
 
 
 ---
@@ -4073,7 +4091,6 @@ The IHE Mobile Care Services Discovery (mCSD) IG provides a transaction for mobi
 * `ihe.iti.mcsd#3.8.0`
 * `ihe.iti.mcsd#3.7.0`
 * `ihe.iti.mcsd#3.6.1`
-* `ihe.iti.mcsd#3.5.0`
 * `ihe.iti.mcsd#3.4.0`
 
 
@@ -4107,18 +4124,17 @@ Malaysia Health Information Exchange
 
 ---
 
-### Da Vinci - Documentation Templates and Rules
+### Documentation Templates and Rules
 
 <details>
 <summary>Description</summary>
 
-The Documentation Templates and Rules (DTR) Implementation Guide (IG) specifies how payer rules can be executed in a provider context to ensure that documentation requirements are met. The IG is a companion to the Coverage Requirements Discovery (CRD) IG, which uses CDS Hooks to query payers to determine if there are documentation requirements for a proposed medication, procedure or other service. (built Tue, Nov 7, 2023 13:45+0000+00:00)
+The Documentation Templates and Rules (DTR) Implementation Guide (IG) specifies how payer rules can be executed in a provider context to ensure that documentation requirements are met. The IG is a companion to the Coverage Requirements Discovery (CRD) IG, which uses CDS Hooks to query payers to determine if there are documentation requirements for a proposed medication, procedure or other service. (built Fri, Feb 18, 2022 15:42+0000+00:00)
 
 </details>
 
 **Versions**
 
-* `hl7.fhir.us.davinci-dtr#2.0.0`
 * `hl7.fhir.us.davinci-dtr#1.1.0-ballot`
 * `hl7.fhir.us.davinci-dtr#1.0.0`
 * `hl7.fhir.us.davinci-dtr#0.2.0`
@@ -4139,22 +4155,6 @@ The IHE FHIR Scheduling Profile is a specification providing FHIR APIs and guida
 **Versions**
 
 * `ihe.iti.scheduling#1.0.0-comment`
-
-
----
-
-### Pan-Canadian Patient Summary
-
-<details>
-<summary>Description</summary>
-
-Patient Summary - Canada
-
-</details>
-
-**Versions**
-
-* `ca.infoway.vc.ps#0.0.3`
 
 
 ---
@@ -4241,9 +4241,11 @@ hl7.fhir.no.basis 2.0.14
 * `ehelse.fhir.no.grunndata#2.3.2`
 * `ehelse.fhir.no.grunndata#2.3.1`
 * `ehelse.fhir.no.grunndata#2.3.0`
+* `ehelse.fhir.no.grunndata#2.3.5-buildnumbersuffix2`
 * `ehelse.fhir.no.grunndata#2.3.5-buildingnumbersuffix`
 * `ehelse.fhir.no.grunndata#2.2.4`
 * `ehelse.fhir.no.grunndata#2.2.3`
+* `ehelse.fhir.no.grunndata#2.2.2`
 * `ehelse.fhir.no.grunndata#2.2.1`
 * `ehelse.fhir.no.grunndata#2.2.0`
 * `ehelse.fhir.no.grunndata#2.1.0`
@@ -4458,24 +4460,6 @@ Registro de datos clínicos relacionados a exámenes de Laboratorio
 **Versions**
 
 * `cens.fhir.ssas-cdr#1.0.0`
-
-
----
-
-### COVID-19 FHIR Profile Library IG Informative Version
-
-<details>
-<summary>Description</summary>
-
-The COVID-19 IG describes structured data to be collected and communicated between providers and aggregators. (built Mon, Jul 25, 2022 13:21+0000+00:00)
-
-</details>
-
-**Versions**
-
-* `hl7.fhir.us.covid19library#1.0.0`
-* `hl7.fhir.us.covid19library#0.14.0`
-* `hl7.fhir.us.covid19library#0.13.0`
 
 
 ---
@@ -4815,6 +4799,25 @@ Medizinische Informationsobjekte (MIO) Laborbefund V1.0.0
 **Versions**
 
 * `kbv.mio.laborbefund#1.0.0-kommentierung`
+
+
+---
+
+### uk.adsv2.r4
+
+<details>
+<summary>Description</summary>
+
+Put a description here
+
+</details>
+
+**Versions**
+
+* `uk.adsv2.r4#1.6.1`
+* `uk.adsv2.r4#1.6.0`
+* `uk.adsv2.r4#1.4.0`
+* `uk.adsv2.r4#1.3.0`
 
 
 ---
@@ -5618,6 +5621,8 @@ Ontario Health
 
 **Versions**
 
+* `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.20`
+* `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.19`
 * `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.18`
 * `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.17`
 * `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.16`
@@ -5919,7 +5924,6 @@ eHealth Platform R4 Federal Profiles
 * `ehealthplatform.be.r4.federalprofiles#1.1.33-beta`
 * `ehealthplatform.be.r4.federalprofiles#1.1.32-beta`
 * `ehealthplatform.be.r4.federalprofiles#1.1.31-beta`
-* `ehealthplatform.be.r4.federalprofiles#1.1.30-beta`
 * `ehealthplatform.be.r4.federalprofiles#1.1.3-beta`
 * `ehealthplatform.be.r4.federalprofiles#1.1.29-beta`
 * `ehealthplatform.be.r4.federalprofiles#1.1.28-beta`
@@ -5936,7 +5940,6 @@ eHealth Platform R4 Federal Profiles
 * `ehealthplatform.be.r4.federalprofiles#1.1.18-beta`
 * `ehealthplatform.be.r4.federalprofiles#1.1.17-beta`
 * `ehealthplatform.be.r4.federalprofiles#1.1.16-beta`
-* `ehealthplatform.be.r4.federalprofiles#1.1.15-beta`
 * `ehealthplatform.be.r4.federalprofiles#1.1.14-beta`
 * `ehealthplatform.be.r4.federalprofiles#1.1.12-beta`
 * `ehealthplatform.be.r4.federalprofiles#1.1.11-beta`
@@ -5950,7 +5953,6 @@ eHealth Platform R4 Federal Profiles
 * `ehealthplatform.be.r4.federalprofiles#0.1.6-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.53-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.52-beta`
-* `ehealthplatform.be.r4.federalprofiles#0.1.51-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.50-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.5-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.49-beta`
@@ -5973,7 +5975,6 @@ eHealth Platform R4 Federal Profiles
 * `ehealthplatform.be.r4.federalprofiles#0.1.33-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.32-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.31-beta`
-* `ehealthplatform.be.r4.federalprofiles#0.1.30-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.3-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.29-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.28-beta`
@@ -6496,7 +6497,6 @@ Technical profiles used by nexuzhealth for the import and export of data.
 * `nxh.fhir.r4#0.0.0-beta.16`
 * `nxh.fhir.r4#0.0.0-beta.15`
 * `nxh.fhir.r4#0.0.0-beta.14`
-* `nxh.fhir.r4#0.0.0-beta.13`
 * `nxh.fhir.r4#0.0.0-beta.12`
 * `nxh.fhir.r4#0.0.0-beta.11`
 * `nxh.fhir.r4#0.0.0-beta.10`
@@ -6796,7 +6796,6 @@ DaVinci Payer Data Exchange (PDex) US Drug Formulary, Release 2.0.1 - US Realm S
 **Versions**
 
 * `hl7.fhir.us.davinci-drug-formulary#2.0.1`
-* `hl7.fhir.us.davinci-drug-formulary#2.0.0`
 * `hl7.fhir.us.davinci-drug-formulary#1.2.0`
 * `hl7.fhir.us.davinci-drug-formulary#1.1.0`
 * `hl7.fhir.us.davinci-drug-formulary#1.0.1`
@@ -7884,7 +7883,6 @@ The Patient Demographics Query for Mobile (PDQm) Profile defines a lightweight R
 **Versions**
 
 * `IHE.ITI.PDQm#2.3.0`
-* `IHE.ITI.PDQm#2.2.1`
 
 
 ---
@@ -7981,7 +7979,6 @@ FHIR R4 profielen voor samenwerking tussen IKNL en Performation
 **Versions**
 
 * `iknl.fhir.nl.r4.performation#0.2.0`
-* `iknl.fhir.nl.r4.performation#0.1.0`
 
 
 ---
@@ -8321,22 +8318,6 @@ FHIR Nume - Dev
 * `hl7.fhir.nume.dev#1.0.2`
 * `hl7.fhir.nume.dev#1.0.1`
 * `hl7.fhir.nume.dev#1.0.0`
-
-
----
-
-### kbv.mio.ddtk
-
-<details>
-<summary>Description</summary>
-
-Medizinische Informationsobjekte (MIO) DiGA Device Toolkit V1.0.0
-
-</details>
-
-**Versions**
-
-* `kbv.mio.ddtk#1.0.0-kommentierung`
 
 
 ---
@@ -8754,13 +8735,12 @@ Version 2022
 <details>
 <summary>Description</summary>
 
-The Situational Awareness for Novel Epidemic Response Implementation Guide enables transmission of high level situational awareness information from healthcare facilities to centralized data repositories to support the treatment of the novel coronavirus illness. (built Tue, Sep 7, 2021 19:01+0000+00:00)
+The Situational Awareness for Novel Epidemic Response Implementation Guide enables transmission of high level situational awareness information from healthcare facilities to centralized data repositories to support the treatment of the novel coronavirus illness. (built Mon, Oct 19, 2020 21:05+0000+00:00)
 
 </details>
 
 **Versions**
 
-* `hl7.fhir.uv.saner#1.0.0`
 * `hl7.fhir.uv.saner#0.1.0`
 
 
@@ -8989,8 +8969,10 @@ Ce projet contient l'ensemble des ressources de conformité FHIR R4 produite par
 
 **Versions**
 
+* `ans.cnsa.fhir#0.1.2`
 * `ans.cnsa.fhir#0.1.1`
 * `ans.cnsa.fhir#0.1.0`
+* `ans.cnsa.fhir#0.0.1`
 
 
 ---
@@ -9129,7 +9111,6 @@ NL package of FHIR R4 conformance resources for zib (Zorginformatiebouwstenen, C
 
 * `nictiz.fhir.nl.r4.nl-core#0.10.0-beta.1`
 * `nictiz.fhir.nl.r4.nl-core#0.9.0-beta.1`
-* `nictiz.fhir.nl.r4.nl-core#0.8.0-beta.1`
 * `nictiz.fhir.nl.r4.nl-core#0.7.0-beta.1`
 * `nictiz.fhir.nl.r4.nl-core#0.6.0-beta.2`
 * `nictiz.fhir.nl.r4.nl-core#0.5.0-beta1`
@@ -9507,9 +9488,7 @@ Implementation Guide CH CRL (R4) (built Fri, Feb 4, 2022 14:13+0100+01:00)
 **Versions**
 
 * `ch.fhir.ig.ch-crl#0.9.0`
-* `ch.fhir.ig.ch-crl#0.2.1`
 * `ch.fhir.ig.ch-crl#0.2.0`
-* `ch.fhir.ig.ch-crl#0.1.1`
 * `ch.fhir.ig.ch-crl#0.1.0`
 
 
@@ -10373,22 +10352,6 @@ Jorn Duwel sandbox
 
 ---
 
-### Radiation Dose Summary for Diagnostic Procedures on FHIR
-
-<details>
-<summary>Description</summary>
-
-This IG standardizes the sharing of minimal radiation information following a performed exam. Minimal radiation information is required by multiple stakeholders including RIS, EHR, and national/regional stakeholders and their associated regulations. This IG standardizes data sharing from dose management systems to third parties. The IG exposes radiation information related to (and coming from) imaging procedures, but not medications. (built Wed, Dec 8, 2021 15:50+0000+00:00)
-
-</details>
-
-**Versions**
-
-* `hl7.fhir.uv.radiation-dose-summary#0.1.0`
-
-
----
-
 ### hl7.fhir.stt
 
 <details>
@@ -10761,6 +10724,7 @@ Guía de Implementación Versión de Desarrollo Sobre STU 1, para los perfiles C
 **Versions**
 
 * `hl7.fhir.cl.clcore#1.8.10`
+* `hl7.fhir.cl.clcore#1.8.6`
 * `hl7.fhir.cl.clcore#1.8.5`
 * `hl7.fhir.cl.clcore#1.8.4`
 * `hl7.fhir.cl.clcore#1.8.3`
@@ -11404,7 +11368,6 @@ Sending colonoscopy data for cancer screening to a central registry in Norway
 * `colonoscopyreport.no#0.7.18`
 * `colonoscopyreport.no#0.7.17`
 * `colonoscopyreport.no#0.7.16`
-* `colonoscopyreport.no#0.7.15`
 * `colonoscopyreport.no#0.7.14`
 * `colonoscopyreport.no#0.7.13`
 * `colonoscopyreport.no#0.7.12`
@@ -11435,7 +11398,6 @@ Sending colonoscopy data for cancer screening to a central registry in Norway
 * `colonoscopyreport.no#0.4.0-beta2`
 * `colonoscopyreport.no#0.4.0-beta1`
 * `colonoscopyreport.no#0.3.0-beta1`
-* `colonoscopyreport.no#0.2.0-beta1`
 * `colonoscopyreport.no#0.1.0-beta2`
 * `colonoscopyreport.no#0.1.0-beta`
 
@@ -11949,7 +11911,6 @@ Guidelines for conveying coverage requirements to clinicians when planning treat
 * `hl7.fhir.us.davinci-crd#1.1.0-ballot`
 * `hl7.fhir.us.davinci-crd#1.0.0`
 * `hl7.fhir.us.davinci-crd#0.3.0`
-* `hl7.fhir.us.davinci-crd#0.1.0`
 
 
 ---
@@ -12055,22 +12016,6 @@ The Privacy Consent on FHIR (PCF) Profile provides support for patient privacy c
 * `ihe.iti.pcf#1.1.0`
 * `ihe.iti.pcf#1.0.0`
 * `ihe.iti.pcf#1.0.0-comment`
-
-
----
-
-### sk.pnc.r4
-
-<details>
-<summary>Description</summary>
-
-Pediatric Neonatal Care profiles
-
-</details>
-
-**Versions**
-
-* `sk.pnc.r4#0.1.0`
 
 
 ---
@@ -12351,7 +12296,7 @@ Clinical building blocks (CBB) and their related HL7 FHIR R4 compliant profiles 
 
 ---
 
-### Vital Records Common Library (VRCL) STU2-ballot
+### Vital Records Common Profiles Library
 
 <details>
 <summary>Description</summary>
@@ -12385,10 +12330,8 @@ This Guide is divided into several pages which are listed at the top of each pag
 
 **Versions**
 
-* `hl7.fhir.us.vr-common-library#2.0.0-ballot`
 * `hl7.fhir.us.vr-common-library#1.1.0`
 * `hl7.fhir.us.vr-common-library#1.0.0`
-* `hl7.fhir.us.vr-common-library#0.1.0`
 
 
 ---
@@ -12857,10 +12800,8 @@ Definition Versichertenstammdaten zum Versand via KIM für GKV VSDM Ersatzbesche
 
 * `de.gematik.elektronische-versicherungsbescheinigung#1.0.0`
 * `de.gematik.elektronische-versicherungsbescheinigung#1.0.0-rc3`
-* `de.gematik.elektronische-versicherungsbescheinigung#1.0.0-rc2`
 * `de.gematik.elektronische-versicherungsbescheinigung#1.0.0-rc1`
 * `de.gematik.elektronische-versicherungsbescheinigung#0.8.1-beta`
-* `de.gematik.elektronische-versicherungsbescheinigung#0.8.0-beta`
 
 
 ---
@@ -12921,6 +12862,7 @@ This package contains additional FHIR assets to support the ADS FHIR Bundle for 
 **Versions**
 
 * `uk.ads.r4#1.2.0-bundle2-alpha`
+* `uk.ads.r4#1.1.0-bundle1-alpha`
 * `uk.ads.r4#1.0.2-mvp-alpha`
 * `uk.ads.r4#1.0.1-mvp-alpha`
 * `uk.ads.r4#1.0.0-mvp-alpha`
@@ -12993,7 +12935,6 @@ Allergy (Patient Dossier) (built Mon, Dec 18, 2023 11:58+0100+01:00)
 **Versions**
 
 * `hl7.fhir.be.allergy#1.2.0`
-* `hl7.fhir.be.allergy#1.1.0`
 * `hl7.fhir.be.allergy#1.0.1`
 * `hl7.fhir.be.allergy#1.0.0`
 
