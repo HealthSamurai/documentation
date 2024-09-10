@@ -30,7 +30,7 @@ This command downloads the Aidbox script and starts Aidbox using Docker Compose.
 
 ### 3. Access Aidbox
 
-Open in browser [http://localhost:8080/](http://localhost:8888/)
+Open in browser [http://localhost:8080/](http://localhost:8080)
 
 ### 4. Activate your Aidbox instance
 
