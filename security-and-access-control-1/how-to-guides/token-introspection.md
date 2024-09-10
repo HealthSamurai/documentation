@@ -26,6 +26,20 @@ jwt:
   secret: very-secret
 ```
 
+The other example would be:&#x20;
+
+```html
+PUT /TokenIntrospector/external-auth-server
+content-type: text/yaml
+
+resourceType: TokenIntrospector
+id: external-auth-server
+type: "jwt"
+jwt:
+  iss: <AUTH_SERVER_URL>
+jwks_uri: <AUTH_SERVER_URL>/.well-known/jwks.json"
+```
+
 {% hint style="warning" %}
 Currently we use common `secret` to validate our introspector works. In production installations it's better to switch to `jwks_uri` instead
 {% endhint %}
