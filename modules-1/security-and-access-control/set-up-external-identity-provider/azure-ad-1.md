@@ -40,7 +40,7 @@ scopes:
   - profile
   - openid
 system: azure
-userinfo_endpoint: <your userinfo endpoint>
+userinfo-source: id-token
 authorize_endpoint: <your authorization endpoint>
 token_endpoint: <your token endpoint>
 client:

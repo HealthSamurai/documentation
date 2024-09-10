@@ -41,8 +41,7 @@ scopes:
 system: azure
 authorize_endpoint: <your authorization endpoint>
 token_endpoint: <your token endpoint>
-userinfo_endpoint: <your userinfo endpoint>
-userinfo-source: id-token | userinfo-endpoint
+userinfo-source: id-token
 client:
   id: <your application (client) id>
   secret: <your secret value from previous step>
