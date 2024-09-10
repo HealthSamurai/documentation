@@ -15,12 +15,12 @@ This guide is based on the [TokenInstrospector tutorial](token-introspection.md)
 To make Aidbox trust `JWT` issued by external server token introspection is used.
 
 {% hint style="info" %}
-In this guide external auth server URL is `https://auth.example.com`
+In this guide, the external auth server URL is `https://auth.example.com`
 {% endhint %}
 
 ## Create `TokenIntrospector`
 
-```http
+```
 PUT /TokenIntrospector/external-auth-server
 content-type: text/yaml
 
@@ -33,7 +33,7 @@ jwt:
 ```
 
 {% hint style="info" %}
-Currently we use a common `secret` to validate our introspector works. In production installations it's better to switch to `jwks_uri` instead
+Currently, we use a common `secret` to validate our introspector works. In production installations, it's better to switch to `jwks_uri` instead.
 {% endhint %}
 
 ## Create `AccessPolicy` for the role `manager`
@@ -98,7 +98,7 @@ Authorization: Bearer eyJ0...1eAo
 ```
 {% endtab %}
 
-{% tab title="Response, status: 200" %}
+{% tab title="Response" %}
 ```yaml
 entry: []
 link:
