@@ -1,7 +1,11 @@
 # US Core IG support reference
 
 {% hint style="warning" %}
-This reference is a work in progress. Please, [contact us](../../contact-us.md) if have any questions.
+This page explains US Core support for zen-lang validation mode.
+
+Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
+
+[Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/setup)
 {% endhint %}
 
 ## Supported versions
