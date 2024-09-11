@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # SubscriptionTopic API
 
 {% hint style="warning" %}

@@ -5,7 +5,7 @@ description: Form building and structured data capturing with Aidbox
 # Aidbox Forms
 
 {% hint style="info" %}
-Aidbox Forms is a **pluggable module** for healthcare vendors who need **to create digital forms**, questionnaires, and surveys for the clinical workflows.
+Aidbox Forms is a **pluggable module** for healthcare vendors who need **to create digital forms**, questionnaires, and surveys for clinical workflows.
 {% endhint %}
 
 It allows to design and embed digital medical forms and capture data in FHIR format for reporting and analysis.
@@ -16,7 +16,7 @@ To play with forms on a test data without authorization and without creating an 
 
 ## Aidbox Forms provides:
 
-* Ready-made medical form repository ([Aidbox Form ](aidbox-forms/add-aidbox-forms-library.md)[Gallery](aidbox-forms/add-aidbox-forms-library.md))
+* Ready-made medical form repository ([Aidbox Form Gallery](aidbox-forms/add-aidbox-forms-library.md))
 * [UI Builder](aidbox-forms/aidbox-ui-builder-alpha/) for creating forms without a code (based on [FHIR SDC Implementation Guide](https://build.fhir.org/ig/HL7/sdc/index.html))
 * [Aidbox Code Editor](aidbox-forms/aidbox-code-editor/) for creating complex forms (based on DSL)
 * Form rendering engine
@@ -41,5 +41,5 @@ To play with forms on a test data without authorization and without creating an 
 * Capture and store data in FHIR storage
 
 {% hint style="warning" %}
-We strongly recommend using our UI Form Builder based on FHIR SDC (Structured Data Capture), which we are continuously developing. The current solution will remain supported but will not receive further development at this time.
+We strongly recommend using our UI Form Builder based on FHIR SDC (Structured Data Capture), which we continuously develop. The current solution will remain supported but will not receive further development at this time.
 {% endhint %}
