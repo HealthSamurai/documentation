@@ -6,8 +6,10 @@ description: >-
 
 # 🎓 Load zen profiles into Aidbox
 
-{% hint style="info" %}
-Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [contact](../../contact-us.md) us if you have questions, feedback or suggestions.
+{% hint style="warning" %}
+Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
+
+[Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator)
 {% endhint %}
 
 ## Prerequisites
