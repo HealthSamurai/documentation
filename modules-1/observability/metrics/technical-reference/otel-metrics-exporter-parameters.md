@@ -1,7 +1,3 @@
----
-description: This page explains what parameters OTEL metrics exporter has
----
-
 # OTEL metrics exporter parameters
 
 ## OTEL metrics exporter example configuration
