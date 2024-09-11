@@ -1,7 +1,3 @@
----
-description: This guide explains how to find Smartbox public  documentation endpoint
----
-
 # Find documentation endpoint
 
 ## To see Smartbox documentation

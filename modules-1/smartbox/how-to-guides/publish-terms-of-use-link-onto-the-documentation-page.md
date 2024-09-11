@@ -1,7 +1,3 @@
----
-description: This guide explains how to add link to the Terms of User
----
-
 # Publish Terms of Use link onto the documentation page
 
 ## How to add Terms of Use link with API
