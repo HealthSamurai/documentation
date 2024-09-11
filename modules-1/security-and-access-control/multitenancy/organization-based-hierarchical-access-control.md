@@ -22,7 +22,6 @@ To achieve such a behavior, you may consider an Aidbox feature called organizati
 
 Let's create the organization structure in Aidbox:
 
-{% code title="status: 200 OK" %}
 ```
 PUT /
 content-type: text/yaml
@@ -47,7 +46,6 @@ accept: text/yaml
   partOf: {resourceType: Organization, id: org-d}
   name: Organization E
 ```
-{% endcode %}
 
 When an Organization resource is created, a dedicated FHIR API is deployed for that organization. This API provides access to the associated FHIR resources. Nested organization FHIR resources are accessible through the parent Organization API.
 
@@ -57,7 +55,7 @@ The Organization-based FHIR API base url:
 <AIDBOX_BASE_URL>/Organization/<org-id>/fhir
 ```
 
-The Organization-based Aidbox API base url:
+The Organization-based [Aidbox API ](../../fhir-resources/aidbox-and-fhir-formats.md)base url:
 
 ```
 <AIDBOX_BASE_URL>/Organization/<org-id>/aidbox
@@ -65,14 +63,11 @@ The Organization-based Aidbox API base url:
 
 <figure><img src="../../../.gitbook/assets/Screenshot 2023-06-28 at 15.42.54.png" alt=""><figcaption><p>FHIR APIs reflection in organization-based access control</p></figcaption></figure>
 
-Let's play with a new APIs.
+Let's play with new APIs.
 
 We will create a Patient resource in Org B:
 
-{% tabs %}
-{% tab title="FHIR API" %}
-{% code title="status: 201 Created" %}
-```yaml
+```
 PUT /Organization/org-b/fhir/Patient/pt-1
 content-type: text/yaml
 accept: text/yaml
@@ -80,82 +75,25 @@ accept: text/yaml
 name: [{given: [John], family: Smith}]
 gender: male
 ```
-{% endcode %}
-{% endtab %}
-
-{% tab title="Aidbox API" %}
-{% code title="status: 201 Created" %}
-```yaml
-PUT /Organization/org-b/aidbox/Patient/pt-1
-content-type: text/yaml
-accept: text/yaml
-
-name: [{given: [John], family: Smith}]
-gender: male
-```
-{% endcode %}
-{% endtab %}
-{% endtabs %}
 
 Now we can read it:
 
-{% tabs %}
-{% tab title="FHIR API" %}
-{% code title="status: 200 OK" %}
 ```
 GET /Organization/org-b/fhir/Patient/pt-1
 ```
-{% endcode %}
-{% endtab %}
-
-{% tab title="Aidbox API" %}
-{% code title="status: 200 OK" %}
-```
-GET /Organization/org-b/aidbox/Patient/pt-1
-```
-{% endcode %}
-{% endtab %}
-{% endtabs %}
 
 The resource is also accessible through Org A API:
 
-{% tabs %}
-{% tab title="FHIR API" %}
-{% code title="status: 200 OK" %}
 ```
 GET /Organization/org-a/fhir/Patient/pt-1
 ```
-{% endcode %}
-{% endtab %}
-
-{% tab title="Aidbox API" %}
-{% code title="status: 200 OK" %}
-```
-GET /Organization/org-a/aidbox/Patient/pt-1
-```
-{% endcode %}
-{% endtab %}
-{% endtabs %}
 
 But this resource is not accessible through Org C, Org D and Org E API:
 
-{% tabs %}
-{% tab title="FHIR API" %}
-{% code title="status: 403 Forbidden" %}
 ```
-GET /Organization/org-c/fhir/Patient/pt-1
+GET /Organization/org-c/fhir/Patient/pt-1 
+# 403 Forbidden
 ```
-{% endcode %}
-{% endtab %}
-
-{% tab title="Aidbox API" %}
-{% code title="status: 403 Forbidden" %}
-```
-GET /Organization/org-c/aidbox/Patient/pt-1
-```
-{% endcode %}
-{% endtab %}
-{% endtabs %}
 
 ### Limitations
 
@@ -169,103 +107,53 @@ If `SubsSubscription` resource is created using regular API (not Organization AP
 
 ## FHIR API over Organization resources
 
-{% tabs %}
-{% tab title="FHIR API" %}
-```
-<AIDBOX_BASE_URL>/Organization/<org-id>/fhir
-```
-{% endtab %}
-
-{% tab title="Aidbox API" %}
-```
-<AIDBOX_BASE_URL>/Organization/<org-id>/aidbox
-```
-{% endtab %}
-{% endtabs %}
-
 ### Create
 
-{% tabs %}
-{% tab title="FHIR API" %}
 ```
 POST <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>
 ```
-{% endtab %}
-
-{% tab title="Aidbox API" %}
-```
-POST <AIDBOX_BASE_URL>/Organization/<org-id>/aidbox/<resource-type>
-```
-{% endtab %}
-{% endtabs %}
 
 ### Read
 
-{% tabs %}
-{% tab title="FHIR API" %}
 ```
 GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>/<id>
 ```
-{% endtab %}
-
-{% tab title="Aidbox API" %}
-```
-GET <AIDBOX_BASE_URL>/Organization/<org-id>/aidbox/<resource-type>/<id>
-```
-{% endtab %}
-{% endtabs %}
 
 ### Update
 
-{% tabs %}
-{% tab title="FHIR API" %}
+#### Put
+
 ```
 PUT <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>/<id>
+```
 
+#### Patch
+
+The default patch method is `merge-patch`:
+
+<pre><code><strong>PATCH &#x3C;AIDBOX_BASE_URL>/Organization/&#x3C;org-id>/fhir/&#x3C;resource-type>/&#x3C;id>
+</strong></code></pre>
+
+Also, `json-patch` is supported:
+
+```
 PATCH <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>/<id>
+content-type: application/json-patch+json
 ```
-{% endtab %}
 
-{% tab title="Aidbox API" %}
-```
-PUT <AIDBOX_BASE_URL>/Organization/<org-id>/aidbox/<resource-type>/<id>
-
-PATCH <AIDBOX_BASE_URL>/Organization/<org-id>/aidbox/<resource-type>/<id>
-```
-{% endtab %}
-{% endtabs %}
+See also [patch.md](../../../api-1/api/crud-1/patch.md "mention")
 
 ### Delete
 
-{% tabs %}
-{% tab title="FHIR API" %}
 ```
 DELETE <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>/<id>
 ```
-{% endtab %}
-
-{% tab title="Aidbox API" %}
-```
-DELETE <AIDBOX_BASE_URL>/Organization/<org-id>/aidbox/<resource-type>/<id>
-```
-{% endtab %}
-{% endtabs %}
 
 ### Search
 
-{% tabs %}
-{% tab title="FHIR API" %}
 ```
 GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>
 ```
-{% endtab %}
-
-{% tab title="Aidbox API" %}
-```
-GET <AIDBOX_BASE_URL>/Organization/<org-id>/aidbox/<resource-type>
-```
-{% endtab %}
-{% endtabs %}
 
 {% hint style="warning" %}
 The search API does not support search parameters:
@@ -279,43 +167,21 @@ The search API does not support search parameters:
 
 Resource full history
 
-{% tabs %}
-{% tab title="FHIR API" %}
 ```
 GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>/<id>/_history
 ```
-{% endtab %}
-
-{% tab title="Aidbox API" %}
-```
-GET <AIDBOX_BASE_URL>/Organization/<org-id>/aidbox/<resource-type>/<id>/_history
-```
-{% endtab %}
-{% endtabs %}
 
 Specific version history entry
 
-{% tabs %}
-{% tab title="FHIR API" %}
 ```
 GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>/<id>/_history/<vid>
 ```
-{% endtab %}
-
-{% tab title="Aidbox API" %}
-```
-GET <AIDBOX_BASE_URL>/Organization/<org-id>/aidbox/<resource-type>/<id>/_history/<vid>
-```
-{% endtab %}
-{% endtabs %}
 
 ### Bundle
 
 Supported transaction and batch bundle type.
 
-{% tabs %}
-{% tab title="FHIR API" %}
-```yaml
+```
 POST /Organization/org-a/fhir/
 Accept: text/yaml
 Content-Type: text/yaml
@@ -341,53 +207,12 @@ entry:
     birthDate: '2021-01-01'
     id: 'pt-2'
 ```
-{% endtab %}
-
-{% tab title="Aidbox API" %}
-```yaml
-POST /Organization/org-a/aidbox/
-Accept: text/yaml
-Content-Type: text/yaml
-
-resourceType: Bundle
-# transaction | batch
-type: transaction
-entry:
-- request:
-    method: POST
-    url: 'Patient'
-  resource:
-    birthDate: '2021-01-01'
-    id: 'pt-1'
-    meta:
-      organization:
-        id: 'org-c'
-        resourceType: 'Organization'
-- request:
-    method: POST
-    url: 'Patient'
-  resource:
-    birthDate: '2021-01-01'
-    id: 'pt-2'
-```
-{% endtab %}
-{% endtabs %}
 
 ### Metadata
 
-{% tabs %}
-{% tab title="FHIR API" %}
 ```
 GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/metadata
 ```
-{% endtab %}
-
-{% tab title="Aidbox API" %}
-```
-GET <AIDBOX_BASE_URL>/Organization/<org-id>/aidbox/metadat
-```
-{% endtab %}
-{% endtabs %}
 
 ### AidboxQuery
 
@@ -426,10 +251,7 @@ Update and delete operations are not allowed from nested organizations' APIs. To
 
 To create a shared resource, use the `https://aidbox.app/tenant-resource-mode` extension.
 
-{% tabs %}
-{% tab title="FHIR API" %}
-{% code title="status: 201 Created" %}
-```yaml
+```
 PUT /Organization/org-a/fhir/Practitioner/prac-1
 content-type: text/yaml
 
@@ -438,38 +260,9 @@ meta:
   - url: https://aidbox.app/tenant-resource-mode
     valueString: "shared"
 ```
-{% endcode %}
-{% endtab %}
-
-{% tab title="Aidbox API" %}
-{% code title="status: 201 Created" %}
-```yaml
-PUT /Organization/org-a/aidbox/Practitioner/prac-1
-content-type: text/yaml
-
-meta:
-  mode: "shared"
-```
-{% endcode %}
-{% endtab %}
-{% endtabs %}
 
 ### Access shared resource from a nested API
 
-{% tabs %}
-{% tab title="FHIR API" %}
-{% code title="status: 200 OK" %}
 ```
 GET /Organization/org-b/fhir/Practitioner/prac-1
 ```
-{% endcode %}
-{% endtab %}
-
-{% tab title="Aidbox API" %}
-{% code title="status: 200 OK" %}
-```
-GET /Organization/org-b/aidbox/Practitioner/prac-1
-```
-{% endcode %}
-{% endtab %}
-{% endtabs %}
