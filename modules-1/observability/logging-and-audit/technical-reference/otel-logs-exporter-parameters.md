@@ -1,7 +1,3 @@
----
-description: This page explains what parameters OTEL logs exporter has
----
-
 # OTEL logs exporter parameters
 
 ### OTEL logs exporter example configuration <a href="#otel-traces-exporter-example-configuration" id="otel-traces-exporter-example-configuration"></a>
