@@ -4,11 +4,21 @@ description: Aidbox Core Engine Overview
 
 # Entities & Attributes
 
+{% hint style="warning" %}
+Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
+
+[Setup Aidbox with FHIR Schema validation engine](../modules-1/profiling-and-validation/fhir-schema-validator.md)
+{% endhint %}
+
+{% hint style="info" %}
+Note: you can not use Attributes and [zen profiles](../profiling-and-validation/profiling-with-zen-lang/) on the same resource at the same time
+{% endhint %}
+
 In Aidbox, almost everything is a **Resource**. Resource has a type, which is placed in **resourceType** attribute. All resource types are described with "meta-resources" - **Entity** and **Attribute**. **Entity** defines the resource or complex type and a set of **Attributes** describes its structure.
 
 ### Entity
 
-Entity is meta-resource, which describes all resources in aidbox. There are three types of Entities: resource, type and primitive.
+Entity is meta-resource, which describes all resources in Aidbox. There are three types of Entities: resource, type, and primitive.
 
 #### Primitives:
 
@@ -41,7 +51,7 @@ For now, there is no way to define custom primitive type. Contact us if you need
 
 #### Complex Types:
 
-Complex types are built from primitive types and re-used to define repeating complex elements in resources. Here is the request to inspect complex types in your box.
+Complex types are built from primitive types and are re-used to define repeating complex elements in resources. Here is the request to inspect complex types in your box.
 
 ```yaml
 GET /Entity?type=type\
@@ -61,7 +71,6 @@ GET /Entity?type=type\
 - {id: ContactPoint, description: 'Details of a Technology mediated contact point (phone, fax, email, etc.)'}
 - {id: Contributor, description: Contributor information}
 - {id: Count, description: A measured or measurable amount}
-- {id: DataRequirement, description: Describes a required data ite
 ```
 
 You can list Attributes of complex type with:
@@ -145,7 +154,3 @@ GET /Attribute?entity=Patient\
   description: Unique id for inter-element referencing
 ...
 ```
-
-{% hint style="info" %}
-Note: you can not use Attributes and [zen profiles](../profiling-and-validation/profiling-with-zen-lang/) on the same resource at the same time
-{% endhint %}
