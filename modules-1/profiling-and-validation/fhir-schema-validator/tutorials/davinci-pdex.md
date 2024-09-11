@@ -8,7 +8,7 @@ There's an [existing guide](https://docs.aidbox.app/getting-started/run-aidbox-l
 
 ```
 git clone \
-  --branch=carin-bb \
+  --branch=davinci-pdex \
   --depth=1 \
   https://github.com/Aidbox/aidbox-project-template.git \
   aidbox-project && \
