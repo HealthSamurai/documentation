@@ -15,7 +15,7 @@ docker run \
        -e POSTGRES_PASSWORD='pass' \
        -e POSTGRES_DB='aidbox' \
        -e PGDATA="/data/pg" \
-       healthsamurai/aidboxdb:15.2
+       healthsamurai/aidboxdb:16.1
 ```
 
 The AidboxDB image use cases are:
