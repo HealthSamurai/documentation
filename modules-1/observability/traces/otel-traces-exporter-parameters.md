@@ -1,7 +1,3 @@
----
-description: This page explains what parameters OTEL traces exporter has
----
-
 # OTEL traces exporter parameters
 
 ## OTEL traces exporter example configuration
