@@ -1,5 +1,9 @@
 # Custom Resources using Entity
 
+{% hint style="warning" %}
+Entity & Attributes and Zen Schema are planned to be retired and will be replaced by FHIR Schema. Here’s a [migration guide](migrate-to-fhirschema/) to help you transition your custom resources defined via Entity & Attributes / Zen Schema.
+{% endhint %}
+
 ## Defining a Custom Resource
 
 Sometimes your data does not fit any existing FHIR resources. It is not always obvious that your data _cannot_ be translated to FHIR because of some FHIR  generalizations. The right first step is to go to [FHIR com](https://t.me/aidbox)[unity chat](https://t.me/aidbox) and ask your specific question about mapping to FHIR, or contact Health Samurai modeling team about your concern. If you are still sure that there is no appropriate resource in FHIR or it takes too much time to wait for it, you can define your own **Custom Resources** in [Aidbox](https://www.health-samurai.io/aidbox)**.**
