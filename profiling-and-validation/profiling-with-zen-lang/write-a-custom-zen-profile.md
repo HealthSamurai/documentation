@@ -1,7 +1,9 @@
 # Write a custom zen profile
 
-{% hint style="info" %}
-This article is work-in-progress. Please [contact us](../../contact-us.md) if you want to get details on how to create a custom zen profile.
+{% hint style="warning" %}
+Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
+
+[Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator)
 {% endhint %}
 
 {% hint style="info" %}
@@ -14,7 +16,7 @@ Full syntax description and examples
 
 ## Validation modes supported with zen schemas
 
-Zen schemas are used by Aidbox for validating resources e.g. in [FHIR CRUD API](../../api-1/api/crud-1/). Such zen schemas must be tagged with either `zen.fhir/base-schema` or `zen.fhir/profile-schema`. Additionally they must have `:zen.fhir/type` and `:zen.fhir/profileUri` keys specified.
+Zen schemas are used by Aidbox for validating resources e.g. in [FHIR CRUD API](../../api-1/api/crud-1/). Such zen schemas must be tagged with either `zen.fhir/base-schema` or `zen.fhir/profile-schema`. Additionally, they must have `:zen.fhir/type` and `:zen.fhir/profileUri` keys specified.
 
 ### `zen.fhir/base-schema`
 
@@ -34,7 +36,7 @@ Schemas tagged with `zen.fhir/base-schema` are used to validate every resource o
 
 Schemas tagged with `zen.fhir/profile-schema` are used to validate resources that mention their `:zen.fhir/profileUri` in the `meta.profile` attribute.
 
-Those schemas must be tagged with `zen.fhir/profile-schema`, describe data structure in the [Aidbox format](../../modules-1/fhir-resources/aidbox-and-fhir-formats.md) and conform to the following schema:
+Those schemas must be tagged with `zen.fhir/profile-schema`, describe data structure in the [Aidbox format](../../modules-1/fhir-resources/aidbox-and-fhir-formats.md), and conform to the following schema:
 
 {% code title="zen.fhir/profile-schema" %}
 ```clojure
@@ -87,7 +89,7 @@ Those schemas must be tagged with `zen.fhir/profile-schema`, describe data struc
 
 ## Examples
 
-#### `:zen.fhir/reference`&#x20;
+#### `:zen.fhir/reference`
 
 `Patient.managingOrganization` is a reference to an `Organiazation` resource:
 
@@ -107,7 +109,7 @@ Those schemas must be tagged with `zen.fhir/profile-schema`, describe data struc
 
 To enable value-set validation in zen [concept resources](../../modules-1/terminology/concept/) with `valueset` attribute populated must be loaded into Aidbox.
 
-`:zen.fhir/value-set` key must be a symbol tagged with `zen.fhir/value-set`&#x20;
+`:zen.fhir/value-set` key must be a symbol tagged with `zen.fhir/value-set`
 
 {% code title="hl7-fhir-r4-core.Patient" %}
 ```clojure
@@ -123,13 +125,13 @@ To enable value-set validation in zen [concept resources](../../modules-1/termin
 ```
 {% endcode %}
 
-`zen.fhir/value-set` symbol definition must contain `:uri` and  `:fhir/code-systems` attributes
+`zen.fhir/value-set` symbol definition must contain `:uri` and `:fhir/code-systems` attributes
 
-`:uri` is a `ValueSet.url`, which must be mentioned in a `Concept.valueset.*`&#x20;
+`:uri` is a `ValueSet.url`, which must be mentioned in a `Concept.valueset.*`
 
 `:fhir/code-systems`\
-&#x20; `:fhir/url` is a `CodeSystem.url`, which must be a value of `Concept.system`\
-&#x20; `:zen.fhir/content` can have a value `:bundled` , this means that a `CodeSystem` content is accessible as Aidbox `Concept` resources. Other option is `:not-present`, Aidbox will skip validation of such concept assuming that the `CodeSystem` content is not loaded into Aidbox
+`:fhir/url` is a `CodeSystem.url`, which must be a value of `Concept.system`\
+`:zen.fhir/content` can have a value `:bundled` , this means that a `CodeSystem` content is accessible as Aidbox `Concept` resources. Other option is `:not-present`, Aidbox will skip validation of such concept assuming that the `CodeSystem` content is not loaded into Aidbox
 
 {% code title="hl7-fhir-r4-core.value-set.administrative-gender" %}
 ```clojure
@@ -155,7 +157,7 @@ Before applying `:schema` to a slice zen needs to determine elements of the arra
 
 `:match` engine is a pattern matching DSL:
 
-* primitive (e.g. string or a number): constant, i.e. literal match of a value&#x20;
+* primitive (e.g. string or a number): constant, i.e. literal match of a value
 * `{}` : objects validated with this match must contain and conform to every key from this pattern
 * `#{}` : at least one element of an array must conform each element of this pattern
 
