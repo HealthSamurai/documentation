@@ -8,9 +8,9 @@ This functionality was introduced in the 2408 release and is available in Beta. 
 
 This feature enables dynamic subscriptions to changes in FHIR resources, allowing users/systems to receive notifications through multiple channels, including Kafka.
 
-<figure><img src="../../../.gitbook/assets/image (107).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Screenshot 2024-09-13 at 11.14.30.png" alt=""><figcaption></figcaption></figure>
 
-For an application example, refer to [Aidbox Subscriptions & Kafka TopicDestination](https://github.com/Aidbox/app-examples/tree/main/aidbox-subscriptions-to-kafka)
+For an application example, refer to [Aidbox Subscriptions & Kafka AidboxTopicDestination](https://github.com/Aidbox/app-examples/tree/main/aidbox-subscriptions-to-kafka)
 
 ## Key Components
 
@@ -23,7 +23,7 @@ For an application example, refer to [Aidbox Subscriptions & Kafka TopicDestinat
 * **For FHIR R4b, R5, and R6**: You can use either the `AidboxSubscriptionTopic` or the FHIR SubscriptionTopic resource, depending on the FHIR version used. These version-specific resources will be added in the upcoming releases.&#x20;
 {% endhint %}
 
-* **`TopicDestination`** is a custom Aidbox resource that defines where and how the notifications triggered by an `AidboxSubscriptionTopic` should be sent. This resource offers flexibility in specifying various types of destinations. And is considered as a system configuration resource.
+* **`AidboxTopicDestination`** is a custom Aidbox resource that defines where and how the notifications triggered by an `AidboxSubscriptionTopic` should be sent. This resource offers flexibility in specifying various types of destinations. And is considered as a system configuration resource.
 * **AidboxSubscription** (not implemented yet) is a custom Aidbox resource that describes client requests to be notified about events described by SubscriptionTopic, specifies what actual filters to apply, and specifies channel, endpoint, and payload shape. Subscriptions are created by a client using[ FHIR API](https://build.fhir.org/subscriptions.html#creating-a-subscription).
 
 ## AidboxSubscriptionTopic
@@ -54,21 +54,21 @@ accept: application/json
 }
 ```
 
-## TopicDestination
+## AidboxTopicDestination
 
-The `TopicDestination` resource is used to define channel configurations for processing subscription data.
+The `AidboxTopicDestination` resource is used to define channel configurations for processing subscription data.
 
 #### Create a TopicDestination
 
-To start processing subscription data, create a `TopicDestination` resource with a reference to the `AidboxSubscriptionTopic`. Examples of `TopicDestination` resources can be found in kind-specific sections.
+To start processing subscription data, create a `AidboxTopicDestination` resource with a reference to the `AidboxSubscriptionTopic`. Examples of `AidboxTopicDestination` resources can be found in kind-specific sections.
 
 #### Stop subscription data processing
 
-To stop processing subscription data, delete the `TopicDestination` resource.
+To stop processing subscription data, delete the `AidboxTopicDestination` resource.
 
-#### TopicDestination Profile
+#### AidboxTopicDestination Profile
 
-Ensure that the resource metadata contains the kind-specific `TopicDestination` profile.
+Ensure that the resource metadata contains the kind-specific `AidboxTopicDestination` profile.
 
 #### **Elements**
 
@@ -96,9 +96,9 @@ Notification is a [FHIR Bundle](https://build.fhir.org/bundle.html) resource wit
       "resource": {
         "type": "event-notification",
         "topic": "http://example.org/FHIR/R5/SubscriptionTopic/QuestionnaireResponse-topic",
-        "resourceType": "TopicDestinationStatus",
+        "resourceType": "AidboxTopicDestinationStatus",
         "topic-destination": {
-          "reference": "TopicDestination/kafka-destination"
+          "reference": "AidboxTopicDestination/kafka-destination"
         }
       }
     },

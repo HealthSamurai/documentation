@@ -1,4 +1,4 @@
-# Kafka TopicDestination
+# Kafka AidboxTopicDestination
 
 To proceed with Kafka integration please configure `AidboxSubscriptionTopic` module.
 
@@ -8,7 +8,7 @@ To proceed with Kafka integration please configure `AidboxSubscriptionTopic` mod
 
 ### Behaviour Overview
 
-1. By default, Aidbox buffers notifications for a short period before sending them to Kafka, in accordance with the configuration of the Kafka `TopicDestination` resource.
+1. By default, Aidbox buffers notifications for a short period before sending them to Kafka, in accordance with the configuration of the Kafka `AidboxTopicDestination` resource.
 2. If Kafka is unavailable, Aidbox will buffer notifications according to the `delivery.timeout.ms` parameter.
    1. If the connection is restored, the buffered notifications will be sent.
    2. If a notification cannot be sent within the specified timeout, it will be lost.
@@ -22,14 +22,14 @@ Full example see on [Github](https://github.com/Aidbox/app-examples/tree/main/ai
 {% tabs %}
 {% tab title="Request" %}
 ```json
-POST /fhir/TopicDestination
+POST /fhir/AidboxTopicDestination
 content-type: application/json
 accept: application/json
 
 {
   "meta": {
     "profile": [
-      "http://fhir.aidbox.app/StructureDefinition/TopicDestinationKafka"
+      "http://fhir.aidbox.app/StructureDefinition/AidboxTopicDestinationKafka"
     ]
   },
   "kind": "kafka",
@@ -56,7 +56,7 @@ accept: application/json
 {
   "meta": {
     "profile": [
-      "http://fhir.aidbox.app/StructureDefinition/TopicDestinationKafka"
+      "http://fhir.aidbox.app/StructureDefinition/AidboxTopicDestinationKafka"
     ]
   },
   "kind": "kafka",
@@ -83,14 +83,14 @@ accept: application/json
 {% tabs %}
 {% tab title="Request" %}
 ```json
-POST /fhir/TopicDestination
+POST /fhir/AidboxTopicDestination
 content-type: application/json
 accept: application/json
 
 {
   "meta": {
     "profile": [
-      "http://fhir.aidbox.app/StructureDefinition/TopicDestinationKafka"
+      "http://fhir.aidbox.app/StructureDefinition/AidboxTopicDestinationKafka"
     ]
   },
   "kind": "kafka",
@@ -135,7 +135,7 @@ accept: application/json
  "kind": "kafka",
  "meta": {
   "profile": [
-   "http://fhir.aidbox.app/StructureDefinition/TopicDestinationKafka"
+   "http://fhir.aidbox.app/StructureDefinition/AidboxTopicDestinationKafka"
   ],
   "lastUpdated": "2024-08-30T07:50:26.494982Z",
   "versionId": "111",
@@ -173,7 +173,7 @@ accept: application/json
    "valueString": "software.amazon.msk.auth.iam.IAMClientCallbackHandler"
   }
  ],
- "resourceType": "TopicDestination"
+ "resourceType": "AidboxTopicDestination"
 }
 ```
 {% endtab %}
@@ -181,7 +181,7 @@ accept: application/json
 
 ### All Available Parameters
 
-<table data-full-width="false"><thead><tr><th width="206">Parameter name</th><th width="135">Value type</th><th>Description</th></tr></thead><tbody><tr><td><code>kafkaTopic</code> *</td><td>valueString</td><td>The Kafka topic where the data should be sent.</td></tr><tr><td>bootstrap.servers *</td><td>valueString</td><td>Comma-separated string. Specifies the Kafka broker to connect to. Only one broker can be listed.</td></tr><tr><td>compression.type</td><td>valueString</td><td>Specify the final compression type for a given topic. This configuration accepts the standard compression codecs ('gzip', 'snappy', 'lz4', 'zstd').</td></tr><tr><td>batch.size</td><td>valueInteger</td><td>This configuration controls the default batch size in bytes.</td></tr><tr><td>delivery.timeout.ms</td><td>valueInteger</td><td>A maximum time limit for reporting the success or failure of a record sent by a producer, covering delays before sending, waiting for broker acknowledgment, and handling retriable errors. </td></tr><tr><td>max.block.ms</td><td>valueInteger</td><td>The configuration controls how long the <code>KafkaProducer</code>'s <code>send()</code>method will block. </td></tr><tr><td>max.request.size</td><td>valueInteger</td><td>The maximum size of a request in bytes.</td></tr><tr><td>request.timeout.ms</td><td>valueInteger</td><td>The maximum amount of time the client will wait for the response of a request.</td></tr><tr><td>ssl.keystore.key</td><td>valueString</td><td>Private key in the format specified by 'ssl.keystore.type'.</td></tr><tr><td>security.protocol</td><td>valueString</td><td>Protocol used to communicate with brokers.</td></tr><tr><td>sasl.mechanism</td><td>valueString</td><td>SASL mechanism used for client connections.</td></tr><tr><td>sasl.jaas.config</td><td>valueString</td><td>JAAS login context parameters for SASL connections in the format used by JAAS configuration files.</td></tr><tr><td><code>sasl.client.callback.handler.class</code></td><td>valueString</td><td>The fully qualified name of a SASL client callback handler class that implements the AuthenticateCallbackHandler interface.</td></tr></tbody></table>
+<table data-full-width="false"><thead><tr><th width="245">Parameter name</th><th width="136">Value type</th><th>Description</th></tr></thead><tbody><tr><td><code>kafkaTopic</code> *</td><td>valueString</td><td>The Kafka topic where the data should be sent.</td></tr><tr><td><code>bootstrap.servers</code> *</td><td>valueString</td><td>Comma-separated string. Specifies the Kafka broker to connect to. Only one broker can be listed.</td></tr><tr><td><code>compression.type</code></td><td>valueString</td><td>Specify the final compression type for a given topic. This configuration accepts the standard compression codecs ('gzip', 'snappy', 'lz4', 'zstd').</td></tr><tr><td><code>batch.size</code></td><td>valueInteger</td><td>This configuration controls the default batch size in bytes.</td></tr><tr><td><code>delivery.timeout.ms</code></td><td>valueInteger</td><td>A maximum time limit for reporting the success or failure of a record sent by a producer, covering delays before sending, waiting for broker acknowledgment, and handling retriable errors. </td></tr><tr><td><code>max.block.ms</code></td><td>valueInteger</td><td>The configuration controls how long the <code>KafkaProducer</code>'s <code>send()</code>method will block. </td></tr><tr><td><code>max.request.size</code></td><td>valueInteger</td><td>The maximum size of a request in bytes.</td></tr><tr><td><code>request.timeout.ms</code></td><td>valueInteger</td><td>The maximum amount of time the client will wait for the response of a request.</td></tr><tr><td><code>ssl.keystore.key</code></td><td>valueString</td><td>Private key in the format specified by 'ssl.keystore.type'.</td></tr><tr><td><code>security.protocol</code></td><td>valueString</td><td>Protocol used to communicate with brokers.</td></tr><tr><td><code>sasl.mechanism</code></td><td>valueString</td><td>SASL mechanism used for client connections.</td></tr><tr><td><code>sasl.jaas.config</code></td><td>valueString</td><td>JAAS login context parameters for SASL connections in the format used by JAAS configuration files.</td></tr><tr><td><code>sasl.client.callback.handler.class</code></td><td>valueString</td><td>The fully qualified name of a SASL client callback handler class that implements the AuthenticateCallbackHandler interface.</td></tr></tbody></table>
 
 \* required parameter.
 
@@ -194,7 +194,7 @@ For additional details see [Kafka Producer Configs Documentation](https://kafka.
 {% tabs %}
 {% tab title="Request" %}
 ```yaml
-GET /fhir/TopicDestination/<topic-destination-id>/$status
+GET /fhir/AidboxTopicDestination/<topic-destination-id>/$status
 content-type: application/json
 accept: application/json
 ```
@@ -302,4 +302,4 @@ accept: application/json
 
 Responce format:
 
-<table data-full-width="false"><thead><tr><th width="188">Property</th><th width="128">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>start-time</code></td><td>string</td><td><code>TopicDestination</code> start time in UTC.</td></tr><tr><td><code>status</code></td><td>string</td><td><code>TopicDestination</code> status is always <code>active</code>, which means that <code>TopicDestination</code> will try to send all received notifications.</td></tr><tr><td><code>in-process</code></td><td>number</td><td>Current number of events in the Kafka buffer being processed for delivery.</td></tr><tr><td><code>enqueued-events-count</code></td><td>number</td><td>Number of events pending in the queue for dispatch to the Kafka driver. This count remains 0 when the atLeastOneGuarantee is set to false.</td></tr><tr><td><code>successfully-delivered</code></td><td>number</td><td>Total number of events that have been successfully delivered.</td></tr><tr><td><code>failed-delivery</code></td><td>string</td><td>Total number of events that failed to be delivered. This count is always 0 when the atLeastOneGuarantee is true.</td></tr><tr><td><code>failed-delivery-attempt</code></td><td>Object</td><td> Number of delivery attempts that failed. When atLeastOneGuarantee is false, this matches the :failed-delivery count. When atLeastOneGuarantee is true, it represents the overall failed delivery attempts.</td></tr></tbody></table>
+<table data-full-width="false"><thead><tr><th width="188">Property</th><th width="128">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>start-time</code></td><td>string</td><td><code>AidboxTopicDestination</code> start time in UTC.</td></tr><tr><td><code>status</code></td><td>string</td><td><code>AidboxTopicDestination</code> status is always <code>active</code>, which means that <code>AidboxTopicDestination</code> will try to send all received notifications.</td></tr><tr><td><code>in-process</code></td><td>number</td><td>Current number of events in the Kafka buffer being processed for delivery.</td></tr><tr><td><code>enqueued-events-count</code></td><td>number</td><td>Number of events pending in the queue for dispatch to the Kafka driver. This count remains 0 when the atLeastOneGuarantee is set to false.</td></tr><tr><td><code>successfully-delivered</code></td><td>number</td><td>Total number of events that have been successfully delivered.</td></tr><tr><td><code>failed-delivery</code></td><td>string</td><td>Total number of events that failed to be delivered. This count is always 0 when the atLeastOneGuarantee is true.</td></tr><tr><td><code>failed-delivery-attempt</code></td><td>Object</td><td> Number of delivery attempts that failed. When atLeastOneGuarantee is false, this matches the :failed-delivery count. When atLeastOneGuarantee is true, it represents the overall failed delivery attempts.</td></tr></tbody></table>
