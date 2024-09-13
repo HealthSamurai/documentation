@@ -179,7 +179,6 @@ NHS (England) National Services Implementation Guide
 * `uk.nhsdigital.r4.test#2.8.14-prerelease`
 * `uk.nhsdigital.r4.test#2.8.13-prerelease`
 * `uk.nhsdigital.r4.test#2.8.12-prerelease`
-* `uk.nhsdigital.r4.test#2.8.11-prerelease`
 * `uk.nhsdigital.r4.test#2.8.10-prerelease`
 
 
@@ -489,25 +488,6 @@ Ressourcen zur Rezeptanforderung eines E-Rezeptes
 
 ---
 
-### Electronic Long-Term Services and Supports (eLTSS) Release 1 - US Realm
-
-<details>
-<summary>Description</summary>
-
-Provides guidance to US Realm implementers to use the FHIR for implementing access and exchange Electronic Long-Term Services and Supports (eLTSS) Dataset data  elements (built Mon, May 27, 2024 02:28+0000+00:00)
-
-</details>
-
-**Versions**
-
-* `hl7.fhir.us.eltss#2.0.0`
-* `hl7.fhir.us.eltss#2.0.0-ballot`
-* `hl7.fhir.us.eltss#1.0.0`
-* `hl7.fhir.us.eltss#0.1.0`
-
-
----
-
 ### Touchstone-ereferralontario.core
 
 <details>
@@ -782,8 +762,6 @@ This Implementation Guide was created under the supervision and review of the [H
 **Versions**
 
 * `hl7.fhir.us.mcc#1.0.0`
-* `hl7.fhir.us.mcc#1.0.0-ballot2`
-* `hl7.fhir.us.mcc#1.0.0-ballot`
 
 
 ---
@@ -1001,11 +979,10 @@ Progetto FHIR per Regione Lombardia
 * `rl.fhir.r4.draft#0.0.21`
 * `rl.fhir.r4.draft#0.0.20`
 * `rl.fhir.r4.draft#0.0.19`
-* `rl.fhir.r4.draft#0.0.18`
 * `rl.fhir.r4.draft#0.0.17`
+* `rl.fhir.r4.draft#0.0.13`
 * `rl.fhir.r4.draft#0.0.12`
 * `rl.fhir.r4.draft#0.0.11`
-* `rl.fhir.r4.draft#0.0.10`
 * `rl.fhir.r4.draft#0.0.8`
 * `rl.fhir.r4.draft#0.0.7`
 * `rl.fhir.r4.draft#0.0.6`
@@ -1027,6 +1004,7 @@ Ressources de conformité basées sur le modèle d'exposition de l'Annuaire Sant
 **Versions**
 
 * `ans.fhir.fr.annuaire#1.1.0-snapshot`
+* `ans.fhir.fr.annuaire#1.1.0-snapshot-3`
 * `ans.fhir.fr.annuaire#1.1.0-snapshot-2`
 * `ans.fhir.fr.annuaire#1.0.1`
 * `ans.fhir.fr.annuaire#1.0.0`
@@ -1381,6 +1359,62 @@ Building an Implementation Guide and Package with Simplifier.net
 
 ---
 
+### At-Home In-Vitro Test Report
+
+<details>
+<summary>Description</summary>
+
+|Implementation Guide (IG) Characteristic  |  Value |
+|------------------------------------------------------|--------------------------------------------|
+|**FHIR Version:** | FHIR R4 |
+|**IG Realm:** | US |
+|**IG Type:** | STU Ballot |
+|**Exchange Methods:** | RESTfulAPI, Messages, Transactions,  Tasks |
+|**IG Note:** | This HL7 FHIR Guide utilizes and adopts guidance or profiles developed in the US Core FHIR&reg; Implementation Guide. This FHIR IG has narrative pages describing the HL7 V2 Message for At-Home In-Vitro Test Reporting and provides some example messages. Presently public health departments usually only can handle and store HL7 V2|
+{:.table-striped}
+
+|IG Dependencies |
+|----------------------------------|
+| [HL7 FHIR US Core Version 5.0.1](http://hl7.org/fhir/us/core/STU5.0.1/) |
+{:.table-striped}
+
+
+### Background
+
+Point-of-care (POC) and At-Home In-Vitro Tests offer increased accessibility to needed diagnostic solutions during a pandemic. Test results provide value to both the individual taking the tests and also to public health authorities responsible for coordinating a regional and national response. Digital platforms are being developed that allow individual test results, with permission of the individual, to be captured, organized, and transmitted to public health systems. Test manufacturers, working in partnership with these digital platforms, are seeking guidance on how to send test results. With multiple tests already entering the market, there is a need for a unified strategy on data flow of test results from the apps to downstream systems. A national data exchange standard should be supported that guides data exchange from test results residing on individual users’ digital test applications to public health authorities, at both the federal and regional levels.  
+
+### Introduction
+This implementation guide (IG) constrains the FHIR [US Core Diagnostic Report for Laboratory Results](http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab) and the  [US Core Laboratory Observation Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab) for use in transmitting At-Home In-Vitro Test results to local, state, territorial and federal health agencies. The IG will be be used in real world testing. It was developed as part of a collaborative project with the NIH/NIBIB, ONC, a vendor manufacturer of diagnostic healthcare products that makes one of the FDA approved At-Home In-Vitro Test kits, and an app developer who is a leading provider of secure interoperability solutions. The intention of this guide is to assist developers in producing and sending standardized FHIR test result data from tests perfomed at home. FHIR eases app development and the FHIR US Core IG is in a rapid adoption curve. This guide points to already existing US Core Guidance and other guidance with respect to FHIR Parameters, FHIR operations, and RESTful and SMART on FHIR information.
+
+Due to Public Health Departments' familiarity with V2, a test implementation project related to this implementation guide will initially send COVID-19 At-Home In-Vitro Test Reports as V2 lab messages. Longer term the intent is to leverage FHIR for app creativity, growth, and interoperability. For as long as needed to comply with Public Health Department dependecies on V2, the apps will be designed to transform from FHIR to V2. In addition, as a parallel effort, a V2 <-> FHIR data mapping table has been developed [In-Vitro At-Home Test V2 FHIR Mapping.xlsx].
+
+**Please note** : This guide is a framework for future work. It contains "framework" profiles that contain constraints common to all At-Home In-Vitro Test Reporting use cases. These framework profiles can be further constrained to a particular use case such as the COVID-19 At-Home In-Vitro Test Reporting use case. The COVID-19 use case profiles have been created and included in this guide.
+
+### Further Information
+[RADx® MARS - Mobile Application Reporting through Standards](https://www.nibib.nih.gov/covid-19/radx-tech-program/mars)
+
+[LOINC In Vitro Diagnostic (LIVD) Test Code Mapping for SARS-CoV-2 Tests](https://www.cdc.gov/csels/dls/sars-cov-2-livd-codes.html)
+
+[Test-Specific HL7v2 Field Values Tool](https://app.powerbigov.us/view?r=eyJrIjoiNjQyZjBkOGEtNjE0ZS00NjUyLTg3NjEtZTIxN2JmODE0ZGE1IiwidCI6IjE0Yjc3NTc4LTk3NzMtNDJkNS04NTA3LTI1MWNhMmRjMmIwNiJ9&pageName=ReportSectionhttps://app.powerbigov.us/view?r=eyJrIjoiNjQyZjBkOGEtNjE0ZS00NjUyLTg3NjEtZTIxN2JmODE0ZGE1IiwidCI6IjE0Yjc3NTc4LTk3NzMtNDJkNS04NTA3LTI1MWNhMmRjMmIwNiJ9&pageName=ReportSection3147535a75468ee60d16)
+
+### Acknowledgements/Primary Authors
+* [NIBIB-Interagency Project Team](mailto:krishna.Juluru@pif.gov)
+* [CareEvolution](https://careevolution.com)
+* [Association of Public Health Laboratories](https://www.aphl.org/Pages/default.aspx)
+* [Gay Dolin MSN RN (Namaste Informatics)](mailto:gdolin@NamasteInformatics.com)
+* [Sarah Gaunt](mailto:sarah.gaunt@lantanaconsulting.com) (built Sat, Mar 25, 2023 16:44+0000+00:00)
+
+</details>
+
+**Versions**
+
+* `hl7.fhir.us.home-lab-report#1.1.0`
+* `hl7.fhir.us.home-lab-report#1.0.0`
+* `hl7.fhir.us.home-lab-report#1.0.0-ballot`
+
+
+---
+
 ### MedNet interface implementation guide
 
 <details>
@@ -1481,6 +1515,7 @@ IL core project vesrion 0.15.1
 
 **Versions**
 
+* `il.core.fhir.r4#0.15.3`
 * `il.core.fhir.r4#0.15.2`
 * `il.core.fhir.r4#0.15.1`
 * `il.core.fhir.r4#0.15.0`
@@ -2125,22 +2160,6 @@ Progetto FHIR per Regione Lombardia
 
 ---
 
-### Finnish Scheduling
-
-<details>
-<summary>Description</summary>
-
-Finnish HL7 FHIR implementation guide for scheduling, published and maintained by HL7 Finland (built Mon, Aug 12, 2024 12:49+0300+03:00)
-
-</details>
-
-**Versions**
-
-* `hl7.fhir.fi.scheduling#0.2.0`
-
-
----
-
 ### kbv.mio.mutterpass
 
 <details>
@@ -2204,6 +2223,7 @@ ePrescription workflow specification
 
 * `de.gematik.erezept-workflow.r4#1.4.1`
 * `de.gematik.erezept-workflow.r4#1.4.0`
+* `de.gematik.erezept-workflow.r4#1.4.2-rc1`
 * `de.gematik.erezept-workflow.r4#1.4.0-rc3`
 * `de.gematik.erezept-workflow.r4#1.4.0-rc1`
 * `de.gematik.erezept-workflow.r4#1.3.1`
@@ -2247,7 +2267,6 @@ FHIR Implementation Guide to exchange assessments of and data on a person's func
 **Versions**
 
 * `hl7.fhir.us.pacio-pfe#2.0.0-ballot`
-* `hl7.fhir.us.pacio-pfe#1.0.0`
 * `hl7.fhir.us.pacio-pfe#1.0.0-ballot`
 
 
@@ -2430,26 +2449,6 @@ Guía de Implementación para los perfiles de Receta complementarios a los de CO
 
 ---
 
-### kbv.ita.erp
-
-<details>
-<summary>Description</summary>
-
-Umsetzung des elektronischen Rezepts
-
-</details>
-
-**Versions**
-
-* `kbv.ita.erp#1.1.2`
-* `kbv.ita.erp#1.1.1`
-* `kbv.ita.erp#1.1.0`
-* `kbv.ita.erp#1.1.0-PreRelease`
-* `kbv.ita.erp#1.0.2`
-
-
----
-
 ### QI-Core Implementation Guide
 
 <details>
@@ -2463,13 +2462,11 @@ The QICore Implementation Guide defines a set of FHIR profiles with extensions a
 
 * `hl7.fhir.us.qicore#7.0.0-ballot`
 * `hl7.fhir.us.qicore#6.0.0`
-* `hl7.fhir.us.qicore#6.0.0-ballot`
 * `hl7.fhir.us.qicore#5.0.0`
 * `hl7.fhir.us.qicore#5.0.0-ballot`
 * `hl7.fhir.us.qicore#4.9.0`
 * `hl7.fhir.us.qicore#4.1.1`
 * `hl7.fhir.us.qicore#4.1.0`
-* `hl7.fhir.us.qicore#4.0.0`
 * `hl7.fhir.us.qicore#3.3.0`
 * `hl7.fhir.us.qicore#3.2.0`
 * `hl7.fhir.us.qicore#3.1.0`
@@ -2522,7 +2519,6 @@ Malaysia Health Information Exchange
 * `phis.ig.dev#0.0.5`
 * `phis.ig.dev#0.0.4`
 * `phis.ig.dev#0.0.3`
-* `phis.ig.dev#0.0.2`
 * `phis.ig.dev#0.0.1`
 
 
@@ -2592,6 +2588,22 @@ Umsetzung des elektronischen Rezepts
 
 * `KBV.ITA.ERP#1.0.1`
 * `KBV.ITA.ERP#1.0.0`
+
+
+---
+
+### National Healthcare Directory Exchange
+
+<details>
+<summary>Description</summary>
+
+National Directory (built Tue, Aug 9, 2022 16:36+0000+00:00)
+
+</details>
+
+**Versions**
+
+* `hl7.fhir.us.directory-exchange#1.0.0-ballot`
 
 
 ---
@@ -2967,23 +2979,6 @@ Put a description here
 
 ---
 
-### de.gematik.dev.terminology
-
-<details>
-<summary>Description</summary>
-
-[Development] Terminologies for Telematics Infrastructure (TI)
-
-</details>
-
-**Versions**
-
-* `de.gematik.dev.terminology#1.0.1-alpha.3`
-* `de.gematik.dev.terminology#1.0.1-alpha.1`
-
-
----
-
 ### Health New Zealand Te Whatu Ora Digital Tooling Implementation Guide
 
 <details>
@@ -3197,6 +3192,7 @@ Dies ist ein Bug-Fix, siehe https://github.com/medizininformatik-initiative/kern
 * `de.medizininformatikinitiative.kerndatensatz.consent#1.0.3`
 * `de.medizininformatikinitiative.kerndatensatz.consent#1.0.2`
 * `de.medizininformatikinitiative.kerndatensatz.consent#1.0.1`
+* `de.medizininformatikinitiative.kerndatensatz.consent#1.0.0-ballot1`
 
 
 ---
@@ -4010,22 +4006,6 @@ Implementation Guide CH IG (R4) for ... (built Wed, Aug 21, 2024 06:24+0000+00:0
 
 ---
 
-### SMART App Launch
-
-
-
-**Versions**
-
-* `hl7.fhir.uv.smart-app-launch#2.2.0`
-* `hl7.fhir.uv.smart-app-launch#2.2.0-ballot`
-* `hl7.fhir.uv.smart-app-launch#2.1.0`
-* `hl7.fhir.uv.smart-app-launch#2.1.0-ballot`
-* `hl7.fhir.uv.smart-app-launch#1.1.0`
-* `hl7.fhir.uv.smart-app-launch#1.0.0`
-
-
----
-
 ### Mobile Care Services Discovery (mCSD)
 
 <details>
@@ -4039,6 +4019,7 @@ The IHE Mobile Care Services Discovery (mCSD) IG provides a transaction for mobi
 
 * `ihe.iti.mcsd#3.8.0`
 * `ihe.iti.mcsd#3.7.0`
+* `ihe.iti.mcsd#3.6.1`
 * `ihe.iti.mcsd#3.5.0`
 * `ihe.iti.mcsd#3.4.0`
 
@@ -4950,41 +4931,6 @@ Beinhaltet die in DEMIS zur Umsetzung der Erregernachweismeldungen definierten I
 
 ---
 
-### C-CDA On FHIR Implementation Guide
-
-<details>
-<summary>Description</summary>
-
-Consolidated CDA (C-CDA) is one of the most widely implemented implementation guides for CDA and covers a significant scope of clinical care. Its target of the 'common/essential' elements of healthcare is closely aligned with FHIR's focus on the '80%'. There is significant interest in industry and government in the ability to interoperate between CDA and FHIR and C-CDA is a logical starting point. Implementers and regulators have both expressed an interest in the ability to map between FHIR and C-CDA.
-
-This Implementation Guide (IG) defines a series of FHIR profiles on the Composition resource to represent the various document types in C-CDA. This release does not directly map every C-CDA template to FHIR profiles, rather tries to accomplish the C-CDA use case using Composition resource profiles created under this project (the equivalent of Level 2 CDA documents), and begins by linking to the profiles created under the US Core project for any coded entries that would normally be included in C-CDA sections. To have a simpler, more streamlined standard that reuses existing work and focuses on the 80% that implementers actually need in production systems, the resources of US Core represents a portion of the 80% needed for coded entries for coded entries of CCD, Care Plan & Discharge Summary).
-
-The Composition profiles in this IG do not require coded data in any section. This is a departure from C-CDA, which requires coded data for Problems, Results, Medications, etc. This departure is intentional, as the C-CDA requirement for one or more coded entries in these sections resulted in some very complicated workarounds using nullFlavors to handle the fact that sometimes a patient is not on any medications, or has no current problems. In general, FHIR takes the approach that if something is nullable, it should simply be optional to ease the burden on implementers, thus C-CDA on FHIR does not require any coded entries, but rather uses the "required if known" approach, meaning that if an implementer's system has data for a section that requires data under Meaningful Use, they need to send it, but if they have no data there is no need for a null entry.
-
-We encourage feedback on these Composition profiles, and the general approach to the project as a whole. We also encourage implementers who wish to see more of the coded data from C-CDA mapped to FHIR to comment on the US Core project and make their requests known there. Once US Core creates new profiles, this project can reference them.
-
-### Scope
-
-To represent Consolidated CDA Templates for Clinical Notes (C-CDA) 2.1 templates using FHIR profiles.
-
-This first stage of the project defines all the C-CDA document-level profiles on the Composition resource and contained sections.
-
-Any coded data used by sections will be represented using relevant U.S. Core FHIR profiles where they exist. FHIR profiles defined by other work groups or unconstrained FHIR resources may also be referenced if no appropriate US Core Profile exist.
-
-For further information see the C-CDA specification here: http://www.hl7.org/implement/standards/product_brief.cfm?product_id=408. (built Tue, Mar 12, 2024 18:59+0000+00:00)
-
-</details>
-
-**Versions**
-
-* `hl7.fhir.us.ccda#1.6.0`
-* `hl7.fhir.us.ccda#1.2.0`
-* `hl7.fhir.us.ccda#1.2.0-ballot`
-* `hl7.fhir.us.ccda#1.1.0`
-
-
----
-
 ### Berkay.Sandbox
 
 <details>
@@ -5170,11 +5116,9 @@ No Basis VirtualServiceType Value Set Added valueset
 **Versions**
 
 * `hl7.fhir.no.basis#2.2.0`
-* `hl7.fhir.no.basis#2.1.2`
 * `hl7.fhir.no.basis#2.1.1`
 * `hl7.fhir.no.basis#2.1.0`
 * `hl7.fhir.no.basis#2.1.2-delta`
-* `hl7.fhir.no.basis#2.1.2-beta`
 * `hl7.fhir.no.basis#2.1.2-alpha`
 * `hl7.fhir.no.basis#2.0.14`
 * `hl7.fhir.no.basis#2.0.13`
@@ -5235,6 +5179,22 @@ Implementation Guide and FHIR artifacts for the Ontario Provincial Provider Regi
 
 ---
 
+### AU eRequesting Implementation Guide
+
+<details>
+<summary>Description</summary>
+
+This implementation guide is provided to support the use of FHIR®© for clinical requesting and ordering in an Australian context. , and defines the minimum set of constraints on the FHIR resources to create the AU eRequesting profiles. (built Mon, Aug 5, 2024 11:22+0000+00:00)
+
+</details>
+
+**Versions**
+
+* `hl7.fhir.au.ereq#0.1.0-ballot`
+
+
+---
+
 ### Da Vinci Payer Data Exchange
 
 <details>
@@ -5283,8 +5243,6 @@ See the [Table of Contents](toc.html) for more information.
 **Versions**
 
 * `hl7.fhir.us.davinci-pdex#2.1.0-ballot`
-* `hl7.fhir.us.davinci-pdex#2.0.0`
-* `hl7.fhir.us.davinci-pdex#2.0.0-ballot`
 * `hl7.fhir.us.davinci-pdex#1.0.0`
 * `hl7.fhir.us.davinci-pdex#0.1.0`
 
@@ -5322,7 +5280,6 @@ Version zur Ballotierung durch HL7 Deutschland und Kommentierung durch die Mediz
 **Versions**
 
 * `de.medizininformatikinitiative.kerndatensatz.onkologie#2024.0.0-ballot`
-* `de.medizininformatikinitiative.kerndatensatz.onkologie#2024.0.0-ballot-beta-1`
 * `de.medizininformatikinitiative.kerndatensatz.onkologie#2024.0.0-ballot-alpha-1`
 
 
@@ -5416,6 +5373,7 @@ Rambam FHIR Project
 * `rambam-fhir.health.gov.il#0.1.4`
 * `rambam-fhir.health.gov.il#0.1.3`
 * `rambam-fhir.health.gov.il#0.1.2`
+* `rambam-fhir.health.gov.il#0.1.1`
 
 
 ---
@@ -5539,22 +5497,6 @@ This implementation guide (IG) provides Health Level Seven (HL7 FHIR) resources 
 * `hl7.fhir.us.cancer-reporting#1.0.1`
 * `hl7.fhir.us.cancer-reporting#1.0.0`
 * `hl7.fhir.us.cancer-reporting#0.1.0`
-
-
----
-
-### MII IG Medikation
-
-<details>
-<summary>Description</summary>
-
-Medizininformatik Initiative - Modul Medikation
-
-</details>
-
-**Versions**
-
-* `de.medizininformatikinitiative.kerndatensatz.medikation#2.0.0`
 
 
 ---
@@ -6239,7 +6181,6 @@ Package version 1.0.0
 **Versions**
 
 * `ee.fhir.mpi#1.1.1`
-* `ee.fhir.mpi#1.1.0`
 
 
 ---
@@ -6269,6 +6210,7 @@ Common terminology used by HIP FHIR services (built Thu, Sep 5, 2024 03:47+0000+
 * `us.cdc.phinvads#0.12.0`
 * `us.cdc.phinvads#0.11.0`
 * `us.cdc.phinvads#0.10.0`
+* `us.cdc.phinvads#0.9.0`
 * `us.cdc.phinvads#0.8.0`
 * `us.cdc.phinvads#0.7.0`
 * `us.cdc.phinvads#0.6.0`
@@ -6467,40 +6409,6 @@ Demo project for FSH use in Simiplifier.
 
 ---
 
-### nxh.fhir.r4
-
-<details>
-<summary>Description</summary>
-
-Technical profiles used by nexuzhealth for the import and export of data. 
-
-</details>
-
-**Versions**
-
-* `nxh.fhir.r4#0.0.0-beta.18`
-* `nxh.fhir.r4#0.0.0-beta.17`
-* `nxh.fhir.r4#0.0.0-beta.16`
-* `nxh.fhir.r4#0.0.0-beta.15`
-* `nxh.fhir.r4#0.0.0-beta.14`
-* `nxh.fhir.r4#0.0.0-beta.13`
-* `nxh.fhir.r4#0.0.0-beta.12`
-* `nxh.fhir.r4#0.0.0-beta.11`
-* `nxh.fhir.r4#0.0.0-beta.10`
-* `nxh.fhir.r4#0.0.0-beta.9`
-* `nxh.fhir.r4#0.0.0-beta.8`
-* `nxh.fhir.r4#0.0.0-beta.7`
-* `nxh.fhir.r4#0.0.0-beta.6`
-* `nxh.fhir.r4#0.0.0-beta.5`
-* `nxh.fhir.r4#0.0.0-beta.4`
-* `nxh.fhir.r4#0.0.0-beta.3`
-* `nxh.fhir.r4#0.0.0-beta.2`
-* `nxh.fhir.r4#0.0.0-beta.1`
-* `nxh.fhir.r4#0.0.0-beta`
-
-
----
-
 ### star.rhecord.beta
 
 <details>
@@ -6513,6 +6421,22 @@ Medizinische Inofmrationsobjekte (MIO) Rhecord
 **Versions**
 
 * `star.rhecord.beta#0.0.3-beta`
+
+
+---
+
+### Query for Existing Data for Mobile (QEDm)
+
+<details>
+<summary>Description</summary>
+
+The Query for Existing Data for Mobile Profile (QEDm) supports dynamic queries for clinical data elements, including observations, allergy and intolerances, problems, diagnostic results, medications, immunizations, procedures, encounters and provenance by making the information widely available to other systems within and across enterprises to support provision of better clinical care. It defines a transaction used to query a list of specific data elements, persisted as FHIR resources. (built Mon, Aug 5, 2024 09:48-0500-05:00)
+
+</details>
+
+**Versions**
+
+* `ihe.pcc.qedm#3.0.0-comment1`
 
 
 ---
@@ -7260,22 +7184,6 @@ An implementation guide for adopting FHIR for health information exchange in 43f
 
 ---
 
-### Finance and Insurance Service (FAIS)
-
-<details>
-<summary>Description</summary>
-
-The Finance and Insurance Service (FAIS) stores, categorizes, and facilitates the administration of centralized claims and finance data for patient care. The service receives claims/financial data from Point of Service applications (including financing applications acting as a point of service interface outside of other PoS systems) and curates the management of them. (built Wed, Aug 7, 2024 10:04-0500-05:00)
-
-</details>
-
-**Versions**
-
-* `ihe.iti.fais#1.0.0-comment`
-
-
----
-
 ### HL7 Europe Laboratory Report
 
 <details>
@@ -7323,6 +7231,7 @@ Exchange of (COVID-19) immunication information
 * `vzvz.covid-vaccinations#0.5.1-beta`
 * `vzvz.covid-vaccinations#0.5.0-beta`
 * `vzvz.covid-vaccinations#0.4.0-beta`
+* `vzvz.covid-vaccinations#0.3.1-beta`
 * `vzvz.covid-vaccinations#0.3.0-beta`
 * `vzvz.covid-vaccinations#0.2.1-beta`
 * `vzvz.covid-vaccinations#0.2.0-beta`
@@ -7455,6 +7364,7 @@ Draft of used FHIR resource profiles in Koppeltaal 2.0.
 
 **Versions**
 
+* `koppeltaalv2.00#0.14.0-beta.8`
 * `koppeltaalv2.00#0.14.0-beta.7`
 * `koppeltaalv2.00#0.14.0-beta.6`
 * `koppeltaalv2.00#0.14.0-beta.5`
@@ -7521,74 +7431,6 @@ EHRS Functional Model - Record Lifecycle Events - FHIR Implementation Guide (bui
 
 * `hl7.fhir.uv.ehrs-rle#1.1.0`
 * `hl7.fhir.uv.ehrs-rle#1.0.0-ballot`
-
-
----
-
-### laniado.test.fhir.r4
-
-<details>
-<summary>Description</summary>
-
-Laniado Hospital Test Project
-
-</details>
-
-**Versions**
-
-* `laniado.test.fhir.r4#0.1.63`
-* `laniado.test.fhir.r4#0.1.62`
-* `laniado.test.fhir.r4#0.1.61`
-* `laniado.test.fhir.r4#0.1.60`
-* `laniado.test.fhir.r4#0.1.57`
-* `laniado.test.fhir.r4#0.1.56`
-* `laniado.test.fhir.r4#0.1.55`
-* `laniado.test.fhir.r4#0.1.54`
-* `laniado.test.fhir.r4#0.1.53`
-* `laniado.test.fhir.r4#0.1.52`
-* `laniado.test.fhir.r4#0.1.51`
-* `laniado.test.fhir.r4#0.1.50`
-* `laniado.test.fhir.r4#0.1.49`
-* `laniado.test.fhir.r4#0.1.48`
-* `laniado.test.fhir.r4#0.1.47`
-* `laniado.test.fhir.r4#0.1.46`
-* `laniado.test.fhir.r4#0.1.45`
-* `laniado.test.fhir.r4#0.1.44`
-* `laniado.test.fhir.r4#0.1.43`
-* `laniado.test.fhir.r4#0.1.42`
-* `laniado.test.fhir.r4#0.1.41`
-* `laniado.test.fhir.r4#0.1.40`
-* `laniado.test.fhir.r4#0.1.31`
-* `laniado.test.fhir.r4#0.1.30`
-* `laniado.test.fhir.r4#0.1.29`
-* `laniado.test.fhir.r4#0.1.28`
-* `laniado.test.fhir.r4#0.1.27`
-* `laniado.test.fhir.r4#0.1.26`
-* `laniado.test.fhir.r4#0.1.25`
-* `laniado.test.fhir.r4#0.1.24`
-* `laniado.test.fhir.r4#0.1.23`
-* `laniado.test.fhir.r4#0.1.22`
-* `laniado.test.fhir.r4#0.1.21`
-* `laniado.test.fhir.r4#0.1.20`
-* `laniado.test.fhir.r4#0.1.19`
-* `laniado.test.fhir.r4#0.1.18`
-* `laniado.test.fhir.r4#0.1.17`
-* `laniado.test.fhir.r4#0.1.16`
-* `laniado.test.fhir.r4#0.1.15`
-* `laniado.test.fhir.r4#0.1.14`
-* `laniado.test.fhir.r4#0.1.13`
-* `laniado.test.fhir.r4#0.1.12`
-* `laniado.test.fhir.r4#0.1.11`
-* `laniado.test.fhir.r4#0.1.10`
-* `laniado.test.fhir.r4#0.1.9`
-* `laniado.test.fhir.r4#0.1.8`
-* `laniado.test.fhir.r4#0.1.7`
-* `laniado.test.fhir.r4#0.1.6`
-* `laniado.test.fhir.r4#0.1.5`
-* `laniado.test.fhir.r4#0.1.4`
-* `laniado.test.fhir.r4#0.1.3`
-* `laniado.test.fhir.r4#0.1.2`
-* `laniado.test.fhir.r4#0.1.1`
 
 
 ---
@@ -7876,6 +7718,45 @@ The Patient Demographics Query for Mobile (PDQm) Profile defines a lightweight R
 
 ---
 
+### Terminology Support (r4)
+
+<details>
+<summary>Description</summary>
+
+Various supporting code systems for tx.fhir.org (R4)
+
+</details>
+
+**Versions**
+
+* `fhir.tx.support.r4#0.26.0`
+* `fhir.tx.support.r4#0.25.0`
+* `fhir.tx.support.r4#0.24.0`
+* `fhir.tx.support.r4#0.22.0`
+* `fhir.tx.support.r4#0.21.0`
+* `fhir.tx.support.r4#0.20.0`
+* `fhir.tx.support.r4#0.19.0`
+* `fhir.tx.support.r4#0.18.0`
+* `fhir.tx.support.r4#0.17.0`
+* `fhir.tx.support.r4#0.16.0`
+* `fhir.tx.support.r4#0.15.0`
+* `fhir.tx.support.r4#0.14.0`
+* `fhir.tx.support.r4#0.13.0`
+* `fhir.tx.support.r4#0.12.0`
+* `fhir.tx.support.r4#0.11.0`
+* `fhir.tx.support.r4#0.10.0`
+* `fhir.tx.support.r4#0.9.0`
+* `fhir.tx.support.r4#0.8.0`
+* `fhir.tx.support.r4#0.7.0`
+* `fhir.tx.support.r4#0.6.0`
+* `fhir.tx.support.r4#0.5.0`
+* `fhir.tx.support.r4#0.3.0`
+* `fhir.tx.support.r4#0.2.0`
+* `fhir.tx.support.r4#0.1.0`
+
+
+---
+
 ### de.gematik.isik-vitalparameter
 
 <details>
@@ -7988,7 +7869,6 @@ Les nomenclatures des objets de Sante (built Thu, Aug 29, 2024 14:54+0000+00:00)
 
 * `hl7.fhir.us.davinci-alerts#1.0.0`
 * `hl7.fhir.us.davinci-alerts#0.2.0`
-* `hl7.fhir.us.davinci-alerts#0.1.0`
 
 
 ---
@@ -8090,7 +7970,6 @@ NHS (England) National Services Implementation Guide
 * `uk.nhsdigital.r4#2.0.23-dev`
 * `uk.nhsdigital.r4#2.0.22-dev`
 * `uk.nhsdigital.r4#2.0.21-dev`
-* `uk.nhsdigital.r4#2.0.20-dev`
 * `uk.nhsdigital.r4#2.0.19-dev`
 * `uk.nhsdigital.r4#2.0.18-dev`
 * `uk.nhsdigital.r4#2.0.17-dev`
@@ -8227,6 +8106,7 @@ leumit FHIR entities
 
 **Versions**
 
+* `leumit.fhir.r4#0.5.0`
 * `leumit.fhir.r4#0.4.0`
 * `leumit.fhir.r4#0.3.0`
 * `leumit.fhir.r4#0.2.0`
@@ -9646,6 +9526,22 @@ The Subscription R5 Backport Implementation Guide enables servers running versio
 
 ---
 
+### National Healthcare Directory Attestation and Verification
+
+<details>
+<summary>Description</summary>
+
+National Directory (built Tue, Aug 9, 2022 12:51+0000+00:00)
+
+</details>
+
+**Versions**
+
+* `hl7.fhir.us.directory-attestation#1.0.0-ballot`
+
+
+---
+
 ### de.abda.eRezeptAbgabedaten
 
 <details>
@@ -10235,6 +10131,7 @@ The Patient Master Identity Registry (PMIR) Profile supports the creating, updat
 **Versions**
 
 * `ihe.iti.pmir#1.5.0`
+* `ihe.iti.pmir#1.4.0`
 
 
 ---
@@ -10244,14 +10141,12 @@ The Patient Master Identity Registry (PMIR) Profile supports the creating, updat
 <details>
 <summary>Description</summary>
 
-Terminoloogia mis on kasutusel juurutusjuhendites (built Tue, Jul 30, 2024 22:46+0300+03:00)
+Terminoloogia mis on kasutusel juurutusjuhendites (built Mon, Jul 22, 2024 11:21+0300+03:00)
 
 </details>
 
 **Versions**
 
-* `ee.fhir.terminology#0.2.2`
-* `ee.fhir.terminology#0.2.1`
 * `ee.fhir.terminology#0.2.0`
 * `ee.fhir.terminology#0.0.1`
 
@@ -10380,26 +10275,6 @@ This is a demonstration project for FHIR North
 * `acme.canada#0.0.3`
 * `acme.canada#0.0.2`
 * `acme.canada#0.0.1`
-
-
----
-
-### FHIR Implementation Guide for ABDM
-
-
-
-**Versions**
-
-* `ndhm.in#6.0.0`
-* `ndhm.in#5.0.0`
-* `ndhm.in#4.0.0`
-* `ndhm.in#3.1.0`
-* `ndhm.in#3.0.1`
-* `ndhm.in#3.0.0`
-* `ndhm.in#2.5.0`
-* `ndhm.in#2.0.1`
-* `ndhm.in#2.0`
-* `ndhm.in#1.2`
 
 
 ---
@@ -10578,12 +10453,12 @@ This implementation guide is provided to support the use of FHIR®© in an Austr
 * `hl7.fhir.au.base#4.2.2-ballot`
 * `hl7.fhir.au.base#4.2.1-preview`
 * `hl7.fhir.au.base#4.2.0-preview`
+* `hl7.fhir.au.base#4.1.0`
+* `hl7.fhir.au.base#4.1.2-preview`
 * `hl7.fhir.au.base#4.1.1-preview`
-* `hl7.fhir.au.base#4.1.0-ballot`
 * `hl7.fhir.au.base#4.0.0`
 * `hl7.fhir.au.base#2.2.0-ballot`
 * `hl7.fhir.au.base#2.0.0`
-* `hl7.fhir.au.base#0.5.0`
 * `hl7.fhir.au.base#0.4.0`
 * `hl7.fhir.au.base#0.1.0`
 
@@ -11056,12 +10931,13 @@ Package Release des ISIP Basis Modul
 <details>
 <summary>Description</summary>
 
-This implementation guide is provided to support the use of FHIR®© in an Australian context, and defines the minimum set of constraints on the FHIR resources to create the AU Core profiles. This implementation guide forms the foundation to build future AU Realm FHIR implementation guides and its content will continue to grow to meet the needs of AU implementers. (built Thu, Jul 18, 2024 09:54+1000+10:00)
+This implementation guide is provided to support the use of FHIR®© in an Australian context, and defines the minimum set of constraints on the FHIR resources to create the AU Core profiles. This implementation guide forms the foundation to build future AU Realm FHIR implementation guides and its content will continue to grow to meet the needs of AU implementers. (built Mon, Aug 5, 2024 04:25+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.au.core#1.0.0-ballot`
 * `hl7.fhir.au.core#0.4.1-preview`
 * `hl7.fhir.au.core#0.4.0-preview`
 * `hl7.fhir.au.core#0.3.0-ballot`
@@ -11115,26 +10991,6 @@ The Da Vinci Payer Health Record exchange (HRex) Framework/library specifies the
 * `hl7.fhir.us.davinci-hrex#1.0.0`
 * `hl7.fhir.us.davinci-hrex#0.2.0`
 * `hl7.fhir.us.davinci-hrex#0.1.0`
-
-
----
-
-### CARIN Consumer Directed Payer Data Exchange (CARIN IG for Blue Button®)
-
-<details>
-<summary>Description</summary>
-
-CARIN Consumer Directed Payer Data Exchange (CARIN IG for Blue Button®) (built Sat, Jul 27, 2024 20:08+0800+08:00)
-
-</details>
-
-**Versions**
-
-* `hl7.fhir.us.carin-bb#2.1.0-snapshot1`
-* `hl7.fhir.us.carin-bb#1.2.0`
-* `hl7.fhir.us.carin-bb#1.1.0`
-* `hl7.fhir.us.carin-bb#1.0.0`
-* `hl7.fhir.us.carin-bb#0.1.0`
 
 
 ---
@@ -11654,27 +11510,6 @@ FHIR Core package - the NPM package that contains all the definitions for the ba
 
 ---
 
-### FHIR Extensions Pack
-
-<details>
-<summary>Description</summary>
-
-This IG defines the global extensions - the ones defined for everyone. These extensions are always in scope wherever FHIR is being used (built Sat, Apr 27, 2024 18:39+1000+10:00)
-
-</details>
-
-**Versions**
-
-* `hl7.fhir.uv.extensions#5.1.0`
-* `hl7.fhir.uv.extensions#5.1.0-snapshot1`
-* `hl7.fhir.uv.extensions#5.1.0-cibuild`
-* `hl7.fhir.uv.extensions#5.1.0-ballot1`
-* `hl7.fhir.uv.extensions#1.0.0`
-* `hl7.fhir.uv.extensions#0.1.0`
-
-
----
-
 ### de.abda.erezeptabgabedatenpkv
 
 <details>
@@ -11687,19 +11522,16 @@ Der PKV-Abgabedatensatz enthält die notwendigen Informationen für die Abrechnu
 **Versions**
 
 * `de.abda.erezeptabgabedatenpkv#1.3.0`
-* `de.abda.erezeptabgabedatenpkv#1.3.0-rc`
 * `de.abda.erezeptabgabedatenpkv#1.2.0`
 * `de.abda.erezeptabgabedatenpkv#1.1.0`
 * `de.abda.erezeptabgabedatenpkv#1.1.0-rc9`
 * `de.abda.erezeptabgabedatenpkv#1.1.0-rc8`
-* `de.abda.erezeptabgabedatenpkv#1.1.0-rc7`
 * `de.abda.erezeptabgabedatenpkv#1.1.0-rc6`
 * `de.abda.erezeptabgabedatenpkv#1.1.0-rc5`
 * `de.abda.erezeptabgabedatenpkv#1.1.0-rc4`
 * `de.abda.erezeptabgabedatenpkv#1.1.0-rc3`
-* `de.abda.erezeptabgabedatenpkv#1.1.0-rc2`
 * `de.abda.erezeptabgabedatenpkv#1.1.0-rc12`
-* `de.abda.erezeptabgabedatenpkv#1.1.0-rc10`
+* `de.abda.erezeptabgabedatenpkv#1.1.0-rc11`
 
 
 ---
@@ -12990,18 +12822,6 @@ Mobile Antepartum Summary is a content profile that defines the structure for th
 * `fhir.dicom#2022.4.20221006`
 * `fhir.dicom#2022.1.20220124`
 * `fhir.dicom#2021.4.20210910`
-
-
----
-
-### Interoperable Digital Identity and Patient Matching
-
-
-
-**Versions**
-
-* `hl7.fhir.us.identity-matching#2.0.0-ballot`
-* `hl7.fhir.us.identity-matching#1.0.0-ballot`
 
 
 ---
