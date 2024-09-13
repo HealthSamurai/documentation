@@ -39,7 +39,7 @@ You can pass the following attributes to the `<aidbox-form-builder>` tag:
 * `form-id` (optional): ID of the form to load. If not provided, the builder opens with a blank form.
 * `hide-back` (optional): Hides the back button on the builder page.
 * `language` (optional): The default language to use for the builder interface. It will not override the language set by a user in the builder.
-* `translation-languages` (optional): Whitelist of languages that can be used for translations in the builder. If not provided, [all languages](./multilingual-ui-builder.md#list-of-supported-languages) are allowed.
+* `translation-languages` (optional): Whitelist of comma-separated languages that can be used for translations in the builder. If not provided, [all languages](./multilingual-ui-builder.md#list-of-supported-languages) are allowed.
 
 ## Embedding Builder in Controlled Mode
 
@@ -93,7 +93,7 @@ You can pass the following attributes to the `<aidbox-form-builder>` tag:
 * `hide-save` (optional): Hides the save button on the builder page.
 * `show-share` (optional): Shows the share button on the builder page.
 * `language` (optional): The default language to use for the builder interface. It will not override the language set by a user in the builder.
-* `translation-languages` (optional): Whitelist of languages that can be used for translations in the builder. If not provided, [all languages](./multilingual-ui-builder.md#list-of-supported-languages) are allowed.
+* `translation-languages` (optional): Whitelist of comma-separated languages that can be used for translations in the builder. If not provided, [all languages](./multilingual-ui-builder.md#list-of-supported-languages) are allowed.
 
 ### Step 4: Listen to Builder Events
 
