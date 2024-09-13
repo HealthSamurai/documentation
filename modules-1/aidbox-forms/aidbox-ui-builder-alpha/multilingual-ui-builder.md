@@ -11,10 +11,40 @@ To enable this:
 1. Click on the Action bar (three dots) in the UI builder and select the "Settings" option.
 2. After appearing the settings page, select the language for the UI builder interface.
 
+## List of supported languages
 
-
-{% hint style="info" %}
-Aidbox Forms supports a predefined set of languages: English, Russian, Finnish, German, French.
+* Chinese `zh`
+* Chinese (Hong Kong) `zh-HK`
+* Chinese (Taiwan) `zh-TW`
+* Croatian `hr`
+* Czech `cs`
+* Danish `da`
+* Dutch `nl`
+* Dutch (Belgium) `nl-BE`
+* English `en`
+* English (US) `en-US`
+* English (UK) `en-GB`
+* English (Australia) `en-AU`
+* English (Canada) `en-CA`
+* Finnish `fi`
+* French `fr`
+* French (Canada) `fr-CA`
+* French (Belgium) `fr-BE`
+* French (Switzerland) `fr-CH`
+* German `de`
+* German (Austria) `de-AT`
+* German (Switzerland) `de-CH`
+* Hungarian `hu`
+* Italian `it`
+* Italian (Switzerland) `it-CH`
+* Japanese `ja`
+* Korean `ko`
+* Polish `pl`
+* Russian `ru`
+* Spanish `es`
+* Spanish (Mexico) `es-MX`
+* Spanish (Argentina) `es-AR`
+* Spanish (Colombia) `es-CO`
+* Spanish (Spain) `es-ES`
 
 Additional languages can be added upon request.
-{% endhint %}
