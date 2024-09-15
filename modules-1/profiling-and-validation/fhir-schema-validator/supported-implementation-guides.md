@@ -415,6 +415,27 @@ The FHIR for FAIR - FHIR Implementation Guide aims to provide guidance on how HL
 
 ---
 
+### ca.on.oh-seris
+
+<details>
+<summary>Description</summary>
+
+The purpose of SERIS is to improve surgical performance in Ontario through the measurement and report.
+
+</details>
+
+**Versions**
+
+* `ca.on.oh-seris#0.10.0-alpha1.0.5`
+* `ca.on.oh-seris#0.10.0-alpha1.0.4`
+* `ca.on.oh-seris#0.10.0-alpha1.0.3`
+* `ca.on.oh-seris#0.10.0-alpha1.0.2`
+* `ca.on.oh-seris#0.10.0-alpha1.0.1`
+* `ca.on.oh-seris#0.9.0-alpha1.0.1`
+
+
+---
+
 ### acme.product.r4
 
 <details>
@@ -446,6 +467,7 @@ FHIRcast synchronizes healthcare applications in real time to show the same clin
 **Versions**
 
 * `hl7.fhir.uv.fhircast#3.0.0-ballot`
+* `hl7.fhir.uv.fhircast#2.1.0-ballot`
 
 
 ---
@@ -523,12 +545,15 @@ NHS Booking and Referrals
 * `uk.nhsdigital.bars.r4#1.27.0`
 * `uk.nhsdigital.bars.r4#1.26.0`
 * `uk.nhsdigital.bars.r4#1.25.0`
+* `uk.nhsdigital.bars.r4#1.24.0-alpha`
 * `uk.nhsdigital.bars.r4#1.23.0-alpha`
 * `uk.nhsdigital.bars.r4#1.22.0-alpha`
+* `uk.nhsdigital.bars.r4#1.20.0-alpha`
 * `uk.nhsdigital.bars.r4#1.19.0-alpha`
 * `uk.nhsdigital.bars.r4#1.18.0-alpha`
 * `uk.nhsdigital.bars.r4#1.17.0-alpha`
 * `uk.nhsdigital.bars.r4#1.16.0-alpha`
+* `uk.nhsdigital.bars.r4#1.12.0-alpha`
 * `uk.nhsdigital.bars.r4#1.11.0-alpha`
 * `uk.nhsdigital.bars.r4#1.10.0-alpha`
 * `uk.nhsdigital.bars.r4#1.9.0-alpha`
@@ -646,7 +671,6 @@ The United Federation of Planet (UFP) FHIR Implementation Guide of intergalactic
 
 * `ufp.core#0.6.0`
 * `ufp.core#0.5.1`
-* `ufp.core#0.4.0`
 
 
 ---
@@ -834,6 +858,22 @@ This extension is to store level of care data for hospice patient. It extends th
 
 ---
 
+### HL7 BE Laboratory WG Implementation Guide
+
+<details>
+<summary>Description</summary>
+
+HL7 BE Laboratory WG Implementation Guide (built Thu, Sep 8, 2022 14:30+0200+02:00)
+
+</details>
+
+**Versions**
+
+* `hl7.fhir.be.lab#1.0.0`
+
+
+---
+
 ### ca.infoway.io.core
 
 <details>
@@ -955,6 +995,7 @@ Progetto FHIR per Regione Lombardia
 
 **Versions**
 
+* `rl.fhir.r4.draft#0.1.1`
 * `rl.fhir.r4.draft#0.1.0`
 * `rl.fhir.r4.draft#0.0.23`
 * `rl.fhir.r4.draft#0.0.22`
@@ -1096,11 +1137,13 @@ Envoi du rapport d’endoscopie au dépôt provincial
 * `rapportendoscopiequebec.test#0.0.55`
 * `rapportendoscopiequebec.test#0.0.54`
 * `rapportendoscopiequebec.test#0.0.53`
+* `rapportendoscopiequebec.test#0.0.52`
 * `rapportendoscopiequebec.test#0.0.51`
 * `rapportendoscopiequebec.test#0.0.50`
 * `rapportendoscopiequebec.test#0.0.49`
 * `rapportendoscopiequebec.test#0.0.48`
 * `rapportendoscopiequebec.test#0.0.47`
+* `rapportendoscopiequebec.test#0.0.46`
 * `rapportendoscopiequebec.test#0.0.45`
 * `rapportendoscopiequebec.test#0.0.44`
 * `rapportendoscopiequebec.test#0.0.43`
@@ -1117,20 +1160,25 @@ Envoi du rapport d’endoscopie au dépôt provincial
 * `rapportendoscopiequebec.test#0.0.32`
 * `rapportendoscopiequebec.test#0.0.31`
 * `rapportendoscopiequebec.test#0.0.30`
+* `rapportendoscopiequebec.test#0.0.29`
 * `rapportendoscopiequebec.test#0.0.28`
 * `rapportendoscopiequebec.test#0.0.27`
+* `rapportendoscopiequebec.test#0.0.26`
 * `rapportendoscopiequebec.test#0.0.25`
 * `rapportendoscopiequebec.test#0.0.24`
 * `rapportendoscopiequebec.test#0.0.23`
+* `rapportendoscopiequebec.test#0.0.22`
 * `rapportendoscopiequebec.test#0.0.21`
 * `rapportendoscopiequebec.test#0.0.20`
 * `rapportendoscopiequebec.test#0.0.19`
 * `rapportendoscopiequebec.test#0.0.18`
 * `rapportendoscopiequebec.test#0.0.17`
+* `rapportendoscopiequebec.test#0.0.16`
 * `rapportendoscopiequebec.test#0.0.15`
 * `rapportendoscopiequebec.test#0.0.14`
 * `rapportendoscopiequebec.test#0.0.13`
 * `rapportendoscopiequebec.test#0.0.12`
+* `rapportendoscopiequebec.test#0.0.11`
 * `rapportendoscopiequebec.test#0.0.10`
 * `rapportendoscopiequebec.test#0.0.9`
 * `rapportendoscopiequebec.test#0.0.8`
@@ -1782,6 +1830,8 @@ Data model of the German Cancer Consortium (DKTK) and the Comprehensive Cancer C
 
 **Versions**
 
+* `de.dktk.oncology#1.8.0`
+* `de.dktk.oncology#1.7.0`
 * `de.dktk.oncology#1.6.0`
 * `de.dktk.oncology#1.5.0`
 * `de.dktk.oncology#1.3.0`
@@ -2121,6 +2171,7 @@ Progetto FHIR per Regione Lombardia
 
 **Versions**
 
+* `rl.fhir.r4#0.0.14`
 * `rl.fhir.r4#0.0.13`
 * `rl.fhir.r4#0.0.12`
 * `rl.fhir.r4#0.0.11`
@@ -2425,6 +2476,22 @@ Medication related projects (SFM, PLL, SAFEST, KIKJ)
 **Versions**
 
 * `sfm.030521#1.0.1`
+
+
+---
+
+### Guía de Implementación Receta-CL
+
+<details>
+<summary>Description</summary>
+
+Guía de Implementación para los perfiles de Receta complementarios a los de CORE Nacional, para su uso en Recete Electrónica Nacional. Esta Guía se encuentra aún en proceso de creación por lo que esta versión esta sujeta a observaciones y cambios. Aquellos implementadores que tengan acceso a ella se les sugiere desarrollar comentarios para su mejora) (built Thu, Sep 29, 2022 18:39-0300-03:00)
+
+</details>
+
+**Versions**
+
+* `hl7.fhir.cl.recetachile#0.9`
 
 
 ---
@@ -3113,6 +3180,7 @@ Ontario Mental Health and Addictions Provincial Data Set
 
 **Versions**
 
+* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.33`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.32`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.31`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.30`
@@ -3120,9 +3188,11 @@ Ontario Mental Health and Addictions Provincial Data Set
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.28`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.27`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.26`
+* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.25`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.24`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.23`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.22`
+* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.21`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.20`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.19`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.18`
@@ -3130,8 +3200,10 @@ Ontario Mental Health and Addictions Provincial Data Set
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.16`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.15`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.14`
+* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.13`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.11`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.10`
+* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.9`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.8`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.7`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.6`
@@ -3143,7 +3215,6 @@ Ontario Mental Health and Addictions Provincial Data Set
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.6`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.4`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.3`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.2`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.1`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9`
@@ -3151,6 +3222,7 @@ Ontario Mental Health and Addictions Provincial Data Set
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.7`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.6`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.5`
+* `ca.on.oh.mha-pds#0.9.0-alpha-1.4`
 
 
 ---
@@ -3545,6 +3617,23 @@ Drafted Implementation Guide for Alberta Patient Summary (PS-AB)
 * `ca.ab.fhir.psab#0.3.0-pre11`
 * `ca.ab.fhir.psab#0.3.0-pre10`
 * `ca.ab.fhir.psab#0.3.0-pre1`
+
+
+---
+
+### FHIR Shorthand
+
+<details>
+<summary>Description</summary>
+
+Describes FHIR Shorthand (FSH), a domain-specific language (DSL) for defining the content of FHIR Implementation Guides (IG). (built Mon, Oct 12, 2020 15:26+1100+11:00)
+
+</details>
+
+**Versions**
+
+* `hl7.fhir.uv.shorthand#1.0.0`
+* `hl7.fhir.uv.shorthand#0.12.0`
 
 
 ---
@@ -4033,6 +4122,7 @@ The IHE Mobile Care Services Discovery (mCSD) IG provides a transaction for mobi
 * `ihe.iti.mcsd#3.8.0`
 * `ihe.iti.mcsd#3.7.0`
 * `ihe.iti.mcsd#3.6.1`
+* `ihe.iti.mcsd#3.5.0`
 * `ihe.iti.mcsd#3.4.0`
 
 
@@ -4150,6 +4240,32 @@ The SDC specification provides an infrastructure to standardize the capture and 
 * `hl7.fhir.uv.sdc#2.7.0`
 * `hl7.fhir.uv.sdc#2.5.0`
 * `hl7.fhir.uv.sdc#2.0.0`
+
+
+---
+
+### healthhub.fhir.dk.core
+
+<details>
+<summary>Description</summary>
+
+PLSP Health Hub
+
+</details>
+
+**Versions**
+
+* `healthhub.fhir.dk.core#1.0.10`
+* `healthhub.fhir.dk.core#1.0.9`
+* `healthhub.fhir.dk.core#1.0.8`
+* `healthhub.fhir.dk.core#1.0.7`
+* `healthhub.fhir.dk.core#1.0.6`
+* `healthhub.fhir.dk.core#1.0.5`
+* `healthhub.fhir.dk.core#1.0.4`
+* `healthhub.fhir.dk.core#1.0.3-alpha`
+* `healthhub.fhir.dk.core#1.0.2-alpha`
+* `healthhub.fhir.dk.core#1.0.1-alpha`
+* `healthhub.fhir.dk.core#1.0.0-alpha`
 
 
 ---
@@ -4460,11 +4576,13 @@ Implementation Guide for the Mobile access to Health Documents (epr-mhealth) Pro
 
 **Versions**
 
+* `de.netzwerk-universitaetsmedizin.ebm-cpg#1.0.1`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#1.0.0`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.10.0`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.9.2`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.9.1`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.9.0`
+* `de.netzwerk-universitaetsmedizin.ebm-cpg#0.8.0`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.7.0`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.7.1-snapshot`
 
@@ -4782,6 +4900,7 @@ Put a description here
 * `uk.adsv2.r4#1.6.1`
 * `uk.adsv2.r4#1.6.0`
 * `uk.adsv2.r4#1.4.0`
+* `uk.adsv2.r4#1.3.0`
 
 
 ---
@@ -4892,6 +5011,24 @@ HL7 FHIR Implementation Guide Laboratory Report specifica come utilizzare lo sta
 **Versions**
 
 * `hl7.fhir.it.lab-report#0.2.0`
+
+
+---
+
+### Implementierungsleitfaden DEMIS - Erregernachweismeldung
+
+<details>
+<summary>Description</summary>
+
+Beinhaltet die in DEMIS zur Umsetzung der Erregernachweismeldungen definierten Informationsmodellartefakte.
+
+</details>
+
+**Versions**
+
+* `rki.demis.laboratory#1.24.1`
+* `rki.demis.laboratory#1.24.0`
+* `rki.demis.laboratory#1.24.2-new`
 
 
 ---
@@ -5501,6 +5638,7 @@ This implementation guide (IG) provides Health Level Seven (HL7 FHIR) resources 
 
 * `hl7.fhir.us.cancer-reporting#1.0.1`
 * `hl7.fhir.us.cancer-reporting#1.0.0`
+* `hl7.fhir.us.cancer-reporting#0.1.0`
 
 
 ---
@@ -5934,6 +6072,7 @@ eHealth Platform R4 Federal Profiles
 * `ehealthplatform.be.r4.federalprofiles#0.1.23-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.22-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.21-beta`
+* `ehealthplatform.be.r4.federalprofiles#0.1.20-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.2-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.19-beta`
 * `ehealthplatform.be.r4.federalprofiles#0.1.18-beta`
@@ -6147,12 +6286,13 @@ KBV-Basis-Profile V 1.6.0
 <details>
 <summary>Description</summary>
 
-CodeX™ Radiation Therapy is an initiative intended to assemble a core set of structured data elements for radiation therapy electronic health records. (built Fri, Jul 28, 2023 13:01+0000+00:00)
+CodeX™ Radiation Therapy is an initiative intended to assemble a core set of structured data elements for radiation therapy electronic health records. (built Tue, Apr 9, 2024 14:34+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.us.codex-radiation-therapy#2.0.0-ballot`
 * `hl7.fhir.us.codex-radiation-therapy#1.0.0`
 * `hl7.fhir.us.codex-radiation-therapy#1.0.0-ballot`
 
@@ -6238,7 +6378,6 @@ Common terminology used by HIP FHIR services (built Thu, Sep 5, 2024 03:47+0000+
 * `us.cdc.phinvads#0.3.0`
 * `us.cdc.phinvads#0.2.0`
 * `us.cdc.phinvads#0.1.2`
-* `us.cdc.phinvads#0.1.1`
 * `us.cdc.phinvads#0.1.0`
 
 
@@ -6707,6 +6846,31 @@ PACIO Re-Assessment Timepoints Implementation Guide (built Wed, Sep 28, 2022 16:
 
 ---
 
+### uk.nhsdigital.medicines.r4.test
+
+<details>
+<summary>Description</summary>
+
+Electronic Prescription Service
+
+</details>
+
+**Versions**
+
+* `uk.nhsdigital.medicines.r4.test#2.8.7-prerelease`
+* `uk.nhsdigital.medicines.r4.test#2.8.3-prerelease`
+* `uk.nhsdigital.medicines.r4.test#2.8.21-prerelease`
+* `uk.nhsdigital.medicines.r4.test#2.8.20-prerelease`
+* `uk.nhsdigital.medicines.r4.test#2.8.19-prerelease`
+* `uk.nhsdigital.medicines.r4.test#2.8.18-prerelease`
+* `uk.nhsdigital.medicines.r4.test#2.8.16-prerelease`
+* `uk.nhsdigital.medicines.r4.test#2.8.11-prerelease`
+* `uk.nhsdigital.medicines.r4.test#2.7.1-prerelease`
+* `uk.nhsdigital.medicines.r4.test#2.6.6-prerelease`
+
+
+---
+
 ### DaVinci Payer Data Exchange (PDex) US Drug Formulary
 
 <details>
@@ -7059,6 +7223,23 @@ The Health Care Surveys Content IG provides healthcare organizations the necessa
 
 * `hl7.fhir.us.health-care-surveys-reporting#1.0.0`
 * `hl7.fhir.us.health-care-surveys-reporting#0.1.0`
+
+
+---
+
+### FHIR Implementation of Vaccination-Immunization
+
+<details>
+<summary>Description</summary>
+
+Nictiz NL package of FHIR R4 conformance resources for Immunization.
+
+</details>
+
+**Versions**
+
+* `nictiz.fhir.nl.r4.immunization#2.0.0-alpha.3`
+* `nictiz.fhir.nl.r4.immunization#2.0.0-beta.1`
 
 
 ---
@@ -7638,6 +7819,7 @@ KBV Schluesseltabellen
 
 **Versions**
 
+* `kbv.all.st#1.5.0`
 * `kbv.all.st#1.4.0`
 * `kbv.all.st#1.3.1`
 
@@ -7706,6 +7888,7 @@ Testprojekt für Hilfs- und Heilmittel eVerordnungen
 * `odilab.evo#0.0.5`
 * `odilab.evo#0.0.4`
 * `odilab.evo#0.0.3`
+* `odilab.evo#0.0.2`
 * `odilab.evo#0.0.1`
 
 
@@ -8389,16 +8572,16 @@ This FHIR implementation guide is the primary work product of [project #1475](ht
 
 The scope of the project is to produce and ballot a Standard for Trail Use (STU) Fast Healthcare Interoperability Resources (FHIR) implementation guide (IG) for use in reporting of death events to the U.S. National Center for Health Statistics (NCHS) by State and Local Public Health Agencies (PHA). The VRDR FHIR IG is based upon FHIR R4. The VRDR FHIR IG was successfully balloted as a standard for trial use (STU) in May 2019.
 
-This is a U.S. Realm Specification. This guide and related materials are based on reporting specifications in U.S. jurisdictions. The data content of this IG are based upon the [U.S. Standard Certificate of Death](https://www.cdc.gov/nchs/data/dvs/DEATH11-03final-ACC.pdf). (built Fri, Aug 13, 2021 12:58+0000+00:00)
+This is a U.S. Realm Specification. This guide and related materials are based on reporting specifications in U.S. jurisdictions. The data content of this IG are based upon the [U.S. Standard Certificate of Death](https://www.cdc.gov/nchs/data/dvs/DEATH11-03final-ACC.pdf). (built Tue, Oct 27, 2020 16:24+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.us.vrdr#3.0.0-ballot`
 * `hl7.fhir.us.vrdr#2.2.0`
 * `hl7.fhir.us.vrdr#2.1.0`
 * `hl7.fhir.us.vrdr#2.0.0`
-* `hl7.fhir.us.vrdr#1.2.0`
 * `hl7.fhir.us.vrdr#1.0.0`
 * `hl7.fhir.us.vrdr#0.1.0`
 
@@ -8497,12 +8680,10 @@ Electronic Prescription Service
 * `uk.nhsdigital.medicines.r4#2.2.0`
 * `uk.nhsdigital.medicines.r4#2.1.9-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.8-alpha`
-* `uk.nhsdigital.medicines.r4#2.1.7-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.6-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.5-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.4-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.3-alpha`
-* `uk.nhsdigital.medicines.r4#2.1.2-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.14-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.13-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.12-alpha`
@@ -8877,7 +9058,9 @@ Transfer von Abrechnungsdaten - Generisches Format für Abrechnungsdaten im deut
 
 **Versions**
 
+* `de.transfer-abrechnungsdaten.r4#1.1.2`
 * `de.transfer-abrechnungsdaten.r4#1.1.1`
+* `de.transfer-abrechnungsdaten.r4#1.1.0-beta`
 * `de.transfer-abrechnungsdaten.r4#1.0.0`
 
 
@@ -9154,12 +9337,13 @@ lets start to get swiss pathology structured
 <details>
 <summary>Description</summary>
 
-Das DEMIS Common Package definiert das Datenmodell der Basismeldeinhalte.
+Diese Version ist nicht produktiv und wird nicht vom DEMIS-Backend unterstützt. Dieses Paket ist ausschließlich für das Kommentierungsverfahren angelegt, siehe https://robert-koch-institut.github.io/DEMIS_FHIR-Profile_Vorabveroeffentlichung/kommentierung.html.
 
 </details>
 
 **Versions**
 
+* `rki.demis.common#2.0.0-alpha.1`
 * `rki.demis.common#1.0.2`
 * `rki.demis.common#1.0.1`
 * `rki.demis.common#1.0.0`
@@ -9919,6 +10103,26 @@ Put a description here
 
 ---
 
+### MyHealthWay
+
+<details>
+<summary>Description</summary>
+
+KR Core V1 기반의 건강정보 고속도로 상세규격 - 1.0.2-beta.4
+
+</details>
+
+**Versions**
+
+* `kr.mohw.myhealthway#1.0.2-beta.4`
+* `kr.mohw.myhealthway#1.0.1`
+* `kr.mohw.myhealthway#1.0.0`
+* `kr.mohw.myhealthway#1.0.2-beta`
+* `kr.mohw.myhealthway#0.1.1`
+
+
+---
+
 ### DK MedCom Messaging
 
 <details>
@@ -10256,6 +10460,24 @@ Medizinische Informationsobjekte (MIO) Zahnärztliches Bonusheft V1.1.0
 
 * `kbv.mio.zaeb#1.1.0`
 * `kbv.mio.zaeb#1.1.0-benehmensherstellung`
+
+
+---
+
+### duwel.nl.r4.sandbox.dev
+
+<details>
+<summary>Description</summary>
+
+Jorn Duwel sandbox
+
+</details>
+
+**Versions**
+
+* `duwel.nl.r4.sandbox.dev#0.0.1-dev.4`
+* `duwel.nl.r4.sandbox.dev#0.0.1-dev.3`
+* `duwel.nl.r4.sandbox.dev#0.0.1-dev.2`
 
 
 ---
@@ -10613,6 +10835,7 @@ To support the request for cost information for specific services and items from
 
 * `hl7.fhir.us.davinci-pct#2.0.0-ballot`
 * `hl7.fhir.us.davinci-pct#1.1.0`
+* `hl7.fhir.us.davinci-pct#1.0.0`
 * `hl7.fhir.us.davinci-pct#0.1.0`
 
 
@@ -10766,6 +10989,22 @@ Pan-Canadian Patient Summary (PS-CA) 2.0.0 DFT - preBallot Release to support 20
 
 ---
 
+### custom-extensions.ammy.test
+
+<details>
+<summary>Description</summary>
+
+customExtensions
+
+</details>
+
+**Versions**
+
+* `custom-extensions.ammy.test#1.0.0`
+
+
+---
+
 ### kbv.itv.evdga
 
 <details>
@@ -10780,7 +11019,6 @@ Weitere technischen Vorgaben zur Verwendung der Profile finden sich unter https:
 **Versions**
 
 * `kbv.itv.evdga#1.0.0`
-* `kbv.itv.evdga#1.0.0-cc`
 
 
 ---
@@ -11649,6 +11887,42 @@ Der PKV-Abgabedatensatz enthält die notwendigen Informationen für die Abrechnu
 
 ---
 
+### ca.on.oh-dhdr
+
+<details>
+<summary>Description</summary>
+
+Implementation Guide for the Ontario DHDR HL7 FHIR 4.0.0- work-in-progress version
+
+</details>
+
+**Versions**
+
+* `ca.on.oh-dhdr#4.0.2-alpha1.0.3`
+* `ca.on.oh-dhdr#4.0.2-alpha1.0.2`
+* `ca.on.oh-dhdr#4.0.2-alpha1.0.1`
+* `ca.on.oh-dhdr#4.0.2-alpha1.0.0`
+* `ca.on.oh-dhdr#4.0.1-alpha1.0.0`
+
+
+---
+
+### Vital Signs with Qualifying Elements
+
+<details>
+<summary>Description</summary>
+
+This IG describes vital signs observations that include qualifying information such as cuff size for blood pressure, or an associated situation of "during exercise" for blood pressure or heart rate, etc. (built Mon, Sep 12, 2022 00:44+0000+00:00)
+
+</details>
+
+**Versions**
+
+* `hl7.fhir.us.vitals#1.0.0`
+
+
+---
+
 ### Specialty Medication Enrollment
 
 <details>
@@ -11726,6 +12000,7 @@ Abrechnungsinformationen des E-Rezeptes für den Patienten
 
 **Versions**
 
+* `de.gematik.erezept-patientenrechnung.r4#1.0.4`
 * `de.gematik.erezept-patientenrechnung.r4#1.0.3`
 * `de.gematik.erezept-patientenrechnung.r4#1.0.2`
 * `de.gematik.erezept-patientenrechnung.r4#1.0.1`
@@ -12418,6 +12693,27 @@ HL7 FHIR Implementation Guide: Transversal Clinical Core (built Tue, May 31, 202
 
 ---
 
+### SDOH Clinical Care
+
+<details>
+<summary>Description</summary>
+
+This HL7 Implementation Guide (IG) defines how to exchange Social Determinants of Health (SDOH) content defined by the Gravity Project using the HL7 FHIR standard.. (built Tue, Aug 27, 2024 16:48+0000+00:00)
+
+</details>
+
+**Versions**
+
+* `hl7.fhir.us.sdoh-clinicalcare#2.2.0`
+* `hl7.fhir.us.sdoh-clinicalcare#2.1.0`
+* `hl7.fhir.us.sdoh-clinicalcare#2.0.0`
+* `hl7.fhir.us.sdoh-clinicalcare#1.1.0`
+* `hl7.fhir.us.sdoh-clinicalcare#1.0.0`
+* `hl7.fhir.us.sdoh-clinicalcare#0.1.0`
+
+
+---
+
 ### Bidirectional Services eReferral (BSeR)
 
 <details>
@@ -12545,6 +12841,23 @@ Der PKV-Abgabedatensatz enthält die notwendigen Informationen für die Abrechnu
 **Versions**
 
 * `de.abda.eRezeptAbgabedatenPKV#1.1.0-rc1`
+
+
+---
+
+### US Medication Risk Evaluation and Mitigation Strategies (REMS) FHIR IG
+
+<details>
+<summary>Description</summary>
+
+FHIR implementation options and guidance for medication REMS participants (built Mon, Aug 19, 2024 20:02+0000+00:00)
+
+</details>
+
+**Versions**
+
+* `hl7.fhir.us.medication-rems#1.0.0`
+* `hl7.fhir.us.medication-rems#1.0.0-ballot`
 
 
 ---
