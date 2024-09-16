@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The tool introduced by FHIR to provide a separate validation mechanism for 2-steps commit workflow or for development needs. It works for create, update and delete operations, is called using `?mode=` query parameter with values `create`, `update`, `delete` but changes won't be committed. Instead a requester will get an `OperationOutcome` with information about validation results. See [http://hl7.org/fhir/resource-operation-validate.html](http://hl7.org/fhir/resource-operation-validate.html) for the official documentation.&#x20;
+The tool introduced by FHIR to provide a separate validation mechanism for 2-steps commit workflow or for development needs. It works for create, update,, and delete operations, can be called using `mode` parameter with values `create`, `update`, `delete` but changes won't be committed. Instead a requester will get an `OperationOutcome` with information about validation results. See [http://hl7.org/fhir/resource-operation-validate.html](http://hl7.org/fhir/resource-operation-validate.html) for the official documentation.
 
 ```
 #FHIR format endpoint:
@@ -19,31 +19,25 @@ Such requests check the resource structure, internal business rules and return a
 **`200`** **OK** — those requests always return status 200\
 Success and failure of a validation request is determined by `id` of `OperationOutcome` resource. `allok` and `validationfail` are self-descriptive.
 
-$validate supports two ways to pass arguments:
+$validate receives \`Parameters\` resource as arguments:
 
-{% code title="By FHIR spec it receives a Parameters resource as a body:" %}
+{% code title="" %}
 ```yaml
-POST .../$validate
+POST /fhir/<resourceType>/$validate
 
 resourceType: Parameters
 parameter:
 - name: mode
-  value: {string: <mode>}
+  valueString: <mode>
 - name: profile
-  value: {uri: <StructureDefinition.url>}
-- name: esource
+  valueUri: <StructureDefinition.url>
+- name: resource
   resource: <resource>
 
 ```
 {% endcode %}
 
-{% code title="Parameters are specified in query string; body is the resource to validate:" %}
-```http
-POST .../$validate?mode=<mode>&profile=<StructureDefinition.url>
 
-<resource>
-```
-{% endcode %}
 
 | Parameter      | Description                                                                                                                                                                                                                                                        |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -60,28 +54,11 @@ POST .../$validate?mode=<mode>&profile=<StructureDefinition.url>
 | `delete`      | Checks if resource with such `id` exists in Aidbox                                                                                                                                                                     |
 | `patch`       | <p>Merges the existing resource to the received resource and then validates as <code>update</code>.</p><p>Patching strategy will be determined as <a href="../api/crud-1/patch.md#patch-method">described here</a></p> |
 | `merge-patch` | simple deep merge semantics ([read more in RFC](https://tools.ietf.org/html/rfc7386))                                                                                                                                  |
-| `json-patch`  |  advanced JSON transformation ([read more in RFC](https://tools.ietf.org/html/rfc6902))                                                                                                                                |
+| `json-patch`  | advanced JSON transformation ([read more in RFC](https://tools.ietf.org/html/rfc6902))                                                                                                                                 |
 
 ## Examples
 
 ### Validation Success
-
-{% code title="Request contains valid Patient resource inside the body." %}
-```yaml
-# Request:
-POST /fhir/Patient/$validate?mode=create
-
-name: [{given: [John]}]
-
-# Response
-HTTP 200 OK
-
-id: allok
-resourceType: OperationOutcome
-issue:
-- {severity: informational, code: informational, diagnostics: all ok}
-```
-{% endcode %}
 
 {% code title="Request contains same valid Patient resource and passed as Parameters." %}
 ```yaml
@@ -90,10 +67,10 @@ POST /fhir/Patient/$validate
 
 resourceType: Parameters
 parameter:
-- name: mode
-  value: {string: create}
-- name: resource
-  resource: {name: [{given: [John]}]}
+  - name: mode
+    valueString: create
+  - name: resource
+    resource: {name: [{given: [John]}]}
 
 
 # Response
@@ -111,10 +88,16 @@ issue:
 {% code title="Patient name must be an array, test is a non-existing field." %}
 ```yaml
 # Request:
-POST /fhir/Patient/$validate?mode=create
+POST /fhir/Patient/$validate
 
-name: "Bob"
-test: "foo"
+resourceType: Parameters
+parameter:
+  - name: mode
+    valueString: create
+  - name: resource
+    resource: 
+      name: Bob
+      test: foo
 
 # Response
 HTTP 200 OK
@@ -131,26 +114,5 @@ issue:
   code: invalid
   expression: [Patient.test]
   diagnostics: extra property
-
-```
-{% endcode %}
-
-{% code title="Request contains same invalid Patient resource and passed as Parameters." %}
-```yaml
-# Request:
-POST /fhir/Patient/$validate?mode=create
-
-name: "Bob"
-test: "foo"
-
-# Response
-HTTP 200 OK
-
-resourceType: Parameters
-parameter:
-- name: mode
-  value: {string: create}
-- name: resource
-  resource: {name: Bob, test: foo}
 ```
 {% endcode %}
