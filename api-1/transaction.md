@@ -62,7 +62,7 @@ request:
 
 ### Processing rules and Conditional refs
 
-Transaction interaction is processed in the order provided in a bundle, each interaction is executed one by one. It differs from the FHIR transaction [processing rules](https://www.hl7.org/fhir/http.html#2.21.0.17.2).
+Transaction interaction is processed in the order provided in a bundle, each interaction is executed one by one. It differs from the FHIR transaction [processing rules](https://www.hl7.org/fhir/http.html#trules).
 
 For `type: batch` references to resources inside a bundle won't be resolved.
 
