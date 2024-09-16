@@ -671,6 +671,7 @@ The United Federation of Planet (UFP) FHIR Implementation Guide of intergalactic
 
 * `ufp.core#0.6.0`
 * `ufp.core#0.5.1`
+* `ufp.core#0.4.0`
 
 
 ---
@@ -2204,24 +2205,6 @@ Finnish HL7 FHIR implementation guide for scheduling, published and maintained b
 
 ---
 
-### kbv.mio.mutterpass
-
-<details>
-<summary>Description</summary>
-
-Medizinische Informationsobjekte (MIO) Mutterpass V1.1.0
-
-</details>
-
-**Versions**
-
-* `kbv.mio.mutterpass#1.1.0`
-* `kbv.mio.mutterpass#1.1.0-kommentierungsphase`
-* `kbv.mio.mutterpass#1.1.0-benehmensherstellung`
-
-
----
-
 ### de.gematik.erg
 
 <details>
@@ -3096,7 +3079,6 @@ The Fast Healthcare Interoperability Resource (FHIR) Quality Measure Implementat
 
 * `hl7.fhir.us.cqfmeasures#5.0.0-ballot2`
 * `hl7.fhir.us.cqfmeasures#5.0.0-ballot`
-* `hl7.fhir.us.cqfmeasures#4.0.0`
 * `hl7.fhir.us.cqfmeasures#4.0.0-ballot`
 * `hl7.fhir.us.cqfmeasures#3.0.0`
 * `hl7.fhir.us.cqfmeasures#2.1.0`
@@ -3215,6 +3197,7 @@ Ontario Mental Health and Addictions Provincial Data Set
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.6`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.4`
+* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.3`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.2`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.1`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9`
@@ -5015,24 +4998,6 @@ HL7 FHIR Implementation Guide Laboratory Report specifica come utilizzare lo sta
 
 ---
 
-### Implementierungsleitfaden DEMIS - Erregernachweismeldung
-
-<details>
-<summary>Description</summary>
-
-Beinhaltet die in DEMIS zur Umsetzung der Erregernachweismeldungen definierten Informationsmodellartefakte.
-
-</details>
-
-**Versions**
-
-* `rki.demis.laboratory#1.24.1`
-* `rki.demis.laboratory#1.24.0`
-* `rki.demis.laboratory#1.24.2-new`
-
-
----
-
 ### C-CDA On FHIR Implementation Guide
 
 <details>
@@ -5423,25 +5388,6 @@ Version zur Ballotierung durch HL7 Deutschland und Kommentierung durch die Mediz
 * `de.medizininformatikinitiative.kerndatensatz.onkologie#2024.0.0-ballot`
 * `de.medizininformatikinitiative.kerndatensatz.onkologie#2024.0.0-ballot-beta-1`
 * `de.medizininformatikinitiative.kerndatensatz.onkologie#2024.0.0-ballot-alpha-1`
-
-
----
-
-### Israel Division of Governmental Hospitals Profiles
-
-<details>
-<summary>Description</summary>
-
-FHIR package for DGMC (Division of Governmental Hospitals Israel)
-
-</details>
-
-**Versions**
-
-* `il.fhir.r4.dgmc#0.1.7`
-* `il.fhir.r4.dgmc#0.1.6`
-* `il.fhir.r4.dgmc#0.1.5`
-* `il.fhir.r4.dgmc#0.1.4`
 
 
 ---
@@ -6211,7 +6157,6 @@ This IG provides detailed guidance that helps implementers use FHIR-based intera
 **Versions**
 
 * `hl7.fhir.us.davinci-cdex#2.0.0`
-* `hl7.fhir.us.davinci-cdex#2.0.0-ballot`
 * `hl7.fhir.us.davinci-cdex#1.1.0`
 * `hl7.fhir.us.davinci-cdex#1.1.0-ballot`
 * `hl7.fhir.us.davinci-cdex#1.0.0`
@@ -6378,6 +6323,7 @@ Common terminology used by HIP FHIR services (built Thu, Sep 5, 2024 03:47+0000+
 * `us.cdc.phinvads#0.3.0`
 * `us.cdc.phinvads#0.2.0`
 * `us.cdc.phinvads#0.1.2`
+* `us.cdc.phinvads#0.1.1`
 * `us.cdc.phinvads#0.1.0`
 
 
@@ -8274,7 +8220,6 @@ Die ePA-Medication Spezifikation
 **Versions**
 
 * `de.gematik.epa.medication#1.1.1`
-* `de.gematik.epa.medication#1.1.0-rc1`
 * `de.gematik.epa.medication#1.0.3`
 * `de.gematik.epa.medication#1.0.2`
 * `de.gematik.epa.medication#1.0.1`
@@ -8572,7 +8517,7 @@ This FHIR implementation guide is the primary work product of [project #1475](ht
 
 The scope of the project is to produce and ballot a Standard for Trail Use (STU) Fast Healthcare Interoperability Resources (FHIR) implementation guide (IG) for use in reporting of death events to the U.S. National Center for Health Statistics (NCHS) by State and Local Public Health Agencies (PHA). The VRDR FHIR IG is based upon FHIR R4. The VRDR FHIR IG was successfully balloted as a standard for trial use (STU) in May 2019.
 
-This is a U.S. Realm Specification. This guide and related materials are based on reporting specifications in U.S. jurisdictions. The data content of this IG are based upon the [U.S. Standard Certificate of Death](https://www.cdc.gov/nchs/data/dvs/DEATH11-03final-ACC.pdf). (built Tue, Oct 27, 2020 16:24+0000+00:00)
+This is a U.S. Realm Specification. This guide and related materials are based on reporting specifications in U.S. jurisdictions. The data content of this IG are based upon the [U.S. Standard Certificate of Death](https://www.cdc.gov/nchs/data/dvs/DEATH11-03final-ACC.pdf). (built Fri, Aug 13, 2021 12:58+0000+00:00)
 
 </details>
 
@@ -8582,6 +8527,7 @@ This is a U.S. Realm Specification. This guide and related materials are based o
 * `hl7.fhir.us.vrdr#2.2.0`
 * `hl7.fhir.us.vrdr#2.1.0`
 * `hl7.fhir.us.vrdr#2.0.0`
+* `hl7.fhir.us.vrdr#1.2.0`
 * `hl7.fhir.us.vrdr#1.0.0`
 * `hl7.fhir.us.vrdr#0.1.0`
 
@@ -8680,10 +8626,12 @@ Electronic Prescription Service
 * `uk.nhsdigital.medicines.r4#2.2.0`
 * `uk.nhsdigital.medicines.r4#2.1.9-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.8-alpha`
+* `uk.nhsdigital.medicines.r4#2.1.7-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.6-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.5-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.4-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.3-alpha`
+* `uk.nhsdigital.medicines.r4#2.1.2-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.14-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.13-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.12-alpha`
@@ -8698,7 +8646,6 @@ Electronic Prescription Service
 * `uk.nhsdigital.medicines.r4#2.0.33-alpha`
 * `uk.nhsdigital.medicines.r4#2.0.32-alpha`
 * `uk.nhsdigital.medicines.r4#2.0.31-alpha`
-* `uk.nhsdigital.medicines.r4#2.0.30-alpha`
 * `uk.nhsdigital.medicines.r4#2.0.29-alpha`
 * `uk.nhsdigital.medicines.r4#2.0.28-alpha`
 * `uk.nhsdigital.medicines.r4#2.0.27-alpha`
@@ -9776,7 +9723,6 @@ Estonian HL7 FHIR base Implementation Guide and profiles.
 * `iteyes.myhw.core#1.0.4`
 * `iteyes.myhw.core#1.0.3`
 * `iteyes.myhw.core#1.0.2`
-* `iteyes.myhw.core#1.0.1`
 * `iteyes.myhw.core#1.0.9-beta`
 * `iteyes.myhw.core#1.0.8-beta`
 * `iteyes.myhw.core#1.0.7-beta`
@@ -9802,7 +9748,6 @@ The Subscription R5 Backport Implementation Guide enables servers running versio
 * `hl7.fhir.uv.subscriptions-backport#1.2.0-ballot`
 * `hl7.fhir.uv.subscriptions-backport#1.1.0`
 * `hl7.fhir.uv.subscriptions-backport#1.0.0`
-* `hl7.fhir.uv.subscriptions-backport#0.1.0`
 
 
 ---
@@ -10076,7 +10021,6 @@ Medizininformatik Initiative - Kerndatensatz Erweiterungsmodul Biobank / Bioprob
 * `de.medizininformatikinitiative.kerndatensatz.biobank#1.0.8`
 * `de.medizininformatikinitiative.kerndatensatz.biobank#1.0.7`
 * `de.medizininformatikinitiative.kerndatensatz.biobank#1.0.6`
-* `de.medizininformatikinitiative.kerndatensatz.biobank#1.0.5`
 * `de.medizininformatikinitiative.kerndatensatz.biobank#1.0.4`
 * `de.medizininformatikinitiative.kerndatensatz.biobank#1.0.3`
 * `de.medizininformatikinitiative.kerndatensatz.biobank#1.0.2`
@@ -11019,6 +10963,7 @@ Weitere technischen Vorgaben zur Verwendung der Profile finden sich unter https:
 **Versions**
 
 * `kbv.itv.evdga#1.0.0`
+* `kbv.itv.evdga#1.0.0-cc`
 
 
 ---
@@ -12006,22 +11951,6 @@ Abrechnungsinformationen des E-Rezeptes für den Patienten
 * `de.gematik.erezept-patientenrechnung.r4#1.0.1`
 * `de.gematik.erezept-patientenrechnung.r4#1.0.0`
 * `de.gematik.erezept-patientenrechnung.r4#1.0.4-rc2`
-
-
----
-
-### shin.interconnect
-
-<details>
-<summary>Description</summary>
-
-This is a project for the Surescripts Health Information Network Interconnect FHIR guide.
-
-</details>
-
-**Versions**
-
-* `shin.interconnect#1.0.0-beta`
 
 
 ---
