@@ -2205,6 +2205,24 @@ Finnish HL7 FHIR implementation guide for scheduling, published and maintained b
 
 ---
 
+### kbv.mio.mutterpass
+
+<details>
+<summary>Description</summary>
+
+Medizinische Informationsobjekte (MIO) Mutterpass V1.1.0
+
+</details>
+
+**Versions**
+
+* `kbv.mio.mutterpass#1.1.0`
+* `kbv.mio.mutterpass#1.1.0-kommentierungsphase`
+* `kbv.mio.mutterpass#1.1.0-benehmensherstellung`
+
+
+---
+
 ### de.gematik.erg
 
 <details>
@@ -3079,6 +3097,7 @@ The Fast Healthcare Interoperability Resource (FHIR) Quality Measure Implementat
 
 * `hl7.fhir.us.cqfmeasures#5.0.0-ballot2`
 * `hl7.fhir.us.cqfmeasures#5.0.0-ballot`
+* `hl7.fhir.us.cqfmeasures#4.0.0`
 * `hl7.fhir.us.cqfmeasures#4.0.0-ballot`
 * `hl7.fhir.us.cqfmeasures#3.0.0`
 * `hl7.fhir.us.cqfmeasures#2.1.0`
@@ -3683,7 +3702,6 @@ Umsetzung der elektronischen Heilmittelverordnung
 
 * `de.gevko.evo.hlm#1.3.0`
 * `de.gevko.evo.hlm#1.2.1`
-* `de.gevko.evo.hlm#1.2.0`
 * `de.gevko.evo.hlm#1.1.0`
 * `de.gevko.evo.hlm#1.0.3`
 * `de.gevko.evo.hlm#1.0.2`
@@ -3896,7 +3914,6 @@ A core set of FHIR resources profiled for use in Finland, published and maintain
 * `hl7.fhir.fi.base#1.0.0-rc21`
 * `hl7.fhir.fi.base#1.0.0-rc20`
 * `hl7.fhir.fi.base#1.0.0-rc19`
-* `hl7.fhir.fi.base#1.0.0-rc18`
 * `hl7.fhir.fi.base#1.0.0-rc17`
 
 
@@ -4626,22 +4643,6 @@ First draft of used FHIR resource profiles in Koppeltaal 2.0.
 
 ---
 
-### MII IG Symptom
-
-<details>
-<summary>Description</summary>
-
-Medizininformatik Initiative - Modul Symptom
-
-</details>
-
-**Versions**
-
-* `de.medizininformatikinitiative.kerndatensatz.symptom#2024.0.0-ballot`
-
-
----
-
 ### Birth And Fetal Death (BFDR) - STU2-ballot
 
 <details>
@@ -4994,6 +4995,25 @@ HL7 FHIR Implementation Guide Laboratory Report specifica come utilizzare lo sta
 **Versions**
 
 * `hl7.fhir.it.lab-report#0.2.0`
+
+
+---
+
+### Implementierungsleitfaden DEMIS - Erregernachweismeldung
+
+<details>
+<summary>Description</summary>
+
+Diese Version ist nicht produktiv und wird nicht vom DEMIS-Backend unterstützt. Dieses Paket ist ausschließlich für das Kommentierungsverfahren angelegt, siehe https://robert-koch-institut.github.io/DEMIS_FHIR-Profile_Vorabveroeffentlichung/kommentierung.html.
+
+</details>
+
+**Versions**
+
+* `rki.demis.laboratory#3.0.0-alpha.1`
+* `rki.demis.laboratory#1.24.1`
+* `rki.demis.laboratory#1.24.0`
+* `rki.demis.laboratory#1.24.2-new`
 
 
 ---
@@ -5388,6 +5408,25 @@ Version zur Ballotierung durch HL7 Deutschland und Kommentierung durch die Mediz
 * `de.medizininformatikinitiative.kerndatensatz.onkologie#2024.0.0-ballot`
 * `de.medizininformatikinitiative.kerndatensatz.onkologie#2024.0.0-ballot-beta-1`
 * `de.medizininformatikinitiative.kerndatensatz.onkologie#2024.0.0-ballot-alpha-1`
+
+
+---
+
+### Israel Division of Governmental Hospitals Profiles
+
+<details>
+<summary>Description</summary>
+
+FHIR package for DGMC (Division of Governmental Hospitals Israel)
+
+</details>
+
+**Versions**
+
+* `il.fhir.r4.dgmc#0.1.7`
+* `il.fhir.r4.dgmc#0.1.6`
+* `il.fhir.r4.dgmc#0.1.5`
+* `il.fhir.r4.dgmc#0.1.4`
 
 
 ---
@@ -6157,6 +6196,7 @@ This IG provides detailed guidance that helps implementers use FHIR-based intera
 **Versions**
 
 * `hl7.fhir.us.davinci-cdex#2.0.0`
+* `hl7.fhir.us.davinci-cdex#2.0.0-ballot`
 * `hl7.fhir.us.davinci-cdex#1.1.0`
 * `hl7.fhir.us.davinci-cdex#1.1.0-ballot`
 * `hl7.fhir.us.davinci-cdex#1.0.0`
@@ -6646,22 +6686,6 @@ Essilor Luxottica IT EYECARE FHIR PROJECT
 
 * `hl7.fhir.essilux.core#0.0.2`
 * `hl7.fhir.essilux.core#0.0.1`
-
-
----
-
-### nexuzhealth.fhir.r4
-
-<details>
-<summary>Description</summary>
-
-Technical profiles used by Nexuzhealth FHIR Stores
-
-</details>
-
-**Versions**
-
-* `nexuzhealth.fhir.r4#1.0.0`
 
 
 ---
@@ -7714,7 +7738,6 @@ The purpose of SETP is to improve surgical performance in Ontario through the me
 
 **Versions**
 
-* `de.gematik.dev.epa.medication#1.1.0-alpha.6`
 * `de.gematik.dev.epa.medication#1.1.0-alpha.5`
 * `de.gematik.dev.epa.medication#1.1.0-alpha.4`
 
@@ -8220,6 +8243,7 @@ Die ePA-Medication Spezifikation
 **Versions**
 
 * `de.gematik.epa.medication#1.1.1`
+* `de.gematik.epa.medication#1.1.0-rc1`
 * `de.gematik.epa.medication#1.0.3`
 * `de.gematik.epa.medication#1.0.2`
 * `de.gematik.epa.medication#1.0.1`
@@ -8618,7 +8642,6 @@ Electronic Prescription Service
 **Versions**
 
 * `uk.nhsdigital.medicines.r4#2.7.9`
-* `uk.nhsdigital.medicines.r4#2.7.1`
 * `uk.nhsdigital.medicines.r4#2.6.0`
 * `uk.nhsdigital.medicines.r4#2.5.0`
 * `uk.nhsdigital.medicines.r4#2.3.0`
@@ -8646,6 +8669,7 @@ Electronic Prescription Service
 * `uk.nhsdigital.medicines.r4#2.0.33-alpha`
 * `uk.nhsdigital.medicines.r4#2.0.32-alpha`
 * `uk.nhsdigital.medicines.r4#2.0.31-alpha`
+* `uk.nhsdigital.medicines.r4#2.0.30-alpha`
 * `uk.nhsdigital.medicines.r4#2.0.29-alpha`
 * `uk.nhsdigital.medicines.r4#2.0.28-alpha`
 * `uk.nhsdigital.medicines.r4#2.0.27-alpha`
@@ -9723,6 +9747,7 @@ Estonian HL7 FHIR base Implementation Guide and profiles.
 * `iteyes.myhw.core#1.0.4`
 * `iteyes.myhw.core#1.0.3`
 * `iteyes.myhw.core#1.0.2`
+* `iteyes.myhw.core#1.0.1`
 * `iteyes.myhw.core#1.0.9-beta`
 * `iteyes.myhw.core#1.0.8-beta`
 * `iteyes.myhw.core#1.0.7-beta`
@@ -9748,6 +9773,7 @@ The Subscription R5 Backport Implementation Guide enables servers running versio
 * `hl7.fhir.uv.subscriptions-backport#1.2.0-ballot`
 * `hl7.fhir.uv.subscriptions-backport#1.1.0`
 * `hl7.fhir.uv.subscriptions-backport#1.0.0`
+* `hl7.fhir.uv.subscriptions-backport#0.1.0`
 
 
 ---
@@ -10021,6 +10047,7 @@ Medizininformatik Initiative - Kerndatensatz Erweiterungsmodul Biobank / Bioprob
 * `de.medizininformatikinitiative.kerndatensatz.biobank#1.0.8`
 * `de.medizininformatikinitiative.kerndatensatz.biobank#1.0.7`
 * `de.medizininformatikinitiative.kerndatensatz.biobank#1.0.6`
+* `de.medizininformatikinitiative.kerndatensatz.biobank#1.0.5`
 * `de.medizininformatikinitiative.kerndatensatz.biobank#1.0.4`
 * `de.medizininformatikinitiative.kerndatensatz.biobank#1.0.3`
 * `de.medizininformatikinitiative.kerndatensatz.biobank#1.0.2`
@@ -11466,7 +11493,6 @@ Sending colonoscopy data for cancer screening to a central registry in Norway
 * `colonoscopyreport.no#0.7.10`
 * `colonoscopyreport.no#0.7.9`
 * `colonoscopyreport.no#0.7.8`
-* `colonoscopyreport.no#0.7.7`
 * `colonoscopyreport.no#0.7.6`
 * `colonoscopyreport.no#0.7.5`
 * `colonoscopyreport.no#0.7.4`
@@ -11951,6 +11977,22 @@ Abrechnungsinformationen des E-Rezeptes für den Patienten
 * `de.gematik.erezept-patientenrechnung.r4#1.0.1`
 * `de.gematik.erezept-patientenrechnung.r4#1.0.0`
 * `de.gematik.erezept-patientenrechnung.r4#1.0.4-rc2`
+
+
+---
+
+### shin.interconnect
+
+<details>
+<summary>Description</summary>
+
+This is a project for the Surescripts Health Information Network Interconnect FHIR guide.
+
+</details>
+
+**Versions**
+
+* `shin.interconnect#1.0.0-beta`
 
 
 ---
@@ -13114,7 +13156,6 @@ Mobile Antepartum Summary is a content profile that defines the structure for th
 
 * `hl7.fhir.us.identity-matching#2.0.0-ballot`
 * `hl7.fhir.us.identity-matching#1.0.0`
-* `hl7.fhir.us.identity-matching#1.0.0-ballot`
 
 
 ---
