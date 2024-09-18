@@ -458,8 +458,8 @@
   * Added [SDCForm to Questionnaire converter](../../reference/aidbox-forms/api-reference.md#convert-forms)
   * Added customizable [redirect-button](../../reference/aidbox-forms/api-reference.md#aidbox.sdc-generate-form-link) to Forms
 * Google Cloud Pub/Sub integration
-  * Added [Setting ](../../api-1/reactive-api-and-subscriptions/gcp-pub-sub.md#specify-resource-types-and-boxes-for-which-to-publish-notification)to specify for what resources should trigger message publishing
-  * Added [Option ](../../api-1/reactive-api-and-subscriptions/gcp-pub-sub.md#publish-a-message-before-a-resource-is-saved-to-a-database)to optimistically publish a message before the resource is saved to DB
+  * Added [Setting ](../../modules-1/topic-based-subscriptions/topic-based-subscriptions/gcp-pub-sub.md#specify-resource-types-and-boxes-for-which-to-publish-notification)to specify for what resources should trigger message publishing
+  * Added [Option ](../../modules-1/topic-based-subscriptions/topic-based-subscriptions/gcp-pub-sub.md#publish-a-message-before-a-resource-is-saved-to-a-database)to optimistically publish a message before the resource is saved to DB
 
 ## January 2023 _`2301`_
 
@@ -509,7 +509,7 @@
 * C-CDA to FHIR converter
   * Added a guide on[ how to persist FHIR resources to a DB](../../modules-1/integration-toolkit/ccda-converter/#persisting-a-result-of-ccda-to-fhir-conversion) after C-CDA to FHIR transformation.
   * Improved Observation data mapping.
-* [Google Cloud Pub/Sub integration](../../api-1/reactive-api-and-subscriptions/gcp-pub-sub.md)
+* [Google Cloud Pub/Sub integration](../../modules-1/topic-based-subscriptions/topic-based-subscriptions/gcp-pub-sub.md)
 
 ## November 2022 _`2211`_
 
@@ -832,7 +832,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 * Builds of [aidboxdb](../../storage-1/aidboxdb-image/) for PostgreSQL 11.11, 12.6, 13.2 are [released](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1\&ordering=last\_updated).
 * Aidbox now supports deployment on top of Azure PostgreSQL.
-* Improvements of [$changes API](../../api-1/reactive-api-and-subscriptions/usdsnapshot-usdwatch-and-usdversions-api.md): FHIR support, pagination, upper version limit. $changes is now available at the resource level.
+* Improvements of [$changes API](../../api-1/usdsnapshot-usdwatch-and-usdversions-api.md): FHIR support, pagination, upper version limit. $changes is now available at the resource level.
 * [Enhancement of Transaction Bundle API](https://docs.aidbox.app/api-1/transaction) that allows to populate both resource and history tables in one transaction.
 * During transaction bundle processing attributes of url type that store relative references are now interpreted as Reference type. See the [FHIR spec](https://www.hl7.org/fhir/datatypes.html#attachment) on Attachment data type for details.
 * [Enhancement of Search resource](../../api-1/fhir-api/search-1/search-resource.md#token-search-1) that for token search allows fallback to default modifier implementation; (last example in the linked article)
