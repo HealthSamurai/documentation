@@ -3,7 +3,7 @@
 {% hint style="warning" %}
 This page explains US Core support for zen-lang validation mode.
 
-Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
+Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.
 
 [Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/setup)
 {% endhint %}
@@ -46,7 +46,7 @@ Loading a terminology into Aidbox allows you to use [Terminology API](../../modu
 
 ### Search Parameters
 
-Loading Search Parameters into Aidbox enables you to use them in [Search API](broken-reference).
+Loading Search Parameters into Aidbox enables you to use them in Search API.
 
 <table><thead><tr><th width="163">Resource type</th><th>Parameter</th><th width="153">Support<select><option value="58105de4648c4174a16a9a850ad5e1e4" label="Supported" color="blue"></option><option value="f458f13027234334a0b28cdffebfe24e" label="Partially supported" color="blue"></option><option value="8fc7d097dd7249b5865a7774c862217a" label="Not supported" color="blue"></option></select></th><th>Notes</th></tr></thead><tbody><tr><td>CareTeam</td><td>role</td><td><span data-option="58105de4648c4174a16a9a850ad5e1e4">Supported</span></td><td></td></tr><tr><td>Condition</td><td>asserted-date</td><td><span data-option="58105de4648c4174a16a9a850ad5e1e4">Supported</span></td><td>Since 2301</td></tr><tr><td>Encounter</td><td>discharge-disposition</td><td><span data-option="58105de4648c4174a16a9a850ad5e1e4">Supported</span></td><td></td></tr><tr><td>Goal</td><td>description</td><td><span data-option="58105de4648c4174a16a9a850ad5e1e4">Supported</span></td><td></td></tr><tr><td>Patient</td><td>race</td><td><span data-option="58105de4648c4174a16a9a850ad5e1e4">Supported</span></td><td>Since 2301</td></tr><tr><td>Patient</td><td>ethnicity</td><td><span data-option="58105de4648c4174a16a9a850ad5e1e4">Supported</span></td><td>Since 2301</td></tr><tr><td>Patient</td><td>gender-identity</td><td><span data-option="58105de4648c4174a16a9a850ad5e1e4">Supported</span></td><td>Since 2301</td></tr></tbody></table>
 
