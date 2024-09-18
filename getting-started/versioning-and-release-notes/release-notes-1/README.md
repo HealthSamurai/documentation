@@ -10,7 +10,7 @@ description: Release notes for years 2019-2020
 
 * Search and sort by [\_createdAt](../../../api-1/fhir-api/search-1/search-parameters-list/\_lastupdated.md) parameter
 * Search by tokens with [:text modifier](../../../api-1/fhir-api/search-1/#common)
-* Filters in [Change API](../../../api-1/usdsnapshot-usdwatch-and-usdversions-api.md)
+* Filters in [Change API](../../../api-1/reactive-api-and-subscriptions/usdsnapshot-usdwatch-and-usdversions-api.md)
 * [Azure API](../../../storage-1/s3-compatible-storages/azure.md)
 * [SQL Parameters](../../../api-1/fhir-api/search-1/search-resource.md)
 
@@ -18,7 +18,7 @@ description: Release notes for years 2019-2020
 
 ### Features
 
-* [Reactive API & Subscriptions](../../../api-1/reactive-api-and-subscriptions.md)
+* [Reactive API & Subscriptions](broken-reference)
 * New [design/debug](../../../api-1/fhir-api/search-1/custom-search.md#design-aidboxquery) endpoint for AidboxQuery
 * Audit customization hook
 * New Clojure engine for AccessPolicy

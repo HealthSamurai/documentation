@@ -1,4 +1,4 @@
-# Aidbox Subscriptions
+# Aidbox SubSubscriptions
 
 Aidbox subscriptions module is a way to subscribe and get notifications about updating resources on the server. It is a common denominator of FHIR R4/R5 subscriptions specification with some extensions.
 
