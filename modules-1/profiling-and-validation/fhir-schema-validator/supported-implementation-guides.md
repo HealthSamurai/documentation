@@ -587,7 +587,6 @@ NHS Booking and Referrals
 **Versions**
 
 * `tw.gov.mohw.twcore#0.2.2`
-* `tw.gov.mohw.twcore#0.2.1`
 * `tw.gov.mohw.twcore#0.2.0`
 * `tw.gov.mohw.twcore#0.1.1`
 * `tw.gov.mohw.twcore#0.1.0`
@@ -3213,7 +3212,6 @@ Ontario Mental Health and Addictions Provincial Data Set
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.3`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.2`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.1`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.6`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.4`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.3`
@@ -3702,6 +3700,7 @@ Umsetzung der elektronischen Heilmittelverordnung
 
 * `de.gevko.evo.hlm#1.3.0`
 * `de.gevko.evo.hlm#1.2.1`
+* `de.gevko.evo.hlm#1.2.0`
 * `de.gevko.evo.hlm#1.1.0`
 * `de.gevko.evo.hlm#1.0.3`
 * `de.gevko.evo.hlm#1.0.2`
@@ -3914,6 +3913,7 @@ A core set of FHIR resources profiled for use in Finland, published and maintain
 * `hl7.fhir.fi.base#1.0.0-rc21`
 * `hl7.fhir.fi.base#1.0.0-rc20`
 * `hl7.fhir.fi.base#1.0.0-rc19`
+* `hl7.fhir.fi.base#1.0.0-rc18`
 * `hl7.fhir.fi.base#1.0.0-rc17`
 
 
@@ -4639,6 +4639,22 @@ First draft of used FHIR resource profiles in Koppeltaal 2.0.
 **Versions**
 
 * `Koppeltaalv2.00#0.7.0-preview`
+
+
+---
+
+### MII IG Symptom
+
+<details>
+<summary>Description</summary>
+
+Medizininformatik Initiative - Modul Symptom
+
+</details>
+
+**Versions**
+
+* `de.medizininformatikinitiative.kerndatensatz.symptom#2024.0.0-ballot`
 
 
 ---
@@ -6690,6 +6706,22 @@ Essilor Luxottica IT EYECARE FHIR PROJECT
 
 ---
 
+### nexuzhealth.fhir.r4
+
+<details>
+<summary>Description</summary>
+
+Technical profiles used by Nexuzhealth FHIR Stores
+
+</details>
+
+**Versions**
+
+* `nexuzhealth.fhir.r4#1.0.0`
+
+
+---
+
 ### ehelse.fhir.no.grunndata.test
 
 <details>
@@ -7738,6 +7770,7 @@ The purpose of SETP is to improve surgical performance in Ontario through the me
 
 **Versions**
 
+* `de.gematik.dev.epa.medication#1.1.0-alpha.6`
 * `de.gematik.dev.epa.medication#1.1.0-alpha.5`
 * `de.gematik.dev.epa.medication#1.1.0-alpha.4`
 
@@ -8642,6 +8675,7 @@ Electronic Prescription Service
 **Versions**
 
 * `uk.nhsdigital.medicines.r4#2.7.9`
+* `uk.nhsdigital.medicines.r4#2.7.1`
 * `uk.nhsdigital.medicines.r4#2.6.0`
 * `uk.nhsdigital.medicines.r4#2.5.0`
 * `uk.nhsdigital.medicines.r4#2.3.0`
@@ -9283,22 +9317,6 @@ FHIR data segmentation for privacy security label implementation guide (built Mo
 * `hl7.fhir.uv.security-label-ds4p#0.3.0`
 * `hl7.fhir.uv.security-label-ds4p#0.2.0`
 * `hl7.fhir.uv.security-label-ds4p#0.1.0`
-
-
----
-
-### ch.fhir.BNW.ch-core
-
-<details>
-<summary>Description</summary>
-
-lets start to get swiss pathology structured
-
-</details>
-
-**Versions**
-
-* `ch.fhir.BNW.ch-core#1.0.0`
 
 
 ---
@@ -11493,6 +11511,7 @@ Sending colonoscopy data for cancer screening to a central registry in Norway
 * `colonoscopyreport.no#0.7.10`
 * `colonoscopyreport.no#0.7.9`
 * `colonoscopyreport.no#0.7.8`
+* `colonoscopyreport.no#0.7.7`
 * `colonoscopyreport.no#0.7.6`
 * `colonoscopyreport.no#0.7.5`
 * `colonoscopyreport.no#0.7.4`
@@ -13156,6 +13175,7 @@ Mobile Antepartum Summary is a content profile that defines the structure for th
 
 * `hl7.fhir.us.identity-matching#2.0.0-ballot`
 * `hl7.fhir.us.identity-matching#1.0.0`
+* `hl7.fhir.us.identity-matching#1.0.0-ballot`
 
 
 ---
