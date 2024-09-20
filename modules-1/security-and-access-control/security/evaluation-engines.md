@@ -4,26 +4,30 @@ description: Evaluation engines are used to implement checks for AccessPolicy ru
 
 # Evaluation engines
 
-Aidbox provides several ways to specify rules for `AccessPolicy` resources — so called evaluation engines. They come with their own syntax and offer varying degrees of flexibility and convenience for writing those rules.
+Aidbox provides several ways to specify rules for `AccessPolicy` resources — so-called evaluation engines. They come with their syntax and offer varying degrees of flexibility and convenience for writing those rules.
 
-There are five main engines. They are used to specify rules for a generic request object.
+There are five engines. They are used to specify rules for a generic request object.
 
 * Allow
-* JSON Schmea
-* SQL
 * Matcho
+* JSON Schema
+* SQL
 * Complex
 
-There are also two additional engines which serve as a convenient way to write rules specifically for RPC endpoints.
+Two additional engines provide a convenient way to write rules specifically for RPC endpoints.
 
 * Allow-RPC
 * Matcho-RPC
 
-All of them are described in a greater detail below.
+It is recommended to use Matcho engine. In 90% of cases, it is enough. Sometimes, the complex access policy can be only written by SQL or Complex engines.
 
-## Allow
+All access policies are listed in **Access Control -> Access Policy** Aidbox UI page.
 
-`allow` engine always evaluates to `true` regardless of a request object. Use it if you want to provide an unrestricted access to everything.
+To debug the created access policy, use [Access policy dev tool](../../../security-and-access-control-1/security/access-policy-dev-tool.md).
+
+## Allow engine
+
+The `allow` engine always evaluates `true` regardless of a request object. Use it if you want to provide unrestricted access to everything.
 
 ### Example
 
@@ -35,190 +39,158 @@ link:
 - { resourceType: User, id: admin }
 ```
 
-## JSON Schema
+## Matcho engine
 
-`json-schema` engine allows you to use [JSON Schema](https://json-schema.org) to validate the request object. It is specified under `schema` field of `AccessPolicy` resource. Currently supported JSON Schema version is **draft-07**.
+`matcho` engine leverages [Matcho](https://github.com/HealthSamurai/matcho) pattern matching — custom DSL developed by Health Samurai. It has compact and declarative syntax with limited expressivity. It is well-suited for writing all sorts of rules and thus is one of the easiest options to specify `AccessPolicy` checks.
 
-{% hint style="info" %}
-Fields with empty values `— []`, `{}`, `""`, `null` — are removed from request before before access policy checks are applied to it. Make sure to specify all necessary fields as `required.`
-{% endhint %}
+To test matcho DSL without creating AccessPolicy and sending a request, you can use the [$matcho](../../../app-development-guides/usdmatcho.md) endpoint.
 
 ### Example
 
-The following policy requires `request.params.resource/type` to be present and have a value of `"Organization"`:
+In this example, the request is allowed only if:
+
+* Uri is related to Encounter. E.g. `/fhir/Encounter` or `/Encounter`,
+* HTTP request is either `GET` or `POST`, not `PUT`,
+* `practitioner` parameter provided as a query string in case of the `GET` request or body params in case of the `POST` request must be equal to `practitioner_id` of the user,
+* User data, which is fetched from the `"user"` table must contain `inpatient` department and practitioner.
 
 ```yaml
 resourceType: AccessPolicy
-engine: json-schema
-schema:
-  properties:
-    params:
-      required: [resource/type]
-    properties:
-      resource/type:
-        const:
-          Organization
-```
-
-## SQL
-
-`sql` engine executes an SQL statement and uses its return value as an evaluation result. Thus the statement should return a single row with just one column:
-
-```sql
-SELECT true FROM patient WHERE id = {{jwt.patient_id}} LIMIT 1;
-```
-
-SQL statement can refer to request fields with a double curly braces interpolation. String inside the braces will be used as a path to value in the request object.
-
-### Example
-
-Suppose that we are checking a request that comes with a `User` resource referencing a `Practitioner` through `User.data.practitioner_id` element. The following policy allows requests only to `/fhir/Patient/<patient_id>` URLs and only to those patients who have a `Patient.generalPractitioner` element referencing the same practitioner as a `User` of our current request. In other words, `User` as a `Practitioner` is only allowed to see his own patients — those who reference him as their `generalPractitioner`.
-
-```yaml
-resourceType: AccessPolicy
-id: practitioner-only-allowed-to-see-his-patients
-engine: sql
-sql:
-  query: |
-    SELECT
-      {{user}} IS NOT NULL
-      AND {{user.data.practitioner_id}} IS NOT NULL
-      AND {{uri}} LIKE '/fhir/Patient/%'
-      AND resource->'generalPractitioner' @>
-    jsonb_build_array(jsonb_build_object('resourceType',
-        'Practitioner', 'id', {{user.data.practitioner_id}}::text))
-      FROM patient WHERE id = {{params.resource/id}};
-```
-
-### Interpolation Rules
-
-You can parameterize your SQL queries with request object using `{{path}}` syntax. For example, to get a user role provided at `{user: {data: {role: "admin"}}}` you write `{{user.data.role}}`. Parameter expressions are escaped by default to protect from SQL injection.
-
-For dynamic queries — to parameterize table name, for example — you have to use `{{!path}}` syntax. The expression `SELECT true from {{!params.resource/type}} limit 1` when a request contains `{params: {"resource/type": "Patient"}}` will be transformed into `SELECT true from "patient".` By default identifier names are double quoted and lower-cased.
-
-## Matcho
-
-`matcho` engine leverages [Matcho](https://github.com/HealthSamurai/matcho) pattern matching — custom DSL developed by Health Samurai. It has very compact and declarative syntax with a limited expressivity. It is well-suited for writing all sorts of rules and thus is one of the easiest options to specify `AccessPolicy` checks.
-
-```yaml
-resourceType: AccessPolicy
-id: practitioner-only-who-works-in-inpatient-department-allowed-to-see-his-patients
+id: as-practitioner-who-works-in-inpatient-department-allowed-to-see-his-patients
 engine: matcho
 matcho:
   user: 
-    # user.department should be equal to inpatient
     department: inpatient
     # user.data.practitioner_id should be present
     data: 
       practitioner_id: present?
-  # uri should match regexp
+  # uri must match regexp /Encounter.*
   uri: '#/Encounter.*'
-  # request method should be GET or POST
   request-method: {$enum: ['get', 'post']}
   params:
-    # practitioner param should be equal to user.data.practitioner_id
-    practitioner: .user.data.practitioner_id
+    practitioner: .user.data.practitioner_id 
 ```
 
-Match DSL definition:
+### Match DSL definition
 
-* If pattern is a dictionary, search for its inclusion into a test subject. This algorithm is nested and recursive.\
-  Pattern `{x: 1}` matches `{x: 1, y: 2, …}`\
-  \`\`Pattern `{a: {b: 5}` matches `{a: {b: 5, c: 6, …}, d: 7, …}`
-* If a pattern is an array, search for its elements in the order given.\
-  Pattern `[1, 2]` matches `[1, 2, 3, …]`
-* Primitive values — strings, numbers and booleans — are compared by value.
-* If a string starts with `#` , it is treated as a regular expression.\
-  Pattern `{a: "#\\d+"}` matches `{a: "2345"}`
-* If a string starts with `.` , it is interpreted as a path in the current test subject.\
-  Pattern `{params: {user_id: ".user.id"}}` matches `{user: {id: 1}, params: {user_id: 1}}` where `user.id == param.user_id`.
-* Special string literals (postfixed with `?)`
-  * **present?** — matches non-`null` values;\
-    Pattern `{a: "present?"}` matches `{a: 5}` or `{a: {b: 6}}`
-  * **nil?** — matches `null` values;
-  * **not-blank?** — matches non-empty string.
-* Special keys:
-  * **$enum** — value must be equal to one of the items in the enumeration.\
-    Pattern `{request-method: {$enum: ["get", "post"]}}` matches `{request-method: "post"}`
-  * **$one-of —** value must match any of the patterns. Examples:
-    * Pattern `{a: {$one-of: [{b: "present?"}, {c: "present?"}]}` matches `{a: {c: 5}}`
-    *   If a string starts with `.` , it is interpreted as a path in the current test subject to fetch an array of allowed values:&#x20;
+* Strings, numbers, and booleans are compared by value.
+* If the pattern is a dictionary, search for its inclusion into a test subject. This check is nested and recursive.
+  * Pattern: `{x: 1}`&#x20;
+    * matches: `{x: 1}`, `{x: 1, y: 2, ...}`
+    * doesn't match: `{z: 1}`&#x20;
+  * Pattern `{a: {b: 5}`&#x20;
+    * matches: `{a: {b: 5, c: 6, ...}, d: 7}`
+    * doesn't match: `{a: {c: 5}}`, `{b: {a: 5}}`&#x20;
+* If a pattern is an array, search for its elements in the order given.
+  * Pattern `[1, 2]`&#x20;
+    * matches `[1, 2]`, `[1, 2, 3, …]`
+    * doesn't match: `[2, 1]`
+
+#### Regular expressions
+
+If a string starts with `#` , it is treated as a regular expression.
+
+* Pattern `{a: "#\\d+"}`&#x20;
+  * matches: `{a: "2345"}`
+  * doesn't match: `{a: "abc"}`
+
+#### Special string literals (postfixed with `?`)
+
+* **present?** — matches non-`null` values
+  * Pattern `{a: "present?"}`&#x20;
+    * matches: `{a: 5}`,`{a: {b: 6}}`
+    * doesn't match: `{b: 5}`
+* **nil?** — matches `null` values;
+* **not-blank?** — matches a non-empty string.
+
+#### Matching values from the request context&#x20;
+
+If a string starts with `.` , it is interpreted as a path in [the provided request context.](access-control.md#request-object-structure)&#x20;
+
+* Pattern: `{params: {user_id: ".user.id"}}`&#x20;
+  * matches: `{user: {id: 1}, params: {user_id: 1}}` where `user.id == param.user_id`.
+
+In this example, $matcho will evaluate true only if 'a' is equal to my-value from the context.&#x20;
+
+```
+POST /$matcho
+
+context: { my-value: 'value'}
+matcho: {'a': '.my-value'}
+resource: {'a': 'value'}
+```
+
+#### Special keys
+
+* **$enum** — value must be equal to one of the items in the enumeration. Strings, numbers, and booleans are supported.
+  * Pattern: `{request-method: {$enum: ["get", "post"]}}`&#x20;
+    * matches: `{request-method: "post"},` `{request-method: "get"}`
+    * doesn't match: `{request-method: "put"}`
+*   **$one-of —** value must match any of the patterns. Should be used in cases, when **$enum** can not be used.
+
+    * Pattern `{a: {$one-of: [{b: "present?"}, {c: "present?"}]}}`&#x20;
+      * matches `{a: {c: 5}}`
+      * doesn't match: `{a: {d: 5}`, `{a: {b: null}`
+
+    Note that the `$one-of` key cannot be utilized concurrently with other keys.
+
+    *   **Correct usage example.** Here, the `resource/type` key is correctly nested within each option specified by the `$one-of` key.
 
         ```yaml
-        // JWT payload
-        iss: iss
-        roles:
-          - Manager
-          - Administrator
-          
-        // User
-        resourceType: User
-        id: user-id
-        data: 
-          role: Manager
-
-        // AccessPolicy
         resourceType: AccessPolicy
-        id: user-allowed-if-its-role-within-jwt-roles
         engine: matcho
         matcho:
-          user:
-            data:
-              role:
-                "$one-of": .jwt.roles
+          request-method: get
+          params:
+            $one-of:
+              - name: present?
+                resource/type: Patient
+              - _id: present?
+                resource/type: Patient
+              - id: present?
+                resource/type: Patient
         ```
-    * The `$one-of` key cannot be utilized concurrently with other keys. Examples:
-      *   **Correct usage example:** Here, the `resource/type` key is correctly nested within each option specified by the `$one-of` key.
+    * **Incorrect usage example.**&#x20;
 
-          ```yaml
-          resourceType: AccessPolicy
-          engine: matcho
-          matcho:
-            request-method: get
-            params:
-              $one-of:
-                - name: present?
-                  resource/type: Patient
-                - _id: present?
-                  resource/type: Patient
-                - id: present?
-                  resource/type: Patient
-          ```
-      *   **Incorrect usage example**:In this case, the `$one-of` key is improperly combined with the `resource/type` key within the same `params` block:
+    In this case, the `$one-of` key is improperly combined with the `resource/type` key within the same `params` block:
 
-          ```yaml
-          resourceType: AccessPolicy
-          engine: matcho
-          matcho:
-            request-method: get
-            params:
-              resource/type: Patient
-              $one-of:
-                - name: present?
-                - _id: present?
-                - id: present?
-          ```
-  * **$reference** — parse `Reference` or string into [aidbox format](../../fhir-resources/aidbox-and-fhir-formats.md#references). Examples:
-    * Parse `Reference` elements
-      * `parser: {reference: "Patient/pid"} => {id: "pid", resourceType: "Patient"}`
-      * `{resource: {patient: {$reference: {id: '.user.data.patient_id'}}}`
-    * Parse reference string
-      * `"Patient/pid" => {id: "pid", resourceType: "Patient"}`
-      * `{params: {subject: {$reference: {id: '.user.data.patient_id'}}}`
-    * **$contains** — collection must contain at least one match.\
-      Pattern `{type: {$contains: {system: "loinc"}}` matches `{type: [{system: "snomed"}, {system: "loinc"}]}`
-    * **$every** — each item in a collection must satisfy a pattern.\
-      Pattern `{col: {"$every": {foo: "bar"}}` matches `{col: [{foo: "bar"}, {foo: "bar", baz: "quux"}]}`
-    * **$not** — negates a pattern.\
-      Pattern `{message: {$not: {status: private}}` matches {message: `{status: public}}` and does not match `{message: {status: private}}`. **Be careful** using `$not` as it is possible to create **too permissive** policies.
-    * **$present-all** — checks that every element in $present-all are present in the original array, with no sort check. It can be combined with $length.
-    * **$length** — checks the length of the array.
+    ```yaml
+    resourceType: AccessPolicy
+    engine: matcho
+    matcho:
+      request-method: get
+      params:
+        resource/type: Patient
+        $one-of:
+          - name: present?
+          - _id: present?
+          - id: present?
+    ```
+*   **$reference** — parse `Reference` or string into [aidbox format](../../fhir-resources/aidbox-and-fhir-formats.md#references). It is useful to map FHIR reference into resourceType and id like this:
+
+    `{reference: "Patient/pid"}` => `{id: "pid", resourceType: "Patient"}`
+
+Example: `{resource: {patient: {$reference: {id: '.user.data.patient_id'}}}`
+
+* **$contains** — collection must contain at least one match.
+  * Pattern: `{type: {$contains: {system: "loinc"}}`&#x20;
+    * matches `{type: [{system: "snomed"}, {system: "loinc"}]}`
+* **$every** — each item in a collection must satisfy a pattern.
+  * Pattern: `{col: {"$every": {foo: "bar"}}`&#x20;
+    * matches: `{col: [{foo: "bar"}, {foo: "bar", baz: "quux"}]}`
+*   **$not** — negates a pattern.
+
+    * Pattern: `{message: {$not: {status: private}}`&#x20;
+      * matches: `{message: {status: public}}`&#x20;
+      * doesn't match: `{message: {status: private}}`.&#x20;
+
+    **Be careful** when using **$not**, as it is possible to create policies that are too permissive.
 
 {% hint style="warning" %}
 Consider the following policy which uses `$not` key.
 
 ```yaml
-resourceType: AccessPolicy
+sourceType: AccessPolicy
 engine: matcho
 matcho:
   request-method: delete
@@ -226,10 +198,13 @@ matcho:
   user: {$not: {data: {role: guest}}}
 ```
 
-While original intent was to forbid `guest` users to delete `Patient` resources this `AccessPolicy` allows to do `DELETE /Patient/<id>` for all the other users including unauthorized ones. In this case it is better to explicitly list allowed roles with `$enum.`
+While the original intent was to prevent Guest users from deleting Patient resources, this AccessPolicy allows them to perform DELETE /Patient/ for all other users, including unauthorized ones. In this case, it is better to explicitly list allowed roles with **$enum**.
 {% endhint %}
 
-### Examples
+* **$present-all** — checks that every element in $present-all is present in the original array, with no sort check. It can be combined with $length.
+* **$length** — checks the length of the array.
+
+### More examples
 
 ```yaml
 resourceType: AccessPolicy
@@ -253,7 +228,7 @@ matcho:
 ```
 
 ```yaml
-# when searching for encounter require
+# When searching for encounter require
 # practitioner value to be equal to user.data.pract_id
 resourceType: AccessPolicy
 engine: matcho
@@ -276,80 +251,12 @@ matcho:
 ```
 
 {% hint style="info" %}
-Need help with `matcho` engine? Contact us on the [telegram chat](https://t.me/aidbox)!
+Need help with the `matcho` engine? Contact us on the [telegram chat](https://t.me/aidbox)!
 {% endhint %}
-
-## Complex
-
-`complex` engine allows you to combine several rules with `and` and `or` operators. You can use any engine rule to define a rule and even `complex` engine itself but it is forbidden to have both `and` and `or` keys on the same level. Rules are defined as an array of objects which must include an engine with a set of corresponding keys.
-
-### How AND & OR work
-
-Aidbox applies inner policies one after the other top-bottom.
-
-#### AND rule
-
-Aidbox applies polices till one of two evens happens:
-
-1. One policy rejects the access. No further policies are applied. The access is rejected
-2. There is no more policies to evaluate. It means the access is granted
-
-#### OR rule
-
-Aidbox applies policies till at lest one grants the access. If it is happened no further policies are applied.
-
-### Example 1
-
-```yaml
-resourceType: AccessPolicy
-engine: complex
-and:
-  - { engine: "sql", sql: { query: "select true" } }       # check-1
-  - engine: complex
-    or:
-      - { engine: "sql", sql: { query: "select false" } }  # check-2
-      - { engine: "sql", sql: { query: "select false" } }  # check-3
-```
-
-Policy in the example above represents the following logical expression:\
-`check-1 AND (check-2 OR check-3)`
-
-### Example 2
-
-Let's split SQL policy example from above into two separate rules and combine them under `and` rule:
-
-```yaml
-resourceType: AccessPolicy
-engine: complex
-and:
-  # Rule: request.user && request.user.data.practitioner_id are required
-  - engine: json-schema
-    schema:
-      type: object
-      required: ["user"]
-      properties:
-        user:
-          type: object
-          required: ["data"]
-          properties:
-            data:
-              type: object
-              required: ["practitioner_id"]
-  # Rule: current practitioner is patient’s generalPractitioner
-  - engine: sql
-    sql:
-      query: |
-        SELECT
-          {{uri}} LIKE '/fhir/Patient/%'
-          AND resource->'generalPractitioner' @>
-        jsonb_build_array(jsonb_build_object('resourceType',
-            'Practitioner', 'id', {{user.data.practitioner_id}}::text))
-          FROM patient WHERE id = {{params.resource/id}};
-```
 
 ## Allow-RPC
 
-Requires to specify `type: rpc` for `AccessPolicy` resource.
+Requires to specify `type: rpc` in the `AccessPolicy` resource.
 
 `allow-rpc` engine allows access to every RPC endpoint listed under the `rpc` field of the `AccessPolicy` resource.
 
@@ -397,8 +304,143 @@ rpc:
     uri: "/Organization/org-a/rpc"
     # organization id should persist
     tenant/org: "present?"
-    # client.details.org-id field should be equal to current organization id
+    # client.details.org-id field should be equal to the current organization id
     client:
       details:
         org-id: ".tenant/org.id"
+```
+
+## SQL
+
+The `sql` engine executes an SQL statement and uses its return value as an evaluation result. Thus the statement should return a single row with just one column:
+
+```sql
+SELECT true FROM patient WHERE id = {{jwt.patient_id}} LIMIT 1;
+```
+
+SQL statement can refer to request fields with a double curly braces interpolation. The string inside the braces will be used as a path to value in the request object.
+
+The SQL engine is sometimes the only way to perform complex checks when the AccesPolicy needs to check data stored in the database but not in the request context.
+
+### Example
+
+Suppose that we are checking a request that comes with a `User` resource referencing a `Practitioner` through `User.data.practitioner_id` element. The following policy allows requests only to `/fhir/Patient/<patient_id>` URLs and only to those patients who have a `Patient.generalPractitioner` element referencing the same practitioner as a `User` of our current request. In other words, `User` as a `Practitioner` is only allowed to see his own patients — those who reference him as their `generalPractitioner`.
+
+```yaml
+resourceType: AccessPolicy
+id: practitioner-only-allowed-to-see-his-patients
+engine: sql
+sql:
+  query: |
+    SELECT
+      {{user}} IS NOT NULL
+      AND {{user.data.practitioner_id}} IS NOT NULL
+      AND {{uri}} LIKE '/fhir/Patient/%'
+      AND resource->'generalPractitioner' @>
+    jsonb_build_array(jsonb_build_object('resourceType',
+        'Practitioner', 'id', {{user.data.practitioner_id}}::text))
+      FROM patient WHERE id = {{params.resource/id}};
+```
+
+### Interpolation Rules
+
+You can parameterize your SQL queries with request object using `{{path}}` syntax. For example, to get a user role provided  `{user: {data: {role: "admin"}}}` you write `{{user.data.role}}`. Parameter expressions are escaped by default to protect from SQL injection.
+
+For dynamic queries — to parameterize table name, for example — you have to use `{{!path}}` syntax. The expression `SELECT true from {{!params.resource/type}} limit 1` when a request contains `{params: {"resource/type": "Patient"}}` will be transformed into `SELECT true from "patient".` By default, identifier names are double-quoted and lower-cased.
+
+## JSON Schema
+
+`json-schema` engine allows you to use [JSON Schema](https://json-schema.org) to validate the request object. It is specified under `schema` a field of `AccessPolicy` resource. The currently supported JSON Schema version is **draft-07**.
+
+{% hint style="info" %}
+Fields with empty values `— []`, `{}`, `""`, `null` — are removed from the request before access policy checks are applied. Make sure to specify all necessary fields as `required.`
+{% endhint %}
+
+{% hint style="info" %}
+It is recommended to use Matcho engine instead of JSON Schema engine. Matcho engine is more expressive due to its special keys.
+{% endhint %}
+
+### Example
+
+The following policy requires `request.params.resource/type` to be present and have a value of `"Organization"`:
+
+```yaml
+resourceType: AccessPolicy
+engine: json-schema
+schema:
+  properties:
+    params:
+      required: [resource/type]
+    properties:
+      resource/type:
+        const:
+          Organization
+```
+
+## Complex
+
+The `complex` engine allows you to combine several rules with `and` and `or` operators. You can use any engine rule to define a rule and even `complex` engine itself but it is forbidden to have both `and` and `or` keys on the same level. Rules are defined as an array of objects that must include an engine with a set of corresponding keys.
+
+### How AND & OR work
+
+Aidbox applies inner policies one after the other top-bottom.
+
+#### AND rule
+
+Aidbox applies policies till one of two events happens:
+
+1. One policy rejects the access. No further policies are applied. The access is rejected
+2. There are no more policies to evaluate. It means the access is granted
+
+#### OR rule
+
+Aidbox applies policies till at least one grants access. If it has happened no further policies are applied.
+
+### Example 1
+
+```yaml
+resourceType: AccessPolicy
+engine: complex
+and:
+  - { engine: "sql", sql: { query: "select true" } }       # check-1
+  - engine: complex
+    or:
+      - { engine: "sql", sql: { query: "select false" } }  # check-2
+      - { engine: "sql", sql: { query: "select false" } }  # check-3
+```
+
+Policy in the example above represents the following logical expression:\
+`check-1 AND (check-2 OR check-3)`
+
+### Example 2
+
+Let's split the SQL policy example from above into two separate rules and combine them under `and` rule:
+
+```yaml
+resourceType: AccessPolicy
+engine: complex
+and:
+  # Rule: request.user && request.user.data.practitioner_id are required
+  - engine: json-schema
+    schema:
+      type: object
+      required: ["user"]
+      properties:
+        user:
+          type: object
+          required: ["data"]
+          properties:
+            data:
+              type: object
+              required: ["practitioner_id"]
+  # Rule: current practitioner is patient’s generalPractitioner
+  - engine: sql
+    sql:
+      query: |
+        SELECT
+          {{uri}} LIKE '/fhir/Patient/%'
+          AND resource->'generalPractitioner' @>
+        jsonb_build_array(jsonb_build_object('resourceType',
+            'Practitioner', 'id', {{user.data.practitioner_id}}::text))
+          FROM patient WHERE id = {{params.resource/id}};
 ```
