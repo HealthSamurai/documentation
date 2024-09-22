@@ -996,6 +996,7 @@ Progetto FHIR per Regione Lombardia
 
 **Versions**
 
+* `rl.fhir.r4.draft#0.1.2`
 * `rl.fhir.r4.draft#0.1.1`
 * `rl.fhir.r4.draft#0.1.0`
 * `rl.fhir.r4.draft#0.0.23`
@@ -2007,6 +2008,28 @@ Implementation Guide for CH ATC (Audit Trail Consumption) (built Fri, May 17, 20
 
 ---
 
+### MII IG Fall
+
+<details>
+<summary>Description</summary>
+
+Medizininformatik Initiative - Modul Fall
+
+</details>
+
+**Versions**
+
+* `de.medizininformatikinitiative.kerndatensatz.fall#2024.1.0-alpha2`
+* `de.medizininformatikinitiative.kerndatensatz.fall#2024.1.0-alpha1`
+* `de.medizininformatikinitiative.kerndatensatz.fall#2024.0.1`
+* `de.medizininformatikinitiative.kerndatensatz.fall#2024.0.0`
+* `de.medizininformatikinitiative.kerndatensatz.fall#2024.0.0-ballot`
+* `de.medizininformatikinitiative.kerndatensatz.fall#2024.0.0-alpha6`
+* `de.medizininformatikinitiative.kerndatensatz.fall#1.0.1`
+
+
+---
+
 ### Central Cancer Registry Reporting Content IG
 
 <details>
@@ -2169,6 +2192,7 @@ Progetto FHIR per Regione Lombardia
 
 **Versions**
 
+* `rl.fhir.r4#0.0.15`
 * `rl.fhir.r4#0.0.14`
 * `rl.fhir.r4#0.0.13`
 * `rl.fhir.r4#0.0.12`
@@ -3275,7 +3299,6 @@ Dies ist ein Bug-Fix, siehe https://github.com/medizininformatik-initiative/kern
 * `de.medizininformatikinitiative.kerndatensatz.consent#1.0.6`
 * `de.medizininformatikinitiative.kerndatensatz.consent#1.0.5`
 * `de.medizininformatikinitiative.kerndatensatz.consent#1.0.4`
-* `de.medizininformatikinitiative.kerndatensatz.consent#1.0.3`
 * `de.medizininformatikinitiative.kerndatensatz.consent#1.0.2`
 * `de.medizininformatikinitiative.kerndatensatz.consent#1.0.1`
 * `de.medizininformatikinitiative.kerndatensatz.consent#1.0.0-ballot1`
@@ -3496,15 +3519,11 @@ Projekt Basisprofilierung R4 (HL7 Deutschland e.V.)
 * `de.basisprofil.r4#1.5.0-ballot3`
 * `de.basisprofil.r4#1.5.0-ballot2`
 * `de.basisprofil.r4#1.5.0-ballot`
-* `de.basisprofil.r4#1.5.0-alpha9`
 * `de.basisprofil.r4#1.5.0-alpha6`
 * `de.basisprofil.r4#1.5.0-alpha5`
 * `de.basisprofil.r4#1.5.0-alpha4`
-* `de.basisprofil.r4#1.5.0-alpha3`
 * `de.basisprofil.r4#1.5.0-alpha2`
 * `de.basisprofil.r4#1.5.0-alpha10`
-* `de.basisprofil.r4#1.5.0-alpha1`
-* `de.basisprofil.r4#1.4.0`
 
 
 ---
@@ -3592,22 +3611,6 @@ Building an Implementation Guide and Package with Simplifier.net
 
 ---
 
-### de.gkvsv.evp
-
-<details>
-<summary>Description</summary>
-
-elekronischer Versorgungsplan Pflege
-
-</details>
-
-**Versions**
-
-* `de.gkvsv.evp#1.0.0-rc1`
-
-
----
-
 ### ca.ab.fhir.psab
 
 <details>
@@ -3621,19 +3624,13 @@ Drafted Implementation Guide for Alberta Patient Summary (PS-AB)
 
 * `ca.ab.fhir.psab#1.0.1`
 * `ca.ab.fhir.psab#1.0.0`
-* `ca.ab.fhir.psab#0.3.0-pre9`
-* `ca.ab.fhir.psab#0.3.0-pre8`
 * `ca.ab.fhir.psab#0.3.0-pre7`
 * `ca.ab.fhir.psab#0.3.0-pre6`
 * `ca.ab.fhir.psab#0.3.0-pre5`
 * `ca.ab.fhir.psab#0.3.0-pre4`
-* `ca.ab.fhir.psab#0.3.0-pre3`
 * `ca.ab.fhir.psab#0.3.0-pre2`
 * `ca.ab.fhir.psab#0.3.0-pre14`
-* `ca.ab.fhir.psab#0.3.0-pre13`
 * `ca.ab.fhir.psab#0.3.0-pre12`
-* `ca.ab.fhir.psab#0.3.0-pre11`
-* `ca.ab.fhir.psab#0.3.0-pre10`
 * `ca.ab.fhir.psab#0.3.0-pre1`
 
 
@@ -3774,22 +3771,6 @@ FHIR Implementation Guide representing a Clinical Study Schedule of Activities (
 **Versions**
 
 * `phis.ig.createtest#0.0.2`
-
-
----
-
-### myhie.v4
-
-<details>
-<summary>Description</summary>
-
-Malaysia Health Information Exchange
-
-</details>
-
-**Versions**
-
-* `myhie.v4#1.0.0`
 
 
 ---
@@ -4273,6 +4254,7 @@ PLSP Health Hub
 
 **Versions**
 
+* `healthhub.fhir.dk.core#1.0.12`
 * `healthhub.fhir.dk.core#1.0.11`
 * `healthhub.fhir.dk.core#1.0.10`
 * `healthhub.fhir.dk.core#1.0.9`
@@ -5728,6 +5710,7 @@ Ontario Health
 * `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.20`
 * `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.19`
 * `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.18`
+* `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.17`
 * `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.16`
 * `accdr.fhir.ig.pkg#0.9.18`
 * `accdr.fhir.ig.pkg#0.9.15`
@@ -5814,9 +5797,7 @@ Package Release des ISiK Modul Terminplanung
 * `de.gematik.isik-terminplanung#3.0.4`
 * `de.gematik.isik-terminplanung#3.0.3`
 * `de.gematik.isik-terminplanung#3.0.2`
-* `de.gematik.isik-terminplanung#2.0.5`
 * `de.gematik.isik-terminplanung#2.0.4`
-* `de.gematik.isik-terminplanung#2.0.3`
 
 
 ---
@@ -7123,24 +7104,6 @@ Medizininformatik Initiative - Modul Diagnose
 
 ---
 
-### Health New Zealand Te Whatu Ora Digital Tooling Implementation Guide
-
-<details>
-<summary>Description</summary>
-
-FHIR profiles used in FHIR Publishing processes within Health New Zealand Te Whatu Ora (built Mon, Jun 17, 2024 02:48+0000+00:00)
-
-</details>
-
-**Versions**
-
-* `tewhatuora.digitaltooling.iguat#0.0.6`
-* `tewhatuora.digitaltooling.iguat#0.0.5`
-* `tewhatuora.digitaltooling.iguat#0.0.4`
-
-
----
-
 ### IdHIE.0v
 
 <details>
@@ -7565,12 +7528,13 @@ FHIR® Implementation Guide for Laboratory Reports in Switzerland (built Fri, Ma
 <details>
 <summary>Description</summary>
 
-A brief description of what udsplus is about (probably the same text as in your readme) (built Fri, Dec 1, 2023 16:16+1100+11:00)
+A brief description of what udsplus is about (probably the same text as in your readme) (built Fri, Sep 20, 2024 09:28-0400-04:00)
 
 </details>
 
 **Versions**
 
+* `fhir.hrsa.uds-plus#1.1.0`
 * `fhir.hrsa.uds-plus#1.0.1`
 
 
@@ -7948,24 +7912,6 @@ rede de dados em saúde da cidade X
 
 ---
 
-### Rastreamento de Câncer de Colo de Útero
-
-<details>
-<summary>Description</summary>
-
-EXPERIMENTAÇÃO (apenas para experimentação)
-Projeto realizado pela cooperação UFG e INCA para o Ministério da Saúde (Brasil)
-Detalhes em https://github.com/kyriosdata/farol 
-
-</details>
-
-**Versions**
-
-* `br.gov.saude.ccu#0.0.1`
-
-
----
-
 ### furore.test.fsh.demo
 
 <details>
@@ -8314,6 +8260,7 @@ Die ePA-Medication Spezifikation
 * `de.gematik.epa.medication#1.1.1`
 * `de.gematik.epa.medication#1.1.0-rc1`
 * `de.gematik.epa.medication#1.0.3`
+* `de.gematik.epa.medication#1.0.2`
 * `de.gematik.epa.medication#1.0.1`
 * `de.gematik.epa.medication#1.0.0`
 * `de.gematik.epa.medication#1.0.2-rc1`
@@ -8406,11 +8353,8 @@ Defines and exposes all HL7 terminologies managed through the unified terminolog
 * `hl7.terminology#5.2.0`
 * `hl7.terminology#5.1.0`
 * `hl7.terminology#4.0.0`
-* `hl7.terminology#3.1.0`
-* `hl7.terminology#3.0.0`
 * `hl7.terminology#2.1.0`
 * `hl7.terminology#2.0.0`
-* `hl7.terminology#1.0.0`
 
 
 ---
@@ -8655,12 +8599,9 @@ Medikations-Modul der Informationstechnischen Systeme im Krankenhaus Ausbaustufe
 
 * `de.gematik.isik-medikation#4.0.0-rc2`
 * `de.gematik.isik-medikation#4.0.0-rc`
-* `de.gematik.isik-medikation#3.0.3`
 * `de.gematik.isik-medikation#3.0.2`
-* `de.gematik.isik-medikation#3.0.1`
 * `de.gematik.isik-medikation#3.0.0`
 * `de.gematik.isik-medikation#2.0.3`
-* `de.gematik.isik-medikation#2.0.2`
 
 
 ---
@@ -8936,22 +8877,6 @@ ACME Base Profiles that ACME projects and products can build upon.
 * `acme.base#0.0.2`
 * `acme.base#0.0.1`
 * `acme.base#0.0.10-no-move-examples`
-
-
----
-
-### ch.cel.thetest2-core
-
-<details>
-<summary>Description</summary>
-
-Project for testing packaging
-
-</details>
-
-**Versions**
-
-* `ch.cel.thetest2-core#0.8.1`
 
 
 ---
@@ -9296,6 +9221,7 @@ FHIR Genomics Implementation Guide FHIR Assets
 
 **Versions**
 
+* `uk.nhsengland.genomics.r4#0.4.0-prerelease`
 * `uk.nhsengland.genomics.r4#0.3.2`
 * `uk.nhsengland.genomics.r4#0.3.1`
 * `uk.nhsengland.genomics.r4#0.3.0`
@@ -9482,6 +9408,7 @@ ACME Base Profiles R4
 * `acme.base.r4#4.0.1`
 * `acme.base.r4#4.0.0`
 * `acme.base.r4#3.0.0`
+* `acme.base.r4#2.0.0`
 * `acme.base.r4#1.0.0`
 * `acme.base.r4#1.0.0-beta2`
 * `acme.base.r4#0.0.1-alpha2`
@@ -10194,7 +10121,6 @@ Defines and exposes all HL7 terminologies managed through the unified terminolog
 
 * `hl7.terminology.r4#6.0.2`
 * `hl7.terminology.r4#6.0.1`
-* `hl7.terminology.r4#6.0.0`
 * `hl7.terminology.r4#5.5.0`
 * `hl7.terminology.r4#5.4.0`
 * `hl7.terminology.r4#5.3.0`
@@ -10800,6 +10726,7 @@ This implementation guide is provided to support the use of FHIR®© in an Austr
 * `hl7.fhir.au.base#4.1.2-preview`
 * `hl7.fhir.au.base#4.1.1-preview`
 * `hl7.fhir.au.base#4.1.0-ballot`
+* `hl7.fhir.au.base#4.0.0`
 * `hl7.fhir.au.base#2.2.0-ballot`
 * `hl7.fhir.au.base#2.0.0`
 * `hl7.fhir.au.base#0.5.0`
@@ -11305,6 +11232,7 @@ Put a description here
 **Versions**
 
 * `de.gematik.isik-basismodul#4.0.0`
+* `de.gematik.isik-basismodul#4.0.0-rc3`
 * `de.gematik.isik-basismodul#4.0.0-rc2`
 * `de.gematik.isik-basismodul#4.0.0-rc`
 * `de.gematik.isik-basismodul#3.0.5`
@@ -11462,30 +11390,6 @@ elektronisches Medikations-Datenaustauschformat
 * `de.gevko.emdaf#1.1.0`
 * `de.gevko.emdaf#1.0.0`
 * `de.gevko.emdaf#0.9.0`
-
-
----
-
-### Canadian Baseline
-
-<details>
-<summary>Description</summary>
-
-Canadian Baseline (CA Baseline) FHIR Profiles
-
-The goal of the CA Baseline specification is to expose the implementation guide author community and vendor community to a set of profiles that identify the data elements, code systems and value sets that are commonly present across Canada for a given FHIR resource (e.g., patient, medication, etc.) regardless of use case, jurisdiction or implementation.
-
-</details>
-
-**Versions**
-
-* `hl7.fhir.ca.baseline#1.1.8`
-* `hl7.fhir.ca.baseline#1.1.7`
-* `hl7.fhir.ca.baseline#1.1.6`
-* `hl7.fhir.ca.baseline#1.1.4`
-* `hl7.fhir.ca.baseline#1.1.3`
-* `hl7.fhir.ca.baseline#1.1.6-pre`
-* `hl7.fhir.ca.baseline#1.1.5-pre`
 
 
 ---
@@ -11841,6 +11745,8 @@ Verzeichnisdienst der Telematikinfrastruktur
 
 **Versions**
 
+* `de.gematik.fhir.directory#0.11.15`
+* `de.gematik.fhir.directory#0.11.14`
 * `de.gematik.fhir.directory#0.11.13`
 * `de.gematik.fhir.directory#0.11.12`
 * `de.gematik.fhir.directory#0.11.11`
@@ -12313,6 +12219,7 @@ FHIR-based Implementation Guide for Ontario Provincial Provider Registry System
 **Versions**
 
 * `ca.on.ppr.r4#1.2.0`
+* `ca.on.ppr.r4#1.1.0`
 * `ca.on.ppr.r4#1.0.0-beta`
 
 
@@ -12776,7 +12683,6 @@ The Bidirectional Services eReferral (BSeR) FHIR implementation guide provides g
 
 * `hl7.fhir.us.bser#2.0.0-ballot`
 * `hl7.fhir.us.bser#1.0.0`
-* `hl7.fhir.us.bser#0.2.0`
 
 
 ---
@@ -12788,7 +12694,6 @@ The Bidirectional Services eReferral (BSeR) FHIR implementation guide provides g
 **Versions**
 
 * `ans.fhir.fr.sdo#4.0.2`
-* `ans.fhir.fr.sdo#4.0.1`
 * `ans.fhir.fr.sdo#4.0.2-ballot-3`
 * `ans.fhir.fr.sdo#4.0.2-ballot-2`
 
@@ -13100,26 +13005,6 @@ Danish municipalities implementation guide for common informationmodel (built We
 
 * `dk.fhir.ig.kl.common.caresocial#0.1.7`
 * `dk.fhir.ig.kl.common.caresocial#0.1.6`
-
-
----
-
-### DK MedCom Carecommunication
-
-<details>
-<summary>Description</summary>
-
-The DK MedCom Carecommunication IG (built Thu, Jul 18, 2024 11:41+0200+02:00)
-
-</details>
-
-**Versions**
-
-* `medcom.fhir.dk.carecommunication#4.0.1`
-* `medcom.fhir.dk.carecommunication#4.0.0`
-* `medcom.fhir.dk.carecommunication#3.0.0`
-* `medcom.fhir.dk.carecommunication#2.1.0`
-* `medcom.fhir.dk.carecommunication#2.0.0`
 
 
 ---
