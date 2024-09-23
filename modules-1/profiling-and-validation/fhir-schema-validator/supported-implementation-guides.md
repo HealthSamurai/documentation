@@ -1700,7 +1700,6 @@ Projekt Basisprofilierung (DE) (R4) (Tiplu GmbH)
 
 **Versions**
 
-* `basisprofil.tiplu.de.r4#1.1.3`
 * `basisprofil.tiplu.de.r4#1.1.2`
 * `basisprofil.tiplu.de.r4#1.1.1`
 * `basisprofil.tiplu.de.r4#1.1.0`
@@ -3299,6 +3298,7 @@ Dies ist ein Bug-Fix, siehe https://github.com/medizininformatik-initiative/kern
 * `de.medizininformatikinitiative.kerndatensatz.consent#1.0.6`
 * `de.medizininformatikinitiative.kerndatensatz.consent#1.0.5`
 * `de.medizininformatikinitiative.kerndatensatz.consent#1.0.4`
+* `de.medizininformatikinitiative.kerndatensatz.consent#1.0.3`
 * `de.medizininformatikinitiative.kerndatensatz.consent#1.0.2`
 * `de.medizininformatikinitiative.kerndatensatz.consent#1.0.1`
 * `de.medizininformatikinitiative.kerndatensatz.consent#1.0.0-ballot1`
@@ -3519,11 +3519,15 @@ Projekt Basisprofilierung R4 (HL7 Deutschland e.V.)
 * `de.basisprofil.r4#1.5.0-ballot3`
 * `de.basisprofil.r4#1.5.0-ballot2`
 * `de.basisprofil.r4#1.5.0-ballot`
+* `de.basisprofil.r4#1.5.0-alpha9`
 * `de.basisprofil.r4#1.5.0-alpha6`
 * `de.basisprofil.r4#1.5.0-alpha5`
 * `de.basisprofil.r4#1.5.0-alpha4`
+* `de.basisprofil.r4#1.5.0-alpha3`
 * `de.basisprofil.r4#1.5.0-alpha2`
 * `de.basisprofil.r4#1.5.0-alpha10`
+* `de.basisprofil.r4#1.5.0-alpha1`
+* `de.basisprofil.r4#1.4.0`
 
 
 ---
@@ -3611,6 +3615,22 @@ Building an Implementation Guide and Package with Simplifier.net
 
 ---
 
+### de.gkvsv.evp
+
+<details>
+<summary>Description</summary>
+
+elekronischer Versorgungsplan Pflege
+
+</details>
+
+**Versions**
+
+* `de.gkvsv.evp#1.0.0-rc1`
+
+
+---
+
 ### ca.ab.fhir.psab
 
 <details>
@@ -3624,13 +3644,19 @@ Drafted Implementation Guide for Alberta Patient Summary (PS-AB)
 
 * `ca.ab.fhir.psab#1.0.1`
 * `ca.ab.fhir.psab#1.0.0`
+* `ca.ab.fhir.psab#0.3.0-pre9`
+* `ca.ab.fhir.psab#0.3.0-pre8`
 * `ca.ab.fhir.psab#0.3.0-pre7`
 * `ca.ab.fhir.psab#0.3.0-pre6`
 * `ca.ab.fhir.psab#0.3.0-pre5`
 * `ca.ab.fhir.psab#0.3.0-pre4`
+* `ca.ab.fhir.psab#0.3.0-pre3`
 * `ca.ab.fhir.psab#0.3.0-pre2`
 * `ca.ab.fhir.psab#0.3.0-pre14`
+* `ca.ab.fhir.psab#0.3.0-pre13`
 * `ca.ab.fhir.psab#0.3.0-pre12`
+* `ca.ab.fhir.psab#0.3.0-pre11`
+* `ca.ab.fhir.psab#0.3.0-pre10`
 * `ca.ab.fhir.psab#0.3.0-pre1`
 
 
@@ -3771,6 +3797,22 @@ FHIR Implementation Guide representing a Clinical Study Schedule of Activities (
 **Versions**
 
 * `phis.ig.createtest#0.0.2`
+
+
+---
+
+### myhie.v4
+
+<details>
+<summary>Description</summary>
+
+Malaysia Health Information Exchange
+
+</details>
+
+**Versions**
+
+* `myhie.v4#1.0.0`
 
 
 ---
@@ -4074,6 +4116,36 @@ de.ihe-d.terminology
 
 ---
 
+### HL7 Terminology (THO)
+
+<details>
+<summary>Description</summary>
+
+Defines and exposes all HL7 terminologies managed through the unified terminology governance process (built Sun, Jul 21, 2024 00:17-0600-06:00)
+
+</details>
+
+**Versions**
+
+* `hl7.terminology.r4b#6.0.2`
+* `hl7.terminology.r4b#6.0.1`
+* `hl7.terminology.r4b#6.0.0`
+* `hl7.terminology.r4b#5.5.0`
+* `hl7.terminology.r4b#5.4.0`
+* `hl7.terminology.r4b#5.3.0`
+* `hl7.terminology.r4b#5.2.0`
+* `hl7.terminology.r4b#5.1.0`
+* `hl7.terminology.r4b#5.0.0`
+* `hl7.terminology.r4b#4.0.0`
+* `hl7.terminology.r4b#3.1.0`
+* `hl7.terminology.r4b#3.0.0`
+* `hl7.terminology.r4b#2.1.0`
+* `hl7.terminology.r4b#2.0.0`
+* `hl7.terminology.r4b#1.0.0`
+
+
+---
+
 ### CH IG (R4)
 
 <details>
@@ -4098,7 +4170,6 @@ Implementation Guide CH IG (R4) for ... (built Wed, Aug 21, 2024 06:24+0000+00:0
 **Versions**
 
 * `hl7.fhir.uv.smart-app-launch#2.2.0`
-* `hl7.fhir.uv.smart-app-launch#2.2.0-ballot`
 * `hl7.fhir.uv.smart-app-launch#2.1.0`
 * `hl7.fhir.uv.smart-app-launch#2.1.0-ballot`
 * `hl7.fhir.uv.smart-app-launch#1.1.0`
@@ -5797,7 +5868,9 @@ Package Release des ISiK Modul Terminplanung
 * `de.gematik.isik-terminplanung#3.0.4`
 * `de.gematik.isik-terminplanung#3.0.3`
 * `de.gematik.isik-terminplanung#3.0.2`
+* `de.gematik.isik-terminplanung#2.0.5`
 * `de.gematik.isik-terminplanung#2.0.4`
+* `de.gematik.isik-terminplanung#2.0.3`
 
 
 ---
@@ -6473,18 +6546,17 @@ Let's Build - Profiles with Forge
 
 ---
 
-### SIL-TH FHIR Extension Library (STU2)
+### SIL-TH FHIR Extension Library (STU1)
 
 <details>
 <summary>Description</summary>
 
-An extension registry which an be cited by FHIR artifacts (built Thu, Oct 12, 2023 00:10+0700+07:00)
+An extension registry which an be cited by FHIR artifacts (built Sat, Sep 9, 2023 14:19+0700+07:00)
 
 </details>
 
 **Versions**
 
-* `silth.fhir.th.extensions#1.0.0`
 * `silth.fhir.th.extensions#0.1.0`
 
 
@@ -7104,6 +7176,24 @@ Medizininformatik Initiative - Modul Diagnose
 
 ---
 
+### Health New Zealand Te Whatu Ora Digital Tooling Implementation Guide
+
+<details>
+<summary>Description</summary>
+
+FHIR profiles used in FHIR Publishing processes within Health New Zealand Te Whatu Ora (built Mon, Jun 17, 2024 02:48+0000+00:00)
+
+</details>
+
+**Versions**
+
+* `tewhatuora.digitaltooling.iguat#0.0.6`
+* `tewhatuora.digitaltooling.iguat#0.0.5`
+* `tewhatuora.digitaltooling.iguat#0.0.4`
+
+
+---
+
 ### IdHIE.0v
 
 <details>
@@ -7670,7 +7760,6 @@ Laniado Hospital Test Project
 * `laniado.test.fhir.r4#0.1.50`
 * `laniado.test.fhir.r4#0.1.49`
 * `laniado.test.fhir.r4#0.1.48`
-* `laniado.test.fhir.r4#0.1.47`
 * `laniado.test.fhir.r4#0.1.46`
 * `laniado.test.fhir.r4#0.1.45`
 * `laniado.test.fhir.r4#0.1.44`
@@ -7908,6 +7997,24 @@ rede de dados em saúde da cidade X
 **Versions**
 
 * `cidadex.testex#1.0.1-beta`
+
+
+---
+
+### Rastreamento de Câncer de Colo de Útero
+
+<details>
+<summary>Description</summary>
+
+EXPERIMENTAÇÃO (apenas para experimentação)
+Projeto realizado pela cooperação UFG e INCA para o Ministério da Saúde (Brasil)
+Detalhes em https://github.com/kyriosdata/farol 
+
+</details>
+
+**Versions**
+
+* `br.gov.saude.ccu#0.0.1`
 
 
 ---
@@ -8353,8 +8460,11 @@ Defines and exposes all HL7 terminologies managed through the unified terminolog
 * `hl7.terminology#5.2.0`
 * `hl7.terminology#5.1.0`
 * `hl7.terminology#4.0.0`
+* `hl7.terminology#3.1.0`
+* `hl7.terminology#3.0.0`
 * `hl7.terminology#2.1.0`
 * `hl7.terminology#2.0.0`
+* `hl7.terminology#1.0.0`
 
 
 ---
@@ -8599,9 +8709,12 @@ Medikations-Modul der Informationstechnischen Systeme im Krankenhaus Ausbaustufe
 
 * `de.gematik.isik-medikation#4.0.0-rc2`
 * `de.gematik.isik-medikation#4.0.0-rc`
+* `de.gematik.isik-medikation#3.0.3`
 * `de.gematik.isik-medikation#3.0.2`
+* `de.gematik.isik-medikation#3.0.1`
 * `de.gematik.isik-medikation#3.0.0`
 * `de.gematik.isik-medikation#2.0.3`
+* `de.gematik.isik-medikation#2.0.2`
 
 
 ---
@@ -8881,6 +8994,22 @@ ACME Base Profiles that ACME projects and products can build upon.
 
 ---
 
+### ch.cel.thetest2-core
+
+<details>
+<summary>Description</summary>
+
+Project for testing packaging
+
+</details>
+
+**Versions**
+
+* `ch.cel.thetest2-core#0.8.1`
+
+
+---
+
 ### Implementierungsleitfaden DEMIS - Erregernachweismeldung
 
 <details>
@@ -8928,7 +9057,6 @@ A set of profiles that define the data elements needed to detect conditions and 
 
 * `hl7.fhir.us.icsr-ae-reporting#1.0.1`
 * `hl7.fhir.us.icsr-ae-reporting#1.0.0`
-* `hl7.fhir.us.icsr-ae-reporting#0.1.0`
 
 
 ---
@@ -9692,23 +9820,6 @@ COVID-19-related FHIR resources and IG material published by D4L Data4Life gGmbH
 
 ---
 
-### Estonian Base Implementation Guide
-
-<details>
-<summary>Description</summary>
-
-Estonian HL7 FHIR base Implementation Guide and profiles.
-
-</details>
-
-**Versions**
-
-* `ee.hl7.fhir.base.r5#1.0.2`
-* `ee.hl7.fhir.base.r5#1.0.1`
-
-
----
-
 ### iteyes.myhw.core
 
 <details>
@@ -10121,6 +10232,7 @@ Defines and exposes all HL7 terminologies managed through the unified terminolog
 
 * `hl7.terminology.r4#6.0.2`
 * `hl7.terminology.r4#6.0.1`
+* `hl7.terminology.r4#6.0.0`
 * `hl7.terminology.r4#5.5.0`
 * `hl7.terminology.r4#5.4.0`
 * `hl7.terminology.r4#5.3.0`
@@ -11394,6 +11506,30 @@ elektronisches Medikations-Datenaustauschformat
 
 ---
 
+### Canadian Baseline
+
+<details>
+<summary>Description</summary>
+
+Canadian Baseline (CA Baseline) FHIR Profiles
+
+The goal of the CA Baseline specification is to expose the implementation guide author community and vendor community to a set of profiles that identify the data elements, code systems and value sets that are commonly present across Canada for a given FHIR resource (e.g., patient, medication, etc.) regardless of use case, jurisdiction or implementation.
+
+</details>
+
+**Versions**
+
+* `hl7.fhir.ca.baseline#1.1.8`
+* `hl7.fhir.ca.baseline#1.1.7`
+* `hl7.fhir.ca.baseline#1.1.6`
+* `hl7.fhir.ca.baseline#1.1.4`
+* `hl7.fhir.ca.baseline#1.1.3`
+* `hl7.fhir.ca.baseline#1.1.6-pre`
+* `hl7.fhir.ca.baseline#1.1.5-pre`
+
+
+---
+
 ### FHIR Bulk Data Access
 
 
@@ -12010,7 +12146,6 @@ Guidelines for conveying coverage requirements to clinicians when planning treat
 **Versions**
 
 * `hl7.fhir.us.davinci-crd#2.0.1`
-* `hl7.fhir.us.davinci-crd#2.0.0`
 * `hl7.fhir.us.davinci-crd#1.1.0-ballot`
 * `hl7.fhir.us.davinci-crd#1.0.0`
 * `hl7.fhir.us.davinci-crd#0.3.0`
@@ -12683,6 +12818,7 @@ The Bidirectional Services eReferral (BSeR) FHIR implementation guide provides g
 
 * `hl7.fhir.us.bser#2.0.0-ballot`
 * `hl7.fhir.us.bser#1.0.0`
+* `hl7.fhir.us.bser#0.2.0`
 
 
 ---
@@ -12694,6 +12830,7 @@ The Bidirectional Services eReferral (BSeR) FHIR implementation guide provides g
 **Versions**
 
 * `ans.fhir.fr.sdo#4.0.2`
+* `ans.fhir.fr.sdo#4.0.1`
 * `ans.fhir.fr.sdo#4.0.2-ballot-3`
 * `ans.fhir.fr.sdo#4.0.2-ballot-2`
 
@@ -13005,6 +13142,26 @@ Danish municipalities implementation guide for common informationmodel (built We
 
 * `dk.fhir.ig.kl.common.caresocial#0.1.7`
 * `dk.fhir.ig.kl.common.caresocial#0.1.6`
+
+
+---
+
+### DK MedCom Carecommunication
+
+<details>
+<summary>Description</summary>
+
+The DK MedCom Carecommunication IG (built Thu, Jul 18, 2024 11:41+0200+02:00)
+
+</details>
+
+**Versions**
+
+* `medcom.fhir.dk.carecommunication#4.0.1`
+* `medcom.fhir.dk.carecommunication#4.0.0`
+* `medcom.fhir.dk.carecommunication#3.0.0`
+* `medcom.fhir.dk.carecommunication#2.1.0`
+* `medcom.fhir.dk.carecommunication#2.0.0`
 
 
 ---
