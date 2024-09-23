@@ -41,7 +41,7 @@ Once the configuration is updated, start Aidbox.
 To force Aidbox produce audit events, run any FHIR CRUD operation, e.g.
 
 ```yaml
-POST /Patient
+POST /fhir/Patient
 content-type: text/yaml
 accept: text/yaml
 
@@ -58,9 +58,9 @@ To see audit logs with FHIR API, run `GET /fhir/AuditEvent?_sort=-createdAt`
 
 ## Find audit logs with Audit log viewer application
 
-To see audit logs with Audit event viewer app, go to Aidbox Console UI → Audit events.
+To see audit logs with Audit event viewer app, go to Aidbox Console UI → Audit Log.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-09-07 at 12.39.24 (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2024-09-23 at 15.19.38.png" alt=""><figcaption></figcaption></figure>
 
 And find the audit event, produced by patient create operation.
 
