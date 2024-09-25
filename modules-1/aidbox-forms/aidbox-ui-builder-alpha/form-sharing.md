@@ -9,6 +9,10 @@ Aidbox Forms supports two main scenarios for sharing forms with users:
 1. [Sharing a Form Link with the User](form-sharing.md#sharing-a-form-link-with-the-user)
 2. [Embed the Form via iframe into an application or website](form-sharing.md#embed-the-form-via-iframe-into-an-application-or-website)
 
+{% hint style="warning" %}
+To use **form sharing**, you must explicitly[ configure RSA private/public keys and a secret](https://docs.aidbox.app/reference/configuration/environment-variables/optional-environment-variables#set-up-rsa-private-public-keys-and-secret).
+{% endhint %}
+
 ## Sharing a Form Link with the User
 
 After creating a form, you can generate a link to the form and send it to the user via email or any other messenger for him to fill out. Here's how you can do it:
@@ -25,7 +29,7 @@ After creating a form, you can generate a link to the form and send it to the us
    * Send the message containing the link to the user or users who need to fill out the form.
 5. **User Fills Out the Form:**
    * When the user clicks on the link, they will be directed to the form.
-   * The user can then fill out the form online (or [offline](./offline-forms.md)) and submit it.
+   * The user can then fill out the form online (or [offline](offline-forms.md)) and submit it.
 6. **Review Responses:**
    * After the user submits the form, you can access and review their responses within Aidbox Forms.
 
@@ -35,8 +39,6 @@ You can set up the user redirect after the user submits the form. Look [here](..
 Default behavior when the user remains on the page with a completed form
 {% endhint %}
 
-
-
 ## Embed the Form via iframe into an application or website
 
 After creating a form, you can generate an iframe code for this form and embed it into your application's HTML or website where you want the form to appear. Here's how you can do it:
@@ -45,13 +47,13 @@ After creating a form, you can generate an iframe code for this form and embed i
    * Choose the form you want to embed from your list of forms.
 2. **Generate the iframe Code:**
    * Use the "Share" option within the Aidbox Forms interface.
-   * Generate the link via[ $populatelink ](../../../reference/aidbox-forms/fhir-sdc-api.md#populate-questionnaire-and-generate-a-link-usdpopulatelink)FHIR SDC operation and use it with iframe. &#x20;
+   * Generate the link via[ $populatelink ](../../../reference/aidbox-forms/fhir-sdc-api.md#populate-questionnaire-and-generate-a-link-usdpopulatelink)FHIR SDC operation and use it with iframe.
 
 ```
 <iframe src="your-generated-link"></iframe>
 ```
 
-3. **Copy the iframe Code:**&#x20;
+3. **Copy the iframe Code:**
    * Once the iframe code is generated, copy it to your clipboard.
 4. **Embed into Your Application's HTML:**
    * Open your application's HTML file where you want the form to appear.
