@@ -28,7 +28,9 @@ The **Form Templates** tab is the default view when you navigate to the Forms pa
 **Additional Actions (Accessible via the Three Dots Menu):**
 
 * **Duplicate Form**: Duplicating a form creates a new form with a unique title and URL.
-* **Delete Form**: You can delete a form template from the database. When attempting to delete a form, the system checks if the form is in use or if there are any responses associated with it. If applicable, you will be prompted to confirm whether you want to proceed with deletion.
+* **Delete Form**: You can delete a form template from Form Templates list. At the same time it will be deleted in the database too.&#x20;
+  * When attempting to delete a form, the system checks if the form is in use or if there are any responses associated with it. If applicable, you will be prompted to confirm whether you want to proceed with deletion.
+  * This option is available only for a form in  `draft` status.
 
 ## **Responses**
 
