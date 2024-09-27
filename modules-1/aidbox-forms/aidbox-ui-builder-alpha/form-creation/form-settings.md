@@ -121,7 +121,9 @@ an expression name _patient_, prefixed with _%_ symbol.
 
 For more details of usage, look at how-to guide [here](how-to-guides/how-to.md).
 
-### Additional Information
+
+
+## Additional Information Settings
 
 In this section, you can add additional information to the form that will be needed when publishing the form.
 
@@ -133,4 +135,19 @@ In this section, you can add additional information to the form that will be nee
 
 **Description** - a free text natural language description of the questionnaire. This description can be used to capture details such as why the questionnaire was built, comments about misuse, instructions for clinical use and interpretation, literature references, examples from the paper world, etc.
 
-**Copyright** - a copyright statement relating to the questionnaire and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the questionnaire.\\
+**Copyright** - a copyright statement relating to the questionnaire and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the questionnaire.
+
+
+
+
+
+## Appearance Settings
+
+In this section, you can configure the appearance of your forms, ensuring they display correctly across different devices.
+
+**Max Form Width:**
+
+* The default form width is set to **960 pixels**.
+* User can adjust the **maximum width** of the form based on your preferences. The form will be displayed at the maximum width, provided that the device on which the form is opened supports this size.
+
+To ensure the form appears as intended, you can use the **Form Preview** feature to see how the form looks with the specified maximum width.
