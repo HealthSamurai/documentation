@@ -977,7 +977,6 @@ This package contains profiles to check conformance to the Nictiz profiling guid
 * `nictiz.fhir.nl.r4.profilingguidelines#0.8.0`
 * `nictiz.fhir.nl.r4.profilingguidelines#0.7.0`
 * `nictiz.fhir.nl.r4.profilingguidelines#0.6.0`
-* `nictiz.fhir.nl.r4.profilingguidelines#0.5.0`
 * `nictiz.fhir.nl.r4.profilingguidelines#0.4.0`
 * `nictiz.fhir.nl.r4.profilingguidelines#0.3.0`
 * `nictiz.fhir.nl.r4.profilingguidelines#0.2.0`
@@ -1078,7 +1077,6 @@ These requirements were originally developed, balloted, and published in FHIR DS
 * `hl7.fhir.us.core#7.0.0-ballot`
 * `hl7.fhir.us.core#6.1.0`
 * `hl7.fhir.us.core#6.1.0-snapshot1`
-* `hl7.fhir.us.core#6.0.0`
 * `hl7.fhir.us.core#6.0.0-ballot`
 * `hl7.fhir.us.core#5.0.1`
 * `hl7.fhir.us.core#5.0.0`
@@ -1968,6 +1966,7 @@ Recommended LOINC mappings for IVD Devices (built Thu, Dec 21, 2023 20:53+0000+0
 
 * `hl7.fhir.uv.livd#1.0.0-ballot`
 * `hl7.fhir.uv.livd#0.3.0`
+* `hl7.fhir.uv.livd#0.2.0`
 * `hl7.fhir.uv.livd#0.1.0`
 
 
@@ -2091,7 +2090,6 @@ Ontario Patient Summary
 * `ca.on.oh.patient-summary#0.11.2`
 * `ca.on.oh.patient-summary#0.11.1`
 * `ca.on.oh.patient-summary#0.11.0`
-* `ca.on.oh.patient-summary#0.10.0-alpha-9`
 * `ca.on.oh.patient-summary#0.10.0-alpha-8`
 * `ca.on.oh.patient-summary#0.10.0-alpha-6`
 * `ca.on.oh.patient-summary#0.10.0-alpha-5`
@@ -2135,6 +2133,7 @@ Claim fhir
 
 **Versions**
 
+* `ans.fhir.fr.cds#2.0.0`
 * `ans.fhir.fr.cds#2.0.0-ballot`
 
 
@@ -3246,6 +3245,7 @@ Ontario Mental Health and Addictions Provincial Data Set
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.7`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.6`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.5`
+* `ca.on.oh.mha-pds#0.9.0-alpha-1.4`
 
 
 ---
@@ -4327,6 +4327,7 @@ PLSP Health Hub
 
 **Versions**
 
+* `healthhub.fhir.dk.core#1.0.13`
 * `healthhub.fhir.dk.core#1.0.12`
 * `healthhub.fhir.dk.core#1.0.11`
 * `healthhub.fhir.dk.core#1.0.10`
@@ -8491,7 +8492,6 @@ leumit FHIR entities
 * `leumit.fhir.r4#0.4.0`
 * `leumit.fhir.r4#0.3.0`
 * `leumit.fhir.r4#0.2.0`
-* `leumit.fhir.r4#0.1.0`
 
 
 ---
@@ -8553,15 +8553,16 @@ Medizinische Informationsobjekte (MIO) DiGA Device Toolkit V1.0.0
 <details>
 <summary>Description</summary>
 
-This IG is developed for the HL7 International Pharmaceutical Quality (PQ) - Industry Use Case project, sponsored by the Biomedical Research and Regulation Work Group 
+***Content TBD***
+
+This IG is developed for the Data exchange industry – Pharmaceutical Quality (PQ) project 
 * [Project Proposal: PSS-2137](https://jira.hl7.org/browse/PSS-2137)
-* [Project Scope Statement: PSS-2145](https://jira.hl7.org/browse/PSS-2145) (built Wed, May 8, 2024 13:18+0000+00:00)
+* [Project Scope Statement: PSS-2145](https://jira.hl7.org/browse/PSS-2145) (built Mon, Dec 18, 2023 15:56+0000+00:00)
 
 </details>
 
 **Versions**
 
-* `hl7.fhir.uv.pharm-quality#1.0.0`
 * `hl7.fhir.uv.pharm-quality#1.0.0-ballot`
 
 
@@ -8828,7 +8829,6 @@ FHIR Core package - the NPM package that contains all the definitions for the ba
 
 **Versions**
 
-* `hl7.fhir.core#3.5.0`
 * `hl7.fhir.core#1.8.0`
 * `hl7.fhir.core#1.4.0`
 
@@ -9196,6 +9196,7 @@ Ce projet contient l'ensemble des ressources de conformité FHIR R4 produite par
 
 **Versions**
 
+* `ans.cnsa.fhir#0.1.2`
 * `ans.cnsa.fhir#0.1.1`
 * `ans.cnsa.fhir#0.1.0`
 * `ans.cnsa.fhir#0.0.1`
@@ -11922,6 +11923,7 @@ Verzeichnisdienst der Telematikinfrastruktur
 
 **Versions**
 
+* `de.gematik.fhir.directory#0.11.16`
 * `de.gematik.fhir.directory#0.11.15`
 * `de.gematik.fhir.directory#0.11.14`
 * `de.gematik.fhir.directory#0.11.13`
@@ -12136,6 +12138,7 @@ Abrechnungsinformationen des E-Rezeptes für den Patienten
 * `de.gematik.erezept-patientenrechnung.r4#1.0.4`
 * `de.gematik.erezept-patientenrechnung.r4#1.0.3`
 * `de.gematik.erezept-patientenrechnung.r4#1.0.2`
+* `de.gematik.erezept-patientenrechnung.r4#1.0.1`
 * `de.gematik.erezept-patientenrechnung.r4#1.0.0`
 * `de.gematik.erezept-patientenrechnung.r4#1.0.4-rc2`
 
@@ -12577,6 +12580,7 @@ Clinical building blocks (CBB) and their related HL7 FHIR R4 compliant profiles 
 * `healthdata.be.r4.cbb#0.14.0-beta`
 * `healthdata.be.r4.cbb#0.13.0-beta`
 * `healthdata.be.r4.cbb#0.12.0-beta`
+* `healthdata.be.r4.cbb#0.10.0-beta`
 * `healthdata.be.r4.cbb#0.9.0-alpha`
 * `healthdata.be.r4.cbb#0.8.0-alpha`
 * `healthdata.be.r4.cbb#0.7.0-alpha`
