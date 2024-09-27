@@ -112,3 +112,11 @@ Learn more about Audit logs:
 {% content-ref url="../audit/" %}
 [audit](../audit/)
 {% endcontent-ref %}
+
+## Disable SDC operations
+
+In case you have conflicts with your own implementation, you can easily disable SDC operations by setting environment variable:
+
+```
+AIDBOX_SDC_ENABLED=false
+```

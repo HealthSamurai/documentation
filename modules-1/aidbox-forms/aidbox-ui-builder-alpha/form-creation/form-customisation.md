@@ -4,18 +4,59 @@ description: >-
   guidelines
 ---
 
-# Form customisation
+# Form customisation in Theme Editor
 
-### Theming
+## Theme Editor
 
-You can choose ready-made themes from the UI Builder interface or create your own.&#x20;
+The Theme Editor allows you to customize the appearance of your forms by applying pre-designed themes or creating your own.
 
-For now, the option to create your own custom themes is available through the configuration project. Go to this[ page](../../aidbox-code-editor/how-to-customize-form-appearance.md) for implementation details.
+### **Accessing the Theme Editor:**
 
-### Disable SDC operations
+In the UI Form Builder, the toolbar at the top contains a **palette** icon. Clicking on this icon opens the Theme Editor, where you can either select a ready-made theme for your form or create a new one.
 
-In case you have conflicts with your own implementation, you can easily disable SDC operations by setting environment variable:
+When selecting or creating a theme, you can instantly preview how your form will look with the applied theme.
 
-```
-AIDBOX_SDC_ENABLED=false
-```
+### **Theme Storage and Reusability:**
+
+Themes are stored in the database in a custom resource called **QuestionnaireTheme**. This setup allows flexibility in form design:
+
+* You can apply the same theme to multiple forms.
+* You can use different themes with the same form without needing to duplicate the form. This is particularly useful if you want to provide tailored designs for different clients. Simply create one form and assign a set of themes based on client needs.
+
+### **How to Use a Theme:**
+
+* You can set a **default theme** in the configuration, and it will be applied to all forms. More details can be found [here](../configuration.md).
+* You can also pass a theme as a **parameter** when generating a link to a specific form. More details can be found [here](../../../../reference/aidbox-forms/aidbox-sdc-api.md#parameters).
+
+### **How to Create a New Theme:**
+
+To create a new theme, select the **Add New Theme** option. This opens the theme editor, which consists of the following sections:
+
+1. **General Settings:**
+   * **Theme Name:** Assign a name to your theme.
+   * **Default Language:** Set the default language if you’re creating a theme for multilingual forms. When a language is selected, an additional **translation** icon will appear. Clicking on this icon opens a separate window where you can provide translations for the buttons used on the multilingual form.
+2.  **Colors:**
+
+    In this section, you can customize the color scheme of your form:
+
+    * **Primary Color:** The main color used across the form.
+    * **Page Color:** The background color for the page where the form is displayed.
+    * **Form Color:** The background color for the form itself.
+    * **Toolbar Color:** The color for the form's toolbar.
+
+
+3.  **Brand Image:**
+
+    You can add a brand image to your form in two possible locations:
+
+    * **Top-right corner** of the form.
+    * **Bottom-left corner** of the form.
+
+    To include the image, provide a publicly available URL for the image file.
+4. **Inputs**
+5. **Buttons**
+
+After creating the theme, you need to click the save button.
+
+
+
