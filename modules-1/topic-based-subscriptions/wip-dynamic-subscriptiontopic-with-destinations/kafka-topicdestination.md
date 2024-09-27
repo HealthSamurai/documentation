@@ -137,12 +137,14 @@ accept: application/json
 {% code title="200 OK" %}
 ```json
 {
- "start-time": "2024-08-28T12:21:10.445306Z",
- "status": "active",
- "success-processed": 4,
- "in-process": 0,
- "fail-processed": 3,
- "last-error": "org.apache.kafka.common.errors.TimeoutException: Topic aidbox-forms not present in metadata after 10000 ms.",
+  "start-time": "2024-09-27T12:41:10.655293Z",
+  "status": "active",
+  "success-event-delivery": 0,
+  "enqueued-events-count": 0,
+  "event-in-process": 0,
+  "fail-event-delivery": 0,
+  "fail-event-delivery-attempt": 0,
+  "last-error": "org.apache.kafka.common.errors.TimeoutException: Topic aidbox-forms not present in metadata after 10000 ms.",
 }
 ```
 {% endcode %}
@@ -151,4 +153,4 @@ accept: application/json
 
 Responce format:
 
-<table data-full-width="false"><thead><tr><th width="188">Property</th><th width="128">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>start-time</code></td><td>string</td><td><code>AidboxTopicDestination</code> start time in UTC.</td></tr><tr><td><code>status</code></td><td>string</td><td><code>AidboxTopicDestination</code> status is always <code>active</code>, which means that <code>AidboxTopicDestination</code> will try to send all received notifications.</td></tr><tr><td><code>in-process</code></td><td>number</td><td>Current number of events in the buffer being processed for delivery.</td></tr><tr><td><code>enqueued-events-count</code></td><td>number</td><td>Number of events pending in the queue for dispatch to the Kafka driver. This count remains 0 for the <em>best-effor</em> approach.</td></tr><tr><td><code>successfully-delivered</code></td><td>number</td><td>Total number of events that have been successfully delivered.</td></tr><tr><td><code>failed-delivery</code></td><td>string</td><td>Total number of events that failed to be delivered. This count remains 0 for the <em>at-least-once</em> approach.</td></tr><tr><td><code>failed-delivery-attempt</code></td><td>number</td><td><p> Number of delivery attempts that failed. </p><p>For the <em>best-effor</em> approach, this matches the <code>failed-delivery</code> count. </p><p>For the <em>at-least-once</em> approach, it represents the overall failed delivery attempts.</p></td></tr><tr><td><code>last-error</code></td><td>string</td><td>Error message of the last failed attempt to send event.</td></tr></tbody></table>
+<table data-full-width="false"><thead><tr><th width="188">Property</th><th width="128">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>start-time</code></td><td>string</td><td><code>AidboxTopicDestination</code> start time in UTC.</td></tr><tr><td><code>status</code></td><td>string</td><td><code>AidboxTopicDestination</code> status is always <code>active</code>, which means that <code>AidboxTopicDestination</code> will try to send all received notifications.</td></tr><tr><td><code>success-event-delivery</code></td><td>number</td><td>Total number of events that have been successfully delivered.</td></tr><tr><td><code>enqueued-events-count</code></td><td>number</td><td>Number of events pending in the queue for dispatch to the Kafka driver. This count remains <code>0</code> for the <em>best-effor</em> approach.</td></tr><tr><td><code>event-in-process</code></td><td>number</td><td>Current number of events in the buffer being processed for delivery.</td></tr><tr><td><code>fail-event-delivery</code></td><td>string</td><td>Total number of events that failed to be delivered. This count remains <code>0</code> for the <em>at-least-once</em> approach.</td></tr><tr><td><code>fail-event-delivery-attempt</code></td><td>number</td><td><p> Number of delivery attempts that failed. </p><p>For the <em>best-effor</em> approach, this matches the <code>failed-delivery</code> count. </p><p>For the <em>at-least-once</em> approach, it represents the overall failed delivery attempts.</p></td></tr><tr><td><code>last-error</code></td><td>string</td><td>Error message of the last failed attempt to send event.</td></tr></tbody></table>
