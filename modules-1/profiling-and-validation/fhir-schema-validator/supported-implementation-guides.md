@@ -280,7 +280,6 @@ Sammlung von Erweiterungen, Profilen und Value Sets zur Nutzung der Treuhandstel
 * `ths-greifswald.ttp-fhir-gw#2023.1.1`
 * `ths-greifswald.ttp-fhir-gw#2023.1.0`
 * `ths-greifswald.ttp-fhir-gw#2.3.0-alpha1`
-* `ths-greifswald.ttp-fhir-gw#2.2.0-alpha3`
 * `ths-greifswald.ttp-fhir-gw#2.2.0-alpha2`
 * `ths-greifswald.ttp-fhir-gw#2.2.0-alpha1`
 * `ths-greifswald.ttp-fhir-gw#2.1.0`
@@ -977,6 +976,7 @@ This package contains profiles to check conformance to the Nictiz profiling guid
 * `nictiz.fhir.nl.r4.profilingguidelines#0.8.0`
 * `nictiz.fhir.nl.r4.profilingguidelines#0.7.0`
 * `nictiz.fhir.nl.r4.profilingguidelines#0.6.0`
+* `nictiz.fhir.nl.r4.profilingguidelines#0.5.0`
 * `nictiz.fhir.nl.r4.profilingguidelines#0.4.0`
 * `nictiz.fhir.nl.r4.profilingguidelines#0.3.0`
 * `nictiz.fhir.nl.r4.profilingguidelines#0.2.0`
@@ -1077,6 +1077,7 @@ These requirements were originally developed, balloted, and published in FHIR DS
 * `hl7.fhir.us.core#7.0.0-ballot`
 * `hl7.fhir.us.core#6.1.0`
 * `hl7.fhir.us.core#6.1.0-snapshot1`
+* `hl7.fhir.us.core#6.0.0`
 * `hl7.fhir.us.core#6.0.0-ballot`
 * `hl7.fhir.us.core#5.0.1`
 * `hl7.fhir.us.core#5.0.0`
@@ -2090,6 +2091,7 @@ Ontario Patient Summary
 * `ca.on.oh.patient-summary#0.11.2`
 * `ca.on.oh.patient-summary#0.11.1`
 * `ca.on.oh.patient-summary#0.11.0`
+* `ca.on.oh.patient-summary#0.10.0-alpha-9`
 * `ca.on.oh.patient-summary#0.10.0-alpha-8`
 * `ca.on.oh.patient-summary#0.10.0-alpha-6`
 * `ca.on.oh.patient-summary#0.10.0-alpha-5`
@@ -2663,23 +2665,6 @@ Die elektronische Behandlungsinformation der Knappschaft.
 **Versions**
 
 * `de.aqua.ebi#0.9.0`
-
-
----
-
-### KBV.ITA.ERP
-
-<details>
-<summary>Description</summary>
-
-Umsetzung des elektronischen Rezepts
-
-</details>
-
-**Versions**
-
-* `KBV.ITA.ERP#1.0.1`
-* `KBV.ITA.ERP#1.0.0`
 
 
 ---
@@ -4327,6 +4312,10 @@ PLSP Health Hub
 
 **Versions**
 
+* `healthhub.fhir.dk.core#1.0.17`
+* `healthhub.fhir.dk.core#1.0.16`
+* `healthhub.fhir.dk.core#1.0.15`
+* `healthhub.fhir.dk.core#1.0.14`
 * `healthhub.fhir.dk.core#1.0.13`
 * `healthhub.fhir.dk.core#1.0.12`
 * `healthhub.fhir.dk.core#1.0.11`
@@ -5782,6 +5771,8 @@ Ontario Health
 
 **Versions**
 
+* `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.22`
+* `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.21`
 * `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.20`
 * `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.19`
 * `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.18`
@@ -6642,40 +6633,6 @@ Demo project for FSH use in Simiplifier.
 **Versions**
 
 * `canadian.fsh.demo#0.1.0-test`
-
-
----
-
-### nxh.fhir.r4
-
-<details>
-<summary>Description</summary>
-
-Technical profiles used by nexuzhealth for the import and export of data. 
-
-</details>
-
-**Versions**
-
-* `nxh.fhir.r4#0.0.0-beta.18`
-* `nxh.fhir.r4#0.0.0-beta.17`
-* `nxh.fhir.r4#0.0.0-beta.16`
-* `nxh.fhir.r4#0.0.0-beta.15`
-* `nxh.fhir.r4#0.0.0-beta.14`
-* `nxh.fhir.r4#0.0.0-beta.13`
-* `nxh.fhir.r4#0.0.0-beta.12`
-* `nxh.fhir.r4#0.0.0-beta.11`
-* `nxh.fhir.r4#0.0.0-beta.10`
-* `nxh.fhir.r4#0.0.0-beta.9`
-* `nxh.fhir.r4#0.0.0-beta.8`
-* `nxh.fhir.r4#0.0.0-beta.7`
-* `nxh.fhir.r4#0.0.0-beta.6`
-* `nxh.fhir.r4#0.0.0-beta.5`
-* `nxh.fhir.r4#0.0.0-beta.4`
-* `nxh.fhir.r4#0.0.0-beta.3`
-* `nxh.fhir.r4#0.0.0-beta.2`
-* `nxh.fhir.r4#0.0.0-beta.1`
-* `nxh.fhir.r4#0.0.0-beta`
 
 
 ---
@@ -8492,6 +8449,7 @@ leumit FHIR entities
 * `leumit.fhir.r4#0.4.0`
 * `leumit.fhir.r4#0.3.0`
 * `leumit.fhir.r4#0.2.0`
+* `leumit.fhir.r4#0.1.0`
 
 
 ---
@@ -8553,16 +8511,15 @@ Medizinische Informationsobjekte (MIO) DiGA Device Toolkit V1.0.0
 <details>
 <summary>Description</summary>
 
-***Content TBD***
-
-This IG is developed for the Data exchange industry – Pharmaceutical Quality (PQ) project 
+This IG is developed for the HL7 International Pharmaceutical Quality (PQ) - Industry Use Case project, sponsored by the Biomedical Research and Regulation Work Group 
 * [Project Proposal: PSS-2137](https://jira.hl7.org/browse/PSS-2137)
-* [Project Scope Statement: PSS-2145](https://jira.hl7.org/browse/PSS-2145) (built Mon, Dec 18, 2023 15:56+0000+00:00)
+* [Project Scope Statement: PSS-2145](https://jira.hl7.org/browse/PSS-2145) (built Wed, May 8, 2024 13:18+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.uv.pharm-quality#1.0.0`
 * `hl7.fhir.uv.pharm-quality#1.0.0-ballot`
 
 
@@ -8829,8 +8786,8 @@ FHIR Core package - the NPM package that contains all the definitions for the ba
 
 **Versions**
 
+* `hl7.fhir.core#3.5.0`
 * `hl7.fhir.core#1.8.0`
-* `hl7.fhir.core#1.4.0`
 
 
 ---
@@ -8847,6 +8804,22 @@ Cygnet Health FHIR System
 **Versions**
 
 * `CygnetHealth.00.00.01#0.0.1`
+
+
+---
+
+### il.tasmc.fhir.r4
+
+<details>
+<summary>Description</summary>
+
+Tel Aviv Sourasky Medical Center
+
+</details>
+
+**Versions**
+
+* `il.tasmc.fhir.r4#0.1.0`
 
 
 ---
@@ -10036,36 +10009,6 @@ The Subscription R5 Backport Implementation Guide enables servers running versio
 **Versions**
 
 * `hl7.fhir.uv.subscriptions-backport.r4#1.1.0`
-
-
----
-
-### HL7 Terminology (THO)
-
-<details>
-<summary>Description</summary>
-
-Defines and exposes all HL7 terminologies managed through the unified terminology governance process (built Sun, Jul 21, 2024 00:17-0600-06:00)
-
-</details>
-
-**Versions**
-
-* `hl7.terminology.r5#6.0.2`
-* `hl7.terminology.r5#6.0.1`
-* `hl7.terminology.r5#6.0.0`
-* `hl7.terminology.r5#5.5.0`
-* `hl7.terminology.r5#5.4.0`
-* `hl7.terminology.r5#5.3.0`
-* `hl7.terminology.r5#5.2.0`
-* `hl7.terminology.r5#5.1.0`
-* `hl7.terminology.r5#5.0.0`
-* `hl7.terminology.r5#4.0.0`
-* `hl7.terminology.r5#3.1.0`
-* `hl7.terminology.r5#3.0.0`
-* `hl7.terminology.r5#2.1.0`
-* `hl7.terminology.r5#2.0.0`
-* `hl7.terminology.r5#1.0.0`
 
 
 ---
@@ -11425,13 +11368,12 @@ The Da Vinci Payer Health Record exchange (HRex) Framework/library specifies the
 <details>
 <summary>Description</summary>
 
-CARIN Consumer Directed Payer Data Exchange (CARIN IG for Blue Button®) (built Sat, Jul 27, 2024 20:08+0800+08:00)
+CARIN Consumer Directed Payer Data Exchange (CARIN IG for Blue Button®) (built Mon, Nov 28, 2022 15:15+0000+00:00)
 
 </details>
 
 **Versions**
 
-* `hl7.fhir.us.carin-bb#2.1.0-snapshot1`
 * `hl7.fhir.us.carin-bb#2.0.0`
 * `hl7.fhir.us.carin-bb#1.2.0`
 * `hl7.fhir.us.carin-bb#1.1.0`
@@ -12157,22 +12099,6 @@ This is a project for the Surescripts Health Information Network Interconnect FH
 **Versions**
 
 * `shin.interconnect#1.0.0-beta`
-
-
----
-
-### Patient Request for Corrections Implementation Guide
-
-<details>
-<summary>Description</summary>
-
-The Patient Request for Corrections Implementation Guide provides a method for communicating a patient's request for corrections to their patient data, as well as a way for health care organizations to respond to those requests. (built Tue, Mar 29, 2022 16:29+0000+00:00)
-
-</details>
-
-**Versions**
-
-* `hl7.fhir.uv.patient-corrections#1.0.0-ballot`
 
 
 ---
@@ -13167,7 +13093,6 @@ This package contains additional FHIR assets to support the ADS FHIR Bundle for 
 * `uk.ads.r4#1.2.0-bundle2-alpha`
 * `uk.ads.r4#1.1.0-bundle1-alpha`
 * `uk.ads.r4#1.0.2-mvp-alpha`
-* `uk.ads.r4#1.0.1-mvp-alpha`
 * `uk.ads.r4#1.0.0-mvp-alpha`
 
 
