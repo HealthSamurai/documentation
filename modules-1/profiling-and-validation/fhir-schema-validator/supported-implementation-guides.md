@@ -280,6 +280,7 @@ Sammlung von Erweiterungen, Profilen und Value Sets zur Nutzung der Treuhandstel
 * `ths-greifswald.ttp-fhir-gw#2023.1.1`
 * `ths-greifswald.ttp-fhir-gw#2023.1.0`
 * `ths-greifswald.ttp-fhir-gw#2.3.0-alpha1`
+* `ths-greifswald.ttp-fhir-gw#2.2.0-alpha3`
 * `ths-greifswald.ttp-fhir-gw#2.2.0-alpha2`
 * `ths-greifswald.ttp-fhir-gw#2.2.0-alpha1`
 * `ths-greifswald.ttp-fhir-gw#2.1.0`
@@ -304,7 +305,6 @@ eRezeptAbgabedatensatz 1.4.1 vom 25.06.2024
 * `de.abda.erezeptabgabedaten#1.4.1-rc`
 * `de.abda.erezeptabgabedaten#1.4.0-rc2`
 * `de.abda.erezeptabgabedaten#1.4.0-rc`
-* `de.abda.erezeptabgabedaten#1.3.2`
 * `de.abda.erezeptabgabedaten#1.3.1`
 * `de.abda.erezeptabgabedaten#1.3.0`
 * `de.abda.erezeptabgabedaten#1.3.0-rc4`
@@ -324,38 +324,6 @@ eRezeptAbgabedatensatz 1.4.1 vom 25.06.2024
 * `de.abda.erezeptabgabedaten#1.0.3`
 * `de.abda.erezeptabgabedaten#1.0.2`
 * `de.abda.erezeptabgabedaten#1.0.1`
-
-
----
-
-### Respiratory Virus Hospitalization Surveillance Network (RESP-NET) Content Implementation Guide
-
-<details>
-<summary>Description</summary>
-
-The RESP-NET Content IG focuses on the respiratory virus surveillance data that will be extracted from EHRs via FHIR and APIs and sent to RESP-NET sites. (built Thu, Dec 21, 2023 13:44+0000+00:00)
-
-</details>
-
-**Versions**
-
-* `hl7.fhir.us.resp-net#1.0.0-ballot`
-
-
----
-
-### package.test.new
-
-<details>
-<summary>Description</summary>
-
-Daniel Labs Project
-
-</details>
-
-**Versions**
-
-* `package.test.new#2.0.0`
 
 
 ---
@@ -2669,6 +2637,23 @@ Die elektronische Behandlungsinformation der Knappschaft.
 
 ---
 
+### KBV.ITA.ERP
+
+<details>
+<summary>Description</summary>
+
+Umsetzung des elektronischen Rezepts
+
+</details>
+
+**Versions**
+
+* `KBV.ITA.ERP#1.0.1`
+* `KBV.ITA.ERP#1.0.0`
+
+
+---
+
 ### National Healthcare Directory Exchange
 
 <details>
@@ -3458,13 +3443,12 @@ Signal Managed Service Organization
 <details>
 <summary>Description</summary>
 
-Medizinische Informationsobjekte (MIO) DiGA Toolkit V1.1.0
+Medizinische Informationsobjekte (MIO) DiGA V1.1.0-kommentierung
 
 </details>
 
 **Versions**
 
-* `kbv.mio.diga#1.1.0`
 * `kbv.mio.diga#1.1.0-kommentierung`
 * `kbv.mio.diga#1.1.0-benehmensherstellung`
 * `kbv.mio.diga#1.0.0-festlegung`
@@ -3729,7 +3713,6 @@ Umsetzung der elektronischen Heilmittelverordnung
 * `de.gevko.evo.hlm#1.2.1`
 * `de.gevko.evo.hlm#1.2.0`
 * `de.gevko.evo.hlm#1.1.0`
-* `de.gevko.evo.hlm#1.0.3`
 * `de.gevko.evo.hlm#1.0.2`
 * `de.gevko.evo.hlm#1.0.1`
 * `de.gevko.evo.hlm#1.0.0`
@@ -4234,12 +4217,13 @@ This guide lists the extensions speciifed for the European REALM. (built Tue, Fe
 <details>
 <summary>Description</summary>
 
-The Documentation Templates and Rules (DTR) Implementation Guide (IG) specifies how payer rules can be executed in a provider context to ensure that documentation requirements are met. The IG is a companion to the Coverage Requirements Discovery (CRD) IG, which uses CDS Hooks to query payers to determine if there are documentation requirements for a proposed medication, procedure or other service. (built Tue, Nov 7, 2023 13:45+0000+00:00)
+The Documentation Templates and Rules (DTR) Implementation Guide (IG) specifies how payer rules can be executed in a provider context to ensure that documentation requirements are met. The IG is a companion to the Coverage Requirements Discovery (CRD) IG, which uses CDS Hooks to query payers to determine if there are documentation requirements for a proposed medication, procedure or other service. (built Fri, Sep 27, 2024 06:27-0400-04:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.us.davinci-dtr#2.1.0-preview`
 * `hl7.fhir.us.davinci-dtr#2.0.0`
 * `hl7.fhir.us.davinci-dtr#1.1.0-ballot`
 * `hl7.fhir.us.davinci-dtr#1.0.0`
@@ -6213,12 +6197,13 @@ The ePA research data specification
 <details>
 <summary>Description</summary>
 
-Guidelines for conveying coverage requirements to clinicians when planning treatment. (built Fri, Dec 1, 2023 20:54+0000+00:00)
+Guidelines for conveying coverage requirements to clinicians when planning treatment. (built Thu, Sep 26, 2024 18:54-0400-04:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.us.davinci-pas#2.1.0-preview`
 * `hl7.fhir.us.davinci-pas#2.0.1`
 * `hl7.fhir.us.davinci-pas#1.2.0-ballot`
 * `hl7.fhir.us.davinci-pas#1.1.0`
@@ -6263,7 +6248,6 @@ The DK MedCom Terminology IG (built Thu, Jun 27, 2024 12:10+0200+02:00)
 * `medcom.fhir.dk.terminology#1.2.0`
 * `medcom.fhir.dk.terminology#1.1.1`
 * `medcom.fhir.dk.terminology#1.1.0`
-* `medcom.fhir.dk.terminology#1.0.0`
 
 
 ---
@@ -6633,6 +6617,40 @@ Demo project for FSH use in Simiplifier.
 **Versions**
 
 * `canadian.fsh.demo#0.1.0-test`
+
+
+---
+
+### nxh.fhir.r4
+
+<details>
+<summary>Description</summary>
+
+Technical profiles used by nexuzhealth for the import and export of data. 
+
+</details>
+
+**Versions**
+
+* `nxh.fhir.r4#0.0.0-beta.18`
+* `nxh.fhir.r4#0.0.0-beta.17`
+* `nxh.fhir.r4#0.0.0-beta.16`
+* `nxh.fhir.r4#0.0.0-beta.15`
+* `nxh.fhir.r4#0.0.0-beta.14`
+* `nxh.fhir.r4#0.0.0-beta.13`
+* `nxh.fhir.r4#0.0.0-beta.12`
+* `nxh.fhir.r4#0.0.0-beta.11`
+* `nxh.fhir.r4#0.0.0-beta.10`
+* `nxh.fhir.r4#0.0.0-beta.9`
+* `nxh.fhir.r4#0.0.0-beta.8`
+* `nxh.fhir.r4#0.0.0-beta.7`
+* `nxh.fhir.r4#0.0.0-beta.6`
+* `nxh.fhir.r4#0.0.0-beta.5`
+* `nxh.fhir.r4#0.0.0-beta.4`
+* `nxh.fhir.r4#0.0.0-beta.3`
+* `nxh.fhir.r4#0.0.0-beta.2`
+* `nxh.fhir.r4#0.0.0-beta.1`
+* `nxh.fhir.r4#0.0.0-beta`
 
 
 ---
@@ -8471,6 +8489,22 @@ Trying to cover hospital Cases and Patient Blood Management Relevant information
 
 ---
 
+### ca.on.oh.corhealth
+
+<details>
+<summary>Description</summary>
+
+The Ontario CorHealth FHIR implementation guide will provide business and technical information
+
+</details>
+
+**Versions**
+
+* `ca.on.oh.corhealth#0.2.0-beta`
+
+
+---
+
 ### hl7.fhir.nume.dev
 
 <details>
@@ -8788,6 +8822,7 @@ FHIR Core package - the NPM package that contains all the definitions for the ba
 
 * `hl7.fhir.core#3.5.0`
 * `hl7.fhir.core#1.8.0`
+* `hl7.fhir.core#1.4.0`
 
 
 ---
@@ -10013,6 +10048,36 @@ The Subscription R5 Backport Implementation Guide enables servers running versio
 
 ---
 
+### HL7 Terminology (THO)
+
+<details>
+<summary>Description</summary>
+
+Defines and exposes all HL7 terminologies managed through the unified terminology governance process (built Sun, Jul 21, 2024 00:17-0600-06:00)
+
+</details>
+
+**Versions**
+
+* `hl7.terminology.r5#6.0.2`
+* `hl7.terminology.r5#6.0.1`
+* `hl7.terminology.r5#6.0.0`
+* `hl7.terminology.r5#5.5.0`
+* `hl7.terminology.r5#5.4.0`
+* `hl7.terminology.r5#5.3.0`
+* `hl7.terminology.r5#5.2.0`
+* `hl7.terminology.r5#5.1.0`
+* `hl7.terminology.r5#5.0.0`
+* `hl7.terminology.r5#4.0.0`
+* `hl7.terminology.r5#3.1.0`
+* `hl7.terminology.r5#3.0.0`
+* `hl7.terminology.r5#2.1.0`
+* `hl7.terminology.r5#2.0.0`
+* `hl7.terminology.r5#1.0.0`
+
+
+---
+
 ### Patient Demographics Query for Mobile (PDQm)
 
 <details>
@@ -10926,12 +10991,13 @@ A FHIR profile to export patient data for DiGAs that treat ICD-10 F17.2. (built 
 <details>
 <summary>Description</summary>
 
-Guía de Implementación Versión de Desarrollo Sobre STU 1, para los perfiles Core que se van a requerir a nivel de desarrollo Nacional para Sistemas que Intercambien datos en estandar FHIR-R4 (built Tue, Mar 19, 2024 15:38-0300-03:00)
+Guía de Implementación Versión de Desarrollo Sobre STU 1, para los perfiles Core que se van a requerir a nivel de desarrollo Nacional para Sistemas que Intercambien datos en estandar FHIR-R4 (built Thu, Sep 26, 2024 13:08-0300-03:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.cl.clcore#1.9.1`
 * `hl7.fhir.cl.clcore#1.8.10`
 * `hl7.fhir.cl.clcore#1.8.6`
 * `hl7.fhir.cl.clcore#1.8.5`
@@ -11368,12 +11434,13 @@ The Da Vinci Payer Health Record exchange (HRex) Framework/library specifies the
 <details>
 <summary>Description</summary>
 
-CARIN Consumer Directed Payer Data Exchange (CARIN IG for Blue Button®) (built Mon, Nov 28, 2022 15:15+0000+00:00)
+CARIN Consumer Directed Payer Data Exchange (CARIN IG for Blue Button®) (built Sat, Jul 27, 2024 20:08+0800+08:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.us.carin-bb#2.1.0-snapshot1`
 * `hl7.fhir.us.carin-bb#2.0.0`
 * `hl7.fhir.us.carin-bb#1.2.0`
 * `hl7.fhir.us.carin-bb#1.1.0`
@@ -12103,17 +12170,34 @@ This is a project for the Surescripts Health Information Network Interconnect FH
 
 ---
 
-### Da Vinci - Coverage Requirements Discovery
+### Patient Request for Corrections Implementation Guide
 
 <details>
 <summary>Description</summary>
 
-Guidelines for conveying coverage requirements to clinicians when planning treatment (built Mon, Jan 8, 2024 18:55+0000+00:00)
+The Patient Request for Corrections Implementation Guide provides a method for communicating a patient's request for corrections to their patient data, as well as a way for health care organizations to respond to those requests. (built Tue, Mar 29, 2022 16:29+0000+00:00)
 
 </details>
 
 **Versions**
 
+* `hl7.fhir.uv.patient-corrections#1.0.0-ballot`
+
+
+---
+
+### Da Vinci - Coverage Requirements Discovery
+
+<details>
+<summary>Description</summary>
+
+Guidelines for conveying coverage requirements to clinicians when planning treatment (built Thu, Sep 26, 2024 14:58-0400-04:00)
+
+</details>
+
+**Versions**
+
+* `hl7.fhir.us.davinci-crd#2.1.0-preview`
 * `hl7.fhir.us.davinci-crd#2.0.1`
 * `hl7.fhir.us.davinci-crd#2.0.0`
 * `hl7.fhir.us.davinci-crd#1.1.0-ballot`
@@ -13093,6 +13177,7 @@ This package contains additional FHIR assets to support the ADS FHIR Bundle for 
 * `uk.ads.r4#1.2.0-bundle2-alpha`
 * `uk.ads.r4#1.1.0-bundle1-alpha`
 * `uk.ads.r4#1.0.2-mvp-alpha`
+* `uk.ads.r4#1.0.1-mvp-alpha`
 * `uk.ads.r4#1.0.0-mvp-alpha`
 
 
