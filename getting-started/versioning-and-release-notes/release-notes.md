@@ -1,6 +1,19 @@
 # Release Notes
 
-## August 2024
+## September 2024 _`edge`_
+
+* Aidbox
+  * Supported webhook as a destination for  [Aidbox topic-based subscriptions](../../modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/)
+  * Added fuzzy search for FHIR packages
+  * Enabled new Aidbox UI by default
+  * Fixed critical vulnerabilities
+* Smartbox | FHIR API for EHRs
+  * Added source attributed for evidence-based and predictive DSIs
+  * Aded user feedback for DSIs
+* Aidbox Forms
+* C-CDA / FHIR converter
+
+## August 2024 _`latest,2408`_
 
 * Aidbox&#x20;
   * Introduced dynamic [Topic-based subscriptions](../../modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/) and supported [Kafka (OSS and AWS)](../../modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/kafka-topicdestination.md) as  delivery channels
@@ -23,7 +36,7 @@
   * [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
     * Add support for [user-defined codemaps](../../modules-1/integration-toolkit/ccda-converter/ccda-fhir-dsl.md#custom-codemaps)
 
-## July 2024 _`latest`_
+## July 2024 _`stable,2407`_
 
 * Aidbox
   * Introduced support for [custom resources using FHIR StructureDefinitions](../../storage-1/custom-resources/custom-resources-on-fhir-logical-model.md) and [custom resources using FHIR schemas](../../storage-1/custom-resources/custom-resources-using-fhirschema.md)
@@ -48,7 +61,7 @@
   * Supported DICOM section
   * Improved performance
 
-## May 2024 _`stable, 2405`_
+## May 2024 _`2405`_
 
 * **Aidbox development licenses** are now available to all users, empowering everyone to explore, develop, and innovate with our comprehensive FHIR-first healthcare platform.
 * **Simplified Aidbox Launch**: We've developed a simplified[ way to launch Aidbox](../run-aidbox-locally-with-docker/run-aidbox-locally.md), making it easier than ever to get started.
