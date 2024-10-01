@@ -525,6 +525,56 @@ Ontario-specific business use cases and content
 
 ---
 
+### uk.nhsdigital.bars.r4
+
+<details>
+<summary>Description</summary>
+
+NHS Booking and Referrals
+
+</details>
+
+**Versions**
+
+* `uk.nhsdigital.bars.r4#1.33.0`
+* `uk.nhsdigital.bars.r4#1.32.0`
+* `uk.nhsdigital.bars.r4#1.31.0`
+* `uk.nhsdigital.bars.r4#1.30.0`
+* `uk.nhsdigital.bars.r4#1.29.0-test+001`
+* `uk.nhsdigital.bars.r4#1.28.0`
+* `uk.nhsdigital.bars.r4#1.27.0`
+* `uk.nhsdigital.bars.r4#1.26.0`
+* `uk.nhsdigital.bars.r4#1.25.0`
+* `uk.nhsdigital.bars.r4#1.24.0-alpha`
+* `uk.nhsdigital.bars.r4#1.23.0-alpha`
+* `uk.nhsdigital.bars.r4#1.22.0-alpha`
+* `uk.nhsdigital.bars.r4#1.20.0-alpha`
+* `uk.nhsdigital.bars.r4#1.19.0-alpha`
+* `uk.nhsdigital.bars.r4#1.18.0-alpha`
+* `uk.nhsdigital.bars.r4#1.17.0-alpha`
+* `uk.nhsdigital.bars.r4#1.16.0-alpha`
+* `uk.nhsdigital.bars.r4#1.12.0-alpha`
+* `uk.nhsdigital.bars.r4#1.11.0-alpha`
+* `uk.nhsdigital.bars.r4#1.10.0-alpha`
+* `uk.nhsdigital.bars.r4#1.9.0-alpha`
+* `uk.nhsdigital.bars.r4#1.8.0-alpha`
+* `uk.nhsdigital.bars.r4#1.7.0-alpha`
+* `uk.nhsdigital.bars.r4#1.6.0`
+* `uk.nhsdigital.bars.r4#1.6.0+001`
+* `uk.nhsdigital.bars.r4#1.5.0`
+* `uk.nhsdigital.bars.r4#1.4.0`
+* `uk.nhsdigital.bars.r4#1.3.0`
+* `uk.nhsdigital.bars.r4#1.2.0`
+* `uk.nhsdigital.bars.r4#1.1.0`
+* `uk.nhsdigital.bars.r4#1.0.0`
+* `uk.nhsdigital.bars.r4#0.5.0-test`
+* `uk.nhsdigital.bars.r4#0.4.0-test`
+* `uk.nhsdigital.bars.r4#0.3.0-test`
+* `uk.nhsdigital.bars.r4#0.2.0-test`
+
+
+---
+
 ### 臺灣核心實作指引(TW Core IG)
 
 <details>
@@ -2822,7 +2872,6 @@ HL7 International - Public Health http://www.hl7.org/Special/committees/pher (bu
 **Versions**
 
 * `hl7.fhir.us.odh#1.3.0`
-* `hl7.fhir.us.odh#1.2.0`
 * `hl7.fhir.us.odh#1.1.0`
 * `hl7.fhir.us.odh#1.0.0`
 
@@ -2923,7 +2972,6 @@ The best standards are those driven by business requirements. A strong set of He
 
 * `hl7.fhir.us.hai-ltcf#1.1.0`
 * `hl7.fhir.us.hai-ltcf#1.0.0`
-* `hl7.fhir.us.hai-ltcf#0.1.0`
 
 
 ---
@@ -3434,9 +3482,7 @@ Medizinische Informationsobjekte (MIO) DiGA Toolkit V1.1.0
 
 * `kbv.mio.diga#1.1.0`
 * `kbv.mio.diga#1.1.0-kommentierung`
-* `kbv.mio.diga#1.1.0-benehmensherstellung`
 * `kbv.mio.diga#1.0.0-festlegung`
-* `kbv.mio.diga#1.0.0-benehmensherstellung`
 
 
 ---
@@ -3612,6 +3658,23 @@ Drafted Implementation Guide for Alberta Patient Summary (PS-AB)
 * `ca.ab.fhir.psab#0.3.0-pre11`
 * `ca.ab.fhir.psab#0.3.0-pre10`
 * `ca.ab.fhir.psab#0.3.0-pre1`
+
+
+---
+
+### FHIR Shorthand
+
+<details>
+<summary>Description</summary>
+
+Describes FHIR Shorthand (FSH), a domain-specific language (DSL) for defining the content of FHIR Implementation Guides (IG). (built Mon, Oct 12, 2020 15:26+1100+11:00)
+
+</details>
+
+**Versions**
+
+* `hl7.fhir.uv.shorthand#1.0.0`
+* `hl7.fhir.uv.shorthand#0.12.0`
 
 
 ---
@@ -3799,22 +3862,6 @@ aDocument the functional requirements that can be used to assess devices, applic
 
 * `tw.gov.mohw.cdc.twidir#0.1.1`
 * `tw.gov.mohw.cdc.twidir#0.1.0`
-
-
----
-
-### Test.Luxottica2
-
-<details>
-<summary>Description</summary>
-
-Test resource extension
-
-</details>
-
-**Versions**
-
-* `Test.Luxottica2#0.0.1-beta`
 
 
 ---
@@ -4983,6 +5030,7 @@ Einwilligungsmanagement
 * `de.einwilligungsmanagement#0.0.5-snapshot`
 * `de.einwilligungsmanagement#0.0.4-snapshot`
 * `de.einwilligungsmanagement#0.0.3-snapshot`
+* `de.einwilligungsmanagement#0.0.2-snapshot`
 * `de.einwilligungsmanagement#0.0.1-snapshot`
 
 
@@ -6213,7 +6261,6 @@ The DK MedCom Terminology IG (built Thu, Jun 27, 2024 12:10+0200+02:00)
 * `medcom.fhir.dk.terminology#1.4.0`
 * `medcom.fhir.dk.terminology#1.3.0`
 * `medcom.fhir.dk.terminology#1.2.0`
-* `medcom.fhir.dk.terminology#1.1.1`
 * `medcom.fhir.dk.terminology#1.1.0`
 * `medcom.fhir.dk.terminology#1.0.0`
 
@@ -6869,6 +6916,31 @@ PACIO Re-Assessment Timepoints Implementation Guide (built Wed, Sep 28, 2022 16:
 
 ---
 
+### uk.nhsdigital.medicines.r4.test
+
+<details>
+<summary>Description</summary>
+
+Electronic Prescription Service
+
+</details>
+
+**Versions**
+
+* `uk.nhsdigital.medicines.r4.test#2.8.7-prerelease`
+* `uk.nhsdigital.medicines.r4.test#2.8.3-prerelease`
+* `uk.nhsdigital.medicines.r4.test#2.8.21-prerelease`
+* `uk.nhsdigital.medicines.r4.test#2.8.20-prerelease`
+* `uk.nhsdigital.medicines.r4.test#2.8.19-prerelease`
+* `uk.nhsdigital.medicines.r4.test#2.8.18-prerelease`
+* `uk.nhsdigital.medicines.r4.test#2.8.16-prerelease`
+* `uk.nhsdigital.medicines.r4.test#2.8.11-prerelease`
+* `uk.nhsdigital.medicines.r4.test#2.7.1-prerelease`
+* `uk.nhsdigital.medicines.r4.test#2.6.6-prerelease`
+
+
+---
+
 ### eHealth Infrastructure
 
 <details>
@@ -7164,6 +7236,7 @@ Guidelines for reporting of clinical genomics results using HL7 FHIR. (built Mon
 
 * `hl7.fhir.uv.genomics-reporting#3.0.0-ballot`
 * `hl7.fhir.uv.genomics-reporting#2.0.0`
+* `hl7.fhir.uv.genomics-reporting#1.1.0`
 * `hl7.fhir.uv.genomics-reporting#1.0.0`
 * `hl7.fhir.uv.genomics-reporting#0.3.0`
 * `hl7.fhir.uv.genomics-reporting#0.1.0`
@@ -7200,6 +7273,8 @@ Belgian Patient profiles (built Wed, Sep 4, 2024 16:47+0200+02:00)
 
 * `hl7.fhir.be.vaccination#1.1.0`
 * `hl7.fhir.be.vaccination#1.0.3`
+* `hl7.fhir.be.vaccination#1.0.2`
+* `hl7.fhir.be.vaccination#1.0.1`
 * `hl7.fhir.be.vaccination#1.0.0`
 
 
@@ -7943,22 +8018,6 @@ Detalhes em https://github.com/kyriosdata/farol
 
 ---
 
-### furore.test.fsh.demo
-
-<details>
-<summary>Description</summary>
-
-Furore FSH generated test profiles for validation. 
-
-</details>
-
-**Versions**
-
-* `furore.test.fsh.demo#0.1.0-rc1`
-
-
----
-
 ### kbv.all.st-rc
 
 <details>
@@ -8150,6 +8209,7 @@ Les nomenclatures des objets de Sante (built Thu, Aug 29, 2024 14:54+0000+00:00)
 
 * `ans.fr.nos#1.3.0`
 * `ans.fr.nos#1.2.0`
+* `ans.fr.nos#1.1.0`
 
 
 ---
@@ -8585,6 +8645,40 @@ Testprofiler for basisprofiler
 
 ---
 
+### Vital Records Death Reporting (VRDR) FHIR Implementation Guide
+
+<details>
+<summary>Description</summary>
+
+The VRDR FHIR IG provides guidance regarding the use of FHIR resources as a conduit for data required in the bidirectional exchange of mortality data between State-run Public Health Agencies (PHA) Vital Records offices and U.S. Centers for Disease Control and Prevention (CDC)/National Center for Health Statistics (NCHS).
+
+Bidirectional exchange of mortality data between PHA Vital Records offices and NCHS is essential to effective public health surveillance and emergency response efforts. Automation of the reporting process adds efficiencies that dramatically improves the efficacy of event response, data analysis, and evidence-based measurable prevention of the causes of death.
+
+The VRDR FHIR IG will provide guidance for the use of standard FHIR resources as a conduit for data required by vital records death reporting. The use of FHIR as a platform for automation of vital records death reporting is expected to improve existing automation by enabling wide-scale adoption and leveraging the potential of electronic health records and clinical decision support systems.
+
+The VRDR FHIR IG will lay a foundation for expansion of automated standards-driven information exchange to include tributary flows of information from entities such as physicians, medical examiners, coroners, funeral directors, and family members to public health agencies and between public health agencies and secondary users of detailed mortality data and aggregate statistics.
+
+This FHIR implementation guide is the primary work product of [project #1475](https://bit.ly/34DRIoA) "Vital Records Mortality and Morbidity Reporting FHIR IG" sponsored by the Health Level Seven (HL7) Public Health Work Group (PHWG). 
+
+The scope of the project is to produce and ballot a Standard for Trail Use (STU) Fast Healthcare Interoperability Resources (FHIR) implementation guide (IG) for use in reporting of death events to the U.S. National Center for Health Statistics (NCHS) by State and Local Public Health Agencies (PHA). The VRDR FHIR IG is based upon FHIR R4. The VRDR FHIR IG was successfully balloted as a standard for trial use (STU) in May 2019.
+
+This is a U.S. Realm Specification. This guide and related materials are based on reporting specifications in U.S. jurisdictions. The data content of this IG are based upon the [U.S. Standard Certificate of Death](https://www.cdc.gov/nchs/data/dvs/DEATH11-03final-ACC.pdf). (built Fri, Aug 13, 2021 12:58+0000+00:00)
+
+</details>
+
+**Versions**
+
+* `hl7.fhir.us.vrdr#3.0.0-ballot`
+* `hl7.fhir.us.vrdr#2.2.0`
+* `hl7.fhir.us.vrdr#2.1.0`
+* `hl7.fhir.us.vrdr#2.0.0`
+* `hl7.fhir.us.vrdr#1.2.0`
+* `hl7.fhir.us.vrdr#1.0.0`
+* `hl7.fhir.us.vrdr#0.1.0`
+
+
+---
+
 ### cens.fhir.poclis
 
 <details>
@@ -8668,15 +8762,12 @@ Electronic Prescription Service
 
 **Versions**
 
-* `uk.nhsdigital.medicines.r4#2.7.9`
 * `uk.nhsdigital.medicines.r4#2.7.1`
 * `uk.nhsdigital.medicines.r4#2.6.0`
 * `uk.nhsdigital.medicines.r4#2.5.0`
 * `uk.nhsdigital.medicines.r4#2.3.0`
-* `uk.nhsdigital.medicines.r4#2.2.1`
 * `uk.nhsdigital.medicines.r4#2.2.0`
 * `uk.nhsdigital.medicines.r4#2.1.9-alpha`
-* `uk.nhsdigital.medicines.r4#2.1.8-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.7-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.6-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.5-alpha`
@@ -8684,7 +8775,6 @@ Electronic Prescription Service
 * `uk.nhsdigital.medicines.r4#2.1.3-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.2-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.14-alpha`
-* `uk.nhsdigital.medicines.r4#2.1.13-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.12-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.11-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.10-alpha`
@@ -8694,7 +8784,6 @@ Electronic Prescription Service
 * `uk.nhsdigital.medicines.r4#2.0.36-alpha`
 * `uk.nhsdigital.medicines.r4#2.0.35-alpha`
 * `uk.nhsdigital.medicines.r4#2.0.34-alpha`
-* `uk.nhsdigital.medicines.r4#2.0.33-alpha`
 * `uk.nhsdigital.medicines.r4#2.0.32-alpha`
 * `uk.nhsdigital.medicines.r4#2.0.31-alpha`
 * `uk.nhsdigital.medicines.r4#2.0.30-alpha`
@@ -9495,7 +9584,6 @@ Egde Health Gateway FHIR facade
 **Versions**
 
 * `egde.health.gateway#0.1.7`
-* `egde.health.gateway#0.1.6`
 * `egde.health.gateway#0.1.5`
 * `egde.health.gateway#0.1.4`
 * `egde.health.gateway#0.1.3`
@@ -9787,13 +9875,11 @@ Estonian HL7 FHIR base Implementation Guide and profiles.
 
 **Versions**
 
-* `iteyes.myhw.core#1.1.9`
 * `iteyes.myhw.core#1.1.8`
 * `iteyes.myhw.core#1.1.7`
 * `iteyes.myhw.core#1.1.6`
 * `iteyes.myhw.core#1.1.5`
 * `iteyes.myhw.core#1.1.4`
-* `iteyes.myhw.core#1.1.3`
 * `iteyes.myhw.core#1.1.2`
 * `iteyes.myhw.core#1.1.1`
 * `iteyes.myhw.core#1.1.9-beta`
@@ -9834,6 +9920,7 @@ The Subscription R5 Backport Implementation Guide enables servers running versio
 **Versions**
 
 * `hl7.fhir.uv.subscriptions-backport#1.2.0-ballot`
+* `hl7.fhir.uv.subscriptions-backport#1.1.0`
 * `hl7.fhir.uv.subscriptions-backport#1.0.0`
 * `hl7.fhir.uv.subscriptions-backport#0.1.0`
 
@@ -9933,22 +10020,6 @@ An IG for querying a decision support engine for a personalized immunization for
 **Versions**
 
 * `hl7.fhir.us.immds#1.0.0`
-
-
----
-
-### Subscriptions R5 Backport
-
-<details>
-<summary>Description</summary>
-
-The Subscription R5 Backport Implementation Guide enables servers running versions of FHIR earlier than R5 to implement a subset of R5 Subscriptions in a standardized way. (built Wed, Jan 11, 2023 15:34+1100+11:00)
-
-</details>
-
-**Versions**
-
-* `hl7.fhir.uv.subscriptions-backport.r4#1.1.0`
 
 
 ---
@@ -10112,10 +10183,7 @@ Medizininformatik Initiative - Kerndatensatz Erweiterungsmodul Biobank / Bioprob
 * `de.medizininformatikinitiative.kerndatensatz.biobank#1.0.5`
 * `de.medizininformatikinitiative.kerndatensatz.biobank#1.0.4`
 * `de.medizininformatikinitiative.kerndatensatz.biobank#1.0.3`
-* `de.medizininformatikinitiative.kerndatensatz.biobank#1.0.2`
-* `de.medizininformatikinitiative.kerndatensatz.biobank#1.0.1`
 * `de.medizininformatikinitiative.kerndatensatz.biobank#1.0.0`
-* `de.medizininformatikinitiative.kerndatensatz.biobank#0.9.0`
 
 
 ---
@@ -10411,6 +10479,7 @@ This implementation guide contains common FHIR assets for use in CQFramework con
 
 **Versions**
 
+* `hl7.fhir.au.pd#2.0.1`
 * `hl7.fhir.au.pd#0.1.0`
 
 
@@ -10541,7 +10610,6 @@ Sistema Integrado de Telemedicina e Telessaúde - Universidade Federal de Santa 
 
 **Versions**
 
-* `hl7.fhir.stt#1.0.0-beta9`
 * `hl7.fhir.stt#1.0.0-beta8`
 * `hl7.fhir.stt#1.0.0-beta7`
 * `hl7.fhir.stt#1.0.0-beta6`
@@ -11187,6 +11255,7 @@ Implementation guide for the meta data specified in the framework of Annex 3 and
 * `ch.fhir.ig.ch-epr-term#2.0.6`
 * `ch.fhir.ig.ch-epr-term#2.0.5`
 * `ch.fhir.ig.ch-epr-term#2.0.4`
+* `ch.fhir.ig.ch-epr-term#2.0.3`
 * `ch.fhir.ig.ch-epr-term#2.0.2`
 * `ch.fhir.ig.ch-epr-term#2.0.0`
 
@@ -11479,7 +11548,6 @@ The goal of the CA Baseline specification is to expose the implementation guide 
 * `hl7.fhir.ca.baseline#1.1.4`
 * `hl7.fhir.ca.baseline#1.1.3`
 * `hl7.fhir.ca.baseline#1.1.6-pre`
-* `hl7.fhir.ca.baseline#1.1.5-pre`
 
 
 ---
@@ -11948,6 +12016,7 @@ Implementation Guide for the Ontario DHDR HL7 FHIR 4.0.0- work-in-progress versi
 * `ca.on.oh-dhdr#4.0.2-alpha1.0.3`
 * `ca.on.oh-dhdr#4.0.2-alpha1.0.2`
 * `ca.on.oh-dhdr#4.0.2-alpha1.0.1`
+* `ca.on.oh-dhdr#4.0.2-alpha1.0.0`
 * `ca.on.oh-dhdr#4.0.1-alpha1.0.0`
 
 
@@ -12049,6 +12118,8 @@ Abrechnungsinformationen des E-Rezeptes für den Patienten
 * `de.gematik.erezept-patientenrechnung.r4#1.0.4`
 * `de.gematik.erezept-patientenrechnung.r4#1.0.3`
 * `de.gematik.erezept-patientenrechnung.r4#1.0.2`
+* `de.gematik.erezept-patientenrechnung.r4#1.0.1`
+* `de.gematik.erezept-patientenrechnung.r4#1.0.0`
 * `de.gematik.erezept-patientenrechnung.r4#1.0.4-rc2`
 
 
@@ -12447,6 +12518,7 @@ mCODE™ (short for Minimal Common Oncology Data Elements) is an initiative inte
 **Versions**
 
 * `hl7.fhir.us.mcode#4.0.0-ballot`
+* `hl7.fhir.us.mcode#3.0.0`
 * `hl7.fhir.us.mcode#3.0.0-ballot`
 * `hl7.fhir.us.mcode#2.1.0`
 * `hl7.fhir.us.mcode#2.0.0`
@@ -12784,7 +12856,6 @@ The Bidirectional Services eReferral (BSeR) FHIR implementation guide provides g
 
 * `ans.fhir.fr.sdo#4.0.2`
 * `ans.fhir.fr.sdo#4.0.1`
-* `ans.fhir.fr.sdo#4.0.2-ballot-3`
 * `ans.fhir.fr.sdo#4.0.2-ballot-2`
 
 
