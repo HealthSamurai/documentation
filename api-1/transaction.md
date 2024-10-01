@@ -28,7 +28,7 @@ entry:
   request:
     method: POST
     url: "/User"
-​
+
 - resource:
     id: SPA
     redirect_uri: http://localhost:4200
