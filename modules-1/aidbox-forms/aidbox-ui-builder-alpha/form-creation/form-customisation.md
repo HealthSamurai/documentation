@@ -32,10 +32,10 @@ Themes are stored in the database in a custom resource called **QuestionnaireThe
 
 To create a new theme, select the **Add New Theme** option. This opens the theme editor, which consists of the following sections:
 
-1. **General Settings:**
+1. **General Settings**
    * **Theme Name:** Assign a name to your theme.
    * **Default Language:** Set the default language if you’re creating a theme for multilingual forms. When a language is selected, an additional **translation** icon will appear. Clicking on this icon opens a separate window where you can provide translations for the buttons used on the multilingual form.
-2.  **Colors:**
+2.  **Colors**
 
     In this section, you can customize the color scheme of your form:
 
@@ -43,9 +43,7 @@ To create a new theme, select the **Add New Theme** option. This opens the theme
     * **Page Color:** The background color for the page where the form is displayed.
     * **Form Color:** The background color for the form itself.
     * **Toolbar Color:** The color for the form's toolbar.
-
-
-3.  **Brand Image:**
+3.  **Brand Image**
 
     You can add a brand image to your form in two possible locations:
 
@@ -53,8 +51,29 @@ To create a new theme, select the **Add New Theme** option. This opens the theme
     * **Bottom-left corner** of the form.
 
     To include the image, provide a publicly available URL for the image file.
-4. **Inputs**
-5. **Buttons**
+4.  **Font**
+
+    In this section, you can select the font family and set the font size for your form. Three options are available for the font family: **Product Sans**, **Inter** and **Metropolis**.
+5.  **Inputs**
+
+    In this section, you can customize the appearance of input fields:
+
+    * **Accent Color:** Set the accent color for input fields, which typically affects borders and highlights.
+    * **Text Color:** Define the color of the text entered in the input fields.
+    * **Background Color:** Set the background color for input fields.
+    * **Font Size:** Adjust the font size for text within the input fields.
+6.  **Buttons**
+
+    In this section, you can customize the appearance of buttons in your form:
+
+    * **Common Settings for All Buttons:**
+      * **Accent Color:** The highlight color used for buttons.
+      * **Text Color:** The color of the button text.
+      * **Submit Button Text:** Customize the text that appears on the submit button.
+    * **Close (Print, Amend) Button Appearance:**
+      * **Close (Print, Amend) Button Text:** Set the text for the close button.
+      * **Close (Print, Amend) Button Color:** Set the background color of the close button.
+      * **Close (Print, Amend) Button Text Color:** Define the color of the text on the close button.
 
 After creating the theme, you need to click the save button.
 
