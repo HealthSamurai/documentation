@@ -8,8 +8,9 @@
   * Enabled new Aidbox UI by default
   * Fixed critical vulnerabilities
 * Smartbox | FHIR API for EHRs
-  * Added source attributed for evidence-based and predictive DSIs
-  * Aded user feedback for DSIs
+  * Added source attributed for evidence-based and predictive DSIs (b)(11)
+  * Added user feedback for DSIs (b)(11)
+  * Implemented “service base URLs” as per (g)(10)
 * Aidbox Forms
 * C-CDA / FHIR converter
 
