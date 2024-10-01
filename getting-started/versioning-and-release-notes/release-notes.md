@@ -33,7 +33,7 @@
 * [Aidbox Forms](../../modules-1/aidbox-forms.md)
   * UI builder updates (FHIR Questionnaire-based):
     * [Supported Multilingual Forms](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/multilingual-forms.md)
-    * [Implemented Multilingual Builder Interface](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/multilingual-ui-builder.md)
+    * [Implemented Multilingual Builder Interface](broken-reference)
     * Provided delete, copy form on the Form template grid
     * [Implemented reusing forms as component](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/components.md)
     * [Added the SDC config resource for general settings](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/configuration.md)
