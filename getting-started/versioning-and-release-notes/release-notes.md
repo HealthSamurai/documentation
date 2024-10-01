@@ -12,6 +12,14 @@
   * Added user feedback for DSIs (b)(11)
   * Implemented “service base URLs” as per (g)(10)
 * Aidbox Forms
+  * Added an ability to use Aidbox Forms with other FHIR servers
+  * Implemented the basic PDF-form conversion to digital forms
+  * [Added print & close button customization](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-customisation.md)
+  * Added QuestionnareResponce and extraction outcomes validation in the UI Builder console
+  * [Added form width settings](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-settings.md#appearance-settings)
+  * Supported default value population in the UI Builder
+  * [Multilingual form improvements: added support for languages with country codes, added ability for print & amend button translations](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/multilingual-forms.md)
+  * Optimized performance for handling large forms
 * C-CDA / FHIR converter
 
 ## August 2024 _`latest,2408`_
