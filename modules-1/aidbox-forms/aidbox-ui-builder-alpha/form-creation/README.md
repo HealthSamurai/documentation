@@ -8,7 +8,7 @@ description: This article outlines the overview of UI Builder interface
 
 When creating a form in the UI builder, the interface includes the following components:
 
-1. &#x20;**Work Area ( left Side ):**
+1. **Work Area ( left Side ):**
    * Displays the form outline, showing the structure of the form and the properties of the form and its widgets and components.
    * Users can add, remove, or modify form widgets and components.
 2. **Form Preview ( right Side ):**
@@ -22,5 +22,8 @@ When creating a form in the UI builder, the interface includes the following com
 4. **Toolbar ( at the top** )**:**
    * The toolbar contains buttons for various actions.
    * Users can view a preview of the form, set a theme for the form, save the form, and access additional actions.
+   *   The toolbar provides tools to help visualize how your form will be displayed across various devices. You can select one of the **available device options** such as desktop, tablet, or mobile.
+
+       Alternatively, you can manually set the **page width** to preview how the form adapts to different dimensions.
 
 This interface provides users with the tools needed to create, test, and manage forms effectively.
