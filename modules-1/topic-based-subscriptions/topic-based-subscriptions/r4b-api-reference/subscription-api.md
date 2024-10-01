@@ -1,6 +1,6 @@
 # Subscription API
 
-### Create Subscription - `POST /fhir/Subscription`
+## Create Subscription - `POST /fhir/Subscription`
 
 Creates a new subscription. Takes params depending on the current version of FHIR used in Aidbox.
 
@@ -9,11 +9,11 @@ The R4B Subscriptions resource uses FHIR extension fields that should be written
 You should also add the subscription backport profile URL to your resource's `meta.profile` field.
 {% endhint %}
 
-#### Params:
+### Parameters
 
 {% tabs %}
 {% tab title="R4B" %}
-<table data-full-width="false"><thead><tr><th width="265.30314960629926">Parameter</th><th width="92">Type</th><th width="102" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td><strong>meta</strong></td><td>object</td><td>false</td><td></td></tr><tr><td>meta.profile</td><td>string[]</td><td>true</td><td>Extension URL:<br><a href="http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-subscription">http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-subscription</a></td></tr><tr><td>id</td><td>string</td><td>false</td><td>Identifier of the resource. Will be auto-generated if not provided.</td></tr><tr><td>reason</td><td>string</td><td>false</td><td>Human readable reason for subscription.</td></tr><tr><td>criteria</td><td>string</td><td>true</td><td><p>Canonical URL for the topic used to generate events.</p><p><br><em>Example: http://aidbox.app/SubscriptionTopic/patient-test-1</em></p></td></tr><tr><td><p><strong>criteria.extension:</strong></p><p><a href="http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-filter-criteria">filterCriteria</a></p></td><td>string[]</td><td>false</td><td><p>The <a href="http://hl7.org/fhir/uv/subscriptions-backport/STU1.1/components.html#subscription-filters">filters</a> applied to events in the following format:</p><p><br><code>[resourceType.]filterParameter=[modifier]value</code></p><p></p><p><code>filterParameter</code> above should be one of the filter names defined by the relevant <code>SubscriptionTopic</code></p><p>(<code>canFilterBy.filterParameter</code> field).</p><p><code>resourceType</code> and <code>modifiers</code> should be the ones allowed in the corresponding <code>canFilterBy.filterParameter</code> of the relevant <code>SubscriptionTopic</code> as well. </p><p><code>resourceType</code> is only necessary for disambiguation.</p><p>When multiple filters are applied, it evaluates to true if all the conditions applicable to that resource are met; otherwise, it returns false (i.e., logical AND).</p><p><br><em>Example: patient-birth=gt2005-01-01T01:00:00Z</em></p></td></tr><tr><td><p><strong>channel.extension:</strong></p><p><a href="http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-heartbeat-period">heartbeatPeriod</a></p></td><td>integer</td><td>false</td><td><p>Interval in seconds to send 'heartbeat' notification.</p><p><br><em>Default value: 120</em></p></td></tr><tr><td><p><strong>channel.extension:</strong></p><p><a href="http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-timeout">timeout</a></p></td><td>integer</td><td>false</td><td><p>Timeout in seconds to attempt notification delivery.</p><p><br><em>Default value: 30</em></p></td></tr><tr><td><p><strong>channel.extension:</strong></p><p><a href="http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-max-count">maxCount</a></p></td><td>integer</td><td>false</td><td><p>Maximum number of triggering resources included in notification bundles.</p><p><br><em>Default value: 10</em></p></td></tr><tr><td><strong>channel</strong>.type</td><td>string</td><td>true</td><td>The type of channel to send notifications on.<br><br><em>Supported values: rest-hook</em></td></tr><tr><td><strong>channel</strong>.header</td><td>string[]</td><td>false</td><td><p>Additional headers/information to send as part of the notification.  For the rest-hook channel type, this will be HTTP request headers.</p><p><br><em>Example: ["random-header: secret123"]</em></p></td></tr><tr><td><strong>channel</strong>.endpoint</td><td>string</td><td>false</td><td><p>The URL that describes the actual end-point to send messages to.</p><p><br><em>Example: https://my.app/endpoint</em></p></td></tr><tr><td><strong>channel</strong>.payload</td><td>string</td><td>false</td><td>MIME-type to send, or omit for no payload.<br><br><em>Supported values: application/fhir+json</em></td></tr><tr><td><p><strong>channel.payload.extension:</strong></p><p><a href="http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-payload-content">content</a></p></td><td>string</td><td>false</td><td><p><a href="http://hl7.org/fhir/uv/subscriptions-backport/STU1.1/ValueSet-backport-content-value-set.html">Notification content level</a>.</p><p><br><em>Supported values:</em> <em>empty, id-only, full-resource.</em></p><p><em>Default value: empty</em></p></td></tr><tr><td>status</td><td>string</td><td>false</td><td><p>Status of the subscription. </p><p>On the creation of this resource, the status is always <code>requested</code> and other values will be ignored.</p></td></tr><tr><td>end</td><td>string</td><td>false</td><td>When to automatically delete the subscription.</td></tr></tbody></table>
+<table data-full-width="false"><thead><tr><th>Parameter</th><th width="92">Type</th><th width="100" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td><strong>meta</strong></td><td>object</td><td>false</td><td></td></tr><tr><td>meta.profile</td><td>string[]</td><td>true</td><td>Extension URL:<br><a href="http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-subscription">http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-subscription</a></td></tr><tr><td>id</td><td>string</td><td>false</td><td>Identifier of the resource. Will be auto-generated if not provided.</td></tr><tr><td>reason</td><td>string</td><td>false</td><td>Human readable reason for subscription.</td></tr><tr><td>criteria</td><td>string</td><td>true</td><td><p>Canonical URL for the topic used to generate events.</p><p><br><em>Example: http://aidbox.app/SubscriptionTopic/patient-test-1</em></p></td></tr><tr><td><p><strong>criteria.extension:</strong></p><p><a href="http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-filter-criteria">filterCriteria</a></p></td><td>string[]</td><td>false</td><td><p>The <a href="http://hl7.org/fhir/uv/subscriptions-backport/STU1.1/components.html#subscription-filters">filters</a> applied to events in the following format:</p><p><br><code>[resourceType.]filterParameter=[modifier]value</code></p><p></p><p><code>filterParameter</code> above should be one of the filter names defined by the relevant <code>SubscriptionTopic</code></p><p>(<code>canFilterBy.filterParameter</code> field).</p><p><code>resourceType</code> and <code>modifiers</code> should be the ones allowed in the corresponding <code>canFilterBy.filterParameter</code> of the relevant <code>SubscriptionTopic</code> as well. </p><p><code>resourceType</code> is only necessary for disambiguation.</p><p>When multiple filters are applied, it evaluates to true if all the conditions applicable to that resource are met; otherwise, it returns false (i.e., logical AND).</p><p><br><em>Example: patient-birth=gt2005-01-01T01:00:00Z</em></p></td></tr><tr><td><p><strong>channel.extension:</strong></p><p><a href="http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-heartbeat-period">heartbeatPeriod</a></p></td><td>integer</td><td>false</td><td><p>Interval in seconds to send 'heartbeat' notification.</p><p><br><em>Default value: 120</em></p></td></tr><tr><td><p><strong>channel.extension:</strong></p><p><a href="http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-timeout">timeout</a></p></td><td>integer</td><td>false</td><td><p>Timeout in seconds to attempt notification delivery.</p><p><br><em>Default value: 30</em></p></td></tr><tr><td><p><strong>channel.extension:</strong></p><p><a href="http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-max-count">maxCount</a></p></td><td>integer</td><td>false</td><td><p>Maximum number of triggering resources included in notification bundles.</p><p><br><em>Default value: 10</em></p></td></tr><tr><td><strong>channel</strong>.type</td><td>string</td><td>true</td><td>The type of channel to send notifications on.<br><br><em>Supported values: rest-hook</em></td></tr><tr><td><strong>channel</strong>.header</td><td>string[]</td><td>false</td><td><p>Additional headers/information to send as part of the notification.  For the rest-hook channel type, this will be HTTP request headers.</p><p><br><em>Example: ["random-header: secret123"]</em></p></td></tr><tr><td><strong>channel</strong>.endpoint</td><td>string</td><td>false</td><td><p>The URL that describes the actual end-point to send messages to.</p><p><br><em>Example: https://my.app/endpoint</em></p></td></tr><tr><td><strong>channel</strong>.payload</td><td>string</td><td>false</td><td>MIME-type to send, or omit for no payload.<br><br><em>Supported values: application/fhir+json</em></td></tr><tr><td><p><strong>channel.payload.extension:</strong></p><p><a href="http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-payload-content">content</a></p></td><td>string</td><td>false</td><td><p><a href="http://hl7.org/fhir/uv/subscriptions-backport/STU1.1/ValueSet-backport-content-value-set.html">Notification content level</a>.</p><p><br><em>Supported values:</em> <em>empty, id-only, full-resource.</em></p><p><em>Default value: empty</em></p></td></tr><tr><td>status</td><td>string</td><td>false</td><td><p>Status of the subscription. </p><p>On the creation of this resource, the status is always <code>requested</code> and other values will be ignored.</p></td></tr><tr><td>end</td><td>string</td><td>false</td><td>When to automatically delete the subscription.</td></tr></tbody></table>
 {% endtab %}
 
 {% tab title="R5" %}
@@ -21,11 +21,7 @@ You should also add the subscription backport profile URL to your resource's `me
 {% endtab %}
 {% endtabs %}
 
-
-
-#### Result:
-
-<table data-full-width="false"><thead><tr><th width="198">Parameter</th><th width="169">Type</th><th>Description</th></tr></thead><tbody><tr><td>resource</td><td>object</td><td>Created Subscription resource.</td></tr></tbody></table>
+### Example
 
 {% tabs %}
 {% tab title="Request" %}
@@ -105,17 +101,13 @@ end: '2020-12-31T12:00:00Z'
 
 
 
-### Subscription Status - `GET /fhir/Subscription/[id]/$status`
+## Subscription Status - `GET /fhir/Subscription/[id]/$status`
 
 This operation is used to get the current status information about a topic-based Subscription.
 
 Returns FHIR bundle where the [SubscriptionStatus resource](http://hl7.org/fhir/R4B/subscriptionstatus.html) is the only entry element.
 
-#### Params:
-
-No params are required.
-
-
+### Example
 
 {% tabs %}
 {% tab title="Request" %}
@@ -146,21 +138,19 @@ entry:
 {% endtab %}
 {% endtabs %}
 
-
-
-### Subscription Events - `GET /fhir/Subscription/[id]/$events`
+## Subscription Events - `GET /fhir/Subscription/[id]/$events`
 
 This operation is used to search for and get notifications that have been previously triggered by a topic-based Subscription.
 
 Returns FHIR bundle where the [SubscriptionStatus resource](http://hl7.org/fhir/R4B/subscriptionstatus.html) is the first entry element, and triggered events are the rest.
 
-#### Params:
+### Parameters
 
 <table data-full-width="false"><thead><tr><th width="208">Parameter</th><th width="96">Type</th><th width="99" data-type="checkbox">required</th><th>Description</th></tr></thead><tbody><tr><td>eventsSinceNumber</td><td>integer</td><td>false</td><td>The starting event number, inclusive of this event (lower bound).</td></tr><tr><td>eventsUntilNumber</td><td>integer</td><td>false</td><td>The ending event number, inclusive of this event (upper bound).</td></tr></tbody></table>
 
 If the params above are not provided, returns the latest 20 events.
 
-
+### Example
 
 {% tabs %}
 {% tab title="Request" %}
@@ -248,13 +238,94 @@ entry:
 {% endtab %}
 {% endtabs %}
 
-### Delete Subscription - `DELETE /fhir/Subscription/[id]`
+## Subscription and events RPC
+
+Returns all data about subscription and its events.&#x20;
+
+RPC endpoint: `fhir.topic-based-subscription/get-subscription-by-id`
+
+### Parameters
+
+| Parameter    | Type   | Description                              |
+| ------------ | ------ | ---------------------------------------- |
+| id           | string | id of subscription                       |
+| events-limit | int    | Limit of events to fetch. Default is 10. |
+
+### Example
+
+{% tabs %}
+{% tab title="Request" %}
+```
+POST /rpc
+
+method: fhir.topic-based-subscription/get-subscription-by-id
+params:
+  id: subscription-patient-test-1
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```
+result:
+  resource:
+    maxCount: 2
+    service-definition:
+      # ... definition from zen
+    content: id-only
+    events:
+      - body:
+          focusResource:
+            id: >-
+              pat4
+            meta:
+              extension:
+                - url: ex:createdAt
+                  valueInstant: '2024-10-01T10:42:12.204409Z'
+              versionId: '164'
+              lastUpdated: '2024-10-01T10:42:12.204409Z'
+            gender: male
+            resourceType: Patient
+        error: no-response
+        headers:
+          values:
+            first-family-name: null
+            prev-first-family-name: null
+            first-family-name-alternative: null
+          focusId: pat4
+          timestamp: '2024-10-01T10:42:12.206127Z'
+          interaction: create
+          focusResourceType: Patient
+        lsn: 0/46F6680
+        seq_num: 4
+        type: handshake
+        eventNumber: 0
+    topic: http://aidbox.app/SubscriptionTopic/patient-test-1
+    resourceType: Subscription
+    reason: R4/B Test Topic-Based Subscription for Patient resources
+    heartbeatPeriod: 60
+    status: active
+    id: subscription-patient-test-1
+    topic-id: c78aab4508bf90b63bcc18b70e61bbf2
+    contentType: application/fhir+json
+    timeout: 1
+    filterBy: []
+    endpoint: http://localhost:27193/patient-test-1
+    parameter: []
+    channelType:
+      code: rest-hook
+```
+
+
+{% endtab %}
+{% endtabs %}
+
+## Delete Subscription - `DELETE /fhir/Subscription/[id]`
 
 Delete Subscription resource.
 
-#### Result:
-
 <table data-full-width="false"><thead><tr><th width="156">Parameter</th><th width="148">Type</th><th>Description</th></tr></thead><tbody><tr><td>resource</td><td>object</td><td>Deleted Subscription resource.</td></tr></tbody></table>
+
+### Example
 
 {% tabs %}
 {% tab title="Request" %}
@@ -318,3 +389,4 @@ Status: 200
 ```
 {% endtab %}
 {% endtabs %}
+
