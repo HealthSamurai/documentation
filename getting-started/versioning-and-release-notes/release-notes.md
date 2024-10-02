@@ -12,7 +12,6 @@
   * Added user feedback for DSIs (b)(11)
   * Implemented “service base URLs” as per (g)(10)
 * Aidbox Forms
-  * Added an ability to use Aidbox Forms with other FHIR servers
   * Implemented the basic PDF-form conversion to digital forms
   * [Added print & close button customization](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-customisation.md)
   * Added QuestionnareResponce and extraction outcomes validation in the UI Builder console
