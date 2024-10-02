@@ -37,7 +37,7 @@ http://aidbox.app/StructureDefinition/aidboxtopicdestination-kafka-at-least-once
 For additional details see [Kafka Producer Configs Documentation](https://kafka.apache.org/documentation/#producerconfigs)
 {% endhint %}
 
-<table data-full-width="false"><thead><tr><th width="245">Parameter name</th><th width="136">Value type</th><th>Description</th></tr></thead><tbody><tr><td><code>kafkaTopic</code> *</td><td>valueString</td><td>The Kafka topic where the data should be sent.</td></tr><tr><td><code>bootstrap.servers</code> *</td><td>valueString</td><td>Comma-separated string. Specifies the Kafka broker to connect to. Only one broker can be listed.</td></tr><tr><td><code>compression.type</code></td><td>valueString</td><td>Specify the final compression type for a given topic. This configuration accepts the standard compression codecs ('gzip', 'snappy', 'lz4', 'zstd').</td></tr><tr><td><code>batch.size</code></td><td>valueInteger</td><td>This configuration controls the default batch size in bytes.</td></tr><tr><td><code>delivery.timeout.ms</code></td><td>valueInteger</td><td>A maximum time limit for reporting the success or failure of a record sent by a producer, covering delays before sending, waiting for broker acknowledgment, and handling retriable errors. </td></tr><tr><td><code>max.block.ms</code></td><td>valueInteger</td><td>The configuration controls how long the <code>KafkaProducer</code>'s <code>send()</code>method will block. </td></tr><tr><td><code>max.request.size</code></td><td>valueInteger</td><td>The maximum size of a request in bytes.</td></tr><tr><td><code>request.timeout.ms</code></td><td>valueInteger</td><td>The maximum amount of time the client will wait for the response of a request.</td></tr><tr><td><code>ssl.keystore.key</code></td><td>valueString</td><td>Private key in the format specified by 'ssl.keystore.type'.</td></tr><tr><td><code>security.protocol</code></td><td>valueString</td><td>Protocol used to communicate with brokers.</td></tr><tr><td><code>sasl.mechanism</code></td><td>valueString</td><td>SASL mechanism used for client connections.</td></tr><tr><td><code>sasl.jaas.config</code></td><td>valueString</td><td>JAAS login context parameters for SASL connections in the format used by JAAS configuration files.</td></tr><tr><td><code>sasl.client.callback.handler.class</code></td><td>valueString</td><td>The fully qualified name of a SASL client callback handler class that implements the AuthenticateCallbackHandler interface.</td></tr></tbody></table>
+<table data-full-width="false"><thead><tr><th width="245">Parameter name</th><th width="136">Value type</th><th>Description</th></tr></thead><tbody><tr><td><code>kafkaTopic</code> *</td><td>valueString</td><td>The Kafka topic where the data should be sent.</td></tr><tr><td><code>bootstrapServers</code> *</td><td>valueString</td><td>Comma-separated string. Specifies the Kafka broker to connect to. Only one broker can be listed.</td></tr><tr><td><code>compressionType</code></td><td>valueString</td><td>Specify the final compression type for a given topic. This configuration accepts the standard compression codecs ('gzip', 'snappy', 'lz4', 'zstd').</td></tr><tr><td><code>batchSize</code></td><td>valueInteger</td><td>This configuration controls the default batch size in bytes.</td></tr><tr><td><code>deliveryTimeoutMs</code></td><td>valueInteger</td><td>A maximum time limit for reporting the success or failure of a record sent by a producer, covering delays before sending, waiting for broker acknowledgment, and handling retriable errors. </td></tr><tr><td><code>maxBlockMs</code></td><td>valueInteger</td><td>The configuration controls how long the <code>KafkaProducer</code>'s <code>send()</code>method will block. </td></tr><tr><td><code>maxRequestSize</code></td><td>valueInteger</td><td>The maximum size of a request in bytes.</td></tr><tr><td><code>requestTimeoutMs</code></td><td>valueInteger</td><td>The maximum amount of time the client will wait for the response of a request.</td></tr><tr><td><code>sslKeystoreKey</code></td><td>valueString</td><td>Private key in the format specified by 'ssl.keystore.type'.</td></tr><tr><td><code>securityProtocol</code></td><td>valueString</td><td>Protocol used to communicate with brokers.</td></tr><tr><td><code>saslMechanism</code></td><td>valueString</td><td>SASL mechanism used for client connections.</td></tr><tr><td><code>saslJaasConfig</code></td><td>valueString</td><td>JAAS login context parameters for SASL connections in the format used by JAAS configuration files.</td></tr><tr><td><code>saslClientCallbackHandlerClass</code></td><td>valueString</td><td>The fully qualified name of a SASL client callback handler class that implements the AuthenticateCallbackHandler interface.</td></tr></tbody></table>
 
 \* required parameter.
 
@@ -66,7 +66,7 @@ accept: application/json
       "valueString": "aidbox-forms"
     },
     {
-      "name": "bootstrap.servers",
+      "name": "bootstrapServers",
       "valueString": "kafka:29092"
     }
   ]
@@ -95,23 +95,23 @@ accept: application/json
       "valueString": "aidbox-forms"
     },
     {
-      "name": "bootstrap.servers",
+      "name": "bootstrapServers",
       "valueString": "<...>.amazonaws.com:9098,<...>.amazonaws.com:9098"
     },
     {
-      "name": "security.protocol",
+      "name": "securityProtocol",
       "valueString": "SASL_SSL"
     },
     {
-      "name": "sasl.mechanism",
+      "name": "saslMechanism",
       "valueString": "AWS_MSK_IAM"
     },
     {
-      "name": "sasl.jaas.config",
+      "name": "saslJaasConfig",
       "valueString": "software.amazon.msk.auth.iam.IAMLoginModule required;"
     },
     {
-      "name": "sasl.client.callback.handler.class",
+      "name": "saslClientCallbackHandlerClass",
       "valueString": "software.amazon.msk.auth.iam.IAMClientCallbackHandler"
     }
   ]
@@ -122,7 +122,7 @@ accept: application/json
 
 ## **Status Introspection**
 
-Aidbox provides `$status` operation wich provides short status information of the integration status:
+Aidbox provides `$status` operation which provides short status information on the integration status:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -151,6 +151,6 @@ accept: application/json
 {% endtab %}
 {% endtabs %}
 
-Responce format:
+Response format:
 
-<table data-full-width="false"><thead><tr><th width="188">Property</th><th width="128">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>start-time</code></td><td>string</td><td><code>AidboxTopicDestination</code> start time in UTC.</td></tr><tr><td><code>status</code></td><td>string</td><td><code>AidboxTopicDestination</code> status is always <code>active</code>, which means that <code>AidboxTopicDestination</code> will try to send all received notifications.</td></tr><tr><td><code>success-event-delivery</code></td><td>number</td><td>Total number of events that have been successfully delivered.</td></tr><tr><td><code>enqueued-events-count</code></td><td>number</td><td>Number of events pending in the queue for dispatch to the Kafka driver. This count remains <code>0</code> for the <em>best-effor</em> approach.</td></tr><tr><td><code>event-in-process</code></td><td>number</td><td>Current number of events in the buffer being processed for delivery.</td></tr><tr><td><code>fail-event-delivery</code></td><td>string</td><td>Total number of events that failed to be delivered. This count remains <code>0</code> for the <em>at-least-once</em> approach.</td></tr><tr><td><code>fail-event-delivery-attempt</code></td><td>number</td><td><p> Number of delivery attempts that failed. </p><p>For the <em>best-effor</em> approach, this matches the <code>failed-delivery</code> count. </p><p>For the <em>at-least-once</em> approach, it represents the overall failed delivery attempts.</p></td></tr><tr><td><code>last-error</code></td><td>string</td><td>Error message of the last failed attempt to send event.</td></tr></tbody></table>
+<table data-full-width="false"><thead><tr><th width="188">Property</th><th width="128">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>startTimestamp</code></td><td>string</td><td><code>AidboxTopicDestination</code> start time in UTC.</td></tr><tr><td><code>status</code></td><td>string</td><td><code>AidboxTopicDestination</code> status is always <code>active</code>, which means that <code>AidboxTopicDestination</code> will try to send all received notifications.</td></tr><tr><td><code>messagesDelivered</code></td><td>number</td><td>Total number of events that have been successfully delivered.</td></tr><tr><td><code>messagesQueued</code></td><td>number</td><td>Number of events pending in the queue for dispatch to the Kafka driver. This count remains <code>0</code> for the <em>best-effor</em> approach.</td></tr><tr><td><code>messagesInProcess</code></td><td>number</td><td>Current number of events in the buffer being processed for delivery.</td></tr><tr><td><code>messagesLost</code></td><td>string</td><td>Total number of events that failed to be delivered. This count remains <code>0</code> for the <em>at-least-once</em> approach.</td></tr><tr><td><code>messagesDeliveryAttempts</code></td><td>number</td><td><p> Number of delivery attempts that failed. </p><p>For the <em>best-effor</em> approach, this matches the <code>failed-delivery</code> count. </p><p>For the <em>at-least-once</em> approach, it represents the overall failed delivery attempts.</p></td></tr><tr><td><code>lastErrorDetail</code></td><td>string</td><td>Error message of the last failed attempt to send event.</td></tr></tbody></table>

@@ -139,7 +139,7 @@ Notification is a [FHIR Bundle](https://build.fhir.org/bundle.html) resource wit
       },
       "request": {
         "method": "POST",
-        "url": "/fhir/Questionnaire/$process-response"
+        "url": "/fhir/Questionnaire"
       }
     }
   ]
