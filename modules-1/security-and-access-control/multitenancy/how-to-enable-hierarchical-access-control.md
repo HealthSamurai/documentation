@@ -66,6 +66,18 @@ git clone \
   rm -rf .git
 ```
 {% endtab %}
+
+{% tab title="FHIR R5" %}
+```bash
+git clone \
+  --branch=orgbac-with-fhir-schema-r5 \
+  --depth=1 \
+  https://github.com/Aidbox/aidbox-project-template.git \
+  aidbox-project && \
+  cd aidbox-project && \
+  rm -rf .git
+```
+{% endtab %}
 {% endtabs %}
 
 {% hint style="info" %}
