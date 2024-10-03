@@ -420,7 +420,7 @@
         * [How to: populate forms with data](modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to.md)
         * [How to extract data from forms](modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-extract-data-from-forms.md)
       * [Multilingual forms](modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/multilingual-forms.md)
-    * [Import FHIR Questionnaire](modules-1/aidbox-forms/aidbox-ui-builder-alpha/import-fhir-questionnaire.md)
+    * [Import Questionnaire](modules-1/aidbox-forms/aidbox-ui-builder-alpha/import-fhir-questionnaire.md)
     * [Form sharing](modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-sharing.md)
     * [Printing forms](modules-1/aidbox-forms/aidbox-ui-builder-alpha/printing-forms.md)
     * [FHIR versions](modules-1/aidbox-forms/aidbox-ui-builder-alpha/fhir-versions.md)
