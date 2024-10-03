@@ -227,21 +227,20 @@ GET /Organization/org-c/fhir/Patient/pt-1
 
 ## Configuring AccessPolicies
 
+To allow some user/client to interact with a organization-based resources, AccessPolicy should be configured to check organization id from the `https://aidbox.app/tenant-organization-id` extension of User/Client resource.
 
+This example allows org-based user (created by `PUT /Organization/<org-id>/fhir/User`) to see patients that are also created by OrgBAC.
 
 ```
-PUT /AccessPolicy/as-practitioner-allow-org-patients
+PUT /AccessPolicy/as-user-allow-org-patients
 
-description: A practitioner should be able to get every patient in their organization.
+description: A user should be able to get every patient in their organization.
 engine: matcho
 matcho:
   params:
     resource/type: Patient
   request-method: get
   user:
-    roles:
-      $contains:
-        value: 'practitioner'
     meta:
       extension:
         $contains:
