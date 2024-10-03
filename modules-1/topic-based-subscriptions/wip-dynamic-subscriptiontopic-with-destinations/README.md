@@ -24,6 +24,7 @@ For an application example, refer to [Aidbox Subscriptions & Kafka AidboxTopicDe
 {% endhint %}
 
 * **`AidboxTopicDestination`** is a custom Aidbox resource that defines where and how the notifications triggered by an `AidboxSubscriptionTopic` should be sent. This resource offers flexibility in specifying various types of destinations. And is considered as a system configuration resource.
+* **`AidboxSubsctiptionStatus`** is a custom Aidbox resource which describes the notifications: what messages stored in the bundle, source and destination.
 
 ## AidboxSubscriptionTopic
 
@@ -87,59 +88,89 @@ Ensure that the resource metadata contains the kind-specific `AidboxTopicDestina
 
 ## Notification Shape
 
-Notification is a [FHIR Bundle](https://build.fhir.org/bundle.html) resource with `subscription-notification` type, containing relevant resources in its entries.
+Notification is a [FHIR Bundle](https://build.fhir.org/bundle.html) resource with `history` type, containing relevant resources in its entries. The first entry is a `AidboxSubscriptionStatus` resource, which describes the payload.
 
 ```json
 {
-  "resourceType": "Bundle",
-  "type": "subscription-notification",
-  "timestamp": "2024-08-28T11:10:13.675866Z",
-  "entry": [
+  "resourceType":"Bundle",
+  "type":"history",
+  "timestamp":"2024-10-03T10:07:55Z",
+  "entry":[
     {
-      "resource": {
-        "type": "event-notification",
-        "topic": "http://example.org/FHIR/R5/SubscriptionTopic/QuestionnaireResponse-topic",
-        "resourceType": "AidboxTopicDestinationStatus",
-        "topic-destination": {
-          "reference": "AidboxTopicDestination/kafka-destination"
+      "resource":{
+        "resourceType":"AidboxSubscriptionStatus",
+        "status":"active",
+        "type":"event-notification",
+        "notificationEvent":[
+          {
+            "eventNumber":1,
+            "focus":{
+              "reference":"QuestionnaireResponse/458e771c-0ff1-4858-ac07-93b7a10c8e3b"
+            }
+          }
+        ],
+        "topic":"http://example.org/FHIR/R5/SubscriptionTopic/QuestionnaireResponse-topic",
+        "topic-destination":{
+          "reference":"AidboxTopicDestination/kafka-destination"
         }
       }
     },
     {
-      "resource": {
-        "id": "3df44906-a578-4437-915c-f0c006838b2d",
-        "item": [
+      "resource":{
+        "id":"458e771c-0ff1-4858-ac07-93b7a10c8e3b",
+        "item":[
           {
-            "text": "ROS Defaults",
-            "answer": [
+            "text":"Leishmania sp 14kD IgG Ser Ql IB",
+            "answer":[
               {
-                "valueString": "sdfvzbdfgqearcxvbgadfgqwerdtasdf"
+                "valueString":"123"
               }
             ],
-            "linkId": "1"
+            "linkId":"128852"
           },
           {
-            "text": "Constitutional ",
-            "linkId": "2"
+            "text":"Leishmania sp 16kD IgG Ser Ql IB",
+            "answer":[
+              {
+                "valueString":"432"
+              }
+            ],
+            "linkId":"128851"
           }
         ],
-        "meta": {
-          "lastUpdated": "2024-08-28T11:10:13.673430Z",
-          "versionId": "124",
-          "extension": [
+        "meta":{
+          "lastUpdated":"2024-10-03T10:07:55.843374Z",
+          "versionId":"1970",
+          "extension":[
             {
-              "url": "ex:createdAt",
-              "valueInstant": "2024-08-28T11:09:51.431354Z"
+              "url":"ex:createdAt",
+              "valueInstant":"2024-10-03T10:07:42.342731Z"
             }
           ]
         },
-        "status": "in-progress",
-        "resourceType": "QuestionnaireResponse",
-        "questionnaire": "http://forms.aidbox.io/questionnaire/ros|0.1.0"
+        "author":{
+          "identifier":{
+            "type":{
+              "coding":[
+                {
+                  "code":"UID",
+                  "system":"urn:system:aidbox",
+                  "display":"User ID"
+                }
+              ]
+            },
+            "value":"admin",
+            "system":"http://localhost:8765"
+          }
+        },
+        "status":"completed",
+        "authored":"2024-10-03T10:07:55.664Z",
+        "resourceType":"QuestionnaireResponse",
+        "questionnaire":"http://loinc.org/q/100109-8"
       },
-      "request": {
-        "method": "POST",
-        "url": "/fhir/Questionnaire"
+      "request":{
+        "method":"POST",
+        "url":"/fhir/QuestionnaireResponse"
       }
     }
   ]
