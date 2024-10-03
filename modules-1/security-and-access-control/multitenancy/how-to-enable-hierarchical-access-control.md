@@ -22,7 +22,9 @@ To get the Aidbox License:
 
 ## Create Aidbox project
 
-Aidbox is configured by the [Aidbox Configuration Project.](../../../aidbox-configuration/aidbox-zen-lang-project/) To create sample project run command below&#x20;
+Aidbox is configured by the [Aidbox Configuration Project.](../../../aidbox-configuration/aidbox-zen-lang-project/) To create sample project run command below.&#x20;
+
+Note that to use hierarchical access control with the [FHIR Schema validator](../../profiling-and-validation/fhir-schema-validator.md), you need to clone the `orgbac-with-fhir-schema` branch, which has the FHIR Schema validator enabled and the Aidbox Configuration Project configured.
 
 {% tabs %}
 {% tab title="FHIR R4" %}
@@ -48,14 +50,8 @@ git clone \
   rm -rf .git
 ```
 {% endtab %}
-{% endtabs %}
 
-### OrgBAC with FHIR Schema validator
-
-To use hierarchical access control with the [FHIR Schema validator](../../profiling-and-validation/fhir-schema-validator.md), you need to have [Aidbox Configuration Project](../../../aidbox-configuration/aidbox-zen-lang-project/) and enable the [FHIR Schema validator](../../profiling-and-validation/fhir-schema-validator.md). To create a sample project with hierarchical access control and the FHIR Schema validator, run the command below. This will clone the `orgbac-with-fhir-schema` branch, which has the FHIR Schema validator enabled and the Aidbox Configuration Project configured:
-
-{% tabs %}
-{% tab title="FHIR R4" %}
+{% tab title="FHIR Schema R4" %}
 ```sh
 git clone \
   --branch=orgbac-with-fhir-schema \
@@ -67,22 +63,17 @@ git clone \
 ```
 {% endtab %}
 
-{% tab title="FHIR R5" %}
-```bash
-git clone \
-  --branch=orgbac-with-fhir-schema-r5 \
+{% tab title="FHIR Schema R5" %}
+<pre class="language-bash"><code class="lang-bash"><strong>git clone \
+</strong>  --branch=orgbac-with-fhir-schema-r5 \
   --depth=1 \
   https://github.com/Aidbox/aidbox-project-template.git \
-  aidbox-project && \
-  cd aidbox-project && \
+  aidbox-project &#x26;&#x26; \
+  cd aidbox-project &#x26;&#x26; \
   rm -rf .git
-```
+</code></pre>
 {% endtab %}
 {% endtabs %}
-
-{% hint style="info" %}
-See more details related the [running Aidbox locally](../../../getting-started/run-aidbox-locally-with-docker/).
-{% endhint %}
 
 ### Apply the license
 
@@ -98,7 +89,7 @@ AIDBOX_LICENSE=YOUR_AIDBOX_LICENSE_KEY
 
 ## Enable multi-tenancy
 
-To enable hierarchical access control (multi-tenancy on Organization resources) add necessary imports to the `zrc/main.edn` file.
+To enable hierarchical access control (multi-tenancy on Organization resources) ensure that  necessary imports are present in `zrc/main.edn` file.
 
 {% tabs %}
 {% tab title="FHIR R4" %}
