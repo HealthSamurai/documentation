@@ -35,6 +35,7 @@ http://aidbox.app/StructureDefinition/aidboxtopicdestination-webhook-at-least-on
 accept: application/json
 
 {
+  "resourceType": "AidboxTopicDestination",
   "meta": {
     "profile": [
       "http://aidbox.app/StructureDefinition/aidboxtopicdestination-webhook-at-least-once"

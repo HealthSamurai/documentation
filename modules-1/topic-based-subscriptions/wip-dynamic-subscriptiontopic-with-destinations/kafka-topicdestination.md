@@ -58,6 +58,7 @@ Full example see on [Github](https://github.com/Aidbox/app-examples/tree/main/ai
 accept: application/json
 
 {
+  "resourceType": "AidboxTopicDestination",
   "meta": {
     "profile": [
       "http://aidbox.app/StructureDefinition/aidboxtopicdestination-kafka-at-least-once"
@@ -87,6 +88,7 @@ content-type: application/json
 accept: application/json
 
 {
+  "resourceType": "AidboxTopicDestination",
   "meta": {
     "profile": [
       "http://aidbox.app/StructureDefinition/aidboxtopicdestination-kafka-best-effort"
