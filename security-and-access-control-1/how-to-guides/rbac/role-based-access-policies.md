@@ -6,7 +6,7 @@ description: >-
 
 # Flexible RBAC built-in to Aidbox
 
-Aidbox provides role-based access control mechanism based on access policies and `Role` resource.
+Aidbox provides role-based access control mechanism based on access policies and custom `Role` resource.
 
 Each `Role` resource assigns a role to a `User.` `AccessPolicy` resource has an optional `roleName` property. Aidbox applies access policy with `roleName` specified only to users which have the corresponding role assigned.
 
