@@ -23,28 +23,41 @@ To achieve such a behavior, you may consider an Aidbox feature called organizati
 Let's create the organization structure in Aidbox:
 
 ```
-PUT /
-content-type: text/yaml
-accept: text/yaml
+POST /fhir
 
-- id: org-a
-  resourceType: Organization
-  name: Organization A
-- id: org-b
-  resourceType: Organization
-  partOf: {resourceType: Organization, id: org-a}
-  name: Organization B
-- id: org-c
-  resourceType: Organization
-  partOf: {resourceType: Organization, id: org-a}
-  name: Organization C
-- id: org-d
-  resourceType: Organization
-  name: Organization D
-- id: org-e
-  resourceType: Organization
-  partOf: {resourceType: Organization, id: org-d}
-  name: Organization E
+type: batch
+entry:
+- request:
+    method: PUT
+    url: Organization/org-a
+  resource:
+    name: Organization A
+- request:
+    method: PUT
+    url: Organization/org-b
+  resource:
+    name: Organization B
+    partOf: 
+      reference: Organization/org-a
+- request:
+    method: PUT
+    url: Organization/org-c
+  resource:
+    name: Organization C
+    partOf: 
+      reference: Organization/org-a
+- request:
+    method: PUT
+    url: Organization/org-d
+  resource:
+    name: Organization D
+- request:
+    method: PUT
+    url: Organization/org-E
+  resource:
+    name: Organization E
+    partOf: 
+      reference: Organization/org-d
 ```
 
 When an Organization resource is created, a dedicated FHIR API is deployed for that organization. This API provides access to the associated FHIR resources. Nested organization FHIR resources are accessible through the parent Organization API.
@@ -63,6 +76,8 @@ The Organization-based [Aidbox API ](../../fhir-resources/aidbox-and-fhir-format
 
 <figure><img src="../../../.gitbook/assets/Screenshot 2023-06-28 at 15.42.54.png" alt=""><figcaption><p>FHIR APIs reflection in organization-based access control</p></figcaption></figure>
 
+### Try Org-BAC
+
 Let's play with new APIs.
 
 We will create a Patient resource in Org B:
@@ -80,6 +95,28 @@ Now we can read it:
 
 ```
 GET /Organization/org-b/fhir/Patient/pt-1
+```
+
+Note, that patient has a  `https://aidbox.app/tenant-organization-id` extension, which references `org-b`.&#x20;
+
+```
+id: >-
+  pt-1
+meta:
+  extension:
+    - url: https://aidbox.app/tenant-organization-id
+      valueReference:
+        reference: Organization/org-b
+    - url: ex:createdAt
+      valueInstant: '2024-10-03T15:02:09.039005Z'
+  lastUpdated: '2024-10-03T15:02:09.039005Z'
+  versionId: '336'
+name:
+  - given:
+      - John
+    family: Smith
+gender: male
+resourceType: Patient
 ```
 
 The resource is also accessible through Org A API:

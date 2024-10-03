@@ -224,3 +224,29 @@ GET /Organization/org-b/fhir/Patient/pt-1
 GET /Organization/org-c/fhir/Patient/pt-1
 ```
 {% endcode %}
+
+## Configuring AccessPolicies
+
+
+
+```
+PUT /AccessPolicy/as-practitioner-allow-org-patients
+
+description: A practitioner should be able to get every patient in their organization.
+engine: matcho
+matcho:
+  params:
+    resource/type: Patient
+  request-method: get
+  user:
+    roles:
+      $contains:
+        value: 'practitioner'
+    meta:
+      extension:
+        $contains:
+          url: https://aidbox.app/tenant-organization-id
+          value:
+            Reference:
+              id: .params.organization/id
+```
