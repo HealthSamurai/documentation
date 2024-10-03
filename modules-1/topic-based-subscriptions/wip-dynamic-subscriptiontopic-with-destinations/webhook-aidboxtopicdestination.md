@@ -53,7 +53,7 @@ accept: application/json
       "valueUnsignedInt": 30
     },
     {
-      "name": "maxEventNumberInBatch",
+      "name": "maxMessagesInBatch",
       "valueUnsignedInt": 20
     },
     {
