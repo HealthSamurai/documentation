@@ -9,6 +9,12 @@ Aibox provides two kinds of Kafka integrations:
 
 `Best effort` incurs a lower performance cost than the `at least once` approach. Choose `at least once` if performance is not a concern for you.
 
+{% hint style="warning" %}
+Be aware of using `Best effort` with batch transactions. Messages are generated while processing batch entries, so if the batch transaction fails at the end, the messages will not be revoked.&#x20;
+{% endhint %}
+
+
+
 {% content-ref url="./" %}
 [.](./)
 {% endcontent-ref %}
