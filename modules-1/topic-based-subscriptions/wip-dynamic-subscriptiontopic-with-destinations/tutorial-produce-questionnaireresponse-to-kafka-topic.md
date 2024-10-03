@@ -30,10 +30,10 @@ cd app-examples/aidbox-subscriptions-to-kafka
 docker compose up
 ```
 
-* Aidbox is be available at [http://localhost:8888/](http://localhost:8888/)
+* Aidbox is available at [http://localhost:8888/](http://localhost:8888/)
   * Username: `admin`
   * Password: `password`
-* Kafka UI is be available at [http://localhost:8080/](http://localhost:8080/)
+* Kafka UI is available at [http://localhost:8080/](http://localhost:8080/)
 * Kafka is available at `http://localhost:9092/` (no authorization required)
 
 The Docker Compose file initializes the environment for both Kafka and Aidbox with the following configuration:
@@ -67,23 +67,24 @@ accept: application/json
 
 This resource describes the data source for the subscription but doesn't execute any activities from Aidbox.
 
-#### Create TopicDestination Resource
+#### Create AidboxTopicDestination Resource
 
 Creating this resource establishes a connection to the Kafka server. When the system produces an event, it will be processed to the specified Kafka topic.
 
 ```json
-POST /fhir/TopicDestination
+POST /fhir/AidboxTopicDestination
 content-type: application/json
 accept: application/json
 
 {
+  "id": "kafka-destination",
+  "resourceType": "AidboxTopicDestination",
   "meta": {
     "profile": [
-      "http://fhir.aidbox.app/StructureDefinition/TopicDestinationKafka"
+      "http://fhir.aidbox.app/StructureDefinition/aidboxtopicdestination-kafka-best-effort"
     ]
   },
   "kind": "kafka",
-  "id": "kafka-destination",
   "topic": "http://example.org/FHIR/R5/SubscriptionTopic/QuestionnaireResponse-topic",
   "parameter": [
     {
@@ -91,7 +92,7 @@ accept: application/json
       "valueString": "aidbox-forms"
     },
     {
-      "name": "bootstrap.servers",
+      "name": "bootstrapServers",
       "valueString": "kafka:29092"
     }
   ]
@@ -104,12 +105,12 @@ accept: application/json
 
 Open the [list of forms](http://localhost:8888/ui/sdc#/), click `share` -> click `attach` -> copy the link -> open the link -> fill out the form, and submit it.
 
-#### Check TopicDestination Status
+#### Check AidboxTopicDestination Status
 
-Open the Aidbox [REST Console](http://localhost:8888/ui/console#/rest) and get the TopicDestination status:
+Open the Aidbox [REST Console](http://localhost:8888/ui/console#/rest) and get the AidboxTopicDestination status:
 
 ```
-GET /fhir/TopicDestination/kafka-destination/$status
+GET /fhir/AidboxTopicDestination/kafka-destination/$status
 ```
 
 #### Check Messages in Kafka UI

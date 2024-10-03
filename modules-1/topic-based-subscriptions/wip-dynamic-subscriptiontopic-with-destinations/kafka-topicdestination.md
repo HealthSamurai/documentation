@@ -1,13 +1,13 @@
 # Kafka AidboxTopicDestination
 
-This page describes an AidboxTopicDestination which allow to store events described by a AidboxSubscriptionTopic in Kafka.
+This page describes an AidboxTopicDestination which allows to store events described by an AidboxSubscriptionTopic in Kafka.
 
 Aibox provides two kinds of Kafka integrations:
 
-1. _Best effort_: Aidbox stores events in the memory. In some cases (for example, in the event of an Aidbox crash or Kafka being unavailable), events can be lost.
-2. At least once: Aidbox stores events in the database in the same transaction with a CRUD operation. Aidbox guarantees at least once delivery for an event.
+1. _Best effort_: Aidbox stores events in memory. In some cases (for example, if Aidbox crashes or Kafka is unavailable), events can be lost.
+2. _At least once_: Aidbox stores events in the database in the same transaction with a CRUD operation. Aidbox guarantees at least once delivery for an event.
 
-Best effort incurs a lower performance cost than the at least once approach. Choose at least once if performance is not a concern for you.
+`Best effort` incurs a lower performance cost than the `at least once` approach. Choose `at least once` if performance is not a concern for you.
 
 {% content-ref url="./" %}
 [.](./)
@@ -133,24 +133,110 @@ accept: application/json
 ```
 {% endtab %}
 
-{% tab title="Response" %}
+{% tab title="Response (best-effort)" %}
 {% code title="200 OK" %}
 ```json
 {
-  "start-time": "2024-09-27T12:41:10.655293Z",
-  "status": "active",
-  "success-event-delivery": 0,
-  "enqueued-events-count": 0,
-  "event-in-process": 0,
-  "fail-event-delivery": 0,
-  "fail-event-delivery-attempt": 0,
-  "last-error": "org.apache.kafka.common.errors.TimeoutException: Topic aidbox-forms not present in metadata after 10000 ms.",
+ "resourceType": "Parameters",
+ "parameter": [
+  {
+   "valueDecimal": 1,
+   "name": "messagesDelivered"
+  },
+  {
+   "valueDecimal": 0,
+   "name": "messagesInProcess"
+  },
+  {
+   "valueDecimal": 1,
+   "name": "messagesLost"
+  },
+  {
+   "valueDateTime": "2024-10-03T08:43:36Z",
+   "name": "startTimestamp"
+  },
+  {
+   "valueString": "active",
+   "name": "status"
+  },
+  {
+   "name": "lastErrorDetail",
+   "part": [
+    {
+     "valueString": "Timeout expired after 10000ms while awaiting InitProducerId",
+     "name": "message"
+    },
+    {
+     "valueDateTime": "2024-10-03T08:44:09Z",
+     "name": "timestamp"
+    }
+   ]
+  }
+ ]
 }
 ```
 {% endcode %}
 {% endtab %}
+
+{% tab title="Response (at-least-once)" %}
+
+
+```json
+200 OK
+
+{
+ "resourceType": "Parameters",
+ "parameter": [
+  {
+   "name": "messagesDelivered",
+   "valueDecimal": 1 
+  },
+  {
+   "name": "messagesDeliveryAttempts",
+   "valueDecimal": 2
+  },
+  {
+   "name": "messagesInProcess",
+   "valueDecimal": 0
+   
+  },
+  {
+   "name": "messagesQueued",
+   "valueDecimal": 0
+  },
+  {
+   "name": "startTimestamp",
+   "valueDateTime": "2024-10-03T08:18:47Z"
+  },
+  {
+   "name": "status",
+   "valueString": "active"
+  },
+  {
+   "name": "lastErrorDetail",
+   "part": [
+    {
+     "valueString": "Timeout expired after 10000ms while awaiting InitProducerId",
+     "name": "message"
+    },
+    {
+     "valueDateTime": "2024-10-03T08:19:32Z",
+     "name": "timestamp"
+    }
+   ]
+  }
+ ]
+}
+```
+{% endtab %}
 {% endtabs %}
 
-Response format:
+Response parameters for `best-effort`:
 
-<table data-full-width="false"><thead><tr><th width="188">Property</th><th width="128">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>startTimestamp</code></td><td>string</td><td><code>AidboxTopicDestination</code> start time in UTC.</td></tr><tr><td><code>status</code></td><td>string</td><td><code>AidboxTopicDestination</code> status is always <code>active</code>, which means that <code>AidboxTopicDestination</code> will try to send all received notifications.</td></tr><tr><td><code>messagesDelivered</code></td><td>number</td><td>Total number of events that have been successfully delivered.</td></tr><tr><td><code>messagesQueued</code></td><td>number</td><td>Number of events pending in the queue for dispatch to the Kafka driver. This count remains <code>0</code> for the <em>best-effor</em> approach.</td></tr><tr><td><code>messagesInProcess</code></td><td>number</td><td>Current number of events in the buffer being processed for delivery.</td></tr><tr><td><code>messagesLost</code></td><td>string</td><td>Total number of events that failed to be delivered. This count remains <code>0</code> for the <em>at-least-once</em> approach.</td></tr><tr><td><code>messagesDeliveryAttempts</code></td><td>number</td><td><p> Number of delivery attempts that failed. </p><p>For the <em>best-effor</em> approach, this matches the <code>failed-delivery</code> count. </p><p>For the <em>at-least-once</em> approach, it represents the overall failed delivery attempts.</p></td></tr><tr><td><code>lastErrorDetail</code></td><td>string</td><td>Error message of the last failed attempt to send event.</td></tr></tbody></table>
+<table data-full-width="false"><thead><tr><th width="224">Property</th><th width="128">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>messagesDelivered</code></td><td>number</td><td>Total number of events that have been successfully delivered.</td></tr><tr><td><code>messagesInProcess</code></td><td>number</td><td>Current number of events in the buffer being processed for delivery.</td></tr><tr><td><code>messagesLost</code></td><td>string</td><td>Total number of events that failed to be delivered. </td></tr><tr><td><code>startTimestamp</code></td><td>string</td><td><code>AidboxTopicDestination</code> start time in UTC.</td></tr><tr><td><code>status</code></td><td>string</td><td><code>AidboxTopicDestination</code> status is always <code>active</code>, which means that <code>AidboxTopicDestination</code> will try to send all received notifications.</td></tr><tr><td><code>lastErrorDetail</code></td><td>part</td><td>Information about errors of the latest failed attempt to send an event. This parameter can be repeated up to 5 times.  Includes the following parameters.</td></tr><tr><td><code>lastErrorDetail.message</code></td><td>string</td><td>Error message of the given error.</td></tr><tr><td><code>lastErrorDetail.timestamp</code></td><td>string</td><td>Timestamp of the given error.</td></tr></tbody></table>
+
+
+
+Response parameters for `at-least-once`:
+
+<table data-full-width="false"><thead><tr><th width="225">Property</th><th width="128">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>messagesDelivered</code></td><td>number</td><td>Total number of events that have been successfully delivered.</td></tr><tr><td><code>messagesDeliveryAttempts</code></td><td>number</td><td> Number of delivery attempts that failed. </td></tr><tr><td><code>messagesInProcess</code></td><td>number</td><td>Current number of events in the buffer being processed for delivery.</td></tr><tr><td><code>messagesQueued</code></td><td>number</td><td>Number of events pending in the queue for dispatch to the Kafka driver. </td></tr><tr><td><code>startTimestamp</code></td><td>string</td><td><code>AidboxTopicDestination</code> start time in UTC.</td></tr><tr><td><code>status</code></td><td>string</td><td><code>AidboxTopicDestination</code> status is always <code>active</code>, which means that <code>AidboxTopicDestination</code> will try to send all received notifications.</td></tr><tr><td><code>lastErrorDetail</code></td><td>part</td><td>Information about errors of the latest failed attempt to send an event. This parameter can be repeated up to 5 times.  Includes the following parameters.</td></tr><tr><td><code>lastErrorDetail.message</code></td><td>string</td><td>Error message of the given error.</td></tr><tr><td><code>lastErrorDetail.timestamp</code></td><td>string</td><td>Timestamp of the given error.</td></tr></tbody></table>
