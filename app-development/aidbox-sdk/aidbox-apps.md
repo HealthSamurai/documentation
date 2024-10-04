@@ -29,9 +29,9 @@ type: app
 endpoint:
    url: https://my.service.com:8888
    type: http-rpc
-   secret: <yoursercret>
-operations: <Operation's Definitions>
-resources: 
+   secret: <your-sercret>
+operations: <Operations-definitions>
+resources: <resources-to-be-created>
 ```
 
 ## App manifest structure
@@ -50,9 +50,8 @@ In the `endpoint` section, you describe how Aidbox will communicate with your se
 
 In the operation section, you define Custom REST operations as a map \<operation-id>: \<operation-definition> and access policy (which will be bound to this operation):
 
-{% code title="operations:" %}
 ```yaml
-operations: <Operation's Definitions>
+operations:
   daily-patient-report:
     method: GET
     # GET /Patient/$daily-report/2024-01-01
@@ -64,9 +63,8 @@ operations: <Operation's Definitions>
     policies: 
       register-user: {  engine: allow }
 ```
-{% endcode %}
 
-
+Parameters:
 
 | Key          | Type                        | Description                                               |
 | ------------ | --------------------------- | --------------------------------------------------------- |
@@ -78,7 +76,7 @@ operations: <Operation's Definitions>
 
 In the resources section, you can provide other resources for Aidbox in the form `{resourceType: {id: resource}}` using Aidbox format:
 
-<pre class="language-yaml" data-title="resources:"><code class="lang-yaml">resourceType: App
+<pre class="language-yaml"><code class="lang-yaml">resourceType: App
 resources:
 <strong>  # resource type
 </strong>  AccessPolicy:
@@ -95,7 +93,7 @@ In this example, the AccessPolicy resource will be created as well as the App re
 ### entities
 
 {% hint style="warning" %}
-It is deprecated option to create custom resources via [Entity/Attribute](../../core-modules/entities-and-attributes.md) appproach.
+It is a deprecated option to create custom resources via [Entity/Attribute](../../core-modules/entities-and-attributes.md) approach.
 {% endhint %}
 
 In the `entities` section of the App manifest, you can extend existing resources, define custom profiles, or hook into the lifecycle:
@@ -138,7 +136,7 @@ User: # custom resource type
 ```
 {% endcode %}
 
-In the entities section, resources are defined in format `<resourceType> : <resourceStructure>` :
+In the `entities` section, resources are defined in the format `<resourceType> : <structure>` :
 
 ```yaml
 entities:
@@ -147,7 +145,7 @@ entities:
   Payment: <structure>
 ```
 
-Resource structure is defined by keyword **attrs:**
+Resource structure is defined by `attrs` keyword**:**
 
 {% code title="entities:" %}
 ```yaml
