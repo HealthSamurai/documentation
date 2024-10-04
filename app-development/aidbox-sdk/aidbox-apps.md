@@ -2,8 +2,8 @@
 
 You can extend [Aidbox](https://www.health-samurai.io/aidbox) with custom Apps. The app can:&#x20;
 
-* define custom resources,&#x20;
-* define custom endpoints
+* define custom resources,
+* define custom endpoints,
 * subscribe to hooks or subscriptions.&#x20;
 
 The app is a standalone service that will work with Aidbox to implement your specific app. The app should be registered in Aidbox.\
@@ -38,11 +38,11 @@ resources: <resources-to-be-created>
 
 Here's the manifest structure:
 
-<table><thead><tr><th width="207">Key</th><th width="149">Type</th><th>Description</th></tr></thead><tbody><tr><td><strong>id</strong></td><td>string</td><td>Id of App resource</td></tr><tr><td><strong>apiVersion (required)</strong></td><td>integer</td><td>App API version. Currently is <code>1</code>.</td></tr><tr><td><strong>type (required)</strong></td><td>enum</td><td>Type of application. Currently, the only option is <code>app</code>.</td></tr><tr><td><strong>endpoint</strong></td><td>object</td><td>Information about endpoint: url where to redirect the request, protocol, and secret</td></tr><tr><td><strong>operations</strong></td><td>array of operations</td><td>Custom endpoints.</td></tr><tr><td><strong>resources</strong></td><td>array of resources in Aidbox format</td><td>Related resources that should be also created. </td></tr><tr><td><strong>subscriptions</strong></td><td>array of subscriptions</td><td>Deprecated subscriptions support. Consider using <a href="../../modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/">Aidbox topic-based subscriptions</a> or <a href="../../api-1/reactive-api-and-subscriptions/subscriptions-1.md">SubsSubscriptions</a> instead.</td></tr><tr><td><strong>entities</strong></td><td>array of entities</td><td>Deprecated <a href="../../core-modules/entities-and-attributes.md">Entities/Attributes</a> approach to create custom resources.</td></tr></tbody></table>
+<table><thead><tr><th width="207">Key</th><th width="149">Type</th><th>Description</th></tr></thead><tbody><tr><td><strong>id</strong></td><td>string</td><td>Id of the App resource</td></tr><tr><td><strong>apiVersion (required)</strong></td><td>integer</td><td>App API version. Currently, the only option is <code>1</code></td></tr><tr><td><strong>type (required)</strong></td><td>enum</td><td>Type of application. Currently, the only option is <code>app</code></td></tr><tr><td><strong>endpoint</strong></td><td>object</td><td>Information about endpoint: url to redirect the request, protocol, and secret</td></tr><tr><td><strong>operations</strong></td><td>array of operations</td><td>Custom endpoints</td></tr><tr><td><strong>resources</strong></td><td>array of resources in Aidbox format</td><td>Related resources that should be also created</td></tr><tr><td><strong>subscriptions</strong></td><td>array of subscriptions</td><td>Deprecated subscriptions support. Consider using <a href="../../modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/">Aidbox topic-based subscriptions</a> or <a href="../../api-1/reactive-api-and-subscriptions/subscriptions-1.md">SubsSubscriptions</a> instead</td></tr><tr><td><strong>entities</strong></td><td>array of entities</td><td>Deprecated <a href="../../core-modules/entities-and-attributes.md">Entities/Attributes</a> approach to create custom resources</td></tr></tbody></table>
 
 ### endpoint
 
-In the `endpoint` section, you describe how Aidbox will communicate with your service.
+In the `endpoint` section, you describe how Aidbox will communicate with your service:
 
 <table><thead><tr><th width="172">Key</th><th width="103.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td><strong>type (required)</strong></td><td>string</td><td>Protocol of communication.  The only option now is <code>http-rpc</code></td></tr><tr><td><strong>url (required)</strong></td><td>string</td><td>Url of the service to redirect a request</td></tr><tr><td><strong>secret</strong></td><td>string</td><td>Secret for Basic Authorization header: <code>base64(&#x3C;id>:&#x3C;secret>)</code></td></tr></tbody></table>
 
