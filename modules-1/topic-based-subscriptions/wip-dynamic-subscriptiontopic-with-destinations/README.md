@@ -24,7 +24,7 @@ For an application example, refer to [Aidbox Subscriptions & Kafka AidboxTopicDe
 {% endhint %}
 
 * **`AidboxTopicDestination`** is a custom Aidbox resource that defines where and how the notifications triggered by an `AidboxSubscriptionTopic` should be sent. This resource offers flexibility in specifying various types of destinations. And is considered as a system configuration resource.
-* **`AidboxSubsctiptionStatus`** is a custom Aidbox resource which describes the notifications: what messages stored in the bundle, source and destination.
+* **`AidboxSubscriptionStatus`** is a custom Aidbox resource which describes the notifications: what messages stored in the bundle, source and destination.
 
 ## AidboxSubscriptionTopic
 
@@ -60,7 +60,7 @@ The `AidboxTopicDestination` resource is used to define channel configurations f
 
 #### Create a TopicDestination
 
-To start processing subscription data, create a `AidboxTopicDestination` resource with a reference to the `AidboxSubscriptionTopic`. Examples of `AidboxTopicDestination` resources can be found in kind-specific sections.
+To start processing subscription data, create a `AidboxTopicDestination` resource with a reference to the `AidboxSubscriptionTopic`. Examples of `AidboxTopicDestination` resources can be found in sub-sections.
 
 #### Stop subscription data processing
 
