@@ -1,7 +1,7 @@
 # Aidbox topic-based subscriptions
 
 {% hint style="danger" %}
-This functionality was introduced in the 2408 release and is available in Beta. Please note that this feature is subject to change and may contain incomplete or experimental functionality.
+This functionality is available in Aidbox versions 2409 and later.
 {% endhint %}
 
 ### Overview
