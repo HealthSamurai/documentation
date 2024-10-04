@@ -5,26 +5,53 @@ description: >-
 ---
 
 # Versioning
-
-## Aidbox release cycle
-
 Aidbox docker images are available on [Docker Hub](https://hub.docker.com/u/healthsamurai).
 
-### **:edge**
+## Version numbering
+Aidbox follows MAJOR.MINOR version scheme. MAJOR version is formatted as YYMM (for example, 2409),
+and MINOR version is an increasing number starting from zero.
+Each update increseases MINOR version.
+
+For example,
+- new release: 2409.0
+- bugfix: 2409.1
+- bugfix 2: 2409.2
+- new release: 2410.0
+- bugfix for 2409: 2409.3
+- bugfix for 2410: 2410.1
+
+Images built for full version (MAJOR.MINOR) are not changed, so you can specify full version
+instead of Docker manifest SHA if you want to use a specific build.
+
+## Release channels
+Aidbox provides release channels which are updated with changes
+and new builds.
+
+### **edge**
 
 The most recent Aidbox build. We highly recommend using the **edge** channel in staging and dev environments to get access to new functionality and detect potential issues as soon as possible. Every commit into the Aidbox code base after successful CI is published to the **edge** channel. The **edge** channel may have issues and/or regressions.
 
-### :**latest**
+### **latest**
+
+The **latest** channel is identical to the last minor version of the last release.
 
 **Latest** releases contain new functionality, bugfixes, and optimizations and passed all available QA and review processes by the Health Samurai team. If you're actively developing we recommend using **latest**. These releases are updated monthly.
 
-### **:stable**
+### **stable**
+
+The **stable** channel is identical to the last minor version of the previous release.
 
 **Stable** releases are ready for production. The current **stable** is the previous **latest** release. These releases are updated monthly.
 
-### **Tagged releases**
+### **MAJOR-rc**
 
-For every `:stable` release, we also create a tag in the format YYMM (for example it will be **2107** for the 2021 July release) if you want to check out to a specific Aidbox version.
+This channel contains last changes to the MAJOR release, which are undergoing internal QA processes.
+After these processess are finished, new full version is released.
+
+### **MAJOR**
+
+For every release, we also create a tag in the format YYMM (for example it will be **2107** for the 2021 July release) if you want to check out to a specific Aidbox version.
+This tag is automatically updated with each minor version and is equivalent to the last minor version for the major version.
 
 ### Long-term support releases
 
