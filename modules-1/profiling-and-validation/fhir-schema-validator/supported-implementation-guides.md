@@ -408,6 +408,7 @@ The FHIR for FAIR - FHIR Implementation Guide aims to provide guidance on how HL
 
 **Versions**
 
+* `ans.fhir.fr.mesures#3.1.0`
 * `ans.fhir.fr.mesures#3.1.0-ballot`
 * `ans.fhir.fr.mesures#3.0.1`
 * `ans.fhir.fr.mesures#3.0.0`
@@ -1643,6 +1644,17 @@ Medication related projects (SFM, PLL, SAFEST, KIKJ)
 
 ---
 
+### National Directory of Healthcare Providers & Services (NDH) Implementation Guide
+
+
+
+**Versions**
+
+* `hl7.fhir.us.ndh#1.0.0-ballot`
+
+
+---
+
 ### FHIR R4 package : Expansions
 
 <details>
@@ -1856,7 +1868,6 @@ Data model of the German Cancer Consortium (DKTK) and the Comprehensive Cancer C
 * `de.dktk.oncology#1.0.1`
 * `de.dktk.oncology#1.0.0`
 * `de.dktk.oncology#0.9.0`
-* `de.dktk.oncology#0.2.0`
 
 
 ---
@@ -2280,7 +2291,6 @@ ePrescription workflow specification
 
 * `de.gematik.erezept-workflow.r4#1.4.3`
 * `de.gematik.erezept-workflow.r4#1.4.2`
-* `de.gematik.erezept-workflow.r4#1.4.1`
 * `de.gematik.erezept-workflow.r4#1.4.0`
 * `de.gematik.erezept-workflow.r4#1.4.2-rc2`
 * `de.gematik.erezept-workflow.r4#1.4.2-rc1`
@@ -2406,6 +2416,22 @@ Collection of Doctolibs base profiles
 **Versions**
 
 * `DL.base#1.1.0`
+
+
+---
+
+### rlfhir.lab
+
+<details>
+<summary>Description</summary>
+
+Progetto FHIR per Regione Lombardia LAB
+
+</details>
+
+**Versions**
+
+* `rlfhir.lab#1.0.0`
 
 
 ---
@@ -3526,6 +3552,25 @@ Projekt Basisprofilierung R4 (HL7 Deutschland e.V.)
 
 ---
 
+### Implementierungsleitfaden DEMIS - Erkrankungsmeldung
+
+<details>
+<summary>Description</summary>
+
+Beinhaltet die in DEMIS für die Umsetzung der Arztmeldung genutzten Informationsmodellartefakte
+
+</details>
+
+**Versions**
+
+* `rki.demis.disease#1.4.0`
+* `rki.demis.disease#1.3.0`
+* `rki.demis.disease#1.2.0`
+* `rki.demis.disease#1.1.0`
+
+
+---
+
 ### Order Catalog Implementation Guide
 
 <details>
@@ -3602,6 +3647,40 @@ elekronischer Versorgungsplan Pflege
 **Versions**
 
 * `de.gkvsv.evp#1.0.0-rc1`
+
+
+---
+
+### ca.ab.fhir.psab
+
+<details>
+<summary>Description</summary>
+
+Drafted Implementation Guide for Alberta Patient Summary (PS-AB)
+
+</details>
+
+**Versions**
+
+* `ca.ab.fhir.psab#1.1.0-pre3`
+* `ca.ab.fhir.psab#1.1.0-pre2`
+* `ca.ab.fhir.psab#1.1.0-pre1`
+* `ca.ab.fhir.psab#1.0.1`
+* `ca.ab.fhir.psab#1.0.0`
+* `ca.ab.fhir.psab#0.3.0-pre9`
+* `ca.ab.fhir.psab#0.3.0-pre8`
+* `ca.ab.fhir.psab#0.3.0-pre7`
+* `ca.ab.fhir.psab#0.3.0-pre6`
+* `ca.ab.fhir.psab#0.3.0-pre5`
+* `ca.ab.fhir.psab#0.3.0-pre4`
+* `ca.ab.fhir.psab#0.3.0-pre3`
+* `ca.ab.fhir.psab#0.3.0-pre2`
+* `ca.ab.fhir.psab#0.3.0-pre14`
+* `ca.ab.fhir.psab#0.3.0-pre13`
+* `ca.ab.fhir.psab#0.3.0-pre12`
+* `ca.ab.fhir.psab#0.3.0-pre11`
+* `ca.ab.fhir.psab#0.3.0-pre10`
+* `ca.ab.fhir.psab#0.3.0-pre1`
 
 
 ---
@@ -3806,6 +3885,22 @@ aDocument the functional requirements that can be used to assess devices, applic
 
 * `tw.gov.mohw.cdc.twidir#0.1.1`
 * `tw.gov.mohw.cdc.twidir#0.1.0`
+
+
+---
+
+### Test.Luxottica2
+
+<details>
+<summary>Description</summary>
+
+Test resource extension
+
+</details>
+
+**Versions**
+
+* `Test.Luxottica2#0.0.1-beta`
 
 
 ---
@@ -4255,6 +4350,7 @@ PLSP Health Hub
 
 **Versions**
 
+* `healthhub.fhir.dk.core#1.0.22`
 * `healthhub.fhir.dk.core#1.0.21`
 * `healthhub.fhir.dk.core#1.0.17`
 * `healthhub.fhir.dk.core#1.0.16`
@@ -4589,7 +4685,6 @@ Implementation Guide for the Mobile access to Health Documents (epr-mhealth) Pro
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#1.0.0`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.10.0`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.9.2`
-* `de.netzwerk-universitaetsmedizin.ebm-cpg#0.9.1`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.9.0`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.8.0`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.7.0`
@@ -6026,7 +6121,6 @@ eHealth Platform R4 Federal Profiles
 * `ehealthplatform.be.r4.federalprofiles#1.1.44-beta`
 * `ehealthplatform.be.r4.federalprofiles#1.1.43-beta`
 * `ehealthplatform.be.r4.federalprofiles#1.1.42-beta`
-* `ehealthplatform.be.r4.federalprofiles#1.1.41-beta`
 * `ehealthplatform.be.r4.federalprofiles#1.1.40-beta`
 * `ehealthplatform.be.r4.federalprofiles#1.1.4-beta`
 * `ehealthplatform.be.r4.federalprofiles#1.1.38-beta`
@@ -6218,11 +6312,13 @@ The DK MedCom Terminology IG (built Thu, Jun 27, 2024 12:10+0200+02:00)
 **Versions**
 
 * `medcom.fhir.dk.terminology#1.7.0`
+* `medcom.fhir.dk.terminology#1.6.0`
 * `medcom.fhir.dk.terminology#1.5.0`
 * `medcom.fhir.dk.terminology#1.4.0`
 * `medcom.fhir.dk.terminology#1.3.0`
 * `medcom.fhir.dk.terminology#1.2.0`
 * `medcom.fhir.dk.terminology#1.1.1`
+* `medcom.fhir.dk.terminology#1.1.0`
 * `medcom.fhir.dk.terminology#1.0.0`
 
 
@@ -7162,6 +7258,8 @@ FHIR profiles used in FHIR Publishing processes within Health New Zealand Te Wha
 **Versions**
 
 * `tewhatuora.digitaltooling.iguat#0.0.6`
+* `tewhatuora.digitaltooling.iguat#0.0.5`
+* `tewhatuora.digitaltooling.iguat#0.0.4`
 
 
 ---
@@ -7302,6 +7400,7 @@ Nictiz NL package of FHIR R4 conformance resources for Immunization.
 **Versions**
 
 * `nictiz.fhir.nl.r4.immunization#2.0.0-alpha.3`
+* `nictiz.fhir.nl.r4.immunization#2.0.0-beta.2`
 * `nictiz.fhir.nl.r4.immunization#2.0.0-beta.1`
 
 
@@ -8166,7 +8265,6 @@ FHIR R4 profielen voor samenwerking tussen IKNL en Performation
 
 **Versions**
 
-* `care.commonprofiles.fhir#1.0.1`
 * `care.commonprofiles.fhir#1.0.0`
 
 
@@ -8286,7 +8384,6 @@ NHS (England) National Services Implementation Guide
 * `uk.nhsdigital.r4#2.1.6-discovery`
 * `uk.nhsdigital.r4#2.1.5-discovery`
 * `uk.nhsdigital.r4#2.1.4-discovery`
-* `uk.nhsdigital.r4#2.1.34-discovery`
 * `uk.nhsdigital.r4#2.1.33-discovery`
 * `uk.nhsdigital.r4#2.1.32-discovery`
 * `uk.nhsdigital.r4#2.1.31-discovery`
@@ -8773,6 +8870,7 @@ Electronic Prescription Service
 * `uk.nhsdigital.medicines.r4#2.1.2-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.14-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.13-alpha`
+* `uk.nhsdigital.medicines.r4#2.1.12-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.11-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.10-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.1-alpha`
@@ -8798,6 +8896,24 @@ Electronic Prescription Service
 * `uk.nhsdigital.medicines.r4#2.0.19-alpha`
 * `uk.nhsdigital.medicines.r4#2.0.18-alpha`
 * `uk.nhsdigital.medicines.r4#2.0.17-alpha`
+
+
+---
+
+### FHIR Core package
+
+<details>
+<summary>Description</summary>
+
+FHIR Core package - the NPM package that contains all the definitions for the base FHIR specification
+
+</details>
+
+**Versions**
+
+* `hl7.fhir.core#3.5.0`
+* `hl7.fhir.core#1.8.0`
+* `hl7.fhir.core#1.4.0`
 
 
 ---
@@ -9320,6 +9436,7 @@ NL package of FHIR R4 conformance resources for zib (Zorginformatiebouwstenen, C
 **Versions**
 
 * `nictiz.fhir.nl.r4.nl-core#0.10.0-beta.1`
+* `nictiz.fhir.nl.r4.nl-core#0.9.0-beta.1`
 * `nictiz.fhir.nl.r4.nl-core#0.8.0-beta.1`
 * `nictiz.fhir.nl.r4.nl-core#0.7.0-beta.1`
 * `nictiz.fhir.nl.r4.nl-core#0.6.0-beta.2`
@@ -9846,6 +9963,51 @@ Estonian HL7 FHIR base Implementation Guide and profiles.
 
 ---
 
+### iteyes.myhw.core
+
+<details>
+<summary>Description</summary>
+
+마이헬스웨이 FHIR Resource Profiles
+
+</details>
+
+**Versions**
+
+* `iteyes.myhw.core#1.1.9`
+* `iteyes.myhw.core#1.1.8`
+* `iteyes.myhw.core#1.1.7`
+* `iteyes.myhw.core#1.1.6`
+* `iteyes.myhw.core#1.1.5`
+* `iteyes.myhw.core#1.1.4`
+* `iteyes.myhw.core#1.1.3`
+* `iteyes.myhw.core#1.1.2`
+* `iteyes.myhw.core#1.1.1`
+* `iteyes.myhw.core#1.1.9-beta`
+* `iteyes.myhw.core#1.1.8-beta`
+* `iteyes.myhw.core#1.1.6-beta`
+* `iteyes.myhw.core#1.1.5-beta`
+* `iteyes.myhw.core#1.1.4-beta`
+* `iteyes.myhw.core#1.1.3-beta`
+* `iteyes.myhw.core#1.1.2-beta`
+* `iteyes.myhw.core#1.0.7`
+* `iteyes.myhw.core#1.0.6`
+* `iteyes.myhw.core#1.0.5`
+* `iteyes.myhw.core#1.0.4`
+* `iteyes.myhw.core#1.0.3`
+* `iteyes.myhw.core#1.0.2`
+* `iteyes.myhw.core#1.0.1`
+* `iteyes.myhw.core#1.0.9-beta`
+* `iteyes.myhw.core#1.0.8-beta`
+* `iteyes.myhw.core#1.0.7-beta`
+* `iteyes.myhw.core#1.0.6-beta`
+* `iteyes.myhw.core#1.0.5-beta`
+* `iteyes.myhw.core#1.0.4-beta`
+* `iteyes.myhw.core#1.0.3-beta`
+
+
+---
+
 ### Subscriptions R5 Backport
 
 <details>
@@ -10131,6 +10293,7 @@ Medizininformatik Initiative - Kerndatensatz Erweiterungsmodul Biobank / Bioprob
 
 **Versions**
 
+* `de.medizininformatikinitiative.kerndatensatz.biobank#1.0.8`
 * `de.medizininformatikinitiative.kerndatensatz.biobank#1.0.7`
 * `de.medizininformatikinitiative.kerndatensatz.biobank#1.0.6`
 * `de.medizininformatikinitiative.kerndatensatz.biobank#1.0.5`
@@ -11433,6 +11596,7 @@ Ontario-specific business use cases and content
 * `ca.on.oh-ereferral-econsult#0.11.1-alpha1.0.11`
 * `ca.on.oh-ereferral-econsult#0.11.1-alpha1.0.10`
 * `ca.on.oh-ereferral-econsult#0.11.0-alpha1.0.8`
+* `ca.on.oh-ereferral-econsult#0.11.0-alpha1.0.7`
 * `ca.on.oh-ereferral-econsult#0.11.0-alpha1.0.6`
 * `ca.on.oh-ereferral-econsult#0.11.0-alpha-1.0.6`
 * `ca.on.oh-ereferral-econsult#0.11.0-alpha1.0.5`
@@ -11443,6 +11607,22 @@ Ontario-specific business use cases and content
 * `ca.on.oh-ereferral-econsult#0.11.0-alpha-1.0.2`
 * `ca.on.oh-ereferral-econsult#0.11.1-alpha1.0.1`
 * `ca.on.oh-ereferral-econsult#0.11.1-alpha1.0.0`
+
+
+---
+
+### tiga.health.clinical
+
+<details>
+<summary>Description</summary>
+
+tiga-health-clinical
+
+</details>
+
+**Versions**
+
+* `tiga.health.clinical#1.1.0`
 
 
 ---
