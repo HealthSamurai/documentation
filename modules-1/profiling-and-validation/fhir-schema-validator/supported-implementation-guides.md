@@ -1491,7 +1491,6 @@ Special Authorization Digital Information Exchange will have the initial package
 * `ca.on.health.sadie#0.1.8-beta`
 * `ca.on.health.sadie#0.1.7-beta`
 * `ca.on.health.sadie#0.1.6-beta`
-* `ca.on.health.sadie#0.1.5-beta`
 * `ca.on.health.sadie#0.1.4-beta`
 * `ca.on.health.sadie#0.1.3-beta`
 * `ca.on.health.sadie#0.1.27-beta`
@@ -1868,6 +1867,7 @@ Data model of the German Cancer Consortium (DKTK) and the Comprehensive Cancer C
 * `de.dktk.oncology#1.0.1`
 * `de.dktk.oncology#1.0.0`
 * `de.dktk.oncology#0.9.0`
+* `de.dktk.oncology#0.2.0`
 
 
 ---
@@ -2291,6 +2291,7 @@ ePrescription workflow specification
 
 * `de.gematik.erezept-workflow.r4#1.4.3`
 * `de.gematik.erezept-workflow.r4#1.4.2`
+* `de.gematik.erezept-workflow.r4#1.4.1`
 * `de.gematik.erezept-workflow.r4#1.4.0`
 * `de.gematik.erezept-workflow.r4#1.4.2-rc2`
 * `de.gematik.erezept-workflow.r4#1.4.2-rc1`
@@ -3662,6 +3663,7 @@ Drafted Implementation Guide for Alberta Patient Summary (PS-AB)
 
 **Versions**
 
+* `ca.ab.fhir.psab#1.1.0-pre4`
 * `ca.ab.fhir.psab#1.1.0-pre3`
 * `ca.ab.fhir.psab#1.1.0-pre2`
 * `ca.ab.fhir.psab#1.1.0-pre1`
@@ -4685,6 +4687,7 @@ Implementation Guide for the Mobile access to Health Documents (epr-mhealth) Pro
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#1.0.0`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.10.0`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.9.2`
+* `de.netzwerk-universitaetsmedizin.ebm-cpg#0.9.1`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.9.0`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.8.0`
 * `de.netzwerk-universitaetsmedizin.ebm-cpg#0.7.0`
@@ -5046,6 +5049,22 @@ The IG demonstrates a process and workflow to support the needs of clinical regi
 
 * `hl7.fhir.us.registry-protocols#1.0.0`
 * `hl7.fhir.us.registry-protocols#1.0.0-ballot`
+
+
+---
+
+### SMART TS
+
+<details>
+<summary>Description</summary>
+
+An empty Implementation Guide to be used as a starting point for building SMART Guidelines Implementation Guides (built Fri, Oct 4, 2024 14:19+0000+00:00)
+
+</details>
+
+**Versions**
+
+* `smart.who.int.ts#0.1.0`
 
 
 ---
@@ -5885,22 +5904,6 @@ Deutsches Elektronisches Melde- und Informationssystem für den Infektionsschutz
 
 ---
 
-### Implementation Guide for FFB messaging (FFB udvekslingsdatasæt)
-
-<details>
-<summary>Description</summary>
-
-Danish municipalities implementation guide for FFB messaging. A standard for exchanging social information from citizen journals between municipalities. The aim is to support citizens continuously, e.g. when they move, or receives interventions outside their home municipality. (built Sun, Aug 27, 2023 07:52+0200+02:00)
-
-</details>
-
-**Versions**
-
-* `kl.dk.fhir.ffbmessaging#1.0.0`
-
-
----
-
 ### de.gematik.isik-terminplanung
 
 <details>
@@ -6121,6 +6124,7 @@ eHealth Platform R4 Federal Profiles
 * `ehealthplatform.be.r4.federalprofiles#1.1.44-beta`
 * `ehealthplatform.be.r4.federalprofiles#1.1.43-beta`
 * `ehealthplatform.be.r4.federalprofiles#1.1.42-beta`
+* `ehealthplatform.be.r4.federalprofiles#1.1.41-beta`
 * `ehealthplatform.be.r4.federalprofiles#1.1.40-beta`
 * `ehealthplatform.be.r4.federalprofiles#1.1.4-beta`
 * `ehealthplatform.be.r4.federalprofiles#1.1.38-beta`
@@ -8265,6 +8269,7 @@ FHIR R4 profielen voor samenwerking tussen IKNL en Performation
 
 **Versions**
 
+* `care.commonprofiles.fhir#1.0.1`
 * `care.commonprofiles.fhir#1.0.0`
 
 
@@ -8384,6 +8389,7 @@ NHS (England) National Services Implementation Guide
 * `uk.nhsdigital.r4#2.1.6-discovery`
 * `uk.nhsdigital.r4#2.1.5-discovery`
 * `uk.nhsdigital.r4#2.1.4-discovery`
+* `uk.nhsdigital.r4#2.1.34-discovery`
 * `uk.nhsdigital.r4#2.1.33-discovery`
 * `uk.nhsdigital.r4#2.1.32-discovery`
 * `uk.nhsdigital.r4#2.1.31-discovery`
@@ -8696,7 +8702,6 @@ Profiles for integrating into various EHR systems, mainly Finnish Kanta
 **Versions**
 
 * `fi.digious.kanta.test#0.0.1-preview-2`
-* `fi.digious.kanta.test#0.0.1-preview-1`
 
 
 ---
@@ -9990,6 +9995,7 @@ Estonian HL7 FHIR base Implementation Guide and profiles.
 * `iteyes.myhw.core#1.1.4-beta`
 * `iteyes.myhw.core#1.1.3-beta`
 * `iteyes.myhw.core#1.1.2-beta`
+* `iteyes.myhw.core#1.0.9`
 * `iteyes.myhw.core#1.0.7`
 * `iteyes.myhw.core#1.0.6`
 * `iteyes.myhw.core#1.0.5`
@@ -11357,6 +11363,22 @@ This guide defines 4 new Profiles:
 
 ---
 
+### SMART Base
+
+<details>
+<summary>Description</summary>
+
+Base SMART Guidelines implementation guide to be used as the base dependency for all SMART Guidelines IGs (built Fri, Sep 20, 2024 13:43+0000+00:00)
+
+</details>
+
+**Versions**
+
+* `smart.who.int.base#0.1.0`
+
+
+---
+
 ### CH EPR Term
 
 <details>
@@ -12333,7 +12355,6 @@ JP-CORE V1.1.0 for release candidate
 * `myhealthway.main.r4#0.0.10`
 * `myhealthway.main.r4#0.0.9`
 * `myhealthway.main.r4#0.0.8`
-* `myhealthway.main.r4#0.0.7`
 * `myhealthway.main.r4#0.0.6`
 * `myhealthway.main.r4#0.0.5`
 * `myhealthway.main.r4#0.0.4`
