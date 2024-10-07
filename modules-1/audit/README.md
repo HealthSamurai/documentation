@@ -26,6 +26,6 @@ Aidbox provides comprehensive FHIR API for [AuditEvent](https://www.hl7.org/fhir
 
 Aidbox allows you to enhance logs with your data and push your logs into Aidbox stream along with its internal logs.
 
-{% content-ref url="../observability/logging-and-audit/background-information/extending-access-logs.md" %}
-[extending-access-logs.md](../observability/logging-and-audit/background-information/extending-access-logs.md)
+{% content-ref url="../observability/logging-and-audit/extending-access-logs.md" %}
+[extending-access-logs.md](../observability/logging-and-audit/extending-access-logs.md)
 {% endcontent-ref %}
