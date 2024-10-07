@@ -1,16 +1,17 @@
 # Release Notes
 
-## September 2024 _`edge`_
+## September 2024 _`latest,`_ 2409
 
 * Aidbox
-  * Supported webhook as a destination for  [Aidbox topic-based subscriptions](../../modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/)
-  * Added fuzzy search for FHIR packages
+  * Introduced new [MAJOR.MINOR versioning](./) for improved clarity
+  * Added webhook suppport for  [Aidbox topic-based subscriptions](../../modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/)
+  * Implemented[ fuzzy search for FHIR packages import](../../modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/)
   * Enabled new Aidbox UI by default
-  * Fixed critical vulnerabilities
+  * Fixed critical vulnerabilities and bugs
 * Smartbox | FHIR API for EHRs
-  * Added source attributed for evidence-based and predictive DSIs (b)(11)
-  * Added user feedback for DSIs (b)(11)
-  * Implemented “service base URLs” as per (g)(10)
+  * Added [source attributes for evidence-based and predictive DSIs (b)(11)](../../modules-1/smartbox/the-b11-decision-support-interventions/source-attributes.md)
+  * Introduced [user feedback capability for DSIs (b)(11)](../../modules-1/smartbox/the-b11-decision-support-interventions/feedback-sections.md)
+  * Implemented “service base URLs” in compliance with (g)(10)
 * Aidbox Forms
   * Implemented the basic PDF-form conversion to digital forms
   * [Added print & close button customization](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-customisation.md)
@@ -19,9 +20,8 @@
   * Supported default value population in the UI Builder
   * [Multilingual form improvements: added support for languages with country codes, added ability for print & amend button translations](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/multilingual-forms.md)
   * Optimized performance for handling large forms
-* C-CDA / FHIR converter
 
-## August 2024 _`latest,2408`_
+## August 2024 _`stable, 2408`_
 
 * Aidbox&#x20;
   * Introduced dynamic [Topic-based subscriptions](../../modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/) and supported [Kafka (OSS and AWS)](../../modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/kafka-topicdestination.md) as  delivery channels
@@ -44,7 +44,7 @@
   * [C-CDA / FHIR converter](../../modules-1/integration-toolkit/ccda-converter/)
     * Add support for [user-defined codemaps](../../modules-1/integration-toolkit/ccda-converter/ccda-fhir-dsl.md#custom-codemaps)
 
-## July 2024 _`stable,2407`_
+## July 2024 _`2407`_
 
 * Aidbox
   * Introduced support for [custom resources using FHIR StructureDefinitions](../../storage-1/custom-resources/custom-resources-on-fhir-logical-model.md) and [custom resources using FHIR schemas](../../storage-1/custom-resources/custom-resources-using-fhirschema.md)
