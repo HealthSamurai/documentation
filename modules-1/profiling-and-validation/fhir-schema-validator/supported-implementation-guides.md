@@ -1491,6 +1491,7 @@ Special Authorization Digital Information Exchange will have the initial package
 * `ca.on.health.sadie#0.1.8-beta`
 * `ca.on.health.sadie#0.1.7-beta`
 * `ca.on.health.sadie#0.1.6-beta`
+* `ca.on.health.sadie#0.1.5-beta`
 * `ca.on.health.sadie#0.1.4-beta`
 * `ca.on.health.sadie#0.1.3-beta`
 * `ca.on.health.sadie#0.1.27-beta`
@@ -3282,22 +3283,6 @@ ImplementationGuide for Point-of-Care Devices (PoCD), such as those typically fo
 
 * `hl7.fhir.uv.pocd#0.3.0`
 * `hl7.fhir.uv.pocd#0.2.0`
-
-
----
-
-### kbv.ita.aws
-
-<details>
-<summary>Description</summary>
-
-PVS-Archivierungs- und Wechsel-Schnittstelle Gemäß § 371 Absatz 1
-
-</details>
-
-**Versions**
-
-* `kbv.ita.aws#1.2.0`
 
 
 ---
@@ -5904,6 +5889,22 @@ Deutsches Elektronisches Melde- und Informationssystem für den Infektionsschutz
 
 ---
 
+### Implementation Guide for FFB messaging (FFB udvekslingsdatasæt)
+
+<details>
+<summary>Description</summary>
+
+Danish municipalities implementation guide for FFB messaging. A standard for exchanging social information from citizen journals between municipalities. The aim is to support citizens continuously, e.g. when they move, or receives interventions outside their home municipality. (built Sun, Aug 27, 2023 07:52+0200+02:00)
+
+</details>
+
+**Versions**
+
+* `kl.dk.fhir.ffbmessaging#1.0.0`
+
+
+---
+
 ### de.gematik.isik-terminplanung
 
 <details>
@@ -7264,22 +7265,6 @@ FHIR profiles used in FHIR Publishing processes within Health New Zealand Te Wha
 * `tewhatuora.digitaltooling.iguat#0.0.6`
 * `tewhatuora.digitaltooling.iguat#0.0.5`
 * `tewhatuora.digitaltooling.iguat#0.0.4`
-
-
----
-
-### IdHIE.0v
-
-<details>
-<summary>Description</summary>
-
-Indonesia Health Information Exchange
-
-</details>
-
-**Versions**
-
-* `IdHIE.0v#0.0.1`
 
 
 ---
@@ -8702,6 +8687,7 @@ Profiles for integrating into various EHR systems, mainly Finnish Kanta
 **Versions**
 
 * `fi.digious.kanta.test#0.0.1-preview-2`
+* `fi.digious.kanta.test#0.0.1-preview-1`
 
 
 ---
@@ -8859,14 +8845,12 @@ Electronic Prescription Service
 **Versions**
 
 * `uk.nhsdigital.medicines.r4#2.7.9`
-* `uk.nhsdigital.medicines.r4#2.7.1`
 * `uk.nhsdigital.medicines.r4#2.6.0`
 * `uk.nhsdigital.medicines.r4#2.5.0`
 * `uk.nhsdigital.medicines.r4#2.3.0`
 * `uk.nhsdigital.medicines.r4#2.2.1`
 * `uk.nhsdigital.medicines.r4#2.2.0`
 * `uk.nhsdigital.medicines.r4#2.1.9-alpha`
-* `uk.nhsdigital.medicines.r4#2.1.8-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.7-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.6-alpha`
 * `uk.nhsdigital.medicines.r4#2.1.5-alpha`
@@ -10724,35 +10708,6 @@ This IG standardizes the sharing of minimal radiation information following a pe
 
 ---
 
-### hl7.fhir.stt
-
-<details>
-<summary>Description</summary>
-
-Sistema Integrado de Telemedicina e Telessaúde - Universidade Federal de Santa Catarina
-
-</details>
-
-**Versions**
-
-* `hl7.fhir.stt#1.0.0-beta9`
-* `hl7.fhir.stt#1.0.0-beta8`
-* `hl7.fhir.stt#1.0.0-beta7`
-* `hl7.fhir.stt#1.0.0-beta6`
-* `hl7.fhir.stt#1.0.0-beta5`
-* `hl7.fhir.stt#1.0.0-beta4`
-* `hl7.fhir.stt#1.0.0-beta3`
-* `hl7.fhir.stt#1.0.0-beta2`
-* `hl7.fhir.stt#1.0.0-beta14`
-* `hl7.fhir.stt#1.0.0-beta13`
-* `hl7.fhir.stt#1.0.0-beta12`
-* `hl7.fhir.stt#1.0.0-beta11`
-* `hl7.fhir.stt#1.0.0-beta10`
-* `hl7.fhir.stt#1.0.0-beta`
-
-
----
-
 ### fbe.babycare.app
 
 <details>
@@ -11440,24 +11395,6 @@ Version 2020
 
 ---
 
-### Da Vinci Risk Adjustment Implementation Guide
-
-<details>
-<summary>Description</summary>
-
-The Da Vinci Fast Healthcare Interoperability Resource (FHIR) Risk Adjustment Implementation Guide (this IG) describes exchange of risk-based coding gaps among stakeholders such as payers, providers, and government care programs in support of driving towards accurate and complete documentation of health conditions that would lead to more accurate risk-adjustment payment calculations. (built Tue, Mar 28, 2023 02:00+0000+00:00)
-
-</details>
-
-**Versions**
-
-* `hl7.fhir.us.davinci-ra#2.0.0-ballot`
-* `hl7.fhir.us.davinci-ra#1.0.0`
-* `hl7.fhir.us.davinci-ra#0.1.0`
-
-
----
-
 ### de.gematik.isip
 
 <details>
@@ -11623,7 +11560,6 @@ Ontario-specific business use cases and content
 * `ca.on.oh-ereferral-econsult#0.11.0-alpha-1.0.6`
 * `ca.on.oh-ereferral-econsult#0.11.0-alpha1.0.5`
 * `ca.on.oh-ereferral-econsult#0.11.0-alpha1.0.4`
-* `ca.on.oh-ereferral-econsult#0.11.1-alpha1.0.3`
 * `ca.on.oh-ereferral-econsult#0.11.0-alpha1.0.3`
 * `ca.on.oh-ereferral-econsult#0.11.1-alpha1.0.2`
 * `ca.on.oh-ereferral-econsult#0.11.0-alpha-1.0.2`
@@ -11663,10 +11599,8 @@ elektronisches Medikations-Datenaustauschformat
 * `de.gevko.emdaf#1.3.0`
 * `de.gevko.emdaf#1.2.0`
 * `de.gevko.emdaf#1.1.2`
-* `de.gevko.emdaf#1.1.1`
 * `de.gevko.emdaf#1.1.0`
 * `de.gevko.emdaf#1.0.0`
-* `de.gevko.emdaf#0.9.0`
 
 
 ---
@@ -12355,6 +12289,7 @@ JP-CORE V1.1.0 for release candidate
 * `myhealthway.main.r4#0.0.10`
 * `myhealthway.main.r4#0.0.9`
 * `myhealthway.main.r4#0.0.8`
+* `myhealthway.main.r4#0.0.7`
 * `myhealthway.main.r4#0.0.6`
 * `myhealthway.main.r4#0.0.5`
 * `myhealthway.main.r4#0.0.4`
