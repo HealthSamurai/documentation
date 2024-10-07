@@ -1,10 +1,10 @@
 # Release Notes
 
-## September 2024 _`latest,`_ 2409
+## September 2024 _`latest, 2409`_&#x20;
 
 * Aidbox
   * Introduced new [MAJOR.MINOR versioning](./) for improved clarity
-  * Added webhook suppport for  [Aidbox topic-based subscriptions](../../modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/)
+  * Added webhook support for  [Aidbox topic-based subscriptions](../../modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/)
   * Implemented[ fuzzy search for FHIR packages import](../../modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/)
   * Enabled new Aidbox UI by default
   * Fixed critical vulnerabilities and bugs
