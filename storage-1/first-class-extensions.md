@@ -1,17 +1,23 @@
 # First-Class Extensions
 
+{% hint style="warning" %}
+Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
+
+[Setup Aidbox with FHIR Schema validation engine](../modules-1/profiling-and-validation/fhir-schema-validator.md)
+{% endhint %}
+
 In Aidbox there are two ways to define first-class extensions:&#x20;
 
 * Using [Zen profiles](first-class-extensions.md#first-class-extension-as-zen-profile)
 * Using [Attribute](first-class-extensions.md#define-new-extension)
 
-If you're using Aidbox with zen, all resources will be validated by zen, not Attributes. In this case you should use zen profiles.&#x20;
+If you're using Aidbox with zen, all resources will be validated by zen, not Attributes. In this case, you should use zen profiles.&#x20;
 
 If you don't use zen, you can use Attributes.
 
 ## First-class extension as Zen profile
 
-While FHIR uses two different ways to define **core elements** and **extensions**, zen profiles provide unified framework to describe both. Zen FHIR format offers user-defined elements or "first-class extensions". In zen profiles, you can define new attributes (elements) for existing (FHIR) resources. \
+While FHIR uses two different ways to define **core elements** and **extensions**, zen profiles provide a unified framework to describe both. Zen FHIR format offers user-defined elements or "first-class extensions". In zen profiles, you can define new attributes (elements) for existing (FHIR) resources. \
 The example below shows how to define extensions in zen profiles.
 
 {% tabs %}
@@ -124,8 +130,8 @@ Note that extension elements have `:confirms` to a FHIR primitive or complex typ
     path: [:zen.fhir/version]
     ```
 4. Define `:fhir/extensionUri` property value. \
-   `:fhir/extensionUri` "http://tenant-id-extension-url" is an equivalent of the `extensionUrl` field of the [Attribute resource](first-class-extensions.md#define-new-extension) and used to form FHIR extension.
-5. Replace plain zen type by FHIR type in your extensions. \
+   `:fhir/extensionUri` "http://tenant-id-extension-url" is an equivalent of the `extensionUrl` field of the [Attribute resource](first-class-extensions.md#define-new-extension) and is used to form FHIR extension.
+5. Replace plain zen type with FHIR type in your extensions. \
    I.e. use `:confirms #{hl7-fhir-r4-core.string/schema}` instead of `:type zen/string`.
 
 ## Define new extension with Attribute
@@ -154,14 +160,14 @@ extensionUrl: urn:extension:requestedOrganizationDepartment
 *   `resource` - **required**, _Reference(Entity)._
 
     Reference to a target resource type
-*   `path` - **required**, _array of strings._
+*   `path` - **required**, an _array of strings._
 
     Path to a new attribute location in the target resource type
 *   `type` - _Reference(Entity)_.
 
-    Type of data stored in this attribute. Can be any primitive or complex type.
+    Type of data stored in this attribute. It can be any primitive or complex type.
 
-    If omitted, treated as `BackboneElement`, i.e. a complex-type object with structure defined via other Attributes relying on this attribute in their `path`
+    If omitted, treated as`BackboneElement`, i.e. a complex-type object with structure defined via other Attributes relying on this attribute in their `path`
 *   `isCollection` - _boolean_.
 
     Whether the attribute is a collection, i.e. if `true` sets attribute cardinality to `..*`
@@ -175,7 +181,7 @@ extensionUrl: urn:extension:requestedOrganizationDepartment
     Only for type=Reference. Specifies to which resourceTypes this reference can refer to
 *   `extensionUrl` - _string_.
 
-    URL which will be used to create `extension` element in FHIR format. **If omitted, Attribute won't be transformed in FHIR format**
+    URL which will be used to create `extension` element in FHIR format. **If omitted, the Attribute won't be transformed into the FHIR format**
 
 {% hint style="info" %}
 Note: you can not use Attributes and zen profiles on the same resource at the same time
@@ -760,7 +766,7 @@ id: Patient._gender
 resourceType: Attribute
 ```
 
-Now we can add extension attribute into \_gender attribute.
+Now we can add an extension attribute into \_gender attribute.
 
 ```yaml
 PUT /Attribute/Patient._gender.extension
