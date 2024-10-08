@@ -20,6 +20,9 @@
   * Supported default value population in the UI Builder
   * [Multilingual form improvements: added support for languages with country codes, added ability for print & amend button translations](../../modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/multilingual-forms.md)
   * Optimized performance for handling large forms
+* Minor updates
+  * [2408.1 ](https://hub.docker.com/layers/healthsamurai/aidboxone/2408.1/images/sha256-972680359848f744afd06417b3c7085b69f4c7ec4a852251fd2f1015c0635745?context=explore)— Fixed critical vulnerabilities and security issues
+  * [2407.1](https://hub.docker.com/layers/healthsamurai/aidboxone/2407.1/images/sha256-ebc48b985b0dfb3bd4a8a2c1b3930966547475d793997c16078e9685405f7198?context=explore) — Fixed critical vulnerabilities and security issues
 
 ## August 2024 _`stable, 2408`_
 
