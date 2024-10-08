@@ -4,34 +4,35 @@ description: Search resource provides fine-grained control over search parameter
 
 # Search Resource
 
-Search meta-resource can be used to define search parameters or override the existing one. Search resources take precedence over [SearchParameters](searchparameter.md). This may be useful for performance optimization of built-in FHIR SearchParameters or for the implementation of complicated custom searches.
+Search resource defines search parameter or overrides the existing one. Search resources take precedence over [SearchParameters](searchparameter.md). This may be useful for the performance optimization of built-in FHIR SearchParameters or for the implementation of complicated custom searches.
+
+## Example
 
 ```yaml
 PUT /Search/Patient.name
 content-type: text/yaml
 accept: text/yaml
 
-resourceType: Search
-id: Patient.name # id of Search resource
-name: name # name of the new search parameter
-resource: # link to the Patient resource
+name: name
+resource:
   id: Patient
   resourceType: Entity
 where: "{{table}}.resource->>'name' ilike {{param}}" # sql for search
 format: "%?%" # parameter format for ilike 
-order-by: "{{table}}.resource#>>'{name,0,family}'" # sql for ordering
+order-by: "{{table}}.resource#>>'{name,0,family}'" # sql for ordering (using _sort)
 ```
 
-Use `{{table}}` for table name and `{{param}}` for parameter in "where" and "order-by" expressions.\
-Provided `format` parameter will be passed to `{{param}}` (`?` will be replaced with the value of parameter). This feature may be useful writing `ilike` expressions.
+## Search resource structure
 
-### **Token search**
+<table><thead><tr><th width="147">Key</th><th width="105">Type</th><th>Description</th></tr></thead><tbody><tr><td><strong>name</strong></td><td>string</td><td>Search parameter name</td></tr><tr><td><strong>resource</strong></td><td>object</td><td>Reference to the resource (resourceType is always <code>Entity</code>)</td></tr><tr><td><strong>where</strong></td><td>string</td><td><p>SQL to use in the <code>WHERE</code> expression. </p><p>Supports <code>{{table}}</code> and <code>{{param}}</code></p></td></tr><tr><td><strong>format</strong></td><td>string</td><td>Replaces <code>?</code> with the actual value provided in the search query. Useful to use in <code>ILIKE</code> SQL expression.</td></tr><tr><td><strong>order-by</strong></td><td>string</td><td><p>SQL to use in the <code>ORDER BY</code> expression. </p><p>Supports <code>{{table}}</code> and <code>{{param}}</code>. </p><p><strong>Note that it is used only when <code>_sort=&#x3C;name></code> present in the query.</strong></p></td></tr></tbody></table>
+
+## **Token search**
 
 You can define Search resources for different token syntax forms and `:text` modifier.\
-To refer to system and code in SQL query use `{{param.system}}` and `{{param.code}}` accordingly.\
-To refer to value of param with `:text` modifier use `{{param.text}}`\
+To refer to the system and code in SQL query use `{{param.system}}` and `{{param.code}}` accordingly.\
+To refer to the value of the param with `:text` modifier use `{{param.text}}`\
 When using the `:text` modifier you also need to specify `"text-format"`, refer to `{{param.text}}` with `?`.\
-`"text-format"` is a format string which will be applied to`{{param.text}}` before inserting into SQL query. It is useful for wrapping text with `%` for `like` or `ilike.` For example `text-format: '%?%'`
+`"text-format"` is a format string which will be applied to`{{param.text}}` before inserting it into SQL query. It is useful for wrapping text with `%` for `like` or `ilike.` For example `text-format: '%?%'`
 
 ```yaml
 PUT /Search/<resourceType>.<parameter>
@@ -51,7 +52,7 @@ token-sql:
   text-format: <format string {{param.text}}>
 ```
 
-### **Reference search**
+## **Reference search**
 
 Allows use different reference types in "where" expression. Reference can be defined [in several ways](http://www.hl7.org/fhir/search.html#reference):
 
@@ -70,7 +71,7 @@ resource: {id: <resourceType>, resourceType: Entity}
 param-parser: reference
 ```
 
-### Multi: array parameter
+## Multi: array parameter
 
 If you set multi = 'array', parameters will be coerced as PostgreSQL array.
 
@@ -131,9 +132,9 @@ accept: text/yaml
 {% endtab %}
 {% endtabs %}
 
-### Examples
+## Examples
 
-#### Search patient name with SQL ilike
+### Search patient name with SQL ilike
 
 {% tabs %}
 {% tab title="PUT /Patient" %}
@@ -184,7 +185,7 @@ accept: text/yaml
 {% endtab %}
 {% endtabs %}
 
-#### Search if patient is [deceased](https://www.hl7.org/fhir/patient.html#search)
+### Search if patient is [deceased](https://www.hl7.org/fhir/patient.html#search)
 
 ```yaml
 PUT /Search/Patient.name
@@ -200,7 +201,7 @@ resource:
 where: "coalesce((resource#>>'{deceased,boolean}')::boolean, resource ?? 'deceased', false) = {{param}}"
 ```
 
-#### Token search
+### Token search
 
 {% tabs %}
 {% tab title="PUT /Search" %}
@@ -253,7 +254,7 @@ accept: text/yaml
 {% endtab %}
 {% endtabs %}
 
-#### Reference search by type/id
+### Reference search by type/id
 
 {% tabs %}
 {% tab title="PUT /Search" %}
@@ -281,7 +282,7 @@ accept: text/yaml
 {% endtab %}
 {% endtabs %}
 
-#### Reference search by id
+### Reference search by id
 
 {% tabs %}
 {% tab title="PUT /Search" %}
@@ -309,7 +310,7 @@ accept: text/yaml
 {% endtab %}
 {% endtabs %}
 
-#### Reference search by url
+### Reference search by url
 
 {% tabs %}
 {% tab title="PUT /Search" %}
