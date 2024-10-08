@@ -35,7 +35,7 @@ source: 'https://storage.googleapis.com/aidbox-public/synthea/100/Patient.ndjson
 {total: 124}
 ```
 
-### update: true
+## update: true
 
 By default for performance reasons `$load` does raw upsert into resource table without updating history. If you want to store the previous version of resources in history, you have to set `update = true,` with this flag Aidbox will update history for updated resources.
 
@@ -47,7 +47,7 @@ source: <new-version-of-data>
 update: true
 ```
 
-### strip-nulls: true
+## strip-nulls: true
 
 By default for performance reasons `$load` does raw upsert into the resource table without cleaning up `null` values from imported resources. To make import behave in the same way as the `Create` operation, use options `strip-nulls: true`
 
@@ -59,7 +59,7 @@ source: <new-version-of-data>
 strip-nulls: true
 ```
 
-### merge: `object literal`
+## merge: `object literal`
 
 It's possible to merge some data into every loaded resource using `merge` option. A **shallow** merge will be used.
 
@@ -72,7 +72,7 @@ merge:
   active: true
 ```
 
-### $load multiple resource types
+## $load multiple resource types
 
 Or load the whole synthea package:
 
@@ -86,3 +86,22 @@ source: 'https://storage.googleapis.com/aidbox-public/synthea/100/all.ndjson.gz'
 
 {CarePlan: 356, Observation: 20382, MedicationAdministration: 150, .... }
 ```
+
+## Import local file
+
+Sometimes you want to import local file into local Aidbox. Possible solutions for local development:
+
+### Add volume to the `aidboxone` container (not `aidboxdb`):
+
+```
+volumes:
+- ./Encounter.ndjson.gz:/resources/Encounter.ndjson.gz
+# url: file:///resources/Encounter.ndjson.gz
+```
+
+### Use tunneling e.g. ngrok:&#x20;
+
+<pre><code>python3 -m http.server 
+ngrok http 8000
+<strong># url: https://&#x3C;...>.ngrok-free.app/Encounter.ndjson.gz
+</strong></code></pre>

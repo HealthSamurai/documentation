@@ -263,3 +263,22 @@ result:
 {% endcode %}
 {% endtab %}
 {% endtabs %}
+
+## Import local file
+
+Sometimes you want to import local file into local Aidbox. Possible solutions for local development:
+
+#### Add volume to the `aidboxone` container (not `aidboxdb`):
+
+```
+volumes:
+- ./Encounter.ndjson.gz:/resources/Encounter.ndjson.gz
+# url: file:///resources/Encounter.ndjson.gz
+```
+
+#### Use tunneling e.g. ngrok:&#x20;
+
+<pre><code>python3 -m http.server 
+ngrok http 8000
+<strong># url: https://&#x3C;...>.ngrok-free.app/Encounter.ndjson.gz
+</strong></code></pre>
