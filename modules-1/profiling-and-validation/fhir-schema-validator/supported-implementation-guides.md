@@ -790,22 +790,6 @@ This Implementation Guide was created under the supervision and review of the [H
 
 ---
 
-### CarePlanRT.Eng
-
-<details>
-<summary>Description</summary>
-
-CarePlanEng
-
-</details>
-
-**Versions**
-
-* `CarePlanRT.Eng#1.0.0`
-
-
----
-
 ### junk.sample-preview
 
 <details>
@@ -1487,6 +1471,7 @@ Special Authorization Digital Information Exchange will have the initial package
 
 **Versions**
 
+* `ca.on.health.sadie#0.1.9-beta`
 * `ca.on.health.sadie#0.1.8-beta`
 * `ca.on.health.sadie#0.1.7-beta`
 * `ca.on.health.sadie#0.1.6-beta`
@@ -2085,9 +2070,7 @@ Ontario Patient Summary
 * `ca.on.oh.patient-summary#0.12.5`
 * `ca.on.oh.patient-summary#0.12.4`
 * `ca.on.oh.patient-summary#0.12.3`
-* `ca.on.oh.patient-summary#0.12.2`
 * `ca.on.oh.patient-summary#0.12.1`
-* `ca.on.oh.patient-summary#0.12.0`
 * `ca.on.oh.patient-summary#0.11.3`
 * `ca.on.oh.patient-summary#0.11.2`
 * `ca.on.oh.patient-summary#0.11.1`
@@ -2101,7 +2084,6 @@ Ontario Patient Summary
 * `ca.on.oh.patient-summary#0.10.0-alpha-2`
 * `ca.on.oh.patient-summary#0.10.0-alpha-12`
 * `ca.on.oh.patient-summary#0.10.0-alpha-11`
-* `ca.on.oh.patient-summary#0.10.0-alpha-10`
 * `ca.on.oh.patient-summary#0.10.0-alpha-1`
 * `ca.on.oh.patient-summary#0.9.1-alpha-7`
 * `ca.on.oh.patient-summary#0.9.1-alpha-6`
@@ -3406,7 +3388,6 @@ A framework for applications that use KIM or TI-Messenger for end to end data tr
 
 * `de.gematik.fhir.atf#1.3.0`
 * `de.gematik.fhir.atf#1.2.0`
-* `de.gematik.fhir.atf#1.1.0`
 * `de.gematik.fhir.atf#1.0.4`
 * `de.gematik.fhir.atf#1.0.3`
 * `de.gematik.fhir.atf#1.0.2`
@@ -4217,7 +4198,6 @@ The IHE Mobile Care Services Discovery (mCSD) IG provides a transaction for mobi
 
 * `ihe.iti.mcsd#3.8.0`
 * `ihe.iti.mcsd#3.7.0`
-* `ihe.iti.mcsd#3.6.1`
 * `ihe.iti.mcsd#3.5.0`
 * `ihe.iti.mcsd#3.4.0`
 
@@ -4482,7 +4462,6 @@ Ontario Patient Summary
 
 * `hl7.fhir.us.davinci-deqm#5.0.0-ballot`
 * `hl7.fhir.us.davinci-deqm#4.0.0`
-* `hl7.fhir.us.davinci-deqm#4.0.0-ballot`
 * `hl7.fhir.us.davinci-deqm#3.1.0`
 * `hl7.fhir.us.davinci-deqm#3.0.0`
 * `hl7.fhir.us.davinci-deqm#2.1.0`
@@ -4648,7 +4627,6 @@ The COVID-19 IG describes structured data to be collected and communicated betwe
 **Versions**
 
 * `hl7.fhir.us.covid19library#1.0.0`
-* `hl7.fhir.us.covid19library#0.14.0`
 * `hl7.fhir.us.covid19library#0.13.0`
 
 
@@ -5539,12 +5517,13 @@ i.s.h.med FHIR R4 International API Endpoint
 
 Medizininformatik Initiative - Modul Onkologie
 
-Version zur Ballotierung durch HL7 Deutschland und Kommentierung durch die Medizininformatik-Initiative
+Stabile Beta-Version mit alle technischen, inhaltlichen und editoriellen Korrekturen als Teil der Kommentierungsphase
 
 </details>
 
 **Versions**
 
+* `de.medizininformatikinitiative.kerndatensatz.onkologie#2024.0.0-beta-2`
 * `de.medizininformatikinitiative.kerndatensatz.onkologie#2024.0.0-ballot`
 * `de.medizininformatikinitiative.kerndatensatz.onkologie#2024.0.0-ballot-beta-1`
 * `de.medizininformatikinitiative.kerndatensatz.onkologie#2024.0.0-ballot-alpha-1`
@@ -5942,27 +5921,6 @@ Package Release des ISiK Modul Terminplanung
 * `de.gematik.isik-terminplanung#2.0.5`
 * `de.gematik.isik-terminplanung#2.0.4`
 * `de.gematik.isik-terminplanung#2.0.3`
-
-
----
-
-### Digital Tooling Implementation Guide
-
-<details>
-<summary>Description</summary>
-
-FHIR profiles used in FHIR Publishing processes within Health New Zealand Te Whatu Ora (built Wed, Aug 28, 2024 01:15+0000+00:00)
-
-</details>
-
-**Versions**
-
-* `tewhatuora.digitaltooling#0.0.11`
-* `tewhatuora.digitaltooling#0.0.10`
-* `tewhatuora.digitaltooling#0.0.9`
-* `tewhatuora.digitaltooling#0.0.8`
-* `tewhatuora.digitaltooling#0.0.7`
-* `tewhatuora.digitaltooling#0.0.6`
 
 
 ---
@@ -6491,22 +6449,6 @@ Package version 1.0.0
 
 ---
 
-### HIP FHIR Common Terminology  Guide
-
-<details>
-<summary>Description</summary>
-
-Common terminology used by HIP FHIR services (built Thu, Sep 5, 2024 03:47+0000+00:00)
-
-</details>
-
-**Versions**
-
-* `tewhatuora.hip-core#1.9.0`
-
-
----
-
 ### us.cdc.phinvads
 
 
@@ -6650,14 +6592,12 @@ This Guide describes Tiga interfaces (built Fri, Jul 15, 2022 16:34+0200+02:00)
 * `tigacorehub.patient#1.1.30`
 * `tigacorehub.patient#1.1.29`
 * `tigacorehub.patient#1.1.28`
-* `tigacorehub.patient#1.1.27`
 * `tigacorehub.patient#1.1.26`
 * `tigacorehub.patient#1.1.25`
 * `tigacorehub.patient#1.1.24`
 * `tigacorehub.patient#1.1.23`
 * `tigacorehub.patient#1.1.22`
 * `tigacorehub.patient#1.1.21`
-* `tigacorehub.patient#1.1.20`
 * `tigacorehub.patient#1.1.19`
 * `tigacorehub.patient#1.1.18`
 * `tigacorehub.patient#1.1.17`
@@ -6665,14 +6605,10 @@ This Guide describes Tiga interfaces (built Fri, Jul 15, 2022 16:34+0200+02:00)
 * `tigacorehub.patient#1.1.15`
 * `tigacorehub.patient#1.1.14`
 * `tigacorehub.patient#1.1.13`
-* `tigacorehub.patient#1.1.12`
-* `tigacorehub.patient#1.1.11`
 * `tigacorehub.patient#1.1.10`
 * `tigacorehub.patient#1.1.9`
 * `tigacorehub.patient#1.1.8`
 * `tigacorehub.patient#1.1.7`
-* `tigacorehub.patient#1.1.6`
-* `tigacorehub.patient#1.1.5`
 * `tigacorehub.patient#1.1.4`
 * `tigacorehub.patient#1.1.3`
 * `tigacorehub.patient#1.1.2`
@@ -6863,6 +6799,7 @@ Technical profiles used by Nexuzhealth FHIR Stores
 
 **Versions**
 
+* `nexuzhealth.fhir.r4#1.0.1`
 * `nexuzhealth.fhir.r4#1.0.0`
 
 
@@ -7074,6 +7011,22 @@ Example project from ACME Corp on using FHIR Shorthand/sushi and the IG Publishe
 
 ---
 
+### SMART ICVP
+
+<details>
+<summary>Description</summary>
+
+SMART Guidelines for International Certificate for Vaccination or Prophylaxis (built Mon, Oct 7, 2024 07:27+0000+00:00)
+
+</details>
+
+**Versions**
+
+* `smart.who.int.icvp#0.1.0`
+
+
+---
+
 ### DaVinci PDEX Plan Net
 
 <details>
@@ -7260,8 +7213,6 @@ Medizininformatik Initiative - Modul Diagnose
 **Versions**
 
 * `de.medizininformatikinitiative.kerndatensatz.diagnose#2024.0.0`
-* `de.medizininformatikinitiative.kerndatensatz.diagnose#2024.0.0-ballot`
-* `de.medizininformatikinitiative.kerndatensatz.diagnose#2024.0.0-alpha2`
 * `de.medizininformatikinitiative.kerndatensatz.diagnose#1.0.4`
 
 
@@ -7682,7 +7633,6 @@ Medizininformatik Initiative - Modul Prozedur
 
 * `de.medizininformatikinitiative.kerndatensatz.prozedur#2024.0.0`
 * `de.medizininformatikinitiative.kerndatensatz.prozedur#2024.0.0-ballot`
-* `de.medizininformatikinitiative.kerndatensatz.prozedur#2024.0.0-alpha8`
 * `de.medizininformatikinitiative.kerndatensatz.prozedur#1.0.8`
 
 
@@ -7897,52 +7847,6 @@ Laniado Hospital Test Project
 
 ---
 
-### ca.on.oh-setp
-
-<details>
-<summary>Description</summary>
-
-The purpose of SETP is to improve surgical performance in Ontario through the measurement and report
-
-</details>
-
-**Versions**
-
-* `ca.on.oh-setp#0.9.0-alpha1.0.33`
-* `ca.on.oh-setp#0.9.0-alpha1.0.32`
-* `ca.on.oh-setp#0.9.0-alpha1.0.31`
-* `ca.on.oh-setp#0.9.0-alpha1.0.30`
-* `ca.on.oh-setp#0.9.0-alpha1.0.29`
-* `ca.on.oh-setp#0.9.0-alpha1.0.28`
-* `ca.on.oh-setp#0.9.0-alpha1.0.27`
-* `ca.on.oh-setp#0.9.0-alpha1.0.26`
-* `ca.on.oh-setp#0.9.0-alpha1.0.25`
-* `ca.on.oh-setp#0.9.0-alpha1.0.24`
-* `ca.on.oh-setp#0.9.0-alpha1.0.23`
-* `ca.on.oh-setp#0.9.0-alpha1.0.22`
-* `ca.on.oh-setp#0.9.0-alpha1.0.18`
-* `ca.on.oh-setp#0.9.0-alpha1.0.17`
-* `ca.on.oh-setp#0.9.0-alpha1.0.16`
-* `ca.on.oh-setp#0.9.0-alpha1.0.15`
-* `ca.on.oh-setp#0.9.0-alpha1.0.14`
-* `ca.on.oh-setp#0.9.0-alpha1.0.13`
-* `ca.on.oh-setp#0.9.0-alpha1.0.12`
-* `ca.on.oh-setp#0.9.0-alpha1.0.11`
-* `ca.on.oh-setp#0.9.0-alpha1.0.10`
-* `ca.on.oh-setp#0.9.0-alpha1.0.9`
-* `ca.on.oh-setp#0.9.0-alpha1.0.8`
-* `ca.on.oh-setp#0.9.0-alpha1.0.7`
-* `ca.on.oh-setp#0.9.0-alpha-1.0.6`
-* `ca.on.oh-setp#0.9.0-alpha1.0.5`
-* `ca.on.oh-setp#1.0.38`
-* `ca.on.oh-setp#1.0.37`
-* `ca.on.oh-setp#1.0.36`
-* `ca.on.oh-setp#1.0.35`
-* `ca.on.oh-setp#1.0.34`
-
-
----
-
 ### de.gematik.dev.epa.medication
 
 <details>
@@ -8142,6 +8046,7 @@ KBV Schluesseltabellen
 
 **Versions**
 
+* `kbv.all.st-rc#1.5.0`
 * `kbv.all.st-rc#1.4.0`
 * `kbv.all.st-rc#1.3.0`
 * `kbv.all.st-rc#1.2.0`
@@ -8418,7 +8323,6 @@ NHS (England) National Services Implementation Guide
 * `uk.nhsdigital.r4#2.1.26-discovery`
 * `uk.nhsdigital.r4#2.1.25-discovery`
 * `uk.nhsdigital.r4#2.1.24-discovery`
-* `uk.nhsdigital.r4#2.1.23-discovery`
 * `uk.nhsdigital.r4#2.1.22-discovery`
 * `uk.nhsdigital.r4#2.1.21-discovery`
 * `uk.nhsdigital.r4#2.1.20-discovery`
@@ -8560,6 +8464,7 @@ Defines and exposes all HL7 terminologies managed through the unified terminolog
 * `hl7.terminology#3.1.0`
 * `hl7.terminology#3.0.0`
 * `hl7.terminology#2.1.0`
+* `hl7.terminology#2.0.0`
 * `hl7.terminology#1.0.0`
 
 
@@ -8677,13 +8582,13 @@ This IG is developed for the HL7 International Pharmaceutical Quality (PQ) - Ind
 <details>
 <summary>Description</summary>
 
-### Intent The intent of this guide is to provide a profile on the FHIR AdverseEvent Resource suitable for Clinical Research.  ### Overview A single Adverse Event (AE) may need to be reported in multiple ways. Choosing the appropriate form of the reporting is dependent upon workflow patterns. In particular, the implementation guides for Clinical Care adverse events and Clinical Research adverse events provide important extensions, value-sets and examples for implementing AdverseEvent.  This guide, the Clinical Research adverse event implementation guide, is for the clinical research setting. In this setting, the event is tracked and evaluated as part of the clinical research process for the research study.  In the research setting an adverse event is the result of an intervention that caused unintentional harm to a specific subject or group of subjects (this is surfaced in the profile as a constraint of ‘actual’ for the value of ‘actuality’). An example of an adverse event in the clinical research setting would be a patient develops renal failure while on a study drug. These events are characterized by the need to capture cause-and-effect (although they might not be known at the time of the event), severity, and outcome.  The context of an adverse event is also important, and captured in the AdverseEvent Clinical Research Profile data elements. A subject may have condition(s) or current treatments (medications, diet, devices) that impact their response to a newly introduced medication, device or procedure. Knowledge of these variables is essential in establishing a cause-and-effect relationship for an adverse event. This information is represented with corresponding resources (e.g. Procedure Resource for procedures, etc.) and referenced.  A potential adverse event may also be called a near miss or an error, these are not reported with the AdverseEvent Clinical Research Profile.  ### Scope This FHIR IG enables the collection of adverse events in real-world data (RWD) sources such as electronic health records (EHR) and personal health records (PHR) that occur during clinical trials. It ensures the appropriate AE representation required to support clinical research trials within a regulated environment. As the AEs are collected in RWD sources, the data can be transmitted via FHIR to clinical trial management systems, regulatory agencies, sponsors, and clinical research organizations for further processing and reporting.  In the pre-market clinical research setting, serious adverse events must be reported to the sponsor, clinical research organization, and regulatory agencies within a specific time frame for Institutional Review Boards (IRBs) and Data Safety Monitoring Board (DSMB) review. By using this IG, a clinical investigator can document an AE in the EHR, it can be received by a secondary clinical trial management system for triage and then forwarded to the sponsor and regulatory agencies. Similarly, a patient on a clinical trial can record an adverse event in their PHR that is then shared with the clinical investigator and reported to the sponsor and regulatory agencies as necessary. In a post-market situation, a patient, provider, or manufacturer can record the adverse event in a system and then report it to the FDA as a FHIR based MedWatch form.  Within this guide are several examples. Every effort has been made to capture the most important details of the use of the AdverseEvent profile. However, some examples may provide only a stub to referenced resources (e.g. instances of Patient Resource will be referenced using logical ids but are not resolvable, implementation of Patient is left for other guidance and is not the subject of this guide). Connectathons are ideal opportunities to create, compare and consider the holistic implementation of all FHIR Resources. (built Tue, Apr 30, 2024 20:20+0000+00:00)
+### Intent The intent of this guide is to provide a profile on the FHIR AdverseEvent Resource suitable for Clinical Research.  ### Overview A single Adverse Event (AE) may need to be reported in multiple ways. Choosing the appropriate form of the reporting is dependent upon workflow patterns. In particular, the implementation guides for Clinical Care adverse events and Clinical Research adverse events provide important extensions, value-sets and examples for implementing AdverseEvent.  This guide, the Clinical Research adverse event implementation guide, is for the clinical research setting. In this setting, the event is tracked and evaluated as part of the clinical research process for the research study.  In the research setting an adverse event is the result of an intervention that caused unintentional harm to a specific subject or group of subjects (this is surfaced in the profile as a constraint of ‘actual’ for the value of ‘actuality’). An example of an adverse event in the clinical research setting would be a patient develops renal failure while on a study drug. These events are characterized by the need to capture cause-and-effect (although they might not be known at the time of the event), severity, and outcome.  The context of an adverse event is also important, and captured in the AdverseEvent Clinical Research Profile data elements. A subject may have condition(s) or current treatments (medications, diet, devices) that impact their response to a newly introduced medication, device or procedure. Knowledge of these variables is essential in establishing a cause-and-effect relationship for an adverse event. This information is represented with corresponding resources (e.g. Procedure Resource for procedures, etc.) and referenced.  A potential adverse event may also be called a near miss or an error, these are not reported with the AdverseEvent Clinical Research Profile.  ### Scope This FHIR IG enables the collection of adverse events in real-world data (RWD) sources such as electronic health records (EHR) and personal health records (PHR) that occur during clinical trials. It ensures the appropriate AE representation required to support clinical research trials within a regulated environment. As the AEs are collected in RWD sources, the data can be transmitted via FHIR to clinical trial management systems, regulatory agencies, sponsors, and clinical research organizations for further processing and reporting.  In the pre-market clinical research setting, serious adverse events must be reported to the sponsor, clinical research organization, and regulatory agencies within a specific time frame for Institutional Review Boards (IRBs) and Data Safety Monitoring Board (DSMB) review. By using this IG, a clinical investigator can document an AE in the EHR, it can be received by a secondary clinical trial management system for triage and then forwarded to the sponsor and regulatory agencies. Similarly, a patient on a clinical trial can record an adverse event in their PHR that is then shared with the clinical investigator and reported to the sponsor and regulatory agencies as necessary. In a post-market situation, a patient, provider, or manufacturer can record the adverse event in a system and then report it to the FDA as a FHIR based MedWatch form.  Within this guide are several examples. Every effort has been made to capture the most important details of the use of the AdverseEvent profile. However, some examples may provide only a stub to referenced resources (e.g. instances of Patient Resource will be referenced using logical ids but are not resolvable, implementation of Patient is left for other guidance and is not the subject of this guide). Connectathons are ideal opportunities to create, compare and consider the holistic implementation of all FHIR Resources. (built Mon, Apr 15, 2024 17:38+0000+00:00)
 
 </details>
 
 **Versions**
 
-* `hl7.fhir.uv.ae-research-ig#1.0.1`
+* `hl7.fhir.uv.ae-research-ig#1.0.0`
 * `hl7.fhir.uv.ae-research-ig#1.0.0-ballot`
 
 
@@ -8785,8 +8690,6 @@ This is a U.S. Realm Specification. This guide and related materials are based o
 * `hl7.fhir.us.vrdr#2.1.0`
 * `hl7.fhir.us.vrdr#2.0.0`
 * `hl7.fhir.us.vrdr#1.2.0`
-* `hl7.fhir.us.vrdr#1.0.0`
-* `hl7.fhir.us.vrdr#0.1.0`
 
 
 ---
@@ -8842,7 +8745,6 @@ Profiles for the BBMRI.de / GBA biobanking project.
 **Versions**
 
 * `de.bbmri.fhir#1.2.0`
-* `de.bbmri.fhir#1.1.0`
 
 
 ---
@@ -9934,22 +9836,6 @@ Eesti FHIR standardi baas juurutusjuhend (built Tue, Jul 30, 2024 23:09+0300+03:
 
 ---
 
-### careplanrt.eng
-
-<details>
-<summary>Description</summary>
-
-CarePlanEng
-
-</details>
-
-**Versions**
-
-* `careplanrt.eng#1.0.1`
-
-
----
-
 ### d4l-data4life.covid-19.r4
 
 <details>
@@ -10781,6 +10667,24 @@ BabyCare Mobile App for iOS and Android
 **Versions**
 
 * `fbe.babycare.app#1.0.1`
+
+
+---
+
+### acme.canada
+
+<details>
+<summary>Description</summary>
+
+This is a demonstration project for FHIR North
+
+</details>
+
+**Versions**
+
+* `acme.canada#0.0.4`
+* `acme.canada#0.0.2`
+* `acme.canada#0.0.1`
 
 
 ---
@@ -12191,6 +12095,7 @@ This implementation guide describes the exchange of information needed to dispen
 
 * `hl7.fhir.us.specialty-rx#2.0.0`
 * `hl7.fhir.us.specialty-rx#2.0.0-ballot`
+* `hl7.fhir.us.specialty-rx#1.0.0`
 * `hl7.fhir.us.specialty-rx#0.1.0`
 
 
@@ -12352,6 +12257,7 @@ JP-CORE V1.1.0 for release candidate
 * `myhealthway.main.r4#0.0.9`
 * `myhealthway.main.r4#0.0.8`
 * `myhealthway.main.r4#0.0.7`
+* `myhealthway.main.r4#0.0.6`
 * `myhealthway.main.r4#0.0.5`
 * `myhealthway.main.r4#0.0.4`
 * `myhealthway.main.r4#0.0.3`
@@ -12372,23 +12278,6 @@ Test FHIR Project
 **Versions**
 
 * `ai4health.it.test.r4#0.0.8`
-
-
----
-
-### tiplu.maia.schnittstellendefinition
-
-<details>
-<summary>Description</summary>
-
-Grundlage für die FHIR-Schnittstelle der CDS Software MAIA der Tiplu GmbH
-
-</details>
-
-**Versions**
-
-* `tiplu.maia.schnittstellendefinition#1.0.3`
-* `tiplu.maia.schnittstellendefinition#1.0.2`
 
 
 ---
@@ -12519,22 +12408,6 @@ FHIR-based Implementation Guide for Ontario Provincial Provider Registry System
 * `ca.on.ppr.r4#1.2.0`
 * `ca.on.ppr.r4#1.1.0`
 * `ca.on.ppr.r4#1.0.0-beta`
-
-
----
-
-### US Prescription Drug Monitoring Program (PDMP)
-
-<details>
-<summary>Description</summary>
-
-US Prescription Drug Monitoring Program (PDMP) FHIR IG (built Thu, Apr 4, 2024 15:32+0000+00:00)
-
-</details>
-
-**Versions**
-
-* `hl7.fhir.us.pdmp#1.0.0-ballot`
 
 
 ---
@@ -13420,12 +13293,10 @@ Mobile Antepartum Summary is a content profile that defines the structure for th
 
 * `fhir.dicom#2024.2.20240331`
 * `fhir.dicom#2024.1.20240120`
-* `fhir.dicom#2023.5.2023111`
 * `fhir.dicom#2023.4.20230907`
 * `fhir.dicom#2023.3.20230704`
 * `fhir.dicom#2023.1.20230123`
 * `fhir.dicom#2022.4.20221006`
-* `fhir.dicom#2022.1.20220124`
 * `fhir.dicom#2021.4.20210910`
 
 
