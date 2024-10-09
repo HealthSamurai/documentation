@@ -142,7 +142,7 @@ Each comparison is defined using a map having three key-value pairs:
 * `:u-prob` -- u-probability of the comparison category
 * `:use-frequncies` -- optional boolean parameter. Enables frequency adjustment for this comparison. It is applicable only to exact equality comparison.
 
-See [mathematical-details.md](../../../../mdm/mathematical-details.md "mention") article to learn about m- and u-probabilities.
+See [mathematical-details.md](../../../../modules/mdm/mathematical-details.md "mention") article to learn about m- and u-probabilities.
 
 SQL condition is inserted into WHERE part of generated queries.
 
@@ -156,7 +156,7 @@ In SQL conditions field names have suffixes: `_l` suffix is added for the first 
 
 ### Property `:random-math-prob`
 
-This property defines probability that two records picked at random will match. See [mathematical-details.md](../../../../mdm/mathematical-details.md "mention") for details.
+This property defines probability that two records picked at random will match. See [mathematical-details.md](../../../../modules/mdm/mathematical-details.md "mention") for details.
 
 ## Notes
 

@@ -38,7 +38,7 @@ resources: <resources-to-be-created>
 
 Here's the manifest structure:
 
-<table><thead><tr><th width="207">Key</th><th width="149">Type</th><th>Description</th></tr></thead><tbody><tr><td><strong>id</strong></td><td>string</td><td>Id of the App resource</td></tr><tr><td><strong>apiVersion (required)</strong></td><td>integer</td><td>App API version. Currently, the only option is <code>1</code></td></tr><tr><td><strong>type (required)</strong></td><td>enum</td><td>Type of application. Currently, the only option is <code>app</code></td></tr><tr><td><strong>endpoint</strong></td><td>object</td><td>Information about endpoint: url to redirect the request, protocol, and secret</td></tr><tr><td><strong>operations</strong></td><td>array of operations</td><td>Custom endpoints</td></tr><tr><td><strong>resources</strong></td><td>array of resources in Aidbox format</td><td>Related resources that should be also created</td></tr><tr><td><strong>subscriptions</strong></td><td>array of subscriptions</td><td>Deprecated subscriptions support. Consider using <a href="../../modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/">Aidbox topic-based subscriptions</a> or <a href="../../api-1/reactive-api-and-subscriptions/subscriptions-1.md">SubsSubscriptions</a> instead</td></tr><tr><td><strong>entities</strong></td><td>array of entities</td><td>Deprecated <a href="../../core-modules/entities-and-attributes.md">Entities/Attributes</a> approach to create custom resources</td></tr></tbody></table>
+<table><thead><tr><th width="207">Key</th><th width="149">Type</th><th>Description</th></tr></thead><tbody><tr><td><strong>id</strong></td><td>string</td><td>Id of the App resource</td></tr><tr><td><strong>apiVersion (required)</strong></td><td>integer</td><td>App API version. Currently, the only option is <code>1</code></td></tr><tr><td><strong>type (required)</strong></td><td>enum</td><td>Type of application. Currently, the only option is <code>app</code></td></tr><tr><td><strong>endpoint</strong></td><td>object</td><td>Information about endpoint: url to redirect the request, protocol, and secret</td></tr><tr><td><strong>operations</strong></td><td>array of operations</td><td>Custom endpoints</td></tr><tr><td><strong>resources</strong></td><td>array of resources in Aidbox format</td><td>Related resources that should be also created</td></tr><tr><td><strong>subscriptions</strong></td><td>array of subscriptions</td><td>Deprecated subscriptions support. Consider using <a href="../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/">Aidbox topic-based subscriptions</a> or <a href="../../modules/topic-based-subscriptions/subscriptions-1.md">SubsSubscriptions</a> instead</td></tr><tr><td><strong>entities</strong></td><td>array of entities</td><td>Deprecated <a href="../../modules/entities-and-attributes.md">Entities/Attributes</a> approach to create custom resources</td></tr></tbody></table>
 
 ### endpoint
 
@@ -93,7 +93,7 @@ In this example, the AccessPolicy resource will be created as well as the App re
 ### entities
 
 {% hint style="warning" %}
-It is a deprecated option to create custom resources via [Entity/Attribute](../../core-modules/entities-and-attributes.md) approach.
+It is a deprecated option to create custom resources via [Entity/Attribute](../../modules/entities-and-attributes.md) approach.
 {% endhint %}
 
 In the `entities` section of the App manifest, you can extend existing resources, define custom profiles, or hook into the lifecycle:

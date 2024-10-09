@@ -4,7 +4,7 @@
 
 See the [tutorial](../getting-started/run-aidbox-in-aidbox-sandbox.md) on how to create a new box.
 
-Access the [REST Console](../overview/aidbox-ui/rest-console-1.md) of the created box. Execute the following requests. Their meaning you can read in the [tutorial](../security-and-access-control-1/security/).
+Access the [REST Console](../overview/aidbox-ui/rest-console-1.md) of the created box. Execute the following requests. Their meaning you can read in the [tutorial](../modules/security-and-access-control/security/).
 
 {% code title="Create a client:" %}
 ```yaml

@@ -10,8 +10,8 @@ FHIR uses StructureDefinition resources to model data structures. Aidbox allows 
 
 To begin using custom FHIR resources, enable the FHIR Schema validation engine in Aidbox.
 
-{% content-ref url="../../modules-1/profiling-and-validation/fhir-schema-validator/setup.md" %}
-[setup.md](../../modules-1/profiling-and-validation/fhir-schema-validator/setup.md)
+{% content-ref url="../../modules/profiling-and-validation/fhir-schema-validator/setup.md" %}
+[setup.md](../../modules/profiling-and-validation/fhir-schema-validator/setup.md)
 {% endcontent-ref %}
 
 ## Create StructureDefinition for custom resource
@@ -762,8 +762,8 @@ With defined resources, most of the work is done, but there is one missing aspec
 
 Manually writing StructureDefinitions can be overwhelming. Fortunately, there is an alternative: FSH/SUSHI allows you to generate a FHIR NPM package with your custom resources, which you can load into Aidbox and use.
 
-{% content-ref url="../../modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](../../modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/)
+{% content-ref url="../../modules/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/" %}
+[upload-fhir-implementation-guide](../../modules/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/)
 {% endcontent-ref %}
 
 ## How Aidbox Deals with FHIR Limitations for Custom Resources

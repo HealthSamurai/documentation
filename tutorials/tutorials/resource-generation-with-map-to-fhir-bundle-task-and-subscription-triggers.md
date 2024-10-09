@@ -4,7 +4,7 @@ In this tutorial, we will create a FHIR resource in response to another resource
 
 ### Define Aidbox Project configuration
 
-In our configuration, we will need the [**subscription trigger service**](../../modules-1/workflow-engine/services.md#subscription-trigger) with **trigger rule**, and [**lisp/mapping**](../../tools/mappings/mappings-with-lisp-mapping.md).
+In our configuration, we will need the [**subscription trigger service**](../../modules/workflow-engine/services.md#subscription-trigger) with **trigger rule**, and [**lisp/mapping**](../../tools/mappings/mappings-with-lisp-mapping.md).
 
 {% code fullWidth="true" %}
 ```clojure

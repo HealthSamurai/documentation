@@ -5,11 +5,11 @@ hidden: true
 
 # $matcho
 
-Matcho DSL is used to define rules for [AccessPolicy](../modules-1/security-and-access-control/security/access-control.md) and [Subscription](../api-1/reactive-api-and-subscriptions/subscriptions-1.md#trigger-format) resources.
+Matcho DSL is used to define rules for [AccessPolicy](../modules/security-and-access-control/security/access-control.md) and [Subscription](../modules/topic-based-subscriptions/subscriptions-1.md#trigger-format) resources.
 
 ## Definition
 
-Matcho DSL syntax is described [here](../modules-1/security-and-access-control/security/evaluation-engines.md#matcho).
+Matcho DSL syntax is described [here](../modules/security-and-access-control/security/evaluation-engines.md#matcho).
 
 ## Debug endpoint
 

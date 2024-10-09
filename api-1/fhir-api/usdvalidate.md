@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The tool introduced by FHIR to provide a separate validation mechanism for 2-steps commit workflow or for development needs. It works for create, update and delete operations, is called using `?mode=` query parameter with values `create`, `update`, `delete` but changes won't be committed. Instead a requester will get an `OperationOutcome` with information about validation results. See [http://hl7.org/fhir/resource-operation-validate.html](http://hl7.org/fhir/resource-operation-validate.html) for the official documentation.&#x20;
+The tool introduced by FHIR to provide a separate validation mechanism for 2-steps commit workflow or for development needs. It works for create, update and delete operations, is called using `?mode=` query parameter with values `create`, `update`, `delete` but changes won't be committed. Instead a requester will get an `OperationOutcome` with information about validation results. See [http://hl7.org/fhir/resource-operation-validate.html](http://hl7.org/fhir/resource-operation-validate.html) for the official documentation.
 
 ```
 #FHIR format endpoint:
@@ -45,13 +45,13 @@ POST .../$validate?mode=<mode>&profile=<StructureDefinition.url>
 ```
 {% endcode %}
 
-| Parameter      | Description                                                                                                                                                                                                                                                        |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `resourceType` | Required. Type of the resource which needs validation                                                                                                                                                                                                              |
-| `id`           | Optional for `mode`=`create`. Can either be passed in the resource body or be specified in the route params                                                                                                                                                        |
-| `resource`     | Optional for `mode`=`delete`, required otherwise. Resource to be validated                                                                                                                                                                                         |
-| `mode`         | Optional. Default is `create`. Possible values are `create, update, delete, patch`                                                                                                                                                                                 |
-| `profile`      | <p>Optional. Can be passed multiple times. Used to validate with specific profiles.<br>Value should be <code>StructureDefinition.url</code> of the profile defined as <a href="../../profiling-and-validation/profiling.md#validation-with-zen">zen schema</a></p> |
+| Parameter      | Description                                                                                                                                                                                                                                                                |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `resourceType` | Required. Type of the resource which needs validation                                                                                                                                                                                                                      |
+| `id`           | Optional for `mode`=`create`. Can either be passed in the resource body or be specified in the route params                                                                                                                                                                |
+| `resource`     | Optional for `mode`=`delete`, required otherwise. Resource to be validated                                                                                                                                                                                                 |
+| `mode`         | Optional. Default is `create`. Possible values are `create, update, delete, patch`                                                                                                                                                                                         |
+| `profile`      | <p>Optional. Can be passed multiple times. Used to validate with specific profiles.<br>Value should be <code>StructureDefinition.url</code> of the profile defined as <a href="../../modules/profiling-and-validation/profiling.md#validation-with-zen">zen schema</a></p> |
 
 | `mode`        | Description                                                                                                                                                                                                            |
 | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -60,7 +60,7 @@ POST .../$validate?mode=<mode>&profile=<StructureDefinition.url>
 | `delete`      | Checks if resource with such `id` exists in Aidbox                                                                                                                                                                     |
 | `patch`       | <p>Merges the existing resource to the received resource and then validates as <code>update</code>.</p><p>Patching strategy will be determined as <a href="../api/crud-1/patch.md#patch-method">described here</a></p> |
 | `merge-patch` | simple deep merge semantics ([read more in RFC](https://tools.ietf.org/html/rfc7386))                                                                                                                                  |
-| `json-patch`  |  advanced JSON transformation ([read more in RFC](https://tools.ietf.org/html/rfc6902))                                                                                                                                |
+| `json-patch`  | advanced JSON transformation ([read more in RFC](https://tools.ietf.org/html/rfc6902))                                                                                                                                 |
 
 ## Examples
 

@@ -47,7 +47,7 @@ Only select _Authorization Code + Secret_ if your app can securely store the Cli
 For insecure implementations, such as mobile apps, the PKCE (Proof Key for Code Exchange) flow is available. It utilizes a dynamic secret string to authenticate your app, as opposed to a static one that must be secured by the app itself. It is generally recommended to use PKCE flow when available, so if your app supports it, you probably will always want to use it over a static secret.
 
 {% hint style="info" %}
-For more information about the OAuth Authorization Code flow, refer to the [page in the docs](../security-and-access-control-1/auth/authorization-code.md) and the [OAuth 2.0 specification](https://datatracker.ietf.org/doc/html/rfc6749).
+For more information about the OAuth Authorization Code flow, refer to the [page in the docs](../modules/security-and-access-control/auth/authorization-code.md) and the [OAuth 2.0 specification](https://datatracker.ietf.org/doc/html/rfc6749).
 {% endhint %}
 
 **Redirect URL**

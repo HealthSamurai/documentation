@@ -4,20 +4,20 @@
 
 The materials in this section describe what to do next with the resulting FHIR Schema resource or set of resources. They explain how to load them into Aidbox, either one by one or via IG. Additionally, they outline the requirements for FHIR Schema to define a Custom Resource and provide a detailed FHIR Schema specification.
 
-{% content-ref url="../../../modules-1/profiling-and-validation/fhir-schema-validator.md" %}
-[fhir-schema-validator.md](../../../modules-1/profiling-and-validation/fhir-schema-validator.md)
+{% content-ref url="../../../modules/profiling-and-validation/fhir-schema-validator/" %}
+[fhir-schema-validator](../../../modules/profiling-and-validation/fhir-schema-validator/)
 {% endcontent-ref %}
 
 {% content-ref url="../custom-resources-using-fhirschema.md" %}
 [custom-resources-using-fhirschema.md](../custom-resources-using-fhirschema.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../../modules-1/profiling-and-validation/fhir-schema-validator/tutorials/how-to-create-fhir-npm-package.md" %}
-[how-to-create-fhir-npm-package.md](../../../modules-1/profiling-and-validation/fhir-schema-validator/tutorials/how-to-create-fhir-npm-package.md)
+{% content-ref url="../../../modules/profiling-and-validation/fhir-schema-validator/tutorials/how-to-create-fhir-npm-package.md" %}
+[how-to-create-fhir-npm-package.md](../../../modules/profiling-and-validation/fhir-schema-validator/tutorials/how-to-create-fhir-npm-package.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../../modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](../../../modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/)
+{% content-ref url="../../../modules/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/" %}
+[upload-fhir-implementation-guide](../../../modules/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/)
 {% endcontent-ref %}
 
 ## Obtain FHIRSchema
@@ -559,8 +559,8 @@ For more information about this instruction, refer to the relevant [section](htt
 
 To deliver the FHIR Schema(s) and related Entities you authored to Aidbox, follow these steps. Ensure that your Aidbox is configured to run with the FHIRSchema validation engine. Here's a guide describing how to achieve that:
 
-{% content-ref url="../../../modules-1/profiling-and-validation/fhir-schema-validator/setup.md" %}
-[setup.md](../../../modules-1/profiling-and-validation/fhir-schema-validator/setup.md)
+{% content-ref url="../../../modules/profiling-and-validation/fhir-schema-validator/setup.md" %}
+[setup.md](../../../modules/profiling-and-validation/fhir-schema-validator/setup.md)
 {% endcontent-ref %}
 
 **Single FHIRSchema Delivery**
@@ -575,14 +575,14 @@ If you have only one FHIRSchema that replaces your custom-defined Zen definition
 
 If you have multiple schemas replacing a set of resources and want to work with this set of entities as a package (ImplementationGuide), refer to this guide on how to create your own FHIR NPM package with ImplementationGuide entities.
 
-{% content-ref url="../../../modules-1/profiling-and-validation/fhir-schema-validator/tutorials/how-to-create-fhir-npm-package.md" %}
-[how-to-create-fhir-npm-package.md](../../../modules-1/profiling-and-validation/fhir-schema-validator/tutorials/how-to-create-fhir-npm-package.md)
+{% content-ref url="../../../modules/profiling-and-validation/fhir-schema-validator/tutorials/how-to-create-fhir-npm-package.md" %}
+[how-to-create-fhir-npm-package.md](../../../modules/profiling-and-validation/fhir-schema-validator/tutorials/how-to-create-fhir-npm-package.md)
 {% endcontent-ref %}
 
 **Loading the FHIR NPM Package**
 
-{% content-ref url="../../../modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](../../../modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/)
+{% content-ref url="../../../modules/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/" %}
+[upload-fhir-implementation-guide](../../../modules/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/)
 {% endcontent-ref %}
 
 **Important Notes:**

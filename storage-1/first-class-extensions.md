@@ -3,7 +3,7 @@
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Setup Aidbox with FHIR Schema validation engine](../modules-1/profiling-and-validation/fhir-schema-validator.md)
+[Setup Aidbox with FHIR Schema validation engine](../modules/profiling-and-validation/fhir-schema-validator/)
 {% endhint %}
 
 In Aidbox there are two ways to define first-class extensions:&#x20;
@@ -136,7 +136,7 @@ Note that extension elements have `:confirms` to a FHIR primitive or complex typ
 
 ## Define new extension with Attribute
 
-In Aidbox, you can define first-class extensions using the custom resource [Attribute](../core-modules/entities-and-attributes.md).
+In Aidbox, you can define first-class extensions using the custom resource [Attribute](../modules/entities-and-attributes.md).
 
 Let's create an extension definition of type `Reference` in the [REST Console](https://docs.aidbox.app/tutorials/rest-console) of Aidbox:
 

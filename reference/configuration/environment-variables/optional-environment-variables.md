@@ -399,7 +399,7 @@ Enables `su` request header [functionalty](https://docs.aidbox.app/security-and-
 BOX_FEATURES_VALIDATION_SKIP_REFERENCE=true
 ```
 
-Enables skip resource reference validation [functionality](../../../profiling-and-validation/profiling.md).
+Enables skip resource reference validation [functionality](../../../modules/profiling-and-validation/profiling.md).
 
 ### BOX\_WEB\_MAX\_\_BODY
 
@@ -622,15 +622,15 @@ BOX_FEATURES_SECURITY__LABELS_STRIP__LABELS=true
 ```
 
 {% hint style="info" %}
-Stripping is only applied during the masking. More [details about masking](../../../modules-1/security-and-access-control/security/attribute-based-access-control-abac/security-labels/#resource-element-level-access-masking)
+Stripping is only applied during the masking. More [details about masking](../../../modules/security-and-access-control/security/attribute-based-access-control-abac/security-labels/#resource-element-level-access-masking)
 {% endhint %}
 
 ### Observability
 
 Follow the link below to learn how Aidbox metrics work.
 
-{% content-ref url="../../../modules-1/observability/metrics/" %}
-[metrics](../../../modules-1/observability/metrics/)
+{% content-ref url="../../../modules/observability/metrics/" %}
+[metrics](../../../modules/observability/metrics/)
 {% endcontent-ref %}
 
 **BOX\_METRICS\_PORT**

@@ -10,7 +10,7 @@ Create [indexes](https://docs.aidbox.app/api-1/fhir-api/search-1/usdlookup#creat
 
 ## **Does Aidbox support MFA authentication?**
 
-Yes, please, check out [the documentation](security-and-access-control-1/auth/two-factor-authentication.md).
+Yes, please, check out [the documentation](modules/security-and-access-control/auth/two-factor-authentication.md).
 
 ## **How to create a SearchParameter for extensions on a property in a resource?**
 
@@ -40,4 +40,3 @@ An example of a query that doesn't work:
 It’s called an absolute reference. Aidbox doesn't work with absolute references because the logic can become very tricky since these references can point to external servers.
 
 Use relative references instead: `GET /DocumentReference?patient=Patient/1234`
-

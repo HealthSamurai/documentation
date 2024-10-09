@@ -306,7 +306,7 @@ theme:
 
 ### Describe Structure of Custom Resource
 
-Now, let's put some restrictions and define our Custom Resource structure. To describe structure of a resource, we will use [Attribute](../../core-modules/entities-and-attributes.md) meta-resource. For example, we want to restrict the `theme` attribute to be a `string` value from the specific enumeration:
+Now, let's put some restrictions and define our Custom Resource structure. To describe structure of a resource, we will use [Attribute](../../modules/entities-and-attributes.md) meta-resource. For example, we want to restrict the `theme` attribute to be a `string` value from the specific enumeration:
 
 {% tabs %}
 {% tab title="Request" %}

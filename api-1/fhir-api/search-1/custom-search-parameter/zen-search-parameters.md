@@ -3,7 +3,7 @@
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[setup.md](../../../../modules-1/profiling-and-validation/fhir-schema-validator/setup.md "mention")
+[setup.md](../../../../modules/profiling-and-validation/fhir-schema-validator/setup.md "mention")
 
 Zen Search Parameters will be ignored if Aidbox operates with the FHIR Schema validator engine. Please contact [us](../../../../contact-us.md) if you need assistance migrating to FHIR Search Parameters.
 {% endhint %}
@@ -66,7 +66,7 @@ GET /Patient?brthd=lt2023
 ```
 
 {% hint style="info" %}
-You can always look into the definition of Aidbox-specific namespaces in [Profiles page](../../../../profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile.md#check-if-your-profile-is-loaded)
+You can always look into the definition of Aidbox-specific namespaces in [Profiles page](../../../../modules/profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile.md#check-if-your-profile-is-loaded)
 {% endhint %}
 
 Formal Zen SearchParameters description:

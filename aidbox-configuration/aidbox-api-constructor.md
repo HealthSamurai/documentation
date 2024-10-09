@@ -3,7 +3,7 @@
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[setup.md](../modules-1/profiling-and-validation/fhir-schema-validator/setup.md "mention")
+[setup.md](../modules/profiling-and-validation/fhir-schema-validator/setup.md "mention")
 {% endhint %}
 
 Using Aidbox API constructor you can:
@@ -21,16 +21,16 @@ API constructor requires knowledge of [zen language](https://github.com/zen-lang
 
 #### Common API Constructor use cases
 
-{% content-ref url="../security-and-access-control-1/acl.md" %}
-[acl.md](../security-and-access-control-1/acl.md)
+{% content-ref url="../modules/security-and-access-control/security/acl.md" %}
+[acl.md](../modules/security-and-access-control/security/acl.md)
 {% endcontent-ref %}
 
-{% content-ref url="../modules-1/smartbox/background-information/multitenancy-approach.md" %}
-[multitenancy-approach.md](../modules-1/smartbox/background-information/multitenancy-approach.md)
+{% content-ref url="../modules/smartbox/background-information/multitenancy-approach.md" %}
+[multitenancy-approach.md](../modules/smartbox/background-information/multitenancy-approach.md)
 {% endcontent-ref %}
 
-{% content-ref url="../security-and-access-control-1/auth/smart-app/" %}
-[smart-app](../security-and-access-control-1/auth/smart-app/)
+{% content-ref url="../modules/security-and-access-control/security/smart-app.md" %}
+[smart-app.md](../modules/security-and-access-control/security/smart-app.md)
 {% endcontent-ref %}
 
 #### Usage examples:
@@ -172,8 +172,8 @@ Expect target resource type as `:resource` and `:format` (`fhir` or `aidbox`)
 
 See full description and usage examples:
 
-{% content-ref url="../security-and-access-control-1/acl.md" %}
-[acl.md](../security-and-access-control-1/acl.md)
+{% content-ref url="../modules/security-and-access-control/security/acl.md" %}
+[acl.md](../modules/security-and-access-control/security/acl.md)
 {% endcontent-ref %}
 
 ### Gateway

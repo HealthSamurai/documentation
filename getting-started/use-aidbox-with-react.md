@@ -13,11 +13,9 @@ This quickstart guide demonstrates how to launch a PHR sample app on the Aidbox 
 The guide helps you to explore the following Aidbox features:
 
 * [REST Console](../overview/aidbox-ui/rest-console-1.md): execute and debug HTTP requests directly within Aidbox.
-* [Access Control](../security-and-access-control-1/security/): manage fine-grained data access through the API.
+* [Access Control](../modules/security-and-access-control/security/): manage fine-grained data access through the API.
 * [Data Import endpoint](../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md): Efficiently load FHIR data into Aidbox.
 * [JavaScript SDK](../app-development/aidbox-sdk/aidbox-javascript-sdk.md): Streamline JS app development on Aidbox effortlessly.
-
-
 
 ## 1. Run Aidbox and set up Access Control
 
@@ -52,8 +50,6 @@ engine: allow
 By default, Aidbox has a policy that locks down access to all data. You need to enable data sharing by adding Access Policies for Clients. Aidbox supports different ways to describe these policies, like JSON Schema, SQL, or Macho DSL. Learn more.
 {% endhint %}
 
-
-
 ## **2. Import the sample data into Aidbox**
 
 Populate your Aidbox instance with some synthetic data from Synthea using the Import endpoint and the handy REST console. Just run the following request to create the data:
@@ -84,8 +80,6 @@ inputs:
 The **$import endpoint** is your go-to tool for loading FHIR data asynchronously into Aidbox. It effortlessly loads data from a public link specified in your HTTP request without performing any validation. Learn more.
 {% endhint %}
 
-
-
 ## 3. Clone and Connect the sample app to Aidbox
 
 Time to get your hands on the sample app! Simply clone it from GitHub at this link: [https://github.com/Aidbox/aidbox-sdk-js/tree/main/personal-health-record](https://github.com/Aidbox/aidbox-sdk-js/tree/main/personal-health-record)
@@ -108,8 +102,6 @@ VITE_APP_AIDBOX_URL=https://your-app-name.aidbox.app/ -
 ```
 {% endcode %}
 
-
-
 ## 4. Start the sample app
 
 Start the app and navigate to [http://localhost:5173](http://localhost:5173/) using your favorite browser.
@@ -121,11 +113,9 @@ npm run dev
 
 **Congratulations!** You now have a fully functional application that is ready to be customized according to your needs. Explore the personal health record app sample from a technical perspective and uncover the wonders of working with Aidbox through the SDK.
 
-
-
 ## Next Steps
 
 * Explore the [Aidbox JavaScript SDK](../app-development/aidbox-sdk/aidbox-javascript-sdk.md) for advanced features.
 * Unlock additional capabilities of [Aidbox UI](../overview/aidbox-ui/).
-* Dive into the built-in [Access Control module](../security-and-access-control-1/security/).
+* Dive into the built-in [Access Control module](../modules/security-and-access-control/security/).
 * Play around with the [$import endpoint](../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md) to load FHIR data.

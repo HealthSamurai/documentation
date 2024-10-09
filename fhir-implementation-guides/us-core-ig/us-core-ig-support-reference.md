@@ -30,7 +30,7 @@ Enabling extensions allows Aidbox to validate its rules and constraints on a res
 
 ### Terminology
 
-Loading a terminology into Aidbox allows you to use [Terminology API](../../modules-1/terminology/) and also to validate value set bindings in resources. If a terminology is not loaded you can still save resources, but no validation of the terminology bindings will be applied.
+Loading a terminology into Aidbox allows you to use [Terminology API](../../modules/terminology/) and also to validate value set bindings in resources. If a terminology is not loaded you can still save resources, but no validation of the terminology bindings will be applied.
 
 #### Value Sets
 
@@ -42,7 +42,7 @@ Loading a terminology into Aidbox allows you to use [Terminology API](../../modu
 
 #### Externally Published code systems
 
-<table><thead><tr><th width="280">ValueSet</th><th>Support<select><option value="5a3d52a82b99431eb120643f1f846d4e" label="Supported" color="blue"></option><option value="97bf6ee1c568455597189e056488ca18" label="Partially supported" color="blue"></option><option value="6095dd51b2494183841e585df3c76747" label="Not supported" color="blue"></option></select></th><th>Notes</th></tr></thead><tbody><tr><td><code>http://www.cms.gov/Medicare/Coding/ICD10</code></td><td><span data-option="5a3d52a82b99431eb120643f1f846d4e">Supported</span></td><td>Refer to the <a href="../../terminology/fhir-terminology-repository/load-icd-10-cm-into-aidbox.md">ICD 10 import guide</a></td></tr><tr><td><code>http://www.cms.gov/Medicare/Coding/HCPCSReleaseCodeSets</code></td><td><span data-option="6095dd51b2494183841e585df3c76747">Not supported</span></td><td></td></tr><tr><td><code>http://www.ada.org/cdt</code></td><td><span data-option="6095dd51b2494183841e585df3c76747">Not supported</span></td><td></td></tr><tr><td><code>https://www.usps.com</code></td><td><span data-option="6095dd51b2494183841e585df3c76747">Not supported</span></td><td></td></tr></tbody></table>
+<table><thead><tr><th width="280">ValueSet</th><th>Support<select><option value="5a3d52a82b99431eb120643f1f846d4e" label="Supported" color="blue"></option><option value="97bf6ee1c568455597189e056488ca18" label="Partially supported" color="blue"></option><option value="6095dd51b2494183841e585df3c76747" label="Not supported" color="blue"></option></select></th><th>Notes</th></tr></thead><tbody><tr><td><code>http://www.cms.gov/Medicare/Coding/ICD10</code></td><td><span data-option="5a3d52a82b99431eb120643f1f846d4e">Supported</span></td><td>Refer to the <a href="../../modules/terminology/fhir-terminology-repository/load-icd-10-cm-into-aidbox.md">ICD 10 import guide</a></td></tr><tr><td><code>http://www.cms.gov/Medicare/Coding/HCPCSReleaseCodeSets</code></td><td><span data-option="6095dd51b2494183841e585df3c76747">Not supported</span></td><td></td></tr><tr><td><code>http://www.ada.org/cdt</code></td><td><span data-option="6095dd51b2494183841e585df3c76747">Not supported</span></td><td></td></tr><tr><td><code>https://www.usps.com</code></td><td><span data-option="6095dd51b2494183841e585df3c76747">Not supported</span></td><td></td></tr></tbody></table>
 
 ### Search Parameters
 

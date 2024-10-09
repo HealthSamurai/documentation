@@ -14,7 +14,7 @@ Keep in mind that $import **does not validate** inserted resources for the sake 
 {% endhint %}
 
 {% hint style="info" %}
-Please consider using [Asynchronous validation API](../../profiling-and-validation/validation-api.md#asynchronous-batch-validation-draft) to validate data after $import
+Please consider using [Asynchronous validation API](../../modules/profiling-and-validation/validation-api.md#asynchronous-batch-validation-draft) to validate data after $import
 {% endhint %}
 
 ## Example
@@ -174,7 +174,7 @@ With this flag, Aidbox will update the history for updated resources. For each r
 
 ## /v2/$import on top of the Workflow Engine
 
-Improved version of the $import operation, to enhance its reliability and performance. By implementing this operation on top of the [workflow-engine](../../modules-1/workflow-engine/ "mention"), it allows the $import operation to be more reliable, continue work after restarts, and handle errors correctly. The Task API also enables the operation to accept multiple requests and execute them from a queue while simultaneously processing multiple items from the "inputs" field (with a default of two items processed simultaneously). Users can monitor the status of the operation through the [monitoring.md](../../modules-1/workflow-engine/monitoring.md "mention").
+Improved version of the $import operation, to enhance its reliability and performance. By implementing this operation on top of the [workflow-engine](../../modules/workflow-engine/ "mention"), it allows the $import operation to be more reliable, continue work after restarts, and handle errors correctly. The Task API also enables the operation to accept multiple requests and execute them from a queue while simultaneously processing multiple items from the "inputs" field (with a default of two items processed simultaneously). Users can monitor the status of the operation through the [monitoring.md](../../modules/workflow-engine/monitoring.md "mention").
 
 In the future, the ability to list and cancel $import operations will be added, as well as detailed progress info on the operation.
 
@@ -229,7 +229,7 @@ Content-Location:  /v2/$import/synthea
 
 To check the status of the import make a GET request to `/v2/$import/<id>`:
 
-As the operation is built on top of our workflow engine, the statuses and outcomes of the files and import as a whole are inherited from [#task-statuses-and-outcomes](../../modules-1/workflow-engine/task/#task-statuses-and-outcomes "mention")
+As the operation is built on top of our workflow engine, the statuses and outcomes of the files and import as a whole are inherited from [#task-statuses-and-outcomes](../../modules/workflow-engine/task/#task-statuses-and-outcomes "mention")
 
 {% tabs %}
 {% tab title="Request" %}

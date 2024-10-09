@@ -1,6 +1,6 @@
 # HL7 v2 pipeline with Patient mapping
 
-In this tutorial we will create an [HL7 v2 pipeline](../../modules-1/integration-toolkit/hl7-v2-integration-with-aidbox-project.md) to parse, map and persist Patient resources to your Aidbox database.
+In this tutorial we will create an [HL7 v2 pipeline](../../modules/integration-toolkit/hl7-v2-integration-with-aidbox-project.md) to parse, map and persist Patient resources to your Aidbox database.
 
 This tutorial is also available with a [sample aidbox configuration project](https://github.com/Aidbox/aidbox-project-samples/tree/main/aidbox-project-samples/hl7v2-in).
 
@@ -96,7 +96,7 @@ Aidbox provides a predefined parser configuration, so you may use `hl7v2.config/
 
 Add your API in :apis set of Aidbox server definition.
 
-To properly validate the resulting resource, import the appropriate [fhir profiles](../../profiling-and-validation/profiling-with-zen-lang/).
+To properly validate the resulting resource, import the appropriate [fhir profiles](../../modules/profiling-and-validation/profiling-with-zen-lang/).
 
 ```clojure
 {ns box

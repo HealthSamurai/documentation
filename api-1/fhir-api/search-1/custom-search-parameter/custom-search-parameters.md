@@ -4,8 +4,8 @@
 
 To begin using custom search parameters, enable the FHIR Schema validator engine in Aidbox.
 
-{% content-ref url="../../../../modules-1/profiling-and-validation/fhir-schema-validator/setup.md" %}
-[setup.md](../../../../modules-1/profiling-and-validation/fhir-schema-validator/setup.md)
+{% content-ref url="../../../../modules/profiling-and-validation/fhir-schema-validator/setup.md" %}
+[setup.md](../../../../modules/profiling-and-validation/fhir-schema-validator/setup.md)
 {% endcontent-ref %}
 
 ## Create a custom search parameter via FHIR API

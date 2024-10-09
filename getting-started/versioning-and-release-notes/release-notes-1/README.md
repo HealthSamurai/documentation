@@ -30,11 +30,11 @@ description: Release notes for years 2019-2020
 
 * Complete rewrite of the [(rev)include](../../../api-1/fhir-api/search-1/search-parameters-list/\_include-and-\_revinclude.md) engine
 * New [Mapping module](../../../tools/mappings/)
-* New [Hl7v2 module](../../../modules-1/integration-toolkit/hl7-v2-integration.md)
-* New engine for AccessPolicy - [matcho](../../../modules-1/security-and-access-control/security/access-control.md#matcho-engine)
+* New [Hl7v2 module](../../../modules/integration-toolkit/hl7-v2-integration.md)
+* New engine for AccessPolicy - [matcho](../../../modules/security-and-access-control/security/access-control.md#matcho-engine)
 * New [Encryption API](../../../api-1/encryption-api.md)
 * [X-Audit header](../../../app-development-guides/receive-logs-from-your-app/x-audit-header.md) to add custom data to Aidbox logs
-* [X-Debug: policy](../../../modules-1/security-and-access-control/security/access-control.md#using-x-debug-policy-header) header to trace policy evaluation
+* [X-Debug: policy](../../../modules/security-and-access-control/security/access-control.md#using-x-debug-policy-header) header to trace policy evaluation
 * Support for [\_elements](../../../api-1/fhir-api/search-1/search-parameters-list/\_elements.md#elements-and-ref-includes) for (rev)included resources
 
 Plenty of bug fixes!
@@ -81,8 +81,8 @@ It's time to upgrade your database - please stop your container and change image
 
 ### Features
 
-* `/auth/test-policy` operation for[ policy debug](../../../modules-1/security-and-access-control/security/access-control.md#debugging)
-* Support for [ident interpolation](../../../modules-1/security-and-access-control/security/access-control.md#sql-engine) in SQL policy - `SELECT * FROM {{!params.resource/type}}`
+* `/auth/test-policy` operation for[ policy debug](../../../modules/security-and-access-control/security/access-control.md#debugging)
+* Support for [ident interpolation](../../../modules/security-and-access-control/security/access-control.md#sql-engine) in SQL policy - `SELECT * FROM {{!params.resource/type}}`
 * [SQL Migrations](../../../modules-1/aidbox-search/usdpsql.md#sql-migrations)
 * New [\_explain](../../../api-1/fhir-api/search-1/#\_explain) parameter for Search API
 * Beta version of bulk [import operation](../../../api-1/bulk-api-1/#usdimport)
@@ -115,7 +115,7 @@ It's time to upgrade your database - please stop your container and change image
 
 ### Features
 
-* [User Level Logs](../../../core-modules/logging-and-audit/)
+* [User Level Logs](../../../modules/observability/logging-and-audit/)
 * [Structured Data Capture](../../../tutorials/tutorials/sdc-with-custom-resources.md) with Custom Resources (Alpha)
 * [History based replication](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/release-notes-1/broken-reference/README.md)
 * Search: new [\_ilike](../../../api-1/fhir-api/search-1/#\_ilike-search-non-fhir) search parameter
@@ -133,7 +133,7 @@ It's time to upgrade your database - please stop your container and change image
 
 ## 0.4.1 _\[8 April 2019]_
 
-This release is mostly dedicated to stabilisation of new auth module. Check-out it's [documentation](../../../security-and-access-control-1/auth/)!
+This release is mostly dedicated to stabilisation of new auth module. Check-out it's [documentation](../../../modules/security-and-access-control/auth/)!
 
 ### Features
 
@@ -153,7 +153,7 @@ This release is mostly dedicated to stabilisation of new auth module. Check-out 
 
 ### Features
 
-* New [Auth module](../../../security-and-access-control-1/auth/) (OAuth2, OpenID Connect and SCIM implementations)
+* New [Auth module](../../../modules/security-and-access-control/auth/) (OAuth2, OpenID Connect and SCIM implementations)
 * Web UI for Aidbox.Dev
 * Migrate to Java 11
 * Clusters in Cloud

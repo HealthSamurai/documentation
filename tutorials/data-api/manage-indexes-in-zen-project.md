@@ -166,7 +166,7 @@ Test that no indexes are created:
 select * from pg_indexes where indexname ilike 'aidbox_mng%'
 ```
 
-Start synchronization _**task**_ of indexes from zen-schemas. About tasks and workflow you can read [here](../../modules-1/workflow-engine/).
+Start synchronization _**task**_ of indexes from zen-schemas. About tasks and workflow you can read [here](../../modules/workflow-engine/).
 
 Request:
 
@@ -212,7 +212,7 @@ result:
     versionId: '4916'
 ```
 
-Index synchronization may take some time. You can check the status of workflow with UI Aidbox console or with `awf.workflow/status` [rpc method](../../modules-1/workflow-engine/workflow/task-user-api.md#awf.workflow-status):
+Index synchronization may take some time. You can check the status of workflow with UI Aidbox console or with `awf.workflow/status` [rpc method](../../modules/workflow-engine/workflow/task-user-api.md#awf.workflow-status):
 
 Request:
 

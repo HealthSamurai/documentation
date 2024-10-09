@@ -7,7 +7,7 @@ description: Configure Aidbox using environment variables and Zen
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[setup.md](../modules-1/profiling-and-validation/fhir-schema-validator/setup.md "mention")
+[setup.md](../modules/profiling-and-validation/fhir-schema-validator/setup.md "mention")
 {% endhint %}
 
 ## Find configuration options
