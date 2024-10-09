@@ -34,6 +34,6 @@ Check out the tutorials if you are looking for a step-by-step guide on how to se
 
 If you are looking for the latest versions of the docker images or general release cycle explanation go to the Versioning page.
 
-{% content-ref url="../versioning-and-release-notes/" %}
-[versioning-and-release-notes](../versioning-and-release-notes/)
+{% content-ref url="../../overview/versioning.md" %}
+[versioning.md](../../overview/versioning.md)
 {% endcontent-ref %}

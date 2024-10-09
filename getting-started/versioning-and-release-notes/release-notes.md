@@ -3,7 +3,7 @@
 ## September 2024 _`latest, 2409`_&#x20;
 
 * Aidbox
-  * Introduced new [MAJOR.MINOR versioning](./) for improved clarity
+  * Introduced new [MAJOR.MINOR versioning](../../overview/versioning.md) for improved clarity
   * Added webhook support for  [Aidbox topic-based subscriptions](../../modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/)
   * Implemented[ fuzzy search for FHIR packages import](../../modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/)
   * Enabled new Aidbox UI by default
@@ -291,7 +291,7 @@
   * Added access policy usage in UI console on AccessPolicy page
   * Added a neat UI to rotate credentials and download certificates on IdentityProvider view page
   * Supported [BALP ](https://profiles.ihe.net/ITI/BALP/)for CRUD + Search operations. Both basic and patient profiles
-  * Issue [2306-lts](./#long-term-support-releases)
+  * Issue [2306-lts](../../overview/versioning.md#long-term-support-releases)
 * Aidbox user portal
   * Added the ability to specify a custom configuration project when creating a GCP Aidbox
 * Aidbox.app UI
@@ -718,7 +718,7 @@ February 2022 - v:2202 is available as a long-term support version. End of life 
 ## January 2022 - v:2201
 
 {% hint style="info" %}
-Starting from January 2022 we're switching to a new release cycle. We added`:latest and LTS` (long-term support) versions. Check [the updated release cycle](./).
+Starting from January 2022 we're switching to a new release cycle. We added`:latest and LTS` (long-term support) versions. Check [the updated release cycle](../../overview/versioning.md).
 {% endhint %}
 
 * Added FHIR R4 search parameters to [zen FHIR packages](../../profiling-and-validation/profiling-with-zen-lang/#zen-fhir-packages) (alpha) as a part of our roadmap to run Aidbox on managed PostgreSQL databases.

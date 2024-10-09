@@ -67,7 +67,7 @@
   * [Attrs stats](overview/aidbox-ui/attrs-stats.md)
   * [DB Tables](overview/aidbox-ui/db-tables.md)
   * [DB Queries](overview/aidbox-ui/db-queries.md)
-* [Versioning](getting-started/versioning-and-release-notes/README.md)
+* [Versioning](overview/versioning.md)
 * [Release Notes](getting-started/versioning-and-release-notes/release-notes.md)
   * [Releases Archive](getting-started/versioning-and-release-notes/release-notes-1/README.md)
     * [0.4.7 addendum](getting-started/versioning-and-release-notes/release-notes-1/0.4.7-addendum.md)
