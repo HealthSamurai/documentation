@@ -4,7 +4,7 @@ description: >-
   servers
 ---
 
-# Integration with external terminology servers.
+# Integration with external terminology servers
 
 Aidbox Forms is integrated with external terminology servers, including TermBox, Public FHIR community server, Ontoserver (CSIRO). We also provide the option to inegrate with any public terminology server or use the current Aidbox instance.&#x20;
 

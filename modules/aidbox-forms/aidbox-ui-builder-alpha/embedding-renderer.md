@@ -1,10 +1,14 @@
 ---
-description: Incorporate the Aidbox Form Renderer into your application or website using web components, allowing users to fill out forms without leaving your platform.
+description: >-
+  Incorporate the Aidbox Form Renderer into your application or website using
+  web components, allowing users to fill out forms without leaving your
+  platform.
 ---
 
-# Embedding Aidbox Form Renderer
+# Embedding Form Renderer
 
 Embed the Aidbox Form Renderer directly into your application or website using web components. This enables users to complete forms within your app, without navigating away.
+
 ## How to Embed the Renderer
 
 Follow these steps to embed the Aidbox Form Renderer:
@@ -33,13 +37,13 @@ Insert the following HTML tag where you want the renderer to appear:
 
 Here is a comprehensive list of attributes that can be passed to the `<aidbox-form-renderer>` tag:
 
-- `base-url` (optional): The base URL of your Aidbox instance. By default, it uses the URL of the Aidbox instance from which the script is loaded.
-- `style` (optional): Defines the style of the embedded iframe.
-- `token` (optional): JWT token for authenticating the user.
-- `questionnaire-id` (optional): The ID of the questionnaire to load. Either `questionnaire` or `questionnaire-id` must be provided.
-- `questionnaire-response-id` (optional): The ID of the questionnaire response to load. Either `questionnaire-response` or `questionnaire-response-id` must be provided.
-- `hide-footer` (optional): Hides the footer of the form.
-- `theme` (optional): The theme provided as a JSON string (see the [Theme Configuration](#theme-configuration) section for more details).
+* `base-url` (optional): The base URL of your Aidbox instance. By default, it uses the URL of the Aidbox instance from which the script is loaded.
+* `style` (optional): Defines the style of the embedded iframe.
+* `token` (optional): JWT token for authenticating the user.
+* `questionnaire-id` (optional): The ID of the questionnaire to load. Either `questionnaire` or `questionnaire-id` must be provided.
+* `questionnaire-response-id` (optional): The ID of the questionnaire response to load. Either `questionnaire-response` or `questionnaire-response-id` must be provided.
+* `hide-footer` (optional): Hides the footer of the form.
+* `theme` (optional): The theme provided as a JSON string (see the [Theme Configuration](embedding-renderer.md#theme-configuration) section for more details).
 
 ## Embedding Renderer in Controlled Mode
 
@@ -82,20 +86,20 @@ You can pass the following attributes to the `<aidbox-form-renderer>` tag:
 
 #### Available Attributes
 
-- `base-url` (optional): The base URL of your Aidbox instance. By default, it uses the URL of the Aidbox instance from which the script is loaded.
-- `style` (optional): Specifies the style of the embedded iframe.
-- `token` (optional): JWT token used for user authentication.
-- `questionnaire` (required): The questionnaire provided as a JSON string.
-- `questionnaire-response` (optional): The questionnaire response provided as a JSON string.
-- `hide-footer` (optional): Hides the footer of the form.
-- `theme` (optional): The theme provided as a JSON string (see the [Theme Configuration](#theme-configuration) section for more details).
+* `base-url` (optional): The base URL of your Aidbox instance. By default, it uses the URL of the Aidbox instance from which the script is loaded.
+* `style` (optional): Specifies the style of the embedded iframe.
+* `token` (optional): JWT token used for user authentication.
+* `questionnaire` (required): The questionnaire provided as a JSON string.
+* `questionnaire-response` (optional): The questionnaire response provided as a JSON string.
+* `hide-footer` (optional): Hides the footer of the form.
+* `theme` (optional): The theme provided as a JSON string (see the [Theme Configuration](embedding-renderer.md#theme-configuration) section for more details).
 
 ### Step 4: Listen to Renderer Events
 
 The renderer emits the following events:
 
-- `change`: Triggered when the questionnaire response is updated, either during auto-save or when the submit button is clicked. The `event.detail` contains the updated questionnaire response as a JSON object.
-- `ready`: Fired when the Aidbox Forms Renderer has fully loaded and is ready for use.
+* `change`: Triggered when the questionnaire response is updated, either during auto-save or when the submit button is clicked. The `event.detail` contains the updated questionnaire response as a JSON object.
+* `ready`: Fired when the Aidbox Forms Renderer has fully loaded and is ready for use.
 
 By following these steps, you can effortlessly integrate the Aidbox Form Renderer into your application, offering a robust solution for form creation and management directly within your user interface.
 

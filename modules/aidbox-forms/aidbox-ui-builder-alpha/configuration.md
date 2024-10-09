@@ -1,13 +1,15 @@
 ---
-description: FHIR-compliant settings for form building/rendering. Define language, themes, URL prefixes, redirects, and audit logs. Supports system-wide and override configurations.
+description: >-
+  FHIR-compliant settings for form building/rendering. Define language, themes,
+  URL prefixes, redirects, and audit logs. Supports system-wide and override
+  configurations.
 ---
 
-# Configuration Resource
+# Configuration
 
 ## Overview
 
-The Aidbox Forms implements a FHIR-compliant Configuration resource that enables fine-grained control over form builder and renderer behavior. This resource adheres to CRUD operations via the standard FHIR API endpoints.
-The Configuration resource schema encompasses parameters such as:
+The Aidbox Forms implements a FHIR-compliant Configuration resource that enables fine-grained control over form builder and renderer behavior. This resource adheres to CRUD operations via the standard FHIR API endpoints. The Configuration resource schema encompasses parameters such as:
 
 * User Interface Settings: Default language and theme preferences.
 * Form Builder Configuration: Settings that control the behavior and appearance of the form creation interface.
@@ -15,9 +17,7 @@ The Configuration resource schema encompasses parameters such as:
 * Navigation and Workflow Controls: Settings for redirects, button visibility, and form state (e.g., read-only mode).
 * Logging and Auditing: Configurations related to event tracking and application identification.
 
-A global Configuration resource can be instantiated to serve as the system-wide default, applying to all Questionnaire resources unless explicitly overridden.
-The system supports configuration inheritance and overriding. When generating a shared form link, developers can specify a custom Configuration resource reference. This allows for context-specific rendering behavior, ensuring that the form presentation adheres to the designated configuration parameters.
-This architecture facilitates flexible, hierarchical configuration management, enabling both system-wide defaults and use-case specific customizations within the Aidbox Forms ecosystem.
+A global Configuration resource can be instantiated to serve as the system-wide default, applying to all Questionnaire resources unless explicitly overridden. The system supports configuration inheritance and overriding. When generating a shared form link, developers can specify a custom Configuration resource reference. This allows for context-specific rendering behavior, ensuring that the form presentation adheres to the designated configuration parameters. This architecture facilitates flexible, hierarchical configuration management, enabling both system-wide defaults and use-case specific customizations within the Aidbox Forms ecosystem.
 
 ## Configuration Resource Structure
 

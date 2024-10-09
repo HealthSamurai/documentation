@@ -23,7 +23,7 @@ Aidbox Forms module provides available APIs:
 
 ## Getting started
 
-* Open  [http://localhost:8080/ ](http://localhost:8080/), using login / passwod  - admin / admin
+* Open [http://localhost:8080/ ](http://localhost:8080/), using login / passwod - admin / admin
 * Go to forms by pressing the button `Aidbox Forms` (or by visiting [http://localhost:8080/ui/sdc](http://localhost:8080/ui/sdc) )
 * Go to the `Forms` page
 * Press on `Create Template` button
@@ -34,15 +34,13 @@ You have two options to create form:
 * Create form in UI Builder (from scratch)
 * Create form from FHIR Questionnaire (now only via `POST/)`
 
-
-
 ## Create form in UI Builder from scratch
 
 Once the UI Builder has opened, you can begin creating the form.
 
-On the left side you sketch out the form, on the right side it is rendered for you and you can immediately test it.&#x20;
+On the left side you sketch out the form, on the right side it is rendered for you and you can immediately test it.
 
-After you have created and tested the form, you click the `Save Questionnaire`  button and the form is saved to the FHIR Storage and is available for working with it.
+After you have created and tested the form, you click the `Save Questionnaire` button and the form is saved to the FHIR Storage and is available for working with it.
 
 Go to this [page](form-creation/) to start designing a form.
 
@@ -51,4 +49,3 @@ Go to this [page](form-creation/) to start designing a form.
 If you already have ready-made FHIR Questionnaires (your own or from external sources), you can load them into the Aidbox Forms module via `POST/` operation, open them in the UI Builder, customize and save them.
 
 Go to this[ page](import-fhir-questionnaire.md) to start it.
-

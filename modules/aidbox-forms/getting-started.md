@@ -65,7 +65,7 @@ You have three options how to design form
 
 * [Design form locally (in your familiar editor)](design-form-locally-in-familiar-editor.md) - deprecated
 * [Design form in Aidbox Code Editor (in browser)](aidbox-code-editor/) - deprecated
-* [Design form in Aidbox UI Builder](ui-form-builder/)
+* [Design form in Aidbox UI Builder](aidbox-ui-builder-alpha/)
 
 ## Enable Audit log
 

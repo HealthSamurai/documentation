@@ -1,8 +1,10 @@
 ---
-description: Multi-tenancy support for differentiating access among organizations within Forms
+description: >-
+  Multi-tenancy support for differentiating access among organizations within
+  Forms
 ---
 
-# Multi-Tenancy in Forms
+# Forms multitenancy
 
 ## Overview
 
@@ -21,56 +23,47 @@ To enable multi-tenancy for Forms, it is necessary to enable Organization-based 
 ### Accessing the Builder for an Organization
 
 1. **Standard Builder Access**:
-    - Typically, to access the form builder, the URL fragment path used is `#/forms/builder`.
-
+   * Typically, to access the form builder, the URL fragment path used is `#/forms/builder`.
 2. **Organization-Specific Builder Access**:
-    - To navigate to the builder for a specific organization, modify the URL as follows: `#/org/[organization-id]/forms/builder`. Replace `[organization-id]` with the actual ID of the Organization resource.
+   * To navigate to the builder for a specific organization, modify the URL as follows: `#/org/[organization-id]/forms/builder`. Replace `[organization-id]` with the actual ID of the Organization resource.
 
 ### Performing Back-End Operations in Multi-Tenant Mode
 
 #### 1. Standard Back-End Call
+
 A standard back-end operation to populate a link within a Questionnaire might look like this:
 
 {% tabs %}
 {% tab title="FHIR API" %}
-{% code %}
 ```
 [base]/Questionnaire/[questionnaire-id]/$populatelink
 ```
-{% endcode %}
 {% endtab %}
 
 {% tab title="Aidbox API" %}
-{% code %}
 ```
 [base]/fhir/Questionnaire/[questionnaire-id]/$populatelink
 ```
-{% endcode %}
 {% endtab %}
 {% endtabs %}
 
-
 #### 2. Multi-Tenant Back-End Call
+
 In multi-tenant mode, the call is modified to include the organization context:
 
 {% tabs %}
 {% tab title="FHIR API" %}
-{% code %}
 ```
 [base]/Organization/[organization-id]/aidbox/Questionnaire/[questionnaire-id]/$populatelink
 ```
-{% endcode %}
 {% endtab %}
 
 {% tab title="Aidbox API" %}
-{% code %}
 ```
 [base]/Organization/[organization-id]/fhir/Questionnaire/[questionnaire-id]/$populatelink
 ```
-{% endcode %}
 {% endtab %}
 {% endtabs %}
-
 
 Replace `[organization-id]` and `[questionnaire-id]` with the respective Organization and Questionnaire resource IDs.
 
@@ -78,28 +71,25 @@ Replace `[organization-id]` and `[questionnaire-id]` with the respective Organiz
 
 ### Data Isolation
 
-- **Organization-Specific Data**:
-    - Each organization's data is isolated. This means that one organization cannot access the data of another organization, ensuring privacy and security.
+* **Organization-Specific Data**:
+  * Each organization's data is isolated. This means that one organization cannot access the data of another organization, ensuring privacy and security.
 
 ### URL Modification
 
-- **Accessing Organization-Specific Features**:
-    - Remember to modify URLs appropriately to access organization-specific features or perform back-end operations in a multi-tenant context.
+* **Accessing Organization-Specific Features**:
+  * Remember to modify URLs appropriately to access organization-specific features or perform back-end operations in a multi-tenant context.
 
 ## Troubleshooting
 
 ### Common Issues
 
-- **Incorrect Organization ID**:
-    - Ensure that the organization ID in the URL is correct. An incorrect ID can lead to access issues or errors.
-
-- **Access Denied**:
-    - If you encounter an "Access Denied" error, verify that you have the necessary permissions to access the organization's resources.
+* **Incorrect Organization ID**:
+  * Ensure that the organization ID in the URL is correct. An incorrect ID can lead to access issues or errors.
+* **Access Denied**:
+  * If you encounter an "Access Denied" error, verify that you have the necessary permissions to access the organization's resources.
 
 ## FAQs
 
-**Q: How does multi-tenancy affect data privacy?**
-A: Multi-tenancy enhances data privacy by isolating each organization's data, ensuring that only authorized users within an organization can access its information.
+**Q: How does multi-tenancy affect data privacy?** A: Multi-tenancy enhances data privacy by isolating each organization's data, ensuring that only authorized users within an organization can access its information.
 
-**Q: Can I prepopulate a questionnaire with resources from other organizations?**
-A: Yes, but only if those organizations are subsidiaries of the current one and/or if the resource has a shared mode.
+**Q: Can I prepopulate a questionnaire with resources from other organizations?** A: Yes, but only if those organizations are subsidiaries of the current one and/or if the resource has a shared mode.

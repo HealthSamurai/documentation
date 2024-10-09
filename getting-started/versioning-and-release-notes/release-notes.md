@@ -13,12 +13,12 @@
   * Introduced [user feedback capability for DSIs (b)(11)](../../modules/smartbox/the-b11-decision-support-interventions/feedback-sections.md)
   * Implemented “service base URLs” in compliance with (g)(10)
 * Aidbox Forms
-  * Implemented the basic PDF-form conversion to digital forms
-  * [Added print & close button customization](../../modules/aidbox-forms/ui-form-builder/form-creation/form-customisation.md)
+  * Implemented basic conversion of paper and fillable PDF forms to digital forms
+  * [Added print & close button customization](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-customisation.md)
   * Added QuestionnareResponce and extraction outcomes validation in the UI Builder console
-  * [Added form width settings](../../modules/aidbox-forms/ui-form-builder/form-creation/form-settings.md#appearance-settings)
+  * [Added form width settings](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-settings.md#appearance-settings)
   * Supported default value population in the UI Builder
-  * [Multilingual form improvements: added support for languages with country codes, added ability for print & amend button translations](../../modules/aidbox-forms/ui-form-builder/form-creation/multilingual-forms.md)
+  * [Multilingual form improvements: added support for languages with country codes, added ability for print & amend button translations](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/multilingual-forms.md)
   * Optimized performance for handling large forms
 * Minor updates
   * [2408.1 ](https://hub.docker.com/layers/healthsamurai/aidboxone/2408.1/images/sha256-972680359848f744afd06417b3c7085b69f4c7ec4a852251fd2f1015c0635745?context=explore)— Fixed critical vulnerabilities and security issues
@@ -34,16 +34,16 @@
   * Supported [Audit logging](../../modules/audit/audit-logging.md) using external identity providers
 * [Aidbox Forms](../../modules/aidbox-forms/)
   * UI builder updates (FHIR Questionnaire-based):
-    * [Supported Multilingual Forms](../../modules/aidbox-forms/ui-form-builder/form-creation/multilingual-forms.md)
+    * [Supported Multilingual Forms](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/multilingual-forms.md)
     * [Implemented Multilingual Builder Interface](broken-reference)
     * Provided delete, copy form on the Form template grid
-    * [Implemented reusing forms as component](../../modules/aidbox-forms/ui-form-builder/form-creation/components.md)
-    * [Added the SDC config resource for general settings](../../modules/aidbox-forms/ui-form-builder/configuration.md)
-    * [Provided the ability to restrict the type of attached file](../../modules/aidbox-forms/ui-form-builder/form-creation/widgets.md#attachment)
+    * [Implemented reusing forms as component](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/components.md)
+    * [Added the SDC config resource for general settings](../../modules/aidbox-forms/aidbox-ui-builder-alpha/configuration.md)
+    * [Provided the ability to restrict the type of attached file](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#attachment)
     * Supported cqf-expression to provide prefilling the value in the display field
-    * [Integrated the Termbox server with Aidbox Forms for using external terminologies](../../modules/aidbox-forms/ui-form-builder/integration-with-external-terminology-servers..md)
-    * [Added an ability to embed forms as web-component](../../modules/aidbox-forms/ui-form-builder/embedding-renderer.md)
-    * [Provided the ability to display an attached image on the form](../../modules/aidbox-forms/ui-form-builder/form-creation/widgets.md#attachment)
+    * [Integrated the Termbox server with Aidbox Forms for using external terminologies](../../modules/aidbox-forms/aidbox-ui-builder-alpha/integration-with-external-terminology-servers..md)
+    * [Added an ability to embed forms as web-component](../../modules/aidbox-forms/aidbox-ui-builder-alpha/embedding-renderer.md)
+    * [Provided the ability to display an attached image on the form](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#attachment)
   * [C-CDA / FHIR converter](../../modules/integration-toolkit/ccda-converter/)
     * Add support for [user-defined codemaps](../../modules/integration-toolkit/ccda-converter/ccda-fhir-dsl.md#custom-codemaps)
 
@@ -55,17 +55,17 @@
   * Supported [enabling Audit Log using an environment variable](../../modules/audit/setup-audit-logging.md#two-ways-to-enable-audit-log)
 * [Aidbox Forms](../../modules/aidbox-forms/)
   * UI builder updates (FHIR Questionnaire-based):
-    * [Implemented Offline mode for forms](../../modules/aidbox-forms/ui-form-builder/offline-forms.md)
-    * [Supported definition-based extraction](../../modules/aidbox-forms/ui-form-builder/form-creation/how-to-guides/how-to-extract-data-from-forms.md#definition-based-extraction)
+    * [Implemented Offline mode for forms](../../modules/aidbox-forms/aidbox-ui-builder-alpha/offline-forms.md)
+    * [Supported definition-based extraction](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-extract-data-from-forms.md#definition-based-extraction)
     * [Ability to search and use templates from Aidbox Form Gallery on UI](../../modules/aidbox-forms/add-aidbox-forms-library.md)
-    * [Ability to embed Aidbox UI Builder as a web-component](../../modules/aidbox-forms/ui-form-builder/embedding-builder.md)
-    * [Implemented Template-based PDF Generation](../../modules/aidbox-forms/ui-form-builder/template-based-pdf-gen.md)
-    * [Added a Speech to text widget](../../modules/aidbox-forms/ui-form-builder/form-creation/widgets.md#speech-to-text)
-    * [Added an Annotation Pad widget](../../modules/aidbox-forms/ui-form-builder/form-creation/widgets.md#annotation-pad)
+    * [Ability to embed Aidbox UI Builder as a web-component](../../modules/aidbox-forms/aidbox-ui-builder-alpha/embedding-builder.md)
+    * [Implemented Template-based PDF Generation](../../modules/aidbox-forms/aidbox-ui-builder-alpha/template-based-pdf-gen.md)
+    * [Added a Speech to text widget](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#speech-to-text)
+    * [Added an Annotation Pad widget](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#annotation-pad)
     * Performance optimization for large forms
-    * [Added support for meta and tag additions in the Questionnaire](../../modules/aidbox-forms/ui-form-builder/form-creation/form-settings.md#tags)
-    * [Supported multi-selection](../../modules/aidbox-forms/ui-form-builder/form-creation/widgets.md#common-widgets-settings)
-    * [Supported initial value population](../../modules/aidbox-forms/ui-form-builder/form-creation/widgets.md#common-widgets-settings)
+    * [Added support for meta and tag additions in the Questionnaire](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-settings.md#tags)
+    * [Supported multi-selection](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#common-widgets-settings)
+    * [Supported initial value population](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#common-widgets-settings)
     * Implemented Audit logging
 * [C-CDA / FHIR converter](../../modules/integration-toolkit/ccda-converter/)
   * Introduced the ability to [override existing conversion rules using the DSL](../../modules/integration-toolkit/ccda-converter/ccda-fhir-dsl.md)
@@ -97,10 +97,10 @@
 * [Aidbox Forms](../../modules/aidbox-forms/)
   * UI builder updates (FHIR Questionnaire-based):
     * Ability to create custom components and reuse them in other forms
-    * [Supported different versions depending on FHIR server version](../../modules/aidbox-forms/ui-form-builder/form-creation/form-settings.md#version)
+    * [Supported different versions depending on FHIR server version](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-settings.md#version)
     * Added open choice widget
-    * Published guides on [how to populate form with patient demographic data](../../modules/aidbox-forms/ui-form-builder/form-creation/how-to-guides/how-to.md); [how to populate form with patient weight, height](../../modules/aidbox-forms/ui-form-builder/form-creation/how-to-guides/how-to.md#how-to-populate-form-with-patient-weight-height); [how to populate form with patient allergies](../../modules/aidbox-forms/ui-form-builder/form-creation/how-to-guides/how-to.md#how-to-populate-form-with-patient-allergies); [how to populate form with data from another form during the visit](../../modules/aidbox-forms/ui-form-builder/form-creation/how-to-guides/how-to.md#how-to-populate-form-with-data-from-another-form-during-the-visit)
-    * [Implemented printing form or basic PDF generation](../../modules/aidbox-forms/ui-form-builder/printing-forms.md)
+    * Published guides on [how to populate form with patient demographic data](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to.md); [how to populate form with patient weight, height](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to.md#how-to-populate-form-with-patient-weight-height); [how to populate form with patient allergies](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to.md#how-to-populate-form-with-patient-allergies); [how to populate form with data from another form during the visit](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to.md#how-to-populate-form-with-data-from-another-form-during-the-visit)
+    * [Implemented printing form or basic PDF generation](../../modules/aidbox-forms/aidbox-ui-builder-alpha/printing-forms.md)
     * Improved UI Builder user experience via preview form button, quick search for a field on the form or in the outline, etc
     * Ability to enable the outline in form preview for form navigation
     * Ability to show or hide option's scores on the form
@@ -150,7 +150,7 @@
     * Ability to amend form using a shared link
     * Supported attachment item
     * Ability to add regex validation
-    * [Supported form versioning](../../modules/aidbox-forms/ui-form-builder/form-creation/form-settings.md)
+    * [Supported form versioning](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-settings.md)
 * [C-CDA / FHIR converter](../../modules/integration-toolkit/ccda-converter/)
   * Support built-in rule based deduplication
   * Mapping fixes, bug fixes
