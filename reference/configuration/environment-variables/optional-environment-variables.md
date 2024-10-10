@@ -195,14 +195,6 @@ By setting one of these values you would also get all the values to the left. e.
 11:01:12 main [1ms] SELECT 1
 ```
 
-### AIDBOX\_DEVLOGS
-
-```
-AIDBOX_DEVLOGS=true
-```
-
-If provided, pushes logs into \_logs table of aidboxdb. Can be useful for testing and debugging
-
 ### AIDBOX\_DD\_API\_KEY
 
 ```
