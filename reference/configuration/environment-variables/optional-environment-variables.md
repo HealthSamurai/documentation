@@ -26,6 +26,7 @@ Aidbox Base URL is URL Aidbox is available at. It consists of schema (http, http
 
 Default is
 
+
 ```
 http://localhost:[AIDBOX_PORT]
 ```
