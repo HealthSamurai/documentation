@@ -22,10 +22,9 @@ Assigns unique id for Aidbox instance. Important to set if you deploy few Aidbox
 AIDBOX_BASE_URL=<url>
 ```
 
-Aidbox Base URL is URL Aidbox is available at. It consists of schema (http, https), domain, port (optional) and URL path (optional). Trailing slash is not allowed.&#x20;
+Aidbox Base URL is URL Aidbox is available at. It consists of schema (http, https), domain, port (optional) and URL path (optional). Trailing slash is not allowed.
 
 Default is
-
 
 ```
 http://localhost:[AIDBOX_PORT]
@@ -51,7 +50,7 @@ Parameters prefixed with `AIDBOX_DB_PARAM_` will be passed to [JDBC PostgreSQL c
 
 ### AIDBOX\_ES\_URL
 
-If provided, enables mode to push logs to ElasticSearch
+If provided, enables mode to push logs to ElasticSearch.
 
 ### BOX\_SEARCH\_DEFAULT\_\_PARAMS\_TOTAL
 
@@ -634,11 +633,11 @@ Defines the port which will be used to expose metrics.
 
 If you have a different pg exporter, disable Aidbox PostgreSQL metrics to avoid metrics duplication by setting the env to false.
 
-`BOX_METRICS_POSTGRES_ON=false`&#x20;
+`BOX_METRICS_POSTGRES_ON=false`
 
 **BOX\_METRICS\_GRAFANA\_URL**
 
-Specify the Grafana instance URL in this env.&#x20;
+Specify the Grafana instance URL in this env.
 
 **BOX\_METRICS\_GRAFANA\_USER**
 
