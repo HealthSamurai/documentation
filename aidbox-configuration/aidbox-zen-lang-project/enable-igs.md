@@ -9,7 +9,7 @@ Aidbox configuration project allows you to easily enable [FHIR IGs](https://www.
 Currently supported list of features:
 
 * **BaseProfiles** — enable base FHIR resources validation
-* **Extensions** — enable [First-Class Extensions](../../storage-1/first-class-extensions.md) with validation
+* **Extensions** — enable [First-Class Extensions](../../storage-1/define-extensions/first-class-extensions.md) with validation
 * **Profiles** — enable validation via `meta.profile`
 * **Searches** (_partial support_) — enable search
 * **CodeSystems & ValueSets** (_partial support_) — enable lookup and binding validation

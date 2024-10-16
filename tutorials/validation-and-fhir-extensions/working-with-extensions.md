@@ -8,7 +8,7 @@ This tutorial is deprecated. Since the 2405 release, using Aidbox in FHIRSchema 
 
 ## Aidbox Native Extensions
 
-In addition to the FHIR extensions, Aidbox has its own implementation of [extensions as native attributes](../../storage-1/first-class-extensions.md).
+In addition to the FHIR extensions, Aidbox has its own implementation of [extensions as native attributes](../../storage-1/define-extensions/first-class-extensions.md).
 
 First, you will need to create an Attribute resource.
 
