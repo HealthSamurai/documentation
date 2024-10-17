@@ -32,7 +32,7 @@ Storage configuration lives in **default** `SDCConfig` resource.
 
 > IMPORTANT: config should have `default: true` property set
 > use REST API to manage `SDCConfig` config
-> Read more about [SDCConfig](../../modules/aidbox-forms/aidbox-ui-builder-alpha/configuration.md)
+> Read more about [SDCConfig](../../../modules/aidbox-forms/aidbox-ui-builder-alpha/configuration.md)
 
 ## Storage Configuration structure
 
