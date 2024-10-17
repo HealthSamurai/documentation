@@ -16,7 +16,7 @@ For applications that are able to securely store a secret it is recommended to s
 
 ### Easy way
 
-The easiest way to test Authorization Code Grant flow is to run through the [Aidbox Sandbox UI](./#auth-sandbox) (_Auth -> Sandbox ->_ Resource Owner).
+The easiest way to test Authorization Code Grant flow is to run through the [Aidbox Sandbox UI](./#auth-sandbox) (_IAM -> Sandbox ->_ Resource Owner).
 
 <figure><img src="../../../.gitbook/assets/image (6).png" alt=""><figcaption><p>Sandbox UI</p></figcaption></figure>
 
