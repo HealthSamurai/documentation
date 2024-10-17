@@ -30,8 +30,23 @@ A global Configuration resource can be instantiated to serve as the system-wide 
            :theme       {:desc   "Default theme"
                          :type   "Reference",
                          :refers ["QuestionnaireTheme"]},
-           :builder     {:attrs {:form-url-prefix {:desc "URL prefix that used in url generation of new forms"
-                                                   :type "url"}
+           :term-server {:attrs {:endpoint {:desc "FHIR Server that stores Terminology (ValueSet/expand$) (if not set - use Aidbox)"
+                                            :type "url"}
+                                 :headers {:desc "Headers (with credentials) for accessing Service (optional)"
+                                           :isOpen true
+                                           :type "Map"}}}
+           :data-store  {:attrs {:endpoint {:desc "FHIR Server that will be used for storing/getting reponses, populate data from and extract to (if not set - use Aidbox)"
+                                            :type "url"}
+                                 :headers {:desc "Headers (with credentials) for accessing Service (optional)"
+                                           :isOpen true
+                                           :type "Map"}}}
+           :form-store  {:attrs {:endpoint {:desc "FHIR Server that will be used for storing/getting Questionnaire (if not set - use Aidbox)"
+                                            :type "url"}
+                                 :headers {:desc "Headers with credentials (optional)"
+                                           :isOpen true
+                                           :type "Map"}}}
+           :builder     {:attrs {:form-url-prefix  {:desc "URL prefix that used in url generation of new forms"
+                                                    :type "url"}
                                  :hide-back-button {:desc "Redirect URI that will be used on form submit/amend button click"
                                                     :type "boolean"}}},
            :form        {:attrs {:redirect-on-submit {:desc "Redirect URI that used on form sign/amend"
