@@ -45,7 +45,7 @@ GET <server-domain>/fhir/metadata
 | Name     | Type   | Description                      |
 | -------- | ------ | -------------------------------- |
 | mode     | string | full \| normative \| terminology |
-| \_format | string | json \| yaml \| edn \| xml       |
+| \_format | string | json \| yaml \| edn              |
 
 {% tabs %}
 {% tab title="200 " %}
