@@ -13,14 +13,15 @@ for data management.
 
 Data used by `Aidbox Forms` has different nature and can have different storage requirements and strategies.
 
-We split data in 4 domains, and 3 of them can have it's own FHIR backend:
-
-- `System resources` - non-FHIR resources, used by `Aidbox Forms` for extended functionality.
-- `Content resources` - `Questionnaire` resource, the main focus and result of `Forms Builder`.
-- `Terminology resources` - `ValueSets` and `Concepts`.
-- `Production resources` - `QuestionnaireResponse` resource and other FHIR resources that contain PHI/Production data.
+We split data in 4 domains, and last 3 of them can have it's own FHIR backend:
 
 > Because `system resources` are non FHIR resources - there is no FHIR backend configuration for them.
+
+1. `System resources` - non-FHIR resources, used by `Aidbox Forms` for extended functionality.
+2. `Content resources` - `Questionnaire` resource (the main focus and result of `Forms Builder`).
+3. `Terminology resources` - `ValueSets` and `Concepts`.
+4. `Production resources` - `QuestionnaireResponse` resource and other FHIR resources that contain PHI/Production data.
+
 
 # Storage Defaults
 
@@ -28,11 +29,9 @@ By default all data is stored in Aidbox and there is no need for any configurati
 
 # Storage Configuration
 
-Storage configuration lives in **default** `SDCConfig` resource.
+Storage configuration lives in **default** `SDCConfig` resource. (read [more](../../../modules/aidbox-forms/aidbox-ui-builder-alpha/configuration.md))
 
-> IMPORTANT: config should have `default: true` property set
-> use REST API to manage `SDCConfig` config
-> Read more about [SDCConfig](../../../modules/aidbox-forms/aidbox-ui-builder-alpha/configuration.md)
+IMPORTANT: config should have `default: true` property set
 
 ## Storage Configuration structure
 
@@ -45,7 +44,7 @@ For every domain we have separate key:
 To enable external FHIR Backend we should specify next fields for it:
 
 - `endpoint` - URI to FHIR API
-- `headers`(optional) - Additional headers (Authorization for example)
+- `headers` (optional) - Additional HTTP headers for requests (Authorization for example)
 
 Example: 
 
@@ -58,18 +57,19 @@ Example:
 
 ### Form Storage 
 
-> `Questionnaire` resource only
+Store `Questionnaire` resource only
+
+> WARN: assembled forms and components are not yet supported with external storage.
 
 ```yaml
 form-store:
     endpoint: "https://fhir-server.com/fhir"
 ```
 
-> WARN: assembled forms and components are not yet supported with external storage.
 
 ### Data Storage
 
-> `QuestionnaireResponse` and all FHIR Resources except `Questionnaire`.
+Store `QuestionnaireResponse` and all FHIR Resources except `Questionnaire`.
 
 This store will be used as source in `$populate` operations, and as target in `$extract`+`$process-response` operations
 
