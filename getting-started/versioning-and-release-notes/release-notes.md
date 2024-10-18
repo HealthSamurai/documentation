@@ -41,7 +41,7 @@
     * [Added the SDC config resource for general settings](../../modules/aidbox-forms/aidbox-ui-builder-alpha/configuration.md)
     * [Provided the ability to restrict the type of attached file](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#attachment)
     * Supported cqf-expression to provide prefilling the value in the display field
-    * [Integrated the Termbox server with Aidbox Forms for using external terminologies](../../modules/aidbox-forms/aidbox-ui-builder-alpha/integration-with-external-terminology-servers..md)
+    * [Integrated the Termbox server with Aidbox Forms for using external terminologies](../../modules/aidbox-forms/aidbox-ui-builder-alpha/integration-with-external-terminology-servers.md)
     * [Added an ability to embed forms as web-component](../../modules/aidbox-forms/aidbox-ui-builder-alpha/embedding-renderer.md)
     * [Provided the ability to display an attached image on the form](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#attachment)
   * [C-CDA / FHIR converter](../../modules/integration-toolkit/ccda-converter/)
