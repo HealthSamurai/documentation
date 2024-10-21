@@ -134,3 +134,34 @@ If there is no policy allowing the request, Aidbox rejects the request with the 
 ### What is a public route
 
 The route is public is anyone can access it. To make root public, create an `AccessPolicy` allowing access to it without any restrictions.
+
+
+
+## **How Sensitive Values are Stored in the Database**
+
+{% hint style="info" %}
+Starting with Aidbox release `2410`, the secret fields in Client and Session records in the database are hashed.
+{% endhint %}
+
+Aidbox uses the SHA256 hashing algorithm for fields such as:
+
+* `Client.secret`
+* `Session.authorization_code`
+* `Session.access_token`
+* `Session.refresh_token`\
+
+
+Since the `2410` release, on first start, Aidbox automatically hashes existing records in the database through a migration process. However, the original values remain accessible in the resource's history tables
+
+* `GET /Client/<id>/_history`
+* `GET /Session/<id>/_history`
+
+{% hint style="warning" %}
+It is strongly recommended to delete the history tables for the `Client` and `Session` resources to prevent access to the original un-hashed secret values.\
+
+
+To delete the history, execute the following SQL commands in the DB console:\
+`truncate client_history;`\
+`truncate session_history;`
+{% endhint %}
+
