@@ -1,10 +1,19 @@
 # Release Notes
 
-## September 2024 _`latest, 2409`_&#x20;
+## October 2024 _`edge`_
+
+Work in progress.
+
+#### Minor updates:
+
+* [2409.2](https://hub.docker.com/layers/healthsamurai/aidboxone/2409.2/images/sha256-fdf25fcc890a38c7bd098110e0711de0a5d6d5323ec39caf55387fc7234b83a1?context=explore) — Fixed critical security issues, fixed versioning in logs&#x20;
+* [2408.2](https://hub.docker.com/layers/healthsamurai/aidboxone/2408.2/images/sha256-9ffd6d2b8b9ded274a2d566f1f23a52bfeb5d50b9089eb9e460610991e0611df?context=explore) — Fixed critical security issues, fixed versioning in logs
+
+## September 2024 _`latest, 2409`_
 
 * Aidbox
   * Introduced new [MAJOR.MINOR versioning](../../overview/versioning.md) for improved clarity
-  * Added webhook support for  [Aidbox topic-based subscriptions](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/)
+  * Added webhook support for [Aidbox topic-based subscriptions](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/)
   * Implemented[ fuzzy search for FHIR packages import](../../modules/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/)
   * Enabled new Aidbox UI by default
   * Fixed critical vulnerabilities and bugs
@@ -26,8 +35,8 @@
 
 ## August 2024 _`stable, 2408`_
 
-* Aidbox&#x20;
-  * Introduced dynamic [Topic-based subscriptions](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/) and supported [Kafka (OSS and AWS)](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/kafka-topicdestination.md) as  delivery channels
+* Aidbox
+  * Introduced dynamic [Topic-based subscriptions](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/) and supported [Kafka (OSS and AWS)](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/kafka-topicdestination.md) as delivery channels
   * Released a [demo of publishing a completed QuestionnaireResponse to Kafka topic](https://github.com/Aidbox/app-examples/tree/main/aidbox-subscriptions-to-kafka)
   * Added an option to connect a self-hosted Aidbox instance to the [ViewDefinition builder](https://sqlonfhir.aidbox.app/?utm\_source=aidbox-docs\&utm\_medium=release-notes)
   * Enhanced [SQL on FHIR spec coverage](https://fhir.github.io/sql-on-fhir-v2/#impls)
@@ -35,7 +44,7 @@
 * [Aidbox Forms](../../modules/aidbox-forms/)
   * UI builder updates (FHIR Questionnaire-based):
     * [Supported Multilingual Forms](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/multilingual-forms.md)
-    * [Implemented Multilingual Builder Interface](broken-reference)
+    * [Implemented Multilingual Builder Interface](broken-reference/)
     * Provided delete, copy form on the Form template grid
     * [Implemented reusing forms as component](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/components.md)
     * [Added the SDC config resource for general settings](../../modules/aidbox-forms/aidbox-ui-builder-alpha/configuration.md)
