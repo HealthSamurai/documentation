@@ -251,6 +251,13 @@ entry:
   resource:
     birthDate: '2021-01-01'
     id: 'pt-2'
+- request:
+    method: PATCH
+    url: 'Patient/pt-3?_method=json-patch'
+  resource:
+  - op: replace
+    path: birthDate
+    value: '2021-01-01'
 ```
 
 ### Metadata
