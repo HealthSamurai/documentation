@@ -417,6 +417,24 @@ BOX_WEB_MAX__LINE=<max-line-bytes>
 
 Length limit for HTTP initial line and per header, 414(Request-URI Too Long) will be returned if exceeding this limit. Default to 8192.
 
+### BOX\_WEB\_CORS\_ENABLED
+
+```
+BOX_WEB_CORS_ENABLED=true
+```
+
+Allow CORS requests
+
+### BOX\_WEB\_CORS\_ORIGINS
+
+```
+BOX_WEB_CORS_ORIGINS=*
+```
+
+Comma-separated list of allowed origins `[schema]://[domain]:[port]`
+
+The default value is wildcard "\*"
+
 ### BOX\_FEATURES\_TERMINOLOGY\_IMPORT\_SYNC
 
 ```
