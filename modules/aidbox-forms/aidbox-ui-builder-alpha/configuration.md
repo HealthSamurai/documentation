@@ -21,59 +21,23 @@ A global Configuration resource can be instantiated to serve as the system-wide 
 
 ## Configuration Resource Structure
 
-```
-(def SDCConfig
-  {:attrs {:name        {:desc "Machine readable config name" :type "string" :isRequired true},
-           :description {:desc "Human readable config description" :type "string"},
-           :default     {:desc "Set's config as default for system/tenant" :type "boolean"},
-           :language    {:desc "Default language for UI" :type "string"},
-           :theme       {:desc   "Default theme"
-                         :type   "Reference",
-                         :refers ["QuestionnaireTheme"]},
-           :term-server {:attrs {:endpoint {:desc "FHIR Server that stores Terminology (ValueSet/expand$) (if not set - use Aidbox)"
-                                            :type "url"}
-                                 :headers {:desc "Headers (with credentials) for accessing Service (optional)"
-                                           :isOpen true
-                                           :type "Map"}}}
-           :data-store  {:attrs {:endpoint {:desc "FHIR Server that will be used for storing/getting reponses, populate data from and extract to (if not set - use Aidbox)"
-                                            :type "url"}
-                                 :headers {:desc "Headers (with credentials) for accessing Service (optional)"
-                                           :isOpen true
-                                           :type "Map"}}}
-           :form-store  {:attrs {:endpoint {:desc "FHIR Server that will be used for storing/getting Questionnaire (if not set - use Aidbox)"
-                                            :type "url"}
-                                 :headers {:desc "Headers with credentials (optional)"
-                                           :isOpen true
-                                           :type "Map"}}}
-           :builder     {:attrs {:form-url-prefix  {:desc "URL prefix that used in url generation of new forms"
-                                                    :type "url"}
-                                 :hide-back-button {:desc "Redirect URI that will be used on form submit/amend button click"
-                                                    :type "boolean"}}},
-           :form        {:attrs {:redirect-on-submit {:desc "Redirect URI that used on form sign/amend"
-                                                      :type "url"},
-                                 :redirect-on-save   {:desc "Redirect URI that used on form save/close button"
-                                                      :type "url"},
-                                 :read-only          {:desc "Should form be read-only"
-                                                      :type "boolean"},
-                                 :app-name           {:desc "App name that will be mentioned in AuditEvent logs"
-                                                      :type "string"}}}}})
-```
-
 * `resourceType`: The type of the resource. Must be `SDCConfig`.
 * `id`: The unique identifier for the configuration resource.
 * `name`: The machine-readable name of the configuration resource.
 * `description`: The human-readable description of the configuration resource.
 * `default`: A boolean value that specifies whether the configuration is the default for the system or tenant.
 * `language`: The default language for the UI.
-* `theme`: A reference to the default theme for the UI.
+* `theme`: An inlined copy of or reference to [QuestionnaireTheme](#theme) object.
 * `builder`: Configuration settings for the form builder.
   * `form-url-prefix`: The URL prefix used in URL generation for new forms.
   * `hide-back-button`: A boolean value that specifies whether the back button should be hidden.
+  * `translation-languages`: Array of languages that can be used for translations in the builder. If not provided, [all languages](ui-builder-interface.md#list-of-supported-languages) are allowed.
 * `form`: Configuration settings for the form.
   * `redirect-on-submit`: The redirect URI used when the form is submitted or amended.
   * `redirect-on-save`: The redirect URI used when the form is saved or closed.
   * `read-only`: A boolean value that specifies whether the form should be read-only.
   * `app-name`: The name of the app that will be mentioned in the AuditEvent logs.
+  * `default-max-width`: The default maximum width of the form. It can accept values in all CSS units (e.g., `px`, `rem`, `%`). Default is `960px`. This value will take effect only if the questionnaire does have [Max Form Width](form-creation/form-settings.md#appearance-settings) set.
 
 ## Configuration Resource Example
 
@@ -199,3 +163,46 @@ To get the default configuration resource, send a `GET` request to the `/$sdc-co
 ```http
 GET /$sdc-config
 ```
+
+# Theme
+
+`QuestionnaireTheme` resource allows you to customize the appearance of the Aidbox Form Renderer. The theme resource can include the following properties:
+
+```json5
+{
+  "base-font-size": "16px", // Base font size for the theme
+  "font-family": "Arial, sans-serif", // Font family used in the theme
+  "main-color": "#3498db", // Primary color of the theme
+  "background": {
+    "form-color": "#ffffff", // Background color of forms
+    "main-color": "#f0f0f0", // Background color of the main page
+    "toolbar-color": "#2c3e50" // Background color of the toolbar
+  },
+  "brand-image": {
+    "bottom-left": "https://example.com/img-bottom-left.png", // Link to the image displayed at the bottom-left corner
+    "top-right": "https://example.com/img-top-right.png" // Link to the image displayed at the top-right corner
+  },
+  "input": {
+    "accent-color": "#2980b9", // Accent color for input elements like focus states or borders
+    "background-color": "#ecf0f1", // Background color for input fields
+    "font-size": "14px", // Font size for input text
+    "text-color": "#2c3e50" // Text color inside input fields
+  },
+  "button": {
+    "accent-color": "#27ae60", // General accent color for buttons
+    "amend-color": "#f39c12", // Background color for the "Amend" button
+    "amend-text-color": "#ffffff", // Text color for the "Amend" button
+    "amend-text": "Amend", // Label text for the "Amend" button
+    "print-color": "#8e44ad", // Background color for the "Print" button
+    "print-text-color": "#ffffff", // Text color for the "Print" button
+    "print-text": "Print", // Label text for the "Print" button
+    "redirect-color": "#c0392b", // Background color for the "Close" button
+    "redirect-text-color": "#ffffff", // Text color for the "Close" button
+    "redirect-text": "Close", // Label text for the "Close" button
+    "submit-text": "Submit", // Label text for the "Submit" button
+    "text-color": "#ffffff" // General text color for all buttons
+  }
+}
+```
+
+All of these properties are optional, and you can customize the theme to suit your application's design. By providing a theme object, you can create a consistent and branded experience for users interacting with forms in your application.

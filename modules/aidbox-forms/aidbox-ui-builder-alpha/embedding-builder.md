@@ -51,6 +51,7 @@ You can pass the following attributes to the `<aidbox-form-builder>` tag:
   Deprecated: Pass `translation-languages` as part of the `config` attribute value.
   {% endhint %}
 
+
 ## Embedding Builder in Controlled Mode
 
 In controlled mode, you can manage the form state within your application. The builder does not load or save the form to Aidbox; instead, it expects you to provide the form as a JSON string and emits change events back to your application.
@@ -102,8 +103,19 @@ You can pass the following attributes to the `<aidbox-form-builder>` tag:
 * `hide-publish` (optional): Hides the publish button on the builder page.
 * `hide-save` (optional): Hides the save button on the builder page.
 * `show-share` (optional): Shows the share button on the builder page.
+* `config` (optional): The [configuration](configuration.md) provided as a JSON string.
 * `language` (optional): The default language to use for the builder interface. It will not override the language set by a user in the builder.
+
+  {% hint style="warning" %}
+  Deprecated: Pass language as part of the `config` attribute value.
+  {% endhint %}
+
 * `translation-languages` (optional): Whitelist of comma-separated languages that can be used for translations in the builder. If not provided, [all languages](ui-builder-interface.md#list-of-supported-languages) are allowed.
+
+  {% hint style="warning" %}
+  Deprecated: Pass `translation-languages` as part of the `config` attribute value.
+  {% endhint %}
+
 
 ### Step 4: Listen to Builder Events
 
