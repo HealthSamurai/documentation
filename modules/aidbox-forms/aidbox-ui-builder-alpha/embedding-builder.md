@@ -38,8 +38,18 @@ You can pass the following attributes to the `<aidbox-form-builder>` tag:
 * `style` (optional): Style attributes for the underlying iframe.
 * `form-id` (optional): ID of the form to load. If not provided, the builder opens with a blank form.
 * `hide-back` (optional): Hides the back button on the builder page.
+* `config` (optional): The [configuration](configuration.md) provided as a JSON string. 
 * `language` (optional): The default language to use for the builder interface. It will not override the language set by a user in the builder.
+
+  {% hint style="warning" %}
+  Deprecated: Pass language as part of the `config` attribute value.
+  {% endhint %}
+
 * `translation-languages` (optional): Whitelist of comma-separated languages that can be used for translations in the builder. If not provided, [all languages](ui-builder-interface.md#list-of-supported-languages) are allowed.
+
+  {% hint style="warning" %}
+  Deprecated: Pass `translation-languages` as part of the `config` attribute value.
+  {% endhint %}
 
 ## Embedding Builder in Controlled Mode
 

@@ -43,7 +43,13 @@ Here is a comprehensive list of attributes that can be passed to the `<aidbox-fo
 * `questionnaire-id` (optional): The ID of the questionnaire to load. Either `questionnaire` or `questionnaire-id` must be provided.
 * `questionnaire-response-id` (optional): The ID of the questionnaire response to load. Either `questionnaire-response` or `questionnaire-response-id` must be provided.
 * `hide-footer` (optional): Hides the footer of the form.
+* `config` (optional): The [configuration](configuration.md) provided as a JSON string.
 * `theme` (optional): The theme provided as a JSON string (see the [Theme Configuration](embedding-renderer.md#theme-configuration) section for more details).
+
+  {% hint style="warning" %}
+  Deprecated: Pass `theme` as part of the `config` attribute value.
+  {% endhint %}
+
 
 ## Embedding Renderer in Controlled Mode
 
