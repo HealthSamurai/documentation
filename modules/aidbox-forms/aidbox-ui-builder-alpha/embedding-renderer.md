@@ -46,9 +46,9 @@ Here is a comprehensive list of attributes that can be passed to the `<aidbox-fo
 * `config` (optional): The [configuration](configuration.md) provided as a JSON string.
 * `theme` (optional): The theme provided as a JSON string.
 
-  {% hint style="warning" %}
-  Deprecated: Pass `theme` as part of the `config` attribute value.
-  {% endhint %}
+{% hint style="warning" %}
+Deprecated: Pass `theme` as part of the `config` attribute value.
+{% endhint %}
 
 
 ## Embedding Renderer in Controlled Mode
@@ -101,9 +101,9 @@ You can pass the following attributes to the `<aidbox-form-renderer>` tag:
 * `config` (optional): The [configuration](configuration.md) provided as a JSON string.
 * `theme` (optional): The theme provided as a JSON string.
 
-  {% hint style="warning" %}
-  Deprecated: Pass `theme` as part of the `config` attribute value.
-  {% endhint %}
+{% hint style="warning" %}
+Deprecated: Pass `theme` as part of the `config` attribute value.
+{% endhint %}
 
 
 ### Step 4: Listen to Renderer Events
