@@ -224,9 +224,9 @@ GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>/<id>/_history/<
 
 ### Bundle
 
-Supported transaction and batch bundle type.
+Supported `transaction` and `batch` bundle types.
 
-```
+```yaml
 POST /Organization/org-a/fhir/
 Accept: text/yaml
 Content-Type: text/yaml
@@ -259,6 +259,34 @@ entry:
     path: birthDate
     value: '2021-01-01'
 ```
+
+It is also possible to use org-based url in a `request.url`:
+
+<pre class="language-yaml"><code class="lang-yaml">POST /
+Accept: text/yaml
+Content-Type: text/yaml
+<strong>
+</strong><strong>resourceType: Bundle
+</strong># transaction | batch
+type: transaction
+entry:
+- request:
+    method: GET
+    url: '/Organization/org-a/fhir/Patient/pt-1'
+- request:
+    method: PUT
+    url: '/Organization/org-b/fhir/Patient/pt-3'
+  resource:
+    birthDate: '2021-01-01'
+- request:
+    method: POST
+    url: '/Organization/org-a/fhir/Patient'
+  resource:
+    birthDate: '2021-01-01'
+    id: 'pt-4'
+</code></pre>
+
+See also [transaction.md](../../../api-1/transaction.md "mention")
 
 ### Metadata
 
