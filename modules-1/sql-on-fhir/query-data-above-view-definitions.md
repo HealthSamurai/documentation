@@ -16,7 +16,7 @@ From here, you can use your flat views however you like. Popular use cases inclu
 
 ### Get all patients diagnosed with COVID after a specified date
 
-To find all patients who was born after or in 1970 and who were diagnosed with COVID after or in 2021, you'll need to define 2 views.
+ViewDefinitions do not directly implement [joins](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/StructureDefinition-ViewDefinition.html#joins-with-resource-and-reference-keys) across resources. Therefore, to find all patients who was born after or in 1970 and who were diagnosed with COVID after or in 2021, you'll need to define 2 views.
 
 {% tabs %}
 {% tab title="Patient View" %}
@@ -64,7 +64,7 @@ To find all patients who was born after or in 1970 and who were diagnosed with C
         },
         {
           "name": "pid",
-          "path": "subject.getId('Patient')"
+          "path": "subject.getReferenceKey(Patient)"
         },
         {
           "name": "date",
@@ -98,11 +98,11 @@ With these views defined, you can query the information you need with the follow
 {% tab title="SQL Query" %}
 ```sql
 select pt.name,
-       pt.birthDate,
+       pt."birthDate",
        cond.date
 from sof.patient_view pt
 join sof.condition_view cond on cond.pid = pt.id
-where pt.birthDate > '1970-01-01'
+where pt."birthDate" > '1970-01-01'
   and cond.code = '840539006'
   and cond.system = 'http://snomed.info/sct'
   and cond.date > '2021-01-01'
@@ -169,7 +169,7 @@ To find all times patients had an encounter in 2020 or later in a location manag
         },
         {
           "name": "org_id",
-          "path": "managingOrganization.identifier.value"
+          "path": "managingOrganization.getReferenceKey(Organization)"
         }
       ]
     }
@@ -194,11 +194,11 @@ To find all times patients had an encounter in 2020 or later in a location manag
         },
         {
           "name": "subject_id",
-          "path": "subject.getId('Patient')"
+          "path": "subject.getReferenceKey(Patient)"
         },
         {
           "name": "location_id",
-          "path": "location[0].location.getId('Location')"
+          "path": "location[0].location.getReferenceKey(Location)"
         },
         {
           "name": "start_time",
