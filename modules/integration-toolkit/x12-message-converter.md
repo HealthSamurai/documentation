@@ -1073,7 +1073,7 @@ content-type: application/json
 ```
 {% endtab %}
 
-{% tab title="835 Response" %}
+{% tab title="Response" %}
 ```
 ISA*00*          *00*          *ZZ*ABCPAYER       *ZZ*ABCPAYER       *190827*0212*^*00501*191511902*0*P*:~
 GS*HP*ABCD*ABCD*20190827*123456*12345678*X*005010X221A1~
