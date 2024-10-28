@@ -4,9 +4,7 @@
 X12 message converter is in beta. API may change!
 {% endhint %}
 
-Aidbox includes a couple of endpoints to allow the conversion of X12 messages.
-
-Currently, the converter only supports four types of X12 messages: **835**, **837**, **270** and **271**.
+Aidbox includes `/x12/parse` and `/x12/generate` endpoints to allow the conversion of X12 messages. Both support four types of X12 messages: **835**, **837**, **270**, and **271**.
 
 ### Parsing a message
 
@@ -575,9 +573,7 @@ IEA*2*191511902~
 {% endtab %}
 {% endtabs %}
 
-This query returns an object with fields `message` and `errors`.
-
-By default, the parser will try to infer the message type based on the `ST` header.&#x20;
+This example contains two groups: the first has **835** message, and the other one contains **837** message. Parser supports multiple groups and transaction sets in the document.
 
 ### Generating a message
 
