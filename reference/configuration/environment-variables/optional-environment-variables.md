@@ -345,6 +345,14 @@ When set to true, the behavior of \_include and \_revinclude becomes FHIR confor
 1. Without the :recur or :iterate modifier \_(rev)include is only applied to the initial result.
 2. With the :recur or :iterate modifier \_(rev)include is repeatedly applied to the resources found in the previous step.
 
+### BOX\_SEARCH\_AUTHORIZE\_\_INLINE\_\_REQUESTS
+
+```
+BOX_SEARCH_AUTHORIZE__INLINE__REQUESTS=true
+```
+
+[https://docs.aidbox.app/api-1/fhir-api/search-1/search-parameters-list/\_include-and-\_revinclude#authorize-inline-requests-mode](https://docs.aidbox.app/api-1/fhir-api/search-1/search-parameters-list/\_include-and-\_revinclude#authorize-inline-requests-mode)
+
 ### BOX\_SEARCH\_INCLUDE\_ITERATE\_\_MAX
 
 ```
