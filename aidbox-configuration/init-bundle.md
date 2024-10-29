@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Init Bundle
 
 {% hint style="info" %}
