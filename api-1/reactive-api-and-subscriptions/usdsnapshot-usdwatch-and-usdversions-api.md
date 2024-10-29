@@ -4,6 +4,12 @@ description: Simple API to react on resource changes
 
 # Changes API
 
+{% hint style="warning" %}
+Changes API is prone to race conditions.
+
+Please review [#possible-race-condition](usdsnapshot-usdwatch-and-usdversions-api.md#possible-race-condition "mention") section. It outlines scenarios that could lead to event loss and suggests potential solutions to mitigate this risk.
+{% endhint %}
+
 Changes API can be used to get changes of resourceType or specific resource by versions. Each event (creating, updating, deleting) will increase version of the resource by 1.
 
 Polling request is cheap! If you want to watch rare changes (minutes-hours), this API is very resource efficient (no subscriptions, no queues) and provides you lots of control. If nothing has been changed, you will get a response with status `304`, otherwise Changes API will response with a list of changes and a new **version** to poll next time.
@@ -185,3 +191,32 @@ Replace \<resourceType> with table name, for example:
 `CREATE INDEX IF NOT EXISTS patient_txid_btree ON patient using btree(txid);`
 
 `CREATE INDEX IF NOT EXISTS patient_history_txid_btree ON patient_history using btree(txid);`
+
+### Possible Race Condition
+
+Consider a scenario where we have two database transactions: **transaction-1**, which creates **patient-1**, and **transaction-2**, which creates **patient-2**. These transactions are initiated almost simultaneously.
+
+In this scenario, let's assume **transaction-1** starts first, retrieving the value `99` from a database sequence object for `txid`. **Transaction-2** then starts and retrieves the next sequence value, `100`, for its `txid`. Although **transaction-1** started earlier, both transactions are processed concurrently in the database, which may result in **transaction-2** being committed before **transaction-1**.
+
+\
+If the `$changes` API is called after **transaction-2** has been committed but before **transaction-1** has been committed, the response will look like this:\
+
+
+<pre class="language-yaml"><code class="lang-yaml">GET /Patient/$changes?version=98&#x26;omit-resources=true
+<strong>Accept: text/yaml
+</strong>
+# status 200
+version: 100
+changes:
+- event: created
+  resource: {id: patient-2, resourceType: Patient}
+</code></pre>
+
+In this case, the application will likely start its next iteration from getting the changes starting with version `100`, causing version `99` to be missed.\
+\
+\
+If the missing a single event is crucial for your situation, the potential solutions could be:
+
+1. Periodically re-read all changes to ensure no events have been missed.
+2. Implement the solution based on [wip-dynamic-subscriptiontopic-with-destinations](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/ "mention") which can provide you `at-least-once` delivery guaranties.
+
