@@ -1,5 +1,9 @@
 # Init Bundle
 
+{% hint style="info" %}
+Init Bundle has been available since the 2410 release.
+{% endhint %}
+
 Init Bundle is a simple approach to creating configuration resources when starting Aidbox.&#x20;
 
 It is equivalent to just executing Bundle in live Aidbox using `POST /fhir`. There are only three differences:
