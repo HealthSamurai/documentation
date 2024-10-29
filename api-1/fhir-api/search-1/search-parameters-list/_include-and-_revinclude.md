@@ -6,6 +6,8 @@ description: Include associated resources
 
 ## Configuration
 
+### Include Conformant Mode
+
 Since 2402, Aidbox has a FHIR-compliant behavior for `_include` and `_revinclude` parameters. It is recommended to turn it on.
 
 To toggle on:
@@ -19,13 +21,68 @@ Also, there's a way to set the maximum number of iterations for `:iterate` modif
 <pre><code><strong>BOX_SEARCH_INCLUDE_ITERATE__MAX=5
 </strong></code></pre>
 
-### Differences between FHIR-conformant and Aidbox mode
+#### Differences between FHIR-conformant and Aidbox mode
 
 Due to historical reasons Aidbox treats the `_include` and `_revinclude` parameters slightly differently from the behavior described in the specification (without FHIR-conformant mode on).
 
 1. The `_(rev)include` search parameter without the `:iterate` or `:recurse` modifier should only be applied to the initial ("matched") result. However, in Aidbox mode, it is also applied to the previous \_(rev)include.
 2. The \_(rev)include parameter with the :iterate(:recurse) modifier should be repeatedly applied to the result with included resources. However, in Aidbox mode, it only resolves cyclic references.
 3. In Aidbox mode, it is possible to search without specifying source type: `GET /Patient?_include=general-practitioner`, but in the FHIR-conformant mode it is not possible.&#x20;
+
+### Authorize Inline Requests Mode
+
+Aidbox provides access control for inline requests (`_include` & `_revinclude`) to ensure users can only retrieve resources they are authorized to view. When a search request contains an inline query, Aidbox verifies access by performing an authorization check against a search query for the included resource. If the requesting user lacks the necessary access rights to the included resource, the entire request is denied with a `403` status.\
+\
+To enable access control for inline requests, set the following environment variable:
+
+{% code title=".env" %}
+```
+BOX_SEARCH_AUTHORIZE__INLINE__REQUESTS=true
+```
+{% endcode %}
+
+#### AccessPolicy Examples with Authorize Inline Requests Mode
+
+Below are examples of AccessPolicy configurations that allow requests such as:
+
+```
+/fhir/Patient?_include=Patient:organization
+```
+
+With this AccessPolicy, the user can use any `_include` parameters that result in Organization resources being included. However, the query will be rejected if it attempts to include any other resource types.
+
+```yaml
+  operation:
+    id: "FhirSearch"
+  params:
+    resource/type: "Patient"
+  user:
+    id: "my-user-1"
+    resourceType: "User"
+
+  operation:
+    id: "FhirSearch"
+  params:
+    resource/type: "Organization"
+  user:
+    id: "my-user-1"
+    resourceType: "User"
+```
+
+#### AccessPolicy Examples without Authorize Inline Requests Mode
+
+If this mode is not enabled, you must define the specific \_include or \_revinclude parameters allowed in an AccessPolicy, as shown in the example below. However, this method can be inflexible, and we recommend using **Authorize Inline Requests Mode** in most cases.
+
+```yaml
+  operation:
+    id: "FhirSearch"
+  params:
+    resource/type: "Patient"
+    _include: "Patient:organization"
+  user:
+    id: "my-user-1"
+    resourceType: "User"
+```
 
 ## \_include
 
