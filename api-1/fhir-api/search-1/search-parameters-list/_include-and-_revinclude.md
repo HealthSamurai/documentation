@@ -37,7 +37,7 @@ To enable access control for inline requests, set the following environment vari
 
 {% code title=".env" %}
 ```
-BOX_SEARCH_AUTHORIZE__INLINE__REQUESTS=true
+BOX_SEARCH_AUTHORIZE_INLINE_REQUESTS=true
 ```
 {% endcode %}
 
