@@ -25,7 +25,7 @@ The response of `$render` is the result of rendering the selected HTML template 
 To render a Questionnaire, use the following endpoint:
 
 ```yaml
-POST [base]/Questionnaire/[questionnaire-id]/$render
+POST /Questionnaire/[questionnaire-id]/$render
 Accept: text/html
 Content-Type: text/yaml
 
@@ -45,7 +45,7 @@ The 'template-id' parameter specifies the id of the SDCPrintTemplate resource to
 To render a QuestionnaireResponse, use the following endpoint:
 
 ```yaml
-POST [base]/QuestionnaireResponse/[questionnaire-response-id]/$render
+POST /QuestionnaireResponse/[questionnaire-response-id]/$render
 Accept: text/html
 Content-Type: text/yaml
 
@@ -117,10 +117,6 @@ item:
   - text: Signature
     linkId: signature
 status: in-progress
-encounter:
-  id: >-
-    be0aa36d-02b5-45ff-a83b-209d4718eb95
-  resourceType: Encounter
 questionnaire: http://forms.aidbox.io/questionnaire/test-pdf
 id: >-
   c9dacb6d-b6de-4250-8e08-a77f1d34a119
@@ -132,7 +128,7 @@ resourceType: QuestionnaireResponse
 Let's create a custom print template with id `test`. When writing a template, we can use variables from the [render context](template-based-pdf-gen.md#template-render-context). In the template we will implement a loop where we will check the linkId of each widget and depending on that, add a specific HTML fragment. For the Signature widget, we do not specify any condition at all, as it should not be displayed.
 
 ```yaml
-PUT [base]/SDCPrintTemplate/test-template
+PUT /SDCPrintTemplate/test-template
 Accept: text/yaml
 Content-Type: text/yaml
 
@@ -183,7 +179,7 @@ content: |
 Now let's render our form using the template we've just created:
 
 ```yaml
-POST [base]/QuestionnaireResponse/be0aa36d-02b5-45ff-a83b-209d4718eb95/$render
+POST /QuestionnaireResponse/c9dacb6d-b6de-4250-8e08-a77f1d34a119/$render
 Accept: text/html
 Content-Type: text/yaml
 
