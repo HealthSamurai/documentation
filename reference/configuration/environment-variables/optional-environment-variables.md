@@ -348,7 +348,7 @@ When set to true, the behavior of \_include and \_revinclude becomes FHIR confor
 ### BOX\_SEARCH\_AUTHORIZE\_\_INLINE\_\_REQUESTS
 
 ```
-BOX_SEARCH_AUTHORIZE__INLINE__REQUESTS=true
+BOX_SEARCH_AUTHORIZE_INLINE_REQUESTS=true
 ```
 
 [https://docs.aidbox.app/api-1/fhir-api/search-1/search-parameters-list/\_include-and-\_revinclude#authorize-inline-requests-mode](https://docs.aidbox.app/api-1/fhir-api/search-1/search-parameters-list/\_include-and-\_revinclude#authorize-inline-requests-mode)
