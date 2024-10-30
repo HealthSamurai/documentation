@@ -5,7 +5,7 @@ hidden: true
 # Init Bundle
 
 {% hint style="info" %}
-Init Bundle has been available since the 2410 release.
+Init Bundle has been available since the 2411 release.
 {% endhint %}
 
 Init Bundle is a simple approach to creating configuration resources when starting Aidbox.&#x20;
