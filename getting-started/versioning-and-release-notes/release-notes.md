@@ -4,7 +4,18 @@
 
 Work in progress.
 
-#### Minor updates:
+*   Aidbox Forms
+
+    * [Added an ability to connect Aidbox Forms with external FHIR servers for data management](../../modules/aidbox-forms/aidbox-ui-builder-alpha/external-fhir-servers.md)
+    * Introduced an [Aidbox Forms SMART app sample project with React.js](https://github.com/Aidbox/examples/tree/main/aidbox-forms-smart-launch)
+    * Verified compliance with accessibility standards
+    * Added an ability to re-populate a form with the latest available data
+    * Added validation checks for Questionnaires directly in the UI Builder console.
+    * [Added support for additional parameters: `source`, `author`, `basedOn`, and `partOf`—in the `$generate-link` operation](../../reference/aidbox-forms/aidbox-sdc-api.md#generate-a-link-to-a-questionnaireresponse-usdgenerate-link)
+
+
+
+Minor updates:
 
 * [2409.2](https://hub.docker.com/layers/healthsamurai/aidboxone/2409.2/images/sha256-fdf25fcc890a38c7bd098110e0711de0a5d6d5323ec39caf55387fc7234b83a1?context=explore) — Fixed critical security issues, fixed versioning in logs&#x20;
 * [2408.2](https://hub.docker.com/layers/healthsamurai/aidboxone/2408.2/images/sha256-9ffd6d2b8b9ded274a2d566f1f23a52bfeb5d50b9089eb9e460610991e0611df?context=explore) — Fixed critical security issues, fixed versioning in logs
