@@ -30,8 +30,9 @@ parameter:
 {% endhint %}
 
 | Parameter                                                  | Cardinality | Type                                                     |
-| ---------------------------------------------------------- | ----------- | -------------------------------------------------------- |
+|------------------------------------------------------------|-------------|----------------------------------------------------------|
 | [allow-amend](aidbox-sdc-api.md#allow-amend)               | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#boolean) |
+| [allow-repopulate](aidbox-sdc-api.md#allow-repopulate)     | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#boolean) |
 | [redirect-on-submit](aidbox-sdc-api.md#redirect-on-submit) | 0..1        | [String](http://hl7.org/fhir/R4/datatypes.html#string)   |
 | [redirect-on-save](aidbox-sdc-api.md#redirect-on-save)     | 0..1        | [String](http://hl7.org/fhir/R4/datatypes.html#string)   |
 | [expiration](aidbox-sdc-api.md#expiration)                 | 0..1        | [Integer](http://hl7.org/fhir/R4/datatypes.html#integer) |
@@ -45,6 +46,18 @@ Whether the generated link will allow amending and re-submitting the form.
 
 ```
 name: allow-amend
+value:
+  Boolean: true
+```
+
+#### allow-repopulate
+
+Whether the generated link will allow re-populating the form. 
+
+NOTE: Repopulate will be working only with forms that contain populate behavior
+
+```
+name: allow-repopulate
 value:
   Boolean: true
 ```
