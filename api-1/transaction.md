@@ -86,13 +86,13 @@ entry:
     resourceType: Encounter
     status: proposal
     subject:
-      uri: urn:uuid:<uuid-here>
+      reference: urn:uuid:<uuid-here>
   request:
     method: POST
     url: "/Encounter"
 ```
 
-You can provide a full Url with value like `"urn:<uuid-here>"` and reference to the resource created by such interaction using ref: `{uri: "urn:<uuid-here>"}`. Those references are temporary and will be translated to valid Aidbox references when interaction entry is processed by a server.
+You can provide a full Url with value like `"urn:<uuid-here>"` and reference to the resource created by such interaction using ref: `{reference: "urn:<uuid-here>"}`. Those references are temporary and will be translated to valid Aidbox references when interaction entry is processed by a server.
 
 {% hint style="danger" %}
 You SHALL NOT refer resource, which is created later using conditional operations!
