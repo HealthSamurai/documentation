@@ -69,5 +69,5 @@ BOX_INIT_BUNDLE=file:///tmp/bundle.json
 ## Hints
 
 1. First, check that Aidbox handles the Bundle as it should in live mode. Try to post it several times to make sure it is idempotent. Then add it to `BOX_INIT_BUNDLE`.
-2. Note, that the Aidbox format is not supported, because `POST /fhir` does not respect it.
+2. Note, that the [Aidbox format](https://docs.aidbox.app/storage-1/aidbox-and-fhir-formats) is not supported, because `POST /fhir` does not respect it.
 3. Aidbox respects `id` in body of the POST request. That's why posting the resource with id twice will cause an `duplicate key` error. Use [conditional create](../api-1/api/crud-1/fhir-and-aidbox-crud.md#conditional-create) or [update](../api-1/api/crud-1/update.md) for that.
