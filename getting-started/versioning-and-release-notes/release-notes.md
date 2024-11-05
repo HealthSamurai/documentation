@@ -1,8 +1,10 @@
 # Release Notes
 
-## October 2024 _`edge`_
+## November 2024 _`edge`_
 
+Work in progress
 
+## October 2024 _`latest, 2410, LTS`_
 
 * Aidbox
   * Released Aidbox UI home page
@@ -27,7 +29,7 @@ Minor updates:
 * [2409.2](https://hub.docker.com/layers/healthsamurai/aidboxone/2409.2/images/sha256-fdf25fcc890a38c7bd098110e0711de0a5d6d5323ec39caf55387fc7234b83a1?context=explore) — Fixed critical security issues, fixed versioning in logs&#x20;
 * [2408.2](https://hub.docker.com/layers/healthsamurai/aidboxone/2408.2/images/sha256-9ffd6d2b8b9ded274a2d566f1f23a52bfeb5d50b9089eb9e460610991e0611df?context=explore) — Fixed critical security issues, fixed versioning in logs
 
-## September 2024 _`latest, 2409`_
+## September 2024 _`stable, 2409`_
 
 * Aidbox
   * Introduced new [MAJOR.MINOR versioning](../../overview/versioning.md) for improved clarity
@@ -51,7 +53,7 @@ Minor updates:
   * [2408.1 ](https://hub.docker.com/layers/healthsamurai/aidboxone/2408.1/images/sha256-972680359848f744afd06417b3c7085b69f4c7ec4a852251fd2f1015c0635745?context=explore)— Fixed critical vulnerabilities and security issues
   * [2407.1](https://hub.docker.com/layers/healthsamurai/aidboxone/2407.1/images/sha256-ebc48b985b0dfb3bd4a8a2c1b3930966547475d793997c16078e9685405f7198?context=explore) — Fixed critical vulnerabilities and security issues
 
-## August 2024 _`stable, 2408`_
+## August 2024 _`2408`_
 
 * Aidbox
   * Introduced dynamic [Topic-based subscriptions](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/) and supported [Kafka (OSS and AWS)](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/kafka-topicdestination.md) as delivery channels
