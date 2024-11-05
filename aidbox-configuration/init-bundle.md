@@ -1,28 +1,41 @@
 ---
-hidden: true
+description: Apply the FHIR Bundle to Aidbox before startup.
+coverY: 0
+layout:
+  cover:
+    visible: false
+    size: full
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
 ---
 
 # Init Bundle
 
 {% hint style="info" %}
-Init Bundle has been available since the 2411 release.
+Available since the 2411 release.
 {% endhint %}
 
 Init Bundle is a simple approach to creating configuration resources when starting Aidbox.&#x20;
 
-It is equivalent to just executing Bundle in live Aidbox using `POST /fhir`. There are only three differences:
+It is equivalent to just executing Bundle in Aidbox using `POST /fhir`. There are only three differences:
 
-1. It is executed before the internal HTTP server starts, and before the health check works.
-2. If the bundle is a **transaction** bundle, and it is created unsuccessfully, Aidbox exits with an error; otherwise, it continues startup.
-3. Only JSON format is supported.
-
-{% hint style="info" %}
-If the bundle file can not be found, Aidbox starts as usual.
-{% endhint %}
+1. It is executed before the internal HTTP server starts, and before the health check response.
+2. Unsuccessful execution of the init bundle of type **transaction** prevents Aidbox from starting.
+3. Unsuccessful execution of the init bundle of type **batch** triggers warnings in the log; Aidbox continues startup process.
+4. Aidbox startup will be interrupted if the specified file is not available or is not a valid bundle resource of transaction or batch type.
+5. Only JSON format is supported.
 
 ## Usage
 
-Add `BOX_INIT_BUNDLE` env. The value must be a one URL.&#x20;
+Specify `BOX_INIT_BUNDLE` env. The value must be an URL.&#x20;
 
 ```
 BOX_INIT_BUNDLE=<URL>
@@ -68,6 +81,6 @@ BOX_INIT_BUNDLE=file:///tmp/bundle.json
 
 ## Hints
 
-1. First, check that Aidbox handles the Bundle as it should in live mode. Try to post it several times to make sure it is idempotent. Then add it to `BOX_INIT_BUNDLE`.
-2. Note, that the [Aidbox format](https://docs.aidbox.app/storage-1/aidbox-and-fhir-formats) is not supported, because `POST /fhir` does not respect it.
-3. Aidbox respects `id` in body of the POST request. That's why posting the resource with id twice will cause an `duplicate key` error. Use [conditional create](../api-1/api/crud-1/fhir-and-aidbox-crud.md#conditional-create) or [update](../api-1/api/crud-1/update.md) for that.
+1. First, check that Aidbox handles the Bundle as it should using `POST /fhir`. Try to post it several times to make sure it is idempotent. Then add it to `BOX_INIT_BUNDLE`.
+2. Note, that the [Aidbox format](https://docs.aidbox.app/storage-1/aidbox-and-fhir-formats) is not supported.
+3. Aidbox handles an `id` in the body of the POST request. That's why posting the resource with an id twice will cause an `duplicate key` error. Use [conditional create](../api-1/api/crud-1/fhir-and-aidbox-crud.md#conditional-create) or [update](../api-1/api/crud-1/update.md) for that.
