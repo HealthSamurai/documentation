@@ -131,16 +131,16 @@ Access policies work as `OR` logic gate. In the example below the third policy i
 
 If there is no policy allowing the request, Aidbox rejects the request with the 401 (Unauthorized) response.
 
-### What is a public route
+### What is a public route?
 
-The route is public is anyone can access it. To make root public, create an `AccessPolicy` allowing access to it without any restrictions.
+The route is public anyone can access it. To make root public, create an `AccessPolicy` allowing access to it without any restrictions.
 
 
 
 ## **How Sensitive Values are Stored in the Database**
 
 {% hint style="info" %}
-Starting with Aidbox release `2410`, the secret fields in Client and Session records in the database are hashed.
+Starting with Aidbox release 2410, secret fields in Client and Session records are hashed in the database.
 {% endhint %}
 
 Aidbox uses the SHA256 hashing algorithm for fields such as:
@@ -148,10 +148,9 @@ Aidbox uses the SHA256 hashing algorithm for fields such as:
 * `Client.secret`
 * `Session.authorization_code`
 * `Session.access_token`
-* `Session.refresh_token`\
+* `Session.refresh_token`
 
-
-Since the `2410` release, on first start, Aidbox automatically hashes existing records in the database through a migration process. However, the original values remain accessible in the resource's history tables
+Upon first start after upgrading to 2410, Aidbox automatically hashes existing records in the database through a migration process. However, original values remain accessible in the resource's history tables:
 
 * `GET /Client/<id>/_history`
 * `GET /Session/<id>/_history`

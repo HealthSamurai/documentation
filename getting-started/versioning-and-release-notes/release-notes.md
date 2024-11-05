@@ -2,8 +2,15 @@
 
 ## October 2024 _`edge`_
 
-Work in progress.
 
+
+* Aidbox
+  * Released Aidbox UI home page
+  * Implemented hashing for sensitive elements User, Client and Session records. it is strongly recommended to delete the history tables for these resources to prevent access to the original un-hashed secret values.
+  * Introduced ["Authorize Inline Requests"](../../api-1/fhir-api/search-1/search-parameters-list/\_include-and-\_revinclude.md#authorize-inline-requests-mode) mode, ensuring that users can only retrieve resources they are authorized to view when using `_include` and `_revinclude` parameters in search requests.
+  * Added [Audit Logs](../../modules/audit/audit-logging.md) for SQL endpoints
+  * Added configurable CORS settings, allowing users to [enable CORS](../../reference/configuration/environment-variables/optional-environment-variables.md#box\_web\_cors\_enabled) and [specify allowed origins](../../reference/configuration/environment-variables/optional-environment-variables.md#box\_web\_cors\_origins).
+  * Fixed critical vulnerabilities and bugs
 *   Aidbox Forms
 
     * [Added an ability to connect Aidbox Forms with external FHIR servers for data management](../../modules/aidbox-forms/aidbox-ui-builder-alpha/external-fhir-servers.md)
