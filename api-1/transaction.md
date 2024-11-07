@@ -6,45 +6,35 @@ description: Do multiple operations in one call
 
 ### Introduction
 
-Transaction interaction allows performing several interactions using one http request. There are two types of transaction interaction (type is specified by field `type`): batch and transaction. The first one just executes requests one by one, the second one does the same, but roll backs all changes if any request fails.
+Transaction interaction allows for several interactions using one HTTP request. There are two types of transaction interaction (type is specified by field `type`): batch and transaction. The first one executes requests one by one, and the second one does the same but rolls back all changes if any request fails.
 
 ```
 POST [base]
 ```
 
-The body of such request contains one resource of type Bundle, which contains field entry with an array of interactions, for example: \\
+The body of such a request contains one resource of type Bundle, which contains field entry with an array of interactions, for example:
 
 ```yaml
-POST /
-​Accept: text/yaml
+POST /fhir
+Accept: text/yaml
 Content-Type: text/yaml
 
 type: transaction
 entry:
+- resource: {}
+  request:
+    method: PUT
+    url: "/Practitioner/pr1"
+- request:
+    method: GET
+    url: "/Patient"
 - resource:
-    id: admin
-    email: "admin@mail.com" # Change this value
-    password: "password" # Change this value
+    id: admin123
+    email: "admin@mail.com"
+    password: "password"
   request:
     method: POST
     url: "/User"
-
-- resource:
-    id: SPA
-    redirect_uri: http://localhost:4200
-  request:
-    method: POST
-    url: "/Client"
-    
-- resource:
-    engine: json-schema
-    schema:
-      type: object
-      required:
-      - user
-  request:
-    method: POST
-    url: "/AccessPolicy"
 ```
 
 Each element of the entry array contains a resource field (body of the request) and a request field (request line in terms of the HTTP request).
@@ -62,14 +52,14 @@ request:
 
 ### Processing rules and Conditional refs
 
-Transaction interaction is processed in the order provided in a bundle, each interaction is executed one by one. It differs from the FHIR transaction [processing rules](https://www.hl7.org/fhir/http.html#trules).
+Transaction interactions are processed in the order provided in a bundle; each interaction is executed one by one. This differs from the FHIR transaction [processing rules](https://www.hl7.org/fhir/http.html#trules).
 
 For `type: batch` references to resources inside a bundle won't be resolved.
 
-For `type: transaction` before processing interactions, all references in a resource will attempt to resolve. In this example ProcedureRequest will refer to a newly created patient:
+For `type: transaction` before processing interactions, all references in a resource will attempt to resolve. In this example, ProcedureRequest will refer to a newly created patient:
 
 ```yaml
-POST /
+POST /fhir
 Accept: text/yaml
 Content-Type: text/yaml
 
@@ -86,13 +76,13 @@ entry:
     resourceType: Encounter
     status: proposal
     subject:
-      reference: urn:uuid:<uuid-here>
+      uri: urn:uuid:<uuid-here>
   request:
     method: POST
     url: "/Encounter"
 ```
 
-You can provide a full Url with value like `"urn:<uuid-here>"` and reference to the resource created by such interaction using ref: `{reference: "urn:<uuid-here>"}`. Those references are temporary and will be translated to valid Aidbox references when interaction entry is processed by a server.
+You can provide a full URL with values like `"urn:<uuid-here>"` and reference to the resource created by such interaction using ref: `{uri: "urn:<uuid-here>"}`. Those references are temporary and will be translated to valid Aidbox references when interaction entry is processed by a server.
 
 {% hint style="danger" %}
 You SHALL NOT refer resource, which is created later using conditional operations!
@@ -100,41 +90,50 @@ You SHALL NOT refer resource, which is created later using conditional operation
 
 ### Multiple resources with the same id
 
-If you have multiple entries with the same resource id, aidbox will execute them one by one and thus you are able to create a resource with a history in within a single transaction:
+If you have multiple entries with the same resource id, Aidbox will execute them one by one and thus you can create a resource with a history within a single transaction:
 
 ```yaml
-POST /
+POST /fhir
 Accept: text/yaml
 Content-Type: text/yaml
 
 resourceType: Bundle
 type: transaction
 entry:
-- request: {method: PUT, url: 'Patient/pt-1'}
+- request: {method: PUT, url: '/Patient/pt-1'}
   resource: {birthDate: '2021-01-01'}
-- request: {method: PUT, url: 'Patient/pt-1'}
+- request: {method: PUT, url: '/Patient/pt-1'}
   resource: {birthDate: '2021-01-02'}
-- request: {method: PUT, url: 'Patient/pt-1'}
+- request: {method: PUT, url: '/Patient/pt-1'}
   resource: {birthDate: '2021-01-03'}
 ```
 
 {% tabs %}
 {% tab title="Request" %}
 ```yaml
-GET /Patient/pt-1
+GET /fhir/Patient/pt-1
 Accept: text/yaml
 ```
 {% endtab %}
 
 {% tab title="Response" %}
 ```yaml
-{birthDate: '2021-01-03', id: pt-1, resourceType: Patient}
+id: >-
+  pt-1
+birthDate: '2021-01-03'
+resourceType: Patient
+meta:
+  lastUpdated: '2024-11-07T08:18:18.696976Z'
+  versionId: '73'
+  extension:
+    - url: https://fhir.aidbox.app/fhir/StructureDefinition/created-at
+      valueInstant: '2024-11-07T08:18:18.696976Z'
 ```
 {% endtab %}
 {% endtabs %}
 
 ```yaml
-GET /Patient/pt-1/_history
+GET /fhir/Patient/pt-1/_history
 Accept: text/yaml
 Content-Type: text/yaml
 
@@ -153,10 +152,10 @@ By default Aidbox uses `SERIALIZABLE` transaction isolation level. This may lead
 
 See more about [transaction isolation in Postgres documentation](https://www.postgresql.org/docs/current/transaction-iso.html).
 
-The best way to handle rejected transactions is to retry them. If it is not possible, you can set maximum isolation level with HTTP header or [environment variable](../reference/configuration/environment-variables/optional-environment-variables.md#box\_features\_fhir\_transaction\_max\_\_isolation\_level). If both HTTP header and environment variable are provided, header will be used.
+The best way to handle rejected transactions is to retry them. If it is not possible, you can set the maximum isolation level with the HTTP header or [environment variable](../reference/configuration/environment-variables/optional-environment-variables.md#box\_features\_fhir\_transaction\_max\_\_isolation\_level). If both the HTTP header and environment variable are provided, the header will be used.
 
 {% hint style="danger" %}
-Using isolation level lower than serializable may lead to data serialization anomalies.
+Using an isolation level lower than serializable may lead to data serialization anomalies.
 {% endhint %}
 
 Example:

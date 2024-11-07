@@ -1,5 +1,4 @@
 ---
-description: Apply the FHIR Bundle to Aidbox before startup.
 coverY: 0
 layout:
   cover:
