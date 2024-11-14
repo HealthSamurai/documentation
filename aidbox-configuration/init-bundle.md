@@ -24,12 +24,12 @@ Available since the 2411 release.
 
 Init Bundle is a simple approach to creating configuration resources when starting Aidbox.&#x20;
 
-It is equivalent to just executing Bundle in Aidbox using `POST /fhir`. There are only three differences:
+It is equivalent to just executing Bundle in Aidbox using `POST /fhir`. There are some differences:
 
 1. It is executed before the internal HTTP server starts, and before the health check response.
 2. Unsuccessful execution of the init bundle of type **transaction** prevents Aidbox from starting.
-3. Unsuccessful execution of the init bundle of type **batch** triggers warnings in the log; Aidbox continues startup process.
-4. Aidbox startup will be interrupted if the specified file is not available or is not a valid bundle resource of transaction or batch type.
+3. Unsuccessful execution of the init bundle of type **batch** triggers warnings in the log; Aidbox continues the startup process.
+4. Aidbox startup will be interrupted if the specified file is unavailable or is not a valid bundle resource of transaction or batch type.
 5. Only JSON format is supported.
 
 ## Usage
