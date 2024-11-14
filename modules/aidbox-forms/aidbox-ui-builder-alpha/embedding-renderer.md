@@ -43,6 +43,7 @@ Here is a comprehensive list of attributes that can be passed to the `<aidbox-fo
 * `questionnaire-id` (optional): The ID of the questionnaire to load. Either `questionnaire` or `questionnaire-id` must be provided.
 * `questionnaire-response-id` (optional): The ID of the questionnaire response to load. Either `questionnaire-response` or `questionnaire-response-id` must be provided.
 * `hide-footer` (optional): Hides the footer of the form.
+* `hide-language-selector` (optional): Hide language selector if multilingual questionnaire is rendered.
 * `delegate-alerts` (optional): When set the web-component emits `alert` events with the alert objects as the event detail, instead of showing them in the UI.
 * `config` (optional): The [configuration](configuration.md) provided as a JSON string.
 * `theme` (optional): The theme provided as a JSON string.
@@ -99,6 +100,7 @@ You can pass the following attributes to the `<aidbox-form-renderer>` tag:
 * `questionnaire` (required): The questionnaire provided as a JSON string.
 * `questionnaire-response` (optional): The questionnaire response provided as a JSON string.
 * `hide-footer` (optional): Hides the footer of the form.
+* `hide-language-selector` (optional): Hide language selector if multilingual questionnaire is rendered.
 * `delegate-alerts` (optional): When set the web-component emits `alert` events with the alert objects as the event detail, instead of showing them in the UI.
 * `config` (optional): The [configuration](configuration.md) provided as a JSON string.
 * `theme` (optional): The theme provided as a JSON string.
