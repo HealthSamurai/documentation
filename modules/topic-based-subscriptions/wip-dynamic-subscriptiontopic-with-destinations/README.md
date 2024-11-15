@@ -72,7 +72,7 @@ Ensure that the resource metadata contains the kind-specific `AidboxTopicDestina
 
 #### **Elements**
 
-<table data-full-width="false"><thead><tr><th width="188">Property</th><th width="128">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>status</code> </td><td>code</td><td><code>active</code> - the only possible value for now. Expected to be expanded.</td></tr><tr><td><code>topic</code> *</td><td>string</td><td>Url of <code>AidboxSubscriptionTopic</code> resource.</td></tr><tr><td><code>kind</code> *</td><td>code</td><td>Defines the destination for sending notifications. Supported values: <code>kafka-at-least-once</code>, <code>kafka-best-effort</code>, <code>webhook-at-least-once</code>.</td></tr><tr><td><code>parameter</code> *</td><td><a href="https://www.hl7.org/fhir/parameters.html">FHIR parameters</a></td><td>Defines the destination parameters for sending notifications. Parameters are restricted by profiles for each destination.</td></tr></tbody></table>
+<table data-full-width="false"><thead><tr><th width="188">Property</th><th width="128">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>status</code> </td><td>code</td><td><code>active</code> - the only possible value for now. Expected to be expanded.</td></tr><tr><td><code>topic</code> *</td><td>string</td><td>Url of <code>AidboxSubscriptionTopic</code> resource.</td></tr><tr><td><code>kind</code> *</td><td>code</td><td>Defines the destination for sending notifications. Supported values: <code>kafka-at-least-once</code>, <code>kafka-best-effort</code>, <code>webhook-at-least-once</code>.</td></tr><tr><td><code>parameter</code> *</td><td><a href="https://www.hl7.org/fhir/parameters.html">FHIR parameters</a></td><td>Defines the destination parameters for sending notifications. Parameters are restricted by profiles for each destination.</td></tr><tr><td><code>content</code></td><td><a href="https://hl7.org/fhir/valueset-subscription-payload-content.html">Subscription payload content</a></td><td><code>full-resource</code> | <code>id-only</code> | <code>empty</code><br><code>full-resource</code> is the default value.</td></tr></tbody></table>
 
 \* required.
 
@@ -94,8 +94,11 @@ Ensure that the resource metadata contains the kind-specific `AidboxTopicDestina
 
 ## Notification Shape
 
-Notification is a [FHIR Bundle](https://build.fhir.org/bundle.html) resource with `history` type, containing relevant resources in its entries. The first entry is a `AidboxSubscriptionStatus` resource, which describes the payload.
+Notification is a [FHIR Bundle](https://build.fhir.org/bundle.html) resource with `history` type, containing relevant resources in its entries. The first entry is a `AidboxSubscriptionStatus` resource, which describes the payload.\
+The other entries depend on `AidboxTopicDestination` `content` parameter. This parameter is the binding to the FHIR [subscription-payload-content](https://hl7.org/fhir/valueset-subscription-payload-content.html) value set: `full-resource` | `id-only` | `empty`
 
+{% tabs %}
+{% tab title="full-resource" %}
 ```json
 {
   "resourceType":"Bundle",
@@ -182,3 +185,83 @@ Notification is a [FHIR Bundle](https://build.fhir.org/bundle.html) resource wit
   ]
 }
 ```
+{% endtab %}
+
+{% tab title="id-only" %}
+```json
+{
+  "resourceType":"Bundle",
+  "type":"history",
+  "timestamp":"2024-10-03T10:07:55Z",
+  "entry":[
+    {
+      "resource":{
+        "resourceType":"AidboxSubscriptionStatus",
+        "status":"active",
+        "type":"event-notification",
+        "notificationEvent":[
+          {
+            "eventNumber":1,
+            "focus":{
+              "reference":"QuestionnaireResponse/458e771c-0ff1-4858-ac07-93b7a10c8e3b"
+            }
+          }
+        ],
+        "topic":"http://example.org/FHIR/R5/SubscriptionTopic/QuestionnaireResponse-topic",
+        "topic-destination":{
+          "reference":"AidboxTopicDestination/kafka-destination"
+        }
+      }
+    },
+    {
+      "fullUrl": "http://aidbox-server/fhir/QuestionnaireResponse/458e771c-0ff1-4858-ac07-93b7a10c8e3b"
+      "request":{
+        "method":"POST",
+        "url":"/fhir/QuestionnaireResponse"
+      }
+    }
+  ]
+}
+```
+
+
+{% endtab %}
+
+{% tab title="empty" %}
+```json
+{
+  "resourceType":"Bundle",
+  "type":"history",
+  "timestamp":"2024-10-03T10:07:55Z",
+  "entry":[
+    {
+      "resource":{
+        "resourceType":"AidboxSubscriptionStatus",
+        "status":"active",
+        "type":"event-notification",
+        "notificationEvent":[
+          {
+            "eventNumber":1,
+            "focus":{
+              "reference":"QuestionnaireResponse/458e771c-0ff1-4858-ac07-93b7a10c8e3b"
+            }
+          }
+        ],
+        "topic":"http://example.org/FHIR/R5/SubscriptionTopic/QuestionnaireResponse-topic",
+        "topic-destination":{
+          "reference":"AidboxTopicDestination/kafka-destination"
+        }
+      }
+    },
+    {
+       "request":{
+        "method":"POST",
+        "url":"/fhir/QuestionnaireResponse"
+      }
+    }
+  ]
+}
+```
+{% endtab %}
+{% endtabs %}
+
