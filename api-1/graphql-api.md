@@ -3,7 +3,7 @@
 Aidbox supports default GraphQL implementation without any extensions ([specification](http://spec.graphql.org/June2018/))\
 Queries are supported, but mutations are not.
 
-In Aidbox UI there is GraphiQL interface, you can try your queries there.\
+In Aidbox UI there is a GraphiQL interface, you can try your queries there.\
 GraphQL console sends all your requests to `$graphql` endpoint which you can use from your application too
 
 ## GraphQL endpoint
@@ -18,11 +18,9 @@ GraphQL request object can contain three properties:
 * `operationName` — the name of the operation to evaluate.
 * `variables` — the JSON object containing variable values.
 
-You can set the `timeout` query parameter to limit execution time. Also there is a [config](../reference/configuration/environment-variables/optional-environment-variables.md#box\_features\_graphql\_timeout) for the default value if the parameter wasn't set.
-
 Refer to [the GraphQL documentation](https://graphql.org/learn/serving-over-http/) to get more information about these properties.
 
-### Examples
+## Examples
 
 #### Simple query
 
@@ -32,9 +30,9 @@ Get IDs of two Patients. This query is similar to FHIR query
 GET /fhir/Patient?_count=3
 ```
 
-Request
+Request:
 
-```
+```graphql
 POST /$graphql
 content-type: text/yaml
 accept: text/yaml
@@ -47,9 +45,9 @@ query: |
   }
 ```
 
-Response
+Response:
 
-```
+```yaml
 data:
   PatientList:
     - id: patient-1
@@ -59,11 +57,11 @@ data:
 
 #### Query with variables
 
-Same query as above, but using a variable to specify the number of results returned.
+It is the same query as above but uses a variable to specify the number of results returned.
 
 Request:
 
-```
+```graphql
 POST /$graphql
 content-type: text/yaml
 accept: text/yaml
@@ -80,7 +78,7 @@ variables:
 
 Response:
 
-```
+```yaml
 data:
   PatientList:
     - id: patient-1
@@ -94,7 +92,7 @@ You can set a timeout (_in_ _seconds_) for the query.
 
 Request:
 
-```
+```graphql
 POST /$graphql?timeout=10
 content-type: text/yaml
 accept: text/yaml
@@ -115,7 +113,7 @@ Aidbox generates an object for every known resource and non-primitive data type.
 
 Aidbox generates a scalar for every known primitive type i.e. for every entity with type `primitive`.
 
-Aidbox generates a union for every reference field. Additionally Aidbox generates `AllResources` union which contains every resource object.
+Aidbox generates a union for every reference field. Additionally, Aidbox generates the `AllResources` union which contains every resource object.
 
 ## Fields
 
@@ -128,7 +126,7 @@ Aidbox generates a field for every field in a resource. There are some special f
 
 Reference fields contain all usual fields of Aidbox references (`id`, `resourceType`, `display`, `identifier`) and a special `resource` fields.
 
-The `resource` field is an `AllResource` union. You can use it to fetch referred resource using GraphQL fragments.
+The `resource` field is an `AllResource` union. You can use it to fetch the referred resource using GraphQL fragments.
 
 #### Example
 
@@ -138,36 +136,31 @@ The following query is similar to
 GET /Patient?_include=organization:Organization
 ```
 
-Request
+Request:
 
-```
-POST /$graphql
-content-type: text/yaml
-accept: text/yaml
-
-query: |
-  query {
-    PatientList {
+```graphql
+query {
+  PatientList {
+    id
+    name {
+      given
+    }
+    managingOrganization {
       id
-      name {
-        given
-      }
-      managingOrganization {
-        id
-        resource {
-          ... on Organization {
-            name
-            id
-          }
+      resource {
+        ... on Organization {
+          name
+          id
         }
       }
     }
   }
+}that
 ```
 
-Response
+Response:
 
-```
+```yaml
 data:
   PatientList:
     - id: pt-1
@@ -183,7 +176,7 @@ data:
 
 ### Revincludes
 
-Aidbox generates special fields to include resources which reference this resource.
+Aidbox generates special fields to include resources that reference this resource.
 
 Generated fields have the following name structure:
 
@@ -201,31 +194,26 @@ The following query is similar to
 GET /Organization?_revinclude=CareTeam:participant
 ```
 
-Request
+The request:
 
-```
-POST /$graphql
-content-type: text/yaml
-accept: text/yaml
-
-query: |
-  query {
-    PractitionerList {
+```graphql
+query {
+  PractitionerList {
+    id
+    name {
+      given
+    }
+    careteams_as_participant_member {
       id
-      name {
-        given
-      }
-      careteams_as_participant_member {
-        id
-        name
-      }
+      name
     }
   }
+}
 ```
 
-Response
+The response:
 
-```
+```yaml
 data:
   PractitionerList:
     - id: pr-1
@@ -247,11 +235,7 @@ Aidbox generates three types of queries:
 
 ### Get by ID
 
-Aidbox generates query with name
-
-```
-<ResourceType>
-```
+Aidbox generates query with name `<ResourceType>`
 
 This query accepts a single argument `id` and returns a resource with the specified `id`.
 
@@ -263,27 +247,22 @@ The following query is similar to
 GET /Patient/pt-1
 ```
 
-Request
+Request:
 
-```
-POST /$graphql
-content-type: text/yaml
-accept: text/yaml
-
-query: |
-  query {
-    Patient(id: "pt-1") {
-      id
-      name {
-        given
-      }
+```graphql
+query {
+  Patient(id: "pt-1") {
+    id
+    name {
+      given
     }
   }
+}
 ```
 
-Response
+Response:
 
-```
+```yaml
 data:
   Patient:
     id: pt-1
@@ -294,11 +273,7 @@ data:
 
 ### History
 
-Aidbox generates query with name
-
-```
-<ResourceType>History
-```
+Aidbox generates a query with the name `<ResourceType>History`
 
 The query accepts `id` argument and return history of a resource with the specified `id`.
 
@@ -310,30 +285,25 @@ The following query is similar to
 GET /Practitioner/pr-1/_history
 ```
 
-Request
+Request:
 
-```
-POST /$graphql
-content-type: text/yaml
-accept: text/yaml
-
-query: |
-  query {
-    PractitionerHistory(id: "pr-1") {
-      id
-      name {
-        given
-      }
-      meta {
-        versionId
-      }
+```graphql
+query {
+  PractitionerHistory(id: "pr-1") {
+    id
+    name {
+      given
+    }
+    meta {
+      versionId
     }
   }
+}
 ```
 
-&#x20;Response
+Response:
 
-```
+```yaml
 data:
   PractitionerHistory:
     - id: pr-1
@@ -352,15 +322,11 @@ data:
 
 ## Search
 
-Aidbox generates query with name
-
-```
-<ResourceType>List
-```
+Aidbox generates a query with the name `<ResourceType>List`.
 
 The query can accept multiple arguments. Aidbox generates arguments from search parameters.
 
-Each search parameter lead to 2 arguments:
+Each search parameter leads to 2 arguments:
 
 * `<parameter>` — simple argument, equivalent to using FHIR search parameter
 * `<parameter>_list` — represents AND condition
@@ -375,14 +341,14 @@ GET /Practitioner?name=another
 
 Request
 
-```
+```graphql
 POST /$graphql
 content-type: text/yaml
 accept: text/yaml
 
 query: |
   query {
-    PractitionerList(name:"another") {
+    PractitionerList(name: "another") {
       id
       name {
         given
@@ -393,7 +359,7 @@ query: |
 
 Response
 
-```
+```yaml
 data:
   PractitionerList:
     - id: pr-2
@@ -406,37 +372,33 @@ data:
 
 It is possible to encode simple AND and OR conditions for a single parameter.
 
-FHIR allows to encode the following type of conditions for a single parameter:
+FHIR allows to encode of the following type of conditions for a single parameter:
 
 ```
 (A OR B OR ...) AND (C OR D OR ...) AND ...
 ```
 
-In GraphQL API `<parameter>_list` parameter represents AND condition.
+In GraphQL API the `<parameter>_list` parameter represents AND condition.
 
-E.g. `PatientList(name_list: ["James", "Mary"])` searches for patients which have both names: James and Mary.
+E.g. `PatientList(name_list: ["James", "Mary"])` searches for patients who have both names: James and Mary.
 
 Comma represents OR condition.
 
-E.g. `PatientList(name: "James,Mary")` searches for patients which have either name James or Mary
+E.g. `PatientList(name: "James,Mary")` searches for patients who have either the name James or Mary
 
 You can use both conditions at the same time.
 
-E.g. `PatientList(name_list: ["James,Mary", "Robert,Patricia"])` searches for patients which have name James or Mary and name Robert or Patricia.
+E.g. `PatientList(name_list: ["James,Mary", "Robert,Patricia"])` searches for patients who have name James or Mary and name Robert or Patricia.
 
 ### Search total
 
-Aidbox generates special field `total_` which contains total count of matching result. When you use this field, Aidbox can make a query to calculate total, which can be slow (depending on data).
+Aidbox generates a special field `total_` that contains the total count of the matching result. When you use this field, Aidbox can make a query to calculate total, which can be slow (depending on data).
 
 #### Example
 
-Request
+Request:
 
-```
-POST /$graphql
-content-type: text/yaml
-accept: text/yaml
-
+```graphql
 query: |
   query {
     PatientList(_count: 2) {
@@ -449,9 +411,9 @@ query: |
   }
 ```
 
-Response
+Response:
 
-```
+```yaml
 data:
   PatientList:
     - id: pt-1
@@ -470,9 +432,9 @@ data:
 
 ### Multiple fragments
 
-Get id of DeviceRequestList resource, add address of Organizations and Practitioners referenced in DeviceRequestList.requester
+Get id of the DeviceRequestList resource, and add the address of the Organizations and Practitioners referenced in DeviceRequestList.requester:
 
-```
+```graphql
 query {
   DeviceRequestList {
     id,
@@ -503,9 +465,7 @@ This example demonstrates how to use fragments, both types of search parameter a
 
 Request
 
-```
-{
-  "query" : "
+```graphql
 fragment PractitionerRoleWithPractitioner on PractitionerRole {
   id
   code {
@@ -554,12 +514,11 @@ fragment PractitionerRoleWithPractitioner on PractitionerRole {
     }
   }
 }
-"}
 ```
 
 Response
 
-```
+```json
 {
   "data" : {
     "PatientList" : [ {
@@ -624,20 +583,22 @@ Response
 
 ## Configuration
 
+### Set timeout
+
+Sets the timeout for GraphQL queries in seconds. Default value is `60`.
+
+```
+BOX_FEATURES_GRAPHQL_TIMEOUT=<integer>
+```
+
 ### Warmup
 
-By default, Aidbox does in memory index cache warmup when the first request comes in.&#x20;
+By default, Aidbox does an in-memory index cache warmup when the first request comes in.
 
 You can change it to warmup cache on startup.
 
 ```
 BOX_FEATURES_GRAPHQL_WARMUP__ON__STARTUP=true
-```
-
-Or, using Aidbox project:
-
-```
-[:features :graphql :warmup-on-startup]
 ```
 
 ### Revincludes with any type
@@ -654,10 +615,53 @@ You can enable them using the following environment variable:
 BOX_FEATURES_GRAPHQL_REFERENCE__ANY=true
 ```
 
-or by setting
+### Enable access control in GraphQL
+
+By default, if the `POST /$graphql` request passes request, it can query every resource without access control checks.&#x20;
+
+To enable access control, set the environmental variable: &#x20;
 
 ```
-[:features :graphql :reference-any]
+BOX_FEATURES_GRAPHQL_ACCESS__CONTROL=rest-search
 ```
 
-configuration value in Aidbox project.
+Under the hood, GraphQL uses Search API. You can create [AccessPolicies](../modules/security-and-access-control/security/access-control.md) for GET requests.
+
+To allow Client `my-client` to query the request
+
+```graphql
+query { PatientList(_count: 1) { id } }
+```
+
+the AccessPolicy which allows `GET /Patient` is required.
+
+```yaml
+PUT /AccessPolicy/my-client-allow-patient
+Content-Type: text/yaml
+Accept: text/yaml
+
+link:
+  - id: my-client
+    resourceType: Client
+engine: matcho
+matcho:
+  request-method: get
+  uri: /Patient
+```
+
+Of course, any [AccessPolicy engine](../modules/security-and-access-control/security/evaluation-engines.md) can be used. For example, using `sql` engine to allow the request if  `organization_id` in the JWT is the same as `Patient.managingOrganization`:
+
+```yaml
+PUT /AccessPolicy/my-client-allow-patient
+Content-Type: text/yaml
+Accept: text/yaml
+
+sql:
+  query: |
+    SELECT resource->'managingOrganization'
+    @> jsonb_build_object('resourceType', 'Organization', 'id',
+    {{jwt.organization_id}}::text) FROM patient
+    WHERE id = {{params._id}};
+engine: sql
+resourceType: AccessPolicy
+```
