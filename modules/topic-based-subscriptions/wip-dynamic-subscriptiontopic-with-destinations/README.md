@@ -1,6 +1,6 @@
 # Aidbox topic-based subscriptions
 
-{% hint style="danger" %}
+{% hint style="info" %}
 This functionality is available in Aidbox versions 2409 and later.
 {% endhint %}
 
@@ -85,6 +85,12 @@ Ensure that the resource metadata contains the kind-specific `AidboxTopicDestina
 {% content-ref url="webhook-aidboxtopicdestination.md" %}
 [webhook-aidboxtopicdestination.md](webhook-aidboxtopicdestination.md)
 {% endcontent-ref %}
+
+{% content-ref url="gcp-pub-sub-aidboxtopicdestination.md" %}
+[gcp-pub-sub-aidboxtopicdestination.md](gcp-pub-sub-aidboxtopicdestination.md)
+{% endcontent-ref %}
+
+
 
 ## Notification Shape
 

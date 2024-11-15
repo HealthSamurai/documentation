@@ -204,6 +204,7 @@
   * [Aidbox topic-based subscriptions](modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/README.md)
     * [Kafka AidboxTopicDestination](modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/kafka-topicdestination.md)
     * [Webhook AidboxTopicDestination](modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/webhook-aidboxtopicdestination.md)
+    * [GCP Pub/Sub AidboxTopicDestination](modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/gcp-pub-sub-aidboxtopicdestination.md)
     * [Tutorial: produce QuestionnaireResponse to Kafka topic](modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/tutorial-produce-questionnaireresponse-to-kafka-topic.md)
   * [Aidbox SubSubscriptions](modules/topic-based-subscriptions/subscriptions-1.md)
   * [FHIR topic-based subscriptions](modules/topic-based-subscriptions/topic-based-subscriptions/README.md)
