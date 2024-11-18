@@ -18,8 +18,6 @@ Implicit Grant flow is an alternative for Authorization Code flow. This flow jus
 
 The easiest way to test Implicit Grant flow is to run through the [Aidbox Sandbox UI](./#auth-sandbox) (_Auth -> Sandbox ->_ Implicit).
 
-<figure><img src="../../../.gitbook/assets/image (6).png" alt=""><figcaption><p>Sandbox UI</p></figcaption></figure>
-
 ### Authorization Endpoint
 
 <mark style="color:blue;">`GET`</mark> `[base]/auth/authorize`
