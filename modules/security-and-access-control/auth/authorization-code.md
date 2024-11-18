@@ -12,13 +12,11 @@ In this flow the application receives authorization from the user. Once the user
 
 ![Basic scheme](../../../.gitbook/assets/untitled-diagram-page-3.svg)
 
-For applications that are able to securely store a secret it is recommended to supply the secret in the token request due to security considerations. Otherwise, if the application is unable to securely store a secret (i.e. a frontend only app), we suggest using [PKCE](https://datatracker.ietf.org/doc/html/rfc7636). Both methods are supported by Aidbox.
+For applications that are able to securely store a secret it is recommended to supply the secret in the token request due to security considerations. Otherwise, if the application is unable to securely store a secret (i.e. a frontend-only app), we suggest using [PKCE](https://datatracker.ietf.org/doc/html/rfc7636). Both methods are supported by Aidbox.
 
 ### Easy way
 
-The easiest way to test Authorization Code Grant flow is to run through the [Aidbox Sandbox UI](./#auth-sandbox) (_IAM -> Sandbox ->_ Resource Owner).
-
-<figure><img src="../../../.gitbook/assets/image (6).png" alt=""><figcaption><p>Sandbox UI</p></figcaption></figure>
+The easiest way to test the Authorization Code Grant flow is through the [Aidbox Sandbox UI](./#auth-sandbox) (_IAM -> Sandbox -> Authorization Code_).
 
 ### Configure Client
 
