@@ -177,6 +177,7 @@ The other entries depend on `AidboxTopicDestination` `content` parameter. This p
         "resourceType":"QuestionnaireResponse",
         "questionnaire":"http://loinc.org/q/100109-8"
       },
+      "fullUrl": "http://aidbox-server/fhir/QuestionnaireResponse/458e771c-0ff1-4858-ac07-93b7a10c8e3b",
       "request":{
         "method":"POST",
         "url":"/fhir/QuestionnaireResponse"
@@ -214,7 +215,7 @@ The other entries depend on `AidboxTopicDestination` `content` parameter. This p
       }
     },
     {
-      "fullUrl": "http://aidbox-server/fhir/QuestionnaireResponse/458e771c-0ff1-4858-ac07-93b7a10c8e3b"
+      "fullUrl": "http://aidbox-server/fhir/QuestionnaireResponse/458e771c-0ff1-4858-ac07-93b7a10c8e3b",
       "request":{
         "method":"POST",
         "url":"/fhir/QuestionnaireResponse"
