@@ -252,12 +252,6 @@ The other entries depend on `AidboxTopicDestination` `content` parameter. This p
           "reference":"AidboxTopicDestination/kafka-destination"
         }
       }
-    },
-    {
-       "request":{
-        "method":"POST",
-        "url":"/fhir/QuestionnaireResponse"
-      }
     }
   ]
 }
