@@ -12,7 +12,7 @@ GET [/fhir]/<resource>?_search-language=<locale>&<string-param>=<value>
 
 Any [string search parameters](https://www.hl7.org/fhir/search.html#string) (e.g. name) will search in desired language if there is `_search-language` in query. Specifying only `_search-language` without any other string search parameters won't affect anything (except `_sort`).
 
-[List of supported locales](https://hl7.org/fhir/valueset-languages.html) required by FHIR.
+You may use locales that are [specified](https://hl7.org/fhir/valueset-languages.html) in FHIR.
 
 ### Turn on \_search-language
 
