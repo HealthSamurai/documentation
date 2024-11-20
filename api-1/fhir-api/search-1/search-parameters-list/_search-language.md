@@ -100,19 +100,19 @@ Collation is supported in **Aidboxdb version 14.7+**.
 
 Get all locations, those names start with 'Clinique' in French:
 
-<pre><code><strong>GET /Location?_search-language=fr-CA&#x26;name=Clinique
+<pre><code><strong>GET /fhir/Location?_search-language=fr-CA&#x26;name=Clinique
 </strong></code></pre>
 
 Same with `Accept-Language` header:
 
-<pre><code><strong>GET /Location?name=Clinique
+<pre><code><strong>GET /fhir/Location?name=Clinique
 </strong><strong>Accept-Language: fr-CA
 </strong></code></pre>
 
 Get all locations and sort by their names in French, using French locale for sort order (COLLATE):
 
 ```
-GET /Location?_search-language=fr-CA%_sort=name
+GET /fhir/Location?_search-language=fr-CA%_sort=name
 ```
 
 #### Array search
@@ -159,8 +159,8 @@ _alias:
 `_search-language` can search through arrays (search parameter Location.name searches in `name`, `alias`, `_name` and `_alias`)
 
 ```
-GET /Location?_search-language=fr-CA&name=a-fr-ca // found my-loc
-GET /Location?_search-language=fr-CA&name=b-fr-ca // found my-loc
-GET /Location?_search-language=fr-CA&name=c-fr-ca // not found
-GET /Location?_search-language=fr-CA&name=a-fr-ca,c-fr-ca // found my-loc
+GET /fhir/Location?_search-language=fr-CA&name=a-fr-ca // found my-loc
+GET /fhir/Location?_search-language=fr-CA&name=b-fr-ca // found my-loc
+GET /fhir/Location?_search-language=fr-CA&name=c-fr-ca // not found
+GET /fhir/Location?_search-language=fr-CA&name=a-fr-ca,c-fr-ca // found my-loc
 ```
