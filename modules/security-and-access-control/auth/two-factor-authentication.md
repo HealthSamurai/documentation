@@ -49,7 +49,7 @@ resourceType: AuthConfig
 | `twoFactor.webhook.headers`      | Key-value headers for webhook                                                                                                                                                                                 |
 | `theme.styleUrl`                 | URL to external stylesheet to customise how the authentication form looks like                                                                                                                                |
 | `theme.title`                    | Title to use on the authentication form                                                                                                                                                                       |
-| `theme.brand`                    | Application name to display on the authentication page                                                                                                                                                        |
+| `theme.brand`                    | URL for the brand image                                                                                                                                                                                       |
 
 ### 2. Client
 
@@ -66,7 +66,7 @@ id: web
 resourceType: Client
 ```
 
-Read more about Client resource configuration [here](https://app.gitbook.com/@aidbox/s/project/\~/drafts/-MVyOIaYZI6lD2jaf35C/auth/implicit)
+Read more about Client resource configuration [here](https://app.gitbook.com/@aidbox/s/project/~/drafts/-MVyOIaYZI6lD2jaf35C/auth/implicit)
 
 ### 3. Provider
 
