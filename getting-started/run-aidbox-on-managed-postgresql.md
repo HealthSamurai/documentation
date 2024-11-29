@@ -35,6 +35,27 @@ Follow [Azure Documentation](https://learn.microsoft.com/en-us/azure/postgresql/
 CREATE USER aidbox WITH CREATEDB ENCRYPTED PASSWORD 'aidboxpass';
 ```
 
+### Disable installation of PostgreSQL extensions on Aidbox startup&#x20;
+
+If your PostgreSQL user used by Aidbox does not have sufficient privileges to install extensions, you can disable the installation of extensions on startup of Aidbox by setting the environment variable `AIDBOX_INSTALL_PG_EXTENSIONS` to `false`.&#x20;
+
+The list of required extensions:&#x20;
+
+* pgcrypto&#x20;
+* unaccent
+* &#x20;pg\_trgm
+* &#x20;fuzzystrmatch
+
+If `AIDBOX_INSTALL_PG_EXTENSIONS` is set to `false`, Aidbox will not start without them, so you have to install them manually.&#x20;
+
+Optional list of extensions:&#x20;
+
+* pg\_similarity
+* &#x20;jsonknife
+* &#x20;jsquery
+* &#x20;pg\_stat\_statements
+* &#x20;postgis
+
 ### Setup Aidbox to use new user
 
 {% hint style="warning" %}

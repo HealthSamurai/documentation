@@ -143,6 +143,14 @@ BOX_LOGGING_SQL_MAX__LENGTH=<integer>
 
 Max length of a query to be logged.
 
+### AIDBOX\_INSTALL\_PG\_EXTENSIONS
+
+```
+AIDBOX_INSTALL_PG_EXTENSIONS=<boolean>
+```
+
+Says Aidbox to install PostgreSQL extensions at startup time. The default value is `true`.
+
 ### AIDBOX\_STDOUT\_JSON
 
 ```
@@ -351,7 +359,7 @@ When set to true, the behavior of \_include and \_revinclude becomes FHIR confor
 BOX_SEARCH_AUTHORIZE_INLINE_REQUESTS=true
 ```
 
-[https://docs.aidbox.app/api-1/fhir-api/search-1/search-parameters-list/\_include-and-\_revinclude#authorize-inline-requests-mode](https://docs.aidbox.app/api-1/fhir-api/search-1/search-parameters-list/\_include-and-\_revinclude#authorize-inline-requests-mode)
+[https://docs.aidbox.app/api-1/fhir-api/search-1/search-parameters-list/\_include-and-\_revinclude#authorize-inline-requests-mode](https://docs.aidbox.app/api-1/fhir-api/search-1/search-parameters-list/_include-and-_revinclude#authorize-inline-requests-mode)
 
 ### BOX\_SEARCH\_INCLUDE\_ITERATE\_\_MAX
 
