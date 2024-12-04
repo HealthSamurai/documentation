@@ -5,12 +5,13 @@ WORK IN PROGRESS
 {% endhint %}
 
 {% hint style="info" %}
-This functionality is available starting from version 2411.
+This functionality is available starting from version 2411.\
+Aidbox should be in [FHIR Schema mode](https://docs.aidbox.app/modules/profiling-and-validation/fhir-schema-validator/setup#enable-the-fhir-schema-validator-engine).
 {% endhint %}
 
 [SMART on FHIR](https://build.fhir.org/ig/HL7/smart-app-launch/) is a framework that describes a set of foundational patterns based on [OAuth 2.0](https://datatracker.ietf.org/doc/html/rfc6749) for client applications to authorize, authenticate, and integrate with FHIR-based data systems.&#x20;
 
-Aidbox provides many SMART on FHIR capabilities, including access control based on SMART on FHIR scopes v1 and v2, authorization via SMART App Launch, asymmetric (“private key JWT”) and symmetric (“client secret”) authentication.
+Aidbox provides many SMART on FHIR capabilities, including access control based on SMART on FHIR scopes version 1 and version 2, authorization via SMART App Launch, asymmetric (“private key JWT”) and symmetric (“client secret”) authentication.
 
 **Read the following articles if you need:**
 
