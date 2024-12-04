@@ -19,11 +19,11 @@ If a requested operation is not permitted by the scopes, Aidbox will deny access
 
 To enable scope checking in the Access Control layer, the JWT access token must contain the following claims:
 
-| Claim name            | Value type  | Description                                                 |
-| --------------------- | ----------- | ----------------------------------------------------------- |
-| `atv` \*              | fixed value | <p>Access Token Version<br>Fixed value - <code>2</code></p> |
-| `scope`  \*           | valueString | String with scopes separated by space.                      |
-| `context.patient`  \* | valueString | Patient ID.                                                 |
+| Claim name          | Value type  | Description                                                 |
+| ------------------- | ----------- | ----------------------------------------------------------- |
+| `atv` \*            | fixed value | <p>Access Token Version<br>Fixed value - <code>2</code></p> |
+| `scope`  \*         | valueString | String with scopes separated by space.                      |
+| `context.patient`   | valueString | Patient ID.                                                 |
 
 &#x20;\* - required claim
 
@@ -120,6 +120,104 @@ Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdHYiOjIsImF1ZCI6
   "id": "test-pt-1",
   "gender": "female",
   "birthsex": "F"
+}
+```
+
+
+{% endtab %}
+{% endtabs %}
+
+## Bundle&#x20;
+
+SMART does not define specific scopes for [batch or transaction](https://hl7.org/fhir/smart-app-launch/scopes-and-launch-context.html#batches-and-transactions) interactions. Aidbox allows Bundle requests regardless of scopes and applies Access Control restrictions to each element within `Bundle.entry`. This means that while the Bundle as a whole is accepted, Aidbox enforces scope Access Control restrictions on each entry in the Bundle.
+
+### Example
+
+{% tabs %}
+{% tab title="Request" %}
+```http
+POST /fhir
+content-type: application/json
+accept: application/json
+// Token with "patient/Patient.read patient/Observation.read" scopes
+Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdHYiOjIsImF1ZCI6Imh0dHBzOi8vZzEwdGVzdC5lZGdlLmFpZGJveC5hcHAvZmhpciIsInN1YiI6IjNkMGVmYjgwLTkwMTktNDdhMS1iMzYxLWUwNDUzOGQ4NzFmZSIsImlzcyI6Imh0dHBzOi8vYXV0aC5leGFtcGxlLmNvbSIsImV4cCI6MTczMzIzNDk0ODQsInNjb3BlIjoibGF1bmNoL3BhdGllbnQgb3BlbmlkIGZoaXJVc2VyIG9mZmxpbmVfYWNjZXNzIHBhdGllbnQvUGF0aWVudC5yZWFkIHBhdGllbnQvT2JzZXJ2YXRpb24ucmVhZCIsImp0aSI6IjUzZWQ1MTZhLTNjODEtNGRjZC05NTUxLTdlOTUzYTkzZmMwZSIsImNvbnRleHQiOnsicGF0aWVudCI6InRlc3QtcHQtMSJ9LCJpYXQiOjE3MzMyMzQ2NDh9.PsYalqkaN-6V0tBqLn_9pkDrR0cLmEg237W8xz5Ymdo"
+
+{
+  "resoruceType": "Bundle",
+  "type": "batch",
+  "entry": [
+    {
+      "request": {
+        "method": "GET",
+        "url": "Encounter"
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "Patient/test-pt-1"
+      }
+    }
+  ]
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```json
+// 200 OK
+{
+  "type": "batch-response",
+  "resourceType": "Bundle",
+  "entry": [
+    // first entry is Forbidden because token doesn't have
+    // patient.Encounter/read scope
+    {
+      "resource": {
+        "resourceType": "OperationOutcome",
+        "id": "forbidden",
+        "text": {
+          "status": "generated",
+          "div": "Forbidden"
+        },
+        "issue": [
+          {
+            "severity": "fatal",
+            "code": "forbidden",
+            "diagnostics": "Forbidden"
+          }
+        ]
+      },
+      "response": {
+        "status": "403"
+      }
+    },
+    // second entry is allowed because 
+    // token has patient/Patient.read scope
+    {
+      "resource": {
+        "name": [
+          {
+            "given": [
+              "Amy",
+              "V."
+            ],
+            "family": "Shaw",
+            "period": {
+              "end": "2020-07-22",
+              "start": "2016-12-06"
+            }
+          }
+        ],
+        "birthDate": "1987-02-20",
+        "resourceType": "Patient",
+        "active": true,
+        "id": "test-pt-1",
+        "gender": "female",
+        "birthsex": "F"
+      }
+    }
+  ]
 }
 ```
 
