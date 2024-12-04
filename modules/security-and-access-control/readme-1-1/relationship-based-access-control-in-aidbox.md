@@ -25,7 +25,7 @@ Our security policy says:
 
 > _User has access to all studies they collaborate on and to all patient records within those studies._
 
-Authorization model that best suits our task is [relationship-based access control](https://en.wikipedia.org/wiki/Relationship-based\_access\_control) (ReBAC). It states that _'subject's permission to access a resource is defined by the presence of relationships between those subjects and resources'_.
+Authorization model that best suits our task is [relationship-based access control](https://en.wikipedia.org/wiki/Relationship-based_access_control) (ReBAC). It states that _'subject's permission to access a resource is defined by the presence of relationships between those subjects and resources'_.
 
 We will focus only on read access, expecting that all data is uploaded. We will upload prepared sample data later on implementation section.
 
@@ -489,7 +489,7 @@ And we met this requirement using ReBAC authorization model. In order to achieve
 
 ### What's next
 
-Writing access policies may be tricky some time, Aidbox has tooling to [debug AccessPolicy](../how-to-guides/debug.md).
+Writing access policies may be tricky some time, Aidbox has tooling to [debug AccessPolicy](debug.md).
 
 ## Talk to a Health Samurai Engineer
 
