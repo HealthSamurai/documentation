@@ -54,17 +54,17 @@ Denied request based on allowed scopes:
 {% tabs %}
 {% tab title="Request" %}
 ```http
-GET /fhir/Observation/my-observation
+GET /fhir/Appointment/my-appointment
 content-type: application/json
 accept: application/json
-// Token with "patient/Patient.read patient/Appointment.read" scopes
-Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdHYiOjIsImF1ZCI6Imh0dHBzOi8vZzEwdGVzdC5lZGdlLmFpZGJveC5hcHAvZmhpciIsInN1YiI6IjNkMGVmYjgwLTkwMTktNDdhMS1iMzYxLWUwNDUzOGQ4NzFmZSIsImlzcyI6Imh0dHBzOi8vYXV0aC5leGFtcGxlLmNvbSIsImV4cCI6MTczMzIzNDk0ODQsInNjb3BlIjoibGF1bmNoL3BhdGllbnQgb3BlbmlkIGZoaXJVc2VyIG9mZmxpbmVfYWNjZXNzIHBhdGllbnQvUGF0aWVudC5yZWFkIHBhdGllbnQvQXBwb2ludG1lbnQucmVhZCIsImp0aSI6IjUzZWQ1MTZhLTNjODEtNGRjZC05NTUxLTdlOTUzYTkzZmMwZSIsImNvbnRleHQiOnsicGF0aWVudCI6InRlc3QtcHQtMSJ9LCJpYXQiOjE3MzMyMzQ2NDh9.xE022h0Qi1UaeGO22tiV3Opxg3FqnlauyCXEifaYe4g"
+// Token with "patient/Patient.read patient/Observation.read" scopes
+Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdHYiOjIsImF1ZCI6Imh0dHBzOi8vZzEwdGVzdC5lZGdlLmFpZGJveC5hcHAvZmhpciIsInN1YiI6IjNkMGVmYjgwLTkwMTktNDdhMS1iMzYxLWUwNDUzOGQ4NzFmZSIsImlzcyI6Imh0dHBzOi8vYXV0aC5leGFtcGxlLmNvbSIsImV4cCI6MTczMzIzNDk0ODQsInNjb3BlIjoibGF1bmNoL3BhdGllbnQgb3BlbmlkIGZoaXJVc2VyIG9mZmxpbmVfYWNjZXNzIHBhdGllbnQvUGF0aWVudC5yZWFkIHBhdGllbnQvT2JzZXJ2YXRpb24ucmVhZCIsImp0aSI6IjUzZWQ1MTZhLTNjODEtNGRjZC05NTUxLTdlOTUzYTkzZmMwZSIsImNvbnRleHQiOnsicGF0aWVudCI6InRlc3QtcHQtMSJ9LCJpYXQiOjE3MzMyMzQ2NDh9.PsYalqkaN-6V0tBqLn_9pkDrR0cLmEg237W8xz5Ymdo"
 ```
 {% endtab %}
 
 {% tab title="Response" %}
 ```json
-// Forbidden because the token doesn't have Observation/read scope
+// Forbidden because the token doesn't have Appointment/read scope
 {
   "resourceType": "OperationOutcome",
   "id": "forbidden",
@@ -92,8 +92,8 @@ Permitted request based on allowed scopes:
 GET /fhir/Patient/test-pt-1
 content-type: application/json
 accept: application/json
-// Token with "patient/Patient.read patient/Appointment.read" scopes
-Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdHYiOjIsImF1ZCI6Imh0dHBzOi8vZzEwdGVzdC5lZGdlLmFpZGJveC5hcHAvZmhpciIsInN1YiI6IjNkMGVmYjgwLTkwMTktNDdhMS1iMzYxLWUwNDUzOGQ4NzFmZSIsImlzcyI6Imh0dHBzOi8vYXV0aC5leGFtcGxlLmNvbSIsImV4cCI6MTczMzIzNDk0ODQsInNjb3BlIjoibGF1bmNoL3BhdGllbnQgb3BlbmlkIGZoaXJVc2VyIG9mZmxpbmVfYWNjZXNzIHBhdGllbnQvUGF0aWVudC5yZWFkIHBhdGllbnQvQXBwb2ludG1lbnQucmVhZCIsImp0aSI6IjUzZWQ1MTZhLTNjODEtNGRjZC05NTUxLTdlOTUzYTkzZmMwZSIsImNvbnRleHQiOnsicGF0aWVudCI6InRlc3QtcHQtMSJ9LCJpYXQiOjE3MzMyMzQ2NDh9.xE022h0Qi1UaeGO22tiV3Opxg3FqnlauyCXEifaYe4g"
+// Token with "patient/Patient.read patient/Observation.read" scopes
+Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdHYiOjIsImF1ZCI6Imh0dHBzOi8vZzEwdGVzdC5lZGdlLmFpZGJveC5hcHAvZmhpciIsInN1YiI6IjNkMGVmYjgwLTkwMTktNDdhMS1iMzYxLWUwNDUzOGQ4NzFmZSIsImlzcyI6Imh0dHBzOi8vYXV0aC5leGFtcGxlLmNvbSIsImV4cCI6MTczMzIzNDk0ODQsInNjb3BlIjoibGF1bmNoL3BhdGllbnQgb3BlbmlkIGZoaXJVc2VyIG9mZmxpbmVfYWNjZXNzIHBhdGllbnQvUGF0aWVudC5yZWFkIHBhdGllbnQvT2JzZXJ2YXRpb24ucmVhZCIsImp0aSI6IjUzZWQ1MTZhLTNjODEtNGRjZC05NTUxLTdlOTUzYTkzZmMwZSIsImNvbnRleHQiOnsicGF0aWVudCI6InRlc3QtcHQtMSJ9LCJpYXQiOjE3MzMyMzQ2NDh9.PsYalqkaN-6V0tBqLn_9pkDrR0cLmEg237W8xz5Ymdo"
 ```
 {% endtab %}
 
@@ -127,8 +127,6 @@ Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdHYiOjIsImF1ZCI6
 {% endtab %}
 {% endtabs %}
 
-
-
 ## Patient data access API
 
 Patient-level access control in Aidbox enables restricting data access to resources associated with a specific patient. When users interact with the FHIR API, they can access only the resources that belong to that patient.
@@ -140,3 +138,94 @@ To achieve this behavior, the request must include:
 * The patient ID in the `context.patient` claim.
 
 &#x20;Aidbox will limit access and filter retrieved data based on [FHIR Patient CompartmentDefinition](https://hl7.org/fhir/r4/compartmentdefinition-patient.html).
+
+### Example
+
+{% tabs %}
+{% tab title="Request" %}
+```json
+// Search over all Observations
+GET /fhir/Observation
+content-type: application/json
+accept: application/json
+// Token with "patient/Observation.read" scope and "contest.patient" = "test-pt-1"
+Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdHYiOjIsImF1ZCI6Imh0dHBzOi8vZzEwdGVzdC5lZGdlLmFpZGJveC5hcHAvZmhpciIsInN1YiI6IjNkMGVmYjgwLTkwMTktNDdhMS1iMzYxLWUwNDUzOGQ4NzFmZSIsImlzcyI6Imh0dHBzOi8vYXV0aC5leGFtcGxlLmNvbSIsImV4cCI6MTczMzIzNDk0ODQsInNjb3BlIjoibGF1bmNoL3BhdGllbnQgb3BlbmlkIGZoaXJVc2VyIG9mZmxpbmVfYWNjZXNzIHBhdGllbnQvUGF0aWVudC5yZWFkIHBhdGllbnQvT2JzZXJ2YXRpb24ucmVhZCIsImp0aSI6IjUzZWQ1MTZhLTNjODEtNGRjZC05NTUxLTdlOTUzYTkzZmMwZSIsImNvbnRleHQiOnsicGF0aWVudCI6InRlc3QtcHQtMSJ9LCJpYXQiOjE3MzMyMzQ2NDh9.PsYalqkaN-6V0tBqLn_9pkDrR0cLmEg237W8xz5Ymdo"
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```json
+// 200 OK Return Observation only 
+// with reference to "test-pt-1" Patient (from "contest.patient" claim)
+
+{
+  "resourceType": "Bundle",
+  "type": "searchset",
+  "total": 3,
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "test-blood-pressure",
+        "status": "final",
+        "code": {
+          "text": "Blood pressure systolic and diastolic",
+          "coding": [
+            {
+              "code": "85354-9",
+              "system": "http://loinc.org",
+              "display": "Blood pressure panel with all children optional"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/test-pt-1"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "test-heart-rate",
+        "status": "final",
+        "code": {
+          "text": "heart_rate",
+          "coding": [
+            {
+              "code": "8867-4",
+              "system": "http://loinc.org",
+              "display": "Heart Rate"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/test-pt-1"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "test-height",
+        "status": "final",
+        "code": {
+          "text": "height",
+          "coding": [
+            {
+              "code": "8302-2",
+              "system": "http://loinc.org",
+              "display": "Body height"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/test-pt-1"
+        }
+      }
+    }
+  ]
+}
+```
+{% endtab %}
+{% endtabs %}
+
