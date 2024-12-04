@@ -1,10 +1,18 @@
 # Release Notes
 
-## November 2024 _`edge`_
+## November 2024 _`latest, 2411`_
 
-Work in progress
+* Aidbox
+  * Introduced [Init Bundle](../../aidbox-configuration/init-bundle.md) as a simple and effective way of configuring Aidbox. The Init Bundle will replace Aidbox (zen) configuration projects.
+  * Added [GCP Pub/Sub support](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/gcp-pub-sub-aidboxtopicdestination.md) for [Aidbox topic-based subscriptions](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/)
+  * Added an option to disable terminology bindings validation when using [FHIR schema validator](../../modules/profiling-and-validation/fhir-schema-validator/)
+* Aidbox Forms
 
-## October 2024 _`latest, 2410, LTS`_
+Minor updates:
+
+* 2410.1 — Fixed critical security issues
+
+## October 2024 _`stable, 2410, LTS`_
 
 * Aidbox
   * Released Aidbox UI home page
@@ -13,23 +21,20 @@ Work in progress
   * Added [Audit Logs](../../modules/audit/audit-logging.md) for SQL endpoints
   * Added configurable CORS settings, allowing users to [enable CORS](../../reference/configuration/environment-variables/optional-environment-variables.md#box_web_cors_enabled) and [specify allowed origins](../../reference/configuration/environment-variables/optional-environment-variables.md#box_web_cors_origins).
   * Fixed critical vulnerabilities and bugs
-*   Aidbox Forms
-
-    * [Added an ability to connect Aidbox Forms with external FHIR servers for data management](../../modules/aidbox-forms/aidbox-ui-builder-alpha/external-fhir-servers.md)
-    * Introduced an [Aidbox Forms SMART app sample project with React.js](https://github.com/Aidbox/examples/tree/main/aidbox-forms-smart-launch)
-    * Verified compliance with accessibility standards
-    * Added an ability to re-populate a form with the latest available data
-    * Added validation checks for Questionnaires directly in the UI Builder console.
-    * [Added support for additional parameters: `source`, `author`, `basedOn`, and `partOf`—in the `$generate-link` operation](../../reference/aidbox-forms/aidbox-sdc-api.md#generate-a-link-to-a-questionnaireresponse-usdgenerate-link)
-
-
+* Aidbox Forms
+  * [Added an ability to connect Aidbox Forms with external FHIR servers for data management](../../modules/aidbox-forms/aidbox-ui-builder-alpha/external-fhir-servers.md)
+  * Introduced an [Aidbox Forms SMART app sample project with React.js](https://github.com/Aidbox/examples/tree/main/aidbox-forms-smart-launch)
+  * Verified compliance with accessibility standards
+  * Added an ability to re-populate a form with the latest available data
+  * Added validation checks for Questionnaires directly in the UI Builder console.
+  * [Added support for additional parameters: `source`, `author`, `basedOn`, and `partOf`—in the `$generate-link` operation](../../reference/aidbox-forms/aidbox-sdc-api.md#generate-a-link-to-a-questionnaireresponse-usdgenerate-link)
 
 Minor updates:
 
 * [2409.2](https://hub.docker.com/layers/healthsamurai/aidboxone/2409.2/images/sha256-fdf25fcc890a38c7bd098110e0711de0a5d6d5323ec39caf55387fc7234b83a1?context=explore) — Fixed critical security issues, fixed versioning in logs&#x20;
 * [2408.2](https://hub.docker.com/layers/healthsamurai/aidboxone/2408.2/images/sha256-9ffd6d2b8b9ded274a2d566f1f23a52bfeb5d50b9089eb9e460610991e0611df?context=explore) — Fixed critical security issues, fixed versioning in logs
 
-## September 2024 _`stable, 2409`_
+## September 2024 _`2409`_
 
 * Aidbox
   * Introduced new [MAJOR.MINOR versioning](../../overview/versioning.md) for improved clarity
