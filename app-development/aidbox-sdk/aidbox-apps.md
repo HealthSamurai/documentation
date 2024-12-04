@@ -145,7 +145,7 @@ entities:
   Payment: <structure>
 ```
 
-Resource structure is defined by `attrs` keyword**:**
+Resource structure is defined by `attrs` keywor&#x64;**:**
 
 {% code title="entities:" %}
 ```yaml

@@ -72,9 +72,9 @@ Subscription trigger rules use their own DSL to describe subscriptions. A select
 In general every expression is divided into three parts with specified keys:
 
 1. **:get-in** - describes the path in the modified resource where the left-hand operation argument will be taken. The value must be a vector and contain the path to the value in the nested structure.\
-   _Example: `:get-in [:name :given]`_
+   &#xNAN;_&#x45;xample: `:get-in [:name :given]`_
 2. **:comparator** - the logical operation performed on the arguments.\
-   _Possible values: `:eq`, `:gt`, `:lt`, `:ge`, `:le`_
+   &#xNAN;_&#x50;ossible values: `:eq`, `:gt`, `:lt`, `:ge`, `:le`_
 3. **:value** - the right-hand argument of the expression. Should be the same type with left argument.
 
 #### Rule params
