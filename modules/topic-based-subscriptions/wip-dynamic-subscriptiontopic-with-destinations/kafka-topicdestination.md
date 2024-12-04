@@ -13,6 +13,10 @@ Aidbox provides two kinds of Kafka integrations:
 Be aware of using `Best effort` with batch transactions. Messages are generated while processing batch entries, so if the batch transaction fails at the end, the messages will not be revoked.&#x20;
 {% endhint %}
 
+{% hint style="warning" %}
+Please note that `at least once`approach uses **transactional** Kafka producers. Please make sure that `transaction.state.log.replication.factor` is less or equal then the number of brokers in your Kafka cluster. Otherwise sending messages from Aidbox to Kafka may fail with `Timeout expired after ...ms while awaiting InitProducerId`error.
+{% endhint %}
+
 
 
 {% content-ref url="./" %}
