@@ -5,7 +5,8 @@ WORK IN PROGRESS
 {% endhint %}
 
 {% hint style="info" %}
-This functionality is available starting from version 2411.
+This functionality is available starting from version 2411.\
+Aidbox should be in [FHIR Schema mode](https://docs.aidbox.app/modules/profiling-and-validation/fhir-schema-validator/setup#enable-the-fhir-schema-validator-engine).
 {% endhint %}
 
 For now, Aidbox successfully passes the following sequences of Inferno g(10) tests:
