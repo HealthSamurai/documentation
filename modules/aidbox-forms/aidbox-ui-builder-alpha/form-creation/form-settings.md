@@ -149,5 +149,6 @@ In this section, you can configure the appearance of your forms, ensuring they d
 
 * The default form width is set to **960 pixels**.
 * User can adjust the **maximum width** of the form based on your preferences. The form will be displayed at the maximum width, provided that the device on which the form is opened supports this size.
+* User can define this value via [SDCconfig](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/configuration#configuration-resource-structure) and then all forms will have the set width by default. If you set the form width value in the form itself, then this value will override what is in the SDCconfig.
 
 To ensure the form appears as intended, you can use the **Form Preview** feature to see how the form looks with the specified maximum width.
