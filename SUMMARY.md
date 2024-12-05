@@ -308,6 +308,7 @@
   * [SMART on FHIR](modules/security-and-access-control/smart-on-fhir/README.md)
     * [SMART Scopes for Limiting Access](modules/security-and-access-control/smart-on-fhir/smart-scopes-for-limiting-access.md)
     * [SMART App Launch](modules/security-and-access-control/smart-on-fhir/smart-app-launch.md)
+    * [Example: SMART App Launch using Aidbox and Keycloak](modules/security-and-access-control/smart-on-fhir/example-smart-app-launch-using-aidbox-and-keycloak.md)
     * [Pass Inferno tests with Aidbox](modules/security-and-access-control/smart-on-fhir/pass-inferno-tests-with-aidbox.md)
   * [Tutorials](modules/security-and-access-control/readme-1-1/README.md)
     * [Allow patients to see their own data](modules/security-and-access-control/readme-1-1/sample-patient-can-see-its-own-data.md)
