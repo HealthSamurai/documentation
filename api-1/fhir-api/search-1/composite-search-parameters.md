@@ -2,13 +2,11 @@
 
 Since version 2308 Aidbox supports Composite Search Parameters.
 
-[Composite Search Parameters](https://www.hl7.org/fhir/search.html#composite) are special search parameters to match resources by two or more values, separated by `$` sign. Such search parameters will search not by simple intersection, like `search-param1=value1&search-param2=value2`, but more strictly.&#x20;
+[Composite Search Parameters](https://www.hl7.org/fhir/search.html#composite) are special search parameters that match resources by two or more values, separated by a `$` sign. Such search parameters will search not by simple intersection, like `search-param1=value1&search-param2=value2`, but more strictly.
 
-For example, take a look at [Observation](https://www.hl7.org/fhir/observation.html) resource structure and suppose we have following resource: &#x20;
+For example, take a look at [Observation](https://www.hl7.org/fhir/observation.html) resource structure and suppose we have following resource:
 
-```
-//Observation
-...
+```yaml
 id: my-observation
 component:
 - code: loinc|12907-2
@@ -17,7 +15,7 @@ component:
 - code: loinc|12907-1
   valueQuantity: 
     value: 2
-...
+# ...
 ```
 
 If we want search to match _my-observation_ only if some component has both `code = loinc|12907-2` and `valueQuantity=1`, we must use composite search:
@@ -43,7 +41,5 @@ GET /fhir/Observation?code=loinc|12907-1&value-quantity=2 // found
 To turn on in Aidbox project use:
 
 ```
-:search {...
-         :composite-search true
-         ...}
+BOX_SEARCH_COMPOSITE__SEARCH=true
 ```
