@@ -12,7 +12,7 @@
   * [**Custom Error/Warning Reporting**](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/embedding-renderer#step-3-configure-attributes)**:** Added support for custom error and warning messages in the Form Builder and Renderer.
   * [**Collapsible Sections**](https://hl7.org/fhir/uv/sdc/STU3/StructureDefinition-sdc-questionnaire-collapsible.html)**:** Added a setting to display sections collapsed for brief overviews.
   * [**Slider Widget**](https://hl7.org/fhir/extensions/StructureDefinition-questionnaire-sliderStepValue.html)**:** Introduced a widget to select values from a defined range with a horizontal slider.
-  * **AI Label Translation:** Added AI support for translating labels in translation mode.
+  * [**AI Label Translation**](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/multilingual-forms)**:** Added AI support for translating labels in translation mode.
   * [**Aidbox Forms Smart Launch 2 sample project**](https://github.com/Aidbox/examples/tree/main/aidbox-forms-smart-launch-2)**:** Released a sample project for custom SMART Apps with Aidbox Forms, supporting SMART on FHIR flows, resource synchronization, and form management.
   * [**Repopulation Flow**](https://docs.aidbox.app/reference/aidbox-forms/fhir-sdc-api#allow-repopulate)**:** Implemented the basic form re-population feature.
 
