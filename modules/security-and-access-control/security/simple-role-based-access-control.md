@@ -1,19 +1,6 @@
 # Role-Based Access Control (RBAC)
 
-Aidbox provides role-based access control mechanism based on access policies and `User` resource.
-
-## Create a patient
-
-```yaml
-POST /Patient
-
-id: pt-1
-resourceType: Patient
-
-name:
-  - given:
-      - John
-```
+Aidbox provides a role-based access control mechanism based on access policies and `User` resource.
 
 ## Create a user
 
@@ -24,6 +11,7 @@ POST /User
 
 id: user-1
 resourceType: User
+password: password
 roles: 
   - value: practitioner
 ```
@@ -60,9 +48,24 @@ request-method:
 
 ## Try it
 
-Log in as `user-1`.
+### Create a patient
 
-Read patient data
+```yaml
+POST /Patient
+
+id: pt-1
+resourceType: Patient
+
+name:
+  - given:
+      - John
+```
+
+## Log in as `user-1`
+
+Click "Logout" in the AidboxUI navigation. Log in using `user-1` credentials (user-1 /password).
+
+### Read patient data
 
 ```http
 GET /Patient/pt-1
