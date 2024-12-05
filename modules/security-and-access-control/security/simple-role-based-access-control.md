@@ -61,7 +61,7 @@ name:
       - John
 ```
 
-## Log in as `user-1`
+### Log in as `user-1`
 
 Click "Logout" in the AidboxUI navigation. Log in using `user-1` credentials (user-1 /password).
 
