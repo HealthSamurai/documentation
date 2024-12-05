@@ -14,7 +14,8 @@ In some applications, there is a need to support multiple languages within the s
    * After you have created your form in the default language, you can add translations. Click the translation icon located in the toolbar at the top of the form builder. This will open a separate page dedicated to translations.
 3.  **Add and Manage Translations:**
 
-    * On the translation page, click the plus (`+`) icon to select a new language for translation. For each selected language, you can translate all field labels and answer options. All translations are stored within a single FHIR Questionnaire resource, utilizing a specific extension for each questionnaire element to maintain multilingual support.
+    * On the translation page, click the plus (`+`) icon to select a new language for translation. For each selected language, you can translate all field labels and answer options. There is an option to translate all labels automatically using AI. To do this, in the upper right corner you need to click on the icon and enter the OpenAI or Google Generative AI API key.&#x20;
+    * All translations are stored within a single FHIR Questionnaire resource, utilizing a specific extension for each questionnaire element to maintain multilingual support.
 
 
 
