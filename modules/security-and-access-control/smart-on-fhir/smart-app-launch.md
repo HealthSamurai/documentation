@@ -19,7 +19,8 @@ It shall be [Authorization Code Grant](../auth/authorization-code.md) Client wit
 
 ### Example
 
-<pre class="language-http"><code class="lang-http">PUT /Client/my-smart-app-client-id
+```http
+PUT /Client/my-smart-app-client-id
 content-type: application/json
 accept: application/json
 
@@ -34,9 +35,9 @@ accept: application/json
       "token_format": "jwt",
       "access_token_expiration": 3600000
     }
-<strong>  },
-</strong><strong>  // always shall have smart.launch_uri value
-</strong>  "smart": {
+  },
+  // always shall have smart.launch_uri value
+  "smart": {
     "launch_uri": "http://smart-app-launch-endpoint/launch.html"
   },
   // always shall be "smart-app" type
@@ -46,7 +47,7 @@ accept: application/json
     "code"
   ]
 }
-</code></pre>
+```
 
 ## 2. Launch URI
 
