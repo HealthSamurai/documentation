@@ -2,7 +2,7 @@
 
 {% hint style="info" %}
 This functionality is available starting from version 2411.\
-Aidbox should be in [FHIR Schema mode](https://docs.aidbox.app/modules/profiling-and-validation/fhir-schema-validator/setup#enable-the-fhir-schema-validator-engine).
+The [FHIR Schema Validator Engine](https://docs.aidbox.app/modules/profiling-and-validation/fhir-schema-validator/setup#enable-the-fhir-schema-validator-engine) should be enabled.
 {% endhint %}
 
 &#x20;Performing [SMART App Launch](https://build.fhir.org/ig/HL7/smart-app-launch/app-launch.html) with Aidbox requires:
