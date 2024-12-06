@@ -36,7 +36,7 @@ Wait until all components are pulled and started. The components are accessible 
 
 * Aidbox - [http://localhost:8080](http://localhost:8080)
 * Keycloak - [http://localhost:8888](http://localhost:8888)
-* Growth Chart - [http://localhost:9000](http://localhost:8888)
+* Growth Chart - [http://localhost:9000](http://localhost:9000)
 * Demo Launcher Page - [http://localhost:7070/launcher.html](http://localhost:7070/launcher.html)
 
 ## Step 2: Open launcher Page
