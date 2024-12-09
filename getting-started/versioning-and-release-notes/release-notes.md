@@ -248,7 +248,7 @@ Minor updates:
   * Improved performance
   * Added narrative generation for several sections (see all sections [here](../../modules/integration-toolkit/ccda-converter/#list-of-supported-sections))
 * Security and access control
-  * Supported [SMART App Launch (v1, v2) for Patient Access API](../../reference/smart-on-fhir.md)
+  * Supported [SMART App Launch (v1, v2) for Patient Access API](../../modules/security-and-access-control/how-to-guides/smart-on-fhir/smart-on-fhir.md)
 * [Aidbox Forms](../../modules/aidbox-forms/)
   * Added group widget in the UI Builder
   * Added calculate expressions with FHIRPath/AidboxLisp

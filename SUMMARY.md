@@ -328,6 +328,7 @@
     * [Debug access control](modules/security-and-access-control/readme-1-1/debug.md)
   * [How-to guides](modules/security-and-access-control/how-to-guides/README.md)
     * [SMART on FHIR](modules/security-and-access-control/how-to-guides/smart-on-fhir/README.md)
+      * [SMART on FHIR](modules/security-and-access-control/how-to-guides/smart-on-fhir/smart-on-fhir.md)
       * [Set up SMART on FHIR in Aidbox](modules/security-and-access-control/how-to-guides/smart-on-fhir/smart-on-fhir-app-launch.md)
       * [Get a SMART App launched](modules/security-and-access-control/how-to-guides/smart-on-fhir/smart-of-fhir.md)
   * [Technical reference](modules/security-and-access-control/readme-1/README.md)
@@ -629,4 +630,3 @@
   * [FHIR SDC API](reference/aidbox-forms/fhir-sdc-api.md)
   * [Aidbox SDC API](reference/aidbox-forms/aidbox-sdc-api.md)
 * [Aidbox SQL functions](reference/aidbox-sql-functions.md)
-* [SMART on FHIR](reference/smart-on-fhir.md)
