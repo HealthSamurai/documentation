@@ -18,7 +18,7 @@
 
 Minor updates:
 
-* 2410.1 — Fixed critical security issues
+* 2410.1 — Fixed minor bugs
 
 ## October 2024 _`stable, 2410, LTS`_
 
