@@ -1,4 +1,8 @@
-# Launch DSL
+---
+hidden: true
+---
+
+# Launch DSL (deprecated)
 
 **Form Launch** binds to [`Document`](document-dsl.md) and `Form`. And optionally can specify fields populate logic via `populate-engine`
 
@@ -12,15 +16,14 @@ For populate you can specify what fields should be populated.
 * [lisp expressions](lisp.md)
 * you need to follow [Document](document-dsl.md) fields structure.
 
-> For lisp `get` `get-in` functions the context is a map 
+> For lisp `get` `get-in` functions the context is a map
 
 ```clojure
 {:ctx {:user {:id "user-id" :resourceType "User" ...}} ;; <--- injected logged-in user
  :params {...}}                                        ;; <--- parameters to launch rpc
-``` 
+```
 
-
-Example: 
+Example:
 
 ```
  VitalsLaunch
@@ -43,4 +46,3 @@ Example:
                               :from :Encounter
                               :where [:= :id (get-in [:params :encounter-id])]})}}
 ```
-

@@ -1,4 +1,8 @@
-# Form API
+---
+hidden: true
+---
+
+# Form API (deprecated)
 
 ## Form API
 

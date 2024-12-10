@@ -2,9 +2,10 @@
 description: >-
   This article outlines the basic steps to start designing form locally in any
   familiar editor
+hidden: true
 ---
 
-# Any familiar form editor
+# Any familiar form editor (deprecated)
 
 {% hint style="warning" %}
 We strongly recommend using our UI Form Builder based on FHIR SDC (Structured Data Capture), which we are continuously developing. The current solution will remain supported but will not receive further development at this time.

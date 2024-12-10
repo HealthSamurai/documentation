@@ -1,4 +1,8 @@
-# Lisp
+---
+hidden: true
+---
+
+# Lisp (deprecated)
 
 Aidbox Forms support a subset of the Lisp language for document definition, data retrieval and initialization, calculation of dynamic (derived) attributes, and data extraction.
 
@@ -49,7 +53,6 @@ Supported Lisp functions are tested and documented using [zen-lang](https://gith
 * `sql`
 * `sql*`
 * `sdc->fhir-value`
-
 
 ### `global`
 
@@ -114,10 +117,9 @@ Examples:
 
 ### get-schema
 
-Returns zen-schema for given value-path.
-value-path - is vector of keys in nested associative structure
+Returns zen-schema for given value-path. value-path - is vector of keys in nested associative structure
 
-> Used in Document ctx only  (back-end)
+> Used in Document ctx only (back-end)
 
 Examples:
 
@@ -540,9 +542,7 @@ Examples:
 
 ### dec-date
 
-Returns date decreased by number of date-units.
-Possible units are: :years :months :weeks :days
-
+Returns date decreased by number of date-units. Possible units are: :years :months :weeks :days
 
 Examples:
 
@@ -558,8 +558,7 @@ Examples:
 
 ### inc-date
 
-Returns date increased by number of date-units.
-Possible units are: :years :months :weeks :days
+Returns date increased by number of date-units. Possible units are: :years :months :weeks :days
 
 ```clojure
 (inc-date "2022-10-10" 1 :days) ;; => "2022-10-11"
@@ -607,12 +606,9 @@ Examples:
 ;; => {:id "1" :name [{:family "Smith" :given ["John"]}]}
 ```
 
-
-
 ### `sql*`
 
-Run SQL query. Same as `sql` but returns all rows.
-When selected only one column - automatically unwraps result and return just value of column. To suppress unwrapping you should add column alias - it returns map with {:column-name value} Support 3 formats of query:
+Run SQL query. Same as `sql` but returns all rows. When selected only one column - automatically unwraps result and return just value of column. To suppress unwrapping you should add column alias - it returns map with {:column-name value} Support 3 formats of query:
 
 1. Pure sql string - "select \* from Patient"
 2. Parametrized sql vector \["select \* from patient where id = ?" 101 ]
@@ -648,7 +644,6 @@ Examples:
 ### `sdc->fhir-value`
 
 Try convert sdc-node value into fhir-value (Osvervation values)
-
 
 ```clojure
 (sdc->fhir-value {..schema...} 10) ;; => {:value {:integer 10}}

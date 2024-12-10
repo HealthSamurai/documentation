@@ -1,4 +1,8 @@
-# Addendum API
+---
+hidden: true
+---
+
+# Addendum API (deprecated)
 
 * [create-addendum](addendum-api.md#create-addendum-wip)
 * [add-note](addendum-api.md#add-note)

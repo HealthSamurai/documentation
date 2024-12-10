@@ -1,4 +1,8 @@
-# Lisp API
+---
+hidden: true
+---
+
+# Lisp API (deprecated)
 
 * [lisp/get-specification](lisp-api.md#lisp-get-specification) - get the specification which is distributed in form of a test suite
 * [lisp/eval-lisp](lisp-api.md#lisp-eval-lisp) - evaluate lisp expression within the provided execution context (`data` or `resource`).
@@ -123,7 +127,6 @@ Response:
 result: Hello Mr. Morgan
 ```
 
-Server responds with `HTTP 422 Unprocessable Entity` if wrong params provided 
-or with `HTTP 500 Internal Server Error` if wrong `resourceType` provided.
+Server responds with `HTTP 422 Unprocessable Entity` if wrong params provided or with `HTTP 500 Internal Server Error` if wrong `resourceType` provided.
 
-\
+\\

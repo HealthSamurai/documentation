@@ -1,4 +1,8 @@
-# Finalize DSL
+---
+hidden: true
+---
+
+# Finalize DSL (deprecated)
 
 Finalize definition describes document validation and postprocessing logic that invoked on sign:
 
@@ -71,8 +75,7 @@ Example of `Finalize` document:
 
 [LISP sub-language](lisp.md) is used to specify expressions which transform data of the document into FHIR resources (e.g. Observations).
 
-Inside of `:create` structure, LISP's `get-in` function is used to access data in the document. Other LISP functions are used to transform the data correspondingly and create a FHIR resource object (see an example above)
-Also in `:create` structure you can use lisp templates to avoid repetitions for extracting common resources (e.g. Observations)
+Inside of `:create` structure, LISP's `get-in` function is used to access data in the document. Other LISP functions are used to transform the data correspondingly and create a FHIR resource object (see an example above) Also in `:create` structure you can use lisp templates to avoid repetitions for extracting common resources (e.g. Observations)
 
 ```
 ....
@@ -97,10 +100,10 @@ Also in `:create` structure you can use lisp templates to avoid repetitions for 
 
 This code will create 3 Observations resources with given patient.
 
-We have only 2 lisp templates 
+We have only 2 lisp templates
 
-- `aidbox.sdc/gen-observation-template` - generate observations resource
-- `aidbox.sdc/gen-repeated-observations-template` - generated observations for repeated values
+* `aidbox.sdc/gen-observation-template` - generate observations resource
+* `aidbox.sdc/gen-repeated-observations-template` - generated observations for repeated values
 
 > lisp templates can be manually created by user.
 

@@ -350,7 +350,7 @@ parameter:
 {% endhint %}
 
 | Parameter                                                | Cardinality | Type                                                     |
-|----------------------------------------------------------|-------------|----------------------------------------------------------|
+| -------------------------------------------------------- | ----------- | -------------------------------------------------------- |
 | [allow-amend](fhir-sdc-api.md#allow-amend)               | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#boolean) |
 | [allow-repopulate](fhir-sdc-api.md#allow-repopulate)     | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#boolean) |
 | [redirect-on-submit](fhir-sdc-api.md#redirect-on-submit) | 0..1        | [String](http://hl7.org/fhir/R4/datatypes.html#string)   |
@@ -372,7 +372,7 @@ value:
 
 #### allow-repopulate
 
-Whether the generated link will allow re-populating the form. 
+Whether the generated link will allow re-populating the form.
 
 NOTE: Repopulate will be working only with forms that contain populate behavior
 
@@ -525,6 +525,34 @@ issue:
 The [extract](http://hl7.org/fhir/uv/sdc/OperationDefinition/QuestionnaireResponse-extract) operation takes a completed `QuestionnaireResponse` and extracts it's data to `Bundle` of resources by using metadata embedded in the `Questionnaire` the `QuestionnaireResponse` is based on. The extracted resources might include `Observations`, MedicationStatements and other standard FHIR resources which can then be shared and manipulated.
 
 Aidbox supports only the [Observation based](https://hl7.org/fhir/uv/sdc/extraction.html#observation-based-extraction) and [Definition based](https://hl7.org/fhir/uv/sdc/extraction.html#definition-based-extraction) extraction methods.
+
+
+
+{% hint style="info" %}
+Current Logic for **Observation-based** extraction:
+
+* A new Observation is created for each Questionnaire Response instance at the time of data extraction.
+* If a QR is amended (modified after submission), the existing Observations linked to that QR are updated accordingly.
+
+In the future, Aidbox Forms will align with the implementation described in the [FHIR Structured Data Capture (SDC) specification](https://build.fhir.org/ig/HL7/sdc/extraction.html#observation-based-extraction).
+{% endhint %}
+
+
+
+{% hint style="info" %}
+
+
+Current Logic for **Definition-based extraction**:
+
+* Two Options for Resource Extraction:
+  * **New Resource**: If "new resource" is selected, a new resource is always created during extraction.
+  * **Existing Resource:** If "existing resource" is selected, the system includes the `questionnaire-itemExtractionContext` extension. This extension can be added either at the root of the Questionnaire or at any item level. It identifies the resource that serves as the context for extraction.
+
+Using `itemExtractionContext`:
+
+* Empty `itemExtractionContext`: When the `itemExtractionContext` is empty, the Questionnaire is used to create a new resource.
+* Populated `itemExtractionContext`: If the `itemExtractionContext` contains a resource (or set of resources), the Questionnaire updates the existing resource.
+{% endhint %}
 
 ### URLs
 

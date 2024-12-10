@@ -2,9 +2,10 @@
 description: >-
   This article outlines the basic steps to start designing form in Aidbox Code
   Editor in browser
+hidden: true
 ---
 
-# Aidbox Code Editor
+# Aidbox Code Editor (deprecated)
 
 ## Overview
 

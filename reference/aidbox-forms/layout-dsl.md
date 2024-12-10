@@ -1,4 +1,8 @@
-# Layout DSL
+---
+hidden: true
+---
+
+# Layout DSL (deprecated)
 
 {% hint style="danger" %}
 Layout DSL is still under development and unstable
@@ -27,10 +31,9 @@ Typical description of node:
 
 * children - an array of child elements
 
-
 ## File input
 
-Allows user to attach a file to the document. Must be binded to a key with [`aidbox.sdc/attachment`](./document-dsl.md#attachment-field-type) type in document.
+Allows user to attach a file to the document. Must be binded to a key with [`aidbox.sdc/attachment`](document-dsl.md#attachment-field-type) type in document.
 
 ```clojure
 {:type aidbox.sdc/file-input
@@ -52,7 +55,6 @@ Currently supported content types:
 * video
 * PDF
 
-
 ### Show static media content
 
 ```clojure
@@ -63,11 +65,11 @@ Currently supported content types:
 ```
 
 ### Show attachments from the document
+
 ```clojure
 {:type aidbox.sdc/media-viewer
  :bind [:pulse-image]}
 ```
-
 
 ## Label node
 
