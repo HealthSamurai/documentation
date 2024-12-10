@@ -14,6 +14,18 @@ In the widget settings, you can define various parameters that determine its app
 
 ### General
 
+#### Collapsible
+
+Collapsible section is supported to enhance the usability and navigation of long questionnaires. This feature allows the child items of a group or question item to be displayed in a collapsible form, letting users toggle between showing and hiding nested items.
+
+There are options:
+
+1. `Not Collapsible`: The section is always fully expanded, and its child items are visible.
+2. `Collapsible (Open by Default)`: The section is collapsible and starts in an expanded state. Users can collapse it if desired.
+3. `Collapsible (Closed by Default)`: The section is collapsible and starts in a collapsed state. Users can expand it to view the child items.
+
+User can set the desired collapsibility option for specific sections or items within the questionnaire.
+
 ### Media
 
 ### Attributes
@@ -21,6 +33,39 @@ In the widget settings, you can define various parameters that determine its app
 ### Rule
 
 ### Data extraction
+
+Aidbox Forms supports two options for data extraction: **Observation-Based** and **Definition-Based**. These options provide flexibility in how form data is transformed into different FHIR resources.
+
+1. **Observation-based extraction:** It allows data collected through a Questionnaire Response (QR) to be extracted and stored in FHIR Observation resources.
+
+{% hint style="info" %}
+Ensure that each item has both a **code** and a **system** defined.&#x20;
+{% endhint %}
+
+&#x20;**Current Logic:**
+
+* A new Observation is created for each Questionnaire Response instance at the time of data extraction.
+* If a QR is amended (modified after submission), the existing Observations linked to that QR are updated accordingly.
+
+For detailed instructions and an example of extracting data into an Observation resource, visit the [Observation-Based Extraction Guide](https://app.gitbook.com/o/-LHqtKitlMYF2y7QBlXS/s/-LHqtKiuedlcKJLm337_/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-extract-data-from-forms#observation-based-extraction).
+
+2. **Definition-based extraction:** It maps form data dynamically to the corresponding FHIR resources.
+
+When configuring extraction, you must specify a **FHIR Path expression** in the **Path** field. This expression defines the resource and field where the data should be extracted.
+
+**Current Logic:**
+
+Two Options for Resource Extraction:
+
+* **New Resource**: If "new resource" is selected, a new resource is always created during extraction.Comment
+* **Existing Resource:** If "existing resource" is selected, the system includes the `questionnaire-itemExtractionContext` extension. This extension can be added either at the root of the Questionnaire or at any item level. It identifies the resource that serves as the context for extraction.Comment
+
+Using `itemExtractionContext`:
+
+* Empty `itemExtractionContext`: When the `itemExtractionContext` is empty, the Questionnaire is used to create a new resource.
+* Populated `itemExtractionContext`: If the `itemExtractionContext` contains a resource (or set of resources), the Questionnaire updates the existing resource.
+
+For detailed instructions and an example of extracting data into a Patient resource, visit the [Definition-Based Extraction Guide](https://app.gitbook.com/o/-LHqtKitlMYF2y7QBlXS/s/-LHqtKiuedlcKJLm337_/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-extract-data-from-forms#definition-based-extraction).
 
 ### Population
 
