@@ -24,27 +24,35 @@ Test patient data for Inferno test is available on Google Storage and maintained
 
 ```http
 POST /$load
-Content-Type: text/yaml
+content-type: application/json
+accept: application/json
 
-source: 'https://storage.googleapis.com/aidbox-public/smartbox/rows.ndjson.gz'
+{
+  "source": "https://storage.googleapis.com/aidbox-public/smartbox/rows.ndjson.gz"
+}
 ```
 
 ### User resource, associated with the patient record
 
 ```yaml
-POST /User
-Content-Type: text/yaml
+PUT /User/test-user
+content-type: application/json
+accept: application/json
 
-email: example@mail.com
-password: password
-name:
-  givenName: Amy
-  familyName: Shaw
-active: true
-fhirUser:
-  id: test-pt-1
-  resourceType: Patient
-id: test-user
+{
+  "email": "example@mail.com",
+  "password": "password",
+  "name": {
+    "givenName": "Amy",
+    "familyName": "Shaw"
+  },
+  "active": true,
+  "fhirUser": {
+    "id": "test-pt-1",
+    "resourceType": "Patient"
+  },
+  "id": "test-user"
+}
 ```
 
 Now you can login to Aidbox as a patient with `example@mail.com / password`.
@@ -53,30 +61,44 @@ Now you can login to Aidbox as a patient with `example@mail.com / password`.
 
 ```yaml
 PUT /
-Content-Type: text/yaml
+content-type: application/json
+accept: application/json
 
-- id: inferno-patient-smart-app
-  resourceType: Client
-  type: smart-app
-  active: true
-  grant_types:
-  - authorization_code
-  - basic
-  auth:
-    authorization_code:
-      pkce: true
-      redirect_uri: 'https://inferno.healthit.gov/suites/custom/smart/redirect'
-      refresh_token: true
-      access_token_expiration: 300
-  smart:
-    launch_uri: 'https://inferno.healthit.gov/suites/custom/smart/launch'
-  secret: verysecret
-- id: inferno-client-allow
-  link:
-    - id: inferno-patient-smart-app
-      resourceType: Client
-  engine: allow
-  resourceType: AccessPolicy
+[
+  {
+    "id": "inferno-patient-smart-app",
+    "resourceType": "Client",
+    "type": "smart-app",
+    "active": true,
+    "grant_types": [
+      "authorization_code",
+      "basic"
+    ],
+    "auth": {
+      "authorization_code": {
+        "pkce": true,
+        "redirect_uri": "https://inferno.healthit.gov/suites/custom/smart/redirect",
+        "refresh_token": true,
+        "access_token_expiration": 300
+      }
+    },
+    "smart": {
+      "launch_uri": "https://inferno.healthit.gov/suites/custom/smart/launch"
+    },
+    "secret": "verysecret"
+  },
+  {
+    "id": "inferno-client-allow",
+    "link": [
+      {
+        "id": "inferno-patient-smart-app",
+        "resourceType": "Client"
+      }
+    ],
+    "engine": "allow",
+    "resourceType": "AccessPolicy"
+  }
+]
 ```
 
 ## Create Inferno test session
