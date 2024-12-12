@@ -68,6 +68,10 @@ accept: application/json
 
 ## Launch App
 
+SMART Launch Interaction Diagram:
+
+<figure><img src="../../../../.gitbook/assets/svgviewer-output.svg" alt=""><figcaption><p>SMART App Launch Ffow</p></figcaption></figure>
+
 ## Standalone launch
 
 In SMART’s standalone launch flow, a user selects an app from outside the EHR (for example, by tapping an app icon on a mobile phone home screen).
@@ -76,12 +80,12 @@ The application should start launch by performing [authorization code grant flow
 
 ## EHR launch
 
-The EHR initiates a “launch sequence” by opening a new browser instance (or `iframe`) pointing to the app’s registered launch URL and passing some context.
+The EHR initiates a “launch sequence” by opening a new browser instance (or iframe) pointing to the app’s registered launch URL and passing some context.
 
 ### Launch URL structure
 
 ```
-http://smart-app-launch-endpoint?iss=<fhir-endpoint>&launch=<opaque-identifier>
+http://smart-app-launch-endpoint?iss=<fhir-endpoint>&launch=<jwt-identifier>
 ```
 
 Where:
