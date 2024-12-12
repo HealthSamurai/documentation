@@ -414,15 +414,15 @@ To refresh the `access_token`  send request to Aidbox's `/auth/token` endpoint w
 {% tabs %}
 {% tab title="Request" %}
 ```json
- POST /auth/token
- content-type: application/json
- accept: application/json
+POST /auth/token
+content-type: application/json
+accept: application/json
 
- {
-   "grant_type": "refresh_token",
-   "refresh_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2cxMHRlc3QuZWRnZS5haWRib3guYXBwIiwic3ViIjoiaW5mZXJuby1wYXRpZW50LXNtYXJ0LWFwcCIsImp0aSI6IjlmMjUxODU1LWQ1MTAtNDY2Mi1iZTg2LTE5ZTljZDYzN2Y2OCIsInR5cCI6InJlZnJlc2gifQ.iKXaJjfAL5dRqfiduLuCgEJhWu0CIzi_2KPS6d80OEp24LB61M4PWx1_TUUS5qaedzrKUBhkE7-x07fI-6f5FdiBMGxq_aKbfGxTAUJJzh-ki-N20IOSolKFNSqyKILhwIP4V221H0YQZFles5ghXBGxK_O5TW-l9w3QDbcsLXBbhH1fOqetsiKdVac8iy2H278iMVnWq3eD8I_-O3yAuISxh_nOI4ENGnX8Z1KKcdrMDmwN7HNsTxmSLM5zkikPZlqIp02JijcV4y8z3XfVZhR2jaXmegTfz_qEWyVrgPYX1-oQ06MZFkgjnlYCZMswvz_wEPuE0zDPJMgGbiUwjg",
-   "client_id": "my-smart-app-client-id"
- }
+{
+  "grant_type": "refresh_token",
+  "refresh_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2cxMHRlc3QuZWRnZS5haWRib3guYXBwIiwic3ViIjoiaW5mZXJuby1wYXRpZW50LXNtYXJ0LWFwcCIsImp0aSI6IjlmMjUxODU1LWQ1MTAtNDY2Mi1iZTg2LTE5ZTljZDYzN2Y2OCIsInR5cCI6InJlZnJlc2gifQ.iKXaJjfAL5dRqfiduLuCgEJhWu0CIzi_2KPS6d80OEp24LB61M4PWx1_TUUS5qaedzrKUBhkE7-x07fI-6f5FdiBMGxq_aKbfGxTAUJJzh-ki-N20IOSolKFNSqyKILhwIP4V221H0YQZFles5ghXBGxK_O5TW-l9w3QDbcsLXBbhH1fOqetsiKdVac8iy2H278iMVnWq3eD8I_-O3yAuISxh_nOI4ENGnX8Z1KKcdrMDmwN7HNsTxmSLM5zkikPZlqIp02JijcV4y8z3XfVZhR2jaXmegTfz_qEWyVrgPYX1-oQ06MZFkgjnlYCZMswvz_wEPuE0zDPJMgGbiUwjg",
+  "client_id": "my-smart-app-client-id"
+}
 ```
 {% endtab %}
 
