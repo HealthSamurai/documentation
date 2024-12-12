@@ -29,8 +29,8 @@ API constructor requires knowledge of [zen language](https://github.com/zen-lang
 [multitenancy-approach.md](../modules/smartbox/background-information/multitenancy-approach.md)
 {% endcontent-ref %}
 
-{% content-ref url="../modules/security-and-access-control/security/smart-app.md" %}
-[smart-app.md](../modules/security-and-access-control/security/smart-app.md)
+{% content-ref url="../modules/security-and-access-control/how-to-guides/smart-app.md" %}
+[smart-app.md](../modules/security-and-access-control/how-to-guides/smart-app.md)
 {% endcontent-ref %}
 
 #### Usage examples:
