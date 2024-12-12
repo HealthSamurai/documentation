@@ -6,47 +6,9 @@ description: User, Session, Client resources and mechanics explained
 
 ## **User**
 
-Aidbox has a SCIM User Resource.
+This document outlines the attributes of the `User` resource and their descriptions.
 
-Attributes:
-
-| element    | type          | description      |
-| ---------- | ------------- | ---------------- |
-| id         | string        |                  |
-| email      | string        |                  |
-| password   | string        | Hash of password |
-| identifier | Identifier\[] |                  |
-| userName   |               |                  |
-
-### Create Users
-
-To create user you can use CRUD API, e.g. `POST /User` and `PUT /User/`
-
-### User Login
-
-Human User can use /auth/login to log in with credentials defined in a User resource
-
-System can authenticate a User as it is specified in OAuth 2.0 spec. For example, you can get access token via
-
-```
-POST /auth/token
-client_id: password-client
-grant_type: password
-username: user@mail.com
-password: password
-```
-
-Note for such authentification a Client resource should be created
-
-{% hint style="info" %}
-You can find different authorization flow examples in the Auth Sandbox in the Aidbox ui
-{% endhint %}
-
-`GET /auth/userinfo` returns info about current User session
-
-### Activate/Deactivate Users
-
-To control User active status you can change `User.inactive` attribute by setting true or false value. Deactivating user doesn't affect Session's activation.
+<table><thead><tr><th width="270">Property</th><th width="105">Type</th><th>Description</th></tr></thead><tbody><tr><td>User.<strong>active</strong></td><td>boolean</td><td>Indicates whether the User is active. <strong>Note:</strong> This attribute is ignored.</td></tr><tr><td>User.<strong>addresses</strong></td><td>Object</td><td>A collection of physical mailing addresses for the User. Includes sub-attributes:</td></tr><tr><td>User.addresses.<strong>country</strong></td><td>string</td><td>Specifies the country name.</td></tr><tr><td>User.addresses.<strong>formatted</strong></td><td>string</td><td>The complete mailing address formatted for display or mailing label usage. Can include newlines.</td></tr><tr><td>User.addresses.<strong>locality</strong></td><td>string</td><td>Specifies the city or locality.</td></tr><tr><td>User.addresses.<strong>postalCode</strong></td><td>string</td><td>Specifies the postal or zip code.</td></tr><tr><td>User.addresses.<strong>region</strong></td><td>string</td><td>Specifies the state or region.</td></tr><tr><td>User.addresses.<strong>streetAddress</strong></td><td>string</td><td>The detailed street address, including house number, street name, P.O. box, and extended street information. Can include newlines.</td></tr><tr><td>User.addresses.<strong>type</strong></td><td>string</td><td>A label indicating the type of address, such as 'work', 'home', or 'other'.</td></tr><tr><td>User.<strong>costCenter</strong></td><td>string</td><td>Identifies the cost center associated with the User.</td></tr><tr><td>User.<strong>data</strong></td><td>Anything</td><td>Additional custom data associated with the User.</td></tr><tr><td>User.<strong>department</strong></td><td>string</td><td>Specifies the department the User belongs to.</td></tr><tr><td>User.<strong>displayName</strong></td><td>string</td><td>A name suitable for display, typically the User's full name if available.</td></tr><tr><td>User.<strong>division</strong></td><td>string</td><td>Identifies the division the User is part of.</td></tr><tr><td>User.<strong>email</strong></td><td>email</td><td>The primary email address of the User.</td></tr><tr><td>User.<strong>emails</strong></td><td>Object</td><td>A list of email addresses for the User. Values should be canonicalized (e.g., 'bjensen@example.com'). Includes sub-attributes:</td></tr><tr><td>User.emails.<strong>display</strong></td><td>string</td><td>A human-readable display name for the email. <strong>READ-ONLY.</strong></td></tr><tr><td>User.emails.<strong>primary</strong></td><td>boolean</td><td>Indicates whether this is the preferred email address. Only one email can be marked as primary.</td></tr><tr><td>User.emails.<strong>type</strong></td><td>string</td><td>Specifies the type of email, such as 'work', 'home', or 'other'.</td></tr><tr><td>User.emails.<strong>value</strong></td><td>string</td><td>The email address value.</td></tr><tr><td>User.<strong>employeeNumber</strong></td><td>string</td><td>A unique identifier assigned to the User, often used for organizational purposes.</td></tr><tr><td>User.<strong>entitlements</strong></td><td>Object</td><td>A list of entitlements representing the User's access rights or privileges. Includes sub-attributes:</td></tr><tr><td>User.entitlements.<strong>display</strong></td><td>string</td><td>A human-readable name for the entitlement. <strong>READ-ONLY.</strong></td></tr><tr><td>User.entitlements.<strong>primary</strong></td><td>boolean</td><td>Indicates the primary entitlement. Only one entitlement can be marked as primary.</td></tr><tr><td>User.entitlements.<strong>type</strong></td><td>string</td><td>Specifies the type of entitlement.</td></tr><tr><td>User.entitlements.<strong>value</strong></td><td>string</td><td>The value of the entitlement.</td></tr><tr><td>User.<strong>fhirUser</strong></td><td>Reference</td><td>A reference to the corresponding FHIR resource for the User.</td></tr><tr><td>User.<strong>gender</strong></td><td>string</td><td>The User's gender.</td></tr><tr><td>User.<strong>identifier</strong></td><td>Identifier</td><td>A list of identifiers associated with the User.</td></tr><tr><td>User.<strong>ims</strong></td><td>Object</td><td>A collection of instant messaging addresses for the User. Includes sub-attributes:</td></tr><tr><td>User.ims.<strong>display</strong></td><td>string</td><td>A display-friendly name for the messaging address. <strong>READ-ONLY.</strong></td></tr><tr><td>User.ims.<strong>primary</strong></td><td>boolean</td><td>Indicates whether this is the primary messaging address. Only one can be primary.</td></tr><tr><td>User.ims.<strong>type</strong></td><td>string</td><td>Specifies the type of messaging address, such as 'aim', 'gtalk', or 'xmpp'.</td></tr><tr><td>User.ims.<strong>value</strong></td><td>string</td><td>The value of the messaging address.</td></tr></tbody></table>
 
 ## Sessions
 
