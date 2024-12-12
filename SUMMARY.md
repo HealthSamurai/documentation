@@ -311,7 +311,7 @@
     * [SMART Client Authentication](modules/security-and-access-control/smart-on-fhir/smart-client-authentication/README.md)
       * [SMART: Asymmetric (“private key JWT”) authentication](modules/security-and-access-control/smart-on-fhir/smart-client-authentication/smart-asymmetric-private-key-jwt-authentication.md)
       * [SMART: Symmetric (“client secret”) authentication](modules/security-and-access-control/smart-on-fhir/smart-client-authentication/smart-symmetric-client-secret-authentication.md)
-    * [SMART: Scopes for Limiting Access](modules/security-and-access-control/smart-on-fhir/smart-scopes-for-limiting-access.md)
+    * [SMART: Scopes for Limiting Access](modules/security-and-access-control/smart-on-fhir/smart-scopes.md)
     * [Pass Inferno tests with Aidbox](modules/security-and-access-control/smart-on-fhir/pass-inferno-tests-with-aidbox.md)
     * [Example: SMART App Launch using Aidbox and Keycloak](modules/security-and-access-control/smart-on-fhir/example-smart-app-launch-using-aidbox-and-keycloak.md)
   * [Tutorials](modules/security-and-access-control/readme-1-1/README.md)

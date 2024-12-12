@@ -231,7 +231,7 @@ Patient-level access control in Aidbox enables restricting data access to resour
 
 To achieve this behavior, the request must include:
 
-* A valid [JWT access token.](smart-scopes-for-limiting-access.md#access-token)
+* A valid [JWT access token.](smart-scopes.md#access-token)
 * Only patient-level scopes ( `patient/...`).
 * The patient ID in the `context.patient` claim.
 

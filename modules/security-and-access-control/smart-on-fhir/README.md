@@ -29,8 +29,8 @@ The [FHIR Schema Validator Engine](https://docs.aidbox.app/modules/profiling-and
 
 ## Supported SMART Scopes
 
-{% content-ref url="smart-scopes-for-limiting-access.md" %}
-[smart-scopes-for-limiting-access.md](smart-scopes-for-limiting-access.md)
+{% content-ref url="smart-scopes.md" %}
+[smart-scopes.md](smart-scopes.md)
 {% endcontent-ref %}
 
 ## SMART App Launch using Aidbox and Keycloak
