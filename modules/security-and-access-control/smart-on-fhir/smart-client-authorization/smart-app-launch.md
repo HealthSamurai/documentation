@@ -66,19 +66,19 @@ accept: application/json
 }
 ```
 
-
-
 ## Launch App
 
-### Standalone launch
+## Standalone launch
 
-### EHR launch
+In SMART’s standalone launch flow, a user selects an app from outside the EHR (for example, by tapping an app icon on a mobile phone home screen).
 
+The application should start launch by performing [authorization code grant flow](smart-app-launch.md#obtain-authorization-code).
 
+## EHR launch
 
+The EHR initiates a “launch sequence” by opening a new browser instance (or `iframe`) pointing to the app’s registered launch URL and passing some context.
 
-
-Launch URI structure:
+### Launch URL structure
 
 ```
 http://smart-app-launch-endpoint?iss=<fhir-endpoint>&launch=<opaque-identifier>
@@ -184,7 +184,7 @@ http://smart-app-uri.com/redirect?
 
 After obtaining an authorization code, the app exchange the code for an access token. To do it send requiest to AIdbox's `/auth/token` with following parameters:
 
-<table><thead><tr><th width="259">Parametr</th><th>Description</th></tr></thead><tbody><tr><td><code>grant_type</code> * </td><td>Fixed value - <code>authorization_cod</code>e</td></tr><tr><td><code>code</code> *</td><td>Code that the app received from Aidbox on the previous step.</td></tr><tr><td><code>redirect_uri</code> * </td><td>Client's pre-registered redirect URIs. Must match the <code>Client.auth.authorization_code.redirect_uri</code> value.</td></tr><tr><td><code>code_verifier</code></td><td>This parameter is used to verify against the <code>code_challenge</code> parameter previously provided in the authorize request.</td></tr><tr><td><code>client_id</code></td><td>Required for <code>public apps</code>. Omit for <code>confidential apps</code>.</td></tr></tbody></table>
+<table><thead><tr><th width="222">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>grant_type</code> * </td><td>Fixed value - <code>authorization_cod</code>e</td></tr><tr><td><code>code</code> *</td><td>Code that the app received from Aidbox on the previous step.</td></tr><tr><td><code>redirect_uri</code> * </td><td>Client's pre-registered redirect URIs. Must match the <code>Client.auth.authorization_code.redirect_uri</code> value.</td></tr><tr><td><code>code_verifier</code></td><td>This parameter is used to verify against the <code>code_challenge</code> parameter previously provided in the authorize request.</td></tr><tr><td><code>client_id</code></td><td>Required for <code>public apps</code>. Omit for <code>confidential apps</code>.</td></tr></tbody></table>
 
 \*- required parameter
 
@@ -210,12 +210,12 @@ accept: application/json
 {% tab title="Response" %}
 ```json
 {
-  "access_token": "611ZFIZiaR62OISylNhS9FMz7RLiPTVRn6sgbxz5uzOwB1TxOI8koxT2elL3fCMH",
-  "refresh_token": "N9wSbVxNxme3f2lh31drixdxf4ZWcBpatOlubVRopQTdwKAcMH7CmmkGS21SX0l8",
-  "smart_style_url": "https://<AIDBOX_BASE_URL>p/fhir/style-v1.json",
+  "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdHYiOjIsImF1ZCI6Imh0dHBzOi8vZzEwdGVzdC5lZGdlLmFpZGJveC5hcHAvZmhpciIsInN1YiI6InRlc3QtdXNlciIsImlzcyI6Imh0dHBzOi8vZzEwdGVzdC5lZGdlLmFpZGJveC5hcHAiLCJleHAiOjE3MzQwMzQ3MTYsInNjb3BlIjoibGF1bmNoL3BhdGllbnQgb3BlbmlkIGZoaXJVc2VyIG9mZmxpbmVfYWNjZXNzIHBhdGllbnQvUGF0aWVudC5yZWFkIHBhdGllbnQvQWxsZXJneUludG9sZXJhbmNlLnJlYWQgcGF0aWVudC9DYXJlUGxhbi5yZWFkIHBhdGllbnQvQ2FyZVRlYW0ucmVhZCBwYXRpZW50L0NvbmRpdGlvbi5yZWFkIHBhdGllbnQvRGV2aWNlLnJlYWQgcGF0aWVudC9EaWFnbm9zdGljUmVwb3J0LnJlYWQgcGF0aWVudC9Eb2N1bWVudFJlZmVyZW5jZS5yZWFkIHBhdGllbnQvR29hbC5yZWFkIHBhdGllbnQvRW5jb3VudGVyLnJlYWQgcGF0aWVudC9JbW11bml6YXRpb24ucmVhZCBwYXRpZW50L01lZGljYXRpb25SZXF1ZXN0LnJlYWQgcGF0aWVudC9PYnNlcnZhdGlvbi5yZWFkIHBhdGllbnQvUHJvY2VkdXJlLnJlYWQgcGF0aWVudC9Qcm92ZW5hbmNlLnJlYWQgcGF0aWVudC9QcmFjdGl0aW9uZXIucmVhZCBwYXRpZW50L09yZ2FuaXphdGlvbi5yZWFkIHBhdGllbnQvTG9jYXRpb24ucmVhZCIsImp0aSI6IjlmMjUxODU1LWQ1MTAtNDY2Mi1iZTg2LTE5ZTljZDYzN2Y2OCIsImNvbnRleHQiOnsicGF0aWVudCI6InRlc3QtcHQtMSJ9LCJpYXQiOjE3MzQwMzQ0MTZ9.EC815f80x6QJebLLWmS0E9XjzPPee5QpIMYz0Oos9ocR_3b4FOsQalModuG4YMGkyZXJOwE29WUjv0fVVXGovdfb0a1hR3iK9_p28qUUb_OmGHo22Upt6K-smHkV8krGM5xNm6g_YPSFT1u9T4qlWoNMoCpti5UdKlmBjHdcIwXoeLb5yC9BynwkJBUpt5PTtE-_gpC_VIg6WkC1hwe2RrDwJl8qvaFl2VZEPhdLU2it3WnX1R-JR_tkXbmY8pv6UfeuPGABleR1sPweyQ-pz3coK4KmkY0tm_7OsBQGKgX9s7RIBP3ab3-dnx8XBJ_s9lw_zefIcYjCuBqZbZU12w",
+  "refresh_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2cxMHRlc3QuZWRnZS5haWRib3guYXBwIiwic3ViIjoiaW5mZXJuby1wYXRpZW50LXNtYXJ0LWFwcCIsImp0aSI6IjlmMjUxODU1LWQ1MTAtNDY2Mi1iZTg2LTE5ZTljZDYzN2Y2OCIsInR5cCI6InJlZnJlc2gifQ.iKXaJjfAL5dRqfiduLuCgEJhWu0CIzi_2KPS6d80OEp24LB61M4PWx1_TUUS5qaedzrKUBhkE7-x07fI-6f5FdiBMGxq_aKbfGxTAUJJzh-ki-N20IOSolKFNSqyKILhwIP4V221H0YQZFles5ghXBGxK_O5TW-l9w3QDbcsLXBbhH1fOqetsiKdVac8iy2H278iMVnWq3eD8I_-O3yAuISxh_nOI4ENGnX8Z1KKcdrMDmwN7HNsTxmSLM5zkikPZlqIp02JijcV4y8z3XfVZhR2jaXmegTfz_qEWyVrgPYX1-oQ06MZFkgjnlYCZMswvz_wEPuE0zDPJMgGbiUwjg",
+  "smart_style_url": "https://g10test.edge.aidbox.app/fhir/style-v1.json",
   "scope": "launch/patient openid fhirUser offline_access patient/Patient.read patient/AllergyIntolerance.read patient/CarePlan.read patient/CareTeam.read patient/Condition.read patient/Device.read patient/DiagnosticReport.read patient/DocumentReference.read patient/Goal.read patient/Encounter.read patient/Immunization.read patient/MedicationRequest.read patient/Observation.read patient/Procedure.read patient/Provenance.read patient/Practitioner.read patient/Organization.read patient/Location.read",
   "token_type": "Bearer",
-  "id_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0LXVzZXIiLCJpc3MiOiJodHRwczovL2cxMHRlc3QuZWRnZS5haWRib3guYXBwIiwianRpIjoiODY3ZjJhNWUtYzc3MS00NDgwLTlhYTMtNzQyNzVjYWZkNTgxIiwiaWF0IjoxNzM0MDMyODM5LCJleHAiOjE3MzQwMzMxMzksImZoaXJVc2VyIjoiaHR0cHM6Ly9nMTB0ZXN0LmVkZ2UuYWlkYm94LmFwcC9maGlyL1BhdGllbnQvdGVzdC1wdC0xIiwiZW1haWwiOiJleGFtcGxlQG1haWwuY29tIiwiYXVkIjoiaW5mZXJuby1wYXRpZW50LXNtYXJ0LWFwcCJ9.MJXA_yc1M5O3LUFU5DhvUMx8c1Zp5u6n85mLbJXeh4JuPsmETCz3YxV6VS6JidUSPm6BgbpY9ZqOJP32cxNoSkO0ATvzrocdfN71rUqTsThgPFNJND20drob-XnTODJgpN_JuC_00YyXw5j0Irr9NZLFzORClkzsuBM1jdxiVta04VrDsd3FizzC_p7x3UpmsmGQAO_qta6aG7xZN2BdCGHBAtEVC0uC69unDboo7w9UTB-YASW0t7sEbnKqaDT8OSbHiLP1OleShykCQRisFzo7JlMucotec31-M0XaEPJH94W9xFvxghzhULRMuojP6v0XmAqi2nhQCrwywfcWew",
+  "id_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0LXVzZXIiLCJpc3MiOiJodHRwczovL2cxMHRlc3QuZWRnZS5haWRib3guYXBwIiwianRpIjoiOWYyNTE4NTUtZDUxMC00NjYyLWJlODYtMTllOWNkNjM3ZjY4IiwiaWF0IjoxNzM0MDM0NDE2LCJleHAiOjE3MzQwMzQ3MTYsImZoaXJVc2VyIjoiaHR0cHM6Ly9nMTB0ZXN0LmVkZ2UuYWlkYm94LmFwcC9maGlyL1BhdGllbnQvdGVzdC1wdC0xIiwiZW1haWwiOiJleGFtcGxlQG1haWwuY29tIiwiYXVkIjoiaW5mZXJuby1wYXRpZW50LXNtYXJ0LWFwcCJ9.GL7VUZ7eUhDshfV6qbtFDuuMgbOeJwX8UpVJZPEwoJrv6Uy_2Dzvp2R5v3JrsX0HCI-6uyDl40J0SOnGtxjh1jaemzwR9nAAJ7lcxGoldzB53e5LYM_2tI0OMS12aCJCGCNWTLt4VgN9UcmC1PUzyXT8q8Uoqewj00zFu1wU_Mxe3Il3Kc6WQJV25LUVuYAC0UgZrTbPsWvGsWu6XaF-2RrCPqy5Lyc-z5gYMlOcJbFnedL8yKZrJXtIV8TAmBHOq4nr4KAXsv6NehB3Xo_Pn55IplOMWwil9F6_Q7rrzZSBnfyxgxGznups3YYZpC4FJHMuxIFEmsmQf96I5KSKbw",
   "expires_in": 300,
   "need_patient_banner": true,
   "patient": "test-pt-1",
@@ -239,7 +239,7 @@ accept: application/json
     "active": true,
     "id": "test-user"
   }
-} 
+}
 
 ```
 {% endtab %}
@@ -247,11 +247,195 @@ accept: application/json
 
 ## Access FHIR API
 
+Use `access_token` received in the previous step to access Aidbox FHIR API:
 
+{% tabs %}
+{% tab title="Request" %}
+```http
+GET /fhir/Observation?code=4548-4&_count=2
+content-type: application/json
+accept: application/json
+authorization: "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdHYiOjIsImF1ZCI6Imh0dHBzOi8vZzEwdGVzdC5lZGdlLmFpZGJveC5hcHAvZmhpciIsInN1YiI6InRlc3QtdXNlciIsImlzcyI6Imh0dHBzOi8vZzEwdGVzdC5lZGdlLmFpZGJveC5hcHAiLCJleHAiOjE3MzQwMzQ3MTYsInNjb3BlIjoibGF1bmNoL3BhdGllbnQgb3BlbmlkIGZoaXJVc2VyIG9mZmxpbmVfYWNjZXNzIHBhdGllbnQvUGF0aWVudC5yZWFkIHBhdGllbnQvQWxsZXJneUludG9sZXJhbmNlLnJlYWQgcGF0aWVudC9DYXJlUGxhbi5yZWFkIHBhdGllbnQvQ2FyZVRlYW0ucmVhZCBwYXRpZW50L0NvbmRpdGlvbi5yZWFkIHBhdGllbnQvRGV2aWNlLnJlYWQgcGF0aWVudC9EaWFnbm9zdGljUmVwb3J0LnJlYWQgcGF0aWVudC9Eb2N1bWVudFJlZmVyZW5jZS5yZWFkIHBhdGllbnQvR29hbC5yZWFkIHBhdGllbnQvRW5jb3VudGVyLnJlYWQgcGF0aWVudC9JbW11bml6YXRpb24ucmVhZCBwYXRpZW50L01lZGljYXRpb25SZXF1ZXN0LnJlYWQgcGF0aWVudC9PYnNlcnZhdGlvbi5yZWFkIHBhdGllbnQvUHJvY2VkdXJlLnJlYWQgcGF0aWVudC9Qcm92ZW5hbmNlLnJlYWQgcGF0aWVudC9QcmFjdGl0aW9uZXIucmVhZCBwYXRpZW50L09yZ2FuaXphdGlvbi5yZWFkIHBhdGllbnQvTG9jYXRpb24ucmVhZCIsImp0aSI6IjlmMjUxODU1LWQ1MTAtNDY2Mi1iZTg2LTE5ZTljZDYzN2Y2OCIsImNvbnRleHQiOnsicGF0aWVudCI6InRlc3QtcHQtMSJ9LCJpYXQiOjE3MzQwMzQ0MTZ9.EC815f80x6QJebLLWmS0E9XjzPPee5QpIMYz0Oos9ocR_3b4FOsQalModuG4YMGkyZXJOwE29WUjv0fVVXGovdfb0a1hR3iK9_p28qUUb_OmGHo22Upt6K-smHkV8krGM5xNm6g_YPSFT1u9T4qlWoNMoCpti5UdKlmBjHdcIwXoeLb5yC9BynwkJBUpt5PTtE-_gpC_VIg6WkC1hwe2RrDwJl8qvaFl2VZEPhdLU2it3WnX1R-JR_tkXbmY8pv6UfeuPGABleR1sPweyQ-pz3coK4KmkY0tm_7OsBQGKgX9s7RIBP3ab3-dnx8XBJ_s9lw_zefIcYjCuBqZbZU12w"
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```json
+// 200 OK
+
+{
+ "resourceType": "Bundle",
+ "type": "searchset",
+ "entry": [
+  {
+   "resource": {
+    "category": [
+     {
+      "coding": [
+       {
+        "code": "laboratory",
+        "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+        "display": "laboratory"
+       }
+      ]
+     }
+    ],
+    "meta": {
+     "lastUpdated": "2024-08-29T15:51:05.117806Z",
+     "versionId": "74",
+     "extension": [
+      {
+       "url": "https://fhir.aidbox.app/fhir/StructureDefinition/created-at",
+       "valueInstant": "2024-08-29T15:51:05.117806Z"
+      }
+     ]
+    },
+    "encounter": {
+     "reference": "Encounter/67b8fa04-6e1b-4074-8b8c-3ec44bfec48f"
+    },
+    "valueQuantity": {
+     "code": "%",
+     "unit": "%",
+     "value": 2.856519918445372,
+     "system": "http://unitsofmeasure.org"
+    },
+    "resourceType": "Observation",
+    "effectiveDateTime": "2014-05-11T12:39:55+04:00",
+    "status": "final",
+    "id": "00592410-ec4a-4d64-a674-f0bfb244a978",
+    "code": {
+     "text": "Hemoglobin A1c/Hemoglobin.total in Blood",
+     "coding": [
+      {
+       "code": "4548-4",
+       "system": "http://loinc.org",
+       "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+      }
+     ]
+    },
+    "issued": "2014-05-11T12:39:55.513+04:00",
+    "subject": {
+     "reference": "Patient/test-pt-1"
+    }
+   },
+   "search": {
+    "mode": "match"
+   },
+   "fullUrl": "https://releasetest.edge.aidbox.app/Observation/00592410-ec4a-4d64-a674-f0bfb244a978",
+   "link": [
+    {
+     "relation": "self",
+     "url": "https://releasetest.edge.aidbox.app/Observation/00592410-ec4a-4d64-a674-f0bfb244a978"
+    }
+   ]
+  },
+  {
+   "resource": {
+    "category": [
+     {
+      "coding": [
+       {
+        "code": "laboratory",
+        "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+        "display": "laboratory"
+       }
+      ]
+     }
+    ],
+    "meta": {
+     "lastUpdated": "2024-08-29T15:51:05.117806Z",
+     "versionId": "74",
+     "extension": [
+      {
+       "url": "https://fhir.aidbox.app/fhir/StructureDefinition/created-at",
+       "valueInstant": "2024-08-29T15:51:05.117806Z"
+      }
+     ]
+    },
+    "encounter": {
+     "reference": "Encounter/f1c8a70d-0dfa-47a6-b940-d441fdfd1323"
+    },
+    "valueQuantity": {
+     "code": "%",
+     "unit": "%",
+     "value": 3.1257055258079536,
+     "system": "http://unitsofmeasure.org"
+    },
+    "resourceType": "Observation",
+    "effectiveDateTime": "2018-01-14T11:39:55+03:00",
+    "status": "final",
+    "id": "01e57d19-35b7-47d0-9c3b-29d14d16d3f5",
+    "code": {
+     "text": "Hemoglobin A1c/Hemoglobin.total in Blood",
+     "coding": [
+      {
+       "code": "4548-4",
+       "system": "http://loinc.org",
+       "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+      }
+     ]
+    },
+    "issued": "2018-01-14T11:39:55.513+03:00",
+    "subject": {
+     "reference": "Patient/test-pt-1"
+    }
+   },
+   "search": {
+    "mode": "match"
+   },
+   "fullUrl": "https://releasetest.edge.aidbox.app/Observation/01e57d19-35b7-47d0-9c3b-29d14d16d3f5",
+   "link": [
+    {
+     "relation": "self",
+     "url": "https://releasetest.edge.aidbox.app/Observation/01e57d19-35b7-47d0-9c3b-29d14d16d3f5"
+    }
+   ]
+  }
+ ]
+}
+```
+{% endtab %}
+{% endtabs %}
 
 ## Refresh access token
 
+To refresh the `access_token`  send request to Aidbox's `/auth/token` endpoint with following parameters:
 
+<table><thead><tr><th width="270">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>grant_type</code> * </td><td>Fixed value - <code>refresh_token</code></td></tr><tr><td><code>refresh_token</code> *</td><td>The refresh token from the <a href="smart-app-launch.md#obtain-access-token">authorization response</a>.</td></tr><tr><td><code>client_id</code></td><td>Client resource ID.</td></tr><tr><td><code>scope</code></td><td>String with <a href="../smart-scopes.md">scopes</a> separated by space. Must describe the access that the app needs.</td></tr></tbody></table>
+
+\*- required parameter
+
+### Example
+
+{% tabs %}
+{% tab title="Request" %}
+```json
+ POST /auth/token
+ content-type: application/json
+ accept: application/json
+
+ {
+   "grant_type": "refresh_token",
+   "refresh_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2cxMHRlc3QuZWRnZS5haWRib3guYXBwIiwic3ViIjoiaW5mZXJuby1wYXRpZW50LXNtYXJ0LWFwcCIsImp0aSI6IjlmMjUxODU1LWQ1MTAtNDY2Mi1iZTg2LTE5ZTljZDYzN2Y2OCIsInR5cCI6InJlZnJlc2gifQ.iKXaJjfAL5dRqfiduLuCgEJhWu0CIzi_2KPS6d80OEp24LB61M4PWx1_TUUS5qaedzrKUBhkE7-x07fI-6f5FdiBMGxq_aKbfGxTAUJJzh-ki-N20IOSolKFNSqyKILhwIP4V221H0YQZFles5ghXBGxK_O5TW-l9w3QDbcsLXBbhH1fOqetsiKdVac8iy2H278iMVnWq3eD8I_-O3yAuISxh_nOI4ENGnX8Z1KKcdrMDmwN7HNsTxmSLM5zkikPZlqIp02JijcV4y8z3XfVZhR2jaXmegTfz_qEWyVrgPYX1-oQ06MZFkgjnlYCZMswvz_wEPuE0zDPJMgGbiUwjg",
+   "client_id": "my-smart-app-client-id"
+ }
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```json
+// 200 OK
+
+{
+  "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2cxMHRlc3QuZWRnZS5haWRib3guYXBwIiwic3ViIjoiaW5mZXJuby1wYXRpZW50LXNtYXJ0LWFwcCIsImlhdCI6MTczNDAzNDQyMSwianRpIjoiOWYyNTE4NTUtZDUxMC00NjYyLWJlODYtMTllOWNkNjM3ZjY4IiwiYXVkIjoiaHR0cHM6Ly9nMTB0ZXN0LmVkZ2UuYWlkYm94LmFwcC9maGlyIiwiZXhwIjoxNzM0MDM0NzIxfQ.Y9Ghv8HqOjDZWowpsZU0ZR2Yreaot_EqcQiiOX39Ihxx5IplitYylzTJkE8bMBAZaZrRfHM4djEviC8xfkOcFKrOlwABZsAf5GYk7kSpmodNE-e_X4AkJ5MgxLChFJNFhxWuVvwT9jbMC2tLv7ycN4ZGMr1hGLr1hkg1jF43OE5VX-OCY6i6tIS50r4iBgKjTunQPpx0boG9skAAWhpKOFgj_QT5Mieq5UQRjV6z-B2B0ckQOZCByxlXBMyUAbiY8s-XHGxz1OPlqlllzy13205A4NpiWeJ5BrURtLorbJRqBr5Ij2CbDJm4ey81gq1XEY8TdirkWux5oVA5zbKWZQ",
+  "token_type": "Bearer",
+  "patient": "test-pt-1",
+  "scope": "launch/patient openid fhirUser offline_access patient/Patient.read patient/AllergyIntolerance.read patient/CarePlan.read patient/CareTeam.read patient/Condition.read patient/Device.read patient/DiagnosticReport.read patient/DocumentReference.read patient/Goal.read patient/Encounter.read patient/Immunization.read patient/MedicationRequest.read patient/Observation.read patient/Procedure.read patient/Provenance.read patient/Practitioner.read patient/Organization.read patient/Location.read",
+  "expires_in": 300
+}
+```
+{% endtab %}
+{% endtabs %}
 
 ## SMART App Launch using an External Identity Provider
 

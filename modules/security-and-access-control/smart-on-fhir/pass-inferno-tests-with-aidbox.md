@@ -79,6 +79,7 @@ accept: application/json
         "pkce": true,
         "redirect_uri": "https://inferno.healthit.gov/suites/custom/smart/redirect",
         "refresh_token": true,
+        "token_format": "jwt",
         "access_token_expiration": 300
       }
     },
