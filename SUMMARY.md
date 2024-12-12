@@ -340,7 +340,7 @@
     * [User, Session, Client resources](modules/security-and-access-control/technical-reference/overview.md)
     * [TokenIntrospector resource](modules/security-and-access-control/technical-reference/tokenintrospector-resource.md)
     * [Tokens processing](modules/security-and-access-control/technical-reference/tokens-processing.md)
-    * [AcessPolicy](modules/security-and-access-control/technical-reference/acesspolicy.md)
+    * [AcessPolicy resource](modules/security-and-access-control/technical-reference/acesspolicy-resource.md)
     * [Storing authorization details](modules/security-and-access-control/technical-reference/storing-authorization-details.md)
     * [Discovery API](modules/security-and-access-control/technical-reference/well-known-endpoint.md)
   * [Multitenancy](modules/security-and-access-control/multitenancy/README.md)
