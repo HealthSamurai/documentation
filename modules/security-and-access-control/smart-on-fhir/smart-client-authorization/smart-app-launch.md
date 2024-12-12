@@ -7,7 +7,7 @@ The [FHIR Schema Validator Engine](https://docs.aidbox.app/modules/profiling-and
 
 &#x20;Performing [SMART App Launch](https://build.fhir.org/ig/HL7/smart-app-launch/app-launch.html) with Aidbox requires:
 
-## 1. Client for SMART Application
+## Register SMART Client&#x20;
 
 It shall be [Authorization Code Grant](../../auth/authorization-code.md) Client with several required values:
 
@@ -45,7 +45,15 @@ accept: application/json
 }
 ```
 
-## 2. Launch URI
+## Launch App
+
+### Standalone launch
+
+### EHR launch
+
+
+
+
 
 Launch URI structure:
 
@@ -114,11 +122,27 @@ accept: application/json
 {% endtab %}
 {% endtabs %}
 
-## External Identity Provider
+## Get authorization code
 
-Aidbox supports SMART App Launch with external identity provider authorization. In this case, an [Identity Provider](../../set-up-external-identity-provider/) needs to be set up in Aidbox then you will be able to Sign In with the external identity provider during the SMART App Launch flow.
+PKCE
 
-Try SMART App Launch using Aidbox and an external identity provider (Keycloak) running our pre-configured demo:
+## Obtain access token
+
+
+
+## Access FHIR API
+
+
+
+## Refresh access token
+
+
+
+
+
+## SMART App Launch using an External Identity Provider
+
+Aidbox enables SMART App Launch with external identity providers. Set up an [Identity Provider](../../set-up-external-identity-provider/) in Aidbox to sign in via the provider during the launch. Try it with our pre-configured demo (e.g., Keycloak):
 
 {% content-ref url="../example-smart-app-launch-using-aidbox-and-keycloak.md" %}
 [example-smart-app-launch-using-aidbox-and-keycloak.md](../example-smart-app-launch-using-aidbox-and-keycloak.md)
