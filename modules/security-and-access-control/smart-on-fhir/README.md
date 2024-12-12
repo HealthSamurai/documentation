@@ -20,14 +20,14 @@ Aidbox provides many SMART on FHIR capabilities:
 
 1. Use SMART on FHIR scopes in Aidbox access control and limit access based on scopes.
 
-{% content-ref url="smart-scopes-for-limiting-access.md" %}
-[smart-scopes-for-limiting-access.md](smart-scopes-for-limiting-access.md)
+{% content-ref url="smart-scopes.md" %}
+[smart-scopes.md](smart-scopes.md)
 {% endcontent-ref %}
 
 2. Launch SMART apps and grant access to users with SMART on FHIR.
 
-{% content-ref url="smart-app-launch.md" %}
-[smart-app-launch.md](smart-app-launch.md)
+{% content-ref url="smart-client-authorization/smart-app-launch.md" %}
+[smart-app-launch.md](smart-client-authorization/smart-app-launch.md)
 {% endcontent-ref %}
 
 3. Launch SMART App using external Identity Provider

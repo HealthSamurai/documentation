@@ -9,7 +9,7 @@ The [FHIR Schema Validator Engine](https://docs.aidbox.app/modules/profiling-and
 
 ## 1. Client for SMART Application
 
-It shall be [Authorization Code Grant](../auth/authorization-code.md) Client with several required values:
+It shall be [Authorization Code Grant](../../auth/authorization-code.md) Client with several required values:
 
 <table><thead><tr><th width="405">Client resource field</th><th>Description</th></tr></thead><tbody><tr><td><code>auth.authorization_code.token_format</code></td><td>Fixed value - <code>jwt</code></td></tr><tr><td><code>smart.launch_uri</code></td><td>SMART Application launch endpoint</td></tr><tr><td><code>type</code></td><td>Fixed value - <code>smart-app</code></td></tr></tbody></table>
 
@@ -116,10 +116,10 @@ accept: application/json
 
 ## External Identity Provider
 
-Aidbox supports SMART App Launch with external identity provider authorization. In this case, an [Identity Provider](../set-up-external-identity-provider/) needs to be set up in Aidbox then you will be able to Sign In with the external identity provider during the SMART App Launch flow.
+Aidbox supports SMART App Launch with external identity provider authorization. In this case, an [Identity Provider](../../set-up-external-identity-provider/) needs to be set up in Aidbox then you will be able to Sign In with the external identity provider during the SMART App Launch flow.
 
 Try SMART App Launch using Aidbox and an external identity provider (Keycloak) running our pre-configured demo:
 
-{% content-ref url="example-smart-app-launch-using-aidbox-and-keycloak.md" %}
-[example-smart-app-launch-using-aidbox-and-keycloak.md](example-smart-app-launch-using-aidbox-and-keycloak.md)
+{% content-ref url="../example-smart-app-launch-using-aidbox-and-keycloak.md" %}
+[example-smart-app-launch-using-aidbox-and-keycloak.md](../example-smart-app-launch-using-aidbox-and-keycloak.md)
 {% endcontent-ref %}
