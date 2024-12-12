@@ -338,6 +338,7 @@
     * [SMART on FHIR](modules/security-and-access-control/how-to-guides/smart-app.md)
   * [Technical reference](modules/security-and-access-control/technical-reference/README.md)
     * [User, Session, Client resources](modules/security-and-access-control/technical-reference/overview.md)
+    * [TokenIntrospector resource](modules/security-and-access-control/technical-reference/tokenintrospector-resource.md)
     * [Tokens processing](modules/security-and-access-control/technical-reference/tokens-processing.md)
     * [Storing authorization details](modules/security-and-access-control/technical-reference/storing-authorization-details.md)
     * [Discovery API](modules/security-and-access-control/technical-reference/well-known-endpoint.md)
