@@ -9,7 +9,7 @@ The [FHIR Schema Validator Engine](https://docs.aidbox.app/modules/profiling-and
 
 ## Register SMART Client&#x20;
 
-OAuth 2.0 defines two client (application) types: `public` and `confidential`. To determine the correct client type for you, ask: "Can my app protect a secret?"
+SMART defines two client (application) types: `public` and `confidential`. To determine the correct client type for you, ask: "Can my app protect a secret?"
 
 If the answer is "**Yes,"** use a confidential client.
 
