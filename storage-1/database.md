@@ -2,11 +2,12 @@
 
 All resource types in Aidbox are stored in different tables, named with a lowercased resource type name. All these tables have a similar schema:
 
-```
+```sql
 CREATE TABLE "patient" (
   id text PRIMARY KEY,               -- id of resource
   txid bigint not null,              -- version id and logical transaction id
   ts timestamptz DEFAULT NOW(),      -- last updated time
+  cts timestamptz DEFAULT NOW(),     -- created time
   resource_type text,                -- resource type
   status resource_status not null,   -- resource status
   resource jsonb not null            -- resource body
