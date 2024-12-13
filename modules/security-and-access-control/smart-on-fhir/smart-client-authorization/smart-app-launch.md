@@ -9,20 +9,34 @@ The [FHIR Schema Validator Engine](https://docs.aidbox.app/modules/profiling-and
 
 ## Register SMART Client&#x20;
 
-It shall be [Authorization Code Grant](../../auth/authorization-code.md) Client with several required values:
+OAuth 2.0 defines two client (application) types: `public` and `confidential`. To determine the correct client type for you, ask: "Can my app protect a secret?"
 
-<table><thead><tr><th width="405">Client resource field</th><th>Description</th></tr></thead><tbody><tr><td><code>auth.authorization_code.token_format</code></td><td>Fixed value - <code>jwt</code></td></tr><tr><td><code>smart.launch_uri</code></td><td>SMART Application launch endpoint</td></tr><tr><td><code>type</code></td><td>Fixed value - <code>smart-app</code></td></tr></tbody></table>
+If the answer is "**Yes,"** use a confidential client.
+
+* Example: The app operates on a trusted server, ensuring that the secret is only accessed server-side.&#x20;
+* Example: The app is a native application that employs additional technologies (such as dynamic client registration and universal redirect\_uris) to secure the secret.&#x20;
+
+If the answer is "**No**," use a public client.
+
+* Example: The app is an HTML5 or JavaScript application running in a browser (including single-page applications), where the secret would be exposed in user space.&#x20;
+* Example: The app is a native application that can only distribute a secret in a fixed, unprotected manner.
+
+Client shall be [Authorization Code Grant](../../auth/authorization-code.md) Client with several required values:
+
+<table><thead><tr><th width="445">Client resource field</th><th>Description</th></tr></thead><tbody><tr><td><code>auth.authorization_code.token_format</code></td><td>Fixed value - <code>jwt</code></td></tr><tr><td><code>auth.authorization_code.secret_required</code></td><td><code>true</code> - for confidential Client<br><code>false</code> - for public Client</td></tr><tr><td><code>smart.launch_uri</code></td><td>SMART Application launch endpoint</td></tr><tr><td><code>type</code></td><td>Fixed value - <code>smart-app</code></td></tr><tr><td><code>secret</code></td><td>Only for confidential Client</td></tr></tbody></table>
 
 ### Example
 
-```http
-PUT /Client/my-smart-app-client-id
+{% tabs %}
+{% tab title="Public" %}
+```json
+PUT /Client/my-public-smart-app-client-id
 content-type: application/json
 accept: application/json
 
 {
   "resourceType": "Client",
-  "id": "my-smart-app-client-id",
+  "id": "my-public-smart-app-client-id",
   "active": true,
   "auth": {
     "authorization_code": {
@@ -31,7 +45,7 @@ accept: application/json
       // always shall be jwt
       "token_format": "jwt",
       "access_token_expiration": 3600000,
-      // only if you want to use PKCE challenge
+      "secret_required": false,
       "pkce": true
     }
   },
@@ -41,17 +55,54 @@ accept: application/json
   },
   // always shall be "smart-app" type
   "type": "smart-app",
-  "secret": "quOfCRS7ty1RMUQq",
   "grant_types": [
     "code"
   ]
 }
 ```
+{% endtab %}
+
+{% tab title="Confidential" %}
+```json
+PUT /Client/my-confidential-smart-app-client-id
+content-type: application/json
+accept: application/json
+
+{
+  "resourceType": "Client",
+  "id": "my-confidential-smart-app-client-id",
+  "active": true,
+  "auth": {
+    "authorization_code": {
+      "redirect_uri": "http://smart-app-uri.com/redirect",
+      "refresh_token": true,
+      // always shall be jwt
+      "token_format": "jwt",
+      "access_token_expiration": 3600000,
+      "secret_required": true,
+      // only if you want to use PKCE challenge
+      "pkce": true
+    }
+  },
+  "secret": "quOfCRS7ty1RMUQq",
+  // always shall have smart.launch_uri value
+  "smart": {
+    "launch_uri": "http://smart-app-launch-endpoint/launch.html"
+  },
+  // always shall be "smart-app" type
+  "type": "smart-app",
+  "grant_types": [
+    "code"
+  ]
+}
+```
+{% endtab %}
+{% endtabs %}
 
 ## Create AccessPolicy
 
 ```json
-PUT /AccessPolicy/my-smart-app-client-id-allow
+PUT /AccessPolicy/my-confidential-smart-app-client-id
 content-type: application/json
 accept: application/json
 
@@ -59,10 +110,10 @@ accept: application/json
   "resourceType": "AccessPolicy",
   "id": "my-smart-app-client-id-allow",
   "engine": "allow",
-  "link": {
-    "id": "my-smart-app-client-id",
+  "link": [{
+    "id": "my-public-smart-app-client-id",
     "resourceType": "Client"
-  }
+  }]
 }
 ```
 
@@ -121,7 +172,7 @@ accept: application/json
   "params": {
     "user": "my-aidbox-user-id",
     "iss": "https://example.edge.aidbox.app/fhir",
-    "client": "my-smart-app-client-id",
+    "client": "my-public-smart-app-client-id",
     "ctx": {
       "patient": "my-patient-id"
     }
@@ -164,7 +215,7 @@ To obtain a token redirect the user to Aidbox `/auth/authorize` with following p
 ```http
 Location: https://<AIDBOX_BASE_URL>/auth/authorize?
             response_type=code&
-            client_id=my-smart-app-client-id&
+            client_id=my-public-smart-app-client-id&
             redirect_uri=http://smart-app-uri.com/redirect&
             scope=launch%2Fpatient+openid+fhirUser+offline_access+patient%2F*.read&
             state=863c2f71-11e3-4598-913b-930a6aa1593c&
@@ -202,7 +253,7 @@ content-type: application/json
 accept: application/json
 
 {
-  "client_id": "my-smart-app-client-id",
+  "client_id": "my-public-smart-app-client-id",
   "code": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0LXVzZXIiLCJleHAiOjE3MzQwMzMxMzksInNjb3BlIjpbImxhdW5jaC9wYXRpZW50Iiwib3BlbmlkIiwiZmhpclVzZXIiLCJvZmZsaW5lX2FjY2VzcyIsInBhdGllbnQvUGF0aWVudC5yZWFkIiwicGF0aWVudC9BbGxlcmd5SW50b2xlcmFuY2UucmVhZCIsInBhdGllbnQvQ2FyZVBsYW4ucmVhZCIsInBhdGllbnQvQ2FyZVRlYW0ucmVhZCIsInBhdGllbnQvQ29uZGl0aW9uLnJlYWQiLCJwYXRpZW50L0RldmljZS5yZWFkIiwicGF0aWVudC9EaWFnbm9zdGljUmVwb3J0LnJlYWQiLCJwYXRpZW50L0RvY3VtZW50UmVmZXJlbmNlLnJlYWQiLCJwYXRpZW50L0dvYWwucmVhZCIsInBhdGllbnQvRW5jb3VudGVyLnJlYWQiLCJwYXRpZW50L0ltbXVuaXphdGlvbi5yZWFkIiwicGF0aWVudC9NZWRpY2F0aW9uUmVxdWVzdC5yZWFkIiwicGF0aWVudC9PYnNlcnZhdGlvbi5yZWFkIiwicGF0aWVudC9Qcm9jZWR1cmUucmVhZCIsInBhdGllbnQvUHJvdmVuYW5jZS5yZWFkIiwicGF0aWVudC9QcmFjdGl0aW9uZXIucmVhZCIsInBhdGllbnQvT3JnYW5pemF0aW9uLnJlYWQiLCJwYXRpZW50L0xvY2F0aW9uLnJlYWQiXSwiYmFzZS11cmwiOiJodHRwczovL2cxMHRlc3QuZWRnZS5haWRib3guYXBwL2ZoaXIiLCJqdGkiOiIyWTNFbmxkSjV0M3lpbjN2TGxXTiIsImN0eCI6eyJwYXRpZW50IjoidGVzdC1wdC0xIn0sImNsaSI6ImluZmVybm8tcGF0aWVudC1zbWFydC1hcHAiLCJjb2RlX2NoYWxsZW5nZSI6IlZoNUlEXzdkdEEtTVlRTUtEdmNyZFJZN3dOSU9DWkdTSElUdlpCcU5yeDAiLCJvbi1iZWhhbGYiOnRydWUsImNvZGVfY2hhbGxlbmdlX21ldGhvZCI6IlMyNTYifQ.kyjOQ16BB_gieSKDcUjm9WpuzYtI1xRmVAMottiOOEw",
   "code_verifier": "2ef1d0dc-7659-41f9-abbe-bdec3441bca9-81867d53-46a5-47a6-89df-03872627287f",
   "grant_type": "authorization_code",
@@ -421,7 +472,7 @@ accept: application/json
 {
   "grant_type": "refresh_token",
   "refresh_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2cxMHRlc3QuZWRnZS5haWRib3guYXBwIiwic3ViIjoiaW5mZXJuby1wYXRpZW50LXNtYXJ0LWFwcCIsImp0aSI6IjlmMjUxODU1LWQ1MTAtNDY2Mi1iZTg2LTE5ZTljZDYzN2Y2OCIsInR5cCI6InJlZnJlc2gifQ.iKXaJjfAL5dRqfiduLuCgEJhWu0CIzi_2KPS6d80OEp24LB61M4PWx1_TUUS5qaedzrKUBhkE7-x07fI-6f5FdiBMGxq_aKbfGxTAUJJzh-ki-N20IOSolKFNSqyKILhwIP4V221H0YQZFles5ghXBGxK_O5TW-l9w3QDbcsLXBbhH1fOqetsiKdVac8iy2H278iMVnWq3eD8I_-O3yAuISxh_nOI4ENGnX8Z1KKcdrMDmwN7HNsTxmSLM5zkikPZlqIp02JijcV4y8z3XfVZhR2jaXmegTfz_qEWyVrgPYX1-oQ06MZFkgjnlYCZMswvz_wEPuE0zDPJMgGbiUwjg",
-  "client_id": "my-smart-app-client-id"
+  "client_id": "my-public-smart-app-client-id"
 }
 ```
 {% endtab %}
