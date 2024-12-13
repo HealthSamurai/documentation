@@ -111,7 +111,7 @@ content-type: application/json
 
 To obtain an access token use `/auth/token`endpoint with following parameters:
 
-<table><thead><tr><th width="293">Parametr</th><th>Description</th></tr></thead><tbody><tr><td><code>scope</code> *</td><td>String with scopes separated by space.</td></tr><tr><td><code>grant_type</code> *</td><td>Fixed value - <code>client_credentials</code></td></tr><tr><td><code>client_assertion_type</code> *</td><td>Fixed value - <code>urn:ietf:params:oauth:client-assertion-type:jwt-bearer</code></td></tr><tr><td><code>client_assertion</code> *</td><td>Signed authentication JWT value meeting <a href="https://datatracker.ietf.org/doc/html/rfc7523#section-2.2">OAuth 2.0 requirements</a>.</td></tr></tbody></table>
+<table><thead><tr><th width="293">Parametr</th><th>Description</th></tr></thead><tbody><tr><td><code>scope</code> *</td><td>String with scopes separated by space.</td></tr><tr><td><code>grant_type</code> *</td><td>Fixed value - <code>client_credentials</code></td></tr><tr><td><code>client_assertion_type</code> *</td><td>Fixed value - <code>urn:ietf:params:oauth:client-assertion-type:jwt-bearer</code></td></tr><tr><td><code>client_assertion</code> *</td><td>Signed authentication <a href="../smart-client-authentication/smart-asymmetric-private-key-jwt-authentication.md">JWT value</a>.</td></tr></tbody></table>
 
 \*- required parameter
 
