@@ -4,146 +4,190 @@ description: Do multiple operations in one call
 
 # Batch/Transaction
 
-### Introduction
+## Introduction
 
-Transaction interaction allows for several interactions using one HTTP request. There are two types of transaction interaction (type is specified by field `type`): batch and transaction. The first one executes requests one by one, and the second one does the same but rolls back all changes if any request fails.
+Transaction interaction allows for several interactions using one HTTP request. There are two types of transaction interaction (type is specified by field `type`): **batch** and **transaction**. The first one executes requests one by one, and the second one does the same but rolls back all changes if any request fails.
 
 ```
-POST [base]
+POST /fhir
 ```
 
 The body of such a request contains one resource of type Bundle, which contains field entry with an array of interactions, for example:
 
-```yaml
+```json
 POST /fhir
-Accept: text/yaml
-Content-Type: text/yaml
+accept: application/json
+content-type: application/json
 
-type: transaction
-entry:
-- resource: {}
-  request:
-    method: PUT
-    url: "/Practitioner/pr1"
-- request:
-    method: GET
-    url: "/Patient"
-- resource:
-    id: admin123
-    email: "admin@mail.com"
-    password: "password"
-  request:
-    method: POST
-    url: "/User"
+{
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {},
+      "request": {
+        "method": "PUT",
+        "url": "/Practitioner/pr1"
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/Patient"
+      }
+    },
+    {
+      "resource": {
+        "id": "admin123",
+        "email": "admin@mail.com",
+        "password": "password"
+      },
+      "request": {
+        "method": "POST",
+        "url": "/User"
+      }
+    }
+  ]
+}
 ```
 
 Each element of the entry array contains a resource field (body of the request) and a request field (request line in terms of the HTTP request).
 
 ```yaml
-resource: # not needed for DELETE and GET
-  # resource here
-
-fullUrl: "something-here" # needed if you want to refer
-                          # the resource inside bundle
+resource:
+  # body here (if needed)
 request:
-  method: POST # POST/GET/PUT/DELETE
+  method: POST # POST/GET/PUT/PATCH/DELETE
   url: "/ResourceType" # request url
+# needed if you want to refer the resource inside the bundle
+fullUrl: "urn:uuid:<uuid | string>"
 ```
 
-### Processing rules and Conditional refs
+## Using references
 
-Transaction interactions are processed in the order provided in a bundle; each interaction is executed one by one. This differs from the FHIR transaction [processing rules](https://www.hl7.org/fhir/http.html#trules).
+Sometimes, we may need to reference a resource within a bundle that has not yet been created. For this purpose, you can use the `fullUrl` field, available for each resource, which acts as a unique identifier at the bundle level (a logical reference).&#x20;
 
-For `type: batch` references to resources inside a bundle won't be resolved.
+You can then reference this identifier from another resource using a FHIR reference, e.g.,`"reference": "urn:uuid:<uuid|string>"`.  Those references are temporary (existing during bundle processing) and will be translated to valid FHIR references when the bundle is processed.
 
-For `type: transaction` before processing interactions, all references in a resource will attempt to resolve. In this example, ProcedureRequest will refer to a newly created patient:
+## Processing rules
 
-```yaml
+Differences from the FHIR transaction [processing rules](https://www.hl7.org/fhir/http.html#trules):
+
+* Each entry is processed in the order provided in a bundle&#x20;
+* For `type: batch` references to resources inside a bundle won't be resolved.
+* For `type: transaction` before processing interactions, all references in a resource will attempt to resolve. In this example, Patient will refer to a newly created Organization:
+
+```json
 POST /fhir
-Accept: text/yaml
-Content-Type: text/yaml
+accept: application/json
+content-type: application/json
 
-type: transaction
-entry:
-- resource:
-    resourceType: Patient
-  fullUrl: urn:uuid:<uuid-here>
-  request:
-    method: POST
-    url: "/Patient?_identifier=mrn:123"
-    
-- resource:
-    resourceType: Encounter
-    status: proposal
-    subject:
-      uri: urn:uuid:<uuid-here>
-  request:
-    method: POST
-    url: "/Encounter"
+{
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "managingOrganization": {
+          "reference": "urn:uuid:14121321-4af5-424c-a0e1-ed3aab1c349d"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "/Patient"
+      },
+      "fullUrl": "urn:uuid:04121321-4af5-424c-a0e1-ed3aab1c349d"
+    },
+    {
+      "resource": {
+        "resourceType": "Organization",
+        "name": "org10"
+      },
+      "request": {
+        "method": "POST",
+        "url": "/Organization"
+      },
+      "fullUrl": "urn:uuid:14121321-4af5-424c-a0e1-ed3aab1c349d"
+    }
+  ]
+}
 ```
 
-You can provide a full URL with values like `"urn:<uuid-here>"` and reference to the resource created by such interaction using ref: `{uri: "urn:<uuid-here>"}`. Those references are temporary and will be translated to valid Aidbox references when interaction entry is processed by a server.
-
-{% hint style="danger" %}
-You SHALL NOT refer resource, which is created later using conditional operations!
-{% endhint %}
-
-### Multiple resources with the same id
+## Multiple resources with the same id
 
 If you have multiple entries with the same resource id, Aidbox will execute them one by one and thus you can create a resource with a history within a single transaction:
 
-```yaml
+```json
 POST /fhir
-Accept: text/yaml
-Content-Type: text/yaml
+Accept: application/json
+Content-Type: application/json
 
-resourceType: Bundle
-type: transaction
-entry:
-- request: {method: PUT, url: '/Patient/pt-1'}
-  resource: {birthDate: '2021-01-01'}
-- request: {method: PUT, url: '/Patient/pt-1'}
-  resource: {birthDate: '2021-01-02'}
-- request: {method: PUT, url: '/Patient/pt-1'}
-  resource: {birthDate: '2021-01-03'}
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "request": {
+        "method": "PUT",
+        "url": "/Patient/pt-1"
+      },
+      "resource": {
+        "birthDate": "2021-01-01"
+      }
+    },
+    {
+      "request": {
+        "method": "PUT",
+        "url": "/Patient/pt-1"
+      },
+      "resource": {
+        "birthDate": "2021-01-02"
+      }
+    },
+    {
+      "request": {
+        "method": "PUT",
+        "url": "/Patient/pt-1"
+      },
+      "resource": {
+        "birthDate": "2021-01-03"
+      }
+    }
+  ]
+}
+
 ```
 
-{% tabs %}
-{% tab title="Request" %}
-```yaml
-GET /fhir/Patient/pt-1
-Accept: text/yaml
-```
-{% endtab %}
+Response of `GET /fhir/Patient/pt-1/_history`:
 
-{% tab title="Response" %}
-```yaml
-id: >-
-  pt-1
-birthDate: '2021-01-03'
-resourceType: Patient
-meta:
-  lastUpdated: '2024-11-07T08:18:18.696976Z'
-  versionId: '73'
-  extension:
-    - url: https://fhir.aidbox.app/fhir/StructureDefinition/created-at
-      valueInstant: '2024-11-07T08:18:18.696976Z'
-```
-{% endtab %}
-{% endtabs %}
-
-```yaml
-GET /fhir/Patient/pt-1/_history
-Accept: text/yaml
-Content-Type: text/yaml
-
-resourceType: Bundle
-type: history
-total: 3
-entry:
-- resource: {birthDate: '2021-01-03', id: pt-1, resourceType: Patient}
-- resource: {birthDate: '2021-01-02', id: pt-1, resourceType: Patient}
-- resource: {birthDate: '2021-01-01', id: pt-1, resourceType: Patient}
+```json
+{
+  "resourceType": "Bundle",
+  "type": "history",
+  "total": 3,
+  "entry": [
+    {
+      "resource": {
+        "birthDate": "2021-01-03",
+        "id": "pt-1",
+        "resourceType": "Patient"
+      }
+    },
+    {
+      "resource": {
+        "birthDate": "2021-01-02",
+        "id": "pt-1",
+        "resourceType": "Patient"
+      }
+    },
+    {
+      "resource": {
+        "birthDate": "2021-01-01",
+        "id": "pt-1",
+        "resourceType": "Patient"
+      }
+    }
+  ]
+}
 ```
 
 ## Change transaction isolation level
@@ -152,7 +196,7 @@ By default Aidbox uses `SERIALIZABLE` transaction isolation level. This may lead
 
 See more about [transaction isolation in Postgres documentation](https://www.postgresql.org/docs/current/transaction-iso.html).
 
-The best way to handle rejected transactions is to retry them. If it is not possible, you can set the maximum isolation level with the HTTP header or [environment variable](../reference/configuration/environment-variables/optional-environment-variables.md#box\_features\_fhir\_transaction\_max\_\_isolation\_level). If both the HTTP header and environment variable are provided, the header will be used.
+The best way to handle rejected transactions is to retry them. If it is not possible, you can set the maximum isolation level with the HTTP header or [environment variable](../reference/configuration/environment-variables/optional-environment-variables.md#box_features_fhir_transaction_max__isolation_level). If both the HTTP header and environment variable are provided, the header will be used.
 
 {% hint style="danger" %}
 Using an isolation level lower than serializable may lead to data serialization anomalies.
@@ -160,23 +204,34 @@ Using an isolation level lower than serializable may lead to data serialization 
 
 Example:
 
-```yaml
+```json
 POST /fhir
 x-max-isolation-level: read-committed
-content-type: text/yaml
-accept: text/yaml
+Accept: application/json
+Content-Type: application/json
 
-resourceType: Bundle
-type: transaction
-entry:
-  - request:
-      method: PUT
-      url: "/Patient/pt-1"
-    resource:
-      active: true
-  - request:
-      method: PUT
-      url: "/Patient/pt-2"
-    resource:
-      active: false
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "request": {
+        "method": "PUT",
+        "url": "/Patient/pt-1"
+      },
+      "resource": {
+        "active": true
+      }
+    },
+    {
+      "request": {
+        "method": "PUT",
+        "url": "/Patient/pt-2"
+      },
+      "resource": {
+        "active": false
+      }
+    }
+  ]
+}
 ```
