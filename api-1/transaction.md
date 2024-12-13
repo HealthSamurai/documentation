@@ -94,8 +94,7 @@ content-type: application/json
       "request": {
         "method": "POST",
         "url": "/Patient"
-      },
-      "fullUrl": "urn:uuid:04121321-4af5-424c-a0e1-ed3aab1c349d"
+      }
     },
     {
       "resource": {
