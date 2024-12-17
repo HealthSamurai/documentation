@@ -18,6 +18,8 @@
 
 Minor updates:
 
+* 2411.2 — Updated dependencies
+* 2410.2 — Updated dependencies
 * 2410.1 — Fixed minor bugs
 
 ## October 2024 _`stable, 2410, LTS`_
