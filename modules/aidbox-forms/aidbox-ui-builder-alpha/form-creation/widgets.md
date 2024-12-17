@@ -14,6 +14,14 @@ In the widget settings, you can define various parameters that determine its app
 
 ### General
 
+#### Text
+
+The Text field is used to define content for sections, questions, or display items within a form.&#x20;
+
+**Short Text**
+
+The Short Text field provides an alternative, abbreviated version of the text. It is particularly useful when rendering forms on smaller screens, such as mobile devices, where space is limited.
+
 #### Collapsible
 
 Collapsible section is supported to enhance the usability and navigation of long questionnaires. This feature allows the child items of a group or question item to be displayed in a collapsible form, letting users toggle between showing and hiding nested items.
