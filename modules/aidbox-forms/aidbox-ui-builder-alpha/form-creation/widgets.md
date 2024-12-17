@@ -36,6 +36,25 @@ User can set the desired collapsibility option for specific sections or items wi
 
 ### Media
 
+
+
+#### Support Link
+
+The Support Link option allows you to associate an external or internal link with a question, group, or display item within a form. This is particularly useful for providing users with additional descriptive details or reference material.
+
+How It Works:
+
+* When a support link is added, an **icon** appears immediately.
+* Users can click on the icon to navigate to the linked resource, typically displayed in a separate page or browser tab.
+
+Use Cases:
+
+* Providing contextual help or instructions for complex questions.
+* Linking to guidelines, manuals, or regulatory references.
+* Adding reference material for specific sections or items in the form.
+
+This feature enhances the usability of forms by ensuring users have access to additional information without cluttering the main form interface.
+
 ### Attributes
 
 ### Rule
