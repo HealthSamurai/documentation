@@ -202,4 +202,8 @@ The Attachment widget allows users to upload files as part of their form submiss
 
 * **File Preview**: When using the form, the attached file can be viewed by opening it in a separate page. To do this, the user needs to click on the eye icon.
 
+{% hint style="info" %}
+Only MP4, WebM и Ogg video file  formats are available for preview.
+{% endhint %}
+
 The attached file will be saved as base64 encoded attachment in QuestionnaireResponse.
