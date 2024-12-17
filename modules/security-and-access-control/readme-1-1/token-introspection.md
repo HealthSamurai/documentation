@@ -10,7 +10,7 @@ Token introspection is the setup when Aidbox trusts `JWT` issued by external ser
 In this guide external auth server URL is `https://auth.example.com`
 {% endhint %}
 
-## Set up Aidbox
+## JWT Token
 
 ### Create `TokenIntrospector`
 
@@ -79,7 +79,7 @@ data:
   email: basic@example.com
 ```
 
-## Validating introspector works
+### Validating introspector works
 
 Build `JWT`
 
@@ -104,3 +104,42 @@ Make an HTTP request providing `authorization` header with the `JWT` as a `Beare
 GET /fhir/Patient
 Authorization: Bearer eyJ0...U6TY
 ```
+
+## Opaque Token
+
+### Create Token Introspector&#x20;
+
+with `introspection_endpoint`:
+
+```http
+PUT /TokenIntrospector/external-auth-server
+content-type: text/yaml
+
+resourceType: TokenIntrospector
+id: external-auth-server
+type: opaque
+introspection_endpoint:
+  url: <token-introspection-endpoint>
+  authorization: <authorization-header>
+```
+
+### Create AccessPolicy
+
+```http
+PUT /AccessPolicy/external-auth-server
+content-type: text/yaml
+
+engine: matcho
+matcho:
+  // Everything Aidbox retrieved from  introspection_endpoint
+  // will be available under `token` in AccessPolicy
+  token:
+    active: true
+resourceType: AccessPolicy
+```
+
+All available `TokenIntrospector` attributes:
+
+{% content-ref url="../technical-reference/tokenintrospector-resource.md" %}
+[tokenintrospector-resource.md](../technical-reference/tokenintrospector-resource.md)
+{% endcontent-ref %}
