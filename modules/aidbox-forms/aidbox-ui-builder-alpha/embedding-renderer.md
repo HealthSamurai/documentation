@@ -77,7 +77,7 @@ Add a change event listener to the renderer element to capture the updated form 
 ```html
 <script>
   const renderer = document.getElementById('aidbox-form-renderer');
-  
+
   renderer.addEventListener('change', (event) => {
     console.log('Questionnaire Response changed', event.detail);
     // You can update the form state in your application if necessary
@@ -114,7 +114,8 @@ Deprecated: Pass `theme` as part of the `config` attribute value.
 
 The renderer emits the following events:
 
-* `change`: Triggered when the questionnaire response is updated, either during auto-save or when the submit button is clicked. The `event.detail` contains the updated questionnaire response as a JSON object.
+* `change`: Triggered when the questionnaire response is updated, either during auto-save. The `event.detail` contains the updated questionnaire response as a JSON object.
+* `submit`: Emitted when 'Submit' button is clicked. The `event.detail` contains the questionnaire response as a JSON object.
 * `ready`: Fired when the Aidbox Forms Renderer has fully loaded and is ready for use.
 
 By following these steps, you can effortlessly integrate the Aidbox Form Renderer into your application, offering a robust solution for form creation and management directly within your user interface.

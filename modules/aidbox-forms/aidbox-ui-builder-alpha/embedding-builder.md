@@ -39,7 +39,7 @@ You can pass the following attributes to the `<aidbox-form-builder>` tag:
 * `form-id` (optional): ID of the form to load. If not provided, the builder opens with a blank form.
 * `hide-back` (optional): Hides the back button on the builder page.
 * `delegate-alerts` (optional): When set the web-component emits `alert` events with the alert objects as the event detail, instead of showing them in the UI.
-* `config` (optional): The [configuration](configuration.md) provided as a JSON string. 
+* `config` (optional): The [configuration](configuration.md) provided as a JSON string.
 * `language` (optional): The default language to use for the builder interface. It will not override the language set by a user in the builder.
 
 {% hint style="warning" %}
@@ -80,7 +80,7 @@ Add a change event listener to the builder element to capture the updated form s
 ```html
 <script>
   const builder = document.getElementById('aidbox-form-builder');
-  
+
   builder.addEventListener('change', (event) => {
     console.log('Form changed', event.detail);
     // Modify the form state in your application if needed
@@ -103,7 +103,7 @@ You can pass the following attributes to the `<aidbox-form-builder>` tag:
 * `hide-back` (optional): Hides the back button on the builder page.
 * `hide-publish` (optional): Hides the publish button on the builder page.
 * `hide-save` (optional): Hides the save button on the builder page.
-* `delegate-alerts` (optional): When set the web-component emits `alert` events with the alert objects as the event detail, instead of showing them in the UI. 
+* `delegate-alerts` (optional): When set the web-component emits `alert` events with the alert objects as the event detail, instead of showing them in the UI.
 * `show-share` (optional): Shows the share button on the builder page.
 * `config` (optional): The [configuration](configuration.md) provided as a JSON string.
 * `language` (optional): The default language to use for the builder interface. It will not override the language set by a user in the builder.
@@ -124,6 +124,7 @@ Deprecated: Pass `translation-languages` as part of the `config` attribute value
 The builder emits the following events:
 
 * `change`: Emitted when the questionnaire is modified, triggered on every change or when the save or publish button is clicked. `event.detail` contains the modified questionnaire as a JSON object.
+* `back`: Emitted when back button (near form title) is clicked
 * `ready`: Emitted when the Aidbox Form Builder is loaded and ready to be used.
 * `select`: Emitted when an item is selected in the item list. `event.detail` contains the selected item as a JSON object.
 
