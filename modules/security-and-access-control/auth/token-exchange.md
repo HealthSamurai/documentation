@@ -43,10 +43,10 @@ accept: application/json
 * **`grant_types`**: Must contain `urn:ietf:params:oauth:grant-type:token-exchange`.
 * **`allowedIssuers`**: Lists the issuers allowed for token exchange.
 * **`auth.token_exchange`**:
-  * `token_format`: Defines the format of the exchanged token (e.g., `jwt`).
-  * `refresh_token`: Indicates whether refresh tokens are issued.
-  * `access_token_expiration`: Time-to-live for access tokens, in seconds.
-  * `refresh_token_expiration`: Time-to-live for refresh tokens, in seconds.
+  * `token_format`: Must be `jwt`.
+  * `refresh_token`: Indicates whether a refresh token is issued.
+  * `access_token_expiration`: Time-to-live for an access token, in seconds.
+  * `refresh_token_expiration`: Time-to-live for refresh token, in seconds.
 
 ### **Create a Token Introspector**
 
@@ -103,10 +103,10 @@ Content-Type: application/json
 }
 ```
 
-* **`grant_type`**: must be `urn:ietf:params:oauth:grant-type:token-exchange`.
-* **`subject_token`**: must be `urn:ietf:params:oauth:token-type:jwt`.
-* **`scope`**: Scope of the requested token.
-* **`subject_token_type`**: Specifies the type of the subject token, here `jwt`.
+* **`grant_type`**: Must be `urn:ietf:params:oauth:grant-type:token-exchange`.
+* **`subject_token_type`**: Must be `urn:ietf:params:oauth:token-type:jwt`.
+* **`subject_token`**: Your JWT token.
+* **`scope`**: Scope of the requested&#x20;
 
 ### Token requirements
 
