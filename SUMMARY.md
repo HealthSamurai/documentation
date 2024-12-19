@@ -285,6 +285,7 @@
     * [Implicit Grant](modules/security-and-access-control/auth/implicit.md)
     * [Two Factor Authentication](modules/security-and-access-control/auth/two-factor-authentication.md)
     * [External OAuth 2.0 Providers](modules/security-and-access-control/auth/access-token-introspection.md)
+    * [Token Exchange](modules/security-and-access-control/auth/token-exchange.md)
   * [External identity providers](modules/security-and-access-control/set-up-external-identity-provider/README.md)
     * [Aidbox](modules/security-and-access-control/set-up-external-identity-provider/aidbox.md)
     * [Okta](modules/security-and-access-control/set-up-external-identity-provider/configure-okta.md)
