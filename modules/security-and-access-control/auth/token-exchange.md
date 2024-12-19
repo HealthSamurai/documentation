@@ -97,7 +97,7 @@ Content-Type: application/json
 
 {
   "grant_type": "urn:ietf:params:oauth:grant-type:token-exchange",
-  "subject_token_type": "urn:ietf:params:oauth:token-type:jwt"
+  "subject_token_type": "urn:ietf:params:oauth:token-type:jwt",
   "scope": "openid",
   "subject_token": "<your-token>"
 }
