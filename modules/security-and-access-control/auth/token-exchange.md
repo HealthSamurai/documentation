@@ -43,7 +43,7 @@ accept: application/json
 * **`grant_types`**: Must contain `urn:ietf:params:oauth:grant-type:token-exchange`.
 * **`allowedIssuers`**: Lists the issuers allowed for token exchange.
 * **`auth.token_exchange`**:
-  * `token_format`: Must be `jwt`.
+  * `token_format`: Must be `jwt`. If omitted, an opaque token will be produced.
   * `refresh_token`: Indicates whether a refresh token is issued.
   * `access_token_expiration`: Time-to-live for an access token, in seconds.
   * `refresh_token_expiration`: Time-to-live for refresh token, in seconds.
