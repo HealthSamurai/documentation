@@ -50,7 +50,7 @@ accept: application/json
 
 ### **Create a Token Introspector**
 
-A Token Introspector validates incoming tokens from external issuers. Here’s an example:
+A Token Introspector validates incoming tokens from external issuers.
 
 ```json
 PUT /TokenIntrospector/external-auth-server
