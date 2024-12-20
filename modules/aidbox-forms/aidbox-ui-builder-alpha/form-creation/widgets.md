@@ -14,6 +14,22 @@ In the widget settings, you can define various parameters that determine its app
 
 ### General
 
+#### LinkId
+
+An identifier that is unique within the Questionnaire allowing linkage to the equivalent item in a QuestionnaireResponse resource.
+
+It is generated automatically, but the user can change it.
+
+#### System / Code / Display
+
+The user can manually add several codes from different terminology systems (use 'add code' option). Or import this data from terminologies (use 'import code' option).
+
+`Code` - a terminology code that corresponds to this group or question (e.g. a code from LOINC, which defines many questions and answers).
+
+`System` - identity of the terminology system.
+
+`Display` - representation defined by the system
+
 #### Text
 
 The Text field is used to define content for sections, questions, or display items within a form.&#x20;
