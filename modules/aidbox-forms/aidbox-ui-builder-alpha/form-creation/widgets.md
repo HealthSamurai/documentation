@@ -34,9 +34,27 @@ The user can manually add several codes from different terminology systems (use 
 
 The Text field is used to define content for sections, questions, or display items within a form.&#x20;
 
-**Short Text**
+#### **Short Text**
 
 The Short Text field provides an alternative, abbreviated version of the text. It is particularly useful when rendering forms on smaller screens, such as mobile devices, where space is limited.
+
+#### Size
+
+The Size parameter allows user to define the width of a widget and arrange multiple widgets horizontally within a form.
+
+* The form layout is based on a 12-column grid system.
+* By setting the size of a widget:
+  * Maximum Size (12 columns): The widget will span the entire width of the form (by default)
+  * Partial Size:&#x20;
+    * If one widget is set to a width of 6 columns and another to 6 columns, both widgets will be displayed side by side on the same line.
+    * Similarly, setting widths like 4, 4, and 4 will arrange three widgets horizontally in a row.
+
+#### Hidden, Required, Read Only, and Repeats Settings
+
+* `Hidden:` Hides the form item from user view while still allowing it to be used internally or for conditional logic.
+* `Required:` Ensures the user must provide input for the item before submitting the form.
+* `Read Only:` Displays the form item as non-editable, allowing users to view but not modify its value.
+* `Repeats:` Enables the user to dynamically add multiple instances of the same form item as needed.
 
 #### Collapsible
 
@@ -52,13 +70,17 @@ User can set the desired collapsibility option for specific sections or items wi
 
 ### Media
 
+#### **Image**
 
+Allows you to add an image next to a form item, enhancing its visual appeal or providing additional context. The user needs to provide a publicly available URL for the image.
+
+#### **Tooltip**
+
+Displays additional information when the user clicks the question mark icon in the top-right corner of a field, offering guidance or clarification.
 
 #### Support Link
 
 The Support Link option allows you to associate an external or internal link with a question, group, or display item within a form. This is particularly useful for providing users with additional descriptive details or reference material.
-
-How It Works:
 
 * When a support link is added, an **icon** appears immediately.
 * Users can click on the icon to navigate to the linked resource, typically displayed in a separate page or browser tab.
@@ -72,6 +94,8 @@ Use Cases:
 This feature enhances the usability of forms by ensuring users have access to additional information without cluttering the main form interface.
 
 ### Attributes
+
+Each widget in Aidbox Forms has its own set of customizable attributes that define its behavior, appearance, and functionality.
 
 ### Rule
 
