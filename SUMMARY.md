@@ -429,7 +429,6 @@
       * [Form Settings](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-settings.md)
       * [Widgets](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md)
       * [Components](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/components.md)
-      * [Rules](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/rules.md)
       * [Versioning](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/versioning.md)
       * [Form customisation in Theme Editor](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-customisation.md)
       * [Form signature](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-signature.md)
