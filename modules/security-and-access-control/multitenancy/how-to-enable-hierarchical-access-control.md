@@ -6,90 +6,13 @@ description: >-
 
 # How to enable hierarchical access control
 
-## Prerequisites
+&#x20;Since Aidbox version 2412, to enable OrgBAC in [FHIRSchema mode](../../profiling-and-validation/fhir-schema-validator/), use:
 
-### Docker and Docker Compose
-
-You should have Docker and Docker Compose installed before go further. To get it installed follow the [instructions](https://docs.docker.com/engine/install/).
-
-### Aidbox license
-
-To get the Aidbox License:
-
-1. Go the Aidbox user portal [https://aidbox.app](https://aidbox.app/)
-2. Login to the portal
-3. Create new **self-hosted** Aidbox License or use the license that you already have
-
-## Create Aidbox project
-
-Aidbox is configured by the [Aidbox Configuration Project.](../../../aidbox-configuration/aidbox-zen-lang-project/) To create sample project run command below.&#x20;
-
-Note that to use hierarchical access control with the [FHIR Schema validator](../../profiling-and-validation/fhir-schema-validator/), you need to clone the `orgbac-with-fhir-schema` branch, which has the FHIR Schema validator enabled and the Aidbox Configuration Project configured.
-
-{% tabs %}
-{% tab title="FHIR R4" %}
-```sh
-git clone \
-  --branch=main \
-  --depth=1 \
-  https://github.com/Aidbox/aidbox-project-template.git \
-  aidbox-project && \
-  cd aidbox-project && \
-  rm -rf .git
 ```
-{% endtab %}
-
-{% tab title="FHIR R5" %}
-```shell
-git clone \
-  --branch=fhir-r5 \
-  --depth=1 \
-  https://github.com/Aidbox/aidbox-project-template.git \
-  aidbox-project && \
-  cd aidbox-project && \
-  rm -rf .git
+BOX_FEATURES_ORGBAC_ENABLE=true
 ```
-{% endtab %}
 
-{% tab title="FHIR Schema R4" %}
-```sh
-git clone \
-  --branch=orgbac-with-fhir-schema \
-  --depth=1 \
-  https://github.com/Aidbox/aidbox-project-template.git \
-  aidbox-project && \
-  cd aidbox-project && \
-  rm -rf .git
-```
-{% endtab %}
-
-{% tab title="FHIR Schema R5" %}
-<pre class="language-bash"><code class="lang-bash"><strong>git clone \
-</strong>  --branch=orgbac-with-fhir-schema-r5 \
-  --depth=1 \
-  https://github.com/Aidbox/aidbox-project-template.git \
-  aidbox-project &#x26;&#x26; \
-  cd aidbox-project &#x26;&#x26; \
-  rm -rf .git
-</code></pre>
-{% endtab %}
-{% endtabs %}
-
-### Apply the license
-
-Populate the `.env` file with the Aidbox License.&#x20;
-
-{% code title=".env" %}
-```ini
-AIDBOX_LICENSE=YOUR_AIDBOX_LICENSE_KEY
-
-...
-```
-{% endcode %}
-
-## Enable multi-tenancy
-
-To enable hierarchical access control (multi-tenancy on Organization resources) ensure that  necessary imports are present in `zrc/main.edn` file.
+If your Aidbox version is lower or you do not use FHIRSchema mode, use [the Aidbox Configuration project](../../../aidbox-configuration/aidbox-zen-lang-project/) and import `aidbox.multitenancy.v1.fhir-r4`or `aidbox.multitenancy.v1.fhir-r5`namespace.
 
 {% tabs %}
 {% tab title="FHIR R4" %}
@@ -130,16 +53,6 @@ Add `aidbox.multitenancy.v1.fhir-r5` to the import section.
 {% endcode %}
 {% endtab %}
 {% endtabs %}
-
-## Start Aidbox with Docker Compose
-
-To start Aidbox run the command in the `aidbox-project` directory.
-
-```bash
-docker compose up --force-recreate
-```
-
-When Aidbox starts, navigate to the [http://localhost:8888](http://localhost:8888/) and sign in to the Aidbox UI using the credentials `admin` / `password`.
 
 ## Ensure the hierarchical access control works
 
