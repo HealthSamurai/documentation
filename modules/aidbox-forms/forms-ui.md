@@ -2,7 +2,7 @@
 description: The article outlines Aidbox Forms UI
 ---
 
-# Forms UI
+# Aidbox Forms Interface
 
 The Forms UI consists of three main sections, accessible through tabs at the left side of the page:
 
@@ -18,10 +18,9 @@ The **Form Templates** tab is the default view when you navigate to the Forms pa
 
 * **Search**: You can search through the list of form templates to quickly find a specific form.
 * **Filter**: You can filter the form templates by category, with the following options:
-  * **All**: Displays all available forms.
-  * **Forms**: Filters the list to show only forms in Aidbox Format.
-  * **Questionnaires**: Displays forms categorized as questionnaires in FHIR Format.
-  * **Workflow**: Shows workflows consist of a set of specific forms.
+  * **All**: Displays all available forms and components.
+  * **Forms**: Displays forms categorized as questionnaires in FHIR Format.
+  * **Components:** Displays custom components that have been created and reused in other forms.
 * **Preview**: Click to open a form in a separate popup to view its details.
 * **Share**: Generate a shareable link to the form that can be sent to others.
 
