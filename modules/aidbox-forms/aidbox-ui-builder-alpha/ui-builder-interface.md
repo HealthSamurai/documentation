@@ -19,6 +19,7 @@ When creating a form in the UI builder, the interface includes the following com
    * Users can view the QuestionnaireResponse resource. Data from the form is saved in a QuestionnaireResponse resource in a database.
    * Pre-filling the form with existing data is possible for testing purposes on Population tab.
    * Users can view how data will be extracted to other FHIR resources on Extraction tab.
+   * Named Expressions tab displays all variables that are used in the form.
 4. **Toolbar ( at the top** )**:**
    * The toolbar contains buttons for various actions.
    * Users can view a preview of the form, set a theme for the form, save the form, and access additional actions.

@@ -54,8 +54,9 @@ The current state of this questionnaire.
 FHIR Questionnaire statuses: `draft`, `active`, `retired` and `unknown` (`unknown` should not be used by user)
 
 * `draft` - used when you developing a form
-* `active` - used for forms in production - you should be carefull, and do not change these forms (small changes are ok).
-* `retired`- used for production retired forms - you also should be carefull about these, they are used for historical reasons
+* `active` - used for forms in production - you should be careful, and do not change these forms (small changes are ok).
+* `retired`- used for production retired forms - you also should be careful about these, they are used for historical reasons
+* `unknown`  - used when form status is unknown
 
 ### Default Language
 
@@ -87,11 +88,11 @@ You can set the show outline and see how it will look in the form preview. An ou
 
 This feature is convenient to use if the form is very large and you need to navigate through it.
 
-### Population
+## Population
 
 In order to pre-fill the form with data that is in the database. You need to define the incomming parameters for the form, which will then be used in specific fields that you want to pre-fill with data.
 
-**Incoming parameters:**
+### **Incoming parameters:**
 
 Parameters that can be passed to form's launch process. Parameters should be enabled before use. Every parameter will be available in populate expressions via it's name&#x20;
 
@@ -105,7 +106,7 @@ User `%user`&#x20;
 
 Study `%study`
 
-**Named Expressions:**
+### **Named Expressions:**
 
 Named expressions can be also used in data pre-population process.&#x20;
 
@@ -121,8 +122,6 @@ an expression name _patient_, prefixed with _%_ symbol.
 
 For more details of usage, look at how-to guide [here](how-to-guides/how-to.md).
 
-
-
 ## Additional Information Settings
 
 In this section, you can add additional information to the form that will be needed when publishing the form.
@@ -136,10 +135,6 @@ In this section, you can add additional information to the form that will be nee
 **Description** - a free text natural language description of the questionnaire. This description can be used to capture details such as why the questionnaire was built, comments about misuse, instructions for clinical use and interpretation, literature references, examples from the paper world, etc.
 
 **Copyright** - a copyright statement relating to the questionnaire and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the questionnaire.
-
-
-
-
 
 ## Appearance Settings
 
