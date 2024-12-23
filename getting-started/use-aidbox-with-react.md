@@ -21,7 +21,7 @@ The guide helps you to explore the following Aidbox features:
 
 Create your own Aidbox instance in [the Aidbox User Portal.](http://aidbox.app/)
 
-Configure Access Control within the Aidbox UI using the integrated REST console. Utilize the provided code snippets to create the Client and Access Policy for the sample app.
+Configure Access Control within the Aidbox UI using the integrated REST console (**APIs -> REST Console**). Utilize the provided code snippets to create the Client and Access Policy for the sample app.
 
 #### **Register Client for the sample app:**
 
@@ -47,7 +47,7 @@ engine: allow
 ```
 
 {% hint style="info" %}
-By default, Aidbox has a policy that locks down access to all data. You need to enable data sharing by adding Access Policies for Clients. Aidbox supports different ways to describe these policies, like JSON Schema, SQL, or Macho DSL. Learn more.
+By default, Aidbox has a policy that locks down access to all data. You need to enable data sharing by adding Access Policies for Clients. Aidbox supports different ways to describe these policies, like JSON Schema, SQL, or Macho DSL. [Learn more](../modules/security-and-access-control/security/).
 {% endhint %}
 
 ## **2. Import the sample data into Aidbox**
@@ -77,7 +77,7 @@ inputs:
 ```
 
 {% hint style="info" %}
-The **$import endpoint** is your go-to tool for loading FHIR data asynchronously into Aidbox. It effortlessly loads data from a public link specified in your HTTP request without performing any validation. Learn more.
+The [**$import endpoint**](../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md) is your go-to tool for loading FHIR data asynchronously into Aidbox. It effortlessly loads data from a public link specified in your HTTP request without performing any validation. Learn more.
 {% endhint %}
 
 ## 3. Clone and Connect the sample app to Aidbox
