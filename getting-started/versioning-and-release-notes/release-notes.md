@@ -1,5 +1,17 @@
 # Release Notes
 
+## December  2024&#x20;
+
+* Aidbox
+  * under construction....
+* Aidbox Forms
+  * **External file storage for unstructured data:** added the ability to store unstructured data from forms in external file storage systems.
+  * [**Preview for attachments:**](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#attachment) supported previewing audio, video, and PDF files in the attachment field.
+  * **Enhanced FHIR path development experience:** improved developer experience for FHIR path expressions with syntax highlighting, autocompletion, and error reporting.
+  * **Back button redirect for Form Builder:** added an option to configure a custom redirect for the back button when embedding the Form Builder as a web component.
+  * [**Link association for form items:** ](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#support-link)added the ability to associate a link with a question, group, or display item to provide additional information.
+  * [**Short text for mobile devices:**](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#short-text) enabled short text for questions, groups, or items to display an alternate label when rendering on smaller devices like mobile phones.
+
 ## November 2024 _`latest, 2411`_
 
 * Aidbox
