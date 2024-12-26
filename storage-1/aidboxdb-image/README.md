@@ -29,7 +29,7 @@ The AidboxDB image use cases are:
 
 AidboxDB image is tagged by PostgreSQL version from which it is built. For example, if you want to use 14.5 PostgreSQL version you should pull [healthsamurai/aidboxdb:14.5](https://hub.docker.com/layers/healthsamurai/aidboxdb/14.5/images/sha256-24accc760960f6abed0f9b2d2382712e5b98aa382403887e24408f0f0fdcf58d?context=repo) image.
 
-Supported PostgreSQL versions: 16.6, 15.10, 14.12.
+Supported PostgreSQL versions: 17.2, 16.6, 15.10.
 
 See available versions on [Docker Hub](https://hub.docker.com/r/healthsamurai/aidboxdb/tags).
 
