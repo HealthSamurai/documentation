@@ -27,8 +27,13 @@ A global Configuration resource can be instantiated to serve as the system-wide 
 * `description`: The human-readable description of the configuration resource.
 * `default`: A boolean value that specifies whether the configuration is the default for the system or tenant.
 * `language`: The default language for the UI.
-* `translations`: Object containing [custom translations](#translations) strings for the UI. 
+* `translations`: Object containing [custom translations](#translations) strings for the UI.
 * `theme`: An inlined copy of or reference to [QuestionnaireTheme](#theme) object.
+* `storage`: Storage configuration for attachments types
+  * `account`: Reference to [storage resource](https://docs.aidbox.app/storage-1/s3-compatible-storages)
+    * `id`: id
+    * `resourceType`: One of (GcpServiceAccount, AwsAccount, AzureContainer)
+  * `bucket`: Bucket to store attachment files (required for GcpServiceAccount and AwsAccount)
 * `builder`: Configuration settings for the form builder.
   * `form-url-prefix`: The URL prefix used in URL generation for new forms.
   * `hide-back-button`: A boolean value that specifies whether the back button should be hidden.
@@ -87,6 +92,13 @@ Content-Type: application/json
   "theme": {
     "id": "027cf3dd-dca7-4a38-b805-3e76c1886ac7",
     "resourceType": "QuestionnaireTheme"
+  },
+  "storage": {
+    "account": {
+      "id": "aws-test-account",
+      "resourceType": "AwsAccount"
+    },
+    "bucket": "attachments-bucket"
   },
   "builder": {
     "form-url-prefix": "https://example.com/forms/",
@@ -210,11 +222,11 @@ All of these properties are optional, and you can customize the theme to suit yo
 
 # Translations
 
-The translations object in the Configuration resource allows defining custom text for the Aidbox Form Builder and Renderer. 
-It uses a structured, hierarchical format where each key corresponds to a feature or component, and the leaf nodes specify locale-based translations. 
+The translations object in the Configuration resource allows defining custom text for the Aidbox Form Builder and Renderer.
+It uses a structured, hierarchical format where each key corresponds to a feature or component, and the leaf nodes specify locale-based translations.
 This structure supports multiple languages and regional variations by enabling you to specify locale codes such as en for English, fr for French, or more granular options like en-US for American English and fr-CA for Canadian French.
 
-The example provided below represents a comprehensive translations object for English, covering all possible keys. You can extend this object by adding translations for additional languages. 
+The example provided below represents a comprehensive translations object for English, covering all possible keys. You can extend this object by adding translations for additional languages.
 If a specific language (e.g., en for English or any other) is omitted, the Aidbox Form will use its standard default translations for that language.
 
 ```json
