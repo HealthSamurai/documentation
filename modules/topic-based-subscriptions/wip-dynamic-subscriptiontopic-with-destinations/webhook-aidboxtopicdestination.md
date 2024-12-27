@@ -1,5 +1,9 @@
 # Webhook AidboxTopicDestination
 
+{% hint style="info" %}
+This functionality is available starting from version 2410 and requires [FHIR Schema](../../profiling-and-validation/fhir-schema-validator/) validation engine to be [enabled](../../profiling-and-validation/fhir-schema-validator/setup.md).
+{% endhint %}
+
 This page describes an AidboxTopicDestination, which allows sending events described by an AidboxSubscriptionTopic to a specific HTTP endpoint.
 
 The webhook AidboxTopicDestination works in the following way:

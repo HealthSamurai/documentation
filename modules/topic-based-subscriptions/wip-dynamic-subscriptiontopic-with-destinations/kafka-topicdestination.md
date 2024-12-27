@@ -1,5 +1,9 @@
 # Kafka AidboxTopicDestination
 
+{% hint style="info" %}
+This functionality is available in Aidbox versions 2409 and later and requires [FHIR Schema](../../profiling-and-validation/fhir-schema-validator/) validation engine to be [enabled](../../profiling-and-validation/fhir-schema-validator/setup.md).
+{% endhint %}
+
 This page describes an AidboxTopicDestination which allows to store events described by an AidboxSubscriptionTopic in Kafka.
 
 Aidbox provides two kinds of Kafka integrations:
