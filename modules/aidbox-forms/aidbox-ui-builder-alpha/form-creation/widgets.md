@@ -10,9 +10,13 @@ This section details the various widgets available in Aidbox Forms and their cor
 
 ## Common Widget’s Settings
 
-In the widget settings, you can define various parameters that determine its appearance and behavior. Here are the main settings you can configure for most widgets
+In the widget settings, you can define various parameters that determine its appearance and behavior.&#x20;
 
-### General
+The user has the ability to change the widget type by clicking on the "change type" button in the upper right corner of the widget settings sidebar, while some of the settings for the current widget that the user entered will be saved, and some will need to be re-set.
+
+Here are the main settings you can configure for most widgets.
+
+### General section
 
 #### LinkId
 
@@ -68,7 +72,7 @@ There are options:
 
 User can set the desired collapsibility option for specific sections or items within the questionnaire.
 
-### Media
+### Media section
 
 #### **Image**
 
@@ -93,13 +97,48 @@ Use Cases:
 
 This feature enhances the usability of forms by ensuring users have access to additional information without cluttering the main form interface.
 
-### Attributes
+### Attributes section
 
-Each widget in Aidbox Forms has its own set of customizable attributes that define its behavior, appearance, and functionality.
+Each widget in Aidbox Forms has its own set of customisable attributes that define its behavior, appearance, and functionality.
 
-### Rule
+### Rules section
 
-### Data extraction
+1. EnableWhen rule
+
+EnableWhen option controls whether an item should be 'enabled' or not, but can handle more sophisticated circumstances. For example, it is possible to calculate a score based on the answer to several questions and then enable other questions based on the score. It's also possible to enable or disable questions based on data passed in as context or retrieved from queries.
+
+Options for Setting EnableWhen Rules:
+
+* `conditions` - define conditions using the "enableWhen" constructor.
+* `expression` - use [FHIRPath](https://hl7.org/fhirpath/) expressions to describe the desired behavior.
+
+2. Calculation rule
+
+Calculated expression allows answers to questions to be calculated based on answers to other questions. For example, the determination of a score.
+
+This expression will be most used for displaying scores, but can be used for any calculated element - patient age (based on current date and birth date), BMI (based on recent weight and height), estimated cost (based on selected items and quantities), etc.
+
+How to use Calculated expression:
+
+* &#x20;Create custom [FHIR Path](https://hl7.org/fhirpath/) expressions in the code editor with autocomplete functionality.
+* Utilize predefined templates under the "question" icon.
+
+Named expressions can be used in data calculation process.\
+They are useful for:
+
+* splitting one complex calculatation to smaller ones
+* storing intermediate calculations
+* sharing common pre-calculation with other expressions
+
+Named expressions will be available in current widget and it's child items (if they)\
+Expressions can be referenced with %expr-name literal.
+
+Example:
+
+* Define expression with name `first-name` = `'%resource.repeat(item).where(linkId='first-name').answer.valueString'`
+* Use defined variable via literal %first-name : `%first-name + %last-name`
+
+### Data extraction section
 
 Aidbox Forms supports two options for data extraction: **Observation-Based** and **Definition-Based**. These options provide flexibility in how form data is transformed into different FHIR resources.
 

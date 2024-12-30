@@ -6,10 +6,11 @@ description: The article outlines the general form settings
 
 ## General Form Settings
 
-In the UI builder interface, users can set general settings for the form. These settings can be accessed in two ways:
+In the UI builder interface, users can set general settings for the form. These settings can be accessed:
 
-* When users navigate to the UI builder page, they are presented with options to set general settings for the form.
-* Users can also access the general settings for the form by clicking on the name of the form in the form outline. This action opens a sidebar where users can modify the form's general settings.
+When opening a form in the UI Builder, users can access the general settings for the form by clicking on the name of the form in the form outline.
+
+This action opens a sidebar where users can modify the form's general settings.
 
 These settings include:
 
