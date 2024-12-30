@@ -183,6 +183,37 @@ Aidbox Forms provide three options for pre-filling the field:
 
 ## Description of widgets
 
+
+
+| Widget         | Description                                                                                                                                                                              | FHIR / Custom |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| Group          | An item with no direct answer but should have at least one child item.                                                                                                                   | FHIR          |
+| Choice matrix  | Questions within the group are rows in the table with possible answers as columns. Used for 'choice' questions.                                                                          | FHIR          |
+| Grid           |                                                                                                                                                                                          |               |
+| Group table    | Questions within the group are rows in the table with possible answers as columns.                                                                                                       | FHIR          |
+| Pages          |                                                                                                                                                                                          |               |
+| Text           | Question with a short (few words to a short sentence) free-text entry answer                                                                                                             | FHIR          |
+| Textarea       | Question with a long (potentially multi-paragraph) free-text entry answer                                                                                                                | FHIR          |
+| URL            | Question with a URL (website, FTP site, etc.) answer                                                                                                                                     | FHIR          |
+| Display        | Text for display that will not capture an answer or have child items.                                                                                                                    | FHIR          |
+| Integer        | Question with an integer answer                                                                                                                                                          | FHIR          |
+| Decimal        | Question with is a real number answer                                                                                                                                                    | FHIR          |
+| Slider         | A control where an axis is displayed between the high and low values and the control can be visually manipulated to select a value anywhere on the axis.                                 | FHIR          |
+| Quantity       | Question with a combination of a numeric value and unit, potentially with a comparator (<, >, etc.) as an answer.                                                                        | FHIR          |
+| Date           | Question with a date answer                                                                                                                                                              | FHIR          |
+| Time           | Question with a time (hour:minute:second) answer independent of date.                                                                                                                    | FHIR          |
+| DateTime       | Question with a date and time answer                                                                                                                                                     | FHIR          |
+| Choice         | Question with a Coding drawn from a list of possible answers (specified in either the answerOption property, or via the valueset referenced in the answerValueSet property) as an answer | FHIR          |
+| Open Choice    | Answer is a Coding drawn from a list of possible answers (as with the choice type) or a free-text entry in a string                                                                      | FHIR          |
+| Checkbox       | Question with a yes/no answer                                                                                                                                                            | FHIR          |
+| Attachment     | Question with binary content such as an image, PDF, etc. as an answer                                                                                                                    | FHIR          |
+| Signature      | A control for capturing a signature.                                                                                                                                                     | Custom        |
+| Annotation Pad | A control for capturing visual information, sketches, or handwritten notes that cannot be easily captured through text inputs.                                                           | Custom        |
+| Speech to text | A control to input text by speaking, which is then automatically transcribed into the form.                                                                                              | Custom        |
+| Reference      | Question with a reference to another resource (practitioner, organization, etc.) as an answer                                                                                            | FHIR          |
+| Radio Button   | A control where choices are listed with a button beside them. The button can be toggled to select or de-select a given choice. Selecting one item deselects all others.                  | FHIR          |
+| Checkbox List  | A control where choices are listed with a box beside them. The box can be toggled to select or de-select a given choice with multiple selections.                                        | FHIR          |
+
 ### Annotation Pad
 
 The Annotation Pad widget allows users to draw or write annotations directly within a form. This is particularly useful for capturing visual information, sketches, or handwritten notes that cannot be easily captured through text inputs. The Annotation Pad widget provides a flexible and intuitive way to gather this type of data.
