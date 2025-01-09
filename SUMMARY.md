@@ -449,6 +449,7 @@
     * [Building reports using SQL on FHIR](modules/aidbox-forms/aidbox-ui-builder-alpha/building-reports-using-sql-on-fhir.md)
     * [Integration with external terminology servers](modules/aidbox-forms/aidbox-ui-builder-alpha/integration-with-external-terminology-servers.md)
     * [External FHIR servers as a data backend](modules/aidbox-forms/aidbox-ui-builder-alpha/external-fhir-servers.md)
+    * [Store attachments in S3-like storages](modules/aidbox-forms/aidbox-ui-builder-alpha/store-attachmenst-in-s3-storages.md)
   * [Aidbox Code Editor (deprecated)](modules/aidbox-forms/aidbox-code-editor/README.md)
     * [Form creation](modules/aidbox-forms/aidbox-code-editor/how-to-create-a-form.md)
     * [Dynamic form creation](modules/aidbox-forms/aidbox-code-editor/how-to-create-a-dynamic-form.md)
