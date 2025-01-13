@@ -11,13 +11,20 @@ _Work in progress_
   * Added example of [SMART App Launch using Aidbox and Keycloak](https://github.com/Aidbox/examples/tree/main/smart-app-launch)
   * Supported enabling [OrgBAC (Organization-based hierarchical access control)](../../modules/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md) using an [environment variable](../../modules/security-and-access-control/multitenancy/how-to-enable-hierarchical-access-control.md) if an Aidox instance uses FHIR Schema validator
   * Fixed security issues and bugs
-* Aidbox Forms
-  * **External file storage for unstructured data:** added the ability to store unstructured data from forms in external file storage systems.
-  * [**Preview for attachments:**](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#attachment) supported previewing audio, video, and PDF files in the attachment field.
-  * **Enhanced FHIR path development experience:** improved developer experience for FHIR path expressions with syntax highlighting, autocompletion, and error reporting.
-  * **Back button redirect for Form Builder:** added an option to configure a custom redirect for the back button when embedding the Form Builder as a web component.
-  * [**Link association for form items:** ](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#support-link)added the ability to associate a link with a question, group, or display item to provide additional information.
-  * [**Short text for mobile devices:**](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#short-text) enabled short text for questions, groups, or items to display an alternate label when rendering on smaller devices like mobile phones.
+*   Aidbox Forms
+
+    * **External file storage for unstructured data:** added the ability to store unstructured data from forms in external file storage systems.
+    * [**Preview for attachments:**](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#attachment) supported previewing audio, video, and PDF files in the attachment field.
+    * **Enhanced FHIR path development experience:** improved developer experience for FHIR path expressions with syntax highlighting, autocompletion, and error reporting.
+    * **Back button redirect for Form Builder:** added an option to configure a custom redirect for the back button when embedding the Form Builder as a web component.
+    * [**Link association for form items:** ](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#support-link)added the ability to associate a link with a question, group, or display item to provide additional information.
+    * [**Short text for mobile devices:**](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#short-text) enabled short text for questions, groups, or items to display an alternate label when rendering on smaller devices like mobile phones.
+
+
+
+    Minor updates:
+
+    * 2412.1 — Fixed minor bugs
 
 ## November 2024 _`stable, 2411`_
 
