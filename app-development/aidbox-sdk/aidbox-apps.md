@@ -21,7 +21,7 @@ Aidbox SDKs support using Apps:
 
 To define the App, we should provide the app manifest.&#x20;
 
-<pre class="language-yaml"><code class="lang-yaml"><strong>PUT /fhir/App/myorg.myapp
+<pre class="language-yaml"><code class="lang-yaml"><strong>PUT /App/myorg.myapp
 </strong><strong>
 </strong><strong>resourceType: App
 </strong>id: myorg.myapp
