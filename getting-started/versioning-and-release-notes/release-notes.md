@@ -1,9 +1,16 @@
 # Release Notes
 
-## December  2024&#x20;
+## January 2025 _`edge`_&#x20;
+
+_Work in progress_
+
+## December 2024 _`latest, 2412`_
 
 * Aidbox
-  * under construction....
+  * Supported [SMART App Launch scopes v1 and v2](../../modules/security-and-access-control/smart-on-fhir/smart-scopes.md) for Aidbox on FHIR Schema validation engine and reworked [SMART on FHIR](../../modules/security-and-access-control/smart-on-fhir/) documentation
+  * Added example of [SMART App Launch using Aidbox and Keycloak](https://github.com/Aidbox/examples/tree/main/smart-app-launch)
+  * Supported enabling [OrgBAC (Organization-based hierarchical access control)](../../modules/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md) using an [environment variable](../../modules/security-and-access-control/multitenancy/how-to-enable-hierarchical-access-control.md) if an Aidox instance uses FHIR Schema validator
+  * Fixed security issues and bugs
 * Aidbox Forms
   * **External file storage for unstructured data:** added the ability to store unstructured data from forms in external file storage systems.
   * [**Preview for attachments:**](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#attachment) supported previewing audio, video, and PDF files in the attachment field.
@@ -12,7 +19,7 @@
   * [**Link association for form items:** ](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#support-link)added the ability to associate a link with a question, group, or display item to provide additional information.
   * [**Short text for mobile devices:**](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#short-text) enabled short text for questions, groups, or items to display an alternate label when rendering on smaller devices like mobile phones.
 
-## November 2024 _`latest, 2411`_
+## November 2024 _`stable, 2411`_
 
 * Aidbox
   * Introduced [Init Bundle](../../aidbox-configuration/init-bundle.md) as a simple and effective way of configuring Aidbox. The Init Bundle will replace Aidbox (zen) configuration projects.
@@ -34,7 +41,7 @@ Minor updates:
 * 2410.2 — Updated dependencies
 * 2410.1 — Fixed minor bugs
 
-## October 2024 _`stable, 2410, LTS`_
+## October 2024 _`2410, LTS`_
 
 * Aidbox
   * Released Aidbox UI home page
