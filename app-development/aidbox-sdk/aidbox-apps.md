@@ -21,18 +21,19 @@ Aidbox SDKs support using Apps:
 
 To define the App, we should provide the app manifest.&#x20;
 
-```yaml
-resourceType: App
-id: myorg.myapp
+<pre class="language-yaml"><code class="lang-yaml"><strong>PUT /fhir/App/myorg.myapp
+</strong><strong>
+</strong><strong>resourceType: App
+</strong>id: myorg.myapp
 apiVersion: 1
 type: app
 endpoint:
    url: https://my.service.com:8888
    type: http-rpc
-   secret: <your-sercret>
-operations: <Operations-definitions>
-resources: <resources-to-be-created>
-```
+   secret: &#x3C;your-sercret>
+operations: &#x3C;Operations-definitions>
+resources: &#x3C;resources-to-be-created>
+</code></pre>
 
 ## App manifest structure
 
