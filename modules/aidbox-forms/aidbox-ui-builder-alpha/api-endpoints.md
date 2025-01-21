@@ -477,7 +477,7 @@ Where `<questionnaire-url>` and `<questionnaire-version>` are as described in th
 
 Where `<questionnaire>` is the [questionnaire](https://www.hl7.org/fhir/questionnaire.html) that was saved.
 
-## save-extracted-bundle
+## validated-extracted-bundle
 Triggered upon completion of an extract operation initiated by the "Extract" button in the debug panel.
 
 #### Request
@@ -488,7 +488,7 @@ Content-Type: application/json
 <bundle>
 ```
 
-Where `<bundle>` is the [bundle](https://www.hl7.org/fhir/bundle.html) from the questionnaire response.
+Where `<bundle>` is the [bundle](https://www.hl7.org/fhir/bundle.html) containing resources obtained from [extract](#extract).
 
 #### Response
 

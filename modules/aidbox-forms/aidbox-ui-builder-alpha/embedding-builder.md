@@ -52,6 +52,109 @@ Deprecated: Pass `language` as part of the `config` attribute value.
 Deprecated: Pass `translation-languages` as part of the `config` attribute value.
 {% endhint %}
 
+### Request Interception
+
+In the builder, you can intercept requests made to the Aidbox server [endpoints](./api-endpoints.md). This feature is useful for debugging or implementing custom behavior, such as redirecting requests to a different server, appending authentication headers, or modifying requests.
+
+To enable request interception, set the `enable-fetch-proxy` attribute and pass an interception function as `fetch` property (not an attribute) to the DOM element.
+
+The interception function must follow the same signature as the standard [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Window/fetch) function, with the following exceptions:
+1.	The function can return null or undefined to bypass the interception and allow the builder to handle the request using the standard fetch.
+2.	The [init object](https://developer.mozilla.org/en-US/docs/Web/API/RequestInit) (the second argument) may include an additional tag property. This tag is a string representing the name of one of the [endpoints](./api-endpoints.md), allowing you to differentiate between requests without relying on the URL or HTTP method, which may be subject to future changes.
+
+Below is an example of how to intercept requests in the builder to log them to the console:
+
+```html
+<aidbox-form-builder
+  id="aidbox-form-builder"
+  enable-fetch-proxy
+/>
+
+<script>
+    const builder = document.getElementById('aidbox-form-builder');
+    
+    builder.fetch = async (url, init) => {
+        console.log('Intercepted request', url, init);
+        const response = await fetch(url, init);
+        
+        const cloned = response.clone();
+        console.log('Intercepted response', response.status, 
+          response.headers.get('content-type') === 'application/json' 
+            ? await cloned.json() 
+            : await cloned.text());
+        
+        return response;
+    };
+</script>
+```
+
+Below is an example of how to intercept requests in the builder to attach authorization header and re-route requests to a different endpoint:
+
+```html
+
+<aidbox-form-builder
+  id="aidbox-form-builder"
+  enable-fetch-proxy
+/>
+
+<script>
+  const builder = document.getElementById('aidbox-form-builder');
+
+  builder.fetch = async (url, init) => {
+    const headers = new Headers(init.headers);
+    const accessToken = 'YOUR_ACCESS_TOKEN'
+    headers.set('Authorization', `Bearer ${accessToken}`);
+    return fetch(`/protected${url}`, {...init, headers});
+  };
+</script>
+```
+
+Below is example of how to intercept read/write questionnaire request in the builder to make it work with your custom questionnaire storage:
+
+```html
+<aidbox-form-builder
+  form-id="local-questionnaire"
+  id="aidbox-form-builder"
+  enable-fetch-proxy
+/>
+
+<script>
+  const builder = document.getElementById('aidbox-form-builder');
+
+  builder.fetch = async (url, init) => {
+    if (init.tag === 'get-questionnaire') {
+      const id = url.split('/').pop();
+      
+      if (id === 'local-questionnaire') {
+        let localQuestionnaire = {
+          "resourceType": "Questionnaire",
+          "id": "local-questionnaire",
+        };
+        
+        try {
+            localQuestionnaire = JSON.parse(localStorage.getItem('local-questionnaire'));
+        } catch (e) {
+            // ignore if local questionnaire is not found or invalid
+        }
+        
+        return new Response(JSON.stringify(localQuestionnaire), { status: 200 });
+      }
+    } else if (init.tag === 'save-questionnaire') {
+      const questionnaire = JSON.parse(init.body);
+      
+      if (questionnaire.id === 'local-questionnaire') {
+        localStorage.setItem('local-questionnaire', JSON.stringify(questionnaire));
+        return new Response(JSON.stringify(questionnaire), { status: 200 });
+      }
+    }
+    
+    // let the builder handle the request
+    return null;
+  };
+  
+</script>
+```
+
 
 ## Embedding Builder in Controlled Mode
 
