@@ -151,6 +151,7 @@ There are several options you may pass to the `/ccda/v2/to-fhir` endpoint. Optio
 | `reference-format` | `resource-id`                                                                                                                        | Sets output reference format to ResourceType/id                                            |
 | `transaction`      | `true`                                                                                                                               | Output FHIR bundle type. By default FHIR document bundle will be returned                  |
 | `sections`         | <p>Proceed to the <a href="./#list-of-supported-sections">Section Aliases</a> table to find all possible values.<br>Default: all</p> | Comma-separated list of section aliases to process. By default all sections are processed. |
+| `patient-id`       | `id`  that will be inserted and propagated as `uri` , `id` or `fullURl` in resulting FHIR Bundle. | Arbitrary string that corresponds to id. |  
 
 Example
 
@@ -312,6 +313,7 @@ Options are passed as query-string parameters, i.e. `/ccda/v2/persist?create-doc
 | `create-docref` | `true`                                                                                                                               | <p>false<br>Default: <code>false</code></p>                                                |
 | `tenant-id`     | <p>ID of Tenant resource<br>Default: none</p>                                                                                        | For [Smartbox](../../smartbox/) users only. Assigns Tenant to all populated resources.     |
 | `sections`      | <p>Proceed to the <a href="./#list-of-supported-sections">Section Aliases</a> table to find all possible values.<br>Default: all</p> | Comma-separated list of section aliases to process. By default all sections are processed. |
+| `patient-id`       | `id`  that will be inserted and propagated as `uri` , `id` or `fullURl` in persisted FHIR Bundle. | Arbitrary string that corresponds to id. |  
 
 ### Validating a C-CDA document
 
