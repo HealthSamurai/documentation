@@ -2,7 +2,9 @@
 
 ## January 2025 _`edge`_&#x20;
 
-_Work in progress_
+Minor updates:
+
+* 2412.2 — Fixed  security issues
 
 ## December 2024 _`latest, 2412`_
 
