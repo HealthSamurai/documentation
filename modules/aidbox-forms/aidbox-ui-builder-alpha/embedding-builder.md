@@ -131,13 +131,13 @@ By following these steps, you can seamlessly embed the Aidbox Form Builder into 
 
 ## Request Interception
 
-In the builder, you can intercept requests made to the Aidbox server [endpoints](api-endpoints.md). This feature is useful for debugging or implementing custom behavior, such as redirecting requests to a different server, appending authentication headers, or modifying requests.
+In the builder, you can intercept requests made to the Aidbox server [endpoints](endpoints.md). This feature is useful for debugging or implementing custom behavior, such as redirecting requests to a different server, appending authentication headers, or modifying requests.
 
 To enable request interception, set the `enable-fetch-proxy` attribute and pass an interception function as `fetch` property (not an attribute) to the DOM element.
 
 The interception function must follow the same signature as the standard [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Window/fetch) function, with the following exceptions:
 1.	The function can return null or undefined to bypass the interception and allow the builder to handle the request using the standard fetch.
-2.	The [init object](https://developer.mozilla.org/en-US/docs/Web/API/RequestInit) (the second argument) may include an additional tag property. This tag is a string representing the name of one of the [endpoints](api-endpoints.md), allowing you to differentiate between requests without relying on the URL or HTTP method, which may be subject to future changes.
+2.	The [init object](https://developer.mozilla.org/en-US/docs/Web/API/RequestInit) (the second argument) may include an additional tag property. This tag is a string representing the name of one of the [endpoints](endpoints.md), allowing you to differentiate between requests without relying on the URL or HTTP method, which may be subject to future changes.
 
 Below is an example of how to intercept requests in the builder to log them to the console:
 
