@@ -2,7 +2,7 @@
 description: The API endpoints facilitate interactions between the Aidbox Forms application and the Aidbox server
 ---
 
-# API endpoints
+# API Endpoints
 
 The following API endpoints are utilized by the Aidbox Forms application to interact with Aidbox. 
 These endpoints are activated by specific actions within the application, such as saving a questionnaire, 
