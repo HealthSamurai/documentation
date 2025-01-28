@@ -208,6 +208,12 @@ The search API does not support search parameters:
 * `_with`
 {% endhint %}
 
+### $everything
+
+```
+GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/Patient/$everything
+```
+
 ### History
 
 Resource full history
