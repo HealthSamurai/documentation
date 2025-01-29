@@ -19,6 +19,6 @@ This quickstart guide explains how to run **Aidbox** in the [Aidbox Cloud Sandbo
   * **FHIR Version**: Select the appropriate version for your use case.
 * Click **Create** button.
 
-### Access your Aidbox instance&#x20;
+## Access your Aidbox instance&#x20;
 
 * You can open your **hosted Aidbox instance** in a browser by clicking the **Instance URL** link on the product summary page.
