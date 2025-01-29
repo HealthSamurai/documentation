@@ -1,14 +1,24 @@
-# Run Aidbox in Aidbox Sandbox
+# Run Aidbox in Sandbox
 
-This quickstart guide explains how to run Aidbox in [Aidbox Sandbox cloud](https://aidbox.app). You will learn how to obtain a free short-time license and set up Aidbox.
+This quickstart guide explains how to run **Aidbox** in the [Aidbox Cloud Sandbox](https://aidbox.app). It will help you set up a hosted Aidbox instance with a **Development license** You will learn to get a hosted Aidbox instance with a Development license.&#x20;
 
-### Get a license
+## Sign up for the Aidbox portal
 
-Go to the [Aidbox portal](https://aidbox.app). Sign up and click the new license button. Choose product type "Aidbox" and hosting type "Sandbox".
+* Go to the [Aidbox portal](https://aidbox.app).&#x20;
+* [Create an account](https://aidbox.app/ui/portal#/signup) or [log in](https://aidbox.app/ui/portal#/signin) if you already have one.
 
-### Go to the Aidbox UI
+## Create a managed Aidbox instance
 
-You'll see your license in the "My Licenses" list. Click on your new license and navigate to the "URL" link in the "Hosting" box.
+* Click the **New License** button in the portal.
+* Configure your instance by selecting:
+  * **License Type**: Development license (free, no PHI, with a 5 GB database limit).
+  * **License Name**: Add a descriptive name for your license and specify your goal.
+  * **Hosting Option**: Google Cloud Platform.
+  * **Aidbox Version**: Choose “Edge” or “Latest.”
+  * **Instance URL**: Provide the desired URL for your Aidbox instance.
+  * **FHIR Version**: Select the appropriate version for your use case.
+* Click **Create** button.
 
-Now you are ready to use Aidbox.
+### Access your Aidbox instance&#x20;
 
+* You can open your **hosted Aidbox instance** in a browser by clicking the **Instance URL** link on the product summary page.
