@@ -139,6 +139,11 @@ The interception function must follow the same signature as the standard [fetch]
 1.	The function can return null or undefined to bypass the interception and allow the builder to handle the request using the standard fetch.
 2.	The [init object](https://developer.mozilla.org/en-US/docs/Web/API/RequestInit) (the second argument) may include an additional tag property. This tag is a string representing the name of one of the [endpoints](endpoints.md), allowing you to differentiate between requests without relying on the URL or HTTP method, which may be subject to future changes.
 
+
+### Examples
+
+#### Logging Requests
+
 Below is an example of how to intercept requests in the builder to log them to the console:
 
 ```html
@@ -165,6 +170,8 @@ Below is an example of how to intercept requests in the builder to log them to t
 </script>
 ```
 
+#### Custom Authorization and Rerouting
+
 Below is an example of how to intercept requests in the builder to attach authorization header and re-route requests to a different endpoint:
 
 ```html
@@ -185,6 +192,8 @@ Below is an example of how to intercept requests in the builder to attach author
   };
 </script>
 ```
+
+#### Custom Questionnaire Storage
 
 Below is example of how to intercept read/write questionnaire request in the builder to make it work with your custom questionnaire storage:
 
@@ -229,5 +238,38 @@ Below is example of how to intercept read/write questionnaire request in the bui
     return null;
   };
   
+</script>
+```
+
+#### Intercept Extraction Result
+
+Below is an example of how to intercept result of the extract operation in the builder:
+
+```html
+<aidbox-form-builder
+  id="aidbox-form-builder"
+  enable-fetch-proxy
+/>
+
+<script>
+    const builder = document.getElementById('aidbox-form-builder');
+    
+    builder.fetch = async (url, init) => {
+        if (init.tag === 'extract') {
+          const response = await fetch(url, init);
+
+          if (response.status === 200) {
+            const bundle = response.clone().json();
+            // do something with the bundle
+            console.log('extracted bundle', bundle)
+          }
+          
+          // return original response
+          return response;
+        }
+        
+        // let the builder handle the request
+        return null;
+    };
 </script>
 ```
