@@ -680,3 +680,15 @@ Specify the Grafana user name.
 **BOX\_METRICS\_GRAFANA\_PASSWORD**
 
 Specify the Grafana user password.
+
+### Content security policy
+
+AIDBOX\_CONTENT\_SECURITY\_POLICY\_HEADER
+
+A Content Security Policy (CSP) is a security mechanism that helps protect web applications from threats like Cross-Site Scripting (XSS), data injection, and clickjacking. It works by specifying rules for browsers about which resources (e.g., scripts, styles, images) can be loaded and executed.
+
+```ini
+BOX_FEATURES_SECURITY__LABELS_ENABLE=default-src 'self'; script-src 'report-sample' 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'report-sample' 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; connect-src 'self'; font-src 'self'; frame-src 'self'; frame-ancestors 'self'; img-src 'self'; manifest-src 'self'; media-src 'self'; worker-src 'self';
+```
+
+Please refer to the [OWASP Content Security Policy Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html) for additional guidance
