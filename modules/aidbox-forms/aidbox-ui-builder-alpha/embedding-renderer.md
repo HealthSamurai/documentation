@@ -119,3 +119,12 @@ The renderer emits the following events:
 * `ready`: Fired when the Aidbox Forms Renderer has fully loaded and is ready for use.
 
 By following these steps, you can effortlessly integrate the Aidbox Form Renderer into your application, offering a robust solution for form creation and management directly within your user interface.
+
+
+## Request Interception
+
+You can intercept requests made by the renderer to customize or modify them. 
+
+To enable request interception, set the `enable-fetch-proxy` attribute and pass an interception function as `fetch` property (not an attribute) to the DOM element.
+
+Please refer to [Request Interception](embedding-builder.md#request-interception) for more information.
