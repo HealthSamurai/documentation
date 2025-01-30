@@ -18,6 +18,7 @@
   * [Run Aidbox on managed PostgreSQL](getting-started/run-aidbox-on-managed-postgresql.md)
   * [Upload Sample Data](getting-started-1/load-bundle-into-fhir-server.md)
 * [Tutorials](<modules-1/security-and-access-control/tutorials/README (1).md>)
+  * [Managing Admin Access to the Aidbox UI Using Okta Groups](readme-1/managing-admin-access-to-the-aidbox-ui-using-okta-groups.md)
   * [Data API](tutorials/data-api/README.md)
     * [How to use multilingual search](tutorials/data-api/how-to-use-multilingual-search.md)
     * [Custom Search](tutorials/data-api/custom-search.md)
