@@ -659,25 +659,27 @@ Follow the link below to learn how Aidbox metrics work.
 [metrics](../../../modules/observability/metrics/)
 {% endcontent-ref %}
 
-**BOX\_METRICS\_PORT**
+#### **BOX\_METRICS\_PORT**
 
 Defines the port which will be used to expose metrics.
 
-**BOX\_METRICS\_POSTGRES\_ON**
+#### **BOX\_METRICS\_POSTGRES\_ON**
+
+```
+BOX_METRICS_POSTGRES_ON=false
+```
 
 If you have a different pg exporter, disable Aidbox PostgreSQL metrics to avoid metrics duplication by setting the env to false.
 
-`BOX_METRICS_POSTGRES_ON=false`
-
-**BOX\_METRICS\_GRAFANA\_URL**
+#### **BOX\_METRICS\_GRAFANA\_URL**
 
 Specify the Grafana instance URL in this env.
 
-**BOX\_METRICS\_GRAFANA\_USER**
+#### **BOX\_METRICS\_GRAFANA\_USER**
 
 Specify the Grafana user name.
 
-**BOX\_METRICS\_GRAFANA\_PASSWORD**
+#### **BOX\_METRICS\_GRAFANA\_PASSWORD**
 
 Specify the Grafana user password.
 
@@ -703,10 +705,10 @@ Recommended policies:
 | `connect-src`     | `'self'`                                                        | Limits connections (e.g., AJAX, WebSocket) to the same origin.                           | Prevents data exfiltration to unauthorized endpoints.                                                 |
 | `font-src`        | `'self'`                                                        | Restricts font loading to the same origin.                                               | Reduces risks from malicious or unauthorized fonts.                                                   |
 | `frame-src`       | `'self'`                                                        | Allows embedding content in frames only from the same origin.                            | Mitigates clickjacking attacks by disallowing external framing of your content.                       |
-| `frame-ancestors` | `'self'`                                                        | Ensures that only pages from the same origin can embed this page in a frame.             | Further protects against clickjacking by controlling who can frame your site.                         |
+| `frame-ancestors` | `'self'`                                                        | Ensures that only pages from the same origin can embed this page in a frame.             | Further protects against clickjacking by controlling who can frame Aidbox pages .                     |
 | `img-src`         | `'self'`                                                        | Limits image sources to the same origin.                                                 | Prevents data leaks via malicious or unauthorized images.                                             |
-| `manifest-src`    | `'self'`                                                        | Ensures that web app manifests are loaded only from the same origin.                     | Protects against unauthorized or malicious web app manifests being loaded into your application.      |
-| `media-src`       | `'self'`                                                        | Restricts audio and video sources to the same origin.                                    | Prevents unauthorized media files from being loaded into your application.                            |
-| `worker-src`      | `'self'`                                                        | Limits web workers and shared workers to scripts from the same origin.                   | Reduces risks of malicious workers being executed within your application context.                    |
+| `manifest-src`    | `'self'`                                                        | Ensures that web app manifests are loaded only from the same origin.                     | Protects against unauthorized or malicious web app manifests being loaded into Aidbox.                |
+| `media-src`       | `'self'`                                                        | Restricts audio and video sources to the same origin.                                    | Prevents unauthorized media files from being loaded into Aidbox                                       |
+| `worker-src`      | `'self'`                                                        | Limits web workers and shared workers to scripts from the same origin.                   | Reduces risks of malicious workers being executed within your Aidbox context.                         |
 
 Please refer to the [OWASP Content Security Policy Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html) for additional guidance
