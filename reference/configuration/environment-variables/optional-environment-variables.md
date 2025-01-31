@@ -690,10 +690,28 @@ AIDBOX\_CONTENT\_SECURITY\_POLICY\_HEADER
 A Content Security Policy (CSP) is a security mechanism that helps protect web applications from threats like Cross-Site Scripting (XSS), data injection, and clickjacking. It works by specifying rules for browsers about which resources (e.g., scripts, styles, images) can be loaded and executed.
 
 ```ini
-AIDBOX_CONTENT_SECURITY_POLICY_HEADER=default-src 'self'; script-src 'report-sample' 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'report-sample' 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; connect-src 'self'; font-src 'self'; frame-src 'self'; frame-ancestors 'self'; img-src 'self'; manifest-src 'self'; media-src 'self'; worker-src 'self';
+AIDBOX_CONTENT_SECURITY_POLICY_HEADER=default-src 'self'; script-src 'report-sample' 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'report-sample' 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; connect-src 'self'; font-src 'self'; frame-src 'self'; frame-ancestors 'self'; img-src 'self' data:; manifest-src 'self'; media-src 'self'; worker-src 'self';
 ```
 
 Recommended policies:
+
+```
+default-src 'self'; 
+script-src 'report-sample' 'self' 'unsafe-inline' 'unsafe-eval';
+style-src 'report-sample' 'self' 'unsafe-inline'; 
+object-src 'none'; 
+base-uri 'self'; 
+connect-src 'self'; 
+font-src 'self';
+frame-src 'self'; 
+frame-ancestors 'self'; 
+img-src 'self' data:; 
+manifest-src 'self'; 
+media-src 'self'; 
+worker-src 'self';
+```
+
+Explanation:
 
 | **Directive**     | **Allowed Sources**                                             | **Description**                                                                          | **Security Implications**                                                                             |
 | ----------------- | --------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
@@ -706,7 +724,7 @@ Recommended policies:
 | `font-src`        | `'self'`                                                        | Restricts font loading to the same origin.                                               | Reduces risks from malicious or unauthorized fonts.                                                   |
 | `frame-src`       | `'self'`                                                        | Allows embedding content in frames only from the same origin.                            | Mitigates clickjacking attacks by disallowing external framing of your content.                       |
 | `frame-ancestors` | `'self'`                                                        | Ensures that only pages from the same origin can embed this page in a frame.             | Further protects against clickjacking by controlling who can frame Aidbox pages .                     |
-| `img-src`         | `'self'`                                                        | Limits image sources to the same origin.                                                 | Prevents data leaks via malicious or unauthorized images.                                             |
+| `img-src`         | `'self'` `data:`                                                | Limits image sources to the same origin.                                                 | Prevents data leaks via malicious or unauthorized images.                                             |
 | `manifest-src`    | `'self'`                                                        | Ensures that web app manifests are loaded only from the same origin.                     | Protects against unauthorized or malicious web app manifests being loaded into Aidbox.                |
 | `media-src`       | `'self'`                                                        | Restricts audio and video sources to the same origin.                                    | Prevents unauthorized media files from being loaded into Aidbox                                       |
 | `worker-src`      | `'self'`                                                        | Limits web workers and shared workers to scripts from the same origin.                   | Reduces risks of malicious workers being executed within your Aidbox context.                         |
