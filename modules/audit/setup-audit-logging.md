@@ -8,37 +8,25 @@ description: >-
 
 This guide shows you how to enable audit logging in Aidbox and receive audit logs within FHIR API and Audit log viewer UI application. It is expected, that you have Aidbox up & running in accordance to [Run Aidbox locally guide](../../getting-started/run-aidbox-locally-with-docker/).
 
-### Two ways to enable Audit Log
+### Enable Audit Log
 
-1. **Environment variable**
-
-To enable audit logging in Aidbox set the following variable to `true`. The default value is `false`.
+To enable audit logging in Aidbox, set the following variable to `true`.
 
 ```
 AIDBOX_SECURITY_AUDIT__LOG_ENABLED=true
 ```
 
-2. **Aidbox configuration project**
-
-&#x20;If you use aidbox configuration project describe `:audit` in your `aidbox/system` entry point:
-
-{% code title="zrc/main.edn" %}
-```clojure
-{ns main
- import #{aidbox}
- 
- box
- {:zen/tags #{aidbox/system}
-  :audit {:storage "AuditEvent"} ;; Add this line to your aidbox project
-  }}
+### Install the required package
+The Basic Audit Log Patterns (BALP) Implementation Guide is a Content Profile that defines some basic and reusable AuditEvent patterns. This includes basic audit log profiles for FHIR RESTful operations to be used when no more specific audit event is determined.
 ```
-{% endcode %}
-
-Once the configuration is updated, start Aidbox.
+AIDBOX_FHIR_PACKAGES="<hl7.fhir...>:ihe.iti.balp#1.1.3"
+```
+[More about FHIR package import via environment variables.](../../modules/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/environment-variable/)
+You can also install it on the fly through [Aidbox UI](../../modules/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/aidbox-ui/ig-package-from-aidbox-registry).
 
 ## Run some auditable operations
 
-To force Aidbox produce audit events, run any FHIR CRUD operation, e.g.
+To force Aidbox to produce audit events, run any FHIR CRUD operation, e.g.
 
 ```yaml
 POST /fhir/Patient
