@@ -22,6 +22,7 @@ The Basic Audit Log Patterns (BALP) Implementation Guide is a Content Profile th
 AIDBOX_FHIR_PACKAGES="<hl7.fhir...>:ihe.iti.balp#1.1.3"
 ```
 [More about FHIR package import via environment variables.](../../modules/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/environment-variable/)
+
 You can also install it on the fly through [Aidbox UI](../../modules/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/aidbox-ui/ig-package-from-aidbox-registry).
 
 ## Run some auditable operations
