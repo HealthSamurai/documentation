@@ -2,6 +2,19 @@
 
 ## January 2025 _`edge`_&#x20;
 
+* Aidbox&#x20;
+  * Enhanced UI Resource browser:
+    * Added reference navigation for direct navigation between linked resources
+    * Introduced resizable columns
+    * Implemented pagination
+    * Introduced resizable columns
+    * Added column selection
+  * Added support for specifying  [Content Security Policy header as an environment variable](../../reference/configuration/environment-variables/optional-environment-variables.md#content-security-policy). By default, Aidbox doesn't set CSP headers.
+  * Supported Bundle batch validation using Bundle/$validate endpoint for Aidbox instances using FHIR Schema validator
+  * Changed default [stdout log level](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox_stdout_json) and [stdout Google log level](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox_stdout_google_json) to `warn`
+
+
+
 Minor updates:
 
 * 2412.2 — Fixed  security issues
