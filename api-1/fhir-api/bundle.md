@@ -14,7 +14,7 @@ The Bundle resource is a resource which groups multiple resources in one. It is 
 
 Let's look at some operations working with Bundle resources.
 
-* `POST /` , `POST /fhir` \
+* `POST /` , `POST /fhir`\
   Main article: [transaction.md](../transaction.md "mention").\
   This operation accepts Bundle resource (with type batch or transaction); executes contained requests; then returns Bundle resource in response (with type batch-response or transaction-response).\
   Operation `POST /` accepts and return Bundle in Aidbox format; operation `POST /fhir` accepts and returns Bundle in FHIR format.
@@ -31,7 +31,7 @@ Let's look at some operations working with Bundle resources.
   Main article: [crud-1](../api/crud-1/ "mention")\
   These are the usual FHIR CRUD operations with Bundle resource. They only store/update/get/search Bundle resources without additional semantics.\
   These operations are rarely used.\
-  Examples: `POST /Bundle`, `GET /Bundle`, `GET /Bundle/<id>`, `PUT /Bundle`, \
+  Examples: `POST /Bundle`, `GET /Bundle`, `GET /Bundle/<id>`, `PUT /Bundle`,\
   `POST /fhir/Bundle`, `GET /fhir/Bundle`, `GET /fhir/Bundle/<id>`,\
   `PUT /fhir/Bundle/<id>`
 
@@ -68,3 +68,28 @@ Supported `type` values:
 * `collection`\
   Works the same way as the `batch` type, but does `PUT /<resourceType>/<id>` for each resource in entry.\
   Returns `batch-response` type bundle.
+
+### Validate Bundle
+
+To validate bundle without storing it content, use `Bundle/$validate` operation.
+
+```json
+POST /fhir/Bundle/$validate
+content-type: application/json
+accept: application/json
+
+{
+ "resourceType": "Bundle",
+ "type": "message",
+ // ...
+}
+```
+
+{% hint style="warning" %}
+In [fhir-schema-validator](../../modules/profiling-and-validation/fhir-schema-validator/ "mention") mode, `/fhir/Bundle/$validate`  doesn't validates Aidbox built-in resources (User, AccessPolicy, etc.). &#x20;
+
+Use validation in Aidbox format with `Bundle/$validate` if you need to validate a bundle with built-in resources. This endpoint only validates entries of the bundle, but not the bundle itself.
+{% endhint %}
+
+
+
