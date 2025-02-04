@@ -43,7 +43,12 @@ To create a new theme, select the **Add New Theme** option. This opens the theme
     * **Page Color:** The background color for the page where the form is displayed.
     * **Form Color:** The background color for the form itself.
     * **Toolbar Color:** The color for the form's toolbar.
-3.  **Brand Image**
+
+{% hint style="info" %}
+The color for the tooltip and hover will be set automatically according to the Primary color.
+{% endhint %}
+
+1.  **Brand Image**
 
     You can add a brand image to your form in two possible locations:
 
@@ -51,10 +56,10 @@ To create a new theme, select the **Add New Theme** option. This opens the theme
     * **Bottom-left corner** of the form.
 
     To include the image, provide a publicly available URL for the image file.
-4.  **Font**
+2.  **Font**
 
     In this section, you can select the font family and set the font size for your form. Three options are available for the font family: **Product Sans**, **Inter** and **Metropolis**.
-5.  **Inputs**
+3.  **Inputs**
 
     In this section, you can customize the appearance of input fields:
 
@@ -62,7 +67,7 @@ To create a new theme, select the **Add New Theme** option. This opens the theme
     * **Text Color:** Define the color of the text entered in the input fields.
     * **Background Color:** Set the background color for input fields.
     * **Font Size:** Adjust the font size for text within the input fields.
-6.  **Buttons**
+4.  **Buttons**
 
     In this section, you can customize the appearance of buttons in your form:
 
