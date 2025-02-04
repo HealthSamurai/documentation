@@ -16,6 +16,13 @@ _Work in progress_&#x20;
   * Added support for specifying  [Content Security Policy header as an environment variable](../../reference/configuration/environment-variables/optional-environment-variables.md#content-security-policy). By default, Aidbox doesn't set CSP headers.
   * Supported [Bundle batch validation](../../api-1/fhir-api/bundle.md#validate-bundle) using Bundle/$validate endpoint for Aidbox instances using FHIR Schema validator
   * Changed default [stdout log level](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox_stdout_json) and [stdout Google log level](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox_stdout_google_json) to `warn`
+* Aidbox Forms
+  * Performance Optimization: Improved performance for handling large forms.
+  * [Custom Tooltip & Hover Colors](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-customisation.md#how-to-create-a-new-theme): Added the ability to set colors for tooltips and hover effects using the primary color in the Theme.
+  * Questionnaire Profile Linking: Enabled linking a Questionnaire profile directly in the UI Builder.
+  * [Aidbox Forms Smart Launch Update](https://github.com/Aidbox/examples/tree/main/aidbox-forms-smart-launch-2): Updated the Aidbox Forms Smart Launch project with enhancements and fixes.
+  * [Video Support in Media Guidance](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#media-section): Added video support to the media section of the item settings .
+  * Enhanced Definition-Based Extraction: Now supports profiles and slices in definition-based extraction.
 
 Minor updates:
 
