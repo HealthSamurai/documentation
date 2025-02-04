@@ -604,11 +604,6 @@
 ## Reference
 
 * [FHIRSchema reference](https://fhir-schema.github.io/fhir-schema/)
-* [Zen schema reference](reference/zen-schema-reference/README.md)
-  * [aidbox](reference/rpc-reference/aidbox/README.md)
-    * [mdm](reference/rpc-reference/aidbox/mdm/README.md)
-      * [splink-engine](reference/zen-schema-reference/aidbox/mdm/splink-engine.md)
-      * [model](reference/zen-schema-reference/aidbox/mdm/model.md)
 * [RPC reference](reference/rpc-reference/README.md)
   * [aidbox](reference/zen-schema-reference/aidbox/README.md)
     * [mdm](reference/zen-schema-reference/aidbox/mdm/README.md)

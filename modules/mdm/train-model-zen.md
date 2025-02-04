@@ -1,5 +1,7 @@
 # Train model
 
+{% hint style="info" %} Zen model for MDM module is scheduled for deprecation in several upcoming releases. Please consider using new [guide]. {% endhint %}
+
 Train MDM model on your data.
 
 ## Create a client
@@ -45,4 +47,11 @@ The last step in the tutorial is the following cell
 linker.save_zen_model_edn('model.edn')
 ```
 
-This will create a file with model symbol. You will need it to set up MDM module in AIdbox
+This will create a file with model symbol. You will need it to set up MDM module in Aidbox
+
+## References
+
+### Zen symbols
+
+* [aidbox.mdm/model](../../reference/zen-schema-reference/aidbox/mdm/model.md)
+* [aidbox.mdm/splink-engine](../../reference/zen-schema-reference/aidbox/mdm/splink-engine.md)

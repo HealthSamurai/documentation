@@ -38,13 +38,7 @@ Learn more about mathematics behind probabilistic matching
 
 ## References
 
-### Zen symbols
-
-* [aidbox.mdm/model](../../reference/zen-schema-reference/aidbox/mdm/model.md)
-* [aidbox.mdm/splink-engine](../../reference/zen-schema-reference/aidbox/mdm/splink-engine.md)
-
 ### RPC methods
 
 * [aidbox.mdm/update-mdm-tables](../../reference/rpc-reference/aidbox/mdm/aidbox.mdm-update-mdm-tables.md)
 * [aidbox.mdm/match](../../reference/rpc-reference/aidbox/mdm/aidbox.mdm-match.md)
-
