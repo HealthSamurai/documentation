@@ -45,7 +45,7 @@ To create a new theme, select the **Add New Theme** option. This opens the theme
     * **Toolbar Color:** The color for the form's toolbar.
 
 {% hint style="info" %}
-The color for the tooltip and hover will be set automatically according to the Primary color.
+The color for the tooltip and hover will be set automatically according to the Primary color or the user can specify it via the accent color of the input.
 {% endhint %}
 
 1.  **Brand Image**
