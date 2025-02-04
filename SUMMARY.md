@@ -500,7 +500,7 @@
     * [How to use tracing](modules/observability/traces/how-to-use-tracing.md)
     * [OTEL traces exporter parameters](modules/observability/traces/otel-traces-exporter-parameters.md)
 * [MDM](modules/mdm/README.md)
-  * [Train model](modules/mdm/train-model.md)
+  * [Train model](modules/mdm/train-model-zen.md)
   * [Configure MDM module](modules/mdm/configure-mdm-module.md)
   * [Find duplicates](modules/mdm/find-duplicates.md)
   * [Mathematical details](modules/mdm/mathematical-details.md)
