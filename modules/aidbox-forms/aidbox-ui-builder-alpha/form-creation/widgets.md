@@ -74,9 +74,9 @@ User can set the desired collapsibility option for specific sections or items wi
 
 ### Media section
 
-#### **Image**
+#### **Image & Video**
 
-Allows you to add an image next to a form item, enhancing its visual appeal or providing additional context. The user needs to provide a publicly available URL for the image.
+Allows you to add an image or video next to a form item, enhancing its visual appeal or providing additional context. The user needs to provide a publicly available URL for the image or video.
 
 #### **Tooltip**
 
