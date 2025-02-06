@@ -1,5 +1,7 @@
 # splink-engine
 
+{% hint style="info" %} Configuration MDM module via Zen is scheduled for deprecation in several upcoming releases. Please consider using new configuration flow. {% endhint %}
+
 Aidbox service engine for MDM module. This engine is compatible with splink models.
 
 ## Schema

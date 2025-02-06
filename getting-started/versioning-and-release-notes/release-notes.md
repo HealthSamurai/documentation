@@ -1,6 +1,10 @@
 # Release Notes
 
-## January 2025 _`edge`_&#x20;
+## February 2025 _`edge`_
+
+_Work in progress_&#x20;
+
+## January 2025 _`latest, 2501`_&#x20;
 
 * Aidbox&#x20;
   * Enhanced UI Resource browser:
@@ -10,16 +14,21 @@
     * Introduced resizable columns
     * Added column selection
   * Added support for specifying  [Content Security Policy header as an environment variable](../../reference/configuration/environment-variables/optional-environment-variables.md#content-security-policy). By default, Aidbox doesn't set CSP headers.
-  * Supported Bundle batch validation using Bundle/$validate endpoint for Aidbox instances using FHIR Schema validator
+  * Supported [Bundle batch validation](../../api-1/fhir-api/bundle.md#validate-bundle) using Bundle/$validate endpoint for Aidbox instances using FHIR Schema validator
   * Changed default [stdout log level](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox_stdout_json) and [stdout Google log level](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox_stdout_google_json) to `warn`
-
-
+* Aidbox Forms
+  * Performance Optimization: Improved performance for handling large forms.
+  * [Custom Tooltip & Hover Colors](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-customisation.md#how-to-create-a-new-theme): Added the ability to set colors for tooltips and hover effects using the primary color in the Theme.
+  * Questionnaire Profile Linking: Enabled linking a Questionnaire profile directly in the UI Builder.
+  * [Aidbox Forms Smart Launch Update](https://github.com/Aidbox/examples/tree/main/aidbox-forms-smart-launch-2): Updated the Aidbox Forms Smart Launch project with enhancements and fixes.
+  * [Video Support in Media Guidance](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#media-section): Added video support to the media section of the item settings .
+  * Enhanced Definition-Based Extraction: Now supports profiles and slices in definition-based extraction.
 
 Minor updates:
 
 * 2412.2 — Fixed  security issues
 
-## December 2024 _`latest, 2412`_
+## December 2024 _`stable, 2412`_
 
 * Aidbox
   * Supported [SMART App Launch scopes v1 and v2](../../modules/security-and-access-control/smart-on-fhir/smart-scopes.md) for Aidbox on FHIR Schema validation engine and reworked [SMART on FHIR](../../modules/security-and-access-control/smart-on-fhir/) documentation
@@ -41,7 +50,7 @@ Minor updates:
 
     * 2412.1 — Fixed minor bugs
 
-## November 2024 _`stable, 2411`_
+## November 2024 _`2411`_
 
 * Aidbox
   * Introduced [Init Bundle](../../aidbox-configuration/init-bundle.md) as a simple and effective way of configuring Aidbox. The Init Bundle will replace Aidbox (zen) configuration projects.

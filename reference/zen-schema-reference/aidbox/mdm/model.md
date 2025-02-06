@@ -1,5 +1,7 @@
 # model
 
+{% hint style="info" %} Configuration MDM module via Zen is scheduled for deprecation in several upcoming releases. Please consider using new configuration flow. {% endhint %}
+
 Splink model for probabilistic record linkage.
 
 ## Schema

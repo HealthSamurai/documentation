@@ -33,15 +33,20 @@ Supported PostgreSQL versions: 17.2, 16.6, 15.10.
 
 See available versions on [Docker Hub](https://hub.docker.com/r/healthsamurai/aidboxdb/tags).
 
-### Extensions
+### Available PostgreSQL extensions
 
-List of additional availiable extensions:
+List of available extensions:
 
-* [pgagent](https://github.com/pgadmin-org/pgagent) — A PostgreSQL job scheduler
-* [pg\_repack](https://github.com/reorg/pg_repack) — Reorganize tables in PostgreSQL databases with minimal locks
-* [wal2json](https://github.com/eulerto/wal2json) — Is an output plugin for logical decoding
-* [wal-g](https://github.com/wal-g/wal-g) — Archival and Restoration for databases in the Cloud
-* [PostGIS](https://github.com/postgis/postgis) — Support storing, indexing and querying geographic data
+* [plpgsql](https://www.postgresql.org/docs/17/plpgsql.html) — Some PostgreSQL functions are written in plpgsql language.
+* [pg\_stat\_statements](https://www.postgresql.org/docs/current/pgstatstatements.html) — Track statistics.
+* [postgis](https://github.com/postgis/postgis) — Support storing, indexing, and querying geographic data. Used by [\_location](../../api-1/fhir-api/search-1/location-search.md) search parameter only.
+* [fuzzystrmatch](https://www.postgresql.org/docs/current/fuzzystrmatch.html) — String similarities functions. Used by [MDM module](../../modules/mdm/) only.
+* [pg\_trgm](https://www.postgresql.org/docs/current/pgtrgm.html) — Support for similarity of text using trigram matching. Useful for some indexes.
+* [unaccent](https://www.postgresql.org/docs/current/unaccent.html) — A text search dictionary that removes diacritics. Used in some searches.
+* [pg\_repack](https://github.com/reorg/pg_repack) — Reorganize tables in PostgreSQL databases with minimal locks.
+* [wal2json](https://github.com/eulerto/wal2json) — An output plugin for logical decoding.&#x20;
+* [wal-g](https://github.com/wal-g/wal-g) — Archival and Restoration for databases in the Cloud.
+* [pgcrypto](https://www.postgresql.org/docs/current/pgcrypto.html)
 
 {% hint style="warning" %}
 Extensions **unavailable** since AidboxDB version 16:
@@ -49,6 +54,12 @@ Extensions **unavailable** since AidboxDB version 16:
 * [jsonknife](https://github.com/niquola/jsonknife) — Jsonb extraction tool for optimizing FHIR search
 * [jsquery](https://github.com/postgrespro/jsquery) — JSON query language with GIN indexing support
 {% endhint %}
+
+See also:
+
+{% content-ref url="../postgresql-extensions.md" %}
+[postgresql-extensions.md](../postgresql-extensions.md)
+{% endcontent-ref %}
 
 ### Configuration
 

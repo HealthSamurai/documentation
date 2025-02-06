@@ -28,16 +28,6 @@ parameter:
     valueBoolean: true # or false
 ```
 
-### Aidbox format
-
-```
-POST /<resourceType>/$match?threshold=<threshold-value>
-
-# Resource in Aidbox format to match against.
-# This must be the resource contents,
-# not a reference to another resource.
-```
-
 The `threshold` parameter is not required. It specifies minimum score for a match to be returned.
 
 ## Examples

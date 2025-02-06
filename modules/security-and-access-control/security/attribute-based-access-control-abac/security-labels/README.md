@@ -26,9 +26,10 @@ There are two ways the security labels appear in the request context:
 
 ### scope claim in JWT <a href="#docs-internal-guid-71b74bb2-7fff-d9f8-f70b-bfac58a2d392" id="docs-internal-guid-71b74bb2-7fff-d9f8-f70b-bfac58a2d392"></a>
 
-Aidbox parses the `scope` claim and fetches security labels. There can be multiple security labels on the scope.
+Aidbox parses the `scope` claim and fetches security labels. There can be multiple security labels on the scope in [space-separated list](https://datatracker.ietf.org/doc/html/rfc8693#section-4.2) format.
 
-A security label must be defined using the pattern `system|code`. For example, `http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY.`
+A security label must be defined using the pattern `system|code`. \
+Claim scope example: `"http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY https://terminology.hl7.org/CodeSystem/v3-Confidentiality|M"`
 
 ### User.securityLabel
 
