@@ -155,7 +155,7 @@
   * [$to-format](app-development-guides/usdto-format-fhir-aidbox.md)
 * [Bulk API](api-1/bulk-api-1/README.md)
   * [Configure Access Policies for Bulk API](api-1/bulk-api-1/configure-access-policies-for-bulk-api.md)
-  * [🎓 Synthea by Bulk APi](api-1/bulk-api-1/synthea-by-bulk-api.md)
+  * [🎓 Synthea by Bulk API](api-1/bulk-api-1/synthea-by-bulk-api.md)
   * [Generate sample data for Bulk API](api-1/bulk-api-1/generate-sample-data-for-bulk-api.md)
   * [$dump](api-1/bulk-api-1/usddump.md)
   * [$dump-sql](api-1/bulk-api-1/usddump-sql.md)
