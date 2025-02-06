@@ -33,10 +33,11 @@ The [FHIR Schema Validator Engine](https://docs.aidbox.app/modules/profiling-and
 [smart-scopes.md](smart-scopes.md)
 {% endcontent-ref %}
 
-## SMART App Launch using Aidbox and Keycloak
+## SMART App Launch using Aidbox or Smartbox and Keycloak
 
 {% content-ref url="example-smart-app-launch-using-aidbox-and-keycloak.md" %}
 [example-smart-app-launch-using-aidbox-and-keycloak.md](example-smart-app-launch-using-aidbox-and-keycloak.md)
+[example-smart-app-launch-using-smartbox-and-keycloak.md](example-smart-app-launch-using-smartbox-and-keycloak.md)
 {% endcontent-ref %}
 
 ## Pass Inferno SMART App Launch Test Kit using Aidbox.
