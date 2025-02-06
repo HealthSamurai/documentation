@@ -37,6 +37,7 @@ services:
   sandbox:
     environment:
       AIDBOX_LICENSE: <YOUR_SANDBOX_LICENSE>
+```
 
 ## Step 1: Run Demo Components
 
