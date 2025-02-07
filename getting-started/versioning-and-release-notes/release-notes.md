@@ -7,14 +7,7 @@ _Work in progress_&#x20;
 ## January 2025 _`latest, 2501`_&#x20;
 
 {% hint style="warning" %}
-Aidbox is transitioning to the FHIR Schema engine. Existing zen and EA engines will be deprecated in July 2025, with LTS until July 2027.
-
-Key benefits:
-
-* Full FHIR conformance with StructureDefinitions support
-* Native integration with 700+ FHIR Implementation Guides
-* Dynamic configuration without restarts
-* Advanced validation with FHIRPath invariants
+Aidbox is transitioning to the FHIR Schema engine. Existing zen and Entity/Attribute (EA) engines are deprecated and will be obsolete starting August 2025. July 2025 version will become LTS supporting zen and Entity/Attributes for 2 years.
 
 [Read full announcement](https://www.health-samurai.io/news/aidbox-transitions-to-the-fhir-schema-engine)
 {% endhint %}
