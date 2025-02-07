@@ -83,6 +83,15 @@ Tag is an metadata item.  Tags are used to relate resources to process and workf
 
 For example, you can use custom form typing and in order to filter the required form types you can use the tag mechanism for this.
 
+
+
+### Profiles
+
+The Questionnaire resource contains a "meta" element, which is a set of metadata providing technical and workflow context.
+
+Profiles are a type of metadata item used to constrain resources.\
+When a user adds a profile to a Questionnaire, Aidbox validates the Questionnaire against the profile during CRUD operations.
+
 ### Show outline
 
 You can set the show outline and see how it will look in the form preview. An outline with top-level groups will be displayed on the left side of the form.
