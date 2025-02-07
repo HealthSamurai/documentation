@@ -17,12 +17,12 @@ _Work in progress_&#x20;
   * Supported [Bundle batch validation](../../api-1/fhir-api/bundle.md#validate-bundle) using Bundle/$validate endpoint for Aidbox instances using FHIR Schema validator
   * Changed default [stdout log level](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox_stdout_json) and [stdout Google log level](../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox_stdout_google_json) to `warn`
 * Aidbox Forms
-  * Performance Optimization: Improved performance for handling large forms.
-  * [Custom Tooltip & Hover Colors](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-customisation.md#how-to-create-a-new-theme): Added the ability to set colors for tooltips and hover effects using the primary color in the Theme.
-  * Questionnaire Profile Linking: Enabled linking a Questionnaire profile directly in the UI Builder.
-  * [Aidbox Forms Smart Launch Update](https://github.com/Aidbox/examples/tree/main/aidbox-forms-smart-launch-2): Updated the Aidbox Forms Smart Launch project with enhancements and fixes.
-  * [Video Support in Media Guidance](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#media-section): Added video support to the media section of the item settings .
-  * Enhanced Definition-Based Extraction: Now supports profiles and slices in definition-based extraction.
+  * Improved performance for handling large forms.
+  * Added the ability to [set colors for tooltips and hover effects](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-customisation#how-to-create-a-new-theme) using the primary color in the Theme.
+  * Enabled [linking a Questionnaire profile](../../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-settings.md#profiles) directly in the UI Builder.
+  * Updated the [Aidbox Forms Smart Launch project](https://github.com/Aidbox/examples/tree/main/aidbox-forms-smart-launch-2) with enhancements and fixes.
+  * Added [video support to the media section](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#media-section) of the item settings .
+  * Supported [profiles and slices in definition-based extraction](https://build.fhir.org/ig/HL7/sdc/extraction.html#definition-based-extraction).
 
 Minor updates:
 
@@ -37,12 +37,12 @@ Minor updates:
   * Fixed security issues and bugs
 *   Aidbox Forms
 
-    * **External file storage for unstructured data:** added the ability to store unstructured data from forms in external file storage systems.
-    * [**Preview for attachments:**](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#attachment) supported previewing audio, video, and PDF files in the attachment field.
-    * **Enhanced FHIR path development experience:** improved developer experience for FHIR path expressions with syntax highlighting, autocompletion, and error reporting.
-    * **Back button redirect for Form Builder:** added an option to configure a custom redirect for the back button when embedding the Form Builder as a web component.
-    * [**Link association for form items:** ](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#support-link)added the ability to associate a link with a question, group, or display item to provide additional information.
-    * [**Short text for mobile devices:**](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#short-text) enabled short text for questions, groups, or items to display an alternate label when rendering on smaller devices like mobile phones.
+    * Added the ability to store unstructured data from forms in external file storage systems.
+    * Supported previewing audio, video, and PDF files in the attachment field.
+    * Improved developer experience for FHIR path expressions with syntax highlighting, autocompletion, and error reporting.
+    * Added an option to configure a custom redirect for the back button when embedding the Form Builder as a web component.
+    * Added the ability to associate a link with a question, group, or display item to provide additional information.
+    * Enabled short text for questions, groups, or items to display an alternate label when rendering on smaller devices like mobile phones.
 
 
 
@@ -57,14 +57,14 @@ Minor updates:
   * Added [GCP Pub/Sub support](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/gcp-pub-sub-aidboxtopicdestination.md) for [Aidbox topic-based subscriptions](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/)
   * Added an option to disable terminology bindings validation when using [FHIR schema validator](../../modules/profiling-and-validation/fhir-schema-validator/)
 * Aidbox Forms
-  * **Variables in Expressions:** Added named expressions for calculated/enableWhen/populate expressions and a Named Expression tab in the Debug Console.
-  * [**Custom Text Configuration**](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/configuration#translations)**:** Enabled custom text definitions for Aidbox Form Builder and Renderer.
-  * [**Custom Error/Warning Reporting**](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/embedding-renderer#step-3-configure-attributes)**:** Added support for custom error and warning messages in the Form Builder and Renderer.
-  * [**Collapsible Sections**](https://hl7.org/fhir/uv/sdc/STU3/StructureDefinition-sdc-questionnaire-collapsible.html)**:** Added a setting to display sections collapsed for brief overviews.
-  * [**Slider Widget**](https://hl7.org/fhir/extensions/StructureDefinition-questionnaire-sliderStepValue.html)**:** Introduced a widget to select values from a defined range with a horizontal slider.
-  * [**AI Label Translation**](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/multilingual-forms)**:** Added AI support for translating labels in translation mode.
-  * [**Aidbox Forms Smart Launch 2 sample project**](https://github.com/Aidbox/examples/tree/main/aidbox-forms-smart-launch-2)**:** Released a sample project for custom SMART Apps with Aidbox Forms, supporting SMART on FHIR flows, resource synchronization, and form management.
-  * [**Repopulation Flow**](https://docs.aidbox.app/reference/aidbox-forms/fhir-sdc-api#allow-repopulate)**:** Implemented the basic form re-population feature.
+  * Added named expressions for calculated/enableWhen/populate expressions and a Named Expression tab in the Debug Console.
+  * Enabled custom text definitions for Aidbox Form Builder and Renderer.
+  * Added support for custom error and warning messages in the Form Builder and Renderer.
+  * Added a setting to display sections collapsed for brief overviews.
+  * Introduced a widget to select values from a defined range with a horizontal slider.
+  * Added AI support for translating labels in translation mode.
+  * Released a sample project for custom SMART Apps with Aidbox Forms, supporting SMART on FHIR flows, resource synchronization, and form management.
+  * Implemented the basic form re-population feature.
 
 Minor updates:
 
