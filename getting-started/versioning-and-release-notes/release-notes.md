@@ -2,7 +2,9 @@
 
 ## February 2025 _`edge`_
 
-_Work in progress_&#x20;
+Minor updates:
+
+* 2501.1 — Minor bug fixes
 
 ## January 2025 _`latest, 2501`_&#x20;
 
