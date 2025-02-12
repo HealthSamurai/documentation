@@ -11,7 +11,7 @@ Aidbox supports exporting metrics using the Protobuf protocol in line with the O
 ## Prerequisites&#x20;
 
 1. [OTEL collector](https://opentelemetry.io/docs/collector/) should be deployed and [configured](https://opentelemetry.io/docs/collector/configuration/) to receive metrics.
-2. Aidbox should be configured with [Aidbox configuration project](../../../aidbox-configuration/aidbox-zen-lang-project/).
+2. Aidbox should be configured with [Aidbox configuration project](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/).
 
 ## How to enable export metrics to the OTEL collector
 

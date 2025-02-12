@@ -23,8 +23,6 @@ FHIR API [ignores](https://www.hl7.org/fhir/http.html#create) `id` in `POST` req
 | **`409`**     | **Conflict**      | Resource with such id already exists                                             |
 | **`422`**     | **Unprocessable** | The proposed resource violated applicable FHIR profiles or server business rules |
 
-
-
 ### Conditional create
 
 {% tabs %}
@@ -41,7 +39,7 @@ POST [base]/[type]?[search parameters]
 {% endtab %}
 {% endtabs %}
 
-Instead of using the `If-None-Exist` header, Aidbox uses query parameters as in ordinary `read` operation. This is done to make all conditional operations to look the same (use search query parameters).&#x20;
+Instead of using the `If-None-Exist` header, Aidbox uses query parameters as in ordinary `read` operation. This is done to make all conditional operations to look the same (use search query parameters).
 
 * **No matches**: The server performs a `create` interaction (Aidbox version of create)
 * **One Match**: The server returns the found resource and `200 OK`
@@ -80,7 +78,7 @@ ETag: [vid]
 Last-Modified: [modification-datetime]
 ```
 
-An unsuccessful response  (`4xx`) contains `OperationOutcome` resource which describes issues the server faced during the creation of this resource.
+An unsuccessful response (`4xx`) contains `OperationOutcome` resource which describes issues the server faced during the creation of this resource.
 
 ### `201` Created
 
@@ -188,7 +186,7 @@ issue:
 {% endtabs %}
 
 {% hint style="info" %}
-Aidbox REST API doesn't ignore`id` and treats it as all other attributes in contrast to FHIR API. Read more about differences [here](../../../modules-1/fhir-resources/aidbox-and-fhir-formats.md).
+Aidbox REST API doesn't ignore`id` and treats it as all other attributes in contrast to FHIR API. Read more about differences [here](../../../storage-1/other/aidbox-and-fhir-formats.md).
 {% endhint %}
 
 ## Conditional Create
@@ -207,7 +205,7 @@ POST [base]/[type]?[search parameters]
 {% endtab %}
 {% endtabs %}
 
-A more complex way to create a resource (it requires the knowledge of [search](../../fhir-api/search-1/)) but it gives some additional flexibility. If you provide search parameters, `create` becomes `conditional create` and works in the following way (depending on the number of search results):&#x20;
+A more complex way to create a resource (it requires the knowledge of [search](../search-1/)) but it gives some additional flexibility. If you provide search parameters, `create` becomes `conditional create` and works in the following way (depending on the number of search results):
 
 * **No matches**: The server performs a `create` interaction
 * **One Match**: The server returns the found resource and `200 OK`

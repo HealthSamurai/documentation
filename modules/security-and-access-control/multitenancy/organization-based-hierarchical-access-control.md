@@ -68,7 +68,7 @@ The Organization-based FHIR API base url:
 <AIDBOX_BASE_URL>/Organization/<org-id>/fhir
 ```
 
-The Organization-based [Aidbox API ](../../../modules-1/fhir-resources/aidbox-and-fhir-formats.md)base url:
+The Organization-based [Aidbox API ](../../../storage-1/other/aidbox-and-fhir-formats.md)base url:
 
 ```
 <AIDBOX_BASE_URL>/Organization/<org-id>/aidbox
@@ -303,7 +303,7 @@ GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/metadata
 ### AidboxQuery
 
 {% hint style="info" %}
-[Learn more about AidboxQuery](../../../api-1/fhir-api/search-1/custom-search.md).
+[Learn more about AidboxQuery](../../../api-1/api/search-1/other/custom-search.md).
 {% endhint %}
 
 To use `$query` endpoint under organization-based hierarchical access control it is necessary to explicitly create `organization` param in `AidboxQuery`.

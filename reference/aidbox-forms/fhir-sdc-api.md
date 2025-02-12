@@ -440,7 +440,7 @@ value:
 
 Application name that will be used in Audit logging when returned link was used.
 
-> Audit logging should be enabled via [configuartion](../../modules/audit/setup-audit-logging.md)
+> Audit logging should be enabled via [configuartion](../../modules/security-and-access-control/audit/setup-audit-logging.md)
 
 ```yaml
 - name: app-name

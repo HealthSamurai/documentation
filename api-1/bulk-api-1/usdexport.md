@@ -18,7 +18,7 @@ Aidbox can export data to GCP or AWS cloud. Export results will be in `<datetime
 
 [Create bucket](https://cloud.google.com/storage/docs/creating-buckets) and [service account](https://cloud.google.com/iam/docs/creating-managing-service-accounts) that has read and write access to the bucket.
 
-[Create `GcpServiceAccount` resource](../../storage-1/s3-compatible-storages/gcp-cloud-storage.md) in Aidbox. Example:
+[Create `GcpServiceAccount` resource](../../storage-1/other/s3-compatible-storages/gcp-cloud-storage.md) in Aidbox. Example:
 
 ```yaml
 private-key: |
@@ -67,9 +67,9 @@ Set the following environment variables:
 
 ### AWS
 
-Create [S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html) and [IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id\_users\_create.html) that has read and write access to the bucket.
+Create [S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html) and [IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) that has read and write access to the bucket.
 
-[Create `AwsAccount` resource](../../storage-1/s3-compatible-storages/aws-s3.md) in Aidbox. Example:
+[Create `AwsAccount` resource](../../storage-1/other/s3-compatible-storages/aws-s3.md) in Aidbox. Example:
 
 ```yaml
 region: us-east-1
@@ -378,7 +378,7 @@ This error means account is not specified
 
 This means there is no account for aws or gcp
 
-Create [AWSAccount](../../storage-1/s3-compatible-storages/aws-s3.md) or [GCPServiceAccount](../../storage-1/s3-compatible-storages/gcp-cloud-storage.md), depending on your config.
+Create [AWSAccount](../../storage-1/other/s3-compatible-storages/aws-s3.md) or [GCPServiceAccount](../../storage-1/other/s3-compatible-storages/gcp-cloud-storage.md), depending on your config.
 
 ### Bucket is not specified
 

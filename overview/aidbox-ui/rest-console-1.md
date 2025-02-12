@@ -170,11 +170,9 @@ To get pretty-formatted response add `_pretty=true` query string parameter:
 
 ![](<../../.gitbook/assets/image (82).png>)
 
-
-
 ### Get Patient
 
-After sending the request, we receive a response with `Status - 201` and the sent data, which means that our patient has been created. Use the request `GET /Patient/<id>` to see the newly created patient. Also the request `GET /Patient` could be used to get the complete list of patients.&#x20;
+After sending the request, we receive a response with `Status - 201` and the sent data, which means that our patient has been created. Use the request `GET /Patient/<id>` to see the newly created patient. Also the request `GET /Patient` could be used to get the complete list of patients.
 
 ![GET /Patient](<../../.gitbook/assets/image (47).png>)
 
@@ -529,7 +527,7 @@ Status: 200
 {% endtab %}
 {% endtabs %}
 
-The response contains all versions (in this case 3) of the patient resource. The first is the initial state of the resource, the second one has the name changed, and the third is an entirely updated resource.&#x20;
+The response contains all versions (in this case 3) of the patient resource. The first is the initial state of the resource, the second one has the name changed, and the third is an entirely updated resource.
 
 To get a specific version of a resource use `GET /Patient/<id>/_history/<versionId>`. It performs the [vread](http://hl7.org/fhir/http.html#vread) operation.
 
@@ -696,7 +694,7 @@ Status: 200
 {% endtabs %}
 
 {% hint style="info" %}
-Please check [Search API](../../api-1/fhir-api/search-1/) for more details.
+Please check [Search API](../../api-1/api/search-1/) for more details.
 {% endhint %}
 
 ### Delete Patient
@@ -744,7 +742,7 @@ Status: 200
 
 After successful deletion, the server sends the response with the status `200 OK` and the body containing the last version of the resource.
 
-If we try to get a deleted patient`GET /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577` we will receive `resourceType - OperationOutcome` and `status 410`.&#x20;
+If we try to get a deleted patient`GET /Patient/f8fe69db-c01c-4a3b-bf0c-0a806ea22577` we will receive `resourceType - OperationOutcome` and `status 410`.
 
 {% tabs %}
 {% tab title="Request" %}

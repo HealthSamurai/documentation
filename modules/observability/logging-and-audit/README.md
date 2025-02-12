@@ -9,7 +9,7 @@ Aidbox produces structured logs on every significant event to the internal strea
 * [Loki](how-to-guides/loki-integration.md)
 
 {% hint style="info" %}
-Aidbox logs can be used in audit. Please, see our [article on auditing](../../audit/) for more info.
+Aidbox logs can be used in audit. Please, see our [article on auditing](../../security-and-access-control/audit/) for more info.
 {% endhint %}
 
 ## Logs exporting with OTEL spec
@@ -47,7 +47,7 @@ You can open `[aidbox-base]/_logs?format=pretty` in your browser, and Aidbox wil
 
 ### Stdout log
 
-Aidbox sends logs into stdout if one of these env variables defined: [`AIDBOX_STDOUT_JSON`](../../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox\_stdout\_json), [`AIDBOX_STDOUT_PRETTY`](../../../reference/configuration/environment-variables/optional-environment-variables.md#aidbox\_stdout\_pretty).
+Aidbox sends logs into stdout if one of these env variables defined: [`AIDBOX_STDOUT_JSON`](../../../reference/environment-variables/optional-environment-variables.md#aidbox_stdout_json), [`AIDBOX_STDOUT_PRETTY`](../../../reference/environment-variables/optional-environment-variables.md#aidbox_stdout_pretty).
 
 Both environment variables enable logging to stdout but the difference is log format.
 

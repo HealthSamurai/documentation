@@ -1,0 +1,2 @@
+# SearchParameter types
+

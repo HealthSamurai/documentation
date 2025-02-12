@@ -59,7 +59,7 @@ The following codes can be returned by the server:
 PUT [base]/[type]?[search parameters]
 ```
 
-This is a more complex way to update a resource, but it gives more power. You can update a resource without knowing the `id` , but it requires the knowledge of [Search](../../fhir-api/search-1/). Different response codes will be returned (based on the number of search results):
+This is a more complex way to update a resource, but it gives more power. You can update a resource without knowing the `id` , but it requires the knowledge of [Search](../search-1/). Different response codes will be returned (based on the number of search results):
 
 * **No matches**: The server performs a `create` interaction
 * **One Match**: The server performs the update against the matching resource

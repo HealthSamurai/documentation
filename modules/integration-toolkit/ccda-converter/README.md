@@ -28,7 +28,7 @@ C-CDA (Consolidated Clinical Document Architecture) is a standard that has been 
 To meet these data exchange requirements, Aidbox offers a module that performs C-CDA to FHIR and FHIR to C-CDA conversions. This module applies a set of rules consistently in both directions, ensuring a robust and reliable conversion process. In addition to data conversion, the module also provides endpoints for validating C-CDA documents and for persisting FHIR data extracted from C-CDA documents.
 
 {% hint style="info" %}
-C-CDA / FHIR Converter provides bidirectional mapping for all data elements from the [USCDI v1](https://www.healthit.gov/isa/sites/isa/files/2020-10/USCDI-Version-1-July-2020-Errata-Final\_0.pdf) list.
+C-CDA / FHIR Converter provides bidirectional mapping for all data elements from the [USCDI v1](https://www.healthit.gov/isa/sites/isa/files/2020-10/USCDI-Version-1-July-2020-Errata-Final_0.pdf) list.
 {% endhint %}
 
 {% hint style="info" %}
@@ -151,8 +151,8 @@ There are several options you may pass to the `/ccda/v2/to-fhir` endpoint. Optio
 | `reference-format` | `resource-id`                                                                                                                        | Sets output reference format to ResourceType/id                                            |
 | `transaction`      | `true`                                                                                                                               | Output FHIR bundle type. By default FHIR document bundle will be returned                  |
 | `sections`         | <p>Proceed to the <a href="./#list-of-supported-sections">Section Aliases</a> table to find all possible values.<br>Default: all</p> | Comma-separated list of section aliases to process. By default all sections are processed. |
-| `patient-id`       | `id`  that will be inserted and propagated as `uri` , `id` or `fullURl` in resulting FHIR Bundle. | Arbitrary string that corresponds to id. |  
-| `post-process`     | Different useful utils that are applied after conversion                         | `single-entry-organizer` - will remove organizers with single Observation entry| 
+| `patient-id`       | `id` that will be inserted and propagated as `uri` , `id` or `fullURl` in resulting FHIR Bundle.                                     | Arbitrary string that corresponds to id.                                                   |
+| `post-process`     | Different useful utils that are applied after conversion                                                                             | `single-entry-organizer` - will remove organizers with single Observation entry            |
 
 Example
 
@@ -242,7 +242,7 @@ Authorization: ...
 </ClinicalDocument>
 ```
 
-The source FHIR Document for this endpoint can be in either [FHIR or Aidbox format](../../../modules-1/fhir-resources/aidbox-and-fhir-formats.md). Endpoint uses `Content-Type` header to understand which format is used. `Content-Type: application/json` means Aidbox format and `Content-Type: application/fhir+json` means FHIR format. So in the example above Aidbox format is used.
+The source FHIR Document for this endpoint can be in either [FHIR or Aidbox format](../../../storage-1/other/aidbox-and-fhir-formats.md). Endpoint uses `Content-Type` header to understand which format is used. `Content-Type: application/json` means Aidbox format and `Content-Type: application/fhir+json` means FHIR format. So in the example above Aidbox format is used.
 
 If FHIR Document format and `Content-Type` header are mismached then 422 error will be returned:
 
@@ -314,8 +314,8 @@ Options are passed as query-string parameters, i.e. `/ccda/v2/persist?create-doc
 | `create-docref` | `true`                                                                                                                               | <p>false<br>Default: <code>false</code></p>                                                |
 | `tenant-id`     | <p>ID of Tenant resource<br>Default: none</p>                                                                                        | For [Smartbox](../../smartbox/) users only. Assigns Tenant to all populated resources.     |
 | `sections`      | <p>Proceed to the <a href="./#list-of-supported-sections">Section Aliases</a> table to find all possible values.<br>Default: all</p> | Comma-separated list of section aliases to process. By default all sections are processed. |
-| `patient-id`       | `id`  that will be inserted and propagated as `uri` , `id` or `fullURl` in persisted FHIR Bundle. | Arbitrary string that corresponds to id. |  
-| `post-process`     | Different useful utils that are applied after conversion                         | `single-entry-organizer` - will remove organizers with single Observation entry |
+| `patient-id`    | `id` that will be inserted and propagated as `uri` , `id` or `fullURl` in persisted FHIR Bundle.                                     | Arbitrary string that corresponds to id.                                                   |
+| `post-process`  | Different useful utils that are applied after conversion                                                                             | `single-entry-organizer` - will remove organizers with single Observation entry            |
 
 ### Validating a C-CDA document
 

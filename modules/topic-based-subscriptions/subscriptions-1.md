@@ -16,7 +16,7 @@ Aidbox doesn't delete **SubsNotification** resources by itself. The simple way t
 {% endhint %}
 
 {% hint style="info" %}
-See tutorial ["Subscribe to new Patient resource"](../../tutorials/subscriptions/subscribe-to-new-patient-resource.md)
+See tutorial ["Subscribe to new Patient resource"](../../deprecated/deprecated/other/subscribe-to-new-patient-resource.md)
 {% endhint %}
 
 Your service can register subscription by POST **SubsSubscription** resource:
@@ -62,7 +62,7 @@ channel:
 
 ### Trigger format
 
-Subscription.trigger is a key-value object, where key is resource type and each value can contain a collection of events (values can be 'all', 'create', 'update', 'delete') and .filter collection. For now filter support [**matcho**](../../app-development-guides/usdmatcho.md) engine (FHIRPath and FHIR Search filters are coming soon):
+Subscription.trigger is a key-value object, where key is resource type and each value can contain a collection of events (values can be 'all', 'create', 'update', 'delete') and .filter collection. For now filter support [**matcho**](../../api-1/api/other/usdmatcho.md) engine (FHIRPath and FHIR Search filters are coming soon):
 
 ```yaml
 trigger:

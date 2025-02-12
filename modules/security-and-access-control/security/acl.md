@@ -4,7 +4,7 @@ description: Access control lists with API constructor
 
 # Access control lists (ACL)
 
-In Aidbox you can configure Access control lists using [API Constructor](../../../aidbox-configuration/aidbox-api-constructor.md).
+In Aidbox you can configure Access control lists using [API Constructor](../../../deprecated/deprecated/zen-related/aidbox-api-constructor.md).
 
 `aidbox.rest.acl` provides a set of operations supporting SQL `:filter`s to be added on each request. `:filters` can be used to restrict access to resources
 

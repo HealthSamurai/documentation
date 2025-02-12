@@ -6,19 +6,17 @@ description: >-
 
 # Producing C-CDA documents
 
-
-
 {% hint style="info" %}
-C-CDA / FHIR Converter provides bidirectional mapping for all data elements from the [USCDI v1](https://www.healthit.gov/isa/sites/isa/files/2020-10/USCDI-Version-1-July-2020-Errata-Final\_0.pdf) list. [Detailed list of supported C-CDA sections](sections/) is also available.
+C-CDA / FHIR Converter provides bidirectional mapping for all data elements from the [USCDI v1](https://www.healthit.gov/isa/sites/isa/files/2020-10/USCDI-Version-1-July-2020-Errata-Final_0.pdf) list. [Detailed list of supported C-CDA sections](sections/) is also available.
 {% endhint %}
 
 In certain cases, such as regulatory requirements, legacy systems integration, or the need to support a specific workflow, it may be necessary to convert FHIR data to C-CDA format to seamlessly integrate systems.
 
-A typical FHIR to C-CDA conversion process is usually divided into three main steps:&#x20;
+A typical FHIR to C-CDA conversion process is usually divided into three main steps:
 
-* **Gather required data in FHIR format:** In this step, a number of GET requests are performed to retrieve the required data from the FHIR server or source systems.&#x20;
-* **Generate FHIR 'document' type Bundle:** The gathered data is organized into a FHIR Document Bundle, with the FHIR Composition resource serving as the main document container.&#x20;
-* **Convert FHIR Document to C-CDA Document:** In this step, the FHIR data is mapped and transformed into C-CDA structures, and divided into entries and sections according to the C-CDA document template requirements.&#x20;
+* **Gather required data in FHIR format:** In this step, a number of GET requests are performed to retrieve the required data from the FHIR server or source systems.
+* **Generate FHIR 'document' type Bundle:** The gathered data is organized into a FHIR Document Bundle, with the FHIR Composition resource serving as the main document container.
+* **Convert FHIR Document to C-CDA Document:** In this step, the FHIR data is mapped and transformed into C-CDA structures, and divided into entries and sections according to the C-CDA document template requirements.
 
 Aidbox simplifies this process by incorporating features such as document definitions, section narrative generators, and pseudo-code scripts to preprocess the document before the conversion.
 
@@ -253,7 +251,7 @@ C-CDA / FHIR module provides ready-to-use Document Definitions for most frequent
 | ------------------ | ----------- | ---------------------------------------------------------------------------------------- |
 | continuity-of-care | CCD         | <p><code>pid</code> - Patient ID<br><code>start-date</code><br><code>end-date</code></p> |
 
-Additionally to this list, you can put your own predefined Document Definitions via [Aidbox Configuration Project](../../../aidbox-configuration/aidbox-zen-lang-project/).
+Additionally to this list, you can put your own predefined Document Definitions via [Aidbox Configuration Project](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/).
 
 ### /ccda/prepare-doc endpoint
 
@@ -335,14 +333,14 @@ Endpoint returns a FHIR Document or OperationOutcome resource in case of error.
 
   ....
 ```
-You may set the mode of resolving references in`mode` query-string parameter, 
-if you pass `resolve-all`all unresolved references will be resolved independently of FHIR Search query un Document Definition. 
+
+You may set the mode of resolving references in`mode` query-string parameter, if you pass `resolve-all`all unresolved references will be resolved independently of FHIR Search query un Document Definition.
 
 ```http
 GET /ccda/prepare-doc?mode=resolve-all&docdef-id=continuity-of-care&pid=42&start-date=2023-01-01&end-date=2023-02-01
 ```
 
-You may also pass `:resolve` instruction inside Document Definition. It will resolve references by path even if FHIR Search does not have such reference in search-params. 
+You may also pass `:resolve` instruction inside Document Definition. It will resolve references by path even if FHIR Search does not have such reference in search-params.
 
 ```http
 {

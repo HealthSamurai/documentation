@@ -21,7 +21,7 @@ To play with forms on a test data without authorization and without creating an 
 * Form rendering engine
 * [FHIR SDC API](../../reference/aidbox-forms/fhir-sdc-api.md)
 * [Aidbox SDC API](../../reference/aidbox-forms/aidbox-sdc-api.md)
-* [FHIR API](../../api-1/fhir-api/)
+* [FHIR API](broken-reference)
 * FHIR storage
 
 ## By using Aidbox Forms you can:

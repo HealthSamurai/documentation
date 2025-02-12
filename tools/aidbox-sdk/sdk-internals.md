@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # SDK internals
 
 {% hint style="warning" %}

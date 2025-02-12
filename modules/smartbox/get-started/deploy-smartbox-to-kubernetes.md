@@ -24,8 +24,8 @@ This guide does not define exposing Smartbox to the Internet
 * [Kubernetes](https://kubernetes.io/) cluster is set up and running
 * `kubectl` utility is installed
 * Two Aidbox [licenses](../../../overview/aidbox-user-portal/licenses.md) are obtained
-* Email provider [credentials](../../../integrations/email-providers.md) are obtained
-* GCP connect [credentials](../../../storage-1/s3-compatible-storages/gcp-cloud-storage.md) are obtained
+* Email provider [credentials](../../integration-toolkit/email-providers/) are obtained
+* GCP connect [credentials](../../../storage-1/other/s3-compatible-storages/gcp-cloud-storage.md) are obtained
 
 ## Prebuilt k8s configuration
 
@@ -70,14 +70,14 @@ The `smartbox.yaml` is the k8s compiled templates configuration. The configurati
 * AIDBOX\_CLIENT\_SECRET: portal-secret
 * BOX\_SMARTBOX\_SANDBOX\_\_URL: http://sandbox
 * BOX\_SMARTBOX\_SANDBOX\_\_ADMIN: admin
-* BOX\_BULK\_\_STORAGE\_GCP\_\* values. See the [documentation](../../../storage-1/s3-compatible-storages/gcp-cloud-storage.md)
+* BOX\_BULK\_\_STORAGE\_GCP\_\* values. See the [documentation](../../../storage-1/other/s3-compatible-storages/gcp-cloud-storage.md)
 
 {% hint style="warning" %}
 BOX\_SMARTBOX\_SANDBOX\_\_BASIC is deprecated. Use BOX\_SMARTBOX\_SANDBOX\_\_ADMIN instead
 {% endhint %}
 
 {% hint style="info" %}
-All the available environment variables are defined [here](../../../reference/configuration/environment-variables/)
+All the available environment variables are defined [here](../../../reference/environment-variables/)
 {% endhint %}
 
 ## Components templates

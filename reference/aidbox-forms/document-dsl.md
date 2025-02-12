@@ -386,7 +386,7 @@ Supported cloud storages:
 * AWS S3
 * GCP Cloud Storage
 
-> This feature can be configured via [api-constructor](../../aidbox-configuration/aidbox-api-constructor.md) in zen-project.
+> This feature can be configured via [api-constructor](../../deprecated/deprecated/zen-related/aidbox-api-constructor.md) in zen-project.
 
 1. Configure your `aidbox/system` with `sdc-service` and it's configuration.
 
@@ -401,7 +401,7 @@ Example:
   :services {:sdc sdc-service}}
 ```
 
-2. Create [`AwsAccount`](../../storage-1/s3-compatible-storages/aws-s3.md) or [`GcpServiceAccount`](../../storage-1/s3-compatible-storages/gcp-cloud-storage.md)
+2. Create [`AwsAccount`](../../storage-1/other/s3-compatible-storages/aws-s3.md) or [`GcpServiceAccount`](../../storage-1/other/s3-compatible-storages/gcp-cloud-storage.md)
 3. Configure sdc-service with created account resource and specify a bucket name
 
 Example:

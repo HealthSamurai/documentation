@@ -14,12 +14,12 @@ Refer to the following pages for the specific image description and the list of 
 [aidboxdb-image](../../storage-1/aidboxdb-image/)
 {% endcontent-ref %}
 
-{% content-ref url="../../reference/configuration/environment-variables/" %}
-[environment-variables](../../reference/configuration/environment-variables/)
+{% content-ref url="../../reference/environment-variables/" %}
+[environment-variables](../../reference/environment-variables/)
 {% endcontent-ref %}
 
-{% content-ref url="../../aidbox-configuration/zen-configuration.md" %}
-[zen-configuration.md](../../aidbox-configuration/zen-configuration.md)
+{% content-ref url="../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/aidbox-project-environment-variables/zen-configuration.md" %}
+[zen-configuration.md](../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/aidbox-project-environment-variables/zen-configuration.md)
 {% endcontent-ref %}
 
 Check out the tutorials if you are looking for a step-by-step guide on how to setup and run an image of your choice.
@@ -28,8 +28,8 @@ Check out the tutorials if you are looking for a step-by-step guide on how to se
 [run-aidbox-in-aidbox-sandbox.md](../run-aidbox-in-aidbox-sandbox.md)
 {% endcontent-ref %}
 
-{% content-ref url="../run-aidbox-locally-with-docker/" %}
-[run-aidbox-locally-with-docker](../run-aidbox-locally-with-docker/)
+{% content-ref url="../run-aidbox-locally-with-docker.md" %}
+[run-aidbox-locally-with-docker.md](../run-aidbox-locally-with-docker.md)
 {% endcontent-ref %}
 
 If you are looking for the latest versions of the docker images or general release cycle explanation go to the Versioning page.

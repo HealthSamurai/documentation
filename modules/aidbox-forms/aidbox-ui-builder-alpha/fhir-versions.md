@@ -10,7 +10,7 @@ However, you can load/import questionnaires with FHIR versions ranging from 3.0.
 
 ### FHIR Version configuration
 
-To configure Aidbox FHIR version you can read [Required ENV variables](../../../reference/configuration/environment-variables/aidbox-required-environment-variables.md) section.
+To configure Aidbox FHIR version you can read [Required ENV variables](../../../reference/environment-variables/aidbox-required-environment-variables.md) section.
 
 ### Import/load questionnare with conversion
 

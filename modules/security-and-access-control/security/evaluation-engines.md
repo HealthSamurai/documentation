@@ -43,7 +43,7 @@ link:
 
 `matcho` engine leverages [Matcho](https://github.com/HealthSamurai/matcho) pattern matching — custom DSL developed by Health Samurai. It has compact and declarative syntax with limited expressivity. It is well-suited for writing all sorts of rules and thus is one of the easiest options to specify `AccessPolicy` checks.
 
-To test matcho DSL without creating AccessPolicy and sending a request, you can use the [$matcho](../../../app-development-guides/usdmatcho.md) endpoint.
+To test matcho DSL without creating AccessPolicy and sending a request, you can use the [$matcho](../../../api-1/api/other/usdmatcho.md) endpoint.
 
 ### Example
 
@@ -166,7 +166,7 @@ resource: {'a': 'value'}
           - _id: present?
           - id: present?
     ```
-*   **$reference** — parse `Reference` or string into [aidbox format](../../../modules-1/fhir-resources/aidbox-and-fhir-formats.md#references). It is useful to map FHIR reference into resourceType and id like this:
+*   **$reference** — parse `Reference` or string into [aidbox format](../../../storage-1/other/aidbox-and-fhir-formats.md#references). It is useful to map FHIR reference into resourceType and id like this:
 
     `{reference: "Patient/pid"}` => `{id: "pid", resourceType: "Patient"}`
 

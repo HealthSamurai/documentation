@@ -12,7 +12,7 @@ description: >-
 BOX_FEATURES_ORGBAC_ENABLE=true
 ```
 
-If your Aidbox version is lower or you do not use FHIRSchema mode, use [the Aidbox Configuration project](../../../aidbox-configuration/aidbox-zen-lang-project/) and import `aidbox.multitenancy.v1.fhir-r4`or `aidbox.multitenancy.v1.fhir-r5`namespace.
+If your Aidbox version is lower or you do not use FHIRSchema mode, use [the Aidbox Configuration project](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/) and import `aidbox.multitenancy.v1.fhir-r4`or `aidbox.multitenancy.v1.fhir-r5`namespace.
 
 {% tabs %}
 {% tab title="FHIR R4" %}

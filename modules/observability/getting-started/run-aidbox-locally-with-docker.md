@@ -33,7 +33,7 @@ The _<mark style="color:green;background-color:yellow;">Aidbox License Key</mark
 
 ### 2. Configure the Aidbox
 
-Aidbox is configured by dedicated [Aidbox Configuration Projects](../../../aidbox-configuration/aidbox-zen-lang-project/).
+Aidbox is configured by dedicated [Aidbox Configuration Projects](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/).
 
 You can start with the default configuration project published on our GitHub and customize it for your specific needs later. Select the FHIR version and clone the corresponding project with the Bash commands below:
 
@@ -106,7 +106,7 @@ Kibana should be available on [http://localhost:5602](http://localhost:5602) add
 * make sure that logs are coming to Elasticsearch and then&#x20;
 * create a data view to observe over logs.
 
-Go to [Index Management](http://localhost:5602/app/management/data/index\_management/indices) page in Kibana (Menu → Stack Management → Index Management). You should see `aidbox_logs` index there.
+Go to [Index Management](http://localhost:5602/app/management/data/index_management/indices) page in Kibana (Menu → Stack Management → Index Management). You should see `aidbox_logs` index there.
 
 <figure><img src="../../../.gitbook/assets/Screenshot 2023-09-27 at 15.19.04.png" alt=""><figcaption><p>Index management page</p></figcaption></figure>
 
@@ -136,4 +136,4 @@ Click the `Show` button to see all spans of a certain request.
 
 ## Next Steps
 
-* Learn more about [Aidbox Configuration](../../../aidbox-configuration/aidbox-zen-lang-project/)
+* Learn more about [Aidbox Configuration](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/)

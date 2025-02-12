@@ -1,5 +1,6 @@
 ---
 description: This guide explains how logging can be activated with the Aidbox project
+hidden: true
 ---
 
 # Set up logs with Aidbox project

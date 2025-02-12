@@ -11,7 +11,7 @@ Aidbox supports exporting logs using the Protobuf protocol in line with the OTEL
 ## Prerequisites&#x20;
 
 1. [OTEL collector](https://opentelemetry.io/docs/collector/) should be deployed and [configured](https://opentelemetry.io/docs/collector/configuration/) to receive logs.
-2. Aidbox should be configured with [Aidbox configuration project](../../../aidbox-configuration/aidbox-zen-lang-project/).
+2. Aidbox should be configured with [Aidbox configuration project](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/).
 
 ## How to enable export logs to the OTEL collector
 

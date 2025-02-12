@@ -20,7 +20,7 @@ Aidbox has built-in [OAuth 2.0](../modules/security-and-access-control/) OpenID 
 
 ### Flexible Access Control & Audit Log
 
-Flexible security rules allow granular [access control](../modules/security-and-access-control/security/) to healthcare application data. Aidbox [audit log](../modules/audit/audit-logging.md) records details about every event in the system to provide necessary data for security analysis and compliance with HIPAA, HITECH act, and other regulations.
+Flexible security rules allow granular [access control](../modules/security-and-access-control/security/) to healthcare application data. Aidbox [audit log](../modules/security-and-access-control/audit/audit-logging.md) records details about every event in the system to provide necessary data for security analysis and compliance with HIPAA, HITECH act, and other regulations.
 
 ### Built-in Terminology
 

@@ -13,7 +13,7 @@ Aidbox supports exporting traces using the Protobuf protocol in line with the OT
 ## Prerequisites&#x20;
 
 1. [OTEL collector](https://opentelemetry.io/docs/collector/) should be deployed and [configured](https://opentelemetry.io/docs/collector/configuration/) to receive traces.
-2. Aidbox should be configured with [Aidbox configuration project](../../../aidbox-configuration/aidbox-zen-lang-project/).
+2. Aidbox should be configured with [Aidbox configuration project](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/).
 
 ## How to enable tracing&#x20;
 

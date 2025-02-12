@@ -1,15 +1,16 @@
 ---
-description: This article explains how to configure Aidbox Forms to store attachments in S3-Compatible storages
+description: >-
+  This article explains how to configure Aidbox Forms to store attachments in
+  S3-Compatible storages
 ---
 
-# Overview
+# Store attachments in S3-like storages
 
 Aidbox Forms provides an ability to store files from attachment items in cloud storages like S3.
 
 ## 1. Setup storage account
 
-Aidbox supports Amazon S3, Google Cloud Storage, Azure Container.
-Here is the guide on [how to setup this integration](/storage-1/s3-compatible-storages).
+Aidbox supports Amazon S3, Google Cloud Storage, Azure Container. Here is the guide on [how to setup this integration](../../../storage-1/other/s3-compatible-storages/).
 
 ## 2. Update SDCConfig
 

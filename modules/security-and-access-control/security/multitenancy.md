@@ -40,10 +40,10 @@ You can fine-tune access to every operation or resource type, for example:
 * Allow creating `Location` resources only for some specific client.
 
 {% hint style="success" %}
-* Flexible configuration at a resource type or operations level.
-* Dynamically create new tenants.
-* Share common data across multiple tenants, e.g. terminologies, Practitioner, Organization resources etc.
-* Data is stored in a single database making it easier to perform analytics, migrations, etc. across all tenants.
+- Flexible configuration at a resource type or operations level.
+- Dynamically create new tenants.
+- Share common data across multiple tenants, e.g. terminologies, Practitioner, Organization resources etc.
+- Data is stored in a single database making it easier to perform analytics, migrations, etc. across all tenants.
 {% endhint %}
 
 {% hint style="warning" %}
@@ -51,8 +51,8 @@ You can fine-tune access to every operation or resource type, for example:
 * Multitenancy without isolation requires precise configuration.
 {% endhint %}
 
-{% content-ref url="../../../aidbox-configuration/aidbox-api-constructor.md" %}
-[aidbox-api-constructor.md](../../../aidbox-configuration/aidbox-api-constructor.md)
+{% content-ref url="../../../deprecated/deprecated/zen-related/aidbox-api-constructor.md" %}
+[aidbox-api-constructor.md](../../../deprecated/deprecated/zen-related/aidbox-api-constructor.md)
 {% endcontent-ref %}
 
 {% content-ref url="acl.md" %}
@@ -80,8 +80,8 @@ Aidbox FHIR API can have filters to ensure that a client can access only certain
 * Different tenants can't have different configurations, e.g. the same FHIR version across all tenants.
 {% endhint %}
 
-{% content-ref url="../readme-1-1/multitenancy-via-accesspolicy.md" %}
-[multitenancy-via-accesspolicy.md](../readme-1-1/multitenancy-via-accesspolicy.md)
+{% content-ref url="../../../deprecated/deprecated/other/other-deprecated-tutorials/multitenancy-via-accesspolicy.md" %}
+[multitenancy-via-accesspolicy.md](../../../deprecated/deprecated/other/other-deprecated-tutorials/multitenancy-via-accesspolicy.md)
 {% endcontent-ref %}
 
 {% content-ref url="access-control.md" %}

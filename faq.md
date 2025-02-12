@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # FAQ
 
 ## **How can I load lots of data at a time with Aidbox API?**
@@ -22,7 +26,7 @@ In the FHIR Search API, this is called chained parameters. Read the details [her
 
 ## Aidbox appears to have a POST size limit of 20 MB by default. Is this configurable?
 
-You can change the size limit by editing [this environment variable](https://docs.aidbox.app/reference/configuration/environment-variables/optional-environment-variables#box\_web\_max\_\_body). However, for sizable data, we recommend using [Bulk API](https://docs.aidbox.app/api-1/bulk-api-1).
+You can change the size limit by editing [this environment variable](https://docs.aidbox.app/reference/configuration/environment-variables/optional-environment-variables#box_web_max__body). However, for sizable data, we recommend using [Bulk API](https://docs.aidbox.app/api-1/bulk-api-1).
 
 ## I don't want to use BASIC authentication for security reasons. What can I use instead?
 

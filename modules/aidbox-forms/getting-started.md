@@ -69,7 +69,7 @@ You have three options how to design form
 
 ## Enable Audit log
 
-Aidbox Forms support [Audit logs](../audit/).
+Aidbox Forms support [Audit logs](../security-and-access-control/audit/).
 
 To enable Audit logging with Aidbox project, edit the `zrc/sdc-box.edn` file:
 
@@ -109,8 +109,8 @@ Restart Aidbox. Aidbox will start recording audit logs and you can see them in t
 
 Learn more about Audit logs:
 
-{% content-ref url="../audit/" %}
-[audit](../audit/)
+{% content-ref url="../security-and-access-control/audit/" %}
+[audit](../security-and-access-control/audit/)
 {% endcontent-ref %}
 
 ## Disable SDC operations

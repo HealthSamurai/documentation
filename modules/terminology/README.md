@@ -20,8 +20,8 @@ In Aidbox, all terminology services are built around non-FHIR **Concept** resour
 
 #### Design/Management phase
 
-{% content-ref url="fhir-terminology-repository/ftr-specification.md" %}
-[ftr-specification.md](fhir-terminology-repository/ftr-specification.md)
+{% content-ref url="../../deprecated/deprecated/zen-related/fhir-terminology-repository/ftr-specification.md" %}
+[ftr-specification.md](../../deprecated/deprecated/zen-related/fhir-terminology-repository/ftr-specification.md)
 {% endcontent-ref %}
 
 {% content-ref url="valueset/create-a-valueset.md" %}

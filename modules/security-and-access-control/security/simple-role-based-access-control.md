@@ -89,10 +89,10 @@ Aidbox router stores data in the request object:
 
 Access policy engine evaluates request object. And here it checks that `user.roles[].value` property contains `practitioner` string.
 
-You can inspect request object [using `__debug` query parameter](../readme-1-1/debug.md#__debug-query-string-parameter).
+You can inspect request object [using `__debug` query parameter](../../../readme-1/readme-1-1/debug.md#__debug-query-string-parameter).
 
 ## Guide: flexible RBAC
 
-{% content-ref url="../readme-1-1/rbac/role-based-access-policies.md" %}
-[role-based-access-policies.md](../readme-1-1/rbac/role-based-access-policies.md)
+{% content-ref url="../../../readme-1/readme-1-1/rbac/role-based-access-policies.md" %}
+[role-based-access-policies.md](../../../readme-1/readme-1-1/rbac/role-based-access-policies.md)
 {% endcontent-ref %}

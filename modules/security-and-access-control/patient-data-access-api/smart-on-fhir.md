@@ -32,7 +32,7 @@ When ngrok starts it shows the domain name which is linked to the 8888 port. The
 
 ## Create Aidbox project
 
-Aidbox is configured by the [Aidbox Configuration Projects](../../../aidbox-configuration/aidbox-zen-lang-project/). To create sample project run command below&#x20;
+Aidbox is configured by the [Aidbox Configuration Projects](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/). To create sample project run command below&#x20;
 
 <pre class="language-sh"><code class="lang-sh"><strong>git clone \
 </strong>  --branch=main \
@@ -44,7 +44,7 @@ Aidbox is configured by the [Aidbox Configuration Projects](../../../aidbox-conf
 </code></pre>
 
 {% hint style="info" %}
-See more details related the [running Aidbox locally](../../../getting-started/run-aidbox-locally-with-docker/)
+See more details related the [running Aidbox locally](../../../getting-started/run-aidbox-locally-with-docker.md)
 {% endhint %}
 
 ### Apply the license and AIDBOX\_BASE\_URL

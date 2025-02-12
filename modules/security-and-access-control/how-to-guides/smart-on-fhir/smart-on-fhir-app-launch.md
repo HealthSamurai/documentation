@@ -4,7 +4,7 @@ description: This guide shows how to get set up SMART on FHIR in Aidbox
 
 # Set up SMART on FHIR in Aidbox
 
-SMART on FHIR specifies authentication/authorization scheme for FHIR Applications. This scheme extends OAuth 2.0 and OpenID. To enable [SMART on FHIR](https://smarthealthit.org/) you need to create an [Aidbox project](../../../../aidbox-configuration/aidbox-zen-lang-project/) and configure SMART API routes using the [Aidbox API Constructor](../../../../aidbox-configuration/aidbox-api-constructor.md).
+SMART on FHIR specifies authentication/authorization scheme for FHIR Applications. This scheme extends OAuth 2.0 and OpenID. To enable [SMART on FHIR](https://smarthealthit.org/) you need to create an [Aidbox project](../../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/) and configure SMART API routes using the [Aidbox API Constructor](../../../../deprecated/deprecated/zen-related/aidbox-api-constructor.md).
 
 {% hint style="info" %}
 You can use the configuration provided in the [Aidbox project samples](https://github.com/Aidbox/aidbox-project-samples) repo.
@@ -97,7 +97,7 @@ Accept: text/yaml
 
 ## Generate Launch URI for EHR Launch Sequence
 
-To generate SMART App launch URI use [RPC API](../../../../api-1/rpc-api.md) method `aidbox.smart/get-launch-uri`. The method accepts the following arguments:
+To generate SMART App launch URI use [RPC API](../../../../api-1/other/rpc-api.md) method `aidbox.smart/get-launch-uri`. The method accepts the following arguments:
 
 * `user`: id of the `User` resource
 * `iss`: Aidbox base URL
