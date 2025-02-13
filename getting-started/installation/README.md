@@ -18,10 +18,6 @@ Refer to the following pages for the specific image description and the list of 
 [environment-variables](../../reference/environment-variables/)
 {% endcontent-ref %}
 
-{% content-ref url="../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/aidbox-project-environment-variables/zen-configuration.md" %}
-[zen-configuration.md](../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/aidbox-project-environment-variables/zen-configuration.md)
-{% endcontent-ref %}
-
 Check out the tutorials if you are looking for a step-by-step guide on how to setup and run an image of your choice.
 
 {% content-ref url="../run-aidbox-in-aidbox-sandbox.md" %}
