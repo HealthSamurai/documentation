@@ -39,11 +39,11 @@ scopes:
   - profile
   - openid
 system: azure
-authorize_endpoint: <your authorization endpoint>
-token_endpoint: <your token endpoint>
+authorize_endpoint: <your authorization endpoint (see below)>
+token_endpoint: <your token endpoint (see below)>
 userinfo-source: id-token
 client:
-  id: <your application (client) id>
+  id: <your application (client) id (see below)>
   secret: <your secret value from previous step>
 resourceType: IdentityProvider
 title: Azure AD
@@ -51,13 +51,15 @@ active: true
 id: azure
 ```
 
-You can find application (client) id on **App Overview** page
+You can find application (client) id on **App Overview** page.
 
 <figure><img src="../../../.gitbook/assets/spaces_-LHqtKiuedlcKJLm337__uploads_git-blob-4833cc9444c2a38a76f8edc0759fb36622368c90_azure5.png" alt=""><figcaption></figcaption></figure>
 
-and your endpoints by clicking on **Endpoints** and visiting `OpenID Connect metadata document`
+As for the endpoints, you'll find them by clicking on **Endpoints**, copying the URL from `OpenID Connect metadata document`, and then visiting this URL in your browser.
 
 <figure><img src="../../../.gitbook/assets/spaces_-LHqtKiuedlcKJLm337__uploads_git-blob-8f857e9e29de04af413036e10747e7eadf94bcad_azure2.png" alt=""><figcaption></figcaption></figure>
+
+The JSON document will contain both `authorize_endpoint` and `token_endpoint`.
 
 ## Log in to Aidbox
 
