@@ -61,6 +61,8 @@ As for the endpoints, you'll find them by clicking on **Endpoints**, copying the
 
 The JSON document will contain both `authorize_endpoint` and `token_endpoint`.
 
+<figure><img src="../../../.gitbook/assets/image (129).png" alt=""><figcaption></figcaption></figure>
+
 ## Log in to Aidbox
 
 Go to your Aidbox base URL. You will be redirected to the log in page where you should now see `Sign in with Azure AD` button. Press this button and log in with Azure AD user. This user will be logged in to Aidbox Console but he won’t have any permissions. Read more in [Access Control Section](../security/) about permissions.

@@ -4,7 +4,14 @@
 X12 message converter is in beta. API may change!
 {% endhint %}
 
-Aidbox includes `/x12/parse` and `/x12/generate` endpoints to allow the conversion of X12 messages. Both support four types of X12 messages: **835**, **837**, **270**, and **271**.
+Aidbox includes `/x12/parse` and `/x12/generate` endpoints to allow the conversion of X12 messages. Supported types of X12 messages:&#x20;
+
+* **270**
+* **271**
+* **834**
+* **835**
+* **837**
+* **837 Dental**&#x20;
 
 ### Parsing a message
 
