@@ -31,11 +31,9 @@ Content-Type: text/yaml
 
 parameter: 
   - name: 'template-id'
-    value: 
-      string: 'default-template'
+    valueString: 'default-template'
   - name: 'repeated-items-count'
-    value: 
-      integer: 2
+    valueInteger: 2
 ```
 
 The 'template-id' parameter specifies the id of the SDCPrintTemplate resource to be used for rendering. `repeated-items-count` specifies the number of repetitions for fields marked as `repeats`. If this parameter is not provided, the default value is 1.
@@ -51,8 +49,7 @@ Content-Type: text/yaml
 
 parameter: 
   - name: 'template-id'
-    value: 
-      string: 'default-template'
+    valueString: 'default-template'
 ```
 
 ## Default Template
@@ -185,8 +182,7 @@ Content-Type: text/yaml
 
 parameter: 
   - name: 'template-id'
-    value: 
-      string: 'test-template'
+    valueString: 'test-template'
 ```
 
 ![rendered form](../../../.gitbook/assets/rendered-form.png)
