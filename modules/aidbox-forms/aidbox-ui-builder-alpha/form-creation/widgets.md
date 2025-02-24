@@ -197,7 +197,7 @@ Aidbox Forms provide three options for pre-filling the field:
 | URL                                         | Question with a URL (website, FTP site, etc.) answer                                                                                                                                                                                                                                      | FHIR          |
 | Display                                     | Text for display that will not capture an answer or have child items.                                                                                                                                                                                                                     | FHIR          |
 | Integer                                     | Question with an integer answer                                                                                                                                                                                                                                                           | FHIR          |
-| Decimal                                     | Question with is a real number answer                                                                                                                                                                                                                                                     | FHIR          |
+| [Decimal](widgets.md#decimal)               | Question with is a real number answer                                                                                                                                                                                                                                                     | FHIR          |
 | Slider                                      | A control where an axis is displayed between the high and low values and the control can be visually manipulated to select a value anywhere on the axis.                                                                                                                                  | FHIR          |
 | Quantity                                    | Question with a combination of a numeric value and unit, potentially with a comparator (<, >, etc.) as an answer.                                                                                                                                                                         | FHIR          |
 | Date                                        | Question with a date answer                                                                                                                                                                                                                                                               | FHIR          |
@@ -317,3 +317,17 @@ Only MP4, WebM и Ogg video file  formats are available for preview.
 {% endhint %}
 
 The attached file will be saved as base64 encoded attachment in QuestionnaireResponse.
+
+
+
+### Decimal
+
+The Decimal widget is used for capturing rational numbers that have a decimal representation. It is particularly useful for fields requiring numeric input with decimal precision, such as measurements, scores.&#x20;
+
+It can be used in calculation fields where the result of an expression or formula is displayed as a decimal. For example, it can be used for calculated values like BMI, age, ensuring that results are presented with the correct level of precision.
+
+**Settings:**
+
+* **Decimal Representation**: The user can input rational numbers, supporting values like 12,34. The decimal point is not supported as a separator.
+* **Max Decimal Places**: The user can set a **maximum number of decimal places** to restrict the number of digits after the decimal point. This serves as a form validation feature, warning users if they input a value with more decimal places than allowed. For example, if the maximum decimal places are set to 2, an error message will appear if the user enters a value like 3,14159  with the message "Answer exceeds maximum decimal places: 2."
+
