@@ -9,17 +9,14 @@ By default, for all search requests Aidbox returns the total number in the resul
 To get a response faster you can change this behavior using the **\_total** (or **\_totalMethod**) parameter. The **\_total** parameter can have the following values:
 
 * `none` - do not run count query (fastest)
-* `estimate` - roughly estimate number of results (fast)
-* `accurate`- run accurate count (could be slow)
+* `estimate` - roughly estimate number of results (fast, additional request is **EXPLAIN** request)
+* `accurate`- run accurate count (could be slow, additional request is **COUNT(\*)** request)
 
 {% hint style="warning" %}
-if you use `_total=none` you still get `total`when:
-
-1. you don't use `_page`
-2. the number of returned resources is less than [`_count`](_count-and-_page.md) (by default is 100).
+if you use `_total=none` you still get `total`when you don't use `_page` and the number of returned resources is less than [`_count`](_count-and-_page.md) (by default is 100).
 {% endhint %}
 
-### Settings default \_total
+### Settings default \_total value
 
 ```
 BOX_SEARCH_DEFAULT__PARAMS_TOTAL=<value>
