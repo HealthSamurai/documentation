@@ -12,6 +12,13 @@ To get a response faster you can change this behavior using the **\_total** (or 
 * `estimate` - roughly estimate number of results (fast)
 * `accurate`- run accurate count (could be slow)
 
+{% hint style="warning" %}
+if you use `_total=none` you still get `total`when:
+
+1. you don't use `_page`
+2. the number of returned resources is less than [`_count`](_count-and-_page.md) (by default is 100).
+{% endhint %}
+
 ### Settings default \_total
 
 ```
@@ -19,10 +26,3 @@ BOX_SEARCH_DEFAULT__PARAMS_TOTAL=<value>
 ```
 
 Sets the default total search parameter value. `value` is one of: `none`, `estimate`, `accurate`.
-
-{% hint style="warning" %}
-if you use `box_search_default__params_total=none` you still get `total`when:
-
-1. you don't use `_page`
-2. the number of returned resources is less than `_count` (by default is 100).
-{% endhint %}
