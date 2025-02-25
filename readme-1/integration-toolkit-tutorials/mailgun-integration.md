@@ -1,23 +1,24 @@
 ---
-description: How to configure sending email using Postmark
+description: How to configure sending email using Mailgun
 ---
 
-# Postmark integration
+# Mailgun integration tutorial
 
-Postmark is an email delivery service for sending, receiving, and tracking emails. Aidbox offers integrations with Postmark to simplify sending notifications via email.
+Mailgun is an email delivery service for sending, receiving, and tracking emails. Aidbox offers integrations with Mailgun to simplify sending notifications via email.
 
-### Create Postmark account
+### Create Mailgun account
 
-You can do that account by following [Postmark Documentation](https://postmarkapp.com/manual).
+You can do that account by following [Mailgun Documentation](https://documentation.mailgun.com/en/latest/).
 
 ### Add environment variables to the docker-compose.yaml
 
 ```yaml
-BOX_PROVIDER_POSTMARK__PROVIDER_FROM: Sender's Name <noreply@{{YOUR_DOMAIN}}>
-BOX_PROVIDER_POSTMARK__PROVIDER_API__KEY: <api-key>
+BOX_PROVIDER_MAILGUN__PROVIDER_URL: https://api.mailgun.net/v3/{{YOUR_DOMAIN}}/messages
+BOX_PROVIDER_MAILGUN__PROVIDER_FROM: Sender's Name <noreply@{{YOUR_DOMAIN}}>
+BOX_PROVIDER_MAILGUN__PROVIDER_PASSWORD: <password>
 ```
 
-You can find more about Postmark environment variables [here.](../../../reference/environment-variables/postmark-environment-variables.md)
+You can find more about Mailgun environment variables [here.](../../reference/email-providers-reference/mailgun-environment-variables.md)
 
 ### Creating `NotificationTemplate` resource
 
@@ -38,7 +39,7 @@ PUT /Notification/notification-1
 content-type: text/yaml
 accept: text/yaml
 
-provider: 'postmark-provider'         # Provider id
+provider: 'mailgun-provider'         # Provider id
 providerData:
   to: recipient@example.com          # Email of recipient
   subject: My subject of the message # subject of email
@@ -55,3 +56,7 @@ providerData:
 ```yaml
 POST /Notification/notification-1/$send
 ```
+
+### Example of email sent from the template above
+
+![image](https://user-images.githubusercontent.com/43318093/186183697-aa0a23d9-0c0e-43a9-9980-a0dd6c170625.png)

@@ -3,19 +3,41 @@
 Aidbox allows you to configure SMTP email provider to manage your email communications.
 
 {% hint style="info" %}
-To enable SMTP please specify optional environment variable[`AIDBOX_BASE_URL`](../../../reference/environment-variables/optional-environment-variables.md)
+To enable SMTP please specify optional environment variable[`AIDBOX_BASE_UR`](../../../reference/environment-variables/optional-environment-variables.md)
 {% endhint %}
 
-## Add SMTP provider
+## Configuring Mailgun
 
-Update your `AidboxConfig` resource with provider credentials to add a new SMTP provider
+{% content-ref url="../../../readme-1/integration-toolkit-tutorials/mailgun-integration.md" %}
+[mailgun-integration.md](../../../readme-1/integration-toolkit-tutorials/mailgun-integration.md)
+{% endcontent-ref %}
 
-```json
-PUT /AidboxConfig/provider
+## Configuring Postmark
+
+{% content-ref url="../../../readme-1/integration-toolkit-tutorials/postmark-integration.md" %}
+[postmark-integration.md](../../../readme-1/integration-toolkit-tutorials/postmark-integration.md)
+{% endcontent-ref %}
+
+## Configuring other SMTP providers
+
+Firstly, get your credentials from your provider:
+
+* host
+* port
+* from
+* username
+* password
+
+Then, add your provider using `AidboxConfig`resource:&#x20;
+
+```
+PUT /AidboxConfig/config
+content-type: application/json
+accept: application/json
 
 {
     "provider": {
-        "smtp-provider": {
+        "yourProviderId": {
             "type": "smtp",
             "host": "smtp.example.com",
             "port": 465,
@@ -29,4 +51,19 @@ PUT /AidboxConfig/provider
 }
 ```
 
-You can set either `"ssl"` or `"tls"` depending what your SMTP supports.
+Note that you should reference to \<yourProviderId> in the Notification resource:
+
+```
+PUT /Notification/notification-1
+
+provider: 'yourProviderId'
+providerData:
+  to: recipient@example.com
+  subject: My subject of the message
+  template:
+    id: notificationTemplateId
+    resourceType: NotificationTemplate
+  payload:
+    foo:
+      bar: zaz
+```

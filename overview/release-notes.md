@@ -732,7 +732,7 @@ Minor updates:
 * Enhanced [zen.fhir profiles](../deprecated/deprecated/zen-related/profiling-with-zen-lang/) with RequiredPattern and FixedValue constraints
 * Added [seed service](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/seed-import.md) errors output.
 * Added [Azure Active Directory (Azure AD)](../modules/security-and-access-control/set-up-external-identity-provider/azure-ad.md) and [Keycloak](../modules/security-and-access-control/set-up-external-identity-provider/keycloak.md) external identity providers integration guides
-* Added [Mailgun](../modules/integration-toolkit/email-providers/mailgun-integration.md) and [Postmark](../modules/integration-toolkit/email-providers/postmark-integration.md) email providers integration guides
+* Added [Mailgun](../readme-1/integration-toolkit-tutorials/mailgun-integration.md) and [Postmark](../readme-1/integration-toolkit-tutorials/postmark-integration.md) email providers integration guides
 
 ## July 2022 _`2207`_
 
