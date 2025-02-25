@@ -407,7 +407,9 @@ Content-Type: appliation/json
 Where `<response>` is the response being submitted. 
 
 {% hint style=“info” %}
+
 ## Status Value
+
 Since auto-save is only enabled for non-completed forms, the `response` parameter always has the status `in-progress`.
 {% endhint %}
 
