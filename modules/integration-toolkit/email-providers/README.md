@@ -59,3 +59,9 @@ PUT /NotificationTemplate/notification-template-1
 # foo.bar value is placed in the Notification.providerData.payload object
 template: <b>Hello world! {{foo.bar}}</b>
 ```
+
+## See also
+
+{% content-ref url="../../../reference/email-providers-reference/" %}
+[email-providers-reference](../../../reference/email-providers-reference/)
+{% endcontent-ref %}
