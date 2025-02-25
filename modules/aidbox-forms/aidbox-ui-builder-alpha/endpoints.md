@@ -385,36 +385,76 @@ Where `<questionnaire>` is the questionnaire being populated, `<patient-id>` is 
 <parameters>
 ```
 
-Where `<parameters>` is the [parameters](https://www.hl7.org/fhir/parameters.html) resource containing the populated questionnaire response under the `response` name.
+Where `<parameters>` is a [parameters](https://www.hl7.org/fhir/parameters.html) resource containing the populated questionnaire response under the `response` name.
 
-## process-response
-Triggered when the user submits a response or when auto-save of the response is activated.
+## save-response
+Triggered by the auto-save mechanism shortly after the user makes changes in the form.
 
 #### Request
 ```http
-POST /fhir/Questionnaire/$process-response HTTP/1.1
+POST /fhir/QuestionnaireResponse/$save HTTP/1.1
 Content-Type: appliation/json
 
 {
     "resourceType": "Parameters",
     "parameter": [{
-        "name": "questionnaireResponse",
+        "name": "response",
         "resource": <questionnaire-response>
-    }, {
-        "name": "extract",
-        "valueBoolean": true
     }]
 }
 ```
 
-Where `<questionnaire-response>` is the response being processed. If the questionnaire response has a status of `in-progress`, the extract parameter is omitted.
+Where `<response>` is the response being submitted. 
+
+{% hint style=“info” %}
+## Status Value
+Since auto-save is only enabled for non-completed forms, the `response` parameter always has the status `in-progress`.
+{% endhint %}
 
 #### Response
 ```json
 <parameters>
 ```
 
-Where `<parameters>` is the [parameters](https://www.hl7.org/fhir/parameters.html) resource containing the processed questionnaire response under the `response` name.
+Where `<parameters>` is a [parameters](https://www.hl7.org/fhir/parameters.html) that includes:
+- `response`: the saved questionnaire response.
+- `issues`: any validation or processing issues, if available.
+
+## submit-response
+Triggered when the user submits a response by clicking the submit button.
+The submit button is displayed when the questionnaire response is either in progress (`in-progress`) or when the user is amending a completed response.
+
+#### Request
+```http
+POST /fhir/QuestionnaireResponse/$submit HTTP/1.1
+Content-Type: appliation/json
+
+{
+    "resourceType": "Parameters",
+    "parameter": [{
+        "name": "response",
+        "resource": <questionnaire-response>
+    }]
+}
+```
+
+Where `<response>` is the response being submitted. 
+
+{% hint style=“info” %}
+Status Value
+The `response` parameter contains the current status, and the Aidbox backend is responsible for transitioning it to the appropriate new state.
+Therefore, if you need to intercept an amending submission, you can check for the condition `response.status = 'completed'`.
+{% endhint %}
+
+#### Response
+```json
+<parameters>
+```
+
+Where `<parameters>` is a [parameters](https://www.hl7.org/fhir/parameters.html) that includes:
+- `response`: the processed questionnaire response.
+- `issues`: any validation or processing issues, if available.
+- `outcome`: a list of extracted resources when the questionnaire has extraction rules.
 
 ## repopulate
 Triggered when the "Repopulate" button is clicked by the user.
@@ -458,7 +498,7 @@ Where `<questionnaire>`, `<questionnaire-response>`, `<patient-id>`, and `<encou
 <parameters>
 ```
 
-Where `<parameters>` is the [parameters](https://www.hl7.org/fhir/parameters.html) resource containing the repopulated questionnaire response under the `response` name.
+Where `<parameters>` is a [parameters](https://www.hl7.org/fhir/parameters.html) resource containing the repopulated questionnaire response under the `response` name.
 
 ## save-assembled-questionnaire
 Triggered after saving the current questionnaire, if it includes sub-questionnaires, to save the assembled version.
