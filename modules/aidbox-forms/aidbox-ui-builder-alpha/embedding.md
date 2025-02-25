@@ -4,9 +4,9 @@ description: Embedding the Aidbox Form Builder and Renderer into your applicatio
 
 # Embedding Aidbox Form Builder and Renderer
 
-You can embed the **Aidbox Form Builder** and **Aidbox Form Renderer** into your application or website using web components.
-- **Aidbox Form Builder** allows users to create and manage forms directly within your application.
-- **Aidbox Form Renderer** enables users to fill out forms within your application without leaving your platform.
+You can embed the **Builder** and **Renderer** into your application or website using web components.
+- **Builder** allows users to create and manage forms directly within your application.
+- **Renderer** enables users to fill out forms within your application without leaving your platform.
 
 ## How to Embed the Components
 
@@ -15,14 +15,12 @@ You can embed the **Aidbox Form Builder** and **Aidbox Form Renderer** into your
 {% tabs %}
 
 {% tab title="Builder" %}
-For the Builder:
 ```html
 <script src="{{ YOUR_AIDBOX_INSTANCE_BASE_URL }}/static/aidbox-forms-builder-webcomponent.js"></script>
 ```
 {% endtab %}
 
 {% tab title="Renderer" %}
-For the Renderer:
 ```html
 <script src="{{ YOUR_AIDBOX_INSTANCE_BASE_URL }}/static/aidbox-forms-renderer-webcomponent.js"></script>
 ```
@@ -35,7 +33,6 @@ For the Renderer:
 {% tabs %}
 
 {% tab title="Builder" %}
-For the **Builder**:
 ```html
 <aidbox-form-builder
   style="width: 100%; border: none; align-self: stretch; display: flex"
@@ -46,7 +43,6 @@ For the **Builder**:
 {% endtab %}
 
 {% tab title="Renderer" %}
-For the **Renderer**:
 ```html
 <aidbox-form-renderer
   style="width: 100%; border: none; align-self: stretch; display: flex"
@@ -67,14 +63,14 @@ For the **Renderer**:
 - `enable-fetch-proxy` (optional): Enables request interception for custom fetch behavior.
 - `theme` (optional): Theme settings as a JSON string.
 - `token` (optional): JWT token for authentication.
+- `disable-load-sdc-config` (optional): Disables automatic loading of SDC configuration.
 
 #### Component-Specific Attributes
 
 {% tabs %}
 
 {% tab title="Builder" %}
-- `form-id` (optional): The ID of the form to load.
-- `value` (optional): JSON string representing the form content.
+- `form-id` (optional): The ID of the form to load. If not provided, the builder opens with a blank form.
 - `hide-back`, `hide-save`, `hide-publish` (optional): Hides respective buttons in the UI.
 - `disable-save`, `disable-publish` (optional): Disables respective actions.
 - `hide-population`, `hide-extraction` (optional): Hides respective functionalities.
@@ -83,17 +79,13 @@ For the **Renderer**:
 - `show-share` (optional): Shows the share button.
 - `language` (optional): Default language for the builder.
 - `translation-languages` (optional): Comma-separated list of allowed languages.
-- `disable-load-sdc-config` (optional): Disables automatic loading of SDC configuration.
 {% endtab %}
 
 {% tab title="Renderer" %}
 - `questionnaire-id` (optional): ID of the questionnaire to load.
 - `questionnaire-response-id` (optional): ID of the questionnaire response to load.
-- `questionnaire` (optional): JSON string representing the questionnaire.
-- `questionnaire-response` (optional): JSON string representing the questionnaire response.
 - `hide-footer` (optional): Hides the form footer.
 - `hide-language-selector` (optional): Hides language selector.
-- `disable-load-sdc-config` (optional): Disables automatic loading of SDC configuration.
 {% endtab %}
 
 {% endtabs %}
@@ -141,31 +133,68 @@ Enable request interception by setting the `enable-fetch-proxy` attribute and de
 
 For more complex use cases, such as attaching authorization headers or storing questionnaires locally, refer to the [detailed interception guide](embedding-builder.md#request-interception).
 
-## Controlled Mode (Deprecated)
+# Controlled Mode (Deprecated)
 
-In **controlled mode**, you manage the form state within your application. This mode is now deprecated.
+In **controlled mode**, your application manages the form state. However, this mode is now deprecated in favor of [request interception](#step-4-optional-request-interception).
+
+{% tabs %}
+
+{% tab title="Builder" %}
+Controlled mode is enabled when `value` attribute is specified.
+```html
+<aidbox-form-builder
+  id="aidbox-form-builder"
+  value="YOUR QUESTIONNAIRE AS JSON STRING"
+/>
+```
+{% endtab %}
+
+{% tab title="Renderer" %}
+Controlled mode is enabled when `questionnaire` attribute is specified.
+```html
+<aidbox-form-renderer
+  questionnaire="YOUR QUESTIONNAIRE AS JSON STRING"
+  questionnaire-response="YOUR QUESTIONNAIRE RESPONSE AS JSON STRING"
+/>
+```
+{% endtab %}
+
+{% endtabs %}
+
+## Available Attributes
+
+In addition to the main attributes, additional attributes are available in controlled mode:
+
+{% tabs %}
+
+{% tab title="Builder" %}
+- `value`: JSON string representing the form content.
+{% endtab %}
+
+{% tab title="Renderer" %}
+- `questionnaire` : JSON string representing the questionnaire.
+- `questionnaire-response` (optional): JSON string representing the questionnaire response.
+{% endtab %}
+
+{% endtabs %}
+
+## Available Events
+
+In controlled mode, certain events are dispatched in the DOM to notify about specific actions. 
+
+Below is an example of how to listen for `change` event:
 
 {% tabs %}
 
 {% tab title="Builder" %}
 ```html
-<aidbox-form-builder
-  id="aidbox-form-builder"
-  value="YOUR FORM AS JSON STRING"
-  show-share
-  hide-back
-  hide-save
-  hide-publish
-/>
-```
-
-Listening to change events:
-```html
 <script>
   const builder = document.getElementById('aidbox-form-builder');
 
   builder.addEventListener('change', (event) => {
+    // event.detail contains update questionnaire as json string 
     console.log('Form changed', event.detail);
+    // you might want to update update it and set it back as value
     builder.setAttribute('value', JSON.stringify(event.detail));
   });
 </script>
@@ -173,14 +202,6 @@ Listening to change events:
 {% endtab %}
 
 {% tab title="Renderer" %}
-```html
-<aidbox-form-renderer
-  questionnaire="YOUR QUESTIONNAIRE AS JSON STRING"
-  questionnaire-response="YOUR QUESTIONNAIRE RESPONSE AS JSON STRING"
-/>
-```
-
-Listening to change events:
 ```html
 <script>
   const renderer = document.getElementById('aidbox-form-renderer');
@@ -195,9 +216,7 @@ Listening to change events:
 
 {% endtabs %}
 
-## Listening to Events
-
-Both components emit events for interaction tracking:
+The following events are available for listening:
 
 {% tabs %}
 
@@ -221,4 +240,4 @@ Both components emit events for interaction tracking:
 {% endtabs %}
 
 ## Conclusion
-By embedding the **Aidbox Form Builder** and **Aidbox Form Renderer**, you can seamlessly integrate form creation and submission into your application, providing users with a powerful and user-friendly experience.
+By embedding the **Builder** and **Renderer**, you can seamlessly integrate form creation and submission into your application, providing users with a powerful and user-friendly experience.
