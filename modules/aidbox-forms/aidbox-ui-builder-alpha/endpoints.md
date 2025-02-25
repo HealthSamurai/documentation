@@ -494,7 +494,7 @@ Where `<response>` is the response being submitted.
 {% hint style="info" %}
 ### Status Value
 
-The `response` parameter contains the current status, and the Aidbox backend is responsible for transitioning it to the appropriate new state. Therefore, if you need to intercept an amending submission, you can check for the condition `response.status = 'completed'`.
+The `response` parameter contains the current status, and the Aidbox backend is responsible for transitioning it to the appropriate new state. Therefore, if you need to, for example, intercept an amending submission, you should check for the condition `response.status = 'completed'`.
 {% endhint %}
 
 #### Response
