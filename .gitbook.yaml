@@ -4,6 +4,6 @@ redirects:
     plan-api/plan-api-overview: api-1/plan-api/plan-api-overview.md
     plan-api: api-1/plan-api/README.md
     plan-api/patient-access-api: api-1/plan-api/patient-access-api.md
-    modules/aidbox-forms/aidbox-ui-builder-alpha/endpoints: modules/aidbox-forms/aidbox-ui-builder-alpha/embedding/request-interception
-    modules/aidbox-forms/aidbox-ui-builder-alpha/embedding-builder: modules/aidbox-forms/aidbox-ui-builder-alpha/embedding
-    modules/aidbox-forms/aidbox-ui-builder-alpha/embedding-renderer: modules/aidbox-forms/aidbox-ui-builder-alpha/embedding
+    modules/aidbox-forms/aidbox-ui-builder-alpha/endpoints: modules/aidbox-forms/aidbox-ui-builder-alpha/request-interception.md
+    modules/aidbox-forms/aidbox-ui-builder-alpha/embedding-builder: modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md
+    modules/aidbox-forms/aidbox-ui-builder-alpha/embedding-renderer: modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md
