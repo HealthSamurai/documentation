@@ -137,7 +137,7 @@ Enable request interception by setting the `enable-fetch-proxy` attribute and de
 
 {% endtabs %}
 
-For more complex use cases, such as attaching authorization headers or storing questionnaires locally, refer to the [detailed interception guide](embedding-builder.md#request-interception).
+For more complex use cases, such as attaching authorization headers or storing questionnaires locally, refer to the [detailed interception guide](request-interception.md).
 
 # Controlled Mode (Deprecated)
 

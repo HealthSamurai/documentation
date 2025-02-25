@@ -318,6 +318,7 @@
     * [Offline forms](modules/aidbox-forms/aidbox-ui-builder-alpha/offline-forms.md)
     * [API Endpoints](modules/aidbox-forms/aidbox-ui-builder-alpha/endpoints.md)
     * [Embedding](modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md)
+      * [Request Interception](modules/aidbox-forms/aidbox-ui-builder-alpha/request-interception.md)
     * [Embedding UI Builder](modules/aidbox-forms/aidbox-ui-builder-alpha/embedding-builder.md)
     * [Embedding Form Renderer](modules/aidbox-forms/aidbox-ui-builder-alpha/embedding-renderer.md)
     * [Configuration](modules/aidbox-forms/aidbox-ui-builder-alpha/configuration.md)
