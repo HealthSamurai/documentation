@@ -8,9 +8,8 @@ You can embed the **Builder** and **Renderer** into your application or website 
 - **Builder** allows users to create and manage forms directly within your application.
 - **Renderer** enables users to fill out forms within your application without leaving your platform.
 
-## How to Embed the Components
 
-### Step 1: Include the Script
+## Step 1: Include the Script
 
 {% tabs %}
 
@@ -28,7 +27,7 @@ You can embed the **Builder** and **Renderer** into your application or website 
 
 {% endtabs %}
 
-### Step 2: Add the Component Tag
+## Step 2: Add the Component Tag
 
 {% tabs %}
 
@@ -53,7 +52,7 @@ You can embed the **Builder** and **Renderer** into your application or website 
 
 {% endtabs %}
 
-### Step 3: Configure Attributes
+## Step 3: Configure Attributes
 
 #### Common Attributes
 - `base-url` (optional): The base URL of your Aidbox instance.
@@ -90,7 +89,7 @@ You can embed the **Builder** and **Renderer** into your application or website 
 
 {% endtabs %}
 
-### Step 4 (Optional): Request Interception
+## Step 4 (Optional): Configure Requests Interception
 
 Both components support intercepting network requests. This allows debugging or customization, such as modifying authentication headers or rerouting requests.
 
@@ -135,12 +134,16 @@ For more complex use cases, such as attaching authorization headers or storing q
 
 # Controlled Mode (Deprecated)
 
-In **controlled mode**, your application manages the form state. However, this mode is now deprecated in favor of [request interception](#step-4-optional-request-interception).
+Controlled mode gives full manual control over loading, updating, and persisting a Questionnaire and QuestionnaireResponse at the application level. The system does not automatically save changes, so the developer must handle data flow and storage. Depending on the use case, making requests to the intended endpoints, as normal mode does, may still be necessary.
 
+This approach is useful when custom validation is required, such as enforcing business rules that go beyond standard validation mechanisms. It is also beneficial when integrating with external systems, where the Questionnaire and QuestionnaireResponse are stored outside Aidbox or when working with multiple data sources. Additionally, it allows fine-grained control over how and when data is fetched, updated, or persisted, making it suitable for applications that need to manage state independently.
+
+## Step 5: Enable controlled mode
 {% tabs %}
 
 {% tab title="Builder" %}
-Controlled mode is enabled when `value` attribute is specified.
+To enable controlled mode, remove the `form-id` attribute and specify the Questionnaire resource as a JSON string in the `value` attribute.
+
 ```html
 <aidbox-form-builder
   id="aidbox-form-builder"
@@ -150,7 +153,7 @@ Controlled mode is enabled when `value` attribute is specified.
 {% endtab %}
 
 {% tab title="Renderer" %}
-Controlled mode is enabled when `questionnaire` attribute is specified.
+Enable controlled mode by removing the `questionnaire-id` attribute and specifying the Questionnaire resource as a JSON string in the `questionnaire` attribute. Optionally, you can also specify the `questionnaire-response` if needed.
 ```html
 <aidbox-form-renderer
   questionnaire="YOUR QUESTIONNAIRE AS JSON STRING"
@@ -161,26 +164,9 @@ Controlled mode is enabled when `questionnaire` attribute is specified.
 
 {% endtabs %}
 
-## Available Attributes
+## Listen Events
 
-In addition to the main attributes, additional attributes are available in controlled mode:
-
-{% tabs %}
-
-{% tab title="Builder" %}
-- `value`: JSON string representing the form content.
-{% endtab %}
-
-{% tab title="Renderer" %}
-- `questionnaire` : JSON string representing the questionnaire.
-- `questionnaire-response` (optional): JSON string representing the questionnaire response.
-{% endtab %}
-
-{% endtabs %}
-
-## Available Events
-
-In controlled mode, certain events are dispatched in the DOM to notify about specific actions. 
+In controlled mode, event handling becomes more critical since the system does not automatically manage updates. Developers must listen for events like change, save, and submit to track modifications and persist data manually. 
 
 Below is an example of how to listen for `change` event:
 
@@ -238,6 +224,3 @@ The following events are available for listening:
 {% endtab %}
 
 {% endtabs %}
-
-## Conclusion
-By embedding the **Builder** and **Renderer**, you can seamlessly integrate form creation and submission into your application, providing users with a powerful and user-friendly experience.
