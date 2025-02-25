@@ -407,9 +407,7 @@ Content-Type: appliation/json
 Where `<response>` is the response being submitted. 
 
 {% hint style=“info” %}
-
 ## Status Value
-
 Since auto-save is only enabled for non-completed forms, the `response` parameter always has the status `in-progress`.
 {% endhint %}
 
@@ -443,7 +441,7 @@ Content-Type: appliation/json
 Where `<response>` is the response being submitted. 
 
 {% hint style=“info” %}
-Status Value
+## Status Value
 The `response` parameter contains the current status, and the Aidbox backend is responsible for transitioning it to the appropriate new state.
 Therefore, if you need to intercept an amending submission, you can check for the condition `response.status = 'completed'`.
 {% endhint %}
