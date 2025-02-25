@@ -54,17 +54,8 @@ You can embed the **Builder** and **Renderer** into your application or website 
 
 ## Step 3: Configure Attributes
 
-#### Common Attributes
-- `base-url` (optional): The base URL of your Aidbox instance.
-- `style` (optional): Custom styling for the iframe.
-- `config` (optional): The [configuration](configuration.md) as a JSON string.
-- `delegate-alerts` (optional): Emits alert events instead of showing them in the UI.
-- `enable-fetch-proxy` (optional): Enables request interception for custom fetch behavior.
-- `theme` (optional): Theme settings as a JSON string.
-- `token` (optional): JWT token for authentication.
-- `disable-load-sdc-config` (optional): Disables automatic loading of SDC configuration.
-
-#### Component-Specific Attributes
+The following attributes are available for the Builder and Renderer components. 
+These attributes control various aspects of the form’s behavior and appearance, including the form’s layout, customization options, and integration with external systems.
 
 {% tabs %}
 
@@ -78,13 +69,29 @@ You can embed the **Builder** and **Renderer** into your application or website 
 - `show-share` (optional): Shows the share button.
 - `language` (optional): Default language for the builder.
 - `translation-languages` (optional): Comma-separated list of allowed languages.
+- `base-url` (optional): The base URL of your Aidbox instance.
+- `style` (optional): Custom styling for the iframe.
+- `config` (optional): The [configuration](configuration.md) as a JSON string.
+- `delegate-alerts` (optional): Emits alert events instead of showing them in the UI.
+- `enable-fetch-proxy` (optional): Enables [request interception](#step-4-optional-configure-requests-interception) for custom fetch behavior.
+- `theme` (optional): Theme settings as a JSON string.
+- `token` (optional): JWT token for authentication.
+- `disable-load-sdc-config` (optional): Disables automatic loading of SDC configuration.
 {% endtab %}
 
 {% tab title="Renderer" %}
-- `questionnaire-id` (optional): ID of the questionnaire to load.
+- `questionnaire-id`: ID of the questionnaire to load.
 - `questionnaire-response-id` (optional): ID of the questionnaire response to load.
 - `hide-footer` (optional): Hides the form footer.
 - `hide-language-selector` (optional): Hides language selector.
+- `base-url` (optional): The base URL of your Aidbox instance.
+- `style` (optional): Custom styling for the iframe.
+- `config` (optional): The [configuration](configuration.md) as a JSON string.
+- `delegate-alerts` (optional): Emits alert events instead of showing them in the UI.
+- `enable-fetch-proxy` (optional): Enables [request interception](#step-4-optional-configure-requests-interception) for custom fetch behavior.
+- `theme` (optional): Theme settings as a JSON string.
+- `token` (optional): JWT token for authentication.
+- `disable-load-sdc-config` (optional): Disables automatic loading of SDC configuration.
 {% endtab %}
 
 {% endtabs %}
@@ -138,7 +145,9 @@ Controlled mode gives full manual control over loading, updating, and persisting
 
 This approach is useful when custom validation is required, such as enforcing business rules that go beyond standard validation mechanisms. It is also beneficial when integrating with external systems, where the Questionnaire and QuestionnaireResponse are stored outside Aidbox or when working with multiple data sources. Additionally, it allows fine-grained control over how and when data is fetched, updated, or persisted, making it suitable for applications that need to manage state independently.
 
-## Step 5: Enable controlled mode
+Controlled mode is deprecated in favor of request interception, as the latter provides full control over the component’s interaction with Aidbox, extending beyond just Questionnaire and QuestionnaireResponse. 
+
+## Step 5: Enable Controlled Mode
 {% tabs %}
 
 {% tab title="Builder" %}
@@ -164,7 +173,7 @@ Enable controlled mode by removing the `questionnaire-id` attribute and specifyi
 
 {% endtabs %}
 
-## Listen Events
+## Step 6: Listen Events
 
 In controlled mode, event handling becomes more critical since the system does not automatically manage updates. Developers must listen for events like change, save, and submit to track modifications and persist data manually. 
 
