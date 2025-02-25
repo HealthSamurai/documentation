@@ -683,7 +683,7 @@ Content-Type: application/json
 }
 ```
 
-Where `<questionnaire>`, `<questionnaire-response>`, `<patient-id>`, and `<encounter-id>` are as described in the [populate](endpoints.md#populate) request.
+Where `<questionnaire>`, `<questionnaire-response>`, `<patient-id>`, and `<encounter-id>` are as described in the [populate](#populate) request.
 
 #### Response
 
@@ -706,7 +706,7 @@ Content-Type: application/json
 <assembled-questionnaire>
 ```
 
-Where `<questionnaire-url>` and `<questionnaire-version>` are as described in the [get-assembled-questionnaire](endpoints.md#get-assembled-questionnaire) request, and `<assembled-questionnaire>` is the assembled questionnaire being saved.
+Where `<questionnaire-url>` and `<questionnaire-version>` are as described in the [get-assembled-questionnaire](#get-assembled-questionnaire) request, and `<assembled-questionnaire>` is the assembled questionnaire being saved.
 
 #### Response
 
@@ -729,7 +729,7 @@ Content-Type: application/json
 <bundle>
 ```
 
-Where `<bundle>` is the [bundle](https://www.hl7.org/fhir/bundle.html) containing resources obtained from [extract](endpoints.md#extract).
+Where `<bundle>` is the [bundle](https://www.hl7.org/fhir/bundle.html) containing resources obtained from [extract](#extract).
 
 #### Response
 
@@ -962,7 +962,7 @@ Where `<file-content>` is the content of the file being uploaded and `<file-name
 }
 ```
 
-Where `<file-url>` is the URL of the uploaded file which will further be used to either download or [delete](endpoints.md#delete-attachment) the file.
+Where `<file-url>` is the URL of the uploaded file which will further be used to either download or [delete](#delete-attachment) the file.
 
 ## validate-questionnaire
 

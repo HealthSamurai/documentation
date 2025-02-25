@@ -144,7 +144,7 @@ Minor updates:
     * [Provided the ability to restrict the type of attached file](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#attachment)
     * Supported cqf-expression to provide prefilling the value in the display field
     * [Integrated the Termbox server with Aidbox Forms for using external terminologies](../modules/aidbox-forms/aidbox-ui-builder-alpha/integration-with-external-terminology-servers.md)
-    * [Added an ability to embed forms as web-component](../modules/aidbox-forms/aidbox-ui-builder-alpha/embedding-renderer.md)
+    * [Added an ability to embed forms as web-component](../modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md)
     * [Provided the ability to display an attached image on the form](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#attachment)
   * [C-CDA / FHIR converter](../modules/integration-toolkit/ccda-converter/)
     * Add support for [user-defined codemaps](../modules/integration-toolkit/ccda-converter/ccda-fhir-dsl.md#custom-codemaps)
@@ -160,7 +160,7 @@ Minor updates:
     * [Implemented Offline mode for forms](../modules/aidbox-forms/aidbox-ui-builder-alpha/offline-forms.md)
     * [Supported definition-based extraction](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-extract-data-from-forms.md#definition-based-extraction)
     * [Ability to search and use templates from Aidbox Form Gallery on UI](../modules/aidbox-forms/add-aidbox-forms-library.md)
-    * [Ability to embed Aidbox UI Builder as a web-component](../modules/aidbox-forms/aidbox-ui-builder-alpha/embedding-builder.md)
+    * [Ability to embed Aidbox UI Builder as a web-component](../modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md)
     * [Implemented Template-based PDF Generation](../modules/aidbox-forms/aidbox-ui-builder-alpha/template-based-pdf-gen.md)
     * [Added a Speech to text widget](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#speech-to-text)
     * [Added an Annotation Pad widget](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#annotation-pad)
