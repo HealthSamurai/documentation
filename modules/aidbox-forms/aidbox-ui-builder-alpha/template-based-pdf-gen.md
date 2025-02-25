@@ -29,6 +29,7 @@ POST /Questionnaire/[questionnaire-id]/$render
 Accept: text/html
 Content-Type: text/yaml
 
+resourceType: Parameters
 parameter: 
   - name: 'template-id'
     value: 
@@ -49,6 +50,7 @@ POST /QuestionnaireResponse/[questionnaire-response-id]/$render
 Accept: text/html
 Content-Type: text/yaml
 
+resourceType: Parameters
 parameter: 
   - name: 'template-id'
     value: 
@@ -183,6 +185,7 @@ POST /QuestionnaireResponse/c9dacb6d-b6de-4250-8e08-a77f1d34a119/$render
 Accept: text/html
 Content-Type: text/yaml
 
+resourceType: Parameters
 parameter: 
   - name: 'template-id'
     value: 
