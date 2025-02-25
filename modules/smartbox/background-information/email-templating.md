@@ -4,6 +4,12 @@ description: The article explains, how email templating works
 
 # Email templating
 
+Emails are sent using Notification and NotificationTemplate resources. See more:
+
+{% content-ref url="../../integration-toolkit/email-providers/" %}
+[email-providers](../../integration-toolkit/email-providers/)
+{% endcontent-ref %}
+
 ## `NotificationTemplate` resource
 
 Templates are defined with `NotificationTemplate` resources. The shape of the resource looks like.
