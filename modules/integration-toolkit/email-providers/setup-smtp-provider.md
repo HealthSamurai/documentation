@@ -3,7 +3,7 @@
 Aidbox allows you to configure SMTP email provider to manage your email communications.
 
 {% hint style="info" %}
-To enable SMTP please specify optional environment variable[`AIDBOX_BASE_UR`](../../../reference/environment-variables/optional-environment-variables.md)
+To enable SMTP please specify optional environment variable [**AIDBOX\_BASE\_URL**](../../../reference/environment-variables/optional-environment-variables.md#aidbox_base_url)**.**
 {% endhint %}
 
 ## Configuring Mailgun
