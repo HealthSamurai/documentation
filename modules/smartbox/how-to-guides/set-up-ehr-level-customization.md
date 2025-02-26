@@ -40,6 +40,8 @@ To understand how Aidbox sends emails, please read this page first:
 
 ### Reset user password
 
+To change template of "reset password" email, create NotificationTemplate with id `reset-user-password`. Here's the example:
+
 ```http
 PUT /NotificationTemplate/reset-user-password
 content-type: text/yaml
@@ -77,6 +79,8 @@ To understand how Aidbox sends emails, please read this page first:
 
 ### Confirm email address
 
+To change template of "confirm email address" email, create NotificationTemplate with id `developer-confirm-email`. Here's the example:
+
 ```http
 PUT /NotificationTemplate/developer-confirm-email
 content-type: text/yaml
@@ -101,6 +105,8 @@ template: |-
 
 ### Application rejected
 
+To change template of "application rejected" email, create NotificationTemplate with id `review-request-rejected`. Here's the example:
+
 ```http
 PUT /NotificationTemplate/review-request-rejected
 content-type: text/yaml
@@ -124,7 +130,9 @@ template: |-
   * `name` of the application
   * `description` of the application
 
-### &#x20;Application approved
+### Review request approved
+
+To change template of "application approved" email, create NotificationTemplate with id `review-request-approved`. Here's the example:
 
 ```http
 PUT /NotificationTemplate/review-request-approved
@@ -151,6 +159,8 @@ template: |-
 
 ### Application suspended
 
+To change template of "application suspended" email, create NotificationTemplate with id `suspend-deployed-application`. Here's the example:
+
 ```http
 PUT /NotificationTemplate/suspend-deployed-application
 content-type: text/yaml
@@ -174,7 +184,9 @@ template: |-
   * `name` of the application
   * `description` of the application
 
-### Application suspended
+### Suspended application approved
+
+To change template of "suspended application approved" email, create NotificationTemplate with id `approve-deployed-application`. Here's the example:
 
 ```http
 PUT /NotificationTemplate/approve-deployed-application
