@@ -71,16 +71,11 @@ The color for the tooltip and hover will be set automatically according to the P
 
     In this section, you can customize the appearance of buttons in your form:
 
-    * **Common Settings for All Buttons:**
-      * **Accent Color:** The highlight color used for buttons.
-      * **Text Color:** The color of the button text.
-      * **Submit Button Text:** Customize the text that appears on the submit button.
-    * **Close (Print, Amend) Button Appearance:**
-      * **Close (Print, Amend) Button Text:** Set the text for the close button.
-      * **Close (Print, Amend) Button Color:** Set the background color of the close button.
-      * **Close (Print, Amend) Button Text Color:** Define the color of the text on the close button.
+   	The following settings are available for the **Submit**, **Print**, **Amend**, and **Save** buttons:
+
+	* **Button Appearance:**
+      * **Button Text:** Set the text for the close button.
+      * **Button Color:** Set the background color of the close button.
+      * **Button Text Color:** Define the color of the text on the close button.
 
 After creating the theme, you need to click the save button.
-
-
-
