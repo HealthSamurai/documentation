@@ -188,7 +188,7 @@ Example:
 ```yaml
 name: name
 value:
-  Reference: 
+  Reference:
     id: sr1
     resourceType: ServiceRequest
 ```
@@ -223,7 +223,7 @@ resource:
   ...
   resourceType: Encounter
   id: enc1
-  subject: 
+  subject:
     id: pt-1
     resourceType: Patient
   ...
@@ -350,13 +350,14 @@ parameter:
 {% endhint %}
 
 | Parameter                                                | Cardinality | Type                                                     |
-| -------------------------------------------------------- | ----------- | -------------------------------------------------------- |
+|----------------------------------------------------------|-------------|----------------------------------------------------------|
 | [allow-amend](fhir-sdc-api.md#allow-amend)               | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#boolean) |
 | [allow-repopulate](fhir-sdc-api.md#allow-repopulate)     | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#boolean) |
 | [redirect-on-submit](fhir-sdc-api.md#redirect-on-submit) | 0..1        | [String](http://hl7.org/fhir/R4/datatypes.html#string)   |
 | [redirect-on-submit](fhir-sdc-api.md#redirect-on-submit) | 0..1        | [String](http://hl7.org/fhir/R4/datatypes.html#string)   |
 | [expiration](fhir-sdc-api.md#link-expiration-time)       | 0..1        | [Integer](http://hl7.org/fhir/R4/datatypes.html#integer) |
 | [theme](fhir-sdc-api.md#theme)                           | 0..1        | [String](http://hl7.org/fhir/R4/datatypes.html#string)   |
+| [config](fhir-sdc-api.md#config)                         | 0..1        | [String](http://hl7.org/fhir/R4/datatypes.html#string)   |
 | [read-only](fhir-sdc-api.md#read-only)                   | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#boolean) |
 | [app-name](fhir-sdc-api.md#read-only)                    | 0..1        | [String](http://hl7.org/fhir/R4/datatypes.html#string)   |
 
@@ -418,13 +419,24 @@ value:
 
 #### theme
 
-Form theme.
+Form theme. QuestionnaireTheme resource id.
 
 ```yaml
 name: theme
 value:
   String: hs-theme
 ```
+
+#### config
+
+Form config. SDCConfig resource id.
+
+```yaml
+name: theme
+value:
+  String: default-config
+```
+
 
 #### read-only
 

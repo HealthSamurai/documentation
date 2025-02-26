@@ -38,12 +38,33 @@ A global Configuration resource can be instantiated to serve as the system-wide 
   * `form-url-prefix`: The URL prefix used in URL generation for new forms.
   * `hide-back-button`: A boolean value that specifies whether the back button should be hidden.
   * `translation-languages`: Array of languages that can be used for translations in the builder. If not provided, [all languages](ui-builder-interface.md#list-of-supported-languages) are allowed.
+  * `hide-publish`: A boolean value that specifies whether the publish button should be hidden.
+  * `disable-publish`: A boolean value that specifies whether the publish button should be disabled.
+  * `hide-population`: A boolean value that specifies whether the population tab should be hidden in debug panel.
+  * `hide-extraction`: A boolean value that specifies whether the extraction tab should be hidden in debug panel.
+  * `collapse-debugger`: A boolean value that specifies whether the debug panel should be collapsed by default.
+  * `hide-save`: A boolean value that specifies whether the save button should be hidden.
+  * `disable-save`: A boolean value that specifies whether the save button should be disabled.
+  * `hide-add-theme`: A boolean value that specifies whether the `Add theme` button should be hidden.
+  * `hide-edit-theme`: A boolean value that specifies whether the `Edit theme` button should be hidden.
+  * `hide-save-theme`: A boolean value that specifies whether the `Save theme` button should be hidden.
+  * `enable-share`: Make share button visible in the builder and enable accepting a serialized questionnaire from query param.
+  * `disable-use-blank-form`: Disable initializing the builder with a sample form when no form is provided
+  * `disable-load-fhir-version`: Disable loading of FHIR version from the server
+  * `disable-submit-button`: A boolean value that specifies whether the Submit button in form preview should be disabled
+  * `highlight-download-button`: A boolean value that specifies whether the Download button should be highlighted.
 * `form`: Configuration settings for the form.
   * `redirect-on-submit`: The redirect URI used when the form is submitted or amended.
   * `redirect-on-save`: The redirect URI used when the form is saved or closed.
   * `read-only`: A boolean value that specifies whether the form should be read-only.
   * `app-name`: The name of the app that will be mentioned in the AuditEvent logs.
   * `default-max-width`: The default maximum width of the form. It can accept values in all CSS units (e.g., `px`, `rem`, `%`). Default is `960px`. This value will take effect only if the questionnaire does have [Max Form Width](form-creation/form-settings.md#appearance-settings) set.
+  * `hide-footer`: A boolean value that specifies whether the form footer should be hidden.
+  * `non-sticky-footer`: A boolean value that specifies whether the form footer should be sticky.
+  * `hide-language-selector`: A boolean value that specifies whether the language selector should be hidden.
+  * `hide-print-button`: A boolean value that specifies whether the print button should be hidden.
+  * `enable-amend-button`: A boolean value that specifies whether the Amend button should be shown.
+  * `enable-save-button`: A boolean value that specifies whether the Save button should be shown.
 
 ## Configuration Resource Example
 
@@ -102,13 +123,23 @@ Content-Type: application/json
   },
   "builder": {
     "form-url-prefix": "https://example.com/forms/",
-    "hide-back-button": false
+    "hide-back-button": false,
+	"hide-publish": true,
+	"hide-population": true,
+	"hide-extraction": true,
+	"hide-add-theme": true,
+	"hide-edit-theme": true,
+	"hide-save-theme": true,
+	"highlight-download-button": true
   },
   "form": {
     "redirect-on-submit": "https://example.com/submit",
     "redirect-on-save": "https://example.com/save",
     "read-only": false,
-    "app-name": "Example App"
+    "app-name": "Example App",
+	"non-sticky-footer": true,
+	"hide-print-button": true,
+	"enable-amend-button": true
   }
 }
 ```
