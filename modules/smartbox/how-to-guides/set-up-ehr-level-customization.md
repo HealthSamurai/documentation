@@ -32,6 +32,12 @@ smartbox:
 
 ## Smartbox (portal) templates customization
 
+To understand how Aidbox sends emails, please read this page first:
+
+{% content-ref url="../../integration-toolkit/email-providers/" %}
+[email-providers](../../integration-toolkit/email-providers/)
+{% endcontent-ref %}
+
 ### Reset user password
 
 ```http
@@ -62,6 +68,12 @@ template: |-
 * `confirm-href` is the link users open to change their password
 
 ## Sandbox email templates customization
+
+To understand how Aidbox sends emails, please read this page first:
+
+{% content-ref url="../../integration-toolkit/email-providers/" %}
+[email-providers](../../integration-toolkit/email-providers/)
+{% endcontent-ref %}
 
 ### Confirm email address
 
