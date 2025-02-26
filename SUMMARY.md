@@ -78,10 +78,11 @@
 * [FAQ](faq.md)
 * [Contact us](contact-us.md)
 
-## Aidbox configuration
+## Configuration
 
-* [Configure Aidbox and Multibox](getting-started/installation/README.md)
-* [Init Bundle](aidbox-configuration/init-bundle.md)
+* [Settings](configuration/settings.md)
+* [Configure Aidbox and Multibox](configuration/installation.md)
+* [Init Bundle](configuration/init-bundle.md)
 
 ## API <a href="#api-1" id="api-1"></a>
 

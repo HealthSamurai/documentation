@@ -3,7 +3,7 @@
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.
 
-Please, use [Init Bundle](../../../../aidbox-configuration/init-bundle.md) instead.
+Please, use [Init Bundle](../../../../configuration/init-bundle.md) instead.
 
 [Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/setup)
 {% endhint %}

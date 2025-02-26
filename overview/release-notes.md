@@ -6,7 +6,7 @@ Minor updates:
 
 * 2501.1 — Minor bug fixes
 
-## January 2025 _`latest, 2501`_&#x20;
+## January 2025 _`latest, 2501`_
 
 {% hint style="warning" %}
 Aidbox is transitioning to the FHIR Schema engine. Existing zen and Entity/Attribute (EA) engines are deprecated and will be obsolete starting August 2025. July 2025 version will become LTS supporting zen and Entity/Attributes for 2 years.
@@ -14,14 +14,14 @@ Aidbox is transitioning to the FHIR Schema engine. Existing zen and Entity/Attri
 [Read full announcement](https://www.health-samurai.io/news/aidbox-transitions-to-the-fhir-schema-engine)
 {% endhint %}
 
-* Aidbox&#x20;
+* Aidbox
   * Enhanced UI Resource browser:
     * Added reference navigation for direct navigation between linked resources
     * Introduced resizable columns
     * Implemented pagination
     * Introduced resizable columns
     * Added column selection
-  * Added support for specifying  [Content Security Policy header as an environment variable](../reference/environment-variables/optional-environment-variables.md#content-security-policy). By default, Aidbox doesn't set CSP headers.
+  * Added support for specifying [Content Security Policy header as an environment variable](../reference/environment-variables/optional-environment-variables.md#content-security-policy). By default, Aidbox doesn't set CSP headers.
   * Supported [Bundle batch validation](../api-1/api/bundle.md#validate-bundle) using Bundle/$validate endpoint for Aidbox instances using FHIR Schema validator
   * Changed default [stdout log level](../reference/environment-variables/optional-environment-variables.md#aidbox_stdout_json) and [stdout Google log level](../reference/environment-variables/optional-environment-variables.md#aidbox_stdout_google_json) to `warn`
 * Aidbox Forms
@@ -34,7 +34,7 @@ Aidbox is transitioning to the FHIR Schema engine. Existing zen and Entity/Attri
 
 Minor updates:
 
-* 2412.2 — Fixed  security issues
+* 2412.2 — Fixed security issues
 
 ## December 2024 _`stable, 2412`_
 
@@ -52,8 +52,6 @@ Minor updates:
     * Added the ability to associate a link with a question, group, or display item to provide additional information.
     * Enabled short text for questions, groups, or items to display an alternate label when rendering on smaller devices like mobile phones.
 
-
-
     Minor updates:
 
     * 2412.1 — Fixed minor bugs
@@ -61,7 +59,7 @@ Minor updates:
 ## November 2024 _`2411`_
 
 * Aidbox
-  * Introduced [Init Bundle](../aidbox-configuration/init-bundle.md) as a simple and effective way of configuring Aidbox. The Init Bundle will replace Aidbox (zen) configuration projects.
+  * Introduced [Init Bundle](../configuration/init-bundle.md) as a simple and effective way of configuring Aidbox. The Init Bundle will replace Aidbox (zen) configuration projects.
   * Added [GCP Pub/Sub support](../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/gcp-pub-sub-aidboxtopicdestination.md) for [Aidbox topic-based subscriptions](../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/)
   * Added an option to disable terminology bindings validation when using [FHIR schema validator](../modules/profiling-and-validation/fhir-schema-validator/)
 * Aidbox Forms
@@ -99,7 +97,7 @@ Minor updates:
 
 Minor updates:
 
-* [2409.2](https://hub.docker.com/layers/healthsamurai/aidboxone/2409.2/images/sha256-fdf25fcc890a38c7bd098110e0711de0a5d6d5323ec39caf55387fc7234b83a1?context=explore) — Fixed critical security issues, fixed versioning in logs&#x20;
+* [2409.2](https://hub.docker.com/layers/healthsamurai/aidboxone/2409.2/images/sha256-fdf25fcc890a38c7bd098110e0711de0a5d6d5323ec39caf55387fc7234b83a1?context=explore) — Fixed critical security issues, fixed versioning in logs
 * [2408.2](https://hub.docker.com/layers/healthsamurai/aidboxone/2408.2/images/sha256-9ffd6d2b8b9ded274a2d566f1f23a52bfeb5d50b9089eb9e460610991e0611df?context=explore) — Fixed critical security issues, fixed versioning in logs
 
 ## September 2024 _`2409`_
@@ -993,7 +991,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 ### Features
 
-* [Reactive API & Subscriptions](broken-reference)
+* [Reactive API & Subscriptions](broken-reference/)
 * New [design/debug](../api-1/api/search-1/other/custom-search.md#design-aidboxquery) endpoint for AidboxQuery
 * Audit customization hook
 * New Clojure engine for AccessPolicy
@@ -1031,7 +1029,7 @@ Now references to contained resources are represented as `localRef` attribute in
 * aidbox-cli elastic search logger now creates a new index for each day
 * Upgrade/Fix [PATCH](../api-1/api/crud-1/patch.md) to be fully RFC conformant
 * Added [X-Client-Auth](https://docs.aidbox.app/auth-betta/access-token-introspection#x-client-auth) header
-* Added **cts** column (createdAt) to resources ([read more](broken-reference)).
+* Added **cts** column (createdAt) to resources ([read more](broken-reference/)).
 * Entity.history='none' for custom resources to turn-off history
 * Unique validation by `isUnique=true` in Attribute
 * New Test toolkit [stresty](https://github.com/Aidbox/stresty) to report bugs and test regression (see [samples](https://github.com/Aidbox/aidbox-tests/tree/master/test)).

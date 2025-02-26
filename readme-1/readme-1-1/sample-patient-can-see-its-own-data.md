@@ -12,7 +12,7 @@ In this tutorial, you will learn how to manage user access to patient resources.
 
 ## Prerequisites
 
-To complete this tutorial, you should install Postman and get access to the Aidbox Console (see [here](../../getting-started/installation/) how to install your Aidbox instance) .
+To complete this tutorial, you should install Postman and get access to the Aidbox Console (see [here](../../configuration/installation.md) how to install your Aidbox instance) .
 
 Once you access the Aidbox REST Console, load resources that you need to work with policies:
 
