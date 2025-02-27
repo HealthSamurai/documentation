@@ -61,7 +61,7 @@ This hierarchy provides:
 
 ### Enable runtime settings editing
 
-A user can enable runtime editing of Aidbox settings using the `setting.mode` in `read-write` value.
+A user can enable runtime editing of Aidbox settings using the `settings.mode` in `read-write` value.
 
 Possible values:
 
