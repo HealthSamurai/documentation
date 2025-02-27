@@ -319,6 +319,7 @@
     * [Configuration](modules/aidbox-forms/aidbox-ui-builder-alpha/configuration.md)
     * [Forms multitenancy](modules/aidbox-forms/aidbox-ui-builder-alpha/forms-multitenancy.md)
     * [Template-based PDF generation](modules/aidbox-forms/aidbox-ui-builder-alpha/template-based-pdf-gen.md)
+    * [Generating Form from PDF](modules/aidbox-forms/aidbox-ui-builder-alpha/generating-forms-from-pdf.md)
     * [Building reports using SQL on FHIR](modules/aidbox-forms/aidbox-ui-builder-alpha/building-reports-using-sql-on-fhir.md)
     * [Integration with external terminology servers](modules/aidbox-forms/aidbox-ui-builder-alpha/integration-with-external-terminology-servers.md)
     * [External FHIR servers as a data backend](modules/aidbox-forms/aidbox-ui-builder-alpha/external-fhir-servers.md)
