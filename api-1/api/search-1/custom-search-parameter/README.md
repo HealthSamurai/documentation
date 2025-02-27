@@ -8,12 +8,7 @@ By default, Aidbox provides SearchParameters defined in the FHIR Core spec or an
 [custom-search-parameters.md](custom-search-parameters.md)
 {% endcontent-ref %}
 
-Deprecated:
-
-{% content-ref url="deprecated/aidbox-search-parameters.md" %}
-[aidbox-search-parameters.md](deprecated/aidbox-search-parameters.md)
+{% content-ref url="../" %}
+[..](../)
 {% endcontent-ref %}
 
-{% content-ref url="deprecated/zen-search-parameters.md" %}
-[zen-search-parameters.md](deprecated/zen-search-parameters.md)
-{% endcontent-ref %}
