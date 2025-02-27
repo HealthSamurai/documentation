@@ -15,8 +15,8 @@ To use this API, you must set one of the following environment variables. These 
 
 ### Environment Variables
 
-- **`BOX_SDC_OPENAI_API_KEY`** – Uses **GPT-4o Mini** for inference.
-- **`BOX_SDC_GEMINI_API_KEY`** – Uses **Gemini Pro 2** for inference.
+- `BOX_SDC_OPENAI_API_KEY` – Uses GPT-4o Mini for inference.
+- `BOX_SDC_GEMINI_API_KEY` – Uses Gemini Pro 2 for inference.
 
 ## Endpoint
 
@@ -41,20 +41,14 @@ Where `<file-content>` is the content of the PDF file being uploaded.
 ```json
 {
   "resourceType": "Questionnaire",
-  "id": "<questionnaire-id>",
-  "status": "draft",
   "title": "<questionnaire-title>",
   "item": [
-    {
-      "linkId": "<questionnaire-item-linkId>",
-      "text": "<questionnaire-item-text>",
-      "type": "<questionnaire-item-type>"
-    }
+    ...
   ]
 }
 ```
 
-Where `<questionnaire-id>` is the unique identifier of the generated questionnaire, `<questionnaire-title>` is the extracted title, and `<questionnaire-item-linkId>`, `<questionnaire-item-text>`, and `<questionnaire-item-type>` represent structured fields extracted from the PDF.
+The response body contains a FHIR `Questionnaire` resource with the extracted form fields. The `title` field contains the title of the questionnaire, and the `item` field contains an array of form items.
 
 ## Error Responses
 
