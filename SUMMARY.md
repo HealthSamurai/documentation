@@ -526,6 +526,8 @@
 ## Reference
 
 * [FHIRSchema reference](https://fhir-schema.github.io/fhir-schema/)
+* [Settings](reference/settings/README.md)
+  * [FHIR](reference/settings/fhir.md)
 * [Environment variables](reference/environment-variables/README.md)
   * [Aidbox required environment variables](reference/environment-variables/aidbox-required-environment-variables.md)
   * [Optional environment variables](reference/environment-variables/optional-environment-variables.md)
