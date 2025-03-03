@@ -5,7 +5,14 @@
 * Aidbox
   * Introduced [Settings](../configuration/settings.md)
 * Aidbox Forms
-  * &#x20;_work in progress_
+  * PDF-Form conversion (enchantment): [Re-generation from PDF ](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/import-fhir-questionnaire#common-functionality-across-all-scenarios)and insertion of a part of the form into an existing form
+  * Added enabling of Print, Amend, and Save buttons in [SDCConfig](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/configuration)
+  * Added an [endpoint for generating a form from PDF](https://docs.aidbox.app/reference/aidbox-forms/generating-forms-from-pdf)
+  * Added support for systemversion in valuesets
+  * Added an ability to [intercept requests](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/embedding#step-4-optional-configure-requests-interception) made to the Aidbox server endpoints from Form Builder and Renderer when embedding as web-component
+  * Supported [max decimal places](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#decimal)
+
+
 
 Minor updates:
 
