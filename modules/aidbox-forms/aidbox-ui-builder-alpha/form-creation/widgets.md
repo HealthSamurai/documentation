@@ -246,6 +246,9 @@ The Choice widget allows users to select one or more options from a predefined l
   * Each option should have a display text, code and system. The user can fill in values ​​or use the import option. In this case, the user will be given the opportunity to select a terminology server, select a valueset in it and find the needed coded value, then the code, system and display will be automatically filled in.
   * Optionally, the user can include a score to each option and show the score if needed, which will be taken into account in the calculations. To do this, need to click on the include score and show score boxes.
   * Instead of inlining options into the form, the use can use a ValueSet that is stored in the Aidbox instance. To do this, the user need to click on the ValueSet box and select the ValueSet.
+* **Use ValueSet**: Use predefined options in ValueSet
+  * **Use external terminology server**: You can specify external terminology server which will be used to `$expand` ValueSet options
+  * **Expansion parameters**: Optionally, you can set additional parameters for `$expand` operation. For example, you can choose what CodeSystem version need to use.
 
 ### Open Choice
 
@@ -330,4 +333,3 @@ It can be used in calculation fields where the result of an expression or formul
 
 * **Decimal Representation**: The user can input rational numbers, supporting values like 12,34. The decimal point is not supported as a separator.
 * **Max Decimal Places**: The user can set a **maximum number of decimal places** to restrict the number of digits after the decimal point. This serves as a form validation feature, warning users if they input a value with more decimal places than allowed. For example, if the maximum decimal places are set to 2, an error message will appear if the user enters a value like 3,14159  with the message "Answer exceeds maximum decimal places: 2."
-
