@@ -1,25 +1,252 @@
-# FHIR
+## FHIR
 
-## General
+FHIR settings
 
-### Root FHIR package <a href="#root-fhir-package-fdfsdfasdfadsf" id="root-fhir-package-fdfsdfasdfadsf"></a>
 
-Identifier for the main Aidbox FHIR package that stores dependencies and canonical resources provided by the user.
+## FHIR General
 
-<table data-header-hidden><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>root-fhir-package</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Sensitive</td><td><code>true</code></td></tr><tr><td>Available from</td><td>2501</td></tr><tr><td>Hot reload</td><td>false</td></tr><tr><td>Environment variables</td><td><code>BOX_ROOT_FHIR_PACKAGE</code> , <code>AIDBOX_ROOT_FHIR_PACKAGE</code></td></tr><tr><td>Default value</td><td><code>app.aidbox.main#0.0.1</code></td></tr></tbody></table>
+General FHIR settings
 
-## Bulk Data Export
+### Enable FHIR compliant mode<a href="#fhir.compliant-mode" id="fhir.compliant-mode"></a>
 
-### Bulk storage provider
+By default, this should be enabled. It is required for backward compatibility.
 
-Storage provider for bulk export
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.compliant-mode</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_COMPLIANT_MODE</code> , <br /><code>AIDBOX_FHIR_COMPLIANT_MODE</code> , <br /><code>BOX_COMPLIANT__MODE__ENABLED?</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
 
-<table data-header-hidden><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.bulk-storage.provider</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>gcp</code> - Google Cloud Platform<br><code>aws</code> - Amazon Web Services<br><code>azure</code> - Microsoft Azure: Cloud Computing Services</td></tr><tr><td>Default value</td><td>(no default) </td></tr><tr><td>Sensitive</td><td><code>false</code></td></tr><tr><td>Hot reload</td><td><code>true</code></td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_BULK_STORAGE_PROVIDER</code> </td></tr><tr><td>Available from</td><td>2501</td></tr></tbody></table>
+### Response 404 on delete nonexistent resource<a href="#fhir.return-404-on-empty-delete" id="fhir.return-404-on-empty-delete"></a>
 
-## Search
+Return 404 HTTP code when no resources are deleted.
 
-### Default search result count estimation method <a href="#fhir.search.default-params.total" id="fhir.search.default-params.total"></a>
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.return-404-on-empty-delete</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_RETURN_404_ON_EMPTY_DELETE</code> , <br /><code>BOX_FEATURES_HTTP_RETURN__404__ON__EMPTY__DELETE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
+
+### Transaction max isolation level<a href="#fhir.transaction-max-isolation-level" id="fhir.transaction-max-isolation-level"></a>
+
+Sets the maximum (inclusive) isolation level for transactions. Can be overridden by the `x-max-isolation-level` header.
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.transaction-max-isolation-level</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — </td></tr><tr><td>Default value</td><td><code>none</code></td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_TRANSACTION_MAX_ISOLATION_LEVEL</code> , <br /><code>BOX_FEATURES_FHIR_TRANSACTION_MAX__ISOLATION__LEVEL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
+
+## FHIR Validation
+
+Validation settings
+
+### Enable FHIR Schema validation mode<a href="#fhir.validation.fhir-schema-validation" id="fhir.validation.fhir-schema-validation"></a>
+
+FHIR Schema validation engine replaces legacy ZEN and Entity/Attribute validation engines.
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.validation.fhir-schema-validation</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_SCHEMA_VALIDATION</code> , <br /><code>AIDBOX_FHIR_SCHEMA_VALIDATION</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
+
+### FHIR Schema validator strict profile resolution<a href="#fhir.validation.strict-profile-resolution" id="fhir.validation.strict-profile-resolution"></a>
+
+Referenced profiles must be known to Aidbox.
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.validation.strict-profile-resolution</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_VALIDATOR_STRICT_PROFILE_RESOLUTION</code> , <br /><code>AIDBOX_VALIDATOR_STRICT_PROFILE_RESOLUTION_ENABLED</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
+
+### FHIR Schema validator strict extension resolution<a href="#fhir.validation.strict-extension-resolution" id="fhir.validation.strict-extension-resolution"></a>
+
+Requires that every referenced FHIR extension is defined in loaded profiles.
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.validation.strict-extension-resolution</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_VALIDATOR_STRICT_EXTENSION_RESOLUTION</code> , <br /><code>AIDBOX_VALIDATOR_STRICT_EXTENSION_RESOLUTION_ENABLED</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
+
+### Skip reference validation<a href="#fhir.validation.skip-reference" id="fhir.validation.skip-reference"></a>
+
+Skip validation of FHIR references. It allows creating resources with references to nonexistent resources.
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.validation.skip-reference</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_VALIDATION_SKIP_REFERENCE</code> , <br /><code>AIDBOX_FEATURES_VALIDATION_SKIP__REFERENCE</code> , <br /><code>BOX_FEATURES_VALIDATION_SKIP__REFERENCE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
+
+### Correct Aidbox format<a href="#fhir.validation.correct-aidbox-format" id="fhir.validation.correct-aidbox-format"></a>
+
+If true, activates transforming unknown polymorphic extensions to the correct Aidbox format avoiding keeping them at FHIR-format.
+For example, `extension.*.valueString` stored as `extension.0.value.string`
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.validation.correct-aidbox-format</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_CORRECT_AIDBOX_FORMAT</code> , <br /><code>AIDBOX_CORRECT_AIDBOX_FORMAT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
+
+### createdAt extension URL<a href="#fhir.validation.createdat-url" id="fhir.validation.createdat-url"></a>
+
+Specifies the URL for the `createdAt` extension.
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.validation.createdat-url</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td><code>ex:createdAt</code></td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_CREATEDAT_URL</code> , <br /><code>AIDBOX_CREATED_AT_URL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
+
+### JSON schema datetime<a href="#fhir.validation.json-schema-datetime-regex" id="fhir.validation.json-schema-datetime-regex"></a>
+
+Enables strict datetime validation in JSON schema validation engine.
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.validation.json-schema-datetime-regex</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td><code>#{}</code></td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_JSON_SCHEMA_DATETIME_REGEX</code> , <br /><code>BOX_COMPATIBILITY_VALIDATION_JSON__SCHEMA_REGEX</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
+
+## FHIR Search
+
+Search settings
+
+### Use correct range arithmetic in search<a href="#fhir.search.comparisons" id="fhir.search.comparisons"></a>
+
+FHIR date search is range based.
+That is, dates are always converted to datetime ranges and then compared.
+
+Historically, Aidbox uses slightly different range comparison arithmetic.
+Turn on this setting to use FHIR comparisons.
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.comparisons</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_SEARCH_COMPARISONS</code> , <br /><code>BOX_SEARCH_FHIR__COMPARISONS</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
+
+### Enable FHIR-conformant (rev)include behavior<a href="#fhir.search.include.conformant" id="fhir.search.include.conformant"></a>
+
+When set to true, the behavior of `_include` and `_revinclude`
+becomes FHIR conformant:
+
+1. Without the :recur or :iterate modifier `_(rev)include`
+   is only applied to the initial result.
+
+2. With the :recur or :iterate modifier `_(rev)include`
+   is repeatedly applied to the resources found
+   in the previous step.
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.include.conformant</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_SEARCH_INCLUDE_CONFORMANT</code> , <br /><code>BOX_SEARCH_INCLUDE_CONFORMANT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
+
+### Authorize inline requests<a href="#fhir.search.authorize-inline-requests" id="fhir.search.authorize-inline-requests"></a>
+
+Authorize inline requests (`_revinclude` and `_include`) with access policies. [Learn more](https://docs.aidbox.app/api-1/fhir-api/search-1/search-parameters-list/_include-and-_revinclude#authorize-inline-requests-mode)
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.authorize-inline-requests</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_SEARCH_AUTHORIZE_INLINE_REQUESTS</code> , <br /><code>BOX_SEARCH_AUTHORIZE_INLINE_REQUESTS</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
+
+### Use semi join in chained searches<a href="#fhir.search.chain.subselect" id="fhir.search.chain.subselect"></a>
+
+Use subselect for simple forward chain searches.
+
+That is only one chain which doesn't contain intermediate hops.
+
+This is a performance optimization which could require
+building additional indexes.
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.chain.subselect</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_SEARCH_CHAIN_SUBSELECT</code> , <br /><code>BOX_SEARCH_CHAIN_SUBSELECT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
+
+### Enable FHIR composite search parameters<a href="#fhir.search.composite-parameters" id="fhir.search.composite-parameters"></a>
+
+Enable support for FHIR composite search parameters.
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.composite-parameters</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_SEARCH_COMPOSITE_PARAMETERS</code> , <br /><code>BOX_SEARCH_COMPOSITE__SEARCH</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
+
+### Iteration limit for (rev)include:iterate<a href="#fhir.search.include.iterate-max" id="fhir.search.include.iterate-max"></a>
+
+Maximum number of iterations for `_include` and `_revinclude`
+with `:recur` or `:iterate` modifier.
+
+The default value is 10.
+If set to 0, queries for _(rev)include will not be performed.
+If set to a negative value, no limit will be applied.
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.include.iterate-max</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>10</code></td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_SEARCH_INCLUDE_ITERATE_MAX</code> , <br /><code>BOX_SEARCH_INCLUDE_ITERATE__MAX</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
+
+### Default search timeout<a href="#fhir.search.default-params.timeout" id="fhir.search.default-params.timeout"></a>
+
+Default timeout value (seconds). Also uses as timeout for the `count` query.
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.default-params.timeout</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>60</code></td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_SEARCH_DEFAULT_PARAMS_TIMEOUT</code> , <br /><code>BOX_SEARCH_DEFAULT__PARAMS_TIMEOUT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
+
+### Default number of results per search page<a href="#fhir.search.default-params.count" id="fhir.search.default-params.count"></a>
+
+This is the default value of the _count search parameter.
+
+It limits number of results per page
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.default-params.count</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>100</code></td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_SEARCH_DEFAULT_PARAMS_COUNT</code> , <br /><code>BOX_SEARCH_DEFAULT__PARAMS_COUNT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
+
+### Default search result count estimation method<a href="#fhir.search.default-params.total" id="fhir.search.default-params.total"></a>
 
 FHIR search response bundle may contain a result count estimation.
 
-<table data-header-hidden><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.default-params.total</code></td></tr><tr><td>Type</td><td>enum, string, boolean, integer</td></tr><tr><td>Unit</td><td>byte, second (if present)</td></tr><tr><td>Values</td><td><code>none</code>  — omit estimation (fastest)<br><code>estimate</code>  — use approximate value (fast)<br><code>accurate</code>  — use exact value (could be slow)</td></tr><tr><td>Default value</td><td><code>accurate</code><br>(no default) </td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_SEARCH_DEFAULT_PARAMS_TOTAL</code> , <code>AIDBOX_FHIR_SEARCH_DEFAULT_PARAMS_TOTAL</code></td></tr><tr><td>Available from</td><td><code>2501</code></td></tr><tr><td>Sensitive </td><td><code>true</code>  — can be set only via environment variable<br><code>false</code>  — can be set via UI and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code>  — requires Aidbox restart<br><code>true</code>  — can be changed at runtime</td></tr></tbody></table>
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.default-params.total</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>none</code> — omit estimation (fastest)<br /><code>estimate</code> — use approximate value (fast)<br /><code>accurate</code> — use exact value (could be slow)</td></tr><tr><td>Default value</td><td><code>accurate</code></td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_SEARCH_DEFAULT_PARAMS_TOTAL</code> , <br /><code>BOX_SEARCH_DEFAULT__PARAMS_TOTAL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
+
+### SQL operator to use for token search<a href="#fhir.search.token-operator" id="fhir.search.token-operator"></a>
+
+Aidbox supports two variants of SQL queries to filter when using token search parameters:
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.token-operator</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>@&gt;</code> — One GIN index per resource covers all token searches. Sometimes the Postgres planner can incorrectly estimate the index lookup cost, which leads to slow queries.<br /><code>#&gt;&gt;</code> — Needs an index per #>> expression. If path to the target element contains arrays, @> will be used instead.</td></tr><tr><td>Default value</td><td><code>@&gt;</code></td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_SEARCH_TOKEN_OPERATOR</code> , <br /><code>BOX_SEARCH_TOKEN__OPERATOR</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
+
+### JSONB query engine<a href="#fhir.search.engine" id="fhir.search.engine"></a>
+
+Aidbox engines for querying JSONB
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.engine</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>knife</code> — Legacy engine. Uses custom Postgres module in Aidboxdb and SQL functions fallback in other Postgres instances. Being phased out.<br /><code>jsonpath</code> — JSONpath language is available starting from PostgreSQL 12.</td></tr><tr><td>Default value</td><td><code>knife</code></td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_SEARCH_ENGINE</code> , <br /><code>BOX_SEARCH_ENGINE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
+
+### Enable support for multiple languages in search<a href="#fhir.search.multilingual.enable" id="fhir.search.multilingual.enable"></a>
+
+FHIR uses special extension to provide translations in resources.
+Enable this setting to turn on the _search-language parameter.
+This parameter (_search-language) specifies which language
+to use for search.
+i.e. which translation in a resource to use.
+
+This feature requires Aidbox to build more
+complex (so possibly slower) queries.
+Leave this setting disabled if you don't need to search
+across translations.
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.multilingual.enable</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_SEARCH_MULTILINGUAL_ENABLE</code> , <br /><code>BOX_FEATURES_MULTILINGUAL_ENABLE__SEARCH__LANGUAGE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
+
+### Use Accept-Language header for search<a href="#fhir.search.multilingual.use-accept-language-header" id="fhir.search.multilingual.use-accept-language-header"></a>
+
+Use the Accept-Language header to specify search language
+
+See fhir.search.multilingual.enable for details.
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.multilingual.use-accept-language-header</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_SEARCH_MULTILINGUAL_USE_ACCEPT_LANGUAGE_HEADER</code> , <br /><code>BOX_FEATURES_MULTILINGUAL_USE__ACCEPT__LANGUAGE__HEADER</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
+
+### Use main value if translation is not found<a href="#fhir.search.multilingual.fallback" id="fhir.search.multilingual.fallback"></a>
+
+When the _search-language parameter is used,
+Aidbox uses translation in FHIR extension for search.
+
+If this setting is enabled, Aidbox additionally uses
+the main value (i.e. not in translation extension)
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.multilingual.fallback</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>true</code></td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_SEARCH_MULTILINGUAL_FALLBACK</code> , <br /><code>BOX_FEATURES_MULTILINGUAL_FALLBACK</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
+
+## FHIR Terminology
+
+Terminology settings
+
+### FHIR Terminology service base URL<a href="#fhir.terminology.service-base-url" id="fhir.terminology.service-base-url"></a>
+
+To validate codes in resources and to expand ValueSets Aidbox needs a terminology server.
+This setting provides a URL to the terminology service.
+If absent, codes are not validated.
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.terminology.service-base-url</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_TERMINOLOGY_SERVICE_BASE_URL</code> , <br /><code>AIDBOX_TERMINOLOGY_SERVICE_BASE_URL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
+
+## FHIR Bulk Data Export
+
+Bulk Data Export settings
+
+### Bulk storage provider<a href="#fhir.bulk-storage.provider" id="fhir.bulk-storage.provider"></a>
+
+Storage provider for bulk export
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.bulk-storage.provider</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>gcp</code> — Google Cloud Platform<br /><code>aws</code> — Amazon Web Services<br /><code>azure</code> — Microsoft Azure: Cloud Computing Services</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_BULK_STORAGE_PROVIDER</code> , <br /><code>BOX_BULK__STORAGE_BACKEND</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
+
+### GCP service account<a href="#fhir.bulk-storage.gcp.service-account" id="fhir.bulk-storage.gcp.service-account"></a>
+
+`GCPServiceAccount` resource ID for `$export`
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.bulk-storage.gcp.service-account</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_BULK_STORAGE_GCP_SERVICE_ACCOUNT</code> , <br /><code>BOX_BULK__STORAGE_GCP_SERVICE__ACCOUNT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
+
+### GCP bucket<a href="#fhir.bulk-storage.gcp.bucket" id="fhir.bulk-storage.gcp.bucket"></a>
+
+GCP bucket name for `$export`
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.bulk-storage.gcp.bucket</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_BULK_STORAGE_GCP_BUCKET</code> , <br /><code>BOX_BULK__STORAGE_GCP_BUCKET</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
+
+### AWS service account ID<a href="#fhir.bulk-storage.aws.account" id="fhir.bulk-storage.aws.account"></a>
+
+AWS Account resource ID for `$export`
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.bulk-storage.aws.account</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_BULK_STORAGE_AWS_ACCOUNT</code> , <br /><code>BOX_BULK__STORAGE_AWS_ACCOUNT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
+
+### AWS bucket<a href="#fhir.bulk-storage.aws.bucket" id="fhir.bulk-storage.aws.bucket"></a>
+
+AWS S3 bucket name for `$export`
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.bulk-storage.aws.bucket</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_BULK_STORAGE_AWS_BUCKET</code> , <br /><code>BOX_BULK__STORAGE_AWS_BUCKET</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
+
+### Azure service account ID<a href="#fhir.bulk-storage.azure.container" id="fhir.bulk-storage.azure.container"></a>
+
+Azure Container resource ID for `$export`
+
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.bulk-storage.azure.container</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_BULK_STORAGE_AZURE_CONTAINER</code> , <br /><code>BOX_BULK__STORAGE_AZURE_CONTAINER</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
