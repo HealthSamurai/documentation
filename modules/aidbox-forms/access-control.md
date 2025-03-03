@@ -1,0 +1,1020 @@
+# Form's access control 
+
+Form's module access control can be set via aidbox [ACL engine](../../modules/security-and-access-control/security/acl) 
+
+## SDC Roles Access
+
+SDC module suggests several roles which can be used independently or in a mix.
+
+For development and configuration simplicity - it's better to use role with full access.
+
+- _sdc admin_ - full access
+
+For production it's better to have separate roles, with more precise access patterns.
+For example we can split users into 3 groups.
+
+- _form designer_ - creates and manages forms
+- _form filler_ - end user which filling the form
+- _response manager_ - lists and reviews responses + populates new forms
+
+
+### SDC Admin 
+
+Policies:
+
+- Forms Grid
+- CRUD on all SDC resources (Questionnaire/QuestionnaireResponse/QuestionnaireTheme/SDCConfig/SDCPrintTemplate)
+- CRUD on production resources (Patient/Encounter/Observation resources)
+- access to all SDC operations
+- access to terminology related endpoints
+
+
+| policy                                   | policy description                                                                      |
+|:----------------------------------------:|:---------------------------------------------------------------------------------------:|
+| as-sdc-admin-forms-grid-rpc              | Forms Grid with forms and responses                                                     |
+| as-sdc-admin-manage-sdc-resources        | Create/Update/Delete resources used in SDC Module                                       |
+| as-sdc-admin-manage-production-resources | Create/Update/Delete SDC related resources (Patient/Encounter/Observation/Practitioner) |
+| as-sdc-admin-use-sdc-operations          | Use all SDC operations                                                                  |
+| as-sdc-admin-use-terminology-operations  | Use terminology operations (Search concepts, Valuesets)  )                              |
+
+
+#### as-sdc-admin-forms-grid-rpc policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-admin-forms-grid-rpc
+content-type: text/yaml
+accept: text/yaml
+
+resourceType: AccessPolicy
+id: as-sdc-admin-forms-grid-rpc
+type: rpc
+engine: matcho-rpc
+rpc:
+ aidbox.sdc.grid/get-definition:
+   user:
+     roles:
+       $contains:
+         value: sdc-admin 
+
+ aidbox.sdc.patient/forms-grid:
+   user:
+     roles:
+       $contains:
+         value: sdc-admin
+
+ aidbox.sdc.patient/documents-workflows-grid:
+   user:
+     roles:
+       $contains:
+         value: sdc-admin
+```
+
+
+#### as-sdc-admin-manage-sdc-resources policy
+
+CRUD access to next resources:
+
+- Questionnaire
+- QuestionnaireResponse
+- QuestionnaireTheme
+- SDCPrintTemplate
+- SDCConfig
+
+```yaml
+PUT /AccessPolicy/as-sdc-admin-manage-sdc-resources
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-admin-manage-sdc-resources
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-admin
+  uri:
+   $one-of:
+      - '#/Questionnaire/.*$'
+      - '#/Questionnaire$'
+      - '#/QuestionnaireResponse/.*$'
+      - '#/QuestionnaireResponse$'
+      - '#/QuestionnaireTheme/.*$'
+      - '#/QuestionnaireTheme$'
+      - '#/SDCPrintTemplate/.*$'
+      - '#/SDCPrintTemplate$'
+      - '#/SDCConfig/.*$'
+      - '#/SDCConfig$'
+  request-method: 
+     $one-of:
+       - get
+       - post
+       - put
+       - delete
+       - patch
+```
+
+#### as-sdc-admin-manage-production-fhir-resources policy
+
+CRUD access to next FHIR resources:
+
+- Patient
+- Encouner
+- Observation
+- Organization
+- Practitioner
+
+> This is typical resources that often used in SDC Flow. But you are free to add your own.
+
+```yaml
+PUT /AccessPolicy/as-sdc-admin-manage-production-fhir-resources
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-admin-manage-production-fhir-resources
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-admin
+  uri:
+   $one-of:
+      - '#/Patient/.*$'
+      - '#/Patient$'
+      - '#/Encounter/.*$'
+      - '#/Encounter$'
+      - '#/Observation/.*$'
+      - '#/Observation$'
+      - '#/Organization/.*$'
+      - '#/Organization$'
+      - '#/Practitioner/.*$'
+      - '#/Practitioner$'
+  request-method: 
+     $one-of:
+       - get
+       - post
+       - put
+       - delete
+       - patch
+```
+
+#### as-sdc-admin-use-sdc-operations policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-admin-use-sdc-operations
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-admin-use-sdc-operations
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  uri:
+    $one-of:
+    - '#\$save'
+    - '#\$generate-link'
+    - '#\$duplicate'
+    - '#\$sdc-config'
+    - '#\$process-response'
+    - '#\$validate'
+    - '#\$extract'
+    - '#\$populate'
+    - '#\$render'
+    - '#\$submit'
+    - '#\$usage'
+    - '#\$assemble-all'
+    - '#\$expand'
+    - '#\$validate-response'
+    - '#\$populatelink'
+    - '#\$sdc-file'
+    - '#\$generate-token'
+    - '#\$assemble'
+    - '#\$sdc-resource-types'
+    - '#\$ai-generate-questionnaire'
+    - '#\$openai-chat-completions'
+  request-method:
+     $one-of:
+       - post
+       - get
+       - put
+       - delete
+       - patch
+```
+
+
+#### as-sdc-admin-use-terminology-operations policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-admin-use-terminology-operations
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-admin-use-terminology-operations
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-admin
+  uri: 
+    $one-of:
+      - '#/ValueSet$'
+      - '#/ValueSet/\$expand$'
+  request-method:
+    $one-of:
+      - get
+      - post
+```
+
+### Form Designer
+
+This role give access for 
+
+- Forms Grid
+- Form Builder
+- Patient's and Encouner resources for populate purposes
+
+Policies: 
+
+| policy                                                   | policy description                                    |
+|:--------------------------------------------------------:|:-----------------------------------------------------:|
+| as-sdc-form-designer-forms-grid-rpc                      | use forms grid                                        |
+| as-sdc-form-designer-read-config                         | read SDCConfig                                        |
+| as-sdc-form-designer-manage-themes                       | manage themes                                         |
+| as-sdc-form-designer-manage-questionnaire                | Create/Read/Update/Delete Questionnaire               |
+| as-sdc-form-designer-populate-questionnaire              | validate Questionnaire + QuestionnaireResponse        |
+| as-sdc-form-designer-extract-questionnaire               | populate Questionnaire (+ search patient & encounter) |
+| as-sdc-form-designer-validate-questionnaire-and-response | extract QuestionnaireResponse                         |
+| as-sdc-form-designer-search-valueset                     | search for valuesets                                  |
+| as-sdc-form-designer-search-concepts                     | search for concepts                                   |
+| as-sdc-form-designer-use-ai-tools                        | use AI tools                                          |
+
+#### as-sdc-form-designer-forms-grid-rpc policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-form-designer-forms-grid-rpc
+content-type: text/yaml
+accept: text/yaml
+
+resourceType: AccessPolicy
+id: as-sdc-form-designer-forms-grid-rpc
+type: rpc
+engine: matcho-rpc
+rpc:
+ aidbox.sdc.grid/get-definition:
+   user:
+     roles:
+       $contains:
+         value: sdc-form-designer 
+
+ aidbox.sdc.patient/forms-grid:
+   user:
+     roles:
+       $contains:
+         value: sdc-form-designer
+```
+
+#### as-sdc-form-designer-read-config policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-form-designer-read-config
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-form-designer-read-config
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-form-designer
+  uri: '/$sdc-config'
+  request-method: post
+```
+
+#### as-sdc-form-designer-manage-questionnaire policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-form-designer-manage-questionnaire
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-form-designer-manage-questionnaire
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-form-designer
+  uri: 
+    $one-of:
+    - '#/Questionnaire$'
+    - '#/Questionnaire/.*$'
+    - '#/Questionnaire/\$save'
+    - '#/Questionnaire/.*/\$usage'
+    - '#/Questionnaire/.*/\$duplicate'
+  request-method: 
+    $one-of:
+      - get
+      - post
+      - put
+      - delete
+```
+
+#### as-sdc-form-designer-search-response policy
+
+> Used for checking Questionnaire usage
+
+```yaml
+PUT /AccessPolicy/as-sdc-form-designer-search-response
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-form-designer-search-response
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-form-designer
+  uri: '#/QuestionnaireResponse$'
+  request-method: get
+```
+
+
+#### as-sdc-form-designer-validate-questionnaire-and-response policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-form-designer-validate-questionnaire-and-response
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-form-designer-validate-questionnaire-and-response
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-form-designer
+  uri: 
+    $one-of:
+      - '#/Questionnaire/\$validate'
+      - '#/QuestionnaireResponse/\$validate'
+  request-method: post
+```
+
+#### as-sdc-form-designer-manage-themes policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-form-designer-manage-themes
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-form-designer-manage-themes
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-form-designer
+  uri: 
+    $one-of: 
+      - '#/QuestionnaireTheme$'
+      - '#/QuestionnaireTheme/.*'
+  request-method: 
+    $one-of: 
+      - get
+      - post
+      - put
+      - delete
+```
+
+#### as-sdc-form-designer-search-patient-and-encounter-for-populate policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-form-designer-search-patient-and-encounter-for-populate
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-form-designer-search-patient-and-encounter-for-populate
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-form-designer
+  uri: 
+    $one-of: 
+      - '#/Encounter$'
+      - '#/Patient$'
+  request-method: get
+```
+
+#### as-sdc-form-designer-populate-questionnaire policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-form-designer-populate-questionnaire
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-form-designer-populate-questionnaire
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-form-designer
+  uri: '#/Questionnaire/\$populate$'
+  request-method: post
+```
+
+#### as-sdc-form-designer-extract-questionnaire policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-form-designer-extract-questionnaire
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-form-designer-extract-questionnaire
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-form-designer
+  uri: '#/QuestionnaireResponse/\$extract$'
+  request-method: post
+```
+
+#### as-sdc-form-designer-search-valueset policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-form-designer-search-valueset
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-form-designer-search-valueset
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-form-designer
+  uri: '#/ValueSet$'
+  request-method: get
+```
+
+#### as-sdc-form-designer-search-concepts policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-form-designer-search-concepts
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-form-designer-search-concepts
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-form-designer
+  uri: '#/ValueSet/\$expand$'
+  request-method: 
+    $one-of:
+      - get
+      - post
+```
+
+#### as-sdc-form-designer-use-ai-tools policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-form-designer-use-ai-tools
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-form-designer-use-ai-tools
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-form-designer
+  uri: 
+    $one-of:
+    - '/$ai-generate-questionnaire'
+    - '/$openai-chat-completions'
+  request-method: post
+```
+
+### Form Filler
+
+Form filler role can load Questionnaire and QuestionnaireResponse, fill and submit it
+
+| policy                                | policy description                          |
+|:-------------------------------------:|:-------------------------------------------:|
+| as-sdc-form-filler-read-config        | Read SDCConfig                              |
+| as-sdc-form-filler-read-questionnaire | Read Questionnaire and use it for rendering |
+| as-sdc-form-filler-read-response      | Read saved resposne and render it           |
+| as-sdc-form-filler-save-response      | Save changed response                       |
+| as-sdc-form-filler-submit-response    | Submit response                             |
+| as-sdc-form-filler-search-concepts    | Search terminology concepts                 |
+
+<!-- | as-sdc-form-filler-search-references ???? -->
+
+#### as-sdc-form-filler-read-config policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-form-filler-read-config
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-form-filler-read-config
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-form-filler
+  uri: '/$sdc-config'
+  request-method: post
+```
+
+#### as-sdc-form-filler-read-response policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-form-filler-read-response
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-form-filler-read-response
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-form-filler
+  uri: '#/QuestionnaireResponse/.*'
+  request-method: get
+```
+
+
+#### as-sdc-form-filler-read-questionnaire policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-form-filler-read-questionnaire
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-form-filler-read-questionnaire
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-form-filler
+  uri: '#/Questionnaire/$'
+  request-method: get
+```
+
+#### as-sdc-form-filler-save-response policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-form-filler-save-response
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-form-filler-save-response
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-form-filler
+  uri: '#/QuestionnaireResponse/\$save'
+  request-method:  post
+```
+
+#### as-sdc-form-filler-submit-response policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-form-filler-submit-response
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-form-filler-submit-response
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-form-filler
+  uri: '#/QuestionnaireResponse/\$submit'
+  request-method:  post
+```
+
+#### as-sdc-form-filler-search-concepts policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-form-filler-search-concepts
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-form-filler-search-concepts
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-form-filler
+  uri: '#/ValueSet/\$expand'
+  request-method: 
+    $one-of:
+       - post
+       - get
+```
+
+<!-- #### as-sdc-form-filler-search-references ???? -->
+
+<!-- TBD -->
+
+<!-- #### as-sdc-form-filler-upload-attachment  ???? -->
+
+<!-- TBD -->
+
+<!-- ```yaml -->
+<!-- PUT /AccessPolicy/as-sdc-form-filler-upload-attachment -->
+<!-- content-type: text/yaml -->
+<!-- accept: text/yaml -->
+
+<!-- id: as-sdc-form-filler-upload-attachment -->
+<!-- resourceType: AccessPolicy -->
+<!-- engine: matcho -->
+<!-- matcho: -->
+<!--   user: -->
+<!--     roles: -->
+<!--       $contains: -->
+<!--         value: sdc-form-filler -->
+<!--   uri: '#/\$sdc-file' -->
+<!--   request-method: post -->
+<!-- ``` -->
+
+<!-- #### as-sdc-form-filler-download-attachment ???? -->
+
+<!-- ```yaml -->
+<!-- PUT /AccessPolicy/as-sdc-form-filler-download-attachment -->
+<!-- content-type: text/yaml -->
+<!-- accept: text/yaml -->
+
+<!-- id: as-sdc-form-filler-download-attachment -->
+<!-- resourceType: AccessPolicy -->
+<!-- engine: matcho -->
+<!-- matcho: -->
+<!-- user: -->
+<!--     roles: -->
+<!--       $contains: -->
+<!--         value: sdc-form-filler -->
+<!--   uri: '#/\$sdc-file' -->
+<!--   request-method: get -->
+<!-- ``` -->
+
+<!-- #### as-sdc-form-filler-delete-attachment ???? -->
+
+<!-- ```yaml -->
+<!-- PUT /AccessPolicy/as-sdc-form-filler-delete-attachment -->
+<!-- content-type: text/yaml -->
+<!-- accept: text/yaml -->
+
+<!-- id: as-sdc-form-filler-delete-attachment -->
+<!-- resourceType: AccessPolicy -->
+<!-- engine: matcho -->
+<!-- matcho: -->
+<!--   user: -->
+<!--     roles: -->
+<!--       $contains: -->
+<!--         value: sdc-form-filler -->
+<!--   uri: '#/\$sdc-file' -->
+<!--   request-method: delete -->
+<!-- ``` -->
+
+### Response Manager
+
+Response manager role has access to
+
+- Forms grid 
+- Responses grid
+- Read responses
+- Questionnaire population
+- shared link generation
+
+
+| policy                                               | policy description                                    |
+|:----------------------------------------------------:|:-----------------------------------------------------:|
+| as-sdc-response-manager-forms-grid-rpc               | Forms grid with forms and responses                   |
+| as-sdc-response-manager-search-config                | Search SDCConfigs before populate                     |
+| as-sdc-response-manager-read-config                  | Read SDCConfig                                        |
+| as-sdc-response-manager-search-and-read-theme        | Search and Read QuestionnaireTheme                    |
+| as-sdc-response-manager-read-questionnaire           | Read Quetionnaire for opening forms                   |
+| as-sdc-response-manager-read-response                | Read QuestionnaireResponse for looking into responses |
+| as-sdc-response-manager-search-patient-and-encounter | Search for Encounters and Patients                    |
+| as-sdc-response-manager-populate-questionnaire       | Create new empty/prefilled responses                  |
+| as-sdc-response-manager-generate-link                | Create access link for response                       |
+
+#### as-sdc-response-manager-forms-grid-rpc policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-response-manager-forms-grid-rpc
+content-type: text/yaml
+accept: text/yaml
+
+resourceType: AccessPolicy
+id: as-sdc-response-manager-forms-grid-rpc
+type: rpc
+engine: matcho-rpc
+rpc:
+ aidbox.sdc.grid/get-definition:
+   user:
+     roles:
+       $contains:
+         value: sdc-response-manager 
+         
+ aidbox.sdc.patient/forms-grid:
+   user:
+     roles:
+       $contains:
+         value: sdc-response-manager
+
+ aidbox.sdc.patient/documents-workflows-grid:
+   user:
+     roles:
+       $contains:
+         value: sdc-response-manager
+```
+
+#### as-sdc-response-manager-search-config policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-response-manager-search-config
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-response-manager-search-config
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-response-manager
+  uri: '#/SDCConfig$'
+  request-method: get
+```
+
+#### as-sdc-response-manager-read-config policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-response-manager-read-config
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-response-manager-read-config
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-response-manager
+  uri: '/$sdc-config'
+  request-method: post
+```
+
+#### as-sdc-response-manager-search-and-read-theme policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-response-manager-search-and-read-theme
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-response-manager-search-and-read-theme
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-response-manager
+  uri: 
+    $one-of: 
+      - '#/QuestionnaireTheme$'
+      - '#/QuestionnaireTheme/.*'
+  request-method: get
+```
+
+#### as-sdc-response-manager-search-and-read-questionnaire policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-response-manager-search-and-read-questionnaire
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-response-manager-search-and-read-questionnaire
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-response-manager
+  uri: 
+    $one-of:
+    - '#/Questionnaire$' 
+    - '#/Questionnaire/.*$'
+  request-method: get
+```
+
+#### as-sdc-response-manager-search-and-read-response policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-response-manager-search-and-read-response
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-response-manager-search-and-read-response
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-response-manager
+  uri: 
+    $one-of:
+    - '#/QuestionnaireResponse' 
+    - '#/QuestionnaireResponse/.*$'
+  request-method: get
+```
+
+#### as-sdc-response-manager-search-patient-and-encounter policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-response-manager-search-patient-and-encounter
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-response-manager-search-patient-and-encounter
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-response-manager
+  uri: 
+    $one-of:
+    - '#/Encounter$' 
+    - '#/Patient$'
+  request-method: get
+```
+
+#### as-sdc-response-manager-populate-questionnaire policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-response-manager-populate-questionnaire
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-response-manager-populate-questionnaire
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-response-manager
+  uri: '#/Questionnaire/.*/\$populatelink$'
+  request-method: post
+```
+
+#### as-sdc-response-manager-generate-link policy
+
+```yaml
+PUT /AccessPolicy/as-sdc-response-manager-generate-link
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-response-manager-generate-link
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-response-manager
+  uri: '#/QuestionnaireResponse/.*/\$generate-link$'
+  request-method: post
+```
+
+
+# Test access policies
+
+Examples of users with roles:
+
+- sdc admin
+- form designer
+- form filler
+- response manager
+- response manager + form filler
+
+> it's possible to mix roles together
+
+## SDC Admin
+
+```yaml
+POST /User
+content-type: text/yaml
+accept: text/yaml
+
+resourceType: User
+id: sdc-admin-user
+password: password
+roles: 
+  - value: sdc-admin
+```
+
+### Form Designer
+
+```yaml
+POST /User
+content-type: text/yaml
+accept: text/yaml
+
+resourceType: User
+id: form-designer-user
+password: password
+roles: 
+  - value: sdc-form-designer
+```
+
+### Form Filler 
+
+```yaml
+POST /User
+content-type: text/yaml
+accept: text/yaml
+
+resourceType: User
+id: form-filler-user
+password: password
+roles: 
+  - value: sdc-form-filler
+```
+
+### Response Manager
+
+```yaml
+POST /User
+content-type: text/yaml
+accept: text/yaml
+
+resourceType: User
+id: response-manager-user
+password: password
+roles: 
+  - value: sdc-response-manager
+```
+
+## Mix roles (Form Filler + Response Manager)
+
+```yaml
+POST /User
+content-type: text/yaml
+accept: text/yaml
+
+resourceType: User
+id: form-user
+password: password
+roles: 
+  - value: sdc-response-manager
+  - value: sdc-form-filler
+```
+

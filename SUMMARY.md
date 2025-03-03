@@ -334,6 +334,7 @@
     * [Changing data after form signing](modules/aidbox-forms/aidbox-code-editor/addendum.md)
     * [FHIR Questionnaire to Aidbox Forms and back conversion](modules/aidbox-forms/aidbox-code-editor/converter.md)
   * [Any familiar form editor (deprecated)](modules/aidbox-forms/design-form-locally-in-familiar-editor.md)
+  * [Access Control in Forms](modules/aidbox-forms/access-control.md)
   * [Audit Logging in Forms](modules/aidbox-forms/audit-logging.md)
   * [Aidbox Form Gallery](modules/aidbox-forms/add-aidbox-forms-library.md)
 * [Define extensions](modules/define-extensions/README.md)
