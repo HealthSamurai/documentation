@@ -1,9 +1,8 @@
-## Modules
+# Modules
 
 Modules settings
 
-
-## Modules Subscriptions
+## Subscriptions
 
 Google Cloud Pub/Sub subscriptions settings
 
@@ -66,7 +65,7 @@ If set, the emulator will be used instead of the real Pub/Sub service.
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>module.subscriptions.pubsub.emulator-url</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_SUBSCRIPTIONS_PUBSUB_EMULATOR_URL</code> , <br /><code>BOX_SUBSCRIPTIONS_PUBSUB_EMULATOR__URL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
-## Modules Notebooks
+## Notebooks
 
 Aidbox notebooks settings
 
@@ -76,7 +75,7 @@ Set repository to fetch published notebooks
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>module.notebook.repo-url</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td><code>https://aidbox.app</code></td></tr><tr><td>Environment variables</td><td><code>BOX_MODULE_NOTEBOOK_REPO_URL</code> , <br /><code>AIDBOX_NOTEBOOKS_REPO_URL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
 
-## Modules Mail Provider
+## Mail Provider
 
 Mail Provider settings
 
@@ -212,7 +211,7 @@ Username for the SMTP provider
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>provider.smtp.username</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_PROVIDER_SMTP_USERNAME</code> , <br /><code>BOX_PROVIDER_SMTP__PROVIDER_USERNAME</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
 
-## Modules SMARTbox
+## SMARTbox
 
 SMARTbox settings
 
@@ -246,7 +245,7 @@ Link to access session logs
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>module.smartbox.session-logs-link</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_SMARTBOX_SESSION_LOGS_LINK</code> , <br /><code>BOX_SMARTBOX_SESSION__LOGS__LINK</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
 
-## Modules MDM
+## MDM
 
 MDM settings
 
@@ -256,7 +255,7 @@ The default MDM model used for `$match` operation. Will be used if no model is s
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>module.mdm.default-patient-model</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_MODULE_DEFAULT_PATIENT_MODEL</code> , <br /><code>BOX_MDM_DEFAULT_PATIENT_MODEL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
 
-## Modules Forms
+## Forms
 
 Forms settings
 
@@ -308,7 +307,7 @@ Redirect URI that will be used on form save/close button click
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>module.sdc.form.redirect-on-save</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_MODULE_SDC_FORM_REDIRECT_ON_SAVE</code> , <br /><code>BOX_SDC_FORM_REDIRECT_ON_SAVE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
 
-## Modules GraphQL
+## GraphQL
 
 GraphQL settings
 
@@ -336,7 +335,7 @@ Access control in GraphQL API
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>module.graphql.access-control</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>rest-search</code> — Additionally authorization checks access to corresponding search queries<br /><code>disabled</code> — Only access to GraphQL endpoint is verified</td></tr><tr><td>Default value</td><td><code>disabled</code></td></tr><tr><td>Environment variables</td><td><code>BOX_MODULE_GRAPHQL_ACCESS_CONTROL</code> , <br /><code>BOX_FEATURES_GRAPHQL_ACCESS__CONTROL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
 
-## Modules Webpush
+## Webpush
 
 Webpush settings
 

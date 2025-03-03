@@ -1,9 +1,8 @@
-## Observability
+# Observability
 
 Observability settings
 
-
-## Observability Logs
+## Logs
 
 Logs settings
 
@@ -41,7 +40,7 @@ Max length of a query to be logged.
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.sql.max-length</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>500</code></td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_SQL_MAX_LENGTH</code> , <br /><code>BOX_LOGGING_SQL_MAX__LENGTH</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
-## Observability Metrics
+## Metrics
 
 Metrics settings
 
@@ -58,7 +57,7 @@ Controls whether to provide metrics [related to PostgreSQL](https://docs.aidbox.
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.metrics.enable-postgres-metrics</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>true</code></td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_METRICS_ENABLE_POSTGRES_METRICS</code> , <br /><code>BOX_METRICS_POSTGRES_ON</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
-## Observability Stdout
+## Stdout
 
 Stdout settings
 
@@ -92,7 +91,7 @@ and `error` levels (off is excluded).
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.stdout.google-log-level</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — </td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_STDOUT_GOOGLE_LOG_LEVEL</code> , <br /><code>AIDBOX_STDOUT_GOOGLE_JSON</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
-## Observability Loki
+## Loki
 
 Grafana Loki settings
 
@@ -126,7 +125,7 @@ For example: `{"box": "aidbox"}`
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.loki.stream</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_LOKI_STREAM</code> , <br /><code>AIDBOX_LK_STREAM</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
-## Observability Datadog
+## Datadog
 
 Datadog settings
 
@@ -172,7 +171,7 @@ or time passed from previous log uploading exceeds `observability.datadog.batch-
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.datadog.batch-timeout</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_DATADOG_BATCH_TIMEOUT</code> , <br /><code>BOX_DD_BATCH_TIMEOUT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
-## Observability Elastic
+## Elastic
 
 Elastic settings
 
@@ -207,7 +206,7 @@ Custom index format string. The default value is 'aidbox-logs'-yyyy-MM-dd.
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.elastic.index-pattern</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td><code>&apos;aidbox-logs&apos;-yyyy-MM-dd</code></td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_ELASTIC_INDEX_PATTERN</code> , <br /><code>AIDBOX_ES_INDEX_PAT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
-## Observability Grafana
+## Grafana
 
 Grafana settings
 
@@ -229,7 +228,7 @@ Grafana password to update the metrics dashboards.
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.grafana.password</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_GRAFANA_PASSWORD</code> , <br /><code>BOX_METRICS_GRAFANA_PASSWORD</code></td></tr><tr><td>Sensitive</td><td><code>true</code> — can be set only via environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
-## Observability OTEL
+## OTEL
 
 OpenTelemetry settings
 

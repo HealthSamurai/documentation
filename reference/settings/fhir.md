@@ -1,9 +1,8 @@
-## FHIR
+# FHIR
 
 FHIR settings
 
-
-## FHIR General
+## General
 
 General FHIR settings
 
@@ -25,7 +24,7 @@ Sets the maximum (inclusive) isolation level for transactions. Can be overridden
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.transaction-max-isolation-level</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — </td></tr><tr><td>Default value</td><td><code>none</code></td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_TRANSACTION_MAX_ISOLATION_LEVEL</code> , <br /><code>BOX_FEATURES_FHIR_TRANSACTION_MAX__ISOLATION__LEVEL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
-## FHIR Validation
+## Validation
 
 Validation settings
 
@@ -72,7 +71,7 @@ Enables strict datetime validation in JSON schema validation engine.
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.validation.json-schema-datetime-regex</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td><code>#{}</code></td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_JSON_SCHEMA_DATETIME_REGEX</code> , <br /><code>BOX_COMPATIBILITY_VALIDATION_JSON__SCHEMA_REGEX</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
-## FHIR Search
+## Search
 
 Search settings
 
@@ -199,7 +198,7 @@ the main value (i.e. not in translation extension)
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.multilingual.fallback</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>true</code></td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_SEARCH_MULTILINGUAL_FALLBACK</code> , <br /><code>BOX_FEATURES_MULTILINGUAL_FALLBACK</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
 
-## FHIR Terminology
+## Terminology
 
 Terminology settings
 
@@ -211,7 +210,7 @@ If absent, codes are not validated.
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.terminology.service-base-url</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_TERMINOLOGY_SERVICE_BASE_URL</code> , <br /><code>AIDBOX_TERMINOLOGY_SERVICE_BASE_URL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
 
-## FHIR Bulk Data Export
+## Bulk Data Export
 
 Bulk Data Export settings
 
