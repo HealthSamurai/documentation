@@ -2,6 +2,11 @@
 
 ## February 2025 _`edge`_
 
+* Aidbox
+  * Introduced [Settings](../configuration/settings.md)
+* Aidbox Forms
+  * &#x20;_work in progress_
+
 Minor updates:
 
 * 2501.1 — Minor bug fixes
