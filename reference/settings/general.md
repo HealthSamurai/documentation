@@ -1,5 +1,3 @@
-# Setting
-
 ## General
 
 General settings
