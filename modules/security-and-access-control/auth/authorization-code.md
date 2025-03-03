@@ -208,6 +208,7 @@ Content-Type: application/json
 {
   "grant_type": "refresh_token",
   "client_id": "webapp",
+  "client_secret": "verysecret",
   "refresh_token": "eyJhb..PloA"
 }
 ```
@@ -219,7 +220,8 @@ status: 200
 
 {
   "access_token": "eyJh..D8YA", # new access_token
-  "expores_id": 360
+  "token_type": "Bearer",
+  "expires_in": 360
 }
 ```
 {% endtab %}
