@@ -4,6 +4,7 @@
 
 * Aidbox
   * Introduced [Settings](../configuration/settings.md)
+  * Published [settings reference documentation](../reference/settings/)
 * Aidbox Forms
   * PDF-Form conversion (enhancement): [Re-generation from PDF ](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/import-fhir-questionnaire#common-functionality-across-all-scenarios)and insertion of a part of the form into an existing form
   * Added enabling of Print, Amend, and Save buttons in [SDCConfig](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/configuration)
