@@ -525,8 +525,8 @@
 
 ## Reference
 
-* [FHIRSchema reference](https://fhir-schema.github.io/fhir-schema/)
-* [Settings](reference/settings/README.md)
+* [FHIR Schema reference](https://fhir-schema.github.io/fhir-schema/)
+* [Settings reference](reference/settings/README.md)
   * [General](reference/settings/general.md)
   * [FHIR](reference/settings/fhir.md)
   * [Security & Access Control](reference/settings/security---access-control.md)
