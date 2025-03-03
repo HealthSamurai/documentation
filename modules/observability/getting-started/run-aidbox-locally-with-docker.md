@@ -23,83 +23,25 @@ Please **make sure** that both [Docker & Docker Compose](https://docs.docker.com
 
 ## Quickstart Guide
 
-### 1. Get the Aidbox License for self-hosting
+### 1. Get preconfigured example
 
-Create the Aidbox License for the **14-day trial period** on [https://aidbox.app/](https://aidbox.app/), select **self-hosted,** or use the license that you already have.
+To get a preconfigured example, clone the Aidbox examples repository and navigate to the `OpenTelemetry` directory:
 
-{% hint style="success" %}
-The _<mark style="color:green;background-color:yellow;">Aidbox License Key</mark>_ will be required in the next step, where we will prepare the configuration for Aidbox.
-{% endhint %}
-
-### 2. Configure the Aidbox
-
-Aidbox is configured by dedicated [Aidbox Configuration Projects](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/).
-
-You can start with the default configuration project published on our GitHub and customize it for your specific needs later. Select the FHIR version and clone the corresponding project with the Bash commands below:
-
-```
-git clone \
-  --branch=open-telemetry-fhir-r5 \
-  --depth=1 \
-  https://github.com/Aidbox/aidbox-project-template.git \
-  aidbox-project && \
-  cd aidbox-project && \
-  rm -rf .git
+```sh
+git clone git@github.com:Aidbox/examples.git && cd examples/OpenTelemetry
 ```
 
-Here is the basic structure of the Aidbox Configuration Project:
-
-```
-aidbox-project/
-├── .env
-├── docker-compose.yaml
-├── open-telemetry-config.yaml
-├── prometheus
-│   └── prometheus.yml
-├── grafana
-│   └── datasources
-│       └── all.yaml
-├── zen-package.edn
-└── zrc/
-    ├── config.edn
-    └── main.edn
-```
-
-{% hint style="info" %}
-**Aidbox Configuration Projects**
-
-Everything in Aidbox can be configured with a dedicated Aidbox Configuration Project from the FHIR version definition to enabling add-on modules.
-
-This approach helps you keep configurations under a version control system and share them between Aidbox Instances.
-
-[Learn more.](https://github.com/Aidbox/documentation/blob/master/getting-started-1/run-aidbox/broken-reference/README.md)
-{% endhint %}
-
-#### Add the license key to your configuration project.
-
-Update the **.env** file within your configuration project with the Aidbox License Key from [Step 1](run-aidbox-locally-with-docker.md#1.-get-the-aidbox-license-with-a-self-hosting-option):
-
-{% code title=".env" %}
-```ini
-AIDBOX_LICENSE=YOUR_AIDBOX_LICENSE_KEY
-
-PGHOSTPORT=5437
-PGUSER=postgres
-...
-```
-{% endcode %}
-
-### 3. Start Aidbox with Docker Compose
-
-Start Aidbox with Docker Compose:
+### 2. Start Aidbox with Docker Compose
 
 ```shell
 docker compose up --force-recreate
 ```
 
+Wait until all components are pulled and started.
+
 Navigate to [http://localhost:8888/](http://localhost:8888/) and Sign In to the Aidbox UI using the login `admin` and password `password`.
 
-### 4. Discover Aidbox logs with Kibana
+### 3. Discover Aidbox logs with Kibana
 
 Kibana should be available on [http://localhost:5602](http://localhost:5602) address. To see logs in Kibana we should&#x20;
 
@@ -110,7 +52,7 @@ Go to [Index Management](http://localhost:5602/app/management/data/index_managem
 
 <figure><img src="../../../.gitbook/assets/Screenshot 2023-09-27 at 15.19.04.png" alt=""><figcaption><p>Index management page</p></figcaption></figure>
 
-Then we shoould go to [Data Views](http://localhost:5602/app/management/kibana/dataViews) page (Menu → Stack Management → Data Views) and create a data view there.
+Then we should go to [Data Views](http://localhost:5602/app/management/kibana/dataViews) page (Menu → Stack Management → Data Views) and create a data view there.
 
 <figure><img src="../../../.gitbook/assets/Screenshot 2023-09-27 at 15.19.50.png" alt=""><figcaption><p>Data view creation</p></figcaption></figure>
 
@@ -118,13 +60,13 @@ Then go to [Discover](http://localhost:5602/app/discover) page (Menu → Discove
 
 <figure><img src="../../../.gitbook/assets/Screenshot 2023-09-27 at 15.21.57.png" alt=""><figcaption><p>Log discover page</p></figcaption></figure>
 
-### 5. Discover Aidbox metrics with Prometheus
+### 4. Discover Aidbox metrics with Prometheus
 
 Prometheus should be available on [http://localhost:9090](http://localhost:9090) address. To see metrics in Prometheus we should open it and search for it.
 
 <figure><img src="../../../.gitbook/assets/Screenshot 2023-09-27 at 15.26.34.png" alt=""><figcaption><p>Prometheus UI</p></figcaption></figure>
 
-### 6. Discover Aidbox traces with Zipkin
+### 5. Discover Aidbox traces with Zipkin
 
 Zipkin should be available on [http://localhost:9411/](http://localhost:9411/zipkin/) address. To see traces in Zipkin click the `Run query` button.
 
