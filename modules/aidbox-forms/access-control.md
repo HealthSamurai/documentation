@@ -6,16 +6,17 @@ Form's module access control can be set via aidbox [ACL engine](../../modules/se
 
 SDC module suggests several roles which can be used independently or in a mix.
 
-For development and configuration simplicity - it's better to use role with full access.
+For **development** and configuration simplicity - it's better to use role with full access.
 
-- _sdc admin_ - full access
+- **sdc admin** - full access
 
-For production it's better to have separate roles, with more precise access patterns.
+For **production** it's better to have separate roles, with more precise access patterns.
+
 For example we can split users into 3 groups.
 
-- _form designer_ - creates and manages forms
-- _form filler_ - end user which filling the form
-- _response manager_ - lists and reviews responses + populates new forms
+- **form designer** - creates and manages forms
+- **form filler** - end user which filling the form
+- **response manager** - reviews responses + populates new forms
 
 
 ### SDC Admin 
@@ -23,14 +24,16 @@ For example we can split users into 3 groups.
 Policies:
 
 - Forms Grid
-- CRUD on all SDC resources (Questionnaire/QuestionnaireResponse/QuestionnaireTheme/SDCConfig/SDCPrintTemplate)
-- CRUD on production resources (Patient/Encounter/Observation resources)
-- access to all SDC operations
-- access to terminology related endpoints
+- CRUD on all SDC resources 
+    (Questionnaire/QuestionnaireResponse/QuestionnaireTheme/SDCConfig/SDCPrintTemplate)
+- CRUD on production resources 
+    (Patient/Encounter/Observation resources)
+- all SDC operations
+- terminology related endpoints
 
 
 | policy                                   | policy description                                                                      |
-|:----------------------------------------:|:---------------------------------------------------------------------------------------:|
+|------------------------------------------|-----------------------------------------------------------------------------------------|
 | as-sdc-admin-forms-grid-rpc              | Forms Grid with forms and responses                                                     |
 | as-sdc-admin-manage-sdc-resources        | Create/Update/Delete resources used in SDC Module                                       |
 | as-sdc-admin-manage-production-resources | Create/Update/Delete SDC related resources (Patient/Encounter/Observation/Practitioner) |
@@ -39,6 +42,11 @@ Policies:
 
 
 #### as-sdc-admin-forms-grid-rpc policy
+
+Access to:
+
+- Questionnaires grid
+- Responses grid
 
 ```yaml
 PUT /AccessPolicy/as-sdc-admin-forms-grid-rpc
@@ -206,6 +214,8 @@ matcho:
 
 #### as-sdc-admin-use-terminology-operations policy
 
+Searching for ValueSets and concepts
+
 ```yaml
 PUT /AccessPolicy/as-sdc-admin-use-terminology-operations
 content-type: text/yaml
@@ -240,7 +250,7 @@ This role give access for
 Policies: 
 
 | policy                                                   | policy description                                    |
-|:--------------------------------------------------------:|:-----------------------------------------------------:|
+|----------------------------------------------------------|-------------------------------------------------------|
 | as-sdc-form-designer-forms-grid-rpc                      | use forms grid                                        |
 | as-sdc-form-designer-read-config                         | read SDCConfig                                        |
 | as-sdc-form-designer-manage-themes                       | manage themes                                         |
@@ -253,6 +263,9 @@ Policies:
 | as-sdc-form-designer-use-ai-tools                        | use AI tools                                          |
 
 #### as-sdc-form-designer-forms-grid-rpc policy
+
+grid with Questionnaires
+
 
 ```yaml
 PUT /AccessPolicy/as-sdc-form-designer-forms-grid-rpc
@@ -279,6 +292,8 @@ rpc:
 
 #### as-sdc-form-designer-read-config policy
 
+Access to configuration
+
 ```yaml
 PUT /AccessPolicy/as-sdc-form-designer-read-config
 content-type: text/yaml
@@ -297,6 +312,8 @@ matcho:
 ```
 
 #### as-sdc-form-designer-manage-questionnaire policy
+
+All operations for manaings and retrieving Questionnaire
 
 ```yaml
 PUT /AccessPolicy/as-sdc-form-designer-manage-questionnaire
@@ -328,6 +345,8 @@ matcho:
 
 #### as-sdc-form-designer-search-response policy
 
+Searching for QuestionnaireResponses 
+
 > Used for checking Questionnaire usage
 
 ```yaml
@@ -347,8 +366,9 @@ matcho:
   request-method: get
 ```
 
-
 #### as-sdc-form-designer-validate-questionnaire-and-response policy
+
+Validate Questionnaire and QuestionnaireResponse
 
 ```yaml
 PUT /AccessPolicy/as-sdc-form-designer-validate-questionnaire-and-response
@@ -371,6 +391,8 @@ matcho:
 ```
 
 #### as-sdc-form-designer-manage-themes policy
+
+Retrive and manage Questionnaire themes
 
 ```yaml
 PUT /AccessPolicy/as-sdc-form-designer-manage-themes
@@ -399,6 +421,10 @@ matcho:
 
 #### as-sdc-form-designer-search-patient-and-encounter-for-populate policy
 
+Search for Patient and Encounter
+
+> Used for populate debug console
+
 ```yaml
 PUT /AccessPolicy/as-sdc-form-designer-search-patient-and-encounter-for-populate
 content-type: text/yaml
@@ -421,6 +447,8 @@ matcho:
 
 #### as-sdc-form-designer-populate-questionnaire policy
 
+Test populate in debug console 
+
 ```yaml
 PUT /AccessPolicy/as-sdc-form-designer-populate-questionnaire
 content-type: text/yaml
@@ -439,6 +467,8 @@ matcho:
 ```
 
 #### as-sdc-form-designer-extract-questionnaire policy
+
+Test extraction in Debug console
 
 ```yaml
 PUT /AccessPolicy/as-sdc-form-designer-extract-questionnaire
@@ -459,6 +489,8 @@ matcho:
 
 #### as-sdc-form-designer-search-valueset policy
 
+Search for valuesets
+
 ```yaml
 PUT /AccessPolicy/as-sdc-form-designer-search-valueset
 content-type: text/yaml
@@ -477,6 +509,10 @@ matcho:
 ```
 
 #### as-sdc-form-designer-search-concepts policy
+
+Search for concepts 
+
+> Used for importing concepts 
 
 ```yaml
 PUT /AccessPolicy/as-sdc-form-designer-search-concepts
@@ -499,6 +535,8 @@ matcho:
 ```
 
 #### as-sdc-form-designer-use-ai-tools policy
+
+Generate Questionnaire from PDF 
 
 ```yaml
 PUT /AccessPolicy/as-sdc-form-designer-use-ai-tools
@@ -525,7 +563,7 @@ matcho:
 Form filler role can load Questionnaire and QuestionnaireResponse, fill and submit it
 
 | policy                                | policy description                          |
-|:-------------------------------------:|:-------------------------------------------:|
+|---------------------------------------|---------------------------------------------|
 | as-sdc-form-filler-read-config        | Read SDCConfig                              |
 | as-sdc-form-filler-read-questionnaire | Read Questionnaire and use it for rendering |
 | as-sdc-form-filler-read-response      | Read saved resposne and render it           |
@@ -536,6 +574,8 @@ Form filler role can load Questionnaire and QuestionnaireResponse, fill and subm
 <!-- | as-sdc-form-filler-search-references ???? -->
 
 #### as-sdc-form-filler-read-config policy
+
+Read configuration
 
 ```yaml
 PUT /AccessPolicy/as-sdc-form-filler-read-config
@@ -556,6 +596,8 @@ matcho:
 
 #### as-sdc-form-filler-read-response policy
 
+Read QuestionnaireResponse
+
 ```yaml
 PUT /AccessPolicy/as-sdc-form-filler-read-response
 content-type: text/yaml
@@ -573,8 +615,9 @@ matcho:
   request-method: get
 ```
 
-
 #### as-sdc-form-filler-read-questionnaire policy
+
+Read Questionnaire
 
 ```yaml
 PUT /AccessPolicy/as-sdc-form-filler-read-questionnaire
@@ -595,6 +638,8 @@ matcho:
 
 #### as-sdc-form-filler-save-response policy
 
+Save QuestionnaireResponse
+
 ```yaml
 PUT /AccessPolicy/as-sdc-form-filler-save-response
 content-type: text/yaml
@@ -614,6 +659,8 @@ matcho:
 
 #### as-sdc-form-filler-submit-response policy
 
+Submit QuestionnaireResponse
+
 ```yaml
 PUT /AccessPolicy/as-sdc-form-filler-submit-response
 content-type: text/yaml
@@ -632,6 +679,10 @@ matcho:
 ```
 
 #### as-sdc-form-filler-search-concepts policy
+
+Search for concepts 
+
+> Used in choice items with attached valueset
 
 ```yaml
 PUT /AccessPolicy/as-sdc-form-filler-search-concepts
@@ -728,7 +779,7 @@ Response manager role has access to
 
 
 | policy                                               | policy description                                    |
-|:----------------------------------------------------:|:-----------------------------------------------------:|
+|------------------------------------------------------|-------------------------------------------------------|
 | as-sdc-response-manager-forms-grid-rpc               | Forms grid with forms and responses                   |
 | as-sdc-response-manager-search-config                | Search SDCConfigs before populate                     |
 | as-sdc-response-manager-read-config                  | Read SDCConfig                                        |
@@ -740,6 +791,10 @@ Response manager role has access to
 | as-sdc-response-manager-generate-link                | Create access link for response                       |
 
 #### as-sdc-response-manager-forms-grid-rpc policy
+
+Forms grid with 
+- Questionnaires
+- QuestionnaireResponses
 
 ```yaml
 PUT /AccessPolicy/as-sdc-response-manager-forms-grid-rpc
@@ -772,6 +827,10 @@ rpc:
 
 #### as-sdc-response-manager-search-config policy
 
+Searh for SDCConfigs
+
+> Used for choosing config in 'share' (populatelink) UI
+
 ```yaml
 PUT /AccessPolicy/as-sdc-response-manager-search-config
 content-type: text/yaml
@@ -791,6 +850,8 @@ matcho:
 
 #### as-sdc-response-manager-read-config policy
 
+Read configuration
+
 ```yaml
 PUT /AccessPolicy/as-sdc-response-manager-read-config
 content-type: text/yaml
@@ -809,6 +870,10 @@ matcho:
 ```
 
 #### as-sdc-response-manager-search-and-read-theme policy
+
+Search and read theme
+
+> Used for choosing theme in 'share' (populatelink) UI
 
 ```yaml
 PUT /AccessPolicy/as-sdc-response-manager-search-and-read-theme
@@ -832,6 +897,8 @@ matcho:
 
 #### as-sdc-response-manager-search-and-read-questionnaire policy
 
+Search and read Questionnaires
+
 ```yaml
 PUT /AccessPolicy/as-sdc-response-manager-search-and-read-questionnaire
 content-type: text/yaml
@@ -853,6 +920,8 @@ matcho:
 ```
 
 #### as-sdc-response-manager-search-and-read-response policy
+
+Search and read responses
 
 ```yaml
 PUT /AccessPolicy/as-sdc-response-manager-search-and-read-response
@@ -876,6 +945,12 @@ matcho:
 
 #### as-sdc-response-manager-search-patient-and-encounter policy
 
+Search and read
+- Patient
+- Encounter
+
+> Used for choosing patient and encounter in 'share' (populatelink) UI
+
 ```yaml
 PUT /AccessPolicy/as-sdc-response-manager-search-patient-and-encounter
 content-type: text/yaml
@@ -898,6 +973,8 @@ matcho:
 
 #### as-sdc-response-manager-populate-questionnaire policy
 
+Populate questionnaire (from 'share' UI)
+
 ```yaml
 PUT /AccessPolicy/as-sdc-response-manager-populate-questionnaire
 content-type: text/yaml
@@ -916,6 +993,8 @@ matcho:
 ```
 
 #### as-sdc-response-manager-generate-link policy
+
+Generate access links for responses
 
 ```yaml
 PUT /AccessPolicy/as-sdc-response-manager-generate-link
