@@ -1,13 +1,14 @@
 ---
 description: >-
-  AI-powered extraction of structured FHIR SDC Questionnaires from scanned medical forms 
+  AI-powered extraction of structured FHIR SDC Questionnaires from scanned
+  medical forms
 ---
 
-# Generating Form from PDF
+# Generating Questionnaire from PDF API
 
 ## Overview
 
-This API enables the automatic digitization of paper-based medical forms by converting scanned PDFs into structured FHIR SDC (Structured Data Capture) `Questionnaire` resources. Using either OpenAI or Gemini for intelligent inference, the system extracts relevant form fields from OCR-processed documents and maps them to a standardized FHIR structure. 
+This API enables the automatic digitization of paper-based medical forms by converting scanned PDFs into structured FHIR SDC (Structured Data Capture) `Questionnaire` resources. Using either OpenAI or Gemini for intelligent inference, the system extracts relevant form fields from OCR-processed documents and maps them to a standardized FHIR structure.&#x20;
 
 ## Prerequisites
 
@@ -15,8 +16,8 @@ To use this API, you must set one of the following environment variables. These 
 
 ### Environment Variables
 
-- `BOX_SDC_OPENAI_API_KEY` – Uses GPT-4o Mini for inference.
-- `BOX_SDC_GEMINI_API_KEY` – Uses Gemini Pro 2 for inference.
+* `BOX_SDC_OPENAI_API_KEY` – Uses GPT-4o Mini for inference.
+* `BOX_SDC_GEMINI_API_KEY` – Uses Gemini Pro 2 for inference.
 
 ## Endpoint
 

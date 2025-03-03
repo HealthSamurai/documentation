@@ -10,7 +10,7 @@ This section details the various widgets available in Aidbox Forms and their cor
 
 ## Common Widget’s Settings
 
-In the widget settings, you can define various parameters that determine its appearance and behavior.&#x20;
+In the widget settings, you can define various parameters that determine its appearance and behavior.
 
 The user has the ability to change the widget type by clicking on the "change type" button in the upper right corner of the widget settings sidebar, while some of the settings for the current widget that the user entered will be saved, and some will need to be re-set.
 
@@ -36,7 +36,7 @@ The user can manually add several codes from different terminology systems (use 
 
 #### Text
 
-The Text field is used to define content for sections, questions, or display items within a form.&#x20;
+The Text field is used to define content for sections, questions, or display items within a form.
 
 #### **Short Text**
 
@@ -49,7 +49,7 @@ The Size parameter allows user to define the width of a widget and arrange multi
 * The form layout is based on a 12-column grid system.
 * By setting the size of a widget:
   * Maximum Size (12 columns): The widget will span the entire width of the form (by default)
-  * Partial Size:&#x20;
+  * Partial Size:
     * If one widget is set to a width of 6 columns and another to 6 columns, both widgets will be displayed side by side on the same line.
     * Similarly, setting widths like 4, 4, and 4 will arrange three widgets horizontally in a row.
 
@@ -120,7 +120,7 @@ This expression will be most used for displaying scores, but can be used for any
 
 How to use Calculated expression:
 
-* &#x20;Create custom [FHIR Path](https://hl7.org/fhirpath/) expressions in the code editor with autocomplete functionality.
+* Create custom [FHIR Path](https://hl7.org/fhirpath/) expressions in the code editor with autocomplete functionality.
 * Utilize predefined templates under the "question" icon.
 
 Named expressions can be used in data calculation process.\
@@ -145,15 +145,15 @@ Aidbox Forms supports two options for data extraction: **Observation-Based** and
 1. **Observation-based extraction:** It allows data collected through a Questionnaire Response (QR) to be extracted and stored in FHIR Observation resources.
 
 {% hint style="info" %}
-Ensure that each item has both a **code** and a **system** defined.&#x20;
+Ensure that each item has both a **code** and a **system** defined.
 {% endhint %}
 
-&#x20;**Current Logic:**
+**Current Logic:**
 
 * A new Observation is created for each Questionnaire Response instance at the time of data extraction.
 * If a QR is amended (modified after submission), the existing Observations linked to that QR are updated accordingly.
 
-For detailed instructions and an example of extracting data into an Observation resource, visit the [Observation-Based Extraction Guide](https://app.gitbook.com/o/-LHqtKitlMYF2y7QBlXS/s/-LHqtKiuedlcKJLm337_/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-extract-data-from-forms#observation-based-extraction).
+For detailed instructions and an example of extracting data into an Observation resource, visit the [Observation-Based Extraction Guide](how-to-guides/how-to-extract-data-from-forms.md#observation-based-extraction).
 
 2. **Definition-based extraction:** It maps form data dynamically to the corresponding FHIR resources.
 
@@ -171,7 +171,7 @@ Using `itemExtractionContext`:
 * Empty `itemExtractionContext`: When the `itemExtractionContext` is empty, the Questionnaire is used to create a new resource.
 * Populated `itemExtractionContext`: If the `itemExtractionContext` contains a resource (or set of resources), the Questionnaire updates the existing resource.
 
-For detailed instructions and an example of extracting data into a Patient resource, visit the [Definition-Based Extraction Guide](https://app.gitbook.com/o/-LHqtKitlMYF2y7QBlXS/s/-LHqtKiuedlcKJLm337_/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-extract-data-from-forms#definition-based-extraction).
+For detailed instructions and an example of extracting data into a Patient resource, visit the [Definition-Based Extraction Guide](how-to-guides/how-to-extract-data-from-forms.md#definition-based-extraction).
 
 ### Population
 
@@ -182,8 +182,6 @@ Aidbox Forms provide three options for pre-filling the field:
 3. **Expression:** This approach to population is more generic. It supports retrieving data from any queryable FHIR resources available in the database. Those queries can be based on the context in which the QuestionnaireResponse is being generated and/or on the results of other queries. The user needs to use [FHIRPath](https://hl7.org/fhirpath/) for this purpose. For more detail go to the [FHIR SDC specification.](https://build.fhir.org/ig/HL7/sdc/populate.html#expression-based-population)
 
 ## Description of widgets
-
-
 
 | Widget                                      | Description                                                                                                                                                                                                                                                                               | FHIR / Custom |
 | ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
@@ -206,7 +204,7 @@ Aidbox Forms provide three options for pre-filling the field:
 | [Choice](widgets.md#choice)                 | Question with a Coding drawn from a list of possible answers (specified in either the answerOption property, or via the valueset referenced in the answerValueSet property) as an answer                                                                                                  | FHIR          |
 | [Open Choice](widgets.md#open-choice)       | Answer is a Coding drawn from a list of possible answers (as with the choice type) or a free-text entry in a string                                                                                                                                                                       | FHIR          |
 | [Checkbox](widgets.md#checkbox)             | Question with a yes/no answer                                                                                                                                                                                                                                                             | FHIR          |
-| [Attachment ](widgets.md#attachment)        | Question with binary content such as an image, PDF, etc. as an answer                                                                                                                                                                                                                     | FHIR          |
+| [Attachment](widgets.md#attachment)         | Question with binary content such as an image, PDF, etc. as an answer                                                                                                                                                                                                                     | FHIR          |
 | Signature                                   | A control for capturing a signature.                                                                                                                                                                                                                                                      | Custom        |
 | [Annotation Pad](widgets.md#annotation-pad) | A control for capturing visual information, sketches, or handwritten notes that cannot be easily captured through text inputs.                                                                                                                                                            | Custom        |
 | [Speech to text](widgets.md#speech-to-text) | A control to input text by speaking, which is then automatically transcribed into the form.                                                                                                                                                                                               | Custom        |
@@ -300,9 +298,7 @@ The Checkbox List widget allows users to select multiple options from a predefin
 * **Column Count**: The number of columns used to display the options.
 * **Multiple Selection**: An option to allow the user to select more than one choice. To enable multiple selection, need to set repeats flag, by default, this flag is set.
 
-
-
-### Attachment&#x20;
+### Attachment
 
 The Attachment widget allows users to upload files as part of their form submission. This widget is particularly useful for scenarios where users need to upload supporting documents, images, or other types of files.
 
@@ -316,20 +312,18 @@ The Attachment widget allows users to upload files as part of their form submiss
 * **File Preview**: When using the form, the attached file can be viewed by opening it in a separate page. To do this, the user needs to click on the eye icon.
 
 {% hint style="info" %}
-Only MP4, WebM и Ogg video file  formats are available for preview.
+Only MP4, WebM и Ogg video file formats are available for preview.
 {% endhint %}
 
 The attached file will be saved as base64 encoded attachment in QuestionnaireResponse.
 
-
-
 ### Decimal
 
-The Decimal widget is used for capturing rational numbers that have a decimal representation. It is particularly useful for fields requiring numeric input with decimal precision, such as measurements, scores.&#x20;
+The Decimal widget is used for capturing rational numbers that have a decimal representation. It is particularly useful for fields requiring numeric input with decimal precision, such as measurements, scores.
 
 It can be used in calculation fields where the result of an expression or formula is displayed as a decimal. For example, it can be used for calculated values like BMI, age, ensuring that results are presented with the correct level of precision.
 
 **Settings:**
 
 * **Decimal Representation**: The user can input rational numbers, supporting values like 12,34. The decimal point is not supported as a separator.
-* **Max Decimal Places**: The user can set a **maximum number of decimal places** to restrict the number of digits after the decimal point. This serves as a form validation feature, warning users if they input a value with more decimal places than allowed. For example, if the maximum decimal places are set to 2, an error message will appear if the user enters a value like 3,14159  with the message "Answer exceeds maximum decimal places: 2."
+* **Max Decimal Places**: The user can set a **maximum number of decimal places** to restrict the number of digits after the decimal point. This serves as a form validation feature, warning users if they input a value with more decimal places than allowed. For example, if the maximum decimal places are set to 2, an error message will appear if the user enters a value like 3,14159 with the message "Answer exceeds maximum decimal places: 2."

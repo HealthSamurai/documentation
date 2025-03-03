@@ -164,7 +164,7 @@ Minor updates:
     * [Supported definition-based extraction](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-extract-data-from-forms.md#definition-based-extraction)
     * [Ability to search and use templates from Aidbox Form Gallery on UI](../modules/aidbox-forms/add-aidbox-forms-library.md)
     * [Ability to embed Aidbox UI Builder as a web-component](../modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md)
-    * [Implemented Template-based PDF Generation](../modules/aidbox-forms/aidbox-ui-builder-alpha/template-based-pdf-gen.md)
+    * [Implemented Template-based PDF Generation](../modules/aidbox-forms/aidbox-ui-builder-alpha/printing-forms/template-based-pdf-gen.md)
     * [Added a Speech to text widget](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#speech-to-text)
     * [Added an Annotation Pad widget](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#annotation-pad)
     * Performance optimization for large forms
@@ -205,7 +205,7 @@ Minor updates:
     * [Supported different versions depending on FHIR server version](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-settings.md#version)
     * Added open choice widget
     * Published guides on [how to populate form with patient demographic data](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to.md); [how to populate form with patient weight, height](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to.md#how-to-populate-form-with-patient-weight-height); [how to populate form with patient allergies](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to.md#how-to-populate-form-with-patient-allergies); [how to populate form with data from another form during the visit](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to.md#how-to-populate-form-with-data-from-another-form-during-the-visit)
-    * [Implemented printing form or basic PDF generation](../modules/aidbox-forms/aidbox-ui-builder-alpha/printing-forms.md)
+    * [Implemented printing form or basic PDF generation](../modules/aidbox-forms/aidbox-ui-builder-alpha/printing-forms/)
     * Improved UI Builder user experience via preview form button, quick search for a field on the form or in the outline, etc
     * Ability to enable the outline in form preview for form navigation
     * Ability to show or hide option's scores on the form

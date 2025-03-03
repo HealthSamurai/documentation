@@ -69,7 +69,7 @@ Let's consider a basic example for clarity: there is a form with three fields (s
 
 {% tabs %}
 {% tab title="Form" %}
-![Figure 1](../../../.gitbook/assets/form-for-pdf.png)
+![Figure 1](../../../../.gitbook/assets/form-for-pdf.png)
 {% endtab %}
 
 {% tab title="Questionnaire" %}
@@ -156,7 +156,8 @@ content: |
       <h1 class="text-2xl font-semibold mb-5 text-center"> Example for pdf </h1>
       <table class="border-collapse w-full">
         <tr class="break-inside-avoid">
-          {% raw %}
+          
+{% raw %}
 {% for item in items %}
             {% if item.linkId = "textarea" %}
               <td class="border border-slate-700 p-1">
@@ -192,7 +193,7 @@ parameter:
       string: 'test-template'
 ```
 
-![rendered form](../../../.gitbook/assets/rendered-form.png)
+![rendered form](../../../../.gitbook/assets/rendered-form.png)
 
 ### Template Render Context
 
@@ -210,7 +211,7 @@ To avoid repetitions in templates, we supported a custom tag `include-resource`.
 
 ## FAQ
 
-**Q: Why am I Getting 404?** A: Verify that all IDs provided in the request are correct. That includes template, Questionnaire, and QuestionnaireResponse IDs. If any of the IDs cannot be found, either because they do not exist or belong to another [Organization](../../security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md), the operation will return 404.
+**Q: Why am I Getting 404?** A: Verify that all IDs provided in the request are correct. That includes template, Questionnaire, and QuestionnaireResponse IDs. If any of the IDs cannot be found, either because they do not exist or belong to another [Organization](../../../security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md), the operation will return 404.
 
 **Q: Can I use the same template for both Questionnaire and QuestionnaireResponse?** A: Yes, the same SDCPrintTemplate can be used for rendering both Questionnaire and QuestionnaireResponse resources, provided it is designed to accommodate the structure of both resource types. However, if you want to create your own template that is suitable for both Questionnaire and QuestionnaireResponse, you will need to consider the differences in the FHIR standard between these resources.
 

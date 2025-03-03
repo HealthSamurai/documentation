@@ -45,6 +45,8 @@ This scenario is ideal for users who have paper forms or fillable PDFs that they
 Your OpenAI API key is used securely and remains private. It is neither transferred nor stored on any backend servers or third-party services. All interactions with OpenAI happen locally in your browser, ensuring your API key is protected throughout the process.
 {% endhint %}
 
+There's the [API for generating a form (Questionnaire resource) from a PDF-file](../../../reference/aidbox-forms/generating-forms-from-pdf.md) using AI.
+
 ### **3. Pasting JSON Directly into the JSON Area**
 
 If you already have a prepared JSON structure, you can paste it directly into the JSON area. This allows for quick imports without needing to upload a file.
