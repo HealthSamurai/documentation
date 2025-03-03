@@ -8,11 +8,11 @@ Form's module access control can be set via aidbox [ACL engine](../../modules/se
 
 SDC module suggests several roles which can be used independently or in a mix.
 
-For **development** and configuration simplicity - it's better to use role with full access.
+For **DEVELOPMENT** and configuration simplicity - it's better to use role with full access.
 
 - **sdc admin** - full access
 
-For **production** it's better to have separate roles, with more precise access patterns.
+For **PRODUCTION** it's better to have separate roles, with more precise access patterns.
 
 For example we can split users into 3 groups.
 
@@ -21,7 +21,7 @@ For example we can split users into 3 groups.
 - **response manager** - reviews responses + populates new forms
 
 
-### SDC Admin 
+## SDC Admin 
 
 Policies:
 
@@ -241,7 +241,7 @@ matcho:
       - post
 ```
 
-### Form Designer
+## Form Designer
 
 This role give access for 
 
@@ -560,7 +560,7 @@ matcho:
   request-method: post
 ```
 
-### Form Filler
+## Form Filler
 
 Form filler role can load Questionnaire and QuestionnaireResponse, fill and submit it
 
@@ -769,7 +769,7 @@ matcho:
 <!--   request-method: delete -->
 <!-- ``` -->
 
-### Response Manager
+## Response Manager
 
 Response manager role has access to
 
@@ -1042,7 +1042,7 @@ roles:
   - value: sdc-admin
 ```
 
-### Form Designer
+## Form Designer
 
 ```yaml
 POST /User
@@ -1056,7 +1056,7 @@ roles:
   - value: sdc-form-designer
 ```
 
-### Form Filler 
+## Form Filler 
 
 ```yaml
 POST /User
@@ -1070,7 +1070,7 @@ roles:
   - value: sdc-form-filler
 ```
 
-### Response Manager
+## Response Manager
 
 ```yaml
 POST /User
