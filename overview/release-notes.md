@@ -1,6 +1,10 @@
 # Release Notes
 
-## February 2025 _`edge`_
+## March 2025 _`edge`_
+
+Work in progress
+
+## February 2025 _`latest, 2502`_
 
 * Aidbox
   * Introduced [Settings](../configuration/settings.md)
@@ -13,13 +17,11 @@
   * Added an ability to [intercept requests](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/embedding#step-4-optional-configure-requests-interception) made to the Aidbox server endpoints from Form Builder and Renderer when embedding as web-component
   * Supported [max decimal places](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#decimal)
 
-
-
 Minor updates:
 
 * 2501.1 — Minor bug fixes
 
-## January 2025 _`latest, 2501`_
+## January 2025 _`stable, 2501`_
 
 {% hint style="warning" %}
 Aidbox is transitioning to the FHIR Schema engine. Existing zen and Entity/Attribute (EA) engines are deprecated and will be obsolete starting August 2025. July 2025 version will become LTS supporting zen and Entity/Attributes for 2 years.
@@ -49,7 +51,7 @@ Minor updates:
 
 * 2412.2 — Fixed security issues
 
-## December 2024 _`stable, 2412`_
+## December 2024 _`2412`_
 
 * Aidbox
   * Supported [SMART App Launch scopes v1 and v2](../modules/security-and-access-control/smart-on-fhir/smart-scopes.md) for Aidbox on FHIR Schema validation engine and reworked [SMART on FHIR](../modules/security-and-access-control/smart-on-fhir/) documentation

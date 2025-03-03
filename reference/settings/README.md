@@ -1,5 +1,9 @@
 # Settings reference
 
+This section contains documentation about Aidbox configuration settings. These settings control various aspects of Aidbox behavior and can be configured using environment variables or Aidbox settings.
+
+The following pages detail specific setting categories:
+
 {% content-ref url="general.md" %}
 [general.md](general.md)
 {% endcontent-ref %}
