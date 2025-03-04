@@ -1,28 +1,4 @@
 # OTEL logs exporter parameters
 
-### OTEL logs exporter example configuration <a href="#otel-traces-exporter-example-configuration" id="otel-traces-exporter-example-configuration"></a>
+<table><thead><tr><th width="239">Env variable</th><th width="127">Value type</th><th>Description</th></tr></thead><tbody><tr><td><code>BOX_OBSERVABILITY_OTEL_LOGS_URL</code></td><td><code>string</code></td><td>The logs' consumer URL (OTEL collector receiver endpoint, Elastic EPM etc.)</td></tr><tr><td><code>BOX_OBSERVABILITY_OTEL_LOGS_REQUEST_HEADER</code></td><td><code>string</code></td><td>The headers for OTEL logs requests, formatted as HeaderName:HeaderValue\nHeaderName:HeaderValue</td></tr><tr><td><code>BOX_OBSERVABILITY_OTEL_LOGS_BATCH_MAX_SIZE</code></td><td><code>number</code></td><td>Max amount of logs in one send logs request</td></tr><tr><td><code>BOX_OBSERVABILITY_OTEL_LOGS_BATCH_TIMEOUT</code></td><td><code>number</code></td><td>Timeout in milliseconds between send logs requests</td></tr><tr><td><code>BOX_OBSERVABILITY_OTEL_LOGS_HISTORY_SIZE</code></td><td><code>number</code></td><td>Logs history size on <code>telemetry $status</code> endpoint</td></tr></tbody></table>
 
-```clojure
-{:ns     main
- :import #{aidbox
-           aidbox.log
-           config}
-
- open-telemetry-appender
- {:zen/tags   #{aidbox/service}
-  :engine     aidbox.log/open-telemetry-appender
-  :config     {:url "http://url-to-otel-collector/v1/logs"
-               :headers {"X-custom-logs-header" "header value"}}
-
- box
- {:zen/tags #{aidbox/system}
-  :config   config/zen-config
-  :services {:otel-appender open-telemetry-appender}}}
-```
-
-#### Parameters <a href="#parameters" id="parameters"></a>
-
-* `config`
-  * `url` the URL of the consumer of the logs
-  * `auth-token` Bearer header authorization
-  * `headers` Custom headers for log export request
