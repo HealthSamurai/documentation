@@ -16,7 +16,7 @@ This way of enabling OTEL capabilities is available in Aidbox versions 2503 and 
 
 1. [OTEL collector](https://opentelemetry.io/docs/collector/) should be deployed and [configured](https://opentelemetry.io/docs/collector/configuration/) to receive logs.
 
-## How to enable export logs to the OTEL collector
+## How to enable logs export to the OTEL collector
 
 To  enable exporting logs to the OTEL collector set the OTEL collector logs receiver endpoint to the environment variable `BOX_OBSERVABILITY_OTEL_LOGS_URL`
 

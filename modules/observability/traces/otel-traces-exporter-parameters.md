@@ -1,22 +1,4 @@
 # OTEL traces exporter parameters
 
-## OTEL traces exporter example configuration
+<table><thead><tr><th width="293">Env variable</th><th width="149">Value type</th><th>Description</th></tr></thead><tbody><tr><td><code>BOX_OBSERVABILITY_OTEL_TRACES_URL</code></td><td><code>string</code></td><td>The traces' consumer URL (OTEL collector receiver endpoint, Elastic EPM etc.)</td></tr><tr><td><code>BOX_OBSERVABILITY_OTEL_TRACES_REQUEST_HEADERS</code></td><td><code>string</code></td><td>The headers for OTEL traces requests, formatted as <code>HeaderName:HeaderValue\nHeaderName:HeaderValue</code></td></tr><tr><td><code>BOX_OBSERVABILITY_OTEL_TRACES_BATCH_MAX_SIZE</code></td><td><code>number</code></td><td>Max amount of traces in one send traces request.<br>Default value - <code>100</code></td></tr><tr><td><code>BOX_OBSERVABILITY_OTEL_TRACES_BATCH_TIMEOUT</code></td><td><code>number</code></td><td>Timeout in milliseconds between send traces requests.<br>Default value - <code>1000</code></td></tr><tr><td><code>BOX_OBSERVABILITY_OTEL_TRACES_HISTORY_SIZE</code></td><td><code>number</code></td><td>Traces history size on <code>telemetry $status</code> endpoint.<br>Default value - <code>10</code></td></tr></tbody></table>
 
-```clojure
-{:ns     main
- :import #{aidbox
-           aidbox.telemetry.trace}
-
- otel-trace-exporter
- {:zen/tags   #{aidbox.telemetry.trace/exporter}
-  :engine     aidbox.telemetry.trace/otlp-exporter
-  :url        "http://otel-collector-url/v1/traces"
-  :auth-token "authorization-your-bearer-token"
-  :headers {"X-custom-trace-header" "header value"}}}
-```
-
-### Parameters
-
-* `url` the URL of the consumer of the metrics
-* `auth-token` Bearer header authorization
-* `headers` Custom headers for traces export request

@@ -16,7 +16,7 @@ This way of enabling OTEL capabilities is available in Aidbox versions 2503 and 
 
 1. [OTEL collector](https://opentelemetry.io/docs/collector/) should be deployed and [configured](https://opentelemetry.io/docs/collector/configuration/) to receive metrics.
 
-## How to enable export metrics to the OTEL collector
+## How to enable metrics export to the OTEL collector
 
 To  enable exporting metrics to the OTEL collector set the OTEL collector metrics receiver endpoint to the environment variable `BOX_OBSERVABILITY_OTEL_METRICS_URL`
 
@@ -42,6 +42,12 @@ service:
       receivers: [otlp]
       exporters: [debug] # OTEL prints metrics to the stdout
 ```
+
+### See Aidbox metrics in the OTEL collector stdout
+
+Open OTEL collector stdout and see the logs.
+
+
 
 Check all available Aidbox OTEL metrics exporter configuration options are here:&#x20;
 
