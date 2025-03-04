@@ -64,32 +64,32 @@ Stdout settings
 ### Stdout log level<a href="#observability.stdout.log-level" id="observability.stdout.log-level"></a>
 
 Controls stdout with specified logs level.
-Possible values: off, fatal, error, warn, info, debug, trace, all, true 
-By setting one of these levels you would also get all the levels to the left. 
-e.g. if you set log level to `warn` you would also get log events with `fatal` 
+Possible values: off, fatal, error, warn, info, debug, trace, all, true
+By setting one of these levels you would also get all the levels to the left.
+e.g. if you set log level to `warn` you would also get log events with `fatal`
 and `error` levels (off is excluded).
 
-<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.stdout.log-level</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — </td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_STDOUT_LOG_LEVEL</code> , <br /><code>AIDBOX_STDOUT_JSON</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.stdout.log-level</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>off</code><br /><code>fatal</code><br /><code>error</code><br /><code>warn</code><br /><code>info</code><br /><code>debug</code><br /><code>trace</code><br /><code>all</code><br /><code>true</code></td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_STDOUT_LOG_LEVEL</code> , <br /><code>AIDBOX_STDOUT_JSON</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
 ### Pretty print log level<a href="#observability.stdout.pretty-log-level" id="observability.stdout.pretty-log-level"></a>
 
 Controls pretty print of logs to stdout with specified level.
-Possible values: off, fatal, error, warn, info, debug, trace, all, true 
-By setting one of these levels you would also get all the levels to the left. 
-e.g. if you set log level to `warn` you would also get log events with `fatal` 
+Possible values: off, fatal, error, warn, info, debug, trace, all, true
+By setting one of these levels you would also get all the levels to the left.
+e.g. if you set log level to `warn` you would also get log events with `fatal`
 and `error` levels (off is excluded).
 
-<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.stdout.pretty-log-level</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — </td></tr><tr><td>Default value</td><td><code>warn</code></td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_STDOUT_PRETTY_LOG_LEVEL</code> , <br /><code>AIDBOX_STDOUT_PRETTY</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.stdout.pretty-log-level</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>off</code><br /><code>fatal</code><br /><code>error</code><br /><code>warn</code><br /><code>info</code><br /><code>debug</code><br /><code>trace</code><br /><code>all</code><br /><code>true</code></td></tr><tr><td>Default value</td><td><code>warn</code></td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_STDOUT_PRETTY_LOG_LEVEL</code> , <br /><code>AIDBOX_STDOUT_PRETTY</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
 ### Google log level<a href="#observability.stdout.google-log-level" id="observability.stdout.google-log-level"></a>
 
 Produces in Google Logging format with specified log level.
-Possible values: off, fatal, error, warn, info, debug, trace, all, true 
-By setting one of these levels you would also get all the levels to the left. 
-e.g. if you set log level to `warn` you would also get log events with `fatal` 
+Possible values: off, fatal, error, warn, info, debug, trace, all, true
+By setting one of these levels you would also get all the levels to the left.
+e.g. if you set log level to `warn` you would also get log events with `fatal`
 and `error` levels (off is excluded).
 
-<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.stdout.google-log-level</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — </td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_STDOUT_GOOGLE_LOG_LEVEL</code> , <br /><code>AIDBOX_STDOUT_GOOGLE_JSON</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.stdout.google-log-level</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>off</code><br /><code>fatal</code><br /><code>error</code><br /><code>warn</code><br /><code>info</code><br /><code>debug</code><br /><code>trace</code><br /><code>all</code><br /><code>true</code></td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_STDOUT_GOOGLE_LOG_LEVEL</code> , <br /><code>AIDBOX_STDOUT_GOOGLE_JSON</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
 ## Loki
 
@@ -139,7 +139,7 @@ Datadog API Key.
 
 The regional site for a Datadog customer.
 
-<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.datadog.site</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — <br /><code></code> — </td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_DATADOG_SITE</code> , <br /><code>BOX_DD_SITE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.datadog.site</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>datadoghq.com</code><br /><code>us3.datadoghq.com</code><br /><code>us5.datadoghq.com</code><br /><code>datadoghq.eu</code><br /><code>ddog-gov.com</code><br /><code>ap1.datadoghq.com</code></td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_DATADOG_SITE</code> , <br /><code>BOX_DD_SITE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
 ### Datadog log tags<a href="#observability.datadog.tags" id="observability.datadog.tags"></a>
 

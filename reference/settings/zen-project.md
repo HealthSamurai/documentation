@@ -102,7 +102,7 @@ parameters are available.
 
 This setting has no effect if FHIR-Schema validator is enabled.
 
-<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>zen-project.search.zen-fhir</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code></code> — <br /><code></code> — </td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_ZEN_PROJECT_SEARCH_ZEN_FHIR</code> , <br /><code>BOX_SEARCH_ZEN__FHIR</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>zen-project.search.zen-fhir</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>enable</code><br /><code>disable</code></td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_ZEN_PROJECT_SEARCH_ZEN_FHIR</code> , <br /><code>BOX_SEARCH_ZEN__FHIR</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
 ### Check bindings<a href="#zen-project.validation.value-set-mode" id="zen-project.validation.value-set-mode"></a>
 
