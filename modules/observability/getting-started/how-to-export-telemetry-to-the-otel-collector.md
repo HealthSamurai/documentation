@@ -13,11 +13,68 @@ Aidbox supports exporting telemetry using the Protobuf protocol in line with the
 ## Prerequisites&#x20;
 
 1. [OTEL collector](https://opentelemetry.io/docs/collector/) should be deployed and [configured](https://opentelemetry.io/docs/collector/configuration/) to receive logs, metrics and traces.
-2. Aidbox should be configured with [Aidbox configuration project](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/).
 
 <figure><img src="../../../.gitbook/assets/Telemetry (1).png" alt=""><figcaption></figcaption></figure>
 
 ## How to enable export telemetry to the OTEL collector
+
+{% hint style="info" %}
+This way of enabling OTEL capabilities is available in Aidbox versions 2503 and later. On previous AIdbox versions it was possible to enable OTEL with [Aidbox configuration project](how-to-export-telemetry-to-the-otel-collector.md#how-to-enable-export-telemetry-to-the-otel-collector-with-aidbox-configuration-project).
+{% endhint %}
+
+To  enable exporting telemetry to the OTEL collector, set up the following environment variables:
+
+* `BOX_OBSERVABILITY_OTEL_METRICS_URL`
+* `BOX_OBSERVABILITY_OTEL_TRACES_URL`
+* `BOX_OBSERVABILITY_OTEL_LOGS_URL`
+
+Set OTEL collector receiver endpoint in each of the variables.
+
+## How to check the OTEL collector receives telemetry&#x20;
+
+### Set up `debug` exporter and `logs`, `metrics`, `traces` pipelines in the OTEL collector configuration:
+
+```yaml
+receivers:
+  otlp:
+    protocols:
+      http:
+        endpoint: <your-collector-resiever-endpoint>
+
+exporters:
+  debug:
+    verbosity: detailed
+
+service:
+  pipelines:
+    logs:
+      receivers: [otlp]
+      exporters: [debug] # OTEL prints logs to the stdout
+    metrics:
+      receivers: [otlp]
+      exporters: [debug] # OTEL prints metrics to the stdout
+    traces:
+      receivers: [otlp]
+      exporters: [debug] # OTEL prints traces to the stdout
+```
+
+### Run any request in Aidbox
+
+Use Aidbox REST console to perform a request like this:
+
+```yaml
+GET /fhir/Patient
+```
+
+### See Aidbox telemetry in the OTEL collector stdout
+
+Open OTEL collector stdout and see the logs, metrics and traces.
+
+## How to enable export telemetry to the OTEL collector with Aidbox configuration project
+
+{% hint style="danger" %}
+Aidbox configuration project is [deprecated](https://www.health-samurai.io/news/aidbox-transitions-to-the-fhir-schema-engine).&#x20;
+{% endhint %}
 
 To  enable exporting telemetry to the OTEL collector:
 
@@ -55,41 +112,3 @@ To  enable exporting telemetry to the OTEL collector:
   :services {:otel-appender open-telemetry-appender}}} ; add otel-appender
 ```
 
-## How to check the OTEL collector receives telemetry&#x20;
-
-### Set up `logging` exporter and `logs`, `metrics`, `traces` pipelines in the OTEL collector configuration:
-
-```yaml
-receivers:
-  otlp:
-    protocols:
-      http:
-
-exporters:
-  logging:
-    loglevel: debug
-
-service:
-  pipelines:
-    logs:
-      receivers: [otlp]
-      exporters: [logging] # OTEL prints logs to the stdout
-    metrics:
-      receivers: [otlp]
-      exporters: [logging] # OTEL prints metrics to the stdout
-    traces:
-      receivers: [otlp]
-      exporters: [logging] # OTEL prints traces to the stdout
-```
-
-### Run any request in Aidbox
-
-Use Aidbox REST console to perform a request like this:
-
-```yaml
-GET /fhir/Patient
-```
-
-### See Aidbox telemetry in the OTEL collector stdout
-
-Open OTEL collector stdout and see the logs, metrics and traces.
