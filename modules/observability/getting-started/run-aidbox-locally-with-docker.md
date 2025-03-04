@@ -60,11 +60,15 @@ Then go to [Discover](http://localhost:5602/app/discover) page (Menu → Discove
 
 <figure><img src="../../../.gitbook/assets/Screenshot 2023-09-27 at 15.21.57.png" alt=""><figcaption><p>Log discover page</p></figcaption></figure>
 
-### 4. Discover Aidbox metrics with Prometheus
+### 4. Discover Aidbox metrics with Grafana
 
-Prometheus should be available on [http://localhost:9090](http://localhost:9090) address. To see metrics in Prometheus we should open it and search for it.
+Grafana should be available on [http://localhost:3001](http://localhost:3001) address, login with `admin`/`password` credentials.
 
-<figure><img src="../../../.gitbook/assets/Screenshot 2023-09-27 at 15.26.34.png" alt=""><figcaption><p>Prometheus UI</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/grafana-login.png" alt=""><figcaption><p>Grafana LogIn</p></figcaption></figure>
+
+Navigate to `Dashboards->Aidbox Dashboards->Aidbox Dashboard` to see the dashboard. You probably need to wait for a while until the data is collected.
+
+<figure><img src="../../../.gitbook/assets/grafana-dashboard.png" alt=""><figcaption><p>Grafana Dashboard</p></figcaption></figure>
 
 ### 5. Discover Aidbox traces with Zipkin
 
