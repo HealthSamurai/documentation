@@ -9,7 +9,7 @@ Aidbox supports exporting logs using the Protobuf protocol in line with the OTEL
 {% endhint %}
 
 {% hint style="info" %}
-This way of enabling OTEL capabilities is available in Aidbox versions 2503 and later. On previous AIdbox versions it was possible to enable OTEL with [Aidbox configuration project](how-to-export-logs-to-the-otel-collector.md#how-to-enable-export-telemetry-to-the-otel-collector-with-aidbox-configuration-project).
+This way of enabling OTEL capabilities is available in Aidbox versions 2503 and later. On previous AIdbox versions it was possible to enable OTEL with [Aidbox configuration project](https://docs.aidbox.app/modules/observability/getting-started/how-to-export-telemetry-to-the-otel-collector#how-to-enable-export-telemetry-to-the-otel-collector-with-aidbox-configuration-project).
 {% endhint %}
 
 ## Prerequisites&#x20;
@@ -70,6 +70,6 @@ POST /telemetry/main/otel-logs-appender/$flush
 
 Check all available Aidbox OTEL logs exporter configuration options are here:&#x20;
 
-{% content-ref url="../technical-reference/otel-logs-exporter-parameters.md" %}
-[otel-logs-exporter-parameters.md](../technical-reference/otel-logs-exporter-parameters.md)
+{% content-ref url="technical-reference/otel-logs-exporter-parameters.md" %}
+[otel-logs-exporter-parameters.md](technical-reference/otel-logs-exporter-parameters.md)
 {% endcontent-ref %}

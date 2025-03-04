@@ -16,8 +16,8 @@ Aidbox logs can be used in audit. Please, see our [article on auditing](../../se
 
 Aidbox supports the [OpenTelemetry protocol](https://opentelemetry.io/) and exports logs in Protobuf format to any consumer that supports this specification.
 
-{% content-ref url="how-to-guides/how-to-export-logs-to-the-otel-collector.md" %}
-[how-to-export-logs-to-the-otel-collector.md](how-to-guides/how-to-export-logs-to-the-otel-collector.md)
+{% content-ref url="how-to-export-logs-to-the-otel-collector.md" %}
+[how-to-export-logs-to-the-otel-collector.md](how-to-export-logs-to-the-otel-collector.md)
 {% endcontent-ref %}
 
 ## Logs API
