@@ -237,78 +237,78 @@ OpenTelemetry settings
 The headers for OTEL metrics requests, formatted as HeaderName:HeaderValue
 HeaderName:HeaderValue.
 
-<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.otel.metrics-request-headers</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_OTEL_METRICS_REQUEST_HEADERS</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.otel.metrics-request-headers</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_OTEL_METRICS_REQUEST_HEADERS</code></td></tr><tr><td>Available from</td><td><code>2503</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
 ### OTEL metrics URL<a href="#observability.otel.metrics-url" id="observability.otel.metrics-url"></a>
 
 The metrics' consumer URL (OTEL collector, Elastic EPM etc.).
 
-<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.otel.metrics-url</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_OTEL_METRICS_URL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.otel.metrics-url</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_OTEL_METRICS_URL</code></td></tr><tr><td>Available from</td><td><code>2503</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
 ### OTEL metrics interval<a href="#observability.otel.metrics-interval" id="observability.otel.metrics-interval"></a>
 
 The time interval (in seconds) for sending OTEL metrics.
 
-<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.otel.metrics-interval</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>5</code></td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_OTEL_METRICS_INTERVAL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.otel.metrics-interval</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>5</code></td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_OTEL_METRICS_INTERVAL</code></td></tr><tr><td>Available from</td><td><code>2503</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
 ### OTEL traces request headers<a href="#observability.otel.traces-request-headers" id="observability.otel.traces-request-headers"></a>
 
 The headers for OTEL traces requests, formatted as HeaderName:HeaderValue
 HeaderName:HeaderValue.
 
-<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.otel.traces-request-headers</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_OTEL_TRACES_REQUEST_HEADERS</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.otel.traces-request-headers</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_OTEL_TRACES_REQUEST_HEADERS</code></td></tr><tr><td>Available from</td><td><code>2503</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
 ### OTEL traces URL<a href="#observability.otel.traces-url" id="observability.otel.traces-url"></a>
 
 The traces' consumer URL (OTEL collector, Elastic EPM etc.).
 
-<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.otel.traces-url</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_OTEL_TRACES_URL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.otel.traces-url</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_OTEL_TRACES_URL</code></td></tr><tr><td>Available from</td><td><code>2503</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
 ### OTEL traces batch max size<a href="#observability.otel.traces-batch-max-size" id="observability.otel.traces-batch-max-size"></a>
 
 Max amount of traces in one send traces request
 
-<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.otel.traces-batch-max-size</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>100</code></td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_OTEL_TRACES_BATCH_MAX_SIZE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.otel.traces-batch-max-size</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>100</code></td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_OTEL_TRACES_BATCH_MAX_SIZE</code></td></tr><tr><td>Available from</td><td><code>2503</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
 ### OTEL traces batch timeout<a href="#observability.otel.traces-batch-timeout" id="observability.otel.traces-batch-timeout"></a>
 
 Timeout in milliseconds between send traces requests
 
-<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.otel.traces-batch-timeout</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>1000</code></td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_OTEL_TRACES_BATCH_TIMEOUT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.otel.traces-batch-timeout</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>1000</code></td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_OTEL_TRACES_BATCH_TIMEOUT</code></td></tr><tr><td>Available from</td><td><code>2503</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
 ### OTEL traces history size<a href="#observability.otel.traces-history-size" id="observability.otel.traces-history-size"></a>
 
 Traces history size on telemetry $status endpoint
 
-<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.otel.traces-history-size</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>10</code></td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_OTEL_TRACES_HISTORY_SIZE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.otel.traces-history-size</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>10</code></td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_OTEL_TRACES_HISTORY_SIZE</code></td></tr><tr><td>Available from</td><td><code>2503</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
 ### OTEL logs request headers<a href="#observability.otel.logs-request-headers" id="observability.otel.logs-request-headers"></a>
 
 The headers for OTEL logs requests, formatted as HeaderName:HeaderValue
 HeaderName:HeaderValue.
 
-<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.otel.logs-request-headers</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_OTEL_LOGS_REQUEST_HEADERS</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.otel.logs-request-headers</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_OTEL_LOGS_REQUEST_HEADERS</code></td></tr><tr><td>Available from</td><td><code>2503</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
 ### OTEL logs URL<a href="#observability.otel.logs-url" id="observability.otel.logs-url"></a>
 
 The logs' consumer URL (OTEL collector, Elastic EPM etc.).
 
-<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.otel.logs-url</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_OTEL_LOGS_URL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.otel.logs-url</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_OTEL_LOGS_URL</code></td></tr><tr><td>Available from</td><td><code>2503</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
 ### OTEL logs batch max size<a href="#observability.otel.logs-batch-max-size" id="observability.otel.logs-batch-max-size"></a>
 
 Max amount of logs in one send logs request
 
-<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.otel.logs-batch-max-size</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>100</code></td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_OTEL_LOGS_BATCH_MAX_SIZE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.otel.logs-batch-max-size</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>100</code></td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_OTEL_LOGS_BATCH_MAX_SIZE</code></td></tr><tr><td>Available from</td><td><code>2503</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
 ### OTEL logs batch timeout<a href="#observability.otel.logs-batch-timeout" id="observability.otel.logs-batch-timeout"></a>
 
 Timeout in milliseconds between send logs requests
 
-<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.otel.logs-batch-timeout</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>1000</code></td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_OTEL_LOGS_BATCH_TIMEOUT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.otel.logs-batch-timeout</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>1000</code></td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_OTEL_LOGS_BATCH_TIMEOUT</code></td></tr><tr><td>Available from</td><td><code>2503</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
 ### OTEL logs history size<a href="#observability.otel.logs-history-size" id="observability.otel.logs-history-size"></a>
 
 Logs history size on telemetry $status endpoint
 
-<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.otel.logs-history-size</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>10</code></td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_OTEL_LOGS_HISTORY_SIZE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
+<table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.otel.logs-history-size</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>10</code></td></tr><tr><td>Environment variables</td><td><code>BOX_OBSERVABILITY_OTEL_LOGS_HISTORY_SIZE</code></td></tr><tr><td>Available from</td><td><code>2503</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
