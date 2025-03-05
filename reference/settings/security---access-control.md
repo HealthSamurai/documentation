@@ -8,9 +8,9 @@ URL of consent screen. A consent screen is an interface presented to a user duri
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>security.grant-page-url</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td><code>/auth/grant</code></td></tr><tr><td>Environment variables</td><td><code>BOX_SECURITY_GRANT_PAGE_URL</code> , <br /><code>BOX_AUTH_GRANT__PAGE__URL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
 
-### Enable audit log<a href="#security.audit-log.enabled" id="security.audit-log.enabled"></a>
+### Enable FHIR audit log<a href="#security.audit-log.enabled" id="security.audit-log.enabled"></a>
 
-Aidbox produces audit logs in FHIR AuditEvent format for significant events.
+Generates structured audit logs in FHIR AuditEvent format.
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>security.audit-log.enabled</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_SECURITY_AUDIT_LOG_ENABLED</code> , <br /><code>AIDBOX_SECURITY_AUDIT__LOG_ENABLED</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
@@ -43,10 +43,12 @@ Default is wildcard value `"*"`
 
 ### Content security policy header<a href="#security.content-security-policy-header" id="security.content-security-policy-header"></a>
 
-This configuration defines the Content Security Policy (CSP) header to enhance security by restricting resource loading.
-It specifies the policies for loading scripts, styles, media, fonts, and other resources.
+Defines the Content Security Policy (CSP) header to enhance
+    security by restricting resource loading. It specifies the policies for
+    loading scripts, styles, media, fonts, and other resources.
 
-Refer to the [OWASP Content Security Policy Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html)
+Refer to the [OWASP Content Security Policy Cheat
+                    Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html)
 
 Recommended value:
 ```
@@ -79,9 +81,10 @@ HS256 signing algorithm needs only having a secret for both operations.
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>security.auth.keys.secret</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_SECURITY_AUTH_KEYS_SECRET</code> , <br /><code>BOX_AUTH_KEYS_SECRET</code></td></tr><tr><td>Sensitive</td><td><code>true</code> — can be set only via environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
-### Create user for foreign token<a href="#security.introspection-create-user" id="security.introspection-create-user"></a>
+### Auto-create users from foreign tokens<a href="#security.introspection-create-user" id="security.introspection-create-user"></a>
 
-Create a user when using foreign JWT access token and the user does not already exist.
+Creates local user accounts automatically when valid external
+    JWT tokens are presented but no matching user exists.
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>security.introspection-create-user</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_SECURITY_INTROSPECTION_CREATE_USER</code> , <br /><code>BOX_FEATURES_AUTHENTICATION_INTROSPECTION_CREATE__USER</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
 
@@ -101,13 +104,19 @@ Label-based Access Control engine provides a mechanism to restrict access to bun
 
 ### Strip security labels<a href="#security.lbac.strip-labels" id="security.lbac.strip-labels"></a>
 
-Remove security labels from the outcome.
+Removes security labels from resource responses before
+    returning them to clients. When enabled, prevents sensitive security
+    metadata from being exposed in API responses while maintaining access
+    control enforcement internally. Useful for hiding security implementation
+    details from end users.
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>security.lbac.strip-labels</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_SECURITY_LBAC_STRIP_LABELS</code> , <br /><code>BOX_FEATURES_SECURITY__LABELS_STRIP__LABELS</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
 
 ### Enable organization-based hierarchical access control<a href="#security.orgbac.enabled" id="security.orgbac.enabled"></a>
 
-Hierarchical organization-based access control in Aidbox allows for the restriction of access to data based on the organization to which it belongs.
+Activates hierarchical access control based on organizational
+    structure. Restricts user access to resources based on their organizational
+    affiliation and hierarchy position. 
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>security.orgbac.enabled</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_SECURITY_ORGBAC_ENABLED</code> , <br /><code>BOX_FEATURES_ORGBAC_ENABLE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
@@ -121,6 +130,9 @@ Only the administrator is allowed to use the `SU` header.
 
 ### Enable Aidbox developer mode<a href="#security.dev-mode" id="security.dev-mode"></a>
 
-Enables `_debug=policy` for access policy debugging.
+Activates debugging features for access policy development,
+    including the `_debug=policy URL` parameter. Returns detailed policy
+    evaluation traces showing why requests were allowed or denied. For
+    development environments only - not recommended for production systems.
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>security.dev-mode</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_SECURITY_DEV_MODE</code> , <br /><code>AIDBOX_DEV_MODE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
