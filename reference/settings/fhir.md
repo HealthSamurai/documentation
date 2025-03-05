@@ -8,13 +8,28 @@ General FHIR settings
 
 ### Enable FHIR compliant mode<a href="#fhir.compliant-mode" id="fhir.compliant-mode"></a>
 
-By default, this should be enabled. It is required for backward compatibility.
+Enforces FHIR compatibility when enabled:
+
+- Adds various attributes and endpoints info to CapabilityStatement
+- Sanitises CapabilityStatement (i.e. removes attributes containing null values and empty arrays)
+- Adds `/fhir` to base URL for FHIR search parameters definitions in CapabilityStatement
+- Adds AIDBOX_BASE_URL in `Bundle.link.url`
+- Adds FHIR date search parameter validation on lastUpdated search parameter
+- Adds `alg: RS256` entry for JWKS
+- Changes validation error status to 422 (instead of 400)
+- Changes cache-control header to no-store on authorization code auth flow (instead of `no-cache`, `no-store`, `max-age=0`, `must-revalidate`)
+- Removes `Bundle.entry` if empty
+
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.compliant-mode</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_COMPLIANT_MODE</code> , <br /><code>AIDBOX_FHIR_COMPLIANT_MODE</code> , <br /><code>BOX_COMPLIANT__MODE__ENABLED?</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
 
-### Response 404 on delete nonexistent resource<a href="#fhir.return-404-on-empty-delete" id="fhir.return-404-on-empty-delete"></a>
+### Return 404 on deleting non-existent resources<a href="#fhir.return-404-on-empty-delete" id="fhir.return-404-on-empty-delete"></a>
 
-Return 404 HTTP code when no resources are deleted.
+Controls server response when deleting non-existing resources.
+    When enabled, returns 404 (Not Found) status code instead of the default
+    204 (No Content). Follows FHIR REST implementation where DELETE operations
+    on missing resources can signal resource absence rather than successful
+    deletion.
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.return-404-on-empty-delete</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_RETURN_404_ON_EMPTY_DELETE</code> , <br /><code>BOX_FEATURES_HTTP_RETURN__404__ON__EMPTY__DELETE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
 
@@ -30,32 +45,47 @@ Validation settings
 
 ### Enable FHIR Schema validation mode<a href="#fhir.validation.fhir-schema-validation" id="fhir.validation.fhir-schema-validation"></a>
 
-FHIR Schema validation engine replaces legacy ZEN and Entity/Attribute validation engines.
+Activates the FHIR Schema validation engine which replaces
+    legacy ZEN and Entity/Attribute validation systems. Provides more
+    comprehensive structure validation against the FHIR resource schemas,
+    ensuring stronger conformance to FHIR specifications and more precise error
+    reporting.
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.validation.fhir-schema-validation</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_SCHEMA_VALIDATION</code> , <br /><code>AIDBOX_FHIR_SCHEMA_VALIDATION</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
-### FHIR Schema validator strict profile resolution<a href="#fhir.validation.strict-profile-resolution" id="fhir.validation.strict-profile-resolution"></a>
+### Enforce strict profile resolution<a href="#fhir.validation.strict-profile-resolution" id="fhir.validation.strict-profile-resolution"></a>
 
-Referenced profiles must be known to Aidbox.
+Requires all referenced profiles to be pre-loaded in Aidbox before
+    validation. When enabled, validation fails if profiles referenced in
+    resources are unknown to the server. Ensures complete validation integrity
+    by preventing partial validation against unknown profiles.
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.validation.strict-profile-resolution</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_VALIDATOR_STRICT_PROFILE_RESOLUTION</code> , <br /><code>AIDBOX_VALIDATOR_STRICT_PROFILE_RESOLUTION_ENABLED</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
-### FHIR Schema validator strict extension resolution<a href="#fhir.validation.strict-extension-resolution" id="fhir.validation.strict-extension-resolution"></a>
+### Enforce strict FHIR extension resolution<a href="#fhir.validation.strict-extension-resolution" id="fhir.validation.strict-extension-resolution"></a>
 
-Requires that every referenced FHIR extension is defined in loaded profiles.
+Requires all referenced extensions to be formally defined in
+    profiles loaded to the server.
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.validation.strict-extension-resolution</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_VALIDATOR_STRICT_EXTENSION_RESOLUTION</code> , <br /><code>AIDBOX_VALIDATOR_STRICT_EXTENSION_RESOLUTION_ENABLED</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
 
-### Skip reference validation<a href="#fhir.validation.skip-reference" id="fhir.validation.skip-reference"></a>
+### Skip FHIR reference validation<a href="#fhir.validation.skip-reference" id="fhir.validation.skip-reference"></a>
 
-Skip validation of FHIR references. It allows creating resources with references to nonexistent resources.
+Bypasses validation of resource references during FHIR
+    operations. When enabled, allows creating and updating resources containing
+    references to non-existent target resources. Useful for staged data loading
+    or systems with eventual consistency but may compromise referential
+    integrity.
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.validation.skip-reference</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_VALIDATION_SKIP_REFERENCE</code> , <br /><code>AIDBOX_FEATURES_VALIDATION_SKIP__REFERENCE</code> , <br /><code>BOX_FEATURES_VALIDATION_SKIP__REFERENCE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
 
 ### Correct Aidbox format<a href="#fhir.validation.correct-aidbox-format" id="fhir.validation.correct-aidbox-format"></a>
 
-If true, activates transforming unknown polymorphic extensions to the correct Aidbox format avoiding keeping them at FHIR-format.
-For example, `extension.*.valueString` stored as `extension.0.value.string`
+Transforms polymorphic extensions from FHIR format to Aidbox's internal
+    format. When enabled, extensions like `extension.*.valueString` are stored
+    as `extension.0.value.string` instead. Improves query performance and
+    consistency in Aidbox-specific operations while maintaining FHIR
+    compatibility in API responses.
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.validation.correct-aidbox-format</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_CORRECT_AIDBOX_FORMAT</code> , <br /><code>AIDBOX_CORRECT_AIDBOX_FORMAT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
 
@@ -202,11 +232,12 @@ the main value (i.e. not in translation extension)
 
 Terminology settings
 
-### FHIR Terminology service base URL<a href="#fhir.terminology.service-base-url" id="fhir.terminology.service-base-url"></a>
+### FHIR terminology service base URL<a href="#fhir.terminology.service-base-url" id="fhir.terminology.service-base-url"></a>
 
-To validate codes in resources and to expand ValueSets Aidbox needs a terminology server.
-This setting provides a URL to the terminology service.
-If absent, codes are not validated.
+Specifies the base URL of the terminology server used for code
+    validation and ValueSet expansion operations. Required for validating coded
+    elements against their ValueSets and CodeSystems. When not configured, code
+    validation is skipped entirely.
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.terminology.service-base-url</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_FHIR_TERMINOLOGY_SERVICE_BASE_URL</code> , <br /><code>AIDBOX_TERMINOLOGY_SERVICE_BASE_URL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
 
