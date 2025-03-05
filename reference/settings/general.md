@@ -25,7 +25,7 @@ Identifier for the main Aidbox FHIR package that stores dependencies and canonic
 During the first startup Aidbox loads these packages.
 This setting has no effect on any consecutive starts.
 
-Format:
+Format: 
 `<name1>#<version1>:<name2>#<version2>...`
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>bootstrap-fhir-packages</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_BOOTSTRAP_FHIR_PACKAGES</code> , <br /><code>AIDBOX_FHIR_PACKAGES</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>false</code> — requires Aidbox restart</td></tr></tbody></table>
