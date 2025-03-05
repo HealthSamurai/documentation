@@ -81,7 +81,7 @@ Mail Provider settings
 
 ### Default provider type<a href="#provider.default.type" id="provider.default.type"></a>
 
-Type of the default provider
+Specifies the email service provider used for system-generated communications.
 
 <table data-header-hidden="true"><thead><tr><th width="165"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>provider.default.type</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variables</td><td><code>BOX_PROVIDER_DEFAULT_TYPE</code> , <br /><code>BOX_PROVIDER_DEFAULT__PROVIDER_TYPE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — can be set via Ul and environment variable</td></tr><tr><td>Hot reload</td><td><code>true</code> — can be changed at runtime</td></tr></tbody></table>
 
