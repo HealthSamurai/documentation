@@ -6,11 +6,11 @@ This page explains how to configure Aidbox using settings. Settings control how 
 
 Each setting in Aidbox:
 
-* Has a unique name that identifies it (like `fhir.search.default-params.count`)
+* Has a unique name that identifies it (like [`fhir.search.default-params.count`](../reference/settings/fhir.md#fhir.search.default-params.count))
 * Can be configured through the UI or environment variables
 * Includes a description explaining its purpose
 * Maps to a specific environment variable name
-* May have a default value (for example, `fhir.search.default-params.count` defaults to `100`)
+* May have a default value (for example, [`fhir.search.default-params.count`](../reference/settings/fhir.md#fhir.search.default-params.count) defaults to `100`)
 
 ### Setting categories
 
@@ -31,10 +31,10 @@ Some settings have special properties:
 
 * **Sensitive Settings**: These contain secure data like passwords and API keys
   * Can only be set using environment variables
-  * Example: `security.encrypt-secret`
+  * Example: [`security.encrypt-secret`](../reference/settings/security---access-control.md#security.encrypt-secret)
   * Not editable in the UI
 * **Restart Required Settings**: Changes to these require an Aidbox server restart
-  * Example: `db.pool.maximum-pool-size`
+  * Example: [`db.pool.maximum-pool-size`](../reference/settings/database.md#db.pool.maximum-pool-size)
   * The UI will notify you when a restart is needed
 
 Full details are available in the reference documentation.
@@ -61,7 +61,7 @@ This hierarchy provides:
 
 ### Enable runtime settings editing
 
-A user can enable runtime editing of Aidbox settings using the `settings.mode` in `read-write` value.
+A user can enable runtime editing of Aidbox settings using the [`settings.mode`](../reference/settings/general.md#settings-mode) in `read-write` value.
 
 Possible values:
 
