@@ -21,17 +21,19 @@ It introduces you to:
 Please **make sure** that both [Docker & Docker Compose](https://docs.docker.com/engine/install/) are installed.
 {% endhint %}
 
-## Quickstart Guide
+### Prerequisites
 
-### 1. Get preconfigured example
+* [Docker](https://www.docker.com/)
+* Cloned repository: [Github: Aidbox/examples](https://github.com/Aidbox/examples/tree/main)
+* Working directory: `OpenTelemetry`
 
-To get a preconfigured example, clone the Aidbox examples repository and navigate to the `OpenTelemetry` directory:
+To clone the repository and navigate to the `OpenTelemetry` directory, run:
 
 ```sh
 git clone git@github.com:Aidbox/examples.git && cd examples/OpenTelemetry
 ```
 
-### 2. Start Aidbox with Docker Compose
+### 1. Start Aidbox and demo components with Docker Compose
 
 ```shell
 docker compose up --force-recreate
@@ -39,7 +41,9 @@ docker compose up --force-recreate
 
 Wait until all components are pulled and started.
 
-Navigate to [http://localhost:8888/](http://localhost:8888/) and Sign In to the Aidbox UI using the login `admin` and password `password`.
+### 2. Activate Aidbox
+
+Open Aidbox on [http://localhost:8080](http://localhost:8080) address, activate it, and login with `admin`/`password` credentials
 
 ### 3. Discover Aidbox logs with Kibana
 
