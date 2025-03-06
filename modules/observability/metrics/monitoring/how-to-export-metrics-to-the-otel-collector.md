@@ -18,7 +18,7 @@ This way of enabling OTEL capabilities is available in Aidbox versions 2503 and 
 
 ## How to enable metrics export to the OTEL collector
 
-To  enable exporting metrics to the OTEL collector set the OTEL collector metrics receiver endpoint to the Aidbox settings [observability.otel.metrics-url](https://docs.aidbox.app/reference/settings/observability#observability.otel.metrics-url).
+To  enable exporting metrics to the OTEL collector set the OTEL collector metrics receiver endpoint to the Aidbox setting [observability.otel.metrics-url](https://docs.aidbox.app/reference/settings/observability#observability.otel.metrics-url).
 
 ## How to check the OTEL collector receives metrics&#x20;
 
