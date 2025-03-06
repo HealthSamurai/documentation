@@ -1,6 +1,6 @@
 ## Zen Project
 
-Settings related to Zen Project for backward compatibility.
+Settings related to Zen Project for backward compatibility. Read [d͟e͟t͟a͟i͟l͟s͟](https://www.health-samurai.io/news/aidbox-transitions-to-the-fhir-schema-engine).
 
 ### Zen project entrypoint<a href="#zen-project.entrypoint" id="zen-project.entrypoint"></a>
 
