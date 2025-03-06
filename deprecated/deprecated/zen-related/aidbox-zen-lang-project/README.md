@@ -6,15 +6,15 @@ description: >-
 
 # Aidbox configuration project
 
-**a**
-
 {% hint style="warning" %}
+Aidbox is transitioning to the FHIR Schema engine. Existing zen and Entity/Attribute (EA) engines are deprecated and will be obsolete starting August 2025. July 2025 version will become LTS supporting zen and Entity/Attributes for 2 years.
+
+[Read full announcement](https://www.health-samurai.io/news/aidbox-transitions-to-the-fhir-schema-engine)\
+\
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.
 
 [Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/setup)
 {% endhint %}
-
-**a**
 
 **Aidbox configuration project** is a directory containing configuration files written in [Zen](https://github.com/zen-lang/zen) language. Don’t worry if you are not familiar with Zen yet — we’ll explain all the necessary details along the way. For now you can think of it as a simple syntax well-suited for specifying all sorts of configs.
 
