@@ -18,7 +18,7 @@ This way of enabling OTEL capabilities is available in Aidbox versions 2503 and 
 
 ## How to enable logs export to the OTEL collector
 
-To  enable exporting logs to the OTEL collector set the OTEL collector logs receiver endpoint to the environment variable `BOX_OBSERVABILITY_OTEL_LOGS_URL`
+To  enable exporting logs to the OTEL collector set the OTEL collector logs receiver endpoint to the environment variable [observability.otel.logs-url](https://docs.aidbox.app/reference/settings/observability#observability.otel.logs-url)
 
 ## How to check the OTEL collector receives logs&#x20;
 
