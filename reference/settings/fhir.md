@@ -13,7 +13,7 @@ Enforces FHIR compatibility when enabled:
 - Adds various attributes and endpoints info to CapabilityStatement
 - Sanitises CapabilityStatement (i.e. removes attributes containing null values and empty arrays)
 - Adds `/fhir` to base URL for FHIR search parameters definitions in CapabilityStatement
-- Adds AIDBOX_BASE_URL in `Bundle.link.url`
+- Adds `BOX_WEB_BASE_URL` in `Bundle.link.url`
 - Adds FHIR date search parameter validation on lastUpdated search parameter
 - Adds `alg: RS256` entry for JWKS
 - Changes validation error status to 422 (instead of 400)
