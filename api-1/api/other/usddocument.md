@@ -1,6 +1,8 @@
-# $document
+---
+description: Generates a Bundle document from Composition resource
+---
 
-## $document operation
+# $document
 
 Since 2503 version, Aidbox supports FHIR [$document operation](https://www.hl7.org/fhir/composition-operation-document.html). $document is used to generate a Bundle document from existing Composition resource. It includes the Composition resource itself and some resources referenced in the Composition according to the [FHIR specification](https://www.hl7.org/fhir/documents.html#content).&#x20;
 
