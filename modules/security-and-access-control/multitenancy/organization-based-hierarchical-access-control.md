@@ -331,7 +331,7 @@ GET /Organization/<org-id>/$query/<query-name>
 POST /Organization/<org-id>/aidbox/$graphql
 ```
 
-GraphQL is supported in OrgBAC mode. Note that it can be accessed only on the non-fhir endpoint, because our GraphQL implementation is slightly different from FHIR.
+Since version 2503 GraphQL is supported in OrgBAC mode. Note that it can be accessed only on the non-FHIR endpoint, because our GraphQL implementation is slightly different from FHIR.
 
 See also: [graphql-api.md](../../../api-1/graphql-api.md "mention")
 
