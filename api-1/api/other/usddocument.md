@@ -4,10 +4,10 @@ description: Generates a Bundle document from Composition resource
 
 # $document
 
-Since 2503 version, Aidbox supports FHIR [$document operation](https://www.hl7.org/fhir/composition-operation-document.html). $document is used to generate a Bundle document from existing Composition resource. It includes the Composition resource itself and some resources referenced in the Composition according to the [FHIR specification](https://www.hl7.org/fhir/documents.html#content).&#x20;
+Since the 2503 version, Aidbox supports FHIR [$document operation](https://www.hl7.org/fhir/composition-operation-document.html). $document is used to generate a Bundle document from existing Composition resource. It includes the Composition resource itself and some resources referenced in the Composition according to the [FHIR specification](https://www.hl7.org/fhir/documents.html#content).&#x20;
 
 {% hint style="info" %}
-$document operation uses several Search requests under the hood. These requests should be permitted by Access Policies. See [#setting-up-access-policies-for-usddocument-operation](usddocument.md#setting-up-access-policies-for-usddocument-operation "mention")
+$document operation uses several Search requests under the hood. These requests should be allowed by Access Policies. See [#setting-up-access-policies-for-usddocument-operation](usddocument.md#setting-up-access-policies-for-usddocument-operation "mention")
 {% endhint %}
 
 ### Example request
@@ -57,13 +57,13 @@ GET /fhir/Composition/<composition-id>/$document
 
 ### Saving Bundle after $document operation
 
-After the $document operation is performed using `persist` parameter, the Bundle is saved in the database and can be retrieved by the GET request. The request
+When `persist` parameter is provided, the generated bundle is saved in the database. The request
 
 ```
 GET /fhir/Composition/<composition-id>/$document?persist=true
 ```
 
-Will return the Bundle containing `id` of the saved Bundle. It can be retrieved by the following request:
+will return the Bundle containing `id` of the saved Bundle. The following request can retrieve it:
 
 ```
 GET /fhir/Bundle/<bundle-id>
@@ -71,7 +71,7 @@ GET /fhir/Bundle/<bundle-id>
 
 ### Setting up Access Policies for $document operation
 
-Every $document operation consists of several Search requests, that should be permitted by Access Policies. Aidbox takes all the required by FHIR references (according to the [FHIR specification](https://www.hl7.org/fhir/documents.html#content), depends on FHIR version) from the Composition resource and performs Search requests for each founded resource type.&#x20;
+Every $document operation consists of several Search requests, that should be permitted by Access Policies. Aidbox takes all the required references (according to the [FHIR specification](https://www.hl7.org/fhir/documents.html#content), depending on FHIR version) from the Composition resource and performs Search requests for each found resource type.&#x20;
 
 For example, the following Access Policy will permit the client with id=`my-client-id` to access all resources in R4:
 
