@@ -139,6 +139,7 @@
   * [$everything on Patient](api-1/api/usdeverything-on-patient.md)
   * [Other](api-1/api/other/README.md)
     * [Capability Statement](api-1/api/other/metadata.md)
+    * [$document](api-1/api/other/usddocument.md)
     * [Observation/$lastn](api-1/api/other/misc.md)
     * [$validate](api-1/api/other/usdvalidate.md)
     * [SQL endpoints](api-1/api/other/usdpsql.md)
