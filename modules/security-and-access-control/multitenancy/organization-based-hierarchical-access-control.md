@@ -325,6 +325,16 @@ Now `org-id` is automatically available in the query in `{{params.organization}}
 GET /Organization/<org-id>/$query/<query-name>
 ```
 
+### GraphQL
+
+```
+POST /Organization/<org-id>/aidbox/$graphql
+```
+
+GraphQL is supported in OrgBAC mode. Note that it can be accessed only on the non-fhir endpoint, because our GraphQL implementation is slightly different from FHIR.
+
+See also: [graphql-api.md](../../../api-1/graphql-api.md "mention")
+
 ## Shared resource mode
 
 By default, nested API has no access to a resource that belongs to the upper organizations. Sometimes it is necessary to have resources that can be accessed by the nested APIs. To achieve it the resource should be marked as `share`.
