@@ -2,7 +2,7 @@
 
 ## $document operation
 
-FHIR [$document operation](https://www.hl7.org/fhir/composition-operation-document.html) is used to generate a Bundle document from existing Composition resource. It includes the Composition resource itself and some resources referenced in the Composition according to the [FHIR specification](https://www.hl7.org/fhir/documents.html#content).&#x20;
+Since 2503 version, Aidbox supports FHIR [$document operation](https://www.hl7.org/fhir/composition-operation-document.html). $document is used to generate a Bundle document from existing Composition resource. It includes the Composition resource itself and some resources referenced in the Composition according to the [FHIR specification](https://www.hl7.org/fhir/documents.html#content).&#x20;
 
 {% hint style="info" %}
 $document operation uses several Search requests under the hood. These requests should be permitted by Access Policies. See [#setting-up-access-policies-for-usddocument-operation](usddocument.md#setting-up-access-policies-for-usddocument-operation "mention")
