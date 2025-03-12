@@ -34,6 +34,7 @@
     * [Prohibit user to login](readme-1/readme-1-1/configuration-options.md)
     * [Debug access control](readme-1/readme-1-1/debug.md)
     * [Managing Admin Access to the Aidbox UI Using Okta Groups](readme-1/readme-1-1/managing-admin-access-to-the-aidbox-ui-using-okta-groups.md)
+    * [Configuring Sign-in with Apple](readme-1/readme-1-1/managing-admin-access-to-the-aidbox-ui-using-okta-groups-1.md)
   * [Terminology Tutorials](readme-1/terminology-tutorials/README.md)
     * [🎓 Load ICD-10 terminology into Aidbox](readme-1/terminology-tutorials/load-terminologies.md)
     * [Uploading IG terminology content to external FHIR terminology server](readme-1/terminology-tutorials/uploading-ig-terminology-content-to-external-fhir-terminology-server.md)
