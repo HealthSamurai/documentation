@@ -26,9 +26,9 @@ params:
     type: integer
     default: 10
 # sql query with parameters {{path.to.ctx.elements}}
-query: 'SELECT * from patient where id ilike = {{params.filter}} limit {{params.count}}
+query: 'SELECT * from patient where id ilike = {{params.filter}} limit {{params.count}}'
 # if count-query is present - it will be evaluated for total property in response
-count-query: 'SELECT count(*) from patient where id ilike = {{params.filter}}
+count-query: 'SELECT count(*) from patient where id ilike = {{params.filter}}'
 # not required. enable links in response, see the section below
 enable-links: false
 # not required. `query` or `execute`. see below
