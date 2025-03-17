@@ -155,7 +155,7 @@ GET /Patient
 Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
 ```
 
-{% code fullWidth="true" %}
+{% code fullWidth="false" %}
 ```
 curl -H 'Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi' /Patient
 ```
