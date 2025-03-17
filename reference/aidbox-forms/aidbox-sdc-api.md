@@ -5,6 +5,8 @@ description: Custom SDC operations supported by Aidbox Forms.
 # Aidbox SDC API
 
 * [$generate-link](aidbox-sdc-api.md#generate-a-link-to-a-questionnaireresponse-usdgenerate-link)
+* [$save](aidbox-sdc-api.md#save-a-questionnaireresponse-usdsave)
+* [$submit](aidbox-sdc-api.md#submit-a-questionnaireresponse-usdsubmit)
 
 ## Generate a link to a QuestionnaireResponse - $generate-link
 
@@ -183,3 +185,394 @@ issue:
 > `BOX_AUTH_KEYS_PRIVATE` and `BOX_AUTH_KEYS_PUBLIC` environment variables.
 >
 > [https://docs.aidbox.app/reference/configuration/environment-variables/optional-environment-variables#set-up-rsa-private-public-keys-and-secret](https://docs.aidbox.app/reference/configuration/environment-variables/optional-environment-variables#set-up-rsa-private-public-keys-and-secret)
+
+## Save a QuestionnaireResponse - $save
+
+This operation validates the structure of a QuestionnaireResponse and saves it. It performs basic structural validation but does not validate against the associated Questionnaire definition.
+
+### URLs
+
+```
+POST [base]/QuestionnaireResponse/$save
+```
+
+### Parameters
+
+{% hint style="warning" %}
+NOTE: All parameters wrapped with `Parameters object`
+
+```yaml
+resourceType: Parameters
+parameter:
+- name: response
+  resource: 
+    # QuestionnaireResponse resource here
+```
+{% endhint %}
+
+The operation takes a single input parameter named "response" containing a QuestionnaireResponse resource wrapped in a Parameters resource.
+
+### Output Parameters
+
+The operation returns:
+- **response**: The saved QuestionnaireResponse resource
+- **issues**: Any validation issues encountered (if applicable)
+
+### Usage Example
+
+{% tabs %}
+{% tab title="Request" %}
+```http
+POST [base]/QuestionnaireResponse/$save
+content-type: application/fhir+json
+
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "response",
+      "resource": {
+        "resourceType": "QuestionnaireResponse",
+        "questionnaire": "Questionnaire/patient-registration",
+        "status": "in-progress",
+        "item": [
+          {
+            "linkId": "name",
+            "text": "Patient Name",
+            "item": [
+              {
+                "linkId": "name.given",
+                "text": "Given Name",
+                "answer": [
+                  {
+                    "valueString": "John"
+                  }
+                ]
+              },
+              {
+                "linkId": "name.family",
+                "text": "Family Name",
+                "answer": [
+                  {
+                    "valueString": "Smith"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+{% endtab %}
+
+{% tab title="Success Response" %}
+HTTP status: 200
+
+```json
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "response",
+      "resource": {
+        "resourceType": "QuestionnaireResponse",
+        "id": "12c1178c-70a9-4e02-a53d-65b13373926e",
+        "questionnaire": "Questionnaire/patient-registration",
+        "status": "in-progress",
+        "item": [
+          {
+            "linkId": "name",
+            "text": "Patient Name",
+            "item": [
+              {
+                "linkId": "name.given",
+                "text": "Given Name",
+                "answer": [
+                  {
+                    "valueString": "John"
+                  }
+                ]
+              },
+              {
+                "linkId": "name.family",
+                "text": "Family Name",
+                "answer": [
+                  {
+                    "valueString": "Smith"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+{% endtab %}
+
+{% tab title="Validation Failure Response" %}
+HTTP status: 200
+
+```json
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "response",
+      "resource": {
+        "resourceType": "QuestionnaireResponse",
+        "id": "12c1178c-70a9-4e02-a53d-65b13373926e",
+        "questionnaire": "Questionnaire/patient-registration",
+        "status": "in-progress",
+        "item": [
+          {
+            "linkId": "name",
+            "text": "Patient Name",
+            "item": [
+              {
+                "linkId": "name.given",
+                "text": "Given Name",
+                "answer": [
+                  {
+                    "valueString": "John"
+                  }
+                ]
+              },
+              {
+                "linkId": "name.family",
+                "text": "Family Name",
+                "answer": [
+                  {
+                    "valueString": "Smith"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "issues",
+      "resource": {
+        "resourceType": "OperationOutcome",
+        "issue": [
+          {
+            "severity": "error",
+            "code": "required",
+            "expression": ["QuestionnaireResponse.item[0].item[2]"],
+            "diagnostics": "Missing required field: Patient Date of Birth"
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+{% endtab %}
+{% endtabs %}
+
+## Submit a QuestionnaireResponse - $submit
+
+This operation validates and submits a QuestionnaireResponse, marking it as "completed" or "amended". It performs comprehensive validation against the associated Questionnaire definition. If validation fails, it returns only the "issues" parameter without the "response" parameter and does not save the QuestionnaireResponse.
+
+### URLs
+
+```
+POST [base]/QuestionnaireResponse/$submit
+```
+
+### Parameters
+
+{% hint style="warning" %}
+NOTE: All parameters wrapped with `Parameters object`
+
+```yaml
+resourceType: Parameters
+parameter:
+- name: response
+  resource: 
+    # QuestionnaireResponse resource here
+```
+{% endhint %}
+
+The operation takes a single input parameter named "response" containing a QuestionnaireResponse resource wrapped in a Parameters resource.
+
+### Output Parameters
+
+The operation returns:
+- **response**: The submitted QuestionnaireResponse resource with status updated to "completed"
+- **issues**: Any validation issues encountered (if applicable)
+
+### Usage Example
+
+{% tabs %}
+{% tab title="Request" %}
+```http
+POST [base]/QuestionnaireResponse/$submit
+content-type: application/fhir+json
+
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "response",
+      "resource": {
+        "resourceType": "QuestionnaireResponse",
+        "questionnaire": "Questionnaire/patient-registration",
+        "status": "in-progress",
+        "item": [
+          {
+            "linkId": "name",
+            "text": "Patient Name",
+            "item": [
+              {
+                "linkId": "name.given",
+                "text": "Given Name",
+                "answer": [
+                  {
+                    "valueString": "John"
+                  }
+                ]
+              },
+              {
+                "linkId": "name.family",
+                "text": "Family Name",
+                "answer": [
+                  {
+                    "valueString": "Smith"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "linkId": "birthDate",
+            "text": "Date of Birth",
+            "answer": [
+              {
+                "valueDate": "1970-01-01"
+              }
+            ]
+          },
+          {
+            "linkId": "gender",
+            "text": "Gender",
+            "answer": [
+              {
+                "valueCoding": {
+                  "system": "http://hl7.org/fhir/administrative-gender",
+                  "code": "male",
+                  "display": "Male"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+{% endtab %}
+
+{% tab title="Success Response" %}
+HTTP status: 200
+
+```json
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "response",
+      "resource": {
+        "resourceType": "QuestionnaireResponse",
+        "id": "12c1178c-70a9-4e02-a53d-65b13373926e",
+        "questionnaire": "Questionnaire/patient-registration",
+        "status": "completed",
+        "item": [
+          {
+            "linkId": "name",
+            "text": "Patient Name",
+            "item": [
+              {
+                "linkId": "name.given",
+                "text": "Given Name",
+                "answer": [
+                  {
+                    "valueString": "John"
+                  }
+                ]
+              },
+              {
+                "linkId": "name.family",
+                "text": "Family Name",
+                "answer": [
+                  {
+                    "valueString": "Smith"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "linkId": "birthDate",
+            "text": "Date of Birth",
+            "answer": [
+              {
+                "valueDate": "1970-01-01"
+              }
+            ]
+          },
+          {
+            "linkId": "gender",
+            "text": "Gender",
+            "answer": [
+              {
+                "valueCoding": {
+                  "system": "http://hl7.org/fhir/administrative-gender",
+                  "code": "male",
+                  "display": "Male"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+{% endtab %}
+
+{% tab title="Validation Failure Response" %}
+HTTP status: 200
+
+```json
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "issues",
+      "resource": {
+        "resourceType": "OperationOutcome",
+        "issue": [
+          {
+            "severity": "error",
+            "code": "required",
+            "expression": ["QuestionnaireResponse.item[3]"],
+            "diagnostics": "Missing required field: Contact Information"
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+{% endtab %}
+{% endtabs %}
