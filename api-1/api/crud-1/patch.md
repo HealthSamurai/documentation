@@ -8,50 +8,43 @@ In most Operations in FHIR, you manipulate a resource as a whole (create, update
 
 With the `patch` operation, you can update a part of a resource by sending a declarative description of operations that should be performed on an existing resource. To describe these operations in Aidbox, you can use different notations (methods):
 
-* merge-patch — simple merge semantics ([read more in RFC](https://tools.ietf.org/html/rfc7386));
-* json-patch — advanced JSON transformation ([read more in RFC](https://tools.ietf.org/html/rfc6902));
+* Merge Patch — simple merge semantics ([read more in RFC](https://tools.ietf.org/html/rfc7386));
+* JSON Patch — advanced JSON transformation ([read more in RFC](https://tools.ietf.org/html/rfc6902));
+* [FHIRpath Patch](https://www.hl7.org/fhir/fhirpatch.html) - JSON patch with [FHIRpath](https://www.hl7.org/fhir/fhirpatch.html) (since version 2503).
 
 ### Patch Method
 
 You can specify a `patch` method by the `content-type` header or by the `_method` parameter.
 
-| method          | parameter     | header                       |
-| --------------- | ------------- | ---------------------------- |
-| **json-patch**  | `json-patch`  | application/json-patch+json  |
-| **merge-patch** | `merge-patch` | application/merge-patch+json |
+| method             | parameter        | header                       |
+| ------------------ | ---------------- | ---------------------------- |
+| **json-patch**     | `json-patch`     | application/json-patch+json  |
+| **merge-patch**    | `merge-patch`    | application/merge-patch+json |
+| **fhirpath-patch** | `fhirpath-patch` | -                            |
 
 If the method is not specified, Aidbox will try to guess it by the following algorithm:
 
-* if the payload is an array — `json-patch`
+* if the body contains "Parameters" resourceType, it is `fhirpath-patch`
+* if the payload is an array, it is `json-patch`&#x20;
 * else `merge-patch`
 
-### Operation Description
+### Binary JSON-patch
 
-## Patch Operation
+Since version 2503, It is also possible to [encode JSON patches using base64 Binary.data](https://www.hl7.org/fhir/http.html#jsonpatch-transaction):
 
-<mark style="color:purple;">`PATCH`</mark> `[base-url]/<resourceType>/<id>`
+```
+PATCH /fhir/Patient/1?_method=json-patch
+content-type: application/json
+accept: application/json
 
-#### Path Parameters
+{
+  "resourceType": "Binary",
+  "contentType": "application/json-patch+json",
+  "data": "WyB7ICJvcCI6InJlcGxhY2UiLCAicGF0aCI6Ii9hY3RpdmUiLCAidmFsdWUiOmZhbHNlIH0gXQ=="
+}
+```
 
-| Name     | Type   | Description                                                                   |
-| -------- | ------ | ----------------------------------------------------------------------------- |
-| \_method | string | <p></p><p><code>json-patch</code></p><p>or</p><p><code>merge-patch</code></p> |
-
-#### Headers
-
-| Name         | Type   | Description                                                                    |
-| ------------ | ------ | ------------------------------------------------------------------------------ |
-| content-type | string | <p>See the</p><p><code>content-type</code></p><p>header in the table above</p> |
-
-#### Request Body
-
-JSON or YAML representation of transformation rules in accordance with`_method`
-
-### Example
-
-{% hint style="info" %}
-You can exercise this tutorial using [REST Console](../../../overview/aidbox-ui/rest-console-1.md) — just copy/paste queries into your console!
-{% endhint %}
+## Examples
 
 Let's suppose we've created a Patient resource with the id `pt-1`
 
@@ -73,13 +66,7 @@ telecom:
      use: work
      rank: 1
 birthDate: '1979-01-01'
-
-# 200 OK
 ```
-
-{% hint style="info" %}
-You can copy/paste this request into REST Console of Aidbox.Cloud.
-{% endhint %}
 
 ### Merge Patch
 
@@ -137,4 +124,39 @@ name:
   family: Doe
 active: true
 birthDate: '1979-01-01'
+```
+
+### FHIRpath Patch
+
+The example sets `active`to `false`:
+
+```
+PATCH /fhir/Patient/pt-1
+
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "operation",
+      "part": [
+        {
+          "name": "type",
+          "valueCode": "add"
+        },
+        {
+          "name": "path",
+          "valueString": "Patient"
+        },
+        {
+          "name": "name",
+          "valueString": "active"
+        },
+        {
+          "name": "value",
+          "valueBoolean": false
+        }
+      ]
+    }
+  ]
+}
 ```
