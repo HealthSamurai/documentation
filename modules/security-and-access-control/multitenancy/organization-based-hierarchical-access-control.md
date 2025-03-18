@@ -197,6 +197,16 @@ The search API does not support search parameters:
 GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/Patient/$everything
 ```
 
+See also [usdeverything-on-patient.md](../../../api-1/api/usdeverything-on-patient.md "mention")
+
+### $document
+
+```
+GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/Composition/$document
+```
+
+See also [usddocument.md](../../../api-1/api/other/usddocument.md "mention")
+
 ### History
 
 Resource full history
@@ -289,7 +299,7 @@ GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/metadata
 [Learn more about AidboxQuery](../../../api-1/api/search-1/other/custom-search.md).
 {% endhint %}
 
-To use `$query` endpoint under organization-based hierarchical access control it is necessary to explicitly create `organization` param in `AidboxQuery`.
+To use `$query` endpoint under organization-based hierarchical access control it is necessary to create explicitly `organization` param in `AidboxQuery`.
 
 ```yaml
 PUT /AidboxQuery/<query-name>
