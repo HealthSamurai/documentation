@@ -12,9 +12,9 @@ eyJhbGciOiJ...
 
 This string is your license key.
 
-#### Install Docker and Docker Compose
+## Install Docker and Docker Compose
 
-Follow the [official Docker guide](https://docs.docker.com/compose/install/#install-compose) to install Docker and Docker Compose
+Follow the [official Docker guide](https://docs.docker.com/compose/install/#install-compose) to install Docker and Docker Compose.
 
 ## Get docker compose
 
