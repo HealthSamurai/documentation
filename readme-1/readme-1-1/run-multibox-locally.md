@@ -69,7 +69,7 @@ This command will download and start Multibox and its dependencies. This can tak
 
 ## Go to the Multibox UI
 
-Open [http://127.0.](http://127.0.0.1.nip.io:8888)`.env` file.[0.1.nip.io:8888](http://127.0.0.1.nip.io:8888).&#x20;
+Open [http://127.0.0.1.nip.io:8080](http://127.0.0.1.nip.io:8080).&#x20;
 
 You'll see Multibox login page. Sign in using the credentials specified in the `AIDBOX_SUPERUSER` variable (`admin`/`secret`).
 
