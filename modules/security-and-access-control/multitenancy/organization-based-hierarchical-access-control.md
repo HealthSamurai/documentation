@@ -166,27 +166,10 @@ PUT <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>/<id>
 
 #### Patch
 
-The default patch method is `merge-patch`:
-
-<pre><code><strong>PATCH &#x3C;AIDBOX_BASE_URL>/Organization/&#x3C;org-id>/fhir/&#x3C;resource-type>/&#x3C;id>
+<pre><code><strong>PATCH &#x3C;AIDBOX_BASE_URL>/Organization/&#x3C;org-id>/fhir/&#x3C;resource-type>/&#x3C;id>?[_method={ json-patch | merge-patch | fhirpath-patch }]
 </strong></code></pre>
 
-Also, `json-patch` is supported.
-
-Using `application/json-patch+json` header
-
-```
-PATCH <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>/<id>
-content-type: application/json-patch+json
-```
-
-Using `_method=json-patch` search parameter:
-
-```
-PATCH <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>/<id>?_method=json-patch
-```
-
-See also [patch.md](../../../api-1/api/crud-1/patch.md "mention")
+All PATCH methods are supported. See also [patch.md](../../../api-1/api/crud-1/patch.md "mention")
 
 ### Delete
 
