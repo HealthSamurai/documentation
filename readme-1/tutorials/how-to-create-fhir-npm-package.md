@@ -52,7 +52,7 @@ A package contains a set of FHIR resources in the JSON format. Let's describe a 
 
 ### 2.1 StructureDefinition resource
 
-Let's describe a profile on the US Core Patient in the file `my-patient-profile.json`.
+Let's describe a profile of the US Core Patient in the file `my-patient-profile.json`.
 
 {% code title="my-patient-profile.json" %}
 ```json
@@ -78,10 +78,10 @@ Let's describe a profile on the US Core Patient in the file `my-patient-profile.
     // 	Whether the structure is abstract.
     "abstract": false,
     
-    // Canonical identifier for this structure definition, represented as a URI (globally unique).
+    //The Canonical identifier for this structure definition is represented as a URI (globally unique).
     "url": "http://custom-url/my-patient-profile",
     
-    // Definition that this type is constrained from.
+    // Definition from which this type is constrained.
     "baseDefinition": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient",
     
     "differential": {
@@ -135,7 +135,7 @@ Let's describe a custom search parameter on the Patient resource in the file `my
     // Status of the search parameter.
     "status": "active", 
     
-    // Recommended name for parameter in search url.
+    // Recommended name for the parameter in search url.
     "code": "myname",
     
     // 	The type of value that a search parameter may contain, and how the content is interpreted.
@@ -152,7 +152,7 @@ Let's describe a custom search parameter on the Patient resource in the file `my
 The resulting npm package has the following structure:
 
 ```
-mypackage
+package
 ├── my-patient-profile.json
 ├── my-patient-search.json
 └── package.json
@@ -163,7 +163,7 @@ We need to build the artifacts of the npm package into an archive in the TAR (.t
 {% tabs %}
 {% tab title="Linux" %}
 ```bash
-tar -czvf mypackage.tar.gz mypackage 
+tar -czvf package.tar.gz package 
 ```
 {% endtab %}
 
@@ -171,13 +171,13 @@ tar -czvf mypackage.tar.gz mypackage
 If Windows supports a native tar command:
 
 ```
-tar -cvzf mypackage.tar.gz mypackage
+tar -cvzf package.tar.gz package
 ```
 
 or download and install **7-Zip**
 
-1. `"C:\Program Files\7-Zip/7z.exe" a -ttar mypackage.tar mypackage`
-2. `"C:\Program Files\7-Zip/7z.exe" a -tgzip mypackage.tar.gz mypackage.tar`
+1. `"C:\Program Files\7-Zip/7z.exe" a -ttar package.tar package`
+2. `"C:\Program Files\7-Zip/7z.exe" a -tgzip package.tar.gz package.tar`
 {% endtab %}
 {% endtabs %}
 
