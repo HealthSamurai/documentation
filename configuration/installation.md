@@ -11,32 +11,34 @@ Basic Aidbox installation consists of two components: the backend and the databa
 ## Recommended environment variables
 
 ```yaml
-# Postgres
-POSTGRES_USER: aidbox
+# Environment variables for Postgres
 POSTGRES_PORT: '5432'
 POSTGRES_DB: aidbox
+POSTGRES_USER: aidbox
 POSTGRES_PASSWORD: <pgpassword>
 
-# Aidbox
-AIDBOX_TERMINOLOGY_SERVICE_BASE_URL: https://tx.fhir.org/r4
-AIDBOX_FHIR_PACKAGES: hl7.fhir.r4.core#4.0.1
-AIDBOX_FHIR_SCHEMA_VALIDATION: true
-AIDBOX_CREATED_AT_URL: https://aidbox.app/ex/createdAt
-AIDBOX_CLIENT_SECRET: <secret>
-AIDBOX_CORRECT_AIDBOX_FORMAT: true
-AIDBOX_ADMIN_PASSWORD: <password>
-AIDBOX_COMPLIANCE: enabled
-BOX_SEARCH_FHIR__COMPARISONS: true
-PGHOST: aidbox_db
-BOX_COMPATIBILITY_VALIDATION_JSON__SCHEMA_REGEX: '#{:fhir-datetime}'
-PGUSER: aidbox
-AIDBOX_PORT: 8080
-PGDATABASE: aidbox
-PGPASSWORD: <pgpassword>
-PGPORT: '5432'
-BOX_SEARCH_INCLUDE_CONFORMANT: true
-BOX_SEARCH_AUTHORIZE_INLINE_REQUESTS: true
-AIDBOX_SECURITY_AUDIT__LOG_ENABLED: true
+# Environment variables for Aidbox
+BOX_DB_HOST: aidbox_db
+BOX_DB_PORT: '5432'
+BOX_DB_USER: aidbox
+BOX_DB_PASSWORD: <pgpassword>
+BOX_DB_DATABASE: aidbox
+
+BOX_WEB_PORT: 8080
+BOX_ROOT_CLIENT_SECRET: <secret>
+BOX_ADMIN_PASSWORD: <password>
+
+BOX_BOOTSTRAP_FHIR_PACKAGES: "hl7.fhir.r4.core#4.0.1"
+BOX_FHIR_TERMINOLOGY_SERVICE_BASE_URL: https://tx.fhir.org/r4
+BOX_FHIR_SCHEMA_VALIDATION: true
+BOX_FHIR_CREATEDAT_URL: https://aidbox.app/ex/createdAt
+BOX_FHIR_CORRECT_AIDBOX_FORMAT: true
+BOX_FHIR_COMPLIANT_MODE: true
+BOX_FHIR_SEARCH_COMPARISONS: true
+BOX_FHIR_JSON_SCHEMA_DATETIME_REGEX: '#{:fhir-datetime}'
+BOX_FHIR_SEARCH_INCLUDE_CONFORMANT: true
+BOX_FHIR_SEARCH_AUTHORIZE_INLINE_REQUESTS: true
+BOX_SECURITY_AUDIT_LOG_ENABLED: true
 ```
 
 ## Configure performance
@@ -47,8 +49,8 @@ A good practice is stayed pool size the same as CPU count of your database. For 
 
 You can configure this parameter using following environment variables.
 
-```
-BOX_DB_POOL_MAXIMUM__POOL__SIZE=8
+```bash
+BOX_DB_POOL_MAXIMUM_POOL_SIZE=8
 BOX_WEB_THREAD=8
 ```
 
@@ -62,25 +64,25 @@ JAVA_OPTS="-Xms4096m -Xmx4096m"
 
 Refer to the following pages for the specific image description and the list of available configuration options.
 
-{% content-ref url="../../storage-1/aidboxdb-image/" %}
-[aidboxdb-image](../../storage-1/aidboxdb-image/)
+{% content-ref url="../storage-1/aidboxdb-image/" %}
+[aidboxdb-image](../storage-1/aidboxdb-image/)
 {% endcontent-ref %}
 
-{% content-ref url="../../reference/environment-variables/" %}
-[environment-variables](../../reference/environment-variables/)
+{% content-ref url="../reference/environment-variables/" %}
+[environment-variables](../reference/environment-variables/)
 {% endcontent-ref %}
 
 You can also see the environment variables in the **Settings page** in **AidboxUI**.
 
 If you are looking for the latest versions of the docker images or general release cycle explanation go to the Versioning page.
 
-{% content-ref url="../../overview/versioning.md" %}
-[versioning.md](../../overview/versioning.md)
+{% content-ref url="../overview/versioning.md" %}
+[versioning.md](../overview/versioning.md)
 {% endcontent-ref %}
 
 See also deployment documentation:
 
-{% content-ref url="../../deployment-and-maintenance/deploy-aidbox/" %}
-[deploy-aidbox](../../deployment-and-maintenance/deploy-aidbox/)
+{% content-ref url="../deployment-and-maintenance/deploy-aidbox/" %}
+[deploy-aidbox](../deployment-and-maintenance/deploy-aidbox/)
 {% endcontent-ref %}
 
