@@ -2,7 +2,7 @@
 
 When Aidbox is configured with [FHIRSchema mode](../../modules/profiling-and-validation/fhir-schema-validator/setup.md), it is possible to define Extension in [FHIRSchema format](https://fhir-schema.github.io/fhir-schema/).&#x20;
 
-See also [custom-resources-using-fhirschema.md](../custom-resources/custom-resources-using-fhirschema.md "mention").
+See also [custom-resources-using-fhirschema.md](../custom-resources/custom-resources-using-fhirschema.md).
 
 ## Example
 

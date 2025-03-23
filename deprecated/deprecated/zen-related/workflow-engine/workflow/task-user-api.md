@@ -5,10 +5,10 @@ Workflow engine is configured by zen. We do not support it and do not recommend 
 
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/setup)
+[Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules/profiling-and-validation/fhir-schema-validator/setup)
 {% endhint %}
 
-Workflow User API allows users to manually control Aidbox workflows by [RPC methods](../../../../../api-1/other/rpc-api.md).
+Workflow User API allows users to manually control Aidbox workflows by [RPC methods](../../../../../api/other/rpc-api.md).
 
 ### `awf.workflow/create-and-execute`
 
@@ -16,7 +16,7 @@ Creates an instance of a defined workflow and makes it ready to be executed imme
 
 #### Params:
 
-<table><thead><tr><th width="133">Parameter</th><th width="87">Type</th><th width="111" data-type="checkbox">Required</th><th width="411">Description</th></tr></thead><tbody><tr><td>id</td><td>string</td><td>false</td><td>Identifier of workflow (If not provided, will be auto-generated).</td></tr><tr><td>label</td><td>string</td><td>false</td><td>Human- or machine-readable description of workflow instance.<br><em>Example: <code>Import Patient resources</code></em></td></tr><tr><td>definition</td><td>string</td><td>true</td><td>Definition of <a href="https://github.com/Aidbox/documentation/blob/master/modules-1/workflow-engine/workflow/broken-reference/README.md">predefined workflow</a> or<br>custom-defined workflow.<br><em>Example:</em> <code>aidbox.bulk/import-resources-workflow</code></td></tr><tr><td>params</td><td>object</td><td>true</td><td>The input parameters described in the workflow definition.</td></tr><tr><td>executeAt</td><td>string</td><td>false</td><td>Time at which the workflow will become ready. If not provided - workflow will become ready immediately.<br><em>Example: <code>2023-05-03T13:30:43</code></em></td></tr></tbody></table>
+<table><thead><tr><th width="133">Parameter</th><th width="87">Type</th><th width="111" data-type="checkbox">Required</th><th width="411">Description</th></tr></thead><tbody><tr><td>id</td><td>string</td><td>false</td><td>Identifier of workflow (If not provided, will be auto-generated).</td></tr><tr><td>label</td><td>string</td><td>false</td><td>Human- or machine-readable description of workflow instance.<br><em>Example: <code>Import Patient resources</code></em></td></tr><tr><td>definition</td><td>string</td><td>true</td><td>Definition of <a href="https://github.com/Aidbox/documentation/blob/master/modules/workflow-engine/workflow/broken-reference/README.md">predefined workflow</a> or<br>custom-defined workflow.<br><em>Example:</em> <code>aidbox.bulk/import-resources-workflow</code></td></tr><tr><td>params</td><td>object</td><td>true</td><td>The input parameters described in the workflow definition.</td></tr><tr><td>executeAt</td><td>string</td><td>false</td><td>Time at which the workflow will become ready. If not provided - workflow will become ready immediately.<br><em>Example: <code>2023-05-03T13:30:43</code></em></td></tr></tbody></table>
 
 #### Result:
 

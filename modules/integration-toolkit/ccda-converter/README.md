@@ -242,7 +242,7 @@ Authorization: ...
 </ClinicalDocument>
 ```
 
-The source FHIR Document for this endpoint can be in either [FHIR or Aidbox format](../../../storage-1/other/aidbox-and-fhir-formats.md). Endpoint uses `Content-Type` header to understand which format is used. `Content-Type: application/json` means Aidbox format and `Content-Type: application/fhir+json` means FHIR format. So in the example above Aidbox format is used.
+The source FHIR Document for this endpoint can be in either [FHIR or Aidbox format](../../../storage/other/aidbox-and-fhir-formats.md). Endpoint uses `Content-Type` header to understand which format is used. `Content-Type: application/json` means Aidbox format and `Content-Type: application/fhir+json` means FHIR format. So in the example above Aidbox format is used.
 
 If FHIR Document format and `Content-Type` header are mismached then 422 error will be returned:
 
@@ -268,13 +268,13 @@ Authorization: ...
   "id": "invalid",
   "text": {
     "status": "generated",
-    "div": "Provided FHIR Document is in FHIR format, but expected to be in AIDBOX format. Make sure that you're using the right 'content-type' header.\n\nLearn about differences between Aidbox and FHIR formats here: https://docs.aidbox.app/storage-1/aidbox-and-fhir-formats"
+    "div": "Provided FHIR Document is in FHIR format, but expected to be in AIDBOX format. Make sure that you're using the right 'content-type' header.\n\nLearn about differences between Aidbox and FHIR formats here: https://docs.aidbox.app/storage/aidbox-and-fhir-formats"
   },
   "issue": [
     {
       "severity": "fatal",
       "code": "invalid",
-      "diagnostics": "Provided FHIR Document is in FHIR format, but expected to be in AIDBOX format. Make sure that you're using the right 'content-type' header.\n\nLearn about differences between Aidbox and FHIR formats here: https://docs.aidbox.app/storage-1/aidbox-and-fhir-formats"
+      "diagnostics": "Provided FHIR Document is in FHIR format, but expected to be in AIDBOX format. Make sure that you're using the right 'content-type' header.\n\nLearn about differences between Aidbox and FHIR formats here: https://docs.aidbox.app/storage/aidbox-and-fhir-formats"
     }
   ]
 }

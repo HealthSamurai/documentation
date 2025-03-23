@@ -1,11 +1,13 @@
 ---
-description: This guide shows how to set-up Azure AD identity provider with Aidbox
+description: >-
+  This guide shows how to set-up Azure AD identity provider in Aidbox with
+  asymmetric authentication
 ---
 
-# Azure AD
+# Azure AD with certificate authentication
 
 {% hint style="info" %}
-This guide explains how to set-up Azure AD identity provider in Aidbox with a symmetric authentication mechanism. If you are looking for asymmetric (certificate-based one), please, follow [Azure AD with certificate authentication](azure-ad-1.md) guide.
+This guide explains how to set-up Azure AD identity provider in Aidbox with an asymmetric authentication mechanism. If you are looking for symmetric (secret-based one), please, follow [Azure AD guide](azure-ad.md).
 {% endhint %}
 
 ## Register an application in Azure
@@ -22,46 +24,68 @@ This guide explains how to set-up Azure AD identity provider in Aidbox with a sy
 
 ![](../../../.gitbook/assets/azure4.png)
 
-* Click **Certificates & secrets > New client secret** and create a new secret. Save `Value` for next step
-
-<figure><img src="../../../.gitbook/assets/spaces_-LHqtKiuedlcKJLm337__uploads_git-blob-c80aad22e2b9fa1bee113d9ff9c19e226be35e8a_azure3.png" alt=""><figcaption></figcaption></figure>
-
 ## Create IdentityProvider in Aidbox
 
-* Open REST console in Aidbox UI and create `IdentityProvider`
+Open REST console in Aidbox UI and create `IdentityProvider`
 
 ```yaml
 POST /IdentityProvider
 content-type: text/yaml
 accept: text/yaml
 
+id: azure
+title: Azure AD
+active: true
 scopes:
   - profile
   - openid
 system: azure
-authorize_endpoint: <your authorization endpoint (see below)>
-token_endpoint: <your token endpoint (see below)>
 userinfo-source: id-token
+authorize_endpoint: <your authorization endpoint>
+token_endpoint: <your token endpoint>
 client:
-  id: <your application (client) id (see below)>
-  secret: <your secret value from previous step>
-resourceType: IdentityProvider
-title: Azure AD
-active: true
-id: azure
+  id: <your application (client) id>
 ```
 
-You can find application (client) id on **App Overview** page.
+You can find application (client) id on **App Overview** page
 
 <figure><img src="../../../.gitbook/assets/spaces_-LHqtKiuedlcKJLm337__uploads_git-blob-4833cc9444c2a38a76f8edc0759fb36622368c90_azure5.png" alt=""><figcaption></figcaption></figure>
 
-As for the endpoints, you'll find them by clicking on **Endpoints**, copying the URL from `OpenID Connect metadata document`, and then visiting this URL in your browser.
+and your endpoints by clicking on **Endpoints** and visiting `OpenID Connect metadata document`
 
 <figure><img src="../../../.gitbook/assets/spaces_-LHqtKiuedlcKJLm337__uploads_git-blob-8f857e9e29de04af413036e10747e7eadf94bcad_azure2.png" alt=""><figcaption></figcaption></figure>
 
-The JSON document will contain both `authorize_endpoint` and `token_endpoint`.
+## Issue certificate
 
-<figure><img src="../../../.gitbook/assets/image (129).png" alt=""><figcaption></figcaption></figure>
+Once IdentityProvider resource is created in Aidbox, you can generate private key & certificate:
+
+```yaml
+POST /IdentityProvider/azure/$rotate-credentials
+content-type: text/yaml
+accept: text/yaml
+
+auth-method: asymmetric
+confirm: true
+
+# response 200 OK
+# Private key & certificate are generated and saved in the IdentityProvider
+```
+
+{% hint style="info" %}
+Aidbox generates certificate for 365 days.
+{% endhint %}
+
+Than you may download the certificate in order to upload it to Azure AD by following the link
+
+```
+<AIDBOX_BASE_URL>/IdentityProvider/azure/$download-certificate
+```
+
+Upload the certificate into Azure AD
+
+<figure><img src="../../../.gitbook/assets/Screenshot 2023-07-17 at 16.50.45.png" alt=""><figcaption></figcaption></figure>
+
+It may take few minutes when Azure starts processing the uploaded certificate.
 
 ## Log in to Aidbox
 

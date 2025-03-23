@@ -245,7 +245,7 @@ client.transformToBundle(
 );
 ```
 
-Bundle requests could be a [transaction or batch](https://docs.aidbox.app/api-1/fhir-api/bundle#post-endpoint) type. SDK uses the "transaction" type by default but you can change it by providing it in the second parameter.
+Bundle requests could be a [transaction or batch](https://docs.aidbox.app/api/fhir-api/bundle#post-endpoint) type. SDK uses the "transaction" type by default but you can change it by providing it in the second parameter.
 
 ```javascript
 const data = ArrayOfPatients.map(client.bundleEntryPost);
@@ -285,7 +285,7 @@ First of all we have to create task's schema with settings that apply restrictio
 ```
 
 {% hint style="info" %}
-We have to regenerate SDK package each time we made changes into configuration project. [More information about task definition](https://docs.aidbox.app/modules-1/workflow-engine/task#1.-specify-task-definition)
+We have to regenerate SDK package each time we made changes into configuration project. [More information about task definition](https://docs.aidbox.app/modules/workflow-engine/task#1.-specify-task-definition)
 {% endhint %}
 
 ### Implementation
@@ -348,7 +348,7 @@ const client = new Engine({
 ```
 
 {% hint style="info" %}
-We have to regenerate SDK package each time we made changes into configuration project. [More information about workflow definition](https://docs.aidbox.app/modules-1/workflow-engine/workflow#1.-specify-workflow-definition)
+We have to regenerate SDK package each time we made changes into configuration project. [More information about workflow definition](https://docs.aidbox.app/modules/workflow-engine/workflow#1.-specify-workflow-definition)
 {% endhint %}
 
 ### Implementation

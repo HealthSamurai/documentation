@@ -5,7 +5,7 @@ This page is related to Aidbox project configuration.
 
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/setup)
+[Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules/profiling-and-validation/fhir-schema-validator/setup)
 {% endhint %}
 
 In this tutorial we will guide you how to setup Aidbox US Core FHIR Implementation Guide and pass Inferno US Core 3.1.1 confromance tests.

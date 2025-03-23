@@ -3,7 +3,7 @@
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[setup.md](../../../modules/profiling-and-validation/fhir-schema-validator/setup.md "mention")
+[setup.md](../../../modules/profiling-and-validation/fhir-schema-validator/setup.md)
 
 Zen Search Parameters will be ignored if Aidbox operates with the FHIR Schema validator engine. Please contact [us](../../../contact-us.md) if you need assistance migrating to FHIR Search Parameters.
 {% endhint %}
@@ -54,7 +54,7 @@ We have one repository for Patient resourceType: `patient-repository`. It contai
 
 SearchParameter must contain:
 
-* type: [FHIR Search Parameter types](../../../api-1/api/search-1/#search-parameters)
+* type: [FHIR Search Parameter types](../../../api/search/#search-parameters)
 * resource, containing resourceType and id
 * [jsonknife](zen-search-parameters.md#jsonpath-vs-jsonknife) expression containing path in the resource to search for
 * name to use in search
@@ -160,7 +160,7 @@ Repository keys:
 
 ### Composite search parameter
 
-Read [Composite Search Parameters](../../../api-1/api/search-1/searchparameter-types/composite-search-parameters.md) first.
+Read [Composite Search Parameters](../../../api/search/searchparameter-types/composite-search-parameters.md) first.
 
 Composite search parameter must contain additional key: components. It must be a nested array in following structure:
 

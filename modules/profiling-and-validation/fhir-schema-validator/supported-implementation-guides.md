@@ -3106,11 +3106,11 @@ This guide contains a library of Fast Health Interoperability Resources (FHIR) p
 
 #### Content and Organization
 
-* [Background](../../../modules-1/profiling-and-validation/fhir-schema-validator/background.html): describes the purpose, audience, general background, and use cases for this guide
-* [Specification](../../../modules-1/profiling-and-validation/fhir-schema-validator/specification.html): covers the detailed implementation requirements and conformance expectation
-* [Acknowledgments](../../../modules-1/profiling-and-validation/fhir-schema-validator/acknowledgments.html): identifies the individuals and organizations involved in developing this implementation guide
-* [Downloads](../../../modules-1/profiling-and-validation/fhir-schema-validator/downloads.html): allows download of this and other specifications as well as other useful files
-* [Artifacts Summary](../../../modules-1/profiling-and-validation/fhir-schema-validator/artifacts.html): introduces and provides links to the FHIR STU3 and R4 profiles, search parameters and other FHIR artifacts used in this implementation guide (built Thu, Feb 11, 2021 17:05+0000+00:00)
+* [Background](../../../modules/profiling-and-validation/fhir-schema-validator/background.html): describes the purpose, audience, general background, and use cases for this guide
+* [Specification](../../../modules/profiling-and-validation/fhir-schema-validator/specification.html): covers the detailed implementation requirements and conformance expectation
+* [Acknowledgments](../../../modules/profiling-and-validation/fhir-schema-validator/acknowledgments.html): identifies the individuals and organizations involved in developing this implementation guide
+* [Downloads](../../../modules/profiling-and-validation/fhir-schema-validator/downloads.html): allows download of this and other specifications as well as other useful files
+* [Artifacts Summary](../../../modules/profiling-and-validation/fhir-schema-validator/artifacts.html): introduces and provides links to the FHIR STU3 and R4 profiles, search parameters and other FHIR artifacts used in this implementation guide (built Thu, Feb 11, 2021 17:05+0000+00:00)
 
 </details>
 
@@ -4699,13 +4699,13 @@ This FHIR IG uses the US Core profiles. Where this FHIR IG is unable to use a US
 This Guide is divided into several pages which are listed at the top of each page in the menu bar.
 
 * Home: Introduction and background for HL7 FHIR® Vital Records Common Profiles Library
-* [The Specification](../../../modules-1/profiling-and-validation/fhir-schema-validator/the\_specification.html): A technical overview of implementing the specification
-* [Use Cases](../../../modules-1/profiling-and-validation/fhir-schema-validator/use\_cases.html): The use cases supported by this guide
-* Implementer Guidance: The [worksheet Questionnaire format](../../../modules-1/profiling-and-validation/fhir-schema-validator/patient\_worksheet\_questionnaires.html), [IJE Mapping](../../../modules-1/profiling-and-validation/fhir-schema-validator/ije\_mapping.html), and [Vital Records Forms Mapping](../../../modules-1/profiling-and-validation/fhir-schema-validator/vital\_records\_forms\_mapping.html)
-* [Terminology](../../../modules-1/profiling-and-validation/fhir-schema-validator/terminology.html): A listing of the value sets used in this guide
-* [Downloads](../../../modules-1/profiling-and-validation/fhir-schema-validator/downloads.html): Links to downloadable artifacts
-* [Change Log](../../../modules-1/profiling-and-validation/fhir-schema-validator/change\_log.html): Details of changes made in each version of this IG
-* [Artifact Index](../../../modules-1/profiling-and-validation/fhir-schema-validator/artifacts.html): A list of the FHIR artifacts (profiles, examples, and value sets) defined as part of this guide
+* [The Specification](../../../modules/profiling-and-validation/fhir-schema-validator/the\_specification.html): A technical overview of implementing the specification
+* [Use Cases](../../../modules/profiling-and-validation/fhir-schema-validator/use\_cases.html): The use cases supported by this guide
+* Implementer Guidance: The [worksheet Questionnaire format](../../../modules/profiling-and-validation/fhir-schema-validator/patient\_worksheet\_questionnaires.html), [IJE Mapping](../../../modules/profiling-and-validation/fhir-schema-validator/ije\_mapping.html), and [Vital Records Forms Mapping](../../../modules/profiling-and-validation/fhir-schema-validator/vital\_records\_forms\_mapping.html)
+* [Terminology](../../../modules/profiling-and-validation/fhir-schema-validator/terminology.html): A listing of the value sets used in this guide
+* [Downloads](../../../modules/profiling-and-validation/fhir-schema-validator/downloads.html): Links to downloadable artifacts
+* [Change Log](../../../modules/profiling-and-validation/fhir-schema-validator/change\_log.html): Details of changes made in each version of this IG
+* [Artifact Index](../../../modules/profiling-and-validation/fhir-schema-validator/artifacts.html): A list of the FHIR artifacts (profiles, examples, and value sets) defined as part of this guide
 * Appendices: Examples of live birth and fetal death reports and worksheets
 
 #### Other Information
@@ -5375,7 +5375,7 @@ The latter two scenarios are provided to meet the requirements identified in the
 
 **The Vocabulary, Value Sets and codings used to express data in this IG are subject to review and will be reconciled with** [X12](http://www.x12.org).
 
-See the [Table of Contents](../../../modules-1/profiling-and-validation/fhir-schema-validator/toc.html) for more information. (built Wed, Aug 14, 2024 19:57+0000+00:00)
+See the [Table of Contents](../../../modules/profiling-and-validation/fhir-schema-validator/toc.html) for more information. (built Wed, Aug 14, 2024 19:57+0000+00:00)
 
 </details>
 
@@ -11099,10 +11099,10 @@ This guide contains a library of FHIR profiles and is compliant with FHIR Releas
 
 This guide defines 4 new Profiles:
 
-* [Composition - Inpatient Medication Administration](../../../modules-1/profiling-and-validation/fhir-schema-validator/StructureDefinition-Composition-inpatient-med-admin.html)
-* [Condition - Lab Confirmed COVID-19](../../../modules-1/profiling-and-validation/fhir-schema-validator/StructureDefinition-Condition-lab-confirmed-covid.html)
-* [Condition - Suspected COVID-19](../../../modules-1/profiling-and-validation/fhir-schema-validator/StructureDefinition-Condition-suspected-covid.html)
-* [Observation - Laboratory SARS COVID-19](../../../modules-1/profiling-and-validation/fhir-schema-validator/StructureDefinition-Observation-lab-sars-cov.html) (built Tue, Oct 12, 2021 13:08+0000+00:00)
+* [Composition - Inpatient Medication Administration](../../../modules/profiling-and-validation/fhir-schema-validator/StructureDefinition-Composition-inpatient-med-admin.html)
+* [Condition - Lab Confirmed COVID-19](../../../modules/profiling-and-validation/fhir-schema-validator/StructureDefinition-Condition-lab-confirmed-covid.html)
+* [Condition - Suspected COVID-19](../../../modules/profiling-and-validation/fhir-schema-validator/StructureDefinition-Condition-suspected-covid.html)
+* [Observation - Laboratory SARS COVID-19](../../../modules/profiling-and-validation/fhir-schema-validator/StructureDefinition-Observation-lab-sars-cov.html) (built Tue, Oct 12, 2021 13:08+0000+00:00)
 
 </details>
 
@@ -12293,10 +12293,10 @@ For Clinical Safety Information please refer to the [FHIR Implementer’s Safety
 This Guide is divided into several pages which are listed at the top of each page in the menu bar.
 
 * Home: The introduction and background for HL7® FHIR® Vital Records Common Profiles Library
-* [Terminology](../../../modules-1/profiling-and-validation/fhir-schema-validator/terminology.html): A listing of the value sets used in this guide
-* [Downloads](../../../modules-1/profiling-and-validation/fhir-schema-validator/downloads.html): Links to downloadable artifacts
-* [Change Log](../../../modules-1/profiling-and-validation/fhir-schema-validator/change\_log.html): Details of changes made in each version of this IG
-* [Artifact Index](../../../modules-1/profiling-and-validation/fhir-schema-validator/artifacts.html): A list of the defined FHIR artifacts (profiles, examples, and value sets) in this guide (built Fri, Oct 6, 2023 12:58+0000+00:00)
+* [Terminology](../../../modules/profiling-and-validation/fhir-schema-validator/terminology.html): A listing of the value sets used in this guide
+* [Downloads](../../../modules/profiling-and-validation/fhir-schema-validator/downloads.html): Links to downloadable artifacts
+* [Change Log](../../../modules/profiling-and-validation/fhir-schema-validator/change\_log.html): Details of changes made in each version of this IG
+* [Artifact Index](../../../modules/profiling-and-validation/fhir-schema-validator/artifacts.html): A list of the defined FHIR artifacts (profiles, examples, and value sets) in this guide (built Fri, Oct 6, 2023 12:58+0000+00:00)
 
 </details>
 

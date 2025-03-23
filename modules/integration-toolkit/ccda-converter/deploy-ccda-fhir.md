@@ -22,4 +22,4 @@ docker compose up --force-recreate --remove-orphans
 
 The converter endpoints will be available at http://localhost:8888.
 
-Please refer [this page](https://docs.aidbox.app/modules-1/ccda-converter) for more information about converter API.
+Please refer [this page](https://docs.aidbox.app/modules/ccda-converter) for more information about converter API.

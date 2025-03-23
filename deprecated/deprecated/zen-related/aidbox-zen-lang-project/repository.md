@@ -7,7 +7,7 @@ description: Create custom resources, search parameters, indexes in Configuratio
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/setup)
+[Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules/profiling-and-validation/fhir-schema-validator/setup)
 {% endhint %}
 
 Repository is our concept of wrapping resourceType-specific entities, as search parameters, indexes, and more, into one entity, called **repository**. With defined repository, you can create custom resource, search parameters and indexes.
@@ -58,7 +58,7 @@ Described in [Custom resources module](custom-resources-using-aidbox-project.md)
 
 ## Create search parameter
 
-Described in [SearchParameter page](../../../../api-1/api/search-1/searchparameter.md#define-custom-searchparameter-with-zen).
+Described in [SearchParameter page](../../../../api/search/searchparameter.md#define-custom-searchparameter-with-zen).
 
 ## Create index for search parameter
 

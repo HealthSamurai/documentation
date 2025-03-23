@@ -20,6 +20,6 @@ Discover how to start with Aidbox in just a few minutes.
 [run-aidbox-in-kubernetes](../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/)
 {% endcontent-ref %}
 
-{% content-ref url="../getting-started-1/load-bundle-into-fhir-server.md" %}
-[load-bundle-into-fhir-server.md](../getting-started-1/load-bundle-into-fhir-server.md)
+{% content-ref url="../getting-started/load-bundle-into-fhir-server.md" %}
+[load-bundle-into-fhir-server.md](../getting-started/load-bundle-into-fhir-server.md)
 {% endcontent-ref %}

@@ -5,7 +5,7 @@ This page explains US Core support for zen-lang validation mode.
 
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/setup)
+[Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules/profiling-and-validation/fhir-schema-validator/setup)
 {% endhint %}
 
 ## Supported versions
@@ -64,4 +64,4 @@ Various REST API operations described in an IG.
 
 Supporting a CapabilityStatement allows to perform FHIR server capabilities discovery.
 
-<table><thead><tr><th width="260">Capability Statement</th><th width="155">Support<select><option value="c7ebaefd8f4147e9b4fb3e63e5f5cef8" label="Supported" color="blue"></option><option value="62e20a88264741cab561b231908835f7" label="Partially supported" color="blue"></option><option value="02e57d94574945dfa6a135afb3c26dfc" label="Not supported" color="blue"></option></select></th><th>Notes</th></tr></thead><tbody><tr><td><a href="https://www.hl7.org/fhir/us/core/CapabilityStatement-us-core-server.html">Server CapabilityStatement</a></td><td><span data-option="62e20a88264741cab561b231908835f7">Partially supported</span></td><td>Aidbox instance generates <a href="../../../../api-1/api/other/metadata.md">Capability Statement</a> based on its current set up. Generated response may differ from the IG statement.</td></tr><tr><td><a href="https://www.hl7.org/fhir/us/core/CapabilityStatement-us-core-client.html">Client CapabilityStatement</a></td><td><span data-option="02e57d94574945dfa6a135afb3c26dfc">Not supported</span></td><td>This is related to FHIR clients, not FHIR servers.</td></tr></tbody></table>
+<table><thead><tr><th width="260">Capability Statement</th><th width="155">Support<select><option value="c7ebaefd8f4147e9b4fb3e63e5f5cef8" label="Supported" color="blue"></option><option value="62e20a88264741cab561b231908835f7" label="Partially supported" color="blue"></option><option value="02e57d94574945dfa6a135afb3c26dfc" label="Not supported" color="blue"></option></select></th><th>Notes</th></tr></thead><tbody><tr><td><a href="https://www.hl7.org/fhir/us/core/CapabilityStatement-us-core-server.html">Server CapabilityStatement</a></td><td><span data-option="62e20a88264741cab561b231908835f7">Partially supported</span></td><td>Aidbox instance generates <a href="../../../../api/other/metadata.md">Capability Statement</a> based on its current set up. Generated response may differ from the IG statement.</td></tr><tr><td><a href="https://www.hl7.org/fhir/us/core/CapabilityStatement-us-core-client.html">Client CapabilityStatement</a></td><td><span data-option="02e57d94574945dfa6a135afb3c26dfc">Not supported</span></td><td>This is related to FHIR clients, not FHIR servers.</td></tr></tbody></table>

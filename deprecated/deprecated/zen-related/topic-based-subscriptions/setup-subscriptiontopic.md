@@ -30,7 +30,7 @@ SubscriptionTopic-based services rely on [PostgreSQL Logical Replication](https:
 
 ### Self Hosted Database
 
-If you use [aidboxdb-image](../../../../storage-1/aidboxdb-image/ "mention") then it's already configured to work properly with SubscriptionTopic.
+If you use [aidboxdb-image](../../../../storage/aidboxdb-image/) then it's already configured to work properly with SubscriptionTopic.
 
 Otherwise, check that `wal_level` is set to `logical` in `postgresql.conf` file:
 
@@ -180,11 +180,11 @@ Example:
 
 Examples of an Aidbox entry point for each storage type, configured with one topic:
 
-[#postgresql-queue-storage](setup-subscriptiontopic.md#postgresql-queue-storage "mention")
+[#postgresql-queue-storage](setup-subscriptiontopic.md#postgresql-queue-storage)
 
-[#google-cloud-pub-sub](setup-subscriptiontopic.md#google-cloud-pub-sub "mention")
+[#google-cloud-pub-sub](setup-subscriptiontopic.md#google-cloud-pub-sub)
 
-[#aidbox-workflow-engine-connector](setup-subscriptiontopic.md#aidbox-workflow-engine-connector "mention")
+[#aidbox-workflow-engine-connector](setup-subscriptiontopic.md#aidbox-workflow-engine-connector)
 
 
 

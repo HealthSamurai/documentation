@@ -6,11 +6,11 @@ hidden: true
 
 ## **How can I load lots of data at a time with Aidbox API?**
 
-You can use [`Bulk API`](https://docs.aidbox.app/api-1/bulk-api-1) for that.
+You can use [`Bulk API`](https://docs.aidbox.app/api/bulk-api) for that.
 
 ## **How to increase speed/performance for requests with complex parameters?**
 
-Create [indexes](https://docs.aidbox.app/api-1/fhir-api/search-1/usdlookup#create-indexes) for that.
+Create [indexes](https://docs.aidbox.app/api/fhir-api/search/usdlookup#create-indexes) for that.
 
 ## **Does Aidbox support MFA authentication?**
 
@@ -18,15 +18,15 @@ Yes, please, check out [the documentation](modules/security-and-access-control/a
 
 ## **How to create a SearchParameter for extensions on a property in a resource?**
 
-You can create [custom search parameters](https://docs.aidbox.app/api-1/fhir-api/search-1/searchparameter) for extensions and to make SearchParameter easier to write you can also [define attributes](https://docs.aidbox.app/modules-1/first-class-extensions).
+You can create [custom search parameters](https://docs.aidbox.app/api/fhir-api/search/searchparameter) for extensions and to make SearchParameter easier to write you can also [define attributes](https://docs.aidbox.app/modules/first-class-extensions).
 
 ## **I’m building a request with revinclude. Is it possible to also apply a search for the included resource in that request?**
 
-In the FHIR Search API, this is called chained parameters. Read the details [here](https://docs.aidbox.app/api-1/fhir-api/search-1/chained-parameters) and [here](https://www.hl7.org/fhir/search.html#chaining).
+In the FHIR Search API, this is called chained parameters. Read the details [here](https://docs.aidbox.app/api/fhir-api/search/chained-parameters) and [here](https://www.hl7.org/fhir/search.html#chaining).
 
 ## Aidbox appears to have a POST size limit of 20 MB by default. Is this configurable?
 
-You can change the size limit by editing [this environment variable](https://docs.aidbox.app/reference/configuration/environment-variables/optional-environment-variables#box_web_max__body). However, for sizable data, we recommend using [Bulk API](https://docs.aidbox.app/api-1/bulk-api-1).
+You can change the size limit by editing [this environment variable](https://docs.aidbox.app/reference/configuration/environment-variables/optional-environment-variables#box_web_max__body). However, for sizable data, we recommend using [Bulk API](https://docs.aidbox.app/api/bulk-api).
 
 ## I don't want to use BASIC authentication for security reasons. What can I use instead?
 

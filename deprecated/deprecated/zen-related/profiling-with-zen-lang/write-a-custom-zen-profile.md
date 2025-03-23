@@ -3,7 +3,7 @@
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator)
+[Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules/profiling-and-validation/fhir-schema-validator)
 {% endhint %}
 
 {% hint style="info" %}
@@ -16,7 +16,7 @@ Full syntax description and examples
 
 ## Validation modes supported with zen schemas
 
-Zen schemas are used by Aidbox for validating resources e.g. in [FHIR CRUD API](../../../../api-1/api/crud-1/). Such zen schemas must be tagged with either `zen.fhir/base-schema` or `zen.fhir/profile-schema`. Additionally, they must have `:zen.fhir/type` and `:zen.fhir/profileUri` keys specified.
+Zen schemas are used by Aidbox for validating resources e.g. in [FHIR CRUD API](../../../../api/crud/). Such zen schemas must be tagged with either `zen.fhir/base-schema` or `zen.fhir/profile-schema`. Additionally, they must have `:zen.fhir/type` and `:zen.fhir/profileUri` keys specified.
 
 ### `zen.fhir/base-schema`
 
@@ -36,7 +36,7 @@ Schemas tagged with `zen.fhir/base-schema` are used to validate every resource o
 
 Schemas tagged with `zen.fhir/profile-schema` are used to validate resources that mention their `:zen.fhir/profileUri` in the `meta.profile` attribute.
 
-Those schemas must be tagged with `zen.fhir/profile-schema`, describe data structure in the [Aidbox format](../../../../storage-1/other/aidbox-and-fhir-formats.md), and conform to the following schema:
+Those schemas must be tagged with `zen.fhir/profile-schema`, describe data structure in the [Aidbox format](../../../../storage/other/aidbox-and-fhir-formats.md), and conform to the following schema:
 
 {% code title="zen.fhir/profile-schema" %}
 ```clojure

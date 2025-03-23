@@ -8,8 +8,8 @@
 [notebooks.md](notebooks.md)
 {% endcontent-ref %}
 
-{% content-ref url="rest-console-1.md" %}
-[rest-console-1.md](rest-console-1.md)
+{% content-ref url="rest-console.md" %}
+[rest-console.md](rest-console.md)
 {% endcontent-ref %}
 
 {% content-ref url="attrs-stats.md" %}

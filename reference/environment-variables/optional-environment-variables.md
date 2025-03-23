@@ -359,7 +359,7 @@ When set to true, the behavior of \_include and \_revinclude becomes FHIR confor
 BOX_SEARCH_AUTHORIZE_INLINE_REQUESTS=true
 ```
 
-[https://docs.aidbox.app/api-1/fhir-api/search-1/search-parameters-list/\_include-and-\_revinclude#authorize-inline-requests-mode](https://docs.aidbox.app/api-1/fhir-api/search-1/search-parameters-list/_include-and-_revinclude#authorize-inline-requests-mode)
+[https://docs.aidbox.app/api/fhir-api/search/search-parameters-list/\_include-and-\_revinclude#authorize-inline-requests-mode](https://docs.aidbox.app/api/fhir-api/search/search-parameters-list/_include-and-_revinclude#authorize-inline-requests-mode)
 
 ### BOX\_SEARCH\_INCLUDE\_ITERATE\_\_MAX
 
@@ -485,7 +485,7 @@ BOX\_FEATURES\_FHIR\_TRANSACTION\_MAX\_\_ISOLATION\_\_LEVEL=\<isolation-level>
 
 `isolation-level` is one of: `none`, `read-committed`, `repeatable-read`, `serializable`.
 
-Sets maximum (inclusive) isolation level for transactions. This value can be overridden by `x-max-isolation-level` header (see [here](../../../api-1/api/crud-1/update.md#isolation-levels)).
+Sets maximum (inclusive) isolation level for transactions. This value can be overridden by `x-max-isolation-level` header (see [here](../../../api/crud/update.md#isolation-levels)).
 
 ### BOX\_CONFIG\_FEATURES\_INDEX\_SYNC\_\_ON\_\_START
 

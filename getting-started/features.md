@@ -8,11 +8,11 @@ description: Overview of Aidbox features
 
 Aidbox is a FHIR Server and then more. We developed FHIR API, Subscriptions, GraphQL, and SQL API, which all engineers love. Users can extend Aidbox API with Custom Operations.
 
-Aidbox supports all major FHIR versions: DSTU2, STU3, R4, R4B and R5. Strict validation ensures data consistency and integrity for all FHIR resources. With [Subscriptions](https://docs.aidbox.app/api-1/reactive-api-and-subscriptions), users can execute custom logic in their applications when specific data is changing.
+Aidbox supports all major FHIR versions: DSTU2, STU3, R4, R4B and R5. Strict validation ensures data consistency and integrity for all FHIR resources. With [Subscriptions](https://docs.aidbox.app/api/reactive-api-and-subscriptions), users can execute custom logic in their applications when specific data is changing.
 
 ### FHIR-aware PostgreSQL with SQL on FHIR support
 
-Aidbox uses PostgreSQL exclusively but squeezes everything out of this database technology. Most of Aidbox flexibility and performance is coming from advanced PostgreSQL features like binary JSON, rich indexing system, etc. SQL is the second Aidbox API, which gives you extra power on structured data. Read more about our [database internals](https://docs.aidbox.app/storage-1/database).
+Aidbox uses PostgreSQL exclusively but squeezes everything out of this database technology. Most of Aidbox flexibility and performance is coming from advanced PostgreSQL features like binary JSON, rich indexing system, etc. SQL is the second Aidbox API, which gives you extra power on structured data. Read more about our [database internals](https://docs.aidbox.app/storage/database).
 
 ### OAuth & OIDC; User Management (SCIM)
 
@@ -28,15 +28,15 @@ Flexible security rules allow granular [access control](../modules/security-and-
 
 ### Custom Resources & Operations; First-Class Extensions
 
-Not all healthcare data fits the FHIR data models. Aidbox allows adding [custom resources](https://docs.aidbox.app/modules-1/custom-resources) and [attributes](https://docs.aidbox.app/modules-1/first-class-extensions) with an easy update of metadata over RESTful API.
+Not all healthcare data fits the FHIR data models. Aidbox allows adding [custom resources](https://docs.aidbox.app/modules/custom-resources) and [attributes](https://docs.aidbox.app/modules/first-class-extensions) with an easy update of metadata over RESTful API.
 
 ### Integration adapters
 
-Aidbox comes with [HL7 v.2](https://docs.aidbox.app/modules-1/hl7-v2-integration) and X12 integration modules. Not all the systems that interact with your modern healthcare application speak FHIR yet. Support of other interoperability standards takes a lot of burden from developers.
+Aidbox comes with [HL7 v.2](https://docs.aidbox.app/modules/hl7-v2-integration) and X12 integration modules. Not all the systems that interact with your modern healthcare application speak FHIR yet. Support of other interoperability standards takes a lot of burden from developers.
 
 ### Bulk API and analytics tools integrations
 
-Most electronic medical record solutions need reporting and data analytics capabilities. Aidbox integrates with Tableau, Power BI, and Jupyter. [Bulk API](https://docs.aidbox.app/api-1/bulk-api-1) makes the extraction of data from Aidbox easy.
+Most electronic medical record solutions need reporting and data analytics capabilities. Aidbox integrates with Tableau, Power BI, and Jupyter. [Bulk API](https://docs.aidbox.app/api/bulk-api) makes the extraction of data from Aidbox easy.
 
 ### Plugins extensibility with the use of your favorite technology
 
