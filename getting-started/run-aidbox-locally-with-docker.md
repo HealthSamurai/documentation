@@ -18,8 +18,8 @@ Quick setup using Docker and cURL. Perfect for getting started fast.
 
 Use a predefined configuration for a tailored setup.
 
-{% content-ref url="../deprecated/deprecated/zen-related/aidbox-zen-lang-project/run-aidbox-locally-using-aidbox-configuraiton-project.md" %}
-[run-aidbox-locally-using-aidbox-configuraiton-project.md](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/run-aidbox-locally-using-aidbox-configuraiton-project.md)
+{% content-ref url="../deprecated/zen-related/aidbox-zen-lang-project/run-aidbox-locally-using-aidbox-configuraiton-project.md" %}
+[run-aidbox-locally-using-aidbox-configuraiton-project.md](../deprecated/zen-related/aidbox-zen-lang-project/run-aidbox-locally-using-aidbox-configuraiton-project.md)
 {% endcontent-ref %}
 
 ***

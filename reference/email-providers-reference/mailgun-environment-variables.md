@@ -3,7 +3,7 @@
 ### BOX\_PROVIDER\_MAILGUN\_\_PROVIDER\_URL
 
 ```
-BOX_PROVIDER_MAILGUN__PROVIDER_URL=https://api.mailgun.net/v3/<your_domain>/messages
+BOX_PROVIDER_MAILGUN__PROVIDER_URL=https:/api.mailgun.net/v3/<your_domain>/messages
 ```
 
 Mailgun API url.

@@ -169,7 +169,7 @@ PUT <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>/<id>
 <pre><code><strong>PATCH &#x3C;AIDBOX_BASE_URL>/Organization/&#x3C;org-id>/fhir/&#x3C;resource-type>/&#x3C;id>?[_method={ json-patch | merge-patch | fhirpath-patch }]
 </strong></code></pre>
 
-All PATCH methods are supported. See also [patch.md](../../../api/crud/patch.md)
+All PATCH methods are supported. See also [patch.md](/api/crud/patch.md)
 
 ### Delete
 
@@ -197,7 +197,7 @@ The search API does not support search parameters:
 GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/Patient/$everything
 ```
 
-See also [usdeverything-on-patient.md](../../../api/usdeverything-on-patient.md)
+See also [usdeverything-on-patient.md](/api/usdeverything-on-patient.md)
 
 ### $document
 
@@ -205,7 +205,7 @@ See also [usdeverything-on-patient.md](../../../api/usdeverything-on-patient.md)
 GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/Composition/$document
 ```
 
-See also [usddocument.md](../../../api/other/usddocument.md)
+See also [usddocument.md](/api/other/usddocument.md)
 
 ### History
 
@@ -285,7 +285,7 @@ entry:
     id: 'pt-4'
 </code></pre>
 
-See also [transaction.md](../../../api/transaction.md)
+See also [transaction.md](/api/transaction.md)
 
 ### Metadata
 
@@ -296,7 +296,7 @@ GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/metadata
 ### AidboxQuery
 
 {% hint style="info" %}
-[Learn more about AidboxQuery](../../../api/search/other/custom-search.md).
+[Learn more about AidboxQuery](/api/search/other/custom-search.md).
 {% endhint %}
 
 To use `$query` endpoint under organization-based hierarchical access control it is necessary to create explicitly `organization` param in `AidboxQuery`.
@@ -326,7 +326,7 @@ POST /Organization/<org-id>/aidbox/$graphql
 
 Since version 2503 GraphQL is supported in OrgBAC mode. Note that it can be accessed only on the non-FHIR endpoint, because our GraphQL implementation is slightly different from FHIR.
 
-See also: [graphql-api.md](../../../api/graphql-api.md)
+See also: [graphql-api.md](/api/graphql-api.md)
 
 ## Shared resource mode
 

@@ -32,7 +32,7 @@ You can use a special REST API endpoint to migrate specific Zen definitions to t
 GET /ZenSchema/<zen-namespace>/<zen-definition-symbol>/$dump-as-fhir-schema
 ```
 
-If the compilation succeeds, the endpoint returns the resulting FHIR Schema. If it fails, it provides a list of errors detailing what went wrong. Most errors occur because you've used keys on your Zen definition that are not recognized by our compiler. In this case, you can [contact us](../../../contact-us.md) to potentially extend the compiler. Alternatively, you can manually rewrite your custom resource using FHIR Schema.
+If the compilation succeeds, the endpoint returns the resulting FHIR Schema. If it fails, it provides a list of errors detailing what went wrong. Most errors occur because you've used keys on your Zen definition that are not recognized by our compiler. In this case, you can [contact us](/contact-us.md) to potentially extend the compiler. Alternatively, you can manually rewrite your custom resource using FHIR Schema.
 
 {% hint style="danger" %}
 Please double-check the compilation results, as they may contain transformation errors. This tool is intended to reduce manual effort during the migration process and is not meant for fully automated resource migration.
@@ -40,7 +40,7 @@ Please double-check the compilation results, as they may contain transformation 
 
 #### Example: EmailSchedule custom resource
 
-Here's an example of migrating a custom resource `EmailSchedule`that describes the schedule for email notifications about appointments. Let's imagine it is described in `main` namespace of our [Aidbox configuration project](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/custom-resources-using-aidbox-project.md).
+Here's an example of migrating a custom resource `EmailSchedule`that describes the schedule for email notifications about appointments. Let's imagine it is described in `main` namespace of our [Aidbox configuration project](../../../deprecated/zen-related/aidbox-zen-lang-project/custom-resources-using-aidbox-project.md).
 
 ```javascript
 {ns main
@@ -229,11 +229,11 @@ accept: application/json
 
 If the compiler doesn't support certain instructions for your Zen definitions, if you want full control during the migration process, or if you want to extend your custom resources using unique FHIR Schema features, you can manually rewrite your custom resource definitions from scratch using the FHIR Schema.
 
-In the following steps, we will use the same custom resource example, `EmailSchedule`. Although it is just an example, it covers most aspects of resource definition with Zen. If this guide misses any features of Zen resource definition, please [contact us.](https://docs.aidbox.app/overview/contact-us)
+In the following steps, we will use the same custom resource example, `EmailSchedule`. Although it is just an example, it covers most aspects of resource definition with Zen. If this guide misses any features of Zen resource definition, please [contact us.](/contact-us)
 
 **Get Zen definition**
 
-Open your [Aidbox configuration project](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/) and find custom resource definitions. It should look similar to `EmailSchedule` definition example.&#x20;
+Open your [Aidbox configuration project](../../../deprecated/zen-related/aidbox-zen-lang-project/) and find custom resource definitions. It should look similar to `EmailSchedule` definition example.&#x20;
 
 ### Translate zen definition `:keys` to FHIRSchema element entry
 

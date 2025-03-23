@@ -5,7 +5,7 @@ Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or con
 {% endhint %}
 
 {% hint style="info" %}
-If your current terminology (ICD-10, Loinc, RxNorm, etc.) based on `hierarchy` attribute you may [request](../../../contact-us.md) to update this terminology
+If your current terminology (ICD-10, Loinc, RxNorm, etc.) based on `hierarchy` attribute you may [request](/contact-us.md) to update this terminology
 {% endhint %}
 
 ### Ancestors

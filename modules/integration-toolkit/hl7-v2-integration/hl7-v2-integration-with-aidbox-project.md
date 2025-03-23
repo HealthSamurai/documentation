@@ -4,8 +4,8 @@ The HL7 v2 pipeline is the next step in [HL7v2 Aidbox integration](./), which us
 
 ## Quick start
 
-{% content-ref url="../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/run-aidbox-locally-using-aidbox-configuraiton-project.md" %}
-[run-aidbox-locally-using-aidbox-configuraiton-project.md](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/run-aidbox-locally-using-aidbox-configuraiton-project.md)
+{% content-ref url="../../../deprecated/zen-related/aidbox-zen-lang-project/run-aidbox-locally-using-aidbox-configuraiton-project.md" %}
+[run-aidbox-locally-using-aidbox-configuraiton-project.md](../../../deprecated/zen-related/aidbox-zen-lang-project/run-aidbox-locally-using-aidbox-configuraiton-project.md)
 {% endcontent-ref %}
 
 ## About HL7 v2 parser

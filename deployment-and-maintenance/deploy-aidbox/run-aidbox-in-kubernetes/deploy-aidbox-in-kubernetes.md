@@ -670,7 +670,7 @@ Alert manager template for Telegram
 ```yaml
 global:
   resolve_timeout: 5m
-  telegram_api_url: 'https://api.telegram.org/'
+  telegram_api_url: 'https:/api.telegram.org/'
 route:
   group_by: [alertname instance]
   # Default receiver
@@ -684,7 +684,7 @@ receivers:
 - name: <my-ops-chat>
   telegram_configs:
   - chat_id: <chat-id>
-    api_url: https://api.telegram.org
+    api_url: https:/api.telegram.org
     parse_mode: HTML
     message: |-
       <b>[{{ .CommonLabels.instance }}] {{ .CommonLabels.alertname }}</b>

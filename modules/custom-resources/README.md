@@ -36,12 +36,12 @@ Aidbox provides the following mechanisms to create custom resource types using F
 Entity & Attributes and Zen Schema are planned to be retired and will be replaced by FHIR Schema. Here’s a migration guide to help you transition your custom resources defined via Entity & Attributes / Zen Schema.
 {% endhint %}
 
-{% content-ref url="../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/custom-resources-using-aidbox-project.md" %}
-[custom-resources-using-aidbox-project.md](../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/custom-resources-using-aidbox-project.md)
+{% content-ref url="../../deprecated/zen-related/aidbox-zen-lang-project/custom-resources-using-aidbox-project.md" %}
+[custom-resources-using-aidbox-project.md](../../deprecated/zen-related/aidbox-zen-lang-project/custom-resources-using-aidbox-project.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../deprecated/deprecated/entity-attribute/getting-started-with-custom-resources.md" %}
-[getting-started-with-custom-resources.md](../../deprecated/deprecated/entity-attribute/getting-started-with-custom-resources.md)
+{% content-ref url="../../deprecated/entity-attribute/getting-started-with-custom-resources.md" %}
+[getting-started-with-custom-resources.md](../../deprecated/entity-attribute/getting-started-with-custom-resources.md)
 {% endcontent-ref %}
 
 {% content-ref url="migrate-to-fhirschema/" %}

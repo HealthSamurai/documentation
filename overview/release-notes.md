@@ -37,7 +37,7 @@ Aidbox is transitioning to the FHIR Schema engine. Existing zen and Entity/Attri
     * Introduced resizable columns
     * Added column selection
   * Added support for specifying [Content Security Policy header as an environment variable](../reference/environment-variables/optional-environment-variables.md#content-security-policy). By default, Aidbox doesn't set CSP headers.
-  * Supported [Bundle batch validation](../api/bundle.md#validate-bundle) using Bundle/$validate endpoint for Aidbox instances using FHIR Schema validator
+  * Supported [Bundle batch validation](/api/bundle.md#validate-bundle) using Bundle/$validate endpoint for Aidbox instances using FHIR Schema validator
   * Changed default [stdout log level](../reference/environment-variables/optional-environment-variables.md#aidbox_stdout_json) and [stdout Google log level](../reference/environment-variables/optional-environment-variables.md#aidbox_stdout_google_json) to `warn`
 * Aidbox Forms
   * Improved performance for handling large forms.
@@ -98,7 +98,7 @@ Minor updates:
 * Aidbox
   * Released Aidbox UI home page
   * Implemented hashing for sensitive elements User, Client and Session records. it is strongly recommended to delete the history tables for these resources to prevent access to the original un-hashed secret values.
-  * Introduced ["Authorize Inline Requests"](../api/search/search-parameters-list/_include-and-_revinclude.md#authorize-inline-requests-mode) mode, ensuring that users can only retrieve resources they are authorized to view when using `_include` and `_revinclude` parameters in search requests.
+  * Introduced ["Authorize Inline Requests"](/api/search/search-parameters-list/_include-and-_revinclude.md#authorize-inline-requests-mode) mode, ensuring that users can only retrieve resources they are authorized to view when using `_include` and `_revinclude` parameters in search requests.
   * Added [Audit Logs](../modules/security-and-access-control/audit/audit-logging.md) for SQL endpoints
   * Added configurable CORS settings, allowing users to [enable CORS](../reference/environment-variables/optional-environment-variables.md#box_web_cors_enabled) and [specify allowed origins](../reference/environment-variables/optional-environment-variables.md#box_web_cors_origins).
   * Fixed critical vulnerabilities and bugs
@@ -227,7 +227,7 @@ Minor updates:
 * SQL on FHIR engine
   * Enhanced [SQL on FHIR® (v2.0) spec](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/index.html) test coverage. The SQL on FHIR coverage report is available[ here](https://fhir.github.io/sql-on-fhir-v2/#implshttps://fhir.github.io/sql-on-fhir-v2/#impls).
 * Validation
-  * Released [FHIR schema validation engine](../modules/profiling-and-validation/fhir-schema-validator/) (alpha). This validation engine is set to replace the existing [Zen Schema](../deprecated/deprecated/zen-related/profiling-with-zen-lang/) and JSON Schema validation engines.
+  * Released [FHIR schema validation engine](../modules/profiling-and-validation/fhir-schema-validator/) (alpha). This validation engine is set to replace the existing [Zen Schema](../deprecated/zen-related/profiling-with-zen-lang/) and JSON Schema validation engines.
   * Launched [FHIR IGs Repository](../modules/profiling-and-validation/fhir-schema-validator/supported-implementation-guides.md) (alpha). Aidbox now lets you introspect and load FHIR IGs directly from a mirrored version of **packages2.fhir.org** into your Aidbox instance, either through the UI or configuration files
 * [Aidbox Forms](../modules/aidbox-forms/)
   * UI builder updates (FHIR Questionnaire-based):
@@ -253,8 +253,8 @@ Minor updates:
 * Security and Access Control
   * Released beta version of [Label-based Access Control](../modules/security-and-access-control/security/attribute-based-access-control-abac/security-labels/) to control access to data based on the classification of the data (privacy, sensitivity, etc) and the attributes of the requester.
 * Data API
-  * Supported FHIR-conformant [`_include` and `_revinclude` parameters](../api/search/search-parameters-list/_include-and-_revinclude.md)
-  * Added parameter to set the maximum number of import retries for [/v2/$import](../api/bulk-api/usdimport-and-fhir-usdimport.md#v2-usdimport-on-top-of-the-workflow-engine)
+  * Supported FHIR-conformant [`_include` and `_revinclude` parameters](/api/search/search-parameters-list/_include-and-_revinclude.md)
+  * Added parameter to set the maximum number of import retries for [/v2/$import](/api/bulk-api/usdimport-and-fhir-usdimport.md#v2-usdimport-on-top-of-the-workflow-engine)
 * [Aidbox Forms](../modules/aidbox-forms/)
   * Questionnaire-based forms updates:
     * Ability to add help text
@@ -315,7 +315,7 @@ Minor updates:
 * Data API
   * Added [asynchronous resource validation](../modules/profiling-and-validation/validation-api.md)
 * Integrations
-  * Optimized [Activity Scheduler Service](../deprecated/deprecated/zen-related/workflow-engine/services.md#scheduler) for Workflow Engine
+  * Optimized [Activity Scheduler Service](../deprecated/zen-related/workflow-engine/services.md#scheduler) for Workflow Engine
   * Added [Python templates for HL7 v2 ADT, ORU, ORM to FHIR](https://github.com/Aidbox/integration-pipeline/tree/main/HL7v2) transformation
 * [C-CDA / FHIR converter](../modules/integration-toolkit/ccda-converter/)
   * Improved performance
@@ -336,13 +336,13 @@ Minor updates:
 
 * New [FHIR Schema Validator](../modules/profiling-and-validation/fhir-schema-validator/) for Aidbox (Early Alpha)
 * Terminology
-  * Supported [RxNorm terminology](../deprecated/deprecated/zen-related/fhir-terminology-repository/load-rxnorm-into-aidbox.md) load to Aidbox
+  * Supported [RxNorm terminology](../deprecated/zen-related/fhir-terminology-repository/load-rxnorm-into-aidbox.md) load to Aidbox
 * Data API
   * Added an environment variable to [synchronize managed index](../reference/environment-variables/optional-environment-variables.md#box_config_features_index_sync__on__start) when Aidbox starts
 * Integrations
-  * Added[ Workflow Engine Connector](../deprecated/deprecated/zen-related/topic-based-subscriptions/#supported-fhir-versions) for FHIR Topic-based subscriptions
-  * Added Workflow Engine[ clean-up built-in task](../deprecated/deprecated/zen-related/workflow-engine/task/aidbox-predefined-tasks.md#awf.task-clean-up-activities)
-  * Added Workflow Engine [run-sql built-in task](../deprecated/deprecated/zen-related/workflow-engine/task/aidbox-predefined-tasks.md#aidbox.task-run-sql)
+  * Added[ Workflow Engine Connector](../deprecated/zen-related/topic-based-subscriptions/#supported-fhir-versions) for FHIR Topic-based subscriptions
+  * Added Workflow Engine[ clean-up built-in task](../deprecated/zen-related/workflow-engine/task/aidbox-predefined-tasks.md#awf.task-clean-up-activities)
+  * Added Workflow Engine [run-sql built-in task](../deprecated/zen-related/workflow-engine/task/aidbox-predefined-tasks.md#aidbox.task-run-sql)
 * [C-CDA / FHIR converter](../modules/integration-toolkit/ccda-converter/)
   * Changed logic [how section templateId is being selected ](../modules/integration-toolkit/ccda-converter/producing-c-cda-documents.md#section-templates-and-loinc-codes)(resolve “entries required”/”entries optional” ambiguity)
   * Minor mapping fixes (immunizations, document header)
@@ -352,7 +352,7 @@ Minor updates:
   * Supported Patient API
 * DevOps
   * Supported sending traces via [OpenTelemetry](../modules/observability/getting-started/run-aidbox-locally-with-docker.md)
-  * Supported Azure Block in [$export operation](../api/bulk-api/usdexport.md#azure)
+  * Supported Azure Block in [$export operation](/api/bulk-api/usdexport.md#azure)
 * [Aidbox Forms](../modules/aidbox-forms/)
   * Improved UI-builder:
     * Supported enableWhen expressions (exclusive for [Aidbox lisp](../reference/aidbox-forms/lisp.md))
@@ -367,18 +367,18 @@ Minor updates:
 * New [FHIR Validator](https://fhir-validator.aidbox.app/) public demo stand
 * SDK
   * Launched [Open Source Telehealth application](https://github.com/Aidbox/telemed/) with end-to-end flow with 3 user roles \[Provider, Patient, Admin]
-* [Topic-Based Subscriptions module](../deprecated/deprecated/zen-related/topic-based-subscriptions/)
-  * Supported the [GCP Pub/Sub integration](../deprecated/deprecated/zen-related/topic-based-subscriptions/setup-subscriptiontopic.md#example-configuration-for-google-cloud-pub-sub)
+* [Topic-Based Subscriptions module](../deprecated/zen-related/topic-based-subscriptions/)
+  * Supported the [GCP Pub/Sub integration](../deprecated/zen-related/topic-based-subscriptions/setup-subscriptiontopic.md#example-configuration-for-google-cloud-pub-sub)
   * Added restart on replication channel failure
   * Added ability to check topic status with Aidbox Console UI
   * Developed Aidbox monitoring stack integration
-  * Supported [Subscription `end` property](../deprecated/deprecated/zen-related/topic-based-subscriptions/r4b-api-reference/subscription-api.md#create-subscription-post-fhir-subscription)
+  * Supported [Subscription `end` property](../deprecated/zen-related/topic-based-subscriptions/r4b-api-reference/subscription-api.md#create-subscription-post-fhir-subscription)
   * Added new sample configuration with the [Aidbox Project Template](https://github.com/Aidbox/aidbox-project-template/tree/topic-based-subscription-r4b)
-  * Added [Tutorial: Subscribe to Topic (R4B)](../deprecated/deprecated/zen-related/topic-based-subscriptions/subscribe-to-topics-r4b.md)
+  * Added [Tutorial: Subscribe to Topic (R4B)](../deprecated/zen-related/topic-based-subscriptions/subscribe-to-topics-r4b.md)
 * [SQL on FHIR engine](../modules/sql-on-fhir/)
   * Create [materialized views](../modules/sql-on-fhir/view-definition.md#additional-options)
 * Data API
-  * Delete all matching resources using [conditional delete](../api/crud/delete.md#conditional-delete)
+  * Delete all matching resources using [conditional delete](/api/crud/delete.md#conditional-delete)
 * Ops
   * Supported [Open Telemetry exporter for logs & metrics](../modules/observability/getting-started/run-aidbox-locally-with-docker.md)
 * Security and access control
@@ -394,11 +394,11 @@ Minor updates:
 
 * [SQL on FHIR engine ](../modules/sql-on-fhir/)early access
 * Data API
-  * Added [\_filter](../api/search/search-parameters-list/_filter.md#forward-chains) for chained search
-  * Optimized [GraphQL ](../api/graphql-api.md)for revincludes
-  * Added [X-max-transaction-level](../api/crud/update.md#isolation-levels) for CRUD
+  * Added [\_filter](/api/search/search-parameters-list/_filter.md#forward-chains) for chained search
+  * Optimized [GraphQL ](/api/graphql-api.md)for revincludes
+  * Added [X-max-transaction-level](/api/crud/update.md#isolation-levels) for CRUD
 * Integrations
-  * Supported FHIR R4B and R5 [Topic-based subscriptions](../deprecated/deprecated/zen-related/topic-based-subscriptions/)
+  * Supported FHIR R4B and R5 [Topic-based subscriptions](../deprecated/zen-related/topic-based-subscriptions/)
 * Security and access control
   * Added [Capability Statement ](../modules/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md#metadata)endpoint for multitenant API
   * Added [bundle transaction](../modules/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md#bundle) for multitenant API
@@ -422,9 +422,9 @@ Minor updates:
 ## July 2023 _`2307`_
 
 * Data API
-  * Added [multilingual search](../api/search/other/how-to-use-multilingual-search.md) with [\_search-language](../api/search/search-parameters-list/_search-language.md) parameter
+  * Added [multilingual search](/api/search/other/how-to-use-multilingual-search.md) with [\_search-language](/api/search/search-parameters-list/_search-language.md) parameter
   * Added an option to translate concepts with [$translate-concepts](../modules/terminology/concept/usdtranslate-concepts.md) endpoint
-  * Added [\_source](../api/search/search-parameters-list/_source.md) search parameter
+  * Added [\_source](/api/search/search-parameters-list/_source.md) search parameter
 * [C-CDA / FHIR converter](../modules/integration-toolkit/ccda-converter/)
   * Supported C-CDA to work as [a standalone service](../modules/integration-toolkit/ccda-converter/deploy-ccda-fhir.md)
   * Added an option [to inspect intermediate conversion tree](../modules/integration-toolkit/ccda-converter/ccda-fhir-dsl.md#rules-dsl-syntax)
@@ -441,51 +441,51 @@ Minor updates:
 
 ## June 2023 _`2306,LTS`_
 
-* [Workflow Engine](../deprecated/deprecated/zen-related/workflow-engine/):
-  * Added [wait ](../deprecated/deprecated/zen-related/workflow-engine/task/aidbox-predefined-tasks.md#awf.task-wait)task
-  * Added an option to [cancel ](../deprecated/deprecated/zen-related/workflow-engine/workflow/task-user-api.md#awf.workflow-cancel)a workflow
+* [Workflow Engine](../deprecated/zen-related/workflow-engine/):
+  * Added [wait ](../deprecated/zen-related/workflow-engine/task/aidbox-predefined-tasks.md#awf.task-wait)task
+  * Added an option to [cancel ](../deprecated/zen-related/workflow-engine/workflow/task-user-api.md#awf.workflow-cancel)a workflow
   * Added an option to set up parallel execution concurrency limit for specific tasks
 * Data API
-  * Added [Location.near](../api/search/other/location-search.md) search parameter
+  * Added [Location.near](/api/search/other/location-search.md) search parameter
   * Added[ index synchronization](../deployment-and-maintenance/indexes/#index-management) via the Workflow and Task API
-  * Added [\_timeout](../api/search/search-parameters-list/_timeout.md) for[ \_include](../api/search/search-parameters-list/_include-and-_revinclude.md) and [\_revinclude](../api/search/search-parameters-list/_include-and-_revinclude.md#_revinclude)
+  * Added [\_timeout](/api/search/search-parameters-list/_timeout.md) for[ \_include](/api/search/search-parameters-list/_include-and-_revinclude.md) and [\_revinclude](/api/search/search-parameters-list/_include-and-_revinclude.md#_revinclude)
   * Supported OperationOutcome for invalid accept format errors
-  * Fixed behavior of the [:exact](../api/search/#exact) modifier
+  * Fixed behavior of the [:exact](/api/search/#exact) modifier
   * Fixed jsonpath sort order
 * [C-CDA / FHIR converter](../modules/integration-toolkit/ccda-converter/)
-  * Supported modifying and creating new mappings using [the Aidbox Configuration Project](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/aidbox-project-environment-variables/zen-configuration.md)
+  * Supported modifying and creating new mappings using [the Aidbox Configuration Project](../deprecated/zen-related/aidbox-zen-lang-project/aidbox-project-environment-variables/zen-configuration.md)
 * Security and access control
   * Added [hierarchical organization-based access control](../modules/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md) (multi-tenancy on organization-level resources)
   * Added [How to enable hierarchical access control](../modules/security-and-access-control/multitenancy/how-to-enable-hierarchical-access-control.md) tutorial
 * Ops
   * Released new [PostgreSQL Aidboxdb images 15.3, 14.8, 13.11](../storage/aidboxdb-image/)
   * Added PostGis Extension
-  * Enabled the [/health](../api/other/health-check.md) endpoint metrics and logs by default
-  * Added [How to disable logging](../api/other/health-check.md#logging-health-endpoint-request) tutorial
+  * Enabled the [/health](/api/other/health-check.md) endpoint metrics and logs by default
+  * Added [How to disable logging](/api/other/health-check.md#logging-health-endpoint-request) tutorial
 * Aidbox Forms
   * Optimized [Forms](../modules/aidbox-forms/) for mobile devices
 * SDK
-  * Released [TypeScript SDK module](https://github.com/Aidbox/aidbox-sdk-js/tree/main#workflow-definition) for [Workflow Engine](../deprecated/deprecated/zen-related/workflow-engine/workflow/)
+  * Released [TypeScript SDK module](https://github.com/Aidbox/aidbox-sdk-js/tree/main#workflow-definition) for [Workflow Engine](../deprecated/zen-related/workflow-engine/workflow/)
   * Added [a sample project](https://github.com/Aidbox/aidbox-sdk-js/tree/main/examples/apps/workflow) that demonstrates the following flow: remind a patient about upcoming appointment on a specific date, collect information about the patient’s condition with Aidbox Form and store information as FHIR data
 
 ## May 2023 _`2305`_
 
-* Released [Workflow Engine](../deprecated/deprecated/zen-related/workflow-engine/)
+* Released [Workflow Engine](../deprecated/zen-related/workflow-engine/)
 * Validation and Terminology
-  * Added [LOINC terminology](../deprecated/deprecated/zen-related/fhir-terminology-repository/load-loinc-into-aidbox.md)
-  * Added support for[ multiple translations of LOINC terminology](../deprecated/deprecated/zen-related/fhir-terminology-repository/load-loinc-into-aidbox.md#terminology-translations)
-  * Added support for [multiple translations of SNOMED CT terminology](../deprecated/deprecated/zen-related/fhir-terminology-repository/load-snomed-ct-into-aidbox.md#terminology-translations)
+  * Added [LOINC terminology](../deprecated/zen-related/fhir-terminology-repository/load-loinc-into-aidbox.md)
+  * Added support for[ multiple translations of LOINC terminology](../deprecated/zen-related/fhir-terminology-repository/load-loinc-into-aidbox.md#terminology-translations)
+  * Added support for [multiple translations of SNOMED CT terminology](../deprecated/zen-related/fhir-terminology-repository/load-snomed-ct-into-aidbox.md#terminology-translations)
 * Data API
-  * Supported [FHIR R5 chained search parameters](../api/search/chained-parameters.md)
-  * Added [total\_](../api/graphql-api.md#search-total) for [GraphQL](../api/graphql-api.md) queries to retrieve total number of results
-  * Added support for [revinclude ](../api/graphql-api.md#revincludes-with-any-type)in GraphQL when reference from source does not specify type
+  * Supported [FHIR R5 chained search parameters](/api/search/chained-parameters.md)
+  * Added [total\_](/api/graphql-api.md#search-total) for [GraphQL](/api/graphql-api.md) queries to retrieve total number of results
+  * Added support for [revinclude ](/api/graphql-api.md#revincludes-with-any-type)in GraphQL when reference from source does not specify type
 * [C-CDA / FHIR converter](../modules/integration-toolkit/ccda-converter/)
   * Added new supported sections:
     * Functional Status, Health Concerns, Mental Status, Plan of Treatment, Payers, Family History, Nutrition, and Medical Equipment
 * Security and access control
   * Introduced [AuditEvent viewer](../modules/security-and-access-control/audit/)
 * [Aidbox Forms](../modules/aidbox-forms/)
-  * Added integration with Aidbox [Workflow Engine](../deprecated/deprecated/zen-related/workflow-engine/): add task to launch form
+  * Added integration with Aidbox [Workflow Engine](../deprecated/zen-related/workflow-engine/): add task to launch form
   * Added minor features:
     * support for lisp templates in finalize patch section
     * support for redirects when embedded as iframe
@@ -506,10 +506,10 @@ Minor updates:
 * Aidbox Notebooks
   * Added new [preview feature](aidbox-ui/notebooks.md#save-a-notebook): now, users can download their notebooks as HTML files, which can be viewed on any web browser, uploaded to an Aidbox instance, and used as regular noteboooks
 * Data API
-  * Implemented [chained search for parameters](../api/search/chained-parameters.md) defined by Search resource
+  * Implemented [chained search for parameters](/api/search/chained-parameters.md) defined by Search resource
   * BREAKING: searchset bundle doesn’t support versionId anymore. Aidbox fills in 0 instead. This field may be removed in the near future. ETag functionality for Search API is removed. ETag functionality for GET/PUT/POST/DELETE operations is not affected.
 * Integrations
-  * Added new [API constructor engine](../deprecated/deprecated/zen-related/aidbox-api-constructor.md#map-to-fhir-bundle) to define custom endpoints and convert arbitrary data into FHIR
+  * Added new [API constructor engine](../deprecated/zen-related/aidbox-api-constructor.md#map-to-fhir-bundle) to define custom endpoints and convert arbitrary data into FHIR
 * C-CDA / FHIR converter
   * Enhanced [/ccda/validate](../modules/integration-toolkit/ccda-converter/#validating-a-c-cda-document) endpoint to behave exactly as HealthIT.gov CDA validator
 * Security and access control
@@ -533,15 +533,15 @@ Minor updates:
 * Validation and Terminology
   * Supported FHIR R4B
 * Data API
-  * Defined [custom resources using Aidbox Project](../deprecated/deprecated/entity-attribute/getting-started-with-custom-resources.md#defining-a-custom-resource)
-  * Added [$to-format operation](../api/other/usdto-format-fhir-aidbox.md) without getting transformation metadata
+  * Defined [custom resources using Aidbox Project](../deprecated/entity-attribute/getting-started-with-custom-resources.md#defining-a-custom-resource)
+  * Added [$to-format operation](/api/other/usdto-format-fhir-aidbox.md) without getting transformation metadata
   * Fixed polymorphic reference targets for FHIR resources
-  * Fixed Bundle conformance for [AidboxQuery](../api/search/other/custom-search.md)
+  * Fixed Bundle conformance for [AidboxQuery](/api/search/other/custom-search.md)
   * Fixed sorting by token when using jsonknife engine
-  * Added a header to [lower transaction isolation level](../api/transaction.md#change-transaction-isolation-level)
+  * Added a header to [lower transaction isolation level](/api/transaction.md#change-transaction-isolation-level)
 * Integrations
-  * Improved [$import operation](../api/bulk-api/usdimport-and-fhir-usdimport.md#usdimport-on-top-of-the-task-api-beta), that allows for more reliable and efficient processing of multiple import requests through the Task API
-  * Released [the new version of HL7 v2 parser](../modules/integration-toolkit/hl7-v2-integration/hl7-v2-integration-with-aidbox-project.md#about-hl7-v2-parser) and [mapping engine](../deprecated/deprecated/other/other-deprecated-tutorials/hl7-v2-pipeline-with-patient-mapping.md)
+  * Improved [$import operation](/api/bulk-api/usdimport-and-fhir-usdimport.md#usdimport-on-top-of-the-task-api-beta), that allows for more reliable and efficient processing of multiple import requests through the Task API
+  * Released [the new version of HL7 v2 parser](../modules/integration-toolkit/hl7-v2-integration/hl7-v2-integration-with-aidbox-project.md#about-hl7-v2-parser) and [mapping engine](../deprecated/other/other-deprecated-tutorials/hl7-v2-pipeline-with-patient-mapping.md)
 * C-CDA to FHIR converter
   * Released [FHIR to C-CDA bidirectional converter](../modules/integration-toolkit/ccda-converter/#converting-a-c-cda-document-to-fhir) (beta). Supported sections:
     * Allergies, Encounters, Immunizations, Problems, Vital Signs, Results, Social History, Procedures, Medications
@@ -549,7 +549,7 @@ Minor updates:
   * Developed [access policy dev tool](../modules/security-and-access-control/security/access-policy-dev-tool.md)
   * Added tutorials and guides:
     * [Auth overview article](../modules/security-and-access-control/overview.md)
-    * [How to implement the ReBAC authorization model ](../readme/readme-1/relationship-based-access-control-in-aidbox.md)in Aidbox within AccessPolicy
+    * [How to implement the ReBAC authorization model ](../readme-1/relationship-based-access-control-in-aidbox.md)in Aidbox within AccessPolicy
     * [Access policy best practices](../modules/security-and-access-control/security/accesspolicy-best-practices.md)
 * Aidbox user portal
   * Added FHIR R4B zenFHIR package to configuration options
@@ -568,12 +568,12 @@ Minor updates:
 ## February 2023 _`2302, LTS`_
 
 * Validation and Terminology
-  * Reduced [zen FHIR IGs](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/enable-igs.md) size
-  * Introduced [New FTR extraction engine](../deprecated/deprecated/zen-related/fhir-terminology-repository/creating-aidbox-project-with-ftr/ftr-from-ftr-direct-dependency.md): creating new ValueSets based on existing FTRs
+  * Reduced [zen FHIR IGs](../deprecated/zen-related/aidbox-zen-lang-project/enable-igs.md) size
+  * Introduced [New FTR extraction engine](../deprecated/zen-related/fhir-terminology-repository/creating-aidbox-project-with-ftr/ftr-from-ftr-direct-dependency.md): creating new ValueSets based on existing FTRs
 * Data API
-  * Implemented [JSONPath Sort](../api/search/configure-search-api.md) (previously there was fallback to jsonknife)
-  * Implemented [#>> operation](../api/search/configure-search-api.md#preferred-operator) to optimize some query types (enabled via env)
-  * Improved [\_explain](../api/search/search-parameters-list/_explain.md) to show SQL even if the query failed with an error
+  * Implemented [JSONPath Sort](/api/search/configure-search-api.md) (previously there was fallback to jsonknife)
+  * Implemented [#>> operation](/api/search/configure-search-api.md#preferred-operator) to optimize some query types (enabled via env)
+  * Improved [\_explain](/api/search/search-parameters-list/_explain.md) to show SQL even if the query failed with an error
   * Implemented handling of unique errors: it is now possible to enforce uniqueness on some combination of fields
   * Improved conformance of conditional queries
 * MDM (Master Data Management)
@@ -582,7 +582,7 @@ Minor updates:
   * Introduced FHIR to CCD transformation (alpha)
 * Security and Access Control
   * Supported Aidbox [on path](../reference/environment-variables/optional-environment-variables.md#aidbox_base_url)
-  * Improved [`__debug=policy`](../readme/readme-1/access-policy.md#policy-debugging)
+  * Improved [`__debug=policy`](../readme-1/access-policy.md#policy-debugging)
 * Ops
   * [Devbox images](aidbox-user-portal/licenses.md#development-license) are no longer supported. Please use [AidboxOne image](https://hub.docker.com/r/healthsamurai/aidboxone) with [development license](aidbox-user-portal/licenses.md#development-license)
   * Supported [box\_web\_\*](../reference/environment-variables/optional-environment-variables.md#box_web_max__body) configs for Multibox
@@ -597,15 +597,15 @@ Minor updates:
   * Added [SDCForm to Questionnaire converter](../reference/aidbox-forms/api-reference.md#convert-forms)
   * Added customizable [redirect-button](../reference/aidbox-forms/api-reference.md#aidbox.sdc-generate-form-link) to Forms
 * Google Cloud Pub/Sub integration
-  * Added [Setting ](../deprecated/deprecated/other/gcp-pub-sub.md#specify-resource-types-and-boxes-for-which-to-publish-notification)to specify for what resources should trigger message publishing
-  * Added [Option ](../deprecated/deprecated/other/gcp-pub-sub.md#publish-a-message-before-a-resource-is-saved-to-a-database)to optimistically publish a message before the resource is saved to DB
+  * Added [Setting ](../deprecated/other/gcp-pub-sub.md#specify-resource-types-and-boxes-for-which-to-publish-notification)to specify for what resources should trigger message publishing
+  * Added [Option ](../deprecated/other/gcp-pub-sub.md#publish-a-message-before-a-resource-is-saved-to-a-database)to optimistically publish a message before the resource is saved to DB
 
 ## January 2023 _`2301`_
 
 * Terminology
-  * Added [ICD-10 FTR](../deprecated/deprecated/zen-related/fhir-terminology-repository/load-icd-10-cm-into-aidbox.md) integration
+  * Added [ICD-10 FTR](../deprecated/zen-related/fhir-terminology-repository/load-icd-10-cm-into-aidbox.md) integration
 * Data API
-  * [Zen Index API](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/zen-indexes.md) is now considered stable
+  * [Zen Index API](../deprecated/zen-related/aidbox-zen-lang-project/zen-indexes.md) is now considered stable
   * Implemented automatic loading of search parameters on extensions from IG
 * C-CDA to FHIR converter
   * Added configuration for [/ccda/to-fhir](../modules/integration-toolkit/ccda-converter/#endpoint-options) endpoint
@@ -629,17 +629,17 @@ Minor updates:
   * Added [$match](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/broken-reference/README.md) operation
   * [Python API](https://github.com/Aidbox/mdm) for Aidbox MDM module
 * Archive/Restore API
-  * [Task API](../deprecated/deprecated/zen-related/workflow-engine/task/) allowing to define asynchronous operation called tasks.
-  * [Archive/Restore API](../api/other/archive-restore-api/) allowing to archive and restore resources to/from S3 bucket powered by Task API.
+  * [Task API](../deprecated/zen-related/workflow-engine/task/) allowing to define asynchronous operation called tasks.
+  * [Archive/Restore API](/api/other/archive-restore-api/) allowing to archive and restore resources to/from S3 bucket powered by Task API.
   * [Scheduler API](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/broken-reference/README.md) allowing to execute tasks by schedule.
 * Aidbox Configuration Projects
   * Added a [FHIR 4.0.1 compliant Configuration Project](https://github.com/Aidbox/fhir-r4-configuration-project) (also available on Aidbox User Portal).
-  * Added [a guide on passing Touchstone FHIR 4.0.1 basic server test suite](../deprecated/deprecated/zen-related/fhir-conformance/touchstone-fhir-4.0.1-basic-server.md#pass-with-aidbox-user-portal-sandbox) on Aidbox User Portal.
+  * Added [a guide on passing Touchstone FHIR 4.0.1 basic server test suite](../deprecated/zen-related/fhir-conformance/touchstone-fhir-4.0.1-basic-server.md#pass-with-aidbox-user-portal-sandbox) on Aidbox User Portal.
 * Data API
-  * Implemented [jsonpath search engine](../api/search/configure-search-api.md)
-  * GraphQL: added [warmup cache on startup](../api/graphql-api.md#configure-graphql) option
+  * Implemented [jsonpath search engine](/api/search/configure-search-api.md)
+  * GraphQL: added [warmup cache on startup](/api/graphql-api.md#configure-graphql) option
 * Terminology API
-  * Added [SNOMED CT FTR integration](../deprecated/deprecated/zen-related/fhir-terminology-repository/load-snomed-ct-into-aidbox.md)
+  * Added [SNOMED CT FTR integration](../deprecated/zen-related/fhir-terminology-repository/load-snomed-ct-into-aidbox.md)
 * Aidbox Forms
   * Simplified DSL ([brief definition, less layers to describe for basic behavior](../modules/aidbox-forms/aidbox-code-editor/how-to-create-a-form.md))
   * Added layout autogeneration
@@ -648,7 +648,7 @@ Minor updates:
 * C-CDA to FHIR converter
   * Added a guide on[ how to persist FHIR resources to a DB](../modules/integration-toolkit/ccda-converter/#persisting-a-result-of-ccda-to-fhir-conversion) after C-CDA to FHIR transformation.
   * Improved Observation data mapping.
-* [Google Cloud Pub/Sub integration](../deprecated/deprecated/other/gcp-pub-sub.md)
+* [Google Cloud Pub/Sub integration](../deprecated/other/gcp-pub-sub.md)
 
 ## November 2022 _`2211`_
 
@@ -661,9 +661,9 @@ Minor updates:
   * Added documentation on [deployment to Kubernetes](../modules/smartbox/get-started/deploy-smartbox-to-kubernetes.md)
   * Added guides on passing [Inferno tests](../modules/smartbox/how-to-guides/pass-inferno-tests-with-smartbox.md) and [Inferno Visual Inspection and Attestation](../modules/smartbox/how-to-guides/pass-inferno-visual-inspection-and-attestation.md)
 * Aidbox Configuration Projects
-  * Improved startup time for Aidbox instances [configured with zen FHIR IGs](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/enable-igs.md)
+  * Improved startup time for Aidbox instances [configured with zen FHIR IGs](../deprecated/zen-related/aidbox-zen-lang-project/enable-igs.md)
   * Improved [local development workflow](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/broken-reference/README.md)
-  * Improved Aidbox [support](../deprecated/deprecated/zen-related/us-core-ig/us-core-ig-support-reference.md) of [US Core IG](../deprecated/deprecated/zen-related/us-core-ig/) artifacts
+  * Improved Aidbox [support](../deprecated/zen-related/us-core-ig/us-core-ig-support-reference.md) of [US Core IG](../deprecated/zen-related/us-core-ig/) artifacts
   * Added configuration of Aidbox features via zen-lang instead of envs
 * Aidbox User Portal
   * Added support of setting multiple Aidbox Configuration Projects and zen FHIR IGs for Sandbox instances
@@ -678,7 +678,7 @@ Minor updates:
 ## October 2022 _`2210`_
 
 * Terminology
-  * Introduced [FHIR Terminology repositories ](../deprecated/deprecated/zen-related/fhir-terminology-repository/)(alpha) to store any terminology elements (code systems, value sets, concepts) in an effective way and distribute them among Aidbox instances
+  * Introduced [FHIR Terminology repositories ](../deprecated/zen-related/fhir-terminology-repository/)(alpha) to store any terminology elements (code systems, value sets, concepts) in an effective way and distribute them among Aidbox instances
 * C-CDA to FHIR converter
   * Supported [validation against XSD and Schematron schemas](../modules/integration-toolkit/ccda-converter/#validating-a-ccda-document)
   * Supported Diagnostic Imaging Report sections:
@@ -693,10 +693,10 @@ Minor updates:
     * Nursing notes
   * Supported Care Team section mapping
 * Search API
-  * Added [execute type in AidboxQuery](../api/search/other/custom-search.md#query-types)
-  * Added [FHIR compliant date search](../api/search/searchparameter-types/date-search.md)
-  * Added 180-second [timeout](../api/search/search-parameters-list/_timeout.md) for [(rev)include queries](../api/search/search-parameters-list/_include-and-_revinclude.md)
-  * **Breaking change:** removed limit of 1000 in [\_count queries](../api/search/search-parameters-list/_count-and-_page.md)
+  * Added [execute type in AidboxQuery](/api/search/other/custom-search.md#query-types)
+  * Added [FHIR compliant date search](/api/search/searchparameter-types/date-search.md)
+  * Added 180-second [timeout](/api/search/search-parameters-list/_timeout.md) for [(rev)include queries](/api/search/search-parameters-list/_include-and-_revinclude.md)
+  * **Breaking change:** removed limit of 1000 in [\_count queries](/api/search/search-parameters-list/_count-and-_page.md)
 * FHIR API for EHRs
   * Supported [multitenancy](../modules/smartbox/background-information/multitenancy-approach.md)
   * Added an option set up [EHR-level customization](../modules/smartbox/how-to-guides/set-up-ehr-level-customization.md) (logos and templates)
@@ -711,24 +711,24 @@ Minor updates:
   * Fixed incorrect calculation of request duration for resources in transaction bundles
 * Updated documentation
   * [Index management](../deployment-and-maintenance/indexes/create-indexes-manually.md)
-  * [US Core IG configuration](../deprecated/deprecated/zen-related/us-core-ig/)
+  * [US Core IG configuration](../deprecated/zen-related/us-core-ig/)
   * [Deleting data guide](../readme/data-api/delete-data.md)
 * Fixed [issues](https://github.com/Aidbox/Issues/issues?q=is%3Aissue+milestone%3A%22October+2022+-+v%3A2210%22+is%3Aclosed) submitted by Aidbox users and minor bugs
 
 ## September 2022 _`2209`_
 
-* Released [Seed v2 service](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/seed-v2.md) for [Aidbox configuration projects](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/)
+* Released [Seed v2 service](../deprecated/zen-related/aidbox-zen-lang-project/seed-v2.md) for [Aidbox configuration projects](../deprecated/zen-related/aidbox-zen-lang-project/)
 * Added [Client.audience](../modules/security-and-access-control/technical-reference/overview.md#client.audience) regex support in SMART on FHIR App launch
 * Added an option to [filter Aidbox stdout logs](../modules/observability/logging-and-audit/#stdout-log) by severity. By default Aidbox sends only `error` severity level logs to stdout.
 * Added response headers to [Aidbox REST Console](aidbox-ui/rest-console.md) and [Aidbox Notebooks](aidbox-ui/notebooks.md)
-* Enhanced the Aidbox configuration process with [Aidbox configuration projects](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/)
-* Supported [`/health` endpoint](../api/other/health-check.md) for Multibox
-* Updated documentation on how to configure Aidbox with [Aidbox configuration project](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/)
+* Enhanced the Aidbox configuration process with [Aidbox configuration projects](../deprecated/zen-related/aidbox-zen-lang-project/)
+* Supported [`/health` endpoint](/api/other/health-check.md) for Multibox
+* Updated documentation on how to configure Aidbox with [Aidbox configuration project](../deprecated/zen-related/aidbox-zen-lang-project/)
 * Updated documentation on how to [configure highly available Aidbox](../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/high-available-aidbox.md)
 * Added support for [PostgreSQL 15](../storage/aidboxdb-image/) (beta)
 * Added documentation on how to create [most common indexes](../deployment-and-maintenance/indexes/create-indexes-manually.md)
-* Added `aidbox` format support for [bulk import](../api/bulk-api/aidbox.bulk-data-import.md#aidbox.bulk-import-start)
-* Added `enable-links` parameter for [AidboxQuery](../api/search/other/custom-search.md#return-links)
+* Added `aidbox` format support for [bulk import](/api/bulk-api/aidbox.bulk-data-import.md#aidbox.bulk-import-start)
+* Added `enable-links` parameter for [AidboxQuery](/api/search/other/custom-search.md#return-links)
 * Fixed issues submitted by Aidbox users and fixed minor bugs.
 
 ## August 2022 _`2208`_
@@ -737,53 +737,53 @@ Minor updates:
 * Added [Aidbox FHIR API module (SMARTbox) set up guide](../modules/smartbox/get-started/set-up-smartbox.md).
 * Added an option to [get Aidbox hosted on AWS](../getting-started/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md) directly from the Aidbox user portal. [Aidbox FHIR platform](https://aws.amazon.com/marketplace/pp/prodview-l5djlpvsd6o5g) is available on AWS marketplace.
 * Released [Aidbox forms](../modules/aidbox-forms/) alpha version.
-* Added [RPC method](../deprecated/deprecated/zen-related/fhir-terminology-repository/import-using-an-aidbox-project.md#track-import-progress) to track Aidbox project terminology bundles async load status.
+* Added [RPC method](../deprecated/zen-related/fhir-terminology-repository/import-using-an-aidbox-project.md#track-import-progress) to track Aidbox project terminology bundles async load status.
 * Added env to [automatically create a User resource](../modules/security-and-access-control/auth/access-token-introspection.md#create-user-automatically) on auth via TokenIntrospector. This allows to use both TokenIntrospector and IdentityProvider auth for the same User in Aidbox.
 * Added log event [:op/timeout](../modules/observability/logging-and-audit/technical-reference/aidbox-log-schema.md) for logging custom operations timeout
 * Added FHIR Bundle transaction conditional CRUD with `urn:uuid` support
 * Added [SNOMED CT bundle](../modules/terminology/terminology-api/)
-* Enhanced [zen.fhir profiles](../deprecated/deprecated/zen-related/profiling-with-zen-lang/) with RequiredPattern and FixedValue constraints
-* Added [seed service](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/seed-import.md) errors output.
+* Enhanced [zen.fhir profiles](../deprecated/zen-related/profiling-with-zen-lang/) with RequiredPattern and FixedValue constraints
+* Added [seed service](../deprecated/zen-related/aidbox-zen-lang-project/seed-import.md) errors output.
 * Added [Azure Active Directory (Azure AD)](../modules/security-and-access-control/set-up-external-identity-provider/azure-ad.md) and [Keycloak](../modules/security-and-access-control/set-up-external-identity-provider/keycloak.md) external identity providers integration guides
 * Added [Mailgun](../readme/integration-toolkit-tutorials/mailgun-integration.md) and [Postmark](../readme/integration-toolkit-tutorials/postmark-integration.md) email providers integration guides
 
 ## July 2022 _`2207`_
 
-* [Published](https://github.com/zen-lang/fhir/releases/tag/0.5.18) multiple versions of [zen FHIR IGs ](../deprecated/deprecated/zen-related/profiling-with-zen-lang/#zen-fhir-packages)to provide an option to use a specific version of an implementation guide.
+* [Published](https://github.com/zen-lang/fhir/releases/tag/0.5.18) multiple versions of [zen FHIR IGs ](../deprecated/zen-related/profiling-with-zen-lang/#zen-fhir-packages)to provide an option to use a specific version of an implementation guide.
 * Improved GraphQL API performance.
 * Improved validation with zen-lang performance.
-* Added RPC method to get the [import status](../api/bulk-api/import-from-a-bucket.md#aidbox.bulk-load-from-bucket-status) when running [load-from-bucket](../api/bulk-api/import-from-a-bucket.md) import operation.
-* Added an option to start Aidbox with an invalid [Aidbox project](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/) in [dev-mode](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/aidbox-project-environment-variables/#aidbox_zen_dev_mode) to improve the debugging experience. By default, Aidbox doesn't start with invalid Aidbox projects.
+* Added RPC method to get the [import status](/api/bulk-api/import-from-a-bucket.md#aidbox.bulk-load-from-bucket-status) when running [load-from-bucket](/api/bulk-api/import-from-a-bucket.md) import operation.
+* Added an option to start Aidbox with an invalid [Aidbox project](../deprecated/zen-related/aidbox-zen-lang-project/) in [dev-mode](../deprecated/zen-related/aidbox-zen-lang-project/aidbox-project-environment-variables/#aidbox_zen_dev_mode) to improve the debugging experience. By default, Aidbox doesn't start with invalid Aidbox projects.
 * Added an option to enable [ACL checks for searches in conditional operations](../modules/security-and-access-control/security/acl.md#conditional-crud).
 * Added `BOX_FEATURES_TERMINOLOGY_IMPORT_SYNC` environment variable to enable sync [terminology bundle file load](../modules/terminology/terminology-api/).
-* Added `plain` option to use [`$import`](../api/bulk-api/usdimport-and-fhir-usdimport.md) with non-gzipped files.
-* Added support of [entry.search.mode ](../api/search/other/search-with-related-resources.md#distinguish-between-matched-and-related-resources)field when using [\_include or \_revinclude](../api/search/search-parameters-list/_include-and-_revinclude.md) search parameters.
-* Added [`profile`](../api/other/metadata.md#notes) property to the CapabilityStatement resource.
+* Added `plain` option to use [`$import`](/api/bulk-api/usdimport-and-fhir-usdimport.md) with non-gzipped files.
+* Added support of [entry.search.mode ](/api/search/other/search-with-related-resources.md#distinguish-between-matched-and-related-resources)field when using [\_include or \_revinclude](/api/search/search-parameters-list/_include-and-_revinclude.md) search parameters.
+* Added [`profile`](/api/other/metadata.md#notes) property to the CapabilityStatement resource.
 * Added configurable `refresh_token_expiration` parameter. If not defined refresh token doesn't expire.
 * Fixed issues submitted by Aidbox users and fixed minor bugs.
 
 ## June 2022 _`2206, LTS`_
 
-* Added an option to [load Aidbox project from a remote Git repository](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/#load-project-from-git-repository).
-* Improved Aidbox startup time when loading [Aidbox project](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/#aidbox_zen_paths) from [a zip archive](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/#aidbox_zen_paths).
+* Added an option to [load Aidbox project from a remote Git repository](../deprecated/zen-related/aidbox-zen-lang-project/#load-project-from-git-repository).
+* Improved Aidbox startup time when loading [Aidbox project](../deprecated/zen-related/aidbox-zen-lang-project/#aidbox_zen_paths) from [a zip archive](../deprecated/zen-related/aidbox-zen-lang-project/#aidbox_zen_paths).
 * Added [Aidbox projects terminology bundle](../modules/terminology/terminology-api/#import-using-aidbox-project) load cache. Aidbox doesn't load a terminology bundle into its database if the bundle has no changes.
 * [Aidbox project terminology](../modules/terminology/terminology-api/#import-using-aidbox-project) bundle load is now async and doesn't affect Aidbox startup time.
-* Added nested resources validation when using [zen profiling](../deprecated/deprecated/zen-related/profiling-with-zen-lang/).
-* Added params to [load-from-bucket](../api/bulk-api/import-from-a-bucket.md#parameters) import operation.
+* Added nested resources validation when using [zen profiling](../deprecated/zen-related/profiling-with-zen-lang/).
+* Added params to [load-from-bucket](/api/bulk-api/import-from-a-bucket.md#parameters) import operation.
 * Improved chained search parameters performance.
-* Added ability to specify SQL migrations in [Aidbox project seed service](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/#seed-service).
+* Added ability to specify SQL migrations in [Aidbox project seed service](../deprecated/zen-related/aidbox-zen-lang-project/#seed-service).
 * Enhanced [API constructor ACL](../modules/security-and-access-control/security/acl.md) with conditional CRUD and patient/group level `$export`.
-* Added a tutorial on how to [create a user and give full access](../readme/readme-1/creating-user-and-set-up-full-user-access.md).
+* Added a tutorial on how to [create a user and give full access](../readme-1/creating-user-and-set-up-full-user-access.md).
 * Fixed issues submitted by Aidbox users and fixed minor bugs.
 
 ## May 2022 _`2205`_
 
 * Added RPC API access control engines: [allow-rpc engine](../modules/security-and-access-control/security/access-control.md#allow-rpc-engine) and attribute-based [matcho-rpc engine](../modules/security-and-access-control/security/access-control.md#matcho-rpc-engine).
-* Added GraphQL API resource [history search](../api/graphql-api.md#queries) to retrieve a resource change history.
+* Added GraphQL API resource [history search](/api/graphql-api.md#queries) to retrieve a resource change history.
 * Added [token expiration mechanism](../modules/security-and-access-control/technical-reference/overview.md#session-expiration) for stored Sessions.
 * Enhanced [API constructor ACL](../modules/security-and-access-control/security/acl.md) with new operation engine [filter table insert on create](../modules/security-and-access-control/security/acl.md#filter).
 * **Changed** auth layer 400/401/403 **errors response body** to OperationOutcome resource.
-* Added [CapabilityStatement configuration](../api/other/metadata.md#configure-capabilitystatement) options.
+* Added [CapabilityStatement configuration](/api/other/metadata.md#configure-capabilitystatement) options.
 * Improved setting [PostgreSQL schema](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/broken-reference/README.md) for Aidbox tables.
 * Added option to set JWT private/public keys and secret[ via env](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/broken-reference/README.md).
 * Added [aidboxdb PostgreSQL 14.2 version](../storage/aidboxdb-image/). Supported versions are 14.2 and 13.6.
@@ -792,26 +792,26 @@ Minor updates:
 
 ## April 2022 _`2204`_
 
-* Added [ACL (access-control list)](../modules/security-and-access-control/security/acl.md) functionality to [API constructor](../deprecated/deprecated/zen-related/aidbox-api-constructor.md).
-* Released [`seed service`](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/#seed-import) for Aidbox project. Declare a set of resources in Aidbox project and get them loaded in one or many Aidboxes on start.
+* Added [ACL (access-control list)](../modules/security-and-access-control/security/acl.md) functionality to [API constructor](../deprecated/zen-related/aidbox-api-constructor.md).
+* Released [`seed service`](../deprecated/zen-related/aidbox-zen-lang-project/#seed-import) for Aidbox project. Declare a set of resources in Aidbox project and get them loaded in one or many Aidboxes on start.
 * Added option to set [PostgreSQL schema](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/broken-reference/README.md) for Aidbox tables.
 * Added `content-type: application/json` as default if `content-type` and `accept` headers are missing.
-* Added [$drop-cache](../api/cache.md#drop-cache-operation) operation and and [`multibox/drop-box-caches`](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/broken-reference/README.md) RPC
-* Added [GET /$version operation](../api/other/aidbox-version.md) to get Aidbox version.
-* Enhanced `POST /` operation error handling and added [FHIR bundle resource documentation](../api/bundle.md).
+* Added [$drop-cache](/api/cache.md#drop-cache-operation) operation and and [`multibox/drop-box-caches`](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/broken-reference/README.md) RPC
+* Added [GET /$version operation](/api/other/aidbox-version.md) to get Aidbox version.
+* Enhanced `POST /` operation error handling and added [FHIR bundle resource documentation](/api/bundle.md).
 * Enhanced GraphQL with ConceptMap.group property support
-* Reviewed first-class extensions with zen-lang and updated [docs](../deprecated/deprecated/entity-attribute/first-class-extensions.md#first-class-extension-as-zen-profile).
+* Reviewed first-class extensions with zen-lang and updated [docs](../deprecated/entity-attribute/first-class-extensions.md#first-class-extension-as-zen-profile).
 * Reviewed and updated [Aidbox multitenancy docs](../modules/security-and-access-control/security/multitenancy.md).
 
 ## March 2022 _`2203`_
 
 * Released a [February 2022 - v:2202 _`LTS`_](release-notes.md#february-2022-v-2202-stable). \_\_ The Aidbox team will backport security and critical bug fixes to it throughout a one-year support window.
 * Added [`aidbox-validation-skip`](../modules/profiling-and-validation/profiling.md#aidbox-validation-skip-request-header) header that allows skipping resource reference validation.
-* Standardized [Aidbox project](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/) entrypoints.
-* Added fixes to [zen FHIR packages](../deprecated/deprecated/zen-related/profiling-with-zen-lang/#zen-fhir-packages) and published [Structured Data Capture IG](https://build.fhir.org/ig/HL7/sdc/) as a zen FHIR package.
-* Supported [`:of-type`](../api/search/searchparameter-types/token-search.md) modifier for token/Identifier search.
+* Standardized [Aidbox project](../deprecated/zen-related/aidbox-zen-lang-project/) entrypoints.
+* Added fixes to [zen FHIR packages](../deprecated/zen-related/profiling-with-zen-lang/#zen-fhir-packages) and published [Structured Data Capture IG](https://build.fhir.org/ig/HL7/sdc/) as a zen FHIR package.
+* Supported [`:of-type`](/api/search/searchparameter-types/token-search.md) modifier for token/Identifier search.
 * Enhanced [matcho engine](../modules/security-and-access-control/security/access-control.md#matcho-engine) with `$every` and `$not` patterns.
-* Added `patient` query parameter to the [bulk data export ](../api/bulk-api/usdexport.md)operation.
+* Added `patient` query parameter to the [bulk data export ](/api/bulk-api/usdexport.md)operation.
 * Updated [HL7 v2 module](https://docs.aidbox.app/modules/hl7-v2-integration) documentation.
 * Fixed [issues ](https://github.com/Aidbox/Issues/issues?q=is%3Aissue+milestone%3A%22March+2022+-+v%3A2203%22+is%3Aclosed)submitted by Aidbox users.
 
@@ -821,10 +821,10 @@ Minor updates:
 February 2022 - v:2202 is available as a long-term support version. End of life is April 2023.
 {% endhint %}
 
-* Released a beta version of [Aidbox API constructor ](../deprecated/deprecated/zen-related/aidbox-api-constructor.md)that allows to define REST API granularly.
-* Added Access Control debug option: [su header](../readme/readme-1/debug.md#su-request-header). It allows doing a request on behalf of a certain user.
+* Released a beta version of [Aidbox API constructor ](../deprecated/zen-related/aidbox-api-constructor.md)that allows to define REST API granularly.
+* Added Access Control debug option: [su header](../readme-1/debug.md#su-request-header). It allows doing a request on behalf of a certain user.
 * Added [Grafana dashboard RPC](../modules/observability/metrics/monitoring/grafana-integration.md) API that allows to get Aidbox metrics dashboards and import it to your Grafana.
-* Added [`_count`](../api/search/search-parameters-list/_count-and-_page.md), [`_total`](../api/search/search-parameters-list/_total-or-_countmethod.md) and [`_timeout`](../api/search/search-parameters-list/_timeout.md) environment variables to configure default values.
+* Added [`_count`](/api/search/search-parameters-list/_count-and-_page.md), [`_total`](/api/search/search-parameters-list/_total-or-_countmethod.md) and [`_timeout`](/api/search/search-parameters-list/_timeout.md) environment variables to configure default values.
 * Improved logging for RPC and GraphQL calls.
 * Fixed Aidbox UI pretty view display.
 * Fixed [issues ](https://github.com/Aidbox/Issues/milestone/9?closed=1)submitted by Aidbox users.
@@ -836,14 +836,14 @@ February 2022 - v:2202 is available as a long-term support version. End of life 
 Starting from January 2022 we're switching to a new release cycle. We added`:latest and LTS` (long-term support) versions. Check [the updated release cycle](versioning.md).
 {% endhint %}
 
-* Added FHIR R4 search parameters to [zen FHIR packages](../deprecated/deprecated/zen-related/profiling-with-zen-lang/#zen-fhir-packages) (alpha) as a part of our roadmap to run Aidbox on managed PostgreSQL databases.
-* Released [load-from-bucket](../api/bulk-api/aidbox.bulk-data-import.md#aidbox.bulk-load-from-bucket) import operation for huge imports that allows loading terabytes of data from an AWS bucket directly to the Aidbox database with maximum performance.
+* Added FHIR R4 search parameters to [zen FHIR packages](../deprecated/zen-related/profiling-with-zen-lang/#zen-fhir-packages) (alpha) as a part of our roadmap to run Aidbox on managed PostgreSQL databases.
+* Released [load-from-bucket](/api/bulk-api/aidbox.bulk-data-import.md#aidbox.bulk-load-from-bucket) import operation for huge imports that allows loading terabytes of data from an AWS bucket directly to the Aidbox database with maximum performance.
 * Added Aidbox UI new tools: [DB Tables](aidbox-ui/db-tables.md) and [DB Queries](aidbox-ui/db-queries.md) to improve database administration and introspection.
 * Added new env `box_compatibility_validation_json__schema_regex="#{:fhir-datetime}` to enable strict date time validation in JSON schema validation engine per [FHIR spec](https://www.hl7.org/fhir/datatypes.html#dateTime).
-* Improved [`$export`](../api/bulk-api/usdexport.md) error statuses.
-* Added Search resource `reference` [support](../api/search/custom-search-parameter/search-resource.md#reference-search).
-* Improved [Search parameter](../api/search/searchparameter.md#expression) expression error reporting.
-* Improved [zen profiles](../deprecated/deprecated/zen-related/profiling-with-zen-lang/) support in [GraphQL API](../api/graphql-api.md).
+* Improved [`$export`](/api/bulk-api/usdexport.md) error statuses.
+* Added Search resource `reference` [support](/api/search/custom-search-parameter/search-resource.md#reference-search).
+* Improved [Search parameter](/api/search/searchparameter.md#expression) expression error reporting.
+* Improved [zen profiles](../deprecated/zen-related/profiling-with-zen-lang/) support in [GraphQL API](/api/graphql-api.md).
 * Released [Multibox box manager API](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/broken-reference/README.md).
 * Added Aidbox UI [Analyze Attributes](aidbox-ui/attrs-stats.md) tab description.
 
@@ -857,8 +857,8 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 ## November 2021 - v:2111
 
 * Implemented the [`$translate`](../modules/terminology/usdtranslate-on-conceptmap.md) operation. So now you can translate code from one value set to another, based on the existing value set and concept maps resources, and/or other additional knowledge available to Aidbox.
-* Released FHIR bulk data export. Using [$export](../api/bulk-api/usdexport.md) you can export patient-level, group level or system-level data to GCP, AWS storage in ndjson format.
-* Extended Aidbox [Access Policies](../modules/security-and-access-control/security/access-control.md) to [GraphQL API](../api/graphql-api.md).
+* Released FHIR bulk data export. Using [$export](/api/bulk-api/usdexport.md) you can export patient-level, group level or system-level data to GCP, AWS storage in ndjson format.
+* Extended Aidbox [Access Policies](../modules/security-and-access-control/security/access-control.md) to [GraphQL API](/api/graphql-api.md).
 * Released [metrics server](../modules/observability/metrics/monitoring/) as an Aidbox component that implements the new metrics API for PostgreSQL, HikariCP and JVM metrics.
 * Added zen FHIR packages version check. Aidbox won't start if you use an outdated zen FHIR package.
 * Extended `AuthConfig` resource with `forgotPasswordUrl` attribute.
@@ -869,9 +869,9 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 ## October 2021 - v:2110
 
-* Released new API for Bulk Data import. Using [Aidbox.bulk](../api/bulk-api/aidbox.bulk-data-import.md) you will be able to import data in both Aidbox and FHIR formats, validate uploaded resources and references asynchronously.
+* Released new API for Bulk Data import. Using [Aidbox.bulk](/api/bulk-api/aidbox.bulk-data-import.md) you will be able to import data in both Aidbox and FHIR formats, validate uploaded resources and references asynchronously.
 * Added Smart App Launch sandbox to the [Aidbox portal sample app](https://github.com/Aidbox/aidbox-react-app#aidbox-react-sample-app).
-* Added [zen FHIR packages](../deprecated/deprecated/zen-related/profiling-with-zen-lang/#zen-lang-packages) that can be used to configure Aidboxes and validate resources against zen FHIR profiles. You can use your custom profiles, convert FHIR profiles to zen FHIR profiles or use zen FHIR packages released by our team:
+* Added [zen FHIR packages](../deprecated/zen-related/profiling-with-zen-lang/#zen-lang-packages) that can be used to configure Aidboxes and validate resources against zen FHIR profiles. You can use your custom profiles, convert FHIR profiles to zen FHIR profiles or use zen FHIR packages released by our team:
   * FHIR R4
     * `hl7-fhir-us-core` - US Core
     * `hl7-fhir-us-davinci-pdex` - Payer Data Exchange (PDex)
@@ -887,12 +887,12 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 ## September 2021 - v:2109
 
-* Added [Aidbox projects](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/) that can be used to configure Aidboxes and validate data. Basically, Aidbox project is a directory with zen-lang edn files that describe Aidbox configuration.
+* Added [Aidbox projects](../deprecated/zen-related/aidbox-zen-lang-project/) that can be used to configure Aidboxes and validate data. Basically, Aidbox project is a directory with zen-lang edn files that describe Aidbox configuration.
 * 5 FHIR compartments are available as default in Aidbox. More details on [Compartments API](https://docs.aidbox.app/api/compartments).
 * Added Datadog [integration URL configuration](https://docs.aidbox.app/core-modules/logging-and-audit/aidbox-logs-and-datadog-integration#datadog-logging). So now you can specify in configuration if you want to use one of the following domains`datadoghq.com, us3.datadoghq.com, datadoghq.eu, ddog-gov.com`.
-* Added a tutorial on how to configure [HL7 FHIR Da Vinci PDex Plan Net IG](../deprecated/deprecated/zen-related/fhir-conformance/hl7-fhir-da-vinci-pdex-plan-net-ig.md) on Aidbox.
+* Added a tutorial on how to configure [HL7 FHIR Da Vinci PDex Plan Net IG](../deprecated/zen-related/fhir-conformance/hl7-fhir-da-vinci-pdex-plan-net-ig.md) on Aidbox.
 * Supported SMART Application Launch Framework Implementation Guide: Patient Portal Launch, Patient Standalone Launch, Provider EHR Launch, Provider Standalone Launch. Check the [sample](https://github.com/Aidbox/aidbox-project-samples#smart-on-fhir-aidbox-installation).
-* Released [Aidbox API constructor on zen (alpha version)](../deprecated/deprecated/zen-related/aidbox-api-constructor.md).
+* Released [Aidbox API constructor on zen (alpha version)](../deprecated/zen-related/aidbox-api-constructor.md).
 
 ## August 2021 - v:2108
 
@@ -900,12 +900,12 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 ![Aidbox notebooks](../.gitbook/assets/2021-09-03_16-53-32.png)
 
-* Released a beta version of [zen profiling](../deprecated/deprecated/zen-related/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile.md). Advanced profiling with zen-lang to configure Aidboxes and validate data.
+* Released a beta version of [zen profiling](../deprecated/zen-related/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile.md). Advanced profiling with zen-lang to configure Aidboxes and validate data.
 * Added [Asynchronous Batch Validation](../modules/profiling-and-validation/validation-api.md#asynchronous-batch-validation) mode to validate data in Aidbox against new profiles
-* Released [Aidbox RPC API](../api/other/rpc-api.md)
+* Released [Aidbox RPC API](/api/other/rpc-api.md)
 * Supported conditional patch (e.g.: `PATCH /Patient?name=foo`)
 * Added an [environment variable](../modules/observability/logging-and-audit/how-to-guides/aidbox-logs-and-datadog-integration.md) to pass the environment to Datadog (dev/staging/prod).
-* Added history for [$load](../api/bulk-api/usdload.md) and [$import](../api/bulk-api/usdimport-and-fhir-usdimport.md) so now when using bulk import you have a source of truth for the history of every resource.
+* Added history for [$load](/api/bulk-api/usdload.md) and [$import](/api/bulk-api/usdimport-and-fhir-usdimport.md) so now when using bulk import you have a source of truth for the history of every resource.
 * Added [empty query params remove #238](https://github.com/Aidbox/Issues/issues/238). Please **pay attention** **when** **using json-schema** **access policy** engine: Fields with empty values, such as `[], {}, "", null`, are removed before passing request into access policy processing. Make sure to add `require` check of the fields that are validated by a json schema
 * Fixed some bugs submitted by Aidbox users. Check it [here](https://github.com/Aidbox/Issues/milestone/3?closed=1).
 
@@ -971,10 +971,10 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 * Builds of [aidboxdb](../storage/aidboxdb-image/) for PostgreSQL 11.11, 12.6, 13.2 are [released](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1\&ordering=last_updated).
 * Aidbox now supports deployment on top of Azure PostgreSQL.
-* Improvements of [$changes API](../api/other/usdsnapshot-usdwatch-and-usdversions-api.md): FHIR support, pagination, upper version limit. $changes is now available at the resource level.
+* Improvements of [$changes API](/api/other/usdsnapshot-usdwatch-and-usdversions-api.md): FHIR support, pagination, upper version limit. $changes is now available at the resource level.
 * [Enhancement of Transaction Bundle API](https://docs.aidbox.app/api/transaction) that allows to populate both resource and history tables in one transaction.
 * During transaction bundle processing attributes of url type that store relative references are now interpreted as Reference type. See the [FHIR spec](https://www.hl7.org/fhir/datatypes.html#attachment) on Attachment data type for details.
-* [Enhancement of Search resource](../api/search/custom-search-parameter/search-resource.md#token-search) that for token search allows fallback to default modifier implementation; (last example in the linked article)
+* [Enhancement of Search resource](/api/search/custom-search-parameter/search-resource.md#token-search) that for token search allows fallback to default modifier implementation; (last example in the linked article)
 * Fixed issue with $dump and $dump-sql not allowing CORS requests
 
 ## January 2021 - v:25012021
@@ -996,18 +996,18 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 ### Features
 
-* Search and sort by [\_createdAt](../api/search/search-parameters-list/_lastupdated.md) parameter
-* Search by tokens with [:text modifier](../api/search/#common)
-* Filters in [Change API](../api/other/usdsnapshot-usdwatch-and-usdversions-api.md)
+* Search and sort by [\_createdAt](/api/search/search-parameters-list/_lastupdated.md) parameter
+* Search by tokens with [:text modifier](/api/search/#common)
+* Filters in [Change API](/api/other/usdsnapshot-usdwatch-and-usdversions-api.md)
 * [Azure API](../storage/other/s3-compatible-storages/azure.md)
-* [SQL Parameters](../api/search/custom-search-parameter/search-resource.md)
+* [SQL Parameters](/api/search/custom-search-parameter/search-resource.md)
 
 ## 0.4.9 \[9 March 2020]
 
 ### Features
 
 * [Reactive API & Subscriptions](broken-reference/)
-* New [design/debug](../api/search/other/custom-search.md#design-aidboxquery) endpoint for AidboxQuery
+* New [design/debug](/api/search/other/custom-search.md#design-aidboxquery) endpoint for AidboxQuery
 * Audit customization hook
 * New Clojure engine for AccessPolicy
 * Strip empty values in CRUD
@@ -1016,14 +1016,14 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 ### Features
 
-* Complete rewrite of the [(rev)include](../api/search/search-parameters-list/_include-and-_revinclude.md) engine
+* Complete rewrite of the [(rev)include](/api/search/search-parameters-list/_include-and-_revinclude.md) engine
 * New [Mapping module](../modules/integration-toolkit/mappings.md)
 * New [Hl7v2 module](../modules/integration-toolkit/hl7-v2-integration/)
 * New engine for AccessPolicy - [matcho](../modules/security-and-access-control/security/access-control.md#matcho-engine)
-* New [Encryption API](../api/encryption-api.md)
-* [X-Audit header](../deprecated/deprecated/other/app-development-deprecated-tutorials/receive-logs-from-your-app/x-audit-header.md) to add custom data to Aidbox logs
+* New [Encryption API](/api/encryption-api.md)
+* [X-Audit header](../deprecated/other/app-development-deprecated-tutorials/receive-logs-from-your-app/x-audit-header.md) to add custom data to Aidbox logs
 * [X-Debug: policy](../modules/security-and-access-control/security/access-control.md#using-x-debug-policy-header) header to trace policy evaluation
-* Support for [\_elements](../api/search/search-parameters-list/_elements.md#elements-and-ref-includes) for (rev)included resources
+* Support for [\_elements](/api/search/search-parameters-list/_elements.md#elements-and-ref-includes) for (rev)included resources
 
 Plenty of bug fixes!
 
@@ -1035,14 +1035,14 @@ Plenty of bug fixes!
 Now references to contained resources are represented as `localRef` attribute in [Aidbox Format](../storage/other/aidbox-and-fhir-formats.md)
 {% endhint %}
 
-* Managed SQL for FHIR search by [SearchQuery](../api/search/other/searchquery.md)
-* A default timeout for Search Operations with [\_timeout](../api/search/search-parameters-list/_timeout.md) param for high-load
-* Ordered search in [$lookup](../api/search/usdlookup.md)
+* Managed SQL for FHIR search by [SearchQuery](/api/search/other/searchquery.md)
+* A default timeout for Search Operations with [\_timeout](/api/search/search-parameters-list/_timeout.md) param for high-load
+* Ordered search in [$lookup](/api/search/usdlookup.md)
 * microseconds precision for timestamps (Resource.meta.lastUpdated)
 * Better Aidbox <=> FHIR conversion for first-class extensions
 * Added JWT sub & iss and client IP address to logs
 * aidbox-cli elastic search logger now creates a new index for each day
-* Upgrade/Fix [PATCH](../api/crud/patch.md) to be fully RFC conformant
+* Upgrade/Fix [PATCH](/api/crud/patch.md) to be fully RFC conformant
 * Added [X-Client-Auth](https://docs.aidbox.app/auth-betta/access-token-introspection#x-client-auth) header
 * Added **cts** column (createdAt) to resources ([read more](broken-reference/)).
 * Entity.history='none' for custom resources to turn-off history
@@ -1058,9 +1058,9 @@ It's time to upgrade your database - please stop your container and change image
 ### Features
 
 * In REST Console support for multiline URL line using `\`
-* New `/<RT>/$lookup` operation for efficient lookup search in millions of records - [read more](../api/search/usdlookup.md)
-* [AidboxQuery](../deprecated/deprecated/other/custom-search.md) extended with count-query and params types and defaults
-* New `/<RT>/$load` and `/$load` [bulk operations](../api/bulk-api/#usdload) were added and [$import](../api/bulk-api/#usdimport) was upgraded
+* New `/<RT>/$lookup` operation for efficient lookup search in millions of records - [read more](/api/search/usdlookup.md)
+* [AidboxQuery](../deprecated/other/custom-search.md) extended with count-query and params types and defaults
+* New `/<RT>/$load` and `/$load` [bulk operations](/api/bulk-api/usdload) were added and [$import](/api/bulk-api/usdimport) was upgraded
 * aidbox/db upgrade to 11.4 + fixes in json\_knife pg extension - (deep patterns, indexes)
 * Highlighted logs for humans in [Aidbox.Dev](../getting-started/run-aidbox-locally-with-docker.md) by default: docker logs -f \<your-box-container>
 * New [Aidbox.Enterprise](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/release-notes-1/broken-reference/README.md)
@@ -1071,9 +1071,9 @@ It's time to upgrade your database - please stop your container and change image
 
 * `/auth/test-policy` operation for[ policy debug](../modules/security-and-access-control/security/access-control.md#debugging)
 * Support for [ident interpolation](../modules/security-and-access-control/security/access-control.md#sql-engine) in SQL policy - `SELECT * FROM {{!params.resource/type}}`
-* [SQL Migrations](../api/other/usdpsql.md#sql-migrations)
-* New [\_explain](../api/search/#_explain) parameter for Search API
-* Beta version of bulk [import operation](../api/bulk-api/#usdimport)
+* [SQL Migrations](/api/other/usdpsql.md#sql-migrations)
+* New [\_explain](/api/search/#_explain) parameter for Search API
+* Beta version of bulk [import operation](/api/bulk-api/usdimport)
 * History & Snippets for REST & DB Console
 
 ## 0.4.4 _\[17 June 2019]_
@@ -1087,7 +1087,7 @@ It's time to upgrade your database - please stop your container and change image
 
 ### Features
 
-* [Sequence API](../api/sequence-api.md) - use PostgreSQL sequences through REST API
+* [Sequence API](/api/sequence-api.md) - use PostgreSQL sequences through REST API
 * Operation bound policy in App manifest
 * Clear resources deleted in App manifest ([#70](https://github.com/Aidbox/Issues/issues/70))
 * Bulk load terminologies - [tutorial](https://docs.aidbox.app/terminology/terminology-tutorials/load-terminologies)
@@ -1106,11 +1106,11 @@ It's time to upgrade your database - please stop your container and change image
 * [User Level Logs](../modules/observability/logging-and-audit/)
 * [Structured Data Capture](../tutorials/tutorials/sdc-with-custom-resources.md) with Custom Resources (Alpha)
 * [History based replication](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/release-notes-1/broken-reference/README.md)
-* Search: new [\_ilike](../api/search/#_ilike-search-non-fhir) search parameter
-* Search: [\_include=\*](../api/search/#_include-and-_revinclude) support
-* Search: [\_list](../api/search/#_list) parameter support
-* [$dump](../api/bulk-api/#usddump) - Bulk Export Operation
-* [Health-Check](../api/other/health-check.md) endpoint by [RFC](https://inadarei.github.io/rfc-healthcheck/)
+* Search: new [\_ilike](/api/search/#_ilike-search-non-fhir) search parameter
+* Search: [\_include=\*](/api/search/#_include-and-_revinclude) support
+* Search: [\_list](/api/search/#_list) parameter support
+* [$dump](/api/bulk-api/usddump) - Bulk Export Operation
+* [Health-Check](/api/other/health-check.md) endpoint by [RFC](https://inadarei.github.io/rfc-healthcheck/)
 
 ### Bug Fixes
 
@@ -1169,8 +1169,8 @@ This release is mostly dedicated to stabilisation of new auth module. Check-out 
 * Fixed [Aidbox](https://www.health-samurai.io/aidbox) to FHIR data transformation bug when polymorphic attributes wasn't properly handled in recursive elements such as `QuestionnaireResponse.item`
 * Support [`_total`](https://build.fhir.org/search.html#total) search parameter (\_totalMethod=count also works)
 * Support `page` search parameter (\_page - also works)
-* Added [$query](../api/search/other/custom-search.md) - SQL query into REST Endpoint
-* [\_query](../api/search/other/custom-search.md) - custom search related to resourceType
+* Added [$query](/api/search/other/custom-search.md) - SQL query into REST Endpoint
+* [\_query](/api/search/other/custom-search.md) - custom search related to resourceType
 * Implemented Compartments for requests like `/fhir/Patient/xxx/Observation`; Compartments are defined with CompartmentDefinition resource
 * `Observation/$lastn` is accessible as a part of Patient's compartment: `/fhir/Patient/ID/Observation/$lastn`
 * Implemented `:iterate` modifier for `_include` search parameter

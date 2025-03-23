@@ -50,7 +50,7 @@ In table below you can see the most popular log events:
 | **w\_st**       | int    | HTTP response status                                                                                                                        |
 | **w\_addr**     | string | Comma separated client and middleware IPs                                                                                                   |
 | **w\_corr\_id** | string | X-Correlation-Id header of original request                                                                                                 |
-| **w\_audit**    | json   | [X-Audit header](../../../../deprecated/deprecated/other/app-development-deprecated-tutorials/receive-logs-from-your-app/x-audit-header.md) |
+| **w\_audit**    | json   | [X-Audit header](../../../../deprecated/other/app-development-deprecated-tutorials/receive-logs-from-your-app/x-audit-header.md) |
 | **d**           | int    | Request duration in ms                                                                                                                      |
 | **w\_uid**      | string | User id                                                                                                                                     |
 | **w\_cid**      | string | Client id                                                                                                                                   |

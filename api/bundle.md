@@ -7,7 +7,7 @@ description: >-
 # Bundle
 
 {% hint style="info" %}
-Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [contact](../../contact-us.md) us if you have questions, feedback, or suggestions.
+Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [contact](/contact-us.md) us if you have questions, feedback, or suggestions.
 {% endhint %}
 
 The Bundle resource is a resource which groups multiple resources in one. It is important to differentiate Bundle resource and operation which take or return Bundles.
@@ -15,20 +15,20 @@ The Bundle resource is a resource which groups multiple resources in one. It is 
 Let's look at some operations working with Bundle resources.
 
 * `POST /` , `POST /fhir`\
-  Main article: [transaction.md](../transaction.md).\
+  Main article: [transaction.md](/api/transaction.md).\
   This operation accepts Bundle resource (with type batch or transaction); executes contained requests; then returns Bundle resource in response (with type batch-response or transaction-response).\
   Operation `POST /` accepts and return Bundle in Aidbox format; operation `POST /fhir` accepts and returns Bundle in FHIR format.
 * `GET /<resourceType>`, `GET /fhir/<resourceType>`\
-  Main article: [search](search/)\
+  Main article: [search](/api/search/README.md)\
   This operation searches for resource of type `resourceType` using search parameters provided in query string, and returns Bundle resource (with type `searchset`) containing all resources matching the given filters.
 * `GET /<resourceType>/<id>/_history`, `GET /fhir/<resourceType>/<id>/_history`\
-  Main article: [history.md](history.md)\
+  Main article: [history.md](/api/history.md)\
   This operation returns the Bundle resource (with type `history`) containing previous versions of the specified resource.
 * `GET /<resourceType>/_history`, `GET /fhir/<resourceType>/_history`\
-  Main article: [history.md](history.md)\
+  Main article: [history.md](/api/history.md)\
   This operations returns the Bundle resource (with type `history`) containing previous versions of resources with the specified type.
 * CRUD operations with Bundle resource\
-  Main article: [crud](crud/)\
+  Main article: [crud](/api/crud/README.md)\
   These are the usual FHIR CRUD operations with Bundle resource. They only store/update/get/search Bundle resources without additional semantics.\
   These operations are rarely used.\
   Examples: `POST /Bundle`, `GET /Bundle`, `GET /Bundle/<id>`, `PUT /Bundle`,\

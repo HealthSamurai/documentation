@@ -429,6 +429,6 @@ If resourceType name can be interpreted as SQL keyword (e.g. Group), then `resou
 
 See another tutorial:
 
-{% content-ref url="../../../../deprecated/deprecated/other/custom-search.md" %}
-[custom-search.md](../../../../deprecated/deprecated/other/custom-search.md)
+{% content-ref url="../../../../deprecated/other/custom-search.md" %}
+[custom-search.md](../../../../deprecated/other/custom-search.md)
 {% endcontent-ref %}

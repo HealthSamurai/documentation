@@ -40,5 +40,5 @@ Learn more about mathematics behind probabilistic matching
 
 ### RPC methods
 
-* [aidbox.mdm/update-mdm-tables](../../../deprecated/deprecated/zen-related/rpc-reference/aidbox/mdm/aidbox.mdm-update-mdm-tables.md)
-* [aidbox.mdm/match](../../../deprecated/deprecated/zen-related/rpc-reference/aidbox/mdm/aidbox.mdm-match.md)
+* [aidbox.mdm/update-mdm-tables](../../../deprecated/zen-related/rpc-reference/aidbox/mdm/aidbox.mdm-update-mdm-tables.md)
+* [aidbox.mdm/match](../../../deprecated/zen-related/rpc-reference/aidbox/mdm/aidbox.mdm-match.md)

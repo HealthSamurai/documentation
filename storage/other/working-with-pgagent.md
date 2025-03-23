@@ -294,4 +294,4 @@ If everything was successfull you will see new records in the table.
 * `pgagent` runs only if `PGAGENT_ENABLED` variable is present.
 * You can configure `pgagent` using several variables described [here](../../storage/aidboxdb-image/#optional-environment-variables).
 
-If you have any questions on how to configure `pgagent` feel free to [contact us](../../contact-us.md).
+If you have any questions on how to configure `pgagent` feel free to [contact us](/contact-us.md).

@@ -59,6 +59,6 @@ Notebooks are interactive tutorials within the Aidbox UI with built-in REST, RPC
 
 ## Next Steps
 
-* Learn more about [Aidbox Configuration](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/)
+* Learn more about [Aidbox Configuration](../deprecated/zen-related/aidbox-zen-lang-project/)
 * Unlock additional capabilities of [Aidbox UI](../overview/aidbox-ui/)
 * Dive into the built-in [Aidbox Notebooks](../overview/aidbox-ui/notebooks.md)

@@ -12,7 +12,7 @@ Aidbox offers developers a smooth path from a tiny digital health app prototype 
 
 ### Production license
 
-A production license allows running Aidbox for 14 days (trial) and then can be extended by the Health Samurai team for production usage with PHI data. Please [contact us](../contact-us.md) for more details.
+A production license allows running Aidbox for 14 days (trial) and then can be extended by the Health Samurai team for production usage with PHI data. Please [contact us](/contact-us.md) for more details.
 
 ### Development license
 
@@ -48,7 +48,7 @@ You can get a turn-key production-ready Aidbox as a SaaS to start your developme
 
 ### Aidbox for education
 
-For non-profit educational institutions, the Health Samurai provides Aidbox licenses that can be used for instructional and non-commercial academic research. Please [contact us](../contact-us.md) for more information.
+For non-profit educational institutions, the Health Samurai provides Aidbox licenses that can be used for instructional and non-commercial academic research. Please [contact us](/contact-us.md) for more information.
 
 ## Aidbox Support
 
@@ -88,4 +88,4 @@ Aidbox license can be received for a trial period at no cost with the purchase o
 * 2 months with Professional support
 * 3 months with Enterprise or Ultimate support
 
-To learn about **pricing**, please get in touch [with us](../contact-us.md).
+To learn about **pricing**, please get in touch [with us](/contact-us.md).
