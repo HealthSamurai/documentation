@@ -16,7 +16,6 @@
 ## Overview
 
 * [Overview](overview/README.md)
-  * [Architecture](introduction/readme.md)
 * [Database](overview/database.md)
 * [Artifact Repository](overview/artifact-repository.md)
 * [FHIR+ API](overview/api.md)
