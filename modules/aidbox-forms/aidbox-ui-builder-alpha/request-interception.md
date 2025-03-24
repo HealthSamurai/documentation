@@ -181,7 +181,8 @@ The following tags are available:
 | [import-questionnaire](#import-questionnaire)                 | When clicking the "Import" button                             | Imports a new questionnaire JSON.                   |
 | [populate](#populate)                                         | When clicking "Populate" in debug panel                       | Prefills fields using subject/context.              |
 | [extract](#extract)                                           | When clicking "Extract" in debug panel                        | Extracts resources from the questionnaire response. |
-| [validate-questionnaire](#validate-questionnaire)             | When clicking "Validate Questionnaire" in debug panel         | Validates form structure.                           |
+| [validate-questionnaire](#validate-questionnaire)             | When clicking "Validate Questionnaire" in debug panel         | Validates questionnaire resource.                   |
+| [validate-response](#validate-response)                       | When clicking "Validate Response" in debug panel              | Validates questionnaire response resource           |
 | [create-theme](#create-theme)                                 | When saving a new theme                                       | Creates a new QuestionnaireTheme.                   |
 | [save-theme](#save-theme)                                     | When saving changes to an existing theme                      | Updates the theme resource.                         |
 
@@ -201,7 +202,6 @@ The following tags are available:
 | [save-response](#save-response)                 | When auto-saving an in-progress response                  | Persists progress with `in-progress` status.     |
 | [repopulate](#repopulate)                       | When user clicks "Repopulate"                             | Refreshes form with updated subject/context.     |
 | [submit-response](#submit-response)             | When user clicks "Submit"                                 | Submits or amends the form.                      |
-| [validate-response](#validate-response)         | When clicking "Validate Response" in debug panel          | Validates correctness of the filled response.    |
 
 {% endtab %}
 
@@ -887,3 +887,110 @@ Where `<questionnaire-response>` is the response being validated.
 ```
 
 Where `<operation-outcome>` is the [operation outcome](https://www.hl7.org/fhir/operationoutcome.html) of the validation.
+
+
+## Sequence Diagram
+
+{% tabs %}
+
+{% tab title="Builder" %}
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Builder
+    participant Aidbox Server
+
+    %% Initialization
+    User->>Builder: Open Builder UI
+    Builder->>Aidbox Server: get-config
+    Builder->>Aidbox Server: get-theme
+    Builder->>Aidbox Server: get-themes
+    Builder->>Aidbox Server: get-fhir-metadata
+    Builder->>Aidbox Server: get-fhir-schemas
+
+    %% Load Questionnaire
+    Builder->>Aidbox Server: get-questionnaire
+    Builder->>Aidbox Server: get-assembled-questionnaire
+    Builder->>Aidbox Server: get-sub-questionnaire
+
+    %% Authoring Workflow
+    User->>Builder: Add Sub-Questionnaire Component
+    Builder->>Aidbox Server: search-sub-questionnaires
+
+    User->>Builder: Import Questionnaire
+    Builder->>Aidbox Server: search-questionnaires-by-url
+    Builder->>Aidbox Server: import-questionnaire
+
+    User->>Builder: Save new Questionnaire
+    Builder->>Aidbox Server: create-questionnaire
+
+    User->>Builder: Update existing Questionnaire
+    Builder->>Aidbox Server: save-questionnaire
+
+    User->>Builder: Save Outline Item as Sub-Questionnaire
+    Builder->>Aidbox Server: create-sub-questionnaire
+
+    %% Debug Actions
+    User->>Builder: Click "Populate"
+    Builder->>Aidbox Server: populate
+
+    User->>Builder: Click "Extract"
+    Builder->>Aidbox Server: extract
+
+    User->>Builder: Click "Validate Questionnaire"
+    Builder->>Aidbox Server: validate-questionnaire
+
+    User->>Builder: Click "Validate Response"
+    Builder->>Aidbox Server: validate-response
+
+    %% Theme Editing
+    User->>Builder: Save new Theme
+    Builder->>Aidbox Server: create-theme
+
+    User->>Builder: Update existing Theme
+    Builder->>Aidbox Server: save-theme
+```
+
+{% endtab %}
+
+{% tab title="Renderer" %}
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Renderer
+    participant Aidbox Server
+
+    %% Initialization
+    User->>Renderer: Load Renderer UI
+    Renderer->>Aidbox Server: get-config
+    Renderer->>Aidbox Server: get-theme
+    Renderer->>Aidbox Server: get-questionnaire
+    Renderer->>Aidbox Server: get-response
+
+    %% Form Interaction
+    User->>Renderer: Open dropdown (choice item)
+    Renderer->>Aidbox Server: search-choice-options
+
+    User->>Renderer: Upload a file
+    Renderer->>Aidbox Server: upload-attachment
+
+    User->>Renderer: Remove uploaded file
+    Renderer->>Aidbox Server: delete-attachment
+
+    User->>Renderer: Modify answers in form
+    Renderer->>Aidbox Server: save-response
+
+    %% Context refresh
+    User->>Renderer: Click "Repopulate"
+    Renderer->>Aidbox Server: repopulate
+
+    %% Finalization
+    User->>Renderer: Click "Submit"
+    Renderer->>Aidbox Server: submit-response
+```
+
+{% endtab %}
+
+{% endtabs %}
