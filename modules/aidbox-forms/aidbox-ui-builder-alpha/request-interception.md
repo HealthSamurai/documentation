@@ -153,131 +153,65 @@ To manipulate extraction results before they are processed:
 </script>
 ```
 
-## Endpoints
+## Request Tags
 
-### assemble-questionnaire
+Request tags are used to differentiate between different types of requests. They are passed as a property in the `init` object and can be used to identify the request type in the interception function.
+The following tags are available:
 
-Triggered after saving the current questionnaire, if it includes sub-questionnaires, to assemble the full questionnaire.
 
-**Request**
+{% tabs %}
 
-```http
-POST /fhir/Questionnaire/$assemble HTTP/1.1 
-Content-Type: application/json
+{% tab title="Builder" %}
 
-{
-    "resourceType": "Parameters",
-    "parameter": [{
-        "name": "questionnaire",
-        "resource": <questionnaire>
-    }]
-}
-```
+| Tag                                                           | When                                                          | Description                                         |
+|---------------------------------------------------------------|---------------------------------------------------------------|-----------------------------------------------------|
+| [get-config](#get-config)                                     | During component initialization (if config is referenced)     | Loads SDCConfig for themes, localization, etc.      |
+| [get-theme](#get-theme)                                       | During initialization if config references a theme            | Fetches the theme used by builder.                  |
+| [get-themes](#get-themes)                                     | On initialization or after saving a theme                     | Loads available themes for theme selector.          |
+| [get-fhir-metadata](#get-fhir-metadata)                       | During builder startup                                        | Fetches CapabilityStatement for autocomplete.       |
+| [get-fhir-schemas](#get-fhir-schemas)                         | During builder startup                                        | Loads JSON schemas for FHIR resources.              |
+| [get-questionnaire](#get-questionnaire)                       | When initializing the form for editing                        | Loads questionnaire by ID.                          |
+| [get-assembled-questionnaire](#get-assembled-questionnaire)   | After loading questionnaire with sub-questionnaire references | Fetches a fully assembled version.                  |
+| [get-sub-questionnaire](#get-sub-questionnaire)               | When opening a sub-questionnaire reference                    | Loads a sub-questionnaire by canonical URL.         |
+| [search-sub-questionnaires](#search-sub-questionnaires)       | When searching for sub-questionnaires                         | Lists sub-questionnaires by extension/title.        |
+| [search-questionnaires-by-url](#search-questionnaires-by-url) | Before saving a questionnaire                                 | Checks if canonical URL is already in use.          |
+| [create-questionnaire](#create-questionnaire)                 | When saving a new questionnaire                               | Creates a new Questionnaire resource.               |
+| [save-questionnaire](#save-questionnaire)                     | When updating an existing questionnaire                       | Saves changes to the questionnaire.                 |
+| [create-sub-questionnaire](#create-sub-questionnaire)         | When saving an outline item as sub-questionnaire              | Creates a canonical sub-questionnaire.              |
+| [import-questionnaire](#import-questionnaire)                 | When clicking the "Import" button                             | Imports a new questionnaire JSON.                   |
+| [populate](#populate)                                         | When clicking "Populate" in debug panel                       | Prefills fields using subject/context.              |
+| [extract](#extract)                                           | When clicking "Extract" in debug panel                        | Extracts resources from the questionnaire response. |
+| [validate-questionnaire](#validate-questionnaire)             | When clicking "Validate Questionnaire" in debug panel         | Validates form structure.                           |
+| [create-theme](#create-theme)                                 | When saving a new theme                                       | Creates a new QuestionnaireTheme.                   |
+| [save-theme](#save-theme)                                     | When saving changes to an existing theme                      | Updates the theme resource.                         |
 
-Where `<questionnaire>` is the [questionnaire](https://www.hl7.org/fhir/questionnaire.html) being assembled.
+{% endtab %}
 
-**Response**
+{% tab title="Renderer" %}
 
-```json
-<questionnaire>
-```
+| Tag                                             | When                                                      | Description                                      |
+|-------------------------------------------------|-----------------------------------------------------------|--------------------------------------------------|
+| [get-config](#get-config)                       | During component initialization (if config is referenced) | Loads SDCConfig for theming/localization.        |
+| [get-theme](#get-theme)                         | During initialization if config references a theme        | Fetches the theme used by renderer.              |
+| [get-questionnaire](#get-questionnaire)         | When loading the form                                     | Fetches the questionnaire by ID.                 |
+| [get-response](#get-response)                   | When loading a saved response                             | Fetches the QuestionnaireResponse resource.      |
+| [search-choice-options](#search-choice-options) | When opening/searching dropdown for choice item           | Fetches options from a ValueSet or other source. |
+| [upload-attachment](#upload-attachment)         | When a file is selected in an attachment input            | Uploads file and returns file URL.               |
+| [delete-attachment](#delete-attachment)         | When an attachment is cleared by the user                 | Deletes the file from storage.                   |
+| [save-response](#save-response)                 | When auto-saving an in-progress response                  | Persists progress with `in-progress` status.     |
+| [repopulate](#repopulate)                       | When user clicks "Repopulate"                             | Refreshes form with updated subject/context.     |
+| [submit-response](#submit-response)             | When user clicks "Submit"                                 | Submits or amends the form.                      |
+| [validate-response](#validate-response)         | When clicking "Validate Response" in debug panel          | Validates correctness of the filled response.    |
 
-Where `<questionnaire>` is the assembled [questionnaire](https://www.hl7.org/fhir/questionnaire.html).
+{% endtab %}
 
-### assemble-sub-questionnaire-usages
+{% endtabs %}
 
-Triggered after saving a sub-questionnaire to update all parent questionnaires that include it.
 
-**Request**
-
-```http
-POST /Questionnaire/$assemble-all HTTP/1.1 
-Content-Type: application/json
-
-{
-    "questionnaires": [
-        {
-            "id": <questionnaire-1-id>,
-            "resourceType": "Questionnaire"
-        },
-        {
-            "id": <questionnaire-2-id>,
-            "resourceType": "Questionnaire"
-        },
-        ...
-    ]
-}
-```
-
-Where `<questionnaire-1-id>`, `<questionnaire-2-id>`, etc., are the IDs of the parent [questionnaires](https://www.hl7.org/fhir/questionnaire.html) that include the sub-questionnaire.
-
-**Response**
-
-```json
-[
-  <questionnaire-1>, 
-  <questionnaire-2>, 
-  ...
-]
-```
-
-Where `<questionnaire-1>`, `<questionnaire-2>`, etc., are the updated [questionnaires](https://www.hl7.org/fhir/questionnaire.html).
-
-### check-sub-questionnaire-usage
-
-Triggered after saving a sub-questionnaire to verify if it is currently used in any parent questionnaires.
-
-**Request**
-
-```http
-GET /Questionnaire/<sub-questionnaire-id>/$usage HTTP/1.1 
-```
-
-Where `<sub-questionnaire-id>` is the ID of the sub-questionnaire.
-
-**Response**
-
-```json
-{
-    "questionnaires": [
-        {
-            "id": <questionnaire-1-id>,
-            "resourceType": "Questionnaire"
-        },
-        {
-            "id": <questionnaire-2-id>,
-            "resourceType": "Questionnaire"
-        },
-        ...
-    ]
-}
-```
-
-Where `<questionnaire-1-id>`, `<questionnaire-2-id>`, etc., are the IDs of the parent [questionnaires](https://www.hl7.org/fhir/questionnaire.html) that include the sub-questionnaire.
-
-### delete-assembled-questionnaire
-
-Triggered after saving the current questionnaire, when the saved questionnaire no longer references sub-questionnaires.
-
-**Request**
-
-```http
-DELETE /sdc/Questionnaire?url=<questionnaire-url>&version=<questionnaire-version>-assembled HTTP/1.1
-```
-
-Where `<questionnaire-url>` is the canonical URL and `<questionnaire-version>` is the version of the questionnaire being deleted.
-
-**Response**
-
-```json
-<questionnaire>
-```
-
-Where `<questionnaire>` is the [questionnaire](https://www.hl7.org/fhir/questionnaire.html) that was deleted.
 
 ### delete-attachment
 
-Triggered when the attachment input field is cleared.
+Triggered in renderer when the attachment input field is cleared.
 
 **Request**
 
@@ -293,7 +227,7 @@ Response shape is specific to the storage type and is not processed by the front
 
 ### extract
 
-Triggered when the "Extract" button in the debug panel is clicked.
+Triggered when the "Extract" button in the builder debug panel is clicked.
 
 **Request**
 
@@ -392,7 +326,7 @@ Where `<questionnaire-id>` is the ID of the questionnaire being requested.
 
 Where `<questionnaire>` is the [questionnaire](https://www.hl7.org/fhir/questionnaire.html) being requested.
 
-### get-questionnaire-response
+### get-response
 
 Triggered during the initialization of the renderer to fetch the current user response.
 
@@ -447,26 +381,6 @@ GET /static/fhir_schemas.json HTTP/1.1
 ```
 
 Where `<fhir-schemas>` is the JSON object containing the [schemas](https://fhir-schema.github.io/fhir-schema/) for the FHIR resource elements.
-
-### get-questionnaire-by-id
-
-Triggered before saving the current questionnaire to check for conflicts with existing questionnaires.
-
-**Request**
-
-```http
-GET /sdc/Questionnaire/<questionnaire-id> HTTP/1.1
-```
-
-Where `<questionnaire-id>` is the ID of the questionnaire being checked.
-
-**Response**
-
-```json
-<questionnaire>
-```
-
-Where `<questionnaire>` is the [questionnaire](https://www.hl7.org/fhir/questionnaire.html) being checked.
 
 ### get-theme
 
@@ -531,7 +445,7 @@ Where `<questionnaire>` is the [questionnaire](https://www.hl7.org/fhir/question
 
 ### populate
 
-Triggered when the "Populate" button is clicked in the debug panel.
+Triggered when the "Populate" button is clicked in the builder debug panel.
 
 **Request**
 
@@ -569,7 +483,7 @@ Content-Type: application/json
 }
 ```
 
-Where `<questionnaire>` is the questionnaire being populated, `<patient-id>` is the ID of the patient, and `<encounter-id>` is the ID of the encounter selected in the debug panel. (todo: add explanation)
+Where `<questionnaire>` is the questionnaire being populated, `<patient-id>` is the ID of the patient, and `<encounter-id>` is the ID of the encounter selected in the builder debug panel.
 
 **Response**
 
@@ -703,52 +617,6 @@ Where `<questionnaire>`, `<questionnaire-response>`, `<patient-id>`, and `<encou
 
 Where `<parameters>` is a [parameters](https://www.hl7.org/fhir/parameters.html) resource containing the repopulated questionnaire response under the `response` name.
 
-### save-assembled-questionnaire
-
-Triggered after saving the current questionnaire, if it includes sub-questionnaires, to save the assembled version.
-
-**Request**
-
-```http
-PUT /sdc/Questionnaire?url=<questionnaire-url>&version=<questionnaire-version>-assembled HTTP/1.1
-Content-Type: application/json
-
-<assembled-questionnaire>
-```
-
-Where `<questionnaire-url>` and `<questionnaire-version>` are as described in the [get-assembled-questionnaire](request-interception.md#get-assembled-questionnaire) request, and `<assembled-questionnaire>` is the assembled questionnaire being saved.
-
-**Response**
-
-```json
-<questionnaire>
-```
-
-Where `<questionnaire>` is the [questionnaire](https://www.hl7.org/fhir/questionnaire.html) that was saved.
-
-### validated-extracted-bundle
-
-Triggered upon completion of an extract operation initiated by the "Extract" button in the debug panel.
-
-**Request**
-
-```http
-POST / HTTP/1.1
-Content-Type: application/json
-
-<bundle>
-```
-
-Where `<bundle>` is the [bundle](https://www.hl7.org/fhir/bundle.html) containing resources obtained from [extract](request-interception.md#extract).
-
-**Response**
-
-```json
-<bundle>
-```
-
-Where `<bundle>` is the [bundle](https://www.hl7.org/fhir/bundle.html) of saved resources.
-
 ### create-questionnaire
 
 Triggered when the "Save" button is clicked in the builder for a new questionnaire.
@@ -866,7 +734,7 @@ Where `<theme>` is the [theme](configuration.md#theme) being saved.
 
 ### search-choice-options
 
-Triggered when dropdown options are requested for a choice item.
+Triggered in renderer by dynamic dropdowns (choice items with external value sets or resource lookups) when the user clicks on the dropdown to fetch the options.
 
 **Request**
 
@@ -976,7 +844,7 @@ Where `<file-url>` is the URL of the uploaded file which will further be used to
 
 ### validate-questionnaire
 
-Triggered when the "Validate Questionnaire" button is clicked in the debug panel.
+Triggered when the "Validate Questionnaire" button is clicked in the builder debug panel.
 
 **Request**
 
@@ -999,7 +867,7 @@ Where `<operation-outcome>` is the [operation outcome](https://www.hl7.org/fhir/
 
 ### validate-response
 
-Triggered when the "Validate Questionnaire Response" button is clicked in the debug panel.
+Triggered when the "Validate Questionnaire Response" button is clicked in the builder debug panel.
 
 **Request**
 
