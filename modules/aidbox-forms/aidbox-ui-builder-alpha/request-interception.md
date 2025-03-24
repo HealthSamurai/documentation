@@ -891,9 +891,7 @@ Where `<operation-outcome>` is the [operation outcome](https://www.hl7.org/fhir/
 
 ## Sequence Diagram
 
-{% tabs %}
-
-{% tab title="Builder" %}
+### Builder
 
 ```mermaid
 sequenceDiagram
@@ -952,9 +950,7 @@ sequenceDiagram
     Builder->>Aidbox Server: save-theme
 ```
 
-{% endtab %}
-
-{% tab title="Renderer" %}
+### Renderer
 
 ```mermaid
 sequenceDiagram
@@ -990,7 +986,3 @@ sequenceDiagram
     User->>Renderer: Click "Submit"
     Renderer->>Aidbox Server: submit-response
 ```
-
-{% endtab %}
-
-{% endtabs %}
