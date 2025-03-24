@@ -1,25 +1,24 @@
 # Overview
 
 Aidbox is a platform to build FHIR-first applications.
-Aidbox is dynamic, performant, flexible and highly customizable, metadata-driven system. 
+Aidbox is performant, highly customizable and metadata-driven system. 
 All tables, views and APIs are on-fly generated and configured from metadata. 
-You can load FHIR resources, profiles and search parameters from IGs or create your own.
+You can dynamically load FHIR and custom resource definitions, profiles and search parameters 
+from IGs or create your own.
 
 
 Aidbox provides you with:
 
-* FHIR Database - performant PostgreSQL-based JSONB storage, you can search any resource by any attribute, join and aggregate data,
-write transactional SQL.
-* Artifact Repository - manage Canonical resources for all versions of FHIR, with first-class support
-for FHIR Packages, Implementation Guides and Terminology
-* FHIR+ & SQL API - Comprehensive API for all FHIR resources and Custom resources
-* Granular Access Control, including SMART on FHIR, Security Labels, OAuth 2.0 & OIDC, JWT, etc.
-* Built-in Auth Server and integration with external Identity Providers (Okta, Azure AD, Google, etc)
-* SDKs for different programming languages and example projects to help you get started
-* Set of optional plugins like Admin UI, Aidbox Forms (FHIR SDC), MPI etc
+* FHIR Database - Store data as JSONB in PostgreSQL, search any resource by any attribute, join and aggregate data,
+execute transactional SQL.
+* Artifact Repository - Manage profiles, search parameters, code systems & value sets, load Implementation Guides, validate resources, and lookup in terminology
+* FHIR+ & SQL API - Change and search FHIR resources, import and export, execute SQL on FHIR resources.
+* Auth  -  Manage users and apps, Secure API with Access Policies and Security Labels, integrate with external IdP (Okta, Azure AD, Google, etc)
+* Admin UI - Introspect and manage resources and configuration in UI
+* SDKs - Build FHIR-first applications with SDKs for different programming languages. Get started with example projects.
+* Plugins - Extend  Aidbox with additional plugins like Aidbox Forms (FHIR SDC), Master Patient Index, HL7v2, CCDA & X12 Converters, etc.
 
-
-TBD: architecture diagram
+![arch](/.gitbook/assets/architecture.jpeg)
 
 
 Aidbox has simple configuration - JVM Service (Clojure, Docker) + PostgreSQL (with support for managed PostgreSQL).
@@ -35,8 +34,6 @@ FHIR-native EHRs and EMRs, Billing Systems, Analytics Platforms and Clinical Dec
 Checkout our [Case Studies](/casestudies/README.md) to learn more.
 
 
-
-
 ## FHIR Database
 
 Aidbox uses PostgreSQL and JSONB columns to store and query FHIR resources.
@@ -48,6 +45,23 @@ SQL queries for all FHIR Search Parameters. We use more traditional approach
 to manage indexes for search parameters, it's up to you to decide which
 search parameters to index.
 
+We store resources almost as is in JSONB columns. FHIR Search API and ViewDefinition runner generate
+sophisticated queries to search resources by any attribute. For performance you can create indexes.
+
+```sql
+CREATE TABLE patient (
+    id text PRIMARY KEY DEFAULT gen_random_uuid(),
+    -- creation time
+    cts timestamp with time zone DEFAULT now(),
+    -- last modification time
+    ts timestamp with time zone DEFAULT now(),
+    -- resource content
+    resource jsonb NOT NULL
+);
+
+SELECT count(*) FROM patient;
+```
+
 [Read more about FHIR Database](/database/README.md)
 
 ## FHIR Artifact Repository
@@ -57,6 +71,9 @@ FAR is a source of metadata for API, SDKs and other components.
 It supports FHIR Packages, Implementation Guides, Terminology, etc.
 FAR understands FHIR Canonical resources and relationships between them.
 
+FAR provides FHIRSchema-based validation engine to validate FHIR resources.
+
+TBD: Hybrid terminology
 
 [Read more about FHIR Artifact Repository](/far/README.md)
 
@@ -64,8 +81,7 @@ FAR understands FHIR Canonical resources and relationships between them.
 
 On top of database Aidbox provides FHIR API:
 
-* CRUD operations for all FHIR and Custom resources
-* Configurable support for Resource's History
+* CRUD, PATCH and HISTORY operations for all FHIR and Custom resources
 * Support for FHIR Batch and Transactions
 * Bulk API to efficiently Import and Export resources
 * FHIR Search - search any resource by any attribute
@@ -78,10 +94,9 @@ On top of database Aidbox provides FHIR API:
 * PostgreSQL native SQL API over REST
 * GraphQL API
 * Other Standard and Custom Operations like compartments, $everything, $lookup etc
-
+* SMART on FHIR launch and Patient API
 
 [Read more about FHIR+ API](/api/README.md)
-
 
 ## Authentication and Authorization
 
@@ -97,16 +112,34 @@ Aidbox provides a flexible security framework:
 
 [Read more about security in Aidbox](/security/README.md)
 
+
+## Admin UI
+
+Aidbox provides a user-friendly configuration and administration UI.
+
+* IG loader and viewer
+* Resource Browser
+* Notebooks
+* REST Console
+* DB Console
+* DB Viewer
+
+
 ## SDKs and Extensibility Framework
 
 Aidbox can be extended with Custom Resources and Custom Operations.
 Aidbox can work with external FHIR SDKs like HAPI, FHIR.NET, etc.
 But because of dynamic nature we provide our own SDKs generators 
-for different programming languages.
+for different programming languages, with support for Custom Resources,
+Profiles and terminology.
 
 * TypeScript SDK
 * Python SDK
 * C# SDK
+
+Generator framework is based on [FHIR TypeSchema](TBD) and very flexible and expressive.
+It's a matter of couple of days to generate SDKs with respect to your conventions and preferences
+for any language.
 
 We also provide a set of template and example projects to help you get started.
 
