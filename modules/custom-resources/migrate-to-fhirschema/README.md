@@ -70,13 +70,94 @@ Example response:
 
 ### Step 2: Set Up Parallel Environment with FHIR Schema
 
-Launch a parallel Aidbox instance configured to use FHIR Schema, connected to the same database and the same zen configuration project (if you have one):
+Launch a parallel Aidbox instance configured to use the FHIR Schema, connected to the same database and the same Zen configuration project (if you have one).
 
-```
-AIDBOX_FHIR_SCHEMA_VALIDATION=true
+Below is an example of a `docker-compose` file with two Aidbox instances running on the same database: the first Aidbox (`aidbox_zen`) is configured with a Zen configuration project and uses Zen validation mode, while the second (`aidbox_schema`) is set up to use the FHIR Schema.
+
+```yaml
+version: '3.7'
+volumes:
+  aidbox_pg_data: {}
+version: '3.7'
+volumes:
+  aidbox_pg_data: {}
+
+services:
+
+  aidbox_db:
+    image: healthsamurai/aidboxdb:17
+    pull_policy: always
+    volumes:
+    - aidbox_pg_data:/data:delegated
+    environment:
+      PGDATA: /data
+      POSTGRES_USER: aidbox
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: aidbox
+      POSTGRES_PASSWORD: password
+
+  aidbox_zen:
+    image: "healthsamurai/aidboxone:edge"
+    pull_policy: always
+    depends_on: 
+      - aidbox_db
+    ports:
+      - "8888:8888"
+    environment:
+      PGHOST: aidbox_db
+      PGPORT: 5432
+      PGUSER: aidbox
+      PGDATABASE: aidbox
+      PGPASSWORD: password
+      AIDBOX_PORT: 8888
+      AIDBOX_BASE_URL: http://localhost:8888
+      BOX_PROJECT_GIT_TARGET__PATH: /aidbox-project
+      AIDBOX_ZEN_ENTRYPOINT: main/box
+      AIDBOX_DEV_MODE: "true"
+      AIDBOX_ZEN_DEV_MODE: "true"
+      AIDBOX_CLIENT_SECRET: very_secret
+      AIDBOX_ADMIN_PASSWORD: password
+      AIDBOX_COMPLIANCE: enabled
+      AIDBOX_LICENSE: <aidbox-license>
+      AIDBOX_FHIR_VERSION: "4.0.1"
+    volumes:
+      - "./zrc:/aidbox-project/zrc"
+      - "./zen-package.edn:/aidbox-project/zen-package.edn"
+      - "./zen-packages:/aidbox-project/zen-packages"
+
+  aidbox_schema:
+    image: healthsamurai/aidboxone:edge
+    pull_policy: always
+    depends_on:
+    - aidbox_db
+    ports:
+    - 8080:8080
+    environment:
+      BOX_BOOTSTRAP_FHIR_PACKAGES: hl7.fhir.r4.core#4.0.1
+      BOX_FHIR_SCHEMA_VALIDATION: true
+      AIDBOX_CLIENT_SECRET: very_secret
+      AIDBOX_ADMIN_PASSWORD: password
+      AIDBOX_COMPLIANCE: enabled
+      PGHOST: aidbox_db
+      PGUSER: aidbox
+      AIDBOX_PORT: 8080
+      AIDBOX_BASE_URL: http://localhost:8080
+      BOX_PROJECT_GIT_TARGET__PATH: /aidbox-project
+      AIDBOX_ZEN_ENTRYPOINT: main/box
+      AIDBOX_DEV_MODE: "true"
+      AIDBOX_ZEN_DEV_MODE: "true"
+      PGDATABASE: aidbox
+      PGPASSWORD: password
+      PGPORT: 5432
+      AIDBOX_LICENSE: <aidbox-license>
+      AIDBOX_FHIR_VERSION: "4.0.1"
+    volumes:
+      - "./zrc:/aidbox-project/zrc"
+      - "./zen-package.edn:/aidbox-project/zen-package.edn"
+      - "./zen-packages:/aidbox-project/zen-packages"
 ```
 
-For detailed configuration instructions, refer to the [FHIR Schema setup documentation](../../profiling-and-validation/fhir-schema-validator/setup.md).
+For detailed FHIR Schema engine configuration instructions, refer to the [FHIR Schema setup documentation](../../profiling-and-validation/fhir-schema-validator/setup.md).
 
 ### Step 3: Migrate FHIR Packages to FHIR Schema
 
