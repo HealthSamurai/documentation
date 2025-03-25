@@ -97,7 +97,7 @@ services:
       POSTGRES_PASSWORD: password
 
   aidbox_zen:
-    image: "healthsamurai/aidboxone:edge"
+    image: healthsamurai/aidboxone:edge
     pull_policy: always
     depends_on: 
       - aidbox_db
