@@ -44,15 +44,24 @@
     * Users
     * Applications (Clients)
   - Authentication
+    * Basic
     * OAuth
+    * SSO with External IdentityProvider
+    * Token Introspection
   - Authorization (Access Control)
     * Access Policies
     * SMART Scopes
-    * Security Labels Framework
     * Scoped APIs
-  - SMART on FHIR
-  - Patient API
-  - Organization API
+      - Organization-based hierarchical access control
+      - Compartments API
+      - Patient data access API 
+    * Security Labels Framework
+    * Role Based Access Control
+    * Attribute Based Access Control
+    * Consent Based Access Control
+  - Audit & Logging
+    * Audit Events in Aidbox
+    * Standalone Audit Event Repository
 * Admin UI
   - Resource Browser
   - REST Console
@@ -66,6 +75,7 @@
   - Python
   - C#
   - Template Projects
+  - Aidbox Apps
 * Plugins
   - Aidbox Forms (FHIR SDC)
   - Master Patient Index
