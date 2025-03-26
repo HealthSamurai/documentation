@@ -118,7 +118,7 @@ Unlike **attributes**, which can only store string values and are defined in the
 
 Below are examples of how to set properties programmatically:
 
-### onFetch: Intercept Network Requests
+#### onFetch: Intercept Network Requests
 
 {% tabs %}
 
@@ -160,7 +160,7 @@ Below are examples of how to set properties programmatically:
 
 For more complex use cases, such as attaching authorization headers or storing questionnaires locally, refer to the [detailed interception guide](request-interception.md).
 
-### onAlert: Handle Alerts
+#### onAlert: Handle Alerts
 
 {% tabs %}
 
@@ -196,7 +196,7 @@ For more complex use cases, such as attaching authorization headers or storing q
 
 {% endtabs %}
 
-### onChange: React to Form Updates
+#### onChange: React to Form Updates
 
 {% tabs %}
 
@@ -232,7 +232,11 @@ For more complex use cases, such as attaching authorization headers or storing q
 
 {% endtabs %}
 
-### onBack: Customize Navigation
+#### onBack: Customize Navigation
+
+{% tabs %}
+
+{% tab title="Builder" %}
 
 ```html
 <aidbox-form-builder id="aidbox-form-builder" />
@@ -246,6 +250,10 @@ For more complex use cases, such as attaching authorization headers or storing q
   };
 </script>
 ```
+
+{% endtab %}
+
+{% endtabs %}
 
 # Controlled Mode (Deprecated)
 
