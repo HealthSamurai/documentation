@@ -52,7 +52,7 @@ You can embed the **Builder** and **Renderer** into your application or website 
 
 {% endtabs %}
 
-## Step 3: Configure Attributes
+## Step 3: Configure Attributes and Properties
 
 The following attributes are available for the Builder and Renderer components. 
 These attributes control various aspects of the form’s behavior and appearance, including the form’s layout, customization options, and integration with external systems.
@@ -95,32 +95,30 @@ These attributes control various aspects of the form’s behavior and appearance
 Along with the above attributes, you can also set the following properties. 
 
 {% hint style="info" %}
-Unlike HTML attributes, which can only store string values and are defined in the markup, 
-properties can hold any JavaScript value (such as objects, arrays, functions, etc.) and must be set programmatically using JavaScript.
+Unlike **attributes**, which can only store string values and are defined in the markup, 
+**properties** can hold any JavaScript value (such as objects, arrays, functions, etc.) and must be set programmatically using JavaScript.
 {% endhint %}
 
 {% tabs %}
 
 {% tab title="Builder" %}
-- `onFetch` (optional): A custom fetch handler that allows you to intercept and modify network requests, as described in [request interception](#step-4-optional-configure-requests-interception). The function receives the URL and request options as arguments.
+- `onFetch` (optional): A custom fetch handler that allows you to intercept and modify network requests. The function receives the URL and request options as arguments.
 - `onAlert` (optional): A custom alert handler that allows you to intercept and handle alerts, overriding the visual alert display. The function receives the alert object as an argument.
-- `onChange` (optional): A custom callback function that is invoked when the questionnaire is modified. The function receives the updated questionnaire as an argument.
+- `onChange` (optional): A custom callback function invoked when the questionnaire is modified, without affecting the default behavior. The function receives the updated questionnaire as an argument.
 - `onBack` (optional): A custom callback function that is invoked when the back button is clicked, allowing you to override the default back button behavior.
 {% endtab %}
 
 {% tab title="Renderer" %}
-{% endtab %}
-- `onFetch` (optional): A custom fetch handler that allows you to intercept and modify network requests, as described in [request interception](#step-4-optional-configure-requests-interception). The function receives the URL and request options as arguments.
+- `onFetch` (optional): A custom fetch handler that allows you to intercept and modify network requests. The function receives the URL and request options as arguments.
 - `onAlert` (optional): A custom alert handler that allows you to intercept and handle alerts, overriding the visual alert display. The function receives the alert object as an argument.
-- `onChange` (optional): A custom callback function that is invoked when the questionnaire response is modified. The function receives the updated questionnaire response as an argument.
+- `onChange` (optional): A custom callback function that is invoked when the questionnaire response is modified, without affecting the default behavior. The function receives the updated questionnaire response as an argument.
+{% endtab %}
+
 {% endtabs %}
 
+Below are examples of how to set properties programmatically:
 
-## Step 4 (Optional): Configure Requests Interception
-
-Both components support intercepting network requests. This allows debugging or customization, such as modifying authentication headers or rerouting requests.
-
-Enable request interception by setting `onFetch` property:
+### onFetch: Intercept Network Requests
 
 {% tabs %}
 
@@ -129,12 +127,16 @@ Enable request interception by setting `onFetch` property:
 <aidbox-form-builder id="aidbox-form-builder" />
 
 <script>
-    const builder = document.getElementById('aidbox-form-builder');
-    
-    builder.onFetch = async (url, init) => {
-        console.log('Intercepted request', url, init);
-        return fetch(url, init);
+  const builder = document.getElementById('aidbox-form-builder');
+
+  builder.onFetch = async (url, init) => {
+    console.log('Intercepted request', url, init);
+    init.headers = {
+      ...init.headers,
+      Authorization: 'Bearer YOUR_TOKEN'
     };
+    return fetch(url, init);
+  };
 </script>
 ```
 {% endtab %}
@@ -144,20 +146,106 @@ Enable request interception by setting `onFetch` property:
 <aidbox-form-renderer id="aidbox-form-renderer" />
 
 <script>
-    const renderer = document.getElementById('aidbox-form-renderer');
-    
-    renderer.onFetch = async (url, init) => {
-        console.log('Intercepted request', url, init);
-        return fetch(url, init);
-    };
+  const renderer = document.getElementById('aidbox-form-renderer');
+
+  renderer.onFetch = async (url, init) => {
+    console.log('Intercepted request', url, init);
+    return fetch(url, init);
+  };
 </script>
 ```
 {% endtab %}
 
-
 {% endtabs %}
 
 For more complex use cases, such as attaching authorization headers or storing questionnaires locally, refer to the [detailed interception guide](request-interception.md).
+
+### onAlert: Handle Alerts
+
+{% tabs %}
+
+{% tab title="Builder" %}
+```html
+<aidbox-form-builder id="aidbox-form-builder" />
+
+<script>
+  const builder = document.getElementById('aidbox-form-builder');
+
+  builder.onAlert = (alert) => {
+    console.log('Alert received:', alert);
+    // e.g., display toast or log error
+  };
+</script>
+```
+{% endtab %}
+
+{% tab title="Renderer" %}
+```html
+<aidbox-form-renderer id="aidbox-form-renderer" />
+
+<script>
+  const renderer = document.getElementById('aidbox-form-renderer');
+
+  renderer.onAlert = (alert) => {
+    console.log('Alert received:', alert);
+    // e.g., display toast or log error
+  };
+</script>
+```
+{% endtab %}
+
+{% endtabs %}
+
+### onChange: React to Form Updates
+
+{% tabs %}
+
+{% tab title="Builder" %}
+```html
+<aidbox-form-builder id="aidbox-form-builder" />
+
+<script>
+  const builder = document.getElementById('aidbox-form-builder');
+
+  builder.onChange = (questionnaire) => {
+    console.log('Updated questionnaire:', questionnaire);
+    // e.g., log or analyze the questionnaire
+  };
+</script>
+```
+{% endtab %}
+
+{% tab title="Renderer" %}
+```html
+<aidbox-form-renderer id="aidbox-form-renderer" />
+
+<script>
+  const renderer = document.getElementById('aidbox-form-renderer');
+
+  renderer.onChange = (response) => {
+    console.log('Updated questionnaire response:', response);
+    // e.g., log or analyze the response
+  };
+</script>
+```
+{% endtab %}
+
+{% endtabs %}
+
+### onBack: Customize Navigation
+
+```html
+<aidbox-form-builder id="aidbox-form-builder" />
+
+<script>
+  const builder = document.getElementById('aidbox-form-builder');
+
+  builder.onBack = () => {
+    console.log('Back button clicked');
+    // Perform custom navigation
+  };
+</script>
+```
 
 # Controlled Mode (Deprecated)
 
@@ -169,7 +257,7 @@ This approach is useful when custom validation is required, such as enforcing bu
 Controlled mode is deprecated in favor of request interception, as the latter provides full control over the component’s interaction with Aidbox, extending beyond just Questionnaire and QuestionnaireResponse. 
 {% endhint %}
 
-## Step 5: Enable Controlled Mode
+## Step 4: Enable Controlled Mode
 {% tabs %}
 
 {% tab title="Builder" %}
