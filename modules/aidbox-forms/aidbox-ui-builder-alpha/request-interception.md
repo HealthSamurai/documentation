@@ -10,7 +10,7 @@ Request interception allows you to modify network requests made by **Aidbox Form
 
 ### Enabling Request Interception
 
-To enable request interception, set the `enable-fetch-proxy` attribute on the component and provide a custom `fetch` function:
+To enable request interception, set the `onFetch` property on the builder or renderer element. This property should be a function that takes two arguments: the URL and the request options. The function should return a promise that resolves to the response.
 
 {% tabs %}
 {% tab title="Builder" %}
@@ -20,7 +20,7 @@ To enable request interception, set the `enable-fetch-proxy` attribute on the co
 <script>
     const builder = document.getElementById('aidbox-form-builder');
     
-    builder.fetch = async (url, init) => {
+    builder.onFetch = async (url, init) => {
         console.log('Intercepted request', url, init);
         return fetch(url, init);
     };
@@ -35,7 +35,7 @@ To enable request interception, set the `enable-fetch-proxy` attribute on the co
 <script>
     const renderer = document.getElementById('aidbox-form-renderer');
     
-    renderer.fetch = async (url, init) => {
+    renderer.onFetch = async (url, init) => {
         console.log('Intercepted request', url, init);
         return fetch(url, init);
     };
@@ -63,7 +63,7 @@ To inspect outgoing requests and responses:
 <script>
     const renderer = document.getElementById('aidbox-form-renderer');
     
-    renderer.fetch = async (url, init) => {
+    renderer.onFetch = async (url, init) => {
         console.log('Request:', url, init);
         const response = await fetch(url, init);
         console.log('Response:', response.status, await response.text());
@@ -82,7 +82,7 @@ To include an authorization token in requests:
 <script>
     const builder = document.getElementById('aidbox-form-builder');
     
-    builder.fetch = async (url, init) => {
+    builder.onFetch = async (url, init) => {
         const headers = new Headers(init.headers);
         headers.set('Authorization', `Bearer YOUR_ACCESS_TOKEN`);
         return fetch(url, { ...init, headers });
@@ -100,7 +100,7 @@ To change the endpoint of requests dynamically:
 <script>
     const renderer = document.getElementById('aidbox-form-renderer');
     
-    renderer.fetch = async (url, init) => {
+    renderer.onFetch = async (url, init) => {
         const newUrl = url.replace('aidbox-instance.com', 'custom-endpoint.com');
         return fetch(newUrl, init);
     };
@@ -117,7 +117,7 @@ To store and retrieve forms from local storage:
 <script>
     const builder = document.getElementById('aidbox-form-builder');
 
-    builder.fetch = async (url, init) => {
+    builder.onFetch = async (url, init) => {
         if (init.tag === 'get-questionnaire') {
             const storedForm = localStorage.getItem('local-questionnaire') || '{"resourceType": "Questionnaire", "id": "local-questionnaire"}';
             return new Response(storedForm, { status: 200 });
@@ -141,7 +141,7 @@ To manipulate extraction results before they are processed:
 <script>
     const builder = document.getElementById('aidbox-form-builder');
     
-    builder.fetch = async (url, init) => {
+    builder.onFetch = async (url, init) => {
         if (init.tag === 'extract') {
             const response = await fetch(url, init);
             const bundle = await response.clone().json();

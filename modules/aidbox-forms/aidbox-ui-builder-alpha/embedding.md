@@ -72,8 +72,6 @@ These attributes control various aspects of the form’s behavior and appearance
 - `base-url` (optional): The base URL of your Aidbox instance.
 - `style` (optional): Custom styling for the iframe.
 - `config` (optional): The [configuration](configuration.md) as a JSON string.
-- `delegate-alerts` (optional): Emits alert events instead of showing them in the UI.
-- `enable-fetch-proxy` (optional): Enables [request interception](#step-4-optional-configure-requests-interception) for custom fetch behavior.
 - `theme` (optional): Theme settings as a JSON string.
 - `token` (optional): JWT token for authentication.
 - `disable-load-sdc-config` (optional): Disables automatic loading of SDC configuration.
@@ -87,8 +85,6 @@ These attributes control various aspects of the form’s behavior and appearance
 - `base-url` (optional): The base URL of your Aidbox instance.
 - `style` (optional): Custom styling for the iframe.
 - `config` (optional): The [configuration](configuration.md) as a JSON string.
-- `delegate-alerts` (optional): Emits alert events instead of showing them in the UI.
-- `enable-fetch-proxy` (optional): Enables [request interception](#step-4-optional-configure-requests-interception) for custom fetch behavior.
 - `theme` (optional): Theme settings as a JSON string.
 - `token` (optional): JWT token for authentication.
 - `disable-load-sdc-config` (optional): Disables automatic loading of SDC configuration.
@@ -96,22 +92,46 @@ These attributes control various aspects of the form’s behavior and appearance
 
 {% endtabs %}
 
+Along with the above attributes, you can also set the following properties. 
+
+{% hint style="info" %}
+Unlike HTML attributes, which can only store string values and are defined in the markup, 
+properties can hold any JavaScript value (such as objects, arrays, functions, etc.) and must be set programmatically using JavaScript.
+{% endhint %}
+
+{% tabs %}
+
+{% tab title="Builder" %}
+- `onFetch` (optional): A custom fetch handler that allows you to intercept and modify network requests, as described in [request interception](#step-4-optional-configure-requests-interception). The function receives the URL and request options as arguments.
+- `onAlert` (optional): A custom alert handler that allows you to intercept and handle alerts, overriding the visual alert display. The function receives the alert object as an argument.
+- `onChange` (optional): A custom callback function that is invoked when the questionnaire is modified. The function receives the updated questionnaire as an argument.
+- `onBack` (optional): A custom callback function that is invoked when the back button is clicked, allowing you to override the default back button behavior.
+{% endtab %}
+
+{% tab title="Renderer" %}
+{% endtab %}
+- `onFetch` (optional): A custom fetch handler that allows you to intercept and modify network requests, as described in [request interception](#step-4-optional-configure-requests-interception). The function receives the URL and request options as arguments.
+- `onAlert` (optional): A custom alert handler that allows you to intercept and handle alerts, overriding the visual alert display. The function receives the alert object as an argument.
+- `onChange` (optional): A custom callback function that is invoked when the questionnaire response is modified. The function receives the updated questionnaire response as an argument.
+{% endtabs %}
+
+
 ## Step 4 (Optional): Configure Requests Interception
 
 Both components support intercepting network requests. This allows debugging or customization, such as modifying authentication headers or rerouting requests.
 
-Enable request interception by setting the `enable-fetch-proxy` attribute and defining a custom `fetch` function:
+Enable request interception by setting `onFetch` property:
 
 {% tabs %}
 
 {% tab title="Builder" %}
 ```html
-<aidbox-form-builder id="aidbox-form-builder" enable-fetch-proxy />
+<aidbox-form-builder id="aidbox-form-builder" />
 
 <script>
     const builder = document.getElementById('aidbox-form-builder');
     
-    builder.fetch = async (url, init) => {
+    builder.onFetch = async (url, init) => {
         console.log('Intercepted request', url, init);
         return fetch(url, init);
     };
@@ -121,12 +141,12 @@ Enable request interception by setting the `enable-fetch-proxy` attribute and de
 
 {% tab title="Renderer" %}
 ```html
-<aidbox-form-renderer id="aidbox-form-renderer" enable-fetch-proxy />
+<aidbox-form-renderer id="aidbox-form-renderer" />
 
 <script>
     const renderer = document.getElementById('aidbox-form-renderer');
     
-    renderer.fetch = async (url, init) => {
+    renderer.onFetch = async (url, init) => {
         console.log('Intercepted request', url, init);
         return fetch(url, init);
     };
@@ -175,9 +195,43 @@ Enable controlled mode by removing the `questionnaire-id` attribute and specifyi
 
 {% endtabs %}
 
-## Step 6: Listen Events
+The following attributes are available for controlled mode:
 
-In controlled mode, event handling becomes more critical since the system does not automatically manage updates. Developers must listen for events like change, save, and submit to track modifications and persist data manually. 
+{% tabs %}
+
+{% tab title="Builder" %}
+- `value`: The Questionnaire resource as a JSON string.
+{% endtab %}
+
+{% tab title="Renderer" %}
+- `questionnaire`: The Questionnaire resource as a JSON string.
+- `questionnaire-response` (optional): The QuestionnaireResponse resource as a JSON string.
+{% endtab %}
+
+{% endtabs %}
+
+In controlled mode, handling events is essential, as the system no longer manages updates automatically.
+Developers are responsible for listening to events such as change, save, and submit to track user interactions and manually persist form data.
+Below is a list of events you can listen for:
+
+{% tabs %}
+
+{% tab title="Builder" %}
+- `change`: Triggered when the form is modified.
+- `back`: Emitted when the back button is clicked.
+- `save`: Emitted when the form is saved.
+- `select`: Emitted when an item is selected.
+- `ready`: Emitted when the builder is loaded.
+{% endtab %}
+
+{% tab title="Renderer" %}
+- `change`: Triggered when the questionnaire response is updated.
+- `submit`: Emitted when the Submit button is clicked.
+- `extracted`: Emitted when data extraction occurs.
+- `ready`: Emitted when the renderer is loaded.
+{% endtab %}
+
+{% endtabs %}
 
 Below is an example of how to listen for `change` event:
 
@@ -209,29 +263,6 @@ Below is an example of how to listen for `change` event:
   });
 </script>
 ```
-{% endtab %}
-
-{% endtabs %}
-
-The following events are available for listening:
-
-{% tabs %}
-
-{% tab title="Builder" %}
-- `alert`: Emitted when an alert occurs.
-- `change`: Triggered when the form is modified.
-- `back`: Emitted when the back button is clicked.
-- `save`: Emitted when the form is saved.
-- `select`: Emitted when an item is selected.
-- `ready`: Emitted when the builder is loaded.
-{% endtab %}
-
-{% tab title="Renderer" %}
-- `alert`: Emitted when an alert occurs.
-- `change`: Triggered when the questionnaire response is updated.
-- `submit`: Emitted when the Submit button is clicked.
-- `extracted`: Emitted when data extraction occurs.
-- `ready`: Emitted when the renderer is loaded.
 {% endtab %}
 
 {% endtabs %}
