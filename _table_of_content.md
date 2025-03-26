@@ -1,18 +1,7 @@
-* Overview
+* Overview (bento-style)
 * Getting Started (Install locally or try in Sandbox)
+* Tutorials
 * Architecture
-* DB
-  - Database Schema & Storage Format
-  - Query Resources
-  - Indexes & Performance
-  - Transactional bulk & migrations
-* FHIR Artifact Repository
-  - Choose FHIR Version
-  - Load IG (FHIR Packages)
-  - Structure Definitions (Logical Models & Profiles)
-  - Define Extensions
-  - Terminology (Value Sets & Code Systems)
-  - Custom Resources
 * API
   - FHIR CRUD & Transactions
     * Create
@@ -31,15 +20,15 @@
   - SQL API
     * SQL on FHIR - ViewDefinitions
     * AidboxQuery
-  - FHIR Bulk Data
+  - Bulk Data APIs
     * Import
-    * Export
+    * FHIR Bulk Export
   - GraphQL
   - Compartments API
 * Subscriptions & Reactive API
   - Topic based subscriptions
-  - Polling for changes
-* Auth
+  - Polling for changes  
+* Auth (TODO: IAM?)
   - Identity Management
     * Users
     * Applications (Clients)
@@ -52,16 +41,32 @@
     * Access Policies
     * SMART Scopes
     * Scoped APIs
-      - Organization-based hierarchical access control
       - Compartments API
       - Patient data access API 
+    * Multitenancy 
+      - Organization-based hierarchical access control
+      - Multibox 
     * Security Labels Framework
     * Role Based Access Control
     * Attribute Based Access Control
     * Consent Based Access Control
   - Audit & Logging
     * Audit Events in Aidbox
-    * Standalone Audit Event Repository
+    * Standalone Audit Event Repository  
+* DB
+  - Database Schema & Storage Format
+  - Query Resources
+  - Indexes & Performance
+  - Transactional bulk & migrations
+* Storage (TODO: Should we put it to API or keep at the top level)
+  - Storing Files  
+* FHIR Artifact Repository
+  - Choose FHIR Version
+  - Load IG (FHIR Packages)
+  - Structure Definitions (Logical Models & Profiles)
+  - Define Extensions
+  - Terminology (Value Sets & Code Systems)
+  - Custom Resources
 * Admin UI
   - Resource Browser
   - REST Console
@@ -70,7 +75,7 @@
   - GraphQL Playground
 * SDKs
   - Setting up the project
-  - Type generation
+  - Type Generation
   - TypeScript
   - Python
   - C#
@@ -86,3 +91,33 @@
    * X12
 * Configuration
 * Deployment & Maintaince
+  - Environments
+  - Helm
+  - Terraform
+  - CI/CD
+  - Observability
+  - Backups
+  - Production Readiness
+    * HA
+    * Blue/green Deployment
+    * Disaster Recovery
+    * Security Checklist
+    * Production Readiness Checklisk
+* Reference
+* Resources
+  - Licensing and Pricing
+  - Release Notes
+  - Release Cycle
+  - Support
+  - User Resources
+    * Issue tracker
+    * User chat (Zulip)
+    * Aidbox Examples
+    * Newsletter
+    * Contact Health Samurai
+
+    
+
+
+Smartbox?
+
