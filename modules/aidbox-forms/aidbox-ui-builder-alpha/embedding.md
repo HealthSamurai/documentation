@@ -306,8 +306,8 @@ The following attributes are available for controlled mode:
 
 {% endtabs %}
 
-In controlled mode, handling events is essential, as the system no longer manages updates automatically.
-Developers are responsible for listening to events such as change, save, and submit to track user interactions and manually persist form data.
+In controlled mode, handling events is essential, as the system no longer manages updates automatically. Developers are responsible for listening to events such as change, save, and submit to track user interactions and manually persist form data.
+
 Below is a list of events you can listen for:
 
 {% tabs %}
