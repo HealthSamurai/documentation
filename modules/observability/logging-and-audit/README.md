@@ -41,7 +41,7 @@ Please, pay attention, that you will not see the response for `GET /_logs` reque
 
 ### Logs in browser
 
-You can open `[aidbox-base]/_logs?format=pretty` in your browser, and Aidbox will produce logs in pretty format, similar to [AIDBOX\_STDOUT\_PRETTY](./#stdout-log) format for stdout. Appeared in v2210.
+You can open `[aidbox-base]/_logs` in your browser, and Aidbox will produce logs in pretty format, similar to [AIDBOX\_STDOUT\_PRETTY](./#stdout-log) format for stdout. Appeared in v2210. Available formats: ui (default), json, event-stream. Use the following parameter to change the format `[aidbox-base]/_logs?format=json`
 
 ## Configure logging
 
