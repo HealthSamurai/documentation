@@ -2,7 +2,10 @@
 
 ## March 2025 _`edge`_
 
-Work in progress
+* Aidbox
+  * Supported [FHIRPath patch](../api-1/api/crud-1/patch.md#fhirpath-patch)
+
+
 
 ## February 2025 _`latest, 2502`_
 
