@@ -2,6 +2,15 @@
 * Getting Started (Install locally or try in Sandbox)
 * Tutorials
 * Architecture
+* Top Level
+  - FHIR Configuration  (configuration, registry, ...) <- terminology
+  - API
+  - Auth
+  - DB
+  - Extensibility: Apps & SDK
+  -----
+  - Addon / Plugin / Extensions (Additional Modules)
+  - Configuration & Deployment
 * API
   - FHIR CRUD & Transactions
     * Create
@@ -60,20 +69,14 @@
   - Transactional bulk & migrations
 * Storage (TODO: Should we put it to API or keep at the top level)
   - Storing Files  
-* FHIR Artifact Repository
+* FHIR Configuration (Artifact Repository)
   - Choose FHIR Version
   - Load IG (FHIR Packages)
   - Structure Definitions (Logical Models & Profiles)
   - Define Extensions
   - Terminology (Value Sets & Code Systems)
   - Custom Resources
-* Admin UI
-  - Resource Browser
-  - REST Console
-  - DB Console
-  - Notebooks
-  - GraphQL Playground
-* SDKs
+* Extensibility: SDK and Apps!
   - Setting up the project
   - Type Generation
   - TypeScript
@@ -81,16 +84,16 @@
   - C#
   - Template Projects
   - Aidbox Apps
-* Plugins
+* Plugins & Integrations (Addons)
   - Aidbox Forms (FHIR SDC)
   - Master Patient Index
   - Audit Logs
+  - Termbox
   - Integration
    * HL7v2
    * CCDA
    * X12
-* Configuration
-* Deployment & Maintaince
+* Configuration & Deployment & Maintaince
   - Environments
   - Helm
   - Terraform
