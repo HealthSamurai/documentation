@@ -56,7 +56,7 @@ If you're not sure about the Surescripts secrets, please read this guide: [How t
 {% endhint %}
 
 {% hint style="warning" %}
-For more information about available configuration options, please go to the [environment variables reference](../../reference/environment-variables/).
+For more information about available configuration options, please go to the [environment variables reference](configuration.md).
 {% endhint %}
 
 ### Volumes
