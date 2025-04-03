@@ -7,7 +7,9 @@ description: >-
 
 # Configuration
 
-## Overview
+## Configuration
+
+### Overview
 
 The Aidbox Forms implements a FHIR-compliant Configuration resource that enables fine-grained control over form builder and renderer behavior. This resource adheres to CRUD operations via the standard FHIR API endpoints. The Configuration resource schema encompasses parameters such as:
 
@@ -19,7 +21,7 @@ The Aidbox Forms implements a FHIR-compliant Configuration resource that enables
 
 A global Configuration resource can be instantiated to serve as the system-wide default, applying to all Questionnaire resources unless explicitly overridden. The system supports configuration inheritance and overriding. When generating a shared form link, developers can specify a custom Configuration resource reference. This allows for context-specific rendering behavior, ensuring that the form presentation adheres to the designated configuration parameters. This architecture facilitates flexible, hierarchical configuration management, enabling both system-wide defaults and use-case specific customizations within the Aidbox Forms ecosystem.
 
-## Configuration Resource Structure
+### Configuration Resource Structure
 
 * `resourceType`: The type of the resource. Must be `SDCConfig`.
 * `id`: The unique identifier for the configuration resource.
@@ -27,8 +29,8 @@ A global Configuration resource can be instantiated to serve as the system-wide 
 * `description`: The human-readable description of the configuration resource.
 * `default`: A boolean value that specifies whether the configuration is the default for the system or tenant.
 * `language`: The default language for the UI.
-* `translations`: Object containing [custom translations](#translations) strings for the UI.
-* `theme`: An inlined copy of or reference to [QuestionnaireTheme](#theme) object.
+* `translations`: Object containing [custom translations](configuration.md#translations) strings for the UI.
+* `theme`: An inlined copy of or reference to [QuestionnaireTheme](configuration.md#theme) object.
 * `storage`: Storage configuration for attachments types
   * `account`: Reference to [storage resource](https://docs.aidbox.app/storage-1/s3-compatible-storages)
     * `id`: id
@@ -66,7 +68,7 @@ A global Configuration resource can be instantiated to serve as the system-wide 
   * `enable-amend-button`: A boolean value that specifies whether the Amend button should be shown.
   * `enable-save-button`: A boolean value that specifies whether the Save button should be shown.
 
-## Configuration Resource Example
+### Configuration Resource Example
 
 ```json
 {
@@ -93,9 +95,9 @@ A global Configuration resource can be instantiated to serve as the system-wide 
 }
 ```
 
-## Configuration Resource Operations
+### Configuration Resource Operations
 
-### Create Configuration Resource
+#### Create Configuration Resource
 
 To create a configuration resource, send a `POST` request to the `/SDCConfig` endpoint with the configuration resource in the request body.
 
@@ -144,7 +146,7 @@ Content-Type: application/json
 }
 ```
 
-### Read Configuration Resource
+#### Read Configuration Resource
 
 To read a configuration resource, send a `GET` request to the `/SDCConfig/:id` endpoint, where `:id` is the unique identifier of the configuration resource.
 
@@ -152,7 +154,7 @@ To read a configuration resource, send a `GET` request to the `/SDCConfig/:id` e
 GET /SDCConfig/example-config
 ```
 
-### Update Configuration Resource
+#### Update Configuration Resource
 
 To update a configuration resource, send a `PUT` request to the `/SDCConfig/:id` endpoint with the updated configuration resource in the request body.
 
@@ -184,7 +186,7 @@ Content-Type: application/json
 }
 ```
 
-### Delete Configuration Resource
+#### Delete Configuration Resource
 
 To delete a configuration resource, send a `DELETE` request to the `/SDCConfig/:id` endpoint, where `:id` is the unique identifier of the configuration resource.
 
@@ -192,7 +194,7 @@ To delete a configuration resource, send a `DELETE` request to the `/SDCConfig/:
 DELETE /SDCConfig/example-config
 ```
 
-## List Configuration Resources
+### List Configuration Resources
 
 To list all configuration resources, send a `GET` request to the `/SDCConfig` endpoint.
 
@@ -200,7 +202,7 @@ To list all configuration resources, send a `GET` request to the `/SDCConfig` en
 GET /SDCConfig
 ```
 
-## Get Default Configuration Resource
+### Get Default Configuration Resource
 
 To get the default configuration resource, send a `GET` request to the `/$sdc-config` endpoint.
 
@@ -208,7 +210,7 @@ To get the default configuration resource, send a `GET` request to the `/$sdc-co
 GET /$sdc-config
 ```
 
-# Theme
+## Theme
 
 `QuestionnaireTheme` resource allows you to customize the appearance of the Aidbox Form Renderer. The theme resource can include the following properties:
 
@@ -251,14 +253,11 @@ GET /$sdc-config
 
 All of these properties are optional, and you can customize the theme to suit your application's design. By providing a theme object, you can create a consistent and branded experience for users interacting with forms in your application.
 
-# Translations
+## Translations
 
-The translations object in the Configuration resource allows defining custom text for the Aidbox Form Builder and Renderer.
-It uses a structured, hierarchical format where each key corresponds to a feature or component, and the leaf nodes specify locale-based translations.
-This structure supports multiple languages and regional variations by enabling you to specify locale codes such as en for English, fr for French, or more granular options like en-US for American English and fr-CA for Canadian French.
+The translations object in the Configuration resource allows defining custom text for the Aidbox Form Builder and Renderer. It uses a structured, hierarchical format where each key corresponds to a feature or component, and the leaf nodes specify locale-based translations. This structure supports multiple languages and regional variations by enabling you to specify locale codes such as en for English, fr for French, or more granular options like en-US for American English and fr-CA for Canadian French.
 
-The example provided below represents a comprehensive translations object for English, covering all possible keys. You can extend this object by adding translations for additional languages.
-If a specific language (e.g., en for English or any other) is omitted, the Aidbox Form will use its standard default translations for that language.
+The example provided below represents a comprehensive translations object for English, covering all possible keys. You can extend this object by adding translations for additional languages. If a specific language (e.g., en for English or any other) is omitted, the Aidbox Form will use its standard default translations for that language.
 
 ```json
 {

@@ -166,9 +166,9 @@ The table below describes all kind of special symbols:
 
 ## Overriding existing rules
 
-Aidbox users can define conversion rules for specific sections.&#x20;
+Aidbox users can define conversion rules for specific sections.
 
-Existing CCDA rules are displayed in `aidbox/ccda/rules` folder of zen-ui .&#x20;
+Existing CCDA rules are displayed in `aidbox/ccda/rules` folder of zen-ui .
 
 Let it be Vital Signs section narrative. It is available via `#aidbox.ccda.rules.vital-signs/narrative`. We do not want to display just the most popular observations, but we want to see only those observations in the dataset, without any placeholders.
 
@@ -221,27 +221,27 @@ You can see the example of this config [here](https://github.com/Aidbox/aidbox-p
 The work with Override DSL is in progress.
 {% endhint %}
 
-## Custom codemaps 
+## Custom codemaps
 
 {% hint style="info" %}
-Codemap is mapping between OID and URI based codesystems. 
+Codemap is mapping between OID and URI based codesystems.
 {% endhint %}
 
-If default set of codemaps is not suitable for you for some reason - you may declare your own custom codemaps and 
-they will override default ones.
+If default set of codemaps is not suitable for you for some reason - you may declare your own custom codemaps and they will override default ones.
 
-Codemap is basically a hash-map that we use to perform: 
-- URI -> OID in FHIR->C-CDA conversion 
-- OID -> URI in C-CDA->FHIR conversion 
+Codemap is basically a hash-map that we use to perform:
 
-This is URI to OID codemap, URI is a key, OID is a values: 
+* URI -> OID in FHIR->C-CDA conversion
+* OID -> URI in C-CDA->FHIR conversion
+
+This is URI to OID codemap, URI is a key, OID is a values:
 
 ```
 {"http://terminology.hl7.org/CodeSystem/hsloc"    "2.16.840.1.113883.6.259",
  "http://hl7.org/fhir/ValueSet/provider-taxonomy" "2.16.840.1.113883.6.101"}
 ```
 
-You can see example of codemap [here](https://github.com/Aidbox/aidbox-project-template/blob/aidbox-ccda-custom-rules/custom-rules/custom-codemaps.yaml), it is just a YAML file: 
+You can see example of codemap [here](https://github.com/Aidbox/aidbox-project-template/blob/aidbox-ccda-custom-rules/custom-rules/custom-codemaps.yaml), it is just a YAML file:
 
 ```
 to-ccda:
@@ -249,8 +249,9 @@ to-ccda:
     oid: 2.16.840.1.113883.6.90
 ```
 
-Please take into account that it also requires following steps: 
-- CCDA_CUSTOM_CODEMAPS variable is set to path where custom codemaps are located
-- path where custom codemaps are located is added to Kubernetes volumes (e.g. [example](https://github.com/Aidbox/aidbox-project-template/blob/aidbox-ccda-custom-rules/docker-compose.yaml) ) 
+Please take into account that it also requires following steps:
+
+* CCDA\_CUSTOM\_CODEMAPS variable is set to path where custom codemaps are located
+* path where custom codemaps are located is added to Kubernetes volumes (e.g. [example](https://github.com/Aidbox/aidbox-project-template/blob/aidbox-ccda-custom-rules/docker-compose.yaml) )
 
 ## DSL description
