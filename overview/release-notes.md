@@ -4,6 +4,8 @@
 
 * Aidbox
   * Supported [FHIRPath patch](../api-1/api/crud-1/patch.md#fhirpath-patch)
+  * Released `deprecated/capabilities`endpoint to detect deprectated zen and Entity/Atributes entities and updated out [migration guide](../modules/custom-resources/migrate-to-fhirschema/). Existing zen and Entity/Attribute (EA) engines are deprecated and will be obsolete starting August 2025.
+  *
 
 
 

@@ -1,23 +1,25 @@
 # Migrate to FHIR Schema
 
 {% hint style="danger" %}
-Entity & Attributes and Zen Schema are planned to be retired and will be replaced by FHIR Schema. Here’s a migration guide to help you transition your custom resources defined via Entity & Attributes / Zen Schema.
+Aidbox is transitioning to the FHIR Schema engine. Existing zen and Entity/Attribute (EA) engines are deprecated and will be obsolete starting August 2025. July 2025 version will become LTS, supporting zen and Entity/Attributes for 2 years.
+
+[Read full announcement](https://www.health-samurai.io/news/aidbox-transitions-to-the-fhir-schema-engine)
 {% endhint %}
 
 ### Migration Overview
 
 The migration process involves six key steps:
 
-1. Identifying deprecated capabilities
-2. Setting up a parallel environment with FHIR Schema
-3. Migrating profiles
-4. Migrating custom resources
-5. Migrating search parameters
-6. Validating resources and resolving issues
+1. Identify deprecated entities defined with zen and Entity/Attributes&#x20;
+2. Set up a parallel environment with FHIR Schema
+3. Migrate profiles
+4. Migrate custom resources
+5. Migrate search parameters
+6. Validate resources and resolve issues
 
 ### Step 1: Identify Deprecated Capabilities
 
-First, obtain a comprehensive list of all your EA and Zen components that will need migration:
+First, obtain a comprehensive list of all your zen and Entity/Attribute (EA) components that will need migration:
 
 ```http
 GET /deprecated/capabilities
@@ -68,11 +70,11 @@ Example response:
 }
 ```
 
-### Step 2: Set Up Parallel Environment with FHIR Schema
+### Step 2: Set Up Parallel Environment with FHIR Schema Engine
 
 Launch a parallel Aidbox instance configured to use the FHIR Schema, connected to the same database and the same Zen configuration project (if you have one).
 
-Below is an example of a `docker-compose` file with two Aidbox instances running on the same database: the first Aidbox (`aidbox_zen`) is configured with a Zen configuration project and uses Zen validation mode, while the second (`aidbox_schema`) is set up to use the FHIR Schema.
+Below is an example of a `docker-compose` file with two Aidbox instances running on the same database: the first Aidbox (`aidbox_zen`) is configured with a zen configuration project and uses zen validation mode, while the second (`aidbox_schema`) is set up to use the FHIR Schema.
 
 ```yaml
 version: '3.7'
@@ -169,13 +171,13 @@ AIDBOX_FHIR_PACKAGES=hl7.fhir.r4.core#4.0.1:hl7.fhir.us.core#3.1.0
 
 ### Step 4: Migrate Custom Resources
 
-If you have custom resource defined by Entity & Attributes, follow this guide
+If you have custom resources defined by Entity & Attributes, follow this guide
 
 {% content-ref url="migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md" %}
 [migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md](migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md)
 {% endcontent-ref %}
 
-If you have custom resource defined by Zen, follow this guide -
+If you have custom resources defined by Zen, follow this guide -
 
 {% content-ref url="migrate-custom-resources-defined-with-zen-to-fhir-schema.md" %}
 [migrate-custom-resources-defined-with-zen-to-fhir-schema.md](migrate-custom-resources-defined-with-zen-to-fhir-schema.md)
@@ -183,15 +185,15 @@ If you have custom resource defined by Zen, follow this guide -
 
 ### Step 6: Validate Resources and Resolve Issues
 
-Since FHIR Schema validation engine is more reliable and validates all the FHIR container cases, we need to validate existing data with FHIR Schema. To do it use [Aidbox Asynchronous Validation API](../../profiling-and-validation/validation-api.md).
+Since the FHIR Schema validation engine is more reliable and validates all the FHIR container cases, we need to validate existing data with FHIR Schema using [Aidbox Asynchronous Validation API](../../profiling-and-validation/validation-api.md).
 
-### Check deprecated capabilities
+### Check Deprecated Capabilities
 
 ```
 GET /deprecated/capabilities
 ```
 
-If you have total 0 for each section, your migration is done. You can delete old Entity & Attributes and Zen configuration.
+If you have total 0 for each section, your migration is complete. You can delete legacy zen and Entity/Attribute (EA)-related configuration.
 
 ### Verification Steps
 
