@@ -4,12 +4,12 @@
 
 * Aidbox FHIR server
   * Supported [FHIRPath patch](../api-1/api/crud-1/patch.md#fhirpath-patch)
-  * Released `deprecated/capabilities`endpoint to detect deprectated zen and Entity/Atributes entities and update our [migration guide](../modules/custom-resources/migrate-to-fhirschema/). Existing zen and Entity/Attribute (EA) engines are deprecated and will be obsolete starting August 2025.
-  * Supported Apple as external identity provider
-  * Implemented a 24-hour grace period for all Aidbox instances that cannot connect to the Aidbox portal and verify the license. This enhancement is delivered to 2502. 2501, 2412, 2411, 2410, 2402, 2306, 2302
-  * Supported [OTEL collector](../modules/observability/) configuration as [Aidbox setting](../reference/settings/observability.md#otel). Updated [Aidbox example](https://github.com/Aidbox/examples/tree/main/OpenTelemetry) that showcases how to launch and explore the Aidbox observability features (logs, traces, and metrics) locally.
-  * Added AuditEvents for password change, unsuccessful login
-  * Added a synthetic data import progress bar on Aidbox UI initial data import on the home page. You can also find pre-generated data packages to import to Aidbox.
+  * Supported [Apple](../readme-1/readme-1-1/managing-admin-access-to-the-aidbox-ui-using-okta-groups-1.md) as external identity provider
+  * Released `deprecated/capabilities`endpoint to detect deprectated zen and Entity/Atributes entities and updated the [migration guide](../modules/custom-resources/migrate-to-fhirschema/).
+  * Implemented a 24-hour grace period for all Aidbox instances that cannot connect to the Aidbox portal for license verification. Also available in versions 2502, 2501, 2412, 2411, 2410, 2402, 2306, and 2302.
+  * Supported [OTEL collector](../modules/observability/) configuration as an [Aidbox setting](../reference/settings/observability.md#otel). Updated [Aidbox example](https://github.com/Aidbox/examples/tree/main/OpenTelemetry) that shows how to launch and explore the Aidbox observability features (logs, traces, and metrics) locally.
+  * Added new [AuditEvents](../modules/security-and-access-control/audit/) for password changes and unsuccessful login attempts.
+  * Added a synthetic data import progress bar on the Aidbox UI home page.&#x20;
 * Aidbox Forms
   * WIP
 * Minor updates
