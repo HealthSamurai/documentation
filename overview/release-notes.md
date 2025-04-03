@@ -1,15 +1,32 @@
 # Release Notes
 
-## March 2025 _`edge`_
+## March 2025 _`latest, 2503`_
 
-* Aidbox
+* Aidbox FHIR server
   * Supported [FHIRPath patch](../api-1/api/crud-1/patch.md#fhirpath-patch)
-  * Released `deprecated/capabilities`endpoint to detect deprectated zen and Entity/Atributes entities and updated out [migration guide](../modules/custom-resources/migrate-to-fhirschema/). Existing zen and Entity/Attribute (EA) engines are deprecated and will be obsolete starting August 2025.
-  *
+  * Released `deprecated/capabilities`endpoint to detect deprectated zen and Entity/Atributes entities and update our [migration guide](../modules/custom-resources/migrate-to-fhirschema/). Existing zen and Entity/Attribute (EA) engines are deprecated and will be obsolete starting August 2025.
+  * Supported Apple as external identity provider
+  * Implemented a 24-hour grace period for all Aidbox instances that cannot connect to the Aidbox portal and verify the license. This enhancement is delivered to 2502. 2501, 2412, 2411, 2410, 2402, 2306, 2302
+  * Supported [OTEL collector](../modules/observability/) configuration as [Aidbox setting](../reference/settings/observability.md#otel). Updated [Aidbox example](https://github.com/Aidbox/examples/tree/main/OpenTelemetry) that showcases how to launch and explore the Aidbox observability features (logs, traces, and metrics) locally.
+  * Added AuditEvents for password change, unsuccessful login
+  * Added a synthetic data import progress bar on Aidbox UI initial data import on the home page. You can also find pre-generated data packages to import to Aidbox.
+* Aidbox Forms
+  * WIP
+* Minor updates
+  * `2502.3` SDC minor updates
+  * `2502.4` License grace period, fix vulnerabilities
+  * `2501.6` SDC minor updates
+  * `2501.7` License grace period, fix vulnerabilities
+  * `2412.4` License grace period, fix vulnerabilities
+  * `2411.3` License grace period, fix vulnerabilities
+  * `2410.4` License grace period, fix vulnerabilities
+  * `2402-lts` License grace period, fix vulnerabilities
+  * `2306-lts` License grace period, fix vulnerabilities
+  * `2302-lts` License grace period, fix vulnerabilities
 
 
 
-## February 2025 _`latest, 2502`_
+## February 2025 _`stable, 2502`_
 
 * Aidbox
   * Introduced [Settings](../configuration/settings.md)
@@ -26,7 +43,7 @@ Minor updates:
 
 * 2501.1 — Minor bug fixes
 
-## January 2025 _`stable, 2501`_
+## January 2025 _`2501`_
 
 {% hint style="warning" %}
 Aidbox is transitioning to the FHIR Schema engine. Existing zen and Entity/Attribute (EA) engines are deprecated and will be obsolete starting August 2025. July 2025 version will become LTS supporting zen and Entity/Attributes for 2 years.
