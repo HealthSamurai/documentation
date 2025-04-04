@@ -1,4 +1,4 @@
-# Sign in with Apple
+# Apple
 
 ## Objectives
 

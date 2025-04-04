@@ -4,7 +4,7 @@
 
 * Aidbox FHIR server
   * Supported [FHIRPath patch](../api-1/api/crud-1/patch.md#fhirpath-patch)
-  * Supported [Apple](../modules/security-and-access-control/set-up-external-identity-provider/apple.md) as external identity provider
+  * Supported [Apple](../modules/security-and-access-control/set-up-external-identity-provider/managing-admin-access-to-the-aidbox-ui-using-okta-groups-1.md) as an [external identity provider](../modules/security-and-access-control/set-up-external-identity-provider/)
   * Released `deprecated/capabilities`endpoint to detect deprectated zen and Entity/Atributes entities and updated the [migration guide](../modules/custom-resources/migrate-to-fhirschema/).
   * Implemented a 24-hour grace period for all Aidbox instances that cannot connect to the Aidbox portal for license verification. Also available in versions 2502, 2501, 2412, 2411, 2410, 2402, 2306, and 2302.
   * Supported [OTEL collector](../modules/observability/) configuration as an [Aidbox setting](../reference/settings/observability.md#otel). Updated [Aidbox example](https://github.com/Aidbox/examples/tree/main/OpenTelemetry) that shows how to launch and explore the Aidbox observability features (logs, traces, and metrics) locally.
@@ -14,15 +14,15 @@
   * WIP
 * Minor updates
   * `2502.3` SDC minor updates
-  * `2502.4` License grace period, fix vulnerabilities
+  * `2502.4` 24-hour license grace period, fix vulnerabilities
   * `2501.6` SDC minor updates
-  * `2501.7` License grace period, fix vulnerabilities
-  * `2412.4` License grace period, fix vulnerabilities
-  * `2411.3` License grace period, fix vulnerabilities
-  * `2410.4` License grace period, fix vulnerabilities
-  * `2402-lts` License grace period, fix vulnerabilities
-  * `2306-lts` License grace period, fix vulnerabilities
-  * `2302-lts` License grace period, fix vulnerabilities
+  * `2501.7` 24-hour license grace period, fix vulnerabilities
+  * `2412.4` 24-hour license grace period, fix vulnerabilities
+  * `2411.3` 24-hour license grace period, fix vulnerabilities
+  * `2410.4` 24-hour license grace period, fix vulnerabilities
+  * `2402-lts` 24-hour license grace period, fix vulnerabilities
+  * `2306-lts` 24-hour license grace period, fix vulnerabilities
+  * `2302-lts` 24-hour license grace period, fix vulnerabilities
 
 
 
