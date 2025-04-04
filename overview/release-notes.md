@@ -11,7 +11,8 @@
   * Added new [AuditEvents](../modules/security-and-access-control/audit/) for password changes and unsuccessful login attempts.
   * Added a synthetic data import progress bar on the Aidbox UI home page.&#x20;
 * Aidbox Forms
-  * WIP
+  * Added Wound Assessment Form and Risk Assessment Form to the public [Aidbox Form Gallery](https://form-builder.aidbox.app/), featuring coded fields, extraction, conditional logic, and calculations.
+  * Optimized rendering for large forms for improved performance.
 * Minor updates
   * `2502.3` SDC minor updates
   * `2502.4` 24-hour license grace period, fix vulnerabilities
