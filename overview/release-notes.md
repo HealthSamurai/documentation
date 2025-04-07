@@ -13,6 +13,9 @@
 * Aidbox Forms
   * Added Wound Assessment Form and Risk Assessment Form to the public [Aidbox Form Gallery](https://form-builder.aidbox.app/), featuring coded fields, extraction, conditional logic, and calculations.
   * Optimized rendering for large forms for improved performance.
+* SDK
+  * Introduced [Type Schema](https://github.com/fhir-clj/type-schema), a JSON-based format that simplifies representation of FHIR entities (resources, provmitive types, etc) for simpler code generation.
+  * Released [FHIR Schema Code Generator](https://github.com/fhir-schema/fhir-schema-codegen), which creates language-specific models from FHIR StructureDefinitions, allowing developers to use strongly-typed FHIR resources in TypeScript, C#, Python, and other languages.
 * Minor updates
   * `2502.3` SDC minor updates
   * `2502.4` 24-hour license grace period, fix vulnerabilities
