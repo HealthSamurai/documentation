@@ -1,5 +1,9 @@
 # Release Notes
 
+## April 2025 _`edge`_
+
+_`Work in progress`_
+
 ## March 2025 _`latest, 2503`_
 
 * Aidbox FHIR server
