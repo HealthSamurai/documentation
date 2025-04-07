@@ -210,7 +210,7 @@
     * [Keycloak](modules/security-and-access-control/set-up-external-identity-provider/keycloak.md)
     * [GitHub](modules/security-and-access-control/set-up-external-identity-provider/github.md)
     * [Microsoft AD FS](modules/security-and-access-control/set-up-external-identity-provider/microsoft-ad-fs.md)
-    * [Apple](modules/security-and-access-control/set-up-external-identity-provider/managing-admin-access-to-the-aidbox-ui-using-okta-groups-1.md)
+    * [Apple](modules/security-and-access-control/set-up-external-identity-provider/apple.md)
   * [Access Control](modules/security-and-access-control/security/README.md)
     * [AccessPolicy](modules/security-and-access-control/security/access-control.md)
     * [Evaluation engines](modules/security-and-access-control/security/evaluation-engines.md)
