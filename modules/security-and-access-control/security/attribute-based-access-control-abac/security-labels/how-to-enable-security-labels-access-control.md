@@ -10,42 +10,36 @@ description: This guide explains how security label access control can be enable
 
 You should have Docker and Docker Compose installed before go further. To get it installed follow the [instructions](https://docs.docker.com/engine/install/).
 
-### Aidbox license
+## Start Aidbox locally
 
-To get the Aidbox License:
+### 1. Create a directory
 
-1. Go the Aidbox user portal [https://aidbox.app](https://aidbox.app/)
-2. Login to the portal
-3. Create new **self-hosted** Aidbox License or use the license that you already have
-
-## Create Aidbox project
-
-To create sample project run command below.
-
-```shell
-git clone \
-  --branch=without-zen \
-  --depth=1 \
-  https://github.com/Aidbox/aidbox-project-template.git \
-  aidbox-project && \
-  cd aidbox-project && \
-  rm -rf .git
 ```
+mkdir aidbox && cd aidbox
+```
+
+### 2. Run Aidbox on Docker
+
+```
+curl -JO https://aidbox.app/runme && docker compose up
+```
+
+### 3. Access Aidbox
+
+Open in browser [http://localhost:8080/](http://localhost:8080/)
+
+### 4. Activate your Aidbox instance
+
+* Using AidboxID AidboxID is a unique identifier within the Aidbox ecosystem used for product activation
+* Using Aidbox license Aidbox license can be issued on the [Aidbox user portal](https://aidbox.app/). More about Aidbox licenses [here](https://docs.aidbox.app/overview/aidbox-user-portal/licenses).
 
 {% hint style="info" %}
-See more details related the [running Aidbox locally](https://github.com/Aidbox/documentation/blob/master/modules-1/security-and-access-control/security-labels/broken-reference/README.md)
+If you’re using an Aidbox license, you’ll be prompted for a username (or email) and password. Use the **admin** username and retrieve the password from the **AIDBOX\_ADMIN\_PASSWORD** environment variable in the `docker-compose.yaml` file. For security, Aidbox generates a unique password for each instance.
 {% endhint %}
 
-### Apply the license
-
-Populate the `.env` file with the Aidbox License.
-
-{% code title=".env" %}
-```ini
-AIDBOX_LICENSE=YOUR_AIDBOX_LICENSE_KEY
-...
-```
-{% endcode %}
+{% hint style="info" %}
+See more details related the [running Aidbox locally](https://docs.aidbox.app/getting-started/run-aidbox-locally)
+{% endhint %}
 
 ## Enable security labels access control
 
@@ -54,25 +48,11 @@ Populate the `.env` file with the security labels ENVs.
 {% code title=".env" %}
 ```ini
 # if true, security label feature is enabled
-BOX_FEATURES_SECURITY__LABELS_ENABLE=true
+BOX_SECURITY_LBAC_ENABLED=true
 
 # if true, removes security labels from the resource
-BOX_FEATURES_SECURITY__LABELS_STRIP__LABELS=true
+BOX_SECURITY_LBAC_STRIP_LABELS=true
 
-# Defines the FHIR version
-AIDBOX_FHIR_VERSION="4.0.1"
-...
-```
-{% endcode %}
-
-## Define the FHIR version
-
-Populate the `.env` file with `the AIDBOX_FHIR_VERSION` ENV variable.
-
-{% code title=".env" %}
-```ini
-# In this guide we are going to use FHIR 4.0.1 
-AIDBOX_FHIR_VERSION="4.0.1"
 ...
 ```
 {% endcode %}
