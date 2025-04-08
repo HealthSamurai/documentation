@@ -8,7 +8,7 @@ description: This guide explains how security label access control can be enable
 
 ### Docker and Docker Compose
 
-You should have Docker and Docker Compose installed before go further. To get it installed follow the [instructions](https://docs.docker.com/engine/install/).
+You should have Docker and Docker Compose installed before going further. To get it installed, follow the [instructions](https://docs.docker.com/engine/install/).
 
 ## Start Aidbox locally
 
@@ -43,7 +43,9 @@ See more details related the [running Aidbox locally](https://docs.aidbox.app/ge
 
 ## Enable security labels access control
 
-Populate the `.env` file with the security labels ENVs.
+To enable LBAC, use Aidbox UI -> Settings -> Enable LBAC. You don't have to restart the instance if you use Aidbox UI. \
+\
+Also, you can update environment variables&#x20;
 
 {% code title=".env" %}
 ```ini
@@ -57,15 +59,24 @@ BOX_SECURITY_LBAC_STRIP_LABELS=true
 ```
 {% endcode %}
 
-## Start Aidbox with Docker Compose
+## Superadmin Role with Label-based Access Control
 
-To start Aidbox run the command in the `aidbox-project` directory.
+As mentioned [earlier](how-to-enable-security-labels-access-control.md#resource-level-access-control), resources without security labels cannot be accessed. This can affect the functionality of the Aidbox UI console, making resources like User, Client, Access Policy, etc., inaccessible until they are labeled.\
+\
+To avoid the need to label all resources displayed in the UI console, use the `superadmin` Role.\
+\
+Create a `Role` resource with the name `superadmin` and reference to the User used to log in to the UI console before enabling Label-based Access Control.
 
-```bash
-docker compose up --force-recreate
+```yaml
+POST /Role
+content-type: text/yaml
+accept: text/yaml
+
+name: superadmin
+user:
+  id: <user-id>
+  resourceType: User
 ```
-
-When Aidbox starts, navigate to the [http://localhost:8888](http://localhost:8888/) and sign in to the Aidbox UI using the credentials `admin` / `password`.
 
 ## Ensure the security labels access control works
 
@@ -86,7 +97,7 @@ jwt:
 ```
 
 {% hint style="info" %}
-Currently we use a common secret to make the introspector works. In production installations it's better to switch to `jwks_uri` instead.
+Currently, we use a common secret to make the introspector work. In production installations ,it's better to switch to `jwks_uri` instead.
 {% endhint %}
 
 ### Create AccessPolicy
