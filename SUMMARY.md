@@ -59,6 +59,7 @@
     * [Migrate from Multibox to Aidbox](readme-1/tutorials/migrate-from-multibox-to-aidbox.md)
     * [SDC with Custom Resources](tutorials/tutorials/sdc-with-custom-resources.md)
     * [How to create FHIR NPM package](readme-1/tutorials/how-to-create-fhir-npm-package.md)
+    * [Migrate from legacy licence portal to Aidbox portal](readme-1/tutorials/license-migration-guide.md)
 
 ## Overview
 
@@ -657,7 +658,6 @@
     * [Other Deprecated Tutorials](deprecated/deprecated/other/other-deprecated-tutorials/README.md)
       * [Resource generation with map-to-fhir-bundle-task and subscription triggers](deprecated/deprecated/other/other-deprecated-tutorials/resource-generation-with-map-to-fhir-bundle-task-and-subscription-triggers.md)
       * [APM Aidbox](deprecated/deprecated/other/other-deprecated-tutorials/apm-aidbox.md)
-      * [License migration guide](deprecated/deprecated/other/other-deprecated-tutorials/license-migration-guide.md)
       * [Automatically archive AuditEvent resources in GCP storage guide](deprecated/deprecated/other/other-deprecated-tutorials/automatically-archive-auditevent-resources-in-gcp-storage-guide.md)
       * [HL7 v2 pipeline with Patient mapping](deprecated/deprecated/other/other-deprecated-tutorials/hl7-v2-pipeline-with-patient-mapping.md)
       * [How to migrate to Apline Linux](deprecated/deprecated/other/other-deprecated-tutorials/how-to-migrate-to-apline-linux.md)
