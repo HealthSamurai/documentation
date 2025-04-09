@@ -480,12 +480,13 @@
     * [Mathematical details](modules/other-modules/mdm/mathematical-details.md)
 * [ePrescription](modules/eprescription/README.md)
   * [Getting started](modules/eprescription/getting-started.md)
-  * [FDB](modules/eprescription/fdb.md)
-  * [Callback endpoint](modules/eprescription/callback-endpoint.md)
+  * [Configuration](modules/eprescription/configuration.md)
+  * [Medications](modules/eprescription/medications/README.md)
+    * [FDB](modules/eprescription/medications/fdb.md)
   * [Tutorials](modules/eprescription/tutorials/README.md)
+    * [How to test Callback endpoint](modules/eprescription/tutorials/callback-endpoint.md)
     * [How to prepare Surescripts mTLS](modules/eprescription/tutorials/how-to-prepare-surescripts-mtls.md)
   * [Frequently Asked Questions](modules/eprescription/frequently-asked-questions.md)
-  * [Configuration](modules/eprescription/configuration.md)
 
 ## Storage <a href="#storage-1" id="storage-1"></a>
 
