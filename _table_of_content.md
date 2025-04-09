@@ -111,6 +111,13 @@
   - Licensing and Pricing
   - Release Notes
   - Release Cycle
+  - Secure Software Development Policies:
+    * How we deal with vulnerabilities (scans, pen-tests)
+    * How we protect our images (signing)
+  - Compliance
+    * HIPAA
+    * SOC2
+    * ISO/HITRUST
   - Support
   - User Resources
     * Issue tracker
