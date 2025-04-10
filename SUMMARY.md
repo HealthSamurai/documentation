@@ -56,6 +56,7 @@
     * [Postmark integration tutorial](readme-1/integration-toolkit-tutorials/postmark-integration.md)
     * [Mailgun integration tutorial](readme-1/integration-toolkit-tutorials/mailgun-integration.md)
   * [Other tutorials](tutorials/tutorials/README.md)
+    * [Run Aidbox with FHIR R6](readme-1/tutorials/run-aidbox-with-fhir-r6.md)
     * [Migrate from Multibox to Aidbox](readme-1/tutorials/migrate-from-multibox-to-aidbox.md)
     * [SDC with Custom Resources](tutorials/tutorials/sdc-with-custom-resources.md)
     * [How to create FHIR NPM package](readme-1/tutorials/how-to-create-fhir-npm-package.md)
