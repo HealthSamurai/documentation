@@ -163,13 +163,6 @@ If set to a negative value, no limit will be applied.
 
 <table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.include.iterate-max</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>10</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_SEARCH_INCLUDE_ITERATE_MAX</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_SEARCH_INCLUDE_ITERATE__MAX</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table>
 
-### Make _filter equality to be stricter about matches<a href="#fhir.search.compliant-filter" id="fhir.search.compliant-filter"></a>
-
-Ensure that _filter operations like eq, sw, and ew match the exact string text.
-When enabled, requires matching a selected string instead of any structure containing that string anywhere.
-
-<table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.compliant-filter</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_SEARCH_COMPLIANT_FILTER</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table>
-
 ### Default search timeout<a href="#fhir.search.default-params.timeout" id="fhir.search.default-params.timeout"></a>
 
 Default timeout value (seconds). Also uses as timeout for the `count` query.
