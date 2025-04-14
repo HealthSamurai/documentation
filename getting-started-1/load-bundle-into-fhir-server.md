@@ -287,7 +287,7 @@ POST /v2/fhir/$import
 Accept: text/yaml
 Content-Type: text/yaml
 
-id: synthea-100
+id: synthea-r6-100
 contentEncoding: gzip
 inputs:
 - resourceType: Claim
