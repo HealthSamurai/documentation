@@ -40,7 +40,7 @@ Open in browser [http://localhost:8080/](http://localhost:8080)
   Aidbox license can be issued on the [Aidbox user portal](https://aidbox.app/). More about Aidbox licenses [here](../overview/aidbox-user-portal/licenses.md).&#x20;
 
 {% hint style="info" %}
-If you’re using an Aidbox license, you’ll be prompted for a username (or email) and password. Use the **admin** username and retrieve the password from the **AIDBOX\_ADMIN\_PASSWORD** environment variable in the `docker-compose.yaml` file.\
+If you’re using an Aidbox license, you’ll be prompted for a username (or email) and password. Use the **admin** username and retrieve the password from the **BOX\_ADMIN\_PASSWORD** environment variable in the `docker-compose.yaml` file.\
 \
 For security, Aidbox generates a unique password for each instance.
 {% endhint %}
