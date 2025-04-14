@@ -1,9 +1,5 @@
 # Indexes
 
-{% hint style="warning" %}
-Aidbox index management is in draft stage. API will change.
-{% endhint %}
-
 Database indexes are essential for performance. In particular you will need indexes to speed up search requests.
 
 Aidbox provides mechanisms to
@@ -119,124 +115,9 @@ USING GIN (
 )
 ```
 
-## Index management
-
-Managing indexes manually is quite tedious and error-prone.
-
-Aidbox provides a mechanism to manage indexes automatically using [Aidbox configuration project](../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/).
-
-Consider this example
-
-```clojure
-{ns main
- import #{aidbox.index.v1
-          aidbox
-          aidbox.repository.v1}
-
- my-index
- {:zen/tags #{aidbox.index.v1/index}
-  :table :patient
-  :expression "(jsonb_path_query_array(\"patient\".resource, ( '($.\"name\"[*]).** ? (@.type() == \"string\")')::jsonpath)::text) gin_trgm_ops"
-  :type :gin}
-
- patient-repository
- {:zen/tags #{aidbox.repository.v1/repository}
-  :resource-type :patient
-  :indexes #{my-index3 my-index1}}
-
- repositories
- {:zen/tags #{aidbox/service}
-  :engine aidbox.repository.v1/engine
-  :repositories #{patient-repository}}
-
- box {:zen/tags #{aidbox/system}
-      :services
-      {:repositories repositories}}}
-```
-
-Here
-
-* `box` is the Aidbox project entrypoint
-* `repositories` is an Aidbox service
-* `patient-repository` is an Aidbox repository. It configures resource behavior. Currently it can only add indexes and search parameters.
-* `my-index` is index definition
-
-Use `aidbox.index.v1/sync-indexes` RPC to update indexes.
-
-```
-POST /rpc
-Content-Type: application/json
-Accept: application/json
-
-{"method": "aidbox.index.v1/sync-indexes"}
-```
-
-This RPC runs [workflow](../../deprecated/deprecated/zen-related/workflow-engine/workflow/) that creates indexes requested by your configuration. And removes indexes not requested.
-
-{% hint style="info" %}
-Aidbox managed indexes start with `aidbox_mng_idx` prefix. So your custom indexes which do not start with this prefix will not be affected by `sync-indexes` RPC.
-{% endhint %}
-
-## Auto-generated indexes
-
-You can make index by your own with [Index Suggestion API](get-suggested-indexes.md). However, Aidbox can be configured to make indexes for desired SearchParameters at start automatically.
-
-Import `aidbox.index.v1` in the example above and add `:indexes` into `patient-repository.`
-
-```clojure
- patient-repository
- {:zen/tags #{aidbox.repository.v1/repository}
-  :resourceType "Patient"
-  :indexes #{my-index1}
-  :extra-parameter-sources :all
-  :search-parameters #{my-parameter}}
-```
-
-Add new symbol `my-index1` with tag `aidbox.index.v1/auto-index` to make index on start, based on Index Suggestion API for Patient.brthd SearchParameter.
-
-```clojure
-  my-index1
- {:zen/tags #{aidbox.index.v1/auto-index}
-  :for my-parameter}
-```
-
-After restart new index will be added.
-
-```sql
-select * from pg_indexes where tablename = 'patient';
-```
-
-#### How to make my index explicitly with SQL?
-
-Use `aidbox.index.v1/index` tag with `:expression` and [PostgreSQL index`:type`](https://www.postgresql.org/docs/15/indexes-types.html) fields:
-
-```clojure
- my-index2
- {:zen/tags #{aidbox.index.v1/index}
-  :table "patient"
-  :expression "(jsonb_path_query_array(\"patient\".resource, ( '($.\"name\"[*]).** ? (@.type() == \"string\")')::jsonpath)::text) gin_trgm_ops"
-  :type :gin}
-```
-
-After restart new index will be added:
-
-```sql
-CREATE INDEX aidbox_mng_idx_main_my_index2
-ON public.patient 
-USING gin (((jsonb_path_query_array(resource, '$.\"name\"[*].**?(@.type() == \"string\")'::jsonpath))::text) gin_trgm_ops)
-```
-
-As in previous section, actuall creation/deletion of indexes is triggered with `aidbox.index.v1/sync-indexes` RPC.
-
-Formal description of Zen Indexes:
-
-{% content-ref url="../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/zen-indexes.md" %}
-[zen-indexes.md](../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/zen-indexes.md)
-{% endcontent-ref %}
-
 ## Index suggestion
 
-Aidbox provides two RPCs which can suggest you indexes
+Aidbox provides two RPCs that can suggest you indexes
 
 ### Suggest indexes for parameter
 
