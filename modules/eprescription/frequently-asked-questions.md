@@ -1,5 +1,7 @@
 # Frequently Asked Questions
 
+* **What is NCPDP ID?**\
+  The **NCPDP ID** is a unique identifier assigned by the National Council for Prescription Drug Programs (NCPDP) to pharmacies and other entities involved in the electronic prescribing and pharmacy claims process in the United States.
 *   **How to create a test NPI or Provider Locations+**
 
     Visit the Directory Manager section within Surescripts workbench.\

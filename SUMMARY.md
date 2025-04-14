@@ -482,6 +482,7 @@
 * [ePrescription](modules/eprescription/README.md)
   * [Getting started](modules/eprescription/getting-started.md)
   * [Configuration](modules/eprescription/configuration.md)
+  * [Pharmacies synchronization](modules/eprescription/pharmacies-synchronization.md)
   * [Medications](modules/eprescription/medications/README.md)
     * [FDB](modules/eprescription/medications/fdb.md)
   * [Tutorials](modules/eprescription/tutorials/README.md)
