@@ -23,6 +23,8 @@ Run the following request in the REST console and wait a few minutes.&#x20;
 
 You can track import status in `Workflow Engine` interface.
 
+**FHIR R4 dataset:**
+
 {% tabs %}
 {% tab title="100 ~ 300MB" %}
 {% hint style="success" %}
@@ -278,3 +280,38 @@ inputs:
 {% endtab %}
 {% endtabs %}
 
+**FHIR R6 dataset with 100 patients:**
+
+```yaml
+POST /v2/fhir/$import
+Accept: text/yaml
+Content-Type: text/yaml
+
+id: synthea-100
+contentEncoding: gzip
+inputs:
+- resourceType: Claim
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Claim.ndjson.gz
+- resourceType: Condition
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Condition.ndjson.gz
+- resourceType: Encounter
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Encounter.ndjson.gz
+- resourceType: Immunization
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Immunization.ndjson.gz
+- resourceType: Location
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Location.ndjson.gz
+- resourceType: Medication
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Medication.ndjson.gz
+- resourceType: Observation
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Observation.ndjson.gz
+- resourceType: Organization
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Organization.ndjson.gz
+- resourceType: Patient
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Patient.ndjson.gz
+- resourceType: Practitioner
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Practitioner.ndjson.gz
+- resourceType: PractitionerRole
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/PractitionerRole.ndjson.gz
+- resourceType: Procedure
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Procedure.ndjson.gz
+```
