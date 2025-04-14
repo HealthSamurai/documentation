@@ -1,8 +1,6 @@
 # FHIR Schema Validator
 
 {% hint style="info" %}
-While all validation features work correctly, we're still integrating FHIR Schema validator into Aidbox.&#x20;
-
 Test FHIR Schema Validator on public [demo page](https://fhir-validator.aidbox.app).
 {% endhint %}
 
