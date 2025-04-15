@@ -43,3 +43,25 @@ To turn on in Aidbox project use:
 ```
 BOX_SEARCH_COMPOSITE__SEARCH=true
 ```
+
+## Create Composite SearchParameter
+
+```
+POST /fhir/SearchParameter 
+
+type: composite
+expression: ActivityDefinition
+code: my-parameter
+component:
+  - definition: http://Upgraid.app/fhir/SearchParameter/activitydefinition-tag-type
+    expression: useContext.code
+  - definition: http://Upgraid.app/fhir/SearchParameter/activitydefinition-content-topic-tag
+    expression: useContext.value.CodeableConcept.text
+description: composite search parameter
+multipleOr: false
+resourceType: SearchParameter
+status: draft
+id: my-parameter
+url: http://hl7.org/fhir/SearchParameter/activitydefinition-content-topic-tag-text
+name: ActivitydefinitionContentTopicTagText
+```

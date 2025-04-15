@@ -1,14 +1,8 @@
 # Custom Search Parameters
 
-## Configure Aidbox
-
-To begin using custom search parameters, enable the FHIR Schema validator engine in Aidbox.
-
-{% content-ref url="../../../../modules/profiling-and-validation/fhir-schema-validator/setup.md" %}
-[setup.md](../../../../modules/profiling-and-validation/fhir-schema-validator/setup.md)
-{% endcontent-ref %}
-
-## Create a custom search parameter via FHIR API
+{% hint style="info" %}
+To create a SearchParameter, [FHIRSchema](../../../../modules/profiling-and-validation/fhir-schema-validator/setup.md) must be enabled (enabled by default)
+{% endhint %}
 
 Let's define a custom search parameter that allows searching Patient resources by a specific extension and its value.
 
@@ -192,8 +186,34 @@ entry:
 ```
 {% endcode %}
 
-## SearchParamter resource structure
+## SearchParameter resource structure
 
 This table contains properties required by the FHIR specification and properties that Aidbox interprets.
 
 <table><thead><tr><th width="144">Property</th><th width="167">FHIR datatype</th><th>Description</th></tr></thead><tbody><tr><td>url</td><td>uri</td><td>Search parameter unique canonical url</td></tr><tr><td>version</td><td>string</td><td>Search parameter version</td></tr><tr><td>name</td><td>string</td><td>Search parameter name, used to perform actual search queries</td></tr><tr><td>status</td><td>code</td><td>draft | active | retired | unknown</td></tr><tr><td>description</td><td>markdown</td><td>Natural language description of the search parameter</td></tr><tr><td>code</td><td>code</td><td>Recommended name for parameter in search url (Aidbox ignores it, and use <code>.name</code> instead)</td></tr><tr><td>base</td><td>code[]</td><td>The resource type(s) this search parameter applies to</td></tr><tr><td>type</td><td>code</td><td>number | date | string | token | reference | composite | quantity | uri | special</td></tr><tr><td>expression</td><td>string</td><td>FHIRPath expression that extracts the values</td></tr><tr><td>component</td><td>BackboneElement</td><td>For Composite resources to define the parts</td></tr></tbody></table>
+
+## Examples
+
+### Composite SearchParameter
+
+See also: [composite-search-parameters.md](../searchparameter-types/composite-search-parameters.md "mention")
+
+```
+POST /fhir/SearchParameter 
+
+type: composite
+expression: ActivityDefinition
+code: my-parameter
+component:
+  - definition: http://Upgraid.app/fhir/SearchParameter/activitydefinition-tag-type
+    expression: useContext.code
+  - definition: http://Upgraid.app/fhir/SearchParameter/activitydefinition-content-topic-tag
+    expression: useContext.value.CodeableConcept.text
+description: composite search parameter
+multipleOr: false
+resourceType: SearchParameter
+status: draft
+id: my-parameter
+url: http://hl7.org/fhir/SearchParameter/activitydefinition-content-topic-tag-text
+name: ActivitydefinitionContentTopicTagText
+```
