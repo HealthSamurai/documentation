@@ -28,19 +28,10 @@ mkdir aidbox && cd aidbox
 2. Download the Aidbox setup script:
 
 ```bash
-curl -JO https://aidbox.app/runme
+curl -JO https://aidbox.app/runme/r6
 ```
 
-3. In your docker-compose.yaml, set the environment variables:
-
-{% code title="docker-compose.yaml" %}
-```yaml
-BOX_BOOTSTRAP_FHIR_PACKAGES: hl7.fhir.r6.core#6.0.0-ballot3
-AIDBOX_TERMINOLOGY_SERVICE_BASE_URL: https://tx3.health-samurai.io/fhir
-```
-{% endcode %}
-
-4. Start Aidbox:
+3. Start Aidbox:
 
 ```bash
 docker compose up
