@@ -291,31 +291,31 @@ id: synthea-r6-100
 contentEncoding: gzip
 inputs:
 - resourceType: Appointment
-  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Appointment.ndjson.gz
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/R6/100/fhir/Appointment.ndjson.gz
 - resourceType: Claim
-  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Claim.ndjson.gz
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/R6/100/fhir/Claim.ndjson.gz
 - resourceType: Condition
-  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Condition.ndjson.gz
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/R6/100/fhir/Condition.ndjson.gz
 - resourceType: DiagnosticReport
-  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/DiagnosticReport.ndjson.gz
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/R6/100/fhir/DiagnosticReport.ndjson.gz
 - resourceType: Encounter
-  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Encounter.ndjson.gz
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/R6/100/fhir/Encounter.ndjson.gz
 - resourceType: Immunization
-  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Immunization.ndjson.gz
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/R6/100/fhir/Immunization.ndjson.gz
 - resourceType: Location
-  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Location.ndjson.gz
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/R6/100/fhir/Location.ndjson.gz
 - resourceType: Medication
-  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Medication.ndjson.gz
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/R6/100/fhir/Medication.ndjson.gz
 - resourceType: Observation
-  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Observation.ndjson.gz
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/R6/100/fhir/Observation.ndjson.gz
 - resourceType: Organization
-  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Organization.ndjson.gz
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/R6/100/fhir/Organization.ndjson.gz
 - resourceType: Patient
-  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Patient.ndjson.gz
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/R6/100/fhir/Patient.ndjson.gz
 - resourceType: Practitioner
-  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Practitioner.ndjson.gz
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/R6/100/fhir/Practitioner.ndjson.gz
 - resourceType: PractitionerRole
-  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/PractitionerRole.ndjson.gz
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/R6/100/fhir/PractitionerRole.ndjson.gz
 - resourceType: Procedure
-  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Procedure.ndjson.gz
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/R6/100/fhir/Procedure.ndjson.gz
 ```
