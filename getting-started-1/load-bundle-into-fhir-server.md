@@ -290,10 +290,14 @@ Content-Type: text/yaml
 id: synthea-r6-100
 contentEncoding: gzip
 inputs:
+- resourceType: Appointment
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Appointment.ndjson.gz
 - resourceType: Claim
   url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Claim.ndjson.gz
 - resourceType: Condition
   url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Condition.ndjson.gz
+- resourceType: DiagnosticReport
+  url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/DiagnosticReport.ndjson.gz
 - resourceType: Encounter
   url: https://storage.googleapis.com/aidbox-public/synthea/v2/r6/100/fhir/Encounter.ndjson.gz
 - resourceType: Immunization
