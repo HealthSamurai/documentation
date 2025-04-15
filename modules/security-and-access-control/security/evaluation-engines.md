@@ -348,6 +348,53 @@ You can parameterize your SQL queries with request object using `{{path}}` synta
 
 For dynamic queries — to parameterize table name, for example — you have to use `{{!path}}` syntax. The expression `SELECT true from {{!params.resource/type}} limit 1` when a request contains `{params: {"resource/type": "Patient"}}` will be transformed into `SELECT true from "patient".` By default, identifier names are double-quoted and lower-cased.
 
+### More examples
+
+In this example, `User` as a `Practitioner` is only allowed to see the conditions of his patients — those who reference him as their `generalPractitioner`.
+
+```
+PUT /AccessPolicy/practitioner-only-allowed-to-see-his-patients-conditions
+
+resourceType: AccessPolicy
+id: practitioner-only-allowed-to-see-his-patients-conditions
+engine: sql
+sql:
+  query: |
+    SELECT 1
+    FROM condition c
+    JOIN patient p ON (
+      c.resource @> (
+        $JSON${
+          "subject":{
+            "id":"$JSON$
+            ||
+            p.id
+            ||
+            $JSON$",
+            "resourceType":"Patient"
+          }
+        }$JSON$
+      )::jsonb
+    )
+    WHERE
+      {{user}} IS NOT NULL
+      AND ({{user.data.practitioner_id}})::text IS NOT NULL
+      AND ({{uri}})::text LIKE '/fhir/Condition/%'
+      AND p.resource @> (
+        $JSON${
+          "generalPractitioner":[{
+            "id":"$JSON$
+            ||
+            ({{user.data.practitioner_id}})::text
+            ||
+            $JSON$",
+            "resourceType":"Practitioner"
+          }]
+        }$JSON$
+      )::jsonb
+      AND c.id = {{params.resource/id}}
+```
+
 ## JSON Schema
 
 `json-schema` engine allows you to use [JSON Schema](https://json-schema.org) to validate the request object. It is specified under `schema` a field of `AccessPolicy` resource. The currently supported JSON Schema version is **draft-07**.
