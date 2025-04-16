@@ -552,6 +552,8 @@
   * [Aidbox required environment variables](reference/environment-variables/aidbox-required-environment-variables.md)
   * [Optional environment variables](reference/environment-variables/optional-environment-variables.md)
   * [AidboxDB environment variables](reference/environment-variables/aidboxdb-environment-variables.md)
+* [System resources reference](reference/system-resources-reference/README.md)
+  * [IAM Module Resources](reference/system-resources-reference/iam-module-resources.md)
 * [Email Providers reference](reference/email-providers-reference/README.md)
   * [Notification resource reference](reference/email-providers-reference/notification-resource-reference.md)
   * [Mailgun environment variables](reference/email-providers-reference/mailgun-environment-variables.md)
