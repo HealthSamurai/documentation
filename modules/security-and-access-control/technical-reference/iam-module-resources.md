@@ -22,346 +22,497 @@ The IAM module includes the following resource types:
 
 ## AccessPolicy
 
-| Path | Cardinality | Type | Description |
-| ---- | ----------- | ---- | ----------- |
-| matcho | 0..1 | Object | Defines rules using the Matcho pattern-matching syntax. |
-| clj | 0..1 | string |  |
-| schema | 0..1 | Object | JSON Schema used to validate requests against the policy. |
-| id | 0..1 | string |  |
-| _source | 0..1 | string |  |
-| module | 0..1 | string |  |
-| or | 0..* | Object | A list of conditions where at least one must be satisfied for the policy to grant access. |
-| roleName | 0..1 | string | Symbolic link to Role by name |
-| and | 0..* | Object | A list of conditions that must all be satisfied for the policy to grant access. |
-| link | 0..* | Reference | References to resources associated with this policy. References: Client, User, Operation |
-| source | 0..1 | string |  |
-| type | 0..1 | string | The type or category of the access policy. |
-| engine | 0..1 | string | Specifies the evaluation engine used for the policy. |
-| rpc | 0..1 | Object | Defines rules for Remote Procedure Calls (RPCs). |
-| meta | 0..1 | Meta |  |
-| resourceType | 0..1 | string |  |
-| sql | 0..1 |  |  |
-| description | 0..1 | string | A textual description of the access policy. |
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  th {
+    background-color: #f2f2f2;
+    text-align: left;
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    vertical-align: top;
+  }
+  .nested-element {
+    background-color: #f9f9f9;
+  }
+  .required-field td:first-child {
+    border-left: 3px solid #0077cc;
+  }
+  code.required {
+    font-weight: bold;
+    color: #0077cc;
+  }
+  code {
+    background-color: #f5f5f5;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: monospace;
+  }
+</style>
+<table>
+<thead>
+<tr>
+<th width="300">Path</th>
+<th width="100">Cardinality</th>
+<th width="150">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="top-element"><td width="300"><code>matcho</code></td><td width="100">0..1</td><td width="150"><code>Object</code></td><td>Defines rules using the Matcho pattern-matching syntax.</td></tr>
+<tr class="top-element"><td width="300"><code>clj</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>schema</code></td><td width="100">0..1</td><td width="150"><code>Object</code></td><td>JSON Schema used to validate requests against the policy.</td></tr>
+<tr class="top-element"><td width="300"><code>id</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>_source</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>module</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>or</code></td><td width="100">0..*</td><td width="150"><code>Object</code></td><td>A list of conditions where at least one must be satisfied for the policy to grant access.</td></tr>
+<tr class="top-element"><td width="300"><code>roleName</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Symbolic link to Role by name</td></tr>
+<tr class="top-element"><td width="300"><code>and</code></td><td width="100">0..*</td><td width="150"><code>Object</code></td><td>A list of conditions that must all be satisfied for the policy to grant access.</td></tr>
+<tr class="top-element"><td width="300"><code>link</code></td><td width="100">0..*</td><td width="150"><code>Reference</code></td><td>References to resources associated with this policy. References: <code>Client</code>, <code>User</code>, <code>Operation</code></td></tr>
+<tr class="top-element"><td width="300"><code>source</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>type</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>The type or category of the access policy.</td></tr>
+<tr class="top-element"><td width="300"><code>engine</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Specifies the evaluation engine used for the policy.</td></tr>
+<tr class="top-element"><td width="300"><code>rpc</code></td><td width="100">0..1</td><td width="150"><code>Object</code></td><td>Defines rules for Remote Procedure Calls (RPCs).</td></tr>
+<tr class="top-element"><td width="300"><code>meta</code></td><td width="100">0..1</td><td width="150"><code>Meta</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>resourceType</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>sql</code></td><td width="100">0..1</td><td width="150"></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>description</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>A textual description of the access policy.</td></tr></tbody>
+</table>
 
 
 ## TokenIntrospector
 
-| Path | Cardinality | Type | Description |
-| ---- | ----------- | ---- | ----------- |
-| type | 1..1 | string | Specifies the type of token to introspect. |
-| jwks_uri | 0..1 | string | A URL pointing to a JSON Web Key Set (JWKS). When type is jwt the introspector retrieves public keys from this URI to validate token signatures. |
-| jwt | 0..1 | BackboneElement | Configuration for local JWT validation used when type is jwt. |
-| jwt.iss | 0..1 | string | The expected issuer (iss) claim value for JWTs. The TokenIntrospector ensures that tokens it validates come from this issuer. |
-| jwt.secret | 0..1 | string | A shared secret key or other signing key material used to verify the JWT’s signature. |
-| introspection_endpoint | 0..1 | BackboneElement |  |
-| introspection_endpoint.url | 0..1 | string | The fully qualified URL of the remote introspection endpoint. |
-| introspection_endpoint.authorization | 0..1 | string | The authorization header value (e.g. a Basic Auth or Bearer token) used when calling the introspection endpoint. If present it will be included in the request headers. |
-| identity_provider | 0..1 | Reference | Link to Identity provider associated with the token introspector. References: IdentityProvider |
+<table>
+<thead>
+<tr>
+<th width="300">Path</th>
+<th width="100">Cardinality</th>
+<th width="150">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="top-element required-field"><td width="300"><code class="required">type</code></td><td width="100">1..1</td><td width="150"><code>string</code></td><td>Specifies the type of token to introspect.</td></tr>
+<tr class="top-element"><td width="300"><code>jwks_uri</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>A URL pointing to a JSON Web Key Set (JWKS). When type is jwt the introspector retrieves public keys from this URI to validate token signatures.</td></tr>
+<tr class="top-element"><td width="300"><code>jwt</code></td><td width="100">0..1</td><td width="150"><code>BackboneElement</code></td><td>Configuration for local JWT validation used when type is jwt.</td></tr>
+<tr class="nested-element"><td width="300"><code>jwt.iss</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>The expected issuer (iss) claim value for JWTs. The TokenIntrospector ensures that tokens it validates come from this issuer.</td></tr>
+<tr class="nested-element"><td width="300"><code>jwt.secret</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>A shared secret key or other signing key material used to verify the JWT’s signature.</td></tr>
+<tr class="top-element"><td width="300"><code>introspection_endpoint</code></td><td width="100">0..1</td><td width="150"><code>BackboneElement</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>introspection_endpoint.url</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>The fully qualified URL of the remote introspection endpoint.</td></tr>
+<tr class="nested-element"><td width="300"><code>introspection_endpoint.authorization</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>The authorization header value (e.g. a Basic Auth or Bearer token) used when calling the introspection endpoint. If present it will be included in the request headers.</td></tr>
+<tr class="top-element"><td width="300"><code>identity_provider</code></td><td width="100">0..1</td><td width="150"><code>Reference</code></td><td>Link to Identity provider associated with the token introspector. References: <code>IdentityProvider</code></td></tr></tbody>
+</table>
 
 
 ## Role
 
 User role
 
-| Path | Cardinality | Type | Description |
-| ---- | ----------- | ---- | ----------- |
-| name | 1..1 | string | Role name is a string that defines role. To assign the same role to multiple users, create multiple Role resources with the same "name". [Search param: name => type string] |
-| description | 0..1 | string | Text description of the role |
-| user | 1..1 | Reference | Reference to a User resource for which the role will be applied. [Search param: user => type reference] References: User |
-| links | 0..1 | BackboneElement | You may list resources here, which can later be granted access for the user with this role via an AccessPolicy resource. |
-| links.patient | 0..1 | Reference | Reference to Patient resource References: Patient |
-| links.practitionerRole | 0..1 | Reference | Reference to PractitionerRole resource References: PractitionerRole |
-| links.practitioner | 0..1 | Reference | Reference to Practitioner resource References: Practitioner |
-| links.organization | 0..1 | Reference | Reference to Organization resource References: Organization |
-| links.person | 0..1 | Reference | Reference to Person resource References: Person |
-| links.relatedPerson | 0..1 | Reference | Reference to RelatedPerson resource References: RelatedPerson |
-| context | 0..1 | Object |  |
+<table>
+<thead>
+<tr>
+<th width="300">Path</th>
+<th width="100">Cardinality</th>
+<th width="150">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="top-element required-field"><td width="300"><code class="required">name</code></td><td width="100">1..1</td><td width="150"><code>string</code></td><td>Role name is a string that defines role. To assign the same role to multiple users, create multiple Role resources with the same "name". [Search param: name => type string]</td></tr>
+<tr class="top-element"><td width="300"><code>description</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Text description of the role</td></tr>
+<tr class="top-element required-field"><td width="300"><code class="required">user</code></td><td width="100">1..1</td><td width="150"><code>Reference</code></td><td>Reference to a User resource for which the role will be applied. [Search param: user => type reference] References: <code>User</code></td></tr>
+<tr class="top-element"><td width="300"><code>links</code></td><td width="100">0..1</td><td width="150"><code>BackboneElement</code></td><td>You may list resources here, which can later be granted access for the user with this role via an AccessPolicy resource.</td></tr>
+<tr class="nested-element"><td width="300"><code>links.patient</code></td><td width="100">0..1</td><td width="150"><code>Reference</code></td><td>Reference to Patient resource References: <code>Patient</code></td></tr>
+<tr class="nested-element"><td width="300"><code>links.practitionerRole</code></td><td width="100">0..1</td><td width="150"><code>Reference</code></td><td>Reference to PractitionerRole resource References: <code>PractitionerRole</code></td></tr>
+<tr class="nested-element"><td width="300"><code>links.practitioner</code></td><td width="100">0..1</td><td width="150"><code>Reference</code></td><td>Reference to Practitioner resource References: <code>Practitioner</code></td></tr>
+<tr class="nested-element"><td width="300"><code>links.organization</code></td><td width="100">0..1</td><td width="150"><code>Reference</code></td><td>Reference to Organization resource References: <code>Organization</code></td></tr>
+<tr class="nested-element"><td width="300"><code>links.person</code></td><td width="100">0..1</td><td width="150"><code>Reference</code></td><td>Reference to Person resource References: <code>Person</code></td></tr>
+<tr class="nested-element"><td width="300"><code>links.relatedPerson</code></td><td width="100">0..1</td><td width="150"><code>Reference</code></td><td>Reference to RelatedPerson resource References: <code>RelatedPerson</code></td></tr>
+<tr class="top-element"><td width="300"><code>context</code></td><td width="100">0..1</td><td width="150"><code>Object</code></td><td></td></tr></tbody>
+</table>
 
 
 ## User
 
-| Path | Cardinality | Type | Description |
-| ---- | ----------- | ---- | ----------- |
-| entitlements | 0..* | BackboneElement | A list of entitlements for the User that represent a thing the User has. |
-| entitlements.value | 0..1 | string | The value of an entitlement. |
-| entitlements.display | 0..1 | string | A human-readable name, primarily used for display purposes (READ-ONLY). |
-| entitlements.type | 0..1 | string | A label indicating the attribute's function. |
-| entitlements.primary | 0..1 | boolean | Indicates if this is the primary entitlement. Only one may be 'true'. |
-| profileUrl | 0..1 | uri | A fully qualified URL pointing to a page representing the User's online profile. |
-| department | 0..1 | string | Identifies the name of a department. |
-| preferredLanguage | 0..1 | string | The User's preferred written or spoken language, e.g. 'en_US'. |
-| securityLabel | 0..* | BackboneElement | List of security labes associated to the user |
-| securityLabel.system | 0..1 | string | Code system |
-| securityLabel.code | 0..1 | string | Code value |
-| ims | 0..* | BackboneElement | Instant messaging addresses for the User. |
-| ims.value | 0..1 | string | Instant messaging address. |
-| ims.display | 0..1 | string | A human-readable name, primarily for display (READ-ONLY). |
-| ims.type | 0..1 | string | A label indicating the IM type, e.g. 'aim', 'gtalk'. |
-| ims.primary | 0..1 | boolean | Indicates if this is the primary IM. Only one may be 'true'. |
-| timezone | 0..1 | string | The User's time zone in the 'Olson' format, e.g. 'America/Los_Angeles'. |
-| displayName | 0..1 | string | The name of the User, suitable for display to end-users. |
-| twoFactor | 0..1 | BackboneElement | Two factor settings for user |
-| twoFactor.enabled | 1..1 | boolean | Defines whether two-factor auth is currently enabled. |
-| twoFactor.transport | 0..1 | string | Transport of 2FA confirmation code (if used). |
-| twoFactor.secretKey | 1..1 | string | TOTP Secret key. |
-| gender | 0..1 | string | The user's gender. |
-| email | 0..1 | email | Primary email for the user. |
-| userType | 0..1 | string | Identifies the relationship between the organization and the user (e.g. 'Employee', 'Contractor'). |
-| division | 0..1 | string | Identifies the name of a division. |
-| name | 0..1 | BackboneElement | The components of the user's real name (formatted, family, given, etc.). |
-| name.formatted | 0..1 | string | Full name, including titles and suffixes, formatted for display. |
-| name.familyName | 0..1 | string | Family name (last name in Western languages). |
-| name.givenName | 0..1 | string | Given name (first name in Western languages). |
-| name.middleName | 0..1 | string | The middle name(s) of the User. |
-| name.honorificPrefix | 0..1 | string | Honorific prefix (title), e.g. 'Ms.'. |
-| name.honorificSuffix | 0..1 | string | Honorific suffix, e.g. 'III'. |
-| locale | 0..1 | string | Indicates the User's default location for localization (e.g., currency, date format). |
-| fhirUser | 0..1 | Reference | A reference to a related FHIR resource References: Patient, Practitioner, Person |
-| identifier | 0..* | Identifier | A list of identifiers for the user. |
-| photo | 0..1 | uri | Primary photo for the user. |
-| phoneNumber | 0..1 | string | Primary phone number. |
-| userName | 0..1 | string | Unique identifier for the User, typically used to directly authenticate. Must be unique across the service provider's Users. |
-| addresses | 0..* | BackboneElement | A physical mailing address for this User (e.g. 'work', 'home'). |
-| addresses.formatted | 0..1 | string | Full address, formatted for display or mailing label. |
-| addresses.streetAddress | 0..1 | string | Street address component (may contain newlines). |
-| addresses.locality | 0..1 | string | City or locality component. |
-| addresses.region | 0..1 | string | State or region component. |
-| addresses.postalCode | 0..1 | string | Zip code or postal code. |
-| addresses.country | 0..1 | string | Country name component. |
-| addresses.type | 0..1 | string | A label indicating the address type, e.g. 'work' or 'home'. |
-| title | 0..1 | string | The user's title, e.g. 'Vice President'. |
-| link | 0..* | BackboneElement | A collection of references or links associated with the user. |
-| link.link | 0..1 | Reference | A referenced resource link. |
-| link.type | 0..1 | string | A label indicating the link's function. |
-| employeeNumber | 0..1 | string | Numeric or alphanumeric identifier assigned to a person by the organization. |
-| password | 0..1 | password | The User's cleartext password, used for initial or reset scenarios. |
-| photos | 0..* | BackboneElement | URLs of photos of the user. |
-| photos.value | 0..1 | uri | URL of a photo of the User. |
-| photos.display | 0..1 | string | A human-readable name, primarily used for display purposes (READ-ONLY). |
-| photos.type | 0..1 | string | A label indicating 'photo' or 'thumbnail'. |
-| photos.primary | 0..1 | boolean | Indicates if this is the primary photo. Only one may be 'true'. |
-| manager | 0..1 | Reference | Another User resource who is this User's manager. References: User |
-| x509Certificates | 0..* | BackboneElement | A list of certificates issued to the User. |
-| x509Certificates.value | 0..1 | base64Binary | The value of an X.509 certificate (base64). |
-| x509Certificates.display | 0..1 | string | A human-readable name, primarily used for display purposes (READ-ONLY). |
-| x509Certificates.type | 0..1 | string | A label indicating the certificate's function. |
-| x509Certificates.primary | 0..1 | boolean | Indicates if this is the primary certificate. Only one may be 'true'. |
-| emails | 0..* | BackboneElement | Email addresses for the user. Values should be canonicalized (e.g. 'bjensen@example.com'). |
-| emails.value | 0..1 | string | An individual email address (canonicalized). |
-| emails.display | 0..1 | string | A human-readable name for display purposes (READ-ONLY). |
-| emails.type | 0..1 | string | A label indicating the attribute's function, e.g. 'work', 'home'. |
-| emails.primary | 0..1 | boolean | Indicates if this is the primary email. Only one primary may be 'true'. |
-| inactive | 0..1 | boolean | A Boolean value indicating the User's administrative status. |
-| active | 0..1 | boolean | NB: this attr is ignored. Indicates the User's administrative status. |
-| phoneNumbers | 0..* | BackboneElement | Phone numbers for the User, e.g. 'tel:+1-201-555-0123'. |
-| phoneNumbers.value | 0..1 | string | The user's phone number. |
-| phoneNumbers.display | 0..1 | string | A human-readable name for display purposes (READ-ONLY). |
-| phoneNumbers.type | 0..1 | string | A label for the phone number's function, e.g. 'home', 'work'. |
-| phoneNumbers.primary | 0..1 | boolean | Indicates if this is the primary phone number. Only one may be 'true'. |
-| data | 0..1 | Object | Arbitrary user-related data. |
-| organization | 0..1 | Reference | Identifies the name of an organization. References: Organization |
-| costCenter | 0..1 | string | Identifies the name of a cost center. |
-| roles | 0..* | BackboneElement | A list of roles for the User that collectively represent who the User is (e.g. 'Student', 'Faculty'). |
-| roles.value | 0..1 | string | The value of a role. |
-| roles.display | 0..1 | string | A human-readable name, primarily used for display purposes (READ-ONLY). |
-| roles.type | 0..1 | string | A label indicating the attribute's function. |
-| roles.primary | 0..1 | boolean | Indicates if this is the primary role. Only one may be 'true'. |
+<table>
+<thead>
+<tr>
+<th width="300">Path</th>
+<th width="100">Cardinality</th>
+<th width="150">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="top-element"><td width="300"><code>entitlements</code></td><td width="100">0..*</td><td width="150"><code>BackboneElement</code></td><td>A list of entitlements for the User that represent a thing the User has.</td></tr>
+<tr class="nested-element"><td width="300"><code>entitlements.value</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>The value of an entitlement.</td></tr>
+<tr class="nested-element"><td width="300"><code>entitlements.display</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>A human-readable name, primarily used for display purposes (READ-ONLY).</td></tr>
+<tr class="nested-element"><td width="300"><code>entitlements.type</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>A label indicating the attribute's function.</td></tr>
+<tr class="nested-element"><td width="300"><code>entitlements.primary</code></td><td width="100">0..1</td><td width="150"><code>boolean</code></td><td>Indicates if this is the primary entitlement. Only one may be 'true'.</td></tr>
+<tr class="top-element"><td width="300"><code>profileUrl</code></td><td width="100">0..1</td><td width="150"><code>uri</code></td><td>A fully qualified URL pointing to a page representing the User's online profile.</td></tr>
+<tr class="top-element"><td width="300"><code>department</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Identifies the name of a department.</td></tr>
+<tr class="top-element"><td width="300"><code>preferredLanguage</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>The User's preferred written or spoken language, e.g. 'en_US'.</td></tr>
+<tr class="top-element"><td width="300"><code>securityLabel</code></td><td width="100">0..*</td><td width="150"><code>BackboneElement</code></td><td>List of security labes associated to the user</td></tr>
+<tr class="nested-element"><td width="300"><code>securityLabel.system</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Code system</td></tr>
+<tr class="nested-element"><td width="300"><code>securityLabel.code</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Code value</td></tr>
+<tr class="top-element"><td width="300"><code>ims</code></td><td width="100">0..*</td><td width="150"><code>BackboneElement</code></td><td>Instant messaging addresses for the User.</td></tr>
+<tr class="nested-element"><td width="300"><code>ims.value</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Instant messaging address.</td></tr>
+<tr class="nested-element"><td width="300"><code>ims.display</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>A human-readable name, primarily for display (READ-ONLY).</td></tr>
+<tr class="nested-element"><td width="300"><code>ims.type</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>A label indicating the IM type, e.g. 'aim', 'gtalk'.</td></tr>
+<tr class="nested-element"><td width="300"><code>ims.primary</code></td><td width="100">0..1</td><td width="150"><code>boolean</code></td><td>Indicates if this is the primary IM. Only one may be 'true'.</td></tr>
+<tr class="top-element"><td width="300"><code>timezone</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>The User's time zone in the 'Olson' format, e.g. 'America/Los_Angeles'.</td></tr>
+<tr class="top-element"><td width="300"><code>displayName</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>The name of the User, suitable for display to end-users.</td></tr>
+<tr class="top-element"><td width="300"><code>twoFactor</code></td><td width="100">0..1</td><td width="150"><code>BackboneElement</code></td><td>Two factor settings for user</td></tr>
+<tr class="nested-element required-field"><td width="300"><code class="required">twoFactor.enabled</code></td><td width="100">1..1</td><td width="150"><code>boolean</code></td><td>Defines whether two-factor auth is currently enabled.</td></tr>
+<tr class="nested-element"><td width="300"><code>twoFactor.transport</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Transport of 2FA confirmation code (if used).</td></tr>
+<tr class="nested-element required-field"><td width="300"><code class="required">twoFactor.secretKey</code></td><td width="100">1..1</td><td width="150"><code>string</code></td><td>TOTP Secret key.</td></tr>
+<tr class="top-element"><td width="300"><code>gender</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>The user's gender.</td></tr>
+<tr class="top-element"><td width="300"><code>email</code></td><td width="100">0..1</td><td width="150"><code>email</code></td><td>Primary email for the user.</td></tr>
+<tr class="top-element"><td width="300"><code>userType</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Identifies the relationship between the organization and the user (e.g. 'Employee', 'Contractor').</td></tr>
+<tr class="top-element"><td width="300"><code>division</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Identifies the name of a division.</td></tr>
+<tr class="top-element"><td width="300"><code>name</code></td><td width="100">0..1</td><td width="150"><code>BackboneElement</code></td><td>The components of the user's real name (formatted, family, given, etc.).</td></tr>
+<tr class="nested-element"><td width="300"><code>name.formatted</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Full name, including titles and suffixes, formatted for display.</td></tr>
+<tr class="nested-element"><td width="300"><code>name.familyName</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Family name (last name in Western languages).</td></tr>
+<tr class="nested-element"><td width="300"><code>name.givenName</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Given name (first name in Western languages).</td></tr>
+<tr class="nested-element"><td width="300"><code>name.middleName</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>The middle name(s) of the User.</td></tr>
+<tr class="nested-element"><td width="300"><code>name.honorificPrefix</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Honorific prefix (title), e.g. 'Ms.'.</td></tr>
+<tr class="nested-element"><td width="300"><code>name.honorificSuffix</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Honorific suffix, e.g. 'III'.</td></tr>
+<tr class="top-element"><td width="300"><code>locale</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Indicates the User's default location for localization (e.g., currency, date format).</td></tr>
+<tr class="top-element"><td width="300"><code>fhirUser</code></td><td width="100">0..1</td><td width="150"><code>Reference</code></td><td>A reference to a related FHIR resource References: <code>Patient</code>, <code>Practitioner</code>, <code>Person</code></td></tr>
+<tr class="top-element"><td width="300"><code>identifier</code></td><td width="100">0..*</td><td width="150"><code>Identifier</code></td><td>A list of identifiers for the user.</td></tr>
+<tr class="top-element"><td width="300"><code>photo</code></td><td width="100">0..1</td><td width="150"><code>uri</code></td><td>Primary photo for the user.</td></tr>
+<tr class="top-element"><td width="300"><code>phoneNumber</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Primary phone number.</td></tr>
+<tr class="top-element"><td width="300"><code>userName</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Unique identifier for the User, typically used to directly authenticate. Must be unique across the service provider's Users.</td></tr>
+<tr class="top-element"><td width="300"><code>addresses</code></td><td width="100">0..*</td><td width="150"><code>BackboneElement</code></td><td>A physical mailing address for this User (e.g. 'work', 'home').</td></tr>
+<tr class="nested-element"><td width="300"><code>addresses.formatted</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Full address, formatted for display or mailing label.</td></tr>
+<tr class="nested-element"><td width="300"><code>addresses.streetAddress</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Street address component (may contain newlines).</td></tr>
+<tr class="nested-element"><td width="300"><code>addresses.locality</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>City or locality component.</td></tr>
+<tr class="nested-element"><td width="300"><code>addresses.region</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>State or region component.</td></tr>
+<tr class="nested-element"><td width="300"><code>addresses.postalCode</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Zip code or postal code.</td></tr>
+<tr class="nested-element"><td width="300"><code>addresses.country</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Country name component.</td></tr>
+<tr class="nested-element"><td width="300"><code>addresses.type</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>A label indicating the address type, e.g. 'work' or 'home'.</td></tr>
+<tr class="top-element"><td width="300"><code>title</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>The user's title, e.g. 'Vice President'.</td></tr>
+<tr class="top-element"><td width="300"><code>link</code></td><td width="100">0..*</td><td width="150"><code>BackboneElement</code></td><td>A collection of references or links associated with the user.</td></tr>
+<tr class="nested-element"><td width="300"><code>link.link</code></td><td width="100">0..1</td><td width="150"><code>Reference</code></td><td>A referenced resource link.</td></tr>
+<tr class="nested-element"><td width="300"><code>link.type</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>A label indicating the link's function.</td></tr>
+<tr class="top-element"><td width="300"><code>employeeNumber</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Numeric or alphanumeric identifier assigned to a person by the organization.</td></tr>
+<tr class="top-element"><td width="300"><code>password</code></td><td width="100">0..1</td><td width="150"><code>password</code></td><td>The User's cleartext password, used for initial or reset scenarios.</td></tr>
+<tr class="top-element"><td width="300"><code>photos</code></td><td width="100">0..*</td><td width="150"><code>BackboneElement</code></td><td>URLs of photos of the user.</td></tr>
+<tr class="nested-element"><td width="300"><code>photos.value</code></td><td width="100">0..1</td><td width="150"><code>uri</code></td><td>URL of a photo of the User.</td></tr>
+<tr class="nested-element"><td width="300"><code>photos.display</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>A human-readable name, primarily used for display purposes (READ-ONLY).</td></tr>
+<tr class="nested-element"><td width="300"><code>photos.type</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>A label indicating 'photo' or 'thumbnail'.</td></tr>
+<tr class="nested-element"><td width="300"><code>photos.primary</code></td><td width="100">0..1</td><td width="150"><code>boolean</code></td><td>Indicates if this is the primary photo. Only one may be 'true'.</td></tr>
+<tr class="top-element"><td width="300"><code>manager</code></td><td width="100">0..1</td><td width="150"><code>Reference</code></td><td>Another User resource who is this User's manager. References: <code>User</code></td></tr>
+<tr class="top-element"><td width="300"><code>x509Certificates</code></td><td width="100">0..*</td><td width="150"><code>BackboneElement</code></td><td>A list of certificates issued to the User.</td></tr>
+<tr class="nested-element"><td width="300"><code>x509Certificates.value</code></td><td width="100">0..1</td><td width="150"><code>base64Binary</code></td><td>The value of an X.509 certificate (base64).</td></tr>
+<tr class="nested-element"><td width="300"><code>x509Certificates.display</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>A human-readable name, primarily used for display purposes (READ-ONLY).</td></tr>
+<tr class="nested-element"><td width="300"><code>x509Certificates.type</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>A label indicating the certificate's function.</td></tr>
+<tr class="nested-element"><td width="300"><code>x509Certificates.primary</code></td><td width="100">0..1</td><td width="150"><code>boolean</code></td><td>Indicates if this is the primary certificate. Only one may be 'true'.</td></tr>
+<tr class="top-element"><td width="300"><code>emails</code></td><td width="100">0..*</td><td width="150"><code>BackboneElement</code></td><td>Email addresses for the user. Values should be canonicalized (e.g. 'bjensen@example.com').</td></tr>
+<tr class="nested-element"><td width="300"><code>emails.value</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>An individual email address (canonicalized).</td></tr>
+<tr class="nested-element"><td width="300"><code>emails.display</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>A human-readable name for display purposes (READ-ONLY).</td></tr>
+<tr class="nested-element"><td width="300"><code>emails.type</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>A label indicating the attribute's function, e.g. 'work', 'home'.</td></tr>
+<tr class="nested-element"><td width="300"><code>emails.primary</code></td><td width="100">0..1</td><td width="150"><code>boolean</code></td><td>Indicates if this is the primary email. Only one primary may be 'true'.</td></tr>
+<tr class="top-element"><td width="300"><code>inactive</code></td><td width="100">0..1</td><td width="150"><code>boolean</code></td><td>A Boolean value indicating the User's administrative status.</td></tr>
+<tr class="top-element"><td width="300"><code>active</code></td><td width="100">0..1</td><td width="150"><code>boolean</code></td><td>NB: this attr is ignored. Indicates the User's administrative status.</td></tr>
+<tr class="top-element"><td width="300"><code>phoneNumbers</code></td><td width="100">0..*</td><td width="150"><code>BackboneElement</code></td><td>Phone numbers for the User, e.g. 'tel:+1-201-555-0123'.</td></tr>
+<tr class="nested-element"><td width="300"><code>phoneNumbers.value</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>The user's phone number.</td></tr>
+<tr class="nested-element"><td width="300"><code>phoneNumbers.display</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>A human-readable name for display purposes (READ-ONLY).</td></tr>
+<tr class="nested-element"><td width="300"><code>phoneNumbers.type</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>A label for the phone number's function, e.g. 'home', 'work'.</td></tr>
+<tr class="nested-element"><td width="300"><code>phoneNumbers.primary</code></td><td width="100">0..1</td><td width="150"><code>boolean</code></td><td>Indicates if this is the primary phone number. Only one may be 'true'.</td></tr>
+<tr class="top-element"><td width="300"><code>data</code></td><td width="100">0..1</td><td width="150"><code>Object</code></td><td>Arbitrary user-related data.</td></tr>
+<tr class="top-element"><td width="300"><code>organization</code></td><td width="100">0..1</td><td width="150"><code>Reference</code></td><td>Identifies the name of an organization. References: <code>Organization</code></td></tr>
+<tr class="top-element"><td width="300"><code>costCenter</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Identifies the name of a cost center.</td></tr>
+<tr class="top-element"><td width="300"><code>roles</code></td><td width="100">0..*</td><td width="150"><code>BackboneElement</code></td><td>A list of roles for the User that collectively represent who the User is (e.g. 'Student', 'Faculty').</td></tr>
+<tr class="nested-element"><td width="300"><code>roles.value</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>The value of a role.</td></tr>
+<tr class="nested-element"><td width="300"><code>roles.display</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>A human-readable name, primarily used for display purposes (READ-ONLY).</td></tr>
+<tr class="nested-element"><td width="300"><code>roles.type</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>A label indicating the attribute's function.</td></tr>
+<tr class="nested-element"><td width="300"><code>roles.primary</code></td><td width="100">0..1</td><td width="150"><code>boolean</code></td><td>Indicates if this is the primary role. Only one may be 'true'.</td></tr></tbody>
+</table>
 
 
 ## Scope
 
-| Path | Cardinality | Type | Description |
-| ---- | ----------- | ---- | ----------- |
-| scope | 1..1 | string | The value of the scope |
-| title | 1..1 | string | A user-friendly name for the scope that appears on the consent screen |
-| description | 0..1 | string | When provided, the scope definition is additionally displayed on the consent screen |
+<table>
+<thead>
+<tr>
+<th width="300">Path</th>
+<th width="100">Cardinality</th>
+<th width="150">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="top-element required-field"><td width="300"><code class="required">scope</code></td><td width="100">1..1</td><td width="150"><code>string</code></td><td>The value of the scope</td></tr>
+<tr class="top-element required-field"><td width="300"><code class="required">title</code></td><td width="100">1..1</td><td width="150"><code>string</code></td><td>A user-friendly name for the scope that appears on the consent screen</td></tr>
+<tr class="top-element"><td width="300"><code>description</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>When provided, the scope definition is additionally displayed on the consent screen</td></tr></tbody>
+</table>
 
 
 ## Client
 
-| Path | Cardinality | Type | Description |
-| ---- | ----------- | ---- | ----------- |
-| first_party | 0..1 | boolean |  |
-| auth | 0..1 | BackboneElement |  |
-| auth.client_credentials | 0..1 | BackboneElement |  |
-| auth.client_credentials.token_format | 0..1 | string | Allowed values: jwt |
-| auth.client_credentials.access_token_expiration | 0..1 | integer |  |
-| auth.client_credentials.refresh_token_expiration | 0..1 | integer |  |
-| auth.client_credentials.audience | 0..* | string |  |
-| auth.client_credentials.client_assertion_types | 0..* | string | Allowed values: urn:ietf:params:oauth:client-assertion-type:jwt-bearer |
-| auth.client_credentials.refresh_token | 0..1 | boolean |  |
-| auth.implicit | 0..1 | BackboneElement |  |
-| auth.implicit.redirect_uri | 0..1 | url |  |
-| auth.implicit.token_format | 0..1 | string | Allowed values: jwt |
-| auth.implicit.audience | 0..* | string |  |
-| auth.implicit.access_token_expiration | 0..1 | integer |  |
-| auth.password | 0..1 | BackboneElement |  |
-| auth.password.secret_required | 0..1 | boolean |  |
-| auth.password.audience | 0..* | string |  |
-| auth.password.refresh_token | 0..1 | boolean |  |
-| auth.password.redirect_uri | 0..1 | url | If present, turn on redirect protection |
-| auth.password.token_format | 0..1 | string | Allowed values: jwt |
-| auth.password.access_token_expiration | 0..1 | integer |  |
-| auth.password.refresh_token_expiration | 0..1 | integer |  |
-| auth.authorization_code | 0..1 | BackboneElement |  |
-| auth.authorization_code.token_format | 0..1 | string | Allowed values: jwt |
-| auth.authorization_code.audience | 0..* | string |  |
-| auth.authorization_code.secret_required | 0..1 | boolean |  |
-| auth.authorization_code.pkce | 0..1 | boolean |  |
-| auth.authorization_code.redirect_uri | 0..1 | url |  |
-| auth.authorization_code.access_token_expiration | 0..1 | integer |  |
-| auth.authorization_code.refresh_token_expiration | 0..1 | integer |  |
-| auth.authorization_code.refresh_token | 0..1 | boolean |  |
-| auth.token_exchange | 0..1 | BackboneElement |  |
-| auth.token_exchange.token_format | 0..1 | string | Allowed values: jwt |
-| auth.token_exchange.access_token_expiration | 0..1 | integer |  |
-| auth.token_exchange.refresh_token_expiration | 0..1 | integer |  |
-| auth.token_exchange.audience | 0..* | string |  |
-| auth.token_exchange.refresh_token | 0..1 | boolean |  |
-| trusted | 0..1 | boolean |  |
-| allowed_origins | 0..* | uri | Allowed Origins are URLs that will be allowed to make requests from JavaScript to Server (CORS). By default, callback URLs are allowed. You can use wildcards at the subdomain level (e.g., https://*.contoso.com). Query strings and hash info are not considered. |
-| grant_types | 0..* | string |  |
-| name | 0..1 | string |  |
-| jwks | 0..* | BackboneElement |  |
-| jwks.kid | 0..1 | string |  |
-| jwks.kty | 0..1 | string | Allowed values: RSA |
-| jwks.alg | 0..1 | string | Allowed values: RS384 |
-| jwks.e | 0..1 | string |  |
-| jwks.n | 0..1 | string |  |
-| jwks.use | 0..1 | string | Allowed values: sig |
-| scopes | 0..* | BackboneElement |  |
-| scopes.policy | 0..1 | Reference | References: AccessPolicy |
-| scopes.parameters | 0..1 | Object |  |
-| fhir-base-url | 0..1 | string |  |
-| allowed-scopes | 0..* | Reference | References: Scope |
-| scope | 0..* | string |  |
-| allowedIssuers | 0..* | string |  |
-| type | 0..1 | string |  |
-| secret | 0..1 | sha256Hash |  |
-| details | 0..1 | Object |  |
-| active | 0..1 | boolean |  |
-| jwks_uri | 0..1 | url |  |
-| smart | 0..1 | BackboneElement |  |
-| smart.launch_uri | 0..1 | string |  |
-| smart.name | 0..1 | string |  |
-| smart.description | 0..1 | string |  |
-| description | 0..1 | string |  |
+<table>
+<thead>
+<tr>
+<th width="300">Path</th>
+<th width="100">Cardinality</th>
+<th width="150">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="top-element"><td width="300"><code>first_party</code></td><td width="100">0..1</td><td width="150"><code>boolean</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>auth</code></td><td width="100">0..1</td><td width="150"><code>BackboneElement</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.client_credentials</code></td><td width="100">0..1</td><td width="150"><code>BackboneElement</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.client_credentials.token_format</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Allowed values: jwt</td></tr>
+<tr class="nested-element"><td width="300"><code>auth.client_credentials.access_token_expiration</code></td><td width="100">0..1</td><td width="150"><code>integer</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.client_credentials.refresh_token_expiration</code></td><td width="100">0..1</td><td width="150"><code>integer</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.client_credentials.audience</code></td><td width="100">0..*</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.client_credentials.client_assertion_types</code></td><td width="100">0..*</td><td width="150"><code>string</code></td><td>Allowed values: urn:ietf:params:oauth:client-assertion-type:jwt-bearer</td></tr>
+<tr class="nested-element"><td width="300"><code>auth.client_credentials.refresh_token</code></td><td width="100">0..1</td><td width="150"><code>boolean</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.implicit</code></td><td width="100">0..1</td><td width="150"><code>BackboneElement</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.implicit.redirect_uri</code></td><td width="100">0..1</td><td width="150"><code>url</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.implicit.token_format</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Allowed values: jwt</td></tr>
+<tr class="nested-element"><td width="300"><code>auth.implicit.audience</code></td><td width="100">0..*</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.implicit.access_token_expiration</code></td><td width="100">0..1</td><td width="150"><code>integer</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.password</code></td><td width="100">0..1</td><td width="150"><code>BackboneElement</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.password.secret_required</code></td><td width="100">0..1</td><td width="150"><code>boolean</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.password.audience</code></td><td width="100">0..*</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.password.refresh_token</code></td><td width="100">0..1</td><td width="150"><code>boolean</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.password.redirect_uri</code></td><td width="100">0..1</td><td width="150"><code>url</code></td><td>If present, turn on redirect protection</td></tr>
+<tr class="nested-element"><td width="300"><code>auth.password.token_format</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Allowed values: jwt</td></tr>
+<tr class="nested-element"><td width="300"><code>auth.password.access_token_expiration</code></td><td width="100">0..1</td><td width="150"><code>integer</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.password.refresh_token_expiration</code></td><td width="100">0..1</td><td width="150"><code>integer</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.authorization_code</code></td><td width="100">0..1</td><td width="150"><code>BackboneElement</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.authorization_code.token_format</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Allowed values: jwt</td></tr>
+<tr class="nested-element"><td width="300"><code>auth.authorization_code.audience</code></td><td width="100">0..*</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.authorization_code.secret_required</code></td><td width="100">0..1</td><td width="150"><code>boolean</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.authorization_code.pkce</code></td><td width="100">0..1</td><td width="150"><code>boolean</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.authorization_code.redirect_uri</code></td><td width="100">0..1</td><td width="150"><code>url</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.authorization_code.access_token_expiration</code></td><td width="100">0..1</td><td width="150"><code>integer</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.authorization_code.refresh_token_expiration</code></td><td width="100">0..1</td><td width="150"><code>integer</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.authorization_code.refresh_token</code></td><td width="100">0..1</td><td width="150"><code>boolean</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.token_exchange</code></td><td width="100">0..1</td><td width="150"><code>BackboneElement</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.token_exchange.token_format</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Allowed values: jwt</td></tr>
+<tr class="nested-element"><td width="300"><code>auth.token_exchange.access_token_expiration</code></td><td width="100">0..1</td><td width="150"><code>integer</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.token_exchange.refresh_token_expiration</code></td><td width="100">0..1</td><td width="150"><code>integer</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.token_exchange.audience</code></td><td width="100">0..*</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>auth.token_exchange.refresh_token</code></td><td width="100">0..1</td><td width="150"><code>boolean</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>trusted</code></td><td width="100">0..1</td><td width="150"><code>boolean</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>allowed_origins</code></td><td width="100">0..*</td><td width="150"><code>uri</code></td><td>Allowed Origins are URLs that will be allowed to make requests from JavaScript to Server (CORS). By default, callback URLs are allowed. You can use wildcards at the subdomain level (e.g., https://*.contoso.com). Query strings and hash info are not considered.</td></tr>
+<tr class="top-element"><td width="300"><code>grant_types</code></td><td width="100">0..*</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>name</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>jwks</code></td><td width="100">0..*</td><td width="150"><code>BackboneElement</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>jwks.kid</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>jwks.kty</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Allowed values: RSA</td></tr>
+<tr class="nested-element"><td width="300"><code>jwks.alg</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Allowed values: RS384</td></tr>
+<tr class="nested-element"><td width="300"><code>jwks.e</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>jwks.n</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>jwks.use</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Allowed values: sig</td></tr>
+<tr class="top-element"><td width="300"><code>scopes</code></td><td width="100">0..*</td><td width="150"><code>BackboneElement</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>scopes.policy</code></td><td width="100">0..1</td><td width="150"><code>Reference</code></td><td>References: <code>AccessPolicy</code></td></tr>
+<tr class="nested-element"><td width="300"><code>scopes.parameters</code></td><td width="100">0..1</td><td width="150"><code>Object</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>fhir-base-url</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>allowed-scopes</code></td><td width="100">0..*</td><td width="150"><code>Reference</code></td><td>References: <code>Scope</code></td></tr>
+<tr class="top-element"><td width="300"><code>scope</code></td><td width="100">0..*</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>allowedIssuers</code></td><td width="100">0..*</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>type</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>secret</code></td><td width="100">0..1</td><td width="150"><code>sha256Hash</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>details</code></td><td width="100">0..1</td><td width="150"><code>Object</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>active</code></td><td width="100">0..1</td><td width="150"><code>boolean</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>jwks_uri</code></td><td width="100">0..1</td><td width="150"><code>url</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>smart</code></td><td width="100">0..1</td><td width="150"><code>BackboneElement</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>smart.launch_uri</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>smart.name</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>smart.description</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>description</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr></tbody>
+</table>
 
 
 ## Grant
 
-| Path | Cardinality | Type | Description |
-| ---- | ----------- | ---- | ----------- |
-| user | 0..1 | Reference | References: User |
-| client | 0..1 | Reference | References: Client |
-| requested-scope | 0..* | string |  |
-| provided-scope | 0..* | string |  |
-| patient | 0..1 | Reference | References: Patient |
-| scope | 0..1 | string |  |
-| start | 0..1 | dateTime |  |
+<table>
+<thead>
+<tr>
+<th width="300">Path</th>
+<th width="100">Cardinality</th>
+<th width="150">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="top-element"><td width="300"><code>user</code></td><td width="100">0..1</td><td width="150"><code>Reference</code></td><td>References: <code>User</code></td></tr>
+<tr class="top-element"><td width="300"><code>client</code></td><td width="100">0..1</td><td width="150"><code>Reference</code></td><td>References: <code>Client</code></td></tr>
+<tr class="top-element"><td width="300"><code>requested-scope</code></td><td width="100">0..*</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>provided-scope</code></td><td width="100">0..*</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>patient</code></td><td width="100">0..1</td><td width="150"><code>Reference</code></td><td>References: <code>Patient</code></td></tr>
+<tr class="top-element"><td width="300"><code>scope</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>start</code></td><td width="100">0..1</td><td width="150"><code>dateTime</code></td><td></td></tr></tbody>
+</table>
 
 
 ## Session
 
-| Path | Cardinality | Type | Description |
-| ---- | ----------- | ---- | ----------- |
-| on-behalf | 0..1 | Reference | References: User |
-| parent | 0..1 | Reference | References: Session |
-| user | 0..1 | Reference | References: User |
-| access_token | 0..1 | sha256Hash |  |
-| refresh_token_exp | 0..1 | integer |  |
-| jti | 0..1 | string |  |
-| authorization_code | 0..1 | sha256Hash |  |
-| exp | 0..1 | integer |  |
-| start | 0..1 | dateTime |  |
-| scope | 0..* | string |  |
-| refresh_token | 0..1 | sha256Hash |  |
-| type | 0..1 | string |  |
-| patient | 0..1 | Reference | References: Patient |
-| audience | 0..1 | string |  |
-| ctx | 0..1 | Object | Smart on FHIR context |
-| active | 0..1 | boolean |  |
-| client | 0..1 | Reference | References: Client |
-| end | 0..1 | dateTime |  |
+<table>
+<thead>
+<tr>
+<th width="300">Path</th>
+<th width="100">Cardinality</th>
+<th width="150">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="top-element"><td width="300"><code>on-behalf</code></td><td width="100">0..1</td><td width="150"><code>Reference</code></td><td>References: <code>User</code></td></tr>
+<tr class="top-element"><td width="300"><code>parent</code></td><td width="100">0..1</td><td width="150"><code>Reference</code></td><td>References: <code>Session</code></td></tr>
+<tr class="top-element"><td width="300"><code>user</code></td><td width="100">0..1</td><td width="150"><code>Reference</code></td><td>References: <code>User</code></td></tr>
+<tr class="top-element"><td width="300"><code>access_token</code></td><td width="100">0..1</td><td width="150"><code>sha256Hash</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>refresh_token_exp</code></td><td width="100">0..1</td><td width="150"><code>integer</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>jti</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>authorization_code</code></td><td width="100">0..1</td><td width="150"><code>sha256Hash</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>exp</code></td><td width="100">0..1</td><td width="150"><code>integer</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>start</code></td><td width="100">0..1</td><td width="150"><code>dateTime</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>scope</code></td><td width="100">0..*</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>refresh_token</code></td><td width="100">0..1</td><td width="150"><code>sha256Hash</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>type</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>patient</code></td><td width="100">0..1</td><td width="150"><code>Reference</code></td><td>References: <code>Patient</code></td></tr>
+<tr class="top-element"><td width="300"><code>audience</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>ctx</code></td><td width="100">0..1</td><td width="150"><code>Object</code></td><td>Smart on FHIR context</td></tr>
+<tr class="top-element"><td width="300"><code>active</code></td><td width="100">0..1</td><td width="150"><code>boolean</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>client</code></td><td width="100">0..1</td><td width="150"><code>Reference</code></td><td>References: <code>Client</code></td></tr>
+<tr class="top-element"><td width="300"><code>end</code></td><td width="100">0..1</td><td width="150"><code>dateTime</code></td><td></td></tr></tbody>
+</table>
 
 
 ## Notification
 
-| Path | Cardinality | Type | Description |
-| ---- | ----------- | ---- | ----------- |
-| status | 0..1 | string |  |
-| provider | 0..1 | string |  |
-| providerData | 0..1 | Object |  |
+<table>
+<thead>
+<tr>
+<th width="300">Path</th>
+<th width="100">Cardinality</th>
+<th width="150">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="top-element"><td width="300"><code>status</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>provider</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>providerData</code></td><td width="100">0..1</td><td width="150"><code>Object</code></td><td></td></tr></tbody>
+</table>
 
 
 ## NotificationTemplate
 
-| Path | Cardinality | Type | Description |
-| ---- | ----------- | ---- | ----------- |
-| subject | 0..1 | string |  |
-| template | 0..1 | string |  |
+<table>
+<thead>
+<tr>
+<th width="300">Path</th>
+<th width="100">Cardinality</th>
+<th width="150">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="top-element"><td width="300"><code>subject</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>template</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr></tbody>
+</table>
 
 
 ## Registration
 
-| Path | Cardinality | Type | Description |
-| ---- | ----------- | ---- | ----------- |
-| resource | 0..1 | Object | Registration form data |
-| status | 0..1 | string |  |
-| params | 0..1 | Object | Authorization params for continue authorization process after registration |
+<table>
+<thead>
+<tr>
+<th width="300">Path</th>
+<th width="100">Cardinality</th>
+<th width="150">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="top-element"><td width="300"><code>resource</code></td><td width="100">0..1</td><td width="150"><code>Object</code></td><td>Registration form data</td></tr>
+<tr class="top-element"><td width="300"><code>status</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>params</code></td><td width="100">0..1</td><td width="150"><code>Object</code></td><td>Authorization params for continue authorization process after registration</td></tr></tbody>
+</table>
 
 
 ## IdentityProvider
 
-| Path | Cardinality | Type | Description |
-| ---- | ----------- | ---- | ----------- |
-| introspection_endpoint | 0..1 | string |  |
-| registration_endpoint | 0..1 | string |  |
-| team_id | 0..1 | string |  |
-| revocation_endpoint | 0..1 | string |  |
-| authorize_endpoint | 0..1 | string |  |
-| userinfo-source | 0..1 | string | Source of userinfo details. If id-token, no request to userinfo_endpoint performed |
-| userinfo_header | 0..1 | string |  |
-| base_url | 0..1 | uri |  |
-| isEmailUniqueness | 0..1 | boolean |  |
-| scopes | 0..* | string |  |
-| isScim | 0..1 | boolean |  |
-| title | 0..1 | string |  |
-| kid | 0..1 | string |  |
-| type | 0..1 | string |  |
-| organizations | 0..* | string |  |
-| userinfo_endpoint | 0..1 | string |  |
-| system | 0..1 | string |  |
-| toScim | 0..1 | Object |  |
-| token_endpoint | 0..1 | string |  |
-| active | 0..1 | boolean |  |
-| client | 0..1 | BackboneElement |  |
-| client.id | 0..1 | string |  |
-| client.redirect_uri | 0..1 | uri |  |
-| client.auth-method | 0..1 | string | Client authentication method. symmetric (default) or asymmetric |
-| client.secret | 0..1 | string |  |
-| client.private-key | 0..1 | string |  |
-| client.certificate | 0..1 | string | Certificate |
-| client.certificate-thumbprint | 0..1 | string | Certificate thumbprint. no colons expected. |
-| client.creds-ts | 0..1 | string | Last time secret/private-key was updated |
-| jwks_uri | 0..1 | string |  |
+<table>
+<thead>
+<tr>
+<th width="300">Path</th>
+<th width="100">Cardinality</th>
+<th width="150">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="top-element"><td width="300"><code>introspection_endpoint</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>registration_endpoint</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>team_id</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>revocation_endpoint</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>authorize_endpoint</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>userinfo-source</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Source of userinfo details. If id-token, no request to userinfo_endpoint performed</td></tr>
+<tr class="top-element"><td width="300"><code>userinfo_header</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>base_url</code></td><td width="100">0..1</td><td width="150"><code>uri</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>isEmailUniqueness</code></td><td width="100">0..1</td><td width="150"><code>boolean</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>scopes</code></td><td width="100">0..*</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>isScim</code></td><td width="100">0..1</td><td width="150"><code>boolean</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>title</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>kid</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>type</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>organizations</code></td><td width="100">0..*</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>userinfo_endpoint</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>system</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>toScim</code></td><td width="100">0..1</td><td width="150"><code>Object</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>token_endpoint</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>active</code></td><td width="100">0..1</td><td width="150"><code>boolean</code></td><td></td></tr>
+<tr class="top-element"><td width="300"><code>client</code></td><td width="100">0..1</td><td width="150"><code>BackboneElement</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>client.id</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>client.redirect_uri</code></td><td width="100">0..1</td><td width="150"><code>uri</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>client.auth-method</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Client authentication method. symmetric (default) or asymmetric</td></tr>
+<tr class="nested-element"><td width="300"><code>client.secret</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>client.private-key</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>client.certificate</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Certificate</td></tr>
+<tr class="nested-element"><td width="300"><code>client.certificate-thumbprint</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Certificate thumbprint. no colons expected.</td></tr>
+<tr class="nested-element"><td width="300"><code>client.creds-ts</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Last time secret/private-key was updated</td></tr>
+<tr class="top-element"><td width="300"><code>jwks_uri</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td></td></tr></tbody>
+</table>
 
 
 ## AuthConfig
 
-| Path | Cardinality | Type | Description |
-| ---- | ----------- | ---- | ----------- |
-| theme | 0..1 | BackboneElement |  |
-| theme.brand | 0..1 | string | Brand for auth page |
-| theme.title | 0..1 | string | Title for auth page |
-| theme.styleUrl | 0..1 | uri | URL to external stylesheet |
-| theme.forgotPasswordUrl | 0..1 | uri | URL to forgot password page |
-| twoFactor | 0..1 | BackboneElement |  |
-| twoFactor.webhook | 0..1 | BackboneElement |  |
-| twoFactor.webhook.headers | 0..1 | Map | Map of HTTP header key-value pairs |
-| twoFactor.webhook.timeout | 0..1 | integer | Timeout in milliseconds |
-| twoFactor.webhook.endpoint | 1..1 | string | URL to webhook that supports POST method |
-| twoFactor.issuerName | 0..1 | string | Issuer name for OTP authenticator app |
-| twoFactor.validPastTokensCount | 0..1 | integer | Number of past tokens considered valid (useful with webhook since OTP lives ~30s) |
-| asidCookieMaxAge | 0..1 | integer |  |
+<table>
+<thead>
+<tr>
+<th width="300">Path</th>
+<th width="100">Cardinality</th>
+<th width="150">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="top-element"><td width="300"><code>theme</code></td><td width="100">0..1</td><td width="150"><code>BackboneElement</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>theme.brand</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Brand for auth page</td></tr>
+<tr class="nested-element"><td width="300"><code>theme.title</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Title for auth page</td></tr>
+<tr class="nested-element"><td width="300"><code>theme.styleUrl</code></td><td width="100">0..1</td><td width="150"><code>uri</code></td><td>URL to external stylesheet</td></tr>
+<tr class="nested-element"><td width="300"><code>theme.forgotPasswordUrl</code></td><td width="100">0..1</td><td width="150"><code>uri</code></td><td>URL to forgot password page</td></tr>
+<tr class="top-element"><td width="300"><code>twoFactor</code></td><td width="100">0..1</td><td width="150"><code>BackboneElement</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>twoFactor.webhook</code></td><td width="100">0..1</td><td width="150"><code>BackboneElement</code></td><td></td></tr>
+<tr class="nested-element"><td width="300"><code>twoFactor.webhook.headers</code></td><td width="100">0..1</td><td width="150"><code>Map</code></td><td>Map of HTTP header key-value pairs</td></tr>
+<tr class="nested-element"><td width="300"><code>twoFactor.webhook.timeout</code></td><td width="100">0..1</td><td width="150"><code>integer</code></td><td>Timeout in milliseconds</td></tr>
+<tr class="nested-element required-field"><td width="300"><code class="required">twoFactor.webhook.endpoint</code></td><td width="100">1..1</td><td width="150"><code>string</code></td><td>URL to webhook that supports POST method</td></tr>
+<tr class="nested-element"><td width="300"><code>twoFactor.issuerName</code></td><td width="100">0..1</td><td width="150"><code>string</code></td><td>Issuer name for OTP authenticator app</td></tr>
+<tr class="nested-element"><td width="300"><code>twoFactor.validPastTokensCount</code></td><td width="100">0..1</td><td width="150"><code>integer</code></td><td>Number of past tokens considered valid (useful with webhook since OTP lives ~30s)</td></tr>
+<tr class="top-element"><td width="300"><code>asidCookieMaxAge</code></td><td width="100">0..1</td><td width="150"><code>integer</code></td><td></td></tr></tbody>
+</table>
 
