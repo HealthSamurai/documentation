@@ -257,7 +257,6 @@
     * [AcessPolicy resource](modules/security-and-access-control/technical-reference/acesspolicy-resource.md)
     * [Storing authorization details](modules/security-and-access-control/technical-reference/storing-authorization-details.md)
     * [Discovery API](modules/security-and-access-control/technical-reference/well-known-endpoint.md)
-    * [IAM Module Resources](modules/security-and-access-control/technical-reference/iam-module-resources.md)
 * [Observability](modules/observability/README.md)
   * [Getting started](modules/observability/getting-started/README.md)
     * [Run Aidbox with OpenTelemetry locally](modules/observability/getting-started/run-aidbox-locally-with-docker.md)
