@@ -4,21 +4,17 @@
 
 SDC module includes the following resource types:
 
-- AccessPolicy
-- TokenIntrospector
-- Role
-- User
-- Scope
-- Client
-- Grant
-- Session
-- Notification
-- NotificationTemplate
-- Registration
-- IdentityProvider
-- AuthConfig
+- QuestionnaireTheme
+- SDCConfig
+- SDCPrintTemplate
+- SDCDocument
+- SDCFormMetadata
+- SDCFormVersion
+- SDCWorkflow
+- SDCWorkflowVersion
+- SDCAddendum
 
-## AccessPolicy
+## QuestionnaireTheme
 
 <table>
 <thead>
@@ -30,28 +26,48 @@ SDC module includes the following resource types:
 </tr>
 </thead>
 <tbody>
-<tr class="top-element"><td width="290">matcho</td><td width="70">0..1</td><td width="150">Object</td><td>Defines rules using the Matcho pattern-matching syntax.</td></tr>
-<tr class="top-element"><td width="290">clj</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">schema</td><td width="70">0..1</td><td width="150">Object</td><td>JSON Schema used to validate requests against the policy.</td></tr>
-<tr class="top-element"><td width="290">id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">module</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">or</td><td width="70">0..*</td><td width="150">Object</td><td>A list of conditions where at least one must be satisfied for the policy to grant access.</td></tr>
-<tr class="top-element"><td width="290">roleName</td><td width="70">0..1</td><td width="150">string</td><td>Symbolic link to Role by name</td></tr>
-<tr class="top-element"><td width="290">and</td><td width="70">0..*</td><td width="150">Object</td><td>A list of conditions that must all be satisfied for the policy to grant access.</td></tr>
-<tr class="top-element"><td width="290">link</td><td width="70">0..*</td><td width="150">Reference</td><td>References to resources associated with this policy. References: Client, User, Operation</td></tr>
-<tr class="top-element"><td width="290">source</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td>The type or category of the access policy.</td></tr>
-<tr class="top-element"><td width="290">engine</td><td width="70">0..1</td><td width="150">string</td><td>Specifies the evaluation engine used for the policy.</td></tr>
-<tr class="top-element"><td width="290">rpc</td><td width="70">0..1</td><td width="150">Object</td><td>Defines rules for Remote Procedure Calls (RPCs).</td></tr>
-<tr class="top-element"><td width="290">meta</td><td width="70">0..1</td><td width="150">Meta</td><td></td></tr>
-<tr class="top-element"><td width="290">resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">sql</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
-<tr class="top-element"><td width="290">description</td><td width="70">0..1</td><td width="150">string</td><td>A textual description of the access policy.</td></tr></tbody>
+<tr class="top-element"><td width="290">font-family</td><td width="70">0..1</td><td width="150">string</td><td>Font-Family</td></tr>
+<tr class="top-element"><td width="290">brand-image</td><td width="70">0..1</td><td width="150"></td><td>Brand images</td></tr>
+<tr class="nested-element"><td width="290">brand-image.top-right</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
+<tr class="nested-element"><td width="290">brand-image.top-right.url</td><td width="70">0..1</td><td width="150">string</td><td>Web link to top-right image</td></tr>
+<tr class="nested-element"><td width="290">brand-image.bottom-left</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
+<tr class="nested-element"><td width="290">brand-image.bottom-left.url</td><td width="70">0..1</td><td width="150">string</td><td>Web link to bottom-left image</td></tr>
+<tr class="top-element"><td width="290">base-font-size</td><td width="70">0..1</td><td width="150">number</td><td>Minimal text size (px)</td></tr>
+<tr class="top-element"><td width="290">input</td><td width="70">0..1</td><td width="150"></td><td>Input styles</td></tr>
+<tr class="nested-element"><td width="290">input.accent-color</td><td width="70">0..1</td><td width="150">string</td><td>Main color for inputs (border color for text inputs background for checkbox etc in RGB hex)</td></tr>
+<tr class="nested-element"><td width="290">input.text-color</td><td width="70">0..1</td><td width="150">string</td><td>text color (RGB hex)</td></tr>
+<tr class="nested-element"><td width="290">input.background-color</td><td width="70">0..1</td><td width="150">string</td><td>Background color (RGB hex)</td></tr>
+<tr class="nested-element"><td width="290">input.font-size</td><td width="70">0..1</td><td width="150">number</td><td>Input font size (px)</td></tr>
+<tr class="top-element"><td width="290">language</td><td width="70">0..1</td><td width="150">code</td><td>Theme Language</td></tr>
+<tr class="top-element"><td width="290">main-color</td><td width="70">0..1</td><td width="150">string</td><td>Main Accent color (RBG hex)</td></tr>
+<tr class="top-element"><td width="290">background</td><td width="70">0..1</td><td width="150"></td><td>Background styles</td></tr>
+<tr class="nested-element"><td width="290">background.main-color</td><td width="70">0..1</td><td width="150">string</td><td>Main background color (RBG hex)</td></tr>
+<tr class="nested-element"><td width="290">background.form-color</td><td width="70">0..1</td><td width="150">string</td><td>Background color for form (RBG hex)</td></tr>
+<tr class="nested-element"><td width="290">background.toolbar-color</td><td width="70">0..1</td><td width="150">string</td><td>Background color for toolbar that displays below the form (with submit button) (RGB hex)</td></tr>
+<tr class="top-element"><td width="290">theme-name</td><td width="70">0..1</td><td width="150">string</td><td>Theme Title</td></tr>
+<tr class="top-element"><td width="290">button</td><td width="70">0..1</td><td width="150"></td><td>Button styles</td></tr>
+<tr class="nested-element"><td width="290">button.amend-text-color</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">button.print-color</td><td width="70">0..1</td><td width="150">string</td><td>Background color for "Print" button</td></tr>
+<tr class="nested-element"><td width="290">button._amend-text</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
+<tr class="nested-element"><td width="290">button._submit-text</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
+<tr class="nested-element"><td width="290">button.redirect-color</td><td width="70">0..1</td><td width="150">string</td><td>Background color for "Save & Close" button</td></tr>
+<tr class="nested-element"><td width="290">button._redirect-text</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
+<tr class="nested-element"><td width="290">button.submit-text</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">button.print-text-color</td><td width="70">0..1</td><td width="150">string</td><td>Text color for "Print" button</td></tr>
+<tr class="nested-element"><td width="290">button.print-text</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">button.redirect-text-color</td><td width="70">0..1</td><td width="150">string</td><td>Text color for "Save & Close" button</td></tr>
+<tr class="nested-element"><td width="290">button._print-text</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
+<tr class="nested-element"><td width="290">button.amend-color</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">button.text-color</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">button.submit-color</td><td width="70">0..1</td><td width="150">string</td><td>Background color for "Submit" button</td></tr>
+<tr class="nested-element"><td width="290">button.redirect-text</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">button.amend-text</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">button.submit-text-color</td><td width="70">0..1</td><td width="150">string</td><td>Text color for "Submit" button</td></tr>
+<tr class="nested-element"><td width="290">button.accent-color</td><td width="70">0..1</td><td width="150">string</td><td>Background color for filled buttons border color for outlined buttons (deprecated)</td></tr></tbody>
 </table>
 
 
-## TokenIntrospector
+## SDCConfig
 
 <table>
 <thead>
@@ -63,21 +79,59 @@ SDC module includes the following resource types:
 </tr>
 </thead>
 <tbody>
-<tr class="top-element required-field"><td width="290">type</td><td width="70">1..1</td><td width="150">string</td><td>Specifies the type of token to introspect.</td></tr>
-<tr class="top-element"><td width="290">jwks_uri</td><td width="70">0..1</td><td width="150">string</td><td>A URL pointing to a JSON Web Key Set (JWKS). When type is jwt the introspector retrieves public keys from this URI to validate token signatures.</td></tr>
-<tr class="top-element"><td width="290">jwt</td><td width="70">0..1</td><td width="150">BackboneElement</td><td>Configuration for local JWT validation used when type is jwt.</td></tr>
-<tr class="nested-element"><td width="290">jwt.iss</td><td width="70">0..1</td><td width="150">string</td><td>The expected issuer (iss) claim value for JWTs. The TokenIntrospector ensures that tokens it validates come from this issuer.</td></tr>
-<tr class="nested-element"><td width="290">jwt.secret</td><td width="70">0..1</td><td width="150">string</td><td>A shared secret key or other signing key material used to verify the JWT’s signature.</td></tr>
-<tr class="top-element"><td width="290">introspection_endpoint</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr class="nested-element"><td width="290">introspection_endpoint.url</td><td width="70">0..1</td><td width="150">string</td><td>The fully qualified URL of the remote introspection endpoint.</td></tr>
-<tr class="nested-element"><td width="290">introspection_endpoint.authorization</td><td width="70">0..1</td><td width="150">string</td><td>The authorization header value (e.g. a Basic Auth or Bearer token) used when calling the introspection endpoint. If present it will be included in the request headers.</td></tr>
-<tr class="top-element"><td width="290">identity_provider</td><td width="70">0..1</td><td width="150">Reference</td><td>Link to Identity provider associated with the token introspector. References: IdentityProvider</td></tr></tbody>
+<tr class="top-element"><td width="290">form</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
+<tr class="nested-element"><td width="290">form.app-name</td><td width="70">0..1</td><td width="150">string</td><td>App name that will be mentioned in AuditEvent logs</td></tr>
+<tr class="nested-element"><td width="290">form.hide-print-button</td><td width="70">0..1</td><td width="150">boolean</td><td>Hide print button from the form</td></tr>
+<tr class="nested-element"><td width="290">form.enable-amend-button</td><td width="70">0..1</td><td width="150">boolean</td><td>Enable amend button</td></tr>
+<tr class="nested-element"><td width="290">form.read-only</td><td width="70">0..1</td><td width="150">boolean</td><td>Should form be read-only</td></tr>
+<tr class="nested-element"><td width="290">form.hide-language-selector</td><td width="70">0..1</td><td width="150">boolean</td><td>Hide language selector in the builder</td></tr>
+<tr class="nested-element"><td width="290">form.hide-footer</td><td width="70">0..1</td><td width="150">boolean</td><td>Hide the footer in the renderer altogether</td></tr>
+<tr class="nested-element"><td width="290">form.default-max-width</td><td width="70">0..1</td><td width="150">string</td><td>Default max width of the form</td></tr>
+<tr class="nested-element"><td width="290">form.non-sticky-footer</td><td width="70">0..1</td><td width="150">boolean</td><td>Non-sticky footer in the form</td></tr>
+<tr class="nested-element"><td width="290">form.redirect-on-save</td><td width="70">0..1</td><td width="150">url</td><td>Redirect URI that used on form save/close button</td></tr>
+<tr class="nested-element"><td width="290">form.redirect-on-submit</td><td width="70">0..1</td><td width="150">url</td><td>Redirect URI that used on form sign/amend</td></tr>
+<tr class="nested-element"><td width="290">form.enable-save-button</td><td width="70">0..1</td><td width="150">boolean</td><td>Enable close button</td></tr>
+<tr class="top-element"><td width="290">translations</td><td width="70">0..1</td><td width="150">Object</td><td>Custom translations strings for UI</td></tr>
+<tr class="top-element"><td width="290">storage</td><td width="70">0..1</td><td width="150"></td><td>Link to storage to store attachments</td></tr>
+<tr class="nested-element"><td width="290">storage.account</td><td width="70">0..1</td><td width="150">Reference</td><td>Storage Account References: AwsAccount, GcpServiceAccount, AzureContainer</td></tr>
+<tr class="nested-element"><td width="290">storage.bucket</td><td width="70">0..1</td><td width="150">string</td><td>Storage bucket (required for GCP and S3)</td></tr>
+<tr class="top-element"><td width="290">form-store</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
+<tr class="nested-element"><td width="290">form-store.endpoint</td><td width="70">0..1</td><td width="150">url</td><td>FHIR Server that will be used for storing/getting Questionnaire (if not set - use Aidbox)</td></tr>
+<tr class="nested-element"><td width="290">form-store.headers</td><td width="70">0..1</td><td width="150">Object</td><td>Headers with credentials (optional)</td></tr>
+<tr class="top-element"><td width="290">builder</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
+<tr class="nested-element"><td width="290">builder.hide-extraction</td><td width="70">0..1</td><td width="150">boolean</td><td>Hide extraction tab in debug instruments</td></tr>
+<tr class="nested-element"><td width="290">builder.highlight-download-button</td><td width="70">0..1</td><td width="150">boolean</td><td>Highlight download button in the builder's debugger panel</td></tr>
+<tr class="nested-element"><td width="290">builder.translation-languages</td><td width="70">0..*</td><td width="150">string</td><td>List of languages that will be used for translation</td></tr>
+<tr class="nested-element"><td width="290">builder.hide-back-button</td><td width="70">0..1</td><td width="150">boolean</td><td>Hide back button in builder</td></tr>
+<tr class="nested-element"><td width="290">builder.hide-save</td><td width="70">0..1</td><td width="150">boolean</td><td>Hide save button</td></tr>
+<tr class="nested-element"><td width="290">builder.hide-publish</td><td width="70">0..1</td><td width="150">boolean</td><td>Hide Publish button in builder</td></tr>
+<tr class="nested-element"><td width="290">builder.collapse-debugger</td><td width="70">0..1</td><td width="150">boolean</td><td>Collapse debugger by default in builder</td></tr>
+<tr class="nested-element"><td width="290">builder.disable-submit-button</td><td width="70">0..1</td><td width="150">boolean</td><td>Disable submit button in the builder's form preview footer</td></tr>
+<tr class="nested-element"><td width="290">builder.hide-add-theme</td><td width="70">0..1</td><td width="150">boolean</td><td>Hide add theme button</td></tr>
+<tr class="nested-element"><td width="290">builder.disable-use-blank-form</td><td width="70">0..1</td><td width="150">boolean</td><td>Disable initializing the builder with a sample form when no form is provided</td></tr>
+<tr class="nested-element"><td width="290">builder.enable-share</td><td width="70">0..1</td><td width="150">boolean</td><td>Make share button visible in the builder and enable accepting a serialized questionnaire from query param</td></tr>
+<tr class="nested-element"><td width="290">builder.hide-population</td><td width="70">0..1</td><td width="150">boolean</td><td>Hide population tab in debug instruments</td></tr>
+<tr class="nested-element"><td width="290">builder.hide-save-theme</td><td width="70">0..1</td><td width="150">boolean</td><td>Hide save theme</td></tr>
+<tr class="nested-element"><td width="290">builder.disable-save</td><td width="70">0..1</td><td width="150">boolean</td><td>Disable save</td></tr>
+<tr class="nested-element"><td width="290">builder.disable-publish</td><td width="70">0..1</td><td width="150">boolean</td><td>Disable publish button</td></tr>
+<tr class="nested-element"><td width="290">builder.form-url-prefix</td><td width="70">0..1</td><td width="150">url</td><td>URL prefix that used in url generation of new forms</td></tr>
+<tr class="nested-element"><td width="290">builder.disable-load-fhir-version</td><td width="70">0..1</td><td width="150">boolean</td><td>Disable loading of FHIR version from the server. Deprecated: not used anymore and has no effect</td></tr>
+<tr class="nested-element"><td width="290">builder.hide-edit-theme</td><td width="70">0..1</td><td width="150">boolean</td><td>Hide edit theme button</td></tr>
+<tr class="top-element required-field"><td width="290">name</td><td width="70">1..1</td><td width="150">string</td><td>Machine readable config name</td></tr>
+<tr class="top-element"><td width="290">data-store</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
+<tr class="nested-element"><td width="290">data-store.endpoint</td><td width="70">0..1</td><td width="150">url</td><td>FHIR Server that will be used for storing/getting reponses populate data from and extract to (if not set - use Aidbox)</td></tr>
+<tr class="nested-element"><td width="290">data-store.headers</td><td width="70">0..1</td><td width="150">Object</td><td>Headers (with credentials) for accessing Service (optional)</td></tr>
+<tr class="top-element"><td width="290">theme</td><td width="70">0..1</td><td width="150">Reference</td><td>Default theme References: QuestionnaireTheme</td></tr>
+<tr class="top-element"><td width="290">language</td><td width="70">0..1</td><td width="150">code</td><td>Default language for UI</td></tr>
+<tr class="top-element"><td width="290">term-server</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
+<tr class="nested-element"><td width="290">term-server.endpoint</td><td width="70">0..1</td><td width="150">url</td><td>FHIR Server that stores Terminology (ValueSet/expand$) (if not set - use Aidbox)</td></tr>
+<tr class="nested-element"><td width="290">term-server.headers</td><td width="70">0..1</td><td width="150">Object</td><td>Headers (with credentials) for accessing Service (optional)</td></tr>
+<tr class="top-element"><td width="290">default</td><td width="70">0..1</td><td width="150">boolean</td><td>Set's config as default for system/tenant</td></tr>
+<tr class="top-element"><td width="290">description</td><td width="70">0..1</td><td width="150">string</td><td>Human readable config description</td></tr></tbody>
 </table>
 
 
-## Role
-
-User role
+## SDCPrintTemplate
 
 <table>
 <thead>
@@ -89,21 +143,13 @@ User role
 </tr>
 </thead>
 <tbody>
-<tr class="top-element required-field"><td width="290">name</td><td width="70">1..1</td><td width="150">string</td><td>Role name is a string that defines role. To assign the same role to multiple users, create multiple Role resources with the same "name". [Search param: name => type string]</td></tr>
-<tr class="top-element"><td width="290">description</td><td width="70">0..1</td><td width="150">string</td><td>Text description of the role</td></tr>
-<tr class="top-element required-field"><td width="290">user</td><td width="70">1..1</td><td width="150">Reference</td><td>Reference to a User resource for which the role will be applied. [Search param: user => type reference] References: User</td></tr>
-<tr class="top-element"><td width="290">links</td><td width="70">0..1</td><td width="150">BackboneElement</td><td>You may list resources here, which can later be granted access for the user with this role via an AccessPolicy resource.</td></tr>
-<tr class="nested-element"><td width="290">links.patient</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to Patient resource References: Patient</td></tr>
-<tr class="nested-element"><td width="290">links.practitionerRole</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to PractitionerRole resource References: PractitionerRole</td></tr>
-<tr class="nested-element"><td width="290">links.practitioner</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to Practitioner resource References: Practitioner</td></tr>
-<tr class="nested-element"><td width="290">links.organization</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to Organization resource References: Organization</td></tr>
-<tr class="nested-element"><td width="290">links.person</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to Person resource References: Person</td></tr>
-<tr class="nested-element"><td width="290">links.relatedPerson</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to RelatedPerson resource References: RelatedPerson</td></tr>
-<tr class="top-element"><td width="290">context</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr></tbody>
+<tr class="top-element"><td width="290">content</td><td width="70">0..1</td><td width="150">string</td><td>Template for SDC print</td></tr></tbody>
 </table>
 
 
-## User
+## SDCDocument
+
+Base schema for questionnaire(document) definition. Also a resource in DB - SDCDocument
 
 <table>
 <thead>
@@ -115,94 +161,36 @@ User role
 </tr>
 </thead>
 <tbody>
-<tr class="top-element"><td width="290">entitlements</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>A list of entitlements for the User that represent a thing the User has.</td></tr>
-<tr class="nested-element"><td width="290">entitlements.value</td><td width="70">0..1</td><td width="150">string</td><td>The value of an entitlement.</td></tr>
-<tr class="nested-element"><td width="290">entitlements.display</td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name, primarily used for display purposes (READ-ONLY).</td></tr>
-<tr class="nested-element"><td width="290">entitlements.type</td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the attribute's function.</td></tr>
-<tr class="nested-element"><td width="290">entitlements.primary</td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary entitlement. Only one may be 'true'.</td></tr>
-<tr class="top-element"><td width="290">profileUrl</td><td width="70">0..1</td><td width="150">uri</td><td>A fully qualified URL pointing to a page representing the User's online profile.</td></tr>
-<tr class="top-element"><td width="290">department</td><td width="70">0..1</td><td width="150">string</td><td>Identifies the name of a department.</td></tr>
-<tr class="top-element"><td width="290">preferredLanguage</td><td width="70">0..1</td><td width="150">string</td><td>The User's preferred written or spoken language, e.g. 'en_US'.</td></tr>
-<tr class="top-element"><td width="290">securityLabel</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>List of security labes associated to the user</td></tr>
-<tr class="nested-element"><td width="290">securityLabel.system</td><td width="70">0..1</td><td width="150">string</td><td>Code system</td></tr>
-<tr class="nested-element"><td width="290">securityLabel.code</td><td width="70">0..1</td><td width="150">string</td><td>Code value</td></tr>
-<tr class="top-element"><td width="290">ims</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>Instant messaging addresses for the User.</td></tr>
-<tr class="nested-element"><td width="290">ims.value</td><td width="70">0..1</td><td width="150">string</td><td>Instant messaging address.</td></tr>
-<tr class="nested-element"><td width="290">ims.display</td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name, primarily for display (READ-ONLY).</td></tr>
-<tr class="nested-element"><td width="290">ims.type</td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the IM type, e.g. 'aim', 'gtalk'.</td></tr>
-<tr class="nested-element"><td width="290">ims.primary</td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary IM. Only one may be 'true'.</td></tr>
-<tr class="top-element"><td width="290">timezone</td><td width="70">0..1</td><td width="150">string</td><td>The User's time zone in the 'Olson' format, e.g. 'America/Los_Angeles'.</td></tr>
-<tr class="top-element"><td width="290">displayName</td><td width="70">0..1</td><td width="150">string</td><td>The name of the User, suitable for display to end-users.</td></tr>
-<tr class="top-element"><td width="290">twoFactor</td><td width="70">0..1</td><td width="150">BackboneElement</td><td>Two factor settings for user</td></tr>
-<tr class="nested-element required-field"><td width="290">twoFactor.enabled</td><td width="70">1..1</td><td width="150">boolean</td><td>Defines whether two-factor auth is currently enabled.</td></tr>
-<tr class="nested-element"><td width="290">twoFactor.transport</td><td width="70">0..1</td><td width="150">string</td><td>Transport of 2FA confirmation code (if used).</td></tr>
-<tr class="nested-element required-field"><td width="290">twoFactor.secretKey</td><td width="70">1..1</td><td width="150">string</td><td>TOTP Secret key.</td></tr>
-<tr class="top-element"><td width="290">gender</td><td width="70">0..1</td><td width="150">string</td><td>The user's gender.</td></tr>
-<tr class="top-element"><td width="290">email</td><td width="70">0..1</td><td width="150">email</td><td>Primary email for the user.</td></tr>
-<tr class="top-element"><td width="290">userType</td><td width="70">0..1</td><td width="150">string</td><td>Identifies the relationship between the organization and the user (e.g. 'Employee', 'Contractor').</td></tr>
-<tr class="top-element"><td width="290">division</td><td width="70">0..1</td><td width="150">string</td><td>Identifies the name of a division.</td></tr>
-<tr class="top-element"><td width="290">name</td><td width="70">0..1</td><td width="150">BackboneElement</td><td>The components of the user's real name (formatted, family, given, etc.).</td></tr>
-<tr class="nested-element"><td width="290">name.formatted</td><td width="70">0..1</td><td width="150">string</td><td>Full name, including titles and suffixes, formatted for display.</td></tr>
-<tr class="nested-element"><td width="290">name.familyName</td><td width="70">0..1</td><td width="150">string</td><td>Family name (last name in Western languages).</td></tr>
-<tr class="nested-element"><td width="290">name.givenName</td><td width="70">0..1</td><td width="150">string</td><td>Given name (first name in Western languages).</td></tr>
-<tr class="nested-element"><td width="290">name.middleName</td><td width="70">0..1</td><td width="150">string</td><td>The middle name(s) of the User.</td></tr>
-<tr class="nested-element"><td width="290">name.honorificPrefix</td><td width="70">0..1</td><td width="150">string</td><td>Honorific prefix (title), e.g. 'Ms.'.</td></tr>
-<tr class="nested-element"><td width="290">name.honorificSuffix</td><td width="70">0..1</td><td width="150">string</td><td>Honorific suffix, e.g. 'III'.</td></tr>
-<tr class="top-element"><td width="290">locale</td><td width="70">0..1</td><td width="150">string</td><td>Indicates the User's default location for localization (e.g., currency, date format).</td></tr>
-<tr class="top-element"><td width="290">fhirUser</td><td width="70">0..1</td><td width="150">Reference</td><td>A reference to a related FHIR resource References: Patient, Practitioner, Person</td></tr>
-<tr class="top-element"><td width="290">identifier</td><td width="70">0..*</td><td width="150">Identifier</td><td>A list of identifiers for the user.</td></tr>
-<tr class="top-element"><td width="290">photo</td><td width="70">0..1</td><td width="150">uri</td><td>Primary photo for the user.</td></tr>
-<tr class="top-element"><td width="290">phoneNumber</td><td width="70">0..1</td><td width="150">string</td><td>Primary phone number.</td></tr>
-<tr class="top-element"><td width="290">userName</td><td width="70">0..1</td><td width="150">string</td><td>Unique identifier for the User, typically used to directly authenticate. Must be unique across the service provider's Users.</td></tr>
-<tr class="top-element"><td width="290">addresses</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>A physical mailing address for this User (e.g. 'work', 'home').</td></tr>
-<tr class="nested-element"><td width="290">addresses.formatted</td><td width="70">0..1</td><td width="150">string</td><td>Full address, formatted for display or mailing label.</td></tr>
-<tr class="nested-element"><td width="290">addresses.streetAddress</td><td width="70">0..1</td><td width="150">string</td><td>Street address component (may contain newlines).</td></tr>
-<tr class="nested-element"><td width="290">addresses.locality</td><td width="70">0..1</td><td width="150">string</td><td>City or locality component.</td></tr>
-<tr class="nested-element"><td width="290">addresses.region</td><td width="70">0..1</td><td width="150">string</td><td>State or region component.</td></tr>
-<tr class="nested-element"><td width="290">addresses.postalCode</td><td width="70">0..1</td><td width="150">string</td><td>Zip code or postal code.</td></tr>
-<tr class="nested-element"><td width="290">addresses.country</td><td width="70">0..1</td><td width="150">string</td><td>Country name component.</td></tr>
-<tr class="nested-element"><td width="290">addresses.type</td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the address type, e.g. 'work' or 'home'.</td></tr>
-<tr class="top-element"><td width="290">title</td><td width="70">0..1</td><td width="150">string</td><td>The user's title, e.g. 'Vice President'.</td></tr>
-<tr class="top-element"><td width="290">link</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>A collection of references or links associated with the user.</td></tr>
-<tr class="nested-element"><td width="290">link.link</td><td width="70">0..1</td><td width="150">Reference</td><td>A referenced resource link.</td></tr>
-<tr class="nested-element"><td width="290">link.type</td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the link's function.</td></tr>
-<tr class="top-element"><td width="290">employeeNumber</td><td width="70">0..1</td><td width="150">string</td><td>Numeric or alphanumeric identifier assigned to a person by the organization.</td></tr>
-<tr class="top-element"><td width="290">password</td><td width="70">0..1</td><td width="150">password</td><td>The User's cleartext password, used for initial or reset scenarios.</td></tr>
-<tr class="top-element"><td width="290">photos</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>URLs of photos of the user.</td></tr>
-<tr class="nested-element"><td width="290">photos.value</td><td width="70">0..1</td><td width="150">uri</td><td>URL of a photo of the User.</td></tr>
-<tr class="nested-element"><td width="290">photos.display</td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name, primarily used for display purposes (READ-ONLY).</td></tr>
-<tr class="nested-element"><td width="290">photos.type</td><td width="70">0..1</td><td width="150">string</td><td>A label indicating 'photo' or 'thumbnail'.</td></tr>
-<tr class="nested-element"><td width="290">photos.primary</td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary photo. Only one may be 'true'.</td></tr>
-<tr class="top-element"><td width="290">manager</td><td width="70">0..1</td><td width="150">Reference</td><td>Another User resource who is this User's manager. References: User</td></tr>
-<tr class="top-element"><td width="290">x509Certificates</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>A list of certificates issued to the User.</td></tr>
-<tr class="nested-element"><td width="290">x509Certificates.value</td><td width="70">0..1</td><td width="150">base64Binary</td><td>The value of an X.509 certificate (base64).</td></tr>
-<tr class="nested-element"><td width="290">x509Certificates.display</td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name, primarily used for display purposes (READ-ONLY).</td></tr>
-<tr class="nested-element"><td width="290">x509Certificates.type</td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the certificate's function.</td></tr>
-<tr class="nested-element"><td width="290">x509Certificates.primary</td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary certificate. Only one may be 'true'.</td></tr>
-<tr class="top-element"><td width="290">emails</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>Email addresses for the user. Values should be canonicalized (e.g. 'bjensen@example.com').</td></tr>
-<tr class="nested-element"><td width="290">emails.value</td><td width="70">0..1</td><td width="150">string</td><td>An individual email address (canonicalized).</td></tr>
-<tr class="nested-element"><td width="290">emails.display</td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name for display purposes (READ-ONLY).</td></tr>
-<tr class="nested-element"><td width="290">emails.type</td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the attribute's function, e.g. 'work', 'home'.</td></tr>
-<tr class="nested-element"><td width="290">emails.primary</td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary email. Only one primary may be 'true'.</td></tr>
-<tr class="top-element"><td width="290">inactive</td><td width="70">0..1</td><td width="150">boolean</td><td>A Boolean value indicating the User's administrative status.</td></tr>
-<tr class="top-element"><td width="290">active</td><td width="70">0..1</td><td width="150">boolean</td><td>NB: this attr is ignored. Indicates the User's administrative status.</td></tr>
-<tr class="top-element"><td width="290">phoneNumbers</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>Phone numbers for the User, e.g. 'tel:+1-201-555-0123'.</td></tr>
-<tr class="nested-element"><td width="290">phoneNumbers.value</td><td width="70">0..1</td><td width="150">string</td><td>The user's phone number.</td></tr>
-<tr class="nested-element"><td width="290">phoneNumbers.display</td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name for display purposes (READ-ONLY).</td></tr>
-<tr class="nested-element"><td width="290">phoneNumbers.type</td><td width="70">0..1</td><td width="150">string</td><td>A label for the phone number's function, e.g. 'home', 'work'.</td></tr>
-<tr class="nested-element"><td width="290">phoneNumbers.primary</td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary phone number. Only one may be 'true'.</td></tr>
-<tr class="top-element"><td width="290">data</td><td width="70">0..1</td><td width="150">Object</td><td>Arbitrary user-related data.</td></tr>
-<tr class="top-element"><td width="290">organization</td><td width="70">0..1</td><td width="150">Reference</td><td>Identifies the name of an organization. References: Organization</td></tr>
-<tr class="top-element"><td width="290">costCenter</td><td width="70">0..1</td><td width="150">string</td><td>Identifies the name of a cost center.</td></tr>
-<tr class="top-element"><td width="290">roles</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>A list of roles for the User that collectively represent who the User is (e.g. 'Student', 'Faculty').</td></tr>
-<tr class="nested-element"><td width="290">roles.value</td><td width="70">0..1</td><td width="150">string</td><td>The value of a role.</td></tr>
-<tr class="nested-element"><td width="290">roles.display</td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name, primarily used for display purposes (READ-ONLY).</td></tr>
-<tr class="nested-element"><td width="290">roles.type</td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the attribute's function.</td></tr>
-<tr class="nested-element"><td width="290">roles.primary</td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary role. Only one may be 'true'.</td></tr></tbody>
+<tr class="top-element"><td width="290">based-on</td><td width="70">0..1</td><td width="150"></td><td>Request led to creation of this Document</td></tr>
+<tr class="nested-element"><td width="290">based-on.id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">based-on.resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">based-on.display</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="top-element"><td width="290">author</td><td width="70">0..1</td><td width="150"></td><td>Reference to user which create document</td></tr>
+<tr class="nested-element"><td width="290">author.id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">author.resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">author.display</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="top-element required-field"><td width="290">form</td><td width="70">1..1</td><td width="150"></td><td></td></tr>
+<tr class="nested-element"><td width="290">form.form</td><td width="70">0..1</td><td width="150">string</td><td>Full name of form, with which document was captured</td></tr>
+<tr class="nested-element"><td width="290">form.version</td><td width="70">0..1</td><td width="150">number</td><td>Used Form version</td></tr>
+<tr class="top-element"><td width="290">encounter</td><td width="70">0..1</td><td width="150"></td><td>Reference to encounter</td></tr>
+<tr class="nested-element"><td width="290">encounter.id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">encounter.resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">encounter.display</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="top-element"><td width="290">unit-system</td><td width="70">0..1</td><td width="150">string</td><td>What unit system was used in this document at launch</td></tr>
+<tr class="top-element"><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>Status of the document </td></tr>
+<tr class="top-element"><td width="290">source</td><td width="70">0..1</td><td width="150"></td><td>The person who answered the questions</td></tr>
+<tr class="nested-element"><td width="290">source.id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">source.resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">source.display</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="top-element"><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td>Name/version of form, with which document was captured</td></tr>
+<tr class="top-element"><td width="290">patient</td><td width="70">0..1</td><td width="150"></td><td>The subject of the question</td></tr>
+<tr class="nested-element"><td width="290">patient.id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">patient.resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">patient.display</td><td width="70">0..1</td><td width="150">string</td><td></td></tr></tbody>
 </table>
 
 
-## Scope
+## SDCFormMetadata
 
 <table>
 <thead>
@@ -214,13 +202,13 @@ User role
 </tr>
 </thead>
 <tbody>
-<tr class="top-element required-field"><td width="290">scope</td><td width="70">1..1</td><td width="150">string</td><td>The value of the scope</td></tr>
-<tr class="top-element required-field"><td width="290">title</td><td width="70">1..1</td><td width="150">string</td><td>A user-friendly name for the scope that appears on the consent screen</td></tr>
-<tr class="top-element"><td width="290">description</td><td width="70">0..1</td><td width="150">string</td><td>When provided, the scope definition is additionally displayed on the consent screen</td></tr></tbody>
+<tr class="top-element"><td width="290">properties</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr></tbody>
 </table>
 
 
-## Client
+## SDCFormVersion
+
+Form Metadata that can be used for Dynamic updates
 
 <table>
 <thead>
@@ -232,75 +220,14 @@ User role
 </tr>
 </thead>
 <tbody>
-<tr class="top-element"><td width="290">first_party</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
-<tr class="top-element"><td width="290">auth</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.client_credentials</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.client_credentials.token_format</td><td width="70">0..1</td><td width="150">string</td><td>Allowed values: jwt</td></tr>
-<tr class="nested-element"><td width="290">auth.client_credentials.access_token_expiration</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.client_credentials.refresh_token_expiration</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.client_credentials.audience</td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.client_credentials.client_assertion_types</td><td width="70">0..*</td><td width="150">string</td><td>Allowed values: urn:ietf:params:oauth:client-assertion-type:jwt-bearer</td></tr>
-<tr class="nested-element"><td width="290">auth.client_credentials.refresh_token</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.implicit</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.implicit.redirect_uri</td><td width="70">0..1</td><td width="150">url</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.implicit.token_format</td><td width="70">0..1</td><td width="150">string</td><td>Allowed values: jwt</td></tr>
-<tr class="nested-element"><td width="290">auth.implicit.audience</td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.implicit.access_token_expiration</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.password</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.password.secret_required</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.password.audience</td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.password.refresh_token</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.password.redirect_uri</td><td width="70">0..1</td><td width="150">url</td><td>If present, turn on redirect protection</td></tr>
-<tr class="nested-element"><td width="290">auth.password.token_format</td><td width="70">0..1</td><td width="150">string</td><td>Allowed values: jwt</td></tr>
-<tr class="nested-element"><td width="290">auth.password.access_token_expiration</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.password.refresh_token_expiration</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.authorization_code</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.authorization_code.token_format</td><td width="70">0..1</td><td width="150">string</td><td>Allowed values: jwt</td></tr>
-<tr class="nested-element"><td width="290">auth.authorization_code.audience</td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.authorization_code.secret_required</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.authorization_code.pkce</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.authorization_code.redirect_uri</td><td width="70">0..1</td><td width="150">url</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.authorization_code.access_token_expiration</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.authorization_code.refresh_token_expiration</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.authorization_code.refresh_token</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.token_exchange</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.token_exchange.token_format</td><td width="70">0..1</td><td width="150">string</td><td>Allowed values: jwt</td></tr>
-<tr class="nested-element"><td width="290">auth.token_exchange.access_token_expiration</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.token_exchange.refresh_token_expiration</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.token_exchange.audience</td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
-<tr class="nested-element"><td width="290">auth.token_exchange.refresh_token</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
-<tr class="top-element"><td width="290">trusted</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
-<tr class="top-element"><td width="290">allowed_origins</td><td width="70">0..*</td><td width="150">uri</td><td>Allowed Origins are URLs that will be allowed to make requests from JavaScript to Server (CORS). By default, callback URLs are allowed. You can use wildcards at the subdomain level (e.g., https://*.contoso.com). Query strings and hash info are not considered.</td></tr>
-<tr class="top-element"><td width="290">grant_types</td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">name</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">jwks</td><td width="70">0..*</td><td width="150">BackboneElement</td><td></td></tr>
-<tr class="nested-element"><td width="290">jwks.kid</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="nested-element"><td width="290">jwks.kty</td><td width="70">0..1</td><td width="150">string</td><td>Allowed values: RSA</td></tr>
-<tr class="nested-element"><td width="290">jwks.alg</td><td width="70">0..1</td><td width="150">string</td><td>Allowed values: RS384</td></tr>
-<tr class="nested-element"><td width="290">jwks.e</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="nested-element"><td width="290">jwks.n</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="nested-element"><td width="290">jwks.use</td><td width="70">0..1</td><td width="150">string</td><td>Allowed values: sig</td></tr>
-<tr class="top-element"><td width="290">scopes</td><td width="70">0..*</td><td width="150">BackboneElement</td><td></td></tr>
-<tr class="nested-element"><td width="290">scopes.policy</td><td width="70">0..1</td><td width="150">Reference</td><td>References: AccessPolicy</td></tr>
-<tr class="nested-element"><td width="290">scopes.parameters</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
-<tr class="top-element"><td width="290">fhir-base-url</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">allowed-scopes</td><td width="70">0..*</td><td width="150">Reference</td><td>References: Scope</td></tr>
-<tr class="top-element"><td width="290">scope</td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">allowedIssuers</td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">secret</td><td width="70">0..1</td><td width="150">sha256Hash</td><td></td></tr>
-<tr class="top-element"><td width="290">details</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
-<tr class="top-element"><td width="290">active</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
-<tr class="top-element"><td width="290">jwks_uri</td><td width="70">0..1</td><td width="150">url</td><td></td></tr>
-<tr class="top-element"><td width="290">smart</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr class="nested-element"><td width="290">smart.launch_uri</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="nested-element"><td width="290">smart.name</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="nested-element"><td width="290">smart.description</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">description</td><td width="70">0..1</td><td width="150">string</td><td></td></tr></tbody>
+<tr class="top-element"><td width="290">form</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="top-element"><td width="290">version</td><td width="70">0..1</td><td width="150">number</td><td>Incremental number of form version.</td></tr>
+<tr class="top-element"><td width="290">hash</td><td width="70">0..1</td><td width="150">number</td><td>Hash of snapshot with injected document/layout/rules</td></tr>
+<tr class="top-element"><td width="290">snapshot</td><td width="70">0..1</td><td width="150">string</td><td></td></tr></tbody>
 </table>
 
 
-## Grant
+## SDCWorkflow
 
 <table>
 <thead>
@@ -312,17 +239,33 @@ User role
 </tr>
 </thead>
 <tbody>
-<tr class="top-element"><td width="290">user</td><td width="70">0..1</td><td width="150">Reference</td><td>References: User</td></tr>
-<tr class="top-element"><td width="290">client</td><td width="70">0..1</td><td width="150">Reference</td><td>References: Client</td></tr>
-<tr class="top-element"><td width="290">requested-scope</td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">provided-scope</td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">patient</td><td width="70">0..1</td><td width="150">Reference</td><td>References: Patient</td></tr>
-<tr class="top-element"><td width="290">scope</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">start</td><td width="70">0..1</td><td width="150">dateTime</td><td></td></tr></tbody>
+<tr class="top-element"><td width="290">params</td><td width="70">0..1</td><td width="150">Object</td><td>Workflow params schema definition</td></tr>
+<tr class="top-element"><td width="290">cancel-reason</td><td width="70">0..1</td><td width="150">string</td><td>Define why workfow is canceled</td></tr>
+<tr class="top-element"><td width="290">items</td><td width="70">0..1</td><td width="150">Object</td><td>Workflow items</td></tr>
+<tr class="top-element"><td width="290">workflow</td><td width="70">0..1</td><td width="150">string</td><td>Workflow symbolic name for storing in DB</td></tr>
+<tr class="top-element"><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>Status of WF lifecycle. Should be changed via rpc: `cancel-wf`, `complete-wf` `cancel-task`, `complete-task`</td></tr>
+<tr class="top-element"><td width="290">order</td><td width="70">0..*</td><td width="150"></td><td>Order of items (array of item keys)</td></tr>
+<tr class="top-element"><td width="290">title</td><td width="70">0..1</td><td width="150">string</td><td>Title of the workflow</td></tr>
+<tr class="top-element"><td width="290">version</td><td width="70">0..1</td><td width="150">number</td><td>Workflow version</td></tr>
+<tr class="top-element"><td width="290">ctx</td><td width="70">0..1</td><td width="150"></td><td>Workflow context, which can be used from tasks as well</td></tr>
+<tr class="nested-element"><td width="290">ctx.encounter</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
+<tr class="nested-element"><td width="290">ctx.encounter.id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">ctx.encounter.resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">ctx.encounter.display</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">ctx.patient</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
+<tr class="nested-element"><td width="290">ctx.patient.id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">ctx.patient.resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">ctx.patient.display</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">ctx.user</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
+<tr class="nested-element"><td width="290">ctx.user.id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">ctx.user.resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">ctx.user.display</td><td width="70">0..1</td><td width="150">string</td><td></td></tr></tbody>
 </table>
 
 
-## Session
+## SDCWorkflowVersion
+
+Snapshotted workflow template with incremental versioning.
 
 <table>
 <thead>
@@ -334,28 +277,16 @@ User role
 </tr>
 </thead>
 <tbody>
-<tr class="top-element"><td width="290">on-behalf</td><td width="70">0..1</td><td width="150">Reference</td><td>References: User</td></tr>
-<tr class="top-element"><td width="290">parent</td><td width="70">0..1</td><td width="150">Reference</td><td>References: Session</td></tr>
-<tr class="top-element"><td width="290">user</td><td width="70">0..1</td><td width="150">Reference</td><td>References: User</td></tr>
-<tr class="top-element"><td width="290">access_token</td><td width="70">0..1</td><td width="150">sha256Hash</td><td></td></tr>
-<tr class="top-element"><td width="290">refresh_token_exp</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
-<tr class="top-element"><td width="290">jti</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">authorization_code</td><td width="70">0..1</td><td width="150">sha256Hash</td><td></td></tr>
-<tr class="top-element"><td width="290">exp</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
-<tr class="top-element"><td width="290">start</td><td width="70">0..1</td><td width="150">dateTime</td><td></td></tr>
-<tr class="top-element"><td width="290">scope</td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">refresh_token</td><td width="70">0..1</td><td width="150">sha256Hash</td><td></td></tr>
-<tr class="top-element"><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">patient</td><td width="70">0..1</td><td width="150">Reference</td><td>References: Patient</td></tr>
-<tr class="top-element"><td width="290">audience</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">ctx</td><td width="70">0..1</td><td width="150">Object</td><td>Smart on FHIR context</td></tr>
-<tr class="top-element"><td width="290">active</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
-<tr class="top-element"><td width="290">client</td><td width="70">0..1</td><td width="150">Reference</td><td>References: Client</td></tr>
-<tr class="top-element"><td width="290">end</td><td width="70">0..1</td><td width="150">dateTime</td><td></td></tr></tbody>
+<tr class="top-element required-field"><td width="290">workflow</td><td width="70">1..1</td><td width="150">string</td><td></td></tr>
+<tr class="top-element required-field"><td width="290">version</td><td width="70">1..1</td><td width="150">number</td><td>Incremental number of workflow version.</td></tr>
+<tr class="top-element required-field"><td width="290">hash</td><td width="70">1..1</td><td width="150">number</td><td>Hash of snapshot with injected document/layout/rules</td></tr>
+<tr class="top-element required-field"><td width="290">snapshot</td><td width="70">1..1</td><td width="150">string</td><td></td></tr></tbody>
 </table>
 
 
-## Notification
+## SDCAddendum
+
+Addednum Resource. Contains additional information abount SDCDocument/SDCWorkflow
 
 <table>
 <thead>
@@ -367,116 +298,15 @@ User role
 </tr>
 </thead>
 <tbody>
-<tr class="top-element"><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">provider</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">providerData</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr></tbody>
-</table>
-
-
-## NotificationTemplate
-
-<table>
-<thead>
-<tr>
-<th width="290">Path</th>
-<th width="70">Card.</th>
-<th width="150">Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="top-element"><td width="290">subject</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">template</td><td width="70">0..1</td><td width="150">string</td><td></td></tr></tbody>
-</table>
-
-
-## Registration
-
-<table>
-<thead>
-<tr>
-<th width="290">Path</th>
-<th width="70">Card.</th>
-<th width="150">Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="top-element"><td width="290">resource</td><td width="70">0..1</td><td width="150">Object</td><td>Registration form data</td></tr>
-<tr class="top-element"><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">params</td><td width="70">0..1</td><td width="150">Object</td><td>Authorization params for continue authorization process after registration</td></tr></tbody>
-</table>
-
-
-## IdentityProvider
-
-<table>
-<thead>
-<tr>
-<th width="290">Path</th>
-<th width="70">Card.</th>
-<th width="150">Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="top-element"><td width="290">introspection_endpoint</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">registration_endpoint</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">team_id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">revocation_endpoint</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">authorize_endpoint</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">userinfo-source</td><td width="70">0..1</td><td width="150">string</td><td>Source of userinfo details. If id-token, no request to userinfo_endpoint performed</td></tr>
-<tr class="top-element"><td width="290">userinfo_header</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">base_url</td><td width="70">0..1</td><td width="150">uri</td><td></td></tr>
-<tr class="top-element"><td width="290">isEmailUniqueness</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
-<tr class="top-element"><td width="290">scopes</td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">isScim</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
-<tr class="top-element"><td width="290">title</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">kid</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">organizations</td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">userinfo_endpoint</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">system</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">toScim</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
-<tr class="top-element"><td width="290">token_endpoint</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="top-element"><td width="290">active</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
-<tr class="top-element"><td width="290">client</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr class="nested-element"><td width="290">client.id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="nested-element"><td width="290">client.redirect_uri</td><td width="70">0..1</td><td width="150">uri</td><td></td></tr>
-<tr class="nested-element"><td width="290">client.auth-method</td><td width="70">0..1</td><td width="150">string</td><td>Client authentication method. symmetric (default) or asymmetric</td></tr>
-<tr class="nested-element"><td width="290">client.secret</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="nested-element"><td width="290">client.private-key</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr class="nested-element"><td width="290">client.certificate</td><td width="70">0..1</td><td width="150">string</td><td>Certificate</td></tr>
-<tr class="nested-element"><td width="290">client.certificate-thumbprint</td><td width="70">0..1</td><td width="150">string</td><td>Certificate thumbprint. no colons expected.</td></tr>
-<tr class="nested-element"><td width="290">client.creds-ts</td><td width="70">0..1</td><td width="150">string</td><td>Last time secret/private-key was updated</td></tr>
-<tr class="top-element"><td width="290">jwks_uri</td><td width="70">0..1</td><td width="150">string</td><td></td></tr></tbody>
-</table>
-
-
-## AuthConfig
-
-<table>
-<thead>
-<tr>
-<th width="290">Path</th>
-<th width="70">Card.</th>
-<th width="150">Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="top-element"><td width="290">theme</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr class="nested-element"><td width="290">theme.brand</td><td width="70">0..1</td><td width="150">string</td><td>Brand for auth page</td></tr>
-<tr class="nested-element"><td width="290">theme.title</td><td width="70">0..1</td><td width="150">string</td><td>Title for auth page</td></tr>
-<tr class="nested-element"><td width="290">theme.styleUrl</td><td width="70">0..1</td><td width="150">uri</td><td>URL to external stylesheet</td></tr>
-<tr class="nested-element"><td width="290">theme.forgotPasswordUrl</td><td width="70">0..1</td><td width="150">uri</td><td>URL to forgot password page</td></tr>
-<tr class="top-element"><td width="290">twoFactor</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr class="nested-element"><td width="290">twoFactor.webhook</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr class="nested-element"><td width="290">twoFactor.webhook.headers</td><td width="70">0..1</td><td width="150">Map</td><td>Map of HTTP header key-value pairs</td></tr>
-<tr class="nested-element"><td width="290">twoFactor.webhook.timeout</td><td width="70">0..1</td><td width="150">integer</td><td>Timeout in milliseconds</td></tr>
-<tr class="nested-element required-field"><td width="290">twoFactor.webhook.endpoint</td><td width="70">1..1</td><td width="150">string</td><td>URL to webhook that supports POST method</td></tr>
-<tr class="nested-element"><td width="290">twoFactor.issuerName</td><td width="70">0..1</td><td width="150">string</td><td>Issuer name for OTP authenticator app</td></tr>
-<tr class="nested-element"><td width="290">twoFactor.validPastTokensCount</td><td width="70">0..1</td><td width="150">integer</td><td>Number of past tokens considered valid (useful with webhook since OTP lives ~30s)</td></tr>
-<tr class="top-element"><td width="290">asidCookieMaxAge</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr></tbody>
+<tr class="top-element required-field"><td width="290">type</td><td width="70">1..1</td><td width="150">string</td><td></td></tr>
+<tr class="top-element required-field"><td width="290">target</td><td width="70">1..1</td><td width="150"></td><td></td></tr>
+<tr class="nested-element"><td width="290">target.id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">target.resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">target.display</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="top-element required-field"><td width="290">user</td><td width="70">1..1</td><td width="150"></td><td></td></tr>
+<tr class="nested-element"><td width="290">user.id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">user.resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="nested-element"><td width="290">user.display</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr class="top-element required-field"><td width="290">date</td><td width="70">1..1</td><td width="150">dateTime</td><td></td></tr></tbody>
 </table>
 
