@@ -100,6 +100,7 @@
   - CI/CD
   - Observability
   - Backups
+  - Performance considerations
   - Production Readiness
     * HA
     * Blue/green Deployment
