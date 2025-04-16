@@ -38,7 +38,7 @@ GET /fhir/Observation?code=loinc|12907-1&value-quantity=2 // found
 
 ## Enable composite search
 
-To turn on in Aidbox project use:
+To turn on use:
 
 ```
 BOX_SEARCH_COMPOSITE__SEARCH=true
@@ -46,7 +46,7 @@ BOX_SEARCH_COMPOSITE__SEARCH=true
 
 ## Create Composite SearchParameter
 
-Here's an example of the changed FHIR`Questionnaire.context-type-value` SearchParameter to search by `useContext.value.as(Reference)` instead of CodeableConcept.
+Here's an example of the changed FHIR`Questionnaire.context-type-value` SearchParameter to search by `useContext.value.as(Reference)` instead of CodeableConcept. We can reuse `Questionnaire.context-type` using its url `http://hl7.org/fhir/SearchParameter/Questionnaire-context-type` and created `Questionnaire.context-ref`(`http://mycompany.com/Questionnaire-context-ref`), which is similar to FHIR `Questionnaire.context-value`.
 
 ```
 POST /fhir/SearchParameter
@@ -54,7 +54,7 @@ content-type: application/json
 accept: application/json
 
 {
-  "url": "http://hl7.org/fhir/SearchParameter/Questionnaire-context-type-value-ref",
+  "url": "http://mycompany.com/Questionnaire-context-type-value-ref",
   "component": [
     {
       "definition": "http://hl7.org/fhir/SearchParameter/Questionnaire-context-type",

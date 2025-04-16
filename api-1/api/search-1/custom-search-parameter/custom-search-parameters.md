@@ -204,7 +204,7 @@ content-type: application/json
 accept: application/json
 
 {
-  "url": "http://hl7.org/fhir/SearchParameter/Questionnaire-context-type-value-ref",
+  "url": "http://mycompany.com/Questionnaire-context-type-value-ref",
   "component": [
     {
       "definition": "http://hl7.org/fhir/SearchParameter/Questionnaire-context-type",
