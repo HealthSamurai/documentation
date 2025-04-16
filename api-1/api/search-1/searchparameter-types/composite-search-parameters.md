@@ -46,22 +46,44 @@ BOX_SEARCH_COMPOSITE__SEARCH=true
 
 ## Create Composite SearchParameter
 
-```
-POST /fhir/SearchParameter 
+Here's an example of the changed FHIR`Questionnaire.context-type-value` SearchParameter to search by `useContext.value.as(Reference)` instead of CodeableConcept.
 
-type: composite
-expression: ActivityDefinition
-code: my-parameter
-component:
-  - definition: http://Upgraid.app/fhir/SearchParameter/activitydefinition-tag-type
-    expression: useContext.code
-  - definition: http://Upgraid.app/fhir/SearchParameter/activitydefinition-content-topic-tag
-    expression: useContext.value.CodeableConcept.text
-description: composite search parameter
-multipleOr: false
-resourceType: SearchParameter
-status: draft
-id: my-parameter
-url: http://hl7.org/fhir/SearchParameter/activitydefinition-content-topic-tag-text
-name: ActivitydefinitionContentTopicTagText
+```
+POST /fhir/SearchParameter
+content-type: application/json
+accept: application/json
+
+{
+  "url": "http://hl7.org/fhir/SearchParameter/Questionnaire-context-type-value-ref",
+  "component": [
+    {
+      "definition": "http://hl7.org/fhir/SearchParameter/Questionnaire-context-type",
+      "expression": "code"
+    },
+    {
+      "definition": "http://mycompany.com/Questionnaire-context-ref",
+      "expression": "value.as(Reference)"
+    }
+  ],
+  "id": "Questionnaire-context-type-value",
+  "base": [
+    "Questionnaire"
+  ],
+  "expression": "Questionnaire.useContext",
+  "name": "context-type-value",
+  "status": "draft",
+  "multipleOr": false,
+  "type": "composite",
+  "version": "4.0.1",
+  "xpathUsage": "normal",
+  "resourceType": "SearchParameter",
+  "code": "context-type-value-ref",
+  "description": "A use context type and reference value assigned to the questionnaire"
+}
+```
+
+Usage:
+
+```
+GET /fhir/Questionnaire?context-type-value-ref=somecode$Organization/someorg&_explain=1
 ```
