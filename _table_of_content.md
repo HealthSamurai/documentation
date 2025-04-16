@@ -63,10 +63,12 @@
     * Audit Events in Aidbox
     * Standalone Audit Event Repository  
 * DB
-  - Database Schema & Storage Format
-  - Query Resources
+  - Database Schema & Storage Format & AidboxDB
+  - Query Resources & Search API SQL
+  - PostgreSQL Extensions
   - Indexes & Performance
   - Transactional bulk & migrations
+  - Transactional isolation levels & conditional operations
 * Storage (TODO: Should we put it to API or keep at the top level)
   - Storing Files  
 * FHIR Configuration (Artifact Repository)
