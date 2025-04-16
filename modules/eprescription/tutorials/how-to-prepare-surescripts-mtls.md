@@ -28,6 +28,14 @@ This is what referenced as `surescripts-private` in [compose file example](../ge
 
 1. You have to use a same private key that was used to obtain client cert `p7b`.
 
+Note, that your private key must be **PKCS#8**, in case it's PKCS#1 please use following command for conversion:
+
+```bash
+openssl pkcs8 -topk8 -inform PEM -outform PEM \
+  -in your.key \
+  -out private.key -nocrypt
+```
+
 **How to check that keys match**
 
 1. Create module from private key: `openssl rsa -noout -modulus -in private.key -out private.module`
