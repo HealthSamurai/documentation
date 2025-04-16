@@ -31,6 +31,8 @@ query: 'SELECT * from patient where id ilike = {{params.filter}} limit {{params.
 count-query: 'SELECT count(*) from patient where id ilike = {{params.filter}}'
 # not required. enable links in response, see the section below
 enable-links: false
+# not required. omit sql in query response
+omit-sql: false
 # not required. `query` or `execute`. see below
 type: query
 ```
