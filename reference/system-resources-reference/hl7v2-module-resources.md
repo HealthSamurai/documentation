@@ -20,11 +20,11 @@ HL7v2 module includes the following resource types:
 </thead>
 <tbody>
 <tr><td width="290">extensions</td><td width="70">0..*</td><td width="150"></td><td></td></tr>
-<tr><td width="290">extensions.after</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">extensions.msh</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">extensions.segment</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">extensions.fields</td><td width="70">0..*</td><td width="150"></td><td></td></tr>
-<tr><td width="290">extensions.quantifier</td><td width="70">0..1</td><td width="150">string</td><td>
+<tr><td width="290">extensions.<strong>after</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">extensions.<strong>msh</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">extensions.<strong>segment</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">extensions.<strong>fields</strong></td><td width="70">0..*</td><td width="150"></td><td></td></tr>
+<tr><td width="290">extensions.<strong>quantifier</strong></td><td width="70">0..1</td><td width="150">string</td><td>
 
 <strong>Allowed values</strong>: * | ? | +</td></tr>
 <tr><td width="290">id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
@@ -32,8 +32,8 @@ HL7v2 module includes the following resource types:
 <tr><td width="290">sortTopLevelExtensions</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
 <tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">text</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
-<tr><td width="290">text.div</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">text.status</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">text.<strong>div</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">text.<strong>status</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">mapping</td><td width="70">0..1</td><td width="150">Reference</td><td>
 
 <strong>Allowed references</strong>: Mapping</td></tr>
