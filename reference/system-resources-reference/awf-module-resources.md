@@ -36,7 +36,9 @@ AWF module includes the following resource types:
 <tr><td width="290">error</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
 <tr><td width="290">id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">retryCount</td><td width="70">0..1</td><td width="150">number</td><td></td></tr>
-<tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td><b>Allowed values</b>: created | ready | requested | in-progress | done | waiting</td></tr>
+<tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: created | ready | requested | in-progress | done | waiting</td></tr>
 <tr><td width="290">retryDelay</td><td width="70">0..1</td><td width="150">number</td><td></td></tr>
 <tr><td width="290">execId</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">definition</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
@@ -44,13 +46,17 @@ AWF module includes the following resource types:
 <tr><td width="290">meta</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
 <tr><td width="290">inProgressTimeout</td><td width="70">0..1</td><td width="150">number</td><td></td></tr>
 <tr><td width="290">outcomeReason</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
-<tr><td width="290">outcomeReason.type</td><td width="70">0..1</td><td width="150">string</td><td><b>Allowed values</b>: awf.task/failed-due-to-in-progress-timeout | awf.task/failed-by-executor | awf.executor/unknown-error</td></tr>
+<tr><td width="290">outcomeReason.type</td><td width="70">0..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: awf.task/failed-due-to-in-progress-timeout | awf.task/failed-by-executor | awf.executor/unknown-error</td></tr>
 <tr><td width="290">outcomeReason.message</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">outcomeReason.data</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
 <tr><td width="290">resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">concurrencyPath</td><td width="70">0..*</td><td width="150">keyword</td><td></td></tr>
 <tr><td width="290">requestedToStartTimeout</td><td width="70">0..1</td><td width="150">number</td><td></td></tr>
-<tr><td width="290">outcome</td><td width="70">0..1</td><td width="150">string</td><td><b>Allowed values</b>: succeeded | failed | canceled</td></tr>
+<tr><td width="290">outcome</td><td width="70">0..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: succeeded | failed | canceled</td></tr>
 <tr><td width="290">result</td><td width="70">0..1</td><td width="150"></td><td></td></tr></tbody>
 </table>
 
@@ -117,16 +123,22 @@ AWF module includes the following resource types:
 <tr><td width="290">error</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
 <tr><td width="290">id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">retryCount</td><td width="70">0..1</td><td width="150">number</td><td></td></tr>
-<tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td><b>Allowed values</b>: created | in-progress | done</td></tr>
+<tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: created | in-progress | done</td></tr>
 <tr><td width="290">execId</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">definition</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">meta</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
 <tr><td width="290">outcomeReason</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
-<tr><td width="290">outcomeReason.type</td><td width="70">0..1</td><td width="150">string</td><td><b>Allowed values</b>: awf.workflow/failed-by-executor | awf.executor/unknown-error</td></tr>
+<tr><td width="290">outcomeReason.type</td><td width="70">0..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: awf.workflow/failed-by-executor | awf.executor/unknown-error</td></tr>
 <tr><td width="290">outcomeReason.message</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">outcomeReason.data</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
 <tr><td width="290">resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">outcome</td><td width="70">0..1</td><td width="150">string</td><td><b>Allowed values</b>: succeeded | failed | canceled</td></tr>
+<tr><td width="290">outcome</td><td width="70">0..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: succeeded | failed | canceled</td></tr>
 <tr><td width="290">result</td><td width="70">0..1</td><td width="150"></td><td></td></tr></tbody>
 </table>
 
@@ -152,7 +164,9 @@ AWF module includes the following resource types:
 <tr><td width="290">lastScheduleReference.resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">lastScheduleReference.display</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">lastScheduleStatus</td><td width="70">0..1</td><td width="150">string</td><td><b>Allowed values</b>: started | skipped</td></tr>
+<tr><td width="290">lastScheduleStatus</td><td width="70">0..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: started | skipped</td></tr>
 <tr><td width="290">retryDelay</td><td width="70">0..1</td><td width="150">number</td><td></td></tr>
 <tr><td width="290">definition</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">allowedRetryCount</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
