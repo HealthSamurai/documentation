@@ -1,6 +1,7 @@
 # SDC Module Resources
 
-## Overview
+
+           Resources for configuration and management Aidbox SDC module.## Overview
 
 SDC module includes the following resource types:
 
