@@ -1,7 +1,6 @@
 # HL7v2 Module Resources
 
-
-           Resources for configuration Aidbox HL7v2 module.
+Resources for configuration Aidbox HL7v2 module.
 
  ## Overview
 
