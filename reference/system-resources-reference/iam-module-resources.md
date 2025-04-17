@@ -74,11 +74,11 @@ IAM module includes the following resource types:
 <strong>Allowed values</strong>: opaque | jwt | aspxauth</td></tr>
 <tr><td width="290">jwks_uri</td><td width="70">0..1</td><td width="150">string</td><td>A URL pointing to a JSON Web Key Set (JWKS). When type is jwt the introspector retrieves public keys from this URI to validate token signatures.</td></tr>
 <tr><td width="290">jwt</td><td width="70">0..1</td><td width="150">BackboneElement</td><td>Configuration for local JWT validation used when type is jwt.</td></tr>
-<tr><td width="290">jwt.iss</td><td width="70">0..1</td><td width="150">string</td><td>The expected issuer (iss) claim value for JWTs. The TokenIntrospector ensures that tokens it validates come from this issuer.</td></tr>
-<tr><td width="290">jwt.secret</td><td width="70">0..1</td><td width="150">string</td><td>A shared secret key or other signing key material used to verify the JWT’s signature.</td></tr>
+<tr><td width="290">jwt.<strong>iss</strong></td><td width="70">0..1</td><td width="150">string</td><td>The expected issuer (iss) claim value for JWTs. The TokenIntrospector ensures that tokens it validates come from this issuer.</td></tr>
+<tr><td width="290">jwt.<strong>secret</strong></td><td width="70">0..1</td><td width="150">string</td><td>A shared secret key or other signing key material used to verify the JWT’s signature.</td></tr>
 <tr><td width="290">introspection_endpoint</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr><td width="290">introspection_endpoint.url</td><td width="70">0..1</td><td width="150">string</td><td>The fully qualified URL of the remote introspection endpoint.</td></tr>
-<tr><td width="290">introspection_endpoint.authorization</td><td width="70">0..1</td><td width="150">string</td><td>The authorization header value (e.g. a Basic Auth or Bearer token) used when calling the introspection endpoint. If present it will be included in the request headers.</td></tr>
+<tr><td width="290">introspection_endpoint.<strong>url</strong></td><td width="70">0..1</td><td width="150">string</td><td>The fully qualified URL of the remote introspection endpoint.</td></tr>
+<tr><td width="290">introspection_endpoint.<strong>authorization</strong></td><td width="70">0..1</td><td width="150">string</td><td>The authorization header value (e.g. a Basic Auth or Bearer token) used when calling the introspection endpoint. If present it will be included in the request headers.</td></tr>
 <tr><td width="290">identity_provider</td><td width="70">0..1</td><td width="150">Reference</td><td>Link to Identity provider associated with the token introspector. 
 
 <strong>Allowed references</strong>: IdentityProvider</td></tr></tbody>
@@ -105,22 +105,22 @@ User role
 
 <strong>Allowed references</strong>: User</td></tr>
 <tr><td width="290">links</td><td width="70">0..1</td><td width="150">BackboneElement</td><td>You may list resources here, which can later be granted access for the user with this role via an AccessPolicy resource.</td></tr>
-<tr><td width="290">links.patient</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to Patient resource 
+<tr><td width="290">links.<strong>patient</strong></td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to Patient resource 
 
 <strong>Allowed references</strong>: Patient</td></tr>
-<tr><td width="290">links.practitionerRole</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to PractitionerRole resource 
+<tr><td width="290">links.<strong>practitionerRole</strong></td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to PractitionerRole resource 
 
 <strong>Allowed references</strong>: PractitionerRole</td></tr>
-<tr><td width="290">links.practitioner</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to Practitioner resource 
+<tr><td width="290">links.<strong>practitioner</strong></td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to Practitioner resource 
 
 <strong>Allowed references</strong>: Practitioner</td></tr>
-<tr><td width="290">links.organization</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to Organization resource 
+<tr><td width="290">links.<strong>organization</strong></td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to Organization resource 
 
 <strong>Allowed references</strong>: Organization</td></tr>
-<tr><td width="290">links.person</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to Person resource 
+<tr><td width="290">links.<strong>person</strong></td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to Person resource 
 
 <strong>Allowed references</strong>: Person</td></tr>
-<tr><td width="290">links.relatedPerson</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to RelatedPerson resource 
+<tr><td width="290">links.<strong>relatedPerson</strong></td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to RelatedPerson resource 
 
 <strong>Allowed references</strong>: RelatedPerson</td></tr>
 <tr><td width="290">context</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr></tbody>
@@ -140,38 +140,38 @@ User role
 </thead>
 <tbody>
 <tr><td width="290">entitlements</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>A list of entitlements for the User that represent a thing the User has.</td></tr>
-<tr><td width="290">entitlements.value</td><td width="70">0..1</td><td width="150">string</td><td>The value of an entitlement.</td></tr>
-<tr><td width="290">entitlements.display</td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name, primarily used for display purposes (READ-ONLY).</td></tr>
-<tr><td width="290">entitlements.type</td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the attribute's function.</td></tr>
-<tr><td width="290">entitlements.primary</td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary entitlement. Only one may be 'true'.</td></tr>
+<tr><td width="290">entitlements.<strong>value</strong></td><td width="70">0..1</td><td width="150">string</td><td>The value of an entitlement.</td></tr>
+<tr><td width="290">entitlements.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name, primarily used for display purposes (READ-ONLY).</td></tr>
+<tr><td width="290">entitlements.<strong>type</strong></td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the attribute's function.</td></tr>
+<tr><td width="290">entitlements.<strong>primary</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary entitlement. Only one may be 'true'.</td></tr>
 <tr><td width="290">profileUrl</td><td width="70">0..1</td><td width="150">uri</td><td>A fully qualified URL pointing to a page representing the User's online profile.</td></tr>
 <tr><td width="290">department</td><td width="70">0..1</td><td width="150">string</td><td>Identifies the name of a department.</td></tr>
 <tr><td width="290">preferredLanguage</td><td width="70">0..1</td><td width="150">string</td><td>The User's preferred written or spoken language, e.g. 'en_US'.</td></tr>
 <tr><td width="290">securityLabel</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>List of security labes associated to the user</td></tr>
-<tr><td width="290">securityLabel.system</td><td width="70">0..1</td><td width="150">string</td><td>Code system</td></tr>
-<tr><td width="290">securityLabel.code</td><td width="70">0..1</td><td width="150">string</td><td>Code value</td></tr>
+<tr><td width="290">securityLabel.<strong>system</strong></td><td width="70">0..1</td><td width="150">string</td><td>Code system</td></tr>
+<tr><td width="290">securityLabel.<strong>code</strong></td><td width="70">0..1</td><td width="150">string</td><td>Code value</td></tr>
 <tr><td width="290">ims</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>Instant messaging addresses for the User.</td></tr>
-<tr><td width="290">ims.value</td><td width="70">0..1</td><td width="150">string</td><td>Instant messaging address.</td></tr>
-<tr><td width="290">ims.display</td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name, primarily for display (READ-ONLY).</td></tr>
-<tr><td width="290">ims.type</td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the IM type, e.g. 'aim', 'gtalk'.</td></tr>
-<tr><td width="290">ims.primary</td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary IM. Only one may be 'true'.</td></tr>
+<tr><td width="290">ims.<strong>value</strong></td><td width="70">0..1</td><td width="150">string</td><td>Instant messaging address.</td></tr>
+<tr><td width="290">ims.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name, primarily for display (READ-ONLY).</td></tr>
+<tr><td width="290">ims.<strong>type</strong></td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the IM type, e.g. 'aim', 'gtalk'.</td></tr>
+<tr><td width="290">ims.<strong>primary</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary IM. Only one may be 'true'.</td></tr>
 <tr><td width="290">timezone</td><td width="70">0..1</td><td width="150">string</td><td>The User's time zone in the 'Olson' format, e.g. 'America/Los_Angeles'.</td></tr>
 <tr><td width="290">displayName</td><td width="70">0..1</td><td width="150">string</td><td>The name of the User, suitable for display to end-users.</td></tr>
 <tr><td width="290">twoFactor</td><td width="70">0..1</td><td width="150">BackboneElement</td><td>Two factor settings for user</td></tr>
-<tr><td width="290">twoFactor.enabled</td><td width="70">1..1</td><td width="150">boolean</td><td>Defines whether two-factor auth is currently enabled.</td></tr>
-<tr><td width="290">twoFactor.transport</td><td width="70">0..1</td><td width="150">string</td><td>Transport of 2FA confirmation code (if used).</td></tr>
-<tr><td width="290">twoFactor.secretKey</td><td width="70">1..1</td><td width="150">string</td><td>TOTP Secret key.</td></tr>
+<tr><td width="290">twoFactor.<strong>enabled</strong></td><td width="70">1..1</td><td width="150">boolean</td><td>Defines whether two-factor auth is currently enabled.</td></tr>
+<tr><td width="290">twoFactor.<strong>transport</strong></td><td width="70">0..1</td><td width="150">string</td><td>Transport of 2FA confirmation code (if used).</td></tr>
+<tr><td width="290">twoFactor.<strong>secretKey</strong></td><td width="70">1..1</td><td width="150">string</td><td>TOTP Secret key.</td></tr>
 <tr><td width="290">gender</td><td width="70">0..1</td><td width="150">string</td><td>The user's gender.</td></tr>
 <tr><td width="290">email</td><td width="70">0..1</td><td width="150">email</td><td>Primary email for the user.</td></tr>
 <tr><td width="290">userType</td><td width="70">0..1</td><td width="150">string</td><td>Identifies the relationship between the organization and the user (e.g. 'Employee', 'Contractor').</td></tr>
 <tr><td width="290">division</td><td width="70">0..1</td><td width="150">string</td><td>Identifies the name of a division.</td></tr>
 <tr><td width="290">name</td><td width="70">0..1</td><td width="150">BackboneElement</td><td>The components of the user's real name (formatted, family, given, etc.).</td></tr>
-<tr><td width="290">name.formatted</td><td width="70">0..1</td><td width="150">string</td><td>Full name, including titles and suffixes, formatted for display.</td></tr>
-<tr><td width="290">name.familyName</td><td width="70">0..1</td><td width="150">string</td><td>Family name (last name in Western languages).</td></tr>
-<tr><td width="290">name.givenName</td><td width="70">0..1</td><td width="150">string</td><td>Given name (first name in Western languages).</td></tr>
-<tr><td width="290">name.middleName</td><td width="70">0..1</td><td width="150">string</td><td>The middle name(s) of the User.</td></tr>
-<tr><td width="290">name.honorificPrefix</td><td width="70">0..1</td><td width="150">string</td><td>Honorific prefix (title), e.g. 'Ms.'.</td></tr>
-<tr><td width="290">name.honorificSuffix</td><td width="70">0..1</td><td width="150">string</td><td>Honorific suffix, e.g. 'III'.</td></tr>
+<tr><td width="290">name.<strong>formatted</strong></td><td width="70">0..1</td><td width="150">string</td><td>Full name, including titles and suffixes, formatted for display.</td></tr>
+<tr><td width="290">name.<strong>familyName</strong></td><td width="70">0..1</td><td width="150">string</td><td>Family name (last name in Western languages).</td></tr>
+<tr><td width="290">name.<strong>givenName</strong></td><td width="70">0..1</td><td width="150">string</td><td>Given name (first name in Western languages).</td></tr>
+<tr><td width="290">name.<strong>middleName</strong></td><td width="70">0..1</td><td width="150">string</td><td>The middle name(s) of the User.</td></tr>
+<tr><td width="290">name.<strong>honorificPrefix</strong></td><td width="70">0..1</td><td width="150">string</td><td>Honorific prefix (title), e.g. 'Ms.'.</td></tr>
+<tr><td width="290">name.<strong>honorificSuffix</strong></td><td width="70">0..1</td><td width="150">string</td><td>Honorific suffix, e.g. 'III'.</td></tr>
 <tr><td width="290">locale</td><td width="70">0..1</td><td width="150">string</td><td>Indicates the User's default location for localization (e.g., currency, date format).</td></tr>
 <tr><td width="290">fhirUser</td><td width="70">0..1</td><td width="150">Reference</td><td>A reference to a related FHIR resource 
 
@@ -181,54 +181,54 @@ User role
 <tr><td width="290">phoneNumber</td><td width="70">0..1</td><td width="150">string</td><td>Primary phone number.</td></tr>
 <tr><td width="290">userName</td><td width="70">0..1</td><td width="150">string</td><td>Unique identifier for the User, typically used to directly authenticate. Must be unique across the service provider's Users.</td></tr>
 <tr><td width="290">addresses</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>A physical mailing address for this User (e.g. 'work', 'home').</td></tr>
-<tr><td width="290">addresses.formatted</td><td width="70">0..1</td><td width="150">string</td><td>Full address, formatted for display or mailing label.</td></tr>
-<tr><td width="290">addresses.streetAddress</td><td width="70">0..1</td><td width="150">string</td><td>Street address component (may contain newlines).</td></tr>
-<tr><td width="290">addresses.locality</td><td width="70">0..1</td><td width="150">string</td><td>City or locality component.</td></tr>
-<tr><td width="290">addresses.region</td><td width="70">0..1</td><td width="150">string</td><td>State or region component.</td></tr>
-<tr><td width="290">addresses.postalCode</td><td width="70">0..1</td><td width="150">string</td><td>Zip code or postal code.</td></tr>
-<tr><td width="290">addresses.country</td><td width="70">0..1</td><td width="150">string</td><td>Country name component.</td></tr>
-<tr><td width="290">addresses.type</td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the address type, e.g. 'work' or 'home'.</td></tr>
+<tr><td width="290">addresses.<strong>formatted</strong></td><td width="70">0..1</td><td width="150">string</td><td>Full address, formatted for display or mailing label.</td></tr>
+<tr><td width="290">addresses.<strong>streetAddress</strong></td><td width="70">0..1</td><td width="150">string</td><td>Street address component (may contain newlines).</td></tr>
+<tr><td width="290">addresses.<strong>locality</strong></td><td width="70">0..1</td><td width="150">string</td><td>City or locality component.</td></tr>
+<tr><td width="290">addresses.<strong>region</strong></td><td width="70">0..1</td><td width="150">string</td><td>State or region component.</td></tr>
+<tr><td width="290">addresses.<strong>postalCode</strong></td><td width="70">0..1</td><td width="150">string</td><td>Zip code or postal code.</td></tr>
+<tr><td width="290">addresses.<strong>country</strong></td><td width="70">0..1</td><td width="150">string</td><td>Country name component.</td></tr>
+<tr><td width="290">addresses.<strong>type</strong></td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the address type, e.g. 'work' or 'home'.</td></tr>
 <tr><td width="290">title</td><td width="70">0..1</td><td width="150">string</td><td>The user's title, e.g. 'Vice President'.</td></tr>
 <tr><td width="290">link</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>A collection of references or links associated with the user.</td></tr>
-<tr><td width="290">link.link</td><td width="70">0..1</td><td width="150">Reference</td><td>A referenced resource link.</td></tr>
-<tr><td width="290">link.type</td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the link's function.</td></tr>
+<tr><td width="290">link.<strong>link</strong></td><td width="70">0..1</td><td width="150">Reference</td><td>A referenced resource link.</td></tr>
+<tr><td width="290">link.<strong>type</strong></td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the link's function.</td></tr>
 <tr><td width="290">employeeNumber</td><td width="70">0..1</td><td width="150">string</td><td>Numeric or alphanumeric identifier assigned to a person by the organization.</td></tr>
 <tr><td width="290">password</td><td width="70">0..1</td><td width="150">password</td><td>The User's cleartext password, used for initial or reset scenarios.</td></tr>
 <tr><td width="290">photos</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>URLs of photos of the user.</td></tr>
-<tr><td width="290">photos.value</td><td width="70">0..1</td><td width="150">uri</td><td>URL of a photo of the User.</td></tr>
-<tr><td width="290">photos.display</td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name, primarily used for display purposes (READ-ONLY).</td></tr>
-<tr><td width="290">photos.type</td><td width="70">0..1</td><td width="150">string</td><td>A label indicating 'photo' or 'thumbnail'.</td></tr>
-<tr><td width="290">photos.primary</td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary photo. Only one may be 'true'.</td></tr>
+<tr><td width="290">photos.<strong>value</strong></td><td width="70">0..1</td><td width="150">uri</td><td>URL of a photo of the User.</td></tr>
+<tr><td width="290">photos.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name, primarily used for display purposes (READ-ONLY).</td></tr>
+<tr><td width="290">photos.<strong>type</strong></td><td width="70">0..1</td><td width="150">string</td><td>A label indicating 'photo' or 'thumbnail'.</td></tr>
+<tr><td width="290">photos.<strong>primary</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary photo. Only one may be 'true'.</td></tr>
 <tr><td width="290">manager</td><td width="70">0..1</td><td width="150">Reference</td><td>Another User resource who is this User's manager. 
 
 <strong>Allowed references</strong>: User</td></tr>
 <tr><td width="290">x509Certificates</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>A list of certificates issued to the User.</td></tr>
-<tr><td width="290">x509Certificates.value</td><td width="70">0..1</td><td width="150">base64Binary</td><td>The value of an X.509 certificate (base64).</td></tr>
-<tr><td width="290">x509Certificates.display</td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name, primarily used for display purposes (READ-ONLY).</td></tr>
-<tr><td width="290">x509Certificates.type</td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the certificate's function.</td></tr>
-<tr><td width="290">x509Certificates.primary</td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary certificate. Only one may be 'true'.</td></tr>
+<tr><td width="290">x509Certificates.<strong>value</strong></td><td width="70">0..1</td><td width="150">base64Binary</td><td>The value of an X.509 certificate (base64).</td></tr>
+<tr><td width="290">x509Certificates.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name, primarily used for display purposes (READ-ONLY).</td></tr>
+<tr><td width="290">x509Certificates.<strong>type</strong></td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the certificate's function.</td></tr>
+<tr><td width="290">x509Certificates.<strong>primary</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary certificate. Only one may be 'true'.</td></tr>
 <tr><td width="290">emails</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>Email addresses for the user. Values should be canonicalized (e.g. 'bjensen@example.com').</td></tr>
-<tr><td width="290">emails.value</td><td width="70">0..1</td><td width="150">string</td><td>An individual email address (canonicalized).</td></tr>
-<tr><td width="290">emails.display</td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name for display purposes (READ-ONLY).</td></tr>
-<tr><td width="290">emails.type</td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the attribute's function, e.g. 'work', 'home'.</td></tr>
-<tr><td width="290">emails.primary</td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary email. Only one primary may be 'true'.</td></tr>
+<tr><td width="290">emails.<strong>value</strong></td><td width="70">0..1</td><td width="150">string</td><td>An individual email address (canonicalized).</td></tr>
+<tr><td width="290">emails.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name for display purposes (READ-ONLY).</td></tr>
+<tr><td width="290">emails.<strong>type</strong></td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the attribute's function, e.g. 'work', 'home'.</td></tr>
+<tr><td width="290">emails.<strong>primary</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary email. Only one primary may be 'true'.</td></tr>
 <tr><td width="290">inactive</td><td width="70">0..1</td><td width="150">boolean</td><td>A Boolean value indicating the User's administrative status.</td></tr>
 <tr><td width="290">active</td><td width="70">0..1</td><td width="150">boolean</td><td>NB: this attr is ignored. Indicates the User's administrative status.</td></tr>
 <tr><td width="290">phoneNumbers</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>Phone numbers for the User, e.g. 'tel:+1-201-555-0123'.</td></tr>
-<tr><td width="290">phoneNumbers.value</td><td width="70">0..1</td><td width="150">string</td><td>The user's phone number.</td></tr>
-<tr><td width="290">phoneNumbers.display</td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name for display purposes (READ-ONLY).</td></tr>
-<tr><td width="290">phoneNumbers.type</td><td width="70">0..1</td><td width="150">string</td><td>A label for the phone number's function, e.g. 'home', 'work'.</td></tr>
-<tr><td width="290">phoneNumbers.primary</td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary phone number. Only one may be 'true'.</td></tr>
+<tr><td width="290">phoneNumbers.<strong>value</strong></td><td width="70">0..1</td><td width="150">string</td><td>The user's phone number.</td></tr>
+<tr><td width="290">phoneNumbers.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name for display purposes (READ-ONLY).</td></tr>
+<tr><td width="290">phoneNumbers.<strong>type</strong></td><td width="70">0..1</td><td width="150">string</td><td>A label for the phone number's function, e.g. 'home', 'work'.</td></tr>
+<tr><td width="290">phoneNumbers.<strong>primary</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary phone number. Only one may be 'true'.</td></tr>
 <tr><td width="290">data</td><td width="70">0..1</td><td width="150">Object</td><td>Arbitrary user-related data.</td></tr>
 <tr><td width="290">organization</td><td width="70">0..1</td><td width="150">Reference</td><td>Identifies the name of an organization. 
 
 <strong>Allowed references</strong>: Organization</td></tr>
 <tr><td width="290">costCenter</td><td width="70">0..1</td><td width="150">string</td><td>Identifies the name of a cost center.</td></tr>
 <tr><td width="290">roles</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>A list of roles for the User that collectively represent who the User is (e.g. 'Student', 'Faculty').</td></tr>
-<tr><td width="290">roles.value</td><td width="70">0..1</td><td width="150">string</td><td>The value of a role.</td></tr>
-<tr><td width="290">roles.display</td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name, primarily used for display purposes (READ-ONLY).</td></tr>
-<tr><td width="290">roles.type</td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the attribute's function.</td></tr>
-<tr><td width="290">roles.primary</td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary role. Only one may be 'true'.</td></tr></tbody>
+<tr><td width="290">roles.<strong>value</strong></td><td width="70">0..1</td><td width="150">string</td><td>The value of a role.</td></tr>
+<tr><td width="290">roles.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name, primarily used for display purposes (READ-ONLY).</td></tr>
+<tr><td width="290">roles.<strong>type</strong></td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the attribute's function.</td></tr>
+<tr><td width="290">roles.<strong>primary</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary role. Only one may be 'true'.</td></tr></tbody>
 </table>
 
 
@@ -264,53 +264,53 @@ User role
 <tbody>
 <tr><td width="290">first_party</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
 <tr><td width="290">auth</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr><td width="290">auth.client_credentials</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr><td width="290">auth.client_credentials.token_format</td><td width="70">0..1</td><td width="150">string</td><td>
+<tr><td width="290">auth.<strong>client_credentials</strong></td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
+<tr><td width="290">auth.<strong>client_credentials</strong>.<strong>token_format</strong></td><td width="70">0..1</td><td width="150">string</td><td>
 
 <strong>Allowed values</strong>: jwt</td></tr>
-<tr><td width="290">auth.client_credentials.access_token_expiration</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
-<tr><td width="290">auth.client_credentials.refresh_token_expiration</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
-<tr><td width="290">auth.client_credentials.audience</td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">auth.client_credentials.client_assertion_types</td><td width="70">0..*</td><td width="150">string</td><td>
+<tr><td width="290">auth.<strong>client_credentials</strong>.<strong>access_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
+<tr><td width="290">auth.<strong>client_credentials</strong>.<strong>refresh_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
+<tr><td width="290">auth.<strong>client_credentials</strong>.<strong>audience</strong></td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">auth.<strong>client_credentials</strong>.<strong>client_assertion_types</strong></td><td width="70">0..*</td><td width="150">string</td><td>
 
 <strong>Allowed values</strong>: urn:ietf:params:oauth:client-assertion-type:jwt-bearer</td></tr>
-<tr><td width="290">auth.client_credentials.refresh_token</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
-<tr><td width="290">auth.implicit</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr><td width="290">auth.implicit.redirect_uri</td><td width="70">0..1</td><td width="150">url</td><td></td></tr>
-<tr><td width="290">auth.implicit.token_format</td><td width="70">0..1</td><td width="150">string</td><td>
+<tr><td width="290">auth.<strong>client_credentials</strong>.<strong>refresh_token</strong></td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
+<tr><td width="290">auth.<strong>implicit</strong></td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
+<tr><td width="290">auth.<strong>implicit</strong>.<strong>redirect_uri</strong></td><td width="70">0..1</td><td width="150">url</td><td></td></tr>
+<tr><td width="290">auth.<strong>implicit</strong>.<strong>token_format</strong></td><td width="70">0..1</td><td width="150">string</td><td>
 
 <strong>Allowed values</strong>: jwt</td></tr>
-<tr><td width="290">auth.implicit.audience</td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">auth.implicit.access_token_expiration</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
-<tr><td width="290">auth.password</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr><td width="290">auth.password.secret_required</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
-<tr><td width="290">auth.password.audience</td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">auth.password.refresh_token</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
-<tr><td width="290">auth.password.redirect_uri</td><td width="70">0..1</td><td width="150">url</td><td>If present, turn on redirect protection</td></tr>
-<tr><td width="290">auth.password.token_format</td><td width="70">0..1</td><td width="150">string</td><td>
+<tr><td width="290">auth.<strong>implicit</strong>.<strong>audience</strong></td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">auth.<strong>implicit</strong>.<strong>access_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
+<tr><td width="290">auth.<strong>password</strong></td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
+<tr><td width="290">auth.<strong>password</strong>.<strong>secret_required</strong></td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
+<tr><td width="290">auth.<strong>password</strong>.<strong>audience</strong></td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">auth.<strong>password</strong>.<strong>refresh_token</strong></td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
+<tr><td width="290">auth.<strong>password</strong>.<strong>redirect_uri</strong></td><td width="70">0..1</td><td width="150">url</td><td>If present, turn on redirect protection</td></tr>
+<tr><td width="290">auth.<strong>password</strong>.<strong>token_format</strong></td><td width="70">0..1</td><td width="150">string</td><td>
 
 <strong>Allowed values</strong>: jwt</td></tr>
-<tr><td width="290">auth.password.access_token_expiration</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
-<tr><td width="290">auth.password.refresh_token_expiration</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
-<tr><td width="290">auth.authorization_code</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr><td width="290">auth.authorization_code.token_format</td><td width="70">0..1</td><td width="150">string</td><td>
+<tr><td width="290">auth.<strong>password</strong>.<strong>access_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
+<tr><td width="290">auth.<strong>password</strong>.<strong>refresh_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
+<tr><td width="290">auth.<strong>authorization_code</strong></td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
+<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>token_format</strong></td><td width="70">0..1</td><td width="150">string</td><td>
 
 <strong>Allowed values</strong>: jwt</td></tr>
-<tr><td width="290">auth.authorization_code.audience</td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">auth.authorization_code.secret_required</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
-<tr><td width="290">auth.authorization_code.pkce</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
-<tr><td width="290">auth.authorization_code.redirect_uri</td><td width="70">0..1</td><td width="150">url</td><td></td></tr>
-<tr><td width="290">auth.authorization_code.access_token_expiration</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
-<tr><td width="290">auth.authorization_code.refresh_token_expiration</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
-<tr><td width="290">auth.authorization_code.refresh_token</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
-<tr><td width="290">auth.token_exchange</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr><td width="290">auth.token_exchange.token_format</td><td width="70">0..1</td><td width="150">string</td><td>
+<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>audience</strong></td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>secret_required</strong></td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
+<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>pkce</strong></td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
+<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>redirect_uri</strong></td><td width="70">0..1</td><td width="150">url</td><td></td></tr>
+<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>access_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
+<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>refresh_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
+<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>refresh_token</strong></td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
+<tr><td width="290">auth.<strong>token_exchange</strong></td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
+<tr><td width="290">auth.<strong>token_exchange</strong>.<strong>token_format</strong></td><td width="70">0..1</td><td width="150">string</td><td>
 
 <strong>Allowed values</strong>: jwt</td></tr>
-<tr><td width="290">auth.token_exchange.access_token_expiration</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
-<tr><td width="290">auth.token_exchange.refresh_token_expiration</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
-<tr><td width="290">auth.token_exchange.audience</td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">auth.token_exchange.refresh_token</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
+<tr><td width="290">auth.<strong>token_exchange</strong>.<strong>access_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
+<tr><td width="290">auth.<strong>token_exchange</strong>.<strong>refresh_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
+<tr><td width="290">auth.<strong>token_exchange</strong>.<strong>audience</strong></td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">auth.<strong>token_exchange</strong>.<strong>refresh_token</strong></td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
 <tr><td width="290">trusted</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
 <tr><td width="290">allowed_origins</td><td width="70">0..*</td><td width="150">uri</td><td>Allowed Origins are URLs that will be allowed to make requests from JavaScript to Server (CORS). By default, callback URLs are allowed. You can use wildcards at the subdomain level (e.g., https://*.contoso.com). Query strings and hash info are not considered.</td></tr>
 <tr><td width="290">grant_types</td><td width="70">0..*</td><td width="150">string</td><td>
@@ -318,23 +318,23 @@ User role
 <strong>Allowed values</strong>: basic | authorization_code | code | password | client_credentials | implicit | refresh_token | urn:ietf:params:oauth:grant-type:token-exchange</td></tr>
 <tr><td width="290">name</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">jwks</td><td width="70">0..*</td><td width="150">BackboneElement</td><td></td></tr>
-<tr><td width="290">jwks.kid</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">jwks.kty</td><td width="70">0..1</td><td width="150">string</td><td>
+<tr><td width="290">jwks.<strong>kid</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">jwks.<strong>kty</strong></td><td width="70">0..1</td><td width="150">string</td><td>
 
 <strong>Allowed values</strong>: RSA</td></tr>
-<tr><td width="290">jwks.alg</td><td width="70">0..1</td><td width="150">string</td><td>
+<tr><td width="290">jwks.<strong>alg</strong></td><td width="70">0..1</td><td width="150">string</td><td>
 
 <strong>Allowed values</strong>: RS384</td></tr>
-<tr><td width="290">jwks.e</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">jwks.n</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">jwks.use</td><td width="70">0..1</td><td width="150">string</td><td>
+<tr><td width="290">jwks.<strong>e</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">jwks.<strong>n</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">jwks.<strong>use</strong></td><td width="70">0..1</td><td width="150">string</td><td>
 
 <strong>Allowed values</strong>: sig</td></tr>
 <tr><td width="290">scopes</td><td width="70">0..*</td><td width="150">BackboneElement</td><td></td></tr>
-<tr><td width="290">scopes.policy</td><td width="70">0..1</td><td width="150">Reference</td><td>
+<tr><td width="290">scopes.<strong>policy</strong></td><td width="70">0..1</td><td width="150">Reference</td><td>
 
 <strong>Allowed references</strong>: AccessPolicy</td></tr>
-<tr><td width="290">scopes.parameters</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
+<tr><td width="290">scopes.<strong>parameters</strong></td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
 <tr><td width="290">fhir-base-url</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">allowed-scopes</td><td width="70">0..*</td><td width="150">Reference</td><td>
 
@@ -347,9 +347,9 @@ User role
 <tr><td width="290">active</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
 <tr><td width="290">jwks_uri</td><td width="70">0..1</td><td width="150">url</td><td></td></tr>
 <tr><td width="290">smart</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr><td width="290">smart.launch_uri</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">smart.name</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">smart.description</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">smart.<strong>launch_uri</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">smart.<strong>name</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">smart.<strong>description</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">description</td><td width="70">0..1</td><td width="150">string</td><td></td></tr></tbody>
 </table>
 
@@ -519,16 +519,16 @@ User role
 <tr><td width="290">token_endpoint</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">active</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
 <tr><td width="290">client</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr><td width="290">client.id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">client.redirect_uri</td><td width="70">0..1</td><td width="150">uri</td><td></td></tr>
-<tr><td width="290">client.auth-method</td><td width="70">0..1</td><td width="150">string</td><td>Client authentication method. symmetric (default) or asymmetric 
+<tr><td width="290">client.<strong>id</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">client.<strong>redirect_uri</strong></td><td width="70">0..1</td><td width="150">uri</td><td></td></tr>
+<tr><td width="290">client.<strong>auth-method</strong></td><td width="70">0..1</td><td width="150">string</td><td>Client authentication method. symmetric (default) or asymmetric 
 
 <strong>Allowed values</strong>: symmetric | asymmetric</td></tr>
-<tr><td width="290">client.secret</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">client.private-key</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">client.certificate</td><td width="70">0..1</td><td width="150">string</td><td>Certificate</td></tr>
-<tr><td width="290">client.certificate-thumbprint</td><td width="70">0..1</td><td width="150">string</td><td>Certificate thumbprint. no colons expected.</td></tr>
-<tr><td width="290">client.creds-ts</td><td width="70">0..1</td><td width="150">string</td><td>Last time secret/private-key was updated</td></tr>
+<tr><td width="290">client.<strong>secret</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">client.<strong>private-key</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">client.<strong>certificate</strong></td><td width="70">0..1</td><td width="150">string</td><td>Certificate</td></tr>
+<tr><td width="290">client.<strong>certificate-thumbprint</strong></td><td width="70">0..1</td><td width="150">string</td><td>Certificate thumbprint. no colons expected.</td></tr>
+<tr><td width="290">client.<strong>creds-ts</strong></td><td width="70">0..1</td><td width="150">string</td><td>Last time secret/private-key was updated</td></tr>
 <tr><td width="290">jwks_uri</td><td width="70">0..1</td><td width="150">string</td><td></td></tr></tbody>
 </table>
 
@@ -546,17 +546,17 @@ User role
 </thead>
 <tbody>
 <tr><td width="290">theme</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr><td width="290">theme.brand</td><td width="70">0..1</td><td width="150">string</td><td>Brand for auth page</td></tr>
-<tr><td width="290">theme.title</td><td width="70">0..1</td><td width="150">string</td><td>Title for auth page</td></tr>
-<tr><td width="290">theme.styleUrl</td><td width="70">0..1</td><td width="150">uri</td><td>URL to external stylesheet</td></tr>
-<tr><td width="290">theme.forgotPasswordUrl</td><td width="70">0..1</td><td width="150">uri</td><td>URL to forgot password page</td></tr>
+<tr><td width="290">theme.<strong>brand</strong></td><td width="70">0..1</td><td width="150">string</td><td>Brand for auth page</td></tr>
+<tr><td width="290">theme.<strong>title</strong></td><td width="70">0..1</td><td width="150">string</td><td>Title for auth page</td></tr>
+<tr><td width="290">theme.<strong>styleUrl</strong></td><td width="70">0..1</td><td width="150">uri</td><td>URL to external stylesheet</td></tr>
+<tr><td width="290">theme.<strong>forgotPasswordUrl</strong></td><td width="70">0..1</td><td width="150">uri</td><td>URL to forgot password page</td></tr>
 <tr><td width="290">twoFactor</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr><td width="290">twoFactor.webhook</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr><td width="290">twoFactor.webhook.headers</td><td width="70">0..1</td><td width="150">Map</td><td>Map of HTTP header key-value pairs</td></tr>
-<tr><td width="290">twoFactor.webhook.timeout</td><td width="70">0..1</td><td width="150">integer</td><td>Timeout in milliseconds</td></tr>
-<tr><td width="290">twoFactor.webhook.endpoint</td><td width="70">1..1</td><td width="150">string</td><td>URL to webhook that supports POST method</td></tr>
-<tr><td width="290">twoFactor.issuerName</td><td width="70">0..1</td><td width="150">string</td><td>Issuer name for OTP authenticator app</td></tr>
-<tr><td width="290">twoFactor.validPastTokensCount</td><td width="70">0..1</td><td width="150">integer</td><td>Number of past tokens considered valid (useful with webhook since OTP lives ~30s)</td></tr>
+<tr><td width="290">twoFactor.<strong>webhook</strong></td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
+<tr><td width="290">twoFactor.<strong>webhook</strong>.<strong>headers</strong></td><td width="70">0..1</td><td width="150">Map</td><td>Map of HTTP header key-value pairs</td></tr>
+<tr><td width="290">twoFactor.<strong>webhook</strong>.<strong>timeout</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Timeout in milliseconds</td></tr>
+<tr><td width="290">twoFactor.<strong>webhook</strong>.<strong>endpoint</strong></td><td width="70">1..1</td><td width="150">string</td><td>URL to webhook that supports POST method</td></tr>
+<tr><td width="290">twoFactor.<strong>issuerName</strong></td><td width="70">0..1</td><td width="150">string</td><td>Issuer name for OTP authenticator app</td></tr>
+<tr><td width="290">twoFactor.<strong>validPastTokensCount</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Number of past tokens considered valid (useful with webhook since OTP lives ~30s)</td></tr>
 <tr><td width="290">asidCookieMaxAge</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr></tbody>
 </table>
 
