@@ -29,42 +29,42 @@ SDC module includes the following resource types:
 
 <strong>Allowed values</strong>: Product Sans | Metropolis | Inter</td></tr>
 <tr><td width="290">brand-image</td><td width="70">0..1</td><td width="150"></td><td>Brand images</td></tr>
-<tr><td width="290">brand-image.top-right</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
-<tr><td width="290">brand-image.top-right.url</td><td width="70">0..1</td><td width="150">string</td><td>Web link to top-right image</td></tr>
-<tr><td width="290">brand-image.bottom-left</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
-<tr><td width="290">brand-image.bottom-left.url</td><td width="70">0..1</td><td width="150">string</td><td>Web link to bottom-left image</td></tr>
+<tr><td width="290">brand-image.<strong>top-right</strong></td><td width="70">0..1</td><td width="150"></td><td></td></tr>
+<tr><td width="290">brand-image.<strong>top-right</strong>.<strong>url</strong></td><td width="70">0..1</td><td width="150">string</td><td>Web link to top-right image</td></tr>
+<tr><td width="290">brand-image.<strong>bottom-left</strong></td><td width="70">0..1</td><td width="150"></td><td></td></tr>
+<tr><td width="290">brand-image.<strong>bottom-left</strong>.<strong>url</strong></td><td width="70">0..1</td><td width="150">string</td><td>Web link to bottom-left image</td></tr>
 <tr><td width="290">base-font-size</td><td width="70">0..1</td><td width="150">number</td><td>Minimal text size (px)</td></tr>
 <tr><td width="290">input</td><td width="70">0..1</td><td width="150"></td><td>Input styles</td></tr>
-<tr><td width="290">input.accent-color</td><td width="70">0..1</td><td width="150">string</td><td>Main color for inputs (border color for text inputs background for checkbox etc in RGB hex)</td></tr>
-<tr><td width="290">input.text-color</td><td width="70">0..1</td><td width="150">string</td><td>text color (RGB hex)</td></tr>
-<tr><td width="290">input.background-color</td><td width="70">0..1</td><td width="150">string</td><td>Background color (RGB hex)</td></tr>
-<tr><td width="290">input.font-size</td><td width="70">0..1</td><td width="150">number</td><td>Input font size (px)</td></tr>
+<tr><td width="290">input.<strong>accent-color</strong></td><td width="70">0..1</td><td width="150">string</td><td>Main color for inputs (border color for text inputs background for checkbox etc in RGB hex)</td></tr>
+<tr><td width="290">input.<strong>text-color</strong></td><td width="70">0..1</td><td width="150">string</td><td>text color (RGB hex)</td></tr>
+<tr><td width="290">input.<strong>background-color</strong></td><td width="70">0..1</td><td width="150">string</td><td>Background color (RGB hex)</td></tr>
+<tr><td width="290">input.<strong>font-size</strong></td><td width="70">0..1</td><td width="150">number</td><td>Input font size (px)</td></tr>
 <tr><td width="290">language</td><td width="70">0..1</td><td width="150">code</td><td>Theme Language</td></tr>
 <tr><td width="290">main-color</td><td width="70">0..1</td><td width="150">string</td><td>Main Accent color (RBG hex)</td></tr>
 <tr><td width="290">background</td><td width="70">0..1</td><td width="150"></td><td>Background styles</td></tr>
-<tr><td width="290">background.main-color</td><td width="70">0..1</td><td width="150">string</td><td>Main background color (RBG hex)</td></tr>
-<tr><td width="290">background.form-color</td><td width="70">0..1</td><td width="150">string</td><td>Background color for form (RBG hex)</td></tr>
-<tr><td width="290">background.toolbar-color</td><td width="70">0..1</td><td width="150">string</td><td>Background color for toolbar that displays below the form (with submit button) (RGB hex)</td></tr>
+<tr><td width="290">background.<strong>main-color</strong></td><td width="70">0..1</td><td width="150">string</td><td>Main background color (RBG hex)</td></tr>
+<tr><td width="290">background.<strong>form-color</strong></td><td width="70">0..1</td><td width="150">string</td><td>Background color for form (RBG hex)</td></tr>
+<tr><td width="290">background.<strong>toolbar-color</strong></td><td width="70">0..1</td><td width="150">string</td><td>Background color for toolbar that displays below the form (with submit button) (RGB hex)</td></tr>
 <tr><td width="290">theme-name</td><td width="70">0..1</td><td width="150">string</td><td>Theme Title</td></tr>
 <tr><td width="290">button</td><td width="70">0..1</td><td width="150"></td><td>Button styles</td></tr>
-<tr><td width="290">button.amend-text-color</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">button.print-color</td><td width="70">0..1</td><td width="150">string</td><td>Background color for "Print" button</td></tr>
-<tr><td width="290">button._amend-text</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
-<tr><td width="290">button._submit-text</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
-<tr><td width="290">button.redirect-color</td><td width="70">0..1</td><td width="150">string</td><td>Background color for "Save & Close" button</td></tr>
-<tr><td width="290">button._redirect-text</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
-<tr><td width="290">button.submit-text</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">button.print-text-color</td><td width="70">0..1</td><td width="150">string</td><td>Text color for "Print" button</td></tr>
-<tr><td width="290">button.print-text</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">button.redirect-text-color</td><td width="70">0..1</td><td width="150">string</td><td>Text color for "Save & Close" button</td></tr>
-<tr><td width="290">button._print-text</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
-<tr><td width="290">button.amend-color</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">button.text-color</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">button.submit-color</td><td width="70">0..1</td><td width="150">string</td><td>Background color for "Submit" button</td></tr>
-<tr><td width="290">button.redirect-text</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">button.amend-text</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">button.submit-text-color</td><td width="70">0..1</td><td width="150">string</td><td>Text color for "Submit" button</td></tr>
-<tr><td width="290">button.accent-color</td><td width="70">0..1</td><td width="150">string</td><td>Background color for filled buttons border color for outlined buttons (deprecated)</td></tr></tbody>
+<tr><td width="290">button.<strong>amend-text-color</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">button.<strong>print-color</strong></td><td width="70">0..1</td><td width="150">string</td><td>Background color for "Print" button</td></tr>
+<tr><td width="290">button.<strong>_amend-text</strong></td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
+<tr><td width="290">button.<strong>_submit-text</strong></td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
+<tr><td width="290">button.<strong>redirect-color</strong></td><td width="70">0..1</td><td width="150">string</td><td>Background color for "Save & Close" button</td></tr>
+<tr><td width="290">button.<strong>_redirect-text</strong></td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
+<tr><td width="290">button.<strong>submit-text</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">button.<strong>print-text-color</strong></td><td width="70">0..1</td><td width="150">string</td><td>Text color for "Print" button</td></tr>
+<tr><td width="290">button.<strong>print-text</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">button.<strong>redirect-text-color</strong></td><td width="70">0..1</td><td width="150">string</td><td>Text color for "Save & Close" button</td></tr>
+<tr><td width="290">button.<strong>_print-text</strong></td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
+<tr><td width="290">button.<strong>amend-color</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">button.<strong>text-color</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">button.<strong>submit-color</strong></td><td width="70">0..1</td><td width="150">string</td><td>Background color for "Submit" button</td></tr>
+<tr><td width="290">button.<strong>redirect-text</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">button.<strong>amend-text</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">button.<strong>submit-text-color</strong></td><td width="70">0..1</td><td width="150">string</td><td>Text color for "Submit" button</td></tr>
+<tr><td width="290">button.<strong>accent-color</strong></td><td width="70">0..1</td><td width="150">string</td><td>Background color for filled buttons border color for outlined buttons (deprecated)</td></tr></tbody>
 </table>
 
 
@@ -81,56 +81,56 @@ SDC module includes the following resource types:
 </thead>
 <tbody>
 <tr><td width="290">form</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
-<tr><td width="290">form.app-name</td><td width="70">0..1</td><td width="150">string</td><td>App name that will be mentioned in AuditEvent logs</td></tr>
-<tr><td width="290">form.hide-print-button</td><td width="70">0..1</td><td width="150">boolean</td><td>Hide print button from the form</td></tr>
-<tr><td width="290">form.enable-amend-button</td><td width="70">0..1</td><td width="150">boolean</td><td>Enable amend button</td></tr>
-<tr><td width="290">form.read-only</td><td width="70">0..1</td><td width="150">boolean</td><td>Should form be read-only</td></tr>
-<tr><td width="290">form.hide-language-selector</td><td width="70">0..1</td><td width="150">boolean</td><td>Hide language selector in the builder</td></tr>
-<tr><td width="290">form.hide-footer</td><td width="70">0..1</td><td width="150">boolean</td><td>Hide the footer in the renderer altogether</td></tr>
-<tr><td width="290">form.default-max-width</td><td width="70">0..1</td><td width="150">string</td><td>Default max width of the form</td></tr>
-<tr><td width="290">form.non-sticky-footer</td><td width="70">0..1</td><td width="150">boolean</td><td>Non-sticky footer in the form</td></tr>
-<tr><td width="290">form.redirect-on-save</td><td width="70">0..1</td><td width="150">url</td><td>Redirect URI that used on form save/close button</td></tr>
-<tr><td width="290">form.redirect-on-submit</td><td width="70">0..1</td><td width="150">url</td><td>Redirect URI that used on form sign/amend</td></tr>
-<tr><td width="290">form.enable-save-button</td><td width="70">0..1</td><td width="150">boolean</td><td>Enable close button</td></tr>
+<tr><td width="290">form.<strong>app-name</strong></td><td width="70">0..1</td><td width="150">string</td><td>App name that will be mentioned in AuditEvent logs</td></tr>
+<tr><td width="290">form.<strong>hide-print-button</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Hide print button from the form</td></tr>
+<tr><td width="290">form.<strong>enable-amend-button</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Enable amend button</td></tr>
+<tr><td width="290">form.<strong>read-only</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Should form be read-only</td></tr>
+<tr><td width="290">form.<strong>hide-language-selector</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Hide language selector in the builder</td></tr>
+<tr><td width="290">form.<strong>hide-footer</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Hide the footer in the renderer altogether</td></tr>
+<tr><td width="290">form.<strong>default-max-width</strong></td><td width="70">0..1</td><td width="150">string</td><td>Default max width of the form</td></tr>
+<tr><td width="290">form.<strong>non-sticky-footer</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Non-sticky footer in the form</td></tr>
+<tr><td width="290">form.<strong>redirect-on-save</strong></td><td width="70">0..1</td><td width="150">url</td><td>Redirect URI that used on form save/close button</td></tr>
+<tr><td width="290">form.<strong>redirect-on-submit</strong></td><td width="70">0..1</td><td width="150">url</td><td>Redirect URI that used on form sign/amend</td></tr>
+<tr><td width="290">form.<strong>enable-save-button</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Enable close button</td></tr>
 <tr><td width="290">translations</td><td width="70">0..1</td><td width="150">Object</td><td>Custom translations strings for UI</td></tr>
 <tr><td width="290">storage</td><td width="70">0..1</td><td width="150"></td><td>Link to storage to store attachments</td></tr>
-<tr><td width="290">storage.account</td><td width="70">0..1</td><td width="150">Reference</td><td>Storage Account 
+<tr><td width="290">storage.<strong>account</strong></td><td width="70">0..1</td><td width="150">Reference</td><td>Storage Account 
 
 <strong>Allowed references</strong>: AwsAccount, GcpServiceAccount, AzureContainer</td></tr>
-<tr><td width="290">storage.bucket</td><td width="70">0..1</td><td width="150">string</td><td>Storage bucket (required for GCP and S3)</td></tr>
+<tr><td width="290">storage.<strong>bucket</strong></td><td width="70">0..1</td><td width="150">string</td><td>Storage bucket (required for GCP and S3)</td></tr>
 <tr><td width="290">form-store</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
-<tr><td width="290">form-store.endpoint</td><td width="70">0..1</td><td width="150">url</td><td>FHIR Server that will be used for storing/getting Questionnaire (if not set - use Aidbox)</td></tr>
-<tr><td width="290">form-store.headers</td><td width="70">0..1</td><td width="150">Object</td><td>Headers with credentials (optional)</td></tr>
+<tr><td width="290">form-store.<strong>endpoint</strong></td><td width="70">0..1</td><td width="150">url</td><td>FHIR Server that will be used for storing/getting Questionnaire (if not set - use Aidbox)</td></tr>
+<tr><td width="290">form-store.<strong>headers</strong></td><td width="70">0..1</td><td width="150">Object</td><td>Headers with credentials (optional)</td></tr>
 <tr><td width="290">builder</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
-<tr><td width="290">builder.hide-extraction</td><td width="70">0..1</td><td width="150">boolean</td><td>Hide extraction tab in debug instruments</td></tr>
-<tr><td width="290">builder.highlight-download-button</td><td width="70">0..1</td><td width="150">boolean</td><td>Highlight download button in the builder's debugger panel</td></tr>
-<tr><td width="290">builder.translation-languages</td><td width="70">0..*</td><td width="150">string</td><td>List of languages that will be used for translation</td></tr>
-<tr><td width="290">builder.hide-back-button</td><td width="70">0..1</td><td width="150">boolean</td><td>Hide back button in builder</td></tr>
-<tr><td width="290">builder.hide-save</td><td width="70">0..1</td><td width="150">boolean</td><td>Hide save button</td></tr>
-<tr><td width="290">builder.hide-publish</td><td width="70">0..1</td><td width="150">boolean</td><td>Hide Publish button in builder</td></tr>
-<tr><td width="290">builder.collapse-debugger</td><td width="70">0..1</td><td width="150">boolean</td><td>Collapse debugger by default in builder</td></tr>
-<tr><td width="290">builder.disable-submit-button</td><td width="70">0..1</td><td width="150">boolean</td><td>Disable submit button in the builder's form preview footer</td></tr>
-<tr><td width="290">builder.hide-add-theme</td><td width="70">0..1</td><td width="150">boolean</td><td>Hide add theme button</td></tr>
-<tr><td width="290">builder.disable-use-blank-form</td><td width="70">0..1</td><td width="150">boolean</td><td>Disable initializing the builder with a sample form when no form is provided</td></tr>
-<tr><td width="290">builder.enable-share</td><td width="70">0..1</td><td width="150">boolean</td><td>Make share button visible in the builder and enable accepting a serialized questionnaire from query param</td></tr>
-<tr><td width="290">builder.hide-population</td><td width="70">0..1</td><td width="150">boolean</td><td>Hide population tab in debug instruments</td></tr>
-<tr><td width="290">builder.hide-save-theme</td><td width="70">0..1</td><td width="150">boolean</td><td>Hide save theme</td></tr>
-<tr><td width="290">builder.disable-save</td><td width="70">0..1</td><td width="150">boolean</td><td>Disable save</td></tr>
-<tr><td width="290">builder.disable-publish</td><td width="70">0..1</td><td width="150">boolean</td><td>Disable publish button</td></tr>
-<tr><td width="290">builder.form-url-prefix</td><td width="70">0..1</td><td width="150">url</td><td>URL prefix that used in url generation of new forms</td></tr>
-<tr><td width="290">builder.disable-load-fhir-version</td><td width="70">0..1</td><td width="150">boolean</td><td>Disable loading of FHIR version from the server. Deprecated: not used anymore and has no effect</td></tr>
-<tr><td width="290">builder.hide-edit-theme</td><td width="70">0..1</td><td width="150">boolean</td><td>Hide edit theme button</td></tr>
+<tr><td width="290">builder.<strong>hide-extraction</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Hide extraction tab in debug instruments</td></tr>
+<tr><td width="290">builder.<strong>highlight-download-button</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Highlight download button in the builder's debugger panel</td></tr>
+<tr><td width="290">builder.<strong>translation-languages</strong></td><td width="70">0..*</td><td width="150">string</td><td>List of languages that will be used for translation</td></tr>
+<tr><td width="290">builder.<strong>hide-back-button</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Hide back button in builder</td></tr>
+<tr><td width="290">builder.<strong>hide-save</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Hide save button</td></tr>
+<tr><td width="290">builder.<strong>hide-publish</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Hide Publish button in builder</td></tr>
+<tr><td width="290">builder.<strong>collapse-debugger</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Collapse debugger by default in builder</td></tr>
+<tr><td width="290">builder.<strong>disable-submit-button</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Disable submit button in the builder's form preview footer</td></tr>
+<tr><td width="290">builder.<strong>hide-add-theme</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Hide add theme button</td></tr>
+<tr><td width="290">builder.<strong>disable-use-blank-form</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Disable initializing the builder with a sample form when no form is provided</td></tr>
+<tr><td width="290">builder.<strong>enable-share</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Make share button visible in the builder and enable accepting a serialized questionnaire from query param</td></tr>
+<tr><td width="290">builder.<strong>hide-population</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Hide population tab in debug instruments</td></tr>
+<tr><td width="290">builder.<strong>hide-save-theme</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Hide save theme</td></tr>
+<tr><td width="290">builder.<strong>disable-save</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Disable save</td></tr>
+<tr><td width="290">builder.<strong>disable-publish</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Disable publish button</td></tr>
+<tr><td width="290">builder.<strong>form-url-prefix</strong></td><td width="70">0..1</td><td width="150">url</td><td>URL prefix that used in url generation of new forms</td></tr>
+<tr><td width="290">builder.<strong>disable-load-fhir-version</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Disable loading of FHIR version from the server. Deprecated: not used anymore and has no effect</td></tr>
+<tr><td width="290">builder.<strong>hide-edit-theme</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Hide edit theme button</td></tr>
 <tr><td width="290">name</td><td width="70">1..1</td><td width="150">string</td><td>Machine readable config name</td></tr>
 <tr><td width="290">data-store</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
-<tr><td width="290">data-store.endpoint</td><td width="70">0..1</td><td width="150">url</td><td>FHIR Server that will be used for storing/getting reponses populate data from and extract to (if not set - use Aidbox)</td></tr>
-<tr><td width="290">data-store.headers</td><td width="70">0..1</td><td width="150">Object</td><td>Headers (with credentials) for accessing Service (optional)</td></tr>
+<tr><td width="290">data-store.<strong>endpoint</strong></td><td width="70">0..1</td><td width="150">url</td><td>FHIR Server that will be used for storing/getting reponses populate data from and extract to (if not set - use Aidbox)</td></tr>
+<tr><td width="290">data-store.<strong>headers</strong></td><td width="70">0..1</td><td width="150">Object</td><td>Headers (with credentials) for accessing Service (optional)</td></tr>
 <tr><td width="290">theme</td><td width="70">0..1</td><td width="150">Reference</td><td>Default theme 
 
 <strong>Allowed references</strong>: QuestionnaireTheme</td></tr>
 <tr><td width="290">language</td><td width="70">0..1</td><td width="150">code</td><td>Default language for UI</td></tr>
 <tr><td width="290">term-server</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
-<tr><td width="290">term-server.endpoint</td><td width="70">0..1</td><td width="150">url</td><td>FHIR Server that stores Terminology (ValueSet/expand$) (if not set - use Aidbox)</td></tr>
-<tr><td width="290">term-server.headers</td><td width="70">0..1</td><td width="150">Object</td><td>Headers (with credentials) for accessing Service (optional)</td></tr>
+<tr><td width="290">term-server.<strong>endpoint</strong></td><td width="70">0..1</td><td width="150">url</td><td>FHIR Server that stores Terminology (ValueSet/expand$) (if not set - use Aidbox)</td></tr>
+<tr><td width="290">term-server.<strong>headers</strong></td><td width="70">0..1</td><td width="150">Object</td><td>Headers (with credentials) for accessing Service (optional)</td></tr>
 <tr><td width="290">default</td><td width="70">0..1</td><td width="150">boolean</td><td>Set's config as default for system/tenant</td></tr>
 <tr><td width="290">description</td><td width="70">0..1</td><td width="150">string</td><td>Human readable config description</td></tr></tbody>
 </table>
@@ -212,18 +212,18 @@ Form Metadata that can be used for Dynamic updates
 <tr><td width="290">title</td><td width="70">0..1</td><td width="150">string</td><td>Title of the workflow</td></tr>
 <tr><td width="290">version</td><td width="70">0..1</td><td width="150">number</td><td>Workflow version</td></tr>
 <tr><td width="290">ctx</td><td width="70">0..1</td><td width="150"></td><td>Workflow context, which can be used from tasks as well</td></tr>
-<tr><td width="290">ctx.encounter</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
-<tr><td width="290">ctx.encounter.id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">ctx.encounter.resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">ctx.encounter.display</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">ctx.patient</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
-<tr><td width="290">ctx.patient.id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">ctx.patient.resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">ctx.patient.display</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">ctx.user</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
-<tr><td width="290">ctx.user.id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">ctx.user.resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">ctx.user.display</td><td width="70">0..1</td><td width="150">string</td><td></td></tr></tbody>
+<tr><td width="290">ctx.<strong>encounter</strong></td><td width="70">0..1</td><td width="150"></td><td></td></tr>
+<tr><td width="290">ctx.<strong>encounter</strong>.<strong>id</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">ctx.<strong>encounter</strong>.<strong>resourceType</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">ctx.<strong>encounter</strong>.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">ctx.<strong>patient</strong></td><td width="70">0..1</td><td width="150"></td><td></td></tr>
+<tr><td width="290">ctx.<strong>patient</strong>.<strong>id</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">ctx.<strong>patient</strong>.<strong>resourceType</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">ctx.<strong>patient</strong>.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">ctx.<strong>user</strong></td><td width="70">0..1</td><td width="150"></td><td></td></tr>
+<tr><td width="290">ctx.<strong>user</strong>.<strong>id</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">ctx.<strong>user</strong>.<strong>resourceType</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">ctx.<strong>user</strong>.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr></tbody>
 </table>
 
 
@@ -264,13 +264,13 @@ Addednum Resource. Contains additional information abount SDCDocument/SDCWorkflo
 <tbody>
 <tr><td width="290">type</td><td width="70">1..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">target</td><td width="70">1..1</td><td width="150"></td><td></td></tr>
-<tr><td width="290">target.id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">target.resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">target.display</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">target.<strong>id</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">target.<strong>resourceType</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">target.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">user</td><td width="70">1..1</td><td width="150"></td><td></td></tr>
-<tr><td width="290">user.id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">user.resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">user.display</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">user.<strong>id</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">user.<strong>resourceType</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">user.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">date</td><td width="70">1..1</td><td width="150">dateTime</td><td></td></tr></tbody>
 </table>
 
