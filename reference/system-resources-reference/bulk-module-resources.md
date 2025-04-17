@@ -24,38 +24,38 @@ Bulk module includes the following resource types:
 <tr><td width="290">url</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">transactionTime</td><td width="70">0..1</td><td width="150">dateTime</td><td></td></tr>
 <tr><td width="290">output</td><td width="70">0..*</td><td width="150"></td><td></td></tr>
-<tr><td width="290">output.type</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">output.url</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">output.count</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
+<tr><td width="290">output.<strong>type</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">output.<strong>url</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">output.<strong>count</strong></td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
 <tr><td width="290">requester</td><td width="70">0..1</td><td width="150">Reference</td><td></td></tr>
 <tr><td width="290">params</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr><td width="290">params.since</td><td width="70">0..1</td><td width="150">dateTime</td><td></td></tr>
-<tr><td width="290">params.requester</td><td width="70">0..1</td><td width="150">Reference</td><td></td></tr>
-<tr><td width="290">params.output-format</td><td width="70">0..1</td><td width="150">string</td><td>
+<tr><td width="290">params.<strong>since</strong></td><td width="70">0..1</td><td width="150">dateTime</td><td></td></tr>
+<tr><td width="290">params.<strong>requester</strong></td><td width="70">0..1</td><td width="150">Reference</td><td></td></tr>
+<tr><td width="290">params.<strong>output-format</strong></td><td width="70">0..1</td><td width="150">string</td><td>
 
 <strong>Allowed values</strong>: application/fhir+ndjson | application/ndjson+fhir | application/ndjson | ndjson | application/fhir+ndjson+gzip | application/fhir+gzip+ndjson | application/ndjson+fhir+gzip | application/ndjson+gzip+fhir | application/gzip+fhir+ndjson | application/gzip+ndjson+fhir</td></tr>
-<tr><td width="290">params.storage</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr><td width="290">params.storage.type</td><td width="70">0..1</td><td width="150">string</td><td>
+<tr><td width="290">params.<strong>storage</strong></td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
+<tr><td width="290">params.<strong>storage</strong>.<strong>type</strong></td><td width="70">0..1</td><td width="150">string</td><td>
 
 <strong>Allowed values</strong>: test-delay | test-cloud | aidbox | gcp | aws | azure</td></tr>
-<tr><td width="290">params.storage.bucket</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">params.storage.account</td><td width="70">0..1</td><td width="150">Reference</td><td></td></tr>
-<tr><td width="290">params.output-file-ext</td><td width="70">0..1</td><td width="150">string</td><td>
+<tr><td width="290">params.<strong>storage</strong>.<strong>bucket</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">params.<strong>storage</strong>.<strong>account</strong></td><td width="70">0..1</td><td width="150">Reference</td><td></td></tr>
+<tr><td width="290">params.<strong>output-file-ext</strong></td><td width="70">0..1</td><td width="150">string</td><td>
 
 <strong>Allowed values</strong>: .ndjson | .ndjson.gz</td></tr>
-<tr><td width="290">params.fhir?</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
-<tr><td width="290">params.types</td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">params.tenant</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">params.patient-ids</td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">params.export-level</td><td width="70">0..1</td><td width="150">string</td><td>
+<tr><td width="290">params.<strong>fhir?</strong></td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
+<tr><td width="290">params.<strong>types</strong></td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">params.<strong>tenant</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">params.<strong>patient-ids</strong></td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">params.<strong>export-level</strong></td><td width="70">0..1</td><td width="150">string</td><td>
 
 <strong>Allowed values</strong>: patient | group | system</td></tr>
-<tr><td width="290">params.gzip?</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
-<tr><td width="290">params.group-id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">params.<strong>gzip?</strong></td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
+<tr><td width="290">params.<strong>group-id</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">error</td><td width="70">0..*</td><td width="150">BackboneElement</td><td></td></tr>
-<tr><td width="290">error.type</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">error.url</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">error.count</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
+<tr><td width="290">error.<strong>type</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">error.<strong>url</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">error.<strong>count</strong></td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
 <tr><td width="290">extension</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
 <tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>
 
@@ -90,8 +90,8 @@ Bulk module includes the following resource types:
 
 <strong>Allowed values</strong>: active | failed | cancelled | finished</td></tr>
 <tr><td width="290">time</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr><td width="290">time.end</td><td width="70">0..1</td><td width="150">dateTime</td><td></td></tr>
-<tr><td width="290">time.start</td><td width="70">0..1</td><td width="150">dateTime</td><td></td></tr>
+<tr><td width="290">time.<strong>end</strong></td><td width="70">0..1</td><td width="150">dateTime</td><td></td></tr>
+<tr><td width="290">time.<strong>start</strong></td><td width="70">0..1</td><td width="150">dateTime</td><td></td></tr>
 <tr><td width="290">source</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td>
 
@@ -101,8 +101,8 @@ Bulk module includes the following resource types:
 <strong>Allowed values</strong>: application/fhir+ndjson</td></tr>
 <tr><td width="290">meta</td><td width="70">0..1</td><td width="150">Meta</td><td></td></tr>
 <tr><td width="290">inputs</td><td width="70">0..*</td><td width="150">BackboneElement</td><td></td></tr>
-<tr><td width="290">inputs.time</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
-<tr><td width="290">inputs.resourceType</td><td width="70">1..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">inputs.<strong>time</strong></td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
+<tr><td width="290">inputs.<strong>resourceType</strong></td><td width="70">1..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">storageDetail</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
 <tr><td width="290">resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr></tbody>
 </table>
@@ -130,9 +130,9 @@ Bulk module includes the following resource types:
 <tr><td width="290">schemaname</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">meta</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
 <tr><td width="290">restore</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr><td width="290">restore.start</td><td width="70">0..1</td><td width="150">dateTime</td><td></td></tr>
-<tr><td width="290">restore.end</td><td width="70">0..1</td><td width="150">dateTime</td><td></td></tr>
-<tr><td width="290">restore.duration</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
+<tr><td width="290">restore.<strong>start</strong></td><td width="70">0..1</td><td width="150">dateTime</td><td></td></tr>
+<tr><td width="290">restore.<strong>end</strong></td><td width="70">0..1</td><td width="150">dateTime</td><td></td></tr>
+<tr><td width="290">restore.<strong>duration</strong></td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
 <tr><td width="290">resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">tablename</td><td width="70">0..1</td><td width="150">string</td><td></td></tr></tbody>
 </table>
@@ -154,10 +154,10 @@ Bulk module includes the following resource types:
 <tr><td width="290">loaded</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
 <tr><td width="290">bucket</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">error</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr><td width="290">error.source</td><td width="70">0..1</td><td width="150">string</td><td>
+<tr><td width="290">error.<strong>source</strong></td><td width="70">0..1</td><td width="150">string</td><td>
 
 <strong>Allowed values</strong>: postgres | aws | aidbox</td></tr>
-<tr><td width="290">error.code</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">error.<strong>code</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>
 
