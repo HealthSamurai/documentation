@@ -1,7 +1,9 @@
 # HL7v2 Module Resources
 
 
-           Resources for configuration Aidbox HL7v2 module.## Overview
+           Resources for configuration Aidbox HL7v2 module.
+
+ ## Overview
 
 HL7v2 module includes the following resource types:
 
