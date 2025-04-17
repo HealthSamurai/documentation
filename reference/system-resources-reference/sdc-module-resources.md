@@ -25,7 +25,9 @@ SDC module includes the following resource types:
 </tr>
 </thead>
 <tbody>
-<tr><td width="290">font-family</td><td width="70">0..1</td><td width="150">string</td><td>Font-Family <b>Allowed values</b>: Product Sans | Metropolis | Inter</td></tr>
+<tr><td width="290">font-family</td><td width="70">0..1</td><td width="150">string</td><td>Font-Family 
+
+<strong>Allowed values</strong>: Product Sans | Metropolis | Inter</td></tr>
 <tr><td width="290">brand-image</td><td width="70">0..1</td><td width="150"></td><td>Brand images</td></tr>
 <tr><td width="290">brand-image.top-right</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
 <tr><td width="290">brand-image.top-right.url</td><td width="70">0..1</td><td width="150">string</td><td>Web link to top-right image</td></tr>
@@ -92,7 +94,9 @@ SDC module includes the following resource types:
 <tr><td width="290">form.enable-save-button</td><td width="70">0..1</td><td width="150">boolean</td><td>Enable close button</td></tr>
 <tr><td width="290">translations</td><td width="70">0..1</td><td width="150">Object</td><td>Custom translations strings for UI</td></tr>
 <tr><td width="290">storage</td><td width="70">0..1</td><td width="150"></td><td>Link to storage to store attachments</td></tr>
-<tr><td width="290">storage.account</td><td width="70">0..1</td><td width="150">Reference</td><td>Storage Account References: AwsAccount, GcpServiceAccount, AzureContainer</td></tr>
+<tr><td width="290">storage.account</td><td width="70">0..1</td><td width="150">Reference</td><td>Storage Account 
+
+<strong>Allowed references</strong>: AwsAccount, GcpServiceAccount, AzureContainer</td></tr>
 <tr><td width="290">storage.bucket</td><td width="70">0..1</td><td width="150">string</td><td>Storage bucket (required for GCP and S3)</td></tr>
 <tr><td width="290">form-store</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
 <tr><td width="290">form-store.endpoint</td><td width="70">0..1</td><td width="150">url</td><td>FHIR Server that will be used for storing/getting Questionnaire (if not set - use Aidbox)</td></tr>
@@ -120,7 +124,9 @@ SDC module includes the following resource types:
 <tr><td width="290">data-store</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
 <tr><td width="290">data-store.endpoint</td><td width="70">0..1</td><td width="150">url</td><td>FHIR Server that will be used for storing/getting reponses populate data from and extract to (if not set - use Aidbox)</td></tr>
 <tr><td width="290">data-store.headers</td><td width="70">0..1</td><td width="150">Object</td><td>Headers (with credentials) for accessing Service (optional)</td></tr>
-<tr><td width="290">theme</td><td width="70">0..1</td><td width="150">Reference</td><td>Default theme References: QuestionnaireTheme</td></tr>
+<tr><td width="290">theme</td><td width="70">0..1</td><td width="150">Reference</td><td>Default theme 
+
+<strong>Allowed references</strong>: QuestionnaireTheme</td></tr>
 <tr><td width="290">language</td><td width="70">0..1</td><td width="150">code</td><td>Default language for UI</td></tr>
 <tr><td width="290">term-server</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
 <tr><td width="290">term-server.endpoint</td><td width="70">0..1</td><td width="150">url</td><td>FHIR Server that stores Terminology (ValueSet/expand$) (if not set - use Aidbox)</td></tr>
@@ -199,7 +205,9 @@ Form Metadata that can be used for Dynamic updates
 <tr><td width="290">cancel-reason</td><td width="70">0..1</td><td width="150">string</td><td>Define why workfow is canceled</td></tr>
 <tr><td width="290">items</td><td width="70">0..1</td><td width="150">Object</td><td>Workflow items</td></tr>
 <tr><td width="290">workflow</td><td width="70">0..1</td><td width="150">string</td><td>Workflow symbolic name for storing in DB</td></tr>
-<tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>Status of WF lifecycle. Should be changed via rpc: `cancel-wf`, `complete-wf` `cancel-task`, `complete-task` <b>Allowed values</b>: new | in-progress | canceled | completed | in-amendment | amended</td></tr>
+<tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>Status of WF lifecycle. Should be changed via rpc: `cancel-wf`, `complete-wf` `cancel-task`, `complete-task` 
+
+<strong>Allowed values</strong>: new | in-progress | canceled | completed | in-amendment | amended</td></tr>
 <tr><td width="290">order</td><td width="70">0..*</td><td width="150"></td><td>Order of items (array of item keys)</td></tr>
 <tr><td width="290">title</td><td width="70">0..1</td><td width="150">string</td><td>Title of the workflow</td></tr>
 <tr><td width="290">version</td><td width="70">0..1</td><td width="150">number</td><td>Workflow version</td></tr>
