@@ -1,7 +1,9 @@
 # AWF Module Resources
 
 
-           Resources for configuration and management of Aidbox Workflows.## Overview
+           Resources for configuration and management of Aidbox Workflows.
+
+ ## Overview
 
 AWF module includes the following resource types:
 
