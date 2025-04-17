@@ -1,7 +1,9 @@
 # Base Module Resources
 
 
-           System resources that do not belong to any specific module.## Overview
+           System resources that do not belong to any specific module.
+
+ ## Overview
 
 Base module includes the following resource types:
 
