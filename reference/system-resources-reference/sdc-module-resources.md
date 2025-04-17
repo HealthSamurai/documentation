@@ -1,7 +1,6 @@
 # SDC Module Resources
 
-
-           Resources for configuration and management Aidbox SDC module.
+Resources for configuration and management Aidbox SDC module.
 
  ## Overview
 
