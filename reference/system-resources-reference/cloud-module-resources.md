@@ -1,7 +1,9 @@
 # Cloud Module Resources
 
 
-           Resources for configuration and management Aidbox integration with cloud providers.## Overview
+           Resources for configuration and management Aidbox integration with cloud providers.
+
+ ## Overview
 
 Cloud module includes the following resource types:
 
