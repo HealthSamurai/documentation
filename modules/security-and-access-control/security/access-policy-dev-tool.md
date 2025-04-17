@@ -43,6 +43,14 @@ To get to the dev tool from AccessPolicy view page, click the link on the top ri
 
 ## Tips
 
+### Make sure you've enabled Aidbox developer mode
+
+[#security.dev-mode](../../../reference/settings/security---access-control.md#security.dev-mode "mention")
+
+```
+BOX_SECURITY_DEV_MODE=true
+```
+
 ### How to send request on behalf of user or client?
 
 By default Aidbox sends requests with your current session (your identity and permissions). To authenticate with another session, add Authorization header to the request.
