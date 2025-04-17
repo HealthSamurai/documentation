@@ -1,7 +1,6 @@
 # Bulk Module Resources
 
-
-           Resources for configuration and management Aidbox Bulk operations.
+Resources for configuration and management Aidbox Bulk operations.
 
  ## Overview
 
