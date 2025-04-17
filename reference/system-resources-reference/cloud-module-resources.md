@@ -69,7 +69,9 @@ Cloud module includes the following resource types:
 <tr><td width="290">storage</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">extension</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">container</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">account</td><td width="70">0..1</td><td width="150">Reference</td><td>References: AzureAccount</td></tr>
+<tr><td width="290">account</td><td width="70">0..1</td><td width="150">Reference</td><td>
+
+<strong>Allowed references</strong>: AzureAccount</td></tr>
 <tr><td width="290">id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">meta</td><td width="70">0..1</td><td width="150">Meta</td><td></td></tr>
