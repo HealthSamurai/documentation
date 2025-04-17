@@ -55,7 +55,9 @@ Base module includes the following resource types:
 <tr><td width="290">module</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">text</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">action</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
-<tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td><b>Allowed values</b>: periodic | each-day</td></tr>
+<tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: periodic | each-day</td></tr>
 <tr><td width="290">at</td><td width="70">0..1</td><td width="150">string</td><td></td></tr></tbody>
 </table>
 
@@ -121,7 +123,9 @@ Base module includes the following resource types:
 <tbody>
 <tr><td width="290">dateTime</td><td width="70">0..1</td><td width="150">dateTime</td><td></td></tr>
 <tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td><b>Allowed values</b>: pending | done | error</td></tr>
+<tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: pending | done | error</td></tr>
 <tr><td width="290">module</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">text</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">action</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
@@ -164,7 +168,9 @@ Base module includes the following resource types:
 <tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">count-query</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">enable-links</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
-<tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td><b>Allowed values</b>: query | execute</td></tr>
+<tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: query | execute</td></tr>
 <tr><td width="290">omit-sql</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr></tbody>
 </table>
 
@@ -261,7 +267,9 @@ Base module includes the following resource types:
 <tr><td width="290">transform.request</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
 <tr><td width="290">transform.request.engine</td><td width="70">0..1</td><td width="150">code</td><td></td></tr>
 <tr><td width="290">transform.request.template</td><td width="70">0..1</td><td width="150">Reference</td><td></td></tr>
-<tr><td width="290">transform.request.part</td><td width="70">1..1</td><td width="150">string</td><td><b>Allowed values</b>: body</td></tr>
+<tr><td width="290">transform.request.part</td><td width="70">1..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: body</td></tr>
 <tr><td width="290">route-params</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
 <tr><td width="290">fhirResource</td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">no-op-logs</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
@@ -273,7 +281,9 @@ Base module includes the following resource types:
 <tr><td width="290">request</td><td width="70">0..*</td><td width="150">Object</td><td></td></tr>
 <tr><td width="290">fhirUrl</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">action</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
-<tr><td width="290">app</td><td width="70">0..1</td><td width="150">Reference</td><td>References: App</td></tr>
+<tr><td width="290">app</td><td width="70">0..1</td><td width="150">Reference</td><td>
+
+<strong>Allowed references</strong>: App</td></tr>
 <tr><td width="290">public</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
 <tr><td width="290">data</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
 <tr><td width="290">description</td><td width="70">0..1</td><td width="150">string</td><td></td></tr></tbody>
@@ -296,7 +306,9 @@ Base module includes the following resource types:
 <tr><td width="290">where</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">name</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">param-parser</td><td width="70">0..1</td><td width="150">string</td><td><b>Allowed values</b>: token | reference</td></tr>
+<tr><td width="290">param-parser</td><td width="70">0..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: token | reference</td></tr>
 <tr><td width="290">module</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">order-by</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">token-sql</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
@@ -306,7 +318,9 @@ Base module includes the following resource types:
 <tr><td width="290">token-sql.only-code</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">token-sql.text-format</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">token-sql.no-system</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">multi</td><td width="70">0..1</td><td width="150">string</td><td><b>Allowed values</b>: array</td></tr>
+<tr><td width="290">multi</td><td width="70">0..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: array</td></tr>
 <tr><td width="290">format</td><td width="70">0..1</td><td width="150">string</td><td></td></tr></tbody>
 </table>
 
@@ -328,11 +342,15 @@ Base module includes the following resource types:
 <tr><td width="290">migrations.dateTime</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">migrations.action</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">type</td><td width="70">1..1</td><td width="150">code</td><td><b>Allowed values</b>: app | addon</td></tr>
+<tr><td width="290">type</td><td width="70">1..1</td><td width="150">code</td><td>
+
+<strong>Allowed values</strong>: app | addon</td></tr>
 <tr><td width="290">endpoint</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
 <tr><td width="290">endpoint.secret</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">endpoint.url</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">endpoint.type</td><td width="70">0..1</td><td width="150">code</td><td><b>Allowed values</b>: http-rpc | ws-rpc | native</td></tr>
+<tr><td width="290">endpoint.type</td><td width="70">0..1</td><td width="150">code</td><td>
+
+<strong>Allowed values</strong>: http-rpc | ws-rpc | native</td></tr>
 <tr><td width="290">apiVersion</td><td width="70">1..1</td><td width="150">integer</td><td></td></tr>
 <tr><td width="290">hooks</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
 <tr><td width="290">subscriptions</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
@@ -363,7 +381,9 @@ Base module includes the following resource types:
 <tr><td width="290">archivedResourcesCount</td><td width="70">0..1</td><td width="150">number</td><td></td></tr>
 <tr><td width="290">criteriaPaths</td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">history</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
-<tr><td width="290">storageBackend</td><td width="70">0..1</td><td width="150">string</td><td><b>Allowed values</b>: gcp | aws | local</td></tr>
+<tr><td width="290">storageBackend</td><td width="70">0..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: gcp | aws | local</td></tr>
 <tr><td width="290">period</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
 <tr><td width="290">period.start</td><td width="70">0..1</td><td width="150">dateTime</td><td></td></tr>
 <tr><td width="290">period.end</td><td width="70">0..1</td><td width="150">dateTime</td><td></td></tr>
@@ -416,7 +436,9 @@ Base module includes the following resource types:
 <tr><td width="290">limit</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
 <tr><td width="290">profiles</td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">valid</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
-<tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td><b>Allowed values</b>: in-progress | complete</td></tr>
+<tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: in-progress | complete</td></tr>
 <tr><td width="290">filter</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">duration</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr></tbody>
 </table>
@@ -434,7 +456,9 @@ Base module includes the following resource types:
 </tr>
 </thead>
 <tbody>
-<tr><td width="290">data_type</td><td width="70">0..1</td><td width="150">string</td><td><b>Allowed values</b>: smallint | integer | bigint</td></tr>
+<tr><td width="290">data_type</td><td width="70">0..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: smallint | integer | bigint</td></tr>
 <tr><td width="290">cycle</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
 <tr><td width="290">increment</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
 <tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
@@ -459,7 +483,9 @@ Base module includes the following resource types:
 <tr><td width="290">id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">module</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">action</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
-<tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td><b>Allowed values</b>: sync | async</td></tr>
+<tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: sync | async</td></tr>
 <tr><td width="290">resources</td><td width="70">0..*</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">meta</td><td width="70">0..1</td><td width="150">Meta</td><td></td></tr>
@@ -528,12 +554,18 @@ Base module includes the following resource types:
 <tr><td width="290">module</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">text</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">isMeta</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
-<tr><td width="290">history</td><td width="70">0..1</td><td width="150">string</td><td><b>Allowed values</b>: none | diff</td></tr>
-<tr><td width="290">type</td><td width="70">1..1</td><td width="150">string</td><td><b>Allowed values</b>: abstract | resource | type | primitive</td></tr>
+<tr><td width="290">history</td><td width="70">0..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: none | diff</td></tr>
+<tr><td width="290">type</td><td width="70">1..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: abstract | resource | type | primitive</td></tr>
 <tr><td width="290">meta</td><td width="70">0..1</td><td width="150">Meta</td><td></td></tr>
 <tr><td width="290">isOpen</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
 <tr><td width="290">resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">idGeneration</td><td width="70">0..1</td><td width="150">string</td><td><b>Allowed values</b>: sequence | uuid</td></tr>
+<tr><td width="290">idGeneration</td><td width="70">0..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: sequence | uuid</td></tr>
 <tr><td width="290">description</td><td width="70">0..1</td><td width="150">string</td><td></td></tr></tbody>
 </table>
 
@@ -550,8 +582,12 @@ Base module includes the following resource types:
 </tr>
 </thead>
 <tbody>
-<tr><td width="290">user</td><td width="70">0..1</td><td width="150">Reference</td><td>References: User</td></tr>
-<tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td><b>Allowed values</b>: http | sql</td></tr>
+<tr><td width="290">user</td><td width="70">0..1</td><td width="150">Reference</td><td>
+
+<strong>Allowed references</strong>: User</td></tr>
+<tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: http | sql</td></tr>
 <tr><td width="290">command</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
@@ -574,8 +610,12 @@ Base module includes the following resource types:
 <tbody>
 <tr><td width="290">title</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">command</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">user</td><td width="70">0..1</td><td width="150">Reference</td><td>References: User</td></tr>
-<tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td><b>Allowed values</b>: http | sql</td></tr>
+<tr><td width="290">user</td><td width="70">0..1</td><td width="150">Reference</td><td>
+
+<strong>Allowed references</strong>: User</td></tr>
+<tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: http | sql</td></tr>
 <tr><td width="290">id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">meta</td><td width="70">0..1</td><td width="150">Meta</td><td></td></tr>
@@ -609,7 +649,9 @@ Base module includes the following resource types:
 <tr><td width="290">cells.folded</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
 <tr><td width="290">cells.folded.code</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
 <tr><td width="290">cells.folded.result</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
-<tr><td width="290">cells.type</td><td width="70">0..1</td><td width="150">string</td><td><b>Allowed values</b>: rpc | rest | empty | markdown | sql</td></tr>
+<tr><td width="290">cells.type</td><td width="70">0..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: rpc | rest | empty | markdown | sql</td></tr>
 <tr><td width="290">cells.value</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
 <tr><td width="290">cells.result</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
 <tr><td width="290">cells.error</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
@@ -632,7 +674,9 @@ Base module includes the following resource types:
 </tr>
 </thead>
 <tbody>
-<tr><td width="290">returns</td><td width="70">0..1</td><td width="150">code</td><td><b>Allowed values</b>: transaction | resource</td></tr>
+<tr><td width="290">returns</td><td width="70">0..1</td><td width="150">code</td><td>
+
+<strong>Allowed values</strong>: transaction | resource</td></tr>
 <tr><td width="290">body</td><td width="70">1..1</td><td width="150">Object</td><td></td></tr>
 <tr><td width="290">params</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
 <tr><td width="290">params.omit-drop-blanks</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
@@ -694,7 +738,9 @@ Base module includes the following resource types:
 <tr><td width="290">resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">meta</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
-<tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td><b>Allowed values</b>: in-progress | done | fail</td></tr>
+<tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: in-progress | done | fail</td></tr>
 <tr><td width="290">params</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
 <tr><td width="290">result</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
 <tr><td width="290">result.count</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
@@ -742,7 +788,9 @@ Base module includes the following resource types:
 <tr><td width="290">id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">meta</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
 <tr><td width="290">filename</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td><b>Allowed values</b>: pending | in-progress | fail | success</td></tr></tbody>
+<tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: pending | in-progress | fail | success</td></tr></tbody>
 </table>
 
 
@@ -758,7 +806,9 @@ Base module includes the following resource types:
 </tr>
 </thead>
 <tbody>
-<tr><td width="290">procstatus</td><td width="70">0..1</td><td width="150">string</td><td><b>Allowed values</b>: pending | in-progress | done | error</td></tr>
+<tr><td width="290">procstatus</td><td width="70">0..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: pending | in-progress | done | error</td></tr>
 <tr><td width="290">message</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">resource</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">index</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
@@ -783,7 +833,9 @@ Base module includes the following resource types:
 </tr>
 </thead>
 <tbody>
-<tr><td width="290">hook</td><td width="70">1..1</td><td width="150">code</td><td><b>Allowed values</b>: audit</td></tr>
+<tr><td width="290">hook</td><td width="70">1..1</td><td width="150">code</td><td>
+
+<strong>Allowed values</strong>: audit</td></tr>
 <tr><td width="290">code</td><td width="70">1..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
@@ -807,7 +859,9 @@ Base module includes the following resource types:
 <tr><td width="290">resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">meta</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
-<tr><td width="290">version</td><td width="70">0..1</td><td width="150">string</td><td><b>Allowed values</b>: v2</td></tr>
+<tr><td width="290">version</td><td width="70">0..1</td><td width="150">string</td><td>
+
+<strong>Allowed values</strong>: v2</td></tr>
 <tr><td width="290">resources</td><td width="70">0..*</td><td width="150"></td><td></td></tr>
 <tr><td width="290">resources.resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">resources.id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
@@ -831,11 +885,19 @@ Base module includes the following resource types:
 <tbody>
 <tr><td width="290">retried</td><td width="70">0..1</td><td width="150">boolean</td><td></td></tr>
 <tr><td width="290">id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">retryOf</td><td width="70">0..1</td><td width="150">Reference</td><td>References: SubsSubscription</td></tr>
+<tr><td width="290">retryOf</td><td width="70">0..1</td><td width="150">Reference</td><td>
+
+<strong>Allowed references</strong>: SubsSubscription</td></tr>
 <tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">status</td><td width="70">0..1</td><td width="150">code</td><td><b>Allowed values</b>: success | failed</td></tr>
-<tr><td width="290">subscription</td><td width="70">0..1</td><td width="150">Reference</td><td>References: SubsSubscription</td></tr>
-<tr><td width="290">retries</td><td width="70">0..*</td><td width="150">Reference</td><td>References: SubsSubscription</td></tr>
+<tr><td width="290">status</td><td width="70">0..1</td><td width="150">code</td><td>
+
+<strong>Allowed values</strong>: success | failed</td></tr>
+<tr><td width="290">subscription</td><td width="70">0..1</td><td width="150">Reference</td><td>
+
+<strong>Allowed references</strong>: SubsSubscription</td></tr>
+<tr><td width="290">retries</td><td width="70">0..*</td><td width="150">Reference</td><td>
+
+<strong>Allowed references</strong>: SubsSubscription</td></tr>
 <tr><td width="290">duration</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
 <tr><td width="290">meta</td><td width="70">0..1</td><td width="150">Meta</td><td></td></tr>
 <tr><td width="290">response</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
@@ -861,11 +923,15 @@ Base module includes the following resource types:
 <tr><td width="290">channel.timeout</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
 <tr><td width="290">channel.heartbeatPeriod</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
 <tr><td width="290">channel.headers</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
-<tr><td width="290">channel.type</td><td width="70">1..1</td><td width="150">code</td><td><b>Allowed values</b>: rest-hook</td></tr>
+<tr><td width="290">channel.type</td><td width="70">1..1</td><td width="150">code</td><td>
+
+<strong>Allowed values</strong>: rest-hook</td></tr>
 <tr><td width="290">channel.endpoint</td><td width="70">1..1</td><td width="150">url</td><td></td></tr>
 <tr><td width="290">channel.payload</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
 <tr><td width="290">identifier</td><td width="70">0..*</td><td width="150">Identifier</td><td></td></tr>
-<tr><td width="290">status</td><td width="70">0..1</td><td width="150">code</td><td><b>Allowed values</b>: active | off</td></tr>
+<tr><td width="290">status</td><td width="70">0..1</td><td width="150">code</td><td>
+
+<strong>Allowed values</strong>: active | off</td></tr>
 <tr><td width="290">id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">resourceType</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">meta</td><td width="70">0..1</td><td width="150">Meta</td><td></td></tr>
