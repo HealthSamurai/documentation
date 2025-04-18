@@ -117,15 +117,10 @@ Turn on this setting to use FHIR comparisons.
 
 ### Enable FHIR-conformant (rev)include behavior<a href="#fhir.search.include.conformant" id="fhir.search.include.conformant"></a>
 
-When set to true, the behavior of `_include` and `_revinclude`
-becomes FHIR conformant:
-
-1. Without the :recur or :iterate modifier `_(rev)include`
-   is only applied to the initial result.
-
-2. With the :recur or :iterate modifier `_(rev)include`
-   is repeatedly applied to the resources found
-   in the previous step.
+Due to historical reasons Aidbox treats the _include and _revinclude parameters slightly differently from the behavior described in the specification (without FHIR-conformant mode on).
+The _(rev)include search parameter without the :iterate or :recurse modifier should only be applied to the initial ("matched") result. However, in Aidbox mode, it is also applied to the previous _(rev)include.
+The _(rev)include parameter with the :iterate(:recurse) modifier should be repeatedly applied to the result with included resources. However, in Aidbox mode, it only resolves cyclic references.
+In Aidbox mode, it is possible to search without specifying source type: GET /Patient?_include=general-practitioner, but in the FHIR-conformant mode it is not possible.
 
 <table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.include.conformant</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_SEARCH_INCLUDE_CONFORMANT</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_SEARCH_INCLUDE_CONFORMANT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table>
 
@@ -185,15 +180,30 @@ FHIR search response bundle may contain a result count estimation.
 
 ### SQL operator to use for token search<a href="#fhir.search.token-operator" id="fhir.search.token-operator"></a>
 
-Aidbox supports two variants of SQL queries to filter when using token search parameters:
+Token and Reference search parameters use exact match.
+
+Aidbox uses Postgres @> operator for this type of searches. The @> operator is the containment operator. It checks that FHIR resource contains some subresource.
+
+The main advantage of the @> operator is that the single GIN index covers all token and reference searches. However sometimes Postgres planner can not build effecient query plan.
+
+Alternatively in some cases it is possible to extract value directly using #>> operator. This operator extracts value from the given path. There is a limitation: path must not contain any arrays.
+Engines options:
 
 <table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.token-operator</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>@&gt;</code> — One GIN index per resource covers all token searches. Sometimes the Postgres planner can incorrectly estimate the index lookup cost, which leads to slow queries.<br /><code>#&gt;&gt;</code> — Needs an index per #&gt;&gt; expression. If path to the target element contains arrays, @&gt; will be used instead.</td></tr><tr><td>Default value</td><td><code>@&gt;</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_SEARCH_TOKEN_OPERATOR</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_SEARCH_TOKEN__OPERATOR</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table>
 
 ### JSONB query engine<a href="#fhir.search.engine" id="fhir.search.engine"></a>
 
-Aidbox engines for querying JSONB
+Aidbox has two engines to search: jsonpath and jsonknife.
 
-<table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.engine</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>knife</code> — Legacy engine. Uses custom Postgres module in Aidboxdb and SQL functions fallback in other Postgres instances. Being phased out.<br /><code>jsonpath</code> — JSONpath language is available starting from PostgreSQL 12.</td></tr><tr><td>Default value</td><td><code>knife</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_SEARCH_ENGINE</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_SEARCH_ENGINE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table>
+The engine is responsible for SQL generation for search operations.
+SQL by jsonpath and jsonknife is different for search parameter types: date, number, quantity, reference, string, token, uri. 
+_lastUpdated, _createdAt senarch parameters and :missing modifier searches also differ by engine.
+jsonpath-engine:
+
+jsonknife:
+*using indexes makes performance approximately the same
+
+<table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.engine</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>knife</code> — Legacy engine. Uses custom Postgres module in Aidboxdb and SQL functions fallback in other Postgres instances. Being phased out. Has better performance for dates, number and quantity search parameters. Using indexes makes performance approximately the same<br /><code>jsonpath</code> — &lt;ul&gt;&lt;li&gt;JSONpath language is available starting from PostgreSQL 12.&lt;/li&gt;&lt;li&gt;supported by PostgreSQL without external extensions, can be used with managed PostgreSQL, e.g. Azure PostgreSQL&lt;/li&gt;&lt;li&gt;better performance for string search parameters and all string-related search (e.g. :text modifier)*&lt;/li&gt;&lt;li&gt;will be supported as main engine&lt;/li&gt;&lt;/ul&gt;</td></tr><tr><td>Default value</td><td><code>knife</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_SEARCH_ENGINE</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_SEARCH_ENGINE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table>
 
 ### Enable support for multiple languages in search<a href="#fhir.search.multilingual.enable" id="fhir.search.multilingual.enable"></a>
 
