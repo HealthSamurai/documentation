@@ -10,7 +10,7 @@ With the `patch` operation, you can update a part of a resource by sending a dec
 
 * Merge Patch — simple merge semantics ([read more in RFC](https://tools.ietf.org/html/rfc7386));
 * JSON Patch — advanced JSON transformation ([read more in RFC](https://tools.ietf.org/html/rfc6902));
-* [FHIRpath Patch](https://www.hl7.org/fhir/fhirpatch.html) - JSON patch with [FHIRpath](https://www.hl7.org/fhir/fhirpatch.html) (since version 2503).
+* [FHIRPath Patch](https://www.hl7.org/fhir/fhirpatch.html) — JSON patch with [FHIRPath](https://www.hl7.org/fhir/fhirpatch.html) (since version 2503).
 
 ### Patch Method
 
