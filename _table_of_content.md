@@ -69,6 +69,8 @@
   - Indexes & Performance
   - Transactional bulk & migrations
   - Transactional isolation levels & conditional operations
+  - Database migrations: Which PostgreSQL user permissions is needed for migrations?
+
 * Storage (TODO: Should we put it to API or keep at the top level)
   - Storing Files  
 * FHIR Configuration (Artifact Repository)
