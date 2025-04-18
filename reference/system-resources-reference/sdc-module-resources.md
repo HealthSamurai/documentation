@@ -9,6 +9,7 @@ SDC module includes the following resource types:
 - QuestionnaireTheme
 - SDCConfig
 - SDCPrintTemplate
+- SDCDocument
 - SDCFormMetadata
 - SDCFormVersion
 - SDCWorkflow
@@ -154,6 +155,51 @@ SDC module includes the following resource types:
 </table>
 
 
+## SDCDocument
+
+Base schema for questionnaire(document) definition. Also a resource in DB - SDCDocument
+
+<table>
+<thead>
+<tr>
+<th width="290">Path</th>
+<th width="70">Card.</th>
+<th width="150">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr><td width="290">based-on</td><td width="70">0..1</td><td width="150"></td><td>Request led to creation of this Document</td></tr>
+<tr><td width="290">based-on.<strong>id</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">based-on.<strong>resourceType</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">based-on.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">author</td><td width="70">0..1</td><td width="150"></td><td>Reference to user which create document</td></tr>
+<tr><td width="290">author.<strong>id</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">author.<strong>resourceType</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">author.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">form</td><td width="70">1..1</td><td width="150"></td><td></td></tr>
+<tr><td width="290">form.<strong>form</strong></td><td width="70">0..1</td><td width="150">string</td><td>Full name of form, with which document was captured</td></tr>
+<tr><td width="290">form.<strong>version</strong></td><td width="70">0..1</td><td width="150">number</td><td>Used Form version</td></tr>
+<tr><td width="290">encounter</td><td width="70">0..1</td><td width="150"></td><td>Reference to encounter</td></tr>
+<tr><td width="290">encounter.<strong>id</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">encounter.<strong>resourceType</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">encounter.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">unit-system</td><td width="70">0..1</td><td width="150">string</td><td>What unit system was used in this document at launch</td></tr>
+<tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>Status of the document  
+
+<strong>Allowed values</strong>: draft | in-progress | canceled | completed | in-amendment | amended</td></tr>
+<tr><td width="290">source</td><td width="70">0..1</td><td width="150"></td><td>The person who answered the questions</td></tr>
+<tr><td width="290">source.<strong>id</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">source.<strong>resourceType</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">source.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td>Name/version of form, with which document was captured</td></tr>
+<tr><td width="290">patient</td><td width="70">0..1</td><td width="150"></td><td>The subject of the question</td></tr>
+<tr><td width="290">patient.<strong>id</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">patient.<strong>resourceType</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">patient.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr></tbody>
+</table>
+
+
 ## SDCFormMetadata
 
 <table>
@@ -210,7 +256,7 @@ Form Metadata that can be used for Dynamic updates
 <tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>Status of WF lifecycle. Should be changed via rpc: `cancel-wf`, `complete-wf` `cancel-task`, `complete-task` 
 
 <strong>Allowed values</strong>: new | in-progress | canceled | completed | in-amendment | amended</td></tr>
-<tr><td width="290">order</td><td width="70">0..*</td><td width="150"></td><td>Order of items (array of item keys)</td></tr>
+<tr><td width="290">order</td><td width="70">0..*</td><td width="150">string</td><td>Order of items (array of item keys)</td></tr>
 <tr><td width="290">title</td><td width="70">0..1</td><td width="150">string</td><td>Title of the workflow</td></tr>
 <tr><td width="290">version</td><td width="70">0..1</td><td width="150">number</td><td>Workflow version</td></tr>
 <tr><td width="290">ctx</td><td width="70">0..1</td><td width="150"></td><td>Workflow context, which can be used from tasks as well</td></tr>
