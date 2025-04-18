@@ -129,7 +129,7 @@ Only the administrator is allowed to use the `SU` header.
 ### Enable Aidbox developer mode<a href="#security.dev-mode" id="security.dev-mode"></a>
 
 Activates debugging features for access policy development,
-including the `_debug=policy URL` parameter. Returns detailed policy
+including the `_debug=policy URL` parameter and `x-debug` header. Returns detailed policy
 evaluation traces showing why requests were allowed or denied. For
 development environments only - not recommended for production systems.
 
