@@ -21,11 +21,11 @@
     * History
     * Batch & Transaction
   - FHIR Search
-    * Search Parameters
-    * Performance considerations
-    * Chained parameters
+    * SearchParameter
     * Include and Revinclude
-    * Indexes & Performance tuning 
+    * Chained parameters
+    * Performance Considerations
+  - Aidbox Search 
   - SQL API
     * SQL on FHIR - ViewDefinitions
     * AidboxQuery
