@@ -19,7 +19,7 @@ Let's look at some operations working with Bundle resources.
   This operation accepts Bundle resource (with type batch or transaction); executes contained requests; then returns Bundle resource in response (with type batch-response or transaction-response).\
   Operation `POST /` accepts and return Bundle in Aidbox format; operation `POST /fhir` accepts and returns Bundle in FHIR format.
 * `GET /<resourceType>`, `GET /fhir/<resourceType>`\
-  Main article: [Broken link](broken-reference "mention")\
+  Main article: [fhir-search](fhir-search/ "mention")\
   This operation searches for resource of type `resourceType` using search parameters provided in query string, and returns Bundle resource (with type `searchset`) containing all resources matching the given filters.
 * `GET /<resourceType>/<id>/_history`, `GET /fhir/<resourceType>/<id>/_history`\
   Main article: [history-1.md](history-1.md "mention")\
@@ -90,6 +90,3 @@ In [fhir-schema-validator](../../modules/profiling-and-validation/fhir-schema-va
 
 Use validation in Aidbox format with `Bundle/$validate` if you need to validate a bundle with built-in resources. This endpoint only validates entries of the bundle, but not the bundle itself.
 {% endhint %}
-
-
-

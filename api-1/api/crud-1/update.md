@@ -1,6 +1,6 @@
 # Update
 
-This interaction allows modifying an existing resource. If a resource with `id` (provided in the URL) doesn't exist, a new resource will be created.
+This interaction allows for modifying an existing resource. If a resource with `id` (provided in the URL) doesn't exist, a new resource will be created.
 
 ```http
 PUT [base]/[type]/[id]
@@ -59,13 +59,13 @@ The following codes can be returned by the server:
 PUT [base]/[type]?[search parameters]
 ```
 
-This is a more complex way to update a resource, but it gives more power. You can update a resource without knowing the `id` , but it requires the knowledge of [Search](broken-reference). Different response codes will be returned (based on the number of search results):
+This is a more complex way to update a resource, but it gives more power. You can update a resource without knowing the `id` , but it requires the knowledge of [Search](../fhir-search/). Different response codes will be returned (based on the number of search results):
 
 * **No matches**: The server performs a `create` interaction
 * **One Match**: The server performs the update against the matching resource
 * **Multiple matches**: The server returns a `412 Precondition Failed` error indicating the client's criteria were not selective enough
 
-In contrast to FHIR, Aidbox conditional update allows the creation of a resource with a specific `id`. In case of one match, `conditional update` ignores the id coming in the request body. That means that `id` can't be changed by any `update` operation.
+In contrast to FHIR, Aidbox conditional update allows the creation of a resource with a specific `id`. In the case of one match, `conditional update` ignores the id coming in the request body. That means that `id` can't be changed by any `update` operation.
 
 ### Example
 
