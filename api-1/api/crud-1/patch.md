@@ -208,7 +208,7 @@ parameter:
       - name: value
         valueHumanName:
           given:
-            - "John"
+            - "John" 
 ```
 {% endcode %}
 
@@ -272,6 +272,23 @@ parameter:
         valueCode: female
 ```
 {% endcode %}
+
+Replace extension by id example:
+
+```
+PATCH /fhir/Patient/pt1
+
+resourceType: Parameters
+parameter:
+  - name: operation
+    part:
+      - name: type
+        valueCode: replace
+      - name: path
+        valueString: Patient.extension('http://example.org/my-extension').value  
+      - name: value
+        valueString: 'new-value'
+```
 
 #### Move
 
