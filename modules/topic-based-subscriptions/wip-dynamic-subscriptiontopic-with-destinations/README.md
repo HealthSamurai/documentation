@@ -15,14 +15,6 @@ For an application example, refer to [Aidbox Subscriptions & Kafka AidboxTopicDe
 ## Key Components
 
 * **`AidboxSubscriptionTopic`** is a custom Aidbox resource modeled after the [FHIR R6 SubscriptionTopic](https://build.fhir.org/subscriptiontopic.html) resource. The resource allows defining a set of events that clients can subscribe to, such as changes in specific resources.&#x20;
-
-{% hint style="warning" %}
-**FHIR Compliance:**&#x20;
-
-* **For FHIR R4**: Use the `AidboxSubscriptionTopic` as it is, since FHIR does not include this functionality in R4.
-* **For FHIR R4b, R5, and R6**: You can use either the `AidboxSubscriptionTopic` or the FHIR SubscriptionTopic resource, depending on the FHIR version used. These version-specific resources will be added in the upcoming releases.&#x20;
-{% endhint %}
-
 * **`AidboxTopicDestination`** is a custom Aidbox resource that defines where and how the notifications triggered by an `AidboxSubscriptionTopic` should be sent. This resource offers flexibility in specifying various types of destinations. And is considered as a system configuration resource.
 * **`AidboxSubscriptionStatus`** is a custom Aidbox resource which describes the notifications: what messages stored in the bundle, source and destination.
 
