@@ -2,6 +2,7 @@
 * Getting Started (Install locally or try in Sandbox)
 * Tutorials
 * Architecture
+* Features
 * Top Level
   - FHIR Configuration  (configuration, registry, ...) <- terminology
   - API
