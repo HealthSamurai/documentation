@@ -70,4 +70,4 @@ order by word;
 
 Will return the right order for Danish locale.
 
-Any [\_sort Search Parameter](broken-reference) will also consider Danish sort order.
+Any [\_sort Search Parameter](../../api-1/api/fhir-search/searchparameter.md#sort) will also consider Danish sort order.
