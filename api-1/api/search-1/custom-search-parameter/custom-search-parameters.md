@@ -84,6 +84,10 @@ Here, the main fields are `type` and `expression`.  String type means that we se
 
 The expression field uses [FHIRPath](https://hl7.org/fhir/fhirpath.html) and defines that we search in "extension" field, filter all the extensions by the URL, and get their value. Note that we use `.as(string)` to match [the string extension choice type](https://www.hl7.org/fhir/extensibility.html).
 
+You can find all SearchParameters created by you in **app.aidbox.main** package:
+
+<figure><img src="../../../../.gitbook/assets/image (150).png" alt=""><figcaption></figcaption></figure>
+
 ## Test Search Parameter
 
 Create a Patient resource with the required extension:

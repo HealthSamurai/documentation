@@ -737,8 +737,8 @@ GET /fhir/Patient?tag=emergency
 
 See tutorials:
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="../search-1/custom-search-parameter/custom-search-parameters.md" %}
+[custom-search-parameters.md](../search-1/custom-search-parameter/custom-search-parameters.md)
 {% endcontent-ref %}
 
 {% content-ref url="../../../readme-1/data-api/search-tutorials/create-custom-aidbox-search-resource.md" %}

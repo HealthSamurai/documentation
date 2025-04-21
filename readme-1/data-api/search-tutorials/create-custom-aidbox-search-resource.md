@@ -120,10 +120,6 @@ See more:
 [aidbox-search.md](../../../api-1/api/aidbox-search.md)
 {% endcontent-ref %}
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
 ## Other examples
 
 ### Encounter.subject performance optimization
