@@ -6,7 +6,7 @@
   - FHIR Configuration  (configuration, registry, ...) <- terminology
   - API
   - Auth
-  - DB
+  - Database
   - Extensibility: Apps & SDK
   -----
   - Addon / Plugin / Extensions (Additional Modules)
@@ -62,15 +62,19 @@
   - Audit & Logging
     * Audit Events in Aidbox
     * Standalone Audit Event Repository  
-* DB
-  - Database Schema & Storage Format & AidboxDB
+* Database
+  - Database Schema & Storage Format 
   - Query Resources & Search API SQL
-  - PostgreSQL Extensions
+  - Aidbox's functions
   - Indexes & Performance
   - Transactional bulk & migrations
   - Transactional isolation levels & conditional operations
   - Database migrations: Which PostgreSQL user permissions is needed for migrations?
-
+  - AidboxDB
+    - Releases/versions
+    - PostgreSQL Extensions
+    - HA AidboxDB (CloudNativePGOperator/Crunchy)
+       
 * Storage (TODO: Should we put it to API or keep at the top level)
   - Storing Files  
 * FHIR Configuration (Artifact Repository)
