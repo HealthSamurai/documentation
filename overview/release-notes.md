@@ -452,7 +452,7 @@ Minor updates:
 ## July 2023 _`2307`_
 
 * Data API
-  * Added [multilingual search](../readme-1/data-api/search-tutorials/how-to-use-multilingual-search.md) with [\_search-language](broken-reference) parameter
+  * Added [multilingual search](../api-1/api/search-1/other/how-to-use-multilingual-search.md) with [\_search-language](broken-reference) parameter
   * Added an option to translate concepts with [$translate-concepts](../modules/terminology/concept/usdtranslate-concepts.md) endpoint
   * Added [\_source](broken-reference) search parameter
 * [C-CDA / FHIR converter](../modules/integration-toolkit/ccda-converter/)
@@ -1065,7 +1065,7 @@ Plenty of bug fixes!
 Now references to contained resources are represented as `localRef` attribute in [Aidbox Format](../storage-1/other/aidbox-and-fhir-formats.md)
 {% endhint %}
 
-* Managed SQL for FHIR search by [SearchQuery](../deprecated/deprecated/other/searchquery.md)
+* Managed SQL for FHIR search by [SearchQuery](../api-1/api/search-1/other/searchquery.md)
 * A default timeout for Search Operations with [\_timeout](broken-reference) param for high-load
 * Ordered search in [$lookup](broken-reference)
 * microseconds precision for timestamps (Resource.meta.lastUpdated)

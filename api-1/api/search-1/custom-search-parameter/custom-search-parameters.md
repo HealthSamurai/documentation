@@ -1,7 +1,7 @@
 # Custom SearchParameter tutorial
 
 {% hint style="info" %}
-To create a SearchParameter, [FHIRSchema](../../../modules/profiling-and-validation/fhir-schema-validator/setup.md) must be enabled (enabled by default)
+To create a SearchParameter, [FHIRSchema](../../../../modules/profiling-and-validation/fhir-schema-validator/setup.md) must be enabled (enabled by default)
 {% endhint %}
 
 ### Objectives <a href="#objectives" id="objectives"></a>
@@ -11,18 +11,18 @@ To create a SearchParameter, [FHIRSchema](../../../modules/profiling-and-validat
 
 ## Before you begin <a href="#before-you-begin" id="before-you-begin"></a>
 
-* See what FHIR Search is [here](../../../api-1/api/fhir-search/), what [SearchParameter is here](../../../api-1/api/fhir-search/searchparameter.md)
+* See what FHIR Search is [here](../../fhir-search/), what [SearchParameter is here](../../fhir-search/searchparameter.md)
 * Set up the local Aidbox instance using the getting started [guide](https://docs.aidbox.app/getting-started/run-aidbox-locally-with-docker/run-aidbox-locally)
 
 ## Get any SearchParameter definition
 
 &#x20;In AidboxUI, go to **FHIR Packages -> hl7.fhir.r4.core** and click on "SearchParameters" tab:
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 Getting all Patient SearchParameters from r4:
 
-<figure><img src="../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 Clicking on `Patient-active` SearchParameter gives us an actual definition of it:
 
@@ -44,7 +44,7 @@ Clicking on `Patient-active` SearchParameter gives us an actual definition of it
 }
 ```
 
-You can read more about all these fields in [#searchparameter-fields](../../../api-1/api/fhir-search/searchparameter.md#searchparameter-fields "mention")
+You can read more about all these fields in [#searchparameter-fields](../../fhir-search/searchparameter.md#searchparameter-fields "mention")
 
 The main things:
 
@@ -80,7 +80,7 @@ Accept: application/json
 }
 ```
 
-Here, the main fields are `type` and `expression`.  String type means that we search for strings in a case-insensitive, accent-insensitive way. See also [#search-parameter-types](../../../api-1/api/fhir-search/searchparameter.md#search-parameter-types "mention")
+Here, the main fields are `type` and `expression`.  String type means that we search for strings in a case-insensitive, accent-insensitive way. See also [#search-parameter-types](../../fhir-search/searchparameter.md#search-parameter-types "mention")
 
 The expression field uses [FHIRPath](https://hl7.org/fhir/fhirpath.html) and defines that we search in "extension" field, filter all the extensions by the URL, and get their value. Note that we use `.as(string)` to match [the string extension choice type](https://www.hl7.org/fhir/extensibility.html).
 

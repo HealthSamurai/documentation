@@ -17,7 +17,7 @@ Search parameters can be defined in:
 
 * The core FHIR specification (e.g. 4.0.1)
 * Implementation guides (e.g. [US Core](https://www.hl7.org/fhir/uscore.html))
-* Aidbox itself in `app.aidbox.main` package (see [Custom Search Parameter tutorial](../../../readme-1/data-api/search-tutorials/custom-search-parameters.md))
+* Aidbox itself in `app.aidbox.main` package (see [Custom Search Parameter tutorial](../search-1/custom-search-parameter/custom-search-parameters.md))
 
 ## SearchParameter example
 
