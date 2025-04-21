@@ -19,7 +19,7 @@ Aidbox provides two REST APIs - FHIR and Aidbox. The main difference is [a forma
 | [history](history-1.md)                                | Retrieve the change history for a particular resource               | both   |
 | **Type Level Interactions**                            |                                                                     |        |
 | [create](crud-1/fhir-and-aidbox-crud.md)               | Create a new resource                                               | both   |
-| [search](broken-reference)                             | Search the resource type based on some filter criteria              | both   |
+| [search](fhir-search/)                                 | Search the resource type based on some filter criteria              | both   |
 | [history](history-1.md)                                | Retrieve the change history for a particular resource type          | both   |
 | [$dump](../bulk-api-1/#usddump)                        | Dump all resources of specific type                                 | Aidbox |
 | [$load](../bulk-api-1/#usdload)                        | Load resources of specific type                                     | both   |

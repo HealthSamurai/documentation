@@ -296,10 +296,10 @@ GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/metadata
 ### AidboxQuery
 
 {% hint style="info" %}
-[Learn more about AidboxQuery](broken-reference).
+[Learn more about AidboxQuery](../../../api-1/api/aidbox-search.md#aidboxquery).
 {% endhint %}
 
-To use `$query` endpoint under organization-based hierarchical access control it is necessary to create explicitly `organization` param in `AidboxQuery`.
+To use `$query` endpoint under organization-based hierarchical access control, it is necessary to create explicitly `organization` param in `AidboxQuery`.
 
 ```yaml
 PUT /AidboxQuery/<query-name>
