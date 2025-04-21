@@ -6,7 +6,7 @@ Since version 2211, Aidbox can suggest indexes for Search API.&#x20;
 Index suggestion API is in draft stage. It will change in future!
 {% endhint %}
 
-Supported FHIR Search parameters types:
+Supported FHIR Search parameter types:
 
 * string
 * number
@@ -16,15 +16,18 @@ Supported FHIR Search parameters types:
 * reference
 * uri
 
-Supported [underscored parameters](broken-reference)
+Supported special FHIR parameters:
 
 * \_id
 * \_ilike
 * \_text
 * \_content
-* \_createdAt
 * \_lastUpdated
-* [Dot expressions](broken-reference)
+
+Supported Aidbox search:
+
+* \_createdAt
+* [Dot expressions](../../api-1/api/aidbox-search.md#dot-expressions)
 
 Not supported:
 
