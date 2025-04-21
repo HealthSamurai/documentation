@@ -32,8 +32,6 @@ _`Work in progress`_
   * `2306-lts` 24-hour license grace period, fix vulnerabilities
   * `2302-lts` 24-hour license grace period, fix vulnerabilities
 
-
-
 ## February 2025 _`stable, 2502`_
 
 * Aidbox
@@ -128,7 +126,7 @@ Minor updates:
 * Aidbox
   * Released Aidbox UI home page
   * Implemented hashing for sensitive elements User, Client and Session records. it is strongly recommended to delete the history tables for these resources to prevent access to the original un-hashed secret values.
-  * Introduced ["Authorize Inline Requests"](broken-reference) mode, ensuring that users can only retrieve resources they are authorized to view when using `_include` and `_revinclude` parameters in search requests.
+  * Introduced ["Authorize Inline Requests"](../api-1/api/fhir-search/include-and-revinclude.md#authorize-inline-requests-mode) mode, ensuring that users can only retrieve resources they are authorized to view when using `_include` and `_revinclude` parameters in search requests.
   * Added [Audit Logs](../modules/security-and-access-control/audit/audit-logging.md) for SQL endpoints
   * Added configurable CORS settings, allowing users to [enable CORS](../reference/environment-variables/optional-environment-variables.md#box_web_cors_enabled) and [specify allowed origins](../reference/environment-variables/optional-environment-variables.md#box_web_cors_origins).
   * Fixed critical vulnerabilities and bugs
@@ -566,7 +564,7 @@ Minor updates:
   * Defined [custom resources using Aidbox Project](../deprecated/deprecated/entity-attribute/getting-started-with-custom-resources.md#defining-a-custom-resource)
   * Added [$to-format operation](../api-1/api/other/usdto-format-fhir-aidbox.md) without getting transformation metadata
   * Fixed polymorphic reference targets for FHIR resources
-  * Fixed Bundle conformance for [AidboxQuery](broken-reference)
+  * Fixed Bundle conformance for [AidboxQuery](../api-1/api/aidbox-search.md#aidboxquery)
   * Fixed sorting by token when using jsonknife engine
   * Added a header to [lower transaction isolation level](../api-1/transaction.md#change-transaction-isolation-level)
 * Integrations
@@ -723,10 +721,10 @@ Minor updates:
     * Nursing notes
   * Supported Care Team section mapping
 * Search API
-  * Added [execute type in AidboxQuery](broken-reference)
-  * Added [FHIR compliant date search](broken-reference)
-  * Added 180-second [timeout](broken-reference) for [(rev)include queries](broken-reference)
-  * **Breaking change:** removed limit of 1000 in [\_count queries](broken-reference)
+  * Added [execute type in AidboxQuery](../api-1/api/aidbox-search.md#aidboxquery)
+  * Added [FHIR compliant date search](../reference/settings/fhir.md#fhir.compliant-mode)
+  * Added 180-second timeout for [(rev)include queries](../api-1/api/fhir-search/include-and-revinclude.md)
+  * **Breaking change:** removed limit of 1000 in [\_count](../api-1/api/fhir-search/searchparameter.md#count) queries
 * FHIR API for EHRs
   * Supported [multitenancy](../modules/smartbox/background-information/multitenancy-approach.md)
   * Added an option set up [EHR-level customization](../modules/smartbox/how-to-guides/set-up-ehr-level-customization.md) (logos and templates)
@@ -787,7 +785,7 @@ Minor updates:
 * Added an option to enable [ACL checks for searches in conditional operations](../modules/security-and-access-control/security/acl.md#conditional-crud).
 * Added `BOX_FEATURES_TERMINOLOGY_IMPORT_SYNC` environment variable to enable sync [terminology bundle file load](../modules/terminology/terminology-api/).
 * Added `plain` option to use [`$import`](../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md) with non-gzipped files.
-* Added support of [entry.search.mode ](broken-reference)field when using [\_include or \_revinclude](broken-reference) search parameters.
+* Added support of entry.search.mode field when using [\_include or \_revinclude](../api-1/api/fhir-search/include-and-revinclude.md) search parameters.
 * Added [`profile`](../api-1/api/other/metadata.md#notes) property to the CapabilityStatement resource.
 * Added configurable `refresh_token_expiration` parameter. If not defined refresh token doesn't expire.
 * Fixed issues submitted by Aidbox users and fixed minor bugs.
@@ -871,8 +869,8 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 * Added Aidbox UI new tools: [DB Tables](aidbox-ui/db-tables.md) and [DB Queries](aidbox-ui/db-queries.md) to improve database administration and introspection.
 * Added new env `box_compatibility_validation_json__schema_regex="#{:fhir-datetime}` to enable strict date time validation in JSON schema validation engine per [FHIR spec](https://www.hl7.org/fhir/datatypes.html#dateTime).
 * Improved [`$export`](../api-1/bulk-api-1/usdexport.md) error statuses.
-* Added Search resource `reference` [support](broken-reference).
-* Improved [Search parameter](broken-reference) expression error reporting.
+* Added Search resource `reference` [support](../api-1/api/aidbox-search.md#search-resource).
+* Improved [Search parameter](../api-1/api/fhir-search/#searchparameter) expression error reporting.
 * Improved [zen profiles](../deprecated/deprecated/zen-related/profiling-with-zen-lang/) support in [GraphQL API](../api-1/graphql-api.md).
 * Released [Multibox box manager API](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/broken-reference/README.md).
 * Added Aidbox UI [Analyze Attributes](aidbox-ui/attrs-stats.md) tab description.
