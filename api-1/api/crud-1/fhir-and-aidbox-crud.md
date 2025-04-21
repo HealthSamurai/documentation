@@ -205,7 +205,7 @@ POST [base]/[type]?[search parameters]
 {% endtab %}
 {% endtabs %}
 
-A more complex way to create a resource (it requires the knowledge of [search](../search-1/)) but it gives some additional flexibility. If you provide search parameters, `create` becomes `conditional create` and works in the following way (depending on the number of search results):
+A more complex way to create a resource (it requires the knowledge of [search](broken-reference)) but it gives some additional flexibility. If you provide search parameters, `create` becomes `conditional create` and works in the following way (depending on the number of search results):
 
 * **No matches**: The server performs a `create` interaction
 * **One Match**: The server returns the found resource and `200 OK`

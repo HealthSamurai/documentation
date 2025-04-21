@@ -10,7 +10,7 @@ GET [base]/Patient/[id]/$everything
 
 ## Patient-everything supported parameters <a href="#patient-everything-parameters" id="patient-everything-parameters"></a>
 
-<table><thead><tr><th width="212.70358306188928">Query parameter</th><th></th></tr></thead><tbody><tr><td><strong>_since</strong></td><td>Include resources updated after the specified timestamp.</td></tr><tr><td><a href="search-1/search-parameters-list/_timeout.md"><strong>_timeout</strong></a></td><td>Set timeout for every internal search. </td></tr><tr><td><a href="search-1/search-parameters-list/_count-and-_page.md"><strong>_count</strong></a></td><td>Limits return of each resource type. Partial support without pagination.</td></tr></tbody></table>
+<table><thead><tr><th width="212.70358306188928">Query parameter</th><th></th></tr></thead><tbody><tr><td><strong>_since</strong></td><td>Include resources updated after the specified timestamp.</td></tr><tr><td><a href="broken-reference"><strong>_timeout</strong></a></td><td>Set timeout for every internal search. </td></tr><tr><td><a href="broken-reference"><strong>_count</strong></a></td><td>Limits return of each resource type. Partial support without pagination.</td></tr></tbody></table>
 
 ## Examples
 
@@ -56,7 +56,7 @@ It will be transformed into:
 GET /fhir/Observation?_filter=(subject eq Patient/pt1) or (performer eq Patient/pt1)
 ```
 
-To debug this, we can query using [\_explain](search-1/search-parameters-list/_explain.md) search parameter:
+To debug this, we can query using [\_explain](broken-reference) search parameter:
 
 ```
 GET /fhir/Observation?_filter=(subject eq Patient/pt1) or (performer eq Patient/pt1)&_explain=1

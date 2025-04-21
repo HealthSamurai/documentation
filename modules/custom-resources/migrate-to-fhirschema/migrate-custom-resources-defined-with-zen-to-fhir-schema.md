@@ -592,5 +592,5 @@ If you have multiple schemas replacing a set of resources and want to work with 
 {% endhint %}
 
 {% hint style="danger" %}
-**SearchParameters:** SearchParameters described for custom resources won't work in FHIRSchema validation mode. You need to redefine them as regular FHIR SearchParameters, not Aidbox Search Parameters. See the [migration guide](../../../readme-1/data-api/migrate-from-aidbox-searchparameter-to-fhir-searchparameter.md).
+**SearchParameters:** SearchParameters described for custom resources won't work in FHIRSchema validation mode. You need to redefine them as regular FHIR SearchParameters, not Aidbox Search Parameters. See the [migration guide](../../../readme-1/data-api/search-tutorials/migrate-from-aidbox-searchparameter-to-fhir-searchparameter.md).
 {% endhint %}

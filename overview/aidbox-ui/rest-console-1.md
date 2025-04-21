@@ -694,7 +694,7 @@ Status: 200
 {% endtabs %}
 
 {% hint style="info" %}
-Please check [Search API](../../api-1/api/search-1/) for more details.
+Please check [Search API](broken-reference) for more details.
 {% endhint %}
 
 ### Delete Patient

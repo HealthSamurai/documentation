@@ -134,7 +134,7 @@ Should you need to update the app details used on production after the app has b
 
 Access tokens have scopes, which define permissions and the resources that the token can access. Scopes are primarily utilized to determine the type of data an application is requesting. Scopes should be explicitly declared. In case of using a wildcard, only supported scopes will be provided.
 
-Refer to the [FHIR API docs](../../api/search-1/) for guidance.
+Refer to the [FHIR API docs](broken-reference) for guidance.
 
 {% hint style="info" %}
 Any scope not currently listed is not supported Patient Access scopes

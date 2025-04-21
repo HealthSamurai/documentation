@@ -54,7 +54,7 @@ We have one repository for Patient resourceType: `patient-repository`. It contai
 
 SearchParameter must contain:
 
-* type: [FHIR Search Parameter types](../../../api-1/api/search-1/#search-parameters)
+* type: [FHIR Search Parameter types](broken-reference)
 * resource, containing resourceType and id
 * [jsonknife](zen-search-parameters.md#jsonpath-vs-jsonknife) expression containing path in the resource to search for
 * name to use in search
@@ -160,7 +160,7 @@ Repository keys:
 
 ### Composite search parameter
 
-Read [Composite Search Parameters](../../../api-1/api/search-1/searchparameter-types/composite-search-parameters.md) first.
+Read [Composite Search Parameters](broken-reference) first.
 
 Composite search parameter must contain additional key: components. It must be a nested array in following structure:
 

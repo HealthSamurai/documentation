@@ -1,2 +1,0 @@
-# Search parameters list
-

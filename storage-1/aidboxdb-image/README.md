@@ -39,7 +39,7 @@ List of available extensions:
 
 * [plpgsql](https://www.postgresql.org/docs/17/plpgsql.html) — Some PostgreSQL functions are written in plpgsql language.
 * [pg\_stat\_statements](https://www.postgresql.org/docs/current/pgstatstatements.html) — Track statistics.
-* [postgis](https://github.com/postgis/postgis) — Support storing, indexing, and querying geographic data. Used by [\_location](../../api-1/api/search-1/other/location-search.md) search parameter only.
+* [postgis](https://github.com/postgis/postgis) — Support storing, indexing, and querying geographic data. Used by [\_location](broken-reference) search parameter only.
 * [fuzzystrmatch](https://www.postgresql.org/docs/current/fuzzystrmatch.html) — String similarities functions. Used by [MDM module](../../modules/other-modules/mdm/) only.
 * [pg\_trgm](https://www.postgresql.org/docs/current/pgtrgm.html) — Support for similarity of text using trigram matching. Useful for some indexes.
 * [unaccent](https://www.postgresql.org/docs/current/unaccent.html) — A text search dictionary that removes diacritics. Used in some searches.

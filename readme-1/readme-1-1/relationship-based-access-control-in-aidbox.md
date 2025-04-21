@@ -119,7 +119,7 @@ The endpoint to fetch all user's research studies is
 GET /ResearchStudy?collaborator=<user-id>
 ```
 
-FHIR doesn't have search parameter `collaborator`. Aidbox allows you to define one with [SearchParameter resource](../../api-1/api/search-1/searchparameter.md).
+FHIR doesn't have search parameter `collaborator`. Aidbox allows you to define one with [SearchParameter resource](broken-reference).
 
 ```yaml
 PUT /SearchParameter/ResearchStudy.collaborator
@@ -379,7 +379,7 @@ GET /Observation?group=<group-id>
 
 There is no group search parameter for Observation in FHIR. And there is no way to define our parameter with SearchParameter resource.
 
-To enable complex search parameters, Aidbox provides [Search](../../api-1/api/search-1/custom-search-parameter/search-resource.md) resource. We will specify one for search Observations by group:
+To enable complex search parameters, Aidbox provides [Search](broken-reference) resource. We will specify one for search Observations by group:
 
 ```yaml
 PUT /Search/Observation.group

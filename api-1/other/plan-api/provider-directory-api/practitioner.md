@@ -41,7 +41,7 @@ Get practitioner by resource `id`:
 <pre><code><strong>GET [base]/fhir/Practitioner/[id]
 </strong></code></pre>
 
-The full list of FHIR search parameters for Practitioner is found [below](practitioner.md#parameters). Aidbox also offers a selection of query parameters to further refine search results. This includes pagination, full-text search, sorting etc. Refer to the [FHIR API Search docs](../../../api/search-1/) for information.
+The full list of FHIR search parameters for Practitioner is found [below](practitioner.md#parameters). Aidbox also offers a selection of query parameters to further refine search results. This includes pagination, full-text search, sorting etc. Refer to the [FHIR API Search docs](broken-reference) for information.
 
 The search results are returned in [Bundles](../../../api/bundle.md) by default. Alternatively, you can specify a `_result` parameter with value `array` to receive resources in a JSON array.
 

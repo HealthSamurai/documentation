@@ -4,7 +4,7 @@ description: Managed SQL for Search API
 
 # SearchQuery
 
-With **SearchQuery** resource, you can define "managed"  SQL for Search API with parameters, paging, sorting, and includes.
+With **SearchQuery** resource, you can define "managed" SQL for Search API with parameters, paging, sorting, and includes.
 
 | Parameter name        | Description                                               |
 | --------------------- | --------------------------------------------------------- |
@@ -19,7 +19,7 @@ With **SearchQuery** resource, you can define "managed"  SQL for Search API with
 | **\_explain=analyze** | Helps to inspect the execution plan of a search query     |
 
 {% hint style="info" %}
-If you want to use arbitrary SQL (e.g. `LEFT JOIN`), consider [AidboxQuery](custom-search.md).&#x20;
+If you want to use arbitrary SQL (e.g. `LEFT JOIN`), consider [AidboxQuery](broken-reference).
 {% endhint %}
 
 ### Prepare example data
@@ -396,7 +396,7 @@ entry:
 
 We created 2 patients, 2 practitioners, 3 encounters, 2 appointments, 2 Managing organizations that are linked to each other.
 
-### Define search query with filtering&#x20;
+### Define search query with filtering
 
 Let's define the search query to search old patients by the partial match of the family name with the filtering by gender:
 
@@ -865,7 +865,7 @@ total-query:
 
 #### Path in includes
 
-Path expression in includes is `json_knife` extension path, it consists of strings, integers, and objects. If the item is path string, it means get key in object (arrays are implicitly flattened). If key is integer, it is interpreted as index in array. If key is object, it is pattern to filter values in array with inclusion semantic (like PostgreSQL JSONB operator `@>`).&#x20;
+Path expression in includes is `json_knife` extension path, it consists of strings, integers, and objects. If the item is path string, it means get key in object (arrays are implicitly flattened). If key is integer, it is interpreted as index in array. If key is object, it is pattern to filter values in array with inclusion semantic (like PostgreSQL JSONB operator `@>`).
 
 Here is an example of how to extract a patient (code: PART) from the appointment:
 
@@ -1039,7 +1039,7 @@ total-explain: |-
 
 ### Debug SearchQuery
 
-You can debug SearchQuery with multiple parameters combinations without saving resource by `POST /SearchQuery/$debug`. You can simulate requests with different parameters by  **tests** attribute. Aidbox will return results and explanation for each test:
+You can debug SearchQuery with multiple parameters combinations without saving resource by `POST /SearchQuery/$debug`. You can simulate requests with different parameters by **tests** attribute. Aidbox will return results and explanation for each test:
 
 {% tabs %}
 {% tab title="Aidbox format" %}

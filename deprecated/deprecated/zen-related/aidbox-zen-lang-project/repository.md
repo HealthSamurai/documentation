@@ -58,7 +58,7 @@ Described in [Custom resources module](custom-resources-using-aidbox-project.md)
 
 ## Create search parameter
 
-Described in [SearchParameter page](../../../../api-1/api/search-1/searchparameter.md#define-custom-searchparameter-with-zen).
+Described in [SearchParameter page](broken-reference).
 
 ## Create index for search parameter
 
