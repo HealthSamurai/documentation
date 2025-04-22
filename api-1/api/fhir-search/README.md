@@ -43,7 +43,7 @@ Search results are returned as a [FHIR Bundle resource](https://www.hl7.org/fhir
 
 Example response:
 
-```
+```json
 {
   "resourceType": "Bundle",
   "type": "searchset",
