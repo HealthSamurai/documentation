@@ -1,7 +1,5 @@
 # Aidbox Search
 
-## Aidbox Search
-
 Sometimes, FHIR search is not enough. Aidbox provides more ways to search:
 
 * [Search resource](aidbox-search.md#search-resource) - similar to SearchParameter, but allows defining SQL. It is composable with other SearchParameters and Search resources.
