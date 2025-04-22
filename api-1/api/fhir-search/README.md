@@ -8,7 +8,7 @@ A base search request is composed of a list of pairs `<parameter>=<value>`:
 GET /fhir/[resourceType]?param1=value2&param2=value2&...
 ```
 
-E.g.
+For example, to search for a Patient resource with the name "John" and a birthdate of "1900-01-01", the request would look like this:
 
 ```
 GET /fhir/Patient?name=John&birthdate=1900-01-01
@@ -16,7 +16,7 @@ GET /fhir/Patient?name=John&birthdate=1900-01-01
 
 ## Search capabilities
 
-Most common search capabilities are:
+FHIR Search API supports various search features to help retrieve exactly the data you need. Here are some of the most commonly used capabilities.
 
 | Search capability         | Example                                                                 | Example Description                                                                                                                                                        |
 | ------------------------- | ----------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -95,7 +95,7 @@ See also:
 
 ## SearchParameter
 
-SearchParameter is a FHIR resource that describes how to search for a resource.\
+A SearchParameter is a FHIR resource that defines how to search for data within other FHIR resources. \
 SearchParameter can be:
 
 * Resource-specific parameters (e.g. `Patient.name`)
@@ -109,7 +109,7 @@ See also:
 
 ## Search Parameter Types
 
-SearchParameter can be of different types:
+Each SearchParameter has a defined type, which determines how it behaves and what kind of values it accepts.
 
 | Type      | Description                 | Example                                    |
 | --------- | --------------------------- | ------------------------------------------ |
@@ -129,7 +129,7 @@ See also [SearchParameter Types](searchparameter.md#search-parameter-types).
 
 ## Modifiers
 
-Modifiers are used to modify the behavior of the search.\
+Modifiers change the behavior of a search parameter to support more specific queries.\
 For example, searching for patients with the name exactly "Smith", rather than the default partial matching:
 
 ```
@@ -168,7 +168,7 @@ GET /fhir/Patient?_include=Patient:practitioner
 
 ### Reverse Include
 
-The `_revinclude` parameter allows you to include resources that reference the matched resources, which is the reverse of `_include`. This is useful when you want to find resources that point back to your search results.
+The `_revinclude` parameter does the opposite of `_include`. It returns resources that reference the ones you're querying.
 
 For example, to search for practitioners and include all patients who reference them:
 
@@ -184,7 +184,7 @@ See also:
 
 ## Chaining
 
-Chaining is a feature that allows you to search for related resources through a chain of references. This is useful when you want to find resources that are related in a specific way.
+Chaining allows you to search across references between resources. It’s useful when you need to filter by attributes of related resources.
 
 There are two types of chaining:
 
