@@ -387,7 +387,7 @@ plan: |-
 
 If your query is slow and you see Seq Scans , it's time to build indexes. Do not forget to run a vacuum analyze on the tables involved in query. Read more about [PostgreSQL Explain](https://www.postgresql.org/docs/current/using-explain.html).
 
-This parameter can be used for debugging too. If an SQL error happens, \_explain will show the original query:
+This parameter can be used for debugging too. If an SQL error happens, `_explain` will show the original query:
 
 ```
 GET /fhir/Patient?error-demo=1&_explain=0
