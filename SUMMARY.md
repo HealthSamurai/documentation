@@ -459,21 +459,23 @@
     * [How to prepare Surescripts mTLS](modules/eprescription/tutorials/how-to-prepare-surescripts-mtls.md)
   * [Frequently Asked Questions](modules/eprescription/frequently-asked-questions.md)
 
-## Storage <a href="#storage-1" id="storage-1"></a>
+## Database <a href="#storage-1" id="storage-1"></a>
 
-* [AidboxDB](storage-1/aidboxdb-image/README.md)
-  * [HA AidboxDB](storage-1/aidboxdb-image/ha-aidboxdb.md)
-  * [Migrate to AidboxDB 16](storage-1/aidboxdb-image/migration-to-aidboxdb-16.1-handling-the-removal-of-jsonknife-extension.md)
 * [Database schema](storage-1/database.md)
 * [PostgreSQL Extensions](storage-1/postgresql-extensions.md)
-* [Other](storage-1/other/README.md)
+* [AidboxDB](storage-1/aidboxdb-image/README.md)
+  * [HA AidboxDB](storage-1/aidboxdb-image/ha-aidboxdb.md)
+* [Tutorials](storage-1/other/README.md)
   * [Aidbox & FHIR formats](storage-1/other/aidbox-and-fhir-formats.md)
+  * [Migrate to AidboxDB 16](storage-1/other/migration-to-aidboxdb-16.1-handling-the-removal-of-jsonknife-extension.md)
   * [Working with pgAgent](storage-1/other/working-with-pgagent.md)
-  * [S3-compatible storages](storage-1/other/s3-compatible-storages/README.md)
-    * [AWS S3](storage-1/other/s3-compatible-storages/aws-s3.md)
-    * [GCP Cloud Storage](storage-1/other/s3-compatible-storages/gcp-cloud-storage.md)
-    * [Azure Blob Storage](storage-1/other/s3-compatible-storages/azure.md)
-    * [Oracle Cloud Storage](storage-1/other/s3-compatible-storages/oracle.md)
+
+## Storage
+
+* [AWS S3](storage/aws-s3.md)
+* [GCP Cloud Storage](storage/gcp-cloud-storage.md)
+* [Azure Blob Storage](storage/azure.md)
+* [Oracle Cloud Storage](storage/oracle.md)
 
 ## Deployment and maintenance
 

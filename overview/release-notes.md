@@ -318,7 +318,7 @@ Minor updates:
   * Administered Medications mapping to/from MedicationAdministration FHIR resource
 * DevOps
   * Documented 'How to make Aidbox Docker image work with [self-signed SSL certificates](../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/self-signed-ssl-certificates.md)'
-  * Released AidboxDB 16.1. Updated [the list of the extensions](../storage-1/aidboxdb-image/#extensions) for Postgres. Documented [the migration steps ](../storage-1/aidboxdb-image/migration-to-aidboxdb-16.1-handling-the-removal-of-jsonknife-extension.md)from the previous PG versions
+  * Released AidboxDB 16.1. Updated [the list of the extensions](../storage-1/aidboxdb-image/#extensions) for Postgres. Documented [the migration steps ](../storage-1/other/migration-to-aidboxdb-16.1-handling-the-removal-of-jsonknife-extension.md)from the previous PG versions
   * Removed apk-tools from our Docker images
 * [Aidbox Forms](../modules/aidbox-forms/)
   * Questionnaire-based forms updates:
@@ -1027,7 +1027,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 * Search and sort by [\_createdAt](broken-reference) parameter
 * Search by tokens with [:text modifier](broken-reference)
 * Filters in [Change API](../api-1/other/usdsnapshot-usdwatch-and-usdversions-api.md)
-* [Azure API](../storage-1/other/s3-compatible-storages/azure.md)
+* [Azure API](../storage/azure.md)
 * [SQL Parameters](broken-reference)
 
 ## 0.4.9 \[9 March 2020]
