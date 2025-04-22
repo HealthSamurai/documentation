@@ -587,13 +587,17 @@ GET /fhir/Observation?_security=http://terminology.hl7.org/CodeSystem/v3-Confide
 
 ### \_sort
 
-Supports all search parameter types. Also can be used with:
+Supports all search parameter types.&#x20;
 
-* [\_id](searchparameter.md#id)
-* [\_lastUpdated](searchparameter.md#lastupdated)
-* [\_createdAt](../aidbox-search.md#createdat)
+```
+GET /fhir/Organization?_sort=name
+```
 
-Aidbox also supports sorting with dot expressions.
+Aidbox also supports sorting with [dot expressions](../aidbox-search.md#dot-expressions):
+
+```
+GET /fhir/Patient?_sort=.name.0.family
+```
 
 You can sort by multiple parameters:
 
@@ -606,18 +610,7 @@ GET /fhir/Organization?_sort=name,id
 You can change the sorting direction by prefixing the parameter with `-` sign
 
 ```
-GET /fhir/Organization?_sort=-name
-```
-
-`_sort` can be used along with `_search-language` search parameter.
-
-Examples:
-
-```
-GET /fhir/Organization?_sort=_id
-GET /fhir/Organization?_sort=-lastUpdated
-// . expression
-GET /fhir/Patient?_sort=.name.0.family
+GET /fhir/Organization?_sort=-name,-lastUpdated
 ```
 
 ### \_summary
@@ -684,7 +677,7 @@ If the distance is also omitted, then Aidbox treats "near" as 3 km.
 
 #### Examples
 
-1. Get locations within 11.2 kms of the same geo-coded position:
+1. Get locations within 11.2 km of some geo-coded position:
 
 ```http
 #                   latitude |longitude|distance|units
