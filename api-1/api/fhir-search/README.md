@@ -96,8 +96,8 @@ See also:
 
 ## SearchParameter
 
-SearchParameter is a FHIR resource that describes a search parameter for a resource.\
-They can be:
+SearchParameter is a FHIR resource that describes how to search for a resource.\
+SearchParameter can be:
 
 * Resource-specific parameters (e.g. `Patient.name`)
 * Common underscored parameters across all resources (`_id`, `_sort`, `_count`, `_page`, `_elements`, etc.)
