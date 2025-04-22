@@ -602,7 +602,7 @@ GET /fhir/Patient?_sort=.name.0.family
 You can sort by multiple parameters:
 
 ```
-GET /fhir/Organization?_sort=name,id
+GET /fhir/Organization?_sort=name,_id
 ```
 
 #### Sorting direction
