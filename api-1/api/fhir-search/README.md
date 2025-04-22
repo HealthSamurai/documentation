@@ -20,9 +20,9 @@ Most common search capabilities are:
 
 | Search capability         | Example                                                                 | Example Description                                                                                                                                                        |
 | ------------------------- | ----------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Field Filtering           | `GET /fhir/Patient?name=John`                                           | Search for patients with name containing "John"                                                                                                                            |
-| Multiple Criteria         | `GET /fhir/Patient?name=John&gender=male`                               | Search for male patients with name containing "John" and gender "male"                                                                                                     |
-| OR Logic                  | `GET /fhir/Patient?name=John,Jane`                                      | Search for patients with name containing either "John" OR "Jane"                                                                                                           |
+| Field Filtering           | `GET /fhir/Patient?name=John`                                           | Search for patients with name starting with "John"                                                                                                                         |
+| Multiple Criteria         | `GET /fhir/Patient?name=John&gender=male`                               | Search for male patients with name starting with "John" and  "male" gender                                                                                                 |
+| OR Logic                  | `GET /fhir/Patient?name=John,Jane`                                      | Search for patients with name starting with either "John" OR "Jane"                                                                                                        |
 | Sorting & Paging          | `GET /fhir/Patient?_sort=name&_page=2`                                  | Sort patients by name and get the second page of results                                                                                                                   |
 | Include related resources | `GET /fhir/Patient?_include=Patient:organization`                       | Get patients and include their referenced organization resources                                                                                                           |
 | Reverse include           | `GET /fhir/Organization?_revinclude=Patient:organization`               | Get organizations and include all patients that reference them                                                                                                             |
@@ -39,7 +39,6 @@ Search results are returned as a [FHIR Bundle resource](https://www.hl7.org/fhir
 * A total count of matching resources
 * The matched resources as entries
 * Links for pagination (first, previous, next, last pages)
-* Search parameters used in the request
 * Additional included/revincluded resources (if requested)
 
 Example response:
@@ -119,14 +118,14 @@ SearchParameter can be of different types:
 | Reference | Links to other resources    | `patient=Patient/123`                      |
 | Date      | Date/time values and ranges | `birthdate=2020`, `date=ge2019-01`         |
 | Number    | Numeric values and ranges   | `age=55`, `length=gt100`                   |
-| Quantity  | Values with units           | \`weight=100                               |
+| Quantity  | Values with units           | `weight=100`                               |
 | Uri       | URIs                        | `url=http://example.com`                   |
 | Composite | Combines multiple values    | `component-code-value-quantity=code$value` |
 | Special   | Implementation specific     | `_filter`, `_text`, `_content`             |
 
 It is important to understand the type of SearchParameter because there are differences in how they are processed. For example, different modifiers are supported, some types support prefixes, some don't, etc.
 
-See also [#search-parameter-types](searchparameter.md#search-parameter-types "mention")
+See also [SearchParameter Types](searchparameter.md#search-parameter-types).
 
 ## Modifiers
 
@@ -155,7 +154,7 @@ List of supported modifiers:
 | :not               | uri, reference, token | Negates the search value                                                                                                                             | `url:not=http://acme.org/fhir/`                       |
 | :identifier        | reference             | Search by identifier of referenced resource                                                                                                          | `subject:identifier=urn:oid:1.2.3.4`                  |
 | :btw               | date                  | Search for dates between two values. Defined by Aidbox, not FHIR.                                                                                    | `birthdate:btw=1980,1981`                             |
-| :iterate, :recurse | -                     | See including referenced resources                                                                                                                   | `_include:iterate=Observation:has-member:Observation` |
+| :iterate, :recurse | -                     | See [including referenced resources](./#including-referenced-resources)                                                                              | `_include:iterate=Observation:has-member:Observation` |
 
 ## Including referenced resources
 
