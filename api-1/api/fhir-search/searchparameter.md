@@ -350,12 +350,6 @@ GET /fhir/Patient?_text=John
 GET /fhir/Patient?_content=New-York
 ```
 
-Search results can be sorted by rank with the **\_score** search parameter value. More relevant results will be on top, but in reverse order, also supported through `-` prefix.
-
-```
-GET /fhir/Patient?_content=baz&_sort=-_score
-```
-
 Full-text search requests support grouping and logical operations:
 
 ```
@@ -598,7 +592,6 @@ Supports all search parameter types. Also can be used with:
 * [\_id](searchparameter.md#id)
 * [\_lastUpdated](searchparameter.md#lastupdated)
 * [\_createdAt](../aidbox-search.md#createdat)
-* \_score
 
 Aidbox also supports sorting with dot expressions.
 
