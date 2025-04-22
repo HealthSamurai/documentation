@@ -21,6 +21,8 @@ Search parameters can be defined in:
 
 ## SearchParameter example
 
+Patient SearchParameters can be found at the end of [FHIR Patient page](https://www.hl7.org/fhir/patient.html#search) or in AidboxUI (see [Custom Search Parameter tutorial](../search-1/custom-search-parameter/custom-search-parameters.md)).
+
 Patient's `name` SearchParameter example:
 
 ```json
