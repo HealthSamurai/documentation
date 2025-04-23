@@ -31,16 +31,7 @@ order-by: "{{table}}.resource#>>'{name,0,family}'" # sql for ordering (using _so
 
 ### Search resource structure <a href="#search-resource-structure" id="search-resource-structure"></a>
 
-| Key              | Type   | Description                                                                                                                                                                                                                             |
-| ---------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **name**         | string | Search parameter name                                                                                                                                                                                                                   |
-| **resource**     | object | Reference to the resource (resourceType is always `Entity`)                                                                                                                                                                             |
-| **where**        | string | <p>SQL to use in the <code>WHERE</code> expression.</p><p>Supports <code>{{table}}</code> and <code>{{param}}</code></p>                                                                                                                |
-| **format**       | string | Replaces `?` with the actual value provided in the search query. Useful to use in `ILIKE` SQL expression.                                                                                                                               |
-| **order-by**     | string | <p>SQL to use in the <code>ORDER BY</code> expression.</p><p>Supports <code>{{table}}</code> and <code>{{param}}</code>.</p><p><strong>Note that it is used only when <code>_sort=&#x3C;name></code> present in the query.</strong></p> |
-| **param-parser** | string | Parse value as string, identifier, or reference. See below.                                                                                                                                                                             |
-| **token-sql**    | object | How to search in case of token search (when param-parser is "token"). See below.                                                                                                                                                        |
-| **multi**        | string | If you set multi = 'array', parameters will be coerced as PostgreSQL array.                                                                                                                                                             |
+See [Search resource structure](../../reference/system-resources-reference/base-module-resources.md#search).
 
 ### Value parsing
 
