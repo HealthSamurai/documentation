@@ -401,7 +401,7 @@ Example:
   :services {:sdc sdc-service}}
 ```
 
-2. Create [`AwsAccount`](../../file-storage/aws-s3.md) or [`GcpServiceAccount`](../../file-storage/gcp-cloud-storage.md)
+2. Create [`AwsAccount`](../../storage/aws-s3.md) or [`GcpServiceAccount`](../../storage/gcp-cloud-storage.md)
 3. Configure sdc-service with created account resource and specify a bucket name
 
 Example:

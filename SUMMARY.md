@@ -110,7 +110,7 @@
   * [History](api-1/api/history-1.md)
   * [$everything on Patient](api-1/api/usdeverything-on-patient.md)
   * [Other](api-1/api/other/README.md)
-    * [Aidbox & FHIR formats](api-1/api/other/aidbox-and-fhir-formats.md)
+    * [Aidbox & FHIR formats](storage-1/other/aidbox-and-fhir-formats.md)
     * [Capability Statement](api-1/api/other/metadata.md)
     * [$document](api-1/api/other/usddocument.md)
     * [Observation/$lastn](api-1/api/other/misc.md)
@@ -460,22 +460,22 @@
     * [How to prepare Surescripts mTLS](modules/eprescription/tutorials/how-to-prepare-surescripts-mtls.md)
   * [Frequently Asked Questions](modules/eprescription/frequently-asked-questions.md)
 
-## Database <a href="#storage-1" id="storage-1"></a>
+## Database
 
-* [Database schema](storage-1/database.md)
-* [PostgreSQL Extensions](storage-1/postgresql-extensions.md)
-* [AidboxDB](storage-1/aidboxdb-image/README.md)
-  * [HA AidboxDB](storage-1/aidboxdb-image/ha-aidboxdb.md)
-* [Tutorials](storage-1/other/README.md)
-  * [Migrate to AidboxDB 16](storage-1/other/migration-to-aidboxdb-16.1-handling-the-removal-of-jsonknife-extension.md)
-  * [Working with pgAgent](storage-1/other/working-with-pgagent.md)
+* [Database schema](database/schema.md)
+* [PostgreSQL Extensions](database/extensions.md)
+* [AidboxDB](database/aidboxdb-image/README.md)
+  * [HA AidboxDB](database/aidboxdb-image/ha-aidboxdb.md)
+* [Tutorials](database/other/README.md)
+  * [Migrate to AidboxDB 16](database/other/migration-to-aidboxdb-16.1-handling-the-removal-of-jsonknife-extension.md)
+  * [Working with pgAgent](database/other/working-with-pgagent.md)
 
 ## File storage
 
-* [AWS S3](file-storage/aws-s3.md)
-* [GCP Cloud Storage](file-storage/gcp-cloud-storage.md)
-* [Azure Blob Storage](file-storage/azure.md)
-* [Oracle Cloud Storage](file-storage/oracle.md)
+* [AWS S3](storage/aws-s3.md)
+* [GCP Cloud Storage](storage/gcp-cloud-storage.md)
+* [Azure Blob Storage](storage/azure.md)
+* [Oracle Cloud Storage](storage/oracle.md)
 
 ## Deployment and maintenance
 

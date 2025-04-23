@@ -36,7 +36,7 @@ query-sql:
 #### Aidbox format example
 
 {% hint style="warning" %}
-Be aware of the [Aidbox format](../../../api-1/api/other/aidbox-and-fhir-formats.md) in "expression".&#x20;
+Be aware of the [Aidbox format](../../../storage-1/other/aidbox-and-fhir-formats.md) in "expression".&#x20;
 {% endhint %}
 
 In this example, the `["value", "string"]` expression is used to look into FHIR `valueString` field:

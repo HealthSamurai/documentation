@@ -1,6 +1,6 @@
 # Oracle Cloud Storage
 
-Oracle Cloud Storage is used to store arbitrary unstructured data like images, files, backups, etc. Currently Aidbox doesn't offer integration with Oracle Cloud Storage but you can use pre-authenticated requests to load data into Aidbox. All examples from this tutorial are executable in the [Aidbox REST console](../../../overview/aidbox-ui/rest-console-1.md).
+Oracle Cloud Storage is used to store arbitrary unstructured data like images, files, backups, etc. Currently Aidbox doesn't offer integration with Oracle Cloud Storage but you can use pre-authenticated requests to load data into Aidbox. All examples from this tutorial are executable in the [Aidbox REST console](../overview/aidbox-ui/rest-console-1.md).
 
 ## Create pre-authenticated request in Oracle Cloud Storage
 

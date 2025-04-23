@@ -160,7 +160,7 @@ extension:
        display: Asian Indian
 ```
 
-Read more about [/$to-format Operation](usdto-format-fhir-aidbox.md).
+Read more about [/$to-format Operation](../../api-1/api/other/usdto-format-fhir-aidbox.md).
 
 The response should be:
 

@@ -44,7 +44,7 @@ Aidbox supports all popular managed Postgresql databases. Supported versions - 1
 
 ### Self-managed solution
 
-For a self-managed solution, we recommend using the [AidboxDB image](https://hub.docker.com/r/healthsamurai/aidboxdb). This image contains all required extensions, backup tools, and pre-build replication support. Read more information in the documentation — [AidboxDB](../../../storage-1/aidboxdb-image/).
+For a self-managed solution, we recommend using the [AidboxDB image](https://hub.docker.com/r/healthsamurai/aidboxdb). This image contains all required extensions, backup tools, and pre-build replication support. Read more information in the documentation — [AidboxDB](../../../database/aidboxdb-image/).
 
 {% hint style="info" %}
 To streamline the deployment process, our DevOps engineers have prepared [Helm charts](https://github.com/Aidbox/helm-charts/tree/main/aidboxdb) that you may find helpful.&#x20;

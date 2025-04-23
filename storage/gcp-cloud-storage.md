@@ -6,7 +6,7 @@ Cloud Storage is used to store arbitrary unstructured data like images, files, b
 
 This resource contains credentials for Service Account that has write/read access to Cloud Storage.
 
-```text
+```
 PUT /GcpServiceAccount
 
 id: my-account
@@ -18,7 +18,7 @@ private-key: "..."
 
 In order to get URL for file upload you should provide GcpServiceAccount id, bucket name to upload to and a filename. To upload data to the bucket, use PUT request with signed URL and provide file content in the request body.
 
-```text
+```
 POST /gcp/storage/my-account/my-bucket
 
 filename: sample.txt
@@ -30,7 +30,7 @@ filename: sample.txt
 
 #### Get URL for file download
 
-```text
+```
 GET /gcp/storage/my-account/my-bucket/sample.txt
 
 # status: 200
@@ -41,4 +41,3 @@ GET /gcp/storage/my-account/my-bucket/sample.txt
 #### Configuration options
 
 You can provide "expiration" query param for both POST & GET queries. It corresponds to a X-Goog-Expires query param which sets URL expiration time in seconds.
-

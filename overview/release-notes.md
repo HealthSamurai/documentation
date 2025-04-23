@@ -318,7 +318,7 @@ Minor updates:
   * Administered Medications mapping to/from MedicationAdministration FHIR resource
 * DevOps
   * Documented 'How to make Aidbox Docker image work with [self-signed SSL certificates](../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/self-signed-ssl-certificates.md)'
-  * Released AidboxDB 16.1. Updated [the list of the extensions](../storage-1/aidboxdb-image/#extensions) for Postgres. Documented [the migration steps ](../storage-1/other/migration-to-aidboxdb-16.1-handling-the-removal-of-jsonknife-extension.md)from the previous PG versions
+  * Released AidboxDB 16.1. Updated [the list of the extensions](../database/aidboxdb-image/#extensions) for Postgres. Documented [the migration steps ](../database/other/migration-to-aidboxdb-16.1-handling-the-removal-of-jsonknife-extension.md)from the previous PG versions
   * Removed apk-tools from our Docker images
 * [Aidbox Forms](../modules/aidbox-forms/)
   * Questionnaire-based forms updates:
@@ -486,7 +486,7 @@ Minor updates:
   * Added [hierarchical organization-based access control](../modules/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md) (multi-tenancy on organization-level resources)
   * Added [How to enable hierarchical access control](../modules/security-and-access-control/multitenancy/how-to-enable-hierarchical-access-control.md) tutorial
 * Ops
-  * Released new [PostgreSQL Aidboxdb images 15.3, 14.8, 13.11](../storage-1/aidboxdb-image/)
+  * Released new [PostgreSQL Aidboxdb images 15.3, 14.8, 13.11](../database/aidboxdb-image/)
   * Added PostGis Extension
   * Enabled the [/health](../api-1/api/other/health-check.md) endpoint metrics and logs by default
   * Added [How to disable logging](../api-1/api/other/health-check.md#logging-health-endpoint-request) tutorial
@@ -546,7 +546,7 @@ Minor updates:
 * Aidbox user portal
   * Added option to specify [FHIR R5 configuration project](https://aidbox.app/ui/portal#/signin)
 * Ops
-  * Added [AidboxDB automation with Crunchy Operator](../storage-1/aidboxdb-image/ha-aidboxdb.md)
+  * Added [AidboxDB automation with Crunchy Operator](../database/aidboxdb-image/ha-aidboxdb.md)
 * Aidbox Forms
   * Added new [field type for storing attachments](../reference/aidbox-forms/layout-dsl.md#file-input)
     * [Supported cloud storages](../reference/aidbox-forms/document-dsl.md#store-attachments-in-cloud-storage): AidboxDB, GCP Storage, AWS S3
@@ -753,7 +753,7 @@ Minor updates:
 * Supported [`/health` endpoint](../api-1/api/other/health-check.md) for Multibox
 * Updated documentation on how to configure Aidbox with [Aidbox configuration project](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/)
 * Updated documentation on how to [configure highly available Aidbox](../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/high-available-aidbox.md)
-* Added support for [PostgreSQL 15](../storage-1/aidboxdb-image/) (beta)
+* Added support for [PostgreSQL 15](../database/aidboxdb-image/) (beta)
 * Added documentation on how to create [most common indexes](../deployment-and-maintenance/indexes/create-indexes-manually.md)
 * Added `aidbox` format support for [bulk import](../api-1/bulk-api-1/aidbox.bulk-data-import.md#aidbox.bulk-import-start)
 * Added `enable-links` parameter for [AidboxQuery](broken-reference)
@@ -814,7 +814,7 @@ Minor updates:
 * Added [CapabilityStatement configuration](../api-1/api/other/metadata.md#configure-capabilitystatement) options.
 * Improved setting [PostgreSQL schema](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/broken-reference/README.md) for Aidbox tables.
 * Added option to set JWT private/public keys and secret[ via env](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/broken-reference/README.md).
-* Added [aidboxdb PostgreSQL 14.2 version](../storage-1/aidboxdb-image/). Supported versions are 14.2 and 13.6.
+* Added [aidboxdb PostgreSQL 14.2 version](../database/aidboxdb-image/). Supported versions are 14.2 and 13.6.
 * Added tutorial [how to fix broken dates](../tutorials/tutorials/).
 * Released Infrabox preview. Infrabox is a simple and efficient tool to deploy and manage production-ready Aidbox infrastructure on k8s.
 
@@ -997,7 +997,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 ## February 2021 - v:20210319
 
-* Builds of [aidboxdb](../storage-1/aidboxdb-image/) for PostgreSQL 11.11, 12.6, 13.2 are [released](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1\&ordering=last_updated).
+* Builds of [aidboxdb](../database/aidboxdb-image/) for PostgreSQL 11.11, 12.6, 13.2 are [released](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1\&ordering=last_updated).
 * Aidbox now supports deployment on top of Azure PostgreSQL.
 * Improvements of [$changes API](../api-1/other/usdsnapshot-usdwatch-and-usdversions-api.md): FHIR support, pagination, upper version limit. $changes is now available at the resource level.
 * [Enhancement of Transaction Bundle API](https://docs.aidbox.app/api-1/transaction) that allows to populate both resource and history tables in one transaction.
@@ -1027,7 +1027,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 * Search and sort by [\_createdAt](broken-reference) parameter
 * Search by tokens with [:text modifier](broken-reference)
 * Filters in [Change API](../api-1/other/usdsnapshot-usdwatch-and-usdversions-api.md)
-* [Azure API](../file-storage/azure.md)
+* [Azure API](../storage/azure.md)
 * [SQL Parameters](broken-reference)
 
 ## 0.4.9 \[9 March 2020]
@@ -1060,7 +1060,7 @@ Plenty of bug fixes!
 ### Features
 
 {% hint style="warning" %}
-Now references to contained resources are represented as `localRef` attribute in [Aidbox Format](../api-1/api/other/aidbox-and-fhir-formats.md)
+Now references to contained resources are represented as `localRef` attribute in [Aidbox Format](../storage-1/other/aidbox-and-fhir-formats.md)
 {% endhint %}
 
 * Managed SQL for FHIR search by [SearchQuery](../api-1/api/search-1/other/searchquery.md)

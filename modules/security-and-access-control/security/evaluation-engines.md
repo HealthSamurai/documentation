@@ -166,7 +166,7 @@ resource: {'a': 'value'}
           - _id: present?
           - id: present?
     ```
-*   **$reference** — parse `Reference` or string into [aidbox format](../../../api-1/api/other/aidbox-and-fhir-formats.md#references). It is useful to map FHIR reference into resourceType and id like this:
+*   **$reference** — parse `Reference` or string into [aidbox format](../../../storage-1/other/aidbox-and-fhir-formats.md#references). It is useful to map FHIR reference into resourceType and id like this:
 
     `{reference: "Patient/pid"}` => `{id: "pid", resourceType: "Patient"}`
 

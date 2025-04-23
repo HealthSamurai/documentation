@@ -17,7 +17,7 @@ CREATE TABLE "patient" (
 As you can see, resources are stored as JSONB documents in the **resource** column.
 
 {% hint style="info" %}
-Resources are stored in [Aidbox format](../api-1/api/other/aidbox-and-fhir-formats.md), which is more friendly for storage, and converted into FHIR in REST API on the fly!
+Resources are stored in [Aidbox format](../storage-1/other/aidbox-and-fhir-formats.md), which is more friendly for storage, and converted into FHIR in REST API on the fly!
 {% endhint %}
 
 You can access attributes of resources using [PostgreSQL JSON functions](https://www.postgresql.org/docs/11/functions-json.html):

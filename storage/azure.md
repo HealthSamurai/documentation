@@ -1,6 +1,6 @@
 # Azure Blob Storage
 
-Azure Blob Storage is used to store arbitrary unstructured data like images, files, backups, etc. Aidbox offers integration with Blob Storage to simplify upload and retrieval of data. You can read more on Blob Storage internals [here](https://docs.microsoft.com/en-gb/azure/storage/blobs/storage-blobs-introduction). All examples from this tutorial are executable in the [Aidbox REST console](../../../overview/aidbox-ui/rest-console-1.md).
+Azure Blob Storage is used to store arbitrary unstructured data like images, files, backups, etc. Aidbox offers integration with Blob Storage to simplify upload and retrieval of data. You can read more on Blob Storage internals [here](https://docs.microsoft.com/en-gb/azure/storage/blobs/storage-blobs-introduction). All examples from this tutorial are executable in the [Aidbox REST console](../overview/aidbox-ui/rest-console-1.md).
 
 ### Set up Azure storage account
 
@@ -85,7 +85,7 @@ url:  https://aidbox.blob.core.windows.net/avatars/pt-1.png?sr=signature
 
 Configure CORS in Azure if you want to send data from the browser:
 
-![](<../../../.gitbook/assets/image (7) (2).png>)
+![](<../.gitbook/assets/image (7) (2).png>)
 
 Now you can upload file from your UI using signed URL provided by Aidbox:
 

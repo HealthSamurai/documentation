@@ -57,8 +57,8 @@ Extensions **unavailable** since AidboxDB version 16:
 
 See also:
 
-{% content-ref url="../postgresql-extensions.md" %}
-[postgresql-extensions.md](../postgresql-extensions.md)
+{% content-ref url="../extensions.md" %}
+[extensions.md](../extensions.md)
 {% endcontent-ref %}
 
 ### Configuration
