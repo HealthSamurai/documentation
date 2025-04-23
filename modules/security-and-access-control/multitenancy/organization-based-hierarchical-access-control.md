@@ -68,7 +68,7 @@ The Organization-based FHIR API base url:
 <AIDBOX_BASE_URL>/Organization/<org-id>/fhir
 ```
 
-The Organization-based [Aidbox API ](../../../storage-1/other/aidbox-and-fhir-formats.md)base url:
+The Organization-based [Aidbox API ](../../../api-1/api/other/aidbox-and-fhir-formats.md)base url:
 
 ```
 <AIDBOX_BASE_URL>/Organization/<org-id>/aidbox

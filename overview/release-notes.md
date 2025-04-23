@@ -1027,7 +1027,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 * Search and sort by [\_createdAt](broken-reference) parameter
 * Search by tokens with [:text modifier](broken-reference)
 * Filters in [Change API](../api-1/other/usdsnapshot-usdwatch-and-usdversions-api.md)
-* [Azure API](../storage/azure.md)
+* [Azure API](../file-storage/azure.md)
 * [SQL Parameters](broken-reference)
 
 ## 0.4.9 \[9 March 2020]
@@ -1060,7 +1060,7 @@ Plenty of bug fixes!
 ### Features
 
 {% hint style="warning" %}
-Now references to contained resources are represented as `localRef` attribute in [Aidbox Format](../storage-1/other/aidbox-and-fhir-formats.md)
+Now references to contained resources are represented as `localRef` attribute in [Aidbox Format](../api-1/api/other/aidbox-and-fhir-formats.md)
 {% endhint %}
 
 * Managed SQL for FHIR search by [SearchQuery](../api-1/api/search-1/other/searchquery.md)
