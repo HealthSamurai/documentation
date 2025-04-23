@@ -8,7 +8,7 @@ Since the 2405 release, using Aidbox in FHIR schema validation engine is recomme
 [Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/setup)
 {% endhint %}
 
-Task Executor API is designed to allow implement task executor in any programming language and use it in Aidbox via REST requests with [RPC calls](../../../../../api-1/other/rpc-api.md).
+Task Executor API is designed to allow implement task executor in any programming language and use it in Aidbox via REST requests with [RPC calls](../../../../../api/other/rpc-api.md).
 
 ### `awf.task/poll`
 

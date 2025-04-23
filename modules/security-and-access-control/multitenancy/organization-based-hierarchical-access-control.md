@@ -68,7 +68,7 @@ The Organization-based FHIR API base url:
 <AIDBOX_BASE_URL>/Organization/<org-id>/fhir
 ```
 
-The Organization-based [Aidbox API ](../../../storage-1/other/aidbox-and-fhir-formats.md)base url:
+The Organization-based [Aidbox API ](../../../api/rest-api/other/aidbox-and-fhir-formats.md)base url:
 
 ```
 <AIDBOX_BASE_URL>/Organization/<org-id>/aidbox
@@ -169,7 +169,7 @@ PUT <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>/<id>
 <pre><code><strong>PATCH &#x3C;AIDBOX_BASE_URL>/Organization/&#x3C;org-id>/fhir/&#x3C;resource-type>/&#x3C;id>?[_method={ json-patch | merge-patch | fhirpath-patch }]
 </strong></code></pre>
 
-All PATCH methods are supported. See also [patch.md](../../../api-1/api/crud-1/patch.md "mention")
+All PATCH methods are supported. See also [patch.md](../../../api/rest-api/crud-1/patch.md "mention")
 
 ### Delete
 
@@ -197,7 +197,7 @@ The search API does not support search parameters:
 GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/Patient/$everything
 ```
 
-See also [usdeverything-on-patient.md](../../../api-1/api/usdeverything-on-patient.md "mention")
+See also [usdeverything-on-patient.md](../../../api/rest-api/usdeverything-on-patient.md "mention")
 
 ### $document
 
@@ -205,7 +205,7 @@ See also [usdeverything-on-patient.md](../../../api-1/api/usdeverything-on-patie
 GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/Composition/$document
 ```
 
-See also [usddocument.md](../../../api-1/api/other/usddocument.md "mention")
+See also [usddocument.md](../../../api/rest-api/other/usddocument.md "mention")
 
 ### History
 
@@ -285,7 +285,7 @@ entry:
     id: 'pt-4'
 </code></pre>
 
-See also [transaction.md](../../../api-1/transaction.md "mention")
+See also [transaction.md](../../../api/transaction.md "mention")
 
 ### Metadata
 
@@ -296,7 +296,7 @@ GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/metadata
 ### AidboxQuery
 
 {% hint style="info" %}
-[Learn more about AidboxQuery](../../../api-1/api/aidbox-search.md#aidboxquery).
+[Learn more about AidboxQuery](../../../api/rest-api/aidbox-search.md#aidboxquery).
 {% endhint %}
 
 To use `$query` endpoint under organization-based hierarchical access control, it is necessary to create explicitly `organization` param in `AidboxQuery`.
@@ -326,7 +326,7 @@ POST /Organization/<org-id>/aidbox/$graphql
 
 Since version 2503 GraphQL is supported in OrgBAC mode. Note that it can be accessed only on the non-FHIR endpoint, because our GraphQL implementation is slightly different from FHIR.
 
-See also: [graphql-api.md](../../../api-1/graphql-api.md "mention")
+See also: [graphql-api.md](../../../api/graphql-api.md "mention")
 
 ## Shared resource mode
 

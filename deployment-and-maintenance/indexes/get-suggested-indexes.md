@@ -27,7 +27,7 @@ Supported special FHIR parameters:
 Supported Aidbox search:
 
 * \_createdAt
-* [Dot expressions](../../api-1/api/aidbox-search.md#dot-expressions)
+* [Dot expressions](../../api/rest-api/aidbox-search.md#dot-expressions)
 
 Not supported:
 

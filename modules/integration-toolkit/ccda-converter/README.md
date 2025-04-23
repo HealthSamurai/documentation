@@ -242,7 +242,7 @@ Authorization: ...
 </ClinicalDocument>
 ```
 
-The source FHIR Document for this endpoint can be in either [FHIR or Aidbox format](../../../storage-1/other/aidbox-and-fhir-formats.md). Endpoint uses `Content-Type` header to understand which format is used. `Content-Type: application/json` means Aidbox format and `Content-Type: application/fhir+json` means FHIR format. So in the example above Aidbox format is used.
+The source FHIR Document for this endpoint can be in either [FHIR or Aidbox format](../../../api/rest-api/other/aidbox-and-fhir-formats.md). Endpoint uses `Content-Type` header to understand which format is used. `Content-Type: application/json` means Aidbox format and `Content-Type: application/fhir+json` means FHIR format. So in the example above Aidbox format is used.
 
 If FHIR Document format and `Content-Type` header are mismached then 422 error will be returned:
 

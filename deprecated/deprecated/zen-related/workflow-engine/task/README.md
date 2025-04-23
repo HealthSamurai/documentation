@@ -104,7 +104,7 @@ Finally, the status of tasks is always changed to `done`, either by an executor,
 
 ## Task User API
 
-[Task User API](task-user-api.md) allows users to manually control Aidbox tasks by [RPC methods](../../../../../api-1/other/rpc-api.md).
+[Task User API](task-user-api.md) allows users to manually control Aidbox tasks by [RPC methods](../../../../../api/other/rpc-api.md).
 
 <details>
 

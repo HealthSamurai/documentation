@@ -30,7 +30,7 @@ Resource examples and external (not-present) terminologies are not loaded into t
 
 3\. Validate resources against profiles
 
-Use FHIR [$validate](../../../../api-1/api/other/usdvalidate.md) operation or a CRUD request with a profile URL specified in `.meta.profile` or in `.profile` query parameters.
+Use FHIR [$validate](../../../../api/rest-api/other/usdvalidate.md) operation or a CRUD request with a profile URL specified in `.meta.profile` or in `.profile` query parameters.
 
 ## Zen FHIR packages
 

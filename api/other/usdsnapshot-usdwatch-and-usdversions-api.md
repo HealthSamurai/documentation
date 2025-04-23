@@ -31,7 +31,7 @@ Below are parameters to use in both resourceType and specific resource endpoints
 
 <table><thead><tr><th width="434">Parameter</th><th>Meaning</th></tr></thead><tbody><tr><td><code>version=&#x3C;version></code></td><td>Returns changes since the specified version</td></tr><tr><td><code>version=&#x3C;lower-version>,&#x3C;upper-version></code></td><td>Returns changes after the <code>lower-version</code> (exclusive) up to the<code>upper-version</code> (inclusive)</td></tr><tr><td><code>fhir=&#x3C;boolean></code></td><td>If set to <code>true</code> converts <code>changes.*.resource</code> to the FHIR format<br><em>(note</em>: <em>since Changes API is not <code>/fhir/</code> endpoint, the rest of the body isn't FHIR compliant)</em></td></tr><tr><td><code>omit-resources=&#x3C;boolean></code></td><td>If set to <code>true</code> omits resources leaving only <code>id</code> &#x26; <code>resourceType</code> fields</td></tr><tr><td><code>_count</code> &#x26; <code>_page</code></td><td>Work as described <a href="https://docs.aidbox.app/api-1/fhir-api/search-1/_count-and-_page">here</a></td></tr><tr><td><code>_total</code> &#x26; <code>_totalMethod</code></td><td>Work as described <a href="https://docs.aidbox.app/api-1/fhir-api/search-1/_total-or-_countmethod">here</a></td></tr></tbody></table>
 
-With parameters which start with [dot](../api/aidbox-search.md#dot-expressions) you can filter resources by equality, e.g. `.name.0.family=<string>`
+With parameters which start with [dot](../rest-api/aidbox-search.md#dot-expressions) you can filter resources by equality, e.g. `.name.0.family=<string>`
 
 ### Example
 
@@ -100,7 +100,7 @@ changes:
       given: [Amanda]
 ```
 
-We can filter events by [dot expressions](../api/aidbox-search.md#dot-expressions). Filtering Patient events by family name:
+We can filter events by [dot expressions](../rest-api/aidbox-search.md#dot-expressions). Filtering Patient events by family name:
 
 ```yaml
 GET /Patient/$changes?version=1&.name.0.family=Wood

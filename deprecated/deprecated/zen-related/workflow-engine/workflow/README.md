@@ -84,7 +84,7 @@ When the started activity is executed, the new decision task should execute the 
 
 ## Workflow User API
 
-[Workflow User API](task-user-api.md) allows users to manually control Aidbox workflows by [RPC methods](../../../../../api-1/other/rpc-api.md).
+[Workflow User API](task-user-api.md) allows users to manually control Aidbox workflows by [RPC methods](../../../../../api/other/rpc-api.md).
 
 <details>
 

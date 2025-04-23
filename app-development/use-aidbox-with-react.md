@@ -14,8 +14,8 @@ The guide helps you to explore the following Aidbox features:
 
 * [REST Console](../overview/aidbox-ui/rest-console-1.md): execute and debug HTTP requests directly within Aidbox.
 * [Access Control](../modules/security-and-access-control/security/): manage fine-grained data access through the API.
-* [Data Import endpoint](../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md): Efficiently load FHIR data into Aidbox.
-* [JavaScript SDK](../app-development/aidbox-sdk/aidbox-javascript-sdk.md): Streamline JS app development on Aidbox effortlessly.
+* [Data Import endpoint](../api/bulk-api-1/usdimport-and-fhir-usdimport.md): Efficiently load FHIR data into Aidbox.
+* [JavaScript SDK](aidbox-sdk/aidbox-javascript-sdk.md): Streamline JS app development on Aidbox effortlessly.
 
 ## 1. Run Aidbox and set up Access Control
 
@@ -77,7 +77,7 @@ inputs:
 ```
 
 {% hint style="info" %}
-The [**$import endpoint**](../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md) is your go-to tool for loading FHIR data asynchronously into Aidbox. It effortlessly loads data from a public link specified in your HTTP request without performing any validation. Learn more.
+The [**$import endpoint**](../api/bulk-api-1/usdimport-and-fhir-usdimport.md) is your go-to tool for loading FHIR data asynchronously into Aidbox. It effortlessly loads data from a public link specified in your HTTP request without performing any validation. Learn more.
 {% endhint %}
 
 ## 3. Clone and Connect the sample app to Aidbox
@@ -115,7 +115,7 @@ npm run dev
 
 ## Next Steps
 
-* Explore the [Aidbox JavaScript SDK](../app-development/aidbox-sdk/aidbox-javascript-sdk.md) for advanced features.
+* Explore the [Aidbox JavaScript SDK](aidbox-sdk/aidbox-javascript-sdk.md) for advanced features.
 * Unlock additional capabilities of [Aidbox UI](../overview/aidbox-ui/).
 * Dive into the built-in [Access Control module](../modules/security-and-access-control/security/).
-* Play around with the [$import endpoint](../api-1/bulk-api-1/usdimport-and-fhir-usdimport.md) to load FHIR data.
+* Play around with the [$import endpoint](../api/bulk-api-1/usdimport-and-fhir-usdimport.md) to load FHIR data.

@@ -8,7 +8,7 @@ Since the 2405 release, using Aidbox in FHIR schema validation engine is recomme
 [Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/setup)
 {% endhint %}
 
-Workflow User API allows users to manually control Aidbox workflows by [RPC methods](../../../../../api-1/other/rpc-api.md).
+Workflow User API allows users to manually control Aidbox workflows by [RPC methods](../../../../../api/other/rpc-api.md).
 
 ### `awf.workflow/create-and-execute`
 

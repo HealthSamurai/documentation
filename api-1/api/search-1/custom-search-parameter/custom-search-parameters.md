@@ -11,7 +11,7 @@ To create a SearchParameter, [FHIRSchema](../../../../modules/profiling-and-vali
 
 ## Before you begin <a href="#before-you-begin" id="before-you-begin"></a>
 
-* See what FHIR Search is [here](../../fhir-search/), what [SearchParameter is here](../../fhir-search/searchparameter.md)
+* See what FHIR Search is [here](../../../../api/rest-api/fhir-search/), what [SearchParameter is here](../../../../api/rest-api/fhir-search/searchparameter.md)
 * Set up the local Aidbox instance using the getting started [guide](https://docs.aidbox.app/getting-started/run-aidbox-locally-with-docker/run-aidbox-locally)
 
 ## Get any SearchParameter definition
@@ -44,7 +44,7 @@ Clicking on `Patient-active` SearchParameter gives us an actual definition of it
 }
 ```
 
-You can read more about all these fields in [#searchparameter-fields](../../fhir-search/searchparameter.md#searchparameter-fields "mention")
+You can read more about all these fields in [#searchparameter-fields](../../../../api/rest-api/fhir-search/searchparameter.md#searchparameter-fields "mention")
 
 The main things:
 
@@ -80,7 +80,7 @@ Accept: application/json
 }
 ```
 
-Here, the main fields are `type` and `expression`.  String type means that we search for strings in a case-insensitive, accent-insensitive way. See also [#search-parameter-types](../../fhir-search/searchparameter.md#search-parameter-types "mention")
+Here, the main fields are `type` and `expression`.  String type means that we search for strings in a case-insensitive, accent-insensitive way. See also [#search-parameter-types](../../../../api/rest-api/fhir-search/searchparameter.md#search-parameter-types "mention")
 
 The expression field uses [FHIRPath](https://hl7.org/fhir/fhirpath.html) and defines that we search in "extension" field, filter all the extensions by the URL, and get their value. Note that we use `.as(string)` to match [the string extension choice type](https://www.hl7.org/fhir/extensibility.html).
 

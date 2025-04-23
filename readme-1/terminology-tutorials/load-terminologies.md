@@ -86,7 +86,7 @@ entry:
     description: This value set includes all ICD-10 codes.
 ```
 
-Now we can search diagnoses with, for example, [\_ilike](../../api-1/api/fhir-search/searchparameter.md#ilike) parameter:
+Now we can search diagnoses with, for example, [\_ilike](../../api/rest-api/fhir-search/searchparameter.md#ilike) parameter:
 
 ```yaml
 GET /Concept?system=ICD-10&_ilike=flue

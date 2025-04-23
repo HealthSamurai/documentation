@@ -477,6 +477,6 @@ _name:
 
 See also:
 
-{% content-ref url="search-1/other/how-to-use-multilingual-search.md" %}
-[how-to-use-multilingual-search.md](search-1/other/how-to-use-multilingual-search.md)
+{% content-ref url="../../api-1/api/search-1/other/how-to-use-multilingual-search.md" %}
+[how-to-use-multilingual-search.md](../../api-1/api/search-1/other/how-to-use-multilingual-search.md)
 {% endcontent-ref %}

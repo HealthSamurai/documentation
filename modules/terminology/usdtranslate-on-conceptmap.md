@@ -119,7 +119,7 @@ java -jar [JAR_PATH] cmndj -i PATH/TO/CONCEPT_MAP.json -o PATH/TO/OUTPUT_BUNDLE.
 
 The output bundle consists of ConceptMap meta resource and the set of ConceptMapRule resources.
 
-Use [Bulk API ](../../api-1/bulk-api-1/aidbox.bulk-data-import.md)to upload output bundle.
+Use [Bulk API ](../../api/bulk-api-1/aidbox.bulk-data-import.md)to upload output bundle.
 
 ### How to get full ConceptMap resource
 

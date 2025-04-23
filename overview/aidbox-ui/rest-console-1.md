@@ -8,7 +8,7 @@ description: Learn how to use REST Console to work with your Aidbox via REST API
 
 ![REST Console UI](<../../.gitbook/assets/image (81).png>)
 
-REST Console is designed to work with your Aidbox via [REST API](../../api-1/api/). To make a request type an HTTP method (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`) and an operation endpoint (for example`/Patient` — _please pay attention to the capital letter in the resource name_).
+REST Console is designed to work with your Aidbox via [REST API](../../api/rest-api/). To make a request type an HTTP method (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`) and an operation endpoint (for example`/Patient` — _please pay attention to the capital letter in the resource name_).
 
 Right after the first line you can put HTTP headers. E.g. to use YAML format you can put the following header:
 
@@ -694,7 +694,7 @@ Status: 200
 {% endtabs %}
 
 {% hint style="info" %}
-Please check [Search API](../../api-1/api/fhir-search/) for more details.
+Please check [Search API](../../api/rest-api/fhir-search/) for more details.
 {% endhint %}
 
 ### Delete Patient
