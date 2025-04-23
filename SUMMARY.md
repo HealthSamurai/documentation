@@ -278,7 +278,7 @@
       * [Form customisation in Theme Editor](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-customisation.md)
       * [Form signature](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-signature.md)
       * [How-to guides](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/README.md)
-        * [How to: populate forms with data](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to.md)
+        * [How to: populate forms with data](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-populate-form.md)
         * [How to extract data from forms](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-extract-data-from-forms.md)
       * [Multilingual forms](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/multilingual-forms.md)
     * [Import Questionnaire](modules/aidbox-forms/aidbox-ui-builder-alpha/import-fhir-questionnaire.md)
