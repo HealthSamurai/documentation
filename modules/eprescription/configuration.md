@@ -27,6 +27,8 @@ Here is a full list of environment variables used by the module:
 
 
 
+* `SURESCRIPTS_E_PRESCRIBING_VERSION` <sub>_(since 2.0)_</sub> - Surescripts version for prescribing: v6\_1, v6\_2 or v7\_0
+* `SURESCRIPTS_DIRECTORY_MESSAGING_VERSION` <sub>_(since 2.0)_</sub> - Surescripts version for directories: v6\_1 or v6\_2
 * `SURESCRIPTS_ENV` – Surescripts environment (`staging` or `production`)
 * `SURESCRIPTS_PORTAL_NAME` – Surescripts provided portal name
 * `SURESCRIPTS_PORTAL_ID` – Surescripts provided portal ID
