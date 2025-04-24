@@ -25,7 +25,10 @@ HL7v2 module includes the following resource types:
 <tr><td width="290">extensions.<strong>after</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">extensions.<strong>msh</strong></td><td width="70">0..1</td><td width="150">string</td><td>Message header information.</td></tr>
 <tr><td width="290">extensions.<strong>segment</strong></td><td width="70">0..1</td><td width="150">string</td><td>HL7v2 segment identifier.</td></tr>
-<tr><td width="290">extensions.<strong>fields</strong></td><td width="70">0..*</td><td width="150"></td><td>Fields within the segment.</td></tr>
+<tr><td width="290">extensions.<strong>fields</strong></td><td width="70">0..*</td><td width="150">BackboneElement</td><td>Fields within the segment.</td></tr>
+<tr><td width="290">extensions.<strong>fields</strong>.<strong>key</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">extensions.<strong>fields</strong>.<strong>name</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">extensions.<strong>fields</strong>.<strong>type</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">extensions.<strong>quantifier</strong></td><td width="70">0..1</td><td width="150">string</td><td>Occurrence quantifier. 
 
 <strong>Allowed values</strong>: * | ? | +</td></tr>
