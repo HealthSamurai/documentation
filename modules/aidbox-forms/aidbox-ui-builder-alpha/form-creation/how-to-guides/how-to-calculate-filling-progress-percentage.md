@@ -57,3 +57,60 @@ It also takes into consideration items that should not be taken into account:
 - readonly items
 - group items
 - display items
+
+
+## Final Questionnaire with example items.
+
+> In this example we replace typical numerical widget with slider to make it more visual, but feel free to revert back
+
+```json
+{
+  "resourceType": "Questionnaire",
+  "title": "Form with progress",
+  "status": "draft",
+  "url": "http://forms.aidbox.io/questionnaire/form-with-progress",
+  "item": [
+    {
+      "type": "integer",
+      "text": "Q1",
+      "linkId": "q1"
+    },
+    {
+      "text": "Q2",
+      "linkId": "qwBWalBR",
+      "type": "string"
+    },
+    {
+      "text": "Q3",
+      "linkId": "q3",
+      "type": "decimal"
+    },
+    {
+      "text": "Progress",
+      "linkId": "progress",
+      "repeats": false,
+      "type": "integer",
+      "readOnly": true,
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "code": "slider"
+              }
+            ]
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+          "valueExpression": {
+            "expression": "(%resource.repeat(item)\n.where(linkId in \n%questionnaire.repeat(item).where(\ntype != 'group' \nand type != 'display' \nand extension.where(url = 'http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression').exists().not()\nand extension.where(url = 'http://hl7.org/fhir/StructureDefinition/questionnaire-hidden' and value = true).exists().not()\nand (readOnly.exists().not() or readOnly = false)\n).linkId).answer.count() \n/ \n%resource.repeat(item).where(linkId in \n%questionnaire.repeat(item).where(\ntype != 'group' \nand type != 'display' \nand extension.where(url = 'http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression').exists().not()\nand extension.where(url = 'http://hl7.org/fhir/StructureDefinition/questionnaire-hidden' and value = true).exists().not()\nand (readOnly.exists().not() or readOnly = false)\n).linkId).count() \n* 100).round()",
+            "language": "text/fhirpath"
+          }
+        }
+      ]
+    }
+  ]
+}
+```
