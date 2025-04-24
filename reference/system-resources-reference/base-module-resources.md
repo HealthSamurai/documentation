@@ -304,15 +304,15 @@ Base module includes the following resource types:
 </tr>
 </thead>
 <tbody>
-<tr><td width="290">resource</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to the resource type this search applies to.</td></tr>
-<tr><td width="290">where</td><td width="70">0..1</td><td width="150">string</td><td>SQL WHERE clause for the search.</td></tr>
+<tr><td width="290">resource</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to the resource type this search applies to. ResourceType is always Entity</td></tr>
+<tr><td width="290">where</td><td width="70">0..1</td><td width="150">string</td><td>SQL to use in the WHERE expression. Supports `{{table}}` and `{{param}}`.</td></tr>
 <tr><td width="290">name</td><td width="70">0..1</td><td width="150">string</td><td>Name of the search parameter.</td></tr>
 <tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
-<tr><td width="290">param-parser</td><td width="70">0..1</td><td width="150">string</td><td>Parser to use for the search parameter. 
+<tr><td width="290">param-parser</td><td width="70">0..1</td><td width="150">string</td><td>Parse value as string, identifier, or reference. See below. 
 
 <strong>Allowed values</strong>: token | reference</td></tr>
 <tr><td width="290">module</td><td width="70">0..1</td><td width="150">string</td><td>Module that this search belongs to.</td></tr>
-<tr><td width="290">order-by</td><td width="70">0..1</td><td width="150">string</td><td>Default sort order for search results.</td></tr>
+<tr><td width="290">order-by</td><td width="70">0..1</td><td width="150">string</td><td>SQL to use in the ORDER BY expression. Supports {{table}} and {{param}}. Note that it is used only when _sort=<name> present in the query.</td></tr>
 <tr><td width="290">token-sql</td><td width="70">0..1</td><td width="150">BackboneElement</td><td>SQL templates for token parameter handling.</td></tr>
 <tr><td width="290">token-sql.<strong>text</strong></td><td width="70">0..1</td><td width="150">string</td><td>SQL template for text search.</td></tr>
 <tr><td width="290">token-sql.<strong>both</strong></td><td width="70">0..1</td><td width="150">string</td><td>SQL template when both system and code are provided.</td></tr>
@@ -320,10 +320,10 @@ Base module includes the following resource types:
 <tr><td width="290">token-sql.<strong>only-code</strong></td><td width="70">0..1</td><td width="150">string</td><td>SQL template when only code is provided.</td></tr>
 <tr><td width="290">token-sql.<strong>text-format</strong></td><td width="70">0..1</td><td width="150">string</td><td>Format for text search.</td></tr>
 <tr><td width="290">token-sql.<strong>no-system</strong></td><td width="70">0..1</td><td width="150">string</td><td>SQL template when no system is provided.</td></tr>
-<tr><td width="290">multi</td><td width="70">0..1</td><td width="150">string</td><td>How multiple values for this parameter should be handled. 
+<tr><td width="290">multi</td><td width="70">0..1</td><td width="150">string</td><td>If you set multi = 'array', parameters will be coerced as PostgreSQL array. 
 
 <strong>Allowed values</strong>: array</td></tr>
-<tr><td width="290">format</td><td width="70">0..1</td><td width="150">string</td><td>Format of the search parameter.</td></tr></tbody>
+<tr><td width="290">format</td><td width="70">0..1</td><td width="150">string</td><td>Replaces `?` with the actual value provided in the search query. Useful to use in ILIKE SQL expression.</td></tr></tbody>
 </table>
 
 
@@ -885,6 +885,13 @@ Base module includes the following resource types:
 <strong>Allowed values</strong>: rest-hook</td></tr>
 <tr><td width="290">channel.<strong>endpoint</strong></td><td width="70">1..1</td><td width="150">url</td><td>URL endpoint where notifications are sent.</td></tr>
 <tr><td width="290">channel.<strong>payload</strong></td><td width="70">0..1</td><td width="150"></td><td>Content to be sent in the notification.</td></tr>
+<tr><td width="290">channel.<strong>payload</strong>.<strong>content</strong></td><td width="70">0..1</td><td width="150">code</td><td>
+
+<strong>Allowed values</strong>: id-only | full-resource</td></tr>
+<tr><td width="290">channel.<strong>payload</strong>.<strong>contentType</strong></td><td width="70">0..1</td><td width="150">code</td><td>
+
+<strong>Allowed values</strong>: json | fhir+json</td></tr>
+<tr><td width="290">channel.<strong>payload</strong>.<strong>context</strong></td><td width="70">0..1</td><td width="150"></td><td></td></tr>
 <tr><td width="290">identifier</td><td width="70">0..*</td><td width="150">Identifier</td><td>Business identifiers for the subscription.</td></tr>
 <tr><td width="290">status</td><td width="70">0..1</td><td width="150">code</td><td>Current status of the subscription. 
 
