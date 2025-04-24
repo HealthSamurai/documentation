@@ -1,26 +1,35 @@
-# How to: calculate percentage of filled out answers.
+# How to: calculate form filling percentage
 
-## Problem
+## What is form filling percentage
 
-Sometimes, especially for long forms, it's useful to have some sort of filling progress indicator. It can be used by end user to understand how much is left, and also it usefull to track progress by system owner and make some analysys.
+Form filling percentage is a proportion of a form that has been completed by a user. It is a metric commonly used in UX research, web analytics, and digital form management to evaluate how users interact with forms — whether on websites, applications, or platforms such as surveys, patient intake forms, or insurance claim submissions.
+
+**Why it matters**
+
+Data completeness is essential for downstream use (e.g., analytics, clinical decision support).
+User feedback: Form filling percentage gives users a sense of progress and can reduce drop-off rates.
+
+## Example Use Case
+A patient intake app displays a FHIR Questionnaire for demographics and medical history. The QuestionnaireResponse captures patient input. You want to show “78% complete” based on how many fields the patient filled before submission.
 
 ## Solution 
 
-We can define a Questionnaire.item which smartly calculates progress, and left it in QuestionnaireResponse.
+In this tutorial, we will calculate a form filling percentage using the following formula: 
 
-It's not easy and straightforward way to do this - Questionnaire can have a lot of dynamicity and several groups of the questions can be disabled or enabled by some circumstances. 
-
-In this regard our solution has a drawback - it's computes only enabled items and in highly dynamic forms you progress can go back - because one of answers triggers new section of answers to be enabled.
+Form Filling Percentage=(Number of Answered Items/ Total Questionnaire Items)×100
 
 
-### Warn
+To show the form filling progress, we define a special Questionnaire.item which calculates the form filling percentage and leave it in QuestionnaireResponse.
+
+
+### Warning
 
 This solution will work correctly with Aidbox version v2503 or later (available from March 25, 2025, if you're using the Edge channel)
 
 
-## Calculate progress of filling form
+## Steps to calculate the form filling percentage
 
-We need to create an item with `type = integer` and set `readOnly = true`.
+To calculate the form fillinf progress, we have to create an item with `type = integer` and set `readOnly = true`.
 
 This item should be placed at the end of the Questionnaire.item array and must include a calculatedExpression with the following value:
 
@@ -49,7 +58,12 @@ and (readOnly.exists().not() or readOnly = false)
 
 This expression identifies all items that should be answered and that have been already answered.
 
-It also takes into consideration items that should not be taken into account:
+**Specifics of the approach:**
+
+1. Considers nested items (e.g., groups of questions)
+2. For Questionnaire with enableWhen logic (conditional questions that appear based on previous answers): only enabled items are taken into account when calculating the form filling percentage.
+This may result in form filling percentage decrease when a user answer triggers a new section of answers to be enabled.
+3. It also takes into consideration items that should not be taken into account:
 
 - hidden items
 - disabled items
@@ -61,7 +75,7 @@ It also takes into consideration items that should not be taken into account:
 
 ## Final Questionnaire with example items.
 
-> In this example we replace typical numerical widget with slider to make it more visual, but feel free to revert back
+> In this example we replace typical numerical widget with slider to make it more visual but feel free to revert back:
 
 ```json
 {
