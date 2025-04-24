@@ -190,7 +190,7 @@ AWF module includes the following resource types:
 <tr><td width="290">subscription.<strong>keys</strong>.<strong>p256dh</strong></td><td width="70">0..1</td><td width="150">string</td><td>Public key for the subscription (P-256 Diffie-Hellman).</td></tr>
 <tr><td width="290">user</td><td width="70">0..1</td><td width="150"></td><td>Reference to the user who owns this subscription.</td></tr>
 <tr><td width="290">user.<strong>id</strong></td><td width="70">0..1</td><td width="150">string</td><td>User identifier.</td></tr>
-<tr><td width="290">user.<strong>resourceType</strong></td><td width="70">0..1</td><td width="150"></td><td>Fixed value indicating this is a reference to a User resource.</td></tr>
+<tr><td width="290">user.<strong>resourceType</strong></td><td width="70">0..1</td><td width="150">string</td><td>Fixed value indicating this is a reference to a User resource.</td></tr>
 <tr><td width="290">app</td><td width="70">0..1</td><td width="150">string</td><td></td></tr></tbody>
 </table>
 
