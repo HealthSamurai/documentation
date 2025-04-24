@@ -12,23 +12,34 @@ Aidbox ePrescription is a powerful **pluggable module** designed to enable healt
 
 ## Features
 
+All features are built with FHIR compatibility in mind, eliminating the need for custom resource mapping. Simply leverage standard FHIR resources to get started.
+
+#### Directories management
+
 * Synchronize pharmacies directly to Aidbox
-* Maintain Surescripts providers locations
+* Get all providers locations
+* Maintain Surescripts providers locations (add / update / disable)
+
+#### Prescriptions management
+
 * Send new prescription
 * Send cancellation request
 * Handle change request (under development)
 * Handle renewal request (under development)
-* FDB (First DataBank) integration\
-  **You will need API key to use these features.**
-  * Medication and allergies search
-  * Drug-drug and drug-allergy interactions checks
-
-All features are built with FHIR compatibility in mind, eliminating the need for custom resource mapping. Simply leverage standard FHIR resources to get started.\
-
 
 {% hint style="warning" %}
 Controlled substances currently not supported, but we are working on it.
 {% endhint %}
+
+#### Medications
+
+* FDB (First DataBank) integration\
+  **You will need API key to use these features.**
+  * Medication and allergies search
+  * Get common SIGs for medications
+  * Drug-drug and drug-allergy interactions checks
+* RxNorm integration
+  * Medication search
 
 ## Requirements
 
