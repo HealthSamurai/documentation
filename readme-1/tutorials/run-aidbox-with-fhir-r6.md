@@ -19,6 +19,12 @@ FHIR 6.0.0-ballot3 was published on **April 3, 2025**, introducing new resources
 
 ## Run locally
 
+{% hint style="warning" %}
+<img src="../../.gitbook/assets/docker.png" alt="" data-size="original">
+
+Please **make sure** that both [Docker & Docker Compose](https://docs.docker.com/engine/install/) are installed.
+{% endhint %}
+
 1. Create a working directory:
 
 ```bash
