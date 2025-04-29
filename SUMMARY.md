@@ -457,6 +457,8 @@
   * [Prescribing](modules/eprescription/prescribing/README.md)
     * [NewRx Message](modules/eprescription/prescribing/newrx-message.md)
     * [CancelRx Message](modules/eprescription/prescribing/cancelrx-message.md)
+  * [Directory](modules/eprescription/directory/README.md)
+    * [DirectoryDownload Message](modules/eprescription/directory/directorydownload-message.md)
   * [Medications](modules/eprescription/medications/README.md)
     * [FDB](modules/eprescription/medications/fdb.md)
   * [Tutorials](modules/eprescription/tutorials/README.md)
