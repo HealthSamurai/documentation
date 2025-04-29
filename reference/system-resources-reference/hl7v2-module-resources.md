@@ -32,7 +32,7 @@ HL7v2 module includes the following resource types:
 <tr><td width="290">extensions.<strong>fields</strong>.<strong>type</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">extensions.<strong>quantifier</strong></td><td width="70">0..1</td><td width="150">string</td><td>Occurrence quantifier. 
 
-<strong>Allowed values</strong>: * | ? | +</td></tr>
+<strong>Allowed values</strong>: `*` | `?` | `+`</td></tr>
 <tr><td width="290">isStrict</td><td width="70">0..1</td><td width="150">boolean</td><td>Whether strict validation should be applied.</td></tr>
 <tr><td width="290">mapping</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to a mapping resource for message transformation. 
 
@@ -67,7 +67,7 @@ HL7v2 module includes the following resource types:
 <tr><td width="290">src</td><td width="70">1..1</td><td width="150">string</td><td>Original source text of the HL7v2 message.</td></tr>
 <tr><td width="290">status</td><td width="70">1..1</td><td width="150">string</td><td>Processing status of the message (received, processed, or error). 
 
-<strong>Allowed values</strong>: received | processed | error</td></tr>
+<strong>Allowed values</strong>: `received` | `processed` | `error`</td></tr>
 <tr><td width="290">type</td><td width="70">0..1</td><td width="150">code</td><td>Message type code from the HL7v2 message.</td></tr></tbody>
 </table>
 
