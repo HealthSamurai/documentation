@@ -15,7 +15,7 @@ To send a CancelRx message, follow these steps:
 
 #### Required FHIR Resources
 
-CancelRx requires the same FHIR resources as [NewRx](newrx-message.md) message, with identical validation rules and required fields. The only difference is that for CancelRx the MedicationRequest must be in either "active" or "completed" status.
+CancelRx requires the same FHIR resources as [NewRx](newrx-message.md) message, with identical validation rules and required fields. The only difference is that for CancelRx the MedicationRequest **must be in either "active" or "completed" status**.
 
 #### Status Management
 

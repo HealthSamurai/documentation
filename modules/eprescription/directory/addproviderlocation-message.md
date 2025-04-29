@@ -21,7 +21,7 @@ The following FHIR resources are needed to create an AddProviderLocation message
    * Links prescriber to their organization/location
 2. **Practitioner** (Required)
    * Must have NPI identifier
-   * Must NOT have SPI (use update provider flow instead)
+   * Must NOT have SPI (use [update provider flow](updateproviderlocation-message.md) instead)
    * Must have name
    * Contains prescriber's information
 3. **Location** (Required)

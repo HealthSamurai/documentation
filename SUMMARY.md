@@ -460,6 +460,7 @@
   * [Directory](modules/eprescription/directory/README.md)
     * [DirectoryDownload Message](modules/eprescription/directory/directorydownload-message.md)
     * [AddProviderLocation Message](modules/eprescription/directory/addproviderlocation-message.md)
+    * [UpdateProviderLocation Message](modules/eprescription/directory/updateproviderlocation-message.md)
   * [Medications](modules/eprescription/medications/README.md)
     * [FDB](modules/eprescription/medications/fdb.md)
   * [Tutorials](modules/eprescription/tutorials/README.md)
