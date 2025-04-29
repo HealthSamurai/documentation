@@ -456,6 +456,7 @@
   * [Pharmacies synchronization](modules/eprescription/pharmacies-synchronization.md)
   * [Prescribing](modules/eprescription/prescribing/README.md)
     * [NewRx Message](modules/eprescription/prescribing/newrx-message.md)
+    * [CancelRx Message](modules/eprescription/prescribing/cancelrx-message.md)
   * [Medications](modules/eprescription/medications/README.md)
     * [FDB](modules/eprescription/medications/fdb.md)
   * [Tutorials](modules/eprescription/tutorials/README.md)

@@ -22,8 +22,8 @@ All features are built with FHIR compatibility in mind, eliminating the need for
 
 #### Prescriptions management
 
-* Send new prescription
-* Send cancellation request
+* Send new prescription ([NewRx](prescribing/newrx-message.md))
+* Send cancellation request ([CancelRx](prescribing/cancelrx-message.md))
 * Handle change request (under development)
 * Handle renewal request (under development)
 
