@@ -60,7 +60,7 @@ Base module includes the following resource types:
 <tr><td width="290">text</td><td width="70">0..1</td><td width="150">string</td><td>Human-readable description of the job.</td></tr>
 <tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td>Type of job scheduling pattern. 
 
-<strong>Allowed values</strong>: periodic | each-day</td></tr></tbody>
+<strong>Allowed values</strong>: `periodic` | `each-day`</td></tr></tbody>
 </table>
 
 
@@ -130,7 +130,7 @@ Base module includes the following resource types:
 <tr><td width="290">result</td><td width="70">0..1</td><td width="150">Object</td><td>Result data from the migration execution.</td></tr>
 <tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>Current status of the migration. 
 
-<strong>Allowed values</strong>: pending | done | error</td></tr>
+<strong>Allowed values</strong>: `pending` | `done` | `error`</td></tr>
 <tr><td width="290">text</td><td width="70">0..1</td><td width="150">string</td><td>Human-readable description of the migration.</td></tr></tbody>
 </table>
 
@@ -173,7 +173,7 @@ Base module includes the following resource types:
 <tr><td width="290">query</td><td width="70">1..1</td><td width="150">string</td><td>SQL query string.</td></tr>
 <tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td>Type of query operation. 
 
-<strong>Allowed values</strong>: query | execute</td></tr></tbody>
+<strong>Allowed values</strong>: `query` | `execute`</td></tr></tbody>
 </table>
 
 
@@ -288,7 +288,7 @@ Base module includes the following resource types:
 <tr><td width="290">transform.<strong>request</strong>.<strong>template</strong></td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to a template for transformation.</td></tr>
 <tr><td width="290">transform.<strong>request</strong>.<strong>part</strong></td><td width="70">1..1</td><td width="150">string</td><td>Part of the request to transform. 
 
-<strong>Allowed values</strong>: body</td></tr></tbody>
+<strong>Allowed values</strong>: `body`</td></tr></tbody>
 </table>
 
 
@@ -309,12 +309,12 @@ Base module includes the following resource types:
 <tr><td width="290">module</td><td width="70">0..1</td><td width="150">string</td><td>Module that this search belongs to.</td></tr>
 <tr><td width="290">multi</td><td width="70">0..1</td><td width="150">string</td><td>If you set multi = 'array', parameters will be coerced as PostgreSQL array. 
 
-<strong>Allowed values</strong>: array</td></tr>
+<strong>Allowed values</strong>: `array`</td></tr>
 <tr><td width="290">name</td><td width="70">0..1</td><td width="150">string</td><td>Name of the search parameter.</td></tr>
 <tr><td width="290">order-by</td><td width="70">0..1</td><td width="150">string</td><td>SQL to use in the ORDER BY expression. Supports {{table}} and {{param}}. Note that it is used only when _sort=<name> present in the query.</td></tr>
 <tr><td width="290">param-parser</td><td width="70">0..1</td><td width="150">string</td><td>Parse value as string, identifier, or reference. See below. 
 
-<strong>Allowed values</strong>: token | reference</td></tr>
+<strong>Allowed values</strong>: `token` | `reference`</td></tr>
 <tr><td width="290">resource</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to the resource type this search applies to. ResourceType is always Entity</td></tr>
 <tr><td width="290">token-sql</td><td width="70">0..1</td><td width="150">BackboneElement</td><td>SQL templates for token parameter handling.</td></tr>
 <tr><td width="290">token-sql.<strong>text</strong></td><td width="70">0..1</td><td width="150">string</td><td>SQL template for text search.</td></tr>
@@ -346,7 +346,7 @@ Base module includes the following resource types:
 <tr><td width="290">endpoint.<strong>url</strong></td><td width="70">0..1</td><td width="150">string</td><td>URL of the endpoint.</td></tr>
 <tr><td width="290">endpoint.<strong>type</strong></td><td width="70">0..1</td><td width="150">code</td><td>Type of endpoint protocol. 
 
-<strong>Allowed values</strong>: http-rpc | ws-rpc | native</td></tr>
+<strong>Allowed values</strong>: `http-rpc` | `ws-rpc` | `native`</td></tr>
 <tr><td width="290">entities</td><td width="70">0..1</td><td width="150">Object</td><td>Entities defined by the app.</td></tr>
 <tr><td width="290">hooks</td><td width="70">0..1</td><td width="150">Object</td><td>Hooks configuration for the app.</td></tr>
 <tr><td width="290">migrations</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>List of migrations for this app.</td></tr>
@@ -357,7 +357,7 @@ Base module includes the following resource types:
 <tr><td width="290">subscriptions</td><td width="70">0..1</td><td width="150">Object</td><td>Subscriptions configuration for the app.</td></tr>
 <tr><td width="290">type</td><td width="70">1..1</td><td width="150">code</td><td>Type of application. 
 
-<strong>Allowed values</strong>: app | addon</td></tr></tbody>
+<strong>Allowed values</strong>: `app` | `addon`</td></tr></tbody>
 </table>
 
 
@@ -388,7 +388,7 @@ Base module includes the following resource types:
 <tr><td width="290">serviceAccount.<strong>secret-key</strong></td><td width="70">0..1</td><td width="150">string</td><td>Secret key for service account authentication.</td></tr>
 <tr><td width="290">storageBackend</td><td width="70">0..1</td><td width="150">string</td><td>Type of storage backend to use. 
 
-<strong>Allowed values</strong>: gcp | aws | local</td></tr>
+<strong>Allowed values</strong>: `gcp` | `aws` | `local`</td></tr>
 <tr><td width="290">targetResourceType</td><td width="70">0..1</td><td width="150">string</td><td>Resource type to be archived.</td></tr></tbody>
 </table>
 
@@ -441,7 +441,7 @@ Base module includes the following resource types:
 <tr><td width="290">schemas</td><td width="70">0..*</td><td width="150">string</td><td>List of schemas to validate against.</td></tr>
 <tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>Current status of the validation run. 
 
-<strong>Allowed values</strong>: in-progress | complete</td></tr>
+<strong>Allowed values</strong>: `in-progress` | `complete`</td></tr>
 <tr><td width="290">valid</td><td width="70">0..1</td><td width="150">integer</td><td>Count of valid resources found.</td></tr></tbody>
 </table>
 
@@ -462,7 +462,7 @@ Base module includes the following resource types:
 <tr><td width="290">cycle</td><td width="70">0..1</td><td width="150">boolean</td><td>Whether the sequence should cycle when reaching max/min value.</td></tr>
 <tr><td width="290">data_type</td><td width="70">0..1</td><td width="150">string</td><td>PostgreSQL data type for the sequence. 
 
-<strong>Allowed values</strong>: smallint | integer | bigint</td></tr>
+<strong>Allowed values</strong>: `smallint` | `integer` | `bigint`</td></tr>
 <tr><td width="290">increment</td><td width="70">0..1</td><td width="150">integer</td><td>Value to increment by for each sequence call.</td></tr>
 <tr><td width="290">maxvalue</td><td width="70">0..1</td><td width="150">integer</td><td>Maximum value for the sequence.</td></tr>
 <tr><td width="290">minvalue</td><td width="70">0..1</td><td width="150">integer</td><td>Minimum value for the sequence.</td></tr>
@@ -488,7 +488,7 @@ Base module includes the following resource types:
 <tr><td width="290">resources</td><td width="70">0..*</td><td width="150">string</td><td>List of resource types this subscription applies to.</td></tr>
 <tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td>Type of subscription execution model. 
 
-<strong>Allowed values</strong>: sync | async</td></tr></tbody>
+<strong>Allowed values</strong>: `sync` | `async`</td></tr></tbody>
 </table>
 
 
@@ -546,10 +546,10 @@ Base module includes the following resource types:
 <tr><td width="290">description</td><td width="70">0..1</td><td width="150">string</td><td>Human-readable description of the entity.</td></tr>
 <tr><td width="290">history</td><td width="70">0..1</td><td width="150">string</td><td>History tracking mode for this entity. 
 
-<strong>Allowed values</strong>: none | diff</td></tr>
+<strong>Allowed values</strong>: `none` | `diff`</td></tr>
 <tr><td width="290">idGeneration</td><td width="70">0..1</td><td width="150">string</td><td>Strategy for generating IDs for this entity. 
 
-<strong>Allowed values</strong>: sequence | uuid</td></tr>
+<strong>Allowed values</strong>: `sequence` | `uuid`</td></tr>
 <tr><td width="290">isMeta</td><td width="70">0..1</td><td width="150">boolean</td><td>Whether this entity is a metadata entity.</td></tr>
 <tr><td width="290">isOpen</td><td width="70">0..1</td><td width="150">boolean</td><td>Whether this entity allows additional properties.</td></tr>
 <tr><td width="290">module</td><td width="70">0..1</td><td width="150">string</td><td>Module that this entity belongs to.</td></tr>
@@ -559,7 +559,7 @@ Base module includes the following resource types:
 <tr><td width="290">text</td><td width="70">0..1</td><td width="150">string</td><td>Human-readable text about the entity.</td></tr>
 <tr><td width="290">type</td><td width="70">1..1</td><td width="150">string</td><td>Type of entity definition. 
 
-<strong>Allowed values</strong>: abstract | resource | type | primitive</td></tr></tbody>
+<strong>Allowed values</strong>: `abstract` | `resource` | `type` | `primitive`</td></tr></tbody>
 </table>
 
 
@@ -579,7 +579,7 @@ Base module includes the following resource types:
 <tr><td width="290">command</td><td width="70">0..1</td><td width="150">string</td><td>Command that was executed.</td></tr>
 <tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td>Type of history entry. 
 
-<strong>Allowed values</strong>: http | sql</td></tr>
+<strong>Allowed values</strong>: `http` | `sql`</td></tr>
 <tr><td width="290">user</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to the user who performed the action. 
 
 <strong>Allowed references</strong>: User</td></tr></tbody>
@@ -603,7 +603,7 @@ Base module includes the following resource types:
 <tr><td width="290">title</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td>
 
-<strong>Allowed values</strong>: http | sql</td></tr>
+<strong>Allowed values</strong>: `http` | `sql`</td></tr>
 <tr><td width="290">user</td><td width="70">0..1</td><td width="150">Reference</td><td>
 
 <strong>Allowed references</strong>: User</td></tr></tbody>
@@ -630,7 +630,7 @@ Base module includes the following resource types:
 <tr><td width="290">cells.<strong>folded</strong>.<strong>result</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Whether the result section is folded.</td></tr>
 <tr><td width="290">cells.<strong>type</strong></td><td width="70">0..1</td><td width="150">string</td><td>Type of cell content. 
 
-<strong>Allowed values</strong>: rpc | rest | empty | markdown | sql</td></tr>
+<strong>Allowed values</strong>: `rpc` | `rest` | `empty` | `markdown` | `sql`</td></tr>
 <tr><td width="290">cells.<strong>value</strong></td><td width="70">0..1</td><td width="150"></td><td>Content value of the cell.</td></tr>
 <tr><td width="290">cells.<strong>result</strong></td><td width="70">0..1</td><td width="150"></td><td>Result of cell evaluation.</td></tr>
 <tr><td width="290">cells.<strong>error</strong></td><td width="70">0..1</td><td width="150"></td><td>Error information if evaluation failed.</td></tr>
@@ -664,7 +664,7 @@ Base module includes the following resource types:
 <tr><td width="290">params.<strong>omit-drop-blanks</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Whether to omit blank values from the result.</td></tr>
 <tr><td width="290">returns</td><td width="70">0..1</td><td width="150">code</td><td>Type of result returned by the mapping. 
 
-<strong>Allowed values</strong>: transaction | resource</td></tr>
+<strong>Allowed values</strong>: `transaction` | `resource`</td></tr>
 <tr><td width="290">scopeSchema</td><td width="70">0..1</td><td width="150">Object</td><td>Schema defining the scope for mapping.</td></tr>
 <tr><td width="290">text</td><td width="70">0..1</td><td width="150"></td><td>Human-readable text about the mapping.</td></tr>
 <tr><td width="290">text.<strong>status</strong></td><td width="70">0..1</td><td width="150">string</td><td>Status of the text.</td></tr>
@@ -721,7 +721,7 @@ Base module includes the following resource types:
 <tr><td width="290">result.<strong>count</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Count of successfully imported resources.</td></tr>
 <tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>Current status of the import process. 
 
-<strong>Allowed values</strong>: in-progress | done | fail</td></tr></tbody>
+<strong>Allowed values</strong>: `in-progress` | `done` | `fail`</td></tr></tbody>
 </table>
 
 
@@ -759,7 +759,7 @@ Base module includes the following resource types:
 <tr><td width="290">filename</td><td width="70">0..1</td><td width="150">string</td><td>Name of the terminology bundle file.</td></tr>
 <tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>Current status of the bundle file processing. 
 
-<strong>Allowed values</strong>: pending | in-progress | fail | success</td></tr></tbody>
+<strong>Allowed values</strong>: `pending` | `in-progress` | `fail` | `success`</td></tr></tbody>
 </table>
 
 
@@ -781,7 +781,7 @@ Base module includes the following resource types:
 <tr><td width="290">params</td><td width="70">0..*</td><td width="150">string</td><td>Parameters for the index creation.</td></tr>
 <tr><td width="290">procstatus</td><td width="70">0..1</td><td width="150">string</td><td>Current status of the index creation process. 
 
-<strong>Allowed values</strong>: pending | in-progress | done | error</td></tr>
+<strong>Allowed values</strong>: `pending` | `in-progress` | `done` | `error`</td></tr>
 <tr><td width="290">resource</td><td width="70">0..1</td><td width="150">string</td><td>Resource type for which the index is being created.</td></tr>
 <tr><td width="290">start</td><td width="70">0..1</td><td width="150">dateTime</td><td>Time when the index creation started.</td></tr></tbody>
 </table>
@@ -803,7 +803,7 @@ Base module includes the following resource types:
 <tr><td width="290">code</td><td width="70">1..1</td><td width="150">string</td><td>Code to be executed by the lambda.</td></tr>
 <tr><td width="290">hook</td><td width="70">1..1</td><td width="150">code</td><td>Type of hook this lambda responds to. 
 
-<strong>Allowed values</strong>: audit</td></tr></tbody>
+<strong>Allowed values</strong>: `audit`</td></tr></tbody>
 </table>
 
 
@@ -827,7 +827,7 @@ Base module includes the following resource types:
 <tr><td width="290">resources.<strong>meta</strong></td><td width="70">0..1</td><td width="150">Object</td><td>Metadata for the resource.</td></tr>
 <tr><td width="290">version</td><td width="70">0..1</td><td width="150">string</td><td>Version of the seed import format. 
 
-<strong>Allowed values</strong>: v2</td></tr></tbody>
+<strong>Allowed values</strong>: `v2`</td></tr></tbody>
 </table>
 
 
@@ -856,7 +856,7 @@ Base module includes the following resource types:
 <strong>Allowed references</strong>: SubsSubscription</td></tr>
 <tr><td width="290">status</td><td width="70">0..1</td><td width="150">code</td><td>Status of the notification delivery. 
 
-<strong>Allowed values</strong>: success | failed</td></tr>
+<strong>Allowed values</strong>: `success` | `failed`</td></tr>
 <tr><td width="290">subscription</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to the subscription that generated this notification. 
 
 <strong>Allowed references</strong>: SubsSubscription</td></tr></tbody>
@@ -882,20 +882,20 @@ Base module includes the following resource types:
 <tr><td width="290">channel.<strong>headers</strong></td><td width="70">0..1</td><td width="150">Object</td><td>HTTP headers to include with notifications.</td></tr>
 <tr><td width="290">channel.<strong>type</strong></td><td width="70">1..1</td><td width="150">code</td><td>Type of channel for notifications. 
 
-<strong>Allowed values</strong>: rest-hook</td></tr>
+<strong>Allowed values</strong>: `rest-hook`</td></tr>
 <tr><td width="290">channel.<strong>endpoint</strong></td><td width="70">1..1</td><td width="150">url</td><td>URL endpoint where notifications are sent.</td></tr>
 <tr><td width="290">channel.<strong>payload</strong></td><td width="70">0..1</td><td width="150"></td><td>Content to be sent in the notification.</td></tr>
 <tr><td width="290">channel.<strong>payload</strong>.<strong>content</strong></td><td width="70">0..1</td><td width="150">code</td><td>
 
-<strong>Allowed values</strong>: id-only | full-resource</td></tr>
+<strong>Allowed values</strong>: `id-only` | `full-resource`</td></tr>
 <tr><td width="290">channel.<strong>payload</strong>.<strong>contentType</strong></td><td width="70">0..1</td><td width="150">code</td><td>
 
-<strong>Allowed values</strong>: json | fhir+json</td></tr>
+<strong>Allowed values</strong>: `json` | `fhir+json`</td></tr>
 <tr><td width="290">channel.<strong>payload</strong>.<strong>context</strong></td><td width="70">0..1</td><td width="150"></td><td></td></tr>
 <tr><td width="290">identifier</td><td width="70">0..*</td><td width="150">Identifier</td><td>Business identifiers for the subscription.</td></tr>
 <tr><td width="290">status</td><td width="70">0..1</td><td width="150">code</td><td>Current status of the subscription. 
 
-<strong>Allowed values</strong>: active | off</td></tr>
+<strong>Allowed values</strong>: `active` | `off`</td></tr>
 <tr><td width="290">trigger</td><td width="70">0..1</td><td width="150">Object</td><td>Events that trigger this subscription.</td></tr></tbody>
 </table>
 
