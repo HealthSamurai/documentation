@@ -38,7 +38,7 @@
 * Subscriptions & Reactive API
   - Topic based subscriptions
   - Polling for changes  
-* Auth (TODO: IAM?)
+* Auth
   - Identity Management
     * Users
     * Applications (Clients)
@@ -51,15 +51,14 @@
     * Access Policies
     * SMART Scopes
     * Scoped APIs
-      - Compartments API
-      - Patient data access API 
-    * Multitenancy 
       - Organization-based hierarchical access control
-      - Multibox 
+      - Compartments API
+      - Patient data access API
+    * **Multibox** 
     * Security Labels Framework
-    * Role Based Access Control
-    * Attribute Based Access Control
-    * Consent Based Access Control
+    * **Role Based Access Control**
+    * **Attribute Based Access Control**
+    * **Consent Based Access Control**
   - Audit & Logging
     * Audit Events in Aidbox
     * Standalone Audit Event Repository  
