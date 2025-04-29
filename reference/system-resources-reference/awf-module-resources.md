@@ -35,11 +35,11 @@ AWF module includes the following resource types:
 <tr><td width="290">label</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">outcome</td><td width="70">0..1</td><td width="150">string</td><td>Final outcome of the task execution. 
 
-<strong>Allowed values</strong>: succeeded | failed | canceled</td></tr>
+<strong>Allowed values</strong>: `succeeded` | `failed` | `canceled`</td></tr>
 <tr><td width="290">outcomeReason</td><td width="70">0..1</td><td width="150"></td><td>Detailed reason for the task outcome.</td></tr>
 <tr><td width="290">outcomeReason.<strong>type</strong></td><td width="70">0..1</td><td width="150">string</td><td>Type of outcome reason. 
 
-<strong>Allowed values</strong>: awf.task/failed-due-to-in-progress-timeout | awf.task/failed-by-executor | awf.executor/unknown-error</td></tr>
+<strong>Allowed values</strong>: `awf.task/failed-due-to-in-progress-timeout` | `awf.task/failed-by-executor` | `awf.executor/unknown-error`</td></tr>
 <tr><td width="290">outcomeReason.<strong>message</strong></td><td width="70">0..1</td><td width="150">string</td><td>Human-readable explanation of the outcome.</td></tr>
 <tr><td width="290">outcomeReason.<strong>data</strong></td><td width="70">0..1</td><td width="150"></td><td>Additional data related to the outcome.</td></tr>
 <tr><td width="290">params</td><td width="70">0..1</td><td width="150"></td><td>Parameters required for task execution.</td></tr>
@@ -55,7 +55,7 @@ AWF module includes the following resource types:
 <tr><td width="290">retryDelay</td><td width="70">0..1</td><td width="150">number</td><td>Delay in seconds before retrying a failed task.</td></tr>
 <tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>Current status of the task. 
 
-<strong>Allowed values</strong>: created | ready | requested | in-progress | done | waiting</td></tr>
+<strong>Allowed values</strong>: `created` | `ready` | `requested` | `in-progress` | `done` | `waiting`</td></tr>
 <tr><td width="290">workflow-definition</td><td width="70">0..1</td><td width="150">string</td><td>Reference to the workflow definition for this task.</td></tr></tbody>
 </table>
 
@@ -114,11 +114,11 @@ AWF module includes the following resource types:
 <tr><td width="290">label</td><td width="70">0..1</td><td width="150">string</td><td>Human-readable label for the workflow.</td></tr>
 <tr><td width="290">outcome</td><td width="70">0..1</td><td width="150">string</td><td>Final outcome of the workflow execution. 
 
-<strong>Allowed values</strong>: succeeded | failed | canceled</td></tr>
+<strong>Allowed values</strong>: `succeeded` | `failed` | `canceled`</td></tr>
 <tr><td width="290">outcomeReason</td><td width="70">0..1</td><td width="150"></td><td>Detailed reason for the workflow outcome.</td></tr>
 <tr><td width="290">outcomeReason.<strong>type</strong></td><td width="70">0..1</td><td width="150">string</td><td>Type of outcome reason. 
 
-<strong>Allowed values</strong>: awf.workflow/failed-by-executor | awf.executor/unknown-error</td></tr>
+<strong>Allowed values</strong>: `awf.workflow/failed-by-executor` | `awf.executor/unknown-error`</td></tr>
 <tr><td width="290">outcomeReason.<strong>message</strong></td><td width="70">0..1</td><td width="150">string</td><td>Human-readable explanation of the outcome.</td></tr>
 <tr><td width="290">outcomeReason.<strong>data</strong></td><td width="70">0..1</td><td width="150"></td><td>Additional data related to the outcome.</td></tr>
 <tr><td width="290">params</td><td width="70">0..1</td><td width="150"></td><td>Parameters required for workflow execution.</td></tr>
@@ -132,7 +132,7 @@ AWF module includes the following resource types:
 <tr><td width="290">retryCount</td><td width="70">0..1</td><td width="150">number</td><td>Number of times the workflow has been retried.</td></tr>
 <tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>Current status of the workflow. 
 
-<strong>Allowed values</strong>: created | in-progress | done</td></tr></tbody>
+<strong>Allowed values</strong>: `created` | `in-progress` | `done`</td></tr></tbody>
 </table>
 
 
@@ -163,7 +163,7 @@ AWF module includes the following resource types:
 <tr><td width="290">lastScheduleReference.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td>Human-readable display name of the last scheduled task.</td></tr>
 <tr><td width="290">lastScheduleStatus</td><td width="70">0..1</td><td width="150">string</td><td>Status of the last schedule attempt. 
 
-<strong>Allowed values</strong>: started | skipped</td></tr>
+<strong>Allowed values</strong>: `started` | `skipped`</td></tr>
 <tr><td width="290">params</td><td width="70">0..1</td><td width="150"></td><td>Parameters required for rule execution.</td></tr>
 <tr><td width="290">requestedToStartTimeout</td><td width="70">0..1</td><td width="150">number</td><td>Maximum duration in seconds that a task can remain in requested status before timing out.</td></tr>
 <tr><td width="290">retryDelay</td><td width="70">0..1</td><td width="150">number</td><td>Delay in seconds before retrying a failed rule execution.</td></tr></tbody>
