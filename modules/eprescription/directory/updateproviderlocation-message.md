@@ -16,10 +16,12 @@ UpdateProviderLocation requires the same FHIR resources as [AddProviderLocation]
 
 ### Response
 
-#### Success Response (201 Created)
+#### Success Response (200 Ok)
 
 * Provider location was successfully updated
 
 #### Error Responses
 
-_400 Bad Request_ – Surescripts response error with details._422 Unprocessable Entity_ - Various validation errors.
+**400 Bad Request** – Surescripts response error with details.&#x20;
+
+**422 Unprocessable Entity** - Various validation errors.
