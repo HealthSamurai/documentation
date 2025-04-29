@@ -23,12 +23,12 @@ Cloud module includes the following resource types:
 </tr>
 </thead>
 <tbody>
+<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
 <tr><td width="290">access-key-id</td><td width="70">0..1</td><td width="150">string</td><td>AWS access key identifier for authentication.</td></tr>
 <tr><td width="290">host</td><td width="70">0..1</td><td width="150">string</td><td>AWS host endpoint for the service.</td></tr>
-<tr><td width="290">secret-access-key</td><td width="70">0..1</td><td width="150">string</td><td>AWS secret access key for authentication.</td></tr>
 <tr><td width="290">path-style</td><td width="70">0..1</td><td width="150">boolean</td><td>Whether to use path-style addressing for S3 requests.</td></tr>
-<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
 <tr><td width="290">region</td><td width="70">0..1</td><td width="150">string</td><td>AWS region where the resources are located.</td></tr>
+<tr><td width="290">secret-access-key</td><td width="70">0..1</td><td width="150">string</td><td>AWS secret access key for authentication.</td></tr>
 <tr><td width="290">use-ssl</td><td width="70">0..1</td><td width="150">boolean</td><td>Whether to use SSL for secure connections.</td></tr></tbody>
 </table>
 
@@ -45,8 +45,8 @@ Cloud module includes the following resource types:
 </tr>
 </thead>
 <tbody>
-<tr><td width="290">key</td><td width="70">0..1</td><td width="150">string</td><td>Azure storage account key for authentication.</td></tr>
-<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr></tbody>
+<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
+<tr><td width="290">key</td><td width="70">0..1</td><td width="150">string</td><td>Azure storage account key for authentication.</td></tr></tbody>
 </table>
 
 
@@ -62,13 +62,13 @@ Cloud module includes the following resource types:
 </tr>
 </thead>
 <tbody>
-<tr><td width="290">storage</td><td width="70">0..1</td><td width="150">string</td><td>Azure storage account name.</td></tr>
-<tr><td width="290">extension</td><td width="70">0..1</td><td width="150">string</td><td>File extension for content stored in the container.</td></tr>
-<tr><td width="290">container</td><td width="70">0..1</td><td width="150">string</td><td>Name of the Azure storage container.</td></tr>
+<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
 <tr><td width="290">account</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to the Azure account credentials. 
 
 <strong>Allowed references</strong>: AzureAccount</td></tr>
-<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr></tbody>
+<tr><td width="290">container</td><td width="70">0..1</td><td width="150">string</td><td>Name of the Azure storage container.</td></tr>
+<tr><td width="290">extension</td><td width="70">0..1</td><td width="150">string</td><td>File extension for content stored in the container.</td></tr>
+<tr><td width="290">storage</td><td width="70">0..1</td><td width="150">string</td><td>Azure storage account name.</td></tr></tbody>
 </table>
 
 
@@ -84,8 +84,8 @@ Cloud module includes the following resource types:
 </tr>
 </thead>
 <tbody>
+<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
 <tr><td width="290">private-key</td><td width="70">0..1</td><td width="150">string</td><td>Private key for GCP service account authentication.</td></tr>
-<tr><td width="290">service-account-email</td><td width="70">0..1</td><td width="150">string</td><td>Email address of the GCP service account.</td></tr>
-<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr></tbody>
+<tr><td width="290">service-account-email</td><td width="70">0..1</td><td width="150">string</td><td>Email address of the GCP service account.</td></tr></tbody>
 </table>
 
