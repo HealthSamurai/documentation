@@ -132,12 +132,8 @@ Authorize inline requests (`_revinclude` and `_include`) with access policies. [
 
 ### Use semi join in chained searches<a href="#fhir.search.chain.subselect" id="fhir.search.chain.subselect"></a>
 
-Use subselect for simple forward chain searches.
-
-That is only one chain which doesn't contain intermediate hops.
-
-This is a performance optimization which could require
-building additional indexes.
+When the search query does not use _has search parameters, use subselect instead of INNER JOIN for forward chain searches.
+This is a performance optimization which could require building additional indexes.
 
 <table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.chain.subselect</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_SEARCH_CHAIN_SUBSELECT</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_SEARCH_CHAIN_SUBSELECT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table>
 
