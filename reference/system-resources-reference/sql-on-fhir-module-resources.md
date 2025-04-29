@@ -18,9 +18,6 @@ SQL on FHIR module includes the following resource types:
 </tr>
 </thead>
 <tbody>
-<tr><td width="290">resource</td><td width="70">1..1</td><td width="150">code</td><td>The FHIR resource that the view is based upon, e.g. 'Patient' or 'Observation'.</td></tr>
-<tr><td width="290">url</td><td width="70">0..1</td><td width="150">uri</td><td>Canonical identifier for this view definition, represented as a URI (globally unique)</td></tr>
-<tr><td width="290">experimental</td><td width="70">0..1</td><td width="150">boolean</td><td>For testing purposes, not real usage</td></tr>
 <tr><td width="290">constant</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>A constant is a value that is injected into a FHIRPath expression through the use of a FHIRPath
 external constant with the same name.</td></tr>
 <tr><td width="290">constant.<strong>valueBase64Binary</strong></td><td width="70">0..1</td><td width="150">base64Binary</td><td>The value that will be substituted in place of the constant reference. This
@@ -115,13 +112,18 @@ is done by including `%your_constant_name` in a FHIRPath expression, which effec
 the FHIR literal defined here to a FHIRPath literal used in the path expression.
 
 Support for additional types may be added in the future.</td></tr>
-<tr><td width="290">where</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>A series of zero or more FHIRPath constraints to filter resources for the view. Every constraint
-must evaluate to true for the resource to be included in the view.</td></tr>
-<tr><td width="290">where.<strong>path</strong></td><td width="70">1..1</td><td width="150">string</td><td>A FHIRPath expression that defines a filter that must evaluate to true for a resource to be
-included in the output. The input context is the collection of resources of the type specified in
-the resource element. Constants defined in Reference({constant}) can be referenced as %[name].</td></tr>
-<tr><td width="290">where.<strong>description</strong></td><td width="70">0..1</td><td width="150">string</td><td>A human-readable description of the above where constraint.</td></tr>
+<tr><td width="290">contact</td><td width="70">0..*</td><td width="150">ContactDetail</td><td>Contact details for the publisher</td></tr>
+<tr><td width="290">copyright</td><td width="70">0..1</td><td width="150">markdown</td><td>Use and/or publishing restrictions</td></tr>
+<tr><td width="290">description</td><td width="70">0..1</td><td width="150">markdown</td><td>Natural language description of the view definition</td></tr>
+<tr><td width="290">experimental</td><td width="70">0..1</td><td width="150">boolean</td><td>For testing purposes, not real usage</td></tr>
+<tr><td width="290">fhirVersion</td><td width="70">0..*</td><td width="150">code</td><td>The FHIR version(s) for the FHIR resource. The value of this element is the
+formal version of the specification, without the revision number, e.g.
+[publication].[major].[minor].</td></tr>
+<tr><td width="290">identifier</td><td width="70">0..1</td><td width="150">Identifier</td><td>Additional identifier for the view definition</td></tr>
+<tr><td width="290">meta</td><td width="70">0..1</td><td width="150">Meta</td><td>Metadata about the view definition</td></tr>
 <tr><td width="290">name</td><td width="70">0..1</td><td width="150">string</td><td>Name of the view definition, must be in a database-friendly format.</td></tr>
+<tr><td width="290">publisher</td><td width="70">0..1</td><td width="150">string</td><td>Name of the publisher/steward (organization or individual)</td></tr>
+<tr><td width="290">resource</td><td width="70">1..1</td><td width="150">code</td><td>The FHIR resource that the view is based upon, e.g. 'Patient' or 'Observation'.</td></tr>
 <tr><td width="290">select</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>The select structure defines the columns to be used in the resulting view. These are expressed
 in the `column` structure below, or in nested `select`s for nested resources.</td></tr>
 <tr><td width="290">select.<strong>column</strong></td><td width="70">0..*</td><td width="150">BackboneElement</td><td>A column to be produced in the resulting table. The column is relative to the select structure
@@ -159,16 +161,14 @@ and types. The results from each nested selection will then have their own row.<
 with a Patient resource, a `forEachOrNull` on address will produce a row for each patient even if there are no addresses; it will
 simply set the address columns to `null`.</td></tr>
 <tr><td width="290">status</td><td width="70">1..1</td><td width="150">code</td><td>draft | active | retired | unknown</td></tr>
-<tr><td width="290">identifier</td><td width="70">0..1</td><td width="150">Identifier</td><td>Additional identifier for the view definition</td></tr>
 <tr><td width="290">title</td><td width="70">0..1</td><td width="150">string</td><td>A optional human-readable description of the view.</td></tr>
-<tr><td width="290">fhirVersion</td><td width="70">0..*</td><td width="150">code</td><td>The FHIR version(s) for the FHIR resource. The value of this element is the
-formal version of the specification, without the revision number, e.g.
-[publication].[major].[minor].</td></tr>
-<tr><td width="290">copyright</td><td width="70">0..1</td><td width="150">markdown</td><td>Use and/or publishing restrictions</td></tr>
-<tr><td width="290">publisher</td><td width="70">0..1</td><td width="150">string</td><td>Name of the publisher/steward (organization or individual)</td></tr>
-<tr><td width="290">meta</td><td width="70">0..1</td><td width="150">Meta</td><td>Metadata about the view definition</td></tr>
+<tr><td width="290">url</td><td width="70">0..1</td><td width="150">uri</td><td>Canonical identifier for this view definition, represented as a URI (globally unique)</td></tr>
 <tr><td width="290">useContext</td><td width="70">0..*</td><td width="150">UsageContext</td><td>The context that the content is intended to support</td></tr>
-<tr><td width="290">contact</td><td width="70">0..*</td><td width="150">ContactDetail</td><td>Contact details for the publisher</td></tr>
-<tr><td width="290">description</td><td width="70">0..1</td><td width="150">markdown</td><td>Natural language description of the view definition</td></tr></tbody>
+<tr><td width="290">where</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>A series of zero or more FHIRPath constraints to filter resources for the view. Every constraint
+must evaluate to true for the resource to be included in the view.</td></tr>
+<tr><td width="290">where.<strong>path</strong></td><td width="70">1..1</td><td width="150">string</td><td>A FHIRPath expression that defines a filter that must evaluate to true for a resource to be
+included in the output. The input context is the collection of resources of the type specified in
+the resource element. Constants defined in Reference({constant}) can be referenced as %[name].</td></tr>
+<tr><td width="290">where.<strong>description</strong></td><td width="70">0..1</td><td width="150">string</td><td>A human-readable description of the above where constraint.</td></tr></tbody>
 </table>
 
