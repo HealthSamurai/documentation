@@ -59,7 +59,7 @@ SDC module includes the following resource types:
 <tr><td width="290">button.<strong>accent-color</strong></td><td width="70">0..1</td><td width="150">string</td><td>Background color for filled buttons border color for outlined buttons (deprecated)</td></tr>
 <tr><td width="290">font-family</td><td width="70">0..1</td><td width="150">string</td><td>Font-Family 
 
-<strong>Allowed values</strong>: Product Sans | Metropolis | Inter</td></tr>
+<strong>Allowed values</strong>: `Product Sans` | `Metropolis` | `Inter`</td></tr>
 <tr><td width="290">input</td><td width="70">0..1</td><td width="150"></td><td>Input styles</td></tr>
 <tr><td width="290">input.<strong>accent-color</strong></td><td width="70">0..1</td><td width="150">string</td><td>Main color for inputs (border color for text inputs background for checkbox etc in RGB hex)</td></tr>
 <tr><td width="290">input.<strong>text-color</strong></td><td width="70">0..1</td><td width="150">string</td><td>text color (RGB hex)</td></tr>
@@ -194,7 +194,7 @@ Base schema for questionnaire(document) definition. Also a resource in DB - SDCD
 <tr><td width="290">source.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>Status of the document  
 
-<strong>Allowed values</strong>: draft | in-progress | canceled | completed | in-amendment | amended</td></tr>
+<strong>Allowed values</strong>: `draft` | `in-progress` | `canceled` | `completed` | `in-amendment` | `amended`</td></tr>
 <tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td>Name/version of form, with which document was captured</td></tr>
 <tr><td width="290">unit-system</td><td width="70">0..1</td><td width="150">string</td><td>What unit system was used in this document at launch</td></tr></tbody>
 </table>
@@ -268,7 +268,7 @@ Form Metadata that can be used for Dynamic updates
 <tr><td width="290">params</td><td width="70">0..1</td><td width="150">Object</td><td>Workflow params schema definition</td></tr>
 <tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>Status of WF lifecycle. Should be changed via rpc: `cancel-wf`, `complete-wf` `cancel-task`, `complete-task` 
 
-<strong>Allowed values</strong>: new | in-progress | canceled | completed | in-amendment | amended</td></tr>
+<strong>Allowed values</strong>: `new` | `in-progress` | `canceled` | `completed` | `in-amendment` | `amended`</td></tr>
 <tr><td width="290">title</td><td width="70">0..1</td><td width="150">string</td><td>Title of the workflow</td></tr>
 <tr><td width="290">version</td><td width="70">0..1</td><td width="150">number</td><td>Workflow version</td></tr>
 <tr><td width="290">workflow</td><td width="70">0..1</td><td width="150">string</td><td>Workflow symbolic name for storing in DB</td></tr></tbody>
