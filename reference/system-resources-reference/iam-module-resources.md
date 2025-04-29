@@ -39,7 +39,7 @@ IAM module includes the following resource types:
 <tr><td width="290">description</td><td width="70">0..1</td><td width="150">string</td><td>A textual description of the access policy.</td></tr>
 <tr><td width="290">engine</td><td width="70">0..1</td><td width="150">string</td><td>Specifies the evaluation engine used for the policy. 
 
-<strong>Allowed values</strong>: json-schema | allow | sql | complex | matcho | clj | matcho-rpc | allow-rpc | signed-rpc | smart-on-fhir</td></tr>
+<strong>Allowed values</strong>: `json-schema` | `allow` | `sql` | `complex` | `matcho` | `clj` | `matcho-rpc` | `allow-rpc` | `signed-rpc` | `smart-on-fhir`</td></tr>
 <tr><td width="290">link</td><td width="70">0..*</td><td width="150">Reference</td><td>References to resources associated with this policy. 
 
 <strong>Allowed references</strong>: Client, User, Operation</td></tr>
@@ -54,7 +54,7 @@ IAM module includes the following resource types:
 <tr><td width="290">sql.<strong>query</strong></td><td width="70">0..1</td><td width="150">string</td><td>SQL query used to evaluate access conditions.</td></tr>
 <tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td>The type or category of the access policy. 
 
-<strong>Allowed values</strong>: scope | rest | rpc</td></tr></tbody>
+<strong>Allowed values</strong>: `scope` | `rest` | `rpc`</td></tr></tbody>
 </table>
 
 
@@ -82,7 +82,7 @@ IAM module includes the following resource types:
 <tr><td width="290">jwt.<strong>secret</strong></td><td width="70">0..1</td><td width="150">string</td><td>A shared secret key or other signing key material used to verify the JWT's signature.</td></tr>
 <tr><td width="290">type</td><td width="70">1..1</td><td width="150">string</td><td>Specifies the type of token to introspect. 
 
-<strong>Allowed values</strong>: opaque | jwt | aspxauth</td></tr></tbody>
+<strong>Allowed values</strong>: `opaque` | `jwt` | `aspxauth`</td></tr></tbody>
 </table>
 
 
@@ -273,19 +273,19 @@ User role
 <tr><td width="290">auth.<strong>client_credentials</strong></td><td width="70">0..1</td><td width="150">BackboneElement</td><td>Configuration for the client credentials grant type.</td></tr>
 <tr><td width="290">auth.<strong>client_credentials</strong>.<strong>token_format</strong></td><td width="70">0..1</td><td width="150">string</td><td>Format of the access token. 
 
-<strong>Allowed values</strong>: jwt</td></tr>
+<strong>Allowed values</strong>: `jwt`</td></tr>
 <tr><td width="290">auth.<strong>client_credentials</strong>.<strong>access_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Expiration time for access tokens in seconds.</td></tr>
 <tr><td width="290">auth.<strong>client_credentials</strong>.<strong>refresh_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Expiration time for refresh tokens in seconds.</td></tr>
-<tr><td width="290">auth.<strong>client_credentials</strong>.<strong>audience</strong></td><td width="70">0..*</td><td width="150">string</td><td>Intended audience for issued tokens.</td></tr>
+<tr><td width="290">auth.<strong>client_credentials</strong>.<strong>audience</strong></td><td width="70">0..*</td><td width="150">string</td><td>Intended audience for issued tokens. Shows what resource server access is intended for. Aidbox compares the audience of the Client to the audience it receives within aJWT and decides if the access should be granted. The audience attribute can be defined in 2 ways: As a plain string, e.g. https://cmpl.aidbox.app/smart As a Regex. In that case, the audience value should start with the # symbol. For example, #https://cmpl.aidbox.app/tenant/[^\]/smart That validation of the audience happens when SMART on FHIR app launches</td></tr>
 <tr><td width="290">auth.<strong>client_credentials</strong>.<strong>client_assertion_types</strong></td><td width="70">0..*</td><td width="150">string</td><td>Supported client assertion types. 
 
-<strong>Allowed values</strong>: urn:ietf:params:oauth:client-assertion-type:jwt-bearer</td></tr>
+<strong>Allowed values</strong>: `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`</td></tr>
 <tr><td width="290">auth.<strong>client_credentials</strong>.<strong>refresh_token</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Whether to issue refresh tokens with this grant type.</td></tr>
 <tr><td width="290">auth.<strong>implicit</strong></td><td width="70">0..1</td><td width="150">BackboneElement</td><td>Configuration for the implicit grant type.</td></tr>
 <tr><td width="290">auth.<strong>implicit</strong>.<strong>redirect_uri</strong></td><td width="70">0..1</td><td width="150">url</td><td>Redirect URI for the implicit flow.</td></tr>
 <tr><td width="290">auth.<strong>implicit</strong>.<strong>token_format</strong></td><td width="70">0..1</td><td width="150">string</td><td>Format of the access token. 
 
-<strong>Allowed values</strong>: jwt</td></tr>
+<strong>Allowed values</strong>: `jwt`</td></tr>
 <tr><td width="290">auth.<strong>implicit</strong>.<strong>audience</strong></td><td width="70">0..*</td><td width="150">string</td><td>Intended audience for issued tokens.</td></tr>
 <tr><td width="290">auth.<strong>implicit</strong>.<strong>access_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Expiration time for access tokens in seconds.</td></tr>
 <tr><td width="290">auth.<strong>password</strong></td><td width="70">0..1</td><td width="150">BackboneElement</td><td>Configuration for the password grant type.</td></tr>
@@ -295,13 +295,13 @@ User role
 <tr><td width="290">auth.<strong>password</strong>.<strong>redirect_uri</strong></td><td width="70">0..1</td><td width="150">url</td><td>If present, turn on redirect protection</td></tr>
 <tr><td width="290">auth.<strong>password</strong>.<strong>token_format</strong></td><td width="70">0..1</td><td width="150">string</td><td>Format of the access token. 
 
-<strong>Allowed values</strong>: jwt</td></tr>
+<strong>Allowed values</strong>: `jwt`</td></tr>
 <tr><td width="290">auth.<strong>password</strong>.<strong>access_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Expiration time for access tokens in seconds.</td></tr>
 <tr><td width="290">auth.<strong>password</strong>.<strong>refresh_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Expiration time for refresh tokens in seconds.</td></tr>
 <tr><td width="290">auth.<strong>authorization_code</strong></td><td width="70">0..1</td><td width="150">BackboneElement</td><td>Configuration for the authorization code grant type.</td></tr>
 <tr><td width="290">auth.<strong>authorization_code</strong>.<strong>token_format</strong></td><td width="70">0..1</td><td width="150">string</td><td>Format of the access token. 
 
-<strong>Allowed values</strong>: jwt</td></tr>
+<strong>Allowed values</strong>: `jwt`</td></tr>
 <tr><td width="290">auth.<strong>authorization_code</strong>.<strong>audience</strong></td><td width="70">0..*</td><td width="150">string</td><td>Intended audience for issued tokens.</td></tr>
 <tr><td width="290">auth.<strong>authorization_code</strong>.<strong>secret_required</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Whether client secret is required for token exchange.</td></tr>
 <tr><td width="290">auth.<strong>authorization_code</strong>.<strong>pkce</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Whether PKCE (Proof Key for Code Exchange) is required.</td></tr>
@@ -312,7 +312,7 @@ User role
 <tr><td width="290">auth.<strong>token_exchange</strong></td><td width="70">0..1</td><td width="150">BackboneElement</td><td>Configuration for the token exchange grant type.</td></tr>
 <tr><td width="290">auth.<strong>token_exchange</strong>.<strong>token_format</strong></td><td width="70">0..1</td><td width="150">string</td><td>Format of the access token. 
 
-<strong>Allowed values</strong>: jwt</td></tr>
+<strong>Allowed values</strong>: `jwt`</td></tr>
 <tr><td width="290">auth.<strong>token_exchange</strong>.<strong>access_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Expiration time for access tokens in seconds.</td></tr>
 <tr><td width="290">auth.<strong>token_exchange</strong>.<strong>refresh_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Expiration time for refresh tokens in seconds.</td></tr>
 <tr><td width="290">auth.<strong>token_exchange</strong>.<strong>audience</strong></td><td width="70">0..*</td><td width="150">string</td><td>Intended audience for issued tokens.</td></tr>
@@ -323,20 +323,20 @@ User role
 <tr><td width="290">first_party</td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates whether this is a first-party client.</td></tr>
 <tr><td width="290">grant_types</td><td width="70">0..*</td><td width="150">string</td><td>OAuth 2.0 grant types this client is authorized to use. 
 
-<strong>Allowed values</strong>: basic | authorization_code | code | password | client_credentials | implicit | refresh_token | urn:ietf:params:oauth:grant-type:token-exchange</td></tr>
+<strong>Allowed values</strong>: `basic` | `authorization_code` | `code` | `password` | `client_credentials` | `implicit` | `refresh_token` | `urn:ietf:params:oauth:grant-type:token-exchange`</td></tr>
 <tr><td width="290">jwks</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>JSON Web Key Set for client authentication and/or verification.</td></tr>
 <tr><td width="290">jwks.<strong>kid</strong></td><td width="70">0..1</td><td width="150">string</td><td>Key ID that identifies this key.</td></tr>
 <tr><td width="290">jwks.<strong>kty</strong></td><td width="70">0..1</td><td width="150">string</td><td>Key type. 
 
-<strong>Allowed values</strong>: RSA</td></tr>
+<strong>Allowed values</strong>: `RSA`</td></tr>
 <tr><td width="290">jwks.<strong>alg</strong></td><td width="70">0..1</td><td width="150">string</td><td>Algorithm used with this key. 
 
-<strong>Allowed values</strong>: RS384</td></tr>
+<strong>Allowed values</strong>: `RS384`</td></tr>
 <tr><td width="290">jwks.<strong>e</strong></td><td width="70">0..1</td><td width="150">string</td><td>Exponent value for RSA key.</td></tr>
 <tr><td width="290">jwks.<strong>n</strong></td><td width="70">0..1</td><td width="150">string</td><td>Modulus value for RSA key.</td></tr>
 <tr><td width="290">jwks.<strong>use</strong></td><td width="70">0..1</td><td width="150">string</td><td>Key usage. 
 
-<strong>Allowed values</strong>: sig</td></tr>
+<strong>Allowed values</strong>: `sig`</td></tr>
 <tr><td width="290">jwks_uri</td><td width="70">0..1</td><td width="150">url</td><td>URI where the client's JSON Web Key Set can be retrieved.</td></tr>
 <tr><td width="290">name</td><td width="70">0..1</td><td width="150">string</td><td>Human-readable name of the client application.</td></tr>
 <tr><td width="290">scope</td><td width="70">0..*</td><td width="150">string</td><td>List of scopes this client is authorized to request.</td></tr>
@@ -442,7 +442,7 @@ User role
 <tr><td width="290">providerData</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
 <tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>Status of the notification delivery (delivered or error). 
 
-<strong>Allowed values</strong>: delivered | error</td></tr></tbody>
+<strong>Allowed values</strong>: `delivered` | `error`</td></tr></tbody>
 </table>
 
 
@@ -479,7 +479,7 @@ User role
 <tr><td width="290">resource</td><td width="70">0..1</td><td width="150">Object</td><td>Registration form data</td></tr>
 <tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>Status of the registration process. 
 
-<strong>Allowed values</strong>: activated | active</td></tr></tbody>
+<strong>Allowed values</strong>: `activated` | `active`</td></tr></tbody>
 </table>
 
 
@@ -503,7 +503,7 @@ User role
 <tr><td width="290">client.<strong>redirect_uri</strong></td><td width="70">0..1</td><td width="150">uri</td><td>URI where the provider will redirect after authentication.</td></tr>
 <tr><td width="290">client.<strong>auth-method</strong></td><td width="70">0..1</td><td width="150">string</td><td>Client authentication method. 
 
-<strong>Allowed values</strong>: symmetric | asymmetric</td></tr>
+<strong>Allowed values</strong>: `symmetric` | `asymmetric`</td></tr>
 <tr><td width="290">client.<strong>secret</strong></td><td width="70">0..1</td><td width="150">string</td><td>Client secret for symmetric authentication.</td></tr>
 <tr><td width="290">client.<strong>private-key</strong></td><td width="70">0..1</td><td width="150">string</td><td>Private key for asymmetric authentication.</td></tr>
 <tr><td width="290">client.<strong>certificate</strong></td><td width="70">0..1</td><td width="150">string</td><td>Certificate</td></tr>
@@ -525,10 +525,10 @@ User role
 <tr><td width="290">token_endpoint</td><td width="70">0..1</td><td width="150">string</td><td>The URL of the token endpoint.</td></tr>
 <tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td>The type of identity provider. 
 
-<strong>Allowed values</strong>: aidbox | github | google | OIDC | OAuth | az-dev | yandex | okta | apple</td></tr>
+<strong>Allowed values</strong>: `aidbox` | `github` | `google` | `OIDC` | `OAuth` | `az-dev` | `yandex` | `okta` | `apple`</td></tr>
 <tr><td width="290">userinfo-source</td><td width="70">0..1</td><td width="150">string</td><td>Source of userinfo details. 
 
-<strong>Allowed values</strong>: id-token | userinfo-endpoint</td></tr>
+<strong>Allowed values</strong>: `id-token` | `userinfo-endpoint`</td></tr>
 <tr><td width="290">userinfo_endpoint</td><td width="70">0..1</td><td width="150">string</td><td>The URL of the userinfo endpoint.</td></tr>
 <tr><td width="290">userinfo_header</td><td width="70">0..1</td><td width="150">string</td><td>Header to be used when calling the userinfo endpoint.</td></tr></tbody>
 </table>
@@ -546,7 +546,7 @@ User role
 </tr>
 </thead>
 <tbody>
-<tr><td width="290">asidCookieMaxAge</td><td width="70">0..1</td><td width="150">integer</td><td></td></tr>
+<tr><td width="290">asidCookieMaxAge</td><td width="70">0..1</td><td width="150">integer</td><td>In Aidbox version v:2402 and later, sessions created through the Aidbox UI log-in are not infinite.The default session expiration time is set to 432000 seconds (5 days).</td></tr>
 <tr><td width="290">theme</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
 <tr><td width="290">theme.<strong>brand</strong></td><td width="70">0..1</td><td width="150">string</td><td>Brand for auth page</td></tr>
 <tr><td width="290">theme.<strong>title</strong></td><td width="70">0..1</td><td width="150">string</td><td>Title for auth page</td></tr>
