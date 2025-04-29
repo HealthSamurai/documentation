@@ -52,7 +52,6 @@ Optional list of extensions:&#x20;
 
 * pg\_similarity
 * &#x20;jsonknife
-* &#x20;jsquery
 * &#x20;pg\_stat\_statements
 * &#x20;postgis
 

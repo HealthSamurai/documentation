@@ -551,7 +551,6 @@ Note: if your database already has extensions installed and you change extension
 ```
 DROP EXTENSION IF EXISTS fuzzystrmatch
                        , jsonknife
-                       , jsquery
                        , pg_stat_statements
                        , pg_trgm
                        , pgcrypto

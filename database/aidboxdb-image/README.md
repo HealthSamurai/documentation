@@ -52,7 +52,6 @@ List of available extensions:
 Extensions **unavailable** since AidboxDB version 16:
 
 * [jsonknife](https://github.com/niquola/jsonknife) — Jsonb extraction tool for optimizing FHIR search
-* [jsquery](https://github.com/postgrespro/jsquery) — JSON query language with GIN indexing support
 {% endhint %}
 
 See also:
