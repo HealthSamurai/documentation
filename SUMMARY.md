@@ -463,6 +463,7 @@
     * [AddProviderLocation Message](modules/eprescription/directory/addproviderlocation-message.md)
     * [UpdateProviderLocation Message](modules/eprescription/directory/updateproviderlocation-message.md)
     * [DisableProviderLocation Message](modules/eprescription/directory/disableproviderlocation-message.md)
+    * [GetProviderLocation Message](modules/eprescription/directory/getproviderlocation-message.md)
   * [Medications](modules/eprescription/medications/README.md)
     * [FDB](modules/eprescription/medications/fdb.md)
   * [Tutorials](modules/eprescription/tutorials/README.md)
