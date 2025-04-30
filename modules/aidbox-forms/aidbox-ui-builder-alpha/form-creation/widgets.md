@@ -60,6 +60,10 @@ The Size parameter allows user to define the width of a widget and arrange multi
 * `Read Only:` Displays the form item as non-editable, allowing users to view but not modify its value.
 * `Repeats:` Enables the user to dynamically add multiple instances of the same form item as needed.
 
+{% hint style="info" %}
+`Repeats` for Checkbox-list and Choice widgets have different behavior! When `Repeats` are enabled, it makes it possible to perform multi-choice actions within the widget.
+{% endhint %}
+
 #### Collapsible
 
 Collapsible section is supported to enhance the usability and navigation of long questionnaires. This feature allows the child items of a group or question item to be displayed in a collapsible form, letting users toggle between showing and hiding nested items.
