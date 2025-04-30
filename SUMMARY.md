@@ -65,6 +65,7 @@
     * [SDC with Custom Resources](tutorials/tutorials/sdc-with-custom-resources.md)
     * [How to create FHIR NPM package](readme-1/tutorials/how-to-create-fhir-npm-package.md)
     * [Migrate from legacy licence portal to Aidbox portal](readme-1/tutorials/license-migration-guide.md)
+    * [How to run Aidbox in GCP Cloud Run](readme-1/tutorials/how-to-run-aidbox-in-gcp-cloud-run.md)
 
 ## Overview
 

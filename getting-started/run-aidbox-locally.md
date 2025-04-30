@@ -34,6 +34,8 @@ Open in browser [http://localhost:8080/](http://localhost:8080)
 
 ### 4. Activate your Aidbox instance
 
+<figure><img src="../.gitbook/assets/image (163).png" alt=""><figcaption></figcaption></figure>
+
 * Using AidboxID\
   AidboxID is a unique identifier within the Aidbox ecosystem used for product activation
 * Using Aidbox license\
