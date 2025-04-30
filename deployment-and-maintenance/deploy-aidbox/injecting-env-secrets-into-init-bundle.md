@@ -1,10 +1,10 @@
-# Injecting Env variables into Init Bundle
+# How to inject env variables into Init Bundle
 
 Aidbox provides [Init Bundle](../../configuration/init-bundle.md) functionality to create configuration resources on its start. However, Aidbox load Init Bundle content as is, so it is not possible to inject secrets or other environment variables in it.
 
 To overcome this limitation, we can use third-party reliable tools like `envsubst` and `sed` to inject secrets into Init Bundle. You can add following instruction as a step to your CI pipeline:
 
-Let's say we have Aidbox TokenIntrospector resource in our Init Bundle and we have to set different values for `iss` and `jwks_uri` parameters on different environments. We need to prepare `init-bundle.json.template` file:
+Let's say we have Aidbox [TokenIntrospector](../../readme-1/readme-1-1/token-introspection.md) resource in our Init Bundle and we have to set different values for `iss` and `jwks_uri` parameters on different environments. We need to prepare `init-bundle.json.template` file:
 
 ```json
 {
@@ -30,7 +30,7 @@ Let's say we have Aidbox TokenIntrospector resource in our Init Bundle and we ha
 }
 ```
 
-Please note that we use `${AUTH_SERVER_URL}` placeholder for the  `jwt.iss` and `jwks_uri` parameters. This placeholder will be replaced with the actual value on CI.
+Please note that we use `${AUTH_SERVER_URL}` placeholder for the `jwt.iss` and `jwks_uri` parameters. This placeholder will be replaced with the actual value on CI.
 
 ## Using envsubst
 
