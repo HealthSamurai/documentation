@@ -30,11 +30,11 @@ The [populate](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-pop
 ### URLs
 
 ```
-POST [base]/Questionnaire/$populate
+POST [base]/fhir/Questionnaire/$populate
 ```
 
 ```
-POST [base]/Questionnaire/[id]/$populate
+POST [base]/fhir/Questionnaire/[id]/$populate
 ```
 
 ### Parameters
@@ -60,10 +60,8 @@ Example
 resourceType: Parameters
 parameter:
 - name: subject
-  value:
-    Reference:
-      id: pt-1
-      resourceType: Patient
+  valueReference:
+    reference: Patient/pt-1
 ```
 
 #### identifier
@@ -72,10 +70,9 @@ A logical questionnaire identifier (i.e. Questionnaire.identifier). The server m
 
 ```yaml
 name: identifier
-value:
-  Identifier:
-    system: 'forms.aidbox'
-    value: 'vitals'
+valueIdentifier:
+  system: 'forms.aidbox'
+  value: 'vitals'
 ```
 
 #### canonical
@@ -84,8 +81,7 @@ The canonical identifier for the questionnaire (optionally version-specific).
 
 ```yaml
 name: canonical
-value:
-  Canonical: http://forms.aidbox.io/Questionnaire/vitals
+valueCanonical: http://forms.aidbox.io/Questionnaire/vitals
 ```
 
 #### questionnaire
@@ -107,10 +103,9 @@ The Questionnaire is provided as a resource reference. Servers may choose not to
 
 ```yaml
 name: questionnaireRef
-value:
-  Reference:
-    resourceType: Questionnaire
-    id: new-form
+valueReference:
+  resourceType: Questionnaire
+  id: new-form
 ```
 
 #### subject
@@ -119,20 +114,17 @@ The resource that is to be the QuestionnaireResponse.subject. The QuestionnaireR
 
 ```yaml
 name: subject
-value:
-  Reference:
-    id: pt-1
-    resourceType: Patient
+valueReference:
+  reference: Patient/pt-1
 ```
 
 #### local
 
 If specified and set to true (and the server is capable), the server should use what resources and other knowledge it has about the referenced subject when pre-populating answers to questions.
 
-```
+```yaml
 name: local
-value:
-  Boolean: true
+valueBoolean: true
 ```
 
 #### context
@@ -147,13 +139,10 @@ They should correspond launchContext parameter definitions.
 name: context
 part:
 - name: name
-  value:
-    String: encounter
+  valueString: encounter
 - name: content
-  value:
-    Reference:
-      resourceType: Encounter
-      id: enc1
+  valueReference:
+    reference: Encounter/enc1
 ```
 
 FHIR SDC launchContext extension [enumerates](http://hl7.org/fhir/uv/sdc/STU3/CodeSystem-launchContext.html) possible context variables, they are:
@@ -187,10 +176,8 @@ Example:
 
 ```yaml
 name: name
-value:
-  Reference:
-    id: sr1
-    resourceType: ServiceRequest
+valueReference:
+  reference: ServiceRequest/sr1
 ```
 
 #### context.name
@@ -199,8 +186,7 @@ The name of the launchContext or root Questionnaire variable the passed content 
 
 ```yaml
 name: name
-value:
-  String: encounter
+valueString: encounter
 ```
 
 #### context.content
@@ -209,10 +195,8 @@ The actual resource (or resources) to use as the value of the launchContext or v
 
 ```yaml
 name: content
-value:
-  Reference:
-    resourceType: Encounter
-    id: enc1
+valueReference:
+  reference: Encounter/enc1
 ```
 
 Or
@@ -224,8 +208,7 @@ resource:
   resourceType: Encounter
   id: enc1
   subject:
-    id: pt-1
-    resourceType: Patient
+    reference: Patient/pt-1
   ...
 ```
 
@@ -250,26 +233,21 @@ Success response shape
 {% tabs %}
 {% tab title="Request" %}
 ```http
-POST [base]/Questionnaire/vitals/$populate
+POST [base]/fhir/Questionnaire/vitals/$populate
 content-type: text/yaml
 
 resourceType: Parameters
 parameter:
 - name: subject
-  value:
-    Reference:
-      id: pt-1
-      resourceType: Patient
+  valueReference:
+    reference: Patient/pt-1
 - name: context
   part:
   - name: name
-    value:
-      String: encounter
+    valueString: encounter
   - name: content
-    value:
-      Reference:
-        resourceType: Encounter
-        id: enc1
+    valueReference:
+      reference: Encounter/enc1
 ```
 {% endtab %}
 
@@ -285,11 +263,9 @@ parameter:
     questionnaire: http://aidbox.app/forms/new-form
     status: in-progress
     basedOn:
-    - id: sr1
-      resourceType: ServiceRequest
+      reference: ServiceRequest/sr1
     encounter:
-      id: enc1
-      resourceType: Encounter
+      reference: Encounter/enc1
     item:
     - linkId: name
       text: Name
@@ -323,11 +299,11 @@ The [populatelink](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire
 ### URLs
 
 ```
-POST [base]/Questionnaire/$populatelink
+POST [base]/fhir/Questionnaire/$populatelink
 ```
 
 ```
-POST [base]/Questionnaire/[id]/$populatelink
+POST [base]/fhir/Questionnaire/[id]/$populatelink
 ```
 
 ### Parameters
@@ -345,7 +321,7 @@ NOTE: Don't forget to wrap parameters in `Parameters object`
 resourceType: Parameters
 parameter:
 - name:  [var-name]
-  value: [varType: var-value]
+  valueX: [varType: var-value]
 ```
 {% endhint %}
 
@@ -367,8 +343,7 @@ Whether the generated link will allow amending and re-submitting the form.
 
 ```
 name: allow-amend
-value:
-  Boolean: true
+valueBoolean: true
 ```
 
 #### allow-repopulate
@@ -379,8 +354,7 @@ NOTE: Repopulate will be working only with forms that contain populate behavior
 
 ```
 name: allow-repopulate
-value:
-  Boolean: true
+valueBoolean: true
 ```
 
 #### redirect-on-submit
@@ -389,8 +363,7 @@ A URL where the user will be redirected to after successfully submitting the for
 
 ```yaml
 name: redirect-on-submit
-value:
-  String: https://example.com/submit-hook?questionnaire=123
+valueString: https://example.com/submit-hook?questionnaire=123
 ```
 
 #### redirect-on-save
@@ -401,8 +374,7 @@ A URL where the user will be redirected to after hitting Save button.
 
 ```yaml
 name: redirect-on-save
-value:
-  String: https://example.com/submit-hook?questionnaire=123
+valueString: https://example.com/submit-hook?questionnaire=123
 ```
 
 #### link expiration time
@@ -411,8 +383,7 @@ Link expiration period (days)
 
 ```yaml
 name: expiration
-value:
-  Integer: 30
+valueInteger: 30
 ```
 
 > By default thir parameter = 7 days
@@ -423,8 +394,7 @@ Form theme. QuestionnaireTheme resource id.
 
 ```yaml
 name: theme
-value:
-  String: hs-theme
+valueString: hs-theme
 ```
 
 #### config
@@ -433,8 +403,7 @@ Form config. SDCConfig resource id.
 
 ```yaml
 name: theme
-value:
-  String: default-config
+valueString: default-config
 ```
 
 
@@ -444,8 +413,7 @@ Open form in read-only mode.
 
 ```yaml
 name: read-only
-value:
-  Boolean: true
+valueBoolean: true
 ```
 
 #### app-name
@@ -455,9 +423,8 @@ Application name that will be used in Audit logging when returned link was used.
 > Audit logging should be enabled via [configuartion](../../modules/security-and-access-control/audit/setup-audit-logging.md)
 
 ```yaml
-- name: app-name
-  value
-    String: my-app
+name: app-name
+valueString: my-app
 ```
 
 ### Response
@@ -475,28 +442,24 @@ Application name that will be used in Audit logging when returned link was used.
 {% tabs %}
 {% tab title="Request" %}
 ```http
-POST [base]/Questionnaire/vitals/$populatelink
+POST [base]/fhir/Questionnaire/vitals/$populatelink
 content-type: text/yaml
 
 resourceType: Parameters
 parameter:
 - name: subject
-  value:
-    Reference:
-      id: pt-1
-      resourceType: Patient
+  valueReference:
+    reference: Patient/pt-1
 - name: context
   part:
   - name: name
-    value:
-      String: encounter
+    valueString: encounter
   - name: content
     resource:
       resourceType: Encounter
       id: enc-1
       subject:
-        id: pt-1
-        resourceType: Patient
+        reference: Patient/pt-1
 ```
 {% endtab %}
 
@@ -507,9 +470,7 @@ HTTP status: 200
 resourceType: Parameters
 parameter:
 - name: link
-  value:
-    Uri: http://forms.aidbox.io/ui/sdc#/questionnaire-response/12c1178c-70a9-4e02-a53d-65b13373926e?token=eyJhbGciOiJIUzI
-
+  valueUri: http://forms.aidbox.io/ui/sdc#/questionnaire-response/12c1178c-70a9-4e02-a53d-65b13373926e?token=eyJhbGciOiJIUzI
 ```
 {% endtab %}
 
@@ -569,11 +530,11 @@ Using `itemExtractionContext`:
 ### URLs
 
 ```http
-URL: [base]/QuestionnaireResponse/$extract
+URL: [base]/fhir/QuestionnaireResponse/$extract
 ```
 
 ```
-URL: [base]/QuestionnaireResponse/[id]/$extract
+URL: [base]/fhir/QuestionnaireResponse/[id]/$extract
 ```
 
 ### Parameters
@@ -611,7 +572,7 @@ parameter:
 {% tabs %}
 {% tab title="Request" %}
 ```http
-POST [base]/QuestionnaireResponse/$extract
+POST [base]/fhir/QuestionnaireResponse/$extract
 content-type: text/yaml
 
 resourceType: Parameters
@@ -623,8 +584,7 @@ parameter:
     questionnaire: https://forms.aidbox.io/vitals
     item:
       - linkId: temperature
-        value:
-          Decimal: 36.6
+        valueDecimal: 36.6
     ...
 ```
 {% endtab %}
@@ -645,12 +605,10 @@ return:
         - code: body-temperature
           system: loinc
       subject:
-        id: pt-1
-        resourceType: Patient
-      value:
-        Quantity:
-          unit: [c]
-          value: 36.6
+        reference: Patient/pt-1
+      valueQuantity:
+        unit: [c]
+        value: 36.6
     request: {method: POST,  url: /Observation}
 
 ```
