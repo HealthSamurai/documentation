@@ -107,7 +107,7 @@ Each widget in Aidbox Forms has its own set of customisable attributes that defi
 
 ### Rules section
 
-1. EnableWhen rule
+#### EnableWhen rule
 
 EnableWhen option controls whether an item should be 'enabled' or not, but can handle more sophisticated circumstances. For example, it is possible to calculate a score based on the answer to several questions and then enable other questions based on the score. It's also possible to enable or disable questions based on data passed in as context or retrieved from queries.
 
@@ -116,7 +116,7 @@ Options for Setting EnableWhen Rules:
 * `conditions` - define conditions using the "enableWhen" constructor.
 * `expression` - use [FHIRPath](https://hl7.org/fhirpath/) expressions to describe the desired behavior.
 
-2. Calculation rule
+#### Calculation rule
 
 Calculated expression allows answers to questions to be calculated based on answers to other questions. For example, the determination of a score.
 
@@ -144,9 +144,11 @@ Example:
 
 ### Data extraction section
 
-Aidbox Forms supports two options for data extraction: **Observation-Based** and **Definition-Based**. These options provide flexibility in how form data is transformed into different FHIR resources.
+Aidbox Forms supports three options for data extraction: **Observation-Based**, **Definition-Based**, and **Template-Based**. These options provide flexibility in how form data is transformed into different FHIR resources.
 
-1. **Observation-based extraction:** It allows data collected through a Questionnaire Response (QR) to be extracted and stored in FHIR Observation resources.
+**Observation-based extraction**
+
+&#x20;It allows data collected through a Questionnaire Response (QR) to be extracted and stored in FHIR Observation resources.
 
 {% hint style="info" %}
 Ensure that each item has both a **code** and a **system** defined.
@@ -159,9 +161,11 @@ Ensure that each item has both a **code** and a **system** defined.
 
 For detailed instructions and an example of extracting data into an Observation resource, visit the [Observation-Based Extraction Guide](how-to-guides/how-to-extract-data-from-forms.md#observation-based-extraction).
 
-2. **Definition-based extraction:** It maps form data dynamically to the corresponding FHIR resources.
 
-When configuring extraction, you must specify a **FHIR Path expression** in the **Path** field. This expression defines the resource and field where the data should be extracted.
+
+**Definition-based extraction**
+
+It maps form data dynamically to the corresponding FHIR resources. When configuring extraction, you must specify a FHIR Path expression in the Path field. This expression defines the resource and field where the data should be extracted.
 
 **Current Logic:**
 
@@ -176,6 +180,35 @@ Using `itemExtractionContext`:
 * Populated `itemExtractionContext`: If the `itemExtractionContext` contains a resource (or set of resources), the Questionnaire updates the existing resource.
 
 For detailed instructions and an example of extracting data into a Patient resource, visit the [Definition-Based Extraction Guide](how-to-guides/how-to-extract-data-from-forms.md#definition-based-extraction).
+
+#### Template-based extraction (_alpha_)
+
+It uses predefined templates embedded in the Questionnaire to extract answers into FHIR resource&#x73;**,** along with all the "boiler-plate" content for the resource that is to be extracted..
+
+#### &#x20;  **Current Logic:**
+
+* Templates are included in the Questionnaire as **contained resources** and referenced using the [`sdc-questionnaire-templateExtract`](https://build.fhir.org/ig/HL7/sdc/StructureDefinition-sdc-questionnaire-templateExtract.html) or [`sdc-questionnaire-templateExtractBundle`](https://build.fhir.org/ig/HL7/sdc/StructureDefinition-sdc-questionnaire-templateExtractBundle.html) extensions.&#x20;
+* There are two options where you can place the `templateExtract` extension:
+  * **At the root level of the Questionnaire:** Used when you want to extract a single resource based on multiple answers from the form.
+  * **At the item level:** Used when you want to extract data from specific questions or create a separate resource per repeated item.
+* Data is mapped from answers in the QuestionnaireResponse into the template using FHIRPath expressions.
+* Repeating items:
+  * When `templateExtract` is placed on a repeatable item, the engine creates a new resource for each answer.
+  * When extracting to a field that is an array (e.g., `Patient.address`), repeated answers can be added as multiple entries in the same resource.
+* Use of the [`allocateId`](https://build.fhir.org/ig/HL7/sdc/StructureDefinition-sdc-questionnaire-extractAllocateId.html) extension allows generation of unique IDs and referencing between related resources.
+* If the template includes expressions that return no result, the corresponding field or entry is automatically excluded from the output.
+
+**Steps to create a resource template:**
+
+* Select a predefined resource template from existing ones, or create a new template.
+* At this moment, the Resource Template Editor will be opened.
+* Set up the template name.
+* Select the resource type of the template you want to create (e.g., Patient, Observation).
+* Search and prefill the fields that you need in this resource template.
+* Test and debug the extraction using the debug console. For this purpose, enter test data in the form.
+* Close the Resource Template Editor panel if everything is correct, or discard changes.
+
+For detailed instructions and examples of using templates for data extraction, visit the Template-Based Extraction Guide.
 
 ### Population
 
