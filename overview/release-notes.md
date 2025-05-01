@@ -1,6 +1,8 @@
 # Release Notes
 
-## April 2025 _`edge`_
+## May 2025 _`edge`_
+
+## April 2025 _`latest, 2504`_
 
 * Aidbox FHIR server
   * Supported FHIR 6.0.0-ballot3 as a package in [Aidbox FHIR Package registry](../modules/profiling-and-validation/fhir-schema-validator/supported-implementation-guides.md) and published a tutorial on [running Aidbox with FHIR 6.0.0-ballot3 locally and in the Aidbox sandbox](../readme-1/tutorials/run-aidbox-with-fhir-r6.md).
@@ -11,8 +13,13 @@
   * Fixed validation of contained resources
   * Fixed GraphQL schema generation to properly handle type definitions in the Aidbox system resources
   * Added multiple UI fixes to FHIR packages and Resource browser sections in Aidbox UI
+* Minor updates
+  * `2503.3` - Fixed vulnerabilities and minor Forms issues
+  * `2502.6` - Fixed vulnerabilities and minor Forms issues
+  * `2501.8` - Fixed vulnerabilities and minor Forms issues
+  * `2402-lts` - Fixed vulnerabilities
 
-## March 2025 _`latest, 2503`_
+## March 2025 _`stable, 2503`_
 
 * Aidbox FHIR server
   * Supported [FHIRPath patch](../api/rest-api/crud-1/patch.md#fhirpath-patch)
@@ -40,7 +47,7 @@
   * `2306-lts` 24-hour license grace period, fix vulnerabilities
   * `2302-lts` 24-hour license grace period, fix vulnerabilities
 
-## February 2025 _`stable, 2502`_
+## February 2025 _`2502`_
 
 * Aidbox
   * Introduced [Settings](../configuration/settings.md)
