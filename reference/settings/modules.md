@@ -357,7 +357,3 @@ ECDH/BC/prime256v1 Private Key
 If a push service needs to reach out to sender, it can find contact information from the JWT.
 
 <table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>module.webpush.jwt-mail</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_MODULE_WEBPUSH_JWT_MAIL</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_FEATURES_WEBPUSH_JWT_MAIL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table>
-
-# Usage Statistics
-
-Usage Statistics
