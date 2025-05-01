@@ -18,7 +18,7 @@ To create a SearchParameter, [FHIRSchema](../../../../modules/profiling-and-vali
 
 &#x20;In AidboxUI, go to **FHIR Packages -> hl7.fhir.r4.core** and click on "SearchParameters" tab:
 
-<figure><img src="../../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Getting all Patient SearchParameters from r4:
 

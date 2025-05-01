@@ -102,7 +102,11 @@ CREATE EXTENSION pg_stat_statements;
 
 
     <figure><img src="../../.gitbook/assets/image (169).png" alt=""><figcaption></figcaption></figure>
-5.  In the container properties, add environment variables.\
+5.  Configure Memory and CPU Limits\
+
+
+    <figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+6.  In the container properties, add environment variables.\
 
 
     <figure><img src="../../.gitbook/assets/image (170).png" alt=""><figcaption></figcaption></figure>
@@ -162,18 +166,20 @@ CREATE EXTENSION pg_stat_statements;
       value: false
     - name: BOX_DB_MAINTENANCE_DATABASE
       value: aidbox
+    - name: JAVA_OPTS
+      value: -Xms3072m -Xmx3072m  
     ```
 
     \
     See more about recommended Aidbox environment variables [here](../../configuration/installation.md#recommended-environment-variables).
 
     <figure><img src="../../.gitbook/assets/image (174).png" alt=""><figcaption></figcaption></figure>
-6.  At the Networking tab, configure the outbound traffic to go to the **default** subnet.\
+7.  At the Networking tab, configure the outbound traffic to go to the **default** subnet.\
     \
 
 
     <figure><img src="../../.gitbook/assets/image (172).png" alt=""><figcaption></figcaption></figure>
-7. Click the "**Create**" button and wait for the service to deploy successfully.\
+8. Click the "**Create**" button and wait for the service to deploy successfully.\
 
 
 <figure><img src="../../.gitbook/assets/image (158).png" alt=""><figcaption></figcaption></figure>
