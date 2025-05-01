@@ -1,9 +1,9 @@
 # Aidbox required environment variables
 
-### AIDBOX\_PORT
+### BOX\_WEB\_PORT
 
 ```
-AIDBOX_PORT=<port>
+BOX_WEB_PORT=<port>
 ```
 
 A port that web server will listen to.
@@ -16,11 +16,15 @@ AIDBOX_FHIR_VERSION=<fhir version>
 
 `<fhir version>` is one of: `1.0.2`, `1.4.0`, `1.8.0`, `3.0.1`, `3.2.0`, `3.3.0`, `4.0.0`, `4.0.1`, `4.3.0`, `5.0.0`
 
-{% hint style="warning" %} We recommend using version 4.0.1 {% endhint %}
+{% hint style="warning" %}
+We recommend using version 4.0.1
+{% endhint %}
 
 ### AIDBOX\_COMPLIANCE
 
-{% hint style="warning" %} Becomes required if AIDBOX_FHIR_SCHEMA_VALIDATION: true {% endhint %}
+{% hint style="warning" %}
+Becomes required if AIDBOX\_FHIR\_SCHEMA\_VALIDATION: true
+{% endhint %}
 
 ```
 AIDBOX_COMPLIANCE: enabled
