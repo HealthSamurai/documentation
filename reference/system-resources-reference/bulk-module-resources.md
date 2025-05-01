@@ -89,6 +89,11 @@ Bulk module includes the following resource types:
 <tr><td width="290">inputs</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>Information about input files processed during import.</td></tr>
 <tr><td width="290">inputs.<strong>time</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Time taken to process this input file in milliseconds.</td></tr>
 <tr><td width="290">inputs.<strong>resourceType</strong></td><td width="70">1..1</td><td width="150">string</td><td>Type of resources contained in this input file.</td></tr>
+<tr><td width="290">inputs.<strong>url</strong></td><td width="70">0..1</td><td width="150">string</td><td>Url of imported file.</td></tr>
+<tr><td width="290">inputs.<strong>ts</strong></td><td width="70">0..1</td><td width="150">dateTime</td><td>Time when the import operation completed.</td></tr>
+<tr><td width="290">inputs.<strong>total</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Total number of imported resources</td></tr>
+<tr><td width="290">inputs.<strong>status</strong></td><td width="70">0..1</td><td width="150">string</td><td>Import progress status</td></tr>
+<tr><td width="290">inputs.<strong>duration</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Import duration time</td></tr>
 <tr><td width="290">mode</td><td width="70">0..1</td><td width="150">string</td><td>Mode of import operation (bulk or transaction). 
 
 <strong>Allowed values</strong>: `bulk` | `transaction`</td></tr>
