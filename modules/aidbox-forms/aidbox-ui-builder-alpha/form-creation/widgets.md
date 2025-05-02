@@ -114,7 +114,7 @@ EnableWhen option controls whether an item should be 'enabled' or not, but can h
 Options for Setting EnableWhen Rules:
 
 * `conditions` - define conditions using the "enableWhen" constructor.
-* `expression` - use [FHIRPath](https://hl7.org/fhirpath/) expressions to describe the desired behavior.
+* `expression` - use [FHIRPath](https://hl7.org/fhirpath/) expressions or [the FHIRPath Editor](fhirpath-editor.md) to describe the desired behavior.
 
 #### Calculation rule
 
@@ -124,7 +124,7 @@ This expression will be most used for displaying scores, but can be used for any
 
 How to use Calculated expression:
 
-* Create custom [FHIR Path](https://hl7.org/fhirpath/) expressions in the code editor with autocomplete functionality.
+* Create custom [FHIR Path](https://hl7.org/fhirpath/) expressions in the code editor with autocomplete functionality or in [the FHIRPath Editor](fhirpath-editor.md) by clicking on `Visual mode` button .
 * Utilize predefined templates under the "question" icon.
 
 Named expressions can be used in data calculation process.\
@@ -230,7 +230,7 @@ Aidbox Forms provide three options for pre-filling the field:
 
 1. **Initial Value**: For all fields except groups and display widgets, the user can set the default value. If the user does not change the value, this is what will appear in the completed QuestionnaireResponse.
 2. **Observation:** Used to pre-fill a field with values ​​that are stored in the database in the Observation resources. To do this, the user needs to select the time period during which these observations could have been made. The mechanism is described in more detail in the [FHIR SDC specification.](https://build.fhir.org/ig/HL7/sdc/populate.html#observation-based-population)
-3. **Expression:** This approach to population is more generic. It supports retrieving data from any queryable FHIR resources available in the database. Those queries can be based on the context in which the QuestionnaireResponse is being generated and/or on the results of other queries. The user needs to use [FHIRPath](https://hl7.org/fhirpath/) for this purpose. For more detail go to the [FHIR SDC specification.](https://build.fhir.org/ig/HL7/sdc/populate.html#expression-based-population)
+3. **Expression:** This approach to population is more generic. It supports retrieving data from any queryable FHIR resources available in the database. Those queries can be based on the context in which the QuestionnaireResponse is being generated and/or on the results of other queries. The user needs to use [FHIRPath](https://hl7.org/fhirpath/) for this purpose or [The FHIRPath Editor](fhirpath-editor.md). For more detail go to the [FHIR SDC specification.](https://build.fhir.org/ig/HL7/sdc/populate.html#expression-based-population)
 
 ## Description of widgets
 

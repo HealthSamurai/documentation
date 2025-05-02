@@ -14,7 +14,7 @@
   * Added multiple UI fixes to FHIR packages and Resource browser sections in Aidbox UI
 * Aidbox Forms
   * Supported [template-based extraction](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-settings.md#template-based-extraction) for transforming QuestionnaireResponses into FHIR resources using predefined templates (currently in preview)
-  * Implemented the FHIRPath editor for calculation, enable-when, and population expressions (currently in preview).
+  * Implemented [the FHIRPath expression editor](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/fhirpath-editor.md) for calculation, enable-when, and population expressions (currently in preview).
   * Supported FHIR 6.0.0
 * Minor updates
   * `2503.3` - Fixed vulnerabilities and minor Forms issues

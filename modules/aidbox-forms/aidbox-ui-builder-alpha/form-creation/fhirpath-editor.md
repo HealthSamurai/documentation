@@ -24,8 +24,8 @@ After creating the form and adding a set of fields:
 * Navigate to the Rules section of the field where you want to apply logic.
 * Select one of the expressions: Enable-when, Calculated, or Population.
 * Click `Visual Mode` to open the FHIRPath Expression Editor.
-* Set any **variables** you want to use in the expression.
-* Write your final **FHIRPath expression** using the editor interface.
+* Set any variables (named expressions) you want to use in the expression.
+* Write your final FHIRPath expression using the editor interface.
 
 **2. Test and Debug an Expression**
 
