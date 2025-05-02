@@ -7,11 +7,10 @@
 * Aidbox FHIR server
   * Supported FHIR 6.0.0-ballot3 as a package in [Aidbox FHIR Package registry](../modules/profiling-and-validation/fhir-schema-validator/supported-implementation-guides.md) and published a tutorial on [running Aidbox with FHIR 6.0.0-ballot3 locally and in the Aidbox sandbox](../readme-1/tutorials/run-aidbox-with-fhir-r6.md).
   * Migrated Aidbox system resources to FHIR DomainResource model.
-  * Supported OR logic for the [\_filter ](../api/rest-api/fhir-search/searchparameter.md#filter)parameter.
-  * Supported 'pr' (presence) operator for the [\_filter ](../api/rest-api/fhir-search/searchparameter.md#filter)parameter, allowing users to search based on field existence.
   * Supported resolving conditional references in FHIR transaction Bundles
   * Fixed validation of contained resources
   * Fixed GraphQL schema generation to properly handle type definitions in the Aidbox system resources
+  * Removed DB Parameters from SQL Logs
   * Added multiple UI fixes to FHIR packages and Resource browser sections in Aidbox UI
 * Minor updates
   * `2503.3` - Fixed vulnerabilities and minor Forms issues
