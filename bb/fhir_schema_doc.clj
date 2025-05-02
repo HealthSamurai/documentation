@@ -2,7 +2,7 @@
   (:require cheshire.core))
 
 (def supported-implementation-guide-destination
-  "modules-1/profiling-and-validation/fhir-schema-validator/supported-implementation-guides.md")
+  "modules/profiling-and-validation/fhir-schema-validator/supported-implementation-guides.md")
 
 (def supported-implementation-guide-template "---
 description: >-
