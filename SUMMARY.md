@@ -283,6 +283,7 @@
         * [How to extract data from forms](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-extract-data-from-forms.md)
         * [How to calculate form filling percentage](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-calculate-filling-progress-percentage.md)
       * [Multilingual forms](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/multilingual-forms.md)
+      * [FHIRPath Editor](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/fhirpath-editor.md)
     * [Import Questionnaire](modules/aidbox-forms/aidbox-ui-builder-alpha/import-fhir-questionnaire.md)
     * [Form sharing](modules/aidbox-forms/aidbox-ui-builder-alpha/form-sharing.md)
     * [Printing forms](modules/aidbox-forms/aidbox-ui-builder-alpha/printing-forms/README.md)
