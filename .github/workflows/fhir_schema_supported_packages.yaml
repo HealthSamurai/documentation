@@ -22,6 +22,6 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add modules-1/profiling-and-validation/fhir-schema-validator/supported-implementation-guides.md
+        git add modules/profiling-and-validation/fhir-schema-validator/supported-implementation-guides.md
         git commit -m "Update supported-implementation-guides.md" -a
         git push
