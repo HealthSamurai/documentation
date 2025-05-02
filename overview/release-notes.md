@@ -7,7 +7,6 @@
 * Aidbox FHIR server
   * Supported FHIR 6.0.0-ballot3 as a package in [Aidbox FHIR Package registry](../modules/profiling-and-validation/fhir-schema-validator/supported-implementation-guides.md) and published a tutorial on [running Aidbox with FHIR 6.0.0-ballot3 locally and in the Aidbox sandbox](../readme-1/tutorials/run-aidbox-with-fhir-r6.md).
   * Migrated Aidbox system resources to the FHIR DomainResource model and [published reference documentation for system resources](../reference/system-resources-reference/).
-  * Published reference documentation for [Aidbox system resources](../reference/system-resources-reference/).
   * Supported resolving conditional references in FHIR transaction Bundles.
   * Fixed validation of contained resources.
   * Fixed GraphQL schema generation to properly handle type definitions in the Aidbox system resources.
