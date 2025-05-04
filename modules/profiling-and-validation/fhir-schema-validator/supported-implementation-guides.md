@@ -5062,6 +5062,15 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 ---
 
+### MII IG Molekulares Tumorboard
+
+**Versions**
+
+* `de.medizininformatikinitiative.kerndatensatz.mtb#2025.0.0-ballot-alpha.1`
+
+
+---
+
 ### eHealth Platform R4 Federal Profiles
 
 **Versions**
@@ -7240,6 +7249,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
+* `hl7.terminology.r3#6.3.0`
 * `hl7.terminology.r3#6.2.0`
 * `hl7.terminology.r3#6.1.0`
 * `hl7.terminology.r3#6.0.2`
@@ -7962,6 +7972,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
+* `test.public.project#0.0.2`
 * `test.public.project#0.0.1`
 
 
@@ -8543,6 +8554,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
+* `hl7.terminology.r5#6.3.0`
 * `hl7.terminology.r5#6.2.0`
 * `hl7.terminology.r5#6.1.0`
 * `hl7.terminology.r5#6.0.2`
@@ -8724,6 +8736,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
+* `hl7.terminology.r4#6.3.0`
 * `hl7.terminology.r4#6.2.0`
 * `hl7.terminology.r4#6.1.0`
 * `hl7.terminology.r4#6.0.2`
