@@ -454,12 +454,12 @@
     * [Mathematical details](modules/other-modules/mdm/mathematical-details.md)
 * [ePrescription](modules/eprescription/README.md)
   * [Getting started](modules/eprescription/getting-started.md)
-  * [Authentication with mTLS](modules/eprescription/how-to-prepare-surescripts-mtls.md)
+  * [Authentication with mTLS](modules/eprescription/tutorials/how-to-prepare-surescripts-mtls.md)
   * [Pharmacies synchronization](modules/eprescription/pharmacies-synchronization.md)
   * [Prescribing](modules/eprescription/prescribing/README.md)
     * [NewRx Message](modules/eprescription/prescribing/newrx-message.md)
     * [CancelRx Message](modules/eprescription/prescribing/cancelrx-message.md)
-    * [How to test Callback](modules/eprescription/prescribing/callback-endpoint.md)
+    * [How to test Callback](modules/eprescription/tutorials/callback-endpoint.md)
   * [Directory](modules/eprescription/directory/README.md)
     * [DirectoryDownload Message](modules/eprescription/directory/directorydownload-message.md)
     * [GetProviderLocation Message](modules/eprescription/directory/getproviderlocation-message.md)
@@ -469,7 +469,7 @@
   * [Medications](modules/eprescription/medications/README.md)
     * [FDB](modules/eprescription/medications/fdb.md)
   * [References](modules/eprescription/tutorials/README.md)
-    * [Environment Variables](modules/eprescription/tutorials/configuration.md)
+    * [Environment Variables](modules/eprescription/configuration.md)
   * [Frequently Asked Questions](modules/eprescription/frequently-asked-questions.md)
 
 ## Database

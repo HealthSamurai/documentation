@@ -52,11 +52,11 @@ networks:
 ```
 
 {% hint style="warning" %}
-If you're not sure about the Surescripts secrets, please read this guide: [How to prepare authentication files.](how-to-prepare-surescripts-mtls.md)
+If you're not sure about the Surescripts secrets, please read this guide: [How to prepare authentication files.](tutorials/how-to-prepare-surescripts-mtls.md)
 {% endhint %}
 
 {% hint style="warning" %}
-For more information about available configuration options, please go to the [environment variables reference](tutorials/configuration.md).
+For more information about available configuration options, please go to the [environment variables reference](configuration.md).
 {% endhint %}
 
 ### Volumes
