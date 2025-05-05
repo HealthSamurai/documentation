@@ -647,7 +647,7 @@
     * [Aidbox Search Parameters](deprecated/deprecated/entity-attribute/aidbox-search-parameters.md)
   * [Other](deprecated/deprecated/other/README.md)
     * [Custom Search](deprecated/deprecated/other/custom-search.md)
-    * [SearchQuery](api-1/api/search-1/other/searchquery.md)
+    * [SearchQuery](deprecated/deprecated/other/searchquery.md)
     * [Subscribe to new Patient resource](deprecated/deprecated/other/subscribe-to-new-patient-resource.md)
     * [App Development Deprecated Tutorials](deprecated/deprecated/other/app-development-deprecated-tutorials/README.md)
       * [Receive logs from your app](deprecated/deprecated/other/app-development-deprecated-tutorials/receive-logs-from-your-app/README.md)
