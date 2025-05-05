@@ -54,7 +54,7 @@ go install github.com/nats-io/nsc/v2@latest
 docker compose up
 ```
 
-Now, in AidboxUI, go to **FHIR Packages -> io.healthsamurai.topic** and see that NATS profiles are present.
+Now, in AidboxUI, go to **FHIR Packages -> io.healthsamurai.topic** and make sure that NATS profiles are present.
 
 <figure><img src="../../.gitbook/assets/image (181).png" alt=""><figcaption></figcaption></figure>
 
