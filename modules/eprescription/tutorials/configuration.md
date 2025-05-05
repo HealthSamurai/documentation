@@ -1,6 +1,4 @@
-# Configuration
-
-### Environment Variables
+# Environment Variables
 
 Here is a full list of environment variables used by the module:
 
