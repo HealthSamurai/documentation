@@ -56,7 +56,7 @@ docker compose up
 
 Now, in AidboxUI, go to **FHIR Packages -> io.healthsamurai.topic** and see that NATS profiles are present.
 
-&#x20;<img src="../../.gitbook/assets/image (181).png" alt="" data-size="original">
+<figure><img src="../../.gitbook/assets/image (181).png" alt=""><figcaption></figcaption></figure>
 
 ## Basic Usage
 
@@ -175,7 +175,7 @@ nats pub patients.test "hello JetStream"
 
 3. Check the stream saves the message.
 
-```
+```sh
 nats stream ls
 ```
 
@@ -234,13 +234,19 @@ name:
 - family: smith
 ```
 
-```
+6. Create a stream consumer.
+
+```sh
 nats consumer add EVENTS my-consumer --defaults --pull
 ```
+
+7. Pull the first available message.
 
 ```
 nats consumer next EVENTS my-consumer
 ```
+
+It is our message published from CLI:
 
 ```
 [13:59:58] subj: patients.test / tries: 1 / cons seq: 1 / str seq: 1 / pending: 1
@@ -249,6 +255,14 @@ hello JetStream
 
 Acknowledged message
 ```
+
+9. Pull next message.
+
+```
+nats consumer next EVENTS my-consumer
+```
+
+It is the message from Aidbox:the&#x20;
 
 ```
 [14:00:21] subj: patients.created / tries: 1 / cons seq: 2 / str seq: 2 / pending: 0
@@ -458,7 +472,7 @@ accept: application/json
 nats sub joe.message --creds ./creds/admin.creds
 ```
 
-You can try to subscribe to the subject using Joe's or Pam's credentials, but they do not have right to do so.
+You can try to subscribe to the subject using Joe's or Pam's credentials, but they do not have the right to do so.
 
 17. Post the patient with a name.
 
