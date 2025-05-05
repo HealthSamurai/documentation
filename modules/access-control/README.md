@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Access Control
 
 Aidbox provides a set of security features to implement access control\

@@ -594,7 +594,7 @@ Minor updates:
 * Security and Access control
   * Developed [access policy dev tool](../modules/security-and-access-control/security/access-policy-dev-tool.md)
   * Added tutorials and guides:
-    * [Auth overview article](../modules/todo/overview.md)
+    * [Auth overview article](../modules/access-control/todo/overview.md)
     * [How to implement the ReBAC authorization model ](../tutorials/security-access-control-tutorials/relationship-based-access-control-in-aidbox.md)in Aidbox within AccessPolicy
     * [Access policy best practices](../modules/security-and-access-control/security/accesspolicy-best-practices.md)
 * Aidbox user portal
