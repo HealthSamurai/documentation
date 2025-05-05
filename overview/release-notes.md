@@ -540,7 +540,7 @@ Minor updates:
   * Added minor fixes:
     * automatic layout generation for subforms
     * minor styling inconsistencies in UI
-* Aidbox JS SDK
+* [Aidbox JS SDK](../tools/aidbox-sdk/)
   * Added a [quickstart guide ](../app-development/use-aidbox-with-react.md)demonstrating how to launch a PHR sample app on Aidbox
   * Added a [PHR sample app](https://github.com/Aidbox/aidbox-sdk-js/tree/main/personal-health-record)
   * Added [3 example apps](https://github.com/Aidbox/aidbox-sdk-js/tree/main/examples)
@@ -1089,7 +1089,7 @@ Now references to contained resources are represented as `localRef` attribute in
 * Added JWT sub & iss and client IP address to logs
 * aidbox-cli elastic search logger now creates a new index for each day
 * Upgrade/Fix [PATCH](../api/rest-api/crud-1/patch.md) to be fully RFC conformant
-* Added [X-Client-Auth](https://docs.aidbox.app/auth-betta/access-token-introspection#x-client-auth) header
+* Added X-Client-Auth header
 * Added **cts** column (createdAt) to resources ([read more](broken-reference/)).
 * Entity.history='none' for custom resources to turn-off history
 * Unique validation by `isUnique=true` in Attribute
