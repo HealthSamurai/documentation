@@ -515,7 +515,7 @@
 * [Use Aidbox with React](app-development/use-aidbox-with-react.md)
 * [Aidbox SDK](app-development/aidbox-sdk/README.md)
   * [Aidbox JavaScript SDK](app-development/aidbox-sdk/aidbox-javascript-sdk.md)
-  * [Apps](app-development/aidbox-sdk/aidbox-apps.md)
+  * [Apps](app-development/aidbox-sdk/apps.md)
   * [NodeJs SDK](app-development/aidbox-sdk/nodejs.md)
   * [Python SDK](app-development/aidbox-sdk/python-sdk.md)
 * [Examples](https://github.com/Aidbox/examples)
