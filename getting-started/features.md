@@ -4,48 +4,125 @@ description: Overview of Aidbox features
 
 # Features
 
-### REST API - FHIR, Aidbox, GraphQL, Reactive API & Subscriptions
+### Core FHIR Capabilities
 
-Aidbox is a FHIR Server and then more. We developed FHIR API, Subscriptions, GraphQL, and SQL API, which all engineers love. Users can extend Aidbox API with Custom Operations.
+* Supports STU3, R4, R4B, R5, R6 ballot3.
+* Full CRUD, history/versioning, conditional operations, transactions
+* High-performance rich-featured validation
+* FHIRPath support for filtering, derived values, and expressions
+* Advanced Search:
+  * \_include, \_revinclude, \_has, chained parameters, \_filter, \_list
+  * Custom SearchParameters
+  * Full-text search with optimized indexing
+* Full implementation of Structured Data Capture (SDC): $extract, $populate, Questionnaire and QuestionnaireResponse
+* Bulk import and export
 
-Aidbox supports all major FHIR versions: DSTU2, STU3, R4, R4B and R5. Strict validation ensures data consistency and integrity for all FHIR resources. With [Subscriptions](https://docs.aidbox.app/api-1/reactive-api-and-subscriptions), users can execute custom logic in their applications when specific data is changing.
+### Database&#x20;
 
-### FHIR-aware PostgreSQL with SQL on FHIR support
+* PostgreSQL JSONB data storage model
+* Advanced data access
+* Analytics and reporting on FHIR data
+* Deployable on self-hosted and managed PostgreSQL services (AWS, GCP, Azure)
+* Rich Indexing
 
-Aidbox uses PostgreSQL exclusively but squeezes everything out of this database technology. Most of Aidbox flexibility and performance is coming from advanced PostgreSQL features like binary JSON, rich indexing system, etc. SQL is the second Aidbox API, which gives you extra power on structured data. Read more about our [database internals](https://docs.aidbox.app/storage-1/database).
+### FHIR Configuration
 
-### OAuth & OIDC; User Management (SCIM)
+* &#x20;FHIR Package Registry including 500+ ready-to-use FHIR IGs.
+  * Load official IGs from FHIR Package registry (e.g., US Core, IPS, DE Basisprofil, ISIK, AU Core, CL Core, etc.)
+  * Load custom IGs as FHIR packages using UI
+* GUI and API support for loading FHIR IGs and canonicals&#x20;
+* Support for external terminology services
 
-Aidbox has built-in [OAuth 2.0](../modules/security-and-access-control/) OpenID Connect server and can work as Resource Server.
+### Customization & Extensibility
 
-### Flexible Access Control & Audit Log
+* Custom resource types, extensions,&#x20;
+* Custom search parameters and operations&#x20;
+* Custom logic via Aidbox Apps
 
-Flexible security rules allow granular [access control](../modules/security-and-access-control/security/) to healthcare application data. Aidbox [audit log](../modules/security-and-access-control/audit/audit-logging.md) records details about every event in the system to provide necessary data for security analysis and compliance with HIPAA, HITECH act, and other regulations.
+### Advanced Data Access
 
-### Built-in Terminology
+* SQL API
+* SQL-on-FHIR for analytics and reporting&#x20;
+* GraphQL API for nested and filtered access
+* REST-exposed SQL endpoints
 
-[Aidbox terminology](../modules/terminology/) comes with FHIR, ICD-10, SNOMED, RxNorm, LOINC, and US NPI. Users can extend it with other terminologies and custom value sets.
+### Subscriptions & Reactive API
 
-### Custom Resources & Operations; First-Class Extensions
+* Topic-based FHIR Subscriptions (R4B/R5 compliant)
+* Multi-destination push: Kafka, GCP Pub/Sub, webhook
+* Polling APIs for resource sync
 
-Not all healthcare data fits the FHIR data models. Aidbox allows adding [custom resources](https://docs.aidbox.app/modules-1/custom-resources) and [attributes](https://docs.aidbox.app/modules-1/first-class-extensions) with an easy update of metadata over RESTful API.
+### Security, Identity & Access Control
 
-### Integration adapters
+* OAuth 2.0, OpenID Connect, Basic Auth, SSO, SCIM
+* SMART App Launch (EHR and standalone)
+* Access control: RBAC, ABAC
+* Scoped APIs&#x20;
+* Security Labels&#x20;
+* Multitenancy: Multibox, Organization-based access control
+* AuditEvent logging&#x20;
 
-Aidbox comes with [HL7 v.2](https://docs.aidbox.app/modules-1/hl7-v2-integration) and X12 integration modules. Not all the systems that interact with your modern healthcare application speak FHIR yet. Support of other interoperability standards takes a lot of burden from developers.
+### Integrations
 
-### Bulk API and analytics tools integrations
+* HL7 v2 inbound module
+* C-CDA bidirectional converter
+* X12 support (e.g., 270/271, 837)
 
-Most electronic medical record solutions need reporting and data analytics capabilities. Aidbox integrates with Tableau, Power BI, and Jupyter. [Bulk API](https://docs.aidbox.app/api-1/bulk-api-1) makes the extraction of data from Aidbox easy.
+### Deployment & Operations
 
-### Plugins extensibility with the use of your favorite technology
+* Kubernetes-native (on AWS, Azure, GCP, OpenShift, etc)
+* On-premises installations
+* Deployment to air-gapped environments
+* Horizontal scaling
+* Helm chart
+* HIPAA-compliant architecture
+* OpenTelemetry protocol for metrics, traces, and structured logs
+* Performance monitoring tools
 
-Aidbox offers a vibrant ecosystem of plugins that extend Aidbox by adding new resources and operations for specific customer needs.
+### Developer experience and tools
 
-### SDK
+* Local installation support and cloud sandboxes
+* Administrative UI
+  * REST and SQL consoles
+  * Notebooks
+  * FHIR resource browser
+* Runtime-editable configuration&#x20;
+* SDKs for TypeScript, Python
+* Template projects and examples for quick start
+* Open user community
 
-Aidbox integrates quickly and easily with an [SDK](https://docs.aidbox.app/aidbox-sdk) that supports your development team's language of choice.
+### Scalability and Performance
 
-### Cloud infrastructure
+* Aidbox’s storage capacity is directly tied to PostgreSQL’s capabilities. We have production installations handling 20+ TBs of data.
+* Performance:
+  * \~2,500 resources per second using standard RESTful CRUD operations (POST with validation) under concurrent load (300 threads)​
+  * \~3,500 resources per second using FHIR transaction bundles (bulk inserts of 10–100 resources each)​
+  * Bulk Import: Up to 21,000 resources per second using the optimized /v2/fhir/$import endpoint​
+  * Bulk Export: Up to 15,500 resources per second during /fhir/$export of 100M resources​
 
-Modern healthcare systems live in the cloud, and we designed Aidbox for the cloud. Aidbox comes with an automated cloud infrastructure built on Kubernetes for deployment to Amazon AWS, Google Cloud Platform & Microsoft Azure.
+Load performance testing results [here](https://www.health-samurai.io/downloads/aidbox-performance-report)
+
+### High-availability and Disaster Recovery
+
+* Cloud-native: AWS, Azure, GCP, hybrid and private
+* Zero-downtime updates
+
+### Modules
+
+* Aidbox Forms:
+  * Ready-made medical form repository ([Aidbox Form Gallery](https://docs.aidbox.app/modules/aidbox-forms/add-aidbox-forms-library))
+  * [UI Builder](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha) for creating forms without code (based on[ FHIR SDC Implementation Guide](https://build.fhir.org/ig/HL7/sdc/index.html))
+  * Form rendering engine
+  * FHIR  and Aidbox SDC APIs
+* ePrescriptions
+* Aidbox Billing
+* MDM (Master Data Management)
+* Smartbox FHIR API for health plans and EHRs
+* Audit record repository
+
+### &#x20;Compliance & Certifications
+
+* ISO 27001-certified&#x20;
+* HIPAA, HITECH, GDPR compliant
+* Secure SDLC: vulnerability scans, dependency SBOM, etc.
+* Audit and traceability for all access
