@@ -82,7 +82,7 @@
   * [Members](overview/aidbox-user-portal/members.md)
 * [Aidbox UI](overview/aidbox-ui/README.md)
   * [Aidbox Notebooks](overview/aidbox-ui/notebooks.md)
-  * [REST Console](overview/aidbox-ui/rest-console-1.md)
+  * [REST Console](overview/aidbox-ui/rest-console.md)
   * [Database Console](overview/aidbox-ui/database-console.md)
   * [Attrs stats](overview/aidbox-ui/attrs-stats.md)
   * [DB Tables](overview/aidbox-ui/db-tables.md)
