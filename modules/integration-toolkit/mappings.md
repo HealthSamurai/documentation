@@ -8,7 +8,7 @@ description: >-
 
 Most of real-world healthcare applications are integrated with 3rd-party systems to ingest data from them. Using the Mapping resource, you can describe how 3rd-party data is being converted to the FHIR format. Mappings are written using the [JUTE language](https://github.com/HealthSamurai/jute.clj#introduction).
 
-The Mapping is an Aidbox resource, so all [CRUD operations](../../api/rest-api/crud-1/) are applicable to it. The Mapping's schema is pretty straightforward:
+The Mapping is an Aidbox resource, so all [CRUD operations](../../api/rest-api/crud/) are applicable to it. The Mapping's schema is pretty straightforward:
 
 ```yaml
 resourceType: Mapping

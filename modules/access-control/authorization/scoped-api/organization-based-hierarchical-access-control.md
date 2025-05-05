@@ -169,7 +169,7 @@ PUT <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>/<id>
 <pre><code><strong>PATCH &#x3C;AIDBOX_BASE_URL>/Organization/&#x3C;org-id>/fhir/&#x3C;resource-type>/&#x3C;id>?[_method={ json-patch | merge-patch | fhirpath-patch }]
 </strong></code></pre>
 
-All PATCH methods are supported. See also [patch.md](../../../../api/rest-api/crud-1/patch.md "mention")
+All PATCH methods are supported. See also [patch.md](../../../../api/rest-api/crud/patch.md "mention")
 
 ### Delete
 

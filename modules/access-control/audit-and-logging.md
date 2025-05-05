@@ -45,7 +45,7 @@ See tutorial:
 
 A separate version is recorded in the history table each time a resource is created, updated, or deleted.
 
-All versions can be accessed using the [\_history](../../api/rest-api/history-1.md) operation.
+All versions can be accessed using the [\_history](../../api/rest-api/history.md) operation.
 
 ## Logging configuration
 

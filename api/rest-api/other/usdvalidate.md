@@ -53,14 +53,14 @@ POST .../$validate?mode=<mode>&profile=<StructureDefinition.url>
 | `mode`         | Optional. Default is `create`. Possible values are `create, update, delete, patch`                                                                                                                                                                                            |
 | `profile`      | <p>Optional. Can be passed multiple times. Used to validate with specific profiles.<br>Value should be <code>StructureDefinition.url</code> of the profile defined as <a href="../../../modules/profiling-and-validation/profiling.md#validation-with-zen">zen schema</a></p> |
 
-| `mode`        | Description                                                                                                                                                                                                        |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `create`      | Ignores errors about attributes`id` & `lastUpdated` being required                                                                                                                                                 |
-| `update`      | Validates without ignoring errors about attributes`id` & `lastUpdated`                                                                                                                                             |
-| `delete`      | Checks if resource with such `id` exists in Aidbox                                                                                                                                                                 |
-| `patch`       | <p>Merges the existing resource to the received resource and then validates as <code>update</code>.</p><p>Patching strategy will be determined as <a href="../crud-1/patch.md#patch-method">described here</a></p> |
-| `merge-patch` | simple deep merge semantics ([read more in RFC](https://tools.ietf.org/html/rfc7386))                                                                                                                              |
-| `json-patch`  | advanced JSON transformation ([read more in RFC](https://tools.ietf.org/html/rfc6902))                                                                                                                             |
+| `mode`        | Description                                                                                                                                                                                                      |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `create`      | Ignores errors about attributes`id` & `lastUpdated` being required                                                                                                                                               |
+| `update`      | Validates without ignoring errors about attributes`id` & `lastUpdated`                                                                                                                                           |
+| `delete`      | Checks if resource with such `id` exists in Aidbox                                                                                                                                                               |
+| `patch`       | <p>Merges the existing resource to the received resource and then validates as <code>update</code>.</p><p>Patching strategy will be determined as <a href="../crud/patch.md#patch-method">described here</a></p> |
+| `merge-patch` | simple deep merge semantics ([read more in RFC](https://tools.ietf.org/html/rfc7386))                                                                                                                            |
+| `json-patch`  | advanced JSON transformation ([read more in RFC](https://tools.ietf.org/html/rfc6902))                                                                                                                           |
 
 ## Examples
 

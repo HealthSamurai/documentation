@@ -22,13 +22,13 @@ Let's look at some operations working with Bundle resources.
   Main article: [fhir-search](fhir-search/ "mention")\
   This operation searches for resource of type `resourceType` using search parameters provided in query string, and returns Bundle resource (with type `searchset`) containing all resources matching the given filters.
 * `GET /<resourceType>/<id>/_history`, `GET /fhir/<resourceType>/<id>/_history`\
-  Main article: [history-1.md](history-1.md "mention")\
+  Main article: [history.md](history.md "mention")\
   This operation returns the Bundle resource (with type `history`) containing previous versions of the specified resource.
 * `GET /<resourceType>/_history`, `GET /fhir/<resourceType>/_history`\
-  Main article: [history-1.md](history-1.md "mention")\
+  Main article: [history.md](history.md "mention")\
   This operations returns the Bundle resource (with type `history`) containing previous versions of resources with the specified type.
 * CRUD operations with Bundle resource\
-  Main article: [crud-1](crud-1/ "mention")\
+  Main article: [crud](crud/ "mention")\
   These are the usual FHIR CRUD operations with Bundle resource. They only store/update/get/search Bundle resources without additional semantics.\
   These operations are rarely used.\
   Examples: `POST /Bundle`, `GET /Bundle`, `GET /Bundle/<id>`, `PUT /Bundle`,\

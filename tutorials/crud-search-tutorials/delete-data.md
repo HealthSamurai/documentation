@@ -2,7 +2,7 @@
 
 ## FHIR delete
 
-You can delete a single resource using [`DELETE` FHIR API method](../../api/rest-api/crud-1/delete.md). This method deletes the resource specified and creates a history entry for the operation. The history entry created contains the entire deleted resource.
+You can delete a single resource using [`DELETE` FHIR API method](../../api/rest-api/crud/delete.md). This method deletes the resource specified and creates a history entry for the operation. The history entry created contains the entire deleted resource.
 
 Note that Aidbox does not enforce referential integrity for `DELETE` method.
 
