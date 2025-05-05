@@ -540,7 +540,7 @@ Minor updates:
   * Added minor fixes:
     * automatic layout generation for subforms
     * minor styling inconsistencies in UI
-* [Aidbox JS SDK](../tools/aidbox-sdk/)
+* Aidbox JS SDK
   * Added a [quickstart guide ](../app-development/use-aidbox-with-react.md)demonstrating how to launch a PHR sample app on Aidbox
   * Added a [PHR sample app](https://github.com/Aidbox/aidbox-sdk-js/tree/main/personal-health-record)
   * Added [3 example apps](https://github.com/Aidbox/aidbox-sdk-js/tree/main/examples)
