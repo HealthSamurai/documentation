@@ -326,7 +326,7 @@ parameter:
 {% endhint %}
 
 | Parameter                                                | Cardinality | Type                                                     |
-|----------------------------------------------------------|-------------|----------------------------------------------------------|
+| -------------------------------------------------------- | ----------- | -------------------------------------------------------- |
 | [allow-amend](fhir-sdc-api.md#allow-amend)               | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#boolean) |
 | [allow-repopulate](fhir-sdc-api.md#allow-repopulate)     | 0..1        | [Boolean](http://hl7.org/fhir/R4/datatypes.html#boolean) |
 | [redirect-on-submit](fhir-sdc-api.md#redirect-on-submit) | 0..1        | [String](http://hl7.org/fhir/R4/datatypes.html#string)   |
@@ -406,7 +406,6 @@ name: theme
 valueString: default-config
 ```
 
-
 #### read-only
 
 Open form in read-only mode.
@@ -420,7 +419,7 @@ valueBoolean: true
 
 Application name that will be used in Audit logging when returned link was used.
 
-> Audit logging should be enabled via [configuartion](../../modules/security-and-access-control/audit/setup-audit-logging.md)
+> Audit logging should be enabled via [configuartion](../../readme-1/readme-1-1/setup-audit-logging.md)
 
 ```yaml
 name: app-name
@@ -499,8 +498,6 @@ The [extract](http://hl7.org/fhir/uv/sdc/OperationDefinition/QuestionnaireRespon
 
 Aidbox supports only the [Observation based](https://hl7.org/fhir/uv/sdc/extraction.html#observation-based-extraction) and [Definition based](https://hl7.org/fhir/uv/sdc/extraction.html#definition-based-extraction) extraction methods.
 
-
-
 {% hint style="info" %}
 Current Logic for **Observation-based** extraction:
 
@@ -510,11 +507,7 @@ Current Logic for **Observation-based** extraction:
 In the future, Aidbox Forms will align with the implementation described in the [FHIR Structured Data Capture (SDC) specification](https://build.fhir.org/ig/HL7/sdc/extraction.html#observation-based-extraction).
 {% endhint %}
 
-
-
 {% hint style="info" %}
-
-
 Current Logic for **Definition-based extraction**:
 
 * Two Options for Resource Extraction:

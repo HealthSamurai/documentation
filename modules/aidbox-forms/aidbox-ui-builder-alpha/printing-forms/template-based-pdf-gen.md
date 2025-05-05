@@ -211,7 +211,7 @@ To avoid repetitions in templates, we supported a custom tag `include-resource`.
 
 ## FAQ
 
-**Q: Why am I Getting 404?** A: Verify that all IDs provided in the request are correct. That includes template, Questionnaire, and QuestionnaireResponse IDs. If any of the IDs cannot be found, either because they do not exist or belong to another [Organization](../../../security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md), the operation will return 404.
+**Q: Why am I Getting 404?** A: Verify that all IDs provided in the request are correct. That includes template, Questionnaire, and QuestionnaireResponse IDs. If any of the IDs cannot be found, either because they do not exist or belong to another [Organization](../../../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md), the operation will return 404.
 
 **Q: Can I use the same template for both Questionnaire and QuestionnaireResponse?** A: Yes, the same SDCPrintTemplate can be used for rendering both Questionnaire and QuestionnaireResponse resources, provided it is designed to accommodate the structure of both resource types. However, if you want to create your own template that is suitable for both Questionnaire and QuestionnaireResponse, you will need to consider the differences in the FHIR standard between these resources.
 

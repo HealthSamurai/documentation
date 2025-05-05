@@ -140,6 +140,6 @@ resourceType: AccessPolicy
 
 All available `TokenIntrospector` attributes:
 
-{% content-ref url="../../modules/security-and-access-control/technical-reference/tokenintrospector-resource.md" %}
-[tokenintrospector-resource.md](../../modules/security-and-access-control/technical-reference/tokenintrospector-resource.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}

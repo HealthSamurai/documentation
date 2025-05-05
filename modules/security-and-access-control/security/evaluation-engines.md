@@ -292,7 +292,7 @@ rpc:
 
 ### Example 2
 
-To control [tenant](../multitenancy/) access, use `tenant/org` in macho-rpc. `tenant/org` contains the current organization id in the multitenancy API.
+To control [tenant](broken-reference) access, use `tenant/org` in macho-rpc. `tenant/org` contains the current organization id in the multitenancy API.
 
 ```yaml
 resourceType: AccessPolicy

@@ -12,11 +12,11 @@ Forms now supports multi-tenancy, allowing for the segregation of access between
 
 ## Implementation Details
 
-The implementation of multi-tenancy in Forms is based on Aidbox's standard for [Organization-based hierarchical access control](../../security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md). This approach allows for a structured and secure method to manage access across different levels of the organization hierarchy.
+The implementation of multi-tenancy in Forms is based on Aidbox's standard for [Organization-based hierarchical access control](../../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md). This approach allows for a structured and secure method to manage access across different levels of the organization hierarchy.
 
 ## Enabling Multi-Tenancy
 
-To enable multi-tenancy for Forms, it is necessary to enable Organization-based hierarchical access control for the entire Aidbox environment. Detailed instructions on how to enable this feature can be found here: [How to Enable Hierarchical Access Control](../../security-and-access-control/multitenancy/how-to-enable-hierarchical-access-control.md).
+To enable multi-tenancy for Forms, it is necessary to enable Organization-based hierarchical access control for the entire Aidbox environment. Detailed instructions on how to enable this feature can be found here: [How to Enable Hierarchical Access Control](../../../readme-1/readme-1-1/how-to-enable-hierarchical-access-control.md).
 
 ## Getting Started
 

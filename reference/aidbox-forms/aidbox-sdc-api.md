@@ -126,7 +126,7 @@ value:
 
 Application name that will be used in Audit logging when returned link was used.
 
-> Audit logging should be enabled via [configuartion](../../modules/security-and-access-control/audit/setup-audit-logging.md)
+> Audit logging should be enabled via [configuartion](../../readme-1/readme-1-1/setup-audit-logging.md)
 
 ```yaml
 - name: app-name
@@ -215,8 +215,9 @@ The operation takes a single input parameter named "response" containing a Quest
 ### Output Parameters
 
 The operation returns:
-- **response**: The saved QuestionnaireResponse resource
-- **issues**: Any validation issues encountered (if applicable)
+
+* **response**: The saved QuestionnaireResponse resource
+* **issues**: Any validation issues encountered (if applicable)
 
 ### Usage Example
 
@@ -406,8 +407,9 @@ The operation takes a single input parameter named "response" containing a Quest
 ### Output Parameters
 
 The operation returns:
-- **response**: The submitted QuestionnaireResponse resource with status updated to "completed"
-- **issues**: Any validation issues encountered (if applicable)
+
+* **response**: The submitted QuestionnaireResponse resource with status updated to "completed"
+* **issues**: Any validation issues encountered (if applicable)
 
 ### Usage Example
 

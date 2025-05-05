@@ -100,9 +100,9 @@ Minor updates:
 ## December 2024 _`2412`_
 
 * Aidbox
-  * Supported [SMART App Launch scopes v1 and v2](../modules/security-and-access-control/smart-on-fhir/smart-scopes.md) for Aidbox on FHIR Schema validation engine and reworked [SMART on FHIR](../modules/security-and-access-control/smart-on-fhir/) documentation
+  * Supported [SMART App Launch scopes v1 and v2](broken-reference) for Aidbox on FHIR Schema validation engine and reworked [SMART on FHIR](broken-reference) documentation
   * Added example of [SMART App Launch using Aidbox and Keycloak](https://github.com/Aidbox/examples/tree/main/smart-app-launch)
-  * Supported enabling [OrgBAC (Organization-based hierarchical access control)](../modules/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md) using an [environment variable](../modules/security-and-access-control/multitenancy/how-to-enable-hierarchical-access-control.md) if an Aidox instance uses FHIR Schema validator
+  * Supported enabling [OrgBAC (Organization-based hierarchical access control)](../modules/access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md) using an [environment variable](../readme-1/readme-1-1/how-to-enable-hierarchical-access-control.md) if an Aidox instance uses FHIR Schema validator
   * Fixed security issues and bugs
 *   Aidbox Forms
 
@@ -213,7 +213,7 @@ Minor updates:
 * Aidbox
   * Introduced support for [custom resources using FHIR StructureDefinitions](../modules/custom-resources/custom-resources-on-fhir-logical-model.md) and [custom resources using FHIR schemas](../modules/custom-resources/custom-resources-using-fhirschema.md)
   * Published [JavaScript app example](https://github.com/Aidbox/app-examples/blob/main/aidbox-notify-via-custom-resources/README.md) demonstrating custom resources with a typical notification flow: requesting a notification, locking it for sending, and sending it (placeholder)
-  * Supported [enabling Audit Log using an environment variable](../modules/security-and-access-control/audit/setup-audit-logging.md#two-ways-to-enable-audit-log)
+  * Supported [enabling Audit Log using an environment variable](../readme-1/readme-1-1/setup-audit-logging.md#two-ways-to-enable-audit-log)
 * [Aidbox Forms](../modules/aidbox-forms/)
   * UI builder updates (FHIR Questionnaire-based):
     * [Implemented Offline mode for forms](../modules/aidbox-forms/aidbox-ui-builder-alpha/offline-forms.md)
@@ -297,7 +297,7 @@ Minor updates:
 ## February 2024 _`2402,LTS`_
 
 * Security and Access Control
-  * Released beta version of [Label-based Access Control](../modules/security-and-access-control/security/attribute-based-access-control-abac/security-labels/) to control access to data based on the classification of the data (privacy, sensitivity, etc) and the attributes of the requester.
+  * Released beta version of [Label-based Access Control](../modules/access-control/authorization/security-labels.md) to control access to data based on the classification of the data (privacy, sensitivity, etc) and the attributes of the requester.
 * Data API
   * Supported FHIR-conformant [`_include` and `_revinclude` parameters](broken-reference/)
   * Added parameter to set the maximum number of import retries for [/v2/$import](../api/bulk-api-1/usdimport-and-fhir-usdimport.md#v2-usdimport-on-top-of-the-workflow-engine)
@@ -326,7 +326,7 @@ Minor updates:
   * Added basic FHIR Profiles support to [Python SDK](https://github.com/Aidbox/aidbox-python)
 * Security and access control
   * Added Access policy matcho engine [$one-of operator](../modules/security-and-access-control/security/evaluation-engines.md#matcho) to fetch the list of the available values from the request context
-  * Supported history endpoint within [the Organisation-based access control](../modules/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md#history)
+  * Supported history endpoint within [the Organisation-based access control](../modules/access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#history)
   * Documented [GitHub as an external identity provider](https://github.com/HealthSamurai/sansara/issues/4016)
   * Published [guide on how to use self-signed SSL certificates](https://docs.aidbox.app/getting-started/run-aidbox-in-kubernetes/self-signed-ssl-certificates?q=) when deploying Aidbox
   * Fixed the code\_verifier to behave according to the RFC
@@ -428,8 +428,8 @@ Minor updates:
 * Ops
   * Supported [Open Telemetry exporter for logs & metrics](../modules/observability/getting-started/run-aidbox-locally-with-docker.md)
 * Security and access control
-  * Supported [Bundle batch operation in Multitenant API](../modules/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md#bundle)
-  * Added [Audit Log UI ](../modules/security-and-access-control/audit/setup-audit-logging.md)on Aidbox Console
+  * Supported [Bundle batch operation in Multitenant API](../modules/access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#bundle)
+  * Added [Audit Log UI ](../readme-1/readme-1-1/setup-audit-logging.md)on Aidbox Console
 * [Aidbox Forms](../modules/aidbox-forms/)
   * Added autocomplete for literals and keywords
   * Configured Questionnaire converter to accept FHIR Bundle
@@ -446,8 +446,8 @@ Minor updates:
 * Integrations
   * Supported FHIR R4B and R5 [Topic-based subscriptions](../deprecated/deprecated/zen-related/topic-based-subscriptions/)
 * Security and access control
-  * Added [Capability Statement ](../modules/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md#metadata)endpoint for multitenant API
-  * Added [bundle transaction](../modules/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md#bundle) for multitenant API
+  * Added [Capability Statement ](../modules/access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#metadata)endpoint for multitenant API
+  * Added [bundle transaction](../modules/access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#bundle) for multitenant API
   * Added [stdout appender](../reference/environment-variables/optional-environment-variables.md#aidbox_stdout_google_json) for logs in [Google format](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry)
   * Added access policy usage in UI console on AccessPolicy page
   * Added a neat UI to rotate credentials and download certificates on IdentityProvider view page
@@ -475,7 +475,7 @@ Minor updates:
   * Supported C-CDA to work as [a standalone service](../modules/integration-toolkit/ccda-converter/deploy-ccda-fhir.md)
   * Added an option [to inspect intermediate conversion tree](../modules/integration-toolkit/ccda-converter/ccda-fhir-dsl.md#rules-dsl-syntax)
 * Security and access control
-  * Added [shared resources](../modules/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md#shared-resource-mode) in the [Organisation-based access control](../modules/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md)
+  * Added [shared resources](../modules/access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#shared-resource-mode) in the [Organisation-based access control](../modules/access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md)
   * Supported [Azure AD asymmetric authentication](../modules/security-and-access-control/set-up-external-identity-provider/azure-ad-1.md)
   * Added security dashboard in the Aidbox UI
   * Added a form to create an IdentityProvider resource
@@ -501,8 +501,8 @@ Minor updates:
 * [C-CDA / FHIR converter](../modules/integration-toolkit/ccda-converter/)
   * Supported modifying and creating new mappings using [the Aidbox Configuration Project](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/aidbox-project-environment-variables/zen-configuration.md)
 * Security and access control
-  * Added [hierarchical organization-based access control](../modules/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md) (multi-tenancy on organization-level resources)
-  * Added [How to enable hierarchical access control](../modules/security-and-access-control/multitenancy/how-to-enable-hierarchical-access-control.md) tutorial
+  * Added [hierarchical organization-based access control](../modules/access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md) (multi-tenancy on organization-level resources)
+  * Added [How to enable hierarchical access control](../readme-1/readme-1-1/how-to-enable-hierarchical-access-control.md) tutorial
 * Ops
   * Released new [PostgreSQL Aidboxdb images 15.3, 14.8, 13.11](../database/aidboxdb-image/)
   * Added PostGis Extension
@@ -594,7 +594,7 @@ Minor updates:
 * Security and Access control
   * Developed [access policy dev tool](../modules/security-and-access-control/security/access-policy-dev-tool.md)
   * Added tutorials and guides:
-    * [Auth overview article](../modules/security-and-access-control/overview.md)
+    * [Auth overview article](../modules/todo/overview.md)
     * [How to implement the ReBAC authorization model ](../readme-1/readme-1-1/relationship-based-access-control-in-aidbox.md)in Aidbox within AccessPolicy
     * [Access policy best practices](../modules/security-and-access-control/security/accesspolicy-best-practices.md)
 * Aidbox user portal
@@ -764,7 +764,7 @@ Minor updates:
 ## September 2022 _`2209`_
 
 * Released [Seed v2 service](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/seed-v2.md) for [Aidbox configuration projects](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/)
-* Added [Client.audience](../modules/security-and-access-control/technical-reference/overview.md#client.audience) regex support in SMART on FHIR App launch
+* Added [Client.audience](broken-reference) regex support in SMART on FHIR App launch
 * Added an option to [filter Aidbox stdout logs](../modules/observability/logging-and-audit/#stdout-log) by severity. By default Aidbox sends only `error` severity level logs to stdout.
 * Added response headers to [Aidbox REST Console](aidbox-ui/rest-console-1.md) and [Aidbox Notebooks](aidbox-ui/notebooks.md)
 * Enhanced the Aidbox configuration process with [Aidbox configuration projects](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/)
@@ -826,7 +826,7 @@ Minor updates:
 
 * Added RPC API access control engines: [allow-rpc engine](../modules/security-and-access-control/security/access-control.md#allow-rpc-engine) and attribute-based [matcho-rpc engine](../modules/security-and-access-control/security/access-control.md#matcho-rpc-engine).
 * Added GraphQL API resource [history search](../api/graphql-api.md#queries) to retrieve a resource change history.
-* Added [token expiration mechanism](../modules/security-and-access-control/technical-reference/overview.md#session-expiration) for stored Sessions.
+* Added [token expiration mechanism](broken-reference) for stored Sessions.
 * Enhanced [API constructor ACL](../modules/security-and-access-control/security/acl.md) with new operation engine [filter table insert on create](../modules/security-and-access-control/security/acl.md#filter).
 * **Changed** auth layer 400/401/403 **errors response body** to OperationOutcome resource.
 * Added [CapabilityStatement configuration](../api/rest-api/other/metadata.md#configure-capabilitystatement) options.

@@ -5,7 +5,7 @@ description: This guide shows how to build multi-tenancy with AccessPolicy
 # Configure multi-tenancy
 
 {% hint style="warning" %}
-This is outdated approach. Please, use [Organization-Based Access Control](../../../../modules/security-and-access-control/multitenancy/organization-based-hierarchical-access-control.md) instead.
+This is outdated approach. Please, use [Organization-Based Access Control](../../../../modules/access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md) instead.
 {% endhint %}
 
 Aidbox stores all the tenants in a single database and serves number of them at once. It obtains `tenant-id` from each request and returns the data belonging to the tenant.

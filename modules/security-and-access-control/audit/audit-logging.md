@@ -30,6 +30,6 @@ Aidbox acts as [Audit record repository](https://profiles.ihe.net/ITI/TF/Volume1
 
 ## Next steps
 
-{% content-ref url="setup-audit-logging.md" %}
-[setup-audit-logging.md](setup-audit-logging.md)
+{% content-ref url="../../../readme-1/readme-1-1/setup-audit-logging.md" %}
+[setup-audit-logging.md](../../../readme-1/readme-1-1/setup-audit-logging.md)
 {% endcontent-ref %}

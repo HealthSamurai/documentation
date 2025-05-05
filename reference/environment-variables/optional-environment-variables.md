@@ -647,7 +647,7 @@ BOX_FEATURES_SECURITY__LABELS_STRIP__LABELS=true
 ```
 
 {% hint style="info" %}
-Stripping is only applied during the masking. More [details about masking](../../modules/security-and-access-control/security/attribute-based-access-control-abac/security-labels/#resource-element-level-access-masking)
+Stripping is only applied during the masking. More [details about masking](../../modules/access-control/authorization/security-labels.md#resource-element-level-access-masking)
 {% endhint %}
 
 ### Observability
