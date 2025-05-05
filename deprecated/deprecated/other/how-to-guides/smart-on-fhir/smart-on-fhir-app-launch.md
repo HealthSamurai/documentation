@@ -4,7 +4,7 @@ description: This guide shows how to get set up SMART on FHIR in Aidbox
 
 # Set up SMART on FHIR in Aidbox
 
-SMART on FHIR specifies authentication/authorization scheme for FHIR Applications. This scheme extends OAuth 2.0 and OpenID. To enable [SMART on FHIR](https://smarthealthit.org/) you need to create an [Aidbox project](../../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/) and configure SMART API routes using the [Aidbox API Constructor](../../../../deprecated/deprecated/zen-related/aidbox-api-constructor.md).
+SMART on FHIR specifies authentication/authorization scheme for FHIR Applications. This scheme extends OAuth 2.0 and OpenID. To enable [SMART on FHIR](https://smarthealthit.org/) you need to create an [Aidbox project](../../../zen-related/aidbox-zen-lang-project/) and configure SMART API routes using the [Aidbox API Constructor](../../../zen-related/aidbox-api-constructor.md).
 
 {% hint style="info" %}
 You can use the configuration provided in the [Aidbox project samples](https://github.com/Aidbox/aidbox-project-samples) repo.
@@ -57,7 +57,7 @@ The `launch_uri` parameter here specifies the launch URI for the EHR-based SMART
 
 ### Access Policies
 
-You likely want to add some [Access Policies](../../security/) to allow users see their data. Here we provide some examples for reference:
+You likely want to add some [Access Policies](../../../../../modules/security-and-access-control/security/) to allow users see their data. Here we provide some examples for reference:
 
 ```yaml
 PUT /
@@ -97,7 +97,7 @@ Accept: text/yaml
 
 ## Generate Launch URI for EHR Launch Sequence
 
-To generate SMART App launch URI use [RPC API](../../../../api/other/rpc-api.md) method `aidbox.smart/get-launch-uri`. The method accepts the following arguments:
+To generate SMART App launch URI use [RPC API](../../../../../api/other/rpc-api.md) method `aidbox.smart/get-launch-uri`. The method accepts the following arguments:
 
 * `user`: id of the `User` resource
 * `iss`: Aidbox base URL
@@ -109,7 +109,7 @@ To generate SMART App launch URI use [RPC API](../../../../api/other/rpc-api.md)
 
 ## Standalone Launch
 
-![Standalone launch sequence](<../../../../.gitbook/assets/image (101).png>)
+![Standalone launch sequence](<../../../../../.gitbook/assets/image (101).png>)
 
 Authorization code flow with SMART on FHIR Standalone Launch:
 
@@ -124,7 +124,7 @@ Authorization code flow with SMART on FHIR Standalone Launch:
 
 ## EHR Launch
 
-![EHR Launch Sequence](<../../../../.gitbook/assets/image (93) (1) (1).png>)
+![EHR Launch Sequence](<../../../../../.gitbook/assets/image (93) (1) (1).png>)
 
 Authorization code flow with SMART on FHIR EHR Launch:
 

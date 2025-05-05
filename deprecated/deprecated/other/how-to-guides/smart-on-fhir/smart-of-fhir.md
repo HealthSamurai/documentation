@@ -8,7 +8,7 @@ description: This guide explains how to get Growth Chart SMART App launched
 
 ## Set Up Aidbox Project
 
-First you need to specify your new SMART API using the [Aidbox API Constructor](../../../../deprecated/deprecated/zen-related/aidbox-api-constructor.md).
+First you need to specify your new SMART API using the [Aidbox API Constructor](../../../zen-related/aidbox-api-constructor.md).
 
 Create the `aidbox-project/single-patient-portal.edn` file with the following content:
 
@@ -474,4 +474,4 @@ Open `http://localhost:9000/standalone/patient.html` it will redirect you to log
 
 Now you should be able to see a plot of Observations
 
-![Growth charts](../../../../.gitbook/assets/screenshot-2019-03-11-12.09.53.png)
+![Growth charts](../../../../../.gitbook/assets/screenshot-2019-03-11-12.09.53.png)

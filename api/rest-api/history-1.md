@@ -35,7 +35,7 @@ SELECT * FROM history ORDER BY txid DESC
 LIMIT ? OFFSET ?
 ```
 
-On the create operation (e.g. via PUT/POST CRUD requests or [$import](../bulk-api/usdimport-and-fhir-usdimport.md)), i.e. the table does not contain the resource with same id and resource type, History API call will return the most recent resource version which is stored in the resource table with name `<resourceType>_history`(e.g. `patient_history` table).
+On the create operation (e.g. via PUT/POST CRUD requests or [$import](../bulk-api-1/usdimport-and-fhir-usdimport.md)), i.e. the table does not contain the resource with same id and resource type, History API call will return the most recent resource version which is stored in the resource table with name `<resourceType>_history`(e.g. `patient_history` table).
 
 On update operation the old version of the resource in the main table is replaced by a new one. The old version firstly is moved to resource table and replaced with a new version in the main history table.
 

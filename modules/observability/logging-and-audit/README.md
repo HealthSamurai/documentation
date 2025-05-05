@@ -5,7 +5,7 @@ Aidbox produces structured logs on every significant event to the internal strea
 * [stdout in json or pretty string formats](./#stdour-log)
 * [file](./#log-to-file)
 * [Elasticsearch](how-to-guides/elastic-logs-and-monitoring-integration.md)
-* [Datadog](readme/datadog-guide.md)
+* [Datadog](readme-1/datadog-guide.md)
 * [Loki](how-to-guides/loki-integration.md)
 
 {% hint style="info" %}

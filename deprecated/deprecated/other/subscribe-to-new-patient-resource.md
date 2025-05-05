@@ -6,7 +6,7 @@ description: >-
 
 # Subscribe to new Patient resource
 
-Aidbox [subscriptions module](../../../modules/topic-based-subscriptions/aidbox-subssubscriptions.md) is a way to subscribe and get notifications about updating resources on server. It introduces two new resourceTypes into Aidbox:
+Aidbox [subscriptions module](../../../modules/topic-based-subscriptions/subscriptions-1.md) is a way to subscribe and get notifications about updating resources on server. It introduces two new resourceTypes into Aidbox:
 
 * SubsSubscription — a meta-resource, which binds events (create/update/delete resource) with communication channel through which a subscriber will be notified about.
 * SubsNotification — a resource, which represents the notification with its status (sent or not).

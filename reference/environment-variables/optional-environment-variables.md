@@ -485,7 +485,7 @@ BOX\_FEATURES\_FHIR\_TRANSACTION\_MAX\_\_ISOLATION\_\_LEVEL=\<isolation-level>
 
 `isolation-level` is one of: `none`, `read-committed`, `repeatable-read`, `serializable`.
 
-Sets maximum (inclusive) isolation level for transactions. This value can be overridden by `x-max-isolation-level` header (see [here](../../api/rest-api/crud/update.md#isolation-levels)).
+Sets maximum (inclusive) isolation level for transactions. This value can be overridden by `x-max-isolation-level` header (see [here](../../api/rest-api/crud-1/update.md#isolation-levels)).
 
 ### BOX\_CONFIG\_FEATURES\_INDEX\_SYNC\_\_ON\_\_START
 

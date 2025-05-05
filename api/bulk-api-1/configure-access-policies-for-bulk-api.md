@@ -34,4 +34,3 @@ PUT /
   link:
   - {id: 'bulk-client', resourceType: 'Client'}
 ```
-
