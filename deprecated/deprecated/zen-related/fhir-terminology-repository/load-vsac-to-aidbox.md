@@ -21,7 +21,7 @@ The current package is a pre-built version of the VSAC contents 0.7.0 (2022-06-1
 To correctly set up Aidbox, we'll utilize the Aidbox configuration projects.&#x20;
 
 {% hint style="info" %}
-Check the [existing guide](../../../../getting-started/run-aidbox-locally-with-docker.md) that explains how to run Aidbox locally      &#x20;
+Check the [existing guide](broken-reference) that explains how to run Aidbox locally      &#x20;
 {% endhint %}
 
 ```sh

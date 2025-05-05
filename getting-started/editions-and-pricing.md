@@ -42,8 +42,8 @@ When you reach your database size limit, you’ll receive 3 types of messages - 
 
 You can get a turn-key production-ready Aidbox as a SaaS to start your development in minutes.
 
-{% content-ref url="../getting-started-1/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md" %}
-[aidbox-as-a-saas-on-aws.md](../getting-started-1/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md)
+{% content-ref url="run-aidbox-on-aws.md" %}
+[run-aidbox-on-aws.md](run-aidbox-on-aws.md)
 {% endcontent-ref %}
 
 ### Aidbox for education

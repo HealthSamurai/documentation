@@ -14,7 +14,7 @@ Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is
 
 ## Prerequisites
 
-Install the Aidbox following [this guide](../../../../getting-started/run-aidbox-locally-with-docker.md).
+Install the Aidbox following [this guide](broken-reference).
 
 In the `.env` file find the line starting with `AIDBOX_IMAGE` and edit it to be like this if it is not:
 

@@ -548,7 +548,7 @@ Minor updates:
 ## April 2023 _`2304`_
 
 * Validation and Terminology
-  * Supported [FHIR R5](../getting-started/run-aidbox-locally-with-docker.md#fhir-r5)
+  * Supported [FHIR R5](broken-reference)
 * Aidbox Notebooks
   * Added new [preview feature](aidbox-ui/notebooks.md#save-a-notebook): now, users can download their notebooks as HTML files, which can be viewed on any web browser, uploaded to an Aidbox instance, and used as regular noteboooks
 * Data API
@@ -781,7 +781,7 @@ Minor updates:
 
 * Aidbox FHIR API module (SMARTbox) is officially certified by ICSA Labs to comply with the [ONC’s 2015 Edition Cures Update](https://www.healthit.gov/topic/certification-ehrs/2015-edition-cures-update-test-method) requirements / 170.315(g)(10).
 * Added [Aidbox FHIR API module (SMARTbox) set up guide](../modules/smartbox/get-started/set-up-smartbox.md).
-* Added an option to [get Aidbox hosted on AWS](../getting-started-1/run-aidbox/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws.md) directly from the Aidbox user portal. [Aidbox FHIR platform](https://aws.amazon.com/marketplace/pp/prodview-l5djlpvsd6o5g) is available on AWS marketplace.
+* Added an option to [get Aidbox hosted on AWS](../getting-started/run-aidbox-on-aws.md) directly from the Aidbox user portal. [Aidbox FHIR platform](https://aws.amazon.com/marketplace/pp/prodview-l5djlpvsd6o5g) is available on AWS marketplace.
 * Released [Aidbox forms](../modules/aidbox-forms/) alpha version.
 * Added [RPC method](../deprecated/deprecated/zen-related/fhir-terminology-repository/import-using-an-aidbox-project.md#track-import-progress) to track Aidbox project terminology bundles async load status.
 * Added env to [automatically create a User resource](../modules/security-and-access-control/auth/access-token-introspection.md#create-user-automatically) on auth via TokenIntrospector. This allows to use both TokenIntrospector and IdentityProvider auth for the same User in Aidbox.
@@ -1108,7 +1108,7 @@ It's time to upgrade your database - please stop your container and change image
 * [AidboxQuery](../deprecated/deprecated/other/custom-search.md) extended with count-query and params types and defaults
 * New `/<RT>/$load` and `/$load` [bulk operations](../api/bulk-api-1/#usdload) were added and [$import](../api/bulk-api-1/#usdimport) was upgraded
 * aidbox/db upgrade to 11.4 + fixes in json\_knife pg extension - (deep patterns, indexes)
-* Highlighted logs for humans in [Aidbox.Dev](../getting-started/run-aidbox-locally-with-docker.md) by default: docker logs -f \<your-box-container>
+* Highlighted logs for humans in [Aidbox.Dev](broken-reference) by default: docker logs -f \<your-box-container>
 * New [Aidbox.Enterprise](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/release-notes-1/broken-reference/README.md)
 
 ## 0.4.5 \[3 July 2019]

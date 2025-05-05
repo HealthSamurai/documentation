@@ -4,14 +4,14 @@
 
 Discover how to start with Aidbox in just a few minutes.
 
-<table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Run Aidbox locally</strong></td><td>Download and run Aidbox locally. Explore it through interactive tutorials.</td><td><a href="getting-started/run-aidbox-locally-with-docker.md">Learn more</a></td><td><a href=".gitbook/assets/qs2.png">qs2.png</a></td><td><a href="getting-started/run-aidbox-locally-with-docker.md#simple">#simple</a></td></tr><tr><td><strong>Run in sandbox</strong></td><td>Run SaaS Aidbox for free and explore it through built-in tutorials.</td><td><a href="getting-started/run-aidbox-in-aidbox-sandbox.md">Learn more</a></td><td><a href=".gitbook/assets/qs1.png">qs1.png</a></td><td><a href="getting-started/run-aidbox-in-aidbox-sandbox.md">run-aidbox-in-aidbox-sandbox.md</a></td></tr><tr><td><strong>Use Aidbox with React</strong></td><td>Develop your first app on top of Aidbox with the sample React App.</td><td><a href="app-development/use-aidbox-with-react.md">Learn more</a></td><td><a href=".gitbook/assets/qs3.png">qs3.png</a></td><td><a href="app-development/use-aidbox-with-react.md">use-aidbox-with-react.md</a></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Run Aidbox locally</strong></td><td>Download and run Aidbox locally. Explore it through interactive tutorials.</td><td><a href="broken-reference">Learn more</a></td><td><a href=".gitbook/assets/qs2.png">qs2.png</a></td><td><a href="broken-reference">Broken link</a></td></tr><tr><td><strong>Run in sandbox</strong></td><td>Run SaaS Aidbox for free and explore it through built-in tutorials.</td><td><a href="getting-started/run-aidbox-in-sandbox.md">Learn more</a></td><td><a href=".gitbook/assets/qs1.png">qs1.png</a></td><td><a href="getting-started/run-aidbox-in-sandbox.md">run-aidbox-in-sandbox.md</a></td></tr><tr><td><strong>Use Aidbox with React</strong></td><td>Develop your first app on top of Aidbox with the sample React App.</td><td><a href="app-development/use-aidbox-with-react.md">Learn more</a></td><td><a href=".gitbook/assets/qs3.png">qs3.png</a></td><td><a href="app-development/use-aidbox-with-react.md">use-aidbox-with-react.md</a></td></tr></tbody></table>
 
 ## Overview
 
 Aidbox is a mature and reliable FHIR platform that enables rapid development of digital health solutions, reducing development time and costs by up to 70% from the start.
 
 * [Features](getting-started/features.md)
-* [Architecture](introduction/)
+* [Architecture](readme/architecture.md)
 * [Licensing and support](getting-started/editions-and-pricing.md)
 * [Release notes](overview/release-notes.md)
 * [Run Aidbox on Kubernetes](deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/)

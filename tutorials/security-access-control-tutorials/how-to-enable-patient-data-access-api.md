@@ -22,7 +22,7 @@ To get the Aidbox License:
 
 ## Create Aidbox project
 
-Aidbox is configured by the [Aidbox Configuration Projects](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/). To create sample project run command below&#x20;
+Aidbox is configured by the [Aidbox Configuration Projects](../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/). To create sample project run command below&#x20;
 
 {% tabs %}
 {% tab title="FHIR R4" %}
@@ -39,7 +39,7 @@ git clone \
 {% endtabs %}
 
 {% hint style="info" %}
-More details at [running Aidbox locally](../../../getting-started/run-aidbox-locally-with-docker.md#using-configuration-project-method)
+More details at [running Aidbox locally](broken-reference)
 {% endhint %}
 
 ### Apply the license

@@ -20,7 +20,7 @@ In this guide we will:
 
 ## Setup Aidbox locally
 
-Follow [this guide](../../../../getting-started/run-aidbox-locally-with-docker.md). Your aidbox-project directory will contain these files.
+Follow [this guide](broken-reference). Your aidbox-project directory will contain these files.
 
 ```
 ├── docker-compose.yaml

@@ -25,8 +25,8 @@ If you are new to Aidbox it is strongly recommended not to skip any steps. Other
 
 Set up Aidbox instance by following our quick start guide.
 
-{% content-ref url="../../../../../getting-started/run-aidbox-locally-with-docker.md" %}
-[run-aidbox-locally-with-docker.md](../../../../../getting-started/run-aidbox-locally-with-docker.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ### Specify US Core as a dependency
