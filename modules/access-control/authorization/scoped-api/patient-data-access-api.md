@@ -27,8 +27,8 @@ There are two way to define patient context in a request:
 
 ## Enable Patient data access API
 
-{% content-ref url="../../../../readme-1/readme-1-1/how-to-enable-patient-data-access-api.md" %}
-[how-to-enable-patient-data-access-api.md](../../../../readme-1/readme-1-1/how-to-enable-patient-data-access-api.md)
+{% content-ref url="../../../../tutorials/security-access-control-tutorials/how-to-enable-patient-data-access-api.md" %}
+[how-to-enable-patient-data-access-api.md](../../../../tutorials/security-access-control-tutorials/how-to-enable-patient-data-access-api.md)
 {% endcontent-ref %}
 
 ### Base url for patient-related FHIR API&#x20;
@@ -143,6 +143,6 @@ body:
 
 ## See also
 
-{% content-ref url="../../../../readme-1/readme-1-1/smart-on-fhir.md" %}
-[smart-on-fhir.md](../../../../readme-1/readme-1-1/smart-on-fhir.md)
+{% content-ref url="../../../../tutorials/security-access-control-tutorials/smart-on-fhir.md" %}
+[smart-on-fhir.md](../../../../tutorials/security-access-control-tutorials/smart-on-fhir.md)
 {% endcontent-ref %}

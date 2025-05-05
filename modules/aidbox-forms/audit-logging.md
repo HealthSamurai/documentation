@@ -12,7 +12,7 @@ Audit Logging is central part for system observability - providing the ability t
 
 Aidbox supports Audit Logging and acts as Audit Record repository. Audit Logging disabled by default and should be enabled via configuration.
 
-* [setup audit logging](../../readme-1/readme-1-1/setup-audit-logging.md)
+* [setup audit logging](../../tutorials/security-access-control-tutorials/setup-audit-logging.md)
 
 ## Audit Logging in Aidbox Forms Module
 

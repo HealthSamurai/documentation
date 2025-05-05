@@ -264,6 +264,6 @@ user:
 
 ## See also
 
-{% content-ref url="../../../readme-1/readme-1-1/how-to-enable-security-labels-access-control.md" %}
-[how-to-enable-security-labels-access-control.md](../../../readme-1/readme-1-1/how-to-enable-security-labels-access-control.md)
+{% content-ref url="../../../tutorials/security-access-control-tutorials/how-to-enable-security-labels-access-control.md" %}
+[how-to-enable-security-labels-access-control.md](../../../tutorials/security-access-control-tutorials/how-to-enable-security-labels-access-control.md)
 {% endcontent-ref %}

@@ -5,7 +5,7 @@
 ## April 2025 _`latest, 2504`_
 
 * Aidbox FHIR server
-  * Supported FHIR 6.0.0-ballot3 as a package in [Aidbox FHIR Package registry](../modules/profiling-and-validation/fhir-schema-validator/supported-implementation-guides.md) and published a tutorial on [running Aidbox with FHIR 6.0.0-ballot3 locally and in the Aidbox sandbox](../readme-1/tutorials/run-aidbox-with-fhir-r6.md).
+  * Supported FHIR 6.0.0-ballot3 as a package in [Aidbox FHIR Package registry](../modules/profiling-and-validation/fhir-schema-validator/supported-implementation-guides.md) and published a tutorial on [running Aidbox with FHIR 6.0.0-ballot3 locally and in the Aidbox sandbox](../tutorials/other-tutorials/run-aidbox-with-fhir-r6.md).
   * Migrated Aidbox system resources to the FHIR DomainResource model and [published reference documentation for system resources](../reference/system-resources-reference/).
   * Supported resolving conditional references in FHIR transaction Bundles.
   * Fixed validation of contained resources.
@@ -102,7 +102,7 @@ Minor updates:
 * Aidbox
   * Supported [SMART App Launch scopes v1 and v2](broken-reference) for Aidbox on FHIR Schema validation engine and reworked [SMART on FHIR](broken-reference) documentation
   * Added example of [SMART App Launch using Aidbox and Keycloak](https://github.com/Aidbox/examples/tree/main/smart-app-launch)
-  * Supported enabling [OrgBAC (Organization-based hierarchical access control)](../modules/access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md) using an [environment variable](../readme-1/readme-1-1/how-to-enable-hierarchical-access-control.md) if an Aidox instance uses FHIR Schema validator
+  * Supported enabling [OrgBAC (Organization-based hierarchical access control)](../modules/access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md) using an [environment variable](../tutorials/security-access-control-tutorials/how-to-enable-hierarchical-access-control.md) if an Aidox instance uses FHIR Schema validator
   * Fixed security issues and bugs
 *   Aidbox Forms
 
@@ -166,7 +166,7 @@ Minor updates:
 * Aidbox
   * Introduced new [MAJOR.MINOR versioning](versioning.md) for improved clarity
   * Added webhook support for [Aidbox topic-based subscriptions](../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/)
-  * Implemented[ fuzzy search for FHIR packages import](../readme-1/validation-tutorials/upload-fhir-implementation-guide/)
+  * Implemented[ fuzzy search for FHIR packages import](../tutorials/validation-tutorials/upload-fhir-implementation-guide/)
   * Enabled new Aidbox UI by default
   * Fixed critical vulnerabilities and bugs
 * Smartbox | FHIR API for EHRs
@@ -213,7 +213,7 @@ Minor updates:
 * Aidbox
   * Introduced support for [custom resources using FHIR StructureDefinitions](../modules/custom-resources/custom-resources-on-fhir-logical-model.md) and [custom resources using FHIR schemas](../modules/custom-resources/custom-resources-using-fhirschema.md)
   * Published [JavaScript app example](https://github.com/Aidbox/app-examples/blob/main/aidbox-notify-via-custom-resources/README.md) demonstrating custom resources with a typical notification flow: requesting a notification, locking it for sending, and sending it (placeholder)
-  * Supported [enabling Audit Log using an environment variable](../readme-1/readme-1-1/setup-audit-logging.md#two-ways-to-enable-audit-log)
+  * Supported [enabling Audit Log using an environment variable](../tutorials/security-access-control-tutorials/setup-audit-logging.md#two-ways-to-enable-audit-log)
 * [Aidbox Forms](../modules/aidbox-forms/)
   * UI builder updates (FHIR Questionnaire-based):
     * [Implemented Offline mode for forms](../modules/aidbox-forms/aidbox-ui-builder-alpha/offline-forms.md)
@@ -429,7 +429,7 @@ Minor updates:
   * Supported [Open Telemetry exporter for logs & metrics](../modules/observability/getting-started/run-aidbox-locally-with-docker.md)
 * Security and access control
   * Supported [Bundle batch operation in Multitenant API](../modules/access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#bundle)
-  * Added [Audit Log UI ](../readme-1/readme-1-1/setup-audit-logging.md)on Aidbox Console
+  * Added [Audit Log UI ](../tutorials/security-access-control-tutorials/setup-audit-logging.md)on Aidbox Console
 * [Aidbox Forms](../modules/aidbox-forms/)
   * Added autocomplete for literals and keywords
   * Configured Questionnaire converter to accept FHIR Bundle
@@ -468,7 +468,7 @@ Minor updates:
 ## July 2023 _`2307`_
 
 * Data API
-  * Added [multilingual search](../api-1/api/search-1/other/how-to-use-multilingual-search.md) with [\_search-language](broken-reference/) parameter
+  * Added [multilingual search](../tutorials/crud-search-tutorials/search-tutorials/how-to-use-multilingual-search.md) with [\_search-language](broken-reference/) parameter
   * Added an option to translate concepts with [$translate-concepts](../modules/terminology/concept/usdtranslate-concepts.md) endpoint
   * Added [\_source](broken-reference/) search parameter
 * [C-CDA / FHIR converter](../modules/integration-toolkit/ccda-converter/)
@@ -502,7 +502,7 @@ Minor updates:
   * Supported modifying and creating new mappings using [the Aidbox Configuration Project](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/aidbox-project-environment-variables/zen-configuration.md)
 * Security and access control
   * Added [hierarchical organization-based access control](../modules/access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md) (multi-tenancy on organization-level resources)
-  * Added [How to enable hierarchical access control](../readme-1/readme-1-1/how-to-enable-hierarchical-access-control.md) tutorial
+  * Added [How to enable hierarchical access control](../tutorials/security-access-control-tutorials/how-to-enable-hierarchical-access-control.md) tutorial
 * Ops
   * Released new [PostgreSQL Aidboxdb images 15.3, 14.8, 13.11](../database/aidboxdb-image/)
   * Added PostGis Extension
@@ -595,7 +595,7 @@ Minor updates:
   * Developed [access policy dev tool](../modules/security-and-access-control/security/access-policy-dev-tool.md)
   * Added tutorials and guides:
     * [Auth overview article](../modules/todo/overview.md)
-    * [How to implement the ReBAC authorization model ](../readme-1/readme-1-1/relationship-based-access-control-in-aidbox.md)in Aidbox within AccessPolicy
+    * [How to implement the ReBAC authorization model ](../tutorials/security-access-control-tutorials/relationship-based-access-control-in-aidbox.md)in Aidbox within AccessPolicy
     * [Access policy best practices](../modules/security-and-access-control/security/accesspolicy-best-practices.md)
 * Aidbox user portal
   * Added FHIR R4B zenFHIR package to configuration options
@@ -628,7 +628,7 @@ Minor updates:
   * Introduced FHIR to CCD transformation (alpha)
 * Security and Access Control
   * Supported Aidbox [on path](../reference/environment-variables/optional-environment-variables.md#aidbox_base_url)
-  * Improved [`__debug=policy`](../readme-1/readme-1-1/access-policy.md#policy-debugging)
+  * Improved [`__debug=policy`](../tutorials/security-access-control-tutorials/access-policy.md#policy-debugging)
 * Ops
   * [Devbox images](aidbox-user-portal/licenses.md#development-license) are no longer supported. Please use [AidboxOne image](https://hub.docker.com/r/healthsamurai/aidboxone) with [development license](aidbox-user-portal/licenses.md#development-license)
   * Supported [box\_web\_\*](../reference/environment-variables/optional-environment-variables.md#box_web_max__body) configs for Multibox
@@ -758,7 +758,7 @@ Minor updates:
 * Updated documentation
   * [Index management](../deployment-and-maintenance/indexes/create-indexes-manually.md)
   * [US Core IG configuration](../deprecated/deprecated/zen-related/us-core-ig/)
-  * [Deleting data guide](../readme-1/data-api/delete-data.md)
+  * [Deleting data guide](../tutorials/crud-search-tutorials/delete-data.md)
 * Fixed [issues](https://github.com/Aidbox/Issues/issues?q=is%3Aissue+milestone%3A%22October+2022+-+v%3A2210%22+is%3Aclosed) submitted by Aidbox users and minor bugs
 
 ## September 2022 _`2209`_
@@ -791,7 +791,7 @@ Minor updates:
 * Enhanced [zen.fhir profiles](../deprecated/deprecated/zen-related/profiling-with-zen-lang/) with RequiredPattern and FixedValue constraints
 * Added [seed service](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/seed-import.md) errors output.
 * Added [Azure Active Directory (Azure AD)](../modules/security-and-access-control/set-up-external-identity-provider/azure-ad.md) and [Keycloak](../modules/security-and-access-control/set-up-external-identity-provider/keycloak.md) external identity providers integration guides
-* Added [Mailgun](../readme-1/integration-toolkit-tutorials/mailgun-integration.md) and [Postmark](../readme-1/integration-toolkit-tutorials/postmark-integration.md) email providers integration guides
+* Added [Mailgun](../tutorials/integration-toolkit-tutorials/mailgun-integration.md) and [Postmark](../tutorials/integration-toolkit-tutorials/postmark-integration.md) email providers integration guides
 
 ## July 2022 _`2207`_
 
@@ -819,7 +819,7 @@ Minor updates:
 * Improved chained search parameters performance.
 * Added ability to specify SQL migrations in [Aidbox project seed service](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/#seed-service).
 * Enhanced [API constructor ACL](../modules/security-and-access-control/security/acl.md) with conditional CRUD and patient/group level `$export`.
-* Added a tutorial on how to [create a user and give full access](../readme-1/readme-1-1/creating-user-and-set-up-full-user-access.md).
+* Added a tutorial on how to [create a user and give full access](../tutorials/security-access-control-tutorials/creating-user-and-set-up-full-user-access.md).
 * Fixed issues submitted by Aidbox users and fixed minor bugs.
 
 ## May 2022 _`2205`_
@@ -833,7 +833,7 @@ Minor updates:
 * Improved setting [PostgreSQL schema](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/broken-reference/README.md) for Aidbox tables.
 * Added option to set JWT private/public keys and secret[ via env](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/broken-reference/README.md).
 * Added [aidboxdb PostgreSQL 14.2 version](../database/aidboxdb-image/). Supported versions are 14.2 and 13.6.
-* Added tutorial [how to fix broken dates](../tutorials/tutorials/).
+* Added tutorial [how to fix broken dates](../tutorials/other-tutorials/).
 * Released Infrabox preview. Infrabox is a simple and efficient tool to deploy and manage production-ready Aidbox infrastructure on k8s.
 
 ## April 2022 _`2204`_
@@ -868,7 +868,7 @@ February 2022 - v:2202 is available as a long-term support version. End of life 
 {% endhint %}
 
 * Released a beta version of [Aidbox API constructor ](../deprecated/deprecated/zen-related/aidbox-api-constructor.md)that allows to define REST API granularly.
-* Added Access Control debug option: [su header](../readme-1/readme-1-1/debug.md#su-request-header). It allows doing a request on behalf of a certain user.
+* Added Access Control debug option: [su header](../tutorials/security-access-control-tutorials/debug.md#su-request-header). It allows doing a request on behalf of a certain user.
 * Added [Grafana dashboard RPC](../modules/observability/metrics/monitoring/grafana-integration.md) API that allows to get Aidbox metrics dashboards and import it to your Grafana.
 * Added [`_count`](broken-reference/), [`_total`](broken-reference/) and [`_timeout`](broken-reference/) environment variables to configure default values.
 * Improved logging for RPC and GraphQL calls.
@@ -1150,7 +1150,7 @@ It's time to upgrade your database - please stop your container and change image
 ### Features
 
 * [User Level Logs](../modules/observability/logging-and-audit/)
-* [Structured Data Capture](../tutorials/tutorials/sdc-with-custom-resources.md) with Custom Resources (Alpha)
+* [Structured Data Capture](../tutorials/other-tutorials/sdc-with-custom-resources.md) with Custom Resources (Alpha)
 * [History based replication](https://github.com/Aidbox/documentation/blob/master/getting-started/versioning-and-release-notes/release-notes-1/broken-reference/README.md)
 * Search: new [\_ilike](broken-reference/) search parameter
 * Search: [\_include=\*](broken-reference/) support

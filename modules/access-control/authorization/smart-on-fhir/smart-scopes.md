@@ -27,7 +27,7 @@ To enable scope checking in the Access Control layer, the JWT access token must 
 
 &#x20;\* - required claim
 
-For scope checking, Aidbox accepts any valid JWT tokens issued by [external servers](../../../../readme-1/readme-1-1/token-introspection.md) if they contain the specified scopes and Aidbox can issue its own JWT tokens with all the required claims.
+For scope checking, Aidbox accepts any valid JWT tokens issued by [external servers](../../../../tutorials/security-access-control-tutorials/token-introspection.md) if they contain the specified scopes and Aidbox can issue its own JWT tokens with all the required claims.
 
 ### Example&#x20;
 

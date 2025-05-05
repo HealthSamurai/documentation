@@ -39,7 +39,7 @@ Aidbox is an [Audit record repository](https://profiles.ihe.net/ITI/TF/Volume1/c
 
 See tutorial:
 
-[setup-audit-logging.md](../../readme-1/readme-1-1/setup-audit-logging.md "mention")
+[setup-audit-logging.md](../../tutorials/security-access-control-tutorials/setup-audit-logging.md "mention")
 
 ## FHIR Resource versioning
 

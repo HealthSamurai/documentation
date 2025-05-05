@@ -1,6 +1,6 @@
 # Migrate from Aidbox SearchParameter to FHIR SearchParameter
 
-If you want to use the [FHIRSchema validation engine](../../modules/profiling-and-validation/fhir-schema-validator/), your custom Aidbox SearchParameters defined via Zen or Entities will not be available. Aidbox with FHIRSchema validation enabled is more aligned with the FHIR specification and only supports FHIR SearchParameters. In this case, use this migration guide.
+If you want to use the [FHIRSchema validation engine](../../../modules/profiling-and-validation/fhir-schema-validator/), your custom Aidbox SearchParameters defined via Zen or Entities will not be available. Aidbox with FHIRSchema validation enabled is more aligned with the FHIR specification and only supports FHIR SearchParameters. In this case, use this migration guide.
 
 {% hint style="info" %}
 If you are using Zen project to define your SearchParameter resources, you can also follow this guide, but you will need to remove the SearchParameter definitions from your Zen project.

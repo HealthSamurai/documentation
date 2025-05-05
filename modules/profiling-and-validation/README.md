@@ -40,14 +40,14 @@ During validation, various constraints are checked, including data shape, requir
 
 Aidbox allows you to upload Implementation Guides. Once an IG is loaded, data instances marked with profile canonical URLs from the loaded IGs will be automatically validated against it without any additional setup. For tutorials on loading IGs into Aidbox, please refer to this page:
 
-{% content-ref url="../../readme-1/validation-tutorials/upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](../../readme-1/validation-tutorials/upload-fhir-implementation-guide/)
+{% content-ref url="../../tutorials/validation-tutorials/upload-fhir-implementation-guide/" %}
+[upload-fhir-implementation-guide](../../tutorials/validation-tutorials/upload-fhir-implementation-guide/)
 {% endcontent-ref %}
 
 Additionally, you can easily create a `StructureDefinition` in a running Aidbox instance and validate a resource against it. Simply mark your data instance with the profile's canonical URL that was posted earlier, and then create your data. The validator engine will check it against the previously created profile. For tutorials on creating StructureDefinitions in Aidbox, please refer to this guide:
 
-{% content-ref url="../../readme-1/validation-tutorials/upload-fhir-implementation-guide/aidbox-fhir-api.md" %}
-[aidbox-fhir-api.md](../../readme-1/validation-tutorials/upload-fhir-implementation-guide/aidbox-fhir-api.md)
+{% content-ref url="../../tutorials/validation-tutorials/upload-fhir-implementation-guide/aidbox-fhir-api.md" %}
+[aidbox-fhir-api.md](../../tutorials/validation-tutorials/upload-fhir-implementation-guide/aidbox-fhir-api.md)
 {% endcontent-ref %}
 
 ## Aidbox validation engines

@@ -17,11 +17,11 @@ Search parameters can be defined in:
 
 * The core FHIR specification (e.g. [4.0.1](https://hl7.org/fhir/R4/))
 * Implementation guides (e.g. [US Core](https://build.fhir.org/ig/HL7/US-Core/))
-* Aidbox itself in `app.aidbox.main` package (see [Custom Search Parameter tutorial](../../../api-1/api/search-1/custom-search-parameter/custom-search-parameters.md))
+* Aidbox itself in `app.aidbox.main` package (see [Custom Search Parameter tutorial](../../../tutorials/crud-search-tutorials/search-tutorials/custom-search-parameters.md))
 
 ## SearchParameter example
 
-Patient SearchParameters can be found at the end of [FHIR Patient page](https://www.hl7.org/fhir/patient.html#search) or in AidboxUI (see [Custom Search Parameter tutorial](../../../api-1/api/search-1/custom-search-parameter/custom-search-parameters.md)).
+Patient SearchParameters can be found at the end of [FHIR Patient page](https://www.hl7.org/fhir/patient.html#search) or in AidboxUI (see [Custom Search Parameter tutorial](../../../tutorials/crud-search-tutorials/search-tutorials/custom-search-parameters.md)).
 
 Patient's `name` SearchParameter example:
 
@@ -725,12 +725,12 @@ GET /fhir/Patient?tag=emergency
 
 See tutorials:
 
-{% content-ref url="../../../api-1/api/search-1/custom-search-parameter/custom-search-parameters.md" %}
-[custom-search-parameters.md](../../../api-1/api/search-1/custom-search-parameter/custom-search-parameters.md)
+{% content-ref url="../../../tutorials/crud-search-tutorials/search-tutorials/custom-search-parameters.md" %}
+[custom-search-parameters.md](../../../tutorials/crud-search-tutorials/search-tutorials/custom-search-parameters.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../../readme-1/data-api/search-tutorials/create-custom-aidbox-search-resource.md" %}
-[create-custom-aidbox-search-resource.md](../../../readme-1/data-api/search-tutorials/create-custom-aidbox-search-resource.md)
+{% content-ref url="../../../tutorials/crud-search-tutorials/search-tutorials/create-custom-aidbox-search-resource.md" %}
+[create-custom-aidbox-search-resource.md](../../../tutorials/crud-search-tutorials/search-tutorials/create-custom-aidbox-search-resource.md)
 {% endcontent-ref %}
 
 See also [aidbox-search.md](../aidbox-search.md "mention"):

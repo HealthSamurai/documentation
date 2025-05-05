@@ -16,8 +16,8 @@ Because everything is a resource, you can manage users the same way you manage c
 See also:
 
 * [User resource reference](../../../reference/system-resources-reference/iam-module-resources.md#user)
-* [Creating user tutorial](../../../readme-1/readme-1-1/creating-user-and-set-up-full-user-access.md)
-* [How to prohibit user to login](../../../readme-1/readme-1-1/configuration-options.md)
+* [Creating user tutorial](../../../tutorials/security-access-control-tutorials/creating-user-and-set-up-full-user-access.md)
+* [How to prohibit user to login](../../../tutorials/security-access-control-tutorials/configuration-options.md)
 
 ## Manage Users in external systems
 

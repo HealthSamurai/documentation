@@ -4,7 +4,7 @@ Aidbox provides [Init Bundle](../../configuration/init-bundle.md) functionality 
 
 To overcome this limitation, we can use third-party reliable tools like `envsubst` and `sed` to inject secrets into Init Bundle. You can add following instruction as a step to your CI pipeline:
 
-Let's say we have Aidbox [TokenIntrospector](../../readme-1/readme-1-1/token-introspection.md) resource in our Init Bundle and we have to set different values for `iss` and `jwks_uri` parameters on different environments. We need to prepare `init-bundle.json.template` file:
+Let's say we have Aidbox [TokenIntrospector](../../tutorials/security-access-control-tutorials/token-introspection.md) resource in our Init Bundle and we have to set different values for `iss` and `jwks_uri` parameters on different environments. We need to prepare `init-bundle.json.template` file:
 
 ```json
 {

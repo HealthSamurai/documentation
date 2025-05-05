@@ -12,12 +12,12 @@ The materials in this section describe what to do next with the resulting FHIR S
 [custom-resources-using-fhirschema.md](../custom-resources-using-fhirschema.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../../readme-1/tutorials/how-to-create-fhir-npm-package.md" %}
-[how-to-create-fhir-npm-package.md](../../../readme-1/tutorials/how-to-create-fhir-npm-package.md)
+{% content-ref url="../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md" %}
+[how-to-create-fhir-npm-package.md](../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../../readme-1/validation-tutorials/upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](../../../readme-1/validation-tutorials/upload-fhir-implementation-guide/)
+{% content-ref url="../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/" %}
+[upload-fhir-implementation-guide](../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/)
 {% endcontent-ref %}
 
 
@@ -483,14 +483,14 @@ If you have only one FHIRSchema that replaces your custom-defined Entity/Attribu
 
 If you have multiple schemas replacing a set of resources and want to work with this set of entities as a package (ImplementationGuide), refer to this guide on how to create your own FHIR NPM package with ImplementationGuide entities.
 
-{% content-ref url="../../../readme-1/tutorials/how-to-create-fhir-npm-package.md" %}
-[how-to-create-fhir-npm-package.md](../../../readme-1/tutorials/how-to-create-fhir-npm-package.md)
+{% content-ref url="../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md" %}
+[how-to-create-fhir-npm-package.md](../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md)
 {% endcontent-ref %}
 
 **Loading the FHIR NPM Package**
 
-{% content-ref url="../../../readme-1/validation-tutorials/upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](../../../readme-1/validation-tutorials/upload-fhir-implementation-guide/)
+{% content-ref url="../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/" %}
+[upload-fhir-implementation-guide](../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/)
 {% endcontent-ref %}
 
 #### **Important Notes:**
@@ -500,5 +500,5 @@ If you have multiple schemas replacing a set of resources and want to work with 
 {% endhint %}
 
 {% hint style="danger" %}
-**SearchParameters:** SearchParameters described for custom resources won't work in FHIRSchema validation mode. You need to redefine them as regular FHIR SearchParameters, not Aidbox Search Parameters. See the [migration guide](../../../readme-1/data-api/migrate-from-aidbox-searchparameter-to-fhir-searchparameter.md).
+**SearchParameters:** SearchParameters described for custom resources won't work in FHIRSchema validation mode. You need to redefine them as regular FHIR SearchParameters, not Aidbox Search Parameters. See the [migration guide](../../../tutorials/crud-search-tutorials/search-tutorials/migrate-from-aidbox-searchparameter-to-fhir-searchparameter.md).
 {% endhint %}

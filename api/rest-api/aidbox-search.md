@@ -91,8 +91,8 @@ When using the `:text` modifier, you also need to specify `"text-format"`, refer
 
 See tutorial:
 
-{% content-ref url="../../readme-1/data-api/search-tutorials/create-custom-aidbox-search-resource.md" %}
-[create-custom-aidbox-search-resource.md](../../readme-1/data-api/search-tutorials/create-custom-aidbox-search-resource.md)
+{% content-ref url="../../tutorials/crud-search-tutorials/search-tutorials/create-custom-aidbox-search-resource.md" %}
+[create-custom-aidbox-search-resource.md](../../tutorials/crud-search-tutorials/search-tutorials/create-custom-aidbox-search-resource.md)
 {% endcontent-ref %}
 
 ## AidboxQuery
@@ -468,6 +468,6 @@ _name:
 
 See also:
 
-{% content-ref url="../../api-1/api/search-1/other/how-to-use-multilingual-search.md" %}
-[how-to-use-multilingual-search.md](../../api-1/api/search-1/other/how-to-use-multilingual-search.md)
+{% content-ref url="../../tutorials/crud-search-tutorials/search-tutorials/how-to-use-multilingual-search.md" %}
+[how-to-use-multilingual-search.md](../../tutorials/crud-search-tutorials/search-tutorials/how-to-use-multilingual-search.md)
 {% endcontent-ref %}

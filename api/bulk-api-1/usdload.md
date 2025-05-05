@@ -23,7 +23,7 @@ When loading resources with references, remember that '`<resourceType>/<id>'` is
 Please consider using [Asynchronous validation API](../../modules/profiling-and-validation/validation-api.md#asynchronous-batch-validation-draft) to validate data after $load
 {% endhint %}
 
-Load 100 synthea Patients to Aidbox (see [tutorial](../../readme-1/bulk-api-tutorials/synthea-by-bulk-api.md)):
+Load 100 synthea Patients to Aidbox (see [tutorial](../../tutorials/bulk-api-tutorials/synthea-by-bulk-api.md)):
 
 ```yaml
 POST /fhir/Patient/$load

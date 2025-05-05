@@ -126,7 +126,7 @@ value:
 
 Application name that will be used in Audit logging when returned link was used.
 
-> Audit logging should be enabled via [configuartion](../../readme-1/readme-1-1/setup-audit-logging.md)
+> Audit logging should be enabled via [configuartion](../../tutorials/security-access-control-tutorials/setup-audit-logging.md)
 
 ```yaml
 - name: app-name

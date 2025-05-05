@@ -36,7 +36,7 @@ order by word collate "da_DK";
 
 ## Change locale collation
 
-By default Aidbox uses en\_US.utf8 locale. **Aidboxdb version 14.7** supports locale collation changes. To change cluster locale to Danish, use [PostgreSQL locale variables](https://www.postgresql.org/docs/current/locale.html) and [Aidboxdb variable](../../reference/environment-variables/aidboxdb-environment-variables.md#optional-environment-variables): `EXTRA_LOCALES` to make PostgreSQL able to collate with the passed languages:&#x20;
+By default Aidbox uses en\_US.utf8 locale. **Aidboxdb version 14.7** supports locale collation changes. To change cluster locale to Danish, use [PostgreSQL locale variables](https://www.postgresql.org/docs/current/locale.html) and [Aidboxdb variable](../../../reference/environment-variables/aidboxdb-environment-variables.md#optional-environment-variables): `EXTRA_LOCALES` to make PostgreSQL able to collate with the passed languages:&#x20;
 
 {% code title="docker-compose.yaml" %}
 ```yaml
@@ -70,4 +70,4 @@ order by word;
 
 Will return the right order for Danish locale.
 
-Any [\_sort Search Parameter](../../api/rest-api/fhir-search/searchparameter.md#sort) will also consider Danish sort order.
+Any [\_sort Search Parameter](../../../api/rest-api/fhir-search/searchparameter.md#sort) will also consider Danish sort order.
