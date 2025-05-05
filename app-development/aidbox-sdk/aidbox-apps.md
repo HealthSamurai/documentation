@@ -9,6 +9,14 @@ You can extend [Aidbox](https://www.health-samurai.io/aidbox) with custom Apps. 
 The app is a standalone service that will work with Aidbox to implement your specific app. The app should be registered in Aidbox.\
 Aidbox SDKs support using Apps:
 
+{% content-ref url="../../tools/aidbox-sdk/nodejs.md" %}
+[nodejs.md](../../tools/aidbox-sdk/nodejs.md)
+{% endcontent-ref %}
+
+{% content-ref url="../../tools/aidbox-sdk/python-sdk.md" %}
+[python-sdk.md](../../tools/aidbox-sdk/python-sdk.md)
+{% endcontent-ref %}
+
 ## Example of App resource
 
 To define the App, we should provide the app manifest.&#x20;
@@ -152,3 +160,5 @@ User:
 {% endcode %}
 
 At the root of resource definition, you can also define **hooks** and **profiles** for this resource.
+
+Element definition will be translated into [Attribute Meta-Resource](https://github.com/Aidbox/documentation/blob/master/tools/aidbox-sdk/broken-reference/README.md) and have the following properties:
