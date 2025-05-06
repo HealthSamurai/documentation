@@ -17,11 +17,11 @@ Search parameters can be defined in:
 
 * The core FHIR specification (e.g. [4.0.1](https://hl7.org/fhir/R4/))
 * Implementation guides (e.g. [US Core](https://build.fhir.org/ig/HL7/US-Core/))
-* Aidbox itself in `app.aidbox.main` package (see [Custom Search Parameter tutorial](broken-reference))
+* Aidbox itself in `app.aidbox.main` package (see [Custom Search Parameter tutorial](../../../tutorials/crud-search-tutorials/search-tutorials/custom-searchparameter-tutorial.md))
 
 ## SearchParameter example
 
-Patient SearchParameters can be found at the end of [FHIR Patient page](https://www.hl7.org/fhir/patient.html#search) or in AidboxUI (see [Custom Search Parameter tutorial](broken-reference)).
+Patient SearchParameters can be found at the end of [FHIR Patient page](https://www.hl7.org/fhir/patient.html#search) or in AidboxUI (see [Custom Search Parameter tutorial](../../../tutorials/crud-search-tutorials/search-tutorials/custom-searchparameter-tutorial.md)).
 
 Patient's `name` SearchParameter example:
 
