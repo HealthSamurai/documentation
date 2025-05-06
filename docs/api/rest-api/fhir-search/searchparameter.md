@@ -724,18 +724,12 @@ GET /fhir/Patient?tag=emergency
 ## Custom Search Parameter
 
 See tutorials:
+* [Custom SearchParameter](/docs/tutorials/crud-search-tutorials/search-tutorials/create/custom-searchparameter-tutorial.md)
+* [Create Custom Aidbox Search resource](../../../tutorials/crud-search-tutorials/search-tutorials/create-custom-aidbox-search-resource.md)
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
+See also [aidbox-search.md](../aidbox-search.md):
 
-{% content-ref url="../../../tutorials/crud-search-tutorials/search-tutorials/create-custom-aidbox-search-resource.md" %}
-[create-custom-aidbox-search-resource.md](../../../tutorials/crud-search-tutorials/search-tutorials/create-custom-aidbox-search-resource.md)
-{% endcontent-ref %}
-
-See also [aidbox-search.md](../aidbox-search.md "mention"):
-
-* [#aidbox-special-search-parameters](../aidbox-search.md#aidbox-special-search-parameters "mention")
-* [#search-resource](../aidbox-search.md#search-resource "mention")
-* [#dot-expressions](../aidbox-search.md#dot-expressions "mention")
-* [#aidboxquery](../aidbox-search.md#aidboxquery "mention")
+* [aidbox-special-search-parameters](../aidbox-search.md#aidbox-special-search-parameters)
+* [search-resource](../aidbox-search.md#search-resource)
+* [dot-expressions](../aidbox-search.md#dot-expressions)
+* [aidboxquery](../aidbox-search.md#aidboxquery)
