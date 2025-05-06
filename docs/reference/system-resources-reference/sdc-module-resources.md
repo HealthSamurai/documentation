@@ -7,14 +7,14 @@ Resources for configuration and management Aidbox SDC module.
 SDC module includes the following resource types:
 
 - QuestionnaireTheme
+- SDCAddendum
 - SDCConfig
-- SDCPrintTemplate
 - SDCDocument
 - SDCFormMetadata
 - SDCFormVersion
+- SDCPrintTemplate
 - SDCWorkflow
 - SDCWorkflowVersion
-- SDCAddendum
 
 ## QuestionnaireTheme
 
@@ -68,6 +68,33 @@ SDC module includes the following resource types:
 <tr><td width="290">language</td><td width="70">0..1</td><td width="150">code</td><td>Theme Language</td></tr>
 <tr><td width="290">main-color</td><td width="70">0..1</td><td width="150">string</td><td>Main Accent color (RBG hex)</td></tr>
 <tr><td width="290">theme-name</td><td width="70">0..1</td><td width="150">string</td><td>Theme Title</td></tr></tbody>
+</table>
+
+
+## SDCAddendum
+
+Addednum Resource. Contains additional information abount SDCDocument/SDCWorkflow
+
+<table>
+<thead>
+<tr>
+<th width="290">Path</th>
+<th width="70">Card.</th>
+<th width="150">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr><td width="290">date</td><td width="70">1..1</td><td width="150">dateTime</td><td></td></tr>
+<tr><td width="290">target</td><td width="70">1..1</td><td width="150"></td><td></td></tr>
+<tr><td width="290">target.<strong>id</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">target.<strong>resourceType</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">target.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">type</td><td width="70">1..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">user</td><td width="70">1..1</td><td width="150"></td><td></td></tr>
+<tr><td width="290">user.<strong>id</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">user.<strong>resourceType</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
+<tr><td width="290">user.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr></tbody>
 </table>
 
 
@@ -136,22 +163,6 @@ SDC module includes the following resource types:
 
 <strong>Allowed references</strong>: QuestionnaireTheme</td></tr>
 <tr><td width="290">translations</td><td width="70">0..1</td><td width="150">Object</td><td>Custom translations strings for UI</td></tr></tbody>
-</table>
-
-
-## SDCPrintTemplate
-
-<table>
-<thead>
-<tr>
-<th width="290">Path</th>
-<th width="70">Card.</th>
-<th width="150">Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr><td width="290">content</td><td width="70">0..1</td><td width="150">string</td><td>Template for SDC print</td></tr></tbody>
 </table>
 
 
@@ -237,6 +248,22 @@ Form Metadata that can be used for Dynamic updates
 </table>
 
 
+## SDCPrintTemplate
+
+<table>
+<thead>
+<tr>
+<th width="290">Path</th>
+<th width="70">Card.</th>
+<th width="150">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr><td width="290">content</td><td width="70">0..1</td><td width="150">string</td><td>Template for SDC print</td></tr></tbody>
+</table>
+
+
 ## SDCWorkflow
 
 <table>
@@ -293,32 +320,5 @@ Snapshotted workflow template with incremental versioning.
 <tr><td width="290">snapshot</td><td width="70">1..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">version</td><td width="70">1..1</td><td width="150">number</td><td>Incremental number of workflow version.</td></tr>
 <tr><td width="290">workflow</td><td width="70">1..1</td><td width="150">string</td><td></td></tr></tbody>
-</table>
-
-
-## SDCAddendum
-
-Addednum Resource. Contains additional information abount SDCDocument/SDCWorkflow
-
-<table>
-<thead>
-<tr>
-<th width="290">Path</th>
-<th width="70">Card.</th>
-<th width="150">Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr><td width="290">date</td><td width="70">1..1</td><td width="150">dateTime</td><td></td></tr>
-<tr><td width="290">target</td><td width="70">1..1</td><td width="150"></td><td></td></tr>
-<tr><td width="290">target.<strong>id</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">target.<strong>resourceType</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">target.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">type</td><td width="70">1..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">user</td><td width="70">1..1</td><td width="150"></td><td></td></tr>
-<tr><td width="290">user.<strong>id</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">user.<strong>resourceType</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">user.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr></tbody>
 </table>
 
