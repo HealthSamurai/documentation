@@ -175,7 +175,7 @@ CREATE EXTENSION pg_stat_statements;
     ```
 
     \
-    See more about recommended Aidbox environment variables [here](broken-reference).
+    See more about recommended Aidbox environment variables [here](../../configuration/configure-aidbox-and-multibox.md).
 
     <figure><img src="../../../.gitbook/assets/image (174).png" alt=""><figcaption></figcaption></figure>
 8.  At the Networking tab, configure the outbound traffic to go to the **default** subnet.\

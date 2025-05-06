@@ -2,7 +2,7 @@
   (:require cheshire.core))
 
 (def supported-implementation-guide-destination
-  "docs/modules/profiling-and-validation/fhir-schema-validator/supported-implementation-guides.md")
+  "docs/modules/profiling-and-validation/fhir-schema-validator/aidbox-fhir-igs-registry.md")
 
 (def supported-implementation-guide-template "---
 description: >-
@@ -82,7 +82,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 "
             (or (some :title manifests)
                 (some :name manifests))
-            (->> 
+            (->>
              manifests
              (mapv #(str "* `" (:name %) "#" (:version %) "`\n"))
              (apply str)))))
@@ -107,4 +107,4 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
       (build-template)))
 
 (comment
-  (-main)) 
+  (-main))

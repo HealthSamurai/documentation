@@ -10,9 +10,7 @@ Aidbox allows you to upload an arbitrary FHIR Implementation Guide by referring 
 
 ### 1. Run Aidbox with FHIR Schema Validation Engine
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
+See [Getting Started locally guide](../../../../getting-started/run-aidbox-locally.md).
 
 ### 2. Open the Aidbox UI
 

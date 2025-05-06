@@ -20,7 +20,7 @@ The easiest way to test Basic Auth is to run through the [Aidbox Sandbox UI](./#
 
 ### Register Client
 
-The first step is to create resource [Client](broken-reference) with id & secret and add `'basic'` to it's `grant_types` collection:
+The first step is to create resource [Client](../../../reference/system-resources-reference/iam-module-resources.md) with id & secret and add `'basic'` to it's `grant_types` collection:
 
 ```yaml
 POST /Client
@@ -33,7 +33,7 @@ grant_types:
   - basic
 ```
 
-By default, your client does not have any permissions to access Aidbox REST API. So you probably want to configure some using Aidbox Access Policy. Access Policy can be _linked_ to the specific client by providing the reference to clients in `link` collection. For more sophisticated configuration, see [Access Policies](broken-reference) documentation.
+By default, your client does not have any permissions to access Aidbox REST API. So you probably want to configure some using Aidbox Access Policy. Access Policy can be _linked_ to the specific client by providing the reference to clients in `link` collection. For more sophisticated configuration, see [Access Policies](../../access-control/authorization/access-policies.md) documentation.
 
 ```yaml
 POST /AccessPolicy

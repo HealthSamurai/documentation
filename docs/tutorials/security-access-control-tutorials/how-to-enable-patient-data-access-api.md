@@ -39,7 +39,7 @@ git clone \
 {% endtabs %}
 
 {% hint style="info" %}
-More details at [running Aidbox locally](broken-reference)
+More details at [running Aidbox locally](../../getting-started/run-aidbox-locally.md)
 {% endhint %}
 
 ### Apply the license
