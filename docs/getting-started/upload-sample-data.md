@@ -8,18 +8,18 @@ description: This page explain how you can load synthetic data to Aidbox
 
 Pre-built datasets:
 
-* 100 Patient records:   200K resources and 300MB
-* 1K Patient records:   2M resources and 3GB
-* 10K Patient records:   20M resources and 30GB
-* 100K Patient records:   200M resources and 300GB
+* 100 Patient records: 200K resources and 300MB
+* 1K Patient records: 2M resources and 3GB
+* 10K Patient records: 20M resources and 30GB
+* 100K Patient records: 200M resources and 300GB
 
-Contained resources:  Patient, AllergyIntolerance, CarePlan, CareTeam, Claim, Condition, Device, DiagnosticReport, DocumentReference, Encounter, ExplanationOfBenefit, ImagingStudy, Immunization, Location, Medication, MedicationAdministration, MedicationRequest, Observation, Organization, Practitioner, PractitionerRole, Procedure, Provenance, SupplyDelivery.
+Contained resources: Patient, AllergyIntolerance, CarePlan, CareTeam, Claim, Condition, Device, DiagnosticReport, DocumentReference, Encounter, ExplanationOfBenefit, ImagingStudy, Immunization, Location, Medication, MedicationAdministration, MedicationRequest, Observation, Organization, Practitioner, PractitionerRole, Procedure, Provenance, SupplyDelivery.
 
 ### Load dataset
 
-To load the dataset use [/v2/fhir/$import](../api/bulk-api/usdimport-and-fhir-usdimport.md#v2-usdimport-on-top-of-the-workflow-engine) operation.&#x20;
+To load the dataset use [/v2/fhir/$import](../api/bulk-api/import-and-fhir-import.md#v2-usdimport-on-top-of-the-workflow-engine) operation.
 
-Run the following request in the REST console and wait a few minutes.&#x20;
+Run the following request in the REST console and wait a few minutes.
 
 You can track import status in `Workflow Engine` interface.
 
