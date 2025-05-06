@@ -9,12 +9,12 @@ description: Overview of Aidbox features
 * Supports STU3, R4, R4B, R5, R6 ballot3.
 * Full CRUD, history/versioning, conditional operations, transactions
 * High-performance rich-featured validation
-* FHIRPath support for filtering, derived values, and expressions
+* FHIRPath support for updating, filtering, derived values, and expressions
 * Advanced Search:
   * \_include, \_revinclude, \_has, chained parameters, \_filter, \_list
   * Custom SearchParameters
   * Full-text search with optimized indexing
-* Full implementation of Structured Data Capture (SDC): $extract, $populate, Questionnaire and QuestionnaireResponse
+* Full implementation of Structured Data Capture (SDC): $extract, $populate, Questionnaire, and QuestionnaireResponse
 * Bulk import and export
 
 ### Database&#x20;
@@ -59,7 +59,7 @@ description: Overview of Aidbox features
 * Access control: RBAC, ABAC
 * Scoped APIs&#x20;
 * Security Labels&#x20;
-* Multitenancy: Multibox, Organization-based access control
+* Multitenancy: physical isolation of the databases - Multibox, logical multitenancy  - Organization-based access control
 * AuditEvent logging&#x20;
 
 ### Integrations
@@ -74,7 +74,7 @@ description: Overview of Aidbox features
 * On-premises installations
 * Deployment to air-gapped environments
 * Horizontal scaling
-* Helm chart
+* Helm charts
 * HIPAA-compliant architecture
 * OpenTelemetry protocol for metrics, traces, and structured logs
 * Performance monitoring tools
@@ -88,6 +88,7 @@ description: Overview of Aidbox features
   * FHIR resource browser
 * Runtime-editable configuration&#x20;
 * SDKs for TypeScript, Python
+* Code-generation support for creating your own SDKs, with examples provided for Python, TypeScript, and C#
 * Template projects and examples for quick start
 * Open user community
 
@@ -104,8 +105,10 @@ Load performance testing results [here](https://www.health-samurai.io/downloads/
 
 ### High-availability and Disaster Recovery
 
-* Cloud-native: AWS, Azure, GCP, hybrid and private
+* Cloud-native: AWS, Azure, GCP, hybrid, and private
 * Zero-downtime updates
+* Support for Kubernetes-native HA deployments
+* Support for HA PostgreSQL configurations with replication, automated failover, and point-in-time recovery
 
 ### Modules
 
@@ -122,7 +125,7 @@ Load performance testing results [here](https://www.health-samurai.io/downloads/
 
 ### &#x20;Compliance & Certifications
 
-* ISO 27001-certified&#x20;
-* HIPAA, HITECH, GDPR compliant
+* and ISO 27001-certified&#x20;
+* HIPAA, HITECH, and GDPR compliant
 * Secure SDLC: vulnerability scans, dependency SBOM, etc.
 * Audit and traceability for all access
