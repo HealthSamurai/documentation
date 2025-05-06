@@ -39,7 +39,7 @@ Open in browser [http://localhost:8080/](http://localhost:8080)
 * Using AidboxID\
   AidboxID is a unique identifier within the Aidbox ecosystem used for product activation
 * Using Aidbox license\
-  Aidbox license can be issued on the [Aidbox user portal](https://aidbox.app/). More about Aidbox licenses [here](../overview/aidbox-user-portal/licenses.md).&#x20;
+  Aidbox license can be issued on the [Aidbox user portal](https://aidbox.app/). More about Aidbox licenses [here](../overview/aidbox-user-portal/licenses.md).
 
 {% hint style="info" %}
 If you’re using an Aidbox license, you’ll be prompted for a username (or email) and password. Use the **admin** username and retrieve the password from the **BOX\_ADMIN\_PASSWORD** environment variable in the `docker-compose.yaml` file.\
@@ -49,18 +49,18 @@ For security, Aidbox generates a unique password for each instance.
 
 ### 5. **Discover Aidbox features using Notebooks**
 
-Use Getting Started Notebooks to explore basic Aidbox features&#x20;
+Use Getting Started Notebooks to explore basic Aidbox features
 
 <figure><img src="../../.gitbook/assets/Screenshot 2024-05-30 at 20.23.23.png" alt="Aidbox UI: notebooks"><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 **Aidbox Notebooks**
 
-Notebooks are interactive tutorials within the Aidbox UI with built-in REST, RPC, and SQL editors and the ability to execute requests and queries on the fly and see the result. You can use pre-built or create your own Notebooks. [Learn more.](broken-reference)
+Notebooks are interactive tutorials within the Aidbox UI with built-in REST, RPC, and SQL editors and the ability to execute requests and queries on the fly and see the result. You can use pre-built or create your own Notebooks. [Learn more.](../overview/aidbox-ui/aidbox-notebooks.md)
 {% endhint %}
 
 ## Next Steps
 
-* Learn more about [Aidbox Configuration](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/)
+* Learn more about [Aidbox Configuration](../configuration/configure-aidbox-and-multibox.md)
 * Unlock additional capabilities of [Aidbox UI](../overview/aidbox-ui/)
-* Dive into the built-in [Aidbox Notebooks](broken-reference)
+* Dive into the built-in [Aidbox Notebooks](../overview/aidbox-ui/aidbox-notebooks.md)
