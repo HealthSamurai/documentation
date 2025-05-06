@@ -45,7 +45,7 @@ body:
 ```
 
 {% hint style="info" %}
-Please note that Mapping returns [FHIR Transaction Bundle](../../../api/batch-transaction.md), so it can produce as many CRUD operations as you need. Any other Aidbox operation/endpoint can be triggered as well (for instance, [SQL endpoint](broken-reference)).
+Please note that Mapping returns [FHIR Transaction Bundle](../../../api/batch-transaction.md), so it can produce as many CRUD operations as you need.
 {% endhint %}
 
 ### Creating a Hl7v2Config Resource
