@@ -56,8 +56,8 @@ Extensions **unavailable** since AidboxDB version 16:
 
 See also:
 
-{% content-ref url="../extensions.md" %}
-[extensions.md](../extensions.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ### Configuration
@@ -72,6 +72,6 @@ The image is configured by supplying environment variables and command line argu
 
 An open-source tool [wal-g](https://github.com/wal-g/wal-g) is used by AidboxDB for continuous archival, backups, and restoration.
 
-{% content-ref url="../../deployment-and-maintenance/backup-and-restore/archiving.md" %}
-[archiving.md](../../deployment-and-maintenance/backup-and-restore/archiving.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}

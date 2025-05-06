@@ -468,6 +468,6 @@ _name:
 
 See also:
 
-{% content-ref url="../../tutorials/crud-search-tutorials/search-tutorials/how-to-use-multilingual-search.md" %}
-[how-to-use-multilingual-search.md](../../tutorials/crud-search-tutorials/search-tutorials/how-to-use-multilingual-search.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}

@@ -16,7 +16,7 @@ Authorization: Basic {base64(Client.id + ':' + Client.secret)}
 
 The easiest way to test Basic Auth is to run through the [Aidbox Sandbox UI](./#auth-sandbox) (_Auth -> Sandbox -> Basic Auth_).
 
-<figure><img src="../../../.gitbook/assets/image (2) (3).png" alt=""><figcaption><p>Sandbox UI</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (3).png" alt=""><figcaption><p>Sandbox UI</p></figcaption></figure>
 
 ### Register Client
 
@@ -33,7 +33,7 @@ grant_types:
   - basic
 ```
 
-By default, your client does not have any permissions to access Aidbox REST API. So you probably want to configure some using Aidbox Access Policy. Access Policy can be _linked_ to the specific client by providing the reference to clients in `link` collection. For more sophisticated configuration, see [Access Policies](../security/access-control.md) documentation.
+By default, your client does not have any permissions to access Aidbox REST API. So you probably want to configure some using Aidbox Access Policy. Access Policy can be _linked_ to the specific client by providing the reference to clients in `link` collection. For more sophisticated configuration, see [Access Policies](broken-reference) documentation.
 
 ```yaml
 POST /AccessPolicy

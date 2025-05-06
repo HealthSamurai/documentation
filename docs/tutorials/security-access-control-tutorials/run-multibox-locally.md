@@ -4,7 +4,7 @@ This quickstart guide explains how to run Multibox locally using `docker compose
 
 ## Get a license
 
-[Contact HealthSamurai](../../contact-us.md) and get a Multibox license. It is a long string like
+[Contact HealthSamurai](../../overview/contact-us.md) and get a Multibox license. It is a long string like
 
 ```
 eyJhbGciOiJ...

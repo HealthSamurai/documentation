@@ -16,11 +16,11 @@ To play with forms on a test data without authorization and without creating an 
 
 ## Aidbox Forms provides:
 
-* Ready-made medical form repository ([Aidbox Form Gallery](add-aidbox-forms-library.md))
+* Ready-made medical form repository ([Aidbox Form Gallery](broken-reference))
 * [UI Builder](aidbox-ui-builder-alpha/) for creating forms without a code (based on [FHIR SDC Implementation Guide](https://build.fhir.org/ig/HL7/sdc/index.html))
 * Form rendering engine
-* [FHIR SDC API](../../reference/aidbox-forms/fhir-sdc-api.md)
-* [Aidbox SDC API](../../reference/aidbox-forms/aidbox-sdc-api.md)
+* [FHIR SDC API](broken-reference)
+* [Aidbox SDC API](broken-reference)
 * [FHIR API](broken-reference)
 * FHIR storage
 

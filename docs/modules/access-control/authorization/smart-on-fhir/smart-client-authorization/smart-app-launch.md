@@ -21,7 +21,7 @@ If the answer is "**No**," use a public client.
 * Example: The app is an HTML5 or JavaScript application running in a browser (including single-page applications), where the secret would be exposed in user space.&#x20;
 * Example: The app is a native application that can only distribute a secret in a fixed, unprotected manner.
 
-Client shall be [Authorization Code Grant](../../../../security-and-access-control/auth/authorization-code.md) Client with several required values:
+Client shall be [Authorization Code Grant](broken-reference) Client with several required values:
 
 <table><thead><tr><th width="445">Client resource field</th><th>Description</th></tr></thead><tbody><tr><td><code>auth.authorization_code.token_format</code></td><td>Fixed value - <code>jwt</code></td></tr><tr><td><code>auth.authorization_code.secret_required</code></td><td><code>true</code> - for confidential Client<br><code>false</code> - for public Client</td></tr><tr><td><code>smart.launch_uri</code></td><td>SMART Application launch endpoint</td></tr><tr><td><code>type</code></td><td>Fixed value - <code>smart-app</code></td></tr><tr><td><code>secret</code></td><td>Only for confidential Client</td></tr></tbody></table>
 
@@ -121,7 +121,7 @@ accept: application/json
 
 SMART Launch Interaction Diagram:
 
-<figure><img src="../../../../../.gitbook/assets/svgviewer-output.svg" alt=""><figcaption><p>SMART App Launch Ffow</p></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/svgviewer-output.svg" alt=""><figcaption><p>SMART App Launch Ffow</p></figcaption></figure>
 
 ## Standalone launch
 

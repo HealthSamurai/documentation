@@ -3,7 +3,7 @@
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[setup.md](../../../../modules/profiling-and-validation/fhir-schema-validator/setup.md "mention")
+[Broken link](broken-reference "mention")
 {% endhint %}
 
 You can declare FTR manifests in your ValueSet definitions, this manifest will determine source of data for expanded ValueSet and what the resulting FTR will look like.

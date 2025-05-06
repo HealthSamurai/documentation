@@ -20,8 +20,8 @@ Aidbox supports a powerful profile validation mechanism powered by [Zen language
 
 2\. Load profiles into your Aidbox instance
 
-{% content-ref url="extend-an-ig-with-a-custom-zen-profile.md" %}
-[extend-an-ig-with-a-custom-zen-profile.md](extend-an-ig-with-a-custom-zen-profile.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 {% hint style="info" %}
@@ -56,4 +56,4 @@ Our [`zen-lang/fhir`](https://github.com/zen-lang/fhir/blob/main/README.md) tool
 
 ### Create custom Zen FHIR package based on other Zen FHIR packages
 
-You can use existing Zen FHIR packages as a foundation for your custom Zen FHIR package. See our [guide on profiling with Zen-lang](extend-an-ig-with-a-custom-zen-profile.md).
+You can use existing Zen FHIR packages as a foundation for your custom Zen FHIR package. See our [guide on profiling with Zen-lang](broken-reference).

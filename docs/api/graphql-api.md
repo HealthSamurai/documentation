@@ -625,7 +625,7 @@ To enable access control, set the environmental variable: &#x20;
 BOX_FEATURES_GRAPHQL_ACCESS__CONTROL=rest-search
 ```
 
-Under the hood, GraphQL uses Search API. You can create [AccessPolicies](../modules/security-and-access-control/security/access-control.md) for GET requests.
+Under the hood, GraphQL uses Search API. You can create [AccessPolicies](broken-reference) for GET requests.
 
 To allow Client `my-client` to query the request
 

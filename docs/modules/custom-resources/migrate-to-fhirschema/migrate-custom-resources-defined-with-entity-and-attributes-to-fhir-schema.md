@@ -8,8 +8,8 @@ The materials in this section describe what to do next with the resulting FHIR S
 [fhir-schema-validator](../../profiling-and-validation/fhir-schema-validator/)
 {% endcontent-ref %}
 
-{% content-ref url="../custom-resources-using-fhirschema.md" %}
-[custom-resources-using-fhirschema.md](../custom-resources-using-fhirschema.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 {% content-ref url="../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md" %}
@@ -34,7 +34,7 @@ You can use a special REST API endpoint to migrate specific Entities and their c
 GET /Entity/<entity-id>/$dump-as-fhir-schema
 ```
 
-If the compilation succeeds, the endpoint returns the resulting FHIR Schema. If it fails, it provides a list of errors detailing what went wrong. Most errors occur because you've used keys on your Attributes/Entities that are not recognized by our compiler. In this case, you can [contact us](../../../contact-us.md) to potentially extend the compiler. Alternatively, you can manually rewrite your custom resource using FHIR Schema.
+If the compilation succeeds, the endpoint returns the resulting FHIR Schema. If it fails, it provides a list of errors detailing what went wrong. Most errors occur because you've used keys on your Attributes/Entities that are not recognized by our compiler. In this case, you can [contact us](../../../overview/contact-us.md) to potentially extend the compiler. Alternatively, you can manually rewrite your custom resource using FHIR Schema.
 
 {% hint style="danger" %}
 The compiler inlines types from Entity/Attributes as they are. At Aidbox runtime, the validator tries to interpret them as FHIR types.
@@ -173,7 +173,7 @@ accept: application/json
 
 If the compiler doesn't support certain instructions for your Entity/Attributes, if you want full control during the migration process, or if you want to extend your custom resources using unique FHIR Schema features, you can manually rewrite your custom resource definitions from scratch using the FHIR Schema.
 
-In the following steps, we will use the example resource, `UserSetting`. Although it is just an example, it covers most aspects of resource definition with the Entity/Attribute model. If this guide misses any features of Entity/Attribute resource definition, please [contact us.](../../../contact-us.md)
+In the following steps, we will use the example resource, `UserSetting`. Although it is just an example, it covers most aspects of resource definition with the Entity/Attribute model. If this guide misses any features of Entity/Attribute resource definition, please [contact us.](../../../overview/contact-us.md)
 
 #### Get Attributes related to one Entity
 
@@ -467,16 +467,16 @@ For more information about this instruction, refer to the relevant [section](htt
 
 To deliver the FHIR Schema(s) and related Entities you authored to Aidbox, follow these steps. Ensure that your Aidbox is configured to run with the FHIRSchema validation engine. Here's a guide describing how to achieve that:
 
-{% content-ref url="../../profiling-and-validation/fhir-schema-validator/setup.md" %}
-[setup.md](../../profiling-and-validation/fhir-schema-validator/setup.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 **Single FHIRSchema Delivery**
 
 If you have only one FHIRSchema that replaces your custom-defined Entity/Attributes, follow this guide to deliver a single FHIRSchema to Aidbox.
 
-{% content-ref url="../custom-resources-using-fhirschema.md" %}
-[custom-resources-using-fhirschema.md](../custom-resources-using-fhirschema.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 **Multiple Schemas as a Package**

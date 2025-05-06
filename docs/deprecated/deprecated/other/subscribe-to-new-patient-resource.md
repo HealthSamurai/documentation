@@ -6,7 +6,7 @@ description: >-
 
 # Subscribe to new Patient resource
 
-Aidbox [subscriptions module](../../../modules/topic-based-subscriptions/subscriptions-1.md) is a way to subscribe and get notifications about updating resources on server. It introduces two new resourceTypes into Aidbox:
+Aidbox [subscriptions module](broken-reference) is a way to subscribe and get notifications about updating resources on server. It introduces two new resourceTypes into Aidbox:
 
 * SubsSubscription — a meta-resource, which binds events (create/update/delete resource) with communication channel through which a subscriber will be notified about.
 * SubsNotification — a resource, which represents the notification with its status (sent or not).
@@ -36,7 +36,7 @@ channel:
 
 After that, aidbox sends a handshake notification on channel.endpoint, which you can see on your opened tab with RequestCatcher.
 
-![](../../../.gitbook/assets/screenshot-2020-11-11-at-20.06.20.png)
+![](../../../../.gitbook/assets/screenshot-2020-11-11-at-20.06.20.png)
 
 Let's create a new patient then.
 
@@ -53,7 +53,7 @@ name:
 
 Then you can back to RequestCatcher service and see a new notification.
 
-![](../../../.gitbook/assets/screenshot-2020-11-11-at-20.06.57.png)
+![](../../../../.gitbook/assets/screenshot-2020-11-11-at-20.06.57.png)
 
 And next, you can see **SubsNotification** resource created for this notification in Aidbox.
 

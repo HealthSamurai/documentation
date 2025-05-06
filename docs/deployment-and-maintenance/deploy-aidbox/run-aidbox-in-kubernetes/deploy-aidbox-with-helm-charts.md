@@ -2,7 +2,7 @@
 
 Our Helm charts streamline the deployment process, enabling easy configuration and customization while ensuring a seamless deployment experience within Kubernetes clusters. Whether you're a healthcare institution, developer, or DevOps engineer, these Helm charts provide a straightforward path to deploying Aidbox in your Kubernetes environment.
 
-Before deployment please read about [infrastructure prerequisites](deploy-aidbox-in-kubernetes.md#production-ready-infrastructure).
+Before deployment please read about [infrastructure prerequisites](broken-reference).
 
 ## Database
 

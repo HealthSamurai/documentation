@@ -161,8 +161,8 @@ params:
 
 This page covers types of Aidbox licenses and describes Aidbox Support tiers.
 
-{% content-ref url="../../getting-started/editions-and-pricing.md" %}
-[editions-and-pricing.md](../../getting-started/editions-and-pricing.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ### Run Aidbox locally

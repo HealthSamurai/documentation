@@ -20,7 +20,7 @@ FHIR 6.0.0-ballot3 was published on **April 3, 2025**, introducing new resources
 ## Run locally
 
 {% hint style="warning" %}
-<img src="../../.gitbook/assets/docker.png" alt="" data-size="original">
+<img src="../../../.gitbook/assets/docker.png" alt="" data-size="original">
 
 Please **make sure** that both [Docker & Docker Compose](https://docs.docker.com/engine/install/) are installed.
 {% endhint %}
@@ -47,4 +47,4 @@ docker compose up
 
 All imported canonical resources are available in the FHIR Packages tab
 
-<figure><img src="../../.gitbook/assets/Screenshot 2025-04-11 at 12.40.22.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Screenshot 2025-04-11 at 12.40.22.png" alt=""><figcaption></figcaption></figure>

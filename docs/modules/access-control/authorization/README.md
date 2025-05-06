@@ -71,8 +71,8 @@ There is no full support for attribute-based access control in Aidbox. But some 
 
 See tutorials:
 
-* [Allow Patient to see its own data](../../../tutorials/security-access-control-tutorials/sample-patient-can-see-its-own-data.md)
-* [Relationship-based access control](../../../tutorials/security-access-control-tutorials/relationship-based-access-control-in-aidbox.md)
+* [Allow Patient to see its own data](broken-reference)
+* [Relationship-based access control](broken-reference)
 
 ## Consent-Based Access Control
 

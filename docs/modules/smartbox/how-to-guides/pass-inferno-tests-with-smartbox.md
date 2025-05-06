@@ -19,7 +19,7 @@ The article has be reviewed for next Inferno framework v0.3.12 and test suite
 Smartbox must be publicly available from the Internet in order to Inferno could reach Smartbox and run tests.
 {% endhint %}
 
-Once you have your Smartbox instance [up and running](../get-started/set-up-smartbox.md) you need to register a FHIR server by creating Tenant resource and upload necessary resources for Inferno.
+Once you have your Smartbox instance [up and running](broken-reference) you need to register a FHIR server by creating Tenant resource and upload necessary resources for Inferno.
 
 * Patient record with all USCDIv1 data elements in us-core format,
 * User resource, associated with the patient record
@@ -140,7 +140,7 @@ Content-Type: text/yaml
 Create Inferno test session by following the link [https://inferno.healthit.gov/onc-certification-g10-test-kit](https://inferno.healthit.gov/onc-certification-g10-test-kit).
 
 {% hint style="info" %}
-1. To pass the `EHR Practitioner App` inferno sequence see the guide [How-to perform EHR launch](how-to-perform-ehr-launch.md)
+1. To pass the `EHR Practitioner App` inferno sequence see the guide [How-to perform EHR launch](broken-reference)
 2. See [How-to revoke granted access](revoke-granted-access.md) to pass the `Token Revocation` Inferno test
 {% endhint %}
 

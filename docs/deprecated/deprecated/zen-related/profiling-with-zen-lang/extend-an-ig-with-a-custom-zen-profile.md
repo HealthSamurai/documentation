@@ -4,7 +4,7 @@ description: >-
   data against it
 ---
 
-# 🎓 Load zen profiles into Aidbox
+# Load zen profiles into Aidbox
 
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
@@ -14,7 +14,7 @@ Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is
 
 ## Prerequisites
 
-Install the Aidbox following [this guide](broken-reference).
+Install the Aidbox following [this guide](broken-reference/).
 
 In the `.env` file find the line starting with `AIDBOX_IMAGE` and edit it to be like this if it is not:
 
@@ -108,11 +108,11 @@ docker compose up
 
 Open Aidbox in your browser and click `Profiles` tab in the left menu:
 
-![](<../../../../.gitbook/assets/image (88).png>)
+![](../../../../.gitbook/assets/image%20\(88\).png)
 
 You should see the list of zen namespaces loaded.
 
-![](<../../../../.gitbook/assets/image (90).png>)
+![](../../../../.gitbook/assets/image%20\(90\).png)
 
 {% hint style="info" %}
 On this page you see the namespaces that are explicitly included in the zen project or used by Aidbox
@@ -120,13 +120,13 @@ On this page you see the namespaces that are explicitly included in the zen proj
 
 Open your profile by clicking its name
 
-![](<../../../../.gitbook/assets/image (91) (1).png>)
+![](../../../../.gitbook/assets/image%20\(91\)%20\(1\).png)
 
 ## Start validation
 
 Test the data against this profile using **validate** tab
 
-![](<../../../../.gitbook/assets/image (93).png>)
+![](../../../../.gitbook/assets/image%20\(93\).png)
 
 If your profile is tagged `zen.fhir/profile-schema` it can be used to validate your data\
 On FHIR CRUD API requests a profile will be applied if data includes `:zen.fhir/profileUri` in the `meta.profile` attribute:

@@ -11,7 +11,7 @@ Aidbox configuration project allows you to easily enable [FHIR IGs](https://www.
 Currently supported list of features:
 
 * **BaseProfiles** — enable base FHIR resources validation
-* **Extensions** — enable [First-Class Extensions](../../entity-attribute/first-class-extensions.md) with validation
+* **Extensions** — enable [First-Class Extensions](broken-reference) with validation
 * **Profiles** — enable validation via `meta.profile`
 * **Searches** (_partial support_) — enable search
 * **CodeSystems & ValueSets** (_partial support_) — enable lookup and binding validation
@@ -108,7 +108,7 @@ By default, Aidbox does not load terminologies into the database to save disk sp
 
 To see currently loaded profiles you can go to the `profiles` UI page:
 
-![](<../../../../.gitbook/assets/image (4) (1) (2).png>) ![](<../../../../.gitbook/assets/image (3) (3).png>)
+![](<../../../../../.gitbook/assets/image (4) (1) (2).png>) ![](<../../../../../.gitbook/assets/image (3) (3).png>)
 
 If you want to verify that validation with IGs work, you can create FHIR resource using FHIR REST API which will validate the provided resource against the specified Profile.
 
@@ -158,5 +158,5 @@ This request checks that invalid values for `birthsex` field are not allowed.
 
 If you want some tips regarding development and production usage, visit the links below:
 
-* [Development tips](setting-up-a-configuration-project.md#tips-for-local-development)
-* [Production tips](setting-up-a-configuration-project.md#tips-for-production)
+* [Development tips](broken-reference)
+* [Production tips](broken-reference)

@@ -7,7 +7,7 @@ description: Setting up Aidbox with RxNorm terminology loaded via FTR
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[setup.md](../../../../modules/profiling-and-validation/fhir-schema-validator/setup.md "mention")
+[Broken link](broken-reference "mention")
 {% endhint %}
 
 [RxNorm](https://www.nlm.nih.gov/research/umls/rxnorm/index.html) provides normalized names for clinical drugs and links its names to many of the drug vocabularies commonly used in pharmacy management and drug interaction software, including those of First Databank, Micromedex, Multum, and Gold Standard Drug Database. \
@@ -17,7 +17,7 @@ By providing links between these vocabularies, RxNorm can mediate messages betwe
 We offer out-of-the-box integration with the _most recent version_ of RxNorm, accessible at any given time, via the [Aidbox Configuration project](load-rxnorm-into-aidbox.md#setting-up-aidbox-configuration-project) and [FTR](ftr-specification.md).
 
 {% hint style="info" %}
-This bundle includes only codes with the `Source Abbreviation (SAB)` labeled as `RXNORM`. Codes from vocabularies such as SNOMED, Micromedix, GSDD, etc., <mark style="background-color:red;">are not part of this bundle</mark>. If you require these vocabularies, please [reach out to us](../../../../contact-us.md).
+This bundle includes only codes with the `Source Abbreviation (SAB)` labeled as `RXNORM`. Codes from vocabularies such as SNOMED, Micromedix, GSDD, etc., <mark style="background-color:red;">are not part of this bundle</mark>. If you require these vocabularies, please [reach out to us](../../../../overview/contact-us.md).
 {% endhint %}
 
 ## How to set up Aidbox with RxNorm terminology

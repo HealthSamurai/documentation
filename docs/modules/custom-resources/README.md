@@ -24,12 +24,12 @@ Use FHIR StructureDefinition or FHIR Schema to define a custom resource. Althoug
 \
 Aidbox provides the following mechanisms to create custom resource types using FHIR abstractions:
 
-{% content-ref url="custom-resources-using-fhirschema.md" %}
-[custom-resources-using-fhirschema.md](custom-resources-using-fhirschema.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
-{% content-ref url="custom-resources-on-fhir-logical-model.md" %}
-[custom-resources-on-fhir-logical-model.md](custom-resources-on-fhir-logical-model.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 {% hint style="danger" %}
@@ -40,8 +40,8 @@ Entity & Attributes and Zen Schema are planned to be retired and will be replace
 [custom-resources-using-aidbox-project.md](../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/custom-resources-using-aidbox-project.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../deprecated/deprecated/entity-attribute/getting-started-with-custom-resources.md" %}
-[getting-started-with-custom-resources.md](../../deprecated/deprecated/entity-attribute/getting-started-with-custom-resources.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 {% content-ref url="migrate-to-fhirschema/" %}

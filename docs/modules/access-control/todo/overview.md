@@ -15,7 +15,7 @@ Set of HTTP request steps:
 3. Authorization
 4. Request processing
 
-<figure><img src="../../../.gitbook/assets/http-request-processing-pipeline.png" alt=""><figcaption><p>HTTP request processing pipeline</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/http-request-processing-pipeline.png" alt=""><figcaption><p>HTTP request processing pipeline</p></figcaption></figure>
 
 ### Authentication
 
@@ -29,7 +29,7 @@ Aidbox evaluates the request and determines which handler to select. If no handl
 
 ### Authorization
 
-Authorization (AuthZ or access control) is the granting or denying access to a requestor. Access control is based on the [internal representation of the request](../../security-and-access-control/security/access-control.md#request-object-structure). Besides other internal request contains:
+Authorization (AuthZ or access control) is the granting or denying access to a requestor. Access control is based on the [internal representation of the request](broken-reference). Besides other internal request contains:
 
 * requestor identity
 * the handler
@@ -119,15 +119,15 @@ When Aidbox receives a request containing session cookie, Aidbox tries to fetch 
 
 ## How access control performs
 
-Authorization decides if a request can be processed by the desired handler. By the start of authorization the original HTTP request is augmented with the user or client identity and the desired handler (see the [request object structure](../../security-and-access-control/security/access-control.md#request-object-structure)).
+Authorization decides if a request can be processed by the desired handler. By the start of authorization the original HTTP request is augmented with the user or client identity and the desired handler (see the [request object structure](broken-reference)).
 
 Aidbox applies `AccessPolicy` resources the request one after the other. It does it until any policy grants the permission.
 
-<figure><img src="../../../.gitbook/assets/if-policy-allowed-request-others-are-skipped.png" alt=""><figcaption><p>If a policy allowed the request, other policies may be skipped</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/if-policy-allowed-request-others-are-skipped.png" alt=""><figcaption><p>If a policy allowed the request, other policies may be skipped</p></figcaption></figure>
 
 Access policies work as `OR` logic gate. In the example below the third policy is skipped due to the second one granted the request in.
 
-<figure><img src="../../../.gitbook/assets/no-access-policy-allowed-request.png" alt=""><figcaption><p>Request rejected if no access policy allowed it</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/no-access-policy-allowed-request.png" alt=""><figcaption><p>Request rejected if no access policy allowed it</p></figcaption></figure>
 
 If there is no policy allowing the request, Aidbox rejects the request with the 401 (Unauthorized) response.
 

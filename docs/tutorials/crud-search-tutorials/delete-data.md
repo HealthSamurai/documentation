@@ -2,7 +2,7 @@
 
 ## FHIR delete
 
-You can delete a single resource using [`DELETE` FHIR API method](../../api/rest-api/crud-1/delete.md). This method deletes the resource specified and creates a history entry for the operation. The history entry created contains the entire deleted resource.
+You can delete a single resource using [`DELETE` FHIR API method](../../api/rest-api/crud/delete.md). This method deletes the resource specified and creates a history entry for the operation. The history entry created contains the entire deleted resource.
 
 Note that Aidbox does not enforce referential integrity for `DELETE` method.
 
@@ -29,7 +29,7 @@ id: pt-2
 
 ## Transactional Delete
 
-If you need to delete multiple resources, use [FHIR Transaction](../../api/transaction.md) with multiple `DELETE` requests.
+If you need to delete multiple resources, use [FHIR Transaction](broken-reference) with multiple `DELETE` requests.
 
 This operation groups multiple REST API operations in a transaction. If all `DELETE` operations are successful, the transaction with `DELETE` requests is equivalent to calling `DELETE` multiple times.
 
@@ -98,4 +98,4 @@ Note that AidboxQuery with variable `resourceType` can only be called with `_que
 
 In CI environments it is often desired to have same state at the beginning of each test suite. You can simply stop Aidbox, drop database, and start Aidbox again.
 
-Use [Aidbox project](../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/aidbox-project-environment-variables/aidbox-project.md) to set up fixtures. Note that you can use different Aidbox projects for each test suite (or different entrypoints).
+Use [Aidbox project](broken-reference) to set up fixtures. Note that you can use different Aidbox projects for each test suite (or different entrypoints).

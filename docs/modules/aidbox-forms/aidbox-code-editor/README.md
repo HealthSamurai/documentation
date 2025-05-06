@@ -5,7 +5,7 @@ description: >-
 hidden: true
 ---
 
-# Aidbox Code Editor (deprecated)
+# Aidbox Code Editor (docs/deprecated)
 
 ## Overview
 
@@ -17,7 +17,7 @@ This tool is based on domain-specific language (DSL) which gives flexibility and
 
 We have presented the form as a layered structure. To design the form, you need to describe the necessary layers using DSL.
 
-<figure><img src="../../../.gitbook/assets/Screenshot 2022-08-23 at 17.24.50.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/Screenshot 2022-08-23 at 17.24.50.png" alt=""><figcaption></figcaption></figure>
 
 **Each** **layer** is responsible for solving a **specific problem**:
 
@@ -50,19 +50,19 @@ You have two options available:
 * After that new form template will be generated and you will be redirected to the `Aidbox editor` page
 * You need to describe some schemas to complete the form
 
-&#x20;            [Form DSL ](../../../reference/aidbox-forms/form-dsl.md)
+&#x20;            [Form DSL ](broken-reference)
 
-&#x20;            [Document DSL](../../../reference/aidbox-forms/document-dsl.md)
+&#x20;            [Document DSL](broken-reference)
 
-&#x20;            [Layout DSL](../../../reference/aidbox-forms/layout-dsl.md)
+&#x20;            [Layout DSL](broken-reference)
 
-&#x20;            [Launch DSL](../../../reference/aidbox-forms/launch-dsl.md)
+&#x20;            [Launch DSL](broken-reference)
 
-&#x20;            [Finalize DSL](../../../reference/aidbox-forms/finalize-dsl.md)
+&#x20;            [Finalize DSL](broken-reference)
 
-&#x20;            [FinalizeConstrains DSL](../../../reference/aidbox-forms/finalizeconstraints-dsl.md)
+&#x20;            [FinalizeConstrains DSL](broken-reference)
 
-Go to [this page](how-to-create-a-form.md) to start designing a form.
+Go to [this page](broken-reference) to start designing a form.
 
 {% hint style="info" %}
 Created form will be saved to local file sysem in your repository

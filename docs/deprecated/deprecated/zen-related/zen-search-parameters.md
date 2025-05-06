@@ -3,14 +3,14 @@
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[setup.md](../../../modules/profiling-and-validation/fhir-schema-validator/setup.md "mention")
+[Broken link](broken-reference "mention")
 
-Zen Search Parameters will be ignored if Aidbox operates with the FHIR Schema validator engine. Please contact [us](../../../contact-us.md) if you need assistance migrating to FHIR Search Parameters.
+Zen Search Parameters will be ignored if Aidbox operates with the FHIR Schema validator engine. Please contact [us](../../../overview/contact-us.md) if you need assistance migrating to FHIR Search Parameters.
 {% endhint %}
 
 Most of the Search Parameters from IG work with Zen by default, also you can make a new one.
 
-Assuming you already know how to use [configuration projects](aidbox-zen-lang-project/setting-up-a-configuration-project.md), let's learn how to create zen search parameter by example:
+Assuming you already know how to use [configuration projects](broken-reference), let's learn how to create zen search parameter by example:
 
 ```clojure
 {ns main
@@ -66,7 +66,7 @@ GET /Patient?brthd=lt2023
 ```
 
 {% hint style="info" %}
-You can always look into the definition of Aidbox-specific namespaces in [Profiles page](profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile.md#check-if-your-profile-is-loaded)
+You can always look into the definition of Aidbox-specific namespaces in [Profiles page](broken-reference)
 {% endhint %}
 
 Formal Zen SearchParameters description:

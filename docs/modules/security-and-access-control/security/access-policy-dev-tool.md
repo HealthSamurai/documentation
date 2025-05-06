@@ -19,33 +19,33 @@ The dev tool is a part of Aidbox UI Console, which aims
 * to edit AccessPolicy resource, and
 * to give a nice view for AccessPolicy debug output for specific request in the same place.
 
-<figure><img src="../../../.gitbook/assets/Screenshot 2023-03-23 at 11.40.41.png" alt=""><figcaption><p>Access policy dev tool</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/Screenshot 2023-03-23 at 11.40.41.png" alt=""><figcaption><p>Access policy dev tool</p></figcaption></figure>
 
 The dev tool is split on two sides, editor side and result side. On the left side you define
 
-* [AccessPolicy resource](access-control.md) and
+* [AccessPolicy resource](broken-reference) and
 * HTTP request you are going to debug.
 
 When you press the Save\&Run button, the dev tool saves AccessPolicy and performs policy debug operation for the specified request, and displays the result on the right side. You can see there
 
 * _Eval policy result._ List of all access policies and the result of evaluation.
-* _Parsed HTTP request._ It's an [internal representation](access-control.md#request-object-structure) of the request, which Aidbox passes to the eval-policy function.
+* _Parsed HTTP request._ It's an [internal representation](broken-reference) of the request, which Aidbox passes to the eval-policy function.
 
 ## How to get to the dev tool
 
 To get to the dev tool from AccessPolicy list page, click the _dev tool_ link on a AccessPolicy you want to debug.
 
-<figure><img src="../../../.gitbook/assets/Screenshot 2023-03-23 at 11.40.10.png" alt=""><figcaption><p>AccessPolicy list with the link to dev tool</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/Screenshot 2023-03-23 at 11.40.10.png" alt=""><figcaption><p>AccessPolicy list with the link to dev tool</p></figcaption></figure>
 
 To get to the dev tool from AccessPolicy view page, click the link on the top right corner.
 
-<figure><img src="../../../.gitbook/assets/Screenshot 2023-03-23 at 11.48.13.png" alt=""><figcaption><p>AccessPolicy view page with the link to dev tool</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/Screenshot 2023-03-23 at 11.48.13.png" alt=""><figcaption><p>AccessPolicy view page with the link to dev tool</p></figcaption></figure>
 
 ## Tips
 
 ### Make sure you've enabled Aidbox developer mode
 
-[#security.dev-mode](../../../reference/settings/security---access-control.md#security.dev-mode "mention")
+[Broken link](broken-reference "mention")
 
 ```
 BOX_SECURITY_DEV_MODE=true

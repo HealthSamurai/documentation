@@ -129,4 +129,4 @@ subscription-trigger-service
 ```
 {% endcode %}
 
-This example uses a subscription trigger with [ingestion/map-to-fhir-bundle-task](task/aidbox-predefined-tasks.md#ingestion-map-to-fhir-bundle-task). It means that every time an Observation resource is updated with status `registered`, an Encounter resource is created with the same `subject` and `performer` as the `participant`.
+This example uses a subscription trigger with [ingestion/map-to-fhir-bundle-task](broken-reference). It means that every time an Observation resource is updated with status `registered`, an Encounter resource is created with the same `subject` and `performer` as the `participant`.

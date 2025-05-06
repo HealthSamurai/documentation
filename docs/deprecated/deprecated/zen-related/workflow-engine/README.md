@@ -26,23 +26,23 @@ Workflow Engine allows implementing both simple scenarios using [predefined task
 
 ## Basic Concepts <a href="#basic-concepts" id="basic-concepts"></a>
 
-<figure><img src="../../../../.gitbook/assets/image (22) (2).png" alt=""><figcaption><p>Workflow Engine Components</p></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (22) (2).png" alt=""><figcaption><p>Workflow Engine Components</p></figcaption></figure>
 
 ### Task and Workflow
 
 [task](task/ "mention") and [workflow](workflow/ "mention") are two basic concepts of Workflow Engine. Both are managed through Aidbox API.
 
-Tasks are the simplest building block responsible for performing business actions. Aidbox provides a number of tasks out of the box. Additional tasks can be implemented outside of Aidbox in any programming language using an [SDK](../../../../app-development/aidbox-sdk/aidbox-javascript-sdk.md#task-api) or API directly.
+Tasks are the simplest building block responsible for performing business actions. Aidbox provides a number of tasks out of the box. Additional tasks can be implemented outside of Aidbox in any programming language using an [SDK](broken-reference) or API directly.
 
 For more complex application when a simple granular task is not enough, it is necessary to build a workflow. Workflow is a series of tasks that must be completed in a specific order and within a defined time frame to achieve a specific outcome.
 
 ### Task Executor
 
-Task Executor is responsible for executing the logic behind a task. For [predefined tasks](task/aidbox-predefined-tasks.md), they are run within Aidbox, and custom task executors could be [implemented](task/#task-implementation-1) in any programming language using an [SDK](../../../../app-development/aidbox-sdk/aidbox-javascript-sdk.md#task-api) or API directly.
+Task Executor is responsible for executing the logic behind a task. For [predefined tasks](broken-reference), they are run within Aidbox, and custom task executors could be [implemented](task/#task-implementation-1) in any programming language using an [SDK](broken-reference) or API directly.
 
 ### Workflow Executor
 
-Workflow Executor is responsible for making decisions about the next steps in a workflow based on predefined rules, conditions, or logic. Workflow logic could be implemented using [Workflow Engine SDK](../../../../app-development/aidbox-sdk/aidbox-javascript-sdk.md#workflow-engine)
+Workflow Executor is responsible for making decisions about the next steps in a workflow based on predefined rules, conditions, or logic. Workflow logic could be implemented using [Workflow Engine SDK](broken-reference)
 
 ### [Services](services.md)
 

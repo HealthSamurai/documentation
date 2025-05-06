@@ -19,7 +19,7 @@ In FHIR, forms are represented using the [Questionnaire](http://hl7.org/fhir/R4/
 Aidbox Forms module provides available APIs:
 
 * [FHIR API](broken-reference) - to interact with FHIR Questionnaire, FHIR QuestionnaireResponse and other FHIR resources.
-* [FHIR SDC API ](../../../reference/aidbox-forms/fhir-sdc-api.md)- a set of aditional operstions to interact with form and data.
+* [FHIR SDC API ](broken-reference)- a set of aditional operstions to interact with form and data.
 
 ## Getting started
 
@@ -48,4 +48,4 @@ Go to this [page](form-creation/) to start designing a form.
 
 If you already have ready-made FHIR Questionnaires (your own or from external sources), you can load them into the Aidbox Forms module via `POST/` operation or using Import Questionnaire button on the Form Templates page, open them in the UI Builder, customise and save them.
 
-Go to this[ page](import-fhir-questionnaire.md) to start it.
+Go to this[ page](broken-reference) to start it.

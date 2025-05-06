@@ -5,8 +5,8 @@ Aidbox produces structured logs on every significant event to the internal strea
 * [stdout in json or pretty string formats](./#stdour-log)
 * [file](./#log-to-file)
 * [Elasticsearch](how-to-guides/elastic-logs-and-monitoring-integration.md)
-* [Datadog](readme-1/datadog-guide.md)
-* [Loki](how-to-guides/loki-integration.md)
+* [Datadog](broken-reference)
+* [Loki](broken-reference)
 
 {% hint style="info" %}
 Aidbox logs can be used in audit. Please, see our [article on auditing](../../security-and-access-control/audit/) for more info.
@@ -16,8 +16,8 @@ Aidbox logs can be used in audit. Please, see our [article on auditing](../../se
 
 Aidbox supports the [OpenTelemetry protocol](https://opentelemetry.io/) and exports logs in Protobuf format to any consumer that supports this specification.
 
-{% content-ref url="how-to-export-logs-to-the-otel-collector.md" %}
-[how-to-export-logs-to-the-otel-collector.md](how-to-export-logs-to-the-otel-collector.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ## Logs API
@@ -74,5 +74,5 @@ AIDBOX_LOGS=/logs/aidbox
 Another option is to store logs in:
 
 * [ElasticSearch](how-to-guides/elastic-logs-and-monitoring-integration.md)
-* [Datadog](how-to-guides/aidbox-logs-and-datadog-integration.md)
-* [Loki](how-to-guides/loki-integration.md)
+* [Datadog](broken-reference)
+* [Loki](broken-reference)

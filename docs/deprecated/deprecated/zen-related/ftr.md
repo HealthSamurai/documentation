@@ -14,7 +14,7 @@ Since the 2405 release, using Aidbox in FHIR schema validation engine is recomme
 
 Either `true` or `false`. By default, `false`.
 
-It tells Aidbox whether or not it should load [Concepts](../../../modules/terminology/concept/), [ValueSets](../../../modules/terminology/valueset/) and [CodeSystems](../../../modules/terminology/codesystem-and-concept/) into the database. Note that loading into the database is needed for [concept lookups](../../../modules/terminology/codesystem-and-concept/concept-lookup.md) and [value set expansions](../../../modules/terminology/valueset/value-set-expansion.md) as well as for accessing `GET /Concept`, `GET /ValueSet`, `GET /CodeSystem` endpoints but not for validation.
+It tells Aidbox whether or not it should load [Concepts](../../../modules/terminology/concept/), [ValueSets](../../../modules/terminology/valueset/) and [CodeSystems](../../../modules/terminology/codesystem-and-concept/) into the database. Note that loading into the database is needed for [concept lookups](broken-reference) and [value set expansions](broken-reference) as well as for accessing `GET /Concept`, `GET /ValueSet`, `GET /CodeSystem` endpoints but not for validation.
 
 ## `BOX_FEATURES_FTR_PULL_SYNC`
 

@@ -1,7 +1,7 @@
 # Aidbox SQL functions
 
 {% hint style="info" %}
-This page is in progress. Please [contact us](../contact-us.md) if you need more SQL functions to be documented.
+This page is in progress. Please [contact us](../overview/contact-us.md) if you need more SQL functions to be documented.
 {% endhint %}
 
 ### knife\_extract
@@ -10,13 +10,13 @@ This page is in progress. Please [contact us](../contact-us.md) if you need more
 knife_extract(data::jsonb, paths::jsonb) -> jsonb[] 
 ```
 
-Extract elements from jsonb `data` given jsonb array of paths `paths`.&#x20;
+Extract elements from jsonb `data` given jsonb array of paths `paths`.
 
 Path is a jsonb array each element of which is either path element or filter.
 
 Path element is a jsonb string. It specifies keyword to follow in current map.
 
-Filter is a jsonb object. Only objects which contain filter objects are left in current array. &#x20;
+Filter is a jsonb object. Only objects which contain filter objects are left in current array.
 
 `knife_extract` iterates over each array while following path and flattens results.
 
@@ -36,7 +36,7 @@ select knife_extract('{"telecom": [{"system": "phone", "value": "abc"}, {"system
 knife_extract_text(data::jsonb, paths::jsonb) -> text[] 
 ```
 
-Extract strings from jsonb `data` given jsonb array of paths `paths`.&#x20;
+Extract strings from jsonb `data` given jsonb array of paths `paths`.
 
 Like `knife_extract` but return only strings.
 
@@ -64,15 +64,13 @@ select knife_extract_text(
 (1 row)
 ```
 
-
-
 ### aidbox\_text\_search
 
 ```
 aidbox_text_search(texts::text[]) -> text 
 ```
 
-Concatenates strings `texts` with spaces, removes accents, adds leading and trailing spaces. &#x20;
+Concatenates strings `texts` with spaces, removes accents, adds leading and trailing spaces.
 
 Example:
 
@@ -91,4 +89,3 @@ SELECT aidbox_text_search('{abc,def}') ILIKE '% ab%';
  t
 (1 row)
 ```
-

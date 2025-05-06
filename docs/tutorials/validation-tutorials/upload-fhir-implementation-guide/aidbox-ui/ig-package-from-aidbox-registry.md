@@ -10,14 +10,14 @@ Aidbox has its own registry of IG packages with guaranteed uptime. The content o
 
 You can explore the list of available packages in the registry here:
 
-{% content-ref url="../../../../modules/profiling-and-validation/fhir-schema-validator/supported-implementation-guides.md" %}
-[supported-implementation-guides.md](../../../../modules/profiling-and-validation/fhir-schema-validator/supported-implementation-guides.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ### 1. Run Aidbox with FHIR Schema Validation Engine
 
-{% content-ref url="../../../../modules/profiling-and-validation/fhir-schema-validator/setup.md" %}
-[setup.md](../../../../modules/profiling-and-validation/fhir-schema-validator/setup.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ### 2. Open the Aidbox UI

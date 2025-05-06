@@ -219,17 +219,17 @@ Refer to [https://www.pgadmin.org/](https://www.pgadmin.org/) for pgAdmin and pg
 
 Now when pgagent is up and running we can define some jobs and see if they're actually scheduled.
 
-![Create server connection](../../.gitbook/assets/screen-shot-2021-08-06-at-04.24.22.png)
+![Create server connection](../../../.gitbook/assets/screen-shot-2021-08-06-at-04.24.22.png)
 
-![It's important that Maintenance database is the same database where pgagent data is stored.](../../.gitbook/assets/screen-shot-2021-08-06-at-04.25.08.png)
+![It's important that Maintenance database is the same database where pgagent data is stored.](../../../.gitbook/assets/screen-shot-2021-08-06-at-04.25.08.png)
 
-![Create pgAgent job](../../.gitbook/assets/screen-shot-2021-08-06-at-05.27.24.png)
+![Create pgAgent job](../../../.gitbook/assets/screen-shot-2021-08-06-at-05.27.24.png)
 
-![](../../.gitbook/assets/screen-shot-2021-08-06-at-04.31.00.png)
+![](../../../.gitbook/assets/screen-shot-2021-08-06-at-04.31.00.png)
 
-![](../../.gitbook/assets/screen-shot-2021-08-06-at-04.27.19.png)
+![](../../../.gitbook/assets/screen-shot-2021-08-06-at-04.27.19.png)
 
-![The job will be run every minute.](../../.gitbook/assets/screen-shot-2021-08-06-at-04.27.56.png)
+![The job will be run every minute.](../../../.gitbook/assets/screen-shot-2021-08-06-at-04.27.56.png)
 
 #### Test if jobs are running
 
@@ -294,4 +294,4 @@ If everything was successfull you will see new records in the table.
 * `pgagent` runs only if `PGAGENT_ENABLED` variable is present.
 * You can configure `pgagent` using several variables described [here](../aidboxdb-image/#optional-environment-variables).
 
-If you have any questions on how to configure `pgagent` feel free to [contact us](../../contact-us.md).
+If you have any questions on how to configure `pgagent` feel free to [contact us](../../overview/contact-us.md).

@@ -4,7 +4,7 @@ description: Dev endpoint to test matcho engine
 
 # $matcho
 
-Matcho DSL is used to define rules for [AccessPolicy](../../../modules/security-and-access-control/security/access-control.md) and [Subscription](../../../modules/topic-based-subscriptions/subscriptions-1.md#trigger-format) resources.
+Matcho DSL is used to define rules for [AccessPolicy](broken-reference) and [Subscription](broken-reference) resources.
 
 ## Definition
 

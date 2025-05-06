@@ -13,19 +13,19 @@
 1.  Log in to Google Cloud Console, go to SQL Service, and create a new Cloud SQL instance.\
 
 
-    <figure><img src="../../.gitbook/assets/image (151).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../.gitbook/assets/image (151).png" alt=""><figcaption></figcaption></figure>
 2.  Choose PostgreSQL for the database engine\
 
 
-    <figure><img src="../../.gitbook/assets/image (152).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../.gitbook/assets/image (152).png" alt=""><figcaption></figcaption></figure>
 3.  Choose Enterprise Cloud SQL Edition and **"Sandbox"** edition preset\
 
 
-    <figure><img src="../../.gitbook/assets/image (153).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../.gitbook/assets/image (153).png" alt=""><figcaption></figcaption></figure>
 4.  Enter the required parameters.\
 
 
-    <figure><img src="../../.gitbook/assets/image (154).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../.gitbook/assets/image (154).png" alt=""><figcaption></figcaption></figure>
 
     \
     5\. Configure the private IP access to the database instance. \
@@ -37,24 +37,24 @@ Restricting database access at the network level is a recommended security best 
 
 In **the "Customize your Instance -> Connections"** section, enable the "**Private IP"** option and disable the **"Public IP"** option.
 
-<figure><img src="../../.gitbook/assets/image (159).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (159).png" alt=""><figcaption></figcaption></figure>
 
 \
 6\. Click the **"Create Instance"** button and wait until the instance is created.\
 
 
-<figure><img src="../../.gitbook/assets/image (160).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (160).png" alt=""><figcaption></figcaption></figure>
 
 ## Create a database and a user for the Aidbox service
 
 1.  Open **Cloud SQL Studio**.\
 
 
-    <figure><img src="../../.gitbook/assets/image (164).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../.gitbook/assets/image (164).png" alt=""><figcaption></figcaption></figure>
 2.  Connect to the **postgres** database with the username **postgres** and the password you've chosen when you created the database.\
 
 
-    <figure><img src="../../.gitbook/assets/image (155).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../.gitbook/assets/image (155).png" alt=""><figcaption></figcaption></figure>
 3.  Create the database and user for the Aidbox.\
     \
     Run the following statements one by one in Cloud SQL Studio Editor\
@@ -74,7 +74,7 @@ In **the "Customize your Instance -> Connections"** section, enable the "**Priva
 &#x20;     &#x20;
 
 {% hint style="info" %}
-During initialization, Aidbox creates certain database extensions. You can find more details [here](../../database/extensions.md). If you prefer not to grant the Aidbox user the permissions required for this, you can pre-create the necessary extensions using a privileged user and disable automatic extension creation via [settings](../../reference/settings/database.md#db.install-pg-extensions).  This is the approach we follow in the current tutorial.
+During initialization, Aidbox creates certain database extensions. You can find more details [here](broken-reference). If you prefer not to grant the Aidbox user the permissions required for this, you can pre-create the necessary extensions using a privileged user and disable automatic extension creation via [settings](../../reference/settings/database.md#db.install-pg-extensions).  This is the approach we follow in the current tutorial.
 {% endhint %}
 
 4. Connect to the database `aidbox` , that you've created using user **postgres**, and create the extension.\
@@ -89,27 +89,31 @@ CREATE EXTENSION pg_stat_statements;
 1.  Navigate to the **"Cloud Run"** section in the Google Cloud Console and create a new service from the container .\
 
 
-    <figure><img src="../../.gitbook/assets/image (165).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../.gitbook/assets/image (165).png" alt=""><figcaption></figcaption></figure>
 2.  Enter `healthsamurai/aidboxone:edge` as a container image URL and add a service name.\
 
 
-    <figure><img src="../../.gitbook/assets/image (167).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../.gitbook/assets/image (167).png" alt=""><figcaption></figcaption></figure>
 3.  Disable authentication.\
 
 
-    <figure><img src="../../.gitbook/assets/image (168).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../.gitbook/assets/image (168).png" alt=""><figcaption></figcaption></figure>
 4.  Set Auto scaling to 1 and leave other properties by default.\
 
 
-    <figure><img src="../../.gitbook/assets/image (169).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../.gitbook/assets/image (169).png" alt=""><figcaption></figcaption></figure>
 5.  Configure Memory and CPU Limits\
 
 
-    <figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
-6.  In the container properties, add environment variables.\
+    <figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+6.  Enable **"Second generation"** execution environment for better performance\
 
 
-    <figure><img src="../../.gitbook/assets/image (170).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../.gitbook/assets/image (182).png" alt=""><figcaption></figcaption></figure>
+7.  In the container properties, add environment variables.\
+
+
+    <figure><img src="../../../.gitbook/assets/image (170).png" alt=""><figcaption></figcaption></figure>
 
     Add the following environment variables:\
     \
@@ -167,27 +171,27 @@ CREATE EXTENSION pg_stat_statements;
     - name: BOX_DB_MAINTENANCE_DATABASE
       value: aidbox
     - name: JAVA_OPTS
-      value: -Xms3072m -Xmx3072m  
+      value: -XX:MaxRAMPercentage=75 -XshowSettings:vm  
     ```
 
     \
-    See more about recommended Aidbox environment variables [here](../../configuration/installation.md#recommended-environment-variables).
+    See more about recommended Aidbox environment variables [here](broken-reference).
 
-    <figure><img src="../../.gitbook/assets/image (174).png" alt=""><figcaption></figcaption></figure>
-7.  At the Networking tab, configure the outbound traffic to go to the **default** subnet.\
+    <figure><img src="../../../.gitbook/assets/image (174).png" alt=""><figcaption></figcaption></figure>
+8.  At the Networking tab, configure the outbound traffic to go to the **default** subnet.\
     \
 
 
-    <figure><img src="../../.gitbook/assets/image (172).png" alt=""><figcaption></figcaption></figure>
-8. Click the "**Create**" button and wait for the service to deploy successfully.\
+    <figure><img src="../../../.gitbook/assets/image (172).png" alt=""><figcaption></figcaption></figure>
+9. Click the "**Create**" button and wait for the service to deploy successfully.\
 
 
-<figure><img src="../../.gitbook/assets/image (158).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (158).png" alt=""><figcaption></figcaption></figure>
 
 8. Access the service via the URL.\
 
 
-<figure><img src="../../.gitbook/assets/image (162).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (162).png" alt=""><figcaption></figcaption></figure>
 
 9. [Activate](../../getting-started/run-aidbox-locally.md#id-4.-activate-your-aidbox-instance) the Aidbox instance.
 

@@ -105,7 +105,7 @@ If a string starts with `#` , it is treated as a regular expression.
 
 #### Matching values from the request context&#x20;
 
-If a string starts with `.` , it is interpreted as a path in [the provided request context.](access-control.md#request-object-structure)&#x20;
+If a string starts with `.` , it is interpreted as a path in [the provided request context.](broken-reference)&#x20;
 
 * Pattern: `{params: {user_id: ".user.id"}}`&#x20;
   * matches: `{user: {id: 1}, params: {user_id: 1}}` where `user.id == param.user_id`.

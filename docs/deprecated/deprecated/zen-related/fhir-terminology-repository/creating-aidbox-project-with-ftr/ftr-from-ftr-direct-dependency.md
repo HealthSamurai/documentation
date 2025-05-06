@@ -3,7 +3,7 @@
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[setup.md](../../../../../modules/profiling-and-validation/fhir-schema-validator/setup.md "mention")
+[Broken link](broken-reference "mention")
 {% endhint %}
 
 ## Prerequisites
@@ -109,7 +109,7 @@ By default, Aidbox does not load terminologies into the database as that can tak
 
 For guidance on development and production usage, visit the links below:
 
-* [Development tips](../../aidbox-zen-lang-project/setting-up-a-configuration-project.md#tips-for-local-development)
-* [Production tips](../../aidbox-zen-lang-project/setting-up-a-configuration-project.md#tips-for-production)
+* [Development tips](broken-reference)
+* [Production tips](broken-reference)
 
 For customizing Aidbox startup behavior when using FTR, read about [FTR environment variables](../../ftr.md).

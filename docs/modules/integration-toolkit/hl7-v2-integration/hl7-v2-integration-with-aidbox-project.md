@@ -84,7 +84,7 @@ Now only the default configuration is available, but in future versions of the H
 
 ## Mapping configuration
 
-To convert from an intermediate format to FHIR Bundle or Aidbox Bundle, you need to define mapping, which should be tagged as `lisp/mapping` and contain the `:mapping` key. The `:mapping` value confirms as `lisp/expr` so you may use [Lisp expressions](../../../reference/aidbox-forms/lisp.md) to define which intermediate format properties should be included in the Bundle resource.
+To convert from an intermediate format to FHIR Bundle or Aidbox Bundle, you need to define mapping, which should be tagged as `lisp/mapping` and contain the `:mapping` key. The `:mapping` value confirms as `lisp/expr` so you may use [Lisp expressions](broken-reference) to define which intermediate format properties should be included in the Bundle resource.
 
 {% hint style="info" %}
 Null values and empty arrays will be truncated automatically in the resulted structure.

@@ -21,12 +21,12 @@ Aidbox provides several predefined tasks for routine jobs that can be called via
 <summary>Predefined tasks</summary>
 
 * **Special tasks:**
-  * [**Decision task**](aidbox-predefined-tasks.md#decision-task) - a task used to implement an [Aidbox Workflow](../workflow/).
-  * [**Subscription task**](aidbox-predefined-tasks.md#subscription-task) - a task that waits for the resource that meets specified criteria.
-  * [**Wait task**](aidbox-predefined-tasks.md#awf.task-wait) - a task that will wait for the indicated duration or until the indicated datetime.
+  * [**Decision task**](broken-reference) - a task used to implement an [Aidbox Workflow](../workflow/).
+  * [**Subscription task**](broken-reference) - a task that waits for the resource that meets specified criteria.
+  * [**Wait task**](broken-reference) - a task that will wait for the indicated duration or until the indicated datetime.
 
 - **Self-contained tasks:**
-  * [**Import resource task**](aidbox-predefined-tasks.md#import-resource-task) - a task that allows loading `.ndjson` files from AWS or GCP cloud into Aidbox
+  * [**Import resource task**](broken-reference) - a task that allows loading `.ndjson` files from AWS or GCP cloud into Aidbox
 
 </details>
 
@@ -92,7 +92,7 @@ When a new task is created by [task-user-api.md](task-user-api.md "mention") or 
 
 Below is a representation of a Task Instance life cycle.
 
-<div align="center"><figure><img src="../../../../../.gitbook/assets/image (23) (1).png" alt="" width="375"><figcaption><p>Task lifecycle</p></figcaption></figure></div>
+<div align="center"><figure><img src="../../../../../../.gitbook/assets/image (23) (1).png" alt="" width="375"><figcaption><p>Task lifecycle</p></figcaption></figure></div>
 
 After the creation of tasks, their status will be changed by Task Service to `ready`, or `waiting`, depending on the `executeAt` field.
 
@@ -122,7 +122,7 @@ Finally, the status of tasks is always changed to `done`, either by an executor,
 To add a custom task:
 
 1. Add the definition of the task to Aidbox Project, so TaskEngine knows about the new task.
-2. Implement task logic using [Executor API](task-executor-api.md) either directly or through the [SDK](../../../../../app-development/aidbox-sdk/aidbox-javascript-sdk.md#task-api).
+2. Implement task logic using [Executor API](task-executor-api.md) either directly or through the [SDK](broken-reference).
 
 ### 1. Specify Task Definition
 
@@ -216,7 +216,7 @@ We are now preparing Aidbox Workflow/Task SDK. By using it, you can probably sim
 
 Once you have the task definition above, your custom task can be implemented in any programming language by using [Task Executor API](task-executor-api.md), according to the following diagram.
 
-<figure><img src="../../../../../.gitbook/assets/Workflow &#x26; Task Runtime.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/Workflow &#x26; Task Runtime.png" alt=""><figcaption></figcaption></figure>
 
 Initially, a request to the Task Service API should be made, either by using **`awf.task/long-poll`** or **`awf.task/poll`**, to fetch a new task created by [task-user-api.md](task-user-api.md "mention").
 

@@ -4,7 +4,7 @@
 Test FHIR Schema Validator on public [demo page](https://fhir-validator.aidbox.app).
 {% endhint %}
 
-This new validation engine is set to replace the existing [Zen Schema Validator](../../../reference/settings/zen-project.md) and [JSON Schema](../../../deprecated/deprecated/other/profiling-with-aidboxprofile.md) validator. \
+This new validation engine is set to replace the existing [Zen Schema Validator](../../../reference/settings/zen-project.md) and [JSON Schema](broken-reference) validator. \
 \
 The primary objectives for this new validator are _enhanced performance_, _easy configuration_, and _straightforward interaction_. Internally, the new validator utilizes the [FHIR Schema](https://github.com/fhir-schema/fhir-schema) for the validation process. We believe that it has the potential to become a [community](https://chat.fhir.org/#narrow/stream/391879-FHIR-Schema/topic/early.20draft) standard, and we are actively working towards this goal. \
 \
@@ -45,5 +45,5 @@ When using Zen schema and JSON schema Aidbox automatically strips `null` values.
 
 ## Useful pages
 
-<table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td>Setup ⚙️</td><td></td><td></td><td></td><td><a href="setup.md">setup.md</a></td></tr><tr><td>Supported IGs 📦</td><td></td><td></td><td></td><td><a href="supported-implementation-guides.md">supported-implementation-guides.md</a></td></tr><tr><td>Upload FHIR IG to Aidbox ⬆️</td><td></td><td></td><td></td><td><a href="../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/">upload-fhir-implementation-guide</a></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td>Setup ⚙️</td><td></td><td></td><td></td><td><a href="broken-reference">Broken link</a></td></tr><tr><td>Supported IGs 📦</td><td></td><td></td><td></td><td><a href="broken-reference">Broken link</a></td></tr><tr><td>Upload FHIR IG to Aidbox ⬆️</td><td></td><td></td><td></td><td><a href="../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/">upload-fhir-implementation-guide</a></td></tr></tbody></table>
 

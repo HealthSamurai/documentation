@@ -218,7 +218,7 @@ result:
     versionId: '4916'
 ```
 
-Index synchronization may take some time. You can check the status of workflow with UI Aidbox console or with `awf.workflow/status` [rpc method](../workflow-engine/workflow/task-user-api.md#awf.workflow-status):
+Index synchronization may take some time. You can check the status of workflow with UI Aidbox console or with `awf.workflow/status` [rpc method](broken-reference):
 
 Request:
 

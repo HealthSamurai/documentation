@@ -19,7 +19,7 @@ With **SearchQuery** resource, you can define "managed" SQL for Search API with 
 | **\_explain=analyze** | Helps to inspect the execution plan of a search query     |
 
 {% hint style="info" %}
-If you want to use arbitrary SQL (e.g. `LEFT JOIN`), consider [AidboxQuery](../../../../api/rest-api/aidbox-search.md#aidboxquery).
+If you want to use arbitrary SQL (e.g. `LEFT JOIN`), consider [AidboxQuery](../../../api/rest-api/aidbox-search.md#aidboxquery).
 {% endhint %}
 
 ### Prepare example data

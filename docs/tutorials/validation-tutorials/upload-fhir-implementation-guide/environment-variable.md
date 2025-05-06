@@ -36,8 +36,8 @@ Aidbox will automatically resolve and load the dependencies of the specified IGs
 
 The list of supported IGs for use in the environment variable here:
 
-{% content-ref url="../../../modules/profiling-and-validation/fhir-schema-validator/supported-implementation-guides.md" %}
-[supported-implementation-guides.md](../../../modules/profiling-and-validation/fhir-schema-validator/supported-implementation-guides.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 Other methods for loading IGs:

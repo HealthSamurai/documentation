@@ -7,7 +7,7 @@ description: FHIR Terminology Repository (FTR), repository layout specification,
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[setup.md](../../../../modules/profiling-and-validation/fhir-schema-validator/setup.md "mention")
+[Broken link](broken-reference "mention")
 {% endhint %}
 
 **FTR** (FHIR Terminology Repository) it's an open specification for repository layout, formats and algorithms to distribute FHIR terminologies as ValueSets.

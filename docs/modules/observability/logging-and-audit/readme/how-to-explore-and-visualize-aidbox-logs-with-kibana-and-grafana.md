@@ -4,7 +4,7 @@ description: >-
   Grafana
 ---
 
-# 🎓 Log analysis and visualization tutorial
+# Log analysis and visualization tutorial
 
 ## Update Docker Image
 
@@ -44,11 +44,11 @@ The example below will help you read REST API logs:
 
 Please put + to toggle `Time`, `w_m`, `w_r`_,_`w_url`, `d`, `w_st`, `w_uid` fields into the document table:
 
-![](<../../../../.gitbook/assets/image (41) (1) (1).png>)
+![](../../../../.gitbook/assets/image%20\(41\)%20\(1\)%20\(1\).png)
 
 Now you can browse and explore REST API logs
 
-![](<../../../../.gitbook/assets/image (39).png>)
+![](../../../../.gitbook/assets/image%20\(39\).png)
 
 _Kibana's **Discover** enables you to quickly search and filter your data, get information about the structure of the fields, and visualize your data with **Lens** and **Maps**. You can customize and save your searches and place them on a dashboard._
 

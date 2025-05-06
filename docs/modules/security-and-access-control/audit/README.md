@@ -18,14 +18,14 @@ In this case, you may consider two options Aidbox provides.
 
 Aidbox provides comprehensive FHIR API for [AuditEvent](https://www.hl7.org/fhir/auditevent.html) from [FHIR Security ecosystem](http://hl7.org/fhir/security.html#audit).&#x20;
 
-{% content-ref url="audit-logging.md" %}
-[audit-logging.md](audit-logging.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ### Extending Aidbox Logs
 
 Aidbox allows you to enhance logs with your data and push your logs into Aidbox stream along with its internal logs.
 
-{% content-ref url="../../observability/logging-and-audit/extending-access-logs.md" %}
-[extending-access-logs.md](../../observability/logging-and-audit/extending-access-logs.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}

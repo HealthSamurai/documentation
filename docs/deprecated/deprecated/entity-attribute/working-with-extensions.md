@@ -3,12 +3,12 @@
 {% hint style="warning" %}
 This tutorial is deprecated. Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[setup.md](../../../modules/profiling-and-validation/fhir-schema-validator/setup.md "mention")
+[Broken link](broken-reference "mention")
 {% endhint %}
 
 ## Aidbox Native Extensions
 
-In addition to the FHIR extensions, Aidbox has its own implementation of [extensions as native attributes](first-class-extensions.md).
+In addition to the FHIR extensions, Aidbox has its own implementation of [extensions as native attributes](broken-reference).
 
 First, you will need to create an Attribute resource.
 

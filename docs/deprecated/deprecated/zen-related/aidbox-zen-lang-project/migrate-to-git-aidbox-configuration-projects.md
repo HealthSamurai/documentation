@@ -88,4 +88,4 @@ List such dependencies using `AIDBOX_ZEN_PACKAGE_LOAD:`
 
 ### If you have zip with zen configuration files
 
-In this [guide](setting-up-a-configuration-project.md) you will find instructions on how to create zen-packages and how to store/import your zen-configs. As a result, you will get a zen-package that can be stored on a filesystem or git repo server, so you can easily declare this package as a dependency in your `AIDBOX_ZEN_PACKAGE_LOAD` or `BOX_PROJECT_GIT_TARGET__PATH`.
+In this [guide](broken-reference) you will find instructions on how to create zen-packages and how to store/import your zen-configs. As a result, you will get a zen-package that can be stored on a filesystem or git repo server, so you can easily declare this package as a dependency in your `AIDBOX_ZEN_PACKAGE_LOAD` or `BOX_PROJECT_GIT_TARGET__PATH`.

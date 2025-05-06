@@ -1,7 +1,7 @@
 # Aidbox Search Parameters
 
 {% hint style="warning" %}
-Aidbox Search Parameters will be ignored if Aidbox operates with the [FHIR Schema validator engine](../../../modules/profiling-and-validation/fhir-schema-validator/). Please contact [us](../../../contact-us.md) if you need assistance migrating to FHIR Search Parameters.
+Aidbox Search Parameters will be ignored if Aidbox operates with the [FHIR Schema validator engine](../../../modules/profiling-and-validation/fhir-schema-validator/). Please contact [us](../../../overview/contact-us.md) if you need assistance migrating to FHIR Search Parameters.
 
 If you want to migrate from Aidbox SearchParameter to FHIR SearchParameter see [this guide.](../../../modules/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md)
 {% endhint %}
@@ -65,7 +65,7 @@ accept: application/json
 
 #### Define custom SearchParameter with extension
 
-If you have defined [first-class extension](first-class-extensions.md), you have to use Aidbox format for the SearchParameter expression. If you use FHIR format, you don't need to create Attribute and the `expression` path should be in FHIR format.
+If you have defined [first-class extension](broken-reference), you have to use Aidbox format for the SearchParameter expression. If you use FHIR format, you don't need to create Attribute and the `expression` path should be in FHIR format.
 
 {% tabs %}
 {% tab title="First-class extension" %}

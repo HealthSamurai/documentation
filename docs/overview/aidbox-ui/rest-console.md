@@ -6,7 +6,7 @@ description: Learn how to use REST Console to work with your Aidbox via REST API
 
 ### REST Console
 
-![REST Console UI](<../../.gitbook/assets/image (81).png>)
+![REST Console UI](<../../../.gitbook/assets/image (81).png>)
 
 REST Console is designed to work with your Aidbox via [REST API](../../api/rest-api/). To make a request type an HTTP method (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`) and an operation endpoint (for example`/Patient` — _please pay attention to the capital letter in the resource name_).
 
@@ -168,13 +168,13 @@ meta:
 
 To get pretty-formatted response add `_pretty=true` query string parameter:
 
-![](<../../.gitbook/assets/image (82).png>)
+![](<../../../.gitbook/assets/image (82).png>)
 
 ### Get Patient
 
 After sending the request, we receive a response with `Status - 201` and the sent data, which means that our patient has been created. Use the request `GET /Patient/<id>` to see the newly created patient. Also the request `GET /Patient` could be used to get the complete list of patients.
 
-![GET /Patient](<../../.gitbook/assets/image (47).png>)
+![GET /Patient](<../../../.gitbook/assets/image (47).png>)
 
 {% tabs %}
 {% tab title="Request" %}

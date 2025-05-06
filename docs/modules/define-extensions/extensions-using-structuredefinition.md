@@ -1,8 +1,8 @@
 # Extensions using StructureDefinition
 
-Aidbox supports defining extensions using [StructureDefinition](https://build.fhir.org/structuredefinition.html) FHIR resource. This is possible when Aidbox is configured with [FHIRSchema mode](../../modules/profiling-and-validation/fhir-schema-validator/setup.md).&#x20;
+Aidbox supports defining extensions using [StructureDefinition](https://build.fhir.org/structuredefinition.html) FHIR resource. This is possible when Aidbox is configured with [FHIRSchema mode](broken-reference).&#x20;
 
-See also [custom-resources-on-fhir-logical-model.md](../custom-resources/custom-resources-on-fhir-logical-model.md "mention")
+See also [Broken link](broken-reference "mention")
 
 ## Example
 
@@ -66,7 +66,7 @@ PUT /fhir/StructureDefinition/insurance-plan
 
 When StructureDefinition is created, you can inspect it in the "Fhir Packages" Aidbox UI page.&#x20;
 
-<figure><img src="../../.gitbook/assets/image (110).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (110).png" alt=""><figcaption></figcaption></figure>
 
 We can use the defined extension like this:&#x20;
 

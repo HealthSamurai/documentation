@@ -1,6 +1,6 @@
 # Configure MDM module
 
-The current MDM implementation only supports the Patient resource. If you need support for additional resources, please [contact us](../../contact-us.md).
+The current MDM implementation only supports the Patient resource. If you need support for additional resources, please [contact us](../../../../modules/contact-us.md).
 
 ## Add model to Aidbox
 

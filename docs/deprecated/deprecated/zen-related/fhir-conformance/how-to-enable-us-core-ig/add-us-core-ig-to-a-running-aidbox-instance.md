@@ -3,7 +3,7 @@
 {% hint style="warning" %}
 This tutorial is deprecated. Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[setup.md](../../../../../modules/profiling-and-validation/fhir-schema-validator/setup.md "mention")
+[Broken link](broken-reference "mention")
 {% endhint %}
 
 ## Steps
@@ -105,7 +105,7 @@ docker compose down && docker compose up -d
 
 Note that US Core IG takes about 1.5GB in the database. You can significantly reduce this size by disabling the loading of Concepts, ValueSets and CodeSystems. For that you need to set `BOX_FEATURES_FTR_PULL_ENABLE=true|false`.
 
-You’ll still be able to [validate codes from ValueSets](../../../../../modules/terminology/valueset/value-set-validation.md) but [Concept lookups](../../../../../modules/terminology/codesystem-and-concept/concept-lookup.md) and [ValueSet expansions](../../../../../modules/terminology/valueset/value-set-expansion.md) as well as `GET /Concept`, `GET /ValueSet` and `GET /CodeSystem` endpoints won’t work. Lookups and expansions without loading into database are currently work in progress
+You’ll still be able to [validate codes from ValueSets](broken-reference) but [Concept lookups](broken-reference) and [ValueSet expansions](broken-reference) as well as `GET /Concept`, `GET /ValueSet` and `GET /CodeSystem` endpoints won’t work. Lookups and expansions without loading into database are currently work in progress
 
 ### Verify that US Core IG works
 

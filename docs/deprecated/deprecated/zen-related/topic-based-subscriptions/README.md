@@ -26,7 +26,7 @@ The Subscription mechanism is composed of two main parts.
 
 The following image shows the architecture of the Aidbox topic-based subscriptions module:
 
-<figure><img src="../../../../.gitbook/assets/topic-based-subscription.png" alt=""><figcaption><p>topic-based subscription module</p></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/topic-based-subscription.png" alt=""><figcaption><p>topic-based subscription module</p></figcaption></figure>
 
 {% hint style="info" %}
 At the moment, **PostgreSQL, Google Cloud Pub/Sub**, and **Aidbox Workflow Engine** are supported as the _Topic Queue Storage_.  We are planning to support other options too.

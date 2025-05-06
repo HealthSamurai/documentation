@@ -4,12 +4,12 @@
 
 ### Key Aidbox UI components:
 
-{% content-ref url="notebooks.md" %}
-[notebooks.md](notebooks.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
-{% content-ref url="rest-console-1.md" %}
-[rest-console-1.md](rest-console-1.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 {% content-ref url="attrs-stats.md" %}

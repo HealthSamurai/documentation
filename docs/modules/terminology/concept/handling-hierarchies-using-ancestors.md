@@ -5,7 +5,7 @@ Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or con
 {% endhint %}
 
 {% hint style="info" %}
-If your current terminology (ICD-10, Loinc, RxNorm, etc.) based on `hierarchy` attribute you may [request](../../../contact-us.md) to update this terminology
+If your current terminology (ICD-10, Loinc, RxNorm, etc.) based on `hierarchy` attribute you may [request](../../../overview/contact-us.md) to update this terminology
 {% endhint %}
 
 ### Ancestors
@@ -16,7 +16,7 @@ Use of `ancestors` attribute is optional and we still support `hierarchy` attrib
 
 For example, source terminology structure looks as follows:
 
-&#x20;                                              <img src="../../../.gitbook/assets/image (95).png" alt="" data-size="original">
+![](<../../../../.gitbook/assets/image (95).png>)
 
 This is how ancestors hierarchy is supposed to be represented in Aidbox `Concept` resource:
 

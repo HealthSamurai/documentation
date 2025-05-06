@@ -20,8 +20,8 @@ The list of available Bulk API endpoints:
 [usdexport.md](usdexport.md)
 {% endcontent-ref %}
 
-{% content-ref url="usdload.md" %}
-[usdload.md](usdload.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 {% content-ref url="usdimport-and-fhir-usdimport.md" %}
@@ -32,8 +32,8 @@ The list of available Bulk API endpoints:
 [aidbox.bulk-data-import.md](aidbox.bulk-data-import.md)
 {% endcontent-ref %}
 
-{% content-ref url="import-from-a-bucket.md" %}
-[import-from-a-bucket.md](import-from-a-bucket.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ## Read more

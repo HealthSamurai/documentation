@@ -7,7 +7,7 @@ description: Learn how to enable PDex Plan Net IG
 {% hint style="warning" %}
 This tutorial is deprecated. Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[setup.md](../../../../modules/profiling-and-validation/fhir-schema-validator/setup.md "mention")
+[Broken link](broken-reference "mention")
 {% endhint %}
 
 In this tutorial, we'll explain how to configure Aidbox for the [Da Vinci PDex Plan Net Implementation Guide](http://hl7.org/fhir/us/davinci-pdex/toc.html) (PDex IG) and pass Touchstone tests.

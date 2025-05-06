@@ -2,12 +2,12 @@
 
 Complete guide on deploying production-ready Aidbox on Kubernetes cluster.
 
-{% content-ref url="deploy-aidbox-in-kubernetes.md" %}
-[deploy-aidbox-in-kubernetes.md](deploy-aidbox-in-kubernetes.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 How to install Hight Available Aidbox
 
-{% content-ref url="high-available-aidbox.md" %}
-[high-available-aidbox.md](high-available-aidbox.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}

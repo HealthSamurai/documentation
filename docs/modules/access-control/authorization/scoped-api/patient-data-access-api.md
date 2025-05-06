@@ -39,7 +39,7 @@ There are two way to define patient context in a request:
 
 Let's create two patients and Observations for a first patient.
 
-<figure><img src="../../../../.gitbook/assets/Screenshot 2023-11-07 at 18.24.21.png" alt=""><figcaption><p>Two Patient resources and an Observation</p></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/Screenshot 2023-11-07 at 18.24.21.png" alt=""><figcaption><p>Two Patient resources and an Observation</p></figcaption></figure>
 
 {% code title="status: 200 OK" %}
 ```yaml
@@ -143,6 +143,6 @@ body:
 
 ## See also
 
-{% content-ref url="../../../../tutorials/security-access-control-tutorials/smart-on-fhir.md" %}
-[smart-on-fhir.md](../../../../tutorials/security-access-control-tutorials/smart-on-fhir.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}

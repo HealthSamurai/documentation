@@ -8,8 +8,8 @@ The MDM module utilizes probabilistic (score-based or Fellegi-Sunter) method. It
 
 The first step to set up Aidbox MDM module is to train model on your data. Model specifies how to find duplicates in the data.
 
-{% content-ref url="train-model-zen.md" %}
-[train-model-zen.md](train-model-zen.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ## Configure MDM module

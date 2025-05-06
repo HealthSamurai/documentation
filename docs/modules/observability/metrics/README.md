@@ -16,10 +16,10 @@ Aidbox supports the [OpenTelemetry protocol](https://opentelemetry.io/) and expo
 
 Configure how metrics are getting exposed from the Aidbox.
 
-{% content-ref url="monitoring/aidbox-metrics-server.md" %}
-[aidbox-metrics-server.md](monitoring/aidbox-metrics-server.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
-{% content-ref url="monitoring/grafana-integration.md" %}
-[grafana-integration.md](monitoring/grafana-integration.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}

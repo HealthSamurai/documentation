@@ -8,8 +8,8 @@ Aidbox provides a FHIR CRUD API over canonical resources such as StructureDefini
 
 ### 1. Run Aidbox with FHIR Schema Validation Engine
 
-{% content-ref url="../../../modules/profiling-and-validation/fhir-schema-validator/setup.md" %}
-[setup.md](../../../modules/profiling-and-validation/fhir-schema-validator/setup.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ## 2. Creating conformance resources

@@ -40,16 +40,16 @@ FHIR spec offers FHIR terminology API for validation and lookups
 
 | FHIR specification                                                        | Status      | Documentation and samples                                                            |
 | ------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------------------------------ |
-| [$lookup](https://www.hl7.org/fhir/codesystem-operations.html#lookup)     | `supported` | [CodeSystem Concept Lookup](codesystem-and-concept/concept-lookup.md)                |
-| [$subsumes](https://www.hl7.org/fhir/codesystem-operations.html#subsumes) | `supported` | [CodeSystem Subsumption testing](codesystem-and-concept/subsumption-testing.md)      |
+| [$lookup](https://www.hl7.org/fhir/codesystem-operations.html#lookup)     | `supported` | [CodeSystem Concept Lookup](broken-reference)                                        |
+| [$subsumes](https://www.hl7.org/fhir/codesystem-operations.html#subsumes) | `supported` | [CodeSystem Subsumption testing](broken-reference)                                   |
 | [$compose](https://www.hl7.org/fhir/codesystem-operations.html#compose)   | `supported` | [CodeSystem Code composition](codesystem-and-concept/codesystem-code-composition.md) |
 
 #### ValueSet
 
-| FHIR specification                                                                | Status      | Documentation and samples                                    |
-| --------------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------ |
-| [$expand](https://www.hl7.org/fhir/valueset-operations.html#expand)               | `supported` | [ValueSet Expansion](valueset/value-set-expansion.md)        |
-| [$validate-code](https://www.hl7.org/fhir/valueset-operations.html#validate-code) | `supported` | [ValueSet Code validation](valueset/value-set-validation.md) |
+| FHIR specification                                                                | Status      | Documentation and samples                    |
+| --------------------------------------------------------------------------------- | ----------- | -------------------------------------------- |
+| [$expand](https://www.hl7.org/fhir/valueset-operations.html#expand)               | `supported` | [ValueSet Expansion](broken-reference)       |
+| [$validate-code](https://www.hl7.org/fhir/valueset-operations.html#validate-code) | `supported` | [ValueSet Code validation](broken-reference) |
 
 #### ConceptMap
 

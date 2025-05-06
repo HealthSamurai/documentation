@@ -30,6 +30,6 @@ See [TokenIntrospector schema](../../../reference/system-resources-reference/iam
 
 ## See also
 
-{% content-ref url="../../../tutorials/security-access-control-tutorials/token-introspection.md" %}
-[token-introspection.md](../../../tutorials/security-access-control-tutorials/token-introspection.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}

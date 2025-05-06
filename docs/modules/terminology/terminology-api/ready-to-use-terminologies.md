@@ -1,6 +1,6 @@
 # Ready-to-use terminologies
 
-We prepackaged some of the most commonly used terminologies as samples. You can load them using an [Aidbox project](../../../deprecated/deprecated/zen-related/fhir-terminology-repository/import-using-an-aidbox-project.md).
+We prepackaged some of the most commonly used terminologies as samples. You can load them using an [Aidbox project](broken-reference).
 
 {% hint style="info" %}
 Please make sure you have an appropriate license to use these terminologies.
@@ -13,4 +13,4 @@ Please make sure you have an appropriate license to use these terminologies.
 |  SNOMED CT  | <p>2022-03-01<br>US edition<br>Snapshot US1000124</p> | [https://storage.googleapis.com/aidbox-public/fhir-terminology/SnomedCT\_USEditionRF2\_PRODUCTION\_20220301.zip](https://storage.googleapis.com/aidbox-public/fhir-terminology/SnomedCT_USEditionRF2_PRODUCTION_20220301.zip)    |
 |    RxNorm   |                       2022-04-04                      | [https://storage.googleapis.com/aidbox-public/fhir-terminology/rxnorm-04042022-terminology-bundle.ndjson.gz.zip](https://storage.googleapis.com/aidbox-public/fhir-terminology/rxnorm-04042022-terminology-bundle.ndjson.gz.zip) |
 
-Please [contact us](../../../contact-us.md) if you need a specific terminology or a specific terminology version. The Aidbox team will work with you to convert and upload the bundle to your instance.
+Please [contact us](../../../overview/contact-us.md) if you need a specific terminology or a specific terminology version. The Aidbox team will work with you to convert and upload the bundle to your instance.

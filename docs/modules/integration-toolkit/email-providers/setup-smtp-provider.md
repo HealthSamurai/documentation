@@ -8,14 +8,14 @@ To enable SMTP please specify optional environment variable [**AIDBOX\_BASE\_URL
 
 ## Configuring Mailgun
 
-{% content-ref url="../../../tutorials/integration-toolkit-tutorials/mailgun-integration.md" %}
-[mailgun-integration.md](../../../tutorials/integration-toolkit-tutorials/mailgun-integration.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ## Configuring Postmark
 
-{% content-ref url="../../../tutorials/integration-toolkit-tutorials/postmark-integration.md" %}
-[postmark-integration.md](../../../tutorials/integration-toolkit-tutorials/postmark-integration.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ## Configuring other SMTP providers

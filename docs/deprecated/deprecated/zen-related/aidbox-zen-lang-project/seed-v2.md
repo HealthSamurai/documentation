@@ -20,7 +20,7 @@ Please, use [Init Bundle](../../../../configuration/init-bundle.md) instead.
 Seed v2 is a stable feature, but it has a couple of known issues:
 
 * Seed v2 allows you to define resources with the same id, but it shouldn't as it may lead to unexpected behaviour.
-* For now, the behavior of Seed v2 is undefined in [Highly Available mode](../../../../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/high-available-aidbox.md).
+* For now, the behavior of Seed v2 is undefined in [Highly Available mode](broken-reference).
 
 Please, let us know if you run into any issues with the service.
 {% endhint %}

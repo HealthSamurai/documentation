@@ -16,7 +16,7 @@ Full syntax description and examples
 
 ## Validation modes supported with zen schemas
 
-Zen schemas are used by Aidbox for validating resources e.g. in [FHIR CRUD API](../../../../api/rest-api/crud-1/). Such zen schemas must be tagged with either `zen.fhir/base-schema` or `zen.fhir/profile-schema`. Additionally, they must have `:zen.fhir/type` and `:zen.fhir/profileUri` keys specified.
+Zen schemas are used by Aidbox for validating resources e.g. in [FHIR CRUD API](../../../../api/rest-api/crud/). Such zen schemas must be tagged with either `zen.fhir/base-schema` or `zen.fhir/profile-schema`. Additionally, they must have `:zen.fhir/type` and `:zen.fhir/profileUri` keys specified.
 
 ### `zen.fhir/base-schema`
 

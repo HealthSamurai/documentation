@@ -8,8 +8,8 @@ The materials in this section describe what to do next with the resulting FHIR S
 [fhir-schema-validator](../../profiling-and-validation/fhir-schema-validator/)
 {% endcontent-ref %}
 
-{% content-ref url="../custom-resources-using-fhirschema.md" %}
-[custom-resources-using-fhirschema.md](../custom-resources-using-fhirschema.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 {% content-ref url="../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md" %}
@@ -32,7 +32,7 @@ You can use a special REST API endpoint to migrate specific Zen definitions to t
 GET /ZenSchema/<zen-namespace>/<zen-definition-symbol>/$dump-as-fhir-schema
 ```
 
-If the compilation succeeds, the endpoint returns the resulting FHIR Schema. If it fails, it provides a list of errors detailing what went wrong. Most errors occur because you've used keys on your Zen definition that are not recognized by our compiler. In this case, you can [contact us](../../../contact-us.md) to potentially extend the compiler. Alternatively, you can manually rewrite your custom resource using FHIR Schema.
+If the compilation succeeds, the endpoint returns the resulting FHIR Schema. If it fails, it provides a list of errors detailing what went wrong. Most errors occur because you've used keys on your Zen definition that are not recognized by our compiler. In this case, you can [contact us](../../../overview/contact-us.md) to potentially extend the compiler. Alternatively, you can manually rewrite your custom resource using FHIR Schema.
 
 {% hint style="danger" %}
 Please double-check the compilation results, as they may contain transformation errors. This tool is intended to reduce manual effort during the migration process and is not meant for fully automated resource migration.
@@ -559,16 +559,16 @@ For more information about this instruction, refer to the relevant [section](htt
 
 To deliver the FHIR Schema(s) and related Entities you authored to Aidbox, follow these steps. Ensure that your Aidbox is configured to run with the FHIRSchema validation engine. Here's a guide describing how to achieve that:
 
-{% content-ref url="../../profiling-and-validation/fhir-schema-validator/setup.md" %}
-[setup.md](../../profiling-and-validation/fhir-schema-validator/setup.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 **Single FHIRSchema Delivery**
 
 If you have only one FHIRSchema that replaces your custom-defined Zen definition, follow this guide to deliver a single FHIRSchema to Aidbox.
 
-{% content-ref url="../custom-resources-using-fhirschema.md" %}
-[custom-resources-using-fhirschema.md](../custom-resources-using-fhirschema.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 **Multiple Schemas as a Package**
