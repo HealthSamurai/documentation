@@ -1,7 +1,7 @@
 # Custom SearchParameter tutorial
 
 {% hint style="info" %}
-To create a SearchParameter, [FHIRSchema](../../../../modules/profiling-and-validation/fhir-schema-validator/setup.md) must be enabled (enabled by default)
+To create a SearchParameter, [FHIRSchema](../../../modules/profiling-and-validation/fhir-schema-validator/) must be enabled (enabled by default)
 {% endhint %}
 
 ### Objectives <a href="#objectives" id="objectives"></a>
@@ -11,12 +11,12 @@ To create a SearchParameter, [FHIRSchema](../../../../modules/profiling-and-vali
 
 ## Before you begin <a href="#before-you-begin" id="before-you-begin"></a>
 
-* See what FHIR Search is [here](../../../../api/rest-api/fhir-search/), what [SearchParameter is here](../../../../api/rest-api/fhir-search/searchparameter.md)
-* Set up the local Aidbox instance using the getting started [guide](https://docs.aidbox.app/getting-started/run-aidbox-locally-with-docker/run-aidbox-locally)
+* See what FHIR Search is [here](../../../api/rest-api/fhir-search/), what [SearchParameter is here](../../../api/rest-api/fhir-search/searchparameter.md)
+* Set up the local Aidbox instance using the getting started [guide](../../../getting-started/run-aidbox-locally.md)
 
 ## Get any SearchParameter definition
 
-&#x20;In AidboxUI, go to **FHIR Packages -> hl7.fhir.r4.core** and click on "SearchParameters" tab:
+In AidboxUI, go to **FHIR Packages -> hl7.fhir.r4.core** and click on "SearchParameters" tab:
 
 <figure><img src="../../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -44,15 +44,15 @@ Clicking on `Patient-active` SearchParameter gives us an actual definition of it
 }
 ```
 
-You can read more about all these fields in [#searchparameter-fields](../../../../api/rest-api/fhir-search/searchparameter.md#searchparameter-fields "mention")
-
 The main things:
 
 * change **url** and **id** to identify your search parameter
 * the **code** is actual name that is used in the search query
 * make sure **base** is correct
-* to define how to search and what to search, **type** and **expression** fields are used&#x20;
+* to define how to search and what to search, **type** and **expression** fields are used
 * **xpathUsage** and **xpath** are ignored
+
+You can read more about these fields [here](../../../api/rest-api/fhir-search/searchparameter.md#searchparameter-fields).
 
 ## Define a custom SearchParameter
 
@@ -80,7 +80,7 @@ Accept: application/json
 }
 ```
 
-Here, the main fields are `type` and `expression`.  String type means that we search for strings in a case-insensitive, accent-insensitive way. See also [#search-parameter-types](../../../../api/rest-api/fhir-search/searchparameter.md#search-parameter-types "mention")
+Here, the main fields are `type` and `expression`. String type means that we search for strings in a case-insensitive, accent-insensitive way. See also [SearchParameter types](../../../api/rest-api/fhir-search/searchparameter.md#search-parameter-types).
 
 The expression field uses [FHIRPath](https://hl7.org/fhir/fhirpath.html) and defines that we search in "extension" field, filter all the extensions by the URL, and get their value. Note that we use `.as(string)` to match [the string extension choice type](https://www.hl7.org/fhir/extensibility.html).
 
