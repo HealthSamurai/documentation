@@ -1,19 +1,30 @@
 #!/bin/bash
-# Сравнить файлы из docs и пути из SUMMARY.md
 
-# Получить все файлы из docs
-scripts/all-files.sh > all_files.txt
-# Получить все пути из SUMMARY.md
-scripts/all-files-from-summary.sh > summary_files.txt
+mkdir -p out
 
-# Файлы в docs, которые не используются в SUMMARY.md
-comm -23 all_files.txt summary_files.txt > not_in_summary.txt
-# Пути из SUMMARY.md, которых нет на диске
-comm -13 all_files.txt summary_files.txt > not_on_disk.txt
+scripts/all-files.sh > out/all_files.txt
+scripts/all-files-from-summary.sh > out/summary_files.txt
 
-# Вывести результат
-echo 'Файлы в docs, которые не используются в SUMMARY.md:'
-cat not_in_summary.txt
+comm -23 out/all_files.txt out/summary_files.txt > out/not_in_summary.txt
+comm -13 out/all_files.txt out/summary_files.txt | grep -v '^README.md$' > out/not_on_disk.txt
 
-echo 'Пути из SUMMARY.md, которых нет на диске:'
-cat not_on_disk.txt 
+echo 'Files in docs/ not referenced in SUMMARY.md:'
+if [ -s out/not_in_summary.txt ]; then
+  cat out/not_in_summary.txt
+else
+  echo 'none, OK'
+fi
+
+echo 'Paths in SUMMARY.md that do not exist on disk:'
+if [ -s out/not_on_disk.txt ]; then
+  cat out/not_on_disk.txt
+else
+  echo 'none, OK'
+fi
+
+# Exit with error if any of the result files are not empty
+if [[ -s out/not_in_summary.txt || -s out/not_on_disk.txt ]]; then
+  exit 1
+else
+  exit 0
+fi
