@@ -193,7 +193,7 @@ This operation validates the structure of a QuestionnaireResponse and saves it. 
 ### URLs
 
 ```
-POST [base]/QuestionnaireResponse/$save
+POST [base]/fhir/QuestionnaireResponse/$save
 ```
 
 ### Parameters
@@ -224,7 +224,7 @@ The operation returns:
 {% tabs %}
 {% tab title="Request" %}
 ```http
-POST [base]/QuestionnaireResponse/$save
+POST [base]/fhir/QuestionnaireResponse/$save
 content-type: application/fhir+json
 
 {
@@ -385,7 +385,7 @@ This operation validates and submits a QuestionnaireResponse, marking it as "com
 ### URLs
 
 ```
-POST [base]/QuestionnaireResponse/$submit
+POST [base]/fhir/QuestionnaireResponse/$submit
 ```
 
 ### Parameters
@@ -416,7 +416,7 @@ The operation returns:
 {% tabs %}
 {% tab title="Request" %}
 ```http
-POST [base]/QuestionnaireResponse/$submit
+POST [base]/fhir/QuestionnaireResponse/$submit
 content-type: application/fhir+json
 
 {
