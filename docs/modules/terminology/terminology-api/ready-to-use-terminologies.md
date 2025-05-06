@@ -1,6 +1,6 @@
 # Ready-to-use terminologies
 
-We prepackaged some of the most commonly used terminologies as samples. You can load them using an [Aidbox project](broken-reference).
+We prepackaged some of the most commonly used terminologies as samples. You can load them using an Aidbox project.
 
 {% hint style="info" %}
 Please make sure you have an appropriate license to use these terminologies.

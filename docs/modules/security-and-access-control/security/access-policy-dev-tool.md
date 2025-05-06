@@ -23,13 +23,13 @@ The dev tool is a part of Aidbox UI Console, which aims
 
 The dev tool is split on two sides, editor side and result side. On the left side you define
 
-* [AccessPolicy resource](broken-reference) and
+* [AccessPolicy resource](../../access-control/authorization/access-policies.md) and
 * HTTP request you are going to debug.
 
 When you press the Save\&Run button, the dev tool saves AccessPolicy and performs policy debug operation for the specified request, and displays the result on the right side. You can see there
 
 * _Eval policy result._ List of all access policies and the result of evaluation.
-* _Parsed HTTP request._ It's an [internal representation](broken-reference) of the request, which Aidbox passes to the eval-policy function.
+* _Parsed HTTP request._ It's an internal representation of the request, which Aidbox passes to the eval-policy function.
 
 ## How to get to the dev tool
 
@@ -44,8 +44,6 @@ To get to the dev tool from AccessPolicy view page, click the link on the top ri
 ## Tips
 
 ### Make sure you've enabled Aidbox developer mode
-
-[Broken link](broken-reference "mention")
 
 ```
 BOX_SECURITY_DEV_MODE=true

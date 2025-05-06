@@ -29,7 +29,7 @@ Aidbox evaluates the request and determines which handler to select. If no handl
 
 ### Authorization
 
-Authorization (AuthZ or access control) is the granting or denying access to a requestor. Access control is based on the [internal representation of the request](broken-reference). Besides other internal request contains:
+Authorization (AuthZ or access control) is the granting or denying access to a requestor. Access control is based on the internal representation of the request. Besides other internal request contains:
 
 * requestor identity
 * the handler
@@ -119,7 +119,7 @@ When Aidbox receives a request containing session cookie, Aidbox tries to fetch 
 
 ## How access control performs
 
-Authorization decides if a request can be processed by the desired handler. By the start of authorization the original HTTP request is augmented with the user or client identity and the desired handler (see the [request object structure](broken-reference)).
+Authorization decides if a request can be processed by the desired handler. By the start of authorization the original HTTP request is augmented with the user or client identity and the desired handler.
 
 Aidbox applies `AccessPolicy` resources the request one after the other. It does it until any policy grants the permission.
 

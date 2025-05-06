@@ -12,19 +12,19 @@
 
 ### API Consumer
 
-If you have backend service or periodical job that wants to interact with Aidbox API, you can use session-less [Basic Auth](basic-auth.md), [Client Credentials Grant](broken-reference) (OAuth) or [Access by JWT](broken-reference).
+If you have backend service or periodical job that wants to interact with Aidbox API, you can use session-less [Basic Auth](basic-auth.md), Client Credentials Grant (OAuth) or Access by JWT.
 
 ### Web Application
 
-If you want to work with Aidbox from a web application or implement Single Sign-On using Aidbox as Identity Server, consider [Authorization Code Grant](broken-reference) or [Access by JWT](broken-reference)
+If you want to work with Aidbox from a web application or implement Single Sign-On using Aidbox as Identity Server, consider Authorization Code Grant or Access by JWT.
 
 ### Single Page Application
 
-For SPA you can use [Implicit Grant](broken-reference), [Authorization Code Grant](broken-reference) without secret or [Access by JWT](broken-reference).
+For SPA you can use Implicit Grant, Authorization Code Grant without secret or Access by JWT.
 
 ### Mobile and Desktop Application
 
-For mobile and desktop application the simplest option is [Resource Owner Credentials](broken-reference)
+For mobile and desktop application the simplest option is Resource Owner Credentials.
 
 ## Auth Sandbox
 

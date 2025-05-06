@@ -19,7 +19,7 @@ scopeSchema:
   # A JSON schema for the incoming data (optional)
 ```
 
-If the `scopeSchema` attribute is provided, incoming mapping data (also called a scope) will be validated against it first. Then, a JUTE template from the `body` will be executed. Mapping should return a valid [Transaction Bundle](broken-reference), so when applied, it will be able to operate with multiple resources not just single one.
+If the `scopeSchema` attribute is provided, incoming mapping data (also called a scope) will be validated against it first. Then, a JUTE template from the `body` will be executed. Mapping should return a valid [Transaction Bundle](../../api/batch-transaction.md), so when applied, it will be able to operate with multiple resources not just single one.
 
 ### Example
 

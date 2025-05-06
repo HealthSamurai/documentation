@@ -23,11 +23,7 @@ If you are new to Aidbox it is strongly recommended not to skip any steps. Other
 
 ### Set up base Aidbox instance
 
-Set up Aidbox instance by following our quick start guide.
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
+Set up Aidbox instance by following our [quick start guide](../../../../../getting-started/run-aidbox-locally.md).
 
 ### Specify US Core as a dependency
 

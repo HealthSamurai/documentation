@@ -24,6 +24,3 @@ Uploading FHIR Implementation Guides (IGs) to Aidbox can be performed using vari
 [aidbox-fhir-api.md](aidbox-fhir-api.md)
 {% endcontent-ref %}
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}

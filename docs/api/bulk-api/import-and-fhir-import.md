@@ -14,7 +14,7 @@ Keep in mind that $import **does not validate** inserted resources for the sake 
 {% endhint %}
 
 {% hint style="info" %}
-Please consider using [Asynchronous validation API](broken-reference) to validate data after $import
+Please consider using [Asynchronous validation API](../../modules/profiling-and-validation/asynchronous-resource-validation.md) to validate data after $import
 {% endhint %}
 
 ## Example

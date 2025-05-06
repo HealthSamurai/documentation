@@ -36,11 +36,6 @@ Aidbox is an [Audit record repository](https://profiles.ihe.net/ITI/TF/Volume1/c
 * `GET /fhir/AuditEvent` to receive them
 
 
-
-See tutorial:
-
-[Broken link](broken-reference "mention")
-
 ## FHIR Resource versioning
 
 A separate version is recorded in the history table each time a resource is created, updated, or deleted.
@@ -51,5 +46,5 @@ All versions can be accessed using the [\_history](../../api/rest-api/history.md
 
 Aidbox automatically logs all auth, API, database, and network events, so in most cases, basic audit logs may be derived from [Aidbox logs](../observability/logging-and-audit/).
 
-Aidbox also provides ways to [extend](broken-reference) Aidbox logs.
+Aidbox also provides ways to [extend](../observability/logs/extending-aidbox-logs.md) Aidbox logs.
 

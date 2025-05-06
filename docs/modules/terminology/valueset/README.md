@@ -899,5 +899,5 @@ expansion:
 
 | FHIR specification                                                                | Status      | Documentation and samples                    |
 | --------------------------------------------------------------------------------- | ----------- | -------------------------------------------- |
-| [$expand](https://www.hl7.org/fhir/valueset-operations.html#expand)               | `supported` | [ValueSet Expansion](broken-reference)       |
-| [$validate-code](https://www.hl7.org/fhir/valueset-operations.html#validate-code) | `supported` | [ValueSet Code validation](broken-reference) |
+| [$expand](https://www.hl7.org/fhir/valueset-operations.html#expand)               | `supported` | [ValueSet Expansion](./valueset-expansion.md)       |
+| [$validate-code](https://www.hl7.org/fhir/valueset-operations.html#validate-code) | `supported` | [ValueSet Code validation](./valueset-code-validation.md) |

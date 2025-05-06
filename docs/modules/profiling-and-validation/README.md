@@ -55,11 +55,3 @@ Additionally, you can easily create a `StructureDefinition` in a running Aidbox 
 {% content-ref url="fhir-schema-validator/" %}
 [fhir-schema-validator](fhir-schema-validator/)
 {% endcontent-ref %}
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
-{% content-ref url="../../deprecated/deprecated/zen-related/profiling-with-zen-lang/" %}
-[profiling-with-zen-lang](../../deprecated/deprecated/zen-related/profiling-with-zen-lang/)
-{% endcontent-ref %}

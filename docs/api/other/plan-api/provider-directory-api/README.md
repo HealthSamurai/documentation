@@ -4,7 +4,7 @@ Welcome! This documentation is designed to help developers and integrators navig
 
 Plan API makes Provider Directory available through public endpoints.
 
-You can begin by [exploring](https://hl7.org/fhir/us/davinci-pdex-plan-net/STU1/profiles.html) the resource specifications to familiarize yourself with the data structures and types available. Then, dive into the [search parameters](broken-reference) to learn how to craft queries tailored to your needs. You will find query examples that illustrate common use cases and demonstrate how to retrieve the data you need using the API.
+You can begin by [exploring](https://hl7.org/fhir/us/davinci-pdex-plan-net/STU1/profiles.html) the resource specifications to familiarize yourself with the data structures and types available. Then, dive into the [search parameters](../../../rest-api/fhir-search/searchparameter.md) to learn how to craft queries tailored to your needs. You will find query examples that illustrate common use cases and demonstrate how to retrieve the data you need using the API.
 
 We store provider information in these FHIR entities:
 

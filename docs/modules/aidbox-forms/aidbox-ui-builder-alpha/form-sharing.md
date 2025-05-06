@@ -21,7 +21,7 @@ After creating a form, you can generate a link to the form and send it to the us
    * Choose the form you want to share from your list of forms.
 2. **Generate the Link:**
    * Use the "Share" option within the Aidbox Forms interface.
-   * Generate the link via[ $populatelink ](broken-reference)FHIR SDC operation.
+   * Generate the link via[ $populatelink ](../../../reference/aidbox-forms-reference/fhir-sdc-api.md) FHIR SDC operation.
 3. **Copy the Link:**
    * Once the link is generated, copy it to your clipboard.
 4. **Send the Link:**
@@ -34,7 +34,7 @@ After creating a form, you can generate a link to the form and send it to the us
    * After the user submits the form, you can access and review their responses within Aidbox Forms.
 
 {% hint style="info" %}
-You can set up the user redirect after the user submits the form. Look [here](broken-reference).
+You can set up the user redirect after the user submits the form.
 
 Default behavior when the user remains on the page with a completed form
 {% endhint %}
@@ -47,7 +47,7 @@ After creating a form, you can generate an iframe code for this form and embed i
    * Choose the form you want to embed from your list of forms.
 2. **Generate the iframe Code:**
    * Use the "Share" option within the Aidbox Forms interface.
-   * Generate the link via[ $populatelink ](broken-reference)FHIR SDC operation and use it with iframe.
+   * Generate the link via[ $populatelink ](../../../reference/aidbox-forms-reference/fhir-sdc-api.md) FHIR SDC operation and use it with iframe.
 
 ```
 <iframe src="your-generated-link"></iframe>

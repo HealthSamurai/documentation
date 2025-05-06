@@ -74,7 +74,7 @@ In **the "Customize your Instance -> Connections"** section, enable the "**Priva
 &#x20;     &#x20;
 
 {% hint style="info" %}
-During initialization, Aidbox creates certain database extensions. You can find more details [here](broken-reference). If you prefer not to grant the Aidbox user the permissions required for this, you can pre-create the necessary extensions using a privileged user and disable automatic extension creation via [settings](../../reference/settings/database.md#db.install-pg-extensions).  This is the approach we follow in the current tutorial.
+During initialization, Aidbox creates certain database extensions. You can find more details [here](../../database/postgresql-extensions.md). If you prefer not to grant the Aidbox user the permissions required for this, you can pre-create the necessary extensions using a privileged user and disable automatic extension creation via [settings](../../reference/settings/database.md#db.install-pg-extensions).  This is the approach we follow in the current tutorial.
 {% endhint %}
 
 4. Connect to the database `aidbox` , that you've created using user **postgres**, and create the extension.\

@@ -285,7 +285,7 @@ entry:
     id: 'pt-4'
 </code></pre>
 
-See also [Broken link](broken-reference "mention")
+See also [Transactions page](../../../../api/batch-transaction.md)
 
 ### Metadata
 

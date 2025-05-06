@@ -5,7 +5,7 @@ hidden: true
 
 # Set up logs with Aidbox project
 
-We expect your [Aidbox project](https://github.com/Aidbox/documentation/blob/master/core-modules/logging-and-audit/readme-1/broken-reference/README.md) is set up and running.
+We expect your Aidbox project is set up and running.
 
 ## How do logs work? <a href="#how-logs-work" id="how-logs-work"></a>
 

@@ -126,7 +126,7 @@ They can be referenced with `%expr-name` literal.
 Example: `%patient.name.first().given` where `%patient` is\
 an expression name _patient_, prefixed with _%_ symbol.
 
-For more details of usage, look at how-to guide [here](broken-reference).
+For more details of usage, look at how-to guide [here](./how-to-guides/how-to-calculate-form-filling-percentage.md).
 
 ## Extraction
 

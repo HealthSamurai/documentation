@@ -17,7 +17,7 @@ See also:
 
 * [User resource reference](../../../reference/system-resources-reference/iam-module-resources.md#user)
 * [Creating user tutorial](../../../tutorials/security-access-control-tutorials/creating-user-and-set-up-full-user-access.md)
-* [How to prohibit user to login](broken-reference)
+* [How to prohibit user to login](../../../tutorials/security-access-control-tutorials/prohibit-user-to-login.md)
 
 ## Manage Users in external systems
 

@@ -2,7 +2,8 @@
 
 Aidbox supports sending emails through using `Notification`, `NotificationTemplate`, and, optionally, `AidboxConfig` resources.&#x20;
 
-It is possible to setup any SMTP provider using `AidboxConfig` resource, also there's [Postmark](broken-reference) and [Mailgun](broken-reference) configuration via environment variables.
+It is possible to setup any SMTP provider using `AidboxConfig` resource, also there's [Postmark](../../../tutorials/integration-toolkit-tutorials/postmark-integration-tutorial.md) 
+and [Mailgun](../../../tutorials/integration-toolkit-tutorials/postmark-integration-tutorial.md) configuration via environment variables.
 
 ## Sending email
 

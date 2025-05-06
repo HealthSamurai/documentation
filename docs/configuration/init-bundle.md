@@ -82,10 +82,8 @@ BOX_INIT_BUNDLE=file:///tmp/bundle.json
 
 1. First, check that Aidbox handles the Bundle as it should using `POST /fhir`. Try to post it several times to make sure it is idempotent. Then add it to `BOX_INIT_BUNDLE`.
 2. Note, that the [Aidbox format](https://docs.aidbox.app/storage-1/aidbox-and-fhir-formats) is not supported.
-3. Aidbox handles an `id` in the body of the POST request. That's why posting the resource with an id twice will cause an `duplicate key` error. Use [conditional create](broken-reference) or [update](../api/rest-api/crud/update.md) for that.
+3. Aidbox handles an `id` in the body of the POST request. That's why posting the resource with an id twice will cause an `duplicate key` error. Use [conditional create](../api/rest-api/crud/create.md) or [update](../api/rest-api/crud/update.md) for that.
 
 ## How to inject env variables into Init Bundle
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
+See [tutorial](../deployment-and-maintenance/deploy-aidbox/how-to-inject-env-variables-into-init-bundle.md).
