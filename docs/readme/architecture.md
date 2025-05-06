@@ -20,7 +20,7 @@ Aidbox uses [FHIR](https://www.hl7.org/fhir/overview.html) as a foundation and p
 * Bulk API and analytics tools integrations that include Tableau, Power BI, and Jupyter
 * Automated cloud infrastructure built on Kubernetes for AWS, Azure & GCP
 
-​[Read Features Overview](https://docs.aidbox.app/features)​
+​[Read Features Overview](features.md)​
 
 ![](../../.gitbook/assets/1-aidbox.jpg)
 
@@ -34,8 +34,8 @@ You can get Aidbox hosted in the cloud (Aidbox Sandbox or AWS) or get self-hoste
 [run-aidbox-in-sandbox.md](../getting-started/run-aidbox-in-sandbox.md)
 {% endcontent-ref %}
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="../getting-started/run-aidbox-locally.md" %}
+[run-aidbox-locally.md](../getting-started/run-aidbox-locally.md)
 {% endcontent-ref %}
 
 {% content-ref url="../getting-started/run-aidbox-on-aws.md" %}
@@ -46,7 +46,7 @@ You can get Aidbox hosted in the cloud (Aidbox Sandbox or AWS) or get self-hoste
 
 Aidbox implements most of the [FHIR specification](https://www.hl7.org/fhir/) and supports all official versions of the standard. We designed Aidbox to be FHIR-compatible, but it uses its own framework. Besides FHIR, Aidbox offers many useful additions. The key differences are listed below:
 
-* Aidbox stores Resources in [Aidbox format](https://docs.aidbox.app/modules-1/fhir-resources/aidbox-and-fhir-formats), which is isomorphic to FHIR, but not the same.
+* Aidbox stores Resources in [Aidbox format](architecture.md#aidbox-and-fhir-formats), which is isomorphic to FHIR, but not the same.
 * Aidbox serves two sets of API: **Aidbox API** from "/" and **FHIR API** from "/fhir\*\*"\*\*. Aidbox API works with Aidbox format, and FHIR API works with FHIR format. When you interact with FHIR endpoints, Aidbox does on-the-fly conversion between these two formats.
 * Aidbox offers **First-Class Extensions** and **Custom Resources**, which FHIR doesn't support, but these additions are very handy for designing real-world systems.
 * Aidbox uses its own Entity/Attribute, SearchParameter and AidboxProfile framework instead of FHIR Structure Definitions. FHIR Profiles should be converted to Aidbox meta-resources.
@@ -54,13 +54,3 @@ Aidbox implements most of the [FHIR specification](https://www.hl7.org/fhir/) an
 ### Resources
 
 In Aidbox, everything is a **Resource.** Each resource type is described with special **Entity** and **Attribute** meta-resources. **Entities** describe resources and types. **Attributes** describe the structure of resources and complex types. For each **Entity**, Aidbox generates database schema in PostgreSQL, REST endpoints for CRUD, history, search and other operations, and JSON-schema for validation.
-
-### Aidbox & FHIR Formats
-
-Aidbox stores FHIR resources almost as is with 3 types of isomorphic transformations:
-
-* References
-* Union (Choice Types)
-* First-Class Extensions
-
-[Read more](https://docs.aidbox.app/modules-1/fhir-resources/aidbox-and-fhir-formats)
