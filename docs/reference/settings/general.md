@@ -67,7 +67,7 @@ Aidbox automatically syncs runtime cache (SearchParameters, FHIR Schemas, Operat
 
 During startup Aidbox loads these modules.
 Format: 
-`<name1>,<name2>,<name3>...`
+`<module-name2>,<module-name2>,<module-name3>...`
 
 <table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>module-load</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_MODULE_LOAD</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table>
 
