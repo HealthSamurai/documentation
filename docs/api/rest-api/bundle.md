@@ -15,7 +15,7 @@ The Bundle resource is a resource which groups multiple resources in one. It is 
 Let's look at some operations working with Bundle resources.
 
 * `POST /` , `POST /fhir`\
-  Main article: [Broken link](broken-reference "mention").\
+  Main article: [Transactions](../batch-transaction.md).\
   This operation accepts Bundle resource (with type batch or transaction); executes contained requests; then returns Bundle resource in response (with type batch-response or transaction-response).\
   Operation `POST /` accepts and return Bundle in Aidbox format; operation `POST /fhir` accepts and returns Bundle in FHIR format.
 * `GET /<resourceType>`, `GET /fhir/<resourceType>`\

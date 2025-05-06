@@ -20,10 +20,6 @@ The list of available Bulk API endpoints:
 [usdexport.md](usdexport.md)
 {% endcontent-ref %}
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
 {% content-ref url="usdimport-and-fhir-usdimport.md" %}
 [usdimport-and-fhir-usdimport.md](usdimport-and-fhir-usdimport.md)
 {% endcontent-ref %}
