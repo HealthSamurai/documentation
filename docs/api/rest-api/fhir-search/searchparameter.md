@@ -724,7 +724,7 @@ GET /fhir/Patient?tag=emergency
 ## Custom Search Parameter
 
 See tutorials:
-* [Custom SearchParameter](../../../tutorials/crud-search-tutorials/search-tutorials/create/custom-searchparameter-tutorial.md)
+* [Custom SearchParameter](../../../tutorials/crud-search-tutorials/search-tutorials/custom-searchparameter-tutorial.md)
 * [Create Custom Aidbox Search resource](../../../tutorials/crud-search-tutorials/search-tutorials/create-custom-aidbox-search-resource.md)
 
 See also [Aidbox Search page](../aidbox-search.md):
