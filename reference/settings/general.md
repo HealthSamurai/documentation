@@ -40,7 +40,7 @@ URL of the Bundle resource in JSON format executed on Aidbox startup. Not availa
 
 Allows Aidbox to collect and send high-level API usage statistics to help improve the product.
 
-<table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>usage-stats</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>true</code></td></tr><tr><td>Environment variable</td><td><code>BOX_USAGE_STATS</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_TELEMETRY_USAGE_STATS</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table>
+<table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>usage-stats</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>true</code></td></tr><tr><td>Environment variable</td><td><code>BOX_USAGE_STATS</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_TELEMETRY_USAGE_STATS</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table>
 
 ### Settings mode<a href="#settings-mode" id="settings-mode"></a>
 
