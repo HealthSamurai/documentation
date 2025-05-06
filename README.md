@@ -4,17 +4,17 @@
 
 Discover how to start with Aidbox in just a few minutes.
 
-<table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Run Aidbox locally</strong></td><td>Download and run Aidbox locally. Explore it through interactive tutorials.</td><td><a href="broken-reference">Learn more</a></td><td><a href=".gitbook/assets/qs2.png">qs2.png</a></td><td><a href="broken-reference">Broken link</a></td></tr><tr><td><strong>Run in sandbox</strong></td><td>Run SaaS Aidbox for free and explore it through built-in tutorials.</td><td><a href="getting-started/run-aidbox-in-sandbox.md">Learn more</a></td><td><a href=".gitbook/assets/qs1.png">qs1.png</a></td><td><a href="getting-started/run-aidbox-in-sandbox.md">run-aidbox-in-sandbox.md</a></td></tr><tr><td><strong>Use Aidbox with React</strong></td><td>Develop your first app on top of Aidbox with the sample React App.</td><td><a href="app-development/use-aidbox-with-react.md">Learn more</a></td><td><a href=".gitbook/assets/qs3.png">qs3.png</a></td><td><a href="app-development/use-aidbox-with-react.md">use-aidbox-with-react.md</a></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Run Aidbox locally</strong></td><td>Download and run Aidbox locally. Explore it through interactive tutorials.</td><td><a href="broken-reference">Learn more</a></td><td><a href=".gitbook/assets/qs2.png">qs2.png</a></td><td><a href="broken-reference">Broken link</a></td></tr><tr><td><strong>Run in sandbox</strong></td><td>Run SaaS Aidbox for free and explore it through built-in tutorials.</td><td><a href="docs/getting-started/run-aidbox-in-sandbox.md">Learn more</a></td><td><a href=".gitbook/assets/qs1.png">qs1.png</a></td><td><a href="getting-started/run-aidbox-in-sandbox.md">run-aidbox-in-sandbox.md</a></td></tr><tr><td><strong>Use Aidbox with React</strong></td><td>Develop your first app on top of Aidbox with the sample React App.</td><td><a href="docs/app-development/use-aidbox-with-react.md">Learn more</a></td><td><a href=".gitbook/assets/qs3.png">qs3.png</a></td><td><a href="docs/app-development/use-aidbox-with-react.md">use-aidbox-with-react.md</a></td></tr></tbody></table>
 
 ## Overview
 
 Aidbox is a mature and reliable FHIR platform that enables rapid development of digital health solutions, reducing development time and costs by up to 70% from the start.
 
-* [Features](getting-started/features.md)
-* [Architecture](readme/architecture.md)
-* [Licensing and support](getting-started/editions-and-pricing.md)
-* [Release notes](overview/release-notes.md)
-* [Run Aidbox on Kubernetes](deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/)
+* [Features](docs/getting-started/features.md)
+* [Architecture](docs/readme/architecture.md)
+* [Licensing and support](docs/getting-started/editions-and-pricing.md)
+* [Release notes](docs/overview/release-notes.md)
+* [Run Aidbox on Kubernetes](docs/deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/)
 
 ## Platform
 
@@ -22,7 +22,7 @@ Aidbox is a mature and reliable FHIR platform that enables rapid development of 
 
 ### Modules
 
-<table data-view="cards"><thead><tr><th></th><th></th><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td></td><td><strong>Form Builder</strong></td><td>Design and publish complex forms to collect data in the FHIR format</td><td></td><td><a href="modules/aidbox-forms/">aidbox-forms</a></td></tr><tr><td></td><td><strong>Terminology Service</strong></td><td>Manage internal and external code systems in one place</td><td></td><td><a href="modules/terminology/">terminology</a></td></tr><tr><td></td><td><strong>SQL on FHIR Engine</strong></td><td>Use standardized ViewDefinitions to flatten FHIR data for analytics</td><td></td><td><a href="modules/sql-on-fhir/">sql-on-fhir</a></td></tr><tr><td></td><td><strong>C-CDA/FHIR Converter</strong></td><td>Plug the bidirectional converter in your integration flow</td><td></td><td><a href="modules/integration-toolkit/ccda-converter/">ccda-converter</a></td></tr><tr><td><mark style="background-color:blue;">beta</mark></td><td><strong>MDM Module</strong></td><td>Identify and reduce data duplication with ML-based Master Patient Index</td><td></td><td><a href="modules/other-modules/mdm/">mdm</a></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th></th><th></th><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td></td><td><strong>Form Builder</strong></td><td>Design and publish complex forms to collect data in the FHIR format</td><td></td><td><a href="docs/modules/aidbox-forms/">aidbox-forms</a></td></tr><tr><td></td><td><strong>Terminology Service</strong></td><td>Manage internal and external code systems in one place</td><td></td><td><a href="docs/modules/terminology/">terminology</a></td></tr><tr><td></td><td><strong>SQL on FHIR Engine</strong></td><td>Use standardized ViewDefinitions to flatten FHIR data for analytics</td><td></td><td><a href="docs/modules/sql-on-fhir/">sql-on-fhir</a></td></tr><tr><td></td><td><strong>C-CDA/FHIR Converter</strong></td><td>Plug the bidirectional converter in your integration flow</td><td></td><td><a href="docs/modules/integration-toolkit/ccda-converter/">ccda-converter</a></td></tr><tr><td><mark style="background-color:blue;">beta</mark></td><td><strong>MDM Module</strong></td><td>Identify and reduce data duplication with ML-based Master Patient Index</td><td></td><td><a href="docs/modules/other-modules/mdm/">mdm</a></td></tr></tbody></table>
 
 ## Support
 
