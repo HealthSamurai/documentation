@@ -949,6 +949,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
+* `de.medizininformatikinitiative.use-case.omi#0.3.10`
 * `de.medizininformatikinitiative.use-case.omi#0.3.9`
 * `de.medizininformatikinitiative.use-case.omi#0.3.8`
 * `de.medizininformatikinitiative.use-case.omi#0.3.7`
@@ -1227,6 +1228,9 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
+* `il.core.fhir.r4#0.17.5`
+* `il.core.fhir.r4#0.17.4`
+* `il.core.fhir.r4#0.17.3`
 * `il.core.fhir.r4#0.17.2`
 * `il.core.fhir.r4#0.17.1`
 * `il.core.fhir.r4#0.17.0`
@@ -4768,6 +4772,15 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 * `hl7.fhir.us.cancer-reporting#1.0.1`
 * `hl7.fhir.us.cancer-reporting#1.0.0`
 * `hl7.fhir.us.cancer-reporting#0.1.0`
+
+
+---
+
+### hsg.asg-well
+
+**Versions**
+
+* `hsg.asg-well#1.0.11`
 
 
 ---
@@ -9257,6 +9270,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
+* `test.circular.snapshot#0.0.2`
 * `test.circular.snapshot#0.0.1`
 
 
@@ -10680,6 +10694,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 * `de.gematik.terminology#1.0.5`
 * `de.gematik.terminology#1.0.1`
 * `de.gematik.terminology#1.0.0`
+* `de.gematik.terminology#1.0.5-2`
 
 
 ---
