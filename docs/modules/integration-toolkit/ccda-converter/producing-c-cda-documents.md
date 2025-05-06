@@ -126,7 +126,7 @@ Multiple FHIR searches per section is also possible:
 
 ### Section templates and LOINC codes
 
-To pick the right `templateId` for a section, converter uses LOINC to OID mapping table which can be found on the [List of supported sections page](sections/). "Entries Required" / "Entries Optional" variation can be specified via FHIR extension. In the example below document contains two sections: [Social History Section (V3)](broken-reference) and [Allergies and Intolerances Section (entries required) (V3)](broken-reference).
+To pick the right `templateId` for a section, converter uses LOINC to OID mapping table which can be found on the [List of supported sections page](sections/). "Entries Required" / "Entries Optional" variation can be specified via FHIR extension. In the example below document contains two sections: [Social History Section (V3)](./sections/social-history-section-docs-v3.md) and [Allergies and Intolerances Section (entries required) (V3)](./sections/allergies-and-intolerances-section-docs-entries-optional-docs-v3.md).
 
 ```json
 {

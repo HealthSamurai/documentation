@@ -18,4 +18,4 @@ Aidbox requires specific PostgreSQL extensions to function properly.  There are 
 * [pg\_similarity](https://github.com/eulerto/pg_similarity) — Support similarity queries. Used by [MDM module](../modules/other-modules/mdm/) only.
 * [pgagent](https://github.com/pgadmin-org/pgagent) — A PostgreSQL job scheduler.
 * [pg\_stat\_statements](https://www.postgresql.org/docs/current/pgstatstatements.html) — Track statistics.
-* [postgis](https://github.com/postgis/postgis) — Support storing, indexing, and querying geographic data. Used by [\_location](broken-reference) search parameter only.
+* [postgis](https://github.com/postgis/postgis) — Support storing, indexing, and querying geographic data. Used by `Location.near` search parameter only.

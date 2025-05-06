@@ -407,7 +407,7 @@ Enables `su` request header [functionalty](https://docs.aidbox.app/security-and-
 BOX_FEATURES_VALIDATION_SKIP_REFERENCE=true
 ```
 
-Enables skip resource reference validation [functionality](broken-reference).
+Enables skipping resource reference validation.
 
 ### BOX\_WEB\_MAX\_\_BODY
 
@@ -647,7 +647,7 @@ BOX_FEATURES_SECURITY__LABELS_STRIP__LABELS=true
 ```
 
 {% hint style="info" %}
-Stripping is only applied during the masking. More [details about masking](broken-reference)
+Stripping is only applied during the masking.
 {% endhint %}
 
 ### Observability

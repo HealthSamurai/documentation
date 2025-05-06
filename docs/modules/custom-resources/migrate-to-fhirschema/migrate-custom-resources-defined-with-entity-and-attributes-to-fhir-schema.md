@@ -8,10 +8,6 @@ The materials in this section describe what to do next with the resulting FHIR S
 [fhir-schema-validator](../../profiling-and-validation/fhir-schema-validator/)
 {% endcontent-ref %}
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
 {% content-ref url="../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md" %}
 [how-to-create-fhir-npm-package.md](../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md)
 {% endcontent-ref %}

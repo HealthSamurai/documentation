@@ -465,9 +465,3 @@ _name:
         - url: content
           valueString: <translation in locale2>
 ```
-
-See also:
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}

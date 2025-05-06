@@ -256,7 +256,7 @@ Workflow support 2 additional features:
 * `versioning` - is automatic and based on hashing essential fields of definitions. If some essential field of form/wf is changed - created a new version and snapshotted to DB
 * `section id generation -` is generated from item path (path from WF root to item itself).
 
-These features you can configure via [api-constructor](broken-reference) in zen-project.
+These features you can configure via api-constructor in zen-project.
 
 You need to configure your `aidbox/system` with `sdc-service` and it's configuration
 

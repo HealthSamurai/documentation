@@ -12,10 +12,10 @@ This quickstart guide demonstrates how to launch a PHR sample app on the Aidbox 
 
 The guide helps you to explore the following Aidbox features:
 
-* [REST Console](broken-reference): execute and debug HTTP requests directly within Aidbox.
+* [REST Console](../overview/aidbox-ui/rest-console.md): execute and debug HTTP requests directly within Aidbox.
 * [Access Control](../modules/security-and-access-control/security/): manage fine-grained data access through the API.
 * [Data Import endpoint](../api/bulk-api/usdimport-and-fhir-usdimport.md): Efficiently load FHIR data into Aidbox.
-* [JavaScript SDK](broken-reference): Streamline JS app development on Aidbox effortlessly.
+* [JavaScript SDK](./aidbox-sdk/aidbox-javascript-sdk.md): Streamline JS app development on Aidbox effortlessly.
 
 ## 1. Run Aidbox and set up Access Control
 
@@ -115,7 +115,7 @@ npm run dev
 
 ## Next Steps
 
-* Explore the [Aidbox JavaScript SDK](broken-reference) for advanced features.
+* Explore the [Aidbox JavaScript SDK](./aidbox-sdk/aidbox-javascript-sdk.md) for advanced features.
 * Unlock additional capabilities of [Aidbox UI](../overview/aidbox-ui/).
 * Dive into the built-in [Access Control module](../modules/security-and-access-control/security/).
 * Play around with the [$import endpoint](../api/bulk-api/usdimport-and-fhir-usdimport.md) to load FHIR data.
