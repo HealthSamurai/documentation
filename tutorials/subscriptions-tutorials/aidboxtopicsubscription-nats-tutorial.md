@@ -2,27 +2,19 @@
 
 ## Objectives
 
-* Learn how to integrate Aidbox with the NATS message broker
-* Understand the difference between core NATS and NATS JetStream
-* Master basic publish/subscribe scenarios with NATS
-* Set up JWT-based authorization for NATS
-* Use JetStream for reliable message delivery
+* Learn how to integrate [AidboxTopicSubscriptions](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/) with core NATS / NATS JetStream
 
 ## What is NATS?
 
-[NATS](https://nats.io/) is a high-performance, open-source messaging broker designed for communication between services and microservices. It provides simple and fast message delivery using the publish/subscribe (pub/sub) pattern and supports various interaction scenarios between applications.
+[NATS](https://nats.io/) is a high-performance, open-source messaging broker designed for communication between services and microservices. It provides simple and fast message delivery using the publish/subscribe (pub/sub) pattern and supports various application interaction scenarios.
 
 ### JetStream vs Core NATS
 
-Core NATS (nats-core) is a lightweight pub/sub system where messages are delivered to subscribers only at the moment of publishing (best-effort delivery). If a subscriber is offline, the message is lost.
+Core NATS is a lightweight pub/sub system where messages are delivered to subscribers only at the moment of publishing (best-effort delivery). If a subscriber is offline, the message is lost.
 
-JetStream is an extension of NATS that provides message persistence, replay, and acknowledgment (at-least-once delivery). JetStream allows you to create streams, store messages, manage consumers, and ensure that important events are not lost even in case of failures.
+JetStream is an extension of NATS that provides message persistence, replay, and acknowledgment (at least once delivery). It allows you to create streams, store messages, manage consumers, and ensure that important events are not lost even in the case of failure.
 
-This tutorial explains how to use Aidbox with [NATS](https://nats.io/):
-
-1. Basic usage.
-2. JWT authorization.
-3. NATS JetStream.
+In Aidbox, create [AidboxTopicDestination](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/#aidboxtopicdestination) with `http://aidbox.app/StructureDefinition/aidboxtopicdestination-nats-core-best-effort` profile to integrate with Core NATS and `http://aidbox.app/StructureDefinition/aidboxtopicdestination-nats-jetstream-at-least-once` to integrate with NATS JetStream.
 
 ## Setting up
 
