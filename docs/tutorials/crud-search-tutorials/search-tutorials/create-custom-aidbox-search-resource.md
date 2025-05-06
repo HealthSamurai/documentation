@@ -6,8 +6,8 @@
 
 ## Before you begin <a href="#before-you-begin" id="before-you-begin"></a>
 
-* See [Aidbox Search resource explanation](../../../api/rest-api/aidbox-search.md#search-resource)&#x20;
-* Set up the local Aidbox instance using the getting started [guide](https://docs.aidbox.app/getting-started/run-aidbox-locally-with-docker/run-aidbox-locally)
+* See [Aidbox Search resource explanation](../../../api/rest-api/aidbox-search.md#search-resource)
+* Set up the local Aidbox instance using the getting started [guide](../../../getting-started/run-aidbox-locally.md)
 
 ## The problem
 
@@ -110,9 +110,9 @@ query:
 
 ## That's it
 
-We've created a Search resource that solves the problem that FHIR Search cannot solve.&#x20;
+We've created a Search resource that solves the problem that FHIR Search cannot solve.
 
-The good thing about Search resource is that it can be used just like SearchParameter (except, we cannot use modifiers) and can be combined with actual SearchParameters, e.g. `GET /fhir/Patient?email-domain=somecompany.com&name=john`. The downside is that, using Search resource, we only change `WHERE` and `ORDER BY` expressions, not the whole SQL. Sometimes it is inconvenient, and you should use [AidboxQuery](../../../api/rest-api/aidbox-search.md#aidboxquery) instead.&#x20;
+The good thing about Search resource is that it can be used just like SearchParameter (except, we cannot use modifiers) and can be combined with actual SearchParameters, e.g. `GET /fhir/Patient?email-domain=somecompany.com&name=john`. The downside is that, using Search resource, we only change `WHERE` and `ORDER BY` expressions, not the whole SQL. Sometimes it is inconvenient, and you should use [AidboxQuery](../../../api/rest-api/aidbox-search.md#aidboxquery) instead.
 
 See more:
 
