@@ -47,7 +47,7 @@ Only select _Authorization Code + Secret_ if your app can securely store the Cli
 For insecure implementations, such as mobile apps, the PKCE (Proof Key for Code Exchange) flow is available. It utilizes a dynamic secret string to authenticate your app, as opposed to a static one that must be secured by the app itself. It is generally recommended to use PKCE flow when available, so if your app supports it, you probably will always want to use it over a static secret.
 
 {% hint style="info" %}
-For more information about the OAuth Authorization Code flow, refer to the [page in the docs](broken-reference) and the [OAuth 2.0 specification](https://datatracker.ietf.org/doc/html/rfc6749).
+For more information about the OAuth Authorization Code flow, refer to the [page in the docs](../../../modules/access-control/authentication/oauth-2-0.md) and the [OAuth 2.0 specification](https://datatracker.ietf.org/doc/html/rfc6749).
 {% endhint %}
 
 **Redirect URL**
@@ -132,9 +132,9 @@ Should you need to update the app details used on production after the app has b
 
 ## API permissions and scopes
 
-Access tokens have scopes, which define permissions and the resources that the token can access. Scopes are primarily utilized to determine the type of data an application is requesting. Scopes should be explicitly declared. In case of using a wildcard, only supported scopes will be provided.
-
-Refer to the [FHIR API docs](broken-reference) for guidance.
+Access tokens have scopes, which define permissions and the resources that the token can access. 
+Scopes are primarily utilized to determine the type of data an application is requesting.
+Scopes should be explicitly declared. In case of using a wildcard, only supported scopes will be provided.
 
 {% hint style="info" %}
 Any scope not currently listed is not supported Patient Access scopes

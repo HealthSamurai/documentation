@@ -1,23 +1,6 @@
 # Backup and Restore
 
-Backup configuration for Crunchy operator
-
-
-
-Logical PostgreSQL dump that can be used for major migration, dump schema and etc.
-
-{% content-ref url="pg_dump.md" %}
-[pg\_dump.md](pg_dump.md)
-{% endcontent-ref %}
-
-Physical backup that can be used for archiving huge databases.
-
-{% content-ref url="pg_basebackup.md" %}
-[pg\_basebackup.md](pg_basebackup.md)
-{% endcontent-ref %}
-
-A cloud-native solution that supports all primary cloud vendors.
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
+- [pgBackRest](./crunchy-operator-docs-pgbackrest.md). Backup configuration for Crunchy operator
+- [pg_dump](./pg-dump.md). Logical PostgreSQL dump that can be used for major migration, dump schema and etc.
+- [pg_basebackup](./pg-basebackup.md). Physical backup that can be used for archiving huge databases.
+- [WAL-G](./wal-g.md). A cloud-native solution that supports all primary cloud vendors.

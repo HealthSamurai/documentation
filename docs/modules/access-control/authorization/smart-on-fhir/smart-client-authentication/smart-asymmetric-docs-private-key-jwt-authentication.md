@@ -75,7 +75,7 @@ accept: application/json
 
 ## Authenticating to the Token endpoint
 
-Once the client generates an authentication JWT, it requests an access token based on either the [SMART App Launch](broken-reference) or [SMART Backend Services](broken-reference) specifications. The authentication details are included using these additional properties in the token request:
+Once the client generates an authentication JWT, it requests an access token based on either the SMART App Launch or SMART Backend Services specifications. The authentication details are included using these additional properties in the token request:
 
 **Authentication JWT Header Values:**
 

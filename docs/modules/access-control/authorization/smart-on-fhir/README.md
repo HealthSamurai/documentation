@@ -9,42 +9,21 @@ The [FHIR Schema Validator Engine](https://docs.aidbox.app/modules/profiling-and
 
 ## SMART Client authorization patterns
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
+See [SMART Client authorization patterns](./smart-client-authorization/README.md) page.
 
 ## SMART Client authentication patterns
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
+See [SMART Client authentication patterns](./smart-client-authentication/README.md) page.
 
 ## Supported SMART Scopes
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
+See [Supported SMART Scopes page](./smart-scopes-for-limiting-access.md) page.
 
 ## SMART App Launch using Aidbox or Smartbox and Keycloak
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
+- [Using Aidbox and Keycloak](./example-smart-app-launch-using-aidbox-and-keycloak.md).
+- [Using Smartbox and Keycloak](./example-smart-app-launch-using-smartbox-and-keycloak.md).
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
 
 ## Pass Inferno SMART App Launch Test Kit using Aidbox.
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
+[See here](./pass-inferno-tests-with-aidbox.md).
