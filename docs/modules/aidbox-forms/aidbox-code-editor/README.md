@@ -50,19 +50,17 @@ You have two options available:
 * After that new form template will be generated and you will be redirected to the `Aidbox editor` page
 * You need to describe some schemas to complete the form
 
-&#x20;            [Form DSL ](broken-reference)
+&#x20;            Form DSL
 
-&#x20;            [Document DSL](broken-reference)
+&#x20;            Document DSL
 
-&#x20;            [Layout DSL](broken-reference)
+&#x20;            Layout DSL
 
-&#x20;            [Launch DSL](broken-reference)
+&#x20;            Launch DSL
 
-&#x20;            [Finalize DSL](broken-reference)
+&#x20;            Finalize DSL
 
-&#x20;            [FinalizeConstrains DSL](broken-reference)
-
-Go to [this page](broken-reference) to start designing a form.
+&#x20;            FinalizeConstrains DSL
 
 {% hint style="info" %}
 Created form will be saved to local file sysem in your repository

@@ -1,7 +1,7 @@
 # Aidbox topic-based subscriptions
 
 {% hint style="info" %}
-This functionality is available in Aidbox versions 2409 and later and requires [FHIR Schema](../../profiling-and-validation/fhir-schema-validator/) validation engine to be [enabled](broken-reference).
+This functionality is available in Aidbox versions 2409 and later and requires [FHIR Schema](../../profiling-and-validation/fhir-schema-validator/) validation engine to be [enabled](../../profiling-and-validation/fhir-schema-validator/README.md).
 {% endhint %}
 
 ### Overview
@@ -69,18 +69,12 @@ Ensure that the resource metadata contains the kind-specific `AidboxTopicDestina
 \* required.
 
 #### Currently supported channels
+Currently supported channels:
+* [Webhook](./webhook-aidboxtopicdestination.md)
+* [GCP Pub/Sub](./gcp-pub-sub-aidboxtopicdestination.md)
+* [Kafka](./kafka-aidboxtopicdestination.md)
+* [NATS](../../../tutorials/subscriptions-tutorials/aidboxtopicsubscription-nats-tutorial.md)
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
-{% content-ref url="webhook-aidboxtopicdestination.md" %}
-[webhook-aidboxtopicdestination.md](webhook-aidboxtopicdestination.md)
-{% endcontent-ref %}
-
-{% content-ref url="gcp-pub-sub-aidboxtopicdestination.md" %}
-[gcp-pub-sub-aidboxtopicdestination.md](gcp-pub-sub-aidboxtopicdestination.md)
-{% endcontent-ref %}
 
 ## Notification Shape
 

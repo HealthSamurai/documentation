@@ -432,6 +432,6 @@ Aidbox supports all standard [FHIR terminology](https://www.hl7.org/fhir/termino
 
 | FHIR specification                                                        | Status      | Documentation and samples                                     |
 | ------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------- |
-| [$lookup](https://www.hl7.org/fhir/codesystem-operations.html#lookup)     | `supported` | [CodeSystem Concept Lookup](broken-reference)                 |
-| [$subsumes](https://www.hl7.org/fhir/codesystem-operations.html#subsumes) | `supported` | [CodeSystem Subsumption testing](broken-reference)            |
-| [$compose](https://www.hl7.org/fhir/codesystem-operations.html#compose)   | `supported` | [CodeSystem Code composition](codesystem-code-composition.md) |
+| [$lookup](https://www.hl7.org/fhir/codesystem-operations.html#lookup)     | `supported` | [CodeSystem Concept Lookup](./codesystem-concept-lookup.md)                 |
+| [$subsumes](https://www.hl7.org/fhir/codesystem-operations.html#subsumes) | `supported` | [CodeSystem Subsumption testing](./codesystem-subsumption-testing.md)            |
+| [$compose](https://www.hl7.org/fhir/codesystem-operations.html#compose)   | `supported` | [CodeSystem Code composition](./codesystem-code-composition.md) |

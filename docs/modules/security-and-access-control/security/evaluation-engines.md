@@ -105,7 +105,7 @@ If a string starts with `#` , it is treated as a regular expression.
 
 #### Matching values from the request context&#x20;
 
-If a string starts with `.` , it is interpreted as a path in [the provided request context.](broken-reference)&#x20;
+If a string starts with `.` , it is interpreted as a path in the provided request context.
 
 * Pattern: `{params: {user_id: ".user.id"}}`&#x20;
   * matches: `{user: {id: 1}, params: {user_id: 1}}` where `user.id == param.user_id`.
@@ -292,7 +292,7 @@ rpc:
 
 ### Example 2
 
-To control [tenant](broken-reference) access, use `tenant/org` in macho-rpc. `tenant/org` contains the current organization id in the multitenancy API.
+To control tenant access, use `tenant/org` in macho-rpc. `tenant/org` contains the current organization id in the multitenancy API.
 
 ```yaml
 resourceType: AccessPolicy

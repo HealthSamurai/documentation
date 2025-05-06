@@ -61,11 +61,7 @@ You can edit zen files in `zrc` directory and they will be automatically reloade
 
 ### Start form designing
 
-You have three options how to design form
-
-* [Design form locally (in your familiar editor)](broken-reference) - deprecated
-* [Design form in Aidbox Code Editor (in browser)](aidbox-code-editor/) - deprecated
-* [Design form in Aidbox UI Builder](aidbox-ui-builder-alpha/)
+See [Design form in Aidbox UI Builder](aidbox-ui-builder-alpha/)
 
 ## Enable Audit log
 
