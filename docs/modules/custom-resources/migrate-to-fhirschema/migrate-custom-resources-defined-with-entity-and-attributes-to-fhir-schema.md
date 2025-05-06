@@ -461,19 +461,16 @@ For more information about this instruction, refer to the relevant [section](htt
 
 #### Handling resulting FHIR Schemas
 
-To deliver the FHIR Schema(s) and related Entities you authored to Aidbox, follow these steps. Ensure that your Aidbox is configured to run with the FHIRSchema validation engine. Here's a guide describing how to achieve that:
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
+To deliver the FHIR Schema(s) and related Entities you authored 
+to Aidbox, follow these steps. 
+Ensure that your Aidbox is configured to run with the 
+FHIRSchema validation engine. Here's 
+[a guide describing how to achieve that](../../profiling-and-validation/fhir-schema-validator/README.md).
 
 **Single FHIRSchema Delivery**
 
-If you have only one FHIRSchema that replaces your custom-defined Entity/Attributes, follow this guide to deliver a single FHIRSchema to Aidbox.
+If you have only one FHIRSchema that replaces your custom-defined Entity/Attributes, follow [this guide](../custom-resources-using-fhir-schema.md) to deliver a single FHIRSchema to Aidbox.
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
 
 **Multiple Schemas as a Package**
 
