@@ -1,4 +1,7 @@
-root: ./
+root: ./docs/
+structure:
+  readme: ./readme/README.md
+  summary: SUMMARY.md
 
 redirects:
     plan-api/plan-api-overview: api-1/plan-api/plan-api-overview.md

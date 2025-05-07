@@ -1,30 +1,34 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -e
 
-mkdir -p out
+# Получаем все файлы, упомянутые в SUMMARY.md (относительные пути от docs/)
+ALL_FROM_SUMMARY=$(./scripts/all-files-from-summary.sh)
+# Получаем все реальные файлы в docs/ (относительные пути от docs/)
+ALL_ON_DISK=$(./scripts/all-files.sh | grep -v '^/SUMMARY.md$')
 
-scripts/all-files.sh > out/all_files.txt
-scripts/all-files-from-summary.sh > out/summary_files.txt
+# Сохраняем во временные файлы для сравнения
+TMP_SUMMARY=$(mktemp)
+TMP_DISK=$(mktemp)
+echo "$ALL_FROM_SUMMARY" | sort > "$TMP_SUMMARY"
+echo "$ALL_ON_DISK" | sort > "$TMP_DISK"
 
-comm -23 out/all_files.txt out/summary_files.txt > out/not_in_summary.txt
-comm -13 out/all_files.txt out/summary_files.txt | grep -v '^README.md$' > out/not_on_disk.txt
+# Файлы, которые есть на диске, но не упомянуты в SUMMARY.md
+echo "Files in docs/ not referenced in SUMMARY.md:"
+comm -23 "$TMP_DISK" "$TMP_SUMMARY"
 
-echo 'Files in docs/ not referenced in SUMMARY.md:'
-if [ -s out/not_in_summary.txt ]; then
-  cat out/not_in_summary.txt
-else
-  echo 'none, OK'
+# Пути, которые есть в SUMMARY.md, но не существуют на диске
+echo "Paths in SUMMARY.md that do not exist on disk:"
+comm -13 "$TMP_DISK" "$TMP_SUMMARY"
+
+# Проверка ошибок
+if [[ -s "$TMP_DISK" && -s "$TMP_SUMMARY" ]]; then
+    if [[ -n $(comm -23 "$TMP_DISK" "$TMP_SUMMARY") || -n $(comm -13 "$TMP_DISK" "$TMP_SUMMARY") ]]; then
+        echo -e "\n[pre-push] ERROR: docs/SUMMARY.md and docs/ are out of sync. Fix the issues above before pushing."
+        exit 1
+    fi
 fi
 
-echo 'Paths in SUMMARY.md that do not exist on disk:'
-if [ -s out/not_on_disk.txt ]; then
-  cat out/not_on_disk.txt
-else
-  echo 'none, OK'
-fi
+echo "SUMMARY.md and docs/ are in sync."
 
-# Exit with error if any of the result files are not empty
-if [[ -s out/not_in_summary.txt || -s out/not_on_disk.txt ]]; then
-  exit 1
-else
-  exit 0
-fi
+# Удаляем временные файлы
+rm -f "$TMP_SUMMARY" "$TMP_DISK"
