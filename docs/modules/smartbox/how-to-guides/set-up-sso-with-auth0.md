@@ -4,14 +4,14 @@ description: This guide explains how to set up single sign-on features (SSO) wit
 
 # Set up SSO with Auth0
 
-This guide expands [Set up SMARTbox](../get-started/set-up-smartbox.md).
+This guide expands [Set up SMARTbox](../get-started/set-up-smartbox-locally.md).
 
 ## Create an application in Auth0
 
-&#x20;To create an application:
+To create an application:
 
 * Login to the Auth0
-* Open the `Applications` page&#x20;
+* Open the `Applications` page
 * Press the `Create Application` button
 * Give the name of the application
 * Choose the type of application. Consider, Native type
@@ -59,12 +59,13 @@ identityProvider:
   token_endpoint: https://dev-nei1uq73.us.auth0.com/oauth/token
   client:
     id: ziW...lv0
-    secret: 7HoQ...gvb</code></pre>
+    secret: 7HoQ...gvb
+</code></pre>
 
 {% hint style="info" %}
 The URLs copied from the Auth0 are used here:
 
-* `OAuth Authorization URL as authorize_endpoint`&#x20;
+* `OAuth Authorization URL as authorize_endpoint`
 * `OAuth Token URL as token_endpoint`
 * `OAuth User Info URL as userinfo_endpoint`
 {% endhint %}

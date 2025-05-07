@@ -28,7 +28,7 @@ There are two ways the security labels appear in the request context:
 
 Aidbox parses the `scope` claim and fetches security labels. There can be multiple security labels on the scope in [space-separated list](https://datatracker.ietf.org/doc/html/rfc8693#section-4.2) format.
 
-A security label must be defined using the pattern `system|code`. \
+A security label must be defined using the pattern `system|code`.\
 Claim scope example: `"http://terminology.hl7.org/CodeSystem/v3-ActCode|PSY https://terminology.hl7.org/CodeSystem/v3-Confidentiality|M"`
 
 ### User.securityLabel
@@ -63,7 +63,7 @@ Security Labels access control is done in two steps:
 
 ### Resource-level access control
 
-If the security labels of the request context intersect with the security labels of the resource, the requester can access the resource. Otherwise, there is no access. Consider marking non-sensitive data with the security label U (unrestricted).&#x20;
+If the security labels of the request context intersect with the security labels of the resource, the requester can access the resource. Otherwise, there is no access. Consider marking non-sensitive data with the security label U (unrestricted).
 
 {% hint style="warning" %}
 If a resource has no security labels, no one can access the resource.
@@ -245,7 +245,7 @@ subject:
 
 ## Superadmin Role with Label-based Access Control
 
-As mentioned [earlier](security-labels.md#resource-level-access-control), resources without security labels cannot be accessed. This can affect the functionality of the Aidbox UI console, making resources like User, Client, Access Policy, etc. inaccessible until they are labeled.\
+As mentioned [earlier](label-based-access-control.md#resource-level-access-control), resources without security labels cannot be accessed. This can affect the functionality of the Aidbox UI console, making resources like User, Client, Access Policy, etc. inaccessible until they are labeled.\
 \
 To avoid the need to label all resources displayed in the UI console, use the `superadmin` Role.\
 \
@@ -264,6 +264,6 @@ user:
 
 ## See also
 
-{% content-ref url="../../../tutorials/security-access-control-tutorials/how-to-enable-security-labels-access-control.md" %}
-[how-to-enable-security-labels-access-control.md](../../../tutorials/security-access-control-tutorials/how-to-enable-security-labels-access-control.md)
+{% content-ref url="../../../tutorials/security-access-control-tutorials/how-to-enable-labels-based-access-control.md" %}
+[how-to-enable-labels-based-access-control.md](../../../tutorials/security-access-control-tutorials/how-to-enable-labels-based-access-control.md)
 {% endcontent-ref %}

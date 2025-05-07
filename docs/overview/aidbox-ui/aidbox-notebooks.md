@@ -10,7 +10,7 @@ description: >-
 Aidbox notebooks is a beta. Please join [the discussion](https://github.com/Aidbox/Issues/discussions/412) or [contact](../../contact-us.md) us if you want to contribute.
 {% endhint %}
 
-A notebook is a single page where you can run code ([REST](../../api/rest-api/), [SQL](../../api/rest-api/other/usdpsql.md), [RPC](../../api/other/rpc-api.md)) check the output, and complement it with text. Using Aidbox notebook you can easily create custom scenarios with your Aidbox data, save it for later use or share it with your colleagues and the Aidbox community.
+A notebook is a single page where you can run code ([REST](../../api/rest-api/), [SQL](../../api/rest-api/other/sql-endpoints.md), [RPC](../../api/other/rpc-api.md)) check the output, and complement it with text. Using Aidbox notebook you can easily create custom scenarios with your Aidbox data, save it for later use or share it with your colleagues and the Aidbox community.
 
 So now you can easily:
 
@@ -21,9 +21,9 @@ So now you can easily:
 ## **Functionality**
 
 * REST, SQL, RPC Markdown support in cells
-* [Notebook save](notebooks.md#save-a-notebook)
-* [Notebooks repository](notebooks.md#publish-notebook) - space for public notebook storage.
-* [Notebook share/preview/upload](notebooks.md#share-a-notebook)
+* [Notebook save](aidbox-notebooks.md#save-a-notebook)
+* [Notebooks repository](aidbox-notebooks.md#publish-notebook) - space for public notebook storage.
+* [Notebook share/preview/upload](aidbox-notebooks.md#share-a-notebook)
 
 ## Notebooks section in Aidbox UI
 
@@ -35,7 +35,7 @@ When clicking the notebooks tab in Aidbox UI you will get to the notebooks page.
 
 You can create a notebook by clicking **new** in the notebooks menu. Each notebook consists of a title, subtitle, and a block of cells.
 
-![New Aidbox notebook](<../../.gitbook/assets/2021-09-03_09-47-33 (1) (2) (3) (4) (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (4) (1) (2) (2) (1) (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (5).png>)
+![New Aidbox notebook](../../.gitbook/assets/2021-09-03_09-47-33%20\(1\)%20\(2\)%20\(3\)%20\(4\)%20\(4\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(4\)%20\(1\)%20\(2\)%20\(2\)%20\(1\)%20\(3\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(3\)%20\(5\).png)
 
 After you create your cell click the **play** icon to see the answer.
 
@@ -53,27 +53,27 @@ If you choose to share as a _file_, Aidbox will download the notebook as a `.htm
 
 If you choose to share as a _link_, Aidbox will generate a unique link, such as [https://aidbox.app/ExportedNotebook/fa061348-1851-4962-b39e-ba496eba23bd](https://aidbox.app/ExportedNotebook/fa061348-1851-4962-b39e-ba496eba23bd), and copy it to your clipboard. You can also share notebooks directly from the notebooks grid.\\
 
-<figure><img src="../../.gitbook/assets/image (9) (2) (1).png" alt=""><figcaption><p>Share Aidbox notebook</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image%20(9)%20(2)%20(1).png" alt=""><figcaption><p>Share Aidbox notebook</p></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-04-27 at 12.20.27.png" alt=""><figcaption><p>Snare notebook from notebook grid</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot%202023-04-27%20at%2012.20.27.png" alt=""><figcaption><p>Snare notebook from notebook grid</p></figcaption></figure>
 
 ## Preview a notebook
 
 You don't need a running Aidbox instance to preview a notebook. You can open the downloaded `.html` file in any browser and view its contents.
 
-<figure><img src="../../.gitbook/assets/image (1) (5).png" alt=""><figcaption><p>Notebook preview</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image%20(1)%20(5).png" alt=""><figcaption><p>Notebook preview</p></figcaption></figure>
 
 ## Upload a notebook
 
 To upload the notebook click `upload` button and select appropriate option.
 
-<figure><img src="../../.gitbook/assets/image (3) (4).png" alt=""><figcaption><p>Upload Aidbox notebook</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image%20(3)%20(4).png" alt=""><figcaption><p>Upload Aidbox notebook</p></figcaption></figure>
 
 If you selected `as file` option, upload notebook `.html` file
 
 If you selected `as link` option, paste the notebook share link and click `upload` button
 
-<figure><img src="../../.gitbook/assets/image (8) (1).png" alt=""><figcaption><p>Upload via link</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image%20(8)%20(1).png" alt=""><figcaption><p>Upload via link</p></figcaption></figure>
 
 ## Publish a notebook
 

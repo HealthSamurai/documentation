@@ -41,7 +41,7 @@ SQL on FHIR utilizes ViewDefinition resources to describe the structure of flat 
 
 The view is described with its name, resource type, status, and the declaration of the rows it contains. In this example, we define a flat view named `obs_view` for Observations, that will have 2 fields: `id`, defined as the Observation's id, and `pid`, defined as the subject Patient's id.
 
-This example only scratches the surface. For more complex examples, see[query-data-above-view-definitions.md](query-data-above-view-definitions.md "mention"). For an in-depth overview of ViewDefinition's structure consult[reference.md](reference.md "mention").
+This example only scratches the surface. For more complex examples, see[query-data-from-flat-views.md](query-data-from-flat-views.md "mention"). For an in-depth overview of ViewDefinition's structure consult[reference.md](reference.md "mention").
 
 ## Creating flat views
 
@@ -114,11 +114,11 @@ Features:
 * Visual builder: easy to create ViewDefinition in form;
 * Auto-complete: FHIRPath suggestions support;
 * Aidbox Portal integration: play with your data in the sandbox, interactively see the result of ViewDefinition;
-* Local Aidbox integration: pass URL and headers to send requests to local Aidbox&#x20;
+* Local Aidbox integration: pass URL and headers to send requests to local Aidbox
 
-<figure><img src="../../.gitbook/assets/image (108).png" alt=""><figcaption><p>ViewDefinition Builder: VD form, resource page, flat view</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image%20(108).png" alt=""><figcaption><p>ViewDefinition Builder: VD form, resource page, flat view</p></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (109).png" alt=""><figcaption><p>ViewDefinition Builder: VD code, resource schema page</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image%20(109).png" alt=""><figcaption><p>ViewDefinition Builder: VD code, resource schema page</p></figcaption></figure>
 
 ## Additional options
 

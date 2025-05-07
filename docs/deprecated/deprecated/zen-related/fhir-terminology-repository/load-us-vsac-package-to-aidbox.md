@@ -9,7 +9,7 @@ description: >-
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[setup.md](../../../../modules/profiling-and-validation/fhir-schema-validator/setup.md "mention")
+[setup-aidbox-with-fhir-schema-validation-engine.md](../../../../modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md "mention")
 {% endhint %}
 
 {% hint style="warning" %}
@@ -18,10 +18,10 @@ The current package is a pre-built version of the VSAC contents 0.7.0 (2022-06-1
 
 ## How to set up Aidbox with VSAC value sets
 
-To correctly set up Aidbox, we'll utilize the Aidbox configuration projects.&#x20;
+To correctly set up Aidbox, we'll utilize the Aidbox configuration projects.
 
 {% hint style="info" %}
-Check the [existing guide](broken-reference) that explains how to run Aidbox locally      &#x20;
+Check the [existing guide](broken-reference/) that explains how to run Aidbox locally
 {% endhint %}
 
 ```sh

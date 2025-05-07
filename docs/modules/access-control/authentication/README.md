@@ -21,8 +21,8 @@ OAuth 2.0 is the industry-standard protocol for authorization. Aidbox provides c
 
 Learn more about OAuth 2.0 support:&#x20;
 
-{% content-ref url="oauth-2.0.md" %}
-[oauth-2.0.md](oauth-2.0.md)
+{% content-ref url="oauth-2-0.md" %}
+[oauth-2-0.md](oauth-2-0.md)
 {% endcontent-ref %}
 
 ## Token Introspection

@@ -2,12 +2,12 @@
 description: Overview of addendum scenario
 ---
 
-# How to change data after form signing
+# Changing data after form signing
 
-There are two scenarios when you can do amendmets after signing the form.&#x20;
+There are two scenarios when you can do amendmets after signing the form.
 
 * The first one, if you can't change data then you have the ability to add the addendum note, in this case you don't need to unlock the form.
-* &#x20;The second one, if you have the ability to change data then you need to unlock the form, change data and sign the form agian.
+* The second one, if you have the ability to change data then you need to unlock the form, change data and sign the form agian.
 
 Addendum module defines new resource `SDCAddendum` which contains any additional information about `SDCWorkflow`, `SDCDocument` resources.
 
@@ -42,12 +42,10 @@ changed: false
 snapshot: {...}
 ```
 
+You can use [Addendum API](../../../deprecated/deprecated/forms/addendum-api-docs-deprecated.md)
 
-
-You can use [Addendum API](../../../reference/aidbox-forms/addendum-api.md)
-
-* [create-addendum](../../../reference/aidbox-forms/addendum-api.md#create-addendum-wip) - creates custom addendum resource for given source (SDCDocument/SDCWorkflow)
-* [add-note](../../../reference/aidbox-forms/addendum-api.md#add-note) - creates addendum Note for SDCDocument/SDCWorkflow&#x20;
-* [add-to-history](../../../reference/aidbox-forms/addendum-api.md#add-to-history) - add history addendum for resource for given status. When resource in status `completed/amended` - snapshot can be saved (if resource is differs)
-* [create-amendment ](../../../reference/aidbox-forms/addendum-api.md#create-amendment)
-* [add-comment ](../../../reference/aidbox-forms/addendum-api.md#add-comment)- add comment for document/workflow with optional path to commented value in resource
+* [create-addendum](../../../deprecated/deprecated/forms/addendum-api-docs-deprecated.md#create-addendum-wip) - creates custom addendum resource for given source (SDCDocument/SDCWorkflow)
+* [add-note](../../../deprecated/deprecated/forms/addendum-api-docs-deprecated.md#add-note) - creates addendum Note for SDCDocument/SDCWorkflow
+* [add-to-history](../../../deprecated/deprecated/forms/addendum-api-docs-deprecated.md#add-to-history) - add history addendum for resource for given status. When resource in status `completed/amended` - snapshot can be saved (if resource is differs)
+* [create-amendment](../../../deprecated/deprecated/forms/addendum-api-docs-deprecated.md#create-amendment)
+* [add-comment ](../../../deprecated/deprecated/forms/addendum-api-docs-deprecated.md#add-comment)- add comment for document/workflow with optional path to commented value in resource

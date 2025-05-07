@@ -22,20 +22,20 @@ GET [base]/ValueSet/administrative-gender/$validate-code?code=female
 
 ## Parameters
 
-| Parameter       | Type                                                                       | Status          | Example                                                            |
-| --------------- | -------------------------------------------------------------------------- | --------------- | ------------------------------------------------------------------ |
-| url             | [uri](https://www.hl7.org/fhir/datatypes.html#uri)                         | `supported`     | [url](value-set-validation.md#url-code-system-version-display)     |
-| context         | [uri](https://www.hl7.org/fhir/datatypes.html#uri)                         | `not supported` |                                                                    |
-| valueSet        | [ValueSet](https://www.hl7.org/fhir/valueset.html)                         | `supported`     | [valueSet](value-set-validation.md#valueset)                       |
-| code            | [code](https://www.hl7.org/fhir/datatypes.html#code)                       | `supported`     | [code](value-set-validation.md#url-code-system-version-display)    |
-| system          | [uri](https://www.hl7.org/fhir/datatypes.html#uri)                         | `supported`     | [system](value-set-validation.md#url-code-system-version-display)  |
-| version         | [string](https://www.hl7.org/fhir/datatypes.html#string)                   | `supported`     | [version](value-set-validation.md#url-code-system-version-display) |
-| display         | [string](https://www.hl7.org/fhir/datatypes.html#string)                   | `supported`     | [display](value-set-validation.md#url-code-system-version-display) |
-| coding          | [Coding](https://www.hl7.org/fhir/datatypes.html#Coding)                   | `supported`     | [coding](value-set-validation.md#coding)                           |
-| codeableConcept | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | `supported`     | [codeableConcept](value-set-validation.md#codeableconcept)         |
-| date            | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime)               | `not supported` |                                                                    |
-| abstract        | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean)                 | `not supported` |                                                                    |
-| displayLanguage | [code](https://www.hl7.org/fhir/datatypes.html#code)                       | `not supported` |                                                                    |
+| Parameter       | Type                                                                       | Status          | Example                                                                |
+| --------------- | -------------------------------------------------------------------------- | --------------- | ---------------------------------------------------------------------- |
+| url             | [uri](https://www.hl7.org/fhir/datatypes.html#uri)                         | `supported`     | [url](valueset-code-validation.md#url-code-system-version-display)     |
+| context         | [uri](https://www.hl7.org/fhir/datatypes.html#uri)                         | `not supported` |                                                                        |
+| valueSet        | [ValueSet](https://www.hl7.org/fhir/valueset.html)                         | `supported`     | [valueSet](valueset-code-validation.md#valueset)                       |
+| code            | [code](https://www.hl7.org/fhir/datatypes.html#code)                       | `supported`     | [code](valueset-code-validation.md#url-code-system-version-display)    |
+| system          | [uri](https://www.hl7.org/fhir/datatypes.html#uri)                         | `supported`     | [system](valueset-code-validation.md#url-code-system-version-display)  |
+| version         | [string](https://www.hl7.org/fhir/datatypes.html#string)                   | `supported`     | [version](valueset-code-validation.md#url-code-system-version-display) |
+| display         | [string](https://www.hl7.org/fhir/datatypes.html#string)                   | `supported`     | [display](valueset-code-validation.md#url-code-system-version-display) |
+| coding          | [Coding](https://www.hl7.org/fhir/datatypes.html#Coding)                   | `supported`     | [coding](valueset-code-validation.md#coding)                           |
+| codeableConcept | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | `supported`     | [codeableConcept](valueset-code-validation.md#codeableconcept)         |
+| date            | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime)               | `not supported` |                                                                        |
+| abstract        | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean)                 | `not supported` |                                                                        |
+| displayLanguage | [code](https://www.hl7.org/fhir/datatypes.html#code)                       | `not supported` |                                                                        |
 
 ### url code system version display
 

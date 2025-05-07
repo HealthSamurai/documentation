@@ -2,9 +2,9 @@
 description: Access control lists with API constructor
 ---
 
-# Access control lists (ACL)
+# Access control lists (docs/ACL)
 
-In Aidbox you can configure Access control lists using [API Constructor](../../../deprecated/deprecated/zen-related/aidbox-api-constructor.md).
+In Aidbox you can configure Access control lists using [API Constructor](../../../deprecated/deprecated/zen-related/api-constructor-docs-beta.md).
 
 `aidbox.rest.acl` provides a set of operations supporting SQL `:filter`s to be added on each request. `:filters` can be used to restrict access to resources
 
@@ -67,7 +67,7 @@ An ACL operation requires `:filter` to be specified. A `filter` requires to defi
 
 * `engine`: currently only `aidbox.rest.acl/filter-table-insert-row-sql` is supported
 * `filter-table`: zen symbol defining filter table
-* `params`: sql parameters. See [Parameter section](acl.md#parameter).
+* `params`: sql parameters. See [Parameter section](access-control-lists-docs-acl.md#parameter).
 * `values`: values to insert in row. This property value is a map in which keys are column names and values are sql substrings for values.
 
 #### Example

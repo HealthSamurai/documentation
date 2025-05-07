@@ -73,7 +73,7 @@ telecom:
 
 ```
 
-> WARN: You should have items with types - that corresponds populate values types. (see [WARN section](how-to-populate-form.md#warn))
+> WARN: You should have items with types - that corresponds populate values types. (see [WARN section](how-to-populate-forms-with-data.md#warn))
 
 We should setup items with `populate` expressions.
 
@@ -157,7 +157,7 @@ Assume that we have:
 * Patient in DB
 * Patient's `body weight` and `body height` `Observations` in DB
 
-> WARN: You should have items with types - that corresponds populate values types. (see [WARN section](how-to-populate-form.md#warn))
+> WARN: You should have items with types - that corresponds populate values types. (see [WARN section](how-to-populate-forms-with-data.md#warn))
 
 Stored `Observations` should be linked to a patient and should be coded with right terminology code (LOINC in our example)
 
@@ -312,7 +312,7 @@ Every table row should have next columns:
 * reaction (Choice input)
 * criticality (Choice input)
 
-> WARN: You should have items with types - that corresponds populate values types. (see [WARN section](how-to-populate-form.md#warn))
+> WARN: You should have items with types - that corresponds populate values types. (see [WARN section](how-to-populate-forms-with-data.md#warn))
 
 Reaction and allergy code should be taken from _Terminology_ server, in demo purposes we just set answerOptions with predefined values.
 
@@ -463,7 +463,7 @@ Assume that we have:
 * 1st Form and it's response with captured data in DB, which will be used as data source
 * 2nd Form, that should be pre-populated
 
-> WARN: You should have items with types - that corresponds populate values types. (see [WARN section](how-to-populate-form.md#warn))
+> WARN: You should have items with types - that corresponds populate values types. (see [WARN section](how-to-populate-forms-with-data.md#warn))
 
 > We are working only with 2nd form in this demo
 

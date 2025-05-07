@@ -10,8 +10,8 @@ description: >-
 
 Set up Aidbox with the FHIR Schema validation engine. Following the guide below:
 
-{% content-ref url="../../../modules/profiling-and-validation/fhir-schema-validator/setup.md" %}
-[setup.md](../../../modules/profiling-and-validation/fhir-schema-validator/setup.md)
+{% content-ref url="../../../modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md" %}
+[setup-aidbox-with-fhir-schema-validation-engine.md](../../../modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md)
 {% endcontent-ref %}
 
 ## 2. Setup UploadFIG
@@ -38,7 +38,7 @@ These steps ensure that you have the necessary tools installed and configured to
 
 ## 3. Get Bearer Access Token
 
-### 3.1 Exchange client id and client secret for Access Token &#x20;
+### 3.1 Exchange client id and client secret for Access Token
 
 To obtain an Access Token, you need to exchange your client ID and client secret. Use the following command:
 
@@ -68,7 +68,7 @@ access_token: ZjU1YjMyYTQtYWUzZi00NWU1LWFkYjctMWMxMGI4ZGYyMGVj # Access Token
 
 ## 4. Upload Implementation Guide
 
-To upload the IG, you need to specify the base URL of your Aidbox instance, along with the name and version of the package you wish to upload.&#x20;
+To upload the IG, you need to specify the base URL of your Aidbox instance, along with the name and version of the package you wish to upload.
 
 Additionally, provide the Bearer token obtained from the previous section for authentication.
 
@@ -85,8 +85,6 @@ UploadFIG \
 ```
 
 This command initiates the upload process, sending the specified IG package to your Aidbox instance
-
-
 
 Learn about other methods for loading IGs here:
 

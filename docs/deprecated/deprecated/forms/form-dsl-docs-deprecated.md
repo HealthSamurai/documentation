@@ -2,7 +2,7 @@
 hidden: true
 ---
 
-# Form DSL (deprecated)
+# Form DSL (docs deprecated)
 
 Form DSL used just to bind all DSLs to one item.
 
@@ -19,8 +19,8 @@ Form DSL used just to bind all DSLs to one item.
 * Only `document` layer is required.
 * Other layers you add only if you need special logic there.
 * `properties` can be used for
-  * forms search with `include/exclude` filter via [`aidbox.sdc/get-forms`](api-reference.md#get-forms)
-  * form conversion to Questionnaire via [`aidbox.sdc/convert-form`](api-reference.md#convert-form) and [`aidbox.sdc/convert-forms`](api-reference.md#convert-forms)
+  * forms search with `include/exclude` filter via [`aidbox.sdc/get-forms`](form-api-docs-deprecated.md#get-forms)
+  * form conversion to Questionnaire via [`aidbox.sdc/convert-form`](form-api-docs-deprecated.md#convert-form) and [`aidbox.sdc/convert-forms`](form-api-docs-deprecated.md#convert-forms)
 
 Form DSL example:
 

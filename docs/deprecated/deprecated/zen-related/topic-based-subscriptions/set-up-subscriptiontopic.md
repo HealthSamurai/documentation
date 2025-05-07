@@ -1,7 +1,7 @@
 # Set up SubscriptionTopic
 
 {% hint style="warning" %}
-While FHIR topic-based subscriptions are functional, they will no longer receive active development or new features. For enhanced capabilities and ongoing support, please use [Aidbox topic-based subscriptions](../../../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/). This newer implementation offers improved performance, flexibility, and will continue to be developed to meet future needs.&#x20;
+While FHIR topic-based subscriptions are functional, they will no longer receive active development or new features. For enhanced capabilities and ongoing support, please use [Aidbox topic-based subscriptions](../../../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/). This newer implementation offers improved performance, flexibility, and will continue to be developed to meet future needs.
 {% endhint %}
 
 This page describes how to set up SubscriptionTopic for each Topic Queue Storage type.
@@ -44,7 +44,7 @@ Check for other relevant settings in [PostgreSQL documentation](https://www.post
 
 #### AWS RDS PostgreSQL
 
-To enable a database instance hosted with [AWS RDS](https://aws.amazon.com/rds/postgresql/) to work with the SubscriptionTopic services parameter  `rds.logical_replication` should be set to `1`. One possible way to accomplish this is as follows:
+To enable a database instance hosted with [AWS RDS](https://aws.amazon.com/rds/postgresql/) to work with the SubscriptionTopic services parameter `rds.logical_replication` should be set to `1`. One possible way to accomplish this is as follows:
 
 1. Navigate to **RDS**, this should take you to the RDS Dashboard.
 2. Click **Parameter Groups** in the **Resources** panel on the dashboard.
@@ -53,15 +53,15 @@ To enable a database instance hosted with [AWS RDS](https://aws.amazon.com/rds/p
 5. Search for `rds.logical_replication` and set its value to `1`.
 6. Navigate to the database instance, click **Modify**, and in the `DB parameter group` menu select the parameter group created in Step 3.
 
-<figure><img src="../../../../.gitbook/assets/image (99).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image%20(99).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (102).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image%20(102).png" alt=""><figcaption></figcaption></figure>
 
 To check that the setting is applied run query `SHOW wal_level;` he result should be `logical`.
 
 #### Azure Database for PostgreSQL - Flexible Server <a href="#logical-replication-and-logical-decoding-in-azure-database-for-postgresql---flexible-server" id="logical-replication-and-logical-decoding-in-azure-database-for-postgresql---flexible-server"></a>
 
-Setup your database instance according to  [the official guide ](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/concepts-logical#prerequisites-for-logical-replication-and-logical-decoding)(Prerequisites for logical replication and logical decoding):
+Setup your database instance according to [the official guide ](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/concepts-logical#prerequisites-for-logical-replication-and-logical-decoding)(Prerequisites for logical replication and logical decoding):
 
 1. Go to server parameters page on the portal.
 2. Set the server parameter `wal_level` to `logical`.
@@ -69,14 +69,13 @@ Setup your database instance according to  [the official guide ](https://learn.m
 4. Save the changes and restart the server to apply the changes.
 5.  Grant the user with which Aidbox connects to the database replication permissions: SQLCopy.
 
-    ```SQL
+    ```sql
     ALTER ROLE <username> WITH REPLICATION;
     ```
 
-<figure><img src="../../../../.gitbook/assets/image (98).png" alt=""><figcaption><p>Server Parameters</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image%20(98).png" alt=""><figcaption><p>Server Parameters</p></figcaption></figure>
 
-\
-
+\\
 
 ## Topic Definition configuration
 
@@ -92,7 +91,7 @@ Topic Definition is a zen schema which is tagged with **`fhir.topic-based-subscr
     * `resource`
     * `filterParameter`
     * `modifier`
-    * `_fhirPath`&#x20;
+    * `_fhirPath`
 
     Example:
 
@@ -121,40 +120,40 @@ Topic Definition is a zen schema which is tagged with **`fhir.topic-based-subscr
 
 Topic storage specifies where to store and how to process events queue.
 
-It is zen schema tagged with **`fhir.topic-based-subscription/topic-storage`**, containing:&#x20;
+It is zen schema tagged with **`fhir.topic-based-subscription/topic-storage`**, containing:
 
-* **storage-type**:   Choose one of the following:
+* **storage-type**: Choose one of the following:
   * _PostgreSQL_: `fhir.topic-based-subscription/postgres`
   * _Google Pub/Sub_: `fhir.topic-based-subscription/gcp-pubsub`
   * _Aidbox Workflow Engine Connector_: `fhir.topic-based-subscription/awf-connector`
-* **heartbeat-rate**:  Heartbeat rate requested for current storage in sec. Default is 10sec.
-* **timeout**:  Timeout value for batching in seconds
-* **maxCount**:  Max number of resources to hold on in Aidbox before timeout (batch sending)
-* **maxContent**:  `empty`, `id-only` or `full-resource`. Defines the permission of how much the event messages of Subscription can have information about the triggered resource.  It isn't allowed to create Subscriptions with `Subscription.content` value that requires more content tha`maxContent` value of its own topic.  Default is `empty`.
-* **include-transaction**:  For tests purposes. Turns on includeTransaction replication slot option. Default is false
-* **fhirpath-ignore-on-error**:  Ignore FhirPath execution errors on persisting queues.
-* **status-interval**:  For test purpose mainly. Specifies the number of time between status packets sent back to the server. This allows for easier monitoring of the progress from server. A value of zero disables the periodic status updates completely, although an update will still be sent when requested by the server, to avoid timeout disconnect. The default value is 10 seconds.
+* **heartbeat-rate**: Heartbeat rate requested for current storage in sec. Default is 10sec.
+* **timeout**: Timeout value for batching in seconds
+* **maxCount**: Max number of resources to hold on in Aidbox before timeout (batch sending)
+* **maxContent**: `empty`, `id-only` or `full-resource`. Defines the permission of how much the event messages of Subscription can have information about the triggered resource. It isn't allowed to create Subscriptions with `Subscription.content` value that requires more content tha`maxContent` value of its own topic. Default is `empty`.
+* **include-transaction**: For tests purposes. Turns on includeTransaction replication slot option. Default is false
+* **fhirpath-ignore-on-error**: Ignore FhirPath execution errors on persisting queues.
+* **status-interval**: For test purpose mainly. Specifies the number of time between status packets sent back to the server. This allows for easier monitoring of the progress from server. A value of zero disables the periodic status updates completely, although an update will still be sent when requested by the server, to avoid timeout disconnect. The default value is 10 seconds.
 
 In addition to the above, there are several properties for each specific **storage-type**.
 
-For _PostgreSQL_:&#x20;
+For _PostgreSQL_:
 
-* **table-name**:  Name for table to store events
-* **senders-number**:  Number of services that deliver subsctiptions.
+* **table-name**: Name for table to store events
+* **senders-number**: Number of services that deliver subsctiptions.
 
-For _Google Pub/Sub_:&#x20;
+For _Google Pub/Sub_:
 
-* **topic-name**:  Topic name in GCP.
-* **bytes-threshold**:  Max bytes to hold until publishing. Default is 10000.
-* **project-name**:  Project name in GCP.
-* **enable-message-ordering**:  If true, enables message ordering. Uses focusResourceType and focusId as messageOrderingKey. Applied only when maxContent is 'id-only' or 'full-resource'.
+* **topic-name**: Topic name in GCP.
+* **bytes-threshold**: Max bytes to hold until publishing. Default is 10000.
+* **project-name**: Project name in GCP.
+* **enable-message-ordering**: If true, enables message ordering. Uses focusResourceType and focusId as messageOrderingKey. Applied only when maxContent is 'id-only' or 'full-resource'.
 
-For _Aidbox Workflow Engine Connector_:&#x20;
+For _Aidbox Workflow Engine Connector_:
 
 * **rules**: Trigger rule for Task/Workflow. Either `task` or `workflow` below should be used to indicate which activity should be triggered.
-  * **filterBy**:  The list of filtering criteria for events on Topic (has the same properties as[ FHIR Subscription.filterBy](https://www.hl7.org/fhir/subscription-definitions.html#Subscription.filterBy): `resourceType`, `filterParameter`, `comparator`, `modifier`, `value`) &#x20;
-  * **task**:  Indicate which Task should be triggered by `definition` field.
-  * **workflow**:  Indicate which Workflow should be triggered by `definition` field.
+  * **filterBy**: The list of filtering criteria for events on Topic (has the same properties as[ FHIR Subscription.filterBy](https://www.hl7.org/fhir/subscription-definitions.html#Subscription.filterBy): `resourceType`, `filterParameter`, `comparator`, `modifier`, `value`)
+  * **task**: Indicate which Task should be triggered by `definition` field.
+  * **workflow**: Indicate which Workflow should be triggered by `definition` field.
 
 Example:
 
@@ -176,19 +175,17 @@ Example:
 
 ####
 
-## Configuration Examples&#x20;
+## Configuration Examples
 
 Examples of an Aidbox entry point for each storage type, configured with one topic:
 
-[#postgresql-queue-storage](setup-subscriptiontopic.md#postgresql-queue-storage "mention")
+[#postgresql-queue-storage](set-up-subscriptiontopic.md#postgresql-queue-storage "mention")
 
-[#google-cloud-pub-sub](setup-subscriptiontopic.md#google-cloud-pub-sub "mention")
+[#google-cloud-pub-sub](set-up-subscriptiontopic.md#google-cloud-pub-sub "mention")
 
-[#aidbox-workflow-engine-connector](setup-subscriptiontopic.md#aidbox-workflow-engine-connector "mention")
+[#aidbox-workflow-engine-connector](set-up-subscriptiontopic.md#aidbox-workflow-engine-connector "mention")
 
-
-
-### PostgreSQL Queue Storage&#x20;
+### PostgreSQL Queue Storage
 
 {% code lineNumbers="true" fullWidth="false" %}
 ```clojure
@@ -369,8 +366,6 @@ Examples of an Aidbox entry point for each storage type, configured with one top
      
 </code></pre>
 
-
-
 ## Verify the SubscriptionTopic is available
 
 * Run Aidbox and check logs for the following output
@@ -482,4 +477,4 @@ accept: application/json
 
 * Open Aidbox UI -> Subscription Topics to check the topic status
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image%20(1)%20(1)%20(1)%20(1).png" alt=""><figcaption></figcaption></figure>

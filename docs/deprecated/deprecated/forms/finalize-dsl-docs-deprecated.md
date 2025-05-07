@@ -2,7 +2,7 @@
 hidden: true
 ---
 
-# Finalize DSL (deprecated)
+# Finalize DSL (docs deprecated)
 
 Finalize definition describes document validation and postprocessing logic that invoked on sign:
 
@@ -73,7 +73,7 @@ Example of `Finalize` document:
 
 ### `:create/:delete/:patch` and LISP expressions
 
-[LISP sub-language](lisp.md) is used to specify expressions which transform data of the document into FHIR resources (e.g. Observations).
+[LISP sub-language](lisp-docs-deprecated.md) is used to specify expressions which transform data of the document into FHIR resources (e.g. Observations).
 
 Inside of `:create` structure, LISP's `get-in` function is used to access data in the document. Other LISP functions are used to transform the data correspondingly and create a FHIR resource object (see an example above) Also in `:create` structure you can use lisp templates to avoid repetitions for extracting common resources (e.g. Observations)
 

@@ -3,7 +3,7 @@
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[setup.md](../../../../modules/profiling-and-validation/fhir-schema-validator/setup.md "mention")
+[setup-aidbox-with-fhir-schema-validation-engine.md](../../../../modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md "mention")
 {% endhint %}
 
 [Aidbox Configuration project](../aidbox-zen-lang-project/) is used to configure Aidbox with various features. One of the things it’s used for is providing Aidbox with external terminologies.
@@ -25,7 +25,7 @@ This approach is deprecated. Its support may end in the near future.
 Specify path or url to zen terminology bundle in [`AIDBOX_ZEN_PATHS` environment variable](https://docs.aidbox.app/aidbox-configuration/aidbox-zen-lang-project#load-project-using-environment-variables).\
 Source is either `url` or `path`. `url` is used to download Aidbox project from a remote location; `path` is used to load Aidbox project from the filesystem.\
 \
-Aidbox imports terminology bundles found in zen paths. Bundles are just `.ndjson.gz` files with filenames matching `*terminology-bundle.ndjson.gz` wildcard. By default, the import is done asynchronously and you can [track the progress](import-using-an-aidbox-project.md#undefined). In some cases (e.g CI/CD pipeline) you might want to override such behavior. Setting `BOX_FEATURES_TERMINOLOGY_IMPORT_SYNC` environment variable will change the import mode to synchronous.
+Aidbox imports terminology bundles found in zen paths. Bundles are just `.ndjson.gz` files with filenames matching `*terminology-bundle.ndjson.gz` wildcard. By default, the import is done asynchronously and you can [track the progress](import-via-ftr.md#undefined). In some cases (e.g CI/CD pipeline) you might want to override such behavior. Setting `BOX_FEATURES_TERMINOLOGY_IMPORT_SYNC` environment variable will change the import mode to synchronous.
 
 ### Import terminology bundle from local system using Aidbox project
 
@@ -40,10 +40,10 @@ AIDBOX_ZEN_PATHS=path:dir:/my/aidbox/project
 BOX_FEATURES_FTR_PULL_ENABLE=true
 ```
 
-You can read more about [AIDBOX\_ZEN\_PATHS](../aidbox-zen-lang-project/aidbox-project-environment-variables/) and [BOX\_FEATURES\_FTR\_PULL\_ENABLE](../ftr.md) in our [configuration reference](broken-reference).
+You can read more about [AIDBOX\_ZEN\_PATHS](../aidbox-zen-lang-project/aidbox-project-environment-variables/) and [BOX\_FEATURES\_FTR\_PULL\_ENABLE](../ftr.md) in our [configuration reference](broken-reference/).
 
 {% hint style="warning" %}
-Make sure that your Aidbox container [has access to the specified path](../profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile.md#setup-devbox-to-use-zen-project) on your system.
+Make sure that your Aidbox container [has access to the specified path](broken-reference) on your system.
 {% endhint %}
 
 ### Import terminology bundle from a remote location

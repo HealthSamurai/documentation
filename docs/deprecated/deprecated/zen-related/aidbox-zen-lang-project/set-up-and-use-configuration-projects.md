@@ -8,9 +8,9 @@ Since the 2405 release, using Aidbox in FHIR schema validation engine is recomme
 
 Aidbox Configuration project requires a few things:
 
-* [Project folder](setting-up-a-configuration-project.md#create-configuration-project-folder), which wraps all the necessary files required for a project package to function.
-* [Package file](setting-up-a-configuration-project.md#list-project-dependencies), which lists project’s dependencies.
-* [Entrypoint symbol](setting-up-a-configuration-project.md#set-entrypoint-for-system-configuration), which points to settings and services for an instance under configuration.
+* [Project folder](set-up-and-use-configuration-projects.md#create-configuration-project-folder), which wraps all the necessary files required for a project package to function.
+* [Package file](set-up-and-use-configuration-projects.md#list-project-dependencies), which lists project’s dependencies.
+* [Entrypoint symbol](set-up-and-use-configuration-projects.md#set-entrypoint-for-system-configuration), which points to settings and services for an instance under configuration.
 
 {% hint style="info" %}
 We provide a CLI tool, called `zen`, which makes working with projects easier. It is distributed as `jar` file and can be downloaded from our [zen Github releases](https://github.com/HealthSamurai/ftr/releases).
@@ -38,7 +38,7 @@ Aidbox can load project from an URL or read directly from its file system.
 * `BOX_PROJECT_GIT_PROTOCOL` — either `https` or `ssh`. Assumes local dir if omitted.
 * `BOX_PROJECT_GIT_TARGET__PATH` — where to clone your project to and where to read it from. Default value is a directory in `/tmp`
 
-If you specify only the target path then Aidbox expects you to clone a project into this location before it starts. This allows mounting persistent file system cache and using local file system for development. See [tips for development](setting-up-a-configuration-project.md#tips-for-development) and [tips for production](setting-up-a-configuration-project.md#tips-for-production).
+If you specify only the target path then Aidbox expects you to clone a project into this location before it starts. This allows mounting persistent file system cache and using local file system for development. See [tips for development](set-up-and-use-configuration-projects.md#tips-for-development) and [tips for production](set-up-and-use-configuration-projects.md#tips-for-production).
 
 ### Private repositories as projects
 
@@ -97,7 +97,7 @@ AIDBOX_ZEN_ENTRYPOINT=system/box
 {% hint style="info" %}
 Besides system environment variables for setting up aidbox configuration project, there are many other envs Aidbox respects as part of backward compatibility. Still they are considered as legacy.
 
-It's more preferable to set up Aidbox with [aidbox.config/config](aidbox-project-environment-variables/aidbox.config-config.md). You may provide it with `aidbox/system`
+It's more preferable to set up Aidbox with [aidbox.config/config](aidbox-project-environment-variables/aidbox-config-config.md). You may provide it with `aidbox/system`
 
 {% code title="zrc/system.edn" overflow="wrap" %}
 ```clojure
@@ -148,7 +148,7 @@ AIDBOX_ZEN_DEV_MODE=true
 
 You can also use Aidbox UI to reload namespaces: proceed to `Profiles` page on the left sidebar and click the reload button in the upper left corner.
 
-Additionally, there’s [`aidbox.zen/reload-namespaces`](aidbox-project-environment-variables/aidbox-project.md#aidbox.zen-reload-namespaces) RPC method that does the same thing.
+Additionally, there’s [`aidbox.zen/reload-namespaces`](aidbox-project-environment-variables/aidbox-project-rpc-reference.md#aidbox.zen-reload-namespaces) RPC method that does the same thing.
 
 ```yaml
 POST /rpc
@@ -207,4 +207,4 @@ AIDBOX_ZEN_PATHS=path:package-dir:path/to/unpacked-zip-content
 
 Since configuration projects are just git repositories you can publish them in any git registry and other people will be able to use them for their own configurations: either as a standalone project or as a dependency.
 
-If your repository is available only under a restricted access, others will need to [set the appropriate environment variables so that Aidbox is able to access it](setting-up-a-configuration-project.md#private-repositories-as-projects).
+If your repository is available only under a restricted access, others will need to [set the appropriate environment variables so that Aidbox is able to access it](set-up-and-use-configuration-projects.md#private-repositories-as-projects).

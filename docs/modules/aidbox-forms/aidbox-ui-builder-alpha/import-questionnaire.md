@@ -45,7 +45,7 @@ This scenario is ideal for users who have paper forms or fillable PDFs that they
 Your OpenAI API key is used securely and remains private. It is neither transferred nor stored on any backend servers or third-party services. All interactions with OpenAI happen locally in your browser, ensuring your API key is protected throughout the process.
 {% endhint %}
 
-There's the [API for generating a form (Questionnaire resource) from a PDF-file](../../../reference/aidbox-forms/generating-forms-from-pdf.md) using AI.
+There's the [API for generating a form (Questionnaire resource) from a PDF-file](../../../reference/aidbox-forms-reference/generating-questionnaire-from-pdf-api.md) using AI.
 
 ### **3. Pasting JSON Directly into the JSON Area**
 
@@ -71,11 +71,11 @@ If you already have a prepared JSON structure, you can paste it directly into th
 3. **Importing the Questionnaire:**
    * Once the JSON is valid and free of errors, the **Import** button becomes active.
    * Pressing the **Import** button creates the questionnaire in the system and opens it in the **questionnaire builder** for further customization or use.
-4.  **Re-generation from PDF and insertion of a part of the form into an existing form:**&#x20;
+4.  **Re-generation from PDF and insertion of a part of the form into an existing form:**
 
     When converting a form from a PDF, if some data is lost or not fully converted, the user can cut out the necessary part of the form, generate the piece, and insert it into the desired location within the existing form.
 
-    1. After opening the form in the UI builder, go to the action menu and select the option  **AI** **Tools**.
+    1. After opening the form in the UI builder, go to the action menu and select the option **AI** **Tools**.
     2. A new panel will open on the right side of the screen, allowing the user to upload a PDF.
     3. Upload the PDF file and then select the part of the form. Cut out this section and convert into an electronic representation using the `generate`button. To use this feature, the user needs to provide an OpenAI or Google Generative AI API key.
     4. In the outline, select where to insert the extracted part of the form. Click the `Insert` button. By default, if the insertion point is not selected, the new part will be added at the end of the form as a group. This group can be ungrouped if needed.

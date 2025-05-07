@@ -2,7 +2,7 @@
 hidden: true
 ---
 
-# Layout DSL (deprecated)
+# Layout DSL (docs deprecated)
 
 {% hint style="danger" %}
 Layout DSL is still under development and unstable
@@ -12,11 +12,11 @@ Layout DSL can be changed with layout-engine. Default layout-engine described he
 
 There are three types of layout nodes:
 
-* [Container node](layout-dsl.md#container-node)
-* [Input node](layout-dsl.md#input-node)
-* [Subform](layout-dsl.md#subforms)
+* [Container node](layout-dsl-docs-deprecated.md#container-node)
+* [Input node](layout-dsl-docs-deprecated.md#input-node)
+* [Subform](layout-dsl-docs-deprecated.md#subforms)
 
-You can also set [Layout rules](layout-dsl.md#layout-rules) or [Customize node view](layout-dsl.md#customize-node-view).
+You can also set [Layout rules](layout-dsl-docs-deprecated.md#layout-rules) or [Customize node view](layout-dsl-docs-deprecated.md#customize-node-view).
 
 ## Container node
 
@@ -33,7 +33,7 @@ Typical description of node:
 
 ## File input
 
-Allows user to attach a file to the document. Must be binded to a key with [`aidbox.sdc/attachment`](document-dsl.md#attachment-field-type) type in document.
+Allows user to attach a file to the document. Must be binded to a key with [`aidbox.sdc/attachment`](document-dsl-docs-deprecated.md#attachment-field-type) type in document.
 
 ```clojure
 {:type aidbox.sdc/file-input

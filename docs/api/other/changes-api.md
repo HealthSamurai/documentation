@@ -7,7 +7,7 @@ description: Simple API to react on resource changes
 {% hint style="warning" %}
 Changes API is prone to race conditions.
 
-Please review [#possible-race-condition](usdsnapshot-usdwatch-and-usdversions-api.md#possible-race-condition "mention") section. It outlines scenarios that could lead to event loss and suggests potential solutions to mitigate this risk.
+Please review [#possible-race-condition](changes-api.md#possible-race-condition "mention") section. It outlines scenarios that could lead to event loss and suggests potential solutions to mitigate this risk.
 {% endhint %}
 
 Changes API can be used to get changes of resourceType or specific resource by versions. Each event (creating, updating, deleting) will increase version of the resource by 1.
@@ -199,8 +199,7 @@ Consider a scenario where we have two database transactions: **transaction-1**, 
 In this scenario, let's assume **transaction-1** starts first, retrieving the value `99` from a database sequence object for `txid`. **Transaction-2** then starts and retrieves the next sequence value, `100`, for its `txid`. Although **transaction-1** started earlier, both transactions are processed concurrently in the database, which may result in **transaction-2** being committed before **transaction-1**.
 
 \
-If the `$changes` API is called after **transaction-2** has been committed but before **transaction-1** has been committed, the response will look like this:\
-
+If the `$changes` API is called after **transaction-2** has been committed but before **transaction-1** has been committed, the response will look like this:\\
 
 <pre class="language-yaml"><code class="lang-yaml">GET /Patient/$changes?version=98&#x26;omit-resources=true
 <strong>Accept: text/yaml
@@ -219,4 +218,3 @@ If the missing a single event is crucial for your situation, the potential solut
 
 1. Periodically re-read all changes to ensure no events have been missed.
 2. Implement the solution based on [wip-dynamic-subscriptiontopic-with-destinations](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/ "mention") which can provide you `at-least-once` delivery guaranties.
-

@@ -419,7 +419,7 @@ valueBoolean: true
 
 Application name that will be used in Audit logging when returned link was used.
 
-> Audit logging should be enabled via [configuartion](../../tutorials/security-access-control-tutorials/setup-audit-logging.md)
+> Audit logging should be enabled via [configuartion](../../tutorials/security-access-control-tutorials/how-to-configure-audit-log.md)
 
 ```yaml
 name: app-name
@@ -634,4 +634,4 @@ The use of standardized codes is useful when data needs to be populated into the
 
 The `expand` operation expand given ValueSet in to set of concepts.
 
-This operation is described in detail [here](../../modules/terminology/valueset/value-set-expansion.md).
+This operation is described in detail [here](../../modules/terminology/valueset/valueset-expansion.md).

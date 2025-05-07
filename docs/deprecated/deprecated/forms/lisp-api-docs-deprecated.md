@@ -2,10 +2,10 @@
 hidden: true
 ---
 
-# Lisp API (deprecated)
+# Lisp API (docs deprecated)
 
-* [lisp/get-specification](lisp-api.md#lisp-get-specification) - get the specification which is distributed in form of a test suite
-* [lisp/eval-lisp](lisp-api.md#lisp-eval-lisp) - evaluate lisp expression within the provided execution context (`data` or `resource`).
+* [lisp/get-specification](lisp-api-docs-deprecated.md#lisp-get-specification) - get the specification which is distributed in form of a test suite
+* [lisp/eval-lisp](lisp-api-docs-deprecated.md#lisp-eval-lisp) - evaluate lisp expression within the provided execution context (`data` or `resource`).
 
 ### lisp/get-specification
 

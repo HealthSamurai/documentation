@@ -5,7 +5,7 @@ description: This guide explains how to set up RBAC with ACL
 # RBAC with ACL
 
 {% hint style="info" %}
-This guide is based on the [Access control list (ACL)](../../../modules/security-and-access-control/security/acl.md)
+This guide is based on the [Access control list (ACL)](../../../modules/security-and-access-control/security/access-control-lists-docs-acl.md)
 {% endhint %}
 
 ## The goal

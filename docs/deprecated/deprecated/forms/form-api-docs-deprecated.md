@@ -2,34 +2,34 @@
 hidden: true
 ---
 
-# Form API (deprecated)
+# Form API (docs deprecated)
 
 ## Form API
 
-* [`aidbox.sdc/convert-questionnaire`](api-reference.md#convert-questionnaire)- converts FHIR Questionnaire to Aidbox SDC Form
-* [`aidbox.sdc/convert-form`](api-reference.md#convert-form) - converts Aidbox Form to FHIR Questionnaire
-* [`aidbox.sdc/convert-forms`](api-reference.md#convert-forms) - converts Aidbox Forms to FHIR Questionnaire resources
-* [`aidbox.sdc/generate-form-template`](api-reference.md#generate-form-template) - genereate form from scratch
-* [`aidbox.sdc/generate-form-layout`](api-reference.md#generate-form-layout) - generate form layout
-* [`aidbox.sdc/generate-form-constraints`](api-reference.md#generate-form-constraints) - generate constraints schema
-* [`aidbox.sdc/generate-form-finalize`](api-reference.md#generate-form-finalize) - generate finalize with extractions
-* [`aidbox.sdc/get-form-properties`](api-reference.md#get-form-properties) - get form related properties
-* [`aidbox.sdc/add-form-properties`](api-reference.md#add-form-properties) - add form dynamic properties
-* [`aidbox.sdc/delete-form-properties`](api-reference.md#delete-form-properties) - delete form dynamic properties
-* [`aidbox.sdc/get-forms`](api-reference.md#get-forms) - get existed forms
-* [`aidbox.sdc/get-form`](api-reference.md#get-form) - get form definition for given form name
-* [`aidbox.sdc/launch`](api-reference.md#launch) - launch new form with given params
+* [`aidbox.sdc/convert-questionnaire`](form-api-docs-deprecated.md#convert-questionnaire)- converts FHIR Questionnaire to Aidbox SDC Form
+* [`aidbox.sdc/convert-form`](form-api-docs-deprecated.md#convert-form) - converts Aidbox Form to FHIR Questionnaire
+* [`aidbox.sdc/convert-forms`](form-api-docs-deprecated.md#convert-forms) - converts Aidbox Forms to FHIR Questionnaire resources
+* [`aidbox.sdc/generate-form-template`](form-api-docs-deprecated.md#generate-form-template) - genereate form from scratch
+* [`aidbox.sdc/generate-form-layout`](form-api-docs-deprecated.md#generate-form-layout) - generate form layout
+* [`aidbox.sdc/generate-form-constraints`](form-api-docs-deprecated.md#generate-form-constraints) - generate constraints schema
+* [`aidbox.sdc/generate-form-finalize`](form-api-docs-deprecated.md#generate-form-finalize) - generate finalize with extractions
+* [`aidbox.sdc/get-form-properties`](form-api-docs-deprecated.md#get-form-properties) - get form related properties
+* [`aidbox.sdc/add-form-properties`](form-api-docs-deprecated.md#add-form-properties) - add form dynamic properties
+* [`aidbox.sdc/delete-form-properties`](form-api-docs-deprecated.md#delete-form-properties) - delete form dynamic properties
+* [`aidbox.sdc/get-forms`](form-api-docs-deprecated.md#get-forms) - get existed forms
+* [`aidbox.sdc/get-form`](form-api-docs-deprecated.md#get-form) - get form definition for given form name
+* [`aidbox.sdc/launch`](form-api-docs-deprecated.md#launch) - launch new form with given params
 
 ## Document API
 
-* [`aidbox.sdc/read-document`](api-reference.md#read-document) - get form with saved document
-* [`aidbox.sdc/save`](api-reference.md#save) - save document
-* [`aidbox.sdc/sign`](api-reference.md#sign) - finalize document, run extracts
-* [`aidbox.sdc/convert-document`](api-reference.md#aidbox.sdc-convert-document) - converts SDCDocument to FHIR QuestionnaireResponse
-* [`aidbox.sdc/get-form-access-jwt`](api-reference.md#aidbox.sdc-get-form-access-jwt)- creates policy token for form
-* [`aidbox.sdc/generate-form-link`](api-reference.md#aidbox.sdc-generate-form-link) - creates shared form link
-* [`aidbox.sdc/amend`](api-reference.md#amend) - put document to in-amendment state. Used for corrections
-* [`aidbox.sdc/add-note`](api-reference.md#add-note) - add note as addendum to the given document
+* [`aidbox.sdc/read-document`](form-api-docs-deprecated.md#read-document) - get form with saved document
+* [`aidbox.sdc/save`](form-api-docs-deprecated.md#save) - save document
+* [`aidbox.sdc/sign`](form-api-docs-deprecated.md#sign) - finalize document, run extracts
+* [`aidbox.sdc/convert-document`](form-api-docs-deprecated.md#aidbox.sdc-convert-document) - converts SDCDocument to FHIR QuestionnaireResponse
+* [`aidbox.sdc/get-form-access-jwt`](form-api-docs-deprecated.md#aidbox.sdc-get-form-access-jwt)- creates policy token for form
+* [`aidbox.sdc/generate-form-link`](form-api-docs-deprecated.md#aidbox.sdc-generate-form-link) - creates shared form link
+* [`aidbox.sdc/amend`](form-api-docs-deprecated.md#amend) - put document to in-amendment state. Used for corrections
+* [`aidbox.sdc/add-note`](form-api-docs-deprecated.md#add-note) - add note as addendum to the given document
 
 ###
 
@@ -160,8 +160,8 @@ params:
 > *
 >   * to use include-scores and describe-rules options you need to import `aidbox.sdc.extra` namespace in configuration project
 
-* To save Questionnaire to resource you should specify `:fhir/id` property in the [`Form DSL`](form-dsl.md#properties-for-conversion)
-* To specify additional fields that are represented in Questionnaire but not in the Form DSL - you can use predefined form properties for that [`Form DSL`](form-dsl.md#properties-for-conversion)
+* To save Questionnaire to resource you should specify `:fhir/id` property in the [`Form DSL`](form-dsl-docs-deprecated.md#properties-for-conversion)
+* To specify additional fields that are represented in Questionnaire but not in the Form DSL - you can use predefined form properties for that [`Form DSL`](form-dsl-docs-deprecated.md#properties-for-conversion)
 
 Request:
 
@@ -1149,7 +1149,7 @@ Redirect urls can be specified for different actions.
 
 Params:
 
-<table><thead><tr><th>Param</th><th>Description</th><th>Type</th><th data-type="checkbox">required?</th><th>Default</th></tr></thead><tbody><tr><td>form</td><td>link to the form in DB</td><td>Map</td><td>true</td><td></td></tr><tr><td>form.id</td><td>SDCDocument/SDCWorkflow id</td><td>String</td><td>true</td><td></td></tr><tr><td>form.resourceType</td><td></td><td>SDCDocument/SDCWorkflow</td><td>true</td><td></td></tr><tr><td>redirect-on-sign</td><td>URI that used after form sign/amend event for redirect</td><td>URI</td><td>false</td><td></td></tr><tr><td>redirect-button</td><td>URI that used after Save or Close button is pressed</td><td>URI</td><td>false</td><td></td></tr><tr><td>theme</td><td>Theme that will be applied to form.<br>See <a data-mention href="../../modules/aidbox-forms/aidbox-code-editor/how-to-customize-form-appearance.md">how-to-customize-form-appearance.md</a></td><td>String</td><td>false</td><td></td></tr><tr><td>show-rules</td><td>Show calculated fields formulas</td><td>true | false | readable</td><td>false</td><td>false</td></tr><tr><td>allow-amend</td><td>Allow amend signed shared from</td><td>true | false</td><td>false</td><td>false</td></tr></tbody></table>
+<table><thead><tr><th>Param</th><th>Description</th><th>Type</th><th data-type="checkbox">required?</th><th>Default</th></tr></thead><tbody><tr><td>form</td><td>link to the form in DB</td><td>Map</td><td>true</td><td></td></tr><tr><td>form.id</td><td>SDCDocument/SDCWorkflow id</td><td>String</td><td>true</td><td></td></tr><tr><td>form.resourceType</td><td></td><td>SDCDocument/SDCWorkflow</td><td>true</td><td></td></tr><tr><td>redirect-on-sign</td><td>URI that used after form sign/amend event for redirect</td><td>URI</td><td>false</td><td></td></tr><tr><td>redirect-button</td><td>URI that used after Save or Close button is pressed</td><td>URI</td><td>false</td><td></td></tr><tr><td>theme</td><td>Theme that will be applied to form.<br>See <a data-mention href="../../../modules/aidbox-forms/aidbox-code-editor/form-customisation.md">form-customisation.md</a></td><td>String</td><td>false</td><td></td></tr><tr><td>show-rules</td><td>Show calculated fields formulas</td><td>true | false | readable</td><td>false</td><td>false</td></tr><tr><td>allow-amend</td><td>Allow amend signed shared from</td><td>true | false</td><td>false</td><td>false</td></tr></tbody></table>
 
 Request:
 
@@ -1222,7 +1222,7 @@ error:
 Add Addendum Note to the given Document. This is the preferred way to add Notes to Documents.
 
 {% hint style="info" %}
-Use this API (`aidbox.sdc/add-note`) instead of the low-level [Addendum API (`aidbox.sdc.addendum/add-note`)](addendum-api.md#add-note)
+Use this API (`aidbox.sdc/add-note`) instead of the low-level [Addendum API (`aidbox.sdc.addendum/add-note`)](addendum-api-docs-deprecated.md#add-note)
 {% endhint %}
 
 Params:

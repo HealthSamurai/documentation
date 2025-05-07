@@ -6,12 +6,12 @@ Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is
 [Setup Aidbox with FHIR Schema validation engine](../../../modules/profiling-and-validation/fhir-schema-validator/)
 {% endhint %}
 
-In Aidbox there are two ways to define first-class extensions:&#x20;
+In Aidbox there are two ways to define first-class extensions:
 
-* Using [Zen profiles](first-class-extensions.md#first-class-extension-as-zen-profile)
-* Using [Attribute](first-class-extensions.md#define-new-extension)
+* Using [Zen profiles](first-class-extensions-using-attribute.md#first-class-extension-as-zen-profile)
+* Using [Attribute](first-class-extensions-using-attribute.md#define-new-extension)
 
-If you're using Aidbox with zen, all resources will be validated by zen, not Attributes. In this case, you should use zen profiles.&#x20;
+If you're using Aidbox with zen, all resources will be validated by zen, not Attributes. In this case, you should use zen profiles.
 
 If you don't use zen, you can use Attributes.
 
@@ -56,7 +56,7 @@ extensionUrl: urn:extension:requestedOrganizationDepartment
 
     Whether the attribute is required, i.e. if `true` sets attribute cardinality to `1..`
 * `isUnique` - _boolean_.\
-  Sets unique restriction on the attribute.&#x20;
+  Sets unique restriction on the attribute.
 *   `refers` - _Reference(Entity)_.
 
     Only for type=Reference. Specifies to which resourceTypes this reference can refer to

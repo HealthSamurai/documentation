@@ -16,14 +16,14 @@ URL: [base]/CodeSystem/[id]/$subsumes
 
 ## Parameters
 
-| Parameter | Type                                                     | Status          | Example                                      |
-| --------- | -------------------------------------------------------- | --------------- | -------------------------------------------- |
-| codeA     | [code](https://www.hl7.org/fhir/datatypes.html#code)     | `supported`     | [code](subsumption-testing.md#with-code)     |
-| codeB     | [code](https://www.hl7.org/fhir/datatypes.html#code)     | `supported`     | [code](subsumption-testing.md#with-code)     |
-| system    | [uri](https://www.hl7.org/fhir/datatypes.html#uri)       | `supported`     | [system](subsumption-testing.md#with-code)   |
-| codingA   | [Coding](https://www.hl7.org/fhir/datatypes.html#Coding) | `supported`     | [coding](subsumption-testing.md#with-coding) |
-| codingB   | [Coding](https://www.hl7.org/fhir/datatypes.html#Coding) | `supported`     | [coding](subsumption-testing.md#with-coding) |
-| version   | [string](https://www.hl7.org/fhir/datatypes.html#string) | `not supported` | -                                            |
+| Parameter | Type                                                     | Status          | Example                                                 |
+| --------- | -------------------------------------------------------- | --------------- | ------------------------------------------------------- |
+| codeA     | [code](https://www.hl7.org/fhir/datatypes.html#code)     | `supported`     | [code](codesystem-subsumption-testing.md#with-code)     |
+| codeB     | [code](https://www.hl7.org/fhir/datatypes.html#code)     | `supported`     | [code](codesystem-subsumption-testing.md#with-code)     |
+| system    | [uri](https://www.hl7.org/fhir/datatypes.html#uri)       | `supported`     | [system](codesystem-subsumption-testing.md#with-code)   |
+| codingA   | [Coding](https://www.hl7.org/fhir/datatypes.html#Coding) | `supported`     | [coding](codesystem-subsumption-testing.md#with-coding) |
+| codingB   | [Coding](https://www.hl7.org/fhir/datatypes.html#Coding) | `supported`     | [coding](codesystem-subsumption-testing.md#with-coding) |
+| version   | [string](https://www.hl7.org/fhir/datatypes.html#string) | `not supported` | -                                                       |
 
 ### Examples
 

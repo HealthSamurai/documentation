@@ -1,6 +1,6 @@
-# Attribute-based Access Control (ABAC)
+# Attribute-based Access Control (docs/ABAC)
 
-Attribute-Based Access Control (ABAC) in the context of FHIR  refers to a method of managing access to healthcare information by evaluating attributes rather than relying solely on roles or static permissions.
+Attribute-Based Access Control (ABAC) in the context of FHIR refers to a method of managing access to healthcare information by evaluating attributes rather than relying solely on roles or static permissions.
 
 In ABAC for FHIR, access decisions are based on policies that consider multiple attributes, including:
 
@@ -9,14 +9,14 @@ In ABAC for FHIR, access decisions are based on policies that consider multiple 
 3. **Action Attributes**: The type of action being requested on the FHIR resources, such as read, write, update, or delete operations.
 4. **Contextual Attributes**: The context of the access request, which might include the time of the request, the location from which the request originates, or the urgency of the situation.
 
-{% content-ref url="access-control.md" %}
-[access-control.md](access-control.md)
+{% content-ref url="accesspolicy.md" %}
+[accesspolicy.md](accesspolicy.md)
 {% endcontent-ref %}
 
 {% content-ref url="evaluation-engines.md" %}
 [evaluation-engines.md](evaluation-engines.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../access-control/authorization/security-labels.md" %}
-[security-labels.md](../../access-control/authorization/security-labels.md)
+{% content-ref url="../../access-control/authorization/label-based-access-control.md" %}
+[label-based-access-control.md](../../access-control/authorization/label-based-access-control.md)
 {% endcontent-ref %}

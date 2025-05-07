@@ -2,24 +2,24 @@
 hidden: true
 ---
 
-# Workflow API (deprecated)
+# Workflow API (docs deprecated)
 
 {% hint style="warning" %}
 Workflow API wraps Form API and when you use WF you don't need to use Form API directly
 {% endhint %}
 
-* [get-workflow](workflow-api.md#get-workflow) - get workflow definition
-* [get-workflows](workflow-api.md#get-workflows) - return existed workflows
-* [start-workflow](workflow-api.md#start-workflow) - start WF and launch forms
-* [save-step](workflow-api.md#save-step) - save document through WF, mark step as in-progress
-* [skip-step](workflow-api.md#skip-step) - skip WF step
-* [amend-step](workflow-api.md#amend-step) - amend WF step
-* [complete-step](workflow-api.md#complete-step) - try complete WF step with document, call sign on it.
-* [complete-workflow](workflow-api.md#complete-workflow) - complete WF
-* [cancel-workflow](workflow-api.md#cancel-workflow) - try cancel WF
-* [amend-workflow](workflow-api.md#amend-workflow) - amend completed WF
-* [add-workflow-note](workflow-api.md#add-workflow-note) - add addendum note to the given WF
-* [get-workflow-addendums](workflow-api.md#get-workflow-addendums) - get list of addendums for the given WF
+* [get-workflow](workflow-api-docs-deprecated.md#get-workflow) - get workflow definition
+* [get-workflows](workflow-api-docs-deprecated.md#get-workflows) - return existed workflows
+* [start-workflow](workflow-api-docs-deprecated.md#start-workflow) - start WF and launch forms
+* [save-step](workflow-api-docs-deprecated.md#save-step) - save document through WF, mark step as in-progress
+* [skip-step](workflow-api-docs-deprecated.md#skip-step) - skip WF step
+* [amend-step](workflow-api-docs-deprecated.md#amend-step) - amend WF step
+* [complete-step](workflow-api-docs-deprecated.md#complete-step) - try complete WF step with document, call sign on it.
+* [complete-workflow](workflow-api-docs-deprecated.md#complete-workflow) - complete WF
+* [cancel-workflow](workflow-api-docs-deprecated.md#cancel-workflow) - try cancel WF
+* [amend-workflow](workflow-api-docs-deprecated.md#amend-workflow) - amend completed WF
+* [add-workflow-note](workflow-api-docs-deprecated.md#add-workflow-note) - add addendum note to the given WF
+* [get-workflow-addendums](workflow-api-docs-deprecated.md#get-workflow-addendums) - get list of addendums for the given WF
 
 ### get-workflows
 
@@ -242,8 +242,6 @@ Try complete step with given document. Call sign on that document and extract da
 | document | document resource                           | SDCDocument | yes       |
 | dry-run  | Run without saving document and extractions | boolean     | no        |
 
-
-
 If workflow step was:
 
 * in `in-progress` status - set `completed` status
@@ -452,8 +450,6 @@ Complete WF and it's items.
 | items   | documents in items structure      | map     | no        |
 | dry-run | Run without saving document in db | boolean | no        |
 
-
-
 If workflow was:
 
 * in `in-progress` status - set `completed` status
@@ -577,8 +573,6 @@ result:
 
 ### amend-workflow
 
-
-
 Set `in-amendment` status for WF and all `completed`/`amended` steps.
 
 | Param   | Description                      | Type    | required? |
@@ -636,7 +630,7 @@ result:
 Add Addendum Note to the given Workflow. This is the preferred way to add Notes to Workflows.
 
 {% hint style="info" %}
-Use this API (`aidbox.sdc/add-workflow-note`) instead of the low-level [Addendum API (`aidbox.sdc.addendum/add-note`).](addendum-api.md#add-note)
+Use this API (`aidbox.sdc/add-workflow-note`) instead of the low-level [Addendum API (`aidbox.sdc.addendum/add-note`).](addendum-api-docs-deprecated.md#add-note)
 {% endhint %}
 
 Params:
@@ -703,8 +697,6 @@ Result:
 error:
   message: Resource not found
 ```
-
-
 
 ### get-workflow-addendums
 

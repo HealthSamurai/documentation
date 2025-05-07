@@ -26,7 +26,7 @@ Themes are stored in the database in a custom resource called **QuestionnaireThe
 ### **How to Use a Theme:**
 
 * You can set a **default theme** in the configuration, and it will be applied to all forms. More details can be found [here](../configuration.md).
-* You can also pass a theme as a **parameter** when generating a link to a specific form. More details can be found [here](../../../../reference/aidbox-forms/aidbox-sdc-api.md#parameters).
+* You can also pass a theme as a **parameter** when generating a link to a specific form. More details can be found [here](../../../../reference/aidbox-forms-reference/aidbox-sdc-api.md#parameters).
 
 ### **How to Create a New Theme:**
 
@@ -71,9 +71,9 @@ The color for the tooltip and hover will be set automatically according to the P
 
     In this section, you can customize the appearance of buttons in your form:
 
-   	The following settings are available for the **Submit**, **Print**, **Amend**, and **Save** buttons:
+    The following settings are available for the **Submit**, **Print**, **Amend**, and **Save** buttons:
 
-	* **Button Appearance:**
+    * **Button Appearance:**
       * **Button Text:** Set the text for the close button.
       * **Button Color:** Set the background color of the close button.
       * **Button Text Color:** Define the color of the text on the close button.

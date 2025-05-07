@@ -4,12 +4,12 @@
 
 Key infrastructure elements:
 
-* [Cluster configuration](deploy-aidbox-in-kubernetes.md#cluster-configuration-and-tooling) — Node pool and tooling
-* [Database](deploy-aidbox-in-kubernetes.md#database) — Cloud or self-managed database
-* [Aidbox](deploy-aidbox-in-kubernetes.md#aidbox) — Aidbox installation
-* [Logging](deploy-aidbox-in-kubernetes.md#logging) — Сollect application and cluster logs
-* [Monitoring](deploy-aidbox-in-kubernetes.md#monitoring) — Сollect, alert, and visualize cluster and application metrics
-* [Security](deploy-aidbox-in-kubernetes.md#extra) — Vulnerability scanning and policy management
+* [Cluster configuration](deploy-production-ready-aidbox-to-kubernetes.md#cluster-configuration-and-tooling) — Node pool and tooling
+* [Database](deploy-production-ready-aidbox-to-kubernetes.md#database) — Cloud or self-managed database
+* [Aidbox](deploy-production-ready-aidbox-to-kubernetes.md#aidbox) — Aidbox installation
+* [Logging](deploy-production-ready-aidbox-to-kubernetes.md#logging) — Сollect application and cluster logs
+* [Monitoring](deploy-production-ready-aidbox-to-kubernetes.md#monitoring) — Сollect, alert, and visualize cluster and application metrics
+* [Security](deploy-production-ready-aidbox-to-kubernetes.md#extra) — Vulnerability scanning and policy management
 
 ## Cluster configuration and tooling
 
@@ -47,7 +47,7 @@ Aidbox supports all popular managed Postgresql databases. Supported versions - 1
 For a self-managed solution, we recommend using the [AidboxDB image](https://hub.docker.com/r/healthsamurai/aidboxdb). This image contains all required extensions, backup tools, and pre-build replication support. Read more information in the documentation — [AidboxDB](../../../database/aidboxdb-image/).
 
 {% hint style="info" %}
-To streamline the deployment process, our DevOps engineers have prepared [Helm charts](https://github.com/Aidbox/helm-charts/tree/main/aidboxdb) that you may find helpful.&#x20;
+To streamline the deployment process, our DevOps engineers have prepared [Helm charts](https://github.com/Aidbox/helm-charts/tree/main/aidboxdb) that you may find helpful.
 {% endhint %}
 
 First step — create volume
@@ -350,7 +350,7 @@ spec:
 ```
 {% endcode %}
 
-When Aidbox starts for the first time, resolving all the dependencies takes longer. If you encounter startupProbe failure, you might want to consider increasing the initialDelaySeconds and failureThreshold under the startupProbe spec in the config above.&#x20;
+When Aidbox starts for the first time, resolving all the dependencies takes longer. If you encounter startupProbe failure, you might want to consider increasing the initialDelaySeconds and failureThreshold under the startupProbe spec in the config above.
 
 All additional information about HA Aidbox configuration can be found in this article — [HA Aidbox](https://docs.aidbox.app/getting-started/run-aidbox-in-kubernetes/high-available-aidbox).
 

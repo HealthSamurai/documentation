@@ -22,24 +22,24 @@ GET [base]/ValueSet/administrative-gender/$expand
 
 ## Parameters
 
-| Parameter              | Type                                                         | Status          | Example                                         |
-| ---------------------- | ------------------------------------------------------------ | --------------- | ----------------------------------------------- |
-| url                    | [uri](https://www.hl7.org/fhir/datatypes.html#uri)           | `supported`     | [url](value-set-expansion.md#url)               |
-| valueSet               | [ValueSet](https://www.hl7.org/fhir/valueset.html)           | `supported`     | [valueSet](value-set-expansion.md#valueset)     |
-| context                | [uri](https://www.hl7.org/fhir/datatypes.html#uri)           | `not supported` | -                                               |
-| filter                 | [string](https://www.hl7.org/fhir/datatypes.html#string)     | `supported`     | [filter](value-set-expansion.md#filter)         |
-| profile                | [uri](https://www.hl7.org/fhir/datatypes.html#uri)           | `not supported` | -                                               |
-| date                   | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | `not supported` | -                                               |
-| offset                 | [integer](https://www.hl7.org/fhir/datatypes.html#integer)   | `supported`     | [offset](value-set-expansion.md#offset)         |
-| count                  | [integer](https://www.hl7.org/fhir/datatypes.html#integer)   | `supported`     | [count](value-set-expansion.md#count)           |
-| includeDesignations    | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean)   | `not supported` | -                                               |
-| includeDefinition      | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean)   | `not supported` | -                                               |
-| activeOnly             | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean)   | `supported`     | [activeOnly](value-set-expansion.md#activeonly) |
-| excludeNested          | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean)   | `not supported` | -                                               |
-| excludeNotForUI        | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean)   | `not supported` | -                                               |
-| excludePostCoordinated | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean)   | `not supported` | -                                               |
-| displayLanguage        | [code](https://www.hl7.org/fhir/datatypes.html#code)         | `not supported` | -                                               |
-| limitedExpansion       | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean)   | `not supported` | -                                               |
+| Parameter              | Type                                                         | Status          | Example                                        |
+| ---------------------- | ------------------------------------------------------------ | --------------- | ---------------------------------------------- |
+| url                    | [uri](https://www.hl7.org/fhir/datatypes.html#uri)           | `supported`     | [url](valueset-expansion.md#url)               |
+| valueSet               | [ValueSet](https://www.hl7.org/fhir/valueset.html)           | `supported`     | [valueSet](valueset-expansion.md#valueset)     |
+| context                | [uri](https://www.hl7.org/fhir/datatypes.html#uri)           | `not supported` | -                                              |
+| filter                 | [string](https://www.hl7.org/fhir/datatypes.html#string)     | `supported`     | [filter](valueset-expansion.md#filter)         |
+| profile                | [uri](https://www.hl7.org/fhir/datatypes.html#uri)           | `not supported` | -                                              |
+| date                   | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | `not supported` | -                                              |
+| offset                 | [integer](https://www.hl7.org/fhir/datatypes.html#integer)   | `supported`     | [offset](valueset-expansion.md#offset)         |
+| count                  | [integer](https://www.hl7.org/fhir/datatypes.html#integer)   | `supported`     | [count](valueset-expansion.md#count)           |
+| includeDesignations    | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean)   | `not supported` | -                                              |
+| includeDefinition      | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean)   | `not supported` | -                                              |
+| activeOnly             | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean)   | `supported`     | [activeOnly](valueset-expansion.md#activeonly) |
+| excludeNested          | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean)   | `not supported` | -                                              |
+| excludeNotForUI        | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean)   | `not supported` | -                                              |
+| excludePostCoordinated | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean)   | `not supported` | -                                              |
+| displayLanguage        | [code](https://www.hl7.org/fhir/datatypes.html#code)         | `not supported` | -                                              |
+| limitedExpansion       | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean)   | `not supported` | -                                              |
 
 ### url
 

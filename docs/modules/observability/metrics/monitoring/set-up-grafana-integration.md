@@ -6,10 +6,10 @@ description: >-
 
 # Set-up Grafana integration
 
-Before setting up Grafana integration, ensure you have set up the Aidbox Metrics Server. Check the guide below on how to do it.&#x20;
+Before setting up Grafana integration, ensure you have set up the Aidbox Metrics Server. Check the guide below on how to do it.
 
-{% content-ref url="aidbox-metrics-server.md" %}
-[aidbox-metrics-server.md](aidbox-metrics-server.md)
+{% content-ref url="use-aidbox-metrics-server.md" %}
+[use-aidbox-metrics-server.md](use-aidbox-metrics-server.md)
 {% endcontent-ref %}
 
 {% hint style="info" %}
@@ -39,7 +39,7 @@ Generates dashboards with instance-specific metrics
 
 {% tabs %}
 {% tab title="Parameters" %}
-_`datasource`  (Optional) - specify prometheus like datasource name. Default: **Prometheus**_
+_`datasource` (Optional) - specify prometheus like datasource name. Default: **Prometheus**_
 
 _`kibana-url` (Optional) - specify Kibana base url for generating a drill-down link to Kibana._
 {% endtab %}
@@ -66,7 +66,7 @@ content-type: application/edn
           :kibana-url "https://my.kibana.url.com"}}
 ```
 
-<figure><img src="../../../../.gitbook/assets/Screen Shot 2022-12-06 at 08.44.55.png" alt=""><figcaption><p>Grafana Aidbox Dashboard</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/Screen%20Shot%202022-12-06%20at%2008.44.55.png" alt=""><figcaption><p>Grafana Aidbox Dashboard</p></figcaption></figure>
 
 ### `aidbox.metrics/update-cluster-dashboard`
 
@@ -107,7 +107,7 @@ content-type: application/edn
 
 ### `aidbox.metrics/get-aidbox-dashboard`
 
-Generates dashboards as a JSON&#x20;
+Generates dashboards as a JSON
 
 {% tabs %}
 {% tab title="Parameters" %}

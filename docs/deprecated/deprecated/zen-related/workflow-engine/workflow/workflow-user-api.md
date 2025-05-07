@@ -128,7 +128,7 @@ Returns the status of a workflow instance with the specified id.
 
 #### Params:
 
-<table><thead><tr><th width="190">Parameter</th><th width="128.33333333333331">Type</th><th width="125" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>id</td><td>string</td><td>true</td><td>Id of the workflow whose status will be returned.</td></tr><tr><td>include-activities?</td><td>boolean</td><td>false</td><td>If <code>true</code> , includes tasks and another workflows started by workflow.<br><em>Default: <code>false</code></em></td></tr><tr><td>include-decisions?</td><td>boolean</td><td>false</td><td>If <code>true,</code> includes all workflow's <a href="../task/aidbox-predefined-tasks.md#decision-task">decision tasks</a>.<br><em>Default: <code>false</code></em></td></tr></tbody></table>
+<table><thead><tr><th width="190">Parameter</th><th width="128.33333333333331">Type</th><th width="125" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>id</td><td>string</td><td>true</td><td>Id of the workflow whose status will be returned.</td></tr><tr><td>include-activities?</td><td>boolean</td><td>false</td><td>If <code>true</code> , includes tasks and another workflows started by workflow.<br><em>Default: <code>false</code></em></td></tr><tr><td>include-decisions?</td><td>boolean</td><td>false</td><td>If <code>true,</code> includes all workflow's <a href="../task/aidbox-built-in-tasks.md#decision-task">decision tasks</a>.<br><em>Default: <code>false</code></em></td></tr></tbody></table>
 
 #### Result:
 

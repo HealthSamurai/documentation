@@ -5,7 +5,7 @@ description: >-
 hidden: true
 ---
 
-# Any familiar form editor (deprecated)
+# Any familiar form editor (docs deprecated)
 
 {% hint style="warning" %}
 We strongly recommend using our UI Form Builder based on FHIR SDC (Structured Data Capture), which we are continuously developing. The current solution will remain supported but will not receive further development at this time.
@@ -22,8 +22,6 @@ allergies.edn
 vitals.edn
 ....
 ```
-
-
 
 {% hint style="warning" %}
 Don't forget to import the created form into the forms.edn file so that the form is loaded after restarting the program.
@@ -45,22 +43,22 @@ Example
 
 ## To design the form, it is necessary to describe some schemes
 
-* [Form DSL ](../../reference/aidbox-forms/form-dsl.md)
-* [Document DSL](../../reference/aidbox-forms/document-dsl.md)
-* [Layout DSL](../../reference/aidbox-forms/layout-dsl.md)
-* [Launch DSL](../../reference/aidbox-forms/launch-dsl.md)
-* [Finalize DSL](../../reference/aidbox-forms/finalize-dsl.md)
-* [FinalizeConstrains DSL](../../reference/aidbox-forms/finalizeconstraints-dsl.md)
+* [Form DSL](../../deprecated/deprecated/forms/form-dsl-docs-deprecated.md)
+* [Document DSL](../../deprecated/deprecated/forms/document-dsl-docs-deprecated.md)
+* [Layout DSL](../../deprecated/deprecated/forms/layout-dsl-docs-deprecated.md)
+* [Launch DSL](../../deprecated/deprecated/forms/launch-dsl-docs-deprecated.md)
+* [Finalize DSL](../../deprecated/deprecated/forms/finalize-dsl-docs-deprecated.md)
+* [FinalizeConstrains DSL](../../deprecated/deprecated/forms/finalizeconstraints-dsl-docs-deprecated.md)
 
-Go to [this page](aidbox-code-editor/how-to-create-a-form.md) to start designing a form.
+Go to [this page](aidbox-code-editor/form-creation.md) to start designing a form.
 
 {% hint style="success" %}
 In order not to describe the form from scratch, you can copy any suitable form from the templates and make a new form based on it
 {% endhint %}
 
-## To debug & test form, it is necessary to open Aidbox console in browser&#x20;
+## To debug & test form, it is necessary to open Aidbox console in browser
 
-* Open  [http://localhost:8080/ ](http://localhost:8080/), using login / passwod  - admin / admin
+* Open [http://localhost:8080/ ](http://localhost:8080/), using login / passwod - admin / admin
 * Go to forms by pressing the button `Forms` (or by visiting [http://localhost:8080/ui/sdc](http://localhost:8080/ui/sdc) )
 * Find the created form on the `Forms & Workflows` page
 * Open the created form in Aidbox editor by pressing on the form

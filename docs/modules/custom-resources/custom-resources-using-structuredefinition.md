@@ -10,18 +10,18 @@ FHIR uses StructureDefinition resources to model data structures. Aidbox allows 
 
 To begin using custom FHIR resources, enable the FHIR Schema validation engine in Aidbox.
 
-{% content-ref url="../profiling-and-validation/fhir-schema-validator/setup.md" %}
-[setup.md](../profiling-and-validation/fhir-schema-validator/setup.md)
+{% content-ref url="../profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md" %}
+[setup-aidbox-with-fhir-schema-validation-engine.md](../profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md)
 {% endcontent-ref %}
 
 ## Create StructureDefinition for custom resource
 
-To create a custom resource in Aidbox using StructureDefinition you have to create StructureDefinition resource via REST API.&#x20;
+To create a custom resource in Aidbox using StructureDefinition you have to create StructureDefinition resource via REST API.
 
 It is a usual FHIR [StructureDefinition resource](https://www.hl7.org/fhir/structuredefinition.html), but with several limitations:
 
 1. `name`, `type`, and `id` must be equal.
-2. &#x20;`kind`: must be equal to `resource` or `logical`
+2. `kind`: must be equal to `resource` or `logical`
 3. `derivation`: If it is set to `specialization` - Aidbox will create a new resource type with tables in the database and other resource infrastructure. If it is set to `constraint` - Aidbox will create a new profile that can be referenced on resource instances.
 
 The further guide details the process of creating custom resources for a notification system, demonstrating the typical workflow of creating, managing, and sending template-based notifications from a healthcare system to patients using custom resources defined through StructureDefinition.
@@ -119,9 +119,9 @@ accept: application/json
 Now, that we got resource to store our templates, let's shape a more complex one - a resource `TutorNotification` that has the following properties:
 
 1. `type`: property that contains `binding` value set URL in `valueSet` property and `strength`: `required`, that is used to force binding validation.
-2. `status`:  property with `binding` to `valueSet: http://hl7.org/fhir/ValueSet/task-status` with additional constraints to `requested`, `in-progress` or `completed` values.
-3. `template`:  reference to `TutorNotificationTemplate` that we created above.
-4. `message`:  message text and is of the FHIR `string` data type.
+2. `status`: property with `binding` to `valueSet: http://hl7.org/fhir/ValueSet/task-status` with additional constraints to `requested`, `in-progress` or `completed` values.
+3. `template`: reference to `TutorNotificationTemplate` that we created above.
+4. `message`: message text and is of the FHIR `string` data type.
 5. `sendAfter`: property that specifies the `dateTime` after which this notification should be sent.
 6. `subject`: reference to the `Patient` resource to whom this notification will be sent.
 
@@ -361,7 +361,7 @@ accept: application/json
 {% endtab %}
 {% endtabs %}
 
-## Define search parameters&#x20;
+## Define search parameters
 
 {% tabs %}
 {% tab title="Request" %}

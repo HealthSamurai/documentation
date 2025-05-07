@@ -23,13 +23,13 @@ At this time, Aidbox is only capable of producing `AuditEvent` in the `FHIR R4` 
 
 Aidbox acts as [Audit record repository](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html#9.1.1.3) (ARR) for FHIR AuditEvent resources. Aidbox supports
 
-* `POST /fhir/AuditEvent` to record events&#x20;
+* `POST /fhir/AuditEvent` to record events
 * `GET /fhir/AuditEvent` to receive them
 
-<figure><img src="../../../.gitbook/assets/Screenshot 2023-09-07 at 13.23.08.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Screenshot%202023-09-07%20at%2013.23.08.png" alt=""><figcaption></figcaption></figure>
 
 ## Next steps
 
-{% content-ref url="../../../tutorials/security-access-control-tutorials/setup-audit-logging.md" %}
-[setup-audit-logging.md](../../../tutorials/security-access-control-tutorials/setup-audit-logging.md)
+{% content-ref url="../../../tutorials/security-access-control-tutorials/how-to-configure-audit-log.md" %}
+[how-to-configure-audit-log.md](../../../tutorials/security-access-control-tutorials/how-to-configure-audit-log.md)
 {% endcontent-ref %}

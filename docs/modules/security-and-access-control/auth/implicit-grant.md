@@ -7,7 +7,7 @@ description: Implicit Grant flow. Supported but not recommendted to use
 {% hint style="warning" %}
 Implicit flow is not recommended to use since there is a risk of leaking access token without any confirmation it was received by the client. More over, some servers prohibit this flow entirely. Aidbox supports Implicit Grant flow but we don't enjoy it very much.
 
-It is better to switch to [Authorization Code Grant with PKCE](authorization-code.md) extension instead
+It is better to switch to [Authorization Code Grant with PKCE](authorization-code-grant.md) extension instead
 {% endhint %}
 
 Implicit Grant flow is an alternative for Authorization Code flow. This flow just receives `access_token` in query string fragment instead of obtaining secure`code`. It's indented for client-side apps use in order to access an API, typically as Web SPA applications. For more detailed information, read [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.2).

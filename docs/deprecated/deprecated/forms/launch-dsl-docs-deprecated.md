@@ -2,9 +2,9 @@
 hidden: true
 ---
 
-# Launch DSL (deprecated)
+# Launch DSL (docs deprecated)
 
-**Form Launch** binds to [`Document`](document-dsl.md) and `Form`. And optionally can specify fields populate logic via `populate-engine`
+**Form Launch** binds to [`Document`](document-dsl-docs-deprecated.md) and `Form`. And optionally can specify fields populate logic via `populate-engine`
 
 Default populate-engine - `aidbox.sdc/LispPopulate`
 
@@ -13,8 +13,8 @@ For populate you can specify what fields should be populated.
 **For that you can use:**
 
 * basic edn values
-* [lisp expressions](lisp.md)
-* you need to follow [Document](document-dsl.md) fields structure.
+* [lisp expressions](lisp-docs-deprecated.md)
+* you need to follow [Document](document-dsl-docs-deprecated.md) fields structure.
 
 > For lisp `get` `get-in` functions the context is a map
 

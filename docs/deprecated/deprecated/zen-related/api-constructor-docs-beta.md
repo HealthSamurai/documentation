@@ -1,9 +1,9 @@
-# API constructor (beta)
+# API constructor (docs/beta)
 
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[setup.md](../../../modules/profiling-and-validation/fhir-schema-validator/setup.md "mention")
+[setup-aidbox-with-fhir-schema-validation-engine.md](../../../modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md "mention")
 {% endhint %}
 
 Using Aidbox API constructor you can:
@@ -21,16 +21,16 @@ API constructor requires knowledge of [zen language](https://github.com/zen-lang
 
 #### Common API Constructor use cases
 
-{% content-ref url="../../../modules/security-and-access-control/security/acl.md" %}
-[acl.md](../../../modules/security-and-access-control/security/acl.md)
+{% content-ref url="../../../modules/security-and-access-control/security/access-control-lists-docs-acl.md" %}
+[access-control-lists-docs-acl.md](../../../modules/security-and-access-control/security/access-control-lists-docs-acl.md)
 {% endcontent-ref %}
 
 {% content-ref url="../../../modules/smartbox/background-information/multitenancy-approach.md" %}
 [multitenancy-approach.md](../../../modules/smartbox/background-information/multitenancy-approach.md)
 {% endcontent-ref %}
 
-{% content-ref url="../other/how-to-guides/smart-app.md" %}
-[smart-app.md](../other/how-to-guides/smart-app.md)
+{% content-ref url="../other/how-to-guides/smart-on-fhir.md" %}
+[smart-on-fhir.md](../other/how-to-guides/smart-on-fhir.md)
 {% endcontent-ref %}
 
 #### Usage examples:
@@ -42,7 +42,7 @@ API constructor requires knowledge of [zen language](https://github.com/zen-lang
 
 ## Example setup
 
-Use [Run Aidbox locally](broken-reference) to start Aidbox, here is configured [API constructor example](https://github.com/Aidbox/aidbox-project-samples/blob/main/aidbox-project-samples/api-constructor/mybox.edn). Add these environment variables:
+Use [Run Aidbox locally](broken-reference/) to start Aidbox, here is configured [API constructor example](https://github.com/Aidbox/aidbox-project-samples/blob/main/aidbox-project-samples/api-constructor/mybox.edn). Add these environment variables:
 
 ```bash
 BOX_PROJECT_GIT_PROTOCOL=https
@@ -59,7 +59,7 @@ Here's a notebook with the example API demo usage :
 https://aidbox.app/ExportedNotebook/df9ac147-daa4-4495-87b5-c4367cd441ef
 ```
 
-You can [import it](../../../overview/aidbox-ui/notebooks.md#import-a-notebook) into the example and run test REST requests.
+You can [import it](../../../overview/aidbox-ui/aidbox-notebooks.md#import-a-notebook) into the example and run test REST requests.
 
 ## API constructor definitions
 
@@ -147,8 +147,8 @@ An `op` describes REST operation. `:engine` specifies what operation handler sho
 * `aidbox.rest.v1/aidbox-action` - expects `:action`, passes request to existing Aidbox action. You can see list of available operations with this request:\
   `GET /Operation?_elements=action&_result=array&_count=1000`
 * `aidbox.rest.v1/echo` - expects `:response` in the definition, returns the response.
-* [`ingestion.core/map-to-fhir-bundle`](aidbox-api-constructor.md#map-to-fhir-bundle)
-* [`aidbox.rest.v1/gateway`](aidbox-api-constructor.md#Gateway)
+* [`ingestion.core/map-to-fhir-bundle`](api-constructor-docs-beta.md#map-to-fhir-bundle)
+* [`aidbox.rest.v1/gateway`](api-constructor-docs-beta.md#Gateway)
 
 #### Regular FHIR API
 
@@ -172,8 +172,8 @@ Expect target resource type as `:resource` and `:format` (`fhir` or `aidbox`)
 
 See full description and usage examples:
 
-{% content-ref url="../../../modules/security-and-access-control/security/acl.md" %}
-[acl.md](../../../modules/security-and-access-control/security/acl.md)
+{% content-ref url="../../../modules/security-and-access-control/security/access-control-lists-docs-acl.md" %}
+[access-control-lists-docs-acl.md](../../../modules/security-and-access-control/security/access-control-lists-docs-acl.md)
 {% endcontent-ref %}
 
 ### Gateway

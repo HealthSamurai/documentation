@@ -6,12 +6,12 @@ You can use Aidbox to convert
 * Aidbox Forms to FHIR Questionnaires (with some limitations)
 * SDCDocument to FHIR QuestionnaireResponse resource.
 
-You can use [Aidbox Form API](../../../reference/aidbox-forms/api-reference.md)
+You can use [Aidbox Form API](../../../deprecated/deprecated/forms/form-api-docs-deprecated.md)
 
-* [`aidbox.sdc/convert-document`](../../../reference/aidbox-forms/api-reference.md#convert-document) - converts SDCDocument to FHIR QuestionnaireResponse
-* [`aidbox.sdc/convert-questionnaire`](../../../reference/aidbox-forms/api-reference.md#convert-questionnaire)- converts FHIR Questionnaire to Aidbox SDC Form
-* [`aidbox.sdc/convert-form`](../../../reference/aidbox-forms/api-reference.md#convert-form) - converts Form to FHIR Questionnaire
-* [`aidbox.sdc/convert-forms`](../../../reference/aidbox-forms/api-reference.md#convert-forms) - converts all Forms to Questionnaire and save them in Aidbox
+* [`aidbox.sdc/convert-document`](../../../deprecated/deprecated/forms/form-api-docs-deprecated.md#convert-document) - converts SDCDocument to FHIR QuestionnaireResponse
+* [`aidbox.sdc/convert-questionnaire`](../../../deprecated/deprecated/forms/form-api-docs-deprecated.md#convert-questionnaire)- converts FHIR Questionnaire to Aidbox SDC Form
+* [`aidbox.sdc/convert-form`](../../../deprecated/deprecated/forms/form-api-docs-deprecated.md#convert-form) - converts Form to FHIR Questionnaire
+* [`aidbox.sdc/convert-forms`](../../../deprecated/deprecated/forms/form-api-docs-deprecated.md#convert-forms) - converts all Forms to Questionnaire and save them in Aidbox
 
 ## Optional features
 
@@ -21,7 +21,7 @@ Aidbox Forms supports
 * automatic SDCDocument convertion to QuestionnaireResponse resource on SDCDocument save.
 * Form rules conversion to human-readable description.
 
-> These features can be configured via [api-constructor](../../../deprecated/deprecated/zen-related/aidbox-api-constructor.md) in zen-project.
+> These features can be configured via [api-constructor](../../../deprecated/deprecated/zen-related/api-constructor-docs-beta.md) in zen-project.
 
 You need to configure your `aidbox/system` with `sdc-service` and it's configuration.
 

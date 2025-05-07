@@ -9,7 +9,7 @@ Aidbox fully supports [version 1 ](https://www.hl7.org/fhir/smart-app-launch/1.0
 
 <figure><img src="../../../../.gitbook/assets/smart-scopes-v1.png" alt=""><figcaption><p>SMART scopes V1</p></figcaption></figure>
 
-&#x20;And support everything except search parameters in [version 2](https://build.fhir.org/ig/HL7/smart-app-launch/scopes-and-launch-context.html) of SMART on FHIR scopes:
+And support everything except search parameters in [version 2](https://build.fhir.org/ig/HL7/smart-app-launch/scopes-and-launch-context.html) of SMART on FHIR scopes:
 
 <figure><img src="../../../../.gitbook/assets/smart-scope-v2.png" alt=""><figcaption><p>SMART scopes V2</p></figcaption></figure>
 
@@ -19,17 +19,17 @@ If a requested operation is not permitted by the scopes, Aidbox will deny access
 
 To enable scope checking in the Access Control layer, the JWT access token must contain the following claims:
 
-| Claim name          | Value type  | Description                                                 |
-| ------------------- | ----------- | ----------------------------------------------------------- |
-| `atv` \*            | fixed value | <p>Access Token Version<br>Fixed value - <code>2</code></p> |
-| `scope`  \*         | valueString | String with scopes separated by space.                      |
-| `context.patient`   | valueString | Patient ID.                                                 |
+| Claim name        | Value type  | Description                                                 |
+| ----------------- | ----------- | ----------------------------------------------------------- |
+| `atv` \*          | fixed value | <p>Access Token Version<br>Fixed value - <code>2</code></p> |
+| `scope` \*        | valueString | String with scopes separated by space.                      |
+| `context.patient` | valueString | Patient ID.                                                 |
 
-&#x20;\* - required claim
+\* - required claim
 
-For scope checking, Aidbox accepts any valid JWT tokens issued by [external servers](../../../../tutorials/security-access-control-tutorials/token-introspection.md) if they contain the specified scopes and Aidbox can issue its own JWT tokens with all the required claims.
+For scope checking, Aidbox accepts any valid JWT tokens issued by [external servers](../../../../tutorials/security-access-control-tutorials/set-up-token-introspection.md) if they contain the specified scopes and Aidbox can issue its own JWT tokens with all the required claims.
 
-### Example&#x20;
+### Example
 
 Parsed valid JWT access token:
 
@@ -122,12 +122,10 @@ Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdHYiOjIsImF1ZCI6
   "birthsex": "F"
 }
 ```
-
-
 {% endtab %}
 {% endtabs %}
 
-## Bundle&#x20;
+## Bundle
 
 SMART does not define specific scopes for [batch or transaction](https://hl7.org/fhir/smart-app-launch/scopes-and-launch-context.html#batches-and-transactions) interactions. Aidbox allows Bundle requests regardless of scopes and applies Access Control restrictions to each element within `Bundle.entry`. This means that while the Bundle as a whole is accepted, Aidbox enforces scope Access Control restrictions on each entry in the Bundle.
 
@@ -220,8 +218,6 @@ Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdHYiOjIsImF1ZCI6
   ]
 }
 ```
-
-
 {% endtab %}
 {% endtabs %}
 
@@ -231,11 +227,11 @@ Patient-level access control in Aidbox enables restricting data access to resour
 
 To achieve this behavior, the request must include:
 
-* A valid [JWT access token.](smart-scopes.md#access-token)
+* A valid [JWT access token.](smart-scopes-for-limiting-access.md#access-token)
 * Only patient-level scopes ( `patient/...`).
 * The patient ID in the `context.patient` claim.
 
-&#x20;Aidbox will limit access and filter retrieved data based on [FHIR Patient CompartmentDefinition](https://hl7.org/fhir/r4/compartmentdefinition-patient.html).
+Aidbox will limit access and filter retrieved data based on [FHIR Patient CompartmentDefinition](https://hl7.org/fhir/r4/compartmentdefinition-patient.html).
 
 ### Example
 
@@ -326,4 +322,3 @@ Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdHYiOjIsImF1ZCI6
 ```
 {% endtab %}
 {% endtabs %}
-

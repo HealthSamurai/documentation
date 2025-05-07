@@ -11,7 +11,7 @@ Aidbox configuration project allows you to easily enable [FHIR IGs](https://www.
 Currently supported list of features:
 
 * **BaseProfiles** — enable base FHIR resources validation
-* **Extensions** — enable [First-Class Extensions](broken-reference) with validation
+* **Extensions** — enable [First-Class Extensions](broken-reference/) with validation
 * **Profiles** — enable validation via `meta.profile`
 * **Searches** (_partial support_) — enable search
 * **CodeSystems & ValueSets** (_partial support_) — enable lookup and binding validation
@@ -66,25 +66,28 @@ To the left of each zen FHIR IG URL you give a name. In the examples above the n
 
 To enable zen FHIR IGs you provided you need to import them inside of your [entrypoint](https://github.com/Aidbox/documentation/blob/master/aidbox-configuration/aidbox-zen-lang-project/broken-reference/README.md).
 
-Using the example from [the getting started page](broken-reference) the updated entrypoint file will look like this for both of the examples above:
+Using the example from [the getting started page](broken-reference/) the updated entrypoint file will look like this for both of the examples above:
 
-| r4 core                                                                                                                                                        | us-core and plan-net                                                                                                                          |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| r4 core                                                                           | us-core and plan-net |
+| --------------------------------------------------------------------------------- | -------------------- |
 | <pre class="language-clojure"><code class="lang-clojure">{ns system
- import #{aidbox hl7-fhir-r4-core}
- 
- 
- 
- box
- {:zen/tags #{aidbox/system}}}
-</code></pre> | <pre><code>{import
- #{aidbox
-   hl7-fhir-us-core
-   hl7-fhir-us-davinci-pdex-plan-net}
-  
-  box
-  {:zen/tags #{aidbox/system}}}
-</code></pre> |
+</code></pre> |                      |
+| import #{aidbox hl7-fhir-r4-core}                                                 |                      |
+
+box\
+{:zen/tags #{aidbox/system\}}}\
+|
+
+```
+{import
+#{aidbox
+hl7-fhir-us-core
+hl7-fhir-us-davinci-pdex-plan-net}
+box
+{:zen/tags #{aidbox/system}}}
+```
+
+|
 
 ### Commit changes to your Aidbox configuration project
 
@@ -158,5 +161,5 @@ This request checks that invalid values for `birthsex` field are not allowed.
 
 If you want some tips regarding development and production usage, visit the links below:
 
-* [Development tips](broken-reference)
-* [Production tips](broken-reference)
+* [Development tips](broken-reference/)
+* [Production tips](broken-reference/)

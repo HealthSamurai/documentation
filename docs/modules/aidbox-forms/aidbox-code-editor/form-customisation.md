@@ -36,7 +36,7 @@ For filled buttons accent color will be used as background color, for outlined b
 
 Also you can change text of `Save & Close` and `Submit` buttons.
 
-> Read more about [`Save & Close button`](../../../reference/aidbox-forms/api-reference.md#aidbox.sdc-generate-form-link)
+> Read more about [`Save & Close button`](../../../deprecated/deprecated/forms/form-api-docs-deprecated.md#aidbox.sdc-generate-form-link)
 
 ```clojure
 buttons-sdc-theme
@@ -81,7 +81,7 @@ background-sdc-theme
 
 To understand what each color is look at the image below:
 
-<figure><img src="../../../.gitbook/assets/CleanShot 2023-02-16 at 11.34.05.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/CleanShot%202023-02-16%20at%2011.34.05.png" alt=""><figcaption></figcaption></figure>
 
 ### Font
 
@@ -114,7 +114,7 @@ brand-image-theme
 
 Your images will be placed as following:
 
-<figure><img src="../../../.gitbook/assets/CleanShot 2023-02-17 at 18.28.22.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/CleanShot%202023-02-17%20at%2018.28.22.png" alt=""><figcaption></figcaption></figure>
 
 So full theme could look like this:
 

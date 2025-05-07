@@ -4,7 +4,7 @@ description: Form's access control
 
 # Access Control in Forms
 
-Form's module access control can be set via aidbox [ACL engine](../security-and-access-control/security/acl.md)
+Form's module access control can be set via aidbox [ACL engine](../security-and-access-control/security/access-control-lists-docs-acl.md)
 
 ## SDC Roles Access
 

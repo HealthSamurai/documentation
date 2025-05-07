@@ -1,4 +1,4 @@
-# Role-Based Access Control (RBAC)
+# Role-Based Access Control (docs/RBAC)
 
 Aidbox provides a role-based access control mechanism based on access policies and `User` resource.
 
@@ -89,10 +89,10 @@ Aidbox router stores data in the request object:
 
 Access policy engine evaluates request object. And here it checks that `user.roles[].value` property contains `practitioner` string.
 
-You can inspect request object [using `__debug` query parameter](../../../tutorials/security-access-control-tutorials/debug.md#__debug-query-string-parameter).
+You can inspect request object [using `__debug` query parameter](../../../tutorials/security-access-control-tutorials/debug-access-control.md#__debug-query-string-parameter).
 
 ## Guide: flexible RBAC
 
-{% content-ref url="../../../tutorials/security-access-control-tutorials/rbac/role-based-access-policies.md" %}
-[role-based-access-policies.md](../../../tutorials/security-access-control-tutorials/rbac/role-based-access-policies.md)
+{% content-ref url="../../../tutorials/security-access-control-tutorials/rbac/flexible-rbac-built-in-to-aidbox.md" %}
+[flexible-rbac-built-in-to-aidbox.md](../../../tutorials/security-access-control-tutorials/rbac/flexible-rbac-built-in-to-aidbox.md)
 {% endcontent-ref %}

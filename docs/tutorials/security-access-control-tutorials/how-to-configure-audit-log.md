@@ -6,8 +6,6 @@ description: >-
 
 # How to configure Audit Log
 
-
-
 ## Objectives
 
 * Enable audit logging in Aidbox.
@@ -18,7 +16,7 @@ description: >-
 
 ### Enable Audit Log
 
-To enable audit logging in Aidbox, use the following setting:  [security.audit-log.enabled](../../reference/settings/security---access-control.md#security.audit-log.enabled).
+To enable audit logging in Aidbox, use the following setting: [security.audit-log.enabled](../../reference/settings/security-and-access-control.md#security.audit-log.enabled).
 
 ### Install the BALP package
 
@@ -26,15 +24,15 @@ The Basic Audit Log Patterns (BALP) Implementation Guide is a Content Profile th
 
 Navigate to the **FHIR Packages** screen in Aidbox Console UI.
 
-<figure><img src="../../.gitbook/assets/image (177).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image%20(177).png" alt=""><figcaption></figcaption></figure>
 
 Click the **Import FHIR Package** button.
 
-<figure><img src="../../.gitbook/assets/image (178).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image%20(178).png" alt=""><figcaption></figcaption></figure>
 
 Find the BALP package and hit the Import button.
 
-<figure><img src="../../.gitbook/assets/image (179).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image%20(179).png" alt=""><figcaption></figcaption></figure>
 
 ### Run some auditable operations
 
@@ -60,11 +58,11 @@ To see audit logs with the FHIR API, run `GET /fhir/AuditEvent?_sort=-createdAt`
 
 To see audit logs with the Audit event viewer app, navigate to the **Audit Log** tab in Aidbox Console UI.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2024-09-23 at 15.19.38.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot%202024-09-23%20at%2015.19.38.png" alt=""><figcaption></figcaption></figure>
 
 And find the audit event, produced by the patient create operation.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-09-07 at 12.58.32.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot%202023-09-07%20at%2012.58.32.png" alt=""><figcaption></figcaption></figure>
 
 ### Use FHIR API to create Audit Log Event
 
@@ -240,4 +238,4 @@ curl -X POST "http://localhost:8080/fhir/AuditEvent" \
 
 Navigate to the **Audit Log** tab in Aidbox Console UI and find the Audit event:
 
-<figure><img src="../../.gitbook/assets/image (180).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image%20(180).png" alt=""><figcaption></figcaption></figure>

@@ -2,14 +2,14 @@
 hidden: true
 ---
 
-# Addendum API (deprecated)
+# Addendum API (docs deprecated)
 
-* [create-addendum](addendum-api.md#create-addendum-wip)
-* [add-note](addendum-api.md#add-note)
-* [add-to-history](addendum-api.md#add-to-history)
-* [create-amendment](addendum-api.md#create-amendment)
-* [add-comment](addendum-api.md#add-comment)
-* [get-addendums](addendum-api.md#get-addendums)
+* [create-addendum](addendum-api-docs-deprecated.md#create-addendum-wip)
+* [add-note](addendum-api-docs-deprecated.md#add-note)
+* [add-to-history](addendum-api-docs-deprecated.md#add-to-history)
+* [create-amendment](addendum-api-docs-deprecated.md#create-amendment)
+* [add-comment](addendum-api-docs-deprecated.md#add-comment)
+* [get-addendums](addendum-api-docs-deprecated.md#get-addendums)
 
 ### create-addendum (WIP)
 
@@ -360,4 +360,4 @@ error:
   message: Resource not found
 ```
 
-\
+\\

@@ -4,7 +4,7 @@ description: This guide shows how to get set up SMART on FHIR in Aidbox
 
 # Set up SMART on FHIR in Aidbox
 
-SMART on FHIR specifies authentication/authorization scheme for FHIR Applications. This scheme extends OAuth 2.0 and OpenID. To enable [SMART on FHIR](https://smarthealthit.org/) you need to create an [Aidbox project](../../../zen-related/aidbox-zen-lang-project/) and configure SMART API routes using the [Aidbox API Constructor](../../../zen-related/aidbox-api-constructor.md).
+SMART on FHIR specifies authentication/authorization scheme for FHIR Applications. This scheme extends OAuth 2.0 and OpenID. To enable [SMART on FHIR](https://smarthealthit.org/) you need to create an [Aidbox project](../../../zen-related/aidbox-zen-lang-project/) and configure SMART API routes using the [Aidbox API Constructor](../../../zen-related/api-constructor-docs-beta.md).
 
 {% hint style="info" %}
 You can use the configuration provided in the [Aidbox project samples](https://github.com/Aidbox/aidbox-project-samples) repo.
@@ -109,7 +109,7 @@ To generate SMART App launch URI use [RPC API](../../../../../api/other/rpc-api.
 
 ## Standalone Launch
 
-![Standalone launch sequence](<../../../../../.gitbook/assets/image (101).png>)
+![Standalone launch sequence](../../../../../.gitbook/assets/image%20\(101\).png)
 
 Authorization code flow with SMART on FHIR Standalone Launch:
 
@@ -124,11 +124,11 @@ Authorization code flow with SMART on FHIR Standalone Launch:
 
 ## EHR Launch
 
-![EHR Launch Sequence](<../../../../../.gitbook/assets/image (93) (1) (1).png>)
+![EHR Launch Sequence](../../../../../.gitbook/assets/image%20\(93\)%20\(1\)%20\(1\).png)
 
 Authorization code flow with SMART on FHIR EHR Launch:
 
-* EHR redirects to the App Launch URI (which is [generated using Aidbox RPC](smart-on-fhir-app-launch.md#generate-launch-uri-for-ehr-launch-sequence))
+* EHR redirects to the App Launch URI (which is [generated using Aidbox RPC](set-up-smart-on-fhir-in-aidbox.md#generate-launch-uri-for-ehr-launch-sequence))
 * App requests SMART configuration from `base-url/.well-known/smart-configuration`
 * App requests FHIR conformance statement from `base-url/metadata`
 * App redirects to the EHR Authorization endpoint providing extra parameters:

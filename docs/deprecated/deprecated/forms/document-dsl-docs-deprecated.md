@@ -2,11 +2,11 @@
 hidden: true
 ---
 
-# Document DSL (deprecated)
+# Document DSL (docs deprecated)
 
 * Document is schema for Questionnaire with questions and answers and types of values.
-* Document is used as source of meta-information by [FormLayout](layout-dsl.md)
-* Document is used as source of meta-information by [FormFinalize](finalize-dsl.md)
+* Document is used as source of meta-information by [FormLayout](layout-dsl-docs-deprecated.md)
+* Document is used as source of meta-information by [FormFinalize](finalize-dsl-docs-deprecated.md)
 * Document resources stored in `SDCDocument` table.
 * Document can define computed fields via rules.
 
@@ -45,7 +45,7 @@ MyDocument
 
 Every document field should confirms `aidbox.sdc/super-field` schema.
 
-For details see [**Document fields definition**](document-dsl.md#document-field-definition) section.
+For details see [**Document fields definition**](document-dsl-docs-deprecated.md#document-field-definition) section.
 
 ## DB Storage & Common properties
 
@@ -320,7 +320,7 @@ MyDocument
 
 Attachment field can be used to attach a file to document. File can be stored in DB or in cloud bucket (currently AWS S3 and GCP buckets are supported)
 
-> NOTE: We recommend storing files in the cloud, since storing files in the database takes too much space For cloud storage configuration [read here](document-dsl.md#store-attachments-in-cloud-storage)
+> NOTE: We recommend storing files in the cloud, since storing files in the database takes too much space For cloud storage configuration [read here](document-dsl-docs-deprecated.md#store-attachments-in-cloud-storage)
 
 Example:
 
@@ -386,7 +386,7 @@ Supported cloud storages:
 * AWS S3
 * GCP Cloud Storage
 
-> This feature can be configured via [api-constructor](../../deprecated/deprecated/zen-related/aidbox-api-constructor.md) in zen-project.
+> This feature can be configured via [api-constructor](../zen-related/api-constructor-docs-beta.md) in zen-project.
 
 1. Configure your `aidbox/system` with `sdc-service` and it's configuration.
 
@@ -401,7 +401,7 @@ Example:
   :services {:sdc sdc-service}}
 ```
 
-2. Create [`AwsAccount`](../../storage/aws-s3.md) or [`GcpServiceAccount`](../../storage/gcp-cloud-storage.md)
+2. Create [`AwsAccount`](../../../storage/aws-s3.md) or [`GcpServiceAccount`](../../../storage/gcp-cloud-storage.md)
 3. Configure sdc-service with created account resource and specify a bucket name
 
 Example:

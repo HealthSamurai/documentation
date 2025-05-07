@@ -6,7 +6,7 @@ This operation finds all resources which match (i.e. are similar to) the given r
 
 FHIR definition of the operation: [http://hl7.org/fhir/OperationDefinition/Patient-match](http://hl7.org/fhir/OperationDefinition/Patient-match)
 
-This operation translates to [aidbox.mdm/match RPC](../../../deprecated/deprecated/zen-related/rpc-reference/aidbox/mdm/aidbox.mdm-match.md) call. The RPC has simpler syntax and you can adjust threshold values. Consider using it if you are not required to use FHIR syntax.
+This operation translates to [aidbox.mdm/match RPC](../../../deprecated/deprecated/zen-related/rpc-reference/aidbox/mdm/aidbox-mdm-match.md) call. The RPC has simpler syntax and you can adjust threshold values. Consider using it if you are not required to use FHIR syntax.
 
 To use `$match` operation you need to set up MDM. Read the [Aidbox MDM manual](./) to learn how to use it.
 
@@ -102,6 +102,6 @@ entry:
 
 ## See also
 
-{% content-ref url="../../../deprecated/deprecated/zen-related/rpc-reference/aidbox/mdm/aidbox.mdm-match.md" %}
-[aidbox.mdm-match.md](../../../deprecated/deprecated/zen-related/rpc-reference/aidbox/mdm/aidbox.mdm-match.md)
+{% content-ref url="../../../deprecated/deprecated/zen-related/rpc-reference/aidbox/mdm/aidbox-mdm-match.md" %}
+[aidbox-mdm-match.md](../../../deprecated/deprecated/zen-related/rpc-reference/aidbox/mdm/aidbox-mdm-match.md)
 {% endcontent-ref %}

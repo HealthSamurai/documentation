@@ -72,7 +72,7 @@ A request succeeds if at least one of the policies is valid for it.
 GET {{base}}/fhir/Patient
 ```
 
-![](<../../.gitbook/assets/policy1 (1).png>)
+![](../../.gitbook/assets/policy1%20\(1\).png)
 
 ### Negative Test
 
@@ -80,7 +80,7 @@ GET {{base}}/fhir/Patient
 POST {{base}}/fhir/Patient
 ```
 
-![](<../../.gitbook/assets/policy2 (1).png>)
+![](../../.gitbook/assets/policy2%20\(1\).png)
 
 ## Policy Debugging
 
@@ -102,7 +102,7 @@ POST {{base}}/fhir/Patient
 
 ![](../../.gitbook/assets/policy4.png)
 
-See the full documentation [Access Policies](../../modules/security-and-access-control/security/access-control.md).
+See the full documentation [Access Policies](../../modules/security-and-access-control/security/accesspolicy.md).
 
 ## Access Policies for Users
 
@@ -307,7 +307,7 @@ The results of the schema validation should be the following:
 | GET          | True                   | True             |
 | POST         | True                   | False            |
 
-See the full documentation [Resource Owner Credentials Grant](../../modules/security-and-access-control/auth/resource-owner-password.md).
+See the full documentation [Resource Owner Credentials Grant](../../modules/security-and-access-control/auth/resource-owner-grant.md).
 
 ## Signed RPC policy token
 

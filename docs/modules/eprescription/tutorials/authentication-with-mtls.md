@@ -8,7 +8,7 @@ Surescripts uses [mTLS (mutual TLS)](https://www.cloudflare.com/learning/access-
 
 ![How mutual TLS authentication works](https://www.cloudflare.com/resources/images/slt3lc6tev37/5SjaQfZzDLEGqyzFkA0AA4/d227a26bbd7bc6d24363e9b9aaabef55/how_mtls_works-what_is_mutual_tls.png)
 
-Please, follow an instructions provided by Surescripts. And once you will have all certs, you can proceed to [preparing authentication files](how-to-prepare-surescripts-mtls.md#how-to-get-proper-authentication-files).
+Please, follow an instructions provided by Surescripts. And once you will have all certs, you can proceed to [preparing authentication files](authentication-with-mtls.md#how-to-get-proper-authentication-files).
 
 ## How to get proper authentication files
 

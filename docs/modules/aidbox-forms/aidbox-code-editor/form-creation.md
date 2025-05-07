@@ -2,14 +2,14 @@
 
 To create new form you need to define Form-assembly and at least 1 layer (schemas from `aidbox.sdc`) :
 
-* [Form](how-to-create-a-form.md#form) - bind all layers in one place
-* [SDCDocument](how-to-create-a-form.md#sdcdocument) - contains questions with answers and other meta data
+* [Form](form-creation.md#form) - bind all layers in one place
+* [SDCDocument](form-creation.md#sdcdocument) - contains questions with answers and other meta data
 
 Other layers you could add as you need some special behavior:
 
-* [Form Layout](how-to-create-a-form.md#form-layout) - define fields layout and display rules
-* [Form Launch](how-to-create-a-form.md#form-launch) - define form init parameters and prepopulate logic.
-* [Form Finalize](how-to-create-a-form.md#form-finalize) - define additional validations and extractions for form `sign`
+* [Form Layout](form-creation.md#form-layout) - define fields layout and display rules
+* [Form Launch](form-creation.md#form-launch) - define form init parameters and prepopulate logic.
+* [Form Finalize](form-creation.md#form-finalize) - define additional validations and extractions for form `sign`
 
 ### SDCDocument
 
@@ -65,7 +65,7 @@ DepressionDocument
  }
 ```
 
-More on SDCDocument:[ Document DSL](../../../reference/aidbox-forms/document-dsl.md) Reference
+More on SDCDocument:[ Document DSL](../../../deprecated/deprecated/forms/document-dsl-docs-deprecated.md) Reference
 
 ### Form Layout
 
@@ -94,7 +94,7 @@ Default Layout engine is `aidbox.sdc/Hiccup` uses DSL in shape of nested objects
     {:bind [:loinc-39156-5]}]}}
 ```
 
-More on form layout: [Layout DSL](../../../reference/aidbox-forms/layout-dsl.md) Reference
+More on form layout: [Layout DSL](../../../deprecated/deprecated/forms/layout-dsl-docs-deprecated.md) Reference
 
 ### Form Launch
 
@@ -137,14 +137,14 @@ For that you can use:
                               :where [:= :id (get-in [:params :encounter-id])]})}}
 ```
 
-More on launch: [Launch DSL](../../../reference/aidbox-forms/launch-dsl.md) Reference
+More on launch: [Launch DSL](../../../deprecated/deprecated/forms/launch-dsl-docs-deprecated.md) Reference
 
 ### Form Finalize
 
 Form `Finalize` defines extractions that should be done after document `sign` and optionally binds to custom constraint schema for validations.
 
 {% hint style="info" %}
-Default export-engine - `aidbox.sdc/LispExport` (see available commands: [LISP](../../../reference/aidbox-forms/lisp.md) Reference)
+Default export-engine - `aidbox.sdc/LispExport` (see available commands: [LISP](../../../deprecated/deprecated/forms/lisp-docs-deprecated.md) Reference)
 {% endhint %}
 
 ```clojure
@@ -238,4 +238,4 @@ Form used just to bind all DSLs to one item.
 
 ```
 
-For now you can already try to use created document via `aidbox.sdc` [API](../../../reference/aidbox-forms/api-reference.md)
+For now you can already try to use created document via `aidbox.sdc` [API](../../../deprecated/deprecated/forms/form-api-docs-deprecated.md)

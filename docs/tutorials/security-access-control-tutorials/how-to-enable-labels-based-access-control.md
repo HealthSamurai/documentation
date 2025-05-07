@@ -43,9 +43,9 @@ See more details related the [running Aidbox locally](https://docs.aidbox.app/ge
 
 ## Enable security labels access control
 
-To enable LBAC, use Aidbox UI -> Settings -> Enable LBAC. You don't have to restart the instance if you use Aidbox UI. \
+To enable LBAC, use Aidbox UI -> Settings -> Enable LBAC. You don't have to restart the instance if you use Aidbox UI.\
 \
-Also, you can update environment variables&#x20;
+Also, you can update environment variables
 
 {% code title=".env" %}
 ```ini
@@ -61,7 +61,7 @@ BOX_SECURITY_LBAC_STRIP_LABELS=true
 
 ## Superadmin Role with Label-based Access Control
 
-As mentioned [earlier](how-to-enable-security-labels-access-control.md#resource-level-access-control), resources without security labels cannot be accessed. This can affect the functionality of the Aidbox UI console, making resources like User, Client, Access Policy, etc., inaccessible until they are labeled.\
+As mentioned [earlier](how-to-enable-labels-based-access-control.md#resource-level-access-control), resources without security labels cannot be accessed. This can affect the functionality of the Aidbox UI console, making resources like User, Client, Access Policy, etc., inaccessible until they are labeled.\
 \
 To avoid the need to label all resources displayed in the UI console, use the `superadmin` Role.\
 \
@@ -82,7 +82,7 @@ user:
 
 ### Create TokenIntrospector
 
-To make Aidbox trust `JWT` issued by external server token introspection is used, run the following request in the [REST Console](../../../../../overview/aidbox-ui/rest-console-1.md#rest-console).
+To make Aidbox trust `JWT` issued by external server token introspection is used, run the following request in the [REST Console](../../../overview/aidbox-ui/rest-console-1.md#rest-console).
 
 ```yaml
 PUT /TokenIntrospector/security-labels-demo-client
@@ -104,7 +104,7 @@ Currently, we use a common secret to make the introspector work. In production i
 
 This access policy allows `FhirRead` and `FhirSearch` operations for requesters having JWT with `iss` claim value `https://auth.example.com`.
 
-To create the access policy, run the following request in the [REST Console](../../../../../overview/aidbox-ui/rest-console-1.md#rest-console).
+To create the access policy, run the following request in the [REST Console](../../../overview/aidbox-ui/rest-console-1.md#rest-console).
 
 ```yaml
 PUT /AccessPolicy/as-security-labels-demo-client-do-read-search
@@ -127,7 +127,7 @@ matcho:
 
 #### Create Patient resource
 
-To create the Patient, run the following request in the [REST Console](../../../../../overview/aidbox-ui/rest-console-1.md#rest-console).
+To create the Patient, run the following request in the [REST Console](../../../overview/aidbox-ui/rest-console-1.md#rest-console).
 
 ```yaml
 PUT /fhir/Patient/pt-1
@@ -184,7 +184,7 @@ resourceType: Patient
 
 #### Create Encounter resource
 
-To create the Encounter, run the following request in the [REST Console](../../../../../overview/aidbox-ui/rest-console-1.md#rest-console).
+To create the Encounter, run the following request in the [REST Console](../../../overview/aidbox-ui/rest-console-1.md#rest-console).
 
 ```yaml
 PUT /fhir/Encounter/enc-1
@@ -214,7 +214,7 @@ subject:
 
 #### Create Observation resource
 
-To create the Observation, run the following request in the [REST Console](../../../../../overview/aidbox-ui/rest-console-1.md#rest-console).
+To create the Observation, run the following request in the [REST Console](../../../overview/aidbox-ui/rest-console-1.md#rest-console).
 
 ```yaml
 PUT /fhir/Observation/obs-1

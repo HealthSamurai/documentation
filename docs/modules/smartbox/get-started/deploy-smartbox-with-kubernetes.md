@@ -30,13 +30,11 @@ This guide does not define exposing Smartbox to the Internet
 ## Prebuilt k8s configuration
 
 1. Download the file
-2. Populate the [missed ENVs](deploy-smartbox-to-kubernetes.md#smartbox-envs)
+2. Populate the [missed ENVs](deploy-smartbox-with-kubernetes.md#smartbox-envs)
 3. Run the command `kubectl apply -f smartbox.yaml`
 
-{% file src="../../../.gitbook/assets/smartbox.yaml" %}
-
 {% hint style="info" %}
-The `smartbox.yaml` is the k8s compiled templates configuration. The configuration components contained in the file are defined [further in this guide](deploy-smartbox-to-kubernetes.md#resources-templates)
+The `smartbox.yaml` is the k8s compiled templates configuration. The configuration components contained in the file are defined [further in this guide](deploy-smartbox-with-kubernetes.md#resources-templates)
 {% endhint %}
 
 ## Smartbox mandatory ENVs

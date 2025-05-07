@@ -3,12 +3,12 @@
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[setup.md](../../../../../modules/profiling-and-validation/fhir-schema-validator/setup.md "mention")
+[setup-aidbox-with-fhir-schema-validation-engine.md](../../../../../modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md "mention")
 {% endhint %}
 
 Config for AidboxOne product (devbox)- `:db` (zen/symbol)
 
-zen/tag: [aidbox.config/db](aidbox.config-config.md#aidbox.config-db)
+zen/tag: [aidbox.config/db](aidbox-config-config.md#aidbox.config-db)
 
 * `:aidbox-license` (zen/string)
 * `:disable-legacy-seed` (zen/boolean)
@@ -39,7 +39,7 @@ zen/tag: [aidbox.config/db](aidbox.config-config.md#aidbox.config-db)
     * `:entrypoint` (zen/string)
 *   `:replication` (zen/symbol)
 
-    zen/tag: [aidbox.config/replication](aidbox.config-config.md#aidbox.config-replication)
+    zen/tag: [aidbox.config/replication](aidbox-config-config.md#aidbox.config-replication)
 * `:apm` (zen/map)
   * `:disable` (zen/boolean)
   *   `:server` (zen/string)
@@ -60,7 +60,7 @@ zen/tag: [aidbox.config/db](aidbox.config-config.md#aidbox.config-db)
 * `:box-id` (zen/string)
 *   `:web` (zen/symbol)
 
-    zen/tag: [aidbox.config/web](aidbox.config-config.md#aidbox.config-web)
+    zen/tag: [aidbox.config/web](aidbox-config-config.md#aidbox.config-web)
 
 ## aidbox.config/db
 

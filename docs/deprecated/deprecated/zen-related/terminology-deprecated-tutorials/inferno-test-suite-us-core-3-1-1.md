@@ -12,7 +12,7 @@ In this tutorial we will guide you how to setup Aidbox US Core FHIR Implementati
 
 ## Setup Aidbox with US Core IG version 3.1.1 with prebuilt Aidbox config
 
-To correctly set up Aidbox, we'll utilize the Aidbox configuration projects.&#x20;
+To correctly set up Aidbox, we'll utilize the Aidbox configuration projects.
 
 There's an [existing guide](https://docs.aidbox.app/getting-started/run-aidbox-locally-with-docker) for this process. Adhere to this guide, but note a variation when you reach the `Configure the Aidbox` step: instead of using the recommended configuration projects (R4,R4B,R5,etc.) — clone this specific project:
 
@@ -59,7 +59,7 @@ The link in `input.url` points to an archive containing data samples generated b
 
 ## Obtaining OAuth credentials
 
-To obtain OAuth credentials, please refer to this [video guide](../../../../modules/security-and-access-control/auth/client-credentials.md#auth-sandbox). Keep obtained access token for the following steps.
+To obtain OAuth credentials, please refer to this [video guide](../../../../modules/security-and-access-control/auth/client-credentials-grant.md#auth-sandbox). Keep obtained access token for the following steps.
 
 ## (Optional) Forwarding your local Aidbox deployment to the public web
 

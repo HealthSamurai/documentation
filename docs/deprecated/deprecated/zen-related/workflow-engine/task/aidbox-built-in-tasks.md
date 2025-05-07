@@ -157,13 +157,13 @@ result:
 
 ## awf.workflow/decision-task
 
-**Decision tasks** - special tasks that form the body of the workflow and partially execute it in certain iterations. Decision tasks are created when a workflow is started or as a response on [another event](aidbox-predefined-tasks.md#event-types) to decide what action should be taken. Actions are predefined in task execution operations that are used as a response to a completed decision task. Actions are used in [certain cases](aidbox-predefined-tasks.md#action-types), such as starting a new task.
+**Decision tasks** - special tasks that form the body of the workflow and partially execute it in certain iterations. Decision tasks are created when a workflow is started or as a response on [another event](aidbox-built-in-tasks.md#event-types) to decide what action should be taken. Actions are predefined in task execution operations that are used as a response to a completed decision task. Actions are used in [certain cases](aidbox-built-in-tasks.md#action-types), such as starting a new task.
 
 Decision tasks should also include an event that should represent the purpose of that task as a parameter.
 
 ### Params
 
-<table data-full-width="false"><thead><tr><th width="141.33333333333331">Parameter</th><th width="77">Type</th><th width="104" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>event</td><td>string</td><td>true</td><td><a href="aidbox-predefined-tasks.md#event-types">Type of event.</a><br><em>Example:</em> <em><code>awf.workflow.event/workflow-init</code></em></td></tr><tr><td>workflow-id</td><td>string</td><td>false</td><td>Id of completed workflow instance. <strong>Required only if event type is</strong> <em><code>awf.workflow.event/workflow-completed</code></em></td></tr><tr><td>task-id</td><td>string</td><td>false</td><td>Id of completed task instance. <strong>Required only if event type is</strong> <em><code>awf.workflow.event/task-completed</code></em></td></tr></tbody></table>
+<table data-full-width="false"><thead><tr><th width="141.33333333333331">Parameter</th><th width="77">Type</th><th width="104" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>event</td><td>string</td><td>true</td><td><a href="aidbox-built-in-tasks.md#event-types">Type of event.</a><br><em>Example:</em> <em><code>awf.workflow.event/workflow-init</code></em></td></tr><tr><td>workflow-id</td><td>string</td><td>false</td><td>Id of completed workflow instance. <strong>Required only if event type is</strong> <em><code>awf.workflow.event/workflow-completed</code></em></td></tr><tr><td>task-id</td><td>string</td><td>false</td><td>Id of completed task instance. <strong>Required only if event type is</strong> <em><code>awf.workflow.event/task-completed</code></em></td></tr></tbody></table>
 
 ### Event types
 
@@ -171,7 +171,7 @@ Decision tasks should also include an event that should represent the purpose of
 
 ### Result
 
-<table data-full-width="false"><thead><tr><th width="155.33333333333331">Parameter</th><th width="81">Type</th><th width="103" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>action</td><td>string</td><td>true</td><td><a href="aidbox-predefined-tasks.md#action-types">Type of action.</a><br><em>Example:</em> <em><code>awf.workflow.action/schedule-task</code></em></td></tr><tr><td><strong>task-request</strong></td><td>object</td><td>false</td><td><p>Object with task execution request. <strong>Required</strong> <strong>only if action type is</strong> <em><code>awf.workflow.action/schedule-task</code> or</em></p><p><em><code>awf.workflow.action/schedule-workflow</code></em></p></td></tr><tr><td><p><strong>task-request</strong>.</p><p>definition</p></td><td>string</td><td>false</td><td>Definition of <a href="aidbox-predefined-tasks.md#aidbox-predefined-tasks">predefined task</a> or<br>custom-defined task.<br><em>Example:</em> <code>aidbox.archive/create-archive</code></td></tr><tr><td><strong>task-request</strong>.<br>label</td><td>string</td><td>false</td><td>Human- or machine-readable description of task instance. Should be unique in the context of single workflow.<br><em>Example: <code>Import Patient resources</code></em></td></tr><tr><td><strong>task-request</strong>.<br>params</td><td>object</td><td>false</td><td>The input parameters described in the task or workflow definition.</td></tr></tbody></table>
+<table data-full-width="false"><thead><tr><th width="155.33333333333331">Parameter</th><th width="81">Type</th><th width="103" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td>action</td><td>string</td><td>true</td><td><a href="aidbox-built-in-tasks.md#action-types">Type of action.</a><br><em>Example:</em> <em><code>awf.workflow.action/schedule-task</code></em></td></tr><tr><td><strong>task-request</strong></td><td>object</td><td>false</td><td><p>Object with task execution request. <strong>Required</strong> <strong>only if action type is</strong> <em><code>awf.workflow.action/schedule-task</code> or</em></p><p><em><code>awf.workflow.action/schedule-workflow</code></em></p></td></tr><tr><td><p><strong>task-request</strong>.</p><p>definition</p></td><td>string</td><td>false</td><td>Definition of <a href="aidbox-built-in-tasks.md#aidbox-predefined-tasks">predefined task</a> or<br>custom-defined task.<br><em>Example:</em> <code>aidbox.archive/create-archive</code></td></tr><tr><td><strong>task-request</strong>.<br>label</td><td>string</td><td>false</td><td>Human- or machine-readable description of task instance. Should be unique in the context of single workflow.<br><em>Example: <code>Import Patient resources</code></em></td></tr><tr><td><strong>task-request</strong>.<br>params</td><td>object</td><td>false</td><td>The input parameters described in the task or workflow definition.</td></tr></tbody></table>
 
 ### Action types
 
@@ -428,7 +428,7 @@ result:
 
 ## awf.task/clean-up-activities
 
-Deletes `AidboxTask`, `AidboxTaskLog` and `AidboxWorkflow` resources that are in `done` state according to specified rules. \
+Deletes `AidboxTask`, `AidboxTaskLog` and `AidboxWorkflow` resources that are in `done` state according to specified rules.\
 \
 When the workflow is matched by the rule, all activities requested by that workflow as AidboxTask and AidboxWorkflow would also be deleted. If task is matched by the rule, all it's AidboxTaskLog resources would also be deleted.\
 \
@@ -436,12 +436,12 @@ When includeDefinitions is specified, only activities with listed definitions wi
 When excludeDefinitions is specified, all activities are deleted except for activities with the listed definitions.\
 If both includeDefinitions and excludeDefinitions are not specified, deletes all resources that match retentionPolicy.
 
-If multiple rules are listed, all rules are applied. \
-Can be used with the [Scheduler service](../services.md#cleanup-rule-definition) to automatically clean up old tasks and workflows.&#x20;
+If multiple rules are listed, all rules are applied.\
+Can be used with the [Scheduler service](../services.md#cleanup-rule-definition) to automatically clean up old tasks and workflows.
 
 ### Params
 
-<table data-full-width="false"><thead><tr><th width="259">Parameter</th><th width="94">Type</th><th width="103" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td><strong>rules</strong></td><td>object[]</td><td>true</td><td><p>Array of cleanup rules. </p><p>At least 1 rule is required. </p></td></tr><tr><td><strong>rules[].</strong>retentionPolicy</td><td>object</td><td>true</td><td><p>Policy that manages the length of time resources are kept. Resources that are not within this time period will be deleted. </p><p><em>Example: <code>{"unit": "hour", "value": 1}</code> - means that any resource updated more than 1 hour ago will be deleted.</em></p></td></tr><tr><td><strong>rules[].retentionPolicy.</strong>unit</td><td>string</td><td>true</td><td>Time units.<br><em>Possible values: <code>minute</code>, <code>hour</code>, <code>day</code>, <code>week</code>, <code>month</code>, <code>year</code></em></td></tr><tr><td><strong>rules[].retentionPolicy.</strong>value</td><td>integer</td><td>true</td><td>Number of time units.</td></tr><tr><td><strong>rules[].</strong>includeDefinitions</td><td>string[]</td><td>false</td><td><p>List of task/workflow definitions that would be affected by this rule. </p><p><em>Example: <code>["aidbox.bulk/import-resource-task"]</code></em></p><p><em>Exclusive with <strong>rules.</strong>excludeDefinitions</em></p></td></tr><tr><td><strong>rules[].</strong>excludeDefinitions</td><td>string[]</td><td>false</td><td><p>List of task/workflow definitions that would be ignored by this rule. In this case, the rule would be applied to all AidboxTask, AidboxTaskLog and AidboxWorkflow resources except the listed definitions.</p><p><em>Example: <code>["aidbox.bulk/import-resource-task"]</code></em></p><p><em>Exclusive with <strong>rules.</strong>includeDefinitions</em></p></td></tr></tbody></table>
+<table data-full-width="false"><thead><tr><th width="259">Parameter</th><th width="94">Type</th><th width="103" data-type="checkbox">Required</th><th>Description</th></tr></thead><tbody><tr><td><strong>rules</strong></td><td>object[]</td><td>true</td><td><p>Array of cleanup rules.</p><p>At least 1 rule is required.</p></td></tr><tr><td><strong>rules[].</strong>retentionPolicy</td><td>object</td><td>true</td><td><p>Policy that manages the length of time resources are kept. Resources that are not within this time period will be deleted.</p><p><em>Example: <code>{"unit": "hour", "value": 1}</code> - means that any resource updated more than 1 hour ago will be deleted.</em></p></td></tr><tr><td><strong>rules[].retentionPolicy.</strong>unit</td><td>string</td><td>true</td><td>Time units.<br><em>Possible values: <code>minute</code>, <code>hour</code>, <code>day</code>, <code>week</code>, <code>month</code>, <code>year</code></em></td></tr><tr><td><strong>rules[].retentionPolicy.</strong>value</td><td>integer</td><td>true</td><td>Number of time units.</td></tr><tr><td><strong>rules[].</strong>includeDefinitions</td><td>string[]</td><td>false</td><td><p>List of task/workflow definitions that would be affected by this rule.</p><p><em>Example: <code>["aidbox.bulk/import-resource-task"]</code></em></p><p><em>Exclusive with <strong>rules.</strong>excludeDefinitions</em></p></td></tr><tr><td><strong>rules[].</strong>excludeDefinitions</td><td>string[]</td><td>false</td><td><p>List of task/workflow definitions that would be ignored by this rule. In this case, the rule would be applied to all AidboxTask, AidboxTaskLog and AidboxWorkflow resources except the listed definitions.</p><p><em>Example: <code>["aidbox.bulk/import-resource-task"]</code></em></p><p><em>Exclusive with <strong>rules.</strong>includeDefinitions</em></p></td></tr></tbody></table>
 
 {% tabs %}
 {% tab title="Request" %}
@@ -522,7 +522,7 @@ id: >-
 
 ## aidbox.task/run-sql
 
-Executes the given SQL query. If given is array, executes given as prepared statement. \
+Executes the given SQL query. If given is array, executes given as prepared statement.\
 If the query result is greater than 1000 rows, an error is returned.
 
 ### Params
@@ -669,9 +669,9 @@ id: >-
 
 ## aidbox.validation/resource-types-bath-validation-workflow
 
-Executes validation on given table names. Creates a task for every table.&#x20;
+Executes validation on given table names. Creates a task for every table.
 
-**Note: for every broken target resource creates a** `BatchValidationError` **resource.**&#x20;
+**Note: for every broken target resource creates a** `BatchValidationError` **resource.**
 
 {% tabs %}
 {% tab title="Request" %}

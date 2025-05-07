@@ -20,7 +20,7 @@ When loading resources with references, remember that '`<resourceType>/<id>'` is
 {% endhint %}
 
 {% hint style="info" %}
-Please consider using [Asynchronous validation API](../../modules/profiling-and-validation/validation-api.md#asynchronous-batch-validation-draft) to validate data after $load
+Please consider using [Asynchronous validation API](../../modules/profiling-and-validation/asynchronous-resource-validation.md#asynchronous-batch-validation-draft) to validate data after $load
 {% endhint %}
 
 Load 100 synthea Patients to Aidbox (see [tutorial](../../tutorials/bulk-api-tutorials/synthea-by-bulk-api.md)):
@@ -99,7 +99,7 @@ volumes:
 # url: file:///resources/Encounter.ndjson.gz
 ```
 
-### Use tunneling e.g. ngrok:&#x20;
+### Use tunneling e.g. ngrok:
 
 <pre><code>python3 -m http.server 
 ngrok http 8000
