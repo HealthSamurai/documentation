@@ -62,7 +62,7 @@ Aidbox MCP server config:
         "-y",
         "@latitude-data/supergateway",
         "--sse",
-        "http://localhost:8765/mcp"
+        "<your-box-base-url>/mcp"
       ]
     }
   }
