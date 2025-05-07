@@ -15,9 +15,9 @@ Aidbox MCP server works through Server-Sent Events (SSE) protocol and provides t
 
 ### Tools
 
-Aidbox provides a set of MCP tools to cover FHIR CRUD operations.
+Aidbox provides a set of MCP tools to cover FHIR CRUDS operations.
 
-<table><thead><tr><th width="198.7421875">Tool Name</th><th>Properties</th><th>Description</th></tr></thead><tbody><tr><td>read-fhir-resource</td><td>- resourceType (string, required)<br>- id (string, required)</td><td>Read an individual FHIR resource</td></tr><tr><td>create-fhir-resource</td><td>- resourceType (string, required)<br>- body (JSON object, required)</td><td>Create a new FHIR resource</td></tr><tr><td>update-fhir-resource</td><td>- resourceType (string, required)<br>- id (string, required)<br>- body (JSON object, required)</td><td>Update an existing FHIR resource</td></tr><tr><td>delete-fhir-resource</td><td>- resourceType (string, required)<br>- id (string, required)</td><td>Delete an existing FHIR resource</td></tr></tbody></table>
+<table><thead><tr><th width="198.7421875">Tool Name</th><th>Properties</th><th>Description</th></tr></thead><tbody><tr><td>read-fhir-resource</td><td>- resourceType (string, required)<br>- id (string, required)</td><td>Read an individual FHIR resource</td></tr><tr><td>create-fhir-resource</td><td>- resourceType (string, required)<br>- body (JSON object, required)</td><td>Create a new FHIR resource</td></tr><tr><td>update-fhir-resource</td><td>- resourceType (string, required)<br>- id (string, required)<br>- body (JSON object, required)</td><td>Update an existing FHIR resource</td></tr><tr><td>delete-fhir-resource</td><td>- resourceType (string, required)<br>- id (string, required)</td><td>Delete an existing FHIR resource</td></tr><tr><td>search-fhir-resources</td><td>- resourceType (string, required)<br>- query (string, required)</td><td>Search existing FHIR resources</td></tr></tbody></table>
 
 ## Connect to Aidbox MCP server
 
@@ -47,7 +47,7 @@ Select `SSE` in `Transport Type` dropdown. And set URL to `<your-aidbox-base-url
 
 Now you can discover tools and use them.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2025-05-07 at 11.54.37.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2025-05-07 at 14.24.30.png" alt=""><figcaption></figcaption></figure>
 
 ### Using LLM agents
 
