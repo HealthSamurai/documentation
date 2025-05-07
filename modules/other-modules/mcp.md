@@ -10,7 +10,7 @@ The Aidbox MCP module is available starting from version 2505 and is currently i
 
 Aidbox MCP server works through Server-Sent Events (SSE) protocol and provides two endpoints:
 
-* `<aidbox-base-url>/mcp` - to connect server and discover tools
+* `<aidbox-base-url>/mcp` - to connect the server and discover tools
 * `<aidbox-base-url>/mcp/<mcp-client-id>/messages` - to send messages to the server
 
 ### Tools
@@ -21,11 +21,36 @@ Aidbox provides a set of MCP tools to cover FHIR CRUDS operations.
 
 ## Connect to Aidbox MCP server
 
-To enable MCP sever in Aidbox set environment variable `BOX_MODULE_MCP_SERVER_ENABLED` to `true`.
+To enable the MCP server in Aidbox, set the environment variable `BOX_MODULE_MCP_SERVER_ENABLED` to `true`.
+
+### Using LLM agents
+
+Aidbox MCP server config:
+
+```json
+{
+  "mcpServers": {
+    "aidbox": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@latitude-data/supergateway",
+        "--sse",
+        "<your-box-base-url>/mcp"
+      ]
+    }
+  }
+}
+```
+
+* For the `Cursor` editor add this config to your project folder `.cursor/mcp.json`.
+* For the LLM Desktop applications, such `Claude`, `ChatGPT` etc. go to the `Settings` and set the config. For example, in `Claude` desktop app go to `Settings` -> `Developer` -> `Edit Config`.
+
+Now you can ask your LLM agent to Create, Read, Update or Delete FHIR resources in Aidbox
 
 ### Using MCP Inspector
 
-MCP Inspector is a tool that helps you to discover and test MCP tools. It is a web application that allows you to connect to Aidbox MCP server and explore its capabilities.
+MCP Inspector is a tool that helps you to discover and test MCP tools. It is a web application that allows you to connect to the Aidbox MCP server and explore its capabilities.
 
 1. Run MCP Inspector
 
@@ -49,27 +74,3 @@ Now you can discover tools and use them.
 
 <figure><img src="../../.gitbook/assets/Screenshot 2025-05-07 at 14.24.30.png" alt=""><figcaption></figcaption></figure>
 
-### Using LLM agents
-
-Aidbox MCP server config:
-
-```json
-{
-  "mcpServers": {
-    "aidbox": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@latitude-data/supergateway",
-        "--sse",
-        "<your-box-base-url>/mcp"
-      ]
-    }
-  }
-}
-```
-
-* For the `Cursor` editor add this config to your project folder `.cursor/mcp.json`.
-* For the LLM Desktop applications such `Claude`, `ChatGPT` etc. go to the `Settings` and set the config. For example in `Claude` desktop app go to `Settings` -> `Developer` -> `Edit Config`.
-
-Now you can ask your LLM agent to Create, Read, Update or Delete FHIR resources in Aidbox.
