@@ -19,9 +19,115 @@ Aidbox provides a set of MCP tools to cover FHIR CRUDS operations.
 
 <table><thead><tr><th width="198.7421875">Tool Name</th><th>Properties</th><th>Description</th></tr></thead><tbody><tr><td>read-fhir-resource</td><td>- resourceType (string, required)<br>- id (string, required)</td><td>Read an individual FHIR resource</td></tr><tr><td>create-fhir-resource</td><td>- resourceType (string, required)<br>- body (JSON object, required)</td><td>Create a new FHIR resource</td></tr><tr><td>update-fhir-resource</td><td>- resourceType (string, required)<br>- id (string, required)<br>- body (JSON object, required)</td><td>Update an existing FHIR resource</td></tr><tr><td>delete-fhir-resource</td><td>- resourceType (string, required)<br>- id (string, required)</td><td>Delete an existing FHIR resource</td></tr><tr><td>search-fhir-resources</td><td>- resourceType (string, required)<br>- query (string, required)</td><td>Search existing FHIR resources</td></tr></tbody></table>
 
-## Connect to Aidbox MCP server
+## Configure Aidbox MCP server
 
-To enable the MCP server in Aidbox, set the environment variable `BOX_MODULE_MCP_SERVER_ENABLED` to `true`.
+### Runme command
+
+The easiest way to run Aidbox with MCP is use the runme command:
+
+```
+curl -JO https://aidbox.app/runme/mcp && docker compose up
+```
+
+You will get Aidbox with enabled MCP server and created `AccessPolicy` for it.
+
+### Already existed Aidbox
+
+If you have already configured Aidbox to enable the MCP server:
+
+1. Set the [setting](../../reference/settings/modules.md#mdm) to `true`.
+2. Create `AccessPolicy`&#x20;
+
+Aidbox MCP endpoints are not public, so you need to set up Acces Control for these endpoints. \
+The easiest way (but not the safest) is to create allow `AccessPolicy` for mcp operations:
+
+```http
+PUT /AccessPolicy/allow-mcp-endpoints
+content-type: application/json
+accept: application/json
+
+{
+  "resourceType": "AccessPolicy",
+  "id": "allow-mcp-endpoints",
+  "link": [
+    {
+      "id": "mcp",
+      "resourceType": "Operation"
+    },
+    {
+      "id": "mcp-client-messages",
+      "resourceType": "Operation"
+    }
+  ],
+  "engine": "allow"
+}
+```
+
+This means that Aidbox MCP endpoints become public and anybody has access to them.
+
+The second way (safer one) is to create `Client`, `AccessPolcy`, get a token and use this token to connect to Aidbox MCP server.\
+Create `Client` resource
+
+```http
+PUT /Client/mcp-client
+content-type: application/json
+accept: application/json
+
+{
+ "id": "mcp-client",
+ "secret": "verysecret", // change secret to more reliable one
+ "grant_types": ["client_credentials"]
+}
+```
+
+Create AccessPolicy resource:
+
+```http
+PUT /AccessPolicy/allow-mcp-endpoints
+content-type: application/json
+accept: application/json
+
+{
+  "resourceType": "AccessPolicy",
+  "id": "mcp-endpoints",
+  "engine": "matcho",
+  "matcho": {
+    "client": {
+      "id": "mcp-client"
+    },
+    "operation": {
+      "$one-of": [
+        {
+          "resourceType": "Operation",
+          "id": "mcp"
+        },
+        {
+          "resourceType": "Operation",
+          "id": "mcp-client-messages"
+        }
+      ]
+    }
+  }
+}
+```
+
+Get token:
+
+```http
+POST /auth/token
+content-type: application/json
+accept: application/json
+
+{
+ "client_id": "mcp-client",
+ "client_secret": "verysecret", // put here your client secret
+ "grant_type": "client_credentials"
+}
+```
+
+Save a token from the response to connect to MCP server.
+
+## Connect to MCP server
 
 ### Using LLM agents
 
@@ -34,16 +140,18 @@ Aidbox MCP server config:
       "command": "npx",
       "args": [
         "-y",
-        "@latitude-data/supergateway",
+        "supergateway",
         "--sse",
-        "<your-box-base-url>/mcp"
+        "<your-box-base-url>/mcp",
+        "--oauth2Bearer", // add this only if you created a client and got a token
+        "<your-aidbox-token>" // add this only if you created a client and got a token
       ]
     }
   }
 }
 ```
 
-* For the `Cursor` editor add this config to your project folder `.cursor/mcp.json`.
+* For the `Cursor` editor add this config to your project folder `.cursor/mcp.json` and make sure that `Settings` -> `Cursor Settings` -> `MCP` is enabled.
 * For the LLM Desktop applications, such `Claude`, `ChatGPT` etc. go to the `Settings` and set the config. For example, in `Claude` desktop app go to `Settings` -> `Developer` -> `Edit Config`.
 
 Now you can ask your LLM agent to Create, Read, Update or Delete FHIR resources in Aidbox
@@ -68,9 +176,10 @@ http://localhost:6274
 
 Select `SSE` in `Transport Type` dropdown. And set URL to `<your-aidbox-base-url>/mcp`.
 
-3. Click `Connect` button.
+3. Add your Aidbox token to `Authentication` -> `Bearer Token` (only if you created Aidbox Client and got the token).
+4. Click `Connect` button.
 
 Now you can discover tools and use them.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2025-05-07 at 14.24.30.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Screenshot 2025-05-07 at 14.24.30.png" alt=""><figcaption></figcaption></figure>
 
