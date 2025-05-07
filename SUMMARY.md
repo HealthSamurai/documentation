@@ -473,6 +473,7 @@
     * [Configure MDM module](docs/modules/other-modules/mdm/configure-mdm-module.md)
     * [Find duplicates: $match](docs/modules/other-modules/mdm/find-duplicates-usdmatch.md)
     * [Mathematical details](docs/modules/other-modules/mdm/mathematical-details.md)
+  * [MCP](modules/other-modules/mcp.md)
 
 ## Database
 
