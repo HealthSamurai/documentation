@@ -35,7 +35,7 @@ You will get Aidbox with enabled MCP server and created `AccessPolicy` for it.
 
 If you have already configured Aidbox to enable the MCP server:
 
-1. Set the [setting](../../reference/settings/modules.md#mdm) to `true`.
+1. Set the [setting](../../reference/settings/modules.md#mcp) to `true`.
 2. Create `AccessPolicy`&#x20;
 
 Aidbox MCP endpoints are not public, so you need to set up Acces Control for these endpoints. \
