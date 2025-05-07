@@ -2,14 +2,11 @@
 
 mkdir -p out
 
-# Массивы для хранения информации
 declare -A file_links
 
 declare -a files
 
-# Собираем все markdown-файлы
 while IFS= read -r -d '' file; do
-  # Извлекаем все markdown-ссылки
   links=$(grep -oP '\[[^\]]+\]\([^\)]+\)' "$file" | sort | uniq)
   count=$(echo "$links" | grep -c .)
   if [ "$count" -gt 0 ]; then
@@ -18,10 +15,8 @@ while IFS= read -r -d '' file; do
   fi
 done < <(find docs -type f -name '*.md' -print0)
 
-# Сортируем файлы по количеству ссылок (по убыванию)
 sorted_files=$(printf '%s\n' "${files[@]}" | sort -t: -k2,2nr)
 
-# Файлы, которые должны быть в конце
 last_files=()
 main_files=()
 for entry in $sorted_files; do

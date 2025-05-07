@@ -29,7 +29,4 @@ See [TokenIntrospector schema](../../../reference/system-resources-reference/iam
 5. If the policy allows access, the request proceeds
 
 ## See also
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
+[Set up token introspection tutorial](../../../tutorials/security-access-control-tutorials/set-up-token-introspection.md)
