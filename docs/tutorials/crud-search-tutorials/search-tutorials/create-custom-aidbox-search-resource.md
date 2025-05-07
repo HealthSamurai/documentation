@@ -190,3 +190,17 @@ resource: {id: ServiceRequest, resourceType: Entity}
 where: "{{table}}.resource#>> '{ subject, id }' = {{param.id}}"
 param-parser: reference
 ```
+
+### Search and sort by field in the related resource
+
+```
+PUT /Search/Patient.organization-name
+content-type: text/yaml
+accept: text/yaml
+
+resourceType: Search
+name: organization-name
+resource: {id: Patient, resourceType: Entity}
+where: "(select org.resource ->> 'name' from organization org where {{table}}.resource #>> '{ managingOrganization, id }' = org.id) = {{param}}::text"
+order-by: "(select org.resource ->> 'name' from organization org where {{table}}.resource #>> '{ managingOrganization, id }' = org.id)"
+```
