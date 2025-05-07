@@ -393,3 +393,5 @@ STATUS: 422
 ```
 {% endtab %}
 {% endtabs %}
+
+See [settings](../../../configuration/settings.md)
