@@ -1,8 +1,8 @@
 # Extensions using FHIRSchema
 
-When Aidbox is configured with [FHIRSchema mode](broken-reference), it is possible to define Extension in [FHIRSchema format](https://fhir-schema.github.io/fhir-schema/).&#x20;
+When Aidbox is configured with [FHIRSchema mode](../../modules/profiling-and-validation/fhir-schema-validator/README.md), it is possible to define Extension in [FHIRSchema format](https://fhir-schema.github.io/fhir-schema/).&#x20;
 
-See also [Broken link](broken-reference "mention").
+See also [Extensions using StructureDefinition](./extensions-using-structuredefinition.md).
 
 ## Example
 

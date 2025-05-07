@@ -14,17 +14,13 @@ Performing analysis on FHIR data requires extracting data from deeply nested str
 
 To utilize SQL on FHIR it's important to understand what a View Definition is and how to use it to define flat views.
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
+See [Defining flat Views with ViewDefinitions](./defining-flat-views-with-view-definitions.md).
 
 ## Query data from the defined views
 
 Once your flat view is defined and materialized, you can query data from it using plain SQL.
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
+See [Query data from flat views](./query-data-from-flat-views.md).
 
 ## SQL on FHIR reference
 

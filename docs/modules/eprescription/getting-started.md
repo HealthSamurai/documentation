@@ -52,11 +52,11 @@ networks:
 ```
 
 {% hint style="warning" %}
-If you're not sure about the Surescripts secrets, please read this guide: [How to prepare authentication files.](broken-reference)
+If you're not sure about the Surescripts secrets, please read this guide: [How to prepare authentication files.](./tutorials/how-to-test-callback.md)
 {% endhint %}
 
 {% hint style="warning" %}
-For more information about available configuration options, please go to the [environment variables reference](broken-reference).
+For more information about available configuration options, please go to the [environment variables reference](./environment-variables.md).
 {% endhint %}
 
 ### Volumes

@@ -4,18 +4,9 @@
 
 ### Key Aidbox UI components:
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
-{% content-ref url="attrs-stats.md" %}
-[attrs-stats.md](attrs-stats.md)
-{% endcontent-ref %}
-
-{% content-ref url="db-tables.md" %}
-[db-tables.md](db-tables.md)
-{% endcontent-ref %}
+- [Rest Console](./rest-console.md)
+- [Database Console](./database-console.md)
+- [DB tables](./db-tables.md)
+- [DB queries](./db-queries.md)
+- [Attrs stats](./attrs-stats.md)
+- [Aidbox Notebooks](./aidbox-notebooks.md)

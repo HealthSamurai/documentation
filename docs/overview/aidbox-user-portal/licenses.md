@@ -16,11 +16,7 @@ description: This article describes how to manage Aidbox licenses
 6. Specify _Hosting_ as **Self-hosted**
 7. Click _**Create**_
 
-This quickstart guide explains how to run Aidbox locally using docker compose
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
+[This quickstart guide](../../getting-started/run-aidbox-locally.md) explains how to run Aidbox locally using docker compose
 
 ### Create a hosted Aidbox instance
 
@@ -161,17 +157,11 @@ params:
 
 This page covers types of Aidbox licenses and describes Aidbox Support tiers.
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
 
 ### Run Aidbox locally
 
-This quickstart guide explains how to run Aidbox locally using docker compose
+This [quickstart guide](../../getting-started/run-aidbox-locally.md) explains how to run Aidbox locally using docker compose
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
 
 ### Aidbox as a SaaS on AWS
 

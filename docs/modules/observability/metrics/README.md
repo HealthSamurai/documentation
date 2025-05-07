@@ -15,11 +15,3 @@ Aidbox supports the [OpenTelemetry protocol](https://opentelemetry.io/) and expo
 ## Export metrics to Prometheus
 
 Configure how metrics are getting exposed from the Aidbox.
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
