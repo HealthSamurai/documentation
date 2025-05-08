@@ -201,7 +201,7 @@ matcho:
     - '#\$ai-generate-questionnaire'
     - '#\$openai-chat-completions'
     - '#\$sdc-resource-types'
-    - '#\$sdc-get-resource-schema'
+    - '#\$sdc-resource-schema'
   request-method:
      $one-of:
        - post
@@ -577,7 +577,7 @@ matcho:
   uri: 
     $one-of:
     - '#\$sdc-resource-types'
-    - '#\$sdc-get-resource-schema'
+    - '#\$sdc-resource-schema'
   request-method: get
 ```
 
