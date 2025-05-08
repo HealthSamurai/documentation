@@ -200,6 +200,8 @@ matcho:
     - '#\$sdc-resource-types'
     - '#\$ai-generate-questionnaire'
     - '#\$openai-chat-completions'
+    - '#\$sdc-resource-types'
+    - '#\$sdc-get-resource-schema'
   request-method:
      $one-of:
        - post
@@ -258,6 +260,7 @@ Policies:
 | as-sdc-form-designer-search-valueset                     | search for valuesets                                  |
 | as-sdc-form-designer-search-concepts                     | search for concepts                                   |
 | as-sdc-form-designer-use-ai-tools                        | use AI tools                                          |
+| as-sdc-form-designer-get-fhir-metadata                   | Get FHIR metadata to support Template resource editor |
 
 **as-sdc-form-designer-forms-grid-rpc policy**
 
@@ -553,6 +556,31 @@ matcho:
     - '/$openai-chat-completions'
   request-method: post
 ```
+
+**as-sdc-form-designer-get-fhir-metadata**
+
+Get FHIR metadata about Resources and their schemas
+
+```yaml
+PUT /AccessPolicy/as-sdc-form-designer-get-fhir-metadata
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-form-designer-get-fhir-metadata
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-form-designer
+  uri: 
+    $one-of:
+    - '#\$sdc-resource-types'
+    - '#\$sdc-get-resource-schema'
+  request-method: get
+```
+
 
 ### Form Filler
 
