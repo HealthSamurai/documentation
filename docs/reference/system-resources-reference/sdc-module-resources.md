@@ -146,6 +146,7 @@ Addednum Resource. Contains additional information abount SDCDocument/SDCWorkflo
 <tr><td width="290">form.<strong>redirect-on-save</strong></td><td width="70">0..1</td><td width="150">url</td><td>Redirect URI that used on form save/close button</td></tr>
 <tr><td width="290">form.<strong>redirect-on-submit</strong></td><td width="70">0..1</td><td width="150">url</td><td>Redirect URI that used on form sign/amend</td></tr>
 <tr><td width="290">form.<strong>enable-save-button</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Enable close button</td></tr>
+<tr><td width="290">form.<strong>hide-title</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Hide title in the form</td></tr>
 <tr><td width="290">form-store</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
 <tr><td width="290">form-store.<strong>endpoint</strong></td><td width="70">0..1</td><td width="150">url</td><td>FHIR Server that will be used for storing/getting Questionnaire (if not set - use Aidbox)</td></tr>
 <tr><td width="290">form-store.<strong>headers</strong></td><td width="70">0..1</td><td width="150">Object</td><td>Headers with credentials (optional)</td></tr>
