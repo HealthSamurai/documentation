@@ -124,7 +124,8 @@ active: true
 id: >-
   b2f66062-4beb-43c8-a32c-aa072134185c
 smart:
-  launch_uri: http://launch</code></pre>
+  launch_uri: http://launch
+</code></pre>
 {% endtab %}
 {% endtabs %}
 
@@ -206,7 +207,7 @@ auth:
 details:
   logo-uri: http://logo
 meta:
-  _tenant: my-clinic
+  tenant: my-clinic
 ```
 {% endtab %}
 
@@ -239,7 +240,9 @@ smart:
 {% endtabs %}
 
 {% hint style="info" %}
-Notice `meta._tenant` in the request containing the id of the tenant
+Notice `meta.tenant` in the request containing the id of the tenant
+
+Formerly used `meta._tenant`
 {% endhint %}
 
 ## Client for Bulk API
