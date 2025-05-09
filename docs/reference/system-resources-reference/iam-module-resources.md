@@ -70,6 +70,7 @@ IAM module includes the following resource types:
 </tr>
 </thead>
 <tbody>
+<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
 <tr><td width="290">asidCookieMaxAge</td><td width="70">0..1</td><td width="150">integer</td><td>In Aidbox version v:2402 and later, sessions created through the Aidbox UI log-in are not infinite.The default session expiration time is set to 432000 seconds (5 days).</td></tr>
 <tr><td width="290">theme</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
 <tr><td width="290">theme.<strong>brand</strong></td><td width="70">0..1</td><td width="150">string</td><td>Brand for auth page</td></tr>
@@ -98,6 +99,7 @@ IAM module includes the following resource types:
 </tr>
 </thead>
 <tbody>
+<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
 <tr><td width="290">active</td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates whether this client is active and can be used for authentication.</td></tr>
 <tr><td width="290">allowed-scopes</td><td width="70">0..*</td><td width="150">Reference</td><td>References to specific Scope resources this client is allowed to request. 
 
@@ -202,6 +204,7 @@ IAM module includes the following resource types:
 </tr>
 </thead>
 <tbody>
+<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
 <tr><td width="290">client</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to the client application being granted access. 
 
 <strong>Allowed references</strong>: Client</td></tr>
@@ -230,6 +233,7 @@ IAM module includes the following resource types:
 </tr>
 </thead>
 <tbody>
+<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
 <tr><td width="290">active</td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates whether this identity provider is active and can be used for authentication.</td></tr>
 <tr><td width="290">authorize_endpoint</td><td width="70">0..1</td><td width="150">string</td><td>The URL of the authorization endpoint.</td></tr>
 <tr><td width="290">base_url</td><td width="70">0..1</td><td width="150">uri</td><td></td></tr>
@@ -281,6 +285,7 @@ IAM module includes the following resource types:
 </tr>
 </thead>
 <tbody>
+<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
 <tr><td width="290">provider</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">providerData</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
 <tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>Status of the notification delivery (delivered or error). 
@@ -301,6 +306,7 @@ IAM module includes the following resource types:
 </tr>
 </thead>
 <tbody>
+<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
 <tr><td width="290">subject</td><td width="70">0..1</td><td width="150">string</td><td>Subject line for the notification template.</td></tr>
 <tr><td width="290">template</td><td width="70">0..1</td><td width="150">string</td><td>Template content used to generate the notification message.</td></tr></tbody>
 </table>
@@ -318,6 +324,7 @@ IAM module includes the following resource types:
 </tr>
 </thead>
 <tbody>
+<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
 <tr><td width="290">params</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
 <tr><td width="290">resource</td><td width="70">0..1</td><td width="150">Object</td><td>Registration form data</td></tr>
 <tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>Status of the registration process. 
@@ -340,6 +347,7 @@ User role
 </tr>
 </thead>
 <tbody>
+<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
 <tr><td width="290">context</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
 <tr><td width="290">description</td><td width="70">0..1</td><td width="150">string</td><td>Text description of the role</td></tr>
 <tr><td width="290">links</td><td width="70">0..1</td><td width="150">BackboneElement</td><td>You may list resources here, which can later be granted access for the user with this role via an AccessPolicy resource.</td></tr>
@@ -380,6 +388,7 @@ User role
 </tr>
 </thead>
 <tbody>
+<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
 <tr><td width="290">description</td><td width="70">0..1</td><td width="150">string</td><td>When provided, the scope definition is additionally displayed on the consent screen</td></tr>
 <tr><td width="290">scope</td><td width="70">1..1</td><td width="150">string</td><td>The value of the scope</td></tr>
 <tr><td width="290">title</td><td width="70">1..1</td><td width="150">string</td><td>A user-friendly name for the scope that appears on the consent screen</td></tr></tbody>
@@ -398,6 +407,7 @@ User role
 </tr>
 </thead>
 <tbody>
+<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
 <tr><td width="290">access_token</td><td width="70">0..1</td><td width="150">sha256Hash</td><td>Access token hash associated with this session.</td></tr>
 <tr><td width="290">active</td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates whether this session is currently active.</td></tr>
 <tr><td width="290">audience</td><td width="70">0..1</td><td width="150">string</td><td>Intended audience for tokens issued in this session.</td></tr>
@@ -441,6 +451,7 @@ User role
 </tr>
 </thead>
 <tbody>
+<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
 <tr><td width="290">identity_provider</td><td width="70">0..1</td><td width="150">Reference</td><td>Link to Identity provider associated with the token introspector. 
 
 <strong>Allowed references</strong>: IdentityProvider</td></tr>
@@ -469,6 +480,7 @@ User role
 </tr>
 </thead>
 <tbody>
+<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
 <tr><td width="290">active</td><td width="70">0..1</td><td width="150">boolean</td><td>NB: this attr is ignored. Indicates the User's administrative status.</td></tr>
 <tr><td width="290">addresses</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>A physical mailing address for this User (e.g. 'work', 'home').</td></tr>
 <tr><td width="290">addresses.<strong>formatted</strong></td><td width="70">0..1</td><td width="150">string</td><td>Full address, formatted for display or mailing label.</td></tr>
