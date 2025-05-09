@@ -35,10 +35,16 @@ You will get Aidbox with enabled MCP server and created `AccessPolicy` for it.
 
 If you have already configured Aidbox to enable the MCP server:
 
-1. Set the [setting](../../reference/settings/modules.md#mcp) to `true`.
-2. Create `AccessPolicy`&#x20;
+1. Set [`module.mcp.server-enabled` setting](https://docs.aidbox.app/reference/settings/modules#module.mcp.server-enabled) to `true`
+2. Set up Access Control for MCP endpoints via `AccessPolicy`&#x20;
 
-Aidbox MCP endpoints are not public, so you need to set up Acces Control for these endpoints. \
+#### Option 1. Public MCP Endpointb
+
+{% hint style="warning" %}
+The easiest but unsafe way to test MCP Server. Recommended for local development tests.&#x20;
+{% endhint %}
+
+Aidbox MCP endpoints are not public, so you need to set up Access Control for these endpoints.\
 The easiest way (but not the safest) is to create allow `AccessPolicy` for mcp operations:
 
 ```http
@@ -64,6 +70,8 @@ accept: application/json
 ```
 
 This means that Aidbox MCP endpoints become public and anybody has access to them.
+
+#### Option 2. Restricted MCP Endpoint
 
 The second way (safer one) is to create `Client`, `AccessPolcy`, get a token and use this token to connect to Aidbox MCP server.\
 Create `Client` resource
@@ -133,6 +141,10 @@ Save a token from the response to connect to MCP server.
 
 Aidbox MCP server config:
 
+```shell-session
+$ npx -y supergateway --sse <your-box-base-url>/mcp
+```
+
 ```json
 {
   "mcpServers": {
@@ -182,4 +194,3 @@ Select `SSE` in `Transport Type` dropdown. And set URL to `<your-aidbox-base-url
 Now you can discover tools and use them.
 
 <figure><img src="../../../.gitbook/assets/Screenshot 2025-05-07 at 14.24.30.png" alt=""><figcaption></figcaption></figure>
-
