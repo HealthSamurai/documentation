@@ -10,7 +10,9 @@ To send a NewRx message, follow these steps:
 
 1. Prepare the required FHIR resources as described in the "Required FHIR Resources" section.
 2. Use the NewRx API endpoint to send the message: `POST /e-prescription/rx/new`.\
-   Expected payload is a group identifier. This identifier links multiple MedicationRequests together, as during a visit a provider can prescribe multiple medications. The system will process each MedicationRequest separately, sending one NewRx message per medication, since each MedicationRequest represents exactly one prescribed medication.
+   Provide payload as:
+   1. a group identifier. This identifier links multiple MedicationRequests together, as during a visit a provider can prescribe multiple medications. The system will process each MedicationRequest separately, sending one NewRx message per medication, since each MedicationRequest represents exactly one prescribed medication;
+   2. a MedicationRequest id to send a single prescription without dealing with group references <sub>_(since 3.0)._</sub>
 3. Monitor the status of the message using the provided status management system.
 
 #### Required FHIR Resources
@@ -20,7 +22,7 @@ The following FHIR resources are needed to create a NewRx message:
 1. **MedicationRequest** (Required)
    * Contains core prescription details
    * Must be in "draft" status initially
-   * Must include medication details, quantity, performer, and requester
+   * Must include requesterц medication details and dispense details
    * Must include **Medication**&#x20;
      * as a reference to resource <sub>_(since 2.0)_</sub>
      * as a reference to `contained` resource
@@ -397,9 +399,6 @@ Note that you have to put real NCPDP, SPI and NPI values.
         "subject": {
           "reference": "Patient/example-patient"
         },
-        "performer": {
-          "reference": "Organization/example-organization"
-        },
         "medicationReference": {
           "reference": "#medication-1"
         },
@@ -454,6 +453,9 @@ Note that you have to put real NCPDP, SPI and NPI values.
           "allowedBoolean": false
         },
         "dispenseRequest": {
+          "performer": {
+            "reference": "Organization/example-organization"
+          },
           "quantity": {
             "value": 60,
             "unit": "Tablet",
