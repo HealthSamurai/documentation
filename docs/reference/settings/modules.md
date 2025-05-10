@@ -259,7 +259,7 @@ The default MDM model used for `$match` operation. Will be used if no model is s
 
 MCP settings
 
-### MCP server enabled<a href="#module.mcp.server-enabled" id="module.mcp.server-enabled"></a>
+### Enable MCP server<a href="#module.mcp.server-enabled" id="module.mcp.server-enabled"></a>
 
 Enable MCP server working through SSE protocol
 
