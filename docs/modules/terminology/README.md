@@ -29,7 +29,7 @@ In Aidbox, all terminology services are built around non-FHIR **Concept** resour
 {% endcontent-ref %}
 
 {% content-ref url="terminology-api/" %}
-[terminology-api](terminology-api/)
+[terminology-api](./terminology-api/README.md)
 {% endcontent-ref %}
 
 #### Usage phase

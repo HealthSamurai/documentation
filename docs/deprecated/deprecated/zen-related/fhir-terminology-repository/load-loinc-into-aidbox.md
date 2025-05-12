@@ -7,7 +7,7 @@ description: Start working with LOINC terminology in Aidbox
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Broken link](broken-reference "mention")
+[Broken link](broken-reference)
 {% endhint %}
 
 [LOINC](https://loinc.org/), or Logical Observation Identifiers Names and Codes, is an extensive medical terminology system that can be incorporated into FHIR ValueSet resources. It is a universal standard for identifying health measurements, observations, and documents, which helps facilitate the sharing and aggregation of clinical results.

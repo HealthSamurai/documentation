@@ -56,12 +56,12 @@
   * Introduced [Settings](../configuration/settings.md)
   * Published [settings reference documentation](../reference/settings/)
 * Aidbox Forms
-  * PDF-Form conversion (enhancement): [Re-generation from PDF ](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/import-fhir-questionnaire#common-functionality-across-all-scenarios)and insertion of a part of the form into an existing form
-  * Added enabling of Print, Amend, and Save buttons in [SDCConfig](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/configuration)
-  * Added an [endpoint for generating a form from PDF](https://docs.aidbox.app/reference/aidbox-forms/generating-forms-from-pdf)
+  * PDF-Form conversion (enhancement): [Re-generation from PDF ](broken-reference)and insertion of a part of the form into an existing form
+  * Added enabling of Print, Amend, and Save buttons in [SDCConfig](../modules/aidbox-forms/aidbox-ui-builder-alpha/configuration.md)
+  * Added an [endpoint for generating a form from PDF](broken-reference)
   * Added support for systemversion in valuesets
-  * Added an ability to [intercept requests](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/embedding#step-4-optional-configure-requests-interception) made to the Aidbox server endpoints from Form Builder and Renderer when embedding as web-component
-  * Supported [max decimal places](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#decimal)
+  * Added an ability to [intercept requests](broken-reference) made to the Aidbox server endpoints from Form Builder and Renderer when embedding as web-component
+  * Supported [max decimal places](broken-reference)
 
 Minor updates:
 
@@ -87,10 +87,10 @@ Aidbox is transitioning to the FHIR Schema engine. Existing zen and Entity/Attri
   * Changed default [stdout log level](../reference/environment-variables/optional-environment-variables.md#aidbox_stdout_json) and [stdout Google log level](../reference/environment-variables/optional-environment-variables.md#aidbox_stdout_google_json) to `warn`
 * Aidbox Forms
   * Improved performance for handling large forms.
-  * Added the ability to [set colors for tooltips and hover effects](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-customisation#how-to-create-a-new-theme) using the primary color in the Theme.
+  * Added the ability to [set colors for tooltips and hover effects](broken-reference) using the primary color in the Theme.
   * Enabled [linking a Questionnaire profile](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-settings.md#profiles) directly in the UI Builder.
   * Updated the [Aidbox Forms Smart Launch project](https://github.com/Aidbox/examples/tree/main/aidbox-forms-smart-launch-2) with enhancements and fixes.
-  * Added [video support to the media section](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#media-section) of the item settings .
+  * Added [video support to the media section](broken-reference) of the item settings .
   * Supported [profiles and slices in definition-based extraction](https://build.fhir.org/ig/HL7/sdc/extraction.html#definition-based-extraction).
 
 Minor updates:
@@ -238,16 +238,16 @@ Minor updates:
 * **Aidbox development licenses** are now available to all users, empowering everyone to explore, develop, and innovate with our comprehensive FHIR-first healthcare platform.
 * **Simplified Aidbox Launch**: We've developed a simplified[ way to launch Aidbox](../getting-started/run-aidbox-locally.md), making it easier than ever to get started.
 * **AidboxID Login:** Users can now log in to Aidbox using AidboxID to streamline and secure access.
-* [**FHIR schema validation engine (beta)**](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator)**.** This validation engine is set to replace the existing Zen Schema and JSON Schema validation engines.
+* [**FHIR schema validation engine (beta)**](broken-reference)**.** This validation engine is set to replace the existing Zen Schema and JSON Schema validation engines.
   * Supported multiple sources to load IGs to Aidbox:
-    * [Aidbox FHIR IGs repository](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/aidbox-ui/ig-package-from-aidbox-registry)
-    * [Public URL to an IG Package](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/aidbox-ui/public-url-to-ig-package)
-    * [Local IG package](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/aidbox-ui/local-ig-package)
+    * [Aidbox FHIR IGs repository](broken-reference)
+    * [Public URL to an IG Package](broken-reference)
+    * [Local IG package](broken-reference)
   * Supported multiple interfaces to load IGs to Aidbox:
-    * [.env file](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/environment-variable)
-    * [Aidbox UI](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/aidbox-ui) (at runtime)
-    * [FHIR API](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/aidbox-fhir-api) (at runtime)
-    * [UploadFIG tool](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/uploading-fhir-ig-using-uploadfig-library) (at runtime)
+    * [.env file](broken-reference)
+    * [Aidbox UI](broken-reference) (at runtime)
+    * [FHIR API](broken-reference) (at runtime)
+    * [UploadFIG tool](broken-reference) (at runtime)
 * **New Aidbox UI (Settings -> New UI)**:
   * Enhanced navigation with a double sidebar for improved access to features and resources.
   * Resource browser
@@ -328,7 +328,7 @@ Minor updates:
   * Added Access policy matcho engine [$one-of operator](../modules/security-and-access-control/security/evaluation-engines.md#matcho) to fetch the list of the available values from the request context
   * Supported history endpoint within [the Organisation-based access control](../modules/access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#history)
   * Documented [GitHub as an external identity provider](https://github.com/HealthSamurai/sansara/issues/4016)
-  * Published [guide on how to use self-signed SSL certificates](https://docs.aidbox.app/getting-started/run-aidbox-in-kubernetes/self-signed-ssl-certificates?q=) when deploying Aidbox
+  * Published [guide on how to use self-signed SSL certificates](broken-reference) when deploying Aidbox
   * Fixed the code\_verifier to behave according to the RFC
   * Fixed minor issue in Multibox that led to many “do nothing” messages in the logs
 * [C-CDA / FHIR converter](../modules/integration-toolkit/ccda-converter/)
@@ -351,7 +351,7 @@ Minor updates:
       * Added Configuration to disable FHIR SDC operations
       * Extended $populate operation to support Questionnaire root properties
       * Added operation to generating signed links for form filling
-      * Added [$populatelink](https://docs.aidbox.app/reference/aidbox-forms/fhir-sdc-api#populate-questionnaire-usdpopulatelink) FHIR SDC operation
+      * Added [$populatelink](broken-reference) FHIR SDC operation
     * Aidbox DSL-based forms updates
       * Fixed issues with concurrent save/submit UI operations
       * Fixed conversion of QuestionnaireResponse with included scores
@@ -858,7 +858,7 @@ Minor updates:
 * Supported `:of-type` modifier for token/Identifier search.
 * Enhanced matcho engine with `$every` and `$not` patterns.
 * Added `patient` query parameter to the [bulk data export ](../api/bulk-api/usdexport.md)operation.
-* Updated [HL7 v2 module](https://docs.aidbox.app/modules-1/hl7-v2-integration) documentation.
+* Updated [HL7 v2 module](broken-reference) documentation.
 * Fixed [issues ](https://github.com/Aidbox/Issues/issues?q=is%3Aissue+milestone%3A%22March+2022+-+v%3A2203%22+is%3Aclosed)submitted by Aidbox users.
 
 ## February 2022 - `2202` , _`LTS`_
@@ -895,7 +895,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 ## December 2021 - v:2112
 
-* Added [slicings ](https://docs.aidbox.app/profiling-and-validation/profiling-with-zen-lang/write-a-custom-zen-profile#slicing)support to zen FHIR profiles.
+* Added [slicings ](broken-reference)support to zen FHIR profiles.
 * Released [Devbox performance test suite](https://github.com/Aidbox/devbox#performance-tests).
 * Added new community notebooks that demonstrate Aidbox functionality including Bulk export API, Aidbox terminology, Custom resources, etc.
 * Fixed bugs submitted by Aidbox users and updated the documentation.
@@ -910,7 +910,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 * Extended `AuthConfig` resource with `forgotPasswordUrl` attribute.
 * Added Aidbox, Multibox, Devbox and Aidboxdb multi-arch Images (ARM64 and AMD64) to resolve Apple Silicon M1 processors performance issues.
 * Added GraphQL access control and Aidbox Terminology community notebooks.
-* Added [`AIDBOX_COMPLIANCE`](https://docs.aidbox.app/getting-started/installation/configure-devbox-aidbox-multibox#aidbox-compliance-mode) mode that changes Aidbox behavior to pass HL7® FHIR Conformance Tests.
+* Added [`AIDBOX_COMPLIANCE`](broken-reference) mode that changes Aidbox behavior to pass HL7® FHIR Conformance Tests.
 * Fixed bugs submitted by Aidbox users and updated the documentation.
 
 ## October 2021 - v:2110
@@ -928,14 +928,14 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
     * `hl7-fhir-us-mcode` - mCODE™ (short for Minimal Common Oncology Data Elements)
   * FHIR STU 3
     * `nictiz-fhir-nl-stu3-zib2017` - Nictiz NL, including MedMij and HL7 NL
-* Added `AIDBOX_DEV_MODE` env that enables `_debug=policy` for [access policy debugging](https://docs.aidbox.app/security-and-access-control-1/security/access-policy#policy-debugging). We'll add more functionality that will be available for development purposes and can be disabled on production.
+* Added `AIDBOX_DEV_MODE` env that enables `_debug=policy` for [access policy debugging](broken-reference). We'll add more functionality that will be available for development purposes and can be disabled on production.
 * Fixed bugs submitted by Aidbox users and updated documentation.
 
 ## September 2021 - v:2109
 
 * Added [Aidbox projects](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/) that can be used to configure Aidboxes and validate data. Basically, Aidbox project is a directory with zen-lang edn files that describe Aidbox configuration.
-* 5 FHIR compartments are available as default in Aidbox. More details on [Compartments API](https://docs.aidbox.app/api-1/compartments).
-* Added Datadog [integration URL configuration](https://docs.aidbox.app/core-modules/logging-and-audit/aidbox-logs-and-datadog-integration#datadog-logging). So now you can specify in configuration if you want to use one of the following domains`datadoghq.com, us3.datadoghq.com, datadoghq.eu, ddog-gov.com`.
+* 5 FHIR compartments are available as default in Aidbox. More details on [Compartments API](broken-reference).
+* Added Datadog [integration URL configuration](broken-reference). So now you can specify in configuration if you want to use one of the following domains`datadoghq.com, us3.datadoghq.com, datadoghq.eu, ddog-gov.com`.
 * Added a tutorial on how to configure [HL7 FHIR Da Vinci PDex Plan Net IG](../deprecated/deprecated/zen-related/fhir-conformance/hl7-fhir-da-vinci-pdex-plan-net-ig.md) on Aidbox.
 * Supported SMART Application Launch Framework Implementation Guide: Patient Portal Launch, Patient Standalone Launch, Provider EHR Launch, Provider Standalone Launch. Check the [sample](https://github.com/Aidbox/aidbox-project-samples#smart-on-fhir-aidbox-installation).
 * Released Aidbox API constructor on zen (alpha version).
@@ -968,23 +968,23 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 * Upgrade Aidbox Java version to 16.
 * Added `user.email`, `user.name` to the User grid to improve UX. [#397](https://github.com/Aidbox/Issues/issues/397).
 * Improved logging.
-  * Reviewed and updated log event schema. The updated schema is available [here](https://docs.aidbox.app/core-modules/logging-and-audit#logs-schema).
+  * Reviewed and updated log event schema. The updated schema is available [here](broken-reference).
   * Add w\_r - templated request URL for better aggregation. For example, requests like `GET /Patient/pt-1` will become `GET /Patient/?` thus allowing aggregate all read requests for monitoring.
   * Log additional DB metrics from Aidbox.Dev.
-  * Added ELK, Kibana, and Grafana to Aidbox image. So now you can start exploring and analyzing logs from scratch. Check our tutorial on exploring and visualizing logs [here](https://docs.aidbox.app/app-development-guides/tutorials/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana).
+  * Added ELK, Kibana, and Grafana to Aidbox image. So now you can start exploring and analyzing logs from scratch. Check our tutorial on exploring and visualizing logs [here](broken-reference).
 * We added a new auth mechanism for authorization Aidbox.Cloud and Aidbox.Multibox users by JWT.
 * Support for [OKTA](https://www.okta.com/) as an external OAuth 2.0 provider.
 * Added Intercom so you can get help directly from your Aidbox.Dev or Aidbox.Cloud.
-* Added a guide on search performance optimization to our docs. Check it [here](https://docs.aidbox.app/api-1/api/search-parameters#optimization-of-search-parameters).
+* Added a guide on search performance optimization to our docs. Check it [here](broken-reference).
 
 ## June 2021 - v:20210610
 
-* Added support for [Bulk API export in CSV](https://docs.aidbox.app/api-1/bulk-api-1/usddump-csv). You can use **/\[resourceType]/$dump-csv** endpoint to generate CSV file in which JSON resource structure is flattened into comma-separated format. Such an option for data export is useful for integrations with external EHR systems.
-* Added support for [If-Match header](https://docs.aidbox.app/api-1/api/crud-1/delete) in DELETE operation of FHIR REST API. If-Match is most often used to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource (i.e., to prevent the "lost update" problem).
+* Added support for [Bulk API export in CSV](broken-reference). You can use **/\[resourceType]/$dump-csv** endpoint to generate CSV file in which JSON resource structure is flattened into comma-separated format. Such an option for data export is useful for integrations with external EHR systems.
+* Added support for [If-Match header](broken-reference) in DELETE operation of FHIR REST API. If-Match is most often used to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource (i.e., to prevent the "lost update" problem).
 * Added support for additional mime types according to the [FHIR specification](http://hl7.org/fhir/http.html#mime-type) Accept: _application/fhir+json_, Accept: _application/json+fhir._ When one of the headers is specified for your request, the same Content-Type header is returned by Aidbox.
-* Implemented integration with [Datadog](https://www.datadoghq.com/). Datadog offers cloud-based monitoring and analytics platform which integrates and automates infrastructure monitoring, application performance monitoring, and log management for real-time observability of customers. You can [configure it](https://docs.aidbox.app/app-development-guides/receive-logs-from-your-app/aidbox-logs-and-datadog-integration) as storage for Aidbox logs. The detailed guide on how to use Datadog monitoring capabilities in your Aidbox-based system you can find [here. ](https://docs.aidbox.app/app-development-guides/receive-logs-from-your-app/datadog-guide)This is an easy way to leverage HIPAA-compliant log management SaaS platform to unify logs, metrics, and traces in a single view.
+* Implemented integration with [Datadog](https://www.datadoghq.com/). Datadog offers cloud-based monitoring and analytics platform which integrates and automates infrastructure monitoring, application performance monitoring, and log management for real-time observability of customers. You can [configure it](broken-reference) as storage for Aidbox logs. The detailed guide on how to use Datadog monitoring capabilities in your Aidbox-based system you can find [here. ](broken-reference)This is an easy way to leverage HIPAA-compliant log management SaaS platform to unify logs, metrics, and traces in a single view.
 * Logs that are published on Aidbox startup are cleaned up from useless data.
-* SSL connection between Aidbox and PostgreSQL is now supported. Please, read the [configuration instructions](https://docs.aidbox.app/getting-started/installation/use-devbox-aidbox#configuring-ssl-connection-with-postgresql) for more details.
+* SSL connection between Aidbox and PostgreSQL is now supported. Please, read the [configuration instructions](broken-reference) for more details.
 * Fixed a bug with race condition occurring during CRUD operations with If-Match header. Transaction rollback is implemented for the case when concurrent change happens to the resource.
 * Fixed a bug in the user management module when a second registration for a deleted user resulted in an error.
 
@@ -994,22 +994,22 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 * Add [issue](https://github.com/Aidbox/Issues/issues/371) field for conditional update error
 * Add proper [error message ](https://github.com/Aidbox/Issues/issues/59)for sign up with existing email
 * Add support for [If-Match](https://github.com/Aidbox/Issues/issues/296) header for PATCH request
-* Add FHIR support for [$validate](https://docs.aidbox.app/api-1/fhir-api/usdvalidate) operation
+* Add FHIR support for [$validate](broken-reference) operation
 * Fixes for [#363](https://github.com/Aidbox/Issues/issues/363), [#376](https://github.com/Aidbox/Issues/issues/376), [#58](https://github.com/Aidbox/Issues/issues/58)
 
 ## March 2021- v:20210412
 
 * Change release name format from `DDMMYYYY` to `YYYYMMDD`
-* Add zen lang [validation engine](https://docs.aidbox.app/app-development-guides/tutorials/profiling#validation-with-zen)
-* Add[ `x-audit-req-body` header ](https://docs.aidbox.app/core-modules/logging-and-audit#aidbox-logging)for logging request body
-* Add [`$loggy` endpoint](https://docs.aidbox.app/app-development-guides/receive-logs-from-your-app) for custom logs
-* Add `$dump` endpoint [optional parameters](https://docs.aidbox.app/api-1/bulk-api-1#dump-data):
+* Add zen lang [validation engine](broken-reference)
+* Add[ `x-audit-req-body` header ](broken-reference)for logging request body
+* Add [`$loggy` endpoint](broken-reference) for custom logs
+* Add `$dump` endpoint [optional parameters](broken-reference):
   * FHIR format conversion
   * gzip compression
   * `_since` parameter for filtering by `createdAt` date
-* Add `$changes` API [omit-resources parameter](https://docs.aidbox.app/api-1/reactive-api-and-subscriptions/usdsnapshot-usdwatch-and-usdversions-api#query-string-parameters)
+* Add `$changes` API [omit-resources parameter](broken-reference)
 * Add jsonknife jsonpath engine [missing functions](https://github.com/Aidbox/Issues/issues/370)
-* Add SearchQuery [parameterized order-by support](https://docs.aidbox.app/api-1/fhir-api/search-1/searchquery#add-order-by-into-parameters)
+* Add SearchQuery [parameterized order-by support](broken-reference)
 * Fix SearchQuery [revinclude for array references](https://github.com/Aidbox/Issues/issues/365)
 * And other various bug fixes.
 
@@ -1018,7 +1018,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 * Builds of [aidboxdb](../database/aidboxdb-image/) for PostgreSQL 11.11, 12.6, 13.2 are [released](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1\&ordering=last_updated).
 * Aidbox now supports deployment on top of Azure PostgreSQL.
 * Improvements of $changes API: FHIR support, pagination, upper version limit. $changes is now available at the resource level.
-* [Enhancement of Transaction Bundle API](https://docs.aidbox.app/api-1/transaction) that allows to populate both resource and history tables in one transaction.
+* [Enhancement of Transaction Bundle API](broken-reference) that allows to populate both resource and history tables in one transaction.
 * During transaction bundle processing attributes of url type that store relative references are now interpreted as Reference type. See the [FHIR spec](https://www.hl7.org/fhir/datatypes.html#attachment) on Attachment data type for details.
 * Enhancement of Search resource that for token search allows fallback to default modifier implementation; (last example in the linked article)
 * Fixed issue with $dump and $dump-sql not allowing CORS requests
@@ -1026,16 +1026,16 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 ## January 2021 - v:25012021
 
 * [Elastic APM](https://www.elastic.co/apm) support for advanced performance monitoring
-* [Two Factor Authentication](https://docs.aidbox.app/auth/two-factor-authentication) with TOTP implementation
-* [AWS S3](https://docs.aidbox.app/storage-1/aws-s3) and [GCP Cloud Storage](https://docs.aidbox.app/storage-1/gcp-cloud-storage) integrations for storing content in the cloud
-* Basic [\_filter](https://docs.aidbox.app/api-1/fhir-api/search-1/_filter) query parameter support
-* New [versioning scheme](https://docs.aidbox.app/versioning-and-release-notes)
+* [Two Factor Authentication](broken-reference) with TOTP implementation
+* [AWS S3](broken-reference) and [GCP Cloud Storage](broken-reference) integrations for storing content in the cloud
+* Basic [\_filter](broken-reference) query parameter support
+* New [versioning scheme](broken-reference)
 * Fixed [#354](https://github.com/Aidbox/Issues/issues/354)
 * [Elastic APM](https://www.elastic.co/apm) support for advanced performance monitoring
-* [Two Factor Authentication](https://docs.aidbox.app/auth/two-factor-authentication) with TOTP implementation
-* [AWS S3](https://docs.aidbox.app/storage-1/aws-s3) and [GCP Cloud Storage](https://docs.aidbox.app/storage-1/gcp-cloud-storage) integrations for storing content in the cloud
-* Basic [\_filter](https://docs.aidbox.app/api-1/fhir-api/search-1/_filter) query parameter support
-* New [versioning scheme](https://docs.aidbox.app/versioning-and-release-notes)
+* [Two Factor Authentication](broken-reference) with TOTP implementation
+* [AWS S3](broken-reference) and [GCP Cloud Storage](broken-reference) integrations for storing content in the cloud
+* Basic [\_filter](broken-reference) query parameter support
+* New [versioning scheme](broken-reference)
 * Fixed [#354](https://github.com/Aidbox/Issues/issues/354)
 
 ## 0.5.0-SNAPSHOT
@@ -1136,7 +1136,7 @@ It's time to upgrade your database - please stop your container and change image
 * [Sequence API](../api/other/sequence-api.md) - use PostgreSQL sequences through REST API
 * Operation bound policy in App manifest
 * Clear resources deleted in App manifest ([#70](https://github.com/Aidbox/Issues/issues/70))
-* Bulk load terminologies - [tutorial](https://docs.aidbox.app/terminology/terminology-tutorials/load-terminologies)
+* Bulk load terminologies - [tutorial](broken-reference)
 * Logs from Aidbox to ElasticSearch - tutorial
 
 ### Bug Fixes
@@ -1222,7 +1222,7 @@ This release is mostly dedicated to stabilisation of new auth module. Check-out 
 * Implemented `:iterate` modifier for `_include` search parameter
 * Refactored FHIR search engine internals to leverage PostgreSQL's GIN index
 * Add `Box-Name` headers (allows to specify box, without changing the url)
-* Implement [full-text search](https://docs.aidbox.app/api/history#full-text-search) with RUM indices (requires PostgreSQL 11 with the `rum` extension)
+* Implement [full-text search](broken-reference) with RUM indices (requires PostgreSQL 11 with the `rum` extension)
 * Experimental support for FHIR 4 resources and search parameters
 * Experimental XML support for endpoints starting with `/fhir/` prefix
 

@@ -7,7 +7,7 @@ description: Start working with ICD-10-CM terminology in Aidbox
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Broken link](broken-reference "mention")
+[Broken link](broken-reference)
 {% endhint %}
 
 [ICD-10-CM](https://www.cdc.gov/nchs/icd/icd-10-cm.htm) is a large medical terminology which can be used in [FHIR ValueSet](http://hl7.org/fhir/valueset.html) resources. It is distributed under a license which you have to set up with them.

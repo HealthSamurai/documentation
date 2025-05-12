@@ -5,7 +5,7 @@ Workflow engine is configured by zen. We do not support it and do not recommend 
 
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/setup)
+[Setup Aidbox with FHIR Schema validation engine](broken-reference)
 {% endhint %}
 
 ## Scheduler
@@ -44,7 +44,7 @@ To use the scheduler, you need to describe your rules in zen format and list the
   :rules #{archive-every-minute}}
 ```
 
-This rule describes how to run the audit-events archiving task every day at 14:10. For a full example of how to use the scheduler, see the tutorial[automatically-archive-auditevent-resources-in-gcp-storage-guide.md](../../other/other-deprecated-tutorials/automatically-archive-auditevent-resources-in-gcp-storage-guide.md "mention")
+This rule describes how to run the audit-events archiving task every day at 14:10. For a full example of how to use the scheduler, see the tutorial[automatically-archive-auditevent-resources-in-gcp-storage-guide.md](../../other/other-deprecated-tutorials/automatically-archive-auditevent-resources-in-gcp-storage-guide.md)
 
 Another example of rule definition is automatically delete AidboxTask, AidboxTaskLog and AidboxWrokflow resources with `awf.task/clean-up-activities` task.
 

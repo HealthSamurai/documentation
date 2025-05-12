@@ -27,7 +27,7 @@ Please note that `at least once`approach uses **transactional** Kafka producers.
 
 ## Configuration
 
-To use Kafka with [#aidboxsubscriptiontopic](./#aidboxsubscriptiontopic "mention") you have to create [#aidboxtopicdestination](./#aidboxtopicdestination "mention") resource.
+To use Kafka with [#aidboxsubscriptiontopic](./#aidboxsubscriptiontopic) you have to create [#aidboxtopicdestination](./#aidboxtopicdestination) resource.
 
 There are two FHIR profiles available to use with Kafka:
 

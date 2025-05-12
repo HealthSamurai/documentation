@@ -31,14 +31,14 @@ Open in browser [http://localhost:8080/](http://localhost:8080/)
 ### 4. Activate your Aidbox instance
 
 * Using AidboxID AidboxID is a unique identifier within the Aidbox ecosystem used for product activation
-* Using Aidbox license Aidbox license can be issued on the [Aidbox user portal](https://aidbox.app/). More about Aidbox licenses [here](https://docs.aidbox.app/overview/aidbox-user-portal/licenses).
+* Using Aidbox license Aidbox license can be issued on the [Aidbox user portal](https://aidbox.app/). More about Aidbox licenses [here](../../overview/aidbox-user-portal/licenses.md).
 
 {% hint style="info" %}
 If you’re using an Aidbox license, you’ll be prompted for a username (or email) and password. Use the **admin** username and retrieve the password from the **AIDBOX\_ADMIN\_PASSWORD** environment variable in the `docker-compose.yaml` file. For security, Aidbox generates a unique password for each instance.
 {% endhint %}
 
 {% hint style="info" %}
-See more details related the [running Aidbox locally](https://docs.aidbox.app/getting-started/run-aidbox-locally)
+See more details related the [running Aidbox locally](../../getting-started/run-aidbox-locally.md)
 {% endhint %}
 
 ## Enable security labels access control

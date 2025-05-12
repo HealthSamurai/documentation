@@ -7,7 +7,7 @@ description: Simple API to react on resource changes
 {% hint style="warning" %}
 Changes API is prone to race conditions.
 
-Please review [#possible-race-condition](changes-api.md#possible-race-condition "mention") section. It outlines scenarios that could lead to event loss and suggests potential solutions to mitigate this risk.
+Please review [#possible-race-condition](changes-api.md#possible-race-condition) section. It outlines scenarios that could lead to event loss and suggests potential solutions to mitigate this risk.
 {% endhint %}
 
 Changes API can be used to get changes of resourceType or specific resource by versions. Each event (creating, updating, deleting) will increase version of the resource by 1.
@@ -29,7 +29,7 @@ Polling request is cheap! If you want to watch rare changes (minutes-hours), thi
 
 Below are parameters to use in both resourceType and specific resource endpoints.
 
-<table><thead><tr><th width="434">Parameter</th><th>Meaning</th></tr></thead><tbody><tr><td><code>version=&#x3C;version></code></td><td>Returns changes since the specified version</td></tr><tr><td><code>version=&#x3C;lower-version>,&#x3C;upper-version></code></td><td>Returns changes after the <code>lower-version</code> (exclusive) up to the<code>upper-version</code> (inclusive)</td></tr><tr><td><code>fhir=&#x3C;boolean></code></td><td>If set to <code>true</code> converts <code>changes.*.resource</code> to the FHIR format<br><em>(note</em>: <em>since Changes API is not <code>/fhir/</code> endpoint, the rest of the body isn't FHIR compliant)</em></td></tr><tr><td><code>omit-resources=&#x3C;boolean></code></td><td>If set to <code>true</code> omits resources leaving only <code>id</code> &#x26; <code>resourceType</code> fields</td></tr><tr><td><code>_count</code> &#x26; <code>_page</code></td><td>Work as described <a href="https://docs.aidbox.app/api-1/fhir-api/search-1/_count-and-_page">here</a></td></tr><tr><td><code>_total</code> &#x26; <code>_totalMethod</code></td><td>Work as described <a href="https://docs.aidbox.app/api-1/fhir-api/search-1/_total-or-_countmethod">here</a></td></tr></tbody></table>
+<table><thead><tr><th width="434">Parameter</th><th>Meaning</th></tr></thead><tbody><tr><td><code>version=&#x3C;version></code></td><td>Returns changes since the specified version</td></tr><tr><td><code>version=&#x3C;lower-version>,&#x3C;upper-version></code></td><td>Returns changes after the <code>lower-version</code> (exclusive) up to the<code>upper-version</code> (inclusive)</td></tr><tr><td><code>fhir=&#x3C;boolean></code></td><td>If set to <code>true</code> converts <code>changes.*.resource</code> to the FHIR format<br><em>(note</em>: <em>since Changes API is not <code>/fhir/</code> endpoint, the rest of the body isn't FHIR compliant)</em></td></tr><tr><td><code>omit-resources=&#x3C;boolean></code></td><td>If set to <code>true</code> omits resources leaving only <code>id</code> &#x26; <code>resourceType</code> fields</td></tr><tr><td><code>_count</code> &#x26; <code>_page</code></td><td>Work as described <a href="../rest-api/fhir-search/searchparameter.md">here</a></td></tr><tr><td><code>_total</code> &#x26; <code>_totalMethod</code></td><td>Work as described <a href="../rest-api/fhir-search/searchparameter.md">here</a></td></tr></tbody></table>
 
 With parameters which start with [dot](../rest-api/aidbox-search.md#dot-expressions) you can filter resources by equality, e.g. `.name.0.family=<string>`
 
@@ -217,4 +217,4 @@ In this case, the application will likely start its next iteration from getting 
 If the missing a single event is crucial for your situation, the potential solutions could be:
 
 1. Periodically re-read all changes to ensure no events have been missed.
-2. Implement the solution based on [wip-dynamic-subscriptiontopic-with-destinations](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/ "mention") which can provide you `at-least-once` delivery guaranties.
+2. Implement the solution based on [wip-dynamic-subscriptiontopic-with-destinations](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/) which can provide you `at-least-once` delivery guaranties.

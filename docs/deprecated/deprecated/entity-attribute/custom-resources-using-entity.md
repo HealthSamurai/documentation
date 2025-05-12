@@ -10,7 +10,7 @@ Sometimes your data does not fit any existing FHIR resources. It is not always o
 
 **Custom Resources** are defined exactly the same way as core FHIR resources. They can refer to existing resources, have uniform REST API for CRUD and Search, and participate in transactions.
 
-Let's imagine that in our application we want to store user preferences such as UI configuration or personalized Patient List filters. It is expected that you have already created a box in [Aidbox.Cloud](https://docs.aidbox.app/getting-started/installation/getting-started-with-box). First of all, we have to define a new resource type by creating an **Entity** resource.
+Let's imagine that in our application we want to store user preferences such as UI configuration or personalized Patient List filters. It is expected that you have already created a box in [Aidbox.Cloud](broken-reference). First of all, we have to define a new resource type by creating an **Entity** resource.
 
 ### Create Definition​
 

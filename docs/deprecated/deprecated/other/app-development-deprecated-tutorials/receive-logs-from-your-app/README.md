@@ -44,4 +44,4 @@ w_app_fx: fetchUsers
 w_m: post
 ```
 
-Aidbox logs structure is described [here](https://docs.aidbox.app/core-modules/logging-and-audit)
+Aidbox logs structure is described [here](broken-reference)

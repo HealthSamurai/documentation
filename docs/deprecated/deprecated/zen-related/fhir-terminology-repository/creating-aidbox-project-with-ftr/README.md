@@ -7,7 +7,7 @@ description: Run Aidbox with FTR from various sources
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Broken link](broken-reference "mention")
+[Broken link](broken-reference)
 {% endhint %}
 
 You can create an FTR instance in the following ways:

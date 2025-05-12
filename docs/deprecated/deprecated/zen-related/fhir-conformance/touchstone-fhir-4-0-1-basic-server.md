@@ -7,7 +7,7 @@ description: Pass Touchstone FHIR4-0-1-Basic-Server the test suite
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/setup)
+[Setup Aidbox with FHIR Schema validation engine](broken-reference)
 {% endhint %}
 
 You can pass Touchstone FHIR 4.0.1 basic server test suite on self-hosted Aidbox or in Aidbox User Portal Sandbox. Both self-hosted and the Sandbox Aidboxes use the same Configuration Projects.

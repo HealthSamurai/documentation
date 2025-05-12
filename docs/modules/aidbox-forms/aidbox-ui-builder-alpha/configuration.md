@@ -32,7 +32,7 @@ A global Configuration resource can be instantiated to serve as the system-wide 
 * `translations`: Object containing [custom translations](configuration.md#translations) strings for the UI.
 * `theme`: An inlined copy of or reference to [QuestionnaireTheme](configuration.md#theme) object.
 * `storage`: Storage configuration for attachments types
-  * `account`: Reference to [storage resource](https://docs.aidbox.app/storage-1/s3-compatible-storages)
+  * `account`: Reference to [storage resource](broken-reference)
     * `id`: id
     * `resourceType`: One of (GcpServiceAccount, AwsAccount, AzureContainer)
   * `bucket`: Bucket to store attachment files (required for GcpServiceAccount and AwsAccount)

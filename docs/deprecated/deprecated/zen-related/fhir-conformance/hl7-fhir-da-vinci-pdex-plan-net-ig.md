@@ -7,7 +7,7 @@ description: Learn how to enable PDex Plan Net IG
 {% hint style="warning" %}
 This tutorial is deprecated. Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Broken link](broken-reference "mention")
+[Broken link](broken-reference)
 {% endhint %}
 
 In this tutorial, we'll explain how to configure Aidbox for the [Da Vinci PDex Plan Net Implementation Guide](http://hl7.org/fhir/us/davinci-pdex/toc.html) (PDex IG) and pass Touchstone tests.
@@ -16,7 +16,7 @@ In this tutorial, we'll explain how to configure Aidbox for the [Da Vinci PDex P
 If you decide to run touchstone test, make sure you run only JSON tests.
 {% endhint %}
 
-To comply with the implementation guide you need to load PlanNet profiles and create SearchParameters. Aidbox [registers extensions](https://docs.aidbox.app/modules-1/first-class-extensions) for the loaded profiles on the fly.
+To comply with the implementation guide you need to load PlanNet profiles and create SearchParameters. Aidbox [registers extensions](broken-reference) for the loaded profiles on the fly.
 
 To get TouchStone compliant Aidbox you can use configuration from [the Aidbox samples repository](https://github.com/Aidbox/aidbox-project-samples).
 

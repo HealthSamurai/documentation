@@ -5,7 +5,7 @@ Since the 2405 release, using Aidbox in FHIR schema validation engine is recomme
 
 Please, use [Init Bundle](../../../../configuration/init-bundle.md) instead.
 
-[Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/setup)
+[Setup Aidbox with FHIR Schema validation engine](broken-reference)
 {% endhint %}
 
 You can declare a set of resources in Aidbox project and get them loaded in one or many Aidboxes on start. To do this you need to describe the seed service in the system entrypoint.

@@ -3,7 +3,7 @@
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[setup-aidbox-with-fhir-schema-validation-engine.md](../../../../modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md "mention")
+[setup-aidbox-with-fhir-schema-validation-engine.md](../../../../modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md)
 {% endhint %}
 
 [Aidbox Configuration project](../aidbox-zen-lang-project/) is used to configure Aidbox with various features. One of the things it’s used for is providing Aidbox with external terminologies.
@@ -22,7 +22,7 @@ Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is
 This approach is deprecated. Its support may end in the near future.
 {% endhint %}
 
-Specify path or url to zen terminology bundle in [`AIDBOX_ZEN_PATHS` environment variable](https://docs.aidbox.app/aidbox-configuration/aidbox-zen-lang-project#load-project-using-environment-variables).\
+Specify path or url to zen terminology bundle in [`AIDBOX_ZEN_PATHS` environment variable](broken-reference).\
 Source is either `url` or `path`. `url` is used to download Aidbox project from a remote location; `path` is used to load Aidbox project from the filesystem.\
 \
 Aidbox imports terminology bundles found in zen paths. Bundles are just `.ndjson.gz` files with filenames matching `*terminology-bundle.ndjson.gz` wildcard. By default, the import is done asynchronously and you can [track the progress](import-via-ftr.md#undefined). In some cases (e.g CI/CD pipeline) you might want to override such behavior. Setting `BOX_FEATURES_TERMINOLOGY_IMPORT_SYNC` environment variable will change the import mode to synchronous.

@@ -5,15 +5,15 @@
 The materials in this section describe what to do next with the resulting FHIR Schema resource or set of resources. They explain how to load them into Aidbox, either one by one or via IG. Additionally, they outline the requirements for FHIR Schema to define a Custom Resource and provide a detailed FHIR Schema specification.
 
 {% content-ref url="../../profiling-and-validation/fhir-schema-validator/" %}
-[fhir-schema-validator](../../profiling-and-validation/fhir-schema-validator/)
+[fhir-schema-validator](../../profiling-and-validation/fhir-schema-validator/README.md)
 {% endcontent-ref %}
 
 {% content-ref url="../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md" %}
 [how-to-create-fhir-npm-package.md](../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/)
+{% content-ref url="../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/README.md" %}
+[upload-fhir-implementation-guide](../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/README.md)
 {% endcontent-ref %}
 
 ## Obtain FHIRSchema
@@ -225,11 +225,11 @@ accept: application/json
 
 If the compiler doesn't support certain instructions for your Zen definitions, if you want full control during the migration process, or if you want to extend your custom resources using unique FHIR Schema features, you can manually rewrite your custom resource definitions from scratch using the FHIR Schema.
 
-In the following steps, we will use the same custom resource example, `EmailSchedule`. Although it is just an example, it covers most aspects of resource definition with Zen. If this guide misses any features of Zen resource definition, please [contact us.](https://docs.aidbox.app/overview/contact-us)
+In the following steps, we will use the same custom resource example, `EmailSchedule`. Although it is just an example, it covers most aspects of resource definition with Zen. If this guide misses any features of Zen resource definition, please [contact us.](../../../overview/contact-us.md)
 
 **Get Zen definition**
 
-Open your [Aidbox configuration project](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/) and find custom resource definitions. It should look similar to `EmailSchedule` definition example.&#x20;
+Open your [Aidbox configuration project](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/README.md) and find custom resource definitions. It should look similar to `EmailSchedule` definition example.&#x20;
 
 ### Translate zen definition `:keys` to FHIRSchema element entry
 

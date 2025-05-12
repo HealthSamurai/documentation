@@ -7,7 +7,7 @@ description: Start working with SNOMED CT terminology in Aidbox
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Broken link](broken-reference "mention")
+[Broken link](broken-reference)
 {% endhint %}
 
 [SNOMED CT](https://www.snomed.org/snomed-ct/Use-SNOMED-CT) is a large medical terminology which can be used in [FHIR ValueSet](http://hl7.org/fhir/valueset.html) resources. It is distributed under a free license which you have to set up with them.
@@ -32,7 +32,7 @@ This project is tailored with specific configurations essential for terminology 
 
 ### Confirm with us your SNOMED license
 
-SNOMED CT is distributed under a license which means that we can not redistribute it without making sure that other people have this license. You can confirm your eligibility for accessing SNOMED CT by contacting Aidbox team. See [our contacts here](https://docs.aidbox.app/contact-us).
+SNOMED CT is distributed under a license which means that we can not redistribute it without making sure that other people have this license. You can confirm your eligibility for accessing SNOMED CT by contacting Aidbox team. See [our contacts here](broken-reference).
 
 ## Configuration Overview: Key Features and Distinctions
 

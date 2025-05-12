@@ -61,7 +61,7 @@ npm install
 
 ### How to use
 
-**Important:** Before we start we have to make sure that aidbox client [is configured](https://docs.aidbox.app/tutorials/security-and-access-control/basic-auth-tutorial#basic-auth) and your [access policies](https://docs.aidbox.app/security-and-access-control-1/security/access-control) provide granular access to resources you're trying to reach.
+**Important:** Before we start we have to make sure that aidbox client [is configured](broken-reference) and your [access policies](broken-reference) provide granular access to resources you're trying to reach.
 
 ```javascript
 import { Client } from "aidbox-sdk"
@@ -213,7 +213,7 @@ await client.createSubscription({
 
 ### sendLog
 
-Aidbox has the ability to extend its logs. There is an [endpoint](https://docs.aidbox.app/core-modules/logging-and-audit/extending-access-logs#usdloggy-endpoint) that accepts logs with the defined structure from your application. These logs are ingested into the elastic log.
+Aidbox has the ability to extend its logs. There is an [endpoint](broken-reference) that accepts logs with the defined structure from your application. These logs are ingested into the elastic log.
 
 ```javascript
 await client.sendLog({
@@ -245,7 +245,7 @@ client.transformToBundle(
 );
 ```
 
-Bundle requests could be a [transaction or batch](https://docs.aidbox.app/api-1/fhir-api/bundle#post-endpoint) type. SDK uses the "transaction" type by default but you can change it by providing it in the second parameter.
+Bundle requests could be a [transaction or batch](broken-reference) type. SDK uses the "transaction" type by default but you can change it by providing it in the second parameter.
 
 ```javascript
 const data = ArrayOfPatients.map(client.bundleEntryPost);
@@ -285,7 +285,7 @@ First of all we have to create task's schema with settings that apply restrictio
 ```
 
 {% hint style="info" %}
-We have to regenerate SDK package each time we made changes into configuration project. [More information about task definition](https://docs.aidbox.app/modules-1/workflow-engine/task#1.-specify-task-definition)
+We have to regenerate SDK package each time we made changes into configuration project. [More information about task definition](broken-reference)
 {% endhint %}
 
 ### Implementation
@@ -348,7 +348,7 @@ const client = new Engine({
 ```
 
 {% hint style="info" %}
-We have to regenerate SDK package each time we made changes into configuration project. [More information about workflow definition](https://docs.aidbox.app/modules-1/workflow-engine/workflow#1.-specify-workflow-definition)
+We have to regenerate SDK package each time we made changes into configuration project. [More information about workflow definition](broken-reference)
 {% endhint %}
 
 ### Implementation

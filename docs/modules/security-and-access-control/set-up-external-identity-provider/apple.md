@@ -8,7 +8,7 @@
 
 * Create an account in Apple Developer portal
 * Make sure your Aidbox version is newer than 2503
-* Set up the local Aidbox instance using the getting started [guide](https://docs.aidbox.app/getting-started/run-aidbox-locally-with-docker/run-aidbox-locally)
+* Set up the local Aidbox instance using the getting started [guide](broken-reference)
 
 ## Managing Admin Access to the Aidbox UI Using Apple SSO
 
@@ -161,4 +161,4 @@ Now you can log in again with your Apple user, and the user will be granted admi
 
 ## What's next
 
-* See more about Aidbox Security [..](../ "mention")
+* See more about Aidbox Security [..](../)

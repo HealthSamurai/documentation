@@ -5,7 +5,7 @@ Workflow engine is configured by zen. We do not support it and do not recommend 
 
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/setup)
+[Setup Aidbox with FHIR Schema validation engine](broken-reference)
 {% endhint %}
 
 ## Introduction
@@ -32,7 +32,7 @@ Aidbox provides several predefined tasks for routine jobs that can be called via
 
 ## Task Instance
 
-When a new task is created by [task-user-api.md](task-user-api.md "mention") or by [services.md](../services.md "mention") or [workflow](../workflow/ "mention"), new resource `AidboxTask` is created which stores task Params, Result, and Status, as well as some additional information regarding task execution. Bellow is an example of AidboxTask with fields explanation:
+When a new task is created by [task-user-api.md](task-user-api.md) or by [services.md](../services.md) or [workflow](../workflow/), new resource `AidboxTask` is created which stores task Params, Result, and Status, as well as some additional information regarding task execution. Bellow is an example of AidboxTask with fields explanation:
 
 ```clojure
 {
@@ -126,7 +126,7 @@ To add a custom task:
 
 ### 1. Specify Task Definition
 
-The first step for implementing a new custom task is to specify its definition in [aidbox-zen-lang-project](../../aidbox-zen-lang-project/ "mention") .
+The first step for implementing a new custom task is to specify its definition in [aidbox-zen-lang-project](../../aidbox-zen-lang-project/) .
 
 Task Definition contains all the information necessary to define the behavior of a task instance.
 
@@ -218,7 +218,7 @@ Once you have the task definition above, your custom task can be implemented in 
 
 <figure><img src="../../../../../../.gitbook/assets/Workflow &#x26; Task Runtime.png" alt=""><figcaption></figcaption></figure>
 
-Initially, a request to the Task Service API should be made, either by using **`awf.task/long-poll`** or **`awf.task/poll`**, to fetch a new task created by [task-user-api.md](task-user-api.md "mention").
+Initially, a request to the Task Service API should be made, either by using **`awf.task/long-poll`** or **`awf.task/poll`**, to fetch a new task created by [task-user-api.md](task-user-api.md).
 
 Next, a **`awf.task/start`** request should be sent to update the task status to `in-progress`. After receiving the response, your implemented task should begin execution.
 

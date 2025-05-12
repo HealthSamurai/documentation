@@ -6,7 +6,7 @@ In this tutorial we will guide you how to setup ISiK Stufe 2 FHIR Implementation
 
 To correctly set up Aidbox, we'll utilize the Aidbox configuration projects.&#x20;
 
-There's an [existing guide](https://docs.aidbox.app/getting-started/run-aidbox-locally-with-docker) for this process. Adhere to this guide, but note a variation when you reach the `Configure the Aidbox` step: instead of using the recommended configuration projects (R4,R4B,R5,etc.) — clone this specific project:
+There's an [existing guide](broken-reference) for this process. Adhere to this guide, but note a variation when you reach the `Configure the Aidbox` step: instead of using the recommended configuration projects (R4,R4B,R5,etc.) — clone this specific project:
 
 ```
 git clone \

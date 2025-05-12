@@ -37,7 +37,7 @@ You can quickly evaluate C-CDA to FHIR Converter on our [C-CDA to FHIR Demo page
 
 ### List of supported sections
 
-The list of supported sections can be found [on the separate page](sections/). Section aliases are used to configure C-CDA endpoints to specify sections to process.
+The list of supported sections can be found [on the separate page](./sections/README.md). Section aliases are used to configure C-CDA endpoints to specify sections to process.
 
 ### Converting a C-CDA document to FHIR
 
@@ -138,7 +138,7 @@ In case of error, OperationOutcome resource will be returned:
 ```
 
 {% hint style="warning" %}
-Please note that this endpoint doesn't persist any populated FHIR data to Aidbox database. This endpoint is read-only and it performs a stateless conversion of the document from one format to another. To persist FHIR data extracted from a C-DDA document proceed to the [Persisting a result of C-CDA to FHIR conversion](./#persisting-a-result-of-c-cda-to-fhir-conversion) section.
+Please note that this endpoint doesn't persist any populated FHIR data to Aidbox database. This endpoint is read-only and it performs a stateless conversion of the document from one format to another. To persist FHIR data extracted from a C-DDA document proceed to the [Persisting a result of C-CDA to FHIR conversion](#persisting-a-result-of-c-cda-to-fhir-conversion) section.
 {% endhint %}
 
 #### Endpoint options
@@ -268,13 +268,13 @@ Authorization: ...
   "id": "invalid",
   "text": {
     "status": "generated",
-    "div": "Provided FHIR Document is in FHIR format, but expected to be in AIDBOX format. Make sure that you're using the right 'content-type' header.\n\nLearn about differences between Aidbox and FHIR formats here: https://docs.aidbox.app/storage-1/aidbox-and-fhir-formats"
+    "div": "Provided FHIR Document is in FHIR format, but expected to be in AIDBOX format. Make sure that you're using the right 'content-type' header."
   },
   "issue": [
     {
       "severity": "fatal",
       "code": "invalid",
-      "diagnostics": "Provided FHIR Document is in FHIR format, but expected to be in AIDBOX format. Make sure that you're using the right 'content-type' header.\n\nLearn about differences between Aidbox and FHIR formats here: https://docs.aidbox.app/storage-1/aidbox-and-fhir-formats"
+      "diagnostics": "Provided FHIR Document is in FHIR format, but expected to be in AIDBOX format. Make sure that you're using the right 'content-type' header."
     }
   ]
 }
@@ -312,7 +312,7 @@ Options are passed as query-string parameters, i.e. `/ccda/v2/persist?create-doc
 | Option          | Values                                                                                                                               | Description                                                                                |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `create-docref` | `true`                                                                                                                               | <p>false<br>Default: <code>false</code></p>                                                |
-| `tenant-id`     | <p>ID of Tenant resource<br>Default: none</p>                                                                                        | For [Smartbox](../../smartbox/) users only. Assigns Tenant to all populated resources.     |
+| `tenant-id`     | <p>ID of Tenant resource<br>Default: none</p>                                                                                        | For [Smartbox](../../smartbox/README.md) users only. Assigns Tenant to all populated resources.     |
 | `sections`      | <p>Proceed to the <a href="./#list-of-supported-sections">Section Aliases</a> table to find all possible values.<br>Default: all</p> | Comma-separated list of section aliases to process. By default all sections are processed. |
 | `patient-id`    | `id` that will be inserted and propagated as `uri` , `id` or `fullURl` in persisted FHIR Bundle.                                     | Arbitrary string that corresponds to id.                                                   |
 | `post-process`  | Different useful utils that are applied after conversion                                                                             | `single-entry-organizer` - will remove organizers with single Observation entry            |

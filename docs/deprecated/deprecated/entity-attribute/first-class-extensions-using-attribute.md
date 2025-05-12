@@ -19,7 +19,7 @@ If you don't use zen, you can use Attributes.
 
 In Aidbox, you can define first-class extensions using the custom resource [Attribute](entities-and-attributes.md).
 
-Let's create an extension definition of type `Reference` in the [REST Console](https://docs.aidbox.app/tutorials/rest-console) of Aidbox:
+Let's create an extension definition of type `Reference` in the [REST Console](broken-reference) of Aidbox:
 
 {% code title="Create new extension in the Aidbox format:" %}
 ```yaml

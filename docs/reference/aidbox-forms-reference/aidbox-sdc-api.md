@@ -126,7 +126,7 @@ value:
 
 Application name that will be used in Audit logging when returned link was used.
 
-> Audit logging should be enabled via [configuartion](../../tutorials/security-access-control-tutorials/setup-audit-logging.md)
+> Audit logging should be enabled.
 
 ```yaml
 - name: app-name
@@ -184,7 +184,7 @@ issue:
 >
 > `BOX_AUTH_KEYS_PRIVATE` and `BOX_AUTH_KEYS_PUBLIC` environment variables.
 >
-> [https://docs.aidbox.app/reference/configuration/environment-variables/optional-environment-variables#set-up-rsa-private-public-keys-and-secret](https://docs.aidbox.app/reference/configuration/environment-variables/optional-environment-variables#set-up-rsa-private-public-keys-and-secret)
+> [See settings](https://docs.aidbox.app/reference/settings/security-and-access-control#security.auth.keys.public)
 
 ## Save a QuestionnaireResponse - $save
 

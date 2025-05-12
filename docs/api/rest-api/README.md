@@ -21,16 +21,16 @@ Please consider using **/fhir**. Aidbox API is scheduled for deprecation.
 | [history](history.md)                                | Retrieve the change history for a particular resource               | both   |
 | **Type Level Interactions**                          |                                                                     |        |
 | [create](./crud/create.md)                           | Create a new resource                                               | both   |
-| [search](fhir-search/)                               | Search the resource type based on some filter criteria              | both   |
+| [search](./fhir-search/README.md)                               | Search the resource type based on some filter criteria              | both   |
 | [history](history.md)                                | Retrieve the change history for a particular resource type          | both   |
-| [$dump](../bulk-api/#usddump)                        | Dump all resources of specific type                                 | Aidbox |
-| [$load](../bulk-api/#usdload)                        | Load resources of specific type                                     | both   |
+| [$dump](../bulk-api/dump.md)                        | Dump all resources of specific type                                 | Aidbox |
+| [$load](../bulk-api/load-and-fhir-load.md)                        | Load resources of specific type                                     | both   |
 | **Whole System Interactions**                        |                                                                     |        |
 | [capabilities](./other/capability-statement.md)                     | Get a capability statement for the system                           | FHIR   |
 | [batch/transaction](../batch-transaction.md)                | Update, create or delete a set of resources in a single interaction | both   |
 | [batch upsert](../other/batch-upsert.md)             | Batch create or update interaction                                  | Aidbox |
-| [$import](../bulk-api/#usdimport-and-fhir-usdimport) | Bulk Import async operation                                         | both   |
-| [$load](../bulk-api/#usdload)                        | Bulk load ndjson file with resources                                | both   |
-| [$dump-sql](../bulk-api/#usddump-sql)                | Bulk export result of SQL Query                                     | Aidbox |
+| [$import](../bulk-api/import-and-fhir-import.md) | Bulk Import async operation                                         | both   |
+| [$load](../bulk-api/load-and-fhir-load.md)                        | Bulk load ndjson file with resources                                | both   |
+| [$dump-sql](../bulk-api/dump-sql.md)                | Bulk export result of SQL Query                                     | Aidbox |
 | history                                              | Not supported for performance reason                                |        |
 | search                                               | Not supported for performance reason                                |        |

@@ -5,7 +5,7 @@ Workflow engine is configured by zen. We do not support it and do not recommend 
 
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/setup)
+[Setup Aidbox with FHIR Schema validation engine](broken-reference)
 {% endhint %}
 
 Task User API allows users to manually control Aidbox tasks by [RPC methods](../../../../../api/other/rpc-api.md).

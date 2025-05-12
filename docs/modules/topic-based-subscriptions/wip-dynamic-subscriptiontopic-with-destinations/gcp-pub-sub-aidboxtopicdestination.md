@@ -16,7 +16,7 @@ The GCP Pub/Sub AidboxTopicDestination works in the following way:
 
 ## Configuration
 
-To use Webhook with [#aidboxsubscriptiontopic](./#aidboxsubscriptiontopic "mention") you have to create [#aidboxtopicdestination](./#aidboxtopicdestination "mention") resource.
+To use Webhook with [#aidboxsubscriptiontopic](./#aidboxsubscriptiontopic) you have to create [#aidboxtopicdestination](./#aidboxtopicdestination) resource.
 
 You need to specify the following profile:
 
@@ -26,7 +26,7 @@ http://aidbox.app/StructureDefinition/aidboxtopicdestination-gcp-pubsub-at-least
 
 ### Available Parameters
 
-<table data-full-width="false"><thead><tr><th width="204">Parameter name</th><th width="192">Value type</th><th>Description</th></tr></thead><tbody><tr><td><code>projectId</code> *</td><td>valueString</td><td>GCP project identifier.</td></tr><tr><td><code>topicId</code> *</td><td>valueString</td><td>The name of the Pub/Sub topic to which you want to publish messages.</td></tr><tr><td><code>timeout</code></td><td>valueUnsignedInt</td><td>Set the delay threshold to use for batching.<br><br><strong>Default value (ms)</strong> - 1 </td></tr><tr><td><code>maxCount</code></td><td>valueUnsignedInt</td><td>Set the element count threshold to use for batching. After this many elements are accumulated, they will be wrapped up in a batch and sent. <br><br>Aidbox always generates one <a href="https://docs.aidbox.app/modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations#notification-shape">notification</a> for each event. Therefore, you will receive as many notifications as there are events, but they will be sent in batches.<br><br><strong>Default value</strong> - 100</td></tr><tr><td><code>bytesThreshold</code></td><td>valueUnsignedInt</td><td>Set the request byte threshold to use for batching. After this many bytes are accumulated, the elements will be wrapped up in a batch and sent.<br><br><strong>Default value (bytes)</strong> - 1000</td></tr></tbody></table>
+<table data-full-width="false"><thead><tr><th width="204">Parameter name</th><th width="192">Value type</th><th>Description</th></tr></thead><tbody><tr><td><code>projectId</code> *</td><td>valueString</td><td>GCP project identifier.</td></tr><tr><td><code>topicId</code> *</td><td>valueString</td><td>The name of the Pub/Sub topic to which you want to publish messages.</td></tr><tr><td><code>timeout</code></td><td>valueUnsignedInt</td><td>Set the delay threshold to use for batching.<br><br><strong>Default value (ms)</strong> - 1 </td></tr><tr><td><code>maxCount</code></td><td>valueUnsignedInt</td><td>Set the element count threshold to use for batching. After this many elements are accumulated, they will be wrapped up in a batch and sent. <br><br>Aidbox always generates one notification for each event. Therefore, you will receive as many notifications as there are events, but they will be sent in batches.<br><br><strong>Default value</strong> - 100</td></tr><tr><td><code>bytesThreshold</code></td><td>valueUnsignedInt</td><td>Set the request byte threshold to use for batching. After this many bytes are accumulated, the elements will be wrapped up in a batch and sent.<br><br><strong>Default value (bytes)</strong> - 1000</td></tr></tbody></table>
 
 \* required parameter.
 

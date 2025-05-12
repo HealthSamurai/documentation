@@ -5,7 +5,7 @@
 The materials in this section describe what to do next with the resulting FHIR Schema resource or set of resources. They explain how to load them into Aidbox, either one by one or via IG. Additionally, they outline the requirements for FHIR Schema to define a Custom Resource and provide a detailed FHIR Schema specification.
 
 {% content-ref url="../../profiling-and-validation/fhir-schema-validator/" %}
-[fhir-schema-validator](../../profiling-and-validation/fhir-schema-validator/)
+[fhir-schema-validator](../../profiling-and-validation/fhir-schema-validator/README.md)
 {% endcontent-ref %}
 
 {% content-ref url="../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md" %}
@@ -13,7 +13,7 @@ The materials in this section describe what to do next with the resulting FHIR S
 {% endcontent-ref %}
 
 {% content-ref url="../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/)
+[upload-fhir-implementation-guide](../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/README.md)
 {% endcontent-ref %}
 
 
@@ -44,7 +44,7 @@ Please double-check the compilation results, as they may contain transformation 
 
 #### Example: Concept entity
 
-Here's an example of migrating a custom Aidbox resource, [Concept](../../terminology/concept/). This resource mirrors FHIR's CodeSystem `concept` property and extends it in various ways.
+Here's an example of migrating a custom Aidbox resource, [Concept](../../terminology/concept/README.md). This resource mirrors FHIR's CodeSystem `concept` property and extends it in various ways.
 
 {% tabs %}
 {% tab title="Request" %}

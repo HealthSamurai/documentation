@@ -3,7 +3,7 @@
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/setup)
+[Setup Aidbox with FHIR Schema validation engine](broken-reference)
 {% endhint %}
 
 Aidbox configuration project consists of a set of files which together describe how a box should behave. Overview is given by the following filesystem tree example:

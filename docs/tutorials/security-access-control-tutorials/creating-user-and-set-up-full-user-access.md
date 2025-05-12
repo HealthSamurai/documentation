@@ -2,7 +2,7 @@
 
 ### Creating user resource
 
-Aidbox `user` resources conforms to following [schema](https://docs.aidbox.app/security-and-access-control-1/overview#user). You can [create](https://docs.aidbox.app/api-1/api/crud-1/fhir-and-aidbox-crud) new `user` as a regular resource.
+Aidbox `user` resources conforms to following [schema](broken-reference). You can [create](broken-reference) new `user` as a regular resource.
 
 #### User resource example
 

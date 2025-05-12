@@ -36,7 +36,7 @@ Toolkit required for development and deployment:
 
 ### Managed solution
 
-Aidbox supports all popular managed Postgresql databases. Supported versions - 13 and higher. See more details in this article — [Run Aidbox on managed PostgreSQL](https://docs.aidbox.app/getting-started/run-aidbox-on-managed-postgresql).
+Aidbox supports all popular managed Postgresql databases. Supported versions - 13 and higher. See more details in this article — [Run Aidbox on managed PostgreSQL](../run-aidbox-on-managed-postgresql.md).
 
 * [AWS RDS Aurora](https://aws.amazon.com/ru/rds/aurora/)
 * [GCP Cloud SQL for PostgreSQL](https://cloud.google.com/sql/postgresql)
@@ -44,7 +44,7 @@ Aidbox supports all popular managed Postgresql databases. Supported versions - 1
 
 ### Self-managed solution
 
-For a self-managed solution, we recommend using the [AidboxDB image](https://hub.docker.com/r/healthsamurai/aidboxdb). This image contains all required extensions, backup tools, and pre-build replication support. Read more information in the documentation — [AidboxDB](../../../database/aidboxdb-image/).
+For a self-managed solution, we recommend using the [AidboxDB image](https://hub.docker.com/r/healthsamurai/aidboxdb). This image contains all required extensions, backup tools, and pre-build replication support. Read more information in the documentation — [AidboxDB](../../../database/aidboxdb-image/README.md).
 
 {% hint style="info" %}
 To streamline the deployment process, our DevOps engineers have prepared [Helm charts](https://github.com/Aidbox/helm-charts/tree/main/aidboxdb) that you may find helpful.
@@ -352,7 +352,7 @@ spec:
 
 When Aidbox starts for the first time, resolving all the dependencies takes longer. If you encounter startupProbe failure, you might want to consider increasing the initialDelaySeconds and failureThreshold under the startupProbe spec in the config above.
 
-All additional information about HA Aidbox configuration can be found in this article — [HA Aidbox](https://docs.aidbox.app/getting-started/run-aidbox-in-kubernetes/high-available-aidbox).
+All additional information about HA Aidbox configuration can be found in this article — [HA Aidbox](../../../database/aidboxdb-image/ha-aidboxdb.md).
 
 To verify that Aidbox started correctly you can check the logs:
 
@@ -487,13 +487,13 @@ curl https://my.box.url
 
 ## Logging
 
-General logging & audit information can be found in this article — [Logging & Audit](https://docs.aidbox.app/core-modules/logging-and-audit)
+General logging & audit information can be found in this article — [Logging & Audit](../../../modules/observability/logs/README.md)
 
 Aidbox supports integration with the following systems:
 
-* ElasticSearch — [Elastic Logs and Monitoring Integration](https://docs.aidbox.app/core-modules/logging-and-audit/integrations/elastic-logs-and-monitoring-integration)
-* Loki — [Grafana Loki Log management integration](https://docs.aidbox.app/core-modules/logging-and-audit/integrations/loki-integration)
-* DataDog — [Datadog Log management integration](https://docs.aidbox.app/core-modules/logging-and-audit/integrations/aidbox-logs-and-datadog-integration)
+* ElasticSearch — [Elastic Logs and Monitoring Integration](../../../modules/observability/logs/how-to-guides/elastic-logs-and-monitoring-integration.md)
+* Loki — [Grafana Loki Log management integration](../../../modules/observability/logs/how-to-guides/loki-log-management-integration.md)
+* DataDog — [Datadog Log management integration](../../../modules/observability/logs/how-to-guides/datadog-log-management-integration.md)
 
 ### ElasticSearch integration
 
@@ -627,7 +627,7 @@ scrape_configs:
 
 ### Export the Aidbox Grafana dashboard
 
-Aidbox metrics has integration with Grafana, which can generate dashboards and upload them to Grafana — [Grafana Integration](https://docs.aidbox.app/core-modules/monitoring/grafana-integration)
+Aidbox metrics has integration with Grafana, which can generate dashboards and upload them to Grafana — [Grafana Integration](../../../modules/observability/metrics/monitoring/set-up-grafana-integration.md)
 
 ### Additional monitoring
 

@@ -69,7 +69,7 @@ Note that extension elements have `:confirms` to a FHIR primitive or complex typ
 
 ### Steps to define first-class extension as zen profile:
 
-1. [Initialize](https://docs.aidbox.app/profiling-and-validation/profiling-with-zen-lang/extend-an-ig-with-a-custom-zen-profile#create-a-zen-project) zen project and add additional IGs if necessary.
+1. [Initialize](broken-reference) zen project and add additional IGs if necessary.
 2.  Define your custom first-class extension. For syntax and more examples refer to [this page](https://github.com/zen-lang/zen).
 
     ```

@@ -19,23 +19,23 @@ Let's look at some operations working with Bundle resources.
   This operation accepts Bundle resource (with type batch or transaction); executes contained requests; then returns Bundle resource in response (with type batch-response or transaction-response).\
   Operation `POST /` accepts and return Bundle in Aidbox format; operation `POST /fhir` accepts and returns Bundle in FHIR format.
 * `GET /<resourceType>`, `GET /fhir/<resourceType>`\
-  Main article: [fhir-search](fhir-search/ "mention")\
+  Main article: [fhir-search](./fhir-search/README.md)\
   This operation searches for resource of type `resourceType` using search parameters provided in query string, and returns Bundle resource (with type `searchset`) containing all resources matching the given filters.
 * `GET /<resourceType>/<id>/_history`, `GET /fhir/<resourceType>/<id>/_history`\
-  Main article: [history.md](history.md "mention")\
+  Main article: [history.md](./history.md)\
   This operation returns the Bundle resource (with type `history`) containing previous versions of the specified resource.
 * `GET /<resourceType>/_history`, `GET /fhir/<resourceType>/_history`\
-  Main article: [history.md](history.md "mention")\
+  Main article: [history.md](./history.md)\
   This operations returns the Bundle resource (with type `history`) containing previous versions of resources with the specified type.
 * CRUD operations with Bundle resource\
-  Main article: [crud](crud/ "mention")\
+  Main article: [crud](./crud/README.md)\
   These are the usual FHIR CRUD operations with Bundle resource. They only store/update/get/search Bundle resources without additional semantics.\
   These operations are rarely used.\
   Examples: `POST /Bundle`, `GET /Bundle`, `GET /Bundle/<id>`, `PUT /Bundle`,\
   `POST /fhir/Bundle`, `GET /fhir/Bundle`, `GET /fhir/Bundle/<id>`,\
   `PUT /fhir/Bundle/<id>`
 
-See more about the difference between Aidbox and FHIR formats (`/...` and `/fhir/...` endpoints) in the [aidbox-and-fhir-formats.md](other/aidbox-and-fhir-formats.md "mention") page.
+See more about the difference between Aidbox and FHIR formats (`/...` and `/fhir/...` endpoints) in the [aidbox-and-fhir-formats.md](other/aidbox-and-fhir-formats.md) page.
 
 ### `POST /` , `POST /fhir` endpoint
 
@@ -86,7 +86,7 @@ accept: application/json
 ```
 
 {% hint style="warning" %}
-In [fhir-schema-validator](../../modules/profiling-and-validation/fhir-schema-validator/ "mention") mode, `/fhir/Bundle/$validate`  doesn't validates Aidbox built-in resources (User, AccessPolicy, etc.). &#x20;
+In [fhir-schema-validator](../../modules/profiling-and-validation/fhir-schema-validator/) mode, `/fhir/Bundle/$validate`  doesn't validates Aidbox built-in resources (User, AccessPolicy, etc.). &#x20;
 
 Use validation in Aidbox format with `Bundle/$validate` if you need to validate a bundle with built-in resources. This endpoint only validates entries of the bundle, but not the bundle itself.
 {% endhint %}

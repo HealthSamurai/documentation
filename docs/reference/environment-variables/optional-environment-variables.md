@@ -259,7 +259,7 @@ For example, `extension.*.valueString` stored as `extension.0.value.string`
 BOX_CACHE_REPLICATION_DISABLE=true
 ```
 
-By default, Aidbox works in multi-replica mode, so more than one Aidbox replica could be connected to the same database. If you are sure you'll be running only one Aidbox replica, you could disable replication mechanism with this variable. Check [Highly Available Aidbox](https://docs.aidbox.app/getting-started/run-aidbox-in-kubernetes/high-available-aidbox) for additional information.
+By default, Aidbox works in multi-replica mode, so more than one Aidbox replica could be connected to the same database. If you are sure you'll be running only one Aidbox replica, you could disable replication mechanism with this variable. Check [Highly Available Aidbox](../../database/aidboxdb-image/ha-aidboxdb.md) for additional information.
 
 ### AIDBOX\_DEV\_MODE
 
@@ -267,7 +267,7 @@ By default, Aidbox works in multi-replica mode, so more than one Aidbox replica 
 AIDBOX_DEV_MODE=true
 ```
 
-Enables `_debug=policy` for [access policy debugging](https://docs.aidbox.app/security-and-access-control-1/security/access-policy#policy-debugging)
+Enables `_debug=policy` for [access policy debugging](../../tutorials/security-access-control-tutorials/debug-access-control.md)
 
 ### AIDBOX\_ZEN\_ENTRYPOINT
 
@@ -359,7 +359,7 @@ When set to true, the behavior of \_include and \_revinclude becomes FHIR confor
 BOX_SEARCH_AUTHORIZE_INLINE_REQUESTS=true
 ```
 
-[https://docs.aidbox.app/api-1/fhir-api/search-1/search-parameters-list/\_include-and-\_revinclude#authorize-inline-requests-mode](https://docs.aidbox.app/api-1/fhir-api/search-1/search-parameters-list/_include-and-_revinclude#authorize-inline-requests-mode)
+[Authorize inline requests](../../api/rest-api/fhir-search/include-and-revinclude.md)
 
 ### BOX\_SEARCH\_INCLUDE\_ITERATE\_\_MAX
 
@@ -399,7 +399,7 @@ Use conformant S256 code challenge validation scheme.
 BOX_DEBUG_SU_ENABLE=true
 ```
 
-Enables `su` request header [functionalty](https://docs.aidbox.app/security-and-access-control-1/security/debug#su-request-header).
+Enables `su` request header functionality.
 
 ### BOX\_FEATURES\_VALIDATION\_SKIP\_REFERENCE
 
@@ -655,7 +655,7 @@ Stripping is only applied during the masking.
 Follow the link below to learn how Aidbox metrics work.
 
 {% content-ref url="../../modules/observability/metrics/" %}
-[metrics](../../modules/observability/metrics/)
+[metrics](../../modules/observability/metrics/README.md)
 {% endcontent-ref %}
 
 #### **BOX\_METRICS\_PORT**

@@ -7,7 +7,7 @@ description: >-
 # Producing C-CDA documents
 
 {% hint style="info" %}
-C-CDA / FHIR Converter provides bidirectional mapping for all data elements from the [USCDI v1](https://www.healthit.gov/isa/sites/isa/files/2020-10/USCDI-Version-1-July-2020-Errata-Final_0.pdf) list. [Detailed list of supported C-CDA sections](sections/) is also available.
+C-CDA / FHIR Converter provides bidirectional mapping for all data elements from the [USCDI v1](https://www.healthit.gov/isa/sites/isa/files/2020-10/USCDI-Version-1-July-2020-Errata-Final_0.pdf) list. [Detailed list of supported C-CDA sections](./sections/README.md) is also available.
 {% endhint %}
 
 In certain cases, such as regulatory requirements, legacy systems integration, or the need to support a specific workflow, it may be necessary to convert FHIR data to C-CDA format to seamlessly integrate systems.
@@ -126,7 +126,7 @@ Multiple FHIR searches per section is also possible:
 
 ### Section templates and LOINC codes
 
-To pick the right `templateId` for a section, converter uses LOINC to OID mapping table which can be found on the [List of supported sections page](sections/). "Entries Required" / "Entries Optional" variation can be specified via FHIR extension. In the example below document contains two sections: [Social History Section (V3)](./sections/social-history-section-docs-v3.md) and [Allergies and Intolerances Section (entries required) (V3)](./sections/allergies-and-intolerances-section-docs-entries-optional-docs-v3.md).
+To pick the right `templateId` for a section, converter uses LOINC to OID mapping table which can be found on the [List of supported sections page](./sections/README.md). "Entries Required" / "Entries Optional" variation can be specified via FHIR extension. In the example below document contains two sections: [Social History Section (V3)](./sections/social-history-section-docs-v3.md) and [Allergies and Intolerances Section (entries required) (V3)](./sections/allergies-and-intolerances-section-docs-entries-optional-docs-v3.md).
 
 ```json
 {
@@ -167,7 +167,7 @@ To pick the right `templateId` for a section, converter uses LOINC to OID mappin
 
 ### Section Narratives
 
-Along with structured entries, CDA section contains human-readable narrative describing section data. This narrative can be automatically generated from entries ([if specific section supports it](sections/)) or it can be retrieved from Observation resource. To retrieve narrative from Observation, provide corresponding request under the `:text` key:
+Along with structured entries, CDA section contains human-readable narrative describing section data. This narrative can be automatically generated from entries ([if specific section supports it](./sections/README.md)) or it can be retrieved from Observation resource. To retrieve narrative from Observation, provide corresponding request under the `:text` key:
 
 ```clojure
 {:title "Discharge Instructions"
@@ -251,7 +251,7 @@ C-CDA / FHIR module provides ready-to-use Document Definitions for most frequent
 | ------------------ | ----------- | ---------------------------------------------------------------------------------------- |
 | continuity-of-care | CCD         | <p><code>pid</code> - Patient ID<br><code>start-date</code><br><code>end-date</code></p> |
 
-Additionally to this list, you can put your own predefined Document Definitions via [Aidbox Configuration Project](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/).
+Additionally to this list, you can put your own predefined Document Definitions via [Aidbox Configuration Project](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/README.md).
 
 ### /ccda/prepare-doc endpoint
 

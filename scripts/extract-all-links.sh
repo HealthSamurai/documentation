@@ -41,3 +41,5 @@ done
     echo
   done
 } > out/all_links_by_file.txt
+
+echo 'Generated out/all_links_by_file.txt'

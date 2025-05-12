@@ -9,7 +9,7 @@ Workflow engine is configured by zen. We do not support it and do not recommend 
 
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/setup)
+[Setup Aidbox with FHIR Schema validation engine](broken-reference)
 {% endhint %}
 
 ## Workflow Engine Components Overview
@@ -30,7 +30,7 @@ Workflow Engine allows implementing both simple scenarios using [predefined task
 
 ### Task and Workflow
 
-[task](task/ "mention") and [workflow](workflow/ "mention") are two basic concepts of Workflow Engine. Both are managed through Aidbox API.
+[task](task/) and [workflow](workflow/) are two basic concepts of Workflow Engine. Both are managed through Aidbox API.
 
 Tasks are the simplest building block responsible for performing business actions. Aidbox provides a number of tasks out of the box. Additional tasks can be implemented outside of Aidbox in any programming language using an [SDK](broken-reference) or API directly.
 
@@ -60,7 +60,7 @@ To monitor the current state of tasks, workflow, and services Workflow Engine pr
 
 ### Tutorials
 
-* [resource-generation-with-map-to-fhir-bundle-task-and-subscription-triggers.md](../../other/other-deprecated-tutorials/resource-generation-with-map-to-fhir-bundle-task-and-subscription-triggers.md "mention") - How to create an encounter when a specific observation is created.
+* [resource-generation-with-map-to-fhir-bundle-task-and-subscription-triggers.md](../../other/other-deprecated-tutorials/resource-generation-with-map-to-fhir-bundle-task-and-subscription-triggers.md) - How to create an encounter when a specific observation is created.
 
 {% content-ref url="task/" %}
 [task](task/)

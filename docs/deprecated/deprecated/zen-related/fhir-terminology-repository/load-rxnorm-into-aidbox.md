@@ -7,7 +7,7 @@ description: Setting up Aidbox with RxNorm terminology loaded via FTR
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Broken link](broken-reference "mention")
+[Broken link](broken-reference)
 {% endhint %}
 
 [RxNorm](https://www.nlm.nih.gov/research/umls/rxnorm/index.html) provides normalized names for clinical drugs and links its names to many of the drug vocabularies commonly used in pharmacy management and drug interaction software, including those of First Databank, Micromedex, Multum, and Gold Standard Drug Database. \

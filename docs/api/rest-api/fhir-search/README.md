@@ -154,7 +154,7 @@ List of supported modifiers:
 | :not               | uri, reference, token | Negates the search value                                                                                                                             | `url:not=http://acme.org/fhir/`                       |
 | :identifier        | reference             | Search by identifier of referenced resource                                                                                                          | `subject:identifier=urn:oid:1.2.3.4`                  |
 | :btw               | date                  | Search for dates between two values. Defined by Aidbox, not FHIR.                                                                                    | `birthdate:btw=1980,1981`                             |
-| :iterate, :recurse | -                     | See [including referenced resources](./#including-referenced-resources)                                                                              | `_include:iterate=Observation:has-member:Observation` |
+| :iterate, :recurse | -                     | See [including referenced resources](#including-referenced-resources)                                                                              | `_include:iterate=Observation:has-member:Observation` |
 
 ## Including referenced resources
 

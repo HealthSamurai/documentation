@@ -20,7 +20,7 @@ Aidbox stores all the tenants in a single database and serves number of them at 
 
 ### Add `Client`
 
-There are several ways to create client. We use the simplest one to do it: [Basic Auth](https://docs.aidbox.app/security-and-access-control-1/auth/basic-auth).
+There are several ways to create client. We use the simplest one to do it: [Basic Auth](broken-reference).
 
 ```yaml
 PUT /Client/org1

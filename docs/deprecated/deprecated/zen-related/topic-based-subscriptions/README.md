@@ -38,7 +38,7 @@ If _Topic Queue Storage_ is **PostgreSQL**, all the processes of topic-based sub
 
 The module is composed of two loosely coupled services :
 
-1. **Change Data Capture (CDC) Service -** is responsible for processing data change log stream from the PostgreSQL replication slot. The replication slot is created and processed according to the topic configuration defined by [aidbox-zen-lang-project](../aidbox-zen-lang-project/ "mention"). The CDC service is responsible for topic-level event filtering by **resourceTrigger** definition, evaluating **canFilterBy** expressions which will be used for subscription-level event filtering, and decoding events into proper FHIR resources.\
+1. **Change Data Capture (CDC) Service -** is responsible for processing data change log stream from the PostgreSQL replication slot. The replication slot is created and processed according to the topic configuration defined by [aidbox-zen-lang-project](../aidbox-zen-lang-project/). The CDC service is responsible for topic-level event filtering by **resourceTrigger** definition, evaluating **canFilterBy** expressions which will be used for subscription-level event filtering, and decoding events into proper FHIR resources.\
    \
    Finally, events will be stored in a table of PostgreSQL. \
    Every **event** consists of `headers` and `body`. \
@@ -70,7 +70,7 @@ Accordingly, it is necessary to manage the external message queue service outsid
 
 Instead of delivering the events, **Aidbox Workflow Engine Connector** enables to directly produce Aidbox Task/Workflow, right after the CDC service processes the events.&#x20;
 
-This connector guarantees the execution of Task/Workflow for each triggered event.  You can simply leverage convenient features like auto-retrying or detecting failed processes just by integrating with API of [workflow-engine](../workflow-engine/ "mention").
+This connector guarantees the execution of Task/Workflow for each triggered event.  You can simply leverage convenient features like auto-retrying or detecting failed processes just by integrating with API of [workflow-engine](../workflow-engine/).
 
 The events will be stored in the AidboxTask / AidboxWorkflow resource as their `params`.
 

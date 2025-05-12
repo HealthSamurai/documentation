@@ -2,15 +2,15 @@
 
 ## Topic-based Subscriptions to Kafka
 
-[DEMO](https://github.com/Aidbox/app-examples/blob/main/aidbox-subscriptions-to-kafka/README.md#demo) | [Documentation](https://docs.aidbox.app/modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations?utm\_source=app-examples\&utm\_medium=readme)
+[DEMO](https://github.com/Aidbox/app-examples/blob/main/aidbox-subscriptions-to-kafka/README.md#demo) | [Documentation](./README.md)
 
-This example showcases [Aidbox SubscriptionTopic](https://docs.aidbox.app/modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations?utm\_source=github\&utm\_medium=readme\&utm\_campaign=app-examples-repo) producing data to Kafka.
+This example showcases [Aidbox SubscriptionTopic](./README.md) producing data to Kafka.
 
 Objectives:
 
 1. Set up Aidbox and Kafka locally using Docker Compose.
-2. Get **FHIR QuestionnaireResponse** via [Aidbox Forms](https://docs.aidbox.app/modules-1/aidbox-forms?utm\_source=github\&utm\_medium=readme\&utm\_campaign=app-examples-repo).
-3. Learn how [AidboxSubscriptionTopic and AidboxTopicDestination](https://docs.aidbox.app/modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations?utm\_source=github\&utm\_medium=readme\&utm\_campaign=app-examples-repo) work with Kafka to handle the collected data.
+2. Get **FHIR QuestionnaireResponse** via [Aidbox Forms](../../../modules/aidbox-forms/README.md).
+3. Learn how [AidboxSubscriptionTopic and AidboxTopicDestination](./kafka-aidboxtopicdestination.md) work with Kafka to handle the collected data.
 
 **Table of Contents**
 
@@ -144,7 +144,7 @@ Open [Kafka UI](http://localhost:8080/) -> `Topics` -> `aidbox-forms` -> `messag
 Also you can find example of k8s deployment:
 
 * Configuration: [k8s.yaml](https://github.com/Aidbox/examples/blob/main/aidbox-subscriptions-to-kafka/k8s.yaml)
-* Also, you need to pass secrets for Aidbox and Database. See details: [Deploy Aidbox with Helm Charts](https://docs.aidbox.app/getting-started/run-aidbox-in-kubernetes/deploy-aidbox-with-helm-charts). We recommend to use helm.
+* Also, you need to pass secrets for Aidbox and Database. See details: [Deploy Aidbox with Helm Charts](../../../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/deploy-aidbox-with-helm-charts.md). We recommend to use helm.
 * Configuration resource examples: [k8s\_resources](https://github.com/Aidbox/examples/blob/main/aidbox-subscriptions-to-kafka/k8s.yaml)
 
 ### Demo

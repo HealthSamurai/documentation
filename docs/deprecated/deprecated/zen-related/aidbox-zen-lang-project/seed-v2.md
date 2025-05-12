@@ -11,7 +11,7 @@ Since the 2405 release, using Aidbox in FHIR schema validation engine is recomme
 
 Please, use [Init Bundle](../../../../configuration/init-bundle.md) instead.
 
-[Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/setup)
+[Setup Aidbox with FHIR Schema validation engine](broken-reference)
 {% endhint %}
 
 **Seed v2 service keeps your resources synced** **with Aidbox** meaning that it loads declared resources into Aidbox at startup and deletes resources from Aidbox that were declared in Seed v2 and then removed. Sync semantics dramatically distinguishes Seed v2 from [Seed Import](seed-import.md) which implements upserting semantics and expects you to make an explicit migration to delete undesirable resources from Aidbox.

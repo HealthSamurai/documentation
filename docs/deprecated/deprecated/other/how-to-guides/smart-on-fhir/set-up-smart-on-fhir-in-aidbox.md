@@ -31,7 +31,7 @@ To use SMART on FHIR you need to create a few resources like Client and AccessPo
 
 ### Client
 
-Let's create an [Aidbox Client](https://docs.aidbox.app/security-and-access-control-1/overview#client):
+Let's create an [Aidbox Client](broken-reference):
 
 ```yaml
 POST /Client

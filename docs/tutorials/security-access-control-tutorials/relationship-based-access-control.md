@@ -4,7 +4,9 @@ description: Learn how to enable ReBAC in Aidbox with AccessPolicy
 
 # Relationship-based access control
 
-Throughout this tutorial, we’ll walk you through the implementation of basic relationship-based access control model in Aidbox. We’ll assume you have Aidbox up & running already [locally](https://docs.aidbox.app/getting-started/run-aidbox-locally-with-docker) or [in cloud](https://docs.aidbox.app/getting-started/run-aidbox-in-aidbox-sandbox).
+> This tutorial is using zen and it is outdated.
+
+Throughout this tutorial, we’ll walk you through the implementation of basic relationship-based access control model in Aidbox. We’ll assume you have Aidbox up & running already [locally](../../getting-started/run-aidbox-locally.md) or [in cloud](../../getting-started/run-aidbox-in-sandbox.md).
 
 {% hint style="info" %}
 **Where to get help:**
@@ -58,7 +60,7 @@ As we mentioned earlier, FHIR ResearchStudy doesn't have references to collabora
 
 There are many ways you can customize your data model with Aidbox. We will do this by creating [an Attribute resource](../../deprecated/deprecated/entity-attribute/entities-and-attributes.md).
 
-There is an HTTP request below for creating `Attribute/ResearchStudy.collaborator`. You can perform this request in [Aidbox REST Console](https://docs.aidbox.app/overview/aidbox-ui/rest-console-1).
+There is an HTTP request below for creating `Attribute/ResearchStudy.collaborator`. You can perform this request in [Aidbox REST Console](../../overview/aidbox-ui/rest-console.md).
 
 ```yaml
 PUT /Attribute/ResearchStudy.collaborator
@@ -75,7 +77,7 @@ extensionUrl: urn:extension:researchStudyMember
 ```
 
 {% hint style="warning" %}
-If you use zen profiles, Attribute resources will be disabled. Thus, you will need to define your attributes in [zen](https://docs.aidbox.app/profiling-and-validation/profiling-with-zen-lang/write-a-custom-zen-profile).
+If you use zen profiles, Attribute resources will be disabled. Thus, you will need to define your attributes in [zen]().
 {% endhint %}
 
 ### Upload sample data
@@ -159,7 +161,7 @@ matcho:
 
 matcho engine compares incoming request with defined pattern, if the key is not specified in pattern, it will be ignore while checking. `_include`, `_revinclude` and `_with` parameters expands the list of returning data with related resources. As far we want to leave only ResearchStudy resources, we excluded them explicitly.
 
-Read more on [AccessPolicy best practicies guide](https://docs.aidbox.app/security-and-access-control-1/security/accesspolicy-best-practices).
+Read more on [AccessPolicy best practicies guide](../../modules/security-and-access-control/security/accesspolicy-best-practices.md).
 {% endhint %}
 
 Let's check it.
@@ -489,8 +491,4 @@ And we met this requirement using ReBAC authorization model. In order to achieve
 
 ### What's next
 
-Writing access policies may be tricky some time, Aidbox has tooling to [debug AccessPolicy](debug.md).
-
-## Talk to a Health Samurai Engineer
-
-If you'd like to learn more about using Aidbox or have any questions about this guide, [connect with us on Telegram](https://t.me/aidbox). We're happy to help.
+Writing access policies may be tricky some time, Aidbox has tooling to [debug AccessPolicy](./debug-access-control.md).

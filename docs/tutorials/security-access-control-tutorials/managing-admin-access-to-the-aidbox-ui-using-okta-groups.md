@@ -9,7 +9,7 @@
 
 * Create an account in [Okta development portal](https://developer.okta.com/)
 * Make sure your Aidbox version is newer than 2107
-* Setup the local Aidbox instance using getting started [guide](https://docs.aidbox.app/getting-started/run-aidbox-locally-with-docker/run-aidbox-locally)
+* Setup the local Aidbox instance using getting started [guide](broken-reference)
 
 ## Managing Admin Access to the Aidbox UI Using Okta Groups
 
@@ -159,4 +159,4 @@ Now you can relogin with your Okta user and the user will be granted admin acces
 
 ## What's next
 
-* See more about Aidbox Security [security-and-access-control](../../modules/security-and-access-control/ "mention")
+* See more about Aidbox Security [security-and-access-control](../../modules/security-and-access-control/)
