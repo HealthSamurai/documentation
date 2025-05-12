@@ -10,16 +10,16 @@ The database schema consists of multiple tables and schemas that can be categori
 All FHIR resources are stored in the `public` schema. For each FHIR resource type Aidbox creates a table with the same name as the resource type. For example for resource type `Patient` Aidbox will create table `patient`. Structure of the resource table is the same for all resource types.
 
 - `id`: Resource ID  (primary key, text)
-- `txid` [^txid] : Version ID (bigint)
+- `txid`: Version ID (bigint)
 - `cts`: Creation timestamp (timestamp with time zone)
 - `ts`: Last update timestamp (timestamp with time zone)
 - `resource_type`: The type of resource (text)
-- `status` [^status]: Resource status (enum)
+- `status`: Resource status (enum)
 - `resource`: The actual resource data (jsonb)
 
-[^txid]: `txid` - Aidbox tracks version IDs using PostgreSQL sequence `transaction_id_seq`. This sequence is shared between all resource tables. You can imagine it as a global counter that is incremented for each new resource version.
+`txid` - Aidbox tracks version IDs using PostgreSQL sequence `transaction_id_seq`. This sequence is shared between all resource tables. You can imagine it as a global counter that is incremented for each new resource version.
 
-[^status]: `status` - Aidbox uses PostgreSQL enum type `resource_status` for status column to describe the lifecycle of a resource. This type is defined as follows:
+`status` - Aidbox uses PostgreSQL enum type `resource_status` for status column to describe the lifecycle of a resource. This type is defined as follows:
 
 ```sql
 CREATE TYPE resource_status AS ENUM (
