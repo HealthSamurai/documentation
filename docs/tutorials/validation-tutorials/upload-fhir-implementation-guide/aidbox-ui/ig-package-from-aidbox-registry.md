@@ -12,9 +12,7 @@ You can explore the list of available packages in the registry [here](../../../.
 
 ### 1. Run Aidbox with FHIR Schema Validation Engine
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
+Follow [run aidbox locally guide](../../../../getting-started/run-aidbox-locally.md).
 
 ### 2. Open the Aidbox UI
 
