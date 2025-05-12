@@ -11,6 +11,14 @@ redirects:
     modules/aidbox-forms/aidbox-ui-builder-alpha/embedding-builder: modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md
     modules/aidbox-forms/aidbox-ui-builder-alpha/embedding-renderer: modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md
 
+    # See Site insights -> Broken URLs in gitbook ui
+    api-1/fhir-api: api/rest-api
+    api-1/api/search-1: api/rest-api/fhir-search/README.md
+    security-and-access-control-1/auth/external-oauth-2.0-providers/configure-okta: modules/security-and-access-control/set-up-external-identity-provider/okta.md
+    modules-1/aidbox-forms/aidbox-ui-builder-alpha/embedding-renderer: modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md
+    api-1/api/search-1/other/search-with-related-resources: api/rest-api/fhir-search/include-and-revinclude.md
+    api-1/api/search-1/search-parameters-list/_include-and-_revinclude: api/rest-api/fhir-search/include-and-revinclude.md
+
     # generated using script scripts/redirects-from-all-files.sh
     # api-1 -> api, same with bulk-1 etc
     api-1/batch-transaction: api/batch-transaction.md
