@@ -31,7 +31,7 @@ Some settings have special properties:
 
 * **Sensitive Settings**: These contain secure data like passwords and API keys
   * Can only be set using environment variables
-  * Example: [`security.encrypt-secret`](broken-reference)
+  * Example: [`security.encrypt-secret`](../reference/settings/security-and-access-control.md#security.encrypt-secret)
   * Not editable in the UI
 * **Restart Required Settings**: Changes to these require an Aidbox server restart
   * Example: [`db.pool.maximum-pool-size`](../reference/settings/database.md#db.pool.maximum-pool-size)

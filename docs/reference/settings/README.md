@@ -12,8 +12,8 @@ The following pages detail specific setting categories:
 [fhir.md](fhir.md)
 {% endcontent-ref %}
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="fhir.md" %}
+[security-and-access-control.md](./security-and-access-control.md)
 {% endcontent-ref %}
 
 {% content-ref url="modules.md" %}
