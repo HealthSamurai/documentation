@@ -5,7 +5,7 @@
 ## April 2025 _`latest, 2504`_
 
 * Aidbox FHIR server
-  * Supported FHIR 6.0.0-ballot3 as a package in [Aidbox FHIR Package registry](broken-reference) and published a tutorial on [running Aidbox with FHIR 6.0.0-ballot3 locally and in the Aidbox sandbox](../tutorials/other-tutorials/run-aidbox-with-fhir-r6.md).
+  * Supported FHIR 6.0.0-ballot3 as a package in [Aidbox FHIR Package registry](../modules/profiling-and-validation/fhir-schema-validator/aidbox-fhir-igs-registry.md) and published a tutorial on [running Aidbox with FHIR 6.0.0-ballot3 locally and in the Aidbox sandbox](../tutorials/other-tutorials/run-aidbox-with-fhir-r6.md).
   * Migrated Aidbox system resources to the FHIR DomainResource model and [published reference documentation for system resources](../reference/system-resources-reference/).
   * Supported resolving conditional references in FHIR transaction Bundles.
   * Fixed validation of contained resources.
@@ -100,7 +100,7 @@ Minor updates:
 ## December 2024 _`2412`_
 
 * Aidbox
-  * Supported [SMART App Launch scopes v1 and v2](../../overview/broken-reference/) for Aidbox on FHIR Schema validation engine and reworked [SMART on FHIR](../../overview/broken-reference/) documentation
+  * Supported [SMART App Launch scopes v1 and v2](../modules/smartbox/README.md) for Aidbox on FHIR Schema validation engine and reworked [SMART on FHIR](../modules/smartbox) documentation
   * Added example of [SMART App Launch using Aidbox and Keycloak](https://github.com/Aidbox/examples/tree/main/smart-app-launch)
   * Supported enabling [OrgBAC (Organization-based hierarchical access control)](../modules/access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md) using an [environment variable](../tutorials/security-access-control-tutorials/how-to-enable-hierarchical-access-control.md) if an Aidox instance uses FHIR Schema validator
   * Fixed security issues and bugs
@@ -145,16 +145,16 @@ Minor updates:
   * Released Aidbox UI home page
   * Implemented hashing for sensitive elements User, Client and Session records. it is strongly recommended to delete the history tables for these resources to prevent access to the original un-hashed secret values.
   * Introduced ["Authorize Inline Requests"](../api/rest-api/fhir-search/include-and-revinclude.md#authorize-inline-requests-mode) mode, ensuring that users can only retrieve resources they are authorized to view when using `_include` and `_revinclude` parameters in search requests.
-  * Added [Audit Logs](broken-reference) for SQL endpoints
+  * Added [Audit Logs](../modules/security-and-access-control/audit/audit-log.md) for SQL endpoints
   * Added configurable CORS settings, allowing users to [enable CORS](../reference/environment-variables/optional-environment-variables.md#box_web_cors_enabled) and [specify allowed origins](../reference/environment-variables/optional-environment-variables.md#box_web_cors_origins).
   * Fixed critical vulnerabilities and bugs
 * Aidbox Forms
-  * [Added an ability to connect Aidbox Forms with external FHIR servers for data management](broken-reference)
+  * [Added an ability to connect Aidbox Forms with external FHIR servers for data management](../modules/aidbox-forms/aidbox-ui-builder-alpha/external-fhir-servers-as-a-data-backend.md)
   * Introduced an [Aidbox Forms SMART app sample project with React.js](https://github.com/Aidbox/examples/tree/main/aidbox-forms-smart-launch)
   * Verified compliance with accessibility standards
   * Added an ability to re-populate a form with the latest available data
   * Added validation checks for Questionnaires directly in the UI Builder console.
-  * [Added support for additional parameters: `source`, `author`, `basedOn`, and `partOf`—in the `$generate-link` operation](broken-reference)
+  * Added support for additional parameters: `source`, `author`, `basedOn`, and `partOf`—in the `$generate-link` operation
 
 Minor updates:
 
@@ -175,7 +175,7 @@ Minor updates:
   * Implemented “service base URLs” in compliance with (g)(10)
 * Aidbox Forms
   * Implemented basic conversion of paper and fillable PDF forms to digital forms
-  * [Added print & close button customization](broken-reference)
+  * [Added print & close button customization](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-customisation-in-theme-editor.md)
   * Added QuestionnareResponce and extraction outcomes validation in the UI Builder console
   * [Added form width settings](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-settings.md#appearance-settings)
   * Supported default value population in the UI Builder
@@ -188,15 +188,15 @@ Minor updates:
 ## August 2024 _`2408`_
 
 * Aidbox
-  * Introduced dynamic [Topic-based subscriptions](../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/) and supported [Kafka (OSS and AWS)](broken-reference) as delivery channels
+  * Introduced dynamic [Topic-based subscriptions](../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/) and supported [Kafka (OSS and AWS)](../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/kafka-aidboxtopicdestination.md) as delivery channels
   * Released a [demo of publishing a completed QuestionnaireResponse to Kafka topic](https://github.com/Aidbox/app-examples/tree/main/aidbox-subscriptions-to-kafka)
   * Added an option to connect a self-hosted Aidbox instance to the [ViewDefinition builder](https://sqlonfhir.aidbox.app/?utm_source=aidbox-docs\&utm_medium=release-notes)
   * Enhanced [SQL on FHIR spec coverage](https://fhir.github.io/sql-on-fhir-v2/#impls)
-  * Supported [Audit logging](broken-reference) using external identity providers
+  * Supported [Audit logging](../modules/security-and-access-control/audit/README.md) using external identity providers
 * [Aidbox Forms](../modules/aidbox-forms/)
   * UI builder updates (FHIR Questionnaire-based):
     * [Supported Multilingual Forms](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/multilingual-forms.md)
-    * [Implemented Multilingual Builder Interface](../../getting-started/versioning-and-release-notes/broken-reference/)
+    * [Implemented Multilingual Builder Interface](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/multilingual-forms.md)
     * Provided delete, copy form on the Form template grid
     * [Implemented reusing forms as component](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/components.md)
     * [Added the SDC config resource for general settings](../modules/aidbox-forms/aidbox-ui-builder-alpha/configuration.md)
@@ -206,21 +206,21 @@ Minor updates:
     * [Added an ability to embed forms as web-component](../modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md)
     * [Provided the ability to display an attached image on the form](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#attachment)
   * [C-CDA / FHIR converter](../modules/integration-toolkit/ccda-converter/)
-    * Add support for [user-defined codemaps](broken-reference)
+    * Add support for [user-defined codemaps](../modules/integration-toolkit/ccda-converter/how-to-customize-conversion-rules.md)
 
 ## July 2024 _`2407`_
 
 * Aidbox
-  * Introduced support for [custom resources using FHIR StructureDefinitions](broken-reference) and [custom resources using FHIR schemas](broken-reference)
+  * Introduced support for [custom resources using FHIR StructureDefinitions](../modules/custom-resources/custom-resources-using-structuredefinition.md) and [custom resources using FHIR schemas](../modules/custom-resources/custom-resources-using-fhir-schema.md)
   * Published [JavaScript app example](https://github.com/Aidbox/app-examples/blob/main/aidbox-notify-via-custom-resources/README.md) demonstrating custom resources with a typical notification flow: requesting a notification, locking it for sending, and sending it (placeholder)
-  * Supported [enabling Audit Log using an environment variable](broken-reference)
+  * Supported [enabling Audit Log using an environment variable](../reference/settings/security-and-access-control.md)
 * [Aidbox Forms](../modules/aidbox-forms/)
   * UI builder updates (FHIR Questionnaire-based):
     * [Implemented Offline mode for forms](../modules/aidbox-forms/aidbox-ui-builder-alpha/offline-forms.md)
     * [Supported definition-based extraction](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-extract-data-from-forms.md#definition-based-extraction)
-    * [Ability to search and use templates from Aidbox Form Gallery on UI](broken-reference)
+    * [Ability to search and use templates from Aidbox Form Gallery on UI](../modules/aidbox-forms/aidbox-form-gallery.md)
     * [Ability to embed Aidbox UI Builder as a web-component](../modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md)
-    * [Implemented Template-based PDF Generation](broken-reference)
+    * [Implemented Template-based PDF Generation](../modules/aidbox-forms/aidbox-ui-builder-alpha/generating-forms-from-pdf)
     * [Added a Speech to text widget](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#speech-to-text)
     * [Added an Annotation Pad widget](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#annotation-pad)
     * Performance optimization for large forms
@@ -229,7 +229,7 @@ Minor updates:
     * [Supported initial value population](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#common-widgets-settings)
     * Implemented Audit logging
 * [C-CDA / FHIR converter](../modules/integration-toolkit/ccda-converter/)
-  * Introduced the ability to [override existing conversion rules using the DSL](broken-reference)
+  * Introduced the ability to override existing conversion rules using the DSL
   * Supported DICOM section
   * Improved performance
 
@@ -260,7 +260,7 @@ Minor updates:
     * Ability to create custom components and reuse them in other forms
     * [Supported different versions depending on FHIR server version](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-settings.md#version)
     * Added open choice widget
-    * Published guides on [how to populate form with patient demographic data](broken-reference); [how to populate form with patient weight, height](broken-reference); [how to populate form with patient allergies](broken-reference); [how to populate form with data from another form during the visit](broken-reference)
+    * Published guides on how to populate form with patient demographic data; how to populate form with patient weight, height; how to populate form with patient allergies; how to populate form with data from another form during the visit
     * [Implemented printing form or basic PDF generation](../modules/aidbox-forms/aidbox-ui-builder-alpha/printing-forms/)
     * Improved UI Builder user experience via preview form button, quick search for a field on the form or in the outline, etc
     * Ability to enable the outline in form preview for form navigation
@@ -274,7 +274,7 @@ Minor updates:
   * Enhanced [SQL on FHIR® (v2.0) spec](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/index.html) test coverage. The SQL on FHIR coverage report is available[ here](https://fhir.github.io/sql-on-fhir-v2/#implshttps://fhir.github.io/sql-on-fhir-v2/#impls).
 * Validation
   * Released [FHIR schema validation engine](../modules/profiling-and-validation/fhir-schema-validator/) (alpha). This validation engine is set to replace the existing [Zen Schema](../deprecated/deprecated/zen-related/profiling-with-zen-lang/) and JSON Schema validation engines.
-  * Launched [FHIR IGs Repository](broken-reference) (alpha). Aidbox now lets you introspect and load FHIR IGs directly from a mirrored version of **packages2.fhir.org** into your Aidbox instance, either through the UI or configuration files
+  * Launched [FHIR IGs Repository](../modules/profiling-and-validation/fhir-schema-validator/aidbox-fhir-igs-registry.md) (alpha). Aidbox now lets you introspect and load FHIR IGs directly from a mirrored version of **packages2.fhir.org** into your Aidbox instance, either through the UI or configuration files
 * [Aidbox Forms](../modules/aidbox-forms/)
   * UI builder updates (FHIR Questionnaire-based):
     * [Added several table widgets: htable, vtable, gtable, grid](https://hl7.org/fhir/extensions/ValueSet-questionnaire-item-control.html)
@@ -283,7 +283,7 @@ Minor updates:
     * Expanded enablewhen expression templates
     * Improve adding widget process - widget can be added in any point of outline
     * Ability to create the form themes in the UI builder
-    * [Added redirect on the form submission](broken-reference)
+    * Added redirect on the form submission
     * Ability to add multiple signatures to the form
     * Added radio button widget with layout orientation
     * Ability to place multiple widgets on one line
@@ -297,9 +297,9 @@ Minor updates:
 ## February 2024 _`2402,LTS`_
 
 * Security and Access Control
-  * Released beta version of [Label-based Access Control](broken-reference) to control access to data based on the classification of the data (privacy, sensitivity, etc) and the attributes of the requester.
+  * Released beta version of [Label-based Access Control](../modules/access-control/authorization/label-based-access-control.md) to control access to data based on the classification of the data (privacy, sensitivity, etc) and the attributes of the requester.
 * Data API
-  * Supported FHIR-conformant [`_include` and `_revinclude` parameters](../../overview/broken-reference/)
+  * Supported FHIR-conformant [`_include` and `_revinclude` parameters](../reference/settings/fhir.md)
   * Added parameter to set the maximum number of import retries for [/v2/$import](../api/bulk-api/usdimport-and-fhir-usdimport.md#v2-usdimport-on-top-of-the-workflow-engine)
 * [Aidbox Forms](../modules/aidbox-forms/)
   * Questionnaire-based forms updates:
@@ -336,7 +336,7 @@ Minor updates:
   * Administered Medications mapping to/from MedicationAdministration FHIR resource
 * DevOps
   * Documented 'How to make Aidbox Docker image work with [self-signed SSL certificates](../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/self-signed-ssl-certificates.md)'
-  * Released AidboxDB 16.1. Updated [the list of the extensions](../database/aidboxdb-image/#extensions) for Postgres. Documented [the migration steps ](broken-reference)from the previous PG versions
+  * Released AidboxDB 16.1. Updated [the list of the extensions](../database/aidboxdb-image/#extensions) for Postgres. Documented the migration steps from the previous PG versions
   * Removed apk-tools from our Docker images
 * [Aidbox Forms](../modules/aidbox-forms/)
   * Questionnaire-based forms updates:
@@ -349,7 +349,7 @@ Minor updates:
       * Completed themes support
     * API
       * Added Configuration to disable FHIR SDC operations
-      * Extended [$populate](broken-reference) operation to support Questionnaire root properties
+      * Extended $populate operation to support Questionnaire root properties
       * Added operation to generating signed links for form filling
       * Added [$populatelink](https://docs.aidbox.app/reference/aidbox-forms/fhir-sdc-api#populate-questionnaire-usdpopulatelink) FHIR SDC operation
     * Aidbox DSL-based forms updates
@@ -359,7 +359,7 @@ Minor updates:
 ## November 2023 _`2311`_
 
 * Data API
-  * Added [asynchronous resource validation](broken-reference)
+  * Added asynchronous resource validation
 * Integrations
   * Optimized [Activity Scheduler Service](../deprecated/deprecated/zen-related/workflow-engine/services.md#scheduler) for Workflow Engine
   * Added [Python templates for HL7 v2 ADT, ORU, ORM to FHIR](https://github.com/Aidbox/integration-pipeline/tree/main/HL7v2) transformation
@@ -387,8 +387,8 @@ Minor updates:
   * Added an environment variable to [synchronize managed index](../reference/environment-variables/optional-environment-variables.md#box_config_features_index_sync__on__start) when Aidbox starts
 * Integrations
   * Added[ Workflow Engine Connector](../deprecated/deprecated/zen-related/topic-based-subscriptions/#supported-fhir-versions) for FHIR Topic-based subscriptions
-  * Added Workflow Engine[ clean-up built-in task](broken-reference)
-  * Added Workflow Engine [run-sql built-in task](broken-reference)
+  * Added Workflow Engine clean-up built-in task
+  * Added Workflow Engine run-sql built-in task
 * [C-CDA / FHIR converter](../modules/integration-toolkit/ccda-converter/)
   * Changed logic [how section templateId is being selected ](../modules/integration-toolkit/ccda-converter/producing-c-cda-documents.md#section-templates-and-loinc-codes)(resolve “entries required”/”entries optional” ambiguity)
   * Minor mapping fixes (immunizations, document header)
@@ -397,11 +397,11 @@ Minor updates:
 * Security and access control
   * Supported Patient API
 * DevOps
-  * Supported sending traces via [OpenTelemetry](broken-reference)
+  * Supported sending traces via OpenTelemetry
   * Supported Azure Block in [$export operation](../api/bulk-api/usdexport.md#azure)
 * [Aidbox Forms](../modules/aidbox-forms/)
   * Improved UI-builder:
-    * Supported enableWhen expressions (exclusive for [Aidbox lisp](broken-reference))
+    * Supported enableWhen expressions (exclusive for Aidbox lisp)
     * Added constraints and validation for datetime, date, time, number fields
     * Added an option to import UI-built forms to a library
     * Added preview for Questionnaire and QuestionnaireResponse in UI-builder
