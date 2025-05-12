@@ -29,24 +29,25 @@ Gitbok pros:
 - broken links from one page to another are checked
 - github sync: we can use ui or just push to the repo
 
-## Setup
-Run `make init` to set up the pre-push git hook. This hook will automatically run project checks before each push, helping to maintain consistency and code quality.
-
-## Scripts
-
-### Pre-push checks (run automatically before each push)
-
-- `find_absolute_aidbox_links.sh` — Fails if any markdown file in `docs/` contains absolute links to `https://docs.aidbox.app`. Only relative links are allowed.
-- `extract-all-links.sh` — Extracts all markdown links from documentation files and groups them by file.
-- `extract-broken-links.sh` — Finds links that point to `broken-reference`.
-- `extract-nonexistent-links.sh` — Checks that all relative links point to existing files. Reports missing targets.
-- `check-summary-vs-files.sh` — Ensures that all files referenced in `SUMMARY.md` exist on disk and vice versa.
-
-### Other scripts
-
-- `replace_absolute_aidbox_links.sh` — Replaces absolute links to `https://docs.aidbox.app` with correct relative links (if the target file exists).
-- `redirects-from-all-files.sh` — Generates a YAML file with possible redirects for legacy paths (used for migration/redirects).
-- `all-files.sh`, `all-files-from-summary.sh` — Helpers to list all markdown files on disk or from SUMMARY.md.
-- `change_names.sh` — Batch renaming utility for files.
-
-You can run any script from the `scripts/` directory manually if needed.
+<!-- ## Setup -->
+<!---->
+<!-- <!-- Run `make init` to set up the pre-push git hook. This hook will automatically run project checks before each push, helping to maintain consistency and code quality. --> -->
+<!---->
+<!-- ## Scripts -->
+<!---->
+<!-- ### Pre-push checks (run automatically before each push) -->
+<!---->
+<!-- - `find_absolute_aidbox_links.sh` — Fails if any markdown file in `docs/` contains absolute links to `https://docs.aidbox.app`. Only relative links are allowed. -->
+<!-- - `extract-all-links.sh` — Extracts all markdown links from documentation files and groups them by file. -->
+<!-- - `extract-broken-links.sh` — Finds links that point to `broken-reference`. -->
+<!-- - `extract-nonexistent-links.sh` — Checks that all relative links point to existing files. Reports missing targets. -->
+<!-- - `check-summary-vs-files.sh` — Ensures that all files referenced in `SUMMARY.md` exist on disk and vice versa. -->
+<!---->
+<!-- ### Other scripts -->
+<!---->
+<!-- - `replace_absolute_aidbox_links.sh` — Replaces absolute links to `https://docs.aidbox.app` with correct relative links (if the target file exists). -->
+<!-- - `redirects-from-all-files.sh` — Generates a YAML file with possible redirects for legacy paths (used for migration/redirects). -->
+<!-- - `all-files.sh`, `all-files-from-summary.sh` — Helpers to list all markdown files on disk or from SUMMARY.md. -->
+<!-- - `change_names.sh` — Batch renaming utility for files. -->
+<!---->
+<!-- You can run any script from the `scripts/` directory manually if needed. -->
