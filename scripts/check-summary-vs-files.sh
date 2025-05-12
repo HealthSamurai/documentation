@@ -2,7 +2,7 @@
 set -e
 
 ALL_FROM_SUMMARY=$(./scripts/all-files-from-summary.sh)
-ALL_ON_DISK=$(./scripts/all-files.sh | grep -v '^SUMMARY.md$')
+ALL_ON_DISK=$(./scripts/all-files.sh | grep -v '^SUMMARY.md$' | grep '.md$')
 
 TMP_SUMMARY=$(mktemp)
 TMP_DISK=$(mktemp)
