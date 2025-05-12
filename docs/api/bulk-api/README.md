@@ -21,7 +21,7 @@ The list of available Bulk API endpoints:
 {% endcontent-ref %}
 
 {% content-ref url="usdimport-and-fhir-usdimport.md" %}
-[usdimport-and-fhir-usdimport.md](usdimport-and-fhir-import.md)
+[usdimport-and-fhir-usdimport.md](import-and-fhir-import.md)
 {% endcontent-ref %}
 
 {% content-ref url="aidbox.bulk-data-import.md" %}

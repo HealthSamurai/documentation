@@ -300,7 +300,7 @@ Minor updates:
   * Released beta version of [Label-based Access Control](../modules/access-control/authorization/label-based-access-control.md) to control access to data based on the classification of the data (privacy, sensitivity, etc) and the attributes of the requester.
 * Data API
   * Supported FHIR-conformant [`_include` and `_revinclude` parameters](../reference/settings/fhir.md)
-  * Added parameter to set the maximum number of import retries for [/v2/$import](../api/bulk-api/usdimport-and-fhir-usdimport.md#v2-import-on-top-of-the-workflow-engine)
+  * Added parameter to set the maximum number of import retries for [/v2/$import](../api/bulk-api/usdimport-and-fhir-import.md#v2-import-on-top-of-the-workflow-engine)
 * [Aidbox Forms](../modules/aidbox-forms/README.md)
   * Questionnaire-based forms updates:
     * Ability to add help text
@@ -586,7 +586,7 @@ Minor updates:
   * Fixed sorting by token when using jsonknife engine
   * Added a header to [lower transaction isolation level]
 * Integrations
-  * Improved [$import operation](../api/bulk-api/usdimport-and-fhir-usdimport.md#import-on-top-of-the-task-api-beta), that allows for more reliable and efficient processing of multiple import requests through the Task API
+  * Improved [$import operation](../api/bulk-api/usdimport-and-fhir-import.md#import-on-top-of-the-task-api-beta), that allows for more reliable and efficient processing of multiple import requests through the Task API
   * Released [the new version of HL7 v2 parser](../modules/integration-toolkit/hl7-v2-integration/hl7-v2-integration-with-aidbox-project.md#about-hl7-v2-parser) and [mapping engine](../deprecated/deprecated/other/other-deprecated-tutorials/hl7-v2-pipeline-with-patient-mapping.md)
 * C-CDA to FHIR converter
   * Released [FHIR to C-CDA bidirectional converter](../modules/integration-toolkit/ccda-converter/#converting-a-c-cda-document-to-fhir) (beta). Supported sections:
@@ -802,7 +802,7 @@ Minor updates:
 * Added an option to start Aidbox with an invalid [Aidbox project](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/README.md) in [dev-mode](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/aidbox-project-environment-variables/#aidbox_zen_dev_mode) to improve the debugging experience. By default, Aidbox doesn't start with invalid Aidbox projects.
 * Added an option to enable ACL checks for searches in conditional operations.
 * Added `BOX_FEATURES_TERMINOLOGY_IMPORT_SYNC` environment variable to enable sync [terminology bundle file load](../modules/terminology/terminology-api/README.md).
-* Added `plain` option to use [`$import`](../api/bulk-api/usdimport-and-fhir-import.md) with non-gzipped files.
+* Added `plain` option to use [`$import`](../api/bulk-api/import-and-fhir-import.md) with non-gzipped files.
 * Added support of entry.search.mode field when using [\_include or \_revinclude](../api/rest-api/fhir-search/include-and-revinclude.md) search parameters.
 * Added `profile` property to the CapabilityStatement resource.
 * Added configurable `refresh_token_expiration` parameter. If not defined refresh token doesn't expire.
@@ -951,7 +951,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 * Released [Aidbox RPC API](../api/other/rpc-api.md)
 * Supported conditional patch (e.g.: `PATCH /Patient?name=foo`)
 * Added an environment variable to pass the environment to Datadog (dev/staging/prod).
-* Added history for $load and [$import](../api/bulk-api/usdimport-and-fhir-import.md) so now when using bulk import you have a source of truth for the history of every resource.
+* Added history for $load and [$import](../api/bulk-api/import-and-fhir-import.md) so now when using bulk import you have a source of truth for the history of every resource.
 * Added [empty query params remove #238](https://github.com/Aidbox/Issues/issues/238). Please **pay attention** **when** **using json-schema** **access policy** engine: Fields with empty values, such as `[], {}, "", null`, are removed before passing request into access policy processing. Make sure to add `require` check of the fields that are validated by a json schema
 * Fixed some bugs submitted by Aidbox users. Check it [here](https://github.com/Aidbox/Issues/milestone/3?closed=1).
 
