@@ -170,7 +170,7 @@ For example, you need to define an API with an operation to process an ADT messa
 
 ## Api endpoints
 
-Each declared endpoint accepts a HL7 v2 message under the `"message"` key. It can be invoked directly through a REST request or through the [HL7 v2 UI](./#submitting-a-message-with-the-rest-api) on the corresponding tab in the Aidbox UI.
+Each declared endpoint accepts a HL7 v2 message under the `"message"` key. It can be invoked directly through a REST request or through the [HL7 v2 UI](#submitting-a-message-with-the-rest-api) on the corresponding tab in the Aidbox UI.
 
 Also, each endpoint accepts a boolean query argument `debug`, which allows you to return a response instead of writing data to the database.
 

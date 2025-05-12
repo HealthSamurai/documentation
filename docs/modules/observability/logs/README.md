@@ -2,8 +2,8 @@
 
 Aidbox produces structured logs on every significant event to the internal stream which you may direct to different ways:
 
-* [stdout in json or pretty string formats](./#stdour-log)
-* [file](./#log-to-file)
+* [stdout in json or pretty string formats](#stdour-log)
+* [file](#log-to-file)
 * [Elasticsearch](how-to-guides/elastic-logs-and-monitoring-integration.md)
 * [Datadog](./how-to-guides/datadog-log-management-integration.md)
 * [Loki](./how-to-guides/loki-log-management-integration.md)
@@ -39,7 +39,7 @@ Please, pay attention, that you will not see the response for `GET /_logs` reque
 
 ### Logs in browser
 
-You can open `[aidbox-base]/_logs` in your browser, and Aidbox will produce logs in pretty format, similar to [AIDBOX\_STDOUT\_PRETTY](./#stdout-log) format for stdout. Appeared in v2210. Available formats: ui (default), json, event-stream. Use the following parameter to change the format `[aidbox-base]/_logs?format=json`
+You can open `[aidbox-base]/_logs` in your browser, and Aidbox will produce logs in pretty format, similar to [AIDBOX\_STDOUT\_PRETTY](#stdout-log) format for stdout. Appeared in v2210. Available formats: ui (default), json, event-stream. Use the following parameter to change the format `[aidbox-base]/_logs?format=json`
 
 ## Configure logging
 

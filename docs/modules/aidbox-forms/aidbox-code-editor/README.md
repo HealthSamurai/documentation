@@ -41,8 +41,8 @@ One layer is required - **Data Model** layer, the rest are optional depending on
 
 You have two options available:
 
-* [Create form in Code Editor (from scratch)](./#create-form-in-code-editor-from-scratch)
-* [Import Questionnaire (from FHIR Questionnaire)](./#import-questionnaire-from-fhir-questionnaire)
+* [Create form in Code Editor (from scratch)](#create-form-in-code-editor-from-scratch)
+* [Import Questionnaire (from FHIR Questionnaire)](#import-questionnaire-from-fhir-questionnaire)
 
 ## Create form in Code Editor from scratch
 

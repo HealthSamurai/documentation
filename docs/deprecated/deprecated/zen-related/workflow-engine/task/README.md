@@ -14,7 +14,7 @@ Since the 2405 release, using Aidbox in FHIR schema validation engine is recomme
 
 ## Aidbox predefined Tasks
 
-Aidbox provides several predefined tasks for routine jobs that can be called via [User API](./#task-user-api) or [task-related services](../services.md). They are executed in aidbox runtime, and available from the box.
+Aidbox provides several predefined tasks for routine jobs that can be called via [User API](#task-user-api) or [task-related services](../services.md). They are executed in aidbox runtime, and available from the box.
 
 <details>
 

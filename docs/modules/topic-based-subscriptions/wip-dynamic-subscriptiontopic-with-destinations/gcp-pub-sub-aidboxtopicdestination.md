@@ -16,7 +16,7 @@ The GCP Pub/Sub AidboxTopicDestination works in the following way:
 
 ## Configuration
 
-To use Webhook with [#aidboxsubscriptiontopic](./#aidboxsubscriptiontopic) you have to create [#aidboxtopicdestination](./#aidboxtopicdestination) resource.
+To use Webhook with [#aidboxsubscriptiontopic](#aidboxsubscriptiontopic) you have to create [#aidboxtopicdestination](#aidboxtopicdestination) resource.
 
 You need to specify the following profile:
 
