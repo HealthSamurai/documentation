@@ -11,6 +11,9 @@ redirects:
     modules/aidbox-forms/aidbox-ui-builder-alpha/embedding-builder: modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md
     modules/aidbox-forms/aidbox-ui-builder-alpha/embedding-renderer: modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md
 
+    tutorials/security-and-access-control/basic-auth-tutorial: modules/security-and-access-control/auth/basic-auth.md
+    security-and-access-control-1/security/access-control: modules/access-control/authorization/access-policies.md
+
     # See Site insights -> Broken URLs in gitbook ui
     api-1/fhir-api: api/rest-api
     api-1/api/search-1: api/rest-api/fhir-search/README.md
