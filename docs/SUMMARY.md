@@ -477,6 +477,7 @@
 
 ## Database
 
+* [Overview](database/overview.md)
 * [Database schema](database/database-schema.md)
 * [PostgreSQL Extensions](database/postgresql-extensions.md)
 * [AidboxDB](database/aidboxdb-image/README.md)
