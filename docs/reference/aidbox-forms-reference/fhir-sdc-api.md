@@ -10,10 +10,10 @@ description: This article outlines operations from the FHIR SDC Implementation G
 
 Aidbox Forms module supports FHIR SDC operations:
 
-* [$populate](fhir-sdc-api.md#populate-questionnaire-usdpopulate) - filling out a form with existing data ([FHIR](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populate.html))
-* [$populatelink](fhir-sdc-api.md#populate-questionnaire-and-generate-a-link-usdpopulatelink) - filling out a form with existing data, and return signed link to it ([FHIR](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populatelink.html))
-* [$extract](fhir-sdc-api.md#questionnaire-response-extract-to-resources-usdextract) - extract data from QuestionnaireResponse to other FHIR resources ([FHIR](https://hl7.org/fhir/uv/sdc/OperationDefinition-QuestionnaireResponse-extract.html))
-* [$expand](fhir-sdc-api.md#valueset-expansion-usdexpand) - create a simple collection of codes suitable for use for data entry or validation. ([FHIR](https://www.hl7.org/fhir/valueset-operation-expand.html))
+* [$populate](fhir-sdc-api.md#populate-questionnaire-populate) - filling out a form with existing data ([FHIR](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populate.html))
+* [$populatelink](fhir-sdc-api.md#populate-questionnaire-and-generate-a-link-populatelink) - filling out a form with existing data, and return signed link to it ([FHIR](https://hl7.org/fhir/uv/sdc/OperationDefinition-Questionnaire-populatelink.html))
+* [$extract](fhir-sdc-api.md#questionnaire-response-extract-to-resources-extract) - extract data from QuestionnaireResponse to other FHIR resources ([FHIR](https://hl7.org/fhir/uv/sdc/OperationDefinition-QuestionnaireResponse-extract.html))
+* [$expand](fhir-sdc-api.md#valueset-expansion-expand) - create a simple collection of codes suitable for use for data entry or validation. ([FHIR](https://www.hl7.org/fhir/valueset-operation-expand.html))
 
 > We have created an [Aidbox notebook](../../overview/aidbox-ui/aidbox-notebooks.md) demonstrating different population and extraction methods:
 >

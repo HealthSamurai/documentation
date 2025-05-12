@@ -17,7 +17,7 @@ Contained resources: Patient, AllergyIntolerance, CarePlan, CareTeam, Claim, Con
 
 ### Load dataset
 
-To load the dataset use [/v2/fhir/$import](../api/bulk-api/import-and-fhir-import.md#v2-usdimport-on-top-of-the-workflow-engine) operation.
+To load the dataset use [/v2/fhir/$import](../api/bulk-api/import-and-fhir-import.md#v2-import-on-top-of-the-workflow-engine) operation.
 
 Run the following request in the REST console and wait a few minutes.
 

@@ -55,5 +55,5 @@ FHIR spec offers FHIR terminology API for validation and lookups
 
 | FHIR specification                                                          | Status          | Documentation and samples                               |
 | --------------------------------------------------------------------------- | --------------- | ------------------------------------------------------- |
-| [$translate](https://www.hl7.org/fhir/conceptmap-operations.html#translate) | `supported`     | [ConceptMap Translation](usdtranslate-on-conceptmap.md) |
+| [$translate](https://www.hl7.org/fhir/conceptmap-operations.html#translate) | `supported`     | [ConceptMap Translation](translate-on-conceptmap.md) |
 | [$closure](https://www.hl7.org/fhir/conceptmap-operations.html#closure)     | `not supported` |                                                         |

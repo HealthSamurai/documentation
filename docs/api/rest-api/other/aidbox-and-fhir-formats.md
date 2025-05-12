@@ -160,7 +160,7 @@ extension:
        display: Asian Indian
 ```
 
-Read more about [/$to-format Operation](../other/usdto-format.md).
+Read more about [/$to-format Operation](../other/to-format.md).
 
 The response should be:
 

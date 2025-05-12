@@ -131,6 +131,6 @@ Currently, we support various SNOMED CT terminology translations, and we can inc
 | git@github.com:zen-fhir/snomed.git   | en                           |
 | git@github.com:zen-fhir/snomedca.git | en, fr                       |
 
-See also [$translate-concepts RPC](../../../../modules/terminology/concept/usdtranslate-concepts.md).
+See also [$translate-concepts RPC](../../../../modules/terminology/concept/translate-concepts.md).
 
 [^1]: Namespace we've imported

@@ -4,7 +4,7 @@ In this tutorial, we will learn how to create a form with conditional logic. Thi
 
 A toggle button can be used to display all form fields despite the calculated PHQ2 score.
 
-The first two questions representing [PHQ-2](https://loinc.org/55757-9/) are used for quick depression screening. If the patient's score for PHQ-2 lies above the defined threshold, further questions will be shown to calculate the [PHQ-9](https://loinc.org/44249-1/) score and the toggle button will be disabled.
+The first two questions representing [PHQ-2](https://loinc.org/55757-9/) are used for quick depression screening. If the patient's score for PHQ-2 lies above the defined threshold, further questions will be shown to calculate the [PHQ-9](https://loinc.org/44249/) score and the toggle button will be disabled.
 
 We'll omit some form fields to keep this example short.
 

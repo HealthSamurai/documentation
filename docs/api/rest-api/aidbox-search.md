@@ -5,7 +5,7 @@ Sometimes, FHIR search is not enough. Aidbox provides more ways to search:
 * [Search resource](aidbox-search.md#search-resource) - similar to SearchParameter, but allows defining SQL. It is composable with other SearchParameters and Search resources.
 * [AidboxQuery](aidbox-search.md#aidboxquery) - a more general way to search using SQL. DSL to build complex queries using the new endpoint. It is not composable with other SearchParameters and Search resources.
 * [Dot expressions](aidbox-search.md#dot-expressions) - search without SearchParameters.
-* [$lookup](aidbox-search.md#usdlookup) - efficient lookup for resources by key attributes.
+* [$lookup](aidbox-search.md#lookup) - efficient lookup for resources by key attributes.
 
 Also see [special search parameters defined by Aidbox](aidbox-search.md#aidbox-special-search-parameters), e.g. `_explain` and `_timeout`.
 

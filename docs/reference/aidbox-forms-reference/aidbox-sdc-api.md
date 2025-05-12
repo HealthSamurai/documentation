@@ -4,9 +4,9 @@ description: Custom SDC operations supported by Aidbox Forms.
 
 # Aidbox SDC API
 
-* [$generate-link](aidbox-sdc-api.md#generate-a-link-to-a-questionnaireresponse-usdgenerate-link)
-* [$save](aidbox-sdc-api.md#save-a-questionnaireresponse-usdsave)
-* [$submit](aidbox-sdc-api.md#submit-a-questionnaireresponse-usdsubmit)
+* [$generate-link](aidbox-sdc-api.md#generate-a-link-to-a-questionnaireresponse-generate-link)
+* [$save](aidbox-sdc-api.md#save-a-questionnaireresponse-save)
+* [$submit](aidbox-sdc-api.md#submit-a-questionnaireresponse-submit)
 
 ## Generate a link to a QuestionnaireResponse - $generate-link
 

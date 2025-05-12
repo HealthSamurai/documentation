@@ -20,7 +20,7 @@ Configure Aidbox MDM module to use your model
 
 ## Find duplicates
 
-Use `$match` operation to find duplicates. See [Find duplicated page](./find-duplicates-usdmatch.md).
+Use `$match` operation to find duplicates. See [Find duplicated page](./find-duplicates-match.md).
 
 ## How it works
 

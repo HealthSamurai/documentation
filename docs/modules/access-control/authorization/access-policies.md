@@ -128,7 +128,7 @@ link:
 
 Matcho engine leverages [Matcho](https://github.com/HealthSamurai/matcho) pattern matching, it has compact and declarative syntax with limited expressivity. It is well-suited for writing all sorts of rules and thus is one of the easiest options to specify `AccessPolicy` checks.
 
-To test the Matcho engine without creating AccessPolicy and sending a request, you can use the [$matcho endpoint](../../../api/rest-api/other/usdmatcho.md).
+To test the Matcho engine without creating AccessPolicy and sending a request, you can use the [$matcho endpoint](../../../api/rest-api/other/matcho.md).
 
 #### Example
 

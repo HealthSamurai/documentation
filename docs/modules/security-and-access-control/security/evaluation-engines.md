@@ -43,7 +43,7 @@ link:
 
 `matcho` engine leverages [Matcho](https://github.com/HealthSamurai/matcho) pattern matching — custom DSL developed by Health Samurai. It has compact and declarative syntax with limited expressivity. It is well-suited for writing all sorts of rules and thus is one of the easiest options to specify `AccessPolicy` checks.
 
-To test matcho DSL without creating AccessPolicy and sending a request, you can use the [$matcho](../../../api/rest-api/other/usdmatcho.md) endpoint.
+To test matcho DSL without creating AccessPolicy and sending a request, you can use the [$matcho](../../../api/rest-api/other/matcho.md) endpoint.
 
 ### Example
 

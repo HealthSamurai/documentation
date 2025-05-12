@@ -45,11 +45,11 @@ The search results are returned in [Bundles](../../../rest-api/bundle.md) by def
 
 The following bulk operations on Organization are available.
 
-#### [`$dump`](../../../bulk-api/usddump.md)
+#### [`$dump`](../../../bulk-api/dump.md)
 
 Aidbox will respond with [Chunked Transfer Encoding](https://en.wikipedia.org/wiki/Chunked_transfer_encoding) [ndjson](http://ndjson.org/) stream, optionally you can get the output in FHIR format or GZIPped.
 
-This is a memory-efficient operation. Aidbox just streams the database cursor to a socket. If your HTTP Client supports processing of Chunked Encoding, you can process resources in stream one by one without waiting for the end of the response. See full docs [here](../../../bulk-api/usddump.md).
+This is a memory-efficient operation. Aidbox just streams the database cursor to a socket. If your HTTP Client supports processing of Chunked Encoding, you can process resources in stream one by one without waiting for the end of the response. See full docs [here](../../../bulk-api/dump.md).
 
 {% tabs %}
 {% tab title="Request" %}
@@ -73,13 +73,13 @@ Transfer-Encoding: chunked
 {% endtab %}
 {% endtabs %}
 
-#### [`$dump-csv`](../../../bulk-api/usddump-csv.md)
+#### [`$dump-csv`](../../../bulk-api/dump-csv.md)
 
 Dump Organization resources in CSV format.
 
 This operation dumps resource data in Aidbox format as CSV ([RFC4180](https://datatracker.ietf.org/doc/html/rfc4180)). In this format, columns are paths to JSON values and Rows are values. It includes the header.
 
-Neither the specific order of columns nor the order of rows is guaranteed. See full docs [here](../../../bulk-api/usddump-csv.md).
+Neither the specific order of columns nor the order of rows is guaranteed. See full docs [here](../../../bulk-api/dump-csv.md).
 
 ```
 GET [base]/Organization/$dump-csv
