@@ -1,37 +1,92 @@
 # Database schema
 
-All resource types in Aidbox are stored in different tables, named with a lowercased resource type name. All these tables have a similar schema:
+The database schema consists of multiple tables and schemas that can be categorized into several groups:
+
+- FHIR resource and history tables
+- System schemas and tables
+
+## FHIR resource and history tables
+
+All FHIR resources are stored in the `public` schema. For each FHIR resource type Aidbox creates a table with the same name as the resource type. For example for resource type `Patient` Aidbox will create table `patient`. Structure of the resource table is the same for all resource types.
+
+- `id`: Resource ID  (primary key, text)
+- `txid` [^txid] : Version ID (bigint)
+- `cts`: Creation timestamp (timestamp with time zone)
+- `ts`: Last update timestamp (timestamp with time zone)
+- `resource_type`: The type of resource (text)
+- `status` [^status]: Resource status (enum)
+- `resource`: The actual resource data (jsonb)
+
+[^txid]: `txid` - Aidbox tracks version IDs using PostgreSQL sequence `transaction_id_seq`. This sequence is shared between all resource tables. You can imagine it as a global counter that is incremented for each new resource version.
+
+[^status]: `status` - Aidbox uses PostgreSQL enum type `resource_status` for status column to describe the lifecycle of a resource. This type is defined as follows:
 
 ```sql
-CREATE TABLE "patient" (
-  id text PRIMARY KEY,               -- id of resource
-  txid bigint not null,              -- version id and logical transaction id
-  ts timestamptz DEFAULT NOW(),      -- last updated time
-  cts timestamptz DEFAULT NOW(),     -- created time
-  resource_type text,                -- resource type
-  status resource_status not null,   -- resource status
-  resource jsonb not null            -- resource body
+CREATE TYPE resource_status AS ENUM (
+  'created', 
+  'updated', 
+  'deleted', 
+  'recreated'
+);    
+```
+
+For each resource table, Aidbox creates a matching history table by adding `_history` to the table name. This history table keeps track of all previous versions of resources. For example, a `Patient` resource have both a `patient` table for the current version and a `patient_history` table for older versions. When you update or delete a resource, Aidbox moves the existing version to the history table before saving the new version. Both tables share the same structure and columns. But only  history table has primary key: `(id, txid)`.
+
+For example, the `Patient` resource table and its history table are defined as follows:
+
+```sql
+create table "patient" (
+  id text primary key,
+  txid bigint not null,
+  ts timestamptz default now(),
+  cts timestamptz default now(),     
+  resource_type text,                
+  status resource_status not null,  
+  resource jsonb not null            
+);
+
+create table "patient_history" (
+  id text,               
+  txid bigint not null,              
+  ts timestamptz default now(),      
+  cts timestamptz default now(),     
+  resource_type text,                
+  status resource_status not null,  
+  resource jsonb not null,
+  primary key (id, txid)
 );
 ```
 
-As you can see, resources are stored as JSONB documents in the **resource** column.
+## System Tables
 
-{% hint style="info" %}
-Resources are stored in [Aidbox format](../api/rest-api/other/aidbox-and-fhir-formats.md), which is more friendly for storage, and converted into FHIR in REST API on the fly!
-{% endhint %}
+- `_aidbox_license`
+- `_awf_action_queue`
+- `_awf_task_queue`
+- `_box`
+- `_logs`
+- `_schema_version`
 
-You can access attributes of resources using [PostgreSQL JSON functions](https://www.postgresql.org/docs/11/functions-json.html):
 
-```sql
-SELECT
-   resource#>>'{name,0,famly}' as last_name,
-   resource#>>'{name,0,given,0}' as first_name
-FROM "patient"
-LIMIT 10
-```
+## Another Schemas
 
-## Tutorials
+### SOF (Sql On FHIR)
 
-Check out our video tutorial about JSON queries in PostgreSQL:
+The `sof` schema contains views and tables related to Sql On FHIR functionality. All viewdefinition view and tables will be created in this schema.
 
-{% embed url="https://www.youtube.com/watch?v=zgU5c3RwjD4" %}
+### FAR Schema (FHIR Artifact Registry)
+
+The `far` schema contains tables related to FHIR artifact management and registry functionality. 
+Used for internal Aidbox functionality. Usually not used by users.
+
+- `atlas` Stores Atlas configurations and metadata.
+- `canonicalresource` Manages canonical FHIR resources.
+- `package` Stores FHIR packages.
+- `packagename` Manages package names and metadata.
+- `resource` Stores general FHIR resources.
+
+
+### TDS Schema (Topic Destination Storage)
+
+The `tds` schema contains tables related to event and message handling.
+
+- `event_storage` - stores events and their destinations.
