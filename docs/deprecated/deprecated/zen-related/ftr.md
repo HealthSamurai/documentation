@@ -6,6 +6,14 @@ Since the 2405 release, using Aidbox in FHIR schema validation engine is recomme
 [Setup Aidbox with FHIR Schema validation engine](https://docs.aidbox.app/modules-1/profiling-and-validation/fhir-schema-validator/setup)
 {% endhint %}
 
+> Warning. Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.
+
+$$
+\begin{note}
+Warning. Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.
+\end{note}
+$$
+
 {% content-ref url="fhir-terminology-repository/" %}
 [fhir-terminology-repository](fhir-terminology-repository/)
 {% endcontent-ref %}
