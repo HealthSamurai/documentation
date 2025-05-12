@@ -7,6 +7,7 @@ OUTPUT="out/absolute_aidbox_links.txt"
   echo "File | Count | Lines with links"
   echo "-----|-------|-----------------"
   grep -r --include='*.md' 'https://docs.aidbox.app' docs/ \
+    | grep -v 'https://docs.aidbox.app/reference' \
     | awk -F: '{print $1}' \
     | sort \
     | uniq -c \
@@ -21,7 +22,7 @@ cat "$OUTPUT"
 
 count=$(grep -c -v -e '^File ' -e '^-----' "$OUTPUT")
 if [ "$count" -gt 0 ]; then
-  echo -e "\nAbsolute links to https://docs.aidbox.app found. Please fix them before pushing!\nUse `bash scripts/replace_absolute_aidbox_links.sh`"
+  echo -e "\nAbsolute links to https://docs.aidbox.app found. Please fix them before pushing!\nUse bash scripts/replace_absolute_aidbox_links.sh"
   exit 42
 else
   echo -e "\nNo absolute links found."

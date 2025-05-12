@@ -1,5 +1,6 @@
 echo 'Checking that we do not use absolute reference https://docs.aidbox.app/ in docs/ directory'
 bash scripts/find_absolute_aidbox_links.sh || exit 1
+
 echo -e '\nGenerating out/all_broken_links_by_file.txt'
 bash ./scripts/extract-all-links.sh || exit 1
 bash ./scripts/extract-broken-links.sh || exit 1

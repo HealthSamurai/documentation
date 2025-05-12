@@ -4,7 +4,7 @@ set -euo pipefail
 
 find docs/ -type f -name '*.md' | while read srcfile; do
     grep -q 'https://docs.aidbox.app' "$srcfile" || continue
-    echo "Processing $srcfile ..."
+    echo "Processing $srcfile"
     export srcfile
     perl -pe '
 s{\[([^\]]+)\]\((https://docs\.aidbox\.app[^\)]*)\)}{

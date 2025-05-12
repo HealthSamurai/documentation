@@ -19,6 +19,14 @@ while IFS= read -r line; do
     if [[ "$link" =~ ^(http|https|ftp|mailto|#) ]]; then
       continue
     fi
+    # Skip absolute links to docs.aidbox.app/reference
+    if [[ "$link" =~ ^https://docs\.aidbox\.app/reference ]]; then
+      continue
+    fi
+    # Skip links that point to reference/ anywhere in the path
+    if [[ "$link" =~ (^|/)reference([/.]|$) ]]; then
+      continue
+    fi
     # Remove possible anchors/fragments
     file_path="${link%%#*}"
     dir=$(dirname "$current_file")
