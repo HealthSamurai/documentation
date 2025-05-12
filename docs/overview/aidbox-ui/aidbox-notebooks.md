@@ -7,7 +7,7 @@ description: >-
 # Aidbox Notebooks
 
 {% hint style="warning" %}
-Aidbox notebooks is a beta. Please join [the discussion](https://github.com/Aidbox/Issues/discussions/412) or [contact](../../contact-us.md) us if you want to contribute.
+Aidbox notebooks is a beta. Please join [the discussion](https://github.com/Aidbox/Issues/discussions/412) or [contact](../contact-us.md) us if you want to contribute.
 {% endhint %}
 
 A notebook is a single page where you can run code ([REST](../../api/rest-api/README.md), [SQL](../../api/rest-api/other/sql-endpoints.md), [RPC](../../api/other/rpc-api.md)) check the output, and complement it with text. Using Aidbox notebook you can easily create custom scenarios with your Aidbox data, save it for later use or share it with your colleagues and the Aidbox community.
@@ -35,7 +35,6 @@ When clicking the notebooks tab in Aidbox UI you will get to the notebooks page.
 
 You can create a notebook by clicking **new** in the notebooks menu. Each notebook consists of a title, subtitle, and a block of cells.
 
-![New Aidbox notebook](../../.gitbook/assets/2021-09-03_09-47-33%20\(1\)%20\(2\)%20\(3\)%20\(4\)%20\(4\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(4\)%20\(1\)%20\(2\)%20\(2\)%20\(1\)%20\(3\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(1\)%20\(3\)%20\(5\).png)
 
 After you create your cell click the **play** icon to see the answer.
 
@@ -43,7 +42,6 @@ After you create your cell click the **play** icon to see the answer.
 
 You can save a notebook for later use or share it with your team. The saved notebook will be available in **My notebooks section.**
 
-![Aidbox notebooks: personal and community](../../.gitbook/assets/2021-09-03_09-59-55.png)
 
 ## Share a notebook
 
@@ -79,4 +77,3 @@ If you selected `as link` option, paste the notebook share link and click `uploa
 
 You can also publish a notebook and share it with the Aidbox community. The published notebook will be available in the Community notebooks section.
 
-![Publish Aidbox notebook](../../.gitbook/assets/2021-09-03_10-13-27.png)
